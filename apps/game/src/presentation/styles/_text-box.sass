@@ -1,0 +1,27 @@
+// Pure module: mixins only.
+
+/// A box around one line of text — a button, a badge, a stamp — trimmed to its
+/// capitals and its baseline, so equal padding centres the ink rather than a
+/// line box carrying half-leading above and descender room below.
+///
+/// The padding grows by exactly what the trim takes off, so the box keeps its
+/// size and nothing measured against it moves; a browser without `text-box`
+/// keeps the padding the caller wrote before the include. Only a block
+/// container is trimmed: in a flex container the text is an anonymous item,
+/// so wrap it in a `span`.
+@mixin trimmed-block($padding-block)
+  padding-block: $padding-block
+
+  @supports (text-box: trim-both cap alphabetic)
+    padding-block: calc(#{$padding-block} + (1lh - 1cap) / 2)
+    text-box: trim-both cap alphabetic
+
+/// A figure on a line of its own, trimmed to its cap height and its baseline:
+/// the leading above and below a numeral is empty space. It shrinks the row it
+/// sits in; outside the guard, `line-height: 1` loses most of the same space.
+@mixin trimmed-figure
+  line-height: 1
+
+  @supports (text-box: trim-both cap alphabetic)
+    line-height: normal
+    text-box: trim-both cap alphabetic

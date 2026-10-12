@@ -336,7 +336,7 @@ whose shorter side is under 750px renders exactly as it did; their ceilings
 land between a shorter side of 875 and 900px, where the column stops widening —
 the two grow together, and then both stop.
 
-Two trims from `@adrienlcp/styles/text-box`, both guarded by
+Two trims from `presentation/styles/_text-box.sass`, both guarded by
 `@supports (text-box: trim-both cap alphabetic)`: `trimmed-block($padding-block)`
 for a painted block of short text (a stamp, a segment, an error), whose padding
 grows by what the trim takes so nothing measured against it moves;

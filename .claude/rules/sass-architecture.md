@@ -34,8 +34,8 @@ into a `.sass` file.**
 
 **Pure modules** declare only mixins and functions, and any component may `@use`
 them: `_typography.sass`, `_layout.sass`, `_focus.sass`, `_control.sass`,
-`_strip.sass`. Each says which it is on its first line; a file that would be
-both is split.
+`_strip.sass`, `_text-box.sass`. Each says which it is on its first line; a
+file that would be both is split.
 
 `_control.sass` is how `Button` and `Link` end up identical, and `_strip.sass`
 does it for the two choice strips. The rules are printed into both stylesheets,
@@ -295,7 +295,7 @@ and `ToggleButton` wrap each string child in a `.control-label` span.
 - **A label in a box whose height is a `min-height`** (a control, the menu
   trigger): bare `text-box` on the label. Nothing moves but its centre.
 - **A painted stamp, segment or error**: `text-box.trimmed-block($padding)` from
-  `@adrienlcp/styles/text-box`, which grows the padding by exactly
+  `_text-box.sass`, which grows the padding by exactly
   `(1lh - 1cap) / 2` under one `@supports`. The block keeps its size to the
   pixel, so a reservation measured against it (`.banked`, `.yours`) stays right.
 - **A figure on a line of its own**: `text-box.trimmed-figure`, with
