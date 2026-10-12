@@ -1611,6 +1611,10 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The scrollbar's gutter is painted in the field's colour, not the
+  browser's grey.** The field moved from `body` to `html`: the body is a size
+  container, and containment stops its background reaching the canvas.
+
 - `[Server]` **A reveal whose next track failed to load no longer waits for a
   press.** The draw is retried three seconds later, and a Durable Object's
   alarm now waits for the draw it started instead of returning with it in

@@ -22,11 +22,14 @@
   // start scrolling: without the reserved gutter the whole page steps sideways
   // by the scrollbar's width. `stable` and not `both-edges`, because the
   // layouts are not symmetric and a strip on the left would read as a margin.
-  // The body's field propagates to the canvas, so the gutter is painted in
-  // the phase's own colour rather than left as a white bar.
+  // The field is painted here and not on the body: the body is a size
+  // container, and containment stops its background propagating to the
+  // canvas, which left the gutter in the browser's own grey.
   html
+    background: var(--field)
     scrollbar-color: var(--rule-strong) var(--field)
     scrollbar-gutter: stable
+    transition: background-color var(--transition-slow, 0s) var(--ease-out)
 
   // `page-enter` lowers a page that already fills the viewport, and a
   // transform still counts as scrollable overflow: unclipped, every arrival
@@ -38,18 +41,14 @@
     min-block-size: 100dvh
     overflow: clip
 
-  // No gradient, no glow: the field is one flat colour, and the transition
-  // between phases is the only thing that moves on it.
   body
     @include layout.container
     @include typography.body
 
-    background: var(--field)
     caret-color: var(--ink)
     color: var(--ink)
     font-family: var(--font-base)
     font-synthesis: none
-    transition: background-color var(--transition-slow, 0s) var(--ease-out)
 
   #root
     display: flex
