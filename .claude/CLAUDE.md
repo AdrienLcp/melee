@@ -75,7 +75,8 @@ a locale) · `react-components` (the compiler owns memoization, the `style` prop
 (layers, tokens, both palettes, state attributes) · `code-style` ·
 `file-naming` · `comments` · `test-conventions` (tags, the socket harness) ·
 `e2e` (build first, three journeys) · `committing` (another session
-shares the index)
+shares the index) · `worktrees` (a branch beside the checkout, a server
+stopped by its process tree)
 
 ## Never
 

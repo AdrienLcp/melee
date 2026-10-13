@@ -1,6 +1,8 @@
+@use '@adrienlcp/styles/motion'
+
 @layer components
   .spinner
-    animation: spinner-turn calc(var(--transition-fast, 0s) * 5) linear infinite
+    @include motion.spin(calc(var(--transition-fast, 0s) * 5))
     border: 0.14em solid color-mix(in oklab, var(--on-control, currentColor) 30%, transparent)
     border-radius: var(--radius-full)
     border-top-color: var(--on-control, currentColor)
@@ -8,7 +10,3 @@
     height: 0.8em
     margin-inline-start: var(--space-2xs)
     width: 0.8em
-
-@keyframes spinner-turn
-  to
-    transform: rotate(1turn)
