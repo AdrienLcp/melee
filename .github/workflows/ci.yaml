@@ -14,9 +14,10 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    # Runs take 2 to 3 minutes and the slowest seen took 8: twice that, so a
-    # hung browser or server is cut off instead of burning the 6-hour default.
-    timeout-minutes: 15
+    # Runs take about 6 minutes with the Lighthouse gate: about three times
+    # that, so a hung browser or server is cut off instead of burning the
+    # 6-hour default.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
@@ -70,6 +71,11 @@ jobs:
       - name: Test end to end
         run: pnpm test:e2e
 
+      # Last, alone in this job: Lantern reads the trace's CPU times, so a heavy
+      # step running beside it would move the scores.
+      - name: Lighthouse
+        run: pnpm lighthouse
+
       - if: failure()
         uses: actions/upload-artifact@v5
         with:
@@ -77,6 +83,15 @@ jobs:
           # `outputDir` is relative to the config, so the traces are under `e2e/`;
           # the root this once pointed at uploaded nothing.
           path: e2e/test-results
+          retention-days: 7
+
+      - if: failure()
+        uses: actions/upload-artifact@v5
+        with:
+          name: lighthouse-reports
+          path: .lighthouseci
+          include-hidden-files: true
+          if-no-files-found: ignore
           retention-days: 7
 
   # Only after `validate`, so a red run never reaches the room on the table. A
