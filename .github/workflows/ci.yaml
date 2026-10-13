@@ -14,9 +14,10 @@ concurrency:
 jobs:
   validate:
     runs-on: ubuntu-latest
-    # Runs take 2 to 3 minutes and the slowest seen took 8: twice that, so a
-    # hung browser or server is cut off instead of burning the 6-hour default.
-    timeout-minutes: 15
+    # Runs take about 6 minutes with the Lighthouse gate: about three times
+    # that, so a hung browser or server is cut off instead of burning the
+    # 6-hour default.
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
