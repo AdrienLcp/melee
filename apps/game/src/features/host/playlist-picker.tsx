@@ -272,13 +272,18 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
           }}
         >
           {draft.kind === 'search' ? (
-            <TextField
-              label={translate('blindtest.source.query')}
-              onChange={(query) => {
-                revise({ query })
-              }}
-              value={draft.query}
-            />
+            <>
+              <TextField
+                label={translate('blindtest.source.query')}
+                onChange={(query) => {
+                  revise({ query })
+                }}
+                value={draft.query}
+              />
+              {/* What is typed here leaves the site, so the field names
+                  where it goes, as the playlist's hint already does. */}
+              <p className='hint'>{translate('blindtest.source.queryHint')}</p>
+            </>
           ) : (
             <>
               <TextField

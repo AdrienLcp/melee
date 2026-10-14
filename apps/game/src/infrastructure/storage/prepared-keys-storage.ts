@@ -4,7 +4,7 @@ import { MAX_SLATE_ITEMS, slateKeySchema } from '@taverla/protocol/slate'
 
 import { parseStoredWithSchema } from './read-stored-with-schema'
 
-const PREPARED_KEYS_KEY = 'taverla:slate-keys'
+export const PREPARED_KEYS_KEY = 'taverla:slate-keys'
 
 const preparedKeysSchema = z
   .array(slateKeySchema.nullable())

@@ -16,7 +16,8 @@
       "url": [
         "http://localhost:3100/en",
         "http://localhost:3100/en/blindtest",
-        "http://localhost:3100/en/credits"
+        "http://localhost:3100/en/credits",
+        "http://localhost:3100/en/legal"
       ]
     },
     "upload": {

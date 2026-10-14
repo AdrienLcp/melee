@@ -76,6 +76,12 @@ const pageFor = {
     }),
     module: 'src/features/invite/invite-page.tsx'
   },
+  [paths.legal]: {
+    lazy: async () => ({
+      Component: (await import('@/features/legal/legal-page')).LegalPage
+    }),
+    module: 'src/features/legal/legal-page.tsx'
+  },
   [paths.pairWall]: {
     lazy: async () => ({
       Component: (await import('@/features/wall/pair-wall-page')).PairWallPage

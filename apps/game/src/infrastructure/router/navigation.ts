@@ -35,7 +35,8 @@ import { isShelvedGame } from '@taverla/core/room/shelved-game'
 export const localizedPaths = {
   credits: '/:locale/credits',
   game: '/:locale/:game',
-  home: '/:locale'
+  home: '/:locale',
+  legal: '/:locale/legal'
 } as const
 
 /**
@@ -110,6 +111,9 @@ export const homePathFor = (locale: Locale): string =>
 
 export const creditsPathFor = (locale: Locale): string =>
   pathFor(paths.credits, { locale })
+
+export const legalPathFor = (locale: Locale): string =>
+  pathFor(paths.legal, { locale })
 
 export const gameHomePathFor = ({
   game,

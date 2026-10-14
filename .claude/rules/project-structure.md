@@ -16,7 +16,8 @@ docs/plans/         → The staged build plan; each file is one session's work.
 ```
 apps/game/src/
 ├── infrastructure/   api, messaging, router, storage, env
-├── features/         credits, home, host, join, not-found, player, shelf
+├── features/         credits, home, host, invite, join, legal, not-found,
+│                     player, shelf, wall
 ├── presentation/     app-shell, components, connection, i18n, room-actions,
 │                     styles, theme
 └── helpers/          pure utilities, no React

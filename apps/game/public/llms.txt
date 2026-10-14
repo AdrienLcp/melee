@@ -34,6 +34,8 @@ language: it negotiates from the browser's and redirects, which is what
 - [Quiz](https://taverla.adrienlcp.com/en/quiz)
 - [Reflex](https://taverla.adrienlcp.com/en/reflex)
 - [Credits](https://taverla.adrienlcp.com/en/credits)
+- [Legal notice and privacy](https://taverla.adrienlcp.com/en/legal): who
+  publishes the site, what it keeps and for how long, and the third parties.
 
 ## Notes
 

@@ -18,10 +18,10 @@ import type { HostPreferences } from '@taverla/core/room/host-preferences'
 
 import { readStoredWithSchema } from './read-stored-with-schema'
 
-const HOST_SETUP_KEY = 'taverla:host-setup'
-const LOCALE_KEY = 'taverla:locale'
-const NICKNAME_KEY = 'taverla:nickname'
-const VOLUME_KEY = 'taverla:volume'
+export const HOST_SETUP_KEY = 'taverla:host-setup'
+export const LOCALE_KEY = 'taverla:locale'
+export const NICKNAME_KEY = 'taverla:nickname'
+export const VOLUME_KEY = 'taverla:volume'
 
 /**
  * Composed out of the protocol's own schemas rather than restated, so a setting

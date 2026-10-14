@@ -6,7 +6,7 @@ import type { Locale } from '@taverla/protocol/locale'
  * never will be: both are served `noindex`, they last one evening, and
  * there is no copy to write for a URL nobody reaches from outside the room.
  */
-export type IndexedPage = 'credits' | 'home' | ShelvedGame
+export type IndexedPage = 'credits' | 'home' | 'legal' | ShelvedGame
 
 export type PageHead = {
   /** The search snippet, and the line a link unfurls with in a group chat. */
@@ -23,7 +23,7 @@ export type PageHead = {
  * says `Taverla` and `The tavern is open.`, and neither is a search result.
  *
  * Read twice. Each page renders its title as `<title>`, which the build-time
- * prerender lifts into the head of fourteen documents beside the description it
+ * prerender lifts into the head of sixteen documents beside the description it
  * writes itself, and React keeps in the tab after an in-app navigation. Typed over
  * `ShelvedGame`, so putting a game on the shelf stops compiling here until both
  * languages can introduce it to a stranger.
@@ -49,6 +49,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex and Slate.',
       title: 'Taverla — party games for one screen and the whole room'
+    },
+    legal: {
+      description:
+        'Who publishes Taverla, what it keeps about the people who play and for how long, which services receive what, and how to refuse audience measurement.',
+      title: 'Legal notice and privacy — Taverla'
     },
     quiz: {
       description:
@@ -86,6 +91,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe et L’Ardoise.',
       title: 'Taverla — des jeux de soirée pour un écran et toute la salle'
+    },
+    legal: {
+      description:
+        'Qui publie Taverla, ce qui est gardé sur les joueurs et pour combien de temps, quels services reçoivent quoi, et comment refuser la mesure d’audience.',
+      title: 'Mentions légales et confidentialité — Taverla'
     },
     quiz: {
       description:
