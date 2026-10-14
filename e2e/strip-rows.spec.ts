@@ -33,7 +33,11 @@ const NARROWEST_SCREEN = 320
  */
 const STEP_PX = 4
 
-/** Above this every strip on the console is on one row with room to spare. */
+/**
+ * Above this every strip on the console is on one row with room to spare. A
+ * strip's sweep ends at its first single row, so this bound only ends one that
+ * never reaches it.
+ */
 const WIDEST_PX = 1_400
 
 /**
@@ -174,6 +178,16 @@ const sweepShapes = ({
           shape: counts.join('+')
         })
 
+        break
+      }
+
+      // One row is where every strip ends up, and no wider box breaks it again:
+      // a wrap only happens for want of room, the strip mixins stack or tile
+      // *below* a width, and the picker's grids gain columns as they widen.
+      // Every step past it lays the whole page out to learn nothing — nine in
+      // ten of the sweep's steps were spent there, and on a loaded machine they
+      // were what ran this spec past its timeout.
+      if (counts.length === 1) {
         break
       }
     }
