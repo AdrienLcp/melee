@@ -2,13 +2,16 @@
 @use '../../presentation/styles/typography'
 
 @layer components
-  // Laid over the header line rather than given a row of its own: a band that
-  // pushed the round down would move every tile a thumb is aiming at, for the
-  // few seconds the room most needs them to stay put. It never takes a press.
+  // Laid just under the header line rather than given a row of its own: a
+  // band that pushed the round down would move every tile a thumb is aiming
+  // at, for the few seconds the room most needs them to stay put. Under it and
+  // not over it, because the header holds the menu and the invitation, and a
+  // notice is never worth a control. It never takes a press.
   .arrival-notice
-    inset-block-start: var(--layout-padding-block-start)
+    inset-block-start: calc(var(--layout-padding-block-start) + var(--control-height) + var(--space-xs))
+    // From the start edge, where the round's own column is: centred, a wide
+    // screen of four tiles had it lying across the first one.
     inset-inline: var(--gutter-left) var(--gutter-right)
-    margin-inline: auto
     max-width: 24rem
     pointer-events: none
     position: fixed

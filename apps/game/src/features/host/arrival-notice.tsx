@@ -70,7 +70,7 @@ export const useArrival = (view: HostRoomView | null): Arrival | null => {
 /**
  * Somebody sat down while a game runs. The round in front of the console was
  * opened without them and will not wait for them, so the screen says so once,
- * over its own header, and lets it go: nothing to accept and nothing to press.
+ * just under its own header, and lets it go: nothing to accept and nothing to press.
  *
  * The live region is mounted empty and stays mounted, because one that
  * appears with its first message is a message nobody hears.
