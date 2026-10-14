@@ -65,14 +65,18 @@ and an unselected stamp ends up wearing the shape of a selected one.
 It is the answer to the question above rather than an exception to it: the
 stacking widths in `_strip.sass`'s call sites are **measured numbers**, a
 dictionary edit moves them, and geometry is the one thing no socket test has an
-opinion about. It cost 21 seconds when it was written.
+opinion about. It costs about 13 seconds.
 
 It sweeps the **strip's own box**, not the viewport — one `page.evaluate` per
 game instead of eighty resizes — and starts each strip at the width the layout
 hands it at 320px, so it never reports a band no screen can reach. The box is
 the nearest ancestor with `container-type: inline-size`, because the playlist
 picker's two grids take their column count from the picker and not from
-themselves.
+themselves. Each strip's sweep **ends at its first single row**, which no wider
+box can break: sweeping on to 1400px spent nine steps in ten laying the page
+out to learn nothing, and a loaded machine ran the spec past its 60-second
+timeout on them. A container query that grows a segment as its box widens
+would break that premise.
 
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped
 finding controls reports exactly what a console with nothing wrong reports.
