@@ -133,6 +133,7 @@ export const EN_DICTIONARY = defineDictionary({
       playlistIdHint: 'The number at the end of the playlist’s Deezer address.',
       preview: 'See what that finds',
       query: 'Search for',
+      queryHint: 'Your search goes to Deezer, which finds the tracks.',
       ready: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} track ready', other: '{?} tracks ready' } }
       }),
@@ -436,6 +437,82 @@ export const EN_DICTIONARY = defineDictionary({
         }
       })
     }
+  },
+  legal: {
+    host: {
+      body: 'Taverla is hosted, and its tables are run, by:',
+      heading: 'Host'
+    },
+    intro:
+      'Who publishes Taverla, what it keeps about the people who play and for how long, and how to change that.',
+    measurement: {
+      body: 'Visits are counted by a tool I built and run myself, at analytics.adrienlcp.com, without cookies. A page view records the page’s address, the site you came from, your browser’s language and theme, the width of its window and how fast the page loaded. It records no IP address, and nothing that tells one visitor from another.',
+      counted: 'Your visits are counted, anonymously.',
+      exemption:
+        'This measurement needs no consent under the CNIL’s guidelines, and you can still refuse it for this browser.',
+      heading: 'Audience measurement',
+      refused: 'Your visits are not counted in this browser.',
+      refusedByBrowser:
+        'Your browser sends Global Privacy Control, so your visits are never counted.',
+      retention: defineTranslation(
+        'Each record is kept {months:plural} at most.',
+        {
+          plural: { months: { one: '{?} month', other: '{?} months' } }
+        }
+      ),
+      saveFailed:
+        'Your browser did not keep this choice. Try again, or turn on Global Privacy Control.',
+      storageBlocked:
+        'This browser blocks site storage, so a refusal cannot be kept here. Turning on Global Privacy Control in your browser refuses measurement on every site.',
+      switch: 'Count my visits'
+    },
+    publisher: {
+      address:
+        'As a non-professional publisher, I give the host’s identity in place of a postal address (LCEN, article 6-III-2).',
+      body: 'Taverla is published by {name}, a private individual, not a business. You can write to me through <contact>this contact page</contact>.',
+      heading: 'Publisher'
+    },
+    rights: {
+      body: 'Under the GDPR, you may access, correct or erase what concerns you, or object to its use. Most of it lives in your browser, and clearing this site’s data erases it. For the rest, ask through <contact>the contact page</contact>; I answer within a month.',
+      complaint:
+        'If you believe your rights are not respected, you may lodge a complaint with the <authority>CNIL</authority>.',
+      heading: 'Your rights'
+    },
+    storage: {
+      analyticsOptOut:
+        'Your refusal of audience measurement, if you turn it off below.',
+      device:
+        'Taverla sets no cookies. What it remembers stays in your browser, for this site only, until you clear it:',
+      heading: 'What Taverla keeps',
+      hostSetup:
+        'How you set up the last table you ran, game by game, so the next one opens the same way.',
+      hostTokens:
+        'The key to each table you opened, which lets you take it back from another screen. Forgotten after a day.',
+      locale: 'The language you picked.',
+      logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
+      nickname:
+        'The name you last played under, so the next table fills it in for you.',
+      seats:
+        'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
+      server:
+        'While a table is played, Cloudflare’s servers hold it: the nicknames at it, the answers given, the scores and the settings. It is deleted when the host closes the table, or ten minutes after the last screen leaves it. There are no accounts, and nothing about you outlives the table.',
+      session:
+        'One more is kept for the open tab alone, and goes when it closes:',
+      slateKeys:
+        'The answers to a slate the host typed in advance, before the table opens.',
+      theme: 'The theme you picked: light, dark or your system’s.',
+      volume: 'The volume of the screen that plays the music.'
+    },
+    thirdParties: {
+      cloudflare:
+        'Cloudflare, the host, receives your IP address with every request, to deliver the page and protect the site from abuse. Opening a table counts against your IP address for one minute, so that nobody can open hundreds.',
+      deezer:
+        'The blind test takes its music from Deezer. What the host searches for, or the playlist they name, is sent to Deezer by Taverla’s server, with nothing about you. The 30-second clips and the album covers, though, are loaded by your browser straight from Deezer’s servers, which therefore receive your IP address and your browser’s name. <policy>Deezer’s privacy policy</policy> applies to them.',
+      heading: 'Who else receives your data',
+      nobodyElse:
+        'No other service is called. The typefaces are served by Taverla itself, and the QR code is drawn in your browser.'
+    },
+    title: 'Legal notice and privacy'
   },
   /**
    * The app itself arriving, which is the one wait with nothing more specific

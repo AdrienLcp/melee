@@ -71,6 +71,8 @@ other dev servers on the machine.
 module may import which library) · `i18n` (adding a string) · `locales` (adding
 a locale) · `react-components` (the compiler owns memoization, the `style` prop)
 · `data-fetching` (a superseded request is aborted)
+· `privacy` (no cookies, the /legal page stays true) · `search` (one
+normaliser for a record search; answer matching is not one)
 · `design-system` (wrapping a react-aria primitive) · `sass-architecture`
 (layers, tokens, both palettes, state attributes) · `code-style` ·
 `file-naming` · `comments` · `test-conventions` (tags, the socket harness) ·

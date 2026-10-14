@@ -256,10 +256,12 @@
       text-wrap: balance
       user-select: text
 
-    // The two small centred lines are one footer, tightened against each other
-    // rather than spaced like the groups above. The credit is a front-door
-    // concern, so inside a room the build line is alone — and then it keeps the
-    // dialog's own gap instead of pulling up under the exits.
+    // The small centred lines are one footer, tightened against each other
+    // rather than spaced like the groups above: the credits at a front door,
+    // the legal notice on every screen, and the build under them.
+    .credit + .credit
+      margin-block-start: calc(var(--space-m) * -0.85)
+
     .credit + .build
       margin-block-start: calc(var(--space-m) * -0.5)
 

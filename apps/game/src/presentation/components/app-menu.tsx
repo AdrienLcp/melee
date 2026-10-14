@@ -29,6 +29,7 @@ import {
   creditsPathFor,
   homePathFor,
   inviteUrlFor,
+  legalPathFor,
   useIsCurrentPath,
   useNavigateToLocale,
   useRoomCodeParam,
@@ -411,6 +412,7 @@ export const AppMenu: React.FC = () => {
   // `closeRoom` is what says a screen is one — the same test `RoomExit` makes.
   const { closeRoom, playsSound, revealRound } = useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
+  const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const { setVolume, volume } = useVolume()
   const [build, setBuild] = useState<string | null>(null)
   const trigger = useRef<HTMLButtonElement>(null)
@@ -580,6 +582,26 @@ export const AppMenu: React.FC = () => {
                     <TextLink href={creditsPathFor(locale)} onPress={close}>
                       {translate('credits.title')}
                     </TextLink>
+                  </p>
+                )}
+
+                {/*
+                  The law asks for this one on every screen, a room's included,
+                  so inside a room it opens a tab of its own instead: following
+                  it there would close the socket the credits above are kept
+                  out of a room to spare.
+                */}
+                {!isOnLegal && (
+                  <p className='credit'>
+                    {isInsideRoom ? (
+                      <TextLink href={legalPathFor(locale)} target='_blank'>
+                        {translate('legal.title')}
+                      </TextLink>
+                    ) : (
+                      <TextLink href={legalPathFor(locale)} onPress={close}>
+                        {translate('legal.title')}
+                      </TextLink>
+                    )}
                   </p>
                 )}
 

@@ -1,0 +1,16 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .measurement-switch
+    border: var(--hairline)
+    border-radius: var(--radius-m)
+    max-width: var(--measure)
+    padding: var(--space-m)
+
+    .save-failed
+      @include typography.caption-strong
+
+      color: var(--ink)
+
+      &:not(:empty)
+        margin-block-start: var(--space-xs)

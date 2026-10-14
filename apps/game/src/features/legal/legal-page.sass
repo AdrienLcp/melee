@@ -1,0 +1,63 @@
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .legal-page
+    @include layout.screen
+
+    gap: var(--space-xl)
+    padding-block-start: var(--menu-block-inset)
+
+    h1
+      @include typography.billboard
+
+    // The measure goes on the prose rather than on the page, as on the credits:
+    // the column grows with the type, and only the sentences hold a line
+    // length worth reading.
+    p,
+    address,
+    .stored-keys
+      @include typography.body
+
+      max-width: var(--measure)
+      text-wrap: pretty
+
+    .intro
+      color: var(--ink-muted)
+      margin-block-start: var(--space-s)
+
+    .legal-section
+      border-top: var(--stroke-hair) solid var(--rule)
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+      padding-block-start: var(--space-m)
+
+      h2
+        @include typography.title
+
+    address
+      display: flex
+      flex-direction: column
+      font-style: normal
+
+    // Each key over what it remembers rather than beside it: `taverla:host-tokens`
+    // set in the read face is wider than a narrow screen's first column could
+    // give it without starving the sentence.
+    .stored-keys
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+      dt
+        @include typography.label
+
+        overflow-wrap: anywhere
+
+      dd
+        color: var(--ink-muted)
+
+    // Sized to its own words, as on the credits: the page's one action follows
+    // a wall of prose, and a full-width block would read as the point of it.
+    > .link
+      align-self: flex-start

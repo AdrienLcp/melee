@@ -41,3 +41,10 @@ const BUZZ_PATTERNS: Record<BuzzMoment, VibratePattern> = {
 export const buzzFeedback = (moment: BuzzMoment): void => {
   navigator.vibrate?.(BUZZ_PATTERNS[moment])
 }
+
+/**
+ * The browser sends Global Privacy Control: the visitor refused measurement
+ * once, for every site. Not in TypeScript's DOM types yet.
+ */
+export const sendsGlobalPrivacyControl = (): boolean =>
+  'globalPrivacyControl' in navigator && navigator.globalPrivacyControl === true

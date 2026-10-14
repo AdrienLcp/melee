@@ -32,8 +32,8 @@ import { nowMs } from '@/infrastructure/clock'
 
 import { readStoredWithSchema } from './read-stored-with-schema'
 
-const SEATS_KEY = 'taverla:seats'
-const HOST_TOKENS_KEY = 'taverla:host-tokens'
+export const SEATS_KEY = 'taverla:seats'
+export const HOST_TOKENS_KEY = 'taverla:host-tokens'
 const ONE_KEY_EACH_PREFIX = 'taverla:session:'
 
 /**
