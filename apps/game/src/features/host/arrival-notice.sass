@@ -6,7 +6,7 @@
   // A line in the header's own band, in place of the round and the score, so
   // the header keeps its height and nothing under it moves or hides: a notice
   // laid over the stage hid the top of a timed question for four seconds. The
-  // band's height is `--control-height`, and the two lines are held inside it.
+  // band's height is `--control-height`.
   .arrival-notice
     &:not([data-shown])
       @include accessibility.visually-hidden
@@ -33,7 +33,7 @@
       white-space: nowrap
 
     // The band is what the menu and the invitation leave, 156px at 390 and 76
-    // at 320: the pawn goes first, then the sentence for the name alone.
+    // at 320: the pawn goes first.
     .pawn
       flex: none
       font-size: var(--text-l)
@@ -42,25 +42,11 @@
         display: none
 
     .words
-      display: flex
-      flex-direction: column
-      min-width: 0
-
-      > *
-        overflow: hidden
-        text-overflow: ellipsis
-
-      &.brief
-        display: none
-
-      @container (width < 7rem)
-        display: none
-
-        &.brief
-          display: flex
-
-    strong
       @include typography.caption-strong
+
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
 
   .round-chrome:has(> .arrival-notice[data-shown]) > :is(.round-index, .you)
     display: none

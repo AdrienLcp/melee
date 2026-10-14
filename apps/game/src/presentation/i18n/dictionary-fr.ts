@@ -251,11 +251,7 @@ export const FR_DICTIONARY = defineDictionary({
     answerWindow: {
       label: 'Temps pour répondre après un buzz'
     },
-    arrival: {
-      joins: 'arrive',
-      nextRound: 'Joue la suivante.',
-      title: '{nickname} s’installe'
-    },
+    arrival: '{nickname} arrive',
     autoAdvance: 'Temps avant la manche suivante',
     backToRoom: 'Retour à la table',
     closeRoom: {

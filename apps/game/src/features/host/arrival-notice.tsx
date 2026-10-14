@@ -8,12 +8,11 @@ import { arrivedPlayers } from '@taverla/core/room/arrivals'
 import { isGameInPlay } from '@taverla/core/room/room-phase'
 
 import { Pawn } from '@/presentation/components/pawn'
-import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './arrival-notice.sass'
 
-/** Long enough to read a name and a line, short enough to be gone by the next question. */
+/** Long enough to read a name, short enough to be gone by the next question. */
 const ARRIVAL_SHOWN_MS = 4_500
 
 /** Who just sat down, and the place on the roster that picks their pawn. */
@@ -69,13 +68,12 @@ export const useArrival = (view: HostRoomView | null): Arrival | null => {
 }
 
 /**
- * Somebody sat down while a game runs. The round in front of the console was
- * opened without them and will not wait for them, so the screen says so once,
- * inside its own header line, in place of the round and the score, and lets it
- * go: nothing to accept and nothing to press. Rendered as a child of that
- * line — `RoundChrome`'s `notice`, or the console's own header. A band too
- * narrow for the sentence shows the name and one word, while the live region
- * still reads the whole sentence.
+ * Somebody sat down while a game runs, said once inside the header line, in
+ * place of the round and the score, and let go: nothing to accept and nothing
+ * to press. Rendered as a child of that line — `RoundChrome`'s `notice`, or the
+ * console's own header. The answer tally already leaves them out of the round
+ * in front of the console, so the name and one word are the whole of it, at
+ * every width.
  *
  * The live region is mounted empty and stays mounted, because one that
  * appears with its first message is a message nobody hears.
@@ -94,22 +92,9 @@ export const ArrivalNotice: React.FC<{ arrival: Arrival | null }> = ({
     >
       {arrival !== null && (
         <>
-          <VisuallyHidden elementType='span'>
-            {translate('host.arrival.title', { nickname: arrival.nickname })}{' '}
-            {translate('host.arrival.nextRound')}
-          </VisuallyHidden>
           <Pawn seat={arrival.seat} />
-          <span aria-hidden='true' className='words'>
-            <strong>
-              {translate('host.arrival.title', {
-                nickname: arrival.nickname
-              })}
-            </strong>
-            <span>{translate('host.arrival.nextRound')}</span>
-          </span>
-          <span aria-hidden='true' className='words brief'>
-            <strong>{arrival.nickname}</strong>
-            <span>{translate('host.arrival.joins')}</span>
+          <span className='words'>
+            {translate('host.arrival', { nickname: arrival.nickname })}
           </span>
         </>
       )}

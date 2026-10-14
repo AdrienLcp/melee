@@ -277,11 +277,7 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Time to answer after a buzz'
     },
     /** A seat taken while a game runs, said for a few seconds and gone. */
-    arrival: {
-      joins: 'joins',
-      nextRound: 'Plays the next one.',
-      title: '{nickname} sits down'
-    },
+    arrival: '{nickname} joins',
     autoAdvance: 'Time before the next round',
     backToRoom: 'Back to the table',
     closeRoom: {
