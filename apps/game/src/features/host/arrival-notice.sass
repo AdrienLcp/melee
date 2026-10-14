@@ -1,40 +1,77 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
 @layer components
-  // Laid just under the header line rather than given a row of its own: a
-  // band that pushed the round down would move every tile a thumb is aiming
-  // at, for the few seconds the room most needs them to stay put. Under it and
-  // not over it, because the header holds the menu and the invitation, and a
-  // notice is never worth a control. It never takes a press.
+  // A line in the header's own band, in place of the round and the score, so
+  // the header keeps its height and nothing under it moves or hides: a notice
+  // laid over the stage hid the top of a timed question for four seconds. The
+  // band's height is `--control-height`, and the two lines are held inside it.
   .arrival-notice
-    inset-block-start: calc(var(--layout-padding-block-start) + var(--control-height) + var(--space-xs))
-    // From the start edge, where the round's own column is: centred, a wide
-    // screen of four tiles had it lying across the first one.
-    inset-inline: var(--gutter-left) var(--gutter-right)
-    max-width: 24rem
-    pointer-events: none
-    position: fixed
-    z-index: 2
+    &:not([data-shown])
+      @include accessibility.visually-hidden
 
     &[data-shown]
       @include piece.card(var(--radius-m))
       @include typography.caption
 
       align-items: center
+      // The console's header lines its items up on their baseline, which set
+      // the card a few pixels low and grew the line under it.
+      align-self: center
       animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      container-type: inline-size
       display: flex
-      gap: var(--space-s)
-      padding: var(--space-s) var(--space-m)
+      flex: 1 1 0
+      gap: var(--space-xs)
+      max-height: var(--control-height)
+      max-width: 24rem
+      min-width: 0
+      overflow: hidden
+      padding: var(--space-2xs) var(--space-xs)
+      pointer-events: none
+      white-space: nowrap
 
+    // The band is what the menu and the invitation leave, 156px at 390 and 76
+    // at 320: the pawn goes first, then the sentence for the name alone.
     .pawn
       flex: none
-      font-size: var(--text-xl)
+      font-size: var(--text-l)
+
+      @container (width < 11rem)
+        display: none
 
     .words
       display: flex
       flex-direction: column
-      gap: var(--space-2xs)
+      min-width: 0
+
+      > *
+        overflow: hidden
+        text-overflow: ellipsis
+
+      &.brief
+        display: none
+
+      @container (width < 7rem)
+        display: none
+
+        &.brief
+          display: flex
 
     strong
       @include typography.caption-strong
+
+  .round-chrome:has(> .arrival-notice[data-shown]) > :is(.round-index, .you)
+    display: none
+
+  // Kept on the line at no width rather than removed: the console's header
+  // lines its items up on their baseline, and the round's text is what sets
+  // the line's height beside the way in, which would otherwise shrink by a
+  // few pixels and lift the stage under it.
+  .host-console-page > header:has(> .arrival-notice[data-shown]) > .round-index
+    margin-inline-end: calc(var(--space-m) * -1)
+    overflow: clip
+    visibility: hidden
+    white-space: nowrap
+    width: 0

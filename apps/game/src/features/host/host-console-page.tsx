@@ -402,9 +402,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     return (
       <Main className='host-console-page framed'>
         <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
-        <ArrivalNotice arrival={arrival} />
         <RoundChrome
           invitation={<InvitePiece roomCode={roomCode} />}
+          notice={<ArrivalNotice arrival={arrival} />}
           players={view.players}
           roundCount={view.settings.roundCount}
           roundIndex={choosing.round.index}
@@ -446,8 +446,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   return (
     <Main className='host-console-page'>
       <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
-      <ArrivalNotice arrival={arrival} />
       <header>
+        <ArrivalNotice arrival={arrival} />
         {view?.round != null && view.phase !== 'finished' && (
           <p className='round-index'>
             {view.settings.roundCount === null

@@ -212,8 +212,9 @@ one part.
   setup remembered on the buzzer opens on four choices instead, because a
   judge cannot take the seat. The table stays open: an *Invite* piece on the
   seated host's four tiles opens the code and the square in a popover over the
-  running round, and anyone who joins is announced on the console for a few
-  seconds and plays from the next round. The buzzer and the slate offer no
+  running round, and anyone who joins is announced for a few seconds in the
+  console's header line, in place of the round and the score, and plays from
+  the next round. The buzzer and the slate offer no
   such door and say why in one line. A spine on the home shelf now opens its
   box's lid with both doors on it, and an empty lobby's launch is *Play right
   away* until somebody else sits down; stacked, the lobby puts the game and

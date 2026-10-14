@@ -278,8 +278,9 @@ export const EN_DICTIONARY = defineDictionary({
     },
     /** A seat taken while a game runs, said for a few seconds and gone. */
     arrival: {
-      nextRound: 'Plays from the next round.',
-      title: '{nickname} joined the table'
+      joins: 'joins',
+      nextRound: 'Plays the next one.',
+      title: '{nickname} sits down'
     },
     autoAdvance: 'Time before the next round',
     backToRoom: 'Back to the table',

@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/seat-grid'
 @use '../../presentation/styles/layout'
@@ -428,7 +429,9 @@
       grid-template-rows: minmax(min(22rem, 45dvh), 1fr) auto
 
       > header
-        display: none
+        // Hidden from sight only: it holds the arrival notice's live region,
+        // which a removed header would silence.
+        @include accessibility.visually-hidden
 
     // One row above the split, and on any screen lying down: the fold's
     // trigger and the press that gives the answer away.
@@ -460,7 +463,7 @@
         grid-template-rows: minmax(min(20rem, 50dvh), 1fr) auto
 
         > header
-          display: none
+          @include accessibility.visually-hidden
 
       > .stage
         container: slate / size
@@ -531,7 +534,7 @@
         grid-template-rows: minmax(min(16rem, 40dvh), 1fr) auto
 
         > header
-          display: none
+          @include accessibility.visually-hidden
 
       > .stage.counting-in
         container: reveal / size

@@ -18,6 +18,12 @@ type RoundChromeProps = {
    * on a player's screen, which has the menu's invitation.
    */
   invitation?: React.ReactNode
+  /**
+   * A passing line at the start of the header, which takes the place of the
+   * round and the score for as long as it is shown rather than a row of its
+   * own: the seated host's arrival notice.
+   */
+  notice?: React.ReactNode
   players: readonly PublicPlayer[]
   /**
    * Printed where the round would be while no round is being played — the
@@ -44,6 +50,7 @@ type RoundChromeProps = {
  */
 export const RoundChrome: React.FC<RoundChromeProps> = ({
   invitation,
+  notice,
   players,
   roomCode,
   roundCount,
@@ -57,6 +64,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
 
   return (
     <header className='round-chrome'>
+      {notice}
       {roundIndex === null ? (
         roomCode !== undefined && (
           <p className='room'>{translate('player.room', { code: roomCode })}</p>

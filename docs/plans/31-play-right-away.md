@@ -45,8 +45,11 @@ the lobby).
   there — the square in miniature and the code, opening the whole invitation
   in a popover the round runs on under. The menu keeps its own.
 - **An arrival is said.** `arrivedPlayers` diffs two rosters; the console shows
-  `ArrivalNotice` just under its header for 4.5s, never over a control, in a polite live region, whenever a
-  seat is taken while a game runs.
+  `ArrivalNotice` for 4.5s inside its header line, in place of the round and
+  the score, in a polite live region, whenever a seat is taken while a game
+  runs. Laid under the header first, it hid the top of a timed question at
+  390×844; in the line it covers nothing and moves nothing, and a band narrower
+  than the sentence (76px at 320) shows the name and one word instead.
 
 ## Decisions taken in the session
 
