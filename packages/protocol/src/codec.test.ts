@@ -22,6 +22,7 @@ const runningRound = {
   index: 1,
   joinedAfterStart: false,
   lockedOutPlayerIds: [],
+  openedWithPlayerIds: null,
   revealedAnswers: [],
   startsAt: 1_700_000_000_000
 }

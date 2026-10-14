@@ -121,6 +121,17 @@ describe('a player who arrives mid-game', () => {
     expect(playerView(zoe)?.round?.joinedAfterStart).toBe(false)
   })
 
+  it('[latecomer] tells the console which seats the round opened on', async () => {
+    const { host, max, nina, zoe } = await roundUnderWay(CHOICE_GAME)
+    const openedWith = hostView(host)?.round?.openedWithPlayerIds
+
+    expect(openedWith).toEqual(
+      expect.arrayContaining([playerView(zoe)?.youId, playerView(max)?.youId])
+    )
+    expect(openedWith).toHaveLength(2)
+    expect(openedWith).not.toContain(playerView(nina)?.youId)
+  })
+
   it('[latecomer] plays the next round like anybody else', async () => {
     const { host, max, nina, zoe } = await roundUnderWay(CHOICE_GAME)
     const answer = {

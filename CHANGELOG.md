@@ -1627,6 +1627,12 @@ one part.
 
 ### Fixes
 
+- `[Shared]` **The console's answer count waits only on the players the round
+  opened on.** Somebody who sat down mid-round was counted and drawn as an
+  answer still owed, though the round neither waits for nor accepts one from
+  them; the round view now carries `openedWithPlayerIds`, and the count and its
+  pawns are drawn from it.
+
 - `[Game]` **The scrollbar's gutter is painted in the field's colour, not the
   browser's grey.** The field moved from `body` to `html`: the body is a size
   container, and containment stops its background reaching the canvas.

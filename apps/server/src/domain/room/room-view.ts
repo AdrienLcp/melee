@@ -275,6 +275,8 @@ const toRoundView = ({
       playerId: youId
     }),
   lockedOutPlayerIds: [...round.lockedOutPlayerIds],
+  openedWithPlayerIds:
+    round.openedWithPlayerIds === null ? null : [...round.openedWithPlayerIds],
   revealedAnswers: round.revealed
     ? round.attempts.map((attempts) => ({
         atServerTime: attempts.firstGuessedAt,

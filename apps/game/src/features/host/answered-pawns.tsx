@@ -2,6 +2,8 @@ import type React from 'react'
 
 import type { PublicPlayer, RoundView } from '@taverla/protocol/room'
 
+import { playersOfRound } from '@taverla/core/round/round-roster'
+
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -17,7 +19,8 @@ type AnsweredPawnsProps = {
  * Who is in and who the room is still waiting on, as the pawns the score track
  * already taught the table to read: standing for an answer sent, a dashed
  * outline for one still owed. It says *that*, never *what* — the room shares
- * this screen.
+ * this screen. A seat taken after the round opened is owed nothing this round,
+ * so it is neither counted nor drawn.
  */
 export const AnsweredPawns: React.FC<AnsweredPawnsProps> = ({
   players,
@@ -25,7 +28,11 @@ export const AnsweredPawns: React.FC<AnsweredPawnsProps> = ({
 }) => {
   const translate = useTranslate()
   const answeredIds = new Set(round.answers.map((answer) => answer.playerId))
-  const answeredCount = players.filter((player) =>
+  const owed = playersOfRound({
+    openedWithPlayerIds: round.openedWithPlayerIds,
+    players
+  })
+  const answeredCount = owed.filter((player) =>
     answeredIds.has(player.id)
   ).length
 
@@ -34,16 +41,16 @@ export const AnsweredPawns: React.FC<AnsweredPawnsProps> = ({
       <p className='count' role='status'>
         {translate('host.answered', {
           count: answeredCount,
-          total: players.length
+          total: owed.length
         })}
       </p>
       <ul>
-        {players.map((player, seat) => (
+        {owed.map((player) => (
           <li
             data-answered={answeredIds.has(player.id) || undefined}
             key={player.id}
           >
-            <Pawn seat={seat} />
+            <Pawn seat={players.indexOf(player)} />
             <VisuallyHidden elementType='span'>
               {player.nickname}
             </VisuallyHidden>

@@ -31,6 +31,21 @@ export const hasJoinedAfterStart = ({
   openedWithPlayerIds !== null && !openedWithPlayerIds.has(playerId)
 
 /**
+ * The players a round owes an answer to, in seat order: everyone while the
+ * countdown runs, and only the seats it opened on once its clip has started.
+ */
+export const playersOfRound = <Player extends { id: PlayerId }>({
+  openedWithPlayerIds,
+  players
+}: {
+  openedWithPlayerIds: readonly PlayerId[] | null
+  players: readonly Player[]
+}): Player[] =>
+  openedWithPlayerIds === null
+    ? [...players]
+    : players.filter((player) => openedWithPlayerIds.includes(player.id))
+
+/**
  * Whether the round should still wait for this player before closing a phase
  * everybody else has finished: the conjunction of having been in it when it
  * opened and of the seat still being held.

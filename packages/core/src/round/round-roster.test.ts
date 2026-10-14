@@ -3,7 +3,11 @@ import { describe, expect, it } from 'vitest'
 import type { PlayerId } from '@taverla/protocol/identifiers'
 
 import { RECONNECT_GRACE_MS } from '../room/seat-presence'
-import { hasJoinedAfterStart, isExpectedInRound } from './round-roster'
+import {
+  hasJoinedAfterStart,
+  isExpectedInRound,
+  playersOfRound
+} from './round-roster'
 
 const NOW = 1_700_000_000_000
 
@@ -86,5 +90,23 @@ describe('round roster', () => {
         participant: seated(LATECOMER)
       })
     ).toBe(true)
+  })
+
+  it('[roster] owes an answer only to the seats the round opened on', () => {
+    expect(
+      playersOfRound({
+        openedWithPlayerIds: [ANNA],
+        players: [seated(ANNA), seated(LATECOMER)]
+      }).map((player) => player.id)
+    ).toEqual([ANNA])
+  })
+
+  it('[roster] owes every seat an answer while the countdown runs', () => {
+    expect(
+      playersOfRound({
+        openedWithPlayerIds: null,
+        players: [seated(ANNA), seated(LATECOMER)]
+      }).map((player) => player.id)
+    ).toEqual([ANNA, LATECOMER])
   })
 })

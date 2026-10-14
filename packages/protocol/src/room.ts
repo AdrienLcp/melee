@@ -322,6 +322,12 @@ export const roundViewSchema = z.object({
    * the host reopens the field with `host.clearLockouts`.
    */
   lockedOutPlayerIds: z.array(playerIdSchema),
+  /**
+   * The seats this round opened on, stamped when its clip starts: the only
+   * players it owes an answer to and waits for. `null` until then — the
+   * countdown — when nobody who sits down is late yet.
+   */
+  openedWithPlayerIds: z.array(playerIdSchema).nullable(),
   /** Empty until the reveal, then what everyone said and whether it was right. */
   revealedAnswers: z.array(revealedAnswerSchema),
   /**

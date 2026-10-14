@@ -136,6 +136,7 @@ const choosingView = (question: Question) => ({
     index: 4,
     joinedAfterStart: false,
     lockedOutPlayerIds: [],
+    openedWithPlayerIds: null,
     revealedAnswers: [],
     startsAt: SERVER_TIME - 2_000
   },
