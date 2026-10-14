@@ -1,0 +1,66 @@
+@use '../../presentation/styles/typography'
+@use '../../presentation/styles/text-box'
+
+// Where the two doors stand side by side rather than one over the other: each
+// needs the width of its button and of the line under it.
+$side-by-side: 34rem
+
+@layer components
+  .game-doors
+    align-items: start
+    display: grid
+    gap: var(--space-s) var(--space-m)
+    grid-template-columns: minmax(0, 1fr)
+
+    @container (width >= #{$side-by-side})
+      grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr)
+
+      .or
+        align-self: start
+        padding-block-start: var(--space-m)
+
+      .error
+        grid-column: 1 / -1
+
+      &:has(> .judged)
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+
+    .door
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      min-width: 0
+
+    .aside
+      @include typography.caption
+
+      color: var(--ink-muted)
+      text-wrap: pretty
+
+    .or
+      @include typography.label
+
+      color: var(--ink-muted)
+      text-align: center
+
+    // The game's own ink on the second door, beside the coral that opens a
+    // table: two doors of one weight, told apart by colour rather than size.
+    .right-away .button.filled:not([data-disabled])
+      --on-primary: var(--spine-ink)
+      --primary: var(--spine)
+      --primary-edge: var(--chipboard)
+
+    .judged
+      @include typography.caption
+
+      color: var(--ink-muted)
+      text-wrap: pretty
+
+    .error
+      @include typography.caption-strong
+
+      background: var(--danger)
+      color: var(--danger-ink)
+      padding: var(--space-2xs) var(--space-s)
+
+      @include text-box.trimmed-block(var(--space-2xs))

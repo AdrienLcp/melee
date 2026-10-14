@@ -675,3 +675,45 @@
           align-self: start
           grid-area: fold
           width: 100%
+
+  // Stacked, the lobby is in one hand and the order is what that hand does:
+  // the code and its square shrunk to one row, then the game, then the press,
+  // and only after them the eight empty sockets. Read the other way round, a
+  // table of one scrolled past every socket to reach the button that seats it.
+  .host-console-page:not(.wall-page):has(> .stage.lobby)
+    @include layout.narrow
+      > .stage.lobby,
+      > .stage.lobby > .host-side
+        display: contents
+
+      .game-choice
+        order: 1
+
+      .slate-preparation
+        order: 2
+
+      > footer
+        order: 3
+
+      .roster
+        order: 4
+
+      .room-invitation
+        --invitation-code-size: 3.25rem
+        --invitation-qr-max-width: 7rem
+
+        align-items: stretch
+        flex-direction: row
+        gap: var(--space-s)
+
+        .code
+          flex: 1 1 auto
+          justify-content: center
+
+        .qr
+          align-content: start
+          flex: none
+          width: var(--invitation-qr-max-width)
+
+        .join-url
+          display: none

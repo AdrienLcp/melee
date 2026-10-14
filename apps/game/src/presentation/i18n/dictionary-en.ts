@@ -276,6 +276,11 @@ export const EN_DICTIONARY = defineDictionary({
     answerWindow: {
       label: 'Time to answer after a buzz'
     },
+    /** A seat taken while a game runs, said for a few seconds and gone. */
+    arrival: {
+      nextRound: 'Plays from the next round.',
+      title: '{nickname} joined the table'
+    },
     autoAdvance: 'Time before the next round',
     backToRoom: 'Back to the table',
     closeRoom: {
@@ -372,6 +377,7 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   invite: {
+    action: 'Invite',
     copied: 'Copied',
     copyCode: 'Copy the code',
     copyFailed: 'Could not copy',
@@ -384,6 +390,7 @@ export const EN_DICTIONARY = defineDictionary({
       summary: 'The code and the square, on a screen of their own'
     },
     joinLate: 'Join any time',
+    nextRound: 'Anyone who arrives during a round plays from the next one.',
     project: 'Show the QR code, big',
     title: 'Scan to play',
     typeIt: 'Type it to join',
@@ -402,6 +409,21 @@ export const EN_DICTIONARY = defineDictionary({
     player: {
       action: 'Join',
       title: 'Join a table'
+    },
+    /**
+     * The door beside *open a table*: the table opens with whoever pressed it
+     * already seated and the first round under way, and stays open to anyone
+     * arriving after. Never *solo*, because the others can still come.
+     */
+    rightAway: {
+      action: 'Play right away',
+      as: 'As {nickname}',
+      change: 'Change',
+      joinLater: 'The others can join you along the way.',
+      judged:
+        'Here the host judges every answer, so the table waits for its players.',
+      name: 'What should we call you?',
+      starting: 'Setting the table…'
     },
     roomCode: {
       description: 'The host has it in front of them.',

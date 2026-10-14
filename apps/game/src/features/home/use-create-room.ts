@@ -2,10 +2,18 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import type { ShelvedGame } from '@taverla/protocol/game'
+import type { Nickname } from '@taverla/protocol/identifiers'
 
 import { createRoom } from '@/infrastructure/api/taverla-api'
-import { hostPathFor } from '@/infrastructure/router/navigation'
-import { writeHostToken } from '@/infrastructure/storage/session-storage'
+import {
+  hostPathFor,
+  playRightAwayNavigation
+} from '@/infrastructure/router/navigation'
+import { writeStoredNickname } from '@/infrastructure/storage/preferences-storage'
+import {
+  writeHostToken,
+  writeSeatNickname
+} from '@/infrastructure/storage/session-storage'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import {
   apiErrorKey,
@@ -22,7 +30,7 @@ export type RoomDoor = ShelvedGame | null
 
 type RoomOpening =
   | { door: RoomDoor; error: PlainTranslationKey; status: 'refused' }
-  | { door: RoomDoor; status: 'opening' }
+  | { door: RoomDoor; seatAs: Nickname | null; status: 'opening' }
   | { status: 'idle' }
 
 /**
@@ -43,15 +51,31 @@ export const useCreateRoom = () => {
   const [opening, setOpening] = useState<RoomOpening>({ status: 'idle' })
 
   return {
+    /** The door's own *open a table* is on its way, rather than its *play right away*. */
     isOpening: (door: RoomDoor): boolean =>
-      opening.status === 'opening' && opening.door === door,
+      opening.status === 'opening' &&
+      opening.door === door &&
+      opening.seatAs === null,
     isOpeningAny: opening.status === 'opening',
-    open: async (door: RoomDoor): Promise<void> => {
+    isStartingRightAway: (door: RoomDoor): boolean =>
+      opening.status === 'opening' &&
+      opening.door === door &&
+      opening.seatAs !== null,
+    /**
+     * Opens the room for `door`. With `seatAs`, the console it lands on takes
+     * the host's seat under that name and starts the first round itself: the
+     * seat is written where the console's `hello` reads it, and the start rides
+     * the navigation, which the console consumes once.
+     */
+    open: async (
+      door: RoomDoor,
+      seatAs: Nickname | null = null
+    ): Promise<void> => {
       if (opening.status === 'opening') {
         return
       }
 
-      setOpening({ door, status: 'opening' })
+      setOpening({ door, seatAs, status: 'opening' })
 
       const created = await createRoom({ game: door ?? undefined, locale })
 
@@ -70,7 +94,19 @@ export const useCreateRoom = () => {
         roomCode: created.data.code
       })
 
-      await navigate(hostPathFor(created.data.code))
+      if (seatAs === null) {
+        await navigate(hostPathFor(created.data.code))
+
+        return
+      }
+
+      writeStoredNickname(seatAs)
+      writeSeatNickname({
+        nickname: seatAs,
+        role: 'host',
+        roomCode: created.data.code
+      })
+      await navigate(hostPathFor(created.data.code), playRightAwayNavigation)
     },
     /**
      * The refusal and the door that met it. Every cause is the room service

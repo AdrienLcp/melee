@@ -20,12 +20,13 @@ test('[e2e] two players type over the same clip, and the reveal says what they s
 
   const host = hostConsole(bigScreen)
 
-  // Through the shelf card, which opens the room already set to a blind test.
+  // Through the shelf card, whose lid opens a room already set to a blind test.
   // `full-game.spec.ts` goes through the front door, which opens one with
   // nothing chosen — the two are different rooms and the difference shows up
   // much later, at a launch that stays greyed out.
   await bigScreen.goto('/en')
   await homePage(bigScreen).blindTest.click()
+  await homePage(bigScreen).blindTestTable.click()
   await expect(bigScreen).toHaveURL(/\/host\/[A-Z0-9]{4}$/)
 
   const joinUrl = await host.joinUrl.innerText()

@@ -1,6 +1,9 @@
 import type React from 'react'
 
+import { launchesWithHostSeated } from '@taverla/core/room/play-right-away'
+
 import { Button } from '@/presentation/components/button'
+import { PlayRightAway } from '@/presentation/components/play-right-away'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { HostActionsProps } from './host-actions'
@@ -8,6 +11,7 @@ import type { HostActionsProps } from './host-actions'
 export const LobbyActions: React.FC<HostActionsProps> = ({
   isLive,
   onOpenRound,
+  onPlayRightAway,
   send,
   slateKeys,
   view
@@ -15,6 +19,28 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   const translate = useTranslate()
   const isRoomEmpty = view.players.length === 0
   const hasNoGame = view.settings.game === null
+
+  // An empty table's launch seats its host and starts, which is the one press
+  // somebody playing alone needs — the seat form and a greyed *gather round*
+  // were three. The moment a player arrives it is the group's launch again.
+  if (
+    launchesWithHostSeated({
+      game: view.settings.game?.kind ?? null,
+      mode: view.settings.mode.kind,
+      seated: view.players.length
+    })
+  ) {
+    return (
+      <PlayRightAway
+        className='launch'
+        isDisabled={!isLive}
+        onPlay={(nickname) => {
+          onOpenRound()
+          onPlayRightAway(nickname)
+        }}
+      />
+    )
+  }
 
   return (
     <div className='launch'>

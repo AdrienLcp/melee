@@ -1,6 +1,6 @@
+@use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
-@use '../../presentation/styles/text-box'
 
 @layer components
   .game-spines
@@ -36,19 +36,6 @@
       padding: var(--space-s) var(--space-m)
       text-align: start
 
-      // The box stays down for as long as its room is opening, because that is
-      // what the press did.
-      &[data-pending]
-        box-shadow: 0 calc(var(--edge) * 0.25) 0 0 var(--chipboard), var(--shadow-pressed)
-        cursor: progress
-        transform: translateY(calc(var(--edge) * 0.75))
-
-      // React Aria marks the pending spine disabled too, and that one has to
-      // stay bright: it is the room on its way.
-      &[data-disabled]:not([data-pending])
-        cursor: not-allowed
-        opacity: 0.45
-
       @container (width >= 26rem)
         grid-template-columns: minmax(0, 1fr) auto
         min-height: clamp(4.75rem, 15cqi, 5.75rem)
@@ -57,19 +44,19 @@
     // Boxes put back by hand, never squared up: the stack only leans once it
     // is wide enough that a lean costs no box its tagline.
     @container (width >= 26rem)
-      .spine:nth-of-type(1)
+      .shelf-box:nth-of-type(1)
         margin-inline-end: 5cqi
 
-      .spine:nth-of-type(2)
+      .shelf-box:nth-of-type(2)
         margin-inline-start: 3cqi
 
-      .spine:nth-of-type(3)
+      .shelf-box:nth-of-type(3)
         margin-inline-end: 2cqi
 
-      .spine:nth-of-type(4)
+      .shelf-box:nth-of-type(4)
         margin-inline-start: 6cqi
 
-      .spine:nth-of-type(5)
+      .shelf-box:nth-of-type(5)
         margin-inline-end: 7cqi
 
     .name
@@ -90,15 +77,6 @@
         max-width: var(--measure-tagline)
         text-align: end
 
-    .error
-      @include typography.caption-strong
-
-      background: var(--danger)
-      color: var(--danger-ink)
-      padding: var(--space-2xs) var(--space-s)
-
-      @include text-box.trimmed-block(var(--space-2xs))
-
     .one-room
       @include typography.body
 
@@ -110,14 +88,20 @@
       height: 0.8em
       width: 0.8em
 
-    // Out of the flow: a name that just fits ("Blind test") would wrap under it.
-    .name
-      position: relative
-      width: fit-content
+    // An opened box stands out of the lean, its lid laid open under its
+    // spine: the doors need the shelf's whole width more than the stack needs
+    // its hand-placed look.
+    .shelf-box[data-expanded]
+      margin-inline: 0
 
-      .spinner
-        height: 0.55em
-        inset-inline-start: calc(100% + var(--space-s))
-        margin: 0
-        position: absolute
-        width: 0.55em
+    // Collapsed, react-aria leaves the panel in the page as `hidden="until-found"`,
+    // which keeps its box — and a lid's padding and paper with it.
+    .shelf-box:not([data-expanded]) .opened-lid
+      display: none
+
+    .opened-lid
+      @include box-lid.box-lid
+
+      container-type: inline-size
+      margin-block-start: var(--space-xs)
+      padding: var(--space-l)

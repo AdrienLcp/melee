@@ -251,6 +251,10 @@ export const FR_DICTIONARY = defineDictionary({
     answerWindow: {
       label: 'Temps pour répondre après un buzz'
     },
+    arrival: {
+      nextRound: 'Joue dès la prochaine manche.',
+      title: '{nickname} a rejoint la table'
+    },
     autoAdvance: 'Temps avant la manche suivante',
     backToRoom: 'Retour à la table',
     closeRoom: {
@@ -340,6 +344,7 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   invite: {
+    action: 'Inviter',
     copied: 'Copié',
     copyCode: 'Copier le code',
     copyFailed: 'Copie impossible',
@@ -352,6 +357,7 @@ export const FR_DICTIONARY = defineDictionary({
       summary: 'Le code et le carré, sur un écran à part'
     },
     joinLate: 'Rejoins quand tu veux',
+    nextRound: 'Qui arrive pendant une manche joue dès la suivante.',
     project: 'Afficher le QR code en grand',
     title: 'Scanne pour jouer',
     typeIt: 'Tape-le pour rejoindre',
@@ -371,6 +377,15 @@ export const FR_DICTIONARY = defineDictionary({
     player: {
       action: 'Rejoindre',
       title: 'Rejoindre une table'
+    },
+    rightAway: {
+      action: 'Jouer tout de suite',
+      as: 'Sous le nom de {nickname}',
+      change: 'Changer',
+      joinLater: 'Les autres pourront te rejoindre en route.',
+      judged: 'Ici, l’hôte juge chaque réponse : la table attend ses joueurs.',
+      name: 'On t’appelle comment ?',
+      starting: 'On installe la table…'
     },
     roomCode: {
       description: 'L’hôte l’a sous les yeux.',

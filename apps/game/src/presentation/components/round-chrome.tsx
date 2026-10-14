@@ -12,6 +12,12 @@ import './round-chrome.sass'
 const MOST_PIPS = 15
 
 type RoundChromeProps = {
+  /**
+   * The way in for somebody new, at the end of the line: a seated host's
+   * console offers it here because its four tiles leave no other room. Absent
+   * on a player's screen, which has the menu's invitation.
+   */
+  invitation?: React.ReactNode
   players: readonly PublicPlayer[]
   /**
    * Printed where the round would be while no round is being played — the
@@ -37,6 +43,7 @@ type RoundChromeProps = {
  * is too narrow to hold them.
  */
 export const RoundChrome: React.FC<RoundChromeProps> = ({
+  invitation,
   players,
   roomCode,
   roundCount,
@@ -104,6 +111,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
           </>
         )}
       </p>
+      {invitation}
     </header>
   )
 }

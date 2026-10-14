@@ -1,0 +1,87 @@
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  // A twin of the menu's trigger on the same line, so the two read as the
+  // corner's pair of pieces rather than as a control and a decoration.
+  .invite-piece
+    --edge: 0.125rem
+
+    align-items: center
+    background: var(--track-a)
+    border: 0
+    border-radius: var(--radius-m)
+    box-shadow: 0 var(--edge) 0 var(--chipboard)
+    color: var(--board-ink)
+    cursor: pointer
+    display: flex
+    flex: none
+    gap: var(--space-xs)
+    min-height: var(--control-height)
+    padding: 0 var(--space-s)
+    transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+
+    &[data-pressed]
+      box-shadow: 0 0 0 var(--chipboard)
+      transform: translateY(var(--edge))
+
+    svg
+      flex: none
+      height: 1.75rem
+      width: 1.75rem
+
+    .words
+      align-items: start
+      display: flex
+      flex-direction: column
+
+    .label
+      @include typography.label
+
+    .code
+      @include typography.caption-strong
+      @include typography.numeric
+
+      color: var(--ink-muted)
+
+    // The word goes before the square does: four characters and a square
+    // still say *come in* on a line a narrow screen has to share with the
+    // round, the score and the menu.
+    @include layout.narrow
+      .label
+        display: none
+
+  // The rulebook leaflet's material, holding the invitation alone: sized for
+  // a screen held out to somebody at arm's length, never read across a room.
+  .invite-popover
+    --ground: var(--field)
+
+    background: var(--field)
+    border-radius: var(--radius-l)
+    box-shadow: 0 0 0 1px var(--rule), 0 4px 0 var(--chipboard), var(--shadow-overlay)
+    max-width: min(92vw, 20rem)
+    overflow-y: auto
+    overscroll-behavior: contain
+    padding: var(--space-m)
+
+    &[data-entering]
+      animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
+
+    .react-aria-Dialog
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+      outline: none
+
+    .room-invitation
+      --invitation-code-size: 2.5rem
+      --invitation-qr-max-width: 11.25rem
+
+      gap: var(--space-m)
+
+    .next-round
+      @include typography.caption
+
+      color: var(--ink-muted)
+      text-align: center
+      text-wrap: balance

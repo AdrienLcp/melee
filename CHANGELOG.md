@@ -204,6 +204,21 @@ one part.
 
 ### Features
 
+- `[Game]` **Play right away.** Every game a host can play in — the blind
+  test, the quiz and the reflex race — has a second door beside *Open a
+  table*: one press opens the table, seats whoever pressed under the name the
+  device remembers (or asks for one in place, Enter included), applies their
+  setup for that game and starts the first round, with no lobby on the way. A
+  setup remembered on the buzzer opens on four choices instead, because a
+  judge cannot take the seat. The table stays open: an *Invite* piece on the
+  seated host's four tiles opens the code and the square in a popover over the
+  running round, and anyone who joins is announced on the console for a few
+  seconds and plays from the next round. The buzzer and the slate offer no
+  such door and say why in one line. A spine on the home shelf now opens its
+  box's lid with both doors on it, and an empty lobby's launch is *Play right
+  away* until somebody else sits down; stacked, the lobby puts the game and
+  the launch above the empty sockets.
+
 - `[Shared]` **The board counts in thousands, and the clock pays by the
   millisecond.** A point is now `POINT` = 1 000: a right pick is 1 000, a typed
   pair 3 000, and the speed bonus still falls linearly from as much again to

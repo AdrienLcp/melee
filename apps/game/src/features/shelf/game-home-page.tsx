@@ -3,7 +3,6 @@ import type { ShelvedGame } from '@taverla/protocol/game'
 import { useCreateRoom } from '@/features/home/use-create-room'
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { useGameParam } from '@/infrastructure/router/navigation'
-import { Button } from '@/presentation/components/button'
 import { PAGE_HEADS } from '@/presentation/head/document-head'
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -12,6 +11,8 @@ import {
   gameNameKey,
   gameTaglineKey
 } from '@/presentation/i18n/translation'
+
+import { GameDoors } from './game-doors'
 
 import './game-home-page.sass'
 import { Main } from '@/presentation/components/main'
@@ -28,7 +29,7 @@ import { Main } from '@/presentation/components/main'
  * on the shelf is.
  *
  * One component for every game, because they have the same shape: a name, a
- * pitch and one button. Split it when one genuinely needs something the others
+ * pitch and its doors. Split it when one genuinely needs something the others
  * do not, and not to pre-empt that.
  */
 export const GameHomePage: React.FC = () => {
@@ -40,7 +41,7 @@ export const GameHomePage: React.FC = () => {
 const GameHome: React.FC<{ game: ShelvedGame }> = ({ game }) => {
   const { locale } = useI18n()
   const translate = useTranslate()
-  const { isOpening, open, refusal } = useCreateRoom()
+  const createRoom = useCreateRoom()
 
   return (
     <Main className='game-home-page'>
@@ -51,28 +52,13 @@ const GameHome: React.FC<{ game: ShelvedGame }> = ({ game }) => {
         <h1>{translate(gameTaglineKey(game))}</h1>
         <p className='pitch'>{translate(gameDescriptionKey(game))}</p>
 
-        <div className='start'>
-          <Button
-            isPending={isOpening(game)}
-            onPress={() => {
-              void open(game)
-            }}
-            size='large'
-          >
-            {translate('join.host.action')}
-          </Button>
-          <p className='aside'>{translate('join.host.description')}</p>
-          {refusal !== null && (
-            <p className='error' role='alert'>
-              {translate(refusal.error)}
-            </p>
-          )}
-        </div>
+        <GameDoors createRoom={createRoom} game={game} />
       </section>
     </Main>
   )
 }
 
 const lidStyle = (game: ShelvedGame): React.CSSProperties => ({
-  '--spine': `var(--spine-${game})`
+  '--spine': `var(--spine-${game})`,
+  '--spine-ink': `var(--on-spine-${game})`
 })

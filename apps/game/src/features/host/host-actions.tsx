@@ -18,6 +18,8 @@ export type HostActionsProps = {
   isLive: boolean
   /** Commits the picker's draft and blesses the audio element — every control that opens a round calls it first. */
   onOpenRound: () => void
+  /** Seats this console under the name and starts the first round once the seat is granted — the empty lobby's launch. */
+  onPlayRightAway: (nickname: string) => void
   send: (message: ClientMessage) => boolean
   /** The answer key this host prepared, sent with the press that opens a slate; absent on any other game. */
   slateKeys: (string | null)[] | undefined

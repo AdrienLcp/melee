@@ -63,6 +63,11 @@
       @container (width < 18.75rem)
         display: none
 
+    // Beside the invitation rather than centred between it and the round: the
+    // seat and the way in are both the console's own, the round is the room's.
+    .you:not(:last-child)
+      margin-inline-start: auto
+
     .you .pawn
       flex: none
       font-size: var(--text-l)

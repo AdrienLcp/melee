@@ -1,6 +1,6 @@
 import { useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import type {
@@ -29,6 +29,7 @@ import { useHostConnection } from '@/infrastructure/messaging/use-host-connectio
 import {
   useCameFromWall,
   useRoomCodeParam,
+  useTakePlayRightAway,
   wallPathFor
 } from '@/infrastructure/router/navigation'
 import {
@@ -50,6 +51,7 @@ import {
 } from '@/infrastructure/storage/session-storage'
 import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
+import { Loader } from '@/presentation/components/loader'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
@@ -64,10 +66,12 @@ import { useReportRoomActions } from '@/presentation/room-actions/room-actions-p
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
+import { ArrivalNotice, useArrival } from './arrival-notice'
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { ClipOffer } from './clip-offer'
 import { HostActions } from './host-actions'
 import { HostRefused } from './host-refused'
+import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
 import { RoomStage } from './room-stage'
 import { useRoundAudio } from './round-audio'
@@ -77,6 +81,9 @@ import { useSlateWall } from './use-slate-wall'
 
 import './host-console-page.sass'
 import { Main } from '@/presentation/components/main'
+
+/** Where a press to play right away is: waiting for its seat, or for its first round. */
+type RightAwayStart = 'idle' | 'seating' | 'starting'
 
 const storedHostPreferencesOrNone = (): HostPreferences | null => {
   const stored = readStoredHostPreferences()
@@ -116,6 +123,14 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
   const [preferences, setPreferences] = useState(storedHostPreferencesOrNone)
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
+  const arrival = useArrival(view)
+  const playsRightAway = useTakePlayRightAway()
+  // Set by the door's navigation or by the empty lobby's launch, spent on the
+  // first view that holds this console's seat, and done once the room has left
+  // the lobby — never kept anywhere a reload would find it again.
+  const [rightAway, setRightAway] = useState<RightAwayStart>(
+    playsRightAway ? 'seating' : 'idle'
+  )
 
   useReportConnection({ clock, status })
   usePhaseField(view?.phase ?? null)
@@ -182,7 +197,39 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [roomCode, send]
   )
 
-  useRestoreStoredSetup({ onRestore: changeSettings, preferences, view })
+  useRestoreStoredSetup({
+    onRestore: changeSettings,
+    playsRightAway,
+    preferences,
+    view
+  })
+
+  // Inside an effect rather than a press, and that is why it arms the audio
+  // here too: the press that asked for it was on the page before, in the same
+  // document, so the browser still counts this screen as one somebody touched.
+  const startFirstRound = useEffectEvent(() => {
+    armAudio()
+    send({ type: 'host.startRound' })
+  })
+
+  // After the restore above, so the frame carrying the remembered setup
+  // reaches the server ahead of the one that builds a round from it.
+  useEffect(() => {
+    if (rightAway === 'idle' || view === null) {
+      return
+    }
+
+    if (view.phase !== 'lobby' || error !== null) {
+      setRightAway('idle')
+
+      return
+    }
+
+    if (rightAway === 'seating' && isLive && view.youId !== null) {
+      setRightAway('starting')
+      startFirstRound()
+    }
+  }, [error, isLive, rightAway, view])
 
   const rememberPreparedKey = (itemIndex: number, key: string) => {
     const remembered = withPreparedKey({
@@ -226,6 +273,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     writeStoredNickname(nickname)
     writeSeatNickname({ nickname, role: 'host', roomCode })
     setSeatNickname(nickname)
+  }
+
+  const playRightAway = (nickname: string) => {
+    clearError()
+    takeSeat(nickname)
+    setRightAway('seating')
   }
 
   // A frame, and the store — never `setSeatNickname`, which is what the socket
@@ -325,13 +378,33 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
+  // The lobby a press to play right away is on its way through: the seat is
+  // being taken and the first round asked for, and drawing the table being
+  // set for a few frames would be a screen nobody chose to see.
+  if (
+    rightAway !== 'idle' &&
+    error === null &&
+    (view === null || view.phase === 'lobby')
+  ) {
+    return (
+      <Main className='host-console-page'>
+        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <div className='stage solo'>
+          <Loader label={translate('join.rightAway.starting')} />
+        </div>
+      </Main>
+    )
+  }
+
   if (view !== null && choosing !== null) {
     const roundDurationMs = choosing.round.durationMs
 
     return (
       <Main className='host-console-page framed'>
         <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
+        <ArrivalNotice arrival={arrival} />
         <RoundChrome
+          invitation={<InvitePiece roomCode={roomCode} />}
           players={view.players}
           roundCount={view.settings.roundCount}
           roundIndex={choosing.round.index}
@@ -373,6 +446,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   return (
     <Main className='host-console-page'>
       <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+      <ArrivalNotice arrival={arrival} />
       <header>
         {view?.round != null && view.phase !== 'finished' && (
           <p className='round-index'>
@@ -449,6 +523,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   })
                 }
               }}
+              onPlayRightAway={playRightAway}
               send={send}
               slateKeys={preparedSlateKeys}
               slateWall={slateWall}

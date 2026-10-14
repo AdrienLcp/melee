@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {
   generatePath,
   type PathParam,
@@ -120,6 +121,45 @@ export const gameHomePathFor = ({
 
 export const hostPathFor = (code: RoomCode): string =>
   pathFor(paths.host, { roomCode: code })
+
+/**
+ * The press that opened a room asked to play in it at once. Carried in the
+ * history entry rather than the address, and taken out of it the moment the
+ * console reads it: a reload, or coming back through the browser's history,
+ * must never start a round on its own.
+ */
+const PLAY_RIGHT_AWAY_STATE = { playsRightAway: true } as const
+
+/** What a door navigates with to land on a console that starts at once. */
+export const playRightAwayNavigation = { state: PLAY_RIGHT_AWAY_STATE } as const
+
+const asksToPlayRightAway = (state: unknown): boolean =>
+  typeof state === 'object' &&
+  state !== null &&
+  'playsRightAway' in state &&
+  state.playsRightAway === true
+
+/**
+ * Whether this console was opened to start playing at once. Read on the first
+ * render and cleared from the history entry straight after, so it answers
+ * `true` for one mount of one page load and never again.
+ */
+export const useTakePlayRightAway = (): boolean => {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const [isAsked] = useState(() => asksToPlayRightAway(location.state))
+
+  useEffect(() => {
+    if (asksToPlayRightAway(location.state)) {
+      void navigate(
+        { pathname: location.pathname, search: location.search },
+        { replace: true, state: null }
+      )
+    }
+  }, [location, navigate])
+
+  return isAsked
+}
 
 const FROM_WALL_PARAM = 'from'
 const FROM_WALL_VALUE = 'wall'

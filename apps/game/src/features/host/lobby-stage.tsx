@@ -3,6 +3,7 @@ import type React from 'react'
 import type { PlayerId, RoomCode } from '@taverla/protocol/identifiers'
 import type { HostRoomView } from '@taverla/protocol/room'
 
+import { launchesWithHostSeated } from '@taverla/core/room/play-right-away'
 import { isShelvedGame } from '@taverla/core/room/shelved-game'
 
 import { EmptySockets } from '@/presentation/components/empty-sockets'
@@ -102,11 +103,15 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             refusing for, which it spent its whole life saying from behind a
             collapsed disclosure three sections below the button it unblocks.
             Every later phase keeps it there, where it is a setting rather than
-            the way in.
+            the way in. At an empty table the launch itself takes the seat, so
+            the form would be a second way to do the same thing.
           */}
-          {controls !== null && (
-            <HostSeat onTakeSeat={controls.onTakeSeat} view={view} />
-          )}
+          {controls !== null &&
+            !launchesWithHostSeated({
+              game: view.settings.game?.kind ?? null,
+              mode: view.settings.mode.kind,
+              seated: view.players.length
+            }) && <HostSeat onTakeSeat={controls.onTakeSeat} view={view} />}
         </section>
       </div>
     </div>

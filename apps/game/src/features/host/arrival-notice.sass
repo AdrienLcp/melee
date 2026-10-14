@@ -1,0 +1,37 @@
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  // Laid over the header line rather than given a row of its own: a band that
+  // pushed the round down would move every tile a thumb is aiming at, for the
+  // few seconds the room most needs them to stay put. It never takes a press.
+  .arrival-notice
+    inset-block-start: var(--layout-padding-block-start)
+    inset-inline: var(--gutter-left) var(--gutter-right)
+    margin-inline: auto
+    max-width: 24rem
+    pointer-events: none
+    position: fixed
+    z-index: 2
+
+    &[data-shown]
+      @include piece.card(var(--radius-m))
+      @include typography.caption
+
+      align-items: center
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      display: flex
+      gap: var(--space-s)
+      padding: var(--space-s) var(--space-m)
+
+    .pawn
+      flex: none
+      font-size: var(--text-xl)
+
+    .words
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+
+    strong
+      @include typography.caption-strong

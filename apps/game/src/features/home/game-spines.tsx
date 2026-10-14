@@ -1,10 +1,15 @@
-import { Fragment } from 'react'
-import { Button } from 'react-aria-components'
+import {
+  Button,
+  Disclosure,
+  DisclosureGroup,
+  DisclosurePanel,
+  Heading
+} from 'react-aria-components'
 
 import { type ShelvedGame, shelvedGames } from '@taverla/protocol/game'
 
+import { GameDoors } from '@/features/shelf/game-doors'
 import { GameIcon } from '@/presentation/components/icons'
-import { Spinner } from '@/presentation/components/spinner'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey, gameTaglineKey } from '@/presentation/i18n/translation'
 
@@ -20,54 +25,48 @@ type GameSpinesProps = {
 /**
  * The five games as boxes stacked on a shelf, each seen by its spine: the
  * box's colour, its name, and one line of what it is. A spine **opens the
- * room** for that game rather than linking to its own page — that page asks
- * for nothing the press does not already know, so it would be a screen whose
- * only content is a second press. It stays the arrival a shared link or a
- * search result makes, and `sitemap.xml` keeps it reachable.
+ * box's lid** in place, with the game's two doors on it — a table for the
+ * group, or one where whoever pressed is already playing. They are the doors
+ * the game's own page draws, so the shelf never sends anyone through a second
+ * page to reach them; that page stays the arrival a shared link or a search
+ * result makes, and `sitemap.xml` keeps it reachable.
  *
- * react-aria's `Button` rather than the design system's: a spine is a piece of
- * the box with two lines on it, not a control with a label.
+ * One lid open at a time, which is what a `DisclosureGroup` holds by default.
+ * react-aria's primitives rather than the design system's `Disclosure`: that
+ * one is a ruled row with a summary, and a spine is a piece of the box with
+ * two lines on it.
  */
 export const GameSpines: React.FC<GameSpinesProps> = ({ createRoom }) => {
   const translate = useTranslate()
-  const { isOpening, isOpeningAny, open, refusal } = createRoom
 
   return (
     <section className='game-spines'>
       <h2>{translate('home.games')}</h2>
-      <div className='stack'>
+      <DisclosureGroup className='stack'>
         {shelvedGames.map((game) => (
-          <Fragment key={game}>
-            <Button
-              className='spine'
-              isDisabled={isOpeningAny && !isOpening(game)}
-              isPending={isOpening(game)}
-              onPress={() => {
-                void open(game)
-              }}
-              style={spineStyle(game)}
-            >
-              <span className='name'>
-                <GameIcon game={game} />
-                {translate(gameNameKey(game))}
-                {isOpening(game) && <Spinner />}
-              </span>
-              <span className='tagline'>{translate(gameTaglineKey(game))}</span>
-            </Button>
-
-            {/*
-              Under the spine that was pressed: five spines tall, a message at
-              the foot of the shelf is a message away from the press that
-              earned it.
-            */}
-            {refusal?.door === game && (
-              <p className='error' role='alert'>
-                {translate(refusal.error)}
-              </p>
-            )}
-          </Fragment>
+          <Disclosure
+            className='shelf-box'
+            id={game}
+            key={game}
+            style={spineStyle(game)}
+          >
+            <Heading level={3}>
+              <Button className='spine' slot='trigger'>
+                <span className='name'>
+                  <GameIcon game={game} />
+                  {translate(gameNameKey(game))}
+                </span>
+                <span className='tagline'>
+                  {translate(gameTaglineKey(game))}
+                </span>
+              </Button>
+            </Heading>
+            <DisclosurePanel className='opened-lid'>
+              <GameDoors createRoom={createRoom} game={game} />
+            </DisclosurePanel>
+          </Disclosure>
         ))}
-      </div>
+      </DisclosureGroup>
       <p className='one-room'>{translate('home.oneRoom')}</p>
     </section>
   )
