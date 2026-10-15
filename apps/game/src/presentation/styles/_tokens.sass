@@ -39,6 +39,8 @@
     --chipboard: light-dark(oklch(60% 0.035 68), oklch(47% 0.035 68))
     --chipboard-dark: light-dark(oklch(48% 0.035 68), oklch(36% 0.03 68))
     --shadow-ink: light-dark(oklch(30% 0.05 250 / 0.22), oklch(8% 0.02 250 / 0.55))
+    // The board behind a sheet, dimmed rather than hidden: the game is still there.
+    --scrim: light-dark(oklch(24% 0.035 250 / 0.35), oklch(8% 0.02 250 / 0.6))
 
     // A soft shadow is a whole layer named by what the piece is doing, as
     // DESIGN.md's shadow vocabulary lists them; the chipboard edge beside it is
@@ -50,6 +52,7 @@
     --shadow-pressed: 0 4px 8px -6px var(--shadow-ink)
     --shadow-pulled: 0 18px 22px -10px var(--shadow-ink)
     --shadow-overlay: 0 24px 40px -16px var(--shadow-ink)
+    --shadow-sheet: 0 -12px 28px -12px var(--shadow-ink)
     --shadow-print: 0 6px 12px -8px var(--shadow-ink)
     --shadow-recess: inset 0 3px 8px -2px var(--shadow-ink)
     --shadow-recess-shallow: inset 0 3px 6px -4px var(--shadow-ink)

@@ -1,3 +1,5 @@
+import { useSyncExternalStore } from 'react'
+
 /**
  * The socket shares the page's origin: in dev the Vite proxy forwards `/ws` to
  * the server, in production the same host serves both. That is what lets the
@@ -48,3 +50,19 @@ export const buzzFeedback = (moment: BuzzMoment): void => {
  */
 export const sendsGlobalPrivacyControl = (): boolean =>
   'globalPrivacyControl' in navigator && navigator.globalPrivacyControl === true
+
+/** Whether the screen answers `query` right now, following it as the window is resized or turned. */
+export const useMediaQuery = (query: string): boolean =>
+  useSyncExternalStore(
+    (onChange) => {
+      const media = matchMedia(query)
+
+      media.addEventListener('change', onChange)
+
+      return () => {
+        media.removeEventListener('change', onChange)
+      }
+    },
+    () => matchMedia(query).matches,
+    () => false
+  )

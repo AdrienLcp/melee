@@ -455,7 +455,8 @@ floor and the reflex race keep their footer under the stage at every ratio.
   and takes the track under that; a tie stands its pawns over the names.
 - **The settings fold and the hold strip** are not drawn: `SetupPopover`, one
   underlined press in the footer, opens the same controls (and the slate's key
-  and item names) on a leaflet (`_leaflet.sass`, shared with the menu).
+  and item names) on a `Leaflet`, shared with the menu — the sheet below the
+  split.
 
 
 ### Measured traps
@@ -509,6 +510,8 @@ quarters and a quarter stays showing.
   var(--shadow-pulled)`): the chosen lid on the shelf.
 - **Overlay** (`var(--shadow-overlay)`): the menu's popover, the one thing
   that leaves the board.
+- **Sheet** (`var(--shadow-sheet)`, cast upward, over `--scrim`): the same
+  leaflet below the split, rising from the bottom edge.
 - **Keyline** (`inset 0 0 0 3px var(--ink)`): *this one is yours* — the own seat,
   the line in hand, a selected strip segment while disabled.
 
@@ -697,6 +700,17 @@ never drawn, and while the socket is not open `.app-menu` carries
 On the wall the chrome goes idle
 (`data-idle`) and returns on the first pointer, key or focus.
 `ConnectionStatus` tells its four states by shape and motion, never by hue.
+
+### Leaflet: popover or sheet
+`Leaflet` is what a trigger opens — the menu, the folded setup. At or past the
+split it is a popover beside the trigger; below it, a sheet rising from the
+bottom edge across the whole width, its controls held to a 30rem column, its
+top a grabber a thumb pulls down (past a quarter of its height, or flicked).
+A press on the scrim or Escape closes it too. Below the split a box hung from
+a top corner is out of a thumb's reach and too narrow for the host's menu,
+which ran to a scrolling 520px card. The sheet is a plain modal with its own
+rise, not react-aria's `Sheet`, which enters through the browser's smooth
+scroll and takes over half a second.
 
 ## Do's and Don'ts
 

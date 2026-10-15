@@ -7,10 +7,8 @@ import { useThemePreference } from '@adrienlcp/theme-preference/react'
 import type React from 'react'
 import { type FormEvent, useRef, useState } from 'react'
 import {
-  Dialog,
   DialogTrigger,
   Form,
-  Popover,
   Button as ReactAriaButton
 } from 'react-aria-components'
 
@@ -58,6 +56,7 @@ import {
 } from './connection-status'
 import { Disclosure } from './disclosure'
 import { MenuIcon } from './icons'
+import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { RoomInvitation } from './room-invitation'
 import { SegmentedControl } from './segmented-control'
@@ -71,7 +70,8 @@ import './app-menu.sass'
 /**
  * React Aria takes the lower of this and the room left below the trigger, so a
  * short screen still scrolls inside the card; a tall one stops it at a card's
- * length rather than at the bottom of the screen.
+ * length rather than at the bottom of the screen. The narrow screen's sheet
+ * is bounded by the screen instead.
  */
 const MENU_MAX_HEIGHT_PX = 520
 
@@ -276,7 +276,7 @@ const SeatName: React.FC = () => {
  * The ways out of a room, in the one piece of chrome that is on every screen at
  * every phase. A stage carries the action the room is waiting on and nothing
  * else, so an exit that must be reachable mid-round lives here instead — behind
- * a popover, where it cannot be pressed by a player aiming at the game.
+ * a leaflet, where it cannot be pressed by a player aiming at the game.
  *
  * Closing asks twice, because it is the only one that cannot be undone: the
  * code stops resolving, so a player cannot reload their way back in.
@@ -456,41 +456,41 @@ export const AppMenu: React.FC = () => {
           <span className='trigger-label'>{translate('menu.label')}</span>
         </ReactAriaButton>
 
-        <Popover
-          className='app-menu-popover'
+        <Leaflet
+          aria-label={translate('menu.label')}
+          className='app-menu-leaflet'
           maxHeight={MENU_MAX_HEIGHT_PX}
           placement='bottom end'
         >
-          <Dialog aria-label={translate('menu.label')}>
-            {({ close }) => (
-              <>
-                {connection !== null && (
-                  <ConnectionStatus
-                    clock={connection.clock}
-                    status={connection.status}
-                  />
-                )}
+          {({ close }) => (
+            <>
+              {connection !== null && (
+                <ConnectionStatus
+                  clock={connection.clock}
+                  status={connection.status}
+                />
+              )}
 
-                {/* First, because it is the one thing a seated host opens the
+              {/* First, because it is the one thing a seated host opens the
                     menu mid-round to press. */}
-                {revealRound !== null && (
-                  <Button
-                    isDisabled={connection?.status !== 'open'}
-                    onPress={() => {
-                      revealRound()
-                      close()
-                    }}
-                    variant='outlined'
-                  >
-                    {translate('host.reveal')}
-                  </Button>
-                )}
+              {revealRound !== null && (
+                <Button
+                  isDisabled={connection?.status !== 'open'}
+                  onPress={() => {
+                    revealRound()
+                    close()
+                  }}
+                  variant='outlined'
+                >
+                  {translate('host.reveal')}
+                </Button>
+              )}
 
-                {/*
+              {/*
                   The way in, on every screen at every phase — which is the one
                   thing the console's lobby could not offer, because it stops
                   being on screen the moment the first round starts and it was
-                  never on a player's screen at all. Behind the popover no
+                  never on a player's screen at all. Behind the leaflet no
                   player aiming at the game can hit, which is the placement this
                   menu already exists to give.
 
@@ -498,15 +498,15 @@ export const AppMenu: React.FC = () => {
                   only thing here somebody opens the menu *during* a game to
                   find, and it is not a way out of the room.
                 */}
-                {isInsideRoom && roomCode !== null && (
-                  <div className='invitation'>
-                    <RoomInvitation roomCode={roomCode} />
+              {isInsideRoom && roomCode !== null && (
+                <div className='invitation'>
+                  <RoomInvitation roomCode={roomCode} />
 
-                    {closeRoom !== null && <WallDoors roomCode={roomCode} />}
-                  </div>
-                )}
+                  {closeRoom !== null && <WallDoors roomCode={roomCode} />}
+                </div>
+              )}
 
-                {/*
+              {/*
                   Whichever screen is the room's speaker — the console, or the
                   wall once one is there. It heads the preferences because it is
                   the only one of them somebody opens this menu mid-round to
@@ -514,52 +514,52 @@ export const AppMenu: React.FC = () => {
                   it used to live in is drawn under the one game that carries a
                   track, while a buzz sounds under all of them.
                 */}
-                {playsSound && (
-                  <Slider
-                    formatOptions={{ style: 'percent' }}
-                    label={translate('preferences.volume')}
-                    maxValue={1}
-                    minValue={0}
-                    onChange={setVolume}
-                    step={0.05}
-                    value={volume}
-                  />
-                )}
-
-                <SegmentedControl
-                  label={translate('preferences.language')}
-                  onChange={(next) => {
-                    if (isLocale(next)) {
-                      setLocale(next)
-                      navigateToLocale(next)
-                    }
-                  }}
-                  options={LOCALES.map((value) => ({
-                    label: LANGUAGE_NAMES[value],
-                    value
-                  }))}
-                  value={locale}
+              {playsSound && (
+                <Slider
+                  formatOptions={{ style: 'percent' }}
+                  label={translate('preferences.volume')}
+                  maxValue={1}
+                  minValue={0}
+                  onChange={setVolume}
+                  step={0.05}
+                  value={volume}
                 />
+              )}
 
-                <SegmentedControl
-                  label={translate('preferences.theme.label')}
-                  onChange={(next) => {
-                    if (isThemePreference(next)) {
-                      setPreference(next)
-                    }
-                  }}
-                  options={THEME_PREFERENCES.map((value) => ({
-                    label: translate(THEME_KEYS[value]),
-                    value
-                  }))}
-                  value={preference}
-                />
+              <SegmentedControl
+                label={translate('preferences.language')}
+                onChange={(next) => {
+                  if (isLocale(next)) {
+                    setLocale(next)
+                    navigateToLocale(next)
+                  }
+                }}
+                options={LOCALES.map((value) => ({
+                  label: LANGUAGE_NAMES[value],
+                  value
+                }))}
+                value={locale}
+              />
 
-                <SeatName />
+              <SegmentedControl
+                label={translate('preferences.theme.label')}
+                onChange={(next) => {
+                  if (isThemePreference(next)) {
+                    setPreference(next)
+                  }
+                }}
+                options={THEME_PREFERENCES.map((value) => ({
+                  label: translate(THEME_KEYS[value]),
+                  value
+                }))}
+                value={preference}
+              />
 
-                <RoomExit onDone={close} />
+              <SeatName />
 
-                {/*
+              <RoomExit onDone={close} />
+
+              {/*
                   The credit itself is a page. CC BY-SA §3(a)(2) names a link to
                   a resource holding the required information as a reasonable
                   way to satisfy attribution, and the list it asks for is longer
@@ -577,41 +577,40 @@ export const AppMenu: React.FC = () => {
                   above is absent on the front door: a link to the screen it is
                   drawn on is pressed and nothing happens.
                 */}
-                {!isInsideRoom && !isOnCredits && (
-                  <p className='credit'>
-                    <TextLink href={creditsPathFor(locale)} onPress={close}>
-                      {translate('credits.title')}
-                    </TextLink>
-                  </p>
-                )}
+              {!isInsideRoom && !isOnCredits && (
+                <p className='credit'>
+                  <TextLink href={creditsPathFor(locale)} onPress={close}>
+                    {translate('credits.title')}
+                  </TextLink>
+                </p>
+              )}
 
-                {/*
+              {/*
                   The law asks for this one on every screen, a room's included,
                   so inside a room it opens a tab of its own instead: following
                   it there would close the socket the credits above are kept
                   out of a room to spare.
                 */}
-                {!isOnLegal && (
-                  <p className='credit'>
-                    {isInsideRoom ? (
-                      <TextLink href={legalPathFor(locale)} target='_blank'>
-                        {translate('legal.title')}
-                      </TextLink>
-                    ) : (
-                      <TextLink href={legalPathFor(locale)} onPress={close}>
-                        {translate('legal.title')}
-                      </TextLink>
-                    )}
-                  </p>
-                )}
+              {!isOnLegal && (
+                <p className='credit'>
+                  {isInsideRoom ? (
+                    <TextLink href={legalPathFor(locale)} target='_blank'>
+                      {translate('legal.title')}
+                    </TextLink>
+                  ) : (
+                    <TextLink href={legalPathFor(locale)} onPress={close}>
+                      {translate('legal.title')}
+                    </TextLink>
+                  )}
+                </p>
+              )}
 
-                {build !== null && (
-                  <p className='build'>{translate('menu.build', { build })}</p>
-                )}
-              </>
-            )}
-          </Dialog>
-        </Popover>
+              {build !== null && (
+                <p className='build'>{translate('menu.build', { build })}</p>
+              )}
+            </>
+          )}
+        </Leaflet>
       </DialogTrigger>
     </div>
   )

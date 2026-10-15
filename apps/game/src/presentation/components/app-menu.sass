@@ -1,5 +1,4 @@
 @use '../styles/typography'
-@use '../styles/leaflet'
 @use '@adrienlcp/styles/accessibility'
 
 @layer components
@@ -100,10 +99,9 @@
   // A host's menu on a landscape phone holds the invitation, the wall doors,
   // the seat, the preferences and three exits, and ran off the bottom with the
   // exits unreachable until the leaflet scrolled inside itself.
-  .app-menu-popover
-    @include leaflet.leaflet
-
-    max-width: min(92vw, 20rem)
+  .app-menu-leaflet
+    &.leaflet-popover
+      max-width: min(92vw, 20rem)
 
     // The control register is sized in `vmin` and this box is not: at a fixed
     // 320px, a host console on a television burst every one of these labels out
@@ -243,8 +241,3 @@
 
     .credit + .build
       margin-block-start: calc(var(--space-m) * -0.5)
-
-@keyframes popover-strike
-  from
-    opacity: 0
-    transform: translateY(-0.375rem)
