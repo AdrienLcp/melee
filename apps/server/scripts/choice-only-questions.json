@@ -4224,6 +4224,18 @@
     "why": "a breed's average weight in kilos, beside a decoy that is the meta-answer \"ça dépend des sources\""
   },
   {
+    "id": "vikidia-abyssin-9",
+    "language": "fr",
+    "prompt": "Peut-on dire de quel pays est originaire l'abyssin ?",
+    "why": "The answer is a sentence ('Non, c'est inconnu') that no typed guess will match."
+  },
+  {
+    "id": "vikidia-accord-du-participe-passe-3",
+    "language": "fr",
+    "prompt": "Quand accorde-t-on le participe passé lorsqu'il est utilisé avec avoir ?",
+    "why": "The answer is a grammar rule phrased as a clause, which cannot be typed to a match."
+  },
+  {
     "id": "vikidia-aile-de-pluie-3",
     "language": "fr",
     "prompt": "Comment les Ailes de Pluie appellent-ils l'heure de repos qu'ils ont après le repas ?",
@@ -4234,6 +4246,12 @@
     "language": "fr",
     "prompt": "Les neuronnes servent :",
     "why": "a stem ending in a colon whose answer is a whole sentence"
+  },
+  {
+    "id": "vikidia-anglais-7",
+    "language": "fr",
+    "prompt": "Que veut dire cette phrase? : \"The sister and the brother are in the kitchen\".",
+    "why": "The answer is a whole translated sentence that a typed guess will not match word for word."
   },
   {
     "id": "vikidia-angle-1",
@@ -4290,6 +4308,18 @@
     "why": "a which-of-these that is nothing without its own four candidates"
   },
   {
+    "id": "vikidia-astronomie-2-3",
+    "language": "fr",
+    "prompt": "Qu'est que c'est qu'une planète extrasolaire ?",
+    "why": "The answer 'Un synonyme de exoplanète' is a phrase no typed guess will match."
+  },
+  {
+    "id": "vikidia-astronomie-2-5",
+    "language": "fr",
+    "prompt": "Qu'est ce qu'il y a au fond d'un trou-noir ?",
+    "why": "The answer 'On ne sait pas' cannot be told apart from a non-answer when typed."
+  },
+  {
     "id": "vikidia-atome-6",
     "language": "fr",
     "prompt": "Quel est le symbole du numéro atomique ?",
@@ -4300,6 +4330,12 @@
     "language": "fr",
     "prompt": "Quel est le symbole du nombre de charge ?",
     "why": "the answer is a single letter, and it repeats the atomic-number row"
+  },
+  {
+    "id": "vikidia-blue-les-royaumes-de-feu-5",
+    "language": "fr",
+    "prompt": "Quels sont les pouvoirs de Blue ?",
+    "why": "The answer is a sentence ('Il a de la soie de feu') that a typed guess will not match."
   },
   {
     "id": "vikidia-botanique-5",
@@ -4494,16 +4530,40 @@
     "why": "the founding year of a breed club"
   },
   {
+    "id": "vikidia-figures-de-la-revolution-12",
+    "language": "fr",
+    "prompt": "Quelle fonction politique Charles-François Lebrun a-t-il occupé ?",
+    "why": "Lebrun held several offices (deputy, third consul, arch-treasurer), so typed play cannot single out député."
+  },
+  {
     "id": "vikidia-films-disney-1",
     "language": "fr",
     "prompt": "Quel acteur ne joue pas dans le film Pirates des Caraïbes : Jusqu'au bout du monde ?",
     "why": "a which-of-these that is nothing without its own four candidates"
   },
   {
+    "id": "vikidia-films-disney-10",
+    "language": "fr",
+    "prompt": "Par rapport à Donald Duck, qui est l'intrus ?",
+    "why": "\"Which is the odd one out?\" means nothing without the four names shown."
+  },
+  {
     "id": "vikidia-films-disney-3",
     "language": "fr",
     "prompt": "Kuzco, l'empereur mégalo est le long-métrage n°:",
     "why": "a which-of-these that is nothing without its own four candidates"
+  },
+  {
+    "id": "vikidia-gardiens-des-cites-perdues-3",
+    "language": "fr",
+    "prompt": "Quels sont les cinq pouvoirs de Sophie ?",
+    "why": "The answer is a list of five powers that no typed line will match."
+  },
+  {
+    "id": "vikidia-gardiens-des-cites-perdues-5",
+    "language": "fr",
+    "prompt": "Lequel de ces lieux ne fait pas partie de l'univers de Gardiens des Cités Perdues ?",
+    "why": "\"Which of these places is not in the series?\" needs the four places shown."
   },
   {
     "id": "vikidia-girondins-de-bordeaux-12",
@@ -4524,6 +4584,30 @@
     "why": "a yes-or-no whose answer is a whole sentence"
   },
   {
+    "id": "vikidia-guerre-de-troie-2",
+    "language": "fr",
+    "prompt": "Qui a causé la guerre de Troie ?",
+    "why": "The answer is a whole sentence about Helen that no typed line will match."
+  },
+  {
+    "id": "vikidia-guerre-de-troie-5",
+    "language": "fr",
+    "prompt": "Où se passe la guerre de Troie ?",
+    "why": "The answer is a whole sentence that no typed line will match."
+  },
+  {
+    "id": "vikidia-guerre-de-troie-6",
+    "language": "fr",
+    "prompt": "Comment s'est terminée la guerre de Troie ?",
+    "why": "The answer is a whole sentence that no typed line will match."
+  },
+  {
+    "id": "vikidia-gymnastique-1",
+    "language": "fr",
+    "prompt": "Qu'est ce qu'un agrès ?",
+    "why": "The answer is a definition sentence that no typed line will match."
+  },
+  {
     "id": "vikidia-halloween-1",
     "language": "fr",
     "prompt": "Halloween est ... (une seule réponse juste)",
@@ -4540,6 +4624,48 @@
     "language": "fr",
     "prompt": "Quelles couleurs pourront ressortir avec Halloween? (une seule réponse juste)",
     "why": "the answer is a four-colour list, and which colours suit Halloween is a matter of taste"
+  },
+  {
+    "id": "vikidia-hamlet-10",
+    "language": "fr",
+    "prompt": "Que se passe-t-il (acte 5) ?",
+    "why": "\"What happens in act 5?\" has a sentence for an answer and singles out nothing typed."
+  },
+  {
+    "id": "vikidia-hamlet-3",
+    "language": "fr",
+    "prompt": "Quelle mission s’est fixé Polonius (acte 2) ?",
+    "why": "The answer is a sentence that no typed line will match."
+  },
+  {
+    "id": "vikidia-hamlet-4",
+    "language": "fr",
+    "prompt": "Que ramène Polonius à Hamlet (acte 2) ?",
+    "why": "The answer is a sentence that no typed line will match."
+  },
+  {
+    "id": "vikidia-hamlet-5",
+    "language": "fr",
+    "prompt": "Dans quel état d’esprit est le roi en regardant la pièce d’Hamlet (acte 3) ?",
+    "why": "The answer is a sentence (\"Il est troublé\") that a typed answer will not match whole."
+  },
+  {
+    "id": "vikidia-hamlet-6",
+    "language": "fr",
+    "prompt": "Qu’a fait Hamlet en tuant Polonius à travers une tapisserie sous les yeux de Gertrude (acte 3) ?",
+    "why": "The answer is an interpretive sentence that no typed line will match."
+  },
+  {
+    "id": "vikidia-hamlet-7",
+    "language": "fr",
+    "prompt": "Pourquoi le royaume est-il terrorisé et organise t-il un conseil (acte 4) ?",
+    "why": "The answer is a sentence that no typed line will match."
+  },
+  {
+    "id": "vikidia-hamlet-8",
+    "language": "fr",
+    "prompt": "Que veut Laërte (acte 4) ?",
+    "why": "The answer is a sentence that no typed line will match."
   },
   {
     "id": "vikidia-heros-de-l-olympe-1",
@@ -4566,10 +4692,22 @@
     "why": "the answer is a whole sentence no typed room reproduces"
   },
   {
+    "id": "vikidia-histoire-de-les-royaumes-de-feu-4",
+    "language": "fr",
+    "prompt": "Dans Les Royaumes de feu, pourquoi les dragons ont-ils déclenché le Grand Incendie ?",
+    "why": "The prompt never names the series, and its answer is a long sentence no typed line will match, so it also needs choiceOnly."
+  },
+  {
     "id": "vikidia-histoire-de-les-royaumes-de-feu-5",
     "language": "fr",
     "prompt": "Qui a mis en lumière la véritable histoire du Grand Incendie ?",
     "why": "the answer is a whole sentence no typed room reproduces"
+  },
+  {
+    "id": "vikidia-hommes-prehistoriques-4",
+    "language": "fr",
+    "prompt": "Quel est l'homme préhistorique le plus ancien?",
+    "why": "Homo habilis is only the oldest among the four shown; typed, australopithecines and older hominins compete."
   },
   {
     "id": "vikidia-hunger-games-8",
@@ -4674,6 +4812,12 @@
     "why": "a which-of-these that is nothing without its own four candidates"
   },
   {
+    "id": "vikidia-les-aventures-de-tintin-12",
+    "language": "fr",
+    "prompt": "Dans quel album en deux parties Tournesol dévoile-t-il son véritable talent ?",
+    "why": "The answer is a pair of album titles joined by 'et', which nobody would type whole, so it can only be won among the choices."
+  },
+  {
     "id": "vikidia-les-aventures-de-tintin-16",
     "language": "fr",
     "prompt": "Quelle est la seule différence physique entre les Dupondt ?",
@@ -4726,6 +4870,12 @@
     "language": "fr",
     "prompt": "Quelle est la grande nouveauté de Tintin ?",
     "why": "the answer is a whole sentence no typed room reproduces"
+  },
+  {
+    "id": "vikidia-les-filles-au-chocolat-2",
+    "language": "fr",
+    "prompt": "Comment se nomme les quatre belles-sœurs de Cherry ?",
+    "why": "The answer is a list of four names in a fixed order, which cannot reasonably be typed to match."
   },
   {
     "id": "vikidia-les-royaumes-de-feu-12",
@@ -4794,6 +4944,12 @@
     "why": "a which-of-these that is nothing without its own four candidates"
   },
   {
+    "id": "vikidia-mario-21",
+    "language": "fr",
+    "prompt": "Super Mario Land 2 6 Golden Coins est un jeu où Mario doit... ?",
+    "why": "The answer is a whole sentence describing the plot, which cannot be typed to match."
+  },
+  {
     "id": "vikidia-mars-planete-6",
     "language": "fr",
     "prompt": "Le diamètre de Mars mesure…",
@@ -4842,10 +4998,28 @@
     "why": "a figure the sentence never narrows, which nobody produces from nothing"
   },
   {
+    "id": "vikidia-navette-spatiale-bourane-17",
+    "language": "fr",
+    "prompt": "Les vols suivants de Bourane se sont-ils déroulés avec succès ?",
+    "why": "The answer is a sentence ('Non puisqu'elle n'a pas revolé') nobody can type."
+  },
+  {
+    "id": "vikidia-navette-spatiale-bourane-19",
+    "language": "fr",
+    "prompt": "Qu'est t-il arrivé le 12 mai 2002 ?",
+    "why": "The answer is a full sentence nobody can type."
+  },
+  {
     "id": "vikidia-nicolas-boileau-2",
     "language": "fr",
     "prompt": "Quand est né Nicolas Boileau ?",
     "why": "a figure the sentence never narrows, which nobody produces from nothing"
+  },
+  {
+    "id": "vikidia-nintendo-64-15",
+    "language": "fr",
+    "prompt": "Quelle particularité avait la manette de la Nintendo 64 ?",
+    "why": "The answer is a sentence nobody can type."
   },
   {
     "id": "vikidia-nintendo-64-2",
@@ -4860,6 +5034,12 @@
     "why": "the answer is a whole sentence no typed room reproduces"
   },
   {
+    "id": "vikidia-nintendo-64-4",
+    "language": "fr",
+    "prompt": "Le 64-DD est...",
+    "why": "'Le 64-DD est...' expects a descriptive phrase that a typed answer cannot match."
+  },
+  {
     "id": "vikidia-nintendo-64-5",
     "language": "fr",
     "prompt": "Lequel de ces jeux n'est pas sorti sur la Nintendo 64 ?",
@@ -4872,10 +5052,22 @@
     "why": "a figure the sentence never narrows, which nobody produces from nothing"
   },
   {
+    "id": "vikidia-nombre-negatif-7",
+    "language": "fr",
+    "prompt": "On effectue un produit dont au moins un facteur est 2 ou -2. Quels sont les entiers relatifs qu'on peut alors obtenir ?",
+    "why": "the decoys kept the source list's trailing semicolons, and the answer is a descriptive phrase no typed line matches"
+  },
+  {
     "id": "vikidia-panda-geant-2",
     "language": "fr",
     "prompt": "sa queue mesure:",
     "why": "a tail in centimetres, and \"sa\" names no animal"
+  },
+  {
+    "id": "vikidia-pays-de-la-loire-2",
+    "language": "fr",
+    "prompt": "Combien la région Pays de la Loire compte-t-elle d'habitants ?",
+    "why": "The answer is a bound ('+ de 3,5 millions') a typed figure cannot match."
   },
   {
     "id": "vikidia-peloton-de-surveillance-et-d-intervention-de-la-gendarmerie-5",
@@ -4896,6 +5088,12 @@
     "why": "a yes-or-no whose answer is a qualified phrase, so a typed \"non\" loses"
   },
   {
+    "id": "vikidia-percussions-2",
+    "language": "fr",
+    "prompt": "Ici, quel est l'instrument le plus récent",
+    "why": "'Ici, quel est l'instrument le plus récent' only means something among the shown choices."
+  },
+  {
     "id": "vikidia-percy-jackson-3",
     "language": "fr",
     "prompt": "Qui aide Percy, Annabeth et Tyson à monter à bord du bateau de Luke, et comment s'appelle ce bateau ?",
@@ -4912,6 +5110,18 @@
     "language": "fr",
     "prompt": "Quel acteur ne joue pas dans la saga ?",
     "why": "a which-of-these that is nothing without its own four candidates"
+  },
+  {
+    "id": "vikidia-pirates-des-caraibes-6",
+    "language": "fr",
+    "prompt": "Dans l'épisode 1, de quelle malédiction sont frappés l'équipage du Black Pearl et Barbossa ?",
+    "why": "The answer is a sentence nobody can type."
+  },
+  {
+    "id": "vikidia-pirates-des-caraibes-7",
+    "language": "fr",
+    "prompt": "Au début de l'épisode 3, pourquoi Barbossa et Elizabeth se rendent-ils à Singapour ?",
+    "why": "The answer is a sentence nobody can type."
   },
   {
     "id": "vikidia-pirates-des-caraibes-8",
@@ -4956,10 +5166,22 @@
     "why": "a figure the sentence never narrows, which nobody produces from nothing"
   },
   {
+    "id": "vikidia-rouletabille-1",
+    "language": "fr",
+    "prompt": "D'où vient le surnom de \"Rouletabille\" ?",
+    "why": "The answer is a sentence nobody can type."
+  },
+  {
     "id": "vikidia-saint-zacharie-var-1",
     "language": "fr",
     "prompt": "Combien (environs) d'habitants Saint-Zacharie compte t-il ?",
     "why": "a village population whose four candidates sit within four hundred of each other"
+  },
+  {
+    "id": "vikidia-seconde-guerre-mondiale-5",
+    "language": "fr",
+    "prompt": "Quels pays font partie des Forces de l’Axe ?",
+    "why": "A three-country list in a set order cannot be matched when typed."
   },
   {
     "id": "vikidia-serdaigle-3",
@@ -4992,6 +5214,12 @@
     "why": "a figure the sentence never narrows, which nobody produces from nothing"
   },
   {
+    "id": "vikidia-star-wars-16",
+    "language": "fr",
+    "prompt": "Dans la chronologie légendaire, lequel de ces enfants n'est pas un enfant d'Han Solo et de Leia Organa ?",
+    "why": "'Lequel de ces enfants n'est pas…' only has an answer among the four candidates."
+  },
+  {
     "id": "vikidia-stray-kids-4",
     "language": "fr",
     "prompt": "Laquelle de ces chansons n'est pas de Stray Kids ?",
@@ -5020,5 +5248,23 @@
     "language": "fr",
     "prompt": "Les travaux de restauration du Temple d'Auguste et de Livie ont durés environ ?",
     "why": "the length of one monument's restoration, in decades"
+  },
+  {
+    "id": "vikidia-volcan-3",
+    "language": "fr",
+    "prompt": "Quel est le plus haut de ces quatre volcans ?",
+    "why": "\"le plus haut de ces volcans\" only has an answer among the candidates, and the prompt counted three where four are shown"
+  },
+  {
+    "id": "vikidia-windows-10-1",
+    "language": "fr",
+    "prompt": "Windows 10 était gratuit à son lancement pour",
+    "why": "the prompt said Windows for Windows 10 and the answer is a phrase about which systems got the free upgrade, which no typed line matches"
+  },
+  {
+    "id": "vikidia-windows-10-4",
+    "language": "fr",
+    "prompt": "Lequel de ces jeux est immédiatement télécharger lors de la mise à niveau vers Windows 10",
+    "why": "'Lequel de ces jeux' only has an answer among the candidates."
   }
 ]
