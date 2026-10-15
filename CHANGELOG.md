@@ -869,6 +869,16 @@ one part.
 
 ### Improvements
 
+- `[Server]` **Every French Vikidia row and every well-known Mintaka row
+  outside sport has been read, one at a time.** Of Vikidia's 922, 70 are
+  dropped (choice questions that lost their choices, fragments, wrong answers),
+  149 repaired in place and 41 kept for the choice mode alone. Of Mintaka's
+  1 824, 512 stop being well-known — American school trivia, the Nth episode of
+  a series, box-office and running times — in a new census,
+  `apps/server/scripts/not-well-known-questions.json`; 100 are dropped, among
+  them answers the years have made wrong, and 205 repaired. The well-known
+  French half goes from 4 112 rows to 3 440, every subject above 120.
+
 - `[Server]` **A French room that stays mainstream no longer gets an American
   evening.** No PolyFact row and no Mintaka sport row is well-known any more:
   read on a seeded sample, PolyFact was more than half facts nobody knows and

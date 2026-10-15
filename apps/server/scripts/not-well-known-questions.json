@@ -1,0 +1,3074 @@
+[
+  {
+    "id": "mintaka-00686d0b",
+    "language": "fr",
+    "prompt": "Quel est le jeu vidéo ayant rapporté le plus en 2020 ?",
+    "why": "The top-grossing game of 2020 is a sales-chart detail nobody at a table knows."
+  },
+  {
+    "id": "mintaka-021c4433",
+    "language": "fr",
+    "prompt": "Quelle dynastie a régné le plus longtemps sur la Chine ?",
+    "why": "The longest Chinese dynasty is specialist history."
+  },
+  {
+    "id": "mintaka-027f1a2c",
+    "language": "fr",
+    "prompt": "Quel est le sixième épisode de la série Assassin’s Creed ?",
+    "why": "Counting Assassin's Creed entries to the sixth is a count nobody remembers."
+  },
+  {
+    "id": "mintaka-02e31eb6",
+    "language": "fr",
+    "prompt": "Quelle ville est la capitale de la Floride ?",
+    "why": "Tallahassee as Florida's capital is American school geography."
+  },
+  {
+    "id": "mintaka-0338e7fc",
+    "language": "fr",
+    "prompt": "Quelle était la première ville des États-Unis à accueillir les Jeux olympiques ?",
+    "why": "St. Louis hosting the 1904 Games as the first US Olympic city is a detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-0341e515",
+    "language": "fr",
+    "prompt": "Pour quel film Tom Hanks a-t-il décroché sa première nomination à l’Oscar du meilleur acteur ?",
+    "why": "Tom Hanks's first Best Actor nomination being for Big is deep filmography trivia."
+  },
+  {
+    "id": "mintaka-036b3be5",
+    "language": "fr",
+    "prompt": "Quel est le troisième point le plus élevé sur Terre ?",
+    "why": "Naming the third-highest summit on Earth is mountaineering trivia beyond a typical table."
+  },
+  {
+    "id": "mintaka-04059463",
+    "language": "fr",
+    "prompt": "Qui était le plus jeune roi britannique ?",
+    "why": "Henry VI acceding at nine months is English royal trivia few French adults know."
+  },
+  {
+    "id": "mintaka-05aecdca",
+    "language": "fr",
+    "prompt": "Dans quel État est situé le monument du mont Rushmore ?",
+    "why": "Which state holds Mount Rushmore is US state trivia."
+  },
+  {
+    "id": "mintaka-05ff9715",
+    "language": "fr",
+    "prompt": "Quel État est le 13e plus grand par sa superficie et abrite le parc Arches ?",
+    "why": "US state area rank and Arches National Park are American trivia."
+  },
+  {
+    "id": "mintaka-0744457d",
+    "language": "fr",
+    "prompt": "Quel homme a été président des États-Unis et aussi juge en chef de la Cour suprême ?",
+    "why": "Taft and the Supreme Court are US political trivia."
+  },
+  {
+    "id": "mintaka-07ca6540",
+    "language": "fr",
+    "prompt": "Quel lac d’eau douce africain est le plus pollué en 2021 ?",
+    "why": "A 2021 pollution ranking of African lakes is an unsourced claim nobody could know."
+  },
+  {
+    "id": "mintaka-0878c86f",
+    "language": "fr",
+    "prompt": "Quel Transformers est le plus long ?",
+    "why": "Which Transformers film runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-08a18390",
+    "language": "fr",
+    "prompt": "Lequel des quatre enfants de Ron Howard a réalisé certains épisodes de Mandalorian ?",
+    "why": "Which of Ron Howard's children directed Mandalorian episodes is production trivia."
+  },
+  {
+    "id": "mintaka-0912c640",
+    "language": "fr",
+    "prompt": "Qui était le quatrième président des États-Unis ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-09dc60e2",
+    "language": "fr",
+    "prompt": "Quel est le 4e plus long fleuve des États-Unis ?",
+    "why": "Ranking US rivers by length is American school geography."
+  },
+  {
+    "id": "mintaka-0a0effbc",
+    "language": "fr",
+    "prompt": "Quel État est le 8e plus grand en superficie et abrite le Pikes Peak ?",
+    "why": "US state area rankings and Pikes Peak are American school geography."
+  },
+  {
+    "id": "mintaka-0a3cd351",
+    "language": "fr",
+    "prompt": "Quel est le plus court des films de Quentin Tarantino ?",
+    "why": "Each Tarantino film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-0a54abb9",
+    "language": "fr",
+    "prompt": "Quel est le jeu de la série Metal Gear Solid qui a vendu le plus d’exemplaires ?",
+    "why": "Which Metal Gear Solid sold best is a sales-chart detail."
+  },
+  {
+    "id": "mintaka-0a793d3b",
+    "language": "fr",
+    "prompt": "Quel éditeur de jeux vidéo a réalisé les plus grosses recettes en 2019-2020 ?",
+    "why": "Publisher revenue rankings for 2019-2020 are industry figures nobody at a table knows, and Tencent arguably led them."
+  },
+  {
+    "id": "mintaka-0b068bb2",
+    "language": "fr",
+    "prompt": "Quel jeu Zelda y a-t-il sur la Gameboy Color et présente un très grand œuf ?",
+    "why": "The giant egg of Link's Awakening is a detail only Zelda players know."
+  },
+  {
+    "id": "mintaka-0bc9b304",
+    "language": "fr",
+    "prompt": "Qui était le premier souverain de Grèce ?",
+    "why": "Otto of Bavaria as the first king of modern Greece is a detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-0c57e1eb",
+    "language": "fr",
+    "prompt": "Quel film de la Terre du Milieu, entre Le Seigneur des anneaux et Le Hobbit, a eu le plus gros budget ?",
+    "why": "The answer is a Hobbit film, not a Lord of the Rings one, and budget rankings are trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-0c705e1b",
+    "language": "fr",
+    "prompt": "Quel est le deuxième fleuve le plus long d’Espagne ?",
+    "why": "The Ebro edging out the Douro for second place is a length ranking nobody remembers."
+  },
+  {
+    "id": "mintaka-0ce053f9",
+    "language": "fr",
+    "prompt": "Quel fleuve prend sa source dans le Colorado et est le quatrième plus long fleuve des États-Unis ?",
+    "why": "The Rio Grande's source and rank among US rivers are American geography that never crossed over."
+  },
+  {
+    "id": "mintaka-0ce6e832",
+    "language": "fr",
+    "prompt": "Quel montagne fait partie de la chaîne de montagnes Blanches et est le plus haut du New Hampshire ?",
+    "why": "New Hampshire's highest peak is US state geography that never crossed over."
+  },
+  {
+    "id": "mintaka-0d3e8130",
+    "language": "fr",
+    "prompt": "Qui était le dix-neuvième président des États-Unis d’Amérique ?",
+    "why": "Rutherford B. Hayes as the nineteenth US president is a rank nobody remembers."
+  },
+  {
+    "id": "mintaka-0d5d8cab",
+    "language": "fr",
+    "prompt": "Quel film de la saga Pirates des Caraïbes a fait le moins de recettes brutes ?",
+    "why": "Which Pirates of the Caribbean film grossed the least is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-0dfa6b26",
+    "language": "fr",
+    "prompt": "Quel est le jeu de la série Far Cry qui a été le plus vendu ?",
+    "why": "Which Far Cry sold best is a sales figure nobody knows."
+  },
+  {
+    "id": "mintaka-0e37348c",
+    "language": "fr",
+    "prompt": "Quel jeu vidéo Xbox One a vendu le plus d’exemplaires ?",
+    "why": "The best-selling Xbox One game is a sales-chart detail, and Minecraft among the decoys may well be as right."
+  },
+  {
+    "id": "mintaka-0e392685",
+    "language": "fr",
+    "prompt": "Quel État était le premier à se séparer de l’Union lors de la guerre de Sécession ?",
+    "why": "Which state seceded first in the American Civil War is US school history that never reached a French table."
+  },
+  {
+    "id": "mintaka-0eff1e39",
+    "language": "fr",
+    "prompt": "Quel État américain a rejoint l’union en 1863 et a comme devise « Mountaineers Are Always Free » ?",
+    "why": "US state mottos and admission years are American school trivia."
+  },
+  {
+    "id": "mintaka-0f51c904",
+    "language": "fr",
+    "prompt": "Quel État a pour oiseau d’État le cardinal nordique et abrite la ville de Cleveland ?",
+    "why": "State birds and the state of Cleveland are US state trivia."
+  },
+  {
+    "id": "mintaka-0fb7c3ac",
+    "language": "fr",
+    "prompt": "Sous quel titre sort le quatrième film du réalisateur Kevin Smith ?",
+    "why": "Kevin Smith's filmography order is little known outside American indie fans."
+  },
+  {
+    "id": "mintaka-102d42df",
+    "language": "fr",
+    "prompt": "Quelle entreprise a créé Star Wars: Knights of the Old Republic ?",
+    "why": "The studio behind KOTOR is gamer trivia, with Obsidian (KOTOR II) as a trap decoy."
+  },
+  {
+    "id": "mintaka-11842b6e",
+    "language": "fr",
+    "prompt": "Avec qui Donald Trump a-t-il été marié pendant une très courte durée ?",
+    "why": "Trump's second wife Marla Maples is a US tabloid name a French table would not know."
+  },
+  {
+    "id": "mintaka-11b3304c",
+    "language": "fr",
+    "prompt": "Quel jeu de Zelda a le plus long temps de réalisation en moyenne ?",
+    "why": "Which Zelda takes longest to finish is play-time trivia."
+  },
+  {
+    "id": "mintaka-12725711",
+    "language": "fr",
+    "prompt": "Quel film a remporté l’Oscar du meilleur film en mille neuf cent cinquante et un ?",
+    "why": "All About Eve's best picture is Oscar-history trivia, under a French title few know."
+  },
+  {
+    "id": "mintaka-127a4c7b",
+    "language": "fr",
+    "prompt": "Quelle est la quatrième montagne la plus haute d’Asie ?",
+    "why": "Lhotse as fourth-highest summit in Asia is mountaineering trivia nobody holds."
+  },
+  {
+    "id": "mintaka-1353ac48",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par George Lucas et est sorti en 1973 ?",
+    "why": "American Graffiti is a film few French adults could produce as George Lucas's 1973 work."
+  },
+  {
+    "id": "mintaka-13bca964",
+    "language": "fr",
+    "prompt": "Quel secrétaire général de l’ONU était le plus âgé lors de son départ en retraite ?",
+    "why": "Which UN Secretary-General was oldest on leaving office is a figure nobody knows, and Guterres has since overtaken Boutros-Ghali."
+  },
+  {
+    "id": "mintaka-13cdde92",
+    "language": "fr",
+    "prompt": "Quelle ville est connue sous le nom de Beantown ?",
+    "why": "Boston's 'Beantown' nickname is American lore."
+  },
+  {
+    "id": "mintaka-13dc6d58",
+    "language": "fr",
+    "prompt": "Quel était le troisième film de Tom Cruise ?",
+    "why": "Tom Cruise's third film is deep filmography trivia."
+  },
+  {
+    "id": "mintaka-13eaddb4",
+    "language": "fr",
+    "prompt": "Qui a remporté l’Oscar de la meilleure actrice en deux mille cinq ?",
+    "why": "Matching a year to its Best Actress winner is Oscar trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-13ef8b7c",
+    "language": "fr",
+    "prompt": "Quel jeu Final Fantasy est sorti pour les PS3 et a eu deux suites directes ?",
+    "why": "Which Final Fantasy had two direct PS3 sequels is fan-level trivia."
+  },
+  {
+    "id": "mintaka-175b9eff",
+    "language": "fr",
+    "prompt": "Quel est le plus long fleuve des États-Unis, qui coule du nord-ouest au sud-est ?",
+    "why": "Most French players answer Mississippi; the Missouri being longer is US geography that never crossed over."
+  },
+  {
+    "id": "mintaka-17a74d76",
+    "language": "fr",
+    "prompt": "Quelle entreprise de développement de jeux vidéo a créé le jeu Doom d’origine ?",
+    "why": "The studio behind the original Doom is developer trivia outside a gamer table."
+  },
+  {
+    "id": "mintaka-187e1148",
+    "language": "fr",
+    "prompt": "Où se trouve le Temple de la Dent ?",
+    "why": "The Temple of the Tooth in Kandy is unknown to most tables, with Thailand an equally plausible guess."
+  },
+  {
+    "id": "mintaka-189c8396",
+    "language": "fr",
+    "prompt": "Quelle était la première civilisation à utiliser le courrier ?",
+    "why": "Which civilisation first had a postal service is contested trivia guessed blind."
+  },
+  {
+    "id": "mintaka-195d1489",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de victoires à The Game Awards 2020 ?",
+    "why": "The tally of Game Awards 2020 wins is industry trivia outside a gamer table."
+  },
+  {
+    "id": "mintaka-197c5bc6",
+    "language": "fr",
+    "prompt": "Quel est le premier long métrage de Christopher Nolan, sorti en 1998 ?",
+    "why": "Following was Nolan's micro-budget debut, not a big success, and almost nobody can name it."
+  },
+  {
+    "id": "mintaka-1ac296be",
+    "language": "fr",
+    "prompt": "Quelle est la plus longue bataille que l’armée des États-Unis ait jamais livrée ?",
+    "why": "\"La longue bataille isolée\" is garbled, and the Hürtgen Forest is a detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-1b169a6c",
+    "language": "fr",
+    "prompt": "Qui était le militant des droits civiques qui s’était marié avec Betty Sanders ?",
+    "why": "Betty Shabazz's maiden name is a detail nobody knows."
+  },
+  {
+    "id": "mintaka-1b659978",
+    "language": "fr",
+    "prompt": "Quel président américain est né au Massachusetts et était républicain ?",
+    "why": "US presidents' birth states are American trivia."
+  },
+  {
+    "id": "mintaka-1bd241cb",
+    "language": "fr",
+    "prompt": "Quelle bataille de la guerre civile a renversé le cours pour l’Union et a eu le plus de victimes ?",
+    "why": "The turning-point battle of the American Civil War is US school history."
+  },
+  {
+    "id": "mintaka-1c44d73d",
+    "language": "fr",
+    "prompt": "Quel Star Wars est le plus long ?",
+    "why": "Which Star Wars runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-1ce61d87",
+    "language": "fr",
+    "prompt": "Quel jeu fait partie de la série Final Fantasy et a Garland pour principal méchant ?",
+    "why": "Garland as the villain of the first Final Fantasy is deep series lore."
+  },
+  {
+    "id": "mintaka-1d702f03",
+    "language": "fr",
+    "prompt": "Quel est le film le plus cher jamais réalisé ?",
+    "why": "Exact production budgets are box-office detail nobody remembers, and the record is disputed."
+  },
+  {
+    "id": "mintaka-1dd04c3c",
+    "language": "fr",
+    "prompt": "Quelle est la plus grande ville de Floride ?",
+    "why": "Florida's largest city is US state trivia."
+  },
+  {
+    "id": "mintaka-1e03b520",
+    "language": "fr",
+    "prompt": "Quel est le troisième plus grand des Grands Lacs en termes de volume ?",
+    "why": "Ranking the Great Lakes by volume is a figure nobody remembers."
+  },
+  {
+    "id": "mintaka-1f4fd802",
+    "language": "fr",
+    "prompt": "Lequel des films du réalisateur Tate Taylor a mis en vedette l’actrice Emma Stone ?",
+    "why": "Tate Taylor is an unknown director name, so the clue gives a typed answer nothing."
+  },
+  {
+    "id": "mintaka-21d8f51d",
+    "language": "fr",
+    "prompt": "Quel est le jeu le plus court dans la série Call of Duty ?",
+    "why": "The shortest Call of Duty campaign is play-time trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-2267b539",
+    "language": "fr",
+    "prompt": "Lequel des films Hunger Games a fait le plus d’argent ?",
+    "why": "Catching Fire is the highest-grossing Hunger Games film, not Mockingjay Part 2, and the ranking is box-office detail."
+  },
+  {
+    "id": "mintaka-22e026f2",
+    "language": "fr",
+    "prompt": "Qui a été la femme du roi Philippe et cousine de Don Carlos ?",
+    "why": "Philip II's fourth wife is specialist history, and French players will think of Louis XIII's Anne d'Autriche."
+  },
+  {
+    "id": "mintaka-234bfa40",
+    "language": "fr",
+    "prompt": "Quel est le plus long film a avoir remporté un Oscar ?",
+    "why": "Bondarchuk's War and Peace as the longest Oscar winner is deep awards trivia."
+  },
+  {
+    "id": "mintaka-237956df",
+    "language": "fr",
+    "prompt": "Quel est le deuxième État à avoir ratifié la Constitution des États-Unis ?",
+    "why": "The order in which states ratified the Constitution is American school trivia."
+  },
+  {
+    "id": "mintaka-2393e956",
+    "language": "fr",
+    "prompt": "Par quelle dynastie chinoise le sismographe a-t-il été inventé ?",
+    "why": "The dynasty under which the seismograph was invented is a fact almost nobody knows."
+  },
+  {
+    "id": "mintaka-248fc059",
+    "language": "fr",
+    "prompt": "Qui est l’auteur du dessin au fusain de Kate Winslet, nue, dans Titanic ?",
+    "why": "Winslet is misspelt 'Winslow', and that Cameron drew it himself is behind-the-scenes trivia."
+  },
+  {
+    "id": "mintaka-24d536ed",
+    "language": "fr",
+    "prompt": "Quel est le plus long film en 2003 ?",
+    "why": "La meglio gioventù as the longest film of 2003 is a running-time record nobody knows."
+  },
+  {
+    "id": "mintaka-24e8eae1",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par George Lucas et est sorti en 1971 ?",
+    "why": "THX 1138 is a cult debut few have heard of."
+  },
+  {
+    "id": "mintaka-24f30923",
+    "language": "fr",
+    "prompt": "Quel est l’État où se trouve le parc national de Zion et dont la fleur étatique est le calochortus ?",
+    "why": "Zion National Park and a state flower are US state trivia."
+  },
+  {
+    "id": "mintaka-25052551",
+    "language": "fr",
+    "prompt": "Pour quel film Meryl Streep a-t-elle reçu sa première nomination aux Oscars ?",
+    "why": "Her first Oscar win was Kramer vs. Kramer; The Deer Hunter was only her first nomination."
+  },
+  {
+    "id": "mintaka-25149fb9",
+    "language": "fr",
+    "prompt": "Quel était le quatrième État à ratifier les articles de la confédération ?",
+    "why": "The order in which states ratified the Articles of Confederation is American school trivia."
+  },
+  {
+    "id": "mintaka-2604ef36",
+    "language": "fr",
+    "prompt": "Où se trouve le Monument du cheval fou ?",
+    "why": "The Crazy Horse Memorial's state is American geography trivia."
+  },
+  {
+    "id": "mintaka-26ae8d6e",
+    "language": "fr",
+    "prompt": "Où Kingdom Come: Deliverance se déroule-t-il ?",
+    "why": "Kingdom Come: Deliverance's setting is niche gaming trivia."
+  },
+  {
+    "id": "mintaka-26ec3550",
+    "language": "fr",
+    "prompt": "Quel est le film des Pirates des Caraïbes qui a fait le plus de recettes brutes ?",
+    "why": "Dead Man's Chest out-grossed On Stranger Tides by about two percent, which nobody can tell apart from memory."
+  },
+  {
+    "id": "mintaka-27402393",
+    "language": "fr",
+    "prompt": "Quelle est la personne la plus jeune à être nominée aux Oscars ?",
+    "why": "Justin Henry is unknown, and the youngest-nominee record is Oscar trivia."
+  },
+  {
+    "id": "mintaka-27fc203f",
+    "language": "fr",
+    "prompt": "Qui était le premier afro-américain à jouer dans la Ligue majeure de baseball ?",
+    "why": "Jackie Robinson is a baseball figure unknown in France."
+  },
+  {
+    "id": "mintaka-283de7f0",
+    "language": "fr",
+    "prompt": "Quel était le premier roi saxon ?",
+    "why": "Egbert as the first Saxon king is contested medieval trivia almost nobody knows."
+  },
+  {
+    "id": "mintaka-284deba9",
+    "language": "fr",
+    "prompt": "Quelle guerre a résulté dans la renégociation des frontières espagnoles en Amérique, et a aussi été responsable de l’incendie de la Maison blanche ?",
+    "why": "The War of 1812 and the burning of the White House are American school history."
+  },
+  {
+    "id": "mintaka-2861a1aa",
+    "language": "fr",
+    "prompt": "Quel jeu a le plus haut pourcentage d’opinions positives sur Steam ?",
+    "why": "Steam's highest positive-review percentage is a shifting store statistic nobody follows."
+  },
+  {
+    "id": "mintaka-289ca010",
+    "language": "fr",
+    "prompt": "Quelle est la plus grande ville de l’État du Iowa ?",
+    "why": "Iowa's largest city is American geography trivia."
+  },
+  {
+    "id": "mintaka-2975921e",
+    "language": "fr",
+    "prompt": "Quel était le deuxième président des États-Unis à avoir été assassiné ?",
+    "why": "Garfield as the second assassinated president is American school trivia."
+  },
+  {
+    "id": "mintaka-2a22381e",
+    "language": "fr",
+    "prompt": "Qui était le premier secrétaire au Trésor des États-Unis ?",
+    "why": "The prompt lacks the country, and Hamilton's cabinet post is US politics beyond the presidents."
+  },
+  {
+    "id": "mintaka-2a22965f",
+    "language": "fr",
+    "prompt": "Où habite Alan Parrish ?",
+    "why": "Jumanji's New Hampshire setting is a detail nobody remembers, and the prompt does not even name the film."
+  },
+  {
+    "id": "mintaka-2ad11761",
+    "language": "fr",
+    "prompt": "Quel était le juge que le public aimait détester de la série de télé réalité American Idol ?",
+    "why": "American Idol judges are US television that never crossed over."
+  },
+  {
+    "id": "mintaka-2b6a1597",
+    "language": "fr",
+    "prompt": "Qui est la personne la plus âgée à remporter un Oscar ?",
+    "why": "James Ivory's screenplay Oscar at 89 is a record few know."
+  },
+  {
+    "id": "mintaka-2c55c5d7",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée la Ville de la haine ?",
+    "why": "Dallas's 'City of Hate' nickname is American lore."
+  },
+  {
+    "id": "mintaka-2cb1eb37",
+    "language": "fr",
+    "prompt": "Quel est le plus petit État des États-Unis par sa taille ?",
+    "why": "Rhode Island being the smallest state is US state trivia that never crossed over."
+  },
+  {
+    "id": "mintaka-2d29eb77",
+    "language": "fr",
+    "prompt": "Quel président américain est resté en fonction pendant la plus courte période ?",
+    "why": "William Henry Harrison's month-long presidency is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-2dbdd894",
+    "language": "fr",
+    "prompt": "Quel film a été écrit par George Lucas et est sorti en 1973 ?",
+    "why": "American Graffiti as Lucas's 1973 script is film-buff trivia a French table guesses blind."
+  },
+  {
+    "id": "mintaka-2e509948",
+    "language": "fr",
+    "prompt": "Quelle ville est The Big D ?",
+    "why": "\"The Big D\" is an American city nickname a French table does not know."
+  },
+  {
+    "id": "mintaka-2ec551ed",
+    "language": "fr",
+    "prompt": "Quelle montagne de la chaîne de l’Himalaya est le quatrième sommet le plus élevé au monde ?",
+    "why": "Lhotse as the fourth highest peak is mountaineering trivia."
+  },
+  {
+    "id": "mintaka-2fe22f4c",
+    "language": "fr",
+    "prompt": "Qui fut la première personne à remporter un Oscar d’interprétation pour un rôle dans une langue autre que l’anglais ?",
+    "why": "The prompt never names the Oscar and calls Sophia Loren an actor, and the record is Oscar-history trivia."
+  },
+  {
+    "id": "mintaka-30941a33",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus peuplée du Tennessee ?",
+    "why": "Nashville over Memphis as Tennessee's largest city is US state trivia."
+  },
+  {
+    "id": "mintaka-317f5a9a",
+    "language": "fr",
+    "prompt": "Quel était le vingtième état dans l’histoire des États-Unis ?",
+    "why": "The order of statehood is American school trivia."
+  },
+  {
+    "id": "mintaka-31cfb5e6",
+    "language": "fr",
+    "prompt": "Quel acteur figurant dans Fatherhood est un comédien de stand-up ?",
+    "why": "Fatherhood is a Netflix film that never registered in France, and Kevin Hart's stand-up career is an American reference."
+  },
+  {
+    "id": "mintaka-3207a96b",
+    "language": "fr",
+    "prompt": "Quel est le septième plus long fleuve du monde ?",
+    "why": "The seventh-longest river is a ranking that varies by source and nobody holds."
+  },
+  {
+    "id": "mintaka-3306a86f",
+    "language": "fr",
+    "prompt": "Qui était le trente-neuvième président des États-Unis ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-33400260",
+    "language": "fr",
+    "prompt": "Quelle franchise de jeux vidéos a accumulé plus d’1 milliard de dollars en poursuites judiciaires ?",
+    "why": "Which franchise drew a billion dollars in lawsuits is a figure nobody knows."
+  },
+  {
+    "id": "mintaka-334e9a5e",
+    "language": "fr",
+    "prompt": "Quel film de L’Inspecteur Harry a le plus rapporté ?",
+    "why": "Which Dirty Harry film grossed most is box-office trivia."
+  },
+  {
+    "id": "mintaka-34bc2bce",
+    "language": "fr",
+    "prompt": "Quel montagne se situe dans la chaîne des Cascades et est le plus élevé de l’État de Washington ?",
+    "why": "Washington State's highest peak is US state geography that never crossed over."
+  },
+  {
+    "id": "mintaka-3658a9af",
+    "language": "fr",
+    "prompt": "Quel acteur a joué dans le plus de films ?",
+    "why": "Eric Roberts having the most film credits is a database curiosity no quiz player knows."
+  },
+  {
+    "id": "mintaka-36d9402c",
+    "language": "fr",
+    "prompt": "Qui a été pape le plus longtemps ?",
+    "why": "Pius IX as the longest-reigning pope after Peter is a fact almost nobody can produce."
+  },
+  {
+    "id": "mintaka-37b050bd",
+    "language": "fr",
+    "prompt": "Quel était le troisième jeu de Legend of Zelda ?",
+    "why": "Counting the Zelda series to its third entry is something only collectors can do, with the fourth among the decoys."
+  },
+  {
+    "id": "mintaka-3822f9e2",
+    "language": "fr",
+    "prompt": "Qui est l’acteur le plus âgé à avoir été nominé pour un Oscar ?",
+    "why": "Christopher Plummer as the oldest acting nominee is an awards record few know."
+  },
+  {
+    "id": "mintaka-3acb1c9f",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus peuplée du Texas ?",
+    "why": "Texas's largest city is US geography a French table would guess between Dallas and Houston."
+  },
+  {
+    "id": "mintaka-3b04a59e",
+    "language": "fr",
+    "prompt": "Quelle est la ville américaine la plus pluvieuse ?",
+    "why": "Mobile, Alabama as the rainiest US city is American weather trivia."
+  },
+  {
+    "id": "mintaka-3b0e4f5c",
+    "language": "fr",
+    "prompt": "Quel est le plus court des films Transformers ?",
+    "why": "Which Transformers film runs shortest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-3b3c0583",
+    "language": "fr",
+    "prompt": "Quel jeu Final Fantasy a été le premier à avoir une suite ?",
+    "why": "Which Final Fantasy first got a direct sequel is series-fan trivia."
+  },
+  {
+    "id": "mintaka-3ba131a5",
+    "language": "fr",
+    "prompt": "Qui est l’ex-épouse de Channing Tatum ?",
+    "why": "Channing Tatum's ex-wife Jenna Dewan is American celebrity gossip."
+  },
+  {
+    "id": "mintaka-3c1045f3",
+    "language": "fr",
+    "prompt": "Quelle ville des États-Unis est connue sous le nom de Mile-High City ?",
+    "why": "Denver's 'Mile-High City' nickname is American trivia."
+  },
+  {
+    "id": "mintaka-3c93f51a",
+    "language": "fr",
+    "prompt": "Quel jeu de football était disponible au prix de détail en 2018 et est désormais gratuit pour tous les joueurs en 2021 ?",
+    "why": "The PES-to-eFootball free-to-play switch is minor publishing history, and FIFA is a plausible guess."
+  },
+  {
+    "id": "mintaka-3d11e8bc",
+    "language": "fr",
+    "prompt": "Quel comédien américain bien connu s’est vu refuser le rôle d’Hagrid dans Harry Potter parce que les rôles n’étaient destinés qu’aux acteurs britanniques ?",
+    "why": "Robin Williams being turned down for Hagrid is casting trivia few have heard."
+  },
+  {
+    "id": "mintaka-3ef694f4",
+    "language": "fr",
+    "prompt": "Quel État est le 9e plus grand par sa superficie et abrite le lac Crater ?",
+    "why": "Crater Lake and Oregon's area rank are US state trivia."
+  },
+  {
+    "id": "mintaka-4087a879",
+    "language": "fr",
+    "prompt": "Quel est le cinquième plus grand État des États-Unis en superficie ?",
+    "why": "The fifth-largest US state by area is US state trivia."
+  },
+  {
+    "id": "mintaka-40abdff7",
+    "language": "fr",
+    "prompt": "Quel est le cinquième plus petit pays du monde en termes de superficie ?",
+    "why": "The fifth-smallest country by area is a ranking nobody holds."
+  },
+  {
+    "id": "mintaka-40e75ee3",
+    "language": "fr",
+    "prompt": "Quel jeu vidéo a gagné le plus de prix Game of the Year en une année ?",
+    "why": "Which game won the most Game of the Year awards in one year is award-tally trivia."
+  },
+  {
+    "id": "mintaka-410c6d19",
+    "language": "fr",
+    "prompt": "Quel empereur romain a servi le moins longtemps pendant le Principat ?",
+    "why": "The shortest reign of the Principate is a contested detail (Gordian I and II were shorter than Otho) that nobody knows."
+  },
+  {
+    "id": "mintaka-41a51755",
+    "language": "fr",
+    "prompt": "Qui est l’acteur le mieux payé de tous les temps ?",
+    "why": "Keanu Reeves as the highest-paid actor ever is a contested back-end-deal figure nobody can know."
+  },
+  {
+    "id": "mintaka-41c83f86",
+    "language": "fr",
+    "prompt": "Quel est la troisième plus longue rivière d’Afrique ?",
+    "why": "The Niger as Africa's third-longest river is a ranking nobody remembers."
+  },
+  {
+    "id": "mintaka-42f35678",
+    "language": "fr",
+    "prompt": "Qui était le 5e Président des États-Unis ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-43f71a25",
+    "language": "fr",
+    "prompt": "Quel est le jeu principal dans les séries Metal Gear Solid et a Raiden comme personnage jouable principal ?",
+    "why": "Raiden as MGS2's playable lead is series-fan trivia."
+  },
+  {
+    "id": "mintaka-44b046a8",
+    "language": "fr",
+    "prompt": "Quelle est la société de jeux vidéo la plus rentable en 2021 ?",
+    "why": "The most profitable games company of 2021 is financial trivia, and Tencent would contest it."
+  },
+  {
+    "id": "mintaka-4540190b",
+    "language": "fr",
+    "prompt": "Quelle est la montagne la plus élevée de l’État de Washington ?",
+    "why": "The highest peak of Washington State is American geography."
+  },
+  {
+    "id": "mintaka-4602efcb",
+    "language": "fr",
+    "prompt": "Qui est la plus jeune personne à avoir remporté un Oscar de la meilleure actrice ?",
+    "why": "Marlee Matlin is a name almost no French player could produce."
+  },
+  {
+    "id": "mintaka-46a96e0b",
+    "language": "fr",
+    "prompt": "Quel film du Seigneur des anneaux est le plus court ?",
+    "why": "The theatrical cuts of the first two Lord of the Rings films differ by a minute, which nobody remembers."
+  },
+  {
+    "id": "mintaka-46cc53fc",
+    "language": "fr",
+    "prompt": "Dans quel État se trouvent la plupart des universités de l’Ivy League ?",
+    "why": "Ivy League geography is American college lore, and New York holds only two of the eight, not most of them."
+  },
+  {
+    "id": "mintaka-46cecc19",
+    "language": "fr",
+    "prompt": "Quel est l’État dont Albany est la capitale ?",
+    "why": "Albany as New York's capital is American school geography."
+  },
+  {
+    "id": "mintaka-470020c2",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée la Mile-High City ?",
+    "why": "Denver's 'Mile-High City' nickname is American."
+  },
+  {
+    "id": "mintaka-470f392d",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée la Ville des lilas ?",
+    "why": "Spokane's 'Lilac City' nickname is unknown outside the US."
+  },
+  {
+    "id": "mintaka-477f487f",
+    "language": "fr",
+    "prompt": "Quel État se trouve en Nouvelle-Angleterre et ne borde pas le Massachusetts ?",
+    "why": "Which New England states border Massachusetts is American school geography."
+  },
+  {
+    "id": "mintaka-483627c7",
+    "language": "fr",
+    "prompt": "Quel est le plus court des films Star Wars ?",
+    "why": "Each Star Wars film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-48f8bcb2",
+    "language": "fr",
+    "prompt": "Qui est la plus jeune personne à avoir remporté l’Oscar du meilleur réalisateur ?",
+    "why": "The French is garbled ('a avoir été remporté'), and Chazelle's age record is awards trivia few know."
+  },
+  {
+    "id": "mintaka-4962bc3f",
+    "language": "fr",
+    "prompt": "Quel film a remporté l’Oscar du meilleur film en mille neuf cent quatre-vingt trois ?",
+    "why": "Matching an Oscar ceremony year to its Best Picture is record trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-496cf7de",
+    "language": "fr",
+    "prompt": "Qui a remporté le plus grand nombre d’Oscars du meilleur réalisateur ?",
+    "why": "John Ford's four directing Oscars are cinephile trivia beyond a casual table."
+  },
+  {
+    "id": "mintaka-49e07de1",
+    "language": "fr",
+    "prompt": "Quel président Américain était le plus jeune lors de sa prise de fonction ?",
+    "why": "Theodore Roosevelt as youngest in office is US trivia; a French table answers Kennedy."
+  },
+  {
+    "id": "mintaka-49f795b5",
+    "language": "fr",
+    "prompt": "Pendant la Seconde Guerre mondiale, quelle est la plus longue bataille sur le sol allemand ?",
+    "why": "The Hürtgen Forest as the longest battle on German soil is military-history detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-4a581d07",
+    "language": "fr",
+    "prompt": "Qui a joué le rôle de poisson amphibien dans The Shape of Water ?",
+    "why": "Doug Jones is a creature performer nobody can name."
+  },
+  {
+    "id": "mintaka-4aa8b85f",
+    "language": "fr",
+    "prompt": "Quel est le cinquième pays le plus petit d’Afrique ?",
+    "why": "The fifth-smallest African country is a ranking nobody holds."
+  },
+  {
+    "id": "mintaka-4ab790da",
+    "language": "fr",
+    "prompt": "Quel est le plus petit État américain par sa superficie en miles carrés ?",
+    "why": "Rhode Island being the smallest state is US state trivia that never crossed over."
+  },
+  {
+    "id": "mintaka-4b630abc",
+    "language": "fr",
+    "prompt": "Qui était le plus vieux lauréat de l’Oscar du meilleur acteur ?",
+    "why": "Hopkins being the oldest Best Actor winner is Oscar-ceremony trivia a table would guess blind when typed."
+  },
+  {
+    "id": "mintaka-4c5d0d6b",
+    "language": "fr",
+    "prompt": "Quelle est la capitale du Texas ?",
+    "why": "US state capitals are American school trivia."
+  },
+  {
+    "id": "mintaka-4ce85859",
+    "language": "fr",
+    "prompt": "Quel acteur américain a prêté sa voix à la narration de la version américaine de La Marche de l’empereur ?",
+    "why": "Morgan Freeman is the narrator of the US version only, not a character, and a French table saw the French-narrated original."
+  },
+  {
+    "id": "mintaka-4da39379",
+    "language": "fr",
+    "prompt": "Quel président des États-Unis a été président et aussi vice-président sans être élu ?",
+    "why": "Gerald Ford's unelected path is US political trivia."
+  },
+  {
+    "id": "mintaka-4e23d73b",
+    "language": "fr",
+    "prompt": "Quel Seigneur des anneaux a le tournage le moins coûteux ?",
+    "why": "The three Lord of the Rings films were shot together, so a per-film budget is detail nobody knows."
+  },
+  {
+    "id": "mintaka-4e9a02ab",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Metal Gear a pour protagoniste Venom Snake ?",
+    "why": "Venom Snake as the protagonist of a specific Metal Gear entry is deep series lore."
+  },
+  {
+    "id": "mintaka-4ea35ad2",
+    "language": "fr",
+    "prompt": "Qui, parmi les trois principaux héros de la première trilogie de Star Wars, à savoir Luke Leia et Han Solo, a refusé de signer un contrat pour jouer dans les trois films ?",
+    "why": "Harrison Ford's contract terms are behind-the-scenes trivia."
+  },
+  {
+    "id": "mintaka-4ed208fc",
+    "language": "fr",
+    "prompt": "Qui est le personnage principal de Grand Theft Auto 4 ?",
+    "why": "GTA IV's protagonist, spelled 'Nikolaj Belić', is gamer trivia a typed answer would rarely match."
+  },
+  {
+    "id": "mintaka-4f2aa866",
+    "language": "fr",
+    "prompt": "Quel est le plus petit État des États-Unis en terme superficie totale ?",
+    "why": "The smallest US state is American geography trivia."
+  },
+  {
+    "id": "mintaka-4f5ce89c",
+    "language": "fr",
+    "prompt": "Laquelle de ces villes est la capitale de l’Iowa ?",
+    "why": "Iowa's capital is American school trivia."
+  },
+  {
+    "id": "mintaka-4f7699dc",
+    "language": "fr",
+    "prompt": "Comment s’appelle la fille ainée de Kanye West ?",
+    "why": "Kanye West's children's names are American celebrity gossip."
+  },
+  {
+    "id": "mintaka-504af720",
+    "language": "fr",
+    "prompt": "Quel auteur américain célèbre a pêché des huîtres dans sa jeunesse ?",
+    "why": "Jack London's youth as an oyster pirate is biography trivia."
+  },
+  {
+    "id": "mintaka-50ee5d4e",
+    "language": "fr",
+    "prompt": "Quel président des États-Unis a eu le plus d’enfants ?",
+    "why": "John Tyler having the most children of any US president is a detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-526e3bb7",
+    "language": "fr",
+    "prompt": "Quel film Retour vers le futur est le plus court ?",
+    "why": "Which Back to the Future is shortest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-53b76748",
+    "language": "fr",
+    "prompt": "Quelle ville est la ville d’origine de The Alamo ?",
+    "why": "The Alamo is an American landmark French players do not place."
+  },
+  {
+    "id": "mintaka-55eb1ed7",
+    "language": "fr",
+    "prompt": "Qui a remporté l’Oscar de la meilleure actrice en 1947 ?",
+    "why": "Loretta Young is unknown in France, and '1947' is ambiguous between Olivia de Havilland's ceremony and Young's film year."
+  },
+  {
+    "id": "mintaka-560bbf66",
+    "language": "fr",
+    "prompt": "Qui a remporté le Golden Globe Award de la meilleure actrice dans une comédie cinématographique ou dans une comédie musicale pour un film en deux mille dix-neuf ?",
+    "why": "Golden Globe comedy winners are not followed in France, and Awkwafina is little known there."
+  },
+  {
+    "id": "mintaka-5665ccb5",
+    "language": "fr",
+    "prompt": "Quel est le titre du troisième épisode de la série The Legend of Zelda ?",
+    "why": "Counting the Zelda series to its third entry is something only collectors can do, with the fourth among the decoys."
+  },
+  {
+    "id": "mintaka-573b5640",
+    "language": "fr",
+    "prompt": "Quel est le troisième État le plus peuplé des États-Unis ?",
+    "why": "Ranking US states by population is American school trivia."
+  },
+  {
+    "id": "mintaka-576f678b",
+    "language": "fr",
+    "prompt": "Qui a été le premier président des États-Unis à avoir été destitué ?",
+    "why": "Andrew Johnson as the first impeached president is US political history that never crossed over."
+  },
+  {
+    "id": "mintaka-5816f3f6",
+    "language": "fr",
+    "prompt": "Quel roi thaïlandais est resté le plus longtemps au pouvoir ?",
+    "why": "Rama IX by that name is not something a French table can produce for Thailand's longest reign."
+  },
+  {
+    "id": "mintaka-58de137b",
+    "language": "fr",
+    "prompt": "Quel célèbre acteur est mort en 1980 d’un mésothéliome, un cancer rare causé par une exposition à l’amiante ?",
+    "why": "Steve McQueen's cause of death is unknown to most, and the living decoys make the choice a giveaway."
+  },
+  {
+    "id": "mintaka-59b93457",
+    "language": "fr",
+    "prompt": "Parmi les films Pirates des Caraïbes, lequel est le plus long ?",
+    "why": "Ranking the Pirates of the Caribbean films by runtime is trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-59bf61bc",
+    "language": "fr",
+    "prompt": "Dans quel État américain s’est déroulée la guerre américano-mexicaine ?",
+    "why": "Where the Mexican-American War was fought is US history, and it spanned more than Texas."
+  },
+  {
+    "id": "mintaka-5a548e6c",
+    "language": "fr",
+    "prompt": "Qui est l’actrice la plus âgée à remporter un Oscar en tant que meilleure actrice ?",
+    "why": "Jessica Tandy as the oldest Best Actress winner is Oscar record trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-5b365412",
+    "language": "fr",
+    "prompt": "Qui a été le premier dirigeant du Royaume-Uni de Grande-Bretagne ?",
+    "why": "Queen Anne as the first sovereign of the Kingdom of Great Britain is a fine point of British constitutional history."
+  },
+  {
+    "id": "mintaka-5b5e04ba",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus peuplée du Wyoming ?",
+    "why": "Wyoming's most populous city is US state trivia."
+  },
+  {
+    "id": "mintaka-5c982425",
+    "language": "fr",
+    "prompt": "Quel est le titre du premier jeu original de Call of Duty à être remastérisé ?",
+    "why": "Which Call of Duty was remastered first is minor franchise trivia."
+  },
+  {
+    "id": "mintaka-5ccdf371",
+    "language": "fr",
+    "prompt": "Quel président des États-Unis est mort le 4 juillet et a obtenu une reconnaissance pour avoir facilité l’annexion de la Floride ?",
+    "why": "Monroe's death date and the Florida acquisition are US presidential trivia."
+  },
+  {
+    "id": "mintaka-5d72591d",
+    "language": "fr",
+    "prompt": "Dans quel État est né George Washington ?",
+    "why": "George Washington's birth state is US state trivia."
+  },
+  {
+    "id": "mintaka-5d8dc3ff",
+    "language": "fr",
+    "prompt": "Qui est la personne la plus âgée à avoir remporté un Oscar, toutes catégories confondues ?",
+    "why": "James Ivory as the oldest Oscar winner is a record nobody outside awards trivia knows."
+  },
+  {
+    "id": "mintaka-5d91b52e",
+    "language": "fr",
+    "prompt": "Qui était la sixième épouse du roi Henry VIII ?",
+    "why": "The name of Henry VIII's sixth wife is deep English royal trivia."
+  },
+  {
+    "id": "mintaka-5dd63693",
+    "language": "fr",
+    "prompt": "Quel était le premier président d’Indonésie ?",
+    "why": "Sukarno as Indonesia's first president is not something an ordinary French table can produce."
+  },
+  {
+    "id": "mintaka-5e11db69",
+    "language": "fr",
+    "prompt": "Quel film de Harry Potter a fait le moins d’argent ?",
+    "why": "Which Harry Potter film grossed least is box-office trivia."
+  },
+  {
+    "id": "mintaka-5e139a34",
+    "language": "fr",
+    "prompt": "Lequel des films de la saga Twilight est-il le plus long ?",
+    "why": "Each Twilight film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-5e5c14f0",
+    "language": "fr",
+    "prompt": "Quel est le jeu de la série Grand Theft Auto qui a été le moins vendu ?",
+    "why": "The worst-selling GTA is a sales-chart detail nobody knows."
+  },
+  {
+    "id": "mintaka-5e897784",
+    "language": "fr",
+    "prompt": "Qui a été le premier président américain à effectuer deux mandats non consécutifs ?",
+    "why": "Trump has since served two non-consecutive terms, so Cleveland is no longer the only one, and the question is US trivia."
+  },
+  {
+    "id": "mintaka-5ed0e96d",
+    "language": "fr",
+    "prompt": "Quel jeu de survie viking, sorti en accès anticipé sur Steam en 2021, est devenu un succès instantané ?",
+    "why": "The machine translation mangled early access and crafting, and Valheim is known to PC players only."
+  },
+  {
+    "id": "mintaka-5f13e432",
+    "language": "fr",
+    "prompt": "Qui était le souverain Britannique le plus grand de taille ?",
+    "why": "Edward IV as the tallest English king is a detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-5f4cadf4",
+    "language": "fr",
+    "prompt": "Qui est la plus jeune personne à remporter un Oscar de meilleur réalisateur ?",
+    "why": "Damien Chazelle as the youngest Best Director winner is an awards record few know."
+  },
+  {
+    "id": "mintaka-5fa2fe11",
+    "language": "fr",
+    "prompt": "Quel est le premier jeu Metal Gear à inclure Raiden ?",
+    "why": "Which Metal Gear first featured Raiden is series-fan trivia."
+  },
+  {
+    "id": "mintaka-5fecb15c",
+    "language": "fr",
+    "prompt": "Quelle ville des États-Unis connaît les températures les plus froides ?",
+    "why": "Fairbanks as the coldest US city is American trivia."
+  },
+  {
+    "id": "mintaka-605cd104",
+    "language": "fr",
+    "prompt": "Quel acteur qui a joué un rôle principal dans Saw II a été un membre fondateur des New Kids on the Block ?",
+    "why": "Donnie Wahlberg's Saw II role and New Kids on the Block membership are minor-actor trivia."
+  },
+  {
+    "id": "mintaka-605ceb23",
+    "language": "fr",
+    "prompt": "Quel est l’État dans lequel la plupart des présidents américains sont nés ?",
+    "why": "Which state produced the most US presidents is American trivia."
+  },
+  {
+    "id": "mintaka-606b7682",
+    "language": "fr",
+    "prompt": "Quel général est connu pour sa politique de la terre brûlée lors de la Guerre de Sécession américaine ?",
+    "why": "Sherman's march is US Civil War detail unknown in France."
+  },
+  {
+    "id": "mintaka-6092bf62",
+    "language": "fr",
+    "prompt": "Qui est la plus jeune personne à remporter un Oscar ?",
+    "why": "Tatum O'Neal is a name almost no French player could produce."
+  },
+  {
+    "id": "mintaka-61068fba",
+    "language": "fr",
+    "prompt": "Quel État américain possède à la fois le plus grand nombre de pics montagneux et l’altitude moyenne la plus élevée de tous les États américains ?",
+    "why": "The state with the highest mean elevation is US state trivia that never crossed over."
+  },
+  {
+    "id": "mintaka-61137f35",
+    "language": "fr",
+    "prompt": "Quel État est divisé en deux péninsules et borde plusieurs Grands Lacs ?",
+    "why": "Michigan's two peninsulas are US state trivia a French table does not hold."
+  },
+  {
+    "id": "mintaka-612f0f12",
+    "language": "fr",
+    "prompt": "Quel est le dixième épisode de la série Assassin’s Creed ?",
+    "why": "The tenth Assassin's Creed is a count nobody remembers."
+  },
+  {
+    "id": "mintaka-6154888c",
+    "language": "fr",
+    "prompt": "Quel film Harry Potter avait le plus gros budget ?",
+    "why": "Which Harry Potter film had the largest budget is a figure nobody remembers."
+  },
+  {
+    "id": "mintaka-61f3e9d2",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée Stumptown ?",
+    "why": "Portland's 'Stumptown' nickname is unknown outside the US."
+  },
+  {
+    "id": "mintaka-621d29de",
+    "language": "fr",
+    "prompt": "Quel est le troisième plus grand lac des États-unis ?",
+    "why": "Which Great Lake ranks third by area is a figure nobody remembers, with two other Great Lakes among the choices."
+  },
+  {
+    "id": "mintaka-62568cbc",
+    "language": "fr",
+    "prompt": "Dans quelle ville se trouve l’Université de Pennsylvanie ?",
+    "why": "Where an American university sits is US college trivia."
+  },
+  {
+    "id": "mintaka-63761486",
+    "language": "fr",
+    "prompt": "Comment s'appelle le plus âgé des signataires de la Constitution des États-Unis ?",
+    "why": "\"La Constitution\" names no country, and the oldest US signer is American trivia."
+  },
+  {
+    "id": "mintaka-63e3958d",
+    "language": "fr",
+    "prompt": "Qui a exercé le plus court mandat de président des États-Unis ?",
+    "why": "William Henry Harrison's month-long presidency is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-653137c2",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Final Fantasy a pour principal méchant Chaos ?",
+    "why": "Chaos as the final boss of the first Final Fantasy is retro trivia few players hold."
+  },
+  {
+    "id": "mintaka-672d1f57",
+    "language": "fr",
+    "prompt": "Quelle est la plus petite capitale des États-Unis ?",
+    "why": "Montpelier as the smallest US state capital is American trivia."
+  },
+  {
+    "id": "mintaka-6746a8ec",
+    "language": "fr",
+    "prompt": "Quel film de la série Pirates des Caraïbes avait le plus gros budget ?",
+    "why": "Which Pirates of the Caribbean film had the biggest budget is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-67aa5f8a",
+    "language": "fr",
+    "prompt": "Quelle est la troisième montagne la plus haute d’Asie ?",
+    "why": "Naming the third-highest summit in Asia is mountaineering trivia beyond a typical table."
+  },
+  {
+    "id": "mintaka-67c048a6",
+    "language": "fr",
+    "prompt": "Quel jeu Kingdom Hearts a été le plus vendu ?",
+    "why": "Sales figures across Kingdom Hearts entries are known to almost nobody."
+  },
+  {
+    "id": "mintaka-67d58d44",
+    "language": "fr",
+    "prompt": "Quel pays faisant partie de la Scandinavie a eu un certain nombre de guerres civiles de 1130 à 1240 ?",
+    "why": "Norway's civil-war era of 1130-1240 is specialist medieval history."
+  },
+  {
+    "id": "mintaka-67d9bf2a",
+    "language": "fr",
+    "prompt": "Dans quel État se trouve Omaha ?",
+    "why": "Which state Omaha is in is US state trivia."
+  },
+  {
+    "id": "mintaka-67e0ddf0",
+    "language": "fr",
+    "prompt": "Quelle est la plus haute montagne de l’Australie continentale ?",
+    "why": "Mount Kosciuszko is a name almost no French player can produce."
+  },
+  {
+    "id": "mintaka-67f5d6f0",
+    "language": "fr",
+    "prompt": "Qui était un président des États-Unis et est aussi né le 4 juillet ?",
+    "why": "Calvin Coolidge's birthday is US presidential trivia that never crossed over."
+  },
+  {
+    "id": "mintaka-68a92f48",
+    "language": "fr",
+    "prompt": "Quelle est la neuvième ville la plus peuplée des États-Unis ?",
+    "why": "Nobody knows the ninth most populous US city."
+  },
+  {
+    "id": "mintaka-6911c41f",
+    "language": "fr",
+    "prompt": "Qui a réalisé The Room et figurait comme l’acteur principal du film ?",
+    "why": "The Room and Tommy Wiseau are an American midnight-movie cult a French table has mostly never heard of."
+  },
+  {
+    "id": "mintaka-695dda67",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Resident Evil a pour méchant principal Super Tyrant ?",
+    "why": "The Super Tyrant is a late boss rather than the main villain, and only a series devotee would name the game from it."
+  },
+  {
+    "id": "mintaka-696f429a",
+    "language": "fr",
+    "prompt": "Quelle a été la plus longue dynastie de Chine ?",
+    "why": "\"La plus grande\" is ambiguous where the Zhou are only the longest-lasting, and the Zhou are a name few French adults know."
+  },
+  {
+    "id": "mintaka-698ef14a",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Tomb Raider a vendu le plus d’exemplaires ?",
+    "why": "Which Tomb Raider sold best is a sales-chart detail, and the answer shares the series name."
+  },
+  {
+    "id": "mintaka-6a718d53",
+    "language": "fr",
+    "prompt": "Quelle montagne est connue localement comme « Diamer » et est le neuvième sommet le plus élevé au monde ?",
+    "why": "Nanga Parbat's local name and ninth-place rank are mountaineering trivia."
+  },
+  {
+    "id": "mintaka-6ab1f2a0",
+    "language": "fr",
+    "prompt": "Quelle est la quatrième montagne la plus élevée au monde ?",
+    "why": "Lhotse as the fourth highest peak is mountaineering trivia."
+  },
+  {
+    "id": "mintaka-6b0f8f54",
+    "language": "fr",
+    "prompt": "Quel État est le 13e plus grand État en superficie et abrite le Parc National de Zion ?",
+    "why": "US state area rank and Zion National Park are American trivia."
+  },
+  {
+    "id": "mintaka-6b27d438",
+    "language": "fr",
+    "prompt": "Quelle montagne se trouvant dans l’Himalaya a été gravie pour la première fois en 1955 par une expédition française ?",
+    "why": "The 1955 French first ascent of Makalu is mountaineering trivia almost nobody knows."
+  },
+  {
+    "id": "mintaka-6b2d6b91",
+    "language": "fr",
+    "prompt": "Dans quel État se trouve le Mont Rushmore ?",
+    "why": "Which state holds Mount Rushmore is US state trivia."
+  },
+  {
+    "id": "mintaka-6b3feddb",
+    "language": "fr",
+    "prompt": "Quelle ville est la capitale de l’État de New York ?",
+    "why": "New York State's capital is US state trivia."
+  },
+  {
+    "id": "mintaka-6b494d0c",
+    "language": "fr",
+    "prompt": "Quel acteur ayant joué dans Le Talentueux Mr. Ripley n’a pas fini le lycée ?",
+    "why": "Which Ripley actor left school early is biography trivia nobody knows."
+  },
+  {
+    "id": "mintaka-6c822de1",
+    "language": "fr",
+    "prompt": "Quelle ville est connue sous le nom de la Ville émeraude ?",
+    "why": "Seattle's 'Emerald City' nickname is American trivia."
+  },
+  {
+    "id": "mintaka-6c9f07cf",
+    "language": "fr",
+    "prompt": "Quelle est la plus grande ville du Wyoming ?",
+    "why": "Wyoming's largest city is US state trivia."
+  },
+  {
+    "id": "mintaka-6d457e3f",
+    "language": "fr",
+    "prompt": "Quel film a remporté l’Oscar de la Meilleure musique originale en 1976 ?",
+    "why": "The 1976 Best Score winner is unknown typed, and the modern decoys make the choice a giveaway."
+  },
+  {
+    "id": "mintaka-6d8f72a7",
+    "language": "fr",
+    "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le sixième film de l’univers cinématographique de Marvel ?",
+    "why": "Release order gives Avengers, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
+  },
+  {
+    "id": "mintaka-6da69515",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de prix du jeu de l’année ?",
+    "why": "Which game won the most Game of the Year awards is award-tally trivia."
+  },
+  {
+    "id": "mintaka-6f7c94a4",
+    "language": "fr",
+    "prompt": "Quel film interprété par Jim Carrey a été réalisé par Ben Stiller ?",
+    "why": "The Cable Guy, released in France as Disjoncté, is a minor title nobody connects to Ben Stiller as director."
+  },
+  {
+    "id": "mintaka-6fa39565",
+    "language": "fr",
+    "prompt": "Quel était le plus long film de la saga Harry Potter ?",
+    "why": "Each Harry Potter film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-6fb9cc67",
+    "language": "fr",
+    "prompt": "Quelle a été la gagnante d’un Emmy qui a aussi été Première dame ?",
+    "why": "Jacqueline Kennedy's honorary Emmy is a footnote almost nobody knows."
+  },
+  {
+    "id": "mintaka-7063ef62",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée la Ville des lacs aux États-Unis ?",
+    "why": "Minneapolis's 'City of Lakes' nickname is American trivia."
+  },
+  {
+    "id": "mintaka-708c0897",
+    "language": "fr",
+    "prompt": "Quel est le fleuve le plus profond des États-Unis ?",
+    "why": "The Hudson being the deepest US river is a fact almost nobody holds."
+  },
+  {
+    "id": "mintaka-70e83c29",
+    "language": "fr",
+    "prompt": "À qui était marié Bradley Cooper ?",
+    "why": "Bradley Cooper's year-long marriage to Jennifer Esposito is tabloid trivia."
+  },
+  {
+    "id": "mintaka-71881fb2",
+    "language": "fr",
+    "prompt": "Qui était le premier Président à occuper la Maison Blanche ?",
+    "why": "Which president first lived in the White House is American school trivia."
+  },
+  {
+    "id": "mintaka-722295db",
+    "language": "fr",
+    "prompt": "Quel diplômé de West Point, promotion de 1861, a été nommé brigadier général à 23 ans ?",
+    "why": "West Point graduating classes and Custer's promotion are American military trivia."
+  },
+  {
+    "id": "mintaka-73381369",
+    "language": "fr",
+    "prompt": "Quelle montagne se trouve dans l’Himalaya et a été escaladée pour la première fois par une expédition britannique en 1955 ?",
+    "why": "Naming Kangchenjunga from its 1955 first ascent is mountaineering trivia nobody types from nothing."
+  },
+  {
+    "id": "mintaka-73a4d785",
+    "language": "fr",
+    "prompt": "Quelle est la quatrième ville la plus peuplée d’Amérique ?",
+    "why": "The fourth most populous US city is American trivia."
+  },
+  {
+    "id": "mintaka-744cb216",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée Beantown ?",
+    "why": "\"Beantown\" is an American city nickname a French table does not know."
+  },
+  {
+    "id": "mintaka-74e22fbb",
+    "language": "fr",
+    "prompt": "Quel est le quatrième épisode de la série Resident Evil ?",
+    "why": "Whether Code Veronica counts as the fourth Resident Evil is a fan debate a table cannot settle."
+  },
+  {
+    "id": "mintaka-75116fc1",
+    "language": "fr",
+    "prompt": "Quelle ville des États-Unis est surnommée The Big Easy ?",
+    "why": "'The Big Easy' is a nickname known in the US, not in France."
+  },
+  {
+    "id": "mintaka-75853289",
+    "language": "fr",
+    "prompt": "Quel est la quatrième plus longue rivière d’Europe ?",
+    "why": "The Dnieper as Europe's fourth-longest river is a ranking nobody remembers."
+  },
+  {
+    "id": "mintaka-759bcbd9",
+    "language": "fr",
+    "prompt": "Qui était la deuxième femme du président Donald Trump ?",
+    "why": "Trump's second wife Marla Maples is a US tabloid name a French table would not know."
+  },
+  {
+    "id": "mintaka-76221741",
+    "language": "fr",
+    "prompt": "Qui était le 40e Président des États-Unis ?",
+    "why": "The numbering of US presidents is American trivia."
+  },
+  {
+    "id": "mintaka-764dda14",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Silent Hill a vendu le plus d’exemplaires ?",
+    "why": "Which Silent Hill sold best is a sales-chart detail."
+  },
+  {
+    "id": "mintaka-76c9e017",
+    "language": "fr",
+    "prompt": "Quelle montagne de la chaîne de l’Himalaya est le cinquième sommet le plus élevé au monde ?",
+    "why": "Makalu as the fifth-highest peak is a ranking almost nobody remembers."
+  },
+  {
+    "id": "mintaka-7767b1c9",
+    "language": "fr",
+    "prompt": "Comment s’appelle le 2e président américain qui a été assassiné en cours de mandat ?",
+    "why": "Garfield as the second assassinated US president is American trivia a French table would not know."
+  },
+  {
+    "id": "mintaka-77b12cdf",
+    "language": "fr",
+    "prompt": "Qui était le sixième empereur de Rome ?",
+    "why": "Galba as the sixth Roman emperor needs a count through the Year of the Four Emperors that nobody remembers."
+  },
+  {
+    "id": "mintaka-78ad68cd",
+    "language": "fr",
+    "prompt": "Dans quel film des frères Coen Michael Stuhlbarg tient-il le rôle principal ?",
+    "why": "The translation says Stuhlbarg is NOT in the film when he leads A Serious Man, and he is an actor few French players could name."
+  },
+  {
+    "id": "mintaka-79d443c4",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de nominations à The Game Awards 2019 ?",
+    "why": "The most-nominated game at The Game Awards 2019 is industry trivia."
+  },
+  {
+    "id": "mintaka-79e968e9",
+    "language": "fr",
+    "prompt": "Quel est le cinquième épisode de la série Super Smash Bros. ?",
+    "why": "Counting the Super Smash Bros. series to its fifth entry is fan-level trivia."
+  },
+  {
+    "id": "mintaka-7a5c98ee",
+    "language": "fr",
+    "prompt": "Quel acteur a joué dans le plus de films et le plus de séries télévisées ?",
+    "why": "John Carradine's credit count is a record almost nobody knows."
+  },
+  {
+    "id": "mintaka-7ac3e911",
+    "language": "fr",
+    "prompt": "Quel jeu Call of Duty a vendu le plus d’exemplaires ?",
+    "why": "Which Call of Duty sold most is disputed sales data nobody knows."
+  },
+  {
+    "id": "mintaka-7b6d6d83",
+    "language": "fr",
+    "prompt": "Quelle ville des États-Unis compte le plus grand nombre de ponts ?",
+    "why": "Pittsburgh's bridge count is American trivia."
+  },
+  {
+    "id": "mintaka-7b86635e",
+    "language": "fr",
+    "prompt": "Quel script d’un film des années 80 a été rejeté à plus de 40 reprises avant d’être acheté par Universal Studios ?",
+    "why": "The number of times a script was rejected is studio-history trivia."
+  },
+  {
+    "id": "mintaka-7ba320ef",
+    "language": "fr",
+    "prompt": "Lequel des films Harry Potter est-il le plus long ?",
+    "why": "Each Harry Potter film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-7c93d484",
+    "language": "fr",
+    "prompt": "Qui était le premier souverain d’Angleterre ?",
+    "why": "England's first sovereign is contested between Egbert and Æthelstan and guessed blind."
+  },
+  {
+    "id": "mintaka-7cb0e936",
+    "language": "fr",
+    "prompt": "Quelle est l’actrice la plus jeune à avoir remporté un Oscar ?",
+    "why": "Tatum O'Neal is unknown to a French table and her record is Oscar-history trivia."
+  },
+  {
+    "id": "mintaka-7d8a94d2",
+    "language": "fr",
+    "prompt": "Quel film de Pirates des Caraïbes est le plus long ?",
+    "why": "Which Pirates of the Caribbean film runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-7dbcadf7",
+    "language": "fr",
+    "prompt": "Dans quel film Sean Penn a-t-il joué avec Christopher Walken ?",
+    "why": "At Close Range is a minor film whose cast nobody remembers."
+  },
+  {
+    "id": "mintaka-7e28d93e",
+    "language": "fr",
+    "prompt": "Quel est le onzième épisode de la série Assassin’s Creed ?",
+    "why": "Counting Assassin's Creed entries to the eleventh is a count nobody remembers."
+  },
+  {
+    "id": "mintaka-7e51509f",
+    "language": "fr",
+    "prompt": "Quel film de Twilight est le plus long ?",
+    "why": "Which Twilight film runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-7eac1490",
+    "language": "fr",
+    "prompt": "Quel film a passé le plus de temps dans les salles de cinéma ?",
+    "why": "The Rocky Horror Picture Show's record theatrical run is a fact few know."
+  },
+  {
+    "id": "mintaka-7ed490cc",
+    "language": "fr",
+    "prompt": "Quelle est la capitale de l’État de Floride ?",
+    "why": "Florida's capital is US state trivia."
+  },
+  {
+    "id": "mintaka-7fcaf4e3",
+    "language": "fr",
+    "prompt": "Quel est le douzième épisode de la série Assassin’s Creed ?",
+    "why": "The twelfth Assassin's Creed is a count nobody remembers."
+  },
+  {
+    "id": "mintaka-813e8824",
+    "language": "fr",
+    "prompt": "Quelle ville est nommée la Ville des bons voisins ?",
+    "why": "\"City of Good Neighbors\" is an American city nickname a French table does not know."
+  },
+  {
+    "id": "mintaka-81538063",
+    "language": "fr",
+    "prompt": "Dans quel État la Guerre de Sécession américaine a-t-elle commencé ?",
+    "why": "Fort Sumter's state is American school history."
+  },
+  {
+    "id": "mintaka-81d3826f",
+    "language": "fr",
+    "prompt": "Quel est le plus court film de la série Harry Potter ?",
+    "why": "Each Harry Potter film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-831757fd",
+    "language": "fr",
+    "prompt": "Quel jeu Sims a vendu le plus d’exemplaires ?",
+    "why": "Which Sims game sold best is a sales-chart detail."
+  },
+  {
+    "id": "mintaka-832c1b91",
+    "language": "fr",
+    "prompt": "Quel est le neuvième épisode de la série Assassin’s Creed ?",
+    "why": "The ninth Assassin's Creed depends on how spin-offs are counted, a count nobody remembers."
+  },
+  {
+    "id": "mintaka-8394de4d",
+    "language": "fr",
+    "prompt": "Avec qui Steve Carell est-il marié ?",
+    "why": "Steve Carell's wife is not a public figure anyone at a table could name."
+  },
+  {
+    "id": "mintaka-83a595fc",
+    "language": "fr",
+    "prompt": "Quel est la plus haute montagne du Canada ?",
+    "why": "Mount Logan is a name almost no French player can produce."
+  },
+  {
+    "id": "mintaka-840553b4",
+    "language": "fr",
+    "prompt": "Quel est le quatrième épisode de la série Zelda ?",
+    "why": "Counting the Zelda series to its fourth entry is something only collectors can do, with the third among the decoys."
+  },
+  {
+    "id": "mintaka-8442e45f",
+    "language": "fr",
+    "prompt": "Quels état aux États-Unis possède le plus petit nombre d’universités privées en son sein ?",
+    "why": "Counts of private universities per US state are American trivia."
+  },
+  {
+    "id": "mintaka-8490bfcb",
+    "language": "fr",
+    "prompt": "Où a été moulée la Cloche de la liberté ?",
+    "why": "Where the Liberty Bell was cast is American history trivia."
+  },
+  {
+    "id": "mintaka-851faa9d",
+    "language": "fr",
+    "prompt": "Qui est le plus jeune acteur à avoir remporté un Oscar ?",
+    "why": "Tatum O'Neal is a name almost no French player could produce."
+  },
+  {
+    "id": "mintaka-85f17774",
+    "language": "fr",
+    "prompt": "Quel film réalisé par Tony Kaye a pour acteur principal Edward Norton ?",
+    "why": "Tony Kaye is an unknown director name, so the clue that singles out the film is lost on the table."
+  },
+  {
+    "id": "mintaka-863f1f68",
+    "language": "fr",
+    "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le troisième film de l’Univers cinématographique de Marvel ?",
+    "why": "Release order gives Iron Man 2, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
+  },
+  {
+    "id": "mintaka-8653bc9d",
+    "language": "fr",
+    "prompt": "Quel est le deuxième fleuve le plus long d’Italie ?",
+    "why": "The Adige as Italy's second river is unknown typed, and the non-Italian decoys make the choice a giveaway."
+  },
+  {
+    "id": "mintaka-87159ed1",
+    "language": "fr",
+    "prompt": "Quel État a obtenu le statut d’État en 1889 et endroit où se trouve le Mont Rushmore ?",
+    "why": "South Dakota as the state of Mount Rushmore and its 1889 statehood is US state trivia."
+  },
+  {
+    "id": "mintaka-887c2db2",
+    "language": "fr",
+    "prompt": "Quel film de Pirates des Caraïbes a le plus rapporté ?",
+    "why": "Dead Man's Chest edges On Stranger Tides by a margin nobody remembers."
+  },
+  {
+    "id": "mintaka-8882a322",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus peuplée du Kansas ?",
+    "why": "Wichita is a city no French table could name as Kansas's largest."
+  },
+  {
+    "id": "mintaka-89b66e02",
+    "language": "fr",
+    "prompt": "Quel est le plus long film de la série Star Wars ?",
+    "why": "Each Star Wars film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-89d12912",
+    "language": "fr",
+    "prompt": "Quel est le titre du sixième jeu de la série Zelda ?",
+    "why": "Counting the Zelda series to its sixth entry is something only collectors can do."
+  },
+  {
+    "id": "mintaka-8a01bdd2",
+    "language": "fr",
+    "prompt": "Quel fut le premier État à se séparer de l’union et l’État d’origine de James Brown ?",
+    "why": "Secession order and James Brown's home state are US state trivia."
+  },
+  {
+    "id": "mintaka-8a57774a",
+    "language": "fr",
+    "prompt": "Qui a dirigé les États confédérés pendant la Guerre de Sécession ?",
+    "why": "Jefferson Davis is a name from American school history that never crossed over."
+  },
+  {
+    "id": "mintaka-8adf9011",
+    "language": "fr",
+    "prompt": "Quel État est le 17e plus grand par sa superficie et abrite le parc des Badlands ?",
+    "why": "The seventeenth-largest state and the Badlands are US state trivia."
+  },
+  {
+    "id": "mintaka-8cc54224",
+    "language": "fr",
+    "prompt": "Quel politicien ayant exercé un mandat présidentiel était un barman agréé ?",
+    "why": "Lincoln's tavern licence is American folklore unknown in France."
+  },
+  {
+    "id": "mintaka-8cf6d583",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée la Ville magique ?",
+    "why": "Miami's 'Magic City' nickname is American lore that never crossed over."
+  },
+  {
+    "id": "mintaka-8d919070",
+    "language": "fr",
+    "prompt": "Quelle ville du Tennessee est la plus peuplée ?",
+    "why": "Tennessee's most populous city is American geography trivia, and Memphis held the title until recently."
+  },
+  {
+    "id": "mintaka-8e0749da",
+    "language": "fr",
+    "prompt": "Quel jeu de The Legend of Zelda comporte un boss en forme de chenille et date de 1991 ?",
+    "why": "A caterpillar boss in a 1991 Zelda is a deep series detail, with another Zelda among the decoys."
+  },
+  {
+    "id": "mintaka-8e24b459",
+    "language": "fr",
+    "prompt": "Quelle était la première femme monarque d’Angleterre ?",
+    "why": "England's first queen regnant is contested English history a French table guesses blind."
+  },
+  {
+    "id": "mintaka-8e6811f5",
+    "language": "fr",
+    "prompt": "Quel est le troisième plus petit pays d’Afrique ?",
+    "why": "The third-smallest African country is a ranking nobody holds."
+  },
+  {
+    "id": "mintaka-8efc069f",
+    "language": "fr",
+    "prompt": "Quel est le 4e plus long fleuve d’Amérique du Nord ?",
+    "why": "The fourth-longest North American river varies by source and nobody holds the ranking."
+  },
+  {
+    "id": "mintaka-8f472b11",
+    "language": "fr",
+    "prompt": "Quel président américain a-t-il eu le mandat présidentiel le plus court ?",
+    "why": "William Henry Harrison's month-long presidency is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-8f6e5542",
+    "language": "fr",
+    "prompt": "Quel est le troisième jeu de la série Elder Scrolls ?",
+    "why": "Morrowind as the third Elder Scrolls is series trivia, and the non-series decoys make the choice a giveaway."
+  },
+  {
+    "id": "mintaka-9060577b",
+    "language": "fr",
+    "prompt": "Qui a remporté le plus grand nombre de voix des grands électeurs lors d’une seule élection présidentielle américaine ?",
+    "why": "The record electoral-vote count is US election trivia that never crossed over."
+  },
+  {
+    "id": "mintaka-9205aa37",
+    "language": "fr",
+    "prompt": "Quelle est la capitale de l’État du Texas ?",
+    "why": "US state capitals are American school trivia."
+  },
+  {
+    "id": "mintaka-92517af7",
+    "language": "fr",
+    "prompt": "Quel État est limitrophe du Nouveau-Mexique et abrite la capitale la plus peuplée des États-Unis ?",
+    "why": "Phoenix being the most populous US state capital is American civics trivia."
+  },
+  {
+    "id": "mintaka-93418219",
+    "language": "fr",
+    "prompt": "Quel État joint le Mississippi et l’Arkansas ?",
+    "why": "Which state borders both Mississippi and Arkansas is US map trivia, and Tennessee does too."
+  },
+  {
+    "id": "mintaka-94f3f861",
+    "language": "fr",
+    "prompt": "Qui a joué Sarah dans Les Copains d’abord ?",
+    "why": "The cast of The Big Chill is deep filmography trivia."
+  },
+  {
+    "id": "mintaka-95052696",
+    "language": "fr",
+    "prompt": "Qui était le fondateur de la colonie de Virginie et prisonnier de longue date à la tour de Londres ?",
+    "why": "Walter Raleigh's Virginia colony and Tower imprisonment are English history few French players know."
+  },
+  {
+    "id": "mintaka-954f2068",
+    "language": "fr",
+    "prompt": "Dans quel jeu Metal Gear Solid incarne-t-on à la fois Snake et Raiden ?",
+    "why": "Which Metal Gear Solid lets you play both Snake and Raiden is deep series lore."
+  },
+  {
+    "id": "mintaka-961935db",
+    "language": "fr",
+    "prompt": "Quel est le plus court des films Hunger Games ?",
+    "why": "The running time of each Hunger Games film is a figure nobody remembers."
+  },
+  {
+    "id": "mintaka-965703dc",
+    "language": "fr",
+    "prompt": "Quelle est la deuxième plus longue rivière d’Asie ?",
+    "why": "The Yellow River as Asia's second-longest river is a ranking few remember."
+  },
+  {
+    "id": "mintaka-9734587e",
+    "language": "fr",
+    "prompt": "Quel est le nom de la première femme millionnaire née aux États-Unis ?",
+    "why": "Madam C.J. Walker is an American figure unknown in France."
+  },
+  {
+    "id": "mintaka-97b4ed67",
+    "language": "fr",
+    "prompt": "Qui était le premier président Américain à gagner une élection malgré la perte du vote populaire ?",
+    "why": "Which president first won while losing the popular vote is American school trivia."
+  },
+  {
+    "id": "mintaka-97c651a9",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus peuplée de l’Oregon ?",
+    "why": "Oregon's largest city is US state trivia."
+  },
+  {
+    "id": "mintaka-98b29d28",
+    "language": "fr",
+    "prompt": "Quel film de la saga Pirates des Caraïbes est le plus long ?",
+    "why": "'Resté le plus longtemps à l'écran' mistranslates 'longest running time', and running times are detail few remember."
+  },
+  {
+    "id": "mintaka-98fe6131",
+    "language": "fr",
+    "prompt": "Quel président ayant signé la Déclaration d’indépendance est mort à l’âge de 83 ans ?",
+    "why": "The age at which Jefferson died is a figure nobody remembers."
+  },
+  {
+    "id": "mintaka-992424f5",
+    "language": "fr",
+    "prompt": "Quel célébre acteur de Hollywood ayant pour deuxième prénom Charles Durman est décédé en 1997 ?",
+    "why": "Robert Mitchum's middle names are trivia nobody keeps."
+  },
+  {
+    "id": "mintaka-993e04f0",
+    "language": "fr",
+    "prompt": "Qui a tué Abraham Lincoln ?",
+    "why": "The name of Lincoln's assassin is American school history."
+  },
+  {
+    "id": "mintaka-99703272",
+    "language": "fr",
+    "prompt": "Quel film Twilight a le plus rapporté ?",
+    "why": "Which Twilight film grossed the most is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-9995c309",
+    "language": "fr",
+    "prompt": "Quelle est la deuxième plus grande ville de Californie ?",
+    "why": "California's second city is US geography a French table would guess."
+  },
+  {
+    "id": "mintaka-9a197887",
+    "language": "fr",
+    "prompt": "Pendant la guerre civile américaine, quelle est la bataille qui a fait le plus de victimes ?",
+    "why": "Which Civil War battle had the most casualties is American history that never crossed over."
+  },
+  {
+    "id": "mintaka-9a91d95d",
+    "language": "fr",
+    "prompt": "Quelle dynastie chinoise est connue comme l’âge d’or de la poésie ?",
+    "why": "The Tang as China's golden age of poetry is specialist knowledge when typed."
+  },
+  {
+    "id": "mintaka-9af76896",
+    "language": "fr",
+    "prompt": "Quelle montagne, escaladé pour la première fois par Hermann Buhl, est le neuvième sommet le plus élevé au monde ?",
+    "why": "Nanga Parbat as the ninth-highest peak climbed by Hermann Buhl is mountaineering detail."
+  },
+  {
+    "id": "mintaka-9b111a36",
+    "language": "fr",
+    "prompt": "Quel enfant de la reine Victoria a été marié à Alexandra du Danemark ?",
+    "why": "Which of Victoria's children married Alexandra of Denmark is royal-genealogy trivia."
+  },
+  {
+    "id": "mintaka-9be11a41",
+    "language": "fr",
+    "prompt": "Quel est le tout premier film d’animation dans lequel Kevin Hart a joué le rôle principal ?",
+    "why": "Kevin Hart's first animated lead is filmography trivia nobody remembers."
+  },
+  {
+    "id": "mintaka-9bee6261",
+    "language": "fr",
+    "prompt": "Lequel des films Hobbit est le plus long ?",
+    "why": "Which Hobbit film runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-9c107114",
+    "language": "fr",
+    "prompt": "Pendant la guerre de Sécession, quel est l’État qui a subi le plus de pertes ?",
+    "why": "Civil War casualties per state are American trivia."
+  },
+  {
+    "id": "mintaka-9c21e322",
+    "language": "fr",
+    "prompt": "Dans quelle ville se trouve Lombard Street, la rue en lacets la plus célèbre du monde ?",
+    "why": "'Rue des Lombards' is a Paris street, and Lombard Street itself is a US sight few French know."
+  },
+  {
+    "id": "mintaka-9c3f7d38",
+    "language": "fr",
+    "prompt": "Quel souverain britannique était le plus petit par la taille à l’âge adulte ?",
+    "why": "\"Le plus court\" is a mistranslation of the shortest in height, and Victoria's height is a detail few know."
+  },
+  {
+    "id": "mintaka-9d5a01cd",
+    "language": "fr",
+    "prompt": "Quel jeu trouve-t-on dans la série Uncharted et vous fait découvrir Madagascar ?",
+    "why": "Which Uncharted visits Madagascar is a level-select detail."
+  },
+  {
+    "id": "mintaka-9d90786c",
+    "language": "fr",
+    "prompt": "Quelle ville est connue sous le nom de Mile High City ?",
+    "why": "Denver's 'Mile High City' nickname is American trivia."
+  },
+  {
+    "id": "mintaka-9e233abf",
+    "language": "fr",
+    "prompt": "Quel film réalisé par Fernando Meirelles avait-il Ralph Fiennes pour acteur principal ?",
+    "why": "Fernando Meirelles directing Ralph Fiennes in The Constant Gardener is filmography trivia few players hold."
+  },
+  {
+    "id": "mintaka-9e54ee00",
+    "language": "fr",
+    "prompt": "Qui était le vice président de Abraham Lincoln et le premier président américain à faire l’objet d’une accusation ?",
+    "why": "Andrew Johnson is a US president a French table does not know."
+  },
+  {
+    "id": "mintaka-9e760ae3",
+    "language": "fr",
+    "prompt": "Qui était la plus jeune actrice a gagner un Oscar de la meilleure actrice ?",
+    "why": "Marlee Matlin is a name almost no French player could produce."
+  },
+  {
+    "id": "mintaka-9ee58c78",
+    "language": "fr",
+    "prompt": "Quel président américain était le plus petit ?",
+    "why": "Madison as the shortest US president is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-9f36406a",
+    "language": "fr",
+    "prompt": "Qui est le producteur de la série The Oval ?",
+    "why": "Tyler Perry's The Oval never aired in France."
+  },
+  {
+    "id": "mintaka-9f7b6380",
+    "language": "fr",
+    "prompt": "Quel jeu Final Fantasy a le revenu brut le plus élevé ?",
+    "why": "Which Final Fantasy grossed the most is revenue trivia only industry watchers know."
+  },
+  {
+    "id": "mintaka-9fa8a79b",
+    "language": "fr",
+    "prompt": "Quel est le film le plus cher produit par Christopher Nolan ?",
+    "why": "The budget ranking of Nolan's productions is film-industry detail a table would guess blind when typed."
+  },
+  {
+    "id": "mintaka-9fafb67c",
+    "language": "fr",
+    "prompt": "Quel est le cinquième épisode de la série Call of Duty ?",
+    "why": "Counting which Call of Duty is the fifth episode is collector trivia."
+  },
+  {
+    "id": "mintaka-a00b9527",
+    "language": "fr",
+    "prompt": "Quelle est la quatrième plus grande ville aux États-Unis ?",
+    "why": "The ranking of US cities below New York, Los Angeles and Chicago is American trivia."
+  },
+  {
+    "id": "mintaka-a03e6f1e",
+    "language": "fr",
+    "prompt": "Quelle ville appelle-t-on The Big Easy ?",
+    "why": "\"The Big Easy\" is an American city nickname a French table does not know."
+  },
+  {
+    "id": "mintaka-a0b5207f",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé avec le plus grand nombre d’acteurs ?",
+    "why": "Gandhi's record crowd of extras is film-record trivia almost nobody knows."
+  },
+  {
+    "id": "mintaka-a1e0e5b0",
+    "language": "fr",
+    "prompt": "Quel poète célèbre et auteur était dans la classe de West Point en 1834 mais n’a jamais été diplômé ?",
+    "why": "Poe's stint at West Point is American college trivia."
+  },
+  {
+    "id": "mintaka-a26229e0",
+    "language": "fr",
+    "prompt": "Qui est le fondateur et PDG de Roblox ?",
+    "why": "Roblox's CEO is a name almost nobody knows."
+  },
+  {
+    "id": "mintaka-a2b86ffc",
+    "language": "fr",
+    "prompt": "Quel jeu était le premier de la série Final Fantasy à entrer dans l’ère de la haute définition sur la PS3 ?",
+    "why": "Which Final Fantasy first went HD on PS3 is deep series trivia."
+  },
+  {
+    "id": "mintaka-a2f2b67c",
+    "language": "fr",
+    "prompt": "Quel film, parmi les Jurassic Park et Jurassic World, est le plus long ?",
+    "why": "Dominion (147 min) is longer than The Lost World, the prompt misspells Jurassic, and running times are trivia nobody holds."
+  },
+  {
+    "id": "mintaka-a300fc78",
+    "language": "fr",
+    "prompt": "Quel film de la série Piège de cristal a le plus rapporté au niveau mondial ?",
+    "why": "Which Die Hard grossed most worldwide is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-a35061c7",
+    "language": "fr",
+    "prompt": "Comment s’appelle l’ainé des enfants de Kim Kardashian ?",
+    "why": "Kim Kardashian's children's names are American celebrity gossip."
+  },
+  {
+    "id": "mintaka-a59c0bb1",
+    "language": "fr",
+    "prompt": "Quel a été le 49e État à rejoindre les États-Unis ?",
+    "why": "The order in which states joined the Union is US state trivia."
+  },
+  {
+    "id": "mintaka-a61698d7",
+    "language": "fr",
+    "prompt": "Quel était le président américain le plus lourd ?",
+    "why": "Taft as the heaviest US president is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-a6360f07",
+    "language": "fr",
+    "prompt": "Quel est le 9e plus grand État américain en termes de superficie et celui où se trouve le Mont Hood ?",
+    "why": "Oregon is the ninth-largest state, not the tenth, and Mount Hood is US geography a French table does not hold."
+  },
+  {
+    "id": "mintaka-a79f3dd2",
+    "language": "fr",
+    "prompt": "Quelle est la capitale de la Virginie ?",
+    "why": "A US state capital is not something a French table knows."
+  },
+  {
+    "id": "mintaka-a884fdd2",
+    "language": "fr",
+    "prompt": "Quel film a donné à Wes Anderson sa première nomination aux Oscars ?",
+    "why": "Which film earned Wes Anderson his first Oscar nomination is awards trivia few players know."
+  },
+  {
+    "id": "mintaka-a89fa7ea",
+    "language": "fr",
+    "prompt": "Qui est le père d’Emilio Estevez ?",
+    "why": "Emilio Estevez is a US-only celebrity a French table does not know."
+  },
+  {
+    "id": "mintaka-a94287c4",
+    "language": "fr",
+    "prompt": "Qui était le plus jeune Empereur de l’Empire russe ?",
+    "why": "Ivan VI as the youngest Russian emperor is specialist knowledge."
+  },
+  {
+    "id": "mintaka-aa26ce7f",
+    "language": "fr",
+    "prompt": "Quelle était l’éruption volcanique la plus mortelle ?",
+    "why": "Tambora as the deadliest eruption is not something an ordinary table can type, Vesuvius being the name everyone would give."
+  },
+  {
+    "id": "mintaka-ab4819b8",
+    "language": "fr",
+    "prompt": "Qui était le premier batteur des Beatles ?",
+    "why": "The Beatles' first drummer Pete Best is fan trivia when typed."
+  },
+  {
+    "id": "mintaka-aba85d30",
+    "language": "fr",
+    "prompt": "Qui était l’animateur de la cérémonie des Oscars en 2018 ?",
+    "why": "Jimmy Kimmel is a US talk-show host unknown to a French table."
+  },
+  {
+    "id": "mintaka-abba7d67",
+    "language": "fr",
+    "prompt": "Quel était le film le plus coûteux de l’année 2011 ?",
+    "why": "The most expensive film of 2011 is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-ad15bd02",
+    "language": "fr",
+    "prompt": "Quel État abrite le parc national de Grand Teton et fait de l’alouette des champs son oiseau emblématique ?",
+    "why": "Grand Teton and state birds are American school trivia."
+  },
+  {
+    "id": "mintaka-b0332ca2",
+    "language": "fr",
+    "prompt": "Quel État est situé dans le nord-ouest du Pacifique et abrite une ville nommée Salem ?",
+    "why": "Which state has Salem as its capital is US state trivia."
+  },
+  {
+    "id": "mintaka-b0765f2e",
+    "language": "fr",
+    "prompt": "Qui est la personne la plus âgée à remporter un Oscar, toutes catégories confondues ?",
+    "why": "\"La personne la personne\" is garbled, and James Ivory's screenplay Oscar at 89 is a record few know."
+  },
+  {
+    "id": "mintaka-b088116c",
+    "language": "fr",
+    "prompt": "Quel président des États-Unis est resté en fonction le moins de temps possible ?",
+    "why": "William Henry Harrison's month-long presidency is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-b0d24cd8",
+    "language": "fr",
+    "prompt": "Quel est le quatrième jeu de la série Elder Scrolls ?",
+    "why": "Oblivion as the fourth Elder Scrolls is series trivia, and the non-series decoys make the choice a giveaway."
+  },
+  {
+    "id": "mintaka-b1478db7",
+    "language": "fr",
+    "prompt": "Quel jeu Final Fantasy comporte le plus de personnages principaux ?",
+    "why": "Counting main characters across Final Fantasy games is fan trivia."
+  },
+  {
+    "id": "mintaka-b24c4dc6",
+    "language": "fr",
+    "prompt": "Lequel des films de la série Harry Potter a rapporté le moins d’argent ?",
+    "why": "Which Harry Potter film grossed the least is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-b4aa11bc",
+    "language": "fr",
+    "prompt": "Quelle est la deuxième plus grande île (en superficie, c’est-à-dire en miles carrés) d’Hawaï ?",
+    "why": "Ranking Hawaii's islands by area is US geography that never crossed over."
+  },
+  {
+    "id": "mintaka-b500c5e4",
+    "language": "fr",
+    "prompt": "Quel est le sous-titre du quatrième jeu Grand Theft Auto ?",
+    "why": "Numbering the GTA series to Vice City depends on whether the expansions count, which nobody at a table knows."
+  },
+  {
+    "id": "mintaka-b548627d",
+    "language": "fr",
+    "prompt": "Quel film sorti en 2018 avait pour vedette Malin Akerman ?",
+    "why": "Malin Akerman is a minor actress and Rampage a minor credit."
+  },
+  {
+    "id": "mintaka-b554eef2",
+    "language": "fr",
+    "prompt": "Quel film a remporté l’Oscar du meilleur film lors de la quatre-vingt-huitième cérémonie des Oscars ?",
+    "why": "Pinning down the 88th Academy Awards' best picture needs an ordinal nobody tracks."
+  },
+  {
+    "id": "mintaka-b621305d",
+    "language": "fr",
+    "prompt": "Quel est le troisième plus grand Grand Lac ?",
+    "why": "The size ranking of the Great Lakes is US geography few French adults know."
+  },
+  {
+    "id": "mintaka-b6f09984",
+    "language": "fr",
+    "prompt": "Quel est le jeu de la série Assassins Creed qui a été le plus vendu ?",
+    "why": "Which Assassin's Creed sold best is a sales-chart detail, with Origins among the decoys."
+  },
+  {
+    "id": "mintaka-b8f6c897",
+    "language": "fr",
+    "prompt": "Quel est le film au plus gros budget de tous les temps ?",
+    "why": "Exact production budgets are box-office detail nobody remembers, and the record is disputed."
+  },
+  {
+    "id": "mintaka-b9150f60",
+    "language": "fr",
+    "prompt": "Qui était le premier Vice-Président des États-Unis ?",
+    "why": "The first US vice-president is US politics beyond the presidents."
+  },
+  {
+    "id": "mintaka-ba92f505",
+    "language": "fr",
+    "prompt": "Qui a développé Fallout: New Vegas ?",
+    "why": "Fallout: New Vegas's developer is niche gaming credit trivia."
+  },
+  {
+    "id": "mintaka-bac7691e",
+    "language": "fr",
+    "prompt": "Quels États sont limitrophes avec la Géorgie et le Tennessee ?",
+    "why": "Which state borders Georgia and Tennessee is US state geography."
+  },
+  {
+    "id": "mintaka-bacb3407",
+    "language": "fr",
+    "prompt": "Quel conflit est parfois appelé la Guerre mondiale africaine ?",
+    "why": "The Second Congo War's nickname is unknown to almost everyone."
+  },
+  {
+    "id": "mintaka-bad5fd18",
+    "language": "fr",
+    "prompt": "Quel est le titre du quatrième jeu de la série Zelda ?",
+    "why": "Counting the Zelda series to its fourth entry is something only collectors can do."
+  },
+  {
+    "id": "mintaka-baf3398d",
+    "language": "fr",
+    "prompt": "Quel État borde le Kentucky et abrite le parc national des Monts Great Smoky ?",
+    "why": "Which state borders Kentucky and holds the Great Smoky Mountains is US state trivia."
+  },
+  {
+    "id": "mintaka-bb0cc4d1",
+    "language": "fr",
+    "prompt": "Quel est le premier jeu Zelda sur console portable ?",
+    "why": "The first handheld Zelda is collector trivia, and the Game & Watch Zelda makes even that contestable."
+  },
+  {
+    "id": "mintaka-bb6119a5",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de nominations à The Game Awards 2015 ?",
+    "why": "The most-nominated game at The Game Awards 2015 is industry trivia."
+  },
+  {
+    "id": "mintaka-bc125929",
+    "language": "fr",
+    "prompt": "Quel est le plus petit pays d’Amérique du Nord en nombre d’habitants ?",
+    "why": "Nobody knows Saint Kitts and Nevis is North America's least populous country, and the decoys give it away rather than test it."
+  },
+  {
+    "id": "mintaka-bc464e44",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée le Centre de l’univers ?",
+    "why": "Boston as 'Hub of the Universe' is a local American nickname."
+  },
+  {
+    "id": "mintaka-bc487e48",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Fallout a été développé par Obsidian Entertainment ?",
+    "why": "Which Fallout was developed by Obsidian is studio-credit trivia."
+  },
+  {
+    "id": "mintaka-bd99886c",
+    "language": "fr",
+    "prompt": "Quel film a gagné le plus d’Oscars sans remporter celui du meilleur film ?",
+    "why": "Cabaret holding the most Oscars without Best Picture is an awards record few know."
+  },
+  {
+    "id": "mintaka-be293282",
+    "language": "fr",
+    "prompt": "Quel est le plus gros succès cinématographique de tous les temps aux États-Unis ?",
+    "why": "The Force Awakens, not Endgame, holds the US domestic box-office record, and the domestic chart is American detail."
+  },
+  {
+    "id": "mintaka-bf6b8daa",
+    "language": "fr",
+    "prompt": "Quel est le nom du 3e film X-Men dans la série Prequel ?",
+    "why": "Numbering the X-Men prequel films is deep franchise trivia."
+  },
+  {
+    "id": "mintaka-bfaa3b41",
+    "language": "fr",
+    "prompt": "Quel surnom avait Thomas Jonathan Jackson pendant la Guerre de Sécession américaine ?",
+    "why": "Stonewall Jackson is American Civil War lore, and the prompt nearly gives the answer away."
+  },
+  {
+    "id": "mintaka-bfe59e33",
+    "language": "fr",
+    "prompt": "Quel film a remporté le plus de Golden Globes ?",
+    "why": "La La Land's Golden Globe record is awards trivia."
+  },
+  {
+    "id": "mintaka-c036a3a2",
+    "language": "fr",
+    "prompt": "Quel est le troisième film dans lequel Johnny Depp est apparu ?",
+    "why": "Johnny Depp's third film is deep filmography trivia."
+  },
+  {
+    "id": "mintaka-c0b277f9",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée The Big Easy ?",
+    "why": "'The Big Easy' is a nickname known in the US, not in France."
+  },
+  {
+    "id": "mintaka-c0d7bfce",
+    "language": "fr",
+    "prompt": "Quel acteur a remporté l’Oscar du Meilleur acteur en 1941 ?",
+    "why": "The 1941 Best Actor winner is Oscar-history trivia."
+  },
+  {
+    "id": "mintaka-c0db4c57",
+    "language": "fr",
+    "prompt": "Quel film a été produit par Steven Spielberg et est sorti en 2005 ?",
+    "why": "Spielberg's 2005 producer credits are filmography trivia, and Munich and War of the Worlds blur it."
+  },
+  {
+    "id": "mintaka-c17f1b91",
+    "language": "fr",
+    "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le cinquième film de l’univers cinématographique de Marvel ?",
+    "why": "Release order gives Captain America: First Avenger, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
+  },
+  {
+    "id": "mintaka-c1f6cc96",
+    "language": "fr",
+    "prompt": "Quel était le deuxième président des États-Unis à être assassiné pendant son mandat ?",
+    "why": "Garfield as the second assassinated US president is American trivia a French table would not know."
+  },
+  {
+    "id": "mintaka-c235be3f",
+    "language": "fr",
+    "prompt": "Quel est un jeu de l’anthologie Dark Pictures qui se déroule sur un bateau ?",
+    "why": "Man of Medan is a minor horror anthology entry few have heard of."
+  },
+  {
+    "id": "mintaka-c26e9cad",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Call of Duty s’est vendu à plus d’exemplaires ?",
+    "why": "Which Call of Duty sold best is contested between several entries and known to nobody casually."
+  },
+  {
+    "id": "mintaka-c27755e6",
+    "language": "fr",
+    "prompt": "Qui était procureur général des États Unis et a également été assassiné ?",
+    "why": "Who was US attorney general is US politics beyond the presidency."
+  },
+  {
+    "id": "mintaka-c2c43f64",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus chaude des États-Unis pendant l’été ?",
+    "why": "The hottest US city in summer is American weather trivia."
+  },
+  {
+    "id": "mintaka-c3a1d042",
+    "language": "fr",
+    "prompt": "Quel est le huitième épisode de la série Call of duty ?",
+    "why": "Counting Call of Duty to its eighth instalment is fan-level trivia."
+  },
+  {
+    "id": "mintaka-c410c5fa",
+    "language": "fr",
+    "prompt": "Quelle bataille de la guerre de Sécession a fait le plus de victimes ?",
+    "why": "Which Civil War battle had the most casualties is American history that never crossed over."
+  },
+  {
+    "id": "mintaka-c43881e9",
+    "language": "fr",
+    "prompt": "Quel film réalisé par Darren Aronofsky avait-il pour actrice principale Rachel Weisz ?",
+    "why": "The Fountain is a minor Aronofsky film that a typed answer would only reach by luck."
+  },
+  {
+    "id": "mintaka-c540a2ca",
+    "language": "fr",
+    "prompt": "Quel président des États-Unis était en exercice à la fin de la guerre de Corée ?",
+    "why": "Who was president when the Korean War ended is a blind guess when typed."
+  },
+  {
+    "id": "mintaka-c577e69e",
+    "language": "fr",
+    "prompt": "Dans quelle ville l’équipe de MLB des Royals joue-t-elle ?",
+    "why": "Which city the Royals play baseball in is US sports trivia."
+  },
+  {
+    "id": "mintaka-c76aee80",
+    "language": "fr",
+    "prompt": "Qui était le quatorzième président des États-Unis d’Amérique ?",
+    "why": "The fourteenth US president is US presidential trivia."
+  },
+  {
+    "id": "mintaka-c833012f",
+    "language": "fr",
+    "prompt": "Comment s’appelle la toute première personne noire à avoir été oscarisée ?",
+    "why": "Hattie McDaniel was an actress, so 'acteur' points away from her, and the fact is awards trivia."
+  },
+  {
+    "id": "mintaka-c9da1c14",
+    "language": "fr",
+    "prompt": "Comment s’appelle cet État situé au sud de l’Indiana et au nord du Tennessee ?",
+    "why": "Placing Kentucky between Indiana and Tennessee is US state geography a French table does not hold."
+  },
+  {
+    "id": "mintaka-c9da89d9",
+    "language": "fr",
+    "prompt": "Quel est le deuxième pays le plus pauvre d’Europe ?",
+    "why": "The second-poorest European country depends on the measure and is guessed blind."
+  },
+  {
+    "id": "mintaka-ca9ada03",
+    "language": "fr",
+    "prompt": "Quel jeu Legend of Zelda met en scène Groose et est sorti en 2011 ?",
+    "why": "Groose and the 2011 Zelda are deep series trivia."
+  },
+  {
+    "id": "mintaka-cb6ddaee",
+    "language": "fr",
+    "prompt": "Quel acteur a joué le rôle de Ratso Rizzo ?",
+    "why": "Ratso Rizzo from Midnight Cowboy is a role a French table cannot place without the film's name."
+  },
+  {
+    "id": "mintaka-cb6e43cb",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Final Fantasy a pour protagoniste principal Zidane ?",
+    "why": "Naming which numbered Final Fantasy stars Zidane is fan-level trivia a table would guess blind."
+  },
+  {
+    "id": "mintaka-cbebba06",
+    "language": "fr",
+    "prompt": "Aux États-Unis, quel film a le plus rapporté en 1979 ?",
+    "why": "The top US earner of 1979 is American box-office detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-cc162a7a",
+    "language": "fr",
+    "prompt": "Quel était le titre du troisième épisode de la série The Legend of Zelda ?",
+    "why": "Counting the Zelda series to its third entry is something only collectors can do, with the fourth among the decoys."
+  },
+  {
+    "id": "mintaka-ccda6619",
+    "language": "fr",
+    "prompt": "Dans quel film Harrison Ford figure-t-il immédiatement après Blade Runner ?",
+    "why": "Harrison Ford's film order around 1982 is filmography trivia."
+  },
+  {
+    "id": "mintaka-ccfa09a9",
+    "language": "fr",
+    "prompt": "Quel est le quatrième plus grand lac au monde ?",
+    "why": "Lake Huron as the world's fourth-largest lake is a ranking nobody remembers."
+  },
+  {
+    "id": "mintaka-cddee8e6",
+    "language": "fr",
+    "prompt": "Qui est la plus jeune actrice à avoir remporté l’Oscar de la meilleure actrice ?",
+    "why": "Marlee Matlin as the youngest Best Actress winner is an awards record few know."
+  },
+  {
+    "id": "mintaka-ceb8cf7c",
+    "language": "fr",
+    "prompt": "Qui était le premier président de la Confédération ?",
+    "why": "Jefferson Davis is a name from American school history that never crossed over."
+  },
+  {
+    "id": "mintaka-d0024315",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de nominations au Game Awards 2016 ?",
+    "why": "The most-nominated game at The Game Awards 2016 is industry trivia."
+  },
+  {
+    "id": "mintaka-d086d757",
+    "language": "fr",
+    "prompt": "Quel est le plus long film de la saga Harry Potter ?",
+    "why": "Each Harry Potter film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-d0b0a826",
+    "language": "fr",
+    "prompt": "Quel est le nom du quatrième jeu de la série Grand Theft Auto ?",
+    "why": "Numbering the GTA series to Vice City depends on whether the expansions count, which nobody at a table knows."
+  },
+  {
+    "id": "mintaka-d0f675aa",
+    "language": "fr",
+    "prompt": "Quel État américain est situé dans le sud-est et a Kay Ivey comme gouverneur ?",
+    "why": "Kay Ivey is a US governor no French table has heard of."
+  },
+  {
+    "id": "mintaka-d0fabcd7",
+    "language": "fr",
+    "prompt": "Qui était la seconde fille du roi Christian IX du Danemark ?",
+    "why": "The second daughter of Christian IX of Denmark is genealogy nobody at a table knows."
+  },
+  {
+    "id": "mintaka-d135881d",
+    "language": "fr",
+    "prompt": "Dans quelle ville a été signée la Déclaration d’indépendance des États-Unis ?",
+    "why": "The first capital under the Constitution was New York, so Philadelphia is only right as the city of the Declaration, and the subject is American school history."
+  },
+  {
+    "id": "mintaka-d1a3f5bb",
+    "language": "fr",
+    "prompt": "Qui était le 22e et 24e président des États-Unis ?",
+    "why": "Grover Cleveland and presidential numbering are US-only knowledge."
+  },
+  {
+    "id": "mintaka-d1be73d9",
+    "language": "fr",
+    "prompt": "Qui a tiré sur Abraham Lincoln ?",
+    "why": "Lincoln's assassin's name is American school history."
+  },
+  {
+    "id": "mintaka-d1fe3100",
+    "language": "fr",
+    "prompt": "Quelle ville américaine est une capitale d’État et une ancienne ville hôte des jeux olympiques d’hiver ?",
+    "why": "Which US state capital hosted the Winter Olympics is American geography trivia."
+  },
+  {
+    "id": "mintaka-d22c9d5c",
+    "language": "fr",
+    "prompt": "Qui a été à la fois 22e et 24e président des États-Unis ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-d2b33b6e",
+    "language": "fr",
+    "prompt": "Quel est le premier film de Tom Cruise sorti dans les années 1990 ?",
+    "why": "The translation calls Days of Thunder his very first film, and his first film of the 1990s is trivia few hold."
+  },
+  {
+    "id": "mintaka-d34606a6",
+    "language": "fr",
+    "prompt": "Quel film de Pirates des Caraïbes a le plus petit budget ?",
+    "why": "Pirates of the Caribbean budgets are figures nobody remembers."
+  },
+  {
+    "id": "mintaka-d34ddd54",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par Victor Salva et est sorti en 2001 ?",
+    "why": "Victor Salva is a director nobody can name a film from."
+  },
+  {
+    "id": "mintaka-d36aa81d",
+    "language": "fr",
+    "prompt": "Qui était le vingt-septième président des États-Unis d’Amérique ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-d45b0de7",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Legend of Zelda et met en scène Ghirahim comme antagoniste du jeu ?",
+    "why": "Ghirahim as Skyward Sword's villain is deep Zelda trivia."
+  },
+  {
+    "id": "mintaka-d52c5125",
+    "language": "fr",
+    "prompt": "Qui est la mère de Carrie Fisher ?",
+    "why": "Debbie Reynolds as Carrie Fisher's mother is Hollywood family trivia."
+  },
+  {
+    "id": "mintaka-d647d492",
+    "language": "fr",
+    "prompt": "Quel empereur Romain a eu le règne le plus court ?",
+    "why": "The shortest Roman reign is a contested detail (Gordian I and II were shorter than Otho) that nobody knows."
+  },
+  {
+    "id": "mintaka-d6a510dc",
+    "language": "fr",
+    "prompt": "Quel est le 6e plus long fleuve des États-Unis ?",
+    "why": "Ranking US rivers by length is American school geography."
+  },
+  {
+    "id": "mintaka-d6b797ee",
+    "language": "fr",
+    "prompt": "Quel est le dixième plus grand État américain ?",
+    "why": "The tenth-largest US state is American state trivia."
+  },
+  {
+    "id": "mintaka-d6ef9a28",
+    "language": "fr",
+    "prompt": "Qui a gagné l’Oscar du meilleur acteur en mille neuf cent cinquante ?",
+    "why": "José Ferrer is unknown in France, and '1950' is ambiguous between the ceremony and the film year."
+  },
+  {
+    "id": "mintaka-d7182411",
+    "language": "fr",
+    "prompt": "Quel chanteur et acteur a refusé le premier rôle dans Die Hard ?",
+    "why": "Sinatra's contractual refusal of the Die Hard lead is a deep casting anecdote."
+  },
+  {
+    "id": "mintaka-d7aaa764",
+    "language": "fr",
+    "prompt": "Qui était le 35e président des États-Unis d’Amérique ?",
+    "why": "Presidents' ordinal numbers are US school knowledge, not something a French table can place."
+  },
+  {
+    "id": "mintaka-d7bf83f4",
+    "language": "fr",
+    "prompt": "Quel est le deuxième plus vaste des Grands Lacs d'Amérique du Nord ?",
+    "why": "\"Le deuxième grand lac le plus vaste\" is garbled for the second-largest Great Lake, which is North American trivia."
+  },
+  {
+    "id": "mintaka-d821b090",
+    "language": "fr",
+    "prompt": "Qui était le fils de Livia Drusilla et le beau-fils légal de l’empereur Auguste ?",
+    "why": "Drusus the Elder is specialist Roman history, and Tiberius equally fits the clue."
+  },
+  {
+    "id": "mintaka-d866ea4a",
+    "language": "fr",
+    "prompt": "Qui a été choisi comme Président par la Chambre des Représentants en mille huit cent vingt-quatre ?",
+    "why": "The 1824 contingent election is US political history."
+  },
+  {
+    "id": "mintaka-d8925193",
+    "language": "fr",
+    "prompt": "Dans quelle ville les Red Sox jouent-ils au baseball ?",
+    "why": "The Red Sox are a baseball team few French adults could place."
+  },
+  {
+    "id": "mintaka-d89dba8c",
+    "language": "fr",
+    "prompt": "Quelle actrice a remporté l’Oscar de la Meilleure actrice dans un second rôle pour sa performance dans le film Marriage Story de 2020 ?",
+    "why": "Laura Dern's supporting Oscar is unknown typed, and the male decoys make the choice a giveaway."
+  },
+  {
+    "id": "mintaka-d98d7f45",
+    "language": "fr",
+    "prompt": "Qui a dirigé les Rough Riders pendant la guerre hispano-américaine ?",
+    "why": "The Rough Riders are American history trivia."
+  },
+  {
+    "id": "mintaka-d9971c31",
+    "language": "fr",
+    "prompt": "Dans quelle ville est né Alexandre le Grand ?",
+    "why": "Pella as Alexander's birthplace is ancient-history trivia almost nobody knows."
+  },
+  {
+    "id": "mintaka-da427973",
+    "language": "fr",
+    "prompt": "Qui a été la première femme à gagner un million de dollars aux États-Unis ?",
+    "why": "Madam C.J. Walker is an American figure who never crossed over to France."
+  },
+  {
+    "id": "mintaka-dac2a90e",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de nominations aux Game Awards 2020 ?",
+    "why": "Nomination counts at the 2020 Game Awards are known to almost nobody outside the industry."
+  },
+  {
+    "id": "mintaka-dba70dc8",
+    "language": "fr",
+    "prompt": "Quel jeu Sims a été le plus vendu ?",
+    "why": "Which Sims game sold most is a sales figure nobody knows."
+  },
+  {
+    "id": "mintaka-dc3d8068",
+    "language": "fr",
+    "prompt": "Quelle est la troisième guerre réellement déclarée par les États-Unis ?",
+    "why": "The count of formally declared US wars is American civics trivia."
+  },
+  {
+    "id": "mintaka-dca9611f",
+    "language": "fr",
+    "prompt": "Quel État des États-Unis se trouve sur la côte Est et possède la plus vaste étendue terrestre ?",
+    "why": "The largest East Coast state is US geography, and by land area alone Georgia beats Florida."
+  },
+  {
+    "id": "mintaka-dd97baef",
+    "language": "fr",
+    "prompt": "Quel est le titre du cinquième jeu de la série The Legend of Zelda ?",
+    "why": "Counting the Zelda series to its fifth entry is something only collectors can do."
+  },
+  {
+    "id": "mintaka-df2240ef",
+    "language": "fr",
+    "prompt": "Quel film a le plus de dialogues ?",
+    "why": "Which film has the most dialogue is an unsourced record nobody knows."
+  },
+  {
+    "id": "mintaka-dfa65264",
+    "language": "fr",
+    "prompt": "Quel est le plus grand quartier de la ville de New York ?",
+    "why": "Comparing New York's boroughs by area is American trivia."
+  },
+  {
+    "id": "mintaka-e0da246e",
+    "language": "fr",
+    "prompt": "Quel est le plus long film de la série Twilight ?",
+    "why": "Which Twilight film runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-e117ad27",
+    "language": "fr",
+    "prompt": "Quelle a été la bataille d’un jour la plus meurtrière de la guerre civile ?",
+    "why": "Antietam as the bloodiest single day of the Civil War is American history that never crossed over."
+  },
+  {
+    "id": "mintaka-e20be46d",
+    "language": "fr",
+    "prompt": "Quelle actrice est apparue, aussi bien dans American Beauty, que dans American Pie ?",
+    "why": "Mena Suvari is a minor actress few could name from those two films."
+  },
+  {
+    "id": "mintaka-e21a6c07",
+    "language": "fr",
+    "prompt": "Quel acteur dans Den of Thieves est musicien ?",
+    "why": "Den of Thieves is a minor film and its cast is deep trivia."
+  },
+  {
+    "id": "mintaka-e26edca3",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de victoires à The Game Awards 2019 ?",
+    "why": "The biggest winner at The Game Awards 2019 is industry trivia."
+  },
+  {
+    "id": "mintaka-e2f83b8c",
+    "language": "fr",
+    "prompt": "Où le monument de la Devil’s Tower est-il situé ?",
+    "why": "Devils Tower's state is American geography trivia."
+  },
+  {
+    "id": "mintaka-e32c0422",
+    "language": "fr",
+    "prompt": "Quel était le cinquantième État à rejoindre les États-Unis ?",
+    "why": "Which state joined the Union fiftieth is US state trivia."
+  },
+  {
+    "id": "mintaka-e353ee3a",
+    "language": "fr",
+    "prompt": "Quel film de la série Piège de cristal est le plus long ?",
+    "why": "Which Die Hard runs longest is a running-time detail nobody remembers."
+  },
+  {
+    "id": "mintaka-e364adb7",
+    "language": "fr",
+    "prompt": "Quel État est limitrophe du Canada et possède une capitale dont la population est inférieure à 10 000 habitants ?",
+    "why": "Montpelier's population and Vermont's border are US state trivia."
+  },
+  {
+    "id": "mintaka-e385068d",
+    "language": "fr",
+    "prompt": "Qui Megan Fox a-t-elle fréquenté en 2020 ?",
+    "why": "Megan Fox's relationship with Machine Gun Kelly is American tabloid news."
+  },
+  {
+    "id": "mintaka-e38b49bd",
+    "language": "fr",
+    "prompt": "Quel est l’État le moins peuplé des États-Unis ?",
+    "why": "The least populous US state is American trivia."
+  },
+  {
+    "id": "mintaka-e3e7105d",
+    "language": "fr",
+    "prompt": "Quelle est la huitième plus élevée montagne du monde ?",
+    "why": "Manaslu as the eighth-highest peak is a ranking almost nobody remembers."
+  },
+  {
+    "id": "mintaka-e468d240",
+    "language": "fr",
+    "prompt": "Quel premier ministre canadien a eu le mandat le plus long ?",
+    "why": "Mackenzie King is Canadian political history unknown in France."
+  },
+  {
+    "id": "mintaka-e4e5e49a",
+    "language": "fr",
+    "prompt": "Quel est le plus petit État américain en termes de superficie ?",
+    "why": "Rhode Island being the smallest state is US state trivia that never crossed over."
+  },
+  {
+    "id": "mintaka-e63bc905",
+    "language": "fr",
+    "prompt": "Quel est le film de Spider-Man qui avait le plus petit budget ?",
+    "why": "Which Spider-Man film had the smallest budget is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-e66f4db5",
+    "language": "fr",
+    "prompt": "Quel film de la saga Harry Potter est le plus court ?",
+    "why": "Each Harry Potter film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-e6cc1fde",
+    "language": "fr",
+    "prompt": "Quelle colonie est devenue le premier état aux États-Unis ?",
+    "why": "Delaware as the first state is American school history."
+  },
+  {
+    "id": "mintaka-e7b73fab",
+    "language": "fr",
+    "prompt": "Qui était le douzième président américain ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-e804f732",
+    "language": "fr",
+    "prompt": "Quel est le quatrième jeu de la série Zelda ?",
+    "why": "Counting the Zelda series to its fourth entry is something only collectors can do."
+  },
+  {
+    "id": "mintaka-e8a719cd",
+    "language": "fr",
+    "prompt": "Qui a été la femme du roi Henri V et la fille de Charles VI ?",
+    "why": "Henry V's queen is specialist history few French players know."
+  },
+  {
+    "id": "mintaka-e915c0bd",
+    "language": "fr",
+    "prompt": "Quel est le film de la saga Piège de cristal qui a rapporté le moins d’argent à travers le monde ?",
+    "why": "Which Die Hard grossed least worldwide is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-eaefe247",
+    "language": "fr",
+    "prompt": "Dans la serie originale Quake, de quel auteur de fictions réalistes, étranges, de science-fiction, d’horreur et fantastiques l’inspiration vient-elle ?",
+    "why": "Quake's Lovecraft inspiration is deep gaming trivia."
+  },
+  {
+    "id": "mintaka-eb1f25ab",
+    "language": "fr",
+    "prompt": "Qui était le plus ancien enfant survivant du roi Louis XVI de France ?",
+    "why": "Marie-Thérèse as Louis XVI's eldest surviving child is a name few French adults can produce."
+  },
+  {
+    "id": "mintaka-eb521cb2",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par Darren Aronofsky et est sorti en 2017 ?",
+    "why": "mother! is a minor Aronofsky film that a typed answer would not find."
+  },
+  {
+    "id": "mintaka-ec639f81",
+    "language": "fr",
+    "prompt": "Quel est le septième plus grand pays du monde ?",
+    "why": "The seventh rank in country area is a count nobody remembers."
+  },
+  {
+    "id": "mintaka-eccde586",
+    "language": "fr",
+    "prompt": "Quelle civilisation antique autorisait les hommes a prendre des congés, pour s’occuper des règles de leurs femmes et de leurs filles ?",
+    "why": "Egyptian menstrual leave is an obscure fact nobody would know."
+  },
+  {
+    "id": "mintaka-ecd43eb0",
+    "language": "fr",
+    "prompt": "Quelle est la deuxième plus haute montagne d’Amérique du Nord ?",
+    "why": "Mount Logan as North America's second-highest peak is known to almost nobody."
+  },
+  {
+    "id": "mintaka-ed48af64",
+    "language": "fr",
+    "prompt": "Quel est le deuxième lac au monde en termes de profondeur ?",
+    "why": "Lake Tanganyika as the second-deepest lake is a ranking few know."
+  },
+  {
+    "id": "mintaka-ee49000f",
+    "language": "fr",
+    "prompt": "Dans quel jeu de la série Mana se trouve Popoi ?",
+    "why": "Popoi is a minor character from a 1993 Super Nintendo game few remember."
+  },
+  {
+    "id": "mintaka-eeed432b",
+    "language": "fr",
+    "prompt": "Quel film est réalisé par David Lowery et porte sur le roi Authur ?",
+    "why": "A David Lowery film identified by its director is deep filmography trivia."
+  },
+  {
+    "id": "mintaka-ef16002c",
+    "language": "fr",
+    "prompt": "Comment s’appelle le réalisateur du deuxième film de la saga Jurassic World ?",
+    "why": "The director of Jurassic World: Fallen Kingdom is a name almost no player could type."
+  },
+  {
+    "id": "mintaka-ef4476e4",
+    "language": "fr",
+    "prompt": "Dans quel jeu Animal Crossing ne voit-on pas Tom Nook travailler dans le Cranny de Nook ?",
+    "why": "Which Animal Crossing lacks Tom Nook's shop is a detail only series players know."
+  },
+  {
+    "id": "mintaka-ef6668b5",
+    "language": "fr",
+    "prompt": "Dans quel État s’est produit le premier vol et qui contient une partie du parc national des Monts Great Smoky ?",
+    "why": "Kitty Hawk's state and the Great Smoky Mountains are US state trivia."
+  },
+  {
+    "id": "mintaka-f0f87129",
+    "language": "fr",
+    "prompt": "Quel a été le deuxième État des États-Unis à se séparer de l’Union lors de la Guerre de Sécession ?",
+    "why": "The order of secession of US states is American school history."
+  },
+  {
+    "id": "mintaka-f126b04d",
+    "language": "fr",
+    "prompt": "Quel est le jeu de la série Last of Us qui a été le plus vendu ?",
+    "why": "Comparative sales of the two Last of Us games are figures nobody knows."
+  },
+  {
+    "id": "mintaka-f1aedb99",
+    "language": "fr",
+    "prompt": "Qui était la deuxième femme de John Rolfe ?",
+    "why": "John Rolfe is a figure of Virginia colonial history unknown in France, so the question cannot be answered from his name."
+  },
+  {
+    "id": "mintaka-f1b4c6a2",
+    "language": "fr",
+    "prompt": "Quel acteur a remporté le plus grand nombre de Emmys Award ?",
+    "why": "Emmy records and Julia Louis-Dreyfus are American television trivia."
+  },
+  {
+    "id": "mintaka-f1e6f2cc",
+    "language": "fr",
+    "prompt": "Qui était le 25e président des États-Unis d’Amérique ?",
+    "why": "Presidential ordinal numbers are American school trivia."
+  },
+  {
+    "id": "mintaka-f20efd8f",
+    "language": "fr",
+    "prompt": "Quelle rivière traverse l’Utah et est la cinquième plus longue rivière des États-Unis ?",
+    "why": "Ranking the Colorado as the fifth-longest river through Utah is US geography a French table does not hold."
+  },
+  {
+    "id": "mintaka-f2b0b6ef",
+    "language": "fr",
+    "prompt": "Quelle montagne se trouvant dans les Andes a été escaladée pour la première fois lors d’une expédition anglaise en 1880 ?",
+    "why": "Whymper's 1880 first ascent of Chimborazo is mountaineering detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-f32440a5",
+    "language": "fr",
+    "prompt": "Quelle ville a créé les murs anti-pipi afin de dissuader les ivrognes d’y uriner ?",
+    "why": "Hamburg's urine-repellent walls are a curiosity almost nobody has heard of."
+  },
+  {
+    "id": "mintaka-f477742c",
+    "language": "fr",
+    "prompt": "Quel acteur Stephanie Meyer a-t-elle choisi en premier pour jouer le rôle d’Edward Cullen dans le film Twilight ?",
+    "why": "Who Stephenie Meyer first pictured as Edward Cullen is casting gossip almost nobody knows."
+  },
+  {
+    "id": "mintaka-f4ad5c45",
+    "language": "fr",
+    "prompt": "Quel système de montagnes se trouve aux États-Unis et s’étend sur 13 États ?",
+    "why": "How many states the Appalachians cross is American school geography."
+  },
+  {
+    "id": "mintaka-f574ffa0",
+    "language": "fr",
+    "prompt": "Quelle célébrité a fait la une des journaux en 1980 quand elle s’est immolée par le feu sous l’emprise de la cocaïne ?",
+    "why": "Richard Pryor's 1980 freebasing accident never crossed over to France."
+  },
+  {
+    "id": "mintaka-f638ffe3",
+    "language": "fr",
+    "prompt": "Quel était le premier film qui a mis en vedette Julia Roberts en 2003 ?",
+    "why": "Which Julia Roberts film came first in 2003 is release-calendar trivia nobody knows."
+  },
+  {
+    "id": "mintaka-f7882675",
+    "language": "fr",
+    "prompt": "Qui était la première femme de Joe Biden ?",
+    "why": "Joe Biden's first wife Neilia Hunter is US political biography unknown in France."
+  },
+  {
+    "id": "mintaka-f7a824a7",
+    "language": "fr",
+    "prompt": "Quel est la quatrième plus longue rivière des États-Unis ?",
+    "why": "The fourth-longest river of the US is US geography trivia."
+  },
+  {
+    "id": "mintaka-f7b101a0",
+    "language": "fr",
+    "prompt": "Quel film a remporté le plus d’Oscars sans remporter celui du meilleur film ?",
+    "why": "Cabaret did win Best Cinematography; its record is the most Oscars without Best Picture."
+  },
+  {
+    "id": "mintaka-f7e4dad9",
+    "language": "fr",
+    "prompt": "Quel est le quatrième plus long fleuve des États-Unis ?",
+    "why": "\"Amérique\" reads as the continent, where the Rio Grande is not fourth; the source meant the United States, which is US trivia."
+  },
+  {
+    "id": "mintaka-f891c9dc",
+    "language": "fr",
+    "prompt": "Quel est le sixième volet de la série Call of Duty ?",
+    "why": "Counting Call of Duty to its sixth instalment is fan-level trivia."
+  },
+  {
+    "id": "mintaka-f94f1042",
+    "language": "fr",
+    "prompt": "Quel film Avengers a eu le moins de recettes ?",
+    "why": "Which Avengers film grossed least is box-office detail nobody remembers."
+  },
+  {
+    "id": "mintaka-f9d097f1",
+    "language": "fr",
+    "prompt": "Qui a animé la première cérémonie des Oscars ?",
+    "why": "Douglas Fairbanks hosting the first Oscars is history almost nobody knows."
+  },
+  {
+    "id": "mintaka-fad2000f",
+    "language": "fr",
+    "prompt": "Quel État américain est situé sur la côte Est et a la plus grande population ?",
+    "why": "Ranking East Coast states by population is US trivia; a French table answers New York."
+  },
+  {
+    "id": "mintaka-fb4f01b0",
+    "language": "fr",
+    "prompt": "Quel est le plus long des films Transformers ?",
+    "why": "Each Transformers film's running time is detail nobody remembers."
+  },
+  {
+    "id": "mintaka-fb538419",
+    "language": "fr",
+    "prompt": "Quelle ville est la capitale de la Californie ?",
+    "why": "California's capital is US state trivia most French adults miss."
+  },
+  {
+    "id": "mintaka-fb759159",
+    "language": "fr",
+    "prompt": "Comment s’appelait le roi le plus élancé de l’histoire de l’Angleterre ?",
+    "why": "Edward IV as the tallest English king is a detail almost nobody knows."
+  },
+  {
+    "id": "mintaka-fc0da314",
+    "language": "fr",
+    "prompt": "Qui a présenté la première cérémonie des Oscars ?",
+    "why": "Douglas Fairbanks hosting the first Oscars is history almost nobody knows."
+  },
+  {
+    "id": "mintaka-fc224730",
+    "language": "fr",
+    "prompt": "Quel était le premier État américain ?",
+    "why": "Delaware as the first US state is American school trivia."
+  },
+  {
+    "id": "mintaka-fc26c04c",
+    "language": "fr",
+    "prompt": "Quel était le jeu le plus vendu de 2007 ?",
+    "why": "The best-selling game of 2007 is contested between sales charts and guessed blind."
+  },
+  {
+    "id": "mintaka-fc49e988",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de prix au Game Awards 2020 ?",
+    "why": "The biggest winner at The Game Awards 2020 is industry trivia."
+  },
+  {
+    "id": "mintaka-fc6e6028",
+    "language": "fr",
+    "prompt": "Qui était le huitième Président des États-Unis ?",
+    "why": "The eighth US president is a name no French table knows."
+  },
+  {
+    "id": "mintaka-fc9e9d25",
+    "language": "fr",
+    "prompt": "Qui a été le plus jeune nominé aux Oscars ?",
+    "why": "Justin Henry is a child actor of Kramer vs. Kramer whom nobody remembers."
+  },
+  {
+    "id": "mintaka-fcbbb34e",
+    "language": "fr",
+    "prompt": "Qui était le dixième empereur de Rome ?",
+    "why": "Titus as the tenth Roman emperor needs a count nobody remembers."
+  },
+  {
+    "id": "mintaka-fd901f9a",
+    "language": "fr",
+    "prompt": "Quel a été le plus court mandat d’un président américain ?",
+    "why": "William Henry Harrison's month-long presidency is American trivia unknown in France."
+  },
+  {
+    "id": "mintaka-fe6cf8b0",
+    "language": "fr",
+    "prompt": "Quel jeu a reçu le plus de nominations Game of the Year en 2019 ?",
+    "why": "The most-nominated Game of the Year contender of 2019 is industry trivia."
+  },
+  {
+    "id": "mintaka-fea4ae15",
+    "language": "fr",
+    "prompt": "Qui était le onzième président des États-Unis d’Amérique ?",
+    "why": "James K. Polk as the eleventh US president is a rank nobody outside the US remembers."
+  },
+  {
+    "id": "mintaka-ff027a48",
+    "language": "fr",
+    "prompt": "Qui est le réalisateur qui a reçu le plus d’Oscars du meilleur réalisateur ?",
+    "why": "John Ford holds the Best Director record, not Best Picture, and few French players know him."
+  },
+  {
+    "id": "mintaka-ff86bf58",
+    "language": "fr",
+    "prompt": "Quelle est, en termes de hauteur, la troisième plus grande montagne au monde ?",
+    "why": "Kangchenjunga as the third-highest peak is a ranking few can produce."
+  },
+  {
+    "id": "mintaka-ffc2737d",
+    "language": "fr",
+    "prompt": "Quel est le titre du troisième épisode du jeu Assassin’s Creed ?",
+    "why": "The release rank of Assassin's Creed instalments is a count nobody remembers."
+  },
+  {
+    "id": "mintaka-fff5d834",
+    "language": "fr",
+    "prompt": "Quel était le premier film réalisé par Clint Eastwood ?",
+    "why": "Eastwood's directing debut Play Misty for Me is filmography trivia."
+  }
+]

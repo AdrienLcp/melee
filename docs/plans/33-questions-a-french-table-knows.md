@@ -43,15 +43,21 @@ rows per subject, before → after: arts 679 → 479, cinema 999 → 879, everyd
 geography 654, history 570 and quotes 349 are untouched. 4 844 → 4 112 in all,
 every subject far above the evening floor of forty.
 
-## Not done
+## Done after, in a second session
 
-- **A row-by-row census of the rest of Mintaka** — the one in five that is
-  American outside sport. The rejected options were a higher traffic bar, which
-  costs a known-everywhere row for each American one it removes, and a census
-  kept like `choice-only-questions.json`. Worth it only if a table still meets
-  Tallahassee.
-- **Vikidia's broken quarter** — choice questions that lost their choices (*which of these
-  places…*), fragments, sentences as answers. A separate repair.
+Both items this stage left open, by reading every row rather than sampling.
+
+- **Vikidia's broken quarter.** All 922 French rows read: 70 dropped, 149
+  repaired in `question-repairs.json`, 41 added to
+  `choice-only-questions.json`. The bank goes to 12 388 rows.
+- **The census of the rest of Mintaka.** All 1 824 well-known French rows
+  outside sport read: 512 lose the flag through a new census,
+  `not-well-known-questions.json` (same shape as the choice-only list, read in
+  `build-question-bank.ts`), 100 are dropped, 205 repaired, 30 made
+  choice-only. Rows that repairs made identical collapse to one under the
+  reissue guard, and the twins that resurfaced were read too. The bank goes to
+  12 282 rows; well-known French rows 4 112 → 3 440, cinema 672, geography 490,
+  history 422, video games 254.
 
 ## Done when
 

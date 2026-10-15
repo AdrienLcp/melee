@@ -1,9 +1,105 @@
 [
   {
+    "id": "mintaka-08edb947",
+    "language": "fr",
+    "prompt": "Quel est le troisième plus grand pays du monde en termes de superficie ?",
+    "why": "China and the United States trade third place depending on how area is measured, so a typed 'États-Unis' would be refused unfairly."
+  },
+  {
+    "id": "mintaka-0e31c78e",
+    "language": "fr",
+    "prompt": "Quelle est la plus vieille ville toujours habitée dans le monde ?",
+    "why": "Damascus, Jericho, Byblos and others all claim the title, so only the choices single one out."
+  },
+  {
     "id": "mintaka-1ee0fa7b",
     "language": "fr",
     "prompt": "Comment s’appelle l’empereur romain qui est resté au pouvoir pendant longtemps ?",
     "why": "\"a long time\" names no superlative — Tiberius, Constantine and Theodosius all reigned for decades, so only the four on screen make one of them the answer"
+  },
+  {
+    "id": "mintaka-219a6e1f",
+    "language": "fr",
+    "prompt": "Quel pays faisait partie des puissances alliées et est une nation insulaire ?",
+    "why": "Australia, New Zealand and the Philippines were also Allied island nations, so only the four choices single out the UK."
+  },
+  {
+    "id": "mintaka-247f56fb",
+    "language": "fr",
+    "prompt": "Quel film réalisé par Martin Scorsese a pour acteur Daniel Day-Lewis ?",
+    "why": "Daniel Day-Lewis is also in Scorsese's The Age of Innocence, so only the choices single out Gangs of New York."
+  },
+  {
+    "id": "mintaka-293f70d0",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par David Fincher dans lequel figure Brad Pitt ?",
+    "why": "Se7en and Benjamin Button are also Fincher films with Brad Pitt."
+  },
+  {
+    "id": "mintaka-2eef33ab",
+    "language": "fr",
+    "prompt": "Dans le film Shawshank Redemption de mille neuf cent quatre vingt-quatorze, qui était l’un des acteurs principaux ?",
+    "why": "Typed, Morgan Freeman is as right as Tim Robbins."
+  },
+  {
+    "id": "mintaka-33752d33",
+    "language": "fr",
+    "prompt": "Quelle ville a connu un incendie majeur dans les années mille huit cent ?",
+    "why": "Moscow, Hamburg and many other cities had major nineteenth-century fires, so typed it has many answers."
+  },
+  {
+    "id": "mintaka-38f2141b",
+    "language": "fr",
+    "prompt": "Quel jeu de la série Resident Evil a pour méchant principal Albert Wesker ?",
+    "why": "Wesker is also the villain of the first Resident Evil and Code Veronica, so a typed answer has several right readings."
+  },
+  {
+    "id": "mintaka-3ae4e4ed",
+    "language": "fr",
+    "prompt": "Quelle est la plus ancienne ville habitée ?",
+    "why": "Jericho, Byblos and others also claim to be the oldest inhabited city, so only the choices single out Damascus."
+  },
+  {
+    "id": "mintaka-48eaaf25",
+    "language": "fr",
+    "prompt": "Quelle est la plus grande capitale d’Afrique par sa population ?",
+    "why": "Cairo or Kinshasa depends on city limits versus metro area, so a typed Cairo is as defensible."
+  },
+  {
+    "id": "mintaka-5134adc9",
+    "language": "fr",
+    "prompt": "Quel pays faisait partie des puissances Alliées et a été envahi par l’Allemagne ?",
+    "why": "Germany invaded several Allied countries, Poland and France among them, so only the choices single out the USSR."
+  },
+  {
+    "id": "mintaka-53a16389",
+    "language": "fr",
+    "prompt": "Quel est le pays le plus pauvre du monde ?",
+    "why": "Burundi, South Sudan and others swap the bottom rank year to year, so only the choices single one out."
+  },
+  {
+    "id": "mintaka-5965b76b",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par Quentin Tarantino et dans lequel figurait Uma Thurman ?",
+    "why": "Pulp Fiction is also a Tarantino film with Uma Thurman, so typed the prompt does not single out Kill Bill."
+  },
+  {
+    "id": "mintaka-59bcc7a0",
+    "language": "fr",
+    "prompt": "Quel ville est entièrement construite sur de longs poteaux de bois ?",
+    "why": "Venice is just as famously built on wooden piles, so a typed 'Venise' would be marked wrong."
+  },
+  {
+    "id": "mintaka-6006f70d",
+    "language": "fr",
+    "prompt": "Qui jouait dans Le masque de Zorro ?",
+    "why": "Anthony Hopkins and Catherine Zeta-Jones also star in The Mask of Zorro."
+  },
+  {
+    "id": "mintaka-61cba0b9",
+    "language": "fr",
+    "prompt": "Quel film réalisé par Martin Scorsese a pour acteur Leonardo DiCaprio ?",
+    "why": "Scorsese and DiCaprio made half a dozen films together, so typed it has many answers."
   },
   {
     "id": "mintaka-6b5f02bf",
@@ -12,10 +108,52 @@
     "why": "dozens of Argentinians play in a European league, and only the four on screen make Messi the answer"
   },
   {
+    "id": "mintaka-77b2aca4",
+    "language": "fr",
+    "prompt": "Quel film réalisé par Brian De Palma a pour acteur principal Al Pacino ?",
+    "why": "De Palma also directed Al Pacino in Scarface, which any typed answer would name first."
+  },
+  {
+    "id": "mintaka-7c153375",
+    "language": "fr",
+    "prompt": "Comment s’appelle le quatrième plus grand pays du monde ?",
+    "why": "The United States and China swap third and fourth place depending on how waters are counted, so a typed 'Chine' is as right."
+  },
+  {
+    "id": "mintaka-8345d8e2",
+    "language": "fr",
+    "prompt": "Qui a joué dans le film Le Parrain ?",
+    "why": "Typed, any cast member of The Godfather is right."
+  },
+  {
+    "id": "mintaka-85ff6898",
+    "language": "fr",
+    "prompt": "Quelle jeu vidéo a été le plus vendu de tous les temps ?",
+    "why": "Minecraft is just as often named the best-selling game of all time, so typed it has two answers."
+  },
+  {
     "id": "mintaka-8b8ab017",
     "language": "fr",
     "prompt": "Qui était entraîneur lorsque Michael Jordan jouait pour les Bulls de Chicago ?",
     "why": "Doug Collins and Kevin Loughery coached him at Chicago too; the row is a question because the other three candidates are players"
+  },
+  {
+    "id": "mintaka-8d748338",
+    "language": "fr",
+    "prompt": "Quelle est la civilisation la plus ancienne ?",
+    "why": "Typed, Mesopotamia or ancient Egypt are equally defensible answers, so only the choices single out Sumer."
+  },
+  {
+    "id": "mintaka-a7502aef",
+    "language": "fr",
+    "prompt": "Qui a joué dans Fast and Furious ?",
+    "why": "Fast and Furious has a large cast, so typed it has many right answers."
+  },
+  {
+    "id": "mintaka-aed9d850",
+    "language": "fr",
+    "prompt": "Quelle est la ville la plus peuplée d’Afrique ?",
+    "why": "Lagos, Cairo and Kinshasa each lead depending on city or metro limits, so a typed answer has no single right reading."
   },
   {
     "id": "mintaka-b0f7b2ba",
@@ -30,6 +168,30 @@
     "why": "North Carolina borders both as squarely as Alabama does, and the row banks one member of a set the sentence never closes"
   },
   {
+    "id": "mintaka-cb71611a",
+    "language": "fr",
+    "prompt": "Quel est le plus grand lac du Canada ?",
+    "why": "Lake Superior is shared with the US, so a typed Great Bear Lake, the largest lake wholly in Canada, is as right."
+  },
+  {
+    "id": "mintaka-d2f21e12",
+    "language": "fr",
+    "prompt": "Où se situe la région appelée le berceau de l’humanité ?",
+    "why": "A typed table answers Ethiopia or Kenya for the cradle of humankind, while the answer is the South African site."
+  },
+  {
+    "id": "mintaka-db161638",
+    "language": "fr",
+    "prompt": "Quel acteur a une fille appelée Wednesday et a joué dans les films Harry Potter ?",
+    "why": "Typed, 'an actor from Harry Potter' draws Radcliffe and dozens of others; only the choices make the daughter clue decide it."
+  },
+  {
+    "id": "mintaka-dbd0ca66",
+    "language": "fr",
+    "prompt": "Quelle ville est surnommée la Capitale de la paix ?",
+    "why": "The Hague is also called the city of peace, so typed it has two answers."
+  },
+  {
     "id": "mintaka-ec193c1c",
     "language": "fr",
     "prompt": "Où peut-on aller voir des têtes de pierre géantes ?",
@@ -40,6 +202,24 @@
     "language": "fr",
     "prompt": "L’ancienne Mésopotamie était connue pour être située le long de deux rivières. Laquelle des suivantes était l’une d’entre elles ?",
     "why": "the prompt says \"one of the following\", and Mesopotamia has two rivers — a typed room writing Euphrate is as right as one writing Tigre and is marked wrong"
+  },
+  {
+    "id": "mintaka-f4616345",
+    "language": "fr",
+    "prompt": "Quel pays sert de frontière et unit deux continents en même temps ?",
+    "why": "Turkey, Russia and Kazakhstan also span two continents, so only the four choices single out Egypt."
+  },
+  {
+    "id": "mintaka-f817b269",
+    "language": "fr",
+    "prompt": "Quel jeu Final Fantasy a pour protagoniste Cloud et est jouable sur Playstation 4 ?",
+    "why": "The original Final Fantasy VII also plays on PS4, so typed it has two answers."
+  },
+  {
+    "id": "mintaka-fd4d3a28",
+    "language": "fr",
+    "prompt": "Quel film a été réalisé par les frère Coen et figure John Turturro ?",
+    "why": "John Turturro is in four Coen films (Miller's Crossing, Barton Fink, The Big Lebowski, O Brother), so only the choices single one out."
   },
   {
     "id": "oqdb-111-2",

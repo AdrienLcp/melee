@@ -1,43 +1,472 @@
 {
+  "mintaka-0a2dea66": {
+    "drop": true,
+    "why": "The prompt is garbled ('Comment est l’acteur'), and singling out Evan Peters by birth year is minor-actor trivia."
+  },
+  "mintaka-0b020607": {
+    "prompt": "Quel jeu de la série Far Cry a pour principal méchant un personnage incarné par Giancarlo Esposito ?",
+    "why": "Giancarlo Esposito is the actor, not the villain, who is Antón Castillo."
+  },
+  "mintaka-0c3eaca3": {
+    "prompt": "Quel jeu Grand Theft Auto a pour personnage principal Carl Johnson ?",
+    "why": "The translation garbled the sentence ('Quel jeu est compris dans le Grand Theft Auto avec…')."
+  },
+  "mintaka-0c8a4236": {
+    "prompt": "Quelle entreprise a créé la console portable Game Gear ?",
+    "why": "'Console à commande manuelle' is a mistranslation of handheld."
+  },
+  "mintaka-0c57e1eb": {
+    "prompt": "Quel film de la Terre du Milieu, entre Le Seigneur des anneaux et Le Hobbit, a eu le plus gros budget ?",
+    "why": "The answer is a Hobbit film, not a Lord of the Rings one, and budget rankings are trivia nobody remembers."
+  },
+  "mintaka-0df8aad7": {
+    "prompt": "Quel mémorial sculpté dans une montagne du Dakota du Sud a été construit de 1927 à 1941 ?",
+    "why": "A 'massive memorial on the hill' with only its build dates gives a typed answer nothing to go on."
+  },
+  "mintaka-0e9a6c56": {
+    "answer": "Union soviétique",
+    "decoys": ["Afrique du Sud", "États-Unis", "Pologne"],
+    "prompt": "Quel pays, puissance alliée de la Seconde Guerre mondiale, a subi le plus de pertes ?",
+    "why": "The garbled prompt answers Russia for the USSR, and Ukraine as a decoy was part of the right answer."
+  },
+  "mintaka-0ea61937": {
+    "prompt": "Quel petit pays européen est le plus riche du monde par habitant ?",
+    "why": "Luxembourg is not the smallest country in the world, so the two clauses never meet in one answer."
+  },
+  "mintaka-0eb83ec6": {
+    "prompt": "Quelle est la plus haute montagne du monde ?",
+    "why": "'La première montagne la plus haute' is a garbled translation."
+  },
+  "mintaka-0ff147e0": {
+    "prompt": "Quel film Star Wars a été réalisé par Rian Johnson ?",
+    "why": "Rian Johnson directed only one Star Wars film, so 'his first episode' is a garbled premise."
+  },
+  "mintaka-1a24b7a1": {
+    "drop": true,
+    "why": "The prompt is garbled and the Nile, a decoy, is the conventional answer that the bank's sibling rows give."
+  },
+  "mintaka-1ac296be": {
+    "prompt": "Quelle est la plus longue bataille que l’armée des États-Unis ait jamais livrée ?",
+    "why": "\"La longue bataille isolée\" is garbled, and the Hürtgen Forest is a detail almost nobody knows."
+  },
+  "mintaka-1ba6e4ea": {
+    "drop": true,
+    "why": "Philip II, not Alexander, brought the Greek cities under Macedon, and no candidate names him."
+  },
   "mintaka-1d664f53": {
     "drop": true,
     "why": "it asks which American war had many dead, which the two world wars printed beside it answer as well as the Civil War does"
+  },
+  "mintaka-1d874cc6": {
+    "drop": true,
+    "why": "it asks for the best-selling Call of Duty, which the bank has already dropped as unsettled by sales figures by edition"
+  },
+  "mintaka-1dc3ed72": {
+    "prompt": "Quel est le premier grand jeu de plateforme Mario sorti sur Nintendo Switch ?",
+    "why": "Mario Kart 8 Deluxe and Mario + Rabbids came out on Switch before Odyssey."
+  },
+  "mintaka-1df48fb7": {
+    "prompt": "Quel célèbre Romain a été enlevé par des pirates dans sa jeunesse et retenu contre rançon ?",
+    "why": "Julius Caesar was never emperor, and the ransom figure was not twelve thousand gold coins."
+  },
+  "mintaka-1f2af69b": {
+    "prompt": "Qui joue Wolverine dans le film X-Men ?",
+    "why": "'Qui état la vedette' is misspelt and an ensemble film has no single star."
+  },
+  "mintaka-2a22381e": {
+    "prompt": "Qui était le premier secrétaire au Trésor des États-Unis ?",
+    "why": "The prompt lacks the country, and Hamilton's cabinet post is US politics beyond the presidents."
+  },
+  "mintaka-2aab7299": {
+    "drop": true,
+    "why": "it names Black Ops the best-selling Call of Duty while mintaka-e03cc903 names Modern Warfare, and sales figures by edition settle neither"
+  },
+  "mintaka-2aac49ec": {
+    "answer": "duc de Wellington",
+    "why": "A French table names him the duke of Wellington, and Arthur Wellesley alone would mark that answer wrong."
   },
   "mintaka-2af2f393": {
     "drop": true,
     "why": "plenty of athletes have recorded music, and Shaquille O’Neal — printed as a wrong answer — released four rap albums, so the row is unwinnable typed and unwinnable picked"
   },
+  "mintaka-2b6f9142": {
+    "prompt": "Qui a remporté l’Oscar du meilleur acteur dans un second rôle en 2020 ?",
+    "why": "'Cette année' dates the question; Brad Pitt won it in 2020."
+  },
+  "mintaka-2bc42b56": {
+    "prompt": "Qui était président des États-Unis pendant la Première Guerre mondiale ?",
+    "why": "Without naming the country the question has no single answer."
+  },
+  "mintaka-2cd3c437": {
+    "drop": true,
+    "why": "'The youngest film director' has no meaningful answer, and Tony Richardson is not one."
+  },
   "mintaka-2de637c1": {
     "drop": true,
     "why": "it asks when Che Guevara died and answers a country"
+  },
+  "mintaka-2e491494": {
+    "answer": "Louis XIX",
+    "why": "\"Louis de France\" names a dozen princes, while the twenty-minute reign is known as that of Louis XIX."
+  },
+  "mintaka-2f908f5a": {
+    "drop": true,
+    "why": "Star Wars budgets are disputed and The Force Awakens is usually reported higher than The Last Jedi."
+  },
+  "mintaka-2f806991": {
+    "answer": "Seconde Guerre mondiale",
+    "decoys": ["Première Guerre mondiale", "guerre de Sécession", "Vikings"],
+    "why": "The Second World War drew in more countries than the First, so the decoy was the right answer."
+  },
+  "mintaka-2fe22f4c": {
+    "prompt": "Qui fut la première personne à remporter un Oscar d’interprétation pour un rôle dans une langue autre que l’anglais ?",
+    "why": "The prompt never names the Oscar and calls Sophia Loren an actor, and the record is Oscar-history trivia."
+  },
+  "mintaka-3a2de53a": {
+    "prompt": "Dans l’ordre chronologique de l’histoire, quel film de l’Univers cinématographique Marvel vient en premier ?",
+    "why": "In release order the first MCU film is Iron Man; Captain America: First Avenger is first only in story order."
+  },
+  "mintaka-3af9ff42": {
+    "decoys": [
+      "Grand Theft Auto: San Andreas",
+      "Minecraft",
+      "Grand Theft Auto IV"
+    ],
+    "why": "Red Dead Redemption 2, a decoy, also sold over 60 million and was co-developed by Rockstar North."
+  },
+  "mintaka-3b4a2856": {
+    "decoys": ["Somalie", "Érythrée", "Éthiopie"],
+    "why": "The question asks for a country but the decoys were cities."
+  },
+  "mintaka-3d5aa71a": {
+    "prompt": "Quel est le titre de l’épisode IV de la saga Star Wars ?",
+    "why": "The fourth Star Wars film released is The Phantom Menace, so 'fourth opus' must mean Episode IV."
+  },
+  "mintaka-3d6ce6c8": {
+    "prompt": "Quel est le pays le plus peuplé du monde ?",
+    "why": "India overtook China in 2023, so it is now first, not second, by population."
+  },
+  "mintaka-3d8a6d30": {
+    "prompt": "Quel jeu God of War, sorti en 2022, fait suite à celui de 2018 ?",
+    "why": "The future tense is stale since Ragnarök shipped in 2022, and calling it the fifth instalment miscounts the series."
+  },
+  "mintaka-3d277e5a": {
+    "answer": "Louis-Napoléon Bonaparte",
+    "why": "The first French president was elected as Louis-Napoléon Bonaparte and only became Napoléon III as emperor."
+  },
+  "mintaka-3dbaec95": {
+    "prompt": "Qui a remporté l’Oscar du meilleur acteur dans un second rôle en 2020 ?",
+    "why": "Brad Pitt won Best Supporting Actor in 2020; Best Actor went to Joaquin Phoenix."
+  },
+  "mintaka-3dcd7468": {
+    "drop": true,
+    "why": "Spider-Man: No Way Home out-grossed Far From Home, and it is not among the choices."
+  },
+  "mintaka-3f073961": {
+    "drop": true,
+    "why": "Kingdom of the Crystal Skull is the highest-grossing Indiana Jones film, and it is not among the choices."
+  },
+  "mintaka-3fc9bd50": {
+    "prompt": "Quel pays entoure le plus petit pays du monde et abrite la tour de Pise ?",
+    "why": "The translation calls Italy the smallest country in the world."
+  },
+  "mintaka-4ce85859": {
+    "prompt": "Quel acteur américain a prêté sa voix à la narration de la version américaine de La Marche de l’empereur ?",
+    "why": "Morgan Freeman is the narrator of the US version only, not a character, and a French table saw the French-narrated original."
+  },
+  "mintaka-4d054e62": {
+    "prompt": "Quelle ville a été la première à accueillir les Jeux olympiques d’été à trois reprises ?",
+    "why": "Paris now ties London at three Summer Games since 2024."
+  },
+  "mintaka-4e497e31": {
+    "prompt": "Quel acteur a joué dans Fight Club et est également un militant écologiste ?",
+    "why": "Edward Norton is an environmental activist, not an environmental lawyer."
   },
   "mintaka-4f2c00ef": {
     "drop": true,
     "why": "the Rams played in Cleveland, Los Angeles and St Louis and never in San Francisco, which is the second half of what the prompt asks"
   },
+  "mintaka-5a121a9a": {
+    "prompt": "Quel pays est considéré comme la plus ancienne république du monde encore existante ?",
+    "why": "\"Le premier pays au monde\" is a mistranslation of the oldest country, which San Marino answers only as the oldest surviving republic."
+  },
+  "mintaka-5ba5f123": {
+    "prompt": "Quel empire est considéré comme le plus vaste empire d’un seul tenant de l’histoire ?",
+    "why": "The British Empire was larger in total area, so the Mongol Empire is only right as the largest contiguous one, and the original French was garbled."
+  },
+  "mintaka-5bb71a2e": {
+    "drop": true,
+    "why": "No ranking of shortest wars puts Kargil third, and the Gulf War decoy was shorter than it."
+  },
+  "mintaka-5c1f0d69": {
+    "prompt": "Quel président américain dont le buste figure sur le mont Rushmore a été le principal auteur de la Déclaration d'indépendance ?",
+    "why": "'Mountain Rushmore' leaves half the name in English."
+  },
+  "mintaka-5da2d5ad": {
+    "prompt": "Quel jeu Tomb Raider a été le plus vendu ?",
+    "why": "The prompt misspells the series as \"Tom Raider\"."
+  },
+  "mintaka-5e897784": {
+    "prompt": "Qui a été le premier président américain à effectuer deux mandats non consécutifs ?",
+    "why": "Trump has since served two non-consecutive terms, so Cleveland is no longer the only one, and the question is US trivia."
+  },
+  "mintaka-5ecf5c57": {
+    "drop": true,
+    "why": "Metal Gear Solid 4 is not the fourth Metal Gear once the two MSX games are counted, so the ordinal has no single answer."
+  },
+  "mintaka-5ed0e96d": {
+    "prompt": "Quel jeu de survie viking, sorti en accès anticipé sur Steam en 2021, est devenu un succès instantané ?",
+    "why": "The machine translation mangled early access and crafting, and Valheim is known to PC players only."
+  },
+  "mintaka-6ba557ae": {
+    "drop": true,
+    "why": "The answer is the name in the question, a trick with nothing to know."
+  },
+  "mintaka-6ca45b03": {
+    "prompt": "Quelle est la capitale la plus haute du monde ?",
+    "why": "La Paz is the highest capital, not the highest city, which is La Rinconada in Peru."
+  },
+  "mintaka-6d8f72a7": {
+    "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le sixième film de l’univers cinématographique de Marvel ?",
+    "why": "Release order gives Avengers, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
+  },
+  "mintaka-6d849a2f": {
+    "prompt": "Quel acteur a réalisé le film Sans un bruit et y tient le rôle principal ?",
+    "why": "The title was misspelled \"Sans un buit\" and the Brown University clue is US-only trivia."
+  },
+  "mintaka-6e5ed8e4": {
+    "drop": true,
+    "why": "The Congo is about ninth by length, not sixth, and no decoy is the right river."
+  },
+  "mintaka-6e9d000b": {
+    "decoys": ["Antarctique", "Asie", "Europe"],
+    "why": "The decoy 'Afrique du Nord' is also a correct answer."
+  },
+  "mintaka-7a68bd0d": {
+    "drop": true,
+    "why": "Mount Rainier is nowhere near the fifth highest US peak (the top ones are all in Alaska), and no decoy is right."
+  },
+  "mintaka-7dbdd31c": {
+    "answer": "Avatar : La Voie de l'eau",
+    "why": "Avatar: The Way of Water cost far more than Titanic, so the answer is out of date."
+  },
+  "mintaka-7ddecaa9": {
+    "prompt": "Dans le film Le Parrain, quel personnage est le Parrain ?",
+    "why": "'Qui était réellement le Parrain ?' names no film and invites real mafia figures."
+  },
+  "mintaka-7e189cc5": {
+    "prompt": "Quel est le plus long film à avoir remporté l’Oscar du meilleur film ?",
+    "why": "\"Le Prix de meilleur film\" names no award, and the record is for the Oscar."
+  },
   "mintaka-7f2ffe2e": {
     "drop": true,
     "why": "it asks which country and answers the Middle East; the three wrong answers are two civilisations and an island group"
+  },
+  "mintaka-8a8b7a57": {
+    "drop": true,
+    "why": "The War of 1812 ended in a stalemate both sides claim, and it is American history besides."
+  },
+  "mintaka-8b027d2b": {
+    "drop": true,
+    "why": "Spider-Man: No Way Home out-grossed Far From Home, and it is not among the choices."
+  },
+  "mintaka-8b414bd2": {
+    "prompt": "Quel personnage a un frère nommé Luigi ?",
+    "why": "The prompt was translated as a yes-or-no question."
+  },
+  "mintaka-8d55bd54": {
+    "drop": true,
+    "why": "The worst-selling Call of Duty is unverifiable from public figures and no table could know it."
+  },
+  "mintaka-8d2061ba": {
+    "drop": true,
+    "why": "Bangkok dates from the 18th century and is nowhere near the third oldest city in Southeast Asia."
+  },
+  "mintaka-8db29866": {
+    "prompt": "Quel pays a offert la Statue de la Liberté aux États-Unis pour le centenaire de leur Déclaration d’indépendance ?",
+    "why": "The statue was dedicated in 1886, not given in 1876, and 'nous a donné' speaks as an American."
+  },
+  "mintaka-8e1db257": {
+    "drop": true,
+    "why": "It asks for an amount and answers a name, and the biggest single paycheck is disputed and not Will Smith's on any settled list."
   },
   "mintaka-8e7f878c": {
     "drop": true,
     "why": "Magic Johnson is HIV-positive and has never had AIDS, which is the whole of what the prompt asks"
   },
+  "mintaka-8f5cc660": {
+    "prompt": "Quel est le premier film en langue non anglaise à remporter l'Oscar du meilleur film ?",
+    "why": "The Artist, a French film, won Best Picture before Parasite, so \"étranger\" has two answers for a French table."
+  },
+  "mintaka-8f8fdd53": {
+    "prompt": "Quel État américain a la température moyenne la plus élevée ?",
+    "why": "The prompt is a truncated comparative with no country and no superlative."
+  },
+  "mintaka-9c3f7d38": {
+    "prompt": "Quel souverain britannique était le plus petit par la taille à l’âge adulte ?",
+    "why": "\"Le plus court\" is a mistranslation of the shortest in height, and Victoria's height is a detail few know."
+  },
+  "mintaka-9c21e322": {
+    "prompt": "Dans quelle ville se trouve Lombard Street, la rue en lacets la plus célèbre du monde ?",
+    "why": "'Rue des Lombards' is a Paris street, and Lombard Street itself is a US sight few French know."
+  },
+  "mintaka-9d446cb7": {
+    "prompt": "Quel général américain, à Valley Forge pendant la guerre d'indépendance, est devenu président des États-Unis ?",
+    "why": "'Forge de vallée' is a literal machine translation of the place name Valley Forge."
+  },
+  "mintaka-9e1d7c8f": {
+    "drop": true,
+    "why": "Garry's Mod is not the most negatively reviewed Steam game by any count, and such counts change constantly."
+  },
+  "mintaka-9e45f97c": {
+    "prompt": "Quel film d’horreur tourné pour environ 60 000 dollars est devenu l’un des plus rentables de l’histoire ?",
+    "why": "The Blair Witch Project is famous for its tiny budget, but it is not the cheapest film ever made."
+  },
+  "mintaka-9e98509e": {
+    "drop": true,
+    "why": "The Last Jedi, not The Rise of Skywalker, is the longest Star Wars film, and it is not among the choices."
+  },
+  "mintaka-9e375698": {
+    "prompt": "Comment s’appelle la suite de Hollow Knight ?",
+    "why": "Silksong came out in September 2025, so 'disponible prochainement' is out of date."
+  },
+  "mintaka-9f0c03ff": {
+    "drop": true,
+    "why": "Tatum O'Neal won Best Supporting Actress, not Best Actress (that record is Marlee Matlin's), and the next row already asks the correct version."
+  },
+  "mintaka-9f2e939a": {
+    "prompt": "Qui est l’ennemi juré de Mario dans l’ensemble des jeux Mario ?",
+    "why": "'Némésis de l'arche' is a garbled translation of arch-nemesis."
+  },
+  "mintaka-9fa85788": {
+    "prompt": "Dans quelle grande région du Pacifique se trouvent les moaï de l’île de Pâques ?",
+    "why": "The prompt garbled 'Easter Island moai' and typed 'Chili' would be a fair answer to 'where', so it now asks for the Pacific region."
+  },
+  "mintaka-01f58466": {
+    "drop": true,
+    "why": "Tetris was not the first game set in space, and the prompt cannot be read as the cosmonaut anecdote it garbles."
+  },
+  "mintaka-03c48d2c": {
+    "prompt": "Comment s’appelle la première femme à avoir traversé seule l’océan Atlantique en avion ?",
+    "why": "Amelia Earhart's feat was a solo flight, and without \"en avion\" the question also points at sailors and rowers."
+  },
+  "mintaka-05fe3168": {
+    "decoys": ["Moyen-Orient", "Empire romain", "Grèce antique"],
+    "why": "Mesopotamia was a decoy, yet Sumer is a Mesopotamian civilisation, so it was just as right."
+  },
+  "mintaka-06ad2ef6": {
+    "prompt": "Quel jeu de ping-pong d’Atari, sorti en 1972, a été le premier grand succès du jeu vidéo ?",
+    "why": "Pong was not the first video game; Tennis for Two and Spacewar! came before it."
+  },
+  "mintaka-07b0208d": {
+    "drop": true,
+    "why": "Matrix Resurrections runs longer than Reloaded, so the answer is out of date."
+  },
+  "mintaka-07f77d0b": {
+    "prompt": "Quelle est la plus haute montagne d’Europe ?",
+    "why": "The translation scrambled the word order into 'la plus montagne élevée'."
+  },
+  "mintaka-08b731d8": {
+    "prompt": "Dans quel pays se trouve l’Opéra de Sydney ?",
+    "why": "Sydney is misspelt 'Sidney'."
+  },
+  "mintaka-08c9466b": {
+    "decoys": ["Empire romain", "Grèce antique", "Égypte antique"],
+    "why": "The decoy 'Moyen-Orient' is where Sumer was and reads as right."
+  },
+  "mintaka-08d09f16": {
+    "prompt": "Quel pays européen s'est battu dans la guerre des Malouines ?",
+    "why": "The translated sentence is ungrammatical."
+  },
+  "mintaka-09c583ce": {
+    "prompt": "Qui fut la première reine régnante d’Angleterre ?",
+    "why": "Many queens consort came first, so the prompt must say queen regnant."
+  },
+  "mintaka-12a1c834": {
+    "drop": true,
+    "why": "The Gulf War of 1991 is not the Iraq War, and the decoy 'guerre d'Irak' is the question itself."
+  },
+  "mintaka-13e1f561": {
+    "prompt": "Quel film se déroulant dans un camp de concentration en Pologne a remporté l’Oscar du meilleur film en 1994 ?",
+    "why": "Schindler's List is set in Poland, not a German prisoner camp, and won Best Picture at the 1994 ceremony."
+  },
+  "mintaka-15a0c5e0": {
+    "drop": true,
+    "why": "Son of Saul is no recognised record-holder for least dialogue, which silent films hold anyway."
+  },
   "mintaka-15d5441a": {
     "drop": true,
     "why": "it asks which country and answers Moscow; all three wrong answers are cities too"
+  },
+  "mintaka-16adbbd2": {
+    "prompt": "Qui était le premier président de la République populaire de Chine ?",
+    "why": "The first president of the Republic of China was Sun Yat-sen, so Mao is right only for the People's Republic."
+  },
+  "mintaka-17cb0347": {
+    "prompt": "Quel est le titre du troisième film de la série « Rocky » ?",
+    "why": "The prompt read \"du troisième la série\", a garbled machine translation."
   },
   "mintaka-25c387e0": {
     "drop": true,
     "why": "Tom Brady won with the Patriots and the Buccaneers, so Manning is not the only one"
   },
+  "mintaka-26b65c8b": {
+    "decoys": ["Delphes", "Memphis", "Angkor"],
+    "prompt": "Quel site maya du Mexique est devenu l’une des sept nouvelles merveilles du monde en 2007 ?",
+    "why": "Petra, a decoy, was named a new wonder in 2007 too, and typed the prompt allowed all seven."
+  },
+  "mintaka-28d58da8": {
+    "prompt": "Quel acteur, interprète de Luke Hobbs dans Fast and Furious, était un catcheur ?",
+    "why": "John Cena is also a former wrestler in the Fast and Furious cast, so the prompt must name Hobbs."
+  },
   "mintaka-31d4f1d6": {
     "drop": true,
     "why": "Cleopatra belonged to the Ptolemaic dynasty; the kingdom of Macedon it answers had been dissolved for a century and a half"
   },
+  "mintaka-38ea1979": {
+    "answer": "Star Wars, épisode III : La Revanche des Sith",
+    "prompt": "Dans l’ordre de l’histoire, quel est le troisième film de la saga Star Wars ?",
+    "why": "Episode II is third in neither story order (Episode III) nor release order (Episode VI)."
+  },
+  "mintaka-43f49cff": {
+    "drop": true,
+    "why": "Pong was not the very first video game, and the repaired wording already lives on its twin row mintaka-010c79ea."
+  },
+  "mintaka-46a4d235": {
+    "drop": true,
+    "why": "Deathly Hallows Part 2 is the highest-grossing Harry Potter film, and it is not among the choices."
+  },
+  "mintaka-48f8bcb2": {
+    "prompt": "Qui est la plus jeune personne à avoir remporté l’Oscar du meilleur réalisateur ?",
+    "why": "The French is garbled ('a avoir été remporté'), and Chazelle's age record is awards trivia few know."
+  },
+  "mintaka-50acefda": {
+    "prompt": "Qui fut le premier empereur de Rome ?",
+    "why": "'le plus vieil empereur' means the oldest in age, not the first, which is what the answer gives."
+  },
   "mintaka-56b1e4c8": {
     "drop": true,
     "why": "it asks for the nickname of New Orleans and answers New Orleans"
+  },
+  "mintaka-61a1d78d": {
+    "drop": true,
+    "why": "Blizzard's best-selling game is contested between Overwatch, World of Warcraft and Diablo III."
+  },
+  "mintaka-61c4baea": {
+    "prompt": "Quel film avec le mot « kick » dans son titre est sorti en 1989 avec Van Damme à l’affiche ?",
+    "why": "Kickboxer came out in 1989, not in the 1990s."
+  },
+  "mintaka-69daaabd": {
+    "drop": true,
+    "why": "The Yellow River is about sixth, not fourth; the fourth-longest is the Mississippi-Missouri, absent from the choices."
+  },
+  "mintaka-70c0c454": {
+    "prompt": "Quelle ville est appelée la Ville du péché ?",
+    "why": "'pêché' means fished, the sin is 'péché'."
+  },
+  "mintaka-70f78727": {
+    "drop": true,
+    "why": "Eva Marie Saint won a single supporting Oscar and Dianne Wiest, alive, won two, so the answer is wrong and none of the decoys is right."
   },
   "mintaka-75c8f656": {
     "drop": true,
@@ -51,37 +480,321 @@
     "drop": true,
     "why": "Henry VII took the throne in 1485, six centuries after Æthelstan, so \"the first king of England\" is not him"
   },
+  "mintaka-78ad68cd": {
+    "prompt": "Dans quel film des frères Coen Michael Stuhlbarg tient-il le rôle principal ?",
+    "why": "The translation says Stuhlbarg is NOT in the film when he leads A Serious Man, and he is an actor few French players could name."
+  },
+  "mintaka-86cacb10": {
+    "prompt": "Qui est le plus vieux lauréat de l’Oscar du meilleur acteur ?",
+    "why": "James Ivory won a screenplay Oscar at 89, older than Hopkins; Hopkins holds only the Best Actor record."
+  },
+  "mintaka-87b2dd11": {
+    "prompt": "Qui est l’acteur le plus âgé à avoir remporté l’Oscar du meilleur acteur ?",
+    "why": "James Ivory won a screenplay Oscar at 89, older than Hopkins; Hopkins holds only the Best Actor record."
+  },
+  "mintaka-91d5e6de": {
+    "drop": true,
+    "why": "Katy Perry was engaged to Orlando Bloom, never married, and the couple has since split."
+  },
+  "mintaka-93a82020": {
+    "prompt": "Quel film a été réalisé par Michael Mann en 1995 et réunit Robert De Niro et Val Kilmer ?",
+    "why": "The French read 'dans 1995', a literal translation of 'in 1995'."
+  },
+  "mintaka-93c72042": {
+    "answer": "Le Monde perdu : Jurassic Park",
+    "why": "The second Jurassic Park film is The Lost World, not Fallen Kingdom."
+  },
+  "mintaka-95ac3fb4": {
+    "drop": true,
+    "why": "The answer just repeats the name the question asks to complete."
+  },
+  "mintaka-96a9bd38": {
+    "prompt": "Lequel des acteurs de la saga Pirates des Caraïbes fut vendeur de stylos au départ avant d’embrasser la carrière d’acteur ?",
+    "why": "The translation says 'cinéaste' (filmmaker) where the source means an acting career."
+  },
+  "mintaka-98a87b29": {
+    "drop": true,
+    "why": "The question asks for a subscriber count and the answer is the game's name."
+  },
+  "mintaka-98b29d28": {
+    "prompt": "Quel film de la saga Pirates des Caraïbes est le plus long ?",
+    "why": "'Resté le plus longtemps à l'écran' mistranslates 'longest running time', and running times are detail few remember."
+  },
+  "mintaka-010c79ea": {
+    "prompt": "Quel jeu de tennis sorti par Atari en 1972 a été le premier grand succès du jeu vidéo ?",
+    "why": "Pong was not the first video game, Tennis for Two and Spacewar! came before it, but it was the first hit."
+  },
+  "mintaka-020fc0d6": {
+    "drop": true,
+    "why": "The largest single-film paycheque is disputed between Keanu Reeves, Tom Cruise and others, and Will Smith is not the usual answer."
+  },
   "mintaka-041f0175": {
     "drop": true,
     "why": "John Wilkes Booth assassinated a president and never was one, so the prompt describes nobody"
+  },
+  "mintaka-055af578": {
+    "prompt": "Quel jeu de la série GTA, sorti en 2004, a pour personnage principal une personne noire ?",
+    "why": "GTA V's Franklin is also a Black protagonist, so the year is needed for one answer."
+  },
+  "mintaka-079f52dd": {
+    "drop": true,
+    "why": "The longest Star Wars film is The Last Jedi (152 min), not The Rise of Skywalker, and no decoy is a Star Wars film."
+  },
+  "mintaka-108d74e0": {
+    "drop": true,
+    "why": "GTA V has three protagonists, so Trevor alone as 'the main character' is wrong when typed."
+  },
+  "mintaka-197c5bc6": {
+    "prompt": "Quel est le premier long métrage de Christopher Nolan, sorti en 1998 ?",
+    "why": "Following was Nolan's micro-budget debut, not a big success, and almost nobody can name it."
+  },
+  "mintaka-238de8cd": {
+    "drop": true,
+    "why": "'Le premier endroit le plus chaud' is garbled, and the hottest country has no single agreed answer."
+  },
+  "mintaka-248fc059": {
+    "prompt": "Qui est l’auteur du dessin au fusain de Kate Winslet, nue, dans Titanic ?",
+    "why": "Winslet is misspelt 'Winslow', and that Cameron drew it himself is behind-the-scenes trivia."
+  },
+  "mintaka-278cae5c": {
+    "drop": true,
+    "why": "Which Star Wars film shows the most lightsabers is an unverifiable count."
+  },
+  "mintaka-347ad9a1": {
+    "prompt": "Quel est le jeu vidéo le plus vendu de tous les temps, toutes plateformes confondues ?",
+    "why": "The machine translation 'en exemplaires ou avec des consoles' does not read as French."
   },
   "mintaka-367a8678": {
     "drop": true,
     "why": "the most liked president is not a fact, and no candidate can be the answer to it"
   },
+  "mintaka-407dee4b": {
+    "decoys": ["Guam", "Îles Vierges des États-Unis", "Samoa américaines"],
+    "why": "The decoys were ancient civilisations, not US territories, so the choice gave the answer away."
+  },
+  "mintaka-409bf040": {
+    "answer": "Louis XIX",
+    "why": "\"Louis de France\" names a dozen princes, while the twenty-minute reign is known as that of Louis XIX."
+  },
+  "mintaka-453da8a9": {
+    "prompt": "Qui incarne Batman dans le film The Batman de 2022 ?",
+    "why": "'Le prochain Batman' dates the question; the film came out in 2022."
+  },
+  "mintaka-517b0f6b": {
+    "drop": true,
+    "why": "Steam review counts change constantly, and the prompt says 'Stream'."
+  },
+  "mintaka-597d01a8": {
+    "drop": true,
+    "why": "The answer just repeats the name the question asks to complete."
+  },
+  "mintaka-624ec495": {
+    "prompt": "Qui le roi Henri VIII a-t-il épousé en secondes noces ?",
+    "why": "The prompt read \"épouse-t-il épousé\", a garbled machine translation."
+  },
+  "mintaka-650e81a3": {
+    "prompt": "Quel est le lac d'eau douce le plus long du monde ?",
+    "why": "The Caspian Sea is a longer lake than Tanganyika, so the question has to say freshwater."
+  },
   "mintaka-663eae85": {
     "drop": true,
     "why": "Shirley Temple was the famous actress herself, not her child, so the prompt describes nobody"
+  },
+  "mintaka-663ec3d9": {
+    "prompt": "Quelle entreprise a créé les jeux Mario ?",
+    "why": "'Pour qui le jeu Mario est-il conçu' is a garbled translation."
+  },
+  "mintaka-696f429a": {
+    "prompt": "Quelle a été la plus longue dynastie de Chine ?",
+    "why": "\"La plus grande\" is ambiguous where the Zhou are only the longest-lasting, and the Zhou are a name few French adults know."
+  },
+  "mintaka-733ac0b1": {
+    "prompt": "Dans quel film des frères Coen Jeff Bridges incarne-t-il « le Duc » ?",
+    "why": "Jeff Bridges is also in the Coens' True Grit, and the prompt misspelled Coen as Cohen."
+  },
+  "mintaka-749f71ae": {
+    "prompt": "Quelle grande ville ne compte quasiment aucun panneau stop dans ses rues ?",
+    "why": "Paris is known for having almost no stop signs, not none at all."
+  },
+  "mintaka-863de56e": {
+    "drop": true,
+    "why": "George Washington was not the eldest child of his family, he had older half-brothers, and without that clause the row duplicates mintaka-b166ab3d."
+  },
+  "mintaka-863f1f68": {
+    "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le troisième film de l’Univers cinématographique de Marvel ?",
+    "why": "Release order gives Iron Man 2, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
+  },
+  "mintaka-905ddf82": {
+    "prompt": "Quel est le lac le plus profond du monde ?",
+    "why": "'Le premier lac le plus profond' is a garbled translation."
+  },
+  "mintaka-916f59be": {
+    "prompt": "Quelle actrice a joué dans « Black Swan » et étudié à Harvard ?",
+    "why": "The prompt has no verb ('Quelle actrice ayant joué…')."
   },
   "mintaka-944ee534": {
     "drop": true,
     "why": "Delaware was the first of the thirteen original states to ratify, so it cannot be the first to join after them — that is Vermont"
   },
+  "mintaka-948db09a": {
+    "drop": true,
+    "why": "Voldemort's real name is Tom Jedusor (Tom Riddle); the answer repeats the alias and the right one is not offered."
+  },
+  "mintaka-0240e4fe": {
+    "drop": true,
+    "why": "Huron is second of the Great Lakes by area but lies half in Canada, while Michigan is the largest lake wholly in the United States, so the row has two answers"
+  },
+  "mintaka-0838be3e": {
+    "drop": true,
+    "why": "Cleopatra (1963) and Hamlet (1996) are longer Oscar nominees, so Gone with the Wind is wrong and no right answer is among the choices."
+  },
+  "mintaka-1217dde4": {
+    "drop": true,
+    "why": "New Jersey river trivia is American, and the Hudson only borders the state; the longest river within it is the Raritan."
+  },
   "mintaka-1496a37f": {
     "drop": true,
     "why": "the Missouri is the longest river in the United States, not the fifth, and the three wrong answers are the Ob, the Yellow River and the Dnieper — none of them American"
+  },
+  "mintaka-2267b539": {
+    "answer": "Hunger Games : L'Embrasement",
+    "why": "Catching Fire is the highest-grossing Hunger Games film, not Mockingjay Part 2, and the ranking is box-office detail."
+  },
+  "mintaka-2462b033": {
+    "prompt": "Qui a remporté l’Oscar du meilleur acteur en 2020 ?",
+    "why": "With no year the question has a different answer every ceremony."
+  },
+  "mintaka-2494cc66": {
+    "prompt": "Qui était le fils adoptif de Jules César et le premier empereur de Rome ?",
+    "why": "'Julius César' mixes Latin and French spellings of the name."
   },
   "mintaka-2499d2e7": {
     "drop": true,
     "why": "Livia's first husband was Tiberius Claudius Nero, and the answer names the emperor Nero, who was born thirty years after Tiberius took the throne"
   },
+  "mintaka-2623e515": {
+    "drop": true,
+    "why": "M. Bison was a non-playable boss in The World Warrior and only became playable in Champion Edition, which is not offered."
+  },
+  "mintaka-2806c339": {
+    "prompt": "Quelle bataille a marqué la défaite définitive de Napoléon ?",
+    "why": "Napoleon surrendered at Rochefort, not at Waterloo where he was defeated."
+  },
+  "mintaka-3061ac97": {
+    "drop": true,
+    "why": "The prompt is garbled ('le mieux noté en terme de joueurs simultanés') and PUBG, not Counter-Strike, holds Steam's concurrent-player record."
+  },
+  "mintaka-3458a25b": {
+    "prompt": "Qui double la voix de l’âne dans Shrek en version originale ?",
+    "why": "In French the donkey is voiced by Med Hondo, so the question must say it means the original version."
+  },
+  "mintaka-4328d3dd": {
+    "drop": true,
+    "why": "Charlie Sheen's real name is Carlos Estévez, and the answer just repeats the stage name."
+  },
+  "mintaka-4409f6a9": {
+    "drop": true,
+    "why": "Charlie Sheen's real name is Carlos Estévez; the answer repeats the stage name."
+  },
+  "mintaka-4951f2a8": {
+    "prompt": "Quel État américain a la plus grande population et le plus grand nombre de parcs nationaux ?",
+    "why": "The prompt never says the state is American."
+  },
+  "mintaka-5312af2a": {
+    "prompt": "Quel personnage infâme du cinéma a été incarné par Anthony Hopkins, Brian Cox et Gaspard Ulliel ?",
+    "why": "The French actor's name is misspelt 'Gabriel Ullhiel'."
+  },
+  "mintaka-5346fdee": {
+    "drop": true,
+    "why": "The prompt is a garbled translation about GPU shipment shares that no player could parse."
+  },
+  "mintaka-7052bf7c": {
+    "drop": true,
+    "why": "Resident Evil 7 is not clearly the series' best-seller, the Resident Evil 2 remake has sold more."
+  },
+  "mintaka-7487d160": {
+    "answer": "Charles III",
+    "why": "Charles III acceded at 73, older than William IV at 64, so the answer is out of date."
+  },
+  "mintaka-8265e8ea": {
+    "prompt": "Quel film de Quentin Tarantino sorti en 2003 met en vedette Uma Thurman ?",
+    "why": "\"De la première trilogie\" is garbled, and without a year Pulp Fiction is just as right."
+  },
+  "mintaka-8406d625": {
+    "prompt": "Quel film réalisé par Gus Van Sant met en scène Sean Penn ?",
+    "why": "The translation reads 'film été réalisé', missing its auxiliary."
+  },
   "mintaka-8569cc2e": {
     "drop": true,
     "why": "Ben Roethlisberger won Super Bowl XL at 23, younger than Mahomes at 24, so the superlative belongs to a name the row calls wrong"
   },
+  "mintaka-8656b1cd": {
+    "drop": true,
+    "why": "The biggest launch-day sale belongs to GTA V, not PUBG, and it is not among the choices."
+  },
+  "mintaka-8990b5e7": {
+    "prompt": "Quel acteur ou quelle actrice a remporté le plus d’Oscars d’interprétation ?",
+    "why": "\"Star de cinéma\" with \"le plus d'Oscars\" invites Walt Disney, whereas Hepburn holds the record for acting Oscars."
+  },
+  "mintaka-9321a417": {
+    "drop": true,
+    "why": "it names Red Dead Redemption 2 the most expensive game ever made while mintaka-f7e531b0 names Star Citizen, and budgets are not published to settle it"
+  },
+  "mintaka-01489f74": {
+    "prompt": "Quel président américain s’est déclaré neutre au début de la Première Guerre mondiale ?",
+    "why": "Without naming the country the question has no single answer."
+  },
+  "mintaka-05128a46": {
+    "prompt": "Quelle capitale est située sur la rive sud du Firth of Forth, au Royaume-Uni ?",
+    "why": "The machine translation left 'royaume-un' and a lower-case estuary name."
+  },
+  "mintaka-11917d3b": {
+    "prompt": "Quelle actrice ou quel acteur a remporté le plus d'Oscars d'interprétation ?",
+    "why": "Asked of an 'acteur' the answer Katharine Hepburn reads as wrong, and Oscars overall would be Walt Disney."
+  },
+  "mintaka-27212d98": {
+    "prompt": "Quel est le fleuve le plus profond du monde ?",
+    "why": "'Le premier fleuve le plus profond' is a garbled translation."
+  },
+  "mintaka-27653a0f": {
+    "drop": true,
+    "why": "Resident Evil 5 is one of the series' best-sellers, not its worst."
+  },
+  "mintaka-40101b9a": {
+    "prompt": "Quel pays a le plus long littoral du monde ?",
+    "why": "'La plus longue rive' is a garbled translation of coastline."
+  },
+  "mintaka-42070e24": {
+    "prompt": "Quel jeu de la série Super Mario 3D est sorti en 1996 ?",
+    "why": "'Qu'est-ce que la série Super Mario 3D et sorti' is a garbled translation."
+  },
+  "mintaka-56487c53": {
+    "prompt": "Quelle est la plus grande ville de Colombie-Britannique, au Canada ?",
+    "why": "The garbled tail about Portland's suburb makes the prompt unreadable."
+  },
+  "mintaka-68143e57": {
+    "prompt": "Quelle ville est surnommée la Ville du péché ?",
+    "why": "'Pêché' means fished; sin is 'péché'."
+  },
+  "mintaka-68663d7b": {
+    "drop": true,
+    "why": "Star Trek Into Darkness out-grossed the 2009 Star Trek, and it is not among the choices."
+  },
+  "mintaka-87615bbd": {
+    "drop": true,
+    "why": "Grease, not Superman, was the top-grossing US film of 1978, and it is not among the choices."
+  },
   "mintaka-93350bc9": {
     "drop": true,
     "why": "Nixon held no office during the Second World War and resigned rather than being removed, so neither half of the prompt fits him"
+  },
+  "mintaka-065434bd": {
+    "answer": "Louis XIX",
+    "why": "\"Louis de France\" names a dozen princes, while the twenty-minute reign is known as that of Louis XIX."
+  },
+  "mintaka-241197ce": {
+    "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le cinquième film Star Wars ?",
+    "why": "Read as release order, the fifth Star Wars film is Attack of the Clones; Rogue One is only fifth in story order."
   },
   "mintaka-285218ca": {
     "drop": true,
@@ -91,6 +804,26 @@
     "drop": true,
     "why": "Magic Johnson was Finals MVP at twenty and is printed beside Antetokounmpo as a wrong answer"
   },
+  "mintaka-552352a9": {
+    "drop": true,
+    "why": "The answer just repeats the name the question asks to complete."
+  },
+  "mintaka-624299ae": {
+    "answer": "Louis XIX",
+    "why": "\"Louis de France\" names a dozen princes, while the twenty-minute reign is known as that of Louis XIX."
+  },
+  "mintaka-698442dc": {
+    "prompt": "Quel pays possède le plus d’eau douce au monde ?",
+    "why": "'Eau fraîche' is a literal rendering of fresh water; French says 'eau douce'."
+  },
+  "mintaka-702012a9": {
+    "prompt": "Quel acteur a incarné James Bond dans sept films officiels, de 1973 à 1985 ?",
+    "why": "Daniel Craig played Bond for longer (2006 to 2021), so the prompt must name what Roger Moore holds."
+  },
+  "mintaka-765022e2": {
+    "drop": true,
+    "why": "Rocky's opponent in Rocky III is Clubber Lang; Apollo Creed is his trainer there, and Lang is not among the choices."
+  },
   "mintaka-984408f9": {
     "drop": true,
     "why": "the Cowboys hold five Super Bowl wins, behind the Steelers and the Patriots on six each"
@@ -99,17 +832,126 @@
     "drop": true,
     "why": "Manute Bol and Gheorghe Mureșan were both measured at 2.31 m, taller than Yao Ming"
   },
+  "mintaka-4025716b": {
+    "prompt": "Quel pays a la température moyenne annuelle la plus élevée au monde ?",
+    "why": "\"Le pays moyen le plus chaud\" is a garbled translation of the hottest country on average."
+  },
+  "mintaka-4042789b": {
+    "drop": true,
+    "why": "Final Fantasy VII, not XIV, is the series' best-seller, and it is not among the choices."
+  },
+  "mintaka-4678618a": {
+    "drop": true,
+    "why": "Cleopatra is not the longest American film, and no reading of the question has a single right answer."
+  },
+  "mintaka-5816253d": {
+    "prompt": "Qui a été le premier acteur à incarner Albus Dumbledore avant Michael Gambon dans la série de films Harry Potter ?",
+    "why": "The second Dumbledore was Michael Gambon, not 'Richard Gambon'."
+  },
+  "mintaka-6694408a": {
+    "prompt": "Quel jeu de la série The Elder Scrolls a réalisé le plus de ventes ?",
+    "why": "The clause about games that were not free is garbled translation that adds nothing."
+  },
+  "mintaka-9503294c": {
+    "answer": "Marshall Mathers",
+    "why": "The answer repeats the stage name instead of Eminem's real name."
+  },
   "mintaka-01149327": {
     "drop": true,
     "why": "the prompt asks it of tennis players at large, where Djokovic — printed as a decoy — passed Serena Williams in 2023"
+  },
+  "mintaka-01836185": {
+    "prompt": "Quel est le premier jeu vidéo à avoir connu un succès commercial ?",
+    "why": "Pong was not the first video game ever made (Tennis for Two and others came before), but it was the first commercial hit."
+  },
+  "mintaka-21376828": {
+    "decoys": ["Antarctique", "Asie", "Europe"],
+    "why": "The decoy 'Afrique du Nord' is also a correct answer."
+  },
+  "mintaka-25052551": {
+    "prompt": "Pour quel film Meryl Streep a-t-elle reçu sa première nomination aux Oscars ?",
+    "why": "Her first Oscar win was Kramer vs. Kramer; The Deer Hunter was only her first nomination."
   },
   "mintaka-46899748": {
     "drop": true,
     "why": "every American state but one sits north of the equator, so \"the first\" names no ordinal a room could hold, and the answer is the one state that is furthest south"
   },
+  "mintaka-63761486": {
+    "prompt": "Comment s'appelle le plus âgé des signataires de la Constitution des États-Unis ?",
+    "why": "\"La Constitution\" names no country, and the oldest US signer is American trivia."
+  },
+  "mintaka-68663141": {
+    "prompt": "Dans le film Le Parrain, quel personnage est le Parrain ?",
+    "why": "'Le parrain dans la famille' gives no film and no context."
+  },
+  "mintaka-a0bb4027": {
+    "prompt": "Quel acteur a joué Luke Skywalker et prêté sa voix au Joker ?",
+    "why": "The English 'Voice the Joker' was left untranslated."
+  },
+  "mintaka-a0d6713a": {
+    "prompt": "Quel est le pays le plus densément peuplé de la planète ?",
+    "why": "Monaco covers about 2 km², not 0.78 km², so the figure in the prompt is false."
+  },
+  "mintaka-a2a187e8": {
+    "drop": true,
+    "why": "Superman II was directed by Richard Lester, not Sam Raimi, and he is not among the choices."
+  },
+  "mintaka-a2e280f6": {
+    "drop": true,
+    "why": "The Indian Ocean is second by mean depth, the decoys are not oceans, and no ranking makes the answer right."
+  },
+  "mintaka-a2f2b67c": {
+    "answer": "Jurassic World : Le Monde d'après",
+    "prompt": "Quel film, parmi les Jurassic Park et Jurassic World, est le plus long ?",
+    "why": "Dominion (147 min) is longer than The Lost World, the prompt misspells Jurassic, and running times are trivia nobody holds."
+  },
+  "mintaka-a5ab3ea8": {
+    "prompt": "Qui a été le premier tsar de Russie ?",
+    "why": "\"Le premier dirigeant après l'indépendance de Moscou\" is a garbled translation with no clear meaning."
+  },
+  "mintaka-a8bf3993": {
+    "drop": true,
+    "why": "The biggest box-office loss is disputed between The 13th Warrior, Cutthroat Island, John Carter and others, so no single answer is right."
+  },
+  "mintaka-a9c3870f": {
+    "prompt": "Quel film de Steven Spielberg a été nommé à l’Oscar du meilleur film en 1976 ?",
+    "why": "Jaws was nominated for Best Picture but lost to One Flew Over the Cuckoo's Nest."
+  },
+  "mintaka-a9c40061": {
+    "prompt": "Quel président des États-Unis était le plus âgé lors de sa première investiture ?",
+    "why": "Trump was older at his 2025 inauguration than Biden in 2021, so Biden is only right for a first inauguration."
+  },
+  "mintaka-a9f9a3ce": {
+    "drop": true,
+    "why": "Spider-Man: No Way Home out-grossed Far From Home, and it is not among the choices."
+  },
   "mintaka-a48b6e9a": {
     "drop": true,
     "why": "Frederick William I was king of Prussia a century and a half before the German Empire; its first leader was Wilhelm I, which another row in this source answers correctly"
+  },
+  "mintaka-a86c8026": {
+    "prompt": "Quel est le neuvième épisode de la saga Star Wars ?",
+    "why": "Counting Rogue One and Solo, the ninth Star Wars film released is The Last Jedi, not Episode IX."
+  },
+  "mintaka-a90f67c8": {
+    "drop": true,
+    "why": "No Way Home and Far From Home far outgrossed the 2002 Spider-Man in North America."
+  },
+  "mintaka-a220a791": {
+    "drop": true,
+    "why": "A minor True Romance character dated 1995 for a 1993 film: obscure and wrongly dated."
+  },
+  "mintaka-a0561dea": {
+    "drop": true,
+    "why": "'Louis de France' names many people, and the shortest reign (Louis XIX or Jean Ier) is disputed."
+  },
+  "mintaka-a6360f07": {
+    "prompt": "Quel est le 9e plus grand État américain en termes de superficie et celui où se trouve le Mont Hood ?",
+    "why": "Oregon is the ninth-largest state, not the tenth, and Mount Hood is US geography a French table does not hold."
+  },
+  "mintaka-a9830af2": {
+    "drop": true,
+    "why": "Star Wars budgets are disputed and The Force Awakens is usually reported higher than The Last Jedi, and \"la trilogie\" names none."
   },
   "mintaka-aa1e4548": {
     "drop": true,
@@ -119,6 +961,14 @@
     "drop": true,
     "why": "Atlanta is the largest city in Georgia rather than the second, and the state shares its French name with the country"
   },
+  "mintaka-ab658298": {
+    "prompt": "Qui a joué un juré dans Douze Hommes en colère et a fait ses débuts dans les films hollywoodiens en 1935 ?",
+    "why": "The film is known in France as Douze Hommes en colère, not 12 Angry Men."
+  },
+  "mintaka-ac6d9283": {
+    "prompt": "Quel État américain est à la fois le plus à l'ouest et le plus à l'est des États-Unis ?",
+    "why": "The prompt never says the state is American, and the riddle only works across the 180th meridian of the US."
+  },
   "mintaka-ad694863": {
     "drop": true,
     "why": "Wilson left office in 1921, eight years before the Depression began"
@@ -127,13 +977,61 @@
     "drop": true,
     "why": "the fastest goal in a World Cup is Hakan Şükür’s at eleven seconds; Benteke’s record is a qualifier"
   },
+  "mintaka-af28ab08": {
+    "prompt": "Quelle cité perdue, située dans les montagnes du Pérou, est l’une des sept nouvelles merveilles du monde ?",
+    "why": "The prompt opens on the English typo 'Whast'."
+  },
+  "mintaka-b0b16347": {
+    "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le quatrième film Star Wars ?",
+    "why": "Read as release order, the fourth Star Wars film is The Phantom Menace; Solo is only fourth in story order."
+  },
+  "mintaka-b3dc4455": {
+    "drop": true,
+    "why": "'Amérique' is ambiguous, and in the US the Missouri is the longest river, not the second."
+  },
   "mintaka-b3f6d899": {
     "drop": true,
     "why": "Clement Attlee was prime minister through the Berlin blockade, not Churchill, who was out of office from 1945 to 1951"
   },
+  "mintaka-b4b9fb26": {
+    "prompt": "Quelle ville a été la première à accueillir les Jeux olympiques d’été à trois reprises ?",
+    "why": "Paris hosted its third Summer Games in 2024, so London is no longer the only one."
+  },
+  "mintaka-b6b6a712": {
+    "drop": true,
+    "why": "Lake Huron is second only by total area shared with Canada; by US area Lake Michigan, a decoy, is just as right."
+  },
+  "mintaka-b9fa47f6": {
+    "drop": true,
+    "why": "Empire is a TV series Oprah Winfrey is not in, so the premise is false and nothing among the choices is right."
+  },
+  "mintaka-b64ca6da": {
+    "prompt": "Qui a été le seul président des États-Unis élu à l'unanimité ?",
+    "why": "The prompt never says which country's president it asks about."
+  },
+  "mintaka-b67b5c09": {
+    "prompt": "Qui a ordonné la mort de Léon Trotski et de Dmitri Pavlov ?",
+    "why": "The prompt misspells Trotsky and keeps the English \"and\"."
+  },
   "mintaka-b85a6e14": {
     "drop": true,
     "why": "it asks for the smallest river in Europe and answers the longest one"
+  },
+  "mintaka-b155dcbb": {
+    "drop": true,
+    "why": "Splatoon is itself a game, so asking for the first game Splatoon appears in is garbled, and Smash Ultimate answers nothing it means."
+  },
+  "mintaka-b186bf32": {
+    "drop": true,
+    "why": "Ridley Scott is a director, not an actor, and his first award was for The Duellists, which is not among the choices."
+  },
+  "mintaka-b206f6da": {
+    "decoys": ["Pérou", "Viêt Nam", "Arabie saoudite"],
+    "why": "The Philippines also won independence from Spain and fought the US in 1899, so that decoy is just as right."
+  },
+  "mintaka-b0765f2e": {
+    "prompt": "Qui est la personne la plus âgée à remporter un Oscar, toutes catégories confondues ?",
+    "why": "\"La personne la personne\" is garbled, and James Ivory's screenplay Oscar at 89 is a record few know."
   },
   "mintaka-b52644e1": {
     "drop": true,
@@ -143,33 +1041,325 @@
     "drop": true,
     "why": "Margaret Court holds twenty-four women’s singles majors against Serena Williams’ twenty-three, and two of the three wrong answers are men"
   },
+  "mintaka-b1089832": {
+    "drop": true,
+    "why": "Samuel L. Jackson is a top box-office grosser, not the best-paid actor, and the grossing record has since moved."
+  },
+  "mintaka-b6948530": {
+    "drop": true,
+    "why": "'Game of the year' names no award, so the lowest-selling winner has no definite answer."
+  },
   "mintaka-ba9c5ff1": {
     "drop": true,
     "why": "Kangchenjunga is the third-highest mountain on Earth and stands on the Nepal-India border rather than in Tibet, so both halves of the prompt are wrong"
+  },
+  "mintaka-ba0594e4": {
+    "prompt": "Qui est l'acteur principal du Spider-Man de Sam Raimi (2002) ?",
+    "why": "Tom Holland and Andrew Garfield also led Spider-Man films, so the prompt must name which one."
+  },
+  "mintaka-badad24a": {
+    "answer": "Inde",
+    "why": "India overtook China as the most populous country in 2023."
+  },
+  "mintaka-baf21d28": {
+    "drop": true,
+    "why": "Marlon Brando acted in dozens of films, so the question has no single answer."
+  },
+  "mintaka-bb04aaf6": {
+    "decoys": ["Pinocchio", "Aladdin", "Mowgli"],
+    "why": "The decoys are films, not characters, so the choice gives the answer away."
+  },
+  "mintaka-bbe97bcc": {
+    "prompt": "Quel jeu Final Fantasy, sorti en 2020, est le remake complet d'un épisode de 1997 ?",
+    "why": "The translation is garbled beyond reading."
+  },
+  "mintaka-bdb3616d": {
+    "drop": true,
+    "why": "The answer is the name in the question, a trick with nothing to know."
+  },
+  "mintaka-bdca89b9": {
+    "drop": true,
+    "why": "John Wayne's real name is Marion Morrison, and the answer just repeats the stage name."
+  },
+  "mintaka-bdd28259": {
+    "drop": true,
+    "why": "it asks for the best-selling Call of Duty, which the bank has already dropped as unsettled by sales figures by edition"
+  },
+  "mintaka-be293282": {
+    "answer": "Star Wars, épisode VII : Le Réveil de la Force",
+    "why": "The Force Awakens, not Endgame, holds the US domestic box-office record, and the domestic chart is American detail."
   },
   "mintaka-bfaa3b41": {
     "answer": "Stonewall Jackson",
     "why": "it asks for the nickname and answered with the name — unlike the Las Vegas row, the three wrong answers here are Civil War figures, so naming the nickname leaves a question that works picked as well as typed"
   },
+  "mintaka-bfebcad0": {
+    "prompt": "Dans quel film de la saga Piège de cristal Samuel L. Jackson apparaît-il ?",
+    "why": "The machine translation dropped 'of the saga', leaving Piège de cristal read as the film itself."
+  },
+  "mintaka-c9ce0587": {
+    "prompt": "Dans quelle ville se trouve le Panthéon antique reconstruit sous Hadrien ?",
+    "why": "A French table answers Paris for \"le Panthéon\", so the prompt must name the Roman one."
+  },
+  "mintaka-c17f1b91": {
+    "prompt": "Dans l’ordre chronologique de l’histoire (et non de sortie), quel est le cinquième film de l’univers cinématographique de Marvel ?",
+    "why": "Release order gives Captain America: First Avenger, so the prompt must say it means story order, and ordinal MCU positions are fan trivia."
+  },
+  "mintaka-c37f9f56": {
+    "drop": true,
+    "why": "'The film with the most dialogue' has no established answer, and Casino is not a known record."
+  },
+  "mintaka-c99a8a99": {
+    "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le septième film Star Wars ?",
+    "why": "Read as release order, the seventh Star Wars film is The Force Awakens; The Empire Strikes Back is only seventh in story order."
+  },
+  "mintaka-c879ff6a": {
+    "prompt": "Qui a épousé le prince Charles en 1981 ?",
+    "why": "Diana was not a member of the royal family before marrying Charles, and the translated sentence is garbled."
+  },
+  "mintaka-c9195ecb": {
+    "prompt": "Qui dirigeait l'Italie pendant la Seconde Guerre mondiale et était un proche allié d'Adolf Hitler ?",
+    "why": "Mussolini was head of government, never president of Italy."
+  },
+  "mintaka-c51693d5": {
+    "drop": true,
+    "why": "Pirates of the Caribbean is set across fictional and real islands, Jamaica only in part, and Belize is a Caribbean decoy."
+  },
+  "mintaka-c833012f": {
+    "prompt": "Comment s’appelle la toute première personne noire à avoir été oscarisée ?",
+    "why": "Hattie McDaniel was an actress, so 'acteur' points away from her, and the fact is awards trivia."
+  },
+  "mintaka-ca5da19a": {
+    "drop": true,
+    "why": "Delaware is the second smallest state but about 45th by population, so the clue is false, and the whole row is US state trivia."
+  },
+  "mintaka-cb6798d5": {
+    "prompt": "Quel est le pays le plus riche du monde par habitant ?",
+    "why": "Without 'per capita' the richest country is the United States, not Luxembourg."
+  },
+  "mintaka-ce168114": {
+    "drop": true,
+    "why": "Toy Story runs 81 minutes and was nowhere near the longest film of 1995."
+  },
+  "mintaka-cee4918f": {
+    "drop": true,
+    "why": "GTA VI is set in Vice City, not New York, and New York only fits GTA IV under a contested count."
+  },
+  "mintaka-cff146f1": {
+    "prompt": "Quel président américain, investi en 2021, est devenu le plus âgé jamais investi ?",
+    "why": "Trump's 2025 inauguration made him older than Biden was, so the record needs its date."
+  },
+  "mintaka-d0fb1684": {
+    "prompt": "Quel est le jeu de plateforme de la série Mario qui a été le plus vendu ?",
+    "why": "Mario Kart 8 Deluxe now outsells Super Mario Bros., so a typed Mario Kart is right unless the question is limited to platformers."
+  },
+  "mintaka-d2a7b20b": {
+    "prompt": "Dans quelle ville se trouve le Panthéon antique, temple romain coiffé d’une coupole ?",
+    "why": "A French table answers Paris, which has its own Panthéon."
+  },
+  "mintaka-d2b33b6e": {
+    "prompt": "Quel est le premier film de Tom Cruise sorti dans les années 1990 ?",
+    "why": "The translation calls Days of Thunder his very first film, and his first film of the 1990s is trivia few hold."
+  },
+  "mintaka-d4b5f5c3": {
+    "prompt": "Qui est l’ennemi juré de Mario ?",
+    "why": "'Némésis de l'arche' is a garbled translation of arch-nemesis."
+  },
+  "mintaka-d6d5a572": {
+    "prompt": "Dans l'ordre chronologique de l'histoire, quel est le deuxième film de l'univers cinématographique Marvel ?",
+    "why": "\"Par ordre chronologique\" also reads as release order, where the second film is The Incredible Hulk."
+  },
+  "mintaka-d6e424fe": {
+    "drop": true,
+    "why": "Final Fantasy XV was not the first in the series with DLC; XI had expansions and XIII-2 sold DLC years earlier."
+  },
+  "mintaka-d7bf83f4": {
+    "prompt": "Quel est le deuxième plus vaste des Grands Lacs d'Amérique du Nord ?",
+    "why": "\"Le deuxième grand lac le plus vaste\" is garbled for the second-largest Great Lake, which is North American trivia."
+  },
+  "mintaka-d238ed07": {
+    "prompt": "De quelle série de jeux vidéo Geralt de Riv est-il le héros ?",
+    "why": "'D'où vient le jeu Geralt of Rivia' is a garbled translation."
+  },
+  "mintaka-d850de12": {
+    "drop": true,
+    "why": "The prompt is garbled and Vatican City, a decoy, is just as much a landlocked country inside Italy."
+  },
+  "mintaka-d8759aa9": {
+    "drop": true,
+    "why": "'Quel acteur est le plus court ?' is a garbled 'shortest actor' with no frame that makes one answer right."
+  },
+  "mintaka-d31367c1": {
+    "prompt": "Quel célèbre film d’horreur de Stanley Kubrick a été réalisé en 1980 et est basé sur un roman de Stephen King ?",
+    "why": "Stephen King's name is misspelled Steven."
+  },
+  "mintaka-d34885bf": {
+    "prompt": "Quel jeu à monde ouvert propose un univers de plus de dix-huit trillions de planètes ?",
+    "why": "'Plus grand World Game ouvert' is garbled and 'largest open world ever' is disputed."
+  },
+  "mintaka-d135881d": {
+    "prompt": "Dans quelle ville a été signée la Déclaration d’indépendance des États-Unis ?",
+    "why": "The first capital under the Constitution was New York, so Philadelphia is only right as the city of the Declaration, and the subject is American school history."
+  },
   "mintaka-d5685645": {
     "drop": true,
     "why": "it asks for the nickname of Boston and answers Boston"
+  },
+  "mintaka-da8f6cd0": {
+    "prompt": "Quel est le premier jeu principal de Resident Evil à se jouer à la première personne ?",
+    "why": "Resident Evil Village is also first-person, so the prompt must ask for the first."
+  },
+  "mintaka-dbed3f98": {
+    "prompt": "Sur quelle île chilienne se dressent les moaï, d’anciennes statues monumentales ?",
+    "why": "The prompt asked which monuments while the answer is the island."
   },
   "mintaka-dc2e80b8": {
     "drop": true,
     "why": "Hadrian's Wall was built in the second century AD, and the prompt says before our era"
   },
+  "mintaka-dd3f2ee9": {
+    "drop": true,
+    "why": "Daisy being Peach's cousin is a fan theory Nintendo never stated."
+  },
+  "mintaka-dd38c8ec": {
+    "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le sixième film Star Wars ?",
+    "why": "Read as release order, the sixth Star Wars film is Revenge of the Sith; A New Hope is only sixth in story order."
+  },
+  "mintaka-dd49c33f": {
+    "prompt": "Pendant quelle guerre se déroule le film Autant en emporte le vent ?",
+    "why": "'Se tourne' means filmed, not set; the question asks when the story takes place."
+  },
+  "mintaka-dd89b818": {
+    "drop": true,
+    "why": "Tom Cruise won the 2000 Golden Globe for supporting actor, not best actor, and no decoy is right."
+  },
+  "mintaka-dd8651d1": {
+    "prompt": "Quel jeu de plateforme Mario a vendu le plus d'exemplaires ?",
+    "why": "Mario Kart 8 Deluxe now outsells Super Mario Bros., so a typed Mario Kart is right unless the question is limited to platformers."
+  },
+  "mintaka-e4f8353c": {
+    "prompt": "Dans quel pays se trouve l’Opéra de Sydney ?",
+    "why": "the translation spelt Sydney as Sidney"
+  },
+  "mintaka-e03cc903": {
+    "drop": true,
+    "why": "it names Modern Warfare the best-selling Call of Duty while mintaka-2aab7299 names Black Ops, and sales figures by edition settle neither"
+  },
+  "mintaka-e13cf054": {
+    "drop": true,
+    "why": "The Ballad of Songbirds and Snakes (2023) is longer than Catching Fire, and it is not among the choices."
+  },
+  "mintaka-e41d9223": {
+    "prompt": "Quelle cité antique est surnommée la « cité rose » ?",
+    "why": "The nickname was left in English, while French calls Petra la cité rose."
+  },
+  "mintaka-e88b6de6": {
+    "drop": true,
+    "why": "The first film released in 2021 is not Black Widow and has no single answer anyway."
+  },
+  "mintaka-e388bbcf": {
+    "decoys": ["Maui", "Oahu", "Kauai"],
+    "why": "The question asks for an island but the decoys were mainland US states."
+  },
+  "mintaka-e778bc98": {
+    "prompt": "Quel est le plus haut sommet de Hawaï ?",
+    "why": "Mauna Loa, not Mauna Kea, is Hawaii's largest volcano, but Mauna Kea is its highest summit."
+  },
   "mintaka-e7541ff5": {
     "drop": true,
     "why": "Gettysburg lasted three days, where the siege of Petersburg ran nine months"
+  },
+  "mintaka-e26179a5": {
+    "prompt": "Bruce Lee est mort six jours avant la sortie de quel film ?",
+    "why": "'Bruce' alone never says which Bruce."
+  },
+  "mintaka-ea5f6eca": {
+    "prompt": "Comment s’appelle l’acteur de la saga Fast & Furious, interprète de Luke Hobbs, qui fut autrefois lutteur professionnel ?",
+    "why": "John Cena is also a former pro wrestler in the saga, so the prompt must name Hobbs."
+  },
+  "mintaka-ec497230": {
+    "prompt": "Quelle capitale est la plus proche de l’équateur ?",
+    "why": "'l’Équateur' reads as the country, and several non-capital cities lie closer to the equator than Quito."
   },
   "mintaka-effe50ba": {
     "drop": true,
     "why": "James I of England was Scotland’s king six hundred years after Kenneth MacAlpin, and the question asks for the first"
   },
+  "mintaka-f1be9d65": {
+    "prompt": "Qui était président des États-Unis pendant la Première Guerre mondiale ?",
+    "why": "Without naming the country the question has no single answer."
+  },
+  "mintaka-f1f460d9": {
+    "drop": true,
+    "why": "it names Black Ops the best-selling Call of Duty, which the bank has already dropped twice as unsettled by sales figures by edition"
+  },
+  "mintaka-f5f4851e": {
+    "prompt": "Dans quel film Christopher Walken a-t-il remporté l’Oscar du meilleur second rôle ?",
+    "why": "The Deer Hunter won five Oscars, not nine."
+  },
+  "mintaka-f6d6aef5": {
+    "drop": true,
+    "why": "Avengers: Endgame had a bigger budget than Age of Ultron, and it is not among the choices."
+  },
+  "mintaka-f6f3f404": {
+    "prompt": "Quel jeu de la série Far Cry se déroule sur une île fictive inspirée de Cuba ?",
+    "why": "Far Cry 6 is set on Yara, a fictional island modelled on Cuba, not in Cuba."
+  },
+  "mintaka-f7b101a0": {
+    "prompt": "Quel film a remporté le plus d’Oscars sans remporter celui du meilleur film ?",
+    "why": "Cabaret did win Best Cinematography; its record is the most Oscars without Best Picture."
+  },
+  "mintaka-f7d7984e": {
+    "prompt": "Quel jeu de la série Fallout a réalisé le plus de ventes ?",
+    "why": "The clause about games that were not free is garbled translation that adds nothing."
+  },
+  "mintaka-f7e4dad9": {
+    "prompt": "Quel est le quatrième plus long fleuve des États-Unis ?",
+    "why": "\"Amérique\" reads as the continent, where the Rio Grande is not fourth; the source meant the United States, which is US trivia."
+  },
+  "mintaka-f7e531b0": {
+    "drop": true,
+    "why": "it names Star Citizen the most expensive game ever made while mintaka-9321a417 names Red Dead Redemption 2, and budgets are not published to settle it"
+  },
+  "mintaka-f8f5b8f7": {
+    "prompt": "Quel artiste de la Renaissance a aussi passé beaucoup de temps au service de Ludovic Sforza ?",
+    "why": "The patron's name is misspelt 'Ludovico Storza'."
+  },
+  "mintaka-f9ace1fb": {
+    "prompt": "Quel pays faisait partie de l'Axe pendant la Seconde Guerre mondiale et a été anciennement uni avec l'Autriche ?",
+    "why": "'l'alliance Axis' leaves the English word untranslated."
+  },
+  "mintaka-f9ddb33f": {
+    "prompt": "Qui a commandé le Taj Mahal ?",
+    "why": "The English article 'The' was left untranslated."
+  },
+  "mintaka-f00e5c81": {
+    "prompt": "Quelle actrice a remporté le plus d’Oscars de la meilleure actrice ?",
+    "why": "\"Prix d'interprétation féminine\" reads as the Cannes award in French, where Hepburn holds no record."
+  },
+  "mintaka-f01e2309": {
+    "prompt": "Sous quelle dynastie a été bâtie la plus grande partie de la Grande Muraille visible aujourd’hui ?",
+    "why": "The Han and others built walls too, so only the surviving wall is the Ming's alone."
+  },
+  "mintaka-f31ed89f": {
+    "prompt": "Quel président américain, en poste pendant la Grande Dépression, a lancé le New Deal ?",
+    "why": "'le nouveau pacte' is a literal machine translation of the New Deal, and the country is never named."
+  },
   "mintaka-f34ca3e4": {
     "drop": true,
     "why": "it asks for Harriet Tubman’s real name — Araminta Ross — and answers Harriet Tubman"
+  },
+  "mintaka-f59ffaa0": {
+    "prompt": "Quel président des États-Unis était le plus grand par la taille ?",
+    "why": "\"Le plus grand président\" reads as the greatest president in French, which is opinion; the source means the tallest."
+  },
+  "mintaka-f339a47b": {
+    "prompt": "Qui fut le quatrième acteur à incarner James Bond dans la saga officielle ?",
+    "why": "In the official series Timothy Dalton is the fourth Bond, and fifth only if David Niven's 1967 parody counts."
+  },
+  "mintaka-f451da6b": {
+    "prompt": "Quelle ville est surnommée « la ville des vents » et abrite également les White Sox ?",
+    "why": "Chicago is nicknamed after the wind, it is not named after it."
   },
   "mintaka-f966a8b2": {
     "drop": true,
@@ -178,6 +1368,47 @@
   "mintaka-f973eaab": {
     "drop": true,
     "why": "it asks for the nickname of Las Vegas and answers Las Vegas; the three wrong answers are cities rather than nicknames, so repairing the answer would leave the pick incoherent"
+  },
+  "mintaka-f6465e90": {
+    "prompt": "Quel film a remporté l’Oscar du meilleur film en 2019 ?",
+    "why": "The question asks 'qui' for a film."
+  },
+  "mintaka-f8621e54": {
+    "prompt": "Dans quel film Ryan Reynolds joue-t-il un personnage non-joueur qui prend conscience de vivre dans un jeu vidéo ?",
+    "why": "No video game was adapted from Free Guy; the film is set inside one, so the prompt had it backwards."
+  },
+  "mintaka-f6881757": {
+    "prompt": "Quel jeu de puzzle, où l’on aligne des briques pour les faire disparaître, a été popularisé par la Game Boy de Nintendo ?",
+    "why": "Tetris was created by Alexey Pajitnov in the USSR, not by Nintendo."
+  },
+  "mintaka-fa6ca8a9": {
+    "drop": true,
+    "why": "Unity and Rogue came out the same day, so neither is uniquely the seventh Assassin's Creed, and the prompt is misspelt."
+  },
+  "mintaka-fa012d84": {
+    "drop": true,
+    "why": "River width has no standard ranking and the Ganges as fourth widest is not a fact anyone can check."
+  },
+  "mintaka-fc55e32c": {
+    "drop": true,
+    "why": "Black Panther is 18th by release and its story-order rank depends on which list is used, while two decoys are themselves MCU films."
+  },
+  "mintaka-fc64b63c": {
+    "answer": "Inde",
+    "decoys": ["République populaire de Chine", "Israël", "Cap-Vert"],
+    "why": "India overtook China as Asia's most populous country in 2023."
+  },
+  "mintaka-ff39d58c": {
+    "prompt": "Quel film a remporté l’Oscar du meilleur film d’animation en 2020 ?",
+    "why": "'Cette année' dates the question, and it asks 'qui' for a film."
+  },
+  "mintaka-ff027a48": {
+    "prompt": "Qui est le réalisateur qui a reçu le plus d’Oscars du meilleur réalisateur ?",
+    "why": "John Ford holds the Best Director record, not Best Picture, and few French players know him."
+  },
+  "mintaka-ffda4858": {
+    "drop": true,
+    "why": "Minecraft is usually cited as the best-selling PC game, so PUBG is contested and Minecraft is not among the choices."
   },
   "oqdb-4-2": {
     "drop": true,

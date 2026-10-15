@@ -104,18 +104,33 @@ const repairs = orStop(
  * the two are read together — a rule where one exists, a reading everywhere
  * else.
  */
+const censusIds = (path: string): ReadonlySet<string> =>
+  new Set(
+    orStop(readJsonFile(path, z.array(z.object({ id: z.string() }))), path).map(
+      ({ id }) => id
+    )
+  )
+
 const CHOICE_ONLY_PATH = join(HERE, 'choice-only-questions.json')
-const choiceOnlyIds = new Set(
-  orStop(
-    readJsonFile(CHOICE_ONLY_PATH, z.array(z.object({ id: z.string() }))),
-    CHOICE_ONLY_PATH
-  ).map(({ id }) => id)
-)
+const choiceOnlyIds = censusIds(CHOICE_ONLY_PATH)
+
+/**
+ * Rows the notability rule calls well known and a reading does not. French
+ * Wikipedia traffic measures whether the *answer* is famous, and Mintaka asks
+ * hard questions about famous answers: the eighth president of the United
+ * States, the third *Elder Scrolls*, the third of the Great Lakes by volume.
+ * Read row by row, a quarter of its well-known French half was a question a
+ * French table does not know, and no column of the source told them apart.
+ * Same shape and same reason as the choice-only list: a reading, kept.
+ */
+const NOT_WELL_KNOWN_PATH = join(HERE, 'not-well-known-questions.json')
+const notWellKnownIds = censusIds(NOT_WELL_KNOWN_PATH)
 
 /** The ingested row with this repository's own reading laid over the source's. */
 const banked = (question: BankedQuestion): BankedQuestion => ({
   ...question,
-  choiceOnly: question.choiceOnly || choiceOnlyIds.has(question.id)
+  choiceOnly: question.choiceOnly || choiceOnlyIds.has(question.id),
+  isWellKnown: question.isWellKnown && !notWellKnownIds.has(question.id)
 })
 
 /**
@@ -301,6 +316,14 @@ const run = async (): Promise<void> => {
   for (const id of choiceOnlyIds) {
     if (!sourcedIds.has(id)) {
       console.warn(`  stale choice-only ${id}: no row carries that id any more`)
+    }
+  }
+
+  for (const id of notWellKnownIds) {
+    if (!sourcedIds.has(id)) {
+      console.warn(
+        `  stale not-well-known ${id}: no row carries that id any more`
+      )
     }
   }
 }
