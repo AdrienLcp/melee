@@ -407,12 +407,11 @@ for (const seat of SEATS) {
 }
 
 /**
- * The reveal on the screen the room reads, above the split: the answer, a chip
- * for everything the table said, the standings and the hold bar, all inside the
- * viewport at once. Below the split a console is held in a hand, and scrolls.
+ * The reveal on the screen the room reads: the answer, what the table said, the
+ * standings and the hold bar, all inside the viewport at once — above the split
+ * side by side, below it under a one-line score track, with a chip per distinct
+ * answer.
  */
-const WIDE_VIEWPORTS = VIEWPORTS.filter(([width]) => width >= 900)
-
 const said = [
   'France',
   'République populaire de Chine',
@@ -537,7 +536,7 @@ const measureReveal = (): RevealOverflow => {
 }
 
 for (const reveal of REVEALS) {
-  test(`[layout] room, ${reveal.name}: the reveal and the standings never scroll above the split`, async ({
+  test(`[layout] room, ${reveal.name}: the reveal and the standings never scroll`, async ({
     page
   }) => {
     await serveRoom({ page, view: revealedView(reveal.content) })
@@ -551,7 +550,7 @@ for (const reveal of REVEALS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of WIDE_VIEWPORTS) {
+    for (const [width, height] of VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -626,7 +625,7 @@ const FLOOR_SCREENS = [
 ]
 
 for (const screen of FLOOR_SCREENS) {
-  test(`[layout] room, ${screen.name}: the stage never scrolls above the split`, async ({
+  test(`[layout] room, ${screen.name}: the stage never scrolls`, async ({
     page
   }) => {
     await serveRoom({ page, view: screen.view })
@@ -639,7 +638,7 @@ for (const screen of FLOOR_SCREENS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of WIDE_VIEWPORTS) {
+    for (const [width, height] of VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -681,7 +680,7 @@ const FINALS = [
 ]
 
 for (const final of FINALS) {
-  test(`[layout] room, final board with ${final.name}: never scrolls above the split`, async ({
+  test(`[layout] room, final board with ${final.name}: never scrolls`, async ({
     page
   }) => {
     await serveRoom({ page, view: finishedView(final.scores) })
@@ -694,7 +693,7 @@ for (const final of FINALS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of WIDE_VIEWPORTS) {
+    for (const [width, height] of VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -811,7 +810,7 @@ const SLATE_SCREENS = [
 ]
 
 for (const screen of SLATE_SCREENS) {
-  test(`[layout] room, slate, ${screen.name}: never scrolls above the split`, async ({
+  test(`[layout] room, slate, ${screen.name}: never scrolls`, async ({
     page
   }) => {
     await serveRoom({ page, view: screen.view })
@@ -824,7 +823,7 @@ for (const screen of SLATE_SCREENS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of WIDE_VIEWPORTS) {
+    for (const [width, height] of VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -908,7 +907,7 @@ const REFLEX_SCREENS = [
 ]
 
 for (const screen of REFLEX_SCREENS) {
-  test(`[layout] room, reflex, ${screen.name}: never scrolls above the split`, async ({
+  test(`[layout] room, reflex, ${screen.name}: never scrolls`, async ({
     page
   }) => {
     await serveRoom({ page, view: screen.view })
@@ -921,7 +920,7 @@ for (const screen of REFLEX_SCREENS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of WIDE_VIEWPORTS) {
+    for (const [width, height] of VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -1260,7 +1259,7 @@ for (const screen of PLAYER_PAGE_SCREENS) {
   })
 }
 
-test('[layout] player, the reveal of a full table: never scrolls above the split', async ({
+test('[layout] player, the reveal of a full table: never scrolls', async ({
   page
 }) => {
   await serveRoom({ page, view: fullTableReveal })
@@ -1270,7 +1269,7 @@ test('[layout] player, the reveal of a full table: never scrolls above the split
 
   const faults: string[] = []
 
-  for (const [width, height] of WIDE_VIEWPORTS) {
+  for (const [width, height] of VIEWPORTS) {
     await page.setViewportSize({ height, width })
     await page.evaluate(() => document.fonts.ready.then(() => {}))
 

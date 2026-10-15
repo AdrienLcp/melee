@@ -18,7 +18,7 @@ import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
 import { useSettingsSummary } from './use-settings-summary'
 
-type SetupFoldProps = {
+export type SetupFoldProps = {
   /** What the picker is showing, which the launch has not committed yet. */
   draftSource: TrackSource | null
   /** The socket is open. Everything inside sends a frame, so none of it works without it. */
@@ -49,7 +49,7 @@ type SetupFoldProps = {
  * round in play holds the seat back on top of that, because taking it reopens
  * the socket and a re-seat mid-clip would drop the answer being typed.
  */
-export const SetupFold: React.FC<SetupFoldProps> = ({
+export const SetupFields: React.FC<SetupFoldProps> = ({
   draftSource,
   isLive,
   onDraftSource,
@@ -66,14 +66,9 @@ export const SetupFold: React.FC<SetupFoldProps> = ({
   const roundInPlay = isRoundInPlay(view.phase)
   const { playsSound } = useRoomActions()
   const { setVolume, volume } = useVolume()
-  const summary = useSettingsSummary({ draftSource, settings: view.settings })
 
   return (
-    <Disclosure
-      className='setup-fold'
-      label={translate('host.setup.label')}
-      summary={summary}
-    >
+    <>
       {roundInPlay && (
         <p className='held'>{translate('host.setup.roundInPlay')}</p>
       )}
@@ -140,6 +135,29 @@ export const SetupFold: React.FC<SetupFoldProps> = ({
       {!isInLobby && !roundInPlay && (
         <HostSeat onTakeSeat={onTakeSeat} view={view} />
       )}
+    </>
+  )
+}
+
+/**
+ * The settings folded under the stage's action, closed on what they are set
+ * to — the setup the menu does not hold, on every screen with room to unfold
+ * it.
+ */
+export const SetupFold: React.FC<SetupFoldProps> = (props) => {
+  const translate = useTranslate()
+  const summary = useSettingsSummary({
+    draftSource: props.draftSource,
+    settings: props.view.settings
+  })
+
+  return (
+    <Disclosure
+      className='setup-fold'
+      label={translate('host.setup.label')}
+      summary={summary}
+    >
+      <SetupFields {...props} />
     </Disclosure>
   )
 }

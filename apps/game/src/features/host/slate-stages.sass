@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
@@ -13,18 +14,24 @@
 
     // Above the split the console page makes the stage a size container
     // (`slate`), and everything here divides that box rather than the viewport.
-    &.slate-writing
-      align-content: start
+    // Below the split the sheets and the standings fold into the score track
+    // along the top, and the board or the marking takes the rest of the box.
+    &.slate-writing,
+    &.slate-correcting
+      align-content: stretch
+      grid-template-rows: minmax(0, 1fr)
 
+      > .host-side,
+      > .standings
+        @include layout.narrow
+          display: none
+
+    &.slate-writing
       @include layout.wide
-        align-content: stretch
         grid-template: 'board side' minmax(0, 1fr) / minmax(0, 1fr) clamp(15rem, 25cqi, 24rem)
 
     &.slate-correcting
-      align-content: start
-
       @include layout.wide
-        align-content: stretch
         grid-template: 'marking standings' minmax(0, 1fr) / minmax(0, 1.75fr) minmax(0, 1fr)
 
   .slate-writing
@@ -71,9 +78,7 @@
       overflow-y: auto
 
       @include layout.narrow
-        grid-auto-rows: 6.9rem
-        grid-template-columns: repeat(auto-fill, minmax(6.5rem, 1fr))
-        overflow: visible
+        grid-auto-rows: calc(clamp(2rem, var(--fitted-side, 3.5rem), 10rem) * 1.06)
 
     .item
       container-type: size
@@ -159,6 +164,26 @@
       @include typography.label
 
       font-size: clamp(var(--text-3xs), min(12cqh, 10cqi), var(--text-s))
+
+    .filling-count
+      display: none
+
+    // A piece dealt this small is pressed by its numeral; the whole piece is
+    // the press, and its spoken name says what the press does. The count
+    // keeps its figures and drops its word.
+    @container (height < 5.5rem)
+      .face
+        gap: 0
+        grid-template-rows: minmax(0, 1fr) auto
+        padding: 4cqh 4cqi 8cqh
+
+      .verb,
+      .filling-words,
+      .state-word
+        display: none
+
+      .filling-count
+        display: inline
 
     // Three states, three materials of the box, legible without a word: paper
     // still being written on, a saffron token collected and owed to the wall,
@@ -255,16 +280,14 @@
 
   .slate-correcting
     .marking
-      display: flex
-      flex-direction: column
+      display: grid
       gap: clamp(var(--space-s), 3cqh, var(--space-l))
+      grid-template-rows: auto minmax(0, 1fr)
+      min-height: 0
       min-width: 0
 
       @include layout.wide
-        display: grid
         grid-area: marking
-        grid-template-rows: auto minmax(0, 1fr)
-        min-height: 0
 
       > header
         align-items: center
@@ -276,6 +299,9 @@
     // board showed it as.
     .token
       --token-size: clamp(4.5rem, min(24cqh, 18cqi), 9.5rem)
+
+      @include layout.narrow
+        --token-size: clamp(3rem, min(18cqh, 18cqi), 6rem)
 
       align-items: center
       background: var(--tile-2)
@@ -349,24 +375,23 @@
       @include typography.billboard
 
       font-size: clamp(var(--text-l), min(9cqh, 5.5cqi), 4.5rem)
+
+      @include layout.narrow
+        font-size: clamp(var(--text-m), min(7cqh, 7cqi), var(--text-2xl))
       overflow-wrap: anywhere
       text-wrap: balance
 
     .groups
-      display: flex
-      flex-direction: column
+      container-type: size
+      display: grid
       gap: var(--space-xs)
+      grid-auto-rows: max-content
       list-style: none
+      overflow-y: auto
+      padding-block-end: var(--space-2xs)
 
-      @include layout.wide
-        container-type: size
-        display: grid
-        grid-auto-rows: max-content
-        overflow-y: auto
-        padding-block-end: var(--space-2xs)
-
-        .group
-          font-size: clamp(var(--text-xs), calc((100cqh - (var(--groups, 1) - 1) * var(--space-xs)) / var(--groups, 1) / 2.85), 2.75rem)
+      .group
+        font-size: clamp(var(--text-xs), calc((100cqh - (var(--groups, 1) - 1) * var(--space-xs)) / var(--groups, 1) / 2.85), 2.75rem)
 
     // One chip per distinct answer, in the reveal's vocabulary: paper while
     // it waits on the host, the reveal's green once it is right, and an empty
@@ -472,6 +497,45 @@
 
         .mark-label
           text-box: trim-both cap alphabetic
+
+    // Below the split each answer is one line — the words, the pawns of who
+    // wrote them, the press — so a full table's answers fit a phone; the names
+    // are still read out, and the pawns are the score track's.
+    @include layout.narrow
+      .naming
+        gap: var(--space-2xs)
+
+      @media (height < 36rem)
+        .key-title
+          @include accessibility.visually-hidden
+
+      .groups
+        gap: var(--space-2xs)
+        grid-template-columns: minmax(0, 1fr)
+
+        .group
+          font-size: clamp(var(--text-xs), calc((100cqh - (var(--groups, 1) - 1) * var(--space-2xs)) / var(--groups, 1) / 2.3), var(--text-l))
+
+      .group
+        padding: 0.15em 0.2em 0.15em 0.6em
+
+        .said
+          align-items: center
+          flex-direction: row
+          gap: 0.5em
+
+        .text
+          flex: 0 1 auto
+          min-width: 0
+
+        .writers
+          font-size: 1em
+
+        .toggle-button
+          min-height: 1.75em
+
+      .group:not(.blank) .names
+        @include accessibility.visually-hidden
 
     .nobody
       @include typography.body

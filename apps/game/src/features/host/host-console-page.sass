@@ -74,9 +74,9 @@
       // their own rows — see `.host-console-page:has(> .stage.revealed)`.
       &.revealed
         --reveal-gap: clamp(var(--space-m), calc(var(--stage-unit) * 3.6), var(--space-2xl))
-        // What the hold bar's row costs the stacked budget below, and nothing
-        // when no bar is drawn. `--text-l` is the row's own height: the
-        // seconds at their ceiling, taller than the groove beside them.
+        // What the hold bar's row takes off the height the answer is sized
+        // against, and nothing when no bar is drawn. `--text-l` is the row's
+        // own height: the seconds at their ceiling, taller than the groove.
         --hold-bar: 0rem
 
         &.holding
@@ -84,47 +84,6 @@
 
           @include layout.wide
             --hold-bar: calc(var(--text-l) + var(--space-s))
-
-        // Stacked, a console is held in a hand rather than read across a room,
-        // so scrolling is a gesture it has — and the standings, the half that
-        // would otherwise bury the launch, are the one thing every player
-        // already has on their own screen. The arithmetic here only stops the
-        // type growing once the page is already scrolling, which keeps the
-        // answer and the next round above the fold at a full table.
-        //
-        // `27rem` is the chrome, measured: at 390×844 the header, the footer,
-        // the page padding and two gaps came to 434px.
-        @include layout.narrow
-          --stacked-budget: calc(100dvh - 27rem - var(--hold-bar))
-
-          // The standings go under the footer rather than above it: the stage
-          // hands its children to the page's column, so `order` can put the
-          // board after the actions. It holds nothing to press, so the order a
-          // keyboard walks is unchanged.
-          display: contents
-
-          > .standings
-            order: 1
-
-          .reveal-panel
-            --outcome-budget: var(--stacked-budget)
-
-          // 3.0em measured with the leading on, 2.08 trimmed, over the same
-          // headroom the wide board keeps.
-          .scoreboard li
-            --standings-row: 3.15
-
-            font-size: clamp(var(--text-xs), calc(var(--stacked-budget) / var(--standings-rows, 8) / var(--standings-row)), 1.25rem)
-            padding: 0.35em 0
-
-            @supports (text-box: trim-both cap alphabetic)
-              --standings-row: 2.19
-
-            .nickname
-              font-size: 1em
-
-            .score
-              font-size: var(--text-em-xl)
 
         .standings
           align-self: center
@@ -364,6 +323,9 @@
           max-width: 16rem
           text-wrap: balance
 
+      .setup-trigger
+        display: none
+
       .setup-fold
         width: min(var(--column-wide-max-width), 100%)
 
@@ -573,6 +535,205 @@
 
           grid-area: standings
           width: auto
+
+  // Below the split the console is held in a hand, and the stages that carry
+  // a board are held to the screen all the same: the score track along the
+  // top, the stage in the box the page leaves it, the presses pinned under it.
+  // Lying down, the presses take a column of their own beside the stage.
+  .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting))
+    @include layout.narrow
+      animation: none
+      column-gap: var(--space-m)
+      display: grid
+      grid-template-areas: 'header' 'track' 'stage' 'footer'
+      grid-template-columns: minmax(0, 1fr)
+      grid-template-rows: auto auto minmax(0, 1fr) auto
+      row-gap: var(--space-s)
+
+      > header
+        grid-area: header
+
+      > .score-track
+        grid-area: track
+
+      > .stage
+        gap: var(--space-s)
+        grid-area: stage
+        min-height: 0
+
+      > footer
+        grid-area: footer
+
+      // The corner the menu keeps once the header that held it beside the
+      // round's index has gone. The final board keeps its header upright:
+      // its winner's name wants the whole width, and the board has the room.
+      @media (height < 36rem) and (aspect-ratio < 13 / 10)
+        &:not(:has(> .stage.finished))
+          grid-template-areas: 'track' 'stage' 'footer'
+          grid-template-rows: auto minmax(0, 1fr) auto
+
+          > header
+            @include accessibility.visually-hidden
+
+          > .score-track
+            margin-inline-end: var(--menu-inset)
+
+      @media (aspect-ratio >= 13 / 10)
+        grid-template-areas: 'header header' 'track track' 'stage footer'
+        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr)
+        grid-template-rows: auto auto minmax(0, 1fr)
+
+        > footer
+          align-self: end
+
+        @media (height < 36rem)
+          grid-template-areas: 'track track' 'stage footer'
+          grid-template-rows: auto minmax(0, 1fr)
+
+          > header
+            @include accessibility.visually-hidden
+
+          > .score-track
+            margin-inline-end: var(--menu-inset)
+
+        // The hold bar times the presses, so lying down it stands over them
+        // and the answer keeps the whole height of its column.
+        &:has(> .stage.revealed)
+          grid-template-areas: 'header header' 'track track' 'stage hold' 'stage footer'
+          grid-template-rows: auto auto minmax(0, 1fr) auto
+
+          @media (height < 36rem)
+            grid-template-areas: 'track track' 'stage hold' 'stage footer'
+            grid-template-rows: auto minmax(0, 1fr) auto
+
+          > .stage.revealed
+            display: contents
+
+            > .reveal-panel
+              grid-area: stage
+
+            > .round-progress
+              align-self: end
+              grid-area: hold
+
+      > .stage.revealed
+        display: flex
+        flex-direction: column
+
+        > .standings
+          display: none
+
+        > .reveal-panel
+          flex: 1 1 auto
+          min-height: 0
+
+        // The reflex race's finishing order divides the box it is left, the
+        // way it does above the split: eight rows on a phone lying down.
+        > .reveal-panel.bare
+          container: outcome / size
+          display: grid
+          grid-template: minmax(0, 1fr) / minmax(0, 1fr)
+
+          .reaction-board
+            --board-rows: var(--outcome-rows, 5)
+
+            justify-content: center
+
+            li
+              font-size: clamp(var(--text-xs), calc((100cqh - (var(--board-rows) - 1) * var(--space-2xs)) / var(--board-rows) / 1.8), var(--text-m))
+
+          // A box lying down deals the order into two columns, read down.
+          @container outcome (aspect-ratio > 2)
+            .reaction-board
+              --board-rows: round(up, var(--outcome-rows, 5) / 2, 1)
+
+              column-gap: var(--space-s)
+              columns: 2
+              display: block
+
+              li
+                break-inside: avoid
+                margin-block-end: var(--space-2xs)
+
+        > .round-progress
+          flex: none
+          max-width: none
+          width: 100%
+
+      > .stage.counting-in
+        container: reveal / size
+        display: flex
+        flex-direction: column
+        justify-content: flex-start
+
+        .countdown
+          --token-size: clamp(3.5rem, 24cqh, 9rem)
+
+      > .stage:is(.slate-writing, .slate-correcting)
+        container: slate / size
+
+  // The stages with one idea on them keep their presses under it, lying down
+  // too: a column beside the floor's pawn would hold one quiet press.
+  .host-console-page:has(> .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
+    @include layout.narrow
+      animation: none
+      display: grid
+      gap: var(--space-s)
+      grid-template-rows: auto minmax(0, 1fr) auto
+
+      > .stage
+        container-type: size
+
+      > footer
+        column-gap: var(--space-m)
+        flex-flow: row wrap
+        justify-content: center
+
+      @media (height < 36rem)
+        grid-template-rows: minmax(0, 1fr) auto
+
+        > header
+          @include accessibility.visually-hidden
+
+        .verdict-panel .holder
+          padding-inline-end: var(--menu-inset)
+
+        // Lying down the presses stand at the end of the line, under the
+        // menu, and the stage keeps the whole height.
+        @media (aspect-ratio >= 13 / 10)
+          grid-template: 'stage footer' minmax(0, 1fr) / minmax(0, 1fr) auto
+
+          > .stage
+            grid-area: stage
+
+          > footer
+            align-self: end
+            flex-direction: column
+            grid-area: footer
+
+          .verdict-panel .holder
+            padding-inline-end: 0
+
+  // On either shape, the settings fold and the hold strip give way to one
+  // press that opens them on a leaflet.
+  .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting), > .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
+    @include layout.narrow
+      > footer
+        gap: var(--space-xs)
+
+        > .auto-advance,
+        > .setup-fold
+          display: none
+
+        .setup-trigger
+          display: inline-flex
+
+        .reveal-actions,
+        .slate-actions
+          gap: var(--space-xs)
+
+        .replays
+          margin-top: calc(var(--space-xs) * -1 + var(--space-2xs))
 
   .host-console-page.framed
     @include framed.page

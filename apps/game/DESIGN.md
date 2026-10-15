@@ -424,9 +424,39 @@ apart. `$width` is measured in the longer locale and given in `rem`.
 rows (the 192-char prompt, the 158-char choice, the most choice text, a long
 prompt over long choices): no document overflow, every tile and the card in
 the viewport, no word spilling its box, nothing under 14px. The same spec
-holds the console's reveal, countdown, floor, final board, slate and reflex
-from 900px wide, and every player screen across all sixteen. Any change to a
-round screen is checked against it.
+holds the console's reveal, countdown, floor, final board, slate and reflex,
+and every player screen, across all sixteen as well — a console held in a
+hand included. Any change to a round screen is checked against it.
+
+### The console held in a hand
+
+Below the split the console's stages are held to the screen like the round in
+play: no page scroll, nothing behind a gesture. The page is a grid of header,
+score track, stage and footer (`host-console-page.sass`); under 576px of
+height the header goes and the track keeps the menu's corner clear
+(`--menu-inset`). Lying down (`aspect-ratio >= 13/10`) the track runs across
+the top and the presses take a column beside the stage. The countdown, the
+floor and the reflex race keep their footer under the stage at every ratio.
+
+- **The score track** (`ScoreTrack`) stands in for the ruled standings: one
+  piece per seat on `--track-a`, the pawn and the score in display type, the
+  name in `title` at `--text-3xs` ellipsised; ranked, the own seat in the
+  keyline, a gone seat dashed. A piece is as wide as the longest figure needs
+  (`--figure-length`), so a table scoring in thousands deals over two rows. On
+  the slate it carries each sheet's `n/26` over a groove inked as far as it is
+  filled, in seat order.
+- **The reveal** folds what the table said to one chip per distinct answer
+  (`.tally`), the right one on `--good-soft` with a check, each with the pawns
+  of who said it; the note is clamped to three lines, two under 576px.
+- **The slate** deals its items as a fitted grid down to 2rem pieces, which
+  drop their words for `n/8` and the numeral under 5.5rem; the marking prints
+  each answer on one line with its pawns.
+- **The final board** keeps the ruled standings while its box is 26rem tall
+  and takes the track under that; a tie stands its pawns over the names.
+- **The settings fold and the hold strip** are not drawn: `SetupPopover`, one
+  underlined press in the footer, opens the same controls (and the slate's key
+  and item names) on a leaflet (`_leaflet.sass`, shared with the menu).
+
 
 ### Measured traps
 
@@ -768,9 +798,12 @@ iOS Safari, so every pattern says something the screen says too.
 
 - A list past about fourteen players scrolls inside its own box.
 - Sixty slate items scroll inside their own board.
-- A 20-character name truncates in the console lobby's roster.
-- The console's reveal, floor, final board, slate and reflex are measured for
-  no scroll from 900px wide only; below the split nothing guarantees it.
+- A 20-character name truncates in the console lobby's roster, and to a few
+  letters on the score track of a console held in a hand.
+- Below the split a reveal shows one chip per distinct answer; which player
+  said what is the player's own screen's, and the points are the track's.
+- A player's reveal below the split is held to the screen too, and its board
+  drops what the others said once the box is under 26rem tall.
 
 ## Related
 

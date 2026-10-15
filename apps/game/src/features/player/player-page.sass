@@ -24,6 +24,17 @@
       justify-content: flex-start
       max-width: var(--column-wide-max-width)
 
+  // A reveal with the room's board on it, held to the screen below the split
+  // the way a framed round is: the page does not scroll, the board divides
+  // what it is left.
+  .player-page.playing:has(> .player-round.revealed > .round-board)
+    @include layout.narrow
+      animation: none
+      display: grid
+      flex: none
+      grid-template-rows: auto minmax(0, 1fr)
+      height: 100dvh
+
   // The door into the table, printed on the box's lid like the front door:
   // the question, the field and the press on one paper card.
   .player-page.nickname-form

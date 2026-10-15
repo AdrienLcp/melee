@@ -71,10 +71,18 @@
 
       text-wrap: balance
 
-  // Upright the standings need the height, so the pawn stands beside the name
-  // rather than over it.
+  // Upright the standings need the height, so a lone winner's pawn stands
+  // beside the name rather than over it. A tie keeps its pawns over the names,
+  // which need the whole width to say who shares it.
   @include layout.narrow
     .final-board .podium:has(.pawns)
+      .pawns
+        font-size: clamp(2rem, calc(min(16cqh, 24cqi) / var(--winner-count, 1)), 8rem)
+
+      .winners
+        font-size: clamp(1.25rem, min(7cqh, calc(120cqi / var(--longest-word-width, 6))), 4rem)
+
+    .final-board .podium:has(.pawns > .pawn:only-child)
       column-gap: var(--space-m)
       display: grid
       grid-template: 'pawns name' auto 'pawns with' auto / auto minmax(0, 1fr)
@@ -82,11 +90,9 @@
       text-align: start
 
       .pawns
-        font-size: clamp(2.5rem, calc(min(16cqh, 24cqi) / var(--winner-count, 1)), 8rem)
         grid-area: pawns
 
       .winners
-        font-size: clamp(1.25rem, min(7cqh, calc(120cqi / var(--longest-word-width, 6))), 4rem)
         grid-area: name
 
       .with
@@ -96,6 +102,22 @@
     @include boxed-standings.dividing-its-box
 
     grid-area: standings
+
+  // Below the split the ruled board stands under the winner while the box has
+  // the height for every row of it at the floor, and the score track takes
+  // its place where it has not.
+  .final-board .score-track
+    align-self: start
+    grid-area: standings
+
+  @include layout.narrow
+    @container (height >= 26rem)
+      .final-board .score-track
+        display: none
+
+    @container (height < 26rem)
+      .final-board .standings
+        display: none
 
 @keyframes pawn-lands
   from

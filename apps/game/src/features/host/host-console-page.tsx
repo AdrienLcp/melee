@@ -73,9 +73,11 @@ import { HostActions } from './host-actions'
 import { HostRefused } from './host-refused'
 import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
-import { RoomStage } from './room-stage'
+import { RoomStage, type StageControls } from './room-stage'
 import { useRoundAudio } from './round-audio'
-import { SetupFold } from './setup-fold'
+import { SetupFields, SetupFold, type SetupFoldProps } from './setup-fold'
+import { SetupPopover } from './setup-popover'
+import { SlateEditors } from './slate-stages'
 import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
 
@@ -443,6 +445,30 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
+  const setupProps = (current: HostRoomView): SetupFoldProps => ({
+    draftSource,
+    isLive,
+    onDraftSource: setDraftSource,
+    onRememberSlateKey: rememberPreparedKey,
+    onSettingsChange: changeSettings,
+    onTakeSeat: takeSeat,
+    preferences,
+    preparedSlateKeys: preparedKeys,
+    view: current
+  })
+
+  const controls: StageControls = {
+    isAnswerFolded: cameFromWall,
+    isLive,
+    onRememberSlateKey: rememberPreparedKey,
+    onRemovePlayer: removePlayer,
+    onSettingsChange: changeSettings,
+    onTakeSeat: takeSeat,
+    preferences,
+    preparedSlateKeys: preparedKeys,
+    send
+  }
+
   return (
     <Main className='host-console-page'>
       <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
@@ -473,17 +499,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       <RoomStage
         canPlay={canPlay}
         clock={clock}
-        controls={{
-          isAnswerFolded: cameFromWall,
-          isLive,
-          onRememberSlateKey: rememberPreparedKey,
-          onRemovePlayer: removePlayer,
-          onSettingsChange: changeSettings,
-          onTakeSeat: takeSeat,
-          preferences,
-          preparedSlateKeys: preparedKeys,
-          send
-        }}
+        controls={controls}
         isSpeaker={isSpeaker}
         onUnlockAudio={armAudio}
         refusal={refusal}
@@ -558,17 +574,29 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                       settings={view.settings}
                     />
                   )}
-                <SetupFold
-                  draftSource={draftSource}
-                  isLive={isLive}
-                  onDraftSource={setDraftSource}
-                  onRememberSlateKey={rememberPreparedKey}
-                  onSettingsChange={changeSettings}
-                  onTakeSeat={takeSeat}
-                  preferences={preferences}
-                  preparedSlateKeys={preparedKeys}
-                  view={view}
-                />
+                <SetupFold {...setupProps(view)} />
+                {/*
+                  The fold and the strip above it, on a console held in a hand
+                  whose stage is held to the screen: the stylesheet draws one
+                  or the other, and this leaflet is what keeps the hold, the
+                  settings and the slate's key reachable mid-game there.
+                */}
+                <SetupPopover>
+                  {view.phase === 'revealed' &&
+                    view.settings.game?.kind !== 'slate' && (
+                      <AutoAdvanceChoice
+                        isLive={isLive}
+                        onSettingsChange={changeSettings}
+                        settings={view.settings}
+                      />
+                    )}
+                  {view.phase === 'playing' &&
+                    view.round?.content.kind === 'slate' &&
+                    !slateWall.isOnWall && (
+                      <SlateEditors controls={controls} view={view} />
+                    )}
+                  <SetupFields {...setupProps(view)} />
+                </SetupPopover>
               </>
             )}
           </>

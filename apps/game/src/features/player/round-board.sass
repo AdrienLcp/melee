@@ -1,3 +1,4 @@
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
 
@@ -121,3 +122,22 @@
 
     .right .words
       color: var(--board-ink)
+
+  // Below the split the board is the box the reveal's grid leaves it, and
+  // divides that box by its rows. A box too short for every row's second line
+  // drops what the others said, which the console still prints: the name, the
+  // payout and the score are what a player looks down to find.
+  .player-round.revealed .round-board
+    @include layout.narrow
+      align-content: start
+      container-type: size
+
+      li
+        font-size: clamp(var(--text-xs), calc((100cqh - (var(--board-rows, 5) - 1) * var(--space-2xs)) / var(--board-rows, 5) / var(--board-row)), 1.5rem)
+
+      @container (height < 26rem)
+        li
+          --board-row: 1.75
+
+        .words
+          display: none

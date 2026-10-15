@@ -21,6 +21,7 @@ import { ToggleButton } from '@/presentation/components/toggle-button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { StageControls } from './room-stage'
+import { ScoreTrack, type SeatProgress } from './score-track'
 import { SlateKeyEditor } from './slate-key-editor'
 import { SlateLabelsEditor } from './slate-labels-editor'
 import { Standings } from './standings'
@@ -99,7 +100,12 @@ const ItemPiece: React.FC<ItemPieceProps> = ({
           className='filling'
           style={{ '--filled': seatCount === 0 ? 0 : filled / seatCount }}
         >
-          {translate('slate.board.state.open', { count: seatCount, filled })}
+          <span className='filling-words'>
+            {translate('slate.board.state.open', { count: seatCount, filled })}
+          </span>
+          <span className='filling-count'>
+            {translate('slate.progress', { count: seatCount, filled })}
+          </span>
         </span>
       ) : state === 'closed' && onPress !== null ? (
         <span className='state'>
@@ -108,11 +114,13 @@ const ItemPiece: React.FC<ItemPieceProps> = ({
       ) : (
         <span className='state'>
           {state === 'closed' ? <LockIcon /> : <CheckIcon />}
-          {translate(
-            state === 'closed'
-              ? 'slate.board.state.closed'
-              : 'slate.board.state.marked'
-          )}
+          <span className='state-word'>
+            {translate(
+              state === 'closed'
+                ? 'slate.board.state.closed'
+                : 'slate.board.state.marked'
+            )}
+          </span>
         </span>
       )}
       {onPress !== null && state !== 'marked' && (
@@ -157,7 +165,6 @@ export const SlateWritingStage: React.FC<SlateBoardProps> = ({
   const round = view.round
   const content = slateHostContent(view)
   const roundContent = slateContent(round)
-  const game = view.settings.game
 
   useFittedGrid({
     aspect: ITEM_ASPECT,
@@ -175,6 +182,16 @@ export const SlateWritingStage: React.FC<SlateBoardProps> = ({
   const labels = slateLabelsOf(view.settings)
   const spokenName = (itemIndex: number): string =>
     labels[itemIndex] ?? translate('slate.item', { index: itemIndex + 1 })
+  const filledOf = (playerId: string): number =>
+    content.progress.find((entry) => entry.playerId === playerId)
+      ?.filledCount ?? 0
+  const sheetProgressOf = (player: PublicPlayer): SeatProgress => ({
+    figure: translate('slate.progress', {
+      count: itemCount,
+      filled: filledOf(player.id)
+    }),
+    filled: itemCount === 0 ? 0 : filledOf(player.id) / itemCount
+  })
   const pressOf = (itemIndex: number, state: SlateItemState) =>
     controls === null
       ? null
@@ -186,132 +203,165 @@ export const SlateWritingStage: React.FC<SlateBoardProps> = ({
           )
 
   return (
-    <div
-      className='stage slate-writing'
-      style={{ '--items': itemCount, '--sheets': view.players.length }}
-    >
-      <section className='item-board'>
-        <header>
-          <h2 className='now'>
-            {translate(
-              hasOpenItem ? 'slate.wall.filling' : 'slate.wall.allCollected'
-            )}
-          </h2>
-          <p className='count-label'>
-            {translate('slate.items.summary', { count: itemCount })}
-          </p>
-          {controls !== null && (
-            <Button
-              isDisabled={isDisabled || itemCount >= MAX_SLATE_ITEMS}
-              onPress={() =>
-                controls.send({ roundId: round.id, type: 'host.addItem' })
-              }
-              size='small'
-              variant='outlined'
-            >
-              {translate('slate.items.add')}
-            </Button>
-          )}
-        </header>
-
-        <ol
-          aria-label={translate('slate.items.label')}
-          className='items'
-          ref={itemsGrid}
-        >
-          {slateItemIndexes(itemCount).map((itemIndex) => {
-            const state = itemStates[itemIndex] ?? 'open'
-
-            return (
-              <li
-                className={classNames('item', state)}
-                key={`${round.id}:${itemIndex}`}
+    <>
+      <ScoreTrack
+        players={view.players}
+        progressOf={sheetProgressOf}
+        youId={null}
+      />
+      <div
+        className='stage slate-writing'
+        style={{ '--items': itemCount, '--sheets': view.players.length }}
+      >
+        <section className='item-board'>
+          <header>
+            <h2 className='now'>
+              {translate(
+                hasOpenItem ? 'slate.wall.filling' : 'slate.wall.allCollected'
+              )}
+            </h2>
+            <p className='count-label'>
+              {translate('slate.items.summary', { count: itemCount })}
+            </p>
+            {controls !== null && (
+              <Button
+                isDisabled={isDisabled || itemCount >= MAX_SLATE_ITEMS}
+                onPress={() =>
+                  controls.send({ roundId: round.id, type: 'host.addItem' })
+                }
+                size='small'
+                variant='outlined'
               >
-                <ItemPiece
-                  filled={content.filledCounts[itemIndex] ?? 0}
-                  isDisabled={isDisabled}
-                  name={slateItemName({ itemIndex, labels })}
-                  onPress={pressOf(itemIndex, state)}
-                  pressLabel={translate(
-                    state === 'open'
-                      ? 'slate.board.closeItem'
-                      : 'slate.board.markItem',
-                    { item: spokenName(itemIndex) }
-                  )}
-                  seatCount={view.players.length}
-                  state={state}
-                />
-              </li>
-            )
-          })}
-        </ol>
-      </section>
+                {translate('slate.items.add')}
+              </Button>
+            )}
+          </header>
 
-      <div className='host-side'>
-        <section aria-labelledby={sheetsTitleId} className='sheets'>
-          <h2 className='sheets-title' id={sheetsTitleId}>
-            {translate('slate.board.sheets')}
-          </h2>
-          <ul className='progress'>
-            {view.players.map((player, seat) => {
-              const filled =
-                content.progress.find((entry) => entry.playerId === player.id)
-                  ?.filledCount ?? 0
+          <ol
+            aria-label={translate('slate.items.label')}
+            className='items'
+            ref={itemsGrid}
+          >
+            {slateItemIndexes(itemCount).map((itemIndex) => {
+              const state = itemStates[itemIndex] ?? 'open'
 
               return (
                 <li
-                  key={player.id}
-                  style={{
-                    '--filled': itemCount === 0 ? 0 : filled / itemCount
-                  }}
+                  className={classNames('item', state)}
+                  key={`${round.id}:${itemIndex}`}
                 >
-                  <Pawn seat={seat} />
-                  <span className='nickname'>{player.nickname}</span>
-                  <span className='tally'>
-                    {translate('slate.progress', {
-                      count: itemCount,
-                      filled
-                    })}
-                  </span>
+                  <ItemPiece
+                    filled={content.filledCounts[itemIndex] ?? 0}
+                    isDisabled={isDisabled}
+                    name={slateItemName({ itemIndex, labels })}
+                    onPress={pressOf(itemIndex, state)}
+                    pressLabel={translate(
+                      state === 'open'
+                        ? 'slate.board.closeItem'
+                        : 'slate.board.markItem',
+                      { item: spokenName(itemIndex) }
+                    )}
+                    seatCount={view.players.length}
+                    state={state}
+                  />
                 </li>
               )
             })}
-          </ul>
+          </ol>
         </section>
 
-        {controls !== null && (
-          <SlateKeyEditor
-            isDisabled={isDisabled}
-            itemCount={itemCount}
-            keys={content.keys}
-            labels={labels}
-            onSetKey={(itemIndex, key) => {
-              controls.onRememberSlateKey(itemIndex, key)
-              controls.send({
-                itemIndex,
-                key,
-                roundId: round.id,
-                type: 'host.setItemKey'
-              })
-            }}
-          />
-        )}
+        <div className='host-side'>
+          <section aria-labelledby={sheetsTitleId} className='sheets'>
+            <h2 className='sheets-title' id={sheetsTitleId}>
+              {translate('slate.board.sheets')}
+            </h2>
+            <ul className='progress'>
+              {view.players.map((player, seat) => {
+                const filled = filledOf(player.id)
 
-        {controls !== null && game?.kind === 'slate' && (
-          <SlateLabelsEditor
-            isDisabled={isDisabled}
-            itemCount={itemCount}
-            labels={game.labels}
-            onChange={(next) => {
-              controls.onSettingsChange({
-                ...view.settings,
-                game: { ...game, labels: next }
-              })
-            }}
-          />
-        )}
+                return (
+                  <li
+                    key={player.id}
+                    style={{
+                      '--filled': itemCount === 0 ? 0 : filled / itemCount
+                    }}
+                  >
+                    <Pawn seat={seat} />
+                    <span className='nickname'>{player.nickname}</span>
+                    <span className='tally'>
+                      {translate('slate.progress', {
+                        count: itemCount,
+                        filled
+                      })}
+                    </span>
+                  </li>
+                )
+              })}
+            </ul>
+          </section>
+
+          {controls !== null && (
+            <SlateEditors controls={controls} view={view} />
+          )}
+        </div>
       </div>
-    </div>
+    </>
+  )
+}
+
+/**
+ * The answer key and the items' names, which the host keeps writing while the
+ * sheets are open: beside the board above the split, and in the setup leaflet
+ * on a console held in a hand.
+ */
+export const SlateEditors: React.FC<{
+  controls: StageControls
+  view: HostRoomView
+}> = ({ controls, view }) => {
+  const round = view.round
+  const content = slateHostContent(view)
+  const roundContent = slateContent(round)
+  const game = view.settings.game
+
+  if (round === null || content === null || roundContent === null) {
+    return null
+  }
+
+  const isDisabled = !controls.isLive
+  const { itemCount } = roundContent
+  const labels = slateLabelsOf(view.settings)
+
+  return (
+    <>
+      <SlateKeyEditor
+        isDisabled={isDisabled}
+        itemCount={itemCount}
+        keys={content.keys}
+        labels={labels}
+        onSetKey={(itemIndex, key) => {
+          controls.onRememberSlateKey(itemIndex, key)
+          controls.send({
+            itemIndex,
+            key,
+            roundId: round.id,
+            type: 'host.setItemKey'
+          })
+        }}
+      />
+      {game?.kind === 'slate' && (
+        <SlateLabelsEditor
+          isDisabled={isDisabled}
+          itemCount={itemCount}
+          labels={game.labels}
+          onChange={(next) => {
+            controls.onSettingsChange({
+              ...view.settings,
+              game: { ...game, labels: next }
+            })
+          }}
+        />
+      )}
+    </>
   )
 }
 
@@ -361,130 +411,133 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
     view.players.findIndex((player) => player.id === playerId)
 
   return (
-    <div
-      className='stage slate-correcting'
-      style={{
-        '--groups': Math.max(
-          groups.length + (blankPlayerIds.length > 0 ? 1 : 0),
-          1
-        ),
-        '--standings-rows': view.players.length
-      }}
-    >
-      <section className='marking'>
-        <header>
-          <p aria-hidden className={name.isShort ? 'token' : 'token long'}>
-            <span className='token-label'>{name.label}</span>
-          </p>
-          <div className='naming'>
-            <h2 className='of'>
-              {translate('slate.itemOf', {
-                count: itemCount,
-                index: itemIndex + 1
-              })}
-            </h2>
+    <>
+      <ScoreTrack players={view.players} youId={null} />
+      <div
+        className='stage slate-correcting'
+        style={{
+          '--groups': Math.max(
+            groups.length + (blankPlayerIds.length > 0 ? 1 : 0),
+            1
+          ),
+          '--standings-rows': view.players.length
+        }}
+      >
+        <section className='marking'>
+          <header>
+            <p aria-hidden className={name.isShort ? 'token' : 'token long'}>
+              <span className='token-label'>{name.label}</span>
+            </p>
+            <div className='naming'>
+              <h2 className='of'>
+                {translate('slate.itemOf', {
+                  count: itemCount,
+                  index: itemIndex + 1
+                })}
+              </h2>
 
-            {revealedKey !== null ? (
-              <p className='key' key={itemIndex}>
-                <span className='key-title'>
-                  {translate('slate.correct.key.title')}
-                </span>
-                <span className='key-text'>{revealedKey}</span>
-              </p>
-            ) : (
-              controls !== null &&
-              key !== null && (
-                <Button
-                  className='reveal-key'
-                  isDisabled={isDisabled}
-                  onPress={() =>
-                    controls.send({
-                      itemIndex,
-                      roundId: round.id,
-                      type: 'host.revealItemKey'
-                    })
-                  }
-                  variant='outlined'
-                >
-                  {translate('slate.correct.key.reveal')}
-                </Button>
-              )
-            )}
-          </div>
-        </header>
+              {revealedKey !== null ? (
+                <p className='key' key={itemIndex}>
+                  <span className='key-title'>
+                    {translate('slate.correct.key.title')}
+                  </span>
+                  <span className='key-text'>{revealedKey}</span>
+                </p>
+              ) : (
+                controls !== null &&
+                key !== null && (
+                  <Button
+                    className='reveal-key'
+                    isDisabled={isDisabled}
+                    onPress={() =>
+                      controls.send({
+                        itemIndex,
+                        roundId: round.id,
+                        type: 'host.revealItemKey'
+                      })
+                    }
+                    variant='outlined'
+                  >
+                    {translate('slate.correct.key.reveal')}
+                  </Button>
+                )
+              )}
+            </div>
+          </header>
 
-        {groups.length === 0 && (
-          <p className='nobody'>{translate('slate.correct.nobody')}</p>
-        )}
-        {groups.length + blankPlayerIds.length > 0 && (
-          <ul className='groups'>
-            {groups.map((group) => (
-              <li className={groupClassName(group.isCorrect)} key={group.key}>
-                <div className='said'>
-                  <span className='text'>{group.text}</span>
+          {groups.length === 0 && (
+            <p className='nobody'>{translate('slate.correct.nobody')}</p>
+          )}
+          {groups.length + blankPlayerIds.length > 0 && (
+            <ul className='groups'>
+              {groups.map((group) => (
+                <li className={groupClassName(group.isCorrect)} key={group.key}>
+                  <div className='said'>
+                    <span className='text'>{group.text}</span>
+                    <span className='writers'>
+                      <span aria-hidden className='pawns'>
+                        {group.playerIds.map((playerId) => (
+                          <Pawn key={playerId} seat={seatOf(playerId)} />
+                        ))}
+                      </span>
+                      <span className='names'>
+                        {nicknamesOf(view.players, group.playerIds)}
+                      </span>
+                    </span>
+                  </div>
+                  {controls === null ? (
+                    group.isCorrect === true && (
+                      <span className='mark'>
+                        <CheckIcon />
+                        <span className='mark-label'>
+                          {translate('slate.correct.judge')}
+                        </span>
+                      </span>
+                    )
+                  ) : (
+                    <ToggleButton
+                      isDisabled={isDisabled}
+                      isSelected={group.isCorrect === true}
+                      onChange={(isCorrect) =>
+                        controls.send({
+                          groupKey: group.key,
+                          itemIndex,
+                          roundId: round.id,
+                          type: 'host.judgeGroup',
+                          verdict: { isCorrect, kind: 'single' }
+                        })
+                      }
+                      size='small'
+                    >
+                      <CheckIcon />
+                      {translate('slate.correct.judge')}
+                    </ToggleButton>
+                  )}
+                </li>
+              ))}
+              {blankPlayerIds.length > 0 && (
+                <li className='group blank'>
                   <span className='writers'>
                     <span aria-hidden className='pawns'>
-                      {group.playerIds.map((playerId) => (
+                      {blankPlayerIds.map((playerId) => (
                         <Pawn key={playerId} seat={seatOf(playerId)} />
                       ))}
                     </span>
                     <span className='names'>
-                      {nicknamesOf(view.players, group.playerIds)}
+                      {translate('slate.correct.blanks', {
+                        names: nicknamesOf(view.players, blankPlayerIds)
+                      })}
                     </span>
                   </span>
-                </div>
-                {controls === null ? (
-                  group.isCorrect === true && (
-                    <span className='mark'>
-                      <CheckIcon />
-                      <span className='mark-label'>
-                        {translate('slate.correct.judge')}
-                      </span>
-                    </span>
-                  )
-                ) : (
-                  <ToggleButton
-                    isDisabled={isDisabled}
-                    isSelected={group.isCorrect === true}
-                    onChange={(isCorrect) =>
-                      controls.send({
-                        groupKey: group.key,
-                        itemIndex,
-                        roundId: round.id,
-                        type: 'host.judgeGroup',
-                        verdict: { isCorrect, kind: 'single' }
-                      })
-                    }
-                    size='small'
-                  >
-                    <CheckIcon />
-                    {translate('slate.correct.judge')}
-                  </ToggleButton>
-                )}
-              </li>
-            ))}
-            {blankPlayerIds.length > 0 && (
-              <li className='group blank'>
-                <span className='writers'>
-                  <span aria-hidden className='pawns'>
-                    {blankPlayerIds.map((playerId) => (
-                      <Pawn key={playerId} seat={seatOf(playerId)} />
-                    ))}
-                  </span>
-                  <span className='names'>
-                    {translate('slate.correct.blanks', {
-                      names: nicknamesOf(view.players, blankPlayerIds)
-                    })}
-                  </span>
-                </span>
-              </li>
-            )}
-          </ul>
-        )}
-      </section>
+                </li>
+              )}
+            </ul>
+          )}
+        </section>
 
-      <Standings players={view.players} youId={null} />
-    </div>
+        <Standings players={view.players} youId={null} />
+      </div>
+    </>
   )
 }
 

@@ -25,6 +25,7 @@ import { LobbyStage } from './lobby-stage'
 import { PlayingStage } from './playing-stage'
 import { ReflexStage } from './reflex-stage'
 import { RevealPanel } from './reveal-panel'
+import { ScoreTrack } from './score-track'
 import { SlateCorrectionStage, SlateWritingStage } from './slate-stages'
 import { Standings } from './standings'
 import type { SlateWall } from './use-slate-wall'
@@ -251,14 +252,17 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       // `holding` is what the height budgets read: a bar spends a row of the
       // screen the three formulas below are dividing, so they have to know
       // whether it is there.
-      <div
-        className={classNames('stage revealed', hold !== null && 'holding')}
-        style={{ '--standings-rows': view.players.length }}
-      >
-        <RevealPanel players={view.players} round={round} />
-        <Standings players={view.players} youId={youId} />
-        {hold !== null && <RevealHold clock={clock} {...hold} />}
-      </div>
+      <>
+        <ScoreTrack players={view.players} youId={youId} />
+        <div
+          className={classNames('stage revealed', hold !== null && 'holding')}
+          style={{ '--standings-rows': view.players.length }}
+        >
+          <RevealPanel players={view.players} round={round} />
+          <Standings players={view.players} youId={youId} />
+          {hold !== null && <RevealHold clock={clock} {...hold} />}
+        </div>
+      </>
     )
   }
 

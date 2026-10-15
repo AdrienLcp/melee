@@ -1,4 +1,5 @@
 @use '../styles/typography'
+@use '../styles/leaflet'
 @use '@adrienlcp/styles/accessibility'
 
 @layer components
@@ -96,35 +97,13 @@
         .trigger-label
           @include accessibility.visually-hidden
 
-  // The rulebook leaflet: the board's own ground, so every control inside keeps
-  // its tokens, on a piece with the box's edge.
+  // A host's menu on a landscape phone holds the invitation, the wall doors,
+  // the seat, the preferences and three exits, and ran off the bottom with the
+  // exits unreachable until the leaflet scrolled inside itself.
   .app-menu-popover
-    --ground: var(--field)
+    @include leaflet.leaflet
 
-    background: var(--field)
-    border-radius: var(--radius-l)
-    box-shadow: 0 0 0 1px var(--rule), 0 4px 0 var(--chipboard), var(--shadow-overlay)
     max-width: min(92vw, 20rem)
-    // React Aria writes a `max-height` inline that stops the box at the
-    // viewport's edge, and says nothing about what happens to the rest: a host's
-    // menu on a landscape phone holds the invitation, the wall doors, the seat,
-    // the preferences and three exits, and ran off the bottom with the exits
-    // unreachable. `contain` keeps a scroll that hits the end from moving the
-    // page behind.
-    overflow-y: auto
-    overscroll-behavior: contain
-    padding: var(--space-m)
-    scrollbar-color: var(--ink-muted) transparent
-    scrollbar-width: thin
-
-    &[data-entering]
-      animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
-
-    .react-aria-Dialog
-      display: flex
-      flex-direction: column
-      gap: var(--space-m)
-      outline: none
 
     // The control register is sized in `vmin` and this box is not: at a fixed
     // 320px, a host console on a television burst every one of these labels out

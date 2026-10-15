@@ -9,6 +9,7 @@ import { answerFitting } from '@/helpers/answer-fitting'
 import { Pawn } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { ScoreTrack } from './score-track'
 import { Standings } from './standings'
 
 import './final-board.sass'
@@ -64,6 +65,7 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({ players, youId }) => {
       </div>
 
       <Standings players={players} youId={youId} />
+      <ScoreTrack players={players} youId={youId} />
     </section>
   )
 }

@@ -1,0 +1,69 @@
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  // A piece is as wide as its figure needs, so a table scoring in thousands
+  // deals the seats over two rows where one counting in units keeps one.
+  .score-track
+    @include typography.score
+
+    display: grid
+    font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.2), var(--text-l))
+    gap: var(--space-2xs)
+    grid-template-columns: repeat(auto-fit, minmax(max(2.25rem, calc(var(--figure-length, 2) * 0.58em + 1.1em)), 1fr))
+    list-style: none
+
+    @include layout.wide
+      display: none
+
+    .seat
+      align-items: center
+      background: var(--track-a)
+      border-radius: var(--radius-s)
+      box-shadow: 0 2px 0 var(--chipboard)
+      color: var(--board-ink)
+      display: flex
+      flex-direction: column
+      min-width: 0
+      padding: var(--space-2xs)
+
+      &.you
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink), 0 2px 0 var(--chipboard)
+
+      &.away
+        background: transparent
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule)
+        color: var(--ink-muted)
+
+      &.in-progress
+        background: linear-gradient(var(--board-ink) 0 0) left bottom / calc(var(--filled, 0) * 100%) var(--stroke-bold) no-repeat, linear-gradient(var(--socket) 0 0) left bottom / 100% var(--stroke-bold) no-repeat, var(--track-a)
+
+    .reading
+      align-items: center
+      display: flex
+      gap: 0.15em
+      max-width: 100%
+
+      .pawn
+        block-size: 0.8em
+        flex: none
+        inline-size: auto
+
+    .figure
+      @include typography.solid
+
+      min-width: 0
+      overflow: hidden
+      text-overflow: clip
+      white-space: nowrap
+
+    // The display face condensed, which holds two more letters of a name in a
+    // piece an eighth of a phone wide than the read face does.
+    .name
+      @include typography.title
+
+      font-size: var(--text-3xs)
+      max-width: 100%
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap

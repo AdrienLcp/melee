@@ -226,15 +226,47 @@
         .hold
           grid-area: hold
 
-    // Stacked, the payout and the answer come off the board's budget too. It
-    // is not asked to make a phone's reveal fit, only to stop growing once the
-    // page is already scrolling.
+    // Below the split the screen the page holds is divided as it is above:
+    // the answer and the payout take what they need and the board divides the
+    // rest by its rows. Lying down they sit side by side, as on a laptop.
     @include layout.narrow
       &:has(.round-board)
-        --board-budget: calc(100dvh - 26rem)
+        display: grid
+        gap: var(--space-s)
+        grid-template: 'outcome' auto 'board' minmax(0, 1fr) 'hold' auto / minmax(0, 1fr)
+        min-height: 0
 
-        &:has(.cover)
-          --board-budget: calc(100dvh - 32rem)
+        @media (aspect-ratio >= 13 / 10)
+          column-gap: var(--space-m)
+          grid-template: 'outcome board' minmax(0, 1fr) 'hold hold' auto / minmax(0, 1fr) minmax(0, 1fr)
+
+        .outcome
+          gap: var(--space-s)
+          grid-area: outcome
+
+        .round-board
+          grid-area: board
+
+        .hold
+          grid-area: hold
+
+        .answer-card .note
+          -webkit-box-orient: vertical
+          display: -webkit-box
+          -webkit-line-clamp: 3
+          line-clamp: 3
+          overflow: hidden
+
+          @media (height < 36rem)
+            -webkit-line-clamp: 2
+            line-clamp: 2
+
+        .answer-card .cover
+          height: clamp(3.5rem, 12dvh, 8rem)
+          width: clamp(3.5rem, 12dvh, 8rem)
+
+        .your-round .payout
+          --token: clamp(3.5rem, 11dvh, 5.5rem)
 
   // The card the round was played on, turned over: the answer on its back,
   // and a track's cover mounted on it beside the words.

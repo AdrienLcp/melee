@@ -869,6 +869,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The console fits a phone screen at every stage.** Below 900px the
+  reveal, the countdown, the verdict, the final board, the slate and the reflex
+  race no longer scroll, at all sixteen viewports `choice-fits.spec.ts` measures.
+  The standings become a one-line score track, the reveal shows one chip per
+  distinct answer with the pawns of who gave it, the slate's items become a dense
+  grid, and the settings and the hold open from one press in the footer — the
+  menu never held them. Lying down, the presses take a column of their own.
+
 - `[Server]` **An English room that stays mainstream gets questions a table
   knows.** The English half's well-known flag was Open Trivia DB's own
   difficulty, and every one of its 3 883 well-known rows has now been read: 1 922

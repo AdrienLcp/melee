@@ -10,6 +10,7 @@ import {
   quizContent,
   reflexContent
 } from '@/helpers/round-content'
+import { CheckIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -44,6 +45,46 @@ const dealtRows = (count: number): React.CSSProperties => {
     '--outcome-columns': columns,
     '--outcome-rows': Math.ceil(count / columns)
   }
+}
+
+type RevealedAnswer = RoundView['revealedAnswers'][number]
+
+type SaidTogether = {
+  isCorrect: boolean
+  key: string
+  playerIds: string[]
+  said: string
+}
+
+/**
+ * The table's answers folded to one per distinct line, right ones first and
+ * then the most said: on a console held in a hand the room reads *who said the
+ * same thing*, and each player's points are already on the score track above.
+ */
+const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
+  const groups = new Map<string, SaidTogether>()
+
+  for (const answer of answers) {
+    const key = `${answer.isCorrect}:${answer.said.trim().toLowerCase()}`
+    const group = groups.get(key)
+
+    if (group === undefined) {
+      groups.set(key, {
+        isCorrect: answer.isCorrect,
+        key,
+        playerIds: [answer.playerId],
+        said: answer.said.trim()
+      })
+    } else {
+      group.playerIds.push(answer.playerId)
+    }
+  }
+
+  return [...groups.values()].toSorted(
+    (left, right) =>
+      Number(right.isCorrect) - Number(left.isCorrect) ||
+      right.playerIds.length - left.playerIds.length
+  )
 }
 
 /**
@@ -143,39 +184,57 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
 
   if (round.revealedAnswers.length > 0) {
     return (
-      <ul className='said' style={dealtRows(round.revealedAnswers.length)}>
-        {round.revealedAnswers.map((answer) => {
-          const paid = scorers.find(
-            (award) => award.playerId === answer.playerId
-          )
+      <>
+        <ul className='said' style={dealtRows(round.revealedAnswers.length)}>
+          {round.revealedAnswers.map((answer) => {
+            const paid = scorers.find(
+              (award) => award.playerId === answer.playerId
+            )
 
-          return (
-            <li
-              className={answer.isCorrect ? 'right' : 'wrong'}
-              key={answer.playerId}
-            >
-              <Pawn seat={seatOf(answer.playerId)} />
-              <span className='nickname'>{nameOf(answer.playerId)}</span>
-              <span className='words'>{answer.said}</span>
-              {/* A round nobody took spends nothing on a column of blanks; one
+            return (
+              <li
+                className={answer.isCorrect ? 'right' : 'wrong'}
+                key={answer.playerId}
+              >
+                <Pawn seat={seatOf(answer.playerId)} />
+                <span className='nickname'>{nameOf(answer.playerId)}</span>
+                <span className='words'>{answer.said}</span>
+                {/* A round nobody took spends nothing on a column of blanks; one
                   somebody took keeps the box on every row, or the answers above
                   and below a miss end on two different right edges. */}
-              {scorers.length > 0 && (
-                <span className='points'>
-                  {paid === undefined
-                    ? null
-                    : paid.speedBonus > 0
-                      ? translate('round.awardWithSpeed', {
-                          answer: paid.points - paid.speedBonus,
-                          speed: paid.speedBonus
-                        })
-                      : translate('round.award', { points: paid.points })}
-                </span>
-              )}
+                {scorers.length > 0 && (
+                  <span className='points'>
+                    {paid === undefined
+                      ? null
+                      : paid.speedBonus > 0
+                        ? translate('round.awardWithSpeed', {
+                            answer: paid.points - paid.speedBonus,
+                            speed: paid.speedBonus
+                          })
+                        : translate('round.award', { points: paid.points })}
+                  </span>
+                )}
+              </li>
+            )
+          })}
+        </ul>
+        <ul className='tally'>
+          {saidTogether(round.revealedAnswers).map((group) => (
+            <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
+              {group.isCorrect && <CheckIcon />}
+              <span className='words'>{group.said}</span>
+              <span aria-hidden='true' className='pawns'>
+                {group.playerIds.map((playerId) => (
+                  <Pawn key={playerId} seat={seatOf(playerId)} />
+                ))}
+              </span>
+              <VisuallyHidden elementType='span'>
+                {`${group.isCorrect ? ` (${translate('host.verdict.right')})` : ''} — ${group.playerIds.map(nameOf).join(', ')}`}
+              </VisuallyHidden>
             </li>
-          )
-        })}
-      </ul>
+          ))}
+        </ul>
+      </>
     )
   }
 
