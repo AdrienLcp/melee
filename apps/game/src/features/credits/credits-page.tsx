@@ -28,6 +28,10 @@ const LICENCES = {
   ccBySa4: {
     name: 'CC BY-SA 4.0',
     url: 'https://creativecommons.org/licenses/by-sa/4.0/'
+  },
+  mit: {
+    name: 'MIT',
+    url: 'https://opensource.org/license/mit'
   }
 } as const
 
@@ -95,6 +99,13 @@ const QUESTION_CREDITS: QuestionCredit[] = [
     licence: LICENCES.ccBySa3,
     source: 'Vikidia',
     sourceUrl: 'https://fr.vikidia.org/wiki/Vikidia:Quiz'
+  },
+  {
+    author: 'OpenAI, translating MMLU by Hendrycks et al.',
+    changes: 'credits.mmmlu',
+    licence: LICENCES.mit,
+    source: 'MMMLU',
+    sourceUrl: 'https://huggingface.co/datasets/openai/MMMLU'
   },
   {
     author: 'PIXELTAIL GAMES LLC',

@@ -332,7 +332,7 @@ arts rows moved the miss rate from 4.3% to 5.4%, which is what surfaced it.
   `apps/server/scripts/vikidia-fourth-decoys.json`. Ten stay refused as closed
   sets — *Oui / Non / On ne sait pas*. 356 reached the bank, science
   339 → 435, and writing them caught four rows the source had wrong.
-- **MMMLU `FR_FR`**, still unargued: ~1 600 French science rows, MIT, decoys
+- ~~**MMMLU `FR_FR`**~~ — **done**, 15 October 2026: 1 081 rows of 14 042 have a trivia shape, all were read, 319 banked and 762 dropped with a reason each in `mmmlu-dropped.json`; French science 414 → 528. Originally: ~1 600 French science rows, MIT, decoys
   shipped, exam register. It is the only remaining depth for the subject.
 - ~~**`frenchAliasesOf` for PolyFact**~~ — **done**, 11 September 2026, and it
   turned out to be the smaller half of its own question. See
@@ -397,7 +397,7 @@ open across the deploy keeps playing.
 - **Both sources are taken.** Mintaka and Vikidia, in that order, adapted rather
   than ingested raw. That was the call on the same day, so the plan's scope is no
   longer a question.
-- **Whether MMMLU's exam register is acceptable at all.** It is the only real
+- **Settled on 15 October 2026: MMMLU is taken, filtered to its trivia-shaped quarter and read row by row.** The question was whether its exam register is acceptable at all. It is the only real
   depth in French science — ~1 600 rows, MIT, decoys shipped — and it reads like
   a paper rather than a party. Ingesting it and throwing most of it away is a
   session of reading. Vikidia's 133 rows may simply be enough for now.

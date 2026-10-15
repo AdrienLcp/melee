@@ -146,6 +146,6 @@ before choosing.
 
 ## Left on the table
 
-- **A second source for French video games**, which is what takes `developer`
+- ~~**A second source for French video games**~~ — **done**, 15 October 2026: no open corpus exists, so 373 rows were written by hand in `videogames-fr.json`, each checked, with *who developed it* under 4% of them. It was what takes `developer`
   below half of that category.
 - `music` and `books`, above.

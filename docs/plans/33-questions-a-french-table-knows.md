@@ -59,6 +59,10 @@ Both items this stage left open, by reading every row rather than sampling.
   12 282 rows; well-known French rows 4 112 → 3 440, cinema 672, geography 490,
   history 422, video games 254.
 
+## The English half, 15 October 2026
+
+The same reading for the English bank, whose flag was Open Trivia DB's difficulty: all 3 883 well-known English rows read, 1 922 demoted through `not-well-known-questions.json`. The bar is a general adult audience, except cinema and video games, which are judged by a casual viewer or player — a first pass by the non-gamer bar left video games 33 well-known rows, which is not what a table ticking that chip asks for. 46 broken rows dropped or repaired; a repair can now set `accepted`. English sport is the thinnest at 52 well-known rows, above the floor of 40.
+
 ## Done when
 
 - `pnpm validate` is green, the bank differs from the previous one only in

@@ -1410,6 +1410,396 @@
     "drop": true,
     "why": "Minecraft is usually cited as the best-selling PC game, so PUBG is contested and Minecraft is not among the choices."
   },
+  "mmmlu-astronomy-86": {
+    "answer": "Les trous noirs",
+    "decoys": ["Les naines rouges", "Les pulsars", "Les galaxies"],
+    "why": "The candidates had lost their article."
+  },
+  "mmmlu-astronomy-122": {
+    "prompt": "Quelle planète du système solaire a une tectonique des plaques active ?",
+    "why": "« Quelle(s) planète(s) … a/ont » is exam typography."
+  },
+  "mmmlu-astronomy-127": {
+    "answer": "1609",
+    "decoys": ["1409", "1509", "1709"],
+    "prompt": "En quelle année Galilée a-t-il pointé pour la première fois une lunette vers le ciel ?",
+    "why": "Galileo did not invent the telescope (Lippershey's patent is 1608), and the years were printed « 1 609 »."
+  },
+  "mmmlu-astronomy-151": {
+    "answer": "150 millions de kilomètres",
+    "decoys": [
+      "130 millions de kilomètres",
+      "170 millions de kilomètres",
+      "190 millions de kilomètres"
+    ],
+    "why": "« million » was left singular."
+  },
+  "mmmlu-conceptual-physics-182": {
+    "decoys": ["l’intensité", "l’amplitude", "la vitesse"],
+    "why": "Two decoys had lost their article (« d’intensité », « vitesse »)."
+  },
+  "mmmlu-high-school-biology-31": {
+    "answer": "La parthénogenèse",
+    "decoys": ["La méiose", "L’embryogenèse", "La propagation végétative"],
+    "prompt": "Comment appelle-t-on le développement d’un œuf sans fécondation ?",
+    "why": "A completion stem with « fertilisation », an anglicism."
+  },
+  "mmmlu-high-school-biology-48": {
+    "answer": "Les trompes de Fallope",
+    "decoys": ["Les ovaires", "L’utérus", "Le placenta"],
+    "prompt": "Chez l’humain, où a normalement lieu la fécondation ?",
+    "why": "« La fertilisation se fait dans : » is a translated exam stem."
+  },
+  "mmmlu-high-school-biology-91": {
+    "answer": "Le commensalisme",
+    "decoys": ["Le parasitisme", "Le mutualisme", "La symbiose"],
+    "prompt": "Comment appelle-t-on une relation entre deux espèces où l’une profite de l’autre sans lui nuire ni l’aider ?",
+    "why": "A definition stem ending in a colon."
+  },
+  "mmmlu-high-school-biology-180": {
+    "answer": "L’eau",
+    "decoys": ["Le carbone", "L’oxygène", "Le glucose"],
+    "prompt": "Quel est le principal composé inorganique présent dans les êtres vivants ?",
+    "why": "A completion stem; two decoys had lost their article."
+  },
+  "mmmlu-high-school-chemistry-4": {
+    "prompt": "Quel est le symbole chimique de l’antimoine ?",
+    "why": "A completion stem."
+  },
+  "mmmlu-high-school-geography-24": {
+    "answer": "La théocratie",
+    "decoys": ["La dictature", "La démocratie", "L’autocratie"],
+    "prompt": "Comment appelle-t-on un régime où religion et gouvernement sont confondus ?",
+    "why": "A completion stem whose candidates had lost their article."
+  },
+  "mmmlu-high-school-geography-36": {
+    "answer": "Le Cambodge",
+    "decoys": ["L’Inde", "Le Népal", "L’Indonésie"],
+    "prompt": "Dans quel pays se trouve le plus grand temple hindou jamais construit ?",
+    "why": "The decoys were two Indian cities and an island, which a country answer does not stand beside."
+  },
+  "mmmlu-high-school-geography-66": {
+    "answer": "Les langues romanes",
+    "decoys": [
+      "Les langues slaves",
+      "Les langues germaniques",
+      "Les langues celtiques"
+    ],
+    "prompt": "À quelle famille de langues appartiennent l’italien, l’espagnol, le portugais et le roumain ?",
+    "why": "« Romaine » is a mistranslation of Romance, and « Européenne » is no family."
+  },
+  "mmmlu-high-school-geography-72": {
+    "answer": "Les Védas",
+    "prompt": "Comment s’appelle le livre sacré des hindous ?",
+    "why": "A completion stem."
+  },
+  "mmmlu-high-school-geography-99": {
+    "answer": "La latitude",
+    "decoys": ["La longitude", "Le méridien", "L’altitude"],
+    "prompt": "Comment appelle-t-on la position d’un lieu au nord ou au sud de l’équateur ?",
+    "why": "A completion stem, and « le système de grille globale » is not a thing anyone says."
+  },
+  "mmmlu-high-school-geography-120": {
+    "prompt": "Quelle langue compte le plus de locuteurs natifs au monde ?",
+    "why": "« La plus parlée » is English once second-language speakers are counted; native speakers make Mandarin right."
+  },
+  "mmmlu-high-school-geography-150": {
+    "answer": "La Turquie",
+    "decoys": ["L’Iran", "L’Irak", "L’Égypte"],
+    "prompt": "Quel pays compte le plus de Kurdes ?",
+    "why": "Turkey holds the largest share of Kurds, not « la majorité »."
+  },
+  "mmmlu-high-school-geography-151": {
+    "answer": "L’Espagne",
+    "decoys": ["La France", "Le Portugal", "L’Italie"],
+    "prompt": "Dans quel pays vit la plus grande partie des bascophones ?",
+    "why": "The decoys were Nordic countries no table would hesitate over."
+  },
+  "mmmlu-high-school-geography-184": {
+    "answer": "L’Afrique",
+    "decoys": ["L’Asie", "L’Amérique du Sud", "L’Europe"],
+    "prompt": "Quel continent a le taux de fécondité le plus élevé ?",
+    "why": "« Taux de fertilité » is an anglicism for fécondité."
+  },
+  "mmmlu-medical-genetics-73": {
+    "prompt": "Combien de chromosomes compte normalement une cellule humaine ?",
+    "why": "A completion stem in a genetics register."
+  },
+  "mmmlu-miscellaneous-2": {
+    "answer": "451",
+    "decoys": ["986", "2 125", "3 985"],
+    "why": "A room answers with the number Bradbury made famous, not « 451 degrés »."
+  },
+  "mmmlu-miscellaneous-19": {
+    "prompt": "Selon la légende, dans quel pays rencontre-t-on le leprechaun, un lutin farceur ?",
+    "why": "« Lutin » alone is any goblin, and Scotland among the decoys has its own."
+  },
+  "mmmlu-miscellaneous-32": {
+    "prompt": "Quel est le plus lourd des gaz rares présents dans la nature ?",
+    "why": "Oganesson is heavier; only among those found in nature is radon the heaviest."
+  },
+  "mmmlu-miscellaneous-57": {
+    "decoys": ["Le cricket", "Le tennis", "Le squash"],
+    "why": "« Courges » is squash the vegetable, a translation slip."
+  },
+  "mmmlu-miscellaneous-58": {
+    "answer": "Un pain plat",
+    "decoys": ["Un fruit frais", "Une tarte", "Un plat de haricots"],
+    "prompt": "Qu’est-ce qu’un pita ?",
+    "why": "A completion stem with a decoy no one could take seriously."
+  },
+  "mmmlu-miscellaneous-117": {
+    "decoys": ["soi-même", "le silence", "la solitude"],
+    "why": "Two decoys were nonsense (« peu fabriqué », « chargé de teintes vert et bleu »)."
+  },
+  "mmmlu-miscellaneous-138": {
+    "prompt": "Lequel de ces ingrédients ne se trouve pas dans une barre Snickers ?",
+    "why": "« Condiments » is a mistranslation of ingredients."
+  },
+  "mmmlu-miscellaneous-153": {
+    "prompt": "Quel film d’Alan J. Pakula raconte l’enquête sur le scandale du Watergate ?",
+    "why": "« Lequel de ces films » only asked beside the four."
+  },
+  "mmmlu-miscellaneous-195": {
+    "answer": "Blanc",
+    "decoys": ["Noir", "Noir à taches blanches", "Blanc à taches noires"],
+    "why": "« Blanche » agrees with nothing in the sentence."
+  },
+  "mmmlu-miscellaneous-204": {
+    "answer": "Un ichtyologiste",
+    "decoys": ["Un entomologiste", "Un océanographe", "Un herpétologiste"],
+    "why": "« Ichthyologue » is not French, and « marinologue » is no word."
+  },
+  "mmmlu-miscellaneous-233": {
+    "answer": "Du fromage",
+    "decoys": ["Des fruits", "De la sauce", "De la crème fouettée"],
+    "prompt": "En cuisine, qu’est-ce qui recouvre traditionnellement un plat « gratiné » ?",
+    "why": "The answer and two decoys had lost their capital."
+  },
+  "mmmlu-miscellaneous-235": {
+    "answer": "Dans un corps humain",
+    "decoys": ["Dans l’espace", "Au fond de l’océan", "Au centre de la Terre"],
+    "prompt": "Dans le film « Le Voyage fantastique » (1966), où voyagent les héros miniaturisés ?",
+    "why": "The candidates had lost their capital, and « miniaturisés » is what the film is known by."
+  },
+  "mmmlu-miscellaneous-237": {
+    "prompt": "Quel père fondateur américain a, le premier, proposé en plaisantant de décaler les horaires pour économiser les bougies ?",
+    "why": "Franklin's 1784 letter was satire; crediting him with daylight saving time is folklore, so the stem says what he did."
+  },
+  "mmmlu-miscellaneous-254": {
+    "answer": "Neuf",
+    "decoys": ["Dix", "Onze", "Douze"],
+    "prompt": "Combien Beethoven a-t-il composé de symphonies ?",
+    "why": "« La dernière symphonie … La neuvième » reads as a riddle; the count is what a table knows."
+  },
+  "mmmlu-miscellaneous-280": {
+    "answer": "Un million",
+    "decoys": ["Mille", "Un milliard", "Cent mille"],
+    "prompt": "Combien de cycles par seconde vaut un mégahertz ?",
+    "why": "A decoy was the nonsense « -328 716 »."
+  },
+  "mmmlu-miscellaneous-296": {
+    "answer": "La force centrifuge",
+    "decoys": [
+      "La force de gravité",
+      "La force de torsion",
+      "La force magnétique"
+    ],
+    "prompt": "Quelle force semble projeter vers l’extérieur un objet posé sur un manège qui tourne ?",
+    "why": "« Véhiculaire » is no force and the ice-cream cone was a translation of a joke."
+  },
+  "mmmlu-miscellaneous-298": {
+    "answer": "Avec de la viande",
+    "decoys": ["Avec des haricots", "Avec du fromage", "Avec des poivrons"],
+    "prompt": "Que signifie « con carne » dans « chili con carne » ?",
+    "why": "A completion stem with mismatched candidates."
+  },
+  "mmmlu-miscellaneous-314": {
+    "answer": "L’iris",
+    "decoys": ["La pupille", "La rétine", "La cochlée"],
+    "why": "The candidates had lost their article."
+  },
+  "mmmlu-miscellaneous-319": {
+    "answer": "Le royaume zoulou",
+    "decoys": ["Le royaume hutu", "L’Empire aztèque", "Le royaume massaï"],
+    "prompt": "Quel royaume africain a dominé une grande partie de l’Afrique du Sud au XIXe siècle ?",
+    "why": "« Empire indigène » is a calque, and the candidates lacked a noun."
+  },
+  "mmmlu-miscellaneous-324": {
+    "answer": "Un myope",
+    "decoys": ["Un presbyte", "Un astigmate", "Un hypermétrope"],
+    "why": "« Un rétrospectif » is no condition."
+  },
+  "mmmlu-miscellaneous-369": {
+    "answer": "Wookiee",
+    "decoys": ["Woolie", "Ewok", "Klingon"],
+    "prompt": "Dans « Star Wars », à quelle espèce appartient Chewbacca ?",
+    "why": "A completion stem; Ewok is the decoy a fan hesitates over."
+  },
+  "mmmlu-miscellaneous-371": {
+    "answer": "Les séquoias à feuilles d’if",
+    "decoys": ["Les douglas", "Les séquoias géants", "Les épicéas de Sitka"],
+    "why": "The Latin binomial was half translated (« séquoia sempervirens ») and « Douglas Fir » left in English."
+  },
+  "mmmlu-miscellaneous-390": {
+    "prompt": "Quelle plante est l’emblème national de l’Écosse ?",
+    "why": "« Laquelle de ces plantes » only asked beside the four, and the plant is well known."
+  },
+  "mmmlu-miscellaneous-398": {
+    "answer": "La coqueluche",
+    "decoys": ["La rubéole", "La rougeole", "La scarlatine"],
+    "prompt": "Quel est le nom courant de la maladie autrefois appelée « la quinte » ?",
+    "why": "Two decoys were joke conditions (« Inflammation du coude », « Poumon noir »)."
+  },
+  "mmmlu-miscellaneous-434": {
+    "answer": "File Transfer Protocol",
+    "decoys": ["Full Time Portal", "Full Text Processor", "Free To Print"],
+    "why": "Capitalised as the acronym it spells."
+  },
+  "mmmlu-miscellaneous-439": {
+    "answer": "Le silicium",
+    "decoys": ["Le sodium", "L’aluminium", "L’argent"],
+    "why": "« Silicone » is a polymer; the element is silicium."
+  },
+  "mmmlu-miscellaneous-454": {
+    "prompt": "De quelle œuvre vient la phrase « Vous qui entrez ici, abandonnez toute espérance » ?",
+    "why": "The line was back-translated from English; this is how French has quoted Dante for two centuries."
+  },
+  "mmmlu-miscellaneous-472": {
+    "answer": "L’Earl Grey",
+    "decoys": ["Le Darjeeling", "L’English Breakfast", "Le Prince de Galles"],
+    "why": "The answer was cut to « L’Earl » and its second half glued to a decoy (« Le Grey Darjeeling »)."
+  },
+  "mmmlu-miscellaneous-490": {
+    "answer": "Le néerlandais",
+    "decoys": ["Le danois", "Le suédois", "L’allemand"],
+    "why": "« Hollandais » is the colloquial name; the official language is néerlandais."
+  },
+  "mmmlu-miscellaneous-512": {
+    "answer": "Le porc",
+    "decoys": ["La vache", "Le serpent", "Le poulet"],
+    "why": "The candidates mixed « Du » and « La »."
+  },
+  "mmmlu-miscellaneous-563": {
+    "answer": "Une anagramme",
+    "why": "« Anagramme » is feminine."
+  },
+  "mmmlu-miscellaneous-582": {
+    "answer": "L’espagnol",
+    "decoys": ["Le russe", "L’allemand", "Le français"],
+    "why": "The candidates were adjectives agreeing with nothing."
+  },
+  "mmmlu-miscellaneous-622": {
+    "prompt": "Combien de côtes compte le corps humain ?",
+    "why": "The counts were printed as decimals (« 24.0 »)."
+  },
+  "mmmlu-miscellaneous-625": {
+    "decoys": ["Noir", "Jaune", "Bleu"],
+    "prompt": "De quelle couleur sont les rubis ?",
+    "why": "The decoys were inflected for nothing."
+  },
+  "mmmlu-miscellaneous-638": {
+    "answer": "La pierre ponce",
+    "decoys": ["Le granit", "Le calcaire", "Le schiste"],
+    "prompt": "Quelle roche flotte sur l’eau ?",
+    "why": "« Laquelle de ces roches » only asked beside the four, and the pumice is well known."
+  },
+  "mmmlu-miscellaneous-651": {
+    "answer": "L’Olympe",
+    "decoys": ["Le Parnasse", "Le Vésuve", "Le Valhalla"],
+    "why": "The answer lacked its article, and Jupiter is no mountain."
+  },
+  "mmmlu-miscellaneous-669": {
+    "answer": "Le français",
+    "decoys": ["Le russe", "L’italien", "Le portugais"],
+    "why": "The candidates mixed bare names and articles."
+  },
+  "mmmlu-miscellaneous-690": {
+    "answer": "L’intensité du courant électrique",
+    "decoys": [
+      "La tension électrique",
+      "La charge électrique",
+      "La puissance électrique"
+    ],
+    "prompt": "Que mesure-t-on en ampères ?",
+    "why": "A completion stem, and in French the ampere measures intensité, which was a decoy."
+  },
+  "mmmlu-miscellaneous-702": {
+    "answer": "La transpiration",
+    "decoys": ["La respiration", "L’oxydation", "La condensation"],
+    "prompt": "Comment appelle-t-on la perte d’eau des plantes sous forme de vapeur ?",
+    "why": "A completion stem."
+  },
+  "mmmlu-miscellaneous-709": {
+    "answer": "Le bardot",
+    "decoys": ["La mule", "Le mulet", "Le poney"],
+    "prompt": "Comment appelle-t-on le petit d’une ânesse et d’un cheval ?",
+    "why": "The decoys were English words (burro, honker), and mule and mulet are what a room hesitates over."
+  },
+  "mmmlu-miscellaneous-719": {
+    "prompt": "Combien de paires de chromosomes compte le génome humain ?",
+    "why": "The counts were printed as decimals (« 23.0 »)."
+  },
+  "mmmlu-miscellaneous-721": {
+    "answer": "La condensation",
+    "decoys": ["L’évaporation", "La déposition", "La sublimation"],
+    "prompt": "Comment appelle-t-on le passage d’un gaz à l’état liquide ?",
+    "why": "A completion stem."
+  },
+  "mmmlu-miscellaneous-745": {
+    "answer": "Les Incas",
+    "decoys": ["Les Pueblos", "Les Aztèques", "Les Apaches"],
+    "prompt": "Quel peuple dominait les Andes jusqu’à la conquête espagnole de 1532 ?",
+    "why": "« À quel peuple appartenaient les Andes » is a calque, and the candidates lacked articles."
+  },
+  "mmmlu-miscellaneous-769": {
+    "answer": "Un programme informatique",
+    "decoys": [
+      "Un roman policier",
+      "Une partition pour piano",
+      "Un manuel de cuisine"
+    ],
+    "prompt": "Ada Lovelace est considérée comme la première personne à avoir écrit quoi ?",
+    "why": "A completion stem missing its verb, and the decoys were jokes (« un soufflé », « un soutien-gorge »)."
+  },
+  "mmmlu-miscellaneous-771": {
+    "answer": "Le Zaïre",
+    "decoys": ["L’Angola", "La Rhodésie", "Le Congo belge"],
+    "prompt": "Comment s’appelait la République démocratique du Congo de 1971 à 1997 ?",
+    "why": "A completion stem whose answer read « Au Zaïre »."
+  },
+  "mmmlu-prehistory-71": {
+    "answer": "Un pétroglyphe",
+    "decoys": ["Un pictogramme", "Une fresque", "Une pétrification"],
+    "prompt": "Comment appelle-t-on un dessin gravé, et non peint, sur une roche ?",
+    "why": "A completion stem with a decoy that is an adjective."
+  },
+  "mmmlu-prehistory-179": {
+    "answer": "La mégafaune",
+    "decoys": ["Les mégalithes", "La mégaflore", "Les mégatrons"],
+    "prompt": "Comment appelle-t-on l’ensemble des grands animaux disparus à la fin du Pléistocène ?",
+    "why": "A completion stem."
+  },
+  "mmmlu-prehistory-312": {
+    "answer": "La dendrochronologie",
+    "decoys": [
+      "La datation au radiocarbone",
+      "La datation paléomagnétique",
+      "La datation par traces de fission"
+    ],
+    "prompt": "Comment s’appelle la datation fondée sur les cernes de croissance des arbres ?",
+    "why": "The answer lacked its article."
+  },
+  "mmmlu-world-religions-42": {
+    "decoys": ["Paul", "Jean", "Matthieu"],
+    "prompt": "De quel apôtre l’évêque de Rome, le pape, se dit-il le successeur ?",
+    "why": "« Successeur directeur » is a typo, and Jésus is no apostle."
+  },
+  "mmmlu-world-religions-93": {
+    "answer": "Le calife",
+    "decoys": ["Le rasul", "Le nabi", "Le mahdi"],
+    "why": "« Caliphe » is misspelt."
+  },
   "oqdb-4-2": {
     "drop": true,
     "why": "a decoy answers the prompt too — Akhénaton was born and reigned as Amenhotep IV before renaming himself, so the decoys \"Amenhotep\" and \"Aménophis\" (the Greek form of the same name) both name Néfertiti's husband"
@@ -1958,6 +2348,10 @@
     "prompt": "Which field is sometimes known as “The Dismal Science”?",
     "why": "a bare 'This field ...' clue with no question and no antecedent"
   },
+  "otdb-0d5228c64940": {
+    "prompt": "According to the United States' CDC, smoking causes about one in how many deaths in the US each year?",
+    "why": "The CDC figure is that smoking causes about one in five US deaths, not that one in five Americans dies of it each year."
+  },
   "otdb-1b40f470a4fc": {
     "prompt": "How many sharps does the key of G# minor contain?",
     "why": "the sentence is garbled and asks nothing"
@@ -1970,6 +2364,10 @@
     "drop": true,
     "why": "the bloodiest event in US history is not a single battle, and no candidate is right"
   },
+  "otdb-3d9d831b1d69": {
+    "drop": true,
+    "why": "Dragon Ball Z: Budokai Tenkaichi 3 counts 161 playable characters with its transformations against TimeSplitters: Future Perfect's roughly 150, so the right choice depends on how forms are counted."
+  },
   "otdb-4a1c6e49bf44": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — a 'youngest ever' record; still Malala in 2026 but it changes the day a younger laureate is named"
@@ -1977,6 +2375,18 @@
   "otdb-4be33db6620f": {
     "answer": "46",
     "why": "body cells carry 46 chromosomes; 23 is the haploid count"
+  },
+  "otdb-4bf69c3558ad": {
+    "decoys": [
+      "Shkhara, Georgia",
+      "Mount Ararat, Turkey",
+      "Mount Olympus, Greece"
+    ],
+    "why": "Mont Blanc is the answer most European tables were taught, so with it among the decoys the row has two defensible answers."
+  },
+  "otdb-4c8184b54149": {
+    "drop": true,
+    "why": "Aladdin was not the first animated film with a celebrity voice: Disney had cast stars such as Phil Harris and Louis Prima decades earlier."
   },
   "otdb-4fe608931e91": {
     "prompt": "What M83 song was featured on Grand Theft Auto V's radio?",
@@ -1991,9 +2401,21 @@
     "decoys": ["iOS", "BlackBerry", "Symbian"],
     "why": "Android held about 69 % of 2012 smartphone shipments against iOS at 19 %"
   },
+  "otdb-6b04a405c0ea": {
+    "drop": true,
+    "why": "Malenkov, a decoy, led the Soviet government first after Stalin, so the row has two right answers, and a clean row asks who succeeded him as General Secretary."
+  },
   "otdb-6b76b196bb72": {
     "prompt": "Muscle fiber is constructed of bundles of small long organelles called what?",
     "why": "a missing word left the sentence meaningless"
+  },
+  "otdb-6bafaee378e3": {
+    "answer": "Hexadecimal",
+    "why": "The answer misspells hexadecimal as 'Hexidecimal', which a typed answer would then have to match."
+  },
+  "otdb-6e0ed953fca5": {
+    "drop": true,
+    "why": "Jupiter's moon count is astronomy, not a video-game question, and the count keeps moving as moons are confirmed, so the 2026 figure is not a stable answer."
   },
   "otdb-6e7e4bbba10d": {
     "prompt": "Which Ghanaian entrepreneur is a pioneer of microlending?",
@@ -2003,9 +2425,17 @@
     "drop": true,
     "why": "the answer has a shelf life and it has run out — \"longest active band with no breaks or line-up changes\" is an unanchored record that shifts, and U2's unbroken run ended when Larry Mullen Jr. sat out the 2023-24 residency"
   },
+  "otdb-7c13fe941a4e": {
+    "accepted": [],
+    "why": "The accepted list carried 'crow', 'the crows' and 'true crows', which would pay a typed answer naming the bird instead of the AI."
+  },
   "otdb-7ce7b9938b38": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — Grover Cleveland is no longer the only US president to serve two non-consecutive terms — Donald Trump began a second, non-consecutive term in 2025"
+  },
+  "otdb-7fad028e521a": {
+    "drop": true,
+    "why": "The claim that Americans eat 100 pounds of chocolate a second is an unsourced factoid."
   },
   "otdb-8a0703397f75": {
     "drop": true,
@@ -2032,6 +2462,18 @@
     "drop": true,
     "why": "a decoy answers the prompt too — Bedrock has exactly the same blast resistance as Barrier (3,600,000, the maximum in the game), so the decoy \"Bedrock\" answers the prompt as well as the keyed answer"
   },
+  "otdb-9e0fb6c213ef": {
+    "accepted": [],
+    "why": "The accepted list carried 'Korean Rip-Off' and 'Korean Sesame Street', which have nothing to do with Popopo and would pay a nonsense typed answer."
+  },
+  "otdb-9e23bb25e98b": {
+    "answer": "Alan Shepard",
+    "why": "The answer misspells Alan Shepard as 'Shephard', which a typed answer would then have to match."
+  },
+  "otdb-9fdb20a5e50d": {
+    "answer": "Tony Kushner",
+    "why": "The playwright is Tony Kushner, and the answer drops the n."
+  },
   "otdb-15b845838e59": {
     "prompt": "Why were only 300,000 copies of Uniracers produced?",
     "why": "\"only only\", and a doubled verb"
@@ -2039,6 +2481,12 @@
   "otdb-20b44d7a8c64": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — a running count of known moons goes stale with every new confirmation, and the prompt pins itself to \"As of the year 2026\""
+  },
+  "otdb-25c4d6db63b7": {
+    "answer": "Tungsten",
+    "decoys": ["Platinum", "Osmium", "Iron"],
+    "prompt": "Which metal has the highest melting point?",
+    "why": "Carbon sublimes rather than melts at ordinary pressure, and tungsten, a decoy, is the answer most sources give."
   },
   "otdb-26ee9b4f7709": {
     "drop": true,
@@ -2060,9 +2508,17 @@
     "drop": true,
     "why": "a decoy answers the prompt too — \"Black\" fits the prompt as well as \"Blue\" — no rose produces a true black either, and blue roses have in fact been produced by genetic engineering (Suntory's \"Applause\"), which the prompt explicitly rules out"
   },
+  "otdb-75dde8bc875a": {
+    "drop": true,
+    "why": "The Burj Khalifa's official height is 828 m, 2,717 ft, which is a decoy here, and the sibling row gives that figure as the answer."
+  },
   "otdb-78d25ae8e436": {
     "drop": true,
     "why": "a decoy answers the prompt too — \"Jumpman\" is the documented original name of the character in Donkey Kong, and \"Mr. Video\" is Miyamoto's own earlier name for him; both are defensible answers to \"originally\""
+  },
+  "otdb-79d8caf44299": {
+    "prompt": "In human biology, a circadian rhythm relates to a period of roughly how many hours?",
+    "why": "The prompt misspells circadian as 'circadium'."
   },
   "otdb-91ad2b17c629": {
     "drop": true,
@@ -2076,13 +2532,33 @@
     "drop": true,
     "why": "the answer has a shelf life and it has run out — \"fastest road legal car in the world\" is a live record; the Agera RS's 2017 mark has since been contested by the Bugatti Chiron Super Sport 300+, the SSC Tuatara and the Koenigsegg Jesko Absolut"
   },
+  "otdb-95cdbc54ea33": {
+    "prompt": "Roughly how long can the queen of a black garden ant colony live?",
+    "why": "A garden ant worker lives months while a queen lives up to fifteen years or more, so the prompt has no single answer."
+  },
+  "otdb-96ae8a776438": {
+    "prompt": "Which driver was the first to become Formula 1 world champion seven times?",
+    "why": "Lewis Hamilton equalled the seven titles in 2020, so Schumacher no longer holds the record alone."
+  },
   "otdb-247a2dea19bd": {
     "drop": true,
     "why": "a decoy answers the prompt too — the decoy 'Glycolysis' is a step of cellular respiration that forms ATP (net 2 by substrate-level phosphorylation), so it answers the prompt as written"
   },
+  "otdb-273c670892a7": {
+    "accepted": [],
+    "why": "The accepted list carried Marcus Tullius Cicero's aliases ('M. Tullius Cicero', 'Tully'), the Roman orator rather than the Skyrim jester."
+  },
   "otdb-381a77d9f33e": {
     "prompt": "America's Strategic Defense System during the Cold War was nicknamed after which famous movie?",
     "why": "'this famous movie' has no antecedent and asks nothing"
+  },
+  "otdb-434cdffe6264": {
+    "prompt": "Which band released hit songs such as \"Californication\", \"Can't Stop\" and \"Under the Bridge\"?",
+    "why": "The Red Hot Chili Peppers are a funk-rock band, and calling them punk rock misleads the table."
+  },
+  "otdb-474f0c9dc905": {
+    "accepted": [],
+    "why": "The accepted list carried 'Patrick Williams' and 'William M. Patrick', names that are not Mark Hamill's and would pay a wrong typed answer."
   },
   "otdb-638bf4fd39f4": {
     "prompt": "In Margaret Atwood's \"The Handmaid's Tale\", what is Offred's real name implied to be?",
@@ -2091,6 +2567,10 @@
   "otdb-698b3fcb16eb": {
     "drop": true,
     "why": "a decoy answers the prompt too — the decoy \"Skyward Sword\" also did not feature Ganon as a final boss - its final boss is Demise, and Ganon never appears in that game"
+  },
+  "otdb-735a99da73d0": {
+    "drop": true,
+    "why": "São Paulo and Mexico City trade the title depending on whether the city proper or the metropolitan area is counted, and both are among the choices."
   },
   "otdb-850e33e09a73": {
     "drop": true,
@@ -2116,6 +2596,22 @@
     "drop": true,
     "why": "the answer has a shelf life and it has run out — \"critically regarded as the best film of all time\" is a shifting title: Sight & Sound's poll replaced Citizen Kane with Vertigo in 2012 and with Jeanne Dielman in 2022"
   },
+  "otdb-4743af341232": {
+    "answer": "Alexander Fleming",
+    "why": "The answer misspells Fleming as 'Flemming', which a typed answer would then have to match."
+  },
+  "otdb-7152b2b08b7a": {
+    "drop": true,
+    "why": "Whether the fifth row of Pascal's triangle is 1 4 6 4 1 or 1 5 10 10 5 1 depends on counting from zero, and both are among the choices."
+  },
+  "otdb-7732c495a3a0": {
+    "drop": true,
+    "why": "The 2022 World Cup is over, and the row repeats its sibling asking which country hosted it."
+  },
+  "otdb-8947b8340376": {
+    "answer": "Auguste Piccard",
+    "why": "The physicist is spelled Auguste Piccard, and the answer drops a c."
+  },
   "otdb-9448ac1753e9": {
     "drop": true,
     "why": "a decoy answers the prompt too — the options are open-ended buckets, so if the answer is \"8+\" then the decoys \"6+\", \"5+\" and \"4+\" are all literally true as well"
@@ -2124,6 +2620,10 @@
     "answer": "Ions",
     "why": "deionisation removes ions, which is what the decoy \"Uncharged atoms\" contrasts with"
   },
+  "otdb-56533f799e30": {
+    "drop": true,
+    "why": "The prompt asks for 'two plates' and every choice is a garbled mix of boundary types and crust types, with no clean right answer."
+  },
   "otdb-61330c7aee26": {
     "drop": true,
     "why": "a decoy answers the prompt too — the decoy \"Cujoh\" is the official English romanisation of the same surname 空条 (used for Jolyne Cujoh in Stone Ocean), so it names Jotaro's family just as correctly as \"Kujo\""
@@ -2131,6 +2631,10 @@
   "otdb-70319dcf51d9": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — \"largest known star\" is a record that has moved: UY Scuti's radius was revised sharply downward after Gaia distances, and current estimates put RW Cephei (a decoy) at or above it"
+  },
+  "otdb-89139b34b8c2": {
+    "accepted": [],
+    "why": "The accepted list carried King David's aliases ('King David', 'David, King of Israel'), a different David, which would pay a wrong typed answer."
   },
   "otdb-89263f34b5a7": {
     "drop": true,
@@ -2153,6 +2657,10 @@
   "otdb-649088511aa4": {
     "drop": true,
     "why": "a decoy answers the prompt too — the decoy \"Minecraft\" was first released to the public in May 2009, before Terraria's May 2011 launch; only Minecraft's 1.0 release is later, and the same bank elsewhere dates Minecraft to 2009"
+  },
+  "otdb-0254780543b1": {
+    "answer": "Shirley Bassey",
+    "why": "The answer misspells Shirley Bassey's name."
   },
   "otdb-56957559405b": {
     "prompt": "Which Half-Life 2 character is the default playermodel of Garry's Mod?",
@@ -2179,14 +2687,27 @@
     "prompt": "Which song written by Nine Inch Nails frontman Trent Reznor did Johnny Cash cover?",
     "why": "dangling \"this song\" in a statement, though the answer is pinned"
   },
+  "otdb-ab4e2f29d512": {
+    "drop": true,
+    "why": "Half-Life 2 and Team Fortress 2 got VR modes in 2013, three years before The Lab, so one of the decoys is arguably the right answer."
+  },
   "otdb-ae348676b300": {
     "answer": "28",
     "decoys": ["36", "20", "32"],
     "why": "excluding wisdom teeth an adult has 28"
   },
+  "otdb-afe6a659c6e2": {
+    "prompt": "Which of these was the earliest female protagonist of a video game?",
+    "why": "Samus is not the first female protagonist ever (Ms. Pac-Man and earlier titles predate her), only the earliest of the four offered."
+  },
   "otdb-b4dce2d10b1b": {
     "prompt": "Who was the winner of season 10 of \"Big Brother\" in the United States?",
     "why": "country unstated, and UK series 10 has a different winner"
+  },
+  "otdb-b9ea9c15dac7": {
+    "decoys": ["Vladimir Lenin", "Joseph Stalin", "Leon Trotsky"],
+    "prompt": "Who co-wrote The Communist Manifesto with Friedrich Engels?",
+    "why": "Socialism was articulated before Marx by Owen and Saint-Simon, so crediting him with the idea is wrong."
   },
   "otdb-b05c3a32bc76": {
     "drop": true,
@@ -2199,6 +2720,10 @@
   "otdb-bb682bd910e2": {
     "drop": true,
     "why": "a decoy answers the prompt too — the spotted hyena's giggle is standardly described as a sign of nervousness or excitement, so the decoy Excitement is also right"
+  },
+  "otdb-bd5b4748c8b4": {
+    "drop": true,
+    "why": "A foul ball caught on the fly is an out, so 'zero' is wrong as worded."
   },
   "otdb-bd77947a49df": {
     "drop": true,
@@ -2215,6 +2740,29 @@
   "otdb-c5d1e489aa0a": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — a cumulative worldwide sales figure that keeps climbing; the Black Album is now generally cited well above 20.5 million"
+  },
+  "otdb-c66fffc21a70": {
+    "answer": "Steven Moffat",
+    "why": "The answer misspells Steven Moffat's surname, so a typed Moffat would be judged against the wrong spelling."
+  },
+  "otdb-c188d6b7bc8a": {
+    "answer": "Dan the Automator",
+    "why": "The producer is Dan the Automator, and the answer misspells him."
+  },
+  "otdb-c4652602c516": {
+    "accepted": ["Candle in the Wind"],
+    "answer": "Candle in the Wind 1997",
+    "prompt": "Which song did Elton John perform at the funeral of Princess Diana?",
+    "why": "The princess was Diana, and the song Elton John sang at her funeral is Candle in the Wind 1997, not 'Candles'."
+  },
+  "otdb-ca8e781a4338": {
+    "answer": "Ludwig van Beethoven",
+    "decoys": ["Frédéric Chopin", "Wolfgang Amadeus Mozart", "Johannes Brahms"],
+    "why": "Beethoven's first name is Ludwig, and the Chief Keef decoy is a joke that gives the row away."
+  },
+  "otdb-cc3b641ae1f2": {
+    "accepted": [],
+    "why": "The accepted list carried a bare 'Arkham', which also names every decoy in the series and would pay a typed answer that never said which game."
   },
   "otdb-d5bd729b7d3a": {
     "drop": true,
@@ -2250,20 +2798,44 @@
     "why": "a decoy answers the prompt too — the decoy \"Content Distribution Network\" is an equally standard expansion of CDN, so a room picking it is marked wrong for being right"
   },
   "otdb-e2f6f5adb10a": {
-    "prompt": "During World War 2, which tank was the most feared by the Allies?",
-    "why": "garbled English, \"with tank was the most fear\""
+    "drop": true,
+    "why": "The Tiger, a decoy, is the tank most sources name as the one the Allies feared most, so the row has two right answers."
   },
   "otdb-e2f1097a0e71": {
     "prompt": "During World War I, the monarchs of which three nations were blood relatives?",
     "why": "asks for one nation while the answer is three"
   },
+  "otdb-e3f974ae9a89": {
+    "drop": true,
+    "why": "'An accident waiting to happen' is as much a metaphor as an idiom, and Metaphor is a decoy."
+  },
+  "otdb-e4aa47f8d5f3": {
+    "drop": true,
+    "why": "The first Transformers film is 1986 for the animated one and 2007 for the live-action one, and both years are among the choices."
+  },
+  "otdb-e21b77c3b1e4": {
+    "answer": "Montreal Canadiens",
+    "why": "The team is the Montreal Canadiens, and the answer misspells it."
+  },
+  "otdb-e8288bbd40fa": {
+    "decoys": ["India Pale Ale", "Stout", "Baltic Porter"],
+    "why": "A pilsner is itself a pale lager, so the misspelled Pilsner decoy is also right."
+  },
   "otdb-e1865026f0da": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — the Overwatch hero named McCree was renamed Cassidy in October 2021, so the banked answer is no longer the character's name"
   },
+  "otdb-edd5b7a8a332": {
+    "decoys": ["1590", "1723", "1628"],
+    "why": "Macbeth is dated 1605 to 1606 by scholars, so the 1605 decoy is as right as the answer."
+  },
   "otdb-edee009d10f2": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — Wayne Rooney was England's top scorer when written; Harry Kane passed his 53 goals in March 2023 and now leads"
+  },
+  "otdb-ee0af27a496d": {
+    "accepted": [],
+    "why": "The accepted list carried the Blackfoot chief Red Crow's aliases ('Sitting White Bull', 'Captured the Gun Inside'), which would pay a nonsense typed answer."
   },
   "otdb-efac808e7cbc": {
     "drop": true,
@@ -2273,9 +2845,18 @@
     "drop": true,
     "why": "the answer has a shelf life and it has run out — the \"speaking part in every Pixar feature\" claim is a running streak that no longer holds — Ratzenberger is absent from several recent Pixar features"
   },
+  "otdb-f8d296d3cbe6": {
+    "answer": "T.S. Eliot",
+    "decoys": ["Andrew Lloyd Webber", "Emily Dickinson", "Robert Frost"],
+    "why": "T.S. Eliot is spelled with one l and the Emily Dickinson decoy is misspelled too."
+  },
   "otdb-f05d2bd06c25": {
     "drop": true,
     "why": "the answer has a shelf life and it has run out — the prompt is in the present tense but Josh Mansour left Penrith after the 2020 season, played for South Sydney in 2021-22 and has since retired"
+  },
+  "otdb-f690ddd77539": {
+    "drop": true,
+    "why": "The Little Prince is usually counted as outselling The Lord of the Rings, so the choices hold two defensible answers."
   },
   "otdb-f8048e9f5f23": {
     "drop": true,

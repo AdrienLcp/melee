@@ -1,14 +1,9 @@
-import { dirname, join } from 'node:path'
-import { fileURLToPath } from 'node:url'
-
 import { z } from 'zod'
 
 import type { QuestionLanguage } from '@taverla/protocol/question'
 
-import { orStop, readJsonFile } from './json-file'
+import { readAuthoredList, taverlaAttribution } from './authored-questions'
 import type { IngestedQuestions } from './question-source'
-
-const HERE = dirname(fileURLToPath(import.meta.url))
 
 /**
  * A line a table recognises — from a film, a series, a video game, an ad or a
@@ -58,20 +53,13 @@ const THEME_BY_LANGUAGE = {
 } as const satisfies Record<QuestionLanguage, string>
 
 export const ingestQuotes = (language: QuestionLanguage): IngestedQuestions => {
-  const path = join(HERE, `quotes-${language}.json`)
-  const quotes = orStop(
-    readJsonFile(path, z.array(authoredQuoteSchema)),
-    `quotes-${language}.json`
-  )
+  const quotes = readAuthoredList({
+    fileName: `quotes-${language}.json`,
+    schema: authoredQuoteSchema
+  })
 
   return {
-    attribution: {
-      author: 'Taverla',
-      language,
-      licence: 'CC BY-SA 4.0',
-      source: 'Taverla',
-      url: 'https://github.com/AdrienLcp/taverla'
-    },
+    attribution: taverlaAttribution(language),
     questions: quotes.map(({ kind, prompt, ...quote }) => ({
       ...quote,
       category: 'quotes',

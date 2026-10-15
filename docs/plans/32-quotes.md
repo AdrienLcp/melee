@@ -51,6 +51,7 @@ plays the round the rival sells.
 
 ## Left open
 
+- **Done, 15 October 2026:** about 105 foreign film and series lines were checked against their French dub — 40 corrected, 3 replaced, 15 dropped for want of a source — and 79 new lines take French to **521**. The two items below are what was open before.
 - **A French dub's exact wording** is the commonly quoted form on about forty
   French rows, where only who says it and in which work could be confirmed —
   mostly animated films. A row found wrong at a table is fixed in the JSON and

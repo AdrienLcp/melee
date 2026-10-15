@@ -9,16 +9,18 @@ import { normalizeAnswer } from '@taverla/core/round/answer-matching'
 
 import { orStop, readJsonFile } from './json-file'
 import { ingestMintaka } from './mintaka-source'
+import { ingestMmmlu } from './mmmlu-source'
 import { ingestOpenQuizzDb } from './openquizzdb-source'
 import { ingestOpenTdb } from './opentdb-source'
 import { ingestPolyFact } from './polyfact-source'
 import type { BankedQuestion, IngestedQuestions } from './question-source'
 import { ingestQuotes } from './quotes-source'
+import { ingestVideoGames } from './videogames-source'
 import { ingestVikidia } from './vikidia-source'
 
 /**
- * Rebuilds the question bank from the three sources it is written in, all under
- * CC BY-SA 4.0. Run it with `pnpm --filter @taverla/server questions:build`; it
+ * Rebuilds the question bank from every source it is written in, each under the
+ * licence its attribution names. Run it with `pnpm --filter @taverla/server questions:build`; it
  * is a one-off rather than part of the build, because the upstream packs change
  * a few times a year and a deploy should not depend on somebody else's web
  * server being up.
@@ -61,13 +63,17 @@ const BANK_PATH = join(
  * - an `isAdult`, which only ever goes on: a row the source did not rate and a
  *   room that did not ask for it;
  * - a `drop`, for the row that means nothing in any mode — an artist the world
- *   does not have, a sentence the source garbled past reading.
+ *   does not have, a sentence the source garbled past reading;
+ * - an `accepted`, replacing the second spellings an entity link found when it
+ *   landed on a homonym — a video game's jester linked to the Roman orator
+ *   pays a room for *Tully*.
  *
  * It is not a place to make a question better. Every row carries the `why` it
  * was repaired for, so a later reader can disagree with the judgement rather
  * than guess at it.
  */
 const questionRepairSchema = z.object({
+  accepted: z.array(z.string()).optional(),
   answer: z.string().optional(),
   decoys: z.tuple([z.string(), z.string(), z.string()]).optional(),
   drop: z.boolean().optional(),
@@ -185,6 +191,7 @@ const repaired = (question: BankedQuestion): BankedQuestion => {
     ? question
     : {
         ...question,
+        accepted: repair.accepted ?? question.accepted,
         answer: repair.answer ?? question.answer,
         decoys: repair.decoys ?? question.decoys,
         isAdult: repair.isAdult ?? question.isAdult,
@@ -239,20 +246,26 @@ const run = async (): Promise<void> => {
   console.info('\nVikidia (fr)')
   const vikidia = await ingestVikidia()
 
+  console.info('\nMMMLU (fr)')
+  const mmmlu = await ingestMmmlu()
+
   console.info('\nOpen Trivia DB (en)')
   const english = await ingestOpenTdb()
 
   const frenchQuotes = ingestQuotes('fr')
   const englishQuotes = ingestQuotes('en')
+  const frenchVideoGames = ingestVideoGames()
 
   const sourced = [
     ...french.questions,
     ...wikidata.questions,
     ...mintaka.questions,
     ...vikidia.questions,
+    ...mmmlu.questions,
     ...english.questions,
     ...frenchQuotes.questions,
-    ...englishQuotes.questions
+    ...englishQuotes.questions,
+    ...frenchVideoGames.questions
   ]
   const offered = sourced
     .filter((question) => repairs[question.id]?.drop !== true)
@@ -266,6 +279,7 @@ const run = async (): Promise<void> => {
       wikidata.attribution,
       mintaka.attribution,
       vikidia.attribution,
+      mmmlu.attribution,
       english.attribution
     ],
     questions: questions.map(banked)
@@ -277,9 +291,11 @@ const run = async (): Promise<void> => {
   report(wikidata)
   report(mintaka)
   report(vikidia)
+  report(mmmlu)
   report(english)
   report(frenchQuotes)
   report(englishQuotes)
+  report(frenchVideoGames)
 
   console.info(`\n${bank.questions.length} questions → ${BANK_PATH}`)
 

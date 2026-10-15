@@ -222,6 +222,366 @@
     "why": "John Turturro is in four Coen films (Miller's Crossing, Barton Fink, The Big Lebowski, O Brother), so only the choices single one out."
   },
   {
+    "id": "mmmlu-anatomy-47",
+    "language": "fr",
+    "prompt": "Quelles cellules du sang n’ont pas de noyau ?",
+    "why": "A room says « les globules rouges », and only the four technical names beside it say that érythrocytes is what is asked."
+  },
+  {
+    "id": "mmmlu-astronomy-102",
+    "language": "fr",
+    "prompt": "Supposons que vous viviez sur la Lune. Combien de temps dure une journée (c’est-à-dire du lever au lever du soleil) ?",
+    "why": "A typed « un mois » or « 29 jours » misses « 29 jours terrestres »."
+  },
+  {
+    "id": "mmmlu-astronomy-136",
+    "language": "fr",
+    "prompt": "Combien de temps environ faut-il à Pluton pour faire un tour complet autour du Soleil ?",
+    "why": "Four neighbouring durations; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-astronomy-147",
+    "language": "fr",
+    "prompt": "Quelle est la meilleure approximation de la température de surface du Soleil ?",
+    "why": "Four neighbouring temperatures in kelvin; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-astronomy-151",
+    "language": "fr",
+    "prompt": "Une unité astronomique (UA) équivaut à environ…",
+    "why": "Four neighbouring distances; a typed « 150 millions de km » misses the spelled-out unit."
+  },
+  {
+    "id": "mmmlu-astronomy-37",
+    "language": "fr",
+    "prompt": "La soi-disant énergie sombre est un modèle pour expliquer…",
+    "why": "The answer is a phrase (« l'accélération de l'univers ») no typed line reproduces."
+  },
+  {
+    "id": "mmmlu-astronomy-73",
+    "language": "fr",
+    "prompt": "Quel type de rayonnement provoque l’évaporation d’un trou noir au fil du temps ?",
+    "why": "A room types « Hawking » or « rayonnement de Hawking », never the translation's « La radiation de Hawking »."
+  },
+  {
+    "id": "mmmlu-astronomy-74",
+    "language": "fr",
+    "prompt": "À quelle distance se trouve la galaxie d’Andromède ?",
+    "why": "Three neighbouring distances in millions of light-years; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-college-biology-73",
+    "language": "fr",
+    "prompt": "Environ quelle fraction du génome humain code pour les protéines ?",
+    "why": "Four percentages; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-134",
+    "language": "fr",
+    "prompt": "Si vous voyagez à grande vitesse, alors, comparé à vos amis qui « restent à la maison », vous serez …",
+    "why": "The answer is a comparison (« plus jeune ») that only means something beside « plus vieux »."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-85",
+    "language": "fr",
+    "prompt": "Le vol d’un ballon dirigeable illustre au mieux …",
+    "why": "A room says « Archimède », not « le principe d'Archimède »."
+  },
+  {
+    "id": "mmmlu-miscellaneous-100",
+    "language": "fr",
+    "prompt": "Lequel de ces animaux a le même nom qu’une voiture de luxe ?",
+    "why": "« Lequel de ces animaux » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-133",
+    "language": "fr",
+    "prompt": "Lequel de ces animaux pond des œufs ?",
+    "why": "« Lequel de ces animaux » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-136",
+    "language": "fr",
+    "prompt": "Quel élément de cette liste n’est pas une race de chat ?",
+    "why": "« Quel élément de cette liste » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-138",
+    "language": "fr",
+    "prompt": "Lequel de ces condiments ne se trouve pas dans une barre chocolatée Snickers ?",
+    "why": "« Lequel de ces ingrédients » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-150",
+    "language": "fr",
+    "prompt": "Laquelle de ces maladies ou organismes est un virus ?",
+    "why": "« Laquelle de ces maladies » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-207",
+    "language": "fr",
+    "prompt": "Quelle est le pH (approximatif) du jus de citron ?",
+    "why": "Four pH values; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-227",
+    "language": "fr",
+    "prompt": "En moyenne, combien de temps s’écoule entre deux marées hautes ?",
+    "why": "Four durations a few hours apart; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-241",
+    "language": "fr",
+    "prompt": "Si vous roulez en « fakie » sur un « half pipe », qu’est-ce que vous êtes en train de faire ?",
+    "why": "Skateboarders and surfers ride fakie too; only the choices single out snowboard."
+  },
+  {
+    "id": "mmmlu-miscellaneous-259",
+    "language": "fr",
+    "prompt": "Laquelle de ces méthodes ne fait pas partie des trois méthodes de transfert de chaleur ?",
+    "why": "« Laquelle de ces méthodes ne fait pas partie » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-322",
+    "language": "fr",
+    "prompt": "Laquelle de ces figures politiques a été assassinée ?",
+    "why": "« Laquelle de ces figures politiques » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-330",
+    "language": "fr",
+    "prompt": "Lequel de ces animaux est un poisson ?",
+    "why": "« Lequel de ces animaux est un poisson » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-36",
+    "language": "fr",
+    "prompt": "Lequel de ces os se trouve dans le poignet ?",
+    "why": "« Lequel de ces os » only asks beside the four bones."
+  },
+  {
+    "id": "mmmlu-miscellaneous-363",
+    "language": "fr",
+    "prompt": "À quoi sert la mitochondrie dans la cellule ?",
+    "why": "The answer is a phrase (« À générer de l’énergie ») no typed line reproduces."
+  },
+  {
+    "id": "mmmlu-miscellaneous-364",
+    "language": "fr",
+    "prompt": "Lequel de ces mots ne désigne pas l’une des quatre forces élémentaires de la nature ?",
+    "why": "« Lequel de ces mots ne désigne pas » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-365",
+    "language": "fr",
+    "prompt": "Lequel de ces termes est un mot d’argot désignant la police ?",
+    "why": "« Lequel de ces termes » only asks beside the four; poulets and flics are as right as keufs."
+  },
+  {
+    "id": "mmmlu-miscellaneous-371",
+    "language": "fr",
+    "prompt": "Quels sont les arbres les plus hauts de la Terre ?",
+    "why": "Séquoia géant and séquoia à feuilles d’if are both « séquoias »; only the choices separate them."
+  },
+  {
+    "id": "mmmlu-miscellaneous-372",
+    "language": "fr",
+    "prompt": "Lequel de ces outils de peinture a des poils ?",
+    "why": "« Lequel de ces outils » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-376",
+    "language": "fr",
+    "prompt": "Lequel de ces jeux ne se joue pas avec des cartes ?",
+    "why": "« Lequel de ces jeux ne se joue pas » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-38",
+    "language": "fr",
+    "prompt": "Laquelle de ces sociétés est une entreprise de design italienne ?",
+    "why": "« Laquelle de ces sociétés » only asks beside the four names."
+  },
+  {
+    "id": "mmmlu-miscellaneous-388",
+    "language": "fr",
+    "prompt": "Lequel de ces mots est un adverbe ?",
+    "why": "« Lequel de ces mots est un adverbe » only asks beside the four, and vite is an adverb too."
+  },
+  {
+    "id": "mmmlu-miscellaneous-40",
+    "language": "fr",
+    "prompt": "Lequel de ces pays n’était pas membre de l’alliance de l’Axe pendant la Seconde Guerre mondiale ?",
+    "why": "« Lequel de ces pays n’était pas » only asks beside the four countries."
+  },
+  {
+    "id": "mmmlu-miscellaneous-446",
+    "language": "fr",
+    "prompt": "Lequel de ces animaux n’est pas un primate ?",
+    "why": "« Lequel de ces animaux n’est pas » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-451",
+    "language": "fr",
+    "prompt": "Lequel de ces minéraux est le plus dur sur l’échelle de Mohs ?",
+    "why": "« Lequel de ces minéraux » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-459",
+    "language": "fr",
+    "prompt": "Lequel de ces films ne met pas en vedette Jim Carrey ?",
+    "why": "« Lequel de ces films ne met pas » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-474",
+    "language": "fr",
+    "prompt": "Lequel de ces aliments pourrait contenir de petites quantités d’opium d’origine naturelle ?",
+    "why": "« Lequel de ces aliments » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-484",
+    "language": "fr",
+    "prompt": "Lequel de ces animaux domestiques devrait être vacciné contre le parvovirus ?",
+    "why": "« Lequel de ces animaux » only asks beside the four, and cats are vaccinated against a parvovirus too."
+  },
+  {
+    "id": "mmmlu-miscellaneous-491",
+    "language": "fr",
+    "prompt": "Lequel de ces aliments n’est pas traditionnellement considéré comme casher ?",
+    "why": "« Lequel de ces aliments » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-559",
+    "language": "fr",
+    "prompt": "Lequel de ces produits est fabriqué à partir de graines de cacao ?",
+    "why": "« Lequel de ces produits » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-566",
+    "language": "fr",
+    "prompt": "Laquelle de ces planètes n’a pas de lune connue ?",
+    "why": "« Laquelle de ces planètes » only asks beside the four; Venus has no moon either."
+  },
+  {
+    "id": "mmmlu-miscellaneous-569",
+    "language": "fr",
+    "prompt": "Lequel de ces organes existe par paire ?",
+    "why": "« Lequel de ces organes » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-615",
+    "language": "fr",
+    "prompt": "Lequel de ces éléments est un type d’œuvre d’art composé de morceaux de bois incrustés de motifs géométriques ?",
+    "why": "« Lequel de ces éléments » only asks beside the four, and the spellings are the whole question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-627",
+    "language": "fr",
+    "prompt": "Lequel de ces produits est couramment utilisé pour traiter les allergies ?",
+    "why": "« Lequel de ces produits » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-636",
+    "language": "fr",
+    "prompt": "Lequel de ces éléments n’est PAS un minéral ?",
+    "why": "« Lequel de ces éléments n’est PAS » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-659",
+    "language": "fr",
+    "prompt": "Lequel de ces aliments est toxique pour les chiens ?",
+    "why": "« Lequel de ces aliments » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-666",
+    "language": "fr",
+    "prompt": "Laquelle de ces fables n’est pas une fable d’Ésope ?",
+    "why": "« Laquelle de ces fables n’est pas » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-708",
+    "language": "fr",
+    "prompt": "Lequel de ces dirigeants de la Seconde Guerre mondiale n’était pas présent à la Conférence de Yalta ?",
+    "why": "« Lequel de ces dirigeants n’était pas » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-728",
+    "language": "fr",
+    "prompt": "Lequel de ces fleuves traverse la France ?",
+    "why": "« Lequel de ces fleuves » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-732",
+    "language": "fr",
+    "prompt": "Le fromage est un ingrédient nécessaire dans lequel de ces plats ?",
+    "why": "« Lequel de ces plats » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-74",
+    "language": "fr",
+    "prompt": "Lequel de ces verbes est un synonyme de « déambuler » ?",
+    "why": "« Lequel de ces verbes » only asks beside the four; flâner is as right as se promener."
+  },
+  {
+    "id": "mmmlu-miscellaneous-750",
+    "language": "fr",
+    "prompt": "Lequel de ces sons est généralement associé aux hiboux ?",
+    "why": "« Lequel de ces sons » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-778",
+    "language": "fr",
+    "prompt": "Lequel de ces animaux est un rongeur ?",
+    "why": "« Lequel de ces animaux » only asks beside the four."
+  },
+  {
+    "id": "mmmlu-miscellaneous-80",
+    "language": "fr",
+    "prompt": "Dans quel pays conduit-on du côté gauche de la route ?",
+    "why": "Dozens of countries drive on the left; only the choices single out England."
+  },
+  {
+    "id": "mmmlu-prehistory-17",
+    "language": "fr",
+    "prompt": "Quelle est la plus ancienne forme d’écriture au monde et où s’est-elle développée ?",
+    "why": "The answer is a pair (« cunéiforme, en Mésopotamie ») no typed line reproduces."
+  },
+  {
+    "id": "mmmlu-prehistory-252",
+    "language": "fr",
+    "prompt": "Quels aliments sont inclus dans la triade de plantes que composait la subsistance de base des civilisations indigènes de Nouveau Monde ?",
+    "why": "The answer is a list of three plants no typed line reproduces in order."
+  },
+  {
+    "id": "mmmlu-prehistory-292",
+    "language": "fr",
+    "prompt": "À quelle espèce appartient Lucy ?",
+    "why": "A room says « un australopithèque », and only the Latin binomials beside it single out afarensis."
+  },
+  {
+    "id": "mmmlu-world-religions-147",
+    "language": "fr",
+    "prompt": "Quels sont les évangiles dits synoptiques ?",
+    "why": "The answer is a list of three names no typed line reproduces in order."
+  },
+  {
+    "id": "mmmlu-world-religions-28",
+    "language": "fr",
+    "prompt": "Dans la tradition zen japonaise, qu’est-ce que le zazen ?",
+    "why": "The answer is a phrase (« Une méditation assise ») no typed line reproduces."
+  },
+  {
+    "id": "mmmlu-world-religions-43",
+    "language": "fr",
+    "prompt": "Quand est né l’actuel Dalaï-Lama ?",
+    "why": "Four birth years; only the choices make it a question."
+  },
+  {
+    "id": "mmmlu-world-religions-70",
+    "language": "fr",
+    "prompt": "Combien de livres y a-t-il dans le Nouveau Testament ?",
+    "why": "Four counts; only the choices make it a question."
+  },
+  {
     "id": "oqdb-111-2",
     "language": "fr",
     "prompt": "En combien de temps la course Ironman est-elle réalisée ?",

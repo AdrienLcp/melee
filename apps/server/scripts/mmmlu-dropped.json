@@ -1,0 +1,3812 @@
+[
+  {
+    "id": "mmmlu-anatomy-102",
+    "prompt": "Chez le fœtus, le canal artériel fait passer le sang…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-114",
+    "prompt": "Un patient présente une fracture du radius. Son os est plié, mais non déplacé. La peau est intacte. Comment appelle-t-on ce type de fracture ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-124",
+    "prompt": "Les axones préganglionnaires parasympathiques sortent du SNC avec les…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-127",
+    "prompt": "Où se trouvent les centres vitaux dans le tronc cérébral ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-129",
+    "prompt": "Lorsque l’on avale…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-53",
+    "prompt": "La localisation anatomique du canal rachidien est…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-55",
+    "prompt": "Si quelqu’un a les pieds en canard, cela signifie qu’ils sont orientés…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-62",
+    "prompt": "Une lésion du troisième nerf crânien par un traumatisme de l’orbite peut provoquer…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-68",
+    "prompt": "Les voies respiratoires sont traversées par l'isthme de la glande thyroïde au niveau…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-74",
+    "prompt": "L’examen d’un patient indique un strabisme à alignement médial. Ce phénomène pourrait être dû à des dommages au…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-78",
+    "prompt": "Le calcium, le potassium et le sodium sont considérés comme…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-8",
+    "prompt": "Les processus palatins commencent à fusionner vers…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-81",
+    "prompt": "Lorsqu’une ouverture d’urgence des voies respiratoires est nécessaire, la membrane cricothyroïdienne doit être percée immédiatement…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-82",
+    "prompt": "Le liquide céphalo-rachidien circule autour le cerveau entre…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-84",
+    "prompt": "Quelle paroi orbitaire est la plus susceptible de s'effondrer lors d'une fracture par éruption ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-94",
+    "prompt": "Quel muscle est le plus actif lors d’une excursion latérale de la mandibule vers la droite ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-anatomy-96",
+    "prompt": "Les nerfs préganglionnaires parasympathiques quittent le système nerveux central avec…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-astronomy-134",
+    "prompt": "Laquelle de ces constellations ne se trouve pas près de la Voie lactée dans notre ciel ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-astronomy-14",
+    "prompt": "La Voie Lactée fait partie d’un superamas géant d'un diamètre de 160 Mpc. Comment ce superamas s’appelle-t-il ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-astronomy-140",
+    "prompt": "Quel âge a environ la surface de Vénus ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-astronomy-27",
+    "prompt": "Quelle mission sur Mars atterrira le 25 mai 2008 et creusera un trou dans un sol (qu’on espère) riche en glace ?",
+    "why": "Written in 2008 about a landing still to come (« atterrira le 25 mai 2008 »)."
+  },
+  {
+    "id": "mmmlu-astronomy-47",
+    "prompt": "La vie sur Terre est apparue…",
+    "why": "« On ne le sait pas précisément » is an answer only an exam marks; a table argues."
+  },
+  {
+    "id": "mmmlu-astronomy-80",
+    "prompt": "Quelles sont la valeur numérique et l’unité correctes de la constante de Boltzmann ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-astronomy-84",
+    "prompt": "Quel facteur est le plus important pour déterminer l’histoire du volcanisme et de l’activité tectonique sur une planète ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-astronomy-97",
+    "prompt": "La partie visible du spectre électromagnétique se situe entre…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-10",
+    "prompt": "La symétrie du clivage résultant des premières divisions cellulaires qui surviennent à un angle oblique par rapport à l'axe polaire est connue comme …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-103",
+    "prompt": "La cible de la digestion d'un dimère nucléosomique en monomères nucléosomiques par la DNase est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-104",
+    "prompt": "Un procaryote thermophile et méthanogène, possédant des éthers d'isoprénylglycérol dans sa membrane au lieu de phospholipides est très probablement …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-120",
+    "prompt": "Une sous-unité d'ADN et de protéine constituée de longs segments d'ADN de 134 paires de bases entourant un octomère protéique est appelée (a) …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-128",
+    "prompt": "La poussée radiculaire créée par les racines d'une plante fait que l'eau pénètre dans les racines par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-2",
+    "prompt": "Afin d'éviter le dessèchement et les blessures, les embryons de vertébrés terrestres sont enfermés dans un liquide produit par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-21",
+    "prompt": "Le point auquel les taux de natalité et de mortalité sont égaux dans la croissance d’une population est appelé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-22",
+    "prompt": "Les ailes d'une chauve-souris et les ailes d'un papillon ont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-23",
+    "prompt": "Le type de cellule qui contient le « tissu moelle » centré dans une tige de dicotylédone est le …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-24",
+    "prompt": "Les régions mobiles de l'ADN capables de s'insérer dans un génome existant sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-25",
+    "prompt": "Le processus par lequel les espèces pionnières colonisent un substrat nu comme la roche, le sable ou le moraine glaciaire s’appelle …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-34",
+    "prompt": "Un brin d'ADN de séquence 5' CGA TTG 3' serait complémentaire de la séquence …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-38",
+    "prompt": "Les organes visuels des crustacés et des insectes contiennent des ommatidies, qui représentent les unités visuelles individuelles de l'organisme …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-43",
+    "prompt": "Les structures qui agissent comme sites d'échange gazeux dans une tige ligneuse sont les …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-48",
+    "prompt": "Une région de l'écosystème marin marquées par la pénétrance du rayonnement solaire et la remontée des nutriments est la …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-6",
+    "prompt": "Le corps de Barr trouvé dans les noyaux des cellules de mammifères femelles est un exemple …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-66",
+    "prompt": "Le premier point d'entrée de l'eau au niveau des racines d'une plante monocotylédone est le cytoplasme des cellules de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-71",
+    "prompt": "On observe qu'une molécule fluorescente de 1 000 daltons injectée dans une cellule pénètre dans une cellule adjacente en passant par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-76",
+    "prompt": "La section du chromosome qui sert de site de fixation par le fuseau mitotique pendant de la division cellulaire est le …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-77",
+    "prompt": "Une plante qui pousse le long d'un treillis présente le …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-82",
+    "prompt": "Des taux sériques appropriés de calcium sont maintenus chez les humains par la sécrétion …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-84",
+    "prompt": "Quelle caractéristique est propre aux angiospermes ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-86",
+    "prompt": "Le fait que de très jeunes oiseaux s’accroupissent à la vue d’un prédateur au-dessus de leur tête est un exemple de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-college-biology-92",
+    "prompt": "L’équilibre de Hardy-Weinberg suppose généralement tout ce qui suit SAUF :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-100",
+    "prompt": "La couleur de lumière la plus intense dans la courbe du rayonnement solaire …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-102",
+    "prompt": "Si deux protons et deux neutrons sont retirés du noyau du néon 20, il reste un noyau de quel élément ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-104",
+    "prompt": "Dans un mélange de gaz hydrogène, oxygène et azote à une température donnée, les molécules les plus rapides en moyenne sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-108",
+    "prompt": "La surface de la Terre perd de l’énergie dans l’espace, principalement …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-11",
+    "prompt": "La surface de la Terre perd de l’énergie dans l’espace, principalement …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-110",
+    "prompt": "Une source principale de l’énergie interne de la Terre est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-113",
+    "prompt": "Le temps nécessaire pour qu’un pendule oscille d’un côté à l’autre correspond à sa …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-114",
+    "prompt": "À mesure que l’entropie dans un système augmente, l’énergie dans le système …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-115",
+    "prompt": "Quand l’eau se transforme en vapeur, l’énergie est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-116",
+    "prompt": "D’après Coulomb, une paire de particules chargées et placées deux fois plus près l’une de l’autre subit une force …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-121",
+    "prompt": "Une résistance de 10 Ω supporte un courant de 10 A. La tension aux bornes de la résistance est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-124",
+    "prompt": "Les détecteurs de métaux que les gens traversent dans les aéroports fonctionnent selon …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-130",
+    "prompt": "La réfraction se produit lorsqu’une onde traverse une zone limite et change …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-131",
+    "prompt": "Quand vous tapez sur un morceau de bois, cela produira un son caractéristique lié à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-132",
+    "prompt": "Quand le vent accélère en passant au-dessus d’une colline, la pression atmosphérique à cet endroit …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-138",
+    "prompt": "La radioactivité est présente sur Terre depuis …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-140",
+    "prompt": "Dans la fission aussi bien que dans la fusion, l’énergie est libérée tandis que la masse …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-141",
+    "prompt": "Si des molécules relativement lentes se condensent dans l’air, la température de l’air restant tend à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-143",
+    "prompt": "La pression au fond d’un étang ne dépend PAS de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-150",
+    "prompt": "Le principe de Huygens pour la lumière est principalement décrit par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-153",
+    "prompt": "Quand la couleur jaune apparaît sur votre écran de télévision, les phosphores activés sur l’écran sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-154",
+    "prompt": "Lequel de ces éléments ne fait PAS partie de la famille des ondes électromagnétiques ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-156",
+    "prompt": "Un moteur et un générateur sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-157",
+    "prompt": "Si plusieurs lampes sont connectées en parallèle dans un circuit, le courant dans la source d’alimentation …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-16",
+    "prompt": "Lorsque vous regardez les pétales rouges d’une rose, la couleur de la lumière que vous voyez est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-165",
+    "prompt": "Dans un événement de fission ou de fusion, une quantité qui reste inchangée est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-168",
+    "prompt": "L’électricité et le magnétisme se connectent pour former …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-172",
+    "prompt": "Dire qu’un pétale de rose est rouge, c’est dire qu’il …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-173",
+    "prompt": "Comparé à un son de 60 décibels, un son de 80 décibels a une intensité …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-18",
+    "prompt": "Lorsque vous pressez un ballon rempli d’air, vous augmentez son ou sa …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-184",
+    "prompt": "Si un élément éjecte une particule alpha, le numéro atomique de l’élément résultant …",
+    "why": "Wrong: an alpha emission lowers the atomic number by 2, not 4."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-187",
+    "prompt": "Quand un objet est mis en vibration par une onde ayant une fréquence correspondante, ce qui se produit est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-188",
+    "prompt": "La lueur rouge du tube au néon d’une enseigne est le résultat de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-192",
+    "prompt": "Le carbone 14 est principalement produit par les radiations cosmiques dans …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-193",
+    "prompt": "Les réactions en chaîne dans un réacteur à fission sont causées par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-198",
+    "prompt": "Un coup de karaté délivre une force de 3 000 N sur une planche qui se casse. La force que la planche exerce sur la main pendant cet événement est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-202",
+    "prompt": "Un réacteur nucléaire à fission courant …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-208",
+    "prompt": "Comparée à un son fondamental, la fréquence de sa deuxième harmonique est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-211",
+    "prompt": "La source principale de l’énergie interne de la Terre est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-213",
+    "prompt": "Les astrophysiciens sont capables d’identifier les éléments dans les couches extérieures d’une étoile en étudiant …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-216",
+    "prompt": "Si un élément éjecte une particule alpha, le numéro atomique de cet élément …",
+    "why": "Wrong: an alpha emission lowers the atomic number by 2, it does not raise it by 1."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-22",
+    "prompt": "Dans une presse hydraulique, le piston de sortie ne peut pas …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-222",
+    "prompt": "L’inertie de rotation d’un objet est plus grande lorsque la majorité de la masse est située …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-223",
+    "prompt": "Quand de petits éléments sont assemblés pour former une pièce plus grande, la surface combinée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-225",
+    "prompt": "Dans le noyau atomique, les forces électriques tendent …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-228",
+    "prompt": "Quand nous parlons de dilatation du temps, cela signifie que le temps …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-229",
+    "prompt": "Les lignes de champ magnétique autour d’un fil parcouru par un courant forment …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-23",
+    "prompt": "Si un système en rotation se contracte en l’absence d’un couple externe, sa vitesse de rotation augmente et son moment angulaire …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-3",
+    "prompt": "D’après la géométrie à quatre dimensions, la somme des angles d’un triangle est de 180° …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-30",
+    "prompt": "Un baromètre qui utilise de l’eau à la place du mercure sera …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-35",
+    "prompt": "Si un élément éjecte une particule alpha, le numéro atomique de l’élément résultant …",
+    "why": "Contradicts conceptual-physics-184 and -216, which give the same stem three different answers; two of the three are wrong."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-38",
+    "prompt": "L’énergie d’un photon émis est liée à sa ou son …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-39",
+    "prompt": "La conduction thermique implique principalement …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-40",
+    "prompt": "Comparé au courant dans une lampe à LED, le courant dans le fil de connexion est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-52",
+    "prompt": "La couleur bleu-vert de l’eau de mer est principalement due à la lumière qui n’a pas été …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-58",
+    "prompt": "L’intensité du son est principalement liée à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-60",
+    "prompt": "La rougeur d’un lever ou d’un coucher de Soleil est principalement due à la lumière qui n’a pas été …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-64",
+    "prompt": "Si le Soleil était deux fois plus massif, son attraction sur Mars serait …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-66",
+    "prompt": "Quand un aliment est exposé à un rayonnement gamma …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-67",
+    "prompt": "La lueur rouge du tube au néon d’une enseigne est le résultat de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-71",
+    "prompt": "La boue microscopique dans l’eau a tendance à rendre l’eau …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-74",
+    "prompt": "Le couple est une force …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-8",
+    "prompt": "Les lignes spectrales des éléments sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-87",
+    "prompt": "Les orbites discrètes des électrons sont mieux comprises lorsqu’elles sont modélisées par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-88",
+    "prompt": "Le moteur thermique, comme le moteur à réaction, est plus efficace lorsqu’il fonctionne …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-9",
+    "prompt": "Une onde transfère …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-90",
+    "prompt": "Si plusieurs lampes sont connectées en série dans un circuit, le courant dans la source d’alimentation …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-93",
+    "prompt": "La majeure partie du rayonnement dans la biosphère terrestre est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-conceptual-physics-99",
+    "prompt": "Le sable chaud se refroidit plus rapidement la nuit que la végétation. Par rapport à la végétation, la capacité thermique spécifique du sable …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-104",
+    "prompt": "Quel groupe est entièrement constitué de personnes ayant affirmé que les espèces étaient fixes (c’est-à-dire, qu’elles ne changeaient pas) ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-121",
+    "prompt": "Une tendance à la diminution de taille des plantes sur les pentes des montagnes au fur et à mesure de l’augmentation de l’altitude est un exemple de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-127",
+    "prompt": "Les lamproies s’attachent à la peau des truites grises et absorbent les nutriments de leur corps. Cette relation est un exemple de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-131",
+    "prompt": "Quelle description s’applique le mieux à l’espèce de papillon africain qui existe en deux motifs de couleurs remarquablement différents ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-137",
+    "prompt": "Ce processus conduit à la production nette de deux pyruvates, de deux ATP et de deux NADH …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-138",
+    "prompt": "Quand l’oxygène n’est plus disponible, ce processus régénère le NAD+, permettant à la respiration de continuer …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-155",
+    "prompt": "Les éléments nécessaires pour réaliser la photosynthèse sont :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-158",
+    "prompt": "Séquence de paires de bases qui signale le site d’initiation de la transcription …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-159",
+    "prompt": "Ceux qui sont chassés ont des couleurs qui leur permettent de se camoufler dans leur environnement …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-167",
+    "prompt": "Un lézard sans mécanisme de défense chimique de la même couleur qu’une autre lézard porteur de ce type de mécanisme présente :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-169",
+    "prompt": "Le dimorphisme sexuel est le plus souvent causé par :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-173",
+    "prompt": "Un animal inoffensif copie l’apparence d’un animal dangereux dans un mécanisme de défense visant à décourager les prédateurs …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-175",
+    "prompt": "Une plante croît dans le sens inverse de la force gravitationnelle. Ceci est un exemple de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-176",
+    "prompt": "Laquelle de ces molécules est connue pour être impliquée dans la régulation photopériodique de la floraison des angiospermes ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-177",
+    "prompt": "Chez les plantes, la tendance des plantes grimpantes à enrouler leurs vrilles autour d’un treillis s’appelle :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-187",
+    "prompt": "Région d’ADN affectant la transcription pouvant se situer à des milliers de paires de bases du promoteur …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-188",
+    "prompt": "Lesquels de ces caractères sont affectés par plus d’un gène ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-2",
+    "prompt": "L’énergie perdue par les électrons tandis qu’ils se déplacent sur la chaîne de transport d’électrons est utilisée pour :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-200",
+    "prompt": "Le transfert d’ADN entre deux bactéries connectées entre elles par un pilus sexuel s’appelle :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-215",
+    "prompt": "En général, les cellules animales diffèrent des cellules végétales en ce que les cellules animales ont :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-219",
+    "prompt": "Une caractéristique des acides aminés ne se trouvant PAS dans les carbohydrates est la présence de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-222",
+    "prompt": "Dans les embryons de poulets, la membrane extraembryonnaire qui apporte les nutriments au fœtus est :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-230",
+    "prompt": "Protéine empêchant la liaison de la polymérase de l’ARN au site promoteur …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-238",
+    "prompt": "La perte de mémoire résultera plus probablement d’une anomalie de fonctionnement de quelle partie du cerveau ?",
+    "why": "« Cerveau » translates cerebrum and makes the answer read as the whole brain."
+  },
+  {
+    "id": "mmmlu-high-school-biology-239",
+    "prompt": "La différence majeure entre le cartilage et l’os est que le cartilage :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-263",
+    "prompt": "Une réaction qui inclut l’énergie comme l’un des réactifs est appelée une :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-282",
+    "prompt": "Ce biome a des hivers froids et est connu pour ses forêts de pins …",
+    "why": "Wrong: pine forests and cold winters are the taiga, not deciduous forest."
+  },
+  {
+    "id": "mmmlu-high-school-biology-290",
+    "prompt": "Une cellule est placée dans l’environnement hypertonique et son cytoplasme se contracte. Cela démontre le principe de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-297",
+    "prompt": "Ce processus a comme produit le NADP+, l’ADP et le sucre …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-298",
+    "prompt": "Couleurs d’avertissement adoptés par les animaux ayant un mécanisme de défense chimique …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-301",
+    "prompt": "Évolution en tandem, d’avant en arrière, d’espèces étroitement apparentées avec comme exemple les relations entre prédateur et proie …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-306",
+    "prompt": "Le site primaire de la réabsorption du glucose est :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-40",
+    "prompt": "Deux espèces apparentées se ressemblent de moins en moins au fur et à mesure qu’elles évoluent …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-52",
+    "prompt": "Le cycle de Krebs chez les humains a lieu dans :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-54",
+    "prompt": "Pendant quelle phase du cycle cellulaire la quantité d’ADN dans une cellule eucaryotique est-elle généralement redoublée ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-56",
+    "prompt": "Brève séquence par l’accélérateur assistant la transcription en interagissant avec les protéines régulatrices …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-63",
+    "prompt": "Ce biome contient des plantes dont les racines ne peuvent pas s’enfoncer en profondeur en raison de la présence de gel permanent …",
+    "why": "Wrong: permafrost is the tundra's, not the taiga's."
+  },
+  {
+    "id": "mmmlu-high-school-biology-64",
+    "prompt": "Ce biome contient des arbres qui perdent leurs feuilles pendant les mois d’hiver …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-65",
+    "prompt": "Un changement du potentiel de la membrane neuronale de +50 millivolts à -70 millivolts est considéré comme :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-7",
+    "prompt": "Évolution qui crée des ressemblances entre deux espèces non apparentées …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-biology-94",
+    "prompt": "Tous les virus contiennent au moins ces deux composants principaux :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-102",
+    "prompt": "Le chlore gazeux réagit le plus facilement avec le …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-103",
+    "prompt": "Un ester est obtenu par la réaction de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-120",
+    "prompt": "La particule subatomique la plus massive est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-128",
+    "prompt": "Les unités de vitesse d’une réaction chimique sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-141",
+    "prompt": "Les matériaux durs tels que le carbure de silicium, utilisé pour les meules, sont considérés comme des exemples de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-147",
+    "prompt": "Lorsqu’on utilise la loi des gaz parfaits, les conditions standard de température et de pression sont …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-15",
+    "prompt": "Un étudiant dispose d’un litre d’une solution 0,100 M d’un acide fort. Pour préparer un tampon, cette solution doit être mélangée à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-150",
+    "prompt": "L’argon peut se liquéfier à basse température en raison de(s) …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-151",
+    "prompt": "Choisissez la réaction censée induire la plus forte diminution de l’entropie …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-173",
+    "prompt": "Moins de 1/1000 de la masse d’un atome provient …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-178",
+    "prompt": "Si l’on fait réagir 1,0 g de rubidium et 1,0 g de brome, que restera-t-il en quantités mesurables (plus de 0,10 mg) dans la cuve de réaction ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-192",
+    "prompt": "Lorsqu’on recueille un gaz sur de l’eau, il est important de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-200",
+    "prompt": "La théorie de la collision des vitesses de réaction n’inclut pas …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-21",
+    "prompt": "Trois demi-vies après la préparation d’un isotope …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-22",
+    "prompt": "Quelle paire de réactifs n’aura pas d’équation ionique nette (c’est-à-dire que tous les ions s’annulent) ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-25",
+    "prompt": "Ce liquide est une substance non conductrice de couleur foncée à température ambiante …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-26",
+    "prompt": "C’est une molécule de forme tétraédrique …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-39",
+    "prompt": "La relation entre la pression de vapeur d’un liquide et la chaleur de vaporisation est exprimée dans …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-41",
+    "prompt": "Les unités de R, la constante de l’équation de la loi des gaz parfaits, peuvent être …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-44",
+    "prompt": "Le para-dichlorobenzène est utilisé comme « boules à mites ». Ce composé peut également être appelé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-48",
+    "prompt": "Le groupe fonctionnel qui représente un acide organique s’écrit comme suit (Remarque : R représente le reste de la molécule) …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-52",
+    "prompt": "La particule subatomique ayant la capacité de pénétration la plus élevée est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-54",
+    "prompt": "Le spectre photoélectronique du carbone présente trois pics de taille égale. Quel est le pic qui se situe à l’énergie la plus basse ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-6",
+    "prompt": "Les ions monoatomiques des éléments représentatifs sont souvent …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-76",
+    "prompt": "Les substances dont les structures de Lewis doivent être représentées avec un électron non apparié sont appelées …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-87",
+    "prompt": "L’alcène le plus simple possède …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-90",
+    "prompt": "Le nom du CH3CHBrCHClCH2CH3 est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-91",
+    "prompt": "Dans quelles conditions un gaz réel se comportera-t-il le plus comme un gaz parfait ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-chemistry-92",
+    "prompt": "Combien d’électrons, de neutrons et de protons contient un atome de 52Cr ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-1",
+    "prompt": "La tendance d’une population à continuer d’augmenter bien au-delà de la fécondité de reproduction est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-101",
+    "prompt": "Quelle(s) structure(s) occupe(nt) traditionnellement le centre d’une ville asiatique historique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-108",
+    "prompt": "L’utilisation et la diffusion de l’anglais dans l’Inde du dix-neuvième siècle est un exemple de quel type de diffusion ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-109",
+    "prompt": "La théorie selon laquelle la plupart des migrations se fait sur de courtes distances et par étapes est attribuée à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-110",
+    "prompt": "Le mode de vie basé sur la reproduction et l’élevage d’animaux utilisés pour se nourrir, pour se couvrir et pour s’habiller est appelé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-113",
+    "prompt": "La culture itinérante est plus souvent pratiquée dans …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-12",
+    "prompt": "Quelle est la religion présentant la croissance la plus rapide aux États-Unis aujourd’hui ?",
+    "why": "American and dated (« aux États-Unis aujourd’hui »)."
+  },
+  {
+    "id": "mmmlu-high-school-geography-127",
+    "prompt": "Quel théoricien a essayé d’expliquer les prix des produits agricoles par leur rapport aux modes d’utilisation des terres ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-13",
+    "prompt": "La zone périphérique desservie par un centre urbain est désignée sous le nom de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-132",
+    "prompt": "Si vous vouliez trouver ka distribution globale de charbon, vous utiliseriez …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-135",
+    "prompt": "La dispute opposant la Chine et le Vietnam sur les îles Spratley est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-142",
+    "prompt": "Les basques, les bretons, les kashmiris et les tamouls sont tous des exemples de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-144",
+    "prompt": "La pratique d’une agriculture intensive plantant et récoltant la même culture plus d’une fois par an est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-145",
+    "prompt": "Lorsqu’une nouvelle mode est introduite au niveau international, les informations voyagent d’abord à travers un processus dit de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-149",
+    "prompt": "La théorie des systèmes mondiaux divise le monde en …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-152",
+    "prompt": "La zone s’urbanisant le plus rapidement au monde est :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-155",
+    "prompt": "La théorie selon laquelle les villes se développent du centre vers l’extérieur en utilisant différents nœuds de croissance a été proposée par …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-158",
+    "prompt": "La théorie du « melting pot » consistant à réunir plusieurs groupes issus de l’immigration pour former une seule culture dominante est appelée :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-164",
+    "prompt": "Une carte isobarique montre les lignes reliant tous les points à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-168",
+    "prompt": "L’idée qui, selon vous, définit et impose la soumission à un État-nation est …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-170",
+    "prompt": "Les variations de vocabulaire, de prononciation, et de rythme dans une langue parlée sont appelées …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-172",
+    "prompt": "Dans quel pays est-ce que la langue constitue une force centrifuge ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-177",
+    "prompt": "Un facteur essentiel ayant contribué à la deuxième révolution agricole a été …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-182",
+    "prompt": "Une carte qui présente une seule catégorie de données statistiques est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-19",
+    "prompt": "La latitude et la longitude d’un lieu sont un exemple de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-194",
+    "prompt": "Le plus gros exportateur de biens agricoles dans le monde est …",
+    "why": "Dated: the largest agricultural exporter depends on whether the EU counts as one, and on the year."
+  },
+  {
+    "id": "mmmlu-high-school-geography-2",
+    "prompt": "La tendance de la migration à diminuer avec la distance est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-20",
+    "prompt": "L’association volontaire de trois pays ou plus prêts à renoncer à une partie de leur souveraineté est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-28",
+    "prompt": "Le Rhin est un exemple de quel type de frontière ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-29",
+    "prompt": "Quel type d’activité économique est liée plus étroitement à l’environnement physique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-30",
+    "prompt": "La majorité de la population active dans les pays périphériques est probablement employée dans quel type d’activités ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-37",
+    "prompt": "Quel terme décrit les forces unifiant et renforçant un pays ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-40",
+    "prompt": "Les équipes sportives nationales, les drapeaux, les hymnes nationaux et les festivités nationales sont tous des éléments favorisant …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-41",
+    "prompt": "Le processus par lequel les immigrés apprennent les valeurs, la langue et les usages de leur nouveau pays est appelé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-45",
+    "prompt": "Pour aller à l’école le matin, nous utilisons TOUS ceci comme guide :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-50",
+    "prompt": "Un fort mouvement de rejet de toutes les religions est appelé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-51",
+    "prompt": "Les régions partagent toutes ces caractéristiques SAUF …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-56",
+    "prompt": "La théorie selon laquelle toute société se développe économiquement selon un modèle de croissance à cinq étapes est attribuée à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-60",
+    "prompt": "De nouveaux magasins ouverts autour d’un grand centre commercial reflète quel concept ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-61",
+    "prompt": "La naissance d’une main d’œuvre industrielle urbaine en Europe a contribué au début de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-65",
+    "prompt": "La concentration dans l’espace des activités de production et des gens au bénéfice de tous est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-67",
+    "prompt": "Ankara, en Turquie, et Islamabad, au Pakistan, sont tous deux des exemples de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-69",
+    "prompt": "La théorie selon laquelle quiconque contrôle le territoire européen gouverne le monde est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-79",
+    "prompt": "L’utilisation d’un vaste nœud de bureaux et de terrains commerciaux hors de la ville centrale avec plus d’emplois que de résidents est un(e) …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-80",
+    "prompt": "Quelle récolte a marqué le début de la troisième révolution agricole ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-82",
+    "prompt": "Si je voulais expédier un petit bijou de très grande valeur à ma tante vivant à Poughkeepsie, quel mode de transport est le plus pertinent ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-84",
+    "prompt": "Quel type de modèle urbain contient une dorsale résidentielle distincte partant du centre-ville vers l’extérieur le long du boulevard principal ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-92",
+    "prompt": "Le rejet ou l’indifférence à l’égard de la religion dans un pays est appelé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-94",
+    "prompt": "Une ville qui est plus de deux fois plus grande que la ville la plus grande dans un pays est appelée …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-high-school-geography-97",
+    "prompt": "Une partie de la frontière entre les États-Unis et le Mexique est constituée par le Rio Grande, un exemple de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-0",
+    "prompt": "Dans une translocation robertsonienne, la fusion se produit au niveau :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-13",
+    "prompt": "La mutation caractéristique de la drépanocytose est…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-16",
+    "prompt": "Quelle serait la fréquence des individus AABBCC issus de l’union de deux individus AaBbCc ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-20",
+    "prompt": "Le syndrome de DiGeorge/Shprintzen est dû à une délétion sur un chromosome. Lequel ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-22",
+    "prompt": "Le mode de transmission présenté par le déficit en glucose-6-phosphate déshydrogénase (G6PD) est…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-27",
+    "prompt": "L'alpha-iduronidase recombinante est utilisée pour le traitement d’une maladie ou d’un syndrome. Lequel ou laquelle ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-30",
+    "prompt": "Le mécanisme mutationnel de la thalassémie (alpha ou bêta) consiste en…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-4",
+    "prompt": "Le mode de transmission caractéristique de l’hyperthermie maligne (hyperpyrexie) est…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-43",
+    "prompt": "Une mutation non sens implique…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-45",
+    "prompt": "Dans quelle situation le taux sérique maternel d’alpha-fœtoprotéine (AFP) est-il inférieur à la moyenne ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-57",
+    "prompt": "L’atrophie optique héréditaire de Leber est due à une mutation du…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-68",
+    "prompt": "L’anomalie chromosomique la plus courante dans les fausses couches spontanées du premier trimestre est…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-71",
+    "prompt": "Le déficit en pseudocholinestérase est associé à une sensibilité accrue…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-72",
+    "prompt": "La mutation la plus courante de la mucoviscidose consiste en…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-77",
+    "prompt": "Laquelle de ces affections provoque le pseudohermaphrodisme féminin ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-78",
+    "prompt": "Quel composant de l’ARN transcrit chez les eucaryotes est présent dans la transcription initiale, mais supprimé avant que la traduction n’ait lieu ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-8",
+    "prompt": "Le risque d’anomalie chez l’enfant d’une mère atteinte de phénylcétonurie non traitée est de…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-83",
+    "prompt": "La mutation la plus fréquente de l’α-thalassémie consiste en…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-84",
+    "prompt": "Un bébé né avec une hypoplasie pulmonaire secondaire à un oligohydramnios provoqué par une agénésie rénale serait considéré comme présentant…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-87",
+    "prompt": "Les mutations qui provoquent l'achondroplasie exercent un effet que l’on peut considérer comme…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-88",
+    "prompt": "La présence de deux ou plusieurs lignées cellulaires provenant de différents zygotes chez un même individu est appelée…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-9",
+    "prompt": "Le saut d’exon est associé à…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-90",
+    "prompt": "La cartographie de l’autozygotie est utilisée pour cartographier les troubles qui montrent un certain modèle de transmission. Lequel ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-91",
+    "prompt": "La consanguinité est fortement associée à un certain type d’héritage. Lequel ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-medical-genetics-95",
+    "prompt": "Un test enzymatique permet d’identifier les personnes porteuses de…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-miscellaneous-101",
+    "prompt": "Qui étaient les « Know Nothing » ?",
+    "why": "American nineteenth-century party."
+  },
+  {
+    "id": "mmmlu-miscellaneous-103",
+    "prompt": "Qui est la star de la série télévisée « Tout le monde aime Raymond » ?",
+    "why": "American sitcom lead."
+  },
+  {
+    "id": "mmmlu-miscellaneous-11",
+    "prompt": "Qui était président des États-Unis à la naissance de Bill Clinton ?",
+    "why": "American presidential chronology."
+  },
+  {
+    "id": "mmmlu-miscellaneous-113",
+    "prompt": "Quelle chaîne de restauration rapide a utilisé le slogan publicitaire « Where's the beef? » …",
+    "why": "American fast-food slogan."
+  },
+  {
+    "id": "mmmlu-miscellaneous-114",
+    "prompt": "Quelle ville est appelée « la capitale mondiale du caoutchouc » ?",
+    "why": "American city nickname."
+  },
+  {
+    "id": "mmmlu-miscellaneous-115",
+    "prompt": "Quel a été le premier collège américain à devenir mixte ?",
+    "why": "American college history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-116",
+    "prompt": "De quelle couleur est le bouc de l’Oncle Sam ?",
+    "why": "American iconography trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-119",
+    "prompt": "Sous quel nom de marque la société 7-Eleven vend-elle ses sodas extra-larges ?",
+    "why": "American convenience-store brand."
+  },
+  {
+    "id": "mmmlu-miscellaneous-125",
+    "prompt": "Lequel de ces pouvoirs n’est pas l’une des trois branches du gouvernement américain ?",
+    "why": "American civics."
+  },
+  {
+    "id": "mmmlu-miscellaneous-137",
+    "prompt": "Combien de films environ regarde-t-on dans les foyers des États-Unis en un an ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-miscellaneous-139",
+    "prompt": "Dans le jeu pour enfants … Rover, quelle est la couleur du « Rover » ?",
+    "why": "A garbled stem (« Dans le jeu pour enfants … Rover »)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-144",
+    "prompt": "La philosophie esthétique selon laquelle la valeur d’une œuvre d'art est déterminée par les musées et les galeries est appelée…",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-miscellaneous-151",
+    "prompt": "Quel nouveau jeton a été récemment ajouté au jeu de société Monopoly ?",
+    "why": "Dated: « récemment ajouté » to Monopoly, years ago."
+  },
+  {
+    "id": "mmmlu-miscellaneous-152",
+    "prompt": "Quelle est la manière appropriée de s’adresser à un duc ?",
+    "why": "English peerage etiquette; a French duke is not « Votre Grâce »."
+  },
+  {
+    "id": "mmmlu-miscellaneous-155",
+    "prompt": "Lequel de ces guitaristes rock a conçu une ligne colorée de cravates pour hommes ?",
+    "why": "American guitarist's tie line."
+  },
+  {
+    "id": "mmmlu-miscellaneous-156",
+    "prompt": "Dans le jargon des gangsters, si vous « chantez comme un canari », que faites-vous ?",
+    "why": "An English gangster idiom with no French counterpart."
+  },
+  {
+    "id": "mmmlu-miscellaneous-157",
+    "prompt": "Où Lewis et Clark ont-ils commencé leur célèbre expédition en 1804 ?",
+    "why": "American exploration history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-158",
+    "prompt": "Un slogan populaire dit aux gens de « don’t mess with… » (viens pas emm… le…) en parlant d’un certain État américain. Lequel ?",
+    "why": "An American state slogan."
+  },
+  {
+    "id": "mmmlu-miscellaneous-159",
+    "prompt": "Chaque année, dans le baseball professionnel, le joueur élu meilleur défenseur à son poste gagne…",
+    "why": "Baseball award."
+  },
+  {
+    "id": "mmmlu-miscellaneous-162",
+    "prompt": "De quelle quantité de chou frisé aurait-on besoin pour fournir suffisamment de calories à une personne pendant une année entière ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-163",
+    "prompt": "En moyenne, combien de temps le citoyen moyen des États-Unis a-t-il présidé le pays ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-166",
+    "prompt": "Quel grade permet à un général de l’armée américaine de porter trois étoiles ?",
+    "why": "American army ranks."
+  },
+  {
+    "id": "mmmlu-miscellaneous-167",
+    "prompt": "Comment écrit-on « six pieds » en anglais ?",
+    "why": "Mistranslated: the stem asks how to write a unit in English."
+  },
+  {
+    "id": "mmmlu-miscellaneous-171",
+    "prompt": "Combien de manches y a-t-il dans un match régulier des Ligues majeures de baseball ?",
+    "why": "Baseball rules."
+  },
+  {
+    "id": "mmmlu-miscellaneous-174",
+    "prompt": "Quelle était l’espérance de vie moyenne des hommes blancs nés aux États-Unis juste avant la guerre civile ?",
+    "why": "American demography."
+  },
+  {
+    "id": "mmmlu-miscellaneous-175",
+    "prompt": "Que signifie le mot yiddish « meshuga » ?",
+    "why": "Yiddish vocabulary."
+  },
+  {
+    "id": "mmmlu-miscellaneous-178",
+    "prompt": "Lorsque Franklin D. Roosevelt a remporté les États à l’élection présidentielle de 1932, combien d’États n’a-t-il pas remporté ?",
+    "why": "American electoral history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-182",
+    "prompt": "Des accompagnements simples, une texture légère et des mélodies douces sont les qualités propres à/au…",
+    "why": "Music-history jargon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-184",
+    "prompt": "Aucun pape ne s’est jamais appelé…",
+    "why": "Ambiguous: Pope Lando exists and an antipope took the name Laurent, so the answer is arguable."
+  },
+  {
+    "id": "mmmlu-miscellaneous-189",
+    "prompt": "En baseball, comment appelle-t-on un frappeur qui remplace un autre frappeur ?",
+    "why": "Baseball jargon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-197",
+    "prompt": "Quelle personnalité célèbre de la radio faisait aussi la voix de Shaggy dans la version originale du dessin animé « Scooby-Doo » ?",
+    "why": "American radio personality."
+  },
+  {
+    "id": "mmmlu-miscellaneous-199",
+    "prompt": "Comment appelle-t-on les fans de l’émission télévisée « Mystery Science Theater 3000 » ?",
+    "why": "American cult-TV fandom name."
+  },
+  {
+    "id": "mmmlu-miscellaneous-206",
+    "prompt": "Lorsqu'il s'agit de mesurer des chevaux, combien mesure une « main » ?",
+    "why": "Imperial units."
+  },
+  {
+    "id": "mmmlu-miscellaneous-210",
+    "prompt": "Lequel de ces démocrates a perdu face à Ronald Reagan lors des élections présidentielles de 1984 ?",
+    "why": "American electoral history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-211",
+    "prompt": "Le produit intérieur brut (PIB) réel est défini comme le rapport entre le PIB nominal et…",
+    "why": "Economics exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-212",
+    "prompt": "Lequel de ces noms désigne un terrain de golf ?",
+    "why": "Golf jargon in English."
+  },
+  {
+    "id": "mmmlu-miscellaneous-214",
+    "prompt": "Qui n’était pas l'un des fils Cartwright dans la série télévisée « Bonanza » ?",
+    "why": "American western series."
+  },
+  {
+    "id": "mmmlu-miscellaneous-215",
+    "prompt": "Combien dure un mandat au Sénat des États-Unis ?",
+    "why": "American civics."
+  },
+  {
+    "id": "mmmlu-miscellaneous-216",
+    "prompt": "Sur quelle partie du corps se porte une babouchka ?",
+    "why": "Mistranslated: in French a babouchka is a grandmother, not a headscarf."
+  },
+  {
+    "id": "mmmlu-miscellaneous-22",
+    "prompt": "Comment, en anglais, appelle-t-on trois strikes consécutifs au bowling ?",
+    "why": "English bowling jargon asked in French."
+  },
+  {
+    "id": "mmmlu-miscellaneous-220",
+    "prompt": "Lequel de ces évangélistes est le cousin du rockeur Jerry Lee Lewis ?",
+    "why": "American televangelists."
+  },
+  {
+    "id": "mmmlu-miscellaneous-223",
+    "prompt": "Dans quelle ville se déroule la série télévisée « The Mary Tyler Moore Show » ?",
+    "why": "American sitcom setting."
+  },
+  {
+    "id": "mmmlu-miscellaneous-225",
+    "prompt": "Quel est le travail du personnage de Delta Burke dans la sitcom « Femmes d’affaires et Dames de cœur » ?",
+    "why": "American sitcom character."
+  },
+  {
+    "id": "mmmlu-miscellaneous-23",
+    "prompt": "Lequel des garçons de la série TV « Mes trois fils » est adopté ?",
+    "why": "American 1960s sitcom."
+  },
+  {
+    "id": "mmmlu-miscellaneous-230",
+    "prompt": "Quelle équipe sportive professionnelle joue ses matchs à domicile à l’Alamodome ?",
+    "why": "American sports venue."
+  },
+  {
+    "id": "mmmlu-miscellaneous-231",
+    "prompt": "Comment s’appelle l’acolyte de Howard Stern à l’antenne ?",
+    "why": "American radio sidekick."
+  },
+  {
+    "id": "mmmlu-miscellaneous-232",
+    "prompt": "Dans quelle décennie Israël est-il devenu un État indépendant ?",
+    "why": "Repeats world-religions-132 (the year Israel was founded)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-236",
+    "prompt": "Que ferait-on, le plus probablement, avec le composé MgSO4 7H2O ?",
+    "why": "A chemical formula to recognise (Epsom salt), with joke decoys."
+  },
+  {
+    "id": "mmmlu-miscellaneous-238",
+    "prompt": "Si vous demandez du « gaï » dans un restaurant thaïlandais, que va-t-on vous servir ?",
+    "why": "Thai menu vocabulary."
+  },
+  {
+    "id": "mmmlu-miscellaneous-239",
+    "prompt": "Sur un jeu de câbles volants, quelle couleur permet d’identifier le connecteur négatif ?",
+    "why": "Jump-lead colours, not trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-240",
+    "prompt": "Lequel de ces comptes est ce que l’on appelle communément un compte d’investissement ?",
+    "why": "American retirement-account acronym."
+  },
+  {
+    "id": "mmmlu-miscellaneous-25",
+    "prompt": "Comment s’appelait le personnage féminin joué par le comédien Flip Wilson dans son émission télévisée des années 1970 ?",
+    "why": "American 1970s variety show."
+  },
+  {
+    "id": "mmmlu-miscellaneous-250",
+    "prompt": "Qui est l'ennemi juré du super-héros de dessin animé Underdog ?",
+    "why": "American cartoon nobody here watched."
+  },
+  {
+    "id": "mmmlu-miscellaneous-256",
+    "prompt": "Le gouvernement établit un prix plancher sur un marché pour un bien afin de/d’…",
+    "why": "Economics exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-26",
+    "prompt": "Quel type d’animal est un pèlerin ?",
+    "why": "Ambiguous in French: a pèlerin is also a shark (requin pèlerin), so « Un poisson » is right too."
+  },
+  {
+    "id": "mmmlu-miscellaneous-262",
+    "prompt": "Où a-t-on domestiqué le poulet pour la première fois ?",
+    "why": "Contested: chickens were domesticated in Southeast Asia, and India is only one claimant."
+  },
+  {
+    "id": "mmmlu-miscellaneous-264",
+    "prompt": "Quel chanteur ou chanteuse folk connu(e) a fondé l’Institute for the Study of Non-Violence en 1965 ?",
+    "why": "American folk-music history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-267",
+    "prompt": "Lequel de ces noms n’est pas porté par l’un des enfants du rockeur Frank Zappa ?",
+    "why": "American rock trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-268",
+    "prompt": "Combien Lucy, le personnage de Peanuts, demande-t-elle d’argent pour ses conseils psychiatriques ?",
+    "why": "Peanuts detail priced in American cents."
+  },
+  {
+    "id": "mmmlu-miscellaneous-270",
+    "prompt": "Quel personnage de conte pour enfants croit que le ciel nous tombe sur la tête ?",
+    "why": "The English name (Chicken Little) of a tale French children know as Poule Poulette or not at all."
+  },
+  {
+    "id": "mmmlu-miscellaneous-271",
+    "prompt": "L’icône pop Tiny Tim était connu pour jouer d’un instrument de musique en particulier. Lequel ?",
+    "why": "American 1960s novelty act."
+  },
+  {
+    "id": "mmmlu-miscellaneous-273",
+    "prompt": "Lorsque l’heure d’été passe au printemps, comment la plupart des Américains changent-ils d’heure ?",
+    "why": "American framing; France changes clocks the same way but the stem asks about Americans."
+  },
+  {
+    "id": "mmmlu-miscellaneous-275",
+    "prompt": "Qui figurait sur le billet de 500 $ ?",
+    "why": "American banknotes."
+  },
+  {
+    "id": "mmmlu-miscellaneous-276",
+    "prompt": "Pour un homme et une femme qui se rencontrent lors d’un rendez-vous, que signifie l'expression anglophone « dutch treat » ?",
+    "why": "An English idiom."
+  },
+  {
+    "id": "mmmlu-miscellaneous-277",
+    "prompt": "De quelle ville des États-Unis appelle-t-on les habitants des « Knickerbockers » ?",
+    "why": "American city nickname."
+  },
+  {
+    "id": "mmmlu-miscellaneous-281",
+    "prompt": "« Chaque jour était un jour heureux et chaque nuit s’écoulait en paix. » Cette phrase peut être qualifiée de…",
+    "why": "English grammar categories (compound-complex) that French grammar does not use."
+  },
+  {
+    "id": "mmmlu-miscellaneous-282",
+    "prompt": "Lequel de ces jours fériés ne correspond pas à une date spécifique ?",
+    "why": "American public holidays."
+  },
+  {
+    "id": "mmmlu-miscellaneous-287",
+    "prompt": "Quelle marque de nourriture pour chats prétend être si savoureuse que « les chats la demandent par leur nom » (en anglais) ?",
+    "why": "American cat-food slogan."
+  },
+  {
+    "id": "mmmlu-miscellaneous-289",
+    "prompt": "Quelle est (à peu près) la vitesse de la lumière ?",
+    "why": "Wrong: the decoy units are km/h and the answer is wrong by a factor of 3 600 (light travels 300 000 km/s)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-29",
+    "prompt": "À quelle température, en degrés Fahrenheit, doit-on conserver la viande congelée ?",
+    "why": "A Fahrenheit freezer setting."
+  },
+  {
+    "id": "mmmlu-miscellaneous-291",
+    "prompt": "Après le prince Charles, qui est le prochain successeur du trône d’Angleterre ?",
+    "why": "Dated: Charles is king and William is heir."
+  },
+  {
+    "id": "mmmlu-miscellaneous-293",
+    "prompt": "Quand il est midi à New York à l’heure d’été, quelle heure est-il à Honolulu ?",
+    "why": "Time-zone arithmetic."
+  },
+  {
+    "id": "mmmlu-miscellaneous-294",
+    "prompt": "La valeur totale du marché de détail de tous les biens et services produits dans un pays, généralement exprimée en termes annuels, est…",
+    "why": "Economics exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-297",
+    "prompt": "Lequel de ces mots est orthographié correctement ?",
+    "why": "A spelling test made of typos."
+  },
+  {
+    "id": "mmmlu-miscellaneous-299",
+    "prompt": "Aux États-Unis, quel âge peut-on assister pour la première fois à un film classé R sans être accompagné(e) d’un adulte ?",
+    "why": "American film ratings."
+  },
+  {
+    "id": "mmmlu-miscellaneous-30",
+    "prompt": "Le personnage de dessin animé Tennessee Tuxedo est un…",
+    "why": "American cartoon nobody here watched."
+  },
+  {
+    "id": "mmmlu-miscellaneous-300",
+    "prompt": "Dans l'émission télévisée « Seinfeld », quel type de médecin M. Costanza a-t-il consulté après s’être assis sur des « fusilli Jerry » ?",
+    "why": "A single Seinfeld episode detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-301",
+    "prompt": "Dans la bande dessinée « Peanuts », que fait Schroeder ?",
+    "why": "Peanuts detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-304",
+    "prompt": "Combien y a-t-il de pointes sur la couronne de la Statue de la Liberté ?",
+    "why": "American monument detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-307",
+    "prompt": "Quelle est la capitale du Dakota du Nord ?",
+    "why": "American state capital."
+  },
+  {
+    "id": "mmmlu-miscellaneous-31",
+    "prompt": "Quel président américain est mentionné par son nom dans la chanson du générique d’ouverture de la série TV « All in the Family » ?",
+    "why": "American sitcom theme song."
+  },
+  {
+    "id": "mmmlu-miscellaneous-310",
+    "prompt": "Quelle quantité d’excréments de poulet sont produits chaque année aux États-Unis ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-311",
+    "prompt": "Selon l’American Kennel Club, quelle était la race de chien la plus populaire aux États-Unis en 1999 ?",
+    "why": "American dog-breed ranking for one year."
+  },
+  {
+    "id": "mmmlu-miscellaneous-312",
+    "prompt": "Quel chanteur a fait une apparition dans le film de baseball « Une équipe hors du commun » de 1992 ?",
+    "why": "American baseball film cameo."
+  },
+  {
+    "id": "mmmlu-miscellaneous-313",
+    "prompt": "Comment le mot « ambulance » est-il normalement écrit sur le devant des ambulances américaines ?",
+    "why": "American ambulances."
+  },
+  {
+    "id": "mmmlu-miscellaneous-315",
+    "prompt": "Si vous travaillez comme « dolly grip », dans quel secteur travaillez-vous ?",
+    "why": "Film-crew jargon in English."
+  },
+  {
+    "id": "mmmlu-miscellaneous-321",
+    "prompt": "Ce qui compte le plus dans la conception de messages réussis à transmettre via des communications graphiques est la connaissance et la compréhension…",
+    "why": "A communication-design exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-323",
+    "prompt": "Laquelle de ces barres chocolatées porte le nom d’un joueur de baseball ?",
+    "why": "American candy bars."
+  },
+  {
+    "id": "mmmlu-miscellaneous-325",
+    "prompt": "Où le grand jazzman Sun Ra dit-il être né ?",
+    "why": "Jazz eccentricity."
+  },
+  {
+    "id": "mmmlu-miscellaneous-326",
+    "prompt": "Sous quel nom Bob Keeshan est-il plus connu ?",
+    "why": "American children's TV host."
+  },
+  {
+    "id": "mmmlu-miscellaneous-328",
+    "prompt": "Dans quelle communauté religieuse les femmes portent-elles traditionnellement des bonnets ?",
+    "why": "Ambiguous: Catholic nuns wear coifs too, and « Chrétienne » contains both."
+  },
+  {
+    "id": "mmmlu-miscellaneous-329",
+    "prompt": "Quel musicien New Age a sorti en 1998 un album intitulé « King of the Pan3Flute » ?",
+    "why": "New Age album title."
+  },
+  {
+    "id": "mmmlu-miscellaneous-332",
+    "prompt": "L'élevage de rennes en tant qu’activité économique des Samis en Norvège est un exemple d’un certain type de diffusion. Lequel ?",
+    "why": "Geography-exam diffusion jargon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-34",
+    "prompt": "Qui a mené l’insurrection des esclaves de 1831 à Southampton, en Virginie, États-Unis ?",
+    "why": "American slave-revolt history no French table learns."
+  },
+  {
+    "id": "mmmlu-miscellaneous-340",
+    "prompt": "Quelle est l’orthographe correcte de la plus grande ville du Nouveau-Mexique ?",
+    "why": "A spelling test of an American city."
+  },
+  {
+    "id": "mmmlu-miscellaneous-342",
+    "prompt": "Quel sport est appelé le « sport des rois » ?",
+    "why": "Mistranslated: « course à cheval » is not what French calls horse racing (courses hippiques), and the phrase is English."
+  },
+  {
+    "id": "mmmlu-miscellaneous-348",
+    "prompt": "Laquelle de ces mesures équivaut à un pied carré ?",
+    "why": "Imperial units."
+  },
+  {
+    "id": "mmmlu-miscellaneous-351",
+    "prompt": "Comment appelle-t-on un groupe d’oies ?",
+    "why": "Wrong in French: the candidates are calques of English collective nouns."
+  },
+  {
+    "id": "mmmlu-miscellaneous-352",
+    "prompt": "Si vous composez le « 411 » sur un téléphone aux États-Unis, qui appelez-vous ?",
+    "why": "American phone service."
+  },
+  {
+    "id": "mmmlu-miscellaneous-355",
+    "prompt": "Quelle entreprise organise chaque année une compétition appelée « Bake-Off » ?",
+    "why": "American baking contest."
+  },
+  {
+    "id": "mmmlu-miscellaneous-358",
+    "prompt": "Comment s’appelle le personnage joué par Woody Allen dans le film de James Bond « Casino Royale » de 1967 ?",
+    "why": "Obscure film-role trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-360",
+    "prompt": "Combien d’yeux a une girafe ?",
+    "why": "A joke question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-366",
+    "prompt": "Comment s’appelle le fruit moitié mandarine moitié pamplemousse ?",
+    "why": "Wrong in French: the tangelo is « tangelo », not « citrus ×tangelo », and the decoys are invented."
+  },
+  {
+    "id": "mmmlu-miscellaneous-367",
+    "prompt": "Quels sont les prénoms des Smothers Brothers ?",
+    "why": "American comedy duo."
+  },
+  {
+    "id": "mmmlu-miscellaneous-370",
+    "prompt": "Dans le film « Easy Rider », quel emblème se trouve au dos de la veste en cuir de Peter Fonda ?",
+    "why": "A costume detail from one film."
+  },
+  {
+    "id": "mmmlu-miscellaneous-373",
+    "prompt": "L'astronaute John Glenn a servi comme pilote dans une branche de l'armée américaine. Laquelle ?",
+    "why": "American military branches."
+  },
+  {
+    "id": "mmmlu-miscellaneous-374",
+    "prompt": "Dans l’émission télévisée « CHiPs », quel était le surnom de l’officier Frank Poncherello ?",
+    "why": "American TV nickname."
+  },
+  {
+    "id": "mmmlu-miscellaneous-377",
+    "prompt": "Dans le football américain, combien de points vaut un touchdown ?",
+    "why": "American football scoring."
+  },
+  {
+    "id": "mmmlu-miscellaneous-378",
+    "prompt": "Quel est l’impact le plus probable d’une hausse des taux d’intérêt ?",
+    "why": "Economics exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-379",
+    "prompt": "Quel profil pouvez-vous voir sur le devant des pièces de dix sous (des dollars américains) actuellement en circulation ?",
+    "why": "American coinage."
+  },
+  {
+    "id": "mmmlu-miscellaneous-380",
+    "prompt": "Qui est considéré comme le propriétaire d’une entreprise dite « publique » ?",
+    "why": "Mistranslated: a « public company » is a listed company, and « entreprise publique » in French is state-owned."
+  },
+  {
+    "id": "mmmlu-miscellaneous-381",
+    "prompt": "Lequel de ces bonbons est traditionnellement aromatisé aux fruits ?",
+    "why": "American candy."
+  },
+  {
+    "id": "mmmlu-miscellaneous-382",
+    "prompt": "Dans quelle ville l'équipe de basket-ball des Harlem Globetrotters a-t-elle été créée en 1926 ?",
+    "why": "American sports history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-384",
+    "prompt": "Comment s’appelait l’exposition d'art qui, en 1999, a déclenché un débat dans tous les États-Unis sur la censure ?",
+    "why": "American art controversy."
+  },
+  {
+    "id": "mmmlu-miscellaneous-386",
+    "prompt": "Comment s’appelle la mascotte du thon StarKist ?",
+    "why": "American brand mascot."
+  },
+  {
+    "id": "mmmlu-miscellaneous-392",
+    "prompt": "Quel personnage de fiction prétend être « plus intelligent que l'ours moyen » ?",
+    "why": "American cartoon catchphrase."
+  },
+  {
+    "id": "mmmlu-miscellaneous-4",
+    "prompt": "Quels étaient les prénoms des explorateurs américains pionniers Lewis et Clark ?",
+    "why": "American school-history trivia (Lewis and Clark's first names)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-402",
+    "prompt": "Dans la chanson classique « Take Me Out to the Ballgame », qui devons-nous soutenir (« root, root, root ») ?",
+    "why": "American baseball song."
+  },
+  {
+    "id": "mmmlu-miscellaneous-403",
+    "prompt": "Qui était Charlie McCarthy ?",
+    "why": "American ventriloquism."
+  },
+  {
+    "id": "mmmlu-miscellaneous-404",
+    "prompt": "Combien d’États étaient membres des États confédérés d’Amérique ?",
+    "why": "American Civil War detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-405",
+    "prompt": "Qui étaient les Sept de Chicago ?",
+    "why": "American political trial."
+  },
+  {
+    "id": "mmmlu-miscellaneous-407",
+    "prompt": "Quelle entreprise fabrique des parfums appelés « Beautiful » et « Pleasures » ?",
+    "why": "Perfume-range trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-409",
+    "prompt": "Aux États-Unis, quel est le principal ingrédient du pepperoni ?",
+    "why": "A joke question about American pepperoni."
+  },
+  {
+    "id": "mmmlu-miscellaneous-416",
+    "prompt": "Lequel de ces organismes est une agence gouvernementale créée pour protéger les investisseurs ?",
+    "why": "American agency acronym."
+  },
+  {
+    "id": "mmmlu-miscellaneous-417",
+    "prompt": "Quel personnage Woody a-t-il remplacé dans la série télévisée « Cheers » ?",
+    "why": "American sitcom cast change."
+  },
+  {
+    "id": "mmmlu-miscellaneous-42",
+    "prompt": "Qu’est-ce qu’il est important de faire avant de retirer la lame d’une tondeuse à gazon à essence ?",
+    "why": "Lawn-mower maintenance, not trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-422",
+    "prompt": "Quelle liqueur utilise-t-on pour réaliser un cocktail Pink Lady rose ?",
+    "why": "Wrong: a Pink Lady takes gin with grenadine for colour, and grenadine is no liqueur."
+  },
+  {
+    "id": "mmmlu-miscellaneous-423",
+    "prompt": "À quoi sert l’ancre d’un bateau ?",
+    "why": "A joke question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-427",
+    "prompt": "Combien de billets de 100 $ faut-il pour égaler un million de dollars ?",
+    "why": "Arithmetic."
+  },
+  {
+    "id": "mmmlu-miscellaneous-429",
+    "prompt": "Quelle ancienne personnalité de la série « Today » a joué le rôle d'un voisin dans la sitcom télévisée « Valérie » (The Hogan Family) ?",
+    "why": "American TV personality."
+  },
+  {
+    "id": "mmmlu-miscellaneous-430",
+    "prompt": "Si une partie à un contrat est contrainte de signer, le contrat est défini comme…",
+    "why": "A law exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-437",
+    "prompt": "En quelle année les États-Unis ont-ils remporté pour la dernière fois une médaille d'or olympique en hockey sur glace masculin ?",
+    "why": "American Olympic record, and it is stale."
+  },
+  {
+    "id": "mmmlu-miscellaneous-440",
+    "prompt": "Le film « Compte sur moi » a été réalisé d’après un roman de…",
+    "why": "Literary source of an American film."
+  },
+  {
+    "id": "mmmlu-miscellaneous-441",
+    "prompt": "Quel genre de voiture Burt Reynolds conduisait-il dans le film « Cours après moi shérif » ?",
+    "why": "A car model in one film."
+  },
+  {
+    "id": "mmmlu-miscellaneous-444",
+    "prompt": "Dans quelle ville était située la première station de radio commerciale ?",
+    "why": "American radio history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-445",
+    "prompt": "Lequel de ces postes n’est pas un poste dans une équipe de football américain ?",
+    "why": "American football positions."
+  },
+  {
+    "id": "mmmlu-miscellaneous-447",
+    "prompt": "En 1986, le dirigeant libyen Mouammar Kadhafi a tracé une « ligne de mort » sur une étendue d’eau. Laquelle ?",
+    "why": "Obscure geopolitics."
+  },
+  {
+    "id": "mmmlu-miscellaneous-448",
+    "prompt": "Comment surnomme-t-on la chaise électrique controversée du couloir de la mort de Floride ?",
+    "why": "American death-row nickname."
+  },
+  {
+    "id": "mmmlu-miscellaneous-450",
+    "prompt": "Dans quel restaurant peut-on commander un petit-déjeuner Grand Chelem ?",
+    "why": "American diner menu."
+  },
+  {
+    "id": "mmmlu-miscellaneous-453",
+    "prompt": "Selon Erik Erikson, le principal dilemme auquel nous sommes confrontés à l’adolescence est l’opposition entre…",
+    "why": "Psychology syllabus."
+  },
+  {
+    "id": "mmmlu-miscellaneous-455",
+    "prompt": "Comment, en anglais, appelle-t-on le petit-déjeuner composé de saucisses enveloppées dans des pancakes ?",
+    "why": "An English culinary idiom."
+  },
+  {
+    "id": "mmmlu-miscellaneous-458",
+    "prompt": "Le patriote américain Paul Revere doit son nom à son père. Comment celui-ci s’appelait-il ?",
+    "why": "American patriot's father."
+  },
+  {
+    "id": "mmmlu-miscellaneous-464",
+    "prompt": "Dans quel état se déroule le film Magnolia de 1999 ?",
+    "why": "A film's setting."
+  },
+  {
+    "id": "mmmlu-miscellaneous-468",
+    "prompt": "D’après la comptine pour enfants, sur quel type d’océan Colomb a-t-il navigué en 1492 ?",
+    "why": "An American nursery rhyme."
+  },
+  {
+    "id": "mmmlu-miscellaneous-469",
+    "prompt": "Lequel de ces termes fait référence à une boisson alcoolisée mélangée à une drogue qui met KO ?",
+    "why": "English slang."
+  },
+  {
+    "id": "mmmlu-miscellaneous-475",
+    "prompt": "Quelle est la vitesse du vent la plus lente qu'un ouragan puisse avoir selon l'échelle de Saffir-Simpson ?",
+    "why": "Converted from miles per hour to round numbers that are not the scale's (119 km/h)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-477",
+    "prompt": "Lequel de ces magazines ne se concentre pas sur les sciences naturelles ?",
+    "why": "American magazines."
+  },
+  {
+    "id": "mmmlu-miscellaneous-479",
+    "prompt": "Un feu rouge clignotant signifie que le conducteur doit…",
+    "why": "Wrong outside the United States: a flashing red light means stop there, not on French roads."
+  },
+  {
+    "id": "mmmlu-miscellaneous-483",
+    "prompt": "Quel animal fait le plus de bruit sur Terre ?",
+    "why": "Contested: the sperm whale is louder than the blue whale by most measures."
+  },
+  {
+    "id": "mmmlu-miscellaneous-488",
+    "prompt": "Au baseball, combien de balles font une marche ?",
+    "why": "Baseball rules."
+  },
+  {
+    "id": "mmmlu-miscellaneous-49",
+    "prompt": "Qu'est-ce qu’un four hollandais ?",
+    "why": "Mistranslated: a Dutch oven is a cast-iron pot, not a « bouilloire »."
+  },
+  {
+    "id": "mmmlu-miscellaneous-498",
+    "prompt": "Laquelle de ces interprètes a fait ses débuts au cinéma dans « Do The Right Thing » de Spike Lee ?",
+    "why": "American film debut."
+  },
+  {
+    "id": "mmmlu-miscellaneous-504",
+    "prompt": "Quel jouet très répandu apparaît dans le film « Le Grand Saut » ?",
+    "why": "American toy brands in an American film."
+  },
+  {
+    "id": "mmmlu-miscellaneous-505",
+    "prompt": "Quel est le mois où il y a le plus de mariages aux États-Unis ?",
+    "why": "American wedding statistics."
+  },
+  {
+    "id": "mmmlu-miscellaneous-506",
+    "prompt": "Lequel des Three Stooges n’avait pas de lien de sang avec les autres ?",
+    "why": "American comedy troupe."
+  },
+  {
+    "id": "mmmlu-miscellaneous-507",
+    "prompt": "Comment appelle-t-on cet outil plat et mince utilisé pour mélanger les couleurs en peignant ?",
+    "why": "A joke decoy (« Chaussure ») and a palette is not a mixing tool in French usage alone."
+  },
+  {
+    "id": "mmmlu-miscellaneous-508",
+    "prompt": "Lequel de ces aliments pourriez-vous pêcher en mer ?",
+    "why": "An English pun (scallops / escalopes) that does not survive translation."
+  },
+  {
+    "id": "mmmlu-miscellaneous-511",
+    "prompt": "Au cours de quelle guerre les troupes américaines ont-elles combattu la bataille de la Nouvelle-Orléans ?",
+    "why": "American war history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-513",
+    "prompt": "Si la perméabilité du sous-sol est rapide, la texture du sous-sol est très probablement considérée comme…",
+    "why": "Soil-science exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-517",
+    "prompt": "Où se trouve la maison appelée Falling Water conçue par Frank Lloyd Wright ?",
+    "why": "American architecture."
+  },
+  {
+    "id": "mmmlu-miscellaneous-519",
+    "prompt": "Laquelle de ces vitamines a été la première à recevoir un nom ?",
+    "why": "Joke decoys (« vitameat avegimen »)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-520",
+    "prompt": "Combien de molécules d’eau y a-t-il dans une tête humaine ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-522",
+    "prompt": "Si le jour de Noël tombe un samedi, quel jour de la semaine sera le jour de l’An ?",
+    "why": "Calendar arithmetic."
+  },
+  {
+    "id": "mmmlu-miscellaneous-523",
+    "prompt": "Quelle fête mexicaine a lieu le 5 mai ?",
+    "why": "Gives its answer away (« le 5 mai » / « Cinco de Mayo »)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-528",
+    "prompt": "Qui a été la première Première dame à se porter candidate à la présidentielle américaine ?",
+    "why": "American presidential history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-531",
+    "prompt": "Quel engin volant apparaît dans le film « Chitty Chitty Bang Bang » ?",
+    "why": "Hinges on a one-word answer (« voiture ») a typed room would argue with."
+  },
+  {
+    "id": "mmmlu-miscellaneous-532",
+    "prompt": "Quelle maladie appelait-on autrefois la « maladie des rois » ?",
+    "why": "Repeats miscellaneous-147."
+  },
+  {
+    "id": "mmmlu-miscellaneous-541",
+    "prompt": "Quel était le nom original de l’ordinateur Apple Macintosh XL ?",
+    "why": "Apple product-history trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-543",
+    "prompt": "De quelle garniture un knish est-il traditionnellement farci ?",
+    "why": "Ashkenazi pastry no table knows by name."
+  },
+  {
+    "id": "mmmlu-miscellaneous-544",
+    "prompt": "En comprenant le dessous, combien de côtés y a-t-il sur une pyramide à base carrée ?",
+    "why": "A trick count."
+  },
+  {
+    "id": "mmmlu-miscellaneous-546",
+    "prompt": "Quelle est la couleur du liquide Pepto-Bismol ?",
+    "why": "American medicine brand."
+  },
+  {
+    "id": "mmmlu-miscellaneous-552",
+    "prompt": "À quoi l'expression « hospital corners » (en anglais) fait-elle référence ?",
+    "why": "An English idiom."
+  },
+  {
+    "id": "mmmlu-miscellaneous-553",
+    "prompt": "Quel événement sportif a lieu chaque année le week-end du Memorial Day ?",
+    "why": "American holiday sports calendar."
+  },
+  {
+    "id": "mmmlu-miscellaneous-557",
+    "prompt": "En tissage, les fils verticaux et horizontaux d'un métier à tisser sont appelés…",
+    "why": "Weaving jargon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-56",
+    "prompt": "Dans les spectacles de marionnettes anglais traditionnels, qui est marié au personnage de Punch ?",
+    "why": "English Punch and Judy shows, unknown in France."
+  },
+  {
+    "id": "mmmlu-miscellaneous-564",
+    "prompt": "Quel est le processus biologique qui réplique l’ADN ?",
+    "why": "Wrong: DNA is replicated before mitosis, not by it."
+  },
+  {
+    "id": "mmmlu-miscellaneous-567",
+    "prompt": "Selon une étude de l’Université de Yale, quelle odeur les adultes des États-Unis considèrent-ils comme la plus reconnaissable?",
+    "why": "An American survey."
+  },
+  {
+    "id": "mmmlu-miscellaneous-568",
+    "prompt": "Selon les recommandations de l’USDA, de quel groupe alimentaire devriez-vous manger le plus de portions par jour ?",
+    "why": "Dated American dietary guidelines."
+  },
+  {
+    "id": "mmmlu-miscellaneous-571",
+    "prompt": "Le plat britannique « bangers and mash » est composé de saucisses et de…",
+    "why": "A British dish."
+  },
+  {
+    "id": "mmmlu-miscellaneous-581",
+    "prompt": "Avec quelle substance a-t-on fait du (faux) sang dans la célèbre scène de la douche du film « Psycho » ?",
+    "why": "Behind-the-scenes film trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-589",
+    "prompt": "Quand a-t-on inventé le houla-hop ?",
+    "why": "Contested: hoops are ancient, and the 1958 plastic Hula Hoop is a brand launch."
+  },
+  {
+    "id": "mmmlu-miscellaneous-59",
+    "prompt": "Quelle est la plus ancienne colonie européenne permanente aux États-Unis ?",
+    "why": "Wrong: St. Augustine (1565) is older than Plymouth (1620), and the question is American."
+  },
+  {
+    "id": "mmmlu-miscellaneous-591",
+    "prompt": "Dans quelle ville des États-Unis se trouve le Hall of Fame du basket-ball ?",
+    "why": "American sports museum."
+  },
+  {
+    "id": "mmmlu-miscellaneous-592",
+    "prompt": "Dans le cadre des Robert's Rules of Order, quel concept exige que les sujets traités le soient par ordre d’importance ?",
+    "why": "American parliamentary procedure."
+  },
+  {
+    "id": "mmmlu-miscellaneous-596",
+    "prompt": "Quelle est la pierre zodiacale du mois de janvier ?",
+    "why": "Birthstones are an American jewellers' list nobody here keeps."
+  },
+  {
+    "id": "mmmlu-miscellaneous-597",
+    "prompt": "Qui tue Tony à la fin du film « West Side Story » ?",
+    "why": "A single film-ending detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-598",
+    "prompt": "Dans quel pays Magic Johnson a-t-il joué au basket-ball professionnel lors de la saison 1999 ?",
+    "why": "Obscure basketball career detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-599",
+    "prompt": "Dans la comptine Ma Mère l'Oie, quel enfant vit toutes sortes de déboires ?",
+    "why": "An English nursery rhyme (Monday's Child) with no French counterpart."
+  },
+  {
+    "id": "mmmlu-miscellaneous-600",
+    "prompt": "Comment appelle-t-on un « camion » en Grande-Bretagne ?",
+    "why": "Mistranslated: « lorry » was translated back to « camion », so the answer is the question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-603",
+    "prompt": "Quel pourcentage de l’univers observable a reçu des transmissions radio de la Terre ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-604",
+    "prompt": "Où se trouve la place Ghirardelli ?",
+    "why": "Obscure San Francisco landmark."
+  },
+  {
+    "id": "mmmlu-miscellaneous-609",
+    "prompt": "Quel type de viande contient un sandwich Reuben traditionnel ?",
+    "why": "American deli sandwich."
+  },
+  {
+    "id": "mmmlu-miscellaneous-611",
+    "prompt": "Quel personnage de télévision pour enfants est appelé « Da Niao » en Chine ?",
+    "why": "Chinese name of an American puppet."
+  },
+  {
+    "id": "mmmlu-miscellaneous-612",
+    "prompt": "Le jour de la Saint-Valentin 2000, le vaisseau spatial NEAR de la NASA a commencé une orbite d’un an autour d’un astéroïde. Lequel ?",
+    "why": "NASA mission detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-614",
+    "prompt": "Quel personnage de dessin animé a voyagé dans une machine à voyager dans le temps avec M. Peabody ?",
+    "why": "American cartoon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-617",
+    "prompt": "Quel personnage d’animation a le béguin pour la Petite Fille aux cheveux roux ?",
+    "why": "Peanuts detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-618",
+    "prompt": "Lequel de ces plats est à base d’intestins de porc ?",
+    "why": "American soul-food dish."
+  },
+  {
+    "id": "mmmlu-miscellaneous-623",
+    "prompt": "Lequel de ces serpents est venimeux ?",
+    "why": "An American snake (copperhead) under a calqued name."
+  },
+  {
+    "id": "mmmlu-miscellaneous-624",
+    "prompt": "Qu’est-ce qui distingue une clé squelette ?",
+    "why": "« Clé squelette » is a calque of skeleton key; French says passe-partout."
+  },
+  {
+    "id": "mmmlu-miscellaneous-630",
+    "prompt": "Où l’Exxon Valdez s'est-il échoué en mars 1989 ?",
+    "why": "Obscure place name."
+  },
+  {
+    "id": "mmmlu-miscellaneous-631",
+    "prompt": "Comment s’appelle le bébé qui apparaît dans les dessins animés et bandes dessinées avec Popeye le Marin ?",
+    "why": "Popeye's baby is Swee'Pea, and none of the French candidates is his French name."
+  },
+  {
+    "id": "mmmlu-miscellaneous-634",
+    "prompt": "Dans la chanson « Margaritaville » de Jimmy Buffet, que cherche le chanteur ?",
+    "why": "American song lyric."
+  },
+  {
+    "id": "mmmlu-miscellaneous-637",
+    "prompt": "D’après le titre d’une émission télévisée pour enfants populaire, de quelle couleur est la grande maison de Bear ?",
+    "why": "American children's TV."
+  },
+  {
+    "id": "mmmlu-miscellaneous-639",
+    "prompt": "Qui est la sœur jumelle de la chroniqueuse de « Dear Abby » Abigail VanBuren ?",
+    "why": "American advice columnists."
+  },
+  {
+    "id": "mmmlu-miscellaneous-64",
+    "prompt": "Combien d’énergie les Américains gaspillent-ils chaque année en jetant les glaçons non consommés de leurs boissons ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-miscellaneous-643",
+    "prompt": "Au cours de quelle guerre Francis Scott Key a-t-il écrit les paroles de l'hymne « La bannière étoilée » ?",
+    "why": "American national anthem history."
+  },
+  {
+    "id": "mmmlu-miscellaneous-645",
+    "prompt": "Quelle entreprise fabrique les cookies Oreo ?",
+    "why": "American food-company trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-647",
+    "prompt": "Pour passer un appel téléphonique international depuis les États-Unis, quels sont les premiers numéros à composer ?",
+    "why": "American dialling codes."
+  },
+  {
+    "id": "mmmlu-miscellaneous-648",
+    "prompt": "Le « cure-dent de l’Arkansas » est plus connu sous le nom de…",
+    "why": "American slang with joke decoys."
+  },
+  {
+    "id": "mmmlu-miscellaneous-652",
+    "prompt": "Le premier enregistrement sonore réalisé et reproduit était la récitation d’une comptine. Laquelle ?",
+    "why": "An English nursery rhyme."
+  },
+  {
+    "id": "mmmlu-miscellaneous-656",
+    "prompt": "Qui est le créateur de la bande dessinée « The Far Side » ?",
+    "why": "American cartoonist."
+  },
+  {
+    "id": "mmmlu-miscellaneous-67",
+    "prompt": "Chez un homme adulte, quelle est la longueur du gros intestin ?",
+    "why": "Anatomy measurement with joke decoys."
+  },
+  {
+    "id": "mmmlu-miscellaneous-673",
+    "prompt": "Au golf, comment s’appelle un coup au-dessus du par ?",
+    "why": "Golf jargon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-674",
+    "prompt": "Quelle actrice a joué dans « Charlie’s Angels » pendant toute la durée de la série ?",
+    "why": "American TV cast trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-675",
+    "prompt": "Si vous regardez une pièce en shavien, qui en est l’auteur ?",
+    "why": "Obscure (Shavian alphabet)."
+  },
+  {
+    "id": "mmmlu-miscellaneous-676",
+    "prompt": "Dans lequel de ces sports les concurrents conduisent-ils une « drôle de voiture » ?",
+    "why": "American drag-racing jargon."
+  },
+  {
+    "id": "mmmlu-miscellaneous-677",
+    "prompt": "Sur quelle chaîne américaine l’émission télévisée \"House of Style\" est-elle diffusée ?",
+    "why": "American cable TV."
+  },
+  {
+    "id": "mmmlu-miscellaneous-678",
+    "prompt": "Sous quel surnom la Federal National Mortgage Association est-elle connue ?",
+    "why": "Wrong label: the answer marked is FEMA, and Fannie Mae is right; the question is American besides."
+  },
+  {
+    "id": "mmmlu-miscellaneous-680",
+    "prompt": "Laquelle de ces séries TV ne s’est pas déroulée aux États-Unis ?",
+    "why": "American TV under French titles nobody recognises."
+  },
+  {
+    "id": "mmmlu-miscellaneous-681",
+    "prompt": "Quel jour de la semaine appelle-t-on parfois « the hump day » en anglais ?",
+    "why": "An English idiom."
+  },
+  {
+    "id": "mmmlu-miscellaneous-682",
+    "prompt": "Laquelle de ces personnes est un(e) artiste d’installation contemporaine utilisant la projection d’images et la vidéo ?",
+    "why": "Contemporary-art specialist trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-686",
+    "prompt": "Dans quelle ville rencontre-t-on des étudiants en art et design au Fashion Institute of Technology ?",
+    "why": "American college."
+  },
+  {
+    "id": "mmmlu-miscellaneous-687",
+    "prompt": "Quel est le cadeau traditionnel pour un 20e anniversaire de mariage ?",
+    "why": "American anniversary-gift list."
+  },
+  {
+    "id": "mmmlu-miscellaneous-691",
+    "prompt": "La profondeur maximale à laquelle les racines des plantes peuvent pénétrer facilement sans rencontrer de couche de sol restrictive est appelée…",
+    "why": "Soil-science exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-692",
+    "prompt": "Quelle quantité d’énergie électrique supplémentaire les États-Unis devront-ils produire si tout le monde conduit des voitures électriques ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-696",
+    "prompt": "Laquelle de ces villes n’est pas une ville de l’État de New York ?",
+    "why": "Invented American town names."
+  },
+  {
+    "id": "mmmlu-miscellaneous-697",
+    "prompt": "Dans la série télévisée originale « Get Smart », quel est le nom de code de l’agent Maxwell Smart ?",
+    "why": "American TV."
+  },
+  {
+    "id": "mmmlu-miscellaneous-698",
+    "prompt": "Dans les courses hippiques, quel est le terme utilisé pour parier sur les 1ère, 2e et 3e arrivants d’une course spécifique ?",
+    "why": "Betting jargon in English."
+  },
+  {
+    "id": "mmmlu-miscellaneous-700",
+    "prompt": "Dans quelle mesure notre consommation d’essence sur autoroute diminue-t-elle en cas de forte pluie ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-706",
+    "prompt": "En 1999, quel État des États-Unis comptait le plus d’éclaireuses scout ?",
+    "why": "American scouting statistics."
+  },
+  {
+    "id": "mmmlu-miscellaneous-712",
+    "prompt": "Quel est le dernier mot du serment d’allégeance des États-Unis ?",
+    "why": "American Pledge of Allegiance."
+  },
+  {
+    "id": "mmmlu-miscellaneous-713",
+    "prompt": "Lequel de ces prix est un prix sportif ?",
+    "why": "American sports award."
+  },
+  {
+    "id": "mmmlu-miscellaneous-716",
+    "prompt": "À l’équateur, à quelle vitesse la surface de la Terre tourne-t-elle ?",
+    "why": "Converted from miles per hour to round numbers."
+  },
+  {
+    "id": "mmmlu-miscellaneous-727",
+    "prompt": "Selon la légende, si vous jetez le « mauvais œil » à quelqu’un, que faites-vous ?",
+    "why": "Joke decoys."
+  },
+  {
+    "id": "mmmlu-miscellaneous-73",
+    "prompt": "Qu’est-ce qu’un ginsu ?",
+    "why": "An American TV-sale knife brand."
+  },
+  {
+    "id": "mmmlu-miscellaneous-730",
+    "prompt": "Comment s’appelait le groupe de Huey Lewis ?",
+    "why": "American band trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-731",
+    "prompt": "Quel lycée fréquente la bande de copains de la bande dessinée « Archie » ?",
+    "why": "American comic."
+  },
+  {
+    "id": "mmmlu-miscellaneous-733",
+    "prompt": "De quelle ville l’aéroport utilise-il le code ORD ?",
+    "why": "Airport code."
+  },
+  {
+    "id": "mmmlu-miscellaneous-735",
+    "prompt": "À quelle vitesse une berline se renverse-t-elle lorsqu’elle heurte un trottoir sur une trajectoire latérale ?",
+    "why": "Crash-test statistic."
+  },
+  {
+    "id": "mmmlu-miscellaneous-736",
+    "prompt": "L’intention de fabriquer des objets d'art traditionnels vendables a été abandonnée par les…",
+    "why": "Art-history exam."
+  },
+  {
+    "id": "mmmlu-miscellaneous-737",
+    "prompt": "Lequel de ces jeux populaires repose sur le bluff ?",
+    "why": "American board games."
+  },
+  {
+    "id": "mmmlu-miscellaneous-738",
+    "prompt": "Quel sport est présenté dans le film « Kingpin » de 1996 ?",
+    "why": "American comedy film."
+  },
+  {
+    "id": "mmmlu-miscellaneous-746",
+    "prompt": "Laquelle de ces organisations ne fait pas partie du gouvernement américain ?",
+    "why": "American organisations."
+  },
+  {
+    "id": "mmmlu-miscellaneous-747",
+    "prompt": "Lequel de ces hommes n’a jamais été entraîneur-chef de la NFL ?",
+    "why": "American football coaches."
+  },
+  {
+    "id": "mmmlu-miscellaneous-749",
+    "prompt": "Lequel de ces mots signifie « oui » en anglais ?",
+    "why": "A joke question."
+  },
+  {
+    "id": "mmmlu-miscellaneous-751",
+    "prompt": "Que signifient les initiales « E. E. » du nom du poète E. E. Cummings ?",
+    "why": "American poet's initials."
+  },
+  {
+    "id": "mmmlu-miscellaneous-755",
+    "prompt": "Quel est le nom de naissance du leader des droits civiques Malcolm ?",
+    "why": "American civil-rights trivia."
+  },
+  {
+    "id": "mmmlu-miscellaneous-757",
+    "prompt": "De quoi parle principalement le magazine Spin ?",
+    "why": "American magazine."
+  },
+  {
+    "id": "mmmlu-miscellaneous-758",
+    "prompt": "Comment s’appelle la poupée frère de Raggedy Ann ?",
+    "why": "American doll."
+  },
+  {
+    "id": "mmmlu-miscellaneous-762",
+    "prompt": "Lequel de ces articles est utile pour éliminer les taches d’encre ?",
+    "why": "A household tip with contested answers."
+  },
+  {
+    "id": "mmmlu-miscellaneous-763",
+    "prompt": "Quel était le moment cinétique de l’ouragan Florence lorsqu’il a touché terre ?",
+    "why": "A Fermi estimate."
+  },
+  {
+    "id": "mmmlu-miscellaneous-766",
+    "prompt": "Quelle équipe a remporté le plus de séries mondiales ?",
+    "why": "Baseball."
+  },
+  {
+    "id": "mmmlu-miscellaneous-768",
+    "prompt": "Qui a été le meilleur joueur de la WNBA en 1999 ?",
+    "why": "WNBA."
+  },
+  {
+    "id": "mmmlu-miscellaneous-772",
+    "prompt": "Comment surnomme-t-on l’État du Nouveau-Mexique ?",
+    "why": "American state nickname."
+  },
+  {
+    "id": "mmmlu-miscellaneous-777",
+    "prompt": "Lequel de ces pouvoirs ne fait pas partie de ceux du super-héros Captain Marvel ?",
+    "why": "American comic-book detail."
+  },
+  {
+    "id": "mmmlu-miscellaneous-780",
+    "prompt": "Lequel de ces magasins n’appartient pas à Gap Inc ?",
+    "why": "American retail ownership."
+  },
+  {
+    "id": "mmmlu-miscellaneous-781",
+    "prompt": "Quelle est la plus grande ville de Pennsylvanie ?",
+    "why": "American geography."
+  },
+  {
+    "id": "mmmlu-miscellaneous-8",
+    "prompt": "Comment appelle-t-on un étudiant de deuxième année en anglais ?",
+    "why": "American school vocabulary with no French counterpart."
+  },
+  {
+    "id": "mmmlu-miscellaneous-81",
+    "prompt": "Dans le célèbre ballet « Casse-Noisette », qui bat le héros ?",
+    "why": "Mistranslated: the hero defeats the Mouse King, the stem says the reverse."
+  },
+  {
+    "id": "mmmlu-miscellaneous-83",
+    "prompt": "Laquelle de ces phrases est écrite au subjonctif ?",
+    "why": "Mistranslated: none of the French sentences is in the subjunctive."
+  },
+  {
+    "id": "mmmlu-miscellaneous-85",
+    "prompt": "Quel est le nom du milieu de Richard Nixon ?",
+    "why": "An American president's middle name."
+  },
+  {
+    "id": "mmmlu-miscellaneous-92",
+    "prompt": "Si un morceau de musique est dit en « temps commun », combien y a-t-il de noires par mesure ?",
+    "why": "Music-theory jargon (« temps commun ») a French table does not use."
+  },
+  {
+    "id": "mmmlu-miscellaneous-93",
+    "prompt": "Lequel de ces pays ne participe pas à l’ALENA ?",
+    "why": "Dated: NAFTA was replaced by the USMCA in 2020."
+  },
+  {
+    "id": "mmmlu-miscellaneous-96",
+    "prompt": "En 1978, qui est devenu le plus jeune jockey à remporter la triple couronne des courses hippiques ?",
+    "why": "American horse-racing record."
+  },
+  {
+    "id": "mmmlu-miscellaneous-98",
+    "prompt": "Quel est le premier jour du printemps aux États-Unis ?",
+    "why": "American framing of the equinox, which falls on 20 March in most years."
+  },
+  {
+    "id": "mmmlu-nutrition-0",
+    "prompt": "Quels sont les aliments qui tendent à être consommés en plus faibles quantités au Pays de Galles et en Écosse (à partir de 2020) ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-101",
+    "prompt": "Sous quelle forme le sélénium se trouve-t-il dans les 25 sélénoprotéines humaines ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-110",
+    "prompt": "Combien de kcal contient un gramme d’éthanol ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-114",
+    "prompt": "Quelle méthode de composition corporelle utiliseriez-vous pour mesurer la teneur en minéraux du corps ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-115",
+    "prompt": "Ces facteurs augmentent le risque de fracture ostéoporotique :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-117",
+    "prompt": "Quelles sont les CINQ séries principales d’apoprotéines qui ont été identifiées ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-123",
+    "prompt": "Quel composant du régime alimentaire s’est révélé capable d’améliorer l’hypertension chez l’homme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-124",
+    "prompt": "Les graisses contiennent normalement des triacylglycérols à des concentrations de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-128",
+    "prompt": "Lequel de ces organes a la plus faible dépense énergétique par unité de masse corporelle (kg) ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-137",
+    "prompt": "Quelle est la prévalence mondiale estimée des caries dentaires non traitées ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-140",
+    "prompt": "Une supplémentation en acides gras à longue chaîne EPA et DHA pendant la grossesse et l’enfance est susceptible d’avoir des effets bénéfiques sur :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-141",
+    "prompt": "Une carence en thiamine chez les alcooliques entraîne …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-142",
+    "prompt": "Dans l’ADN humain, quelle base nucléotidique est méthylée en position 5’ ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-146",
+    "prompt": "Quelle est la meilleure méthode pour estimer les variations de la masse grasse pendant la perte de poids ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-152",
+    "prompt": "Quelle est l’unité fonctionnelle de base du tissu musculaire squelettique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-155",
+    "prompt": "Que sont les histones ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-158",
+    "prompt": "De combien l’indice de masse corporelle (IMC) des végétariens diffère-t-il en moyenne de celui des mangeurs de viande ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-16",
+    "prompt": "La maladie de Crohn :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-164",
+    "prompt": "Quels sont les minéraux dont l’apport n’est pas affecté par une consommation élevée d’aliments contenant de l’acide phytique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-171",
+    "prompt": "Quelle enzyme est responsable de la copie des marques de méthylation du brin parental au brin d’ADN fille au cours de la réplication ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-172",
+    "prompt": "Quelle est la prévalence mondiale de l’obésité ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-174",
+    "prompt": "À combien d’étapes de la chaîne d’approvisionnement alimentaire peut-on mesurer la disponibilité et la consommation des denrées alimentaires ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-18",
+    "prompt": "Quel est le pays qui a connu la transition nutritionnelle la plus rapide au cours des deux dernières décennies ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-180",
+    "prompt": "La carence en insuline est associée à …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-19",
+    "prompt": "À quoi est associée la consommation excessive d’alcool ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-193",
+    "prompt": "Quels acides gras membranaires sont les précurseurs des eicosanoïdes ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-195",
+    "prompt": "La méthode la plus directe pour mesurer la composition corporelle est :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-204",
+    "prompt": "Le pH critique en dessous duquel se produit la déminéralisation de l’émail dentaire se situe généralement autour de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-21",
+    "prompt": "Quel isotope stable est couramment utilisé pour la mesure de l’eau corporelle totale ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-215",
+    "prompt": "Quelle est la prévalence de la myopathie alcoolique chez les alcooliques ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-219",
+    "prompt": "L’OMS a fortement recommandé que la consommation maximale de sucres libres par les individus au sein des populations soit de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-232",
+    "prompt": "Les enfants nés de mères végétaliennes peuvent présenter un risque accru de carence en quel nutriment ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-239",
+    "prompt": "Dans la pratique courante, l’évaluation de la croissance devrait porter sur :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-241",
+    "prompt": "Quelle est la principale lipoprotéine sécrétée par le foie qui est au moins partiellement composée de lipides d’origine alimentaire ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-247",
+    "prompt": "Quelle est la vitamine dont la carence a été associée à des défauts de l’émail et à un risque accru de caries dentaires ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-248",
+    "prompt": "Lequel de ces facteurs réduit le risque de cancer colorectal ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-250",
+    "prompt": "Laquelle de ces deux hormones agit sur l’hypothalamus pour augmenter respectivement la satiété et la faim ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-256",
+    "prompt": "Lequel de ces facteurs augmente le risque de cancer du poumon ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-257",
+    "prompt": "Selon les recommandations pour la prise en charge nutritionnelle des patients diabétiques, la consommation de graisses saturées doit être :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-26",
+    "prompt": "Quelle est la plus grande source de substrat endogène dans l’organisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-265",
+    "prompt": "Chez l’enfant, la carence en vitamine A entraîne :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-266",
+    "prompt": "Lequel de ces facteurs augmente le risque de cancer du sein post-ménopausique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-272",
+    "prompt": "Quelle est la principale méthode d’évaluation de l’alimentation utilisée dans les études épidémiologiques ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-276",
+    "prompt": "Quelles sont les vitamines importantes pour réduire les taux d’homocystéine circulants ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-279",
+    "prompt": "Quels sont les nutriments dont l’efficacité dans la prévention du déclin cognitif lié à l’âge est la mieux démontrée ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-280",
+    "prompt": "Quelles sont les maladies qui ne sont pas moins fréquentes chez les végétariens ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-284",
+    "prompt": "Les meilleures preuves disponibles d’une association entre la quantité de sucres et le risque de caries dentaires proviennent de quel type d’étude ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-296",
+    "prompt": "Quelle est la source de substrat endogène qui fournit le plus d’énergie au cours d’un exercice d’intensité modérée à élevée ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-299",
+    "prompt": "Quels sont les principaux métabolites de l’alcool ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-304",
+    "prompt": "Parmi la liste des micro-organismes buccaux, quel est le principal responsable de l’apparition des caries dentaires ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-36",
+    "prompt": "Lequel de ces facteurs augmente le risque de cancer de l’œsophage ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-42",
+    "prompt": "Lequel de ces facteurs augmente le risque de cancer de l’estomac ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-57",
+    "prompt": "Comment le fer est-il transporté dans la circulation depuis l’intestin jusqu’aux sites de métabolisme de l’organisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-65",
+    "prompt": "Quelle est la principale source de protéines dans le régime alimentaire britannique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-74",
+    "prompt": "Quelle caractéristique n’est pas représentative d’une fibre musculaire de type IIb ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-79",
+    "prompt": "Les bactéries orales synthétisent des glucanes extracellulaires (dextran et mutan) à partir de quel composant alimentaire de l’hôte ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-80",
+    "prompt": "Quelle est la définition de la surcharge pondérale ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-nutrition-88",
+    "prompt": "Quel(s) médicament(s) est/sont autorisé(s) pour le traitement de l’obésité en Europe ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-0",
+    "prompt": "Contrairement à la plupart des premières civilisations, la culture minoenne présente peu de signes de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-102",
+    "prompt": "Le déplacement dans les arbres en balançant un bras après l’autre est appelé :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-108",
+    "prompt": "L’usage le plus ancien du bronze a été découvert :",
+    "why": "Wrong: the earliest bronze is from the Near East, not China."
+  },
+  {
+    "id": "mmmlu-prehistory-109",
+    "prompt": "Le Nouveau Monde « découvert » par Christophe Colomb comptait approximativement combien de personnes ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-112",
+    "prompt": "Quel était le travail de service obligatoire à rendre au roi en échange du privilège d’utiliser les terres détenues par l’Empire inca ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-113",
+    "prompt": "L’archéologie est un sous-domaine de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-116",
+    "prompt": "Contrairement aux écritures mésopotamiennes, les enregistrements des Maya concernent essentiellement :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-119",
+    "prompt": "L’histoire de l’évolution des différents types d’organismes et leurs relations les uns avec les autres est représentée sous la forme :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-121",
+    "prompt": "Homo erectus est plus étroitement associé à quelle tradition de fabrication d’outil ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-128",
+    "prompt": "Quelle culture vivait essentiellement selon un mode de vie sédentaire dans Sud ouest ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-13",
+    "prompt": "Quelle technique archéologique est la meilleure pour déterminer des modifications terrestres à grande échelle ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-131",
+    "prompt": "Le Machu Picchu a été construit dans les montagnes comme :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-14",
+    "prompt": "Quelle appellation de style de poterie a été finalement donnée à un ensemble culturel entier qui a traversé le Pacifique d’un bout à l’autre ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-142",
+    "prompt": "Les preuves irréfutables du recours à l’art en tant qu’expression symbolique datent de …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-143",
+    "prompt": "Quelle était la technique chinoise de terre battue était utilisée pour la construction des murs des habitations et des structures de défense ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-145",
+    "prompt": "Des preuves génétiques indiquent que les Inuits modernes sont les descendants de quel peuple ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-148",
+    "prompt": "Lors de l’exploration de Rhode Island, le navigateur italien, Giovanni de Verrazzano a constaté que le peuple natif ressemblait :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-151",
+    "prompt": "Quel sous-domaine de l’anthropologie est été décrit comme l’étude « des poubelles des autres » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-156",
+    "prompt": "Dans le film de deux heures de l’auteur représentant l’histoire de l’univers, quand les premiers membres de l’humanité sont apparus ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-158",
+    "prompt": "Quel nom couramment utilisé pour une culture a été emprunté à une autre langue amérindienne et qui signifie littéralement « anciens ennemies » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-159",
+    "prompt": "Des preuves paléogénétiques et paléoécologiques montrent des dates d’occupation de l’Australie comme remontant à :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-169",
+    "prompt": "Sur quelle date d’occupation de l’Australie s’entendent la majorité des archéologues ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-177",
+    "prompt": "L’art et les iconographies Mayas accordaient une place importante :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-18",
+    "prompt": "Un modèle d’intégration sociale dans lequel les individus sont placés selon une hiérarchie de niveaux sociaux est appelé :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-183",
+    "prompt": "La dynastie Shang a jeté les bases d’un développement cohérent de la civilisation chinoise qui s’est prolongée jusqu’à la fin du :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-184",
+    "prompt": "Qu’est-ce que Homo sapiens et Australopithecus afarensis ont en commun ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-189",
+    "prompt": "Des périodes plus froides que la présente, qui ont été caractérisées par de la glace et une couverture neigeuse, sont connues sous le nom :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-19",
+    "prompt": "L’économie minoenne a peut-être été particulièrement vulnérable aux catastrophes naturelles parce qu’elle dépendait fortement :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-194",
+    "prompt": "Quelle institution mésopotamienne était établie séparément et avait le pouvoir avant l’avènement de la complexité sociale ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-200",
+    "prompt": "Un lieu où les personnes vivaient et/ou travaillaient et dont des preuves physiques de leur existence peuvent être retrouvées est :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-205",
+    "prompt": "Le système de conservation d’archives utilisé par les Incas dans lequel une série de ficelles nouées servaient de dispositif mnémonique est appelé :",
+    "why": "The Inca knotted cords are « quipus » in French; « khipu » and its decoys are not what a table knows."
+  },
+  {
+    "id": "mmmlu-prehistory-217",
+    "prompt": "L’excavation des sites de Yang-shao en Chine indique la présence de quels types des cultures domestiquées ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-224",
+    "prompt": "Il existe des preuves de l’existence de l’Homo sapiens prémoderne il y a :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-23",
+    "prompt": "L’arête osseuse continue et en saillie au-dessus et d’un bout à l’autre des orbites oculaires s’appelle :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-233",
+    "prompt": "Sur quel continent se trouvent les premières preuves de gravure de la surface d’une roche ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-237",
+    "prompt": "On pourrait décrire les premiers hominidés comme :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-249",
+    "prompt": "Au cours quelle période trouve-t-on des preuves de l’Homo sapiens anatomiquement moderne ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-25",
+    "prompt": "La culture Yang-shao a laissé la place à la culture Lung-Shan quelque temps après :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-251",
+    "prompt": "Les Mayas ont crée leur écriture et leurs mathématique à partir :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-253",
+    "prompt": "Quel est le nom de la plus grande structure à Teotihuacán ? Combien de monuments à plateforme et de pyramides ont été construits ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-254",
+    "prompt": "Quand les Incas ont-ils commencé leur expansion militaire dans l’Amérique du Sud ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-262",
+    "prompt": "Comment les archéologues caractérisent-ils les peuples qui ont construit des structures monumentales à Göbekli Tepe, Watson Brake et Poverty Point ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-27",
+    "prompt": "Les premières preuves de cueillette et consommation de graines sauvages en Israël datent de :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-275",
+    "prompt": "L’époque à laquelle nos premiers parents primate non humain a fait sa première apparition est appelée :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-276",
+    "prompt": "Comparativement à Homo habilis, qu’est-ce qui a donné à Homo erectus la capacité de migrer si loin et si rapidement ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-294",
+    "prompt": "Quand a eu lieu la naissance de la culture ancestrale Pueblo ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-297",
+    "prompt": "Les peuples natifs de la côte nord-ouest de l’Amérique du Nord étaient :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-299",
+    "prompt": "Quelle culture était centrée dans la vallée de l’Ohio River il y a environ 2 800 ans ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-300",
+    "prompt": "Quelle culture était centrée dans la vallée de l’Ohio River il y a environ 2 800 ans ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-31",
+    "prompt": "Des preuves de sociétés sur la côte nord montrent que l’élément essentiel pour le développement de la complexité sociale est :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-313",
+    "prompt": "Quelle région est le territoire traditionnel de fabrication d’outils en pierre à partir de cailloux ébréchés, appelée Hoabinhien ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-314",
+    "prompt": "L’époque du Pléistocène a duré jusqu’à il y a combien d’années ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-32",
+    "prompt": "Quel sous-domaine de l’anthropologie visa à mieux comprendre les plus proches parents vivants des humains ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-322",
+    "prompt": "Quelle est la date de la première preuve d’utilisation des métaux en Amérique du Sud ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-38",
+    "prompt": "En comparant le rapport entre la taille du cerveau et celle du corps, quelle espèce a proportionnellement le plus grand cerveau ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-40",
+    "prompt": "L’espèce hominidé découverte dans la grotte de Malapa en Afrique du Sud a été classée comme :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-49",
+    "prompt": "Quand les Aborigènes occupaient-ils les terres intérieures arides de l’Australie ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-53",
+    "prompt": "Une fête au cours de laquelle les richesses sont redistribuées est appelée :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-55",
+    "prompt": "La méthode chinoise pour présager le futur en examinant des os d’animaux chauffés est appelée :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-59",
+    "prompt": "La cité d’Uruk et les cultures des Maya et des Moches ont toutes été affectées par :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-60",
+    "prompt": "Quel est le progéniteur sauvage du maïs ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-66",
+    "prompt": "À son apogée, la population de la cité de Teotihuacán a sans doute atteint :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-68",
+    "prompt": "Avoir le bas du visage poussé vers l’avant est nommé …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-75",
+    "prompt": "Quel est le mot aztèque pour désigner un dispositif de lance élaboré en Europe il y a plus de 30 000 ans ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-76",
+    "prompt": "La production sélective des plantes et des animaux par les humains est appelée :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-79",
+    "prompt": "Quand les premiers pharaons sont-ils apparus en Égypte ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-80",
+    "prompt": "Il existe des preuves que les Hohokam ont emprunté une pratique à la culture mésopotamienne. Laquelle ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-86",
+    "prompt": "Les symboles matériels les plus évidents d’anciennes sociétés États sont :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-prehistory-96",
+    "prompt": "Homo floresiensis de l’île de Flores est daté d’il y a environ 35 000 à 14 000 ans et, selon certains chercheurs, il est semblable ou lié à :",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-0",
+    "prompt": "Comment peut-on traduire le mot « murti » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-100",
+    "prompt": "Combien de fois par jour récite-t-on la Fatihah ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-101",
+    "prompt": "Quelle branche du judaïsme fondée par Zacharias Frankel est connue pour son « judaïsme historique positif » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-102",
+    "prompt": "Comment appelle-t-on les « purs » comme un ordre de Sikhs loyaux liés entre eux ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-104",
+    "prompt": "Quel terme est généralement associé aux femmes dans les traditions hindoues ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-105",
+    "prompt": "Indiquez un autre nom de l’Enuma Elish …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-106",
+    "prompt": "Quel a été le festival centré sur les femmes le plus important dans les villes de Grèce ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-107",
+    "prompt": "À quelle confession chrétienne associe-t-on le fait de parler ou prier à haute voix dans une langue ayant l’aspect d’une langue étrangère ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-108",
+    "prompt": "Comment pourrait-on définir le charisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-11",
+    "prompt": "Quelle tradition est connue pour promouvoir une « illumination progressive » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-111",
+    "prompt": "Nommez un mouvement de renouveau récent en Turquie dirigé par Fetullah Gülen …",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-112",
+    "prompt": "Qui donne le plus d’importance aux Védas hindous ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-113",
+    "prompt": "Selon le mythe de la fondation de la Corée, qui s`est transformé en humain pour engendrer Dangun ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-114",
+    "prompt": "Comment appelle-t-on les femmes ordonnées dans le bouddhisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-118",
+    "prompt": "Quelle est la forme de bouddhisme la plus répandue au Sri Lanka ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-119",
+    "prompt": "Quel chef spirituel est connu pour propager le dharma de la non-violence ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-12",
+    "prompt": "Dans le sikhisme, comment appelle-t-on le repas commun servi sur le lieu de culte ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-121",
+    "prompt": "Quelle est la fête la plus importante pour les Sikhs ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-122",
+    "prompt": "Qui a déclaré Mahomet prophète ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-123",
+    "prompt": "De quel genre d’histoires les contes Jataka forment-ils un recueil ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-124",
+    "prompt": "Quand a eu lieu la période à laquelle le Japon s’est fermé au christianisme et à l’Europe ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-125",
+    "prompt": "Comment désigne-t-on l’alliance en yiddish ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-127",
+    "prompt": "Comment s’appelle la communauté hindoue associée à l’activisme environnemental ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-128",
+    "prompt": "Quel bodhisattva est connu pour conduire les âmes des enfants morts vers le salut ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-129",
+    "prompt": "À quel concept théologique l’Évangile de Jean est-il associé ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-13",
+    "prompt": "À quelle tradition appartient le groupe rebelle anti-Han connu sous le nom des Maîtres Célestes ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-130",
+    "prompt": "Quel dieu a supplanté l’ancien dieu suprême mésopotamien Enil ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-136",
+    "prompt": "De quelle tradition le minimalisme du haïku viendrait-il ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-139",
+    "prompt": "Quels dieux égyptiens Akhenaton s’est-il résolument efforcé d’éliminer ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-142",
+    "prompt": "Quel est le terme désignant le commentaire du Coran qui signifie « dévoilement » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-143",
+    "prompt": "À quelle branche de l’Islam les Ismaéliens sont-ils associés ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-145",
+    "prompt": "Comment s’appelait le bodhisattva japonais connu pour son engagement à soulager la souffrance ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-146",
+    "prompt": "Qui fut le premier ermite anachorète important ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-149",
+    "prompt": "Où se trouvait le site le plus célèbre des cultes des mystères en Grèce ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-15",
+    "prompt": "Que signifie le terme « anātman » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-150",
+    "prompt": "Quand la captivité babylonienne dite de l’Exil a-t-elle commencé ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-152",
+    "prompt": "Dans le jaïnisme, quel est le cycle dont on cherche à se libérer ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-155",
+    "prompt": "Que signifie le terme « matsuri » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-156",
+    "prompt": "Quel homme d’État romain a encouragé la religion civique dans son ouvrage Les Lois ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-157",
+    "prompt": "Que signifie « Svetambara » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-16",
+    "prompt": "Quel genre de littérature sikh le terme janam-sakhis désigne-t-il ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-160",
+    "prompt": "Quels sont les commentaires rabbiniques produits après l’appel de la Mishna ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-162",
+    "prompt": "À quelle forme de bouddhisme le « Sermon des Fleurs » est-il associé ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-164",
+    "prompt": "Quelle est la principale raison du port du hijab de nos jours ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-165",
+    "prompt": "Comment appelle-t-on la Torah orale sous sa forme écrite ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-167",
+    "prompt": "À l’époque de la dynastie Han, à qui les gens ordinaires faisaient-ils appel en période de sécheresse ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-168",
+    "prompt": "Que signifie le terme théologique « homoousios » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-169",
+    "prompt": "Qui, selon un mythe d’origine japonaise, donne naissance à Amaterasu de son œil gauche ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-17",
+    "prompt": "À quelle école appartient le bouddhisme de la Terre pure ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-18",
+    "prompt": "Quel groupe jaïn n’autorise que les femmes à mener une vie de semi-renonciation ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-19",
+    "prompt": "Comment s’appelle la prière la plus importante dans le judaïsme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-2",
+    "prompt": "Quand le premier temple bouddhiste a-t-il été construit au Japon ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-21",
+    "prompt": "Quelle est la première bataille qui a conduit à la conversion de La Mecque ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-22",
+    "prompt": "Quelle discipline intérieure faut-il adopter pour parvenir à la libération spirituelle selon le sikhisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-24",
+    "prompt": "Que signifie le mot pendjabi « sikh » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-27",
+    "prompt": "Selon les traditions jaïn, que signifie le terme « ajiva » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-29",
+    "prompt": "Quel est l’élément central du bouddhisme tantrique ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-3",
+    "prompt": "Comment s’appelait la fête du Nouvel An qui durait dix jours et célébrait la culture babylonienne ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-30",
+    "prompt": "Comment la composition égyptienne Ludlul Bel Nemeqi (« Je louerai le Seigneur de la sagesse ») représente-t-elle Marduk ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-32",
+    "prompt": "En plus du jaïnisme, quelle autre tradition a commencé comme un mouvement de renonciation au monde ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-33",
+    "prompt": "Selon la tradition hindoue, quel âge vivons-nous actuellement ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-34",
+    "prompt": "Dans la tradition zoroastrienne, à quoi le terme Gathas fait-il référence ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-35",
+    "prompt": "Quelle forme de bouddhisme enseignait que le seul espoir de salut résidait dans la grâce salvatrice d’Amida ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-36",
+    "prompt": "Selon la tradition hindoue, qui est considérée comme l’épouse idéale ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-37",
+    "prompt": "Quelle la femme mystique incarnait l’amour dévorant du divin ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-38",
+    "prompt": "Qui est la poète du VIIIe siècle de notre ère vénérée dans de nombreux temples du sud de l’Inde dédiés à Vishnou ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-41",
+    "prompt": "Quelle confession chrétienne promeut un christianisme dépouillé ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-45",
+    "prompt": "Zhuangzi ou Tsouang-Tseu décrit un état comme étant le « ziran ». En quoi cela consiste-t-il ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-46",
+    "prompt": "Sous quel nom les mudras, qui sont une caractéristique importante de l’art bouddhiste, sont-ils également connus ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-48",
+    "prompt": "Quel âge avait Guru Nanak lorsqu’il a commencé à prêcher le message du Nom divin ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-50",
+    "prompt": "Que signifie l’expression Guru-Panth dans les traditions sikhs ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-51",
+    "prompt": "Après quel événement la période rabbinique du judaïsme a-t-elle commencé ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-52",
+    "prompt": "Quel moine a développé le bouddhisme de la Terre pure tel que nous le connaissons aujourd’hui ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-54",
+    "prompt": "Quel pape a promu les cultes de Saint-Pierre et de Saint-Paul pour renforcer son autorité à Rome ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-55",
+    "prompt": "Que désigne le terme « Arhats » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-56",
+    "prompt": "Quel Guru a été martyrisé lorsqu’il a refusé de se convertir à l’Islam ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-58",
+    "prompt": "Dans le sikhisme, où se trouve la clé de la libération ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-6",
+    "prompt": "Quel terme Guru Nanak a-t-il utilisé pour désigner la « parole divine » comme faisant partie de la révélation divine ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-60",
+    "prompt": "Quelle déesse est vénérée lors de la fête de Divali ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-61",
+    "prompt": "Où les gens croyaient-ils en la déesse connue sous le nom de Sainte Mère du Mont de la Fée Pêche ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-62",
+    "prompt": "À qui sont attribués les Yoga Sutras ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-65",
+    "prompt": "De quel jina les livres sacrés sont-ils issus ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-66",
+    "prompt": "Qui a écrit les Préceptes aux femmes ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-67",
+    "prompt": "Combien de femmes ayant renoncé au monde étaient sous la tutelle de Chandanbala ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-68",
+    "prompt": "Selon la tradition sikh, de quoi le Mul Mantar éclaire-t-il la nature ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-69",
+    "prompt": "Quel terme désigne l’ordre divin comme principe supérieur global du sikhisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-71",
+    "prompt": "Quelle forme de bouddhisme se concentre sur l’engagement social qui attire la participation des laïcs ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-73",
+    "prompt": "Comment appelle-t-on la prière centrale du jaïnisme ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-74",
+    "prompt": "Quand sont apparus les premiers temples jaïn ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-75",
+    "prompt": "Combien de Jinas sont apparus à l’âge auquel nous vivons ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-76",
+    "prompt": "Que signifie le titre de Dalaï-Lama ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-77",
+    "prompt": "Qui accompagne Vishnu dans plusieurs de ses incarnations en tant qu’épouse et est connue comme la déesse de la bonne fortune ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-78",
+    "prompt": "Comment traduit-on souvent le terme « bhakti » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-79",
+    "prompt": "Quel dieu ou déesse hindoue est la parole incarnée, le pouvoir de la parole et la mère des Vedas ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-8",
+    "prompt": "Comment appelle-t-on les dharmashastras les plus célèbres, qui datent probablement des alentours du premier siècle ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-80",
+    "prompt": "Comment appelle-t-on la prière juive utilisée pour le deuil depuis le Moyen Âge ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-82",
+    "prompt": "Les kshatriyas sont le nom d’une caste. Laquelle ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-84",
+    "prompt": "Que signifie le terme « samyak jnana » dans les traditions jaïn ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-86",
+    "prompt": "Quel mystique croyait que le mal était une distorsion qui révèle l’amour divin avec plus de clarté ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-87",
+    "prompt": "Dans les traditions jaïn, comment appelle-t-on le « mauvais karma » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-89",
+    "prompt": "Que signifie « Mahavira » ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-90",
+    "prompt": "Qu’est-ce que le Tripitaka ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-91",
+    "prompt": "Où se trouve le plus grand réseau de sanctuaires confucéens au monde ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-92",
+    "prompt": "Ghosa, Apala et Lopamurda apparaissent tous dans les premiers Védas. Que sont-ils ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-97",
+    "prompt": "Pour quelle fête hindoue décore-t-on la maison avec des lumières, allume-t-on des pétards et porte-t-on des nouveaux vêtements ?",
+    "why": "Ambiguous: Deepavali and Diwali, the answer and a decoy, are the same festival."
+  },
+  {
+    "id": "mmmlu-world-religions-98",
+    "prompt": "Quelles horaires sont réservés aux heures ambrosiales pour les Sikhs ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  },
+  {
+    "id": "mmmlu-world-religions-99",
+    "prompt": "Pour quel penseur bouddhiste le sacrifice de soi est-il un thème important ?",
+    "why": "Exam register: a syllabus or specialist question a party table cannot play."
+  }
+]

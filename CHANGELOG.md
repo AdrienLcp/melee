@@ -869,6 +869,41 @@ one part.
 
 ### Improvements
 
+- `[Server]` **An English room that stays mainstream gets questions a table
+  knows.** The English half's well-known flag was Open Trivia DB's own
+  difficulty, and every one of its 3 883 well-known rows has now been read: 1 922
+  stop being well-known in `not-well-known-questions.json` — album tracks,
+  anime lore, Overwatch hero kits, South Dakota's capital. Cinema and video
+  games are judged by a casual viewer or player of the subject, since that is
+  who ticks the chip. 46 broken rows are dropped or repaired, and a repair can
+  now set `accepted`. Well-known English rows per subject: arts 257, cinema 211,
+  everyday 203, geography 160, history 181, quotes 392, science 244, sport 52,
+  video games 245.
+
+- `[Server]` **French video games get a second source, written by hand.** No
+  openly licensed French video-game corpus exists, so 373 questions were written
+  in `apps/server/scripts/videogames-fr.json` — characters, franchises,
+  hardware, music, places, and French game culture from Alone in the Dark to
+  Dofus — each checked against Wikipedia or a publisher's page. *Who developed
+  it* is under one row in twenty-five, where it was over half the subject. French
+  video games go from 795 rows to 1 168, and from 253 well-known to 418.
+  `authored-questions.ts` is the loader the quotes and this list share.
+
+- `[Server]` **MMMLU `FR_FR` is the bank's sixth source**: OpenAI's
+  professional French translation of MMLU, MIT. Of its 14 042 rows, 1 081 have
+  a trivia shape (a stem of at most 150 characters, short options, no *which
+  of the following*, no computation), and every one of those was read: 319 are
+  banked and 762 dropped, each with its reason, in `mmmlu-dropped.json` — exam
+  register, American civics, mistranslations, and a few wrong answer keys.
+  French science goes from 414 rows to 528. None is rated well-known, since
+  nothing measures it.
+
+- `[Server]` **The French quotes reach 521.** Forty lines now read as the
+  French dub says them (*Je suis le maître du monde !*, *Pourquoi cet air si
+  sérieux ?*), fifteen whose dubbed wording no source confirms are gone, and 79
+  new lines are in, each checked against Wikiquote, Wikipedia or the press. The
+  bank goes to 13 021 rows.
+
 - `[Server]` **Every French Vikidia row and every well-known Mintaka row
   outside sport has been read, one at a time.** Of Vikidia's 922, 70 are
   dropped (choice questions that lost their choices, fragments, wrong answers),

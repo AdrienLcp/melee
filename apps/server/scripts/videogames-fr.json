@@ -1,0 +1,3852 @@
+[
+  {
+    "accepted": ["Lara"],
+    "answer": "Lara Croft",
+    "decoys": ["Samus Aran", "Jill Valentine", "Chun-Li"],
+    "id": "videogames-fr-lara-croft",
+    "isWellKnown": true,
+    "note": "Créée par le studio Core Design, elle apparaît en 1996.",
+    "prompt": "Quelle aventurière archéologue britannique est l'héroïne de Tomb Raider ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Samus"],
+    "answer": "Samus Aran",
+    "decoys": ["Lara Croft", "Joanna Dark", "Jill Valentine"],
+    "id": "videogames-fr-samus-aran",
+    "isWellKnown": false,
+    "note": "Elle est l’une des premières grandes héroïnes du jeu vidéo.",
+    "prompt": "Quelle chasseuse de primes en armure se révèle être une femme à la fin du premier Metroid (1986) ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Blinky",
+    "decoys": ["Pinky", "Inky", "Clyde"],
+    "id": "videogames-fr-blinky",
+    "isWellKnown": false,
+    "note": "Pinky est rose, Inky cyan et Clyde orange.",
+    "prompt": "Comment s’appelle le fantôme rouge de Pac-Man ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Bulbasaur"],
+    "answer": "Bulbizarre",
+    "decoys": ["Salamèche", "Carapuce", "Pikachu"],
+    "id": "videogames-fr-bulbizarre",
+    "isWellKnown": false,
+    "note": "Le Pokédex commence par Bulbizarre et sa lignée, avant celles de Salamèche et de Carapuce.",
+    "prompt": "Quel Pokémon porte le numéro 001 du Pokédex national ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Pikachu",
+    "decoys": ["Rondoudou", "Évoli", "Psykokwak"],
+    "id": "videogames-fr-pikachu-mascot",
+    "isWellKnown": true,
+    "note": "C’est un Pokémon de type Électrik, le compagnon de Sacha dans le dessin animé.",
+    "prompt": "Quel Pokémon jaune aux joues rouges est la mascotte de la franchise Pokémon ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Yoshi",
+    "decoys": ["Birdo", "Toad", "Lakitu"],
+    "id": "videogames-fr-yoshi",
+    "isWellKnown": true,
+    "note": "Super Mario World est sorti en 1990 sur Super Nintendo.",
+    "prompt": "Comment s’appelle le dinosaure vert que chevauche Mario dans Super Mario World ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Mario",
+    "decoys": ["Luigi", "Wario", "Link"],
+    "id": "videogames-fr-jumpman",
+    "isWellKnown": true,
+    "note": "Il aurait été rebaptisé d’après Mario Segale, le propriétaire de l’entrepôt de Nintendo of America.",
+    "prompt": "Dans Donkey Kong (1981), le héros s'appelait Jumpman. Sous quel nom est-il devenu célèbre ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "plombier",
+    "decoys": ["électricien", "maçon", "boulanger"],
+    "id": "videogames-fr-mario-plumber",
+    "isWellKnown": true,
+    "note": "Il était charpentier dans Donkey Kong, avant de devenir plombier avec Mario Bros. en 1983.",
+    "prompt": "Quel métier exerce Mario ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Rockman"],
+    "answer": "Mega Man",
+    "decoys": ["Bomberman", "Ristar", "Bonk"],
+    "id": "videogames-fr-mega-man",
+    "isWellKnown": false,
+    "note": "Au Japon, il s’appelle Rockman.",
+    "prompt": "Quel robot bleu de Capcom récupère l’arme de chaque boss qu’il bat ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Ryu",
+    "decoys": ["Guile", "Zangief", "Dhalsim"],
+    "id": "videogames-fr-ryu",
+    "isWellKnown": true,
+    "note": "Il est le héros de la série depuis le premier Street Fighter, en 1987.",
+    "prompt": "Quel combattant de Street Fighter, en kimono blanc et bandeau rouge, lance le Hadoken ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Chun-Li",
+    "decoys": ["Cammy", "Sakura", "Juri"],
+    "id": "videogames-fr-chun-li",
+    "isWellKnown": false,
+    "note": "Street Fighter II est sorti en arcade en 1991.",
+    "prompt": "Quelle combattante chinoise de Street Fighter II est la première femme jouable de la série ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Guile",
+    "decoys": ["Ken", "Vega", "M. Bison"],
+    "id": "videogames-fr-guile",
+    "isWellKnown": false,
+    "note": "Son thème musical est devenu un mème : il irait avec tout.",
+    "prompt": "Quel pilote de l’US Air Force est un combattant de Street Fighter II ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Wario",
+    "decoys": ["Waluigi", "Bowser", "Luigi"],
+    "id": "videogames-fr-wario",
+    "isWellKnown": true,
+    "note": "Le W de sa casquette est un M renversé.",
+    "prompt": "Quel double maléfique de Mario porte une salopette violette et une moustache en zigzag ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Freeman"],
+    "answer": "Gordon Freeman",
+    "decoys": ["Isaac Clarke", "Adam Jensen", "B.J. Blazkowicz"],
+    "id": "videogames-fr-gordon-freeman",
+    "isWellKnown": false,
+    "note": "Il ne prononce pas un mot de toute la série.",
+    "prompt": "Quel physicien à lunettes, armé d’un pied-de-biche, est le héros de Half-Life ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Zelda",
+    "decoys": ["Peach", "Daisy", "Harmonie"],
+    "id": "videogames-fr-princess-zelda",
+    "isWellKnown": true,
+    "note": "Le héros, lui, s’appelle Link : on confond souvent les deux.",
+    "prompt": "Comment s’appelle la princesse de la série The Legend of Zelda ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Cloud"],
+    "answer": "Cloud Strife",
+    "decoys": ["Squall Leonhart", "Tidus", "Zidane Tribal"],
+    "id": "videogames-fr-cloud",
+    "isWellKnown": true,
+    "note": "Final Fantasy VII est sorti en 1997 sur PlayStation.",
+    "prompt": "Comment s’appelle le héros à l’épée géante de Final Fantasy VII ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Sephiroth",
+    "decoys": ["Kefka", "Kuja", "Ultimecia"],
+    "id": "videogames-fr-sephiroth",
+    "isWellKnown": true,
+    "note": "Le meurtre d’Aerith par Sephiroth a suscité d’innombrables commentaires.",
+    "prompt": "Quel antagoniste aux cheveux argentés tue Aerith dans Final Fantasy VII ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Shadow the Hedgehog"],
+    "answer": "Shadow",
+    "decoys": ["Silver", "Knuckles", "Metal Sonic"],
+    "id": "videogames-fr-shadow",
+    "isWellKnown": true,
+    "note": "Sonic Adventure 2 est sorti en 2001 sur Dreamcast.",
+    "prompt": "Comment s’appelle le hérisson noir, rival de Sonic, apparu dans Sonic Adventure 2 ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Dante",
+    "decoys": ["Bayonetta", "Alucard", "Raiden"],
+    "id": "videogames-fr-dante",
+    "isWellKnown": false,
+    "note": "La série de Capcom est née en 2001 sur PlayStation 2.",
+    "prompt": "Quel chasseur de démons au long manteau rouge est le héros de Devil May Cry ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Ezio", "Ezio Auditore da Firenze"],
+    "answer": "Ezio Auditore",
+    "decoys": ["Altaïr", "Connor", "Edward Kenway"],
+    "id": "videogames-fr-ezio",
+    "isWellKnown": true,
+    "note": "Il est aussi le héros de Brotherhood et de Revelations.",
+    "prompt": "Quel assassin florentin de la Renaissance est le héros d’Assassin’s Creed II ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Chen", "Oak", "Professeur Oak"],
+    "answer": "Professeur Chen",
+    "decoys": ["Professeur Orme", "Professeur Seko", "Professeur Sorbier"],
+    "id": "videogames-fr-professor-oak",
+    "isWellKnown": true,
+    "note": "En anglais il s’appelle Oak. Les professeurs Pokémon portent presque tous des noms d’arbres.",
+    "prompt": "Quel professeur offre son premier Pokémon au joueur dans Pokémon Rouge et Bleu ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Team Rocket"],
+    "answer": "la Team Rocket",
+    "decoys": ["la Team Aqua", "la Team Galaxie", "la Team Plasma"],
+    "id": "videogames-fr-team-rocket",
+    "isWellKnown": true,
+    "note": "Son chef est Giovanni, champion d’arène de Jadielle.",
+    "prompt": "Quelle bande de malfaiteurs vole des Pokémon dans Pokémon Rouge et Bleu ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Tom Nook",
+    "decoys": ["Kéké Laglisse", "Marie", "Thibou"],
+    "id": "videogames-fr-tom-nook",
+    "isWellKnown": true,
+    "note": "C’est un tanuki, et rembourser sa dette fait le fil de chaque partie.",
+    "prompt": "Dans Animal Crossing, quel commerçant vend sa maison au joueur à crédit ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["K.K. Slider", "Kéké"],
+    "answer": "Kéké Laglisse",
+    "decoys": ["Tom Nook", "Marie", "Thibou"],
+    "id": "videogames-fr-kk-slider",
+    "isWellKnown": true,
+    "note": "En anglais, il s’appelle K.K. Slider.",
+    "prompt": "Comment s’appelle le chien musicien qui donne des concerts à la guitare dans Animal Crossing ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Joel Miller"],
+    "answer": "Joel",
+    "decoys": ["Arthur Morgan", "Nathan Drake", "Leon Kennedy"],
+    "id": "videogames-fr-joel",
+    "isWellKnown": true,
+    "note": "Pedro Pascal l’incarne dans la série de HBO.",
+    "prompt": "Quel contrebandier escorte une adolescente à travers des États-Unis dévastés dans The Last of Us ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Ellie Williams"],
+    "answer": "Ellie",
+    "decoys": ["Clementine", "Aloy", "Max Caulfield"],
+    "id": "videogames-fr-ellie",
+    "isWellKnown": true,
+    "note": "Elle devient l’héroïne de The Last of Us Part II.",
+    "prompt": "Quelle adolescente immunisée accompagne Joel dans The Last of Us ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Nathan", "Drake", "Nate"],
+    "answer": "Nathan Drake",
+    "decoys": ["Lara Croft", "Joel Miller", "Marcus Fenix"],
+    "id": "videogames-fr-nathan-drake",
+    "isWellKnown": true,
+    "note": "Tom Holland l’a incarné au cinéma en 2022.",
+    "prompt": "Comment s’appelle le chasseur de trésors héros de la série Uncharted ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Marston"],
+    "answer": "John Marston",
+    "decoys": ["Arthur Morgan", "Dutch van der Linde", "Niko Bellic"],
+    "id": "videogames-fr-john-marston",
+    "isWellKnown": false,
+    "note": "Il apparaît aussi dans Red Dead Redemption 2, dont l’histoire se déroule avant.",
+    "prompt": "Quel ancien hors-la-loi est le héros de Red Dead Redemption (2010) ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Cortex", "Docteur Neo Cortex"],
+    "answer": "Neo Cortex",
+    "decoys": ["Docteur Eggman", "Docteur Wily", "Ripto"],
+    "id": "videogames-fr-neo-cortex",
+    "isWellKnown": true,
+    "note": "Il a fait évoluer Crash avec son Evolvo-Ray pour en faire le général de son armée.",
+    "prompt": "Quel savant fou à grosse tête est l’ennemi juré de Crash Bandicoot ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Wily", "Dr Wily"],
+    "answer": "Docteur Wily",
+    "decoys": ["Docteur Eggman", "Neo Cortex", "Docteur Light"],
+    "id": "videogames-fr-dr-wily",
+    "isWellKnown": false,
+    "note": "Le docteur Light, lui, est le créateur de Mega Man.",
+    "prompt": "Quel savant fou est l’ennemi de Mega Man ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "GLaDOS",
+    "decoys": ["HAL 9000", "SHODAN", "Cortana"],
+    "id": "videogames-fr-glados",
+    "isWellKnown": true,
+    "note": "« The cake is a lie », griffonné sur les murs du centre d’essais, est devenu un mème.",
+    "prompt": "Quelle intelligence artificielle promet un gâteau au joueur dans Portal ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Cortana",
+    "decoys": ["GLaDOS", "SHODAN", "EDI"],
+    "id": "videogames-fr-cortana",
+    "isWellKnown": true,
+    "note": "Microsoft a repris son nom pour son assistant vocal.",
+    "prompt": "Quelle intelligence artificielle accompagne le Master Chief dans Halo ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Aloy",
+    "decoys": ["Ellie", "Senua", "Jade"],
+    "id": "videogames-fr-aloy",
+    "isWellKnown": false,
+    "note": "Horizon Zero Dawn est sorti en 2017 sur PlayStation 4.",
+    "prompt": "Quelle chasseuse aux cheveux roux affronte des machines hostiles dans Horizon Zero Dawn ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Fox"],
+    "answer": "Fox McCloud",
+    "decoys": ["Captain Falcon", "Olimar", "Ness"],
+    "id": "videogames-fr-fox-mccloud",
+    "isWellKnown": true,
+    "note": "Star Fox est sorti en 1993 sur Super Nintendo, avec une puce 3D dans la cartouche.",
+    "prompt": "Quel renard pilote d’Arwing est le héros de Star Fox ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Capitaine Olimar"],
+    "answer": "Olimar",
+    "decoys": ["Fox McCloud", "Toad", "Ness"],
+    "id": "videogames-fr-olimar",
+    "isWellKnown": false,
+    "note": "Pikmin est sorti en 2001 sur GameCube.",
+    "prompt": "Quel capitaine minuscule, échoué sur une planète inconnue, commande les Pikmin ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Koopa", "Koopa Troopa", "Koopas"],
+    "answer": "les Koopa",
+    "decoys": ["les Goomba", "les Boo", "les Bob-omb"],
+    "id": "videogames-fr-koopa",
+    "isWellKnown": true,
+    "note": "Bowser est leur roi.",
+    "prompt": "Comment s’appellent les tortues à carapace ennemies de Mario ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Goomba", "Goombas"],
+    "answer": "les Goomba",
+    "decoys": ["les Koopa", "les Boo", "les Bob-omb"],
+    "id": "videogames-fr-goomba",
+    "isWellKnown": true,
+    "note": "C’est le premier ennemi que l’on croise dans le niveau 1-1.",
+    "prompt": "Comment s’appellent les champignons marron qu’on écrase en sautant dessus dans Super Mario Bros. ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Creeper"],
+    "answer": "le Creeper",
+    "decoys": ["l’Enderman", "le Zombie", "le Squelette"],
+    "id": "videogames-fr-creeper",
+    "isWellKnown": true,
+    "note": "Il serait né d’une erreur de modélisation d’un cochon.",
+    "prompt": "Dans Minecraft, quel monstre vert explose quand il s’approche du joueur ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Enderman"],
+    "answer": "l’Enderman",
+    "decoys": ["le Creeper", "le Wither", "le Ghast"],
+    "id": "videogames-fr-enderman",
+    "isWellKnown": true,
+    "note": "Il peut se téléporter et déplacer des blocs.",
+    "prompt": "Dans Minecraft, quelle grande créature attaque si on la regarde dans les yeux ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Steve",
+    "decoys": ["Notch", "Herobrine", "Jack"],
+    "id": "videogames-fr-steve",
+    "isWellKnown": true,
+    "note": "Il est jouable dans Super Smash Bros. Ultimate depuis 2020.",
+    "prompt": "Comment s’appelle le personnage par défaut de Minecraft, en t-shirt bleu clair ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Rayman",
+    "decoys": ["Crash", "Spyro", "Klonoa"],
+    "id": "videogames-fr-rayman",
+    "isWellKnown": true,
+    "note": "Il a été imaginé par le Français Michel Ancel et est né en 1995.",
+    "prompt": "Quel héros d’Ubisoft n’a ni bras ni jambes, ses mains et ses pieds flottant autour de lui ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Globox",
+    "decoys": ["Murfy", "Ly", "Polokus"],
+    "id": "videogames-fr-globox",
+    "isWellKnown": false,
+    "note": "Il apparaît à partir de Rayman 2 : The Great Escape, en 1999.",
+    "prompt": "Comment s’appelle le gros crapaud bleu, meilleur ami de Rayman ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Twinsen",
+    "decoys": ["Rayman", "Zoé", "Klonoa"],
+    "id": "videogames-fr-twinsen",
+    "isWellKnown": false,
+    "note": "Le jeu se déroule sur la planète Twinsun, sous la dictature du docteur FunFrock.",
+    "prompt": "Comment s’appelle le héros à queue de cheval de Little Big Adventure (1994), créé par Frédérick Raynal ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Jade",
+    "decoys": ["Aloy", "Lara Croft", "Faith"],
+    "id": "videogames-fr-jade",
+    "isWellKnown": false,
+    "note": "Le jeu a été imaginé par Michel Ancel chez Ubisoft Montpellier.",
+    "prompt": "Quelle photographe reporter est l’héroïne de Beyond Good & Evil (2003) ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Pauline",
+    "decoys": ["Peach", "Daisy", "Harmonie"],
+    "id": "videogames-fr-pauline",
+    "isWellKnown": false,
+    "note": "Elle revient en maire de New Donk City dans Super Mario Odyssey.",
+    "prompt": "Comment s’appelle la jeune femme enlevée par le gorille dans le premier Donkey Kong (1981) ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Mishima",
+    "decoys": ["Bogard", "Kusanagi", "Hayabusa"],
+    "id": "videogames-fr-mishima",
+    "isWellKnown": false,
+    "note": "Heihachi, Kazuya et Jin : trois générations qui se jettent dans des ravins.",
+    "prompt": "Quel nom de famille porte la lignée maudite au cœur de la série Tekken ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Scorpion",
+    "decoys": ["Sub-Zero", "Raiden", "Liu Kang"],
+    "id": "videogames-fr-scorpion",
+    "isWellKnown": false,
+    "note": "Il est l’un des visages de la série depuis le premier épisode, en 1992.",
+    "prompt": "Quel ninja de Mortal Kombat lance un harpon en criant « Get over here ! » ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Sackboy",
+    "decoys": ["Yarny", "Kirby", "Mii"],
+    "id": "videogames-fr-sackboy",
+    "isWellKnown": false,
+    "note": "LittleBigPlanet est sorti en 2008 sur PlayStation 3.",
+    "prompt": "Quel petit personnage en toile de jute est la mascotte de LittleBigPlanet ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Spyro",
+    "decoys": ["Crash", "Croc", "Gex"],
+    "id": "videogames-fr-spyro",
+    "isWellKnown": true,
+    "note": "Le premier jeu a été développé par Insomniac Games.",
+    "prompt": "Quel jeune dragon violet est le héros d’une série de plateformes née en 1998 sur PlayStation ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Fisher"],
+    "answer": "Sam Fisher",
+    "decoys": ["Solid Snake", "Agent 47", "Adam Jensen"],
+    "id": "videogames-fr-sam-fisher",
+    "isWellKnown": false,
+    "note": "La série d’Ubisoft est née en 2002.",
+    "prompt": "Quel espion aux lunettes à trois yeux verts est le héros de Splinter Cell ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["47"],
+    "answer": "Agent 47",
+    "decoys": ["Sam Fisher", "Max Payne", "Solid Snake"],
+    "id": "videogames-fr-agent-47",
+    "isWellKnown": false,
+    "note": "La série est développée par le studio danois IO Interactive.",
+    "prompt": "Quel tueur à gages chauve, un code-barres tatoué sur la nuque, est le héros de Hitman ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Max", "Maxine Caulfield"],
+    "answer": "Max Caulfield",
+    "decoys": ["Chloe Price", "Ellie", "Jade"],
+    "id": "videogames-fr-max-caulfield",
+    "isWellKnown": false,
+    "note": "Life is Strange a été développé à Paris par Dontnod.",
+    "prompt": "Quelle étudiante en photographie découvre qu’elle peut remonter le temps dans Life is Strange ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Rosalina"],
+    "answer": "Harmonie",
+    "decoys": ["Daisy", "Pauline", "Peach"],
+    "id": "videogames-fr-rosalina",
+    "isWellKnown": false,
+    "note": "En anglais, elle s’appelle Rosalina.",
+    "prompt": "Quel personnage de l’univers de Mario, mère adoptive des Lumas, veille sur le cosmos dans Super Mario Galaxy ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Navi",
+    "decoys": ["Midna", "Fi", "Ezlo"],
+    "id": "videogames-fr-navi",
+    "isWellKnown": false,
+    "note": "Son « Hey! Listen! » est resté célèbre, et pas toujours en bien.",
+    "prompt": "Comment s’appelle la fée qui accompagne Link dans Ocarina of Time ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Goron", "Gorons"],
+    "answer": "les Gorons",
+    "decoys": ["les Zoras", "les Gerudos", "les Kokiris"],
+    "id": "videogames-fr-gorons",
+    "isWellKnown": false,
+    "note": "Ils vivent au pied de la Montagne de la Mort.",
+    "prompt": "Dans la série Zelda, comment s’appelle le peuple de pierre qui mange des roches ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Yuna",
+    "decoys": ["Aerith", "Tifa", "Lightning"],
+    "id": "videogames-fr-yuna",
+    "isWellKnown": false,
+    "note": "Final Fantasy X est sorti en 2001 sur PlayStation 2.",
+    "prompt": "Quelle invokeuse est l’héroïne de Final Fantasy X, aux côtés de Tidus ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Donald et Goofy"],
+    "answer": "Donald et Dingo",
+    "decoys": ["Mickey et Minnie", "Tic et Tac", "Timon et Pumbaa"],
+    "id": "videogames-fr-donald-goofy",
+    "isWellKnown": false,
+    "note": "Le roi Mickey leur a laissé une lettre leur demandant de retrouver le porteur de la Keyblade.",
+    "prompt": "Quels personnages de Disney accompagnent Sora dans Kingdom Hearts ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Alan Wake",
+    "decoys": ["Max Payne", "Isaac Clarke", "Harry Mason"],
+    "id": "videogames-fr-alan-wake",
+    "isWellKnown": false,
+    "note": "Le jeu a été développé par le studio finlandais Remedy.",
+    "prompt": "Quel écrivain en panne d’inspiration affronte les ténèbres avec une lampe torche dans un jeu de 2010 ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Charmander"],
+    "answer": "Salamèche",
+    "decoys": ["Héricendre", "Poussifeu", "Ouisticram"],
+    "id": "videogames-fr-charmander",
+    "isWellKnown": true,
+    "note": "Il évolue en Reptincel, puis en Dracaufeu.",
+    "prompt": "Quel est le Pokémon de départ de type Feu de Pokémon Rouge et Bleu ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "Mewtwo",
+    "decoys": ["Lugia", "Rayquaza", "Arceus"],
+    "id": "videogames-fr-mewtwo",
+    "isWellKnown": true,
+    "note": "Il est le grand méchant du premier film Pokémon.",
+    "prompt": "Quel Pokémon légendaire, numéro 150, a été créé en laboratoire à partir de Mew ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Jigglypuff"],
+    "answer": "Rondoudou",
+    "decoys": ["Psykokwak", "Porygon", "Magicarpe"],
+    "id": "videogames-fr-jigglypuff",
+    "isWellKnown": true,
+    "note": "Dans le dessin animé, il se vexe et gribouille le visage de ceux qui s’endorment.",
+    "prompt": "Quel Pokémon rose chante une berceuse qui endort tous ceux qui l’écoutent ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["Snorlax"],
+    "answer": "Ronflex",
+    "decoys": ["Rondoudou", "Lokhlass", "Grolem"],
+    "id": "videogames-fr-snorlax",
+    "isWellKnown": true,
+    "note": "Il pèse 460 kg.",
+    "prompt": "Quel gros Pokémon endormi bloque la route et ne se réveille qu’au son de la Pokéflûte ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["The Sims", "Sims"],
+    "answer": "Les Sims",
+    "decoys": ["Second Life", "Animal Crossing", "Habbo"],
+    "id": "videogames-fr-the-sims",
+    "isWellKnown": true,
+    "note": "Il a été imaginé par Will Wright, le créateur de SimCity.",
+    "prompt": "Dans quel jeu d’Electronic Arts, sorti en 2000, dirige-t-on la vie de personnages virtuels dans leur maison ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "SimCity",
+    "decoys": ["Civilization", "Populous", "Cities: Skylines"],
+    "id": "videogames-fr-simcity",
+    "isWellKnown": true,
+    "note": "Will Wright avait pris goût à dessiner des villes en créant les décors d’un jeu d’hélicoptère.",
+    "prompt": "Quel jeu de 1989 de Will Wright fait construire et gérer une ville ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Fortnite",
+    "decoys": ["PUBG", "Apex Legends", "Call of Duty: Warzone"],
+    "id": "videogames-fr-fortnite",
+    "isWellKnown": true,
+    "note": "Des concerts de Travis Scott et d’Ariana Grande y ont été donnés.",
+    "prompt": "Quel jeu de bataille royale d’Epic Games, sorti en 2017, est célèbre pour les danses de ses personnages ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Candy Crush"],
+    "answer": "Candy Crush Saga",
+    "decoys": ["Bejeweled", "Zuma", "Puzzle Bobble"],
+    "id": "videogames-fr-candy-crush",
+    "isWellKnown": true,
+    "note": "Il a été édité par le studio King, racheté par Activision Blizzard en 2016.",
+    "prompt": "Quel jeu sur mobile de 2012 consiste à aligner des bonbons de même couleur ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Angry Birds",
+    "decoys": ["Cut the Rope", "Fruit Ninja", "Flappy Bird"],
+    "id": "videogames-fr-angry-birds",
+    "isWellKnown": true,
+    "note": "Il a été créé par le studio finlandais Rovio.",
+    "prompt": "Quel jeu finlandais sur mobile, sorti en 2009, fait lancer des oiseaux sur des cochons ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Flappy Bird",
+    "decoys": ["Angry Birds", "Doodle Jump", "Crossy Road"],
+    "id": "videogames-fr-flappy-bird",
+    "isWellKnown": true,
+    "note": "Son créateur vietnamien, Nguyễn Hà Đông, l’a retiré des boutiques en février 2014.",
+    "prompt": "Quel jeu sur mobile de 2013 fait passer un petit oiseau entre des tuyaux verts ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Fruit Ninja",
+    "decoys": ["Cut the Rope", "Temple Run", "Subway Surfers"],
+    "id": "videogames-fr-fruit-ninja",
+    "isWellKnown": true,
+    "note": "Il est sorti en 2010, créé par le studio australien Halfbrick.",
+    "prompt": "Quel jeu sur mobile fait trancher d’un doigt des fruits lancés à l’écran ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Subway Surfers",
+    "decoys": ["Temple Run", "Jetpack Joyride", "Crossy Road"],
+    "id": "videogames-fr-subway-surfers",
+    "isWellKnown": true,
+    "note": "Il a été créé en 2012 par les studios danois Kiloo et SYBO.",
+    "prompt": "Quel jeu sur mobile fait courir sans fin sur des rails de métro pour fuir un inspecteur et son chien ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["PUBG", "PlayerUnknown's Battlegrounds"],
+    "answer": "PUBG: Battlegrounds",
+    "decoys": ["H1Z1", "Apex Legends", "Call of Duty: Warzone"],
+    "id": "videogames-fr-pubg",
+    "isWellKnown": true,
+    "note": "Son créateur, Brendan Greene, signe sous le pseudonyme PlayerUnknown.",
+    "prompt": "Quel jeu de 2017, où des joueurs parachutés sur une île s’affrontent jusqu’au dernier, a popularisé la bataille royale ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Space Invaders",
+    "decoys": ["Galaxian", "Asteroids", "Defender"],
+    "id": "videogames-fr-space-invaders",
+    "isWellKnown": true,
+    "note": "Il a été créé par Tomohiro Nishikado pour Taito.",
+    "prompt": "Quel jeu d’arcade japonais de 1978 fait tirer sur des vagues d’extraterrestres qui descendent ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Asteroids",
+    "decoys": ["Space Invaders", "Defender", "Galaga"],
+    "id": "videogames-fr-asteroids",
+    "isWellKnown": false,
+    "note": "C’est l’un des plus grands succès de l’histoire d’Atari.",
+    "prompt": "Quel jeu d’arcade d’Atari (1979) fait détruire des rochers dans l’espace avec un petit vaisseau triangulaire ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Sid Meier's Civilization"],
+    "answer": "Civilization",
+    "decoys": ["Age of Empires", "Anno", "Europa Universalis"],
+    "id": "videogames-fr-civilization",
+    "isWellKnown": false,
+    "note": "Le premier est sorti en 1991. « Encore un tour » est la devise des joueurs.",
+    "prompt": "Quel jeu de stratégie de Sid Meier fait bâtir un empire de la préhistoire à la conquête spatiale ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "StarCraft",
+    "decoys": ["Command & Conquer", "Age of Empires", "Dune II"],
+    "id": "videogames-fr-starcraft",
+    "isWellKnown": false,
+    "note": "Sorti en 1998, il a été un pilier de l’e-sport en Corée du Sud.",
+    "prompt": "Quel jeu de stratégie en temps réel de Blizzard oppose les Terrans, les Zergs et les Protoss ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["CS", "Counter Strike"],
+    "answer": "Counter-Strike",
+    "decoys": ["Rainbow Six Siege", "Valorant", "Team Fortress 2"],
+    "id": "videogames-fr-counter-strike",
+    "isWellKnown": true,
+    "note": "Valve en a racheté les droits en 2000.",
+    "prompt": "Quel jeu de tir en équipe oppose terroristes et antiterroristes, d’abord né comme un mod de Half-Life ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Guitar Hero",
+    "decoys": ["Rock Band", "Just Dance", "SingStar"],
+    "id": "videogames-fr-guitar-hero",
+    "isWellKnown": true,
+    "note": "Le premier a été développé par Harmonix, qui a ensuite créé Rock Band.",
+    "prompt": "Quel jeu de rythme de 2005 se joue avec une manette en forme de guitare ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "SingStar",
+    "decoys": ["Just Dance", "Guitar Hero", "Karaoke Revolution"],
+    "id": "videogames-fr-singstar",
+    "isWellKnown": false,
+    "note": "Le premier SingStar est sorti en 2004.",
+    "prompt": "Quel jeu de karaoké de Sony faisait chanter dans des micros sur PlayStation 2 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Wii Sports",
+    "decoys": ["Kinect Sports", "Mario Tennis", "Sports Champions"],
+    "id": "videogames-fr-wii-sports",
+    "isWellKnown": true,
+    "note": "Avec plus de 82 millions d’exemplaires, c’est l’un des jeux les plus vendus de l’histoire.",
+    "prompt": "Quel jeu, vendu avec la Wii, faisait jouer au tennis et au bowling en mimant les gestes ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Wii Fit",
+    "decoys": ["Just Dance", "Kinect Sports", "EA Sports Active"],
+    "id": "videogames-fr-wii-fit",
+    "isWellKnown": true,
+    "note": "Il était vendu avec la Wii Balance Board.",
+    "prompt": "Quel jeu de Nintendo de 2007 faisait faire du yoga sur une planche d’équilibre ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [
+      "Programme d’entraînement cérébral du Dr Kawashima",
+      "Dr Kawashima",
+      "Brain Age"
+    ],
+    "answer": "Brain Training",
+    "decoys": ["Big Brain Academy", "Professeur Layton", "Nintendogs"],
+    "id": "videogames-fr-brain-training",
+    "isWellKnown": true,
+    "note": "Ryuta Kawashima est un neuroscientifique japonais.",
+    "prompt": "Quel jeu sur Nintendo DS entraînait le cerveau avec le docteur Kawashima ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Nintendogs",
+    "decoys": ["Petz", "Animal Crossing", "Brain Training"],
+    "id": "videogames-fr-nintendogs",
+    "isWellKnown": false,
+    "note": "Il est sorti en 2005 et s’est vendu à plus de 23 millions d’exemplaires.",
+    "prompt": "Quel jeu sur Nintendo DS faisait adopter, caresser et promener un chiot virtuel ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "FarmVille",
+    "decoys": ["Hay Day", "Stardew Valley", "Harvest Moon"],
+    "id": "videogames-fr-farmville",
+    "isWellKnown": false,
+    "note": "Il a fermé sur Facebook le 31 décembre 2020, avec la fin de Flash.",
+    "prompt": "Quel jeu de ferme de Zynga a envahi Facebook à partir de 2009 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Stardew Valley",
+    "decoys": ["Harvest Moon", "FarmVille", "Animal Crossing"],
+    "id": "videogames-fr-stardew-valley",
+    "isWellKnown": true,
+    "note": "Il a été réalisé presque seul par Eric Barone, alias ConcernedApe.",
+    "prompt": "Quel jeu de 2016 fait reprendre la ferme d’un grand-père dans un village paisible ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Silent Hill",
+    "decoys": ["Resident Evil", "Project Zero", "Alan Wake"],
+    "id": "videogames-fr-silent-hill",
+    "isWellKnown": false,
+    "note": "Le premier est sorti en 1999 sur PlayStation.",
+    "prompt": "Quelle série de jeux d’horreur de Konami se déroule dans une ville brumeuse et hantée ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Elden Ring",
+    "decoys": ["Dark Souls", "Sekiro", "Bloodborne"],
+    "id": "videogames-fr-elden-ring",
+    "isWellKnown": true,
+    "note": "Il a été élu jeu de l’année aux Game Awards 2022.",
+    "prompt": "Quel jeu de FromSoftware (2022), dans l’Entre-terre, a été écrit avec George R. R. Martin ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Cuphead",
+    "decoys": ["Hollow Knight", "Celeste", "Ori and the Blind Forest"],
+    "id": "videogames-fr-cuphead",
+    "isWellKnown": false,
+    "note": "Il a été réalisé par les frères canadiens Chad et Jared Moldenhauer.",
+    "prompt": "Quel jeu de 2017, dessiné à la main comme un dessin animé des années 1930, fait affronter des boss à un héros à tête de tasse ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Celeste",
+    "decoys": ["Hollow Knight", "Ori and the Blind Forest", "Journey"],
+    "id": "videogames-fr-celeste",
+    "isWellKnown": false,
+    "note": "Le jeu parle d’anxiété et de dépression.",
+    "prompt": "Quel jeu de plateforme de 2018 fait gravir une montagne à Madeline ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Super Mario Kart"],
+    "answer": "Mario Kart",
+    "decoys": ["F-Zero", "Crash Team Racing", "Diddy Kong Racing"],
+    "id": "videogames-fr-mario-kart",
+    "isWellKnown": true,
+    "note": "Le premier épisode s’appelait Super Mario Kart.",
+    "prompt": "Quelle série de courses de Nintendo, née en 1992 sur Super Nintendo, fait lancer des carapaces ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "FIFA",
+    "decoys": ["Pro Evolution Soccer", "Football Manager", "Rocket League"],
+    "id": "videogames-fr-ea-sports-fc",
+    "isWellKnown": true,
+    "note": "EA a perdu la licence du nom FIFA après trente ans.",
+    "prompt": "Quelle série de jeux de football d’Electronic Arts a été renommée EA Sports FC en 2023 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Rocket League",
+    "decoys": ["Trackmania", "Mario Strikers", "Gran Turismo"],
+    "id": "videogames-fr-rocket-league",
+    "isWellKnown": true,
+    "note": "Il est sorti en 2015 et est devenu gratuit en 2020.",
+    "prompt": "Quel jeu de Psyonix fait jouer au football avec des voitures ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Gran Turismo",
+    "decoys": ["Forza Motorsport", "Need for Speed", "Project Gotham Racing"],
+    "id": "videogames-fr-gran-turismo",
+    "isWellKnown": false,
+    "note": "Elle est développée par Polyphony Digital.",
+    "prompt": "Quelle série de jeux de course de Sony vise la simulation automobile réaliste depuis 1997 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Age of Empires",
+    "decoys": ["Civilization", "Rise of Nations", "Empire Earth"],
+    "id": "videogames-fr-age-of-empires",
+    "isWellKnown": true,
+    "note": "Le premier est sorti en 1997.",
+    "prompt": "Quel jeu de stratégie de Microsoft fait traverser les âges à une civilisation, de l’âge de pierre au fer ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["FNAF", "Five Nights at Freddy's"],
+    "answer": "Five Nights at Freddy’s",
+    "decoys": ["Poppy Playtime", "Bendy and the Ink Machine", "Outlast"],
+    "id": "videogames-fr-fnaf",
+    "isWellKnown": true,
+    "note": "Il a été adapté au cinéma en 2023.",
+    "prompt": "Quel jeu d’horreur de 2014 enferme un gardien de nuit dans une pizzeria aux animatroniques ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Splatoon",
+    "decoys": ["ARMS", "Overwatch", "Rocket League"],
+    "id": "videogames-fr-splatoon",
+    "isWellKnown": true,
+    "note": "Le jeu a été lancé sur Wii U.",
+    "prompt": "Quel jeu de Nintendo de 2015 fait s’affronter des calamars humanoïdes à coups de peinture ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Overwatch",
+    "decoys": ["Valorant", "Team Fortress 2", "Paladins"],
+    "id": "videogames-fr-overwatch",
+    "isWellKnown": true,
+    "note": "Overwatch 2 l’a remplacé en 2022.",
+    "prompt": "Quel jeu de tir en équipe de Blizzard (2016) met en scène des héros comme Tracer et Mercy ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Hearthstone",
+    "decoys": ["Magic: The Gathering Arena", "Gwent", "Legends of Runeterra"],
+    "id": "videogames-fr-hearthstone",
+    "isWellKnown": false,
+    "note": "Il est sorti en 2014.",
+    "prompt": "Quel jeu de cartes à collectionner de Blizzard se déroule dans l’univers de Warcraft ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Myst",
+    "decoys": ["The 7th Guest", "Atlantis", "Monkey Island"],
+    "id": "videogames-fr-myst",
+    "isWellKnown": false,
+    "note": "Il a été créé par les frères Rand et Robyn Miller.",
+    "prompt": "Quel jeu d’aventure de 1993, sur une île mystérieuse, a été le jeu PC le plus vendu jusqu’aux Sims ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Monkey Island"],
+    "answer": "The Secret of Monkey Island",
+    "decoys": ["Day of the Tentacle", "Grim Fandango", "Full Throttle"],
+    "id": "videogames-fr-monkey-island",
+    "isWellKnown": false,
+    "note": "Il est sorti en 1990, et ses combats se gagnent à coups d’insultes.",
+    "prompt": "Quel jeu de LucasArts suit l’apprenti pirate Guybrush Threepwood ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Out Run"],
+    "answer": "OutRun",
+    "decoys": ["Pole Position", "Daytona USA", "Hang-On"],
+    "id": "videogames-fr-outrun",
+    "isWellKnown": false,
+    "note": "Son autoradio laisse choisir entre trois morceaux.",
+    "prompt": "Quel jeu de course de Sega (1986) se joue au volant d’une Ferrari décapotable ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Diablo",
+    "decoys": ["Baldur’s Gate", "Path of Exile", "Dungeon Keeper"],
+    "id": "videogames-fr-diablo",
+    "isWellKnown": false,
+    "note": "Le seigneur de la Terreur qui lui donne son nom attend au fond.",
+    "prompt": "Quel jeu de Blizzard (1996) fait descendre dans les donjons sous la ville de Tristram ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Baldur's Gate 3", "Baldurs Gate 3"],
+    "answer": "Baldur’s Gate 3",
+    "decoys": [
+      "Divinity: Original Sin 2",
+      "Pillars of Eternity",
+      "Neverwinter Nights"
+    ],
+    "id": "videogames-fr-baldurs-gate-3",
+    "isWellKnown": false,
+    "note": "Il a été élu jeu de l’année aux Game Awards 2023.",
+    "prompt": "Quel jeu de rôle de Larian (2023) se déroule dans l’univers de Donjons et Dragons ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Astro Bot",
+    "decoys": [
+      "Final Fantasy VII Rebirth",
+      "Black Myth: Wukong",
+      "Metaphor: ReFantazio"
+    ],
+    "id": "videogames-fr-astro-bot",
+    "isWellKnown": false,
+    "note": "Il a été développé par Team Asobi, à Tokyo.",
+    "prompt": "Quel jeu de plateforme de Sony a été élu jeu de l’année aux Game Awards 2024 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Lemmings"],
+    "answer": "les Lemmings",
+    "decoys": ["les Worms", "les Pikmin", "les Lapins crétins"],
+    "id": "videogames-fr-lemmings",
+    "isWellKnown": false,
+    "note": "Le jeu a été créé par le studio écossais DMA Design, futur Rockstar North.",
+    "prompt": "Comment s’appellent les petites créatures aux cheveux verts qu’il faut guider vers la sortie dans un jeu de 1991 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Worms",
+    "decoys": ["Lemmings", "Pikmin", "Scorched Earth"],
+    "id": "videogames-fr-worms",
+    "isWellKnown": false,
+    "note": "La série britannique de Team17 est née en 1995.",
+    "prompt": "Quel jeu de stratégie au tour par tour fait s’affronter des vers de terre armés de bazookas ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Mortal Kombat",
+    "decoys": ["Street Fighter II", "Killer Instinct", "Tekken"],
+    "id": "videogames-fr-mortal-kombat",
+    "isWellKnown": true,
+    "note": "Il est en partie à l’origine de la création du système de classification ESRB en 1994.",
+    "prompt": "Quel jeu de combat de 1992 a fait scandale avec ses acteurs filmés et ses mises à mort sanglantes ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Call of Duty",
+    "decoys": ["Battlefield", "Medal of Honor", "Brothers in Arms"],
+    "id": "videogames-fr-call-of-duty",
+    "isWellKnown": true,
+    "note": "Modern Warfare l’a fait passer à l’époque moderne en 2007.",
+    "prompt": "Quelle série de jeux de tir d’Activision, née en 2003, se déroulait d’abord pendant la Seconde Guerre mondiale ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Assassin's Creed"],
+    "answer": "Assassin’s Creed",
+    "decoys": ["Prince of Persia", "Hitman", "Dishonored"],
+    "id": "videogames-fr-assassins-creed",
+    "isWellKnown": true,
+    "note": "Le premier épisode, en 2007, se déroule pendant la troisième croisade.",
+    "prompt": "Quelle série d’Ubisoft fait incarner des membres d’une confrérie d’assassins à travers l’Histoire ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Frogger",
+    "decoys": ["Crossy Road", "Q*bert", "Centipede"],
+    "id": "videogames-fr-frogger",
+    "isWellKnown": true,
+    "note": "Il a été développé par Konami et distribué par Sega.",
+    "prompt": "Quel jeu d’arcade de 1981 fait traverser une route puis une rivière à une grenouille ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Casse-briques"],
+    "answer": "Breakout",
+    "decoys": ["Arkanoid", "Pong", "Space Invaders"],
+    "id": "videogames-fr-breakout",
+    "isWellKnown": true,
+    "note": "Steve Wozniak en a conçu le prototype avec Steve Jobs.",
+    "prompt": "Quel jeu d’Atari de 1976 fait casser un mur de briques avec une balle et une raquette ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Minesweeper", "le Démineur"],
+    "answer": "Démineur",
+    "decoys": ["Solitaire", "FreeCell", "Dame de pique"],
+    "id": "videogames-fr-minesweeper",
+    "isWellKnown": true,
+    "note": "Il fait partie de Windows depuis Windows 3.1, en 1992.",
+    "prompt": "Quel jeu fourni avec Windows fait découvrir des cases en évitant des mines ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Klondike", "le Solitaire"],
+    "answer": "Solitaire",
+    "decoys": ["Démineur", "Dame de pique", "Spider Solitaire"],
+    "id": "videogames-fr-solitaire",
+    "isWellKnown": true,
+    "note": "Il servait aussi à apprendre le glisser-déposer à la souris.",
+    "prompt": "Quel jeu de cartes était installé avec Windows dès 1990 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Snake",
+    "decoys": ["Tetris", "Space Impact", "Pong"],
+    "id": "videogames-fr-snake",
+    "isWellKnown": true,
+    "note": "Il est apparu sur le Nokia 6110, sorti en 1998.",
+    "prompt": "Quel jeu des téléphones Nokia faisait grandir un serpent qui ne doit pas se mordre la queue ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Chrome"],
+    "answer": "Google Chrome",
+    "decoys": ["Firefox", "Safari", "Edge"],
+    "id": "videogames-fr-chrome-dino",
+    "isWellKnown": true,
+    "note": "On peut y jouer en appuyant sur la barre d’espace.",
+    "prompt": "Dans quel navigateur un petit dinosaure saute-t-il des cactus quand la connexion est coupée ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Wordle",
+    "decoys": ["Sutom", "Motus", "Scrabble"],
+    "id": "videogames-fr-wordle",
+    "isWellKnown": true,
+    "note": "Il a été adapté en français sous le nom de SUTOM, d’après le jeu télévisé Motus.",
+    "prompt": "Quel jeu de 2021, où l’on devine un mot en six essais, a été racheté par le New York Times ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "2048",
+    "decoys": ["1024", "4096", "1000"],
+    "id": "videogames-fr-fifty-four-eight",
+    "isWellKnown": false,
+    "note": "Il a été créé par l’Italien Gabriele Cirulli, inspiré du jeu Threes!.",
+    "prompt": "Dans un jeu de 2014, on fusionne des tuiles jusqu’à atteindre un nombre qui donne son nom au jeu. Lequel ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "RollerCoaster Tycoon",
+    "decoys": ["Theme Park", "Planet Coaster", "SimCity"],
+    "id": "videogames-fr-rollercoaster-tycoon",
+    "isWellKnown": false,
+    "note": "Chris Sawyer a programmé le premier presque entièrement en assembleur.",
+    "prompt": "Quelle série de jeux de gestion, née en 1999, fait construire un parc d’attractions ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Pokemon Go"],
+    "answer": "Pokémon Go",
+    "decoys": ["Ingress", "Harry Potter : Wizards Unite", "Monster Hunter Now"],
+    "id": "videogames-fr-pokemon-go",
+    "isWellKnown": true,
+    "note": "Il a été développé par Niantic, qui avait déjà créé Ingress.",
+    "prompt": "Quel jeu sur smartphone a fait chasser des Pokémon dans la rue en réalité augmentée ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Mario + Lapins Crétins", "Kingdom Battle", "Mario + Rabbids"],
+    "answer": "Mario + The Lapins Crétins : Kingdom Battle",
+    "choiceOnly": true,
+    "decoys": [
+      "Mario & Sonic aux Jeux olympiques",
+      "Super Smash Bros. Brawl",
+      "Rabbids Go Home"
+    ],
+    "id": "videogames-fr-mario-rabbids",
+    "isWellKnown": false,
+    "note": "Il a été développé par Ubisoft Milan et Ubisoft Paris.",
+    "prompt": "Quel jeu de 2017 sur Switch a réuni Mario et les Lapins crétins ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Just Dance",
+    "decoys": ["Dance Dance Revolution", "SingStar", "Guitar Hero"],
+    "id": "videogames-fr-just-dance",
+    "isWellKnown": true,
+    "note": "C’est la série de jeux de danse la plus vendue au monde, selon le Guinness des records.",
+    "prompt": "Quelle série de jeux de danse d’Ubisoft fait danser devant l’écran depuis 2009 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Lapins crétins", "Raving Rabbids", "Rabbids"],
+    "answer": "les Lapins crétins",
+    "decoys": ["les Minions", "les Lemmings", "les Pikmin"],
+    "id": "videogames-fr-raving-rabbids",
+    "isWellKnown": true,
+    "note": "Ils sont apparus dans Rayman contre les Lapins crétins, sur Wii.",
+    "prompt": "Quels personnages fous, criant « Bwaaah ! », ont volé la vedette à Rayman en 2006 ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": ["Gameboy"],
+    "answer": "Game Boy",
+    "decoys": ["Game Gear", "Lynx", "Neo Geo Pocket"],
+    "id": "videogames-fr-game-boy",
+    "isWellKnown": true,
+    "note": "Elle a été conçue par l’équipe de Gunpei Yokoi.",
+    "prompt": "Quelle console portable de Nintendo, à l’écran monochrome verdâtre, est sortie en 1989 ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Nintendo Wii"],
+    "answer": "Wii",
+    "decoys": ["GameCube", "PlayStation 3", "Xbox 360"],
+    "id": "videogames-fr-wii",
+    "isWellKnown": true,
+    "note": "Elle s’est vendue à plus de 100 millions d’exemplaires.",
+    "prompt": "Quelle console de Nintendo se jouait avec une télécommande qui détectait les mouvements ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Kinect",
+    "decoys": ["EyeToy", "PlayStation Move", "Wiimote"],
+    "id": "videogames-fr-kinect",
+    "isWellKnown": true,
+    "note": "Il a été lancé pour la Xbox 360.",
+    "prompt": "Quel accessoire de Microsoft (2010) permettait de jouer sans manette grâce à une caméra ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Switch"],
+    "answer": "Nintendo Switch",
+    "decoys": ["Steam Deck", "PlayStation Vita", "Nintendo 3DS"],
+    "id": "videogames-fr-switch",
+    "isWellKnown": true,
+    "note": "Elle est sortie en mars 2017.",
+    "prompt": "Quelle console de Nintendo se branche sur la télévision ou s’emporte comme une console portable ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["DS"],
+    "answer": "Nintendo DS",
+    "decoys": ["PSP", "Game Boy Advance", "N-Gage"],
+    "id": "videogames-fr-nintendo-ds",
+    "isWellKnown": true,
+    "note": "Elle s’est vendue à plus de 150 millions d’exemplaires.",
+    "prompt": "Quelle console portable de Nintendo, sortie en 2004, avait deux écrans dont un tactile ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["3DS"],
+    "answer": "Nintendo 3DS",
+    "decoys": ["PlayStation Vita", "Virtual Boy", "Game Boy Advance"],
+    "id": "videogames-fr-nintendo-3ds",
+    "isWellKnown": false,
+    "note": "Elle est sortie en 2011.",
+    "prompt": "Quelle console portable de Nintendo affichait des images en relief sans lunettes ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Virtual Boy",
+    "decoys": ["Power Glove", "64DD", "Game.com"],
+    "id": "videogames-fr-virtual-boy",
+    "isWellKnown": false,
+    "note": "Elle n’est jamais sortie en Europe.",
+    "prompt": "Quelle console de Nintendo de 1995, posée sur une table et affichant tout en rouge, a été un échec commercial ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Dreamcast",
+    "decoys": ["Saturn", "Mega Drive", "Master System"],
+    "id": "videogames-fr-dreamcast",
+    "isWellKnown": false,
+    "note": "Sega a ensuite arrêté les consoles pour devenir éditeur de jeux.",
+    "prompt": "Quelle console de Sega, sortie en 1998 au Japon, a été la dernière du constructeur ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Megadrive", "Genesis", "Sega Genesis"],
+    "answer": "Mega Drive",
+    "decoys": ["Master System", "Saturn", "Neo Geo"],
+    "id": "videogames-fr-mega-drive",
+    "isWellKnown": true,
+    "note": "En Amérique du Nord, elle s’appelait Genesis.",
+    "prompt": "Comment s’appelait la console 16 bits de Sega, rivale de la Super Nintendo ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Nintendo Entertainment System", "Nintendo NES"],
+    "answer": "NES",
+    "decoys": ["Super Nintendo", "Master System", "Atari 7800"],
+    "id": "videogames-fr-nes",
+    "isWellKnown": true,
+    "note": "Elle est sortie au Japon en 1983.",
+    "prompt": "Quelle console 8 bits de Nintendo s’appelait Famicom au Japon ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Nintendo GameCube"],
+    "answer": "GameCube",
+    "decoys": ["Nintendo 64", "Dreamcast", "PSP"],
+    "id": "videogames-fr-gamecube",
+    "isWellKnown": true,
+    "note": "Elle est sortie en 2001 au Japon.",
+    "prompt": "Quelle console de Nintendo lisait des mini-disques de 8 cm ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Universal Media Disc"],
+    "answer": "UMD",
+    "decoys": ["GD-ROM", "MiniDisc", "Blu-ray"],
+    "id": "videogames-fr-umd",
+    "isWellKnown": false,
+    "note": "Le sigle signifie Universal Media Disc.",
+    "prompt": "Comment s’appelait le petit disque optique des jeux de la PSP ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Thrustmaster",
+    "decoys": ["Logitech", "Mad Catz", "Razer"],
+    "id": "videogames-fr-thrustmaster",
+    "isWellKnown": false,
+    "note": "La famille Guillemot a aussi fondé Ubisoft et Gameloft.",
+    "prompt": "Quelle marque de volants et de joysticks appartient au groupe breton Guillemot ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Steam Deck",
+    "decoys": ["ROG Ally", "Nintendo Switch", "PlayStation Portal"],
+    "id": "videogames-fr-steam-deck",
+    "isWellKnown": false,
+    "note": "Elle fonctionne sous SteamOS, un système basé sur Linux.",
+    "prompt": "Quelle console portable de Valve, sortie en 2022, fait tourner les jeux PC ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "triangle, rond, croix, carré",
+    "choiceOnly": true,
+    "decoys": [
+      "A, B, X, Y",
+      "triangle, étoile, croix, carré",
+      "rond, losange, croix, carré"
+    ],
+    "id": "videogames-fr-playstation-buttons",
+    "isWellKnown": true,
+    "note": "Au Japon, le rond a longtemps servi à valider et la croix à annuler, jusqu’à la PS5.",
+    "prompt": "Quels symboles ornent les quatre boutons de la manette PlayStation ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["code Konami", "Konami code"],
+    "answer": "le code Konami",
+    "decoys": ["le code Sega", "le code Nintendo", "le code Capcom"],
+    "id": "videogames-fr-konami-code",
+    "isWellKnown": false,
+    "note": "Elle donnait des bonus dans Gradius et dans Contra.",
+    "prompt": "Quelle célèbre combinaison de touches commence par haut, haut, bas, bas, gauche, droite ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Atari VCS", "VCS"],
+    "answer": "Atari 2600",
+    "decoys": ["Intellivision", "ColecoVision", "Magnavox Odyssey"],
+    "id": "videogames-fr-atari-2600",
+    "isWellKnown": false,
+    "note": "Elle s’appelait d’abord Atari VCS.",
+    "prompt": "Quelle console d’Atari, sortie en 1977, a popularisé les jeux en cartouches ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Odyssey"],
+    "answer": "Magnavox Odyssey",
+    "decoys": ["Atari 2600", "Intellivision", "ColecoVision"],
+    "id": "videogames-fr-magnavox-odyssey",
+    "isWellKnown": false,
+    "note": "Elle a été conçue par l’ingénieur Ralph Baer.",
+    "prompt": "Quelle fut la toute première console de salon commercialisée, en 1972 ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["MO5", "Thomson", "TO7", "TO7/70"],
+    "answer": "Thomson MO5",
+    "decoys": ["Amstrad CPC 464", "Commodore 64", "ZX Spectrum"],
+    "id": "videogames-fr-thomson-mo5",
+    "isWellKnown": false,
+    "note": "Les écoles recevaient des Thomson MO5 et TO7/70.",
+    "prompt": "Quel ordinateur français équipait les écoles avec le plan Informatique pour tous de 1985 ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Game and Watch"],
+    "answer": "Game & Watch",
+    "decoys": ["Tamagotchi", "Game Gear", "Lynx"],
+    "id": "videogames-fr-game-and-watch",
+    "isWellKnown": false,
+    "note": "La croix directionnelle y est apparue avant d’équiper la manette de la NES.",
+    "prompt": "Quelle gamme de jeux électroniques de poche Nintendo a-t-il lancée en 1980, avant la Game Boy ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Yokoi"],
+    "answer": "Gunpei Yokoi",
+    "decoys": ["Shigeru Miyamoto", "Satoru Iwata", "Masahiro Sakurai"],
+    "id": "videogames-fr-gunpei-yokoi",
+    "isWellKnown": false,
+    "note": "On lui doit aussi la croix directionnelle des manettes.",
+    "prompt": "Quel ingénieur de Nintendo a créé la Game Boy et le Game & Watch ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Tamagotchi",
+    "decoys": ["Furby", "Digimon", "Pokémon Pikachu"],
+    "id": "videogames-fr-tamagotchi",
+    "isWellKnown": true,
+    "note": "Il a été créé par Bandai.",
+    "prompt": "Quel jouet électronique japonais de 1996 fait élever un petit animal virtuel dans un œuf en plastique ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Zapper", "NES Zapper"],
+    "answer": "le Zapper",
+    "decoys": ["le Power Glove", "le Super Scope", "le R.O.B."],
+    "id": "videogames-fr-zapper",
+    "isWellKnown": false,
+    "note": "Il fonctionnait grâce à un capteur de lumière.",
+    "prompt": "Quel pistolet de la NES servait à tirer sur les canards de Duck Hunt ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["chien", "un chien"],
+    "answer": "le chien",
+    "decoys": ["le lapin", "le renard", "le chat"],
+    "id": "videogames-fr-duck-hunt-dog",
+    "isWellKnown": true,
+    "note": "On ne peut pas lui tirer dessus, malgré l’envie.",
+    "prompt": "Dans Duck Hunt, quel animal se moque du joueur quand il rate un canard ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["WiiU"],
+    "answer": "Wii U",
+    "decoys": ["Nintendo Switch", "Nintendo DS", "Dreamcast"],
+    "id": "videogames-fr-wii-u",
+    "isWellKnown": false,
+    "note": "Elle est sortie en 2012 et s’est vendue à environ 13,5 millions d’exemplaires.",
+    "prompt": "Quelle console de Nintendo avait une manette à écran tactile appelée GamePad ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Joycon", "Joy-Cons"],
+    "answer": "Joy-Con",
+    "decoys": ["Wiimote", "DualSense", "Nunchuk"],
+    "id": "videogames-fr-joy-con",
+    "isWellKnown": true,
+    "note": "Il y en a deux, un gauche et un droit.",
+    "prompt": "Comment s’appellent les manettes détachables de la Nintendo Switch ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "DualSense",
+    "decoys": ["DualShock 4", "Joy-Con", "Sixaxis"],
+    "id": "videogames-fr-dualsense",
+    "isWellKnown": false,
+    "note": "Ses gâchettes peuvent résister sous les doigts.",
+    "prompt": "Comment s’appelle la manette de la PlayStation 5 ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [
+      "Red Ring of Death",
+      "RROD",
+      "cercle rouge de la mort",
+      "anneau rouge de la mort"
+    ],
+    "answer": "le cercle rouge de la mort",
+    "decoys": [
+      "l’écran bleu de la mort",
+      "la lumière jaune de la mort",
+      "le voyant orange"
+    ],
+    "id": "videogames-fr-red-ring",
+    "isWellKnown": false,
+    "note": "Microsoft a étendu la garantie de la console à trois ans pour cette panne.",
+    "prompt": "Comment surnommait-on la panne de la Xbox 360 signalée par des voyants rouges ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Jaguar"],
+    "answer": "Atari Jaguar",
+    "decoys": ["3DO", "CD-i", "Saturn"],
+    "id": "videogames-fr-atari-jaguar",
+    "isWellKnown": false,
+    "note": "Son échec a poussé Atari à quitter le marché des consoles en 1996.",
+    "prompt": "Quelle console d’Atari (1993), vantée comme 64 bits, a d’abord accueilli Rayman ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Philips CD-i"],
+    "answer": "CD-i",
+    "decoys": ["Atari Jaguar", "3DO", "Pippin"],
+    "id": "videogames-fr-cd-i",
+    "isWellKnown": false,
+    "note": "Ils sont nés d’un accord entre Nintendo et Philips, sans que Nintendo les développe.",
+    "prompt": "Quel lecteur multimédia de Philips a accueilli trois jeux Zelda devenus tristement célèbres ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["Nintendo Revolution"],
+    "answer": "Revolution",
+    "decoys": ["Dolphin", "Project Reality", "NX"],
+    "id": "videogames-fr-wii-revolution",
+    "isWellKnown": false,
+    "note": "Dolphin était celui de la GameCube, Project Reality celui de la Nintendo 64 et NX celui de la Switch.",
+    "prompt": "Quel nom de code portait la Wii pendant son développement ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "SNK",
+    "decoys": ["Sega", "NEC", "Atari"],
+    "id": "videogames-fr-neo-geo",
+    "isWellKnown": false,
+    "note": "Sa version de salon reprenait le matériel des bornes d’arcade.",
+    "prompt": "Quel fabricant japonais a créé la console Neo Geo ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Nokia",
+    "decoys": ["Sony Ericsson", "Motorola", "Siemens"],
+    "id": "videogames-fr-n-gage",
+    "isWellKnown": false,
+    "note": "Il fallait la tenir sur la tranche pour téléphoner, d’où son surnom de « taco ».",
+    "prompt": "Quel fabricant de téléphones a lancé en 2003 la console-téléphone N-Gage ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["PS5"],
+    "answer": "PlayStation 5",
+    "decoys": ["PlayStation 4 Pro", "PlayStation Vita", "PlayStation 3"],
+    "id": "videogames-fr-ps5",
+    "isWellKnown": true,
+    "note": "Elle est sortie la même semaine que les Xbox Series X et S.",
+    "prompt": "Quelle console de Sony est sortie en novembre 2020 ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Microsoft",
+    "decoys": ["Sony", "Nintendo", "Sega"],
+    "id": "videogames-fr-xbox-maker",
+    "isWellKnown": true,
+    "note": "La première Xbox est sortie en 2001.",
+    "prompt": "Quelle entreprise fabrique les consoles Xbox ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Sony",
+    "decoys": ["Microsoft", "Nintendo", "Sega"],
+    "id": "videogames-fr-playstation-maker",
+    "isWellKnown": true,
+    "note": "La première PlayStation est sortie au Japon en décembre 1994.",
+    "prompt": "Quelle entreprise fabrique les consoles PlayStation ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Japon",
+    "decoys": ["États-Unis", "Corée du Sud", "Chine"],
+    "id": "videogames-fr-playstation-country",
+    "isWellKnown": true,
+    "note": "Elle est née d’un projet de lecteur CD abandonné avec Nintendo.",
+    "prompt": "Dans quel pays la PlayStation a-t-elle été créée ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "16",
+    "decoys": ["8", "32", "64"],
+    "id": "videogames-fr-snes-bits",
+    "isWellKnown": false,
+    "note": "La Mega Drive de Sega était sa rivale 16 bits.",
+    "prompt": "Combien de bits avait la Super Nintendo, d’après sa génération ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": ["GBA"],
+    "answer": "Game Boy Advance",
+    "decoys": ["Nintendo DS", "Virtual Boy", "Game Gear"],
+    "id": "videogames-fr-game-boy-advance",
+    "isWellKnown": false,
+    "note": "Elle était rétrocompatible avec les jeux Game Boy.",
+    "prompt": "Quelle console portable de Nintendo, sortie en 2001, a succédé à la Game Boy Color ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "1985",
+    "decoys": ["1981", "1988", "1990"],
+    "id": "videogames-fr-smb-year",
+    "isWellKnown": false,
+    "note": "Il est sorti au Japon en septembre 1985, et en France en 1987.",
+    "prompt": "En quelle année est sorti Super Mario Bros. ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1996",
+    "decoys": ["1994", "1998", "1999"],
+    "id": "videogames-fr-pokemon-year",
+    "isWellKnown": false,
+    "note": "Pokémon Rouge et Bleu n’est arrivé en France qu’en 1999.",
+    "prompt": "En quelle année les premiers jeux Pokémon sont-ils sortis au Japon ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1984",
+    "decoys": ["1979", "1989", "1991"],
+    "id": "videogames-fr-tetris-year",
+    "isWellKnown": false,
+    "note": "Il est né à Moscou ; la version Game Boy date de 1989.",
+    "prompt": "En quelle année Tetris a-t-il été créé ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2017",
+    "decoys": ["2015", "2019", "2020"],
+    "id": "videogames-fr-switch-year",
+    "isWellKnown": false,
+    "note": "Sa remplaçante, la Switch 2, est sortie en juin 2025.",
+    "prompt": "En quelle année est sortie la Nintendo Switch ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2017",
+    "decoys": ["2014", "2019", "2020"],
+    "id": "videogames-fr-fortnite-year",
+    "isWellKnown": false,
+    "note": "Le mode Battle Royale est arrivé en septembre 2017, deux mois après le lancement.",
+    "prompt": "En quelle année est sorti Fortnite ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2013",
+    "decoys": ["2008", "2011", "2015"],
+    "id": "videogames-fr-gta-v-year",
+    "isWellKnown": false,
+    "note": "Il a été réédité sur trois générations de consoles.",
+    "prompt": "En quelle année est sorti Grand Theft Auto V ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1996",
+    "decoys": ["1993", "1999", "2001"],
+    "id": "videogames-fr-tomb-raider-year",
+    "isWellKnown": false,
+    "note": "Le jeu a été développé par le studio britannique Core Design.",
+    "prompt": "En quelle année est sorti le premier Tomb Raider ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2000",
+    "decoys": ["1997", "2003", "2005"],
+    "id": "videogames-fr-sims-year",
+    "isWellKnown": false,
+    "note": "Il est devenu en 2002 le jeu PC le plus vendu de l’histoire.",
+    "prompt": "En quelle année est sorti le premier jeu Les Sims ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2004",
+    "decoys": ["2001", "2007", "2009"],
+    "id": "videogames-fr-wow-year",
+    "isWellKnown": false,
+    "note": "Il a dépassé les 12 millions d’abonnés en 2010.",
+    "prompt": "En quelle année est sorti World of Warcraft ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2016",
+    "decoys": ["2013", "2018", "2020"],
+    "id": "videogames-fr-pokemon-go-year",
+    "isWellKnown": false,
+    "note": "Il est sorti en juillet 2016 et a envahi les parcs tout l’été.",
+    "prompt": "En quelle année est sorti Pokémon Go ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2006",
+    "decoys": ["2003", "2008", "2010"],
+    "id": "videogames-fr-wii-year",
+    "isWellKnown": false,
+    "note": "Elle est sortie en France en décembre 2006.",
+    "prompt": "En quelle année est sortie la Wii ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1995",
+    "decoys": ["1991", "1998", "2001"],
+    "id": "videogames-fr-rayman-year",
+    "isWellKnown": false,
+    "note": "En Europe, il est sorti d’abord sur Atari Jaguar, puis sur PlayStation.",
+    "prompt": "En quelle année est sorti le premier Rayman ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1991",
+    "decoys": ["1987", "1994", "1997"],
+    "id": "videogames-fr-sf2-year",
+    "isWellKnown": false,
+    "note": "Il a lancé la vague des jeux de combat des années 1990.",
+    "prompt": "En quelle année est sorti Street Fighter II en arcade ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1998",
+    "decoys": ["1995", "2001", "2004"],
+    "id": "videogames-fr-half-life-year",
+    "isWellKnown": false,
+    "note": "Half-Life 2 est sorti six ans plus tard, en 2004.",
+    "prompt": "En quelle année est sorti Half-Life ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2013",
+    "decoys": ["2010", "2015", "2016"],
+    "id": "videogames-fr-ps4-year",
+    "isWellKnown": false,
+    "note": "Elle est sortie en novembre 2013, une semaine avant la Xbox One.",
+    "prompt": "En quelle année est sortie la PlayStation 4 ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2001",
+    "decoys": ["1998", "2003", "2005"],
+    "id": "videogames-fr-xbox-year",
+    "isWellKnown": false,
+    "note": "Elle est sortie avec Halo: Combat Evolved.",
+    "prompt": "En quelle année est sortie la première Xbox de Microsoft ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "1995",
+    "decoys": ["1993", "1997", "1999"],
+    "id": "videogames-fr-playstation-france-year",
+    "isWellKnown": false,
+    "note": "Elle est sortie en Europe en septembre 1995.",
+    "prompt": "En quelle année la première PlayStation est-elle sortie en France ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "2018",
+    "decoys": ["2015", "2020", "2021"],
+    "id": "videogames-fr-among-us-year",
+    "isWellKnown": false,
+    "note": "Il est passé presque inaperçu avant d’exploser en 2020, pendant la pandémie.",
+    "prompt": "En quelle année est sorti Among Us ?",
+    "shape": "era"
+  },
+  {
+    "accepted": ["cartes à jouer", "cartes", "hanafuda"],
+    "answer": "des cartes à jouer",
+    "decoys": ["des jouets en bois", "des machines à coudre", "des parapluies"],
+    "id": "videogames-fr-nintendo-founded",
+    "isWellKnown": false,
+    "note": "Des hanafuda, des cartes à fleurs japonaises.",
+    "prompt": "Que fabriquait Nintendo à sa fondation, en 1889 à Kyoto ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "Service Games",
+    "choiceOnly": true,
+    "decoys": [
+      "Super Electronic Games",
+      "Sega Entertainment Games",
+      "Seiko Games"
+    ],
+    "id": "videogames-fr-sega-name",
+    "isWellKnown": false,
+    "note": "La société fabriquait d’abord des machines de divertissement pour les bases militaires.",
+    "prompt": "De quels mots anglais le nom Sega est-il l’abréviation ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "Tennis for Two",
+    "decoys": ["Pong", "Spacewar!", "Computer Space"],
+    "id": "videogames-fr-tennis-for-two",
+    "isWellKnown": false,
+    "note": "Il a été créé par le physicien William Higinbotham pour une journée portes ouvertes.",
+    "prompt": "Quel jeu de tennis de 1958, affiché sur un oscilloscope, compte parmi les tout premiers jeux vidéo ?",
+    "shape": "era"
+  },
+  {
+    "accepted": ["E.T.", "ET"],
+    "answer": "E.T. l’extra-terrestre",
+    "decoys": ["Superman", "Les Dents de la mer", "Tron"],
+    "id": "videogames-fr-et-atari",
+    "isWellKnown": false,
+    "note": "Des cartouches ont été déterrées à Alamogordo en 2014.",
+    "prompt": "Quel jeu Atari de 1982, tiré d’un film de Spielberg, a fini enterré dans le désert du Nouveau-Mexique ?",
+    "shape": "era"
+  },
+  {
+    "accepted": ["Electronic Entertainment Expo"],
+    "answer": "E3",
+    "decoys": ["Gamescom", "PAX", "GDC"],
+    "id": "videogames-fr-e3-end",
+    "isWellKnown": false,
+    "note": "Il avait été lancé en 1995.",
+    "prompt": "Quel salon de Los Angeles, grand rendez-vous des annonces de jeux vidéo, a pris fin en 2023 ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [],
+    "answer": "Gamescom",
+    "decoys": ["E3", "Tokyo Game Show", "Paris Games Week"],
+    "id": "videogames-fr-gamescom",
+    "isWellKnown": false,
+    "note": "C’est l’un des plus grands salons de jeux vidéo au monde.",
+    "prompt": "Quel grand salon du jeu vidéo se tient chaque été à Cologne ?",
+    "shape": "era"
+  },
+  {
+    "accepted": ["Activision"],
+    "answer": "Activision Blizzard",
+    "decoys": ["Electronic Arts", "Ubisoft", "Take-Two"],
+    "id": "videogames-fr-activision-deal",
+    "isWellKnown": false,
+    "note": "C’est le plus gros rachat de l’histoire du jeu vidéo.",
+    "prompt": "Quel éditeur Microsoft a-t-il racheté en 2023 pour environ 69 milliards de dollars ?",
+    "shape": "era"
+  },
+  {
+    "accepted": ["Notch", "Persson"],
+    "answer": "Markus Persson",
+    "decoys": ["Jens Bergensten", "Hideo Kojima", "Will Wright"],
+    "id": "videogames-fr-mojang-deal",
+    "isWellKnown": false,
+    "note": "Plus connu sous le pseudonyme de Notch, il a vendu Mojang pour 2,5 milliards de dollars.",
+    "prompt": "Quel Suédois a créé Minecraft avant de vendre son studio à Microsoft en 2014 ?",
+    "shape": "era"
+  },
+  {
+    "accepted": ["Clair Obscur", "Expedition 33"],
+    "answer": "Clair Obscur : Expedition 33",
+    "decoys": ["Hollow Knight: Silksong", "Hades II", "Death Stranding 2"],
+    "id": "videogames-fr-clair-obscur-goty",
+    "isWellKnown": false,
+    "note": "Il a remporté neuf récompenses ce soir-là, un record.",
+    "prompt": "Quel jeu français de Sandfall Interactive a été élu jeu de l’année aux Game Awards 2025 ?",
+    "shape": "era"
+  },
+  {
+    "accepted": [
+      "super pac-gomme",
+      "pac-gomme",
+      "super pastille",
+      "power pellet"
+    ],
+    "answer": "une super pac-gomme",
+    "decoys": ["une cerise", "une clé", "une cloche"],
+    "id": "videogames-fr-power-pellet",
+    "isWellKnown": true,
+    "note": "Les fantômes deviennent bleus et fuient pendant quelques secondes.",
+    "prompt": "Dans Pac-Man, que doit avaler Pac-Man pour pouvoir dévorer les fantômes ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["quatre"],
+    "answer": "4",
+    "decoys": ["3", "5", "6"],
+    "id": "videogames-fr-pacman-ghosts",
+    "isWellKnown": true,
+    "note": "Blinky, Pinky, Inky et Clyde ont chacun leur façon de chasser.",
+    "prompt": "Combien de fantômes poursuivent Pac-Man dans le jeu de 1980 ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["champignon", "super champignon"],
+    "answer": "un champignon",
+    "decoys": ["une étoile", "une pièce", "une plume"],
+    "id": "videogames-fr-super-mushroom",
+    "isWellKnown": true,
+    "note": "Le Super champignon ; la fleur de feu lui permet ensuite de lancer des boules de feu.",
+    "prompt": "Dans Super Mario Bros., quel objet fait grandir Mario ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["invincibilité", "invincible"],
+    "answer": "l’invincibilité",
+    "decoys": ["une vie", "des ailes", "des boules de feu"],
+    "id": "videogames-fr-super-star",
+    "isWellKnown": true,
+    "note": "Un thème musical propre à l’étoile remplace la musique du niveau pendant ces quelques secondes.",
+    "prompt": "Dans Super Mario Bros., que donne l’étoile à Mario ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["cent"],
+    "answer": "100",
+    "decoys": ["50", "99", "1000"],
+    "id": "videogames-fr-hundred-coins",
+    "isWellKnown": false,
+    "note": "La version arcade, VS. Super Mario Bros., en demandait 200.",
+    "prompt": "Dans Super Mario Bros., combien de pièces faut-il ramasser pour gagner une vie ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["cent vingt"],
+    "answer": "120",
+    "decoys": ["70", "100", "151"],
+    "id": "videogames-fr-sm64-stars",
+    "isWellKnown": false,
+    "note": "Il en faut 70 pour affronter Bowser une dernière fois.",
+    "prompt": "Combien d’étoiles compte Super Mario 64 ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["carapace bleue", "carapace à épines"],
+    "answer": "la carapace bleue",
+    "decoys": ["la carapace rouge", "la banane", "l’éclair"],
+    "id": "videogames-fr-blue-shell",
+    "isWellKnown": true,
+    "note": "Elle est apparue dans Mario Kart 64.",
+    "prompt": "Dans Mario Kart, quel objet fond sur le pilote en tête de la course ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["banane", "peau de banane"],
+    "answer": "une peau de banane",
+    "decoys": ["une flaque d’huile", "un clou", "une pierre"],
+    "id": "videogames-fr-banana",
+    "isWellKnown": true,
+    "note": "On peut aussi la garder derrière soi pour se protéger d’une carapace.",
+    "prompt": "Dans Mario Kart, que pose-t-on derrière soi pour faire déraper ses poursuivants ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Poké Ball", "Pokéball", "Pokeball"],
+    "answer": "la Poké Ball",
+    "decoys": ["le Pokédex", "la Super Potion", "la Pierre Lune"],
+    "id": "videogames-fr-poke-ball",
+    "isWellKnown": true,
+    "note": "On affaiblit d’abord le Pokémon sauvage en combat pour mieux le capturer.",
+    "prompt": "Dans Pokémon, avec quel objet capture-t-on les Pokémon sauvages ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["huit"],
+    "answer": "8",
+    "decoys": ["6", "10", "12"],
+    "id": "videogames-fr-eight-badges",
+    "isWellKnown": false,
+    "note": "On les gagne en battant les champions d’arène.",
+    "prompt": "Combien de badges faut-il réunir pour affronter la Ligue Pokémon dans Pokémon Rouge et Bleu ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": [],
+    "answer": "151",
+    "decoys": ["150", "251", "100"],
+    "id": "videogames-fr-gen-one-count",
+    "isWellKnown": false,
+    "note": "Le 151e, Mew, a été ajouté au dernier moment par un programmeur.",
+    "prompt": "Combien de Pokémon comptait la première génération ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Pokédex", "Pokedex"],
+    "answer": "le Pokédex",
+    "decoys": ["le Pokématos", "la PokéNav", "le Poké Radar"],
+    "id": "videogames-fr-pokedex",
+    "isWellKnown": true,
+    "note": "Le compléter est le but que fixe le professeur Chen.",
+    "prompt": "Dans Pokémon, comment s’appelle l’encyclopédie électronique qui recense les Pokémon ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Centre Pokémon", "Centre Pokemon"],
+    "answer": "au Centre Pokémon",
+    "decoys": ["à la Boutique Pokémon", "à l’Arène", "à la Pension"],
+    "id": "videogames-fr-pokemon-center",
+    "isWellKnown": true,
+    "note": "L’infirmière Joëlle y accueille les dresseurs.",
+    "prompt": "Dans Pokémon, où emmène-t-on ses Pokémon pour les soigner gratuitement ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["quatre"],
+    "answer": "4",
+    "decoys": ["3", "5", "6"],
+    "id": "videogames-fr-tetromino-squares",
+    "isWellKnown": true,
+    "note": "Ce sont des tétrominos, d’où le nom du jeu.",
+    "prompt": "De combien de carrés est formée chaque pièce de Tetris ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["sept"],
+    "answer": "7",
+    "decoys": ["5", "6", "8"],
+    "id": "videogames-fr-tetromino-count",
+    "isWellKnown": false,
+    "note": "On les désigne par des lettres : I, O, T, S, Z, J et L.",
+    "prompt": "Combien de pièces différentes existe-t-il dans Tetris ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["disparaît", "elle s’efface"],
+    "answer": "elle disparaît",
+    "choiceOnly": true,
+    "decoys": [
+      "elle change de couleur",
+      "elle devient indestructible",
+      "la partie s’arrête"
+    ],
+    "id": "videogames-fr-tetris-line",
+    "isWellKnown": true,
+    "note": "Effacer quatre lignes d’un coup s’appelle faire un Tetris.",
+    "prompt": "Dans Tetris, que se passe-t-il quand une ligne est entièrement remplie ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Tetris"],
+    "answer": "un Tetris",
+    "decoys": ["un combo", "un strike", "un carré"],
+    "id": "videogames-fr-tetris-four",
+    "isWellKnown": false,
+    "note": "Il faut la pièce longue, la barre de quatre, pour y arriver.",
+    "prompt": "Dans Tetris, comment appelle-t-on le fait d’effacer quatre lignes d’un seul coup ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["anneaux", "les anneaux", "rings"],
+    "answer": "ses anneaux",
+    "decoys": ["ses pièces", "ses émeraudes", "ses chaussures"],
+    "id": "videogames-fr-sonic-rings",
+    "isWellKnown": true,
+    "note": "Touché sans un seul anneau, il perd une vie.",
+    "prompt": "Que perd Sonic quand il est touché par un ennemi ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["sept"],
+    "answer": "7",
+    "decoys": ["6", "8", "12"],
+    "id": "videogames-fr-chaos-emeralds",
+    "isWellKnown": false,
+    "note": "Le premier Sonic n’en comptait que six, et pas de Super Sonic.",
+    "prompt": "Combien d’Émeraudes du Chaos faut-il réunir pour se transformer en Super Sonic dans Sonic 2 ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["simlish"],
+    "answer": "le simlish",
+    "decoys": ["l’espéranto", "le klingon", "le sindarin"],
+    "id": "videogames-fr-simlish",
+    "isWellKnown": false,
+    "note": "Des chanteurs réels ont réenregistré leurs tubes en simlish pour la série.",
+    "prompt": "Quelle langue inventée parlent les personnages des Sims ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": [],
+    "answer": "motherlode",
+    "decoys": ["rosebud", "kaching", "freerealestate"],
+    "id": "videogames-fr-motherlode",
+    "isWellKnown": false,
+    "note": "Le code kaching, lui, ne donne que 1 000 simflouz.",
+    "prompt": "Dans la série Les Sims, quel code de triche donne 50 000 simflouz ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["simflouz", "simoleon", "simoléon"],
+    "answer": "le simflouz",
+    "decoys": ["le simdollar", "le simcrédit", "le simor"],
+    "id": "videogames-fr-simflouz",
+    "isWellKnown": true,
+    "note": "En anglais, ce sont des simoleons.",
+    "prompt": "Comment s’appelle la monnaie des Sims dans la version française ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": [],
+    "answer": "le niveau de recherche par la police",
+    "choiceOnly": true,
+    "decoys": [
+      "la réputation dans la ville",
+      "la note de la mission",
+      "le nombre de vies"
+    ],
+    "id": "videogames-fr-gta-stars",
+    "isWellKnown": true,
+    "note": "Plus il y a d’étoiles, plus les forces de l’ordre sont lourdes.",
+    "prompt": "Dans la série GTA, que mesurent les étoiles affichées à l’écran ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Chocobo"],
+    "answer": "le Chocobo",
+    "decoys": ["le Mog", "le Yoshi", "l’Épona"],
+    "id": "videogames-fr-chocobo",
+    "isWellKnown": false,
+    "note": "Il apparaît depuis Final Fantasy II.",
+    "prompt": "Dans Final Fantasy, quel grand oiseau jaune sert de monture ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Epona"],
+    "answer": "Épona",
+    "decoys": ["Agro", "Torrent", "Rossinante"],
+    "id": "videogames-fr-epona",
+    "isWellKnown": true,
+    "note": "Elle apparaît pour la première fois dans Ocarina of Time.",
+    "prompt": "Comment s’appelle la jument de Link dans la série Zelda ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["seize"],
+    "answer": "16",
+    "decoys": ["12", "15", "20"],
+    "id": "videogames-fr-colossi",
+    "isWellKnown": false,
+    "note": "Le jeu est réalisé par Fumito Ueda.",
+    "prompt": "Combien de colosses faut-il abattre dans Shadow of the Colossus ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["cerise", "une cerise"],
+    "answer": "la cerise",
+    "decoys": ["la fraise", "l’orange", "la pomme"],
+    "id": "videogames-fr-pacman-cherry",
+    "isWellKnown": true,
+    "note": "Les bonus suivants sont la fraise, l’orange et la pomme.",
+    "prompt": "Dans Pac-Man, quel fruit bonus apparaît au premier niveau ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["neuf cents"],
+    "answer": "900",
+    "decoys": ["120", "500", "1000"],
+    "id": "videogames-fr-korok-seeds",
+    "isWellKnown": false,
+    "note": "Les trouver toutes rapporte une récompense en or… peu ragoûtante.",
+    "prompt": "Combien de noix Korogu sont cachées dans Breath of the Wild ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["rubis", "rubies", "rupees"],
+    "answer": "les rubis",
+    "decoys": ["les pièces", "les gils", "les zennys"],
+    "id": "videogames-fr-rupees",
+    "isWellKnown": true,
+    "note": "Ce sont des pierres précieuses de couleurs différentes selon leur valeur.",
+    "prompt": "Dans les jeux Zelda, comment s’appelle la monnaie ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["gil", "gils"],
+    "answer": "le gil",
+    "decoys": ["le rubis", "le zenny", "le pokédollar"],
+    "id": "videogames-fr-gil",
+    "isWellKnown": false,
+    "note": "Elle est présente dans presque toute la série.",
+    "prompt": "Dans Final Fantasy, comment s’appelle la monnaie ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Triforce"],
+    "answer": "la Triforce",
+    "decoys": [
+      "le Masque de Majora",
+      "l’Épée de légende",
+      "l’Ocarina du temps"
+    ],
+    "id": "videogames-fr-triforce",
+    "isWellKnown": true,
+    "note": "Ses trois parties sont la Force, la Sagesse et le Courage.",
+    "prompt": "Quelle relique dorée en forme de triangle est au cœur du mythe d’Hyrule ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Épée de légende", "Master Sword"],
+    "answer": "l’Épée de légende",
+    "decoys": ["Excalibur", "la Keyblade", "Durandal"],
+    "id": "videogames-fr-master-sword",
+    "isWellKnown": false,
+    "note": "En anglais, c’est la Master Sword.",
+    "prompt": "Comment s’appelle l’épée sacrée de Link dans la série Zelda ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["tempête", "storm"],
+    "answer": "la tempête",
+    "decoys": ["le brouillard", "la lave", "le gaz"],
+    "id": "videogames-fr-fortnite-storm",
+    "isWellKnown": true,
+    "note": "Rester dehors fait perdre de plus en plus de points de vie.",
+    "prompt": "Dans Fortnite, comment s’appelle la zone qui rétrécit et force les joueurs à se rapprocher ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["cent"],
+    "answer": "100",
+    "decoys": ["50", "64", "150"],
+    "id": "videogames-fr-fortnite-players",
+    "isWellKnown": true,
+    "note": "Ils sautent tous d’un bus volant.",
+    "prompt": "Combien de joueurs commencent une partie classique de Fortnite en bataille royale ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["diamant", "diamants"],
+    "answer": "le diamant",
+    "decoys": ["l’or", "le fer", "l’émeraude"],
+    "id": "videogames-fr-minecraft-diamond",
+    "isWellKnown": true,
+    "note": "Les outils en or sont rapides, mais très fragiles.",
+    "prompt": "Dans Minecraft, quel minerai donnait les meilleurs outils avant l’arrivée de la Netherite ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["drapeau", "mât", "le drapeau"],
+    "answer": "un drapeau",
+    "decoys": ["une porte", "un coffre", "une cloche"],
+    "id": "videogames-fr-flagpole",
+    "isWellKnown": true,
+    "note": "Plus il l’attrape haut, plus il gagne de points.",
+    "prompt": "Dans Super Mario Bros., que touche Mario à la fin d’un niveau ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Route arc-en-ciel", "Rainbow Road"],
+    "answer": "la Route arc-en-ciel",
+    "decoys": ["le Château de Bowser", "le Circuit Mario", "la Plage Koopa"],
+    "id": "videogames-fr-rainbow-road",
+    "isWellKnown": false,
+    "note": "Il ferme souvent la dernière coupe.",
+    "prompt": "Dans Mario Kart, comment s’appelle le circuit coloré suspendu dans l’espace, souvent sans barrières ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["vert"],
+    "answer": "verte",
+    "decoys": ["rouge", "jaune", "bleue"],
+    "id": "videogames-fr-luigi-green",
+    "isWellKnown": true,
+    "note": "Il est apparu en 1983 dans Mario Bros.",
+    "prompt": "De quelle couleur est la casquette de Luigi ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["bleue"],
+    "answer": "bleu",
+    "decoys": ["vert", "rouge", "jaune"],
+    "id": "videogames-fr-sonic-blue",
+    "isWellKnown": true,
+    "note": "Le bleu reprend celui du logo de Sega.",
+    "prompt": "De quelle couleur est Sonic le hérisson ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["gorille"],
+    "answer": "un gorille",
+    "decoys": ["un orang-outan", "un chimpanzé", "un ours"],
+    "id": "videogames-fr-donkey-kong-gorilla",
+    "isWellKnown": true,
+    "note": "Il porte une cravate rouge marquée « DK ».",
+    "prompt": "Quel animal est Donkey Kong ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["bandicoot"],
+    "answer": "un bandicoot",
+    "decoys": ["un renard", "un raton laveur", "un opossum"],
+    "id": "videogames-fr-crash-animal",
+    "isWellKnown": true,
+    "note": "C’est un petit marsupial d’Australie.",
+    "prompt": "Quel animal est Crash Bandicoot ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": [],
+    "answer": "Hyrule",
+    "decoys": ["Termina", "le Royaume Champignon", "Bordeciel"],
+    "id": "videogames-fr-hyrule",
+    "isWellKnown": true,
+    "note": "Termina est le monde parallèle de Majora’s Mask.",
+    "prompt": "Comment s’appelle le royaume où se déroule la plupart des jeux Zelda ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Los Santos",
+    "decoys": ["Liberty City", "Vice City", "San Fierro"],
+    "id": "videogames-fr-los-santos",
+    "isWellKnown": true,
+    "note": "Elle se trouve dans l’État fictif de San Andreas.",
+    "prompt": "Dans quelle ville fictive, inspirée de Los Angeles, se déroule GTA V ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "New York",
+    "decoys": ["Chicago", "Boston", "Philadelphie"],
+    "id": "videogames-fr-liberty-city",
+    "isWellKnown": true,
+    "note": "On y trouve une statue du Bonheur à la place de la statue de la Liberté.",
+    "prompt": "De quelle ville réelle Liberty City, dans la série GTA, est-elle la parodie ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Chicago",
+    "decoys": ["New York", "Detroit", "Boston"],
+    "id": "videogames-fr-watch-dogs",
+    "isWellKnown": false,
+    "note": "La suite part à San Francisco, puis Watch Dogs: Legion à Londres.",
+    "prompt": "Dans quelle ville se déroule le premier Watch Dogs (2014) ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Florence",
+    "decoys": ["Milan", "Naples", "Gênes"],
+    "id": "videogames-fr-ac2-florence",
+    "isWellKnown": false,
+    "note": "L’histoire commence en 1476, au temps des Médicis.",
+    "prompt": "Dans quelle ville italienne commence Assassin’s Creed II ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Paris",
+    "decoys": ["Londres", "Rome", "Venise"],
+    "id": "videogames-fr-ac-unity",
+    "isWellKnown": true,
+    "note": "Le jeu se déroule pendant la Révolution française et recrée Notre-Dame en détail.",
+    "prompt": "Dans quelle ville se déroule Assassin’s Creed Unity ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Japon",
+    "decoys": ["Chine", "Corée", "Égypte"],
+    "id": "videogames-fr-ac-shadows",
+    "isWellKnown": false,
+    "note": "On y incarne une shinobi, Naoe, et un samouraï, Yasuke.",
+    "prompt": "Dans quel pays se déroule Assassin’s Creed Shadows, sorti en 2025 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Rapture",
+    "decoys": ["City 17", "Raccoon City", "Midgar"],
+    "id": "videogames-fr-rapture",
+    "isWellKnown": false,
+    "note": "Elle aurait été fondée en 1946 par l’industriel Andrew Ryan.",
+    "prompt": "Comment s’appelle la cité sous-marine où se déroule BioShock (2007) ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Raccoon City",
+    "decoys": ["Silent Hill", "Midgar", "Rapture"],
+    "id": "videogames-fr-raccoon-city",
+    "isWellKnown": true,
+    "note": "Elle est rasée par un missile à la fin de Resident Evil 3.",
+    "prompt": "Dans quelle ville fictive se déroule l’épidémie de Resident Evil 2 et 3 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": ["manoir Spencer", "Spencer"],
+    "answer": "le manoir Spencer",
+    "decoys": ["le manoir Derceto", "le manoir Croft", "le manoir Wayne"],
+    "id": "videogames-fr-spencer-mansion",
+    "isWellKnown": false,
+    "note": "Il porte le nom d’Oswell E. Spencer, l’un des cofondateurs d’Umbrella.",
+    "prompt": "Dans quel manoir se déroule le premier Resident Evil (1996) ?",
+    "shape": "place"
+  },
+  {
+    "accepted": ["Derceto", "manoir Derceto"],
+    "answer": "le manoir Derceto",
+    "decoys": ["le manoir Spencer", "le manoir Croft", "le manoir Usher"],
+    "id": "videogames-fr-derceto",
+    "isWellKnown": false,
+    "note": "On y incarne Edward Carnby ou Emily Hartwood.",
+    "prompt": "Dans quel manoir hanté de Louisiane se déroule Alone in the Dark (1992) ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Midgar",
+    "decoys": ["Zanarkand", "Raccoon City", "Rapture"],
+    "id": "videogames-fr-midgar",
+    "isWellKnown": false,
+    "note": "Ses réacteurs pompent l’énergie vitale de la planète.",
+    "prompt": "Comment s’appelle la métropole de Final Fantasy VII dominée par la compagnie Shinra ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Night City",
+    "decoys": ["Neo Tokyo", "Rapture", "Los Santos"],
+    "id": "videogames-fr-night-city",
+    "isWellKnown": false,
+    "note": "Elle est située en Californie, dans un futur dystopique.",
+    "prompt": "Dans quelle ville se déroule Cyberpunk 2077 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Kanto",
+    "decoys": ["Johto", "Hoenn", "Sinnoh"],
+    "id": "videogames-fr-kanto",
+    "isWellKnown": true,
+    "note": "Elle s’inspire de la région japonaise du Kantō, autour de Tokyo.",
+    "prompt": "Dans quelle région se déroulent Pokémon Rouge et Bleu ?",
+    "shape": "place"
+  },
+  {
+    "accepted": ["Pallet Town"],
+    "answer": "Bourg Palette",
+    "decoys": ["Jadielle", "Azuria", "Carmin sur Mer"],
+    "id": "videogames-fr-pallet-town",
+    "isWellKnown": false,
+    "note": "En anglais, c’est Pallet Town.",
+    "prompt": "Dans quelle petite ville commence l’aventure de Pokémon Rouge et Bleu ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [
+      "château de Peach",
+      "château de la princesse Peach",
+      "château"
+    ],
+    "answer": "le château de Peach",
+    "decoys": ["la maison de Luigi", "le château de Bowser", "l’Observatoire"],
+    "id": "videogames-fr-peach-castle",
+    "isWellKnown": true,
+    "note": "Il faut des étoiles pour ouvrir ses portes.",
+    "prompt": "Dans Super Mario 64, dans quel lieu entre-t-on dans les niveaux par des tableaux ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Azeroth",
+    "decoys": ["Tamriel", "Tyria", "Norrath"],
+    "id": "videogames-fr-azeroth",
+    "isWellKnown": false,
+    "note": "Orcs et humains s’y affrontent depuis le premier Warcraft, en 1994.",
+    "prompt": "Dans quel monde se déroule World of Warcraft ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Tamriel",
+    "decoys": ["Azeroth", "Thedas", "Hyrule"],
+    "id": "videogames-fr-tamriel",
+    "isWellKnown": false,
+    "note": "Skyrim, Morrowind et Cyrodiil en sont des provinces.",
+    "prompt": "Comment s’appelle le continent de la série The Elder Scrolls ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Montana",
+    "decoys": ["Wyoming", "Idaho", "Dakota du Nord"],
+    "id": "videogames-fr-far-cry-5",
+    "isWellKnown": false,
+    "note": "Le joueur y affronte une secte, Eden’s Gate, dans le comté fictif de Hope County.",
+    "prompt": "Dans quel État américain se déroule Far Cry 5 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "1274",
+    "decoys": ["1185", "1333", "1600"],
+    "id": "videogames-fr-ghost-of-tsushima",
+    "isWellKnown": false,
+    "note": "C’est la première des deux invasions mongoles du Japon, la seconde ayant lieu en 1281.",
+    "prompt": "En quelle année se déroule l’invasion mongole au cœur de Ghost of Tsushima ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Japon",
+    "decoys": ["Corée du Sud", "Chine", "États-Unis"],
+    "id": "videogames-fr-persona-5",
+    "isWellKnown": false,
+    "note": "Les lycéens du jeu vivent à Tokyo.",
+    "prompt": "Dans quel pays se déroule Persona 5 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": ["désert de Mojave"],
+    "answer": "Mojave",
+    "decoys": ["Sonora", "Atacama", "Gobi"],
+    "id": "videogames-fr-new-vegas",
+    "isWellKnown": false,
+    "note": "Il a été développé par Obsidian Entertainment.",
+    "prompt": "Dans quel désert se déroule Fallout: New Vegas ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Espagne",
+    "decoys": ["Portugal", "Italie", "Grèce"],
+    "id": "videogames-fr-re4-spain",
+    "isWellKnown": false,
+    "note": "Leon Kennedy y recherche la fille du président américain.",
+    "prompt": "Dans quel pays se déroule l’essentiel de Resident Evil 4 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": ["Guyenne", "Aquitaine"],
+    "answer": "la Guyenne",
+    "decoys": ["la Bretagne", "la Bourgogne", "la Provence"],
+    "id": "videogames-fr-plague-tale",
+    "isWellKnown": false,
+    "note": "Le studio bordelais Asobo y met en scène la peste noire et ses rats.",
+    "prompt": "Dans quelle province française se déroule A Plague Tale: Innocence, en 1348 ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Kamurocho",
+    "decoys": ["Akihabara", "Shibuya", "Roppongi"],
+    "id": "videogames-fr-kamurocho",
+    "isWellKnown": false,
+    "note": "Il s’inspire du quartier de Kabukichō, à Shinjuku.",
+    "prompt": "Dans quel quartier fictif de Tokyo se déroule la série Yakuza ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Hong Kong",
+    "decoys": ["Tokyo", "Shanghai", "Macao"],
+    "id": "videogames-fr-sleeping-dogs",
+    "isWellKnown": false,
+    "note": "On y joue un policier infiltré dans les triades.",
+    "prompt": "Dans quelle ville se déroule Sleeping Dogs (2012) ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Kyoto",
+    "decoys": ["Tokyo", "Osaka", "Nagoya"],
+    "id": "videogames-fr-nintendo-kyoto",
+    "isWellKnown": false,
+    "note": "Nintendo y est né en 1889.",
+    "prompt": "Dans quelle ville japonaise se trouve le siège de Nintendo ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Varsovie",
+    "decoys": ["Prague", "Budapest", "Vienne"],
+    "id": "videogames-fr-cd-projekt-warsaw",
+    "isWellKnown": false,
+    "note": "Il a possédé la boutique en ligne GOG de 2008 à fin 2025.",
+    "prompt": "Dans quelle capitale est installé CD Projekt, le studio de The Witcher ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Finlande",
+    "decoys": ["Suède", "Norvège", "Danemark"],
+    "id": "videogames-fr-finland-games",
+    "isWellKnown": false,
+    "note": "Rovio et Supercell sont deux studios finlandais.",
+    "prompt": "De quel pays viennent Angry Birds et Clash of Clans ?",
+    "shape": "place"
+  },
+  {
+    "accepted": [],
+    "answer": "Suède",
+    "decoys": ["Norvège", "Finlande", "Danemark"],
+    "id": "videogames-fr-minecraft-country",
+    "isWellKnown": false,
+    "note": "Le studio Mojang est installé à Stockholm.",
+    "prompt": "Dans quel pays Minecraft a-t-il été créé ?",
+    "shape": "place"
+  },
+  {
+    "accepted": ["Kondo"],
+    "answer": "Koji Kondo",
+    "decoys": ["Nobuo Uematsu", "Yoko Shimomura", "Hirokazu Tanaka"],
+    "id": "videogames-fr-koji-kondo",
+    "isWellKnown": false,
+    "note": "Le thème de Super Mario Bros. est l’un des airs les plus connus du jeu vidéo.",
+    "prompt": "Quel compositeur japonais a écrit les musiques de Super Mario Bros. et de The Legend of Zelda ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Uematsu"],
+    "answer": "Nobuo Uematsu",
+    "decoys": ["Koji Kondo", "Yoko Shimomura", "Yasunori Mitsuda"],
+    "id": "videogames-fr-nobuo-uematsu",
+    "isWellKnown": false,
+    "note": "Ses œuvres sont jouées en concert par des orchestres symphoniques.",
+    "prompt": "Quel compositeur japonais a écrit la plupart des musiques de Final Fantasy ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Shimomura"],
+    "answer": "Yoko Shimomura",
+    "decoys": ["Nobuo Uematsu", "Koji Kondo", "Yasunori Mitsuda"],
+    "id": "videogames-fr-yoko-shimomura",
+    "isWellKnown": false,
+    "note": "Elle a aussi signé celle de Street Fighter II.",
+    "prompt": "Quelle compositrice japonaise a écrit les musiques de Kingdom Hearts ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Korobeïniki", "Les Colporteurs"],
+    "answer": "Korobeiniki",
+    "decoys": ["Kalinka", "Les Bateliers de la Volga", "Katioucha"],
+    "id": "videogames-fr-korobeiniki",
+    "isWellKnown": false,
+    "note": "Hirokazu Tanaka l’a arrangé en 1989 comme musique « Type A » du jeu.",
+    "prompt": "Quel air populaire russe accompagne la version Game Boy de Tetris ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "C418",
+    "decoys": ["Deadmau5", "Disasterpeace", "Toby Fox"],
+    "id": "videogames-fr-c418",
+    "isWellKnown": false,
+    "note": "Ces deux morceaux figurent sur l’album Minecraft – Volume Alpha, sorti en 2011.",
+    "prompt": "Sous quel pseudonyme le compositeur allemand Daniel Rosenfeld a-t-il signé la musique de Minecraft ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Gazel"],
+    "answer": "Rémi Gazel",
+    "decoys": ["Christophe Héral", "Olivier Derivière", "Lorien Testard"],
+    "id": "videogames-fr-remi-gazel",
+    "isWellKnown": false,
+    "note": "Il est mort en 2019.",
+    "prompt": "Quel compositeur français a signé l’essentiel de la musique du premier Rayman (1995) ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Héral"],
+    "answer": "Christophe Héral",
+    "decoys": ["Rémi Gazel", "Olivier Derivière", "Lorien Testard"],
+    "id": "videogames-fr-christophe-heral",
+    "isWellKnown": false,
+    "note": "Il a aussi composé celle de Rayman Origins.",
+    "prompt": "Quel compositeur français a signé la musique de Beyond Good & Evil (2003) ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Derivière"],
+    "answer": "Olivier Derivière",
+    "decoys": ["Christophe Héral", "Rémi Gazel", "Lorien Testard"],
+    "id": "videogames-fr-olivier-deriviere",
+    "isWellKnown": false,
+    "note": "La partition fait entendre notamment la viole de gambe et le nyckelharpa.",
+    "prompt": "Quel compositeur français a signé la musique de A Plague Tale: Innocence ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Testard"],
+    "answer": "Lorien Testard",
+    "decoys": ["Olivier Derivière", "Christophe Héral", "Rémi Gazel"],
+    "id": "videogames-fr-lorien-testard",
+    "isWellKnown": false,
+    "note": "Il n’avait jamais composé pour un jeu vidéo avant.",
+    "prompt": "Quel compositeur français a remporté le prix de la meilleure musique aux Game Awards 2025 pour Clair Obscur : Expedition 33 ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Nakamura"],
+    "answer": "Masato Nakamura",
+    "decoys": ["Koji Kondo", "Yuzo Koshiro", "Nobuo Uematsu"],
+    "id": "videogames-fr-masato-nakamura",
+    "isWellKnown": false,
+    "note": "Il a aussi composé celle de Sonic 2.",
+    "prompt": "Quel bassiste du groupe japonais Dreams Come True a composé la musique du premier Sonic (1991) ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Martin O'Donnell", "O’Donnell"],
+    "answer": "Martin O’Donnell",
+    "decoys": ["Jesper Kyd", "Jeremy Soule", "Inon Zur"],
+    "id": "videogames-fr-martin-odonnell",
+    "isWellKnown": false,
+    "note": "Le chant grégorien de l’ouverture est devenu la signature de la série.",
+    "prompt": "Quel compositeur américain a signé, avec Michael Salvatori, la musique de Halo ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Soule"],
+    "answer": "Jeremy Soule",
+    "decoys": ["Inon Zur", "Jesper Kyd", "Martin O’Donnell"],
+    "id": "videogames-fr-jeremy-soule",
+    "isWellKnown": false,
+    "note": "Le chœur du thème principal chante en langue des dragons.",
+    "prompt": "Quel compositeur américain a écrit la musique de Skyrim ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Santaolalla"],
+    "answer": "Gustavo Santaolalla",
+    "decoys": ["Hans Zimmer", "Ramin Djawadi", "Bear McCreary"],
+    "id": "videogames-fr-santaolalla",
+    "isWellKnown": false,
+    "note": "Ses Oscars sont ceux de Brokeback Mountain et de Babel.",
+    "prompt": "Quel compositeur argentin, double oscarisé, a écrit la musique de The Last of Us ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["McCreary"],
+    "answer": "Bear McCreary",
+    "decoys": ["Gustavo Santaolalla", "Jesper Kyd", "Inon Zur"],
+    "id": "videogames-fr-bear-mccreary",
+    "isWellKnown": false,
+    "note": "Il compose aussi pour la série The Walking Dead.",
+    "prompt": "Quel compositeur américain a écrit la musique de God of War (2018) ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Kyd"],
+    "answer": "Jesper Kyd",
+    "decoys": ["Jeremy Soule", "Inon Zur", "Austin Wintory"],
+    "id": "videogames-fr-jesper-kyd",
+    "isWellKnown": false,
+    "note": "Il avait déjà signé celle des premiers Hitman.",
+    "prompt": "Quel compositeur danois a signé la musique d’Assassin’s Creed II, dont le thème « Ezio’s Family » ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "Journey",
+    "decoys": ["Halo", "Skyrim", "Bastion"],
+    "id": "videogames-fr-journey-grammy",
+    "isWellKnown": false,
+    "note": "Elle a été composée par Austin Wintory.",
+    "prompt": "Quelle bande originale de jeu vidéo a été la première nommée aux Grammy Awards, en 2013 ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "Baba Yetu",
+    "decoys": ["Still Alive", "Megalovania", "One-Winged Angel"],
+    "id": "videogames-fr-baba-yetu",
+    "isWellKnown": false,
+    "note": "Christopher Tin y met en musique le Notre Père en swahili.",
+    "prompt": "Quel chant de Civilization IV a été le premier morceau de jeu vidéo à remporter un Grammy Award ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "One-Winged Angel",
+    "decoys": ["Aerith’s Theme", "Baba Yetu", "Liberi Fatali"],
+    "id": "videogames-fr-one-winged-angel",
+    "isWellKnown": false,
+    "note": "Son chœur chante en latin.",
+    "prompt": "Quel morceau de Final Fantasy VII accompagne le dernier combat contre Sephiroth ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "Portal",
+    "decoys": ["Half-Life 2", "BioShock", "The Talos Principle"],
+    "id": "videogames-fr-still-alive",
+    "isWellKnown": false,
+    "note": "La chanson a été écrite par Jonathan Coulton.",
+    "prompt": "Dans quel jeu GLaDOS chante-t-elle « Still Alive » pendant le générique de fin ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "Undertale",
+    "decoys": ["Celeste", "Cuphead", "Hollow Knight"],
+    "id": "videogames-fr-megalovania",
+    "isWellKnown": false,
+    "note": "Son créateur, Toby Fox, en a composé toute la musique.",
+    "prompt": "Quel jeu indépendant de 2015 a rendu célèbre le morceau « Megalovania » ?",
+    "shape": "music"
+  },
+  {
+    "accepted": ["Boutique Wii", "Wii Shop", "Wii Shop Channel"],
+    "answer": "la chaîne Boutique Wii",
+    "decoys": ["la chaîne Mii", "la chaîne Météo", "la chaîne Photos"],
+    "id": "videogames-fr-wii-shop",
+    "isWellKnown": false,
+    "note": "La boutique a fermé en janvier 2019.",
+    "prompt": "Quelle chaîne de la Wii avait une musique d’attente devenue culte sur Internet ?",
+    "shape": "music"
+  },
+  {
+    "accepted": [],
+    "answer": "Quantic Dream",
+    "decoys": ["Dontnod", "Arkane Studios", "Spiders"],
+    "id": "videogames-fr-quantic-dream",
+    "isWellKnown": false,
+    "note": "Il a été fondé en 1997 par David Cage.",
+    "prompt": "Quel studio parisien a créé Heavy Rain et Detroit: Become Human ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Don’t Nod", "Don't Nod", "DONTNOD"],
+    "answer": "Dontnod",
+    "decoys": ["Quantic Dream", "Arkane Studios", "Spiders"],
+    "id": "videogames-fr-dontnod",
+    "isWellKnown": false,
+    "note": "Il s’écrit désormais Don’t Nod.",
+    "prompt": "Quel studio parisien a créé Life is Strange ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Arkane"],
+    "answer": "Arkane Studios",
+    "decoys": ["Dontnod", "Eden Games", "Ubisoft Montpellier"],
+    "id": "videogames-fr-arkane",
+    "isWellKnown": false,
+    "note": "Il a été racheté en 2010 par ZeniMax, la maison mère de Bethesda.",
+    "prompt": "Quel studio lyonnais a créé Dishonored ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Asobo"],
+    "answer": "Asobo Studio",
+    "decoys": ["Motion Twin", "Dontnod", "Arkane Studios"],
+    "id": "videogames-fr-asobo",
+    "isWellKnown": false,
+    "note": "Il a aussi créé la série A Plague Tale.",
+    "prompt": "Quel studio bordelais développe Microsoft Flight Simulator depuis 2020 ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": [],
+    "answer": "Dead Cells",
+    "decoys": ["Hades", "Hollow Knight", "Spelunky"],
+    "id": "videogames-fr-motion-twin",
+    "isWellKnown": false,
+    "note": "Motion Twin est une coopérative où tous les salariés sont payés pareil.",
+    "prompt": "Quel jeu d’action roguelike a été créé par le studio bordelais Motion Twin ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["From Software"],
+    "answer": "FromSoftware",
+    "decoys": ["PlatinumGames", "Team Ninja", "Capcom"],
+    "id": "videogames-fr-fromsoftware",
+    "isWellKnown": false,
+    "note": "Il a été racheté par Kadokawa en 2014.",
+    "prompt": "Quel studio japonais, réputé pour ses jeux très difficiles, a créé Dark Souls ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": [],
+    "answer": "Naughty Dog",
+    "decoys": ["Insomniac Games", "Sucker Punch", "Santa Monica Studio"],
+    "id": "videogames-fr-naughty-dog",
+    "isWellKnown": true,
+    "note": "Il appartient à Sony depuis 2001.",
+    "prompt": "Quel studio américain a créé Crash Bandicoot, Uncharted et The Last of Us ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["EA"],
+    "answer": "Electronic Arts",
+    "decoys": ["Activision", "Ubisoft", "Take-Two"],
+    "id": "videogames-fr-electronic-arts",
+    "isWellKnown": true,
+    "note": "Il a été fondé en 1982 par Trip Hawkins.",
+    "prompt": "Quel éditeur américain publie Les Sims et les jeux EA Sports FC ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": [],
+    "answer": "DICE",
+    "decoys": ["Avalanche Studios", "Starbreeze", "Mojang"],
+    "id": "videogames-fr-dice",
+    "isWellKnown": false,
+    "note": "Installé à Stockholm, il appartient à Electronic Arts.",
+    "prompt": "Quel studio suédois développe la série Battlefield ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Remedy"],
+    "answer": "Remedy Entertainment",
+    "decoys": ["IO Interactive", "DICE", "Crytek"],
+    "id": "videogames-fr-remedy",
+    "isWellKnown": false,
+    "note": "Il est installé à Espoo, près d’Helsinki.",
+    "prompt": "Quel studio finlandais a créé Max Payne et Alan Wake ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Unreal"],
+    "answer": "Unreal Engine",
+    "decoys": ["Unity", "CryEngine", "Source"],
+    "id": "videogames-fr-unreal-engine",
+    "isWellKnown": false,
+    "note": "Il a d’abord été conçu pour le jeu de tir Unreal, sorti en 1998.",
+    "prompt": "Quel moteur de jeu, conçu par Epic Games, équipe des centaines de jeux ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": [],
+    "answer": "Steam",
+    "decoys": ["Epic Games Store", "GOG", "Origin"],
+    "id": "videogames-fr-steam",
+    "isWellKnown": false,
+    "note": "Elle servait d’abord à mettre à jour automatiquement les jeux de Valve.",
+    "prompt": "Quelle plateforme de jeux PC de Valve a été lancée en 2003 ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Miyamoto"],
+    "answer": "Shigeru Miyamoto",
+    "decoys": ["Hideo Kojima", "Yuji Naka", "Satoru Iwata"],
+    "id": "videogames-fr-miyamoto",
+    "isWellKnown": false,
+    "note": "Zelda s’inspire de ses explorations d’enfant dans la campagne de Kyoto.",
+    "prompt": "Quel créateur japonais de Nintendo a imaginé Mario et The Legend of Zelda ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Sakaguchi"],
+    "answer": "Hironobu Sakaguchi",
+    "decoys": ["Yuji Horii", "Tetsuya Nomura", "Hideo Kojima"],
+    "id": "videogames-fr-sakaguchi",
+    "isWellKnown": false,
+    "note": "Il comptait quitter Square et reprendre ses études si le jeu échouait.",
+    "prompt": "Quel créateur japonais a imaginé Final Fantasy ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Tajiri"],
+    "answer": "Satoshi Tajiri",
+    "decoys": ["Shigeru Miyamoto", "Masahiro Sakurai", "Yuji Horii"],
+    "id": "videogames-fr-tajiri",
+    "isWellKnown": false,
+    "note": "Il a fondé le studio Game Freak.",
+    "prompt": "Quel créateur japonais a imaginé Pokémon, en souvenir de ses chasses aux insectes d’enfance ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Iwatani"],
+    "answer": "Toru Iwatani",
+    "decoys": ["Shigeru Miyamoto", "Tomohiro Nishikado", "Yuji Naka"],
+    "id": "videogames-fr-iwatani",
+    "isWellKnown": false,
+    "note": "Il raconte s’être inspiré d’une pizza à laquelle il manquait une part.",
+    "prompt": "Quel créateur japonais a imaginé Pac-Man ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Wright"],
+    "answer": "Will Wright",
+    "decoys": ["Sid Meier", "John Carmack", "Richard Garriott"],
+    "id": "videogames-fr-will-wright",
+    "isWellKnown": false,
+    "note": "Il a cofondé le studio Maxis en 1987.",
+    "prompt": "Quel créateur américain a imaginé SimCity et Les Sims ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Pajitnov", "Alexey Pajitnov"],
+    "answer": "Alekseï Pajitnov",
+    "decoys": ["Shigeru Miyamoto", "Hideo Kojima", "Will Wright"],
+    "id": "videogames-fr-pajitnov",
+    "isWellKnown": false,
+    "note": "Il n’a touché des droits sur son jeu qu’au milieu des années 1990.",
+    "prompt": "Quel ingénieur soviétique a créé Tetris ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Ancel"],
+    "answer": "Michel Ancel",
+    "decoys": ["Frédérick Raynal", "Éric Chahi", "David Cage"],
+    "id": "videogames-fr-michel-ancel",
+    "isWellKnown": false,
+    "note": "Il a annoncé en 2020 quitter le jeu vidéo pour un refuge animalier, avant de revenir chez Ubisoft en 2024.",
+    "prompt": "Quel créateur français a imaginé Rayman et Beyond Good & Evil ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": ["Cage"],
+    "answer": "David Cage",
+    "decoys": ["Michel Ancel", "Éric Chahi", "Frédérick Raynal"],
+    "id": "videogames-fr-david-cage",
+    "isWellKnown": false,
+    "note": "Il a écrit et réalisé Heavy Rain et Detroit: Become Human.",
+    "prompt": "Sous quel nom de scène David De Gruttola, fondateur de Quantic Dream, est-il connu ?",
+    "shape": "studio"
+  },
+  {
+    "accepted": [],
+    "answer": "Guillemot",
+    "decoys": ["Bolloré", "Pinault", "Bouygues"],
+    "id": "videogames-fr-ubisoft-guillemot",
+    "isWellKnown": false,
+    "note": "Ubisoft est né à Carentoir, dans le Morbihan.",
+    "prompt": "Quel est le nom de famille des cinq frères qui ont fondé Ubisoft en 1986 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Montréal",
+    "decoys": ["Québec", "Toronto", "Vancouver"],
+    "id": "videogames-fr-ubisoft-montreal",
+    "isWellKnown": false,
+    "note": "Il a ouvert en 1997.",
+    "prompt": "Dans quelle ville canadienne se trouve le grand studio d’Ubisoft, berceau d’Assassin’s Creed ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Alone in the Dark",
+    "decoys": ["Another World", "Little Big Adventure", "Heart of Darkness"],
+    "id": "videogames-fr-alone-in-the-dark",
+    "isWellKnown": false,
+    "note": "Il a été édité par Infogrames, à Lyon.",
+    "prompt": "Quel jeu d’horreur français de 1992, signé Frédérick Raynal, est considéré comme l’ancêtre du survival horror ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Out of This World"],
+    "answer": "Another World",
+    "decoys": ["Flashback", "Alone in the Dark", "Heart of Darkness"],
+    "id": "videogames-fr-another-world",
+    "isWellKnown": false,
+    "note": "Il est sorti aux États-Unis sous le titre Out of This World.",
+    "prompt": "Quel jeu de 1991 du Français Éric Chahi, presque sans texte, projette un physicien sur une planète hostile ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Flashback",
+    "decoys": ["Another World", "Alone in the Dark", "Heart of Darkness"],
+    "id": "videogames-fr-flashback",
+    "isWellKnown": false,
+    "note": "Il a été conçu par Paul Cuisset.",
+    "prompt": "Quel jeu de 1992 du studio français Delphine Software suit l’agent Conrad B. Hart ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Dofus",
+    "decoys": ["Ragnarok Online", "MapleStory", "Tibia"],
+    "id": "videogames-fr-dofus",
+    "isWellKnown": false,
+    "note": "Le but premier est de réunir les Dofus, des œufs de dragon.",
+    "prompt": "Quel jeu en ligne français d’Ankama, sorti en 2004, se déroule dans le Monde des Douze ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Roubaix",
+    "decoys": ["Lille", "Valenciennes", "Arras"],
+    "id": "videogames-fr-ankama-roubaix",
+    "isWellKnown": false,
+    "note": "Ses fondateurs s’y sont rencontrés dans une agence web.",
+    "prompt": "Dans quelle ville du Nord est installé le studio Ankama, créateur de Dofus ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Infogrames",
+    "decoys": ["Titus", "Cryo", "Loriciel"],
+    "id": "videogames-fr-infogrames",
+    "isWellKnown": false,
+    "note": "Il a acquis la marque Atari en rachetant Hasbro Interactive en 2000-2001.",
+    "prompt": "Quel éditeur lyonnais, fondé en 1983 par Bruno Bonnell et Christophe Sapet, a fini par se rebaptiser Atari ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Prince of Persia",
+    "decoys": ["Karateka", "Flashback", "Another World"],
+    "id": "videogames-fr-prince-of-persia",
+    "isWellKnown": false,
+    "note": "Jordan Mechner filmait son frère pour animer le prince.",
+    "prompt": "Quel jeu de 1989 de Jordan Mechner Ubisoft a-t-il relancé en 2003 avec Les Sables du Temps ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["TrackMania"],
+    "answer": "Trackmania",
+    "decoys": ["Rocket League", "Need for Speed", "Burnout"],
+    "id": "videogames-fr-trackmania",
+    "isWellKnown": false,
+    "note": "Nadeo appartient à Ubisoft depuis 2009.",
+    "prompt": "Quelle série de jeux de course contre la montre du studio français Nadeo permet de construire ses propres circuits ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Stray",
+    "decoys": ["Little Kitty, Big City", "Cat Quest", "Tunic"],
+    "id": "videogames-fr-stray",
+    "isWellKnown": false,
+    "note": "Il a reçu le prix du meilleur jeu de l’Académie des arts et techniques du jeu vidéo.",
+    "prompt": "Quel jeu de 2022 du studio montpelliérain BlueTwelve fait incarner un chat errant dans une cité de robots ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Sandfall"],
+    "answer": "Sandfall Interactive",
+    "decoys": ["BlueTwelve Studio", "Asobo Studio", "Spiders"],
+    "id": "videogames-fr-clair-obscur-studio",
+    "isWellKnown": false,
+    "note": "C’est le premier jeu du studio.",
+    "prompt": "Quel studio montpelliérain a créé Clair Obscur : Expedition 33 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Greedfall"],
+    "answer": "GreedFall",
+    "decoys": ["Dishonored", "Elex", "Pillars of Eternity"],
+    "id": "videogames-fr-greedfall",
+    "isWellKnown": false,
+    "note": "L’île s’appelle Teer Fradee.",
+    "prompt": "Quel jeu de rôle du studio parisien Spiders (2019) se déroule sur une île dans un monde inspiré du début du XVIIIe siècle ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Game One",
+    "decoys": ["Nolife", "MCM", "Canal J"],
+    "id": "videogames-fr-game-one",
+    "isWellKnown": false,
+    "note": "Ce fut la première chaîne thématique payante française consacrée aux jeux vidéo.",
+    "prompt": "Quelle chaîne de télévision française consacrée aux jeux vidéo a été lancée en 1998 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Nolife",
+    "decoys": ["Game One", "MCM", "Gong"],
+    "id": "videogames-fr-nolife",
+    "isWellKnown": false,
+    "note": "Elle a d’abord été diffusée sur la Freebox.",
+    "prompt": "Quelle chaîne française dédiée aux jeux vidéo et à la culture japonaise a émis de 2007 à 2018 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["JDG", "le Joueur du Grenier"],
+    "answer": "Joueur du Grenier",
+    "decoys": ["Mister MV", "Usul", "Le Fossoyeur de films"],
+    "id": "videogames-fr-joueur-du-grenier",
+    "isWellKnown": true,
+    "note": "Il est incarné par Frédéric Molas, épaulé de Sébastien Rassiat.",
+    "prompt": "Quel vidéaste français teste depuis 2009 de vieux jeux souvent ratés, en chemise jaune à palmiers ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Z Event"],
+    "answer": "ZEvent",
+    "decoys": ["Speedons", "Téléthon", "GP Explorer"],
+    "id": "videogames-fr-zevent",
+    "isWellKnown": true,
+    "note": "Il est organisé par les streamers ZeratoR et Dach.",
+    "prompt": "Quel marathon caritatif français diffusé sur Twitch a récolté plus de 10 millions d’euros en 2022 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Zerator"],
+    "answer": "ZeratoR",
+    "decoys": ["Squeezie", "Kameto", "Gotaga"],
+    "id": "videogames-fr-zerator",
+    "isWellKnown": false,
+    "note": "Il est aussi à l’origine du tournoi TrackMania Cup.",
+    "prompt": "Quel streamer français, de son vrai nom Adrien Nougaret, organise le ZEvent ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Squeezie",
+    "decoys": ["Cyprien", "Norman", "Tibo InShape"],
+    "id": "videogames-fr-squeezie",
+    "isWellKnown": true,
+    "note": "Il organise aussi la course automobile GP Explorer.",
+    "prompt": "Quel youtubeur français, né Lucas Hauchard, a commencé par des vidéos de jeux vidéo ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["KCorp", "KC"],
+    "answer": "Karmine Corp",
+    "decoys": ["Team Vitality", "Solary", "Gentle Mates"],
+    "id": "videogames-fr-karmine-corp",
+    "isWellKnown": false,
+    "note": "Ses supporters forment la « Blue Wall ».",
+    "prompt": "Quel club d’e-sport français, cofondé par le streamer Kameto en 2020, remplit des salles pour League of Legends ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Vitality"],
+    "answer": "Team Vitality",
+    "decoys": ["Karmine Corp", "G2 Esports", "Natus Vincere"],
+    "id": "videogames-fr-vitality-major",
+    "isWellKnown": false,
+    "note": "Le Français ZywOo a été élu meilleur joueur du tournoi.",
+    "prompt": "Quel club français a remporté le Major de Counter-Strike organisé à Paris en 2023 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["role-playing game", "role playing game", "jeu de rôles"],
+    "answer": "jeu de rôle",
+    "decoys": ["jeu de plateforme", "jeu de course", "jeu de réflexion"],
+    "id": "videogames-fr-rpg",
+    "isWellKnown": true,
+    "note": "De l’anglais role-playing game.",
+    "prompt": "Que signifie le sigle RPG, appliqué aux jeux vidéo ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["first-person shooter", "tir à la première personne"],
+    "answer": "un jeu de tir à la première personne",
+    "choiceOnly": true,
+    "decoys": [
+      "un jeu de stratégie en temps réel",
+      "un jeu de combat",
+      "un jeu de course"
+    ],
+    "id": "videogames-fr-fps",
+    "isWellKnown": true,
+    "note": "De l’anglais first-person shooter, comme Doom ou Call of Duty.",
+    "prompt": "Que désigne le sigle FPS quand on parle d’un genre de jeu ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["personnage non joueur", "personnage non-joueur", "NPC"],
+    "answer": "un personnage non joueur",
+    "choiceOnly": true,
+    "decoys": [
+      "un point de non-jeu",
+      "une partie nulle jouée",
+      "un personnage nommé joueur"
+    ],
+    "id": "videogames-fr-pnj",
+    "isWellKnown": false,
+    "note": "Ce sont les personnages dirigés par le jeu, comme les marchands et les villageois.",
+    "prompt": "Dans un jeu vidéo, que désigne un PNJ ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": [],
+    "answer": "un ennemi puissant, souvent en fin de niveau",
+    "choiceOnly": true,
+    "decoys": [
+      "le joueur qui héberge la partie",
+      "le niveau le plus difficile",
+      "le meilleur score"
+    ],
+    "id": "videogames-fr-boss",
+    "isWellKnown": true,
+    "note": "Le combat contre un boss arrive souvent au point culminant d'un niveau.",
+    "prompt": "Que désigne le « boss » dans un jeu vidéo ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["rogue-like", "roguelite", "rogue-lite"],
+    "answer": "roguelike",
+    "decoys": ["metroidvania", "soulslike", "bataille royale"],
+    "id": "videogames-fr-roguelike",
+    "isWellKnown": false,
+    "note": "Il tient son nom de Rogue, un jeu de 1980.",
+    "prompt": "Quel genre de jeu, comme Hades ou Dead Cells, fait tout recommencer à chaque mort dans des parties qui changent à chaque fois ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["metroïdvania"],
+    "answer": "metroidvania",
+    "decoys": ["roguelike", "soulslike", "beat them all"],
+    "id": "videogames-fr-metroidvania",
+    "isWellKnown": false,
+    "note": "Les deux séries sont Metroid et Castlevania.",
+    "prompt": "Quel genre mêlant exploration et pouvoirs qui ouvrent de nouvelles zones tient son nom de deux séries ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["speedrun", "speed run", "speedrunning"],
+    "answer": "le speedrun",
+    "decoys": ["le farming", "le grind", "le rush"],
+    "id": "videogames-fr-speedrun",
+    "isWellKnown": true,
+    "note": "Des marathons de speedrun récoltent des millions pour des œuvres caritatives.",
+    "prompt": "Comment appelle-t-on le fait de finir un jeu le plus vite possible ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["e-sport", "esport", "sport électronique"],
+    "answer": "l’e-sport",
+    "decoys": ["le cosplay", "le streaming", "le speedrun"],
+    "id": "videogames-fr-esport",
+    "isWellKnown": true,
+    "note": "Les finales de League of Legends remplissent des stades entiers.",
+    "prompt": "Comment appelle-t-on la pratique des jeux vidéo en compétition de haut niveau ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": [],
+    "answer": "Twitch",
+    "decoys": ["YouTube Gaming", "Kick", "Dailymotion"],
+    "id": "videogames-fr-twitch",
+    "isWellKnown": true,
+    "note": "Elle est née en 2011 de la section jeux vidéo de Justin.tv.",
+    "prompt": "Quelle plateforme de diffusion en direct de jeux vidéo, au logo violet, a été rachetée par Amazon en 2014 ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["noob", "newbie", "n00b", "nub"],
+    "answer": "un noob",
+    "decoys": ["un tryhard", "un smurf", "un rager"],
+    "id": "videogames-fr-noob",
+    "isWellKnown": true,
+    "note": "Le mot vient de l’anglais newbie.",
+    "prompt": "Comment appelle-t-on familièrement un joueur débutant ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["bien joué", "good game"],
+    "answer": "good game",
+    "decoys": ["game gone", "great goal", "go go"],
+    "id": "videogames-fr-gg",
+    "isWellKnown": true,
+    "note": "C'est un terme d'argot des jeux en ligne, souvent écrit quand le match se termine.",
+    "prompt": "Que veut dire « GG », écrit à la fin d’une partie en ligne ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["F2P", "free to play"],
+    "answer": "free-to-play",
+    "decoys": ["pay-to-win", "accès anticipé", "shareware"],
+    "id": "videogames-fr-free-to-play",
+    "isWellKnown": true,
+    "note": "Fortnite et League of Legends en sont des exemples.",
+    "prompt": "Comment appelle-t-on un jeu gratuit qui se finance par des achats en jeu ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": [],
+    "answer": "Multiplayer Online Battle Arena",
+    "choiceOnly": true,
+    "decoys": [
+      "Massive Online Battle Adventure",
+      "Multiplayer Open Battle Arena",
+      "Mobile Online Battle Action"
+    ],
+    "id": "videogames-fr-moba",
+    "isWellKnown": false,
+    "note": "Le genre a été popularisé par Defense of the Ancients, une carte personnalisée de Warcraft III.",
+    "prompt": "Que signifie le sigle MOBA, le genre de League of Legends ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["monde ouvert", "open world"],
+    "answer": "un monde ouvert",
+    "decoys": ["un jeu linéaire", "un jeu à niveaux", "un jeu de plateforme"],
+    "id": "videogames-fr-open-world",
+    "isWellKnown": true,
+    "note": "GTA, Zelda: Breath of the Wild et Skyrim en sont des exemples.",
+    "prompt": "Comment appelle-t-on un jeu dont la carte s’explore librement, sans parcours imposé ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["remake"],
+    "answer": "un remake",
+    "decoys": ["un remaster", "un reboot", "un portage"],
+    "id": "videogames-fr-remake",
+    "isWellKnown": true,
+    "note": "Un remaster, lui, se contente d’améliorer le jeu d’origine.",
+    "prompt": "Comment appelle-t-on la nouvelle version d’un ancien jeu, entièrement refaite ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["DLC", "contenu téléchargeable", "extension"],
+    "answer": "un DLC",
+    "decoys": ["un patch", "un mod", "un remaster"],
+    "id": "videogames-fr-dlc",
+    "isWellKnown": true,
+    "note": "De l’anglais downloadable content, contenu téléchargeable.",
+    "prompt": "Comment appelle-t-on un contenu payant ajouté à un jeu après sa sortie ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["mod", "mode", "modification"],
+    "answer": "un mod",
+    "decoys": ["un DLC", "un patch", "un cheat"],
+    "id": "videogames-fr-mod",
+    "isWellKnown": true,
+    "note": "Counter-Strike et Dota sont nés comme des mods.",
+    "prompt": "Comment appelle-t-on une modification d’un jeu créée par des fans ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["easter egg", "œuf de Pâques", "oeuf de Pâques"],
+    "answer": "un easter egg",
+    "decoys": ["un glitch", "un cheat", "un bug"],
+    "id": "videogames-fr-easter-egg",
+    "isWellKnown": true,
+    "note": "Le premier célèbre est le nom de Warren Robinett caché dans Adventure, sur Atari 2600.",
+    "prompt": "Comment appelle-t-on un secret glissé par les développeurs, comme une salle cachée ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["loot box", "lootbox", "coffre à butin"],
+    "answer": "une loot box",
+    "decoys": ["un season pass", "un battle pass", "un DLC"],
+    "id": "videogames-fr-loot-box",
+    "isWellKnown": false,
+    "note": "En 2018, la Belgique les a assimilées à des jeux de hasard soumis à sa loi sur les jeux d'argent.",
+    "prompt": "Comment appelle-t-on les achats en jeu au contenu tiré au sort, comme une pochette surprise ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["réapparaître", "réapparition"],
+    "answer": "réapparaître",
+    "decoys": ["sauvegarder", "mourir", "changer d’équipe"],
+    "id": "videogames-fr-respawn",
+    "isWellKnown": false,
+    "note": "Le joueur revient en jeu après avoir été éliminé.",
+    "prompt": "Dans un jeu en ligne, que veut dire « respawn » ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": [
+      "première personne",
+      "vue subjective",
+      "vue à la première personne"
+    ],
+    "answer": "la vue à la première personne",
+    "decoys": [
+      "la vue à la troisième personne",
+      "la vue isométrique",
+      "la vue de dessus"
+    ],
+    "id": "videogames-fr-first-person",
+    "isWellKnown": true,
+    "note": "C’est la vue des jeux de tir comme Doom.",
+    "prompt": "Comment appelle-t-on la vue où l’on voit à travers les yeux du personnage ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["expérience", "XP", "points d’expérience"],
+    "answer": "des points d’expérience",
+    "decoys": [
+      "des points de vie",
+      "des points de magie",
+      "des points de victoire"
+    ],
+    "id": "videogames-fr-xp",
+    "isWellKnown": true,
+    "note": "On les abrège souvent en XP.",
+    "prompt": "Dans un jeu de rôle, que gagne-t-on en battant des ennemis pour monter de niveau ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["points de vie", "HP"],
+    "answer": "les points de vie",
+    "decoys": [
+      "les points de victoire",
+      "les points de vitesse",
+      "les pièces de valeur"
+    ],
+    "id": "videogames-fr-hp",
+    "isWellKnown": true,
+    "note": "En anglais, ce sont les HP, pour hit points.",
+    "prompt": "Dans un jeu vidéo, que désignent les « PV » ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["grind", "grinding", "farming", "farm"],
+    "answer": "le grind",
+    "decoys": ["le speedrun", "le rush", "le camping"],
+    "id": "videogames-fr-grind",
+    "isWellKnown": false,
+    "note": "On dit aussi « farmer ».",
+    "prompt": "Comment appelle-t-on le fait de répéter longtemps la même tâche pour progresser ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["campeur", "camper", "campeuse"],
+    "answer": "un campeur",
+    "decoys": ["un sniper", "un rusher", "un smurf"],
+    "id": "videogames-fr-camper",
+    "isWellKnown": false,
+    "note": "La pratique est mal vue dans les jeux de tir en ligne.",
+    "prompt": "Comment appelle-t-on un joueur qui reste caché au même endroit pour surprendre les autres ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["fin de partie", "partie terminée", "la partie est finie"],
+    "answer": "partie terminée",
+    "decoys": ["nouvelle partie", "niveau suivant", "pause"],
+    "id": "videogames-fr-game-over",
+    "isWellKnown": true,
+    "note": "Le message s'allumait déjà sur les flippers électromécaniques dans les années 1950.",
+    "prompt": "Que signifie l’expression « Game Over » ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["jeux de combat", "jeu de combat", "versus fighting"],
+    "answer": "des jeux de combat",
+    "decoys": [
+      "des jeux de plateforme",
+      "des jeux de course",
+      "des jeux de rôle"
+    ],
+    "id": "videogames-fr-fighting-game",
+    "isWellKnown": true,
+    "note": "Le genre a explosé avec Street Fighter II en 1991.",
+    "prompt": "Comment appelle-t-on les jeux comme Street Fighter ou Tekken, où deux personnages s’affrontent ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["shoot 'em up", "shoot them up", "shmup", "shoot em up"],
+    "answer": "un shoot ’em up",
+    "decoys": ["un beat them all", "un jeu de plateforme", "un jeu de rythme"],
+    "id": "videogames-fr-shmup",
+    "isWellKnown": false,
+    "note": "On l’abrège en shmup.",
+    "prompt": "Comment appelle-t-on un jeu où l’on pilote un vaisseau en tirant sur des vagues d’ennemis, comme R-Type ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["Mii", "Miis"],
+    "answer": "les Mii",
+    "decoys": ["les Sims", "les Pikmin", "les Sackboys"],
+    "id": "videogames-fr-mii",
+    "isWellKnown": false,
+    "note": "On les retrouve dans Wii Sports.",
+    "prompt": "Comment s’appellent les petits avatars personnalisables de la Wii ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": [],
+    "answer": "jaune",
+    "decoys": ["orange", "rouge", "vert"],
+    "id": "videogames-fr-pacman-yellow",
+    "isWellKnown": true,
+    "note": "Son créateur dit s’être inspiré d’une pizza à laquelle il manquait une part.",
+    "prompt": "De quelle couleur est Pac-Man ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "M",
+    "decoys": ["L", "W", "S"],
+    "id": "videogames-fr-mario-cap-letter",
+    "isWellKnown": true,
+    "note": "Celle de Wario porte un W, qui est un M à l'envers.",
+    "prompt": "Quelle lettre est inscrite sur la casquette de Mario ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["cochons", "les cochons"],
+    "answer": "des cochons",
+    "decoys": ["des renards", "des serpents", "des chats"],
+    "id": "videogames-fr-angry-birds-pigs",
+    "isWellKnown": true,
+    "note": "Les cochons verts ont volé les œufs des oiseaux et se cachent dans des constructions.",
+    "prompt": "Dans Angry Birds, sur quels animaux voleurs d’œufs lance-t-on les oiseaux ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["renard"],
+    "answer": "un renard",
+    "decoys": ["un écureuil", "un raton laveur", "un lapin"],
+    "id": "videogames-fr-tails-fox",
+    "isWellKnown": true,
+    "note": "Ses deux queues lui permettent de voler comme un hélicoptère.",
+    "prompt": "Quel animal est Tails, le compagnon à deux queues de Sonic ?",
+    "shape": "character"
+  },
+  {
+    "accepted": ["souris"],
+    "answer": "une souris",
+    "decoys": ["un chat", "un chien", "un renard"],
+    "id": "videogames-fr-pikachu-mouse",
+    "isWellKnown": true,
+    "note": "Sa catégorie est « Pokémon Souris » ; « pika » imite un bruit d’étincelle et « chu » le cri d’une souris.",
+    "prompt": "Le Pokédex classe Pikachu dans une catégorie d’animal. Laquelle ?",
+    "shape": "character"
+  },
+  {
+    "accepted": [],
+    "answer": "qu’il est déconseillé aux moins de 18 ans",
+    "choiceOnly": true,
+    "decoys": [
+      "qu’il compte 18 niveaux",
+      "qu’il se joue jusqu’à 18 joueurs",
+      "qu’il est sorti en 2018"
+    ],
+    "id": "videogames-fr-pegi-18",
+    "isWellKnown": true,
+    "note": "La classification PEGI est utilisée en Europe depuis 2003.",
+    "prompt": "Que signifie le logo PEGI 18 sur la boîte d’un jeu vidéo ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["streamer", "streameur", "streameuse"],
+    "answer": "un streamer",
+    "decoys": ["un speedrunner", "un testeur", "un cosplayeur"],
+    "id": "videogames-fr-streamer",
+    "isWellKnown": true,
+    "note": "Twitch est la principale plateforme de diffusion en direct.",
+    "prompt": "Comment appelle-t-on un joueur qui diffuse ses parties en direct sur Internet ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["cosplay"],
+    "answer": "le cosplay",
+    "decoys": ["le streaming", "le speedrun", "le karaoké"],
+    "id": "videogames-fr-cosplay",
+    "isWellKnown": true,
+    "note": "Le mot mêle les mots anglais costume et play.",
+    "prompt": "Comment appelle-t-on le fait de se déguiser en personnage de jeu vidéo ou de manga ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["passer au niveau supérieur", "gagner un niveau"],
+    "answer": "monter de niveau",
+    "decoys": [
+      "perdre une vie",
+      "recommencer la partie",
+      "passer en mode difficile"
+    ],
+    "id": "videogames-fr-level-up",
+    "isWellKnown": true,
+    "note": "Dans un jeu de rôle, cela arrive en accumulant de l’expérience.",
+    "prompt": "Dans un jeu vidéo, que veut dire « level up » ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["une sauvegarde", "sauvegarde"],
+    "answer": "sauvegarder",
+    "decoys": ["charger", "mettre en pause", "réinitialiser"],
+    "id": "videogames-fr-save",
+    "isWellKnown": true,
+    "note": "Avant les cartes mémoire, certains jeux donnaient un mot de passe à recopier.",
+    "prompt": "Comment appelle-t-on l’action d’enregistrer sa progression dans un jeu pour la reprendre plus tard ?",
+    "shape": "vocabulary"
+  },
+  {
+    "accepted": ["la vie", "les points de vie", "vie"],
+    "answer": "la vie de Link",
+    "decoys": ["les rubis", "la magie", "les clés"],
+    "id": "videogames-fr-zelda-hearts",
+    "isWellKnown": true,
+    "note": "Les réceptacles de cœur permettent d'allonger cette jauge de vie.",
+    "prompt": "Dans les jeux Zelda, que représentent les cœurs en haut de l’écran ?",
+    "shape": "mechanic"
+  },
+  {
+    "accepted": ["Switch 2"],
+    "answer": "Nintendo Switch 2",
+    "decoys": ["Nintendo Switch OLED", "Nintendo Switch Lite", "Nintendo 3DS"],
+    "id": "videogames-fr-switch-2",
+    "isWellKnown": true,
+    "note": "Elle a été lancée avec Mario Kart World.",
+    "prompt": "Quelle console de Nintendo est sortie en juin 2025 ?",
+    "shape": "hardware"
+  },
+  {
+    "accepted": [],
+    "answer": "Clash of Clans",
+    "decoys": ["Rise of Kingdoms", "Lords Mobile", "Age of Empires"],
+    "id": "videogames-fr-clash-of-clans",
+    "isWellKnown": true,
+    "note": "Il est sorti en 2012.",
+    "prompt": "Quel jeu de stratégie sur mobile de Supercell fait bâtir un village et l’attaquer avec des barbares ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [],
+    "answer": "Roblox",
+    "decoys": ["Minecraft", "Habbo", "Second Life"],
+    "id": "videogames-fr-roblox",
+    "isWellKnown": true,
+    "note": "Elle est surtout populaire chez les enfants et les adolescents.",
+    "prompt": "Quelle plateforme de jeux en ligne, lancée en 2006, permet aux joueurs de créer leurs propres jeux ?",
+    "shape": "franchise"
+  },
+  {
+    "accepted": [
+      "Super Mario Bros le film",
+      "The Super Mario Bros. Movie",
+      "Super Mario Bros."
+    ],
+    "answer": "Super Mario Bros., le film",
+    "decoys": [
+      "Sonic 2, le film",
+      "Pokémon : Détective Pikachu",
+      "Five Nights at Freddy’s"
+    ],
+    "id": "videogames-fr-mario-movie",
+    "isWellKnown": true,
+    "note": "Il a été produit par Illumination, le studio des Minions.",
+    "prompt": "Quel film d’animation de 2023, adapté d’un jeu vidéo, a rapporté plus de 1,3 milliard de dollars ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Sonic le film", "Sonic"],
+    "answer": "Sonic, le film",
+    "decoys": [
+      "Pokémon : Détective Pikachu",
+      "Uncharted",
+      "Warcraft : Le Commencement"
+    ],
+    "id": "videogames-fr-sonic-movie",
+    "isWellKnown": true,
+    "note": "Sa sortie a été repoussée à février 2020 pour le redessiner.",
+    "prompt": "Quel film a dû redessiner son héros après le tollé de sa première bande-annonce, en 2019 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Jolie"],
+    "answer": "Angelina Jolie",
+    "decoys": ["Alicia Vikander", "Milla Jovovich", "Kate Beckinsale"],
+    "id": "videogames-fr-angelina-jolie",
+    "isWellKnown": true,
+    "note": "Alicia Vikander a repris le rôle en 2018.",
+    "prompt": "Quelle actrice a incarné Lara Croft au cinéma en 2001 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Arcane",
+    "decoys": ["Castlevania", "Cyberpunk: Edgerunners", "Love, Death & Robots"],
+    "id": "videogames-fr-arcane",
+    "isWellKnown": true,
+    "note": "Sa première saison est sortie en 2021.",
+    "prompt": "Quelle série d’animation de Netflix, tirée de League of Legends, a été réalisée par le studio parisien Fortiche ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "The Last of Us",
+    "decoys": ["Uncharted", "Fallout", "Halo"],
+    "id": "videogames-fr-the-last-of-us-hbo",
+    "isWellKnown": true,
+    "note": "Bella Ramsey y joue Ellie.",
+    "prompt": "Quel jeu de Naughty Dog a été adapté en série par HBO en 2023, avec Pedro Pascal ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Pikachu",
+    "decoys": ["Rondoudou", "Psykokwak", "Miaouss"],
+    "id": "videogames-fr-detective-pikachu",
+    "isWellKnown": true,
+    "note": "Le film s’appelle Pokémon : Détective Pikachu.",
+    "prompt": "Quel Pokémon Ryan Reynolds double-t-il dans un film de 2019 ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Tron",
+    "decoys": ["WarGames", "Le Cobaye", "Matrix"],
+    "id": "videogames-fr-tron",
+    "isWellKnown": false,
+    "note": "Il est l’un des premiers films à utiliser massivement des images de synthèse.",
+    "prompt": "Quel film de Disney de 1982 plongeait un programmeur à l’intérieur d’un ordinateur ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": ["Ralph", "Wreck-It Ralph"],
+    "answer": "Les Mondes de Ralph",
+    "decoys": ["Tron", "Toy Story", "Pixels"],
+    "id": "videogames-fr-wreck-it-ralph",
+    "isWellKnown": true,
+    "note": "On y croise Bowser, Sonic et Pac-Man.",
+    "prompt": "Quel film d’animation de Disney (2012) suit le méchant d’un jeu d’arcade qui rêve de devenir un héros ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Pixels",
+    "decoys": ["Les Mondes de Ralph", "Tron : L’Héritage", "Ready Player One"],
+    "id": "videogames-fr-pixels",
+    "isWellKnown": false,
+    "note": "Adam Sandler y joue un ancien champion d’arcade.",
+    "prompt": "Dans quel film de 2015 des personnages de jeux d’arcade, dont Pac-Man, attaquent-ils la Terre ?",
+    "shape": "culture"
+  },
+  {
+    "accepted": [],
+    "answer": "Ready Player One",
+    "decoys": ["Tron : L’Héritage", "Pixels", "Free Guy"],
+    "id": "videogames-fr-ready-player-one",
+    "isWellKnown": false,
+    "note": "Il est adapté du roman d’Ernest Cline.",
+    "prompt": "Quel film de Steven Spielberg (2018) se déroule dans un univers virtuel appelé l’OASIS ?",
+    "shape": "culture"
+  }
+]
