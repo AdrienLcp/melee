@@ -10,6 +10,7 @@
     "decoys": ["Alien", "Dune", "Blade Runner"],
     "id": "quote-en-empire-strikes-back",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Darth Vader to Luke Skywalker, 1980.",
     "prompt": "“No, I am your father.”"
   },
@@ -19,6 +20,7 @@
     "decoys": ["RoboCop", "Predator", "Total Recall"],
     "id": "quote-en-terminator",
     "isWellKnown": true,
+    "kind": "film",
     "note": "The T-800 (Arnold Schwarzenegger), 1984.",
     "prompt": "“I'll be back.”"
   },
@@ -28,6 +30,7 @@
     "decoys": ["Commando", "True Lies", "Last Action Hero"],
     "id": "quote-en-terminator-2",
     "isWellKnown": true,
+    "kind": "film",
     "note": "The T-800 (Arnold Schwarzenegger), 1991.",
     "prompt": "“Hasta la vista, baby.”"
   },
@@ -37,6 +40,7 @@
     "decoys": ["Goodfellas", "Once Upon a Time in America", "Casino"],
     "id": "quote-en-godfather",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Vito Corleone (Marlon Brando), 1972.",
     "prompt": "“I'm gonna make him an offer he can't refuse.”"
   },
@@ -46,6 +50,7 @@
     "decoys": ["Goodfellas", "The Irishman", "Donnie Brasco"],
     "id": "quote-en-godfather-part-iii",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Michael Corleone (Al Pacino), 1990.",
     "prompt": "“Just when I thought I was out, they pull me back in.”"
   },
@@ -55,6 +60,7 @@
     "decoys": ["Pearl Harbor", "Avatar", "The Poseidon Adventure"],
     "id": "quote-en-titanic",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Jack (Leonardo DiCaprio), at the bow, 1997.",
     "prompt": "“I'm the king of the world!”"
   },
@@ -64,6 +70,7 @@
     "decoys": ["Rain Man", "Big", "Philadelphia"],
     "id": "quote-en-forrest-gump",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Forrest (Tom Hanks), on his bench, 1994.",
     "prompt": "“My mama always said life was like a box of chocolates. You never know what you're gonna get.”"
   },
@@ -73,6 +80,7 @@
     "decoys": ["Willow", "The Chronicles of Narnia", "Eragon"],
     "id": "quote-en-fellowship-of-the-ring",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Gandalf (Ian McKellen), facing the Balrog, 2001.",
     "prompt": "“You shall not pass!”"
   },
@@ -82,6 +90,7 @@
     "decoys": ["Platoon", "Full Metal Jacket", "The Deer Hunter"],
     "id": "quote-en-apocalypse-now",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Lieutenant Colonel Kilgore (Robert Duvall), 1979.",
     "prompt": "“I love the smell of napalm in the morning.”"
   },
@@ -91,6 +100,7 @@
     "decoys": ["The Maltese Falcon", "Roman Holiday", "The Big Sleep"],
     "id": "quote-en-casablanca",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rick (Humphrey Bogart) to Ilsa (Ingrid Bergman), 1942.",
     "prompt": "“Here's looking at you, kid.”"
   },
@@ -100,6 +110,7 @@
     "decoys": ["Ben-Hur", "Wuthering Heights", "Doctor Zhivago"],
     "id": "quote-en-gone-with-the-wind",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rhett Butler (Clark Gable) to Scarlett O'Hara, 1939.",
     "prompt": "“Frankly, my dear, I don't give a damn.”"
   },
@@ -109,6 +120,7 @@
     "decoys": ["Alice in Wonderland", "Mary Poppins", "Pinocchio"],
     "id": "quote-en-wizard-of-oz",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Dorothy (Judy Garland), 1939.",
     "prompt": "“Toto, I've a feeling we're not in Kansas anymore.”"
   },
@@ -118,6 +130,7 @@
     "decoys": ["Moby Dick", "The Abyss", "Orca"],
     "id": "quote-en-jaws",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Chief Brody (Roy Scheider), 1975.",
     "prompt": "“You're gonna need a bigger boat.”"
   },
@@ -127,6 +140,7 @@
     "decoys": ["Ghostbusters", "Gremlins", "The Goonies"],
     "id": "quote-en-back-to-the-future",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Doc Brown, at the very end of the first film, 1985.",
     "prompt": "“Roads? Where we're going, we don't need roads.”"
   },
@@ -136,6 +150,7 @@
     "decoys": ["Se7en", "Psycho", "The Shining"],
     "id": "quote-en-silence-of-the-lambs",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Hannibal Lecter (Anthony Hopkins) to Clarice Starling, 1991.",
     "prompt": "“A census taker once tried to test me. I ate his liver with some fava beans and a nice chianti.”"
   },
@@ -145,6 +160,7 @@
     "decoys": ["Carrie", "Misery", "The Exorcist"],
     "id": "quote-en-the-shining",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Jack Torrance (Jack Nicholson), through the door he has just axed, 1980.",
     "prompt": "“Here's Johnny!”"
   },
@@ -154,6 +170,7 @@
     "decoys": ["Reservoir Dogs", "Jackie Brown", "True Romance"],
     "id": "quote-en-pulp-fiction",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Vincent Vega (John Travolta) to Jules (Samuel L. Jackson), 1994.",
     "prompt": "“They call it a Royale with cheese.”"
   },
@@ -163,6 +180,7 @@
     "decoys": ["Inception", "Minority Report", "Dark City"],
     "id": "quote-en-the-matrix",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Morpheus (Laurence Fishburne) to Neo, 1999.",
     "prompt": "“You take the blue pill, the story ends. You take the red pill, you stay in Wonderland.”"
   },
@@ -172,6 +190,7 @@
     "decoys": ["Monsters, Inc.", "The Incredibles", "Up"],
     "id": "quote-en-toy-story",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Buzz Lightyear, 1995.",
     "prompt": "“To infinity and beyond!”"
   },
@@ -181,6 +200,7 @@
     "decoys": ["Bambi", "The Jungle Book", "Tarzan"],
     "id": "quote-en-the-lion-king",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Mufasa to Simba, in the clouds, 1994.",
     "prompt": "“Remember who you are.”"
   },
@@ -190,6 +210,7 @@
     "decoys": ["Shark Tale", "The Little Mermaid", "Monsters, Inc."],
     "id": "quote-en-finding-nemo",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Dory (Ellen DeGeneres), 2003.",
     "prompt": "“Just keep swimming.”"
   },
@@ -199,6 +220,7 @@
     "decoys": ["Raging Bull", "Million Dollar Baby", "The Fighter"],
     "id": "quote-en-rocky",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rocky Balboa (Sylvester Stallone), 1976.",
     "prompt": "“Yo, Adrian!”"
   },
@@ -208,6 +230,7 @@
     "decoys": ["Mean Streets", "Goodfellas", "Raging Bull"],
     "id": "quote-en-taxi-driver",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Travis Bickle (Robert De Niro), in front of his mirror, 1976.",
     "prompt": "“You talkin' to me?”"
   },
@@ -217,6 +240,7 @@
     "decoys": ["Carlito's Way", "The Untouchables", "Heat"],
     "id": "quote-en-scarface",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Tony Montana (Al Pacino), 1983.",
     "prompt": "“Say hello to my little friend!”"
   },
@@ -230,6 +254,7 @@
     ],
     "id": "quote-en-good-bad-ugly",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Blondie (Clint Eastwood) to Tuco, 1966.",
     "prompt": "“You see, in this world there's two kinds of people, my friend: those with loaded guns and those who dig. You dig.”"
   },
@@ -239,6 +264,7 @@
     "decoys": ["King Kong", "Godzilla", "Twister"],
     "id": "quote-en-jurassic-park",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Ian Malcolm (Jeff Goldblum), 1993.",
     "prompt": "“Life, uh, finds a way.”"
   },
@@ -252,6 +278,7 @@
     ],
     "id": "quote-en-harry-potter",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Hagrid (Robbie Coltrane), 2001.",
     "prompt": "“You're a wizard, Harry.”"
   },
@@ -261,6 +288,7 @@
     "decoys": ["Romancing the Stone", "The Mummy", "The Goonies"],
     "id": "quote-en-raiders-of-the-lost-ark",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Indiana Jones (Harrison Ford), 1981.",
     "prompt": "“Snakes. Why'd it have to be snakes?”"
   },
@@ -270,6 +298,7 @@
     "decoys": ["Troy", "Alexander", "Immortals"],
     "id": "quote-en-300",
     "isWellKnown": true,
+    "kind": "film",
     "note": "King Leonidas (Gerard Butler), 2006.",
     "prompt": "“This is Sparta!”"
   },
@@ -279,6 +308,7 @@
     "decoys": ["Spartacus", "Kingdom of Heaven", "Ben-Hur"],
     "id": "quote-en-gladiator",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Maximus (Russell Crowe), to the emperor's face, 2000.",
     "prompt": "“My name is Maximus Decimus Meridius, commander of the Armies of the North.”"
   },
@@ -288,6 +318,7 @@
     "decoys": ["Watchmen", "V for Vendetta", "Sin City"],
     "id": "quote-en-the-dark-knight",
     "isWellKnown": true,
+    "kind": "film",
     "note": "The Joker (Heath Ledger), 2008.",
     "prompt": "“Why so serious?”"
   },
@@ -297,6 +328,7 @@
     "decoys": ["The Transporter", "The Equalizer", "John Wick"],
     "id": "quote-en-taken",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Bryan Mills (Liam Neeson), on the phone, 2008.",
     "prompt": "“I will look for you, I will find you, and I will kill you.”"
   },
@@ -306,6 +338,7 @@
     "decoys": ["The Right Stuff", "Armageddon", "Gravity"],
     "id": "quote-en-apollo-13",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Jim Lovell (Tom Hanks), 1995.",
     "prompt": "“Houston, we have a problem.”"
   },
@@ -315,6 +348,7 @@
     "decoys": ["The Others", "Unbreakable", "Poltergeist"],
     "id": "quote-en-the-sixth-sense",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Cole (Haley Joel Osment), 1999.",
     "prompt": "“I see dead people.”"
   },
@@ -324,6 +358,7 @@
     "decoys": ["Superman", "Daredevil", "Hulk"],
     "id": "quote-en-spider-man",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Uncle Ben, 2002.",
     "prompt": "“With great power comes great responsibility.”"
   },
@@ -333,6 +368,7 @@
     "decoys": ["Grease", "Flashdance", "Footloose"],
     "id": "quote-en-dirty-dancing",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Johnny (Patrick Swayze), 1987.",
     "prompt": "“Nobody puts Baby in a corner.”"
   },
@@ -342,6 +378,7 @@
     "decoys": ["Good Will Hunting", "Finding Forrester", "Patch Adams"],
     "id": "quote-en-dead-poets-society",
     "isWellKnown": true,
+    "kind": "film",
     "note": "The boys standing on their desks for Mr. Keating (Robin Williams), 1989.",
     "prompt": "“O Captain! My Captain!”"
   },
@@ -351,6 +388,7 @@
     "decoys": ["The Incredibles", "Up", "Cars"],
     "id": "quote-en-ratatouille",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Chef Gusteau's motto, 2007.",
     "prompt": "“Anyone can cook.”"
   },
@@ -360,6 +398,7 @@
     "decoys": ["Any Given Sunday", "The Blind Side", "Moneyball"],
     "id": "quote-en-jerry-maguire",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rod Tidwell (Cuba Gooding Jr.) to Jerry (Tom Cruise), 1996.",
     "prompt": "“Show me the money!”"
   },
@@ -369,6 +408,7 @@
     "decoys": ["Days of Thunder", "Iron Eagle", "Stealth"],
     "id": "quote-en-top-gun",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Maverick (Tom Cruise) and Goose (Anthony Edwards), 1986.",
     "prompt": "“I feel the need… the need for speed!”"
   },
@@ -378,6 +418,7 @@
     "decoys": ["Bloodsport", "Kickboxer", "Best of the Best"],
     "id": "quote-en-karate-kid",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Mr. Miyagi (Pat Morita) to Daniel, 1984.",
     "prompt": "“Wax on, wax off.”"
   },
@@ -387,6 +428,7 @@
     "decoys": ["Willow", "Labyrinth", "Ladyhawke"],
     "id": "quote-en-princess-bride",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Inigo Montoya (Mandy Patinkin), 1987.",
     "prompt": "“Hello. My name is Inigo Montoya. You killed my father. Prepare to die.”"
   },
@@ -396,6 +438,7 @@
     "decoys": ["The Firm", "Philadelphia", "JFK"],
     "id": "quote-en-a-few-good-men",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Colonel Jessup (Jack Nicholson) on the stand, 1992.",
     "prompt": "“You can't handle the truth!”"
   },
@@ -405,6 +448,7 @@
     "decoys": ["Field of Dreams", "Bull Durham", "Major League"],
     "id": "quote-en-league-of-their-own",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Jimmy Dugan (Tom Hanks), 1992.",
     "prompt": "“There's no crying in baseball!”"
   },
@@ -414,6 +458,7 @@
     "decoys": ["Fail Safe", "Seven Days in May", "The Manchurian Candidate"],
     "id": "quote-en-dr-strangelove",
     "isWellKnown": false,
+    "kind": "film",
     "note": "President Merkin Muffley (Peter Sellers), 1964.",
     "prompt": "“Gentlemen, you can't fight in here! This is the War Room!”"
   },
@@ -427,6 +472,7 @@
     ],
     "id": "quote-en-sunset-boulevard",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Norma Desmond (Gloria Swanson), 1950.",
     "prompt": "“All right, Mr. DeMille, I'm ready for my close-up.”"
   },
@@ -436,6 +482,7 @@
     "decoys": ["The Magnificent Ambersons", "Touch of Evil", "The Third Man"],
     "id": "quote-en-citizen-kane",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Charles Foster Kane's last word, 1941.",
     "prompt": "“Rosebud.”"
   },
@@ -445,6 +492,7 @@
     "decoys": ["Solaris", "Silent Running", "Alien"],
     "id": "quote-en-2001",
     "isWellKnown": true,
+    "kind": "film",
     "note": "HAL 9000, refusing to open the pod bay doors, 1968.",
     "prompt": "“I'm sorry, Dave. I'm afraid I can't do that.”"
   },
@@ -454,6 +502,7 @@
     "decoys": ["Rob Roy", "The Patriot", "Kingdom of Heaven"],
     "id": "quote-en-braveheart",
     "isWellKnown": true,
+    "kind": "film",
     "note": "William Wallace (Mel Gibson), 1995.",
     "prompt": "“They may take our lives, but they'll never take our freedom!”"
   },
@@ -463,6 +512,7 @@
     "decoys": ["Shark Tale", "Madagascar", "Ice Age"],
     "id": "quote-en-shrek",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Shrek to Donkey, 2001.",
     "prompt": "“Ogres are like onions.”"
   },
@@ -472,6 +522,7 @@
     "decoys": ["Mildred Pierce", "Now, Voyager", "The Philadelphia Story"],
     "id": "quote-en-all-about-eve",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Margo Channing (Bette Davis), 1950.",
     "prompt": "“Fasten your seatbelts. It's going to be a bumpy night.”"
   },
@@ -485,6 +536,7 @@
     ],
     "id": "quote-en-some-like-it-hot",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Osgood (Joe E. Brown), the film's last line, 1959.",
     "prompt": "“Well, nobody's perfect.”"
   },
@@ -494,6 +546,7 @@
     "decoys": ["The Green Mile", "Escape from Alcatraz", "Papillon"],
     "id": "quote-en-shawshank-redemption",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Andy Dufresne (Tim Robbins), 1994.",
     "prompt": "“Get busy living, or get busy dying.”"
   },
@@ -503,6 +556,7 @@
     "decoys": ["Thor: Ragnarok", "Ant-Man", "Avatar"],
     "id": "quote-en-guardians-of-the-galaxy",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Groot (Vin Diesel), 2014.",
     "prompt": "“I am Groot.”"
   },
@@ -512,6 +566,7 @@
     "decoys": ["Thor: Ragnarok", "Captain Marvel", "Doctor Strange"],
     "id": "quote-en-avengers-endgame",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Thanos (Josh Brolin), 2019.",
     "prompt": "“I am inevitable.”"
   },
@@ -521,6 +576,7 @@
     "decoys": ["Captain America: Civil War", "Aquaman", "Shang-Chi"],
     "id": "quote-en-black-panther",
     "isWellKnown": true,
+    "kind": "film",
     "note": "The salute of T'Challa's people, 2018.",
     "prompt": "“Wakanda forever!”"
   },
@@ -530,6 +586,7 @@
     "decoys": ["The Witcher", "Vikings", "Outlander"],
     "id": "quote-en-got-winter",
     "isWellKnown": true,
+    "kind": "series",
     "note": "The words of House Stark.",
     "prompt": "“Winter is coming.”"
   },
@@ -539,6 +596,7 @@
     "decoys": ["Vikings", "The Last Kingdom", "Outlander"],
     "id": "quote-en-got-jon-snow",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Ygritte (Rose Leslie).",
     "prompt": "“You know nothing, Jon Snow.”"
   },
@@ -548,6 +606,7 @@
     "decoys": ["The Witcher", "The Last Kingdom", "Vikings"],
     "id": "quote-en-got-hodor",
     "isWellKnown": true,
+    "kind": "series",
     "note": "The only word Hodor (Kristian Nairn) says.",
     "prompt": "“Hodor.”"
   },
@@ -557,6 +616,7 @@
     "decoys": ["The Sopranos", "Ozark", "Narcos"],
     "id": "quote-en-breaking-bad-knocks",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Walter White (Bryan Cranston) to Skyler.",
     "prompt": "“I am the one who knocks!”"
   },
@@ -566,6 +626,7 @@
     "decoys": ["The Wire", "Boardwalk Empire", "Sons of Anarchy"],
     "id": "quote-en-breaking-bad-name",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Walter White (Bryan Cranston), in the desert.",
     "prompt": "“Say my name.”"
   },
@@ -575,6 +636,7 @@
     "decoys": ["How I Met Your Mother", "Seinfeld", "Frasier"],
     "id": "quote-en-friends-break",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Ross (David Schwimmer), whenever Rachel comes up.",
     "prompt": "“We were on a break!”"
   },
@@ -584,6 +646,7 @@
     "decoys": ["Joey", "Will & Grace", "Mad About You"],
     "id": "quote-en-friends-how-you-doin",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Joey Tribbiani (Matt LeBlanc).",
     "prompt": "“How you doin'?”"
   },
@@ -593,6 +656,7 @@
     "decoys": ["Scrubs", "Two and a Half Men", "Modern Family"],
     "id": "quote-en-how-i-met-your-mother",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Barney Stinson (Neil Patrick Harris).",
     "prompt": "“Legen… wait for it… dary!”"
   },
@@ -602,6 +666,7 @@
     "decoys": ["Futurama", "Family Guy", "South Park"],
     "id": "quote-en-simpsons-shorts",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Bart Simpson.",
     "prompt": "“Eat my shorts!”"
   },
@@ -611,6 +676,7 @@
     "decoys": ["King of the Hill", "American Dad!", "Futurama"],
     "id": "quote-en-simpsons-doh",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Homer Simpson.",
     "prompt": "“D'oh!”"
   },
@@ -624,6 +690,7 @@
     ],
     "id": "quote-en-the-office",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Michael Scott (Steve Carell).",
     "prompt": "“That's what she said!”"
   },
@@ -633,6 +700,7 @@
     "decoys": ["Grey's Anatomy", "ER", "Nip/Tuck"],
     "id": "quote-en-house",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Dr. Gregory House (Hugh Laurie).",
     "prompt": "“Everybody lies.”"
   },
@@ -642,6 +710,7 @@
     "decoys": ["Murder, She Wrote", "Kojak", "Magnum, P.I."],
     "id": "quote-en-columbo",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Lieutenant Columbo (Peter Falk), at the door.",
     "prompt": "“Just one more thing…”"
   },
@@ -651,6 +720,7 @@
     "decoys": ["The Avengers", "The Invaders", "Mission: Impossible"],
     "id": "quote-en-the-prisoner",
     "isWellKnown": false,
+    "kind": "series",
     "note": "Number Six (Patrick McGoohan), 1967.",
     "prompt": "“I am not a number, I am a free man!”"
   },
@@ -660,6 +730,7 @@
     "decoys": ["Fringe", "Twin Peaks", "Stranger Things"],
     "id": "quote-en-x-files",
     "isWellKnown": true,
+    "kind": "series",
     "note": "The tagline of the opening credits.",
     "prompt": "“The truth is out there.”"
   },
@@ -669,6 +740,7 @@
     "decoys": ["Scrubs", "Modern Family", "Malcolm in the Middle"],
     "id": "quote-en-big-bang-theory",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Sheldon Cooper (Jim Parsons), after a joke.",
     "prompt": "“Bazinga!”"
   },
@@ -678,6 +750,7 @@
     "decoys": ["Battlestar Galactica", "Stargate SG-1", "Babylon 5"],
     "id": "quote-en-star-trek",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Spock's Vulcan salute (Leonard Nimoy).",
     "prompt": "“Live long and prosper.”"
   },
@@ -687,6 +760,7 @@
     "decoys": ["Curb Your Enthusiasm", "Frasier", "Mad About You"],
     "id": "quote-en-seinfeld",
     "isWellKnown": true,
+    "kind": "series",
     "note": "The Soup Nazi (Larry Thomas).",
     "prompt": "“No soup for you!”"
   },
@@ -700,7 +774,4942 @@
     ],
     "id": "quote-en-family-matters",
     "isWellKnown": false,
+    "kind": "series",
     "note": "Steve Urkel (Jaleel White).",
     "prompt": "“Did I do that?”"
+  },
+  {
+    "accepted": [],
+    "answer": "On the Waterfront",
+    "decoys": ["East of Eden", "Rebel Without a Cause", "Marty"],
+    "id": "quote-en-on-the-waterfront",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Terry Malloy (Marlon Brando) to his brother in the back of a taxi, 1954.",
+    "prompt": "“You don't understand! I coulda had class. I coulda been a contender. I could've been somebody, instead of a bum, which is what I am.”"
+  },
+  {
+    "accepted": ["Dirty Harry"],
+    "answer": "Sudden Impact",
+    "decoys": ["Death Wish", "Bullitt", "The French Connection"],
+    "id": "quote-en-sudden-impact",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Harry Callahan (Clint Eastwood), 1983.",
+    "prompt": "“Go ahead, make my day.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Dirty Harry",
+    "decoys": ["Death Wish", "Bullitt", "Serpico"],
+    "id": "quote-en-dirty-harry",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Harry Callahan (Clint Eastwood), 1971.",
+    "prompt": "“You've got to ask yourself one question: 'Do I feel lucky?' Well, do ya, punk?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Cool Hand Luke",
+    "decoys": [
+      "The Great Escape",
+      "Butch Cassidy and the Sundance Kid",
+      "The Hustler"
+    ],
+    "id": "quote-en-cool-hand-luke",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "The Captain (Strother Martin), 1967.",
+    "prompt": "“What we've got here is failure to communicate.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Love Story",
+    "decoys": ["The Way We Were", "Doctor Zhivago", "Breakfast at Tiffany's"],
+    "id": "quote-en-love-story",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Said by Jenny (Ali MacGraw) and later by Oliver (Ryan O'Neal), 1970.",
+    "prompt": "“Love means never having to say you're sorry.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Maltese Falcon",
+    "decoys": ["The Big Sleep", "Double Indemnity", "The Third Man"],
+    "id": "quote-en-maltese-falcon",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Sam Spade (Humphrey Bogart) about the statuette, 1941.",
+    "prompt": "“The stuff that dreams are made of.”"
+  },
+  {
+    "accepted": [],
+    "answer": "In the Heat of the Night",
+    "decoys": [
+      "Guess Who's Coming to Dinner",
+      "To Kill a Mockingbird",
+      "Bullitt"
+    ],
+    "id": "quote-en-in-the-heat-of-the-night",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Virgil Tibbs (Sidney Poitier), 1967.",
+    "prompt": "“They call me Mister Tibbs!”"
+  },
+  {
+    "accepted": [],
+    "answer": "White Heat",
+    "decoys": ["The Public Enemy", "Scarface", "Little Caesar"],
+    "id": "quote-en-white-heat",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Cody Jarrett (James Cagney) atop an exploding gas tank, 1949.",
+    "prompt": "“Made it, Ma! Top of the world!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Network",
+    "decoys": [
+      "All the President's Men",
+      "Dog Day Afternoon",
+      "One Flew Over the Cuckoo's Nest"
+    ],
+    "id": "quote-en-network",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "News anchor Howard Beale (Peter Finch), 1976.",
+    "prompt": "“I'm as mad as hell, and I'm not going to take this anymore!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Casablanca",
+    "decoys": ["The Big Sleep", "To Have and Have Not", "Key Largo"],
+    "id": "quote-en-casablanca-friendship",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Rick Blaine (Humphrey Bogart), the film's last line, 1942.",
+    "prompt": "“Louis, I think this is the beginning of a beautiful friendship.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Midnight Cowboy",
+    "decoys": ["Taxi Driver", "The French Connection", "Mean Streets"],
+    "id": "quote-en-midnight-cowboy",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Ratso Rizzo (Dustin Hoffman) to a New York cab, 1969.",
+    "prompt": "“I'm walkin' here! I'm walkin' here!”"
+  },
+  {
+    "accepted": ["When Harry Met Sally"],
+    "answer": "When Harry Met Sally...",
+    "decoys": ["Sleepless in Seattle", "Pretty Woman", "You've Got Mail"],
+    "id": "quote-en-when-harry-met-sally",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "A customer at Katz's Delicatessen (Estelle Reiner), 1989.",
+    "prompt": "“I'll have what she's having.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Field of Dreams",
+    "decoys": ["The Natural", "Bull Durham", "Big"],
+    "id": "quote-en-field-of-dreams",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The voice Ray Kinsella (Kevin Costner) hears in his cornfield, 1989.",
+    "prompt": "“If you build it, he will come.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Bonnie and Clyde",
+    "decoys": ["Butch Cassidy and the Sundance Kid", "The Sting", "Easy Rider"],
+    "id": "quote-en-bonnie-and-clyde",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Clyde Barrow (Warren Beatty), 1967.",
+    "prompt": "“We rob banks.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Graduate",
+    "decoys": ["Annie Hall", "Midnight Cowboy", "Harold and Maude"],
+    "id": "quote-en-the-graduate",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Benjamin Braddock (Dustin Hoffman), 1967.",
+    "prompt": "“Mrs. Robinson, you're trying to seduce me. Aren't you?”"
+  },
+  {
+    "accepted": ["Streetcar Named Desire"],
+    "answer": "A Streetcar Named Desire",
+    "decoys": ["On the Waterfront", "Cat on a Hot Tin Roof", "East of Eden"],
+    "id": "quote-en-streetcar-named-desire",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Stanley Kowalski (Marlon Brando) bellowing up the stairwell, 1951.",
+    "prompt": "“Stella! Hey, Stella!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Frankenstein",
+    "decoys": ["Dracula", "The Invisible Man", "The Mummy"],
+    "id": "quote-en-frankenstein",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Henry Frankenstein (Colin Clive) as the creature stirs, 1931.",
+    "prompt": "“It's alive! It's alive!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Psycho",
+    "decoys": ["Vertigo", "The Birds", "Rear Window"],
+    "id": "quote-en-psycho-mother",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Norman Bates (Anthony Perkins), 1960.",
+    "prompt": "“A boy's best friend is his mother.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Psycho",
+    "decoys": ["Vertigo", "Rebecca", "Dial M for Murder"],
+    "id": "quote-en-psycho-mad",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Norman Bates (Anthony Perkins) to Marion Crane, 1960.",
+    "prompt": "“We all go a little mad sometimes.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Wall Street",
+    "decoys": [
+      "Glengarry Glen Ross",
+      "Trading Places",
+      "The Bonfire of the Vanities"
+    ],
+    "id": "quote-en-wall-street",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gordon Gekko (Michael Douglas), 1987.",
+    "prompt": "“Greed, for lack of a better word, is good.”"
+  },
+  {
+    "accepted": [
+      "The Godfather Part 2",
+      "Godfather II",
+      "Godfather 2",
+      "The Godfather"
+    ],
+    "answer": "The Godfather Part II",
+    "decoys": ["Scarface", "Once Upon a Time in America", "The Untouchables"],
+    "id": "quote-en-godfather-part-ii",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Michael Corleone (Al Pacino), 1974.",
+    "prompt": "“Keep your friends close, but your enemies closer.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Poltergeist",
+    "decoys": ["The Amityville Horror", "The Exorcist", "Gremlins"],
+    "id": "quote-en-poltergeist",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Carol Anne (Heather O'Rourke) in front of the TV, 1982.",
+    "prompt": "“They're here!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Marathon Man",
+    "decoys": [
+      "The Boys from Brazil",
+      "Three Days of the Condor",
+      "The Parallax View"
+    ],
+    "id": "quote-en-marathon-man",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Dr. Szell (Laurence Olivier) to Babe (Dustin Hoffman) in the dentist's chair, 1976.",
+    "prompt": "“Is it safe?”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Jazz Singer",
+    "decoys": ["Singin' in the Rain", "42nd Street", "Top Hat"],
+    "id": "quote-en-jazz-singer",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Al Jolson in the first feature-length talkie, 1927.",
+    "prompt": "“Wait a minute, wait a minute. You ain't heard nothin' yet!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mommie Dearest",
+    "decoys": [
+      "What Ever Happened to Baby Jane?",
+      "Mildred Pierce",
+      "Valley of the Dolls"
+    ],
+    "id": "quote-en-mommie-dearest",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Joan Crawford (Faye Dunaway), 1981.",
+    "prompt": "“No wire hangers, ever!”"
+  },
+  {
+    "accepted": ["Airplane", "Flying High"],
+    "answer": "Airplane!",
+    "decoys": ["The Naked Gun", "Top Secret!", "Hot Shots!"],
+    "id": "quote-en-airplane-shirley",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ted Striker (Robert Hays) and Dr. Rumack (Leslie Nielsen), 1980.",
+    "prompt": "“Surely you can't be serious. — I am serious… and don't call me Shirley.”"
+  },
+  {
+    "accepted": ["Airplane", "Flying High"],
+    "answer": "Airplane!",
+    "decoys": ["The Naked Gun", "Police Academy", "Caddyshack"],
+    "id": "quote-en-airplane-smoking",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Steve McCroskey (Lloyd Bridges) in the control tower, 1980.",
+    "prompt": "“Looks like I picked the wrong week to quit smoking.”"
+  },
+  {
+    "accepted": ["Animal House"],
+    "answer": "National Lampoon's Animal House",
+    "decoys": ["Revenge of the Nerds", "Porky's", "Caddyshack"],
+    "id": "quote-en-animal-house",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Bluto Blutarsky (John Belushi), 1978.",
+    "prompt": "“Toga! Toga!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Dracula",
+    "decoys": ["Frankenstein", "Nosferatu", "The Wolf Man"],
+    "id": "quote-en-dracula",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Count Dracula (Bela Lugosi), 1931.",
+    "prompt": "“Listen to them. Children of the night. What music they make.”"
+  },
+  {
+    "accepted": [],
+    "answer": "King Kong",
+    "decoys": ["Godzilla", "The Lost World", "Mighty Joe Young"],
+    "id": "quote-en-king-kong",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Carl Denham (Robert Armstrong), the film's last line, 1933.",
+    "prompt": "“Oh, no, it wasn't the airplanes. It was Beauty killed the Beast.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Moonstruck",
+    "decoys": ["Working Girl", "Mystic Pizza", "Broadcast News"],
+    "id": "quote-en-moonstruck",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Loretta Castorini (Cher) slapping Ronny (Nicolas Cage), 1987.",
+    "prompt": "“Snap out of it!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Caddyshack",
+    "decoys": ["Happy Gilmore", "Tin Cup", "Stripes"],
+    "id": "quote-en-caddyshack",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Groundskeeper Carl Spackler (Bill Murray) narrating his own swing, 1980.",
+    "prompt": "“Cinderella story. Outta nowhere. A former greenskeeper, now, about to become the Masters champion.”"
+  },
+  {
+    "accepted": ["James Bond", "007"],
+    "answer": "Goldfinger",
+    "decoys": ["Our Man Flint", "The Ipcress File", "The Pink Panther"],
+    "id": "quote-en-goldfinger",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Bond (Sean Connery), 1964 — the order recurs across the series.",
+    "prompt": "“A martini. Shaken, not stirred.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Treasure of the Sierra Madre",
+    "decoys": ["The African Queen", "Key Largo", "The Magnificent Seven"],
+    "id": "quote-en-treasure-of-the-sierra-madre",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Gold Hat (Alfonso Bedoya), 1948.",
+    "prompt": "“Badges? We ain't got no badges! We don't need no badges! I don't have to show you any stinking badges!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Animal Crackers",
+    "decoys": ["Duck Soup", "Bringing Up Baby", "It Happened One Night"],
+    "id": "quote-en-animal-crackers",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Captain Spaulding (Groucho Marx), 1930.",
+    "prompt": "“One morning I shot an elephant in my pajamas. How he got in my pajamas, I don't know.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Jerry Maguire",
+    "decoys": ["Notting Hill", "Sleepless in Seattle", "As Good as It Gets"],
+    "id": "quote-en-jerry-maguire-hello",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dorothy Boyd (Renée Zellweger) to Jerry (Tom Cruise), 1996.",
+    "prompt": "“You had me at hello.”"
+  },
+  {
+    "accepted": [
+      "A New Hope",
+      "Star Wars: A New Hope",
+      "Star Wars Episode IV",
+      "Star Wars 4"
+    ],
+    "answer": "Star Wars",
+    "decoys": ["Alien", "Close Encounters of the Third Kind", "Flash Gordon"],
+    "id": "quote-en-star-wars-help-me",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Princess Leia's (Carrie Fisher) hologram message, 1977.",
+    "prompt": "“Help me, Obi-Wan Kenobi. You're my only hope.”"
+  },
+  {
+    "accepted": [
+      "A New Hope",
+      "Star Wars: A New Hope",
+      "Star Wars Episode IV",
+      "Star Wars 4"
+    ],
+    "answer": "Star Wars",
+    "decoys": ["Blade Runner", "Battlestar Galactica", "Flash Gordon"],
+    "id": "quote-en-star-wars-droids",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Obi-Wan Kenobi (Alec Guinness) to a stormtrooper, 1977.",
+    "prompt": "“These aren't the droids you're looking for.”"
+  },
+  {
+    "accepted": [
+      "The Empire Strikes Back",
+      "Star Wars",
+      "Star Wars Episode V",
+      "Star Wars 5"
+    ],
+    "answer": "Star Wars: The Empire Strikes Back",
+    "decoys": ["The Dark Crystal", "Labyrinth", "The NeverEnding Story"],
+    "id": "quote-en-empire-do-or-do-not",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Yoda to Luke on Dagobah, 1980.",
+    "prompt": "“Do. Or do not. There is no try.”"
+  },
+  {
+    "accepted": [
+      "The Empire Strikes Back",
+      "Star Wars",
+      "Star Wars Episode V",
+      "Star Wars 5"
+    ],
+    "answer": "Star Wars: The Empire Strikes Back",
+    "decoys": ["Krull", "Alien", "Dune"],
+    "id": "quote-en-empire-odds",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Han Solo (Harrison Ford) entering the asteroid field, 1980.",
+    "prompt": "“Never tell me the odds!”"
+  },
+  {
+    "accepted": [
+      "Return of the Jedi",
+      "Star Wars",
+      "Star Wars Episode VI",
+      "Star Wars 6"
+    ],
+    "answer": "Star Wars: Return of the Jedi",
+    "decoys": [
+      "Flash Gordon",
+      "Battle Beyond the Stars",
+      "The Last Starfighter"
+    ],
+    "id": "quote-en-return-of-the-jedi",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Admiral Ackbar, 1983.",
+    "prompt": "“It's a trap!”"
+  },
+  {
+    "accepted": [
+      "Revenge of the Sith",
+      "Star Wars",
+      "Star Wars Episode III",
+      "Star Wars 3"
+    ],
+    "answer": "Star Wars: Revenge of the Sith",
+    "decoys": ["Avatar", "Serenity", "Riddick"],
+    "id": "quote-en-revenge-of-the-sith",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Obi-Wan Kenobi (Ewan McGregor) on Mustafar, 2005.",
+    "prompt": "“It's over, Anakin! I have the high ground!”"
+  },
+  {
+    "accepted": ["Anchorman"],
+    "answer": "Anchorman: The Legend of Ron Burgundy",
+    "decoys": ["Talladega Nights", "Old School", "Zoolander"],
+    "id": "quote-en-anchorman-big-deal",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Burgundy (Will Ferrell) to Veronica Corningstone, 2004.",
+    "prompt": "“I'm kind of a big deal.”"
+  },
+  {
+    "accepted": ["Anchorman"],
+    "answer": "Anchorman: The Legend of Ron Burgundy",
+    "decoys": ["Step Brothers", "Dodgeball", "Wedding Crashers"],
+    "id": "quote-en-anchorman-escalated",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Burgundy (Will Ferrell) after the newsteam brawl, 2004.",
+    "prompt": "“Boy, that escalated quickly.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mean Girls",
+    "decoys": ["Clueless", "Legally Blonde", "Easy A"],
+    "id": "quote-en-mean-girls-pink",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Karen Smith (Amanda Seyfried), 2004.",
+    "prompt": "“On Wednesdays we wear pink.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mean Girls",
+    "decoys": ["Clueless", "She's All That", "10 Things I Hate About You"],
+    "id": "quote-en-mean-girls-fetch",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Regina George (Rachel McAdams) to Gretchen, 2004.",
+    "prompt": "“Stop trying to make fetch happen! It's not going to happen!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Elf",
+    "decoys": ["The Santa Clause", "Jingle All the Way", "Home Alone"],
+    "id": "quote-en-elf-nutcracker",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Buddy (Will Ferrell) hit by a snowball, 2003.",
+    "prompt": "“Son of a nutcracker!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Elf",
+    "decoys": ["The Polar Express", "The Grinch", "Fred Claus"],
+    "id": "quote-en-elf-cheer",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Buddy (Will Ferrell) to Jovie, 2003.",
+    "prompt": "“The best way to spread Christmas cheer is singing loud for all to hear.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Big Lebowski",
+    "decoys": ["Fargo", "Raising Arizona", "Office Space"],
+    "id": "quote-en-big-lebowski-abides",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Dude (Jeff Bridges), 1998.",
+    "prompt": "“The Dude abides.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Big Lebowski",
+    "decoys": ["Fargo", "Pulp Fiction", "Dazed and Confused"],
+    "id": "quote-en-big-lebowski-opinion",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Dude (Jeff Bridges) to Jesus Quintana, 1998.",
+    "prompt": "“Yeah, well, that's just, like, uh, your opinion, man.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Home Alone",
+    "decoys": ["Dennis the Menace", "Problem Child", "Uncle Buck"],
+    "id": "quote-en-home-alone",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "A gangster in the film Kevin plays to fool the pizza boy, 1990.",
+    "prompt": "“Keep the change, ya filthy animal.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Ghostbusters",
+    "decoys": ["Gremlins", "Beetlejuice", "Men in Black"],
+    "id": "quote-en-ghostbusters-god",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Winston Zeddemore (Ernie Hudson) to Ray, 1984.",
+    "prompt": "“Ray, when someone asks you if you're a god, you say YES!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Ghostbusters",
+    "decoys": ["Men in Black", "Gremlins", "Innerspace"],
+    "id": "quote-en-ghostbusters-streams",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Egon Spengler (Harold Ramis), 1984.",
+    "prompt": "“Don't cross the streams.”"
+  },
+  {
+    "accepted": ["Holy Grail", "Monty Python"],
+    "answer": "Monty Python and the Holy Grail",
+    "decoys": ["Blackadder", "A Fish Called Wanda", "Time Bandits"],
+    "id": "quote-en-holy-grail-scratch",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Black Knight, with an arm cut off, 1975.",
+    "prompt": "“'Tis but a scratch.”"
+  },
+  {
+    "accepted": ["Holy Grail", "Monty Python"],
+    "answer": "Monty Python and the Holy Grail",
+    "decoys": ["Blazing Saddles", "Young Frankenstein", "Time Bandits"],
+    "id": "quote-en-holy-grail-hamster",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "A French taunter to King Arthur, 1975.",
+    "prompt": "“Your mother was a hamster and your father smelt of elderberries!”"
+  },
+  {
+    "accepted": ["Holy Grail", "Monty Python"],
+    "answer": "Monty Python and the Holy Grail",
+    "decoys": ["A Fish Called Wanda", "Jabberwocky", "Spaceballs"],
+    "id": "quote-en-holy-grail-swallow",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "The Bridgekeeper's third question, 1975.",
+    "prompt": "“What… is the air-speed velocity of an unladen swallow?”"
+  },
+  {
+    "accepted": ["Life of Brian", "Monty Python"],
+    "answer": "Monty Python's Life of Brian",
+    "decoys": [
+      "Blazing Saddles",
+      "History of the World, Part I",
+      "Time Bandits"
+    ],
+    "id": "quote-en-life-of-brian-naughty-boy",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brian's mother Mandy (Terry Jones), 1979.",
+    "prompt": "“He's not the Messiah, he's a very naughty boy!”"
+  },
+  {
+    "accepted": ["Life of Brian", "Monty Python"],
+    "answer": "Monty Python's Life of Brian",
+    "decoys": ["History of the World, Part I", "Carry On Cleo", "Spartacus"],
+    "id": "quote-en-life-of-brian-romans",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Reg (John Cleese) of the People's Front of Judea, 1979.",
+    "prompt": "“What have the Romans ever done for us?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Wayne's World",
+    "decoys": [
+      "Bill & Ted's Excellent Adventure",
+      "Dumb and Dumber",
+      "Tommy Boy"
+    ],
+    "id": "quote-en-waynes-world",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Wayne and Garth bowing to Alice Cooper, 1992.",
+    "prompt": "“We're not worthy! We're not worthy!”"
+  },
+  {
+    "accepted": ["Bill and Ted's Excellent Adventure", "Bill & Ted"],
+    "answer": "Bill & Ted's Excellent Adventure",
+    "decoys": [
+      "Wayne's World",
+      "Ferris Bueller's Day Off",
+      "Back to the Future"
+    ],
+    "id": "quote-en-bill-and-ted",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Abraham Lincoln's speech at the school, 1989.",
+    "prompt": "“Be excellent to each other… and party on, dudes!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Dumb and Dumber",
+    "decoys": ["Ace Ventura: Pet Detective", "Tommy Boy", "Billy Madison"],
+    "id": "quote-en-dumb-and-dumber",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lloyd Christmas (Jim Carrey), 1994.",
+    "prompt": "“Hey… want to hear the most annoying sound in the world?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Zoolander",
+    "decoys": [
+      "Dodgeball",
+      "Anchorman: The Legend of Ron Burgundy",
+      "Austin Powers: International Man of Mystery"
+    ],
+    "id": "quote-en-zoolander",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Derek Zoolander (Ben Stiller) smashing the model of his reading center, 2001.",
+    "prompt": "“What is this? A center for ants?”"
+  },
+  {
+    "accepted": ["Austin Powers"],
+    "answer": "Austin Powers: International Man of Mystery",
+    "decoys": ["The Naked Gun", "Dumb and Dumber", "The Pink Panther"],
+    "id": "quote-en-austin-powers",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Austin Powers (Mike Myers), 1997.",
+    "prompt": "“Oh, behave!”"
+  },
+  {
+    "accepted": ["Talladega Nights"],
+    "answer": "Talladega Nights: The Ballad of Ricky Bobby",
+    "decoys": ["Days of Thunder", "Blades of Glory", "Dodgeball"],
+    "id": "quote-en-talladega-nights",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Reese Bobby to his son Ricky, 2006.",
+    "prompt": "“If you ain't first, you're last!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Step Brothers",
+    "decoys": ["Wedding Crashers", "Old School", "Superbad"],
+    "id": "quote-en-step-brothers",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brennan (Will Ferrell) to Dale (John C. Reilly), 2008.",
+    "prompt": "“Did we just become best friends?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Groundhog Day",
+    "decoys": ["Scrooged", "What About Bob?", "Bruce Almighty"],
+    "id": "quote-en-groundhog-day",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The radio DJ who wakes Phil (Bill Murray) every morning, 1993.",
+    "prompt": "“Okay, campers, rise and shine and don't forget your booties, 'cause it's cold out there today!”"
+  },
+  {
+    "accepted": ["Spinal Tap"],
+    "answer": "This Is Spinal Tap",
+    "decoys": ["Wayne's World", "The Blues Brothers", "The Commitments"],
+    "id": "quote-en-spinal-tap",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Nigel Tufnel (Christopher Guest) about his amplifier, 1984.",
+    "prompt": "“These go to 11.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Blues Brothers",
+    "decoys": ["Ghostbusters", "Animal House", "Trading Places"],
+    "id": "quote-en-blues-brothers",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Elwood Blues (Dan Aykroyd), 1980.",
+    "prompt": "“We're on a mission from God.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Mask",
+    "decoys": [
+      "Ace Ventura: Pet Detective",
+      "Liar Liar",
+      "Who Framed Roger Rabbit"
+    ],
+    "id": "quote-en-the-mask",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Stanley Ipkiss as the Mask (Jim Carrey), 1994.",
+    "prompt": "“Ssssmokin'!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Kindergarten Cop",
+    "decoys": ["Twins", "Junior", "Mrs. Doubtfire"],
+    "id": "quote-en-kindergarten-cop",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Detective John Kimble (Arnold Schwarzenegger) to his class, 1990.",
+    "prompt": "“It's not a tumor!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mrs. Doubtfire",
+    "decoys": ["Tootsie", "Hook", "Patch Adams"],
+    "id": "quote-en-mrs-doubtfire",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Daniel Hillard (Robin Williams) in disguise, after throwing a lime at Stu, 1993.",
+    "prompt": "“It was a run-by fruiting!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Spaceballs",
+    "decoys": ["Galaxy Quest", "Flash Gordon", "Young Frankenstein"],
+    "id": "quote-en-spaceballs-schwartz",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Yogurt (Mel Brooks), 1987.",
+    "prompt": "“May the Schwartz be with you!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Spaceballs",
+    "decoys": ["Galaxy Quest", "Hot Shots!", "Top Secret!"],
+    "id": "quote-en-spaceballs-roommate",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Dark Helmet (Rick Moranis) to Lone Starr, 1987.",
+    "prompt": "“I am your father's brother's nephew's cousin's former roommate.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Hot Fuzz",
+    "decoys": ["Shaun of the Dead", "Paul", "Kingsman: The Secret Service"],
+    "id": "quote-en-hot-fuzz",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "The chant of the Neighbourhood Watch Alliance in Sandford, 2007.",
+    "prompt": "“The greater good.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Shaun of the Dead",
+    "decoys": ["Hot Fuzz", "Zombieland", "28 Days Later"],
+    "id": "quote-en-shaun-of-the-dead",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Shaun (Simon Pegg) laying out his plan to Ed, 2004.",
+    "prompt": "“Take car. Go to Mum's. Kill Phil. Grab Liz. Go to the Winchester, have a nice cold pint, and wait for all of this to blow over.”"
+  },
+  {
+    "accepted": ["Dodgeball"],
+    "answer": "Dodgeball: A True Underdog Story",
+    "decoys": ["Old School", "Blades of Glory", "The Waterboy"],
+    "id": "quote-en-dodgeball",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Coach Patches O'Houlihan (Rip Torn), 2004.",
+    "prompt": "“If you can dodge a wrench, you can dodge a ball!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Napoleon Dynamite",
+    "decoys": ["Superbad", "Nacho Libre", "Juno"],
+    "id": "quote-en-napoleon-dynamite",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Napoleon (Jon Heder) to his grandmother's llama, 2004.",
+    "prompt": "“Tina, you fat lard! Come get some dinner!”"
+  },
+  {
+    "accepted": ["Ferris Bueller"],
+    "answer": "Ferris Bueller's Day Off",
+    "decoys": ["The Breakfast Club", "Sixteen Candles", "Risky Business"],
+    "id": "quote-en-ferris-bueller",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ferris Bueller (Matthew Broderick) to camera, 1986.",
+    "prompt": "“Life moves pretty fast. If you don't stop and look around once in a while, you could miss it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Clueless",
+    "decoys": ["Mean Girls", "She's All That", "Legally Blonde"],
+    "id": "quote-en-clueless",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Cher Horowitz (Alicia Silverstone), 1995.",
+    "prompt": "“As if!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Legally Blonde",
+    "decoys": ["Miss Congeniality", "Clueless", "The Devil Wears Prada"],
+    "id": "quote-en-legally-blonde-hard",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Elle Woods (Reese Witherspoon) on getting into Harvard Law, 2001.",
+    "prompt": "“What, like it's hard?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Legally Blonde",
+    "decoys": ["Miss Congeniality", "Bring It On", "Mean Girls"],
+    "id": "quote-en-legally-blonde-endorphins",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Elle Woods (Reese Witherspoon), 2001.",
+    "prompt": "“Exercise gives you endorphins. Endorphins make you happy.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Devil Wears Prada",
+    "decoys": [
+      "Confessions of a Shopaholic",
+      "Sex and the City",
+      "Working Girl"
+    ],
+    "id": "quote-en-devil-wears-prada-florals",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Miranda Priestly (Meryl Streep), 2006.",
+    "prompt": "“Florals? For spring? Groundbreaking.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Devil Wears Prada",
+    "decoys": ["Confessions of a Shopaholic", "The Intern", "Legally Blonde"],
+    "id": "quote-en-devil-wears-prada-glacial",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Miranda Priestly (Meryl Streep), 2006.",
+    "prompt": "“By all means move at a glacial pace. You know how that thrills me.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Pretty Woman",
+    "decoys": ["Notting Hill", "Runaway Bride", "Working Girl"],
+    "id": "quote-en-pretty-woman",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Vivian (Julia Roberts) back at the shop that snubbed her, 1990.",
+    "prompt": "“Big mistake. Big. Huge!”"
+  },
+  {
+    "accepted": ["Bridget Jones"],
+    "answer": "Bridget Jones's Diary",
+    "decoys": ["Notting Hill", "Love Actually", "Four Weddings and a Funeral"],
+    "id": "quote-en-bridget-jones",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mark Darcy (Colin Firth) to Bridget (Renée Zellweger), 2001.",
+    "prompt": "“No, I like you very much. Just as you are.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Notebook",
+    "decoys": ["A Walk to Remember", "Dear John", "The Vow"],
+    "id": "quote-en-the-notebook",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Noah (Ryan Gosling) to Allie (Rachel McAdams), 2004.",
+    "prompt": "“If you're a bird, I'm a bird.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Grease",
+    "decoys": ["Saturday Night Fever", "Dirty Dancing", "Footloose"],
+    "id": "quote-en-grease",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sandy (Olivia Newton-John) to Danny, 1978.",
+    "prompt": "“Tell me about it, stud.”"
+  },
+  {
+    "accepted": ["Christmas Story"],
+    "answer": "A Christmas Story",
+    "decoys": [
+      "National Lampoon's Christmas Vacation",
+      "Home Alone",
+      "Miracle on 34th Street"
+    ],
+    "id": "quote-en-christmas-story",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "A department-store Santa to Ralphie, 1983.",
+    "prompt": "“You'll shoot your eye out, kid.”"
+  },
+  {
+    "accepted": [],
+    "answer": "It's a Wonderful Life",
+    "decoys": ["Miracle on 34th Street", "White Christmas", "Holiday Inn"],
+    "id": "quote-en-its-a-wonderful-life",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Zuzu Bailey to her father George (James Stewart), 1946.",
+    "prompt": "“Teacher says, every time a bell rings an angel gets his wings.”"
+  },
+  {
+    "accepted": ["Sandlot"],
+    "answer": "The Sandlot",
+    "decoys": ["Little Big League", "Rookie of the Year", "The Mighty Ducks"],
+    "id": "quote-en-sandlot-smalls",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ham Porter during the s'mores scene, 1993.",
+    "prompt": "“You're killin' me, Smalls!”"
+  },
+  {
+    "accepted": ["Sandlot"],
+    "answer": "The Sandlot",
+    "decoys": ["The Natural", "Rookie of the Year", "Field of Dreams"],
+    "id": "quote-en-sandlot-legends",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Babe Ruth in Benny's dream, 1993.",
+    "prompt": "“Heroes get remembered, but legends never die.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Cool Runnings",
+    "decoys": ["The Mighty Ducks", "Rudy", "Remember the Titans"],
+    "id": "quote-en-cool-runnings",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Coach Irv (John Candy) to Derice, 1993.",
+    "prompt": "“A gold medal is a wonderful thing, but if you're not enough without it, you'll never be enough with it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Rush Hour",
+    "decoys": ["Bad Boys", "Lethal Weapon", "Beverly Hills Cop"],
+    "id": "quote-en-rush-hour",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Detective Carter (Chris Tucker) to Lee (Jackie Chan), 1998.",
+    "prompt": "“Do you understand the words that are coming out of my mouth?”"
+  },
+  {
+    "accepted": ["Roger Rabbit"],
+    "answer": "Who Framed Roger Rabbit",
+    "decoys": ["Cool World", "Space Jam", "The Mask"],
+    "id": "quote-en-who-framed-roger-rabbit",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jessica Rabbit to Eddie Valiant, 1988.",
+    "prompt": "“I'm not bad. I'm just drawn that way.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Truman Show",
+    "decoys": ["Pleasantville", "EDtv", "Groundhog Day"],
+    "id": "quote-en-truman-show",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Truman Burbank (Jim Carrey), 1998.",
+    "prompt": "“Good morning, and in case I don't see ya: good afternoon, good evening, and good night!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Rain Man",
+    "decoys": ["Tootsie", "Awakenings", "Scent of a Woman"],
+    "id": "quote-en-rain-man",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Raymond Babbitt (Dustin Hoffman), 1988.",
+    "prompt": "“I'm an excellent driver.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Scent of a Woman",
+    "decoys": ["A Few Good Men", "Glengarry Glen Ross", "Dead Poets Society"],
+    "id": "quote-en-scent-of-a-woman",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Lt. Col. Frank Slade (Al Pacino), 1992.",
+    "prompt": "“Hoo-ah!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Jumanji",
+    "decoys": ["Hook", "Mrs. Doubtfire", "Night at the Museum"],
+    "id": "quote-en-jumanji",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Alan Parrish (Robin Williams), back after 26 years inside the game, 1995.",
+    "prompt": "“What year is it?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Frozen",
+    "decoys": ["Tangled", "Moana", "Brave"],
+    "id": "quote-en-frozen",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Olaf to Anna, 2013.",
+    "prompt": "“Some people are worth melting for.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Incredibles",
+    "decoys": ["Megamind", "Despicable Me", "Big Hero 6"],
+    "id": "quote-en-incredibles",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Edna Mode to Bob Parr, 2004.",
+    "prompt": "“No capes!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Up",
+    "decoys": ["Bolt", "WALL-E", "Ratatouille"],
+    "id": "quote-en-up-squirrel",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dug the dog, 2009.",
+    "prompt": "“Squirrel!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Up",
+    "decoys": ["WALL-E", "Brave", "Inside Out"],
+    "id": "quote-en-up-adventure",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Explorer Charles Muntz in the opening newsreel, 2009.",
+    "prompt": "“Adventure is out there!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Aladdin",
+    "decoys": ["Hercules", "The Little Mermaid", "Mulan"],
+    "id": "quote-en-aladdin",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Genie (Robin Williams), 1992.",
+    "prompt": "“Phenomenal cosmic powers! Itty-bitty living space.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Cars",
+    "decoys": ["Planes", "Turbo", "Toy Story 2"],
+    "id": "quote-en-cars",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lightning McQueen before a race, 2006.",
+    "prompt": "“Speed. I am speed.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Kung Fu Panda",
+    "decoys": ["Mulan", "Madagascar", "How to Train Your Dragon"],
+    "id": "quote-en-kung-fu-panda-ingredient",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mr. Ping, Po's father, 2008.",
+    "prompt": "“There is no secret ingredient.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Kung Fu Panda",
+    "decoys": ["Mulan", "The Jungle Book", "Shrek"],
+    "id": "quote-en-kung-fu-panda-present",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Master Oogway to Po under the peach tree, 2008.",
+    "prompt": "“Yesterday is history, tomorrow is a mystery, but today is a gift. That's why it is called the present.”"
+  },
+  {
+    "accepted": ["Snow White"],
+    "answer": "Snow White and the Seven Dwarfs",
+    "decoys": ["Cinderella", "Sleeping Beauty", "Pinocchio"],
+    "id": "quote-en-snow-white",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Queen, 1937.",
+    "prompt": "“Magic Mirror on the wall, who is the fairest one of all?”"
+  },
+  {
+    "accepted": [
+      "Willy Wonka and the Chocolate Factory",
+      "Willy Wonka",
+      "Charlie and the Chocolate Factory"
+    ],
+    "answer": "Willy Wonka & the Chocolate Factory",
+    "decoys": [
+      "Chitty Chitty Bang Bang",
+      "Mary Poppins",
+      "Bedknobs and Broomsticks"
+    ],
+    "id": "quote-en-willy-wonka",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Willy Wonka (Gene Wilder) to Grandpa Joe, 1971.",
+    "prompt": "“You get nothing! You lose! Good day, sir!”"
+  },
+  {
+    "accepted": ["Lilo and Stitch"],
+    "answer": "Lilo & Stitch",
+    "decoys": ["Moana", "Brother Bear", "Treasure Planet"],
+    "id": "quote-en-lilo-and-stitch",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lilo, finished by her sister Nani, 2002.",
+    "prompt": "“Ohana means family. Family means nobody gets left behind or forgotten.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mulan",
+    "decoys": ["Pocahontas", "Hercules", "Kung Fu Panda"],
+    "id": "quote-en-mulan",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mushu (Eddie Murphy) to Mulan, 1998.",
+    "prompt": "“Dishonor! Dishonor on your whole family! Dishonor on you, dishonor on your cow!”"
+  },
+  {
+    "accepted": ["Zootropolis"],
+    "answer": "Zootopia",
+    "decoys": ["Sing", "Robin Hood", "The Secret Life of Pets"],
+    "id": "quote-en-zootopia",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Judy Hopps to Nick Wilde, 2016.",
+    "prompt": "“It's called a hustle, sweetheart.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Finding Nemo",
+    "decoys": ["Shark Tale", "The Little Mermaid", "A Bug's Life"],
+    "id": "quote-en-finding-nemo-fish-friends",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The sharks' pledge led by Bruce, 2003.",
+    "prompt": "“Fish are friends, not food.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Finding Nemo",
+    "decoys": ["Shark Tale", "Happy Feet", "Moana"],
+    "id": "quote-en-finding-nemo-wallaby-way",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dory repeating the address, 2003.",
+    "prompt": "“P. Sherman, 42 Wallaby Way, Sydney.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Lion King",
+    "decoys": ["Bambi", "Tarzan", "Brother Bear"],
+    "id": "quote-en-lion-king-light-touches",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mufasa to young Simba at sunrise, 1994.",
+    "prompt": "“Everything the light touches is our kingdom.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Toy Story",
+    "decoys": ["A Bug's Life", "The Lego Movie", "Small Soldiers"],
+    "id": "quote-en-toy-story-snake",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Woody's pull-string voice box, 1995.",
+    "prompt": "“There's a snake in my boots!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Shrek",
+    "decoys": ["Ice Age", "Madagascar", "Hoodwinked!"],
+    "id": "quote-en-shrek-swamp",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Shrek, finding fairy-tale creatures on his land, 2001.",
+    "prompt": "“What are you doing in my swamp?!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Shrek",
+    "decoys": ["Hoodwinked!", "Ice Age", "Chicken Run"],
+    "id": "quote-en-shrek-muffin-man",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Gingerbread Man under interrogation by Lord Farquaad, 2001.",
+    "prompt": "“Do you know the Muffin Man?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Babe",
+    "decoys": ["Charlotte's Web", "Chicken Run", "Stuart Little"],
+    "id": "quote-en-babe",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Farmer Hoggett (James Cromwell), the film's last line, 1995.",
+    "prompt": "“That'll do, pig. That'll do.”"
+  },
+  {
+    "accepted": ["Paddington"],
+    "answer": "Paddington 2",
+    "decoys": ["Peter Rabbit", "Stuart Little", "Mary Poppins Returns"],
+    "id": "quote-en-paddington-2",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Aunt Lucy's motto, repeated by Paddington, 2017.",
+    "prompt": "“If we're kind and polite, the world will be right.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mary Poppins",
+    "decoys": [
+      "Chitty Chitty Bang Bang",
+      "The Sound of Music",
+      "Bedknobs and Broomsticks"
+    ],
+    "id": "quote-en-mary-poppins",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mary Poppins (Julie Andrews) reading her own tape measure, 1964.",
+    "prompt": "“Practically perfect in every way.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Hook",
+    "decoys": ["The Goonies", "Jumanji", "The NeverEnding Story"],
+    "id": "quote-en-hook",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Lost Boys' battle cry, 1991.",
+    "prompt": "“Bangarang!”"
+  },
+  {
+    "accepted": ["Goonies"],
+    "answer": "The Goonies",
+    "decoys": ["Gremlins", "Stand by Me", "Explorers"],
+    "id": "quote-en-goonies",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sloth swinging in to the rescue, 1985.",
+    "prompt": "“Hey, you guys!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Gremlins",
+    "decoys": ["Critters", "Ghoulies", "Ghostbusters"],
+    "id": "quote-en-gremlins",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The rules that come with Gizmo, 1984.",
+    "prompt": "“Keep him out of the light. He hates bright light. And keep him away from water. Don't get him wet. … Never, never feed him after midnight.”"
+  },
+  {
+    "accepted": ["Avengers", "Marvel's The Avengers"],
+    "answer": "The Avengers",
+    "decoys": ["Iron Man", "Thor", "Justice League"],
+    "id": "quote-en-avengers-always-angry",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Bruce Banner (Mark Ruffalo), 2012.",
+    "prompt": "“That's my secret, Cap. I'm always angry.”"
+  },
+  {
+    "accepted": ["Avengers", "Marvel's The Avengers"],
+    "answer": "The Avengers",
+    "decoys": ["Iron Man 2", "Justice League", "Captain America: Civil War"],
+    "id": "quote-en-avengers-we-have-a-hulk",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tony Stark (Robert Downey Jr.) answering Loki's \"I have an army\", 2012.",
+    "prompt": "“We have a Hulk.”"
+  },
+  {
+    "accepted": ["Infinity War", "Avengers"],
+    "answer": "Avengers: Infinity War",
+    "decoys": [
+      "Spider-Man: Homecoming",
+      "Captain America: Civil War",
+      "Justice League"
+    ],
+    "id": "quote-en-infinity-war",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Peter Parker (Tom Holland) as he fades away, 2018.",
+    "prompt": "“Mr. Stark, I don't feel so good.”"
+  },
+  {
+    "accepted": ["Ragnarok", "Thor 3"],
+    "answer": "Thor: Ragnarok",
+    "decoys": ["Guardians of the Galaxy Vol. 2", "Ant-Man", "Doctor Strange"],
+    "id": "quote-en-thor-ragnarok",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Said on seeing the Hulk walk into the gladiator arena, 2017.",
+    "prompt": "“Yes! We know each other! He's a friend from work!”"
+  },
+  {
+    "accepted": ["Guardians of the Galaxy 2", "Guardians of the Galaxy"],
+    "answer": "Guardians of the Galaxy Vol. 2",
+    "decoys": [
+      "Thor: Ragnarok",
+      "Spider-Man: Homecoming",
+      "Ant-Man and the Wasp"
+    ],
+    "id": "quote-en-guardians-2",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Yondu (Michael Rooker) floating down on Quill's line, 2017.",
+    "prompt": "“I'm Mary Poppins, y'all!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Doctor Strange",
+    "decoys": ["Thor: The Dark World", "Ant-Man", "Black Panther"],
+    "id": "quote-en-doctor-strange",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Stephen Strange (Benedict Cumberbatch) in the Dark Dimension, 2016.",
+    "prompt": "“Dormammu, I've come to bargain!”"
+  },
+  {
+    "accepted": ["Captain America"],
+    "answer": "Captain America: The First Avenger",
+    "decoys": ["Iron Man 2", "Thor", "The Incredible Hulk"],
+    "id": "quote-en-captain-america",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steve Rogers (Chris Evans) getting beaten in an alley, 2011.",
+    "prompt": "“I can do this all day.”"
+  },
+  {
+    "accepted": ["Batman"],
+    "answer": "Batman Begins",
+    "decoys": ["Spider-Man 2", "Man of Steel", "Daredevil"],
+    "id": "quote-en-batman-begins",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Alfred (Michael Caine) to Bruce Wayne, 2005.",
+    "prompt": "“Why do we fall, sir? So that we can learn to pick ourselves up.”"
+  },
+  {
+    "accepted": ["Batman"],
+    "answer": "The Dark Knight",
+    "decoys": ["Watchmen", "Spider-Man 3", "Man of Steel"],
+    "id": "quote-en-dark-knight-hero",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Harvey Dent (Aaron Eckhart), 2008.",
+    "prompt": "“You either die a hero, or you live long enough to see yourself become the villain.”"
+  },
+  {
+    "accepted": ["Batman"],
+    "answer": "The Dark Knight Rises",
+    "decoys": ["Man of Steel", "Watchmen", "The Amazing Spider-Man"],
+    "id": "quote-en-dark-knight-rises",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Bane (Tom Hardy) to Batman, 2012.",
+    "prompt": "“You merely adopted the dark. I was born in it, molded by it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Batman",
+    "decoys": ["Dick Tracy", "Darkman", "The Rocketeer"],
+    "id": "quote-en-batman-1989",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Joker (Jack Nicholson), 1989.",
+    "prompt": "“You ever dance with the devil in the pale moonlight?”"
+  },
+  {
+    "accepted": ["Batman"],
+    "answer": "The Batman",
+    "decoys": ["Joker", "Watchmen", "Blade Runner 2049"],
+    "id": "quote-en-the-batman",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Batman (Robert Pattinson) to a thug, 2022.",
+    "prompt": "“I'm vengeance.”"
+  },
+  {
+    "accepted": ["Superman: The Movie"],
+    "answer": "Superman",
+    "decoys": ["Flash Gordon", "Supergirl", "The Rocketeer"],
+    "id": "quote-en-superman",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lois Lane (Margot Kidder) caught in mid-air, 1978.",
+    "prompt": "“You've got me? Who's got you?”"
+  },
+  {
+    "accepted": ["Indiana Jones", "The Last Crusade"],
+    "answer": "Indiana Jones and the Last Crusade",
+    "decoys": ["Romancing the Stone", "The Mummy", "National Treasure"],
+    "id": "quote-en-last-crusade-museum",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Indiana Jones, as a boy and again as a man, 1989.",
+    "prompt": "“It belongs in a museum!”"
+  },
+  {
+    "accepted": ["Indiana Jones", "The Last Crusade"],
+    "answer": "Indiana Jones and the Last Crusade",
+    "decoys": [
+      "The Mummy",
+      "Allan Quatermain and the Lost City of Gold",
+      "Sahara"
+    ],
+    "id": "quote-en-last-crusade-poorly",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Grail Knight after Donovan drinks from the wrong cup, 1989.",
+    "prompt": "“He chose… poorly.”"
+  },
+  {
+    "accepted": ["Indiana Jones", "Temple of Doom"],
+    "answer": "Indiana Jones and the Temple of Doom",
+    "decoys": [
+      "Romancing the Stone",
+      "King Solomon's Mines",
+      "The Jewel of the Nile"
+    ],
+    "id": "quote-en-temple-of-doom",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Indiana Jones to Short Round, 1984.",
+    "prompt": "“Fortune and glory, kid. Fortune and glory.”"
+  },
+  {
+    "accepted": ["Indiana Jones"],
+    "answer": "Raiders of the Lost Ark",
+    "decoys": [
+      "Romancing the Stone",
+      "Big Trouble in Little China",
+      "King Solomon's Mines"
+    ],
+    "id": "quote-en-raiders-mileage",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Indiana Jones (Harrison Ford) to Marion, 1981.",
+    "prompt": "“It's not the years, honey. It's the mileage.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Predator",
+    "decoys": ["Commando", "Rambo: First Blood Part II", "Aliens"],
+    "id": "quote-en-predator-chopper",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dutch (Arnold Schwarzenegger), 1987.",
+    "prompt": "“Get to the chopper!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Predator",
+    "decoys": ["Commando", "Total Recall", "The Running Man"],
+    "id": "quote-en-predator-bleeds",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dutch (Arnold Schwarzenegger), 1987.",
+    "prompt": "“If it bleeds, we can kill it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Die Hard",
+    "decoys": ["Lethal Weapon", "Speed", "Under Siege"],
+    "id": "quote-en-die-hard",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Written on the body John McClane sends to Hans Gruber, 1988.",
+    "prompt": "“Now I have a machine gun. Ho, ho, ho.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Speed",
+    "decoys": ["Die Hard", "Point Break", "The Fugitive"],
+    "id": "quote-en-speed",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Howard Payne (Dennis Hopper) to Jack Traven (Keanu Reeves), 1994.",
+    "prompt": "“Pop quiz, hotshot. There's a bomb on a bus.”"
+  },
+  {
+    "accepted": ["ID4"],
+    "answer": "Independence Day",
+    "decoys": ["Men in Black", "Armageddon", "Mars Attacks!"],
+    "id": "quote-en-independence-day-welcome",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Captain Steven Hiller (Will Smith) after punching an alien pilot, 1996.",
+    "prompt": "“Welcome to Earth!”"
+  },
+  {
+    "accepted": ["ID4"],
+    "answer": "Independence Day",
+    "decoys": ["Armageddon", "Deep Impact", "Starship Troopers"],
+    "id": "quote-en-independence-day-speech",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "President Whitmore (Bill Pullman) to the pilots, 1996.",
+    "prompt": "“We will not go quietly into the night! We will not vanish without a fight!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Aliens",
+    "decoys": ["Predator", "The Abyss", "Starship Troopers"],
+    "id": "quote-en-aliens-game-over",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Private Hudson (Bill Paxton), 1986.",
+    "prompt": "“Game over, man! Game over!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Aliens",
+    "decoys": ["The Thing", "Pitch Black", "Event Horizon"],
+    "id": "quote-en-aliens-mostly-at-night",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Newt (Carrie Henn), 1986.",
+    "prompt": "“They mostly come at night. Mostly.”"
+  },
+  {
+    "accepted": [],
+    "answer": "RoboCop",
+    "decoys": ["Total Recall", "The Terminator", "Judge Dredd"],
+    "id": "quote-en-robocop",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Murphy, and later RoboCop (Peter Weller), 1987.",
+    "prompt": "“Dead or alive, you're coming with me.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Blade Runner",
+    "decoys": ["Alien", "Total Recall", "Dune"],
+    "id": "quote-en-blade-runner",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Roy Batty (Rutger Hauer), 1982.",
+    "prompt": "“All those moments will be lost in time, like tears in rain. Time to die.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Matrix",
+    "decoys": ["Inception", "Dark City", "The Thirteenth Floor"],
+    "id": "quote-en-matrix-spoon",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "A child in the Oracle's waiting room to Neo, 1999.",
+    "prompt": "“There is no spoon.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Matrix",
+    "decoys": ["Equilibrium", "Johnny Mnemonic", "eXistenZ"],
+    "id": "quote-en-matrix-kung-fu",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Neo (Keanu Reeves) after a training upload, 1999.",
+    "prompt": "“I know kung fu.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Jurassic Park",
+    "decoys": ["The Lost World", "Congo", "Twister"],
+    "id": "quote-en-jurassic-park-clever-girl",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Muldoon just before a raptor attacks, 1993.",
+    "prompt": "“Clever girl.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Jurassic Park",
+    "decoys": ["Congo", "Sphere", "Twister"],
+    "id": "quote-en-jurassic-park-could-should",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ian Malcolm (Jeff Goldblum) to John Hammond, 1993.",
+    "prompt": "“Your scientists were so preoccupied with whether or not they could that they didn't stop to think if they should.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Back to the Future",
+    "decoys": ["Bill & Ted's Excellent Adventure", "The Goonies", "Gremlins"],
+    "id": "quote-en-back-to-the-future-88",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Doc Brown (Christopher Lloyd), 1985.",
+    "prompt": "“If my calculations are correct, when this baby hits 88 miles per hour, you're gonna see some serious shit.”"
+  },
+  {
+    "accepted": ["Pirates of the Caribbean"],
+    "answer": "Pirates of the Caribbean: The Curse of the Black Pearl",
+    "decoys": ["Hook", "Cutthroat Island", "The Mummy"],
+    "id": "quote-en-pirates-rum",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Captain Jack Sparrow (Johnny Depp) after Elizabeth burns the rum, 2003.",
+    "prompt": "“But why is the rum gone?”"
+  },
+  {
+    "accepted": ["Hunger Games"],
+    "answer": "The Hunger Games",
+    "decoys": ["Divergent", "The Maze Runner", "Twilight"],
+    "id": "quote-en-hunger-games-volunteer",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Katniss Everdeen (Jennifer Lawrence) taking her sister's place, 2012.",
+    "prompt": "“I volunteer! I volunteer as tribute!”"
+  },
+  {
+    "accepted": ["Hunger Games"],
+    "answer": "The Hunger Games",
+    "decoys": ["Divergent", "The Maze Runner", "Ender's Game"],
+    "id": "quote-en-hunger-games-odds",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "President Snow (Donald Sutherland), and the motto of the Games, 2012.",
+    "prompt": "“May the odds be ever in your favour.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Twilight",
+    "decoys": ["The Hunger Games", "Divergent", "Warm Bodies"],
+    "id": "quote-en-twilight-lion-lamb",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Edward Cullen (Robert Pattinson), 2008.",
+    "prompt": "“And so the lion fell in love with the lamb.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Twilight",
+    "decoys": ["Warm Bodies", "Beautiful Creatures", "Red Riding Hood"],
+    "id": "quote-en-twilight-spider-monkey",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Edward Cullen (Robert Pattinson) to Bella, 2008.",
+    "prompt": "“You better hold on tight, spider monkey.”"
+  },
+  {
+    "accepted": ["Mad Max"],
+    "answer": "Mad Max: Fury Road",
+    "decoys": ["The Road Warrior", "Dredd", "Waterworld"],
+    "id": "quote-en-mad-max-fury-road",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Nux (Nicholas Hoult) in the sandstorm, 2015.",
+    "prompt": "“Oh, what a day! What a lovely day!”"
+  },
+  {
+    "accepted": [],
+    "answer": "John Wick",
+    "decoys": ["Taken", "The Equalizer", "Nobody"],
+    "id": "quote-en-john-wick",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Wick (Keanu Reeves) to Viggo Tarasov, 2014.",
+    "prompt": "“People keep asking if I'm back and I haven't really had an answer. But now, yeah, I'm thinking I'm back!”"
+  },
+  {
+    "accepted": ["Fast and Furious", "Fast & Furious"],
+    "answer": "The Fast and the Furious",
+    "decoys": ["Gone in 60 Seconds", "Need for Speed", "Days of Thunder"],
+    "id": "quote-en-fast-and-furious",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dominic Toretto (Vin Diesel) to Brian, 2001.",
+    "prompt": "“I live my life a quarter mile at a time.”"
+  },
+  {
+    "accepted": ["Fast and Furious", "Fast & Furious", "Fast 7"],
+    "answer": "Furious 7",
+    "decoys": ["Gone in 60 Seconds", "Baby Driver", "Need for Speed"],
+    "id": "quote-en-furious-7",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dominic Toretto (Vin Diesel), 2015.",
+    "prompt": "“I don't have friends. I got family.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Top Gun",
+    "decoys": ["Days of Thunder", "Iron Eagle", "An Officer and a Gentleman"],
+    "id": "quote-en-top-gun-ego",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Stinger, the commanding officer, to Maverick, 1986.",
+    "prompt": "“Son, your ego is writing checks your body can't cash.”"
+  },
+  {
+    "accepted": ["Top Gun 2"],
+    "answer": "Top Gun: Maverick",
+    "decoys": ["Mission: Impossible – Fallout", "Ford v Ferrari", "Midway"],
+    "id": "quote-en-top-gun-maverick",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Rooster (Miles Teller) in the dogfight, 2022.",
+    "prompt": "“It's not the plane, it's the pilot.”"
+  },
+  {
+    "accepted": ["Dune: Part One"],
+    "answer": "Dune",
+    "decoys": ["Blade Runner 2049", "Arrival", "Interstellar"],
+    "id": "quote-en-dune",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "From the Litany against Fear recited by Lady Jessica, 2021.",
+    "prompt": "“Fear is the mind-killer.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Inception",
+    "decoys": ["The Matrix", "Shutter Island", "Tenet"],
+    "id": "quote-en-inception",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Eames (Tom Hardy) hefting a grenade launcher, 2010.",
+    "prompt": "“You mustn't be afraid to dream a little bigger, darling.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Interstellar",
+    "decoys": ["Gravity", "The Martian", "Ad Astra"],
+    "id": "quote-en-interstellar",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Cooper (Matthew McConaughey), 2014.",
+    "prompt": "“Mankind was born on Earth. It was never meant to die here.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Martian",
+    "decoys": ["Gravity", "Interstellar", "Apollo 13"],
+    "id": "quote-en-the-martian",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mark Watney (Matt Damon), stranded on Mars, 2015.",
+    "prompt": "“I'm gonna have to science the shit out of this.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Gladiator",
+    "decoys": ["Troy", "Spartacus", "Kingdom of Heaven"],
+    "id": "quote-en-gladiator-entertained",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Maximus (Russell Crowe) to the arena crowd, 2000.",
+    "prompt": "“Are you not entertained?”"
+  },
+  {
+    "accepted": [
+      "The Fellowship of the Ring",
+      "The Lord of the Rings",
+      "Lord of the Rings"
+    ],
+    "answer": "The Lord of the Rings: The Fellowship of the Ring",
+    "decoys": ["Willow", "The Hobbit: An Unexpected Journey", "Eragon"],
+    "id": "quote-en-lotr-fly-you-fools",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gandalf (Ian McKellen) falling with the Balrog, 2001.",
+    "prompt": "“Fly, you fools!”"
+  },
+  {
+    "accepted": [
+      "The Two Towers",
+      "The Lord of the Rings",
+      "Lord of the Rings"
+    ],
+    "answer": "The Lord of the Rings: The Two Towers",
+    "decoys": [
+      "Willow",
+      "The Chronicles of Narnia: The Lion, the Witch and the Wardrobe",
+      "Stardust"
+    ],
+    "id": "quote-en-lotr-potatoes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sam (Sean Astin) to Gollum, 2002.",
+    "prompt": "“Po-ta-toes! Boil 'em, mash 'em, stick 'em in a stew.”"
+  },
+  {
+    "accepted": [
+      "The Return of the King",
+      "The Lord of the Rings",
+      "Lord of the Rings"
+    ],
+    "answer": "The Lord of the Rings: The Return of the King",
+    "decoys": ["Kingdom of Heaven", "Troy", "Willow"],
+    "id": "quote-en-lotr-bow-to-no-one",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Aragorn (Viggo Mortensen) to the four hobbits, 2003.",
+    "prompt": "“My friends… you bow to no one.”"
+  },
+  {
+    "accepted": [
+      "The Return of the King",
+      "The Lord of the Rings",
+      "Lord of the Rings"
+    ],
+    "answer": "The Lord of the Rings: The Return of the King",
+    "decoys": [
+      "The Chronicles of Narnia: Prince Caspian",
+      "Eragon",
+      "Stardust"
+    ],
+    "id": "quote-en-lotr-carry-you",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sam (Sean Astin) to Frodo on Mount Doom, 2003.",
+    "prompt": "“I can't carry it for you… but I can carry you!”"
+  },
+  {
+    "accepted": ["Harry Potter", "Prisoner of Azkaban"],
+    "answer": "Harry Potter and the Prisoner of Azkaban",
+    "decoys": [
+      "Percy Jackson & the Olympians: The Lightning Thief",
+      "The Golden Compass",
+      "The Spiderwick Chronicles"
+    ],
+    "id": "quote-en-harry-potter-solemnly-swear",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Harry opening the Marauder's Map, 2004.",
+    "prompt": "“I solemnly swear that I am up to no good.”"
+  },
+  {
+    "accepted": [
+      "Harry Potter",
+      "Deathly Hallows",
+      "Harry Potter and the Deathly Hallows"
+    ],
+    "answer": "Harry Potter and the Deathly Hallows – Part 2",
+    "decoys": [
+      "The Golden Compass",
+      "Fantastic Beasts and Where to Find Them",
+      "The Chronicles of Narnia: The Voyage of the Dawn Treader"
+    ],
+    "id": "quote-en-harry-potter-always",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dumbledore and Snape (Alan Rickman) in a memory, 2011.",
+    "prompt": "“After all this time? — Always.”"
+  },
+  {
+    "accepted": ["Godfather"],
+    "answer": "The Godfather",
+    "decoys": ["Goodfellas", "Casino", "Mean Streets"],
+    "id": "quote-en-godfather-cannoli",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clemenza (Richard Castellano) to Rocco, 1972.",
+    "prompt": "“Leave the gun. Take the cannoli.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Goodfellas",
+    "decoys": ["Casino", "Donnie Brasco", "The Departed"],
+    "id": "quote-en-goodfellas-gangster",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Henry Hill (Ray Liotta) narrating, 1990.",
+    "prompt": "“As far back as I can remember, I always wanted to be a gangster.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Goodfellas",
+    "decoys": ["Casino", "Mean Streets", "A Bronx Tale"],
+    "id": "quote-en-goodfellas-funny",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tommy DeVito (Joe Pesci) to Henry, 1990.",
+    "prompt": "“Funny how? I mean, funny like I'm a clown? I amuse you?”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Usual Suspects",
+    "decoys": ["Se7en", "L.A. Confidential", "Memento"],
+    "id": "quote-en-usual-suspects",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Verbal Kint (Kevin Spacey), 1995.",
+    "prompt": "“The greatest trick the Devil ever pulled was convincing the world he didn't exist.”"
+  },
+  {
+    "accepted": [],
+    "answer": "There Will Be Blood",
+    "decoys": ["No Country for Old Men", "The Master", "Gangs of New York"],
+    "id": "quote-en-there-will-be-blood",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Daniel Plainview (Daniel Day-Lewis) to Eli Sunday, 2007.",
+    "prompt": "“I drink your milkshake! I drink it up!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Inglourious Basterds",
+    "decoys": ["Django Unchained", "The Hateful Eight", "Valkyrie"],
+    "id": "quote-en-inglourious-basterds",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Col. Hans Landa (Christoph Waltz), 2009.",
+    "prompt": "“Oooh, that's a bingo!”"
+  },
+  {
+    "accepted": [],
+    "answer": "No Country for Old Men",
+    "decoys": ["Fargo", "Hell or High Water", "Sicario"],
+    "id": "quote-en-no-country-for-old-men",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Anton Chigurh (Javier Bardem) to a gas station owner, 2007.",
+    "prompt": "“What's the most you've ever lost on a coin toss?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Saving Private Ryan",
+    "decoys": ["Band of Brothers", "Black Hawk Down", "Platoon"],
+    "id": "quote-en-saving-private-ryan",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Captain Miller (Tom Hanks) dying on the bridge, 1998.",
+    "prompt": "“James… earn this. Earn it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Cast Away",
+    "decoys": ["The Martian", "Into the Wild", "127 Hours"],
+    "id": "quote-en-cast-away",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chuck Noland (Tom Hanks), 2000.",
+    "prompt": "“I have made fire!”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Green Mile",
+    "decoys": ["The Shawshank Redemption", "Dead Man Walking", "Philadelphia"],
+    "id": "quote-en-green-mile",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Coffey (Michael Clarke Duncan) to Paul Edgecomb, 1999.",
+    "prompt": "“I'm tired, boss. Tired of bein' on the road, lonely as a sparrow in the rain.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Good Will Hunting",
+    "decoys": ["A Beautiful Mind", "Finding Forrester", "Patch Adams"],
+    "id": "quote-en-good-will-hunting",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sean Maguire (Robin Williams) to Will (Matt Damon), 1997.",
+    "prompt": "“It's not your fault.”"
+  },
+  {
+    "accepted": ["Rocky", "Rocky 4"],
+    "answer": "Rocky IV",
+    "decoys": ["Creed", "Over the Top", "Bloodsport"],
+    "id": "quote-en-rocky-iv",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ivan Drago (Dolph Lundgren) to Rocky, 1985.",
+    "prompt": "“I must break you.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Social Network",
+    "decoys": ["Steve Jobs", "Moneyball", "The Wolf of Wall Street"],
+    "id": "quote-en-social-network",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sean Parker (Justin Timberlake), 2010.",
+    "prompt": "“A million dollars isn't cool. You know what's cool? A billion dollars.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Whiplash",
+    "decoys": ["La La Land", "Black Swan", "Birdman"],
+    "id": "quote-en-whiplash",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Terence Fletcher (J.K. Simmons), 2014.",
+    "prompt": "“Not quite my tempo.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Titanic",
+    "decoys": ["Pearl Harbor", "The English Patient", "Romeo + Juliet"],
+    "id": "quote-en-titanic-french-girls",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Rose (Kate Winslet) to Jack, 1997.",
+    "prompt": "“Draw me like one of your French girls.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Forrest Gump",
+    "decoys": ["Big", "Rain Man", "Being There"],
+    "id": "quote-en-forrest-gump-stupid",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Young Forrest on the school bus, 1994.",
+    "prompt": "“Momma says stupid is as stupid does.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Princess Bride",
+    "decoys": ["Willow", "Ladyhawke", "Stardust"],
+    "id": "quote-en-princess-bride-that-word",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Inigo Montoya (Mandy Patinkin) to Vizzini, 1987.",
+    "prompt": "“You keep using that word. I do not think it means what you think it means.”"
+  },
+  {
+    "accepted": ["Karate Kid"],
+    "answer": "The Karate Kid",
+    "decoys": ["Bloodsport", "Best of the Best", "Rocky III"],
+    "id": "quote-en-karate-kid-sweep-the-leg",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Cobra Kai sensei John Kreese, 1984.",
+    "prompt": "“Sweep the leg.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Exorcist",
+    "decoys": ["The Omen", "Rosemary's Baby", "The Amityville Horror"],
+    "id": "quote-en-exorcist",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Father Merrin (Max von Sydow), 1973.",
+    "prompt": "“The power of Christ compels you!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Scream",
+    "decoys": ["I Know What You Did Last Summer", "Urban Legend", "Halloween"],
+    "id": "quote-en-scream",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The killer's voice on the phone, 1996.",
+    "prompt": "“What's your favorite scary movie?”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Ring",
+    "decoys": ["The Grudge", "Final Destination", "The Others"],
+    "id": "quote-en-the-ring",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The whisper on the phone after the tape, 2002.",
+    "prompt": "“Seven days.”"
+  },
+  {
+    "accepted": [],
+    "answer": "It",
+    "decoys": ["The Conjuring", "Annabelle", "Insidious"],
+    "id": "quote-en-it-float",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pennywise (Bill Skarsgård), 2017; the line comes from the novel.",
+    "prompt": "“We all float down here.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Misery",
+    "decoys": ["Fatal Attraction", "Cape Fear", "The Shining"],
+    "id": "quote-en-misery",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Annie Wilkes (Kathy Bates) to Paul Sheldon, 1990.",
+    "prompt": "“I'm your number one fan.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Trainspotting",
+    "decoys": [
+      "Lock, Stock and Two Smoking Barrels",
+      "Snatch",
+      "Requiem for a Dream"
+    ],
+    "id": "quote-en-trainspotting",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Renton (Ewan McGregor) in the opening narration, 1996.",
+    "prompt": "“Choose life. Choose a job. Choose a career. Choose a family.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Italian Job",
+    "decoys": ["Get Carter", "The Great Escape", "The Ipcress File"],
+    "id": "quote-en-italian-job",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Charlie Croker (Michael Caine), 1969.",
+    "prompt": "“You're only supposed to blow the bloody doors off!”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Office",
+    "decoys": ["Parks and Recreation", "Superstore", "Scrubs"],
+    "id": "quote-en-office-bears-beets",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jim, impersonating Dwight, in “Product Recall” (2007).",
+    "prompt": "“Bears. Beets. Battlestar Galactica.”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Office",
+    "decoys": ["30 Rock", "Community", "Arrested Development"],
+    "id": "quote-en-office-bankruptcy",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Michael Scott, shouting it across the office in “Money” (2007).",
+    "prompt": "“I declare bankruptcy!”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Office",
+    "decoys": ["Parks and Recreation", "Brooklyn Nine-Nine", "Modern Family"],
+    "id": "quote-en-office-identity-theft",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Dwight, facing Jim dressed as him, in “Product Recall” (2007).",
+    "prompt": "“Identity theft is not a joke, Jim! Millions of families suffer every year!”"
+  },
+  {
+    "accepted": [],
+    "answer": "The Office",
+    "decoys": ["30 Rock", "Veep", "Scrubs"],
+    "id": "quote-en-office-feared-loved",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Michael Scott in “The Fight” (2005).",
+    "prompt": "“Would I rather be feared or loved? Easy. Both. I want people to be afraid of how much they love me.”"
+  },
+  {
+    "accepted": ["Parks and Rec"],
+    "answer": "Parks and Recreation",
+    "decoys": ["The Office", "New Girl", "Community"],
+    "id": "quote-en-parks-treat-yo-self",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Tom and Donna’s yearly day of indulgence, introduced in “Pawnee Rangers” (2011).",
+    "prompt": "“Treat yo self!”"
+  },
+  {
+    "accepted": ["Parks and Rec"],
+    "answer": "Parks and Recreation",
+    "decoys": ["The Office", "Superstore", "Brooklyn Nine-Nine"],
+    "id": "quote-en-parks-whole-ass",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Ron Swanson’s advice to Leslie Knope in “Sweet Sixteen” (2012).",
+    "prompt": "“Never half-ass two things. Whole-ass one thing.”"
+  },
+  {
+    "accepted": ["Brooklyn 99", "B99"],
+    "answer": "Brooklyn Nine-Nine",
+    "decoys": ["The Good Place", "New Girl", "Community"],
+    "id": "quote-en-b99-cool-cool",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jake Peralta’s nervous refrain, improvised by Andy Samberg.",
+    "prompt": "“Cool cool cool cool cool. No doubt no doubt no doubt.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Seinfeld",
+    "decoys": ["Frasier", "Everybody Loves Raymond", "Mad About You"],
+    "id": "quote-en-seinfeld-serenity-now",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Frank Costanza, obeying his relaxation tape, in “The Serenity Now” (1997).",
+    "prompt": "“Serenity now!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Seinfeld",
+    "decoys": ["Friends", "Frasier", "Curb Your Enthusiasm"],
+    "id": "quote-en-seinfeld-hello-newman",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jerry’s sneering greeting to his neighbour Newman.",
+    "prompt": "“Hello, Newman.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Seinfeld",
+    "decoys": ["Friends", "Mad About You", "The Nanny"],
+    "id": "quote-en-seinfeld-pretzels",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Kramer’s one line as a film extra, in “The Alternate Side” (1991).",
+    "prompt": "“These pretzels are making me thirsty!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Arrested Development",
+    "decoys": ["30 Rock", "Curb Your Enthusiasm", "Malcolm in the Middle"],
+    "id": "quote-en-ad-banana-stand",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "George Bluth Sr. in “Top Banana” (2003).",
+    "prompt": "“There’s always money in the banana stand.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Arrested Development",
+    "decoys": ["Scrubs", "Community", "It’s Always Sunny in Philadelphia"],
+    "id": "quote-en-ad-huge-mistake",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "GOB’s catchphrase, first said in “Key Decisions” (2003).",
+    "prompt": "“I’ve made a huge mistake.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["Seinfeld", "Will & Grace", "Mad About You"],
+    "id": "quote-en-friends-pivot",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Ross, hauling his new couch up the stairs in “The One with the Cop” (1999).",
+    "prompt": "“Pivot! Pivot! Pivot!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["How I Met Your Mother", "Seinfeld", "Two and a Half Men"],
+    "id": "quote-en-friends-joey-food",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Joey, after a date who ate off his plate, in season 10.",
+    "prompt": "“Joey doesn’t share food!”"
+  },
+  {
+    "accepted": ["HIMYM"],
+    "answer": "How I Met Your Mother",
+    "decoys": ["Friends", "New Girl", "Two and a Half Men"],
+    "id": "quote-en-himym-suit-up",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Barney Stinson’s catchphrase.",
+    "prompt": "“Suit up!”"
+  },
+  {
+    "accepted": ["IT Crowd"],
+    "answer": "The IT Crowd",
+    "decoys": ["Black Books", "Peep Show", "The Inbetweeners"],
+    "id": "quote-en-it-crowd-off-on",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Roy’s standard answer on the IT support phone.",
+    "prompt": "“Have you tried turning it off and on again?”"
+  },
+  {
+    "accepted": ["Simpsons"],
+    "answer": "The Simpsons",
+    "decoys": ["Family Guy", "King of the Hill", "American Dad!"],
+    "id": "quote-en-simpsons-ay-caramba",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bart Simpson’s exclamation, first heard in a 1988 short.",
+    "prompt": "“Ay, caramba!”"
+  },
+  {
+    "accepted": ["Simpsons"],
+    "answer": "The Simpsons",
+    "decoys": ["Family Guy", "South Park", "King of the Hill"],
+    "id": "quote-en-simpsons-unpossible",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Ralph Wiggum, told he is failing English, in “Lisa on Ice” (1994).",
+    "prompt": "“Me fail English? That’s unpossible!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Family Guy",
+    "decoys": ["American Dad!", "The Cleveland Show", "King of the Hill"],
+    "id": "quote-en-family-guy-grinds-gears",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Peter Griffin, opening his rant segment on the local news.",
+    "prompt": "“You know what really grinds my gears?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Family Guy",
+    "decoys": ["The Simpsons", "American Dad!", "Bob’s Burgers"],
+    "id": "quote-en-family-guy-victory",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Stewie Griffin’s cry of triumph.",
+    "prompt": "“Victory is mine!”"
+  },
+  {
+    "accepted": [],
+    "answer": "South Park",
+    "decoys": ["Family Guy", "Beavis and Butt-Head", "The Simpsons"],
+    "id": "quote-en-south-park-kenny",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Stan and Kyle, each time Kenny dies.",
+    "prompt": "“Oh my God, they killed Kenny! You bastards!”"
+  },
+  {
+    "accepted": [],
+    "answer": "South Park",
+    "decoys": ["Beavis and Butt-Head", "King of the Hill", "Family Guy"],
+    "id": "quote-en-south-park-authoritah",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Cartman, deputised by Officer Barbrady in “Chickenlover” (1998).",
+    "prompt": "“Respect my authoritah!”"
+  },
+  {
+    "accepted": [],
+    "answer": "South Park",
+    "decoys": ["The Simpsons", "Beavis and Butt-Head", "American Dad!"],
+    "id": "quote-en-south-park-going-home",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Cartman’s exit line.",
+    "prompt": "“Screw you guys, I’m going home!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Futurama",
+    "decoys": ["The Simpsons", "Rick and Morty", "Final Space"],
+    "id": "quote-en-futurama-good-news",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Professor Farnsworth, usually before sending the crew somewhere deadly.",
+    "prompt": "“Good news, everyone!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Futurama",
+    "decoys": ["Family Guy", "Rick and Morty", "American Dad!"],
+    "id": "quote-en-futurama-take-my-money",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Fry, desperate for the new eyePhone, in “Attack of the Killer App” (2010).",
+    "prompt": "“Shut up and take my money!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Futurama",
+    "decoys": ["Rick and Morty", "The Simpsons", "Final Space"],
+    "id": "quote-en-futurama-shiny-metal",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bender’s catchphrase.",
+    "prompt": "“Bite my shiny metal ass!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Rick and Morty",
+    "decoys": ["Futurama", "BoJack Horseman", "Gravity Falls"],
+    "id": "quote-en-rick-morty-wubba",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Rick’s catchphrase, introduced in “Meeseeks and Destroy” (2014).",
+    "prompt": "“Wubba lubba dub dub!”"
+  },
+  {
+    "accepted": ["SpongeBob"],
+    "answer": "SpongeBob SquarePants",
+    "decoys": ["The Fairly OddParents", "Rugrats", "Hey Arnold!"],
+    "id": "quote-en-spongebob-im-ready",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "SpongeBob’s eager refrain.",
+    "prompt": "“I’m ready! I’m ready! I’m ready!”"
+  },
+  {
+    "accepted": ["SpongeBob"],
+    "answer": "SpongeBob SquarePants",
+    "decoys": [
+      "The Fairly OddParents",
+      "Phineas and Ferb",
+      "Rocko’s Modern Life"
+    ],
+    "id": "quote-en-spongebob-mayonnaise",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Patrick at band practice in “Band Geeks” (2001).",
+    "prompt": "“Is mayonnaise an instrument?”"
+  },
+  {
+    "accepted": ["SpongeBob"],
+    "answer": "SpongeBob SquarePants",
+    "decoys": ["Rocko’s Modern Life", "The Fairly OddParents", "Rugrats"],
+    "id": "quote-en-spongebob-this-is-patrick",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Patrick answering the restaurant phone in “Big Pink Loser”.",
+    "prompt": "“Is this the Krusty Krab? No, this is Patrick!”"
+  },
+  {
+    "accepted": ["Scooby-Doo", "Scooby Doo"],
+    "answer": "Scooby-Doo, Where Are You!",
+    "decoys": ["The Flintstones", "Wacky Races", "The Jetsons"],
+    "id": "quote-en-scooby-meddling-kids",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Every unmasked villain’s last complaint, from the original series (1969).",
+    "prompt": "“And I would have gotten away with it too, if it weren’t for you meddling kids!”"
+  },
+  {
+    "accepted": ["Scooby-Doo", "Scooby Doo"],
+    "answer": "Scooby-Doo, Where Are You!",
+    "decoys": ["The Jetsons", "Yogi Bear", "Josie and the Pussycats"],
+    "id": "quote-en-scooby-jinkies",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Velma’s exclamation, ad-libbed by voice actress Nicole Jaffe.",
+    "prompt": "“Jinkies!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Pokémon",
+    "decoys": ["Digimon", "Yu-Gi-Oh!", "Beyblade"],
+    "id": "quote-en-pokemon-blasting-off",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jessie, James and Meowth, sent flying at the end of an episode.",
+    "prompt": "“Team Rocket’s blasting off again!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Pokémon",
+    "decoys": ["Digimon", "Sailor Moon", "Yu-Gi-Oh!"],
+    "id": "quote-en-pokemon-prepare-trouble",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The opening of Team Rocket’s motto: Jessie, then James.",
+    "prompt": "“Prepare for trouble! And make it double!”"
+  },
+  {
+    "accepted": ["Avatar", "The Last Airbender"],
+    "answer": "Avatar: The Last Airbender",
+    "decoys": ["Teen Titans", "Ben 10", "Danny Phantom"],
+    "id": "quote-en-avatar-four-nations",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Katara’s narration over the opening titles.",
+    "prompt": "“Water. Earth. Fire. Air. Long ago, the four nations lived together in harmony.”"
+  },
+  {
+    "accepted": ["Avatar", "The Last Airbender"],
+    "answer": "Avatar: The Last Airbender",
+    "decoys": ["Teen Titans", "Kim Possible", "Danny Phantom"],
+    "id": "quote-en-avatar-cabbages",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "The cabbage merchant, whose cart is wrecked again and again.",
+    "prompt": "“My cabbages!”"
+  },
+  {
+    "accepted": ["Merrie Melodies"],
+    "answer": "Looney Tunes",
+    "decoys": ["Tom and Jerry", "Woody Woodpecker", "Popeye"],
+    "id": "quote-en-looney-whats-up-doc",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bugs Bunny, first in “A Wild Hare” (1940).",
+    "prompt": "“Eh, what’s up, Doc?”"
+  },
+  {
+    "accepted": ["Merrie Melodies"],
+    "answer": "Looney Tunes",
+    "decoys": ["Tom and Jerry", "The Pink Panther Show", "Top Cat"],
+    "id": "quote-en-looney-puddy-tat",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Tweety’s lisping catchphrase, first heard in 1942.",
+    "prompt": "“I tawt I taw a puddy tat!”"
+  },
+  {
+    "accepted": ["Merrie Melodies"],
+    "answer": "Looney Tunes",
+    "decoys": ["Woody Woodpecker", "Popeye", "Tom and Jerry"],
+    "id": "quote-en-looney-thats-all",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Porky Pig’s stuttered sign-off at the end of the cartoons.",
+    "prompt": "“Th-th-th-that’s all, folks!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Lost",
+    "decoys": ["Heroes", "Prison Break", "Fringe"],
+    "id": "quote-en-lost-go-back",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jack, in the flash-forward that ends season 3 (2007).",
+    "prompt": "“We have to go back, Kate!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Lost",
+    "decoys": ["Fringe", "Heroes", "The 4400"],
+    "id": "quote-en-lost-pennys-boat",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Charlie’s warning, written on his hand before he drowns (2007).",
+    "prompt": "“Not Penny’s boat.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Lost",
+    "decoys": ["Prison Break", "Jericho", "The Walking Dead"],
+    "id": "quote-en-lost-live-together",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Jack rallying the survivors in “White Rabbit” (2004).",
+    "prompt": "“If we can’t live together, we’re going to die alone.”"
+  },
+  {
+    "accepted": ["Sopranos"],
+    "answer": "The Sopranos",
+    "decoys": ["Boardwalk Empire", "The Wire", "Mad Men"],
+    "id": "quote-en-sopranos-remember-when",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Tony Soprano in “Remember When” (2007).",
+    "prompt": "““Remember when” is the lowest form of conversation.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mad Men",
+    "decoys": ["The Sopranos", "Boardwalk Empire", "House of Cards"],
+    "id": "quote-en-mad-men-money",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Don Draper to Peggy, in “The Suitcase” (2010).",
+    "prompt": "“That’s what the money is for!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Stranger Things",
+    "decoys": ["Dark", "The Umbrella Academy", "Wednesday"],
+    "id": "quote-en-stranger-things-friends",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Eleven’s rule, learned from Mike in season 1 (2016).",
+    "prompt": "“Friends don’t lie.”"
+  },
+  {
+    "accepted": ["Wire"],
+    "answer": "The Wire",
+    "decoys": ["The Sopranos", "Oz", "Boardwalk Empire"],
+    "id": "quote-en-wire-king",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Omar Little to Wee-Bey, in “Lessons” (2002).",
+    "prompt": "“You come at the king, you best not miss.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Sherlock",
+    "decoys": ["Luther", "Elementary", "House"],
+    "id": "quote-en-sherlock-sociopath",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Benedict Cumberbatch in “A Study in Pink” (2010).",
+    "prompt": "“I’m not a psychopath, Anderson. I’m a high-functioning sociopath. Do your research.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Doctor Who",
+    "decoys": ["Red Dwarf", "Blake’s 7", "Torchwood"],
+    "id": "quote-en-doctor-who-exterminate",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Daleks’ battle cry, since the 1960s.",
+    "prompt": "“Exterminate!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Doctor Who",
+    "decoys": ["Sherlock", "Torchwood", "Merlin"],
+    "id": "quote-en-doctor-who-bow-ties",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Matt Smith’s Doctor, defending his outfit in “The Eleventh Hour” (2010).",
+    "prompt": "“I wear a bow tie now. Bow ties are cool.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Doctor Who",
+    "decoys": ["Red Dwarf", "Quantum Leap", "Primeval"],
+    "id": "quote-en-doctor-who-wibbly-wobbly",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Tennant’s Doctor explaining time, in “Blink” (2007).",
+    "prompt": "“It’s more like a big ball of wibbly-wobbly, timey-wimey… stuff.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Doctor Who",
+    "decoys": ["Torchwood", "Sherlock", "Quantum Leap"],
+    "id": "quote-en-doctor-who-allons-y",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "The Tenth Doctor’s catchphrase.",
+    "prompt": "“Allons-y!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Breaking Bad",
+    "decoys": ["Ozark", "Weeds", "Dexter"],
+    "id": "quote-en-breaking-bad-science",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jesse Pinkman, thrilled by Walt’s chemistry, in season 1 (2008).",
+    "prompt": "“Yeah, Mr. White! Yeah, science!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Game of Thrones",
+    "decoys": ["The Witcher", "Vikings", "The Last Kingdom"],
+    "id": "quote-en-got-lannister-debts",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Lannister family’s unofficial motto.",
+    "prompt": "“A Lannister always pays his debts.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Game of Thrones",
+    "decoys": ["The Witcher", "The Wheel of Time", "Outlander"],
+    "id": "quote-en-got-drink-know",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Tyrion Lannister in “Home” (2016).",
+    "prompt": "“That’s what I do: I drink and I know things.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Game of Thrones",
+    "decoys": ["Vikings", "The Last Kingdom", "The Walking Dead"],
+    "id": "quote-en-got-hold-the-door",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The words that became Hodor’s name, in “The Door” (2016).",
+    "prompt": "“Hold the door!”"
+  },
+  {
+    "accepted": ["Mandalorian"],
+    "answer": "The Mandalorian",
+    "decoys": ["The Expanse", "Firefly", "Westworld"],
+    "id": "quote-en-mandalorian-this-is-the-way",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Mandalorians’ creed, first said in chapter 3 (2019).",
+    "prompt": "“This is the way.”"
+  },
+  {
+    "accepted": ["Star Trek", "The Next Generation", "TNG"],
+    "answer": "Star Trek: The Next Generation",
+    "decoys": ["Babylon 5", "Stargate SG-1", "Battlestar Galactica"],
+    "id": "quote-en-tng-make-it-so",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Captain Picard’s order, from the pilot onward (1987).",
+    "prompt": "“Make it so.”"
+  },
+  {
+    "accepted": ["Star Trek", "The Next Generation", "TNG"],
+    "answer": "Star Trek: The Next Generation",
+    "decoys": ["Stargate SG-1", "Farscape", "Battlestar Galactica"],
+    "id": "quote-en-tng-resistance-futile",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Borg, first in “The Best of Both Worlds” (1990).",
+    "prompt": "“Resistance is futile.”"
+  },
+  {
+    "accepted": ["Star Trek: The Original Series"],
+    "answer": "Star Trek",
+    "decoys": ["Lost in Space", "The Twilight Zone", "Space: 1999"],
+    "id": "quote-en-star-trek-dead-jim",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Dr. McCoy, first in “The Enemy Within” (1966).",
+    "prompt": "“He’s dead, Jim.”"
+  },
+  {
+    "accepted": ["Dragon Ball", "DBZ"],
+    "answer": "Dragon Ball Z",
+    "decoys": ["Naruto", "One Piece", "Yu-Gi-Oh!"],
+    "id": "quote-en-dbz-over-9000",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Vegeta reading his scouter, in the English dub of “The Return of Goku” (1997).",
+    "prompt": "“It’s over nine thousand!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Only Fools and Horses",
+    "decoys": ["Open All Hours", "Porridge", "Steptoe and Son"],
+    "id": "quote-en-only-fools-millionaires",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Del Boy’s eternal promise to his brother.",
+    "prompt": "“This time next year, Rodney, we’ll be millionaires!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Only Fools and Horses",
+    "decoys": ["Gavin & Stacey", "The Royle Family", "Open All Hours"],
+    "id": "quote-en-only-fools-lovely-jubbly",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Del Boy’s catchphrase.",
+    "prompt": "“Lovely jubbly!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Blackadder",
+    "decoys": ["Red Dwarf", "The Young Ones", "Porridge"],
+    "id": "quote-en-blackadder-cunning-plan",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Baldrick, whose plans are never as cunning as he thinks.",
+    "prompt": "“I have a cunning plan.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Fawlty Towers",
+    "decoys": ["Are You Being Served?", "Keeping Up Appearances", "Porridge"],
+    "id": "quote-en-fawlty-dont-mention-war",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Basil Fawlty, with German guests at the hotel, in “The Germans” (1975).",
+    "prompt": "“Don’t mention the war!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Little Britain",
+    "decoys": ["The Fast Show", "Catherine Tate Show", "Harry Enfield & Chums"],
+    "id": "quote-en-little-britain-computer",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Carol Beer, the unhelpful clerk played by David Walliams.",
+    "prompt": "“Computer says no.”"
+  },
+  {
+    "accepted": ["Monty Python", "Flying Circus"],
+    "answer": "Monty Python’s Flying Circus",
+    "decoys": ["The Two Ronnies", "The Goodies", "Not the Nine O’Clock News"],
+    "id": "quote-en-python-inquisition",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Cardinal Ximénez (Michael Palin) bursting in, in 1970.",
+    "prompt": "“Nobody expects the Spanish Inquisition!”"
+  },
+  {
+    "accepted": ["Monty Python", "Flying Circus"],
+    "answer": "Monty Python’s Flying Circus",
+    "decoys": ["The Two Ronnies", "The Young Ones", "The Goodies"],
+    "id": "quote-en-python-completely-different",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The announcer between sketches, the role made famous by John Cleese.",
+    "prompt": "“And now for something completely different.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Dad’s Army",
+    "decoys": [
+      "’Allo ’Allo!",
+      "Are You Being Served?",
+      "It Ain’t Half Hot Mum"
+    ],
+    "id": "quote-en-dads-army-dont-panic",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Lance Corporal Jones (Clive Dunn), panicking.",
+    "prompt": "“Don’t panic! Don’t panic!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Dad’s Army",
+    "decoys": ["Porridge", "It Ain’t Half Hot Mum", "Last of the Summer Wine"],
+    "id": "quote-en-dads-army-up-em",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Lance Corporal Jones, bayonet in hand.",
+    "prompt": "“They don’t like it up ’em!”"
+  },
+  {
+    "accepted": ["Allo Allo"],
+    "answer": "’Allo ’Allo!",
+    "decoys": ["Dad’s Army", "Hi-de-Hi!", "Are You Being Served?"],
+    "id": "quote-en-allo-allo-listen",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Michelle of the Resistance, briefing everyone in every episode.",
+    "prompt": "“Listen very carefully, I shall say this only once.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Father Ted",
+    "decoys": ["Black Books", "The Vicar of Dibley", "Mrs. Brown’s Boys"],
+    "id": "quote-en-father-ted-cows",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Ted explaining toy cows to Dougal in “Hell” (1996).",
+    "prompt": "“These are small, but the ones out there are far away.”"
+  },
+  {
+    "accepted": ["Apprentice"],
+    "answer": "The Apprentice",
+    "decoys": ["Dragons’ Den", "Shark Tank", "Big Brother"],
+    "id": "quote-en-apprentice-fired",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Donald Trump in the US and Alan Sugar in the UK, to the week’s loser.",
+    "prompt": "“You’re fired!”"
+  },
+  {
+    "accepted": ["Millionaire", "Who Wants to Be a Millionaire"],
+    "answer": "Who Wants to Be a Millionaire?",
+    "decoys": ["The Weakest Link", "Deal or No Deal", "The Chase"],
+    "id": "quote-en-millionaire-final-answer",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Chris Tarrant in the UK (1998), Regis Philbin in the US (1999).",
+    "prompt": "“Is that your final answer?”"
+  },
+  {
+    "accepted": ["Price Is Right"],
+    "answer": "The Price Is Right",
+    "decoys": ["Let’s Make a Deal", "Wheel of Fortune", "Deal or No Deal"],
+    "id": "quote-en-price-is-right-come-on-down",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The announcer calling contestants from the audience, made famous by Johnny Olson.",
+    "prompt": "“Come on down!”"
+  },
+  {
+    "accepted": ["Family Fortunes"],
+    "answer": "Family Feud",
+    "decoys": ["Jeopardy!", "Wheel of Fortune", "The Price Is Right"],
+    "id": "quote-en-family-feud-survey-says",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Richard Dawson’s call as each answer was revealed (1976–1985).",
+    "prompt": "“Survey says!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Wheel of Fortune",
+    "decoys": ["Jeopardy!", "Countdown", "Family Feud"],
+    "id": "quote-en-wheel-buy-a-vowel",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "What a contestant says to spend $250 on a vowel.",
+    "prompt": "“I’d like to buy a vowel.”"
+  },
+  {
+    "accepted": ["SNL"],
+    "answer": "Saturday Night Live",
+    "decoys": ["Mad TV", "In Living Color", "Whose Line Is It Anyway?"],
+    "id": "quote-en-snl-more-cowbell",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Christopher Walken in the “More Cowbell” sketch (2000).",
+    "prompt": "“I got a fever, and the only prescription is more cowbell!”"
+  },
+  {
+    "accepted": ["Diffrent Strokes", "Different Strokes"],
+    "answer": "Diff’rent Strokes",
+    "decoys": ["The Jeffersons", "Family Matters", "Good Times"],
+    "id": "quote-en-diffrent-strokes-willis",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Arnold (Gary Coleman) to his brother Willis.",
+    "prompt": "“What’choo talkin’ ’bout, Willis?”"
+  },
+  {
+    "accepted": ["Flintstones"],
+    "answer": "The Flintstones",
+    "decoys": ["The Jetsons", "Yogi Bear", "Top Cat"],
+    "id": "quote-en-flintstones-yabba-dabba",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Fred Flintstone (1960).",
+    "prompt": "“Yabba dabba doo!”"
+  },
+  {
+    "accepted": ["Power Rangers"],
+    "answer": "Mighty Morphin Power Rangers",
+    "decoys": ["VR Troopers", "Big Bad Beetleborgs", "Saved by the Bell"],
+    "id": "quote-en-power-rangers-morphin",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Rangers’ cry before transforming (1993).",
+    "prompt": "“It’s morphin’ time!”"
+  },
+  {
+    "accepted": ["A-Team"],
+    "answer": "The A-Team",
+    "decoys": ["Knight Rider", "Airwolf", "MacGyver"],
+    "id": "quote-en-a-team-plan",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Hannibal Smith’s catchphrase (1983 onward).",
+    "prompt": "“I love it when a plan comes together.”"
+  },
+  {
+    "accepted": ["Mork and Mindy"],
+    "answer": "Mork & Mindy",
+    "decoys": ["Happy Days", "Laverne & Shirley", "Taxi"],
+    "id": "quote-en-mork-nanu",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Mork’s Orkan greeting (1978).",
+    "prompt": "“Na-nu, na-nu!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Full House",
+    "decoys": ["Family Matters", "Step by Step", "Saved by the Bell"],
+    "id": "quote-en-full-house-have-mercy",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Uncle Jesse’s catchphrase.",
+    "prompt": "“Have mercy!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Full House",
+    "decoys": ["Family Matters", "Growing Pains", "Step by Step"],
+    "id": "quote-en-full-house-how-rude",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Stephanie Tanner’s catchphrase (1987).",
+    "prompt": "“How rude!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Cheers",
+    "decoys": ["Taxi", "Frasier", "Night Court"],
+    "id": "quote-en-cheers-norm",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "The whole bar greeting Norm Peterson as he walks in.",
+    "prompt": "“Norm!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Happy Days",
+    "decoys": ["Laverne & Shirley", "Grease", "Welcome Back, Kotter"],
+    "id": "quote-en-happy-days-aaay",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "The Fonz, thumbs up (1974).",
+    "prompt": "“Aaay!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Good Times",
+    "decoys": ["The Jeffersons", "Sanford and Son", "What’s Happening!!"],
+    "id": "quote-en-good-times-dynomite",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "J.J. Evans (Jimmie Walker), from 1974.",
+    "prompt": "“Dy-no-mite!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Frasier",
+    "decoys": ["Cheers", "Mad About You", "Wings"],
+    "id": "quote-en-frasier-listening",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Dr. Frasier Crane’s catchphrase.",
+    "prompt": "“I’m listening.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Kojak",
+    "decoys": ["Columbo", "Starsky & Hutch", "The Rockford Files"],
+    "id": "quote-en-kojak-loves-ya",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Lieutenant Theo Kojak (Telly Savalas), from 1973.",
+    "prompt": "“Who loves ya, baby?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Lost in Space",
+    "decoys": ["Star Trek", "The Twilight Zone", "Space: 1999"],
+    "id": "quote-en-lost-in-space-danger",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Robot’s warning (1965).",
+    "prompt": "“Danger, Will Robinson!”"
+  },
+  {
+    "accepted": ["Hawaii Five-0", "Hawaii 5-0", "Hawaii Five O"],
+    "answer": "Hawaii Five-O",
+    "decoys": ["Magnum, P.I.", "Kojak", "Miami Vice"],
+    "id": "quote-en-five-o-book-em",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Steve McGarrett’s order at the close of a case (1968 onward).",
+    "prompt": "“Book ’em, Danno!”"
+  },
+  {
+    "accepted": ["Zelda"],
+    "answer": "The Legend of Zelda",
+    "decoys": ["Metroid", "Final Fantasy", "Dragon Quest"],
+    "id": "quote-en-zelda-dangerous-alone",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "An old man in a cave, handing the hero a sword (1986).",
+    "prompt": "“It’s dangerous to go alone! Take this.”"
+  },
+  {
+    "accepted": ["Ocarina of Time", "Zelda", "The Legend of Zelda"],
+    "answer": "The Legend of Zelda: Ocarina of Time",
+    "decoys": ["Banjo-Kazooie", "Super Mario 64", "Spyro the Dragon"],
+    "id": "quote-en-zelda-hey-listen",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Navi, the hero’s nagging fairy companion (1998).",
+    "prompt": "“Hey! Listen!”"
+  },
+  {
+    "accepted": ["Super Mario", "Mario", "Super Mario Brothers"],
+    "answer": "Super Mario Bros.",
+    "decoys": ["Donkey Kong", "Castlevania", "Mega Man"],
+    "id": "quote-en-mario-another-castle",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "A Toad, after the plumber beats a fake Bowser (1985).",
+    "prompt": "“But our princess is in another castle!”"
+  },
+  {
+    "accepted": ["Mario 64"],
+    "answer": "Super Mario 64",
+    "decoys": ["Banjo-Kazooie", "Crash Bandicoot", "Spyro the Dragon"],
+    "id": "quote-en-mario-64-thank-you",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Mario, at the end of the game (1996).",
+    "prompt": "“Thank you so much-a for playing my game!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Zero Wing",
+    "decoys": ["R-Type", "Gradius", "Thunder Force"],
+    "id": "quote-en-zero-wing-all-your-base",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "CATS, the villain, in the European Mega Drive translation (1991).",
+    "prompt": "“All your base are belong to us.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Portal",
+    "decoys": ["Myst", "BioShock", "The Talos Principle"],
+    "id": "quote-en-portal-cake",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Graffiti hidden in the test chambers (2007).",
+    "prompt": "“The cake is a lie.”"
+  },
+  {
+    "accepted": ["Portal"],
+    "answer": "Portal 2",
+    "decoys": ["Braid", "The Stanley Parable", "BioShock Infinite"],
+    "id": "quote-en-portal-2-space",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "The Space Core, finally in orbit (2011).",
+    "prompt": "“Space? Space! Spaaaaaaaaaace!”"
+  },
+  {
+    "accepted": ["Skyrim", "The Elder Scrolls"],
+    "answer": "The Elder Scrolls V: Skyrim",
+    "decoys": ["The Witcher 3: Wild Hunt", "Dragon Age: Inquisition", "Fable"],
+    "id": "quote-en-skyrim-arrow-knee",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Any town guard (2011).",
+    "prompt": "“I used to be an adventurer like you. Then I took an arrow in the knee.”"
+  },
+  {
+    "accepted": ["Skyrim", "The Elder Scrolls"],
+    "answer": "The Elder Scrolls V: Skyrim",
+    "decoys": [
+      "Dragon Age: Origins",
+      "Dark Souls",
+      "Kingdom Come: Deliverance"
+    ],
+    "id": "quote-en-skyrim-finally-awake",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Ralof, on the prisoners’ cart in the opening scene (2011).",
+    "prompt": "“Hey, you. You’re finally awake.”"
+  },
+  {
+    "accepted": ["Oblivion", "The Elder Scrolls"],
+    "answer": "The Elder Scrolls IV: Oblivion",
+    "decoys": ["Fable", "Gothic", "Dragon Age: Origins"],
+    "id": "quote-en-oblivion-criminal-scum",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Any guard catching you breaking the law (2006).",
+    "prompt": "“Stop right there, criminal scum!”"
+  },
+  {
+    "accepted": [],
+    "answer": "BioShock",
+    "decoys": ["System Shock 2", "Half-Life 2", "Dishonored"],
+    "id": "quote-en-bioshock-would-you-kindly",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The trigger phrase Andrew Ryan finally reveals (2007).",
+    "prompt": "“Would you kindly?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Fallout",
+    "decoys": ["Wasteland", "Borderlands", "Metro 2033"],
+    "id": "quote-en-fallout-war-never-changes",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Ron Perlman’s opening narration (1997).",
+    "prompt": "“War. War never changes.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mortal Kombat",
+    "decoys": ["Street Fighter II", "Tekken", "Killer Instinct"],
+    "id": "quote-en-mk-finish-him",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The announcer, inviting a Fatality (1992).",
+    "prompt": "“Finish him!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Mortal Kombat",
+    "decoys": ["Killer Instinct", "Soulcalibur", "Tekken"],
+    "id": "quote-en-mk-get-over-here",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Scorpion, reeling in his opponent on a spear (1992).",
+    "prompt": "“Get over here!”"
+  },
+  {
+    "accepted": ["Half-Life"],
+    "answer": "Half-Life 2",
+    "decoys": ["Deus Ex", "BioShock", "Quake II"],
+    "id": "quote-en-half-life-2-rise-shine",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The G-Man, waking the hero in the opening (2004).",
+    "prompt": "“Rise and shine, Mr. Freeman. Rise and… shine.”"
+  },
+  {
+    "accepted": [],
+    "answer": "StarCraft",
+    "decoys": ["Warcraft III", "Command & Conquer", "Age of Empires II"],
+    "id": "quote-en-starcraft-pylons",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The in-game advisor, when supply runs out (1998).",
+    "prompt": "“You must construct additional pylons!”"
+  },
+  {
+    "accepted": ["GTA San Andreas", "San Andreas", "Grand Theft Auto", "GTA"],
+    "answer": "Grand Theft Auto: San Andreas",
+    "decoys": ["Saints Row 2", "Mafia", "Driver"],
+    "id": "quote-en-gta-sa-here-we-go",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "CJ, back in Los Santos (2004).",
+    "prompt": "“Ah shit, here we go again.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Overwatch",
+    "decoys": ["Team Fortress 2", "Paladins", "Apex Legends"],
+    "id": "quote-en-overwatch-high-noon",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "McCree (later Cassidy), firing his Deadeye ultimate (2016).",
+    "prompt": "“It’s high noon.”"
+  },
+  {
+    "accepted": ["Star Fox", "Lylat Wars"],
+    "answer": "Star Fox 64",
+    "decoys": ["F-Zero X", "Ace Combat 2", "Rogue Squadron"],
+    "id": "quote-en-star-fox-barrel-roll",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Peppy Hare (1997).",
+    "prompt": "“Do a barrel roll!”"
+  },
+  {
+    "accepted": ["Smash Bros", "Super Smash Brothers", "Smash"],
+    "answer": "Super Smash Bros.",
+    "decoys": ["Street Fighter II", "Tekken 3", "Soulcalibur"],
+    "id": "quote-en-smash-falcon-punch",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Captain Falcon’s special move (1999).",
+    "prompt": "“Falcon Punch!”"
+  },
+  {
+    "accepted": ["Call of Duty", "Advanced Warfare", "COD"],
+    "answer": "Call of Duty: Advanced Warfare",
+    "decoys": ["Battlefield 3", "Titanfall", "Medal of Honor"],
+    "id": "quote-en-cod-press-f",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The prompt at a soldier’s funeral (2014).",
+    "prompt": "“Press F to pay respects.”"
+  },
+  {
+    "accepted": ["Black Ops", "Call of Duty", "COD"],
+    "answer": "Call of Duty: Black Ops",
+    "decoys": ["Battlefield 3", "Medal of Honor", "Homefront"],
+    "id": "quote-en-cod-numbers-mason",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Jason Hudson interrogating Alex Mason (2010).",
+    "prompt": "“The numbers, Mason. What do they mean?”"
+  },
+  {
+    "accepted": ["Warcraft", "WoW"],
+    "answer": "World of Warcraft",
+    "decoys": ["EverQuest", "Guild Wars", "RuneScape"],
+    "id": "quote-en-wow-leeroy",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "A player charging into a dungeon, in a 2005 video.",
+    "prompt": "“Leeroy Jenkins!”"
+  },
+  {
+    "accepted": ["Ace Attorney", "Phoenix Wright"],
+    "answer": "Phoenix Wright: Ace Attorney",
+    "decoys": [
+      "Professor Layton and the Curious Village",
+      "Danganronpa",
+      "L.A. Noire"
+    ],
+    "id": "quote-en-ace-attorney-objection",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The lawyer’s shout when presenting contradictory evidence (2001).",
+    "prompt": "“Objection!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Assassin’s Creed",
+    "decoys": ["Prince of Persia", "Dishonored", "Hitman"],
+    "id": "quote-en-ac-nothing-is-true",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The Assassins’ creed (2007).",
+    "prompt": "“Nothing is true, everything is permitted.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Dark Souls",
+    "decoys": ["Bloodborne", "Demon’s Souls", "Elden Ring"],
+    "id": "quote-en-dark-souls-praise-sun",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Solaire of Astora (2011).",
+    "prompt": "“Praise the sun!”"
+  },
+  {
+    "accepted": ["Resident Evil", "RE4"],
+    "answer": "Resident Evil 4",
+    "decoys": ["Silent Hill 2", "Dead Space", "The Evil Within"],
+    "id": "quote-en-re4-buyin",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "The Merchant (2005).",
+    "prompt": "“What’re ya buyin’?”"
+  },
+  {
+    "accepted": ["Halo"],
+    "answer": "Halo 3",
+    "decoys": ["Gears of War", "Killzone 2", "Crysis"],
+    "id": "quote-en-halo-3-wake-me",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Master Chief’s last words before cryosleep (2007).",
+    "prompt": "“Wake me… when you need me.”"
+  },
+  {
+    "accepted": [
+      "Metal Gear Solid 4",
+      "Metal Gear Solid",
+      "Metal Gear",
+      "MGS4"
+    ],
+    "answer": "Metal Gear Solid 4: Guns of the Patriots",
+    "decoys": ["Splinter Cell", "Gears of War 2", "Killzone 2"],
+    "id": "quote-en-mgs4-war-has-changed",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Old Snake’s opening narration (2008).",
+    "prompt": "“War has changed.”"
+  },
+  {
+    "accepted": ["Mass Effect"],
+    "answer": "Mass Effect 2",
+    "decoys": [
+      "Dragon Age: Origins",
+      "Star Wars: Knights of the Old Republic",
+      "Borderlands"
+    ],
+    "id": "quote-en-mass-effect-2-store",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "A shop advert voiced as the hero, repeated in up to four stores (2010).",
+    "prompt": "“I’m Commander Shepard, and this is my favorite store on the Citadel.”"
+  },
+  {
+    "accepted": [],
+    "answer": "God of War",
+    "decoys": [
+      "The Last of Us",
+      "Uncharted 4: A Thief’s End",
+      "Horizon Zero Dawn"
+    ],
+    "id": "quote-en-god-of-war-be-better",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Kratos to his son Atreus (2018).",
+    "prompt": "“Do not be sorry. Be better.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Diablo",
+    "decoys": ["Baldur’s Gate", "Warcraft II", "Ultima Online"],
+    "id": "quote-en-diablo-stay-awhile",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Deckard Cain’s greeting (1997).",
+    "prompt": "“Hello, my friend. Stay awhile and listen.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Nike",
+    "decoys": ["Adidas", "Reebok", "Puma"],
+    "id": "quote-en-nike",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Nike's slogan since a 1988 campaign by Wieden+Kennedy.",
+    "prompt": "“Just do it.”"
+  },
+  {
+    "accepted": ["Apple Computer"],
+    "answer": "Apple",
+    "decoys": ["IBM", "Microsoft", "Dell"],
+    "id": "quote-en-apple-think-different",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Apple's 1997 campaign by TBWA\\Chiat\\Day.",
+    "prompt": "“Think different.”"
+  },
+  {
+    "accepted": ["McDonalds"],
+    "answer": "McDonald's",
+    "decoys": ["Burger King", "KFC", "Wendy's"],
+    "id": "quote-en-mcdonalds",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "McDonald's worldwide slogan since 2003.",
+    "prompt": "“I'm lovin' it.”"
+  },
+  {
+    "accepted": ["L'Oreal", "Loreal", "L'Oréal Paris"],
+    "answer": "L'Oréal",
+    "decoys": ["Revlon", "Garnier", "Nivea"],
+    "id": "quote-en-loreal",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "L'Oréal's slogan since 1973.",
+    "prompt": "“Because I'm worth it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Red Bull",
+    "decoys": ["Monster Energy", "Rockstar", "Lucozade"],
+    "id": "quote-en-red-bull",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Slogan of Red Bull's cartoon commercials, aired in over 170 countries.",
+    "prompt": "“… gives you wings.”"
+  },
+  {
+    "accepted": ["KitKat"],
+    "answer": "Kit Kat",
+    "decoys": ["Twix", "Mars", "Toblerone"],
+    "id": "quote-en-kit-kat",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Kit Kat's \"Have a break, have a Kit Kat\", used in the UK since 1958.",
+    "prompt": "“Have a break…”"
+  },
+  {
+    "accepted": [],
+    "answer": "Maybelline",
+    "decoys": ["Revlon", "CoverGirl", "Rimmel"],
+    "id": "quote-en-maybelline",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Maybelline's \"Maybe she's born with it. Maybe it's Maybelline\", from 1991.",
+    "prompt": "“Maybe she's born with it…”"
+  },
+  {
+    "accepted": [],
+    "answer": "De Beers",
+    "decoys": ["Tiffany & Co.", "Cartier", "Swarovski"],
+    "id": "quote-en-de-beers",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Written for De Beers by copywriter Frances Gerety in 1947.",
+    "prompt": "“A diamond is forever.”"
+  },
+  {
+    "accepted": ["MasterCard"],
+    "answer": "Mastercard",
+    "decoys": ["Visa", "American Express", "PayPal"],
+    "id": "quote-en-mastercard",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Mastercard's \"Priceless\" campaign, started in 1997.",
+    "prompt": "“There are some things money can't buy…”"
+  },
+  {
+    "accepted": ["Wendys"],
+    "answer": "Wendy's",
+    "decoys": ["McDonald's", "Burger King", "Arby's"],
+    "id": "quote-en-wendys",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Asked by Clara Peller in a 1984 Wendy's commercial.",
+    "prompt": "“Where's the beef?”"
+  },
+  {
+    "accepted": [],
+    "answer": "Skittles",
+    "decoys": ["M&M's", "Starburst", "Haribo"],
+    "id": "quote-en-skittles",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "The Skittles slogan.",
+    "prompt": "“Taste the rainbow.”"
+  },
+  {
+    "accepted": ["M&Ms", "M and M's", "M and Ms"],
+    "answer": "M&M's",
+    "decoys": ["Smarties", "Skittles", "Reese's Pieces"],
+    "id": "quote-en-mms",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "M&M's slogan since 1954.",
+    "prompt": "“Melts in your mouth, not in your hand.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Energizer",
+    "decoys": ["Duracell", "Panasonic", "Varta"],
+    "id": "quote-en-energizer",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Said of the drumming pink Energizer Bunny, introduced in 1989.",
+    "prompt": "“It keeps going and going and going…”"
+  },
+  {
+    "accepted": ["Coke", "Coca Cola"],
+    "answer": "Coca-Cola",
+    "decoys": ["Pepsi", "Dr Pepper", "7 Up"],
+    "id": "quote-en-coca-cola",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "One of Coca-Cola's best-known slogans.",
+    "prompt": "“It's the real thing.”"
+  },
+  {
+    "accepted": ["Pepsi-Cola"],
+    "answer": "Pepsi",
+    "decoys": ["Coca-Cola", "Dr Pepper", "Sprite"],
+    "id": "quote-en-pepsi",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Pepsi's slogan from 1984.",
+    "prompt": "“The choice of a new generation.”"
+  },
+  {
+    "accepted": [],
+    "answer": "BMW",
+    "decoys": ["Audi", "Mercedes-Benz", "Lexus"],
+    "id": "quote-en-bmw",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "BMW's slogan in the US and UK, coined by BMW North America in 1974.",
+    "prompt": "“The ultimate driving machine.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Audi",
+    "decoys": ["Volkswagen", "Porsche", "Opel"],
+    "id": "quote-en-audi",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "German for \"progress through technology\", Audi's slogan.",
+    "prompt": "“Vorsprung durch Technik.”"
+  },
+  {
+    "accepted": ["Avis Car Rental"],
+    "answer": "Avis",
+    "decoys": ["Hertz", "Enterprise", "Budget"],
+    "id": "quote-en-avis",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Avis's corporate motto, adopted in 1962.",
+    "prompt": "“We try harder.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Gillette",
+    "decoys": ["Wilkinson Sword", "Schick", "Braun"],
+    "id": "quote-en-gillette",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Gillette's slogan since 1989.",
+    "prompt": "“The best a man can get.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Carlsberg",
+    "decoys": ["Heineken", "Stella Artois", "Budweiser"],
+    "id": "quote-en-carlsberg",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Carlsberg's slogan since 1973, long voiced by Orson Welles.",
+    "prompt": "“Probably the best lager in the world.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Heineken",
+    "decoys": ["Carlsberg", "Foster's", "Beck's"],
+    "id": "quote-en-heineken",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Heineken's UK slogan in the late 20th century, borrowed by Prince Charles.",
+    "prompt": "“Refreshes the parts other beers cannot reach.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Guinness",
+    "decoys": ["Murphy's", "Kilkenny", "Stella Artois"],
+    "id": "quote-en-guinness",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Guinness's slogan, behind its 1999 \"Surfer\" commercial.",
+    "prompt": "“Good things come to those who wait.”"
+  },
+  {
+    "accepted": ["Bud"],
+    "answer": "Budweiser",
+    "decoys": ["Miller Lite", "Coors Light", "Corona"],
+    "id": "quote-en-budweiser",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Budweiser's 1999 campaign, a catchphrase across the world.",
+    "prompt": "“Whassup?”"
+  },
+  {
+    "accepted": ["Lays"],
+    "answer": "Lay's",
+    "decoys": ["Pringles", "Doritos", "Ruffles"],
+    "id": "quote-en-lays",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Lay's potato chips slogan.",
+    "prompt": "“Betcha can't eat just one.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Pringles",
+    "decoys": ["Lay's", "Doritos", "Walkers"],
+    "id": "quote-en-pringles",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "The Pringles slogan.",
+    "prompt": "“Once you pop, you can't stop.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Snickers",
+    "decoys": ["Twix", "Milky Way", "Kit Kat"],
+    "id": "quote-en-snickers",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Snickers campaign launched with Betty White at the 2010 Super Bowl.",
+    "prompt": "“You're not you when you're hungry.”"
+  },
+  {
+    "accepted": ["Mars bar"],
+    "answer": "Mars",
+    "decoys": ["Snickers", "Twix", "Milky Way"],
+    "id": "quote-en-mars",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "From \"A Mars a day helps you work, rest and play\".",
+    "prompt": "“Work, rest and play.”"
+  },
+  {
+    "accepted": ["Kellogg's Rice Krispies", "Rice Bubbles"],
+    "answer": "Rice Krispies",
+    "decoys": ["Cheerios", "Corn Flakes", "Coco Pops"],
+    "id": "quote-en-rice-krispies",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Snap, Crackle and Pop, the three elves of the cereal.",
+    "prompt": "“Snap! Crackle! Pop!”"
+  },
+  {
+    "accepted": ["Frosties", "Kellogg's Frosties", "Kellogg's Frosted Flakes"],
+    "answer": "Frosted Flakes",
+    "decoys": ["Coco Pops", "Cheerios", "Lucky Charms"],
+    "id": "quote-en-frosted-flakes",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Tony the Tiger's catchphrase; he has been the cereal's mascot since 1952.",
+    "prompt": "“They're gr-r-reat!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Wheaties",
+    "decoys": ["Cheerios", "Corn Flakes", "Special K"],
+    "id": "quote-en-wheaties",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Wheaties' slogan, with champion athletes on the box.",
+    "prompt": "“The Breakfast of Champions.”"
+  },
+  {
+    "accepted": ["Campbell's Soup", "Campbells"],
+    "answer": "Campbell's",
+    "decoys": ["Heinz", "Knorr", "Progresso"],
+    "id": "quote-en-campbells",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Campbell's Soup slogan.",
+    "prompt": "“M'm! M'm! Good!”"
+  },
+  {
+    "accepted": ["Alka Seltzer"],
+    "answer": "Alka-Seltzer",
+    "decoys": ["Tums", "Pepto-Bismol", "Gaviscon"],
+    "id": "quote-en-alka-seltzer",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Alka-Seltzer's jingle of the 1970s.",
+    "prompt": "“Plop, plop, fizz, fizz, oh what a relief it is.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Allstate",
+    "decoys": ["State Farm", "Geico", "Progressive"],
+    "id": "quote-en-allstate",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Allstate insurance's slogan.",
+    "prompt": "“You're in good hands.”"
+  },
+  {
+    "accepted": ["GEICO"],
+    "answer": "Geico",
+    "decoys": ["State Farm", "Progressive", "Liberty Mutual"],
+    "id": "quote-en-geico",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Geico's long-running promise in its television ads.",
+    "prompt": "“…could save you 15% or more on car insurance.”"
+  },
+  {
+    "accepted": ["Federal Express"],
+    "answer": "FedEx",
+    "decoys": ["UPS", "DHL", "USPS"],
+    "id": "quote-en-fedex",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Federal Express slogan.",
+    "prompt": "“When it absolutely, positively has to be there overnight.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Timex",
+    "decoys": ["Casio", "Seiko", "Swatch"],
+    "id": "quote-en-timex",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Timex's watch slogan.",
+    "prompt": "“It takes a licking and keeps on ticking.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Nokia",
+    "decoys": ["Motorola", "Ericsson", "Siemens"],
+    "id": "quote-en-nokia",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Nokia's slogan.",
+    "prompt": "“Connecting people.”"
+  },
+  {
+    "accepted": ["Disney", "Disneyland Park", "Disneyland Resort"],
+    "answer": "Disneyland",
+    "decoys": ["Universal Studios", "Six Flags", "SeaWorld"],
+    "id": "quote-en-disneyland",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Disneyland's slogan.",
+    "prompt": "“The happiest place on earth.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Tesco",
+    "decoys": ["Sainsbury's", "Asda", "Morrisons"],
+    "id": "quote-en-tesco",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Tesco's slogan.",
+    "prompt": "“Every little helps.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Ronseal",
+    "decoys": ["Cuprinol", "Dulux", "Crown Paints"],
+    "id": "quote-en-ronseal",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Ronseal's woodstain slogan, which entered British popular culture.",
+    "prompt": "“Does exactly what it says on the tin.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Old Spice",
+    "decoys": ["Axe", "Brut", "Gillette"],
+    "id": "quote-en-old-spice",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Old Spice's 2010 campaign with Isaiah Mustafa.",
+    "prompt": "“The man your man could smell like.”"
+  },
+  {
+    "accepted": ["Verizon Wireless"],
+    "answer": "Verizon",
+    "decoys": ["AT&T", "Sprint", "T-Mobile"],
+    "id": "quote-en-verizon",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Verizon Wireless ads with \"Test Man\" Paul Marcarelli.",
+    "prompt": "“Can you hear me now?”"
+  },
+  {
+    "accepted": ["Kentucky Fried Chicken"],
+    "answer": "KFC",
+    "decoys": ["Popeyes", "Chick-fil-A", "McDonald's"],
+    "id": "quote-en-kfc",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "KFC's slogan.",
+    "prompt": "“Finger lickin' good.”"
+  },
+  {
+    "accepted": ["BK"],
+    "answer": "Burger King",
+    "decoys": ["McDonald's", "Wendy's", "Five Guys"],
+    "id": "quote-en-burger-king",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Burger King's slogan, introduced in 1974.",
+    "prompt": "“Have it your way.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Subway",
+    "decoys": ["Quiznos", "Jimmy John's", "Pret A Manger"],
+    "id": "quote-en-subway",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Subway's slogan.",
+    "prompt": "“Eat fresh.”"
+  },
+  {
+    "accepted": ["Arbys"],
+    "answer": "Arby's",
+    "decoys": ["Wendy's", "Subway", "Burger King"],
+    "id": "quote-en-arbys",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Arby's slogan, voiced by Ving Rhames.",
+    "prompt": "“We have the meats!”"
+  },
+  {
+    "accepted": [],
+    "answer": "Adidas",
+    "decoys": ["Nike", "Puma", "Reebok"],
+    "id": "quote-en-adidas",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Adidas's slogan.",
+    "prompt": "“Impossible is nothing.”"
+  },
+  {
+    "accepted": ["Amex"],
+    "answer": "American Express",
+    "decoys": ["Visa", "Mastercard", "Diners Club"],
+    "id": "quote-en-american-express",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "American Express campaign by Ogilvy & Mather, introduced in 1975.",
+    "prompt": "“Don't leave home without it.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Google",
+    "decoys": ["Apple", "Facebook", "Yahoo!"],
+    "id": "quote-en-google",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Google's corporate motto.",
+    "prompt": "“Don't be evil.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Sega",
+    "decoys": ["Atari", "Sony", "Commodore"],
+    "id": "quote-en-sega",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Sega's US advertising slogan for its Genesis console.",
+    "prompt": "“Genesis does what Nintendon't.”"
+  },
+  {
+    "accepted": ["VW"],
+    "answer": "Volkswagen",
+    "decoys": ["Fiat", "Renault", "Mini"],
+    "id": "quote-en-volkswagen",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Volkswagen's 1959 Beetle advertisement by Doyle Dane Bernbach.",
+    "prompt": "“Think small.”"
+  },
+  {
+    "accepted": ["Armstrong"],
+    "answer": "Neil Armstrong",
+    "decoys": ["Buzz Aldrin", "Yuri Gagarin", "John Glenn"],
+    "id": "quote-en-armstrong-small-step",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Armstrong stepping onto the Moon, Apollo 11, 1969.",
+    "prompt": "“That's one small step for man, one giant leap for mankind.”"
+  },
+  {
+    "accepted": ["Armstrong"],
+    "answer": "Neil Armstrong",
+    "decoys": ["Buzz Aldrin", "Michael Collins", "Jim Lovell"],
+    "id": "quote-en-armstrong-eagle",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Armstrong reporting the Apollo 11 landing on the Moon, 1969.",
+    "prompt": "“Houston, Tranquility Base here. The Eagle has landed.”"
+  },
+  {
+    "accepted": ["Kennedy", "JFK", "John Kennedy"],
+    "answer": "John F. Kennedy",
+    "decoys": ["Lyndon B. Johnson", "Dwight D. Eisenhower", "Richard Nixon"],
+    "id": "quote-en-jfk-ask-not",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Kennedy's inaugural address, January 1961.",
+    "prompt": "“Ask not what your country can do for you — ask what you can do for your country.”"
+  },
+  {
+    "accepted": ["Kennedy", "JFK", "John Kennedy"],
+    "answer": "John F. Kennedy",
+    "decoys": ["Ronald Reagan", "Willy Brandt", "Harry S. Truman"],
+    "id": "quote-en-jfk-berliner",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Kennedy in West Berlin, June 1963.",
+    "prompt": "“Ich bin ein Berliner.”"
+  },
+  {
+    "accepted": ["Kennedy", "JFK", "John Kennedy"],
+    "answer": "John F. Kennedy",
+    "decoys": ["Dwight D. Eisenhower", "Lyndon B. Johnson", "Richard Nixon"],
+    "id": "quote-en-jfk-moon",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Kennedy at Rice University, Houston, 1962.",
+    "prompt": "“We choose to go to the Moon in this decade and do the other things, not because they are easy, but because they are hard.”"
+  },
+  {
+    "accepted": ["Martin Luther King", "MLK", "King"],
+    "answer": "Martin Luther King Jr.",
+    "decoys": ["Malcolm X", "John Lewis", "Jesse Jackson"],
+    "id": "quote-en-mlk-dream",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "King at the March on Washington, August 1963.",
+    "prompt": "“I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin…”"
+  },
+  {
+    "accepted": ["Martin Luther King", "MLK", "King"],
+    "answer": "Martin Luther King Jr.",
+    "decoys": ["Malcolm X", "Frederick Douglass", "Nelson Mandela"],
+    "id": "quote-en-mlk-injustice",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "From King's Letter from Birmingham Jail, 1963.",
+    "prompt": "“Injustice anywhere is a threat to justice everywhere.”"
+  },
+  {
+    "accepted": ["Lincoln", "Abe Lincoln"],
+    "answer": "Abraham Lincoln",
+    "decoys": ["George Washington", "Thomas Jefferson", "Ulysses S. Grant"],
+    "id": "quote-en-lincoln-gettysburg",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Opening of the Gettysburg Address, November 1863.",
+    "prompt": "“Four score and seven years ago our fathers brought forth on this continent a new nation…”"
+  },
+  {
+    "accepted": ["Lincoln", "Abe Lincoln"],
+    "answer": "Abraham Lincoln",
+    "decoys": ["Andrew Jackson", "Thomas Jefferson", "Ulysses S. Grant"],
+    "id": "quote-en-lincoln-house-divided",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Lincoln's 1858 speech accepting the Illinois Republican nomination for the Senate.",
+    "prompt": "“A house divided against itself cannot stand.”"
+  },
+  {
+    "accepted": ["Roosevelt", "FDR", "Franklin Roosevelt"],
+    "answer": "Franklin D. Roosevelt",
+    "decoys": ["Harry S. Truman", "Herbert Hoover", "Woodrow Wilson"],
+    "id": "quote-en-fdr-fear",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Roosevelt's first inaugural address, March 1933.",
+    "prompt": "“The only thing we have to fear is fear itself.”"
+  },
+  {
+    "accepted": ["Roosevelt", "FDR", "Franklin Roosevelt"],
+    "answer": "Franklin D. Roosevelt",
+    "decoys": ["Harry S. Truman", "Winston Churchill", "Dwight D. Eisenhower"],
+    "id": "quote-en-fdr-infamy",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Roosevelt to Congress the day after the attack on Pearl Harbor.",
+    "prompt": "“Yesterday, December 7, 1941 — a date which will live in infamy…”"
+  },
+  {
+    "accepted": ["Churchill"],
+    "answer": "Winston Churchill",
+    "decoys": ["Neville Chamberlain", "Clement Attlee", "Charles de Gaulle"],
+    "id": "quote-en-churchill-beaches",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Churchill to the House of Commons after Dunkirk, June 1940.",
+    "prompt": "“We shall fight on the beaches… we shall never surrender.”"
+  },
+  {
+    "accepted": ["Churchill"],
+    "answer": "Winston Churchill",
+    "decoys": [
+      "Neville Chamberlain",
+      "Clement Attlee",
+      "Franklin D. Roosevelt"
+    ],
+    "id": "quote-en-churchill-blood",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Churchill's first speech as Prime Minister, May 1940.",
+    "prompt": "“I have nothing to offer but blood, toil, tears and sweat.”"
+  },
+  {
+    "accepted": ["Churchill"],
+    "answer": "Winston Churchill",
+    "decoys": ["Clement Attlee", "Anthony Eden", "Neville Chamberlain"],
+    "id": "quote-en-churchill-few",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Churchill on the RAF pilots of the Battle of Britain, August 1940.",
+    "prompt": "“Never in the field of human conflict was so much owed by so many to so few.”"
+  },
+  {
+    "accepted": ["Thatcher", "Maggie Thatcher"],
+    "answer": "Margaret Thatcher",
+    "decoys": ["Indira Gandhi", "Golda Meir", "Theresa May"],
+    "id": "quote-en-thatcher",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Thatcher at the Conservative Party conference, 1980.",
+    "prompt": "“You turn if you want to. The lady's not for turning.”"
+  },
+  {
+    "accepted": ["Obama"],
+    "answer": "Barack Obama",
+    "decoys": ["Bill Clinton", "Joe Biden", "John Kerry"],
+    "id": "quote-en-obama",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "The refrain of Obama's 2008 presidential campaign.",
+    "prompt": "“Yes, we can.”"
+  },
+  {
+    "accepted": ["Reagan"],
+    "answer": "Ronald Reagan",
+    "decoys": ["George H. W. Bush", "Jimmy Carter", "Margaret Thatcher"],
+    "id": "quote-en-reagan",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Reagan at the Brandenburg Gate, Berlin, June 1987.",
+    "prompt": "“Mr. Gorbachev, tear down this wall!”"
+  },
+  {
+    "accepted": ["George Bush", "Bush", "George H.W. Bush", "George Bush Sr."],
+    "answer": "George H. W. Bush",
+    "decoys": ["Ronald Reagan", "Bob Dole", "Michael Dukakis"],
+    "id": "quote-en-bush-read-my-lips",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Bush accepting the Republican nomination, 1988.",
+    "prompt": "“Read my lips: no new taxes.”"
+  },
+  {
+    "accepted": ["Nixon"],
+    "answer": "Richard Nixon",
+    "decoys": ["Gerald Ford", "Lyndon B. Johnson", "Spiro Agnew"],
+    "id": "quote-en-nixon-crook",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Nixon at a press conference during Watergate, November 1973.",
+    "prompt": "“People have got to know whether or not their President is a crook. Well, I'm not a crook.”"
+  },
+  {
+    "accepted": ["Truman", "Harry Truman"],
+    "answer": "Harry S. Truman",
+    "decoys": [
+      "Dwight D. Eisenhower",
+      "Franklin D. Roosevelt",
+      "John F. Kennedy"
+    ],
+    "id": "quote-en-truman-buck",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "The sign Truman kept on his desk in the Oval Office.",
+    "prompt": "“The buck stops here.”"
+  },
+  {
+    "accepted": ["Teddy Roosevelt", "Roosevelt"],
+    "answer": "Theodore Roosevelt",
+    "decoys": ["William McKinley", "Woodrow Wilson", "William Howard Taft"],
+    "id": "quote-en-teddy-roosevelt",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Roosevelt quoting what he called a West African proverb, 1900.",
+    "prompt": "“Speak softly and carry a big stick; you will go far.”"
+  },
+  {
+    "accepted": ["Henry"],
+    "answer": "Patrick Henry",
+    "decoys": ["Thomas Paine", "Samuel Adams", "Paul Revere"],
+    "id": "quote-en-patrick-henry",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Henry to the Second Virginia Convention, March 1775.",
+    "prompt": "“I know not what course others may take; but as for me, give me liberty or give me death!”"
+  },
+  {
+    "accepted": ["Jefferson"],
+    "answer": "Thomas Jefferson",
+    "decoys": ["Benjamin Franklin", "John Adams", "James Madison"],
+    "id": "quote-en-jefferson",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From the Declaration of Independence of 1776, drafted by Jefferson.",
+    "prompt": "“We hold these truths to be self-evident, that all men are created equal…”"
+  },
+  {
+    "accepted": ["Caesar"],
+    "answer": "Julius Caesar",
+    "decoys": ["Augustus", "Mark Antony", "Hannibal"],
+    "id": "quote-en-caesar-veni",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "\"I came, I saw, I conquered\": Caesar on his swift victory at Zela, 47 BC.",
+    "prompt": "“Veni, vidi, vici.”"
+  },
+  {
+    "accepted": ["Caesar"],
+    "answer": "Julius Caesar",
+    "decoys": ["Pompey", "Augustus", "Napoleon"],
+    "id": "quote-en-caesar-die",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Alea iacta est: Caesar crossing the Rubicon in 49 BC, according to Suetonius.",
+    "prompt": "“The die is cast.”"
+  },
+  {
+    "accepted": ["Blair"],
+    "answer": "Tony Blair",
+    "decoys": ["Gordon Brown", "John Major", "David Cameron"],
+    "id": "quote-en-blair",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Blair at the Labour Party conference, 1996.",
+    "prompt": "“Ask me my three main priorities for Government, and I tell you: education, education and education.”"
+  },
+  {
+    "accepted": ["May"],
+    "answer": "Theresa May",
+    "decoys": ["David Cameron", "Boris Johnson", "Liz Truss"],
+    "id": "quote-en-theresa-may",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "May on running to succeed David Cameron as Prime Minister, 2016.",
+    "prompt": "“Brexit means Brexit.”"
+  },
+  {
+    "accepted": ["Chamberlain"],
+    "answer": "Neville Chamberlain",
+    "decoys": ["Stanley Baldwin", "Anthony Eden", "Ramsay MacDonald"],
+    "id": "quote-en-chamberlain",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Chamberlain on his return from Munich, September 1938.",
+    "prompt": "“I believe it is peace for our time.”"
+  },
+  {
+    "accepted": ["Queen Elizabeth II", "Queen Elizabeth", "The Queen"],
+    "answer": "Elizabeth II",
+    "decoys": ["Princess Margaret", "Princess Anne", "Charles III"],
+    "id": "quote-en-queen-annus",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Queen Elizabeth II's Guildhall speech, November 1992.",
+    "prompt": "“1992 is not a year on which I shall look back with undiluted pleasure… it has turned out to be an annus horribilis.”"
+  },
+  {
+    "accepted": ["Diana", "Diana, Princess of Wales", "Lady Di"],
+    "answer": "Princess Diana",
+    "decoys": ["Sarah Ferguson", "Princess Margaret", "Princess Anne"],
+    "id": "quote-en-diana",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Diana in her BBC Panorama interview, 1995.",
+    "prompt": "“There were three of us in this marriage, so it was a bit crowded.”"
+  },
+  {
+    "accepted": ["Mandela", "Madiba"],
+    "answer": "Nelson Mandela",
+    "decoys": ["Desmond Tutu", "Kofi Annan", "Steve Biko"],
+    "id": "quote-en-mandela-education",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Mandela launching the Mindset Network, 2003.",
+    "prompt": "“Education is the most powerful weapon we can use to change the world.”"
+  },
+  {
+    "accepted": ["Mandela", "Madiba"],
+    "answer": "Nelson Mandela",
+    "decoys": ["Steve Biko", "Desmond Tutu", "Oliver Tambo"],
+    "id": "quote-en-mandela-rivonia",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Mandela's statement from the dock at the Rivonia Trial, 1964.",
+    "prompt": "“It is an ideal which I hope to live for and to achieve. But if needs be, it is an ideal for which I am prepared to die.”"
+  },
+  {
+    "accepted": ["Malcolm"],
+    "answer": "Malcolm X",
+    "decoys": ["Martin Luther King Jr.", "Stokely Carmichael", "Jesse Jackson"],
+    "id": "quote-en-malcolm-x",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Malcolm X at the founding rally of the Organization of Afro-American Unity, 1964.",
+    "prompt": "“By any means necessary.”"
+  },
+  {
+    "accepted": ["Marx", "Marx and Engels", "Friedrich Engels", "Engels"],
+    "answer": "Karl Marx",
+    "decoys": ["Vladimir Lenin", "Leon Trotsky", "Mao Zedong"],
+    "id": "quote-en-marx",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Rallying cry of The Communist Manifesto by Marx and Engels, 1848.",
+    "prompt": "“Workers of the world, unite!”"
+  },
+  {
+    "accepted": ["Einstein"],
+    "answer": "Albert Einstein",
+    "decoys": ["Isaac Newton", "Niels Bohr", "Stephen Hawking"],
+    "id": "quote-en-einstein-imagination",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Einstein in a 1929 interview for The Saturday Evening Post.",
+    "prompt": "“Imagination is more important than knowledge.”"
+  },
+  {
+    "accepted": ["Einstein"],
+    "answer": "Albert Einstein",
+    "decoys": ["Max Planck", "Niels Bohr", "Erwin Schrödinger"],
+    "id": "quote-en-einstein-dice",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Einstein in a 1926 letter to Max Born, usually quoted as \"God does not play dice\".",
+    "prompt": "“I, at any rate, am convinced that He does not throw dice.”"
+  },
+  {
+    "accepted": ["Newton", "Sir Isaac Newton"],
+    "answer": "Isaac Newton",
+    "decoys": ["Galileo Galilei", "Gottfried Leibniz", "Johannes Kepler"],
+    "id": "quote-en-newton",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Newton in a letter to Robert Hooke, 1675.",
+    "prompt": "“If I have seen further it is by standing on the shoulders of Giants.”"
+  },
+  {
+    "accepted": ["Descartes", "Rene Descartes"],
+    "answer": "René Descartes",
+    "decoys": ["Blaise Pascal", "Baruch Spinoza", "John Locke"],
+    "id": "quote-en-descartes",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Cogito, ergo sum: Descartes in his Discourse on the Method, 1637.",
+    "prompt": "“I think, therefore I am.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Socrates",
+    "decoys": ["Plato", "Aristotle", "Diogenes"],
+    "id": "quote-en-socrates",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Socrates at his trial, as told in Plato's Apology.",
+    "prompt": "“The unexamined life is not worth living.”"
+  },
+  {
+    "accepted": [],
+    "answer": "Archimedes",
+    "decoys": ["Pythagoras", "Euclid", "Aristotle"],
+    "id": "quote-en-archimedes",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "\"I have found it!\": Archimedes, as the story goes, leaping from his bath.",
+    "prompt": "“Eureka!”"
+  },
+  {
+    "accepted": ["Edison", "Thomas Alva Edison"],
+    "answer": "Thomas Edison",
+    "decoys": ["Nikola Tesla", "Alexander Graham Bell", "Henry Ford"],
+    "id": "quote-en-edison",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Edison's best-known saying on invention.",
+    "prompt": "“Genius is one percent inspiration, ninety-nine percent perspiration.”"
+  },
+  {
+    "accepted": ["Graham Bell", "Bell"],
+    "answer": "Alexander Graham Bell",
+    "decoys": ["Thomas Edison", "Samuel Morse", "Guglielmo Marconi"],
+    "id": "quote-en-bell",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "The first words spoken by telephone, 10 March 1876.",
+    "prompt": "“Mr. Watson, come here, I want to see you.”"
+  },
+  {
+    "accepted": ["Ford"],
+    "answer": "Henry Ford",
+    "decoys": ["Karl Benz", "Ransom E. Olds", "Walter Chrysler"],
+    "id": "quote-en-henry-ford",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Ford on the Model T, in his 1922 memoir My Life and Work.",
+    "prompt": "“Any customer can have a car painted any colour that he wants so long as it is black.”"
+  },
+  {
+    "accepted": ["Oppenheimer", "Robert Oppenheimer"],
+    "answer": "J. Robert Oppenheimer",
+    "decoys": ["Albert Einstein", "Enrico Fermi", "Edward Teller"],
+    "id": "quote-en-oppenheimer",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Oppenheimer recalling the first atomic test, quoting the Bhagavad Gita.",
+    "prompt": "“Now I am become Death, the destroyer of worlds.”"
+  },
+  {
+    "accepted": ["Stanley", "H. M. Stanley"],
+    "answer": "Henry Morton Stanley",
+    "decoys": ["Richard Francis Burton", "John Hanning Speke", "Mungo Park"],
+    "id": "quote-en-stanley",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Stanley on finding David Livingstone at Ujiji, 1871.",
+    "prompt": "“Dr. Livingstone, I presume?”"
+  },
+  {
+    "accepted": ["Mallory"],
+    "answer": "George Mallory",
+    "decoys": ["Edmund Hillary", "Ernest Shackleton", "Tenzing Norgay"],
+    "id": "quote-en-mallory",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Mallory, asked in 1923 why he wanted to climb Everest.",
+    "prompt": "“Because it's there.”"
+  },
+  {
+    "accepted": ["Captain Oates", "Oates"],
+    "answer": "Lawrence Oates",
+    "decoys": ["Robert Falcon Scott", "Ernest Shackleton", "Roald Amundsen"],
+    "id": "quote-en-oates",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Oates walking out into the Antarctic blizzard in 1912, as Scott's journal records.",
+    "prompt": "“I am just going outside and may be some time.”"
+  },
+  {
+    "accepted": ["Nelson", "Lord Nelson", "Admiral Nelson"],
+    "answer": "Horatio Nelson",
+    "decoys": ["Duke of Wellington", "Francis Drake", "Walter Raleigh"],
+    "id": "quote-en-nelson",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Nelson's flag signal before the Battle of Trafalgar, 1805.",
+    "prompt": "“England expects that every man will do his duty.”"
+  },
+  {
+    "accepted": ["MacArthur", "General MacArthur"],
+    "answer": "Douglas MacArthur",
+    "decoys": ["Dwight D. Eisenhower", "George S. Patton", "Chester Nimitz"],
+    "id": "quote-en-macarthur",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "MacArthur on leaving the Philippines, 1942.",
+    "prompt": "“I shall return.”"
+  },
+  {
+    "accepted": ["Machiavelli", "Niccolo Machiavelli"],
+    "answer": "Niccolò Machiavelli",
+    "decoys": ["Thomas Hobbes", "Cesare Borgia", "Thomas More"],
+    "id": "quote-en-machiavelli",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Machiavelli's The Prince.",
+    "prompt": "“It is much safer to be feared than loved.”"
+  },
+  {
+    "accepted": ["Lao Tzu", "Lao-Tzu", "Lao Tse", "Lao-tze"],
+    "answer": "Laozi",
+    "decoys": ["Confucius", "Sun Tzu", "Mencius"],
+    "id": "quote-en-laozi",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From the Tao Te Ching, traditionally credited to Laozi.",
+    "prompt": "“A journey of a thousand miles begins with a single step.”"
+  },
+  {
+    "accepted": ["Nietzsche"],
+    "answer": "Friedrich Nietzsche",
+    "decoys": ["Arthur Schopenhauer", "Immanuel Kant", "Søren Kierkegaard"],
+    "id": "quote-en-nietzsche",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Nietzsche's Twilight of the Idols, 1888.",
+    "prompt": "“What does not kill me makes me stronger.”"
+  },
+  {
+    "accepted": ["Sartre"],
+    "answer": "Jean-Paul Sartre",
+    "decoys": ["Albert Camus", "Simone de Beauvoir", "Samuel Beckett"],
+    "id": "quote-en-sartre",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Sartre's play No Exit (Huis clos), 1944.",
+    "prompt": "“Hell is other people.”"
+  },
+  {
+    "accepted": ["Dickens"],
+    "answer": "Charles Dickens",
+    "decoys": ["Thomas Hardy", "William Makepeace Thackeray", "Victor Hugo"],
+    "id": "quote-en-dickens-best",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Opening of A Tale of Two Cities, 1859.",
+    "prompt": "“It was the best of times, it was the worst of times…”"
+  },
+  {
+    "accepted": ["Dickens"],
+    "answer": "Charles Dickens",
+    "decoys": ["Charlotte Brontë", "Thomas Hardy", "Lewis Carroll"],
+    "id": "quote-en-dickens-more",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Oliver asking for more gruel in Oliver Twist.",
+    "prompt": "“Please, sir, I want some more.”"
+  },
+  {
+    "accepted": ["Austen"],
+    "answer": "Jane Austen",
+    "decoys": ["Charlotte Brontë", "Emily Brontë", "George Eliot"],
+    "id": "quote-en-austen",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Opening line of Pride and Prejudice, 1813.",
+    "prompt": "“It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.”"
+  },
+  {
+    "accepted": ["Orwell", "Eric Blair"],
+    "answer": "George Orwell",
+    "decoys": ["Aldous Huxley", "H. G. Wells", "Ray Bradbury"],
+    "id": "quote-en-orwell-animals",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Animal Farm, 1945.",
+    "prompt": "“All animals are equal, but some animals are more equal than others.”"
+  },
+  {
+    "accepted": ["Orwell", "Eric Blair"],
+    "answer": "George Orwell",
+    "decoys": ["Aldous Huxley", "Ray Bradbury", "Franz Kafka"],
+    "id": "quote-en-orwell-big-brother",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Nineteen Eighty-Four, 1949.",
+    "prompt": "“Big Brother is watching you.”"
+  },
+  {
+    "accepted": ["Melville"],
+    "answer": "Herman Melville",
+    "decoys": ["Nathaniel Hawthorne", "Mark Twain", "Edgar Allan Poe"],
+    "id": "quote-en-melville",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Opening line of Moby-Dick, 1851.",
+    "prompt": "“Call me Ishmael.”"
+  },
+  {
+    "accepted": ["Tolstoy"],
+    "answer": "Leo Tolstoy",
+    "decoys": ["Fyodor Dostoevsky", "Anton Chekhov", "Ivan Turgenev"],
+    "id": "quote-en-tolstoy",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Opening line of Anna Karenina.",
+    "prompt": "“Happy families are all alike; every unhappy family is unhappy in its own way.”"
+  },
+  {
+    "accepted": ["Frost"],
+    "answer": "Robert Frost",
+    "decoys": ["Walt Whitman", "Emily Dickinson", "Carl Sandburg"],
+    "id": "quote-en-frost",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From The Road Not Taken, 1916.",
+    "prompt": "“Two roads diverged in a wood, and I — I took the one less traveled by, and that has made all the difference.”"
+  },
+  {
+    "accepted": ["Thomas"],
+    "answer": "Dylan Thomas",
+    "decoys": ["W. H. Auden", "T. S. Eliot", "Seamus Heaney"],
+    "id": "quote-en-dylan-thomas",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Opening line of Dylan Thomas's best-known poem.",
+    "prompt": "“Do not go gentle into that good night.”"
+  },
+  {
+    "accepted": ["Wordsworth"],
+    "answer": "William Wordsworth",
+    "decoys": ["Samuel Taylor Coleridge", "John Keats", "Lord Byron"],
+    "id": "quote-en-wordsworth",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "First line of his poem on the daffodils, 1807.",
+    "prompt": "“I wandered lonely as a cloud.”"
+  },
+  {
+    "accepted": ["Tennyson", "Alfred Tennyson", "Lord Tennyson"],
+    "answer": "Alfred, Lord Tennyson",
+    "decoys": ["Robert Browning", "Lord Byron", "Percy Bysshe Shelley"],
+    "id": "quote-en-tennyson",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From In Memoriam A.H.H., 1850.",
+    "prompt": "“'Tis better to have loved and lost than never to have loved at all.”"
+  },
+  {
+    "accepted": ["Donne"],
+    "answer": "John Donne",
+    "decoys": ["John Milton", "Ben Jonson", "Andrew Marvell"],
+    "id": "quote-en-donne",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Donne's Devotions upon Emergent Occasions, 1624.",
+    "prompt": "“No man is an island…”"
+  },
+  {
+    "accepted": ["Pope"],
+    "answer": "Alexander Pope",
+    "decoys": ["Jonathan Swift", "John Dryden", "Samuel Johnson"],
+    "id": "quote-en-pope",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "From Pope's An Essay on Criticism, 1711.",
+    "prompt": "“To err is human, to forgive divine.”"
+  },
+  {
+    "accepted": ["Carroll", "Charles Dodgson"],
+    "answer": "Lewis Carroll",
+    "decoys": ["Edward Lear", "J. M. Barrie", "Kenneth Grahame"],
+    "id": "quote-en-carroll",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Alice in Alice's Adventures in Wonderland, 1865.",
+    "prompt": "“Curiouser and curiouser!”"
+  },
+  {
+    "accepted": ["Kipling"],
+    "answer": "Rudyard Kipling",
+    "decoys": [
+      "Robert Louis Stevenson",
+      "Thomas Hardy",
+      "Alfred, Lord Tennyson"
+    ],
+    "id": "quote-en-kipling",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Opening of Kipling's poem If—.",
+    "prompt": "“If you can keep your head when all about you are losing theirs and blaming it on you…”"
+  },
+  {
+    "accepted": ["Shelley", "Percy Shelley"],
+    "answer": "Percy Bysshe Shelley",
+    "decoys": ["John Keats", "Lord Byron", "William Blake"],
+    "id": "quote-en-shelley",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "From Shelley's sonnet Ozymandias, 1818.",
+    "prompt": "“Look on my Works, ye Mighty, and despair!”"
+  },
+  {
+    "accepted": ["Poe", "Edgar Poe"],
+    "answer": "Edgar Allan Poe",
+    "decoys": ["H. P. Lovecraft", "Nathaniel Hawthorne", "Washington Irving"],
+    "id": "quote-en-poe",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Refrain of Poe's poem The Raven, 1845.",
+    "prompt": "“Quoth the Raven, \"Nevermore.\"”"
+  },
+  {
+    "accepted": ["Shakespeare"],
+    "answer": "William Shakespeare",
+    "decoys": ["Christopher Marlowe", "Ben Jonson", "John Milton"],
+    "id": "quote-en-shakespeare-be",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Hamlet's soliloquy in Hamlet, Act 3.",
+    "prompt": "“To be, or not to be, that is the question.”"
+  },
+  {
+    "accepted": ["Shakespeare"],
+    "answer": "William Shakespeare",
+    "decoys": ["Christopher Marlowe", "John Webster", "Geoffrey Chaucer"],
+    "id": "quote-en-shakespeare-romeo",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Juliet at her window in Romeo and Juliet, Act 2.",
+    "prompt": "“O Romeo, Romeo, wherefore art thou Romeo?”"
+  },
+  {
+    "accepted": ["Shakespeare"],
+    "answer": "William Shakespeare",
+    "decoys": ["Thomas Kyd", "Ben Jonson", "Edmund Spenser"],
+    "id": "quote-en-shakespeare-stage",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jaques in As You Like It, Act 2.",
+    "prompt": "“All the world's a stage, and all the men and women merely players.”"
+  },
+  {
+    "accepted": ["Shakespeare"],
+    "answer": "William Shakespeare",
+    "decoys": ["Christopher Marlowe", "Thomas Kyd", "Geoffrey Chaucer"],
+    "id": "quote-en-shakespeare-horse",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "The king at Bosworth in Richard III, Act 5.",
+    "prompt": "“A horse! a horse! my kingdom for a horse!”"
+  },
+  {
+    "accepted": ["Shakespeare"],
+    "answer": "William Shakespeare",
+    "decoys": ["Christopher Marlowe", "John Milton", "Edmund Spenser"],
+    "id": "quote-en-shakespeare-friends",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Mark Antony's funeral speech in Julius Caesar, Act 3.",
+    "prompt": "“Friends, Romans, countrymen, lend me your ears.”"
+  },
+  {
+    "accepted": ["Wilde"],
+    "answer": "Oscar Wilde",
+    "decoys": ["George Bernard Shaw", "Noël Coward", "Mark Twain"],
+    "id": "quote-en-wilde-gutter",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Lord Darlington in Lady Windermere's Fan, 1892.",
+    "prompt": "“We are all in the gutter, but some of us are looking at the stars.”"
+  },
+  {
+    "accepted": ["Wilde"],
+    "answer": "Oscar Wilde",
+    "decoys": ["George Bernard Shaw", "P. G. Wodehouse", "Noël Coward"],
+    "id": "quote-en-wilde-temptation",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Lord Darlington in Lady Windermere's Fan, 1892.",
+    "prompt": "“I can resist everything except temptation.”"
+  },
+  {
+    "accepted": ["Twain", "Samuel Clemens"],
+    "answer": "Mark Twain",
+    "decoys": ["Oscar Wilde", "Will Rogers", "Ambrose Bierce"],
+    "id": "quote-en-twain",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Twain in a note to a reporter in London, 1897, usually quoted as \"greatly exaggerated\".",
+    "prompt": "“The report of my death was an exaggeration.”"
+  },
+  {
+    "accepted": ["Franklin", "Ben Franklin"],
+    "answer": "Benjamin Franklin",
+    "decoys": ["Thomas Jefferson", "John Adams", "Alexander Hamilton"],
+    "id": "quote-en-franklin",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Franklin in a 1789 letter to Jean-Baptiste Le Roy.",
+    "prompt": "“In this world nothing can be said to be certain, except death and taxes.”"
+  },
+  {
+    "accepted": ["Groucho"],
+    "answer": "Groucho Marx",
+    "decoys": ["Woody Allen", "Charlie Chaplin", "W. C. Fields"],
+    "id": "quote-en-groucho",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Groucho Marx, resigning from a club.",
+    "prompt": "“I don't want to belong to any club that will accept me as a member.”"
+  },
+  {
+    "accepted": ["Warhol"],
+    "answer": "Andy Warhol",
+    "decoys": ["Roy Lichtenstein", "Salvador Dalí", "Keith Haring"],
+    "id": "quote-en-warhol",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Warhol, in a 1968 exhibition catalogue in Stockholm.",
+    "prompt": "“In the future, everyone will be world-famous for 15 minutes.”"
+  },
+  {
+    "accepted": ["Ali", "Cassius Clay"],
+    "answer": "Muhammad Ali",
+    "decoys": ["Joe Frazier", "George Foreman", "Sugar Ray Leonard"],
+    "id": "quote-en-ali-butterfly",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Ali's boast before his 1964 title fight against Sonny Liston.",
+    "prompt": "“Float like a butterfly, sting like a bee.”"
+  },
+  {
+    "accepted": ["Ali", "Cassius Clay"],
+    "answer": "Muhammad Ali",
+    "decoys": ["Joe Louis", "Floyd Mayweather", "Rocky Marciano"],
+    "id": "quote-en-ali-greatest",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Ali's trademark boast.",
+    "prompt": "“I am the greatest!”"
+  },
+  {
+    "accepted": ["Jordan", "MJ"],
+    "answer": "Michael Jordan",
+    "decoys": ["LeBron James", "Kobe Bryant", "Magic Johnson"],
+    "id": "quote-en-jordan",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Jordan in a Nike commercial.",
+    "prompt": "“I've failed over and over and over again in my life. And that is why I succeed.”"
+  },
+  {
+    "accepted": ["Tyson", "Iron Mike"],
+    "answer": "Mike Tyson",
+    "decoys": ["Evander Holyfield", "Lennox Lewis", "George Foreman"],
+    "id": "quote-en-tyson",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Tyson in 1987, in the form it is usually quoted.",
+    "prompt": "“Everybody has a plan until they get punched in the mouth.”"
+  },
+  {
+    "accepted": ["Berra"],
+    "answer": "Yogi Berra",
+    "decoys": ["Babe Ruth", "Casey Stengel", "Mickey Mantle"],
+    "id": "quote-en-berra",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "One of Berra's best-known \"Yogi-isms\".",
+    "prompt": "“It ain't over till it's over.”"
+  },
+  {
+    "accepted": ["McEnroe"],
+    "answer": "John McEnroe",
+    "decoys": ["Jimmy Connors", "Björn Borg", "Ilie Năstase"],
+    "id": "quote-en-mcenroe",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "McEnroe to an umpire at Wimbledon, 1981.",
+    "prompt": "“You cannot be serious!”"
+  },
+  {
+    "accepted": ["Shankly"],
+    "answer": "Bill Shankly",
+    "decoys": ["Brian Clough", "Matt Busby", "Bob Paisley"],
+    "id": "quote-en-shankly",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "The Liverpool manager in a 1981 television interview.",
+    "prompt": "“Some people believe football is a matter of life and death… I can assure you it is much, much more important than that.”"
+  },
+  {
+    "accepted": ["Wolstenholme"],
+    "answer": "Kenneth Wolstenholme",
+    "decoys": ["John Motson", "Brian Moore", "David Coleman"],
+    "id": "quote-en-wolstenholme",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "BBC commentary on Geoff Hurst's goal in the 1966 World Cup final.",
+    "prompt": "“They think it's all over… it is now!”"
+  },
+  {
+    "accepted": ["Maradona"],
+    "answer": "Diego Maradona",
+    "decoys": ["Pelé", "Lionel Messi", "Johan Cruyff"],
+    "id": "quote-en-maradona",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Maradona on his handball goal against England at the 1986 World Cup.",
+    "prompt": "“A little with the head… and a little with the hand of God.”"
+  },
+  {
+    "accepted": ["Lee"],
+    "answer": "Bruce Lee",
+    "decoys": ["Jackie Chan", "Chuck Norris", "Jet Li"],
+    "id": "quote-en-bruce-lee",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Lee in a 1971 television interview.",
+    "prompt": "“Be water, my friend.”"
+  },
+  {
+    "accepted": ["Jobs"],
+    "answer": "Steve Jobs",
+    "decoys": ["Bill Gates", "Steve Wozniak", "Mark Zuckerberg"],
+    "id": "quote-en-jobs",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jobs closing his 2005 Stanford commencement speech, quoting the Whole Earth Catalog.",
+    "prompt": "“Stay hungry. Stay foolish.”"
+  },
+  {
+    "accepted": ["Oprah", "Winfrey"],
+    "answer": "Oprah Winfrey",
+    "decoys": ["Ellen DeGeneres", "Martha Stewart", "Jerry Springer"],
+    "id": "quote-en-oprah",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Winfrey's 2004 giveaway of a car to her whole studio audience.",
+    "prompt": "“You get a car! You get a car! Everybody gets a car!”"
+  },
+  {
+    "accepted": ["Kanye", "Ye", "West"],
+    "answer": "Kanye West",
+    "decoys": ["Jay-Z", "Eminem", "Drake"],
+    "id": "quote-en-kanye",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "West interrupting Taylor Swift on stage at the 2009 MTV Video Music Awards.",
+    "prompt": "“Yo Taylor, I'm really happy for you, I'mma let you finish…”"
+  },
+  {
+    "accepted": ["Dolly", "Parton"],
+    "answer": "Dolly Parton",
+    "decoys": ["Loretta Lynn", "Tammy Wynette", "Reba McEntire"],
+    "id": "quote-en-dolly",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Dolly Parton on her own look.",
+    "prompt": "“It costs a lot of money to look this cheap.”"
+  },
+  {
+    "accepted": ["Irwin", "The Crocodile Hunter"],
+    "answer": "Steve Irwin",
+    "decoys": ["David Attenborough", "Bear Grylls", "Jeff Corwin"],
+    "id": "quote-en-steve-irwin",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Irwin's trademark exclamation on The Crocodile Hunter.",
+    "prompt": "“Crikey!”"
+  },
+  {
+    "accepted": ["Seuss", "Theodor Geisel"],
+    "answer": "Dr. Seuss",
+    "decoys": ["Roald Dahl", "Shel Silverstein", "Maurice Sendak"],
+    "id": "quote-en-seuss",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Title of Dr. Seuss's last book published in his lifetime, 1990.",
+    "prompt": "“Oh, the places you'll go!”"
   }
 ]

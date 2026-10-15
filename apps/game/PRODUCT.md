@@ -99,9 +99,10 @@ on the shelf inherits it.
     name title and artist, or the film for a score cue. Sources: genre charts,
     decades (international and French), 47 film composers, any Deezer playlist,
     a free search; a difficulty setting by popularity.
-  - **Quiz** — a bundled bank of 11 602 questions (7 090 French, 4 512 English)
+  - **Quiz** — a bundled bank of 12 458 questions (7 473 French, 4 985 English)
     over nine subjects: history, geography, science, arts, cinema, quotes (a
-    line from a film or a series — name the work), video games, sport,
+    line from a film, a series, a game, an ad or a real person — name where
+    it comes from), video games, sport,
     everyday. Sources and licences are on the credits page.
   - **Buzzer** — a bare race for the floor; the host brings the content.
   - **Reflex** — a race against a screen about to change colour; a false start

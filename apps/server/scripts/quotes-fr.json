@@ -5,6 +5,7 @@
     "decoys": ["Le cave se rebiffe", "Mélodie en sous-sol", "Les Barbouzes"],
     "id": "quote-fr-tontons-flingueurs",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Un dialogue de Michel Audiard, 1963.",
     "prompt": "« Les cons, ça ose tout. C'est même à ça qu'on les reconnaît. »"
   },
@@ -14,6 +15,7 @@
     "decoys": ["Un singe en hiver", "Le Pacha", "Le Clan des Siciliens"],
     "id": "quote-fr-cent-mille-dollars",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Un dialogue de Michel Audiard, 1964.",
     "prompt": "« Quand les types de 130 kilos disent certaines choses, ceux de 60 kilos les écoutent. »"
   },
@@ -27,6 +29,7 @@
     ],
     "id": "quote-fr-taxi-pour-tobrouk",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Un dialogue de Michel Audiard, 1961.",
     "prompt": "« Un intellectuel assis va moins loin qu'un con qui marche. »"
   },
@@ -40,6 +43,7 @@
     ],
     "id": "quote-fr-oss-117-blanquette",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2006.",
     "prompt": "« Comment est votre blanquette ? »"
   },
@@ -49,6 +53,7 @@
     "decoys": ["Le Professionnel", "Le Guignolo", "Le Marginal"],
     "id": "quote-fr-oss-117-dictature",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2009.",
     "prompt": "« Une dictature, c'est quand les gens sont communistes, déjà. Qu'ils ont froid, avec des chapeaux gris et des chaussures à fermeture éclair. »"
   },
@@ -58,6 +63,7 @@
     "decoys": ["La Cité de la peur", "Les Visiteurs", "RRRrrrr!!!"],
     "id": "quote-fr-mission-cleopatre",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Otis, le scribe joué par Édouard Baer, 2002.",
     "prompt": "« Vous savez, moi je ne crois pas qu'il y ait de bonne ou de mauvaise situation. »"
   },
@@ -67,6 +73,7 @@
     "decoys": ["Les Trois Frères", "La Tour Montparnasse infernale", "Didier"],
     "id": "quote-fr-cite-de-la-peur",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Serge Karamazov (Alain Chabat), 1994.",
     "prompt": "« Barrez-vous, cons de mimes ! »"
   },
@@ -76,6 +83,7 @@
     "decoys": ["Le Placard", "Les Compères", "La Chèvre"],
     "id": "quote-fr-diner-de-cons",
     "isWellKnown": true,
+    "kind": "film",
     "note": "François Pignon (Jacques Villeret) et Pierre Brochant (Thierry Lhermitte), 1998.",
     "prompt": "« Il s'appelle Juste Leblanc. — Ah bon, il n'a pas de prénom ? »"
   },
@@ -89,6 +97,7 @@
     ],
     "id": "quote-fr-bronzes-font-du-ski",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Jean-Claude Dusse (Michel Blanc), 1979.",
     "prompt": "« Oublie que t'as aucune chance. Vas-y, fonce ! On sait jamais ! »"
   },
@@ -102,6 +111,7 @@
     ],
     "id": "quote-fr-pere-noel-ordure",
     "isWellKnown": true,
+    "kind": "film",
     "note": "À propos des doubitchous de Sofia, 1982.",
     "prompt": "« C'est fin, ça se mange sans faim. »"
   },
@@ -111,6 +121,7 @@
     "decoys": ["Ma 6-T va crack-er", "Les Misérables", "Banlieue 13"],
     "id": "quote-fr-la-haine",
     "isWellKnown": true,
+    "kind": "film",
     "note": "L'histoire de l'homme qui tombe d'un immeuble, qui ouvre et ferme le film de Mathieu Kassovitz, 1995.",
     "prompt": "« Jusqu'ici tout va bien… »"
   },
@@ -120,6 +131,7 @@
     "decoys": ["Camping", "Rien à déclarer", "Les Tuche"],
     "id": "quote-fr-chtis",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Le film de Dany Boon, 2008.",
     "prompt": "« Quand un étranger vient vivre dans le Nord, il braille deux fois : quand il arrive et quand il repart. »"
   },
@@ -129,6 +141,7 @@
     "decoys": ["Camping", "Le Boulet", "Taxi"],
     "id": "quote-fr-brice-de-nice",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Brice (Jean Dujardin), 2005.",
     "prompt": "« Je t'ai cassé ! »"
   },
@@ -138,6 +151,7 @@
     "decoys": ["Caméra Café", "Bref", "Hero Corp"],
     "id": "quote-fr-kaamelott-pas-faux",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Perceval (Franck Pitiot), quand il ne comprend pas le mot qu'on vient d'employer.",
     "prompt": "« C'est pas faux. »"
   },
@@ -147,6 +161,7 @@
     "decoys": ["Fais pas ci, fais pas ça", "Caméra Café", "Hero Corp"],
     "id": "quote-fr-kaamelott-gras",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Karadoc (Jean-Christophe Hembert).",
     "prompt": "« Le gras, c'est la vie ! »"
   },
@@ -156,6 +171,7 @@
     "decoys": ["Le Gendarme de Saint-Tropez", "Les Grandes Gueules", "Oscar"],
     "id": "quote-fr-le-corniaud",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Antoine Maréchal (Bourvil), devant sa 2 CV en miettes, 1965.",
     "prompt": "« Ah ben maintenant, elle va marcher beaucoup moins bien, forcément ! »"
   },
@@ -169,6 +185,7 @@
     ],
     "id": "quote-fr-grande-vadrouille",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Louis de Funès et Bourvil, 1966.",
     "prompt": "« Il n'y a pas d'hélice, hélas. — C'est là qu'est l'os. »"
   },
@@ -178,6 +195,7 @@
     "decoys": ["L'Aile ou la Cuisse", "Le Grand Restaurant", "Oscar"],
     "id": "quote-fr-rabbi-jacob",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Victor Pivert (Louis de Funès) à son chauffeur, 1973.",
     "prompt": "« Salomon, vous êtes juif ? »"
   },
@@ -187,6 +205,7 @@
     "decoys": ["Le Bossu", "Les Trois Mousquetaires", "Fantômas"],
     "id": "quote-fr-folie-des-grandeurs",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Blaze (Yves Montand) réveille Don Salluste (Louis de Funès), 1971.",
     "prompt": "« Il est l'or, Monseignor ! Il est l'or de se réveiller ! »"
   },
@@ -196,6 +215,7 @@
     "decoys": ["Pépé le Moko", "La Bête humaine", "Le Jour se lève"],
     "id": "quote-fr-hotel-du-nord",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Raymonde (Arletty), 1938.",
     "prompt": "« Atmosphère ! Atmosphère ! Est-ce que j'ai une gueule d'atmosphère ? »"
   },
@@ -205,6 +225,7 @@
     "decoys": ["Pépé le Moko", "La Grande Illusion", "La Bête humaine"],
     "id": "quote-fr-quai-des-brumes",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Jean (Jean Gabin) à Nelly (Michèle Morgan), 1938.",
     "prompt": "« T'as d'beaux yeux, tu sais. »"
   },
@@ -214,6 +235,7 @@
     "decoys": ["Les Visiteurs du soir", "La Règle du jeu", "Le Jour se lève"],
     "id": "quote-fr-enfants-du-paradis",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Garance (Arletty), 1945.",
     "prompt": "« Paris est tout petit pour ceux qui s'aiment comme nous d'un aussi grand amour. »"
   },
@@ -223,6 +245,7 @@
     "decoys": ["La Règle du jeu", "Le Jour se lève", "La Grande Illusion"],
     "id": "quote-fr-drole-de-drame",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Louis Jouvet à Michel Simon, 1937.",
     "prompt": "« Moi, j'ai dit bizarre, bizarre ? Comme c'est étrange… »"
   },
@@ -232,6 +255,7 @@
     "decoys": ["Les Quatre Cents Coups", "Jules et Jim", "Bande à part"],
     "id": "quote-fr-a-bout-de-souffle",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Michel Poiccard (Jean-Paul Belmondo), face à la caméra, 1960.",
     "prompt": "« Si vous n'aimez pas la mer, si vous n'aimez pas la montagne, si vous n'aimez pas la ville… allez vous faire foutre ! »"
   },
@@ -245,6 +269,7 @@
     ],
     "id": "quote-fr-le-mepris",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Camille (Brigitte Bardot), 1963.",
     "prompt": "« Et mes fesses, tu les aimes ? »"
   },
@@ -254,6 +279,7 @@
     "decoys": ["Bande à part", "Jules et Jim", "Les Quatre Cents Coups"],
     "id": "quote-fr-pierrot-le-fou",
     "isWellKnown": false,
+    "kind": "film",
     "note": "Marianne (Anna Karina), au bord de la mer, 1965.",
     "prompt": "« Qu'est-ce que je peux faire ? J'sais pas quoi faire… »"
   },
@@ -267,6 +293,7 @@
     ],
     "id": "quote-fr-classe-americaine",
     "isWellKnown": false,
+    "kind": "film",
     "note": "George Abitbol, l'homme le plus classe du monde, en mourant, 1993.",
     "prompt": "« Monde de merde ! »"
   },
@@ -276,6 +303,7 @@
     "decoys": ["Valérian et la Cité des mille planètes", "Nikita", "Léon"],
     "id": "quote-fr-cinquieme-element",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Leeloo (Milla Jovovich), 1997.",
     "prompt": "« Multipass ! »"
   },
@@ -291,6 +319,7 @@
     "decoys": ["Alien", "Dune", "Blade Runner"],
     "id": "quote-fr-empire-contre-attaque",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Dark Vador à Luke Skywalker, 1980.",
     "prompt": "« Non, je suis ton père. »"
   },
@@ -300,6 +329,7 @@
     "decoys": ["RoboCop", "Predator", "Total Recall"],
     "id": "quote-fr-terminator",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Le T-800 (Arnold Schwarzenegger), 1984.",
     "prompt": "« Je reviendrai. »"
   },
@@ -309,6 +339,7 @@
     "decoys": ["Commando", "True Lies", "Last Action Hero"],
     "id": "quote-fr-terminator-2",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Le T-800 (Arnold Schwarzenegger), 1991.",
     "prompt": "« Hasta la vista, baby. »"
   },
@@ -318,6 +349,7 @@
     "decoys": ["Les Affranchis", "Il était une fois en Amérique", "Casino"],
     "id": "quote-fr-le-parrain",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Vito Corleone (Marlon Brando), 1972.",
     "prompt": "« Je vais lui faire une offre qu'il ne pourra pas refuser. »"
   },
@@ -327,6 +359,7 @@
     "decoys": ["Pearl Harbor", "Avatar", "Le Grand Bleu"],
     "id": "quote-fr-titanic",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Jack (Leonardo DiCaprio), à la proue, 1997.",
     "prompt": "« Je suis le roi du monde ! »"
   },
@@ -336,6 +369,7 @@
     "decoys": ["Rain Man", "Big", "Philadelphia"],
     "id": "quote-fr-forrest-gump",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Forrest (Tom Hanks), sur son banc, 1994.",
     "prompt": "« Maman disait toujours : la vie, c'est comme une boîte de chocolats, on ne sait jamais sur quoi on va tomber. »"
   },
@@ -350,6 +384,7 @@
     "decoys": ["Willow", "Le Monde de Narnia", "Eragon"],
     "id": "quote-fr-communaute-anneau",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Gandalf (Ian McKellen) face au Balrog, 2001.",
     "prompt": "« Vous ne passerez pas ! »"
   },
@@ -359,6 +394,7 @@
     "decoys": ["Platoon", "Full Metal Jacket", "Voyage au bout de l'enfer"],
     "id": "quote-fr-apocalypse-now",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Le lieutenant-colonel Kilgore (Robert Duvall), 1979.",
     "prompt": "« J'aime l'odeur du napalm au petit matin. »"
   },
@@ -368,6 +404,7 @@
     "decoys": ["Le Faucon maltais", "Vacances romaines", "Le Grand Sommeil"],
     "id": "quote-fr-casablanca",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rick (Humphrey Bogart) à Ilsa (Ingrid Bergman), 1942.",
     "prompt": "« Nous aurons toujours Paris. »"
   },
@@ -377,6 +414,7 @@
     "decoys": ["Ben-Hur", "Les Hauts de Hurlevent", "Docteur Jivago"],
     "id": "quote-fr-autant-en-emporte-le-vent",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rhett Butler (Clark Gable) à Scarlett O'Hara, 1939.",
     "prompt": "« Franchement, ma chère, c'est le cadet de mes soucis. »"
   },
@@ -386,6 +424,7 @@
     "decoys": ["Alice au pays des merveilles", "Mary Poppins", "Pinocchio"],
     "id": "quote-fr-magicien-d-oz",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Dorothy (Judy Garland), 1939.",
     "prompt": "« Toto, j'ai l'impression que nous ne sommes plus au Kansas. »"
   },
@@ -395,6 +434,7 @@
     "decoys": ["Moby Dick", "Abyss", "Orca"],
     "id": "quote-fr-dents-de-la-mer",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Le chef Brody (Roy Scheider), 1975.",
     "prompt": "« Il va nous falloir un plus gros bateau. »"
   },
@@ -404,6 +444,7 @@
     "decoys": ["SOS Fantômes", "Gremlins", "Les Goonies"],
     "id": "quote-fr-retour-vers-le-futur",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Doc Brown, à la toute fin du premier film, 1985.",
     "prompt": "« Là où on va, on n'a pas besoin de route. »"
   },
@@ -413,6 +454,7 @@
     "decoys": ["Seven", "Psychose", "Shining"],
     "id": "quote-fr-silence-des-agneaux",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Hannibal Lecter (Anthony Hopkins) à Clarice Starling, 1991.",
     "prompt": "« J'ai mangé son foie avec des fèves au beurre et un excellent chianti. »"
   },
@@ -422,6 +464,7 @@
     "decoys": ["Inception", "Minority Report", "Dark City"],
     "id": "quote-fr-matrix",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Morpheus (Laurence Fishburne) à Neo, 1999.",
     "prompt": "« Tu prends la pilule bleue, l'histoire s'arrête là. Tu prends la pilule rouge, tu restes au pays des merveilles. »"
   },
@@ -431,6 +474,7 @@
     "decoys": ["Monstres et Cie", "Les Indestructibles", "Là-haut"],
     "id": "quote-fr-toy-story",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Buzz l'Éclair, 1995.",
     "prompt": "« Vers l'infini et au-delà ! »"
   },
@@ -440,6 +484,7 @@
     "decoys": ["Bambi", "Le Livre de la jungle", "Tarzan"],
     "id": "quote-fr-roi-lion",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Mufasa à Simba, dans les nuages, 1994.",
     "prompt": "« Souviens-toi de qui tu es. »"
   },
@@ -449,6 +494,7 @@
     "decoys": ["Raging Bull", "Million Dollar Baby", "Fighter"],
     "id": "quote-fr-rocky",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Rocky Balboa (Sylvester Stallone), après le combat, 1976.",
     "prompt": "« Adrienne ! »"
   },
@@ -458,6 +504,7 @@
     "decoys": ["Mean Streets", "Les Affranchis", "Raging Bull"],
     "id": "quote-fr-taxi-driver",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Travis Bickle (Robert De Niro), devant son miroir, 1976.",
     "prompt": "« C'est à moi que tu parles ? »"
   },
@@ -467,6 +514,7 @@
     "decoys": ["L'Impasse", "Les Incorruptibles", "Heat"],
     "id": "quote-fr-scarface",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Tony Montana (Al Pacino), 1983.",
     "prompt": "« Dis bonjour à mon petit ami ! »"
   },
@@ -480,6 +528,7 @@
     ],
     "id": "quote-fr-bon-brute-truand",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Blondin (Clint Eastwood) à Tuco, 1966.",
     "prompt": "« Tu vois, le monde se divise en deux catégories : ceux qui ont un pistolet chargé et ceux qui creusent. Toi, tu creuses. »"
   },
@@ -489,6 +538,7 @@
     "decoys": ["King Kong", "Godzilla", "Twister"],
     "id": "quote-fr-jurassic-park",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Ian Malcolm (Jeff Goldblum), 1993.",
     "prompt": "« La vie trouve toujours un chemin. »"
   },
@@ -502,6 +552,7 @@
     ],
     "id": "quote-fr-harry-potter",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Hagrid (Robbie Coltrane), 2001.",
     "prompt": "« Tu es un sorcier, Harry. »"
   },
@@ -511,6 +562,7 @@
     "decoys": ["À la poursuite du diamant vert", "La Momie", "Les Goonies"],
     "id": "quote-fr-arche-perdue",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Indiana Jones (Harrison Ford), 1981.",
     "prompt": "« Des serpents… Pourquoi faut-il toujours qu'il y ait des serpents ? »"
   },
@@ -520,6 +572,7 @@
     "decoys": ["Troie", "Spartacus", "Kingdom of Heaven"],
     "id": "quote-fr-gladiator",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Maximus (Russell Crowe), face à l'empereur, 2000.",
     "prompt": "« Mon nom est Maximus Decimus Meridius, commandant des armées du Nord. »"
   },
@@ -533,6 +586,7 @@
     "decoys": ["Watchmen", "V pour Vendetta", "Sin City"],
     "id": "quote-fr-dark-knight",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Le Joker (Heath Ledger), 2008.",
     "prompt": "« Pourquoi tant de sérieux ? »"
   },
@@ -542,6 +596,7 @@
     "decoys": ["Le Transporteur", "Equalizer", "John Wick"],
     "id": "quote-fr-taken",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Bryan Mills (Liam Neeson), au téléphone, 2008.",
     "prompt": "« Je ne sais pas qui vous êtes… mais je vous trouverai, et je vous tuerai. »"
   },
@@ -551,6 +606,7 @@
     "decoys": ["L'Étoffe des héros", "Armageddon", "Gravity"],
     "id": "quote-fr-apollo-13",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Jim Lovell (Tom Hanks), 1995.",
     "prompt": "« Houston, nous avons un problème. »"
   },
@@ -560,6 +616,7 @@
     "decoys": ["Les Autres", "Incassable", "Shining"],
     "id": "quote-fr-sixieme-sens",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Cole (Haley Joel Osment), 1999.",
     "prompt": "« Je vois des gens qui sont morts. »"
   },
@@ -569,6 +626,7 @@
     "decoys": ["Superman", "Daredevil", "Hulk"],
     "id": "quote-fr-spider-man",
     "isWellKnown": true,
+    "kind": "film",
     "note": "L'oncle Ben, 2002.",
     "prompt": "« Un grand pouvoir implique de grandes responsabilités. »"
   },
@@ -578,6 +636,7 @@
     "decoys": ["Grease", "Flashdance", "Footloose"],
     "id": "quote-fr-dirty-dancing",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Johnny (Patrick Swayze), 1987.",
     "prompt": "« On ne laisse pas Bébé dans un coin. »"
   },
@@ -587,6 +646,7 @@
     "decoys": ["Will Hunting", "À la rencontre de Forrester", "Patch Adams"],
     "id": "quote-fr-cercle-des-poetes",
     "isWellKnown": true,
+    "kind": "film",
     "note": "Les élèves debout sur leurs tables pour M. Keating (Robin Williams), 1989.",
     "prompt": "« Ô Capitaine ! Mon Capitaine ! »"
   },
@@ -596,6 +656,7 @@
     "decoys": ["Le Monde de Nemo", "Les Indestructibles", "Là-haut"],
     "id": "quote-fr-ratatouille",
     "isWellKnown": true,
+    "kind": "film",
     "note": "La devise du chef Gusteau, 2007.",
     "prompt": "« Tout le monde peut cuisiner. »"
   },
@@ -605,6 +666,7 @@
     "decoys": ["The Witcher", "Vikings", "Outlander"],
     "id": "quote-fr-got-hiver",
     "isWellKnown": true,
+    "kind": "series",
     "note": "La devise de la maison Stark.",
     "prompt": "« L'hiver vient. »"
   },
@@ -614,6 +676,7 @@
     "decoys": ["Vikings", "The Last Kingdom", "Outlander"],
     "id": "quote-fr-got-jon-snow",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Ygritte (Rose Leslie).",
     "prompt": "« Tu ne sais rien, Jon Snow. »"
   },
@@ -623,6 +686,7 @@
     "decoys": ["The Witcher", "The Last Kingdom", "Vikings"],
     "id": "quote-fr-got-hodor",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Le seul mot que dit Hodor (Kristian Nairn).",
     "prompt": "« Hodor. »"
   },
@@ -632,6 +696,7 @@
     "decoys": ["Les Soprano", "Ozark", "Narcos"],
     "id": "quote-fr-breaking-bad",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Walter White (Bryan Cranston) à Skyler — « I am the one who knocks ».",
     "prompt": "« C'est moi qui frappe à la porte. »"
   },
@@ -641,6 +706,7 @@
     "decoys": ["How I Met Your Mother", "Seinfeld", "Scrubs"],
     "id": "quote-fr-friends",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Ross (David Schwimmer), chaque fois qu'il est question de Rachel.",
     "prompt": "« On avait fait une pause ! »"
   },
@@ -650,6 +716,7 @@
     "decoys": ["Scrubs", "Two and a Half Men", "Modern Family"],
     "id": "quote-fr-how-i-met-your-mother",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Barney Stinson (Neil Patrick Harris).",
     "prompt": "« Ça va être légen… attends, attends… daire ! »"
   },
@@ -659,8 +726,9 @@
     "decoys": ["Futurama", "Les Griffin", "South Park"],
     "id": "quote-fr-simpson",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Bart Simpson.",
-    "prompt": "« Mange mon short ! »"
+    "prompt": "« Va te faire shampouiner ! »"
   },
   {
     "accepted": ["House", "Docteur House"],
@@ -668,6 +736,7 @@
     "decoys": ["Grey's Anatomy", "Urgences", "Nip/Tuck"],
     "id": "quote-fr-dr-house",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Le docteur Gregory House (Hugh Laurie).",
     "prompt": "« Tout le monde ment. »"
   },
@@ -677,6 +746,7 @@
     "decoys": ["Arabesque", "Derrick", "Kojak"],
     "id": "quote-fr-columbo",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Le lieutenant Columbo (Peter Falk), sur le pas de la porte.",
     "prompt": "« Juste une dernière petite chose… »"
   },
@@ -690,6 +760,7 @@
     ],
     "id": "quote-fr-le-prisonnier",
     "isWellKnown": false,
+    "kind": "series",
     "note": "Le Numéro 6 (Patrick McGoohan), 1967.",
     "prompt": "« Je ne suis pas un numéro, je suis un homme libre ! »"
   },
@@ -699,6 +770,7 @@
     "decoys": ["Fringe", "Twin Peaks", "Stranger Things"],
     "id": "quote-fr-x-files",
     "isWellKnown": true,
+    "kind": "series",
     "note": "La devise affichée au générique.",
     "prompt": "« La vérité est ailleurs. »"
   },
@@ -708,6 +780,7 @@
     "decoys": ["Scrubs", "Modern Family", "Malcolm"],
     "id": "quote-fr-big-bang-theory",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Sheldon Cooper (Jim Parsons), après une blague.",
     "prompt": "« Bazinga ! »"
   },
@@ -717,7 +790,4174 @@
     "decoys": ["Battlestar Galactica", "Stargate SG-1", "Babylon 5"],
     "id": "quote-fr-star-trek",
     "isWellKnown": true,
+    "kind": "series",
     "note": "Le salut vulcain de Spock (Leonard Nimoy).",
     "prompt": "« Longue vie et prospérité. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Visiteurs",
+    "decoys": ["Fanfan la Tulipe", "Le Bossu", "Les Trois Frères"],
+    "id": "quote-fr-visiteurs-trepasse",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le cri de guerre du film de Jean-Marie Poiré, 1993.",
+    "prompt": "« Montjoie ! Saint-Denis ! Que trépasse si je faiblis ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Visiteurs",
+    "decoys": [
+      "Les Anges gardiens",
+      "Le Père Noël est une ordure",
+      "Les Bronzés"
+    ],
+    "id": "quote-fr-visiteurs-okay",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jacquouille la Fripouille (Christian Clavier), 1993.",
+    "prompt": "« Okaaaay ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Visiteurs",
+    "decoys": ["La Folie des grandeurs", "Fanfan la Tulipe", "Le Bossu"],
+    "id": "quote-fr-visiteurs-sarrasin",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jacquouille (Christian Clavier), devant sa première voiture, 1993.",
+    "prompt": "« Messire, un Sarrasin dans une charriote du diable ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Visiteurs",
+    "decoys": [
+      "Le Père Noël est une ordure",
+      "Les Bronzés font du ski",
+      "Les Anges gardiens"
+    ],
+    "id": "quote-fr-visiteurs-pif",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Ginette (Marie-Anne Chazel) à Jacquouille, 1993.",
+    "prompt": "« T'as vu ton pif ? Quand tu te mouches, t'as pas l'impression de serrer la main à un pote ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Tontons flingueurs",
+    "decoys": ["Le Cave se rebiffe", "Les Barbouzes", "Mélodie en sous-sol"],
+    "id": "quote-fr-tontons-brutal",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Raoul Volfoni (Bernard Blier), dans la scène de la cuisine, 1963.",
+    "prompt": "« Faut r'connaître… c'est du brutal ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Tontons flingueurs",
+    "decoys": ["Les Barbouzes", "Ne nous fâchons pas", "Le Cave se rebiffe"],
+    "id": "quote-fr-tontons-dingues",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Raoul Volfoni (Bernard Blier), 1963.",
+    "prompt": "« Mais moi, les dingues, je les soigne. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Tontons flingueurs",
+    "decoys": [
+      "Ne nous fâchons pas",
+      "Le Gentleman d'Epsom",
+      "Mélodie en sous-sol"
+    ],
+    "id": "quote-fr-tontons-montauban",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Fernand Naudin (Lino Ventura), 1963.",
+    "prompt": "« On ne devrait jamais quitter Montauban. »"
+  },
+  {
+    "accepted": ["Les Bronzés"],
+    "answer": "Les Bronzés font du ski",
+    "decoys": [
+      "Viens chez moi, j'habite chez une copine",
+      "Le Père Noël est une ordure",
+      "Les Sous-doués"
+    ],
+    "id": "quote-fr-bronzes-ski-dusse",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jean-Claude Dusse (Michel Blanc) à la réceptionniste, 1979.",
+    "prompt": "« Dusse, avec un D comme Dusse. »"
+  },
+  {
+    "accepted": ["Les Bronzés"],
+    "answer": "Les Bronzés font du ski",
+    "decoys": [
+      "Les Sous-doués",
+      "Les Babas Cool",
+      "Viens chez moi, j'habite chez une copine"
+    ],
+    "id": "quote-fr-bronzes-ski-baton",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jean-Claude Dusse (Michel Blanc), excédé par la leçon du « planté du bâton », 1979.",
+    "prompt": "« Je vais te le planter, le bâton, moi ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Bronzés",
+    "decoys": [
+      "Les Sous-doués en vacances",
+      "Le Gendarme en balade",
+      "Les Bidasses en folie"
+    ],
+    "id": "quote-fr-bronzes-pourcentage",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jérôme (Christian Clavier) et Popeye (Thierry Lhermitte), 1978.",
+    "prompt": "« Y a quel pourcentage de filles pour un mec ? — Ça dépend du mec. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Père Noël est une ordure",
+    "decoys": [
+      "Papy fait de la résistance",
+      "Les Hommes préfèrent les grosses",
+      "Viens chez moi, j'habite chez une copine"
+    ],
+    "id": "quote-fr-pere-noel-pierre",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Madame Musquin (Josiane Balasko), 1982.",
+    "prompt": "« Je ne vous jette pas la pierre, Pierre, mais j'étais à deux doigts de m'agacer. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Père Noël est une ordure",
+    "decoys": ["Les Bronzés", "Le Dîner de cons", "Papy fait de la résistance"],
+    "id": "quote-fr-pere-noel-doubitchous",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Monsieur Preskovic (Bruno Moynot), 1982.",
+    "prompt": "« Ce sont les fameux doubitchous de Sofia. »"
+  },
+  {
+    "accepted": ["La Cité de la peur, une comédie familiale"],
+    "answer": "La Cité de la peur",
+    "decoys": ["Les Trois Frères", "La Vérité si je mens !", "Didier"],
+    "id": "quote-fr-cite-peur-whisky",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le commissaire Bialès (Gérard Darmon) et Odile Deray (Chantal Lauby), 1994.",
+    "prompt": "« Vous voulez un whisky ? — Oh, juste un doigt. — Vous ne voulez pas un whisky d'abord ? »"
+  },
+  {
+    "accepted": ["La Cité de la peur, une comédie familiale"],
+    "answer": "La Cité de la peur",
+    "decoys": ["La Totale !", "Les Trois Frères", "Gazon maudit"],
+    "id": "quote-fr-cite-peur-pape",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Serge Karamazov (Alain Chabat) et Odile Deray (Chantal Lauby), 1994.",
+    "prompt": "« Odile Deray ? — Non, je suis le pape et j'attends ma sœur. »"
+  },
+  {
+    "accepted": ["La Cité de la peur, une comédie familiale"],
+    "answer": "La Cité de la peur",
+    "decoys": ["La Vérité si je mens !", "Les Visiteurs", "Le Jaguar"],
+    "id": "quote-fr-cite-peur-chien",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tiffany et Serge Karamazov (Alain Chabat), 1994.",
+    "prompt": "« Ça fait trois fois qu'il est mort ton chien. — Oui, mais il a beaucoup souffert ! »"
+  },
+  {
+    "accepted": ["La Cité de la peur, une comédie familiale"],
+    "answer": "La Cité de la peur",
+    "decoys": ["Le Professionnel", "Les Ripoux", "La Totale !"],
+    "id": "quote-fr-cite-peur-martoni",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le commissaire Bialès (Gérard Darmon), 1994.",
+    "prompt": "« Tu bluffes, Martoni. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Valseuses",
+    "decoys": ["Préparez vos mouchoirs", "Buffet froid", "Tenue de soirée"],
+    "id": "quote-fr-valseuses-fraiche",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jean-Claude (Gérard Depardieu) à Pierrot (Patrick Dewaere), 1974.",
+    "prompt": "« On n'est pas bien, là ? Paisibles, à la fraîche… »"
+  },
+  {
+    "accepted": ["Le Grand Détournement"],
+    "answer": "La Classe américaine",
+    "decoys": [
+      "Le Grand Blond avec une chaussure noire",
+      "La Cité de la peur",
+      "Le Retour du grand blond"
+    ],
+    "id": "quote-fr-classe-americaine-train",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "George Abitbol (John Wayne, voix de Raymond Loyer), 1993.",
+    "prompt": "« Le train de tes injures roule sur le rail de mon indifférence. »"
+  },
+  {
+    "accepted": ["Le Grand Détournement"],
+    "answer": "La Classe américaine",
+    "decoys": ["La Cité de la peur", "Le Jouet", "Les Clefs de bagnole"],
+    "id": "quote-fr-classe-americaine-fax",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "George Abitbol (John Wayne, voix de Raymond Loyer), 1993.",
+    "prompt": "« Si tu veux me parler, envoie-moi un… fax ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Pacha",
+    "decoys": ["Le Président", "Mort d'un pourri", "Mélodie en sous-sol"],
+    "id": "quote-fr-pacha-orbite",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le commissaire Joss (Jean Gabin), dialogue de Michel Audiard, 1968.",
+    "prompt": "« Je pense que le jour où on mettra les cons sur orbite, t'as pas fini de tourner. »"
+  },
+  {
+    "accepted": [],
+    "answer": "La Traversée de Paris",
+    "decoys": [
+      "Le Cave se rebiffe",
+      "Le Mur de l'Atlantique",
+      "Un singe en hiver"
+    ],
+    "id": "quote-fr-traversee-paris-pauvres",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Grandgil (Jean Gabin), aux clients du café, 1956.",
+    "prompt": "« Salauds de pauvres ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Un singe en hiver",
+    "decoys": [
+      "Le Président",
+      "Le Baron de l'Écluse",
+      "Les Vieux de la vieille"
+    ],
+    "id": "quote-fr-singe-hiver-buvais",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Albert Quentin (Jean Gabin), 1962.",
+    "prompt": "« Si je buvais moins, je serais un autre homme, et j'y tiens pas ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Un singe en hiver",
+    "decoys": [
+      "Le Magnifique",
+      "Week-end à Zuydcoote",
+      "Le Clan des Siciliens"
+    ],
+    "id": "quote-fr-singe-hiver-assurances",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Gabriel Fouquet (Jean-Paul Belmondo), 1962.",
+    "prompt": "« Monsieur Esnault, si la connerie n'est pas remboursée par les assurances sociales, vous finirez sur la paille ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Cave se rebiffe",
+    "decoys": [
+      "Le Gentleman d'Epsom",
+      "Ne nous fâchons pas",
+      "Le Clan des Siciliens"
+    ],
+    "id": "quote-fr-cave-rebiffe-education",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Bernard Blier, dialogue de Michel Audiard, 1961.",
+    "prompt": "« L'éducation, ça s'apprend pas. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Corniaud",
+    "decoys": ["Le Grand Restaurant", "Oscar", "Hibernatus"],
+    "id": "quote-fr-corniaud-pieton",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Antoine Maréchal (Bourvil) et Léopold Saroyan (Louis de Funès), 1965.",
+    "prompt": "« Qu'est-ce que je vais devenir, moi ? — Eh bien… piéton ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "La Grande Vadrouille",
+    "decoys": ["Oscar", "Les Grandes Gueules", "Le Grand Restaurant"],
+    "id": "quote-fr-grande-vadrouille-tres-mauvais",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Stanislas Lefort (Louis de Funès), chef d'orchestre, 1966.",
+    "prompt": "« C'est de la bouillie tout ça ! C'était pas mauvais, c'était très mauvais ! »"
+  },
+  {
+    "accepted": ["Rabbi Jacob"],
+    "answer": "Les Aventures de Rabbi Jacob",
+    "decoys": ["L'Aile ou la Cuisse", "La Zizanie", "Le Tatoué"],
+    "id": "quote-fr-rabbi-jacob-effarant",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Victor Pivert (Louis de Funès), 1973.",
+    "prompt": "« Ça alors ! C'était Farès ? C'est effarant ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "La Soupe aux choux",
+    "decoys": [
+      "L'Aile ou la Cuisse",
+      "La Zizanie",
+      "Le Gendarme et les Extra-terrestres"
+    ],
+    "id": "quote-fr-soupe-gentillesses",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le Glaude (Louis de Funès), 1981.",
+    "prompt": "« Ça tient au corps, ça vous fait même des gentillesses dans la tête. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Dîner de cons",
+    "decoys": ["Le Placard", "Les Compères", "La Chèvre"],
+    "id": "quote-fr-diner-cons-allumettes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "François Pignon (Jacques Villeret), 1998.",
+    "prompt": "« La tour Eiffel… entièrement faite avec des allumettes, 346 422 exactement ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Dîner de cons",
+    "decoys": ["La Chèvre", "Les Fugitifs", "Un Indien dans la ville"],
+    "id": "quote-fr-diner-cons-coq",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Lucien Cheval (Daniel Prévost), 1998.",
+    "prompt": "« Comme on dit dans mon village : le coq est lâché, gardez vos poules. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Intouchables",
+    "decoys": [
+      "Le Sens de la fête",
+      "Qu'est-ce qu'on a fait au Bon Dieu ?",
+      "Les Petits Mouchoirs"
+    ],
+    "id": "quote-fr-intouchables-pas-de-bras",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Driss (Omar Sy), 2011.",
+    "prompt": "« Pas d'bras, pas d'chocolat ! »"
+  },
+  {
+    "accepted": ["Amélie Poulain", "Amélie"],
+    "answer": "Le Fabuleux Destin d'Amélie Poulain",
+    "decoys": [
+      "Un long dimanche de fiançailles",
+      "La Science des rêves",
+      "Les Poupées russes"
+    ],
+    "id": "quote-fr-amelie-os-en-verre",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Raymond Dufayel, le peintre voisin d'Amélie (Serge Merlin), 2001.",
+    "prompt": "« Vous n'avez pas des os en verre. Vous pouvez vous cogner à la vie. »"
+  },
+  {
+    "accepted": ["Amélie Poulain", "Amélie"],
+    "answer": "Le Fabuleux Destin d'Amélie Poulain",
+    "decoys": ["Le Goût des autres", "Ensemble, c'est tout", "Delicatessen"],
+    "id": "quote-fr-amelie-sans-toi",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Hipolito, l'écrivain raté du café des Deux Moulins, 2001.",
+    "prompt": "« Sans toi, les émotions d'aujourd'hui ne seraient que la peau morte des émotions d'autrefois. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Jeux d'enfants",
+    "decoys": [
+      "L'Arnacœur",
+      "Ensemble, c'est tout",
+      "Un long dimanche de fiançailles"
+    ],
+    "id": "quote-fr-jeux-d-enfants-cap",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le jeu de défis de Julien (Guillaume Canet) et Sophie (Marion Cotillard), 2003.",
+    "prompt": "« Cap ou pas cap ? »"
+  },
+  {
+    "accepted": ["OSS 117", "Le Caire, nid d'espions"],
+    "answer": "OSS 117 : Le Caire, nid d'espions",
+    "decoys": [
+      "Le Magnifique",
+      "Les Barbouzes",
+      "Le Grand Blond avec une chaussure noire"
+    ],
+    "id": "quote-fr-oss-117-biscotte",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2006.",
+    "prompt": "« J'aime me beurrer la biscotte. »"
+  },
+  {
+    "accepted": ["OSS 117", "Le Caire, nid d'espions"],
+    "answer": "OSS 117 : Le Caire, nid d'espions",
+    "decoys": ["L'Homme de Rio", "Le Professionnel", "Les Barbouzes"],
+    "id": "quote-fr-oss-117-grandir",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2006.",
+    "prompt": "« S'agirait de grandir ! »"
+  },
+  {
+    "accepted": ["OSS 117", "Le Caire, nid d'espions"],
+    "answer": "OSS 117 : Le Caire, nid d'espions",
+    "decoys": ["Le Magnifique", "L'Homme de Rio", "Le Retour du Grand Blond"],
+    "id": "quote-fr-oss-117-piquette-jack",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2006.",
+    "prompt": "« 23-0 ! C'est la piquette, Jack ! Tu sais pas jouer, Jack ! T'es mauvais ! »"
+  },
+  {
+    "accepted": ["Mission Cléopâtre", "Astérix", "Astérix et Obélix"],
+    "answer": "Astérix et Obélix : Mission Cléopâtre",
+    "decoys": ["Les Visiteurs", "RRRrrrr!!!", "La Cité de la peur"],
+    "id": "quote-fr-mission-cleopatre-trop-calme",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Numérobis (Jamel Debbouze), 2002.",
+    "prompt": "« C'est trop calme… J'aime pas trop beaucoup ça… J'préfère quand c'est un peu trop plus moins calme. »"
+  },
+  {
+    "accepted": ["Mission Cléopâtre", "Astérix", "Astérix et Obélix"],
+    "answer": "Astérix et Obélix : Mission Cléopâtre",
+    "decoys": ["Le Pacte des loups", "Les Visiteurs", "Didier"],
+    "id": "quote-fr-mission-cleopatre-pas-de-pierre",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Amonbofis (Gérard Darmon), 2002.",
+    "prompt": "« Pas de pierre : pas de construction. Pas de construction : pas de palais. Pas de palais : … pas de palais. »"
+  },
+  {
+    "accepted": ["Mission Cléopâtre", "Astérix", "Astérix et Obélix"],
+    "answer": "Astérix et Obélix : Mission Cléopâtre",
+    "decoys": ["La Cité de la peur", "Le Boulet", "Le Pacte des loups"],
+    "id": "quote-fr-mission-cleopatre-grande-allee",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Numérobis (Jamel Debbouze), 2002.",
+    "prompt": "« Et là… une grande allée avec plein d'statues, qu'on appellera la grande allée avec plein d'statues ! »"
+  },
+  {
+    "accepted": ["Astérix aux JO", "Astérix", "Astérix et Obélix"],
+    "answer": "Astérix aux Jeux olympiques",
+    "decoys": ["Les Bronzés 3 : Amis pour la vie", "Disco", "Les Dalton"],
+    "id": "quote-fr-asterix-jo-cesar-murit",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jules César (Alain Delon), 2008.",
+    "prompt": "« César ne vieillit pas, il mûrit, ses cheveux ne blanchissent pas, ils s'illuminent… »"
+  },
+  {
+    "accepted": ["Au service de Sa Majesté", "Astérix", "Astérix et Obélix"],
+    "answer": "Astérix et Obélix : Au service de Sa Majesté",
+    "decoys": ["Les Profs", "Sur la piste du Marsupilami", "Les Seigneurs"],
+    "id": "quote-fr-asterix-majeste-apres-jc",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jules César (Fabrice Luchini), 2012.",
+    "prompt": "« Mon passage sur Terre aura un tel impact que dans deux mille ans, on dira : ‹ on est en 2000 après J.-C. › »"
+  },
+  {
+    "accepted": [],
+    "answer": "Léon",
+    "decoys": ["Nikita", "Les Rivières pourpres", "Dobermann"],
+    "id": "quote-fr-leon-tout-le-temps",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mathilda (Natalie Portman) et Léon (Jean Reno), 1994.",
+    "prompt": "« La vie, c'est comme ça tout le temps ? Ou c'est seulement quand on est petit ? — C'est comme ça tout le temps. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Léon",
+    "decoys": ["Nikita", "Le Samouraï", "Dobermann"],
+    "id": "quote-fr-leon-ni-femme-ni-enfant",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le code du tueur à gages Léon (Jean Reno), 1994.",
+    "prompt": "« Ni femme, ni enfant. »"
+  },
+  {
+    "accepted": ["Le 5e Élément", "Le 5ème Élément"],
+    "answer": "Le Cinquième Élément",
+    "decoys": [
+      "Stargate, la porte des étoiles",
+      "Men in Black",
+      "Valérian et la Cité des mille planètes"
+    ],
+    "id": "quote-fr-cinquieme-element-aziz-lumiere",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le professeur Pacoli, dans le temple égyptien, 1997.",
+    "prompt": "« Aziz, lumière ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Marius",
+    "decoys": ["La Femme du boulanger", "Angèle", "Regain"],
+    "id": "quote-fr-marius-fends-le-coeur",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "César (Raimu), pendant la partie de cartes, 1931.",
+    "prompt": "« Tu me fends le cœur ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Marius",
+    "decoys": ["Le Schpountz", "Regain", "Toni"],
+    "id": "quote-fr-marius-quatre-tiers",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Marius (Pierre Fresnay), quand César lui apprend le picon-citron-curaçao, 1931.",
+    "prompt": "« Et ça fait quatre tiers. »"
+  },
+  {
+    "accepted": ["Les Ch'tis"],
+    "answer": "Bienvenue chez les Ch'tis",
+    "decoys": ["Rien à déclarer", "Les Tuche", "La Maison du bonheur"],
+    "id": "quote-fr-chtis-wassingue",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le grand-oncle de Julie (Michel Galabru), 2008.",
+    "prompt": "« Et quand tu crois tout comprendre, tu apprends que serpillière ça se dit wassingue, alors… »"
+  },
+  {
+    "accepted": [],
+    "answer": "Brice de Nice",
+    "decoys": ["Camping", "Les Onze Commandements", "Iznogoud"],
+    "id": "quote-fr-brice-de-nice-h-de-hawai",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brice (Jean Dujardin), 2005.",
+    "prompt": "« Tu es comme le H de Hawaï : tu sers à rien ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Choristes",
+    "decoys": [
+      "Le Petit Nicolas",
+      "La Nouvelle Guerre des boutons",
+      "Les Grandes Gueules"
+    ],
+    "id": "quote-fr-choristes-action-reaction",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La devise du directeur Rachin, que reprend le surveillant Chabert (Kad Merad), 2004.",
+    "prompt": "« Action… réaction ! »"
+  },
+  {
+    "accepted": ["99 F"],
+    "answer": "99 francs",
+    "decoys": ["L'Ennemi public n°1", "Le Placard", "Podium"],
+    "id": "quote-fr-99-francs-tout-s-achete",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Octave Parango (Jean Dujardin), en voix off, 2007.",
+    "prompt": "« Tout s'achète. L'amour, l'art, la planète Terre, vous, moi. Surtout moi. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Sens de la fête",
+    "decoys": ["Le Grand Bain", "Hors normes", "Le Goût des autres"],
+    "id": "quote-fr-sens-de-la-fete-manche",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Max, le traiteur (Jean-Pierre Bacri), 2017.",
+    "prompt": "« Et là, je vous garantis que vous serez dans la partie basse de la fourchette, vous serez même dans le manche ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "La Haine",
+    "decoys": ["Assassin(s)", "Raï", "Ma 6-T va crack-er"],
+    "id": "quote-fr-la-haine-atterrissage",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Hubert (Hubert Koundé), 1995.",
+    "prompt": "« L'important n'est pas la chute, c'est l'atterrissage. »"
+  },
+  {
+    "accepted": [],
+    "answer": "L'Auberge espagnole",
+    "decoys": ["Le Goût des autres", "L'Arnacœur", "Les Beaux Gosses"],
+    "id": "quote-fr-auberge-espagnole-bordel",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Xavier (Romain Duris), en voix off, 2002.",
+    "prompt": "« Je suis comme l'Europe, je suis tout ça. Je suis un vrai bordel. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Camping",
+    "decoys": ["Les Bronzés 3 : Amis pour la vie", "Disco", "Les Tuche"],
+    "id": "quote-fr-camping-naturiste",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Patrick Chirac (Franck Dubosc), 2006, sacrée réplique de l'année aux NRJ Ciné Awards.",
+    "prompt": "« Chassez le naturiste, il revient au bungalow. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Dikkenek",
+    "decoys": [
+      "C'est arrivé près de chez vous",
+      "Rien à déclarer",
+      "Les Onze Commandements"
+    ],
+    "id": "quote-fr-dikkenek-je-plais-pas",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jean-Claude (Jean-Luc Couchard), 2006.",
+    "prompt": "« Je sais que j'plais pas à tout le monde ! Mais quand je vois à qui j'plais pas, j'me demande si ça me dérange vraiment. »"
+  },
+  {
+    "accepted": ["The Lion King"],
+    "answer": "Le Roi lion",
+    "decoys": ["Le Livre de la jungle", "Tarzan", "Frère des ours"],
+    "id": "quote-fr-roi-lion-lumiere",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mufasa à Simba, en haut de la Terre des Lions, 1994.",
+    "prompt": "« Tout ce que touche la lumière est notre royaume. »"
+  },
+  {
+    "accepted": ["The Lion King"],
+    "answer": "Le Roi lion",
+    "decoys": [
+      "Madagascar",
+      "Le Livre de la jungle",
+      "Spirit, l'étalon des plaines"
+    ],
+    "id": "quote-fr-roi-lion-hakuna-matata",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La chanson de Timon et Pumbaa, 1994.",
+    "prompt": "« Hakuna matata, mais quelle phrase magnifique ! »"
+  },
+  {
+    "accepted": ["Nemo", "Finding Nemo"],
+    "answer": "Le Monde de Nemo",
+    "decoys": ["Gang de requins", "La Petite Sirène", "Les Indestructibles"],
+    "id": "quote-fr-nemo-continue-de-nager",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dory, la petite chirurgien bleue sans mémoire, 2003.",
+    "prompt": "« Continue de nager, continue de nager… »"
+  },
+  {
+    "accepted": ["Nemo", "Finding Nemo"],
+    "answer": "Le Monde de Nemo",
+    "decoys": ["Gang de requins", "Monstres et Cie", "Ratatouille"],
+    "id": "quote-fr-nemo-p-sherman",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dory récite l'adresse lue sur le masque du plongeur, 2003.",
+    "prompt": "« P. Sherman, 42 Wallaby Way, Sydney. »"
+  },
+  {
+    "accepted": ["Nemo", "Finding Nemo"],
+    "answer": "Le Monde de Nemo",
+    "decoys": ["Chicken Run", "L'Âge de glace", "Les Rebelles de la forêt"],
+    "id": "quote-fr-nemo-mouettes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Les mouettes du port de Sydney, 2003.",
+    "prompt": "« À moi ! À moi ! À moi ! »"
+  },
+  {
+    "accepted": ["Toy Story 1"],
+    "answer": "Toy Story",
+    "decoys": ["1001 Pattes", "Monstres et Cie", "Cars"],
+    "id": "quote-fr-toy-story-serpent-botte",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La boîte à voix de Woody, le cow-boy qu'on tire par la ficelle, 1995.",
+    "prompt": "« Il y a un serpent dans ma botte ! »"
+  },
+  {
+    "accepted": ["Toy Story 1"],
+    "answer": "Toy Story",
+    "decoys": ["Moi, moche et méchant", "Monstres contre Aliens", "Wall-E"],
+    "id": "quote-fr-toy-story-grappin",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Les petits extraterrestres de la machine à pinces du Pizza Planet, 1995.",
+    "prompt": "« Le grappin est notre maître. Le grappin choisit qui doit partir et qui doit rester. »"
+  },
+  {
+    "accepted": ["Toy Story 1"],
+    "answer": "Toy Story",
+    "decoys": ["Les Indestructibles", "Fourmiz", "1001 Pattes"],
+    "id": "quote-fr-toy-story-tomber-avec-panache",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Woody, devant le premier « vol » de Buzz l'Éclair, 1995.",
+    "prompt": "« J'appelle pas ça voler. J'appelle ça tomber avec panache. »"
+  },
+  {
+    "accepted": ["Shrek 1"],
+    "answer": "Shrek",
+    "decoys": ["L'Âge de glace", "Madagascar", "Gang de requins"],
+    "id": "quote-fr-shrek-oignons",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Shrek (Alain Chabat) et l'Âne, 2001.",
+    "prompt": "« Les ogres, c'est comme les oignons. — Ça schlingue ? »"
+  },
+  {
+    "accepted": ["Shrek 1"],
+    "answer": "Shrek",
+    "decoys": ["Fourmiz", "Chicken Run", "Kuzco, l'empereur mégalo"],
+    "id": "quote-fr-shrek-marais",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Shrek, envahi par les personnages de contes, 2001.",
+    "prompt": "« Qu'est-ce que vous faites dans mon marais ?! »"
+  },
+  {
+    "accepted": ["Shrek", "Shrek II"],
+    "answer": "Shrek 2",
+    "decoys": ["Madagascar", "L'Âge de glace 2", "Nos voisins, les hommes"],
+    "id": "quote-fr-shrek-2-bientot-arrives",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "L'Âne, en boucle, sur la route du royaume de Fort Fort Lointain, 2004.",
+    "prompt": "« On est bientôt arrivés ? »"
+  },
+  {
+    "accepted": ["Frozen"],
+    "answer": "La Reine des neiges",
+    "decoys": ["Raiponce", "Rebelle", "Vaiana, la légende du bout du monde"],
+    "id": "quote-fr-reine-des-neiges-liberee",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Elsa chante sur la montagne, voix française d'Anaïs Delva, 2013.",
+    "prompt": "« Libérée, délivrée, je ne mentirai plus jamais ! »"
+  },
+  {
+    "accepted": ["Frozen"],
+    "answer": "La Reine des neiges",
+    "decoys": ["Les Mondes de Ralph", "Raiponce", "Zootopie"],
+    "id": "quote-fr-reine-des-neiges-olaf",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Olaf, le bonhomme de neige (Dany Boon en VF), 2013.",
+    "prompt": "« Moi, c'est Olaf, et j'aime les gros câlins ! »"
+  },
+  {
+    "accepted": ["Blanche-Neige", "Snow White"],
+    "answer": "Blanche-Neige et les Sept Nains",
+    "decoys": ["Cendrillon", "La Belle au bois dormant", "Pinocchio"],
+    "id": "quote-fr-blanche-neige-miroir",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La Reine interroge son miroir, version française du film de 1937.",
+    "prompt": "« Miroir magique au mur, qui a beauté parfaite et pure ? »"
+  },
+  {
+    "accepted": ["Alice", "Alice in Wonderland"],
+    "answer": "Alice au pays des merveilles",
+    "decoys": ["Peter Pan", "Cendrillon", "Pinocchio"],
+    "id": "quote-fr-alice-en-retard",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le Lapin blanc, montre à gousset en main, 1951.",
+    "prompt": "« Je suis en retard, en retard, en retard ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Aladdin",
+    "decoys": ["Hercule", "Le Bossu de Notre-Dame", "Le Prince d'Égypte"],
+    "id": "quote-fr-aladdin-pouvoirs-cosmiques",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le Génie, sur la vie dans une lampe, 1992.",
+    "prompt": "« Phénoménaux pouvoirs cosmiques… dans un minuscule espace vital ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Aladdin",
+    "decoys": ["Hercule", "La Belle et la Bête", "Kuzco, l'empereur mégalo"],
+    "id": "quote-fr-aladdin-trois-souhaits",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le Génie, à sa sortie de la lampe, 1992.",
+    "prompt": "« Trois souhaits. Trois ! Unos, dos, tres. Ni repris, ni échangés, ni remboursés. »"
+  },
+  {
+    "accepted": ["The Jungle Book"],
+    "answer": "Le Livre de la jungle",
+    "decoys": ["Les Aristochats", "Robin des Bois", "Les 101 Dalmatiens"],
+    "id": "quote-fr-livre-jungle-il-en-faut-peu",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Baloo, chanté en VF par Jean Stout, 1967.",
+    "prompt": "« Il en faut peu pour être heureux, vraiment très peu pour être heureux. »"
+  },
+  {
+    "accepted": ["The Jungle Book"],
+    "answer": "Le Livre de la jungle",
+    "decoys": ["Robin des Bois", "Merlin l'Enchanteur", "Les 101 Dalmatiens"],
+    "id": "quote-fr-livre-jungle-aie-confiance",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Kaa le serpent hypnotise Mowgli, chanté en VF par Roger Carel, 1967.",
+    "prompt": "« Aie confiance, crois en moi, que je puisse veiller sur toi. »"
+  },
+  {
+    "accepted": ["The Aristocats"],
+    "answer": "Les Aristochats",
+    "decoys": [
+      "La Belle et le Clochard",
+      "Robin des Bois",
+      "Oliver et Compagnie"
+    ],
+    "id": "quote-fr-aristochats-cat",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Scat Cat, O'Malley et toute la bande des chats jazzmen, 1970.",
+    "prompt": "« Tout le monde veut devenir un cat, parce qu'un chat quand il est cat retombe sur ses pattes. »"
+  },
+  {
+    "accepted": ["The Little Mermaid"],
+    "answer": "La Petite Sirène",
+    "decoys": ["La Belle et la Bête", "Pocahontas", "Oliver et Compagnie"],
+    "id": "quote-fr-petite-sirene-sous-l-ocean",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sébastien le crabe, chanté en VF par Henri Salvador, 1989.",
+    "prompt": "« Sous l'océan, sous l'océan, doudou c'est bien mieux, tout le monde est heureux sous l'océan. »"
+  },
+  {
+    "accepted": ["The Incredibles"],
+    "answer": "Les Indestructibles",
+    "decoys": ["Megamind", "Moi, moche et méchant", "Les Nouveaux Héros"],
+    "id": "quote-fr-indestructibles-pas-de-capes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Edna Mode, la créatrice de costumes de super-héros, 2004.",
+    "prompt": "« Pas de capes ! »"
+  },
+  {
+    "accepted": ["The Incredibles"],
+    "answer": "Les Indestructibles",
+    "decoys": ["Megamind", "Les Nouveaux Héros", "Monstres contre Aliens"],
+    "id": "quote-fr-indestructibles-tout-le-monde-super",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Syndrome, le méchant, révèle son plan, 2004.",
+    "prompt": "« Et quand tout le monde sera super… plus personne ne le sera. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kung Fu Panda",
+    "decoys": ["Mulan", "Dragons", "Les Croods"],
+    "id": "quote-fr-kung-fu-panda-present",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Maître Oogway, la vieille tortue, à Po, 2008.",
+    "prompt": "« Hier est derrière, demain est mystère, et aujourd'hui est un cadeau : c'est pour ça qu'on l'appelle le présent. »"
+  },
+  {
+    "accepted": ["Despicable Me"],
+    "answer": "Moi, moche et méchant",
+    "decoys": ["Megamind", "Comme des bêtes", "Tous en scène"],
+    "id": "quote-fr-moi-moche-fluffy",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Agnès, la plus petite des trois orphelines, devant une licorne en peluche, 2010.",
+    "prompt": "« Il est trop fluffy ! »"
+  },
+  {
+    "accepted": ["Cars : Quatre roues"],
+    "answer": "Cars",
+    "decoys": ["Planes", "Turbo", "Volt, star malgré lui"],
+    "id": "quote-fr-cars-katchow",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le cri de Flash McQueen, que Sally lui renvoie, 2006.",
+    "prompt": "« Ka-tchow ! »"
+  },
+  {
+    "accepted": ["Lilo & Stitch", "Stitch"],
+    "answer": "Lilo et Stitch",
+    "decoys": [
+      "Frère des ours",
+      "Kuzco, l'empereur mégalo",
+      "Atlantide, l'empire perdu"
+    ],
+    "id": "quote-fr-lilo-stitch-ohana",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lilo, puis Stitch, avec Nani, 2002.",
+    "prompt": "« Ohana, ça veut dire famille. Famille, ça veut dire que personne ne doit être abandonné, ni oublié. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Mulan",
+    "decoys": ["Pocahontas", "Le Prince d'Égypte", "Tarzan"],
+    "id": "quote-fr-mulan-deshonneur",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mushu, le petit dragon, à sa première rencontre avec l'héroïne, 1998.",
+    "prompt": "« Déshonneur ! Déshonneur sur toi ! Déshonneur sur ta vache ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Mulan",
+    "decoys": [
+      "Le Bossu de Notre-Dame",
+      "La Route d'Eldorado",
+      "Atlantide, l'empire perdu"
+    ],
+    "id": "quote-fr-mulan-lezard",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Mushu, vexé d'être pris pour un lézard, 1998.",
+    "prompt": "« Dragon ! Dragon, y a pas d'lézard ! Nous ne parlons pas la même langue ! »"
+  },
+  {
+    "accepted": ["Kuzco", "The Emperor's New Groove"],
+    "answer": "Kuzco, l'empereur mégalo",
+    "decoys": ["Lilo et Stitch", "Hercule", "La Planète au trésor"],
+    "id": "quote-fr-kuzco-levier",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Yzma, avant de tomber par la trappe, 2000.",
+    "prompt": "« Abaisse le levier, Kronk ! … PAS CELUI-LÀÀÀ ! »"
+  },
+  {
+    "accepted": ["Kuzco", "The Emperor's New Groove"],
+    "answer": "Kuzco, l'empereur mégalo",
+    "decoys": [
+      "La Planète au trésor",
+      "Atlantide, l'empire perdu",
+      "Chicken Little"
+    ],
+    "id": "quote-fr-kuzco-groove",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "L'empereur, au vieil homme qu'il fait jeter par la fenêtre, 2000.",
+    "prompt": "« Tu m'as pourri mon groove. »"
+  },
+  {
+    "accepted": ["Tangled"],
+    "answer": "Raiponce",
+    "decoys": [
+      "La Princesse et la Grenouille",
+      "Volt, star malgré lui",
+      "Rebelle"
+    ],
+    "id": "quote-fr-raiponce-armoire",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "L'héroïne, après avoir assommé Flynn Rider à la poêle, 2010.",
+    "prompt": "« Il y a une personne dans mon armoire. Il y a une personne… dans mon armoire. »"
+  },
+  {
+    "accepted": ["Hercules"],
+    "answer": "Hercule",
+    "decoys": ["Le Bossu de Notre-Dame", "Anastasia", "La Planète au trésor"],
+    "id": "quote-fr-hercule-retraite",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Philoctète, le satyre entraîneur (Patrick Timsit en VF), 1997.",
+    "prompt": "« Deux mots : je suis à la retraite. »"
+  },
+  {
+    "accepted": [
+      "Les 12 Travaux d'Astérix",
+      "Les XII Travaux d'Astérix",
+      "Astérix"
+    ],
+    "answer": "Les Douze Travaux d'Astérix",
+    "decoys": [
+      "Lucky Luke : Daisy Town",
+      "La Ballade des Dalton",
+      "Tintin et le Temple du Soleil"
+    ],
+    "id": "quote-fr-12-travaux-asterix-a38",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Astérix, dans la maison qui rend fou, 1976.",
+    "prompt": "« Nous devons obtenir le laissez-passer A-38. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Ratatouille",
+    "decoys": ["Là-haut", "Wall-E", "Le Petit Prince"],
+    "id": "quote-fr-ratatouille-grand-artiste",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Anton Ego, le critique gastronomique, dans sa critique finale, 2007.",
+    "prompt": "« Tout le monde ne peut pas devenir un grand artiste. Mais un grand artiste peut surgir n'importe où. »"
+  },
+  {
+    "accepted": [
+      "Star Wars",
+      "L'Empire contre-attaque",
+      "Star Wars 5",
+      "Star Wars V",
+      "The Empire Strikes Back"
+    ],
+    "answer": "Star Wars : L'Empire contre-attaque",
+    "decoys": ["Dune", "Flash Gordon", "Tron"],
+    "id": "quote-fr-star-wars-yoda-essai",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Maître Yoda (voix de Frank Oz en VO) à Luke, 1980.",
+    "prompt": "« Non ! N'essaie pas. Fais-le, ou ne le fais pas. Mais il n'y a pas d'essai. »"
+  },
+  {
+    "accepted": [
+      "Star Wars",
+      "L'Empire contre-attaque",
+      "Star Wars 5",
+      "Star Wars V",
+      "The Empire Strikes Back"
+    ],
+    "answer": "Star Wars : L'Empire contre-attaque",
+    "decoys": ["Willow", "Krull", "Dark Crystal"],
+    "id": "quote-fr-star-wars-je-sais",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La princesse Leia (Carrie Fisher) et Han Solo (Harrison Ford), 1980.",
+    "prompt": "« Je t'aime. — Je sais. »"
+  },
+  {
+    "accepted": [
+      "Star Wars",
+      "Un nouvel espoir",
+      "La Guerre des étoiles",
+      "Star Wars 4",
+      "Star Wars IV",
+      "A New Hope"
+    ],
+    "answer": "Star Wars : Un nouvel espoir",
+    "decoys": [
+      "Rencontres du troisième type",
+      "Alien, le huitième passager",
+      "Superman"
+    ],
+    "id": "quote-fr-star-wars-force-soit-avec-toi",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Obi-Wan Kenobi (Alec Guinness) à Luke Skywalker, 1977.",
+    "prompt": "« Que la Force soit avec toi. »"
+  },
+  {
+    "accepted": ["Back to the Future"],
+    "answer": "Retour vers le futur",
+    "decoys": ["Les Goonies", "S.O.S. Fantômes", "Gremlins"],
+    "id": "quote-fr-retour-vers-le-futur-nom-de-zeus",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Doc Emmett Brown (Christopher Lloyd), 1985 ; la VF de « Great Scott! ».",
+    "prompt": "« Nom de Zeus ! »"
+  },
+  {
+    "accepted": ["The Matrix"],
+    "answer": "Matrix",
+    "decoys": ["Dark City", "eXistenZ", "Johnny Mnemonic"],
+    "id": "quote-fr-matrix-cuillere",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le garçon à la cuillère (Rowan Witt) à Neo, 1999.",
+    "prompt": "« N'essaie pas de tordre la cuillère car c'est impossible… La cuillère n'existe pas. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Gladiator",
+    "decoys": ["Troie", "Alexandre", "Le Roi Arthur"],
+    "id": "quote-fr-gladiator-eternite",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Maximus (Russell Crowe), 2000.",
+    "prompt": "« Ce que l'on fait dans sa vie résonne dans l'éternité. »"
+  },
+  {
+    "accepted": [],
+    "answer": "300",
+    "decoys": ["Troie", "Le Choc des Titans", "Les Immortels"],
+    "id": "quote-fr-300-diner-en-enfer",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Le roi Léonidas (Gerard Butler), 2007.",
+    "prompt": "« Spartiates ! Mangez vos victuailles avec appétit, car nous dînerons en enfer ce soir ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Braveheart",
+    "decoys": [
+      "Rob Roy",
+      "Le Dernier des Mohicans",
+      "Robin des Bois, prince des voleurs"
+    ],
+    "id": "quote-fr-braveheart-liberte",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "William Wallace (Mel Gibson), avant la bataille de Stirling, 1995.",
+    "prompt": "« Ils peuvent nous ôter la vie, mais ils ne nous ôteront jamais notre liberté ! »"
+  },
+  {
+    "accepted": [
+      "Le Seigneur des anneaux",
+      "The Lord of the Rings",
+      "La Communauté de l'anneau"
+    ],
+    "answer": "Le Seigneur des anneaux : La Communauté de l'anneau",
+    "decoys": ["Willow", "Eragon", "Le Monde de Narnia"],
+    "id": "quote-fr-seigneur-des-anneaux-fuyez-pauvres-fous",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gandalf (Ian McKellen), entraîné par le Balrog, 2001.",
+    "prompt": "« Fuyez, pauvres fous ! »"
+  },
+  {
+    "accepted": [
+      "Le Seigneur des anneaux",
+      "The Lord of the Rings",
+      "Les Deux Tours"
+    ],
+    "answer": "Le Seigneur des anneaux : Les Deux Tours",
+    "decoys": ["Willow", "Labyrinthe", "L'Histoire sans fin"],
+    "id": "quote-fr-seigneur-des-anneaux-patates",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gollum (Andy Serkis) et Sam (Sean Astin), 2002.",
+    "prompt": "« C'est quoi des patates, mon précieux ? — Pommes de terre, idiot ! En bouillie, en purée, en rondelles dans un ragoût. »"
+  },
+  {
+    "accepted": [
+      "Le Seigneur des anneaux",
+      "The Lord of the Rings",
+      "Le Retour du roi"
+    ],
+    "answer": "Le Seigneur des anneaux : Le Retour du roi",
+    "decoys": ["Le Monde de Narnia", "Stardust", "Labyrinthe"],
+    "id": "quote-fr-seigneur-des-anneaux-je-peux-vous-porter",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sam (Sean Astin) à Frodon sur la Montagne du Destin, 2003.",
+    "prompt": "« Je ne peux pas le porter pour vous, mais je peux vous porter ! »"
+  },
+  {
+    "accepted": [
+      "Harry Potter",
+      "Harry Potter 1",
+      "Harry Potter and the Philosopher's Stone"
+    ],
+    "answer": "Harry Potter à l'école des sorciers",
+    "decoys": [
+      "La Boussole d'or",
+      "Percy Jackson : Le Voleur de foudre",
+      "Les Chroniques de Spiderwick"
+    ],
+    "id": "quote-fr-harry-potter-leviosa",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Hermione Granger (Emma Watson) à Ron, en cours de sortilèges, 2001.",
+    "prompt": "« Tu prononces mal : c'est Levi-o-sa, pas Levio-sa ! »"
+  },
+  {
+    "accepted": [
+      "Harry Potter",
+      "Les Reliques de la Mort",
+      "Harry Potter 7",
+      "Harry Potter 8",
+      "Harry Potter and the Deathly Hallows"
+    ],
+    "answer": "Harry Potter et les Reliques de la Mort : 2e partie",
+    "decoys": ["Hunger Games : La Révolte", "Divergente", "Le Labyrinthe"],
+    "id": "quote-fr-harry-potter-toujours",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dumbledore (Michael Gambon) et Severus Rogue (Alan Rickman), à propos de Lily, 2011.",
+    "prompt": "« Après tout ce temps ? — Toujours. »"
+  },
+  {
+    "accepted": [
+      "Pirates des Caraïbes",
+      "La Malédiction du Black Pearl",
+      "Pirates of the Caribbean"
+    ],
+    "answer": "Pirates des Caraïbes : La Malédiction du Black Pearl",
+    "decoys": [
+      "L'Île aux pirates",
+      "Le Masque de Zorro",
+      "Hook ou la Revanche du capitaine Crochet"
+    ],
+    "id": "quote-fr-pirates-des-caraibes-failli-capturer",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jack Sparrow (Johnny Depp), 2003.",
+    "prompt": "« Chers amis, que cette journée demeure comme celle où vous avez failli capturer le capitaine Jack Sparrow ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Blade Runner",
+    "decoys": ["Alien, le huitième passager", "Total Recall", "Brazil"],
+    "id": "quote-fr-blade-runner-larmes-dans-la-pluie",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le réplicant Roy Batty (Rutger Hauer), 1982.",
+    "prompt": "« J'ai vu tant de choses que vous, humains, ne pourriez pas croire… Tous ces moments se perdront dans l'oubli comme les larmes dans la pluie. »"
+  },
+  {
+    "accepted": ["2001", "2001: A Space Odyssey"],
+    "answer": "2001 : L'Odyssée de l'espace",
+    "decoys": ["Solaris", "Silent Running", "Rencontres du troisième type"],
+    "id": "quote-fr-2001-hal-dave",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "L'ordinateur HAL 9000, à l'astronaute Dave Bowman, 1968.",
+    "prompt": "« Je regrette, Dave. Cela m'est malheureusement impossible. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Highlander",
+    "decoys": [
+      "Conan le Barbare",
+      "Ladyhawke, la femme de la nuit",
+      "Les Aventures de Jack Burton dans les griffes du mandarin"
+    ],
+    "id": "quote-fr-highlander-en-rester-qu-un",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La règle des Immortels, dite par le Kurgan (Clancy Brown) et Ramirez (Sean Connery), 1986.",
+    "prompt": "« Il ne peut en rester qu'un. »"
+  },
+  {
+    "accepted": [
+      "Terminator 2",
+      "Terminator",
+      "T2",
+      "Terminator 2: Judgment Day"
+    ],
+    "answer": "Terminator 2 : Le Jugement dernier",
+    "decoys": ["Total Recall", "Running Man", "Commando"],
+    "id": "quote-fr-terminator-2-vetements-bottes-moto",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le Terminator (Arnold Schwarzenegger) à un motard, 1991.",
+    "prompt": "« Je veux tes vêtements, tes bottes et ta moto. »"
+  },
+  {
+    "accepted": [],
+    "answer": "RoboCop",
+    "decoys": ["Total Recall", "Demolition Man", "Judge Dredd"],
+    "id": "quote-fr-robocop-mort-ou-vif",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "RoboCop (Peter Weller), 1987.",
+    "prompt": "« Mort ou vif, vous venez avec moi ! »"
+  },
+  {
+    "accepted": ["Batman"],
+    "answer": "Batman Begins",
+    "decoys": ["Spider-Man 2", "Hellboy", "Les 4 Fantastiques"],
+    "id": "quote-fr-batman-begins-pourquoi-tombons-nous",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Thomas Wayne (Linus Roache) à son fils, 2005.",
+    "prompt": "« Pourquoi tombons-nous, Bruce ? Pour mieux nous relever. »"
+  },
+  {
+    "accepted": [
+      "The Dark Knight : Le Chevalier noir",
+      "Le Chevalier noir",
+      "Batman"
+    ],
+    "answer": "The Dark Knight",
+    "decoys": ["Watchmen : Les Gardiens", "Iron Man", "Hulk"],
+    "id": "quote-fr-dark-knight-heros-mechant",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Harvey Dent (Aaron Eckhart), 2008.",
+    "prompt": "« Soit on meurt en héros, soit on vit assez longtemps pour se voir endosser la peau du méchant. »"
+  },
+  {
+    "accepted": ["The Hunger Games"],
+    "answer": "Hunger Games",
+    "decoys": ["Divergente", "Le Labyrinthe", "Les Âmes vagabondes"],
+    "id": "quote-fr-hunger-games-sort-favorable",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Effie Trinket (Elizabeth Banks), le jour de la moisson, 2012.",
+    "prompt": "« Et puisse le sort vous être favorable ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Jumanji",
+    "decoys": [
+      "Hook ou la Revanche du capitaine Crochet",
+      "Chérie, j'ai rétréci les gosses",
+      "Casper"
+    ],
+    "id": "quote-fr-jumanji-un-5-ou-un-8",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "L'énigme lue par Alan Parrish enfant, 1995.",
+    "prompt": "« Dans la jungle tu attendras. Un 5 ou un 8 te délivrera. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Predator",
+    "decoys": ["Commando", "Aliens, le retour", "Rambo 2 : La Mission"],
+    "id": "quote-fr-predator-saigner",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Dutch (Arnold Schwarzenegger), 1987.",
+    "prompt": "« S'il peut saigner, on peut le tuer. »"
+  },
+  {
+    "accepted": ["Django"],
+    "answer": "Django Unchained",
+    "decoys": ["True Grit", "Les Sept Mercenaires", "Inglourious Basterds"],
+    "id": "quote-fr-django-d-muet",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Django (Jamie Foxx), en épelant son nom, 2012.",
+    "prompt": "« Le D est muet. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Avatar",
+    "decoys": ["John Carter", "Jupiter : Le Destin de l'univers", "Oblivion"],
+    "id": "quote-fr-avatar-je-te-vois",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La salutation des Na'vi, entre Neytiri (Zoe Saldaña) et Jake Sully (Sam Worthington), 2009.",
+    "prompt": "« Je te vois. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Gremlins",
+    "decoys": ["Les Goonies", "Critters", "Ghoulies"],
+    "id": "quote-fr-gremlins-apres-minuit",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Les trois règles du mogwaï confié à Billy Peltzer, 1984.",
+    "prompt": "« Pas de lumière, pas d'eau, et surtout, ne jamais lui donner à manger après minuit. »"
+  },
+  {
+    "accepted": ["Guardians of the Galaxy"],
+    "answer": "Les Gardiens de la Galaxie",
+    "decoys": [
+      "Valérian et la Cité des mille planètes",
+      "Jupiter : Le Destin de l'univers",
+      "Star Trek : Sans limites"
+    ],
+    "id": "quote-fr-gardiens-de-la-galaxie-groot",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Groot (voix de Vin Diesel en VO), 2014.",
+    "prompt": "« Je s'appelle Groot. »"
+  },
+  {
+    "accepted": ["Twilight", "Fascination"],
+    "answer": "Twilight, chapitre I : Fascination",
+    "decoys": [
+      "Les Âmes vagabondes",
+      "Sublimes Créatures",
+      "Le Chaperon rouge"
+    ],
+    "id": "quote-fr-twilight-lion-agneau",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Edward Cullen (Robert Pattinson) à Bella, 2008.",
+    "prompt": "« Et c'est ainsi que le lion tomba amoureux de l'agneau. »"
+  },
+  {
+    "accepted": ["Mad Max", "Fury Road"],
+    "answer": "Mad Max: Fury Road",
+    "decoys": ["Dredd", "Oblivion", "Edge of Tomorrow"],
+    "id": "quote-fr-mad-max-fury-road-quelle-journee",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Nux (Nicholas Hoult), en pleine poursuite, 2015.",
+    "prompt": "« Quelle journée ! Quelle merveilleuse journée ! »"
+  },
+  {
+    "accepted": [
+      "Fast and Furious",
+      "Fast & Furious 7",
+      "Fast & Furious",
+      "Furious 7"
+    ],
+    "answer": "Fast and Furious 7",
+    "decoys": ["Need for Speed", "Le Transporteur", "xXx"],
+    "id": "quote-fr-fast-and-furious-7-famille",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dominic Toretto (Vin Diesel), 2015.",
+    "prompt": "« Je n'ai pas d'amis. J'ai une famille. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Scream",
+    "decoys": [
+      "Souviens-toi… l'été dernier",
+      "Urban Legend",
+      "Destination finale"
+    ],
+    "id": "quote-fr-scream-film-d-horreur-prefere",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "La voix du tueur au téléphone, 1996.",
+    "prompt": "« Quel est ton film d'horreur préféré ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Jurassic Park",
+    "decoys": ["Congo", "Twister", "Anaconda"],
+    "id": "quote-fr-jurassic-park-depense-sans-compter",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Hammond (Richard Attenborough), 1993.",
+    "prompt": "« J'ai dépensé sans compter. »"
+  },
+  {
+    "accepted": ["Kill Bill", "Kill Bill Vol. 1", "Kill Bill volume 1"],
+    "answer": "Kill Bill : Volume 1",
+    "decoys": ["Sin City", "Nikita", "Hero"],
+    "id": "quote-fr-kill-bill-gros-orteil",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "La Mariée (Uma Thurman), sortie du coma, 2003.",
+    "prompt": "« Bouge le gros orteil. »"
+  },
+  {
+    "accepted": ["Gone with the Wind"],
+    "answer": "Autant en emporte le vent",
+    "decoys": ["Rebecca", "Les Hauts de Hurlevent", "Jezebel"],
+    "id": "quote-fr-autant-en-emporte-le-vent-demain",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Scarlett O'Hara (Vivien Leigh), dernière réplique du film, 1939.",
+    "prompt": "« Après tout, demain est un autre jour ! »"
+  },
+  {
+    "accepted": ["Some Like It Hot"],
+    "answer": "Certains l'aiment chaud",
+    "decoys": [
+      "Sept ans de réflexion",
+      "Diamants sur canapé",
+      "La Garçonnière"
+    ],
+    "id": "quote-fr-certains-l-aiment-chaud-parfait",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Osgood Fielding III (Joe E. Brown), dernière réplique du film, 1959.",
+    "prompt": "« Personne n'est parfait ! »"
+  },
+  {
+    "accepted": ["The Graduate"],
+    "answer": "Le Lauréat",
+    "decoys": ["Macadam Cowboy", "Love Story", "Kramer contre Kramer"],
+    "id": "quote-fr-le-laureat-mrs-robinson",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Benjamin Braddock (Dustin Hoffman), 1967.",
+    "prompt": "« Mrs Robinson, vous essayez de me séduire, n'est-ce pas ? »"
+  },
+  {
+    "accepted": ["The Godfather"],
+    "answer": "Le Parrain",
+    "decoys": ["Les Affranchis", "Il était une fois en Amérique", "Casino"],
+    "id": "quote-fr-le-parrain-cannelloni",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Peter Clemenza (Richard S. Castellano), 1972 ; la VF a changé les cannoli en cannelloni.",
+    "prompt": "« Laisse le flingue, prends les cannelloni. »"
+  },
+  {
+    "accepted": [
+      "Le Parrain 2",
+      "Le Parrain II",
+      "The Godfather Part II",
+      "Le Parrain"
+    ],
+    "answer": "Le Parrain, 2e partie",
+    "decoys": ["Scarface", "Mean Streets", "Les Incorruptibles"],
+    "id": "quote-fr-le-parrain-2-ennemis",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Michael Corleone (Al Pacino) à Frank Pentangeli, 1974.",
+    "prompt": "« Garde tes amis près de toi, et tes ennemis encore plus près. »"
+  },
+  {
+    "accepted": ["Goodfellas"],
+    "answer": "Les Affranchis",
+    "decoys": ["Casino", "Donnie Brasco", "Il était une fois en Amérique"],
+    "id": "quote-fr-les-affranchis-gangster",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Henry Hill (Ray Liotta), première réplique du film, 1990.",
+    "prompt": "« Aussi loin que je me souvienne, j'ai toujours voulu être un gangster. »"
+  },
+  {
+    "accepted": ["The Usual Suspects"],
+    "answer": "Usual Suspects",
+    "decoys": ["Seven", "Heat", "L.A. Confidential"],
+    "id": "quote-fr-usual-suspects-diable",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Verbal Kint (Kevin Spacey), 1995.",
+    "prompt": "« Le coup le plus rusé que le diable ait jamais réussi, ça a été de faire croire à tout le monde qu'il n'existait pas. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Pulp Fiction",
+    "decoys": ["Reservoir Dogs", "Jackie Brown", "True Romance"],
+    "id": "quote-fr-pulp-fiction-royal-cheese",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Vincent Vega (John Travolta) à Jules (Samuel L. Jackson), 1994.",
+    "prompt": "« Et devine comment ils appellent un Quarter Pounder with cheese à Paris ? — Ils disent Royal Cheese. »"
+  },
+  {
+    "accepted": ["The Shawshank Redemption", "Shawshank Redemption"],
+    "answer": "Les Évadés",
+    "decoys": ["La Ligne verte", "L'Évadé d'Alcatraz", "Papillon"],
+    "id": "quote-fr-les-evades-vivre-mourir",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Andy Dufresne (Tim Robbins) à Red, 1994.",
+    "prompt": "« Je crois que tout se résume à un simple choix en réalité. Dépêche-toi de vivre ou dépêche-toi de mourir. »"
+  },
+  {
+    "accepted": ["Good Will Hunting"],
+    "answer": "Will Hunting",
+    "decoys": [
+      "Le Cercle des poètes disparus",
+      "À la rencontre de Forrester",
+      "Patch Adams"
+    ],
+    "id": "quote-fr-will-hunting-ta-faute",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sean Maguire (Robin Williams) à Will (Matt Damon), 1997.",
+    "prompt": "« C'est pas ta faute. — Je sais. — C'est pas ta faute. »"
+  },
+  {
+    "accepted": ["Dead Poets Society"],
+    "answer": "Le Cercle des poètes disparus",
+    "decoys": ["Will Hunting", "Professeur Holland", "Esprits rebelles"],
+    "id": "quote-fr-cercle-des-poetes-carpe-diem",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Keating (Robin Williams), 1989.",
+    "prompt": "« Carpe diem : profitez du jour présent, mes amis, que votre vie soit extraordinaire. »"
+  },
+  {
+    "accepted": ["Big Lebowski"],
+    "answer": "The Big Lebowski",
+    "decoys": ["Fargo", "O'Brother", "Las Vegas Parano"],
+    "id": "quote-fr-big-lebowski-duc-tient-bon",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le Duc (Jeff Bridges), 1998.",
+    "prompt": "« T'inquiète, le Duc tient bon. »"
+  },
+  {
+    "accepted": ["Maman, j'ai raté l'avion", "Home Alone"],
+    "answer": "Maman, j'ai raté l'avion !",
+    "decoys": [
+      "Beethoven",
+      "Chérie, j'ai rétréci les gosses",
+      "Un flic à la maternelle"
+    ],
+    "id": "quote-fr-maman-j-ai-rate-l-avion-monnaie",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Johnny, le gangster du film en noir et blanc que regarde Kevin (Macaulay Culkin), 1990.",
+    "prompt": "« Tu peux garder la monnaie, ça ne me dérange pas. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Casablanca",
+    "decoys": [
+      "Le Faucon maltais",
+      "Le Port de l'angoisse",
+      "Le Grand Sommeil"
+    ],
+    "id": "quote-fr-casablanca-belle-amitie",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Rick Blaine (Humphrey Bogart), dernière réplique du film, 1942.",
+    "prompt": "« Louis, je pense que c'est le début d'une belle amitié. »"
+  },
+  {
+    "accepted": ["Quand Harry rencontre Sally...", "When Harry Met Sally"],
+    "answer": "Quand Harry rencontre Sally",
+    "decoys": [
+      "Nuits blanches à Seattle",
+      "Vous avez un message",
+      "Pretty Woman"
+    ],
+    "id": "quote-fr-quand-harry-meme-chose",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Une cliente (Estelle Reiner) au restaurant, après la scène de Sally (Meg Ryan), 1989.",
+    "prompt": "« Donnez-moi la même chose qu'elle. »"
+  },
+  {
+    "accepted": ["Truman Show"],
+    "answer": "The Truman Show",
+    "decoys": ["Un jour sans fin", "Menteur, menteur", "Pleasantville"],
+    "id": "quote-fr-truman-show-bonne-nuit",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Truman Burbank (Jim Carrey) à ses voisins chaque matin, 1998.",
+    "prompt": "« Bonjour, et au cas où l'on ne se reverrait pas d'ici là… bon après-midi, bonne soirée et bonne nuit ! »"
+  },
+  {
+    "accepted": ["Blues Brothers"],
+    "answer": "The Blues Brothers",
+    "decoys": [
+      "Wayne's World",
+      "Sister Act",
+      "Y a-t-il un pilote dans l'avion ?"
+    ],
+    "id": "quote-fr-blues-brothers-mission",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Elwood Blues (Dan Aykroyd), réplique récurrente, 1980.",
+    "prompt": "« On est en mission pour le Seigneur. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Citizen Kane",
+    "decoys": [
+      "La Splendeur des Amberson",
+      "Boulevard du crépuscule",
+      "Le Troisième Homme"
+    ],
+    "id": "quote-fr-citizen-kane-rosebud",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Charles Foster Kane (Orson Welles), dernier mot du magnat, « Bouton de rose » en VF, 1941.",
+    "prompt": "« Rosebud… »"
+  },
+  {
+    "accepted": ["Dirty Harry"],
+    "answer": "L'Inspecteur Harry",
+    "decoys": ["Bullitt", "French Connection", "Serpico"],
+    "id": "quote-fr-inspecteur-harry-chance",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Harry Callahan (Clint Eastwood), 1971.",
+    "prompt": "« Je sais ce que tu penses : c'est six fois qu'il a tiré ou c'est cinq seulement ? Tu dois te poser qu'une question : est-ce que je tente ma chance ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Pretty Woman",
+    "decoys": [
+      "Coup de foudre à Notting Hill",
+      "Working Girl",
+      "Nuits blanches à Seattle"
+    ],
+    "id": "quote-fr-pretty-woman-grosse-erreur",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Vivian Ward (Julia Roberts) à la vendeuse qui l'avait snobée la veille, 1990.",
+    "prompt": "« Grosse erreur. Énorme ! »"
+  },
+  {
+    "accepted": ["The Devil Wears Prada"],
+    "answer": "Le Diable s'habille en Prada",
+    "decoys": [
+      "Confessions d'une accro du shopping",
+      "Comment se faire larguer en 10 leçons",
+      "La Revanche d'une blonde"
+    ],
+    "id": "quote-fr-diable-prada-fleurs",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Miranda Priestly (Meryl Streep), 2006.",
+    "prompt": "« Des fleurs ? Pour le printemps ? Révolutionnaire. »"
+  },
+  {
+    "accepted": ["Notting Hill"],
+    "answer": "Coup de foudre à Notting Hill",
+    "decoys": [
+      "Quatre mariages et un enterrement",
+      "Love Actually",
+      "Le Mariage de mon meilleur ami"
+    ],
+    "id": "quote-fr-notting-hill-juste-une-fille",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Anna Scott (Julia Roberts) à William (Hugh Grant), 1999.",
+    "prompt": "« Je ne suis qu'une fille, qui se tient devant un garçon, et qui lui demande de l'aimer. »"
+  },
+  {
+    "accepted": ["Bridget Jones", "Bridget Jones's Diary"],
+    "answer": "Le Journal de Bridget Jones",
+    "decoys": [
+      "Love Actually",
+      "The Holiday",
+      "Quatre mariages et un enterrement"
+    ],
+    "id": "quote-fr-bridget-jones-telle-que-vous-etes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mark Darcy (Colin Firth) à Bridget (Renée Zellweger), 2001.",
+    "prompt": "« Je vous aime beaucoup. Telle que vous êtes. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Titanic",
+    "decoys": ["Pearl Harbor", "Le Patient anglais", "Out of Africa"],
+    "id": "quote-fr-titanic-francaises",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Rose (Kate Winslet) à Jack (Leonardo DiCaprio), 1997.",
+    "prompt": "« Dessine-moi comme une de tes Françaises. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Ghost",
+    "decoys": ["Dirty Dancing", "Pretty Woman", "Bodyguard"],
+    "id": "quote-fr-ghost-idem",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sam (Patrick Swayze) et Molly (Demi Moore), 1990 ; « Ditto » en VO.",
+    "prompt": "« Je t'aime, Molly. Je t'ai toujours aimée. — Idem. »"
+  },
+  {
+    "accepted": ["The Green Mile", "Ligne verte"],
+    "answer": "La Ligne verte",
+    "decoys": ["Les Évadés", "Dead Man Walking", "Rain Man"],
+    "id": "quote-fr-ligne-verte-boisson",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Coffey (Michael Clarke Duncan) en se présentant, 1999.",
+    "prompt": "« Comme la boisson, mais ça s'écrit pas pareil. »"
+  },
+  {
+    "accepted": ["It's a Wonderful Life", "La vie est belle (1946)"],
+    "answer": "La vie est belle",
+    "decoys": [
+      "Miracle sur la 34e rue",
+      "L'Extravagant Mr. Deeds",
+      "Mr. Smith au Sénat"
+    ],
+    "id": "quote-fr-la-vie-est-belle-cloche",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Zuzu Bailey, la fille de George (James Stewart), dans le film de Frank Capra, 1946.",
+    "prompt": "« Chaque fois qu'une cloche sonne, un ange gagne ses ailes. »"
+  },
+  {
+    "accepted": ["C'era una volta il West", "Once Upon a Time in the West"],
+    "answer": "Il était une fois dans l'Ouest",
+    "decoys": [
+      "Pour une poignée de dollars",
+      "Le train sifflera trois fois",
+      "Les Sept Mercenaires"
+    ],
+    "id": "quote-fr-il-etait-une-fois-dans-l-ouest-bretelles",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Frank (Henry Fonda), 1968.",
+    "prompt": "« Comment avoir confiance en un homme qui porte et ceinture et bretelles ? Le gars ne peut même pas avoir confiance en son propre pantalon. »"
+  },
+  {
+    "accepted": ["Dr. Strangelove", "Dr Folamour"],
+    "answer": "Docteur Folamour",
+    "decoys": ["Orange mécanique", "La Party", "Point limite"],
+    "id": "quote-fr-docteur-folamour-pc-de-guerre",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le président Merkin Muffley (Peter Sellers), 1964.",
+    "prompt": "« Messieurs, vous ne pouvez pas vous battre ici ! Vous êtes dans le PC de Guerre. »"
+  },
+  {
+    "accepted": ["Rocky 6", "Rocky VI"],
+    "answer": "Rocky Balboa",
+    "decoys": ["Million Dollar Baby", "Raging Bull", "Fighter"],
+    "id": "quote-fr-rocky-balboa-encaisser",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Rocky (Sylvester Stallone) à son fils, 2006.",
+    "prompt": "« C'est pas la force des coups que tu donnes qui compte, c'est le nombre de coups que tu peux encaisser tout en continuant d'avancer. »"
+  },
+  {
+    "accepted": [
+      "Sacré Graal",
+      "Monty Python and the Holy Grail",
+      "Monty Python"
+    ],
+    "answer": "Monty Python : Sacré Graal !",
+    "decoys": [
+      "Y a-t-il un pilote dans l'avion ?",
+      "La Folle Histoire de l'espace",
+      "Frankenstein Junior"
+    ],
+    "id": "quote-fr-sacre-graal-hamster",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Le garde français (John Cleese) au roi Arthur, du haut des remparts, 1975.",
+    "prompt": "« Ta mère était un hamster et ton père sentait le sureau ! »"
+  },
+  {
+    "accepted": ["The Untouchables"],
+    "answer": "Les Incorruptibles",
+    "decoys": ["Scarface", "Bugsy", "Miller's Crossing"],
+    "id": "quote-fr-les-incorruptibles-mot-gentil",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Al Capone (Robert De Niro), 1987.",
+    "prompt": "« On obtient plus avec un mot gentil et un revolver qu'avec un mot gentil tout seul. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Rain Man",
+    "decoys": ["Le Temps d'un week-end", "Les Éveillés", "Mon pied gauche"],
+    "id": "quote-fr-rain-man-excellent-conducteur",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Raymond Babbitt (Dustin Hoffman), 1988.",
+    "prompt": "« Je suis un excellent conducteur. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Gran Torino",
+    "decoys": ["Million Dollar Baby", "Mystic River", "Impitoyable"],
+    "id": "quote-fr-gran-torino-faire-chier",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Walt Kowalski (Clint Eastwood), 2008.",
+    "prompt": "« Il vous est jamais arrivé de tomber sur un mec qu'il fallait pas faire chier ? C'est moi. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Forrest Gump",
+    "decoys": ["Big", "Philadelphia", "Le Terminal"],
+    "id": "quote-fr-forrest-gump-stupidite",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Forrest (Tom Hanks), 1994.",
+    "prompt": "« Maman dit : N'est stupide que la stupidité. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kaamelott",
+    "decoys": [
+      "Fais pas ci, fais pas ça",
+      "Scènes de ménages",
+      "Un gars, une fille"
+    ],
+    "id": "quote-fr-kaamelott-on-en-a-gros",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Perceval (Franck Pitiot), Livre II, épisode « Les Exploités ».",
+    "prompt": "« Sire, Sire ! On en a gros ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kaamelott",
+    "decoys": ["Hero Corp", "Caméra Café", "Platane"],
+    "id": "quote-fr-kaamelott-pays-de-galles",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Perceval, ivre, Livre II, épisode « L'Ivresse ».",
+    "prompt": "« Pays de Galles indépendant ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kaamelott",
+    "decoys": ["Bref", "Hero Corp", "Platane"],
+    "id": "quote-fr-kaamelott-pendu",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Perceval, Livre I, épisode « La Coccinelle de Madenn ».",
+    "prompt": "« Une fois, à une exécution, je m'approche d'une fille. Pour rigoler, je lui fais : “Vous êtes de la famille du pendu ?” »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kaamelott",
+    "decoys": ["Caméra Café", "Bref", "Fais pas ci, fais pas ça"],
+    "id": "quote-fr-kaamelott-pas-mort",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Arthur (Alexandre Astier), Livre II, épisode « Always ».",
+    "prompt": "« Mais vous êtes pas mort, espèce de connard ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kaamelott",
+    "decoys": ["Scènes de ménages", "Hero Corp", "Le Visiteur du futur"],
+    "id": "quote-fr-kaamelott-tartes",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Léodagan (Lionnel Astier), Livre I, épisode « Les Tartes aux myrtilles ».",
+    "prompt": "« Sans vouloir la ramener, la seule différence concrète avec des briques, c'est que vous appelez ça des tartes ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Caméra Café",
+    "decoys": ["Kaamelott", "Un gars, une fille", "Samantha Oups !"],
+    "id": "quote-fr-camera-cafe-convenant",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jean-Claude Convenant (Yvan Le Bolloc'h), le commercial de la série de M6.",
+    "prompt": "« Convenant avec un T, comme très très riche ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Caméra Café",
+    "decoys": ["Scènes de ménages", "Bref", "Samantha Oups !"],
+    "id": "quote-fr-camera-cafe-tete-de-gondole",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Jean-Claude Convenant (Yvan Le Bolloc'h).",
+    "prompt": "« Quand les cons seront en promo, tu seras en tête de gondole ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Un gars, une fille",
+    "decoys": ["Scènes de ménages", "Caméra Café", "Fais pas ci, fais pas ça"],
+    "id": "quote-fr-un-gars-une-fille-chouchou",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Les surnoms que se donnent Alex (Alexandra Lamy) et Jean (Jean Dujardin), France 2, 1999-2003.",
+    "prompt": "« Chouchou ! — Loulou ! »"
+  },
+  {
+    "accepted": ["La Télé des Inconnus"],
+    "answer": "Les Inconnus",
+    "decoys": ["Les Nuls", "Les Robins des Bois", "Kad et Olivier"],
+    "id": "quote-fr-inconnus-chasseurs",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Le sketch « Les Chasseurs », du trio Bourdon, Campan, Légitimus.",
+    "prompt": "« Il y a le bon chasseur et le mauvais chasseur. »"
+  },
+  {
+    "accepted": ["Les Guignols"],
+    "answer": "Les Guignols de l'info",
+    "decoys": ["Le Bébête Show", "Groland", "Les Nuls, l'émission"],
+    "id": "quote-fr-guignols-pommes",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "La marionnette de Jacques Chirac, slogan inventé par l'émission et repris par sa campagne de 1995.",
+    "prompt": "« Mangez des pommes ! »"
+  },
+  {
+    "accepted": ["Les Guignols"],
+    "answer": "Les Guignols de l'info",
+    "decoys": ["Le Bébête Show", "Groland", "Le Petit Journal"],
+    "id": "quote-fr-guignols-deux-ans",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "La marionnette de Jacques Chirac, 1993, face aux deux ans qui le séparent de la présidentielle.",
+    "prompt": "« Putain, deux ans ! »"
+  },
+  {
+    "accepted": ["Les Guignols"],
+    "answer": "Les Guignols de l'info",
+    "decoys": ["Le Bébête Show", "Nulle part ailleurs", "Le Grand Journal"],
+    "id": "quote-fr-guignols-coucou",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "La marionnette de Johnny Hallyday sur Canal+.",
+    "prompt": "« Ah que coucou ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Koh-Lanta",
+    "decoys": ["Fort Boyard", "Pékin Express", "La Carte aux trésors"],
+    "id": "quote-fr-koh-lanta-sentence",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Denis Brogniart, à la fin de chaque conseil d'élimination.",
+    "prompt": "« La sentence est irrévocable. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Koh-Lanta",
+    "decoys": ["Pékin Express", "Fort Boyard", "The Island"],
+    "id": "quote-fr-koh-lanta-il-en-restera-un",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Denis Brogniart, une de ses formules rituelles.",
+    "prompt": "« Et à la fin, il n'en restera qu'un ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Des chiffres et des lettres",
+    "decoys": ["Questions pour un champion", "Motus", "Pyramide"],
+    "id": "quote-fr-dcdl-compte-est-bon",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "La formule de l'épreuve des chiffres du jeu de France Télévisions, né en 1965.",
+    "prompt": "« Le compte est bon ! »"
+  },
+  {
+    "accepted": ["Qui veut gagner des millions"],
+    "answer": "Qui veut gagner des millions ?",
+    "decoys": [
+      "Le Maillon faible",
+      "Tout le monde veut prendre sa place",
+      "Les 12 coups de midi"
+    ],
+    "id": "quote-fr-qvgdm-dernier-mot",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jean-Pierre Foucault, avant de valider une réponse, sur TF1.",
+    "prompt": "« C'est votre dernier mot ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Juste Prix",
+    "decoys": ["La Roue de la fortune", "Le Bigdil", "Une famille en or"],
+    "id": "quote-fr-juste-prix-plus-moins",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Les indications données au candidat qui cherche le prix d'un objet.",
+    "prompt": "« C'est plus ! — C'est moins ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Burger Quiz",
+    "decoys": [
+      "Tout le monde veut prendre sa place",
+      "Questions pour un champion",
+      "Slam"
+    ],
+    "id": "quote-fr-burger-quiz-sel-poivre",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Une épreuve du jeu d'Alain Chabat, où l'on répond par l'une ou l'autre.",
+    "prompt": "« Sel ou poivre ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Secret Story",
+    "decoys": ["Loft Story", "Star Academy", "Les Anges de la téléréalité"],
+    "id": "quote-fr-secret-story-la-voix",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "La voix off qui s'adresse aux candidats, TF1, depuis 2007.",
+    "prompt": "« Ici la Voix. »"
+  },
+  {
+    "accepted": ["Mission: Impossible"],
+    "answer": "Mission impossible",
+    "decoys": [
+      "Chapeau melon et bottes de cuir",
+      "Les Mystères de l'Ouest",
+      "Le Saint"
+    ],
+    "id": "quote-fr-mission-impossible-message",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "La fin de chaque briefing enregistré, dans la série de 1966 puis les films.",
+    "prompt": "« Ce message s'autodétruira dans cinq secondes. »"
+  },
+  {
+    "accepted": ["The A-Team", "Agence tous risques"],
+    "answer": "L'Agence tous risques",
+    "decoys": ["K 2000", "Supercopter", "Magnum"],
+    "id": "quote-fr-agence-tous-risques-plan",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Hannibal Smith (George Peppard), le chef de l'équipe.",
+    "prompt": "« J'adore quand un plan se déroule sans accroc. »"
+  },
+  {
+    "accepted": ["The Nanny"],
+    "answer": "Une nounou d'enfer",
+    "decoys": [
+      "Madame est servie",
+      "Notre belle famille",
+      "La Fête à la maison"
+    ],
+    "id": "quote-fr-nounou-sheffield",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Fran Fine (Fran Drescher, voix française Marie Vincent) appelant son patron.",
+    "prompt": "« Monsieur Sheffield ! »"
+  },
+  {
+    "accepted": ["The Simpsons"],
+    "answer": "Les Simpson",
+    "decoys": ["Futurama", "Les Griffin", "American Dad"],
+    "id": "quote-fr-simpson-toh",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Homer Simpson : la version française de son « D'oh! ».",
+    "prompt": "« T'oh ! »"
+  },
+  {
+    "accepted": ["The Simpsons"],
+    "answer": "Les Simpson",
+    "decoys": ["South Park", "Les Rois du Texas", "Futurama"],
+    "id": "quote-fr-simpson-pinaise",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Homer Simpson, l'adaptation française de son « Oh my God! ».",
+    "prompt": "« Ouh pinaise ! »"
+  },
+  {
+    "accepted": ["The Simpsons"],
+    "answer": "Les Simpson",
+    "decoys": ["Les Griffin", "Bob's Burgers", "American Dad"],
+    "id": "quote-fr-simpson-okilidokili",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Ned Flanders, le voisin d'Homer.",
+    "prompt": "« Okilidokili ! »"
+  },
+  {
+    "accepted": ["The Simpsons"],
+    "answer": "Les Simpson",
+    "decoys": ["South Park", "Futurama", "Les Rois du Texas"],
+    "id": "quote-fr-simpson-caramba",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bart Simpson.",
+    "prompt": "« Ay caramba ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "South Park",
+    "decoys": ["Les Simpson", "Les Griffin", "Beavis et Butt-Head"],
+    "id": "quote-fr-south-park-kenny",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Stan, à chaque mort de Kenny, depuis le premier épisode (1997).",
+    "prompt": "« Oh mon Dieu, ils ont tué Kenny ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["Seinfeld", "Scrubs", "Mad About You"],
+    "id": "quote-fr-friends-pivote",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Ross (David Schwimmer) qui monte un canapé dans l'escalier, saison 5.",
+    "prompt": "« Pivote ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["How I Met Your Mother", "Seinfeld", "Two and a Half Men"],
+    "id": "quote-fr-friends-joey-nourriture",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Joey Tribbiani (Matt LeBlanc).",
+    "prompt": "« Joey ne partage pas sa nourriture ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["Scrubs", "Mad About You", "Will et Grace"],
+    "id": "quote-fr-friends-janice",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Janice, l'ex de Chandler, et son rire inimitable.",
+    "prompt": "« Oh… mon… Dieu ! »"
+  },
+  {
+    "accepted": ["Le Trône de fer"],
+    "answer": "Game of Thrones",
+    "decoys": ["The Witcher", "Rome", "Les Tudors"],
+    "id": "quote-fr-got-lannister-dettes",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Tyrion Lannister (Peter Dinklage), devise officieuse de sa maison.",
+    "prompt": "« Un Lannister paie toujours ses dettes. »"
+  },
+  {
+    "accepted": ["Le Trône de fer"],
+    "answer": "Game of Thrones",
+    "decoys": ["House of Cards", "Rome", "Vikings"],
+    "id": "quote-fr-got-je-bois",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Tyrion Lannister, saison 6, épisode 2 (2016).",
+    "prompt": "« Je bois et je sais des choses. »"
+  },
+  {
+    "accepted": ["Le Trône de fer"],
+    "answer": "Game of Thrones",
+    "decoys": ["The Last Kingdom", "Les Tudors", "Spartacus"],
+    "id": "quote-fr-got-honte",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Septa Unella, sonnant la cloche pendant la marche d'expiation de Cersei, saison 5.",
+    "prompt": "« Honte ! Honte ! Honte ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Breaking Bad",
+    "decoys": ["Ozark", "Sons of Anarchy", "The Wire"],
+    "id": "quote-fr-breaking-bad-dis-mon-nom",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Walter White (Bryan Cranston), saison 5, épisode 7 (2012).",
+    "prompt": "« Dis mon nom. »"
+  },
+  {
+    "accepted": ["Lost : Les Disparus"],
+    "answer": "Lost",
+    "decoys": ["Fringe", "Heroes", "Prison Break"],
+    "id": "quote-fr-lost-nombres",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Les nombres maudits d'Hurley, puis le code à taper toutes les 108 minutes.",
+    "prompt": "« 4, 8, 15, 16, 23, 42. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Stranger Things",
+    "decoys": ["Dark", "The OA", "Locke & Key"],
+    "id": "quote-fr-stranger-things-amis",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Onze (Millie Bobby Brown).",
+    "prompt": "« Les amis ne mentent pas. »"
+  },
+  {
+    "accepted": [],
+    "answer": "The Big Bang Theory",
+    "decoys": ["Two and a Half Men", "Scrubs", "Mon oncle Charlie"],
+    "id": "quote-fr-big-bang-toc-toc",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Sheldon Cooper (Jim Parsons) à la porte de sa voisine.",
+    "prompt": "« Toc toc toc, Penny. Toc toc toc, Penny. Toc toc toc, Penny. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Heroes",
+    "decoys": ["Smallville", "Fringe", "Misfits"],
+    "id": "quote-fr-heroes-pom-pom",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Le message reçu par Peter Petrelli, saison 1 (2006).",
+    "prompt": "« Sauvez la pom-pom girl, sauvez le monde. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Grey's Anatomy",
+    "decoys": ["Urgences", "Chicago Med", "Nip/Tuck"],
+    "id": "quote-fr-greys-anatomy-ma-personne",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Cristina Yang et Meredith Grey, l'une pour l'autre.",
+    "prompt": "« Tu es ma personne. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Squid Game",
+    "decoys": ["Alice in Borderland", "Kingdom", "Sweet Home"],
+    "id": "quote-fr-squid-game-soleil",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "La poupée géante de la première épreuve, saison 1 (2021).",
+    "prompt": "« Un, deux, trois, soleil ! »"
+  },
+  {
+    "accepted": ["Bugs Bunny"],
+    "answer": "Looney Tunes",
+    "decoys": ["Tom et Jerry", "Woody Woodpecker", "Les Fous du volant"],
+    "id": "quote-fr-looney-tunes-docteur",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bugs Bunny, la version française de « What's up, Doc? ».",
+    "prompt": "« Quoi d'neuf, docteur ? »"
+  },
+  {
+    "accepted": ["Titi et Grosminet"],
+    "answer": "Looney Tunes",
+    "decoys": ["Tom et Jerry", "Droopy", "Woody Woodpecker"],
+    "id": "quote-fr-looney-tunes-grosminet",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Titi, le canari poursuivi par le chat.",
+    "prompt": "« J'ai cru voir un Grosminet ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Shadoks",
+    "decoys": ["Le Manège enchanté", "Colargol", "Bonne nuit les petits"],
+    "id": "quote-fr-shadoks-complique",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Un principe de la logique shadok, série de Jacques Rouxel (1968).",
+    "prompt": "« Pourquoi faire simple quand on peut faire compliqué ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Shadoks",
+    "decoys": ["Le Manège enchanté", "Les Barbapapa", "Colargol"],
+    "id": "quote-fr-shadoks-solution",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Une maxime shadok, narrée par Claude Piéplu.",
+    "prompt": "« S'il n'y a pas de solution, c'est qu'il n'y a pas de problème. »"
+  },
+  {
+    "accepted": ["Musclor", "He-Man", "Musclor et les Maîtres de l'univers"],
+    "answer": "Les Maîtres de l'univers",
+    "decoys": [
+      "Cosmocats",
+      "Jayce et les Conquérants de la lumière",
+      "Ulysse 31"
+    ],
+    "id": "quote-fr-musclor-crane",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Le prince Adam qui lève son épée pour devenir Musclor.",
+    "prompt": "« Par le pouvoir du crâne ancestral ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Goldorak",
+    "decoys": ["Albator", "Capitaine Flam", "X-Or"],
+    "id": "quote-fr-goldorak-fulguropoing",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Actarus lançant l'une des attaques de son robot.",
+    "prompt": "« Fulguropoing ! »"
+  },
+  {
+    "accepted": ["Hokuto no Ken", "Ken"],
+    "answer": "Ken le Survivant",
+    "decoys": ["Cobra", "Nicky Larson", "Les Chevaliers du Zodiaque"],
+    "id": "quote-fr-ken-deja-mort",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Kenshirō, « Omae wa mō shindeiru » en japonais ; voix française Philippe Ogouz.",
+    "prompt": "« Tu ne le sais pas encore, mais tu es déjà mort. »"
+  },
+  {
+    "accepted": ["Bishōjo senshi Sailor Moon"],
+    "answer": "Sailor Moon",
+    "decoys": [
+      "Creamy, merveilleuse Creamy",
+      "Card Captor Sakura",
+      "Magical DoReMi"
+    ],
+    "id": "quote-fr-sailor-moon-lune",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bunny Rivière, alias Sailor Moon, avant chaque combat.",
+    "prompt": "« Au nom de la Lune, je vais te punir ! »"
+  },
+  {
+    "accepted": ["Saint Seiya"],
+    "answer": "Les Chevaliers du Zodiaque",
+    "decoys": ["Olive et Tom", "Ken le Survivant", "Dragon Ball Z"],
+    "id": "quote-fr-saint-seiya-meteores",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "L'attaque de Seiya, chevalier de bronze de Pégase.",
+    "prompt": "« Météores de Pégase ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Pokémon",
+    "decoys": ["Digimon", "Yu-Gi-Oh!", "Beyblade"],
+    "id": "quote-fr-pokemon-je-te-choisis",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Sacha, dans la série animée.",
+    "prompt": "« Pikachu, je te choisis ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Pokémon",
+    "decoys": ["Digimon", "Medabots", "Beyblade"],
+    "id": "quote-fr-pokemon-team-rocket",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Jessie et James, la devise de la Team Rocket.",
+    "prompt": "« Nous sommes de retour ! Pour vous jouer un mauvais tour ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "One Piece",
+    "decoys": ["Naruto", "Fairy Tail", "Bleach"],
+    "id": "quote-fr-one-piece-roi-des-pirates",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Monkey D. Luffy.",
+    "prompt": "« Je serai le roi des pirates ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Naruto",
+    "decoys": ["One Piece", "Bleach", "Hunter × Hunter"],
+    "id": "quote-fr-naruto-hokage",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Naruto Uzumaki, son rêve répété dès le début.",
+    "prompt": "« Je deviendrai Hokage ! »"
+  },
+  {
+    "accepted": ["Dragon Ball", "DBZ"],
+    "answer": "Dragon Ball Z",
+    "decoys": ["Yu Yu Hakusho", "Ken le Survivant", "Naruto"],
+    "id": "quote-fr-dragon-ball-kamehameha",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "L'attaque de Son Goku, apprise de Tortue Géniale.",
+    "prompt": "« Kaméhaméha ! »"
+  },
+  {
+    "accepted": ["Yu-Gi-Oh"],
+    "answer": "Yu-Gi-Oh!",
+    "decoys": ["Pokémon", "Beyblade", "Digimon"],
+    "id": "quote-fr-yu-gi-oh-duel",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "La formule associée à la série animée en France (M6).",
+    "prompt": "« C'est l'heure du duel ! »"
+  },
+  {
+    "accepted": ["Dora"],
+    "answer": "Dora l'exploratrice",
+    "decoys": ["Oui-Oui", "Peppa Pig", "T'choupi"],
+    "id": "quote-fr-dora-chipeur",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Dora, trois fois de suite, pour arrêter le renard.",
+    "prompt": "« Chipeur, arrête de chiper ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Titeuf",
+    "decoys": ["Le Petit Spirou", "Cédric", "Le Petit Nicolas"],
+    "id": "quote-fr-titeuf-po-juste",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Titeuf, la créature de Zep.",
+    "prompt": "« C'est pô juste ! »"
+  },
+  {
+    "accepted": [
+      "Miraculous : Les Aventures de Ladybug et Chat Noir",
+      "Ladybug"
+    ],
+    "answer": "Miraculous",
+    "decoys": ["Totally Spies!", "W.I.T.C.H.", "Winx Club"],
+    "id": "quote-fr-miraculous-transforme-moi",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Marinette, qui devient Ladybug grâce à son kwami.",
+    "prompt": "« Tikki, transforme-moi ! »"
+  },
+  {
+    "accepted": ["Tortues Ninja", "Teenage Mutant Ninja Turtles"],
+    "answer": "Les Tortues Ninja",
+    "decoys": ["Les Motards de l'espace", "Cosmocats", "Power Rangers"],
+    "id": "quote-fr-tortues-ninja-cowabunga",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Le cri de Michelangelo.",
+    "prompt": "« Cowabunga ! »"
+  },
+  {
+    "accepted": ["SpongeBob SquarePants"],
+    "answer": "Bob l'éponge",
+    "decoys": ["Les Razmoket", "Hé Arnold !", "La Vie moderne de Rocko"],
+    "id": "quote-fr-bob-eponge-pret",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Bob, avant sa journée au Crabe Croustillant.",
+    "prompt": "« Je suis prêt ! Je suis prêt ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Code Lyoko",
+    "decoys": ["Totally Spies!", "Martin Mystère", "Galactik Football"],
+    "id": "quote-fr-code-lyoko-retour",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Jérémie, qui remonte le temps après chaque attaque de XANA.",
+    "prompt": "« Retour vers le passé ! »"
+  },
+  {
+    "accepted": ["Phineas and Ferb"],
+    "answer": "Phinéas et Ferb",
+    "decoys": ["Kim Possible", "Gravity Falls", "American Dragon"],
+    "id": "quote-fr-phineas-perry",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Le docteur Doofenshmirtz, battu par l'agent P.",
+    "prompt": "« Maudit sois-tu, Perry l'ornithorynque ! »"
+  },
+  {
+    "accepted": ["Rick and Morty"],
+    "answer": "Rick et Morty",
+    "decoys": ["Futurama", "BoJack Horseman", "Solar Opposites"],
+    "id": "quote-fr-rick-morty-wubba",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Rick Sanchez ; il finit par expliquer que cela veut dire qu'il souffre.",
+    "prompt": "« Wubba lubba dub dub ! »"
+  },
+  {
+    "accepted": ["Teletubbies"],
+    "answer": "Les Teletubbies",
+    "decoys": ["Les Minikeums", "Oui-Oui", "Les Bisounours"],
+    "id": "quote-fr-teletubbies-encore",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Les quatre Teletubbies, qui réclament de revoir la séquence.",
+    "prompt": "« Encore ! Encore ! »"
+  },
+  {
+    "accepted": ["Street Fighter II"],
+    "answer": "Street Fighter",
+    "decoys": ["Tekken", "The King of Fighters", "Mortal Kombat"],
+    "id": "quote-fr-street-fighter-hadouken",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Ryu et Ken, la boule d'énergie de la série de Capcom depuis 1987.",
+    "prompt": "« Hadouken ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Mortal Kombat",
+    "decoys": ["Street Fighter II", "Tekken", "Killer Instinct"],
+    "id": "quote-fr-mortal-kombat-finish-him",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "L'annonceur, avant la Fatality, depuis 1992.",
+    "prompt": "« Finish him ! »"
+  },
+  {
+    "accepted": ["Zelda"],
+    "answer": "The Legend of Zelda",
+    "decoys": ["Final Fantasy", "Dragon Quest", "Secret of Mana"],
+    "id": "quote-fr-zelda-dangereux",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Le vieil homme de la grotte qui donne son épée à Link, 1986.",
+    "prompt": "« Il est dangereux d'y aller seul ! Prends ceci. »"
+  },
+  {
+    "accepted": ["Ocarina of Time", "Zelda", "The Legend of Zelda"],
+    "answer": "The Legend of Zelda: Ocarina of Time",
+    "decoys": ["Banjo-Kazooie", "Super Mario 64", "Spyro the Dragon"],
+    "id": "quote-fr-zelda-ocarina-listen",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Navi, la fée qui guide Link, 1998.",
+    "prompt": "« Hey ! Listen ! »"
+  },
+  {
+    "accepted": ["Super Mario Bros", "Mario"],
+    "answer": "Super Mario Bros.",
+    "decoys": ["Sonic the Hedgehog", "Donkey Kong", "Kirby"],
+    "id": "quote-fr-mario-autre-chateau",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Toad, à la fin de chaque château sans la princesse, 1985.",
+    "prompt": "« Thank you! But our princess is in another castle! »"
+  },
+  {
+    "accepted": ["Metal Gear"],
+    "answer": "Metal Gear Solid",
+    "decoys": ["Splinter Cell", "Syphon Filter", "Hitman"],
+    "id": "quote-fr-metal-gear-snake",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Le cri du Colonel quand Snake meurt, Konami.",
+    "prompt": "« Snake ? Snake ! SNAAAAKE ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Assassin's Creed",
+    "decoys": ["Prince of Persia", "Dishonored", "Hitman"],
+    "id": "quote-fr-assassins-creed-credo",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Le credo des Assassins, depuis 2007.",
+    "prompt": "« Rien n'est vrai, tout est permis. »"
+  },
+  {
+    "accepted": ["Phoenix Wright", "Ace Attorney"],
+    "answer": "Phoenix Wright: Ace Attorney",
+    "decoys": ["Professeur Layton", "L.A. Noire", "Danganronpa"],
+    "id": "quote-fr-phoenix-wright-objection",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "L'avocat Phoenix Wright, doigt pointé, Capcom.",
+    "prompt": "« Objection ! »"
+  },
+  {
+    "accepted": ["Pokémon Rouge et Bleu"],
+    "answer": "Pokémon",
+    "decoys": ["Digimon World", "Dragon Quest", "Final Fantasy"],
+    "id": "quote-fr-pokemon-pas-le-moment",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Le Professeur Chen, quand on utilise un objet au mauvais moment.",
+    "prompt": "« Ce n'est pas le moment d'utiliser ça ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Portal",
+    "decoys": ["Half-Life 2", "BioShock", "The Talos Principle"],
+    "id": "quote-fr-portal-gateau",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Griffonné sur les murs des salles de test pour avertir contre GLaDOS, 2007.",
+    "prompt": "« Le gâteau est un mensonge. »"
+  },
+  {
+    "accepted": ["Skyrim"],
+    "answer": "The Elder Scrolls V: Skyrim",
+    "decoys": ["The Witcher 3", "Dragon Age: Inquisition", "Dark Souls"],
+    "id": "quote-fr-skyrim-genou",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Un garde de Blancherive, 2011.",
+    "prompt": "« J'étais un aventurier comme toi, et puis j'ai pris une flèche dans le genou. »"
+  },
+  {
+    "accepted": ["Skyrim"],
+    "answer": "The Elder Scrolls V: Skyrim",
+    "decoys": ["Dragon Age: Origins", "World of Warcraft", "Fable"],
+    "id": "quote-fr-skyrim-fus-ro-dah",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Le Thu'um « Force implacable » de l'Enfant de dragon, 2011.",
+    "prompt": "« Fus Ro Dah ! »"
+  },
+  {
+    "accepted": [
+      "Grand Theft Auto: San Andreas",
+      "GTA San Andreas",
+      "San Andreas",
+      "GTA"
+    ],
+    "answer": "GTA: San Andreas",
+    "decoys": ["Saints Row", "Mafia", "Driver"],
+    "id": "quote-fr-gta-san-andreas-here-we-go",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "Carl « CJ » Johnson, de retour à Los Santos, 2004.",
+    "prompt": "« Ah shit, here we go again. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Fallout",
+    "decoys": ["Metro 2033", "S.T.A.L.K.E.R.", "Rage"],
+    "id": "quote-fr-fallout-guerre",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "La phrase d'ouverture de chaque Fallout, depuis 1997.",
+    "prompt": "« La guerre… la guerre ne change jamais. »"
+  },
+  {
+    "accepted": ["Far Cry"],
+    "answer": "Far Cry 3",
+    "decoys": ["Just Cause 2", "Crysis", "Tomb Raider"],
+    "id": "quote-fr-far-cry-3-folie",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Vaas Montenegro (Michael Mando), 2012.",
+    "prompt": "« Est-ce que je t'ai déjà dit ce qu'était la définition de la folie ? »"
+  },
+  {
+    "accepted": ["Call of Duty", "CoD"],
+    "answer": "Call of Duty: Advanced Warfare",
+    "decoys": ["Battlefield 4", "Titanfall", "Halo 5"],
+    "id": "quote-fr-cod-press-f",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Le bouton d'un enterrement militaire, moqué puis devenu mème, 2014.",
+    "prompt": "« Press F to pay respects. »"
+  },
+  {
+    "accepted": ["CS", "CS:GO", "Counter-Strike 2"],
+    "answer": "Counter-Strike",
+    "decoys": ["Rainbow Six Siege", "Valorant", "Battlefield"],
+    "id": "quote-fr-counter-strike-bomb",
+    "isWellKnown": true,
+    "kind": "game",
+    "note": "L'annonce quand les terroristes posent la bombe.",
+    "prompt": "« Bomb has been planted. »"
+  },
+  {
+    "accepted": ["Age of Empires II"],
+    "answer": "Age of Empires",
+    "decoys": ["Rise of Nations", "Empire Earth", "Warcraft II"],
+    "id": "quote-fr-age-of-empires-wololo",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Le prêtre qui convertit les unités adverses.",
+    "prompt": "« Wololo ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "BioShock",
+    "decoys": ["System Shock 2", "Dishonored", "Half-Life 2"],
+    "id": "quote-fr-bioshock-esclave",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Andrew Ryan, fondateur de Rapture, 2007.",
+    "prompt": "« Un homme choisit, un esclave obéit. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Final Fantasy",
+    "decoys": ["Chrono Trigger", "Secret of Mana", "Tales of Symphonia"],
+    "id": "quote-fr-final-fantasy-kupo",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Le cri des Mogs, mascottes de la série de Square.",
+    "prompt": "« Kupo ! »"
+  },
+  {
+    "accepted": ["WoW"],
+    "answer": "World of Warcraft",
+    "decoys": ["EverQuest", "Guild Wars", "Final Fantasy XIV"],
+    "id": "quote-fr-wow-leeroy",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Le joueur qui fonce seul dans le donjon et fait périr son groupe, vidéo de 2005.",
+    "prompt": "« Leeeeeroy Jenkins ! »"
+  },
+  {
+    "accepted": ["LoL"],
+    "answer": "League of Legends",
+    "decoys": ["Dota 2", "Heroes of the Storm", "Smite"],
+    "id": "quote-fr-lol-faille",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "L'annonce du début de chaque partie.",
+    "prompt": "« Bienvenue dans la Faille de l'invocateur ! »"
+  },
+  {
+    "accepted": ["The Sims"],
+    "answer": "Les Sims",
+    "decoys": ["SimCity", "Animal Crossing", "Second Life"],
+    "id": "quote-fr-sims-sul-sul",
+    "isWellKnown": false,
+    "kind": "game",
+    "note": "Bonjour en simlish, la langue des Sims.",
+    "prompt": "« Sul sul ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Haribo",
+    "decoys": ["Lutti", "Carambar", "Kréma"],
+    "id": "quote-fr-haribo",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature des bonbons, classée deuxième des slogans préférés des Français en 2025.",
+    "prompt": "« C'est beau la vie, pour les grands et les petits ! »"
+  },
+  {
+    "accepted": ["L'Oréal Paris", "Loreal"],
+    "answer": "L'Oréal",
+    "decoys": ["Garnier", "Lancôme", "Maybelline"],
+    "id": "quote-fr-loreal",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la marque de cosmétiques, troisième des slogans préférés des Français en 2025.",
+    "prompt": "« Parce que vous le valez bien. »"
+  },
+  {
+    "accepted": ["Décathlon"],
+    "answer": "Decathlon",
+    "decoys": ["Intersport", "Go Sport", "Sport 2000"],
+    "id": "quote-fr-decathlon",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature historique de l'enseigne de sport, quatrième des slogans préférés des Français en 2025.",
+    "prompt": "« À fond la forme ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Nespresso",
+    "decoys": ["Senseo", "Tassimo", "Lavazza"],
+    "id": "quote-fr-nespresso",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La chute des publicités de la marque de capsules de café, cinquième des slogans préférés des Français en 2025.",
+    "prompt": "« What else ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Mars",
+    "decoys": ["Twix", "Snickers", "Bounty"],
+    "id": "quote-fr-mars",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de la barre chocolatée, sixième des slogans préférés des Français en 2025.",
+    "prompt": "« Un … et ça repart ! »"
+  },
+  {
+    "accepted": ["Redbull"],
+    "answer": "Red Bull",
+    "decoys": ["Monster", "Burn", "Rockstar"],
+    "id": "quote-fr-red-bull",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de la boisson énergisante, septième des slogans préférés des Français en 2025.",
+    "prompt": "« … donne des ailes ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Orangina",
+    "decoys": ["Fanta", "Schweppes", "Pulco"],
+    "id": "quote-fr-orangina",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de la boisson à l'orange, huitième des slogans préférés des Français en 2025.",
+    "prompt": "« Secouez-moi, secouez-moi ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "MMA",
+    "decoys": ["Matmut", "Macif", "Groupama"],
+    "id": "quote-fr-mma",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de l'assureur, neuvième des slogans préférés des Français en 2025.",
+    "prompt": "« Zéro tracas, zéro blabla ! »"
+  },
+  {
+    "accepted": ["McDo", "McDonalds", "Mac Do"],
+    "answer": "McDonald's",
+    "decoys": ["Burger King", "Quick", "KFC"],
+    "id": "quote-fr-mcdonalds",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la chaîne de restauration rapide en France.",
+    "prompt": "« Venez comme vous êtes. »"
+  },
+  {
+    "accepted": ["Ricore"],
+    "answer": "Ricoré",
+    "decoys": ["Nesquik", "Leroux", "Benco"],
+    "id": "quote-fr-ricore",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la boisson au café et à la chicorée de Nestlé.",
+    "prompt": "« L'ami du petit-déjeuner. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Lidl",
+    "decoys": ["Aldi", "Leader Price", "Netto"],
+    "id": "quote-fr-lidl",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de l'enseigne de hard-discount, parmi les slogans préférés des Français en 2025.",
+    "prompt": "« Le vrai prix des bonnes choses. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Boursin",
+    "decoys": ["Saint Môret", "Tartare", "Kiri"],
+    "id": "quote-fr-boursin",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan du fromage aux fines herbes, parmi les slogans préférés des Français en 2025.",
+    "prompt": "« Du pain, du vin, du … ! »"
+  },
+  {
+    "accepted": ["Nestle", "Chocapic"],
+    "answer": "Nestlé",
+    "decoys": ["Milka", "Côte d'Or", "Poulain"],
+    "id": "quote-fr-nestle",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "« Nestlé, c'est fort en chocolat », repris notamment pour les céréales Chocapic.",
+    "prompt": "« C'est fort en chocolat ! »"
+  },
+  {
+    "accepted": ["Intermarche"],
+    "answer": "Intermarché",
+    "decoys": ["Leclerc", "Carrefour", "Super U"],
+    "id": "quote-fr-intermarche",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de l'enseigne de supermarchés, parmi les slogans préférés des Français en 2025.",
+    "prompt": "« Tous unis contre la vie chère. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Adidas",
+    "decoys": ["Nike", "Puma", "Reebok"],
+    "id": "quote-fr-adidas",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la marque de sport aux trois bandes.",
+    "prompt": "« Impossible is nothing. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Kiabi",
+    "decoys": ["Tati", "La Halle", "Gémo"],
+    "id": "quote-fr-kiabi",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de l'enseigne de vêtements.",
+    "prompt": "« La mode à petit prix. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Cristaline",
+    "decoys": ["Volvic", "Contrex", "Saint-Yorre"],
+    "id": "quote-fr-cristaline",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Le slogan de l'eau de source vendue en grande surface.",
+    "prompt": "« Ça coule de source ! »"
+  },
+  {
+    "accepted": ["BNP Paribas"],
+    "answer": "BNP",
+    "decoys": ["Société Générale", "Crédit Lyonnais", "Caisse d'Épargne"],
+    "id": "quote-fr-bnp",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Un slogan resté célèbre de la banque, d'une franchise rare dans la publicité bancaire.",
+    "prompt": "« Pour parler franchement, votre argent m'intéresse. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Nutella",
+    "decoys": ["Kinder", "Ovomaltine", "Prince de Lu"],
+    "id": "quote-fr-nutella",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Un slogan de la pâte à tartiner de Ferrero.",
+    "prompt": "« Il en faut de l'énergie pour être enfant ! »"
+  },
+  {
+    "accepted": ["Le Bon Coin"],
+    "answer": "Leboncoin",
+    "decoys": ["eBay", "Vinted", "PriceMinister"],
+    "id": "quote-fr-leboncoin",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La signature du site de petites annonces, qui détourne le proverbe « le malheur des uns… ».",
+    "prompt": "« Le bonheur des uns fait le bonheur des autres. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Carrefour",
+    "decoys": ["Auchan", "Leclerc", "Casino"],
+    "id": "quote-fr-carrefour",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de l'enseigne lancé selon elle en 1988, que ses campagnes ont souvent repris depuis.",
+    "prompt": "« Avec …, je positive ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Darty",
+    "decoys": ["Boulanger", "Conforama", "But"],
+    "id": "quote-fr-darty",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Lancé en 1973 avec Havas-Conseil : un engagement écrit de l'enseigne sur le prix, le choix et le service.",
+    "prompt": "« Le contrat de confiance. »"
+  },
+  {
+    "accepted": ["Renault Clio", "Clio"],
+    "answer": "Renault",
+    "decoys": ["Peugeot", "Fiat", "Opel"],
+    "id": "quote-fr-renault-clio",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de la première Clio, lancée en 1990.",
+    "prompt": "« Elle a tout d'une grande. »"
+  },
+  {
+    "accepted": ["Française des Jeux", "FDJ"],
+    "answer": "Loto",
+    "decoys": ["PMU", "Betclic", "Winamax"],
+    "id": "quote-fr-loto",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan signé McCann-Erickson, remplacé en 2020 par « On n'est jamais sûr de ne pas gagner ».",
+    "prompt": "« 100 % des gagnants ont tenté leur chance. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Carte Noire",
+    "decoys": ["Jacques Vabre", "Grand'Mère", "Maxwell House"],
+    "id": "quote-fr-carte-noire",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la marque de café à partir du milieu des années 1980, sur l'air de « Try to Remember ».",
+    "prompt": "« Un café nommé désir. »"
+  },
+  {
+    "accepted": ["Hollywood Chewing Gum"],
+    "answer": "Hollywood",
+    "decoys": ["Freedent", "Airwaves", "Mentos"],
+    "id": "quote-fr-hollywood",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan créé en 1972 pour la marque de chewing-gums.",
+    "prompt": "« La fraîcheur de vivre. »"
+  },
+  {
+    "accepted": ["Credit Agricole"],
+    "answer": "Crédit Agricole",
+    "decoys": ["Crédit Mutuel", "Banque Populaire", "La Banque Postale"],
+    "id": "quote-fr-credit-agricole",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la banque, bâtie sur le « bon sens » de sa communication depuis 1976, remplacée vers 2011.",
+    "prompt": "« Le bon sens près de chez vous. »"
+  },
+  {
+    "accepted": ["Nestlé", "Laitière"],
+    "answer": "La Laitière",
+    "decoys": ["Mamie Nova", "Yoplait", "Danone"],
+    "id": "quote-fr-la-laitiere",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La promesse de la marque de desserts, dont les publicités mettent en scène le tableau de Vermeer.",
+    "prompt": "« C'est si bon de prendre le temps. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Milka",
+    "decoys": ["Côte d'Or", "Lindt", "Poulain"],
+    "id": "quote-fr-milka",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la marque de chocolat, résumée en 2013 par la campagne du dernier carré.",
+    "prompt": "« Osez la tendresse. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Auchan",
+    "decoys": ["Leclerc", "Casino", "Cora"],
+    "id": "quote-fr-auchan",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de l'hypermarché jusqu'en 2007.",
+    "prompt": "« La vie, la vraie. »"
+  },
+  {
+    "accepted": ["Evian"],
+    "answer": "Évian",
+    "decoys": ["Volvic", "Contrex", "Badoit"],
+    "id": "quote-fr-evian",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la marque d'eau minérale, celle des publicités aux bébés.",
+    "prompt": "« Live young. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Gillette",
+    "decoys": ["Bic", "Wilkinson", "Braun"],
+    "id": "quote-fr-gillette",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La version française de « The Best a Man Can Get », le slogan historique des rasoirs.",
+    "prompt": "« La perfection au masculin. »"
+  },
+  {
+    "accepted": ["MAAF Assurances"],
+    "answer": "Maaf",
+    "decoys": ["Macif", "Matmut", "GMF"],
+    "id": "quote-fr-maaf",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le jingle d'une campagne de 2004 que toute la France s'est mise à chanter.",
+    "prompt": "« Efficace et pas cher, c'est la … que j'préfère ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Wonderbra",
+    "decoys": ["Dim", "Playtex", "Aubade"],
+    "id": "quote-fr-wonderbra",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Le slogan de la marque de lingerie, né de sa célèbre campagne d'affichage de 1994 avec Eva Herzigová.",
+    "prompt": "« Regardez-moi dans les yeux. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Nike",
+    "decoys": ["Adidas", "Puma", "Reebok"],
+    "id": "quote-fr-nike",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan imaginé par Dan Wieden, de l'agence Wieden+Kennedy, en 1988.",
+    "prompt": "« Just do it. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Apple",
+    "decoys": ["IBM", "Microsoft", "Samsung"],
+    "id": "quote-fr-apple",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La campagne de 1997 de l'agence TBWA\\Chiat\\Day, au retour de Steve Jobs.",
+    "prompt": "« Think different. »"
+  },
+  {
+    "accepted": [],
+    "answer": "SNCF",
+    "decoys": ["RATP", "Thalys", "Eurostar"],
+    "id": "quote-fr-sncf",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de la compagnie ferroviaire dans les années 1990.",
+    "prompt": "« À nous de vous faire préférer le train. »"
+  },
+  {
+    "accepted": ["Master Card"],
+    "answer": "Mastercard",
+    "decoys": ["Visa", "American Express", "Cetelem"],
+    "id": "quote-fr-mastercard",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La version française de la campagne « Priceless » de la carte de paiement.",
+    "prompt": "« Il y a des choses qui ne s'achètent pas. Pour tout le reste, il y a … »"
+  },
+  {
+    "accepted": ["M&Ms", "M and M's", "MMs"],
+    "answer": "M&M's",
+    "decoys": ["Smarties", "Maltesers", "Tic Tac"],
+    "id": "quote-fr-mms",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La traduction du slogan américain de 1954, « Melts in your mouth, not in your hand ».",
+    "prompt": "« Fond dans la bouche, pas dans la main. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Vittel",
+    "decoys": ["Contrex", "Volvic", "Hépar"],
+    "id": "quote-fr-vittel",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "Le slogan de l'eau minérale dans les années 1980.",
+    "prompt": "« Buvez, éliminez ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Panzani",
+    "decoys": ["Buitoni", "Rivoire et Carret", "Garofalo"],
+    "id": "quote-fr-panzani",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan né dans les années 1970, repris pour les 70 ans de la marque en 2020.",
+    "prompt": "« Des pâtes, oui, mais des … ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Skittles",
+    "decoys": ["Mentos", "Smarties", "Starburst"],
+    "id": "quote-fr-skittles",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La traduction française de « Taste the Rainbow », le slogan des bonbons multicolores.",
+    "prompt": "« Goûtez l'arc-en-ciel. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Fnac",
+    "decoys": ["Cultura", "Virgin Megastore", "Gibert Joseph"],
+    "id": "quote-fr-fnac",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La signature de l'enseigne culturelle, qui a succédé à « Agitateur depuis 1954 ».",
+    "prompt": "« Agitateur de curiosité. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Oasis",
+    "decoys": ["Capri-Sun", "Joker", "Pulco"],
+    "id": "quote-fr-oasis",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de 2012 portée par les fruits mascottes de la boisson.",
+    "prompt": "« Be fruit. »"
+  },
+  {
+    "accepted": ["VW"],
+    "answer": "Volkswagen",
+    "decoys": ["Opel", "Mercedes-Benz", "Porsche"],
+    "id": "quote-fr-volkswagen",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature présentée au salon de Francfort en 2007 : « la voiture », en allemand.",
+    "prompt": "« Das Auto. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Audi",
+    "decoys": ["BMW", "Mercedes-Benz", "Porsche"],
+    "id": "quote-fr-audi",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La signature de la marque depuis une campagne de 1982, gardée en allemand jusqu'en France.",
+    "prompt": "« Vorsprung durch Technik. »"
+  },
+  {
+    "accepted": ["Citroen"],
+    "answer": "Citroën",
+    "decoys": ["Peugeot", "Renault", "Opel"],
+    "id": "quote-fr-citroen",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La signature dévoilée en 2009 et abandonnée fin 2016.",
+    "prompt": "« Créative technologie. »"
+  },
+  {
+    "accepted": ["Sécurité sociale", "CNAM", "Ameli"],
+    "answer": "Assurance maladie",
+    "decoys": [
+      "Sécurité routière",
+      "Santé publique France",
+      "Mutualité française"
+    ],
+    "id": "quote-fr-antibiotiques",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La campagne lancée en 2002 pour faire baisser d'un quart la prescription d'antibiotiques en cinq ans.",
+    "prompt": "« Les antibiotiques, c'est pas automatique. »"
+  },
+  {
+    "accepted": ["Danone"],
+    "answer": "Danette",
+    "decoys": ["Mont Blanc", "Flanby", "Yoplait"],
+    "id": "quote-fr-danette",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de 1979 mis en musique par Richard Gotainer, relancé par la marque en 2025.",
+    "prompt": "« On se lève tous pour … ! »"
+  },
+  {
+    "accepted": ["KitKat"],
+    "answer": "Kit Kat",
+    "decoys": ["Twix", "Lion", "Balisto"],
+    "id": "quote-fr-kit-kat",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan créé en 1957 par l'agence JWT London.",
+    "prompt": "« Have a break, have a … »"
+  },
+  {
+    "accepted": [],
+    "answer": "Air France",
+    "decoys": ["British Airways", "Lufthansa", "KLM"],
+    "id": "quote-fr-air-france",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La signature de la compagnie aérienne à partir de la fin des années 1990, remplacée en 2014.",
+    "prompt": "« Faire du ciel le plus bel endroit de la terre. »"
+  },
+  {
+    "accepted": [],
+    "answer": "BMW",
+    "decoys": ["Mercedes-Benz", "Audi", "Volvo"],
+    "id": "quote-fr-bmw",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "La version française de « Freude am Fahren », fixée en 1972.",
+    "prompt": "« Le plaisir de conduire. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Tropico",
+    "decoys": ["Oasis", "Capri-Sun", "Banga"],
+    "id": "quote-fr-tropico",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de la boisson aux fruits tropicaux, parmi les slogans préférés des Français en 2025.",
+    "prompt": "« Quand c'est trop, c'est … ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Lapeyre",
+    "decoys": ["Leroy Merlin", "Castorama", "Brico Dépôt"],
+    "id": "quote-fr-lapeyre",
+    "isWellKnown": true,
+    "kind": "brand",
+    "note": "Le slogan de l'enseigne de menuiserie et d'aménagement, parmi les slogans préférés des Français en 2025.",
+    "prompt": "« …, y'en a pas deux ! »"
+  },
+  {
+    "accepted": [],
+    "answer": "Lustucru",
+    "decoys": ["Panzani", "Barilla", "Rivoire et Carret"],
+    "id": "quote-fr-lustucru",
+    "isWellKnown": false,
+    "kind": "brand",
+    "note": "La réplique de Germaine, le personnage des publicités de la marque de pâtes à partir de 1979.",
+    "prompt": "« Pas d'œufs fêlés chez … ! »"
+  },
+  {
+    "accepted": ["De Gaulle", "Général de Gaulle"],
+    "answer": "Charles de Gaulle",
+    "decoys": ["Georges Pompidou", "Michel Debré", "Pierre Mendès France"],
+    "id": "quote-fr-de-gaulle-compris",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Charles de Gaulle à Alger, le 4 juin 1958, depuis le balcon du Gouvernement général.",
+    "prompt": "« Je vous ai compris ! »"
+  },
+  {
+    "accepted": ["De Gaulle", "Général de Gaulle"],
+    "answer": "Charles de Gaulle",
+    "decoys": [
+      "Georges Pompidou",
+      "Valéry Giscard d'Estaing",
+      "François Mitterrand"
+    ],
+    "id": "quote-fr-de-gaulle-quebec",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Charles de Gaulle au balcon de l'hôtel de ville de Montréal, le 24 juillet 1967.",
+    "prompt": "« Vive le Québec libre ! »"
+  },
+  {
+    "accepted": ["De Gaulle", "Général de Gaulle"],
+    "answer": "Charles de Gaulle",
+    "decoys": ["Général Leclerc", "Georges Bidault", "Winston Churchill"],
+    "id": "quote-fr-de-gaulle-paris",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Charles de Gaulle à l'Hôtel de Ville, le 25 août 1944, à la Libération de Paris.",
+    "prompt": "« Paris outragé ! Paris brisé ! Paris martyrisé ! Mais Paris libéré ! »"
+  },
+  {
+    "accepted": ["Chirac"],
+    "answer": "Jacques Chirac",
+    "decoys": ["Lionel Jospin", "Dominique de Villepin", "Nicolas Hulot"],
+    "id": "quote-fr-chirac-maison",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jacques Chirac au Sommet de la Terre de Johannesburg, le 2 septembre 2002.",
+    "prompt": "« Notre maison brûle et nous regardons ailleurs. »"
+  },
+  {
+    "accepted": ["Chirac"],
+    "answer": "Jacques Chirac",
+    "decoys": ["Édouard Balladur", "Lionel Jospin", "Alain Juppé"],
+    "id": "quote-fr-chirac-abracadabrantesque",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jacques Chirac sur France 3, le 21 septembre 2000.",
+    "prompt": "« Aujourd'hui, on rapporte une histoire abracadabrantesque. »"
+  },
+  {
+    "accepted": ["Chirac"],
+    "answer": "Jacques Chirac",
+    "decoys": [
+      "François Mitterrand",
+      "Valéry Giscard d'Estaing",
+      "Georges Pompidou"
+    ],
+    "id": "quote-fr-chirac-je-decide",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Jacques Chirac le 14 juillet 2004, recadrant son ministre de l'Économie, Nicolas Sarkozy.",
+    "prompt": "« Je décide et il exécute. »"
+  },
+  {
+    "accepted": ["Mitterrand"],
+    "answer": "François Mitterrand",
+    "decoys": [
+      "Jacques Chirac",
+      "Charles de Gaulle",
+      "Valéry Giscard d'Estaing"
+    ],
+    "id": "quote-fr-mitterrand-forces-esprit",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "François Mitterrand lors de ses derniers vœux aux Français, le 31 décembre 1994.",
+    "prompt": "« Je crois aux forces de l'esprit et je ne vous quitterai pas. »"
+  },
+  {
+    "accepted": ["Giscard", "Giscard d'Estaing", "VGE"],
+    "answer": "Valéry Giscard d'Estaing",
+    "decoys": ["Jacques Chirac", "Georges Pompidou", "Raymond Barre"],
+    "id": "quote-fr-giscard-monopole-coeur",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Valéry Giscard d'Estaing face à François Mitterrand, au débat de l'entre-deux-tours du 10 mai 1974.",
+    "prompt": "« Vous n'avez pas, monsieur Mitterrand, le monopole du cœur. »"
+  },
+  {
+    "accepted": ["Sarkozy", "Sarko"],
+    "answer": "Nicolas Sarkozy",
+    "decoys": ["Jacques Chirac", "François Hollande", "Dominique de Villepin"],
+    "id": "quote-fr-sarkozy-casse-toi",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Nicolas Sarkozy à un visiteur du Salon de l'agriculture, le 23 février 2008.",
+    "prompt": "« Casse-toi, pauv' con ! »"
+  },
+  {
+    "accepted": ["Sarkozy", "Sarko"],
+    "answer": "Nicolas Sarkozy",
+    "decoys": ["Ségolène Royal", "François Bayrou", "Jacques Chirac"],
+    "id": "quote-fr-sarkozy-travailler-plus",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le slogan de la campagne présidentielle de Nicolas Sarkozy en 2007, contre les 35 heures.",
+    "prompt": "« Travailler plus pour gagner plus. »"
+  },
+  {
+    "accepted": ["Hollande"],
+    "answer": "François Hollande",
+    "decoys": ["Nicolas Sarkozy", "Emmanuel Macron", "Lionel Jospin"],
+    "id": "quote-fr-hollande-moi-president",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "L'anaphore répétée une quinzaine de fois par François Hollande au débat de l'entre-deux-tours, le 2 mai 2012.",
+    "prompt": "« Moi, président de la République… »"
+  },
+  {
+    "accepted": ["Hollande"],
+    "answer": "François Hollande",
+    "decoys": ["Jean-Luc Mélenchon", "Arnaud Montebourg", "Ségolène Royal"],
+    "id": "quote-fr-hollande-finance",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "François Hollande désignant son « véritable adversaire » au meeting du Bourget, le 22 janvier 2012.",
+    "prompt": "« Cet adversaire, c'est le monde de la finance. »"
+  },
+  {
+    "accepted": ["Macron"],
+    "answer": "Emmanuel Macron",
+    "decoys": ["Édouard Philippe", "François Hollande", "Nicolas Sarkozy"],
+    "id": "quote-fr-macron-traverse-la-rue",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Emmanuel Macron à un jeune demandeur d'emploi, en septembre 2018.",
+    "prompt": "« Je traverse la rue, je vous en trouve. »"
+  },
+  {
+    "accepted": ["Macron"],
+    "answer": "Emmanuel Macron",
+    "decoys": ["Édouard Philippe", "Olivier Véran", "Jean Castex"],
+    "id": "quote-fr-macron-en-guerre",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Emmanuel Macron annonçant le confinement face au Covid-19, le 16 mars 2020.",
+    "prompt": "« Nous sommes en guerre. »"
+  },
+  {
+    "accepted": ["Macron"],
+    "answer": "Emmanuel Macron",
+    "decoys": ["Donald Trump", "Nicolas Hulot", "Barack Obama"],
+    "id": "quote-fr-macron-planet",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Emmanuel Macron le 1er juin 2017, en réponse au retrait américain de l'accord de Paris sur le climat.",
+    "prompt": "« Make our planet great again! »"
+  },
+  {
+    "accepted": ["Mélenchon", "Melenchon"],
+    "answer": "Jean-Luc Mélenchon",
+    "decoys": ["Olivier Besancenot", "François Ruffin", "Arnaud Montebourg"],
+    "id": "quote-fr-melenchon-republique",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jean-Luc Mélenchon face aux policiers lors de la perquisition de La France insoumise, le 16 octobre 2018.",
+    "prompt": "« La République, c'est moi ! »"
+  },
+  {
+    "accepted": ["Raffarin"],
+    "answer": "Jean-Pierre Raffarin",
+    "decoys": ["Dominique de Villepin", "Alain Juppé", "François Fillon"],
+    "id": "quote-fr-raffarin-route-droite",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Jean-Pierre Raffarin dans son discours de politique générale, le 3 juillet 2002.",
+    "prompt": "« La route est droite, mais la pente est forte. »"
+  },
+  {
+    "accepted": ["Juppé", "Juppe"],
+    "answer": "Alain Juppé",
+    "decoys": ["Édouard Balladur", "Lionel Jospin", "Philippe Séguin"],
+    "id": "quote-fr-juppe-bottes",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Alain Juppé, Premier ministre, le 6 juillet 1995, en pleine affaire de son appartement.",
+    "prompt": "« Je suis droit dans mes bottes. »"
+  },
+  {
+    "accepted": ["Royal", "Ségolène"],
+    "answer": "Ségolène Royal",
+    "decoys": ["Martine Aubry", "Rachida Dati", "Christine Lagarde"],
+    "id": "quote-fr-royal-bravitude",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Ségolène Royal en visite en Chine, en janvier 2007, pendant sa campagne présidentielle.",
+    "prompt": "« Qui va sur la Grande Muraille conquiert la bravitude. »"
+  },
+  {
+    "accepted": ["Villepin", "De Villepin"],
+    "answer": "Dominique de Villepin",
+    "decoys": ["Jacques Chirac", "Bernard Kouchner", "Hubert Védrine"],
+    "id": "quote-fr-villepin-onu",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Dominique de Villepin au Conseil de sécurité de l'ONU, le 14 février 2003, contre la guerre en Irak.",
+    "prompt": "« Et c'est un vieux pays, la France, d'un vieux continent comme le mien, l'Europe, qui vous le dit aujourd'hui… »"
+  },
+  {
+    "accepted": ["Malraux"],
+    "answer": "André Malraux",
+    "decoys": ["Charles de Gaulle", "Albert Camus", "Louis Aragon"],
+    "id": "quote-fr-malraux-jean-moulin",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "André Malraux au transfert des cendres de Jean Moulin au Panthéon, le 19 décembre 1964.",
+    "prompt": "« Entre ici, Jean Moulin, avec ton terrible cortège… »"
+  },
+  {
+    "accepted": ["Badinter"],
+    "answer": "Robert Badinter",
+    "decoys": ["Simone Veil", "Christiane Taubira", "Gisèle Halimi"],
+    "id": "quote-fr-badinter-abolition",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Robert Badinter, garde des Sceaux, à l'Assemblée nationale le 17 septembre 1981.",
+    "prompt": "« J'ai l'honneur, au nom du Gouvernement de la République, de demander à l'Assemblée nationale l'abolition de la peine de mort en France. »"
+  },
+  {
+    "accepted": ["Veil"],
+    "answer": "Simone Veil",
+    "decoys": ["Gisèle Halimi", "Simone de Beauvoir", "Christiane Taubira"],
+    "id": "quote-fr-veil-ivg",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Simone Veil défendant à l'Assemblée nationale la loi sur l'IVG, en 1974.",
+    "prompt": "« Aucune femme ne recourt de gaieté de cœur à l'avortement. »"
+  },
+  {
+    "accepted": ["Fillon"],
+    "answer": "François Fillon",
+    "decoys": [
+      "Jean-Pierre Raffarin",
+      "Dominique de Villepin",
+      "Édouard Philippe"
+    ],
+    "id": "quote-fr-fillon-faillite",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "François Fillon, Premier ministre, en Corse le 21 septembre 2007.",
+    "prompt": "« Je suis à la tête d'un État qui est en situation de faillite. »"
+  },
+  {
+    "accepted": ["Laguiller", "Arlette"],
+    "answer": "Arlette Laguiller",
+    "decoys": ["Olivier Besancenot", "Georges Marchais", "Nathalie Arthaud"],
+    "id": "quote-fr-laguiller-travailleurs",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "L'adresse rituelle d'Arlette Laguiller, candidate à chaque présidentielle de 1974 à 2007.",
+    "prompt": "« Travailleuses, travailleurs ! »"
+  },
+  {
+    "accepted": ["Kennedy", "JFK", "John Fitzgerald Kennedy"],
+    "answer": "John F. Kennedy",
+    "decoys": ["Willy Brandt", "Ronald Reagan", "Richard Nixon"],
+    "id": "quote-fr-kennedy-berliner",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "John F. Kennedy à Berlin-Ouest, le 26 juin 1963.",
+    "prompt": "« Ich bin ein Berliner. »"
+  },
+  {
+    "accepted": ["Kennedy", "JFK", "John Fitzgerald Kennedy"],
+    "answer": "John F. Kennedy",
+    "decoys": ["Abraham Lincoln", "Franklin D. Roosevelt", "Barack Obama"],
+    "id": "quote-fr-kennedy-pays",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "John F. Kennedy dans son discours d'investiture, le 20 janvier 1961.",
+    "prompt": "« Ne demandez pas ce que votre pays peut faire pour vous, demandez ce que vous pouvez faire pour votre pays. »"
+  },
+  {
+    "accepted": ["Martin Luther King Jr.", "Luther King", "MLK"],
+    "answer": "Martin Luther King",
+    "decoys": ["Malcolm X", "Nelson Mandela", "Barack Obama"],
+    "id": "quote-fr-king-dream",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Martin Luther King devant le Lincoln Memorial, à Washington, le 28 août 1963.",
+    "prompt": "« I have a dream. »"
+  },
+  {
+    "accepted": ["Armstrong"],
+    "answer": "Neil Armstrong",
+    "decoys": ["Buzz Aldrin", "Youri Gagarine", "John Glenn"],
+    "id": "quote-fr-armstrong-petit-pas",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Neil Armstrong posant le pied sur la Lune, le 21 juillet 1969 (Apollo 11).",
+    "prompt": "« C'est un petit pas pour l'homme, mais un bond de géant pour l'humanité. »"
+  },
+  {
+    "accepted": ["Churchill"],
+    "answer": "Winston Churchill",
+    "decoys": [
+      "Franklin D. Roosevelt",
+      "Neville Chamberlain",
+      "Charles de Gaulle"
+    ],
+    "id": "quote-fr-churchill-sang-larmes",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Winston Churchill à la Chambre des communes, le 13 mai 1940.",
+    "prompt": "« Je n'ai à offrir que du sang, du labeur, des larmes et de la sueur. »"
+  },
+  {
+    "accepted": ["Obama"],
+    "answer": "Barack Obama",
+    "decoys": ["Bill Clinton", "Joe Biden", "Hillary Clinton"],
+    "id": "quote-fr-obama-yes-we-can",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le refrain de Barack Obama, lancé à Nashua le 8 janvier 2008.",
+    "prompt": "« Yes we can! »"
+  },
+  {
+    "accepted": ["Jean Paul II", "Jean-Paul 2", "Karol Wojtyla"],
+    "answer": "Jean-Paul II",
+    "decoys": ["Benoît XVI", "Pape François", "Paul VI"],
+    "id": "quote-fr-jean-paul-ii-peur",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jean-Paul II à la messe inaugurale de son pontificat, le 22 octobre 1978.",
+    "prompt": "« N'ayez pas peur ! »"
+  },
+  {
+    "accepted": ["César", "Caesar"],
+    "answer": "Jules César",
+    "decoys": ["Auguste", "Marc Antoine", "Cicéron"],
+    "id": "quote-fr-cesar-veni-vidi-vici",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Les mots attribués à Jules César après sa victoire de Zéla, en 47 av. J.-C.",
+    "prompt": "« Veni, vidi, vici. »"
+  },
+  {
+    "accepted": ["César", "Caesar"],
+    "answer": "Jules César",
+    "decoys": ["Auguste", "Pompée", "Cicéron"],
+    "id": "quote-fr-cesar-alea",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Les mots attribués à Jules César franchissant le Rubicon, en 49 av. J.-C.",
+    "prompt": "« Alea jacta est. »"
+  },
+  {
+    "accepted": ["Archimede"],
+    "answer": "Archimède",
+    "decoys": ["Pythagore", "Euclide", "Thalès"],
+    "id": "quote-fr-archimede-eureka",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le cri qu'Archimède aurait poussé selon Vitruve, épisode peut-être apocryphe.",
+    "prompt": "« Eurêka ! »"
+  },
+  {
+    "accepted": ["Napoléon", "Bonaparte", "Napoléon Ier"],
+    "answer": "Napoléon Bonaparte",
+    "decoys": ["Louis XIV", "Jules César", "Charlemagne"],
+    "id": "quote-fr-napoleon-quarante-siecles",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Les mots prêtés à Bonaparte devant les pyramides, pendant la campagne d'Égypte (1798).",
+    "prompt": "« Soldats, songez que du haut de ces monuments quarante siècles vous contemplent. »"
+  },
+  {
+    "accepted": ["Louis 14", "Roi-Soleil", "Le Roi-Soleil"],
+    "answer": "Louis XIV",
+    "decoys": ["Henri IV", "François Ier", "Napoléon Ier"],
+    "id": "quote-fr-louis-xiv-etat",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Formule apocryphe que Louis XIV aurait prononcée devant le Parlement de Paris en 1655.",
+    "prompt": "« L'État, c'est moi. »"
+  },
+  {
+    "accepted": ["Henri 4"],
+    "answer": "Henri IV",
+    "decoys": ["Louis XIV", "François Ier", "Saint Louis"],
+    "id": "quote-fr-henri-iv-messe",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Mot attribué à Henri IV, protestant converti au catholicisme pour régner ; l'attribution est apocryphe.",
+    "prompt": "« Paris vaut bien une messe. »"
+  },
+  {
+    "accepted": ["Danton"],
+    "answer": "Georges Danton",
+    "decoys": ["Robespierre", "Marat", "Saint-Just"],
+    "id": "quote-fr-danton-audace",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Danton à l'Assemblée, le 2 septembre 1792.",
+    "prompt": "« De l'audace, encore de l'audace, toujours de l'audace. »"
+  },
+  {
+    "accepted": ["Zola"],
+    "answer": "Émile Zola",
+    "decoys": ["Victor Hugo", "Jean Jaurès", "Georges Clemenceau"],
+    "id": "quote-fr-zola-jaccuse",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le titre de la lettre d'Émile Zola publiée dans L'Aurore en janvier 1898, en pleine affaire Dreyfus.",
+    "prompt": "« J'accuse… ! »"
+  },
+  {
+    "accepted": ["Jobs"],
+    "answer": "Steve Jobs",
+    "decoys": ["Bill Gates", "Mark Zuckerberg", "Elon Musk"],
+    "id": "quote-fr-jobs-stay-hungry",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Steve Jobs à la fin de son discours aux diplômés de Stanford, en 2005.",
+    "prompt": "« Stay hungry, stay foolish. »"
+  },
+  {
+    "accepted": ["Muhammad Ali", "Ali", "Cassius Clay"],
+    "answer": "Mohamed Ali",
+    "decoys": ["Mike Tyson", "Joe Frazier", "George Foreman"],
+    "id": "quote-fr-ali-papillon",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La devise du boxeur, champion du monde des poids lourds.",
+    "prompt": "« Je vole comme le papillon, je pique comme l'abeille. »"
+  },
+  {
+    "accepted": ["Descartes"],
+    "answer": "René Descartes",
+    "decoys": ["Blaise Pascal", "Baruch Spinoza", "Emmanuel Kant"],
+    "id": "quote-fr-descartes-cogito",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "René Descartes dans le Discours de la méthode, en 1637.",
+    "prompt": "« Je pense, donc je suis. »"
+  },
+  {
+    "accepted": ["Pascal"],
+    "answer": "Blaise Pascal",
+    "decoys": ["René Descartes", "La Rochefoucauld", "Bossuet"],
+    "id": "quote-fr-pascal-coeur",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Blaise Pascal dans les Pensées.",
+    "prompt": "« Le cœur a ses raisons que la raison ne connaît point. »"
+  },
+  {
+    "accepted": ["Pascal"],
+    "answer": "Blaise Pascal",
+    "decoys": ["René Descartes", "Voltaire", "Baruch Spinoza"],
+    "id": "quote-fr-pascal-roseau",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Blaise Pascal dans les Pensées.",
+    "prompt": "« L'homme n'est qu'un roseau, le plus faible de la nature ; mais c'est un roseau pensant. »"
+  },
+  {
+    "accepted": ["Sartre"],
+    "answer": "Jean-Paul Sartre",
+    "decoys": ["Albert Camus", "Simone de Beauvoir", "Jean Anouilh"],
+    "id": "quote-fr-sartre-enfer",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La réplique de Garcin dans Huis clos, pièce de Jean-Paul Sartre (1944).",
+    "prompt": "« L'enfer, c'est les autres. »"
+  },
+  {
+    "accepted": ["Beauvoir", "De Beauvoir"],
+    "answer": "Simone de Beauvoir",
+    "decoys": ["George Sand", "Marguerite Duras", "Simone Veil"],
+    "id": "quote-fr-beauvoir-femme",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Simone de Beauvoir dans Le Deuxième Sexe (1949).",
+    "prompt": "« On ne naît pas femme : on le devient. »"
+  },
+  {
+    "accepted": ["Lavoisier"],
+    "answer": "Antoine Lavoisier",
+    "decoys": ["Louis Pasteur", "Isaac Newton", "Marie Curie"],
+    "id": "quote-fr-lavoisier-rien-ne-se-perd",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Formule apocryphe qui résume la conservation de la masse établie par le chimiste Lavoisier.",
+    "prompt": "« Rien ne se perd, rien ne se crée, tout se transforme. »"
+  },
+  {
+    "accepted": ["Montaigne"],
+    "answer": "Michel de Montaigne",
+    "decoys": ["François Rabelais", "Étienne de La Boétie", "Blaise Pascal"],
+    "id": "quote-fr-montaigne-lui-moi",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Montaigne dans les Essais, sur son amitié avec Étienne de La Boétie.",
+    "prompt": "« Parce que c'était lui, parce que c'était moi. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Voltaire",
+    "decoys": ["Jean-Jacques Rousseau", "Denis Diderot", "Montesquieu"],
+    "id": "quote-fr-voltaire-jardin",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La dernière phrase de Candide, conte de Voltaire (1759).",
+    "prompt": "« Il faut cultiver notre jardin. »"
+  },
+  {
+    "accepted": ["Rabelais"],
+    "answer": "François Rabelais",
+    "decoys": ["Michel de Montaigne", "Pierre de Ronsard", "Clément Marot"],
+    "id": "quote-fr-rabelais-science",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La lettre de Gargantua à son fils dans Pantagruel, de François Rabelais.",
+    "prompt": "« Science sans conscience n'est que ruine de l'âme. »"
+  },
+  {
+    "accepted": ["Corneille"],
+    "answer": "Pierre Corneille",
+    "decoys": ["Jean Racine", "Molière", "Marivaux"],
+    "id": "quote-fr-corneille-hais-point",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Chimène à Rodrigue dans Le Cid, de Pierre Corneille (1637).",
+    "prompt": "« Va, je ne te hais point. »"
+  },
+  {
+    "accepted": ["Corneille"],
+    "answer": "Pierre Corneille",
+    "decoys": ["Jean Racine", "Molière", "Jean de La Fontaine"],
+    "id": "quote-fr-corneille-sans-peril",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le Comte à Rodrigue dans Le Cid, de Pierre Corneille.",
+    "prompt": "« À vaincre sans péril, on triomphe sans gloire. »"
+  },
+  {
+    "accepted": [],
+    "answer": "Molière",
+    "decoys": ["Jean Racine", "Pierre Corneille", "Beaumarchais"],
+    "id": "quote-fr-moliere-galere",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La réplique de Géronte dans Les Fourberies de Scapin, de Molière (1671).",
+    "prompt": "« Que diable allait-il faire dans cette galère ? »"
+  },
+  {
+    "accepted": [],
+    "answer": "Molière",
+    "decoys": ["François Rabelais", "Jean de La Fontaine", "Jean Racine"],
+    "id": "quote-fr-moliere-manger",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Un chiasme célèbre de L'Avare, de Molière (1668).",
+    "prompt": "« Il faut manger pour vivre, et non pas vivre pour manger. »"
+  },
+  {
+    "accepted": ["La Fontaine"],
+    "answer": "Jean de La Fontaine",
+    "decoys": ["Charles Perrault", "Ésope", "Molière"],
+    "id": "quote-fr-la-fontaine-courir",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers du Lièvre et la Tortue, fable de Jean de La Fontaine.",
+    "prompt": "« Rien ne sert de courir ; il faut partir à point. »"
+  },
+  {
+    "accepted": ["La Fontaine"],
+    "answer": "Jean de La Fontaine",
+    "decoys": ["Charles Perrault", "Ésope", "Machiavel"],
+    "id": "quote-fr-la-fontaine-plus-fort",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers du Loup et l'Agneau, fable de Jean de La Fontaine.",
+    "prompt": "« La raison du plus fort est toujours la meilleure. »"
+  },
+  {
+    "accepted": ["Boileau"],
+    "answer": "Nicolas Boileau",
+    "decoys": ["Jean Racine", "La Bruyère", "François de Malherbe"],
+    "id": "quote-fr-boileau-concoit",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Nicolas Boileau dans L'Art poétique.",
+    "prompt": "« Ce que l'on conçoit bien s'énonce clairement. »"
+  },
+  {
+    "accepted": ["Lamartine"],
+    "answer": "Alphonse de Lamartine",
+    "decoys": ["Victor Hugo", "Alfred de Musset", "Alfred de Vigny"],
+    "id": "quote-fr-lamartine-seul-etre",
+    "isWellKnown": false,
+    "kind": "person",
+    "note": "Un vers d'Alphonse de Lamartine, dans les Méditations poétiques.",
+    "prompt": "« Un seul être vous manque, et tout est dépeuplé. »"
+  },
+  {
+    "accepted": ["Saint-Exupéry", "Saint-Exupery", "Saint-Ex"],
+    "answer": "Antoine de Saint-Exupéry",
+    "decoys": ["Jules Verne", "Jacques Prévert", "Marcel Pagnol"],
+    "id": "quote-fr-saint-exupery-coeur",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le secret du renard dans Le Petit Prince, d'Antoine de Saint-Exupéry (1943).",
+    "prompt": "« On ne voit bien qu'avec le cœur. L'essentiel est invisible pour les yeux. »"
+  },
+  {
+    "accepted": ["Saint-Exupéry", "Saint-Exupery", "Saint-Ex"],
+    "answer": "Antoine de Saint-Exupéry",
+    "decoys": ["Jules Verne", "Hergé", "Roald Dahl"],
+    "id": "quote-fr-saint-exupery-mouton",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La première demande du Petit Prince à l'aviateur, dans le livre d'Antoine de Saint-Exupéry.",
+    "prompt": "« S'il vous plaît… dessine-moi un mouton ! »"
+  },
+  {
+    "accepted": ["Rimbaud"],
+    "answer": "Arthur Rimbaud",
+    "decoys": ["Paul Verlaine", "Charles Baudelaire", "Guillaume Apollinaire"],
+    "id": "quote-fr-rimbaud-dix-sept-ans",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers d'un poème de jeunesse d'Arthur Rimbaud.",
+    "prompt": "« On n'est pas sérieux, quand on a dix-sept ans. »"
+  },
+  {
+    "accepted": ["Shakespeare"],
+    "answer": "William Shakespeare",
+    "decoys": ["Molière", "Victor Hugo", "Oscar Wilde"],
+    "id": "quote-fr-shakespeare-etre",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le monologue d'Hamlet, dans la pièce de William Shakespeare (acte III).",
+    "prompt": "« Être ou ne pas être, telle est la question. »"
+  },
+  {
+    "accepted": ["Nietzsche"],
+    "answer": "Friedrich Nietzsche",
+    "decoys": ["Arthur Schopenhauer", "Karl Marx", "Søren Kierkegaard"],
+    "id": "quote-fr-nietzsche-plus-fort",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Friedrich Nietzsche dans Crépuscule des idoles (1888), souvent traduit « ce qui ne me fait pas mourir ».",
+    "prompt": "« Ce qui ne me tue pas me rend plus fort. »"
+  },
+  {
+    "accepted": ["Rousseau"],
+    "answer": "Jean-Jacques Rousseau",
+    "decoys": ["Voltaire", "Montesquieu", "Denis Diderot"],
+    "id": "quote-fr-rousseau-fers",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "L'ouverture du Contrat social, de Jean-Jacques Rousseau (1762).",
+    "prompt": "« L'homme est né libre, et partout il est dans les fers. »"
+  },
+  {
+    "accepted": ["Marx"],
+    "answer": "Karl Marx",
+    "decoys": ["Friedrich Engels", "Lénine", "Friedrich Nietzsche"],
+    "id": "quote-fr-marx-opium",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Karl Marx dans sa Critique de la philosophie du droit de Hegel (1843).",
+    "prompt": "« La religion est l'opium du peuple. »"
+  },
+  {
+    "accepted": ["Camus"],
+    "answer": "Albert Camus",
+    "decoys": ["Jean-Paul Sartre", "Marguerite Duras", "André Gide"],
+    "id": "quote-fr-camus-maman",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La première phrase de L'Étranger, d'Albert Camus (1942).",
+    "prompt": "« Aujourd'hui, maman est morte. »"
+  },
+  {
+    "accepted": ["Proust"],
+    "answer": "Marcel Proust",
+    "decoys": ["André Gide", "Gustave Flaubert", "Honoré de Balzac"],
+    "id": "quote-fr-proust-bonne-heure",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La première phrase d'À la recherche du temps perdu, de Marcel Proust.",
+    "prompt": "« Longtemps, je me suis couché de bonne heure. »"
+  },
+  {
+    "accepted": ["Dumas", "Alexandre Dumas père"],
+    "answer": "Alexandre Dumas",
+    "decoys": ["Victor Hugo", "Jules Verne", "Théophile Gautier"],
+    "id": "quote-fr-dumas-tous-pour-un",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La devise des Trois Mousquetaires, d'Alexandre Dumas (1844).",
+    "prompt": "« Tous pour un, un pour tous ! »"
+  },
+  {
+    "accepted": ["Du Bellay", "Joachim Du Bellay"],
+    "answer": "Joachim du Bellay",
+    "decoys": ["Pierre de Ronsard", "Clément Marot", "Louise Labé"],
+    "id": "quote-fr-du-bellay-ulysse",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers d'un sonnet des Regrets, de Joachim du Bellay.",
+    "prompt": "« Heureux qui, comme Ulysse, a fait un beau voyage… »"
+  },
+  {
+    "accepted": ["Ronsard"],
+    "answer": "Pierre de Ronsard",
+    "decoys": ["Joachim du Bellay", "Clément Marot", "François de Malherbe"],
+    "id": "quote-fr-ronsard-rose",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers de l'ode à Cassandre, de Pierre de Ronsard.",
+    "prompt": "« Mignonne, allons voir si la rose… »"
+  },
+  {
+    "accepted": ["Apollinaire"],
+    "answer": "Guillaume Apollinaire",
+    "decoys": ["Paul Éluard", "Jacques Prévert", "Louis Aragon"],
+    "id": "quote-fr-apollinaire-mirabeau",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers du Pont Mirabeau, poème de Guillaume Apollinaire.",
+    "prompt": "« Sous le pont Mirabeau coule la Seine… »"
+  },
+  {
+    "accepted": ["Verlaine"],
+    "answer": "Paul Verlaine",
+    "decoys": ["Arthur Rimbaud", "Charles Baudelaire", "Stéphane Mallarmé"],
+    "id": "quote-fr-verlaine-sanglots",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Les vers de Paul Verlaine qui ont annoncé le Débarquement en Normandie.",
+    "prompt": "« Les sanglots longs des violons de l'automne… »"
+  },
+  {
+    "accepted": ["Hugo"],
+    "answer": "Victor Hugo",
+    "decoys": [
+      "Alphonse de Lamartine",
+      "Charles Baudelaire",
+      "Alfred de Musset"
+    ],
+    "id": "quote-fr-hugo-demain",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le premier vers d'un poème de Victor Hugo, manuscrit daté de 1856.",
+    "prompt": "« Demain, dès l'aube, à l'heure où blanchit la campagne… »"
+  },
+  {
+    "accepted": ["Rostand"],
+    "answer": "Edmond Rostand",
+    "decoys": ["Molière", "Georges Feydeau", "Marcel Pagnol"],
+    "id": "quote-fr-rostand-nez",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "La tirade du nez, dans Cyrano de Bergerac, pièce d'Edmond Rostand.",
+    "prompt": "« C'est un roc !… c'est un pic !… c'est un cap ! »"
+  },
+  {
+    "accepted": ["Desproges"],
+    "answer": "Pierre Desproges",
+    "decoys": ["Coluche", "Guy Bedos", "Raymond Devos"],
+    "id": "quote-fr-desproges-rire",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Pierre Desproges dans un réquisitoire du Tribunal des flagrants délires, sur France Inter.",
+    "prompt": "« On peut rire de tout, mais pas avec tout le monde. »"
+  },
+  {
+    "accepted": ["Cantona", "Eric Cantona"],
+    "answer": "Éric Cantona",
+    "decoys": ["Zinédine Zidane", "David Ginola", "Jean-Pierre Papin"],
+    "id": "quote-fr-cantona-mouettes",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Éric Cantona devant la presse anglaise, en anglais, une phrase restée énigmatique.",
+    "prompt": "« Quand les mouettes suivent le chalutier, c'est qu'elles pensent que des sardines seront jetées à la mer. »"
+  },
+  {
+    "accepted": ["Roland"],
+    "answer": "Thierry Roland",
+    "decoys": ["Jean-Michel Larqué", "Didier Roustan", "Pierre Ménès"],
+    "id": "quote-fr-thierry-roland-mourir",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Thierry Roland au commentaire de France-Brésil, finale de la Coupe du monde 1998.",
+    "prompt": "« Après avoir vu ça, on peut mourir tranquille. »"
+  },
+  {
+    "accepted": ["Nabilla Benattia"],
+    "answer": "Nabilla",
+    "decoys": ["Loana", "Amélie Neten", "Jessica Thivenin"],
+    "id": "quote-fr-nabilla-allo",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Nabilla dans Les Anges de la téléréalité, en 2013 : un buzz qui l'a rendue célèbre du jour au lendemain.",
+    "prompt": "« Allô ! Non, mais allô, quoi ! »"
+  },
+  {
+    "accepted": ["Coffe"],
+    "answer": "Jean-Pierre Coffe",
+    "decoys": ["Joël Robuchon", "Cyril Lignac", "Maïté"],
+    "id": "quote-fr-coffe-merde",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Jean-Pierre Coffe jetant une saucisse industrielle à travers le plateau de La Grande Famille.",
+    "prompt": "« Ça ! C'est de la merde ! »"
+  },
+  {
+    "accepted": ["Michel Colucci"],
+    "answer": "Coluche",
+    "decoys": ["Thierry Le Luron", "Pierre Desproges", "Guy Bedos"],
+    "id": "quote-fr-coluche-mec",
+    "isWellKnown": true,
+    "kind": "person",
+    "note": "Le début de sketch le plus célèbre de Coluche.",
+    "prompt": "« C'est l'histoire d'un mec… »"
   }
 ]

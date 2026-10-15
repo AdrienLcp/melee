@@ -8,13 +8,15 @@ one part.
 
 ### Breaking Changes
 
-- `[Shared]` **A ninth quiz subject, Répliques / Quotes**, and `PROTOCOL_VERSION`
-  goes to 24. The prompt is a line from a film or a series, the answer is the
-  work it comes from, and a table that ticks the chip alone plays a
-  *where is that line from?* round in either answer mode. 74 French lines,
-  quoted as the dub says them, and 75 English ones, written by hand in
-  `apps/server/scripts/quotes-*.json` and read into the bank build; the bank
-  goes to 11 602 rows. Text only — no audio extract.
+- `[Shared]` **A ninth quiz subject, Citations / Quotes**, and `PROTOCOL_VERSION`
+  goes to 24. The prompt is a line a table recognises — from a film, a series,
+  a video game, an ad or a real person — followed by what to name (*Quel film ?*,
+  *Qui l’a dit ?*, *Quelle marque ?*), and a table that ticks the chip alone
+  plays a *where is that line from?* round in either answer mode. 457 French
+  lines, quoted as a French table says them, and 548 English ones, written by
+  hand, each checked against Wikiquote or a citable source, in
+  `apps/server/scripts/quotes-*.json`; the bank goes to 12 458 rows. Text
+  only — no audio extract.
 
 - `[Shared]` **Every setting can be changed while a round is under way, and
   lands on the next one**, and `PROTOCOL_VERSION` goes to 23. The answer mode

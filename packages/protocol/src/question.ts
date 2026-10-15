@@ -14,9 +14,10 @@ import { z } from 'zod'
  * the bank with it.
  *
  * `quotes` is the one chip that names a way of asking rather than a subject — a
- * line from a film or a series, and the room names where it comes from. It is
- * not folded into `cinema` because a table asks for it by name, and a room that
- * ticks it alone is playing a different game from one that ticks cinema.
+ * line from a film, a series, a video game, an ad or a real person, and the
+ * room names where it comes from. It is not folded into `cinema` because a
+ * table asks for it by name, and a room that ticks it alone is playing a
+ * different game from one that ticks cinema.
  */
 export const questionCategories = [
   'history',

@@ -4,10 +4,11 @@ A rival party game ships a *where is that line from?* round. The question was
 whether it is a game of its own or a rubric of the quiz, and the answer is the
 one `game-catalogue.md` already gives for an answer mode: the pool, the
 countdown, the buzz, both answer modes, the speed bonus, the reveal and the
-board are the quiz's, unchanged. A line from a film is a quiz question whose
-prompt is the line, whose answer is the work and whose decoys are three works
-it could have come from. So it is a **ninth chip**, `quotes`, and a table that
-ticks it alone plays the round the rival sells.
+board are the quiz's, unchanged. A famous line is a quiz question whose prompt
+is the line, whose answer is where it comes from and whose decoys are three
+places it could have come from. So it is a **ninth chip**, `quotes` —
+*Citations* in French, *Quotes* in English — and a table that ticks it alone
+plays the round the rival sells.
 
 ## What was built
 
@@ -20,30 +21,43 @@ ticks it alone plays the round the rival sells.
   chip alone on a row — `e2e/strip-rows.spec.ts` caught it. Between the row and
   three of the widest label (510) the strip is a 3 × 3 grid, through
   `strip.tiles-below`'s first caller.
-- **Two hand-written lists**, `apps/server/scripts/quotes-fr.json` and
-  `quotes-en.json`, read by `quotes-source.ts` into the bank build like any
-  other source, so the winnable and repeated-prompt passes run over them too.
-  No open bank carries a line with its work and three plausible others, which
-  is why they are authored. Each language is its own list rather than a
-  translation: a French table quotes the dub, and an English one the
-  original.
-- **Films and series, as text.** No audio extract: a short quotation in text is
-  a citation, a clip from the soundtrack is not ours to ship.
+- **Five kinds of line in one chip**: a film, a series (cartoons, anime and TV
+  shows included), a video game, an ad — the answer is the brand — and a real
+  person. The answer changes nature from row to row, so each authored row
+  carries its `kind` and `quotes-source.ts` appends what to name to the line —
+  *Which film?*, *Who said it?*, *Which brand?* — because a typed answer
+  must know what it owes before four candidates are there to say.
+- **Hand-written lists**, `apps/server/scripts/quotes-fr.json` (457) and
+  `quotes-en.json` (548), read into the bank build like any other source, so
+  the winnable and repeated-prompt passes run over them too. No open bank
+  carries a line with where it comes from and three plausible others. Each
+  language is its own list rather than a translation: a French table quotes the
+  dub, and an English one the original.
+- **Every row was checked** against Wikiquote, Wikipedia or a citable article
+  for its wording and its attribution, by the agents that wrote them; the ones
+  that could not be confirmed were dropped, not guessed. Apocryphal attributions
+  that are part of the culture (Louis XIV, Archimedes) are kept and say so in
+  the note.
+- **Text only.** A short quotation in text is a citation; a clip from a
+  soundtrack is not ours to ship.
 - **`accepted` carries the franchise and the other language's title** — *Star
   Wars* for *The Empire Strikes Back*, *The Godfather* for its Part III —
   because a table shouts the franchise, and a row never carries a sibling of
   its answer as a decoy, which is what would make that spelling a hedge.
 - **The bank's own credit is not on the credits page.** That page names the
-  people whose work was reshaped; the lines belong to their films, and the
+  people whose work was reshaped; the lines belong to their authors, and the
   selection, notes and decoys are this repository's, under the share-alike line
   the page already ends on.
 
 ## Left open
 
-- **The rubric is small** — 74 French lines and 75 English — and a category is
-  drawn with one chance in nine whatever its size, so a long evening with every
-  chip ticked meets it often. It stops being offered once a room has played it
-  through. Growing it is writing more rows, nothing else.
+- **A French dub's exact wording** is the commonly quoted form on about forty
+  French rows, where only who says it and in which work could be confirmed —
+  mostly animated films. A row found wrong at a table is fixed in the JSON and
+  the bank rebuilt.
+- **French stops short of 500** (457): the shared web-search budget ran out
+  during the authoring pass, and lines were dropped rather than kept
+  unverified. Growing it is writing more rows, nothing else.
 - **A game of its own** would earn its place only with a mechanic the quiz does
   not have: the line revealed word by word, paying more for an earlier buzz.
   Not built until a table asks for it.

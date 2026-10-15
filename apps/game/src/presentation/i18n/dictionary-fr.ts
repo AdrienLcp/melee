@@ -568,7 +568,7 @@ export const FR_DICTIONARY = defineDictionary({
       history: 'Histoire',
       label: 'Sur quels sujets',
       none: 'N’en choisis aucun et tu as tous les sujets.',
-      quotes: 'Répliques',
+      quotes: 'Citations',
       science: 'Sciences',
       sport: 'Sport',
       videogames: 'Jeux vidéo'
