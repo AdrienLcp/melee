@@ -582,14 +582,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   settings and the slate's key reachable mid-game there.
                 */}
                 <SetupPopover>
-                  {view.phase === 'revealed' &&
-                    view.settings.game?.kind !== 'slate' && (
-                      <AutoAdvanceChoice
-                        isLive={isLive}
-                        onSettingsChange={changeSettings}
-                        settings={view.settings}
-                      />
-                    )}
                   {view.phase === 'playing' &&
                     view.round?.content.kind === 'slate' &&
                     !slateWall.isOnWall && (
