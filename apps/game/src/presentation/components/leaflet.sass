@@ -1,66 +1,29 @@
 @use '../styles/leaflet'
+@use '../styles/sheet'
 
 @layer components
-  .leaflet-popover
+  @include sheet.styles
+
+  .sheet-popover
     @include leaflet.leaflet
 
-  // Held to the visual viewport React Aria measures, so a field focused inside
-  // the sheet lifts it above the software keyboard rather than under it.
-  .leaflet-overlay
-    align-items: end
-    background: var(--scrim)
-    block-size: var(--visual-viewport-height, 100dvh)
-    display: flex
-    inline-size: 100vw
-    inset: 0 auto auto 0
-    position: fixed
-    z-index: 3
-
     &[data-entering]
-      animation: leaflet-scrim var(--transition-base, 0s) var(--ease-out)
+      animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
 
-    &[data-exiting]
-      animation: leaflet-scrim var(--transition-fast, 0s) var(--ease-out) reverse
-
-  .leaflet-sheet
+  .sheet
     @include leaflet.leaflet
 
     border-end-end-radius: 0
     border-end-start-radius: 0
     box-shadow: 0 0 0 1px var(--rule), var(--shadow-sheet)
-    display: flex
-    flex-direction: column
-    inline-size: 100%
-    max-block-size: calc(100% - var(--space-2xl))
-    outline: none
     padding-block: 0 max(var(--space-m), var(--safe-area-bottom))
     padding-inline: var(--gutter-left) var(--gutter-right)
-    translate: 0rem var(--drag-offset, 0rem)
-
-    &[data-entering]
-      animation: leaflet-rise var(--transition-base, 0s) var(--ease-out)
-
-    &[data-exiting]
-      animation: leaflet-rise var(--transition-fast, 0s) var(--ease-out) reverse
 
     // A sheet runs the whole width of the screen, a phone lying down included,
     // and controls stretched across 900px read as bars rather than presses.
     .react-aria-Dialog
-      align-self: center
-      inline-size: 100%
+      margin-inline: auto
       max-inline-size: 30rem
-
-  @keyframes leaflet-scrim
-    from
-      opacity: 0
-
-  // Ends where a thumb left the sheet, so a sheet pulled down leaves from there.
-  @keyframes leaflet-rise
-    from
-      translate: 0rem 100%
-
-    to
-      translate: 0rem var(--drag-offset, 0rem)
 
   @keyframes popover-strike
     from

@@ -708,9 +708,12 @@ bottom edge across the whole width, its controls held to a 30rem column, its
 top a grabber a thumb pulls down (past a quarter of its height, or flicked).
 A press on the scrim or Escape closes it too. Below the split a box hung from
 a top corner is out of a thumb's reach and too narrow for the host's menu,
-which ran to a scrolling 520px card. The sheet is a plain modal with its own
-rise, not react-aria's `Sheet`, which enters through the browser's smooth
-scroll and takes over half a second.
+which ran to a scrolling 520px card. Both faces are `PopoverSheet` from
+`@adrienlcp/react-aria`, given the split (`WIDE_SCREEN_QUERY`) and the
+rulebook's material: the package holds the overlay, the rise, the grabber and
+their keyframes (`styles/_sheet.sass`), `leaflet.sass` the look. The sheet is a
+plain modal with its own rise, not react-aria's `Sheet`, which enters through
+the browser's smooth scroll and takes over half a second.
 
 ## Do's and Don'ts
 
