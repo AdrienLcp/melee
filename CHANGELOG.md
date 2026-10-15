@@ -869,6 +869,16 @@ one part.
 
 ### Improvements
 
+- `[Server]` **A French room that stays mainstream no longer gets an American
+  evening.** No PolyFact row and no Mintaka sport row is well-known any more:
+  read on a seeded sample, PolyFact was more than half facts nobody knows and
+  Mintaka's sport fourteen questions in eighteen about the NBA, the NFL and
+  baseball, and French Wikipedia traffic could not tell either from a question
+  everybody knows. 732 rows lose the flag and stay in the bank for a game that
+  takes everything; the well-known French half goes from 4 844 rows to 4 112,
+  sport keeping 126. See
+  [`docs/plans/33-questions-a-french-table-knows.md`](docs/plans/33-questions-a-french-table-knows.md).
+
 - `[Game]` **The round's clock counts.** Every timer — the console's, the
   wall's, a player's, the hold before the next round — is one groove draining
   in the phase's ink with the whole seconds beside it in tabular figures, and

@@ -106,15 +106,23 @@ const DATED =
  *
  * The **answer** carries the higher bar because in this bank an answer is
  * typed, not picked: a room that has never heard of *Presbyterian College* can
- * still point at it among four, and cannot produce it from nothing. That is
- * also, on its own, the American filter this source needs. Mintaka's sport half
- * is written by American crowdworkers and no word list finds it in French —
- * *Rebels d'Ole Miss* and *Hiram College* name no league — but a French room's
- * traffic knows exactly who Michael Jordan is and has never opened the article
- * about Dennis Leonard.
+ * still point at it among four, and cannot produce it from nothing. It filters
+ * the obscure, not the American: *Rebels d'Ole Miss* and *Hiram College* fall
+ * under it, but Russell Westbrook's second team clears it easily.
  */
 const ANSWER_VIEWS = 2_000
 const SUBJECT_VIEWS = 500
+
+/**
+ * Subjects whose rows are banked but never offered to a room that asked to stay
+ * mainstream. Mintaka is written by American crowdworkers, and its sport half
+ * asks an American evening — NBA trades, Angels pitchers, Super Bowl MVPs. Read
+ * on a seeded sample of two hundred French rows, fourteen of eighteen sport
+ * questions were ones a French table does not know, against one in five
+ * elsewhere, and French traffic does not tell them apart: a French reader opens
+ * a Golden State forward's article without being able to name his trophies.
+ */
+const AMERICAN_SUBJECTS: ReadonlySet<QuestionCategory> = new Set(['sport'])
 
 /**
  * How far from its own answer a decoy may have been born, taken from the
@@ -661,7 +669,8 @@ export const ingestMintaka = async (): Promise<IngestedQuestions> => {
       answer: answer.label.fr,
       answerId: answer.name,
       category,
-      isWellKnown: isWellKnownInFrench(views),
+      isWellKnown:
+        !AMERICAN_SUBJECTS.has(category) && isWellKnownInFrench(views),
       prompt: row.translations.fr ?? '',
       row,
       views

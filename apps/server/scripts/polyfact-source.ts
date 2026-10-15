@@ -5,7 +5,7 @@ import type { QuestionCategory } from '@taverla/protocol/question'
 
 import { gradeQuizGuess } from '@taverla/core/quiz/question-answer'
 
-import { frenchViewsOf, isWellKnownInFrench } from './frwiki-notability'
+import { frenchViewsOf } from './frwiki-notability'
 import { checkShape, orStop } from './json-file'
 import {
   type Attribution,
@@ -98,6 +98,16 @@ const CATEGORY_OF_RELATION: Record<string, QuestionCategory> = {
  */
 const SUBJECT_VIEWS = 300
 const OPTION_VIEWS = 60
+
+/**
+ * No PolyFact row is offered to a room that asked to stay mainstream, however
+ * read its subject is. A Wikidata relation asks the fact a database holds, not
+ * the one a table remembers: on a seeded sample of two hundred French rows,
+ * more than half asked what nobody knows — where Maxwell Perkins died, who
+ * developed a minor game — and a fifth asked an American one. The rows whose
+ * subject cleared the well-known bar did no better, so traffic cannot sort them.
+ */
+const IS_WELL_KNOWN = false
 
 /**
  * Upstream draws its decoys from a pool it never rebalances, so one entity can
@@ -607,7 +617,7 @@ export const ingestPolyFact = async (): Promise<IngestedQuestions> => {
 
   for (const row of guessable) {
     const candidate = toCandidate({
-      isWellKnown: isWellKnownInFrench(subjectViews.get(subjectOf(row)) ?? 0),
+      isWellKnown: IS_WELL_KNOWN,
       row
     })
 
