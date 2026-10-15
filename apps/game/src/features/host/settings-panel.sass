@@ -15,7 +15,8 @@
     // difficulty goes the other way. Rounded up to the next `rem` for headroom,
     // the way the game picker's 476 became 30.
     //
-    //   answer mode 536 · difficulty 520 · subjects 952
+    //   answer mode 536 · difficulty 520 · subjects 1 031, and 510 for
+    //   three by three, which nine tile into before they stack
     //   rounds 276 · auto-advance and answer window 296
     //
     // All of them measured with the labels at their **ceiling**: a label is
@@ -30,7 +31,9 @@
       @include strip.stacks-below(33rem)
 
     .question-subjects
-      @include strip.stacks-below(60rem)
+      @include strip.stacks-below(65rem)
+      @include strip.tiles-below(65rem, 3)
+      @include strip.tiles-below(33rem, 1)
 
     .answer-window
       @include strip.stacks-below(19rem)

@@ -225,6 +225,12 @@ The distinction is worth holding. *Reflex race* and *Quiz* really are separate
 games of the same shape, because they have no track. A blind test answered by
 pressing one of four covers is still a blind test.
 
+The same test settled a rival's *where is that line from?* round: a line
+from a film is a quiz question whose answer is the work, so it shipped as a
+ninth chip, `quotes`, and not as a sixth game ([stage 32](plans/32-quotes.md)).
+What would make it a game is a mechanic the quiz lacks — the line revealed word
+by word, an earlier buzz paying more — and not its content.
+
 What they do change is an assumption everything shipped so far rests on:
 **exactly one player acts at a time**. That is the expensive part, not the UI.
 

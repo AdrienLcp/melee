@@ -34,6 +34,20 @@
       "licence": "CC BY-SA 4.0",
       "source": "Open Trivia DB",
       "url": "https://opentdb.com"
+    },
+    {
+      "author": "Taverla",
+      "language": "fr",
+      "licence": "CC BY-SA 4.0",
+      "source": "Taverla",
+      "url": "https://github.com/AdrienLcp/taverla"
+    },
+    {
+      "author": "Taverla",
+      "language": "en",
+      "licence": "CC BY-SA 4.0",
+      "source": "Taverla",
+      "url": "https://github.com/AdrienLcp/taverla"
     }
   ],
   "questions": [
@@ -218389,6 +218403,2821 @@
       "note": null,
       "prompt": "Who created the Cartoon Network series \"Adventure Time\"?",
       "theme": "Entertainment: Cartoon & Animations"
+    },
+    {
+      "accepted": [],
+      "answer": "Les Tontons flingueurs",
+      "decoys": [
+        "Le cave se rebiffe",
+        "Mélodie en sous-sol",
+        "Les Barbouzes"
+      ],
+      "id": "quote-fr-tontons-flingueurs",
+      "isWellKnown": true,
+      "note": "Un dialogue de Michel Audiard, 1963.",
+      "prompt": "« Les cons, ça ose tout. C'est même à ça qu'on les reconnaît. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "100 000 dollars au soleil"
+      ],
+      "answer": "Cent mille dollars au soleil",
+      "decoys": [
+        "Un singe en hiver",
+        "Le Pacha",
+        "Le Clan des Siciliens"
+      ],
+      "id": "quote-fr-cent-mille-dollars",
+      "isWellKnown": false,
+      "note": "Un dialogue de Michel Audiard, 1964.",
+      "prompt": "« Quand les types de 130 kilos disent certaines choses, ceux de 60 kilos les écoutent. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Un taxi pour Tobrouk",
+      "decoys": [
+        "Le Jour le plus long",
+        "Week-end à Zuydcoote",
+        "La Vache et le Prisonnier"
+      ],
+      "id": "quote-fr-taxi-pour-tobrouk",
+      "isWellKnown": false,
+      "note": "Un dialogue de Michel Audiard, 1961.",
+      "prompt": "« Un intellectuel assis va moins loin qu'un con qui marche. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "OSS 117",
+        "Le Caire, nid d'espions"
+      ],
+      "answer": "OSS 117 : Le Caire, nid d'espions",
+      "decoys": [
+        "Le Grand Blond avec une chaussure noire",
+        "Le Magnifique",
+        "L'Homme de Rio"
+      ],
+      "id": "quote-fr-oss-117-blanquette",
+      "isWellKnown": true,
+      "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2006.",
+      "prompt": "« Comment est votre blanquette ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "OSS 117",
+        "Rio ne répond plus"
+      ],
+      "answer": "OSS 117 : Rio ne répond plus",
+      "decoys": [
+        "Le Professionnel",
+        "Le Guignolo",
+        "Le Marginal"
+      ],
+      "id": "quote-fr-oss-117-dictature",
+      "isWellKnown": true,
+      "note": "Hubert Bonisseur de La Bath (Jean Dujardin), 2009.",
+      "prompt": "« Une dictature, c'est quand les gens sont communistes, déjà. Qu'ils ont froid, avec des chapeaux gris et des chaussures à fermeture éclair. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Mission Cléopâtre",
+        "Astérix et Obélix",
+        "Astérix"
+      ],
+      "answer": "Astérix et Obélix : Mission Cléopâtre",
+      "decoys": [
+        "La Cité de la peur",
+        "Les Visiteurs",
+        "RRRrrrr!!!"
+      ],
+      "id": "quote-fr-mission-cleopatre",
+      "isWellKnown": true,
+      "note": "Otis, le scribe joué par Édouard Baer, 2002.",
+      "prompt": "« Vous savez, moi je ne crois pas qu'il y ait de bonne ou de mauvaise situation. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "La Cité de la peur",
+      "decoys": [
+        "Les Trois Frères",
+        "La Tour Montparnasse infernale",
+        "Didier"
+      ],
+      "id": "quote-fr-cite-de-la-peur",
+      "isWellKnown": true,
+      "note": "Serge Karamazov (Alain Chabat), 1994.",
+      "prompt": "« Barrez-vous, cons de mimes ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Le Dîner de cons",
+      "decoys": [
+        "Le Placard",
+        "Les Compères",
+        "La Chèvre"
+      ],
+      "id": "quote-fr-diner-de-cons",
+      "isWellKnown": true,
+      "note": "François Pignon (Jacques Villeret) et Pierre Brochant (Thierry Lhermitte), 1998.",
+      "prompt": "« Il s'appelle Juste Leblanc. — Ah bon, il n'a pas de prénom ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Les Bronzés"
+      ],
+      "answer": "Les Bronzés font du ski",
+      "decoys": [
+        "Viens chez moi, j'habite chez une copine",
+        "Les Sous-doués",
+        "Papy fait de la résistance"
+      ],
+      "id": "quote-fr-bronzes-font-du-ski",
+      "isWellKnown": true,
+      "note": "Jean-Claude Dusse (Michel Blanc), 1979.",
+      "prompt": "« Oublie que t'as aucune chance. Vas-y, fonce ! On sait jamais ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Le Père Noël est une ordure",
+      "decoys": [
+        "Papy fait de la résistance",
+        "Le Grand Restaurant",
+        "Les Sous-doués"
+      ],
+      "id": "quote-fr-pere-noel-ordure",
+      "isWellKnown": true,
+      "note": "À propos des doubitchous de Sofia, 1982.",
+      "prompt": "« C'est fin, ça se mange sans faim. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "La Haine",
+      "decoys": [
+        "Ma 6-T va crack-er",
+        "Les Misérables",
+        "Banlieue 13"
+      ],
+      "id": "quote-fr-la-haine",
+      "isWellKnown": true,
+      "note": "L'histoire de l'homme qui tombe d'un immeuble, qui ouvre et ferme le film de Mathieu Kassovitz, 1995.",
+      "prompt": "« Jusqu'ici tout va bien… »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Les Ch'tis"
+      ],
+      "answer": "Bienvenue chez les Ch'tis",
+      "decoys": [
+        "Camping",
+        "Rien à déclarer",
+        "Les Tuche"
+      ],
+      "id": "quote-fr-chtis",
+      "isWellKnown": true,
+      "note": "Le film de Dany Boon, 2008.",
+      "prompt": "« Quand un étranger vient vivre dans le Nord, il braille deux fois : quand il arrive et quand il repart. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Brice de Nice",
+      "decoys": [
+        "Camping",
+        "Le Boulet",
+        "Taxi"
+      ],
+      "id": "quote-fr-brice-de-nice",
+      "isWellKnown": true,
+      "note": "Brice (Jean Dujardin), 2005.",
+      "prompt": "« Je t'ai cassé ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Kaamelott",
+      "decoys": [
+        "Caméra Café",
+        "Bref",
+        "Hero Corp"
+      ],
+      "id": "quote-fr-kaamelott-pas-faux",
+      "isWellKnown": true,
+      "note": "Perceval (Franck Pitiot), quand il ne comprend pas le mot qu'on vient d'employer.",
+      "prompt": "« C'est pas faux. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Kaamelott",
+      "decoys": [
+        "Fais pas ci, fais pas ça",
+        "Caméra Café",
+        "Hero Corp"
+      ],
+      "id": "quote-fr-kaamelott-gras",
+      "isWellKnown": true,
+      "note": "Karadoc (Jean-Christophe Hembert).",
+      "prompt": "« Le gras, c'est la vie ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Le Corniaud",
+      "decoys": [
+        "Le Gendarme de Saint-Tropez",
+        "Les Grandes Gueules",
+        "Oscar"
+      ],
+      "id": "quote-fr-le-corniaud",
+      "isWellKnown": true,
+      "note": "Antoine Maréchal (Bourvil), devant sa 2 CV en miettes, 1965.",
+      "prompt": "« Ah ben maintenant, elle va marcher beaucoup moins bien, forcément ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "La Grande Vadrouille",
+      "decoys": [
+        "Papy fait de la résistance",
+        "On a retrouvé la 7e compagnie",
+        "Le Gendarme de Saint-Tropez"
+      ],
+      "id": "quote-fr-grande-vadrouille",
+      "isWellKnown": true,
+      "note": "Louis de Funès et Bourvil, 1966.",
+      "prompt": "« Il n'y a pas d'hélice, hélas. — C'est là qu'est l'os. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Rabbi Jacob"
+      ],
+      "answer": "Les Aventures de Rabbi Jacob",
+      "decoys": [
+        "L'Aile ou la Cuisse",
+        "Le Grand Restaurant",
+        "Oscar"
+      ],
+      "id": "quote-fr-rabbi-jacob",
+      "isWellKnown": true,
+      "note": "Victor Pivert (Louis de Funès) à son chauffeur, 1973.",
+      "prompt": "« Salomon, vous êtes juif ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "La Folie des grandeurs",
+      "decoys": [
+        "Le Bossu",
+        "Les Trois Mousquetaires",
+        "Fantômas"
+      ],
+      "id": "quote-fr-folie-des-grandeurs",
+      "isWellKnown": true,
+      "note": "Blaze (Yves Montand) réveille Don Salluste (Louis de Funès), 1971.",
+      "prompt": "« Il est l'or, Monseignor ! Il est l'or de se réveiller ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Hôtel du Nord",
+      "decoys": [
+        "Pépé le Moko",
+        "La Bête humaine",
+        "Le Jour se lève"
+      ],
+      "id": "quote-fr-hotel-du-nord",
+      "isWellKnown": false,
+      "note": "Raymonde (Arletty), 1938.",
+      "prompt": "« Atmosphère ! Atmosphère ! Est-ce que j'ai une gueule d'atmosphère ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Quai des brumes"
+      ],
+      "answer": "Le Quai des brumes",
+      "decoys": [
+        "Pépé le Moko",
+        "La Grande Illusion",
+        "La Bête humaine"
+      ],
+      "id": "quote-fr-quai-des-brumes",
+      "isWellKnown": false,
+      "note": "Jean (Jean Gabin) à Nelly (Michèle Morgan), 1938.",
+      "prompt": "« T'as d'beaux yeux, tu sais. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Les Enfants du paradis",
+      "decoys": [
+        "Les Visiteurs du soir",
+        "La Règle du jeu",
+        "Le Jour se lève"
+      ],
+      "id": "quote-fr-enfants-du-paradis",
+      "isWellKnown": false,
+      "note": "Garance (Arletty), 1945.",
+      "prompt": "« Paris est tout petit pour ceux qui s'aiment comme nous d'un aussi grand amour. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Drôle de drame",
+      "decoys": [
+        "La Règle du jeu",
+        "Le Jour se lève",
+        "La Grande Illusion"
+      ],
+      "id": "quote-fr-drole-de-drame",
+      "isWellKnown": false,
+      "note": "Louis Jouvet à Michel Simon, 1937.",
+      "prompt": "« Moi, j'ai dit bizarre, bizarre ? Comme c'est étrange… »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "À bout de souffle",
+      "decoys": [
+        "Les Quatre Cents Coups",
+        "Jules et Jim",
+        "Bande à part"
+      ],
+      "id": "quote-fr-a-bout-de-souffle",
+      "isWellKnown": false,
+      "note": "Michel Poiccard (Jean-Paul Belmondo), face à la caméra, 1960.",
+      "prompt": "« Si vous n'aimez pas la mer, si vous n'aimez pas la montagne, si vous n'aimez pas la ville… allez vous faire foutre ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Le Mépris",
+      "decoys": [
+        "Et Dieu… créa la femme",
+        "Jules et Jim",
+        "Les Quatre Cents Coups"
+      ],
+      "id": "quote-fr-le-mepris",
+      "isWellKnown": false,
+      "note": "Camille (Brigitte Bardot), 1963.",
+      "prompt": "« Et mes fesses, tu les aimes ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Pierrot le fou",
+      "decoys": [
+        "Bande à part",
+        "Jules et Jim",
+        "Les Quatre Cents Coups"
+      ],
+      "id": "quote-fr-pierrot-le-fou",
+      "isWellKnown": false,
+      "note": "Marianne (Anna Karina), au bord de la mer, 1965.",
+      "prompt": "« Qu'est-ce que je peux faire ? J'sais pas quoi faire… »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Le Grand Détournement"
+      ],
+      "answer": "La Classe américaine",
+      "decoys": [
+        "Le Grand Blond avec une chaussure noire",
+        "Les Visiteurs",
+        "Le Magnifique"
+      ],
+      "id": "quote-fr-classe-americaine",
+      "isWellKnown": false,
+      "note": "George Abitbol, l'homme le plus classe du monde, en mourant, 1993.",
+      "prompt": "« Monde de merde ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Fifth Element"
+      ],
+      "answer": "Le Cinquième Élément",
+      "decoys": [
+        "Valérian et la Cité des mille planètes",
+        "Nikita",
+        "Léon"
+      ],
+      "id": "quote-fr-cinquieme-element",
+      "isWellKnown": true,
+      "note": "Leeloo (Milla Jovovich), 1997.",
+      "prompt": "« Multipass ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "L'Empire contre-attaque",
+        "Star Wars",
+        "Star Wars 5",
+        "Star Wars épisode V",
+        "The Empire Strikes Back"
+      ],
+      "answer": "Star Wars : L'Empire contre-attaque",
+      "decoys": [
+        "Alien",
+        "Dune",
+        "Blade Runner"
+      ],
+      "id": "quote-fr-empire-contre-attaque",
+      "isWellKnown": true,
+      "note": "Dark Vador à Luke Skywalker, 1980.",
+      "prompt": "« Non, je suis ton père. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Terminator"
+      ],
+      "answer": "Terminator",
+      "decoys": [
+        "RoboCop",
+        "Predator",
+        "Total Recall"
+      ],
+      "id": "quote-fr-terminator",
+      "isWellKnown": true,
+      "note": "Le T-800 (Arnold Schwarzenegger), 1984.",
+      "prompt": "« Je reviendrai. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Terminator 2",
+        "T2",
+        "Terminator"
+      ],
+      "answer": "Terminator 2 : Le Jugement dernier",
+      "decoys": [
+        "Commando",
+        "True Lies",
+        "Last Action Hero"
+      ],
+      "id": "quote-fr-terminator-2",
+      "isWellKnown": true,
+      "note": "Le T-800 (Arnold Schwarzenegger), 1991.",
+      "prompt": "« Hasta la vista, baby. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Godfather"
+      ],
+      "answer": "Le Parrain",
+      "decoys": [
+        "Les Affranchis",
+        "Il était une fois en Amérique",
+        "Casino"
+      ],
+      "id": "quote-fr-le-parrain",
+      "isWellKnown": true,
+      "note": "Vito Corleone (Marlon Brando), 1972.",
+      "prompt": "« Je vais lui faire une offre qu'il ne pourra pas refuser. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Titanic",
+      "decoys": [
+        "Pearl Harbor",
+        "Avatar",
+        "Le Grand Bleu"
+      ],
+      "id": "quote-fr-titanic",
+      "isWellKnown": true,
+      "note": "Jack (Leonardo DiCaprio), à la proue, 1997.",
+      "prompt": "« Je suis le roi du monde ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Forrest Gump",
+      "decoys": [
+        "Rain Man",
+        "Big",
+        "Philadelphia"
+      ],
+      "id": "quote-fr-forrest-gump",
+      "isWellKnown": true,
+      "note": "Forrest (Tom Hanks), sur son banc, 1994.",
+      "prompt": "« Maman disait toujours : la vie, c'est comme une boîte de chocolats, on ne sait jamais sur quoi on va tomber. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "La Communauté de l'anneau",
+        "Le Seigneur des anneaux",
+        "The Lord of the Rings",
+        "The Fellowship of the Ring"
+      ],
+      "answer": "Le Seigneur des anneaux : La Communauté de l'anneau",
+      "decoys": [
+        "Willow",
+        "Le Monde de Narnia",
+        "Eragon"
+      ],
+      "id": "quote-fr-communaute-anneau",
+      "isWellKnown": true,
+      "note": "Gandalf (Ian McKellen) face au Balrog, 2001.",
+      "prompt": "« Vous ne passerez pas ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Apocalypse Now",
+      "decoys": [
+        "Platoon",
+        "Full Metal Jacket",
+        "Voyage au bout de l'enfer"
+      ],
+      "id": "quote-fr-apocalypse-now",
+      "isWellKnown": true,
+      "note": "Le lieutenant-colonel Kilgore (Robert Duvall), 1979.",
+      "prompt": "« J'aime l'odeur du napalm au petit matin. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Casablanca",
+      "decoys": [
+        "Le Faucon maltais",
+        "Vacances romaines",
+        "Le Grand Sommeil"
+      ],
+      "id": "quote-fr-casablanca",
+      "isWellKnown": true,
+      "note": "Rick (Humphrey Bogart) à Ilsa (Ingrid Bergman), 1942.",
+      "prompt": "« Nous aurons toujours Paris. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Gone with the Wind"
+      ],
+      "answer": "Autant en emporte le vent",
+      "decoys": [
+        "Ben-Hur",
+        "Les Hauts de Hurlevent",
+        "Docteur Jivago"
+      ],
+      "id": "quote-fr-autant-en-emporte-le-vent",
+      "isWellKnown": true,
+      "note": "Rhett Butler (Clark Gable) à Scarlett O'Hara, 1939.",
+      "prompt": "« Franchement, ma chère, c'est le cadet de mes soucis. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Wizard of Oz"
+      ],
+      "answer": "Le Magicien d'Oz",
+      "decoys": [
+        "Alice au pays des merveilles",
+        "Mary Poppins",
+        "Pinocchio"
+      ],
+      "id": "quote-fr-magicien-d-oz",
+      "isWellKnown": true,
+      "note": "Dorothy (Judy Garland), 1939.",
+      "prompt": "« Toto, j'ai l'impression que nous ne sommes plus au Kansas. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Jaws"
+      ],
+      "answer": "Les Dents de la mer",
+      "decoys": [
+        "Moby Dick",
+        "Abyss",
+        "Orca"
+      ],
+      "id": "quote-fr-dents-de-la-mer",
+      "isWellKnown": true,
+      "note": "Le chef Brody (Roy Scheider), 1975.",
+      "prompt": "« Il va nous falloir un plus gros bateau. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Back to the Future"
+      ],
+      "answer": "Retour vers le futur",
+      "decoys": [
+        "SOS Fantômes",
+        "Gremlins",
+        "Les Goonies"
+      ],
+      "id": "quote-fr-retour-vers-le-futur",
+      "isWellKnown": true,
+      "note": "Doc Brown, à la toute fin du premier film, 1985.",
+      "prompt": "« Là où on va, on n'a pas besoin de route. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Silence of the Lambs"
+      ],
+      "answer": "Le Silence des agneaux",
+      "decoys": [
+        "Seven",
+        "Psychose",
+        "Shining"
+      ],
+      "id": "quote-fr-silence-des-agneaux",
+      "isWellKnown": true,
+      "note": "Hannibal Lecter (Anthony Hopkins) à Clarice Starling, 1991.",
+      "prompt": "« J'ai mangé son foie avec des fèves au beurre et un excellent chianti. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Matrix"
+      ],
+      "answer": "Matrix",
+      "decoys": [
+        "Inception",
+        "Minority Report",
+        "Dark City"
+      ],
+      "id": "quote-fr-matrix",
+      "isWellKnown": true,
+      "note": "Morpheus (Laurence Fishburne) à Neo, 1999.",
+      "prompt": "« Tu prends la pilule bleue, l'histoire s'arrête là. Tu prends la pilule rouge, tu restes au pays des merveilles. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Toy Story",
+      "decoys": [
+        "Monstres et Cie",
+        "Les Indestructibles",
+        "Là-haut"
+      ],
+      "id": "quote-fr-toy-story",
+      "isWellKnown": true,
+      "note": "Buzz l'Éclair, 1995.",
+      "prompt": "« Vers l'infini et au-delà ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Lion King"
+      ],
+      "answer": "Le Roi lion",
+      "decoys": [
+        "Bambi",
+        "Le Livre de la jungle",
+        "Tarzan"
+      ],
+      "id": "quote-fr-roi-lion",
+      "isWellKnown": true,
+      "note": "Mufasa à Simba, dans les nuages, 1994.",
+      "prompt": "« Souviens-toi de qui tu es. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Rocky",
+      "decoys": [
+        "Raging Bull",
+        "Million Dollar Baby",
+        "Fighter"
+      ],
+      "id": "quote-fr-rocky",
+      "isWellKnown": true,
+      "note": "Rocky Balboa (Sylvester Stallone), après le combat, 1976.",
+      "prompt": "« Adrienne ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Taxi Driver",
+      "decoys": [
+        "Mean Streets",
+        "Les Affranchis",
+        "Raging Bull"
+      ],
+      "id": "quote-fr-taxi-driver",
+      "isWellKnown": true,
+      "note": "Travis Bickle (Robert De Niro), devant son miroir, 1976.",
+      "prompt": "« C'est à moi que tu parles ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Scarface",
+      "decoys": [
+        "L'Impasse",
+        "Les Incorruptibles",
+        "Heat"
+      ],
+      "id": "quote-fr-scarface",
+      "isWellKnown": true,
+      "note": "Tony Montana (Al Pacino), 1983.",
+      "prompt": "« Dis bonjour à mon petit ami ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Good, the Bad and the Ugly"
+      ],
+      "answer": "Le Bon, la Brute et le Truand",
+      "decoys": [
+        "Il était une fois dans l'Ouest",
+        "Pour une poignée de dollars",
+        "Django"
+      ],
+      "id": "quote-fr-bon-brute-truand",
+      "isWellKnown": true,
+      "note": "Blondin (Clint Eastwood) à Tuco, 1966.",
+      "prompt": "« Tu vois, le monde se divise en deux catégories : ceux qui ont un pistolet chargé et ceux qui creusent. Toi, tu creuses. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Jurassic Park",
+      "decoys": [
+        "King Kong",
+        "Godzilla",
+        "Twister"
+      ],
+      "id": "quote-fr-jurassic-park",
+      "isWellKnown": true,
+      "note": "Ian Malcolm (Jeff Goldblum), 1993.",
+      "prompt": "« La vie trouve toujours un chemin. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Harry Potter",
+        "Harry Potter and the Philosopher's Stone"
+      ],
+      "answer": "Harry Potter à l'école des sorciers",
+      "decoys": [
+        "Le Monde de Narnia",
+        "Percy Jackson",
+        "À la croisée des mondes"
+      ],
+      "id": "quote-fr-harry-potter",
+      "isWellKnown": true,
+      "note": "Hagrid (Robbie Coltrane), 2001.",
+      "prompt": "« Tu es un sorcier, Harry. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Indiana Jones",
+        "Raiders of the Lost Ark"
+      ],
+      "answer": "Les Aventuriers de l'arche perdue",
+      "decoys": [
+        "À la poursuite du diamant vert",
+        "La Momie",
+        "Les Goonies"
+      ],
+      "id": "quote-fr-arche-perdue",
+      "isWellKnown": true,
+      "note": "Indiana Jones (Harrison Ford), 1981.",
+      "prompt": "« Des serpents… Pourquoi faut-il toujours qu'il y ait des serpents ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Gladiator",
+      "decoys": [
+        "Troie",
+        "Spartacus",
+        "Kingdom of Heaven"
+      ],
+      "id": "quote-fr-gladiator",
+      "isWellKnown": true,
+      "note": "Maximus (Russell Crowe), face à l'empereur, 2000.",
+      "prompt": "« Mon nom est Maximus Decimus Meridius, commandant des armées du Nord. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Dark Knight : Le Chevalier noir",
+        "Le Chevalier noir",
+        "Batman"
+      ],
+      "answer": "The Dark Knight",
+      "decoys": [
+        "Watchmen",
+        "V pour Vendetta",
+        "Sin City"
+      ],
+      "id": "quote-fr-dark-knight",
+      "isWellKnown": true,
+      "note": "Le Joker (Heath Ledger), 2008.",
+      "prompt": "« Pourquoi tant de sérieux ? »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Taken",
+      "decoys": [
+        "Le Transporteur",
+        "Equalizer",
+        "John Wick"
+      ],
+      "id": "quote-fr-taken",
+      "isWellKnown": true,
+      "note": "Bryan Mills (Liam Neeson), au téléphone, 2008.",
+      "prompt": "« Je ne sais pas qui vous êtes… mais je vous trouverai, et je vous tuerai. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Apollo 13",
+      "decoys": [
+        "L'Étoffe des héros",
+        "Armageddon",
+        "Gravity"
+      ],
+      "id": "quote-fr-apollo-13",
+      "isWellKnown": true,
+      "note": "Jim Lovell (Tom Hanks), 1995.",
+      "prompt": "« Houston, nous avons un problème. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Le Sixième Sens",
+        "The Sixth Sense"
+      ],
+      "answer": "Sixième Sens",
+      "decoys": [
+        "Les Autres",
+        "Incassable",
+        "Shining"
+      ],
+      "id": "quote-fr-sixieme-sens",
+      "isWellKnown": true,
+      "note": "Cole (Haley Joel Osment), 1999.",
+      "prompt": "« Je vois des gens qui sont morts. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Spider-Man",
+      "decoys": [
+        "Superman",
+        "Daredevil",
+        "Hulk"
+      ],
+      "id": "quote-fr-spider-man",
+      "isWellKnown": true,
+      "note": "L'oncle Ben, 2002.",
+      "prompt": "« Un grand pouvoir implique de grandes responsabilités. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Dirty Dancing",
+      "decoys": [
+        "Grease",
+        "Flashdance",
+        "Footloose"
+      ],
+      "id": "quote-fr-dirty-dancing",
+      "isWellKnown": true,
+      "note": "Johnny (Patrick Swayze), 1987.",
+      "prompt": "« On ne laisse pas Bébé dans un coin. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Dead Poets Society"
+      ],
+      "answer": "Le Cercle des poètes disparus",
+      "decoys": [
+        "Will Hunting",
+        "À la rencontre de Forrester",
+        "Patch Adams"
+      ],
+      "id": "quote-fr-cercle-des-poetes",
+      "isWellKnown": true,
+      "note": "Les élèves debout sur leurs tables pour M. Keating (Robin Williams), 1989.",
+      "prompt": "« Ô Capitaine ! Mon Capitaine ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Ratatouille",
+      "decoys": [
+        "Le Monde de Nemo",
+        "Les Indestructibles",
+        "Là-haut"
+      ],
+      "id": "quote-fr-ratatouille",
+      "isWellKnown": true,
+      "note": "La devise du chef Gusteau, 2007.",
+      "prompt": "« Tout le monde peut cuisiner. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Le Trône de fer"
+      ],
+      "answer": "Game of Thrones",
+      "decoys": [
+        "The Witcher",
+        "Vikings",
+        "Outlander"
+      ],
+      "id": "quote-fr-got-hiver",
+      "isWellKnown": true,
+      "note": "La devise de la maison Stark.",
+      "prompt": "« L'hiver vient. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Le Trône de fer"
+      ],
+      "answer": "Game of Thrones",
+      "decoys": [
+        "Vikings",
+        "The Last Kingdom",
+        "Outlander"
+      ],
+      "id": "quote-fr-got-jon-snow",
+      "isWellKnown": true,
+      "note": "Ygritte (Rose Leslie).",
+      "prompt": "« Tu ne sais rien, Jon Snow. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Le Trône de fer"
+      ],
+      "answer": "Game of Thrones",
+      "decoys": [
+        "The Witcher",
+        "The Last Kingdom",
+        "Vikings"
+      ],
+      "id": "quote-fr-got-hodor",
+      "isWellKnown": true,
+      "note": "Le seul mot que dit Hodor (Kristian Nairn).",
+      "prompt": "« Hodor. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Breaking Bad",
+      "decoys": [
+        "Les Soprano",
+        "Ozark",
+        "Narcos"
+      ],
+      "id": "quote-fr-breaking-bad",
+      "isWellKnown": true,
+      "note": "Walter White (Bryan Cranston) à Skyler — « I am the one who knocks ».",
+      "prompt": "« C'est moi qui frappe à la porte. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Friends",
+      "decoys": [
+        "How I Met Your Mother",
+        "Seinfeld",
+        "Scrubs"
+      ],
+      "id": "quote-fr-friends",
+      "isWellKnown": true,
+      "note": "Ross (David Schwimmer), chaque fois qu'il est question de Rachel.",
+      "prompt": "« On avait fait une pause ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "HIMYM"
+      ],
+      "answer": "How I Met Your Mother",
+      "decoys": [
+        "Scrubs",
+        "Two and a Half Men",
+        "Modern Family"
+      ],
+      "id": "quote-fr-how-i-met-your-mother",
+      "isWellKnown": true,
+      "note": "Barney Stinson (Neil Patrick Harris).",
+      "prompt": "« Ça va être légen… attends, attends… daire ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Simpsons"
+      ],
+      "answer": "Les Simpson",
+      "decoys": [
+        "Futurama",
+        "Les Griffin",
+        "South Park"
+      ],
+      "id": "quote-fr-simpson",
+      "isWellKnown": true,
+      "note": "Bart Simpson.",
+      "prompt": "« Mange mon short ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "House",
+        "Docteur House"
+      ],
+      "answer": "Dr House",
+      "decoys": [
+        "Grey's Anatomy",
+        "Urgences",
+        "Nip/Tuck"
+      ],
+      "id": "quote-fr-dr-house",
+      "isWellKnown": true,
+      "note": "Le docteur Gregory House (Hugh Laurie).",
+      "prompt": "« Tout le monde ment. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Columbo",
+      "decoys": [
+        "Arabesque",
+        "Derrick",
+        "Kojak"
+      ],
+      "id": "quote-fr-columbo",
+      "isWellKnown": true,
+      "note": "Le lieutenant Columbo (Peter Falk), sur le pas de la porte.",
+      "prompt": "« Juste une dernière petite chose… »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Prisoner"
+      ],
+      "answer": "Le Prisonnier",
+      "decoys": [
+        "Chapeau melon et bottes de cuir",
+        "Les Envahisseurs",
+        "Mission impossible"
+      ],
+      "id": "quote-fr-le-prisonnier",
+      "isWellKnown": false,
+      "note": "Le Numéro 6 (Patrick McGoohan), 1967.",
+      "prompt": "« Je ne suis pas un numéro, je suis un homme libre ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Aux frontières du réel",
+        "The X-Files"
+      ],
+      "answer": "X-Files",
+      "decoys": [
+        "Fringe",
+        "Twin Peaks",
+        "Stranger Things"
+      ],
+      "id": "quote-fr-x-files",
+      "isWellKnown": true,
+      "note": "La devise affichée au générique.",
+      "prompt": "« La vérité est ailleurs. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "Big Bang Theory"
+      ],
+      "answer": "The Big Bang Theory",
+      "decoys": [
+        "Scrubs",
+        "Modern Family",
+        "Malcolm"
+      ],
+      "id": "quote-fr-big-bang-theory",
+      "isWellKnown": true,
+      "note": "Sheldon Cooper (Jim Parsons), après une blague.",
+      "prompt": "« Bazinga ! »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [],
+      "answer": "Star Trek",
+      "decoys": [
+        "Battlestar Galactica",
+        "Stargate SG-1",
+        "Babylon 5"
+      ],
+      "id": "quote-fr-star-trek",
+      "isWellKnown": true,
+      "note": "Le salut vulcain de Spock (Leonard Nimoy).",
+      "prompt": "« Longue vie et prospérité. »",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "fr",
+      "theme": "Répliques"
+    },
+    {
+      "accepted": [
+        "The Empire Strikes Back",
+        "Star Wars",
+        "Star Wars Episode V",
+        "Star Wars 5"
+      ],
+      "answer": "Star Wars: The Empire Strikes Back",
+      "decoys": [
+        "Alien",
+        "Dune",
+        "Blade Runner"
+      ],
+      "id": "quote-en-empire-strikes-back",
+      "isWellKnown": true,
+      "note": "Darth Vader to Luke Skywalker, 1980.",
+      "prompt": "“No, I am your father.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Terminator",
+      "decoys": [
+        "RoboCop",
+        "Predator",
+        "Total Recall"
+      ],
+      "id": "quote-en-terminator",
+      "isWellKnown": true,
+      "note": "The T-800 (Arnold Schwarzenegger), 1984.",
+      "prompt": "“I'll be back.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Terminator 2",
+        "T2",
+        "Terminator"
+      ],
+      "answer": "Terminator 2: Judgment Day",
+      "decoys": [
+        "Commando",
+        "True Lies",
+        "Last Action Hero"
+      ],
+      "id": "quote-en-terminator-2",
+      "isWellKnown": true,
+      "note": "The T-800 (Arnold Schwarzenegger), 1991.",
+      "prompt": "“Hasta la vista, baby.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Godfather",
+      "decoys": [
+        "Goodfellas",
+        "Once Upon a Time in America",
+        "Casino"
+      ],
+      "id": "quote-en-godfather",
+      "isWellKnown": true,
+      "note": "Vito Corleone (Marlon Brando), 1972.",
+      "prompt": "“I'm gonna make him an offer he can't refuse.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "The Godfather 3",
+        "The Godfather"
+      ],
+      "answer": "The Godfather Part III",
+      "decoys": [
+        "Goodfellas",
+        "The Irishman",
+        "Donnie Brasco"
+      ],
+      "id": "quote-en-godfather-part-iii",
+      "isWellKnown": true,
+      "note": "Michael Corleone (Al Pacino), 1990.",
+      "prompt": "“Just when I thought I was out, they pull me back in.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Titanic",
+      "decoys": [
+        "Pearl Harbor",
+        "Avatar",
+        "The Poseidon Adventure"
+      ],
+      "id": "quote-en-titanic",
+      "isWellKnown": true,
+      "note": "Jack (Leonardo DiCaprio), at the bow, 1997.",
+      "prompt": "“I'm the king of the world!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Forrest Gump",
+      "decoys": [
+        "Rain Man",
+        "Big",
+        "Philadelphia"
+      ],
+      "id": "quote-en-forrest-gump",
+      "isWellKnown": true,
+      "note": "Forrest (Tom Hanks), on his bench, 1994.",
+      "prompt": "“My mama always said life was like a box of chocolates. You never know what you're gonna get.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "The Fellowship of the Ring",
+        "The Lord of the Rings",
+        "LOTR"
+      ],
+      "answer": "The Lord of the Rings: The Fellowship of the Ring",
+      "decoys": [
+        "Willow",
+        "The Chronicles of Narnia",
+        "Eragon"
+      ],
+      "id": "quote-en-fellowship-of-the-ring",
+      "isWellKnown": true,
+      "note": "Gandalf (Ian McKellen), facing the Balrog, 2001.",
+      "prompt": "“You shall not pass!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Apocalypse Now",
+      "decoys": [
+        "Platoon",
+        "Full Metal Jacket",
+        "The Deer Hunter"
+      ],
+      "id": "quote-en-apocalypse-now",
+      "isWellKnown": true,
+      "note": "Lieutenant Colonel Kilgore (Robert Duvall), 1979.",
+      "prompt": "“I love the smell of napalm in the morning.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Casablanca",
+      "decoys": [
+        "The Maltese Falcon",
+        "Roman Holiday",
+        "The Big Sleep"
+      ],
+      "id": "quote-en-casablanca",
+      "isWellKnown": true,
+      "note": "Rick (Humphrey Bogart) to Ilsa (Ingrid Bergman), 1942.",
+      "prompt": "“Here's looking at you, kid.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Gone with the Wind",
+      "decoys": [
+        "Ben-Hur",
+        "Wuthering Heights",
+        "Doctor Zhivago"
+      ],
+      "id": "quote-en-gone-with-the-wind",
+      "isWellKnown": true,
+      "note": "Rhett Butler (Clark Gable) to Scarlett O'Hara, 1939.",
+      "prompt": "“Frankly, my dear, I don't give a damn.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Wizard of Oz",
+      "decoys": [
+        "Alice in Wonderland",
+        "Mary Poppins",
+        "Pinocchio"
+      ],
+      "id": "quote-en-wizard-of-oz",
+      "isWellKnown": true,
+      "note": "Dorothy (Judy Garland), 1939.",
+      "prompt": "“Toto, I've a feeling we're not in Kansas anymore.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Jaws",
+      "decoys": [
+        "Moby Dick",
+        "The Abyss",
+        "Orca"
+      ],
+      "id": "quote-en-jaws",
+      "isWellKnown": true,
+      "note": "Chief Brody (Roy Scheider), 1975.",
+      "prompt": "“You're gonna need a bigger boat.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Back to the Future",
+      "decoys": [
+        "Ghostbusters",
+        "Gremlins",
+        "The Goonies"
+      ],
+      "id": "quote-en-back-to-the-future",
+      "isWellKnown": true,
+      "note": "Doc Brown, at the very end of the first film, 1985.",
+      "prompt": "“Roads? Where we're going, we don't need roads.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Silence of the Lambs",
+      "decoys": [
+        "Se7en",
+        "Psycho",
+        "The Shining"
+      ],
+      "id": "quote-en-silence-of-the-lambs",
+      "isWellKnown": true,
+      "note": "Hannibal Lecter (Anthony Hopkins) to Clarice Starling, 1991.",
+      "prompt": "“A census taker once tried to test me. I ate his liver with some fava beans and a nice chianti.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Shining",
+      "decoys": [
+        "Carrie",
+        "Misery",
+        "The Exorcist"
+      ],
+      "id": "quote-en-the-shining",
+      "isWellKnown": true,
+      "note": "Jack Torrance (Jack Nicholson), through the door he has just axed, 1980.",
+      "prompt": "“Here's Johnny!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Pulp Fiction",
+      "decoys": [
+        "Reservoir Dogs",
+        "Jackie Brown",
+        "True Romance"
+      ],
+      "id": "quote-en-pulp-fiction",
+      "isWellKnown": true,
+      "note": "Vincent Vega (John Travolta) to Jules (Samuel L. Jackson), 1994.",
+      "prompt": "“They call it a Royale with cheese.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Matrix",
+      "decoys": [
+        "Inception",
+        "Minority Report",
+        "Dark City"
+      ],
+      "id": "quote-en-the-matrix",
+      "isWellKnown": true,
+      "note": "Morpheus (Laurence Fishburne) to Neo, 1999.",
+      "prompt": "“You take the blue pill, the story ends. You take the red pill, you stay in Wonderland.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Toy Story",
+      "decoys": [
+        "Monsters, Inc.",
+        "The Incredibles",
+        "Up"
+      ],
+      "id": "quote-en-toy-story",
+      "isWellKnown": true,
+      "note": "Buzz Lightyear, 1995.",
+      "prompt": "“To infinity and beyond!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Lion King",
+      "decoys": [
+        "Bambi",
+        "The Jungle Book",
+        "Tarzan"
+      ],
+      "id": "quote-en-the-lion-king",
+      "isWellKnown": true,
+      "note": "Mufasa to Simba, in the clouds, 1994.",
+      "prompt": "“Remember who you are.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Finding Nemo",
+      "decoys": [
+        "Shark Tale",
+        "The Little Mermaid",
+        "Monsters, Inc."
+      ],
+      "id": "quote-en-finding-nemo",
+      "isWellKnown": true,
+      "note": "Dory (Ellen DeGeneres), 2003.",
+      "prompt": "“Just keep swimming.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Rocky",
+      "decoys": [
+        "Raging Bull",
+        "Million Dollar Baby",
+        "The Fighter"
+      ],
+      "id": "quote-en-rocky",
+      "isWellKnown": true,
+      "note": "Rocky Balboa (Sylvester Stallone), 1976.",
+      "prompt": "“Yo, Adrian!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Taxi Driver",
+      "decoys": [
+        "Mean Streets",
+        "Goodfellas",
+        "Raging Bull"
+      ],
+      "id": "quote-en-taxi-driver",
+      "isWellKnown": true,
+      "note": "Travis Bickle (Robert De Niro), in front of his mirror, 1976.",
+      "prompt": "“You talkin' to me?”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Scarface",
+      "decoys": [
+        "Carlito's Way",
+        "The Untouchables",
+        "Heat"
+      ],
+      "id": "quote-en-scarface",
+      "isWellKnown": true,
+      "note": "Tony Montana (Al Pacino), 1983.",
+      "prompt": "“Say hello to my little friend!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Good, the Bad and the Ugly",
+      "decoys": [
+        "Once Upon a Time in the West",
+        "A Fistful of Dollars",
+        "Django"
+      ],
+      "id": "quote-en-good-bad-ugly",
+      "isWellKnown": true,
+      "note": "Blondie (Clint Eastwood) to Tuco, 1966.",
+      "prompt": "“You see, in this world there's two kinds of people, my friend: those with loaded guns and those who dig. You dig.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Jurassic Park",
+      "decoys": [
+        "King Kong",
+        "Godzilla",
+        "Twister"
+      ],
+      "id": "quote-en-jurassic-park",
+      "isWellKnown": true,
+      "note": "Ian Malcolm (Jeff Goldblum), 1993.",
+      "prompt": "“Life, uh, finds a way.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Harry Potter and the Sorcerer's Stone",
+        "Harry Potter"
+      ],
+      "answer": "Harry Potter and the Philosopher's Stone",
+      "decoys": [
+        "The Chronicles of Narnia",
+        "Percy Jackson",
+        "The Golden Compass"
+      ],
+      "id": "quote-en-harry-potter",
+      "isWellKnown": true,
+      "note": "Hagrid (Robbie Coltrane), 2001.",
+      "prompt": "“You're a wizard, Harry.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Indiana Jones"
+      ],
+      "answer": "Raiders of the Lost Ark",
+      "decoys": [
+        "Romancing the Stone",
+        "The Mummy",
+        "The Goonies"
+      ],
+      "id": "quote-en-raiders-of-the-lost-ark",
+      "isWellKnown": true,
+      "note": "Indiana Jones (Harrison Ford), 1981.",
+      "prompt": "“Snakes. Why'd it have to be snakes?”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "300",
+      "decoys": [
+        "Troy",
+        "Alexander",
+        "Immortals"
+      ],
+      "id": "quote-en-300",
+      "isWellKnown": true,
+      "note": "King Leonidas (Gerard Butler), 2006.",
+      "prompt": "“This is Sparta!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Gladiator",
+      "decoys": [
+        "Spartacus",
+        "Kingdom of Heaven",
+        "Ben-Hur"
+      ],
+      "id": "quote-en-gladiator",
+      "isWellKnown": true,
+      "note": "Maximus (Russell Crowe), to the emperor's face, 2000.",
+      "prompt": "“My name is Maximus Decimus Meridius, commander of the Armies of the North.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Batman"
+      ],
+      "answer": "The Dark Knight",
+      "decoys": [
+        "Watchmen",
+        "V for Vendetta",
+        "Sin City"
+      ],
+      "id": "quote-en-the-dark-knight",
+      "isWellKnown": true,
+      "note": "The Joker (Heath Ledger), 2008.",
+      "prompt": "“Why so serious?”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Taken",
+      "decoys": [
+        "The Transporter",
+        "The Equalizer",
+        "John Wick"
+      ],
+      "id": "quote-en-taken",
+      "isWellKnown": true,
+      "note": "Bryan Mills (Liam Neeson), on the phone, 2008.",
+      "prompt": "“I will look for you, I will find you, and I will kill you.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Apollo 13",
+      "decoys": [
+        "The Right Stuff",
+        "Armageddon",
+        "Gravity"
+      ],
+      "id": "quote-en-apollo-13",
+      "isWellKnown": true,
+      "note": "Jim Lovell (Tom Hanks), 1995.",
+      "prompt": "“Houston, we have a problem.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Sixth Sense",
+      "decoys": [
+        "The Others",
+        "Unbreakable",
+        "Poltergeist"
+      ],
+      "id": "quote-en-the-sixth-sense",
+      "isWellKnown": true,
+      "note": "Cole (Haley Joel Osment), 1999.",
+      "prompt": "“I see dead people.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Spider-Man",
+      "decoys": [
+        "Superman",
+        "Daredevil",
+        "Hulk"
+      ],
+      "id": "quote-en-spider-man",
+      "isWellKnown": true,
+      "note": "Uncle Ben, 2002.",
+      "prompt": "“With great power comes great responsibility.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Dirty Dancing",
+      "decoys": [
+        "Grease",
+        "Flashdance",
+        "Footloose"
+      ],
+      "id": "quote-en-dirty-dancing",
+      "isWellKnown": true,
+      "note": "Johnny (Patrick Swayze), 1987.",
+      "prompt": "“Nobody puts Baby in a corner.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Dead Poets Society",
+      "decoys": [
+        "Good Will Hunting",
+        "Finding Forrester",
+        "Patch Adams"
+      ],
+      "id": "quote-en-dead-poets-society",
+      "isWellKnown": true,
+      "note": "The boys standing on their desks for Mr. Keating (Robin Williams), 1989.",
+      "prompt": "“O Captain! My Captain!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Ratatouille",
+      "decoys": [
+        "The Incredibles",
+        "Up",
+        "Cars"
+      ],
+      "id": "quote-en-ratatouille",
+      "isWellKnown": true,
+      "note": "Chef Gusteau's motto, 2007.",
+      "prompt": "“Anyone can cook.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Jerry Maguire",
+      "decoys": [
+        "Any Given Sunday",
+        "The Blind Side",
+        "Moneyball"
+      ],
+      "id": "quote-en-jerry-maguire",
+      "isWellKnown": true,
+      "note": "Rod Tidwell (Cuba Gooding Jr.) to Jerry (Tom Cruise), 1996.",
+      "prompt": "“Show me the money!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Top Gun",
+      "decoys": [
+        "Days of Thunder",
+        "Iron Eagle",
+        "Stealth"
+      ],
+      "id": "quote-en-top-gun",
+      "isWellKnown": true,
+      "note": "Maverick (Tom Cruise) and Goose (Anthony Edwards), 1986.",
+      "prompt": "“I feel the need… the need for speed!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Karate Kid",
+      "decoys": [
+        "Bloodsport",
+        "Kickboxer",
+        "Best of the Best"
+      ],
+      "id": "quote-en-karate-kid",
+      "isWellKnown": true,
+      "note": "Mr. Miyagi (Pat Morita) to Daniel, 1984.",
+      "prompt": "“Wax on, wax off.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Princess Bride",
+      "decoys": [
+        "Willow",
+        "Labyrinth",
+        "Ladyhawke"
+      ],
+      "id": "quote-en-princess-bride",
+      "isWellKnown": true,
+      "note": "Inigo Montoya (Mandy Patinkin), 1987.",
+      "prompt": "“Hello. My name is Inigo Montoya. You killed my father. Prepare to die.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "A Few Good Men",
+      "decoys": [
+        "The Firm",
+        "Philadelphia",
+        "JFK"
+      ],
+      "id": "quote-en-a-few-good-men",
+      "isWellKnown": true,
+      "note": "Colonel Jessup (Jack Nicholson) on the stand, 1992.",
+      "prompt": "“You can't handle the truth!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "A League of Their Own",
+      "decoys": [
+        "Field of Dreams",
+        "Bull Durham",
+        "Major League"
+      ],
+      "id": "quote-en-league-of-their-own",
+      "isWellKnown": false,
+      "note": "Jimmy Dugan (Tom Hanks), 1992.",
+      "prompt": "“There's no crying in baseball!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Doctor Strangelove"
+      ],
+      "answer": "Dr. Strangelove",
+      "decoys": [
+        "Fail Safe",
+        "Seven Days in May",
+        "The Manchurian Candidate"
+      ],
+      "id": "quote-en-dr-strangelove",
+      "isWellKnown": false,
+      "note": "President Merkin Muffley (Peter Sellers), 1964.",
+      "prompt": "“Gentlemen, you can't fight in here! This is the War Room!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Sunset Blvd."
+      ],
+      "answer": "Sunset Boulevard",
+      "decoys": [
+        "All About Eve",
+        "What Ever Happened to Baby Jane?",
+        "A Star Is Born"
+      ],
+      "id": "quote-en-sunset-boulevard",
+      "isWellKnown": false,
+      "note": "Norma Desmond (Gloria Swanson), 1950.",
+      "prompt": "“All right, Mr. DeMille, I'm ready for my close-up.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Citizen Kane",
+      "decoys": [
+        "The Magnificent Ambersons",
+        "Touch of Evil",
+        "The Third Man"
+      ],
+      "id": "quote-en-citizen-kane",
+      "isWellKnown": false,
+      "note": "Charles Foster Kane's last word, 1941.",
+      "prompt": "“Rosebud.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "2001"
+      ],
+      "answer": "2001: A Space Odyssey",
+      "decoys": [
+        "Solaris",
+        "Silent Running",
+        "Alien"
+      ],
+      "id": "quote-en-2001",
+      "isWellKnown": true,
+      "note": "HAL 9000, refusing to open the pod bay doors, 1968.",
+      "prompt": "“I'm sorry, Dave. I'm afraid I can't do that.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Braveheart",
+      "decoys": [
+        "Rob Roy",
+        "The Patriot",
+        "Kingdom of Heaven"
+      ],
+      "id": "quote-en-braveheart",
+      "isWellKnown": true,
+      "note": "William Wallace (Mel Gibson), 1995.",
+      "prompt": "“They may take our lives, but they'll never take our freedom!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Shrek",
+      "decoys": [
+        "Shark Tale",
+        "Madagascar",
+        "Ice Age"
+      ],
+      "id": "quote-en-shrek",
+      "isWellKnown": true,
+      "note": "Shrek to Donkey, 2001.",
+      "prompt": "“Ogres are like onions.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "All About Eve",
+      "decoys": [
+        "Mildred Pierce",
+        "Now, Voyager",
+        "The Philadelphia Story"
+      ],
+      "id": "quote-en-all-about-eve",
+      "isWellKnown": false,
+      "note": "Margo Channing (Bette Davis), 1950.",
+      "prompt": "“Fasten your seatbelts. It's going to be a bumpy night.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Some Like It Hot",
+      "decoys": [
+        "The Seven Year Itch",
+        "Gentlemen Prefer Blondes",
+        "The Apartment"
+      ],
+      "id": "quote-en-some-like-it-hot",
+      "isWellKnown": false,
+      "note": "Osgood (Joe E. Brown), the film's last line, 1959.",
+      "prompt": "“Well, nobody's perfect.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Shawshank"
+      ],
+      "answer": "The Shawshank Redemption",
+      "decoys": [
+        "The Green Mile",
+        "Escape from Alcatraz",
+        "Papillon"
+      ],
+      "id": "quote-en-shawshank-redemption",
+      "isWellKnown": true,
+      "note": "Andy Dufresne (Tim Robbins), 1994.",
+      "prompt": "“Get busy living, or get busy dying.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Guardians of the Galaxy",
+      "decoys": [
+        "Thor: Ragnarok",
+        "Ant-Man",
+        "Avatar"
+      ],
+      "id": "quote-en-guardians-of-the-galaxy",
+      "isWellKnown": true,
+      "note": "Groot (Vin Diesel), 2014.",
+      "prompt": "“I am Groot.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "Endgame",
+        "Avengers"
+      ],
+      "answer": "Avengers: Endgame",
+      "decoys": [
+        "Thor: Ragnarok",
+        "Captain Marvel",
+        "Doctor Strange"
+      ],
+      "id": "quote-en-avengers-endgame",
+      "isWellKnown": true,
+      "note": "Thanos (Josh Brolin), 2019.",
+      "prompt": "“I am inevitable.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Black Panther",
+      "decoys": [
+        "Captain America: Civil War",
+        "Aquaman",
+        "Shang-Chi"
+      ],
+      "id": "quote-en-black-panther",
+      "isWellKnown": true,
+      "note": "The salute of T'Challa's people, 2018.",
+      "prompt": "“Wakanda forever!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Game of Thrones",
+      "decoys": [
+        "The Witcher",
+        "Vikings",
+        "Outlander"
+      ],
+      "id": "quote-en-got-winter",
+      "isWellKnown": true,
+      "note": "The words of House Stark.",
+      "prompt": "“Winter is coming.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Game of Thrones",
+      "decoys": [
+        "Vikings",
+        "The Last Kingdom",
+        "Outlander"
+      ],
+      "id": "quote-en-got-jon-snow",
+      "isWellKnown": true,
+      "note": "Ygritte (Rose Leslie).",
+      "prompt": "“You know nothing, Jon Snow.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Game of Thrones",
+      "decoys": [
+        "The Witcher",
+        "The Last Kingdom",
+        "Vikings"
+      ],
+      "id": "quote-en-got-hodor",
+      "isWellKnown": true,
+      "note": "The only word Hodor (Kristian Nairn) says.",
+      "prompt": "“Hodor.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Breaking Bad",
+      "decoys": [
+        "The Sopranos",
+        "Ozark",
+        "Narcos"
+      ],
+      "id": "quote-en-breaking-bad-knocks",
+      "isWellKnown": true,
+      "note": "Walter White (Bryan Cranston) to Skyler.",
+      "prompt": "“I am the one who knocks!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Breaking Bad",
+      "decoys": [
+        "The Wire",
+        "Boardwalk Empire",
+        "Sons of Anarchy"
+      ],
+      "id": "quote-en-breaking-bad-name",
+      "isWellKnown": true,
+      "note": "Walter White (Bryan Cranston), in the desert.",
+      "prompt": "“Say my name.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Friends",
+      "decoys": [
+        "How I Met Your Mother",
+        "Seinfeld",
+        "Frasier"
+      ],
+      "id": "quote-en-friends-break",
+      "isWellKnown": true,
+      "note": "Ross (David Schwimmer), whenever Rachel comes up.",
+      "prompt": "“We were on a break!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Friends",
+      "decoys": [
+        "Joey",
+        "Will & Grace",
+        "Mad About You"
+      ],
+      "id": "quote-en-friends-how-you-doin",
+      "isWellKnown": true,
+      "note": "Joey Tribbiani (Matt LeBlanc).",
+      "prompt": "“How you doin'?”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "HIMYM"
+      ],
+      "answer": "How I Met Your Mother",
+      "decoys": [
+        "Scrubs",
+        "Two and a Half Men",
+        "Modern Family"
+      ],
+      "id": "quote-en-how-i-met-your-mother",
+      "isWellKnown": true,
+      "note": "Barney Stinson (Neil Patrick Harris).",
+      "prompt": "“Legen… wait for it… dary!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Simpsons",
+      "decoys": [
+        "Futurama",
+        "Family Guy",
+        "South Park"
+      ],
+      "id": "quote-en-simpsons-shorts",
+      "isWellKnown": true,
+      "note": "Bart Simpson.",
+      "prompt": "“Eat my shorts!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Simpsons",
+      "decoys": [
+        "King of the Hill",
+        "American Dad!",
+        "Futurama"
+      ],
+      "id": "quote-en-simpsons-doh",
+      "isWellKnown": true,
+      "note": "Homer Simpson.",
+      "prompt": "“D'oh!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Office",
+      "decoys": [
+        "Parks and Recreation",
+        "Brooklyn Nine-Nine",
+        "Arrested Development"
+      ],
+      "id": "quote-en-the-office",
+      "isWellKnown": true,
+      "note": "Michael Scott (Steve Carell).",
+      "prompt": "“That's what she said!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [
+        "House M.D.",
+        "Dr. House"
+      ],
+      "answer": "House",
+      "decoys": [
+        "Grey's Anatomy",
+        "ER",
+        "Nip/Tuck"
+      ],
+      "id": "quote-en-house",
+      "isWellKnown": true,
+      "note": "Dr. Gregory House (Hugh Laurie).",
+      "prompt": "“Everybody lies.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Columbo",
+      "decoys": [
+        "Murder, She Wrote",
+        "Kojak",
+        "Magnum, P.I."
+      ],
+      "id": "quote-en-columbo",
+      "isWellKnown": true,
+      "note": "Lieutenant Columbo (Peter Falk), at the door.",
+      "prompt": "“Just one more thing…”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Prisoner",
+      "decoys": [
+        "The Avengers",
+        "The Invaders",
+        "Mission: Impossible"
+      ],
+      "id": "quote-en-the-prisoner",
+      "isWellKnown": false,
+      "note": "Number Six (Patrick McGoohan), 1967.",
+      "prompt": "“I am not a number, I am a free man!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The X-Files",
+      "decoys": [
+        "Fringe",
+        "Twin Peaks",
+        "Stranger Things"
+      ],
+      "id": "quote-en-x-files",
+      "isWellKnown": true,
+      "note": "The tagline of the opening credits.",
+      "prompt": "“The truth is out there.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "The Big Bang Theory",
+      "decoys": [
+        "Scrubs",
+        "Modern Family",
+        "Malcolm in the Middle"
+      ],
+      "id": "quote-en-big-bang-theory",
+      "isWellKnown": true,
+      "note": "Sheldon Cooper (Jim Parsons), after a joke.",
+      "prompt": "“Bazinga!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Star Trek",
+      "decoys": [
+        "Battlestar Galactica",
+        "Stargate SG-1",
+        "Babylon 5"
+      ],
+      "id": "quote-en-star-trek",
+      "isWellKnown": true,
+      "note": "Spock's Vulcan salute (Leonard Nimoy).",
+      "prompt": "“Live long and prosper.”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Seinfeld",
+      "decoys": [
+        "Curb Your Enthusiasm",
+        "Frasier",
+        "Mad About You"
+      ],
+      "id": "quote-en-seinfeld",
+      "isWellKnown": true,
+      "note": "The Soup Nazi (Larry Thomas).",
+      "prompt": "“No soup for you!”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
+    },
+    {
+      "accepted": [],
+      "answer": "Family Matters",
+      "decoys": [
+        "Full House",
+        "The Fresh Prince of Bel-Air",
+        "Saved by the Bell"
+      ],
+      "id": "quote-en-family-matters",
+      "isWellKnown": false,
+      "note": "Steve Urkel (Jaleel White).",
+      "prompt": "“Did I do that?”",
+      "category": "quotes",
+      "choiceOnly": false,
+      "isAdult": false,
+      "language": "en",
+      "theme": "Quotes"
     }
   ]
 }

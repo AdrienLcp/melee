@@ -13,6 +13,7 @@ import { ingestOpenQuizzDb } from './openquizzdb-source'
 import { ingestOpenTdb } from './opentdb-source'
 import { ingestPolyFact } from './polyfact-source'
 import type { BankedQuestion, IngestedQuestions } from './question-source'
+import { ingestQuotes } from './quotes-source'
 import { ingestVikidia } from './vikidia-source'
 
 /**
@@ -226,12 +227,17 @@ const run = async (): Promise<void> => {
   console.info('\nOpen Trivia DB (en)')
   const english = await ingestOpenTdb()
 
+  const frenchQuotes = ingestQuotes('fr')
+  const englishQuotes = ingestQuotes('en')
+
   const sourced = [
     ...french.questions,
     ...wikidata.questions,
     ...mintaka.questions,
     ...vikidia.questions,
-    ...english.questions
+    ...english.questions,
+    ...frenchQuotes.questions,
+    ...englishQuotes.questions
   ]
   const offered = sourced
     .filter((question) => repairs[question.id]?.drop !== true)
@@ -257,6 +263,8 @@ const run = async (): Promise<void> => {
   report(mintaka)
   report(vikidia)
   report(english)
+  report(frenchQuotes)
+  report(englishQuotes)
 
   console.info(`\n${bank.questions.length} questions → ${BANK_PATH}`)
 

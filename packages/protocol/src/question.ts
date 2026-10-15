@@ -12,6 +12,11 @@ import { z } from 'zod'
  * video games beside music, books and painting, and half the bank with them.
  * `videogames` left on the same argument and took the single biggest block in
  * the bank with it.
+ *
+ * `quotes` is the one chip that names a way of asking rather than a subject — a
+ * line from a film or a series, and the room names where it comes from. It is
+ * not folded into `cinema` because a table asks for it by name, and a room that
+ * ticks it alone is playing a different game from one that ticks cinema.
  */
 export const questionCategories = [
   'history',
@@ -19,6 +24,7 @@ export const questionCategories = [
   'science',
   'arts',
   'cinema',
+  'quotes',
   'videogames',
   'sport',
   'everyday'
@@ -91,8 +97,9 @@ export const questionLanguageSchema = z.enum(questionLanguages)
  */
 export const questionDrawSettingsSchema = z.object({
   /**
-   * Whether the bank's adult themes are drawn from. Its own field rather than a
-   * ninth category, because the eight are *subjects* and this is a rating: a
+   * Whether the bank's adult themes are drawn from. Its own field rather than
+   * one more category, because categories are what a question is *about* and
+   * this is a rating: a
    * question about a porn actress's first album is a celebrities question that
    * happens to be adult, and putting the two axes in one row is what makes such
    * a control read as a mistake.

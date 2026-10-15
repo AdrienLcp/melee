@@ -57,7 +57,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     quiz: {
       description:
-        'Thousands of questions across eight subjects, in French and in English, answered by the whole room at once on their own screens. Scan the QR code and play — no install, no account.',
+        'Thousands of questions across nine subjects, in French and in English, answered by the whole room at once on their own screens. Scan the QR code and play — no install, no account.',
       title: 'Quiz — Taverla'
     },
     reflex: {
@@ -99,7 +99,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     quiz: {
       description:
-        'Des milliers de questions sur six thèmes, en français et en anglais, auxquelles toute la salle répond en même temps depuis son écran. Scannez le QR code et jouez — sans installation, sans compte.',
+        'Des milliers de questions sur neuf thèmes, en français et en anglais, auxquelles toute la salle répond en même temps depuis son écran. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Quiz — Taverla'
     },
     reflex: {

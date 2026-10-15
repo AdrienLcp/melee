@@ -47,11 +47,11 @@ describe('drawQuestion', () => {
    * **Both halves are counted rather than sampled at four hundred**, which is
    * what these two used to do and what made the pair flaky. The category is
    * drawn before the question, so an adult row's chance is its share of *its
-   * own* category divided by eight: 104 of the 1 253 French arts rows and 3 of
-   * the 1 303 everyday ones come to 1.07% a draw. Four hundred draws miss every
-   * one of them about one run in seventy — a red that says nothing about the
+   * own* category divided by nine: 104 of the 1 253 French arts rows and 3 of
+   * the 1 303 everyday ones come to 0.95% a draw. Four hundred draws miss every
+   * one of them about one run in forty — a red that says nothing about the
    * filter, and a green that would have missed a broken one just as often.
-   * Two thousand puts both at one in two billion, and the number has to be
+   * Two thousand puts both at one in two hundred million, and the number has to be
    * revisited whenever a source widens a category the adult rows sit in:
    * Vikidia's French arts rows alone once moved it from 4.3% to 5.4%, and
    * splitting `cinema` and `videogames` off `arts` moved it back the other way
@@ -144,23 +144,23 @@ describe('drawQuestion', () => {
    */
   /**
    * The mix, and the whole reason the category is drawn before the question.
-   * Over twelve hundred draws with nothing ticked each of the eight subjects is
-   * expected about a hundred and fifty times; drawing uniformly over
+   * Over fifteen hundred draws with nothing ticked each of the nine subjects is
+   * expected about a hundred and sixty-five times; drawing uniformly over
    * questions instead gave French history — 52 rows of 1 708 — about
-   * thirty-five, which is what this floor catches. It is far enough below the
+   * forty-five, which is what this floor catches. It is far enough below the
    * expected count that chance cannot reach it and far enough above the old
    * behaviour to fail on it.
    *
    * Which is why this one buys a budget where the language test below cut its
    * sample instead: a language either groups or it does not, and fifty draws
-   * say so, but the floor here *is* the sample size. Twelve hundred draws are
+   * say so, but the floor here *is* the sample size. Fifteen hundred draws are
    * seconds of real work, so the number to move is vitest's default 5 s — a
    * default, never a decision about this test — and not the statistics.
    */
   it('[bank] mixes the subjects evenly when the host has ticked none', () => {
     const counts = new Map<QuestionCategory, number>()
 
-    for (const question of drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_200 })) {
+    for (const question of drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_500 })) {
       counts.set(question.category, (counts.get(question.category) ?? 0) + 1)
     }
 
@@ -200,7 +200,7 @@ describe('drawQuestion', () => {
     expect(typed.length).toBe(400)
     expect(typed.some((question) => question.choiceOnly)).toBe(false)
 
-    const anyMode = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_200 })
+    const anyMode = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_500 })
 
     expect(anyMode.some((question) => question.choiceOnly)).toBe(true)
   }, 30_000)
