@@ -2,7 +2,7 @@
 
 **Goal.** The host ticks the games of the evening; between rounds the next
 game is drawn at random from them or picked by hand; one tick is today's quick
-game with nothing added on screen. The host paces it all from a phone.
+game with nothing added on screen. The host paces it all from a phone or a laptop.
 
 ## Check first
 

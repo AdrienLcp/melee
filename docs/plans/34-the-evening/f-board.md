@@ -31,7 +31,7 @@ pawn race; `apps/game/DESIGN.md` stays the authority on materials.
   scored `POINT`s this round, floored — the speed bonus moves no pawn on its
   own (decision 3). Fixed track length, fixed or open round count; the
   evening ends when the host ends it or a team finishes.
-- Seat scores keep counting underneath, for the podium and the booby prize.
+- Seat scores keep counting underneath, for the individual podium.
 
 ## Protocol
 
@@ -45,7 +45,8 @@ pawn race; `apps/game/DESIGN.md` stays the authority on materials.
   sides and across the top, the round between; checked on both.
 - Console — the moves under the reveal, editable before *Next round*.
 - Phone — a strip of the track with its own pawn, between rounds.
-- Final — a podium on the wall and the phones.
+- Final — the teams' podium, then the individual podium (top three seats
+  by seat score), on the wall and the phones.
 
 ## Done when
 

@@ -10,7 +10,8 @@ than through one game, which is why it is a room setting and not a game's.
 ## Protocol (`packages/protocol`)
 
 - `room.ts` — `settings.teams`: a discriminated union on `kind`:
-  `{ kind: 'off' }`, `{ kind: 'drawn', count }` (2–6) and
+  `{ kind: 'off' }`, `{ kind: 'drawn', count }` (2–6),
+  `{ kind: 'chosen', count }` (2–6, each seat picks its team) and
   `{ kind: 'teamsOnly' }`. It is a room setting by the three-owner test in
   `docs/game-catalogue.md`: true of any game, in any mode.
 - `teamSchema` `{ id, name, colour, seatIds }` and `teams` on
@@ -20,6 +21,10 @@ than through one game, which is why it is a room setting and not a game's.
   `host.moveSeat { seatId, teamId }`, and `host.adjustScore { teamId | seatId,
   points }` — Gamenight's `score.adjust`, which Taverla never had and which
   the board and aloud answers both need.
+- New player frame: `player.chooseTeam { teamId }`, accepted in the lobby
+  under `chosen` alone (`teams_locked` otherwise). A seat that has not chosen
+  is placed by the late-seat rule when the host starts, so *Start* never
+  waits on a phone.
 - `PROTOCOL_VERSION` bump.
 
 ## Rules (`packages/core/src/team/`)
@@ -46,12 +51,14 @@ than through one game, which is why it is a room setting and not a game's.
   open decisions say so (`teams_locked`); a removed or departed seat leaves
   its team, an empty team keeps its place and pawn.
 - Scoring calls `team-score.ts` after `settleSimultaneousRound` and after a
-  verdict; seat scores stay what they are, for the podium and the booby prize.
+  verdict; seat scores stay what they are, for the individual podium.
 
 ## App
 
-- `host/` — the lobby gains a Teams strip (off / drawn / teams only), the team
-  count, *Draw*, *Re-draw*, rename, move by drag or menu.
+- `host/` — the lobby gains a Teams strip (off / drawn / chosen / teams
+  only), the team count, *Draw*, *Re-draw*, rename, move by drag or menu.
+- `player/` — under `chosen`, the lobby lists the teams with their colour and
+  members, one press to join or switch.
 - Wall and console — the roster grouped by team; the score track and the final
   board rank teams, pseudos under them.
 - `player/` — the phone shows its team's name and colour from the draw on.
@@ -61,6 +68,7 @@ than through one game, which is why it is a room setting and not a game's.
 ## Done when
 
 Twelve tabs drawn into three teams, re-drawn, one moved, a late tab lands in
-the smallest team; a quiz round and a blind-test round score per team on the
+the smallest team; the same twelve under `chosen` pick their teams, one never
+does and is placed at *Start*; a quiz round and a blind-test round score per team on the
 console, the wall and the phones. Socket suite `teams.test.ts` covers the
 partition check, the late seat and the mean, each broken once on purpose.
