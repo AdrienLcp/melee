@@ -40,7 +40,10 @@ describe('rememberSettings', () => {
       settings: { ...onTheQuiz, countdownMs: 10_000 }
     })
 
-    expect(remembered.room).toEqual({ countdownMs: 10_000 })
+    expect(remembered.room).toEqual({
+      countdownMs: 10_000,
+      teams: { kind: 'off' }
+    })
   })
 
   it('[host-preferences] leaves the other games it has learned alone', () => {
@@ -153,7 +156,7 @@ describe('rememberedSetupFor', () => {
           roundCount: null
         }
       },
-      room: { countdownMs: 3_000 }
+      room: { countdownMs: 3_000, teams: { kind: 'off' } }
     }
 
     expect(rememberedSetupFor({ game: 'quiz', preferences })).toBeNull()

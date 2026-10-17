@@ -44,6 +44,11 @@ import {
 
 import type { PlayerAttempts, Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
+import {
+  bankTeamRound,
+  placeUnseatedSeats,
+  resetTeamScores
+} from '@/domain/room/team-service'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { drawChoices } from '@/domain/round/track-pool'
 
@@ -142,6 +147,9 @@ export const openRound = ({
    */
   startsAt?: number
 }): Round => {
+  bankTeamRound(room)
+  placeUnseatedSeats(room)
+
   const round: Round = {
     activeBuzz: null,
     advancesAt: null,
@@ -1030,6 +1038,7 @@ export const closeRound = (room: Room, now: number): void => {
 }
 
 export const finishGame = (room: Room, now: number): void => {
+  bankTeamRound(room)
   room.phase = 'finished'
   room.round = null
   touch(room, now)
@@ -1045,6 +1054,7 @@ export const restartGame = (room: Room, now: number): void => {
     participant.score = 0
   }
 
+  resetTeamScores(room)
   room.phase = 'lobby'
   room.round = null
   touch(room, now)

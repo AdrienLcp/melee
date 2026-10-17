@@ -71,7 +71,8 @@ export const joinAsPlayer = ({
     isConnected: true,
     nickname,
     score: 0,
-    sessionId
+    sessionId,
+    teamId: null
   }
 
   room.players.set(participant.id, participant)

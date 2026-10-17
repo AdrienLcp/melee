@@ -69,6 +69,7 @@ the whole room reads, because it pairs nothing without the token beside it.
 | `time.ping` | both | `clientSentAt` |
 | `player.leave` | any seat | — |
 | `player.rename` | any seat | `nickname` |
+| `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}` or `{kind:'typed', guess}` |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
@@ -84,6 +85,10 @@ the whole room reads, because it pairs nothing without the token beside it.
 | `host.collectSheets` | host | `roundId` — closes every item still open |
 | `host.showItem` | host | `roundId`, `itemIndex` |
 | `host.judgeGroup` | host | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}` |
+| `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
+| `host.renameTeam` | host | `teamId`, `name` |
+| `host.moveSeat` | host | `playerId`, `teamId` |
+| `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.nextRound` | host | — |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
@@ -113,6 +118,34 @@ buzzer would pay two points for one charade.
 `host.clearLockouts` puts everyone who missed back in, mid-round. A blind test
 round is a clip that runs out, so a lockout there expires on its own; a game
 whose question the room owns has no such clock.
+
+**Teams are the shell's, and no game's arm learns what one is.**
+`settings.teams` is `off`, `drawn` or `chosen` with a `count` of 2–6, or
+`teamsOnly` — which keeps no team on the server at all: each team is one seat
+named after itself. Under `drawn` or `chosen` the room holds that many teams,
+`team-1` onwards, each coloured by its pawn and named `null` until the host
+names it, so every screen says the name its own dictionary gives the colour.
+
+- **Who decides the teams.** `host.drawTeams` sends the whole deal; the console
+  shuffles and the server checks it is a partition of the seats into non-empty
+  teams within one seat of each other (`isFairDeal`). Under `chosen` each seat
+  sends `player.chooseTeam` instead, as often as it likes in the lobby, and
+  once afterwards if it arrived holding none.
+- **Nobody waits on a phone.** A seat still without a team when a round opens is
+  placed by the late-seat rule — the team with the fewest *connected* seats,
+  the first on a tie — and so is one arriving under `drawn` once there is a
+  deal to join. Before the first deal the lobby is still filling, and a seat
+  waits for it.
+- **The lobby is the only place the teams change wholesale.** A settings frame
+  that moves `teams.kind` or the count, and a deal, are `teams_locked` past it;
+  `host.moveSeat`, `host.renameTeam` and `host.adjustScore` are allowed in every
+  phase.
+- **A team's score is the mean of its seats'.** A round pays each team the mean
+  of what it paid the team's seats it opened on (`teamRoundResult`), banked as
+  the next round opens or the board goes up; the round on screen is added live,
+  because a slate verdict can still be taken back under its reveal. Seat scores
+  are untouched, for the individual podium, and a seat's adjustment stays on
+  the seat. Neither score goes below zero.
 
 **The slate's six host frames and its one player frame.** The sheet is one
 round, and writing and marking share `playing`: every item carries its own
@@ -185,6 +218,8 @@ Shared by all three:
   "code": "K3M9",
   "phase": "playing",              // lobby | countdown | playing | buzzed | revealed | finished
   "players": [{ "id": "…", "nickname": "Alice", "score": 2, "isConnected": true }],
+  "teams": [{ "id": "team-1", "colour": 1, "name": null,   // null → the dictionary's name
+              "score": 1500, "seatIds": ["…"] }],          // empty when the room plays seat by seat
   "settings": { "roundCount": 10,          // null → until the host ends it
                 "countdownMs": 3000,
                 "mode": { "kind": "typed" },   // buzzer arm adds answerWindowMs

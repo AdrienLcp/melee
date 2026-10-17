@@ -69,6 +69,12 @@ export const protocolErrorCodes = [
    * make on the screen they are looking at.
    */
   'no_game_chosen',
+  /**
+   * A team frame the room's teams do not allow now: a draw or a switch once
+   * the game is under way, a pick in a room the console deals out, a seat or a
+   * team that is not there.
+   */
+  'teams_locked',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

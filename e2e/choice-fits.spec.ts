@@ -153,8 +153,10 @@ const choosingView = (question: Question) => ({
       wellKnownOnly: false
     },
     mode: { kind: 'choice' },
-    roundCount: 10
+    roundCount: 10,
+    teams: { kind: 'off' }
   },
+  teams: [],
   youId: 'p1',
   yourVerdict: null
 })

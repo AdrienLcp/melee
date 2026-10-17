@@ -29,6 +29,17 @@ import {
   updateSettings
 } from '@/domain/room/room-service'
 import {
+  adjustScore,
+  changesTeams,
+  chooseTeam,
+  drawTeams,
+  fitTeamsToSettings,
+  moveSeat,
+  placeArrivingSeat,
+  renameTeam,
+  type TeamRejection
+} from '@/domain/room/team-service'
+import {
   applyVerdict,
   clearLockouts,
   closeRound,
@@ -267,6 +278,10 @@ const seatHost = ({
           sessionId
         })
 
+  if (seat?.status === 'success') {
+    placeArrivingSeat(room, seat.data)
+  }
+
   if (seat?.status === 'failure') {
     sendError(outbound, {
       code: seat.error,
@@ -333,6 +348,8 @@ const seatPlayer = ({
     return null
   }
 
+  placeArrivingSeat(engine.room, joined.data)
+
   return {
     playerId: joined.data.id,
     role: 'player',
@@ -395,6 +412,10 @@ const dispatch = ({
     }
     case 'player.rename': {
       rename(message.nickname, active, outbound, engine)
+      break
+    }
+    case 'player.chooseTeam': {
+      pickTeam(message.teamId, active, outbound, engine)
       break
     }
     case 'player.buzz': {
@@ -504,6 +525,53 @@ const dispatch = ({
       })
       break
     }
+    case 'host.drawTeams': {
+      answerTeamFrame({
+        engine,
+        outbound,
+        result: drawTeams({ assignment: message.assignment, now, room })
+      })
+      break
+    }
+    case 'host.renameTeam': {
+      answerTeamFrame({
+        engine,
+        outbound,
+        result: renameTeam({
+          name: message.name,
+          now,
+          room,
+          teamId: message.teamId
+        })
+      })
+      break
+    }
+    case 'host.moveSeat': {
+      answerTeamFrame({
+        engine,
+        outbound,
+        result: moveSeat({
+          now,
+          playerId: message.playerId,
+          room,
+          teamId: message.teamId
+        })
+      })
+      break
+    }
+    case 'host.adjustScore': {
+      answerTeamFrame({
+        engine,
+        outbound,
+        result: adjustScore({
+          now,
+          points: message.points,
+          room,
+          target: message.target
+        })
+      })
+      break
+    }
     case 'host.judge': {
       judge(message, outbound, engine)
       break
@@ -569,6 +637,62 @@ const answerSlateFrame = ({
   }
 
   publishRoom(engine)
+}
+
+/** Every team frame ends the same way: refused with the room's code, or published. */
+const answerTeamFrame = ({
+  engine,
+  outbound,
+  result
+}: {
+  engine: RoomEngine
+  outbound: Outbound
+  result: Result<void, TeamRejection | 'invalid_message'>
+}): void => {
+  if (result.status === 'failure') {
+    sendError(outbound, {
+      code: result.error,
+      fatal: false,
+      message: 'The teams cannot change that way now'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const pickTeam = (
+  teamId: string,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const participant =
+    active.playerId === null
+      ? undefined
+      : engine.room.players.get(active.playerId)
+
+  if (participant === undefined) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seated player joins a team'
+    })
+
+    return
+  }
+
+  answerTeamFrame({
+    engine,
+    outbound,
+    result: chooseTeam({
+      now: engine.now(),
+      participant,
+      room: engine.room,
+      teamId
+    })
+  })
 }
 
 const writeLine = (
@@ -1093,11 +1217,25 @@ const reconfigure = (
     return
   }
 
+  if (
+    room.phase !== 'lobby' &&
+    changesTeams({ from: room.settings.teams, to: settings.teams })
+  ) {
+    sendError(outbound, {
+      code: 'teams_locked',
+      fatal: false,
+      message: 'The teams are set once the game is under way'
+    })
+
+    return
+  }
+
   const now = engine.now()
   const previousGame = room.settings.game
   const previousHoldMs = room.settings.autoAdvanceMs
 
   updateSettings(room, settings, now)
+  fitTeamsToSettings(room)
   discardPoolIfStale({ previousGame, room })
   unseatConsolesThatMustJudge(engine)
 

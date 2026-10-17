@@ -220,6 +220,7 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Quelque chose a cassé'
     },
     stale_round: 'Cette manche est déjà terminée.',
+    teams_locked: 'Les équipes ne peuvent plus changer comme ça.',
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'

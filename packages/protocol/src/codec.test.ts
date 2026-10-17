@@ -35,6 +35,7 @@ const playerView: PlayerRoomView = {
   round: runningRound,
   roundElapsedMs: 8_200,
   settings: DEFAULT_ROOM_SETTINGS,
+  teams: [],
   youId: 'p1',
   yourVerdict: null
 }

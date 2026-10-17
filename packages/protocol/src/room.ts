@@ -22,6 +22,7 @@ import {
   slateLineSchema,
   slateProgressSchema
 } from './slate'
+import { DEFAULT_TEAMS_SETTINGS, teamSchema, teamsSettingsSchema } from './team'
 import { hostTrackSchema, trackIdentitySchema } from './track'
 
 export const MAX_PLAYERS_PER_ROOM = 24
@@ -120,7 +121,9 @@ export const roomSettingsSchema = z.object({
    * the wrong one for a host running a charade evening, who stops when they
    * stop. The final board already knows how to arrive on a press.
    */
-  roundCount: z.number().int().min(1).max(50).nullable()
+  roundCount: z.number().int().min(1).max(50).nullable(),
+  /** Whether the room plays in teams, and how its seats get into them — see `team.ts`. */
+  teams: teamsSettingsSchema
 })
 
 export type AnswerMode = z.infer<typeof answerModeSchema>
@@ -150,7 +153,8 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    * the floor to whoever is quickest and leaves the rest of the room watching.
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
-  roundCount: 10
+  roundCount: 10,
+  teams: DEFAULT_TEAMS_SETTINGS
 }
 
 export const publicPlayerSchema = z.object({
@@ -358,6 +362,8 @@ const baseRoomViewSchema = z.object({
    */
   roundElapsedMs: z.number().int().nonnegative(),
   settings: roomSettingsSchema,
+  /** Empty unless the room is drawn or chosen into teams. */
+  teams: z.array(teamSchema),
   /**
    * What the reader has banked this round, and `null` before their first guess
    * or when they hold no seat. Typed mode takes as many guesses as the round

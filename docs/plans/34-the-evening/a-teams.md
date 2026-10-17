@@ -7,6 +7,23 @@ per team. Nothing in a game's arm learns what a team is.
 This is the catalogue's *team relay* shape arriving through the shell rather
 than through one game, which is why it is a room setting and not a game's.
 
+**State (17/10/2026).** Protocol, core and server have landed with
+`teams.test.ts`; what is left is the **App** section below. The wire is
+documented in `docs/realtime-protocol.md` (*Teams are the shell's*). Where the
+build settled what this file left open:
+
+- `host.moveSeat` and `host.adjustScore` name the seat `playerId`, like
+  `host.removePlayer`; `adjustScore`'s `target` is `{kind:'team'|'seat'}`.
+- A team's `name` is `null` until the host renames it, and every screen draws
+  its dictionary's name for the team's colour — that list is the app's.
+- Under `drawn`, a seat arriving in the lobby before the first deal waits for
+  it; after the deal, or once the game runs, it is placed at once. Under
+  `chosen`, a seat arriving after the start picks once; any seat still without
+  a team when a round opens is placed by the late-seat rule.
+- A team's score is banked as the next round opens or the board goes up, and
+  the round on screen is added live. `host.playAgain` zeroes it and keeps the
+  teams.
+
 ## Protocol (`packages/protocol`)
 
 - `room.ts` — `settings.teams`: a discriminated union on `kind`:

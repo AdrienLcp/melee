@@ -36,5 +36,6 @@ export const newRoom = ({
   players: new Map(),
   round: null,
   settings: roomSettingsFor({ game, locale }),
+  teams: [],
   trackPool: []
 })

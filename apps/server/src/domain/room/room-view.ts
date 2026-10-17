@@ -26,6 +26,7 @@ import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
 import type { Participant, PlayerAttempts, Room, Round } from './room'
+import { toTeamViews } from './team-service'
 
 /**
  * The single seam between the server's model and the wire. Everything secret —
@@ -222,6 +223,7 @@ const toBaseView = ({
   round: room.round === null ? null : toRoundView({ round: room.round, youId }),
   roundElapsedMs: room.round === null ? 0 : elapsedRoundMs(room.round, now),
   settings: room.settings,
+  teams: toTeamViews(room),
   yourVerdict:
     youId === null
       ? null

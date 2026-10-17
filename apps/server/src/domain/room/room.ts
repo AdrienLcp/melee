@@ -13,6 +13,7 @@ import type {
   RoomSettings
 } from '@melee/protocol/room'
 import type { Award, Verdict } from '@melee/protocol/scoring'
+import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import type { RoundRoster } from '@melee/core/round/round-roster'
@@ -53,6 +54,13 @@ export type Room = {
   round: Round | null
   settings: RoomSettings
   /**
+   * As many as `settings.teams` counts, in team order, and empty when the room
+   * plays seat by seat. Who sits in each is the seats' to say — see
+   * `Participant.teamId` — so a seat that goes leaves its team with nothing to
+   * tidy up.
+   */
+  teams: RoomTeam[]
+  /**
    * Candidates without their audio: preview URLs are signed with an expiry, so
    * the playable `HostTrack` is resolved when a round starts, not here.
    */
@@ -72,6 +80,20 @@ export type Participant = {
   /** Survives a disconnect: the seat is held, the score with it. */
   sessionId: SessionId
   score: number
+  /** `null` in a room without teams, and for a seat still waiting to be dealt or to choose. */
+  teamId: TeamId | null
+}
+
+export type RoomTeam = {
+  colour: number
+  id: TeamId
+  name: TeamName | null
+  /**
+   * Every round already left behind plus the host's adjustments. The round on
+   * screen is added on the way out rather than here, because a slate verdict
+   * can still be taken back while its reveal is up — see `team-scores.ts`.
+   */
+  bankedScore: number
 }
 
 /**

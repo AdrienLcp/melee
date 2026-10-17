@@ -43,6 +43,7 @@ const viewFor = (
   round,
   roundElapsedMs: 0,
   settings: DEFAULT_ROOM_SETTINGS,
+  teams: [],
   youId: 'me',
   yourVerdict: null
 })

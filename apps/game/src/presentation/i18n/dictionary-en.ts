@@ -246,6 +246,7 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'Something broke'
     },
     stale_round: 'That round is already over.',
+    teams_locked: 'The teams cannot change that way now.',
     wall_not_paired:
       'This screen is not paired. Pair it from the device running the table.',
     wrong_phase: 'Too late, the game has moved on.'

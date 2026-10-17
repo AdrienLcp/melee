@@ -8,13 +8,14 @@ import {
   sessionIdSchema
 } from './identifiers'
 import { roomSettingsSchema } from './room'
-import { singleVerdictSchema, verdictSchema } from './scoring'
+import { POINT, singleVerdictSchema, verdictSchema } from './scoring'
 import {
   MAX_SLATE_ITEMS,
   slateAnswerSchema,
   slateItemIndexSchema,
   slateKeySchema
 } from './slate'
+import { MAX_TEAMS, MIN_TEAMS, teamIdSchema, teamNameSchema } from './team'
 
 /**
  * `wall` is the room's own screen: it shows the game to everyone and holds no
@@ -113,6 +114,16 @@ export const answerMessageSchema = z.object({
   ]),
   roundId: roundIdSchema,
   type: z.literal('player.answer')
+})
+
+/**
+ * A seat joining a team, or switching to another — in the lobby of a room whose
+ * teams are `chosen`, which is the one place a seat decides its own team. A
+ * seat that arrived after the start and holds none yet may pick once.
+ */
+export const chooseTeamMessageSchema = z.object({
+  teamId: teamIdSchema,
+  type: z.literal('player.chooseTeam')
 })
 
 /**
@@ -238,6 +249,48 @@ export const judgeGroupMessageSchema = z.object({
   verdict: singleVerdictSchema
 })
 
+/**
+ * The whole deal, one list of seats per team in team order. The console
+ * shuffles and the server checks — a partition of the seats into teams whose
+ * sizes differ by one at most — so re-drawing is sending another. Lobby only.
+ */
+export const drawTeamsMessageSchema = z.object({
+  assignment: z.array(z.array(playerIdSchema)).min(MIN_TEAMS).max(MAX_TEAMS),
+  type: z.literal('host.drawTeams')
+})
+
+export const renameTeamMessageSchema = z.object({
+  name: teamNameSchema,
+  teamId: teamIdSchema,
+  type: z.literal('host.renameTeam')
+})
+
+/** One seat to another team, in any phase: once the game is under way, it is the only way a team changes. */
+export const moveSeatMessageSchema = z.object({
+  playerId: playerIdSchema,
+  teamId: teamIdSchema,
+  type: z.literal('host.moveSeat')
+})
+
+/**
+ * Points granted or taken by hand, for an answer given aloud or a call the
+ * rules got wrong. A seat's adjustment stays on the seat: a team is paid by
+ * its rounds and by its own adjustments, never by a seat's.
+ */
+export const adjustScoreMessageSchema = z.object({
+  /** In the board's units, a thousand to the point; negative takes back, never below zero. */
+  points: z
+    .number()
+    .int()
+    .min(-100 * POINT)
+    .max(100 * POINT),
+  target: z.discriminatedUnion('kind', [
+    z.object({ kind: z.literal('team'), teamId: teamIdSchema }),
+    z.object({ kind: z.literal('seat'), playerId: playerIdSchema })
+  ]),
+  type: z.literal('host.adjustScore')
+})
+
 export const nextRoundMessageSchema = z.object({
   type: z.literal('host.nextRound')
 })
@@ -290,6 +343,10 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   collectSheetsMessageSchema,
   showItemMessageSchema,
   judgeGroupMessageSchema,
+  drawTeamsMessageSchema,
+  renameTeamMessageSchema,
+  moveSeatMessageSchema,
+  adjustScoreMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -302,6 +359,7 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   timePingMessageSchema,
   leaveMessageSchema,
   renameMessageSchema,
+  chooseTeamMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema
@@ -319,6 +377,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   timePingMessageSchema,
   leaveMessageSchema,
   renameMessageSchema,
+  chooseTeamMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema,
@@ -334,6 +393,10 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   collectSheetsMessageSchema,
   showItemMessageSchema,
   judgeGroupMessageSchema,
+  drawTeamsMessageSchema,
+  renameTeamMessageSchema,
+  moveSeatMessageSchema,
+  adjustScoreMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -366,6 +429,10 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.collectSheets',
   'host.showItem',
   'host.judgeGroup',
+  'host.drawTeams',
+  'host.renameTeam',
+  'host.moveSeat',
+  'host.adjustScore',
   'host.nextRound',
   'host.endGame',
   'host.playAgain',
