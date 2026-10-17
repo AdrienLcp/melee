@@ -1,0 +1,35 @@
+@use '../styles/typography'
+
+@layer components
+  // A team's tray in miniature: the same band across the top, so the colour
+  // that says whose round it is reads as that team's and not as a warning.
+  .turn-badge
+    @include typography.label
+
+    align-items: center
+    background: var(--track-b)
+    border-radius: var(--radius-m)
+    box-shadow: inset 0 0.3125rem 0 var(--team), 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
+    color: var(--ink)
+    display: inline-flex
+    gap: var(--space-xs)
+    min-width: 0
+    padding: calc(0.3125rem + var(--space-2xs)) var(--space-s) var(--space-2xs)
+
+    > .pawn
+      flex: none
+      font-size: var(--text-l)
+
+    > .plays
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    > .of
+      color: var(--ink-muted)
+      flex: none
+      font-variant-numeric: tabular-nums
+
+    &[data-yours]
+      box-shadow: inset 0 0.3125rem 0 var(--team), inset 0 0 0 var(--stroke-bold) var(--ink), 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))

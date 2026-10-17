@@ -4,12 +4,14 @@ import { Button } from '@/presentation/components/button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { HostActionsProps } from './host-actions'
+import { byTeamFor } from './turns-choice'
 import { useSettingsSummary } from './use-settings-summary'
 
 export const FinishedActions: React.FC<HostActionsProps> = ({
   draftSource,
   isLive,
   onOpenRound,
+  prefersByTeam,
   send,
   slateKeys,
   view
@@ -28,7 +30,11 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
           // lands in is a phase nobody needs to look at when the answer to
           // "again?" was yes.
           send({ type: 'host.playAgain' })
-          send({ slateKeys, type: 'host.startRound' })
+          send({
+            byTeam: byTeamFor({ prefersByTeam, view }),
+            slateKeys,
+            type: 'host.startRound'
+          })
         }}
         size='large'
       >

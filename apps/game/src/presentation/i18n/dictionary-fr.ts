@@ -310,6 +310,7 @@ export const FR_DICTIONARY = defineDictionary({
     needsGame: 'Choisis à quoi la table joue',
     needsPlayer: 'Il faut au moins quelqu’un à table',
     nextRound: 'Manche suivante',
+    nextTurn: 'Équipe suivante',
     playAgain: 'Rejouer',
     players: {
       empty: 'Encore personne. Ça ne va pas durer.',
@@ -366,6 +367,11 @@ export const FR_DICTIONARY = defineDictionary({
     },
     standings: 'Classement',
     startGame: 'À table\u00a0!',
+    turns: {
+      byTeam: 'Équipe par équipe',
+      label: 'Comment jouer',
+      together: 'Tous en même temps'
+    },
     verdict: {
       right: 'Bonne réponse',
       showAnswer: 'Voir la réponse',
@@ -848,6 +854,16 @@ export const FR_DICTIONARY = defineDictionary({
       teamsOnly: 'Un écran par équipe'
     },
     title: 'Les équipes',
+    turn: {
+      of: '{index:number} sur {of:number}',
+      plays: 'À jouer : {team}',
+      watch: {
+        detail:
+          'Ton équipe joue sa propre manche dans ce tour — celle-ci est la leur.',
+        title: 'À jouer : {team}'
+      },
+      yours: 'À vous !'
+    },
     unassigned: {
       chosen: 'Pas encore d’équipe',
       drawn: 'En attente du tirage'

@@ -8,6 +8,7 @@ import {
 } from '@melee/core/room/host-preferences'
 import { nextGame } from '@melee/core/room/next-game'
 import { movedToGame } from '@melee/core/room/room-settings'
+import { hasTurnsAfter } from '@melee/core/team/team-turn'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -53,7 +54,12 @@ export const useLineUpDraw = ({
     const isFinal =
       settings.roundCount !== null && round.index >= settings.roundCount
 
-    if (isFinal || settings.lineUp.length < 2 || settings.game?.kind !== last) {
+    if (
+      isFinal ||
+      hasTurnsAfter(round.turn) ||
+      settings.lineUp.length < 2 ||
+      settings.game?.kind !== last
+    ) {
       return
     }
 

@@ -7,6 +7,8 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
 import type { PlayerRoomView } from '@melee/protocol/room'
 
+import { playsThisTurn } from '@melee/core/team/team-turn'
+
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { slateContent } from '@/helpers/round-content'
 import {
@@ -240,6 +242,7 @@ const Lobby: React.FC<{
             roundCount={view.settings.roundCount}
             roundIndex={view.round?.index ?? 0}
             teams={view.teams}
+            turn={view.round?.turn ?? null}
             youId={view.youId}
           />
           <div className='card-clock'>
@@ -284,6 +287,7 @@ const Lobby: React.FC<{
                   : view.round.index
               }
               teams={view.teams}
+              turn={view.round?.turn ?? null}
               youId={view.youId}
             />
             <PlayerRound
@@ -318,6 +322,11 @@ const isFramed = (view: PlayerRoomView): boolean =>
   view.isHostConnected &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
+  playsThisTurn({
+    seatId: view.youId,
+    teams: view.teams,
+    turn: view.round.turn
+  }) &&
   ((view.phase === 'playing' && view.round.answerMode === 'choice') ||
     ((view.phase === 'playing' || view.phase === 'buzzed') &&
       view.round.answerMode === 'buzzer'))

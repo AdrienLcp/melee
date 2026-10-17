@@ -17,7 +17,7 @@ set of screens, inside the stage-29 world.
 - **Confirm** — one press sends the point; a mis-tap must not cost a race. The
   marker locks and says *sent*.
 - **Wall** — the same surface at room scale when the wall answers for a team
-  ([c](c-team-turns.md)); targets sized for a standing adult's finger, and a
+  (step c); targets sized for a standing adult's finger, and a
   swipe never scrolls the page (Gamenight's rehearsal note).
 - **Weight** — the 1:50m atlas stays out of the join page and the lobby: loaded
   by the round's lazy chunk, measured on a throttled phone.

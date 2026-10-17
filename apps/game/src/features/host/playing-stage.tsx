@@ -1,8 +1,10 @@
 import type React from 'react'
 
+import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
 import {
+  ChoiceAnswer,
   longestChoiceLength,
   type PlayerAnswer,
   TypedAnswer
@@ -21,9 +23,14 @@ import './playing-stage.sass'
 const LONG_CHOICE_LENGTH = 60
 
 type PlayingStageProps = {
+  /**
+   * The seat whose answer `onAnswer` sends: this console's own, or on the wall
+   * the first seat of the team on turn, which holds the team's one answer.
+   */
+  answersAs: PlayerId | null
   /** The offer to unmute this screen, or nothing when it owes the room none. */
   clipOffer: React.ReactNode
-  /** Sends the seat's answer, and says whether the socket took it; `null` with no seat. */
+  /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
   onAnswer: ((answer: PlayerAnswer) => boolean) | null
   round: RoundView
   view: HostRoomView
@@ -36,6 +43,7 @@ type PlayingStageProps = {
  * track around the screen already carries them.
  */
 export const PlayingStage: React.FC<PlayingStageProps> = ({
+  answersAs,
   clipOffer,
   onAnswer,
   round,
@@ -46,6 +54,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(round)
   const isTyping = mode === 'typed' && onAnswer !== null
+  const teamOnTurn = view.teams.find((team) => team.id === round.turn?.teamId)
 
   return (
     <div
@@ -53,7 +62,14 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-answering={isTyping || undefined}
       data-choices={mode === 'choice' || undefined}
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
-      style={{ '--choice-length': choiceLength }}
+      data-turn={teamOnTurn !== undefined || undefined}
+      style={{
+        '--choice-length': choiceLength,
+        '--team':
+          teamOnTurn === undefined
+            ? undefined
+            : `var(--pawn-${teamOnTurn.colour})`
+      }}
     >
       {clipOffer}
       <section className='round-card'>
@@ -75,7 +91,17 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           </p>
         )}
       </section>
-      {mode === 'choice' && <PrintedChoices round={round} />}
+      {mode === 'choice' &&
+        (onAnswer === null ? (
+          <PrintedChoices round={round} />
+        ) : (
+          <ChoiceAnswer
+            key={round.id}
+            onAnswer={onAnswer}
+            round={round}
+            youId={answersAs}
+          />
+        ))}
       {isTyping && (
         <TypedAnswer
           // A seated console is withheld the answer the same way a player

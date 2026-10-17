@@ -22,6 +22,7 @@ import {
   hasAnybodyScored,
   standingOf
 } from '@melee/core/scoring/scoreboard'
+import { playsThisTurn } from '@melee/core/team/team-turn'
 import {
   type ClockEstimate,
   millisecondsUntil
@@ -70,6 +71,7 @@ import {
   scoringKey,
   type Translate
 } from '@/presentation/i18n/translation'
+import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './player-round.sass'
 
@@ -219,6 +221,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   view
 }) => {
   const translate = useTranslate()
+  const teamName = useTeamName()
   const roomCode = useRoomCodeParam()
   const round = view.round
 
@@ -347,6 +350,35 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             />
           </>
         )}
+      </section>
+    )
+  }
+
+  // Another team's round in a set: the seat is in the game and owes nothing,
+  // and the round is theirs to watch — on the wall, or across the table.
+  const teamOnTurn = view.teams.find((team) => team.id === round?.turn?.teamId)
+
+  if (
+    view.phase === 'playing' &&
+    teamOnTurn !== undefined &&
+    !playsThisTurn({
+      seatId: view.youId,
+      teams: view.teams,
+      turn: round?.turn ?? null
+    })
+  ) {
+    return (
+      <section
+        className='player-round notice'
+        data-team
+        style={{ '--team': `var(--pawn-${teamOnTurn.colour})` }}
+      >
+        <NoticeCard
+          detail={translate('team.turn.watch.detail')}
+          title={translate('team.turn.watch.title', {
+            team: teamName(teamOnTurn)
+          })}
+        />
       </section>
     )
   }

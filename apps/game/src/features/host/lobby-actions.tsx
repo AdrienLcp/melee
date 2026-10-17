@@ -7,11 +7,14 @@ import { PlayRightAway } from '@/presentation/components/play-right-away'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { HostActionsProps } from './host-actions'
+import { byTeamFor, TurnsChoice } from './turns-choice'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
   isLive,
   onOpenRound,
   onPlayRightAway,
+  onPrefersByTeam,
+  prefersByTeam,
   send,
   slateKeys,
   view
@@ -44,11 +47,21 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
 
   return (
     <div className='launch'>
+      <TurnsChoice
+        isDisabled={!isLive}
+        onChange={onPrefersByTeam}
+        prefersByTeam={prefersByTeam}
+        view={view}
+      />
       <Button
         isDisabled={!isLive || isRoomEmpty || hasNoGame}
         onPress={() => {
           onOpenRound()
-          send({ slateKeys, type: 'host.startRound' })
+          send({
+            byTeam: byTeamFor({ prefersByTeam, view }),
+            slateKeys,
+            type: 'host.startRound'
+          })
         }}
         size='large'
       >

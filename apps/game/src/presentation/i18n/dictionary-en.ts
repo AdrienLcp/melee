@@ -334,6 +334,8 @@ export const EN_DICTIONARY = defineDictionary({
     needsGame: 'Pick what the table is playing',
     needsPlayer: 'You need at least one at the table',
     nextRound: 'Next round',
+    /** The reveal of a turn with another team still to play its round. */
+    nextTurn: 'Next team',
     playAgain: 'Play again',
     players: {
       empty: 'Nobody yet. That will not last.',
@@ -400,6 +402,12 @@ export const EN_DICTIONARY = defineDictionary({
     },
     standings: 'Standings',
     startGame: 'Gather round',
+    /** How the rounds from here are played, offered where a round can be one team's. */
+    turns: {
+      byTeam: 'Team by team',
+      label: 'How to play',
+      together: 'Everyone at once'
+    },
     verdict: {
       right: 'Right',
       showAnswer: 'Show me the answer',
@@ -929,6 +937,18 @@ export const EN_DICTIONARY = defineDictionary({
       teamsOnly: 'A screen per team'
     },
     title: 'The teams',
+    turn: {
+      /** How far a set has come: the turn on screen, of how many teams. */
+      of: '{index:number} of {of:number}',
+      plays: '{team} play',
+      /** A seat watching another team's round. */
+      watch: {
+        detail:
+          'Your team plays its own round in this set — this one is theirs.',
+        title: '{team} play this one'
+      },
+      yours: 'Your turn'
+    },
     unassigned: {
       chosen: 'No team yet',
       drawn: 'Waiting for the draw'

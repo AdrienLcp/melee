@@ -34,7 +34,7 @@ resulting settings.
 | Game | One thing on the shelf: quiz, blind test, buzzer, reflex, slate, world map | unchanged; the map is the seventh |
 | Line-up | The games ticked for this room | new |
 | Round | One question, one clip, one place to find, played by whoever its roster stamps | unchanged |
-| Set | One game played by every team in turn, one round each, each with its own question | new ([c](c-team-turns.md)) |
+| Set | One game played by every team in turn, one round each, each with its own question | new (step c) |
 | Team | A named group of seats, with a colour and a pawn on the board | new |
 
 *Challenge* and *épreuve* are what the screens say in French; in the code a

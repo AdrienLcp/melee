@@ -3,6 +3,9 @@ import type React from 'react'
 import { useEffect, useEffectEvent } from 'react'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
+import type { HostRoomView } from '@melee/protocol/room'
+
+import { wallAnswersRound } from '@melee/core/team/team-turn'
 
 import { JoinReminder } from '@/features/host/join-reminder'
 import { RoomStage } from '@/features/host/room-stage'
@@ -36,6 +39,7 @@ import './wall-page.sass'
 
 import { Main } from '@/presentation/components/main'
 import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
+import { TurnBadge } from '@/presentation/components/turn-badge'
 
 /**
  * Long enough for a lid closing and reopening, or a phone's screen locking and
@@ -57,7 +61,13 @@ export const WallPage: React.FC = () => {
  */
 const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const translate = useTranslate()
-  const { clock, error, status, view: wallView } = useWallConnection(roomCode)
+  const {
+    clock,
+    error,
+    send,
+    status,
+    view: wallView
+  } = useWallConnection(roomCode)
   const view = wallView === null ? null : asRoomScreenView(wallView)
   const { volume } = useVolume()
   const slateWall = useSlateWall(view)
@@ -133,6 +143,13 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   })}
             </p>
           )}
+          {view?.round?.turn != null && view.phase !== 'finished' && (
+            <TurnBadge
+              seatId={view.youId}
+              teams={view.teams}
+              turn={view.round.turn}
+            />
+          )}
           {!canPlay && (
             <Button
               className='sound-offer'
@@ -167,6 +184,12 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           controls={null}
           isSpeaker
           onUnlockAudio={armAudio}
+          onWallAnswer={
+            wallAnswers(view)
+              ? (answer, roundId) =>
+                  send({ answer, roundId, type: 'wall.answer' })
+              : null
+          }
           refusal={refusal}
           roomCode={roomCode}
           slateWall={slateWall}
@@ -174,5 +197,24 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         />
       </Main>
     </PawnColoursProvider>
+  )
+}
+
+/**
+ * The wall answers for the team on turn, and nothing else: everyone at once,
+ * every phone is somebody's and the wall is nobody's.
+ */
+const wallAnswers = (view: HostRoomView | null): boolean => {
+  const round = view?.round ?? null
+
+  return (
+    view?.phase === 'playing' &&
+    round !== null &&
+    round.content.kind !== 'slate' &&
+    wallAnswersRound({
+      answerMode: round.answerMode,
+      game: round.content.kind,
+      turn: round.turn
+    })
   )
 }

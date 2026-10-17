@@ -1,12 +1,13 @@
 import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type { PublicPlayer } from '@melee/protocol/room'
+import type { PublicPlayer, RoundTurn } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
 import { teamOfSeat } from '@melee/core/team/team-board'
 
 import { Pawn } from '@/presentation/components/pawn'
+import { TurnBadge } from '@/presentation/components/turn-badge'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
@@ -43,6 +44,8 @@ type RoundChromeProps = {
   roundIndex: number | null
   /** The room's teams, so the line names the seat's own once it has one. */
   teams: readonly Team[]
+  /** The team whose round this is inside a set, which takes the pips' place. */
+  turn?: RoundTurn | null
   /** The seat whose pawn and score the line carries. */
   youId: PlayerId
 }
@@ -62,6 +65,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   roundCount,
   roundIndex,
   teams,
+  turn = null,
   youId
 }) => {
   const translate = useTranslate()
@@ -91,7 +95,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
           <span aria-hidden='true' className='figures'>
             {roundCount === null ? roundIndex : `${roundIndex}/${roundCount}`}
           </span>
-          {roundCount !== null && roundCount <= MOST_PIPS && (
+          {roundCount !== null && roundCount <= MOST_PIPS && turn === null && (
             <span aria-hidden='true' className='pips'>
               {Array.from({ length: roundCount }, (_, pip) => pip + 1).map(
                 (pipRound) => (
@@ -110,6 +114,9 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
             </span>
           )}
         </p>
+      )}
+      {turn !== null && roundIndex !== null && (
+        <TurnBadge isCompact seatId={youId} teams={teams} turn={turn} />
       )}
       <p className='you'>
         <Pawn seat={Math.max(0, youSeat)} />

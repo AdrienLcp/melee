@@ -18,6 +18,7 @@ import {
 } from '@melee/core/room/host-preferences'
 import { isGameInPlay } from '@melee/core/room/room-phase'
 import { withPreparedKey } from '@melee/core/slate/prepared-keys'
+import { playsThisTurn } from '@melee/core/team/team-turn'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
@@ -50,6 +51,7 @@ import { useVolume } from '@/presentation/audio/volume-provider'
 import { Loader } from '@/presentation/components/loader'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
+import { TurnBadge } from '@/presentation/components/turn-badge'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import {
   reflexOutcome,
@@ -111,6 +113,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // that puts the name back on the next `hello` — and a console whose tab was
   // discarded on a screen lock reloads rather than blinks, so a seat kept in
   // component state alone came back as no seat at all.
+  const [prefersByTeam, setPrefersByTeam] = useState(true)
   const [seatNickname, setSeatNickname] = useState(() =>
     readSeatNickname({ role: 'host', roomCode })
   )
@@ -418,6 +421,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
             roundCount={view.settings.roundCount}
             roundIndex={choosing.round.index}
             teams={view.teams}
+            turn={choosing.round.turn}
             youId={choosing.youId}
           />
           <div className='card-clock'>
@@ -498,6 +502,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   })}
             </p>
           )}
+          {view?.round?.turn != null && view.phase !== 'finished' && (
+            <TurnBadge
+              seatId={view.youId}
+              teams={view.teams}
+              turn={view.round.turn}
+            />
+          )}
           {/*
           The lobby is the one phase that excludes it, because the invitation
           is already the stage's larger half there. `finished` used to be
@@ -554,8 +565,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   }
                 }}
                 onPlayRightAway={playRightAway}
+                onPrefersByTeam={setPrefersByTeam}
                 onSettingsChange={changeSettings}
                 preferences={preferences}
+                prefersByTeam={prefersByTeam}
                 send={send}
                 slateKeys={preparedSlateKeys}
                 slateWall={slateWall}
@@ -630,6 +643,11 @@ const seatedChoosingRound = (
   view.round?.answerMode === 'choice' &&
   view.youId !== null &&
   view.round !== null &&
-  !view.round.joinedAfterStart
+  !view.round.joinedAfterStart &&
+  playsThisTurn({
+    seatId: view.youId,
+    teams: view.teams,
+    turn: view.round.turn
+  })
     ? { round: view.round, youId: view.youId }
     : null

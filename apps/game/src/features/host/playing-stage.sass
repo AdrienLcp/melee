@@ -33,12 +33,31 @@
         margin-block: auto
         width: min(100%, 72rem)
 
-    &[data-choices] > .printed-choices
+    &[data-choices] > .printed-choices,
+    &[data-choices] > .answer-form.choices
       flex: 1 1 0
+
+    // The wall answering for the team on turn: the same four tiles as the
+    // printed ones, live.
+    > .answer-form.choices
+      display: grid
+      min-height: 0
+
+      > ul
+        display: grid
+        gap: clamp(var(--space-xs), 1.8cqmin, var(--space-s))
+        grid-template-columns: minmax(0, 1fr)
+        grid-template-rows: repeat(4, minmax(min-content, 1fr))
+        list-style: none
+        min-height: 0
+
+      li
+        display: grid
+        min-height: 0
 
     > .muted-clip,
     > .answered-pawns,
-    > .answer-form
+    > .answer-form:not(.choices)
       align-self: center
       flex: none
 
@@ -87,10 +106,11 @@
         > .round-card
           grid-area: card
 
-        > .printed-choices
+        > .printed-choices,
+        > .answer-form.choices
           grid-area: choices
 
-        > .answer-form
+        > .answer-form:not(.choices)
           align-self: center
           grid-area: choices
 
@@ -100,12 +120,14 @@
 
     // Four candidates under forty characters sit two by two once the box is
     // wide enough for two columns; sentences stay four rows at every ratio.
-    &:not([data-long-choices]) .printed-choices
+    &:not([data-long-choices]) .printed-choices,
+    &:not([data-long-choices]) .answer-form.choices > ul
       @container playing (width >= 35rem)
         grid-template-columns: repeat(2, minmax(0, 1fr))
         grid-template-rows: repeat(2, minmax(min-content, 1fr))
 
-    .printed-choices .answer-tile
+    .printed-choices .answer-tile,
+    .answer-form.choices .answer-tile
       font-size: clamp(var(--text-xs), calc(var(--choice-k) / sqrt(var(--choice-length, 20))), var(--choice-cap))
 
     // The question card, with the round's sand draining along its top edge —
@@ -155,3 +177,11 @@
         font-size: clamp(var(--text-xl), min(5cqi, 14cqh), 5.5rem)
         text-align: center
         text-wrap: balance
+
+  // Whose round it is, ringed around the card the whole room reads — the
+  // team's colour pulled forward the way a chosen lid is on the shelf.
+  .stage.playing[data-turn] .round-card
+    --ring: 0.3125rem
+
+    box-shadow: 0 0 0 var(--ring) var(--team), 0 var(--edge) 0 var(--ring) var(--chipboard), var(--shadow-card)
+

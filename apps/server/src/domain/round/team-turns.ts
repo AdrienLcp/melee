@@ -1,8 +1,8 @@
 import type { RoundTurn } from '@melee/protocol/room'
 import type { TeamId } from '@melee/protocol/team'
 
-import { capabilitiesOf } from '@melee/core/room/game-capabilities'
 import { setOrder } from '@melee/core/team/set-order'
+import { canPlayByTeam as canGamePlayByTeam } from '@melee/core/team/team-turn'
 
 import type { Room, TeamSet } from '@/domain/room/room'
 import { seatsOf } from '@/domain/room/team-service'
@@ -14,22 +14,17 @@ const teamsInPlay = (room: Room): TeamId[] =>
     .map((team) => team.id)
 
 /**
- * Whether the round about to open could be one team's. A race cannot be — the
- * buzzer mode, the bare buzzer and the reflex race are decided *between*
- * players. Asked before the seats still without a team are placed, so it reads
- * the teams the room keeps rather than who already sits in them; a set needs
- * two of them holding seats, which `takeTurn` counts once they are placed.
+ * Whether the round about to open could be one team's. Asked before the seats
+ * still without a team are placed, so it reads the teams the room keeps rather
+ * than who already sits in them; a set needs two of them holding seats, which
+ * `takeTurn` counts once they are placed.
  */
-export const canPlayByTeam = (room: Room): boolean => {
-  const game = room.settings.game
-
-  return (
-    game !== null &&
-    capabilitiesOf(game.kind).playsInTeamTurns &&
-    room.settings.mode.kind !== 'buzzer' &&
-    room.teams.length > 1
-  )
-}
+export const canPlayByTeam = (room: Room): boolean =>
+  canGamePlayByTeam({
+    game: room.settings.game?.kind ?? null,
+    mode: room.settings.mode.kind,
+    teamCount: room.teams.length
+  })
 
 /** Whether a set has a team still waiting for its round. */
 export const hasTurnsLeft = (room: Room): boolean =>

@@ -150,7 +150,8 @@ const choosingView = (question: Question) => ({
     lockedOutPlayerIds: [],
     openedWithPlayerIds: null,
     revealedAnswers: [],
-    startsAt: SERVER_TIME - 2_000
+    startsAt: SERVER_TIME - 2_000,
+    turn: null
   },
   roundElapsedMs: 2_000,
   settings: {

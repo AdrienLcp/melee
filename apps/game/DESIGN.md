@@ -665,6 +665,16 @@ score track, the standings and the final board rank teams in place of seats
 whenever there are any; the phone's chrome spells the team in the lobby and
 drops the word mid-round under 26rem, where the pawn says it.
 
+### Team turns (`TurnBadge`)
+A set's round says whose it is three ways. The **turn badge** is the team's tray
+in miniature — the same band across the top, its pawn, *Reds play* and *2 of 3*
+— in the console's and the wall's header and in the phone's chrome, where it
+names the team alone and the screen below says the rest; the seat whose team is
+on turn reads *Your turn* under the *yours* keyline. The **round card** is
+ringed in the team's colour, the way a chosen lid is pulled forward. A phone
+watching another team's round gets a `NoticeCard` banded in that team's colour
+and no controls; the wall, on its team's turn, shows the printed tiles live.
+
 ### Tokens: countdown, floor, payout
 - **`Countdown`**: a round paper token; `--token-size` is the one dial, the
   numeral two thirds of it, and only the numeral re-keys, so each second strikes
