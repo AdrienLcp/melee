@@ -1,0 +1,29 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The map takes every pixel the round card leaves, and the press that sends
+  // the pawn sits under it, where a thumb already is.
+  .map-answer
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: minmax(0, 1fr) auto
+    min-height: 0
+
+    .send
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs) var(--space-m)
+      justify-content: space-between
+
+    .hint
+      @include typography.body
+
+      color: var(--ink-muted)
+      flex: 1 1 12rem
+      margin: 0
+
+    &[data-sent] .hint
+      @include typography.strong
+
+      color: var(--ink)

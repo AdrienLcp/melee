@@ -81,6 +81,9 @@
     &[data-game='slate']
       --spine: var(--spine-slate)
 
+    &[data-game='worldmap']
+      --spine: var(--spine-worldmap)
+
     .game-name
       @include typography.monument
 
@@ -167,6 +170,30 @@
         @include question-card.card
 
       .asked-question + .round-progress
+        --clock-ink: var(--card-ink)
+
+        align-self: start
+        @include question-card.clock-margin
+        width: auto
+
+  // The country on its card with the round's sand along its top, and the map
+  // taking everything under it.
+  .player-round.map-round
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: auto minmax(0, 1fr)
+    min-height: 0
+
+    .round-card
+      display: grid
+
+      > *
+        grid-area: 1 / 1
+
+      .map-prompt
+        @include question-card.card
+
+      .map-prompt + .round-progress
         --clock-ink: var(--card-ink)
 
         align-self: start

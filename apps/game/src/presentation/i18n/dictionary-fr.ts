@@ -1,5 +1,7 @@
 import { defineDictionary, defineTranslation } from '@adrienlcp/i18n'
 
+import { COUNTRY_NAMES_FR } from './country-names-fr'
+
 /**
  * French typography puts a non-breaking space before `?`, `!` and `:`. Writing
  * it as \u00a0 keeps it visible to whoever edits this file, and survives an
@@ -920,7 +922,22 @@ export const FR_DICTIONARY = defineDictionary({
     sound: 'Mettre le son'
   },
   worldmap: {
+    answer: {
+      confirm: 'Je le pose ici',
+      sent: 'Ton pion est posé. On attend les autres.'
+    },
+    country: COUNTRY_NAMES_FR,
+    map: {
+      hint: 'Zoome, puis pose ton pion dessus',
+      label: 'Carte du monde',
+      loading: 'On déplie la carte…',
+      moveHint: 'Déplace-le pour ajuster, ou pose-le ailleurs',
+      whole: 'Le monde entier',
+      zoomIn: 'Zoomer',
+      zoomOut: 'Dézoomer'
+    },
     name: 'Carte du monde',
+    prompt: 'Place {country}',
     scoring:
       'Tout le monde pointe le pays en même temps. Dedans, ça rapporte 3 points, à moins de 500 km 2, à moins de 1 500 km 1 — et plus tu pointes tôt, plus la montre ajoute, jusqu’au double.'
   }

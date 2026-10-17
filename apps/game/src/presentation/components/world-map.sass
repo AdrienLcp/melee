@@ -1,0 +1,58 @@
+@use '../styles/focus'
+
+@layer components
+  .world-map
+    border-radius: var(--radius-m)
+    box-shadow: var(--shadow-recess)
+    contain: strict
+    min-block-size: 0
+    overflow: hidden
+    position: relative
+
+    .surface
+      cursor: grab
+      display: block
+      // The map claims every touch: a swipe pans it and never scrolls the page.
+      touch-action: none
+      user-select: none
+      // Inside the frame: the frame clips whatever reaches past it.
+      @include focus.ring-inset
+
+      &[data-placing]
+        cursor: crosshair
+
+
+    .sea
+      fill: var(--map-sea)
+
+    .graticule
+      fill: none
+      stroke: var(--map-graticule)
+      stroke-width: 0.6px
+      vector-effect: non-scaling-stroke
+
+    .country
+      fill: var(--map-land)
+      stroke: var(--map-border)
+      stroke-linejoin: round
+      stroke-width: 0.6px
+      vector-effect: non-scaling-stroke
+
+    .rim
+      fill: none
+      stroke: var(--map-border)
+      stroke-width: 1.5px
+      vector-effect: non-scaling-stroke
+
+    .marker
+      fill: var(--pawn)
+      filter: drop-shadow(0 2px 0 var(--chipboard-dark))
+      pointer-events: none
+
+    .controls
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      inset-block-start: var(--space-xs)
+      inset-inline-end: var(--space-xs)
+      position: absolute

@@ -9,8 +9,10 @@ import {
   type PlayerAnswer,
   TypedAnswer
 } from '@/features/player/answer-forms'
-import { quizContent } from '@/helpers/round-content'
+import { MapAnswer } from '@/features/player/map-answer'
+import { quizContent, worldmapContent } from '@/helpers/round-content'
 import { AskedQuestion } from '@/presentation/components/asked-question'
+import { MapPrompt } from '@/presentation/components/map-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -55,6 +57,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const choiceLength = longestChoiceLength(round)
   const isTyping = mode === 'typed' && onAnswer !== null
   const teamOnTurn = view.teams.find((team) => team.id === round.turn?.teamId)
+  const worldmap = worldmapContent(round)
 
   return (
     <div
@@ -62,6 +65,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-answering={isTyping || undefined}
       data-choices={mode === 'choice' || undefined}
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
+      data-map={(worldmap !== null && onAnswer !== null) || undefined}
       data-turn={teamOnTurn !== undefined || undefined}
       style={{
         '--choice-length': choiceLength,
@@ -81,6 +85,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         )}
         {round.content.kind === 'quiz' ? (
           <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
+        ) : worldmap !== null ? (
+          <MapPrompt countryCode={worldmap.countryCode} />
         ) : (
           <p className='now'>
             {translate(
@@ -114,6 +120,15 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           onAnswer={onAnswer}
           round={round}
           verdict={view.yourVerdict}
+        />
+      )}
+      {worldmap !== null && onAnswer !== null && (
+        <MapAnswer
+          key={round.id}
+          onAnswer={onAnswer}
+          round={round}
+          seat={view.players.findIndex((player) => player.id === answersAs)}
+          youId={answersAs}
         />
       )}
       {mode !== 'buzzer' && view.players.length > 0 && (

@@ -64,6 +64,7 @@ export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)
 export const ShareIcon = inFamily(Share)
+export const WorldIcon = inFamily(Earth)
 
 const GAME_GLYPHS = {
   blindtest: Music,

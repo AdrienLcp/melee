@@ -1,0 +1,10 @@
+@use '../styles/typography'
+
+@layer components
+  // A country with its article fits on two lines of a phone: « la République
+  // démocratique du Congo » is the longest the bank asks.
+  .map-prompt
+    @include typography.billboard-accented
+
+    margin: 0
+    text-wrap: balance

@@ -1,5 +1,7 @@
 import { defineDictionary, defineTranslation } from '@adrienlcp/i18n'
 
+import { COUNTRY_NAMES_EN } from './country-names-en'
+
 /**
  * The reference dictionary: its keys are the type every other locale is checked
  * against, so a string added here does not compile until every locale has it.
@@ -1005,7 +1007,22 @@ export const EN_DICTIONARY = defineDictionary({
     sound: 'Turn the sound on'
   },
   worldmap: {
+    answer: {
+      confirm: 'Put it here',
+      sent: 'Your pawn is down. Waiting for the others.'
+    },
+    country: COUNTRY_NAMES_EN,
+    map: {
+      hint: 'Zoom in, then put your pawn down on it',
+      label: 'World map',
+      loading: 'Unfolding the map…',
+      moveHint: 'Move it to adjust, or put it down somewhere else',
+      whole: 'Whole world',
+      zoomIn: 'Zoom in',
+      zoomOut: 'Zoom out'
+    },
     name: 'World map',
+    prompt: 'Place {country}',
     scoring:
       'Everyone pins the country at once. Inside it scores three, within 500 km two, within 1,500 km one — and the earlier your pin, the more the clock adds, up to double.'
   }

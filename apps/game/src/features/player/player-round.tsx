@@ -30,6 +30,7 @@ import {
 
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { MapAnswer } from '@/features/player/map-answer'
 import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
 import { RoundBoard } from '@/features/player/round-board'
@@ -43,7 +44,8 @@ import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
   quizContent,
-  reflexContent
+  reflexContent,
+  worldmapContent
 } from '@/helpers/round-content'
 import { slateLabelsOf } from '@/helpers/slate-labels'
 import { buzzFeedback } from '@/infrastructure/browser'
@@ -53,6 +55,7 @@ import { AskedQuestion } from '@/presentation/components/asked-question'
 import { Countdown } from '@/presentation/components/countdown'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FloorClock } from '@/presentation/components/floor-clock'
+import { MapPrompt } from '@/presentation/components/map-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
@@ -439,6 +442,26 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           round={round}
           youId={view.youId}
         />
+      )
+    }
+
+    const worldmap = worldmapContent(round)
+
+    if (worldmap !== null) {
+      return (
+        <section className='player-round map-round'>
+          <div className='round-card'>
+            <MapPrompt countryCode={worldmap.countryCode} />
+            <RoundClock clock={clock} view={view} />
+          </div>
+          <MapAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            round={round}
+            seat={view.players.findIndex((player) => player.id === view.youId)}
+            youId={view.youId}
+          />
+        </section>
       )
     }
 

@@ -5,6 +5,7 @@ import { Form } from 'react-aria-components'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
+import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import { whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import {
@@ -35,6 +36,7 @@ type AnswerFormProps = {
 export type PlayerAnswer =
   | { choiceIndex: number; kind: 'choice' }
   | { guess: string; kind: 'typed' }
+  | { kind: 'point'; point: GeoPoint }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A

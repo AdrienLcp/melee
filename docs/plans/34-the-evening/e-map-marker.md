@@ -30,6 +30,13 @@ shelf's tagline and description keys once it is shelved, and
 Decision 14: add `'map'`-the-game (`worldmap`) to `ROOM_PRESETS.christmas` in
 `apps/game/src/features/home/room-presets.ts` once it is shelved.
 
+## Where it stands
+
+The phone's half has landed: the map, pinch, pan, the pawn placed by a tap and
+moved by a drag, *Je le pose ici*, the point judged by the server — driven
+through CDP touch events at 390×844. Left: the reveal, the wall, the console's
+playing stage, shelving.
+
 ## The interaction
 
 - **One SVG, a transform.** Pinch and pan with pointer events over Gamenight's

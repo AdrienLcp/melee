@@ -61,6 +61,16 @@
       align-self: center
       flex: none
 
+    // A seat or the wall putting a pawn down: the card goes back to the top
+    // and the map takes the rest.
+    &[data-map]
+      > .round-card
+        margin-block: 0
+
+      > .answer-form.map-answer
+        align-self: stretch
+        flex: 1 1 0
+
     @media (aspect-ratio >= 13 / 10)
       &[data-answering],
       &[data-choices]

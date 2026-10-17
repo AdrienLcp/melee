@@ -31,6 +31,11 @@ export const slateContent = (
 ): Extract<RoundContent, { kind: 'slate' }> | null =>
   round?.content.kind === 'slate' ? round.content : null
 
+export const worldmapContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'worldmap' }> | null =>
+  round?.content.kind === 'worldmap' ? round.content : null
+
 /** The same over the half only the host is sent. */
 export const blindtestHostContent = (
   view: HostRoomView | null | undefined
