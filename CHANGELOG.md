@@ -16,6 +16,9 @@ one part.
   browser remembered carries over: the new domain is another origin, so its
   storage starts empty and a remembered name, volume or seat is asked again
   once. Rooms open at the deploy close with it.
+  **Superseded until Melee is validated**: Taverla is served again from its own
+  address, from the last commit before the rename, and Melee only previews at
+  `melee.adrienlcp.com`, deployed by hand — see `apps/server/former-host/`.
 
 - `[Shared]` **A ninth quiz subject, Citations / Quotes**, and `PROTOCOL_VERSION`
   goes to 24. The prompt is a line a table recognises — from a film, a series,
@@ -1708,6 +1711,13 @@ one part.
   and the extra width is only void
 
 ### Fixes
+
+- `[Shared]` **A tab opened before a deploy keeps its style and its icons.** A
+  deploy drops the previous build's chunks, and the asset server answered a
+  missing one with the SPA shell, a `200` of HTML that a browser drops as a
+  stylesheet without a word: the first lazy screen came up bare. A missing
+  `/assets/*` is a `404` now, and the page reloads once onto the new build when
+  a chunk fails to load (`vite:preloadError`), never twice inside ten seconds.
 
 - `[Shared]` **The console's answer count waits only on the players the round
   opened on.** Somebody who sat down mid-round was counted and drawn as an
