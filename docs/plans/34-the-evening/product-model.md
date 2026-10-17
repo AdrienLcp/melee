@@ -18,7 +18,7 @@ So the evening is three additions to the room's settings, and nothing else:
 | Setting | Values | Default | What it changes |
 |---|---|---|---|
 | **Line-up** | the games ticked, at least one | the game whose front door opened the room, or none | Which game the next round is drawn from. One tick is today's quick game, with nothing else on screen |
-| **Teams** | off, drawn, teams only | off | Who scores: seats, or teams of seats ([a](a-teams.md)) |
+| **Teams** | off, drawn, chosen by the players, teams only | off | Who scores: seats, or teams of seats ([a](a-teams.md)) |
 | **Board** | off, on | off; on when Teams is | How the score is shown: standings, or pawns on a track around the round ([f](f-board.md)) |
 
 **Presets** are named line-ups with these switches set: *Soirée de Noël* ticks
@@ -56,7 +56,12 @@ on they score the buzzing seat's team.
 
 ## Who drives
 
-The host, from a phone, with the wall showing the room. Between rounds the
+The host, from a phone or a laptop alike, with the **wall** showing the room.
+The wall is the big screen — the 55–86" display at the dinner — and it is
+Taverla's existing third role, not a new one: paired by the host's device, it
+plays the clip, draws the round and, with Board on, the track around it, and
+holds no answer and no control. The host's screen stays a console; nobody has
+to read it from across the room. Between rounds the
 console offers **one press**: *Next round* — the game drawn at random from the
 line-up, or picked by hand from a short list. Before it, each phone can press
 **Ready**, and the wall shows who is back at the table; the host launches
@@ -68,11 +73,14 @@ raclette down mid-round.
 
 1. Open a room from a preset or a game's front door — the line-up, Teams and
    Board come from it.
-2. The wall shows the code and the square; phones join.
-3. *Draw the teams* (re-draw as often as wanted), then *Start*.
+2. The wall shows the code and the square; phones join by scanning it, by the
+   link the host copied or sent through the phone's share sheet, or by typing
+   the code ([s](s-setup-and-sharing.md)).
+3. *Draw the teams* (re-draw as often as wanted) — or let each phone pick its
+   own — then *Start*.
 
-Every other setting has a default and lives in the footer's fold, reachable
-mid-evening, as today.
+Every other setting has a default and lives in the setup's leaflet, grouped,
+reachable mid-evening ([s](s-setup-and-sharing.md)).
 
 ## What the room never does
 
