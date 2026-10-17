@@ -1,0 +1,23 @@
+@use '../styles/typography'
+
+@layer components
+  // The country's name over the map, as the answer is printed over every other
+  // reveal; the map takes whatever height the screen leaves it.
+  .map-reveal
+    display: flex
+    flex: 1 1 auto
+    flex-direction: column
+    gap: var(--space-xs)
+    min-block-size: 0
+    min-inline-size: 0
+
+    .country
+      @include typography.billboard-revealed
+
+      font-size: clamp(1.75rem, calc(var(--stage-unit) * 8), 4rem)
+      overflow-wrap: anywhere
+      text-wrap: balance
+
+    .world-map
+      flex: 1 1 auto
+      min-block-size: clamp(12rem, 38dvh, 32rem)

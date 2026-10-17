@@ -141,3 +141,27 @@
 
         .words
           display: none
+
+  // On the world map the distance *is* the answer, and a few characters long,
+  // so it stands on the first line in place of the round's payout — the token
+  // above says what this seat was paid — rather than dropping under the name
+  // where a full room's board has no height for it.
+  .player-round.revealed .round-board[data-inline-words]
+    li
+      grid-template-columns: minmax(0, 1fr) auto
+
+    &.ranked li
+      grid-template-columns: 1.3em minmax(0, 1fr) auto auto
+
+    .points
+      display: none
+
+    .words
+      display: block
+      font-size: var(--text-em-s)
+      grid-column: 2
+      grid-row: 1
+      text-align: end
+
+    &.ranked .words
+      grid-column: 3

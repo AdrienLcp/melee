@@ -1,11 +1,14 @@
 import type React from 'react'
 import { useEffect, useId, useRef, useState } from 'react'
 
+import type { CountryCode } from '@melee/protocol/country-code'
 import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import {
   clampedView,
   fittedView,
+  framedOn,
+  type MapBox,
   type MapView,
   type Point,
   type Size,
@@ -14,8 +17,11 @@ import {
   zoomedAround
 } from '@/helpers/map-view'
 import {
+  type CountryOutline,
+  countryOutlineOf,
   geoPointAt,
   mapPointOf,
+  nearestVertex,
   type ProjectedWorld,
   projectedWorld
 } from '@/infrastructure/map/world-geometry'
@@ -23,7 +29,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { Button } from './button'
 import { MinusIcon, PlusIcon, WorldIcon } from './icons'
-import { PAWN_BOX, PawnShape } from './pawn'
+import { PAWN_BOX, PawnShape, usePawnNumber } from './pawn'
 import { useMapGestures } from './use-map-gestures'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -33,10 +39,32 @@ import './world-map.sass'
 const MARKER_SCALE = 1.5
 /** One press of a zoom button. */
 const ZOOM_STEP = 2
+/** A country drawn smaller than this, in screen pixels squared, is ringed: filled, it is a speck under a line. */
+const SMALL_TARGET_AREA = 900
+/** Where a line's label stands, from the pawn: the lines meet at the country, so their middles crowd and their starts do not. */
+const LABEL_ALONG = 0.3
+/** The zoom buttons' column, which a framing keeps clear so no pawn stands under them. */
+const CONTROLS_INSET = 56
+/** The ring's radius on screen, wide enough to read round a pawn standing in it. */
+const RING_RADIUS = 22
+
+/** A marker the reveal draws: whose pawn, where, and what its line says. */
+export type RevealedMarker = {
+  /** `0` inside the country, where no line is drawn. */
+  distanceKm: number
+  /** The line's label, *1 480 km*. */
+  label: string
+  playerId: string
+  point: GeoPoint
+  /** The seat's place in the roster, which colours its pawn. */
+  seat: number
+}
 
 export type WorldMapProps = {
   /** The player's pawn and the colour it plays in, or `null` before it is put down. */
   marker: { pawnNumber: number; point: GeoPoint } | null
+  /** The answer and every pawn, once the round is revealed: the view opens framed on them. */
+  revealed?: { countryCode: CountryCode; markers: readonly RevealedMarker[] }
   /** Where a tap or a drag puts the pawn; absent once nothing more can be placed. */
   onPlace?: (point: GeoPoint) => void
 }
@@ -46,7 +74,11 @@ export type WorldMapProps = {
  * zooms and pans under a finger or a mouse, and through its buttons. The view is the
  * reader's alone: nothing about it travels, only the point a pawn marks.
  */
-export const WorldMap: React.FC<WorldMapProps> = ({ marker, onPlace }) => {
+export const WorldMap: React.FC<WorldMapProps> = ({
+  marker,
+  onPlace,
+  revealed
+}) => {
   const world = projectedWorld()
   const frameRef = useRef<HTMLDivElement>(null)
   const [frame, setFrame] = useState<Size | null>(null)
@@ -77,6 +109,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({ marker, onPlace }) => {
           key={`${frame.width}×${frame.height}`}
           marker={marker}
           onPlace={onPlace}
+          revealed={revealed}
           world={world}
         />
       )}
@@ -91,13 +124,28 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
   frame,
   marker,
   onPlace,
+  revealed,
   world
 }) => {
   const translate = useTranslate()
   const hintId = useId()
   const surface = useRef<SVGSVGElement>(null)
   const map = { height: world.height, width: world.width }
-  const [view, setView] = useState<MapView>(() => fittedView({ frame, map }))
+  const target =
+    revealed === undefined ? null : countryOutlineOf(revealed.countryCode)
+  const [view, setView] = useState<MapView>(() =>
+    revealed === undefined || target === null
+      ? fittedView({ frame, map })
+      : clampedView({
+          frame,
+          map,
+          view: framedOn({
+            box: boxAround(target, revealed.markers),
+            frame: { ...frame, width: frame.width - CONTROLS_INSET },
+            map
+          })
+        })
+  )
 
   const markerAt =
     marker === null ? null : toScreen(view, mapPointOf(marker.point))
@@ -151,7 +199,24 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       >
         <g transform={`translate(${view.x} ${view.y}) scale(${view.scale})`}>
           <WorldShapes world={world} />
+          {revealed !== undefined && (
+            <path
+              className='target'
+              d={
+                world.countries.find(
+                  (country) => country.code === revealed.countryCode
+                )?.path
+              }
+            />
+          )}
         </g>
+        {revealed !== undefined && target !== null && (
+          <RevealedLayer
+            markers={revealed.markers}
+            target={target}
+            view={view}
+          />
+        )}
         {marker !== null && markerAt !== null && (
           <g
             className='marker'
@@ -196,6 +261,101 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         </Button>
       </div>
     </>
+  )
+}
+
+/** The country and every pawn, so a framing leaves none of them off screen. */
+const boxAround = (
+  target: CountryOutline,
+  markers: readonly RevealedMarker[]
+): MapBox => {
+  const points = [
+    target.box.min,
+    target.box.max,
+    ...markers.map((marker) => mapPointOf(marker.point))
+  ]
+
+  return {
+    max: [
+      Math.max(...points.map(([x]) => x)),
+      Math.max(...points.map(([, y]) => y))
+    ],
+    min: [
+      Math.min(...points.map(([x]) => x)),
+      Math.min(...points.map(([, y]) => y))
+    ]
+  }
+}
+
+/**
+ * Drawn in the frame's pixels rather than under the map's transform, so a
+ * line, a ring and a label keep their size at every zoom.
+ */
+const RevealedLayer: React.FC<{
+  markers: readonly RevealedMarker[]
+  target: CountryOutline
+  view: MapView
+}> = ({ markers, target, view }) => {
+  const [centreX, centreY] = toScreen(view, target.centre)
+  const lines = markers
+    .filter((marker) => marker.distanceKm > 0)
+    .map((marker) => {
+      const at = mapPointOf(marker.point)
+
+      return {
+        from: toScreen(view, at),
+        marker,
+        to: toScreen(view, nearestVertex(target.vertices, at))
+      }
+    })
+
+  return (
+    <g className='revealed'>
+      {lines.map(({ from, marker, to }) => (
+        <line
+          className='reach'
+          key={marker.playerId}
+          x1={from[0]}
+          x2={to[0]}
+          y1={from[1]}
+          y2={to[1]}
+        />
+      ))}
+      {target.area * view.scale ** 2 < SMALL_TARGET_AREA && (
+        <circle className='ring' cx={centreX} cy={centreY} r={RING_RADIUS} />
+      )}
+      {markers.map((marker) => (
+        <RevealedPawn
+          at={toScreen(view, mapPointOf(marker.point))}
+          key={marker.playerId}
+          seat={marker.seat}
+        />
+      ))}
+      {lines.map(({ from, marker, to }) => (
+        <text
+          className='distance'
+          key={marker.playerId}
+          x={from[0] + (to[0] - from[0]) * LABEL_ALONG}
+          y={from[1] + (to[1] - from[1]) * LABEL_ALONG}
+        >
+          {marker.label}
+        </text>
+      ))}
+    </g>
+  )
+}
+
+const RevealedPawn: React.FC<{ at: Point; seat: number }> = ({ at, seat }) => {
+  const pawnNumber = usePawnNumber({ seat })
+
+  return (
+    <g
+      className='marker'
+      style={{ '--pawn': `var(--pawn-${pawnNumber})` }}
+      transform={`translate(${at[0]} ${at[1]}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
+    >
+      <PawnShape />
+    </g>
   )
 }
 

@@ -73,8 +73,8 @@ import { canPlayByTeam } from '@/domain/round/team-turns'
 import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
 import { newPlayerId } from '@/infrastructure/ids'
-import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { logger } from '@/infrastructure/logging/logger'
+import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 
 import type { Connection, Outbound, Socket } from './connection'
 import {

@@ -1,7 +1,11 @@
 @use '../styles/focus'
+@use '../styles/typography'
 
 @layer components
   .world-map
+    // Sea past the globe's edge too: a world strip shorter than its frame
+    // leaves a band no map covers, and it reads as more ocean.
+    background: var(--map-sea)
     border-radius: var(--radius-m)
     box-shadow: var(--shadow-recess)
     contain: strict
@@ -43,6 +47,41 @@
       stroke: var(--map-border)
       stroke-width: 1.5px
       vector-effect: non-scaling-stroke
+
+    // The answer, inked in the board's dark so it stands apart from all eight
+    // pawns, which stand on it; a country too small to fill is ringed too.
+    .target
+      fill: var(--map-target)
+      stroke: var(--map-target-edge)
+      stroke-width: 1px
+      vector-effect: non-scaling-stroke
+
+    .revealed
+      pointer-events: none
+
+    .reach
+      stroke: var(--map-target)
+      stroke-dasharray: 6 5
+      stroke-linecap: round
+      stroke-width: 2.5px
+
+    .ring
+      fill: none
+      stroke: var(--map-target)
+      stroke-width: 3px
+
+    // A haloed label, so it reads over sea, land and the lines it sits on.
+    .distance
+      @include typography.numeric
+
+      dominant-baseline: central
+      fill: var(--map-target)
+      font-size: var(--text-xs)
+      paint-order: stroke
+      stroke: var(--map-land)
+      stroke-linejoin: round
+      stroke-width: 4px
+      text-anchor: middle
 
     .marker
       fill: var(--pawn)

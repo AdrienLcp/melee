@@ -8,11 +8,15 @@ import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
   quizContent,
-  reflexContent
+  reflexContent,
+  revealedInOrder,
+  worldmapContent
 } from '@/helpers/round-content'
 import { CheckIcon } from '@/presentation/components/icons'
+import { MapReveal } from '@/presentation/components/map-reveal'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
+import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -154,6 +158,16 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
     )
   }
 
+  // The map turned over, and the table nearest first.
+  if (worldmapContent(round) !== null) {
+    return (
+      <section className='reveal-panel' data-game='worldmap'>
+        <MapReveal players={players} round={round} />
+        <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
   // The times *are* the reveal here — this is the one game where nothing was
   // ever withheld — so the board replaces the scoreline rather than sitting
   // under it, and it already names who took the round by putting them first.
@@ -174,7 +188,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
 
 const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   const translate = useTranslate()
+  const answerWords = useAnswerWords(round)
   const scorers = round.awards.filter((award) => award.points > 0)
+  const answers = revealedInOrder(round).map((answer) => ({
+    ...answer,
+    said: answerWords(answer)
+  }))
 
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
@@ -182,11 +201,11 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   const seatOf = (playerId: string): number =>
     players.findIndex((player) => player.id === playerId)
 
-  if (round.revealedAnswers.length > 0) {
+  if (answers.length > 0) {
     return (
       <>
-        <ul className='said' style={dealtRows(round.revealedAnswers.length)}>
-          {round.revealedAnswers.map((answer) => {
+        <ul className='said' style={dealtRows(answers.length)}>
+          {answers.map((answer) => {
             const paid = scorers.find(
               (award) => award.playerId === answer.playerId
             )
@@ -219,7 +238,7 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
           })}
         </ul>
         <ul className='tally'>
-          {saidTogether(round.revealedAnswers).map((group) => (
+          {saidTogether(answers).map((group) => (
             <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
               {group.isCorrect && <CheckIcon />}
               <span className='words'>{group.said}</span>

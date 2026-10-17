@@ -1023,6 +1023,12 @@ export const EN_DICTIONARY = defineDictionary({
     },
     name: 'World map',
     prompt: 'Place {country}',
+    reveal: {
+      away: '{distance} km away',
+      inside: 'Inside',
+      km: '{distance} km',
+      title: 'The country:'
+    },
     scoring:
       'Everyone pins the country at once. Inside it scores three, within 500 km two, within 1,500 km one — and the earlier your pin, the more the clock adds, up to double.'
   }

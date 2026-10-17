@@ -61,6 +61,17 @@ export type ProjectedCountry = {
   path: string
 }
 
+/** A country as the reveal points at it, in map units. */
+export type CountryOutline = {
+  /** In map units squared: times the view's scale squared, what it covers on screen. */
+  area: number
+  /** Its main landmass: France framed without Guiana, Chile without Easter Island. */
+  box: { max: MapPoint; min: MapPoint }
+  centre: MapPoint
+  /** Every border point, overseas parts included, since the server measures to all of them. */
+  vertices: readonly MapPoint[]
+}
+
 export type ProjectedWorld = {
   countries: readonly ProjectedCountry[]
   graticule: string
@@ -82,6 +93,7 @@ const codeOf = (shape: AtlasShape): CountryCode | null =>
 
 let projection: GeoProjection | null = null
 let world: ProjectedWorld | null = null
+const outlinesByCode = new Map<CountryCode, ReturnType<typeof merge>>()
 
 const projectionOfTheMap = (): GeoProjection => {
   projection ??= geoEqualEarth().fitWidth(MAP_WIDTH, SPHERE)
@@ -113,10 +125,14 @@ export const projectedWorld = (): ProjectedWorld => {
   const draw = geoPath(projectionOfTheMap()).digits(PATH_DIGITS)
   const [, [, height]] = draw.bounds(SPHERE)
 
+  for (const [code, shapes] of shapesByCode) {
+    outlinesByCode.set(code, merge(topology, shapes))
+  }
+
   world = {
-    countries: [...shapesByCode].map(([code, shapes]) => ({
+    countries: [...outlinesByCode].map(([code, outline]) => ({
       code,
-      path: draw(merge(topology, shapes)) ?? ''
+      path: draw(outline) ?? ''
     })),
     graticule: draw(geoGraticule10()) ?? '',
     height: Math.ceil(height),
@@ -163,3 +179,47 @@ export const geoPointAt = ([x, y]: MapPoint): GeoPoint | null => {
 
   return isOnTheGlobe ? { latitude, longitude } : null
 }
+
+/** The country's outline projected, or `null` for a code the atlas does not draw. */
+export const countryOutlineOf = (code: CountryCode): CountryOutline | null => {
+  projectedWorld()
+  const outline = outlinesByCode.get(code)
+
+  if (outline === undefined) {
+    return null
+  }
+
+  const draw = geoPath(projectionOfTheMap())
+  const landmasses = outline.coordinates.map(
+    (coordinates) => ({ coordinates, type: 'Polygon' }) as const
+  )
+  const mainland = landmasses.toSorted(
+    (left, right) => draw.area(right) - draw.area(left)
+  )[0]
+  const [[minX, minY], [maxX, maxY]] = draw.bounds(mainland ?? outline)
+
+  return {
+    area: draw.area(outline),
+    box: { max: [maxX, maxY], min: [minX, minY] },
+    centre: draw.centroid(mainland ?? outline),
+    vertices: outline.coordinates
+      .flat(2)
+      .map(([longitude = 0, latitude = 0]) =>
+        mapPointOf({ latitude, longitude })
+      )
+  }
+}
+
+/** The border point drawn nearest `from` — where a reveal's line ends. */
+export const nearestVertex = (
+  vertices: readonly MapPoint[],
+  from: MapPoint
+): MapPoint =>
+  vertices.reduce<MapPoint>(
+    (nearest, vertex) =>
+      Math.hypot(vertex[0] - from[0], vertex[1] - from[1]) <
+      Math.hypot(nearest[0] - from[0], nearest[1] - from[1])
+        ? vertex
+        : nearest,
+    vertices[0] ?? from
+  )

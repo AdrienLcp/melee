@@ -938,6 +938,12 @@ export const FR_DICTIONARY = defineDictionary({
     },
     name: 'Carte du monde',
     prompt: 'Place {country}',
+    reveal: {
+      away: 'à {distance} km',
+      inside: 'Dedans',
+      km: '{distance} km',
+      title: 'Le pays :'
+    },
     scoring:
       'Tout le monde pointe le pays en même temps. Dedans, ça rapporte 3 points, à moins de 500 km 2, à moins de 1 500 km 1 — et plus tu pointes tôt, plus la montre ajoute, jusqu’au double.'
   }

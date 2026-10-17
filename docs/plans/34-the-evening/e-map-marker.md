@@ -34,8 +34,16 @@ Decision 14: add `'map'`-the-game (`worldmap`) to `ROOM_PRESETS.christmas` in
 
 The phone's half has landed: the map, pinch, pan, the pawn placed by a tap and
 moved by a drag, *Je le pose ici*, the point judged by the server — driven
-through CDP touch events at 390×844. Left: the reveal, the wall, the console's
-playing stage, shelving.
+through CDP touch events at 390×844. The reveal has landed too, one
+`MapReveal` on every screen: the country named and inked in the board's dark,
+the view framed on it and every pawn (`framedOn`, clear of the zoom buttons),
+a dashed line from each pawn outside to the nearest border vertex labelled
+*1 331 km*, and a ring once the country covers under 30×30 px at the current
+zoom. The console's list and tally read *à 1 331 km* nearest first; the
+phone's board puts the distance on the first line in place of the payout and
+breaks score ties by distance. Seen at 1440×900, and at 390×844 on a phone
+and on a console. Left: the wall at 16:9 and 9:16, the console's playing
+stage, shelving.
 
 ## The interaction
 

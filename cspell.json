@@ -67,7 +67,9 @@
         "packages/core/src/round/answer-matching.test.ts",
         "packages/core/src/slate/answer-groups.test.ts",
         "packages/core/src/slate/prepared-keys.test.ts",
-        "packages/core/src/slate/sheet-marking.test.ts"
+        "packages/core/src/slate/sheet-marking.test.ts",
+        "apps/game/src/presentation/components/map-prompt.sass",
+        "apps/game/src/presentation/i18n/country-names-fr.ts"
       ],
       "language": "en,en-GB,fr",
       "words": [
@@ -472,6 +474,12 @@
     "YDEQ",
     "yesterda",
     "Zemeckis",
-    "Zeuh"
+    "Zeuh",
+    "Åland",
+    "d’Ivoire",
+    "Leste",
+    "linejoin",
+    "Maarten",
+    "Príncipe"
   ]
 }

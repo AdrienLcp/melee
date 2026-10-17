@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   clampedView,
   fittedView,
+  framedOn,
   MAX_ZOOM,
   pannedBy,
   pinched,
@@ -117,5 +118,28 @@ describe('map view', () => {
 
     expect(result.scale).toBe(0.8)
     expect(toScreen(result, toMap(view, [200, 400]))).toEqual([200, 400])
+  })
+
+  it('[map] frames a box in the middle of the frame, with room around it', () => {
+    const box = { max: [600, 300], min: [500, 250] } as const
+    const view = framedOn({ box, frame: portrait, map })
+    const [left, top] = toScreen(view, box.min)
+    const [right, bottom] = toScreen(view, box.max)
+
+    expect((left + right) / 2).toBeCloseTo(portrait.width / 2)
+    expect((top + bottom) / 2).toBeCloseTo(portrait.height / 2)
+    expect(right - left).toBeCloseTo(portrait.width * 0.7)
+  })
+
+  it('[map] frames a point no deeper than the zoom allows', () => {
+    const view = framedOn({
+      box: { max: [500, 250], min: [500, 250] },
+      frame: portrait,
+      map
+    })
+
+    expect(view.scale).toBe(
+      fittedView({ frame: portrait, map }).scale * MAX_ZOOM
+    )
   })
 })

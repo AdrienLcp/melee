@@ -15,6 +15,12 @@ export const MAX_ZOOM = 24
 
 type Frame = { frame: Size; map: Size }
 
+/** A rectangle of the map, by its two corners, in map units. */
+export type MapBox = { max: Point; min: Point }
+
+/** What a framing leaves around the box on each side, as a share of the frame. */
+const FRAMING_MARGIN = 0.15
+
 /** The whole world, as large as the frame allows, centred. */
 export const fittedView = ({ frame, map }: Frame): MapView => {
   const scale = Math.min(frame.width / map.width, frame.height / map.height)
@@ -126,5 +132,36 @@ export const pinched = ({
     frame,
     map,
     view: { scale, x: toX - mapX * scale, y: toY - mapY * scale }
+  })
+}
+
+/**
+ * The box as large as the frame allows with a margin round it, centred —
+ * the reveal opening on the country and every pawn around it rather than on
+ * the whole world, where twelve pawns in one country are one blot.
+ */
+export const framedOn = ({
+  box,
+  frame,
+  map
+}: Frame & { box: MapBox }): MapView => {
+  const room = 1 - 2 * FRAMING_MARGIN
+  const width = Math.max(1, box.max[0] - box.min[0])
+  const height = Math.max(1, box.max[1] - box.min[1])
+  const scale = clampedScale(
+    { frame, map },
+    Math.min((frame.width * room) / width, (frame.height * room) / height)
+  )
+  const centreX = (box.min[0] + box.max[0]) / 2
+  const centreY = (box.min[1] + box.max[1]) / 2
+
+  return clampedView({
+    frame,
+    map,
+    view: {
+      scale,
+      x: frame.width / 2 - centreX * scale,
+      y: frame.height / 2 - centreY * scale
+    }
   })
 }

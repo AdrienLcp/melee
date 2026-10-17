@@ -660,7 +660,9 @@ type ShapeOf = (code: CountryCode) => CountryShape | null
  * A map round's content. The outlines stay out of it: a room is stored after
  * every change, and a shape's `contains` is a function no storage can clone.
  */
-export const worldmapContent = (countryCode: CountryCode): Round['content'] => ({
+export const worldmapContent = (
+  countryCode: CountryCode
+): Round['content'] => ({
   countryCode,
   kind: 'worldmap',
   placements: []

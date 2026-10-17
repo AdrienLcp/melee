@@ -56,6 +56,7 @@ import { Countdown } from '@/presentation/components/countdown'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MapPrompt } from '@/presentation/components/map-prompt'
+import { MapReveal } from '@/presentation/components/map-reveal'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
@@ -767,6 +768,10 @@ const Revealed: React.FC<{
   // there is to know — and everyone's own number is on it.
   if (reflexContent(round) !== null) {
     return <ReactionBoard players={view.players} round={round} />
+  }
+
+  if (worldmapContent(round) !== null) {
+    return <MapReveal players={view.players} round={round} />
   }
 
   // The card the round was played on, turned over: the answer printed on its

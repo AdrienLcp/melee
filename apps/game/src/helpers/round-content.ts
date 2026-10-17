@@ -86,3 +86,37 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
 export const bankedHalves = (
   verdict: Verdict | null | undefined
 ): HalvesVerdict | null => (verdict?.kind === 'halves' ? verdict : null)
+
+/** How far a seat's marker landed from the country, `null` for a seat that placed none or a round off the map. */
+export const distanceOf = (
+  round: RoundView,
+  playerId: string
+): number | null => {
+  const verdict = round.awards.find(
+    (award) => award.playerId === playerId
+  )?.verdict
+
+  return verdict?.kind === 'distance' ? verdict.distanceKm : null
+}
+
+/**
+ * A distance to sort on, every seat without one level last: a subtraction of
+ * two infinities is `NaN`, which no sort survives.
+ */
+export const nearnessOf = (round: RoundView, playerId: string): number =>
+  distanceOf(round, playerId) ?? Number.MAX_VALUE
+
+/**
+ * The answers in the order the reveal reads them: nearest first on the world
+ * map, where the distance is the result, and as the server sent them in every
+ * other game.
+ */
+export const revealedInOrder = (
+  round: RoundView
+): RoundView['revealedAnswers'] =>
+  worldmapContent(round) === null
+    ? round.revealedAnswers
+    : round.revealedAnswers.toSorted(
+        (left, right) =>
+          nearnessOf(round, left.playerId) - nearnessOf(round, right.playerId)
+      )
