@@ -45,7 +45,7 @@ challenge is a round or a set, so it gets no type of its own.
 Two ways, both chosen per round by the host, defaulted by the game:
 
 - **Everyone at once** — every seat answers on its own phone against the same
-  clock: Taverla's simultaneous rounds, choice or typed, and the map's marker.
+  clock: Melee's simultaneous rounds, choice or typed, and the map's marker.
   With Teams on, each team's result is the mean of its members' (decision 2).
 - **Each team in turn** — a set: team Blue gets its question, then Red its
   own, the others watching the wall. The team answers on any member's phone or
@@ -58,7 +58,7 @@ on they score the buzzing seat's team.
 
 The host, from a phone or a laptop alike, with the **wall** showing the room.
 The wall is the big screen — the 55–86" display at the dinner — and it is
-Taverla's existing third role, not a new one: paired by the host's device, it
+Melee's existing third role, not a new one: paired by the host's device, it
 plays the clip, draws the round and, with Board on, the track around it, and
 holds no answer and no control. The host's screen stays a console; nobody has
 to read it from across the room. Between rounds the

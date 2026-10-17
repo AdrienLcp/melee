@@ -19,7 +19,7 @@ than through one game, which is why it is a room setting and not a game's.
   information.
 - New host frames: `host.drawTeams { assignment }`, `host.renameTeam`,
   `host.moveSeat { seatId, teamId }`, and `host.adjustScore { teamId | seatId,
-  points }` — Gamenight's `score.adjust`, which Taverla never had and which
+  points }` — Gamenight's `score.adjust`, which Melee never had and which
   the board and aloud answers both need.
 - New player frame: `player.chooseTeam { teamId }`, accepted in the lobby
   under `chosen` alone (`teams_locked` otherwise). A seat that has not chosen
