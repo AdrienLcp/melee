@@ -439,13 +439,16 @@ export const registerAnswer = ({
   from,
   now,
   room,
-  roundId
+  roundId,
+  shapeOf
 }: {
   attempt: Attempt
   from: Answerer
   now: number
   room: Room
   roundId: RoundId
+  /** Where a map round's marker is measured, read from the atlas the server holds. */
+  shapeOf: ShapeOf
 }): Result<void, AnswerRejection> => {
   const round = room.round
 
@@ -481,7 +484,7 @@ export const registerAnswer = ({
     return Result.failure('already_buzzed')
   }
 
-  const graded = grade({ attempt, held, round })
+  const graded = grade({ attempt, held, round, shapeOf })
 
   if (graded === null) {
     return Result.failure('invalid_message')
@@ -651,22 +654,16 @@ export const settleSimultaneousRound = ({
   revealRound(room, now)
 }
 
+type ShapeOf = (code: CountryCode) => CountryShape | null
+
 /**
- * A map round's content, or `null` once the room has placed every country the
- * bank holds. The shape is read here, once, so every marker of the round is
- * measured against the same outlines.
+ * A map round's content. The outlines stay out of it: a room is stored after
+ * every change, and a shape's `contains` is a function no storage can clone.
  */
-export const worldmapContent = ({
-  countryCode,
-  shape
-}: {
-  countryCode: CountryCode
-  shape: CountryShape
-}): Round['content'] => ({
+export const worldmapContent = (countryCode: CountryCode): Round['content'] => ({
   countryCode,
   kind: 'worldmap',
-  placements: [],
-  shape
+  placements: []
 })
 
 /** A marker as the reveal's list reads it, two decimals of a degree being a kilometre. */
@@ -854,23 +851,27 @@ type Attempt =
 const grade = ({
   attempt,
   held,
-  round
+  round,
+  shapeOf
 }: {
   attempt: Attempt
   held: PlayerAttempts | undefined
   round: Round
+  shapeOf: ShapeOf
 }): { said: string; verdict: Verdict } | null => {
   const content = round.content
 
   if (content.kind === 'worldmap') {
-    return attempt.kind === 'point'
+    const shape = shapeOf(content.countryCode)
+
+    return attempt.kind === 'point' && shape !== null
       ? {
           said: placeNamedBy(attempt.point),
           verdict: {
             distanceKm: Math.round(
               distanceToCountryKm({
                 point: attempt.point,
-                shape: content.shape
+                shape
               })
             ),
             kind: 'distance'

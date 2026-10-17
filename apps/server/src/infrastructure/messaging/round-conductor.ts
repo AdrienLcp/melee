@@ -194,7 +194,7 @@ export const beginRound = async (
     room.playedContentIds.add(playedCountryId(countryCode))
 
     openRound({
-      content: worldmapContent({ countryCode, shape }),
+      content: worldmapContent(countryCode),
       id: newRoundId(),
       now: engine.now(),
       room,

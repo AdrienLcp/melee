@@ -22,7 +22,6 @@ import type { Placement } from '@melee/protocol/worldmap'
 
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
-import type { CountryShape } from '@melee/core/worldmap/distance'
 
 /**
  * The server's own model, deliberately richer than either wire view: it holds
@@ -252,8 +251,6 @@ export type Round = {
         kind: 'worldmap'
         /** Every seat's marker, in the order they landed; a team's answer is one per seat. */
         placements: Placement[]
-        /** What a marker is measured against, read from the atlas as the round opens. */
-        shape: CountryShape
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

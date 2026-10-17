@@ -73,6 +73,7 @@ import { canPlayByTeam } from '@/domain/round/team-turns'
 import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
 import { newPlayerId } from '@/infrastructure/ids'
+import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { logger } from '@/infrastructure/logging/logger'
 
 import type { Connection, Outbound, Socket } from './connection'
@@ -1061,7 +1062,8 @@ const answer = (
     from,
     now: engine.now(),
     room,
-    roundId: message.roundId
+    roundId: message.roundId,
+    shapeOf: countryShapeOf
   })
 
   if (registered.status === 'failure') {

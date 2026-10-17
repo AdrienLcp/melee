@@ -84,7 +84,11 @@ export const engineFor = (room: Room): RoomEngine => {
       }
     },
     now: nowMs,
-    persist: () => {},
+    // Cloned as the Durable Object's storage clones it, so a room the Worker
+    // could not store fails here too.
+    persist: (current) => {
+      structuredClone(current)
+    },
     wakeAt: (at) => {
       if (wake !== null) {
         clearTimeout(wake)
