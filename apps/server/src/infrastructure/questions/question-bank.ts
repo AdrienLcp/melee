@@ -5,9 +5,9 @@ import {
   hostQuestionSchema,
   type QuestionDrawSettings,
   questionLanguageSchema
-} from '@taverla/protocol/question'
+} from '@melee/protocol/question'
 
-import { pickRandom } from '@taverla/core/helpers/random'
+import { pickRandom } from '@melee/core/helpers/random'
 
 import bank from './question-bank.json' with { type: 'json' }
 

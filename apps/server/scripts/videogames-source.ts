@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { readAuthoredList, taverlaAttribution } from './authored-questions'
+import { meleeAttribution, readAuthoredList } from './authored-questions'
 import type { IngestedQuestions } from './question-source'
 
 /**
@@ -39,7 +39,7 @@ export const ingestVideoGames = (): IngestedQuestions => {
   })
 
   return {
-    attribution: taverlaAttribution('fr'),
+    attribution: meleeAttribution('fr'),
     questions: questions.map(({ shape, ...question }) => ({
       ...question,
       category: 'videogames',

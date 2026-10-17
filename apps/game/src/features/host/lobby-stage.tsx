@@ -1,10 +1,10 @@
 import type React from 'react'
 
-import type { PlayerId, RoomCode } from '@taverla/protocol/identifiers'
-import type { HostRoomView } from '@taverla/protocol/room'
+import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
+import type { HostRoomView } from '@melee/protocol/room'
 
-import { launchesWithHostSeated } from '@taverla/core/room/play-right-away'
-import { isShelvedGame } from '@taverla/core/room/shelved-game'
+import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
+import { isShelvedGame } from '@melee/core/room/shelved-game'
 
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { RoomInvitation } from '@/presentation/components/room-invitation'

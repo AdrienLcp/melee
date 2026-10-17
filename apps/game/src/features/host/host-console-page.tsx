@@ -3,25 +3,21 @@ import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import type {
-  HostToken,
-  PlayerId,
-  RoomCode
-} from '@taverla/protocol/identifiers'
+import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
   RoomSettings,
   RoundView
-} from '@taverla/protocol/room'
-import type { TrackSource } from '@taverla/protocol/track'
+} from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
-import { isJudgedByHost } from '@taverla/core/room/game-modes'
+import { isJudgedByHost } from '@melee/core/room/game-modes'
 import {
   type HostPreferences,
   rememberSettings
-} from '@taverla/core/room/host-preferences'
-import { isGameInPlay } from '@taverla/core/room/room-phase'
-import { withPreparedKey } from '@taverla/core/slate/prepared-keys'
+} from '@melee/core/room/host-preferences'
+import { isGameInPlay } from '@melee/core/room/room-phase'
+import { withPreparedKey } from '@melee/core/slate/prepared-keys'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'

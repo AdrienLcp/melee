@@ -3,10 +3,10 @@ import { describe, expect, it } from 'vitest'
 import {
   DEFAULT_BLINDTEST_SETTINGS,
   type GameSettings
-} from '@taverla/protocol/game'
-import type { TrackSource } from '@taverla/protocol/track'
+} from '@melee/protocol/game'
+import type { TrackSource } from '@melee/protocol/track'
 
-import { generateHostToken } from '@taverla/core/room/host-token'
+import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from '@/domain/room/new-room'
 

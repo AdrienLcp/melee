@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import type { ShelvedGame } from '@taverla/protocol/game'
-import type { Nickname } from '@taverla/protocol/identifiers'
+import type { ShelvedGame } from '@melee/protocol/game'
+import type { Nickname } from '@melee/protocol/identifiers'
 
-import { createRoom } from '@/infrastructure/api/taverla-api'
+import { createRoom } from '@/infrastructure/api/melee-api'
 import {
   hostPathFor,
   playRightAwayNavigation

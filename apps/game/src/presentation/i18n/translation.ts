@@ -1,14 +1,14 @@
 import type { DotPath, PlainKey, Translator } from '@adrienlcp/i18n'
 
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
-import type { GameKind, ShelvedGame } from '@taverla/protocol/game'
-import type { QuestionCategory } from '@taverla/protocol/question'
-import type { AnswerMode } from '@taverla/protocol/room'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import type { GameKind, ShelvedGame } from '@melee/protocol/game'
+import type { QuestionCategory } from '@melee/protocol/question'
+import type { AnswerMode } from '@melee/protocol/room'
 
-import type { ClipRefusal } from '@taverla/core/blindtest/clip-audio'
-import type { BuzzBlocker } from '@taverla/core/round/buzz-eligibility'
+import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
+import type { BuzzBlocker } from '@melee/core/round/buzz-eligibility'
 
-import type { ApiError } from '@/infrastructure/api/taverla-api'
+import type { ApiError } from '@/infrastructure/api/melee-api'
 
 import type { EN_DICTIONARY } from './dictionary-en'
 

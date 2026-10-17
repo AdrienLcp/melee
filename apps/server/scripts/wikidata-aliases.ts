@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import type { QuestionLanguage } from '@taverla/protocol/question'
+import type { QuestionLanguage } from '@melee/protocol/question'
 
 import { readCachedEntries, writeCachedEntries } from './question-source'
 import {

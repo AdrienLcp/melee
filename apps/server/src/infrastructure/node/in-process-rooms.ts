@@ -1,8 +1,8 @@
-import type { GameKind } from '@taverla/protocol/game'
-import type { RoomCode } from '@taverla/protocol/identifiers'
-import type { Locale } from '@taverla/protocol/locale'
+import type { GameKind } from '@melee/protocol/game'
+import type { RoomCode } from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
 
-import { generateRoomCode } from '@taverla/core/room/room-code'
+import { generateRoomCode } from '@melee/core/room/room-code'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'

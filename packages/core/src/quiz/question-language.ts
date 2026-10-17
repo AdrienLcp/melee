@@ -1,8 +1,8 @@
-import type { Locale } from '@taverla/protocol/locale'
+import type { Locale } from '@melee/protocol/locale'
 import {
   type QuestionLanguage,
   questionLanguages
-} from '@taverla/protocol/question'
+} from '@melee/protocol/question'
 
 /**
  * What a room draws questions in before anybody has said. The bank is written

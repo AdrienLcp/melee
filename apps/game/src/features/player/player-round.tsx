@@ -8,23 +8,23 @@ import type {
   PlayerRoomView,
   RoomPhase,
   RoundView
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
-import { cueOf, whatTheRoomNames } from '@taverla/core/blindtest/typed-answer'
-import { isShelvedGame } from '@taverla/core/room/shelved-game'
+import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
+import { isShelvedGame } from '@melee/core/room/shelved-game'
 import {
   type BuzzBlocker,
   findBuzzBlocker
-} from '@taverla/core/round/buzz-eligibility'
+} from '@melee/core/round/buzz-eligibility'
 import {
   buildScoreboard,
   hasAnybodyScored,
   standingOf
-} from '@taverla/core/scoring/scoreboard'
+} from '@melee/core/scoring/scoreboard'
 import {
   type ClockEstimate,
   millisecondsUntil
-} from '@taverla/core/time/clock-sync'
+} from '@melee/core/time/clock-sync'
 
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { ChoosingRound } from '@/features/player/choosing-round'

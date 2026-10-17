@@ -9,7 +9,7 @@ import { z } from 'zod'
  * It is deliberately *not* `QuestionLanguage`. The two hold the same two members
  * today and mean different things — this one is a dictionary this app ships,
  * that one is a bank somebody wrote — so the map between them is a rule with a
- * fallback, in `@taverla/core/quiz/question-language`.
+ * fallback, in `@melee/core/quiz/question-language`.
  */
 export const LOCALES = ['en', 'fr'] as const
 

@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { SlateSettings } from '@taverla/protocol/game'
-import type { RoomSettings } from '@taverla/protocol/room'
-import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@taverla/protocol/slate'
+import type { SlateSettings } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
+import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@melee/protocol/slate'
 
 import { Disclosure } from '@/presentation/components/disclosure'
 import { NumberField } from '@/presentation/components/number-field'

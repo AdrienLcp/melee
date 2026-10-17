@@ -1,19 +1,16 @@
 import { describe, expect, it } from 'vitest'
 
-import {
-  DEFAULT_QUIZ_SETTINGS,
-  type QuizSettings
-} from '@taverla/protocol/game'
+import { DEFAULT_QUIZ_SETTINGS, type QuizSettings } from '@melee/protocol/game'
 import {
   type QuestionCategory,
   type QuestionLanguage,
   questionCategories,
   questionLanguages
-} from '@taverla/protocol/question'
+} from '@melee/protocol/question'
 
-import { hasAdultContent } from '@taverla/core/quiz/adult-content'
-import { gradeQuizGuess } from '@taverla/core/quiz/question-answer'
-import { normalizeAnswer } from '@taverla/core/round/answer-matching'
+import { hasAdultContent } from '@melee/core/quiz/adult-content'
+import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import {
   type BankedQuestion,

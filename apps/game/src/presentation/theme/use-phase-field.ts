@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 
-import type { RoomPhase } from '@taverla/protocol/room'
+import type { RoomPhase } from '@melee/protocol/room'
 
 /**
  * Publishes the room's phase on the root element, where the tokens turn it into

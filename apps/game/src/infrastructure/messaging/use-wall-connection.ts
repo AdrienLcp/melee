@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import { decodeMessage } from '@taverla/protocol/codec'
-import type { RoomCode } from '@taverla/protocol/identifiers'
-import type { WallRoomView } from '@taverla/protocol/room'
-import { wallServerMessageSchema } from '@taverla/protocol/server-message'
+import { decodeMessage } from '@melee/protocol/codec'
+import type { RoomCode } from '@melee/protocol/identifiers'
+import type { WallRoomView } from '@melee/protocol/room'
+import { wallServerMessageSchema } from '@melee/protocol/server-message'
 
 import { type RoomSocket, useRoomSocket } from './use-room-socket'
 

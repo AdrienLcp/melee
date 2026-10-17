@@ -7,7 +7,7 @@ export const SPARQL_URL = 'https://query.wikidata.org/sparql'
 
 /** Wikimedia asks that an automated client say who it is and where to complain. */
 export const USER_AGENT =
-  'TaverlaQuestionBank/1.0 (https://github.com/AdrienLcp/taverla)'
+  'MeleeQuestionBank/1.0 (https://github.com/AdrienLcp/melee)'
 
 export const bindingValue = z.object({ value: z.string() })
 

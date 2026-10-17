@@ -3,8 +3,8 @@ import type {
   HostRoundContent,
   RoundContent,
   RoundView
-} from '@taverla/protocol/room'
-import type { HalvesVerdict, Verdict } from '@taverla/protocol/scoring'
+} from '@melee/protocol/room'
+import type { HalvesVerdict, Verdict } from '@melee/protocol/scoring'
 
 /**
  * A round's content is a union, and a screen only ever renders one arm of it.

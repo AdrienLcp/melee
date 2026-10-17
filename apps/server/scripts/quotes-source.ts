@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-import type { QuestionLanguage } from '@taverla/protocol/question'
+import type { QuestionLanguage } from '@melee/protocol/question'
 
-import { readAuthoredList, taverlaAttribution } from './authored-questions'
+import { meleeAttribution, readAuthoredList } from './authored-questions'
 import type { IngestedQuestions } from './question-source'
 
 /**
@@ -59,7 +59,7 @@ export const ingestQuotes = (language: QuestionLanguage): IngestedQuestions => {
   })
 
   return {
-    attribution: taverlaAttribution(language),
+    attribution: meleeAttribution(language),
     questions: quotes.map(({ kind, prompt, ...quote }) => ({
       ...quote,
       category: 'quotes',

@@ -1,4 +1,4 @@
-import type { HalvesVerdict } from '@taverla/protocol/scoring'
+import type { HalvesVerdict } from '@melee/protocol/scoring'
 
 import {
   answerAppearsIn,

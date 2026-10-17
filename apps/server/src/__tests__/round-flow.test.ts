@@ -1,11 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { POINTS_PER_ARTIST, POINTS_PER_TITLE } from '@taverla/protocol/scoring'
+import { POINTS_PER_ARTIST, POINTS_PER_TITLE } from '@melee/protocol/scoring'
 import {
   hostServerMessageSchema,
   type PlayerServerMessage
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
 import {

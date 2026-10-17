@@ -1,4 +1,4 @@
-# Taverla
+# Mêlée
 
 > Party games for one screen and the whole room. One screen runs the game and
 > shows a QR code; everyone else joins from whatever screen they have to hand.
@@ -28,13 +28,13 @@ as its own document with its own `lang`, title and description. `/` carries no
 language: it negotiates from the browser's and redirects, which is what
 `hreflang="x-default"` points at.
 
-- [Home](https://taverla.adrienlcp.com/en): open a room, or join one with a code.
-- [Blind test](https://taverla.adrienlcp.com/en/blindtest)
-- [Buzzer](https://taverla.adrienlcp.com/en/buzzer)
-- [Quiz](https://taverla.adrienlcp.com/en/quiz)
-- [Reflex](https://taverla.adrienlcp.com/en/reflex)
-- [Credits](https://taverla.adrienlcp.com/en/credits)
-- [Legal notice and privacy](https://taverla.adrienlcp.com/en/legal): who
+- [Home](https://melee.adrienlcp.com/en): open a room, or join one with a code.
+- [Blind test](https://melee.adrienlcp.com/en/blindtest)
+- [Buzzer](https://melee.adrienlcp.com/en/buzzer)
+- [Quiz](https://melee.adrienlcp.com/en/quiz)
+- [Reflex](https://melee.adrienlcp.com/en/reflex)
+- [Credits](https://melee.adrienlcp.com/en/credits)
+- [Legal notice and privacy](https://melee.adrienlcp.com/en/legal): who
   publishes the site, what it keeps and for how long, and the third parties.
 
 ## Notes

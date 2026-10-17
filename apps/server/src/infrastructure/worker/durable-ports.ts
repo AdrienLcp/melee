@@ -1,8 +1,8 @@
 import { env } from 'cloudflare:workers'
 
-import type { RoomCode } from '@taverla/protocol/identifiers'
+import type { RoomCode } from '@melee/protocol/identifiers'
 
-import { generateRoomCode } from '@taverla/core/room/room-code'
+import { generateRoomCode } from '@melee/core/room/room-code'
 
 import type { RoomDoor, WallPairings } from '@/infrastructure/http/http-ports'
 import { newWallPairingCode, newWallSecret } from '@/infrastructure/ids'

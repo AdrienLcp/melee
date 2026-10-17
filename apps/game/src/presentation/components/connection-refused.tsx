@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { ProtocolErrorMessage } from '@taverla/protocol/server-message'
+import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 
 import { homePathFor } from '@/infrastructure/router/navigation'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'

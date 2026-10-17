@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_BLINDTEST_SETTINGS } from '@taverla/protocol/game'
-import type { RoomSettings } from '@taverla/protocol/room'
+import { DEFAULT_BLINDTEST_SETTINGS } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
 import {
   hostServerMessageSchema,
   playerServerMessageSchema
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
 import {

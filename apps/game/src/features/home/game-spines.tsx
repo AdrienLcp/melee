@@ -6,7 +6,7 @@ import {
   Heading
 } from 'react-aria-components'
 
-import { type ShelvedGame, shelvedGames } from '@taverla/protocol/game'
+import { type ShelvedGame, shelvedGames } from '@melee/protocol/game'
 
 import { GameDoors } from '@/features/shelf/game-doors'
 import { GameIcon } from '@/presentation/components/icons'

@@ -1,6 +1,6 @@
-import type { ShelvedGame } from '@taverla/protocol/game'
-import type { AnswerMode, RoomSettings } from '@taverla/protocol/room'
-import type { TrackSource } from '@taverla/protocol/track'
+import type { ShelvedGame } from '@melee/protocol/game'
+import type { AnswerMode, RoomSettings } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
 import { answerModesFor } from './game-modes'
 import { isShelvedGame } from './shelved-game'

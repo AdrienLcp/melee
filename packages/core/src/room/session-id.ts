@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid'
 
-import type { SessionId } from '@taverla/protocol/identifiers'
+import type { SessionId } from '@melee/protocol/identifiers'
 
 const SESSION_ID_LENGTH = 16
 

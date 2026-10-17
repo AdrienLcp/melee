@@ -1,4 +1,4 @@
-import { type ShelvedGame, shelvedGames } from '@taverla/protocol/game'
+import { type ShelvedGame, shelvedGames } from '@melee/protocol/game'
 
 /**
  * Whether a room may be opened on this game. Narrower than `GameKind`, which is

@@ -9,19 +9,19 @@ import {
 } from '@adrienlcp/safe-storage'
 import { z } from 'zod'
 
-import { gameKindSchema, gameSettingsSchema } from '@taverla/protocol/game'
-import { type Nickname, nicknameSchema } from '@taverla/protocol/identifiers'
-import { isLocale, type Locale } from '@taverla/protocol/locale'
-import { modeSettingsSchema, roomSettingsSchema } from '@taverla/protocol/room'
+import { gameKindSchema, gameSettingsSchema } from '@melee/protocol/game'
+import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
+import { isLocale, type Locale } from '@melee/protocol/locale'
+import { modeSettingsSchema, roomSettingsSchema } from '@melee/protocol/room'
 
-import type { HostPreferences } from '@taverla/core/room/host-preferences'
+import type { HostPreferences } from '@melee/core/room/host-preferences'
 
 import { readStoredWithSchema } from './read-stored-with-schema'
 
-export const HOST_SETUP_KEY = 'taverla:host-setup'
-export const LOCALE_KEY = 'taverla:locale'
-export const NICKNAME_KEY = 'taverla:nickname'
-export const VOLUME_KEY = 'taverla:volume'
+export const HOST_SETUP_KEY = 'melee:host-setup'
+export const LOCALE_KEY = 'melee:locale'
+export const NICKNAME_KEY = 'melee:nickname'
+export const VOLUME_KEY = 'melee:volume'
 
 /**
  * Composed out of the protocol's own schemas rather than restated, so a setting

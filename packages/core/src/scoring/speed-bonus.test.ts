@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { MOST_A_SPEED_BONUS_PAYS, POINT } from '@taverla/protocol/scoring'
+import { MOST_A_SPEED_BONUS_PAYS, POINT } from '@melee/protocol/scoring'
 
 import { speedBonusForElapsed } from './speed-bonus'
 

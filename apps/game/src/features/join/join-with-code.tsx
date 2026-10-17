@@ -3,11 +3,11 @@ import { type FormEvent, useState } from 'react'
 import { Form } from 'react-aria-components'
 import { useNavigate } from 'react-router'
 
-import { ROOM_CODE_LENGTH } from '@taverla/protocol/identifiers'
+import { ROOM_CODE_LENGTH } from '@melee/protocol/identifiers'
 
-import { parseRoomCodeInput } from '@taverla/core/room/room-code'
+import { parseRoomCodeInput } from '@melee/core/room/room-code'
 
-import { roomExists } from '@/infrastructure/api/taverla-api'
+import { roomExists } from '@/infrastructure/api/melee-api'
 import { playPathFor } from '@/infrastructure/router/navigation'
 import { Button } from '@/presentation/components/button'
 import { TextField } from '@/presentation/components/text-field'

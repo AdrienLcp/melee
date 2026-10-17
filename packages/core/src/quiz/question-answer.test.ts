@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { Question } from '@taverla/protocol/question'
+import type { Question } from '@melee/protocol/question'
 
 import { gradeQuizGuess } from './question-answer'
 

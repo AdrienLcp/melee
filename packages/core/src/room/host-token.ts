@@ -3,7 +3,7 @@ import {
   type HostToken,
   hostTokenSchema,
   ROOM_CODE_ALPHABET
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
 import {
   generateCode,

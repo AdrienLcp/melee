@@ -1,5 +1,5 @@
-import type { GameKind } from '@taverla/protocol/game'
-import type { AnswerMode } from '@taverla/protocol/room'
+import type { GameKind } from '@melee/protocol/game'
+import type { AnswerMode } from '@melee/protocol/room'
 import {
   POINTS_FOR_A_CLAIM,
   POINTS_FOR_A_RIGHT_CHOICE,
@@ -8,7 +8,7 @@ import {
   POINTS_PER_ARTIST,
   POINTS_PER_TITLE,
   type Verdict
-} from '@taverla/protocol/scoring'
+} from '@melee/protocol/scoring'
 
 /**
  * Which shape of verdict a game is judged in. The blind test asks two

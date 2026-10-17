@@ -1,6 +1,6 @@
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
-import type { PlayerId, RoundId } from '@taverla/protocol/identifiers'
-import type { PlayerRoomView, RoomPhase } from '@taverla/protocol/room'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
+import type { PlayerRoomView, RoomPhase } from '@melee/protocol/room'
 
 export type BuzzBlocker =
   | 'host_away'

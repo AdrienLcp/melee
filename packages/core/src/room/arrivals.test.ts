@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { PublicPlayer } from '@taverla/protocol/room'
+import type { PublicPlayer } from '@melee/protocol/room'
 
 import { arrivedPlayers } from './arrivals'
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINT, type Verdict } from '@taverla/protocol/scoring'
+import { POINT, type Verdict } from '@melee/protocol/scoring'
 
 import {
   isFullyBanked,

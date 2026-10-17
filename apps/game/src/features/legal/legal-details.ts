@@ -1,7 +1,7 @@
-import type { Locale } from '@taverla/protocol/locale'
+import type { Locale } from '@melee/protocol/locale'
 
 /**
- * Who publishes Taverla and how to reach him. A non-professional publisher
+ * Who publishes Melee and how to reach him. A non-professional publisher
  * gives a name and a contact, never a postal address or a phone number (LCEN,
  * article 6-III-2).
  */

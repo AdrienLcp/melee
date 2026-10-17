@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_QUIZ_SETTINGS } from '@taverla/protocol/game'
+import { DEFAULT_QUIZ_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 import {
   POINTS_FOR_A_CLAIM,
   POINTS_FOR_A_RIGHT_CHOICE,
   POINTS_FOR_A_TYPED_ANSWER
-} from '@taverla/protocol/scoring'
+} from '@melee/protocol/scoring'
 
 import { startRoomHarness } from './node-room-harness'
 import {

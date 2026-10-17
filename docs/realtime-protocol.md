@@ -292,7 +292,7 @@ inside the URL, which is why the seat is offered rather than assumed.
 **There is no seat message, so the seat is only ever as durable as the name the
 console replays.** A socket blink keeps it because the page never went; a tab
 discarded on a screen lock is a *reload*, and a name held in component state
-alone died with it. It is kept on `taverla:seats` beside that room's session id,
+alone died with it. It is kept on `melee:seats` beside that room's session id,
 which is what makes the two survive together.
 
 **A room the console has to judge is granted no seat**, and the settings frame

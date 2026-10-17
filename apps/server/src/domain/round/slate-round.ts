@@ -1,21 +1,21 @@
 import { Result } from '@adrienlcp/result'
 
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
-import type { SlateSettings } from '@taverla/protocol/game'
-import type { PlayerId, RoundId } from '@taverla/protocol/identifiers'
-import { MAX_SLATE_ITEMS } from '@taverla/protocol/slate'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import type { SlateSettings } from '@melee/protocol/game'
+import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
+import { MAX_SLATE_ITEMS } from '@melee/protocol/slate'
 
 import {
   type AnswerGroup,
   groupAnswers,
   isBlankAnswer
-} from '@taverla/core/slate/answer-groups'
+} from '@melee/core/slate/answer-groups'
 import {
   closedItem,
   OPEN_ITEM,
   type SheetItem,
   sheetPoints
-} from '@taverla/core/slate/sheet-marking'
+} from '@melee/core/slate/sheet-marking'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'

@@ -2,12 +2,12 @@ import type React from 'react'
 import { useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
 
-import type { OpenWallPairingResponse } from '@taverla/protocol/http'
+import type { OpenWallPairingResponse } from '@melee/protocol/http'
 
 import {
   openWallPairing,
   pollWallPairing
-} from '@/infrastructure/api/taverla-api'
+} from '@/infrastructure/api/melee-api'
 import { pairWallUrlFor, wallPathFor } from '@/infrastructure/router/navigation'
 import { writeHostToken } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'

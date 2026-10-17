@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
-import { gameKinds } from '@taverla/protocol/game'
-import { DEFAULT_MODE_SETTINGS } from '@taverla/protocol/room'
+import { gameKinds } from '@melee/protocol/game'
+import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
 
 import {
   answerModesFor,

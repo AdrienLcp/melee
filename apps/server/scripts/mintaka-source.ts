@@ -1,8 +1,8 @@
 import { z } from 'zod'
 
-import type { QuestionCategory } from '@taverla/protocol/question'
+import type { QuestionCategory } from '@melee/protocol/question'
 
-import { gradeQuizGuess } from '@taverla/core/quiz/question-answer'
+import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
 import { frenchViewsOf, isWellKnownInFrench } from './frwiki-notability'
 import { orStop, parseJson } from './json-file'

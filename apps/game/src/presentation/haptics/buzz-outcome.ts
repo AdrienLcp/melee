@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { ActiveBuzz, RoundView } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { ActiveBuzz, RoundView } from '@melee/protocol/room'
 
 import { reflexContent } from '@/helpers/round-content'
 import { buzzFeedback } from '@/infrastructure/browser'

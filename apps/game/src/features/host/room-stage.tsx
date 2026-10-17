@@ -2,17 +2,17 @@ import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useState } from 'react'
 
-import type { ClientMessage } from '@taverla/protocol/client-message'
-import type { PlayerId, RoomCode } from '@taverla/protocol/identifiers'
+import type { ClientMessage } from '@melee/protocol/client-message'
+import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
   RoomSettings,
   RoundView
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
-import type { ClipRefusal } from '@taverla/core/blindtest/clip-audio'
-import type { HostPreferences } from '@taverla/core/room/host-preferences'
-import type { ClockEstimate } from '@taverla/core/time/clock-sync'
+import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
+import type { HostPreferences } from '@melee/core/room/host-preferences'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { holdsTheAnswer } from '@/helpers/round-content'
 import { Countdown } from '@/presentation/components/countdown'

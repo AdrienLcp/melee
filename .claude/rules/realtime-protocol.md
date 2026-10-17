@@ -92,7 +92,7 @@ settings are what the *next* round will be.
 One cannot wait, and the server refuses it while `isRoundInPlay(room.phase)`:
 `game.kind`, because `round.content` stays on the arm the screens are already
 rendering and the game's other settings are read off `settings.game`.
-`reshapesRound` in `@taverla/core/room/room-settings` is the rule and
+`reshapesRound` in `@melee/core/room/room-settings` is the rule and
 `isRoundInPlay` in `room-phase.ts` the window — `revealed` is deliberately
 outside it. The console greys the picker out, and that is a courtesy: **the
 guard on the socket is the rule**.

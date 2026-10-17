@@ -1,10 +1,10 @@
 import type React from 'react'
 
-import type { HostRoomView, RoomSettings } from '@taverla/protocol/room'
-import type { TrackSource } from '@taverla/protocol/track'
+import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
-import type { HostPreferences } from '@taverla/core/room/host-preferences'
-import { isRoundInPlay } from '@taverla/core/room/room-phase'
+import type { HostPreferences } from '@melee/core/room/host-preferences'
+import { isRoundInPlay } from '@melee/core/room/room-phase'
 
 import { useVolume } from '@/presentation/audio/volume-provider'
 import { Disclosure } from '@/presentation/components/disclosure'

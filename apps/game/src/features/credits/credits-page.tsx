@@ -37,7 +37,7 @@ const LICENCES = {
 
 type Licence = (typeof LICENCES)[keyof typeof LICENCES]
 
-const REPOSITORY_URL = 'https://github.com/AdrienLcp/taverla'
+const REPOSITORY_URL = 'https://github.com/AdrienLcp/melee'
 
 type QuestionCredit = {
   author: string

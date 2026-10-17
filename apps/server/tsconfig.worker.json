@@ -3,8 +3,8 @@
     "lib": ["esnext"],
     "paths": {
       "@/*": ["./src/*"],
-      "@taverla/core/*": ["../../packages/core/src/*"],
-      "@taverla/protocol/*": ["../../packages/protocol/src/*"]
+      "@melee/core/*": ["../../packages/core/src/*"],
+      "@melee/protocol/*": ["../../packages/protocol/src/*"]
     },
     "types": ["node"]
   },

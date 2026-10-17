@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import type { HostRoomView } from '@taverla/protocol/room'
+import type { HostRoomView } from '@melee/protocol/room'
 
 import { slateContent } from '@/helpers/round-content'
 

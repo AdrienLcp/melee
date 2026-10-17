@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-import type { RoomPhase } from '@taverla/protocol/room'
+import type { RoomPhase } from '@melee/protocol/room'
 
 /**
  * A refusal is about the moment it happened, and the socket keeps its last one

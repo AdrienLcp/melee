@@ -1,9 +1,9 @@
 import { Result } from '@adrienlcp/result'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { HostTrack } from '@taverla/protocol/track'
+import type { HostTrack } from '@melee/protocol/track'
 
-import { generateHostToken } from '@taverla/core/room/host-token'
+import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'

@@ -2,16 +2,16 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { RoundView } from '@taverla/protocol/room'
-import type { Verdict } from '@taverla/protocol/scoring'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { RoundView } from '@melee/protocol/room'
+import type { Verdict } from '@melee/protocol/scoring'
 
-import { whatTheRoomNames } from '@taverla/core/blindtest/typed-answer'
+import { whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import {
   isFullyBanked,
   isMiss,
   verdictKindFor
-} from '@taverla/core/scoring/verdict'
+} from '@melee/core/scoring/verdict'
 
 import { bankedHalves } from '@/helpers/round-content'
 import { AnswerTile } from '@/presentation/components/answer-tile'

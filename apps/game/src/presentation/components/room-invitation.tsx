@@ -1,7 +1,7 @@
 import { QRCodeSVG } from 'qrcode.react'
 import type React from 'react'
 
-import type { RoomCode } from '@taverla/protocol/identifiers'
+import type { RoomCode } from '@melee/protocol/identifiers'
 
 import { playUrlFor } from '@/infrastructure/router/navigation'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'

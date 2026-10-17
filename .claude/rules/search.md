@@ -11,7 +11,7 @@ paths:
 
 ## A search over records
 
-Taverla has none yet. The day one arrives — filtering held tables, players, a
+Melee has none yet. The day one arrives — filtering held tables, players, a
 list the user scrolls — it matches the way a person types:
 
 - **Both sides are normalised the same way**: NFD, diacritics stripped, case

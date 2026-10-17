@@ -1,5 +1,5 @@
 ---
-name: Taverla
+name: Melee
 description: A shelf of party games on one table — every screen is a printed piece out of the box.
 colors:
   board: "light-dark(oklch(92.5% 0.028 218), oklch(29% 0.04 226))"
@@ -148,7 +148,7 @@ components:
     rounded: "{rounded.m}"
 ---
 
-# Design System: Taverla
+# Design System: Melee
 
 Recorded from the world built in stage 29 (`docs/plans/29-redesign.md`), not
 from the intention that preceded it. The tokens live in
@@ -159,7 +159,7 @@ the code is right and this file is stale.
 
 **Creative North Star: "The Game Box on the Table"**
 
-Taverla is a shelf of game boxes on a table, and every screen is a printed
+Melee is a shelf of game boxes on a table, and every screen is a printed
 piece out of one of them: the matte board everything is laid on, paper cards
 for what is read, die-cut chipboard pieces for what is pressed, a pawn per
 seat, and a spine per game on the shelf. Nothing is an app panel — no rounded card floating on a dark ground,

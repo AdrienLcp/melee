@@ -2,12 +2,12 @@ import type React from 'react'
 import { useEffect, useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import type { BlindtestSettings } from '@taverla/protocol/game'
+import type { BlindtestSettings } from '@melee/protocol/game'
 import {
   type TrackDecade,
   type TrackSource,
   trackDecades
-} from '@taverla/protocol/track'
+} from '@melee/protocol/track'
 
 import { Button } from '@/presentation/components/button'
 import { SegmentedControl } from '@/presentation/components/segmented-control'

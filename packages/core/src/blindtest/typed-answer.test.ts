@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINTS_FOR_A_TYPED_ANSWER } from '@taverla/protocol/scoring'
+import { POINTS_FOR_A_TYPED_ANSWER } from '@melee/protocol/scoring'
 
 import { isFullyBanked, pointsForSimultaneousAnswer } from '../scoring/verdict'
 import {

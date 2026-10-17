@@ -2,12 +2,12 @@ import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useState } from 'react'
 
-import type { ActiveBuzz, HostRoundContent } from '@taverla/protocol/room'
-import type { Verdict } from '@taverla/protocol/scoring'
+import type { ActiveBuzz, HostRoundContent } from '@melee/protocol/room'
+import type { Verdict } from '@melee/protocol/scoring'
 
-import { cueOf, whatTheRoomNames } from '@taverla/core/blindtest/typed-answer'
-import { verdictKindFor } from '@taverla/core/scoring/verdict'
-import type { ClockEstimate } from '@taverla/core/time/clock-sync'
+import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
+import { verdictKindFor } from '@melee/core/scoring/verdict'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { Button } from '@/presentation/components/button'
 import { FloorClock } from '@/presentation/components/floor-clock'

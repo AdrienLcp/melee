@@ -1,9 +1,9 @@
 import { upgradeWebSocket } from '@hono/node-server'
 import { WebSocketServer } from 'ws'
 
-import { ROOM_SOCKET_ROUTE } from '@taverla/protocol/routes'
+import { ROOM_SOCKET_ROUTE } from '@melee/protocol/routes'
 
-import { normalizeRoomCode } from '@taverla/core/room/room-code'
+import { normalizeRoomCode } from '@melee/core/room/room-code'
 
 import { createHttpApp } from '@/infrastructure/http/http-app'
 import { limitRoomCreationWith } from '@/infrastructure/http/rate-limit'

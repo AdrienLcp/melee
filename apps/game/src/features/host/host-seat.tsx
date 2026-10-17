@@ -2,13 +2,13 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import { NICKNAME_MAX_LENGTH } from '@taverla/protocol/identifiers'
-import type { HostRoomView } from '@taverla/protocol/room'
+import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
+import type { HostRoomView } from '@melee/protocol/room'
 
 import {
   isJudgedByHost,
   isSeatWithheldByMode
-} from '@taverla/core/room/game-modes'
+} from '@melee/core/room/game-modes'
 
 import { readStoredNickname } from '@/infrastructure/storage/preferences-storage'
 import { Button } from '@/presentation/components/button'

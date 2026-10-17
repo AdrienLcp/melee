@@ -127,7 +127,7 @@ jobs:
 
       - name: Deploy
         if: steps.head.outputs.is-head == 'true'
-        run: pnpm --filter @taverla/server exec wrangler deploy --var "GIT_COMMIT:${GITHUB_SHA}"
+        run: pnpm --filter @melee/server exec wrangler deploy --var "GIT_COMMIT:${GITHUB_SHA}"
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

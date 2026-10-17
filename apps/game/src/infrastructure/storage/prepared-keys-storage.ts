@@ -1,10 +1,10 @@
 import { z } from 'zod'
 
-import { MAX_SLATE_ITEMS, slateKeySchema } from '@taverla/protocol/slate'
+import { MAX_SLATE_ITEMS, slateKeySchema } from '@melee/protocol/slate'
 
 import { parseStoredWithSchema } from './read-stored-with-schema'
 
-export const PREPARED_KEYS_KEY = 'taverla:slate-keys'
+export const PREPARED_KEYS_KEY = 'melee:slate-keys'
 
 const preparedKeysSchema = z
   .array(slateKeySchema.nullable())

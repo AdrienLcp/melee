@@ -4,23 +4,23 @@ import { z } from 'zod'
 import type {
   ClientMessage,
   ConnectionRole
-} from '@taverla/protocol/client-message'
-import { decodeMessage, encodeMessage } from '@taverla/protocol/codec'
-import type { RoomCode } from '@taverla/protocol/identifiers'
-import { fillRoute, ROOM_SOCKET_ROUTE } from '@taverla/protocol/routes'
+} from '@melee/protocol/client-message'
+import { decodeMessage, encodeMessage } from '@melee/protocol/codec'
+import type { RoomCode } from '@melee/protocol/identifiers'
+import { fillRoute, ROOM_SOCKET_ROUTE } from '@melee/protocol/routes'
 import {
   type ProtocolErrorMessage,
   protocolErrorMessageSchema,
   timePongMessageSchema
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
-import { refusalVoidsSeat } from '@taverla/core/room/session-memory'
+import { refusalVoidsSeat } from '@melee/core/room/session-memory'
 import {
   type ClockEstimate,
   type ClockSample,
   estimateClockOffset
-} from '@taverla/core/time/clock-sync'
+} from '@melee/core/time/clock-sync'
 
 import { socketOrigin } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'

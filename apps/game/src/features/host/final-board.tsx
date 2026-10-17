@@ -1,9 +1,9 @@
 import type React from 'react'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { PublicPlayer } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer } from '@melee/protocol/room'
 
-import { winnersOf } from '@taverla/core/scoring/scoreboard'
+import { winnersOf } from '@melee/core/scoring/scoreboard'
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import { Pawn } from '@/presentation/components/pawn'

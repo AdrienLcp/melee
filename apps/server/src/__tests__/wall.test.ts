@@ -3,24 +3,24 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   DEFAULT_QUIZ_SETTINGS,
   DEFAULT_SLATE_SETTINGS
-} from '@taverla/protocol/game'
+} from '@melee/protocol/game'
 import {
   openWallPairingResponseSchema,
   wallPairingPollResponseSchema
-} from '@taverla/protocol/http'
-import type { HostToken } from '@taverla/protocol/identifiers'
+} from '@melee/protocol/http'
+import type { HostToken } from '@melee/protocol/identifiers'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
-import { API_ROUTES, fillRoute } from '@taverla/protocol/routes'
+} from '@melee/protocol/room'
+import { API_ROUTES, fillRoute } from '@melee/protocol/routes'
 import {
   hostServerMessageSchema,
   type WallServerMessage,
   wallServerMessageSchema
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
 import {

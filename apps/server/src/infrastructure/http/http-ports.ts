@@ -1,14 +1,14 @@
 import type { Result } from '@adrienlcp/result'
 
-import type { GameKind } from '@taverla/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 import type {
   CreateRoomResponse,
   OpenWallPairingResponse,
   WallPairingCode,
   WallPairingPollResponse
-} from '@taverla/protocol/http'
-import type { HostToken, RoomCode } from '@taverla/protocol/identifiers'
-import type { Locale } from '@taverla/protocol/locale'
+} from '@melee/protocol/http'
+import type { HostToken, RoomCode } from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
 
 /**
  * What the HTTP surface asks of wherever rooms are kept — one process's memory,

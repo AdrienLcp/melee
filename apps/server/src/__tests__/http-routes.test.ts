@@ -3,8 +3,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   apiErrorResponseSchema,
   createRoomResponseSchema
-} from '@taverla/protocol/http'
-import { API_ROUTES } from '@taverla/protocol/routes'
+} from '@melee/protocol/http'
+import { API_ROUTES } from '@melee/protocol/routes'
 
 import { createHttpApp } from '@/infrastructure/http/http-app'
 import {

@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { QuestionPrompt } from '@taverla/protocol/question'
+import type { QuestionPrompt } from '@melee/protocol/question'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { questionCategoryKey } from '@/presentation/i18n/translation'

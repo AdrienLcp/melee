@@ -9,7 +9,7 @@
   "exports": {
     "./*": "./src/*.ts"
   },
-  "name": "@taverla/protocol",
+  "name": "@melee/protocol",
   "private": true,
   "scripts": {
     "build": "tsc --noEmit",

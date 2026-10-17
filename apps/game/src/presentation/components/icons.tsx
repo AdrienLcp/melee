@@ -19,7 +19,7 @@ import {
 } from 'lucide-react'
 import type React from 'react'
 
-import type { ShelvedGame } from '@taverla/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 
 /**
  * The family every glyph is drawn in, so none arrives in someone else's

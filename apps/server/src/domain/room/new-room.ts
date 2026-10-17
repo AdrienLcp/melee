@@ -1,8 +1,8 @@
-import type { GameKind } from '@taverla/protocol/game'
-import type { HostToken, RoomCode } from '@taverla/protocol/identifiers'
-import type { Locale } from '@taverla/protocol/locale'
+import type { GameKind } from '@melee/protocol/game'
+import type { HostToken, RoomCode } from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
 
-import { roomSettingsFor } from '@taverla/core/room/room-settings'
+import { roomSettingsFor } from '@melee/core/room/room-settings'
 
 import type { Room } from './room'
 

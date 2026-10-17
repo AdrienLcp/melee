@@ -6,15 +6,15 @@ import { join, resolve } from 'node:path'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 import { unstable_startWorker } from 'wrangler'
 
-import { DEFAULT_BUZZER_SETTINGS } from '@taverla/protocol/game'
+import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@taverla/protocol/scoring'
-import { hostServerMessageSchema } from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/room'
+import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { hostServerMessageSchema } from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import {
   harnessAt,
@@ -79,7 +79,7 @@ const testConfig = ({
       tag: 'v1'
     }
   ],
-  name: 'taverla-test',
+  name: 'melee-test',
   no_bundle: noBundle,
   ratelimits: [
     {
@@ -129,7 +129,7 @@ const bundleWorker = (directory: string): string => {
   )
 }
 
-const stateDirectory = mkdtempSync(join(tmpdir(), 'taverla-worker-'))
+const stateDirectory = mkdtempSync(join(tmpdir(), 'melee-worker-'))
 const configPath = bundleWorker(stateDirectory)
 
 const startRuntime = async () => {

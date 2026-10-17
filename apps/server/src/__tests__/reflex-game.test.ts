@@ -1,14 +1,14 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_REFLEX_SETTINGS } from '@taverla/protocol/game'
+import { DEFAULT_REFLEX_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@taverla/protocol/scoring'
+} from '@melee/protocol/room'
+import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
 
-import { FALSE_START_FLOOR_MS } from '@taverla/core/reflex/reaction'
+import { FALSE_START_FLOOR_MS } from '@melee/core/reflex/reaction'
 
 import { nowMs } from '@/infrastructure/clock'
 
@@ -35,9 +35,9 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
  */
 const timings = vi.hoisted(() => ({ flipDelayMs: 60, tapWindowMs: 800 }))
 
-vi.mock('@taverla/core/reflex/flip-schedule', async (importOriginal) => ({
+vi.mock('@melee/core/reflex/flip-schedule', async (importOriginal) => ({
   ...(await importOriginal<
-    typeof import('@taverla/core/reflex/flip-schedule')
+    typeof import('@melee/core/reflex/flip-schedule')
   >()),
   drawFlipDelayMs: () => timings.flipDelayMs,
   reflexRoundDurationMs: () => timings.flipDelayMs + timings.tapWindowMs

@@ -1,11 +1,11 @@
 import type React from 'react'
 
-import type { PlayerRoomView, RoundView } from '@taverla/protocol/room'
+import type { PlayerRoomView, RoundView } from '@melee/protocol/room'
 
 import {
   buildScoreboard,
   hasAnybodyScored
-} from '@taverla/core/scoring/scoreboard'
+} from '@melee/core/scoring/scoreboard'
 
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'

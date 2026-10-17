@@ -1,6 +1,6 @@
 import { createI18n, type Dictionary } from '@adrienlcp/i18n'
 
-import { DEFAULT_LOCALE, type Locale } from '@taverla/protocol/locale'
+import { DEFAULT_LOCALE, type Locale } from '@melee/protocol/locale'
 
 import { EN_DICTIONARY } from './dictionary-en'
 import { FR_DICTIONARY } from './dictionary-fr'

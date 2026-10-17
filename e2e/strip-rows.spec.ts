@@ -217,7 +217,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
   for (const locale of ['en', 'fr']) {
     await page.evaluate((chosen) => {
-      localStorage.setItem('taverla:locale', chosen)
+      localStorage.setItem('melee:locale', chosen)
     }, locale)
     await page.reload()
     await expect(games.first()).toBeVisible()

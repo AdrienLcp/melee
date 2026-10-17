@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINT } from '@taverla/protocol/scoring'
+import { POINT } from '@melee/protocol/scoring'
 
 import {
   closedItem,

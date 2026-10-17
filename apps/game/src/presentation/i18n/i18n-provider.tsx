@@ -3,7 +3,7 @@ import type React from 'react'
 import { useEffect, useState } from 'react'
 import { I18nProvider as ReactAriaI18nProvider } from 'react-aria-components'
 
-import type { Locale } from '@taverla/protocol/locale'
+import type { Locale } from '@melee/protocol/locale'
 
 import { preferredLocales } from '@/infrastructure/browser'
 import { writeStoredLocale } from '@/infrastructure/storage/preferences-storage'

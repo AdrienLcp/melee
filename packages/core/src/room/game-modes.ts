@@ -1,10 +1,10 @@
-import type { GameKind } from '@taverla/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 import {
   type AnswerMode,
   answerModes,
   DEFAULT_MODE_SETTINGS,
   type ModeSettings
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
 const BUZZER_ONLY = ['buzzer'] as const satisfies readonly AnswerMode[]
 

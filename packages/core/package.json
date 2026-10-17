@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@taverla/protocol": "workspace:*",
+    "@melee/protocol": "workspace:*",
     "nanoid": "^6.0.1"
   },
   "devDependencies": {
@@ -10,7 +10,7 @@
   "exports": {
     "./*": "./src/*.ts"
   },
-  "name": "@taverla/core",
+  "name": "@melee/core",
   "private": true,
   "scripts": {
     "build": "tsc --noEmit",

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import {
   duplicateSlateLabelIndex,
   SLATE_LABEL_MAX_LENGTH
-} from '@taverla/protocol/slate'
+} from '@melee/protocol/slate'
 
 import { withSlateLabel } from '@/helpers/slate-labels'
 import { Disclosure } from '@/presentation/components/disclosure'

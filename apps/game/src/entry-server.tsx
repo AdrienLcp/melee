@@ -5,8 +5,8 @@ import {
   StaticRouterProvider
 } from 'react-router'
 
-import { shelvedGames } from '@taverla/protocol/game'
-import { LOCALES, type Locale } from '@taverla/protocol/locale'
+import { shelvedGames } from '@melee/protocol/game'
+import { LOCALES, type Locale } from '@melee/protocol/locale'
 
 import {
   creditsPathFor,

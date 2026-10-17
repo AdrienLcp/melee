@@ -2,13 +2,13 @@ import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useEffect, useState } from 'react'
 
-import type { ActiveBuzz } from '@taverla/protocol/room'
+import type { ActiveBuzz } from '@melee/protocol/room'
 
 import {
   type ClockEstimate,
   millisecondsUntil,
   serverNow
-} from '@taverla/core/time/clock-sync'
+} from '@melee/core/time/clock-sync'
 
 import { nowMs } from '@/infrastructure/clock'
 

@@ -8,16 +8,16 @@ import {
   useSearchParams
 } from 'react-router'
 
-import type { ShelvedGame } from '@taverla/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 import {
   type WallPairingCode,
   wallPairingCodeSchema
-} from '@taverla/protocol/http'
-import type { RoomCode } from '@taverla/protocol/identifiers'
-import { isLocale, type Locale } from '@taverla/protocol/locale'
+} from '@melee/protocol/http'
+import type { RoomCode } from '@melee/protocol/identifiers'
+import { isLocale, type Locale } from '@melee/protocol/locale'
 
-import { normalizeRoomCode } from '@taverla/core/room/room-code'
-import { isShelvedGame } from '@taverla/core/room/shelved-game'
+import { normalizeRoomCode } from '@melee/core/room/room-code'
+import { isShelvedGame } from '@melee/core/room/shelved-game'
 
 /**
  * Every page a crawler is meant to reach names the language it is written in,

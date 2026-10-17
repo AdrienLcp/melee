@@ -1,7 +1,7 @@
 import type React from 'react'
 
-import type { PlayerId, RoomCode } from '@taverla/protocol/identifiers'
-import type { PublicPlayer } from '@taverla/protocol/room'
+import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
+import type { PublicPlayer } from '@melee/protocol/room'
 
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'

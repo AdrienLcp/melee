@@ -189,13 +189,13 @@ carries the key of a revealed item and of nothing else. The reveal is server
 state rather than the console's, so a reload keeps it and each item has its own.
 
 **The key is prepared before the evening, on the host's tab.**
-It lives in `sessionStorage` under `taverla:slate-keys`, never in the settings,
+It lives in `sessionStorage` under `melee:slate-keys`, never in the settings,
 which reach every player. It first shipped as `HostPreferences.slateKeys` in
 `localStorage` and was moved the same day: answers are not a preference, and
 the host did not want them kept on the machine past the evening. A tab keeps
 them through a reload and through a new room opened in it — which matters,
 because a free Render instance that restarts takes the room with it — and
-closing the tab forgets them. `taverla:host-setup` rewrites itself on read
+closing the tab forgets them. `melee:host-setup` rewrites itself on read
 when it holds a field the schema no longer knows, so the old key does not
 linger. The lobby's settings carry an *Answer key* fold under the labels that
 writes there and nowhere else; a key typed mid-sheet is filed there too. It travels as

@@ -60,7 +60,7 @@ genuinely cannot move into `core`.
 - `vitest -t "[room-code]"` is a **regex**: `[room-code]` is a character class
   with an out-of-order range and vitest refuses to start. Drop the brackets —
   `-t "room-code"` still matches the tagged title.
-- The e2e server runs `pnpm --filter @taverla/server start`, not `dev`: the
+- The e2e server runs `pnpm --filter @melee/server start`, not `dev`: the
   `tsx watch` wrapper never comes up when Playwright spawns it detached.
 - Playwright's readiness probe resolves `localhost` to `::1` and does not fall
   back, while the Node server binds IPv4 — hence `127.0.0.1` throughout

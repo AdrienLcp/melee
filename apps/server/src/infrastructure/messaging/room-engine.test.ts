@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { generateHostToken } from '@taverla/core/room/host-token'
+import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'

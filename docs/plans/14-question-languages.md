@@ -110,7 +110,7 @@ the whole design:
 ### The default is a map, not an identity
 
 `Locale` and `QuestionLanguage` are separate unions that happen to hold the same
-two members. `questionLanguageFor` in `@taverla/core/quiz/question-language` is
+two members. `questionLanguageFor` in `@melee/core/quiz/question-language` is
 the map between them, with English as the fallback — the day a third dictionary
 ships with no bank behind it, a host reading it must be dealt a language the
 bank has rather than an empty draw and `no_content_available` on the first round.
@@ -145,7 +145,7 @@ posts. `PROTOCOL_VERSION` is therefore unchanged — no peer can mis-read a fram
   Its *value* is left alone rather than reset, so a host who turned it on in
   French still has it on when they come back.
 
-  `hasAdultContent` in `@taverla/core/quiz/adult-content` is the claim the
+  `hasAdultContent` in `@melee/core/quiz/adult-content` is the claim the
   console reads, held in core because the bank is the server's — and
   `question-bank.test.ts` compares it against what is actually banked, so it goes
   red the day a rated source lands in a language that had none.

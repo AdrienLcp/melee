@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   HOST_TOKEN_LENGTH,
   ROOM_CODE_ALPHABET
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
 import { generateHostToken, normalizeHostToken } from './host-token'
 

@@ -11,7 +11,7 @@ import type {
   RoomExistsResponse,
   TrackListResponse,
   WallPairingPollResponse
-} from '@taverla/protocol/http'
+} from '@melee/protocol/http'
 import {
   createRoomRequestSchema,
   decadePreviewQuerySchema,
@@ -20,11 +20,11 @@ import {
   trackSearchQuerySchema,
   wallPairingCodeSchema,
   wallPairingPollQuerySchema
-} from '@taverla/protocol/http'
-import { API_PREFIX, API_ROUTES } from '@taverla/protocol/routes'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/http'
+import { API_PREFIX, API_ROUTES } from '@melee/protocol/routes'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
-import { normalizeRoomCode } from '@taverla/core/room/room-code'
+import { normalizeRoomCode } from '@melee/core/room/room-code'
 
 import { env } from '@/env'
 import { invalidInput } from '@/infrastructure/http/error-responses'

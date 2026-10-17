@@ -9,7 +9,7 @@ import {
   vi
 } from 'vitest'
 
-import { API_ROUTES } from '@taverla/protocol/routes'
+import { API_ROUTES } from '@melee/protocol/routes'
 
 import { logger } from '@/infrastructure/logging/logger'
 import type { MusicSourceFault } from '@/infrastructure/music/music-source'

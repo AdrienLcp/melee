@@ -4,8 +4,8 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
-import { gradeQuizGuess } from '@taverla/core/quiz/question-answer'
-import { normalizeAnswer } from '@taverla/core/round/answer-matching'
+import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { orStop, readJsonFile } from './json-file'
 import { ingestMintaka } from './mintaka-source'
@@ -20,7 +20,7 @@ import { ingestVikidia } from './vikidia-source'
 
 /**
  * Rebuilds the question bank from every source it is written in, each under the
- * licence its attribution names. Run it with `pnpm --filter @taverla/server questions:build`; it
+ * licence its attribution names. Run it with `pnpm --filter @melee/server questions:build`; it
  * is a one-off rather than part of the build, because the upstream packs change
  * a few times a year and a deploy should not depend on somebody else's web
  * server being up.

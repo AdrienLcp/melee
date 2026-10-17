@@ -20,7 +20,7 @@ the lobby).
   from a spine on the home shelf (a spine used to open the room in one press;
   it now opens the lid that holds both doors). *Open a table* is unchanged;
   *Play right away* wears the game's own colour, shows the remembered
-  `taverla:nickname` with a *Change* under it, and asks for a name in place
+  `melee:nickname` with a *Change* under it, and asks for a name in place
   when the device has none — the button waits for it, and Enter is the press.
 - **No protocol change.** The door creates the room, writes the seat's name
   where the console's `hello` reads it, and navigates with a history-state

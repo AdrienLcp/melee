@@ -1,10 +1,10 @@
-import type { RoomSettings } from '@taverla/protocol/room'
-import type { TrackSource } from '@taverla/protocol/track'
+import type { RoomSettings } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
 import {
   type SettingsSummaryPart,
   settingsSummary
-} from '@taverla/core/room/settings-summary'
+} from '@melee/core/room/settings-summary'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import {

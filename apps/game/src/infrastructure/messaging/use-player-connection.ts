@@ -1,9 +1,9 @@
 import { useState } from 'react'
 
-import { decodeMessage } from '@taverla/protocol/codec'
-import type { RoomCode } from '@taverla/protocol/identifiers'
-import type { PlayerRoomView } from '@taverla/protocol/room'
-import { playerServerMessageSchema } from '@taverla/protocol/server-message'
+import { decodeMessage } from '@melee/protocol/codec'
+import type { RoomCode } from '@melee/protocol/identifiers'
+import type { PlayerRoomView } from '@melee/protocol/room'
+import { playerServerMessageSchema } from '@melee/protocol/server-message'
 
 import { useForgetErrorOnPhaseChange } from './use-forget-error-on-phase-change'
 import { type RoomSocket, useRoomSocket } from './use-room-socket'

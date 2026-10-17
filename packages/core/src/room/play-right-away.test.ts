@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { DEFAULT_MODE_SETTINGS } from '@taverla/protocol/room'
+import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
 
 import { rememberSettings } from './host-preferences'
 import {

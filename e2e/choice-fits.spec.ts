@@ -363,8 +363,8 @@ const measure = (): Overflow => {
 
 test.beforeEach(async ({ context }) => {
   await context.addInitScript(() => {
-    localStorage.setItem('taverla:volume', '0')
-    localStorage.setItem('taverla:nickname', 'Wolfgangamadeusmozar')
+    localStorage.setItem('melee:volume', '0')
+    localStorage.setItem('melee:nickname', 'Wolfgangamadeusmozar')
   })
 })
 
@@ -542,7 +542,7 @@ for (const reveal of REVEALS) {
     await serveRoom({ page, view: revealedView(reveal.content) })
     // French runs longer, on the footer's controls most of all.
     await page.addInitScript(() => {
-      localStorage.setItem('taverla:locale', 'fr')
+      localStorage.setItem('melee:locale', 'fr')
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)
@@ -630,7 +630,7 @@ for (const screen of FLOOR_SCREENS) {
   }) => {
     await serveRoom({ page, view: screen.view })
     await page.addInitScript(() => {
-      localStorage.setItem('taverla:locale', 'fr')
+      localStorage.setItem('melee:locale', 'fr')
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)
@@ -685,7 +685,7 @@ for (const final of FINALS) {
   }) => {
     await serveRoom({ page, view: finishedView(final.scores) })
     await page.addInitScript(() => {
-      localStorage.setItem('taverla:locale', 'fr')
+      localStorage.setItem('melee:locale', 'fr')
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)
@@ -815,7 +815,7 @@ for (const screen of SLATE_SCREENS) {
   }) => {
     await serveRoom({ page, view: screen.view })
     await page.addInitScript(() => {
-      localStorage.setItem('taverla:locale', 'fr')
+      localStorage.setItem('melee:locale', 'fr')
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)
@@ -912,7 +912,7 @@ for (const screen of REFLEX_SCREENS) {
   }) => {
     await serveRoom({ page, view: screen.view })
     await page.addInitScript(() => {
-      localStorage.setItem('taverla:locale', 'fr')
+      localStorage.setItem('melee:locale', 'fr')
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)

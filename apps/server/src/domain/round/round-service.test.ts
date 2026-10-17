@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 
-import type { GameKind } from '@taverla/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 
-import { generateHostToken } from '@taverla/core/room/host-token'
+import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from '@/domain/room/new-room'
 

@@ -1,7 +1,7 @@
 import type React from 'react'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { RoundView } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { RoundView } from '@melee/protocol/room'
 
 import {
   ChoiceAnswer,

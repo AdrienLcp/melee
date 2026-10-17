@@ -5,7 +5,7 @@ driving the real app, muted. This page is how.
 
 ## Muted, before the first navigation
 
-The host console plays music, `taverla:volume` defaults to 80%, and it survives
+The host console plays music, `melee:volume` defaults to 80%, and it survives
 in `localStorage` — so a page that merely *reaches* a round makes noise on
 whatever machine is running the dev server, which is somebody's flat. Write the
 value before the page loads; dragging the slider afterwards is a fix arriving
@@ -13,7 +13,7 @@ after the clip.
 
 ```ts
 await context.addInitScript(() => {
-  localStorage.setItem('taverla:volume', '0')
+  localStorage.setItem('melee:volume', '0')
 })
 ```
 
@@ -30,13 +30,13 @@ script at all, which cost a stage's worth of navigating to the home page first.
 
 ```ts
 await page.addInitScript(() => {
-  localStorage.setItem('taverla:volume', '0')
+  localStorage.setItem('melee:volume', '0')
 })
 ```
 
 Where only the ordinary MCP tools are loaded there is no init script, and the
 muted state is reached by loading the home page first — it can play nothing —
-writing `taverla:volume` there, and navigating afterwards. An init script that
+writing `melee:volume` there, and navigating afterwards. An init script that
 *clears* storage on the way is worse than none either way: it wipes the key
 under test on every real navigation and on every second tab of the same context.
 
@@ -55,7 +55,7 @@ More that cost time to learn:
   forever after. Nothing on the console says so, `__socks` reads healthy, and
   the roster is the only witness: eight seats asked for, one player listed. A
   raw socket has no `onmessage` unless you give it one, which is what makes the
-  refusal invisible; attach one before the `hello` when a seat does not arrive. A raw socket reads neither `taverla:seats` nor `taverla:nickname` —
+  refusal invisible; attach one before the `hello` when a seat does not arrive. A raw socket reads neither `melee:seats` nor `melee:nickname` —
   those are the client's stores — so the two traps above simply do not apply and
   nine distinct names cost nine lines. Keep the sockets on `window`; the page
   owns them, and a navigation closes all nine at once and turns the roster
@@ -71,7 +71,7 @@ More that cost time to learn:
   pressing**: a press during the countdown is refused, and the next call reads an
   untouched board with nothing on it to say why.
 
-- **Two players in one room need a hand.** `taverla:seats` is a single
+- **Two players in one room need a hand.** `melee:seats` is a single
   `localStorage` array shared by every tab of the context, keyed by room *and
   role* — so a second `/play/:code` reclaims the first player's seat instead of
   taking one of its own. Delete that room's `role: 'player'` entry before the
@@ -79,7 +79,7 @@ More that cost time to learn:
   what lets a latecomer be driven against a round somebody else is already in.
 
 - **Two players with different *names* need a context each, and the seat trick
-  is not enough.** `taverla:nickname` is one key per origin and the page writes
+  is not enough.** `melee:nickname` is one key per origin and the page writes
   back the name the room **accepted**, so a tab that joins overwrites whatever
   the next tab was seeded with: three tabs seeded `Alice`, `Bertrand`,
   `Anne-Charlotte` all arrive asking for the first accepted name, and the last
@@ -115,16 +115,16 @@ More that cost time to learn:
 
 - **A room can be opened without walking the front door.** `POST /api/rooms`
   from a page already on the app's origin answers `{ code, hostToken }`; write
-  `taverla:host-tokens` with it — `[{ at: Date.now(), hostToken, roomCode }]` —
+  `melee:host-tokens` with it — `[{ at: Date.now(), hostToken, roomCode }]` —
   and navigate to `/host/:code`. It saves three clicks and picks the game in the
   request body.
 
 - **Screenshots and any other file the tool writes must land under the
-  repository root** — `C:/git/taverla/.playwright-mcp/` is the one directory to
+  repository root** — `C:/git/melee/.playwright-mcp/` is the one directory to
   use, and a path in the session scratchpad is refused outright.
 
 - **Two consoles in one room need the same hand, one store further.** A second
-  tab shares `taverla:host-tokens` as well as `taverla:seats`, so it is already
+  tab shares `melee:host-tokens` as well as `melee:seats`, so it is already
   the room's owner and displaces nothing. Delete that room's `role: 'host'`
   **seat** and leave the token to drive the deliberate handover; delete both to
   drive a screen that only has the code. Deleting both and then driving the
@@ -151,17 +151,17 @@ More that cost time to learn:
   right on 5273 too. Judge type on 3100, after `pnpm build`.
 - **The launch is disabled with an empty room**, so nothing that needs a round
   can be driven from the console alone. A second page at `/play/:code` is what
-  unblocks it, and with `taverla:nickname` set it needs no interaction at all —
+  unblocks it, and with `melee:nickname` set it needs no interaction at all —
   open it, wait, and the roster has somebody on it.
 
-- A `/play/:code` on a device with a stored `taverla:nickname` **joins on
+- A `/play/:code` on a device with a stored `melee:nickname` **joins on
   arrival** — there is no form to fill. The console's *Take a seat* does the
   same: it seats that screen under the stored name and draws no form at all, so
   a console that looks like it was never asked is already playing. Clear the key
-  to reach either form, and expect a session id in `taverla:seats` either way:
+  to reach either form, and expect a session id in `melee:seats` either way:
   the socket now opens before the join is answered, so a refused arrival leaves
   one behind too.
-- `taverla:theme` and `taverla:locale` hold **plain strings**, not JSON. Writing
+- `melee:theme` and `melee:locale` hold **plain strings**, not JSON. Writing
   `'"light"'` stores a quoted string the reader rejects, and the page comes back
   on the system theme with nothing to say it refused.
 - **A press that fires on `onPressStart` needs a real `pointerdown`.**
@@ -170,8 +170,8 @@ More that cost time to learn:
   than the release. Dispatch `PointerEvent('pointerdown')` and `('pointerup')`
   with `pointerId`, `pointerType` and `isPrimary` set.
 
-- **One invalid entry costs the device the whole store.** `taverla:seats` and
-  `taverla:host-tokens` are re-parsed as a single Zod array, and a failure
+- **One invalid entry costs the device the whole store.** `melee:seats` and
+  `melee:host-tokens` are re-parsed as a single Zod array, and a failure
   returns `[]` rather than the entries that were fine — so a hand-written token
   containing `O`, `S`, `I` or `Z` (the room alphabet excludes all four) silently
   deletes every *real* token from the reading, and the screen under test draws
@@ -247,7 +247,7 @@ when the next call lands:
 - a reflex heat after the console's own press, or after its false start;
 - anything a heat shows *while* waiting for somebody else.
 
-Both need a second screen in the room, by the `taverla:seats` deletion above.
+Both need a second screen in the room, by the `melee:seats` deletion above.
 
 ## A room with no console, driven by raw sockets
 

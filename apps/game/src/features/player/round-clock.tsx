@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { PlayerRoomView } from '@taverla/protocol/room'
+import type { PlayerRoomView } from '@melee/protocol/room'
 
-import type { ClockEstimate } from '@taverla/core/time/clock-sync'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import {
   RevealHold,

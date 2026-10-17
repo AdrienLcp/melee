@@ -1,4 +1,4 @@
-import type { QuestionLanguage } from '@taverla/protocol/question'
+import type { QuestionLanguage } from '@melee/protocol/question'
 
 /**
  * Which banks carry questions the rating applies to. OpenQuizzDB files its own

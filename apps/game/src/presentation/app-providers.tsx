@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { Locale } from '@taverla/protocol/locale'
+import type { Locale } from '@melee/protocol/locale'
 
 import { VolumeProvider } from '@/presentation/audio/volume-provider'
 import { I18nProvider } from '@/presentation/i18n/i18n-provider'

@@ -28,7 +28,7 @@ file keeps the brief and the record of how it got there.
   `.impeccable/directions/boite.html` (local, uncommitted, French copy), is the
   reference the build reproduces and the finish review is judged against; its
   contract is the comment at the top of `<body>`:
-  - THESIS: Taverla is a shelf of game boxes on a table; every screen is a
+  - THESIS: Melee is a shelf of game boxes on a table; every screen is a
     printed piece from that box, never an app panel of rounded cards on a dark
     ground.
   - WORLD: matte printed board, pale sky by day and slate blue by evening; four
@@ -341,7 +341,7 @@ corrected. Lint, spell, types, unit, build and the 39 journeys green.
 
 ## The prompt
 
-> /impeccable Redesign Taverla from scratch — a **replacement visual world**,
+> /impeccable Redesign Melee from scratch — a **replacement visual world**,
 > not a polish of the current one. Target `apps/game`. Mode: **Operate** for
 > every in-room screen, **Persuade** for the front door (`/:locale`,
 > `/:locale/:game`).
@@ -356,7 +356,7 @@ corrected. Lint, spell, types, unit, build and the 39 journeys green.
   `Layout`, `What is out of budget` and `What must not be broken` sections for
   the hard-won measurements; discard its world. It also still names *Le Fake*
   and a vote board — neither exists.
-- The browser is **muted before the first navigation** (`taverla:volume = '0'`
+- The browser is **muted before the first navigation** (`melee:volume = '0'`
   in an init script, see `docs/browser-driving.md`). The host and the wall play
   audio.
 
@@ -467,7 +467,7 @@ treated as a list of targets.
   size used, in both themes.
 - The audience is adult friends at a party **and** families with children and
   grandparents in the same game: warm, federating, never laddish. The product
-  name (`Taverla`) lives on the front door only; a game screen names the game.
+  name (`Melee`) lives on the front door only; a game screen names the game.
 - Party Wi-Fi: nothing blocks first paint; the font is self-hosted.
 
 ### 4. What to throw away

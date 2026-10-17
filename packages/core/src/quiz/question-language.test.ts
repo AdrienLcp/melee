@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { LOCALES } from '@taverla/protocol/locale'
+import { LOCALES } from '@melee/protocol/locale'
 
 import { questionLanguageFor } from './question-language'
 

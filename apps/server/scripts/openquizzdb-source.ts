@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import type { QuestionCategory } from '@taverla/protocol/question'
+import type { QuestionCategory } from '@melee/protocol/question'
 
 import { frenchViewsOfTitles, isWellKnownInFrench } from './frwiki-notability'
 import { parseJson } from './json-file'

@@ -15,14 +15,11 @@ import {
 import {
   WALL_PAIRING_CODE_LENGTH,
   wallPairingCodeSchema
-} from '@taverla/protocol/http'
-import {
-  NICKNAME_MAX_LENGTH,
-  type RoomCode
-} from '@taverla/protocol/identifiers'
-import { isLocale, LOCALES } from '@taverla/protocol/locale'
+} from '@melee/protocol/http'
+import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
+import { isLocale, LOCALES } from '@melee/protocol/locale'
 
-import { fetchHealth, pairWall } from '@/infrastructure/api/taverla-api'
+import { fetchHealth, pairWall } from '@/infrastructure/api/melee-api'
 import {
   creditsPathFor,
   homePathFor,

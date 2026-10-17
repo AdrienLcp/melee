@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { GameKind } from '@taverla/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -12,7 +12,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
  * — so the document it gets is the English home page's, and the tab said so
  * until this rendered.
  *
- * It says what the front doors say, `Blind test — Taverla`, because a tab is
+ * It says what the front doors say, `Blind test — Melee`, because a tab is
  * chrome rather than a game screen: it is one of the three places the product
  * is named, beside the wordmark and what a shared link unfurls into. The room
  * code is *not* in it — it is already the largest thing on the console and the

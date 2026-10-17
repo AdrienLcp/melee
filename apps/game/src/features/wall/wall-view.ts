@@ -3,7 +3,7 @@ import type {
   HostRoundContent,
   WallRoomView,
   WallRoundContent
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
 /**
  * The wall's view in the shape the room's stage draws: the host's, with every

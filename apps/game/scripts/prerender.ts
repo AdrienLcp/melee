@@ -16,7 +16,7 @@ import {
   writeLanguageVersions
 } from '@adrienlcp/prerender'
 
-import type { Locale } from '@taverla/protocol/locale'
+import type { Locale } from '@melee/protocol/locale'
 
 import type { PrerenderedPage, RenderedPage } from '../src/entry-server'
 import type { IndexedPage } from '../src/presentation/head/document-head'
@@ -68,7 +68,7 @@ const structuredDataFor = ({
   '@type': 'WebSite',
   description,
   inLanguage: locale,
-  name: 'Taverla',
+  name: 'Mêlée',
   url
 })
 

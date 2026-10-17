@@ -1,4 +1,4 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
+import type { PlayerId } from '@melee/protocol/identifiers'
 
 import type { Connection } from './connection'
 import type { RoomEngine } from './room-engine'

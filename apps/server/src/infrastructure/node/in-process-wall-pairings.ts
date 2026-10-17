@@ -1,6 +1,6 @@
 import { Result } from '@adrienlcp/result'
 
-import type { WallPairingCode } from '@taverla/protocol/http'
+import type { WallPairingCode } from '@melee/protocol/http'
 
 import {
   collectWall,

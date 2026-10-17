@@ -3,22 +3,22 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS
-} from '@taverla/protocol/game'
-import { DEFAULT_MODE_SETTINGS } from '@taverla/protocol/room'
-import { POINTS_PER_ARTIST, POINTS_PER_TITLE } from '@taverla/protocol/scoring'
+} from '@melee/protocol/game'
+import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
+import { POINTS_PER_ARTIST, POINTS_PER_TITLE } from '@melee/protocol/scoring'
 import {
   hostServerMessageSchema,
   type PlayerServerMessage,
   playerServerMessageSchema
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
-import { roomSettingsFor } from '@taverla/core/room/room-settings'
+import { roomSettingsFor } from '@melee/core/room/room-settings'
 import {
   type ClockSample,
   estimateClockOffset,
   millisecondsUntil
-} from '@taverla/core/time/clock-sync'
+} from '@melee/core/time/clock-sync'
 
 import { nowMs } from '@/infrastructure/clock'
 

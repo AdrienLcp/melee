@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { PublicPlayer, RoundView } from '@taverla/protocol/room'
+import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import { playersOfRound } from '@taverla/core/round/round-roster'
+import { playersOfRound } from '@melee/core/round/round-roster'
 
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'

@@ -1,12 +1,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_BUZZER_SETTINGS } from '@taverla/protocol/game'
+import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@taverla/protocol/scoring'
+} from '@melee/protocol/room'
+import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
 
 import { startRoomHarness } from './node-room-harness'
 import {

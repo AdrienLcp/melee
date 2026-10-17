@@ -2,7 +2,7 @@ import type { Context, ErrorHandler, NotFoundHandler } from 'hono'
 import { HTTPException } from 'hono/http-exception'
 import { z } from 'zod'
 
-import type { ApiErrorResponse } from '@taverla/protocol/http'
+import type { ApiErrorResponse } from '@melee/protocol/http'
 
 import { logger } from '@/infrastructure/logging/logger'
 

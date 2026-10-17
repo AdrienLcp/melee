@@ -1,6 +1,6 @@
 import type { MiddlewareHandler } from 'hono'
 
-import type { ApiErrorResponse } from '@taverla/protocol/http'
+import type { ApiErrorResponse } from '@melee/protocol/http'
 
 /** The shape of the Workers Rate Limiting binding, so a test can stand in for it. */
 export type RoomCreationLimiter = {

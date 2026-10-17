@@ -2,11 +2,11 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { PublicPlayer, RoundView } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import { reactionMsOf } from '@taverla/core/reflex/reaction'
-import type { ClockEstimate } from '@taverla/core/time/clock-sync'
+import { reactionMsOf } from '@melee/core/reflex/reaction'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { reflexContent } from '@/helpers/round-content'
 import { buzzFeedback } from '@/infrastructure/browser'

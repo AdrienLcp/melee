@@ -7,7 +7,7 @@ import {
   Button as ReactAriaButton
 } from 'react-aria-components'
 
-import type { RoomCode } from '@taverla/protocol/identifiers'
+import type { RoomCode } from '@melee/protocol/identifiers'
 
 import { playUrlFor } from '@/infrastructure/router/navigation'
 import { RoomInvitation } from '@/presentation/components/room-invitation'

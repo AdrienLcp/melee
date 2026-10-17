@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { ClientMessage } from '@taverla/protocol/client-message'
-import type { HostRoomView } from '@taverla/protocol/room'
-import type { TrackSource } from '@taverla/protocol/track'
+import type { ClientMessage } from '@melee/protocol/client-message'
+import type { HostRoomView } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
 import { FinishedActions } from './finished-actions'
 import { LobbyActions } from './lobby-actions'

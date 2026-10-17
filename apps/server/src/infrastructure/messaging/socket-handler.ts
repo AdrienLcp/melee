@@ -7,16 +7,16 @@ import {
   FLOOR_MESSAGE_TYPES,
   type HelloMessage,
   HOST_ONLY_MESSAGE_TYPES
-} from '@taverla/protocol/client-message'
-import { decodeMessage } from '@taverla/protocol/codec'
-import type { Nickname, PlayerId, RoundId } from '@taverla/protocol/identifiers'
-import type { RoomSettings } from '@taverla/protocol/room'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/client-message'
+import { decodeMessage } from '@melee/protocol/codec'
+import type { Nickname, PlayerId, RoundId } from '@melee/protocol/identifiers'
+import type { RoomSettings } from '@melee/protocol/room'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
-import { offersAnswerMode } from '@taverla/core/room/game-modes'
-import { isRoundInPlay } from '@taverla/core/room/room-phase'
-import { reshapesRound } from '@taverla/core/room/room-settings'
-import { newSessionId } from '@taverla/core/room/session-id'
+import { offersAnswerMode } from '@melee/core/room/game-modes'
+import { isRoundInPlay } from '@melee/core/room/room-phase'
+import { reshapesRound } from '@melee/core/room/room-settings'
+import { newSessionId } from '@melee/core/room/session-id'
 
 import {
   claimHost,

@@ -1,12 +1,9 @@
 import type { z } from 'zod'
 
-import type { ClientMessage } from '@taverla/protocol/client-message'
-import {
-  DEFAULT_BLINDTEST_SETTINGS,
-  shelvedGames
-} from '@taverla/protocol/game'
-import { createRoomResponseSchema } from '@taverla/protocol/http'
-import type { HostToken } from '@taverla/protocol/identifiers'
+import type { ClientMessage } from '@melee/protocol/client-message'
+import { DEFAULT_BLINDTEST_SETTINGS, shelvedGames } from '@melee/protocol/game'
+import { createRoomResponseSchema } from '@melee/protocol/http'
+import type { HostToken } from '@melee/protocol/identifiers'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
@@ -14,20 +11,20 @@ import {
   type RoomSettings,
   type RoundContent,
   type RoundView
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 import {
   API_ROUTES,
   fillRoute,
   ROOM_SOCKET_ROUTE
-} from '@taverla/protocol/routes'
-import type { HalvesVerdict, Verdict } from '@taverla/protocol/scoring'
+} from '@melee/protocol/routes'
+import type { HalvesVerdict, Verdict } from '@melee/protocol/scoring'
 import {
   type HostServerMessage,
   hostServerMessageSchema,
   type PlayerServerMessage,
   playerServerMessageSchema
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { nowMs } from '@/infrastructure/clock'
 

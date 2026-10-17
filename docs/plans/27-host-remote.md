@@ -46,7 +46,7 @@ surface.
   pick was a one-use QR shown by the host — it does not survive the case that
   motivates the stage, because a laptop plugged into a TV cannot scan anything.
 - **Same browser, no pairing.** The menu's *Project* link opens `/wall/:code` in
-  a new tab; the token is already in `taverla:host-tokens`.
+  a new tab; the token is already in `melee:host-tokens`.
 - **The wall is the speaker whenever it is there.** `isWallConnected` on the
   host view tells the console to keep the clip and the buzz cue to itself. The
   wall arms its audio on its own press — the pairing confirmation or a one-time

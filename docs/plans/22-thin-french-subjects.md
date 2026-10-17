@@ -52,7 +52,7 @@ Two further reasons the current rating stays as it is:
 
 - **It is measured and rebuildable.** `isWellKnown` comes from the sixty-day
   traffic of a subject's Wikipedia article, or from Open Trivia DB's own label,
-  and `pnpm --filter @taverla/server questions:build` reproduces every value from
+  and `pnpm --filter @melee/server questions:build` reproduces every value from
   `.cache/` in seconds. A judgement handed down by a model is reproducible by
   nothing: a rebuild either re-spends it or freezes it in a file no later reader
   can re-derive or argue with.

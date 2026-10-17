@@ -2,15 +2,15 @@ import {
   DEFAULT_GAME_SETTINGS,
   type GameKind,
   type GameSettings
-} from '@taverla/protocol/game'
-import type { Locale } from '@taverla/protocol/locale'
+} from '@melee/protocol/game'
+import type { Locale } from '@melee/protocol/locale'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type ModeSettings,
   type RoomSettings
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
 import { questionLanguageFor } from '../quiz/question-language'
 import { modeOfferedBy } from './game-modes'

@@ -3,7 +3,7 @@ import {
   ROOM_CODE_LENGTH,
   type RoomCode,
   roomCodeSchema
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
 import {
   generateCode,

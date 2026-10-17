@@ -3,7 +3,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form, type FormProps } from 'react-aria-components'
 
-import { NICKNAME_MAX_LENGTH } from '@taverla/protocol/identifiers'
+import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 
 import { readStoredNickname } from '@/infrastructure/storage/preferences-storage'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'

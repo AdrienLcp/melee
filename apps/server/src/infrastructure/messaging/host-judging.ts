@@ -1,7 +1,7 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
+import type { PlayerId } from '@melee/protocol/identifiers'
 
-import { isJudgedByHost } from '@taverla/core/room/game-modes'
-import { isRoundInPlay } from '@taverla/core/room/room-phase'
+import { isJudgedByHost } from '@melee/core/room/game-modes'
+import { isRoundInPlay } from '@melee/core/room/room-phase'
 
 import type { Room } from '@/domain/room/room'
 import { removePlayer } from '@/domain/room/room-service'

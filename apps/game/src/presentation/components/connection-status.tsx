@@ -1,7 +1,7 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 
-import type { ClockEstimate } from '@taverla/core/time/clock-sync'
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import type { SocketStatus } from '@/infrastructure/messaging/use-room-socket'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'

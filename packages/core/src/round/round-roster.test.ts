@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
+import type { PlayerId } from '@melee/protocol/identifiers'
 
 import { RECONNECT_GRACE_MS } from '../room/seat-presence'
 import {

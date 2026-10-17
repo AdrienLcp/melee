@@ -1,11 +1,11 @@
 import { Result } from '@adrienlcp/result'
 
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
-import { locksOutOnMissIn, roundDurationMsOf } from '@taverla/protocol/game'
-import type { PlayerId, RoundId } from '@taverla/protocol/identifiers'
-import type { HostQuestion } from '@taverla/protocol/question'
-import type { Verdict } from '@taverla/protocol/scoring'
-import type { HostTrack } from '@taverla/protocol/track'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
+import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
+import type { HostQuestion } from '@melee/protocol/question'
+import type { Verdict } from '@melee/protocol/scoring'
+import type { HostTrack } from '@melee/protocol/track'
 
 import {
   choiceVerdict,
@@ -14,24 +14,24 @@ import {
   type TypedAttempt,
   whatTheRoomNames,
   withGuessBanked
-} from '@taverla/core/blindtest/typed-answer'
-import { shuffled } from '@taverla/core/helpers/random'
-import { gradeQuizGuess } from '@taverla/core/quiz/question-answer'
+} from '@melee/core/blindtest/typed-answer'
+import { shuffled } from '@melee/core/helpers/random'
+import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import {
   drawFlipDelayMs,
   reflexRoundDurationMs
-} from '@taverla/core/reflex/flip-schedule'
-import { isFalseStart } from '@taverla/core/reflex/reaction'
+} from '@melee/core/reflex/flip-schedule'
+import { isFalseStart } from '@melee/core/reflex/reaction'
 import {
   type BuzzRejection,
   findBuzzRejection,
   hasEligibleBuzzer
-} from '@taverla/core/round/buzz-eligibility'
+} from '@melee/core/round/buzz-eligibility'
 import {
   hasJoinedAfterStart,
   isExpectedInRound
-} from '@taverla/core/round/round-roster'
-import { speedBonusForElapsed } from '@taverla/core/scoring/speed-bonus'
+} from '@melee/core/round/round-roster'
+import { speedBonusForElapsed } from '@melee/core/scoring/speed-bonus'
 import {
   isFullyBanked,
   isMiss,
@@ -40,7 +40,7 @@ import {
   pointsForSimultaneousAnswer,
   type SimultaneousMode,
   verdictKindFor
-} from '@taverla/core/scoring/verdict'
+} from '@melee/core/scoring/verdict'
 
 import type { PlayerAttempts, Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'

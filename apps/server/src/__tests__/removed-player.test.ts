@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { PlayerServerMessage } from '@taverla/protocol/server-message'
+import type { PlayerServerMessage } from '@melee/protocol/server-message'
 
 import { startRoomHarness } from './node-room-harness'
 import {

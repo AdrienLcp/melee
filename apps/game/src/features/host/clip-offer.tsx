@@ -1,11 +1,11 @@
 import type React from 'react'
 
-import type { HostRoomView } from '@taverla/protocol/room'
+import type { HostRoomView } from '@melee/protocol/room'
 
 import {
   type ClipRefusal,
   isClipUnheard
-} from '@taverla/core/blindtest/clip-audio'
+} from '@melee/core/blindtest/clip-audio'
 
 import { blindtestHostContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'

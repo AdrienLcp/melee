@@ -1,4 +1,4 @@
-import { ABANDONED_SEAT_MS } from '@taverla/core/room/seat-presence'
+import { ABANDONED_SEAT_MS } from '@melee/core/room/seat-presence'
 
 import { advanceDueAt, remainingRoundMs } from '@/domain/round/round-service'
 

@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { PublicPlayer, RoundView } from '@taverla/protocol/room'
+import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import { buildReactionBoard } from '@taverla/core/reflex/reaction-board'
+import { buildReactionBoard } from '@melee/core/reflex/reaction-board'
 
 import { reflexContent } from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'

@@ -6,7 +6,7 @@ import { z } from 'zod'
 import {
   type QuestionCategory,
   questionCategorySchema
-} from '@taverla/protocol/question'
+} from '@melee/protocol/question'
 
 import { orStop, readJsonFile } from './json-file'
 import {

@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-**Taverla** is a shelf of party games sharing one room, one QR code and one set
+**Melee** is a shelf of party games sharing one room, one QR code and one set
 of screens. **Blind test** is the first: one screen runs the game and shows the
 QR code, everyone else plays on whatever screen they have to hand, and the first
 to buzz names the track. **Buzzer** is the same unforgeable race for the floor
@@ -15,7 +15,7 @@ read aloud and typed, so a laptop in the same room joins the same way. Nothing
 user-facing may assume the device.
 
 Two names, two scopes, and the distinction is load-bearing. The product owns
-`@taverla/*`, the `taverla:*` storage keys and the repository name. A game owns
+`@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
 `slate.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
@@ -61,7 +61,7 @@ other dev servers on the machine.
 3. **State travels as a whole snapshot**, never a delta.
 4. **UI is verified in a real browser, muted.** A green build says nothing about
    whether a screen works, there is no component runner here, and this one plays
-   music at a stored volume defaulting to 80%. Set `taverla:volume` to `'0'` in
+   music at a stored volume defaulting to 80%. Set `melee:volume` to `'0'` in
    an init script before the first navigation — see `docs/browser-driving.md`.
 
 ## Rules (auto-loaded from `.claude/rules/`)
@@ -238,7 +238,7 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
   carries the name across a reload. But a seat that *comes back* keeps the name
   it already holds, whatever the `hello` carries — `player.rename` is the only
   thing that changes one, and reading the hello there would let a Wi-Fi blink
-  undo a rename. `taverla:nickname` is the device-global name beside it, written
+  undo a rename. `melee:nickname` is the device-global name beside it, written
   from the name the room **accepted** rather than the one that was typed: a
   screen holding one joins on arrival with no form at all, the console's seat
   form fills itself in from it, and the menu is where it is read back and
@@ -247,7 +247,7 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
   screen that opened it. The code says *which* room, this says *who may host it*,
   and it always wins a claim — which is what makes a takeover undoable. Without
   one a second console waits out `HOST_RECLAIM_GRACE_MS`, then the code alone is
-  enough. It lives in `taverla:host-tokens` and **never on the seat**: the
+  enough. It lives in `melee:host-tokens` and **never on the seat**: the
   refusal that displaces a console voids its seat, and a token dropped with it
   would make the takeover final
 - **The host's setup** — `HostPreferences`, stored on the console's own machine

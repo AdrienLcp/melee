@@ -1,7 +1,7 @@
 import type React from 'react'
 import { useState } from 'react'
 
-import { SLATE_KEY_MAX_LENGTH } from '@taverla/protocol/slate'
+import { SLATE_KEY_MAX_LENGTH } from '@melee/protocol/slate'
 
 import { Disclosure } from '@/presentation/components/disclosure'
 import { TextField } from '@/presentation/components/text-field'

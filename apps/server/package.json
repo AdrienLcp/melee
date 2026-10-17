@@ -2,8 +2,8 @@
   "dependencies": {
     "@adrienlcp/result": "^0.1.1",
     "@hono/zod-validator": "^0.9.1",
-    "@taverla/core": "workspace:*",
-    "@taverla/protocol": "workspace:*",
+    "@melee/core": "workspace:*",
+    "@melee/protocol": "workspace:*",
     "hono": "^4.13.10",
     "nanoid": "^6.0.1",
     "zod": "^4.6.5"
@@ -11,7 +11,7 @@
   "description": "Authoritative game server for the blind test",
   "devDependencies": {
     "@hono/node-server": "^2.1.1",
-    "@taverla/game": "workspace:*",
+    "@melee/game": "workspace:*",
     "@types/node": "^26.6.3",
     "@types/ws": "^8.18.2",
     "@vitest/coverage-v8": "5.0.2",
@@ -21,7 +21,7 @@
     "wrangler": "^4.147.0",
     "ws": "^8.22.0"
   },
-  "name": "@taverla/server",
+  "name": "@melee/server",
   "private": true,
   "scripts": {
     "build": "wrangler types && tsc --noEmit && tsc --noEmit -p tsconfig.worker.json && wrangler deploy --dry-run --outdir dist",

@@ -1,7 +1,7 @@
 import { removeStored, writeStoredJson } from '@adrienlcp/safe-storage'
 import { z } from 'zod'
 
-import { connectionRoleSchema } from '@taverla/protocol/client-message'
+import { connectionRoleSchema } from '@melee/protocol/client-message'
 import {
   type HostToken,
   hostTokenSchema,
@@ -11,9 +11,9 @@ import {
   roomCodeSchema,
   type SessionId,
   sessionIdSchema
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
-import { newSessionId } from '@taverla/core/room/session-id'
+import { newSessionId } from '@melee/core/room/session-id'
 import {
   forgetSeat,
   type HeldRoom,
@@ -26,14 +26,14 @@ import {
   rememberHostToken,
   rememberSeat,
   type SeatScope
-} from '@taverla/core/room/session-memory'
+} from '@melee/core/room/session-memory'
 
 import { nowMs } from '@/infrastructure/clock'
 
 import { readStoredWithSchema } from './read-stored-with-schema'
 
-export const SEATS_KEY = 'taverla:seats'
-export const HOST_TOKENS_KEY = 'taverla:host-tokens'
+export const SEATS_KEY = 'melee:seats'
+export const HOST_TOKENS_KEY = 'melee:host-tokens'
 const ONE_KEY_EACH_PREFIX = 'taverla:session:'
 
 /**

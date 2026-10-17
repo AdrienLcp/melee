@@ -1,8 +1,8 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { RoomSettings } from '@taverla/protocol/room'
-import { hostServerMessageSchema } from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+import type { RoomSettings } from '@melee/protocol/room'
+import { hostServerMessageSchema } from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { nowMs } from '@/infrastructure/clock'
 

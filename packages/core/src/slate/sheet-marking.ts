@@ -1,5 +1,5 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { SlateItemState } from '@taverla/protocol/slate'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { SlateItemState } from '@melee/protocol/slate'
 
 import { pointsFor } from '../scoring/verdict'
 import { answerGroupKey, isBlankAnswer } from './answer-groups'

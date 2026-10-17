@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react'
 
-import type { ServerTime } from '@taverla/protocol/identifiers'
+import type { ServerTime } from '@melee/protocol/identifiers'
 
 import { useVolume } from './volume-provider'
 

@@ -1,4 +1,4 @@
-import { MOST_A_SPEED_BONUS_PAYS } from '@taverla/protocol/scoring'
+import { MOST_A_SPEED_BONUS_PAYS } from '@melee/protocol/scoring'
 
 /**
  * What the clock pays a player who scored, from how far into the round they

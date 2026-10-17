@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { HostRoomView, RoundView } from '@taverla/protocol/room'
+import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
 import {
   longestChoiceLength,

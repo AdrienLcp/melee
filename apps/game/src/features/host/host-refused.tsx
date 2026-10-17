@@ -2,13 +2,10 @@ import type React from 'react'
 import { type FormEvent, useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import {
-  HOST_TOKEN_LENGTH,
-  type HostToken
-} from '@taverla/protocol/identifiers'
-import type { ProtocolErrorMessage } from '@taverla/protocol/server-message'
+import { HOST_TOKEN_LENGTH, type HostToken } from '@melee/protocol/identifiers'
+import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
 
-import { normalizeHostToken } from '@taverla/core/room/host-token'
+import { normalizeHostToken } from '@melee/core/room/host-token'
 
 import { Button } from '@/presentation/components/button'
 import { ConnectionRefused } from '@/presentation/components/connection-refused'

@@ -3,9 +3,9 @@ import { type FormEvent, useState } from 'react'
 import { Form } from 'react-aria-components'
 import { useNavigate } from 'react-router'
 
-import { ROOM_CODE_LENGTH } from '@taverla/protocol/identifiers'
+import { ROOM_CODE_LENGTH } from '@melee/protocol/identifiers'
 
-import { parseRoomCodeInput } from '@taverla/core/room/room-code'
+import { parseRoomCodeInput } from '@melee/core/room/room-code'
 
 import { invitePathFor } from '@/infrastructure/router/navigation'
 import { Button } from '@/presentation/components/button'

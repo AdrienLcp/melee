@@ -8,6 +8,15 @@ one part.
 
 ### Breaking Changes
 
+- `[Shared]` **Taverla is now Melee** — *Mêlée* on screen, `melee` in code:
+  the packages are `@melee/*`, the storage keys `melee:*`, and the game is
+  served from `melee.adrienlcp.com` by a Worker named `melee`. The old address
+  answers every path with a 301 to the same path on the new one, from the
+  Worker that used to serve it, now `apps/server/former-host/`. Nothing a
+  browser remembered carries over: the new domain is another origin, so its
+  storage starts empty and a remembered name, volume or seat is asked again
+  once. Rooms open at the deploy close with it.
+
 - `[Shared]` **A ninth quiz subject, Citations / Quotes**, and `PROTOCOL_VERSION`
   goes to 24. The prompt is a line a table recognises — from a film, a series,
   a video game, an ad or a real person — followed by what to name (*Quel film ?*,

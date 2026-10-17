@@ -1,11 +1,11 @@
 import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { HostRoomView } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { HostRoomView } from '@melee/protocol/room'
 
-import { arrivedPlayers } from '@taverla/core/room/arrivals'
-import { isGameInPlay } from '@taverla/core/room/room-phase'
+import { arrivedPlayers } from '@melee/core/room/arrivals'
+import { isGameInPlay } from '@melee/core/room/room-phase'
 
 import { Pawn } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'

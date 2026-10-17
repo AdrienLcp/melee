@@ -1,4 +1,4 @@
-import type { Locale } from '@taverla/protocol/locale'
+import type { Locale } from '@melee/protocol/locale'
 
 import { preferredLocales, servedPath } from '@/infrastructure/browser'
 import { localeInPath } from '@/infrastructure/router/navigation'

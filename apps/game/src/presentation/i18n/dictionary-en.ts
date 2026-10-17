@@ -214,7 +214,7 @@ export const EN_DICTIONARY = defineDictionary({
       rate_limited: 'That is a lot of tables. Wait a minute and retry.',
       rejected: 'That did not go through. Try again.',
       unexpected_response: 'We did not know what to make of that. Try again.',
-      unreachable: 'We cannot reach Taverla. Try again in a moment.'
+      unreachable: 'We cannot reach Mêlée. Try again in a moment.'
     },
     false_start: 'Too soon. Wait for the change.',
     host_already_connected: 'Someone is already running this table.',
@@ -264,7 +264,7 @@ export const EN_DICTIONARY = defineDictionary({
       rest: 'Nothing to install, no accounts: one code, one QR code, and the whole table is seated.'
     },
     promise: 'A shelf of games for the whole evening.',
-    title: 'Taverla'
+    title: 'Mêlée'
   },
   host: {
     answered: defineTranslation('{count:plural} of {total:number} in', {
@@ -381,7 +381,7 @@ export const EN_DICTIONARY = defineDictionary({
     copied: 'Copied',
     copyCode: 'Copy the code',
     copyFailed: 'Could not copy',
-    documentTitle: 'Invitation — Taverla',
+    documentTitle: 'Invitation — Mêlée',
     door: {
       action: 'Show it',
       description:
@@ -442,11 +442,11 @@ export const EN_DICTIONARY = defineDictionary({
   },
   legal: {
     host: {
-      body: 'Taverla is hosted, and its tables are run, by:',
+      body: 'Mêlée is hosted, and its tables are run, by:',
       heading: 'Host'
     },
     intro:
-      'Who publishes Taverla, what it keeps about the people who play and for how long, and how to change that.',
+      'Who publishes Mêlée, what it keeps about the people who play and for how long, and how to change that.',
     measurement: {
       body: 'Visits are counted by a tool I built and run myself, at analytics.adrienlcp.com, without cookies. A page view records the page’s address, the site you came from, your browser’s language and theme, the width of its window and how fast the page loaded. It records no IP address, and nothing that tells one visitor from another.',
       counted: 'Your visits are counted, anonymously.',
@@ -471,7 +471,7 @@ export const EN_DICTIONARY = defineDictionary({
     publisher: {
       address:
         'As a non-professional publisher, I give the host’s identity in place of a postal address (LCEN, article 6-III-2).',
-      body: 'Taverla is published by {name}, a private individual, not a business. You can write to me through <contact>this contact page</contact>.',
+      body: 'Mêlée is published by {name}, a private individual, not a business. You can write to me through <contact>this contact page</contact>.',
       heading: 'Publisher'
     },
     rights: {
@@ -484,8 +484,8 @@ export const EN_DICTIONARY = defineDictionary({
       analyticsOptOut:
         'Your refusal of audience measurement, if you turn it off below.',
       device:
-        'Taverla sets no cookies. What it remembers stays in your browser, for this site only, until you clear it:',
-      heading: 'What Taverla keeps',
+        'Mêlée sets no cookies. What it remembers stays in your browser, for this site only, until you clear it:',
+      heading: 'What Mêlée keeps',
       hostSetup:
         'How you set up the last table you ran, game by game, so the next one opens the same way.',
       hostTokens:
@@ -509,10 +509,10 @@ export const EN_DICTIONARY = defineDictionary({
       cloudflare:
         'Cloudflare, the host, receives your IP address with every request, to deliver the page and protect the site from abuse. Opening a table counts against your IP address for one minute, so that nobody can open hundreds.',
       deezer:
-        'The blind test takes its music from Deezer. What the host searches for, or the playlist they name, is sent to Deezer by Taverla’s server, with nothing about you. The 30-second clips and the album covers, though, are loaded by your browser straight from Deezer’s servers, which therefore receive your IP address and your browser’s name. <policy>Deezer’s privacy policy</policy> applies to them.',
+        'The blind test takes its music from Deezer. What the host searches for, or the playlist they name, is sent to Deezer by Mêlée’s server, with nothing about you. The 30-second clips and the album covers, though, are loaded by your browser straight from Deezer’s servers, which therefore receive your IP address and your browser’s name. <policy>Deezer’s privacy policy</policy> applies to them.',
       heading: 'Who else receives your data',
       nobodyElse:
-        'No other service is called. The typefaces are served by Taverla itself, and the QR code is drawn in your browser.'
+        'No other service is called. The typefaces are served by Mêlée itself, and the QR code is drawn in your browser.'
     },
     title: 'Legal notice and privacy'
   },
@@ -549,7 +549,7 @@ export const EN_DICTIONARY = defineDictionary({
   },
   notFound: {
     description: 'That game is over, or the code was mistyped.',
-    documentTitle: 'Nobody here — Taverla',
+    documentTitle: 'Nobody here — Mêlée',
     title: 'Nobody here'
   },
   player: {
@@ -682,8 +682,8 @@ export const EN_DICTIONARY = defineDictionary({
     waiting: 'Watch the screen.'
   },
   room: {
-    documentTitle: '{game} — Taverla',
-    documentTitleLobby: 'Taverla'
+    documentTitle: '{game} — Mêlée',
+    documentTitleLobby: 'Mêlée'
   },
   round: {
     answer: {
@@ -859,7 +859,7 @@ export const EN_DICTIONARY = defineDictionary({
       backToTable: 'Back to my table',
       description:
         'The screen showing {code} will display your table, with no answers and nothing to press.',
-      documentTitle: 'Show a table — Taverla',
+      documentTitle: 'Show a table — Mêlée',
       done: 'Your table is on that screen.',
       failed:
         'That did not go through. The code may have expired — the screen shows a new one.',
@@ -875,8 +875,8 @@ export const EN_DICTIONARY = defineDictionary({
     pairing: {
       caption: 'Scan from the screen running the table',
       codeCaption: 'Or type this code in its menu',
-      documentTitle: 'Waiting for a table — Taverla',
-      failed: 'We cannot reach Taverla for a code.',
+      documentTitle: 'Waiting for a table — Mêlée',
+      failed: 'We cannot reach Mêlée for a code.',
       retry: 'Try again',
       title: 'This screen is waiting for its table'
     },

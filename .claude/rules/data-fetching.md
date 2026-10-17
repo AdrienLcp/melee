@@ -16,7 +16,7 @@ start, never the order they resolve in.
 
 ## The shape here
 
-- **Every function in `taverla-api.ts` takes an optional `signal`** and forwards
+- **Every function in `melee-api.ts` takes an optional `signal`** and forwards
   it to `fetch`. A signal dropped on the way is no signal.
 - **`aborted` is an `ApiFailure`, never an `ApiError`.** `apiErrorKey` accepts
   only `ApiError`, so the compiler makes a caller handle an abort before it can

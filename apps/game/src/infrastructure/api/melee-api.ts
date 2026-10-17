@@ -1,7 +1,7 @@
 import { Result } from '@adrienlcp/result'
 import type { z } from 'zod'
 
-import type { ShelvedGame } from '@taverla/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 import {
   type CatalogueTrack,
   type CreateRoomRequest,
@@ -22,11 +22,11 @@ import {
   type WallPairingPollQuery,
   type WallPairingPollResponse,
   wallPairingPollResponseSchema
-} from '@taverla/protocol/http'
-import type { RoomCode } from '@taverla/protocol/identifiers'
-import type { Locale } from '@taverla/protocol/locale'
-import { API_ROUTES, fillRoute } from '@taverla/protocol/routes'
-import type { TrackDecade, TrackDifficulty } from '@taverla/protocol/track'
+} from '@melee/protocol/http'
+import type { RoomCode } from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
+import { API_ROUTES, fillRoute } from '@melee/protocol/routes'
+import type { TrackDecade, TrackDifficulty } from '@melee/protocol/track'
 
 /** A failure the user is told about, through `apiErrorKey`. */
 export type ApiError =

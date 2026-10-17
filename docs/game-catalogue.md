@@ -48,7 +48,7 @@ missing** — six of the games below want it, which is most of what remains
 behind one engine that does not exist yet.
 
 The first game of this shape builds its board and tally inside its own arm of
-`round.content` and its own directory of `@taverla/core`, not as a shared
+`round.content` and its own directory of `@melee/core`, not as a shared
 engine. Generalising before there are two cases is the anti-pattern this file
 names three times — the second game is what earns the shared shape, and it is
 the one that shows which half was the first game's alone.
@@ -384,7 +384,7 @@ buys nothing.
 named the first game rather than the shelf it sits on, and this file said to fix
 that exactly once and not twice. That rename happened the day the product got
 its name, before the repository was ever published — the cheapest moment it
-could have happened, and the second game inherits `@taverla/*` for free.
+could have happened, and the second game inherits `@melee/*` for free.
 
 What is deliberately *not* renamed: the `blindtest.*` translation keys. Those
 belong to the game, and a second game brings its own prefix.

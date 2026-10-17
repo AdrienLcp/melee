@@ -188,8 +188,7 @@ export const FR_DICTIONARY = defineDictionary({
         'Ça fait beaucoup de tables. Attends une minute et réessaie.',
       rejected: 'Ça n’est pas passé. Réessaie.',
       unexpected_response: 'On n’a pas su quoi en faire. Réessaie.',
-      unreachable:
-        'On n’arrive pas à joindre Taverla. Réessaie dans un instant.'
+      unreachable: 'On n’arrive pas à joindre Mêlée. Réessaie dans un instant.'
     },
     false_start: 'Trop tôt. Attends que ça change.',
     host_already_connected: 'Quelqu’un tient déjà cette table.',
@@ -239,7 +238,7 @@ export const FR_DICTIONARY = defineDictionary({
       rest: 'Rien à installer, aucun compte : un code, un QR code, et toute la table est assise.'
     },
     promise: 'Une étagère de jeux pour toute la soirée.',
-    title: 'Taverla'
+    title: 'Mêlée'
   },
   host: {
     answered: defineTranslation('{count:plural} sur {total:number}', {
@@ -348,7 +347,7 @@ export const FR_DICTIONARY = defineDictionary({
     copied: 'Copié',
     copyCode: 'Copier le code',
     copyFailed: 'Copie impossible',
-    documentTitle: 'Invitation — Taverla',
+    documentTitle: 'Invitation — Mêlée',
     door: {
       action: 'Afficher',
       description:
@@ -405,11 +404,11 @@ export const FR_DICTIONARY = defineDictionary({
   },
   legal: {
     host: {
-      body: 'Taverla est hébergé, et ses tables tenues, par :',
+      body: 'Mêlée est hébergée, et ses tables tenues, par :',
       heading: 'Hébergeur'
     },
     intro:
-      'Qui publie Taverla, ce qu’il garde sur les gens qui jouent et pour combien de temps, et comment y changer quelque chose.',
+      'Qui publie Mêlée, ce qu’elle garde sur les gens qui jouent et pour combien de temps, et comment y changer quelque chose.',
     measurement: {
       body: 'Les visites sont comptées par un outil que j’ai construit et que je fais tourner moi-même, sur analytics.adrienlcp.com, sans cookie. Une page vue enregistre l’adresse de la page, le site d’où tu viens, la langue et le thème de ton navigateur, la largeur de sa fenêtre et la vitesse à laquelle la page s’est chargée. Elle n’enregistre aucune adresse IP, ni rien qui distingue un visiteur d’un autre.',
       counted: 'Tes visites sont comptées, anonymement.',
@@ -434,7 +433,7 @@ export const FR_DICTIONARY = defineDictionary({
     publisher: {
       address:
         'En tant qu’éditeur non professionnel, je donne l’identité de l’hébergeur à la place d’une adresse postale (LCEN, article 6-III-2).',
-      body: 'Taverla est publié par {name}, un particulier, pas une entreprise. Tu peux m’écrire depuis <contact>cette page de contact</contact>.',
+      body: 'Mêlée est publiée par {name}, un particulier, pas une entreprise. Tu peux m’écrire depuis <contact>cette page de contact</contact>.',
       heading: 'Éditeur'
     },
     rights: {
@@ -447,8 +446,8 @@ export const FR_DICTIONARY = defineDictionary({
       analyticsOptOut:
         'Ton refus de la mesure d’audience, si tu la coupes plus bas.',
       device:
-        'Taverla ne dépose aucun cookie. Ce qu’il retient reste dans ton navigateur, pour ce site seulement, jusqu’à ce que tu l’effaces :',
-      heading: 'Ce que Taverla garde',
+        'Mêlée ne dépose aucun cookie. Ce qu’elle retient reste dans ton navigateur, pour ce site seulement, jusqu’à ce que tu l’effaces :',
+      heading: 'Ce que Mêlée garde',
       hostSetup:
         'Comment tu as réglé la dernière table que tu as tenue, jeu par jeu, pour que la suivante s’ouvre pareil.',
       hostTokens:
@@ -473,10 +472,10 @@ export const FR_DICTIONARY = defineDictionary({
       cloudflare:
         'Cloudflare, l’hébergeur, reçoit ton adresse IP à chaque requête, pour livrer la page et protéger le site des abus. Ouvrir une table est compté sur ton adresse IP pendant une minute, pour que personne ne puisse en ouvrir des centaines.',
       deezer:
-        'Le blind test prend sa musique chez Deezer. Ce que l’hôte recherche, ou la playlist qu’il donne, est envoyé à Deezer par le serveur de Taverla, sans rien sur toi. Les extraits de 30 secondes et les pochettes d’album, eux, sont chargés par ton navigateur directement depuis les serveurs de Deezer, qui reçoivent donc ton adresse IP et le nom de ton navigateur. <policy>La politique de confidentialité de Deezer</policy> s’y applique.',
+        'Le blind test prend sa musique chez Deezer. Ce que l’hôte recherche, ou la playlist qu’il donne, est envoyé à Deezer par le serveur de Mêlée, sans rien sur toi. Les extraits de 30 secondes et les pochettes d’album, eux, sont chargés par ton navigateur directement depuis les serveurs de Deezer, qui reçoivent donc ton adresse IP et le nom de ton navigateur. <policy>La politique de confidentialité de Deezer</policy> s’y applique.',
       heading: 'Qui d’autre reçoit tes données',
       nobodyElse:
-        'Aucun autre service n’est appelé. Les polices sont servies par Taverla lui-même, et le QR code est dessiné dans ton navigateur.'
+        'Aucun autre service n’est appelé. Les polices sont servies par Mêlée elle-même, et le QR code est dessiné dans ton navigateur.'
     },
     title: 'Mentions légales et confidentialité'
   },
@@ -498,7 +497,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   notFound: {
     description: 'La partie est finie, ou le code a été mal tapé.',
-    documentTitle: 'Personne ici — Taverla',
+    documentTitle: 'Personne ici — Mêlée',
     title: 'Personne ici'
   },
   player: {
@@ -626,8 +625,8 @@ export const FR_DICTIONARY = defineDictionary({
     waiting: 'Guette l’écran.'
   },
   room: {
-    documentTitle: '{game} — Taverla',
-    documentTitleLobby: 'Taverla'
+    documentTitle: '{game} — Mêlée',
+    documentTitleLobby: 'Mêlée'
   },
   round: {
     answer: {
@@ -783,7 +782,7 @@ export const FR_DICTIONARY = defineDictionary({
       backToTable: 'Retour à ma table',
       description:
         'L’écran qui affiche {code} montrera ta table, sans les réponses et sans rien à presser.',
-      documentTitle: 'Afficher une table — Taverla',
+      documentTitle: 'Afficher une table — Mêlée',
       done: 'Ta table est sur cet écran.',
       failed:
         'Ça n’est pas passé. Le code a peut-être expiré — l’écran en affiche un nouveau.',
@@ -799,8 +798,8 @@ export const FR_DICTIONARY = defineDictionary({
     pairing: {
       caption: 'Scanne depuis l’écran qui tient la table',
       codeCaption: 'Ou tape ce code dans son menu',
-      documentTitle: 'En attente d’une table — Taverla',
-      failed: 'On n’arrive pas à joindre Taverla pour avoir un code.',
+      documentTitle: 'En attente d’une table — Mêlée',
+      failed: 'On n’arrive pas à joindre Mêlée pour avoir un code.',
       retry: 'Réessayer',
       title: 'Cet écran attend sa table'
     },

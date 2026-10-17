@@ -47,7 +47,7 @@ export const helloMessageSchema = z.object({
 /**
  * Half of the clock handshake. The client echoes its own send time back so it
  * can measure the round trip without the server having to remember anything —
- * see `@taverla/core/time/clock-sync` for the estimator that consumes it.
+ * see `@melee/core/time/clock-sync` for the estimator that consumes it.
  */
 export const timePingMessageSchema = z.object({
   clientSentAt: z.number().int().nonnegative(),

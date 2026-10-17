@@ -145,7 +145,7 @@ response what took four.
 **What a browser was actually asked**, because nothing above says whether a
 screen works. With the bundles aborted, the page renders whole — five shelf
 cards, the right ground — on all three route shapes at 390 px and 1 440 px, with
-no horizontal overflow. With `taverla:theme` set to `dark` on a system
+no horizontal overflow. With `melee:theme` set to `dark` on a system
 preferring light and `window.React` undefined, the dark field paints and the
 `theme-color` tags have already flipped. And under 200 KB/s with the CPU at a
 quarter, a `MutationObserver` installed before the first byte records the

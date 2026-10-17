@@ -1,5 +1,5 @@
-import type { Question } from '@taverla/protocol/question'
-import type { SingleVerdict } from '@taverla/protocol/scoring'
+import type { Question } from '@melee/protocol/question'
+import type { SingleVerdict } from '@melee/protocol/scoring'
 
 import { matchesAnswer } from '../round/answer-matching'
 

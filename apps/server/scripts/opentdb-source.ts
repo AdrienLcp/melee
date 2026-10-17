@@ -2,7 +2,7 @@ import { createHash } from 'node:crypto'
 
 import { z } from 'zod'
 
-import type { QuestionCategory } from '@taverla/protocol/question'
+import type { QuestionCategory } from '@melee/protocol/question'
 
 import { entitiesOfLabels, namedEntitiesOfLabels } from './enwiki-entities'
 import { jsonOf, orStop, parseJson } from './json-file'

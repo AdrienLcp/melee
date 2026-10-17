@@ -15,7 +15,7 @@ paths:
 
 # Privacy
 
-Taverla is published from France by a private individual, so French law and
+Melee is published from France by a private individual, so French law and
 the GDPR apply. Everything below keeps it inside the consent exemptions, which
 is why it has no cookie banner. `/:locale/legal` (`features/legal/`) is where
 the site says all of it, and **the page is true only while the code agrees** —

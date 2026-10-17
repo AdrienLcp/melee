@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
-import type { QuestionCategory } from '@taverla/protocol/question'
+import type { QuestionCategory } from '@melee/protocol/question'
 
 import { frenchViewsOfTitles, isWellKnownInFrench } from './frwiki-notability'
 import { orStop, parseJson, readJsonFile } from './json-file'

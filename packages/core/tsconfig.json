@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@taverla/protocol/*": ["../protocol/src/*"]
+      "@melee/protocol/*": ["../protocol/src/*"]
     }
   },
   "extends": "../../tsconfig.json",

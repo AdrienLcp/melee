@@ -7,10 +7,10 @@ import { z } from 'zod'
 import type {
   QuestionCategory,
   QuestionLanguage
-} from '@taverla/protocol/question'
+} from '@melee/protocol/question'
 
-import { gradeQuizGuess } from '@taverla/core/quiz/question-answer'
-import { normalizeAnswer } from '@taverla/core/round/answer-matching'
+import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
+import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
 import { orStop, parseJson } from './json-file'
 

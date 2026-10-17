@@ -3,12 +3,12 @@ import type React from 'react'
 import { useEffect, useEffectEvent, useState } from 'react'
 import { ListBox, ListBoxItem } from 'react-aria-components'
 
-import type { RoundView } from '@taverla/protocol/room'
+import type { RoundView } from '@melee/protocol/room'
 import {
   SLATE_ANSWER_MAX_LENGTH,
   type SlateItemState,
   type SlateLine
-} from '@taverla/protocol/slate'
+} from '@melee/protocol/slate'
 
 import { slateContent } from '@/helpers/round-content'
 import { slateItemIndexes, slateItemName } from '@/helpers/slate-labels'

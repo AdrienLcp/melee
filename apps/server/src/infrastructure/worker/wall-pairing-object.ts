@@ -1,8 +1,8 @@
 import { DurableObject } from 'cloudflare:workers'
 import { Result } from '@adrienlcp/result'
 
-import type { WallPairingPollResponse } from '@taverla/protocol/http'
-import type { HostToken, RoomCode } from '@taverla/protocol/identifiers'
+import type { WallPairingPollResponse } from '@melee/protocol/http'
+import type { HostToken, RoomCode } from '@melee/protocol/identifiers'
 
 import {
   collectWall,

@@ -1,12 +1,12 @@
 import type React from 'react'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { PublicPlayer } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer } from '@melee/protocol/room'
 
 import {
   buildScoreboard,
   hasAnybodyScored
-} from '@taverla/core/scoring/scoreboard'
+} from '@melee/core/scoring/scoreboard'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 

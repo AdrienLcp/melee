@@ -1,4 +1,4 @@
-# Taverla
+# Melee
 
 A shelf of party games sharing one room, one QR code and one set of screens. One
 screen runs the game and shows the code, everyone else plays on whatever they
@@ -9,8 +9,8 @@ and the artist. **Buzzer** serves no content at all — the host brings the
 charade, the quiz on paper or the lesson, and the room only needs an honest race
 for the floor. **Quiz** asks 1 800 French questions bundled with the server.
 
-The product is `Taverla`; a game is one thing on it. Packages are scoped
-`@taverla/*` because they belong to the shelf, while the translation keys a
+The product is `Melee`; a game is one thing on it. Packages are scoped
+`@melee/*` because they belong to the shelf, while the translation keys a
 single game owns keep its own prefix — `blindtest.*`, `buzzer.*`, `quiz.*`.
 
 ```bash
@@ -104,7 +104,7 @@ configuration.
 
 CI deploys every push to `main` once lint, tests and the end-to-end journeys are
 green, with the `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repository
-secrets. It is live at `https://taverla.adrienlcp.com`.
+secrets. It is live at `https://melee.adrienlcp.com`.
 
 Why a Durable Object per room, and what Render cost before it, is in
 [`docs/plans/28-cloudflare.md`](docs/plans/28-cloudflare.md).

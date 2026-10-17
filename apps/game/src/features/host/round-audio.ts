@@ -1,16 +1,16 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
 
-import type { HostRoomView } from '@taverla/protocol/room'
+import type { HostRoomView } from '@melee/protocol/room'
 
 import {
   type ClipRefusal,
   clipRefusalFor,
   seekTargetMs
-} from '@taverla/core/blindtest/clip-audio'
+} from '@melee/core/blindtest/clip-audio'
 import {
   type ClockEstimate,
   millisecondsUntil
-} from '@taverla/core/time/clock-sync'
+} from '@melee/core/time/clock-sync'
 
 import { blindtestHostContent } from '@/helpers/round-content'
 import { nowMs } from '@/infrastructure/clock'

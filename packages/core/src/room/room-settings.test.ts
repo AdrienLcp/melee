@@ -4,11 +4,8 @@ import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
   gameKinds
-} from '@taverla/protocol/game'
-import {
-  DEFAULT_MODE_SETTINGS,
-  type RoomSettings
-} from '@taverla/protocol/room'
+} from '@melee/protocol/game'
+import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 
 import { offersAnswerMode } from './game-modes'
 import { movedToGame, reshapesRound, roomSettingsFor } from './room-settings'

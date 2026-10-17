@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import { launchesWithHostSeated } from '@taverla/core/room/play-right-away'
+import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 
 import { Button } from '@/presentation/components/button'
 import { PlayRightAway } from '@/presentation/components/play-right-away'

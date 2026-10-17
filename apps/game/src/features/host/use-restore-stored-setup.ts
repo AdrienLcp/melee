@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react'
 
-import type { HostRoomView, RoomSettings } from '@taverla/protocol/room'
+import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 
 import {
   type HostPreferences,
   restoredSettings
-} from '@taverla/core/room/host-preferences'
-import { settingsToPlayRightAway } from '@taverla/core/room/play-right-away'
+} from '@melee/core/room/host-preferences'
+import { settingsToPlayRightAway } from '@melee/core/room/play-right-away'
 
 /**
  * A room is created by the server, on the server's defaults, so what this host

@@ -5,10 +5,10 @@ import type {
   Nickname,
   PlayerId,
   SessionId
-} from '@taverla/protocol/identifiers'
-import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@taverla/protocol/room'
+} from '@melee/protocol/identifiers'
+import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@melee/protocol/room'
 
-import { isAbandoned } from '@taverla/core/room/seat-presence'
+import { isAbandoned } from '@melee/core/room/seat-presence'
 
 import type { Participant, Room } from './room'
 

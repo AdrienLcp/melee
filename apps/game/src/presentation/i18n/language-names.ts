@@ -1,5 +1,5 @@
-import type { Locale } from '@taverla/protocol/locale'
-import type { QuestionLanguage } from '@taverla/protocol/question'
+import type { Locale } from '@melee/protocol/locale'
+import type { QuestionLanguage } from '@melee/protocol/question'
 
 /**
  * A language is named in its own language and never translated — someone who

@@ -50,7 +50,7 @@ export const answerModes = ['buzzer', 'choice', 'typed'] as const
  *
  * It is the room's, not a game's: the shell reads it everywhere a round is
  * answered and scored, and what a game does is *narrow* it — see
- * `answerModesFor` in `@taverla/core/room/game-modes`, and the server refuses a
+ * `answerModesFor` in `@melee/core/room/game-modes`, and the server refuses a
  * frame that sets one the current game does not offer.
  */
 export const answerModeSchema = z.enum(answerModes)

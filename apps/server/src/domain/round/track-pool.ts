@@ -1,13 +1,13 @@
 import { Result } from '@adrienlcp/result'
 
-import type { BlindtestSettings, GameSettings } from '@taverla/protocol/game'
+import type { BlindtestSettings, GameSettings } from '@melee/protocol/game'
 import type {
   HostTrack,
   TrackIdentity,
   TrackSource
-} from '@taverla/protocol/track'
+} from '@melee/protocol/track'
 
-import { pickRandom, shuffled } from '@taverla/core/helpers/random'
+import { pickRandom, shuffled } from '@melee/core/helpers/random'
 
 import type { Room } from '@/domain/room/room'
 import {

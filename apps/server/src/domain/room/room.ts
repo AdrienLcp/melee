@@ -5,18 +5,18 @@ import type {
   RoomCode,
   RoundId,
   SessionId
-} from '@taverla/protocol/identifiers'
-import type { HostQuestion } from '@taverla/protocol/question'
+} from '@melee/protocol/identifiers'
+import type { HostQuestion } from '@melee/protocol/question'
 import type {
   ModeSettings,
   RoomPhase,
   RoomSettings
-} from '@taverla/protocol/room'
-import type { Award, Verdict } from '@taverla/protocol/scoring'
-import type { HostTrack, TrackIdentity } from '@taverla/protocol/track'
+} from '@melee/protocol/room'
+import type { Award, Verdict } from '@melee/protocol/scoring'
+import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
-import type { RoundRoster } from '@taverla/core/round/round-roster'
-import type { SheetItem } from '@taverla/core/slate/sheet-marking'
+import type { RoundRoster } from '@melee/core/round/round-roster'
+import type { SheetItem } from '@melee/core/slate/sheet-marking'
 
 /**
  * The server's own model, deliberately richer than either wire view: it holds
@@ -63,7 +63,7 @@ export type Participant = {
   /**
    * When the socket closed, and `null` while it is open. It is what tells a
    * player who locked their screen apart from one who has gone: see
-   * `@taverla/core/room/seat-presence` for the two windows it feeds.
+   * `@melee/core/room/seat-presence` for the two windows it feeds.
    */
   disconnectedAt: number | null
   id: PlayerId
@@ -220,7 +220,7 @@ export type Round = {
   mode: ModeSettings
   /**
    * Who the round is played by, and `null` until its clip starts — see
-   * `@taverla/core/round/round-roster`. One stamp covers the whole round.
+   * `@melee/core/round/round-roster`. One stamp covers the whole round.
    *
    * The slate stamps each item as it closes instead, and this only once none
    * is left open: its sheet has no clock and no race, so a friend arriving

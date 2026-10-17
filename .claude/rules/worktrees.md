@@ -5,7 +5,7 @@
 
 ## A branch goes in a worktree beside the checkout
 
-Never a `git checkout` in `C:/git/taverla`: other sessions run there.
+Never a `git checkout` in `C:/git/melee`: other sessions run there.
 
 - **Under `C:/git/wt-<branch>`**, short: a worktree under a deep temp folder
   pushes pnpm's `node_modules` paths past Windows' limit.

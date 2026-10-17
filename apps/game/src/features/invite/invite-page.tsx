@@ -1,7 +1,7 @@
 import type React from 'react'
 import { useEffect, useState } from 'react'
 
-import { roomExists } from '@/infrastructure/api/taverla-api'
+import { roomExists } from '@/infrastructure/api/melee-api'
 import {
   homePathFor,
   useRoomCodeParam

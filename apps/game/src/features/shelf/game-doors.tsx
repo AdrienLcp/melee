@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { ShelvedGame } from '@taverla/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 
-import { canPlayRightAway } from '@taverla/core/room/play-right-away'
+import { canPlayRightAway } from '@melee/core/room/play-right-away'
 
 import type { CreateRoom } from '@/features/home/use-create-room'
 import { Button } from '@/presentation/components/button'

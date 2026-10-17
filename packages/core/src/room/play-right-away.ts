@@ -1,9 +1,9 @@
-import type { GameKind } from '@taverla/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
 import { answerModesFor, isJudgedByHost, modeOfferedBy } from './game-modes'
 import { type HostPreferences, restoredSettings } from './host-preferences'

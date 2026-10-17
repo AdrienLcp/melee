@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { RoundView } from '@taverla/protocol/room'
+import type { RoundView } from '@melee/protocol/room'
 
 import { candidatesIn } from '@/features/player/answer-forms'
 import { AnswerTileFace, tileInks } from '@/presentation/components/answer-tile'

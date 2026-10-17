@@ -3,7 +3,7 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
-import type { QuestionLanguage } from '@taverla/protocol/question'
+import type { QuestionLanguage } from '@melee/protocol/question'
 
 import { orStop, readJsonFile } from './json-file'
 import type { Attribution } from './question-source'
@@ -27,12 +27,10 @@ export const readAuthoredList = <TSchema extends z.ZodType>({
  * The credit a hand-written list carries: the selection, the notes and the
  * decoys are this repository's, under the share-alike line the bank ships on.
  */
-export const taverlaAttribution = (
-  language: QuestionLanguage
-): Attribution => ({
-  author: 'Taverla',
+export const meleeAttribution = (language: QuestionLanguage): Attribution => ({
+  author: 'Melee',
   language,
   licence: 'CC BY-SA 4.0',
-  source: 'Taverla',
-  url: 'https://github.com/AdrienLcp/taverla'
+  source: 'Melee',
+  url: 'https://github.com/AdrienLcp/melee'
 })

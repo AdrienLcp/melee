@@ -5,7 +5,7 @@ import {
   type PlayerRoomView,
   type RoomPhase,
   type RoundView
-} from '@taverla/protocol/room'
+} from '@melee/protocol/room'
 
 import {
   type BuzzBlocker,

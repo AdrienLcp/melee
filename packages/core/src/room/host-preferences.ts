@@ -1,5 +1,5 @@
-import type { GameKind } from '@taverla/protocol/game'
-import type { RoomSettings } from '@taverla/protocol/room'
+import type { GameKind } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
 
 import type { GameSetup } from './room-settings'
 

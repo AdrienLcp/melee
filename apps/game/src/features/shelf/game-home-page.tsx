@@ -1,4 +1,4 @@
-import type { ShelvedGame } from '@taverla/protocol/game'
+import type { ShelvedGame } from '@melee/protocol/game'
 
 import { useCreateRoom } from '@/features/home/use-create-room'
 import { NotFoundPage } from '@/features/not-found/not-found-page'

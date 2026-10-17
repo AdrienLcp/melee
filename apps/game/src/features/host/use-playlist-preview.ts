@@ -1,10 +1,10 @@
 import type { Result } from '@adrienlcp/result'
 import { useEffect, useEffectEvent, useRef, useState } from 'react'
 
-import type { CatalogueTrack } from '@taverla/protocol/http'
-import type { TrackDifficulty, TrackSource } from '@taverla/protocol/track'
+import type { CatalogueTrack } from '@melee/protocol/http'
+import type { TrackDifficulty, TrackSource } from '@melee/protocol/track'
 
-import { whatTheRoomNames } from '@taverla/core/blindtest/typed-answer'
+import { whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 
 import {
   type ApiFailure,
@@ -12,7 +12,7 @@ import {
   fetchFilmTracks,
   fetchPlaylistTracks,
   searchTracks
-} from '@/infrastructure/api/taverla-api'
+} from '@/infrastructure/api/melee-api'
 import {
   apiErrorKey,
   type PlainTranslationKey

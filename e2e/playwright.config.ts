@@ -19,7 +19,7 @@ const APP_URL = `http://127.0.0.1:${APP_PORT}`
 const CATALOGUE_URL = `http://127.0.0.1:${CATALOGUE_PORT}`
 const SERVER_URL = `http://127.0.0.1:${SERVER_PORT}`
 
-const WORKER_STATE = mkdtempSync(join(tmpdir(), 'taverla-e2e-'))
+const WORKER_STATE = mkdtempSync(join(tmpdir(), 'melee-e2e-'))
 
 export default defineConfig({
   expect: { timeout: 10_000 },
@@ -58,7 +58,7 @@ export default defineConfig({
       // Durable Object the deployed room lives in. A state directory of the
       // run's own, or a room from the last run would still hold its code.
       command: [
-        'pnpm --filter @taverla/server exec wrangler dev',
+        'pnpm --filter @melee/server exec wrangler dev',
         `--ip 127.0.0.1 --port ${SERVER_PORT}`,
         `--persist-to ${WORKER_STATE}`,
         `--var ALLOWED_ORIGINS:${APP_URL}`,
@@ -70,7 +70,7 @@ export default defineConfig({
       url: `${SERVER_URL}/api/rooms/AAAA`
     },
     {
-      command: 'pnpm --filter @taverla/game dev',
+      command: 'pnpm --filter @melee/game dev',
       env: {
         VITE_DEV_PORT: String(APP_PORT),
         VITE_SERVER_ORIGIN: SERVER_URL

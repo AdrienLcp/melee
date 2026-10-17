@@ -3,9 +3,9 @@ import type React from 'react'
 import { useId, useRef } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
-import type { ClientMessage } from '@taverla/protocol/client-message'
-import type { HostRoomView, PublicPlayer } from '@taverla/protocol/room'
-import { MAX_SLATE_ITEMS, type SlateItemState } from '@taverla/protocol/slate'
+import type { ClientMessage } from '@melee/protocol/client-message'
+import type { HostRoomView, PublicPlayer } from '@melee/protocol/room'
+import { MAX_SLATE_ITEMS, type SlateItemState } from '@melee/protocol/slate'
 
 import { slateContent, slateHostContent } from '@/helpers/round-content'
 import {

@@ -1,11 +1,11 @@
-import type { ConnectionRole } from '@taverla/protocol/client-message'
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
+import type { ConnectionRole } from '@melee/protocol/client-message'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type {
   HostToken,
   Nickname,
   RoomCode,
   SessionId
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
 /**
  * A seat is claimed per room *and* role: hosting and playing the same room from

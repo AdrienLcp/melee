@@ -1,14 +1,14 @@
 import type React from 'react'
 
-import { shelvedGames } from '@taverla/protocol/game'
-import type { RoomSettings } from '@taverla/protocol/room'
+import { shelvedGames } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
 
 import {
   type HostPreferences,
   rememberedSetupFor
-} from '@taverla/core/room/host-preferences'
-import { movedToGame } from '@taverla/core/room/room-settings'
-import { isShelvedGame } from '@taverla/core/room/shelved-game'
+} from '@melee/core/room/host-preferences'
+import { movedToGame } from '@melee/core/room/room-settings'
+import { isShelvedGame } from '@melee/core/room/shelved-game'
 
 import { BoxShelf } from '@/presentation/components/box-shelf'
 import { GameIcon } from '@/presentation/components/icons'

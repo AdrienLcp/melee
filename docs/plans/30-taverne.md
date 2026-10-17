@@ -10,7 +10,7 @@ stands if the reference page is gone.
 
 ## What Taverne is
 
-**Thesis.** Taverla is the back room of a village tavern on games night; every
+**Thesis.** Melee is the back room of a village tavern on games night; every
 screen is an object on its wall or on its counter. It refuses the party-app
 stack of neon cards on near-black, as stage 29 did.
 
@@ -195,7 +195,7 @@ four families is two more than today, so measure the first-paint cost.
 
 | Product thing | Taverne object |
 |---|---|
-| Front door `/:locale` | A **hanging painted sign** on a brass bracket under a lamp (*Taverla*, *Jeux pour toute la tablée*), the two promises below it (*Cinq jeux pour toute la soirée.* as the heading, *On joue en quelques secondes* leading the pitch), the enamel *create* beside a brass-ringed *join with a code* |
+| Front door `/:locale` | A **hanging painted sign** on a brass bracket under a lamp (*Melee*, *Jeux pour toute la tablée*), the two promises below it (*Cinq jeux pour toute la soirée.* as the heading, *On joue en quelques secondes* leading the pitch), the enamel *create* beside a brass-ringed *join with a code* |
 | Game picker (front door and lobby) | **L'ardoise du jour** — a slate listing the five games, name in large chalk, tagline in small chalk; the chosen one circled in yellow chalk |
 | Room code | Chalked huge on the **big slate over the bar** (172px at 1280×720), *La salle* above, *Scannez le sous-bock, ou tapez le code.* below |
 | QR code | Printed on a **round card coaster** leaning on the slate (−6°), ringed in mat-a with *SCANNEZ POUR VOUS ASSEOIR* set round it; the QR stays dark on light in both palettes |
@@ -395,7 +395,7 @@ Sized one session each; order matters for the first two.
 
 ## Done means
 
-- Every screen seen in a **real, muted browser** — `taverla:volume = '0'` from
+- Every screen seen in a **real, muted browser** — `melee:volume = '0'` from
   an init script before the first navigation (`docs/browser-driving.md`) — in
   both palettes and both locales, at the stage-29 viewport set.
 - `e2e/choice-fits.spec.ts` green (and broken on purpose once in this world),
@@ -431,7 +431,7 @@ their hand. Its touch icon centres it on `--walnut` (`#30180a`).
 
 ```svg
 <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
-  <title>Taverla</title>
+  <title>Melee</title>
   <circle cx="16" cy="16.8" fill="#5c1a1b" r="15" />
   <circle cx="16" cy="15.6" fill="#972e2f" r="15" />
   <circle cx="16" cy="15.6" fill="none" r="12" stroke="#f9f5ea" stroke-dasharray="2 1.6" stroke-width="1.1" />

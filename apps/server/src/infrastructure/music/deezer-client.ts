@@ -1,20 +1,17 @@
 import { type FailureResult, Result } from '@adrienlcp/result'
 import { z } from 'zod'
 
-import type { CatalogueTrack } from '@taverla/protocol/http'
+import type { CatalogueTrack } from '@melee/protocol/http'
 import {
   type HostTrack,
   type TrackDecade,
   type TrackDifficulty,
   type TrackSource,
   trackDecades
-} from '@taverla/protocol/track'
+} from '@melee/protocol/track'
 
-import {
-  filmNamedBy,
-  isScoredByOneOf
-} from '@taverla/core/blindtest/film-score'
-import { shuffled } from '@taverla/core/helpers/random'
+import { filmNamedBy, isScoredByOneOf } from '@melee/core/blindtest/film-score'
+import { shuffled } from '@melee/core/helpers/random'
 
 import { env } from '@/env'
 import {

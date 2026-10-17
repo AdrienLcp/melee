@@ -30,10 +30,10 @@ second app exists, not before.
 | From | Importing | Syntax |
 |---|---|---|
 | App code | Same app | `@/features/…` |
-| App code | Workspace package | `@taverla/protocol/…`, `@taverla/core/…` |
+| App code | Workspace package | `@melee/protocol/…`, `@melee/core/…` |
 | App code | Vendored brick | `@adrienlcp/result`, `@adrienlcp/i18n/…` |
 | Package code | Same package | relative only — never the package's own name |
-| Package code | Another package | `@taverla/protocol/…` |
+| Package code | Another package | `@melee/protocol/…` |
 
 ## Where a new thing goes
 

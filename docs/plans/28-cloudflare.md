@@ -155,7 +155,7 @@ Nothing is deployed differently at the end of it.
 - Add a hibernation test: evict the object between two frames and check the
   room, the seats and a pending deadline come back.
 - e2e: `e2e/playwright.config.ts` starts `wrangler dev` instead of
-  `pnpm --filter @taverla/server start`, on its own port; the Deezer stub
+  `pnpm --filter @melee/server start`, on its own port; the Deezer stub
   stays.
 - Measure the question bank, and settle it — see *The question bank stays bundled*.
 - Deploy to `taverla.<account>.workers.dev` by hand, play a room from two
@@ -218,7 +218,7 @@ Nothing is deployed differently at the end of it.
 - The server's `build` type-checks both tsconfigs and runs
   `wrangler deploy --dry-run`, so the Worker is type-checked and bundled on
   every CI run — before this nothing type-checked `worker.ts`. That dry-run
-  reads `apps/game/dist`, so `@taverla/game` is a devDependency of the server
+  reads `apps/game/dist`, so `@melee/game` is a devDependency of the server
   purely to order `pnpm -r build`.
 - `pnpm dev` is `wrangler dev` on 3100; a room survives a reload of it.
   Lighthouse runs against it too.

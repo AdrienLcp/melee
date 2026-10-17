@@ -108,7 +108,7 @@ finished sending in one.
   locale segment buys no language back in the index and lengthens the two things
   a room travels by — what the QR code encodes and what somebody reads out
   across the table. They keep negotiating at runtime, which is right for them
-  precisely because no crawler is watching. `taverla:seats`, the host tokens and
+  precisely because no crawler is watching. `melee:seats`, the host tokens and
   the QR code are untouched.
 
 ## Steps
@@ -179,7 +179,7 @@ shape that does not depend on how a given static server resolves a directory.
 per language, and it is the one user-visible string outside the dictionary.
 That is the exception `.claude/rules/i18n.md` already carved for the document
 head, kept rather than widened: this copy is read by somebody with no room in
-front of them. The home screen says `Taverla` and `The tavern is open.`; neither
+front of them. The home screen says `Melee` and `The tavern is open.`; neither
 is a search result. It is also read in Node with no provider mounted, which a
 dictionary key cannot be. It is typed `Record<Locale, Record<IndexedPage, …>>`
 over `ShelvedGame`, so a game reaching the shelf stops compiling until both

@@ -1,9 +1,9 @@
 import { beforeEach, describe, expect, it } from 'vitest'
 
-import type { HostToken } from '@taverla/protocol/identifiers'
-import { MAX_PLAYERS_PER_ROOM } from '@taverla/protocol/room'
+import type { HostToken } from '@melee/protocol/identifiers'
+import { MAX_PLAYERS_PER_ROOM } from '@melee/protocol/room'
 
-import { generateHostToken } from '@taverla/core/room/host-token'
+import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from './new-room'
 import type { Room } from './room'

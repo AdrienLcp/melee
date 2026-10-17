@@ -82,7 +82,7 @@ import { type ButtonProps, Button } from 'react-aria-components'
 ```
 
 A standalone type-only import is right when every import from that module is a
-type: `import type { Locale } from '@taverla/protocol/locale'`.
+type: `import type { Locale } from '@melee/protocol/locale'`.
 
 ## Name a new symbol on its merits
 

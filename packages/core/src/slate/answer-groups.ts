@@ -1,4 +1,4 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
+import type { PlayerId } from '@melee/protocol/identifiers'
 
 import { compareText } from '../helpers/collation'
 import { normalizeAnswer } from '../round/answer-matching'

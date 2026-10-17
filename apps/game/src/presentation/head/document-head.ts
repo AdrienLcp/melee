@@ -1,5 +1,5 @@
-import type { ShelvedGame } from '@taverla/protocol/game'
-import type { Locale } from '@taverla/protocol/locale'
+import type { ShelvedGame } from '@melee/protocol/game'
+import type { Locale } from '@melee/protocol/locale'
 
 /**
  * A page served as its own document, one per language. Rooms are not here and
@@ -20,7 +20,7 @@ export type PageHead = {
  * exception `.claude/rules/i18n.md` already carved for the document head: this
  * copy is read by somebody with no room in front of them, so it says what the
  * product is where the screen says what to do next. On the home page the screen
- * says `Taverla` and `The tavern is open.`, and neither is a search result.
+ * says `Mêlée` and `A shelf of games for the whole evening.`, and neither is a search result.
  *
  * Read twice. Each page renders its title as `<title>`, which the build-time
  * prerender lifts into the head of sixteen documents beside the description it
@@ -33,84 +33,84 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     blindtest: {
       description:
         'One screen plays the track and everyone else buzzes from whatever screen they have to hand. First to name the title and the artist takes the points. Scan the QR code and play — no install, no account.',
-      title: 'Blind test — Taverla'
+      title: 'Blind test — Mêlée'
     },
     buzzer: {
       description:
         'A buzzer for the whole room and nothing else: you bring the charade, the quiz on paper or the lesson, and the screen settles who was first. Every buzz is stamped by the server, so the race cannot be argued with.',
-      title: 'Buzzer — Taverla'
+      title: 'Buzzer — Mêlée'
     },
     credits: {
       description:
-        "Where Taverla's question banks come from, what was changed to bundle them, and the licence the assembled bank is shared under.",
-      title: 'Credits — Taverla'
+        "Where Mêlée's question banks come from, what was changed to bundle them, and the licence the assembled bank is shared under.",
+      title: 'Credits — Mêlée'
     },
     home: {
       description:
         'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex and Slate.',
-      title: 'Taverla — party games for one screen and the whole room'
+      title: 'Mêlée — party games for one screen and the whole room'
     },
     legal: {
       description:
-        'Who publishes Taverla, what it keeps about the people who play and for how long, which services receive what, and how to refuse audience measurement.',
-      title: 'Legal notice and privacy — Taverla'
+        'Who publishes Mêlée, what it keeps about the people who play and for how long, which services receive what, and how to refuse audience measurement.',
+      title: 'Legal notice and privacy — Mêlée'
     },
     quiz: {
       description:
         'Thousands of questions across nine subjects, in French and in English, answered by the whole room at once on their own screens. Scan the QR code and play — no install, no account.',
-      title: 'Quiz — Taverla'
+      title: 'Quiz — Mêlée'
     },
     reflex: {
       description:
         "The screen changes colour and the first in wins. Every device times the flip on its own clock, so the race measures a reflex and not the room's Wi-Fi. Going early costs the round.",
-      title: 'Reflex — Taverla'
+      title: 'Reflex — Mêlée'
     },
     slate: {
       description:
         'Numbered things to guess and a private answer sheet on every screen. Nobody copies the loudest voice; the host marks the papers one number at a time on the big screen.',
-      title: 'Slate — Taverla'
+      title: 'Slate — Mêlée'
     }
   },
   fr: {
     blindtest: {
       description:
         "Un écran joue le morceau, tout le monde buzze depuis l'écran qu'il a sous la main. Le premier à donner le titre et l'artiste marque. Scannez le QR code et jouez — sans installation, sans compte.",
-      title: 'Blind test — Taverla'
+      title: 'Blind test — Mêlée'
     },
     buzzer: {
       description:
         "Un buzzer pour toute la salle et rien d'autre : vous apportez la charade, le quiz sur papier ou la leçon, l'écran tranche qui a été le premier. Chaque buzz est horodaté par le serveur, la course ne se discute pas.",
-      title: 'Buzzer — Taverla'
+      title: 'Buzzer — Mêlée'
     },
     credits: {
       description:
-        "D'où viennent les banques de questions de Taverla, ce qui a été modifié pour les embarquer, et sous quelle licence la banque assemblée est partagée.",
-      title: 'Crédits — Taverla'
+        "D'où viennent les banques de questions de Mêlée, ce qui a été modifié pour les embarquer, et sous quelle licence la banque assemblée est partagée.",
+      title: 'Crédits — Mêlée'
     },
     home: {
       description:
         'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe et L’Ardoise.',
-      title: 'Taverla — des jeux de soirée pour un écran et toute la salle'
+      title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
     },
     legal: {
       description:
-        'Qui publie Taverla, ce qui est gardé sur les joueurs et pour combien de temps, quels services reçoivent quoi, et comment refuser la mesure d’audience.',
-      title: 'Mentions légales et confidentialité — Taverla'
+        'Qui publie Mêlée, ce qui est gardé sur les joueurs et pour combien de temps, quels services reçoivent quoi, et comment refuser la mesure d’audience.',
+      title: 'Mentions légales et confidentialité — Mêlée'
     },
     quiz: {
       description:
         'Des milliers de questions sur neuf thèmes, en français et en anglais, auxquelles toute la salle répond en même temps depuis son écran. Scannez le QR code et jouez — sans installation, sans compte.',
-      title: 'Quiz — Taverla'
+      title: 'Quiz — Mêlée'
     },
     reflex: {
       description:
         "L'écran change de couleur, le plus rapide gagne. Chaque appareil programme le basculement sur sa propre horloge : la course mesure un réflexe, pas le Wi-Fi de la salle. Partir trop tôt coûte la manche.",
-      title: 'Réflexe — Taverla'
+      title: 'Réflexe — Mêlée'
     },
     slate: {
       description:
         "Des choses numérotées à deviner et une feuille de réponses privée sur chaque écran. Personne ne copie la voix la plus forte ; l'hôte corrige les copies numéro par numéro sur le grand écran.",
-      title: "L'Ardoise — Taverla"
+      title: "L'Ardoise — Mêlée"
     }
   }
 }
@@ -121,8 +121,8 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
  * string this stage would have left behind.
  */
 export const IMAGE_ALTS: Record<Locale, string> = {
-  en: "The Taverla wordmark on the lobby's burnt-orange field.",
-  fr: 'Le nom Taverla sur un fond orange brûlé.'
+  en: "The Mêlée wordmark on the lobby's burnt-orange field.",
+  fr: 'Le nom Mêlée sur un fond orange brûlé.'
 }
 
 /**

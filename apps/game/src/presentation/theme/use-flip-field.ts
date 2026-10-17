@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import {
   type ClockEstimate,
   millisecondsUntil
-} from '@taverla/core/time/clock-sync'
+} from '@melee/core/time/clock-sync'
 
 import { nowMs } from '@/infrastructure/clock'
 

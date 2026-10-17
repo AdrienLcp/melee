@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { type TrackDifficulty, trackDecades } from '@taverla/protocol/track'
+import { type TrackDifficulty, trackDecades } from '@melee/protocol/track'
 
 import { fetchTracksFor } from './deezer-client'
 import { isOutage } from './music-source'

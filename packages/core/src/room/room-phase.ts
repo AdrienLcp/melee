@@ -1,4 +1,4 @@
-import type { RoomPhase } from '@taverla/protocol/room'
+import type { RoomPhase } from '@melee/protocol/room'
 
 const PHASES_WITH_A_ROUND_IN_PLAY = new Set<RoomPhase>([
   'countdown',

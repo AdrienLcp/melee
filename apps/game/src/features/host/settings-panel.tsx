@@ -1,27 +1,27 @@
 import type React from 'react'
 
-import type { QuizSettings } from '@taverla/protocol/game'
+import type { QuizSettings } from '@melee/protocol/game'
 import {
   type QuestionCategory,
   type QuestionLanguage,
   questionCategories,
   questionLanguages
-} from '@taverla/protocol/question'
+} from '@melee/protocol/question'
 import {
   type AnswerMode,
   answerModes,
   DEFAULT_MODE_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
-import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@taverla/protocol/slate'
+} from '@melee/protocol/room'
+import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@melee/protocol/slate'
 import {
   type TrackDifficulty,
   type TrackSource,
   trackDifficulties
-} from '@taverla/protocol/track'
+} from '@melee/protocol/track'
 
-import { hasAdultContent } from '@taverla/core/quiz/adult-content'
-import { answerModesFor } from '@taverla/core/room/game-modes'
+import { hasAdultContent } from '@melee/core/quiz/adult-content'
+import { answerModesFor } from '@melee/core/room/game-modes'
 
 import { NumberField } from '@/presentation/components/number-field'
 import { SegmentedControl } from '@/presentation/components/segmented-control'

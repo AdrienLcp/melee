@@ -2,7 +2,7 @@ import { useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
 import { useEffect, useEffectEvent } from 'react'
 
-import type { RoomCode } from '@taverla/protocol/identifiers'
+import type { RoomCode } from '@melee/protocol/identifiers'
 
 import { JoinReminder } from '@/features/host/join-reminder'
 import { RoomStage } from '@/features/host/room-stage'

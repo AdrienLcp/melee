@@ -25,7 +25,7 @@
   "migrations": [
     { "new_sqlite_classes": ["RoomObject", "WallPairingObject"], "tag": "v1" }
   ],
-  "name": "taverla",
+  "name": "melee",
   "observability": { "enabled": true },
   "ratelimits": [
     {
@@ -36,7 +36,7 @@
   ],
   // Declared here so a deploy keeps the custom domain attached rather than
   // detaching what was set up outside this file.
-  "routes": [{ "custom_domain": true, "pattern": "taverla.adrienlcp.com" }],
+  "routes": [{ "custom_domain": true, "pattern": "melee.adrienlcp.com" }],
   // The workers.dev address was never shared: the game is only served at its
   // own domain.
   "workers_dev": false

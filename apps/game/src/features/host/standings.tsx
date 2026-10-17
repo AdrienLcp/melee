@@ -1,8 +1,8 @@
 import type React from 'react'
 import { useId } from 'react'
 
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { PublicPlayer } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer } from '@melee/protocol/room'
 
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'

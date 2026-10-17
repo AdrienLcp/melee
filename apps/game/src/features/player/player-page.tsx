@@ -3,12 +3,9 @@ import type React from 'react'
 import { type FormEvent, useCallback, useEffect, useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
-import {
-  NICKNAME_MAX_LENGTH,
-  type RoomCode
-} from '@taverla/protocol/identifiers'
-import type { PlayerRoomView } from '@taverla/protocol/room'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
+import type { PlayerRoomView } from '@melee/protocol/room'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { slateContent } from '@/helpers/round-content'

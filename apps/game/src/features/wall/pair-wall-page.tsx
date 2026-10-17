@@ -1,9 +1,9 @@
 import type React from 'react'
 import { useState } from 'react'
 
-import type { RoomCode } from '@taverla/protocol/identifiers'
+import type { RoomCode } from '@melee/protocol/identifiers'
 
-import { pairWall } from '@/infrastructure/api/taverla-api'
+import { pairWall } from '@/infrastructure/api/melee-api'
 import {
   homePathFor,
   hostPathFor,

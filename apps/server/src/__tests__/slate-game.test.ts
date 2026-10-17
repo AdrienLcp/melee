@@ -1,16 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_SLATE_SETTINGS } from '@taverla/protocol/game'
+import { DEFAULT_SLATE_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
-} from '@taverla/protocol/room'
-import { POINT } from '@taverla/protocol/scoring'
+} from '@melee/protocol/room'
+import { POINT } from '@melee/protocol/scoring'
 import type {
   HostServerMessage,
   PlayerServerMessage
-} from '@taverla/protocol/server-message'
+} from '@melee/protocol/server-message'
 
 import { startRoomHarness } from './node-room-harness'
 import {

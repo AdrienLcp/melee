@@ -1,4 +1,4 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
+import type { PlayerId } from '@melee/protocol/identifiers'
 
 import { reactionMsOf } from './reaction'
 

@@ -8,8 +8,8 @@ import react from '@vitejs/plugin-react'
 import fontaine from 'fontaine/postcss'
 import { defineConfig } from 'vite'
 
-import { DEFAULT_LOCALE } from '@taverla/protocol/locale'
-import { API_PREFIX, SOCKET_PREFIX } from '@taverla/protocol/routes'
+import { DEFAULT_LOCALE } from '@melee/protocol/locale'
+import { API_PREFIX, SOCKET_PREFIX } from '@melee/protocol/routes'
 
 import {
   IMAGE_ALTS,

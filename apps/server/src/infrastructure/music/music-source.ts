@@ -1,4 +1,4 @@
-import type { CatalogueTrack } from '@taverla/protocol/http'
+import type { CatalogueTrack } from '@melee/protocol/http'
 
 /**
  * The music catalogue's failure vocabulary, apart from the client that speaks

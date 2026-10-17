@@ -1,12 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_BUZZER_SETTINGS } from '@taverla/protocol/game'
-import {
-  DEFAULT_MODE_SETTINGS,
-  type RoomSettings
-} from '@taverla/protocol/room'
-import { hostServerMessageSchema } from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
+import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
+import { hostServerMessageSchema } from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
 import {

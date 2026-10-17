@@ -3,16 +3,16 @@ import { nanoid } from 'nanoid'
 import {
   WALL_PAIRING_CODE_LENGTH,
   type WallPairingCode
-} from '@taverla/protocol/http'
+} from '@melee/protocol/http'
 import {
   type HostToken,
   type PlayerId,
   ROOM_CODE_ALPHABET,
   type RoundId
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
-import { generateHostToken } from '@taverla/core/room/host-token'
-import { generateCode, secureRandomIndex } from '@taverla/core/room/random-code'
+import { generateHostToken } from '@melee/core/room/host-token'
+import { generateCode, secureRandomIndex } from '@melee/core/room/random-code'
 
 const PLAYER_ID_LENGTH = 12
 const ROUND_ID_LENGTH = 10

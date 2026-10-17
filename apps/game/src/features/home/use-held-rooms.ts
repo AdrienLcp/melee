@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 
-import type { HeldRoom } from '@taverla/core/room/session-memory'
+import type { HeldRoom } from '@melee/core/room/session-memory'
 
-import { roomExists } from '@/infrastructure/api/taverla-api'
+import { roomExists } from '@/infrastructure/api/melee-api'
 import {
   forgetRoom,
   readHeldRooms

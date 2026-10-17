@@ -1,4 +1,4 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
+import type { PlayerId } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
   HostRoundContent,
@@ -8,19 +8,19 @@ import type {
   RoundView,
   WallRoomView,
   WallRoundContent
-} from '@taverla/protocol/room'
-import type { SlateLine } from '@taverla/protocol/slate'
-import type { HostTrack, TrackIdentity } from '@taverla/protocol/track'
+} from '@melee/protocol/room'
+import type { SlateLine } from '@melee/protocol/slate'
+import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
-import { hasJoinedAfterStart } from '@taverla/core/round/round-roster'
-import { pointsFor } from '@taverla/core/scoring/verdict'
+import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
+import { pointsFor } from '@melee/core/scoring/verdict'
 import {
   filledCountsPerItem,
   filledLineCount,
   itemVerdictFor,
   lineVerdict,
   slateItemStateOf
-} from '@taverla/core/slate/sheet-marking'
+} from '@melee/core/slate/sheet-marking'
 
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'

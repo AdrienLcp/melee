@@ -1,8 +1,8 @@
 import type React from 'react'
 
-import type { PublicPlayer, RoundView } from '@taverla/protocol/room'
+import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import { cueOf, whatTheRoomNames } from '@taverla/core/blindtest/typed-answer'
+import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import {

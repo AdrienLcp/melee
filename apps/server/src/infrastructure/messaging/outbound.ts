@@ -1,14 +1,14 @@
-import { encodeChecked } from '@taverla/protocol/codec'
-import type { ProtocolErrorCode } from '@taverla/protocol/error-code'
-import type { SessionId } from '@taverla/protocol/identifiers'
+import { encodeChecked } from '@melee/protocol/codec'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import type { SessionId } from '@melee/protocol/identifiers'
 import {
   hostServerMessageSchema,
   playerServerMessageSchema,
   protocolErrorMessageSchema,
   timePongMessageSchema,
   wallServerMessageSchema
-} from '@taverla/protocol/server-message'
-import { PROTOCOL_VERSION } from '@taverla/protocol/version'
+} from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import type { Room } from '@/domain/room/room'
 import { toHostView, toPlayerView, toWallView } from '@/domain/room/room-view'

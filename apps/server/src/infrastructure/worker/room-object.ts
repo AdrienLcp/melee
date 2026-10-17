@@ -1,15 +1,15 @@
 import { DurableObject } from 'cloudflare:workers'
 import { z } from 'zod'
 
-import type { GameKind } from '@taverla/protocol/game'
-import type { CreateRoomResponse } from '@taverla/protocol/http'
+import type { GameKind } from '@melee/protocol/game'
+import type { CreateRoomResponse } from '@melee/protocol/http'
 import {
   type HostToken,
   playerIdSchema,
   type RoomCode,
   sessionIdSchema
-} from '@taverla/protocol/identifiers'
-import type { Locale } from '@taverla/protocol/locale'
+} from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'

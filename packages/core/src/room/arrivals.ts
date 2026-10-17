@@ -1,5 +1,5 @@
-import type { PlayerId } from '@taverla/protocol/identifiers'
-import type { PublicPlayer } from '@taverla/protocol/room'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer } from '@melee/protocol/room'
 
 /**
  * Who sat down between two snapshots of the roster. The first snapshot a

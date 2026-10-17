@@ -93,7 +93,7 @@ on the shelf inherits it.
 
 - One room, a four-character code from an alphabet with no confusable glyphs,
   up to 24 players. Each room is a Cloudflare Durable Object and survives a
-  deploy; the app is served from `taverla.adrienlcp.com`.
+  deploy; the app is served from `melee.adrienlcp.com`.
 - **Five games**, each owning its name and its translation prefix:
   - **Blind test** — a 30-second Deezer preview on the room's speaker; players
     name title and artist, or the film for a score cue. Sources: genre charts,
@@ -126,11 +126,13 @@ on the shelf inherits it.
 
 - **Each game keeps its own name** — Blind test, Quiz, Buzzer, Reflex, Slate —
   across every answer mode it offers.
-- **The product that hosts the games is called `Taverla`.** From *taverne* /
-  *tavern*, a word both languages already own, and the place people have always
-  gathered to play. `taverla.com` and `taverla.fr` were free as of 2026-08-09;
-  nothing records them as registered since. Known noise, judged not to be a
-  conflict: a small Mexican candle maker ("Velas Taverla") and a surname.
+- **The product that hosts the games is called `Melee`** — *Mêlée* on screen,
+  `melee` in code, URLs and storage. Renamed from *Taverla* on 2026-10-17, when
+  the shelf became a team evening: a *mêlée* is the crowd scrum both languages
+  already own, rugby's and a brawl's, which is what a room of teams racing for
+  the floor looks like. It is an existing word, against the constraint below
+  that prefers a coined one, and was chosen anyway because the evening is the
+  product now. Served from `melee.adrienlcp.com`; the old host redirects.
 
   The product name lives where the shelf is addressed rather than where a game
   is played: the wordmark on the home page, the document title, and what a
@@ -162,7 +164,7 @@ on the shelf inherits it.
   on the domain rule: *Verko*, *Rondi*, *Kelvo*, *Odalo*, *Ferio* — all five
   clear the name search, none has a free `.com`.
 
-  Rejected as an unprotectable common noun: *La Taverne* — hundreds of French
+  Rejected before Taverla as an unprotectable common noun: *La Taverne* — hundreds of French
   bars carry it, its `.com` and `.fr` are both taken, and a descriptive phrase
   is close to impossible to defend or to rank for.
 - The tone must work with a grandparent and a drunk friend in the same room, so

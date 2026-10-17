@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import {
   ROOM_CODE_ALPHABET,
   ROOM_CODE_LENGTH
-} from '@taverla/protocol/identifiers'
+} from '@melee/protocol/identifiers'
 
 import {
   generateRoomCode,

@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { RoomSettings } from '@taverla/protocol/room'
+import type { RoomSettings } from '@melee/protocol/room'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { shelvedGames } from '@taverla/protocol/game'
+import { shelvedGames } from '@melee/protocol/game'
 
 import { roomSettingsFor } from './room-settings'
 import { settingsSummary } from './settings-summary'

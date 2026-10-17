@@ -1,5 +1,5 @@
-import type { RoomSettings } from '@taverla/protocol/room'
-import { slateItemLabel } from '@taverla/protocol/slate'
+import type { RoomSettings } from '@melee/protocol/room'
+import { slateItemLabel } from '@melee/protocol/slate'
 
 const graphemes = new Intl.Segmenter(undefined, { granularity: 'grapheme' })
 
