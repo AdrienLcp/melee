@@ -221,6 +221,10 @@ const openEveryGroup = async (page: Page): Promise<void> => {
 test('[layout] no strip on the console ever holds rows of two different lengths', async ({
   page
 }) => {
+  // The sweep is every game, in both locales, at every width: it grows with
+  // the shelf, and a loaded machine ran the seventh game past 60 s.
+  test.slow()
+
   const collapsed: string[] = []
   const faults: string[] = []
   const measured = new Set<string>()
