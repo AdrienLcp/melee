@@ -412,7 +412,7 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
 
   return (
     <>
-      <ScoreTrack players={view.players} youId={null} />
+      <ScoreTrack players={view.players} teams={view.teams} youId={null} />
       <div
         className='stage slate-correcting'
         style={{
@@ -535,7 +535,7 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
           )}
         </section>
 
-        <Standings players={view.players} youId={null} />
+        <Standings players={view.players} teams={view.teams} youId={null} />
       </div>
     </>
   )

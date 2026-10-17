@@ -1,0 +1,114 @@
+@use '../styles/typography'
+@use '../styles/text-box'
+
+@layer components
+  // A tray per team, dealt as many abreast as the box holds: three teams of
+  // four on a wall read across, the same three on a phone read down.
+  .team-roster
+    align-content: start
+    display: grid
+    gap: var(--space-s)
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr))
+    list-style: none
+    min-width: 0
+
+  // The team's colour is the band printed across the top of its tray, the way
+  // a game's colour bands its lid — a pawn colour is never a ground text sits on.
+  .team-roster .team
+    align-content: start
+    background: var(--track-b)
+    border-radius: var(--radius-m)
+    box-shadow: inset 0 0.5rem 0 var(--team, var(--socket-line)), 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
+    display: grid
+    gap: var(--space-xs)
+    min-width: 0
+    padding: calc(0.5rem + var(--space-xs)) var(--space-s) var(--space-s)
+
+    &.yours
+      box-shadow: inset 0 0.5rem 0 var(--team), inset 0 0 0 var(--stroke-bold) var(--ink), 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
+
+    // Seats nobody has dealt yet sit in a recess, not a tray: they are the
+    // pieces still waiting to be put somewhere.
+    &.unassigned
+      background: var(--socket)
+      box-shadow: var(--shadow-recess-shallow), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      grid-column: 1 / -1
+      padding-block-start: var(--space-s)
+
+  .team-roster .team-head
+    align-items: center
+    display: flex
+    gap: var(--space-xs)
+    min-width: 0
+
+    > .pawn
+      font-size: clamp(1.5rem, calc(var(--stage-unit) * 3.4), 2rem)
+
+    .rank
+      @include typography.numeric
+      @include text-box.trimmed-figure
+
+      color: var(--ink-muted)
+      font-size: clamp(1.25rem, calc(var(--stage-unit) * 3), 1.75rem)
+
+    .score
+      @include typography.score
+      @include text-box.trimmed-figure
+
+      font-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 3rem)
+      margin-inline-start: auto
+
+    // A name the host typed can be long: it gives way before the score does.
+    .team-name
+      @include typography.title
+
+      flex: 1
+      font-size: clamp(1.25rem, calc(var(--stage-unit) * 3.2), 2rem)
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+  .team-roster .empty
+    @include typography.caption
+
+    color: var(--ink-muted)
+
+  .team-roster .members
+    display: flex
+    flex-wrap: wrap
+    gap: var(--space-2xs) var(--space-xs)
+    list-style: none
+    min-width: 0
+
+  .team-roster .member
+    @include typography.title
+
+    align-items: center
+    background: var(--track-a)
+    border-radius: var(--radius-s)
+    box-shadow: 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
+    display: flex
+    font-size: clamp(1rem, calc(var(--stage-unit) * 2.2), 1.25rem)
+    gap: var(--space-2xs)
+    max-width: 100%
+    min-height: 2.25rem
+    padding: var(--space-2xs) var(--space-xs)
+
+    .name
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .state
+      @include typography.label
+
+      color: var(--ink-muted)
+      flex: none
+
+    &.you
+      box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+
+    &.away .name
+      color: var(--ink-muted)

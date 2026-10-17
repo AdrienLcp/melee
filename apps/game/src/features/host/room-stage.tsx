@@ -253,13 +253,13 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       // screen the three formulas below are dividing, so they have to know
       // whether it is there.
       <>
-        <ScoreTrack players={view.players} youId={youId} />
+        <ScoreTrack players={view.players} teams={view.teams} youId={youId} />
         <div
           className={classNames('stage revealed', hold !== null && 'holding')}
           style={{ '--standings-rows': view.players.length }}
         >
           <RevealPanel players={view.players} round={round} />
-          <Standings players={view.players} youId={youId} />
+          <Standings players={view.players} teams={view.teams} youId={youId} />
           {hold !== null && <RevealHold clock={clock} {...hold} />}
         </div>
       </>
@@ -269,7 +269,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   if (view.phase === 'finished') {
     return (
       <div className='stage finished'>
-        <FinalBoard players={view.players} youId={youId} />
+        <FinalBoard players={view.players} teams={view.teams} youId={youId} />
       </div>
     )
   }

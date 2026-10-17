@@ -39,9 +39,22 @@
       user-select: text
       white-space: nowrap
 
-    .name
+    .name,
+    .team
       overflow: hidden
       text-overflow: ellipsis
+
+    .team
+      @include typography.label
+
+      color: var(--ink-muted)
+      white-space: nowrap
+
+    // Mid-round the line also holds the round and the score, and on a phone
+    // the pawn's colour says the team alone; the lobby is where it is spelled.
+    @container (width < 26rem)
+      .round-index ~ .you .team
+        display: none
 
     .pips
       display: flex

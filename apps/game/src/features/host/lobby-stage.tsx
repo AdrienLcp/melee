@@ -5,10 +5,13 @@ import type { HostRoomView } from '@melee/protocol/room'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
+import { dealTeams } from '@melee/core/team/team-draw'
 
+import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { TeamRoster } from '@/presentation/components/team-roster'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import {
   gameDescriptionKey,
@@ -18,8 +21,11 @@ import {
 
 import { GamePicker } from './game-picker'
 import { HostSeat } from './host-seat'
+import { MoveSeat } from './move-seat'
+import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
 import { SlatePreparation } from './slate-preparation'
+import { TeamsSetup } from './teams-setup'
 
 /** As many pawns as a box holds: the roster shows an empty socket for each one still in it. */
 type LobbyStageProps = {
@@ -85,8 +91,17 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           <h2>
             {translate('host.players.title')} {view.players.length}
           </h2>
+          {controls !== null && (
+            <TeamsSetup
+              isDisabled={!controls.isLive}
+              onChange={controls.onSettingsChange}
+              settings={view.settings}
+            />
+          )}
           {view.players.length === 0 ? (
             <p className='empty'>{translate('host.players.empty')}</p>
+          ) : view.teams.length > 0 ? (
+            <LobbyTeams controls={controls} view={view} youId={youId} />
           ) : (
             <Scoreboard
               hasPawns
@@ -95,7 +110,9 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               youId={youId}
             />
           )}
-          <EmptySockets seated={view.players.length} />
+          {view.teams.length === 0 && (
+            <EmptySockets seated={view.players.length} />
+          )}
 
           {/*
             Inside the count rather than beside it, because taking a seat is
@@ -115,6 +132,87 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
         </section>
       </div>
     </div>
+  )
+}
+
+/**
+ * The roster dealt into its teams. The console deals them — the draw is a
+ * shuffle on this screen, checked by the server — names them and moves a seat
+ * between them; the wall shows the same trays and touches nothing.
+ */
+const LobbyTeams: React.FC<{
+  controls: StageControls | null
+  view: HostRoomView
+  youId: PlayerId | null
+}> = ({ controls, view, youId }) => {
+  const translate = useTranslate()
+  const teams = view.settings.teams
+  const isDrawn = teams.kind === 'drawn'
+  const hasDealt = view.teams.some((team) => team.seatIds.length > 0)
+
+  return (
+    <>
+      {controls !== null && isDrawn && (
+        <Button
+          className='draw-teams'
+          isDisabled={!controls.isLive}
+          onPress={() => {
+            controls.send({
+              assignment: dealTeams({
+                count: teams.count,
+                seatIds: view.players.map((player) => player.id)
+              }),
+              type: 'host.drawTeams'
+            })
+          }}
+          variant={hasDealt ? 'outlined' : 'filled'}
+        >
+          {translate(hasDealt ? 'team.redraw' : 'team.draw')}
+        </Button>
+      )}
+      <TeamRoster
+        label={translate('team.title')}
+        players={view.players}
+        seatAction={
+          controls === null
+            ? undefined
+            : (player) => (
+                <MoveSeat
+                  onMove={(teamId) => {
+                    controls.send({
+                      playerId: player.id,
+                      teamId,
+                      type: 'host.moveSeat'
+                    })
+                  }}
+                  player={player}
+                  teams={view.teams}
+                />
+              )
+        }
+        teamAction={
+          controls === null
+            ? undefined
+            : (team) => (
+                <RenameTeam
+                  onRename={(name) => {
+                    controls.send({
+                      name,
+                      teamId: team.id,
+                      type: 'host.renameTeam'
+                    })
+                  }}
+                  team={team}
+                />
+              )
+        }
+        teams={view.teams}
+        unassignedLabel={translate(
+          isDrawn ? 'team.unassigned.drawn' : 'team.unassigned.chosen'
+        )}
+        youId={youId}
+      />
+    </>
   )
 }
 

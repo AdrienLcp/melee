@@ -9,6 +9,7 @@ import type {
   RoomPhase,
   RoundView
 } from '@melee/protocol/room'
+import type { TeamId } from '@melee/protocol/team'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
@@ -28,6 +29,7 @@ import {
 
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
 import { RoundBoard } from '@/features/player/round-board'
 import { RoundClock } from '@/features/player/round-clock'
@@ -78,6 +80,8 @@ type PlayerRoundProps = {
   onAnswer: (answer: PlayerAnswer, roundId: string) => boolean
   /** `false` from the socket means the frame was never written. */
   onBuzz: (roundId: string) => boolean
+  /** `false` from the socket means the frame was never written. */
+  onChooseTeam: (teamId: TeamId) => boolean
   /** `false` from the socket means the frame was never written. */
   onWriteLine: (itemIndex: number, answer: string, roundId: string) => boolean
   view: PlayerRoomView
@@ -154,6 +158,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   clock,
   onAnswer,
   onBuzz,
+  onChooseTeam,
   onWriteLine,
   view
 }) => {
@@ -218,13 +223,19 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             container query can only read from an ancestor. */}
         <div className='table'>
           <div className='seats'>
-            <Scoreboard
-              hasPawns
-              label={translate('player.table')}
-              players={view.players}
-              youId={view.youId}
-            />
-            <EmptySockets seated={view.players.length} />
+            {view.teams.length > 0 ? (
+              <LobbyTeams onChooseTeam={onChooseTeam} view={view} />
+            ) : (
+              <>
+                <Scoreboard
+                  hasPawns
+                  label={translate('player.table')}
+                  players={view.players}
+                  youId={view.youId}
+                />
+                <EmptySockets seated={view.players.length} />
+              </>
+            )}
           </div>
         </div>
       </section>
@@ -266,13 +277,19 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   if (view.phase === 'finished') {
     return (
       <section className='player-round finished'>
-        <YourPlacing view={view} />
-        <Scoreboard
-          hasPawns
-          isResult
-          players={view.players}
-          youId={view.youId}
-        />
+        {view.teams.length > 0 ? (
+          <TeamFinish view={view} />
+        ) : (
+          <>
+            <YourPlacing view={view} />
+            <Scoreboard
+              hasPawns
+              isResult
+              players={view.players}
+              youId={view.youId}
+            />
+          </>
+        )}
       </section>
     )
   }

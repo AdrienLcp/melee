@@ -122,3 +122,21 @@ export const gameTaglineKey = (
 export const gameDescriptionKey = (
   game: ShelvedGame
 ): BuiltKey<`${ShelvedGame}.home.description`> => `${game}.home.description`
+
+const TEAM_COLOUR_KEYS = [
+  'team.colour.pawn1',
+  'team.colour.pawn2',
+  'team.colour.pawn3',
+  'team.colour.pawn4',
+  'team.colour.pawn5',
+  'team.colour.pawn6',
+  'team.colour.pawn7',
+  'team.colour.pawn8'
+] as const satisfies readonly PlainTranslationKey[]
+
+/** What a team is called before the host names it, from its 1-based pawn number. */
+export const teamColourKey = (
+  colour: number
+): (typeof TEAM_COLOUR_KEYS)[number] =>
+  TEAM_COLOUR_KEYS[(colour - 1) % TEAM_COLOUR_KEYS.length] ??
+  'team.colour.pawn1'

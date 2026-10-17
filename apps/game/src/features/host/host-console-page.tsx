@@ -78,7 +78,9 @@ import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
 
 import './host-console-page.sass'
+
 import { Main } from '@/presentation/components/main'
+import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
 /** Where a press to play right away is: waiting for its seat, or for its first round. */
 type RightAwayStart = 'idle' | 'seating' | 'starting'
@@ -398,46 +400,53 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     const roundDurationMs = choosing.round.durationMs
 
     return (
-      <Main className='host-console-page framed'>
-        <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
-        <RoundChrome
-          invitation={<InvitePiece roomCode={roomCode} />}
-          notice={<ArrivalNotice arrival={arrival} />}
-          players={view.players}
-          roundCount={view.settings.roundCount}
-          roundIndex={choosing.round.index}
-          youId={choosing.youId}
-        />
-        <div className='card-clock'>
-          {roundDurationMs !== null && (
-            <RoundProgress
-              durationMs={roundDurationMs}
-              elapsedMs={view.roundElapsedMs}
-            />
-          )}
-        </div>
-        <ChoosingRound
-          onAnswer={(answer) =>
-            send({ answer, roundId: choosing.round.id, type: 'player.answer' })
-          }
-          round={choosing.round}
-          youId={choosing.youId}
-        />
-        <div className='notice'>
-          {error !== null && (
-            <p className='error' role='alert'>
-              {translate(protocolErrorKey(error.code))}
-            </p>
-          )}
-          <ClipOffer
-            canPlay={canPlay}
-            isSpeaker={isSpeaker}
-            onUnlockAudio={armAudio}
-            refusal={refusal}
-            view={view}
+      <PawnColoursProvider view={view}>
+        <Main className='host-console-page framed'>
+          <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
+          <RoundChrome
+            invitation={<InvitePiece roomCode={roomCode} />}
+            notice={<ArrivalNotice arrival={arrival} />}
+            players={view.players}
+            roundCount={view.settings.roundCount}
+            roundIndex={choosing.round.index}
+            teams={view.teams}
+            youId={choosing.youId}
           />
-        </div>
-      </Main>
+          <div className='card-clock'>
+            {roundDurationMs !== null && (
+              <RoundProgress
+                durationMs={roundDurationMs}
+                elapsedMs={view.roundElapsedMs}
+              />
+            )}
+          </div>
+          <ChoosingRound
+            onAnswer={(answer) =>
+              send({
+                answer,
+                roundId: choosing.round.id,
+                type: 'player.answer'
+              })
+            }
+            round={choosing.round}
+            youId={choosing.youId}
+          />
+          <div className='notice'>
+            {error !== null && (
+              <p className='error' role='alert'>
+                {translate(protocolErrorKey(error.code))}
+              </p>
+            )}
+            <ClipOffer
+              canPlay={canPlay}
+              isSpeaker={isSpeaker}
+              onUnlockAudio={armAudio}
+              refusal={refusal}
+              view={view}
+            />
+          </div>
+        </Main>
+      </PawnColoursProvider>
     )
   }
 
@@ -466,131 +475,133 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }
 
   return (
-    <Main className='host-console-page'>
-      <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
-      <header>
-        <ArrivalNotice arrival={arrival} />
-        {view?.round != null && view.phase !== 'finished' && (
-          <p className='round-index'>
-            {view.settings.roundCount === null
-              ? translate('round.indexOpen', { index: view.round.index })
-              : translate('round.index', {
-                  index: view.round.index,
-                  total: view.settings.roundCount
-                })}
-          </p>
-        )}
-        {/*
-        The lobby is the one phase that excludes it, because the invitation
-        is already the stage's larger half there. `finished` used to be
-        excluded too and that was backwards: the final board is precisely
-        when somebody says *one more, I'll call Marc*, and the room
-        still answers.
-      */}
-        {view !== null && view.phase !== 'lobby' && (
-          <JoinReminder roomCode={roomCode} />
-        )}
-      </header>
+    <PawnColoursProvider view={view}>
+      <Main className='host-console-page'>
+        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <header>
+          <ArrivalNotice arrival={arrival} />
+          {view?.round != null && view.phase !== 'finished' && (
+            <p className='round-index'>
+              {view.settings.roundCount === null
+                ? translate('round.indexOpen', { index: view.round.index })
+                : translate('round.index', {
+                    index: view.round.index,
+                    total: view.settings.roundCount
+                  })}
+            </p>
+          )}
+          {/*
+          The lobby is the one phase that excludes it, because the invitation
+          is already the stage's larger half there. `finished` used to be
+          excluded too and that was backwards: the final board is precisely
+          when somebody says *one more, I'll call Marc*, and the room
+          still answers.
+        */}
+          {view !== null && view.phase !== 'lobby' && (
+            <JoinReminder roomCode={roomCode} />
+          )}
+        </header>
 
-      <RoomStage
-        canPlay={canPlay}
-        clock={clock}
-        controls={controls}
-        isSpeaker={isSpeaker}
-        onUnlockAudio={armAudio}
-        refusal={refusal}
-        roomCode={roomCode}
-        slateWall={slateWall}
-        view={view}
-      />
+        <RoomStage
+          canPlay={canPlay}
+          clock={clock}
+          controls={controls}
+          isSpeaker={isSpeaker}
+          onUnlockAudio={armAudio}
+          refusal={refusal}
+          roomCode={roomCode}
+          slateWall={slateWall}
+          view={view}
+        />
 
-      <footer>
-        {error !== null && (
-          <p className='error' role='alert'>
-            {translate(protocolErrorKey(error.code))}
-          </p>
-        )}
-        {view !== null && (
-          <>
-            <HostActions
-              draftSource={draftSource}
-              isLive={isLive}
-              onOpenRound={() => {
-                // Inside the press, never in an effect: the autoplay policy
-                // grants permission only from a real gesture, and it cannot be
-                // asked for later when the track arrives.
-                armAudio()
+        <footer>
+          {error !== null && (
+            <p className='error' role='alert'>
+              {translate(protocolErrorKey(error.code))}
+            </p>
+          )}
+          {view !== null && (
+            <>
+              <HostActions
+                draftSource={draftSource}
+                isLive={isLive}
+                onOpenRound={() => {
+                  // Inside the press, never in an effect: the autoplay policy
+                  // grants permission only from a real gesture, and it cannot be
+                  // asked for later when the track arrives.
+                  armAudio()
 
-                // What the picker is showing is what the host chose, and a
-                // round about to be drawn is the moment that means something —
-                // which is why every control that opens one comes through here
-                // rather than the launch alone. Re-sending an unchanged source
-                // is free: the server drops the pool only when it differs.
-                const game = view.settings.game
+                  // What the picker is showing is what the host chose, and a
+                  // round about to be drawn is the moment that means something —
+                  // which is why every control that opens one comes through here
+                  // rather than the launch alone. Re-sending an unchanged source
+                  // is free: the server drops the pool only when it differs.
+                  const game = view.settings.game
 
-                if (draftSource !== null && game?.kind === 'blindtest') {
-                  changeSettings({
-                    ...view.settings,
-                    game: { ...game, source: draftSource }
-                  })
-                }
-              }}
-              onPlayRightAway={playRightAway}
-              send={send}
-              slateKeys={preparedSlateKeys}
-              slateWall={slateWall}
-              view={view}
-            />
-            {/*
-            `finished` is not a phase of a game, it is the result of one, and
-            both of these act on a game in flight: how long a reveal is held
-            before the room is moved on, and the settings the next round is
-            built from. Neither has anything on this screen to act on, and
-            both are behind the button beside them — *back to the table* lands
-            on the lobby, whose stage is the picker, the roster and the seat,
-            with the rest folded under it.
+                  if (draftSource !== null && game?.kind === 'blindtest') {
+                    changeSettings({
+                      ...view.settings,
+                      game: { ...game, source: draftSource }
+                    })
+                  }
+                }}
+                onPlayRightAway={playRightAway}
+                send={send}
+                slateKeys={preparedSlateKeys}
+                slateWall={slateWall}
+                view={view}
+              />
+              {/*
+              `finished` is not a phase of a game, it is the result of one, and
+              both of these act on a game in flight: how long a reveal is held
+              before the room is moved on, and the settings the next round is
+              built from. Neither has anything on this screen to act on, and
+              both are behind the button beside them — *back to the table* lands
+              on the lobby, whose stage is the picker, the roster and the seat,
+              with the rest folded under it.
 
-            They cost 158px of a 302px footer, which is what the final board
-            was overflowing by: nine players on a 1280×800 put the replay
-            half under the fold and the way back entirely below it.
-          */}
-            {view.phase !== 'finished' && (
-              <>
-                {/*
-                  The reveal's alone, because the reveal is what it holds:
-                  under a round in play it was a row of a screen the question
-                  and its four tiles could not spare, for a choice the reveal
-                  puts back in reach the moment it applies.
-                */}
-                {view.phase === 'revealed' &&
-                  view.settings.game?.kind !== 'slate' && (
-                    <AutoAdvanceChoice
-                      isLive={isLive}
-                      onSettingsChange={changeSettings}
-                      settings={view.settings}
-                    />
-                  )}
-                <SetupFold {...setupProps(view)} />
-                {/*
-                  The fold and the strip above it, on a console held in a hand
-                  whose stage is held to the screen: the stylesheet draws one
-                  or the other, and this leaflet is what keeps the hold, the
-                  settings and the slate's key reachable mid-game there.
-                */}
-                <SetupPopover>
-                  {view.phase === 'playing' &&
-                    view.round?.content.kind === 'slate' &&
-                    !slateWall.isOnWall && (
-                      <SlateEditors controls={controls} view={view} />
+              They cost 158px of a 302px footer, which is what the final board
+              was overflowing by: nine players on a 1280×800 put the replay
+              half under the fold and the way back entirely below it.
+            */}
+              {view.phase !== 'finished' && (
+                <>
+                  {/*
+                    The reveal's alone, because the reveal is what it holds:
+                    under a round in play it was a row of a screen the question
+                    and its four tiles could not spare, for a choice the reveal
+                    puts back in reach the moment it applies.
+                  */}
+                  {view.phase === 'revealed' &&
+                    view.settings.game?.kind !== 'slate' && (
+                      <AutoAdvanceChoice
+                        isLive={isLive}
+                        onSettingsChange={changeSettings}
+                        settings={view.settings}
+                      />
                     )}
-                  <SetupFields {...setupProps(view)} />
-                </SetupPopover>
-              </>
-            )}
-          </>
-        )}
-      </footer>
-    </Main>
+                  <SetupFold {...setupProps(view)} />
+                  {/*
+                    The fold and the strip above it, on a console held in a hand
+                    whose stage is held to the screen: the stylesheet draws one
+                    or the other, and this leaflet is what keeps the hold, the
+                    settings and the slate's key reachable mid-game there.
+                  */}
+                  <SetupPopover>
+                    {view.phase === 'playing' &&
+                      view.round?.content.kind === 'slate' &&
+                      !slateWall.isOnWall && (
+                        <SlateEditors controls={controls} view={view} />
+                      )}
+                    <SetupFields {...setupProps(view)} />
+                  </SetupPopover>
+                </>
+              )}
+            </>
+          )}
+        </footer>
+      </Main>
+    </PawnColoursProvider>
   )
 }
 

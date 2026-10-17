@@ -636,6 +636,18 @@ seat in a keyline. `AnsweredPawns` on the console stands a pawn for an answer
 in and dashes one owed — *that*, never *what*. Removing a player is a ✕ named
 `Remove {nickname}`.
 
+### Teams (`TeamRoster`, `PawnColoursProvider`)
+A room playing in teams stands every seat's pawn in its team's colour, on every
+screen, through one provider per page; a team's own pawn is its 1-based
+`colour`. A team is a tray on `--track-b`, its colour a 0.5rem band printed
+across the top — never a ground text sits on — its pawn and name in the head
+(the host's name, or the screen's dictionary word for the colour), its seats as
+chips under it. Ranked, the head carries the rank and the score; the seat's own
+team takes the *yours* keyline. Seats no team holds yet sit in a recess. The
+score track, the standings and the final board rank teams in place of seats
+whenever there are any; the phone's chrome spells the team in the lobby and
+drops the word mid-round under 26rem, where the pawn says it.
+
 ### Tokens: countdown, floor, payout
 - **`Countdown`**: a round paper token; `--token-size` is the one dial, the
   numeral two thirds of it, and only the numeral re-keys, so each second strikes

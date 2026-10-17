@@ -1,0 +1,14 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .lobby-teams
+    display: grid
+    gap: var(--space-s)
+    min-width: 0
+
+    .pick
+      @include typography.title
+
+  .lobby-teams .team-head .join
+    flex: none
+    margin-inline-start: auto

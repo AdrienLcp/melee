@@ -35,7 +35,9 @@ import { PlayerRound } from './player-round'
 import { RoundClock } from './round-clock'
 
 import './player-page.sass'
+
 import { Main } from '@/presentation/components/main'
+import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
 export const PlayerPage: React.FC = () => {
   const roomCode = useRoomCodeParam()
@@ -231,64 +233,76 @@ const Lobby: React.FC<{
 
   if (view !== null && isFramed(view)) {
     return (
-      <Main className='player-page playing framed'>
-        <RoundChrome
-          players={view.players}
-          roundCount={view.settings.roundCount}
-          roundIndex={view.round?.index ?? 0}
-          youId={view.youId}
-        />
-        <div className='card-clock'>
-          <RoundClock clock={clock} view={view} />
-        </div>
-        <PlayerRound
-          clock={clock}
-          onAnswer={(answer, roundId) =>
-            send({ answer, roundId, type: 'player.answer' })
-          }
-          onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-          onWriteLine={(itemIndex, answer, roundId) =>
-            send({ answer, itemIndex, roundId, type: 'slate.write' })
-          }
-          view={view}
-        />
-      </Main>
-    )
-  }
-
-  return (
-    <Main className='player-page playing'>
-      {view === null ? (
-        <p className='waiting'>{translate('player.seating')}</p>
-      ) : (
-        <>
+      <PawnColoursProvider view={view}>
+        <Main className='player-page playing framed'>
           <RoundChrome
             players={view.players}
-            roomCode={roomCode}
             roundCount={view.settings.roundCount}
-            roundIndex={
-              view.round === null ||
-              view.phase === 'lobby' ||
-              view.phase === 'finished'
-                ? null
-                : view.round.index
-            }
+            roundIndex={view.round?.index ?? 0}
+            teams={view.teams}
             youId={view.youId}
           />
+          <div className='card-clock'>
+            <RoundClock clock={clock} view={view} />
+          </div>
           <PlayerRound
             clock={clock}
             onAnswer={(answer, roundId) =>
               send({ answer, roundId, type: 'player.answer' })
             }
             onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
+            onChooseTeam={(teamId) =>
+              send({ teamId, type: 'player.chooseTeam' })
+            }
             onWriteLine={(itemIndex, answer, roundId) =>
               send({ answer, itemIndex, roundId, type: 'slate.write' })
             }
             view={view}
           />
-        </>
-      )}
-    </Main>
+        </Main>
+      </PawnColoursProvider>
+    )
+  }
+
+  return (
+    <PawnColoursProvider view={view}>
+      <Main className='player-page playing'>
+        {view === null ? (
+          <p className='waiting'>{translate('player.seating')}</p>
+        ) : (
+          <>
+            <RoundChrome
+              players={view.players}
+              roomCode={roomCode}
+              roundCount={view.settings.roundCount}
+              roundIndex={
+                view.round === null ||
+                view.phase === 'lobby' ||
+                view.phase === 'finished'
+                  ? null
+                  : view.round.index
+              }
+              teams={view.teams}
+              youId={view.youId}
+            />
+            <PlayerRound
+              clock={clock}
+              onAnswer={(answer, roundId) =>
+                send({ answer, roundId, type: 'player.answer' })
+              }
+              onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
+              onChooseTeam={(teamId) =>
+                send({ teamId, type: 'player.chooseTeam' })
+              }
+              onWriteLine={(itemIndex, answer, roundId) =>
+                send({ answer, itemIndex, roundId, type: 'slate.write' })
+              }
+              view={view}
+            />
+          </>
+        )}
+      </Main>
+    </PawnColoursProvider>
   )
 }
 

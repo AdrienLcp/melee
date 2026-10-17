@@ -1,0 +1,22 @@
+@use '../../presentation/styles/strip'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .teams-setup
+    display: grid
+    gap: var(--space-s)
+    min-width: 0
+
+    // Four stamps, the French teams-only label the longest: one row while
+    // all four fit, two by two under it, one column where even two do not.
+    .teams-kind
+      @include strip.stacks-below(17rem)
+      @include strip.tiles-below(40rem, 2)
+
+    .team-count
+      @include strip.stacks-below(14rem)
+
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)

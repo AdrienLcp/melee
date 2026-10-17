@@ -758,6 +758,58 @@ export const FR_DICTIONARY = defineDictionary({
     yourAnswer: 'Tu as écrit',
     yourSheet: 'Toute ta feuille'
   },
+  team: {
+    colour: {
+      pawn1: 'Rouges',
+      pawn2: 'Bleus',
+      pawn3: 'Jaunes',
+      pawn4: 'Verts',
+      pawn5: 'Violets',
+      pawn6: 'Orange',
+      pawn7: 'Roses',
+      pawn8: 'Turquoise'
+    },
+    count: 'Combien d’équipes',
+    draw: 'Tirer les équipes',
+    empty: 'Personne pour l’instant',
+    final: {
+      wins: defineTranslation('{points:plural}', {
+        plural: {
+          points: {
+            one: 'victoire avec {?} point',
+            other: 'victoire avec {?} points'
+          }
+        }
+      })
+    },
+    join: 'Rejoindre',
+    move: {
+      label: 'Déplacer {nickname}',
+      to: 'Chez les {team}'
+    },
+    pick: 'Choisis ton équipe',
+    redraw: 'Nouveau tirage',
+    rename: {
+      action: 'Renommer les {team}',
+      label: 'Nom de l’équipe',
+      submit: 'Renommer'
+    },
+    setting: {
+      chosen: 'Au choix',
+      drawn: 'Tirées au sort',
+      label: 'Équipes',
+      off: 'Sans',
+      teamsOnly: 'Un écran par équipe',
+      teamsOnlyHint:
+        'Chaque équipe rejoint sur un seul écran, sous le nom de l’équipe.'
+    },
+    title: 'Les équipes',
+    unassigned: {
+      chosen: 'Pas encore d’équipe',
+      drawn: 'En attente du tirage'
+    },
+    yours: 'Ton équipe'
+  },
   wall: {
     door: {
       action: 'Afficher la partie ici',

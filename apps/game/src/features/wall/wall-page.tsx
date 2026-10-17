@@ -33,7 +33,9 @@ import { asRoomScreenView } from './wall-view'
 
 import '@/features/host/host-console-page.sass'
 import './wall-page.sass'
+
 import { Main } from '@/presentation/components/main'
+import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
 /**
  * Long enough for a lid closing and reopening, or a phone's screen locking and
@@ -117,58 +119,60 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }
 
   return (
-    <Main className='host-console-page wall-page'>
-      <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
-      <header>
-        {view?.round != null && view.phase !== 'finished' && (
-          <p className='round-index'>
-            {view.settings.roundCount === null
-              ? translate('round.indexOpen', { index: view.round.index })
-              : translate('round.index', {
-                  index: view.round.index,
-                  total: view.settings.roundCount
-                })}
-          </p>
-        )}
-        {!canPlay && (
-          <Button
-            className='sound-offer'
-            onPress={armAudio}
-            size='small'
-            variant='outlined'
-          >
-            {translate('wall.sound')}
-          </Button>
-        )}
-        {view !== null && view.phase !== 'lobby' && (
-          <JoinReminder roomCode={roomCode} />
-        )}
-      </header>
+    <PawnColoursProvider view={view}>
+      <Main className='host-console-page wall-page'>
+        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <header>
+          {view?.round != null && view.phase !== 'finished' && (
+            <p className='round-index'>
+              {view.settings.roundCount === null
+                ? translate('round.indexOpen', { index: view.round.index })
+                : translate('round.index', {
+                    index: view.round.index,
+                    total: view.settings.roundCount
+                  })}
+            </p>
+          )}
+          {!canPlay && (
+            <Button
+              className='sound-offer'
+              onPress={armAudio}
+              size='small'
+              variant='outlined'
+            >
+              {translate('wall.sound')}
+            </Button>
+          )}
+          {view !== null && view.phase !== 'lobby' && (
+            <JoinReminder roomCode={roomCode} />
+          )}
+        </header>
 
-      {isHostAway && (
-        <aside className='host-away'>
-          <p>{translate('wall.hostAway.title')}</p>
-          <Link
-            href={hostFromWallPathFor(roomCode)}
-            size='small'
-            variant='outlined'
-          >
-            {translate('wall.hostAway.takeOver')}
-          </Link>
-        </aside>
-      )}
+        {isHostAway && (
+          <aside className='host-away'>
+            <p>{translate('wall.hostAway.title')}</p>
+            <Link
+              href={hostFromWallPathFor(roomCode)}
+              size='small'
+              variant='outlined'
+            >
+              {translate('wall.hostAway.takeOver')}
+            </Link>
+          </aside>
+        )}
 
-      <RoomStage
-        canPlay={canPlay}
-        clock={clock}
-        controls={null}
-        isSpeaker
-        onUnlockAudio={armAudio}
-        refusal={refusal}
-        roomCode={roomCode}
-        slateWall={slateWall}
-        view={view}
-      />
-    </Main>
+        <RoomStage
+          canPlay={canPlay}
+          clock={clock}
+          controls={null}
+          isSpeaker
+          onUnlockAudio={armAudio}
+          refusal={refusal}
+          roomCode={roomCode}
+          slateWall={slateWall}
+          view={view}
+        />
+      </Main>
+    </PawnColoursProvider>
   )
 }

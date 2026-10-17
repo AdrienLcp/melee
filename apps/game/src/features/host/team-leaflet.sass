@@ -1,0 +1,31 @@
+@layer components
+  .team-leaflet.sheet-popover
+    max-width: min(92vw, 22rem)
+    width: 100%
+
+  .team-leaflet-form,
+  .team-leaflet-choices
+    display: grid
+    gap: var(--space-s)
+    list-style: none
+
+  .team-leaflet-choices .button
+    gap: var(--space-xs)
+    justify-content: flex-start
+    width: 100%
+
+  // A square press beside a name: the glyph is the label, and its accessible
+  // name says what it does to whom.
+  .team-press
+    flex: none
+    padding-inline: 0
+    width: 2.5rem
+
+  // Inside a seat's chip the press is a smaller piece than the chip around it.
+  .member .team-press
+    --control-height: 1.75rem
+
+    font-size: var(--text-xs)
+    height: 1.75rem
+    min-height: 0
+    width: 1.75rem

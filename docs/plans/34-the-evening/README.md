@@ -34,7 +34,7 @@ before December.
 | # | Step | In one line | State |
 |---|---|---|---|
 | 0 | Taverla becomes Melee | Scopes, storage keys, the `melee` Worker on `melee.adrienlcp.com`, the old domain redirected by `apps/server/former-host`, SEO, copy | done 17/10/2026 — `a6169a6` |
-| a | [Teams in the shell](a-teams.md) | Seats drawn into teams; every game's round results aggregated per team; *teams only* is a seat named after a team | protocol, core, server done 17/10/2026 — the app's screens to do — MVP |
+| a | Teams in the shell | Seats drawn or chosen into teams, every game scored per team as the mean over the seats a round opened on; pawns in the team's colour on every screen, trays in the lobby, the standings and the final board; the wire in `docs/realtime-protocol.md` (*Teams are the shell's*) | done 17/10/2026 — `f7ff3af` (server), the app's screens after it |
 | b | [The line-up](b-line-up.md) | The host ticks the games of the evening (presets, one tick = today's quick game); the next game is drawn or picked between rounds; players' *ready* on the wall | to do — MVP |
 | s | [The setup and sharing](s-setup-and-sharing.md) | The setup's leaflet grouped in disclosures; copy the link and the native share beside the square | to do — MVP |
 | c | [Team turns](c-team-turns.md) | A set: each team plays its own round in turn, the others watch; the wall answers for the team on turn | to do — MVP |

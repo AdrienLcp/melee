@@ -835,6 +835,62 @@ export const EN_DICTIONARY = defineDictionary({
     yourAnswer: 'You wrote',
     yourSheet: 'Your whole sheet'
   },
+  team: {
+    /**
+     * What a team is called until the host renames it, by its pawn's colour.
+     * Plural nouns standing alone, so they read as a heading, beside a score
+     * and after "Move to" alike.
+     */
+    colour: {
+      pawn1: 'Reds',
+      pawn2: 'Blues',
+      pawn3: 'Yellows',
+      pawn4: 'Greens',
+      pawn5: 'Purples',
+      pawn6: 'Oranges',
+      pawn7: 'Pinks',
+      pawn8: 'Teals'
+    },
+    count: 'How many teams',
+    draw: 'Draw the teams',
+    empty: 'Nobody yet',
+    final: {
+      wins: defineTranslation('{points:plural}', {
+        plural: {
+          points: {
+            one: 'victory with {?} point',
+            other: 'victory with {?} points'
+          }
+        }
+      })
+    },
+    join: 'Join',
+    move: {
+      label: 'Move {nickname}',
+      to: 'To the {team}'
+    },
+    pick: 'Pick your team',
+    redraw: 'Draw again',
+    rename: {
+      action: 'Rename the {team}',
+      label: 'Team name',
+      submit: 'Rename'
+    },
+    setting: {
+      chosen: 'Players choose',
+      drawn: 'Drawn',
+      label: 'Teams',
+      off: 'None',
+      teamsOnly: 'A screen per team',
+      teamsOnlyHint: 'Each team joins on one screen, under the team’s name.'
+    },
+    title: 'The teams',
+    unassigned: {
+      chosen: 'No team yet',
+      drawn: 'Waiting for the draw'
+    },
+    yours: 'Your team'
+  },
   wall: {
     door: {
       action: 'Show the game here',

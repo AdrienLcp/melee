@@ -1,4 +1,5 @@
 import {
+  ArrowRightLeft,
   BellRing,
   Check,
   ChevronDown,
@@ -10,6 +11,7 @@ import {
   Menu,
   Minus,
   Music,
+  Pencil,
   PencilLine,
   Plus,
   QrCode,
@@ -54,6 +56,8 @@ export const MenuIcon = inFamily(Menu, {
   strokeWidth: 2.6
 })
 export const MinusIcon = inFamily(Minus)
+export const MoveIcon = inFamily(ArrowRightLeft)
+export const RenameIcon = inFamily(Pencil)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)

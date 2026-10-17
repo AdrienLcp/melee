@@ -18,7 +18,7 @@ So the evening is three additions to the room's settings, and nothing else:
 | Setting | Values | Default | What it changes |
 |---|---|---|---|
 | **Line-up** | the games ticked, at least one | the game whose front door opened the room, or none | Which game the next round is drawn from. One tick is today's quick game, with nothing else on screen |
-| **Teams** | off, drawn, chosen by the players, teams only | off | Who scores: seats, or teams of seats ([a](a-teams.md)) |
+| **Teams** | off, drawn, chosen by the players, teams only | off | Who scores: seats, or teams of seats (step a, done) |
 | **Board** | off, on | off; on when Teams is | How the score is shown: standings, or pawns on a track around the round ([f](f-board.md)) |
 
 **Presets** are named line-ups with these switches set: *Soirée de Noël* ticks

@@ -2,10 +2,14 @@ import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
+import type { Team } from '@melee/protocol/team'
+
+import { teamOfSeat } from '@melee/core/team/team-board'
 
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './round-chrome.sass'
 
@@ -37,6 +41,8 @@ type RoundChromeProps = {
    * the seat's name rather than a round and a score nobody has earned yet.
    */
   roundIndex: number | null
+  /** The room's teams, so the line names the seat's own once it has one. */
+  teams: readonly Team[]
   /** The seat whose pawn and score the line carries. */
   youId: PlayerId
 }
@@ -55,9 +61,12 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   roomCode,
   roundCount,
   roundIndex,
+  teams,
   youId
 }) => {
   const translate = useTranslate()
+  const teamName = useTeamName()
+  const yourTeam = teamOfSeat({ playerId: youId, teams })
   const youSeat = players.findIndex((player) => player.id === youId)
   const you = players[youSeat]
   const score = you?.score ?? 0
@@ -104,6 +113,16 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
       )}
       <p className='you'>
         <Pawn seat={Math.max(0, youSeat)} />
+        {/* The pawn is already the team's colour; the word is what says it
+            to a reader who cannot tell two pawns apart. */}
+        {yourTeam !== null && (
+          <span className='team'>
+            <VisuallyHidden elementType='span'>
+              {`${translate('team.yours')} `}
+            </VisuallyHidden>
+            {teamName(yourTeam)}
+          </span>
+        )}
         {roundIndex === null ? (
           <span className='name'>
             {you?.nickname ?? translate('player.you')}
