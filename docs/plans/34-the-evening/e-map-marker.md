@@ -53,7 +53,13 @@ stage, shelving.
 - **Marker** — a tap places it, a drag moves it, a second tap elsewhere moves
   it there. It is a pawn in the seat's colour (the team's when Teams is on).
 - **Confirm** — one press sends the point; a mis-tap must not cost a race. The
-  marker locks and says *sent*.
+  marker locks and says *sent*. Decided 17/10 for the wall: the press sits in a
+  small popover stuck above the pawn (*Je le pose ici* and *Annuler*, flipped
+  below near the frame's top), and a tap elsewhere moves the pawn and the
+  popover with it. On an upright 86" wall a press under the map is near the
+  floor; the popover is always under the hand that placed the pawn. The map
+  also takes the stage's full width there, in the world's own proportion, low
+  enough to be reached standing.
 - **Wall** — the same surface at room scale when the wall answers for a team
   (step c); targets sized for a standing adult's finger, and a
   swipe never scrolls the page (Gamenight's rehearsal note).
