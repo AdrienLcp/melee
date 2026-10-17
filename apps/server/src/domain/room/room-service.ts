@@ -8,6 +8,7 @@ import type {
 } from '@melee/protocol/identifiers'
 import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@melee/protocol/room'
 
+import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { isAbandoned } from '@melee/core/room/seat-presence'
 
 import type { Participant, Room } from './room'
@@ -69,6 +70,7 @@ export const joinAsPlayer = ({
     disconnectedAt: null,
     id: newPlayerId,
     isConnected: true,
+    isReady: false,
     nickname,
     score: 0,
     sessionId,
@@ -244,6 +246,32 @@ export const releaseAbandonedSeats = (room: Room, now: number): PlayerId[] => {
   }
 
   return released
+}
+
+/**
+ * A seat back at the table, or no longer. Refused while a round is under way,
+ * where it would mean nothing: the round opening is what cleared it, and the
+ * next reveal is when it is asked again.
+ */
+export const markReady = ({
+  isReady,
+  now,
+  participant,
+  room
+}: {
+  isReady: boolean
+  now: number
+  participant: Participant
+  room: Room
+}): Result<void, 'wrong_phase'> => {
+  if (isRoundInPlay(room.phase)) {
+    return Result.failure('wrong_phase')
+  }
+
+  participant.isReady = isReady
+  touch(room, now)
+
+  return Result.success()
 }
 
 export const updateSettings = (

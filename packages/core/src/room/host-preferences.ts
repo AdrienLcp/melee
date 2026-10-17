@@ -18,9 +18,21 @@ import type { GameSetup } from './room-settings'
 export type HostPreferences = {
   /** What this host last left each game set to; absent until they have played it. */
   games: Partial<Record<GameKind, GameSetup>>
-  /** Everything no game answers, so it survives every switch. */
-  room: Omit<RoomSettings, keyof GameSetup>
+  /**
+   * Everything no game answers, so it survives every switch — but the line-up,
+   * which is this evening's and not this host's: a quick game opened from its
+   * front door next week is one game, whatever was ticked tonight.
+   */
+  room: Omit<RoomSettings, keyof GameSetup | 'lineUp'>
 }
+
+/**
+ * Whether the room was opened on an evening of several games, which only a
+ * preset does: it decided the teams and the length, and the host's last quick
+ * game decided neither.
+ */
+const isEvening = (settings: RoomSettings): boolean =>
+  settings.lineUp.length > 1
 
 /**
  * What this host last left `game` set to, and `null` when that is nothing
@@ -48,6 +60,9 @@ export const rememberedSetupFor = ({
  * the room opened on rather than replacing them, so anything never remembered
  * keeps what the door decided — the question language above all, which the door
  * reads off the host's own interface.
+ *
+ * An evening keeps what its preset decided — the teams and the length — and
+ * takes from the host only how each game is played.
  */
 export const restoredSettings = ({
   preferences,
@@ -61,6 +76,16 @@ export const restoredSettings = ({
       ? null
       : rememberedSetupFor({ game: settings.game.kind, preferences })
 
+  if (isEvening(settings)) {
+    return {
+      ...settings,
+      ...preferences.room,
+      ...remembered,
+      roundCount: settings.roundCount,
+      teams: settings.teams
+    }
+  }
+
   return { ...settings, ...preferences.room, ...remembered }
 }
 
@@ -72,6 +97,10 @@ export const restoredSettings = ({
  * A room still deciding what to play remembers nothing per game — there is no
  * game to file it under, and its `mode`, `roundCount` and reveal hold are the
  * shell's placeholders rather than anybody's choice.
+ *
+ * An evening files how each game was played and nothing of its own: its length
+ * and its teams were the preset's, and remembering them would hand tonight's
+ * party to next week's quick game.
  */
 export const rememberSettings = ({
   preferences,
@@ -80,7 +109,13 @@ export const rememberSettings = ({
   preferences: HostPreferences | null
   settings: RoomSettings
 }): HostPreferences => {
-  const { autoAdvanceMs, game, mode, roundCount, ...room } = settings
+  const { autoAdvanceMs, game, lineUp, mode, roundCount, ...room } = settings
+  const evening = isEvening(settings)
+  const filedRoundCount =
+    evening && game !== null
+      ? (rememberedSetupFor({ game: game.kind, preferences })?.roundCount ??
+        roundCount)
+      : roundCount
 
   return {
     games:
@@ -88,8 +123,13 @@ export const rememberSettings = ({
         ? (preferences?.games ?? {})
         : {
             ...preferences?.games,
-            [game.kind]: { autoAdvanceMs, game, mode, roundCount }
+            [game.kind]: {
+              autoAdvanceMs,
+              game,
+              mode,
+              roundCount: filedRoundCount
+            }
           },
-    room
+    room: evening && preferences !== null ? preferences.room : room
   }
 }

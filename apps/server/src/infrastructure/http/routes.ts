@@ -124,8 +124,12 @@ export const registerHttpRoutes = ({
     limitRoomCreation,
     zValidator('json', createRoomRequestSchema, invalidInput),
     async (context) => {
-      const { game, locale } = context.req.valid('json')
-      const opened = await rooms.openRoom({ game: game ?? null, locale })
+      const { game, locale, preset } = context.req.valid('json')
+      const opened = await rooms.openRoom({
+        game: game ?? null,
+        locale,
+        preset: preset ?? null
+      })
 
       if (opened === null) {
         const error: ApiErrorResponse = {

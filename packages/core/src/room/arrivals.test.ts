@@ -7,6 +7,7 @@ import { arrivedPlayers } from './arrivals'
 const seat = (id: string, nickname: string): PublicPlayer => ({
   id,
   isConnected: true,
+  isReady: false,
   nickname,
   score: 0
 })

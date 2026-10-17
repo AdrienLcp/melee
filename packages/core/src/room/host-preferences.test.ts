@@ -162,3 +162,42 @@ describe('rememberedSetupFor', () => {
     expect(rememberedSetupFor({ game: 'quiz', preferences })).toBeNull()
   })
 })
+
+describe('an evening of several games', () => {
+  const evening = roomSettingsFor({
+    game: null,
+    locale: 'fr',
+    preset: {
+      lineUp: ['quiz', 'blindtest', 'buzzer'],
+      roundCount: 12,
+      teams: { count: 3, kind: 'drawn' }
+    }
+  })
+
+  const quickQuizHost: HostPreferences = rememberSettings({
+    preferences: null,
+    settings: { ...onTheQuiz, roundCount: 20 }
+  })
+
+  it('[host-preferences] keeps the preset’s length and teams over the host’s last quick game', () => {
+    const restored = restoredSettings({
+      preferences: quickQuizHost,
+      settings: evening
+    })
+
+    expect(restored.roundCount).toBe(12)
+    expect(restored.teams).toEqual({ count: 3, kind: 'drawn' })
+    expect(restored.lineUp).toEqual(['quiz', 'blindtest', 'buzzer'])
+  })
+
+  it('[host-preferences] files neither the line-up, the length nor the teams of an evening', () => {
+    const remembered = rememberSettings({
+      preferences: quickQuizHost,
+      settings: evening
+    })
+
+    expect(remembered.games.quiz?.roundCount).toBe(20)
+    expect(remembered.room.teams).toEqual({ kind: 'off' })
+    expect(remembered.room).not.toHaveProperty('lineUp')
+  })
+})

@@ -32,6 +32,7 @@ import {
   playerView,
   type RoomHarness,
   sleep,
+  ticked,
   waitFor
 } from './room-harness'
 
@@ -178,6 +179,7 @@ describe('the rules every socket obeys', () => {
       {
         id: aliceId,
         isConnected: true,
+        isReady: false,
         nickname: 'Alice',
         score: POINTS_PER_TITLE + POINTS_PER_ARTIST
       }
@@ -338,7 +340,7 @@ describe('the rules every socket obeys', () => {
     await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
 
     host.send({
-      settings: { ...FAST_GAME, game: DEFAULT_BUZZER_SETTINGS },
+      settings: ticked({ ...FAST_GAME, game: DEFAULT_BUZZER_SETTINGS }),
       type: 'host.updateSettings'
     })
     await waitFor(() => errorsIn(host).length > 0, 'the refusal')

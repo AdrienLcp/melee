@@ -45,6 +45,31 @@ describe('roomSettingsFor', () => {
     )
   })
 
+  it('[room-settings] ticks the one game a front door opens on, and none from the shelf', () => {
+    expect(roomSettingsFor({ game: 'quiz', locale: 'fr' }).lineUp).toEqual([
+      'quiz'
+    ])
+    expect(roomSettingsFor({ game: null, locale: 'fr' }).lineUp).toEqual([])
+  })
+
+  it('[room-settings] opens a preset on its first game with its own length and teams', () => {
+    const settings = roomSettingsFor({
+      game: null,
+      locale: 'fr',
+      preset: {
+        lineUp: ['quiz', 'blindtest', 'buzzer'],
+        roundCount: 12,
+        teams: { count: 3, kind: 'drawn' }
+      }
+    })
+
+    expect(settings.game?.kind).toBe('quiz')
+    expect(settings.lineUp).toEqual(['quiz', 'blindtest', 'buzzer'])
+    expect(settings.roundCount).toBe(12)
+    expect(settings.teams).toEqual({ count: 3, kind: 'drawn' })
+    expect(settings.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+  })
+
   it('[room-settings] leaves a game with no natural end running until the host stops it', () => {
     expect(
       roomSettingsFor({ game: 'buzzer', locale: 'fr' }).roundCount
@@ -72,6 +97,30 @@ describe('movedToGame', () => {
     expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
     expect(moved.roundCount).toBe(10)
     expect(moved.game?.kind).toBe('blindtest')
+  })
+
+  it('[room-settings] moves a one-game line-up along with the game', () => {
+    const moved = movedToGame({
+      game: 'blindtest',
+      locale: 'fr',
+      remembered: null,
+      settings: onTheBuzzer
+    })
+
+    expect(moved.lineUp).toEqual(['blindtest'])
+  })
+
+  it('[room-settings] switches inside an evening without ending it on the game’s own count', () => {
+    const moved = movedToGame({
+      game: 'quiz',
+      locale: 'fr',
+      remembered: null,
+      settings: { ...onTheBuzzer, lineUp: ['buzzer', 'quiz'], roundCount: 12 }
+    })
+
+    expect(moved.game?.kind).toBe('quiz')
+    expect(moved.lineUp).toEqual(['buzzer', 'quiz'])
+    expect(moved.roundCount).toBe(12)
   })
 
   it('[room-settings] leaves the settings that are the host’s alone', () => {

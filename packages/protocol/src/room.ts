@@ -1,6 +1,6 @@
 import { z } from 'zod'
 
-import { gameSettingsSchema } from './game'
+import { gameKindSchema, gameKinds, gameSettingsSchema } from './game'
 import {
   nicknameSchema,
   playerIdSchema,
@@ -51,7 +51,7 @@ export const answerModes = ['buzzer', 'choice', 'typed'] as const
  *
  * It is the room's, not a game's: the shell reads it everywhere a round is
  * answered and scored, and what a game does is *narrow* it — see
- * `answerModesFor` in `@melee/core/room/game-modes`, and the server refuses a
+ * `answerModesFor` in `@melee/core/room/game-capabilities`, and the server refuses a
  * frame that sets one the current game does not offer.
  */
 export const answerModeSchema = z.enum(answerModes)
@@ -112,6 +112,22 @@ export const roomSettingsSchema = z.object({
    * `registerBuzz`'s guard is what produces the answer window.
    */
   game: gameSettingsSchema.nullable(),
+  /**
+   * The games ticked for the evening: what the next round may be drawn from.
+   * `game` stays what the next round *is* played on, and is always one of them;
+   * a room with no game yet has ticked none. One tick is a room playing one
+   * game, which is every room opened from a game's own front door.
+   *
+   * Kinds rather than shelved games, so a settings frame may still put a room
+   * on a game that is served before it has a front door — the line-up only
+   * ever has to hold what `game` may.
+   */
+  lineUp: z
+    .array(gameKindSchema)
+    .max(gameKinds.length)
+    .refine((kinds) => new Set(kinds).size === kinds.length, {
+      message: 'A game is ticked once'
+    }),
   /** How a round is answered, and the settings only that mode has. */
   mode: modeSettingsSchema,
   /**
@@ -148,6 +164,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   countdownMs: 3_000,
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,
+  lineUp: [],
   /**
    * Everyone plays every round, which is what a party wants: the buzzer gives
    * the floor to whoever is quickest and leaves the rest of the room watching.
@@ -160,6 +177,12 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
 export const publicPlayerSchema = z.object({
   id: playerIdSchema,
   isConnected: z.boolean(),
+  /**
+   * Back at the table between two rounds — said by the seat itself, shown on
+   * the wall, and cleared when the next round opens. Never a gate: the host
+   * starts whenever they like, ready or not.
+   */
+  isReady: z.boolean(),
   nickname: nicknameSchema,
   score: z.number().int().nonnegative()
 })

@@ -2,7 +2,7 @@ import type { ShelvedGame } from '@melee/protocol/game'
 import type { AnswerMode, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
-import { answerModesFor } from './game-modes'
+import { answerModesFor } from './game-capabilities'
 import { isShelvedGame } from './shelved-game'
 
 /**

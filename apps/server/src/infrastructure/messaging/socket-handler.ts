@@ -14,6 +14,7 @@ import type { RoomSettings } from '@melee/protocol/room'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { offersAnswerMode } from '@melee/core/room/game-modes'
+import { lineUpHolds } from '@melee/core/room/line-up'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { reshapesRound } from '@melee/core/room/room-settings'
 import { newSessionId } from '@melee/core/room/session-id'
@@ -24,6 +25,7 @@ import {
   joinAsPlayer,
   markHostAway,
   markPlayerDisconnected,
+  markReady,
   renameSeat,
   touch,
   updateSettings
@@ -418,6 +420,10 @@ const dispatch = ({
       pickTeam(message.teamId, active, outbound, engine)
       break
     }
+    case 'player.ready': {
+      sayReady(message.isReady, active, outbound, engine)
+      break
+    }
     case 'player.buzz': {
       buzz(message.roundId, active, outbound, engine)
       break
@@ -693,6 +699,47 @@ const pickTeam = (
       teamId
     })
   })
+}
+
+const sayReady = (
+  isReady: boolean,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const participant =
+    active.playerId === null
+      ? undefined
+      : engine.room.players.get(active.playerId)
+
+  if (participant === undefined) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seated player says it is ready'
+    })
+
+    return
+  }
+
+  const marked = markReady({
+    isReady,
+    now: engine.now(),
+    participant,
+    room: engine.room
+  })
+
+  if (marked.status === 'failure') {
+    sendError(outbound, {
+      code: marked.error,
+      fatal: false,
+      message: 'A round is under way; say it between two rounds'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
 }
 
 const writeLine = (
@@ -1196,6 +1243,16 @@ const reconfigure = (
       code: 'invalid_message',
       fatal: false,
       message: 'That game does not offer that answer mode'
+    })
+
+    return
+  }
+
+  if (!lineUpHolds(settings)) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'The game the next round is on must be one of the games ticked'
     })
 
     return

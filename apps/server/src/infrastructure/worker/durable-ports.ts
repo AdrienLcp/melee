@@ -24,10 +24,15 @@ const wallPairingObjectFor = (pairingCode: string) =>
 export const durableRoomDoor: RoomDoor = {
   isHostedWith: ({ code, hostToken }) =>
     roomObjectFor(code).isHostedWith(hostToken),
-  openRoom: async ({ game, locale }) => {
+  openRoom: async ({ game, locale, preset }) => {
     for (let attempt = 0; attempt < MAX_CODE_ATTEMPTS; attempt++) {
       const code = generateRoomCode()
-      const opened = await roomObjectFor(code).open({ code, game, locale })
+      const opened = await roomObjectFor(code).open({
+        code,
+        game,
+        locale,
+        preset
+      })
 
       if (opened !== null) {
         return opened

@@ -12,6 +12,7 @@ import {
 const playerOn = (nickname: string, score: number): PublicPlayer => ({
   id: nickname.toLowerCase(),
   isConnected: true,
+  isReady: false,
   nickname,
   score
 })

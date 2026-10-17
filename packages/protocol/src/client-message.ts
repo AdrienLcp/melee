@@ -127,6 +127,16 @@ export const chooseTeamMessageSchema = z.object({
 })
 
 /**
+ * A seat saying it is back at the table, or taking that back, between two
+ * rounds. A press on its own screen rather than anything the server infers,
+ * because a phone that is connected is not a guest who has sat down again.
+ */
+export const readyMessageSchema = z.object({
+  isReady: z.boolean(),
+  type: z.literal('player.ready')
+})
+
+/**
  * One line of the slate, saved on its own as it is written — an upsert, and an
  * empty `answer` takes the line back. One line per frame rather than the whole
  * sheet, so two screens of one player cannot overwrite each other's other
@@ -360,6 +370,7 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   leaveMessageSchema,
   renameMessageSchema,
   chooseTeamMessageSchema,
+  readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema
@@ -378,6 +389,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   leaveMessageSchema,
   renameMessageSchema,
   chooseTeamMessageSchema,
+  readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema,

@@ -21,7 +21,7 @@ import {
 } from '@melee/protocol/track'
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
-import { answerModesFor } from '@melee/core/room/game-modes'
+import { answerModesFor } from '@melee/core/room/game-capabilities'
 
 import { NumberField } from '@/presentation/components/number-field'
 import { SegmentedControl } from '@/presentation/components/segmented-control'

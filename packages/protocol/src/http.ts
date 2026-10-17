@@ -1,13 +1,15 @@
 import { z } from 'zod'
 
 import { protocolErrorCodeSchema } from './error-code'
-import { shelvedGameSchema } from './game'
+import { shelvedGameSchema, shelvedGames } from './game'
 import {
   hostTokenSchema,
   ROOM_CODE_ALPHABET,
   roomCodeSchema
 } from './identifiers'
 import { DEFAULT_LOCALE, localeSchema } from './locale'
+import { roomSettingsSchema } from './room'
+import { teamsSettingsSchema } from './team'
 import {
   trackDecadeSchema,
   trackDifficultySchema,
@@ -32,6 +34,24 @@ import {
  * it has screens, and a room opened on one of those would render another game's
  * round.
  */
+/**
+ * What a preset opens a room on: the games ticked, how long the evening runs
+ * and whether it is played in teams. The preset itself — its name, why those
+ * games — is the app's, and never travels; the room only holds the settings it
+ * resolves to. Its first game is the first round's.
+ */
+export const roomPresetSchema = z.object({
+  lineUp: z
+    .array(shelvedGameSchema)
+    .min(1)
+    .max(shelvedGames.length)
+    .refine((games) => new Set(games).size === games.length, {
+      message: 'A game is ticked once'
+    }),
+  roundCount: roomSettingsSchema.shape.roundCount,
+  teams: teamsSettingsSchema
+})
+
 export const createRoomRequestSchema = z.object({
   game: shelvedGameSchema.optional(),
   /**
@@ -43,7 +63,9 @@ export const createRoomRequestSchema = z.object({
    * Defaulted rather than required, because this door has no version handshake
    * the way the socket does: a tab opened before the field existed still posts.
    */
-  locale: localeSchema.default(DEFAULT_LOCALE)
+  locale: localeSchema.default(DEFAULT_LOCALE),
+  /** In place of `game`, for a room opened on a whole evening rather than one game. */
+  preset: roomPresetSchema.optional()
 })
 
 /**
@@ -175,6 +197,7 @@ export const apiErrorResponseSchema = z.object({
   message: z.string()
 })
 
+export type RoomPreset = z.infer<typeof roomPresetSchema>
 export type CreateRoomRequest = z.infer<typeof createRoomRequestSchema>
 export type CreateRoomResponse = z.infer<typeof createRoomResponseSchema>
 export type RoomExistsResponse = z.infer<typeof roomExistsResponseSchema>

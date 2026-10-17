@@ -59,6 +59,7 @@ const hostPreferencesSchema = z.object({
   room: roomSettingsSchema.omit({
     autoAdvanceMs: true,
     game: true,
+    lineUp: true,
     mode: true,
     roundCount: true
   })

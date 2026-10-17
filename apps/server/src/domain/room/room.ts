@@ -76,6 +76,8 @@ export type Participant = {
   disconnectedAt: number | null
   id: PlayerId
   isConnected: boolean
+  /** Said by the seat between two rounds, and cleared as the next one opens. */
+  isReady: boolean
   nickname: Nickname
   /** Survives a disconnect: the seat is held, the score with it. */
   sessionId: SessionId

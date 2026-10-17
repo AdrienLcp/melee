@@ -31,7 +31,9 @@ const playerView: PlayerRoomView = {
   code: 'K3M9',
   isHostConnected: true,
   phase: 'playing',
-  players: [{ id: 'p1', isConnected: true, nickname: 'Alice', score: 2 }],
+  players: [
+    { id: 'p1', isConnected: true, isReady: false, nickname: 'Alice', score: 2 }
+  ],
   round: runningRound,
   roundElapsedMs: 8_200,
   settings: DEFAULT_ROOM_SETTINGS,

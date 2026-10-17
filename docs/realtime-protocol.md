@@ -70,6 +70,7 @@ the whole room reads, because it pairs nothing without the token beside it.
 | `player.leave` | any seat | — |
 | `player.rename` | any seat | `nickname` |
 | `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
+| `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}` or `{kind:'typed', guess}` |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
@@ -118,6 +119,24 @@ buzzer would pay two points for one charade.
 `host.clearLockouts` puts everyone who missed back in, mid-round. A blind test
 round is a clip that runs out, so a lockout there expires on its own; a game
 whose question the room owns has no such clock.
+
+**An evening is a line-up, not a new object.** `settings.lineUp` holds the
+games ticked; `settings.game` stays the one the next round is played on and is
+always among them, and a room with no game has ticked none (`lineUpHolds`,
+refused `invalid_message`). One tick is a room playing one game, which is what
+every game's front door opens. The draw between two rounds is the console's
+(`nextGame`, never the game just played when another is ticked): it lands as an
+ordinary settings frame between the reveal and `host.nextRound`, so the wall
+reads the next game off `settings.game` like everything else. `POST /api/rooms`
+takes a `preset` — the line-up, the length and the teams — in place of a
+`game`; the preset's name and why it ticks what it ticks are the app's, and
+never travel.
+
+- **Scores survive the switch.** Nothing a settings frame carries touches a
+  seat's score; only `host.playAgain` starts them again.
+- **Ready is a word, not a gate.** `player.ready` sets `isReady` on the public
+  seat between two rounds; opening a round clears every seat's, and the host
+  starts whenever.
 
 **Teams are the shell's, and no game's arm learns what one is.**
 `settings.teams` is `off`, `drawn` or `chosen` with a `count` of 2–6, or

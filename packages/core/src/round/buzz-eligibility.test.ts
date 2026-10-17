@@ -39,7 +39,9 @@ const viewFor = (
   code: 'K3M9',
   isHostConnected: true,
   phase,
-  players: [{ id: 'me', isConnected: true, nickname: 'Alice', score: 0 }],
+  players: [
+    { id: 'me', isConnected: true, isReady: false, nickname: 'Alice', score: 0 }
+  ],
   round,
   roundElapsedMs: 0,
   settings: DEFAULT_ROOM_SETTINGS,

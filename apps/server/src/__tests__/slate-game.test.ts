@@ -22,6 +22,7 @@ import {
   type RoomHarness,
   sessionIdOf,
   slateRound,
+  ticked,
   waitFor
 } from './room-harness'
 
@@ -711,7 +712,7 @@ describe('slate', () => {
       }
     }
 
-    host.send({ settings: labelled, type: 'host.updateSettings' })
+    host.send({ settings: ticked(labelled), type: 'host.updateSettings' })
     await waitFor(
       () => slateLabelsOf(playerView(ana)?.settings.game)?.[2] === 'Glass 3',
       'the labels to reach the player'

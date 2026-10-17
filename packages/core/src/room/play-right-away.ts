@@ -5,7 +5,8 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
-import { answerModesFor, isJudgedByHost, modeOfferedBy } from './game-modes'
+import { answerModesFor } from './game-capabilities'
+import { isJudgedByHost, modeOfferedBy } from './game-modes'
 import { type HostPreferences, restoredSettings } from './host-preferences'
 
 /**

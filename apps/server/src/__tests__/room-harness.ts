@@ -140,9 +140,19 @@ export const FAST_GAME: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
   game: { ...DEFAULT_BLINDTEST_SETTINGS, roundDurationMs: 5_000 },
+  lineUp: ['blindtest'],
   mode: DEFAULT_MODE_SETTINGS.buzzer,
   roundCount: 3
 }
+
+/**
+ * A fixture names the game it is about and nothing else: the line-up of a room
+ * playing one game is that game, which is what every door but a preset opens.
+ */
+export const ticked = (settings: RoomSettings): RoomSettings =>
+  settings.game === null || settings.lineUp.includes(settings.game.kind)
+    ? settings
+    : { ...settings, lineUp: [settings.game.kind] }
 
 /**
  * The same game in a mode its console may play in. A seat is withheld from a
@@ -455,7 +465,7 @@ export const harnessAt = ({
       type: 'hello'
     })
     await waitFor(() => hostView(host) !== null, 'the host to be seated')
-    host.send({ settings, type: 'host.updateSettings' })
+    host.send({ settings: ticked(settings), type: 'host.updateSettings' })
 
     return { code, host, hostToken }
   }

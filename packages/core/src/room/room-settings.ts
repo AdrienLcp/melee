@@ -3,6 +3,7 @@ import {
   type GameKind,
   type GameSettings
 } from '@melee/protocol/game'
+import type { RoomPreset } from '@melee/protocol/http'
 import type { Locale } from '@melee/protocol/locale'
 import {
   type AnswerMode,
@@ -77,18 +78,41 @@ export type GameSetup = {
  * anybody has decided what to play. It is the shell's defaults and nothing
  * else: the four fields below are the game's to answer, and there is no game
  * yet to answer them.
+ *
+ * A preset opens on its first game, set as that game opens, with the evening's
+ * length and teams laid over it — the two things a preset decides that no one
+ * game could.
  */
 export const roomSettingsFor = ({
   game,
-  locale
+  locale,
+  preset = null
 }: {
   game: GameKind | null
   /** The host's, and the only evidence available for what a room has not been asked. */
   locale: Locale
-}): RoomSettings =>
-  game === null
+  preset?: RoomPreset | null
+}): RoomSettings => {
+  const [presetFirst] = preset?.lineUp ?? []
+
+  if (preset !== null && presetFirst !== undefined) {
+    return {
+      ...DEFAULT_ROOM_SETTINGS,
+      ...openedSetup({ game: presetFirst, locale }),
+      lineUp: preset.lineUp,
+      roundCount: preset.roundCount,
+      teams: preset.teams
+    }
+  }
+
+  return game === null
     ? DEFAULT_ROOM_SETTINGS
-    : { ...DEFAULT_ROOM_SETTINGS, ...openedSetup({ game, locale }) }
+    : {
+        ...DEFAULT_ROOM_SETTINGS,
+        ...openedSetup({ game, locale }),
+        lineUp: [game]
+      }
+}
 
 /**
  * How long a reveal is held before the next round, as each game opens. `null`
@@ -151,6 +175,11 @@ const openedGameSettings = ({
  * answer into — the bare buzzer's settings, worn by a game that has its own.
  * What they may carry from is this host's *last evening on the incoming game*,
  * which is a different thing entirely and the only reason `remembered` exists.
+ *
+ * A room playing one game moves its line-up along with it — that is today's
+ * picker — while an evening of several adds the game to the ones ticked and
+ * keeps its own length: the count is the evening's, and a quiz's ten rounds
+ * landing on round twelve would end it on the spot.
  */
 export const movedToGame = ({
   game,
@@ -163,10 +192,31 @@ export const movedToGame = ({
   /** What this host last left this game set to, or `null` if they never have. */
   remembered: GameSetup | null
   settings: RoomSettings
-}): RoomSettings => ({
-  ...settings,
-  ...(remembered ?? openedSetup({ game, locale }))
-})
+}): RoomSettings => {
+  const setup = remembered ?? openedSetup({ game, locale })
+  const lineUp = lineUpWith({ game, lineUp: settings.lineUp })
+
+  return {
+    ...settings,
+    ...setup,
+    lineUp,
+    roundCount: lineUp.length > 1 ? settings.roundCount : setup.roundCount
+  }
+}
+
+const lineUpWith = ({
+  game,
+  lineUp
+}: {
+  game: GameKind
+  lineUp: readonly GameKind[]
+}): GameKind[] => {
+  if (lineUp.length <= 1) {
+    return [game]
+  }
+
+  return lineUp.includes(game) ? [...lineUp] : [...lineUp, game]
+}
 
 /**
  * Whether the change would alter what a round already under way is *built on*.

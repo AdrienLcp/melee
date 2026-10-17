@@ -234,6 +234,7 @@ const toBaseView = ({
 const toPublicPlayer = (participant: Participant): PublicPlayer => ({
   id: participant.id,
   isConnected: participant.isConnected,
+  isReady: participant.isReady,
   nickname: participant.nickname,
   score: participant.score
 })

@@ -150,6 +150,10 @@ export const openRound = ({
   bankTeamRound(room)
   placeUnseatedSeats(room)
 
+  for (const participant of room.players.values()) {
+    participant.isReady = false
+  }
+
   const round: Round = {
     activeBuzz: null,
     advancesAt: null,

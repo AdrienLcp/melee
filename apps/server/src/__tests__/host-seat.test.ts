@@ -14,6 +14,7 @@ import {
   type RoomHarness,
   SEATED_CONSOLE_GAME,
   sessionIdOf,
+  ticked,
   waitFor
 } from './room-harness'
 
@@ -120,7 +121,7 @@ describe('a console that plays the room it runs', () => {
 
     expect(hostView(host)?.youId).not.toBeNull()
 
-    host.send({ settings: JUDGED_GAME, type: 'host.updateSettings' })
+    host.send({ settings: ticked(JUDGED_GAME), type: 'host.updateSettings' })
     await waitFor(
       () => hostView(host)?.youId === null,
       'the console to give the seat up'

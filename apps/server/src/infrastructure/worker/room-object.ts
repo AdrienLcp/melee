@@ -2,7 +2,7 @@ import { DurableObject } from 'cloudflare:workers'
 import { z } from 'zod'
 
 import type { GameKind } from '@melee/protocol/game'
-import type { CreateRoomResponse } from '@melee/protocol/http'
+import type { CreateRoomResponse, RoomPreset } from '@melee/protocol/http'
 import {
   type HostToken,
   playerIdSchema,
@@ -102,11 +102,13 @@ export class RoomObject extends DurableObject<Env> {
   open({
     code,
     game,
-    locale
+    locale,
+    preset
   }: {
     code: RoomCode
     game: GameKind | null
     locale: Locale
+    preset: RoomPreset | null
   }): CreateRoomResponse | null {
     if (this.engine !== null) {
       return null
@@ -118,7 +120,8 @@ export class RoomObject extends DurableObject<Env> {
         game,
         hostToken: newHostToken(),
         locale,
-        now: nowMs()
+        now: nowMs(),
+        preset
       })
     )
 

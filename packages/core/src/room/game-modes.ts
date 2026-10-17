@@ -1,57 +1,11 @@
 import type { GameKind } from '@melee/protocol/game'
 import {
   type AnswerMode,
-  answerModes,
   DEFAULT_MODE_SETTINGS,
   type ModeSettings
 } from '@melee/protocol/room'
 
-const BUZZER_ONLY = ['buzzer'] as const satisfies readonly AnswerMode[]
-
-/**
- * The slate is written, so it is `typed` — the mode says how a round is
- * answered, and a sheet is answered by typing. What the mode usually brings
- * with it, a server grade and a speed bonus, is the game's to refuse: the host
- * marks the sheets, which `isJudgedByHost` says rather than this.
- */
-const TYPED_ONLY = ['typed'] as const satisfies readonly AnswerMode[]
-
-/**
- * Which answer modes a game offers. The mode is the room's because the shell
- * reads it everywhere a round is answered and scored; what a game does is
- * narrow it, and two of them narrow it to one — four candidates and a typed
- * field both need something to answer *against*, and neither the bare buzzer
- * nor the reflex race serves anything to answer.
- *
- * A game with one mode is a game whose host is never asked: the panel hides the
- * control rather than offering an option that would break the round.
- *
- * A room with no game yet narrows nothing, which is what lets the settings
- * frame carrying a mode be accepted before the table has decided. The panel
- * still shows no strip — "how to answer" cannot be explained without a game —
- * and `movedToGame` narrows whatever was held the moment one is picked.
- *
- * A switch rather than a default, so that adding a game kind stops compiling
- * here instead of silently offering it a typed field it cannot grade.
- */
-export const answerModesFor = (
-  game: GameKind | null
-): readonly AnswerMode[] => {
-  if (game === null) {
-    return answerModes
-  }
-
-  switch (game) {
-    case 'blindtest':
-    case 'quiz':
-      return answerModes
-    case 'buzzer':
-    case 'reflex':
-      return BUZZER_ONLY
-    case 'slate':
-      return TYPED_ONLY
-  }
-}
+import { answerModesFor } from './game-capabilities'
 
 export const offersAnswerMode = ({
   game,
