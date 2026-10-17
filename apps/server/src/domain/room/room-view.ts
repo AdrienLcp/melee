@@ -9,6 +9,7 @@ import type {
   WallRoomView,
   WallRoundContent
 } from '@melee/protocol/room'
+import type { Verdict } from '@melee/protocol/scoring'
 import type { SlateLine } from '@melee/protocol/slate'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
@@ -77,8 +78,28 @@ export const toWallView = ({
   currentContent:
     room.round === null
       ? null
-      : toWallContent(toHostContent({ room, round: room.round, seatId: null }))
+      : toWallContent(toHostContent({ room, round: room.round, seatId: null })),
+  yourVerdict: verdictOfTeamOnTurn(room)
 })
+
+/**
+ * What the team on turn has banked, which is the wall's own answer when it
+ * answers for them: every seat of that team holds the same attempt. A verdict
+ * says how much was right and never what the answer is.
+ */
+const verdictOfTeamOnTurn = (room: Room): Verdict | null => {
+  const round = room.round
+
+  if (round === null || round.turn === null) {
+    return null
+  }
+
+  return (
+    round.attempts.find(
+      (entry) => round.openedWithPlayerIds?.has(entry.playerId) === true
+    )?.verdict ?? null
+  )
+}
 
 const toWallContent = (content: HostRoundContent): WallRoundContent => {
   switch (content.kind) {
@@ -288,7 +309,8 @@ const toRoundView = ({
         said: saidBy(attempts)
       }))
     : [],
-  startsAt: round.startsAt
+  startsAt: round.startsAt,
+  turn: round.turn
 })
 
 /**

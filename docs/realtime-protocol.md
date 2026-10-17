@@ -61,6 +61,11 @@ device posts the code with the room code and the token to
 collects the token once and the pairing is gone. The code can sit on a screen
 the whole room reads, because it pairs nothing without the token beside it.
 
+The wall **sends one frame besides its hello**: `wall.answer`, the answer of the
+team on turn in a set — see *A set is rounds played in turn*. Everywhere else it
+is refused `wall_cannot_answer`, and still nothing it receives names an answer
+before the reveal.
+
 ## Client → server
 
 | Type | Sent by | Payload |
@@ -73,9 +78,10 @@ the whole room reads, because it pairs nothing without the token beside it.
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}` or `{kind:'typed', guess}` |
+| `wall.answer` | wall | `roundId`, `answer` — as `player.answer`, for the team on turn |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone |
+| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `byTeam` (optional) — play in sets |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
@@ -90,7 +96,7 @@ the whole room reads, because it pairs nothing without the token beside it.
 | `host.renameTeam` | host | `teamId`, `name` |
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
-| `host.nextRound` | host | — |
+| `host.nextRound` | host | `byTeam` (optional) — absent, the room plays on as it last did |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
@@ -165,6 +171,29 @@ names it, so every screen says the name its own dictionary gives the colour.
   because a slate verdict can still be taken back under its reveal. Seat scores
   are untouched, for the individual podium, and a seat's adjustment stays on
   the seat. Neither score goes below zero.
+
+**A set is rounds played in turn, not a round holding turns.** `byTeam` on
+`host.startRound` or `host.nextRound` asks for sets: each team plays an
+ordinary round of its own, with its own draw, while the others watch. The
+server orders them (`setOrder`, first turn passed round the table set after
+set) and stamps the round on the turn team's seats alone, so the roster rule
+already refuses everybody else — `not_your_turn` for a seat of another team,
+`joined_mid_round` for one that arrived late. `round.turn` says whose round it
+is and where it falls (`{ teamId, index, of }`), `null` when everyone plays.
+
+- **The team answers as one.** The first answer from any of its seats or from
+  the wall is banked for every seat the round opened on, so a pick closes the
+  turn and the team's mean is exactly what that answer earned. The wall reads
+  that shared verdict in its own `yourVerdict`, which says how much was right
+  and never what the answer is.
+- **The evening counts a set as one round.** Every turn of a set shares one
+  `index`, and `isFinalRound` waits for the last turn.
+- **A set is a wish the room may not grant.** Asked for where the round cannot
+  be one team's — a game whose capabilities say no, the buzzer mode, a room
+  without teams — it is refused `invalid_message`. Granted, it holds until the
+  host says otherwise; a round that cannot be one team's after all — the
+  line-up moved on to a race, a single team holds every seat — opens for
+  everyone and ends the set, and the next one that can opens a new set.
 
 **The slate's six host frames and its one player frame.** The sheet is one
 round, and writing and marking share `playing`: every item carries its own

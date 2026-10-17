@@ -24,7 +24,8 @@ const runningRound = {
   lockedOutPlayerIds: [],
   openedWithPlayerIds: null,
   revealedAnswers: [],
-  startsAt: 1_700_000_000_000
+  startsAt: 1_700_000_000_000,
+  turn: null
 }
 
 const playerView: PlayerRoomView = {

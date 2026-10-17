@@ -22,6 +22,7 @@ import {
   reflexRoundDurationMs
 } from '@melee/core/reflex/flip-schedule'
 import { isFalseStart } from '@melee/core/reflex/reaction'
+import { capabilitiesOf } from '@melee/core/room/game-capabilities'
 import {
   type BuzzRejection,
   findBuzzRejection,
@@ -47,9 +48,11 @@ import { touch } from '@/domain/room/room-service'
 import {
   bankTeamRound,
   placeUnseatedSeats,
-  resetTeamScores
+  resetTeamScores,
+  seatsOf
 } from '@/domain/room/team-service'
 import { markEveryItem } from '@/domain/round/slate-round'
+import { hasTurnsLeft, takeTurn } from '@/domain/round/team-turns'
 import { drawChoices } from '@/domain/round/track-pool'
 
 export type VerdictRejection = Extract<
@@ -154,6 +157,9 @@ export const openRound = ({
     participant.isReady = false
   }
 
+  const turn = takeTurn(room)
+  const previousIndex = room.round?.index ?? 0
+
   const round: Round = {
     activeBuzz: null,
     advancesAt: null,
@@ -163,13 +169,15 @@ export const openRound = ({
     durationMs: roundDurationMsOf(room.settings.game),
     elapsedMs: 0,
     id,
-    index: (room.round?.index ?? 0) + 1,
+    // A set is one round of the evening however many teams it takes.
+    index: turn !== null && turn.index > 0 ? previousIndex : previousIndex + 1,
     lockedOutPlayerIds: new Set(),
     mode: room.settings.mode,
     openedWithPlayerIds: null,
     revealed: false,
     runningSince: null,
-    startsAt
+    startsAt,
+    turn
   }
 
   room.round = round
@@ -198,12 +206,26 @@ export const startRoundClock = ({
   }
 
   room.phase = 'playing'
-  room.round.openedWithPlayerIds =
-    room.round.content.kind === 'slate' ? null : new Set(room.players.keys())
+  room.round.openedWithPlayerIds = rosterOf(room, room.round)
   room.round.runningSince = now
   touch(room, now)
 
   return true
+}
+
+/** A team's round is played by that team's seats alone; the others watch it. */
+const rosterOf = (room: Room, round: Round): Round['openedWithPlayerIds'] => {
+  if (round.content.kind === 'slate') {
+    return null
+  }
+
+  if (round.turn !== null) {
+    return new Set(
+      seatsOf(room, round.turn.teamId).map((participant) => participant.id)
+    )
+  }
+
+  return new Set(room.players.keys())
 }
 
 export const registerBuzz = ({
@@ -340,9 +362,62 @@ export type AnswerRejection = Extract<
   | 'already_buzzed'
   | 'invalid_message'
   | 'joined_mid_round'
+  | 'not_your_turn'
   | 'stale_round'
+  | 'wall_cannot_answer'
   | 'wrong_phase'
 >
+
+/** Who sent an answer: a seat, or the wall answering for the team on turn. */
+export type Answerer = { kind: 'seat'; playerId: PlayerId } | { kind: 'wall' }
+
+/**
+ * The seats an answer is banked for. Everyone at once, a seat answers for
+ * itself. In a team's round the team answers as one: whichever member or the
+ * wall speaks first, every seat the round opened on holds the same attempt, so
+ * the team's mean is what its answer earned and a pick closes its round.
+ */
+const seatsAnsweredFor = ({
+  from,
+  room,
+  round
+}: {
+  from: Answerer
+  room: Room
+  round: Round
+}): Result<PlayerId[], AnswerRejection> => {
+  const roster = round.openedWithPlayerIds
+
+  if (round.turn === null) {
+    if (from.kind === 'wall') {
+      return Result.failure('wall_cannot_answer')
+    }
+
+    return hasJoinedAfterStart({
+      openedWithPlayerIds: roster,
+      playerId: from.playerId
+    })
+      ? Result.failure('joined_mid_round')
+      : Result.success([from.playerId])
+  }
+
+  const teamSeats = [...(roster ?? [])]
+
+  if (from.kind === 'wall') {
+    return round.content.kind !== 'slate' &&
+      capabilitiesOf(round.content.kind).wallAnswers
+      ? Result.success(teamSeats)
+      : Result.failure('wall_cannot_answer')
+  }
+
+  if (roster?.has(from.playerId) === true) {
+    return Result.success(teamSeats)
+  }
+
+  return room.players.get(from.playerId)?.teamId === round.turn.teamId
+    ? Result.failure('joined_mid_round')
+    : Result.failure('not_your_turn')
+}
 
 /**
  * A simultaneous round's answer. Unlike a buzz it neither pauses the clip nor
@@ -355,14 +430,14 @@ export type AnswerRejection = Extract<
  */
 export const registerAnswer = ({
   attempt,
+  from,
   now,
-  playerId,
   room,
   roundId
 }: {
   attempt: { kind: 'choice'; choiceIndex: number } | TypedAttempt
+  from: Answerer
   now: number
-  playerId: PlayerId
   room: Room
   roundId: RoundId
 }): Result<void, AnswerRejection> => {
@@ -380,16 +455,18 @@ export const registerAnswer = ({
     return Result.failure('invalid_message')
   }
 
-  if (
-    hasJoinedAfterStart({
-      openedWithPlayerIds: round.openedWithPlayerIds,
-      playerId
-    })
-  ) {
-    return Result.failure('joined_mid_round')
+  const seats = seatsAnsweredFor({ from, room, round })
+
+  if (seats.status === 'failure') {
+    return seats
   }
 
-  const held = round.attempts.find((entry) => entry.playerId === playerId)
+  const heldBy = (playerId: PlayerId) =>
+    round.attempts.find((entry) => entry.playerId === playerId)
+
+  // Every seat of a team on turn holds the same attempt, so the first is theirs.
+  const [first] = seats.data
+  const held = first === undefined ? undefined : heldBy(first)
 
   // A pick is one shot — four candidates with retries is just the answer with
   // extra steps. Typing is open until the clip runs out, and closes only once
@@ -404,7 +481,10 @@ export const registerAnswer = ({
     return Result.failure('invalid_message')
   }
 
-  bank({ graded, held, now, playerId, round })
+  for (const playerId of seats.data) {
+    bank({ graded, held: heldBy(playerId), now, playerId, round })
+  }
+
   touch(room, now)
 
   return Result.success()
@@ -1043,6 +1123,7 @@ export const closeRound = (room: Room, now: number): void => {
 
 export const finishGame = (room: Room, now: number): void => {
   bankTeamRound(room)
+  room.set = null
   room.phase = 'finished'
   room.round = null
   touch(room, now)
@@ -1061,6 +1142,7 @@ export const restartGame = (room: Room, now: number): void => {
   resetTeamScores(room)
   room.phase = 'lobby'
   room.round = null
+  room.set = null
   touch(room, now)
 }
 
@@ -1090,11 +1172,16 @@ export const advanceDueAt = (room: Room): number | null => {
   return advancesAt - room.settings.countdownMs - drawLeadMs
 }
 
-/** Never final in a room that runs until the host stops it. */
+/**
+ * Never final in a room that runs until the host stops it, nor while a set
+ * still owes a team its round: the evening counts a set as one round.
+ */
 export const isFinalRound = (room: Room): boolean => {
   const total = room.settings.roundCount
 
-  return total !== null && (room.round?.index ?? 0) >= total
+  return (
+    total !== null && (room.round?.index ?? 0) >= total && !hasTurnsLeft(room)
+  )
 }
 
 export const elapsedRoundMs = (round: Round, now: number): number =>

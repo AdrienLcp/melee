@@ -63,6 +63,17 @@ export const protocolErrorCodes = [
    */
   'joined_mid_round',
   /**
+   * An answer from a seat whose team is not the one on turn. Its own code
+   * rather than `joined_mid_round`: the seat was there all along, and the
+   * screen owes it a wait for its team's round rather than for the next one.
+   */
+  'not_your_turn',
+  /**
+   * An answer from the wall in a round it may not answer: everyone plays at
+   * once, or the game is one a press on the wall cannot fairly take part in.
+   */
+  'wall_cannot_answer',
+  /**
    * A round was asked for in a room whose game nobody has picked yet. Its own
    * code rather than `wrong_phase`, because the phase is right — the lobby is
    * exactly where this happens — and what is missing is a decision the host can

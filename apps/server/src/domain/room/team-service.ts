@@ -18,7 +18,7 @@ import { touch } from './room-service'
 
 export type TeamRejection = 'teams_locked'
 
-const seatsOf = (room: Room, teamId: TeamId): Participant[] =>
+export const seatsOf = (room: Room, teamId: TeamId): Participant[] =>
   [...room.players.values()].filter(
     (participant) => participant.teamId === teamId
   )

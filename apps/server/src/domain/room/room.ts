@@ -1,3 +1,4 @@
+import type { GameKind } from '@melee/protocol/game'
 import type {
   HostToken,
   Nickname,
@@ -10,7 +11,8 @@ import type { HostQuestion } from '@melee/protocol/question'
 import type {
   ModeSettings,
   RoomPhase,
-  RoomSettings
+  RoomSettings,
+  RoundTurn
 } from '@melee/protocol/room'
 import type { Award, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
@@ -51,7 +53,18 @@ export type Room = {
    */
   playedContentIds: Set<string>
   players: Map<PlayerId, Participant>
+  /**
+   * How the rounds from here on are played, as the host last said: everyone at
+   * once, or a set of team turns. It is a wish rather than a rule — a round the
+   * room cannot play by team (a race, a single team) opens for everyone, and
+   * the next one that can goes back to sets.
+   */
+  playsByTeam: boolean
   round: Round | null
+  /** The set under way, and `null` between two and whenever everyone plays. */
+  set: TeamSet | null
+  /** Sets already opened, which is what turns who goes first — see `setOrder`. */
+  setsPlayed: number
   settings: RoomSettings
   /**
    * As many as `settings.teams` counts, in team order, and empty when the room
@@ -84,6 +97,18 @@ export type Participant = {
   score: number
   /** `null` in a room without teams, and for a seat still waiting to be dealt or to choose. */
   teamId: TeamId | null
+}
+
+/**
+ * One round per team, each team its own question, in an order fixed as the set
+ * opens. The game is held so that a line-up moving on mid-set ends it rather
+ * than handing the last team a different game from the others'.
+ */
+export type TeamSet = {
+  game: GameKind
+  order: TeamId[]
+  /** Turns already opened; the set is over once it reaches `order.length`. */
+  played: number
 }
 
 export type RoomTeam = {
@@ -255,4 +280,6 @@ export type Round = {
   /** Server time the round last started or resumed running; `null` while paused. */
   runningSince: number | null
   startsAt: number | null
+  /** The team this round belongs to inside a set, `null` when everyone plays it. */
+  turn: RoundTurn | null
 }

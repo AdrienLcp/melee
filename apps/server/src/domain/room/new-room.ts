@@ -40,7 +40,10 @@ export const newRoom = ({
     phase: 'lobby',
     playedContentIds: new Set(),
     players: new Map(),
+    playsByTeam: false,
     round: null,
+    set: null,
+    setsPlayed: 0,
     settings: roomSettingsFor({ game, locale, preset }),
     teams: [],
     trackPool: []

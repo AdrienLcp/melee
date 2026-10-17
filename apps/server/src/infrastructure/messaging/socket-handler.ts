@@ -42,6 +42,7 @@ import {
   type TeamRejection
 } from '@/domain/room/team-service'
 import {
+  type Answerer,
   applyVerdict,
   clearLockouts,
   closeRound,
@@ -68,6 +69,7 @@ import {
   showSlateItem,
   writeSlateLine
 } from '@/domain/round/slate-round'
+import { canPlayByTeam } from '@/domain/round/team-turns'
 import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
 import { newPlayerId } from '@/infrastructure/ids'
@@ -428,7 +430,8 @@ const dispatch = ({
       buzz(message.roundId, active, outbound, engine)
       break
     }
-    case 'player.answer': {
+    case 'player.answer':
+    case 'wall.answer': {
       answer(message, active, outbound, engine)
       break
     }
@@ -437,7 +440,12 @@ const dispatch = ({
       break
     }
     case 'host.startRound': {
-      start({ engine, outbound, slateKeys: message.slateKeys })
+      start({
+        byTeam: message.byTeam ?? false,
+        engine,
+        outbound,
+        slateKeys: message.slateKeys
+      })
       break
     }
     case 'host.addItem': {
@@ -591,7 +599,7 @@ const dispatch = ({
       break
     }
     case 'host.nextRound': {
-      advance(outbound, engine)
+      advance({ byTeam: message.byTeam, engine, outbound })
       break
     }
     case 'host.endGame': {
@@ -891,10 +899,12 @@ const reopenFloor = (
 }
 
 const start = ({
+  byTeam,
   engine,
   outbound,
   slateKeys
 }: {
+  byTeam: boolean
   engine: RoomEngine
   outbound: Outbound
   slateKeys: readonly (string | null)[] | undefined
@@ -910,6 +920,10 @@ const start = ({
   }
 
   if (refuseWithoutGame(outbound, engine)) {
+    return
+  }
+
+  if (refuseTeamTurns({ byTeam, engine, outbound })) {
     return
   }
 
@@ -1005,19 +1019,38 @@ const reveal = (
   publishRoom(engine)
 }
 
+/**
+ * A seat answers with `player.answer` and the wall with `wall.answer`, each
+ * from its own role: the wall's frame from a phone would let a player answer
+ * for a team that is not theirs.
+ */
+const answererOf = (
+  type: 'player.answer' | 'wall.answer',
+  active: Connection
+): Answerer | null => {
+  if (type === 'wall.answer') {
+    return active.role === 'wall' ? { kind: 'wall' } : null
+  }
+
+  return active.playerId === null
+    ? null
+    : { kind: 'seat', playerId: active.playerId }
+}
+
 const answer = (
-  message: Extract<ClientMessage, { type: 'player.answer' }>,
+  message: Extract<ClientMessage, { type: 'player.answer' | 'wall.answer' }>,
   active: Connection,
   outbound: Outbound,
   engine: RoomEngine
 ): void => {
   const { room } = engine
+  const from = answererOf(message.type, active)
 
-  if (active.playerId === null) {
+  if (from === null) {
     sendError(outbound, {
       code: 'invalid_message',
       fatal: false,
-      message: 'Only a seated player answers'
+      message: 'Only a seated player or the wall answers'
     })
 
     return
@@ -1025,8 +1058,8 @@ const answer = (
 
   const registered = registerAnswer({
     attempt: message.answer,
+    from,
     now: engine.now(),
-    playerId: active.playerId,
     room,
     roundId: message.roundId
   })
@@ -1048,7 +1081,15 @@ const answer = (
   publishRoom(engine)
 }
 
-const advance = (outbound: Outbound, engine: RoomEngine): void => {
+const advance = ({
+  byTeam,
+  engine,
+  outbound
+}: {
+  byTeam: boolean | undefined
+  engine: RoomEngine
+  outbound: Outbound
+}): void => {
   if (engine.room.phase !== 'revealed') {
     sendError(outbound, {
       code: 'wrong_phase',
@@ -1069,7 +1110,39 @@ const advance = (outbound: Outbound, engine: RoomEngine): void => {
     return
   }
 
+  if (byTeam !== undefined && refuseTeamTurns({ byTeam, engine, outbound })) {
+    return
+  }
+
   void beginRound(engine)
+}
+
+/**
+ * Takes the host's word on how the rounds from here are played, refusing a set
+ * the room cannot play — the console offers one only where it can.
+ */
+const refuseTeamTurns = ({
+  byTeam,
+  engine,
+  outbound
+}: {
+  byTeam: boolean
+  engine: RoomEngine
+  outbound: Outbound
+}): boolean => {
+  if (byTeam && !canPlayByTeam(engine.room)) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'This round cannot be played team by team'
+    })
+
+    return true
+  }
+
+  engine.room.playsByTeam = byTeam
+
+  return false
 }
 
 const end = (engine: RoomEngine): void => {

@@ -162,8 +162,11 @@ export const updateSettingsMessageSchema = z.object({
  * own machine because the settings reach every player. It rides the press that
  * opens the sheet, so the round never exists without it and a console that
  * reloads mid-game has nothing to send again. Ignored by every other game.
+ *
+ * `byTeam` asks for a set: one round per team in turn, see `nextRoundMessageSchema`.
  */
 export const startRoundMessageSchema = z.object({
+  byTeam: z.boolean().optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
 })
@@ -301,7 +304,15 @@ export const adjustScoreMessageSchema = z.object({
   type: z.literal('host.adjustScore')
 })
 
+/**
+ * `byTeam` says how the rounds from here on are played: everyone at once, or
+ * a set — each team its own round in turn while the others watch. Absent, the
+ * room keeps playing the way it last did, which is what the reveal hold opens
+ * the next round on. A set under way plays its remaining turns whatever this
+ * says: a team left without its turn would be a team left behind.
+ */
 export const nextRoundMessageSchema = z.object({
+  byTeam: z.boolean().optional(),
   type: z.literal('host.nextRound')
 })
 
@@ -376,10 +387,22 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   writeSlateLineMessageSchema
 ])
 
-/** A wall says who it is and keeps its clock, and nothing else. */
+/**
+ * The wall answering for the team on turn, in the shape a phone answers in —
+ * accepted only in a team's round of a game whose capabilities allow it.
+ */
+export const wallAnswerMessageSchema = answerMessageSchema.extend({
+  type: z.literal('wall.answer')
+})
+
+/**
+ * A wall says who it is and keeps its clock — and, in a team's round, answers
+ * for that team. It never controls the room.
+ */
 export const wallClientMessageSchema = z.discriminatedUnion('type', [
   helloMessageSchema,
-  timePingMessageSchema
+  timePingMessageSchema,
+  wallAnswerMessageSchema
 ])
 
 /** Everything the server's decoder accepts, before it knows which role sent it. */
@@ -392,6 +415,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
+  wallAnswerMessageSchema,
   writeSlateLineMessageSchema,
   updateSettingsMessageSchema,
   startRoundMessageSchema,
@@ -466,5 +490,6 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
  */
 export const FLOOR_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.buzz',
-  'player.answer'
+  'player.answer',
+  'wall.answer'
 ])

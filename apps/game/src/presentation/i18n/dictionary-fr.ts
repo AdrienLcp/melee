@@ -204,6 +204,7 @@ export const FR_DICTIONARY = defineDictionary({
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',
+    not_your_turn: 'Une autre équipe joue cette manche. La tienne arrive.',
     pairing_not_found:
       'Ce code d’écran a expiré. Rouvre l’écran pour en avoir un nouveau.',
     player_locked_out: 'Tu es hors-jeu pour cette manche.',
@@ -221,6 +222,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     stale_round: 'Cette manche est déjà terminée.',
     teams_locked: 'Les équipes ne peuvent plus changer comme ça.',
+    wall_cannot_answer: 'Cet écran ne peut pas répondre à cette manche.',
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'

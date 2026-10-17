@@ -12,36 +12,31 @@ round already stamps who it opened on and refuses everyone else
 row, one per team, which the server sequences — not a new engine, and not a
 `turns` array inside a round as Gamenight planned.
 
-## Protocol
+## Server — done
 
-- `host.startRound` gains an optional `set: { order: TeamId[] }`; the server
-  opens one round per team in that order, each with its own draw. Round view:
-  `turn: { teamId, index, of } | null`.
-- `round.content` is untouched: each round is the game's own arm.
-- The wall may answer: in a team turn, `wall.answer` is accepted for the team
-  on turn, through the same path as `player.answer`. The wall still receives
-  no answer before the reveal, so the anti-leak tests stand; what changes is
-  that it can *send*. Only games whose capability says so (`game-capabilities.ts`).
-- Refusals `not_your_turn`, `wall_cannot_answer`.
+The wire is in `docs/realtime-protocol.md` (*A set is rounds played in turn*).
+Where it left the first draft of this file:
 
-## Who answers for a team
-
-Working assumption (decision 4): the first submission from any member's phone
-or from the wall counts, and the round closes on it. In a choice round that is
-one press; a typed round keeps its guesses until the clock runs out.
-
-## Rules
-
-- `core/round/round-roster.ts` — a roster can be a team's seats.
-- `core/team/set-order.ts` — the order teams play in: rotate who goes first
-  from set to set, so no team always plays blind of the others' answers.
-- The draw takes one question per team from the bank without repeats — the
-  quiz and the map banks already draw without repeats per room.
+- **`byTeam`, not `set: { order }`.** The host asks for sets on
+  `host.startRound` and `host.nextRound`; the server orders the teams
+  (`core/team/set-order.ts`) and keeps asking for sets until told otherwise,
+  which is what the reveal hold opens the next round on.
+- **The team answers as one** (decision 4): the first answer from a seat or the
+  wall is banked for every seat of the turn, so a pick closes the turn and the
+  team's mean is that answer's worth. No designated seat, no synthetic one.
+- **A set is one round of the evening**: its turns share `round.index`.
+- **No set in the buzzer mode**, nor where `playsInTeamTurns` says no: refused
+  `invalid_message`. A round that cannot be a team's after all opens for
+  everyone and ends the set.
+- The roster is stamped in `round-service.ts` (`rosterOf`), not in
+  `core/round/round-roster.ts`, which had nothing to learn.
 
 ## App
 
 - Console — *Next round* offers *everyone at once* or *team by team*, defaulted
-  by the game; during a set, *Blue plays (2 of 3)*.
+  by the game (`playsInTeamTurns`, and never in the buzzer mode); during a set,
+  *Blue plays (2 of 3)*. `useLineUpDraw` must not draw while a set has turns
+  left — a new game would end the set for the teams still waiting.
 - Wall — the team on turn in its colour around the round; its answer controls
   when the wall may answer.
 - Phones — *your team plays* with the controls, or *Red plays* and the round

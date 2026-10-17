@@ -29,7 +29,8 @@ const runningRound: RoundView = {
   lockedOutPlayerIds: [],
   openedWithPlayerIds: null,
   revealedAnswers: [],
-  startsAt: 1_000
+  startsAt: 1_000,
+  turn: null
 }
 
 const viewFor = (

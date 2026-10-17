@@ -22,7 +22,12 @@ import {
   slateLineSchema,
   slateProgressSchema
 } from './slate'
-import { DEFAULT_TEAMS_SETTINGS, teamSchema, teamsSettingsSchema } from './team'
+import {
+  DEFAULT_TEAMS_SETTINGS,
+  teamIdSchema,
+  teamSchema,
+  teamsSettingsSchema
+} from './team'
 import { hostTrackSchema, trackIdentitySchema } from './track'
 
 export const MAX_PLAYERS_PER_ROOM = 24
@@ -305,6 +310,18 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
   })
 ])
 
+/**
+ * A team's round inside a set: which team plays it, and where it falls in the
+ * set — "Blue plays, 2 of 3". The set shares one `index`, because the evening
+ * counts it as one round however many teams it takes.
+ */
+export const roundTurnSchema = z.object({
+  /** 0-based, so the last turn is `index === of - 1`. */
+  index: z.number().int().nonnegative(),
+  of: z.number().int().positive(),
+  teamId: teamIdSchema
+})
+
 export const roundViewSchema = z.object({
   activeBuzz: activeBuzzSchema.nullable(),
   /**
@@ -362,7 +379,13 @@ export const roundViewSchema = z.object({
    * Every client schedules against its own clock offset, which is what lands the
    * countdown on every device together.
    */
-  startsAt: serverTimeSchema.nullable()
+  startsAt: serverTimeSchema.nullable(),
+  /**
+   * The team this round belongs to when it is one of a set, and `null` when
+   * everyone plays it. Only that team's seats are stamped on the round, and
+   * the wall may answer for it.
+   */
+  turn: roundTurnSchema.nullable()
 })
 
 const baseRoomViewSchema = z.object({
@@ -538,6 +561,7 @@ export type PublicPlayer = z.infer<typeof publicPlayerSchema>
 export type ActiveBuzz = z.infer<typeof activeBuzzSchema>
 export type RoundContent = z.infer<typeof roundContentSchema>
 export type HostRoundContent = z.infer<typeof hostRoundContentSchema>
+export type RoundTurn = z.infer<typeof roundTurnSchema>
 export type RoundView = z.infer<typeof roundViewSchema>
 export type HostRoomView = z.infer<typeof hostRoomViewSchema>
 export type PlayerRoomView = z.infer<typeof playerRoomViewSchema>
