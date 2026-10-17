@@ -63,6 +63,7 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     case 'buzzer':
     case 'reflex':
     case 'slate':
+    case 'worldmap':
       return []
     case 'quiz':
       return content.choices.map((choice) => ({

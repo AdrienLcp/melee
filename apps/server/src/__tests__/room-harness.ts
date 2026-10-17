@@ -342,6 +342,14 @@ export const slateRound = (
   return content?.kind === 'slate' ? content : null
 }
 
+export const worldmapRound = (
+  view: { round: RoundView | null } | null
+): Extract<RoundContent, { kind: 'worldmap' }> | null => {
+  const content = view?.round?.content
+
+  return content?.kind === 'worldmap' ? content : null
+}
+
 export const hostSlateContent = (
   host: Peer<HostServerMessage>
 ): Extract<HostRoundContent, { kind: 'slate' }> | null => {

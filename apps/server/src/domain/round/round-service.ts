@@ -1,11 +1,13 @@
 import { Result } from '@adrienlcp/result'
 
+import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { Verdict } from '@melee/protocol/scoring'
 import type { HostTrack } from '@melee/protocol/track'
+import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import {
   choiceVerdict,
@@ -42,6 +44,10 @@ import {
   type SimultaneousMode,
   verdictKindFor
 } from '@melee/core/scoring/verdict'
+import {
+  type CountryShape,
+  distanceToCountryKm
+} from '@melee/core/worldmap/distance'
 
 import type { PlayerAttempts, Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -435,7 +441,7 @@ export const registerAnswer = ({
   room,
   roundId
 }: {
-  attempt: { kind: 'choice'; choiceIndex: number } | TypedAttempt
+  attempt: Attempt
   from: Answerer
   now: number
   room: Room
@@ -471,7 +477,7 @@ export const registerAnswer = ({
   // A pick is one shot — four candidates with retries is just the answer with
   // extra steps. Typing is open until the clip runs out, and closes only once
   // there is nothing left to win.
-  if (held !== undefined && (attempt.kind === 'choice' || isDone(held))) {
+  if (held !== undefined && (attempt.kind !== 'typed' || isDone(held))) {
     return Result.failure('already_buzzed')
   }
 
@@ -483,6 +489,10 @@ export const registerAnswer = ({
 
   for (const playerId of seats.data) {
     bank({ graded, held: heldBy(playerId), now, playerId, round })
+
+    if (round.content.kind === 'worldmap' && attempt.kind === 'point') {
+      round.content.placements.push({ playerId, point: attempt.point })
+    }
   }
 
   touch(room, now)
@@ -572,7 +582,7 @@ export const everyoneIsDone = (room: Room, now: number): boolean => {
         return false
       }
 
-      return round.mode.kind === 'choice' || isDone(held)
+      return round.mode.kind !== 'typed' || isDone(held)
     })
   )
 }
@@ -640,6 +650,28 @@ export const settleSimultaneousRound = ({
 
   revealRound(room, now)
 }
+
+/**
+ * A map round's content, or `null` once the room has placed every country the
+ * bank holds. The shape is read here, once, so every marker of the round is
+ * measured against the same outlines.
+ */
+export const worldmapContent = ({
+  countryCode,
+  shape
+}: {
+  countryCode: CountryCode
+  shape: CountryShape
+}): Round['content'] => ({
+  countryCode,
+  kind: 'worldmap',
+  placements: [],
+  shape
+})
+
+/** A marker as the reveal's list reads it, two decimals of a degree being a kilometre. */
+const placeNamedBy = ({ latitude, longitude }: GeoPoint): string =>
+  `${latitude.toFixed(2)}, ${longitude.toFixed(2)}`
 
 /**
  * The reflex race's half of opening a round, and the only content on the shelf
@@ -805,7 +837,10 @@ const byFirstScored = (one: PlayerAttempts, other: PlayerAttempts): number =>
   (one.scoredAfterMs ?? Number.POSITIVE_INFINITY) -
   (other.scoredAfterMs ?? Number.POSITIVE_INFINITY)
 
-type Attempt = { kind: 'choice'; choiceIndex: number } | TypedAttempt
+type Attempt =
+  | { kind: 'choice'; choiceIndex: number }
+  | { kind: 'point'; point: GeoPoint }
+  | TypedAttempt
 
 /**
  * What this player now holds, not what this one guess was worth. The
@@ -826,6 +861,27 @@ const grade = ({
   round: Round
 }): { said: string; verdict: Verdict } | null => {
   const content = round.content
+
+  if (content.kind === 'worldmap') {
+    return attempt.kind === 'point'
+      ? {
+          said: placeNamedBy(attempt.point),
+          verdict: {
+            distanceKm: Math.round(
+              distanceToCountryKm({
+                point: attempt.point,
+                shape: content.shape
+              })
+            ),
+            kind: 'distance'
+          }
+        }
+      : null
+  }
+
+  if (attempt.kind === 'point') {
+    return null
+  }
 
   if (content.kind === 'blindtest') {
     if (attempt.kind === 'choice') {

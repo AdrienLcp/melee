@@ -105,9 +105,21 @@ export const singleVerdictSchema = z.object({
   kind: z.literal('single')
 })
 
+/**
+ * How far a marker fell from the answer, which is the world map's whole grade:
+ * a point in the sea off Brittany is not *wrong* the way a wrong pick is, and
+ * the tiers in `@melee/core/worldmap/distance-tiers` pay it for being close.
+ * Nought means inside. The server measures it; no screen ever sends one.
+ */
+export const distanceVerdictSchema = z.object({
+  distanceKm: z.number().nonnegative(),
+  kind: z.literal('distance')
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
-  singleVerdictSchema
+  singleVerdictSchema,
+  distanceVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -127,4 +139,5 @@ export const awardSchema = z.object({
 export type Verdict = z.infer<typeof verdictSchema>
 export type HalvesVerdict = z.infer<typeof halvesVerdictSchema>
 export type SingleVerdict = z.infer<typeof singleVerdictSchema>
+export type DistanceVerdict = z.infer<typeof distanceVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

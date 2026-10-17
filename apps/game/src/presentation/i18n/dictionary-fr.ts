@@ -259,6 +259,7 @@ export const FR_DICTIONARY = defineDictionary({
       buzzer: 'Le premier qui buzze',
       choice: 'Quatre propositions',
       label: 'Comment on répond',
+      point: 'On pointe sur la carte',
       typed: 'On tape'
     },
     answerWindow: {
@@ -917,5 +918,10 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Cet écran attend sa table'
     },
     sound: 'Mettre le son'
+  },
+  worldmap: {
+    name: 'Carte du monde',
+    scoring:
+      'Tout le monde pointe le pays en même temps. Dedans, ça rapporte 3 points, à moins de 500 km 2, à moins de 1 500 km 1 — et plus tu pointes tôt, plus la montre ajoute, jusqu’au double.'
   }
 })

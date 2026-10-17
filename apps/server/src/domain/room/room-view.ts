@@ -150,8 +150,8 @@ const toHostContent = ({
     }
   }
 
-  if (content.kind === 'reflex') {
-    return { kind: 'reflex' }
+  if (content.kind === 'reflex' || content.kind === 'worldmap') {
+    return { kind: content.kind }
   }
 
   if (content.kind === 'slate') {
@@ -355,6 +355,19 @@ const toContentView = ({
       flipsAt: flipsAtOf(round),
       kind: 'reflex',
       presses: [...content.presses]
+    }
+  }
+
+  if (content.kind === 'worldmap') {
+    return {
+      countryCode: content.countryCode,
+      kind: 'worldmap',
+      revealedPlacements: round.revealed
+        ? content.placements.map(({ playerId, point }) => ({
+            playerId,
+            point: { latitude: point.latitude, longitude: point.longitude }
+          }))
+        : null
     }
   }
 

@@ -67,6 +67,7 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
     case 'buzzer':
     case 'reflex':
     case 'slate':
+    case 'worldmap':
       return true
     case 'quiz':
       return content.question !== null

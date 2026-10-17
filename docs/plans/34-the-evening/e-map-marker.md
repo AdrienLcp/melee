@@ -7,6 +7,29 @@ confirms; the host reveals; every screen shows the answers and *à 480 km*.
 Start this step with the `impeccable` skill: it is a new interaction and a new
 set of screens, inside the stage-29 world.
 
+## What d left to the screens
+
+Step d landed the game server-side (see the README's row): the protocol, the
+judging, the bank of 157 country codes and the atlas on the Worker. Everything
+Gamenight drew moves here, from `apps/web/src/features/world-map/` in
+`C:/git/gamenight`:
+
+| Gamenight file | Lands in | Change |
+|---|---|---|
+| `world-projection.ts` | app `features/worldmap/` | Unchanged: Equal Earth, fitted to the frame. Only the app projects, so it stays out of core; inverting it gives the `point` a marker sends |
+| `world-atlas.ts` | app `features/worldmap/` | The app's half of the TopoJSON read; the codes table is already `@melee/core/worldmap/atlas-country-codes` |
+| `country-hit-test.ts` + test | app `features/worldmap/` | Display only — *which country is under the marker* — with the tolerance divided by the zoom |
+| `country-marks.ts` + test | app `features/worldmap/` | The ring around a small country becomes the reveal's |
+| `country-names.ts` + the dictionary entries | `presentation/i18n/` | Names under `worldmap.country.*`, with the article form the prompt needs (*Place la France*); English as a dictionary too (decision 7) — 157 codes in `apps/server/src/infrastructure/questions/country-bank.ts` |
+
+`d3-geo`, `topojson-client` and `world-atlas` get an app row in
+`abstraction-boundaries.md` beside the server's. The spine tokens
+`--spine-worldmap` / `--on-spine-worldmap` are owed in both palettes, the
+shelf's tagline and description keys once it is shelved, and
+`worldmap.scoring`'s sentence is a placeholder to reread with the screens.
+Decision 14: add `'map'`-the-game (`worldmap`) to `ROOM_PRESETS.christmas` in
+`apps/game/src/features/home/room-presets.ts` once it is shelved.
+
 ## The interaction
 
 - **One SVG, a transform.** Pinch and pan with pointer events over Gamenight's

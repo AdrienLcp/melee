@@ -29,7 +29,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   /** A heat is a wait and a press, so ten of them is under two minutes. */
   reflex: 10,
   /** One sheet is the evening's tasting; a second is a second tasting, and the host can say so. */
-  slate: 1
+  slate: 1,
+  worldmap: 10
 }
 
 /**
@@ -50,7 +51,8 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   buzzer: 'buzzer',
   quiz: 'choice',
   reflex: 'buzzer',
-  slate: 'typed'
+  slate: 'typed',
+  worldmap: 'point'
 }
 
 /**
@@ -125,7 +127,8 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   buzzer: null,
   quiz: null,
   reflex: null,
-  slate: null
+  slate: null,
+  worldmap: null
 }
 
 /** What a game answers before anybody has told it otherwise. */

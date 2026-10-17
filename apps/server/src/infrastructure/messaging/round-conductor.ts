@@ -13,13 +13,19 @@ import {
   resumeRoundClock,
   startRoundClock,
   TRACK_DRAW_LEAD_MS,
-  timeOutBuzz
+  timeOutBuzz,
+  worldmapContent
 } from '@/domain/round/round-service'
 import { slateContent } from '@/domain/round/slate-round'
 import { drawPlayableTrack } from '@/domain/round/track-pool'
 import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
+import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { isOutage, NOTHING_PLAYABLE } from '@/infrastructure/music/music-source'
+import {
+  drawCountry,
+  playedCountryId
+} from '@/infrastructure/questions/country-bank'
 import {
   drawQuestion,
   hostQuestionOf
@@ -160,6 +166,35 @@ export const beginRound = async (
 
     openRound({
       content: quizContent({ question: hostQuestionOf(question), room }),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'worldmap') {
+    const countryCode = drawCountry({ playedIds: room.playedContentIds })
+    const shape = countryCode === null ? null : countryShapeOf(countryCode)
+
+    if (countryCode === null || shape === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'Every country in the bank has been placed'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(playedCountryId(countryCode))
+
+    openRound({
+      content: worldmapContent({ countryCode, shape }),
       id: newRoundId(),
       now: engine.now(),
       room,

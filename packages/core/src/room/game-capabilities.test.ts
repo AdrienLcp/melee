@@ -22,7 +22,7 @@ describe('answerModesFor', () => {
   })
 
   it('[game-capabilities] narrows nothing before a game is picked', () => {
-    expect(answerModesFor(null)).toEqual(['buzzer', 'choice', 'typed'])
+    expect(answerModesFor(null)).toEqual(['buzzer', 'choice', 'typed', 'point'])
   })
 })
 

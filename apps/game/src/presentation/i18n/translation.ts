@@ -55,6 +55,9 @@ export const answerModeLabelKey = (
   mode: AnswerMode
 ): BuiltKey<`host.answerMode.${AnswerMode}`> => `host.answerMode.${mode}`
 
+/** The modes a game answering against its own question offers. */
+type ServedMode = Exclude<AnswerMode, 'point'>
+
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
  * does what is being paid for: the blind test's buzzer sentence is about a title
@@ -76,25 +79,32 @@ export const scoringKey = ({
   | 'buzzer.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
-  | `blindtest.scoring.${AnswerMode}`
-  | `blindtest.scoringFilm.${Exclude<AnswerMode, 'choice'>}`
-  | `quiz.scoring.${AnswerMode}`
+  | 'worldmap.scoring'
+  | `blindtest.scoring.${ServedMode}`
+  | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
+  | `quiz.scoring.${ServedMode}`
 > => {
+  // A marker is the map's alone, so the two games that serve their own
+  // question are never in `point`; reading it as a pick keeps the switch total.
+  const served = answerMode === 'point' ? 'choice' : answerMode
+
   switch (game) {
     case 'blindtest':
       // Choice mode names neither half — four candidates and one is right —
       // so it has one sentence whatever the round is asking for.
-      return asksForAFilm && answerMode !== 'choice'
-        ? `blindtest.scoringFilm.${answerMode}`
-        : `blindtest.scoring.${answerMode}`
+      return asksForAFilm && served !== 'choice'
+        ? `blindtest.scoringFilm.${served}`
+        : `blindtest.scoring.${served}`
     case 'buzzer':
       return 'buzzer.scoring'
     case 'quiz':
-      return `quiz.scoring.${answerMode}`
+      return `quiz.scoring.${served}`
     case 'reflex':
       return 'reflex.scoring'
     case 'slate':
       return 'slate.scoring'
+    case 'worldmap':
+      return 'worldmap.scoring'
   }
 }
 

@@ -5,6 +5,7 @@ import {
   ChevronDown,
   CircleQuestionMark,
   Copy,
+  Earth,
   Lock,
   type LucideIcon,
   type LucideProps,
@@ -22,7 +23,7 @@ import {
 } from 'lucide-react'
 import type React from 'react'
 
-import type { ShelvedGame } from '@melee/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 
 /**
  * The family every glyph is drawn in, so none arrives in someone else's
@@ -69,11 +70,12 @@ const GAME_GLYPHS = {
   buzzer: BellRing,
   quiz: CircleQuestionMark,
   reflex: Zap,
-  slate: PencilLine
-} as const satisfies Record<ShelvedGame, LucideIcon>
+  slate: PencilLine,
+  worldmap: Earth
+} as const satisfies Record<GameKind, LucideIcon>
 
 type GameIconProps = {
-  game: ShelvedGame
+  game: GameKind
 }
 
 /**

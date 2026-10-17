@@ -16,6 +16,7 @@ import {
   slateKeySchema
 } from './slate'
 import { MAX_TEAMS, MIN_TEAMS, teamIdSchema, teamNameSchema } from './team'
+import { geoPointSchema } from './worldmap'
 
 /**
  * `wall` is the room's own screen: it shows the game to everyone and holds no
@@ -110,6 +111,11 @@ export const answerMessageSchema = z.object({
        */
       guess: z.string().min(1).max(120),
       kind: z.literal('typed')
+    }),
+    z.object({
+      kind: z.literal('point'),
+      /** Where the marker was confirmed. One shot, like a pick. */
+      point: geoPointSchema
     })
   ]),
   roundId: roundIdSchema,

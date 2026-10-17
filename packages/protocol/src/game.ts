@@ -9,7 +9,8 @@ export const gameKinds = [
   'buzzer',
   'quiz',
   'reflex',
-  'slate'
+  'slate',
+  'worldmap'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -87,6 +88,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     itemCount: slateItemCountSchema,
     kind: z.literal('slate'),
     labels: slateLabelsSchema
+  }),
+  z.object({
+    kind: z.literal('worldmap'),
+    /** How long the map stays open before the round times out. */
+    roundDurationMs: z.number().int().min(5_000).max(120_000)
   })
 ])
 
@@ -98,6 +104,7 @@ export type BuzzerSettings = Extract<GameSettings, { kind: 'buzzer' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
+export type WorldmapSettings = Extract<GameSettings, { kind: 'worldmap' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -159,11 +166,17 @@ export const DEFAULT_SLATE_SETTINGS: SlateSettings = {
   labels: []
 }
 
+export const DEFAULT_WORLDMAP_SETTINGS: WorldmapSettings = {
+  kind: 'worldmap',
+  roundDurationMs: 30_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   blindtest: DEFAULT_BLINDTEST_SETTINGS,
   buzzer: DEFAULT_BUZZER_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
-  slate: DEFAULT_SLATE_SETTINGS
+  slate: DEFAULT_SLATE_SETTINGS,
+  worldmap: DEFAULT_WORLDMAP_SETTINGS
 }

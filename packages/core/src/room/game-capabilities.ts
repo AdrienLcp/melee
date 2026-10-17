@@ -1,6 +1,13 @@
 import type { GameKind } from '@melee/protocol/game'
 import { type AnswerMode, answerModes } from '@melee/protocol/room'
 
+/** What a game that serves its own question offers: a buzzer, four candidates or a typed field. */
+const SERVED_MODES = [
+  'buzzer',
+  'choice',
+  'typed'
+] as const satisfies readonly AnswerMode[]
+
 const BUZZER_ONLY = ['buzzer'] as const satisfies readonly AnswerMode[]
 
 /**
@@ -10,6 +17,12 @@ const BUZZER_ONLY = ['buzzer'] as const satisfies readonly AnswerMode[]
  * marks the sheets, which `isJudgedByHost` says rather than this.
  */
 const TYPED_ONLY = ['typed'] as const satisfies readonly AnswerMode[]
+
+/**
+ * The world map is answered by putting a marker down, which is neither a pick
+ * among four nor a line typed: the answer is a place, and the server measures it.
+ */
+const POINT_ONLY = ['point'] as const satisfies readonly AnswerMode[]
 
 /**
  * What the shell may ask of a game without knowing anything else about it —
@@ -50,7 +63,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'blindtest':
     case 'quiz':
       return {
-        answerModes,
+        answerModes: SERVED_MODES,
         playsInTeamTurns: true,
         wallAnswers: true
       }
@@ -66,6 +79,12 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         answerModes: TYPED_ONLY,
         playsInTeamTurns: false,
         wallAnswers: false
+      }
+    case 'worldmap':
+      return {
+        answerModes: POINT_ONLY,
+        playsInTeamTurns: true,
+        wallAnswers: true
       }
   }
 }

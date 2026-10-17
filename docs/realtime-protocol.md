@@ -77,7 +77,7 @@ before the reveal.
 | `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
-| `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}` or `{kind:'typed', guess}` |
+| `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
 | `wall.answer` | wall | `roundId`, `answer` — as `player.answer`, for the team on turn |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `host.updateSettings` | host | `settings` |
@@ -359,6 +359,20 @@ judged or the wall has moved past its item, which is when an answer nobody
 validated becomes wrong — and stays `null` on an item that closed before the
 reader held a seat, which `closedBeforeYou` says outright so a screen does not
 draw that line as a blank.
+
+**The world map hides the markers, not the country.** Its question is *place
+this country*, so `round.content.countryCode` is public from the first frame —
+naming it *is* the question, and every screen already draws the map that
+answers it. What a player answers is a point in degrees, which the device
+inverts from its own projection: the server decides what it hit, against
+Natural Earth's 1:50m outlines read once as the round opens, and no screen ever
+sends a country or a distance. `revealedPlacements` (`{ playerId, point }` per
+seat) is `null` until the reveal, because a marker seen on another screen is an
+answer to copy. The grade is a third shape of verdict, `{ kind: 'distance',
+distanceKm }` — nought inside, otherwise the way to the nearest border — priced
+by the tiers in `@melee/core/worldmap/distance-tiers`, the speed bonus capped by
+the tier as everywhere else. It is answered in a mode of its own, `point`: one
+shot a seat, like a pick, and offered by no other game.
 
 `audioUrl` and `track` are separate because a host who has taken a seat keeps
 the first and gets `null` for the second: that screen still has to play the

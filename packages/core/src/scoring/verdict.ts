@@ -10,6 +10,8 @@ import {
   type Verdict
 } from '@melee/protocol/scoring'
 
+import { pointsForDistance } from '../worldmap/distance-tiers'
+
 /**
  * Which shape of verdict a game is judged in. The blind test asks two
  * independent questions of one answer, and it is the only thing on the shelf
@@ -34,6 +36,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return verdict.isCorrect ? POINTS_FOR_A_CLAIM : 0
   }
 
+  if (verdict.kind === 'distance') {
+    return pointsForDistance(verdict.distanceKm)
+  }
+
   return (
     (verdict.titleCorrect ? POINTS_PER_TITLE : 0) +
     (verdict.artistCorrect ? POINTS_PER_ARTIST : 0)
@@ -48,12 +54,18 @@ export const isMiss = (verdict: Verdict): boolean => pointsFor(verdict) === 0
  * what closes typed mode for them and what lets the round end before its clock
  * does. Two halves need both; one claim is finished the moment it is right.
  */
-export const isFullyBanked = (verdict: Verdict): boolean =>
-  verdict.kind === 'halves'
-    ? verdict.titleCorrect && verdict.artistCorrect
-    : verdict.isCorrect
+export const isFullyBanked = (verdict: Verdict): boolean => {
+  switch (verdict.kind) {
+    case 'halves':
+      return verdict.titleCorrect && verdict.artistCorrect
+    case 'single':
+      return verdict.isCorrect
+    case 'distance':
+      return verdict.distanceKm === 0
+  }
+}
 
-/** Everyone answers at once in these two, so neither is decided by who was first to the buzzer. */
+/** Everyone answers at once in these, so none is decided by who was first to the buzzer. */
 export type SimultaneousMode = Exclude<AnswerMode, 'buzzer'>
 
 /**
@@ -73,6 +85,11 @@ export const pointsForSimultaneousAnswer = ({
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
+  // A marker is priced by how far it fell, which the mode has no say in.
+  if (verdict.kind === 'distance') {
+    return pointsForDistance(verdict.distanceKm)
+  }
+
   if (verdict.kind === 'single') {
     if (!verdict.isCorrect) {
       return 0

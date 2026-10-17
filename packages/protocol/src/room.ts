@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { countryCodeSchema } from './country-code'
 import { gameKindSchema, gameKinds, gameSettingsSchema } from './game'
 import {
   nicknameSchema,
@@ -29,6 +30,7 @@ import {
   teamsSettingsSchema
 } from './team'
 import { hostTrackSchema, trackIdentitySchema } from './track'
+import { placementSchema } from './worldmap'
 
 export const MAX_PLAYERS_PER_ROOM = 24
 
@@ -43,7 +45,7 @@ export const roomPhases = [
 
 export const roomPhaseSchema = z.enum(roomPhases)
 
-export const answerModes = ['buzzer', 'choice', 'typed'] as const
+export const answerModes = ['buzzer', 'choice', 'typed', 'point'] as const
 
 /**
  * How a round is answered. One game, not three: the pool, the audio, the
@@ -89,7 +91,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
     kind: z.literal('buzzer')
   }),
   z.object({ kind: z.literal('choice') }),
-  z.object({ kind: z.literal('typed') })
+  z.object({ kind: z.literal('typed') }),
+  z.object({ kind: z.literal('point') })
 ])
 
 export const roomSettingsSchema = z.object({
@@ -161,6 +164,7 @@ export const DEFAULT_BUZZER_MODE_SETTINGS: BuzzerModeSettings = {
 export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   buzzer: DEFAULT_BUZZER_MODE_SETTINGS,
   choice: { kind: 'choice' },
+  point: { kind: 'point' },
   typed: { kind: 'typed' }
 }
 
@@ -307,6 +311,21 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      * every line was saved on its own as it was written.
      */
     yourSheet: z.array(slateLineSchema).nullable()
+  }),
+  z.object({
+    /**
+     * The country to place. Public from the first frame, because naming it
+     * *is* the question — what a player answers is where it is, and the map
+     * every screen draws already knows that.
+     */
+    countryCode: countryCodeSchema,
+    kind: z.literal('worldmap'),
+    /**
+     * Every marker that landed, and `null` until the reveal: one seen on
+     * another screen is an answer to copy. A reader's own marker is the
+     * screen's to remember until then.
+     */
+    revealedPlacements: z.array(placementSchema).nullable()
   })
 ])
 
@@ -495,7 +514,12 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('slate'),
     /** Every seated player's count of filled lines — *Julie 12/26*. */
     progress: z.array(slateProgressSchema)
-  })
+  }),
+  /**
+   * Nothing to withhold: the country is the question, and the markers stay off
+   * every screen alike until the reveal.
+   */
+  z.object({ kind: z.literal('worldmap') })
 ])
 
 /**
@@ -549,7 +573,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
     filledCounts: z.array(z.number().int().nonnegative()),
     kind: z.literal('slate'),
     progress: z.array(slateProgressSchema)
-  })
+  }),
+  z.object({ kind: z.literal('worldmap') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

@@ -285,6 +285,7 @@ export const EN_DICTIONARY = defineDictionary({
       buzzer: 'First to buzz',
       choice: 'Four choices',
       label: 'How to answer',
+      point: 'Pin it on the map',
       typed: 'Type it'
     },
     answerWindow: {
@@ -1002,5 +1003,10 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'This screen is waiting for its table'
     },
     sound: 'Turn the sound on'
+  },
+  worldmap: {
+    name: 'World map',
+    scoring:
+      'Everyone pins the country at once. Inside it scores three, within 500 km two, within 1,500 km one — and the earlier your pin, the more the clock adds, up to double.'
   }
 })
