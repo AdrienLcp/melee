@@ -20,7 +20,7 @@ the step it names and deleting its line here.
 | 13 | *Ready* between rounds | An indicator on the wall, never a gate | b |
 | 14 | Presets for December | *Soirée de Noël*: quiz, blind test, world map, buzzer; Teams drawn; Board on | b |
 | 15 | Board default | On whenever Teams is on; off otherwise | f |
-| 16 | The December cut | Steps 0, a → g and s; everything in h after the rehearsal | index |
+| 16 | The December cut | Steps a → g and s; everything in h after the rehearsal | index |
 
 
-Settled 17/10/2026, and moved into the steps: the name is **Melee** ([0](0-rename.md)); teams can be drawn **or chosen by the players** ([a](a-teams.md)); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing ([s](s-setup-and-sharing.md)); a podium closes the evening, with no booby prize ([f](f-board.md)).
+Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** ([a](a-teams.md)); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing ([s](s-setup-and-sharing.md)); a podium closes the evening, with no booby prize ([f](f-board.md)).
