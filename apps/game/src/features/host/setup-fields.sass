@@ -1,0 +1,35 @@
+@use '../../presentation/styles/strip'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .setup-fields
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+
+    // Above the controls it greys out, because a host who has already pressed
+    // one has decided it is broken.
+    .held
+      @include typography.caption
+
+      color: var(--ink-muted)
+
+    // The groups are ruled off by their own triggers; the last one closes the
+    // stack so an open group does not run into the leaflet's edge unruled.
+    .setup-groups
+      border-bottom: var(--hairline)
+
+      .panel-content
+        gap: var(--space-s)
+        padding-bottom: var(--space-m)
+
+    // Measured with the labels at their ceiling, French: 276px.
+    .round-count
+      @include strip.stacks-below(18rem)
+
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin-top: calc(var(--space-s) * -1 + var(--space-2xs))
+      text-wrap: balance

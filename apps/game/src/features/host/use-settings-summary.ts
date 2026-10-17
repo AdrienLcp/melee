@@ -12,6 +12,7 @@ import {
   gameNameKey
 } from '@/presentation/i18n/translation'
 
+import { useDurationLabels } from './number-choice'
 import { sourceKindKey } from './playlist-picker'
 
 /**
@@ -23,13 +24,62 @@ import { sourceKindKey } from './playlist-picker'
  * commits on the launch, and on the final board that launch is one press away
  * with nothing between it and the countdown.
  */
-export const useSettingsSummary = ({
-  draftSource,
-  settings
-}: {
+export const useSettingsSummary = (input: SummaryInput): string =>
+  useSummaryParts()(settingsSummary(input))
+
+type SummaryInput = {
   draftSource: TrackSource | null
   settings: RoomSettings
-}): string => {
+}
+
+/** What each group of the setup says while it is closed, the same way the whole of it does. */
+export type SetupSummaries = Record<'evening' | 'room' | 'round', string>
+
+/**
+ * The setup's line cut along its groups. The round count moves to the evening,
+ * because it is the evening's length whichever game a round is drawn from; the
+ * teams join it; the room says how a round is led in and let go.
+ */
+export const useSetupSummaries = ({
+  draftSource,
+  settings
+}: SummaryInput): SetupSummaries => {
+  const translate = useTranslate()
+  const join = useSummaryParts()
+  const { seconds } = useDurationLabels()
+  const parts = settingsSummary({ draftSource, settings })
+  const isRoundCount = (part: SettingsSummaryPart): boolean =>
+    part.kind === 'roundCount'
+  const teams = settings.teams
+
+  const teamsSummary =
+    teams.kind === 'drawn' || teams.kind === 'chosen'
+      ? translate(`team.summary.${teams.kind}`, { count: teams.count })
+      : translate(`team.summary.${teams.kind}`)
+
+  const hold =
+    settings.autoAdvanceMs === null
+      ? translate('host.setup.summary.holdOpen')
+      : translate('host.setup.summary.hold', {
+          duration: seconds(settings.autoAdvanceMs)
+        })
+
+  return {
+    evening: [join(parts.filter(isRoundCount)), teamsSummary]
+      .filter((part) => part !== '')
+      .join(' · '),
+    room: [
+      hold,
+      translate('host.setup.summary.countdown', {
+        duration: seconds(settings.countdownMs)
+      })
+    ].join(' · '),
+    round: join(parts.filter((part) => !isRoundCount(part)))
+  }
+}
+
+/** Puts a summary's parts into the reader's words, one ` · ` apart. */
+const useSummaryParts = (): ((parts: SettingsSummaryPart[]) => string) => {
   const translate = useTranslate()
 
   const summaryPart = (part: SettingsSummaryPart): string => {
@@ -49,5 +99,5 @@ export const useSettingsSummary = ({
     }
   }
 
-  return settingsSummary({ draftSource, settings }).map(summaryPart).join(' · ')
+  return (parts) => parts.map(summaryPart).join(' · ')
 }

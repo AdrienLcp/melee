@@ -45,7 +45,12 @@
     @media (aspect-ratio >= 13 / 10)
       &[data-answering],
       &[data-choices]
-        --question-k: min(42cqi, 80cqh)
+        // The card holds a little over a third of the stage's width, so on a
+        // stage more than twice as wide as it is tall — a phone lying down, an
+        // ultrawide — the width is what binds. At 42 a 190-character prompt
+        // ran past the card at 667×375 the moment the footer gave the stage
+        // 23px more height.
+        --question-k: min(36cqi, 80cqh)
         --question-cap: min(3.4cqi, 7.6cqh)
         --choice-k: min(16cqi, 30cqh)
         --choice-cap: min(2.8cqi, 6cqh)

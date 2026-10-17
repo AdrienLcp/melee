@@ -453,10 +453,24 @@ floor and the reflex race keep their footer under the stage at every ratio.
   each answer on one line with its pawns.
 - **The final board** keeps the ruled standings while its box is 26rem tall
   and takes the track under that; a tie stands its pawns over the names.
-- **The settings fold and the hold strip** are not drawn: `SetupPopover`, one
-  underlined press in the footer, opens the same controls (and the slate's key
-  and item names) on a `Leaflet`, shared with the menu — the sheet below the
-  split.
+- **The hold strip** is not drawn; `SetupPopover`'s press carries it, with
+  the slate's key and item names while the sheets are open.
+
+### The setup
+
+The settings are never unfolded into the page, at any width: an inline fold
+opened under the launch made a 1440×900 console 1 739px tall and carried the
+launch down with it. `SetupPopover` is one underlined press in the footer —
+the room's summary under it past the split, its description only below — and
+it opens a `Leaflet`: a popover above the press, a 30rem column, or the sheet
+below the split. Inside, `SetupFields` is a `DisclosureGroup` of three, each
+closed on its own summary and one open with the leaflet: **the evening** (the game past
+the lobby, the teams, the round count), **the round** (the game's own
+settings, absent until there is a game) and **the room** (the hold, the
+countdown, this screen's volume and seat). The evening opens first in the
+lobby, the round after it. The teams strip lives here rather than on the lobby
+stage, which keeps the trays, the draw and the seats; past the lobby it is
+ruled, with the reason under it.
 
 
 ### Measured traps
@@ -627,7 +641,10 @@ phone's column — the caption and the address are centred under a square that
 keeps its full size; above it they sit beside the square, from the left. Each
 half carries its own instruction: the code's under the code, the square's
 under the square. The address breaks between host and path (`<wbr>`), never
-inside the code.
+inside the code. On a screen somebody holds, the code carries *Copy the code*
+and the address *Copy the link* and — only where the device has a share sheet
+(`canShareLinks`) — *Share*, small outlined pieces under the address. A wall
+or a poster carries none of them.
 
 ### Pawns and seats
 `Pawn` names a player everywhere. The roster (`seat-grid`) is a chip per seat

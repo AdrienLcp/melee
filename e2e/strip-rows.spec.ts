@@ -1,4 +1,4 @@
-import { expect, test } from '@playwright/test'
+import { expect, type Page, test } from '@playwright/test'
 
 import { homePage } from './support/locators'
 
@@ -22,7 +22,7 @@ import { homePage } from './support/locators'
  * is, which is why the selector below is spelled out inside each browser
  * function rather than shared — nothing in this file's scope reaches in there.
  */
-const SETUP_FOLD = '.setup-fold'
+const SETUP_LEAFLET = '.setup-leaflet'
 
 /** No phone is narrower, so no strip is ever handed less than it gets here. */
 const NARROWEST_SCREEN = 320
@@ -198,6 +198,26 @@ const sweepShapes = ({
   return { faults, seen }
 }
 
+/**
+ * The setup's strips live on its leaflet, in three groups of which one opens
+ * with it. Crossing the split trades the popover for the sheet, which mounts
+ * the groups afresh, so this runs again after every resize.
+ */
+const openEveryGroup = async (page: Page): Promise<void> => {
+  if ((await page.locator(SETUP_LEAFLET).count()) === 0) {
+    await page.locator('.setup-trigger').click()
+    await expect(page.locator(SETUP_LEAFLET)).toBeVisible()
+  }
+
+  const closed = page.locator(
+    `${SETUP_LEAFLET} .setup-groups > .disclosure:not([data-expanded]) .trigger`
+  )
+
+  while ((await closed.count()) > 0) {
+    await closed.first().click()
+  }
+}
+
 test('[layout] no strip on the console ever holds rows of two different lengths', async ({
   page
 }) => {
@@ -224,16 +244,20 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
     await page.evaluate(loadEveryFace)
 
     for (let index = 0; index < gameCount; index++) {
+      // The leaflet is modal: the shelf behind it takes no press while it is
+      // up, so it is put away before the next game is picked.
+      if ((await page.locator(SETUP_LEAFLET).count()) > 0) {
+        await page.keyboard.press('Escape')
+        await expect(page.locator(SETUP_LEAFLET)).toHaveCount(0)
+      }
+
       await games.nth(index).click()
       // The panel for this game renders in the same commit that marks the
       // stamp, so waiting on the stamp is what stops the reads below from
       // finding the previous game's strips — or none at all.
       await expect(games.nth(index)).toHaveAttribute('data-selected', 'true')
 
-      if ((await page.locator(`${SETUP_FOLD}[data-expanded]`).count()) === 0) {
-        await page.locator(`${SETUP_FOLD} .trigger`).click()
-        await expect(page.locator(`${SETUP_FOLD}[data-expanded]`)).toBeVisible()
-      }
+      await openEveryGroup(page)
 
       // Two strips only exist once another strip has been pressed: the decade
       // grid, and the window a buzz has to be answered in. `decade` is second
@@ -254,6 +278,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
       }
 
       await page.setViewportSize({ height: 900, width: NARROWEST_SCREEN })
+      await openEveryGroup(page)
       await page.evaluate(loadEveryFace)
 
       const floors = await page.evaluate(readFloors)
@@ -265,6 +290,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
       }
 
       await page.setViewportSize({ height: 900, width: WIDEST_PX })
+      await openEveryGroup(page)
       await page.evaluate(loadEveryFace)
 
       const { faults: found, seen } = await page.evaluate(sweepShapes, {

@@ -16,7 +16,7 @@ export const preferredLocales = (): readonly string[] => navigator.languages
  */
 export const servedPath = (): string => location.pathname
 
-export { reloadPage } from '@adrienlcp/browser'
+export { canShareLinks, reloadPage, shareLink } from '@adrienlcp/browser'
 
 /** The thumb landing, and the server's answer to it one round trip later. */
 export type BuzzMoment = 'lost' | 'press' | 'won'

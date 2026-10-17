@@ -15,6 +15,7 @@ import {
   PencilLine,
   Plus,
   QrCode,
+  Share,
   Tv,
   X,
   Zap
@@ -61,6 +62,7 @@ export const RenameIcon = inFamily(Pencil)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)
+export const ShareIcon = inFamily(Share)
 
 const GAME_GLYPHS = {
   blindtest: Music,

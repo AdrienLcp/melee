@@ -7,6 +7,7 @@ import { playUrlFor } from '@/infrastructure/router/navigation'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { CopyButton } from './copy-button'
+import { ShareButton } from './share-button'
 
 import './room-invitation.sass'
 
@@ -57,6 +58,7 @@ export const RoomInvitation: React.FC<RoomInvitationProps> = ({
       code={roomCode}
       codeCaption={translate('invite.typeIt')}
       isUnattended={isUnattended}
+      shareTitle={translate('invite.shareTitle', { code: roomCode })}
       url={playUrlFor(roomCode)}
     />
   )
@@ -71,6 +73,8 @@ type CodeAndSquareProps = {
   codeCaption?: string
   /** As on `RoomInvitation`: no copy control on a screen nobody is at. */
   isUnattended?: boolean
+  /** What the share sheet sends with the link; without it there is no share. */
+  shareTitle?: string
   /** What the square encodes, printed under it for whoever cannot scan. */
   url: string
 }
@@ -85,6 +89,7 @@ export const CodeAndSquare: React.FC<CodeAndSquareProps> = ({
   code,
   codeCaption,
   isUnattended,
+  shareTitle,
   url
 }) => (
   <section className='room-invitation'>
@@ -93,7 +98,7 @@ export const CodeAndSquare: React.FC<CodeAndSquareProps> = ({
       {codeCaption !== undefined && (
         <p className='code-caption'>{codeCaption}</p>
       )}
-      {!isUnattended && <CopyButton value={code} />}
+      {!isUnattended && <CopyButton label='invite.copyCode' value={code} />}
     </div>
     <div className='qr'>
       {/*
@@ -119,6 +124,14 @@ export const CodeAndSquare: React.FC<CodeAndSquareProps> = ({
       <div className='qr-words'>
         <p className='invite'>{caption}</p>
         <JoinUrl url={url} />
+        {!isUnattended && (
+          <div className='link-actions'>
+            <CopyButton label='invite.copyLink' value={url} />
+            {shareTitle !== undefined && (
+              <ShareButton title={shareTitle} url={url} />
+            )}
+          </div>
+        )}
       </div>
     </div>
   </section>

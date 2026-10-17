@@ -31,7 +31,13 @@ export const hostConsole = (page: Page) => ({
   buzzerMode: page.getByText('First to buzz', { exact: true }),
   /** What the QR code encodes. Following it is what scanning it does. */
   joinUrl: page.locator('.join-url'),
-  /** The settings fold away, so anything inside them is opened before it is reached. */
+  /**
+   * The leaflet's group holding the game's own settings — the answer mode
+   * among them. The lobby opens the leaflet on the evening's, so this one is
+   * opened before a mode is picked. Its name runs on into its summary.
+   */
+  openRoundSettings: page.getByRole('button', { name: /^The round/ }),
+  /** The settings are on a leaflet, so anything on it is opened before it is reached. */
   openSettings: page.getByRole('button', { name: 'Settings' }),
   /**
    * One picker exists at a time: the lobby keeps it on the stage, every later

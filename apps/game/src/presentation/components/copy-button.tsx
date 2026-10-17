@@ -13,13 +13,14 @@ const CONFIRMATION_MS = 2_000
 
 type CopyState = 'copied' | 'failed' | 'idle'
 
-const COPY_KEYS: Record<CopyState, PlainTranslationKey> = {
+const OUTCOME_KEYS: Record<Exclude<CopyState, 'idle'>, PlainTranslationKey> = {
   copied: 'invite.copied',
-  failed: 'invite.copyFailed',
-  idle: 'invite.copyCode'
+  failed: 'invite.copyFailed'
 }
 
 type CopyButtonProps = {
+  /** Names what is copied — the code, the link — never a bare *copy*. */
+  label: PlainTranslationKey
   /** What lands in the clipboard. */
   value: string
 }
@@ -34,11 +35,11 @@ type CopyButtonProps = {
  * and a grandparent are expected here, and a bare icon asks them to already
  * know what it means.
  *
- * It says *the code* rather than *this*, because the room code is the only
- * thing in the product anybody copies — a generic label would be the wrapper
- * pretending to a reach it does not have.
+ * It names what it copies rather than saying *this*, because the code and the
+ * link sit side by side on the invitation and a host sending one has to know
+ * which they are holding.
  */
-export const CopyButton: React.FC<CopyButtonProps> = ({ value }) => {
+export const CopyButton: React.FC<CopyButtonProps> = ({ label, value }) => {
   const translate = useTranslate()
   const [state, setState] = useState<CopyState>('idle')
 
@@ -71,7 +72,7 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ value }) => {
       variant='outlined'
     >
       {state === 'copied' ? <CheckIcon /> : <CopyIcon />}
-      {translate(COPY_KEYS[state])}
+      {translate(state === 'idle' ? label : OUTCOME_KEYS[state])}
     </Button>
   )
 }

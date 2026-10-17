@@ -382,8 +382,18 @@ export const EN_DICTIONARY = defineDictionary({
     seconds: '{seconds:number}s',
     seeResults: 'See the results',
     setup: {
+      group: {
+        evening: 'The evening',
+        room: 'The room',
+        round: 'The round'
+      },
       label: 'Settings',
       roundInPlay: 'Changes apply from the next round',
+      summary: {
+        countdown: 'Countdown of {duration}',
+        hold: 'Answer up for {duration}',
+        holdOpen: 'Next round when you say'
+      },
       volume: 'Volume on this screen'
     },
     standings: 'Standings',
@@ -399,6 +409,7 @@ export const EN_DICTIONARY = defineDictionary({
     copied: 'Copied',
     copyCode: 'Copy the code',
     copyFailed: 'Could not copy',
+    copyLink: 'Copy the link',
     documentTitle: 'Invitation — Mêlée',
     door: {
       action: 'Show it',
@@ -410,6 +421,8 @@ export const EN_DICTIONARY = defineDictionary({
     joinLate: 'Join any time',
     nextRound: 'Anyone who arrives during a round plays from the next one.',
     project: 'Show the QR code, big',
+    share: 'Share',
+    shareTitle: 'Join table {code} on Mêlée',
     title: 'Scan to play',
     typeIt: 'Type it to join',
     unknown: {
@@ -902,9 +915,16 @@ export const EN_DICTIONARY = defineDictionary({
       chosen: 'Players choose',
       drawn: 'Drawn',
       label: 'Teams',
+      locked: 'Teams are settled before the first round.',
       off: 'None',
       teamsOnly: 'A screen per team',
       teamsOnlyHint: 'Each team joins on one screen, under the team’s name.'
+    },
+    summary: {
+      chosen: '{count:number} teams, players choose',
+      drawn: '{count:number} drawn teams',
+      off: 'No teams',
+      teamsOnly: 'A screen per team'
     },
     title: 'The teams',
     unassigned: {

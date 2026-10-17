@@ -294,12 +294,10 @@
       // same silent way — a strip that has always been a column reads as one
       // somebody meant to draw.
       //
-      // `.setup-fold` under it was never caught because it already carried a
-      // width for its own composition. 24rem is this one's: the French row at
-      // the label's ceiling is 296px, so it clears `stacks-below`'s 19rem with
-      // room to spare and sits under the action it belongs to rather than
-      // across the screen. A direct child only: the same strip inside the setup
-      // fold lines up with the fold's other strips.
+      // 24rem is this one's: the French row at the label's ceiling is 296px,
+      // so it clears `stacks-below`'s 19rem with room to spare and sits under
+      // the action it belongs to rather than across the screen. A direct child
+      // only: the same strip inside the setup lines up with its other strips.
       > .auto-advance
         width: min(24rem, 100%)
 
@@ -309,10 +307,9 @@
         flex-direction: column
         gap: var(--space-m)
 
-      // The launch and why it refuses, as one object that follows an opened
-      // fold down the page: under the setup rather than above it, and pinned to
-      // the bottom of the screen until the setup ends, so a host who scrolled
-      // to the last setting still has the press in front of them.
+      // The launch and why it refuses, as one object: under the setup's press
+      // rather than above it, and pinned to the bottom of the screen, so a
+      // lobby long enough to scroll still has the press in front of the host.
       .launch
         align-items: center
         align-self: stretch
@@ -330,19 +327,6 @@
           margin-top: 0
           max-width: 16rem
           text-wrap: balance
-
-      .setup-trigger
-        display: none
-
-      .setup-fold
-        width: min(var(--column-wide-max-width), 100%)
-
-        // Above the controls it greys out, because a host who has already
-        // pressed one has decided it is broken.
-        .held
-          @include typography.caption
-
-          color: var(--ink-muted)
 
     // The reveal is the one stage that has to fit beside its footer rather
     // than above it: the answer, the list of what everyone said, the standings
@@ -379,14 +363,14 @@
             flex-direction: column
             gap: var(--space-s)
 
-        .setup-fold
+        .setup-entry
+          align-items: center
           flex-basis: 100%
-          max-width: var(--column-wide-max-width)
 
   // A round in play is held to the screen the ring leaves, like the framed
   // seat: the stage takes what the header and the footer do not, and sizes its
-  // type to that. Its floor is what keeps the fold, opened, a scroll rather than
-  // a stage crushed to nothing.
+  // type to that. Its floor is what keeps a tall footer a scroll rather than a
+  // stage crushed to nothing.
   .host-console-page:has(> .stage.playing)
     animation: none
     display: grid
@@ -403,8 +387,8 @@
         // which a removed header would silence.
         @include accessibility.visually-hidden
 
-    // One row above the split, and on any screen lying down: the fold's
-    // trigger and the press that gives the answer away.
+    // One row above the split, and on any screen lying down: the setup's
+    // press and the one that gives the answer away.
     @media (width >= layout.$wide-screen), (aspect-ratio >= 13 / 10)
       > footer
         column-gap: var(--space-l)
@@ -414,10 +398,9 @@
         .error
           flex-basis: 100%
 
-        .setup-fold
+        .setup-entry
           flex: 1 1 12rem
           order: -1
-          width: auto
 
   // The slate held to the screen the ring leaves, like a round in play: the
   // board of items and the marking each divide the box between the header and
@@ -446,10 +429,9 @@
         .error
           flex-basis: 100%
 
-        .setup-fold
+        .setup-entry
           flex: 1 1 12rem
           order: -1
-          width: auto
 
   // The countdown with nothing to recap is the token alone, sized against the
   // box the header and the footer leave it rather than the viewport, which
@@ -733,15 +715,14 @@
           .verdict-panel .holder
             padding-inline-end: 0
 
-  // On either shape, the settings fold and the hold strip give way to one
-  // press that opens them on a leaflet.
+  // On either shape the hold strip gives way to the setup's press, which
+  // carries it on the leaflet.
   .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting), > .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
     @include layout.narrow
       > footer
         gap: var(--space-xs)
 
-        > .auto-advance,
-        > .setup-fold
+        > .auto-advance
           display: none
 
         .setup-trigger
@@ -811,7 +792,9 @@
         .game-picker .box
           min-height: 0
 
-      .game-choice .box-shelf > .react-aria-Label
+      // The head carries the label alone, or the label and the *several
+      // games* switch beside it; either way it is the row the menu stands on.
+      .game-choice .box-shelf > :is(.react-aria-Label, .shelf-head)
         align-items: center
         display: flex
         min-height: var(--control-height)
@@ -820,8 +803,8 @@
       > .stage.lobby
         display: contents
 
-        // Held to the screen rather than centred in the page: an opened fold
-        // makes the page taller and dragged the code down to its new middle.
+        // Held to the screen rather than centred in the page: a lobby that
+        // grows taller would drag the code down to its new middle.
         > .room-invitation
           align-self: start
           grid-area: invite
@@ -843,8 +826,7 @@
         .error
           grid-area: error
 
-        // Beside the fold, at the end of it: closed, that is the title's row;
-        // opened, the sticky bottom brings it up to the screen's edge.
+        // Beside the setup's press, at the end of its row.
         .launch
           align-items: end
           align-self: end
@@ -854,10 +836,8 @@
         .reason
           text-align: end
 
-        .setup-fold
-          align-self: start
+        .setup-entry
           grid-area: fold
-          width: 100%
 
   // Stacked, the lobby is in one hand and the order is what that hand does:
   // the code and its square shrunk to one row, then the game, then the press,

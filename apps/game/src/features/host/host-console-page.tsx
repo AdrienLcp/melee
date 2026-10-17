@@ -71,7 +71,7 @@ import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
 import { RoomStage, type StageControls } from './room-stage'
 import { useRoundAudio } from './round-audio'
-import { SetupFields, SetupFold, type SetupFoldProps } from './setup-fold'
+import { SetupFields, type SetupFieldsProps } from './setup-fields'
 import { SetupPopover } from './setup-popover'
 import { SlateEditors } from './slate-stages'
 import { useLineUpDraw } from './use-line-up-draw'
@@ -458,7 +458,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
-  const setupProps = (current: HostRoomView): SetupFoldProps => ({
+  const setupProps = (current: HostRoomView): SetupFieldsProps => ({
     draftSource,
     isLive,
     onDraftSource: setDraftSource,
@@ -590,14 +590,15 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                         settings={view.settings}
                       />
                     )}
-                  <SetupFold {...setupProps(view)} />
                   {/*
-                    The fold and the strip above it, on a console held in a hand
-                    whose stage is held to the screen: the stylesheet draws one
-                    or the other, and this leaflet is what keeps the hold, the
-                    settings and the slate's key reachable mid-game there.
+                    The slate's key rides on the same leaflet while the sheets
+                    are open and no wall is marking them, so a console held in a
+                    hand reaches it mid-game.
                   */}
-                  <SetupPopover>
+                  <SetupPopover
+                    draftSource={draftSource}
+                    settings={view.settings}
+                  >
                     {view.phase === 'playing' &&
                       view.round?.content.kind === 'slate' &&
                       !slateWall.isOnWall && (

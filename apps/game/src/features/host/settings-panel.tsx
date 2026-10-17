@@ -35,16 +35,13 @@ import {
   scoringKey
 } from '@/presentation/i18n/translation'
 
-import { AutoAdvanceChoice } from './auto-advance-choice'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { SlateKeyEditor } from './slate-key-editor'
 import { SlateLabelsEditor } from './slate-labels-editor'
 
 import './settings-panel.sass'
 
-const ROUND_COUNTS = [5, 10, 20, 30] as const
 const CLIP_DURATIONS_MS = [10_000, 20_000, 30_000] as const
-const COUNTDOWN_DURATIONS_MS = [3_000, 5_000, 10_000] as const
 
 /**
  * Longer than a clip at both ends: a question has to be read before it can be
@@ -53,7 +50,6 @@ const COUNTDOWN_DURATIONS_MS = [3_000, 5_000, 10_000] as const
 const QUESTION_DURATIONS_MS = [15_000, 30_000, 60_000] as const
 
 const ANSWER_WINDOWS_MS = [5_000, 10_000, 20_000, NO_LIMIT] as const
-const ROUND_COUNT_OPTIONS = [...ROUND_COUNTS, NO_LIMIT] as const
 
 /** The three questions the bank asks whoever is drawing from it. */
 const QuestionBankSettings: React.FC<{
@@ -185,9 +181,9 @@ type SettingsPanelProps = {
 }
 
 /**
- * The numbers that decide how a party goes, reachable for as long as it runs.
- * Every one lands on the round after the one on screen, which is why they are
- * not folded away with the things only a lobby can offer.
+ * What the game on the shelf asks of a round — how it is answered, what it is
+ * drawn from, how long it runs — reachable for as long as the game does. Every
+ * one lands on the round after the one on screen.
  */
 export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   draftSource,
@@ -354,39 +350,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {/*
-        A slate is one sheet, marked once: the next sheet is the next game, set
-        up afresh, and a strip offering five of them would offer no *one*.
-      */}
-      {game?.kind !== 'slate' && (
-        <NumberChoice
-          className='round-count'
-          isDisabled={isDisabled}
-          label={translate('host.rounds')}
-          onChange={(count) => {
-            onChange({
-              ...settings,
-              roundCount: count === NO_LIMIT ? null : count
-            })
-          }}
-          optionLabel={(count) =>
-            count === NO_LIMIT
-              ? translate('host.roundCount.open')
-              : String(count)
-          }
-          options={ROUND_COUNT_OPTIONS}
-          value={settings.roundCount ?? NO_LIMIT}
-        />
-      )}
-
-      {game?.kind !== 'slate' && (
-        <AutoAdvanceChoice
-          isLive={isLive}
-          onSettingsChange={onChange}
-          settings={settings}
-        />
-      )}
-
       {game?.kind === 'blindtest' && (
         <NumberChoice
           isDisabled={isDisabled}
@@ -437,17 +400,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           value={mode.answerWindowMs ?? NO_LIMIT}
         />
       )}
-
-      <NumberChoice
-        isDisabled={isDisabled}
-        label={translate('host.countdown')}
-        onChange={(countdownMs) => {
-          onChange({ ...settings, countdownMs })
-        }}
-        optionLabel={secondsLabel}
-        options={COUNTDOWN_DURATIONS_MS}
-        value={settings.countdownMs}
-      />
     </section>
   )
 }

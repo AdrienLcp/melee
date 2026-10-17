@@ -75,12 +75,12 @@ raclette down mid-round.
    Board come from it.
 2. The wall shows the code and the square; phones join by scanning it, by the
    link the host copied or sent through the phone's share sheet, or by typing
-   the code ([s](s-setup-and-sharing.md)).
+   the code (s, done).
 3. *Draw the teams* (re-draw as often as wanted) — or let each phone pick its
    own — then *Start*.
 
 Every other setting has a default and lives in the setup's leaflet, grouped,
-reachable mid-evening ([s](s-setup-and-sharing.md)).
+reachable mid-evening (s, done).
 
 ## What the room never does
 

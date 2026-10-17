@@ -348,8 +348,18 @@ export const FR_DICTIONARY = defineDictionary({
     seconds: '{seconds:number} s',
     seeResults: 'Voir les résultats',
     setup: {
+      group: {
+        evening: 'La soirée',
+        room: 'La salle',
+        round: 'La manche'
+      },
       label: 'Réglages',
       roundInPlay: 'Les changements s’appliquent à la manche suivante',
+      summary: {
+        countdown: 'Décompte de {duration}',
+        hold: 'Réponse affichée {duration}',
+        holdOpen: 'La suite quand tu veux'
+      },
       volume: 'Volume de cet écran'
     },
     standings: 'Classement',
@@ -365,6 +375,7 @@ export const FR_DICTIONARY = defineDictionary({
     copied: 'Copié',
     copyCode: 'Copier le code',
     copyFailed: 'Copie impossible',
+    copyLink: 'Copier le lien',
     documentTitle: 'Invitation — Mêlée',
     door: {
       action: 'Afficher',
@@ -376,6 +387,8 @@ export const FR_DICTIONARY = defineDictionary({
     joinLate: 'Rejoins quand tu veux',
     nextRound: 'Qui arrive pendant une manche joue dès la suivante.',
     project: 'Afficher le QR code en grand',
+    share: 'Partager',
+    shareTitle: 'Rejoins la table {code} sur Mêlée',
     title: 'Scanne pour jouer',
     typeIt: 'Tape-le pour rejoindre',
     unknown: {
@@ -820,10 +833,17 @@ export const FR_DICTIONARY = defineDictionary({
       chosen: 'Au choix',
       drawn: 'Tirées au sort',
       label: 'Équipes',
+      locked: 'Les équipes se règlent avant la première manche.',
       off: 'Sans',
       teamsOnly: 'Un écran par équipe',
       teamsOnlyHint:
         'Chaque équipe rejoint sur un seul écran, sous le nom de l’équipe.'
+    },
+    summary: {
+      chosen: '{count:number} équipes au choix',
+      drawn: '{count:number} équipes tirées au sort',
+      off: 'Sans équipes',
+      teamsOnly: 'Un écran par équipe'
     },
     title: 'Les équipes',
     unassigned: {

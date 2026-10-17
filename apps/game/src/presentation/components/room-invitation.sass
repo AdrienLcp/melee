@@ -99,6 +99,18 @@
       font-size: clamp(1rem, calc(var(--stage-unit) * 2.2), 1.25rem)
       text-wrap: balance
 
+    // The link's own presses, under the address they act on: sent from the
+    // screen in hand to someone not yet in the room.
+    .link-actions
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)
+      justify-content: center
+      margin-top: var(--space-xs)
+
+      @container (width >= 25rem)
+        justify-content: start
+
     .join-url
       @include typography.caption
 

@@ -3,11 +3,9 @@
 
 @layer components
   .settings-panel
-    border-top: var(--hairline)
     display: flex
     flex-direction: column
     gap: var(--space-s)
-    padding-top: var(--space-m)
 
     // Each strip stacks below the width its own labels need on one row,
     // measured on the page in the locale that binds — which is **not** always
@@ -37,9 +35,6 @@
 
     .answer-window
       @include strip.stacks-below(19rem)
-
-    .round-count
-      @include strip.stacks-below(18rem)
 
     .hint
       @include typography.caption

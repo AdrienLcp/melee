@@ -25,7 +25,6 @@ import { MoveSeat } from './move-seat'
 import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
 import { SlatePreparation } from './slate-preparation'
-import { TeamsSetup } from './teams-setup'
 
 /** As many pawns as a box holds: the roster shows an empty socket for each one still in it. */
 type LobbyStageProps = {
@@ -91,13 +90,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           <h2>
             {translate('host.players.title')} {view.players.length}
           </h2>
-          {controls !== null && (
-            <TeamsSetup
-              isDisabled={!controls.isLive}
-              onChange={controls.onSettingsChange}
-              settings={view.settings}
-            />
-          )}
           {view.players.length === 0 ? (
             <p className='empty'>{translate('host.players.empty')}</p>
           ) : view.teams.length > 0 ? (

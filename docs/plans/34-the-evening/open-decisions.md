@@ -23,4 +23,4 @@ the step it names and deleting its line here.
 | 16 | The December cut | Steps a → g and s; everything in h after the rehearsal | index |
 
 
-Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** (step a, done); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing ([s](s-setup-and-sharing.md)); a podium closes the evening, with no booby prize ([f](f-board.md)).
+Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** (step a, done); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing (s, done); a podium closes the evening, with no booby prize ([f](f-board.md)).

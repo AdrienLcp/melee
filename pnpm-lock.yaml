@@ -206,8 +206,8 @@ importers:
   apps/game:
     dependencies:
       '@adrienlcp/browser':
-        specifier: ^0.5.0
-        version: 0.5.0(react@19.3.0)
+        specifier: ^0.6.0
+        version: 0.6.0(react@19.3.0)
       '@adrienlcp/i18n':
         specifier: ^0.7.0
         version: 0.7.0
@@ -215,8 +215,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0(react@19.3.0)
       '@adrienlcp/react-aria':
-        specifier: ^0.6.1
-        version: 0.6.1(react-aria-components@1.21.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(sass@1.105.0)
+        specifier: ^0.6.2
+        version: 0.6.2(react-aria-components@1.21.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(sass@1.105.0)
       '@adrienlcp/react-router':
         specifier: ^0.2.0
         version: 0.2.0(react-aria-components@1.21.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react-router@8.4.0(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)
@@ -385,8 +385,8 @@ packages:
     peerDependencies:
       '@biomejs/biome': '>=2.5.0'
 
-  '@adrienlcp/browser@0.5.0':
-    resolution: {integrity: sha512-X8LoWB4E5VofhG+Da32ZGVo0swSI1dSwAJ6TaKL5F6F/EsfvSRpQJcJlRMBJDIGLVoFRCQ6OmZdPBKe/JzF8JA==}
+  '@adrienlcp/browser@0.6.0':
+    resolution: {integrity: sha512-BnpwfHRaQGqfAUgBpxSdNvMqP7zZY8udqhx7cgE8ghaJr/4QlDN8rvEOxQAPBMNyY7CmWzLdtre5xdlbx8CHug==}
     peerDependencies:
       react: '>=18'
     peerDependenciesMeta:
@@ -405,8 +405,8 @@ packages:
       vite:
         optional: true
 
-  '@adrienlcp/react-aria@0.6.1':
-    resolution: {integrity: sha512-ych/BNOU88h2sQUUuqkDq1eBZNHpzVsGakvigvXTKDIPCln8C70esyuxJufB6OynBFHEj5csG39eO33KU5hhYQ==}
+  '@adrienlcp/react-aria@0.6.2':
+    resolution: {integrity: sha512-GKh1dTIiP4Gox0xV+FeutCFzQj/gYWhgUNWq2OAgkawFUfXnKMh5ZmXpM5RnKGuwYvgwrlJYRcO/B03eJZjHEg==}
     peerDependencies:
       react: '>=19'
       react-aria-components: '>=1.21.0'
@@ -3769,7 +3769,7 @@ snapshots:
     dependencies:
       '@biomejs/biome': 2.5.14
 
-  '@adrienlcp/browser@0.5.0(react@19.3.0)':
+  '@adrienlcp/browser@0.6.0(react@19.3.0)':
     dependencies:
       '@adrienlcp/result': 0.1.1
     optionalDependencies:
@@ -3783,9 +3783,9 @@ snapshots:
     optionalDependencies:
       vite: 8.3.1(@types/node@26.6.3)(esbuild@0.28.2)(sass@1.105.0)(tsx@4.23.15)(yaml@2.9.1)
 
-  '@adrienlcp/react-aria@0.6.1(react-aria-components@1.21.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(sass@1.105.0)':
+  '@adrienlcp/react-aria@0.6.2(react-aria-components@1.21.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0))(react@19.3.0)(sass@1.105.0)':
     dependencies:
-      '@adrienlcp/browser': 0.5.0(react@19.3.0)
+      '@adrienlcp/browser': 0.6.0(react@19.3.0)
       '@adrienlcp/react': 0.5.0(react@19.3.0)
       react: 19.3.0
       react-aria-components: 1.21.1(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
