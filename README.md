@@ -102,9 +102,10 @@ room keeps its state across a deploy and nothing sleeps between two evenings.
 [`apps/server/wrangler.jsonc`](apps/server/wrangler.jsonc) is the whole
 configuration.
 
-CI deploys every push to `main` once lint, tests and the end-to-end journeys are
-green, with the `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repository
-secrets. It is live at `https://melee.adrienlcp.com`.
+Deploys are manual until Melee replaces Taverla: `gh workflow run ci.yaml`
+deploys `main` once lint, tests and the end-to-end journeys are green, with the
+`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repository secrets. It
+previews at `https://melee.adrienlcp.com`.
 
 Why a Durable Object per room, and what Render cost before it, is in
 [`docs/plans/28-cloudflare.md`](docs/plans/28-cloudflare.md).
