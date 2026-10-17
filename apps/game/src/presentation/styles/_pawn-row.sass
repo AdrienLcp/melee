@@ -1,0 +1,27 @@
+// Pure module: mixins only, no top-level CSS.
+
+/// A row of pawns the room reads as *who is in*: standing for a seat that has
+/// done the thing, a dashed outline for one still owed. `$standing` is the
+/// selector of a seat that has — the row's own attribute, never a class.
+@mixin pawn-row($standing)
+  display: flex
+  flex-wrap: wrap
+  gap: clamp(var(--space-2xs), 1cqmin, var(--space-xs))
+  list-style: none
+  min-width: 0
+
+  // Lifted off the board when it lands, which is the one movement on the row
+  // and the one the room is waiting to see.
+  li
+    display: grid
+    transition: transform var(--transition-fast, 0s) var(--ease-out)
+
+    &:not(#{$standing}) .pawn
+      fill: none
+      filter: none
+      stroke: var(--socket-line)
+      stroke-dasharray: 2.5 2
+      stroke-width: 1.4
+
+    &#{$standing}
+      transform: translateY(-0.1875rem)

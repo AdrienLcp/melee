@@ -13,7 +13,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import { ScoreTrack } from './score-track'
-import { Standings } from './standings'
+import { Standings, standingsRowsOf } from './standings'
 
 import './final-board.sass'
 
@@ -61,7 +61,7 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
     <section
       className='final-board'
       style={{
-        '--standings-rows': teams.length > 0 ? teams.length * 2 : players.length
+        '--standings-rows': standingsRowsOf({ players, teams })
       }}
     >
       <div className='podium' style={{ '--winner-count': winners.length }}>

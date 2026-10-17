@@ -13,6 +13,8 @@ import { GameIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey, gameTaglineKey } from '@/presentation/i18n/translation'
 
+import { PresetBox } from './preset-box'
+import { roomPresetIds } from './room-presets'
 import type { CreateRoom } from './use-create-room'
 
 import './game-spines.sass'
@@ -43,6 +45,9 @@ export const GameSpines: React.FC<GameSpinesProps> = ({ createRoom }) => {
     <section className='game-spines'>
       <h2>{translate('home.games')}</h2>
       <DisclosureGroup className='stack'>
+        {roomPresetIds.map((preset) => (
+          <PresetBox createRoom={createRoom} key={preset} preset={preset} />
+        ))}
         {shelvedGames.map((game) => (
           <Disclosure
             className='shelf-box'

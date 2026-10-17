@@ -74,6 +74,7 @@ import { useRoundAudio } from './round-audio'
 import { SetupFields, SetupFold, type SetupFoldProps } from './setup-fold'
 import { SetupPopover } from './setup-popover'
 import { SlateEditors } from './slate-stages'
+import { useLineUpDraw } from './use-line-up-draw'
 import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
 
@@ -200,6 +201,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   useRestoreStoredSetup({
     onRestore: changeSettings,
     playsRightAway,
+    preferences,
+    view
+  })
+
+  useLineUpDraw({
+    isLive,
+    onSettingsChange: changeSettings,
     preferences,
     view
   })
@@ -546,6 +554,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   }
                 }}
                 onPlayRightAway={playRightAway}
+                onSettingsChange={changeSettings}
+                preferences={preferences}
                 send={send}
                 slateKeys={preparedSlateKeys}
                 slateWall={slateWall}

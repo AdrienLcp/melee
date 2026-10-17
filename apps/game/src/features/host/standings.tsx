@@ -18,6 +18,17 @@ type StandingsProps = {
 }
 
 /**
+ * How many rows the standings take, which the boxed layouts divide their height
+ * by: a team is its name and a row of its seats, so a room in teams is two rows
+ * a team rather than one a seat.
+ */
+export const standingsRowsOf = ({
+  players,
+  teams
+}: Pick<StandingsProps, 'players' | 'teams'>): number =>
+  teams.length > 0 ? teams.length * 2 : players.length
+
+/**
  * The game so far, beside the round that just moved it: a titled board whose
  * pawns are the ones standing on the track around it.
  */

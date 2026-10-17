@@ -1,8 +1,10 @@
 import type React from 'react'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
-import type { HostRoomView } from '@melee/protocol/room'
+import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
+
+import type { HostPreferences } from '@melee/core/room/host-preferences'
 
 import { FinishedActions } from './finished-actions'
 import { LobbyActions } from './lobby-actions'
@@ -20,6 +22,10 @@ export type HostActionsProps = {
   onOpenRound: () => void
   /** Seats this console under the name and starts the first round once the seat is granted — the empty lobby's launch. */
   onPlayRightAway: (nickname: string) => void
+  /** The console's one way of changing a setting, which also remembers it. */
+  onSettingsChange: (settings: RoomSettings) => void
+  /** What this host last left each game set to, so a game drawn or picked opens as they like it. */
+  preferences: HostPreferences | null
   send: (message: ClientMessage) => boolean
   /** The answer key this host prepared, sent with the press that opens a slate; absent on any other game. */
   slateKeys: (string | null)[] | undefined

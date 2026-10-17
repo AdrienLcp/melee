@@ -1,17 +1,20 @@
 import type React from 'react'
+import { useState } from 'react'
 
-import { shelvedGames } from '@melee/protocol/game'
+import { type GameKind, shelvedGames } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
 import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
+import { toggledInLineUp } from '@melee/core/room/line-up'
 import { movedToGame } from '@melee/core/room/room-settings'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 
-import { BoxShelf } from '@/presentation/components/box-shelf'
+import { BoxShelf, TickShelf } from '@/presentation/components/box-shelf'
 import { GameIcon } from '@/presentation/components/icons'
+import { Switch } from '@/presentation/components/switch'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey, gameTaglineKey } from '@/presentation/i18n/translation'
 
@@ -29,6 +32,11 @@ type GamePickerProps = {
  * A room is opened before the table decides — the code goes up, the players
  * arrive, and this is the decision they are waiting on, which is why the lobby
  * shows it on the stage and every later phase keeps it with the settings.
+ *
+ * One game is one press, exactly as a quick game has always been. *Several
+ * games* turns the same shelf into ticks — the games of the evening, which the
+ * next round is drawn from — so a host switching games does not have to tick
+ * one and untick the other, and a host planning an evening sees it is one.
  */
 export const GamePicker: React.FC<GamePickerProps> = ({
   isDisabled,
@@ -37,9 +45,73 @@ export const GamePicker: React.FC<GamePickerProps> = ({
   settings
 }) => {
   const { locale, translate } = useI18n()
+  const [wantsSeveral, setWantsSeveral] = useState(settings.lineUp.length > 1)
+  const isEvening = wantsSeveral || settings.lineUp.length > 1
+  const rememberedFor = (game: GameKind) =>
+    rememberedSetupFor({ game, preferences })
+
+  const options = shelvedGames.map((game) => ({
+    badge:
+      settings.lineUp.length > 1 && settings.game?.kind === game
+        ? translate('host.lineUp.first')
+        : undefined,
+    description: translate(gameTaglineKey(game)),
+    icon: <GameIcon game={game} />,
+    isDisabled: settings.lineUp.length === 1 && settings.lineUp.includes(game),
+    label: translate(gameNameKey(game)),
+    spine: `var(--spine-${game})`,
+    value: game
+  }))
+
+  const several = (
+    <Switch
+      className='several-games'
+      isDisabled={isDisabled}
+      isSelected={isEvening}
+      label={translate('host.game.several')}
+      onChange={(isSelected) => {
+        setWantsSeveral(isSelected)
+
+        // Back to one game is back to the one the next round is on.
+        if (!isSelected && settings.game !== null) {
+          onChange({ ...settings, lineUp: [settings.game.kind] })
+        }
+      }}
+    />
+  )
+
+  if (isEvening) {
+    return (
+      <TickShelf
+        aside={several}
+        className='game-picker'
+        isDisabled={isDisabled}
+        label={translate('host.game.labelSeveral')}
+        onChange={(ticked) => {
+          const toggled = shelvedGames.find(
+            (game) => ticked.includes(game) !== settings.lineUp.includes(game)
+          )
+
+          if (toggled !== undefined) {
+            onChange(
+              toggledInLineUp({
+                game: toggled,
+                locale,
+                rememberedFor,
+                settings
+              })
+            )
+          }
+        }}
+        options={options}
+        value={[...settings.lineUp]}
+      />
+    )
+  }
 
   return (
     <BoxShelf
+      aside={several}
       className='game-picker'
       isDisabled={isDisabled}
       label={translate('host.game.label')}
@@ -52,19 +124,13 @@ export const GamePicker: React.FC<GamePickerProps> = ({
             movedToGame({
               game: next,
               locale,
-              remembered: rememberedSetupFor({ game: next, preferences }),
+              remembered: rememberedFor(next),
               settings
             })
           )
         }
       }}
-      options={shelvedGames.map((game) => ({
-        description: translate(gameTaglineKey(game)),
-        icon: <GameIcon game={game} />,
-        label: translate(gameNameKey(game)),
-        spine: `var(--spine-${game})`,
-        value: game
-      }))}
+      options={options}
       value={settings.game?.kind ?? null}
     />
   )

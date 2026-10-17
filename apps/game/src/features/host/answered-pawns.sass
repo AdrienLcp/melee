@@ -1,3 +1,4 @@
+@use '../../presentation/styles/pawn-row'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -15,25 +16,7 @@
       white-space: nowrap
 
     ul
-      display: flex
-      flex-wrap: wrap
-      gap: clamp(var(--space-2xs), 1cqmin, var(--space-xs))
-      list-style: none
-      min-width: 0
+      @include pawn-row.pawn-row('[data-answered]')
 
-    // Lifted off the board when its answer lands, which is the one movement
-    // on this screen and the one the room is waiting to see.
-    li
-      display: grid
-      font-size: clamp(var(--text-l), 5cqmin, 2.5rem)
-      transition: transform var(--transition-fast, 0s) var(--ease-out)
-
-      &:not([data-answered]) .pawn
-        fill: none
-        filter: none
-        stroke: var(--socket-line)
-        stroke-dasharray: 2.5 2
-        stroke-width: 1.4
-
-      &[data-answered]
-        transform: translateY(-0.1875rem)
+      li
+        font-size: clamp(var(--text-l), 5cqmin, 2.5rem)

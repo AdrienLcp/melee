@@ -107,9 +107,21 @@ const ROOM_CODE = 'KWRH'
 const SERVER_TIME = 1_800_000_000_000
 
 const players = [
-  { id: 'p1', isConnected: true, nickname: 'Wolfgangamadeusmozar', score: 11 },
-  { id: 'p2', isConnected: true, nickname: 'Mamie Jo', score: 14 },
-  { id: 'p3', isConnected: true, nickname: 'Théo', score: 8 }
+  {
+    id: 'p1',
+    isConnected: true,
+    isReady: false,
+    nickname: 'Wolfgangamadeusmozar',
+    score: 11
+  },
+  {
+    id: 'p2',
+    isConnected: true,
+    isReady: false,
+    nickname: 'Mamie Jo',
+    score: 14
+  },
+  { id: 'p3', isConnected: true, isReady: false, nickname: 'Théo', score: 8 }
 ]
 
 const choosingView = (question: Question) => ({
@@ -152,6 +164,7 @@ const choosingView = (question: Question) => ({
       roundDurationMs: 30_000,
       wellKnownOnly: false
     },
+    lineUp: ['quiz'],
     mode: { kind: 'choice' },
     roundCount: 10,
     teams: { kind: 'off' }
@@ -185,6 +198,7 @@ const table = [
 ].map((nickname, seat) => ({
   id: `p${seat + 1}`,
   isConnected: true,
+  isReady: false,
   nickname,
   score: seat * 3
 }))
@@ -608,6 +622,7 @@ const blindTestRound = (phase: 'buzzed' | 'countdown') => {
         roundDurationMs: 30_000,
         source: { genreIds: [], kind: 'chart' }
       },
+      lineUp: ['blindtest'],
       mode: { answerWindowMs: 10_000, kind: 'buzzer' }
     }
   }
@@ -793,6 +808,7 @@ const slateView = ({
     settings: {
       ...view.settings,
       game: { itemCount: SLATE_ITEMS, kind: 'slate', labels: [] },
+      lineUp: ['slate'],
       mode: { kind: 'typed' }
     }
   }
@@ -884,6 +900,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
       ...view.settings,
       autoAdvanceMs: phase === 'revealed' ? 25_000 : null,
       game: { kind: 'reflex' },
+      lineUp: ['reflex'],
       mode: { answerWindowMs: 10_000, kind: 'buzzer' }
     }
   }
@@ -955,7 +972,7 @@ const buzzerView = ({
 }: {
   activeBuzz?: object | null
   content: object
-  game: object
+  game: { kind: string }
   lockedOutPlayerIds?: string[]
   phase?: 'buzzed' | 'playing'
 }) => {
@@ -968,6 +985,7 @@ const buzzerView = ({
     settings: {
       ...view.settings,
       game,
+      lineUp: [game.kind],
       mode: { answerWindowMs: 10_000, kind: 'buzzer' }
     }
   }
@@ -1162,6 +1180,7 @@ const playerSlateView = ({ isAllCollected }: { isAllCollected: boolean }) => {
     settings: {
       ...typedChoosing.settings,
       game: { itemCount: SLATE_ITEMS, kind: 'slate', labels: [] },
+      lineUp: ['slate'],
       mode: { kind: 'typed' }
     }
   }

@@ -34,5 +34,5 @@ for real: the world map, team play, and the shape of a whole evening.
 - **A game can already change between rounds.** `reshapesRound` refuses
   `game.kind` only while `isRoundInPlay`, and `revealed` is outside that
   window, so a line-up of several games needs a draw on the console, not a new
-  engine ([b](b-line-up.md)). Whether seat scores survive the switch untouched
-  is the first thing step b checks.
+  engine. Seat scores survive the switch untouched — step b's socket test
+  `[line-up] carries every seat’s score across a change of game` says so.

@@ -8,7 +8,7 @@ import type { Page } from '@playwright/test'
  */
 export const homePage = (page: Page) => ({
   /** The shelf's card for the blind test: one press opens its lid, with the game's two doors on it. */
-  blindTest: page.getByRole('button', { name: 'Blind test' }),
+  blindTest: page.getByRole('button', { name: /^Blind test/ }),
   /** The table door on the blind test's opened lid: a room already set to it. */
   blindTestTable: page
     .getByRole('group', { name: /Blind test/ })

@@ -238,6 +238,14 @@ export const FR_DICTIONARY = defineDictionary({
       lead: 'On joue en quelques secondes.',
       rest: 'Rien à installer, aucun compte : un code, un QR code, et toute la table est assise.'
     },
+    presets: {
+      christmas: {
+        name: 'Soirée de Noël',
+        tagline: 'Quiz, blind test et buzzer, en équipes'
+      },
+      how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',
+      open: 'Ouvrir la soirée'
+    },
     promise: 'Une étagère de jeux pour toute la soirée.',
     title: 'Mêlée'
   },
@@ -285,9 +293,18 @@ export const FR_DICTIONARY = defineDictionary({
     },
     game: {
       label: 'Quel jeu',
-      prompt: 'Choisis-en un et la table est prête. Tu pourras changer d’avis.'
+      labelSeveral: 'Les jeux de la soirée',
+      prompt: 'Choisis-en un et la table est prête. Tu pourras changer d’avis.',
+      several: 'Plusieurs jeux'
     },
     hostDecides: 'Tu décides',
+    lineUp: {
+      first: 'En premier',
+      next: 'Ensuite',
+      ready: defineTranslation('{count:plural} sur {total:number}', {
+        plural: { count: { one: '{?} prêt', other: '{?} prêts' } }
+      })
+    },
     needsGame: 'Choisis à quoi la table joue',
     needsPlayer: 'Il faut au moins quelqu’un à table',
     nextRound: 'Manche suivante',
@@ -515,6 +532,11 @@ export const FR_DICTIONARY = defineDictionary({
           }
         }
       })
+    },
+    lineUp: {
+      getReady: 'Je suis de retour à table',
+      next: 'Ensuite : {game}',
+      ready: 'Prêt'
     },
     midRound: {
       detail: 'Ta place est gardée — cette\u00a0manche a commencé sans toi.',

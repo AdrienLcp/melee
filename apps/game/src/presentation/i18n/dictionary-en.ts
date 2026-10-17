@@ -264,6 +264,14 @@ export const EN_DICTIONARY = defineDictionary({
       lead: 'Playing in seconds.',
       rest: 'Nothing to install, no accounts: one code, one QR code, and the whole table is seated.'
     },
+    presets: {
+      christmas: {
+        name: 'Christmas party',
+        tagline: 'Quiz, blind test and buzzer, played in teams'
+      },
+      how: '{rounds:number} rounds, the game drawn before each · {teams:number} teams drawn at random',
+      open: 'Open the evening'
+    },
     promise: 'A shelf of games for the whole evening.',
     title: 'Mêlée'
   },
@@ -309,9 +317,18 @@ export const EN_DICTIONARY = defineDictionary({
     },
     game: {
       label: 'Which game',
-      prompt: 'Pick one and the table is set. You can change your mind later.'
+      labelSeveral: 'Tonight’s games',
+      prompt: 'Pick one and the table is set. You can change your mind later.',
+      several: 'Several games'
     },
     hostDecides: 'You decide',
+    lineUp: {
+      first: 'First up',
+      next: 'Next up',
+      ready: defineTranslation('{count:plural} of {total:number} ready', {
+        plural: { count: { other: '{?}' } }
+      })
+    },
     needsGame: 'Pick what the table is playing',
     needsPlayer: 'You need at least one at the table',
     nextRound: 'Next round',
@@ -570,6 +587,11 @@ export const EN_DICTIONARY = defineDictionary({
           }
         }
       })
+    },
+    lineUp: {
+      getReady: 'I’m back at the table',
+      next: 'Next up: {game}',
+      ready: 'Ready'
     },
     midRound: {
       detail: 'Your seat is safe — this\u00a0round started without you.',

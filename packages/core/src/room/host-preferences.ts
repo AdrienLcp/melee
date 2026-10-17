@@ -61,8 +61,8 @@ export const rememberedSetupFor = ({
  * keeps what the door decided — the question language above all, which the door
  * reads off the host's own interface.
  *
- * An evening keeps what its preset decided — the teams and the length — and
- * takes from the host only how each game is played.
+ * An evening keeps what its preset decided — the teams, the length and the
+ * hold — and takes from the host only how each game is played.
  */
 export const restoredSettings = ({
   preferences,
@@ -81,6 +81,7 @@ export const restoredSettings = ({
       ...settings,
       ...preferences.room,
       ...remembered,
+      autoAdvanceMs: settings.autoAdvanceMs,
       roundCount: settings.roundCount,
       teams: settings.teams
     }
@@ -98,9 +99,9 @@ export const restoredSettings = ({
  * game to file it under, and its `mode`, `roundCount` and reveal hold are the
  * shell's placeholders rather than anybody's choice.
  *
- * An evening files how each game was played and nothing of its own: its length
- * and its teams were the preset's, and remembering them would hand tonight's
- * party to next week's quick game.
+ * An evening files how each game was played and nothing of its own: its
+ * length, its hold and its teams were the evening's, and remembering them
+ * would hand tonight's party to next week's quick game.
  */
 export const rememberSettings = ({
   preferences,
@@ -111,11 +112,13 @@ export const rememberSettings = ({
 }): HostPreferences => {
   const { autoAdvanceMs, game, lineUp, mode, roundCount, ...room } = settings
   const evening = isEvening(settings)
-  const filedRoundCount =
+  const filed =
     evening && game !== null
-      ? (rememberedSetupFor({ game: game.kind, preferences })?.roundCount ??
-        roundCount)
-      : roundCount
+      ? (rememberedSetupFor({ game: game.kind, preferences }) ?? {
+          autoAdvanceMs,
+          roundCount
+        })
+      : { autoAdvanceMs, roundCount }
 
   return {
     games:
@@ -124,10 +127,10 @@ export const rememberSettings = ({
         : {
             ...preferences?.games,
             [game.kind]: {
-              autoAdvanceMs,
+              autoAdvanceMs: filed.autoAdvanceMs,
               game,
               mode,
-              roundCount: filedRoundCount
+              roundCount: filed.roundCount
             }
           },
     room: evening && preferences !== null ? preferences.room : room

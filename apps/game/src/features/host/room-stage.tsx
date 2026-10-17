@@ -22,12 +22,13 @@ import { RevealHold } from '@/presentation/components/round-progress'
 import { ClipOffer } from './clip-offer'
 import { FinalBoard } from './final-board'
 import { LobbyStage } from './lobby-stage'
+import { NextUp } from './next-up'
 import { PlayingStage } from './playing-stage'
 import { ReflexStage } from './reflex-stage'
 import { RevealPanel } from './reveal-panel'
 import { ScoreTrack } from './score-track'
 import { SlateCorrectionStage, SlateWritingStage } from './slate-stages'
-import { Standings } from './standings'
+import { Standings, standingsRowsOf } from './standings'
 import type { SlateWall } from './use-slate-wall'
 import { VerdictPanel } from './verdict-panel'
 
@@ -240,6 +241,11 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       round.advancesAt === null || holdMs === null
         ? null
         : { advancesAt: round.advancesAt, holdMs }
+    const { lineUp, roundCount } = view.settings
+    const nextGame =
+      lineUp.length > 1 && (roundCount === null || round.index < roundCount)
+        ? (view.settings.game?.kind ?? null)
+        : null
 
     // The standings, at the one moment the room asks for them. They are on this
     // screen during `playing` already, where nobody is looking at them — the
@@ -255,11 +261,18 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       <>
         <ScoreTrack players={view.players} teams={view.teams} youId={youId} />
         <div
-          className={classNames('stage revealed', hold !== null && 'holding')}
-          style={{ '--standings-rows': view.players.length }}
+          className={classNames(
+            'stage revealed',
+            hold !== null && 'holding',
+            nextGame !== null && 'with-next-up'
+          )}
+          style={{ '--standings-rows': standingsRowsOf(view) }}
         >
           <RevealPanel players={view.players} round={round} />
           <Standings players={view.players} teams={view.teams} youId={youId} />
+          {nextGame !== null && (
+            <NextUp game={nextGame} players={view.players} />
+          )}
           {hold !== null && <RevealHold clock={clock} {...hold} />}
         </div>
       </>

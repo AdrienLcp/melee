@@ -178,8 +178,10 @@ const openedGameSettings = ({
  *
  * A room playing one game moves its line-up along with it — that is today's
  * picker — while an evening of several adds the game to the ones ticked and
- * keeps its own length: the count is the evening's, and a quiz's ten rounds
- * landing on round twelve would end it on the spot.
+ * keeps its own length and its own hold. The count is the evening's: a quiz's
+ * ten rounds landing on round twelve would end it on the spot. So is the hold:
+ * the switch lands while the last game's reveal is still up, and the blind
+ * test's eight seconds would cut a quiz note off mid-sentence.
  */
 export const movedToGame = ({
   game,
@@ -195,12 +197,14 @@ export const movedToGame = ({
 }): RoomSettings => {
   const setup = remembered ?? openedSetup({ game, locale })
   const lineUp = lineUpWith({ game, lineUp: settings.lineUp })
+  const isEvening = lineUp.length > 1
 
   return {
     ...settings,
     ...setup,
+    autoAdvanceMs: isEvening ? settings.autoAdvanceMs : setup.autoAdvanceMs,
     lineUp,
-    roundCount: lineUp.length > 1 ? settings.roundCount : setup.roundCount
+    roundCount: isEvening ? settings.roundCount : setup.roundCount
   }
 }
 

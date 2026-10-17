@@ -20,13 +20,15 @@ import {
   type PlainTranslationKey
 } from '@/presentation/i18n/translation'
 
+import { isRoomPresetId, ROOM_PRESETS, type RoomPresetId } from './room-presets'
+
 /**
  * Which door a room is being opened through. `null` is the shelf's own — a room
  * with nothing chosen yet — and it is a value rather than an absence: the page
- * draws that door beside five others, and has to tell which of the six is
- * working.
+ * draws that door beside the games' and the evenings', and has to tell which
+ * one is working.
  */
-export type RoomDoor = ShelvedGame | null
+export type RoomDoor = ShelvedGame | RoomPresetId | null
 
 type RoomOpening =
   | { door: RoomDoor; error: PlainTranslationKey; status: 'refused' }
@@ -77,7 +79,13 @@ export const useCreateRoom = () => {
 
       setOpening({ door, seatAs, status: 'opening' })
 
-      const created = await createRoom({ game: door ?? undefined, locale })
+      const created = await createRoom(
+        door === null
+          ? { locale }
+          : isRoomPresetId(door)
+            ? { locale, preset: ROOM_PRESETS[door] }
+            : { game: door, locale }
+      )
 
       if (created.status === 'failure') {
         setOpening(

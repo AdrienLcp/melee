@@ -144,6 +144,16 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
   included, reachable only by a settings frame. The two lists happen to be equal
   today and that is a coincidence, not a rule. The game owns
   its arm of `settings.game` and `round.content`, and narrows the answer mode
+- **Line-up** — the games ticked for the evening, `settings.lineUp`, and
+  `game` is always one of them: what the next round is played on, drawn by the
+  console as each reveal goes up (`nextGame`, never the game just played when
+  there is another) and changed by the host beside *Next round*. One tick is a
+  room playing one game, which every game's front door opens; a **preset** opens
+  several, its length and its teams, and is app data that never travels. An
+  evening of several keeps its own `roundCount` and reveal hold across a switch,
+  because a game's own would end it or cut a reveal short. **Ready** is a seat
+  saying it is back at the table between two rounds, on the wall beside the next
+  game, cleared as a round opens and never a gate
 - **Round** — one track, one question, a screen about to change colour, or
   nothing at all.
   `lobby → countdown → playing → buzzed → revealed → finished`.

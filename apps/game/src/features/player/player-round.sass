@@ -195,6 +195,18 @@
     .countdown.counting-in
       --token-size: 3.5rem
 
+    // Under the thumb, where the next press of the evening lands: the game the
+    // next round is on, and the word to the wall that this seat is back.
+    .back-at-the-table
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+
+      .next-game
+        @include typography.label
+
+        color: var(--ink-muted)
+
     // A round before the first point, or one whose question the room owned,
     // leaves the payout alone on the screen: one object, centred.
     &:not(:has(.round-board, .answer-card, .reaction-board))
@@ -214,7 +226,7 @@
         align-items: start
         column-gap: var(--space-xl)
         display: grid
-        grid-template-areas: 'outcome board' 'hold hold'
+        grid-template-areas: 'outcome board' 'hold hold' 'ready ready'
         grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.9fr)
 
         .outcome
@@ -226,6 +238,9 @@
         .hold
           grid-area: hold
 
+        .back-at-the-table
+          grid-area: ready
+
     // Below the split the screen the page holds is divided as it is above:
     // the answer and the payout take what they need and the board divides the
     // rest by its rows. Lying down they sit side by side, as on a laptop.
@@ -233,12 +248,12 @@
       &:has(.round-board)
         display: grid
         gap: var(--space-s)
-        grid-template: 'outcome' auto 'board' minmax(0, 1fr) 'hold' auto / minmax(0, 1fr)
+        grid-template: 'outcome' auto 'board' minmax(0, 1fr) 'hold' auto 'ready' auto / minmax(0, 1fr)
         min-height: 0
 
         @media (aspect-ratio >= 13 / 10)
           column-gap: var(--space-m)
-          grid-template: 'outcome board' minmax(0, 1fr) 'hold hold' auto / minmax(0, 1fr) minmax(0, 1fr)
+          grid-template: 'outcome board' minmax(0, 1fr) 'hold hold' auto 'ready ready' auto / minmax(0, 1fr) minmax(0, 1fr)
 
         .outcome
           gap: var(--space-s)
@@ -249,6 +264,9 @@
 
         .hold
           grid-area: hold
+
+        .back-at-the-table
+          grid-area: ready
 
         .answer-card .note
           -webkit-box-orient: vertical

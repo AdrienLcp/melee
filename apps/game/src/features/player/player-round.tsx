@@ -56,6 +56,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { ToggleButton } from '@/presentation/components/toggle-button'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import {
   floorOutcome,
@@ -83,6 +84,8 @@ type PlayerRoundProps = {
   /** `false` from the socket means the frame was never written. */
   onChooseTeam: (teamId: TeamId) => boolean
   /** `false` from the socket means the frame was never written. */
+  onReady: (isReady: boolean) => boolean
+  /** `false` from the socket means the frame was never written. */
   onWriteLine: (itemIndex: number, answer: string, roundId: string) => boolean
   view: PlayerRoomView
 }
@@ -91,6 +94,8 @@ type RevealedRoundProps = {
   clock: ClockEstimate | null
   /** When the next round's clip starts, while it counts in over this reveal. */
   countingInTo: number | null
+  /** Absent while the next round counts in, when there is nothing left to be ready for. */
+  onReady?: (isReady: boolean) => boolean
   round: RoundView
   view: PlayerRoomView
 }
@@ -98,6 +103,7 @@ type RevealedRoundProps = {
 const RevealedRound: React.FC<RevealedRoundProps> = ({
   clock,
   countingInTo,
+  onReady,
   round,
   view
 }) => (
@@ -127,8 +133,57 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         }
       />
     </div>
+    {onReady !== undefined && (
+      <BackAtTheTable onReady={onReady} round={round} view={view} />
+    )}
   </section>
 )
+
+/**
+ * Between two rounds of an evening, the press that tells the wall this seat is
+ * back at the table, under the game the next round is on. It is a word to the
+ * room, never a gate: the host starts when they like. The last round of a
+ * counted evening has nothing after it to be ready for.
+ */
+const BackAtTheTable: React.FC<{
+  onReady: (isReady: boolean) => boolean
+  round: RoundView
+  view: PlayerRoomView
+}> = ({ onReady, round, view }) => {
+  const translate = useTranslate()
+  const { game, lineUp, roundCount } = view.settings
+  const you = view.players.find((player) => player.id === view.youId)
+
+  if (
+    lineUp.length < 2 ||
+    game === null ||
+    you === undefined ||
+    (roundCount !== null && round.index >= roundCount)
+  ) {
+    return null
+  }
+
+  return (
+    <div className='back-at-the-table'>
+      <p className='next-game'>
+        {translate('player.lineUp.next', {
+          game: translate(gameNameKey(game.kind))
+        })}
+      </p>
+      <ToggleButton
+        isSelected={you.isReady}
+        onChange={(isReady) => {
+          onReady(isReady)
+        }}
+        size='large'
+      >
+        {translate(
+          you.isReady ? 'player.lineUp.ready' : 'player.lineUp.getReady'
+        )}
+      </ToggleButton>
+    </div>
+  )
+}
 
 /**
  * The reveal the next round's countdown is drawn over. The view stops carrying
@@ -159,6 +214,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   onAnswer,
   onBuzz,
   onChooseTeam,
+  onReady,
   onWriteLine,
   view
 }) => {
@@ -268,6 +324,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       <RevealedRound
         clock={clock}
         countingInTo={null}
+        onReady={onReady}
         round={round}
         view={view}
       />

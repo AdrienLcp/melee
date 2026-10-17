@@ -254,6 +254,7 @@ const Lobby: React.FC<{
             onChooseTeam={(teamId) =>
               send({ teamId, type: 'player.chooseTeam' })
             }
+            onReady={(isReady) => send({ isReady, type: 'player.ready' })}
             onWriteLine={(itemIndex, answer, roundId) =>
               send({ answer, itemIndex, roundId, type: 'slate.write' })
             }
@@ -294,6 +295,7 @@ const Lobby: React.FC<{
               onChooseTeam={(teamId) =>
                 send({ teamId, type: 'player.chooseTeam' })
               }
+              onReady={(isReady) => send({ isReady, type: 'player.ready' })}
               onWriteLine={(itemIndex, answer, roundId) =>
                 send({ answer, itemIndex, roundId, type: 'slate.write' })
               }

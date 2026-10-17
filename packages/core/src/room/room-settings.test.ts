@@ -123,6 +123,17 @@ describe('movedToGame', () => {
     expect(moved.roundCount).toBe(12)
   })
 
+  it('[room-settings] keeps the evening’s hold when the draw lands on a game with its own', () => {
+    const moved = movedToGame({
+      game: 'blindtest',
+      locale: 'fr',
+      remembered: null,
+      settings: { ...onTheBuzzer, lineUp: ['buzzer', 'blindtest'] }
+    })
+
+    expect(moved.autoAdvanceMs).toBeNull()
+  })
+
   it('[room-settings] leaves the settings that are the host’s alone', () => {
     const moved = movedToGame({
       game: 'blindtest',

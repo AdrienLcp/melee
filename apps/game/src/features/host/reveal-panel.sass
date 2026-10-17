@@ -59,7 +59,7 @@
       // word whole on one line, measured against the widest of a fifty-title
       // sample; `260cqi` over the length holds an answer to about two lines in
       // the column it is set in. The `dvh` term is the height a hold bar leaves.
-      --answer-size: clamp(2rem, min(calc(var(--stage-unit) * 9), calc((100dvh - var(--hold-bar, 0rem)) * 0.09), calc(128rem / var(--answer-length, 10)), calc(260cqi / var(--answer-length, 10)), calc(106cqi / var(--longest-word-width, 10))), 7rem)
+      --answer-size: clamp(2rem, min(calc(var(--stage-unit) * 9), calc((100dvh - var(--hold-bar, 0rem) - var(--next-up-row, 0rem)) * 0.09), calc(128rem / var(--answer-length, 10)), calc(260cqi / var(--answer-length, 10)), calc(106cqi / var(--longest-word-width, 10))), 7rem)
 
       .title
         @include typography.monument

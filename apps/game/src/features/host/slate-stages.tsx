@@ -24,7 +24,7 @@ import type { StageControls } from './room-stage'
 import { ScoreTrack, type SeatProgress } from './score-track'
 import { SlateKeyEditor } from './slate-key-editor'
 import { SlateLabelsEditor } from './slate-labels-editor'
-import { Standings } from './standings'
+import { Standings, standingsRowsOf } from './standings'
 import { useFittedGrid } from './use-fitted-grid'
 import type { SlateWall } from './use-slate-wall'
 
@@ -420,7 +420,7 @@ export const SlateCorrectionStage: React.FC<SlateBoardProps> = ({
             groups.length + (blankPlayerIds.length > 0 ? 1 : 0),
             1
           ),
-          '--standings-rows': view.players.length
+          '--standings-rows': standingsRowsOf(view)
         }}
       >
         <section className='marking'>

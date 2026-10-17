@@ -10,10 +10,17 @@
     gap: var(--space-s)
     min-width: 0
 
-    > .react-aria-Label
+    > .react-aria-Label,
+    > .shelf-head > .react-aria-Label
       @include typography.label
 
       color: var(--ink-muted)
+
+    > .shelf-head
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-l)
 
     // Five lids on one shelf when they fit with their names whole; a column of
     // lids otherwise, since five never divide into even rows.
@@ -55,8 +62,11 @@
         &:not([data-selected])
           opacity: 0.55
 
-      // Pulled forward out of the row, the way a box is taken off a shelf.
-      &[data-selected]
+      // Pulled forward out of the row, the way a box is taken off a shelf —
+      // and still so under the pointer that just pulled it, which the lift on
+      // hover would otherwise put back in the row.
+      &[data-selected],
+      &[data-selected][data-hovered]:not([data-pressed])
         box-shadow: 0 0 0 3px var(--spine), 0 calc(var(--edge) * 3) 0 0 var(--chipboard), var(--shadow-pulled)
         transform: translateY(calc(var(--edge) * -2))
 
@@ -65,6 +75,20 @@
       border-radius: var(--radius-m) var(--radius-m) 0 0
       grid-column: 1 / -1
       height: clamp(0.5rem, 1.4cqi, 1rem)
+
+    // On the corner across from the tick, which says the box is in: this says
+    // which of the boxes in is opened first.
+    .badge
+      @include typography.label
+
+      background: var(--card-ink)
+      border-radius: var(--radius-full)
+      color: var(--card)
+      font-size: var(--text-2xs)
+      inset: -0.75em auto auto var(--space-s)
+      padding: 0.15em 0.6em
+      position: absolute
+      white-space: nowrap
 
     .lid
       display: flex
