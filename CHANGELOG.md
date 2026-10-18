@@ -235,6 +235,15 @@ one part.
 
 ### Features
 
+- `[Game]` **The wall draws the board's track** round the stage, from the
+  first round on: up the left side from the start, across the top and down the
+  right side to a checkered finish, its rows sized from the screen's aspect so
+  a wall lying down and one standing up draw the same U. One pawn per team,
+  walking a case at a time from where it stood at the reveal. An upright
+  screen reveals a board of teams under the answer instead of beside it, and a
+  team's tray widens with the head it carries, where both had cut every team's
+  name short.
+
 - `[Game]` **World map, on the shelf.** A sixth game: a country comes up —
   *Place la France* — and everyone puts a pawn on a world map they pinch and
   pan, a tap to place it, a drag or another tap to move it, and *Je le pose

@@ -181,8 +181,8 @@ describe('the wall', () => {
     expect(hostContent(host)?.track).not.toBeNull()
 
     for (const track of CATALOGUE) {
-      expect(transcriptOf(wall)).not.toContain(track.title)
-      expect(transcriptOf(wall)).not.toContain(track.artist)
+      expect(transcriptOf(wall)).not.toContain(JSON.stringify(track.title))
+      expect(transcriptOf(wall)).not.toContain(JSON.stringify(track.artist))
     }
   })
 

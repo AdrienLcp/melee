@@ -3,12 +3,14 @@
 
 @layer components
   // A tray per team, dealt as many abreast as the box holds: three teams of
-  // four on a wall read across, the same three on a phone read down.
+  // four on a wall read across, the same three on a phone read down. A tray
+  // grows with the head it carries, so a box too narrow for two at a room
+  // screen's size deals one rather than cutting every name short.
   .team-roster
     align-content: start
     display: grid
     gap: var(--space-s)
-    grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr))
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, clamp(15rem, calc(var(--stage-unit) * 30), 24rem)), 1fr))
     list-style: none
     min-width: 0
 

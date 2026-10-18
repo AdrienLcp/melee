@@ -1,12 +1,14 @@
+@use '../../presentation/styles/typography'
+
 @layer components
   // The page inside the U keeps clear of it, and so does the fixed menu,
   // because both are measured from the gutters and the top padding. The
   // bottom stays the page's own: the track leaves it open for the round.
   \:root:has(.board-track)
-    --board-band: clamp(36px, 7vmin, 84px)
-    --board-edge: clamp(4px, 0.8vmin, 10px)
-    --board-gap: clamp(2px, 0.4vmin, 5px)
-    --board-clearance: calc(var(--board-edge) + var(--board-band) + clamp(12px, 2.4vmin, 32px))
+    --board-band: clamp(2.5rem, 9vmin, 7rem)
+    --board-edge: clamp(0.25rem, 0.8vmin, 0.625rem)
+    --board-gap: clamp(0.125rem, 0.4vmin, 0.3125rem)
+    --board-clearance: calc(var(--board-edge) + var(--board-band) + clamp(0.75rem, 2.4vmin, 2rem))
     --gutter-left: max(var(--board-clearance), var(--safe-area-left))
     --gutter-right: max(var(--board-clearance), var(--safe-area-right))
     --layout-padding-block-start: max(var(--board-clearance), var(--safe-area-top))
@@ -22,12 +24,12 @@
       grid-template-columns: var(--board-band) repeat(calc(var(--track-columns) - 2), minmax(0, 1fr)) var(--board-band)
       grid-template-rows: var(--board-band) repeat(calc(var(--track-rows) - 1), minmax(0, 1fr))
       inset: 0
-      padding: var(--board-edge) var(--board-edge) 0
+      padding: var(--board-edge)
       position: absolute
 
     .case
       background: var(--track-a)
-      border-radius: clamp(4px, 0.7vmin, 9px)
+      border-radius: var(--radius-s)
       box-shadow: inset 0 -2px 0 color-mix(in oklch, var(--track-b) 60%, var(--chipboard))
       color: var(--track-ink)
       container-type: size
@@ -45,27 +47,23 @@
       // drawing on the track, so the finish reads from across the room
       // before its word does.
       &[data-mark='finish']
-        background: linear-gradient(var(--track-five) 0 0) top / 100% 78% no-repeat, repeating-conic-gradient(var(--board-ink) 0 25%, var(--track-a) 0 50%) bottom left / clamp(8px, 11cqmin, 14px) clamp(8px, 11cqmin, 14px)
+        background: linear-gradient(var(--track-five) 0 0) top / 100% 78% no-repeat, repeating-conic-gradient(var(--board-ink) 0 25%, var(--track-a) 0 50%) bottom left / clamp(0.5rem, 11cqmin, 0.875rem) clamp(0.5rem, 11cqmin, 0.875rem)
 
     // A printed number in the case's corner, heavier every five, with the
     // start and the finish spelling themselves out.
     .number
-      font-family: var(--font-display)
-      font-size: clamp(10px, 22cqmin, 20px)
-      font-variant-numeric: tabular-nums
-      font-weight: 700
+      @include typography.numeric
+      @include typography.solid
+
+      font-size: clamp(var(--text-3xs), 22cqmin, var(--text-m))
       inset: 0.3em auto auto 0.45em
-      line-height: 1
       position: absolute
 
       [data-mark='five'] &
-        font-size: clamp(12px, 30cqmin, 28px)
-        font-weight: 800
+        font-size: clamp(var(--text-3xs), 30cqmin, var(--text-xl))
 
       :is([data-mark='start'], [data-mark='finish']) &
-        font-size: clamp(9px, 16cqmin, 16px)
-        font-weight: 800
-        letter-spacing: 0.01em
+        font-size: clamp(var(--text-3xs), 16cqmin, var(--text-s))
         text-transform: uppercase
 
     .pawns
@@ -89,7 +87,7 @@
       // Every step is a new element, so each case is a hop and the walk reads
       // as a pawn counted along the track.
       @media (prefers-reduced-motion: no-preference)
-        animation: pawn-hops 230ms var(--ease-out) both
+        animation: pawn-hops var(--transition-base, 0s) var(--ease-out) both
 
   @keyframes pawn-hops
     from

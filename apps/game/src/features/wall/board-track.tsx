@@ -285,18 +285,18 @@ const stepTowards = ({
  */
 const pawnScaleFor = (standing: number): number => {
   if (standing <= 1) {
-    return 0.5
+    return 0.6
   }
 
   if (standing === 2) {
-    return 0.4
+    return 0.46
   }
 
   if (standing <= 4) {
-    return 0.3
+    return 0.34
   }
 
-  return 0.22
+  return 0.26
 }
 
 const markOf = ({
