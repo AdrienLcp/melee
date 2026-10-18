@@ -281,6 +281,20 @@
       &[data-game='quiz'] .identity
         padding: clamp(var(--space-xs), 3cqh, var(--space-l)) clamp(var(--space-s), 3.4cqi, var(--space-l))
 
+      // The map is the reveal here, so it takes the room and the list keeps
+      // what its rows need, its chips at a size of their own.
+      &[data-game='worldmap']
+        grid-template-rows: minmax(0, 1fr) auto
+
+      // Doubled up to outrank the chip sizing below, which divides a height
+      // this list no longer has.
+      &[data-game='worldmap']:not(.bare) > .said
+        container-type: normal
+        max-block-size: 40cqh
+
+        li
+          font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), 1.75rem)
+
       &:not(.bare) > .said,
       &:not(.bare) > .scorers
         align-content: start

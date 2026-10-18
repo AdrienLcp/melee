@@ -537,6 +537,27 @@
           grid-area: standings
           width: auto
 
+  // An upright screen turning the map over: one column, the map first and
+  // as wide as the stage, then the list and the standings under it — side by
+  // side the map was a third of the width over half a screen left empty.
+  .host-console-page:has(> .stage.revealed > .reveal-panel[data-game='worldmap'])
+    @media (aspect-ratio < 13 / 10)
+      @include layout.wide
+        > .stage.revealed
+          display: flex
+          flex-direction: column
+
+          > .reveal-panel
+            flex: none
+
+            .world-map
+              aspect-ratio: 5 / 4
+              flex: none
+
+          > .standings
+            flex: 1 1 0
+            min-height: 0
+
   // Below the split the console is held in a hand, and the stages that carry
   // a board are held to the screen all the same: the score track along the
   // top, the stage in the box the page leaves it, the presses pinned under it.

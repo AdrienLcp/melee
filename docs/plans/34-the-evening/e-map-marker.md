@@ -49,8 +49,13 @@ medium size in a frame under 36rem, where the large pair ran past a phone's
 frame; there it covers about a tenth of the map and follows the pawn, so the
 bottom press was not kept. An upright room screen gives the map the stage's
 width at 1000/530, pushed low above the tally. Seen at 1080×1920, 1920×1080
-and 390×844. Left: the wall's reveal at 16:9 and 9:16, the console's playing
-stage, shelving.
+and 390×844. The reveal gives the map the panel's height and the list its
+rows; an upright screen stacks map (5:4), list and standings in one column,
+and a distance label stands at least 56 px from its pawn, sized from the
+frame's width. The wall's header keeps an empty corner on purpose: the menu
+fades there when nobody is at the wall and comes back on a touch, in every
+game. Left: the console's playing stage while nobody at it answers (only the
+card on the board's blue — for the impeccable pass), shelving.
 
 ## The interaction
 

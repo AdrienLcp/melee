@@ -77,7 +77,8 @@
 
       dominant-baseline: central
       fill: var(--map-target)
-      font-size: var(--text-xs)
+      // Read across the room on a wall, the frame's own width deciding.
+      font-size: clamp(var(--text-xs), 2.2cqi, 1.75rem)
       paint-order: stroke
       stroke: var(--map-land)
       stroke-linejoin: round

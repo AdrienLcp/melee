@@ -44,6 +44,8 @@ const ZOOM_STEP = 2
 const SMALL_TARGET_AREA = 900
 /** Where a line's label stands, from the pawn: the lines meet at the country, so their middles crowd and their starts do not. */
 const LABEL_ALONG = 0.3
+/** How far from its pawn a label stands at least, in screen pixels, so a short line's label does not sit on the pawn. */
+const LABEL_CLEARANCE = 56
 /** The zoom buttons' column, which a framing keeps clear so no pawn stands under them. */
 const CONTROLS_INSET = 56
 /** The ring's radius on screen, wide enough to read round a pawn standing in it. */
@@ -401,18 +403,31 @@ const RevealedLayer: React.FC<{
           seat={marker.seat}
         />
       ))}
-      {lines.map(({ from, marker, to }) => (
-        <text
-          className='distance'
-          key={marker.playerId}
-          x={from[0] + (to[0] - from[0]) * LABEL_ALONG}
-          y={from[1] + (to[1] - from[1]) * LABEL_ALONG}
-        >
-          {marker.label}
-        </text>
-      ))}
+      {lines.map(({ from, marker, to }) => {
+        const along = labelAlong(from, to)
+
+        return (
+          <text
+            className='distance'
+            key={marker.playerId}
+            x={from[0] + (to[0] - from[0]) * along}
+            y={from[1] + (to[1] - from[1]) * along}
+          >
+            {marker.label}
+          </text>
+        )
+      })}
     </g>
   )
+}
+
+/** The share of a line its label stands at: clear of the pawn, and never past the middle, where the lines meet. */
+const labelAlong = (from: Point, to: Point): number => {
+  const length = Math.hypot(to[0] - from[0], to[1] - from[1])
+
+  return length === 0
+    ? 0
+    : Math.min(0.5, Math.max(LABEL_ALONG, LABEL_CLEARANCE / length))
 }
 
 const RevealedPawn: React.FC<{ at: Point; seat: number }> = ({ at, seat }) => {
