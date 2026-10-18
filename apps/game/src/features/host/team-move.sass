@@ -1,0 +1,39 @@
+@use '../../presentation/styles/typography'
+@use '../../presentation/styles/text-box'
+
+@layer components
+  // The pawn's line under a team's head, the host's two presses at its end
+  // under the score they move: read from across the room, so the walk is
+  // printed as a figure on a tile and the case beside it as words.
+  .team-move
+    align-items: center
+    display: flex
+    gap: var(--space-xs)
+    min-width: 0
+
+  .team-move-readout
+    align-items: center
+    display: flex
+    flex: 1
+    gap: var(--space-xs)
+    min-width: 0
+
+    .walked
+      @include typography.score
+      @include text-box.trimmed-figure
+
+      background: var(--track-a)
+      border-radius: var(--radius-s)
+      box-shadow: 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
+      flex: none
+      font-size: clamp(1.25rem, calc(var(--stage-unit) * 3), 2rem)
+      padding: var(--space-2xs) var(--space-xs)
+
+    .stands-on
+      @include typography.title
+
+      font-size: clamp(1rem, calc(var(--stage-unit) * 2.4), 1.5rem)
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap

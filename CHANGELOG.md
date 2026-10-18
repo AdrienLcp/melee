@@ -235,6 +235,12 @@ one part.
 
 ### Features
 
+- `[Game]` **The host corrects the board at the reveal**: under each team's
+  head the standings read what the round walked its pawn and the case it
+  stands on (*+2 · Case 14 sur 30*), with a − and a + that walk it a case
+  through `host.adjustScore`. A console too narrow for the standings offers
+  the same rows behind *Corriger les cases*; the wall reads them with no press.
+
 - `[Game]` **The wall draws the board's track** round the stage, from the
   first round on: up the left side from the start, across the top and down the
   right side to a checkered finish, its rows sized from the screen's aspect so

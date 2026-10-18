@@ -132,9 +132,14 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   board: {
+    back: 'Reculer {team} d’une case',
+    case: 'Case {case:number} sur {length:number}',
     finish: 'Arrivée',
+    fix: 'Corriger les cases',
+    forward: 'Avancer {team} d’une case',
     standing: '{team} : case {case:number} sur {length:number}',
-    start: 'Départ'
+    start: 'Départ',
+    walked: '+{count:number}'
   },
   buzz: {
     action: 'Buzz',

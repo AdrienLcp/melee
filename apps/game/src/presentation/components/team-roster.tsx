@@ -28,6 +28,8 @@ type TeamRosterProps = {
   seatAction?: (player: PublicPlayer) => React.ReactNode
   /** The presses a team offers in its head: the host's *Rename*, a player's *Join*. */
   teamAction?: (team: Team) => React.ReactNode
+  /** A line under a team's head, before its seats: where its pawn stands. */
+  teamDetail?: (team: Team) => React.ReactNode
   teams: readonly Team[]
   /**
    * Heads a last group of the seats no team holds yet — waiting for the draw,
@@ -50,6 +52,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   players,
   seatAction,
   teamAction,
+  teamDetail,
   teams,
   unassignedLabel,
   youId
@@ -102,6 +105,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
               )}
               {teamAction?.(team)}
             </div>
+            {teamDetail?.(team)}
             {members.length === 0 ? (
               <p className='empty'>{translate('team.empty')}</p>
             ) : (

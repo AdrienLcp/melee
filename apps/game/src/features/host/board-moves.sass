@@ -1,0 +1,32 @@
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  // Above the split every team's tray carries its own presses beside the
+  // reveal, so a second way in would only be a second thing to read.
+  .board-moves-press
+    @include layout.wide
+      display: none
+
+  .board-moves.sheet-popover
+    max-width: min(92vw, 26rem)
+    width: 100%
+
+  .board-moves-teams
+    display: grid
+    gap: var(--space-s)
+    list-style: none
+
+  .board-moves-team
+    border-block-start: var(--stroke-bold) solid var(--team)
+    display: grid
+    gap: var(--space-2xs)
+    padding-block-start: var(--space-xs)
+
+  .board-moves-name
+    @include typography.title
+
+    align-items: center
+    display: flex
+    gap: var(--space-2xs)
+    min-width: 0

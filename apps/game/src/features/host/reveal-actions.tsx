@@ -10,6 +10,7 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
+import { BoardMoves } from './board-moves'
 import type { HostActionsProps } from './host-actions'
 import { byTeamFor, TurnsChoice } from './turns-choice'
 
@@ -56,6 +57,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         >
           {translate('host.endGame')}
         </Button>
+        <BoardMoves isLive={isLive} send={send} view={view} />
       </div>
     )
   }
@@ -72,6 +74,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         >
           {translate('host.seeResults')}
         </Button>
+        <BoardMoves isLive={isLive} send={send} view={view} />
       </div>
     )
   }
@@ -134,6 +137,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       >
         {translate('host.endGame')}
       </Button>
+      <BoardMoves isLive={isLive} send={send} view={view} />
     </div>
   )
 }

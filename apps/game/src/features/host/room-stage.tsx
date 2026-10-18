@@ -9,6 +9,7 @@ import type {
   RoomSettings,
   RoundView
 } from '@melee/protocol/room'
+import { POINT } from '@melee/protocol/scoring'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
@@ -286,10 +287,32 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             hold !== null && 'holding',
             nextGame !== null && 'with-next-up'
           )}
-          style={{ '--standings-rows': standingsRowsOf(view) }}
+          style={{
+            '--standings-rows': standingsRowsOf({
+              board: view.settings.board,
+              players: view.players,
+              teams: view.teams
+            })
+          }}
         >
           <RevealPanel players={view.players} round={round} />
-          <Standings players={view.players} teams={view.teams} youId={youId} />
+          <Standings
+            board={view.settings.board}
+            onAdjust={
+              controls === null
+                ? undefined
+                : (team, cases) => {
+                    controls.send({
+                      points: cases * POINT,
+                      target: { kind: 'team', teamId: team.id },
+                      type: 'host.adjustScore'
+                    })
+                  }
+            }
+            players={view.players}
+            teams={view.teams}
+            youId={youId}
+          />
           {nextGame !== null && (
             <NextUp game={nextGame} players={view.players} />
           )}

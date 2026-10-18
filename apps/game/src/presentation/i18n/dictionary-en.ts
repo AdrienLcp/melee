@@ -153,9 +153,14 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   board: {
+    back: 'Move {team} back a square',
+    case: 'Square {case:number} of {length:number}',
     finish: 'Finish',
+    fix: 'Fix the squares',
+    forward: 'Move {team} forward a square',
     standing: '{team}: square {case:number} of {length:number}',
-    start: 'Start'
+    start: 'Start',
+    walked: '+{count:number}'
   },
   buzz: {
     action: 'Buzz',
