@@ -123,6 +123,11 @@ export type RoomTeam = {
    * can still be taken back while its reveal is up — see `team-scores.ts`.
    */
   bankedScore: number
+  /**
+   * The pawn's case before the round on screen, adjustments included; the
+   * round's move is added on the way out, for the reason the score's is.
+   */
+  bankedCase: number
 }
 
 /**

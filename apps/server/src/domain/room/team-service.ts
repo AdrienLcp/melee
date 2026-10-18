@@ -1,6 +1,8 @@
 import { Result } from '@adrienlcp/result'
 
+import type { BoardPosition } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
+import { POINT } from '@melee/protocol/scoring'
 import type {
   Team,
   TeamId,
@@ -8,6 +10,7 @@ import type {
   TeamsSettings
 } from '@melee/protocol/team'
 
+import { advanceOnTrack, type TeamMove } from '@melee/core/board/board-strategy'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
 import { teamCountOf, teamIdAt } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
@@ -51,6 +54,7 @@ export const fitTeamsToSettings = (room: Room): void => {
     { length: count },
     (_, index): RoomTeam =>
       room.teams[index] ?? {
+        bankedCase: 0,
         bankedScore: 0,
         colour: index + 1,
         id: teamIdAt(index),
@@ -181,6 +185,11 @@ export const renameTeam = ({
  * Points by hand. A team's adjustment is banked straight away, and either kind
  * stops at zero: a board with a negative score on it is a board nobody can
  * read across a room.
+ *
+ * On a track a team's adjustment walks its pawn too, a case for each whole
+ * `POINT`, which is how the host corrects a move under the reveal — one
+ * correction for the two, so the pawn and the score never tell different
+ * stories.
  */
 export const adjustScore = ({
   now,
@@ -218,6 +227,16 @@ export const adjustScore = ({
     -liveRoundResult(room, team.id),
     team.bankedScore + points
   )
+
+  if (room.settings.board.kind === 'track') {
+    const move = liveMoveOf(room, team.id)
+
+    team.bankedCase = Math.min(
+      room.settings.board.length - move,
+      Math.max(-move, team.bankedCase + Math.trunc(points / POINT))
+    )
+  }
+
   touch(room, now)
 
   return Result.success()
@@ -275,26 +294,81 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
       })
 
 /**
+ * What the round on screen walks each pawn, from the cases they stood on
+ * before it. Empty on a room whose board is off.
+ */
+const liveMoves = (room: Room): TeamMove[] => {
+  const { board } = room.settings
+
+  if (board.kind === 'off' || room.round === null) {
+    return []
+  }
+
+  return advanceOnTrack({
+    length: board.length,
+    positions: new Map(room.teams.map((team) => [team.id, team.bankedCase])),
+    results: room.teams.map((team) => ({
+      points: liveRoundResult(room, team.id),
+      teamId: team.id
+    })),
+    strategy: board.strategy
+  }).moves
+}
+
+const liveMoveOf = (room: Room, teamId: TeamId): number =>
+  liveMoves(room).find((move) => move.teamId === teamId)?.cases ?? 0
+
+/**
  * The round on screen paid into each team for good, called just before it is
  * left behind — by the next round, or by the final board.
  */
 export const bankTeamRound = (room: Room): void => {
+  const moves = liveMoves(room)
+
   for (const team of room.teams) {
     team.bankedScore += liveRoundResult(room, team.id)
+    team.bankedCase += moves.find((move) => move.teamId === team.id)?.cases ?? 0
   }
 }
 
 export const resetTeamScores = (room: Room): void => {
   for (const team of room.teams) {
+    team.bankedCase = 0
     team.bankedScore = 0
   }
 }
 
-export const toTeamViews = (room: Room): Team[] =>
-  room.teams.map((team) => ({
+/**
+ * The pawn as every screen draws it. The round's move shows from its reveal
+ * and not before: a pawn that walks while the round is open has said who is
+ * answering right.
+ */
+const boardPositionOf = (
+  room: Room,
+  team: RoomTeam,
+  moves: readonly TeamMove[]
+): BoardPosition | null => {
+  if (room.settings.board.kind === 'off') {
+    return null
+  }
+
+  const move =
+    room.phase === 'revealed'
+      ? (moves.find((entry) => entry.teamId === team.id)?.cases ?? 0)
+      : 0
+
+  return { case: team.bankedCase + move, move }
+}
+
+export const toTeamViews = (room: Room): Team[] => {
+  const moves = liveMoves(room)
+
+  return room.teams.map((team) => ({
+    board: boardPositionOf(room, team, moves),
     colour: team.colour,
     id: team.id,
     name: team.name,
     score: team.bankedScore + liveRoundResult(room, team.id),
     seatIds: seatsOf(room, team.id).map((seat) => seat.id)
   }))
+}

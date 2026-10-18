@@ -1362,6 +1362,19 @@ const reconfigure = (
     return
   }
 
+  if (
+    room.phase !== 'lobby' &&
+    JSON.stringify(settings.board) !== JSON.stringify(room.settings.board)
+  ) {
+    sendError(outbound, {
+      code: 'wrong_phase',
+      fatal: false,
+      message: 'The track is laid once the game is under way'
+    })
+
+    return
+  }
+
   const now = engine.now()
   const previousGame = room.settings.game
   const previousHoldMs = room.settings.autoAdvanceMs

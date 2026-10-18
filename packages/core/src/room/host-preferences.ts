@@ -61,8 +61,8 @@ export const rememberedSetupFor = ({
  * keeps what the door decided — the question language above all, which the door
  * reads off the host's own interface.
  *
- * An evening keeps what its preset decided — the teams, the length and the
- * hold — and takes from the host only how each game is played.
+ * An evening keeps what its preset decided — the teams, the track, the length
+ * and the hold — and takes from the host only how each game is played.
  */
 export const restoredSettings = ({
   preferences,
@@ -82,6 +82,7 @@ export const restoredSettings = ({
       ...preferences.room,
       ...remembered,
       autoAdvanceMs: settings.autoAdvanceMs,
+      board: settings.board,
       roundCount: settings.roundCount,
       teams: settings.teams
     }

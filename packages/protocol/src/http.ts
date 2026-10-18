@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { boardSettingsSchema } from './board'
 import { protocolErrorCodeSchema } from './error-code'
 import { shelvedGameSchema, shelvedGames } from './game'
 import {
@@ -41,6 +42,7 @@ import {
  * resolves to. Its first game is the first round's.
  */
 export const roomPresetSchema = z.object({
+  board: boardSettingsSchema,
   lineUp: z
     .array(shelvedGameSchema)
     .min(1)

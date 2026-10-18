@@ -101,6 +101,7 @@ export const roomSettingsFor = ({
     return {
       ...DEFAULT_ROOM_SETTINGS,
       ...openedSetup({ game: presetFirst, locale }),
+      board: preset.board,
       lineUp: preset.lineUp,
       roundCount: preset.roundCount,
       teams: preset.teams

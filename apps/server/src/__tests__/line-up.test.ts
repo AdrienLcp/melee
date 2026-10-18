@@ -125,12 +125,13 @@ describe('an evening of several games', () => {
     expect(errorsIn(anna)[0]?.code).toBe('wrong_phase')
   })
 
-  it('[line-up] opens a room on a preset’s games, length and teams', async () => {
+  it('[line-up] opens a room on a preset’s games, length, teams and track', async () => {
     const response = await fetch(
       `http://${harness.origin}${API_ROUTES.rooms}`,
       {
         body: JSON.stringify({
           preset: {
+            board: { kind: 'track', length: 24, strategy: 'onePointOneCase' },
             lineUp: ['quiz', 'blindtest', 'buzzer'],
             roundCount: 12,
             teams: { count: 3, kind: 'drawn' }
@@ -154,6 +155,7 @@ describe('an evening of several games', () => {
     await waitFor(() => hostView(host) !== null, 'the host to be seated')
 
     expect(hostView(host)?.settings).toMatchObject({
+      board: { kind: 'track', length: 24 },
       game: { kind: 'quiz' },
       lineUp: ['quiz', 'blindtest', 'buzzer'],
       roundCount: 12,

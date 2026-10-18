@@ -10,6 +10,7 @@ import {
 } from './team-turn'
 
 const team = (id: string, seatIds: string[]): Team => ({
+  board: null,
   colour: 1,
   id,
   name: null,

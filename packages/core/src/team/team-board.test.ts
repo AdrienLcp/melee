@@ -5,6 +5,7 @@ import type { Team } from '@melee/protocol/team'
 import { buildTeamBoard, teamOfSeat, teamWinnersOf } from './team-board'
 
 const team = (colour: number, score: number, seatIds: string[] = []): Team => ({
+  board: null,
   colour,
   id: `team-${colour}`,
   name: null,

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { boardSettingsSchema, DEFAULT_BOARD_SETTINGS } from './board'
 import { countryCodeSchema } from './country-code'
 import { gameKindSchema, gameKinds, gameSettingsSchema } from './game'
 import {
@@ -103,6 +104,11 @@ export const roomSettingsSchema = z.object({
    * and the host's screen is exactly the tab most likely to lose focus.
    */
   autoAdvanceMs: z.number().int().min(2_000).max(30_000).nullable(),
+  /**
+   * Whether the teams race on a track around the round — see `board.ts`.
+   * Ignored by a room without teams.
+   */
+  board: boardSettingsSchema,
   /** Milliseconds between "start" and the first note, so every device lands together. */
   countdownMs: z.number().int().min(0).max(10_000),
   /**
@@ -170,6 +176,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
 
 export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   autoAdvanceMs: null,
+  board: DEFAULT_BOARD_SETTINGS,
   countdownMs: 3_000,
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,

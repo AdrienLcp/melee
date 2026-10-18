@@ -1,3 +1,4 @@
+import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
 import type { RoomPreset } from '@melee/protocol/http'
 
 /** The evenings the shelf offers ready-made, in the order it draws them. */
@@ -15,6 +16,7 @@ export type RoomPresetId = (typeof roomPresetIds)[number]
  */
 export const ROOM_PRESETS: Record<RoomPresetId, RoomPreset> = {
   christmas: {
+    board: DEFAULT_TRACK_SETTINGS,
     lineUp: ['quiz', 'blindtest', 'buzzer', 'worldmap'],
     roundCount: 16,
     teams: { count: 3, kind: 'drawn' }

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
 import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
@@ -57,6 +58,7 @@ describe('roomSettingsFor', () => {
       game: null,
       locale: 'fr',
       preset: {
+        board: DEFAULT_TRACK_SETTINGS,
         lineUp: ['quiz', 'blindtest', 'buzzer'],
         roundCount: 12,
         teams: { count: 3, kind: 'drawn' }

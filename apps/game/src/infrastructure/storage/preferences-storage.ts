@@ -9,6 +9,10 @@ import {
 } from '@adrienlcp/safe-storage'
 import { z } from 'zod'
 
+import {
+  boardSettingsSchema,
+  DEFAULT_BOARD_SETTINGS
+} from '@melee/protocol/board'
 import { gameKindSchema, gameSettingsSchema } from '@melee/protocol/game'
 import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
@@ -56,13 +60,18 @@ const usableGameSetups = (
 
 const hostPreferencesSchema = z.object({
   games: z.record(z.string(), z.unknown()).transform(usableGameSetups),
-  room: roomSettingsSchema.omit({
-    autoAdvanceMs: true,
-    game: true,
-    lineUp: true,
-    mode: true,
-    roundCount: true
-  })
+  room: roomSettingsSchema
+    .omit({
+      autoAdvanceMs: true,
+      game: true,
+      lineUp: true,
+      mode: true,
+      roundCount: true
+    })
+    .extend({
+      /** Stored before the board existed, a setup is read as one without it. */
+      board: boardSettingsSchema.catch(DEFAULT_BOARD_SETTINGS)
+    })
 })
 
 /**

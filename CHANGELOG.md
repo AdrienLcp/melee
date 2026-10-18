@@ -8,6 +8,15 @@ one part.
 
 ### Breaking Changes
 
+- `[Shared]` **The board: teams race on a track**, and `PROTOCOL_VERSION` goes
+  to 29. `settings.board` lays a track of 10–60 cases in the lobby, and every
+  team carries `board: { case, move }`: as a round settles the server walks
+  each pawn a case per whole `POINT` its team was paid (`onePointOneCase` in
+  `@melee/core/board/`, one replaceable strategy), shows the move from the
+  reveal, and ends the evening on the reveal a pawn reaches the last case. A
+  team's `host.adjustScore` walks its pawn too. *Christmas party* opens on a
+  30-case track.
+
 - `[Shared]` **Taverla is now Melee** — *Mêlée* on screen, `melee` in code:
   the packages are `@melee/*`, the storage keys `melee:*`, and the game is
   served from `melee.adrienlcp.com` by a Worker named `melee`. The old address

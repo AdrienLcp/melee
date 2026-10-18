@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
 import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
 
@@ -41,6 +42,7 @@ describe('rememberSettings', () => {
     })
 
     expect(remembered.room).toEqual({
+      board: { kind: 'off' },
       countdownMs: 10_000,
       teams: { kind: 'off' }
     })
@@ -156,7 +158,11 @@ describe('rememberedSetupFor', () => {
           roundCount: null
         }
       },
-      room: { countdownMs: 3_000, teams: { kind: 'off' } }
+      room: {
+        board: { kind: 'off' },
+        countdownMs: 3_000,
+        teams: { kind: 'off' }
+      }
     }
 
     expect(rememberedSetupFor({ game: 'quiz', preferences })).toBeNull()
@@ -168,6 +174,7 @@ describe('an evening of several games', () => {
     game: null,
     locale: 'fr',
     preset: {
+      board: DEFAULT_TRACK_SETTINGS,
       lineUp: ['quiz', 'blindtest', 'buzzer'],
       roundCount: 12,
       teams: { count: 3, kind: 'drawn' }
@@ -179,7 +186,7 @@ describe('an evening of several games', () => {
     settings: { ...onTheQuiz, roundCount: 20 }
   })
 
-  it('[host-preferences] keeps the preset’s length and teams over the host’s last quick game', () => {
+  it('[host-preferences] keeps the preset’s length, teams and track over the host’s last quick game', () => {
     const restored = restoredSettings({
       preferences: quickQuizHost,
       settings: evening
@@ -187,6 +194,7 @@ describe('an evening of several games', () => {
 
     expect(restored.roundCount).toBe(12)
     expect(restored.teams).toEqual({ count: 3, kind: 'drawn' })
+    expect(restored.board).toEqual(DEFAULT_TRACK_SETTINGS)
     expect(restored.lineUp).toEqual(['quiz', 'blindtest', 'buzzer'])
   })
 

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { boardPositionSchema } from './board'
 import { playerIdSchema } from './identifiers'
 
 export const MIN_TEAMS = 2
@@ -43,6 +44,8 @@ export const teamNameSchema = z.string().trim().min(1).max(TEAM_NAME_MAX_LENGTH)
  * screen drawing a team does not have to regroup the room to do it.
  */
 export const teamSchema = z.object({
+  /** Its pawn on the track, and `null` in a room whose board is off. */
+  board: boardPositionSchema.nullable(),
   /** Its pawn token, 1-based — the team's colour on every screen. */
   colour: z.number().int().min(1).max(PAWN_COLOUR_COUNT),
   id: teamIdSchema,

@@ -195,6 +195,29 @@ is and where it falls (`{ teamId, index, of }`), `null` when everyone plays.
   line-up moved on to a race, a single team holds every seat — opens for
   everyone and ends the set, and the next one that can opens a new set.
 
+**The board is the teams' score walked on a track.** `settings.board` is
+`off` or `{ kind: 'track', length, strategy }`, laid in the lobby only — a
+frame that moves it past the lobby is `wrong_phase` — and read only where the
+room has teams. Each team carries `board: { case, move }` beside its score,
+`null` while the board is off.
+
+- **The server walks the pawns.** As a round settles, the strategy named in the
+  setting (`@melee/core/board/`, one file each) turns every team's round result
+  into a number of cases; `advanceOnTrack` stops each pawn on the last case.
+  `onePointOneCase` moves a case for every whole `POINT`, floored, so the speed
+  bonus moves no pawn on its own.
+- **The move shows at the reveal and not before.** `move` is what the round on
+  screen walked the pawn, nought until `revealed`, so a screen plays the walk
+  from `case - move` instead of teleporting the pawn, and nothing moves while
+  an answer can still be given. It is banked with the score as the next round
+  opens or the board goes up.
+- **The host corrects a move with the score.** `host.adjustScore` on a team
+  walks its pawn a case for each whole `POINT` of the adjustment, between the
+  start and the finish, so the pawn and the score never tell two stories.
+- **A pawn home ends the evening.** `isFinalRound` is true once a pawn stands on
+  the last case (`isTrackFinished`, read by the console too), whatever the
+  round count says — after the set under way, so no team loses its turn.
+
 **The slate's six host frames and its one player frame.** The sheet is one
 round, and writing and marking share `playing`: every item carries its own
 state instead — `open` (writable on every sheet), `closed` (locked, its answers

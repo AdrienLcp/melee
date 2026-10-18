@@ -156,6 +156,7 @@ const choosingView = (question: Question) => ({
   roundElapsedMs: 2_000,
   settings: {
     autoAdvanceMs: null,
+    board: { kind: 'off' },
     countdownMs: 3_000,
     game: {
       allowsAdultContent: false,

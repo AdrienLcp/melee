@@ -17,6 +17,7 @@ import {
   whatTheRoomNames,
   withGuessBanked
 } from '@melee/core/blindtest/typed-answer'
+import { isTrackFinished } from '@melee/core/board/track-finish'
 import { shuffled } from '@melee/core/helpers/random'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import {
@@ -55,7 +56,8 @@ import {
   bankTeamRound,
   placeUnseatedSeats,
   resetTeamScores,
-  seatsOf
+  seatsOf,
+  toTeamViews
 } from '@/domain/room/team-service'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { hasTurnsLeft, takeTurn } from '@/domain/round/team-turns'
@@ -1232,15 +1234,21 @@ export const advanceDueAt = (room: Room): number | null => {
 }
 
 /**
- * Never final in a room that runs until the host stops it, nor while a set
- * still owes a team its round: the evening counts a set as one round.
+ * Final once the rounds planned are played or a pawn has reached the track's
+ * end, and never while a set still owes a team its round: the evening counts
+ * a set as one round, and a team that finishes first in a set does not take
+ * the last turn from the teams after it.
  */
 export const isFinalRound = (room: Room): boolean => {
   const total = room.settings.roundCount
+  const hasPlayedEveryRound =
+    total !== null && (room.round?.index ?? 0) >= total
+  const hasPawnHome = isTrackFinished({
+    board: room.settings.board,
+    teams: toTeamViews(room)
+  })
 
-  return (
-    total !== null && (room.round?.index ?? 0) >= total && !hasTurnsLeft(room)
-  )
+  return (hasPlayedEveryRound || hasPawnHome) && !hasTurnsLeft(room)
 }
 
 export const elapsedRoundMs = (round: Round, now: number): number =>
