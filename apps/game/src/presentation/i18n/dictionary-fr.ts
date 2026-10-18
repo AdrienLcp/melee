@@ -131,6 +131,11 @@ export const FR_DICTIONARY = defineDictionary({
       titleOnly: 'Titre seulement'
     }
   },
+  board: {
+    finish: 'Arrivée',
+    standing: '{team} : case {case:number} sur {length:number}',
+    start: 'Départ'
+  },
   buzz: {
     action: 'Buzz',
     blocked: {

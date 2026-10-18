@@ -31,6 +31,7 @@ import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { useIdleChrome } from '@/presentation/use-idle-chrome'
 
+import { BoardTrack } from './board-track'
 import { useAbsentFor } from './use-absent-for'
 import { asRoomScreenView } from './wall-view'
 
@@ -195,6 +196,15 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           slateWall={slateWall}
           view={view}
         />
+        {view !== null &&
+          view.phase !== 'lobby' &&
+          view.settings.board.kind === 'track' &&
+          view.teams.length > 0 && (
+            <BoardTrack
+              length={view.settings.board.length}
+              teams={view.teams}
+            />
+          )}
       </Main>
     </PawnColoursProvider>
   )

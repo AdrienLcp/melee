@@ -152,6 +152,11 @@ export const EN_DICTIONARY = defineDictionary({
       titleOnly: 'Title only'
     }
   },
+  board: {
+    finish: 'Finish',
+    standing: '{team}: square {case:number} of {length:number}',
+    start: 'Start'
+  },
   buzz: {
     action: 'Buzz',
     blocked: {
