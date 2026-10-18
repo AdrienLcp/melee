@@ -226,6 +226,20 @@ one part.
 
 ### Features
 
+- `[Game]` **World map, on the shelf.** A sixth game: a country comes up —
+  *Place la France* — and everyone puts a pawn on a world map they pinch and
+  pan, a tap to place it, a drag or another tap to move it, and *Je le pose
+  ici* perched over the pawn to send it, with *Annuler* beside it. One code
+  path on a phone, a mouse and the touch wall; the atlas loads with the round,
+  never with the join page. Inside the country pays three, under 500 km of its
+  border two, under 1 500 km one, and the clock adds up to as much again. The
+  reveal names the country, inks it, frames it with every pawn and draws each
+  pawn's line to the border with its distance; the console's list and a
+  phone's board read *à 1 331 km*, nearest first. *Christmas party* now opens
+  quiz, blind test, buzzer and world map over sixteen rounds, and the
+  console's game picker lays six lids out as two rows of three, or one row
+  when they fit.
+
 - `[Game]` **Play right away.** Every game a host can play in — the blind
   test, the quiz and the reflex race — has a second door beside *Open a
   table*: one press opens the table, seats whoever pressed under the name the

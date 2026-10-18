@@ -59,6 +59,9 @@
       .shelf-box:nth-of-type(5)
         margin-inline-end: 7cqi
 
+      .shelf-box:nth-of-type(6)
+        margin-inline-start: 2cqi
+
     .name
       @include typography.spine-name
 
@@ -66,6 +69,9 @@
       display: flex
       font-size: clamp(var(--text-xl), 9cqi, 2.5rem)
       gap: var(--space-xs)
+
+      @container (width >= 26rem)
+        white-space: nowrap
 
     .tagline
       @include typography.tagline

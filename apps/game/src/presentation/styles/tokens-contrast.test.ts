@@ -3,6 +3,8 @@ import { readFileSync } from 'node:fs'
 import { findContrastFailures, WCAG_AA } from '@adrienlcp/styles/contrast'
 import { describe, expect, it } from 'vitest'
 
+import { shelvedGames } from '@melee/protocol/game'
+
 const TOKENS = readFileSync(new URL('_tokens.sass', import.meta.url), 'utf8')
 
 const TILES = [1, 2, 3, 4] as const
@@ -62,6 +64,11 @@ describe('colour tokens', () => {
           foreground: '--danger-ink',
           minimum: WCAG_AA.text
         },
+        ...shelvedGames.map((game) => ({
+          background: `--spine-${game}`,
+          foreground: `--on-spine-${game}`,
+          minimum: WCAG_AA.text
+        })),
         ...PHASE_MARKS.map((pair) => ({ ...pair, minimum: WCAG_AA.text })),
         ...TILES.flatMap((tile) => [
           {

@@ -245,7 +245,7 @@ export const FR_DICTIONARY = defineDictionary({
     presets: {
       christmas: {
         name: 'Soirée de Noël',
-        tagline: 'Quiz, blind test et buzzer, en équipes'
+        tagline: 'Quiz, blind test, buzzer et carte du monde, en équipes'
       },
       how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',
       open: 'Ouvrir la soirée'
@@ -928,6 +928,10 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Ton pion est posé. On attend les autres.'
     },
     country: COUNTRY_NAMES_FR,
+    home: {
+      description:
+        'Un pays s’affiche, et chacun pose son pion sur la carte du monde, zoomée du bout des doigts. Dedans, c’est le plein de points ; à côté, ça se paie au kilomètre près de la frontière. Au dévoilement, chaque pion tire son trait jusqu’au pays.'
+    },
     map: {
       hint: 'Zoome, puis pose ton pion dessus',
       label: 'Carte du monde',
@@ -946,6 +950,7 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Le pays :'
     },
     scoring:
-      'Tout le monde pointe le pays en même temps. Dedans, ça rapporte 3 points, à moins de 500 km 2, à moins de 1 500 km 1 — et plus tu pointes tôt, plus la montre ajoute, jusqu’au double.'
+      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 3 points, à moins de 500 km de sa frontière 2, à moins de 1 500 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    tagline: 'Un pays. Pose ton pion dessus.'
   }
 })

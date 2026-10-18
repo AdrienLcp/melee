@@ -7,8 +7,9 @@ to buzz names the track. **Buzzer** is the same unforgeable race for the floor
 with no content at all — the host brings the charade, the quiz on paper or the
 lesson. **Quiz** serves its own, two question banks bundled with the server in
 French and English. **Reflex** is a race against a screen about to change
-colour, and **Slate** is a private answer sheet on every screen that the host
-marks on the wall, one item at a time.
+colour, **Slate** is a private answer sheet on every screen that the host
+marks on the wall, one item at a time, and **World map** names a country that
+everyone puts a pawn on, paid by the kilometre to its border.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -17,7 +18,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `worldmap.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -281,7 +282,7 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
 
 ## The blind test is the first game, not the product
 
-Five games share the room, the QR code and every screen, and the rule that got
+Six games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

@@ -22,8 +22,8 @@
       flex-wrap: wrap
       gap: var(--space-2xs) var(--space-l)
 
-    // Five lids on one shelf when they fit with their names whole; a column of
-    // lids otherwise, since five never divide into even rows.
+    // Six lids: one shelf when they fit with their names whole, two even rows
+    // of three below that, and a column on a phone.
     .boxes
       display: grid
       gap: var(--space-xs)
@@ -32,7 +32,10 @@
 
       @container (width >= 30rem)
         gap: clamp(var(--space-xs), 1.2cqi, var(--space-s))
-        grid-template-columns: repeat(5, minmax(0, 1fr))
+        grid-template-columns: repeat(3, minmax(0, 1fr))
+
+      @container (width >= 48rem)
+        grid-template-columns: repeat(6, minmax(0, 1fr))
 
     .box-field
       display: contents

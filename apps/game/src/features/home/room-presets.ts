@@ -11,13 +11,12 @@ export type RoomPresetId = (typeof roomPresetIds)[number]
  * that says a preset opened it.
  *
  * The company raclette this was built for: about twelve people, so three teams
- * of four, and four rounds of each game. The world map joins the line-up the
- * day it has screens.
+ * of four, and four rounds of each game.
  */
 export const ROOM_PRESETS: Record<RoomPresetId, RoomPreset> = {
   christmas: {
-    lineUp: ['quiz', 'blindtest', 'buzzer'],
-    roundCount: 12,
+    lineUp: ['quiz', 'blindtest', 'buzzer', 'worldmap'],
+    roundCount: 16,
     teams: { count: 3, kind: 'drawn' }
   }
 }

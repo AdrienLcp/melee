@@ -47,7 +47,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex and Slate.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate and World map.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     legal: {
@@ -69,6 +69,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Numbered things to guess and a private answer sheet on every screen. Nobody copies the loudest voice; the host marks the papers one number at a time on the big screen.',
       title: 'Slate — Mêlée'
+    },
+    worldmap: {
+      description:
+        'A country comes up and everyone puts a pawn on a world map, from their own screen. Inside scores in full, outside is paid by the kilometre to the border, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
+      title: 'World map — Mêlée'
     }
   },
   fr: {
@@ -89,7 +94,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe et L’Ardoise.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise et Carte du monde.',
       title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
     },
     legal: {
@@ -111,6 +116,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         "Des choses numérotées à deviner et une feuille de réponses privée sur chaque écran. Personne ne copie la voix la plus forte ; l'hôte corrige les copies numéro par numéro sur le grand écran.",
       title: "L'Ardoise — Mêlée"
+    },
+    worldmap: {
+      description:
+        "Un pays s'affiche et chacun pose son pion sur la carte du monde, depuis son propre écran. Dedans, c'est le plein de points ; à côté, ça se paie au kilomètre près de la frontière, et le dévoilement trace le trait de chaque pion. Scannez le QR code et jouez — sans installation, sans compte.",
+      title: 'Carte du monde — Mêlée'
     }
   }
 }

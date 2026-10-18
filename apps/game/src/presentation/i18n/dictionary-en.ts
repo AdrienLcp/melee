@@ -271,7 +271,7 @@ export const EN_DICTIONARY = defineDictionary({
     presets: {
       christmas: {
         name: 'Christmas party',
-        tagline: 'Quiz, blind test and buzzer, played in teams'
+        tagline: 'Quiz, blind test, buzzer and world map, played in teams'
       },
       how: '{rounds:number} rounds, the game drawn before each · {teams:number} teams drawn at random',
       open: 'Open the evening'
@@ -1013,6 +1013,10 @@ export const EN_DICTIONARY = defineDictionary({
       sent: 'Your pawn is down. Waiting for the others.'
     },
     country: COUNTRY_NAMES_EN,
+    home: {
+      description:
+        'A country comes up, and everyone puts a pawn down on a world map they zoom with their fingers. Inside it scores in full; outside, it is paid by the kilometre to the border. At the reveal, every pawn draws its line to the country.'
+    },
     map: {
       hint: 'Zoom in, then put your pawn down on it',
       label: 'World map',
@@ -1031,6 +1035,7 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'The country:'
     },
     scoring:
-      'Everyone pins the country at once. Inside it scores three, within 500 km two, within 1,500 km one — and the earlier your pin, the more the clock adds, up to double.'
+      'Everyone puts a pawn down at once. Inside the country it scores three, within 500 km of its border two, within 1,500 km one — and the earlier your pawn, the more the clock adds, up to double.',
+    tagline: 'One country. Put your pawn on it.'
   }
 })
