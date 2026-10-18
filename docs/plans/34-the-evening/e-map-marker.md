@@ -42,7 +42,14 @@ a dashed line from each pawn outside to the nearest border vertex labelled
 zoom. The console's list and tally read *à 1 331 km* nearest first; the
 phone's board puts the distance on the first line in place of the payout and
 breaks score ties by distance. Seen at 1440×900, and at 390×844 on a phone
-and on a console. Left: the wall at 16:9 and 9:16, the console's playing
+and on a console. The confirm is option B on every screen, one code path:
+*Je le pose ici* and *Annuler* perched over the pawn (`markerActions` on
+`WorldMap`, placed by `perchedOver`), clear of the zoom column and cut to the
+medium size in a frame under 36rem, where the large pair ran past a phone's
+frame; there it covers about a tenth of the map and follows the pawn, so the
+bottom press was not kept. An upright room screen gives the map the stage's
+width at 1000/530, pushed low above the tally. Seen at 1080×1920, 1920×1080
+and 390×844. Left: the wall's reveal at 16:9 and 9:16, the console's playing
 stage, shelving.
 
 ## The interaction

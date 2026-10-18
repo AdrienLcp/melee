@@ -165,3 +165,46 @@ export const framedOn = ({
     }
   })
 }
+
+/** What stands at a point on the frame and what is perched on it. */
+type Perch = {
+  /** The point it stands on, in the frame's pixels: a pawn's tip. */
+  anchor: Point
+  /** The perched box's size. */
+  box: Size
+  /** The frame it must stay inside. */
+  frame: Size
+  /** How far above the anchor the thing standing there reaches: the pawn's height. */
+  lift: number
+  /** The space kept between the box, the pawn and the frame's edges. */
+  margin: number
+}
+
+/**
+ * Where a box sits over a pawn: centred above it, flipped under its tip when
+ * the frame's top would cut it, and slid sideways to stay inside the frame,
+ * so it is always under the hand that put the pawn down.
+ */
+export const perchedOver = ({
+  anchor: [x, y],
+  box,
+  frame,
+  lift,
+  margin
+}: Perch): { at: Point; isBelow: boolean } => {
+  const above = y - lift - margin - box.height
+  const isBelow = above < margin
+  const top = isBelow ? y + margin : above
+  const left = Math.min(
+    Math.max(x - box.width / 2, margin),
+    Math.max(margin, frame.width - margin - box.width)
+  )
+
+  return {
+    at: [
+      left,
+      Math.min(top, Math.max(margin, frame.height - margin - box.height))
+    ],
+    isBelow
+  }
+}

@@ -11,6 +11,7 @@ import {
   type MapBox,
   type MapView,
   type Point,
+  perchedOver,
   type Size,
   toMap,
   toScreen,
@@ -47,6 +48,8 @@ const LABEL_ALONG = 0.3
 const CONTROLS_INSET = 56
 /** The ring's radius on screen, wide enough to read round a pawn standing in it. */
 const RING_RADIUS = 22
+/** The space between the pawn's actions, the pawn and the frame's edges. */
+const PERCH_MARGIN = 12
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {
@@ -63,6 +66,8 @@ export type RevealedMarker = {
 export type WorldMapProps = {
   /** The player's pawn and the colour it plays in, or `null` before it is put down. */
   marker: { pawnNumber: number; point: GeoPoint } | null
+  /** The presses perched over the pawn while it can still move — sending it, taking it back. */
+  markerActions?: React.ReactNode
   /** The answer and every pawn, once the round is revealed: the view opens framed on them. */
   revealed?: { countryCode: CountryCode; markers: readonly RevealedMarker[] }
   /** Where a tap or a drag puts the pawn; absent once nothing more can be placed. */
@@ -76,6 +81,7 @@ export type WorldMapProps = {
  */
 export const WorldMap: React.FC<WorldMapProps> = ({
   marker,
+  markerActions,
   onPlace,
   revealed
 }) => {
@@ -108,6 +114,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           frame={frame}
           key={`${frame.width}×${frame.height}`}
           marker={marker}
+          markerActions={markerActions}
           onPlace={onPlace}
           revealed={revealed}
           world={world}
@@ -123,6 +130,7 @@ type MapSurfaceProps = WorldMapProps & { frame: Size; world: ProjectedWorld }
 const MapSurface: React.FC<MapSurfaceProps> = ({
   frame,
   marker,
+  markerActions,
   onPlace,
   revealed,
   world
@@ -260,7 +268,69 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           <WorldIcon />
         </Button>
       </div>
+      {markerActions !== undefined && markerAt !== null && (
+        <MarkerActions anchor={markerAt} frame={frame}>
+          {markerActions}
+        </MarkerActions>
+      )}
     </>
+  )
+}
+
+/**
+ * Follows the pawn through every pan, pinch and move, so the press that sends
+ * it is always under the hand that put it down — on an upright wall, a press
+ * under the map would be near the floor. Hidden for the one frame it takes to
+ * measure itself.
+ */
+const MarkerActions: React.FC<{
+  anchor: Point
+  children: React.ReactNode
+  frame: Size
+}> = ({ anchor, children, frame }) => {
+  const [box, setBox] = useState<Size | null>(null)
+
+  const observe = (element: HTMLDivElement | null) => {
+    if (element === null) {
+      return
+    }
+
+    const observer = new ResizeObserver(() => {
+      setBox({ height: element.offsetHeight, width: element.offsetWidth })
+    })
+
+    observer.observe(element)
+
+    return () => {
+      observer.disconnect()
+    }
+  }
+
+  const perch =
+    box === null
+      ? null
+      : perchedOver({
+          anchor,
+          box,
+          frame: { ...frame, width: frame.width - CONTROLS_INSET },
+          lift: PAWN_BOX.height * MARKER_SCALE,
+          margin: PERCH_MARGIN
+        })
+
+  return (
+    <div
+      className='marker-actions'
+      data-below={perch?.isBelow || undefined}
+      data-measuring={perch === null || undefined}
+      ref={observe}
+      style={{
+        '--perch-tip': `${anchor[0] - (perch?.at[0] ?? 0)}px`,
+        '--perch-x': `${perch?.at[0] ?? 0}px`,
+        '--perch-y': `${perch?.at[1] ?? 0}px`
+      }}
+    >
+      {children}
+    </div>
   )
 }
 

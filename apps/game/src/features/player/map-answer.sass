@@ -1,27 +1,24 @@
 @use '../../presentation/styles/typography'
 
 @layer components
-  // The map takes every pixel the round card leaves, and the press that sends
-  // the pawn sits under it, where a thumb already is.
+  // The map takes every pixel the round card leaves; the press that sends the
+  // pawn rides on the map, over the pawn, so only the hint sits under it.
   .map-answer
     display: grid
     gap: var(--space-s)
+    // The frame is `contain: strict` and has no width of its own to give an
+    // auto column: without this the column is the hint's width.
+    grid-template-columns: minmax(0, 1fr)
     grid-template-rows: minmax(0, 1fr) auto
     min-height: 0
-
-    .send
-      align-items: center
-      display: flex
-      flex-wrap: wrap
-      gap: var(--space-xs) var(--space-m)
-      justify-content: space-between
 
     .hint
       @include typography.body
 
       color: var(--ink-muted)
-      flex: 1 1 12rem
       margin: 0
+      text-align: center
+      text-wrap: balance
 
     &[data-sent] .hint
       @include typography.strong

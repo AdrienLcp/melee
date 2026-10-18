@@ -71,6 +71,25 @@
         align-self: stretch
         flex: 1 1 0
 
+        // Read from across the room, like the card above it.
+        .hint
+          font-size: clamp(var(--text-s), 3cqmin, 2rem)
+
+      // An upright room screen: the whole width in the world's own
+      // proportion, pushed low, where a standing adult's hand already is on
+      // a wall stood on the floor — the tally keeps it off the very bottom.
+      @media (aspect-ratio < 13 / 10) and (width >= 48rem)
+        > .answer-form.map-answer
+          flex: none
+          grid-template-rows: auto auto
+          margin-block: auto 0
+
+          .world-map
+            aspect-ratio: 1000 / 530
+
+        > .answered-pawns
+          margin-block-end: 13vh
+
     @media (aspect-ratio >= 13 / 10)
       &[data-answering],
       &[data-choices]

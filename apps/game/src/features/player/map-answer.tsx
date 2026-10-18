@@ -26,8 +26,8 @@ type MapAnswerProps = {
 
 /**
  * The pawn goes down, moves as often as the player likes, and leaves only on
- * the press under the map: a slipped finger is not an answer, and a map round
- * is one shot a seat.
+ * the press perched over it: a slipped finger is not an answer, and a map
+ * round is one shot a seat.
  *
  * Mounted under `key={round.id}`, so the pawn is about this round alone.
  */
@@ -54,32 +54,40 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
     >
       <LazyWorldMap
         marker={point === null ? null : { pawnNumber, point }}
+        markerActions={
+          hasAnswered || point === null ? undefined : (
+            <>
+              <Button
+                onPress={() => {
+                  if (onAnswer({ kind: 'point', point })) {
+                    setIsSent(true)
+                  }
+                }}
+                size='large'
+              >
+                {translate('worldmap.answer.confirm')}
+              </Button>
+              <Button
+                onPress={() => setPoint(null)}
+                size='large'
+                variant='outlined'
+              >
+                {translate('worldmap.answer.cancel')}
+              </Button>
+            </>
+          )
+        }
         onPlace={hasAnswered ? undefined : setPoint}
       />
-      <div className='send'>
-        <p className='hint' role='status'>
-          {translate(
-            hasAnswered
-              ? 'worldmap.answer.sent'
-              : point === null
-                ? 'worldmap.map.hint'
-                : 'worldmap.map.moveHint'
-          )}
-        </p>
-        {!hasAnswered && (
-          <Button
-            isDisabled={point === null}
-            onPress={() => {
-              if (point !== null && onAnswer({ kind: 'point', point })) {
-                setIsSent(true)
-              }
-            }}
-            size='large'
-          >
-            {translate('worldmap.answer.confirm')}
-          </Button>
+      <p className='hint' role='status'>
+        {translate(
+          hasAnswered
+            ? 'worldmap.answer.sent'
+            : point === null
+              ? 'worldmap.map.hint'
+              : 'worldmap.map.moveHint'
         )}
-      </div>
+      </p>
     </section>
   )
 }

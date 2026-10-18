@@ -6,6 +6,7 @@ import {
   framedOn,
   MAX_ZOOM,
   pannedBy,
+  perchedOver,
   pinched,
   toMap,
   toScreen,
@@ -141,5 +142,45 @@ describe('map view', () => {
     expect(view.scale).toBe(
       fittedView({ frame: portrait, map }).scale * MAX_ZOOM
     )
+  })
+})
+
+describe('perched over a pawn', () => {
+  const frame = { height: 600, width: 400 }
+  const box = { height: 60, width: 200 }
+  const lift = 40
+  const margin = 10
+
+  it('[map] sits centred above the pawn, clear of its head', () => {
+    expect(
+      perchedOver({ anchor: [200, 300], box, frame, lift, margin })
+    ).toEqual({ at: [100, 190], isBelow: false })
+  })
+
+  it('[map] flips under the tip when the frame top would cut it', () => {
+    expect(
+      perchedOver({ anchor: [200, 80], box, frame, lift, margin })
+    ).toEqual({ at: [100, 90], isBelow: true })
+  })
+
+  it('[map] slides along an edge rather than past it', () => {
+    expect(
+      perchedOver({ anchor: [20, 300], box, frame, lift, margin }).at[0]
+    ).toBe(margin)
+    expect(
+      perchedOver({ anchor: [390, 300], box, frame, lift, margin }).at[0]
+    ).toBe(190)
+  })
+
+  it('[map] stays inside a frame too short to hold it under the pawn', () => {
+    expect(
+      perchedOver({
+        anchor: [200, 80],
+        box,
+        frame: { height: 120, width: 400 },
+        lift,
+        margin
+      }).at[1]
+    ).toBe(50)
   })
 })

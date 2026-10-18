@@ -923,6 +923,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   worldmap: {
     answer: {
+      cancel: 'Annuler',
       confirm: 'Je le pose ici',
       sent: 'Ton pion est posé. On attend les autres.'
     },
@@ -931,7 +932,7 @@ export const FR_DICTIONARY = defineDictionary({
       hint: 'Zoome, puis pose ton pion dessus',
       label: 'Carte du monde',
       loading: 'On déplie la carte…',
-      moveHint: 'Déplace-le pour ajuster, ou pose-le ailleurs',
+      moveHint: 'Touche ailleurs pour le déplacer',
       whole: 'Le monde entier',
       zoomIn: 'Zoomer',
       zoomOut: 'Dézoomer'

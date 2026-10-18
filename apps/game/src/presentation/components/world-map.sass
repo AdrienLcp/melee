@@ -9,6 +9,7 @@
     border-radius: var(--radius-m)
     box-shadow: var(--shadow-recess)
     contain: strict
+    container: map / inline-size
     min-block-size: 0
     overflow: hidden
     position: relative
@@ -95,3 +96,49 @@
       inset-block-start: var(--space-xs)
       inset-inline-end: var(--space-xs)
       position: absolute
+
+    // The pawn's own presses, on the rulebook's paper with a notch pointing
+    // down at it — or up, flipped under its tip near the frame's top.
+    .marker-actions
+      --ground: var(--field)
+
+      background: var(--field)
+      border-radius: var(--radius-l)
+      box-shadow: 0 0 0 1px var(--rule), 0 4px 0 var(--chipboard), var(--shadow-overlay)
+      display: flex
+      gap: var(--space-s)
+      inset: 0 auto auto 0
+      padding: var(--space-s)
+      position: absolute
+      transform: translate(var(--perch-x), var(--perch-y))
+      white-space: nowrap
+      z-index: 1
+
+      &::after
+        background: var(--field)
+        block-size: 0.875rem
+        box-shadow: 1px 1px 0 var(--rule)
+        content: ''
+        inline-size: 0.875rem
+        inset-block-start: calc(100% - 0.4375rem)
+        inset-inline-start: clamp(var(--radius-l), var(--perch-tip), calc(100% - var(--radius-l)))
+        position: absolute
+        transform: translateX(-50%) rotate(45deg)
+
+      &[data-below]::after
+        box-shadow: -1px -1px 0 var(--rule)
+        inset-block-start: -0.4375rem
+
+      &[data-measuring]
+        visibility: hidden
+
+      // A frame a hand holds: the large pair would cover a sixth of the
+      // world and the zoom column with it, so it is cut at the medium size.
+      @container map (width < 36rem)
+        gap: var(--space-xs)
+        padding: var(--space-xs)
+
+        .large
+          font-size: var(--text-m)
+          min-height: var(--control-height)
+          padding: 0 var(--space-m)

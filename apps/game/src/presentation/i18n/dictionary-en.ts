@@ -1008,6 +1008,7 @@ export const EN_DICTIONARY = defineDictionary({
   },
   worldmap: {
     answer: {
+      cancel: 'Cancel',
       confirm: 'Put it here',
       sent: 'Your pawn is down. Waiting for the others.'
     },
@@ -1016,7 +1017,7 @@ export const EN_DICTIONARY = defineDictionary({
       hint: 'Zoom in, then put your pawn down on it',
       label: 'World map',
       loading: 'Unfolding the map…',
-      moveHint: 'Move it to adjust, or put it down somewhere else',
+      moveHint: 'Tap somewhere else to move it',
       whole: 'Whole world',
       zoomIn: 'Zoom in',
       zoomOut: 'Zoom out'
