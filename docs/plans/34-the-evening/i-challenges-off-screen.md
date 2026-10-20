@@ -88,6 +88,26 @@ Settled 20/10/2026: the host places up to three, paid 3, 2 and 1 `POINT`s —
 fixed scale is one press per team; typing points per team is what *Points* in
 the menu is for.
 
+## Landed 20/10
+
+- **Points in the menu** (`f650dbd`): `MenuPoints` in `AppMenu`, rows in roster
+  order, a team's case on a track or its score, seats with Teams off.
+- **The server** (protocol 30): `host.awardPlaces`, `challengeText` on
+  `host.startRound` **and** `host.nextRound` (the plan had only the first, which
+  left every round after the lobby without its line), `round.content
+  { kind: 'challenge', text }`, `pointsForPlace` in `@melee/core/challenge`.
+  The frame is accepted again on the same round's reveal, re-paying without a
+  second reveal, so a placement can be corrected before *Next round*. A round
+  the reveal hold opens carries `text: null`.
+- **Left: the screens, then shelving.** `challenge` is in `gameKinds` but not
+  `shelvedGames`. The console's line field before a round opens, the playing
+  stage (the line large, a *— / 1st / 2nd / 3rd* strip per team, *Confirm the
+  ranking* sending `host.awardPlaces`), the wall's line, the phone's notice in
+  place of `<Buzzer>`, `settings-panel.tsx`, the Christmas preset, then add it
+  to `shelvedGames` with the `PAGE_HEADS` copy parked in
+  `.handoff/challenge-heads.patch`. The spine colour
+  (`--spine-challenge`) is a placeholder.
+
 ## Done when
 
 A challenge drawn from the line-up shows its line on the wall at 16:9 and 9:16,
