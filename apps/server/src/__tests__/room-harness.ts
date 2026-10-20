@@ -326,6 +326,14 @@ export const hostQuestion = (host: Peer<HostServerMessage>) => {
   return content?.kind === 'quiz' ? content.question : null
 }
 
+export const challengeRound = (
+  view: { round: RoundView | null } | null
+): Extract<RoundContent, { kind: 'challenge' }> | null => {
+  const content = view?.round?.content
+
+  return content?.kind === 'challenge' ? content : null
+}
+
 export const reflexRound = (
   view: { round: RoundView | null } | null
 ): Extract<RoundContent, { kind: 'reflex' }> | null => {

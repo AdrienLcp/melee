@@ -17,6 +17,7 @@ import {
   Plus,
   QrCode,
   Share,
+  Trophy,
   Tv,
   X,
   Zap
@@ -69,6 +70,7 @@ export const WorldIcon = inFamily(Earth)
 const GAME_GLYPHS = {
   blindtest: Music,
   buzzer: BellRing,
+  challenge: Trophy,
   quiz: CircleQuestionMark,
   reflex: Zap,
   slate: PencilLine,

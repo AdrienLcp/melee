@@ -7,6 +7,7 @@ import { trackDifficultySchema, trackSourceSchema } from './track'
 export const gameKinds = [
   'blindtest',
   'buzzer',
+  'challenge',
   'quiz',
   'reflex',
   'slate',
@@ -68,6 +69,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
      */
     locksOutOnMiss: z.boolean()
   }),
+  /**
+   * Nothing of its own: what the challenge is changes every round, so it rides
+   * the press that opens one rather than sitting in the settings.
+   */
+  z.object({ kind: z.literal('challenge') }),
   questionDrawSettingsSchema.extend({
     kind: z.literal('quiz'),
     /** How long a question stays open before the round times out. */
@@ -102,6 +108,7 @@ export type ShelvedGame = z.infer<typeof shelvedGameSchema>
 export type GameSettings = z.infer<typeof gameSettingsSchema>
 export type BlindtestSettings = Extract<GameSettings, { kind: 'blindtest' }>
 export type BuzzerSettings = Extract<GameSettings, { kind: 'buzzer' }>
+export type ChallengeSettings = Extract<GameSettings, { kind: 'challenge' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
@@ -124,6 +131,7 @@ export type WorldmapSettings = Extract<GameSettings, { kind: 'worldmap' }>
 export const roundDurationMsOf = (game: GameSettings | null): number | null =>
   game === null ||
   game.kind === 'buzzer' ||
+  game.kind === 'challenge' ||
   game.kind === 'reflex' ||
   game.kind === 'slate'
     ? null
@@ -148,6 +156,10 @@ export const DEFAULT_BLINDTEST_SETTINGS: BlindtestSettings = {
 export const DEFAULT_BUZZER_SETTINGS: BuzzerSettings = {
   kind: 'buzzer',
   locksOutOnMiss: true
+}
+
+export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
+  kind: 'challenge'
 }
 
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
@@ -176,6 +188,7 @@ export const DEFAULT_WORLDMAP_SETTINGS: WorldmapSettings = {
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   blindtest: DEFAULT_BLINDTEST_SETTINGS,
   buzzer: DEFAULT_BUZZER_SETTINGS,
+  challenge: DEFAULT_CHALLENGE_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { challengeFinisherSchema, challengeTextSchema } from './challenge'
 import {
   hostTokenSchema,
   nicknameSchema,
@@ -7,7 +8,7 @@ import {
   roundIdSchema,
   sessionIdSchema
 } from './identifiers'
-import { roomSettingsSchema } from './room'
+import { MAX_PLAYERS_PER_ROOM, roomSettingsSchema } from './room'
 import { POINT, singleVerdictSchema, verdictSchema } from './scoring'
 import {
   MAX_SLATE_ITEMS,
@@ -15,7 +16,13 @@ import {
   slateItemIndexSchema,
   slateKeySchema
 } from './slate'
-import { MAX_TEAMS, MIN_TEAMS, teamIdSchema, teamNameSchema } from './team'
+import {
+  MAX_TEAMS,
+  MIN_TEAMS,
+  scoreTargetSchema,
+  teamIdSchema,
+  teamNameSchema
+} from './team'
 import { geoPointSchema } from './worldmap'
 
 /**
@@ -169,10 +176,14 @@ export const updateSettingsMessageSchema = z.object({
  * opens the sheet, so the round never exists without it and a console that
  * reloads mid-game has nothing to send again. Ignored by every other game.
  *
+ * `challengeText` is what a challenge round asks the table to do, typed on the
+ * console as it is launched. Ignored by every other game.
+ *
  * `byTeam` asks for a set: one round per team in turn, see `nextRoundMessageSchema`.
  */
 export const startRoundMessageSchema = z.object({
   byTeam: z.boolean().optional(),
+  challengeText: challengeTextSchema.optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
 })
@@ -303,11 +314,20 @@ export const adjustScoreMessageSchema = z.object({
     .int()
     .min(-100 * POINT)
     .max(100 * POINT),
-  target: z.discriminatedUnion('kind', [
-    z.object({ kind: z.literal('team'), teamId: teamIdSchema }),
-    z.object({ kind: z.literal('seat'), playerId: playerIdSchema })
-  ]),
+  target: scoreTargetSchema,
   type: z.literal('host.adjustScore')
+})
+
+/**
+ * Who finished a challenge where, from the host's word — the server never sees
+ * the table. The whole placement each time rather than one finisher per frame,
+ * so a placement changed before the reveal replaces the last one instead of
+ * adding to it. Ends the round on its reveal.
+ */
+export const awardPlacesMessageSchema = z.object({
+  places: z.array(challengeFinisherSchema).max(MAX_PLAYERS_PER_ROOM),
+  roundId: roundIdSchema,
+  type: z.literal('host.awardPlaces')
 })
 
 /**
@@ -319,6 +339,8 @@ export const adjustScoreMessageSchema = z.object({
  */
 export const nextRoundMessageSchema = z.object({
   byTeam: z.boolean().optional(),
+  /** The next round's challenge, when it is one — as on `host.startRound`. */
+  challengeText: challengeTextSchema.optional(),
   type: z.literal('host.nextRound')
 })
 
@@ -374,6 +396,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   renameTeamMessageSchema,
   moveSeatMessageSchema,
   adjustScoreMessageSchema,
+  awardPlacesMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -439,6 +462,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   renameTeamMessageSchema,
   moveSeatMessageSchema,
   adjustScoreMessageSchema,
+  awardPlacesMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -476,6 +500,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.renameTeam',
   'host.moveSeat',
   'host.adjustScore',
+  'host.awardPlaces',
   'host.nextRound',
   'host.endGame',
   'host.playAgain',

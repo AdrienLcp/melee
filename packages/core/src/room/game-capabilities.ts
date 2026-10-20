@@ -68,6 +68,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         wallAnswers: true
       }
     case 'buzzer':
+    case 'challenge':
     case 'reflex':
       return {
         answerModes: BUZZER_ONLY,

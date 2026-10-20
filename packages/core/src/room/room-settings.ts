@@ -25,6 +25,8 @@ import { modeOfferedBy } from './game-modes'
 const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   blindtest: 10,
   buzzer: null,
+  /** Challenges are the evening's interludes, played until the host moves on. */
+  challenge: null,
   quiz: 10,
   /** A heat is a wait and a press, so ten of them is under two minutes. */
   reflex: 10,
@@ -49,6 +51,7 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
 const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   blindtest: 'choice',
   buzzer: 'buzzer',
+  challenge: 'buzzer',
   quiz: 'choice',
   reflex: 'buzzer',
   slate: 'typed',
@@ -126,6 +129,7 @@ export const roomSettingsFor = ({
 const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   blindtest: 8_000,
   buzzer: null,
+  challenge: null,
   quiz: null,
   reflex: null,
   slate: null,

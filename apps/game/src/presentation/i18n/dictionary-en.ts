@@ -195,6 +195,16 @@ export const EN_DICTIONARY = defineDictionary({
       'First in answers out loud, and the host says right or wrong. A point for right — and a wrong answer sits you out until they let you back in.',
     tagline: 'Your questions, and a race to the buzzer.'
   },
+  challenge: {
+    home: {
+      description:
+        'Cut a vegetable into two halves of the same weight, stack the most raclette potatoes: the challenge is played at the table, away from every screen. The host puts it up on the wall, says who came first, second and third, and the points land on the board like any round’s.'
+    },
+    name: 'Challenge',
+    scoring:
+      'Played at the table. The host places the first three: 3 points for first, 2 for second, 1 for third — a tie shares its place.',
+    tagline: 'Played at the table, counted on the board.'
+  },
   connection: {
     clock: '· clock ±{milliseconds:number} ms',
     closed: 'Reconnecting',

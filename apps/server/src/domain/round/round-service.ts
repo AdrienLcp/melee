@@ -254,8 +254,9 @@ export const registerBuzz = ({
   }
 
   // A socket is whatever its owner makes it, and a player's screen showing
-  // four choices can still send a buzz by hand.
-  if (round.mode.kind !== 'buzzer') {
+  // four choices can still send a buzz by hand. A challenge is buzzer-moded
+  // because its host judges it, and it is played at the table, not on a buzzer.
+  if (round.mode.kind !== 'buzzer' || round.content.kind === 'challenge') {
     return Result.failure('wrong_phase')
   }
 

@@ -34,6 +34,12 @@ export const teamsSettingsSchema = z.discriminatedUnion('kind', [
 
 export const teamIdSchema = z.string().min(1).max(16)
 
+/** Whom points are paid to by the host's hand: a team, or one seat. */
+export const scoreTargetSchema = z.discriminatedUnion('kind', [
+  z.object({ kind: z.literal('team'), teamId: teamIdSchema }),
+  z.object({ kind: z.literal('seat'), playerId: playerIdSchema })
+])
+
 export const TEAM_NAME_MAX_LENGTH = 24
 
 export const teamNameSchema = z.string().trim().min(1).max(TEAM_NAME_MAX_LENGTH)

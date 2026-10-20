@@ -77,6 +77,7 @@ export const scoringKey = ({
   game: GameKind
 }): BuiltKey<
   | 'buzzer.scoring'
+  | 'challenge.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'worldmap.scoring'
@@ -97,6 +98,8 @@ export const scoringKey = ({
         : `blindtest.scoring.${served}`
     case 'buzzer':
       return 'buzzer.scoring'
+    case 'challenge':
+      return 'challenge.scoring'
     case 'quiz':
       return `quiz.scoring.${served}`
     case 'reflex':

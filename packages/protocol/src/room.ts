@@ -263,6 +263,16 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
    */
   z.object({ kind: z.literal('buzzer') }),
   z.object({
+    kind: z.literal('challenge'),
+    /**
+     * What the table is asked to do, public from the first frame: it is the
+     * question, and the answer happens at the table where no screen sees it.
+     * `null` for a round nobody typed one for — one the reveal hold opened —
+     * which the host says aloud.
+     */
+    text: z.string().nullable()
+  }),
+  z.object({
     /** Choice mode only, and shuffled per round. */
     choices: z.array(z.string()),
     kind: z.literal('quiz'),
@@ -479,6 +489,8 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     track: hostTrackSchema.nullable()
   }),
   z.object({ kind: z.literal('buzzer') }),
+  /** Nothing to withhold: the server never learns who won until the host says. */
+  z.object({ kind: z.literal('challenge') }),
   z.object({
     kind: z.literal('quiz'),
     question: hostQuestionSchema.nullable()
@@ -568,6 +580,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('blindtest')
   }),
   z.object({ kind: z.literal('buzzer') }),
+  z.object({ kind: z.literal('challenge') }),
   z.object({ kind: z.literal('quiz') }),
   z.object({ kind: z.literal('reflex') }),
   z.object({

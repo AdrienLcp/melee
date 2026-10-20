@@ -81,7 +81,7 @@ before the reveal.
 | `wall.answer` | wall | `roundId`, `answer` — as `player.answer`, for the team on turn |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `byTeam` (optional) — play in sets |
+| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `byTeam` (optional) — play in sets |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
@@ -96,7 +96,8 @@ before the reveal.
 | `host.renameTeam` | host | `teamId`, `name` |
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
-| `host.nextRound` | host | `byTeam` (optional) — absent, the room plays on as it last did |
+| `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
+| `host.nextRound` | host | `byTeam` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound` |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
@@ -254,6 +255,28 @@ how an item added mid-sheet gets one. Each label is trimmed, 1 to 12 UTF-16
 units, and every position must read differently once case, width and spacing
 are folded — a label that reads as another position's number is refused too, so
 a tile drawn `2` is always item 2. A refused set is `invalid_message`.
+
+**The challenge is played off screen, so its one frame is the host's word.**
+What the table is asked to do rides the press that opens the round —
+`challengeText` on `host.startRound` or `host.nextRound` — and lands public in
+`round.content` as `{ kind: 'challenge', text }`, on all three views: it is the
+question, and the answer happens where no screen sees it. `text` is `null` on
+a round nobody typed one for, the one the reveal hold opened; the host and the
+wall arms carry nothing but the kind. The round is buzzer-moded because its
+host judges it, so no seat is granted under it — and `player.buzz` is refused
+`wrong_phase`, because the race is at the table.
+
+`host.awardPlaces` carries the whole placement, and the server pays it:
+3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else
+nought. A placed team pays every seat it opened the round with the same, so
+the team's mean is exactly the place's pay and the pawn walks 3, 2 or 1 cases
+on the reveal. Sent while the round is `playing`, it pays and reveals; sent
+again on that reveal, it corrects it — the awards are rebuilt from the
+placement and every score moves by the difference, which is why it is not
+`host.adjustScore`, whose adjustment would be banked at once and show no move.
+Refused `wrong_phase` in any other phase or in another game's round, and
+`invalid_message` for a finisher named twice, one the room does not hold, or a
+seat in a room playing in teams (a team in one that is not).
 
 Every `host.*` type is listed in `HOST_ONLY_MESSAGE_TYPES`, which the server
 checks before dispatch. A test asserts the set matches the naming convention, so

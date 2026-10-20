@@ -150,7 +150,11 @@ const toHostContent = ({
     }
   }
 
-  if (content.kind === 'reflex' || content.kind === 'worldmap') {
+  if (
+    content.kind === 'challenge' ||
+    content.kind === 'reflex' ||
+    content.kind === 'worldmap'
+  ) {
     return { kind: content.kind }
   }
 
@@ -334,6 +338,10 @@ const toContentView = ({
 
   if (content.kind === 'buzzer') {
     return { kind: 'buzzer' }
+  }
+
+  if (content.kind === 'challenge') {
+    return { kind: 'challenge', text: content.text }
   }
 
   if (content.kind === 'quiz') {

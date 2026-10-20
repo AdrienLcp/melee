@@ -63,6 +63,7 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     // None of these serves candidates to pick from: two have no content at
     // all, and the slate is a sheet rather than a pick.
     case 'buzzer':
+    case 'challenge':
     case 'reflex':
     case 'slate':
     case 'worldmap':

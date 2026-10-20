@@ -221,6 +221,11 @@ export type Round = {
       }
     | { kind: 'buzzer' }
     | {
+        kind: 'challenge'
+        /** What the host typed as the round was launched; `null` for one nobody pressed for. */
+        text: string | null
+      }
+    | {
         choices: string[]
         correctChoiceIndex: number | null
         kind: 'quiz'

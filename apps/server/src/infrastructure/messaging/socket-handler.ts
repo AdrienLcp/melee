@@ -42,6 +42,10 @@ import {
   type TeamRejection
 } from '@/domain/room/team-service'
 import {
+  awardChallengePlaces,
+  type ChallengeRejection
+} from '@/domain/round/challenge-round'
+import {
   type Answerer,
   applyVerdict,
   clearLockouts,
@@ -443,6 +447,7 @@ const dispatch = ({
     case 'host.startRound': {
       start({
         byTeam: message.byTeam ?? false,
+        challengeText: message.challengeText,
         engine,
         outbound,
         slateKeys: message.slateKeys
@@ -587,6 +592,19 @@ const dispatch = ({
       })
       break
     }
+    case 'host.awardPlaces': {
+      answerChallengeFrame({
+        engine,
+        outbound,
+        result: awardChallengePlaces({
+          now,
+          places: message.places,
+          room,
+          roundId: message.roundId
+        })
+      })
+      break
+    }
     case 'host.judge': {
       judge(message, outbound, engine)
       break
@@ -600,7 +618,12 @@ const dispatch = ({
       break
     }
     case 'host.nextRound': {
-      advance({ byTeam: message.byTeam, engine, outbound })
+      advance({
+        byTeam: message.byTeam,
+        challengeText: message.challengeText,
+        engine,
+        outbound
+      })
       break
     }
     case 'host.endGame': {
@@ -646,6 +669,29 @@ const answerSlateFrame = ({
       code: result.error,
       fatal: false,
       message: refusal
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+/** A placement is refused with the room's code, or published with the reveal it ends in. */
+const answerChallengeFrame = ({
+  engine,
+  outbound,
+  result
+}: {
+  engine: RoomEngine
+  outbound: Outbound
+  result: Result<void, ChallengeRejection>
+}): void => {
+  if (result.status === 'failure') {
+    sendError(outbound, {
+      code: result.error,
+      fatal: false,
+      message: 'That placement cannot be given now'
     })
 
     return
@@ -901,11 +947,13 @@ const reopenFloor = (
 
 const start = ({
   byTeam,
+  challengeText,
   engine,
   outbound,
   slateKeys
 }: {
   byTeam: boolean
+  challengeText: string | undefined
   engine: RoomEngine
   outbound: Outbound
   slateKeys: readonly (string | null)[] | undefined
@@ -928,7 +976,7 @@ const start = ({
     return
   }
 
-  void beginRound(engine, { slateKeys })
+  void beginRound(engine, { challengeText, slateKeys })
 }
 
 /**
@@ -1085,10 +1133,12 @@ const answer = (
 
 const advance = ({
   byTeam,
+  challengeText,
   engine,
   outbound
 }: {
   byTeam: boolean | undefined
+  challengeText: string | undefined
   engine: RoomEngine
   outbound: Outbound
 }): void => {
@@ -1116,7 +1166,7 @@ const advance = ({
     return
   }
 
-  void beginRound(engine)
+  void beginRound(engine, { challengeText })
 }
 
 /**

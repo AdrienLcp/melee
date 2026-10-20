@@ -337,7 +337,7 @@ chosen and the lobby's picker is where the table decides, which is what
 game. See `docs/plans/13-room-first.md`.
 
 **i18n is namespaced by game.** A prefix per game — `blindtest.*`, `buzzer.*`,
-`quiz.*`, `reflex.*`, `slate.*`, `worldmap.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
+`challenge.*`, `quiz.*`, `reflex.*`, `slate.*`, `worldmap.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
 `error.*`, `connection.*`, `menu.*` and `preferences.*` for the shell. A new game
 adds its own prefix and touches nothing else. The test itself — *would the second
 game display this string unchanged?* — is in

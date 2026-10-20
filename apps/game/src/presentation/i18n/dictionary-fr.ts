@@ -174,6 +174,16 @@ export const FR_DICTIONARY = defineDictionary({
       'Le plus rapide répond à voix haute, et l’hôte dit si c’est bon. 1 point si c’est juste — et une mauvaise réponse te met hors-jeu jusqu’à ce qu’il te remette en jeu.',
     tagline: 'Tes questions, et une course au buzz.'
   },
+  challenge: {
+    home: {
+      description:
+        'Couper un légume en deux moitiés du même poids, empiler le plus de pommes de terre à raclette : le défi se joue à table, loin des écrans. L’hôte l’affiche au mur, dit qui finit premier, deuxième et troisième, et les points arrivent au tableau comme ceux de n’importe quelle manche.'
+    },
+    name: 'Défi',
+    scoring:
+      'Ça se joue à table. L’hôte classe les trois premiers : 3 points au premier, 2 au deuxième, 1 au troisième — une égalité partage la place.',
+    tagline: 'Joué à table, compté au tableau.'
+  },
   connection: {
     clock: '· horloge ±{milliseconds:number} ms',
     closed: 'Reconnexion…',

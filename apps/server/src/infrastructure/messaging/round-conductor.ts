@@ -1,5 +1,6 @@
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
 import { releaseAbandonedSeats } from '@/domain/room/room-service'
+import { challengeContent } from '@/domain/round/challenge-round'
 import {
   blindtestContent,
   closeRound,
@@ -62,16 +63,22 @@ const DRAW_RETRY_MS = 3_000
  * itself are not messages anyone sent, but they still end in a broadcast.
  *
  * `slateKeys` is what a host prepared before the evening, carried by the press
- * that opens the sheet; every path nobody pressed opens it with none.
+ * that opens the sheet, and `challengeText` what a challenge asks the table —
+ * every path nobody pressed opens either with none.
  * `heldUntil` is the instant the hold promised the next clip, on the one path
  * that is the hold running out.
  */
 export const beginRound = async (
   engine: RoomEngine,
   {
+    challengeText,
     heldUntil = null,
     slateKeys = []
-  }: { heldUntil?: number | null; slateKeys?: readonly (string | null)[] } = {}
+  }: {
+    challengeText?: string
+    heldUntil?: number | null
+    slateKeys?: readonly (string | null)[]
+  } = {}
 ): Promise<void> => {
   const { room } = engine
   const startsAtOf = (now: number): number | undefined =>
@@ -114,9 +121,10 @@ export const beginRound = async (
 
   // No catalogue, no network call, and nothing to fail — the room already holds
   // the question, or there is no question at all. Opening the round is the whole
-  // of serving these three.
+  // of serving these four.
   if (
     game.kind === 'buzzer' ||
+    game.kind === 'challenge' ||
     game.kind === 'reflex' ||
     game.kind === 'slate'
   ) {
@@ -124,9 +132,11 @@ export const beginRound = async (
       content:
         game.kind === 'buzzer'
           ? { kind: 'buzzer' }
-          : game.kind === 'reflex'
-            ? reflexContent()
-            : slateContent({ keys: slateKeys, settings: game }),
+          : game.kind === 'challenge'
+            ? challengeContent(challengeText)
+            : game.kind === 'reflex'
+              ? reflexContent()
+              : slateContent({ keys: slateKeys, settings: game }),
       id: newRoundId(),
       now: engine.now(),
       room,

@@ -70,6 +70,7 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
     // anywhere, only who was first. The slate's console is never seated, so
     // its sheets never leave it.
     case 'buzzer':
+    case 'challenge':
     case 'reflex':
     case 'slate':
     case 'worldmap':
