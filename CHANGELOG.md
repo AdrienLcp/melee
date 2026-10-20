@@ -235,6 +235,12 @@ one part.
 
 ### Features
 
+- `[Game]` **A player's screen carries its own stretch of the track** at
+  the reveal: seven cases centred on the team's pawn, ringed in its colour,
+  the other teams' pawns where they fall, and *Case 14 sur 30* over it with
+  what the round walked. The strip fades where the track runs on and stops
+  square on the start and the finish.
+
 - `[Game]` **The host corrects the board at the reveal**: under each team's
   head the standings read what the round walked its pawn and the case it
   stands on (*+2 · Case 14 sur 30*), with a − and a + that walk it a case
@@ -1749,6 +1755,10 @@ one part.
   and the extra width is only void
 
 ### Fixes
+
+- `[Game]` A phone's reveal with the room's board on it no longer shrinks to
+  the width of its content: the page's grid declares its column, which the
+  column's `justify-content` had been squeezing to about half the screen.
 
 - `[Shared]` **A tab opened before a deploy keeps its style and its icons.** A
   deploy drops the previous build's chunks, and the asset server answered a

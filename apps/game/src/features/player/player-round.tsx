@@ -40,6 +40,7 @@ import {
   SlateSheet,
   SlateWholeSheet
 } from '@/features/player/slate-sheet'
+import { TrackStrip } from '@/features/player/track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
@@ -120,6 +121,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
     <div className='outcome'>
       <Revealed round={round} view={view} />
       <YourRound round={round} view={view} />
+      <TrackStrip view={view} />
     </div>
     <RoundBoard round={round} view={view} />
     <div className='hold'>

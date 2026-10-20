@@ -32,6 +32,9 @@
       animation: none
       display: grid
       flex: none
+      // Declared, because the column's `justify-content` would otherwise
+      // shrink an implicit track to its content.
+      grid-template-columns: minmax(0, 1fr)
       grid-template-rows: auto minmax(0, 1fr)
       height: 100dvh
 

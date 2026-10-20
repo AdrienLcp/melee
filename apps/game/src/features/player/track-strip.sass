@@ -1,0 +1,104 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // A piece of the wall's track held in the hand: the same printed cases,
+  // seven of them, the team's own one stood up in its colour.
+  .track-strip
+    --case-size: clamp(2.75rem, calc(var(--stage-unit) * 11), 4.5rem)
+
+    display: flex
+    flex-direction: column
+    gap: var(--space-xs)
+    min-width: 0
+
+    .where
+      @include typography.title
+      @include typography.numeric
+
+      align-items: baseline
+      display: flex
+      gap: var(--space-xs)
+
+    .walked
+      @include typography.label
+      @include typography.numeric
+
+      background: var(--good)
+      border-radius: var(--radius-full)
+      color: var(--on-spine)
+      padding: 0.1em 0.6em
+
+    .cases
+      display: grid
+      gap: clamp(0.125rem, 0.8cqi, 0.25rem)
+      grid-template-columns: repeat(var(--cases), minmax(0, 1fr))
+
+    // The track runs on past a cut end, so that end fades rather than stops.
+    &[data-runs-on='both'] .cases
+      mask-image: linear-gradient(90deg, transparent, #000 9%, #000 91%, transparent)
+
+    &[data-runs-on='before'] .cases
+      mask-image: linear-gradient(90deg, transparent, #000 9%)
+
+    &[data-runs-on='after'] .cases
+      mask-image: linear-gradient(90deg, #000 91%, transparent)
+
+    .case
+      background: var(--track-a)
+      border-radius: var(--radius-s)
+      box-shadow: inset 0 -2px 0 color-mix(in oklch, var(--track-b) 60%, var(--chipboard))
+      color: var(--track-ink)
+      container-type: size
+      height: var(--case-size)
+      position: relative
+
+      &[data-parity='odd']
+        background: var(--track-b)
+
+      &[data-mark]
+        background: var(--track-five)
+
+      &[data-mark='finish']
+        background: linear-gradient(var(--track-five) 0 0) top / 100% 78% no-repeat, repeating-conic-gradient(var(--board-ink) 0 25%, var(--track-a) 0 50%) bottom left / 0.5rem 0.5rem
+
+      // The team's case, ringed in its colour, the way the wall rings a tray.
+      &[data-yours]
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--team), inset 0 -2px 0 color-mix(in oklch, var(--track-b) 60%, var(--chipboard))
+
+    .number
+      @include typography.numeric
+      @include typography.solid
+
+      font-size: clamp(var(--text-3xs), 24cqmin, var(--text-s))
+      inset: 0.25em auto auto 0.4em
+      position: absolute
+
+      :is([data-mark='start'], [data-mark='finish']) &
+        font-size: clamp(var(--text-3xs), 15cqmin, var(--text-xs))
+        text-transform: uppercase
+
+    .others
+      bottom: 10%
+      display: flex
+      font-size: calc(var(--case-size) * 0.3)
+      inset-inline-end: 8%
+      position: absolute
+
+      .pawn
+        margin-inline-start: -0.15em
+
+    .own
+      bottom: 8%
+      display: flex
+      filter: drop-shadow(0 2px 0 var(--chipboard-dark))
+      font-size: calc(var(--case-size) * 0.6)
+      left: 50%
+      position: absolute
+      translate: -50% 0
+
+      @media (prefers-reduced-motion: no-preference)
+        animation: strip-pawn-lands var(--transition-slow, 0s) var(--ease-out) both
+
+  @keyframes strip-pawn-lands
+    from
+      transform: translateY(-45%) scale(1.1)
