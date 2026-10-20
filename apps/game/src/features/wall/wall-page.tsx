@@ -26,7 +26,10 @@ import { Link } from '@/presentation/components/link'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useReportRoomActions } from '@/presentation/room-actions/room-actions-provider'
+import {
+  NOBODY,
+  useReportRoomActions
+} from '@/presentation/room-actions/room-actions-provider'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { useIdleChrome } from '@/presentation/use-idle-chrome'
@@ -88,6 +91,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   useBuzzCue(view?.round?.activeBuzz?.atServerTime ?? null)
   useReportRoomActions({
+    adjustScore: null,
     closeRoom: null,
     endGame: null,
     leaveSeat: null,
@@ -95,7 +99,10 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     refusedNickname: null,
     rename: null,
     revealRound: null,
-    seatNickname: null
+    scoredPlayers: NOBODY,
+    scoredTeams: NOBODY,
+    seatNickname: null,
+    trackLength: null
   })
 
   const armAudio = () => {

@@ -2,6 +2,10 @@ import { createSafeContext } from '@adrienlcp/react'
 import type React from 'react'
 import { useCallback, useEffect, useState } from 'react'
 
+import type { ScoreTarget } from '@melee/protocol/client-message'
+import type { PublicPlayer } from '@melee/protocol/room'
+import type { Team } from '@melee/protocol/team'
+
 /**
  * What a screen inside a room offers the menu above it. The menu in the shell is
  * the only chrome on every surface, so anything that has to be reachable at
@@ -13,6 +17,12 @@ import { useCallback, useEffect, useState } from 'react'
  * and a room are not the same thing to leave.
  */
 export type RoomActions = {
+  /**
+   * Moves a team's or a seat's score by whole points, in any phase: a bonus
+   * nobody planned, a challenge played at the table, a call to put right. The
+   * host console's alone.
+   */
+  adjustScore: ((target: ScoreTarget, points: number) => void) | null
   /** Everyone out and the room gone for good. The host console's alone. */
   closeRoom: (() => void) | null
   /** Ends the game and puts the final board up. `null` while no game is in play. */
@@ -34,11 +44,21 @@ export type RoomActions = {
    * has no room for it: a seated host's four tiles fill the whole screen.
    */
   revealRound: (() => void) | null
+  /** The seats *Points* lists when the room plays without teams. */
+  scoredPlayers: readonly PublicPlayer[]
+  /** The teams *Points* lists, which take the seats' place whenever there are any. */
+  scoredTeams: readonly Team[]
   /** What the room calls this screen right now. `null` where no seat is held. */
   seatNickname: string | null
+  /** The board's last case, so *Points* reads a team's pawn rather than its score. */
+  trackLength: number | null
 }
 
+/** The empty roster, one array for every screen that scores nobody. */
+export const NOBODY: readonly never[] = []
+
 const NO_ACTIONS: RoomActions = {
+  adjustScore: null,
   closeRoom: null,
   endGame: null,
   leaveSeat: null,
@@ -46,7 +66,10 @@ const NO_ACTIONS: RoomActions = {
   refusedNickname: null,
   rename: null,
   revealRound: null,
-  seatNickname: null
+  scoredPlayers: NOBODY,
+  scoredTeams: NOBODY,
+  seatNickname: null,
+  trackLength: null
 }
 
 type ActionChannel = {
@@ -99,6 +122,7 @@ export const useIsInsideRoom = (): boolean => {
  * be a fresh dependency on every render.
  */
 export const useReportRoomActions = ({
+  adjustScore,
   closeRoom,
   endGame,
   leaveSeat,
@@ -106,12 +130,16 @@ export const useReportRoomActions = ({
   refusedNickname,
   rename,
   revealRound,
-  seatNickname
+  scoredPlayers,
+  scoredTeams,
+  seatNickname,
+  trackLength
 }: RoomActions) => {
   const { report } = useChannel()
 
   useEffect(() => {
     report({
+      adjustScore,
       closeRoom,
       endGame,
       leaveSeat,
@@ -119,13 +147,17 @@ export const useReportRoomActions = ({
       refusedNickname,
       rename,
       revealRound,
-      seatNickname
+      scoredPlayers,
+      scoredTeams,
+      seatNickname,
+      trackLength
     })
 
     return () => {
       report(NO_ACTIONS)
     }
   }, [
+    adjustScore,
     closeRoom,
     endGame,
     leaveSeat,
@@ -134,6 +166,9 @@ export const useReportRoomActions = ({
     rename,
     report,
     revealRound,
-    seatNickname
+    scoredPlayers,
+    scoredTeams,
+    seatNickname,
+    trackLength
   ])
 }

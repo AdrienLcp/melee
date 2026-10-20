@@ -29,7 +29,10 @@ import { useReportConnection } from '@/presentation/connection/connection-provid
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { protocolErrorKey } from '@/presentation/i18n/translation'
-import { useReportRoomActions } from '@/presentation/room-actions/room-actions-provider'
+import {
+  NOBODY,
+  useReportRoomActions
+} from '@/presentation/room-actions/room-actions-provider'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
@@ -99,6 +102,7 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }, [seatNickname])
 
   useReportRoomActions({
+    adjustScore: null,
     closeRoom: null,
     endGame: null,
     leaveSeat: nickname === null ? null : leave,
@@ -109,7 +113,10 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         : null,
     rename: seatNickname === null ? null : rename,
     revealRound: null,
-    seatNickname
+    scoredPlayers: NOBODY,
+    scoredTeams: NOBODY,
+    seatNickname,
+    trackLength: null
   })
 
   // A refused join is non-fatal, so the socket stays open and the form comes

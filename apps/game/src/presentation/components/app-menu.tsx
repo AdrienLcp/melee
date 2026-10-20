@@ -55,6 +55,7 @@ import { Disclosure } from './disclosure'
 import { MenuIcon } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
+import { MenuPoints } from './menu-points'
 import { RoomInvitation } from './room-invitation'
 import { SegmentedControl } from './segmented-control'
 import { Slider } from './slider'
@@ -482,6 +483,13 @@ export const AppMenu: React.FC = () => {
                   {translate('host.reveal')}
                 </Button>
               )}
+
+              {/*
+                  Folded to one row, and above the invitation: a bonus called
+                  out at the table is the other thing a host opens this menu
+                  mid-round for, and it must not wait behind the square.
+                */}
+              <MenuPoints />
 
               {/*
                   The way in, on every screen at every phase — which is the one

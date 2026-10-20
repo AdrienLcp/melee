@@ -547,6 +547,14 @@ export const FR_DICTIONARY = defineDictionary({
       action: 'Changer',
       field: 'Nouveau pseudo',
       label: 'Pseudo'
+    },
+    points: {
+      give: 'Un point de plus pour {name}',
+      label: 'Points',
+      take: 'Un point de moins pour {name}',
+      teams: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} équipe', other: '{?} équipes' } }
+      })
     }
   },
   navigation: {

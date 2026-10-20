@@ -453,6 +453,7 @@ export type PlayerClientMessage = z.infer<typeof playerClientMessageSchema>
 export type WallClientMessage = z.infer<typeof wallClientMessageSchema>
 export type ClientMessage = z.infer<typeof clientMessageSchema>
 export type ClientMessageType = ClientMessage['type']
+export type ScoreTarget = z.infer<typeof adjustScoreMessageSchema>['target']
 
 /**
  * Kept next to the union it partitions: the server checks this before acting,

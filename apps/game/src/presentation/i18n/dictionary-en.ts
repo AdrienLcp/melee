@@ -596,6 +596,19 @@ export const EN_DICTIONARY = defineDictionary({
       action: 'Change',
       field: 'New nickname',
       label: 'Nickname'
+    },
+    /**
+     * Points by hand, for a bonus nobody planned or a challenge played at the
+     * table. `give` and `take` name a row's + and − for whoever cannot see the
+     * name they sit beside.
+     */
+    points: {
+      give: 'One point more for {name}',
+      label: 'Points',
+      take: 'One point less for {name}',
+      teams: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} team', other: '{?} teams' } }
+      })
     }
   },
   /**

@@ -3,6 +3,7 @@ import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
 
+import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
@@ -60,7 +61,10 @@ import {
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { protocolErrorKey } from '@/presentation/i18n/translation'
-import { useReportRoomActions } from '@/presentation/room-actions/room-actions-provider'
+import {
+  NOBODY,
+  useReportRoomActions
+} from '@/presentation/room-actions/room-actions-provider'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
@@ -330,6 +334,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const choosing = view === null ? null : seatedChoosingRound(view)
   const choosingRoundId = choosing?.round.id ?? null
 
+  const adjustScore = useCallback(
+    (target: ScoreTarget, points: number) => {
+      send({ points, target, type: 'host.adjustScore' })
+    },
+    [send]
+  )
+
   const revealRound = useCallback(() => {
     if (choosingRoundId !== null) {
       send({ roundId: choosingRoundId, type: 'host.reveal' })
@@ -337,6 +348,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }, [choosingRoundId, send])
 
   useReportRoomActions({
+    adjustScore: view === null ? null : adjustScore,
     closeRoom,
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
     leaveSeat: view?.youId == null ? null : leaveSeat,
@@ -347,7 +359,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         : null,
     rename: seatedAs === null ? null : renameSeat,
     revealRound: choosing === null ? null : revealRound,
-    seatNickname: seatedAs
+    scoredPlayers: view?.players ?? NOBODY,
+    scoredTeams: view?.teams ?? NOBODY,
+    seatNickname: seatedAs,
+    trackLength:
+      view?.settings.board.kind === 'track' ? view.settings.board.length : null
   })
 
   // Written before the socket carries it, because the hello is built from
