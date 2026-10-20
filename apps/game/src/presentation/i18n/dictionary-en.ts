@@ -919,6 +919,7 @@ export const EN_DICTIONARY = defineDictionary({
     draw: 'Draw the teams',
     empty: 'Nobody yet',
     final: {
+      podium: 'Individual podium',
       wins: defineTranslation('{points:plural}', {
         plural: {
           points: {

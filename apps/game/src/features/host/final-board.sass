@@ -17,6 +17,20 @@
       align-items: center
       grid-template: 'podium standings' minmax(0, 1fr) / minmax(0, 1.35fr) minmax(0, 1fr)
 
+  // A team evening stands its best seats under the winning team, which gives
+  // up some of its height to them.
+  .final-board:has(> .seat-podium)
+    grid-template: 'podium' auto 'seats' auto 'standings' minmax(0, 1fr) / minmax(0, 1fr)
+
+    @include layout.wide
+      grid-template: 'podium standings' minmax(0, 1fr) 'seats standings' auto / minmax(0, 1.35fr) minmax(0, 1fr)
+
+    .podium .pawns
+      font-size: clamp(2.5rem, calc(min(26cqh, 40cqi) / var(--winner-count, 1)), 14rem)
+
+  .final-board > .seat-podium
+    grid-area: seats
+
   .final-board .podium
     align-items: center
     container-type: inline-size

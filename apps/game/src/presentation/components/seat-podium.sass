@@ -1,0 +1,115 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  // Every length is in the list's em, set from the box the podium is given, so
+  // the same three steps read from across the room and in a hand.
+  .seat-podium
+    container-type: inline-size
+    display: grid
+    gap: var(--space-xs)
+    justify-items: center
+    min-width: 0
+
+    .title
+      @include typography.title
+
+    // One row each for the pawn on its step, the name and the score, shared
+    // by every column so a name that wraps cannot lift its step off the floor.
+    ol
+      display: grid
+      font-size: clamp(var(--text-m), 6cqi, var(--text-xl))
+      gap: 0.25em 0.4em
+      grid-auto-columns: minmax(0, 6.5em)
+      grid-auto-flow: column
+      grid-template-rows: repeat(3, auto)
+      justify-content: center
+      list-style: none
+      width: 100%
+
+    li
+      display: grid
+      grid-row: span 3
+      grid-template-rows: subgrid
+      justify-items: center
+      min-width: 0
+      text-align: center
+
+      .name,
+      .score
+        align-self: start
+
+      // First stands in the middle, second on its left and the rest on its
+      // right — a tie keeps its steps side by side and the same height.
+      &:first-child
+        order: 1
+
+      &:nth-child(n + 3)
+        order: 2
+
+    .stand
+      align-items: center
+      display: flex
+      flex-direction: column
+      gap: 0.1em
+      justify-content: end
+      width: 100%
+
+    .pawn
+      animation: seat-podium-lands calc(var(--transition-fast, 0s) * 5) var(--ease-out) both
+      filter: drop-shadow(0 0.08em 0 var(--chipboard-dark))
+      font-size: clamp(var(--text-2xl), 13cqi, var(--text-4xl))
+
+    li:first-child .pawn
+      animation-delay: calc(var(--transition-fast, 0s) * 2)
+
+    li:nth-child(2) .pawn
+      animation-delay: var(--transition-fast, 0s)
+
+    .step
+      @include piece.piece(var(--radius-s), $nubs: false)
+      @include typography.score
+
+      align-items: start
+      background: var(--card)
+      color: var(--card-ink)
+      display: flex
+      height: 1.6em
+      justify-content: center
+      padding-block-start: 0.2em
+      width: 100%
+
+    [data-rank='1'] .step
+      font-size: var(--text-em-l)
+      height: 2.4em
+
+    [data-rank='2'] .step
+      height: 1.9em
+
+    .name
+      @include typography.label
+
+      font-size: 1em
+      max-width: 100%
+      overflow-wrap: anywhere
+
+    .score
+      @include typography.numeric
+
+      color: var(--ink-muted)
+      font-size: var(--text-em-s)
+
+    // The product's own stamp for *this one is yours*, as the scoreboard
+    // prints it.
+    .you .name
+      background: var(--ink)
+      color: var(--field)
+      padding-inline: 0.25em
+
+@keyframes seat-podium-lands
+  from
+    opacity: 0
+    transform: translateY(-0.5em)
+  to
+    opacity: 1
+    transform: none

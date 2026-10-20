@@ -9,6 +9,7 @@ import { teamWinnersOf } from '@melee/core/team/team-board'
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import { Pawn } from '@/presentation/components/pawn'
+import { SeatPodium } from '@/presentation/components/seat-podium'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
@@ -28,6 +29,7 @@ type FinalBoardProps = {
 /**
  * A game ends on a name, not on a table: the winner's pawn stood up oversize
  * and named, with the standings beside it for each player to find themselves.
+ * A team evening adds the best three seats under its winning team.
  *
  * Ties are named rather than broken: competition ranking already shares first
  * place, and inventing a winner out of alphabetical order would be a lie the
@@ -87,6 +89,7 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
         )}
       </div>
 
+      {teams.length > 0 && <SeatPodium players={players} youId={youId} />}
       <Standings players={players} teams={teams} youId={youId} />
       <ScoreTrack players={players} teams={teams} youId={youId} />
     </section>

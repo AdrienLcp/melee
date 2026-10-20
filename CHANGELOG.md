@@ -235,6 +235,11 @@ one part.
 
 ### Features
 
+- `[Game]` **A team evening ends on an individual podium too**: under the
+  winning team, the wall and every player's screen stand the best three seats
+  on their steps (`SeatPodium`), ranked by seat score as the scoreboard ranks
+  them — a tie shares its step, and a seat on nought never climbs one.
+
 - `[Game]` **The host lays the board in the lobby**: a *Plateau* strip under
   the teams (*Sans · 20 · 30 · 40 cases*), shown only while the seats are
   dealt into teams. Splitting the room into teams lays a 30-case track, and

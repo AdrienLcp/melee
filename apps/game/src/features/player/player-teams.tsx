@@ -11,6 +11,7 @@ import {
 
 import { Button } from '@/presentation/components/button'
 import { Pawn } from '@/presentation/components/pawn'
+import { SeatPodium } from '@/presentation/components/seat-podium'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -74,7 +75,8 @@ export const LobbyTeams: React.FC<LobbyTeamsProps> = ({
 /**
  * Where this player's team finished, and the teams ranked with their seats
  * under them — in a team game the place a phone owes its player is the
- * team's, and their own name is found in the tray.
+ * team's, and their own name is found in the tray. The best three seats
+ * stand on their own podium between the two.
  */
 export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   const translate = useTranslate()
@@ -103,6 +105,7 @@ export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
           </p>
         </div>
       )}
+      <SeatPodium players={view.players} youId={view.youId} />
       <TeamRoster
         isRanked
         label={translate('host.standings')}

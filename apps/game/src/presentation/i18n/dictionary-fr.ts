@@ -835,6 +835,7 @@ export const FR_DICTIONARY = defineDictionary({
     draw: 'Tirer les équipes',
     empty: 'Personne pour l’instant',
     final: {
+      podium: 'Podium individuel',
       wins: defineTranslation('{points:plural}', {
         plural: {
           points: {
