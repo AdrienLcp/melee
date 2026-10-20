@@ -137,8 +137,14 @@ export const FR_DICTIONARY = defineDictionary({
     finish: 'Arrivée',
     fix: 'Corriger les cases',
     forward: 'Avancer {team} d’une case',
+    setting: {
+      label: 'Plateau',
+      length: '{length:number} cases',
+      off: 'Sans'
+    },
     standing: '{team} : case {case:number} sur {length:number}',
     start: 'Départ',
+    summary: 'plateau de {length:number} cases',
     walked: '+{count:number}'
   },
   buzz: {

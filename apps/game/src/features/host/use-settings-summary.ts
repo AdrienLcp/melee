@@ -57,6 +57,12 @@ export const useSetupSummaries = ({
       ? translate(`team.summary.${teams.kind}`, { count: teams.count })
       : translate(`team.summary.${teams.kind}`)
 
+  const boardSummary =
+    settings.board.kind === 'track' &&
+    (teams.kind === 'drawn' || teams.kind === 'chosen')
+      ? translate('board.summary', { length: settings.board.length })
+      : ''
+
   const hold =
     settings.autoAdvanceMs === null
       ? translate('host.setup.summary.holdOpen')
@@ -65,7 +71,7 @@ export const useSetupSummaries = ({
         })
 
   return {
-    evening: [join(parts.filter(isRoundCount)), teamsSummary]
+    evening: [join(parts.filter(isRoundCount)), teamsSummary, boardSummary]
       .filter((part) => part !== '')
       .join(' · '),
     room: [

@@ -1,12 +1,17 @@
 import type React from 'react'
 
+import {
+  type BoardSettings,
+  DEFAULT_BOARD_SETTINGS,
+  DEFAULT_TRACK_SETTINGS
+} from '@melee/protocol/board'
 import type { RoomSettings } from '@melee/protocol/room'
 import { MAX_TEAMS, MIN_TEAMS, type TeamsSettings } from '@melee/protocol/team'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { NumberChoice } from './number-choice'
+import { NO_LIMIT, NumberChoice } from './number-choice'
 
 import './teams-setup.sass'
 
@@ -21,6 +26,8 @@ const TEAM_COUNTS = Array.from(
 
 /** The count a room turning teams on starts from: twelve at a table split three ways. */
 const FIRST_TEAM_COUNT = 3
+
+const BOARD_LENGTHS = [NO_LIMIT, 20, 30, 40] as const
 
 type TeamsSetupProps = {
   isDisabled: boolean
@@ -47,6 +54,36 @@ const teamsOfKind = (
   }
 }
 
+const hasTeamSeats = (teams: TeamsSettings): boolean =>
+  teams.kind === 'drawn' || teams.kind === 'chosen'
+
+/**
+ * The track follows the teams in and out: a room splitting into teams is an
+ * evening raced on a board, and a room with no team seats has nobody to walk
+ * a pawn. A track already laid survives a change of how the seats are dealt.
+ */
+const boardFor = ({
+  board,
+  from,
+  to
+}: {
+  board: BoardSettings
+  from: TeamsSettings
+  to: TeamsSettings
+}): BoardSettings => {
+  if (!hasTeamSeats(to)) {
+    return DEFAULT_BOARD_SETTINGS
+  }
+
+  return hasTeamSeats(from) ? board : DEFAULT_TRACK_SETTINGS
+}
+
+/** The strip's lengths, with a track laid at another length kept selectable. */
+const boardLengthsWith = (board: BoardSettings): number[] =>
+  board.kind === 'track' && !BOARD_LENGTHS.some((n) => n === board.length)
+    ? [...BOARD_LENGTHS, board.length].toSorted((a, b) => a - b)
+    : [...BOARD_LENGTHS]
+
 /**
  * Whether the room plays in teams and how the seats get into them, set in the
  * lobby beside the roster it reorganises: the server refuses a new count or a
@@ -70,7 +107,13 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           const kind = TEAMS_KINDS.find((candidate) => candidate === next)
 
           if (kind !== undefined) {
-            onChange({ ...settings, teams: teamsOfKind(kind, teams) })
+            const next = teamsOfKind(kind, teams)
+
+            onChange({
+              ...settings,
+              board: boardFor({ board: settings.board, from: teams, to: next }),
+              teams: next
+            })
           }
         }}
         options={TEAMS_KINDS.map((kind) => ({
@@ -90,6 +133,31 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           optionLabel={String}
           options={TEAM_COUNTS}
           value={teams.count}
+        />
+      )}
+      {hasTeamSeats(teams) && (
+        <NumberChoice
+          className='board-length'
+          isDisabled={isDisabled}
+          label={translate('board.setting.label')}
+          onChange={(length) => {
+            onChange({
+              ...settings,
+              board:
+                length === NO_LIMIT
+                  ? DEFAULT_BOARD_SETTINGS
+                  : { kind: 'track', length, strategy: 'onePointOneCase' }
+            })
+          }}
+          optionLabel={(length) =>
+            length === NO_LIMIT
+              ? translate('board.setting.off')
+              : translate('board.setting.length', { length })
+          }
+          options={boardLengthsWith(settings.board)}
+          value={
+            settings.board.kind === 'track' ? settings.board.length : NO_LIMIT
+          }
         />
       )}
       {teams.kind === 'teamsOnly' && (

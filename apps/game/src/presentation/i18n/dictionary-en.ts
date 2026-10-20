@@ -158,8 +158,14 @@ export const EN_DICTIONARY = defineDictionary({
     finish: 'Finish',
     fix: 'Fix the squares',
     forward: 'Move {team} forward a square',
+    setting: {
+      label: 'Board',
+      length: '{length:number} squares',
+      off: 'None'
+    },
     standing: '{team}: square {case:number} of {length:number}',
     start: 'Start',
+    summary: 'a {length:number}-square board',
     walked: '+{count:number}'
   },
   buzz: {

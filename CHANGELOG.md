@@ -235,6 +235,12 @@ one part.
 
 ### Features
 
+- `[Game]` **The host lays the board in the lobby**: a *Plateau* strip under
+  the teams (*Sans · 20 · 30 · 40 cases*), shown only while the seats are
+  dealt into teams. Splitting the room into teams lays a 30-case track, and
+  taking the teams away lifts it; the evening's summary says *plateau de 30
+  cases*.
+
 - `[Game]` **A player's screen carries its own stretch of the track** at
   the reveal: seven cases centred on the team's pawn, ringed in its colour,
   the other teams' pawns where they fall, and *Case 14 sur 30* over it with
