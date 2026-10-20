@@ -29,7 +29,10 @@ and before g, so g's pass over the big screens covers its screens too.
    scoreline, and the round runs through everything a round already has: it
    counts in `roundCount`, walks the pawns, and the finish rule of step f
    applies on its reveal. Judged by the host, so no seated host under it
-   (`isJudgedByHost`). Shelved only inside an evening, not on the home shelf.
+   (`isJudgedByHost`). **Shelved like the others** (decided 20/10): a preset's
+   `lineUp`, the lobby picker and the reveal's next-game control all read
+   `shelvedGames`, so a game left off it cannot join an evening, and a third
+   list buys nothing — a table of challenges alone is a real evening too.
 2. **Points by hand at any moment** — the escape hatch: a *Points* entry in the
    console's menu (`AppMenu`) listing teams, or seats with Teams off, each with
    − and + by whole `POINT`s, reachable in every phase. It is the same frame the
@@ -39,7 +42,46 @@ and before g, so g's pass over the big screens covers its screens too.
 a call to correct. If December runs short, 2 ships first: it needs no protocol
 change.
 
-## What a placing pays
+## How it is built (mapped 20/10)
+
+- **Paying**: a new host frame, `{ roundId, places: [{ target: team | seat,
+  place: 1 | 2 | 3 }] }`, named like the slate's own host frames. Refused
+  unless `round.content.kind === 'challenge'` and the round is in play. It
+  rebuilds `round.awards` from scratch the way `rescoreSheets` does
+  (`apps/server/src/domain/round/slate-round.ts`), each score moving by the
+  difference, so a placement can be changed; then it reveals. Every stamped seat
+  of a placed team gets `place-pay × POINT` with `{ kind: 'single', isCorrect:
+  true }` — the team's mean is exactly that, the pawn walks it, the reveal's
+  *walked N* and `bankTeamRound` work unchanged. **Not** `host.adjustScore`: it
+  banks at once, so the reveal would show no move.
+- **The text** travels on `host.startRound` beside `slateKeys`, lands in
+  `round.content { kind: 'challenge', text }` on all three views (public — it
+  is no answer).
+- **The compiler flags**: `DEFAULT_GAME_SETTINGS`, `roundDurationMsOf` (null),
+  `capabilitiesOf` (as buzzer: no team turns, no wall answers),
+  `DEFAULT_ROUND_COUNT` / `DEFAULT_ANSWER_MODE` / `DEFAULT_HOLD_MS`,
+  `beginRound` in `round-conductor.ts` (open with no fetch, beside buzzer),
+  `toHostContent` / `toContentView` in `room-view.ts`, `holdsTheAnswer`,
+  `candidatesIn`, the scoring switch and `gameNameKey` in the app's i18n,
+  `GAME_GLYPHS`, `PAGE_HEADS`.
+- **It does not flag**: `gameKinds`, `shelvedGames`, the three
+  `roundContentSchema`s, `PROTOCOL_VERSION` (bump to 30),
+  `HOST_ONLY_MESSAGE_TYPES`, `isJudgedByHost`, `registerBuzz` (refuse a buzz in
+  a challenge), `toWallContent` and `withheld` (`default`), `PlayingStage`'s
+  line, `RoundActions` (where *place* goes), `settings-panel.tsx` (hide the
+  answer window and lockouts), the player's fall-through to `<Buzzer>` in
+  `player-round.tsx`, the spine tokens and their contrast test, the home
+  descriptions in `document-head.ts`, the Christmas preset, and the hand-made
+  views in `e2e/choice-fits.spec.ts`.
+- **Points in the menu**: `AppMenu` holds no view and no socket. Add a field to
+  `RoomActions` (`presentation/room-actions/room-actions-provider.tsx`) —
+  teams, players, board and an `adjust(target, points)` — reported from
+  `host-console-page.tsx` in a `useCallback`, rendered as a `Disclosure` the way
+  `SeatName` is. The rows reuse `TeamRoster`'s `teamAction` / `seatAction`
+  slots. Today a board that is off leaves the host no adjust control at all,
+  and no screen ever sends a seat target.
+
+
 
 Settled 20/10/2026: the host places up to three, paid 3, 2 and 1 `POINT`s —
 3 / 2 / 1 cases on a track — everyone else nought, ties sharing a place. A
