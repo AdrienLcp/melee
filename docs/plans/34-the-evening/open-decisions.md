@@ -21,6 +21,8 @@ the step it names and deleting its line here.
 | 14 | Presets for December | *Soirée de Noël*: quiz, blind test, world map, buzzer; Teams drawn; Board on | b |
 | 15 | Board default | On whenever Teams is on; off otherwise | f |
 | 16 | The December cut | Steps a → g and s; everything in h after the rehearsal | index |
+| 17 | A round that pays a team less than a whole `POINT` | Floored to nought cases, so in teams of two or more a right buzz (1/n `POINT`) or a quiz half the team got right moves no pawn — four of Christmas's sixteen rounds are buzzer; recommended alternative: the pawn stands on the team's whole score in `POINT`s, floored, so fractions bank across rounds and case and score rank alike | f |
+| 18 | Track length and the end | 30 cases for Christmas (twelve people, sixteen rounds, one or two cases a round); the evening ends on the reveal a pawn reaches the finish, after the set under way; the track is locked past the lobby | f |
 
 
-Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** (step a, done); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing (s, done); a podium closes the evening, with no booby prize ([f](f-board.md)).
+Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** (step a, done); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing (s, done); a podium closes the evening, with no booby prize (f, done).

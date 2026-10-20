@@ -19,7 +19,7 @@ So the evening is three additions to the room's settings, and nothing else:
 |---|---|---|---|
 | **Line-up** | the games ticked, at least one | the game whose front door opened the room, or none | Which game the next round is drawn from. One tick is today's quick game, with nothing else on screen |
 | **Teams** | off, drawn, chosen by the players, teams only | off | Who scores: seats, or teams of seats (step a, done) |
-| **Board** | off, on | off; on when Teams is | How the score is shown: standings, or pawns on a track around the round ([f](f-board.md)) |
+| **Board** | off, on | off; on when Teams is | How the score is shown: standings, or pawns on a track around the round (step f) |
 
 **Presets** are named line-ups with these switches set: *Soirée de Noël* ticks
 the quiz, the blind test, the world map and the buzzer, Teams drawn, Board on.
