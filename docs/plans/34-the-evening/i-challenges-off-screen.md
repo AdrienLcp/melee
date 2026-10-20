@@ -39,9 +39,12 @@ and before g, so g's pass over the big screens covers its screens too.
 a call to correct. If December runs short, 2 ships first: it needs no protocol
 change.
 
-## Open
+## What a placing pays
 
-Decision 19 in [`open-decisions.md`](open-decisions.md): what a placing pays.
+Settled 20/10/2026: the host places up to three, paid 3, 2 and 1 `POINT`s —
+3 / 2 / 1 cases on a track — everyone else nought, ties sharing a place. A
+fixed scale is one press per team; typing points per team is what *Points* in
+the menu is for.
 
 ## Done when
 
