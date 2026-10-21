@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { playerIdSchema } from './identifiers'
+import { worldmapTargetKindSchema } from './worldmap'
 
 /**
  * What one point of the rules is worth on the board. A thousand, because the
@@ -109,11 +110,14 @@ export const singleVerdictSchema = z.object({
  * How far a marker fell from the answer, which is the world map's whole grade:
  * a point in the sea off Brittany is not *wrong* the way a wrong pick is, and
  * the tiers in `@melee/core/worldmap/distance-tiers` pay it for being close.
- * Nought means inside. The server measures it; no screen ever sends one.
+ * Nought means inside a country, or on the city to the kilometre. The server
+ * measures it; no screen ever sends one. `target` says which tiers price it,
+ * since 50 km is a near miss of a country and a far one of a city.
  */
 export const distanceVerdictSchema = z.object({
   distanceKm: z.number().nonnegative(),
-  kind: z.literal('distance')
+  kind: z.literal('distance'),
+  target: worldmapTargetKindSchema
 })
 
 export const verdictSchema = z.discriminatedUnion('kind', [

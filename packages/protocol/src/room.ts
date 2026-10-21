@@ -1,7 +1,6 @@
 import { z } from 'zod'
 
 import { boardSettingsSchema, DEFAULT_BOARD_SETTINGS } from './board'
-import { countryCodeSchema } from './country-code'
 import { gameKindSchema, gameKinds, gameSettingsSchema } from './game'
 import {
   nicknameSchema,
@@ -31,7 +30,7 @@ import {
   teamsSettingsSchema
 } from './team'
 import { hostTrackSchema, trackIdentitySchema } from './track'
-import { placementSchema } from './worldmap'
+import { placementSchema, worldmapTargetSchema } from './worldmap'
 
 export const MAX_PLAYERS_PER_ROOM = 24
 
@@ -330,19 +329,14 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     yourSheet: z.array(slateLineSchema).nullable()
   }),
   z.object({
-    /**
-     * The country to place. Public from the first frame, because naming it
-     * *is* the question — what a player answers is where it is, and the map
-     * every screen draws already knows that.
-     */
-    countryCode: countryCodeSchema,
     kind: z.literal('worldmap'),
     /**
      * Every marker that landed, and `null` until the reveal: one seen on
      * another screen is an answer to copy. A reader's own marker is the
      * screen's to remember until then.
      */
-    revealedPlacements: z.array(placementSchema).nullable()
+    revealedPlacements: z.array(placementSchema).nullable(),
+    target: worldmapTargetSchema
   })
 ])
 

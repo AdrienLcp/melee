@@ -1425,14 +1425,18 @@ const WALL_SCREENS = [
       round: {
         ...eveningRound.round,
         content: {
-          countryCode: 'PER',
           kind: 'worldmap',
-          revealedPlacements: null
+          revealedPlacements: null,
+          target: { countryCode: 'PER', kind: 'country' }
         }
       },
       settings: {
         ...eveningRound.settings,
-        game: { kind: 'worldmap', roundDurationMs: 30_000 },
+        game: {
+          kind: 'worldmap',
+          places: 'countries',
+          roundDurationMs: 30_000
+        },
         lineUp: ['worldmap'],
         mode: { kind: 'point' }
       }

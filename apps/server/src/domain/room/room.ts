@@ -19,7 +19,7 @@ import type {
 import type { Award, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
-import type { Placement } from '@melee/protocol/worldmap'
+import type { GeoPoint, Placement } from '@melee/protocol/worldmap'
 
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
@@ -30,6 +30,12 @@ import type { SheetItem } from '@melee/core/slate/sheet-marking'
  * identity nobody may see yet. `room-view.ts` is the only place it is projected
  * onto the wire.
  */
+
+/** What a map round asks for, the city's point included: the view withholds it until the reveal. */
+export type WorldmapRoundTarget =
+  | { countryCode: CountryCode; kind: 'country' }
+  | { kind: 'city'; name: string; point: GeoPoint }
+
 export type TeamAward = {
   points: number
   teamId: TeamId
@@ -277,10 +283,10 @@ export type Round = {
         sheets: Map<PlayerId, Map<number, string>>
       }
     | {
-        countryCode: CountryCode
         kind: 'worldmap'
         /** Every seat's marker, in the order they landed; a team's answer is one per seat. */
         placements: Placement[]
+        target: WorldmapRoundTarget
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

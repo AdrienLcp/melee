@@ -35,12 +35,16 @@ step that lands keeps its line here, dated, and loses its details.
    Protocol 33. The reflex race and the slate are greyed beside the map, and
    every round is played together.
 
-5. **French cities** (decision 22). A second `worldmap` question kind,
-   *Place-moi Rennes*: metropolitan France from the same atlas, a conic
-   conformal projection in the same `d3-geo` pipeline, a bank of prefectures
-   and large cities with their coordinates, distance to the city itself
-   priced by tighter tiers. Chosen in the round's settings like a blind-test
-   source.
+5. **French cities** — done 21/10/2026: `settings.game.places`
+   (`countries` | `frenchCities`, defaulted so a remembered setup still
+   parses) under *À placer* in the round's settings, committed at once rather
+   than on the launch like a source, since there is no pool to preview.
+   `round.content.target` replaces `countryCode`, a city's point `null` until
+   the reveal; the verdict carries its `target` because the tiers are read
+   without the round. 137 towns on the server (prefectures but Paris' inner
+   ring, plus the towns a table knows), each checked against the atlas.
+   France is a second geometry in `world-geometry.ts`, Lambert's parallels,
+   cut to a rectangle with only its neighbours drawn. Protocol 34.
 
 6. **The screen-only evening** (decision 23). No host phone: the host console
    runs on the touch display itself, in a layout that is the wall's with the

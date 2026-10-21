@@ -1,6 +1,7 @@
 import type { ShelvedGame } from '@melee/protocol/game'
 import type { AnswerMode, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
+import type { WorldmapPlaces } from '@melee/protocol/worldmap'
 
 import { answerModesFor } from './game-capabilities'
 import { isShelvedGame } from './shelved-game'
@@ -16,12 +17,15 @@ export type SettingsSummaryPart =
   | { game: ShelvedGame; kind: 'game' }
   | { kind: 'answerMode'; mode: AnswerMode }
   | { kind: 'source'; source: TrackSource['kind'] }
+  | { kind: 'places'; places: WorldmapPlaces }
 
 /**
  * What the fold says while it is closed. Only the round count is always there:
  * a room whose game nobody has picked has nothing to say about the game or
  * about how it is answered, a game the shelf cannot name is one the room was
  * *moved* to rather than opened on, the source belongs to the blind test alone,
+ * the map says so only when it is France's, since *Carte du monde* already
+ * says countries,
  * and a game offering a single answer mode has nothing to report about the
  * choice nobody made.
  *
@@ -49,6 +53,10 @@ export const settingsSummary = ({
 
   if (game.kind === 'blindtest') {
     parts.push({ kind: 'source', source: (draftSource ?? game.source).kind })
+  }
+
+  if (game.kind === 'worldmap' && game.places !== 'countries') {
+    parts.push({ kind: 'places', places: game.places })
   }
 
   if (game.kind === 'slate') {

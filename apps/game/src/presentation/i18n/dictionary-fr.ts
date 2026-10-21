@@ -1045,22 +1045,33 @@ export const FR_DICTIONARY = defineDictionary({
     map: {
       hint: 'Zoome, puis pose ton pion dessus',
       label: 'Carte du monde',
+      labelFrance: 'Carte de France',
       loading: 'On déplie la carte…',
       moveHint: 'Touche ailleurs pour le déplacer',
       whole: 'Le monde entier',
+      wholeFrance: 'Toute la France',
       zoomIn: 'Zoomer',
       zoomOut: 'Dézoomer'
     },
     name: 'Carte du monde',
-    prompt: 'Place {country}',
+    places: {
+      countries: 'Pays du monde',
+      frenchCities: 'Villes de France',
+      label: 'À placer'
+    },
+    prompt: 'Place {place}',
     reveal: {
       away: 'à {distance} km',
+      cityTitle: 'La ville :',
       inside: 'Dedans',
       km: '{distance} km',
+      onTheSpot: 'Dans le mille',
       title: 'Le pays :'
     },
     scoring:
       'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 3 points, à moins de 500 km de sa frontière 2, à moins de 1 500 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringCities:
+      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 3 points, à moins de 75 km 2, à moins de 150 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
     tagline: 'Un pays. Pose ton pion dessus.'
   }
 })

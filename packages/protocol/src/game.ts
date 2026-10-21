@@ -3,6 +3,7 @@ import { z } from 'zod'
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { trackDifficultySchema, trackSourceSchema } from './track'
+import { worldmapPlacesSchema } from './worldmap'
 
 export const gameKinds = [
   'blindtest',
@@ -99,6 +100,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     kind: z.literal('worldmap'),
+    /**
+     * Defaulted so a host's setup remembered before French cities existed
+     * still parses, rather than forgetting the whole game.
+     */
+    places: worldmapPlacesSchema.default('countries'),
     /** How long the map stays open before the round times out. */
     roundDurationMs: z.number().int().min(5_000).max(120_000)
   })
@@ -182,6 +188,7 @@ export const DEFAULT_SLATE_SETTINGS: SlateSettings = {
 
 export const DEFAULT_WORLDMAP_SETTINGS: WorldmapSettings = {
   kind: 'worldmap',
+  places: 'countries',
   roundDurationMs: 30_000
 }
 

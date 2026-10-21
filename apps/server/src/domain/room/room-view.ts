@@ -369,14 +369,21 @@ const toContentView = ({
 
   if (content.kind === 'worldmap') {
     return {
-      countryCode: content.countryCode,
       kind: 'worldmap',
       revealedPlacements: round.revealed
         ? content.placements.map(({ playerId, point }) => ({
             playerId,
             point: { latitude: point.latitude, longitude: point.longitude }
           }))
-        : null
+        : null,
+      target:
+        content.target.kind === 'country'
+          ? content.target
+          : {
+              kind: 'city',
+              name: content.target.name,
+              point: round.revealed ? { ...content.target.point } : null
+            }
     }
   }
 

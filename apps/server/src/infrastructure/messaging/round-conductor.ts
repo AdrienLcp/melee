@@ -1,3 +1,6 @@
+import type { WorldmapPlaces } from '@melee/protocol/worldmap'
+
+import type { WorldmapRoundTarget } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
 import { releaseAbandonedSeats } from '@/domain/room/room-service'
 import { challengeContent } from '@/domain/round/challenge-round'
@@ -23,6 +26,7 @@ import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { isOutage, NOTHING_PLAYABLE } from '@/infrastructure/music/music-source'
+import { drawCity, playedCityId } from '@/infrastructure/questions/city-bank'
 import {
   drawCountry,
   playedCountryId
@@ -56,6 +60,27 @@ const LEAST_COUNTDOWN_MS = 1_000
  * timed out once usually answers the next request.
  */
 const DRAW_RETRY_MS = 3_000
+
+/**
+ * A place the room has not been asked yet, from the bank its setting names, or
+ * `null` once it is spent — or for a country the atlas cannot judge.
+ */
+const drawWorldmapTarget = (
+  places: WorldmapPlaces,
+  playedIds: ReadonlySet<string>
+): WorldmapRoundTarget | null => {
+  if (places === 'frenchCities') {
+    const city = drawCity({ playedIds })
+
+    return city === null ? null : { kind: 'city', ...city }
+  }
+
+  const countryCode = drawCountry({ playedIds })
+
+  return countryCode === null || countryShapeOf(countryCode) === null
+    ? null
+    : { countryCode, kind: 'country' }
+}
 
 /**
  * The time-driven transitions live here rather than in the socket handler: a
@@ -188,23 +213,26 @@ export const beginRound = async (
   }
 
   if (game.kind === 'worldmap') {
-    const countryCode = drawCountry({ playedIds: room.playedContentIds })
-    const shape = countryCode === null ? null : countryShapeOf(countryCode)
+    const target = drawWorldmapTarget(game.places, room.playedContentIds)
 
-    if (countryCode === null || shape === null) {
+    if (target === null) {
       tellHost(engine, {
         code: 'no_content_available',
-        message: 'Every country in the bank has been placed'
+        message: 'Every place in the bank has been placed'
       })
       publishRoom(engine)
 
       return
     }
 
-    room.playedContentIds.add(playedCountryId(countryCode))
+    room.playedContentIds.add(
+      target.kind === 'city'
+        ? playedCityId(target.name)
+        : playedCountryId(target.countryCode)
+    )
 
     openRound({
-      content: worldmapContent(countryCode),
+      content: worldmapContent(target),
       id: newRoundId(),
       now: engine.now(),
       room,

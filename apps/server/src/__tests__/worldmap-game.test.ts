@@ -26,6 +26,14 @@ vi.mock('@/infrastructure/questions/country-bank', () => ({
   playedCountryId: (code: string) => `worldmap:${code}`
 }))
 
+vi.mock('@/infrastructure/questions/city-bank', () => ({
+  drawCity: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
+    playedIds.has('worldmap:city:Rennes')
+      ? null
+      : { name: 'Rennes', point: { latitude: 48.117, longitude: -1.678 } },
+  playedCityId: (name: string) => `worldmap:city:${name}`
+}))
+
 const WORLDMAP: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
@@ -34,7 +42,14 @@ const WORLDMAP: RoomSettings = {
   roundCount: 3
 }
 
+const FRENCH_CITIES: RoomSettings = {
+  ...WORLDMAP,
+  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: 'frenchCities' }
+}
+
 const PARIS = { latitude: 48.8566, longitude: 2.3522 }
+const BESIDE_RENNES = { latitude: 48.2, longitude: -1.678 }
+const NANTES = { latitude: 47.218, longitude: -1.554 }
 const OFF_BRITTANY = { latitude: 48.0123, longitude: -6.5432 }
 
 const transcriptOf = (peer: { frames: { raw: string }[] }): string =>
@@ -65,7 +80,10 @@ describe('a world map round through the seam', () => {
   it('[worldmap] names the country to every screen from the first frame', async () => {
     const { zoe } = await roundInPlay()
 
-    expect(worldmapRound(playerView(zoe))?.countryCode).toBe('FRA')
+    expect(worldmapRound(playerView(zoe))?.target).toEqual({
+      countryCode: 'FRA',
+      kind: 'country'
+    })
     expect(worldmapRound(playerView(zoe))?.revealedPlacements).toBeNull()
   })
 
@@ -90,7 +108,11 @@ describe('a world map round through the seam', () => {
     const zoeId = playerView(zoe)?.youId
     const maxId = playerView(max)?.youId
 
-    expect(awardOf(zoeId)?.verdict).toEqual({ distanceKm: 0, kind: 'distance' })
+    expect(awardOf(zoeId)?.verdict).toEqual({
+      distanceKm: 0,
+      kind: 'distance',
+      target: 'country'
+    })
     expect(basePointsFor({ playerId: zoeId ?? null, view })).toBe(3 * POINT)
 
     const maxVerdict = awardOf(maxId)?.verdict
@@ -178,5 +200,81 @@ describe('a world map round through the seam', () => {
     expect(errorsIn(host).map(({ code }) => code)).toContain(
       'no_content_available'
     )
+  })
+})
+
+describe('a French city round through the seam', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  const roundInPlay = async () => {
+    const { code, host } = await harness.openRoom(FRENCH_CITIES)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const max = await harness.seat({ code, nickname: 'Max' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the map to open')
+
+    return { host, max, roundId: playerView(zoe)?.round?.id ?? '', zoe }
+  }
+
+  it('[worldmap] names the city and keeps where it stands off every screen until the reveal', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    expect(worldmapRound(playerView(zoe))?.target).toEqual({
+      kind: 'city',
+      name: 'Rennes',
+      point: null
+    })
+    expect(transcriptOf(zoe)).not.toContain('48.117')
+    expect(transcriptOf(host)).not.toContain('48.117')
+
+    for (const seat of [zoe, max]) {
+      seat.send({
+        answer: { kind: 'point', point: NANTES },
+        roundId,
+        type: 'player.answer'
+      })
+    }
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    expect(worldmapRound(playerView(zoe))?.target).toEqual({
+      kind: 'city',
+      name: 'Rennes',
+      point: { latitude: 48.117, longitude: -1.678 }
+    })
+  })
+
+  it('[worldmap] prices a marker by the city’s own tiers, to the city itself', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    zoe.send({
+      answer: { kind: 'point', point: BESIDE_RENNES },
+      roundId,
+      type: 'player.answer'
+    })
+    max.send({
+      answer: { kind: 'point', point: NANTES },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+    const zoeId = playerView(zoe)?.youId ?? null
+    const maxId = playerView(max)?.youId ?? null
+
+    expect(
+      view?.round?.awards.find((award) => award.playerId === zoeId)?.verdict
+    ).toEqual({ distanceKm: 9, kind: 'distance', target: 'city' })
+    expect(basePointsFor({ playerId: zoeId, view })).toBe(3 * POINT)
+    expect(basePointsFor({ playerId: maxId, view })).toBe(POINT)
   })
 })

@@ -23,7 +23,7 @@ paid on every read of the code.
 | Deezer (via `fetch`) | `apps/server/src/infrastructure/music/deezer-client.ts` |
 | the question banks | `apps/server/src/infrastructure/questions/question-bank.ts` |
 | `world-atlas`, `topojson-client`, `d3-geo` (server) | `apps/server/src/infrastructure/map/world-atlas.ts` — the outlines a marker is measured against; `@melee/core/worldmap/distance` does the sphere's arithmetic on the rings it hands over, with no library |
-| `world-atlas`, `topojson-client`, `d3-geo` (browser) | `apps/game/src/infrastructure/map/world-geometry.ts` — the same 1:50m outlines projected in Equal Earth, and the inverse that turns a spot on the map into the point a pawn sends; reached only through the map's lazy chunk (`presentation/components/lazy-world-map.tsx`) |
+| `world-atlas`, `topojson-client`, `d3-geo` (browser) | `apps/game/src/infrastructure/map/world-geometry.ts` — the same 1:50m outlines projected in Equal Earth for the world and conic conformal for France (`mapGeometryOf(region)`), and the inverse that turns a spot on the map into the point a pawn sends; reached only through the map's lazy chunk (`presentation/components/lazy-world-map.tsx`) |
 | `hyparquet` | `apps/server/scripts/polyfact-source.ts` — one upstream ships its half-million rows as parquet and nothing else here reads a byte of it |
 | `hono`, `@hono/*` | `apps/server/src/infrastructure/http/`, `apps/server/src/worker.ts`, and `@hono/node-server` in `infrastructure/node/` |
 | `cloudflare:workers` | `apps/server/src/worker.ts`, `apps/server/src/infrastructure/worker/` |

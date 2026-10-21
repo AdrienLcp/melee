@@ -254,6 +254,8 @@ const GamePitch: React.FC<{ isUnattended: boolean; view: HostRoomView }> = ({
         {translate(
           scoringKey({
             answerMode: view.settings.mode.kind,
+            asksForACity:
+              game.kind === 'worldmap' && game.places === 'frenchCities',
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
             game: game.kind

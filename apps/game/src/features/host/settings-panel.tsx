@@ -19,6 +19,10 @@ import {
   type TrackSource,
   trackDifficulties
 } from '@melee/protocol/track'
+import {
+  type WorldmapPlaces,
+  worldmapPlacesSchema
+} from '@melee/protocol/worldmap'
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
 import { answerModesFor } from '@melee/core/room/game-capabilities'
@@ -145,6 +149,9 @@ const difficultyLabelKey = (
 const isDifficulty = (value: string): value is TrackDifficulty =>
   trackDifficulties.some((difficulty) => difficulty === value)
 
+const isWorldmapPlaces = (value: string): value is WorldmapPlaces =>
+  worldmapPlacesSchema.safeParse(value).success
+
 const isAnswerMode = (value: string): value is AnswerMode =>
   answerModes.some((mode) => mode === value)
 
@@ -249,12 +256,32 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             {translate(
               scoringKey({
                 answerMode: mode.kind,
+                asksForACity:
+                  game.kind === 'worldmap' && game.places === 'frenchCities',
                 asksForAFilm: pinsItsOwnDifficulty,
                 game: game.kind
               })
             )}
           </p>
         </>
+      )}
+
+      {game?.kind === 'worldmap' && (
+        <SegmentedControl
+          className='worldmap-places'
+          isDisabled={isDisabled}
+          label={translate('worldmap.places.label')}
+          onChange={(next) => {
+            if (isWorldmapPlaces(next)) {
+              onChange({ ...settings, game: { ...game, places: next } })
+            }
+          }}
+          options={worldmapPlacesSchema.options.map((places) => ({
+            label: translate(`worldmap.places.${places}`),
+            value: places
+          }))}
+          value={game.places}
+        />
       )}
 
       {game?.kind === 'blindtest' && (

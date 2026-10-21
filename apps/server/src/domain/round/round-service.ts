@@ -47,10 +47,16 @@ import {
 } from '@melee/core/scoring/verdict'
 import {
   type CountryShape,
-  distanceToCountryKm
+  distanceToCountryKm,
+  greatCircleKm
 } from '@melee/core/worldmap/distance'
 
-import type { PlayerAttempts, Room, Round } from '@/domain/room/room'
+import type {
+  PlayerAttempts,
+  Room,
+  Round,
+  WorldmapRoundTarget
+} from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
 import {
   bankTeamRound,
@@ -687,12 +693,31 @@ type ShapeOf = (code: CountryCode) => CountryShape | null
  * every change, and a shape's `contains` is a function no storage can clone.
  */
 export const worldmapContent = (
-  countryCode: CountryCode
+  target: WorldmapRoundTarget
 ): Round['content'] => ({
-  countryCode,
   kind: 'worldmap',
-  placements: []
+  placements: [],
+  target
 })
+
+/** To a country's nearest border, or to the city itself; `null` for a country the atlas does not draw. */
+const distanceToTargetKm = ({
+  point,
+  shapeOf,
+  target
+}: {
+  point: GeoPoint
+  shapeOf: ShapeOf
+  target: WorldmapRoundTarget
+}): number | null => {
+  if (target.kind === 'city') {
+    return greatCircleKm(point, target.point)
+  }
+
+  const shape = shapeOf(target.countryCode)
+
+  return shape === null ? null : distanceToCountryKm({ point, shape })
+}
 
 /** A marker as the reveal's list reads it, two decimals of a degree being a kilometre. */
 const placeNamedBy = ({ latitude, longitude }: GeoPoint): string =>
@@ -890,22 +915,26 @@ const grade = ({
   const content = round.content
 
   if (content.kind === 'worldmap') {
-    const shape = shapeOf(content.countryCode)
+    if (attempt.kind !== 'point') {
+      return null
+    }
 
-    return attempt.kind === 'point' && shape !== null
-      ? {
+    const distanceKm = distanceToTargetKm({
+      point: attempt.point,
+      shapeOf,
+      target: content.target
+    })
+
+    return distanceKm === null
+      ? null
+      : {
           said: placeNamedBy(attempt.point),
           verdict: {
-            distanceKm: Math.round(
-              distanceToCountryKm({
-                point: attempt.point,
-                shape
-              })
-            ),
-            kind: 'distance'
+            distanceKm: Math.round(distanceKm),
+            kind: 'distance',
+            target: content.target.kind
           }
         }
-      : null
   }
 
   if (attempt.kind === 'point') {

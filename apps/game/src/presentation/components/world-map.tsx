@@ -19,12 +19,11 @@ import {
 } from '@/helpers/map-view'
 import {
   type CountryOutline,
-  countryOutlineOf,
-  geoPointAt,
-  mapPointOf,
+  type MapGeometry,
+  type MapRegion,
+  mapGeometryOf,
   nearestVertex,
-  type ProjectedWorld,
-  projectedWorld
+  type ProjectedWorld
 } from '@/infrastructure/map/world-geometry'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -40,9 +39,11 @@ import './world-map.sass'
 const MARKER_SCALE = 1.5
 /** One press of a zoom button. */
 const ZOOM_STEP = 2
-/** A country drawn smaller than this, in screen pixels squared, is ringed: filled, it is a speck under a line. */
+/** A country drawn smaller than this, in screen pixels squared, is ringed: filled, it is a speck under a line. A city is always ringed. */
 const SMALL_TARGET_AREA = 900
-/** Where a line's label stands, from the pawn: the lines meet at the country, so their middles crowd and their starts do not. */
+/** The city's own dot, in screen pixels. */
+const CITY_RADIUS = 5
+/** Where a line's label stands, from the pawn: the lines meet at the target, so their middles crowd and their starts do not. */
 const LABEL_ALONG = 0.3
 /** How far from its pawn a label stands at least, in screen pixels, so a short line's label does not sit on the pawn. */
 const LABEL_CLEARANCE = 56
@@ -55,7 +56,7 @@ const PERCH_MARGIN = 12
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {
-  /** `0` inside the country, where no line is drawn. */
+  /** `0` inside the country or on the city, where no line is drawn. */
   distanceKm: number
   /** The line's label, *1 480 km*. */
   label: string
@@ -65,29 +66,38 @@ export type RevealedMarker = {
   seat: number
 }
 
+/** What the reveal points at: a country filled, or a city's own spot. */
+export type RevealedTarget =
+  | { countryCode: CountryCode; kind: 'country' }
+  | { kind: 'city'; point: GeoPoint }
+
 export type WorldMapProps = {
   /** The player's pawn and the colour it plays in, or `null` before it is put down. */
   marker: { pawnNumber: number; point: GeoPoint } | null
   /** The presses perched over the pawn while it can still move — sending it, taking it back. */
   markerActions?: React.ReactNode
   /** The answer and every pawn, once the round is revealed: the view opens framed on them. */
-  revealed?: { countryCode: CountryCode; markers: readonly RevealedMarker[] }
+  revealed?: { markers: readonly RevealedMarker[]; target: RevealedTarget }
+  /** The world for a country, France for one of its cities. */
+  region: MapRegion
   /** Where a tap or a drag puts the pawn; absent once nothing more can be placed. */
   onPlace?: (point: GeoPoint) => void
 }
 
 /**
- * The world in Equal Earth, every country its true size, on a frame that
- * zooms and pans under a finger or a mouse, and through its buttons. The view is the
- * reader's alone: nothing about it travels, only the point a pawn marks.
+ * The world in Equal Earth, every country its true size — or France in its
+ * own conic projection — on a frame that zooms and pans under a finger or a
+ * mouse, and through its buttons. The view is the reader's alone: nothing
+ * about it travels, only the point a pawn marks.
  */
 export const WorldMap: React.FC<WorldMapProps> = ({
   marker,
   markerActions,
   onPlace,
+  region,
   revealed
 }) => {
-  const world = projectedWorld()
+  const geometry = mapGeometryOf(region)
   const frameRef = useRef<HTMLDivElement>(null)
   const [frame, setFrame] = useState<Size | null>(null)
 
@@ -114,35 +124,38 @@ export const WorldMap: React.FC<WorldMapProps> = ({
       {frame !== null && frame.width > 0 && frame.height > 0 && (
         <MapSurface
           frame={frame}
-          key={`${frame.width}×${frame.height}`}
+          geometry={geometry}
+          key={`${region} ${frame.width}×${frame.height}`}
           marker={marker}
           markerActions={markerActions}
           onPlace={onPlace}
+          region={region}
           revealed={revealed}
-          world={world}
         />
       )}
     </div>
   )
 }
 
-type MapSurfaceProps = WorldMapProps & { frame: Size; world: ProjectedWorld }
+type MapSurfaceProps = WorldMapProps & { frame: Size; geometry: MapGeometry }
 
 /** Mounted once per frame size, so a rotated phone starts again from the whole world. */
 const MapSurface: React.FC<MapSurfaceProps> = ({
   frame,
+  geometry,
   marker,
   markerActions,
   onPlace,
-  revealed,
-  world
+  region,
+  revealed
 }) => {
   const translate = useTranslate()
   const hintId = useId()
   const surface = useRef<SVGSVGElement>(null)
+  const { geoPointAt, mapPointOf, projected: world } = geometry
   const map = { height: world.height, width: world.width }
   const target =
-    revealed === undefined ? null : countryOutlineOf(revealed.countryCode)
+    revealed === undefined ? null : targetOutlineOf(geometry, revealed.target)
   const [view, setView] = useState<MapView>(() =>
     revealed === undefined || target === null
       ? fittedView({ frame, map })
@@ -150,7 +163,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           frame,
           map,
           view: framedOn({
-            box: boxAround(target, revealed.markers),
+            box: boxAround({ geometry, markers: revealed.markers, target }),
             frame: { ...frame, width: frame.width - CONTROLS_INSET },
             map
           })
@@ -197,7 +210,11 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
     <>
       <svg
         aria-describedby={onPlace === undefined ? undefined : hintId}
-        aria-label={translate('worldmap.map.label')}
+        aria-label={translate(
+          region === 'france'
+            ? 'worldmap.map.labelFrance'
+            : 'worldmap.map.label'
+        )}
         className='surface'
         data-placing={onPlace !== undefined || undefined}
         height={frame.height}
@@ -209,12 +226,14 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       >
         <g transform={`translate(${view.x} ${view.y}) scale(${view.scale})`}>
           <WorldShapes world={world} />
-          {revealed !== undefined && (
+          {revealed?.target.kind === 'country' && (
             <path
               className='target'
               d={
                 world.countries.find(
-                  (country) => country.code === revealed.countryCode
+                  (country) =>
+                    revealed.target.kind === 'country' &&
+                    country.code === revealed.target.countryCode
                 )?.path
               }
             />
@@ -222,6 +241,8 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         </g>
         {revealed !== undefined && target !== null && (
           <RevealedLayer
+            isCity={revealed.target.kind === 'city'}
+            mapPointOf={mapPointOf}
             markers={revealed.markers}
             target={target}
             view={view}
@@ -237,9 +258,11 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           </g>
         )}
       </svg>
-      <VisuallyHidden id={hintId}>
-        {translate('worldmap.map.hint')}
-      </VisuallyHidden>
+      {onPlace !== undefined && (
+        <VisuallyHidden id={hintId}>
+          {translate('worldmap.map.hint')}
+        </VisuallyHidden>
+      )}
       <div className='controls'>
         <Button
           aria-label={translate('worldmap.map.zoomIn')}
@@ -258,7 +281,11 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           <MinusIcon />
         </Button>
         <Button
-          aria-label={translate('worldmap.map.whole')}
+          aria-label={translate(
+            region === 'france'
+              ? 'worldmap.map.wholeFrance'
+              : 'worldmap.map.whole'
+          )}
           onPress={() =>
             setView(
               clampedView({ frame, map, view: fittedView({ frame, map }) })
@@ -336,15 +363,39 @@ const MarkerActions: React.FC<{
   )
 }
 
-/** The country and every pawn, so a framing leaves none of them off screen. */
-const boxAround = (
-  target: CountryOutline,
+/** A city as the reveal points at it: one spot, its own box and its only vertex. */
+const targetOutlineOf = (
+  geometry: MapGeometry,
+  target: RevealedTarget
+): CountryOutline | null => {
+  if (target.kind === 'country') {
+    return geometry.countryOutlineOf(target.countryCode)
+  }
+
+  const spot = geometry.mapPointOf(target.point)
+
+  return {
+    area: 0,
+    box: { max: spot, min: spot },
+    centre: spot,
+    vertices: [spot]
+  }
+}
+
+/** The target and every pawn, so a framing leaves none of them off screen. */
+const boxAround = ({
+  geometry,
+  markers,
+  target
+}: {
+  geometry: MapGeometry
   markers: readonly RevealedMarker[]
-): MapBox => {
+  target: CountryOutline
+}): MapBox => {
   const points = [
     target.box.min,
     target.box.max,
-    ...markers.map((marker) => mapPointOf(marker.point))
+    ...markers.map((marker) => geometry.mapPointOf(marker.point))
   ]
 
   return {
@@ -364,10 +415,13 @@ const boxAround = (
  * line, a ring and a label keep their size at every zoom.
  */
 const RevealedLayer: React.FC<{
+  /** A city is a spot rather than a shape: dotted, and ringed at every zoom. */
+  isCity: boolean
+  mapPointOf: MapGeometry['mapPointOf']
   markers: readonly RevealedMarker[]
   target: CountryOutline
   view: MapView
-}> = ({ markers, target, view }) => {
+}> = ({ isCity, mapPointOf, markers, target, view }) => {
   const [centreX, centreY] = toScreen(view, target.centre)
   const lines = markers
     .filter((marker) => marker.distanceKm > 0)
@@ -395,6 +449,9 @@ const RevealedLayer: React.FC<{
       ))}
       {target.area * view.scale ** 2 < SMALL_TARGET_AREA && (
         <circle className='ring' cx={centreX} cy={centreY} r={RING_RADIUS} />
+      )}
+      {isCity && (
+        <circle className='city' cx={centreX} cy={centreY} r={CITY_RADIUS} />
       )}
       {markers.map((marker) => (
         <RevealedPawn

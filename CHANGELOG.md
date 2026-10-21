@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **The map can ask for French cities**, and `PROTOCOL_VERSION`
+  goes to 34. *À placer* in the round's settings switches the world map to a
+  map of France and a bank of 137 towns — every prefecture but Paris' inner
+  ring, and the ports and resorts a table knows — priced to the city itself:
+  under 25 km three points, under 75 km two, under 150 km one. The city is
+  named from the first frame and dotted only at the reveal.
+
 - `[Shared]` **Teams can play with no phone at all**, and `PROTOCOL_VERSION`
   goes to 33. *Aloud* is a fifth way of making teams: they are named on the
   console, nobody joins, the wall shows the question and the host taps the

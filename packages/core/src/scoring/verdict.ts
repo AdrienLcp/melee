@@ -10,7 +10,7 @@ import {
   type Verdict
 } from '@melee/protocol/scoring'
 
-import { pointsForDistance } from '../worldmap/distance-tiers'
+import { isBullseye, pointsForDistance } from '../worldmap/distance-tiers'
 
 /**
  * Which shape of verdict a game is judged in. The blind test asks two
@@ -37,7 +37,7 @@ export const pointsFor = (verdict: Verdict): number => {
   }
 
   if (verdict.kind === 'distance') {
-    return pointsForDistance(verdict.distanceKm)
+    return pointsForDistance(verdict)
   }
 
   return (
@@ -61,7 +61,7 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
     case 'single':
       return verdict.isCorrect
     case 'distance':
-      return verdict.distanceKm === 0
+      return isBullseye(verdict)
   }
 }
 
@@ -87,7 +87,7 @@ export const pointsForSimultaneousAnswer = ({
 }): number => {
   // A marker is priced by how far it fell, which the mode has no say in.
   if (verdict.kind === 'distance') {
-    return pointsForDistance(verdict.distanceKm)
+    return pointsForDistance(verdict)
   }
 
   if (verdict.kind === 'single') {

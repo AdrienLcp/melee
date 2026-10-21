@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { distanceToCountryKm } from '@melee/core/worldmap/distance'
 
+import { BANKED_CITIES } from '@/infrastructure/questions/city-bank'
 import { BANKED_COUNTRIES } from '@/infrastructure/questions/country-bank'
 
 import { countryShapeOf } from './world-atlas'
@@ -58,5 +59,26 @@ describe('the atlas the server measures against', () => {
 
     expect(distanceKm).toBeGreaterThan(0)
     expect(distanceKm).toBeLessThan(20)
+  })
+})
+
+/** A coastal town's hall can stand a little off a coastline drawn at 1:50m. */
+const COASTLINE_SLACK_KM = 5
+
+describe('the French cities the bank asks for', () => {
+  it('[worldmap] stands every one of them in France, so a typo in a coordinate cannot ask for the sea', () => {
+    const france = shapeOf('FRA')
+    const astray = BANKED_CITIES.filter(
+      ({ point }) =>
+        distanceToCountryKm({ point, shape: france }) > COASTLINE_SLACK_KM
+    ).map(({ name }) => name)
+
+    expect(astray).toEqual([])
+  })
+
+  it('[worldmap] names every city once, since the name is what stops it being asked twice', () => {
+    const names = BANKED_CITIES.map(({ name }) => name)
+
+    expect(new Set(names).size).toBe(names.length)
   })
 })

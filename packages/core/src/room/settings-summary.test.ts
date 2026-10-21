@@ -53,6 +53,26 @@ describe('settingsSummary', () => {
     ])
   })
 
+  it('[settings-summary] names the map only when it asks for French cities', () => {
+    const worldmap = roomSettingsFor({ game: 'worldmap', locale: 'fr' })
+    const placesOf = (settings: typeof worldmap) =>
+      settingsSummary({ draftSource: null, settings }).filter(
+        (part) => part.kind === 'places'
+      )
+
+    expect(placesOf(worldmap)).toEqual([])
+    expect(
+      placesOf({
+        ...worldmap,
+        game: {
+          kind: 'worldmap',
+          places: 'frenchCities',
+          roundDurationMs: 30_000
+        }
+      })
+    ).toEqual([{ kind: 'places', places: 'frenchCities' }])
+  })
+
   it('[settings-summary] says nothing about an answer mode the host was never offered', () => {
     const parts = settingsSummary({
       draftSource: null,

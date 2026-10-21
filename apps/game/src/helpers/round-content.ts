@@ -36,6 +36,11 @@ export const worldmapContent = (
 ): Extract<RoundContent, { kind: 'worldmap' }> | null =>
   round?.content.kind === 'worldmap' ? round.content : null
 
+/** The map a round is played on: France for one of its cities, the world for a country. */
+export const mapRegionOf = (
+  content: Extract<RoundContent, { kind: 'worldmap' }>
+): 'france' | 'world' => (content.target.kind === 'city' ? 'france' : 'world')
+
 /** The same over the half only the host is sent. */
 export const blindtestHostContent = (
   view: HostRoomView | null | undefined
@@ -88,7 +93,7 @@ export const bankedHalves = (
   verdict: Verdict | null | undefined
 ): HalvesVerdict | null => (verdict?.kind === 'halves' ? verdict : null)
 
-/** How far a seat's marker landed from the country, `null` for a seat that placed none or a round off the map. */
+/** How far a seat's marker landed from the country or the city, `null` for a seat that placed none or a round off the map. */
 export const distanceOf = (
   round: RoundView,
   playerId: string

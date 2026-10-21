@@ -71,6 +71,12 @@
       stroke: var(--map-target)
       stroke-width: 3px
 
+    // The city itself, edged in land so it reads over a pawn's line.
+    .city
+      fill: var(--map-target)
+      stroke: var(--map-land)
+      stroke-width: 2px
+
     // A haloed label, so it reads over sea, land and the lines it sits on.
     .distance
       @include typography.numeric

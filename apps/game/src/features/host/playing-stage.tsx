@@ -91,7 +91,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         {round.content.kind === 'quiz' ? (
           <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
         ) : worldmap !== null ? (
-          <MapPrompt countryCode={worldmap.countryCode} />
+          <MapPrompt target={worldmap.target} />
         ) : round.content.kind === 'challenge' ? (
           <>
             <p className='now challenge-line'>

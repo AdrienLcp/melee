@@ -95,6 +95,8 @@ const useSummaryParts = (): ((parts: SettingsSummaryPart[]) => string) => {
         return translate(gameNameKey(part.game))
       case 'source':
         return translate(sourceKindKey(part.source))
+      case 'places':
+        return translate(`worldmap.places.${part.places}`)
       case 'answerMode':
         return translate(answerModeLabelKey(part.mode))
       case 'itemCount':

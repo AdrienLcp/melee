@@ -5,6 +5,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 import type { GeoPoint } from '@melee/protocol/worldmap'
 
+import { mapRegionOf, worldmapContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { LazyWorldMap } from '@/presentation/components/lazy-world-map'
 import { usePawnNumber } from '@/presentation/components/pawn'
@@ -46,6 +47,7 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
   // since no screen is told where anyone put theirs before the reveal.
   const hasAnswered =
     isSent || round.answers.some((answer) => answer.playerId === youId)
+  const content = worldmapContent(round)
 
   return (
     <section
@@ -78,6 +80,7 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
           )
         }
         onPlace={hasAnswered ? undefined : setPoint}
+        region={content === null ? 'world' : mapRegionOf(content)}
       />
       <p className='hint' role='status'>
         {translate(

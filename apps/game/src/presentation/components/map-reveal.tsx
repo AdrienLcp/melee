@@ -2,13 +2,17 @@ import type React from 'react'
 
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import { distanceOf, worldmapContent } from '@/helpers/round-content'
+import {
+  distanceOf,
+  mapRegionOf,
+  worldmapContent
+} from '@/helpers/round-content'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { LazyWorldMap } from './lazy-world-map'
 import { useDistanceWords } from './use-distance-words'
 import { VisuallyHidden } from './visually-hidden'
-import type { RevealedMarker } from './world-map'
+import type { RevealedMarker, RevealedTarget } from './world-map'
 
 import './map-reveal.sass'
 
@@ -20,17 +24,25 @@ type MapRevealProps = {
 
 /**
  * The map round turned over, on every screen alike: the country named and
- * filled, every pawn where it landed, and a line from each one outside to the
- * nearest border with how far that was.
+ * filled or the city dotted, every pawn where it landed, and a line from each
+ * one off it to the nearest border or to the city, with how far that was.
  */
 export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
   const translate = useTranslate()
-  const distanceWords = useDistanceWords()
   const content = worldmapContent(round)
+  const distanceWords = useDistanceWords(content?.target.kind ?? 'country')
 
   if (content === null) {
     return null
   }
+
+  const { target } = content
+  const revealedTarget: RevealedTarget | null =
+    target.kind === 'country'
+      ? target
+      : target.point === null
+        ? null
+        : { kind: 'city', point: target.point }
 
   const markers = (content.revealedPlacements ?? []).flatMap(
     (placement): RevealedMarker[] => {
@@ -56,13 +68,20 @@ export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
     <figure className='map-reveal'>
       <figcaption className='country'>
         <VisuallyHidden elementType='span'>
-          {`${translate('worldmap.reveal.title')} `}
+          {`${translate(target.kind === 'city' ? 'worldmap.reveal.cityTitle' : 'worldmap.reveal.title')} `}
         </VisuallyHidden>
-        {translate(`worldmap.country.${content.countryCode}.name`)}
+        {target.kind === 'city'
+          ? target.name
+          : translate(`worldmap.country.${target.countryCode}.name`)}
       </figcaption>
       <LazyWorldMap
         marker={null}
-        revealed={{ countryCode: content.countryCode, markers }}
+        region={mapRegionOf(content)}
+        revealed={
+          revealedTarget === null
+            ? undefined
+            : { markers, target: revealedTarget }
+        }
       />
     </figure>
   )

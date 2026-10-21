@@ -528,7 +528,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       return (
         <section className='player-round map-round'>
           <div className='round-card'>
-            <MapPrompt countryCode={worldmap.countryCode} />
+            <MapPrompt target={worldmap.target} />
             <RoundClock clock={clock} view={view} />
           </div>
           <MapAnswer
@@ -620,6 +620,8 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         {translate(
           scoringKey({
             answerMode: view.settings.mode.kind,
+            asksForACity:
+              game.kind === 'worldmap' && game.places === 'frenchCities',
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
             game: game.kind

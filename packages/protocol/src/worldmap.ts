@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { countryCodeSchema } from './country-code'
 import { playerIdSchema } from './identifiers'
 
 /**
@@ -23,5 +24,37 @@ export const placementSchema = z.object({
   point: geoPointSchema
 })
 
+/**
+ * What a map round asks a table to place: a country on the whole world, or a
+ * city on a map of metropolitan France. The game's own setting, chosen like a
+ * blind test's source, and it decides the map, the bank and the price at once.
+ */
+export const worldmapPlacesSchema = z.enum(['countries', 'frenchCities'])
+
+/**
+ * What one round asks for. A country is public from the first frame, because
+ * naming it *is* the question and every screen already draws its outline. A
+ * city is named from the first frame too, but where it stands is the answer:
+ * its point is `null` until the reveal, so no screen holds it while a pawn can
+ * still move.
+ */
+export const worldmapTargetKindSchema = z.enum(['country', 'city'])
+
+export const worldmapTargetSchema = z.discriminatedUnion('kind', [
+  z.object({
+    countryCode: countryCodeSchema,
+    kind: z.literal(worldmapTargetKindSchema.enum.country)
+  }),
+  z.object({
+    kind: z.literal(worldmapTargetKindSchema.enum.city),
+    /** Its own name, the same in every language the room speaks: *Rennes*. */
+    name: z.string().min(1),
+    point: geoPointSchema.nullable()
+  })
+])
+
 export type GeoPoint = z.infer<typeof geoPointSchema>
 export type Placement = z.infer<typeof placementSchema>
+export type WorldmapPlaces = z.infer<typeof worldmapPlacesSchema>
+export type WorldmapTargetKind = z.infer<typeof worldmapTargetKindSchema>
+export type WorldmapTarget = z.infer<typeof worldmapTargetSchema>

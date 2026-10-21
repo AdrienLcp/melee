@@ -68,10 +68,13 @@ type ServedMode = Exclude<AnswerMode, 'point'>
  */
 export const scoringKey = ({
   answerMode,
+  asksForACity,
   asksForAFilm,
   game
 }: {
   answerMode: AnswerMode
+  /** The world map prices a French city by its own, tighter tiers. */
+  asksForACity: boolean
   /** The blind test's two halves are a film and its composer on one source out of five. */
   asksForAFilm: boolean
   game: GameKind
@@ -81,6 +84,7 @@ export const scoringKey = ({
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'worldmap.scoring'
+  | 'worldmap.scoringCities'
   | `blindtest.scoring.${ServedMode}`
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
@@ -107,7 +111,7 @@ export const scoringKey = ({
     case 'slate':
       return 'slate.scoring'
     case 'worldmap':
-      return 'worldmap.scoring'
+      return asksForACity ? 'worldmap.scoringCities' : 'worldmap.scoring'
   }
 }
 
