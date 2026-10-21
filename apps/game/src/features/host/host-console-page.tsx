@@ -13,7 +13,7 @@ import type {
 } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
-import { isJudgedByHost } from '@melee/core/room/game-modes'
+import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
 import {
   type HostPreferences,
   rememberSettings
@@ -192,12 +192,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       // remembered would put the seat on the next reconnect, under a game that
       // would then have to refuse it — and inferring the loss from the room's
       // view cannot tell "refused" from "the reconnect has not answered yet".
-      if (
-        isJudgedByHost({
-          game: settings.game?.kind ?? null,
-          mode: settings.mode.kind
-        })
-      ) {
+      if (isRoomJudgedByHost(settings)) {
         forgetSeatNickname({ role: 'host', roomCode })
         setSeatNickname(null)
       }
@@ -535,9 +530,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           when somebody says *one more, I'll call Marc*, and the room
           still answers.
         */}
-          {view !== null && view.phase !== 'lobby' && (
-            <JoinReminder roomCode={roomCode} />
-          )}
+          {view !== null &&
+            view.phase !== 'lobby' &&
+            view.settings.teams.kind !== 'aloud' && (
+              <JoinReminder roomCode={roomCode} />
+            )}
         </header>
 
         <RoomStage

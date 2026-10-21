@@ -257,8 +257,11 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     )
   }
 
+  // A table answering aloud holds no seat, and its scores are the teams'.
   if (scorers.length === 0) {
-    return <p className='nobody'>{translate('round.nobody')}</p>
+    return players.length === 0 ? null : (
+      <p className='nobody'>{translate('round.nobody')}</p>
+    )
   }
 
   return (

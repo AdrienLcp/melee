@@ -17,6 +17,7 @@ const PLAY_STYLES: readonly PlayStyle[] = ['together', 'byTeam', 'solo', 'duel']
 
 /** Whether the next round may be one team's, read off the room as it stands. */
 export const offersTurns = (view: HostRoomView): boolean =>
+  view.settings.teams.kind !== 'aloud' &&
   canPlayByTeam({
     game: view.settings.game?.kind ?? null,
     mode: view.settings.mode.kind,

@@ -7,7 +7,7 @@ import type { Award } from '@melee/protocol/scoring'
 
 import { pointsForPlace } from '@melee/core/challenge/place-pay'
 
-import type { Room, Round } from '@/domain/room/room'
+import type { Room, Round, TeamAward } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
 import { seatsOf } from '@/domain/room/team-service'
 import { revealRound } from '@/domain/round/round-service'
@@ -68,6 +68,7 @@ export const awardChallengePlaces = ({
   }
 
   round.awards = rebuildAwards({ pay, room, round })
+  round.teamAwards = payPerSeatlessTeam({ places, room })
 
   if (room.phase === 'playing') {
     revealRound(room, now)
@@ -127,6 +128,25 @@ const payPerSeat = ({
 
   return pay
 }
+
+/**
+ * A table answering aloud has no seat to pay, so its placed teams are paid
+ * straight — the same pay a seated team's mean comes to.
+ */
+const payPerSeatlessTeam = ({
+  places,
+  room
+}: {
+  places: readonly ChallengeFinisher[]
+  room: Room
+}): TeamAward[] =>
+  room.settings.teams.kind === 'aloud'
+    ? places.flatMap(({ place, target }) =>
+        target.kind === 'team'
+          ? [{ points: pointsForPlace(place), teamId: target.teamId }]
+          : []
+      )
+    : []
 
 const rebuildAwards = ({
   pay,

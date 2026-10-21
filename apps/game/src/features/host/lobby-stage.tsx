@@ -52,10 +52,14 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const playsAloud = view.settings.teams.kind === 'aloud'
 
   return (
-    <div className='stage lobby'>
-      <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
+    <div className='stage lobby' data-aloud={playsAloud || undefined}>
+      {/* Nobody joins a table answering aloud, so there is nothing to scan. */}
+      {!playsAloud && (
+        <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
+      )}
 
       <div className='host-side'>
         <section className='game-choice'>
@@ -87,10 +91,16 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
         )}
 
         <section className='roster'>
-          <h2>
-            {translate('host.players.title')} {view.players.length}
-          </h2>
-          {view.players.length === 0 ? (
+          {playsAloud ? (
+            <h2>{translate('team.title')}</h2>
+          ) : (
+            <h2>
+              {translate('host.players.title')} {view.players.length}
+            </h2>
+          )}
+          {playsAloud ? (
+            <LobbyTeams controls={controls} view={view} youId={youId} />
+          ) : view.players.length === 0 ? (
             <p className='empty'>{translate('host.players.empty')}</p>
           ) : view.teams.length > 0 ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
@@ -116,6 +126,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             the form would be a second way to do the same thing.
           */}
           {controls !== null &&
+            !playsAloud &&
             !launchesWithHostSeated({
               game: view.settings.game?.kind ?? null,
               mode: view.settings.mode.kind,

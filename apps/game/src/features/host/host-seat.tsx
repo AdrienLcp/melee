@@ -6,7 +6,7 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import {
-  isJudgedByHost,
+  isRoomJudgedByHost,
   isSeatWithheldByMode
 } from '@melee/core/room/game-modes'
 
@@ -57,7 +57,7 @@ export const HostSeat: React.FC<HostSeatProps> = ({ onTakeSeat, view }) => {
   const takenAs =
     view.players.find((player) => player.id === view.youId)?.nickname ?? null
 
-  if (isJudgedByHost(answering)) {
+  if (isRoomJudgedByHost(view.settings)) {
     // In its place, and only where the room could have had one: the control
     // vanishing on its own is what makes a quiz left on `buzzer` read as a
     // broken seat rather than as a room that owes a verdict.

@@ -185,6 +185,7 @@ export const openRound = ({
     revealed: false,
     runningSince: null,
     startsAt,
+    teamAwards: [],
     turn
   }
 

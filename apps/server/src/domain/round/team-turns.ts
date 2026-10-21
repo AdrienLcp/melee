@@ -21,6 +21,7 @@ const teamsInPlay = (room: Room): TeamId[] =>
  * `takeTurn` counts once they are placed.
  */
 export const canPlayByTeam = (room: Room): boolean =>
+  room.settings.teams.kind !== 'aloud' &&
   canGamePlayByTeam({
     game: room.settings.game?.kind ?? null,
     mode: room.settings.mode.kind,

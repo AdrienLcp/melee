@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import {
   type BoardSettings,
@@ -10,15 +11,21 @@ import {
 import type { RoomSettings } from '@melee/protocol/room'
 import { MAX_TEAMS, MIN_TEAMS, type TeamsSettings } from '@melee/protocol/team'
 
+import {
+  type HostPreferences,
+  rememberedSetupFor
+} from '@melee/core/room/host-preferences'
+import { fittedToAloud } from '@melee/core/room/line-up'
+
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Switch } from '@/presentation/components/switch'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { NO_LIMIT, NumberChoice } from './number-choice'
 
 import './teams-setup.sass'
 
-const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'teamsOnly'] as const
+const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'teamsOnly', 'aloud'] as const
 
 type TeamsKind = (typeof TEAMS_KINDS)[number]
 
@@ -33,8 +40,12 @@ const FIRST_TEAM_COUNT = 3
 const BOARD_LENGTHS = [NO_LIMIT, 20, 30, 40] as const
 
 type TeamsSetupProps = {
+  /** A phone holds a seat, which a table answering aloud has none of. */
+  hasPhones: boolean
   isDisabled: boolean
   onChange: (settings: RoomSettings) => void
+  /** What this host last left each game set to, for a game answering aloud moves the room to. */
+  preferences: HostPreferences | null
   settings: RoomSettings
 }
 
@@ -43,14 +54,15 @@ const teamsOfKind = (
   current: TeamsSettings
 ): TeamsSettings => {
   const count =
-    current.kind === 'drawn' || current.kind === 'chosen'
-      ? current.count
-      : FIRST_TEAM_COUNT
+    current.kind === 'off' || current.kind === 'teamsOnly'
+      ? FIRST_TEAM_COUNT
+      : current.count
 
   switch (kind) {
     case 'off':
     case 'teamsOnly':
       return { kind }
+    case 'aloud':
     case 'drawn':
     case 'chosen':
       return { count, kind }
@@ -141,12 +153,15 @@ const BoardRules: React.FC<BoardRulesProps> = ({
  * new kind once the game runs.
  */
 export const TeamsSetup: React.FC<TeamsSetupProps> = ({
+  hasPhones,
   isDisabled,
   onChange,
+  preferences,
   settings
 }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   const teams = settings.teams
+  const [isAloudRefused, setIsAloudRefused] = useState(false)
 
   return (
     <div className='teams-setup'>
@@ -157,15 +172,34 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         onChange={(next) => {
           const kind = TEAMS_KINDS.find((candidate) => candidate === next)
 
-          if (kind !== undefined) {
-            const next = teamsOfKind(kind, teams)
-
-            onChange({
-              ...settings,
-              board: boardFor({ board: settings.board, from: teams, to: next }),
-              teams: next
-            })
+          if (kind === undefined) {
+            return
           }
+
+          setIsAloudRefused(kind === 'aloud' && hasPhones)
+
+          if (kind === 'aloud' && hasPhones) {
+            return
+          }
+
+          const chosen = teamsOfKind(kind, teams)
+
+          onChange(
+            fittedToAloud({
+              locale,
+              rememberedFor: (game) =>
+                rememberedSetupFor({ game, preferences }),
+              settings: {
+                ...settings,
+                board: boardFor({
+                  board: settings.board,
+                  from: teams,
+                  to: chosen
+                }),
+                teams: chosen
+              }
+            })
+          )
         }}
         options={TEAMS_KINDS.map((kind) => ({
           label: translate(`team.setting.${kind}`),
@@ -173,7 +207,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         }))}
         value={teams.kind}
       />
-      {(teams.kind === 'drawn' || teams.kind === 'chosen') && (
+      {teams.kind !== 'off' && teams.kind !== 'teamsOnly' && (
         <NumberChoice
           className='team-count'
           isDisabled={isDisabled}
@@ -185,6 +219,14 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           options={TEAM_COUNTS}
           value={teams.count}
         />
+      )}
+      {teams.kind === 'aloud' && (
+        <p className='hint'>{translate('team.setting.aloudHint')}</p>
+      )}
+      {isAloudRefused && teams.kind !== 'aloud' && (
+        <p className='hint' role='status'>
+          {translate('team.setting.aloudNeedsNoPhone')}
+        </p>
       )}
       {playsInTeams(teams) && (
         <NumberChoice

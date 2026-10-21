@@ -97,6 +97,7 @@ before the reveal.
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
+| `host.awardTeams` | host | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing |
 | `host.nextRound` | host | `playStyle` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound` |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
@@ -146,9 +147,9 @@ never travel.
   starts whenever.
 
 **Teams are the shell's, and no game's arm learns what one is.**
-`settings.teams` is `off`, `drawn` or `chosen` with a `count` of 2–6, or
-`teamsOnly` — which keeps no team on the server at all: each team is one seat
-named after itself. Under `drawn` or `chosen` the room holds that many teams,
+`settings.teams` is `off`, `drawn`, `chosen` or `aloud` with a `count` of 2–6,
+or `teamsOnly` — which keeps no team on the server at all: each team is one seat
+named after itself. Under `drawn`, `chosen` or `aloud` the room holds that many teams,
 `team-1` onwards, each coloured by its pawn and named `null` until the host
 names it, so every screen says the name its own dictionary gives the colour.
 
@@ -172,6 +173,21 @@ names it, so every screen says the name its own dictionary gives the colour.
   because a slate verdict can still be taken back under its reveal. Seat scores
   are untouched, for the individual podium, and a seat's adjustment stays on
   the seat. Neither score goes below zero.
+- **A table answering aloud holds no seat.** Under `aloud` a player `hello` is
+  refused `room_plays_aloud`, non-fatal; the settings frame moving a room to it
+  is refused `teams_locked` while a seat other than a console's is held, and
+  the console's own goes as it lands, because every round is the console's to
+  judge. A game whose answer is a screen — the map, the reflex race, the
+  slate — cannot be ticked under it (`isPlayableAloud`), and nor can a set:
+  every round is played `together`. `host.awardTeams` pays each team named
+  `pointsFor` its verdict straight onto the round's `teamAwards`, added to the
+  seats' mean in the team's round result; it is `host.awardPlaces`'s twin —
+  the whole round each time, sent while `playing` it pays and ends the round
+  the way its game ends one, sent on the reveal it corrects it — and is
+  refused `wrong_phase` outside a room answering aloud or in a challenge,
+  whose podium `host.awardPlaces` already pays to the teams themselves, and
+  `invalid_message` for a team named twice, a team not there, or a verdict of
+  the wrong shape.
 
 **A set is rounds played in turn, not a round holding turns.** `playStyle`
 on `host.startRound` or `host.nextRound` asks for one of three: `byTeam`, each
@@ -548,7 +564,8 @@ inherits it rather than re-deciding it.
 
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
-`nickname_taken`, `room_full`, `host_only_action`, `invalid_message`.
+`nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
+`invalid_message`.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.

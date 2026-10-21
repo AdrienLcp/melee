@@ -271,6 +271,8 @@ export const FR_DICTIONARY = defineDictionary({
     room_closed: 'L’hôte a fermé la table.',
     room_full: 'Cette table est complète.',
     room_not_found: 'Aucune table sous ce code.',
+    room_plays_aloud:
+      'Cette table joue à voix haute, sans écran pour rejoindre.',
     screen: {
       description:
         'Le jeu est tombé sur quelque chose dont il ne sait pas repartir. Recharger suffit presque toujours — et si le site a été mis à jour pendant que cet onglet était ouvert, toujours.',
@@ -880,6 +882,17 @@ export const FR_DICTIONARY = defineDictionary({
     yourSheet: 'Toute ta feuille'
   },
   team: {
+    aloud: {
+      artist: 'Artiste',
+      composer: 'Compositeur',
+      confirm: 'Valider',
+      film: 'Film',
+      hadIt: 'Trouvé',
+      label: 'Qui l’a trouvé ?',
+      needsScreens: 'Demande un écran à chacun.',
+      nobody: 'Personne n’a trouvé',
+      title: 'Titre'
+    },
     colour: {
       pawn1: 'Rouges',
       pawn2: 'Bleus',
@@ -917,6 +930,11 @@ export const FR_DICTIONARY = defineDictionary({
       submit: 'Renommer'
     },
     setting: {
+      aloud: 'À voix haute',
+      aloudHint:
+        'Sans téléphone : le mur pose la question, les équipes crient, tu touches celles qui ont trouvé.',
+      aloudNeedsNoPhone:
+        'Pour jouer à voix haute, la table doit être sans téléphone : demande-leur de quitter d’abord.',
       chosen: 'Au choix',
       drawn: 'Tirées au sort',
       label: 'Équipes',
@@ -927,6 +945,7 @@ export const FR_DICTIONARY = defineDictionary({
         'Chaque équipe rejoint sur un seul écran, sous le nom de l’équipe.'
     },
     summary: {
+      aloud: '{count:number} équipes à voix haute',
       chosen: '{count:number} équipes au choix',
       drawn: '{count:number} équipes tirées au sort',
       off: 'Sans équipes',

@@ -6,6 +6,17 @@ one part.
 
 ## Unreleased
 
+### Features
+
+- `[Shared]` **Teams can play with no phone at all**, and `PROTOCOL_VERSION`
+  goes to 33. *Aloud* is a fifth way of making teams: they are named on the
+  console, nobody joins, the wall shows the question and the host taps the
+  teams that had it — the title and the artist apart in a blind test — through
+  `host.awardTeams`, which pays and reveals, and corrects on the reveal. A
+  challenge's podium pays the teams themselves. The map, the reflex race and
+  the slate are greyed in the line-up under it, and a phone that scans the
+  room is told the table plays aloud.
+
 ### Improvements
 
 - `[Game]` **A reader in English no longer downloads French.** The French

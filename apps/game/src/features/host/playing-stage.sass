@@ -61,6 +61,15 @@
       align-self: center
       flex: none
 
+    // Upright, the host's rows for a table answering aloud would leave the
+    // tiles no height: the stage grows with them and the page scrolls.
+    @media (aspect-ratio < 13 / 10)
+      &:has(> .team-verdicts)
+        container-type: inline-size
+
+        > .printed-choices
+          flex: none
+
     // A seat or the wall putting a pawn down: the card goes back to the top
     // and the map takes the rest.
     &[data-map]
@@ -146,6 +155,18 @@
         > .answered-pawns
           grid-area: tally
           justify-self: start
+
+        // A table answering aloud has no pawns to count, and the host's rows
+        // take their place under the round: the card gives up the height.
+        &:has(> .team-verdicts)
+          --question-k: min(36cqi, 48cqh)
+          --question-cap: min(3.4cqi, 4.4cqh)
+          --choice-k: min(16cqi, 18cqh)
+          --choice-cap: min(2.8cqi, 3.6cqh)
+
+        > .team-verdicts
+          grid-area: tally
+          justify-self: center
 
     // Four candidates under forty characters sit two by two once the box is
     // wide enough for two columns; sentences stay four rows at every ratio.

@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { type GameKind, shelvedGames } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
+import { isPlayableAloud } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
   rememberedSetupFor
@@ -50,18 +51,28 @@ export const GamePicker: React.FC<GamePickerProps> = ({
   const rememberedFor = (game: GameKind) =>
     rememberedSetupFor({ game, preferences })
 
-  const options = shelvedGames.map((game) => ({
-    badge:
-      settings.lineUp.length > 1 && settings.game?.kind === game
-        ? translate('host.lineUp.first')
-        : undefined,
-    description: translate(gameTaglineKey(game)),
-    icon: <GameIcon game={game} />,
-    isDisabled: settings.lineUp.length === 1 && settings.lineUp.includes(game),
-    label: translate(gameNameKey(game)),
-    spine: `var(--spine-${game})`,
-    value: game
-  }))
+  const options = shelvedGames.map((game) => {
+    const playsAloud = isPlayableAloud({ game, teams: settings.teams })
+
+    return {
+      badge:
+        settings.lineUp.length > 1 && settings.game?.kind === game
+          ? translate('host.lineUp.first')
+          : undefined,
+      description: translate(
+        playsAloud ? gameTaglineKey(game) : 'team.aloud.needsScreens'
+      ),
+      icon: <GameIcon game={game} />,
+      isDisabled:
+        !playsAloud ||
+        (isEvening &&
+          settings.lineUp.length === 1 &&
+          settings.lineUp.includes(game)),
+      label: translate(gameNameKey(game)),
+      spine: `var(--spine-${game})`,
+      value: game
+    }
+  })
 
   const several = (
     <Switch

@@ -87,6 +87,12 @@ export const protocolErrorCodes = [
    * team that is not there.
    */
   'teams_locked',
+  /**
+   * A phone asking for a seat in a room whose teams answer aloud. Non-fatal
+   * like `room_full`: nothing is wrong with the screen, the table simply plays
+   * without one, and the host can switch the room back in the lobby.
+   */
+  'room_plays_aloud',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

@@ -130,8 +130,10 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
             find them and the reason they no longer move.
           */}
           <TeamsSetup
+            hasPhones={view.players.some((player) => player.id !== view.youId)}
             isDisabled={!isLive || !isInLobby}
             onChange={onSettingsChange}
+            preferences={preferences}
             settings={settings}
           />
           {!isInLobby && (

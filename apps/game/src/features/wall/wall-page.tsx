@@ -169,9 +169,11 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
               {translate('wall.sound')}
             </Button>
           )}
-          {view !== null && view.phase !== 'lobby' && (
-            <JoinReminder roomCode={roomCode} />
-          )}
+          {view !== null &&
+            view.phase !== 'lobby' &&
+            view.settings.teams.kind !== 'aloud' && (
+              <JoinReminder roomCode={roomCode} />
+            )}
         </header>
 
         {isHostAway && (

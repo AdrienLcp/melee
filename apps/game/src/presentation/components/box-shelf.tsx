@@ -22,7 +22,7 @@ type BoxShelfOption = {
   description: string
   /** A glyph printed before the name; decorative, the name stays the label. */
   icon?: React.ReactNode
-  /** Kept as it is while the rest of the shelf stays pressable — a tick that cannot be taken out. */
+  /** Kept as it is while the rest of the shelf stays pressable — a tick that cannot be taken out, a game the room cannot play. */
   isDisabled?: boolean
   label: string
   /** The colour of the box's spine, as a CSS colour — usually a `var()`. */
@@ -99,6 +99,7 @@ export const BoxShelf: React.FC<BoxShelfProps> = ({
       {options.map((option) => (
         <RadioField
           className='box-field'
+          isDisabled={option.isDisabled}
           key={option.value}
           value={option.value}
         >

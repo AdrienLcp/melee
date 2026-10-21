@@ -65,7 +65,10 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   const translate = useTranslate()
   const teamName = useTeamName()
   const showsRank = isRanked && hasAnyTeamScored(teams)
-  const showsSeats = !isEveryTeamItsOwnSeat({ players, teams })
+  // A room with no seat at all is a table answering aloud: there is nobody to
+  // list under a team, and nobody to wait for.
+  const showsSeats =
+    players.length > 0 && !isEveryTeamItsOwnSeat({ players, teams })
   const entries = isRanked
     ? buildTeamBoard(teams)
     : teams.map((team) => ({ rank: null, team }))

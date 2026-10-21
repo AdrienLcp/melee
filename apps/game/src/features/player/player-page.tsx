@@ -232,7 +232,12 @@ const Lobby: React.FC<{
   )
   useScreenAwake(status !== 'refused' && view?.phase !== 'finished')
 
-  if (status === 'refused') {
+  // A table answering aloud turns every phone away without closing the
+  // socket, since the host may switch it back; until then this is a dead end.
+  if (
+    status === 'refused' ||
+    (view === null && error?.code === 'room_plays_aloud')
+  ) {
     return (
       <Main className='player-page'>
         <ConnectionRefused error={error} />

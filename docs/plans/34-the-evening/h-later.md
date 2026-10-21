@@ -28,11 +28,12 @@ step that lands keeps its line here, dated, and loses its details.
    is a seat's. The console offers the four under *Comment jouer*, two by two,
    with what the chosen one does written under it.
 
-4. **Teams with no phone at all** (decision 21). A room setting, *Answers
-   aloud*: no seat needed, teams are named on the console, the wall shows the
-   question, and every round is judged on the console by tapping the team or
-   teams that had it, through `host.judge` with a team verdict. The world map
-   is greyed in the line-up under it — a pawn needs a screen.
+4. **Teams with no phone at all** — done 21/10/2026: a fifth kind of teams,
+   `aloud`, rather than a room setting beside them, since it is a way of
+   making teams. Its own message, `host.awardTeams`, rather than `host.judge`,
+   which is bound to a buzz: the round's `teamAwards` add to the seats' mean.
+   Protocol 33. The reflex race and the slate are greyed beside the map, and
+   every round is played together.
 
 5. **French cities** (decision 22). A second `worldmap` question kind,
    *Place-moi Rennes*: metropolitan France from the same atlas, a conic

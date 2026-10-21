@@ -339,7 +339,10 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
         awards: room.round.awards,
         openedWithPlayerIds: room.round.openedWithPlayerIds,
         seatIds: seatsOf(room, teamId).map((seat) => seat.id)
-      })
+      }) +
+      room.round.teamAwards
+        .filter((award) => award.teamId === teamId)
+        .reduce((total, award) => total + award.points, 0)
 
 /**
  * What the round on screen walks each pawn, from the cases they stood on

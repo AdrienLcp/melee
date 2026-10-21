@@ -53,13 +53,14 @@ export const useSetupSummaries = ({
   const teams = settings.teams
 
   const teamsSummary =
-    teams.kind === 'drawn' || teams.kind === 'chosen'
-      ? translate(`team.summary.${teams.kind}`, { count: teams.count })
-      : translate(`team.summary.${teams.kind}`)
+    teams.kind === 'off' || teams.kind === 'teamsOnly'
+      ? translate(`team.summary.${teams.kind}`)
+      : translate(`team.summary.${teams.kind}`, { count: teams.count })
 
   const boardSummary =
     settings.board.kind === 'track' &&
-    (teams.kind === 'drawn' || teams.kind === 'chosen')
+    teams.kind !== 'off' &&
+    teams.kind !== 'teamsOnly'
       ? translate('board.summary', { length: settings.board.length })
       : ''
 

@@ -22,13 +22,15 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   view
 }) => {
   const translate = useTranslate()
-  const isRoomEmpty = view.players.length === 0
+  const playsAloud = view.settings.teams.kind === 'aloud'
+  const isRoomEmpty = view.players.length === 0 && !playsAloud
   const hasNoGame = view.settings.game === null
 
   // An empty table's launch seats its host and starts, which is the one press
   // somebody playing alone needs — the seat form and a greyed *gather round*
   // were three. The moment a player arrives it is the group's launch again.
   if (
+    !playsAloud &&
     launchesWithHostSeated({
       game: view.settings.game?.kind ?? null,
       mode: view.settings.mode.kind,

@@ -21,9 +21,12 @@ import { publishRoom, type RoomEngine } from './room-engine'
  * console remembers the name it was seated under and replays it on every
  * reconnect — a rule enforced only where the form is drawn is a rule the next
  * `hello` walks straight through.
+ *
+ * A table answering aloud is judged by its console on every round.
  */
 export const hostMustJudge = (room: Room): boolean =>
-  isRoundInPlay(room.phase) && room.round !== null
+  room.settings.teams.kind === 'aloud' ||
+  (isRoundInPlay(room.phase) && room.round !== null
     ? isJudgedByHost({
         game: room.round.content.kind,
         mode: room.round.mode.kind
@@ -31,7 +34,7 @@ export const hostMustJudge = (room: Room): boolean =>
     : isJudgedByHost({
         game: room.settings.game?.kind ?? null,
         mode: room.settings.mode.kind
-      })
+      }))
 
 // Removed from the roster before the buzz is released, so that the player
 // being unseated cannot be the one counted as still able to answer — and off

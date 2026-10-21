@@ -113,6 +113,10 @@
         @include layout.narrow
           grid-template-columns: minmax(0, 1fr)
 
+        // Nobody joins a table answering aloud: no invitation, one column.
+        &[data-aloud]
+          grid-template-columns: minmax(0, 1fr)
+
         // The room code is the one thing read from four metres, so it is the
         // largest object in the product and nothing shares its line.
         // The fit is measured, not chosen: four `W`, the widest glyph the code
@@ -839,6 +843,13 @@
         display: flex
         min-height: var(--control-height)
         padding-inline-end: var(--menu-inset)
+
+      // A table answering aloud has no invitation to give the left: the
+      // table and the launch take the middle, at the shelf's reading width.
+      &:has(> .stage.lobby[data-aloud])
+        grid-template-areas: 'side' 'footer'
+        grid-template-columns: minmax(0, 64rem)
+        justify-content: center
 
       > .stage.lobby
         display: contents

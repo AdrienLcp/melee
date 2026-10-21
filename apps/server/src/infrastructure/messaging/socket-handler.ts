@@ -22,6 +22,7 @@ import { newSessionId } from '@melee/core/room/session-id'
 import {
   claimHost,
   type HostClaimError,
+  type JoinError,
   joinAsPlayer,
   markHostAway,
   markPlayerDisconnected,
@@ -41,6 +42,7 @@ import {
   renameTeam,
   type TeamRejection
 } from '@/domain/room/team-service'
+import { awardTeams } from '@/domain/round/aloud-round'
 import {
   awardChallengePlaces,
   type ChallengeRejection
@@ -310,6 +312,12 @@ const seatHost = ({
   }
 }
 
+const JOIN_REFUSALS: Record<JoinError, string> = {
+  nickname_taken: 'Someone already took that name',
+  room_full: 'This room is full',
+  room_plays_aloud: 'This table answers aloud, with no phone'
+}
+
 /**
  * A refused join is deliberately non-fatal: the socket stays open so the join
  * form can send another `hello` with a different nickname, instead of making
@@ -348,10 +356,7 @@ const seatPlayer = ({
     sendError(outbound, {
       code: joined.error,
       fatal: false,
-      message:
-        joined.error === 'room_full'
-          ? 'This room is full'
-          : 'Someone already took that name'
+      message: JOIN_REFUSALS[joined.error]
     })
 
     return null
@@ -601,6 +606,19 @@ const dispatch = ({
           places: message.places,
           room,
           roundId: message.roundId
+        })
+      })
+      break
+    }
+    case 'host.awardTeams': {
+      answerChallengeFrame({
+        engine,
+        outbound,
+        result: awardTeams({
+          now,
+          room,
+          roundId: message.roundId,
+          verdicts: message.verdicts
         })
       })
       break
@@ -1349,6 +1367,23 @@ const rename = (
  * rest of the game, and dropping it on an unrelated edit costs a needless
  * catalogue request.
  */
+/**
+ * A console's own seat is not in the way of answering aloud: it goes as the
+ * setting lands, the way it goes under any game its host must judge.
+ */
+const hasSeatBesideConsoles = (engine: RoomEngine): boolean => {
+  const consoleSeats = new Set(
+    engine.connections
+      .all()
+      .filter((connection) => connection.role === 'host')
+      .map((connection) => connection.playerId)
+  )
+
+  return [...engine.room.players.keys()].some(
+    (playerId) => !consoleSeats.has(playerId)
+  )
+}
+
 const reconfigure = (
   settings: RoomSettings,
   outbound: Outbound,
@@ -1410,6 +1445,16 @@ const reconfigure = (
       code: 'teams_locked',
       fatal: false,
       message: 'The teams are set once the game is under way'
+    })
+
+    return
+  }
+
+  if (settings.teams.kind === 'aloud' && hasSeatBesideConsoles(engine)) {
+    sendError(outbound, {
+      code: 'teams_locked',
+      fatal: false,
+      message: 'A table answering aloud holds no seat: the phones leave first'
     })
 
     return

@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { boardPositionSchema } from './board'
 import { playerIdSchema } from './identifiers'
+import { verdictSchema } from './scoring'
 
 export const MIN_TEAMS = 2
 export const MAX_TEAMS = 6
@@ -24,12 +25,18 @@ const teamCountSchema = z.number().int().min(MIN_TEAMS).max(MAX_TEAMS)
  * `teamsOnly` has each team take one seat named after itself, on one phone or
  * on the wall: the server gives every seat a team of its own as it arrives,
  * named after it, so the board and the team scores work as in any other room.
+ *
+ * `aloud` is a table with no phone at all: the teams are named on the console,
+ * no screen takes a seat, the wall shows the question and the host taps the
+ * teams that had it (`host.awardTeams`). A game that needs a screen in every
+ * hand cannot be ticked under it — see `isPlayableAloud`.
  */
 export const teamsSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('off') }),
   z.object({ count: teamCountSchema, kind: z.literal('drawn') }),
   z.object({ count: teamCountSchema, kind: z.literal('chosen') }),
-  z.object({ kind: z.literal('teamsOnly') })
+  z.object({ kind: z.literal('teamsOnly') }),
+  z.object({ count: teamCountSchema, kind: z.literal('aloud') })
 ])
 
 export const teamIdSchema = z.string().min(1).max(16)
@@ -71,6 +78,16 @@ export const teamSchema = z.object({
   seatIds: z.array(playerIdSchema)
 })
 
+/**
+ * The host's word on what one team had right in a round played aloud, in the
+ * shape the game is judged in — the title and the artist apart in a blind test.
+ */
+export const teamVerdictSchema = z.object({
+  teamId: teamIdSchema,
+  verdict: verdictSchema
+})
+
+export type TeamVerdict = z.infer<typeof teamVerdictSchema>
 export type TeamsSettings = z.infer<typeof teamsSettingsSchema>
 export type TeamId = z.infer<typeof teamIdSchema>
 export type TeamName = z.infer<typeof teamNameSchema>

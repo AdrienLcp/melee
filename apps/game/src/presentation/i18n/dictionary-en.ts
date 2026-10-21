@@ -297,6 +297,7 @@ export const EN_DICTIONARY = defineDictionary({
     room_closed: 'The host closed the table.',
     room_full: 'That table is full.',
     room_not_found: 'No table under that code.',
+    room_plays_aloud: 'This table answers aloud, with no screen to join on.',
     screen: {
       description:
         'The game hit something it could not carry on from. Reloading almost always fixes it — and if the site updated while this tab was open, it always does.',
@@ -966,6 +967,17 @@ export const EN_DICTIONARY = defineDictionary({
     yourSheet: 'Your whole sheet'
   },
   team: {
+    aloud: {
+      artist: 'Artist',
+      composer: 'Composer',
+      confirm: 'Score it',
+      film: 'Film',
+      hadIt: 'Got it',
+      label: 'Who got it?',
+      needsScreens: 'Needs a screen in every hand.',
+      nobody: 'Nobody got it',
+      title: 'Title'
+    },
     /**
      * What a team is called until the host renames it, by its pawn's colour.
      * Plural nouns standing alone, so they read as a heading, beside a score
@@ -1008,6 +1020,11 @@ export const EN_DICTIONARY = defineDictionary({
       submit: 'Rename'
     },
     setting: {
+      aloud: 'Aloud',
+      aloudHint:
+        'No phones: the wall asks, the teams shout, and you tap who got it.',
+      aloudNeedsNoPhone:
+        'Answering aloud takes a table with no phone in it: ask them to leave first.',
       chosen: 'Players choose',
       drawn: 'Drawn',
       label: 'Teams',
@@ -1017,6 +1034,7 @@ export const EN_DICTIONARY = defineDictionary({
       teamsOnlyHint: 'Each team joins on one screen, under the team’s name.'
     },
     summary: {
+      aloud: '{count:number} teams answering aloud',
       chosen: '{count:number} teams, players choose',
       drawn: '{count:number} drawn teams',
       off: 'No teams',

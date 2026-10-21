@@ -30,6 +30,11 @@ import type { SheetItem } from '@melee/core/slate/sheet-marking'
  * identity nobody may see yet. `room-view.ts` is the only place it is projected
  * onto the wire.
  */
+export type TeamAward = {
+  points: number
+  teamId: TeamId
+}
+
 export type Room = {
   code: RoomCode
   createdAt: number
@@ -211,6 +216,12 @@ export type Round = {
   /** Buzzer mode leaves this empty; the other two fill it as frames arrive. */
   attempts: PlayerAttempts[]
   awards: Award[]
+  /**
+   * What the host paid each team straight, in a room whose teams answer aloud
+   * and so hold no seat for `awards` to pay. Added to the mean of the seats'
+   * awards in the team's round result, which is nought there.
+   */
+  teamAwards: TeamAward[]
   /**
    * What the round is asking, in the vocabulary of the game asking it — and the
    * answer, which lives here and reaches the wire only through `room-view.ts`.

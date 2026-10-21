@@ -1,5 +1,6 @@
 import type { GameKind } from '@melee/protocol/game'
 import { type AnswerMode, answerModes } from '@melee/protocol/room'
+import type { TeamsSettings } from '@melee/protocol/team'
 
 /** What a game that serves its own question offers: a buzzer, four candidates or a typed field. */
 const SERVED_MODES = [
@@ -41,6 +42,12 @@ export type GameCapabilities = {
    */
   answerModes: readonly AnswerMode[]
   /**
+   * Whether a table with no phone can play it, the wall showing the round and
+   * the host tapping who had it. Not a game whose answer *is* a screen: a pawn
+   * put down on a map, a press racing a colour, a sheet written in private.
+   */
+  playsAloud: boolean
+  /**
    * Whether one team can play a round of it while the others watch. A race
    * cannot — the bare buzzer and the reflex race are decided *between* players
    * — and neither can a sheet the host marks across the whole room.
@@ -64,31 +71,50 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'quiz':
       return {
         answerModes: SERVED_MODES,
+        playsAloud: true,
         playsInTeamTurns: true,
         wallAnswers: true
       }
     case 'buzzer':
     case 'challenge':
+      return {
+        answerModes: BUZZER_ONLY,
+        playsAloud: true,
+        playsInTeamTurns: false,
+        wallAnswers: false
+      }
     case 'reflex':
       return {
         answerModes: BUZZER_ONLY,
+        playsAloud: false,
         playsInTeamTurns: false,
         wallAnswers: false
       }
     case 'slate':
       return {
         answerModes: TYPED_ONLY,
+        playsAloud: false,
         playsInTeamTurns: false,
         wallAnswers: false
       }
     case 'worldmap':
       return {
         answerModes: POINT_ONLY,
+        playsAloud: false,
         playsInTeamTurns: true,
         wallAnswers: true
       }
   }
 }
+
+/** Whether `game` may be ticked in a room whose teams answer aloud. */
+export const isPlayableAloud = ({
+  game,
+  teams
+}: {
+  game: GameKind
+  teams: TeamsSettings
+}): boolean => teams.kind !== 'aloud' || capabilitiesOf(game).playsAloud
 
 /**
  * A room with no game yet narrows nothing, which is what lets the settings

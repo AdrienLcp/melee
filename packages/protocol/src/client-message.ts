@@ -25,7 +25,8 @@ import {
   MIN_TEAMS,
   scoreTargetSchema,
   teamIdSchema,
-  teamNameSchema
+  teamNameSchema,
+  teamVerdictSchema
 } from './team'
 import { geoPointSchema } from './worldmap'
 
@@ -336,6 +337,18 @@ export const awardPlacesMessageSchema = z.object({
 })
 
 /**
+ * Which teams had it, from the host's word in a room played aloud — the server
+ * hears none of the table. The whole round each time, like `host.awardPlaces`,
+ * so a frame sent on the reveal corrects the one before it rather than adding
+ * to it. A team left out had nothing. Ends the round on its reveal.
+ */
+export const awardTeamsMessageSchema = z.object({
+  roundId: roundIdSchema,
+  type: z.literal('host.awardTeams'),
+  verdicts: z.array(teamVerdictSchema).max(MAX_TEAMS)
+})
+
+/**
  * `playStyle` says how the rounds from here on are played: everyone at once;
  * a set — each team its own round in turn while the others watch, answered by
  * the whole team or by one of its seats in rotation; or a duel, one seat from
@@ -404,6 +417,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   moveSeatMessageSchema,
   adjustScoreMessageSchema,
   awardPlacesMessageSchema,
+  awardTeamsMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -470,6 +484,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   moveSeatMessageSchema,
   adjustScoreMessageSchema,
   awardPlacesMessageSchema,
+  awardTeamsMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -508,6 +523,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.moveSeat',
   'host.adjustScore',
   'host.awardPlaces',
+  'host.awardTeams',
   'host.nextRound',
   'host.endGame',
   'host.playAgain',

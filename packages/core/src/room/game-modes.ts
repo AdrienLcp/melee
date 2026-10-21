@@ -2,7 +2,8 @@ import type { GameKind } from '@melee/protocol/game'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
-  type ModeSettings
+  type ModeSettings,
+  type RoomSettings
 } from '@melee/protocol/room'
 
 import { answerModesFor } from './game-capabilities'
@@ -38,6 +39,17 @@ export const isJudgedByHost = ({
   game: GameKind | null
   mode: AnswerMode
 }): boolean => game === 'slate' || (mode === 'buzzer' && game !== 'reflex')
+
+/**
+ * `isJudgedByHost` over the whole room: a table answering aloud is judged on
+ * its console every round, whatever the game, and the console holds no seat.
+ */
+export const isRoomJudgedByHost = (settings: RoomSettings): boolean =>
+  settings.teams.kind === 'aloud' ||
+  isJudgedByHost({
+    game: settings.game?.kind ?? null,
+    mode: settings.mode.kind
+  })
 
 /**
  * Whether the missing seat is worth explaining, which is narrower than the seat

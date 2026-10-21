@@ -13,7 +13,7 @@ import { isAbandoned } from '@melee/core/room/seat-presence'
 
 import type { Participant, Room } from './room'
 
-export type JoinError = 'room_full' | 'nickname_taken'
+export type JoinError = 'room_full' | 'nickname_taken' | 'room_plays_aloud'
 export type HostClaimError = 'host_already_connected' | 'host_reconnecting'
 
 export const touch = (room: Room, now: number): void => {
@@ -56,6 +56,10 @@ export const joinAsPlayer = ({
     existing.isConnected = true
 
     return Result.success(existing)
+  }
+
+  if (room.settings.teams.kind === 'aloud') {
+    return Result.failure('room_plays_aloud')
   }
 
   if (room.players.size >= MAX_PLAYERS_PER_ROOM) {

@@ -33,6 +33,7 @@ import { RevealPanel } from './reveal-panel'
 import { ScoreTrack } from './score-track'
 import { SlateCorrectionStage, SlateWritingStage } from './slate-stages'
 import { Standings, standingsRowsOf } from './standings'
+import { TeamVerdicts } from './team-verdicts'
 import type { SlateWall } from './use-slate-wall'
 import { VerdictPanel } from './verdict-panel'
 
@@ -216,6 +217,17 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             view={view}
           />
         )}
+        {controls !== null &&
+          view.settings.teams.kind === 'aloud' &&
+          round.content.kind !== 'challenge' && (
+            <TeamVerdicts
+              isLive={controls.isLive}
+              key={round.id}
+              round={round}
+              send={controls.send}
+              view={view}
+            />
+          )}
       </PlayingStage>
     )
   }

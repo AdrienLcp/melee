@@ -1,0 +1,42 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The challenge's podium, with a toggle where it has a place: under the line
+  // the room reads, held to a hand's width, a row a team.
+  .team-verdicts
+    align-self: center
+    display: grid
+    flex: none
+    gap: var(--space-s)
+    width: min(100%, 36rem)
+
+    .team-verdicts-rows
+      display: grid
+      gap: var(--space-xs)
+      list-style: none
+
+    .team-verdicts-row
+      align-items: end
+      border-block-start: var(--stroke-bold) solid var(--team, var(--rule-strong))
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: auto minmax(0, 1fr)
+      padding-block-start: var(--space-2xs)
+
+      > .pawn
+        align-self: center
+
+      .toggle-group > .react-aria-Label
+        @include typography.title
+
+        font-size: var(--text-s)
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+    .team-verdicts-actions
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs) var(--space-s)
+      justify-content: center
