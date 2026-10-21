@@ -85,7 +85,7 @@ export const HostSeat: React.FC<HostSeatProps> = ({ onTakeSeat, view }) => {
         <TextField
           autoComplete='off'
           description={translate(
-            game?.kind === 'reflex'
+            game?.kind === 'reflex' || game?.kind === 'innerclock'
               ? 'host.seat.cost.sharedScreen'
               : 'host.seat.cost.hiddenAnswer'
           )}

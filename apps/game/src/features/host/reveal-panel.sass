@@ -313,6 +313,16 @@
         grid-template-columns: minmax(0, 1fr)
         grid-template-rows: minmax(0, 1fr)
 
+        // A count puts its target over the board, and the board takes what
+        // the card leaves.
+        .counted-board
+          align-self: stretch
+          min-height: 0
+
+          .reaction-board
+            flex: 1 1 0
+            min-height: 0
+
         .reaction-board
           align-self: stretch
           container-type: size

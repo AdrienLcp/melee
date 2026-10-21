@@ -1,0 +1,31 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // No animation on any of it, and as on the reflex wait that is a rule: the
+  // start is the only change this screen makes, and motion after it is a clock.
+  .innerclock-stage
+    align-items: center
+    align-self: stretch
+    display: flex
+    flex: 1
+    flex-direction: column
+    gap: var(--space-m)
+    justify-content: center
+    text-align: center
+
+    .go
+      @include typography.poster-word
+
+      color: var(--ink)
+      font-size: clamp(var(--text-2xl), 9cqmin, 5rem)
+
+    .yours
+      align-items: center
+      display: flex
+      justify-content: center
+      min-height: 3.5rem
+
+    .pressed
+      @include typography.title
+
+      color: var(--ink-muted)

@@ -1,0 +1,28 @@
+@use '../styles/typography'
+
+@layer components
+  .counted-board
+    align-items: center
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+    width: 100%
+
+    // The gap and the pay beside the counted time, each its own tabular
+    // column so the room compares them downwards, a step under the time.
+    .gap,
+    .paid
+      @include typography.numeric
+
+      flex: none
+      font-size: var(--text-em-s)
+      text-align: end
+
+    .reaction-board li.first .place
+      background: var(--spine-innerclock)
+      color: var(--on-spine-innerclock)
+
+    .nobody
+      @include typography.title
+
+      color: var(--ink-muted)

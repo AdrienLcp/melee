@@ -14,10 +14,12 @@ import { PrimaryPress, SecondaryPresses, useActionSlot } from './action-slot'
 import { BoardMoves } from './board-moves'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
+import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 import { playStyleFor, TurnsChoice } from './turns-choice'
 
 export const RevealActions: React.FC<HostActionsProps> = ({
   challengeLine,
+  innerclockTarget,
   isLive,
   onOpenRound,
   onPlayStyle,
@@ -125,6 +127,13 @@ export const RevealActions: React.FC<HostActionsProps> = ({
             value={settings.game?.kind ?? null}
           />
         )}
+        {innerclockTarget !== null && (
+          <InnerclockTargetField
+            isDisabled={!isLive}
+            onChange={innerclockTarget.onChange}
+            seconds={innerclockTarget.seconds}
+          />
+        )}
         {challengeLine !== null && (
           <ChallengeLineField
             isDisabled={!isLive}
@@ -146,6 +155,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
             onOpenRound()
             send({
               challengeText: challengeLine?.text,
+              innerclockTargetSeconds: targetToSend(innerclockTarget),
               playStyle: playStyleFor({ playStyle, view }),
               type: 'host.nextRound'
             })

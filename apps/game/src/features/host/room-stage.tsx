@@ -17,7 +17,8 @@ import { playsThisTurn } from '@melee/core/team/team-turn'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import type { PlayerAnswer } from '@/features/player/answer-forms'
-import { holdsTheAnswer } from '@/helpers/round-content'
+import { holdsTheAnswer, innerclockContent } from '@/helpers/round-content'
+import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { RevealHold } from '@/presentation/components/round-progress'
@@ -25,6 +26,7 @@ import { RevealHold } from '@/presentation/components/round-progress'
 import { ChallengePlacing } from './challenge-placing'
 import { ClipOffer } from './clip-offer'
 import { FinalBoard } from './final-board'
+import { InnerclockStage } from './innerclock-stage'
 import { LobbyStage } from './lobby-stage'
 import { NextUp } from './next-up'
 import { PlayingStage } from './playing-stage'
@@ -150,6 +152,24 @@ export const RoomStage: React.FC<RoomStageProps> = ({
     />
   )
 
+  // The count is said before it starts, so the room has read the target by
+  // the time the countdown lands rather than reading it while counting.
+  const counting = innerclockContent(round)
+
+  if (
+    view.phase === 'countdown' &&
+    round?.startsAt != null &&
+    counting !== null
+  ) {
+    return (
+      <div className='stage counting-in'>
+        <Countdown clock={clock} target={round.startsAt} />
+        <CountPrompt targetSeconds={counting.targetSeconds} />
+        {clipOffer}
+      </div>
+    )
+  }
+
   if (view.phase === 'countdown' && round?.startsAt != null) {
     // The round that just ran, still up while the next one counts in. It is the
     // whole of what made this screen repetitive: a number replacing the answer
@@ -181,6 +201,22 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             controls?.send({ roundId, type: 'player.buzz' }) ?? false
           }
           players={view.players}
+          round={round}
+          youId={youId}
+        />
+      </div>
+    )
+  }
+
+  // Nothing beside it either, and for the opposite reason: the room is not
+  // waiting for this screen to change, and it must not.
+  if (view.phase === 'playing' && round?.content.kind === 'innerclock') {
+    return (
+      <div className='stage solo'>
+        <InnerclockStage
+          onPress={(roundId) =>
+            controls?.send({ roundId, type: 'player.buzz' }) ?? false
+          }
           round={round}
           youId={youId}
         />

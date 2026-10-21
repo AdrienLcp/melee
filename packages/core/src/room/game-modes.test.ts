@@ -22,6 +22,10 @@ describe('isJudgedByHost', () => {
     expect(isJudgedByHost({ game: 'reflex', mode: 'buzzer' })).toBe(false)
   })
 
+  it('[game-modes] leaves the inner clock to settle on its counts', () => {
+    expect(isJudgedByHost({ game: 'innerclock', mode: 'buzzer' })).toBe(false)
+  })
+
   it('[game-modes] keeps a bare buzzer’s host reading the answer', () => {
     expect(isJudgedByHost({ game: 'buzzer', mode: 'buzzer' })).toBe(true)
   })

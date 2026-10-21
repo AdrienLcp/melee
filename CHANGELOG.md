@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Shared]` **Inner clock, the eighth game**, and `PROTOCOL_VERSION` goes to
+  35. The wall says *count to 42 seconds in your head*, a countdown, a start —
+  and then nothing on any screen moves: no clock, no bar, no name appearing as
+  someone stops. Each player presses once; the server stamps the press and pays
+  its gap to the target, 3 points on the dot falling to nothing a quarter of
+  the count away, early or late alike. The reveal ranks everyone by the gap:
+  the time they stopped at, how far off, and what it paid. The count is drawn
+  between 20 and 60 seconds for every round; the host can type another or draw
+  again beside the press that opens it.
+
 - `[Game]` **The Christmas party is the game night**, *Grande soirée* in
   French: the same quiz, blind test, buzzer, world map and challenges in three
   teams, under a name that holds any time of year.

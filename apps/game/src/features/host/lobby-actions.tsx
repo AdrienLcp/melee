@@ -9,10 +9,12 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { PrimaryPress, SecondaryPresses, useActionSlot } from './action-slot'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
+import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 import { playStyleFor, TurnsChoice } from './turns-choice'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
   challengeLine,
+  innerclockTarget,
   isLive,
   onOpenRound,
   onPlayRightAway,
@@ -57,6 +59,13 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   return (
     <div className='launch'>
       <SecondaryPresses>
+        {innerclockTarget !== null && (
+          <InnerclockTargetField
+            isDisabled={!isLive}
+            onChange={innerclockTarget.onChange}
+            seconds={innerclockTarget.seconds}
+          />
+        )}
         {challengeLine !== null && (
           <ChallengeLineField
             isDisabled={!isLive}
@@ -78,6 +87,7 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
             onOpenRound()
             send({
               challengeText: challengeLine?.text,
+              innerclockTargetSeconds: targetToSend(innerclockTarget),
               playStyle: playStyleFor({ playStyle, view }),
               slateKeys,
               type: 'host.startRound'

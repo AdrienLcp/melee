@@ -83,6 +83,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsInTeamTurns: false,
         wallAnswers: false
       }
+    case 'innerclock':
     case 'reflex':
       return {
         answerModes: BUZZER_ONLY,

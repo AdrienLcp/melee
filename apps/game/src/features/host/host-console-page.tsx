@@ -13,6 +13,7 @@ import type {
 } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { drawTargetSeconds } from '@melee/core/innerclock/target'
 import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
 import {
   type HostPreferences,
@@ -144,6 +145,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [preferences, setPreferences] = useState(storedHostPreferencesOrNone)
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
   const [challengeText, setChallengeText] = useState('')
+  const [targetSeconds, setTargetSeconds] = useState(drawTargetSeconds)
   const [isRoomScreen, setIsRoomScreen] = useState(isStoredRoomScreen)
   const arrival = useArrival(view)
   const playsRightAway = useTakePlayRightAway()
@@ -512,6 +514,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         ? { onChange: setChallengeText, text: challengeText }
         : null,
     draftSource,
+    innerclockTarget:
+      current.settings.game?.kind === 'innerclock'
+        ? { onChange: setTargetSeconds, seconds: targetSeconds }
+        : null,
     isLive,
     onOpenRound: () => {
       // Inside the press, never in an effect: the autoplay policy grants
@@ -521,6 +527,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       // The press has already read the line it sends, and the next challenge
       // is never this one again.
       setChallengeText('')
+      setTargetSeconds(drawTargetSeconds())
 
       // What the picker is showing is what the host chose, and a round about
       // to be drawn is the moment that means something — which is why every

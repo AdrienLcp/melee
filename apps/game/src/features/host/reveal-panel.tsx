@@ -7,11 +7,13 @@ import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
+  innerclockContent,
   quizContent,
   reflexContent,
   revealedInOrder,
   worldmapContent
 } from '@/helpers/round-content'
+import { CountedBoard } from '@/presentation/components/counted-board'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { Pawn } from '@/presentation/components/pawn'
@@ -175,6 +177,15 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
     return (
       <section className='reveal-panel bare'>
         <ReactionBoard players={players} round={round} />
+      </section>
+    )
+  }
+
+  // The same for a count: the board is the result, closest first.
+  if (innerclockContent(round) !== null) {
+    return (
+      <section className='reveal-panel bare'>
+        <CountedBoard players={players} round={round} />
       </section>
     )
   }

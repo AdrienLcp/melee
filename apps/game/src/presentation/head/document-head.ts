@@ -55,6 +55,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map and Challenge.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
+    innerclock: {
+      description:
+        'The wall gives a number of seconds, then every screen goes still: no clock, nothing that moves. Everyone counts in their head and presses once, and the closest to the count takes the most points.',
+      title: 'Inner clock — Mêlée'
+    },
     legal: {
       description:
         'Who publishes Mêlée, what it keeps about the people who play and for how long, which services receive what, and how to refuse audience measurement.',
@@ -106,6 +111,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde et Défi.',
       title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
+    },
+    innerclock: {
+      description:
+        "Le mur annonce un nombre de secondes, puis tous les écrans se figent : pas d'horloge, rien qui bouge. Chacun compte dans sa tête et appuie une fois, et le plus proche du compte prend le plus de points.",
+      title: 'Horloge interne — Mêlée'
     },
     legal: {
       description:

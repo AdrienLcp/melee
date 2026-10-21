@@ -81,6 +81,7 @@ export const scoringKey = ({
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
+  | 'innerclock.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'worldmap.scoring'
@@ -104,6 +105,8 @@ export const scoringKey = ({
       return 'buzzer.scoring'
     case 'challenge':
       return 'challenge.scoring'
+    case 'innerclock':
+      return 'innerclock.scoring'
     case 'quiz':
       return `quiz.scoring.${served}`
     case 'reflex':

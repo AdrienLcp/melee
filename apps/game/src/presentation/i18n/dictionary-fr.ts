@@ -300,12 +300,12 @@ export const FR_DICTIONARY = defineDictionary({
       rest: 'Rien à installer, aucun compte : un code, un QR code, et toute la table est assise.'
     },
     presets: {
+      how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',
+      open: 'Ouvrir la soirée',
       teamNight: {
         name: 'Grande soirée',
         tagline: 'Quiz, blind test, buzzer, carte du monde et défis, en équipes'
-      },
-      how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',
-      open: 'Ouvrir la soirée'
+      }
     },
     promise: 'Une étagère de jeux pour toute la soirée.',
     title: 'Mêlée'
@@ -451,6 +451,45 @@ export const FR_DICTIONARY = defineDictionary({
       right: 'Bonne réponse',
       showAnswer: 'Voir la réponse',
       wrong: 'Raté'
+    }
+  },
+  innerclock: {
+    counted: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
+      }
+    }),
+    gap: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: {
+          maximumFractionDigits: 1,
+          minimumFractionDigits: 1,
+          signDisplay: 'exceptZero'
+        }
+      }
+    }),
+    go: 'Compte.',
+    hint: 'Une seule pression, quand tu penses y être. Rien ne bougera avant la fin.',
+    home: {
+      description:
+        'Le mur annonce un nombre de secondes, puis tous les écrans se figent : pas d’horloge, rien qui bouge. Compte dans ta tête et appuie une seule fois quand tu penses y être — plus tu tombes près, plus tu marques. La table a le droit de te déconcentrer à voix haute.'
+    },
+    name: 'Horloge interne',
+    nobody: 'Personne n’a appuyé',
+    press: 'Stop',
+    pressed: 'C’est noté. Quelqu’un compte encore.',
+    prompt: {
+      after: 'secondes dans ta tête',
+      before: 'Compte jusqu’à'
+    },
+    scoring:
+      'Compte dans ta tête et appuie une fois. 3 points pile à l’heure, rien à un quart du compte d’écart — plus c’est près, plus ça paie.',
+    silent: 'n’a pas appuyé',
+    tagline: 'Compte dans ta tête. Arrête-toi pile.',
+    target: {
+      description: 'En secondes, de 10 à 180. Affiché en grand sur le mur.',
+      draw: 'Tirer au sort',
+      label: 'Compter jusqu’à'
     }
   },
   invite: {

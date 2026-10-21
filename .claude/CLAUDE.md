@@ -9,9 +9,11 @@ lesson. **Quiz** serves its own, two question banks bundled with the server in
 French and English. **Reflex** is a race against a screen about to change
 colour, **Slate** is a private answer sheet on every screen that the host
 marks on the wall, one item at a time, **World map** names a country that
-everyone puts a pawn on, paid by the kilometre to its border, and **Challenge**
+everyone puts a pawn on, paid by the kilometre to its border, **Challenge**
 is played at the table, off every screen: the wall shows the line the host
-typed, and the host places the first three.
+typed, and the host places the first three, and **Inner clock** asks everyone
+to count to a number of seconds in their head, on screens where nothing moves,
+and pays each single press by its gap to the target.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -20,7 +22,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `worldmap.*`, `challenge.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `worldmap.*`, `challenge.*`, `innerclock.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -286,7 +288,7 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
 
 ## The blind test is the first game, not the product
 
-Seven games share the room, the QR code and every screen, and the rule that got
+Eight games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

@@ -48,6 +48,10 @@ import {
   type ChallengeRejection
 } from '@/domain/round/challenge-round'
 import {
+  everyoneHasCounted,
+  registerInnerclockPress
+} from '@/domain/round/innerclock-round'
+import {
   type Answerer,
   applyVerdict,
   clearLockouts,
@@ -453,6 +457,7 @@ const dispatch = ({
       start({
         challengeText: message.challengeText,
         engine,
+        innerclockTargetSeconds: message.innerclockTargetSeconds,
         outbound,
         playStyle: message.playStyle ?? 'together',
         slateKeys: message.slateKeys
@@ -639,6 +644,7 @@ const dispatch = ({
       advance({
         challengeText: message.challengeText,
         engine,
+        innerclockTargetSeconds: message.innerclockTargetSeconds,
         outbound,
         playStyle: message.playStyle
       })
@@ -872,6 +878,14 @@ const buzz = (
     return
   }
 
+  // A count stopping, which takes no floor either: the round waits for every
+  // seat's own and settles on their gaps to the target.
+  if (engine.room.round?.content.kind === 'innerclock') {
+    stopCount({ engine, outbound, playerId: active.playerId, roundId })
+
+    return
+  }
+
   const registered = registerBuzz({
     now: engine.now(),
     playerId: active.playerId,
@@ -939,6 +953,42 @@ const press = ({
   publishRoom(engine)
 }
 
+const stopCount = ({
+  engine,
+  outbound,
+  playerId,
+  roundId
+}: {
+  engine: RoomEngine
+  outbound: Outbound
+  playerId: PlayerId
+  roundId: RoundId
+}): void => {
+  const { room } = engine
+  const registered = registerInnerclockPress({
+    now: engine.now(),
+    playerId,
+    room,
+    roundId
+  })
+
+  if (registered.status === 'failure') {
+    sendError(outbound, {
+      code: registered.error,
+      fatal: false,
+      message: 'That press was not accepted'
+    })
+
+    return
+  }
+
+  if (everyoneHasCounted(room, engine.now())) {
+    closeRound(room, engine.now())
+  }
+
+  publishRoom(engine)
+}
+
 const reopenFloor = (
   roundId: RoundId,
   outbound: Outbound,
@@ -966,12 +1016,14 @@ const reopenFloor = (
 const start = ({
   challengeText,
   engine,
+  innerclockTargetSeconds,
   outbound,
   playStyle,
   slateKeys
 }: {
   challengeText: string | undefined
   engine: RoomEngine
+  innerclockTargetSeconds: number | undefined
   outbound: Outbound
   playStyle: PlayStyle
   slateKeys: readonly (string | null)[] | undefined
@@ -994,7 +1046,11 @@ const start = ({
     return
   }
 
-  void beginRound(engine, { challengeText, slateKeys })
+  void beginRound(engine, {
+    challengeText,
+    innerclockTargetSeconds,
+    slateKeys
+  })
 }
 
 /**
@@ -1152,11 +1208,13 @@ const answer = (
 const advance = ({
   challengeText,
   engine,
+  innerclockTargetSeconds,
   outbound,
   playStyle
 }: {
   challengeText: string | undefined
   engine: RoomEngine
+  innerclockTargetSeconds: number | undefined
   outbound: Outbound
   playStyle: PlayStyle | undefined
 }): void => {
@@ -1187,7 +1245,7 @@ const advance = ({
     return
   }
 
-  void beginRound(engine, { challengeText })
+  void beginRound(engine, { challengeText, innerclockTargetSeconds })
 }
 
 /**

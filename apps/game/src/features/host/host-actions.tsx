@@ -11,6 +11,7 @@ import type { TrackSource } from '@melee/protocol/track'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 
 import { FinishedActions } from './finished-actions'
+import type { InnerclockTarget } from './innerclock-target-field'
 import { LobbyActions } from './lobby-actions'
 import { RevealActions } from './reveal-actions'
 import { RoundActions } from './round-actions'
@@ -26,6 +27,8 @@ export type ChallengeLine = {
 export type HostActionsProps = {
   /** `null` unless the next round is a challenge. */
   challengeLine: ChallengeLine | null
+  /** `null` unless the next round is an inner clock. */
+  innerclockTarget: InnerclockTarget | null
   /** What the picker is showing, which `onOpenRound` commits — so it is what the next round will be built from. */
   draftSource: TrackSource | null
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
@@ -85,6 +88,7 @@ export const HostActions: React.FC<HostActionsProps> = (props) => {
       // A challenge is placed, or given to nobody, from the stage, beside the
       // teams it is placing.
       return props.view.round?.content.kind === 'reflex' ||
+        props.view.round?.content.kind === 'innerclock' ||
         props.view.round?.content.kind === 'challenge' ? null : (
         <RoundActions {...props} />
       )

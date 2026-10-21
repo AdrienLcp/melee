@@ -33,6 +33,7 @@ import {
 
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
@@ -47,6 +48,7 @@ import { TrackStrip } from '@/features/player/track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
+  innerclockContent,
   quizContent,
   reflexContent,
   worldmapContent
@@ -56,7 +58,9 @@ import { buzzFeedback } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import { useRoomCodeParam } from '@/infrastructure/router/navigation'
 import { AskedQuestion } from '@/presentation/components/asked-question'
+import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
+import { CountedBoard } from '@/presentation/components/counted-board'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MapPrompt } from '@/presentation/components/map-prompt'
@@ -338,6 +342,19 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   }
 
   if (view.phase === 'countdown' && round?.startsAt != null) {
+    const counting = innerclockContent(round)
+
+    // The target before the start, never over the last reveal: a count read
+    // while it is already running starts late.
+    if (counting !== null) {
+      return (
+        <section className='player-round notice'>
+          <CountPrompt isCompact targetSeconds={counting.targetSeconds} />
+          <Countdown clock={clock} target={round.startsAt} />
+        </section>
+      )
+    }
+
     // The next round counts in over the answer the room is still reading, and
     // the hold's groove runs on to the first note: one wait, not two.
     if (lastRevealed?.round != null) {
@@ -509,6 +526,10 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           />
         </section>
       )
+    }
+
+    if (round.content.kind === 'innerclock') {
+      return <InnerclockPress onPress={onBuzz} round={round} />
     }
 
     if (round.content.kind === 'reflex') {
@@ -846,6 +867,10 @@ const Revealed: React.FC<{
   // there is to know — and everyone's own number is on it.
   if (reflexContent(round) !== null) {
     return <ReactionBoard players={view.players} round={round} />
+  }
+
+  if (innerclockContent(round) !== null) {
+    return <CountedBoard players={view.players} round={round} />
   }
 
   if (worldmapContent(round) !== null) {

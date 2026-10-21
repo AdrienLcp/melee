@@ -325,13 +325,13 @@ export const EN_DICTIONARY = defineDictionary({
       rest: 'Nothing to install, no accounts: one code, one QR code, and the whole table is seated.'
     },
     presets: {
+      how: '{rounds:number} rounds, the game drawn before each · {teams:number} teams drawn at random',
+      open: 'Open the evening',
       teamNight: {
         name: 'Game night',
         tagline:
           'Quiz, blind test, buzzer, world map and challenges, played in teams'
-      },
-      how: '{rounds:number} rounds, the game drawn before each · {teams:number} teams drawn at random',
-      open: 'Open the evening'
+      }
     },
     promise: 'A shelf of games for the whole evening.',
     title: 'Mêlée'
@@ -493,6 +493,45 @@ export const EN_DICTIONARY = defineDictionary({
       right: 'Right',
       showAnswer: 'Show me the answer',
       wrong: 'Wrong'
+    }
+  },
+  innerclock: {
+    counted: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
+      }
+    }),
+    gap: defineTranslation('{seconds:number} s', {
+      number: {
+        seconds: {
+          maximumFractionDigits: 1,
+          minimumFractionDigits: 1,
+          signDisplay: 'exceptZero'
+        }
+      }
+    }),
+    go: 'Count.',
+    hint: 'One press, when you think you are there. Nothing will move until the end.',
+    home: {
+      description:
+        'The wall gives a number of seconds, then every screen goes still: no clock, nothing that moves. Count in your head and press once when you think you are there — the closer you stop, the more you score. The table is welcome to put you off out loud.'
+    },
+    name: 'Inner clock',
+    nobody: 'Nobody pressed',
+    press: 'Stop',
+    pressed: 'Stopped. Somebody is still counting.',
+    prompt: {
+      after: 'seconds in your head',
+      before: 'Count to'
+    },
+    scoring:
+      'Count in your head and press once. 3 points on the dot, nothing a quarter of the count away — the closer, the more.',
+    silent: 'never pressed',
+    tagline: 'Count in your head. Stop on the dot.',
+    target: {
+      description: 'Seconds, from 10 to 180. Shown large on the wall.',
+      draw: 'Draw another',
+      label: 'Count to'
     }
   },
   invite: {

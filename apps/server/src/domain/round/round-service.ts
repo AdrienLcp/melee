@@ -19,6 +19,7 @@ import {
 } from '@melee/core/blindtest/typed-answer'
 import { isTrackFinished } from '@melee/core/board/track-finish'
 import { shuffled } from '@melee/core/helpers/random'
+import { innerclockRoundDurationMs } from '@melee/core/innerclock/gap-pay'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import {
   drawFlipDelayMs,
@@ -65,6 +66,7 @@ import {
   seatsOf,
   toTeamViews
 } from '@/domain/room/team-service'
+import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { hasTurnsLeft, takeTurn } from '@/domain/round/team-turns'
 import { drawChoices } from '@/domain/round/track-pool'
@@ -1216,6 +1218,13 @@ export const closeRound = (room: Room, now: number): void => {
     return
   }
 
+  if (round.content.kind === 'innerclock') {
+    payInnerclockCounts(room)
+    revealRound(room, now)
+
+    return
+  }
+
   if (round.content.kind === 'slate') {
     markEveryItem(room)
     revealRound(room, now)
@@ -1310,9 +1319,10 @@ export const elapsedRoundMs = (round: Round, now: number): number =>
   )
 
 /**
- * How long the open round runs for, and the one game that answers it from
+ * How long the open round runs for, and the two games that answer it from
  * somewhere other than the round duration. The reflex race draws its wait per
- * round, so the only thing that knows how long the heat runs is the heat.
+ * round, so the only thing that knows how long the heat runs is the heat; the
+ * inner clock's cap is its target's, which the settings never hold either.
  */
 const openPhaseDurationMs = (room: Room): number | null => {
   const round = room.round
@@ -1321,9 +1331,14 @@ const openPhaseDurationMs = (room: Room): number | null => {
     return null
   }
 
-  return round.content.kind === 'reflex'
-    ? reflexRoundDurationMs(round.content.flipDelayMs)
-    : round.durationMs
+  switch (round.content.kind) {
+    case 'innerclock':
+      return innerclockRoundDurationMs(round.content.targetSeconds * 1_000)
+    case 'reflex':
+      return reflexRoundDurationMs(round.content.flipDelayMs)
+    default:
+      return round.durationMs
+  }
 }
 
 /**

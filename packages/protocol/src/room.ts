@@ -9,6 +9,7 @@ import {
   roundIdSchema,
   serverTimeSchema
 } from './identifiers'
+import { innerclockTargetSecondsSchema } from './innerclock'
 import {
   hostQuestionSchema,
   questionPromptSchema,
@@ -272,6 +273,22 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     text: z.string().nullable()
   }),
   z.object({
+    /**
+     * Whether the reader's own press has landed, and `false` for a reader
+     * with no seat. Not when: a player who knew they stopped at 74 s could say
+     * so aloud to the ones still counting.
+     */
+    hasPressed: z.boolean(),
+    kind: z.literal('innerclock'),
+    /**
+     * Every press, and `null` until the reveal — another seat's press seen
+     * mid-count is a cue. A count is `atServerTime` minus `round.startsAt`,
+     * worked out where it is shown, as a reflex reaction is.
+     */
+    revealedPresses: z.array(roundAnswerSchema).nullable(),
+    targetSeconds: innerclockTargetSecondsSchema
+  }),
+  z.object({
     /** Choice mode only, and shuffled per round. */
     choices: z.array(z.string()),
     kind: z.literal('quiz'),
@@ -502,6 +519,11 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('buzzer') }),
   /** Nothing to withhold: the server never learns who won until the host says. */
   z.object({ kind: z.literal('challenge') }),
+  /**
+   * Nothing at all, and on purpose: the console is a screen the room reads, so
+   * who has pressed stays off it until the reveal like everywhere else.
+   */
+  z.object({ kind: z.literal('innerclock') }),
   z.object({
     kind: z.literal('quiz'),
     question: hostQuestionSchema.nullable()
@@ -592,6 +614,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({ kind: z.literal('buzzer') }),
   z.object({ kind: z.literal('challenge') }),
+  z.object({ kind: z.literal('innerclock') }),
   z.object({ kind: z.literal('quiz') }),
   z.object({ kind: z.literal('reflex') }),
   z.object({

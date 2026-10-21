@@ -189,10 +189,10 @@ export type PlayerAttempts = {
 
 /**
  * One press, and when the server heard it. There is nothing else to record: the
- * whole of a reflex answer is that it happened, and the reaction it is worth is
- * the gap to the flip.
+ * whole of a reflex answer or an inner clock count is that it happened, and
+ * what it is worth is the gap to the flip or to the target.
  */
-export type ReflexPress = {
+export type StampedPress = {
   atServerTime: number
   playerId: PlayerId
 }
@@ -252,6 +252,12 @@ export type Round = {
         text: string | null
       }
     | {
+        kind: 'innerclock'
+        /** In arrival order; a count is measured from the round's `startsAt`. */
+        presses: StampedPress[]
+        targetSeconds: number
+      }
+    | {
         choices: string[]
         correctChoiceIndex: number | null
         kind: 'quiz'
@@ -267,7 +273,7 @@ export type Round = {
         flipDelayMs: number
         kind: 'reflex'
         /** In arrival order, which is the only ordering anyone can trust. */
-        presses: ReflexPress[]
+        presses: StampedPress[]
       }
     | {
         /** The item on the wall — always a closed one — and `null` until the first closes. */

@@ -153,6 +153,7 @@ const toHostContent = ({
 
   if (
     content.kind === 'challenge' ||
+    content.kind === 'innerclock' ||
     content.kind === 'reflex' ||
     content.kind === 'worldmap'
   ) {
@@ -343,6 +344,17 @@ const toContentView = ({
 
   if (content.kind === 'challenge') {
     return { kind: 'challenge', text: content.text }
+  }
+
+  if (content.kind === 'innerclock') {
+    return {
+      hasPressed:
+        youId !== null &&
+        content.presses.some((press) => press.playerId === youId),
+      kind: 'innerclock',
+      revealedPresses: round.revealed ? [...content.presses] : null,
+      targetSeconds: content.targetSeconds
+    }
   }
 
   if (content.kind === 'quiz') {

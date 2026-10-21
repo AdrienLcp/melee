@@ -81,7 +81,7 @@ before the reveal.
 | `wall.answer` | wall | `roundId`, `answer` — as `player.answer`, for the team on turn |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `playStyle` (optional) — `together`, `byTeam`, `solo` or `duel`; absent, everyone at once |
+| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent; `playStyle` (optional) — `together`, `byTeam`, `solo` or `duel`; absent, everyone at once |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
@@ -98,7 +98,7 @@ before the reveal.
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
 | `host.awardTeams` | host | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing |
-| `host.nextRound` | host | `playStyle` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound` |
+| `host.nextRound` | host | `playStyle` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound` |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
@@ -299,6 +299,26 @@ a round nobody typed one for, the one the reveal hold opened; the host and the
 wall arms carry nothing but the kind. The round is buzzer-moded because its
 host judges it, so no seat is granted under it — and `player.buzz` is refused
 `wrong_phase`, because the race is at the table.
+
+**The inner clock shows nothing, so its views carry nothing that moves.** The
+count rides the press that opens the round — `innerclockTargetSeconds`, drawn
+by the server when absent — and the round is `{ kind: 'innerclock',
+targetSeconds, hasPressed, revealedPresses }` on the public view. `hasPressed`
+is the reader's own and nobody else's; `revealedPresses` is `null` until the
+reveal, so no screen holds another seat's press, nor its own time, while
+anyone is still counting. The host and wall arms carry the kind alone, and
+`round.durationMs` is `null`, so no screen can draw a bar: the cap —
+`innerclockRoundDurationMs`, the target and a quarter — lives on the server's
+`openPhaseDurationMs`, as the reflex heat's does. A press is `player.buzz`,
+routed on the content: one per seat (`already_buzzed` after), stamped on
+arrival, and the count is `atServerTime − round.startsAt`. The round closes
+once every seat it opened on has pressed, or at the cap.
+
+No floor and no local scheduling: the error being measured is seconds, and a
+link's tens of milliseconds are noise under it. `startsAt` is on every view
+because the countdown needs it, so a scripted client could always work out
+the elapsed time — as a watch under the table could. The guarantee is that no
+screen shows it; the table polices the rest.
 
 `host.awardPlaces` carries the whole placement, and the server pays it:
 3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else

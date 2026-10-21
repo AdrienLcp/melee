@@ -5,7 +5,9 @@ import {
   ChevronDown,
   CircleQuestionMark,
   Copy,
+  Dice5,
   Earth,
+  Hourglass,
   Lock,
   type LucideIcon,
   type LucideProps,
@@ -60,6 +62,7 @@ export const MenuIcon = inFamily(Menu, {
   strokeLinecap: 'round',
   strokeWidth: 2.6
 })
+export const DiceIcon = inFamily(Dice5)
 export const MinusIcon = inFamily(Minus)
 export const MoveIcon = inFamily(ArrowRightLeft)
 export const RenameIcon = inFamily(Pencil)
@@ -73,6 +76,7 @@ const GAME_GLYPHS = {
   blindtest: Music,
   buzzer: BellRing,
   challenge: Trophy,
+  innerclock: Hourglass,
   quiz: CircleQuestionMark,
   reflex: Zap,
   slate: PencilLine,

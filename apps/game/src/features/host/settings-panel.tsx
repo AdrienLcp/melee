@@ -405,11 +405,12 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
       {/*
         Buzzer-moded and still nothing to hold: a reflex press takes no floor
-        and waits for no verdict, and nobody buzzes a challenge at all, so how
+        and waits for no verdict, nor does a count stopping, and nobody buzzes a challenge at all, so how
         long a player has to answer is a setting about a moment neither has.
       */}
       {mode.kind === 'buzzer' &&
         game?.kind !== 'reflex' &&
+        game?.kind !== 'innerclock' &&
         game?.kind !== 'challenge' && (
           <NumberChoice
             className='answer-window'

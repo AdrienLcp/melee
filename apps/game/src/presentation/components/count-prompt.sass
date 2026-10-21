@@ -1,0 +1,41 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  // A card face up under the inner clock's band, as the reflex wait is under
+  // its own, and with no groove: a round card's groove is its clock, and this
+  // round must show none.
+  .count-prompt
+    @include piece.card
+
+    align-items: center
+    background: linear-gradient(var(--spine-innerclock) 0 clamp(8px, 1.6cqmin, 14px), var(--card) 0)
+    color: var(--card-ink)
+    display: flex
+    flex-direction: column
+    max-width: 100%
+    padding: 0.9em 1.4em 0.8em
+    text-align: center
+
+    .before,
+    .after
+      @include typography.title
+
+      font-size: clamp(var(--text-l), 5.5cqmin, var(--text-3xl))
+      text-wrap: balance
+
+    .target
+      @include typography.monument
+      @include typography.numeric
+
+      font-size: clamp(var(--text-4xl), 30cqmin, 15rem)
+
+    &[data-compact]
+      padding: 0.5em 1em 0.45em
+
+      .before,
+      .after
+        font-size: clamp(var(--text-s), 4.5cqmin, var(--text-l))
+
+      .target
+        font-size: clamp(var(--text-2xl), 16cqmin, 6rem)

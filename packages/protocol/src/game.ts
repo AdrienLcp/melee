@@ -9,6 +9,7 @@ export const gameKinds = [
   'blindtest',
   'buzzer',
   'challenge',
+  'innerclock',
   'quiz',
   'reflex',
   'slate',
@@ -37,7 +38,8 @@ export const shelvedGames = [
   'reflex',
   'buzzer',
   'worldmap',
-  'challenge'
+  'challenge',
+  'innerclock'
 ] as const satisfies readonly GameKind[]
 
 export const shelvedGameSchema = z.enum(shelvedGames)
@@ -76,6 +78,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
    * the press that opens one rather than sitting in the settings.
    */
   z.object({ kind: z.literal('challenge') }),
+  /**
+   * Nothing of its own, like a challenge: the count changes every round, so it
+   * rides the press that opens one.
+   */
+  z.object({ kind: z.literal('innerclock') }),
   questionDrawSettingsSchema.extend({
     kind: z.literal('quiz'),
     /** How long a question stays open before the round times out. */
@@ -116,6 +123,7 @@ export type GameSettings = z.infer<typeof gameSettingsSchema>
 export type BlindtestSettings = Extract<GameSettings, { kind: 'blindtest' }>
 export type BuzzerSettings = Extract<GameSettings, { kind: 'buzzer' }>
 export type ChallengeSettings = Extract<GameSettings, { kind: 'challenge' }>
+export type InnerclockSettings = Extract<GameSettings, { kind: 'innerclock' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
@@ -133,12 +141,14 @@ export type WorldmapSettings = Extract<GameSettings, { kind: 'worldmap' }>
  * still having a clock: its wait is drawn per round, so the round knows how
  * long it runs and the settings never could. `openPhaseDurationMs` is where the
  * two are reconciled, and it is why this reads *the settings'* clock rather
- * than *the round's*.
+ * than *the round's*. The inner clock is the fourth of that kind: its cap is
+ * the round's target, and a bar draining towards it would be the answer.
  */
 export const roundDurationMsOf = (game: GameSettings | null): number | null =>
   game === null ||
   game.kind === 'buzzer' ||
   game.kind === 'challenge' ||
+  game.kind === 'innerclock' ||
   game.kind === 'reflex' ||
   game.kind === 'slate'
     ? null
@@ -169,6 +179,10 @@ export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
   kind: 'challenge'
 }
 
+export const DEFAULT_INNERCLOCK_SETTINGS: InnerclockSettings = {
+  kind: 'innerclock'
+}
+
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
   allowsAdultContent: false,
   categories: [],
@@ -197,6 +211,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   blindtest: DEFAULT_BLINDTEST_SETTINGS,
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
+  innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,

@@ -21,6 +21,11 @@ export const quizContent = (
 ): Extract<RoundContent, { kind: 'quiz' }> | null =>
   round?.content.kind === 'quiz' ? round.content : null
 
+export const innerclockContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'innerclock' }> | null =>
+  round?.content.kind === 'innerclock' ? round.content : null
+
 export const reflexContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'reflex' }> | null =>
@@ -76,6 +81,7 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
     // its sheets never leave it.
     case 'buzzer':
     case 'challenge':
+    case 'innerclock':
     case 'reflex':
     case 'slate':
     case 'worldmap':

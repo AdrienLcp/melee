@@ -334,6 +334,14 @@ export const challengeRound = (
   return content?.kind === 'challenge' ? content : null
 }
 
+export const innerclockRound = (
+  view: { round: RoundView | null } | null
+): Extract<RoundContent, { kind: 'innerclock' }> | null => {
+  const content = view?.round?.content
+
+  return content?.kind === 'innerclock' ? content : null
+}
+
 export const reflexRound = (
   view: { round: RoundView | null } | null
 ): Extract<RoundContent, { kind: 'reflex' }> | null => {

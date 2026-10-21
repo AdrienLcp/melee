@@ -24,7 +24,8 @@ export const offersAnswerMode = ({
  * `buzzer` is the mode that asks for one, and the reflex race is the exception
  * that shares that mode without needing it — being first *is* being right
  * there, so the heat settles on the presses and nobody reads anything out.
- * Keying on the mode alone caught it by accident of what it narrows to.
+ * Keying on the mode alone caught it by accident of what it narrows to. The
+ * inner clock is the second: its round settles on the presses' gap to a count.
  *
  * The slate is the one game judged by hand under another mode: its sheets are
  * typed and its host marks them, knowing every answer from the key.
@@ -38,7 +39,9 @@ export const isJudgedByHost = ({
 }: {
   game: GameKind | null
   mode: AnswerMode
-}): boolean => game === 'slate' || (mode === 'buzzer' && game !== 'reflex')
+}): boolean =>
+  game === 'slate' ||
+  (mode === 'buzzer' && game !== 'reflex' && game !== 'innerclock')
 
 /**
  * `isJudgedByHost` over the whole room: a table answering aloud is judged on

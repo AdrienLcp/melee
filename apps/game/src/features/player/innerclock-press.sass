@@ -1,0 +1,19 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .innerclock-press
+    .count-prompt
+      grid-area: card
+      justify-self: center
+
+    // The same step and the same reserved height before and after the press,
+    // so the line changing is the only thing that moves.
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin-inline: auto
+      max-width: var(--measure-hint)
+      min-height: 2.5em
+      text-align: center
+      text-wrap: balance

@@ -8,6 +8,7 @@ import {
   roundIdSchema,
   sessionIdSchema
 } from './identifiers'
+import { innerclockTargetSecondsSchema } from './innerclock'
 import {
   MAX_PLAYERS_PER_ROOM,
   playStyleSchema,
@@ -184,11 +185,15 @@ export const updateSettingsMessageSchema = z.object({
  * `challengeText` is what a challenge round asks the table to do, typed on the
  * console as it is launched. Ignored by every other game.
  *
+ * `innerclockTargetSeconds` is how long an inner clock round asks the table to
+ * count; absent, the server draws one. Ignored by every other game.
+ *
  * `playStyle` says who plays the rounds, see `nextRoundMessageSchema`; absent
  * is everyone at once.
  */
 export const startRoundMessageSchema = z.object({
   challengeText: challengeTextSchema.optional(),
+  innerclockTargetSeconds: innerclockTargetSecondsSchema.optional(),
   playStyle: playStyleSchema.optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
@@ -360,6 +365,8 @@ export const awardTeamsMessageSchema = z.object({
 export const nextRoundMessageSchema = z.object({
   /** The next round's challenge, when it is one — as on `host.startRound`. */
   challengeText: challengeTextSchema.optional(),
+  /** The next round's count, when it is one — as on `host.startRound`. */
+  innerclockTargetSeconds: innerclockTargetSecondsSchema.optional(),
   playStyle: playStyleSchema.optional(),
   type: z.literal('host.nextRound')
 })

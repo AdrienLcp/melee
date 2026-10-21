@@ -1,9 +1,11 @@
+import type { GameSettings } from '@melee/protocol/game'
 import type { WorldmapPlaces } from '@melee/protocol/worldmap'
 
-import type { WorldmapRoundTarget } from '@/domain/room/room'
+import type { Round, WorldmapRoundTarget } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
 import { releaseAbandonedSeats } from '@/domain/room/room-service'
 import { challengeContent } from '@/domain/round/challenge-round'
+import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   blindtestContent,
   closeRound,
@@ -82,14 +84,44 @@ const drawWorldmapTarget = (
     : { countryCode, kind: 'country' }
 }
 
+/** What a game the room already holds the question for opens its round on. */
+const servedContent = ({
+  challengeText,
+  game,
+  innerclockTargetSeconds,
+  slateKeys
+}: {
+  challengeText: string | undefined
+  game: Extract<
+    GameSettings,
+    { kind: 'buzzer' | 'challenge' | 'innerclock' | 'reflex' | 'slate' }
+  >
+  innerclockTargetSeconds: number | undefined
+  slateKeys: readonly (string | null)[]
+}): Round['content'] => {
+  switch (game.kind) {
+    case 'buzzer':
+      return { kind: 'buzzer' }
+    case 'challenge':
+      return challengeContent(challengeText)
+    case 'innerclock':
+      return innerclockContent(innerclockTargetSeconds)
+    case 'reflex':
+      return reflexContent()
+    case 'slate':
+      return slateContent({ keys: slateKeys, settings: game })
+  }
+}
+
 /**
  * The time-driven transitions live here rather than in the socket handler: a
  * countdown that lands, a round that runs out, and a reveal that moves on by
  * itself are not messages anyone sent, but they still end in a broadcast.
  *
  * `slateKeys` is what a host prepared before the evening, carried by the press
- * that opens the sheet, and `challengeText` what a challenge asks the table —
- * every path nobody pressed opens either with none.
+ * that opens the sheet, `challengeText` what a challenge asks the table and
+ * `innerclockTargetSeconds` how long a count runs — every path nobody pressed
+ * opens with none, and a count is then drawn.
  * `heldUntil` is the instant the hold promised the next clip, on the one path
  * that is the hold running out.
  */
@@ -98,10 +130,12 @@ export const beginRound = async (
   {
     challengeText,
     heldUntil = null,
+    innerclockTargetSeconds,
     slateKeys = []
   }: {
     challengeText?: string
     heldUntil?: number | null
+    innerclockTargetSeconds?: number
     slateKeys?: readonly (string | null)[]
   } = {}
 ): Promise<void> => {
@@ -146,22 +180,21 @@ export const beginRound = async (
 
   // No catalogue, no network call, and nothing to fail — the room already holds
   // the question, or there is no question at all. Opening the round is the whole
-  // of serving these four.
+  // of serving these five.
   if (
     game.kind === 'buzzer' ||
     game.kind === 'challenge' ||
+    game.kind === 'innerclock' ||
     game.kind === 'reflex' ||
     game.kind === 'slate'
   ) {
     openRound({
-      content:
-        game.kind === 'buzzer'
-          ? { kind: 'buzzer' }
-          : game.kind === 'challenge'
-            ? challengeContent(challengeText)
-            : game.kind === 'reflex'
-              ? reflexContent()
-              : slateContent({ keys: slateKeys, settings: game }),
+      content: servedContent({
+        challengeText,
+        game,
+        innerclockTargetSeconds,
+        slateKeys
+      }),
       id: newRoundId(),
       now: engine.now(),
       room,
