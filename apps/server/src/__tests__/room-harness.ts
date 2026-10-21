@@ -60,6 +60,7 @@ export const QUESTIONS = [
     category: 'geography',
     choiceOnly: false,
     decoys: ['Le Chasseral', 'Le Suchet', 'Le Roti'],
+    flag: null,
     id: 'question-1',
     note: 'Zermatt sits at its foot.',
     prompt: 'Which mountain is the most recognisable in Switzerland?'
@@ -70,6 +71,7 @@ export const QUESTIONS = [
     category: 'geography',
     choiceOnly: false,
     decoys: ['Trois', 'Deux', 'Une'],
+    flag: null,
     id: 'question-2',
     note: 'Romansh is the fourth, spoken in Grisons.',
     prompt: 'How many national languages does Switzerland have?'
@@ -80,9 +82,21 @@ export const QUESTIONS = [
     category: 'geography',
     choiceOnly: false,
     decoys: ['Lausanne', 'Geneva', 'Basel'],
+    flag: null,
     id: 'question-3',
     note: 'More than thirty per cent of its residents are foreign.',
     prompt: 'Which is the largest city in Switzerland by area?'
+  },
+  {
+    accepted: [],
+    answer: 'Japan',
+    category: 'flags',
+    choiceOnly: false,
+    decoys: ['Bangladesh', 'Palau', 'South Korea'],
+    flag: '0123456789ab.svg',
+    id: 'flag-en-0123456789ab',
+    note: null,
+    prompt: 'Whose flag is this?'
   }
 ]
 

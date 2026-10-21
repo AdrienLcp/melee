@@ -373,12 +373,12 @@ const toContentView = ({
   }
 
   if (content.kind === 'quiz') {
-    const { answer, category, id, note, prompt } = content.question
+    const { answer, category, flag, id, note, prompt } = content.question
 
     return {
       choices: content.choices,
       kind: 'quiz',
-      prompt: { category, id, prompt },
+      prompt: { category, flag, id, prompt },
       revealedQuestion: round.revealed ? { answer, note } : null
     }
   }

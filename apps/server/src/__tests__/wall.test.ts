@@ -199,9 +199,10 @@ describe('the wall', () => {
     )
     await waitFor(() => hostQuestion(host) !== null, 'the host to hold it')
 
-    for (const question of QUESTIONS) {
-      expect(transcriptOf(wall)).not.toContain(question.answer)
-      expect(transcriptOf(wall)).not.toContain(question.note)
+    for (const { answer, note } of QUESTIONS) {
+      for (const secret of note === null ? [answer] : [answer, note]) {
+        expect(transcriptOf(wall)).not.toContain(secret)
+      }
     }
   })
 
@@ -232,9 +233,10 @@ describe('the wall', () => {
 
     expect(wallView(wall)?.phase).toBe('playing')
 
-    for (const question of QUESTIONS) {
-      expect(transcriptOf(wall)).not.toContain(question.answer)
-      expect(transcriptOf(wall)).not.toContain(question.note)
+    for (const { answer, note } of QUESTIONS) {
+      for (const secret of note === null ? [answer] : [answer, note]) {
+        expect(transcriptOf(wall)).not.toContain(secret)
+      }
     }
   })
 

@@ -53,7 +53,9 @@ const BUZZER_QUIZ = quizWith(DEFAULT_MODE_SETTINGS.buzzer)
 const SECRETS = [
   ...QUESTIONS.map((question) => question.answer),
   ...QUESTIONS.flatMap((question) => question.accepted),
-  ...QUESTIONS.map((question) => question.note)
+  ...QUESTIONS.flatMap((question) =>
+    question.note === null ? [] : [question.note]
+  )
 ]
 
 const transcriptOf = (peer: { frames: { raw: string }[] }): string =>
@@ -334,6 +336,38 @@ describe('a quiz through the seam', () => {
     )
 
     expect(playerView(zoe)?.players[0]?.score).toBe(POINTS_FOR_A_CLAIM)
+  })
+
+  it('[quiz] draws a flag on every screen and says nobody’s', async () => {
+    const { host, zoe } = await roundInPlay({
+      ...TYPED_QUIZ,
+      roundCount: QUESTIONS.length
+    })
+
+    for (let round = 1; round < QUESTIONS.length; round++) {
+      await waitFor(
+        () => playerView(zoe)?.round?.index === round,
+        `round ${round} to open`
+      )
+      host.send({
+        roundId: playerView(zoe)?.round?.id ?? '',
+        type: 'host.reveal'
+      })
+      await waitFor(
+        () => playerView(zoe)?.phase === 'revealed',
+        `round ${round} to close`
+      )
+      host.send({ type: 'host.nextRound' })
+    }
+
+    await waitFor(
+      () => quizRound(playerView(zoe))?.prompt.category === 'flags',
+      'the flag to be asked'
+    )
+
+    expect(quizRound(playerView(zoe))?.prompt.flag).toBe('0123456789ab.svg')
+    expect(hostQuestion(host)?.flag).toBe('0123456789ab.svg')
+    expect(transcriptOf(zoe)).not.toContain('Japan')
   })
 
   it('[quiz] never asks the same question twice in one game', async () => {

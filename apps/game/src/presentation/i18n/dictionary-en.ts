@@ -1,6 +1,6 @@
 import { defineDictionary, defineTranslation } from '@adrienlcp/i18n'
 
-import { COUNTRY_NAMES_EN } from './country-names-en'
+import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 
 /**
  * The reference dictionary: its keys are the type every other locale is checked
@@ -839,6 +839,7 @@ export const EN_DICTIONARY = defineDictionary({
       arts: 'Arts and culture',
       cinema: 'Cinema',
       everyday: 'Everyday',
+      flags: 'Flags',
       geography: 'Geography',
       history: 'History',
       label: 'Which subjects',

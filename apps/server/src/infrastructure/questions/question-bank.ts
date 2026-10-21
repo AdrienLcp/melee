@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import {
+  flagFileSchema,
   type HostQuestion,
   hostQuestionSchema,
   type QuestionDrawSettings,
@@ -9,6 +10,7 @@ import {
 
 import { pickRandom } from '@melee/core/helpers/random'
 
+import { bankedFlagQuestions } from './flag-questions'
 import bank from './question-bank.json' with { type: 'json' }
 
 /**
@@ -30,6 +32,8 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
    * for a room that will show them and nowhere else — see `drawQuestion`.
    */
   choiceOnly: z.boolean(),
+  /** Absent from the bank's own rows, which are all text: only `flag-questions.ts` deals a flag. */
+  flag: flagFileSchema.nullable().default(null),
   /** Drawn only for a room whose host asked for it — see `allowsAdultContent`. */
   isAdult: z.boolean(),
   /**
@@ -60,7 +64,10 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
 let parsedBank: BankedQuestion[] | undefined
 
 export const bankedQuestions = (): BankedQuestion[] => {
-  parsedBank ??= z.array(bankedQuestionSchema).parse(bank.questions)
+  parsedBank ??= [
+    ...z.array(bankedQuestionSchema).parse(bank.questions),
+    ...bankedFlagQuestions()
+  ]
 
   return parsedBank
 }
@@ -95,6 +102,7 @@ export const hostQuestionOf = ({
   answer,
   category,
   decoys,
+  flag,
   id,
   note,
   prompt
@@ -103,6 +111,7 @@ export const hostQuestionOf = ({
   answer,
   category,
   decoys,
+  flag,
   id,
   note,
   prompt

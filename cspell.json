@@ -10,6 +10,7 @@
     ".playwright-mcp",
     "test-results",
     "playwright-report",
+    "apps/game/public/flags",
     "apps/server/scripts/*.json",
     "apps/server/src/infrastructure/questions/question-bank.json",
     "apps/server/src/infrastructure/questions/city-bank.ts"
@@ -33,6 +34,7 @@
         "apps/server/scripts/polyfact-source.test.ts",
         "apps/server/scripts/polyfact-source.ts",
         "apps/server/scripts/quotes-source.ts",
+        "apps/server/src/infrastructure/questions/flag-questions.ts",
         "apps/server/scripts/question-source.test.ts",
         "apps/server/scripts/vikidia-source.ts",
         "apps/server/scripts/wikidata-aliases.ts",
@@ -70,7 +72,7 @@
         "packages/core/src/slate/prepared-keys.test.ts",
         "packages/core/src/slate/sheet-marking.test.ts",
         "apps/game/src/presentation/components/map-prompt.sass",
-        "apps/game/src/presentation/i18n/country-names-fr.ts"
+        "packages/core/src/countries/country-names-fr.ts"
       ],
       "language": "en,en-GB,fr",
       "words": [

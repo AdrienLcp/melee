@@ -6,8 +6,8 @@ QR code, everyone else plays on whatever screen they have to hand, and the first
 to buzz names the track. **Buzzer** is the same unforgeable race for the floor
 with no content at all — the host brings the charade, the quiz on paper or the
 lesson. **Quiz** serves its own, two question banks bundled with the server in
-French and English. **Reflex** is a race against a screen about to change
-colour, **Slate** is a private answer sheet on every screen that the host
+French and English, and a flags rubric dealt from every country the map
+names. **Reflex** is a race against a screen about to change colour, **Slate** is a private answer sheet on every screen that the host
 marks on the wall, one item at a time, **World map** names a country that
 everyone puts a pawn on, paid by the kilometre to its border, **Challenge**
 is played at the table, off every screen: the wall shows the line the host
@@ -118,8 +118,10 @@ stopped by its process tree)
 Everything committed is **English** — code, comments, docs, commit messages, and
 every translation *key*; chat replies to the developer stay in French. The one
 exception is the dictionaries: French *values* live in
-`apps/game/src/presentation/i18n/` and nowhere else, which is why a user-visible
-string written into a component is a bug — see `.claude/rules/i18n.md`.
+`apps/game/src/presentation/i18n/` and nowhere else — save the country names in
+`packages/core/src/countries/`, which the server also deals as a flag's answer —
+which is why a user-visible string written into a component is a bug — see
+`.claude/rules/i18n.md`.
 
 ## Domain vocabulary
 

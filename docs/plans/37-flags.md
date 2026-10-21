@@ -1,13 +1,72 @@
 # 37 — Flags
 
-**To do.** Asked 21/10/2026 to widen the evening. A flag on the wall and on
-every screen, the room names the country.
+**Server half done 21/10/2026; the screens are owed.** A flag on the wall and
+on every screen, the room names the country. Asked 21/10/2026 to widen the
+evening.
 
-- Played in `choice` (four countries) and `typed`, scored by the clock like the
-  quiz; the country names already exist in both locales for the atlas's 236
-  codes (stage 34 e), so the content is the flags alone.
-- Flags as SVG bundled with the app, under a licence that allows it, checked
-  and credited on the credits page.
-- Decoys drawn from neighbours or look-alike flags (Chad and Romania, Ireland
-  and Ivory Coast), never four random countries: the difficulty is the decoys.
-- A difficulty switch: well-known countries only, or all of them.
+## A rubric, not a game
+
+The question stage 32 asked of quotes, and the same answer: the pool, the
+countdown, both answer modes, the speed bonus, the reveal and the board are the
+quiz's, unchanged. A flag is a quiz question whose prompt is a picture, whose
+answer is a country and whose decoys are three other flags. So it is a **tenth
+chip**, `flags`, and the well-known switch the quiz
+already has is the difficulty switch the stage asked for. A table that ticks
+it alone plays a flags round; one that ticks it beside history mixes them.
+
+## What was built (server)
+
+- **`flags` in `questionCategories`**, and `flag` on `questionPromptSchema` —
+  `null` on every other question, otherwise a file name `flagFileSchema` holds
+  to `<12 hex>.svg`, so a frame can never point a screen at another address.
+  `PROTOCOL_VERSION` 38: a player tab parses `category` as an enum.
+- **Dealt, not banked.** `question-bank.json` is rebuilt from a dozen downloads
+  over an hour, so the flags are not written into it: `flag-questions.ts` builds
+  the rows from `flag-bank.json` on the first draw and `bankedQuestions()`
+  appends them, which puts them under every corpus sweep the bank already runs
+  (winnable decoys, no repeated question, the forty well-known per subject).
+- **The country names moved to `packages/core/src/countries/`**, since the
+  server now grades a typed flag against the name the map prints. The app's
+  dictionaries import them from there. `accepted` adds what a table says
+  instead — *UK*, *Holland*, *RDC*, *Burma* — fourteen per language.
+- **`scripts/build-flag-bank.ts`** (`pnpm --filter @melee/server flags:build`)
+  copies `flag-icons` 7.6.0 (MIT) into `apps/game/public/flags/`, 2.1 MB,
+  and writes `flag-bank.json`: each country's file, its three decoys and whether
+  it is well known.
+- **A file is named after its content, never its country**, because the prompt
+  carries the name to every player. `flag-icons` also writes the country's code
+  into every id and class (`id="ar-c"`, `class="bo-fil1"`); those are rewritten
+  to `f-`, and `flag-questions.test.ts` reads every served file for a telling
+  prefix — seen red with one put back.
+- **Decoys look alike first, then live nearby**: 49 hand-written groups of
+  flags a table mixes up (Romania and Chad, Ireland and Ivory Coast, the Nordic
+  crosses, the pan-Arab and pan-African colours), then the nearest countries by
+  the centre of their longest outline on the atlas. Neighbours' flags share
+  colours often enough that the fill is rarely an easy one.
+- **229 flags of the map's 236.** Seven fly a flag `flag-icons` draws exactly
+  like another's — Heard Island (Australia), Saint Helena (the Union Jack), four
+  French collectivities (the tricolour) — or that 4:3 makes identical: Monaco
+  is Indonesia at another ratio. The build refuses any two files that hash
+  alike.
+- **77 well known**, chosen by hand: a flag is known from a pitch, a beach
+  towel or the news, which no traffic count measures.
+- **One prompt**, *Whose flag is this?* in both languages, because
+  territories fly flags too. `quiz-game.test.ts` plays a flag to a player and
+  checks the file arrives and the country never does — seen red with the answer
+  pasted into the prompt.
+
+## Owed (screens)
+
+- `AskedQuestion` draws `/flags/<file>` above the prompt on the console, the
+  wall and the player, at a size the room reads from across it; the alt text
+  must not name the country.
+- Ten chips in the subject strip: nine tiled 3 × 3 (stage 32), ten do not.
+- The credits page names `flag-icons` and its MIT licence.
+- The muted browser pass, both modes, both palettes.
+
+## Decisions for Adrien
+
+- A rubric rather than a game, as above.
+- Monaco is out rather than shown at 4:3 beside Indonesia.
+- The 77 well-known flags and the look-alike groups are a first pass, in
+  `build-flag-bank.ts`; a flag a table finds unfair is one line there.

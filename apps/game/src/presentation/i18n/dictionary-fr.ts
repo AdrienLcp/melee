@@ -1,6 +1,6 @@
 import { defineDictionary, defineTranslation } from '@adrienlcp/i18n'
 
-import { COUNTRY_NAMES_FR } from './country-names-fr'
+import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 
 /**
  * French typography puts a non-breaking space before `?`, `!` and `:`. Writing
@@ -766,6 +766,7 @@ export const FR_DICTIONARY = defineDictionary({
       arts: 'Arts et culture',
       cinema: 'Cinéma',
       everyday: 'Quotidien',
+      flags: 'Drapeaux',
       geography: 'Géographie',
       history: 'Histoire',
       label: 'Sur quels sujets',

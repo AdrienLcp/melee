@@ -245,14 +245,15 @@ describe('drawQuestion', () => {
    * The guard a room has against repeating itself is by id, and upstream
    * reissues a question under a new pack id often enough that the two banks
    * carried forty-one copies. The build drops them; this is what says so, and
-   * what goes red the day a new source is folded in without that pass.
+   * what goes red the day a new source is folded in without that pass. Every
+   * flag shares one sentence, so a flag's question is its sentence and its flag.
    */
   it('[bank] asks no question twice', () => {
     const seen = new Set<string>()
     const repeated: string[] = []
 
     for (const question of BANKED_QUESTIONS) {
-      const key = `${question.language}::${normalizeAnswer(question.prompt)}`
+      const key = `${question.language}::${question.flag ?? ''}::${normalizeAnswer(question.prompt)}`
 
       if (seen.has(key)) {
         repeated.push(question.id)

@@ -153,6 +153,7 @@ const choosingView = (question: Question) => ({
       kind: 'quiz',
       prompt: {
         category: question.category,
+        flag: null,
         id: question.id,
         prompt: question.prompt
       },
@@ -515,6 +516,7 @@ const QUIZ_WITH_A_NOTE = {
   kind: 'quiz',
   prompt: {
     category: LONGEST_PROMPT.category,
+    flag: null,
     id: LONGEST_PROMPT.id,
     prompt: LONGEST_PROMPT.prompt
   },

@@ -17,11 +17,13 @@ import { z } from 'zod'
  * line from a film, a series, a video game, an ad or a real person, and the
  * room names where it comes from. It is not folded into `cinema` because a
  * table asks for it by name, and a room that ticks it alone is playing a
- * different game from one that ticks cinema.
+ * different game from one that ticks cinema. `flags` is the other: a flag on
+ * every screen, and the room names whose it is.
  */
 export const questionCategories = [
   'history',
   'geography',
+  'flags',
   'science',
   'arts',
   'cinema',
@@ -59,9 +61,18 @@ export const questionSchema = z.object({
   note: z.string().nullable()
 })
 
+/**
+ * A flag the app serves under `/flags/`, named after its own content so the
+ * name a player is sent says nothing of the country. The shape is a file name
+ * and nothing else, so a frame can never point a screen at another address.
+ */
+export const flagFileSchema = z.string().regex(/^[0-9a-f]{12}\.svg$/)
+
 /** The half a player may see: the question without any of its answers. */
 export const questionPromptSchema = z.object({
   category: questionCategorySchema,
+  /** The flag the question is about, drawn beside the prompt; `null` on every other question. */
+  flag: flagFileSchema.nullable(),
   id: z.string().min(1),
   prompt: z.string().min(1)
 })

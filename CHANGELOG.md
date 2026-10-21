@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Server]` **Flags are served as a tenth quiz subject**, not yet drawn on
+  any screen, and `PROTOCOL_VERSION` goes to 38. A flag question names the
+  file to show — under a name taken from the drawing, never the country — and
+  asks whose it is, with three flags a table mixes up as the wrong answers:
+  Romania beside Chad, Ireland beside Ivory Coast. 229 countries and
+  territories, 77 of them kept by *well known only*; a typed answer takes
+  *UK*, *Holland* or *RDC* as well as the name on the map.
+
 - `[Game]` **Matchsticks, the ninth game, is on the shelf.** The puzzle is
   drawn in matches on every screen, each empty place a faint groove, with what
   the move must do said above it; the first to buzz points at a stick while
