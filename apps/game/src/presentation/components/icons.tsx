@@ -8,6 +8,7 @@ import {
   Dice5,
   Earth,
   Flame,
+  History,
   Hourglass,
   Lock,
   type LucideIcon,
@@ -82,6 +83,7 @@ const GAME_GLYPHS = {
   quiz: CircleQuestionMark,
   reflex: Zap,
   slate: PencilLine,
+  timeline: History,
   worldmap: Earth
 } as const satisfies Record<GameKind, LucideIcon>
 

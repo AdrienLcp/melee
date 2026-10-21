@@ -341,6 +341,25 @@ because the countdown needs it, so a scripted client could always work out
 the elapsed time — as a watch under the table could. The guarantee is that no
 screen shows it; the table polices the rest.
 
+**A timeline carries the events to everyone and their years to the console
+alone.** The public arm is `{ kind: 'timeline', events, revealedEvents }`:
+`events` is the round's five, `{ id, labels }` with a label per locale so each
+screen reads its own, in the shuffled order they were dealt; `revealedEvents`
+is `null` until the reveal, then the same events earliest first with their
+`year`. The host arm is `{ kind: 'timeline', datedEvents }`, earliest first with
+the years, and `null` while the console holds a seat — nobody judges, so a
+seat is offered. The wall arm is the kind alone. A seat answers with
+`player.answer` `{ kind: 'order', eventIds }`, every event once, earliest
+first: one shot, like a pick, in a mode of its own, `order`, which no other
+game offers. The grade is a fourth shape of verdict, `{ kind: 'order',
+swappedPairs }` — the pairs the order puts the wrong way round, so one
+neighbour swapped is one — priced by `@melee/core/timeline/order-pay`'s tiers
+(3, 2 and 1 `POINT`s for none, one and two) with the clock on top, capped by
+the tier as everywhere else. An order that is not the round's events once each
+is `invalid_message`. The bank is bundled with the server
+(`timeline-bank.json`), and a round's events are at least `MIN_YEARS_APART`
+from one another.
+
 `host.awardPlaces` carries the whole placement, and the server pays it:
 3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else
 nought. A placed team pays every seat it opened the round with the same, so

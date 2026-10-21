@@ -15,7 +15,8 @@ typed, and the host places the first three, **Inner clock** asks everyone
 to count to a number of seconds in their head, on screens where nothing moves,
 and pays each single press by its gap to the target, and **Matchsticks** draws
 an equation or a number in matches that one moved match fixes, judged by the
-host.
+host, and **Timeline** deals five dated events everyone puts in order on their
+own screen, the years held back until the reveal.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -24,7 +25,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `worldmap.*`, `challenge.*`, `innerclock.*`, `matchsticks.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `worldmap.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -150,8 +151,7 @@ which is why a user-visible string written into a component is a bug — see
   for, and the create-room request carries which. It must **not** collapse into
   `gameKinds`, because it is what refuses a game that is served but has no
   screens yet — every game so far spent a stage in that window, `reflex`
-  included, reachable only by a settings frame. The two lists happen to be equal
-  today and that is a coincidence, not a rule. The game owns
+  included, reachable only by a settings frame, and `timeline` sits in it now. The game owns
   its arm of `settings.game` and `round.content`, and narrows the answer mode
 - **Line-up** — the entries ticked for the evening, `settings.lineUp`, each
   a game's whole settings so two may share a game (a **variant**: a blind test
@@ -295,7 +295,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Nine games share the room, the QR code and every screen, and the rule that got
+Ten games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

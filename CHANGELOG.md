@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Server]` **The timeline is served**, not yet shelved, and
+  `PROTOCOL_VERSION` goes to 39. A round deals five dated events at least five
+  years apart from a bank of 214 written in French and English — history,
+  science, games, sport, film, music — and every seat sends them back in the
+  order it thinks they happened, once. The years stay on the console until the
+  reveal. All five right pays 3 points, one pair the wrong way round 2, two
+  pairs 1, and the clock adds to it. Its screens are the next session's.
+
 - **Flags are a tenth quiz subject**, and `PROTOCOL_VERSION` goes to 38. The
   flag is printed on the question card on every screen, large on the one the
   room reads, and stays on the card turned over beside the country at the

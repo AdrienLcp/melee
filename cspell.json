@@ -13,6 +13,7 @@
     "apps/game/public/flags",
     "apps/server/scripts/*.json",
     "apps/server/src/infrastructure/questions/question-bank.json",
+    "apps/server/src/infrastructure/questions/timeline-bank.json",
     "apps/server/src/infrastructure/questions/city-bank.ts"
   ],
   "import": ["@cspell/dict-fr-fr/cspell-ext.json"],

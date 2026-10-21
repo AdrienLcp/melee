@@ -15,6 +15,7 @@ export const gameKinds = [
   'quiz',
   'reflex',
   'slate',
+  'timeline',
   'worldmap'
 ] as const
 
@@ -120,6 +121,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     labels: slateLabelsSchema
   }),
   z.object({
+    kind: z.literal('timeline'),
+    /** How long the events stay up to be ordered before the round times out. */
+    roundDurationMs: z.number().int().min(15_000).max(120_000)
+  }),
+  z.object({
     kind: z.literal('worldmap'),
     /**
      * Defaulted so a host's setup remembered before French cities existed
@@ -142,6 +148,7 @@ export type MatchsticksSettings = Extract<GameSettings, { kind: 'matchsticks' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
+export type TimelineSettings = Extract<GameSettings, { kind: 'timeline' }>
 export type WorldmapSettings = Extract<GameSettings, { kind: 'worldmap' }>
 
 /**
@@ -221,6 +228,12 @@ export const DEFAULT_SLATE_SETTINGS: SlateSettings = {
   labels: []
 }
 
+/** Forty-five seconds, because five rows are dragged into place before anything is sent. */
+export const DEFAULT_TIMELINE_SETTINGS: TimelineSettings = {
+  kind: 'timeline',
+  roundDurationMs: 45_000
+}
+
 export const DEFAULT_WORLDMAP_SETTINGS: WorldmapSettings = {
   kind: 'worldmap',
   places: 'countries',
@@ -237,5 +250,6 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,
+  timeline: DEFAULT_TIMELINE_SETTINGS,
   worldmap: DEFAULT_WORLDMAP_SETTINGS
 }

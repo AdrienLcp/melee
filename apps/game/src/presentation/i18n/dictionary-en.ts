@@ -346,6 +346,7 @@ export const EN_DICTIONARY = defineDictionary({
       buzzer: 'First to buzz',
       choice: 'Four choices',
       label: 'How to answer',
+      order: 'Put them in order',
       point: 'Pin it on the map',
       typed: 'Type it'
     },
@@ -1170,6 +1171,11 @@ export const EN_DICTIONARY = defineDictionary({
       drawn: 'Waiting for the draw'
     },
     yours: 'Your team'
+  },
+  timeline: {
+    name: 'Timeline',
+    scoring:
+      'Five events to put in order, earliest first. All of them right is 3 points, one pair the wrong way round 2, two pairs 1 — and the clock adds to it.'
   },
   wall: {
     door: {

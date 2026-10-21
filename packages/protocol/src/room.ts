@@ -34,6 +34,7 @@ import {
   teamSchema,
   teamsSettingsSchema
 } from './team'
+import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
 import { hostTrackSchema, trackIdentitySchema } from './track'
 import { placementSchema, worldmapTargetSchema } from './worldmap'
 
@@ -50,7 +51,13 @@ export const roomPhases = [
 
 export const roomPhaseSchema = z.enum(roomPhases)
 
-export const answerModes = ['buzzer', 'choice', 'typed', 'point'] as const
+export const answerModes = [
+  'buzzer',
+  'choice',
+  'typed',
+  'point',
+  'order'
+] as const
 
 /**
  * How a round is answered. One game, not three: the pool, the audio, the
@@ -97,7 +104,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   }),
   z.object({ kind: z.literal('choice') }),
   z.object({ kind: z.literal('typed') }),
-  z.object({ kind: z.literal('point') })
+  z.object({ kind: z.literal('point') }),
+  z.object({ kind: z.literal('order') })
 ])
 
 /**
@@ -191,6 +199,7 @@ export const DEFAULT_BUZZER_MODE_SETTINGS: BuzzerModeSettings = {
 export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   buzzer: DEFAULT_BUZZER_MODE_SETTINGS,
   choice: { kind: 'choice' },
+  order: { kind: 'order' },
   point: { kind: 'point' },
   typed: { kind: 'typed' }
 }
@@ -376,6 +385,16 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      * every line was saved on its own as it was written.
      */
     yourSheet: z.array(slateLineSchema).nullable()
+  }),
+  z.object({
+    /**
+     * The round's events in the order they were dealt, which is shuffled and
+     * says nothing about the answer. No year rides here: a date is the answer.
+     */
+    events: z.array(timelineEventSchema),
+    kind: z.literal('timeline'),
+    /** The same events earliest first, each with its year, and `null` until the reveal. */
+    revealedEvents: z.array(datedTimelineEventSchema).nullable()
   }),
   z.object({
     kind: z.literal('worldmap'),
@@ -607,6 +626,11 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     /** Every seated player's count of filled lines — *Julie 12/26*. */
     progress: z.array(slateProgressSchema)
   }),
+  z.object({
+    /** The events earliest first with their years, and `null` while the console holds a seat. */
+    datedEvents: z.array(datedTimelineEventSchema).nullable(),
+    kind: z.literal('timeline')
+  }),
   /**
    * Nothing to withhold: the country is the question, and the markers stay off
    * every screen alike until the reveal.
@@ -669,6 +693,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('slate'),
     progress: z.array(slateProgressSchema)
   }),
+  z.object({ kind: z.literal('timeline') }),
   z.object({ kind: z.literal('worldmap') })
 ])
 

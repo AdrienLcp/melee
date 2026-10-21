@@ -27,6 +27,7 @@ import {
   worldmapContent
 } from '@/domain/round/round-service'
 import { slateContent } from '@/domain/round/slate-round'
+import { timelineContent } from '@/domain/round/timeline-round'
 import { drawPlayableTrack } from '@/domain/round/track-pool'
 import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
@@ -41,6 +42,10 @@ import {
   drawQuestion,
   hostQuestionOf
 } from '@/infrastructure/questions/question-bank'
+import {
+  drawTimelineEvents,
+  playedTimelineEventId
+} from '@/infrastructure/questions/timeline-bank'
 
 import { unseatConsolesThatMustJudge } from './host-judging'
 import { sendError } from './outbound'
@@ -269,6 +274,36 @@ export const beginRound = async (
 
     openRound({
       content,
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'timeline') {
+    const events = drawTimelineEvents({ playedIds: room.playedContentIds })
+
+    if (events === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'Not enough unplayed events are left to deal a round'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    for (const { id } of events) {
+      room.playedContentIds.add(playedTimelineEventId(id))
+    }
+
+    openRound({
+      content: timelineContent(events),
       id: newRoundId(),
       now: engine.now(),
       room,

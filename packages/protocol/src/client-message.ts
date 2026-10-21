@@ -29,6 +29,7 @@ import {
   teamNameSchema,
   teamVerdictSchema
 } from './team'
+import { timelineOrderSchema } from './timeline'
 import { geoPointSchema } from './worldmap'
 
 /**
@@ -129,6 +130,11 @@ export const answerMessageSchema = z.object({
       kind: z.literal('point'),
       /** Where the marker was confirmed. One shot, like a pick. */
       point: geoPointSchema
+    }),
+    z.object({
+      /** Every event of the round, earliest first. One shot, like a pick. */
+      eventIds: timelineOrderSchema,
+      kind: z.literal('order')
     })
   ]),
   roundId: roundIdSchema,

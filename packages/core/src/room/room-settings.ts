@@ -35,6 +35,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   reflex: 10,
   /** One sheet is the evening's tasting; a second is a second tasting, and the host can say so. */
   slate: 1,
+  /** Five events a round, so eight rounds deal forty and leave the bank plenty. */
+  timeline: 8,
   worldmap: 10
 }
 
@@ -60,6 +62,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   quiz: 'choice',
   reflex: 'buzzer',
   slate: 'typed',
+  timeline: 'order',
   worldmap: 'point'
 }
 
@@ -148,6 +151,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   quiz: null,
   reflex: null,
   slate: null,
+  timeline: null,
   worldmap: null
 }
 

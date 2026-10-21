@@ -22,6 +22,7 @@ import type {
 } from '@melee/protocol/room'
 import type { Award, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
+import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 import type { GeoPoint, Placement } from '@melee/protocol/worldmap'
 
@@ -297,6 +298,11 @@ export type Round = {
         revealedKeyIndexes: Set<number>
         /** Every player's lines by item index; a cleared line is deleted, never stored empty. */
         sheets: Map<PlayerId, Map<number, string>>
+      }
+    | {
+        /** In the order they were dealt, which is shuffled; the years are the answer. */
+        events: DatedTimelineEvent[]
+        kind: 'timeline'
       }
     | {
         kind: 'worldmap'

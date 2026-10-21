@@ -56,7 +56,7 @@ export const answerModeLabelKey = (
 ): BuiltKey<`host.answerMode.${AnswerMode}`> => `host.answerMode.${mode}`
 
 /** The modes a game answering against its own question offers. */
-type ServedMode = Exclude<AnswerMode, 'point'>
+type ServedMode = Exclude<AnswerMode, 'order' | 'point'>
 
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
@@ -85,15 +85,18 @@ export const scoringKey = ({
   | 'matchsticks.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
+  | 'timeline.scoring'
   | 'worldmap.scoring'
   | 'worldmap.scoringCities'
   | `blindtest.scoring.${ServedMode}`
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
 > => {
-  // A marker is the map's alone, so the two games that serve their own
-  // question are never in `point`; reading it as a pick keeps the switch total.
-  const served = answerMode === 'point' ? 'choice' : answerMode
+  // A marker is the map's alone and an order the timeline's, so the two games
+  // that serve their own question are never in either; reading them as a pick
+  // keeps the switch total.
+  const served =
+    answerMode === 'point' || answerMode === 'order' ? 'choice' : answerMode
 
   switch (game) {
     case 'blindtest':
@@ -116,6 +119,8 @@ export const scoringKey = ({
       return 'reflex.scoring'
     case 'slate':
       return 'slate.scoring'
+    case 'timeline':
+      return 'timeline.scoring'
     case 'worldmap':
       return asksForACity ? 'worldmap.scoringCities' : 'worldmap.scoring'
   }

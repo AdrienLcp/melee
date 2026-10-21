@@ -120,10 +120,23 @@ export const distanceVerdictSchema = z.object({
   target: worldmapTargetKindSchema
 })
 
+/**
+ * How far an order sent for a timeline is from the true one, counted as the
+ * pairs of events it puts the wrong way round. One neighbour swapped is one
+ * pair, which reads as the near miss it is where a count of events in their
+ * right place would call it two wrong; `@melee/core/timeline/order-pay` prices
+ * it. The server counts it; no screen ever sends one.
+ */
+export const orderVerdictSchema = z.object({
+  kind: z.literal('order'),
+  swappedPairs: z.number().int().nonnegative()
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
-  distanceVerdictSchema
+  distanceVerdictSchema,
+  orderVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -144,4 +157,5 @@ export type Verdict = z.infer<typeof verdictSchema>
 export type HalvesVerdict = z.infer<typeof halvesVerdictSchema>
 export type SingleVerdict = z.infer<typeof singleVerdictSchema>
 export type DistanceVerdict = z.infer<typeof distanceVerdictSchema>
+export type OrderVerdict = z.infer<typeof orderVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

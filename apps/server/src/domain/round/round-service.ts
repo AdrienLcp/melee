@@ -69,6 +69,7 @@ import {
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { hasTurnsLeft, takeTurn } from '@/domain/round/team-turns'
+import { gradeOrder } from '@/domain/round/timeline-round'
 import { drawChoices } from '@/domain/round/track-pool'
 
 export type VerdictRejection = Extract<
@@ -891,6 +892,7 @@ const byFirstScored = (one: PlayerAttempts, other: PlayerAttempts): number =>
 type Attempt =
   | { kind: 'choice'; choiceIndex: number }
   | { kind: 'point'; point: GeoPoint }
+  | { kind: 'order'; eventIds: string[] }
   | TypedAttempt
 
 /**
@@ -938,7 +940,19 @@ const grade = ({
         }
   }
 
-  if (attempt.kind === 'point') {
+  if (content.kind === 'timeline') {
+    if (attempt.kind !== 'order') {
+      return null
+    }
+
+    const verdict = gradeOrder({ content, eventIds: attempt.eventIds })
+
+    return verdict === null
+      ? null
+      : { said: attempt.eventIds.join(' < '), verdict }
+  }
+
+  if (attempt.kind === 'point' || attempt.kind === 'order') {
     return null
   }
 

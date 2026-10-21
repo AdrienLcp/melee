@@ -21,7 +21,7 @@ paid on every read of the code.
 | Library | The only module allowed to import it |
 |---|---|
 | Deezer (via `fetch`) | `apps/server/src/infrastructure/music/deezer-client.ts` |
-| the question banks | `apps/server/src/infrastructure/questions/question-bank.ts`, which folds in the flags `flag-questions.ts` deals from `flag-bank.json` |
+| the question banks | `apps/server/src/infrastructure/questions/question-bank.ts`, which folds in the flags `flag-questions.ts` deals from `flag-bank.json`; the timeline's dated events are `timeline-bank.ts`'s, from `timeline-bank.json` |
 | `flag-icons` | `apps/server/scripts/build-flag-bank.ts` — it copies each flag into `apps/game/public/flags/` under a name taken from its content, so nothing at runtime reads the package |
 | `world-atlas`, `topojson-client`, `d3-geo` (server) | `apps/server/src/infrastructure/map/world-atlas.ts` — the outlines a marker is measured against; `@melee/core/worldmap/distance` does the sphere's arithmetic on the rings it hands over, with no library |
 | `world-atlas`, `topojson-client`, `d3-geo` (browser) | `apps/game/src/infrastructure/map/world-geometry.ts` — the same 1:50m outlines projected in Equal Earth for the world and conic conformal for France (`mapGeometryOf(region)`), and the inverse that turns a spot on the map into the point a pawn sends; reached only through the map's lazy chunk (`presentation/components/lazy-world-map.tsx`) |

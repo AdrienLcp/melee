@@ -68,6 +68,7 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     case 'matchsticks':
     case 'reflex':
     case 'slate':
+    case 'timeline':
     case 'worldmap':
       return []
     case 'quiz':

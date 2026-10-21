@@ -95,6 +95,8 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
       return content.solutions !== null
     case 'quiz':
       return content.question !== null
+    case 'timeline':
+      return content.datedEvents !== null
   }
 }
 

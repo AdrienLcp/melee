@@ -320,6 +320,7 @@ export const FR_DICTIONARY = defineDictionary({
       buzzer: 'Le premier qui buzze',
       choice: 'Quatre propositions',
       label: 'Comment on répond',
+      order: 'Dans l’ordre',
       point: 'On pointe sur la carte',
       typed: 'On tape'
     },
@@ -1070,6 +1071,11 @@ export const FR_DICTIONARY = defineDictionary({
       drawn: 'En attente du tirage'
     },
     yours: 'Ton équipe'
+  },
+  timeline: {
+    name: 'Frise chronologique',
+    scoring:
+      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 3 points, une paire inversée 2, deux paires 1 — et le chrono s’y ajoute.'
   },
   wall: {
     door: {

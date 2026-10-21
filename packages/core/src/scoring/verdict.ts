@@ -10,6 +10,7 @@ import {
   type Verdict
 } from '@melee/protocol/scoring'
 
+import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
 import { isBullseye, pointsForDistance } from '../worldmap/distance-tiers'
 
 /**
@@ -40,6 +41,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForDistance(verdict)
   }
 
+  if (verdict.kind === 'order') {
+    return pointsForOrder(verdict)
+  }
+
   return (
     (verdict.titleCorrect ? POINTS_PER_TITLE : 0) +
     (verdict.artistCorrect ? POINTS_PER_ARTIST : 0)
@@ -62,6 +67,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return verdict.isCorrect
     case 'distance':
       return isBullseye(verdict)
+    case 'order':
+      return isPerfectOrder(verdict)
   }
 }
 
@@ -85,9 +92,13 @@ export const pointsForSimultaneousAnswer = ({
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
-  // A marker is priced by how far it fell, which the mode has no say in.
+  // A marker and an order are priced by how far they are, which the mode has no say in.
   if (verdict.kind === 'distance') {
     return pointsForDistance(verdict)
+  }
+
+  if (verdict.kind === 'order') {
+    return pointsForOrder(verdict)
   }
 
   if (verdict.kind === 'single') {

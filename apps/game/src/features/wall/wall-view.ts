@@ -39,6 +39,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, keys: content.filledCounts.map(() => null) }
     }
 
+    case 'timeline': {
+      return { ...content, datedEvents: null }
+    }
+
     default: {
       return content
     }

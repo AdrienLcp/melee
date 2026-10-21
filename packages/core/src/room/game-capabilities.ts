@@ -25,6 +25,9 @@ const TYPED_ONLY = ['typed'] as const satisfies readonly AnswerMode[]
  */
 const POINT_ONLY = ['point'] as const satisfies readonly AnswerMode[]
 
+/** The timeline is answered by sending the events in an order, which the server counts. */
+const ORDER_ONLY = ['order'] as const satisfies readonly AnswerMode[]
+
 /**
  * What the shell may ask of a game without knowing anything else about it —
  * the questions an evening of several games puts to each one it draws.
@@ -98,6 +101,13 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsAloud: false,
         playsInTeamTurns: false,
         wallAnswers: false
+      }
+    case 'timeline':
+      return {
+        answerModes: ORDER_ONLY,
+        playsAloud: false,
+        playsInTeamTurns: true,
+        wallAnswers: true
       }
     case 'worldmap':
       return {

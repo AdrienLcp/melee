@@ -1,0 +1,1928 @@
+[
+  {
+    "id": "pompeii",
+    "labels": {
+      "en": "Vesuvius buries Pompeii",
+      "fr": "Le Vésuve ensevelit Pompéi"
+    },
+    "theme": "history",
+    "year": 79
+  },
+  {
+    "id": "charlemagne-crowned",
+    "labels": {
+      "en": "Charlemagne crowned emperor",
+      "fr": "Charlemagne sacré empereur"
+    },
+    "theme": "history",
+    "year": 800
+  },
+  {
+    "id": "battle-of-hastings",
+    "labels": {
+      "en": "Battle of Hastings",
+      "fr": "Bataille d'Hastings"
+    },
+    "theme": "history",
+    "year": 1066
+  },
+  {
+    "id": "magna-carta",
+    "labels": {
+      "en": "Magna Carta sealed",
+      "fr": "Signature de la Magna Carta"
+    },
+    "theme": "history",
+    "year": 1215
+  },
+  {
+    "id": "black-death",
+    "labels": {
+      "en": "The Black Death reaches Europe",
+      "fr": "La peste noire arrive en Europe"
+    },
+    "theme": "history",
+    "year": 1347
+  },
+  {
+    "id": "joan-of-arc-burned",
+    "labels": {
+      "en": "Joan of Arc burned at the stake",
+      "fr": "Jeanne d'Arc meurt sur le bûcher"
+    },
+    "theme": "history",
+    "year": 1431
+  },
+  {
+    "id": "fall-of-constantinople",
+    "labels": {
+      "en": "Fall of Constantinople",
+      "fr": "Chute de Constantinople"
+    },
+    "theme": "history",
+    "year": 1453
+  },
+  {
+    "id": "columbus-americas",
+    "labels": {
+      "en": "Columbus reaches the Americas",
+      "fr": "Christophe Colomb atteint l'Amérique"
+    },
+    "theme": "history",
+    "year": 1492
+  },
+  {
+    "id": "marignan",
+    "labels": {
+      "en": "Battle of Marignano",
+      "fr": "Bataille de Marignan"
+    },
+    "theme": "history",
+    "year": 1515
+  },
+  {
+    "id": "luther-theses",
+    "labels": {
+      "en": "Luther posts his 95 Theses",
+      "fr": "Luther affiche ses 95 thèses"
+    },
+    "theme": "history",
+    "year": 1517
+  },
+  {
+    "id": "galileo-telescope",
+    "labels": {
+      "en": "Galileo turns his telescope to the sky",
+      "fr": "Galilée pointe sa lunette vers le ciel"
+    },
+    "theme": "science",
+    "year": 1609
+  },
+  {
+    "id": "great-fire-of-london",
+    "labels": {
+      "en": "Great Fire of London",
+      "fr": "Grand incendie de Londres"
+    },
+    "theme": "history",
+    "year": 1666
+  },
+  {
+    "id": "newton-principia",
+    "labels": {
+      "en": "Newton publishes his laws of gravitation",
+      "fr": "Newton publie ses lois de la gravitation"
+    },
+    "theme": "science",
+    "year": 1687
+  },
+  {
+    "id": "louis-xiv-dies",
+    "labels": {
+      "en": "Death of Louis XIV",
+      "fr": "Mort de Louis XIV"
+    },
+    "theme": "history",
+    "year": 1715
+  },
+  {
+    "id": "mozart-born",
+    "labels": {
+      "en": "Mozart is born",
+      "fr": "Naissance de Mozart"
+    },
+    "theme": "music",
+    "year": 1756
+  },
+  {
+    "id": "us-independence",
+    "labels": {
+      "en": "US Declaration of Independence",
+      "fr": "Déclaration d'indépendance des États-Unis"
+    },
+    "theme": "history",
+    "year": 1776
+  },
+  {
+    "id": "bastille",
+    "labels": {
+      "en": "Storming of the Bastille",
+      "fr": "Prise de la Bastille"
+    },
+    "theme": "history",
+    "year": 1789
+  },
+  {
+    "id": "louis-xvi-executed",
+    "labels": {
+      "en": "Louis XVI executed",
+      "fr": "Exécution de Louis XVI"
+    },
+    "theme": "history",
+    "year": 1793
+  },
+  {
+    "id": "first-vaccination",
+    "labels": {
+      "en": "Jenner performs the first vaccination",
+      "fr": "Jenner réalise la première vaccination"
+    },
+    "theme": "science",
+    "year": 1796
+  },
+  {
+    "id": "napoleon-crowned",
+    "labels": {
+      "en": "Napoleon crowned emperor",
+      "fr": "Napoléon sacré empereur"
+    },
+    "theme": "history",
+    "year": 1804
+  },
+  {
+    "id": "waterloo",
+    "labels": {
+      "en": "Battle of Waterloo",
+      "fr": "Bataille de Waterloo"
+    },
+    "theme": "history",
+    "year": 1815
+  },
+  {
+    "id": "napoleon-dies",
+    "labels": {
+      "en": "Napoleon dies on Saint Helena",
+      "fr": "Mort de Napoléon à Sainte-Hélène"
+    },
+    "theme": "history",
+    "year": 1821
+  },
+  {
+    "id": "beethoven-ninth",
+    "labels": {
+      "en": "Premiere of Beethoven's Ninth Symphony",
+      "fr": "Création de la Neuvième Symphonie de Beethoven"
+    },
+    "theme": "music",
+    "year": 1824
+  },
+  {
+    "id": "france-abolishes-slavery",
+    "labels": {
+      "en": "France abolishes slavery",
+      "fr": "Abolition de l'esclavage en France"
+    },
+    "theme": "history",
+    "year": 1848
+  },
+  {
+    "id": "origin-of-species",
+    "labels": {
+      "en": "Darwin publishes On the Origin of Species",
+      "fr": "Darwin publie L'Origine des espèces"
+    },
+    "theme": "science",
+    "year": 1859
+  },
+  {
+    "id": "les-miserables-novel",
+    "labels": {
+      "en": "Victor Hugo publishes Les Misérables",
+      "fr": "Victor Hugo publie Les Misérables"
+    },
+    "theme": "culture",
+    "year": 1862
+  },
+  {
+    "id": "lincoln-assassinated",
+    "labels": {
+      "en": "Abraham Lincoln assassinated",
+      "fr": "Assassinat d'Abraham Lincoln"
+    },
+    "theme": "history",
+    "year": 1865
+  },
+  {
+    "id": "suez-canal",
+    "labels": {
+      "en": "Suez Canal opens",
+      "fr": "Ouverture du canal de Suez"
+    },
+    "theme": "history",
+    "year": 1869
+  },
+  {
+    "id": "telephone-patent",
+    "labels": {
+      "en": "Bell patents the telephone",
+      "fr": "Graham Bell fait breveter le téléphone"
+    },
+    "theme": "science",
+    "year": 1876
+  },
+  {
+    "id": "edison-light-bulb",
+    "labels": {
+      "en": "Edison demonstrates his light bulb",
+      "fr": "Edison présente son ampoule électrique"
+    },
+    "theme": "science",
+    "year": 1879
+  },
+  {
+    "id": "rabies-vaccine",
+    "labels": {
+      "en": "Pasteur's rabies vaccine saves a boy",
+      "fr": "Pasteur vaccine un enfant contre la rage"
+    },
+    "theme": "science",
+    "year": 1885
+  },
+  {
+    "id": "statue-of-liberty",
+    "labels": {
+      "en": "Statue of Liberty dedicated",
+      "fr": "Inauguration de la statue de la Liberté"
+    },
+    "theme": "history",
+    "year": 1886
+  },
+  {
+    "id": "eiffel-tower",
+    "labels": {
+      "en": "Eiffel Tower opens",
+      "fr": "Inauguration de la tour Eiffel"
+    },
+    "theme": "history",
+    "year": 1889
+  },
+  {
+    "id": "lumiere-screening",
+    "labels": {
+      "en": "The Lumière brothers' first public screening",
+      "fr": "Première projection publique des frères Lumière"
+    },
+    "theme": "tech",
+    "year": 1895
+  },
+  {
+    "id": "first-modern-olympics",
+    "labels": {
+      "en": "First modern Olympic Games in Athens",
+      "fr": "Premiers Jeux olympiques modernes à Athènes"
+    },
+    "theme": "sport",
+    "year": 1896
+  },
+  {
+    "id": "radioactivity",
+    "labels": {
+      "en": "Becquerel discovers radioactivity",
+      "fr": "Becquerel découvre la radioactivité"
+    },
+    "theme": "science",
+    "year": 1896
+  },
+  {
+    "id": "paris-metro",
+    "labels": {
+      "en": "First Paris Metro line opens",
+      "fr": "Première ligne du métro de Paris"
+    },
+    "theme": "history",
+    "year": 1900
+  },
+  {
+    "id": "first-nobel-prizes",
+    "labels": {
+      "en": "First Nobel Prizes awarded",
+      "fr": "Premiers prix Nobel"
+    },
+    "theme": "science",
+    "year": 1901
+  },
+  {
+    "id": "curie-first-nobel",
+    "labels": {
+      "en": "Marie Curie wins her first Nobel Prize",
+      "fr": "Marie Curie reçoit son premier prix Nobel"
+    },
+    "theme": "science",
+    "year": 1903
+  },
+  {
+    "id": "first-tour-de-france",
+    "labels": {
+      "en": "First Tour de France",
+      "fr": "Premier Tour de France"
+    },
+    "theme": "sport",
+    "year": 1903
+  },
+  {
+    "id": "wright-brothers",
+    "labels": {
+      "en": "The Wright brothers' first flight",
+      "fr": "Premier vol des frères Wright"
+    },
+    "theme": "science",
+    "year": 1903
+  },
+  {
+    "id": "special-relativity",
+    "labels": {
+      "en": "Einstein publishes special relativity",
+      "fr": "Einstein publie la relativité restreinte"
+    },
+    "theme": "science",
+    "year": 1905
+  },
+  {
+    "id": "amundsen-south-pole",
+    "labels": {
+      "en": "Amundsen reaches the South Pole",
+      "fr": "Amundsen atteint le pôle Sud"
+    },
+    "theme": "science",
+    "year": 1911
+  },
+  {
+    "id": "mona-lisa-stolen",
+    "labels": {
+      "en": "The Mona Lisa is stolen from the Louvre",
+      "fr": "Vol de La Joconde au Louvre"
+    },
+    "theme": "culture",
+    "year": 1911
+  },
+  {
+    "id": "titanic-sinks",
+    "labels": {
+      "en": "The Titanic sinks",
+      "fr": "Naufrage du Titanic"
+    },
+    "theme": "history",
+    "year": 1912
+  },
+  {
+    "id": "panama-canal",
+    "labels": {
+      "en": "Panama Canal opens",
+      "fr": "Ouverture du canal de Panama"
+    },
+    "theme": "history",
+    "year": 1914
+  },
+  {
+    "id": "october-revolution",
+    "labels": {
+      "en": "October Revolution in Russia",
+      "fr": "Révolution d'Octobre en Russie"
+    },
+    "theme": "history",
+    "year": 1917
+  },
+  {
+    "id": "ww1-armistice",
+    "labels": {
+      "en": "Armistice ends the First World War",
+      "fr": "Armistice de la Première Guerre mondiale"
+    },
+    "theme": "history",
+    "year": 1918
+  },
+  {
+    "id": "treaty-of-versailles",
+    "labels": {
+      "en": "Treaty of Versailles signed",
+      "fr": "Signature du traité de Versailles"
+    },
+    "theme": "history",
+    "year": 1919
+  },
+  {
+    "id": "jazz-singer",
+    "labels": {
+      "en": "The Jazz Singer, the first talking picture",
+      "fr": "Le Chanteur de jazz, premier film parlant"
+    },
+    "theme": "film",
+    "year": 1927
+  },
+  {
+    "id": "lindbergh-atlantic",
+    "labels": {
+      "en": "Lindbergh flies solo across the Atlantic",
+      "fr": "Lindbergh traverse l'Atlantique en solitaire"
+    },
+    "theme": "science",
+    "year": 1927
+  },
+  {
+    "id": "penicillin",
+    "labels": {
+      "en": "Fleming discovers penicillin",
+      "fr": "Fleming découvre la pénicilline"
+    },
+    "theme": "science",
+    "year": 1928
+  },
+  {
+    "id": "steamboat-willie",
+    "labels": {
+      "en": "Mickey Mouse's first appearance",
+      "fr": "Première apparition de Mickey Mouse"
+    },
+    "theme": "film",
+    "year": 1928
+  },
+  {
+    "id": "first-tintin",
+    "labels": {
+      "en": "Tintin's first adventure",
+      "fr": "Première aventure de Tintin"
+    },
+    "theme": "culture",
+    "year": 1929
+  },
+  {
+    "id": "wall-street-crash",
+    "labels": {
+      "en": "Wall Street Crash",
+      "fr": "Krach de Wall Street"
+    },
+    "theme": "history",
+    "year": 1929
+  },
+  {
+    "id": "first-football-world-cup",
+    "labels": {
+      "en": "First football World Cup",
+      "fr": "Première Coupe du monde de football"
+    },
+    "theme": "sport",
+    "year": 1930
+  },
+  {
+    "id": "empire-state-building",
+    "labels": {
+      "en": "Empire State Building opens",
+      "fr": "Inauguration de l'Empire State Building"
+    },
+    "theme": "culture",
+    "year": 1931
+  },
+  {
+    "id": "jesse-owens",
+    "labels": {
+      "en": "Jesse Owens wins four golds in Berlin",
+      "fr": "Jesse Owens gagne quatre médailles d'or à Berlin"
+    },
+    "theme": "sport",
+    "year": 1936
+  },
+  {
+    "id": "golden-gate-bridge",
+    "labels": {
+      "en": "Golden Gate Bridge opens",
+      "fr": "Ouverture du Golden Gate Bridge"
+    },
+    "theme": "culture",
+    "year": 1937
+  },
+  {
+    "id": "hindenburg",
+    "labels": {
+      "en": "The Hindenburg airship bursts into flames",
+      "fr": "Le dirigeable Hindenburg prend feu"
+    },
+    "theme": "science",
+    "year": 1937
+  },
+  {
+    "id": "snow-white",
+    "labels": {
+      "en": "Snow White, Disney's first feature film",
+      "fr": "Blanche-Neige, premier long métrage de Disney"
+    },
+    "theme": "film",
+    "year": 1937
+  },
+  {
+    "id": "gone-with-the-wind",
+    "labels": {
+      "en": "Gone with the Wind opens",
+      "fr": "Sortie d'Autant en emporte le vent"
+    },
+    "theme": "film",
+    "year": 1939
+  },
+  {
+    "id": "appeal-of-18-june",
+    "labels": {
+      "en": "De Gaulle's Appeal of 18 June",
+      "fr": "Appel du 18 Juin du général de Gaulle"
+    },
+    "theme": "history",
+    "year": 1940
+  },
+  {
+    "id": "little-prince",
+    "labels": {
+      "en": "The Little Prince is published",
+      "fr": "Publication du Petit Prince"
+    },
+    "theme": "culture",
+    "year": 1943
+  },
+  {
+    "id": "d-day",
+    "labels": {
+      "en": "D-Day landings in Normandy",
+      "fr": "Débarquement en Normandie"
+    },
+    "theme": "history",
+    "year": 1944
+  },
+  {
+    "id": "ww2-ends",
+    "labels": {
+      "en": "End of the Second World War",
+      "fr": "Fin de la Seconde Guerre mondiale"
+    },
+    "theme": "history",
+    "year": 1945
+  },
+  {
+    "id": "first-cannes-festival",
+    "labels": {
+      "en": "First Cannes Film Festival",
+      "fr": "Premier Festival de Cannes"
+    },
+    "theme": "film",
+    "year": 1946
+  },
+  {
+    "id": "dna-structure",
+    "labels": {
+      "en": "The structure of DNA is described",
+      "fr": "Découverte de la structure de l'ADN"
+    },
+    "theme": "science",
+    "year": 1953
+  },
+  {
+    "id": "elizabeth-ii-crowned",
+    "labels": {
+      "en": "Coronation of Elizabeth II",
+      "fr": "Couronnement d'Elizabeth II"
+    },
+    "theme": "history",
+    "year": 1953
+  },
+  {
+    "id": "everest-summit",
+    "labels": {
+      "en": "First ascent of Mount Everest",
+      "fr": "Première ascension de l'Everest"
+    },
+    "theme": "science",
+    "year": 1953
+  },
+  {
+    "id": "first-eurovision",
+    "labels": {
+      "en": "First Eurovision Song Contest",
+      "fr": "Premier concours Eurovision de la chanson"
+    },
+    "theme": "music",
+    "year": 1956
+  },
+  {
+    "id": "heartbreak-hotel",
+    "labels": {
+      "en": "Elvis Presley releases Heartbreak Hotel",
+      "fr": "Elvis Presley sort Heartbreak Hotel"
+    },
+    "theme": "music",
+    "year": 1956
+  },
+  {
+    "id": "sputnik",
+    "labels": {
+      "en": "Sputnik 1 is launched",
+      "fr": "Lancement de Spoutnik 1"
+    },
+    "theme": "science",
+    "year": 1957
+  },
+  {
+    "id": "fifth-republic",
+    "labels": {
+      "en": "France's Fifth Republic founded",
+      "fr": "Naissance de la Ve République"
+    },
+    "theme": "history",
+    "year": 1958
+  },
+  {
+    "id": "lego-brick",
+    "labels": {
+      "en": "The LEGO brick is patented",
+      "fr": "Brevet de la brique LEGO"
+    },
+    "theme": "culture",
+    "year": 1958
+  },
+  {
+    "id": "barbie-doll",
+    "labels": {
+      "en": "The Barbie doll is launched",
+      "fr": "Naissance de la poupée Barbie"
+    },
+    "theme": "culture",
+    "year": 1959
+  },
+  {
+    "id": "first-asterix",
+    "labels": {
+      "en": "Asterix's first appearance",
+      "fr": "Première apparition d'Astérix"
+    },
+    "theme": "culture",
+    "year": 1959
+  },
+  {
+    "id": "non-je-ne-regrette-rien",
+    "labels": {
+      "en": "Édith Piaf sings Non, je ne regrette rien",
+      "fr": "Édith Piaf chante Non, je ne regrette rien"
+    },
+    "theme": "music",
+    "year": 1960
+  },
+  {
+    "id": "psycho",
+    "labels": {
+      "en": "Psycho opens",
+      "fr": "Sortie de Psychose"
+    },
+    "theme": "film",
+    "year": 1960
+  },
+  {
+    "id": "gagarin",
+    "labels": {
+      "en": "Yuri Gagarin, first person in space",
+      "fr": "Youri Gagarine, premier homme dans l'espace"
+    },
+    "theme": "science",
+    "year": 1961
+  },
+  {
+    "id": "algeria-independence",
+    "labels": {
+      "en": "Algeria wins independence",
+      "fr": "Indépendance de l'Algérie"
+    },
+    "theme": "history",
+    "year": 1962
+  },
+  {
+    "id": "cuban-missile-crisis",
+    "labels": {
+      "en": "Cuban Missile Crisis",
+      "fr": "Crise des missiles de Cuba"
+    },
+    "theme": "history",
+    "year": 1962
+  },
+  {
+    "id": "dr-no",
+    "labels": {
+      "en": "The first James Bond film opens",
+      "fr": "Sortie du premier James Bond"
+    },
+    "theme": "film",
+    "year": 1962
+  },
+  {
+    "id": "jfk-assassinated",
+    "labels": {
+      "en": "John F. Kennedy assassinated",
+      "fr": "Assassinat de John F. Kennedy"
+    },
+    "theme": "history",
+    "year": 1963
+  },
+  {
+    "id": "please-please-me",
+    "labels": {
+      "en": "The Beatles' first album",
+      "fr": "Premier album des Beatles"
+    },
+    "theme": "music",
+    "year": 1963
+  },
+  {
+    "id": "la-grande-vadrouille",
+    "labels": {
+      "en": "La Grande Vadrouille opens",
+      "fr": "Sortie de La Grande Vadrouille"
+    },
+    "theme": "film",
+    "year": 1966
+  },
+  {
+    "id": "heart-transplant",
+    "labels": {
+      "en": "First human heart transplant",
+      "fr": "Première greffe du cœur"
+    },
+    "theme": "science",
+    "year": 1967
+  },
+  {
+    "id": "may-68",
+    "labels": {
+      "en": "May 1968 protests in France",
+      "fr": "Mai 68"
+    },
+    "theme": "history",
+    "year": 1968
+  },
+  {
+    "id": "moon-landing",
+    "labels": {
+      "en": "First steps on the Moon",
+      "fr": "Premiers pas sur la Lune"
+    },
+    "theme": "science",
+    "year": 1969
+  },
+  {
+    "id": "woodstock",
+    "labels": {
+      "en": "Woodstock festival",
+      "fr": "Festival de Woodstock"
+    },
+    "theme": "music",
+    "year": 1969
+  },
+  {
+    "id": "apollo-13",
+    "labels": {
+      "en": "The Apollo 13 mission",
+      "fr": "Mission Apollo 13"
+    },
+    "theme": "science",
+    "year": 1970
+  },
+  {
+    "id": "beatles-split",
+    "labels": {
+      "en": "The Beatles break up",
+      "fr": "Séparation des Beatles"
+    },
+    "theme": "music",
+    "year": 1970
+  },
+  {
+    "id": "first-email",
+    "labels": {
+      "en": "First email sent",
+      "fr": "Envoi du premier e-mail"
+    },
+    "theme": "tech",
+    "year": 1971
+  },
+  {
+    "id": "pong",
+    "labels": {
+      "en": "Pong is released",
+      "fr": "Sortie du jeu Pong"
+    },
+    "theme": "tech",
+    "year": 1972
+  },
+  {
+    "id": "the-godfather",
+    "labels": {
+      "en": "The Godfather opens",
+      "fr": "Sortie du Parrain"
+    },
+    "theme": "film",
+    "year": 1972
+  },
+  {
+    "id": "montparnasse-tower",
+    "labels": {
+      "en": "Montparnasse Tower opens",
+      "fr": "Inauguration de la tour Montparnasse"
+    },
+    "theme": "culture",
+    "year": 1973
+  },
+  {
+    "id": "sydney-opera-house",
+    "labels": {
+      "en": "Sydney Opera House opens",
+      "fr": "Inauguration de l'opéra de Sydney"
+    },
+    "theme": "culture",
+    "year": 1973
+  },
+  {
+    "id": "abba-waterloo",
+    "labels": {
+      "en": "ABBA win Eurovision with Waterloo",
+      "fr": "ABBA gagne l'Eurovision avec Waterloo"
+    },
+    "theme": "music",
+    "year": 1974
+  },
+  {
+    "id": "rubiks-cube",
+    "labels": {
+      "en": "The Rubik's Cube is invented",
+      "fr": "Invention du Rubik's Cube"
+    },
+    "theme": "culture",
+    "year": 1974
+  },
+  {
+    "id": "rumble-in-the-jungle",
+    "labels": {
+      "en": "Ali v Foreman, the Rumble in the Jungle",
+      "fr": "Ali contre Foreman à Kinshasa"
+    },
+    "theme": "sport",
+    "year": 1974
+  },
+  {
+    "id": "bohemian-rhapsody",
+    "labels": {
+      "en": "Queen release Bohemian Rhapsody",
+      "fr": "Queen sort Bohemian Rhapsody"
+    },
+    "theme": "music",
+    "year": 1975
+  },
+  {
+    "id": "jaws",
+    "labels": {
+      "en": "Jaws opens",
+      "fr": "Sortie des Dents de la mer"
+    },
+    "theme": "film",
+    "year": 1975
+  },
+  {
+    "id": "veil-law",
+    "labels": {
+      "en": "France legalises abortion (Veil law)",
+      "fr": "Loi Veil sur l'IVG"
+    },
+    "theme": "history",
+    "year": 1975
+  },
+  {
+    "id": "comaneci-perfect-ten",
+    "labels": {
+      "en": "Nadia Comăneci scores the first perfect 10",
+      "fr": "Nadia Comăneci obtient le premier 10 parfait"
+    },
+    "theme": "sport",
+    "year": 1976
+  },
+  {
+    "id": "concorde-service",
+    "labels": {
+      "en": "Concorde's first commercial flight",
+      "fr": "Premier vol commercial du Concorde"
+    },
+    "theme": "science",
+    "year": 1976
+  },
+  {
+    "id": "centre-pompidou",
+    "labels": {
+      "en": "Centre Pompidou opens",
+      "fr": "Ouverture du Centre Pompidou"
+    },
+    "theme": "culture",
+    "year": 1977
+  },
+  {
+    "id": "elvis-dies",
+    "labels": {
+      "en": "Death of Elvis Presley",
+      "fr": "Mort d'Elvis Presley"
+    },
+    "theme": "music",
+    "year": 1977
+  },
+  {
+    "id": "star-wars",
+    "labels": {
+      "en": "Star Wars opens",
+      "fr": "Sortie de La Guerre des étoiles"
+    },
+    "theme": "film",
+    "year": 1977
+  },
+  {
+    "id": "john-paul-ii-elected",
+    "labels": {
+      "en": "John Paul II elected pope",
+      "fr": "Jean-Paul II élu pape"
+    },
+    "theme": "history",
+    "year": 1978
+  },
+  {
+    "id": "les-bronzes",
+    "labels": {
+      "en": "Les Bronzés opens",
+      "fr": "Sortie des Bronzés"
+    },
+    "theme": "film",
+    "year": 1978
+  },
+  {
+    "id": "test-tube-baby",
+    "labels": {
+      "en": "Birth of the first test-tube baby",
+      "fr": "Naissance du premier bébé-éprouvette"
+    },
+    "theme": "science",
+    "year": 1978
+  },
+  {
+    "id": "walkman",
+    "labels": {
+      "en": "Sony launches the Walkman",
+      "fr": "Sortie du Walkman de Sony"
+    },
+    "theme": "tech",
+    "year": 1979
+  },
+  {
+    "id": "lennon-killed",
+    "labels": {
+      "en": "John Lennon is killed",
+      "fr": "Assassinat de John Lennon"
+    },
+    "theme": "music",
+    "year": 1980
+  },
+  {
+    "id": "pac-man",
+    "labels": {
+      "en": "Pac-Man is released",
+      "fr": "Sortie de Pac-Man"
+    },
+    "theme": "tech",
+    "year": 1980
+  },
+  {
+    "id": "bob-marley-dies",
+    "labels": {
+      "en": "Death of Bob Marley",
+      "fr": "Mort de Bob Marley"
+    },
+    "theme": "music",
+    "year": 1981
+  },
+  {
+    "id": "death-penalty-abolished",
+    "labels": {
+      "en": "France abolishes the death penalty",
+      "fr": "Abolition de la peine de mort en France"
+    },
+    "theme": "history",
+    "year": 1981
+  },
+  {
+    "id": "mitterrand-elected",
+    "labels": {
+      "en": "François Mitterrand elected president",
+      "fr": "François Mitterrand élu président"
+    },
+    "theme": "history",
+    "year": 1981
+  },
+  {
+    "id": "tgv-service",
+    "labels": {
+      "en": "The TGV enters service",
+      "fr": "Mise en service du TGV"
+    },
+    "theme": "science",
+    "year": 1981
+  },
+  {
+    "id": "audio-cd",
+    "labels": {
+      "en": "The first audio CD goes on sale",
+      "fr": "Sortie du premier CD audio"
+    },
+    "theme": "tech",
+    "year": 1982
+  },
+  {
+    "id": "et",
+    "labels": {
+      "en": "E.T. the Extra-Terrestrial opens",
+      "fr": "Sortie d'E.T. l'extra-terrestre"
+    },
+    "theme": "film",
+    "year": 1982
+  },
+  {
+    "id": "first-fete-de-la-musique",
+    "labels": {
+      "en": "First Fête de la Musique",
+      "fr": "Première Fête de la musique"
+    },
+    "theme": "music",
+    "year": 1982
+  },
+  {
+    "id": "thriller",
+    "labels": {
+      "en": "Michael Jackson releases Thriller",
+      "fr": "Michael Jackson sort Thriller"
+    },
+    "theme": "music",
+    "year": 1982
+  },
+  {
+    "id": "noah-roland-garros",
+    "labels": {
+      "en": "Yannick Noah wins the French Open",
+      "fr": "Yannick Noah gagne Roland-Garros"
+    },
+    "theme": "sport",
+    "year": 1983
+  },
+  {
+    "id": "tetris",
+    "labels": {
+      "en": "Tetris is created",
+      "fr": "Invention de Tetris"
+    },
+    "theme": "tech",
+    "year": 1984
+  },
+  {
+    "id": "back-to-the-future",
+    "labels": {
+      "en": "Back to the Future opens",
+      "fr": "Sortie de Retour vers le futur"
+    },
+    "theme": "film",
+    "year": 1985
+  },
+  {
+    "id": "live-aid",
+    "labels": {
+      "en": "Live Aid concerts",
+      "fr": "Concerts Live Aid"
+    },
+    "theme": "music",
+    "year": 1985
+  },
+  {
+    "id": "super-mario-bros",
+    "labels": {
+      "en": "Super Mario Bros. is released",
+      "fr": "Sortie de Super Mario Bros."
+    },
+    "theme": "tech",
+    "year": 1985
+  },
+  {
+    "id": "challenger",
+    "labels": {
+      "en": "Space Shuttle Challenger explodes",
+      "fr": "Explosion de la navette Challenger"
+    },
+    "theme": "science",
+    "year": 1986
+  },
+  {
+    "id": "chernobyl",
+    "labels": {
+      "en": "Chernobyl disaster",
+      "fr": "Catastrophe de Tchernobyl"
+    },
+    "theme": "history",
+    "year": 1986
+  },
+  {
+    "id": "hand-of-god",
+    "labels": {
+      "en": "Maradona's “Hand of God” goal",
+      "fr": "La « main de Dieu » de Maradona"
+    },
+    "theme": "sport",
+    "year": 1986
+  },
+  {
+    "id": "celine-dion-eurovision",
+    "labels": {
+      "en": "Céline Dion wins Eurovision",
+      "fr": "Céline Dion gagne l'Eurovision"
+    },
+    "theme": "music",
+    "year": 1988
+  },
+  {
+    "id": "berlin-wall-falls",
+    "labels": {
+      "en": "Fall of the Berlin Wall",
+      "fr": "Chute du mur de Berlin"
+    },
+    "theme": "history",
+    "year": 1989
+  },
+  {
+    "id": "game-boy",
+    "labels": {
+      "en": "The Game Boy is released",
+      "fr": "Sortie de la Game Boy"
+    },
+    "theme": "tech",
+    "year": 1989
+  },
+  {
+    "id": "louvre-pyramid",
+    "labels": {
+      "en": "The Louvre Pyramid opens",
+      "fr": "Inauguration de la pyramide du Louvre"
+    },
+    "theme": "culture",
+    "year": 1989
+  },
+  {
+    "id": "the-simpsons",
+    "labels": {
+      "en": "First episode of The Simpsons",
+      "fr": "Premier épisode des Simpson"
+    },
+    "theme": "film",
+    "year": 1989
+  },
+  {
+    "id": "hubble-launch",
+    "labels": {
+      "en": "Hubble Space Telescope launched",
+      "fr": "Lancement du télescope Hubble"
+    },
+    "theme": "science",
+    "year": 1990
+  },
+  {
+    "id": "mandela-freed",
+    "labels": {
+      "en": "Nelson Mandela freed from prison",
+      "fr": "Libération de Nelson Mandela"
+    },
+    "theme": "history",
+    "year": 1990
+  },
+  {
+    "id": "first-website",
+    "labels": {
+      "en": "The first website goes online",
+      "fr": "Mise en ligne du premier site web"
+    },
+    "theme": "tech",
+    "year": 1991
+  },
+  {
+    "id": "freddie-mercury-dies",
+    "labels": {
+      "en": "Death of Freddie Mercury",
+      "fr": "Mort de Freddie Mercury"
+    },
+    "theme": "music",
+    "year": 1991
+  },
+  {
+    "id": "nevermind",
+    "labels": {
+      "en": "Nirvana release Nevermind",
+      "fr": "Nirvana sort Nevermind"
+    },
+    "theme": "music",
+    "year": 1991
+  },
+  {
+    "id": "albertville-games",
+    "labels": {
+      "en": "Albertville Winter Olympics",
+      "fr": "Jeux olympiques d'hiver d'Albertville"
+    },
+    "theme": "sport",
+    "year": 1992
+  },
+  {
+    "id": "disneyland-paris",
+    "labels": {
+      "en": "Disneyland Paris opens",
+      "fr": "Ouverture de Disneyland Paris"
+    },
+    "theme": "culture",
+    "year": 1992
+  },
+  {
+    "id": "first-sms",
+    "labels": {
+      "en": "First text message sent",
+      "fr": "Envoi du premier SMS"
+    },
+    "theme": "tech",
+    "year": 1992
+  },
+  {
+    "id": "maastricht-treaty",
+    "labels": {
+      "en": "Maastricht Treaty signed",
+      "fr": "Signature du traité de Maastricht"
+    },
+    "theme": "history",
+    "year": 1992
+  },
+  {
+    "id": "jurassic-park",
+    "labels": {
+      "en": "Jurassic Park opens",
+      "fr": "Sortie de Jurassic Park"
+    },
+    "theme": "film",
+    "year": 1993
+  },
+  {
+    "id": "les-visiteurs",
+    "labels": {
+      "en": "Les Visiteurs opens",
+      "fr": "Sortie des Visiteurs"
+    },
+    "theme": "film",
+    "year": 1993
+  },
+  {
+    "id": "channel-tunnel",
+    "labels": {
+      "en": "Channel Tunnel opens",
+      "fr": "Ouverture du tunnel sous la Manche"
+    },
+    "theme": "history",
+    "year": 1994
+  },
+  {
+    "id": "cobain-dies",
+    "labels": {
+      "en": "Death of Kurt Cobain",
+      "fr": "Mort de Kurt Cobain"
+    },
+    "theme": "music",
+    "year": 1994
+  },
+  {
+    "id": "friends",
+    "labels": {
+      "en": "First episode of Friends",
+      "fr": "Premier épisode de Friends"
+    },
+    "theme": "film",
+    "year": 1994
+  },
+  {
+    "id": "playstation",
+    "labels": {
+      "en": "The first PlayStation is released",
+      "fr": "Sortie de la première PlayStation"
+    },
+    "theme": "tech",
+    "year": 1994
+  },
+  {
+    "id": "senna-dies",
+    "labels": {
+      "en": "Death of Ayrton Senna",
+      "fr": "Mort d'Ayrton Senna"
+    },
+    "theme": "sport",
+    "year": 1994
+  },
+  {
+    "id": "the-lion-king",
+    "labels": {
+      "en": "The Lion King opens",
+      "fr": "Sortie du Roi lion"
+    },
+    "theme": "film",
+    "year": 1994
+  },
+  {
+    "id": "chirac-elected",
+    "labels": {
+      "en": "Jacques Chirac elected president",
+      "fr": "Jacques Chirac élu président"
+    },
+    "theme": "history",
+    "year": 1995
+  },
+  {
+    "id": "toy-story",
+    "labels": {
+      "en": "Toy Story, the first computer-animated feature",
+      "fr": "Toy Story, premier long métrage en images de synthèse"
+    },
+    "theme": "film",
+    "year": 1995
+  },
+  {
+    "id": "windows-95",
+    "labels": {
+      "en": "Windows 95 is released",
+      "fr": "Sortie de Windows 95"
+    },
+    "theme": "tech",
+    "year": 1995
+  },
+  {
+    "id": "dolly-the-sheep",
+    "labels": {
+      "en": "Dolly the sheep is born",
+      "fr": "Naissance de la brebis Dolly"
+    },
+    "theme": "science",
+    "year": 1996
+  },
+  {
+    "id": "pokemon-games",
+    "labels": {
+      "en": "The first Pokémon games are released",
+      "fr": "Sortie des premiers jeux Pokémon"
+    },
+    "theme": "tech",
+    "year": 1996
+  },
+  {
+    "id": "daft-punk-homework",
+    "labels": {
+      "en": "Daft Punk release Homework",
+      "fr": "Daft Punk sort Homework"
+    },
+    "theme": "music",
+    "year": 1997
+  },
+  {
+    "id": "diana-dies",
+    "labels": {
+      "en": "Death of Princess Diana",
+      "fr": "Mort de Lady Diana"
+    },
+    "theme": "history",
+    "year": 1997
+  },
+  {
+    "id": "first-harry-potter-book",
+    "labels": {
+      "en": "The first Harry Potter book is published",
+      "fr": "Publication du premier Harry Potter"
+    },
+    "theme": "culture",
+    "year": 1997
+  },
+  {
+    "id": "titanic-film",
+    "labels": {
+      "en": "Titanic, the film, opens",
+      "fr": "Sortie du film Titanic"
+    },
+    "theme": "film",
+    "year": 1997
+  },
+  {
+    "id": "france-world-cup-1998",
+    "labels": {
+      "en": "France win their first football World Cup",
+      "fr": "La France gagne sa première Coupe du monde"
+    },
+    "theme": "sport",
+    "year": 1998
+  },
+  {
+    "id": "google-founded",
+    "labels": {
+      "en": "Google is founded",
+      "fr": "Création de Google"
+    },
+    "theme": "tech",
+    "year": 1998
+  },
+  {
+    "id": "iss-first-module",
+    "labels": {
+      "en": "First module of the ISS launched",
+      "fr": "Lancement du premier module de l'ISS"
+    },
+    "theme": "science",
+    "year": 1998
+  },
+  {
+    "id": "the-matrix",
+    "labels": {
+      "en": "The Matrix opens",
+      "fr": "Sortie de Matrix"
+    },
+    "theme": "film",
+    "year": 1999
+  },
+  {
+    "id": "amelie",
+    "labels": {
+      "en": "Amélie opens",
+      "fr": "Sortie du Fabuleux Destin d'Amélie Poulain"
+    },
+    "theme": "film",
+    "year": 2001
+  },
+  {
+    "id": "first-harry-potter-film",
+    "labels": {
+      "en": "The first Harry Potter film opens",
+      "fr": "Sortie du premier film Harry Potter"
+    },
+    "theme": "film",
+    "year": 2001
+  },
+  {
+    "id": "september-11",
+    "labels": {
+      "en": "September 11 attacks",
+      "fr": "Attentats du 11 septembre"
+    },
+    "theme": "history",
+    "year": 2001
+  },
+  {
+    "id": "wikipedia",
+    "labels": {
+      "en": "Wikipedia is launched",
+      "fr": "Lancement de Wikipédia"
+    },
+    "theme": "tech",
+    "year": 2001
+  },
+  {
+    "id": "euro-cash",
+    "labels": {
+      "en": "Euro notes and coins enter circulation",
+      "fr": "Arrivée des pièces et billets en euros"
+    },
+    "theme": "history",
+    "year": 2002
+  },
+  {
+    "id": "federer-first-wimbledon",
+    "labels": {
+      "en": "Roger Federer wins his first Wimbledon",
+      "fr": "Roger Federer gagne son premier Wimbledon"
+    },
+    "theme": "sport",
+    "year": 2003
+  },
+  {
+    "id": "facebook",
+    "labels": {
+      "en": "Facebook is launched",
+      "fr": "Lancement de Facebook"
+    },
+    "theme": "tech",
+    "year": 2004
+  },
+  {
+    "id": "indian-ocean-tsunami",
+    "labels": {
+      "en": "Indian Ocean tsunami",
+      "fr": "Tsunami dans l'océan Indien"
+    },
+    "theme": "history",
+    "year": 2004
+  },
+  {
+    "id": "millau-viaduct",
+    "labels": {
+      "en": "Millau Viaduct opens",
+      "fr": "Inauguration du viaduc de Millau"
+    },
+    "theme": "culture",
+    "year": 2004
+  },
+  {
+    "id": "nadal-first-roland-garros",
+    "labels": {
+      "en": "Rafael Nadal wins his first French Open",
+      "fr": "Rafael Nadal gagne son premier Roland-Garros"
+    },
+    "theme": "sport",
+    "year": 2005
+  },
+  {
+    "id": "youtube",
+    "labels": {
+      "en": "YouTube is launched",
+      "fr": "Lancement de YouTube"
+    },
+    "theme": "tech",
+    "year": 2005
+  },
+  {
+    "id": "pluto-demoted",
+    "labels": {
+      "en": "Pluto is no longer a planet",
+      "fr": "Pluton n'est plus une planète"
+    },
+    "theme": "science",
+    "year": 2006
+  },
+  {
+    "id": "twitter",
+    "labels": {
+      "en": "Twitter is launched",
+      "fr": "Lancement de Twitter"
+    },
+    "theme": "tech",
+    "year": 2006
+  },
+  {
+    "id": "wii",
+    "labels": {
+      "en": "The Wii is released",
+      "fr": "Sortie de la Wii"
+    },
+    "theme": "tech",
+    "year": 2006
+  },
+  {
+    "id": "zidane-headbutt",
+    "labels": {
+      "en": "Zidane's headbutt in the World Cup final",
+      "fr": "Coup de tête de Zidane en finale de Coupe du monde"
+    },
+    "theme": "sport",
+    "year": 2006
+  },
+  {
+    "id": "first-iphone",
+    "labels": {
+      "en": "The first iPhone is unveiled",
+      "fr": "Présentation du premier iPhone"
+    },
+    "theme": "tech",
+    "year": 2007
+  },
+  {
+    "id": "sarkozy-elected",
+    "labels": {
+      "en": "Nicolas Sarkozy elected president",
+      "fr": "Nicolas Sarkozy élu président"
+    },
+    "theme": "history",
+    "year": 2007
+  },
+  {
+    "id": "bienvenue-chez-les-chtis",
+    "labels": {
+      "en": "Welcome to the Sticks opens",
+      "fr": "Sortie de Bienvenue chez les Ch'tis"
+    },
+    "theme": "film",
+    "year": 2008
+  },
+  {
+    "id": "obama-elected",
+    "labels": {
+      "en": "Barack Obama elected US president",
+      "fr": "Barack Obama élu président des États-Unis"
+    },
+    "theme": "history",
+    "year": 2008
+  },
+  {
+    "id": "phelps-eight-golds",
+    "labels": {
+      "en": "Michael Phelps wins eight golds",
+      "fr": "Michael Phelps gagne huit médailles d'or"
+    },
+    "theme": "sport",
+    "year": 2008
+  },
+  {
+    "id": "spotify",
+    "labels": {
+      "en": "Spotify is launched",
+      "fr": "Lancement de Spotify"
+    },
+    "theme": "music",
+    "year": 2008
+  },
+  {
+    "id": "avatar",
+    "labels": {
+      "en": "Avatar opens",
+      "fr": "Sortie d'Avatar"
+    },
+    "theme": "film",
+    "year": 2009
+  },
+  {
+    "id": "bitcoin",
+    "labels": {
+      "en": "Bitcoin is born",
+      "fr": "Naissance du bitcoin"
+    },
+    "theme": "tech",
+    "year": 2009
+  },
+  {
+    "id": "bolt-world-record",
+    "labels": {
+      "en": "Usain Bolt runs 100 m in 9.58 s",
+      "fr": "Usain Bolt court le 100 m en 9,58 s"
+    },
+    "theme": "sport",
+    "year": 2009
+  },
+  {
+    "id": "michael-jackson-dies",
+    "labels": {
+      "en": "Death of Michael Jackson",
+      "fr": "Mort de Michael Jackson"
+    },
+    "theme": "music",
+    "year": 2009
+  },
+  {
+    "id": "burj-khalifa",
+    "labels": {
+      "en": "Burj Khalifa opens",
+      "fr": "Inauguration de la Burj Khalifa"
+    },
+    "theme": "culture",
+    "year": 2010
+  },
+  {
+    "id": "fukushima",
+    "labels": {
+      "en": "Fukushima nuclear disaster",
+      "fr": "Catastrophe de Fukushima"
+    },
+    "theme": "history",
+    "year": 2011
+  },
+  {
+    "id": "game-of-thrones",
+    "labels": {
+      "en": "First episode of Game of Thrones",
+      "fr": "Premier épisode de Game of Thrones"
+    },
+    "theme": "film",
+    "year": 2011
+  },
+  {
+    "id": "intouchables",
+    "labels": {
+      "en": "The Intouchables opens",
+      "fr": "Sortie d'Intouchables"
+    },
+    "theme": "film",
+    "year": 2011
+  },
+  {
+    "id": "curiosity-landing",
+    "labels": {
+      "en": "Curiosity rover lands on Mars",
+      "fr": "Le robot Curiosity se pose sur Mars"
+    },
+    "theme": "science",
+    "year": 2012
+  },
+  {
+    "id": "gangnam-style",
+    "labels": {
+      "en": "Gangnam Style is released",
+      "fr": "Sortie de Gangnam Style"
+    },
+    "theme": "music",
+    "year": 2012
+  },
+  {
+    "id": "higgs-boson",
+    "labels": {
+      "en": "Discovery of the Higgs boson",
+      "fr": "Découverte du boson de Higgs"
+    },
+    "theme": "science",
+    "year": 2012
+  },
+  {
+    "id": "hollande-elected",
+    "labels": {
+      "en": "François Hollande elected president",
+      "fr": "François Hollande élu président"
+    },
+    "theme": "history",
+    "year": 2012
+  },
+  {
+    "id": "frozen",
+    "labels": {
+      "en": "Frozen opens",
+      "fr": "Sortie de La Reine des neiges"
+    },
+    "theme": "film",
+    "year": 2013
+  },
+  {
+    "id": "same-sex-marriage-france",
+    "labels": {
+      "en": "France legalises same-sex marriage",
+      "fr": "Mariage pour tous en France"
+    },
+    "theme": "history",
+    "year": 2013
+  },
+  {
+    "id": "brexit-referendum",
+    "labels": {
+      "en": "Brexit referendum",
+      "fr": "Référendum du Brexit"
+    },
+    "theme": "history",
+    "year": 2016
+  },
+  {
+    "id": "despacito",
+    "labels": {
+      "en": "Despacito is released",
+      "fr": "Sortie de Despacito"
+    },
+    "theme": "music",
+    "year": 2017
+  },
+  {
+    "id": "fortnite",
+    "labels": {
+      "en": "Fortnite is released",
+      "fr": "Sortie de Fortnite"
+    },
+    "theme": "tech",
+    "year": 2017
+  },
+  {
+    "id": "johnny-hallyday-dies",
+    "labels": {
+      "en": "Death of Johnny Hallyday",
+      "fr": "Mort de Johnny Hallyday"
+    },
+    "theme": "music",
+    "year": 2017
+  },
+  {
+    "id": "macron-elected",
+    "labels": {
+      "en": "Emmanuel Macron elected president",
+      "fr": "Emmanuel Macron élu président"
+    },
+    "theme": "history",
+    "year": 2017
+  },
+  {
+    "id": "nintendo-switch",
+    "labels": {
+      "en": "The Nintendo Switch is released",
+      "fr": "Sortie de la Nintendo Switch"
+    },
+    "theme": "tech",
+    "year": 2017
+  },
+  {
+    "id": "france-world-cup-2018",
+    "labels": {
+      "en": "France win their second football World Cup",
+      "fr": "La France gagne sa deuxième Coupe du monde"
+    },
+    "theme": "sport",
+    "year": 2018
+  },
+  {
+    "id": "notre-dame-fire",
+    "labels": {
+      "en": "Notre-Dame de Paris catches fire",
+      "fr": "Incendie de Notre-Dame de Paris"
+    },
+    "theme": "history",
+    "year": 2019
+  },
+  {
+    "id": "covid-lockdowns",
+    "labels": {
+      "en": "First Covid-19 lockdowns",
+      "fr": "Premiers confinements contre le Covid-19"
+    },
+    "theme": "history",
+    "year": 2020
+  },
+  {
+    "id": "james-webb-launch",
+    "labels": {
+      "en": "James Webb Space Telescope launched",
+      "fr": "Lancement du télescope James-Webb"
+    },
+    "theme": "science",
+    "year": 2021
+  },
+  {
+    "id": "chatgpt",
+    "labels": {
+      "en": "ChatGPT is launched",
+      "fr": "Lancement de ChatGPT"
+    },
+    "theme": "tech",
+    "year": 2022
+  },
+  {
+    "id": "elizabeth-ii-dies",
+    "labels": {
+      "en": "Death of Queen Elizabeth II",
+      "fr": "Mort d'Elizabeth II"
+    },
+    "theme": "history",
+    "year": 2022
+  },
+  {
+    "id": "messi-world-cup",
+    "labels": {
+      "en": "Messi's Argentina win the World Cup",
+      "fr": "L'Argentine de Messi gagne la Coupe du monde"
+    },
+    "theme": "sport",
+    "year": 2022
+  },
+  {
+    "id": "paris-olympics",
+    "labels": {
+      "en": "Paris Olympic Games",
+      "fr": "Jeux olympiques de Paris"
+    },
+    "theme": "sport",
+    "year": 2024
+  }
+]
