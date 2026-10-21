@@ -321,6 +321,20 @@ routed on the content: one per seat (`already_buzzed` after), stamped on
 arrival, and the count is `atServerTime − round.startsAt`. The round closes
 once every seat it opened on has pressed, or at the cap.
 
+**Matchsticks carry the puzzle to everyone and the moves to the host
+alone.** The public arm is `{ kind: 'matchsticks', puzzle, revealedSolution }`:
+`puzzle` is the glyphs drawn (`6+4=4`, `508`) and the goal — an equation to
+make true, or a number to make the biggest or the smallest — and
+`revealedSolution` is `null` until the reveal, then the first of the moves.
+The host arm is `{ kind: 'matchsticks', solutions }`, every move that answers
+the puzzle, because a second true equation is not a wrong answer and the judge
+has to see it; the wall arm is the kind alone. A move is two stick places,
+`{ glyphIndex, slot }`, so a screen can draw the stick leaving and landing
+from the glyphs it already holds. The server deals the puzzles itself
+(`@melee/core/matchsticks/deal`), so there is no bank and no dealt puzzle
+without an answer. The round is buzzer-moded and judged like the bare
+buzzer's, on its `roundDurationMs`.
+
 No floor and no local scheduling: the error being measured is seconds, and a
 link's tens of milliseconds are noise under it. `startsAt` is on every view
 because the countdown needs it, so a scripted client could always work out

@@ -65,6 +65,7 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     case 'buzzer':
     case 'challenge':
     case 'innerclock':
+    case 'matchsticks':
     case 'reflex':
     case 'slate':
     case 'worldmap':

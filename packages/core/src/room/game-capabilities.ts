@@ -77,6 +77,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       }
     case 'buzzer':
     case 'challenge':
+    case 'matchsticks':
       return {
         answerModes: BUZZER_ONLY,
         playsAloud: true,

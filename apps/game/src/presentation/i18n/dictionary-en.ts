@@ -687,6 +687,11 @@ export const EN_DICTIONARY = defineDictionary({
    * to say: at this point the route has not resolved and no room is known.
    */
   loading: 'Loading…',
+  matchsticks: {
+    name: 'Matchsticks',
+    scoring:
+      'One stick to move. First in says the move out loud, and the host says right or wrong — a point for right.'
+  },
   menu: {
     build: 'Build {build}',
     home: 'Home',

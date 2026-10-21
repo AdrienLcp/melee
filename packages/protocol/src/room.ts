@@ -11,6 +11,10 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import {
+  matchsticksPuzzleSchema,
+  matchsticksSolutionSchema
+} from './matchsticks'
+import {
   hostQuestionSchema,
   questionPromptSchema,
   revealedQuestionSchema
@@ -307,6 +311,16 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     targetSeconds: innerclockTargetSecondsSchema
   }),
   z.object({
+    kind: z.literal('matchsticks'),
+    puzzle: matchsticksPuzzleSchema,
+    /**
+     * The move, shown on every screen once the round is revealed. One of
+     * possibly several: the host judges against all of them, and the room is
+     * shown the first.
+     */
+    revealedSolution: matchsticksSolutionSchema.nullable()
+  }),
+  z.object({
     /** Choice mode only, and shuffled per round. */
     choices: z.array(z.string()),
     kind: z.literal('quiz'),
@@ -543,6 +557,14 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
    */
   z.object({ kind: z.literal('innerclock') }),
   z.object({
+    kind: z.literal('matchsticks'),
+    /**
+     * Every move that answers the puzzle — a second one is not a wrong answer
+     * — and `null` while the console holds a seat.
+     */
+    solutions: z.array(matchsticksSolutionSchema).nullable()
+  }),
+  z.object({
     kind: z.literal('quiz'),
     question: hostQuestionSchema.nullable()
   }),
@@ -633,6 +655,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('buzzer') }),
   z.object({ kind: z.literal('challenge') }),
   z.object({ kind: z.literal('innerclock') }),
+  z.object({ kind: z.literal('matchsticks') }),
   z.object({ kind: z.literal('quiz') }),
   z.object({ kind: z.literal('reflex') }),
   z.object({

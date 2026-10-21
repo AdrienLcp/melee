@@ -29,6 +29,7 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   challenge: null,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
+  matchsticks: 10,
   quiz: 10,
   /** A heat is a wait and a press, so ten of them is under two minutes. */
   reflex: 10,
@@ -55,6 +56,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   buzzer: 'buzzer',
   challenge: 'buzzer',
   innerclock: 'buzzer',
+  matchsticks: 'buzzer',
   quiz: 'choice',
   reflex: 'buzzer',
   slate: 'typed',
@@ -142,6 +144,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   buzzer: null,
   challenge: null,
   innerclock: null,
+  matchsticks: null,
   quiz: null,
   reflex: null,
   slate: null,

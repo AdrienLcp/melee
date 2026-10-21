@@ -27,6 +27,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, track: null }
     }
 
+    case 'matchsticks': {
+      return { ...content, solutions: null }
+    }
+
     case 'quiz': {
       return { ...content, question: null }
     }

@@ -151,6 +151,13 @@ const toHostContent = ({
     }
   }
 
+  if (content.kind === 'matchsticks') {
+    return {
+      kind: 'matchsticks',
+      solutions: seatId === null ? content.solutions : null
+    }
+  }
+
   if (
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
@@ -354,6 +361,14 @@ const toContentView = ({
       kind: 'innerclock',
       revealedPresses: round.revealed ? [...content.presses] : null,
       targetSeconds: content.targetSeconds
+    }
+  }
+
+  if (content.kind === 'matchsticks') {
+    return {
+      kind: 'matchsticks',
+      puzzle: content.puzzle,
+      revealedSolution: round.revealed ? (content.solutions[0] ?? null) : null
     }
   }
 

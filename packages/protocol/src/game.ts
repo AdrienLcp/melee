@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { matchsticksGoalSchema } from './matchsticks'
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { trackDifficultySchema, trackSourceSchema } from './track'
@@ -10,6 +11,7 @@ export const gameKinds = [
   'buzzer',
   'challenge',
   'innerclock',
+  'matchsticks',
   'quiz',
   'reflex',
   'slate',
@@ -83,6 +85,17 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
    * rides the press that opens one.
    */
   z.object({ kind: z.literal('innerclock') }),
+  z.object({
+    /**
+     * The goals a round may be dealt, one drawn per round. A room ticking only
+     * the equations plays the classic; the numbers are dealt by the server and
+     * never run out.
+     */
+    goals: z.array(matchsticksGoalSchema).min(1),
+    kind: z.literal('matchsticks'),
+    /** How long a puzzle stays up before the room is shown the move. */
+    roundDurationMs: z.number().int().min(10_000).max(180_000)
+  }),
   questionDrawSettingsSchema.extend({
     kind: z.literal('quiz'),
     /** How long a question stays open before the round times out. */
@@ -124,6 +137,7 @@ export type BlindtestSettings = Extract<GameSettings, { kind: 'blindtest' }>
 export type BuzzerSettings = Extract<GameSettings, { kind: 'buzzer' }>
 export type ChallengeSettings = Extract<GameSettings, { kind: 'challenge' }>
 export type InnerclockSettings = Extract<GameSettings, { kind: 'innerclock' }>
+export type MatchsticksSettings = Extract<GameSettings, { kind: 'matchsticks' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
@@ -183,6 +197,12 @@ export const DEFAULT_INNERCLOCK_SETTINGS: InnerclockSettings = {
   kind: 'innerclock'
 }
 
+export const DEFAULT_MATCHSTICKS_SETTINGS: MatchsticksSettings = {
+  goals: ['equation', 'biggest', 'smallest'],
+  kind: 'matchsticks',
+  roundDurationMs: 60_000
+}
+
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
   allowsAdultContent: false,
   categories: [],
@@ -212,6 +232,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
+  matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,

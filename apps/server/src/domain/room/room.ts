@@ -8,6 +8,10 @@ import type {
   RoundId,
   SessionId
 } from '@melee/protocol/identifiers'
+import type {
+  MatchsticksPuzzle,
+  MatchsticksSolution
+} from '@melee/protocol/matchsticks'
 import type { HostQuestion } from '@melee/protocol/question'
 import type {
   ModeSettings,
@@ -256,6 +260,12 @@ export type Round = {
         /** In arrival order; a count is measured from the round's `startsAt`. */
         presses: StampedPress[]
         targetSeconds: number
+      }
+    | {
+        kind: 'matchsticks'
+        puzzle: MatchsticksPuzzle
+        /** Every move that answers it; never empty, and it reaches the host arm alone. */
+        solutions: MatchsticksSolution[]
       }
     | {
         choices: string[]

@@ -82,6 +82,7 @@ export const scoringKey = ({
   | 'buzzer.scoring'
   | 'challenge.scoring'
   | 'innerclock.scoring'
+  | 'matchsticks.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'worldmap.scoring'
@@ -107,6 +108,8 @@ export const scoringKey = ({
       return 'challenge.scoring'
     case 'innerclock':
       return 'innerclock.scoring'
+    case 'matchsticks':
+      return 'matchsticks.scoring'
     case 'quiz':
       return `quiz.scoring.${served}`
     case 'reflex':

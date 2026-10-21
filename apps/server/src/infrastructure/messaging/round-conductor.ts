@@ -7,6 +7,10 @@ import { releaseAbandonedSeats } from '@/domain/room/room-service'
 import { challengeContent } from '@/domain/round/challenge-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
+  matchsticksContent,
+  playedPuzzleId
+} from '@/domain/round/matchsticks-round'
+import {
   blindtestContent,
   closeRound,
   finishGame,
@@ -234,6 +238,37 @@ export const beginRound = async (
 
     openRound({
       content: quizContent({ question: hostQuestionOf(question), room }),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'matchsticks') {
+    const content = matchsticksContent({
+      game,
+      playedIds: room.playedContentIds
+    })
+
+    if (content === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'No new puzzle is left to deal on those goals'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(playedPuzzleId(content.puzzle.glyphs))
+
+    openRound({
+      content,
       id: newRoundId(),
       now: engine.now(),
       room,

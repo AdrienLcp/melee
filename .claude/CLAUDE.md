@@ -22,7 +22,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `worldmap.*`, `challenge.*`, `innerclock.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `worldmap.*`, `challenge.*`, `innerclock.*`, `matchsticks.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 

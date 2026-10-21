@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Server]` **Matchsticks are served**, not yet shelved, and
+  `PROTOCOL_VERSION` goes to 37. A round deals a false equation in
+  seven-segment sticks that one moved stick makes true, or a number one stick
+  makes the biggest or the smallest it can be — dealt and solved by the server,
+  so there is no bank to run out and no puzzle without an answer. The host is
+  sent every move that answers it and judges the first to buzz; players and the
+  wall are sent the sticks, and the move only at the reveal.
+
 - `[Shared]` **An evening ticks variants, not only games**, and
   `PROTOCOL_VERSION` goes to 36. A blind test on the charts and one on film
   scores are two entries of the same evening, each drawn round by round on its

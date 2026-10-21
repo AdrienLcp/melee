@@ -74,6 +74,7 @@ team on the player model and a turn owner.
 | **Lyrics blackout** — the line is missing, sing it | Buzz-first | Same as the blind test, different reveal | a session |
 | **Reflex race** — first to press when the screen flips | Buzz-first | It needed one thing after all: a fair stimulus | **shipped** ([stage 18](plans/18-reflex-race.md)) |
 | **Inner clock** — count in your head, press once | Buzz-first | Nothing: a press stamped on arrival, paid by its gap to the target | **shipped** ([stage 35](plans/35-inner-clock.md)) |
+| **Matchsticks** — one stick to move | Buzz-first | Nothing: the server deals the puzzle and solves it, the host judges | **served**, screens owed ([stage 36](plans/36-matchsticks.md)) |
 | **Petit Bac** — a letter, six categories, type fast | Submit-then-vote | Scoring by uniqueness | a session |
 | **Just One** — everyone writes one clue, duplicates cancel | Submit-then-vote | A clue-collision pass | a session |
 | **Qui a écrit ça ?** — answer a prompt, then guess the author | Submit-then-vote | Authorship survives the reveal | a session |
@@ -338,7 +339,7 @@ chosen and the lobby's picker is where the table decides, which is what
 game. See `docs/plans/13-room-first.md`.
 
 **i18n is namespaced by game.** A prefix per game — `blindtest.*`, `buzzer.*`,
-`challenge.*`, `innerclock.*`, `quiz.*`, `reflex.*`, `slate.*`, `worldmap.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
+`challenge.*`, `innerclock.*`, `matchsticks.*`, `quiz.*`, `reflex.*`, `slate.*`, `worldmap.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
 `error.*`, `connection.*`, `menu.*` and `preferences.*` for the shell. A new game
 adds its own prefix and touches nothing else. The test itself — *would the second
 game display this string unchanged?* — is in

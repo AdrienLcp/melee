@@ -638,6 +638,11 @@ export const FR_DICTIONARY = defineDictionary({
     title: 'Mentions légales et confidentialité'
   },
   loading: 'Chargement…',
+  matchsticks: {
+    name: 'Allumettes',
+    scoring:
+      'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — un point s’il a raison.'
+  },
   menu: {
     build: 'Version {build}',
     home: 'Accueil',
