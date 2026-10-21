@@ -111,14 +111,23 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
               </span>
               {isPaying && (
                 <span className='points'>
-                  {award === undefined || award.points === 0
-                    ? null
-                    : award.speedBonus > 0
-                      ? translate('round.awardWithSpeed', {
-                          answer: award.points - award.speedBonus,
-                          speed: award.speedBonus
-                        })
-                      : translate('round.award', { points: award.points })}
+                  {award === undefined ||
+                  award.points === 0 ? null : award.speedBonus > 0 ? (
+                    <>
+                      <span className='answer-half'>
+                        {translate('round.award', {
+                          points: award.points - award.speedBonus
+                        })}
+                      </span>
+                      <span className='speed-half'>
+                        {translate('round.speedHalf', {
+                          points: award.speedBonus
+                        })}
+                      </span>
+                    </>
+                  ) : (
+                    translate('round.award', { points: award.points })
+                  )}
                 </span>
               )}
               {isRanked && (

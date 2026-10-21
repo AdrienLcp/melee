@@ -86,15 +86,29 @@
       text-overflow: ellipsis
       white-space: nowrap
 
-    // What the round paid, held to one width whatever it carries — the widest
-    // form is four figures (`3 +2`) — so the rows end on one right edge.
+    // What the round paid, held to one width whatever it carries so the rows
+    // end on one right edge. The clock's half goes under the answer's rather
+    // than beside it: `1 000 +950` on one line took the name's column at a
+    // phone's width, and the name is what a player looks down to find.
     .points
       @include typography.numeric
       @include text-box.trimmed-figure
 
+      align-items: end
+      display: flex
+      flex-direction: column
       font-size: var(--text-em-s)
+      gap: 0.2em
       min-width: 2.99em
       text-align: end
+
+    .speed-half
+      @include text-box.trimmed-figure
+
+      color: var(--ink-muted)
+
+    .right .speed-half
+      color: var(--board-ink)
 
     // Where that leaves them, the column the whole board is ordered by, so
     // it is set heavier than the name beside it.

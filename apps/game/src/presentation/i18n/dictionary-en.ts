@@ -831,7 +831,8 @@ export const EN_DICTIONARY = defineDictionary({
      * Why two players who both got it right did not get the same. The clock
      * replaced a rank the room could count, so what it paid has to be said.
      */
-    speedBonus: '{points:number} of that for being early'
+    speedBonus: '{points:number} of that for being early',
+    speedHalf: '+{points:number}'
   },
   slate: {
     board: {

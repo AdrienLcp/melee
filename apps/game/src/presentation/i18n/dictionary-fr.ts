@@ -743,7 +743,8 @@ export const FR_DICTIONARY = defineDictionary({
     missed: 'Rien cette fois.',
     nobody: 'Personne n’a trouvé',
     scored: '+{points:number}',
-    speedBonus: 'dont {points:number} pour la vitesse'
+    speedBonus: 'dont {points:number} pour la vitesse',
+    speedHalf: '+{points:number}'
   },
   slate: {
     board: {
