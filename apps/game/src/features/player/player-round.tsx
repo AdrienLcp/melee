@@ -22,6 +22,7 @@ import {
   hasAnybodyScored,
   standingOf
 } from '@melee/core/scoring/scoreboard'
+import { teamOfSeat } from '@melee/core/team/team-board'
 import { playsThisTurn } from '@melee/core/team/team-turn'
 import {
   type ClockEstimate,
@@ -230,6 +231,9 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   const teamName = useTeamName()
   const roomCode = useRoomCodeParam()
   const round = view.round
+  const isPickingTeam =
+    view.settings.teams.kind === 'chosen' &&
+    teamOfSeat({ playerId: view.youId, teams: view.teams }) === null
 
   useBuzzOutcome(reflexOutcome({ round, youId: view.youId }))
 
@@ -267,9 +271,33 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   // nothing to block — who is at the table stays true while the console is
   // gone — but *the host is choosing a game* would be a lie about the one
   // thing the player is waiting on.
+  // A seat that arrived once the game was under way still owes the room a
+  // team, and the server still takes its pick until the next round places it.
+  // A round it was not stamped on has nothing else for it to do.
+  if (isPickingTeam && view.phase !== 'lobby' && view.phase !== 'finished') {
+    return (
+      <section className='player-round lobby' data-picking-team>
+        {round?.joinedAfterStart === true && (
+          <NoticeCard
+            detail={translate('player.midRound.detail')}
+            title={translate('player.midRound.title')}
+          />
+        )}
+        <div className='table'>
+          <div className='seats'>
+            <LobbyTeams onChooseTeam={onChooseTeam} view={view} />
+          </div>
+        </div>
+      </section>
+    )
+  }
+
   if (view.phase === 'lobby') {
     return (
-      <section className='player-round lobby'>
+      <section
+        className='player-round lobby'
+        data-picking-team={isPickingTeam || undefined}
+      >
         {view.isHostConnected ? (
           <UpNext view={view} />
         ) : (
