@@ -32,6 +32,8 @@ colors:
   spine-buzzer: "oklch(55% 0.19 30)"
   spine-reflex: "oklch(82% 0.15 85)"
   spine-slate: "oklch(50% 0.09 185)"
+  spine-worldmap: "oklch(48% 0.11 140)"
+  spine-challenge: "oklch(42% 0.09 52)"
   on-spine: "oklch(99% 0.005 95)"
   on-spine-light: "oklch(20% 0.03 255)"
   pawn-1: "oklch(58% 0.19 28)"
@@ -205,7 +207,10 @@ A cool printed board under warm, saturated die-cut inks, every value one
   also the room-code token and the slate's *collected* token — the one saffron
   piece on the board.
 - **Spines** (`--spine-blindtest` magenta, `--spine-quiz` indigo,
-  `--spine-buzzer` coral, `--spine-reflex` saffron, `--spine-slate` teal): each
+  `--spine-buzzer` coral, `--spine-reflex` saffron, `--spine-slate` teal,
+  `--spine-worldmap` leaf, `--spine-challenge` walnut — the game played at the
+  table, off every screen, in the table's own wood, and far enough from magenta
+  and indigo that the three never read as one family): each
   game's box colour, on the shelf, the band across a game's lid, the player's
   *up next* lid. Names print in `--on-spine-<game>`: pale `--on-spine`
   everywhere but reflex, which takes the dark `--on-spine-light`.
