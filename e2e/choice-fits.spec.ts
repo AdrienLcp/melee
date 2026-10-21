@@ -1408,7 +1408,12 @@ const WALL_SCREENS = [
   {
     name: 'board',
     ready: '.stage.finished',
-    view: { ...finishedView(LONG_NAME_WINNING), ...evening(consoleView(LONGEST_PROMPT)), phase: 'finished', round: null }
+    view: {
+      ...finishedView(LONG_NAME_WINNING),
+      ...evening(consoleView(LONGEST_PROMPT)),
+      phase: 'finished',
+      round: null
+    }
   }
 ]
 
