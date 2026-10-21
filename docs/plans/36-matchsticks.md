@@ -33,6 +33,9 @@ stick to move so the number becomes **the biggest it can be**.
 - **No bank to write**: the server can deal any number and work out the best
   move itself, by trying every one stick move over the seven-segment digits.
   The puzzles never run out and every solution is known.
+- **Every puzzle dealt is solvable**: a number is dealt only when at least one
+  move gives a bigger one, and redrawn otherwise; the same holds for the
+  equations, each banked with a solution.
 - In session A the host judges against the best answer the server shows them.
   In session B the server measures the number each player made, so a move
   that is not the best can still be paid by how close it came.
