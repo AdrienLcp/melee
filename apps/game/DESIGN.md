@@ -312,6 +312,13 @@ is read at forty centimetres and at four metres, so a phone upright and a
 television lying down both land on something readable, and every clamp has a
 rem floor and a ceiling so a projector stops it growing.
 
+**Past a short side of 1080px, `rem` itself grows** (`font-size: max(100%,
+100vmin / 67.5)` on `html`): a 4K panel at 100% scaling is a 1080p one with
+smaller pixels, read from the same sofa, so it draws exactly the 1080p stage at
+twice the size instead of floating 1080p's ceilings in the middle of the wall. A
+media query in `rem` still reads the browser's own size; a `px` border does not
+grow, which is the one thing a 4K wall draws thinner.
+
 - **`monument`** (800, stretch 80%, `opsz` 96, line-height 0.9): the room code,
   the countdown numeral.
 - **`billboard`** (800, stretch 85%, line-height 0.95): a revealed title, the
@@ -420,13 +427,20 @@ apart. `$width` is measured in the longer locale and given in `rem`.
 `e2e/choice-fits.spec.ts` stubs the socket and measures sixteen viewports —
 320×568, 360×640, 390×844, 430×932, 568×320, 667×375, 812×375, 768×1024,
 1024×768, 900×900, 1280×720, 1440×900, 1920×1080, 2560×1080, 3440×1440,
-1080×1920 — across a player, a seated host and the room, over the bank's worst
+1080×1920 — across a player, a seated host and the room (which also takes
+3840×2160 and 2160×3840, a 4K panel either way up), over the bank's worst
 rows (the 192-char prompt, the 158-char choice, the most choice text, a long
 prompt over long choices): no document overflow, every tile and the card in
 the viewport, no word spilling its box, nothing under 14px. The same spec
 holds the console's reveal, countdown, floor, final board, slate and reflex,
 and every player screen, across all sixteen as well — a console held in a
-hand included. Any change to a round screen is checked against it.
+hand included. The wall itself is opened on its lobby, a round, a team's turn,
+the map's round and the final board over a track, at every one of those whose
+short side is 720px or more — a wall is a television or a tablet hung up, never
+a hand — and a `[scale]` test holds 4K to exactly twice 1080p. A word's slack
+past its box is a twentieth of its size rather than a pixel, because a line set
+tighter than the face's ascent reaches past it by a sliver that grows with the
+type. Any change to a round screen is checked against it.
 
 ### The console held in a hand
 

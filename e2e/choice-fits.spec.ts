@@ -35,6 +35,20 @@ const VIEWPORTS = [
   [1080, 1920]
 ] as const
 
+/**
+ * A 4K panel either way up, beside every viewport above. Only the screen the
+ * room reads is held to it: nobody holds a phone with that many pixels.
+ */
+const ROOM_VIEWPORTS = [...VIEWPORTS, [3840, 2160], [2160, 3840]] as const
+
+/**
+ * The wall is a television, a monitor or a tablet hung up for the evening: it
+ * is held to every room viewport whose short side is at least 720px.
+ */
+const WALL_VIEWPORTS = ROOM_VIEWPORTS.filter(
+  ([width, height]) => Math.min(width, height) >= 720
+)
+
 type Question = {
   category: string
   choices: [string, string, string, string]
@@ -319,6 +333,19 @@ type Overflow = {
 }
 
 const measure = (): Overflow => {
+  // A line set tighter than the face's own ascent and descent reaches past its
+  // box by a sliver of an em, which no eye sees and which grows with the type:
+  // a pixel at 1080p is three at 4K, where the same words are twice the size.
+  const slackFor = (piece: HTMLElement): number =>
+    Math.max(
+      1,
+      0.05 *
+        Math.max(
+          ...[piece, ...piece.querySelectorAll('*')].map((element) =>
+            Number.parseFloat(getComputedStyle(element).fontSize)
+          )
+        )
+    )
   const root = document.scrollingElement ?? document.documentElement
   const pieces = [
     ...document.querySelectorAll<HTMLElement>(
@@ -360,8 +387,8 @@ const measure = (): Overflow => {
     spills: pieces
       .filter(
         (piece) =>
-          piece.scrollHeight > piece.clientHeight + 1 ||
-          piece.scrollWidth > piece.clientWidth + 1
+          piece.scrollHeight > piece.clientHeight + slackFor(piece) ||
+          piece.scrollWidth > piece.clientWidth + slackFor(piece)
       )
       .map((piece) => piece.textContent?.slice(0, 24) ?? ''),
     strays: pieces
@@ -399,7 +426,9 @@ for (const seat of SEATS) {
 
       const faults: string[] = []
 
-      for (const [width, height] of VIEWPORTS) {
+      for (const [width, height] of seat.role === 'room'
+        ? ROOM_VIEWPORTS
+        : VIEWPORTS) {
         await page.setViewportSize({ height, width })
         await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -568,7 +597,7 @@ for (const reveal of REVEALS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of VIEWPORTS) {
+    for (const [width, height] of ROOM_VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -657,7 +686,7 @@ for (const screen of FLOOR_SCREENS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of VIEWPORTS) {
+    for (const [width, height] of ROOM_VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -712,7 +741,7 @@ for (const final of FINALS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of VIEWPORTS) {
+    for (const [width, height] of ROOM_VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -843,7 +872,7 @@ for (const screen of SLATE_SCREENS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of VIEWPORTS) {
+    for (const [width, height] of ROOM_VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -941,7 +970,7 @@ for (const screen of REFLEX_SCREENS) {
 
     const faults: string[] = []
 
-    for (const [width, height] of VIEWPORTS) {
+    for (const [width, height] of ROOM_VIEWPORTS) {
       await page.setViewportSize({ height, width })
       await page.evaluate(() => document.fonts.ready.then(() => {}))
 
@@ -1308,4 +1337,135 @@ test('[layout] player, the reveal of a full table: never scrolls', async ({
   }
 
   expect(faults).toEqual([])
+})
+
+/**
+ * The room's own screen, on the evening's views: a table of three teams racing
+ * on a track. The wall draws the console's stage with no control and no answer,
+ * so the same views decode for it with the answer stripped.
+ */
+const evening = (view: ReturnType<typeof consoleView>) => ({
+  ...view,
+  settings: {
+    ...view.settings,
+    board: { kind: 'track', length: 30, strategy: 'onePointOneCase' },
+    teams: { count: 3, kind: 'drawn' }
+  },
+  teams: [0, 1, 2].map((team) => ({
+    board: { case: [12, 7, 21][team] ?? 0, move: 0 },
+    colour: team + 1,
+    id: `team-${team + 1}`,
+    name: null,
+    score: [12, 7, 21][team] ?? 0,
+    seatIds: table
+      .filter((_, seat) => seat % 3 === team)
+      .map((player) => player.id)
+  }))
+})
+
+const eveningRound = evening(consoleView(LONGEST_PROMPT))
+
+const WALL_SCREENS = [
+  {
+    name: 'lobby',
+    ready: '.stage.lobby',
+    view: { ...eveningRound, phase: 'lobby', round: null }
+  },
+  { name: 'round', ready: '.answer-tile', view: eveningRound },
+  {
+    name: 'set',
+    ready: '.answer-tile',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        openedWithPlayerIds: eveningRound.teams[1]?.seatIds ?? [],
+        turn: { index: 1, of: 3, teamId: 'team-2' }
+      }
+    }
+  },
+  {
+    name: 'map',
+    ready: '.stage.playing',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        content: {
+          countryCode: 'PER',
+          kind: 'worldmap',
+          revealedPlacements: null
+        }
+      },
+      settings: {
+        ...eveningRound.settings,
+        game: { kind: 'worldmap', roundDurationMs: 30_000 },
+        lineUp: ['worldmap'],
+        mode: { kind: 'point' }
+      }
+    }
+  },
+  {
+    name: 'board',
+    ready: '.stage.finished',
+    view: { ...finishedView(LONG_NAME_WINNING), ...evening(consoleView(LONGEST_PROMPT)), phase: 'finished', round: null }
+  }
+]
+
+/** The largest type on the stage, which is what is read from across a room. */
+const largestType = (): number =>
+  Math.max(
+    ...[...document.querySelectorAll<HTMLElement>('main *')].map((element) =>
+      Number.parseFloat(getComputedStyle(element).fontSize)
+    )
+  )
+
+for (const screen of WALL_SCREENS) {
+  test(`[layout] wall, ${screen.name}: never scrolls, from 720p to 4K`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: screen.view })
+    await page.addInitScript(() => {
+      localStorage.setItem('melee:locale', 'fr')
+      localStorage.setItem('melee:volume', '0')
+    })
+    await page.setViewportSize({ height: 1080, width: 1920 })
+    await page.goto(`/wall/${ROOM_CODE}`)
+    await expect(page.locator(screen.ready).first()).toBeVisible()
+
+    const faults: string[] = []
+
+    for (const [width, height] of WALL_VIEWPORTS) {
+      await page.setViewportSize({ height, width })
+      await page.evaluate(() => document.fonts.ready.then(() => {}))
+
+      const overflow = await page.evaluate(measureReveal)
+
+      if (overflow.furthest !== null || overflow.page > 0) {
+        faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
+
+test('[scale] wall: a 4K panel draws the stage a 1080p one does, twice as large', async ({
+  page
+}) => {
+  await serveRoom({ page, view: eveningRound })
+  await page.addInitScript(() => {
+    localStorage.setItem('melee:locale', 'fr')
+    localStorage.setItem('melee:volume', '0')
+  })
+  await page.setViewportSize({ height: 1080, width: 1920 })
+  await page.goto(`/wall/${ROOM_CODE}`)
+  await expect(page.locator('.answer-tile')).toHaveCount(4)
+
+  const atFullHd = await page.evaluate(largestType)
+
+  await page.setViewportSize({ height: 2160, width: 3840 })
+  const atFourK = await page.evaluate(largestType)
+
+  expect(atFourK / atFullHd).toBeCloseTo(2, 1)
 })

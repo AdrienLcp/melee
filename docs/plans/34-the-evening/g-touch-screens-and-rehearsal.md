@@ -4,7 +4,21 @@
 read from across a room and touched by a standing crowd; then the whole
 evening runs once on site.
 
-## In the repository
+## In the repository — done 21/10/2026
+
+What landed: past a short side of 1080px `html`'s font size grows with the
+screen (`apps/game/DESIGN.md`, *Hierarchy*), so 4K is 1080p at twice the size;
+the wall itself is in `e2e/choice-fits.spec.ts` (lobby, round, set, map, final
+board, from 720p to 4K either way up) beside the room's screens at 4K, with a
+`[scale]` test; a tablet hung upright puts the wall lobby's code and square on
+one row. Every `hover` rule is an enhancement on a control a tap also reaches,
+and the menu the wall hides when idle comes back on the first touch — a second
+tap presses it, the way a video player's does. The map is drawn on the phones
+only; the wall shows the country to place. Left for the venue: whether the
+display's own browser keeps `useScreenAwake` (the Wake Lock API needs HTTPS,
+which production has).
+
+The brief it answered:
 
 - `e2e/choice-fits.spec.ts` gains **3840×2160** and **2160×3840** (a 4K panel
   either way up) beside today's 1920×1080 and 1080×1920, for the wall's lobby,

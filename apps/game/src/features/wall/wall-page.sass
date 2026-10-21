@@ -10,6 +10,24 @@
     > header .sound-offer
       flex: none
 
+    // Stacked, the console's lobby is a column for a hand to scroll. Nobody
+    // holds a wall: a tablet hung upright kept the third team under the fold,
+    // so the code and its square share one row there. The code is held to its
+    // column, 16cqi being four `W` at 2.98 times their size plus the card's
+    // padding inside 1.4 parts of 2.4.
+    &.host-console-page > .stage.lobby .room-invitation
+      @include layout.narrow
+        --invitation-code-size: min(calc(var(--stage-unit) * 21), 16cqi)
+        --invitation-qr-max-width: 100%
+
+        align-items: center
+        display: grid
+        grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr)
+
+        .qr
+          grid-template-columns: minmax(0, 1fr)
+          text-align: center
+
     // Said once the console has been gone longer than a blink, and offered to
     // whoever is standing at the wall. Die-cut, because it is the one line on
     // this screen about the evening rather than the game, and the room reading

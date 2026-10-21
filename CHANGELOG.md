@@ -6,6 +6,16 @@ one part.
 
 ## Unreleased
 
+### Improvements
+
+- `[Game]` **A 4K wall draws the 1080p stage at twice the size.** Past a short
+  side of 1080px the root size grows with the screen, so a 4K panel at 100%
+  scaling no longer floats 1080p's ceilings in the middle of the wall. The
+  no-scroll spec opens the wall itself on its lobby, a round, a team's turn,
+  the map and the final board up to 3840×2160 and 2160×3840, and on a tablet
+  hung upright the wall's lobby sets the code and its square side by side
+  instead of pushing the third team under the fold.
+
 ### Breaking Changes
 
 - `[Shared]` **The board: teams race on a track**, and `PROTOCOL_VERSION` goes
