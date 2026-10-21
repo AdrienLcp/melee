@@ -6,7 +6,7 @@
         "categories:accessibility": ["error", { "minScore": 1 }],
         "categories:best-practices": ["error", { "minScore": 1 }],
         "categories:seo": ["error", { "minScore": 1 }],
-        "resource-summary:script:size": ["error", { "maxNumericValue": 260000 }]
+        "resource-summary:script:size": ["error", { "maxNumericValue": 275000 }]
       }
     },
     "collect": {

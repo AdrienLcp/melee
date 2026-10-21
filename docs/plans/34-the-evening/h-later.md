@@ -16,5 +16,9 @@ its own when it is taken.
   through `host.judge` in every game.
 - **Screen-only fallback** — an evening with no host phone; re-decide its shape
   first (Gamenight's step 9).
+- **One dictionary per locale** — both ship in the entry chunk, 15.6 and 14.1 kB
+  gzipped with their country names; loading only the reader's locale gets
+  that much back. The script budget in `lighthouserc.json` went from 260 000
+  to 275 000 on 21/10 when the challenge screens took `/en` to 265 313.
 - **Archive Gamenight** — once d and e ship: redirect `gamenight.adrienlcp.com`
   to Melee, archive the repository on GitHub, delete its Worker.

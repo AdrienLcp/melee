@@ -162,6 +162,10 @@
     // with the shorter side of the screen, through this one unit.
     --stage-unit: 1vmin
 
+    // What `rem` is: the browser's own size, or 1/67.5 of the short side once
+    // that is past 1080px — see `html` in `_reset.sass`.
+    --root-size: max(100%, calc(100vmin / 67.5))
+
     --space-stage-split: clamp(var(--space-l), calc(var(--stage-unit) * 5), var(--space-2xl))
     --space-stage-rows: clamp(var(--space-xs), calc(var(--stage-unit) * 2), var(--space-m))
     --space-framed: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-s))
