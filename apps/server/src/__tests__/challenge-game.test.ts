@@ -40,7 +40,12 @@ const CHALLENGE_GAME: RoomSettings = {
 
 const ON_A_TRACK: RoomSettings = {
   ...CHALLENGE_GAME,
-  board: { kind: 'track', length: 10, strategy: 'onePointOneCase' },
+  board: {
+    catchUp: false,
+    kind: 'track',
+    length: 10,
+    strategy: 'onePointOneCase'
+  },
   teams: { count: 3, kind: 'drawn' }
 }
 

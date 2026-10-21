@@ -197,7 +197,7 @@ is and where it falls (`{ teamId, index, of }`), `null` when everyone plays.
   everyone and ends the set, and the next one that can opens a new set.
 
 **The board is the teams' score walked on a track.** `settings.board` is
-`off` or `{ kind: 'track', length, strategy }`, laid in the lobby only — a
+`off` or `{ kind: 'track', length, strategy, catchUp }`, laid in the lobby only — a
 frame that moves it past the lobby is `wrong_phase` — and read only where the
 room has teams. Each team carries `board: { case, move }` beside its score,
 `null` while the board is off.
@@ -206,7 +206,16 @@ room has teams. Each team carries `board: { case, move }` beside its score,
   setting (`@melee/core/board/`, one file each) turns every team's round result
   into a number of cases; `advanceOnTrack` stops each pawn on the last case.
   `onePointOneCase` moves a case for every whole `POINT`, floored, so the speed
-  bonus moves no pawn on its own.
+  bonus moves no pawn on its own. `rank` moves the round's teams 3, 2 and 1
+  cases by what it paid them, speed bonus included; a tie shares the better
+  place and skips the next, and a team paid nothing is not ranked — which is
+  what keeps a turn of a set from ranking one team against teams still
+  waiting for theirs, so a team on its turn moves 3 cases if it scores at all.
+- **Catch-up is the track's, not a strategy's.** With `catchUp` on,
+  `advanceOnTrack` gives one case more to a team standing *alone* on the
+  rearmost case, on a round its strategy walks it at all. Two pawns level at
+  the back are a race, not a team left behind. The field defaults to `false`,
+  so a track stored by a host before it existed still parses.
 - **The move shows at the reveal and not before.** `move` is what the round on
   screen walked the pawn, nought until `revealed`, so a screen plays the walk
   from `case - move` instead of teleporting the pawn, and nothing moves while

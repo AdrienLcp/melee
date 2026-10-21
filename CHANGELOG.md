@@ -23,6 +23,13 @@ one part.
 
 ### Breaking Changes
 
+- `[Shared]` **The board ranks, and helps the last team**, and
+  `PROTOCOL_VERSION` goes to 31. A track's `strategy` can be `rank`: the
+  round's best team moves 3 cases, the second 2, the third 1, ties sharing the
+  better place. `catchUp` gives a team alone in last place one case more on a
+  round it scores, under either strategy. Both are set beside the track's
+  length in the lobby and locked past it.
+
 - `[Shared]` **The board: teams race on a track**, and `PROTOCOL_VERSION` goes
   to 29. `settings.board` lays a track of 10–60 cases in the lobby, and every
   team carries `board: { case, move }`: as a round settles the server walks

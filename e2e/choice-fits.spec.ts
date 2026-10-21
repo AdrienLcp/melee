@@ -1348,7 +1348,12 @@ const evening = (view: ReturnType<typeof consoleView>) => ({
   ...view,
   settings: {
     ...view.settings,
-    board: { kind: 'track', length: 30, strategy: 'onePointOneCase' },
+    board: {
+      catchUp: false,
+      kind: 'track',
+      length: 30,
+      strategy: 'onePointOneCase'
+    },
     teams: { count: 3, kind: 'drawn' }
   },
   teams: [0, 1, 2].map((team) => ({

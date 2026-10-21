@@ -55,4 +55,25 @@ describe('readStoredHostPreferences', () => {
       DEFAULT_BOARD_SETTINGS
     )
   })
+
+  it('[host-setup] keeps a track stored before the catch-up, with it off', () => {
+    store.set(
+      HOST_SETUP_KEY,
+      JSON.stringify({
+        games: {},
+        room: {
+          ...DEFAULT_ROOM_SETTINGS,
+          board: { kind: 'track', length: 40, strategy: 'onePointOneCase' },
+          teams: { count: 3, kind: 'drawn' }
+        }
+      })
+    )
+
+    const stored = readStoredHostPreferences()
+
+    expect(stored.status === 'success' && stored.data?.room.board).toEqual({
+      ...DEFAULT_TRACK_SETTINGS,
+      length: 40
+    })
+  })
 })

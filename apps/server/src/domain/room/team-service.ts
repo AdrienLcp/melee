@@ -353,6 +353,7 @@ const liveMoves = (room: Room): TeamMove[] => {
   }
 
   return advanceOnTrack({
+    catchUp: board.catchUp,
     length: board.length,
     positions: new Map(room.teams.map((team) => [team.id, team.bankedCase])),
     results: room.teams.map((team) => ({

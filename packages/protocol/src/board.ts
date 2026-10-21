@@ -2,10 +2,11 @@ import { z } from 'zod'
 
 /**
  * The scoring strategies a track can run, each a file of its own in
- * `@melee/core/board/`. One today; the next is a new literal here and a new
- * file there, and nothing else learns its name.
+ * `@melee/core/board/`: a case per whole `POINT` the round paid, or 3, 2 and
+ * 1 cases by the round's team ranking. The next is a new literal here and a
+ * new file there, and nothing else learns its name.
  */
-export const boardStrategySchema = z.enum(['onePointOneCase'])
+export const boardStrategySchema = z.enum(['onePointOneCase', 'rank'])
 
 export const MIN_BOARD_LENGTH = 10
 export const MAX_BOARD_LENGTH = 60
@@ -18,6 +19,12 @@ export const MAX_BOARD_LENGTH = 60
 export const boardSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('off') }),
   z.object({
+    /**
+     * A team alone at the back moves one case more on a round that walks it.
+     * Defaulted, because a host's stored track predates it and must not be
+     * thrown away for lacking it.
+     */
+    catchUp: z.boolean().default(false),
     kind: z.literal('track'),
     /** In cases; the first pawn to reach the last one ends the evening. */
     length: z.number().int().min(MIN_BOARD_LENGTH).max(MAX_BOARD_LENGTH),
@@ -40,12 +47,14 @@ export const boardPositionSchema = z.object({
 export type BoardStrategy = z.infer<typeof boardStrategySchema>
 export type BoardSettings = z.infer<typeof boardSettingsSchema>
 export type BoardPosition = z.infer<typeof boardPositionSchema>
+export type TrackSettings = Extract<BoardSettings, { kind: 'track' }>
 
 export const DEFAULT_BOARD_LENGTH = 30
 
 export const DEFAULT_BOARD_SETTINGS: BoardSettings = { kind: 'off' }
 
-export const DEFAULT_TRACK_SETTINGS: BoardSettings = {
+export const DEFAULT_TRACK_SETTINGS: TrackSettings = {
+  catchUp: false,
   kind: 'track',
   length: DEFAULT_BOARD_LENGTH,
   strategy: 'onePointOneCase'

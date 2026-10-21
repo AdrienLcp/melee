@@ -159,9 +159,22 @@ export const EN_DICTIONARY = defineDictionary({
     fix: 'Fix the squares',
     forward: 'Move {team} forward a square',
     setting: {
+      catchUp: {
+        hint: 'A team alone in last place moves one square more on a round it scores.',
+        label: 'Help the last team'
+      },
       label: 'Board',
       length: '{length:number} squares',
-      off: 'None'
+      off: 'None',
+      strategy: {
+        hint: {
+          onePointOneCase: 'One square for every point the round paid.',
+          rank: 'The round’s best team moves 3 squares, the second 2, the third 1.'
+        },
+        label: 'Pawns move',
+        onePointOneCase: 'By points',
+        rank: 'By ranking'
+      }
     },
     standing: '{team}: square {case:number} of {length:number}',
     start: 'Start',

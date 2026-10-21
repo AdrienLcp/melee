@@ -25,6 +25,7 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
 })
 
 const TRACK: BoardSettings = {
+  catchUp: false,
   kind: 'track',
   length: 10,
   strategy: 'onePointOneCase'
@@ -50,8 +51,8 @@ describe('a room racing on a track', () => {
     await harness.stop()
   })
 
-  const openTwoTeams = async () => {
-    const { code, host } = await harness.openRoom(ON_A_TRACK)
+  const openTwoTeams = async (board: BoardSettings = TRACK) => {
+    const { code, host } = await harness.openRoom({ ...ON_A_TRACK, board })
     const anna = await harness.seat({ code, nickname: 'Anna' })
     const ben = await harness.seat({ code, nickname: 'Ben' })
 
@@ -111,6 +112,18 @@ describe('a room racing on a track', () => {
     )
 
     expect(hostView(room.host)?.teams[0]?.board).toEqual({ case: 2, move: 0 })
+  })
+
+  it('[board] walks the best team of the round three cases on a ranked track', async () => {
+    const room = await openTwoTeams({ ...TRACK, strategy: 'rank' })
+
+    room.host.send({ type: 'host.startRound' })
+    await revealAnnaRight(room)
+
+    expect(hostView(room.host)?.teams.map((team) => team.board)).toEqual([
+      { case: 3, move: 3 },
+      { case: 0, move: 0 }
+    ])
   })
 
   it('[board] lets the host correct a move under the reveal', async () => {

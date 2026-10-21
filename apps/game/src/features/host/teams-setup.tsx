@@ -2,13 +2,16 @@ import type React from 'react'
 
 import {
   type BoardSettings,
+  boardStrategySchema,
   DEFAULT_BOARD_SETTINGS,
-  DEFAULT_TRACK_SETTINGS
+  DEFAULT_TRACK_SETTINGS,
+  type TrackSettings
 } from '@melee/protocol/board'
 import type { RoomSettings } from '@melee/protocol/room'
 import { MAX_TEAMS, MIN_TEAMS, type TeamsSettings } from '@melee/protocol/team'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
+import { Switch } from '@/presentation/components/switch'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { NO_LIMIT, NumberChoice } from './number-choice'
@@ -83,6 +86,55 @@ const boardLengthsWith = (board: BoardSettings): number[] =>
     ? [...BOARD_LENGTHS, board.length].toSorted((a, b) => a - b)
     : [...BOARD_LENGTHS]
 
+type BoardRulesProps = {
+  board: TrackSettings
+  isDisabled: boolean
+  onChange: (board: TrackSettings) => void
+}
+
+/** How a laid track walks the pawns, locked past the lobby like its length. */
+const BoardRules: React.FC<BoardRulesProps> = ({
+  board,
+  isDisabled,
+  onChange
+}) => {
+  const translate = useTranslate()
+
+  return (
+    <>
+      <SegmentedControl
+        className='board-strategy'
+        isDisabled={isDisabled}
+        label={translate('board.setting.strategy.label')}
+        onChange={(next) => {
+          const strategy = boardStrategySchema.safeParse(next)
+
+          if (strategy.success) {
+            onChange({ ...board, strategy: strategy.data })
+          }
+        }}
+        options={boardStrategySchema.options.map((strategy) => ({
+          label: translate(`board.setting.strategy.${strategy}`),
+          value: strategy
+        }))}
+        value={board.strategy}
+      />
+      <p className='hint'>
+        {translate(`board.setting.strategy.hint.${board.strategy}`)}
+      </p>
+      <Switch
+        description={translate('board.setting.catchUp.hint')}
+        isDisabled={isDisabled}
+        isSelected={board.catchUp}
+        label={translate('board.setting.catchUp.label')}
+        onChange={(catchUp) => {
+          onChange({ ...board, catchUp })
+        }}
+      />
+    </>
+  )
+}
+
 /**
  * Whether the room plays in teams and how the seats get into them, set in the
  * lobby beside the roster it reorganises: the server refuses a new count or a
@@ -145,7 +197,12 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
               board:
                 length === NO_LIMIT
                   ? DEFAULT_BOARD_SETTINGS
-                  : { kind: 'track', length, strategy: 'onePointOneCase' }
+                  : {
+                      ...(settings.board.kind === 'track'
+                        ? settings.board
+                        : DEFAULT_TRACK_SETTINGS),
+                      length
+                    }
             })
           }}
           optionLabel={(length) =>
@@ -157,6 +214,15 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           value={
             settings.board.kind === 'track' ? settings.board.length : NO_LIMIT
           }
+        />
+      )}
+      {playsInTeams(teams) && settings.board.kind === 'track' && (
+        <BoardRules
+          board={settings.board}
+          isDisabled={isDisabled}
+          onChange={(board) => {
+            onChange({ ...settings, board })
+          }}
         />
       )}
       {teams.kind === 'teamsOnly' && (

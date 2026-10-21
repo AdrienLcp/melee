@@ -131,7 +131,12 @@ describe('an evening of several games', () => {
       {
         body: JSON.stringify({
           preset: {
-            board: { kind: 'track', length: 24, strategy: 'onePointOneCase' },
+            board: {
+              catchUp: false,
+              kind: 'track',
+              length: 24,
+              strategy: 'onePointOneCase'
+            },
             lineUp: ['quiz', 'blindtest', 'buzzer'],
             roundCount: 12,
             teams: { count: 3, kind: 'drawn' }
@@ -170,7 +175,12 @@ describe('an evening of several games', () => {
       {
         body: JSON.stringify({
           preset: {
-            board: { kind: 'track', length: 24, strategy: 'onePointOneCase' },
+            board: {
+              catchUp: false,
+              kind: 'track',
+              length: 24,
+              strategy: 'onePointOneCase'
+            },
             lineUp: ['quiz'],
             roundCount: 12,
             teams: { count: 3, kind: 'drawn' }

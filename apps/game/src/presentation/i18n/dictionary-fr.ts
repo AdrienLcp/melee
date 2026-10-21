@@ -138,9 +138,22 @@ export const FR_DICTIONARY = defineDictionary({
     fix: 'Corriger les cases',
     forward: 'Avancer {team} d’une case',
     setting: {
+      catchUp: {
+        hint: 'Une équipe seule à la dernière place avance d’une case de plus sur une manche où elle marque.',
+        label: 'Coup de pouce au dernier'
+      },
       label: 'Plateau',
       length: '{length:number} cases',
-      off: 'Sans'
+      off: 'Sans',
+      strategy: {
+        hint: {
+          onePointOneCase: 'Une case par point gagné dans la manche.',
+          rank: 'La meilleure équipe de la manche avance de 3 cases, la deuxième de 2, la troisième de 1.'
+        },
+        label: 'Les pions avancent',
+        onePointOneCase: 'Aux points',
+        rank: 'Au classement'
+      }
     },
     standing: '{team} : case {case:number} sur {length:number}',
     start: 'Départ',

@@ -14,14 +14,11 @@ step that lands keeps its line here, dated, and loses its details.
    loader. The country names stay in the dictionaries — 4 kB gzipped a
    locale, not worth a suspense boundary under every map screen.
 
-2. **Board strategies** (decision 19). `settings.board` gains `strategy`:
-   `points` (today's `onePointOneCase`) or `rank` — the round's team ranking
-   walks the pawns 3, 2 and 1 cases, ties sharing the better place, nought
-   for a team that scored nothing — and a `catchUp` switch: a team alone at
-   the back moves one case more on any round it scores. One file per strategy
-   in `@melee/core/board/`, chosen beside the track length in the setup's
-   *Evening* group and locked past the lobby like it. Protocol bump; the
-   board suite runs every strategy through the same cases.
+2. **Board strategies** — done 21/10/2026: `rank` beside `onePointOneCase`
+   (the wire name kept, so no stored track is lost), and `catchUp` on the
+   track rather than a strategy, applied in `advanceOnTrack`. In a set, a
+   turn ranks the team on it alone, since the waiting teams were paid nothing:
+   ranking over the whole set would hold every move until the last turn.
 
 3. **Solo and duel** (decision 20). Two more ways to play a set beside
    *Everyone at once* and *Team by team*: *solo* — each team's turn is played
