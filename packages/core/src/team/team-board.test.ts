@@ -71,7 +71,7 @@ describe('team board', () => {
       name
     })
     const players = [
-      seat('a', 'Les Bleus'),
+      seat('a', 'The Blues'),
       seat('b', 'Mamie'),
       seat('c', 'Léo')
     ]
@@ -79,13 +79,13 @@ describe('team board', () => {
     expect(
       isEveryTeamItsOwnSeat({
         players,
-        teams: [named(1, 'Les Bleus', ['a']), named(2, 'Mamie', ['b'])]
+        teams: [named(1, 'The Blues', ['a']), named(2, 'Mamie', ['b'])]
       })
     ).toBe(true)
     expect(
       isEveryTeamItsOwnSeat({
         players,
-        teams: [named(1, 'Les Bleus', ['a']), named(2, 'Mamie', ['b', 'c'])]
+        teams: [named(1, 'The Blues', ['a']), named(2, 'Mamie', ['b', 'c'])]
       })
     ).toBe(false)
     expect(isEveryTeamItsOwnSeat({ players, teams: [team(1, 0, ['a'])] })).toBe(
