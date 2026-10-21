@@ -56,7 +56,7 @@ export const answerModeLabelKey = (
 ): BuiltKey<`host.answerMode.${AnswerMode}`> => `host.answerMode.${mode}`
 
 /** The modes a game answering against its own question offers. */
-type ServedMode = Exclude<AnswerMode, 'order' | 'point'>
+type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point'>
 
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
@@ -83,6 +83,7 @@ export const scoringKey = ({
   | 'challenge.scoring'
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
+  | 'matchsticks.scoringMove'
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'timeline.scoring'
@@ -92,11 +93,13 @@ export const scoringKey = ({
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
 > => {
-  // A marker is the map's alone and an order the timeline's, so the two games
-  // that serve their own question are never in either; reading them as a pick
-  // keeps the switch total.
+  // A marker is the map's alone, an order the timeline's and a move the
+  // matchsticks', so the two games that serve their own question are never in
+  // any of them; reading them as a pick keeps the switch total.
   const served =
-    answerMode === 'point' || answerMode === 'order' ? 'choice' : answerMode
+    answerMode === 'point' || answerMode === 'order' || answerMode === 'move'
+      ? 'choice'
+      : answerMode
 
   switch (game) {
     case 'blindtest':
@@ -112,7 +115,9 @@ export const scoringKey = ({
     case 'innerclock':
       return 'innerclock.scoring'
     case 'matchsticks':
-      return 'matchsticks.scoring'
+      return answerMode === 'move'
+        ? 'matchsticks.scoringMove'
+        : 'matchsticks.scoring'
     case 'quiz':
       return `quiz.scoring.${served}`
     case 'reflex':

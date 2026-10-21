@@ -75,6 +75,13 @@ export const protocolErrorCodes = [
    */
   'wall_cannot_answer',
   /**
+   * A matchstick move the sticks cannot make: no stick where it was lifted, a
+   * stick already where it was laid, or a glyph left that is no digit or sign.
+   * Its own code rather than `invalid_message`, and it spends nothing — the
+   * frame was well formed, and the player still has their one move to make.
+   */
+  'illegal_move',
+  /**
    * A round was asked for in a room whose game nobody has picked yet. Its own
    * code rather than `wrong_phase`, because the phase is right — the lobby is
    * exactly where this happens — and what is missing is a decision the host can

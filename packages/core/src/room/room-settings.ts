@@ -58,7 +58,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   buzzer: 'buzzer',
   challenge: 'buzzer',
   innerclock: 'buzzer',
-  matchsticks: 'buzzer',
+  matchsticks: 'move',
   quiz: 'choice',
   reflex: 'buzzer',
   slate: 'typed',

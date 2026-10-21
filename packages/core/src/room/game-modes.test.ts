@@ -57,6 +57,14 @@ describe('isJudgedByHost', () => {
     expect(isJudgedByHost({ game: 'quiz', mode: 'choice' })).toBe(false)
     expect(isJudgedByHost({ game: 'quiz', mode: 'typed' })).toBe(false)
   })
+
+  it('[game-modes] judges a matchstick said aloud and not one moved on a screen', () => {
+    expect(isJudgedByHost({ game: 'matchsticks', mode: 'buzzer' })).toBe(true)
+    expect(isJudgedByHost({ game: 'matchsticks', mode: 'move' })).toBe(false)
+    expect(isSeatWithheldByMode({ game: 'matchsticks', mode: 'buzzer' })).toBe(
+      true
+    )
+  })
 })
 
 describe('isSeatWithheldByMode', () => {

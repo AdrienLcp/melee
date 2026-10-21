@@ -1,7 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
+import { stickSlots } from '@melee/protocol/matchsticks'
+
 import { sticksOf } from './glyphs'
 import {
+  applyMove,
   isTrueEquation,
   numberValue,
   oneStickMoves,
@@ -73,5 +76,94 @@ describe('the biggest and the smallest number', () => {
 
   it('[matchsticks] has no answer when no stick improves the number', () => {
     expect(answersOf('1', 'biggest')).toEqual([])
+  })
+})
+
+/** Every pair of stick places a puzzle has, legal or not. */
+const everyPlacePairOf = (glyphs: string) => {
+  const places = [...glyphs].flatMap((_, glyphIndex) =>
+    stickSlots.map((slot) => ({ glyphIndex, slot }))
+  )
+
+  return places.flatMap((from) => places.map((to) => ({ from, to })))
+}
+
+describe('a move sent by a screen', () => {
+  it('[matchsticks] accepts every move the solver makes, and makes the same puzzle of it', () => {
+    for (const glyphs of ['6+4=4', '508', '9-7=2', '19']) {
+      for (const moved of oneStickMoves(glyphs)) {
+        expect(applyMove({ glyphs, move: moved.move })).toBe(moved.glyphs)
+      }
+    }
+  })
+
+  it('[matchsticks] refuses every move the solver would not make', () => {
+    for (const glyphs of ['6+4=4', '508']) {
+      const made = new Set(
+        oneStickMoves(glyphs).map(({ move }) => JSON.stringify(move))
+      )
+
+      for (const move of everyPlacePairOf(glyphs)) {
+        if (!made.has(JSON.stringify(move))) {
+          expect(applyMove({ glyphs, move })).toBeNull()
+        }
+      }
+    }
+  })
+
+  it('[matchsticks] refuses a stick lifted where there is none, or laid where there is one', () => {
+    const glyphs = '6+4=4'
+
+    expect(
+      applyMove({
+        glyphs,
+        move: {
+          from: { glyphIndex: 0, slot: 'b' },
+          to: { glyphIndex: 2, slot: 'a' }
+        }
+      })
+    ).toBeNull()
+    expect(
+      applyMove({
+        glyphs,
+        move: {
+          from: { glyphIndex: 0, slot: 'a' },
+          to: { glyphIndex: 2, slot: 'b' }
+        }
+      })
+    ).toBeNull()
+    expect(
+      applyMove({
+        glyphs,
+        move: {
+          from: { glyphIndex: 9, slot: 'a' },
+          to: { glyphIndex: 2, slot: 'a' }
+        }
+      })
+    ).toBeNull()
+  })
+
+  it('[matchsticks] refuses a move that leaves a glyph that is no digit', () => {
+    expect(
+      applyMove({
+        glyphs: '1',
+        move: {
+          from: { glyphIndex: 0, slot: 'b' },
+          to: { glyphIndex: 0, slot: 'a' }
+        }
+      })
+    ).toBeNull()
+  })
+
+  it('[matchsticks] turns the tail of a 6 into the top of a 9', () => {
+    expect(
+      applyMove({
+        glyphs: '6+4=4',
+        move: {
+          from: { glyphIndex: 0, slot: 'e' },
+          to: { glyphIndex: 0, slot: 'b' }
+        }
+      })
+    ).toBe('9+4=4')
   })
 })

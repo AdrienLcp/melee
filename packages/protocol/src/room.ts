@@ -12,7 +12,9 @@ import {
 import { innerclockTargetSecondsSchema } from './innerclock'
 import {
   matchsticksPuzzleSchema,
-  matchsticksSolutionSchema
+  matchsticksSolutionSchema,
+  sentMoveSchema,
+  stickMoveSchema
 } from './matchsticks'
 import {
   hostQuestionSchema,
@@ -56,7 +58,8 @@ export const answerModes = [
   'choice',
   'typed',
   'point',
-  'order'
+  'order',
+  'move'
 ] as const
 
 /**
@@ -105,7 +108,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('choice') }),
   z.object({ kind: z.literal('typed') }),
   z.object({ kind: z.literal('point') }),
-  z.object({ kind: z.literal('order') })
+  z.object({ kind: z.literal('order') }),
+  z.object({ kind: z.literal('move') })
 ])
 
 /**
@@ -199,6 +203,7 @@ export const DEFAULT_BUZZER_MODE_SETTINGS: BuzzerModeSettings = {
 export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   buzzer: DEFAULT_BUZZER_MODE_SETTINGS,
   choice: { kind: 'choice' },
+  move: { kind: 'move' },
   order: { kind: 'order' },
   point: { kind: 'point' },
   typed: { kind: 'typed' }
@@ -323,11 +328,24 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('matchsticks'),
     puzzle: matchsticksPuzzleSchema,
     /**
+     * Every move a seat sent in a `move` round, in the order they landed, and
+     * `null` until the reveal: a move seen mid-round is the answer handed over.
+     * Empty in a round played on the buzzer, where nobody sends one.
+     */
+    revealedMoves: z.array(sentMoveSchema).nullable(),
+    /**
      * The move, shown on every screen once the round is revealed. One of
      * possibly several: the host judges against all of them, and the room is
      * shown the first.
      */
-    revealedSolution: matchsticksSolutionSchema.nullable()
+    revealedSolution: matchsticksSolutionSchema.nullable(),
+    /**
+     * The move the reader sent this round, and `null` before they have, for a
+     * reader holding no seat, or in a round answered aloud. Their own and no
+     * one else's, so a screen that reloaded mid-round still shows it — and
+     * never whether it was right, which waits for the reveal.
+     */
+    yourMove: stickMoveSchema.nullable()
   }),
   z.object({
     /** Choice mode only, and shuffled per round. */

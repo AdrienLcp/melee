@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Server]` **A matchstick can be moved rather than said**, and
+  `PROTOCOL_VERSION` goes to 41. Matchsticks gains a way of answering of its
+  own, *Move the match*, and opens on it: every seat moves one stick of the
+  puzzle at once, once, and the server judges it — a true equation, or the
+  biggest (smallest) number, is 3 points; on a number the next best is 2 and
+  the one after 1; and the clock adds to it. A move the sticks cannot make is
+  refused and costs nothing. Nobody judges, so the host may play too. The
+  buzzer stays for a table answering aloud. Its screens are the next
+  session's.
+
 - **The emoji rebus is an eleventh quiz subject**, and `PROTOCOL_VERSION`
   goes to 40. A film, a series, a song or a saying written in emojis —
   🧊🚢💔 for *Titanic* — drawn large on the question card on every screen,

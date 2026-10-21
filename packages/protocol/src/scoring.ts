@@ -132,11 +132,25 @@ export const orderVerdictSchema = z.object({
   swappedPairs: z.number().int().nonnegative()
 })
 
+/**
+ * How good a matchstick move was, as the place of what it made among the
+ * answers one stick can make, best first: `0` is a true equation or the
+ * biggest (smallest) number, `1` the next best number, and so on. `null` is a
+ * move that answers nothing — a false equation, a number no better than the
+ * one dealt, or no number at all. `@melee/core/matchsticks/move-pay` prices
+ * it. The server measures it; no screen ever sends one.
+ */
+export const moveVerdictSchema = z.object({
+  kind: z.literal('move'),
+  placesFromBest: z.number().int().nonnegative().nullable()
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
   distanceVerdictSchema,
-  orderVerdictSchema
+  orderVerdictSchema,
+  moveVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -158,4 +172,5 @@ export type HalvesVerdict = z.infer<typeof halvesVerdictSchema>
 export type SingleVerdict = z.infer<typeof singleVerdictSchema>
 export type DistanceVerdict = z.infer<typeof distanceVerdictSchema>
 export type OrderVerdict = z.infer<typeof orderVerdictSchema>
+export type MoveVerdict = z.infer<typeof moveVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

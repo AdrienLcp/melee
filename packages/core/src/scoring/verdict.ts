@@ -10,6 +10,7 @@ import {
   type Verdict
 } from '@melee/protocol/scoring'
 
+import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
 import { isBullseye, pointsForDistance } from '../worldmap/distance-tiers'
 
@@ -45,6 +46,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForOrder(verdict)
   }
 
+  if (verdict.kind === 'move') {
+    return pointsForMove(verdict)
+  }
+
   return (
     (verdict.titleCorrect ? POINTS_PER_TITLE : 0) +
     (verdict.artistCorrect ? POINTS_PER_ARTIST : 0)
@@ -69,6 +74,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isBullseye(verdict)
     case 'order':
       return isPerfectOrder(verdict)
+    case 'move':
+      return isBestMove(verdict)
   }
 }
 
@@ -92,13 +99,17 @@ export const pointsForSimultaneousAnswer = ({
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
-  // A marker and an order are priced by how far they are, which the mode has no say in.
+  // A marker, an order and a move are priced by how far they are, which the mode has no say in.
   if (verdict.kind === 'distance') {
     return pointsForDistance(verdict)
   }
 
   if (verdict.kind === 'order') {
     return pointsForOrder(verdict)
+  }
+
+  if (verdict.kind === 'move') {
+    return pointsForMove(verdict)
   }
 
   if (verdict.kind === 'single') {

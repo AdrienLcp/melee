@@ -14,7 +14,8 @@ is played at the table, off every screen: the wall shows the line the host
 typed, and the host places the first three, **Inner clock** asks everyone
 to count to a number of seconds in their head, on screens where nothing moves,
 and pays each single press by its gap to the target, and **Matchsticks** draws
-an equation or a number in matches that one moved match fixes, judged by the
+an equation or a number in matches that one moved match fixes, moved on
+every screen and judged by the server — or said aloud and judged by the
 host, and **Timeline** deals five dated events everyone puts in order on their
 own screen, the years held back until the reveal.
 
@@ -186,7 +187,9 @@ which is why a user-visible string written into a component is a bug — see
   duels twice. The evening counts the whole set as one round
 - **Answer mode** — `typed` (one field), `choice` (four candidates, what the
   blind test and the quiz open on) or `buzzer` (one player, judged by the
-  host). The first two are everyone at once, decided by the server and scored
+  host); a game with an answer of its own shape takes a mode of its own —
+  `point` on the map, `order` on the timeline, `move` for a matchstick. All
+  but `buzzer` are everyone at once, decided by the server and scored
   by the clock on top of being right — `MOST_A_SPEED_BONUS_PAYS` at nought,
   falling linearly to nothing when the round runs out, on a board counted in
   `POINT`s of a thousand so the clock separates players by the millisecond:

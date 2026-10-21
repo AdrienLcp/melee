@@ -267,11 +267,27 @@ const toBaseView = ({
   settings: room.settings,
   teams: toTeamViews(room),
   yourVerdict:
-    youId === null
+    youId === null || room.round === null
       ? null
-      : (room.round?.attempts.find((entry) => entry.playerId === youId)
-          ?.verdict ?? null)
+      : yourVerdictIn({ round: room.round, youId })
 })
+
+/**
+ * What the reader has banked, except a matchstick move before the reveal: the
+ * move is one shot, so the verdict helps its seat with nothing, and a seat told
+ * it was right has an answer worth whispering to the next one.
+ */
+const yourVerdictIn = ({
+  round,
+  youId
+}: {
+  round: Round
+  youId: PlayerId
+}): Verdict | null =>
+  round.content.kind === 'matchsticks' && !round.revealed
+    ? null
+    : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
+      null)
 
 const toPublicPlayer = (participant: Participant): PublicPlayer => ({
   id: participant.id,
@@ -376,7 +392,16 @@ const toContentView = ({
     return {
       kind: 'matchsticks',
       puzzle: content.puzzle,
-      revealedSolution: round.revealed ? (content.solutions[0] ?? null) : null
+      revealedMoves: round.revealed
+        ? content.moves.map(({ glyphs, move, playerId }) => ({
+            glyphs,
+            move,
+            playerId
+          }))
+        : null,
+      revealedSolution: round.revealed ? (content.solutions[0] ?? null) : null,
+      yourMove:
+        content.moves.find(({ playerId }) => playerId === youId)?.move ?? null
     }
   }
 

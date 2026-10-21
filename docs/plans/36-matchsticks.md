@@ -1,7 +1,7 @@
 # 36 — Matchsticks
 
-**Session A done.** Served and shelved 21/10/2026 (A1, A2 below); the stick
-moved under the finger (B) is owed. Two kinds of puzzle (below). A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
+**Session A and B1 done.** Served and shelved 21/10/2026 (A1, A2 below); the
+stick moved on a screen is served (B1), and its screens (B2) are owed. Two kinds of puzzle (below). A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
 seven-segment digits — that turns true when one stick moves. Asked for the team
 evening on 21/10/2026.
 
@@ -98,3 +98,71 @@ What was built, and where it left the plan above:
   equation and a biggest-number round, the judge's view, the player's floor,
   and the reveal mid-move and settled. **Not seen**: a paired wall's floor,
   which draws the same stage without the verdicts.
+
+## B1 — served (done 21/10/2026)
+
+The stick moved on a screen, server, protocol and core only; the app holds what
+compiles. Built on decisions taken for Adrien, listed here for him to settle:
+
+- **A mode of its own, `move`, offered by matchsticks alone**, beside
+  `buzzer`: `answerModes` is `['move', 'buzzer']`, and `move` is the default a
+  room opens on (`DEFAULT_ANSWER_MODE`), so *play right away* works and a
+  remembered buzzer is traded for it. `buzzer` is unchanged and host-judged.
+  `isJudgedByHost` says no for `move` without a line of its own — the rule
+  already keys on `buzzer`. `playsAloud` stays true (the buzzer still serves a
+  table with no screens); **no team turns and no wall answer** this session,
+  `playsInTeamTurns` and `wallAnswers` stay false.
+- **`player.answer` `{ kind: 'move', move }`, one shot** like a pick or an
+  order. `applyMove({ glyphs, move })` in `core/matchsticks/one-move` applies
+  it — no stick where it is lifted, one already where it is laid, or a glyph
+  left that is no digit or sign returns `null` — and `oneStickMoves` is now
+  written as every stick place pair `applyMove` accepts, so the solver and the
+  server cannot disagree; `one-move.test.ts` checks every pair of places both
+  ways. **An illegal move is `illegal_move`, a new error code** (translated in
+  both locales), and spends nothing: the shot is still the seat's.
+- **The verdict is a fifth shape, `{ kind: 'move', placesFromBest }`**: `0` for
+  a true equation or the best number, `1`, `2`… for the next distinct numbers
+  one stick makes that improve on the dealt one, best first (two moves to the
+  same number share a place), `null` for a false equation, a number no better,
+  or no number at all. `core/matchsticks/move-pay` pays 3, 2 and 1 `POINT`s for
+  places 0, 1 and 2, nothing below, the clock on top capped by the answer as
+  everywhere. An equation has no second place: a true one is 3, anything else
+  nothing.
+- **The round closes when every stamped seat has moved, or on its
+  `roundDurationMs`**, like the timeline. No lockouts.
+- **What travels.** Before the reveal a seat reads back its own move as
+  `yourMove` on the public arm, which survives a reload; nothing else of any
+  seat's move, and **not its own `yourVerdict`** — the one departure from the
+  timeline, which sends a seat its own pair count at once: a seat told its
+  move was right could whisper it on with confidence. At the reveal
+  `revealedMoves` carries every seat's `{ playerId, move, glyphs }` (the puzzle
+  as the move left it), beside `revealedSolution`; a seat's `said` is those
+  glyphs too. The host arm keeps every solution, `null` while seated. The wall
+  arm is the kind alone. `PROTOCOL_VERSION` 41.
+- **Tests.** `move-pay.test.ts` (ranks for biggest and smallest, the equation,
+  the pay; seen red with the ranking reversed), `one-move.test.ts` (applyMove
+  against the solver both ways; seen red with the empty-place check dropped),
+  the room rules (judged on the buzzer only, play right away, the default).
+  `matchsticks-game.test.ts` deals one fixed equation (`6+4=4`: a dealt one may
+  have no wrong move at all, `4-1=2` among them) and plays a move round: a
+  right move paid above a wrong one and the faster of two right ones more, an
+  illegal move refused without spending the shot and a second refused, the
+  round closing once all three have moved, a seated console paid, and every
+  player's and the wall's whole transcript free of a solution, another seat's
+  move and any verdict before the reveal — seen red with `revealedMoves`
+  unguarded, with `yourVerdict` sent early, and with the illegal move answered
+  `invalid_message`.
+- The app names the mode (*Move the match*) and its scoring line in both
+  dictionaries. **A room opens on `move` with nothing drawn for it yet** —
+  that is B2.
+
+## B2 — the stick moves under the finger (owed)
+
+- A player's screen picks a stick up and puts it down (pointer, finger and
+  keyboard), with `applyMove` refusing a drop before anything is sent, and
+  sends it once; `yourMove` drawn after a reload.
+- The reveal draws every seat's move from `revealedMoves`, ranked by
+  `placesFromBest` beside the solution.
+- The shelf's description and tagline still describe the buzzer
+  (*First to buzz says which match moves…*, *Say which.*).
+- Team turns and the wall answering, if the table wants them.

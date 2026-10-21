@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { playerIdSchema } from './identifiers'
+
 /**
  * What one move has to achieve: make a false equation true, or make a number
  * the biggest or the smallest one stick can make it.
@@ -48,9 +50,21 @@ export const matchsticksSolutionSchema = z.object({
   move: stickMoveSchema
 })
 
+/**
+ * One seat's move in a `move` round and what it made of the puzzle, published
+ * at the reveal so every screen can draw the stick each seat moved.
+ */
+export const sentMoveSchema = z.object({
+  /** The puzzle as this move left it. */
+  glyphs: matchsticksGlyphsSchema,
+  move: stickMoveSchema,
+  playerId: playerIdSchema
+})
+
 export type MatchsticksGoal = z.infer<typeof matchsticksGoalSchema>
 export type StickSlot = z.infer<typeof stickSlotSchema>
 export type StickPlace = z.infer<typeof stickPlaceSchema>
 export type StickMove = z.infer<typeof stickMoveSchema>
 export type MatchsticksPuzzle = z.infer<typeof matchsticksPuzzleSchema>
 export type MatchsticksSolution = z.infer<typeof matchsticksSolutionSchema>
+export type SentMove = z.infer<typeof sentMoveSchema>

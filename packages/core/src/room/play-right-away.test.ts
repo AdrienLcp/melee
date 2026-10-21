@@ -17,6 +17,7 @@ describe('canPlayRightAway', () => {
     expect(canPlayRightAway('blindtest')).toBe(true)
     expect(canPlayRightAway('quiz')).toBe(true)
     expect(canPlayRightAway('reflex')).toBe(true)
+    expect(canPlayRightAway('matchsticks')).toBe(true)
   })
 
   it('[play-right-away] withholds it from the games their host judges', () => {
@@ -62,6 +63,18 @@ describe('settingsToPlayRightAway', () => {
 
     expect(settings.mode).toEqual({ kind: 'choice' })
     expect(settings.roundCount).toBe(15)
+  })
+
+  it('[play-right-away] trades a remembered buzzer on matchsticks for moving the stick', () => {
+    const onTheMatches = roomSettingsFor({ game: 'matchsticks', locale: 'en' })
+    const preferences = rememberSettings({
+      preferences: null,
+      settings: { ...onTheMatches, mode: DEFAULT_MODE_SETTINGS.buzzer }
+    })
+
+    expect(
+      settingsToPlayRightAway({ preferences, settings: onTheMatches }).mode
+    ).toEqual({ kind: 'move' })
   })
 
   it('[play-right-away] keeps the reflex race on the buzzer it is raced on', () => {

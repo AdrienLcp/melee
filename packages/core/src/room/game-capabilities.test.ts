@@ -27,7 +27,8 @@ describe('answerModesFor', () => {
       'choice',
       'typed',
       'point',
-      'order'
+      'order',
+      'move'
     ])
   })
 })

@@ -9,6 +9,7 @@ import {
   sessionIdSchema
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
+import { stickMoveSchema } from './matchsticks'
 import {
   MAX_PLAYERS_PER_ROOM,
   playStyleSchema,
@@ -135,6 +136,14 @@ export const answerMessageSchema = z.object({
       /** Every event of the round, earliest first. One shot, like a pick. */
       eventIds: timelineOrderSchema,
       kind: z.literal('order')
+    }),
+    z.object({
+      kind: z.literal('move'),
+      /**
+       * One stick of the puzzle picked up and put down. One shot, like a pick;
+       * a move the sticks cannot make is refused and spends nothing.
+       */
+      move: stickMoveSchema
     })
   ]),
   roundId: roundIdSchema,

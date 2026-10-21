@@ -10,7 +10,8 @@ import type {
 } from '@melee/protocol/identifiers'
 import type {
   MatchsticksPuzzle,
-  MatchsticksSolution
+  MatchsticksSolution,
+  SentMove
 } from '@melee/protocol/matchsticks'
 import type { HostQuestion } from '@melee/protocol/question'
 import type {
@@ -264,6 +265,8 @@ export type Round = {
       }
     | {
         kind: 'matchsticks'
+        /** Every seat's move in a `move` round, in the order they landed; none on the buzzer. */
+        moves: SentMove[]
         puzzle: MatchsticksPuzzle
         /** Every move that answers it; never empty, and it reaches the host arm alone. */
         solutions: MatchsticksSolution[]

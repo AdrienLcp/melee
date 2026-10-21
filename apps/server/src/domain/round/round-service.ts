@@ -4,6 +4,7 @@ import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
+import type { StickMove } from '@melee/protocol/matchsticks'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { Verdict } from '@melee/protocol/scoring'
 import { TIMELINE_ORDER_SEPARATOR } from '@melee/protocol/timeline'
@@ -68,6 +69,7 @@ import {
   toTeamViews
 } from '@/domain/room/team-service'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
+import { gradeMove } from '@/domain/round/matchsticks-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { hasTurnsLeft, takeTurn } from '@/domain/round/team-turns'
 import { gradeOrder } from '@/domain/round/timeline-round'
@@ -391,6 +393,7 @@ export const clearLockouts = ({
 export type AnswerRejection = Extract<
   ProtocolErrorCode,
   | 'already_buzzed'
+  | 'illegal_move'
   | 'invalid_message'
   | 'joined_mid_round'
   | 'not_your_turn'
@@ -522,7 +525,11 @@ export const registerAnswer = ({
   const graded = grade({ attempt, held, round, shapeOf })
 
   if (graded === null) {
-    return Result.failure('invalid_message')
+    return Result.failure(
+      round.content.kind === 'matchsticks' && attempt.kind === 'move'
+        ? 'illegal_move'
+        : 'invalid_message'
+    )
   }
 
   for (const playerId of seats.data) {
@@ -530,6 +537,14 @@ export const registerAnswer = ({
 
     if (round.content.kind === 'worldmap' && attempt.kind === 'point') {
       round.content.placements.push({ playerId, point: attempt.point })
+    }
+
+    if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
+      round.content.moves.push({
+        glyphs: graded.said,
+        move: attempt.move,
+        playerId
+      })
     }
   }
 
@@ -894,6 +909,7 @@ type Attempt =
   | { kind: 'choice'; choiceIndex: number }
   | { kind: 'point'; point: GeoPoint }
   | { kind: 'order'; eventIds: string[] }
+  | { kind: 'move'; move: StickMove }
   | TypedAttempt
 
 /**
@@ -953,7 +969,24 @@ const grade = ({
       : { said: attempt.eventIds.join(TIMELINE_ORDER_SEPARATOR), verdict }
   }
 
-  if (attempt.kind === 'point' || attempt.kind === 'order') {
+  // What a move says is the puzzle it made, which the reveal draws it from.
+  if (content.kind === 'matchsticks') {
+    if (attempt.kind !== 'move') {
+      return null
+    }
+
+    const graded = gradeMove({ content, move: attempt.move })
+
+    return graded === null
+      ? null
+      : { said: graded.made, verdict: graded.verdict }
+  }
+
+  if (
+    attempt.kind === 'point' ||
+    attempt.kind === 'order' ||
+    attempt.kind === 'move'
+  ) {
     return null
   }
 

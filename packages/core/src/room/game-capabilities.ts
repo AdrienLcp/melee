@@ -29,6 +29,16 @@ const POINT_ONLY = ['point'] as const satisfies readonly AnswerMode[]
 const ORDER_ONLY = ['order'] as const satisfies readonly AnswerMode[]
 
 /**
+ * Matchsticks is answered by moving a stick on every screen at once, which the
+ * server judges — first, so a room opens on it — or aloud on the buzzer, the
+ * host judging the move whoever took the floor says.
+ */
+const MOVE_OR_BUZZER = [
+  'move',
+  'buzzer'
+] as const satisfies readonly AnswerMode[]
+
+/**
  * What the shell may ask of a game without knowing anything else about it —
  * the questions an evening of several games puts to each one it draws.
  */
@@ -80,9 +90,15 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       }
     case 'buzzer':
     case 'challenge':
-    case 'matchsticks':
       return {
         answerModes: BUZZER_ONLY,
+        playsAloud: true,
+        playsInTeamTurns: false,
+        wallAnswers: false
+      }
+    case 'matchsticks':
+      return {
+        answerModes: MOVE_OR_BUZZER,
         playsAloud: true,
         playsInTeamTurns: false,
         wallAnswers: false

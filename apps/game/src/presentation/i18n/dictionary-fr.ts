@@ -255,6 +255,7 @@ export const FR_DICTIONARY = defineDictionary({
     host_only_action: 'Seul l’hôte peut faire ça.',
     host_reconnecting:
       'Cette table vient de perdre son hôte, et l’attend encore.',
+    illegal_move: 'Cette allumette ne peut pas aller là. Essaie un autre coup.',
     internal_error: 'Ça a cassé de notre côté. Réessaie.',
     invalid_message: 'On n’a pas compris. Réessaie.',
     joined_mid_round: 'Tu joues à partir de la prochaine manche.',
@@ -320,6 +321,7 @@ export const FR_DICTIONARY = defineDictionary({
       buzzer: 'Le premier qui buzze',
       choice: 'Quatre propositions',
       label: 'Comment on répond',
+      move: 'On déplace l’allumette',
       order: 'Dans l’ordre',
       point: 'On pointe sur la carte',
       typed: 'On tape'
@@ -664,6 +666,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     scoring:
       'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — un point s’il a raison.',
+    scoringMove:
+      'Une allumette à déplacer, tout le monde en même temps. La bonne réponse vaut 3 points — sur un nombre, la suivante 2 et la troisième 1 — et le chrono s’y ajoute.',
     tagline: 'Une allumette bouge. Dis laquelle.'
   },
   menu: {

@@ -52,6 +52,9 @@ describe('roomSettingsFor', () => {
     expect(roomSettingsFor({ game: 'blindtest', locale: 'fr' }).mode).toEqual(
       DEFAULT_MODE_SETTINGS.choice
     )
+    expect(roomSettingsFor({ game: 'matchsticks', locale: 'fr' }).mode).toEqual(
+      DEFAULT_MODE_SETTINGS.move
+    )
   })
 
   it('[room-settings] ticks the one game a front door opens on, and none from the shelf', () => {

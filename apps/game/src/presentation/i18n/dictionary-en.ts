@@ -281,6 +281,7 @@ export const EN_DICTIONARY = defineDictionary({
     host_only_action: 'Only the host can do that.',
     host_reconnecting:
       'This table has just lost its host, and is waiting for them.',
+    illegal_move: 'That match cannot go there. Try another move.',
     internal_error: 'Something broke on our side. Try again.',
     invalid_message: 'We did not understand that. Try again.',
     joined_mid_round: 'You are in from the next round.',
@@ -346,6 +347,7 @@ export const EN_DICTIONARY = defineDictionary({
       buzzer: 'First to buzz',
       choice: 'Four choices',
       label: 'How to answer',
+      move: 'Move the match',
       order: 'Put them in order',
       point: 'Pin it on the map',
       typed: 'Type it'
@@ -713,6 +715,8 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring:
       'One stick to move. First in says the move out loud, and the host says right or wrong — a point for right.',
+    scoringMove:
+      'One match to move, everyone at once. The answer is 3 points — on a number, the next best 2 and the one after 1 — and the clock adds to it.',
     tagline: 'One match moves. Say which.'
   },
   menu: {

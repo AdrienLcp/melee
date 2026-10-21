@@ -1,59 +1,83 @@
 import type {
   MatchsticksPuzzle,
-  MatchsticksSolution
+  MatchsticksSolution,
+  StickMove
 } from '@melee/protocol/matchsticks'
 
 import { emptyPlacesOf, glyphWith, sticksOf } from './glyphs'
 
 /**
+ * The puzzle once this stick has moved, or `null` for a move the sticks cannot
+ * make: no stick where it is lifted, one already where it is laid, or a glyph
+ * left behind that is no digit or sign. A stick lifted off one glyph has to
+ * leave a glyph behind, and laid on another has to make one; moved on the same
+ * glyph, only the result counts.
+ */
+export const applyMove = ({
+  glyphs,
+  move
+}: {
+  glyphs: string
+  move: StickMove
+}): string | null => {
+  const chars = [...glyphs]
+  const { from, to } = move
+  const fromGlyph = chars[from.glyphIndex]
+  const toGlyph = chars[to.glyphIndex]
+
+  if (
+    fromGlyph === undefined ||
+    toGlyph === undefined ||
+    !sticksOf(fromGlyph).includes(from.slot) ||
+    !emptyPlacesOf(toGlyph).includes(to.slot)
+  ) {
+    return null
+  }
+
+  const kept = sticksOf(fromGlyph).filter((slot) => slot !== from.slot)
+
+  if (from.glyphIndex === to.glyphIndex) {
+    const reshaped = glyphWith({ place: toGlyph, sticks: [...kept, to.slot] })
+
+    return reshaped === null
+      ? null
+      : chars.with(to.glyphIndex, reshaped).join('')
+  }
+
+  const lifted = glyphWith({ place: fromGlyph, sticks: kept })
+  const laid = glyphWith({
+    place: toGlyph,
+    sticks: [...sticksOf(toGlyph), to.slot]
+  })
+
+  return lifted === null || laid === null
+    ? null
+    : chars.with(from.glyphIndex, lifted).with(to.glyphIndex, laid).join('')
+}
+
+/**
  * Every puzzle one stick away from this one, each with the move that reaches
- * it. A stick lifted off one glyph has to leave a glyph behind, and laid on
- * another has to make one; moved on the same glyph, only the result counts.
+ * it — every move `applyMove` accepts, so what the solver offers and what the
+ * server takes from a screen cannot disagree.
  */
 export const oneStickMoves = (glyphs: string): MatchsticksSolution[] => {
   const chars = [...glyphs]
-  const moved: MatchsticksSolution[] = []
 
-  for (const [fromIndex, fromGlyph] of chars.entries()) {
-    for (const fromSlot of sticksOf(fromGlyph)) {
-      const kept = sticksOf(fromGlyph).filter((slot) => slot !== fromSlot)
-      const lifted = glyphWith({ place: fromGlyph, sticks: kept })
-
-      for (const [toIndex, toGlyph] of chars.entries()) {
-        const isSameGlyph = toIndex === fromIndex
-        const before = isSameGlyph
-          ? chars
-          : lifted === null
-            ? null
-            : chars.with(fromIndex, lifted)
-
-        if (before === null) {
-          continue
-        }
-
-        for (const toSlot of emptyPlacesOf(toGlyph)) {
-          const laid = glyphWith({
-            place: toGlyph,
-            sticks: [...(isSameGlyph ? kept : sticksOf(toGlyph)), toSlot]
-          })
-
-          if (laid === null) {
-            continue
+  return chars.flatMap((fromGlyph, fromIndex) =>
+    sticksOf(fromGlyph).flatMap((fromSlot) =>
+      chars.flatMap((toGlyph, toIndex) =>
+        emptyPlacesOf(toGlyph).flatMap((toSlot) => {
+          const move = {
+            from: { glyphIndex: fromIndex, slot: fromSlot },
+            to: { glyphIndex: toIndex, slot: toSlot }
           }
+          const moved = applyMove({ glyphs, move })
 
-          moved.push({
-            glyphs: before.with(toIndex, laid).join(''),
-            move: {
-              from: { glyphIndex: fromIndex, slot: fromSlot },
-              to: { glyphIndex: toIndex, slot: toSlot }
-            }
-          })
-        }
-      }
-    }
-  }
-
-  return moved
+          return moved === null ? [] : [{ glyphs: moved, move }]
+        })
+      )
+    )
+  )
 }
 
 /** A number as a room writes one: `0` alone, never with a zero in front. */

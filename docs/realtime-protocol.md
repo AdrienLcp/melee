@@ -332,8 +332,28 @@ has to see it; the wall arm is the kind alone. A move is two stick places,
 `{ glyphIndex, slot }`, so a screen can draw the stick leaving and landing
 from the glyphs it already holds. The server deals the puzzles itself
 (`@melee/core/matchsticks/deal`), so there is no bank and no dealt puzzle
-without an answer. The round is buzzer-moded and judged like the bare
-buzzer's, on its `roundDurationMs`.
+without an answer. On the buzzer the round is judged like the bare buzzer's,
+on its `roundDurationMs`.
+
+**A matchstick moved on a screen is judged by the server.** In the `move`
+mode, which matchsticks alone offers and opens on, a seat answers with
+`player.answer` `{ kind: 'move', move }`: one shot, like a pick. The server
+applies it with `applyMove` (`@melee/core/matchsticks/one-move`, the same
+function the solver enumerates, so the two cannot disagree); a move the sticks
+cannot make — no stick where it is lifted, one already where it is laid, a
+glyph left that is no digit or sign — is refused as `illegal_move` and spends
+nothing. The grade is a fifth shape of verdict, `{ kind: 'move',
+placesFromBest }`: `0` for a true equation or the best number, `1` and `2` for
+the next numbers down (each distinct number one stick makes that improves on
+the dealt one, best first), `null` for anything that answers nothing — priced
+by `@melee/core/matchsticks/move-pay` at 3, 2 and 1 `POINT`s with the clock on
+top. No lockouts; the round closes once every stamped seat has moved, or on
+its clock. Before the reveal a seat reads back its own move as `yourMove`
+and nothing else — not even its own `yourVerdict`, which stays `null` until
+the reveal so a right move cannot be whispered on with confidence. At the
+reveal `revealedMoves` lists every seat's `{ playerId, move, glyphs }`, the
+puzzle as each move left it. Nobody judges, so a console may hold a seat, and
+its host arm's `solutions` is then `null`.
 
 No floor and no local scheduling: the error being measured is seconds, and a
 link's tens of milliseconds are noise under it. `startsAt` is on every view
