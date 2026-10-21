@@ -5,6 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router'
 import { routes } from '@/infrastructure/router/routes'
 import { reloadOnStaleBuild } from '@/infrastructure/stale-build'
 import { AppProviders } from '@/presentation/app-providers'
+import { i18n } from '@/presentation/i18n/i18n'
 import { applyInitialLocale } from '@/presentation/i18n/initial-locale'
 
 import '@/presentation/styles/globals.sass'
@@ -14,6 +15,9 @@ reloadOnStaleBuild()
 // Before `root.render`, because the attribute has to be right before there is
 // any text on the page for a browser to sniff.
 const initialLocale = applyInitialLocale()
+
+// A failed load leaves the page in English, which is what it would show anyway.
+await i18n.load(initialLocale).catch(() => undefined)
 
 const container = document.getElementById('root')
 

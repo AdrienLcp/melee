@@ -24,6 +24,7 @@ import {
   PAGE_HEADS,
   type PageHead
 } from '@/presentation/head/document-head'
+import { i18n } from '@/presentation/i18n/i18n'
 import { ROUTE_FALLBACK_CLASS } from '@/presentation/route-fallback'
 
 export type PrerenderedPage = {
@@ -98,6 +99,8 @@ export const renderPage = async ({
   page,
   path
 }: PrerenderedPage): Promise<RenderedPage> => {
+  await i18n.load(locale)
+
   const context = await handler.query(new Request(`http://prerender${path}`))
 
   if (context instanceof Response) {

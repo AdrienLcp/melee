@@ -1,6 +1,6 @@
 import { createSafeContext } from '@adrienlcp/react'
 import type React from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { I18nProvider as ReactAriaI18nProvider } from 'react-aria-components'
 
 import type { Locale } from '@melee/protocol/locale'
@@ -52,9 +52,20 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
     document.documentElement.lang = locale
   }, [locale])
 
+  const pendingSwitch = useRef(new AbortController())
+
   const chooseLocale = (next: Locale): void => {
-    setLocale(next)
+    pendingSwitch.current.abort()
+    const thisSwitch = new AbortController()
+    pendingSwitch.current = thisSwitch
     writeStoredLocale(next)
+
+    // Switched once the dictionary is in hand: before it, `translator` answers
+    // in English and nothing would re-render when French arrived.
+    i18n
+      .load(next, { signal: thisSwitch.signal })
+      .then(() => setLocale(next))
+      .catch(() => undefined)
   }
 
   return (

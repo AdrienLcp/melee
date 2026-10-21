@@ -8,6 +8,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A reader in English no longer downloads French.** The French
+  dictionary is a chunk of its own, fetched before the first frame of a French
+  page and before a switch to French paints: 15.95 kB gzipped off every English
+  page, and the script budget back to 260 000 bytes.
+
 - `[Game]` **A 4K wall draws the 1080p stage at twice the size.** Past a short
   side of 1080px the root size grows with the screen, so a 4K panel at 100%
   scaling no longer floats 1080p's ceilings in the middle of the wall. The
@@ -30,14 +35,13 @@ one part.
 - `[Shared]` **Taverla is now Melee** — *Mêlée* on screen, `melee` in code:
   the packages are `@melee/*`, the storage keys `melee:*`, and the game is
   served from `melee.adrienlcp.com` by a Worker named `melee`. The old address
-  answers every path with a 301 to the same path on the new one, from the
-  Worker that used to serve it, now `apps/server/former-host/`. Nothing a
+  answered every path with a 301 to the same path on the new one. Nothing a
   browser remembered carries over: the new domain is another origin, so its
   storage starts empty and a remembered name, volume or seat is asked again
   once. Rooms open at the deploy close with it.
-  **Superseded until Melee is validated**: Taverla is served again from its own
-  address, from the last commit before the rename, and Melee only previews at
-  `melee.adrienlcp.com`, deployed by hand — see `apps/server/former-host/`.
+  **Superseded**: there is no redirect. Taverla is served from its own address,
+  from the last commit before the rename, until Melee is validated; its Worker
+  is then deleted, and `apps/server/former-host/` is gone.
 
 - `[Shared]` **A ninth quiz subject, Citations / Quotes**, and `PROTOCOL_VERSION`
   goes to 24. The prompt is a line a table recognises — from a film, a series,
