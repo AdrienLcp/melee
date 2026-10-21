@@ -1,6 +1,6 @@
 # 36 — Matchsticks
 
-**To do.** A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
+**To do.** Two kinds of puzzle (below). A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
 seven-segment digits — that turns true when one stick moves. Asked for the team
 evening on 21/10/2026.
 
@@ -22,3 +22,17 @@ evening on 21/10/2026.
 - Everyone at once, scored by the clock like `choice`, so the host has nothing
   to judge.
 - Only worth building once session A has been played at a table.
+
+## A second kind of puzzle — the biggest number
+
+Asked 21/10/2026. A number of several digits in sticks (`5 0 8`), and one
+stick to move so the number becomes **the biggest it can be**.
+
+- *Bigger than the original* is too easy — a stick off an `8` often does it —
+  so the puzzle asks for the biggest, and the smallest is its twin.
+- **No bank to write**: the server can deal any number and work out the best
+  move itself, by trying every one stick move over the seven-segment digits.
+  The puzzles never run out and every solution is known.
+- In session A the host judges against the best answer the server shows them.
+  In session B the server measures the number each player made, so a move
+  that is not the best can still be paid by how close it came.
