@@ -11,6 +11,7 @@ import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { Button } from '@/presentation/components/button'
 import { FloorClock } from '@/presentation/components/floor-clock'
+import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { Pawn } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
@@ -96,6 +97,8 @@ type VerdictPanelProps = {
   onJudge: ((verdict: Verdict) => void) | null
   /** The buzzer's place in the roster, which picks their pawn's colour. */
   seat: number
+  /** What the room is answering, kept up while the floor is taken where the answer is pointed at — the matchsticks. */
+  stimulus?: React.ReactNode
 }
 
 export const VerdictPanel: React.FC<VerdictPanelProps> = ({
@@ -105,7 +108,8 @@ export const VerdictPanel: React.FC<VerdictPanelProps> = ({
   isAnswerFolded,
   nickname,
   onJudge,
-  seat
+  seat,
+  stimulus = null
 }) => {
   const translate = useTranslate()
   const [isAnswerShown, setIsAnswerShown] = useState(!isAnswerFolded)
@@ -117,6 +121,8 @@ export const VerdictPanel: React.FC<VerdictPanelProps> = ({
         <h2>{translate('buzz.theyBuzzed', { nickname })}</h2>
         <FloorClock buzz={buzz} clock={clock} />
       </div>
+
+      {stimulus}
 
       {content !== null && (
         <div className='judging'>
@@ -193,6 +199,16 @@ const Answer: React.FC<{ content: HostRoundContent }> = ({ content }) => {
       )
     case 'buzzer':
       return null
+    case 'matchsticks':
+      return content.solutions === null ? null : (
+        <ul className='answer solutions'>
+          {content.solutions.map((solution) => (
+            <li key={solution.glyphs}>
+              <MatchstickRow glyphs={solution.glyphs} move={solution.move} />
+            </li>
+          ))}
+        </ul>
+      )
     case 'quiz':
       return content.question === null ? null : (
         <div className='answer'>

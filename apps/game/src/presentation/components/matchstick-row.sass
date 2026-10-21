@@ -1,0 +1,40 @@
+@layer components
+  .matchstick-row
+    display: block
+    height: auto
+    max-height: 100%
+    max-width: 100%
+    overflow: visible
+
+    .groove
+      fill: color-mix(in oklab, currentColor 11%, transparent)
+
+    // Where the moved stick came from: the empty groove, dashed round in the
+    // colour that says *go*, so the start of the move reads without the motion.
+    .groove.left
+      fill: none
+      stroke: var(--primary)
+      stroke-dasharray: 4 3
+      stroke-width: 2
+
+    .wood
+      fill: var(--match-wood)
+      stroke: var(--match-edge)
+      stroke-width: 1.5
+
+    .head
+      fill: var(--match-head)
+      stroke: var(--match-head-edge)
+      stroke-width: 1.5
+
+    .moved
+      animation: match-travel calc(var(--transition-slow, 0s) * 1.6) var(--ease-out) calc(var(--transition-slow, 0s) * 1.2) both
+      transform: var(--to)
+
+      .wood
+        stroke: var(--good)
+        stroke-width: 3
+
+  @keyframes match-travel
+    from
+      transform: var(--from)

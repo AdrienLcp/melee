@@ -242,6 +242,16 @@
           block-size: 1.1em
           inline-size: auto
 
+    // The same card the puzzle was played on, the stick now moved.
+    &[data-game='matchsticks'] .matchsticks-prompt
+      @include piece.card
+
+      --sticks-max-height: calc(var(--stage-unit) * 26)
+
+      color: var(--card-ink)
+      flex: 1 1 auto
+      padding: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+
     .said
       @include layout.narrow
         display: none
@@ -280,6 +290,9 @@
 
       &[data-game='quiz'] .identity
         padding: clamp(var(--space-xs), 3cqh, var(--space-l)) clamp(var(--space-s), 3.4cqi, var(--space-l))
+
+      &[data-game='matchsticks'] .matchsticks-prompt
+        --sticks-max-height: 44cqh
 
       // The map is the reveal here, so it takes the room and the list keeps
       // what its rows need, its chips at a size of their own.

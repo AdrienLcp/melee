@@ -338,6 +338,12 @@
     gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-m))
     padding: clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l)) clamp(var(--space-m), calc(var(--stage-unit) * 4.4), var(--space-l))
 
+    .matchsticks-prompt
+      --sticks-max-height: calc(var(--stage-unit) * 28)
+
+      color: var(--card-ink)
+      flex: 1 1 100%
+
     // Deezer serves covers at 250px and nothing larger, so it stays well
     // under; pasted onto the paper with the shallow edge a print has.
     .cover
@@ -490,9 +496,19 @@
 
       grid-area: card
 
+    .matchsticks-prompt
+      @include question-card.card
+
+      --sticks-max-height: calc(var(--stage-unit) * 40)
+
+      align-items: center
+      color: var(--card-ink)
+      grid-area: card
+      text-align: center
+
     // With no card on top, the round's clock is drawn on the board itself, and
     // the well starts under it.
-    &:not(:has(.asked-question))
+    &:not(:has(.asked-question, .matchsticks-prompt))
       padding-top: var(--space-m)
 
     // The piece and the line under it, centred together in the box the page

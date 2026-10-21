@@ -10,9 +10,14 @@ import {
   TypedAnswer
 } from '@/features/player/answer-forms'
 import { MapAnswer } from '@/features/player/map-answer'
-import { quizContent, worldmapContent } from '@/helpers/round-content'
+import {
+  matchsticksContent,
+  quizContent,
+  worldmapContent
+} from '@/helpers/round-content'
 import { AskedQuestion } from '@/presentation/components/asked-question'
 import { MapPrompt } from '@/presentation/components/map-prompt'
+import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -63,6 +68,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
     (team) => team.id === round.turn?.teamIds[0]
   )
   const worldmap = worldmapContent(round)
+  const matchsticks = matchsticksContent(round)
 
   return (
     <div
@@ -92,6 +98,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
         ) : worldmap !== null ? (
           <MapPrompt target={worldmap.target} />
+        ) : matchsticks !== null ? (
+          <MatchsticksPrompt puzzle={matchsticks.puzzle} />
         ) : round.content.kind === 'challenge' ? (
           <>
             <p className='now challenge-line'>

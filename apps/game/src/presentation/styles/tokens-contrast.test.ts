@@ -88,6 +88,16 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.nonText
         },
         {
+          background: '--card',
+          foreground: '--match-edge',
+          minimum: WCAG_AA.nonText
+        },
+        {
+          background: '--spine-matchsticks',
+          foreground: '--on-spine-matchsticks',
+          minimum: WCAG_AA.text
+        },
+        {
           background: '--selection',
           foreground: '--board-ink',
           minimum: WCAG_AA.text

@@ -52,7 +52,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map and Challenge.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock and Matchsticks.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -64,6 +64,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Who publishes Mêlée, what it keeps about the people who play and for how long, which services receive what, and how to refuse audience measurement.',
       title: 'Legal notice and privacy — Mêlée'
+    },
+    matchsticks: {
+      description:
+        'A false equation drawn in matches, or a number to make as big or as small as it can be: one match moves. First to buzz says which, and the host says right or wrong. Every puzzle is dealt fresh and every one has an answer.',
+      title: 'Matchsticks — Mêlée'
     },
     quiz: {
       description:
@@ -109,7 +114,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde et Défi.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne et Allumettes.',
       title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
     },
     innerclock: {
@@ -121,6 +126,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Qui publie Mêlée, ce qui est gardé sur les joueurs et pour combien de temps, quels services reçoivent quoi, et comment refuser la mesure d’audience.',
       title: 'Mentions légales et confidentialité — Mêlée'
+    },
+    matchsticks: {
+      description:
+        'Une égalité fausse dessinée en allumettes, ou un nombre à rendre le plus grand ou le plus petit possible : une seule allumette bouge. Le premier à buzzer dit laquelle, et l’hôte tranche. Chaque énigme est tirée à neuf et toutes ont une réponse.',
+      title: 'Allumettes — Mêlée'
     },
     quiz: {
       description:

@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Game]` **Matchsticks, the ninth game, is on the shelf.** The puzzle is
+  drawn in matches on every screen, each empty place a faint groove, with what
+  the move must do said above it; the first to buzz points at a stick while
+  the puzzle stays up, the host judges against every answer, and the reveal
+  draws the match travelling into its new place. The settings choose which
+  puzzles are dealt and how long each stays up.
+
 - `[Server]` **Matchsticks are served**, not yet shelved, and
   `PROTOCOL_VERSION` goes to 37. A round deals a false equation in
   seven-segment sticks that one moved stick makes true, or a number one stick

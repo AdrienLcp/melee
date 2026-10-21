@@ -8,6 +8,7 @@ import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
   innerclockContent,
+  matchsticksContent,
   quizContent,
   reflexContent,
   revealedInOrder,
@@ -16,6 +17,7 @@ import {
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
+import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
@@ -153,6 +155,23 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
             </p>
             {question.note !== null && <p className='note'>{question.note}</p>}
           </div>
+        </div>
+
+        <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
+  const solved = matchsticksContent(round)
+
+  if (solved !== null && solved.revealedSolution !== null) {
+    return (
+      <section className='reveal-panel' data-game='matchsticks'>
+        <div className='head'>
+          <MatchsticksPrompt
+            puzzle={solved.puzzle}
+            solution={solved.revealedSolution}
+          />
         </div>
 
         <Outcome players={players} round={round} />

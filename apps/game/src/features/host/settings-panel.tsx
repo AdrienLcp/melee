@@ -2,6 +2,10 @@ import type React from 'react'
 
 import type { QuizSettings } from '@melee/protocol/game'
 import {
+  type MatchsticksGoal,
+  matchsticksGoals
+} from '@melee/protocol/matchsticks'
+import {
   type QuestionCategory,
   type QuestionLanguage,
   questionCategories,
@@ -35,6 +39,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
 import {
   answerModeLabelKey,
+  type PlainTranslationKey,
   questionCategoryKey,
   scoringKey
 } from '@/presentation/i18n/translation'
@@ -52,6 +57,19 @@ const CLIP_DURATIONS_MS = [10_000, 20_000, 30_000] as const
  * answered, and a typed answer has to be spelled out where a pick is a press.
  */
 const QUESTION_DURATIONS_MS = [15_000, 30_000, 60_000] as const
+
+const PUZZLE_DURATIONS_MS = [30_000, 60_000, 120_000] as const
+
+const MATCHSTICKS_GOAL_KEYS = {
+  biggest: 'matchsticks.goals.biggest',
+  equation: 'matchsticks.goals.equation',
+  smallest: 'matchsticks.goals.smallest'
+} as const satisfies Record<MatchsticksGoal, PlainTranslationKey>
+
+const asMatchsticksGoal = (
+  value: string | number
+): MatchsticksGoal | undefined =>
+  matchsticksGoals.find((goal) => goal === value)
 
 const ANSWER_WINDOWS_MS = [5_000, 10_000, 20_000, NO_LIMIT] as const
 
@@ -399,6 +417,43 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           }}
           optionLabel={secondsLabel}
           options={QUESTION_DURATIONS_MS}
+          value={game.roundDurationMs}
+        />
+      )}
+
+      {game?.kind === 'matchsticks' && (
+        <ToggleGroup
+          className='matchsticks-goals'
+          isDisabled={isDisabled}
+          label={translate('matchsticks.goals.label')}
+          onSelectionChange={(keys) => {
+            const goals = [...keys]
+              .map(asMatchsticksGoal)
+              .filter((goal) => goal !== undefined)
+
+            // A room is dealt at least one kind: unticking the last is a press
+            // the server would refuse, so it is not sent.
+            if (goals.length > 0) {
+              onChange({ ...settings, game: { ...game, goals } })
+            }
+          }}
+          options={matchsticksGoals.map((goal) => ({
+            label: translate(MATCHSTICKS_GOAL_KEYS[goal]),
+            value: goal
+          }))}
+          selectedKeys={game.goals}
+        />
+      )}
+
+      {game?.kind === 'matchsticks' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('matchsticks.duration')}
+          onChange={(roundDurationMs) => {
+            onChange({ ...settings, game: { ...game, roundDurationMs } })
+          }}
+          optionLabel={secondsLabel}
+          options={PUZZLE_DURATIONS_MS}
           value={game.roundDurationMs}
         />
       )}

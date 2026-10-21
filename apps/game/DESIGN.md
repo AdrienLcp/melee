@@ -35,6 +35,7 @@ colors:
   spine-worldmap: "oklch(48% 0.11 140)"
   spine-challenge: "oklch(42% 0.09 52)"
   spine-innerclock: "oklch(44% 0.08 235)"
+  spine-matchsticks: "oklch(45% 0.14 305)"
   on-spine: "oklch(99% 0.005 95)"
   on-spine-light: "oklch(20% 0.03 255)"
   pawn-1: "oklch(58% 0.19 28)"
@@ -214,7 +215,8 @@ A cool printed board under warm, saturated die-cut inks, every value one
   and indigo that the three never read as one family; `--spine-innerclock`
   dusk — a muted night blue for the game played in silence, dark enough
   beside the light sky tile and grey enough beside the indigo that neither
-  reads as its family): each
+  reads as its family; `--spine-matchsticks` plum — a matchbox, far enough
+  round from indigo and magenta to sit between them): each
   game's box colour, on the shelf, the band across a game's lid, the player's
   *up next* lid. Names print in `--on-spine-<game>`: pale `--on-spine`
   everywhere but reflex, which takes the dark `--on-spine-light`.

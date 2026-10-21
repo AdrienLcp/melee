@@ -11,9 +11,11 @@ colour, **Slate** is a private answer sheet on every screen that the host
 marks on the wall, one item at a time, **World map** names a country that
 everyone puts a pawn on, paid by the kilometre to its border, **Challenge**
 is played at the table, off every screen: the wall shows the line the host
-typed, and the host places the first three, and **Inner clock** asks everyone
+typed, and the host places the first three, **Inner clock** asks everyone
 to count to a number of seconds in their head, on screens where nothing moves,
-and pays each single press by its gap to the target.
+and pays each single press by its gap to the target, and **Matchsticks** draws
+an equation or a number in matches that one moved match fixes, judged by the
+host.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -291,7 +293,7 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
 
 ## The blind test is the first game, not the product
 
-Eight games share the room, the QR code and every screen, and the rule that got
+Nine games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

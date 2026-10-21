@@ -26,6 +26,11 @@ export const innerclockContent = (
 ): Extract<RoundContent, { kind: 'innerclock' }> | null =>
   round?.content.kind === 'innerclock' ? round.content : null
 
+export const matchsticksContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'matchsticks' }> | null =>
+  round?.content.kind === 'matchsticks' ? round.content : null
+
 export const reflexContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'reflex' }> | null =>

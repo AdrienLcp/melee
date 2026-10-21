@@ -688,9 +688,29 @@ export const EN_DICTIONARY = defineDictionary({
    */
   loading: 'Loading…',
   matchsticks: {
+    duration: 'Time per puzzle',
+    goal: {
+      biggest: 'Move one match to make the biggest number',
+      equation: 'Move one match to make it true',
+      smallest: 'Move one match to make the smallest number'
+    },
+    goals: {
+      biggest: 'Biggest number',
+      equation: 'Equations',
+      label: 'Puzzles',
+      smallest: 'Smallest number'
+    },
+    home: {
+      description:
+        'A false equation on the wall, drawn in matches — or a number to make as big, or as small, as one match allows. First to buzz says which match moves and where, out loud, and the host says right or wrong. Every puzzle is dealt fresh, so the evening never runs out, and every one has an answer.'
+    },
     name: 'Matchsticks',
+    reveal: {
+      title: 'The move:'
+    },
     scoring:
-      'One stick to move. First in says the move out loud, and the host says right or wrong — a point for right.'
+      'One stick to move. First in says the move out loud, and the host says right or wrong — a point for right.',
+    tagline: 'One match moves. Say which.'
   },
   menu: {
     build: 'Build {build}',

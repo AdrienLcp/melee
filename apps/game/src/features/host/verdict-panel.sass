@@ -141,3 +141,42 @@
     .choice.miss
       outline: var(--stroke-thin) dashed var(--rule-strong)
       outline-offset: -6px
+
+    // Every move that answers it, each drawn travelling into place.
+    .solutions
+      display: grid
+      gap: var(--space-s)
+      list-style: none
+
+      .matchstick-row
+        margin-inline: auto
+        max-height: calc(var(--stage-unit) * 16)
+
+  // The puzzle stays up under the floor: whoever buzzed points at a stick.
+  .verdict-panel > .matchsticks-prompt
+    @include piece.card
+
+    --sticks-max-height: calc(var(--stage-unit) * 20)
+
+    color: var(--card-ink)
+    padding: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+    width: 100%
+
+  .verdict-panel:has(> .matchsticks-prompt) .holder .pawn
+    font-size: clamp(3rem, calc(var(--stage-unit) * 13), 9rem)
+
+  @media (aspect-ratio >= 13 / 10)
+    .verdict-panel:has(> .matchsticks-prompt)
+      grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr)
+
+    .verdict-panel:has(> .judging):has(> .matchsticks-prompt)
+      grid-template: 'holder judging' auto 'prompt judging' auto / minmax(0, 0.9fr) minmax(0, 1.1fr)
+
+      > .holder
+        grid-area: holder
+
+      > .matchsticks-prompt
+        grid-area: prompt
+
+      > .judging
+        grid-area: judging

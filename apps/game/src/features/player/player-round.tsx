@@ -49,6 +49,7 @@ import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
   innerclockContent,
+  matchsticksContent,
   quizContent,
   reflexContent,
   worldmapContent
@@ -65,6 +66,7 @@ import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
+import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
@@ -794,10 +796,14 @@ const Buzzer: React.FC<{
   // the phase: every screen waits the same window out, the ones that never
   // entered the race included.
   const floorBuzz = view.phase === 'buzzed' ? buzz : null
+  const matchsticks = matchsticksContent(view.round)
 
   return (
     <section className='player-round buzzer-area'>
       <AskedQuestion prompt={quizContent(view.round)?.prompt ?? null} />
+      {matchsticks !== null && (
+        <MatchsticksPrompt puzzle={matchsticks.puzzle} />
+      )}
       {/*
         The buzzer and the line that belongs to it, grouped so a screen lying
         down can set them beside the question card instead of under it.
@@ -879,6 +885,19 @@ const Revealed: React.FC<{
 
   if (worldmapContent(round) !== null) {
     return <MapReveal players={view.players} round={round} />
+  }
+
+  const solved = matchsticksContent(round)
+
+  if (solved !== null && solved.revealedSolution !== null) {
+    return (
+      <div className='answer-card' data-game='matchsticks'>
+        <MatchsticksPrompt
+          puzzle={solved.puzzle}
+          solution={solved.revealedSolution}
+        />
+      </div>
+    )
   }
 
   // The card the round was played on, turned over: the answer printed on its

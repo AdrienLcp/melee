@@ -17,9 +17,14 @@ import { playsThisTurn } from '@melee/core/team/team-turn'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import type { PlayerAnswer } from '@/features/player/answer-forms'
-import { holdsTheAnswer, innerclockContent } from '@/helpers/round-content'
+import {
+  holdsTheAnswer,
+  innerclockContent,
+  matchsticksContent
+} from '@/helpers/round-content'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
+import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { RevealHold } from '@/presentation/components/round-progress'
 
@@ -284,6 +289,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       (player) => player.id === buzzerId
     )
     const content = view.currentContent
+    const matchsticks = matchsticksContent(round)
 
     // The console judges, and has to hold the answer to; the wall only says who
     // has the floor and for how long.
@@ -318,6 +324,11 @@ export const RoomStage: React.FC<RoomStageProps> = ({
                 }
           }
           seat={Math.max(buzzerSeat, 0)}
+          stimulus={
+            matchsticks === null ? null : (
+              <MatchsticksPrompt puzzle={matchsticks.puzzle} />
+            )
+          }
         />
       </div>
     )

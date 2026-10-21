@@ -1,7 +1,7 @@
 # 36 — Matchsticks
 
-**Half done.** Served 21/10/2026 (A1 below); the screens (A2) and the stick
-moved under the finger (B) are owed. Two kinds of puzzle (below). A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
+**Session A done.** Served and shelved 21/10/2026 (A1, A2 below); the stick
+moved under the finger (B) is owed. Two kinds of puzzle (below). A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
 seven-segment digits — that turns true when one stick moves. Asked for the team
 evening on 21/10/2026.
 
@@ -69,13 +69,32 @@ What was built, and where it left the plan above:
 - The app holds only what compiles: the name, the scoring line and the icon
   (a flame). Everything a screen draws is A2.
 
-## A2 — the screens (to do)
+## A2 — the screens (done 21/10/2026)
 
-- A stick-drawing component in `presentation/components/` drawing glyphs from
-  `sticksOf`, used on the wall, the console and the phone; the reveal draws the
-  moved stick leaving its place and landing in the new one.
-- The console shows every solution beside the judging panel; the goal is said
-  in words above the sticks (*make it true*, *make it the biggest*).
-- The settings fold ticks the goals and sets the clock; then `shelvedGames`,
-  the shelf page and its spine colour, tagline and home copy, and whether the
-  game night preset takes it.
+- `MatchstickRow` (`presentation/components/`) draws any glyphs in sticks from
+  `sticksOf`, in an SVG whose geometry is `helpers/matchstick-geometry.ts`:
+  each match pale pine with a red head, every empty place printed as a faint
+  groove so the seven segments read before a stick moves. Given a move it
+  draws the stick travelling from its old place to its new one — the old place
+  dashed in coral, the moved stick ringed in green — so the move reads with
+  the motion collapsed too.
+- `MatchsticksPrompt` puts the goal in words over the sticks
+  (*Move one match to make it true*, *…the biggest number*, *…the smallest
+  number*), on the console and wall card, above a player's buzzer, and with
+  the solution at the reveal on every screen.
+- **The puzzle stays up while the floor is taken** (`VerdictPanel`'s
+  `stimulus`), since whoever buzzed points at a stick; the console prints every
+  solution beside the two verdicts.
+- The settings fold ticks the goals (unticking the last is not sent, since the
+  room is dealt at least one) and the time per puzzle, 30, 60 or 120 s.
+- Shelved last with a plum spine, `oklch(45% 0.14 305)`, the tagline *One match
+  moves. Say which.*; **not in the game night preset** — it is judged by the
+  host like the buzzer, and the preset already carries one game of that kind.
+- Match tokens (`--match-wood`, `--match-edge`, `--match-head`) are printed
+  pieces, the same in both palettes, and always laid on paper: the edge on
+  `--card` is what `tokens-contrast.test.ts` holds to 3:1.
+- Seen muted at 1280×800 and 390×844, light and dark, through a Playwright
+  script (the MCP browsers were down): the shelf, the settings fold, an
+  equation and a biggest-number round, the judge's view, the player's floor,
+  and the reveal mid-move and settled. **Not seen**: a paired wall's floor,
+  which draws the same stage without the verdicts.

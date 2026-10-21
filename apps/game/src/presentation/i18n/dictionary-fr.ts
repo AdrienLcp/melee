@@ -639,9 +639,29 @@ export const FR_DICTIONARY = defineDictionary({
   },
   loading: 'Chargement…',
   matchsticks: {
+    duration: 'Temps par énigme',
+    goal: {
+      biggest: 'Déplace une allumette pour faire le plus grand nombre',
+      equation: 'Déplace une allumette pour que l’égalité soit juste',
+      smallest: 'Déplace une allumette pour faire le plus petit nombre'
+    },
+    goals: {
+      biggest: 'Plus grand nombre',
+      equation: 'Égalités',
+      label: 'Énigmes',
+      smallest: 'Plus petit nombre'
+    },
+    home: {
+      description:
+        'Une égalité fausse au mur, dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Le premier à buzzer dit à voix haute quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la soirée ne s’épuise jamais, et toutes ont une réponse.'
+    },
     name: 'Allumettes',
+    reveal: {
+      title: 'Le déplacement :'
+    },
     scoring:
-      'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — un point s’il a raison.'
+      'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — un point s’il a raison.',
+    tagline: 'Une allumette bouge. Dis laquelle.'
   },
   menu: {
     build: 'Version {build}',
