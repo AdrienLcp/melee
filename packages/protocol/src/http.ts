@@ -40,12 +40,16 @@ import {
  * and whether it is played in teams. The preset itself — its name, why those
  * games — is the app's, and never travels; the room only holds the settings it
  * resolves to. Its first game is the first round's.
+ *
+ * At least two games, because that is what a preset is and how the console
+ * tells one apart: a line-up of one reads as that game's own door, and the
+ * host's stored setup for it would replace the preset's length and teams.
  */
 export const roomPresetSchema = z.object({
   board: boardSettingsSchema,
   lineUp: z
     .array(shelvedGameSchema)
-    .min(1)
+    .min(2)
     .max(shelvedGames.length)
     .refine((games) => new Set(games).size === games.length, {
       message: 'A game is ticked once'

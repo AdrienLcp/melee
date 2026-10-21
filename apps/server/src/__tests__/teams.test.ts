@@ -26,6 +26,7 @@ const inTeams = (teams: TeamsSettings) => ({ ...FAST_GAME, teams })
 const DRAWN_IN_TWO = inTeams({ count: 2, kind: 'drawn' })
 const DRAWN_IN_THREE = inTeams({ count: 3, kind: 'drawn' })
 const CHOSEN_IN_TWO = inTeams({ count: 2, kind: 'chosen' })
+const A_SCREEN_PER_TEAM = inTeams({ kind: 'teamsOnly' })
 
 const viewOf = (player: Peer<PlayerServerMessage> | undefined) =>
   player === undefined ? null : playerView(player)
@@ -63,6 +64,24 @@ describe('a room played in teams', () => {
     expect(
       hostView(host)?.teams.every((team) => team.seatIds.length === 0)
     ).toBe(true)
+  })
+
+  it('[teams] makes each seat a team of its own, named after it, when every team has one screen', async () => {
+    const { code, host } = await harness.openRoom(A_SCREEN_PER_TEAM)
+    const [reds, blues] = await seatMany(code, ['Reds', 'Blues'])
+
+    await waitFor(() => hostView(host)?.teams.length === 2, 'two teams')
+
+    expect(
+      hostView(host)?.teams.map((team) => ({
+        colour: team.colour,
+        name: team.name,
+        seatIds: team.seatIds
+      }))
+    ).toEqual([
+      { colour: 1, name: 'Reds', seatIds: [idOf(reds)] },
+      { colour: 2, name: 'Blues', seatIds: [idOf(blues)] }
+    ])
   })
 
   it('[teams] deals six seats into three teams every screen can read', async () => {

@@ -10,13 +10,16 @@ import {
 import { z } from 'zod'
 
 import {
+  type BoardSettings,
   boardSettingsSchema,
-  DEFAULT_BOARD_SETTINGS
+  DEFAULT_BOARD_SETTINGS,
+  DEFAULT_TRACK_SETTINGS
 } from '@melee/protocol/board'
 import { gameKindSchema, gameSettingsSchema } from '@melee/protocol/game'
 import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 import { modeSettingsSchema, roomSettingsSchema } from '@melee/protocol/room'
+import type { TeamsSettings } from '@melee/protocol/team'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 
@@ -58,6 +61,14 @@ const usableGameSetups = (
     })
   )
 
+/**
+ * The board a setup stored before it existed is read with: the one the teams
+ * setting lays now, since a host who played in teams then would be raced on a
+ * track today, and an untouched setting leaves no way to lay it.
+ */
+const boardLaidWith = (teams: TeamsSettings): BoardSettings =>
+  teams.kind === 'off' ? DEFAULT_BOARD_SETTINGS : DEFAULT_TRACK_SETTINGS
+
 const hostPreferencesSchema = z.object({
   games: z.record(z.string(), z.unknown()).transform(usableGameSetups),
   room: roomSettingsSchema
@@ -68,10 +79,11 @@ const hostPreferencesSchema = z.object({
       mode: true,
       roundCount: true
     })
-    .extend({
-      /** Stored before the board existed, a setup is read as one without it. */
-      board: boardSettingsSchema.catch(DEFAULT_BOARD_SETTINGS)
-    })
+    .extend({ board: boardSettingsSchema.optional().catch(undefined) })
+    .transform(({ board, ...room }) => ({
+      ...room,
+      board: board ?? boardLaidWith(room.teams)
+    }))
 })
 
 /**

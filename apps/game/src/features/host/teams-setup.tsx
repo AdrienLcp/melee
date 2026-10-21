@@ -54,13 +54,12 @@ const teamsOfKind = (
   }
 }
 
-const hasTeamSeats = (teams: TeamsSettings): boolean =>
-  teams.kind === 'drawn' || teams.kind === 'chosen'
+const playsInTeams = (teams: TeamsSettings): boolean => teams.kind !== 'off'
 
 /**
  * The track follows the teams in and out: a room splitting into teams is an
- * evening raced on a board, and a room with no team seats has nobody to walk
- * a pawn. A track already laid survives a change of how the seats are dealt.
+ * evening raced on a board, and a room with no teams has nobody to walk a
+ * pawn. A track already laid survives a change of how the seats are dealt.
  */
 const boardFor = ({
   board,
@@ -71,11 +70,11 @@ const boardFor = ({
   from: TeamsSettings
   to: TeamsSettings
 }): BoardSettings => {
-  if (!hasTeamSeats(to)) {
+  if (!playsInTeams(to)) {
     return DEFAULT_BOARD_SETTINGS
   }
 
-  return hasTeamSeats(from) ? board : DEFAULT_TRACK_SETTINGS
+  return playsInTeams(from) ? board : DEFAULT_TRACK_SETTINGS
 }
 
 /** The strip's lengths, with a track laid at another length kept selectable. */
@@ -135,7 +134,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           value={teams.count}
         />
       )}
-      {hasTeamSeats(teams) && (
+      {playsInTeams(teams) && (
         <NumberChoice
           className='board-length'
           isDisabled={isDisabled}

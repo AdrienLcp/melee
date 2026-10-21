@@ -163,4 +163,24 @@ describe('an evening of several games', () => {
     })
     expect(hostView(host)?.teams).toHaveLength(3)
   })
+
+  it('[line-up] refuses a preset of one game, which the console would take for that game’s own door', async () => {
+    const response = await fetch(
+      `http://${harness.origin}${API_ROUTES.rooms}`,
+      {
+        body: JSON.stringify({
+          preset: {
+            board: { kind: 'track', length: 24, strategy: 'onePointOneCase' },
+            lineUp: ['quiz'],
+            roundCount: 12,
+            teams: { count: 3, kind: 'drawn' }
+          }
+        }),
+        headers: { 'content-type': 'application/json' },
+        method: 'POST'
+      }
+    )
+
+    expect(response.status).toBe(400)
+  })
 })

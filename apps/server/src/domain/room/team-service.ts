@@ -3,11 +3,12 @@ import { Result } from '@adrienlcp/result'
 import type { BoardPosition } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import { POINT } from '@melee/protocol/scoring'
-import type {
-  Team,
-  TeamId,
-  TeamName,
-  TeamsSettings
+import {
+  PAWN_COLOUR_COUNT,
+  type Team,
+  type TeamId,
+  type TeamName,
+  type TeamsSettings
 } from '@melee/protocol/team'
 
 import { advanceOnTrack, type TeamMove } from '@melee/core/board/board-strategy'
@@ -42,24 +43,51 @@ export const changesTeams = ({
   to: TeamsSettings
 }): boolean => teamCountOf(from) !== teamCountOf(to) || from.kind !== to.kind
 
+const newTeam = (index: number): RoomTeam => ({
+  bankedCase: 0,
+  bankedScore: 0,
+  colour: (index % PAWN_COLOUR_COUNT) + 1,
+  id: teamIdAt(index),
+  name: null
+})
+
+/**
+ * Under `teamsOnly` a seat is a team: it gets one of its own as it arrives. In
+ * the lobby it takes over a team its last seat left, so a phone that joined
+ * twice leaves no empty team on the board; past it, a fresh one, because the
+ * team left behind still owns its score.
+ */
+const giveSeatItsOwnTeam = (room: Room, participant: Participant): void => {
+  const vacant =
+    room.phase === 'lobby'
+      ? room.teams.find((team) => seatsOf(room, team.id).length === 0)
+      : undefined
+  const team = vacant ?? newTeam(room.teams.length)
+
+  if (vacant === undefined) {
+    room.teams.push(team)
+  }
+
+  participant.teamId = team.id
+}
+
 /**
  * Keeps the room's teams as many as the setting counts. A team beyond the new
  * count goes and its seats wait for the next deal; the teams that stay keep
  * their names, their seats and their scores.
  */
 export const fitTeamsToSettings = (room: Room): void => {
+  if (room.settings.teams.kind === 'teamsOnly') {
+    fitTeamPerSeat(room)
+
+    return
+  }
+
   const count = teamCountOf(room.settings.teams)
 
   room.teams = Array.from(
     { length: count },
-    (_, index): RoomTeam =>
-      room.teams[index] ?? {
-        bankedCase: 0,
-        bankedScore: 0,
-        colour: index + 1,
-        id: teamIdAt(index),
-        name: null
-      }
+    (_, index): RoomTeam => room.teams[index] ?? newTeam(index)
   )
 
   for (const participant of room.players.values()) {
@@ -69,6 +97,14 @@ export const fitTeamsToSettings = (room: Room): void => {
     ) {
       participant.teamId = null
     }
+  }
+}
+
+const fitTeamPerSeat = (room: Room): void => {
+  room.teams = []
+
+  for (const participant of room.players.values()) {
+    giveSeatItsOwnTeam(room, participant)
   }
 }
 
@@ -255,6 +291,12 @@ export const placeArrivingSeat = (
     (seat) => seat.teamId !== null
   )
 
+  if (participant.teamId === null && room.settings.teams.kind === 'teamsOnly') {
+    giveSeatItsOwnTeam(room, participant)
+
+    return
+  }
+
   if (
     participant.teamId === null &&
     room.settings.teams.kind === 'drawn' &&
@@ -274,6 +316,12 @@ export const placeUnseatedSeats = (room: Room): void => {
 }
 
 const placeSeat = (room: Room, participant: Participant): void => {
+  if (room.settings.teams.kind === 'teamsOnly') {
+    giveSeatItsOwnTeam(room, participant)
+
+    return
+  }
+
   participant.teamId = teamForLateSeat(
     room.teams.map((team) => ({
       connectedSeatCount: seatsOf(room, team.id).filter(
@@ -360,6 +408,12 @@ const boardPositionOf = (
   return { case: team.bankedCase + move, move }
 }
 
+/** A `teamsOnly` team is named after the seat it is: the name typed on its screen. */
+const nameOfOnlySeat = (room: Room, team: RoomTeam): TeamName | null =>
+  room.settings.teams.kind === 'teamsOnly'
+    ? (seatsOf(room, team.id)[0]?.nickname ?? null)
+    : null
+
 export const toTeamViews = (room: Room): Team[] => {
   const moves = liveMoves(room)
 
@@ -367,7 +421,7 @@ export const toTeamViews = (room: Room): Team[] => {
     board: boardPositionOf(room, team, moves),
     colour: team.colour,
     id: team.id,
-    name: team.name,
+    name: team.name ?? nameOfOnlySeat(room, team),
     score: team.bankedScore + liveRoundResult(room, team.id),
     seatIds: seatsOf(room, team.id).map((seat) => seat.id)
   }))
