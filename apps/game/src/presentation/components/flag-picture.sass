@@ -1,0 +1,10 @@
+@layer components
+  // The rule is what holds a white field — Japan, Canada, Cyprus — off the
+  // paper it is printed on.
+  .flag-picture
+    border-radius: var(--radius-xs)
+    box-shadow: 0 0 0 1px var(--card-rule), var(--shadow-print)
+    aspect-ratio: 4 / 3
+    flex: none
+    height: auto
+    width: min(100%, calc(var(--flag-height, clamp(4rem, 20cqmin, 14rem)) * 4 / 3))

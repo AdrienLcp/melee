@@ -63,6 +63,7 @@ import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
+import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
@@ -872,6 +873,7 @@ const Revealed: React.FC<{
   const translate = useTranslate()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
+  const flag = quizContent(round)?.prompt.flag ?? null
   // The times, which a player reads for the same reason the room does: this is
   // the one game whose reveal is not an answer, so the finishing order is what
   // there is to know — and everyone's own number is on it.
@@ -934,6 +936,7 @@ const Revealed: React.FC<{
   if (question !== null) {
     return (
       <div className='answer-card' data-game='quiz'>
+        {flag !== null && <FlagPicture file={flag} isNamedBeside />}
         <div className='identity'>
           <p className='revealed-title' style={answerFitting(question.answer)}>
             <VisuallyHidden elementType='span'>

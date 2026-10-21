@@ -220,6 +220,11 @@
           font-size: clamp(var(--text-xs), 2.4cqmin, 1.25rem)
           order: -1
 
+        // The picture is the question here, and the sentence under it the
+        // same five words every time.
+        .flag-picture
+          --flag-height: clamp(5rem, 40cqh, 22rem)
+
       .now
         @include typography.billboard
 

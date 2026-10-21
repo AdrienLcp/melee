@@ -43,6 +43,15 @@
       &.placeholder
         background: repeating-linear-gradient(135deg, var(--track-a) 0 10px, var(--track-b) 10px 20px)
 
+    .flag-picture
+      --flag-height: min(calc(var(--stage-unit) * 18), 10rem)
+
+      display: block
+      margin-bottom: 0.4em
+
+      @include layout.narrow
+        --flag-height: clamp(2.75rem, 9dvh, 6rem)
+
     // It declares a container of its own because the title is measured against
     // this column and not against the one the cover shares with it.
     .identity
@@ -278,6 +287,9 @@
 
       .cover
         --cover-size: min(15.625rem, 34cqh, 22cqi)
+
+      .flag-picture
+        --flag-height: min(10rem, 20cqh)
 
       .identity
         --answer-size: clamp(1.75rem, min(12cqh, calc(106cqi / var(--longest-word-width, 10)), calc(260cqi / var(--answer-length, 10))), 6rem)

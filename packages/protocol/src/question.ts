@@ -145,6 +145,7 @@ export type QuestionDrawSettings = z.infer<typeof questionDrawSettingsSchema>
 
 export type QuestionCategory = z.infer<typeof questionCategorySchema>
 export type Question = z.infer<typeof questionSchema>
+export type FlagFile = z.infer<typeof flagFileSchema>
 export type QuestionPrompt = z.infer<typeof questionPromptSchema>
 export type RevealedQuestion = z.infer<typeof revealedQuestionSchema>
 export type HostQuestion = z.infer<typeof hostQuestionSchema>

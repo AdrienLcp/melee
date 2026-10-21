@@ -8,8 +8,10 @@ one part.
 
 ### Features
 
-- `[Server]` **Flags are served as a tenth quiz subject**, not yet drawn on
-  any screen, and `PROTOCOL_VERSION` goes to 38. A flag question names the
+- **Flags are a tenth quiz subject**, and `PROTOCOL_VERSION` goes to 38. The
+  flag is printed on the question card on every screen, large on the one the
+  room reads, and stays on the card turned over beside the country at the
+  reveal; the credits name `flag-icons`. A flag question names the
   file to show — under a name taken from the drawing, never the country — and
   asks whose it is, with three flags a table mixes up as the wrong answers:
   Romania beside Chad, Ireland beside Ivory Coast. 229 countries and

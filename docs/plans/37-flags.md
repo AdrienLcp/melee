@@ -1,6 +1,6 @@
 # 37 — Flags
 
-**Server half done 21/10/2026; the screens are owed.** A flag on the wall and
+**Done 21/10/2026.** A flag on the wall and
 on every screen, the room names the country. Asked 21/10/2026 to widen the
 evening.
 
@@ -55,14 +55,25 @@ it alone plays a flags round; one that ticks it beside history mixes them.
   checks the file arrives and the country never does — seen red with the answer
   pasted into the prompt.
 
-## Owed (screens)
+## What was built (screens)
 
-- `AskedQuestion` draws `/flags/<file>` above the prompt on the console, the
-  wall and the player, at a size the room reads from across it; the alt text
-  must not name the country.
-- Ten chips in the subject strip: nine tiled 3 × 3 (stage 32), ten do not.
-- The credits page names `flag-icons` and its MIT licence.
-- The muted browser pass, both modes, both palettes.
+- **`FlagPicture`** (`presentation/components/flag-picture.tsx`) prints a
+  flag on the card at 4:3, with the card's rule around it so a white field —
+  Japan, Cyprus — keeps its edge. While the question is open its alt text is
+  *The flag to name*; on the reveal, where the country is printed beside it,
+  it is empty.
+- **`AskedQuestion`** draws it under the subject and above the prompt, read
+  after the prompt. The console sizes it at 40% of the stage's height, since
+  the picture is the question and the sentence the same five words every time;
+  the player's card keeps the default, so four choices still fit at 390.
+- **The reveal keeps the flag on the card turned over**, above the country,
+  on the console's panel and the player's answer card.
+- **The credits page names `flag-icons`**, Panayiotis Lipiridis, MIT, and what
+  the build changed.
+- Ten chips tiled five by two and two by five landed with the server half.
+- Seen muted at 1280×800 and 390×844, four choices in light and typed in dark:
+  the question on console and player, then the reveal on both. The wall renders
+  the same `RoomStage` and was not seen paired.
 
 ## Decisions for Adrien
 

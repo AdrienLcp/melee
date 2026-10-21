@@ -248,6 +248,8 @@ export const EN_DICTIONARY = defineDictionary({
    * ingestion in `apps/server/scripts/` actually does to that bank.
    */
   credits: {
+    flagIcons:
+      'Each flag is drawn as it ships, renamed after its own drawing rather than its country, with the country code written inside each file replaced, so the file a screen is sent says nothing of the answer. Seven flags drawn exactly like another country’s were left out.',
     mintaka:
       'It supplies questions and no wrong answers at all, so the three candidates beside each right one were built here, out of entities Wikidata files under the same kind as the answer and that are read about roughly as much in French. Five of its eight rubrics were kept and mapped onto the subjects used here, along with four of its nine question shapes — the others name their own candidates in the question, accept more answers than they record, or ask in two hops. Questions that name the present were left behind, the corpus being fixed at October 2021. Of what remained, only the ones whose answer and whose subject have a French Wikipedia article people actually read were banked, and no answer comes up more than five times in one subject.',
     mmmlu:
@@ -850,6 +852,9 @@ export const EN_DICTIONARY = defineDictionary({
       videogames: 'Video games'
     },
     duration: 'Time per question',
+    flag: {
+      alt: 'The flag to name'
+    },
     home: {
       description:
         'History, science, sport, and questions nobody sees coming. Everyone answers at once, and the fastest right answer takes the round.'

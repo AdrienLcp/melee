@@ -15,6 +15,7 @@ import {
   worldmapContent
 } from '@/helpers/round-content'
 import { CountedBoard } from '@/presentation/components/counted-board'
+import { FlagPicture } from '@/presentation/components/flag-picture'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
@@ -104,6 +105,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
   const translate = useTranslate()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
+  const flag = quizContent(round)?.prompt.flag ?? null
   if (track !== null) {
     return (
       <section className='reveal-panel with-cover' data-game='blindtest'>
@@ -147,6 +149,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
       <section className='reveal-panel' data-game='quiz'>
         <div className='head'>
           <div className='identity' style={answerFitting(question.answer)}>
+            {flag !== null && <FlagPicture file={flag} isNamedBeside />}
             <p className='title'>
               <VisuallyHidden elementType='span'>
                 {`${translate('quiz.reveal.title')} `}

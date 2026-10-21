@@ -221,6 +221,8 @@ export const FR_DICTIONARY = defineDictionary({
     refused: 'Déconnecté'
   },
   credits: {
+    flagIcons:
+      'Chaque drapeau est dessiné tel qu’il est livré, renommé d’après son propre dessin plutôt que son pays, et le code du pays écrit dans chaque fichier a été remplacé, pour que le fichier envoyé à un écran ne dise rien de la réponse. Sept drapeaux dessinés exactement comme celui d’un autre pays ont été écartés.',
     mintaka:
       'Elle fournit des questions et aucune mauvaise réponse : les trois propositions posées à côté de la bonne ont été construites ici, à partir d’entités que Wikidata range dans la même famille que la réponse et qu’on lit à peu près autant en français. Cinq de ses huit rubriques ont été retenues et rattachées aux sujets utilisés ici, ainsi que quatre de ses neuf formes de question — les autres nomment leurs propres propositions dans l’énoncé, acceptent plus de réponses qu’elles n’en enregistrent, ou demandent deux détours. Les questions qui nomment le présent ont été écartées, le corpus étant arrêté à octobre 2021. Parmi ce qui restait, seules celles dont la réponse et le sujet ont un article de Wikipédia en français réellement lu ont été gardées, et aucune réponse ne revient plus de cinq fois dans un même sujet.',
     mmmlu:
@@ -777,6 +779,9 @@ export const FR_DICTIONARY = defineDictionary({
       videogames: 'Jeux vidéo'
     },
     duration: 'Temps par question',
+    flag: {
+      alt: 'Le drapeau à reconnaître'
+    },
     home: {
       description:
         'De l’histoire, des sciences, du sport, et des questions que personne ne voit venir. Tout le monde répond en même temps, et la bonne réponse la plus rapide rafle la manche.'

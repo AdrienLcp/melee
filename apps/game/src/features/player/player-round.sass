@@ -322,6 +322,9 @@
           height: clamp(3.5rem, 12dvh, 8rem)
           width: clamp(3.5rem, 12dvh, 8rem)
 
+        .answer-card .flag-picture
+          --flag-height: clamp(2.75rem, 9dvh, 6rem)
+
         .your-round .payout
           --token: clamp(3.5rem, 11dvh, 5.5rem)
 
@@ -353,6 +356,9 @@
       height: clamp(6rem, calc(var(--stage-unit) * 22), 10rem)
       object-fit: cover
       width: clamp(6rem, calc(var(--stage-unit) * 22), 10rem)
+
+    .flag-picture
+      --flag-height: clamp(4.5rem, calc(var(--stage-unit) * 16), 7.5rem)
 
     // A container of its own, because the answer is measured against this
     // column and not the one the cover shares with it. `116cqi` over the

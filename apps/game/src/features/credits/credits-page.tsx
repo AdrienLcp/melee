@@ -113,6 +113,13 @@ const QUESTION_CREDITS: QuestionCredit[] = [
     licence: LICENCES.ccBySa4,
     source: 'Open Trivia DB',
     sourceUrl: 'https://opentdb.com'
+  },
+  {
+    author: 'Panayiotis Lipiridis',
+    changes: 'credits.flagIcons',
+    licence: LICENCES.mit,
+    source: 'flag-icons',
+    sourceUrl: 'https://github.com/lipis/flag-icons'
   }
 ]
 
