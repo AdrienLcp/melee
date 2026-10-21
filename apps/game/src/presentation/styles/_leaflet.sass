@@ -1,24 +1,57 @@
 // Pure module: mixins only, no top-level CSS.
 
 /// The rulebook leaflet a popover opens: the board's own ground, so every
-/// control inside keeps its tokens, on a piece with the box's edge. React Aria
-/// writes a `max-height` inline that stops the box at the viewport's edge and
-/// says nothing about the rest, so what runs past it scrolls inside, and
-/// `contain` keeps a scroll that hits the end from moving the page behind.
+/// control inside keeps its tokens, on a piece with the box's edge. The piece
+/// clips to its rounded corners and never scrolls itself: its dialog does,
+/// inside it, so a scrollbar never paints a square corner over the round one.
+/// The `max-height` React Aria writes inline on a popover stops the piece at
+/// the viewport's edge, and the dialog shrinks to it and scrolls; `contain`
+/// keeps a scroll that hits the end from moving the page behind.
 @mixin leaflet
   --ground: var(--field)
 
   background: var(--field)
   border-radius: var(--radius-l)
   box-shadow: 0 0 0 1px var(--rule), 0 4px 0 var(--chipboard), var(--shadow-overlay)
-  overflow-y: auto
-  overscroll-behavior: contain
-  padding: var(--space-m)
-  scrollbar-color: var(--ink-muted) transparent
-  scrollbar-width: thin
+  display: flex
+  flex-direction: column
+  overflow: clip
 
-  .react-aria-Dialog
+  > .react-aria-Dialog
     display: flex
     flex-direction: column
     gap: var(--space-m)
+    min-block-size: 0
     outline: none
+    overflow-y: auto
+    overscroll-behavior: contain
+    padding: var(--space-m)
+    // The box a visually hidden input is placed against, so it scrolls with
+    // its label: placed against the piece outside the scroller, a radio
+    // focused below the fold scrolled the page behind instead of the dialog.
+    position: relative
+    scrollbar-color: var(--ink-muted) transparent
+    // Focus scrolls a control into view only when none of it shows, so one
+    // cut at the edge by a pixel stayed cut; inset by the padding, the edge
+    // counts as out of view.
+    scroll-padding-block: var(--space-m)
+    scrollbar-width: thin
+
+    // The dialog's height is now bounded, and a control that clips its own
+    // overflow would shrink to nothing rather than let the dialog scroll.
+    > *
+      flex-shrink: 0
+
+/// A leaflet risen as a sheet across the whole screen: square at the bottom
+/// edge, and its controls held to a 30rem column in the middle, since controls
+/// stretched across 900px read as bars rather than presses. The column is the
+/// dialog's padding rather than its width, so the dialog, and its scrollbar,
+/// still run edge to edge.
+@mixin sheet
+  border-end-end-radius: 0
+  border-end-start-radius: 0
+  box-shadow: 0 0 0 1px var(--rule), var(--shadow-sheet)
+
+  > .react-aria-Dialog
+    padding-block: 0 max(var(--space-m), var(--safe-area-bottom))
+    padding-inline: max(var(--gutter-left), (100% - 30rem) / 2) max(var(--gutter-right), (100% - 30rem) / 2)

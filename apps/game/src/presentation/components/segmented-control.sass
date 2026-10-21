@@ -10,3 +10,8 @@
     // `.segment` rule covers this and `ToggleGroup`'s bare button alike.
     .segment-field
       display: contents
+
+    // A radio's input is a hidden pixel at its press's corner, and Tab scrolls
+    // only that pixel into view, leaving the press cut at a scroller's edge.
+    .segment input
+      scroll-margin-block: var(--control-height, 2.5rem)

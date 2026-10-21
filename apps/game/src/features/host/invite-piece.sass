@@ -1,4 +1,5 @@
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/leaflet'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -54,24 +55,12 @@
   // The rulebook leaflet's material, holding the invitation alone: sized for
   // a screen held out to somebody at arm's length, never read across a room.
   .invite-popover
-    --ground: var(--field)
+    @include leaflet.leaflet
 
-    background: var(--field)
-    border-radius: var(--radius-l)
-    box-shadow: 0 0 0 1px var(--rule), 0 4px 0 var(--chipboard), var(--shadow-overlay)
     max-width: min(92vw, 20rem)
-    overflow-y: auto
-    overscroll-behavior: contain
-    padding: var(--space-m)
 
     &[data-entering]
       animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
-
-    .react-aria-Dialog
-      display: flex
-      flex-direction: column
-      gap: var(--space-m)
-      outline: none
 
     .room-invitation
       --invitation-code-size: 2.5rem

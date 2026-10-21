@@ -12,18 +12,7 @@
 
   .sheet
     @include leaflet.leaflet
-
-    border-end-end-radius: 0
-    border-end-start-radius: 0
-    box-shadow: 0 0 0 1px var(--rule), var(--shadow-sheet)
-    padding-block: 0 max(var(--space-m), var(--safe-area-bottom))
-    padding-inline: var(--gutter-left) var(--gutter-right)
-
-    // A sheet runs the whole width of the screen, a phone lying down included,
-    // and controls stretched across 900px read as bars rather than presses.
-    .react-aria-Dialog
-      margin-inline: auto
-      max-inline-size: 30rem
+    @include leaflet.sheet
 
   @keyframes popover-strike
     from
