@@ -300,8 +300,8 @@ export const FR_DICTIONARY = defineDictionary({
       rest: 'Rien à installer, aucun compte : un code, un QR code, et toute la table est assise.'
     },
     presets: {
-      christmas: {
-        name: 'Soirée de Noël',
+      teamNight: {
+        name: 'Grande soirée',
         tagline: 'Quiz, blind test, buzzer, carte du monde et défis, en équipes'
       },
       how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',

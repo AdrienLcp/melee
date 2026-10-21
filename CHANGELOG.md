@@ -8,6 +8,10 @@ one part.
 
 ### Features
 
+- `[Game]` **The Christmas party is the game night**, *Grande soirée* in
+  French: the same quiz, blind test, buzzer, world map and challenges in three
+  teams, under a name that holds any time of year.
+
 - `[Game]` **A touch screen can run the evening on its own.** *Cet écran est
   celui de la salle*, in the host's menu, turns the console into the room's
   screen for good on that machine: the stage the wall draws, every answer

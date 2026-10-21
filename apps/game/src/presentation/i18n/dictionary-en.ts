@@ -325,8 +325,8 @@ export const EN_DICTIONARY = defineDictionary({
       rest: 'Nothing to install, no accounts: one code, one QR code, and the whole table is seated.'
     },
     presets: {
-      christmas: {
-        name: 'Christmas party',
+      teamNight: {
+        name: 'Game night',
         tagline:
           'Quiz, blind test, buzzer, world map and challenges, played in teams'
       },
