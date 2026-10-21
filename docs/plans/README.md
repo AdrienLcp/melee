@@ -52,7 +52,6 @@ out whether anything is usable yet.
 | [34 — The evening](34-the-evening/README.md) | **done** 21/10/2026 — every step, a → i and h1 → h6; the working assumptions in its `open-decisions.md` await Adrien's word | Gamenight folded into the shelf: teams as a shell setting every game scores through, a line-up of games drawn round by round, team turns, the world map with a movable marker judged in km on the server, and pawns on a board around the round on the wall. A folder rather than a file: a comparison, the product model, open decisions and seven steps, the December cut being a to g |
 | [35 — Inner clock](35-inner-clock.md) | to do | A game of counting in one's head: the wall says *count to 77*, nothing on any screen moves, each player presses once, and the server pays the gap to the target |
 | [36 — Matchsticks](36-matchsticks.md) | to do | An equation drawn in matchsticks that one moved stick makes true: a bank judged by the host first, the stick moved under the finger after |
-| [37 — A challenge the scale decides](37-weighed-challenge.md) | to do | The host types two weights per team for a challenge like halving a vegetable, and the relative gap places them |
 
 ## Order, and what can move
 
