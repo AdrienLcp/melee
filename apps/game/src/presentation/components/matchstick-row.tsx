@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { StickMove } from '@melee/protocol/matchsticks'
+import type { StickMove, StickPlace } from '@melee/protocol/matchsticks'
 
 import {
   isSamePlace,
@@ -17,6 +17,13 @@ import './matchstick-row.sass'
 type MatchstickRowProps = {
   glyphs: string
   /**
+   * Drawn where it lands at once rather than travelling there: a row of
+   * moves side by side, or a move the reader made themselves.
+   */
+  isStill?: boolean
+  /** The stick a player is holding, drawn raised off its place. */
+  lifted?: StickPlace | null
+  /**
    * The move that made these glyphs, drawn as the stick travelling from its
    * old place to its new one; `null` for a puzzle still to solve.
    */
@@ -25,6 +32,8 @@ type MatchstickRowProps = {
 
 const HEAD_RADIUS = STICK_THICKNESS * 0.62
 const HALF_LENGTH = STICK_LENGTH / 2
+/** How far a held stick rises off its place, in the drawing's units. */
+const LIFT = 'translate(-2 -5) '
 
 const transformOf = (pose: StickPose): string =>
   `translate(${pose.x} ${pose.y}) rotate(${pose.angle})`
@@ -76,6 +85,8 @@ const Match: React.FC<{ isBar?: boolean }> = ({ isBar = false }) => (
  */
 export const MatchstickRow: React.FC<MatchstickRowProps> = ({
   glyphs,
+  isStill = false,
+  lifted = null,
   move = null
 }) => {
   const layout = layoutOf(glyphs)
@@ -87,6 +98,8 @@ export const MatchstickRow: React.FC<MatchstickRowProps> = ({
     <svg
       aria-label={spokenGlyphs(glyphs)}
       className='matchstick-row'
+      data-holding={lifted !== null || undefined}
+      data-still={isStill || undefined}
       role='img'
       viewBox={layout.viewBox}
     >
@@ -112,15 +125,21 @@ export const MatchstickRow: React.FC<MatchstickRowProps> = ({
           <Match isBar />
         </g>
       ))}
-      {sticks.map((stick) => (
-        <g
-          className='match'
-          key={`${stick.glyphIndex}${stick.slot}`}
-          transform={transformOf(stick.pose)}
-        >
-          <Match />
-        </g>
-      ))}
+      {sticks.map((stick) => {
+        const isLifted =
+          lifted !== null && isSamePlace({ left: stick, right: lifted })
+
+        return (
+          <g
+            className='match'
+            data-lifted={isLifted || undefined}
+            key={`${stick.glyphIndex}${stick.slot}`}
+            transform={`${isLifted ? LIFT : ''}${transformOf(stick.pose)}`}
+          >
+            <Match />
+          </g>
+        )
+      })}
       {move !== null && (
         <g
           className='match moved'

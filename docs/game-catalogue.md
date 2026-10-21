@@ -74,7 +74,7 @@ team on the player model and a turn owner.
 | **Lyrics blackout** — the line is missing, sing it | Buzz-first | Same as the blind test, different reveal | a session |
 | **Reflex race** — first to press when the screen flips | Buzz-first | It needed one thing after all: a fair stimulus | **shipped** ([stage 18](plans/18-reflex-race.md)) |
 | **Inner clock** — count in your head, press once | Buzz-first | Nothing: a press stamped on arrival, paid by its gap to the target | **shipped** ([stage 35](plans/35-inner-clock.md)) |
-| **Matchsticks** — one stick to move | Everyone at once, or buzz-first | A mode of its own, `move`, judged by the server against every one-stick move; on the buzzer the host judges | **shipped** on the buzzer; `move` **served**, screens owed ([stage 36](plans/36-matchsticks.md)) |
+| **Matchsticks** — one stick to move | Everyone at once, or buzz-first | A mode of its own, `move`, judged by the server against every one-stick move; on the buzzer the host judges | **shipped** ([stage 36](plans/36-matchsticks.md)) |
 | **Timeline** — five dated events, put them in order | Everyone at once | An answer that is an order: a mode of its own, `order`, and a verdict counting the pairs swapped | **shipped** ([stage 38](plans/38-timeline.md)) |
 | **Petit Bac** — a letter, six categories, type fast | Submit-then-vote | Scoring by uniqueness | a session |
 | **Just One** — everyone writes one clue, duplicates cancel | Submit-then-vote | A clue-collision pass | a session |

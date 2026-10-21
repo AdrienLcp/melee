@@ -658,17 +658,46 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Une égalité fausse au mur, dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Le premier à buzzer dit à voix haute quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la soirée ne s’épuise jamais, et toutes ont une réponse.'
+        'Une égalité fausse dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Chacun prend une allumette sur son écran et la pose ailleurs : la bonne réponse rapporte le plus, les nombres suivants un peu moins, et le chrono s’y ajoute. Ou à voix haute : le premier à buzzer dit quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la soirée ne s’épuise jamais, et toutes ont une réponse.'
+    },
+    move: {
+      groove:
+        'Place vide {slot}, dans le {glyph} en position {position:number}',
+      label: 'Les allumettes',
+      layDown: 'Pose-la maintenant sur une place vide.',
+      pickUp: 'Prends une allumette.',
+      placed: 'Envoie ce coup, ou remets l’allumette.',
+      send: 'Envoyer le coup',
+      sent: 'Ton coup est parti. On attend les autres.',
+      slot: {
+        a: 'en haut',
+        b: 'en haut à droite',
+        c: 'en bas à droite',
+        d: 'en bas',
+        e: 'en bas à gauche',
+        f: 'en haut à gauche',
+        g: 'au milieu',
+        h: 'à plat',
+        v: 'debout'
+      },
+      stick: 'Allumette {slot}, dans le {glyph} en position {position:number}',
+      undo: 'La remettre'
     },
     name: 'Allumettes',
     reveal: {
-      title: 'Le déplacement :'
+      right: 'juste',
+      second: 'deuxième meilleur',
+      short: 'mieux, mais pas assez',
+      third: 'troisième meilleur',
+      title: 'Le déplacement :',
+      wrong: 'raté',
+      yours: 'Ton coup :'
     },
     scoring:
       'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — un point s’il a raison.',
     scoringMove:
       'Une allumette à déplacer, tout le monde en même temps. La bonne réponse vaut 3 points — sur un nombre, la suivante 2 et la troisième 1 — et le chrono s’y ajoute.',
-    tagline: 'Une allumette bouge. Dis laquelle.'
+    tagline: 'Une allumette bouge. Trouve laquelle.'
   },
   menu: {
     build: 'Version {build}',

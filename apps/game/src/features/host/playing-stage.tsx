@@ -10,6 +10,7 @@ import {
   TypedAnswer
 } from '@/features/player/answer-forms'
 import { MapAnswer } from '@/features/player/map-answer'
+import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   matchsticksContent,
@@ -73,6 +74,44 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const worldmap = worldmapContent(round)
   const matchsticks = matchsticksContent(round)
   const timeline = timelineContent(round)
+  const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
+
+  const roundCard = (sticks: React.ReactNode): React.ReactNode => (
+    <section className='round-card'>
+      {roundDurationMs !== null && (
+        <RoundProgress
+          durationMs={roundDurationMs}
+          elapsedMs={view.roundElapsedMs}
+        />
+      )}
+      {round.content.kind === 'quiz' ? (
+        <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
+      ) : worldmap !== null ? (
+        <MapPrompt target={worldmap.target} />
+      ) : matchsticks !== null ? (
+        <MatchsticksPrompt puzzle={matchsticks.puzzle}>
+          {sticks}
+        </MatchsticksPrompt>
+      ) : timeline !== null ? (
+        <p className='now timeline-question'>{translate('timeline.dealt')}</p>
+      ) : round.content.kind === 'challenge' ? (
+        <>
+          <p className='now challenge-line'>
+            {round.content.text ?? translate('challenge.untitled')}
+          </p>
+          <p className='challenge-where'>{translate('challenge.atTheTable')}</p>
+        </>
+      ) : (
+        <p className='now'>
+          {translate(
+            round.content.kind === 'buzzer'
+              ? 'buzzer.running'
+              : 'blindtest.listening'
+          )}
+        </p>
+      )}
+    </section>
+  )
 
   return (
     <div
@@ -81,6 +120,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-choices={mode === 'choice' || undefined}
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-map={(worldmap !== null && onAnswer !== null) || undefined}
+      data-moving={isMoving || undefined}
       data-timeline={
         timeline === null
           ? undefined
@@ -98,40 +138,16 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       }}
     >
       {clipOffer}
-      <section className='round-card'>
-        {roundDurationMs !== null && (
-          <RoundProgress
-            durationMs={roundDurationMs}
-            elapsedMs={view.roundElapsedMs}
-          />
-        )}
-        {round.content.kind === 'quiz' ? (
-          <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
-        ) : worldmap !== null ? (
-          <MapPrompt target={worldmap.target} />
-        ) : matchsticks !== null ? (
-          <MatchsticksPrompt puzzle={matchsticks.puzzle} />
-        ) : timeline !== null ? (
-          <p className='now timeline-question'>{translate('timeline.dealt')}</p>
-        ) : round.content.kind === 'challenge' ? (
-          <>
-            <p className='now challenge-line'>
-              {round.content.text ?? translate('challenge.untitled')}
-            </p>
-            <p className='challenge-where'>
-              {translate('challenge.atTheTable')}
-            </p>
-          </>
-        ) : (
-          <p className='now'>
-            {translate(
-              round.content.kind === 'buzzer'
-                ? 'buzzer.running'
-                : 'blindtest.listening'
-            )}
-          </p>
-        )}
-      </section>
+      {isMoving && onAnswer !== null ? (
+        <MatchsticksMove
+          card={roundCard}
+          key={round.id}
+          onAnswer={onAnswer}
+          round={round}
+        />
+      ) : (
+        roundCard(null)
+      )}
       {mode === 'choice' &&
         (onAnswer === null ? (
           <PrintedChoices round={round} />

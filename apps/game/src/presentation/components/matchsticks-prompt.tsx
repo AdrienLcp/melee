@@ -21,6 +21,8 @@ const GOAL_KEYS = {
 } as const satisfies Record<MatchsticksGoal, PlainTranslationKey>
 
 type MatchsticksPromptProps = {
+  /** What stands in for the drawn puzzle under the goal: the sticks a seat is playing with. */
+  children?: React.ReactNode
   puzzle: MatchsticksPuzzle
   /** The move once the room is shown it, drawn travelling into place; `null` while the puzzle is still to solve. */
   solution?: MatchsticksSolution | null
@@ -32,6 +34,7 @@ type MatchsticksPromptProps = {
  * whatever card the caller lays it on and sized by that card.
  */
 export const MatchsticksPrompt: React.FC<MatchsticksPromptProps> = ({
+  children,
   puzzle,
   solution = null
 }) => {
@@ -44,7 +47,7 @@ export const MatchsticksPrompt: React.FC<MatchsticksPromptProps> = ({
     >
       <p className='goal'>{translate(GOAL_KEYS[puzzle.goal])}</p>
       {solution === null ? (
-        <MatchstickRow glyphs={puzzle.glyphs} />
+        (children ?? <MatchstickRow glyphs={puzzle.glyphs} />)
       ) : (
         <>
           <VisuallyHidden>

@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Game]` **Matchsticks is played on every screen.** Each player picks a
+  match up and lays it on an empty place — with a finger, a pointer or the
+  keyboard — sees the puzzle as the move leaves it, can put it back, and
+  sends it once. A move the matches cannot make is refused on the spot. The
+  reveal draws every player's move beside the answer, and tells each player
+  whether theirs was right, the second or third best, or not it. The shelf
+  now pitches both ways of playing: *One match moves. Find which.*
+
 - `[Server]` **A matchstick can be moved rather than said**, and
   `PROTOCOL_VERSION` goes to 41. Matchsticks gains a way of answering of its
   own, *Move the match*, and opens on it: every seat moves one stick of the
@@ -15,8 +23,7 @@ one part.
   biggest (smallest) number, is 3 points; on a number the next best is 2 and
   the one after 1; and the clock adds to it. A move the sticks cannot make is
   refused and costs nothing. Nobody judges, so the host may play too. The
-  buzzer stays for a table answering aloud. Its screens are the next
-  session's.
+  buzzer stays for a table answering aloud.
 
 - **The emoji rebus is an eleventh quiz subject**, and `PROTOCOL_VERSION`
   goes to 40. A film, a series, a song or a saying written in emojis —

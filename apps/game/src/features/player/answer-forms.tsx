@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { StickMove } from '@melee/protocol/matchsticks'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 import type { GeoPoint } from '@melee/protocol/worldmap'
@@ -38,6 +39,7 @@ export type PlayerAnswer =
   | { guess: string; kind: 'typed' }
   | { kind: 'point'; point: GeoPoint }
   | { eventIds: string[]; kind: 'order' }
+  | { kind: 'move'; move: StickMove }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A

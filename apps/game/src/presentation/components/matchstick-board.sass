@@ -1,0 +1,46 @@
+@use '../styles/focus'
+
+@layer components
+  // The drawing and a press laid over each of its places, both held to the
+  // drawing's own proportions so a press sits on the stick it names.
+  .matchstick-board
+    aspect-ratio: var(--board-aspect)
+    margin-inline: auto
+    position: relative
+    width: min(100%, calc(var(--sticks-max-height, 40vh) * var(--board-aspect)))
+
+    > .matchstick-row
+      height: 100%
+      max-height: none
+      width: 100%
+
+    .reaches
+      inset: 0
+      position: absolute
+
+    .reach
+      background: transparent
+      border: 0
+      border-radius: var(--radius-s)
+      cursor: pointer
+      height: var(--reach-height)
+      // The drawing's own coordinates, which a right-to-left page does not mirror.
+      left: var(--reach-left)
+      outline: none
+      padding: 0
+      position: absolute
+      top: var(--reach-top)
+      touch-action: manipulation
+      width: var(--reach-width)
+      -webkit-tap-highlight-color: transparent
+
+      &[data-disabled]
+        cursor: default
+        pointer-events: none
+
+      &[data-focus-visible]
+        @include focus.ring
+
+      @media (hover: hover) and (pointer: fine)
+        &[data-hovered]
+          background: color-mix(in oklab, currentColor 9%, transparent)

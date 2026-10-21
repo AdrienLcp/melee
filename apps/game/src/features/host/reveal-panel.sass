@@ -193,6 +193,22 @@
         min-width: 2.66em
         text-align: end
 
+    // A moved stick printed on a slip of paper, the way every match is laid.
+    .words:has(> .matchstick-row)
+      display: flex
+      justify-content: flex-end
+
+    .words > .matchstick-row
+      background: var(--card)
+      border-radius: var(--radius-xs)
+      color: var(--card-ink)
+      height: 1.45em
+      padding: 0.12em 0.3em
+      width: auto
+
+    .said .words > .matchstick-row
+      height: 1.85em
+
     .scorers li
       justify-content: space-between
 

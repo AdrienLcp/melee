@@ -209,6 +209,36 @@
   .player-round.timeline-round
     justify-content: center
 
+  // The puzzle on its card with the round's sand along its top, the sticks as
+  // large as the screen allows, and what to do next under it.
+  .player-round.matchsticks-round
+    display: grid
+    gap: var(--space-m)
+    align-content: center
+    min-height: 0
+
+    .round-card
+      display: grid
+
+      > *
+        grid-area: 1 / 1
+
+      .matchsticks-prompt
+        @include question-card.card
+
+        --sticks-max-height: 36dvh
+
+        align-items: center
+        color: var(--card-ink)
+        text-align: center
+
+      .matchsticks-prompt + .round-progress
+        --clock-ink: var(--card-ink)
+
+        align-self: start
+        @include question-card.clock-margin
+        width: auto
+
   // This seat's order turned over, the years printed on it.
   .timeline-revealed
     display: grid
@@ -373,6 +403,29 @@
 
       color: var(--card-ink)
       flex: 1 1 100%
+
+    // This seat's own move, smaller under the one the room is shown.
+    .matchsticks-yours
+      border-block-start: var(--stroke-thin) solid var(--rule)
+      color: var(--card-ink)
+      display: grid
+      flex: 1 1 100%
+      gap: var(--space-2xs)
+      justify-items: center
+      padding-block-start: var(--space-s)
+
+      .yours-title
+        @include typography.title
+
+        font-size: var(--text-m)
+        margin: 0
+
+      .yours-words
+        color: var(--card-muted)
+
+      .matchstick-row
+        max-height: calc(var(--stage-unit) * 14)
+        width: 100%
 
     // Deezer serves covers at 250px and nothing larger, so it stays well
     // under; pasted onto the paper with the shallow edge a print has.

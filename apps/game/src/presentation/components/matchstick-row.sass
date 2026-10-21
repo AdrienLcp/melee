@@ -27,6 +27,25 @@
       stroke: var(--match-head-edge)
       stroke-width: 1.5
 
+    // While a stick is held, every empty place is somewhere it may land.
+    &[data-holding] .groove:not(.left)
+      fill: color-mix(in oklab, currentColor 7%, transparent)
+      stroke: currentColor
+      stroke-dasharray: 3 3
+      stroke-opacity: 0.4
+      stroke-width: 1.5
+
+    // Held: raised off its place, its shadow left on the paper under it.
+    .match[data-lifted]
+      filter: drop-shadow(1px 4px 2px var(--shadow-ink))
+
+      .wood
+        stroke: var(--primary)
+        stroke-width: 3
+
+    &[data-still] .moved
+      animation: none
+
     .moved
       animation: match-travel calc(var(--transition-slow, 0s) * 1.6) var(--ease-out) calc(var(--transition-slow, 0s) * 1.2) both
       transform: var(--to)

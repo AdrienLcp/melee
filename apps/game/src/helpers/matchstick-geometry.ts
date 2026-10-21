@@ -63,10 +63,19 @@ const poseAt = (offset: number, slot: StickSlot): StickPose => {
 
 export type DrawnStick = StickPlace & { pose: StickPose }
 
+/** The drawing's own frame, in the units a pose is written in. */
+export type MatchstickBox = {
+  height: number
+  width: number
+  x: number
+  y: number
+}
+
 /** Every stick and every empty place of a row, and the box that frames them. */
 export type MatchstickLayout = {
   /** The two fixed bars of each `=`. */
   bars: StickPose[]
+  box: MatchstickBox
   empties: DrawnStick[]
   sticks: DrawnStick[]
   viewBox: string
@@ -101,12 +110,19 @@ export const layoutOf = (glyphs: string): MatchstickLayout => {
   const lastGlyph = glyphs.at(-1) ?? '0'
   const width = (offsets.at(-1) ?? 0) + widthOf(lastGlyph)
   const reach = STICK_THICKNESS / 2 + MARGIN
+  const box = {
+    height: SPAN * 2 + reach * 2,
+    width: width + reach * 2,
+    x: -reach,
+    y: -reach
+  }
 
   return {
     bars,
+    box,
     empties,
     sticks,
-    viewBox: `${-reach} ${-reach} ${width + reach * 2} ${SPAN * 2 + reach * 2}`
+    viewBox: `${box.x} ${box.y} ${box.width} ${box.height}`
   }
 }
 
@@ -127,6 +143,10 @@ export const isSamePlace = ({
   right: StickPlace
 }): boolean => left.glyphIndex === right.glyphIndex && left.slot === right.slot
 
-/** The row as a sentence a screen reader says, with a true minus sign. */
+/** One glyph as a screen reader says it, a minus a true minus sign. */
+export const spokenGlyph = (glyph: string): string =>
+  glyph === '-' ? '−' : glyph
+
+/** The row as a sentence a screen reader says. */
 export const spokenGlyphs = (glyphs: string): string =>
-  [...glyphs].map((glyph) => (glyph === '-' ? '−' : glyph)).join(' ')
+  [...glyphs].map(spokenGlyph).join(' ')

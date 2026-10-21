@@ -1,0 +1,25 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // What to do next said under the sticks, and the two presses that finish
+  // a move: put it back, or send it.
+  .matchsticks-move
+    display: grid
+    gap: var(--space-s)
+    grid-template-columns: minmax(0, 1fr)
+    inline-size: min(100%, 32rem)
+    justify-self: center
+
+    .hint
+      @include typography.strong
+
+      color: var(--ink)
+      margin: 0
+      min-block-size: 2lh
+      text-align: center
+      text-wrap: balance
+
+    .presses
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr)

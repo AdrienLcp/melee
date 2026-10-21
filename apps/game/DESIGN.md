@@ -737,6 +737,16 @@ press on the console);
 the empty socket once marked. The marking is the item's token beside the key on
 a paper card and a chip per distinct answer, the blanks as a last dashed chip.
 
+### Matchsticks (`MatchstickRow`, `MatchstickBoard`)
+Pine matches with red heads on paper, every empty place a faint groove. A held
+stick is raised off its place with a shadow and a coral edge, and the grooves it
+may land in take a dashed die-line; a move is drawn with its old place dashed in
+coral and the stick ringed in green, travelling into place only on the reveal's
+solution (`isStill` everywhere else). The presses are invisible boxes laid over
+the drawing in its own proportions, so the sticks stay the only thing drawn. A
+seat's move on a reveal chip is printed on a slip of `--card`, since a match is
+always laid on paper.
+
 ### Waits: `NoticeCard`, `Loader`, `Spinner`
 **A wait is a paper card, never an anonymous spinner.** Every player-side wait
 (host away, round not running, …) is a `NoticeCard` (`player-round.tsx`): a

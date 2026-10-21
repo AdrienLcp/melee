@@ -707,17 +707,46 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'A false equation on the wall, drawn in matches — or a number to make as big, or as small, as one match allows. First to buzz says which match moves and where, out loud, and the host says right or wrong. Every puzzle is dealt fresh, so the evening never runs out, and every one has an answer.'
+        'A false equation drawn in matches — or a number to make as big, or as small, as one match allows. Everyone picks a match up on their own screen and lays it somewhere else: the answer pays most, the next best numbers a little less, and the clock adds to it. Or play it aloud: first to buzz says which match moves and where, and the host says right or wrong. Every puzzle is dealt fresh, so the evening never runs out, and every one has an answer.'
+    },
+    move: {
+      groove:
+        'Empty place {slot}, in the {glyph} at position {position:number}',
+      label: 'The matches',
+      layDown: 'Now lay it on an empty place.',
+      pickUp: 'Pick up a match.',
+      placed: 'Send this move, or put the match back.',
+      send: 'Send the move',
+      sent: 'Your move is in. Waiting for the others.',
+      slot: {
+        a: 'at the top',
+        b: 'top right',
+        c: 'bottom right',
+        d: 'at the bottom',
+        e: 'bottom left',
+        f: 'top left',
+        g: 'in the middle',
+        h: 'across',
+        v: 'upright'
+      },
+      stick: 'Match {slot}, in the {glyph} at position {position:number}',
+      undo: 'Put it back'
     },
     name: 'Matchsticks',
     reveal: {
-      title: 'The move:'
+      right: 'right',
+      second: 'second best',
+      short: 'better, not by enough',
+      third: 'third best',
+      title: 'The move:',
+      wrong: 'not it',
+      yours: 'Your move:'
     },
     scoring:
       'One stick to move. First in says the move out loud, and the host says right or wrong — a point for right.',
     scoringMove:
       'One match to move, everyone at once. The answer is 3 points — on a number, the next best 2 and the one after 1 — and the clock adds to it.',
-    tagline: 'One match moves. Say which.'
+    tagline: 'One match moves. Find which.'
   },
   menu: {
     build: 'Build {build}',

@@ -19,6 +19,7 @@ import { CountedBoard } from '@/presentation/components/counted-board'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
+import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
@@ -253,8 +254,22 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     said: answerWords(answer)
   }))
 
+  const moves = matchsticksContent(round)?.revealedMoves ?? []
+
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
+
+  // A moved stick is drawn rather than spelled: `6+4=10` in type is not what
+  // anybody looked at for a minute.
+  const wordsOf = (playerId: string, said: string): React.ReactNode => {
+    const sent = moves.find((move) => move.playerId === playerId)
+
+    return sent === undefined ? (
+      said
+    ) : (
+      <MatchstickRow glyphs={sent.glyphs} isStill move={sent.move} />
+    )
+  }
 
   const seatOf = (playerId: string): number =>
     players.findIndex((player) => player.id === playerId)
@@ -275,7 +290,9 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
               >
                 <Pawn seat={seatOf(answer.playerId)} />
                 <span className='nickname'>{nameOf(answer.playerId)}</span>
-                <span className='words'>{answer.said}</span>
+                <span className='words'>
+                  {wordsOf(answer.playerId, answer.said)}
+                </span>
                 {/* A round nobody took spends nothing on a column of blanks; one
                   somebody took keeps the box on every row, or the answers above
                   and below a miss end on two different right edges. */}
@@ -299,7 +316,9 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
           {saidTogether(answers).map((group) => (
             <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
               {group.isCorrect && <CheckIcon />}
-              <span className='words'>{group.said}</span>
+              <span className='words'>
+                {wordsOf(group.playerIds[0] ?? '', group.said)}
+              </span>
               <span aria-hidden='true' className='pawns'>
                 {group.playerIds.map((playerId) => (
                   <Pawn key={playerId} seat={seatOf(playerId)} />

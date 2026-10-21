@@ -1,45 +1,12 @@
 # 36 — Matchsticks
 
-**Session A and B1 done.** Served and shelved 21/10/2026 (A1, A2 below); the
-stick moved on a screen is served (B1), and its screens (B2) are owed. Two kinds of puzzle (below). A matchstick equation on the wall — `6 + 4 = 4` drawn in sticks,
-seven-segment digits — that turns true when one stick moves. Asked for the team
-evening on 21/10/2026.
-
-## Session A — a bank, judged by the host
-
-- A bank of about thirty puzzles, each an equation, its one-move solution and
-  any other one-move solution that is also true (a second answer is not wrong).
-- The wall and every screen draw the equation in sticks; the solution is
-  host-only, withheld from players and the wall like every answer.
-- Played as the buzzer is judged: the first to buzz says the move aloud, the
-  host grants or refuses, the reveal draws the stick moving.
-- A new `GameKind`, shelved, joinable to a line-up.
-
-## Session B — the stick moves under the finger
-
-- Each screen lets its player pick a stick up and put it down; the move is sent
-  as two stick positions, never as an equation, and the server judges whether
-  the result is a true equation reachable in one move.
-- Everyone at once, scored by the clock like `choice`, so the host has nothing
-  to judge.
-- Only worth building once session A has been played at a table.
-
-## A second kind of puzzle — the biggest number
-
-Asked 21/10/2026. A number of several digits in sticks (`5 0 8`), and one
-stick to move so the number becomes **the biggest it can be**.
-
-- *Bigger than the original* is too easy — a stick off an `8` often does it —
-  so the puzzle asks for the biggest, and the smallest is its twin.
-- **No bank to write**: the server can deal any number and work out the best
-  move itself, by trying every one stick move over the seven-segment digits.
-  The puzzles never run out and every solution is known.
-- **Every puzzle dealt is solvable**: a number is dealt only when at least one
-  move gives a bigger one, and redrawn otherwise; the same holds for the
-  equations, each banked with a solution.
-- In session A the host judges against the best answer the server shows them.
-  In session B the server measures the number each player made, so a move
-  that is not the best can still be paid by how close it came.
+**Done 21/10/2026**, sessions A1, A2, B1 and B2. A matchstick equation drawn in
+seven-segment digits — `6 + 4 = 4` — that turns true when one stick moves, or
+a number one moved stick makes the biggest or the smallest it can be. Asked for
+the team evening on 21/10/2026. Played two ways: every screen moves its own
+stick and the server judges it (`move`, the default), or the first to buzz says
+the move aloud and the host judges (`buzzer`). Dealt and solved by the server,
+so there is no bank and every puzzle has an answer.
 
 ## A1 — served (done 21/10/2026)
 
@@ -156,13 +123,58 @@ compiles. Built on decisions taken for Adrien, listed here for him to settle:
   dictionaries. **A room opens on `move` with nothing drawn for it yet** —
   that is B2.
 
-## B2 — the stick moves under the finger (owed)
+## B2 — the screens (done 21/10/2026)
 
-- A player's screen picks a stick up and puts it down (pointer, finger and
-  keyboard), with `applyMove` refusing a drop before anything is sent, and
-  sends it once; `yourMove` drawn after a reload.
-- The reveal draws every seat's move from `revealedMoves`, ranked by
-  `placesFromBest` beside the solution.
-- The shelf's description and tagline still describe the buzzer
-  (*First to buzz says which match moves…*, *Say which.*).
-- Team turns and the wall answering, if the table wants them.
+- **Tap to pick, tap to lay**, rather than a drag: a stick is 40×8 units and
+  a drag a finger hides; two presses are the same on a pointer, a finger and a
+  keyboard. `MatchstickBoard` (`presentation/components/`) lays a react-aria
+  `Toolbar` over the drawing, one press per place held to the drawing's own
+  proportions (`aspect-ratio` from `layoutOf`'s new numeric `box`): every
+  stick a `ToggleButton` that picks it up, every empty place a `Button`
+  enabled only while one is held. One tab stop, walked with the arrows in
+  reading order (top, top left, top right, middle, bottom left, bottom right,
+  bottom, glyph by glyph), each press named for a screen reader
+  (*Match top right, in the 6 at position 1*).
+- **Held**, the stick is drawn raised off its place with a shadow and a coral
+  edge, and every empty groove takes a dashed die-line. **Laid**, the board
+  gives way to the moved puzzle drawn still (`MatchstickRow`'s new `isStill`:
+  the old place dashed in coral, the stick ringed in green), with *Put it
+  back* and *Send the move* under it; focus goes to the send press, and back
+  to the first stick after a put back.
+- **A drop the sticks cannot make is refused before anything is sent**, by
+  `applyMove`, the server's own rule: the stick stays held and the line under
+  the card says `error.illegal_move`. The server's refusal of the same code is
+  then never reached in practice; it stays for a client that skips the check.
+- `MatchsticksMove` (`features/player/`) is the whole form and takes a `card`
+  render prop, so the player's page and a seated console each lay the sticks
+  on their own round card (`MatchsticksPrompt` now takes `children` in place
+  of the drawn puzzle). After sending, and after a reload from `yourMove`, the
+  card shows the move drawn where it landed and *Your move is in. Waiting for
+  the others.*
+- **The console and the wall** keep the puzzle on the card and the pawns that
+  have answered under it, nothing of what they sent. At the reveal each seat's
+  chip draws its move on a slip of paper in place of words — `6+4=10` in type
+  is not what anybody looked at — ranked by `placesFromBest` through
+  `nearnessOf`, and the narrow tally draws one slip per distinct result. A
+  player's reveal adds **Your move: right / second best / third best /
+  better, not by enough / not it** with their own move drawn under the
+  solution.
+- The settings fold already offered the strip (*Move the match* / *First to
+  buzz*) from B1's `answerModesFor`; seen, nothing to add. The tagline is
+  *One match moves. Find which.* and the description names both ways of
+  playing, in both locales and in the document head.
+- Seen muted through a Playwright script at 1280×800 and 390×844, light in
+  English and dark in French: the game's page and the shelf, the settings
+  strip, a stick held and laid by touch, an illegal drop refused, the moved
+  puzzle and the sent state, the move read back after a reload, a second player
+  playing by keyboard alone, the console waiting, the reveal on the console
+  wide and narrow and on both players; a seated console by *Play right away*
+  in dark, held, laid, sent and revealed. **Not seen**: a paired wall (it
+  draws the console's stage without the form), and a real phone.
+
+## For Adrien
+
+- **Team turns and the wall answering** stay off for `move`
+  (`playsInTeamTurns`, `wallAnswers` false): worth it only if the table asks.
+- The chips draw a seat's move small (about 1.85em tall): readable on a
+  laptop, small from across a room, where the solution above is the large one.

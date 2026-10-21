@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
   ActiveBuzz,
   PlayerRoomView,
@@ -36,6 +37,7 @@ import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { ChoosingRound } from '@/features/player/choosing-round'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
+import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
 import { RoundBoard } from '@/features/player/round-board'
@@ -52,6 +54,7 @@ import {
   blindtestContent,
   innerclockContent,
   matchsticksContent,
+  placesFromBestOf,
   quizContent,
   reflexContent,
   sentOrderOf,
@@ -72,6 +75,7 @@ import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
+import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
@@ -80,7 +84,10 @@ import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
-import { useOrderWords } from '@/presentation/components/use-distance-words'
+import {
+  useMoveWords,
+  useOrderWords
+} from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import {
   floorOutcome,
@@ -592,6 +599,28 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    const matchsticks = matchsticksContent(round)
+
+    if (matchsticks !== null && round.answerMode === 'move') {
+      return (
+        <section className='player-round matchsticks-round'>
+          <MatchsticksMove
+            card={(sticks) => (
+              <div className='round-card'>
+                <MatchsticksPrompt puzzle={matchsticks.puzzle}>
+                  {sticks}
+                </MatchsticksPrompt>
+                <RoundClock clock={clock} view={view} />
+              </div>
+            )}
+            key={round.id}
+            onAnswer={answerWithRound}
+            round={round}
+          />
+        </section>
+      )
+    }
+
     if (round.answerMode === 'choice') {
       return (
         <ChoosingRound
@@ -921,12 +950,16 @@ const Revealed: React.FC<{
   const solved = matchsticksContent(round)
 
   if (solved !== null && solved.revealedSolution !== null) {
+    const yours =
+      solved.revealedMoves?.find((sent) => sent.playerId === view.youId) ?? null
+
     return (
       <div className='answer-card' data-game='matchsticks'>
         <MatchsticksPrompt
           puzzle={solved.puzzle}
           solution={solved.revealedSolution}
         />
+        {yours !== null && <MatchsticksYours round={round} yours={yours} />}
       </div>
     )
   }
@@ -981,6 +1014,30 @@ const Revealed: React.FC<{
   }
 
   return null
+}
+
+/**
+ * The move this seat sent, drawn where it left the sticks, under the one the
+ * room is shown and beside what it was worth.
+ */
+const MatchsticksYours: React.FC<{ round: RoundView; yours: SentMove }> = ({
+  round,
+  yours
+}) => {
+  const translate = useTranslate()
+  const moveWords = useMoveWords()
+
+  return (
+    <div className='matchsticks-yours'>
+      <p className='yours-title'>
+        {translate('matchsticks.reveal.yours')}{' '}
+        <span className='yours-words'>
+          {moveWords(placesFromBestOf(round, yours.playerId))}
+        </span>
+      </p>
+      <MatchstickRow glyphs={yours.glyphs} isStill move={yours.move} />
+    </div>
+  )
 }
 
 /**

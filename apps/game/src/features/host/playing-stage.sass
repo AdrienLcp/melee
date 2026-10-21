@@ -122,6 +122,14 @@
         flex: 1 1 0
         inline-size: min(100%, 40rem)
 
+    // A seated console moving a stick: the card it moves it on, and the
+    // presses that send it under.
+    &[data-moving] > .answer-form.matchsticks-move
+      inline-size: min(100%, 32rem)
+
+    &[data-moving] .round-card .matchsticks-prompt
+      --sticks-max-height: 34cqh
+
     @media (aspect-ratio >= 13 / 10)
       &[data-answering],
       &[data-choices]

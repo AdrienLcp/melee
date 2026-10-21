@@ -67,7 +67,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     matchsticks: {
       description:
-        'A false equation drawn in matches, or a number to make as big or as small as it can be: one match moves. First to buzz says which, and the host says right or wrong. Every puzzle is dealt fresh and every one has an answer.',
+        'A false equation drawn in matches, or a number to make as big or as small as it can be: one match moves. Everyone moves it on their own screen and the best move pays most, or the first to buzz says which and the host says right or wrong. Every puzzle is dealt fresh and every one has an answer.',
       title: 'Matchsticks — Mêlée'
     },
     quiz: {
@@ -134,7 +134,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     matchsticks: {
       description:
-        'Une égalité fausse dessinée en allumettes, ou un nombre à rendre le plus grand ou le plus petit possible : une seule allumette bouge. Le premier à buzzer dit laquelle, et l’hôte tranche. Chaque énigme est tirée à neuf et toutes ont une réponse.',
+        'Une égalité fausse dessinée en allumettes, ou un nombre à rendre le plus grand ou le plus petit possible : une seule allumette bouge. Chacun la déplace sur son écran et le meilleur coup rapporte le plus, ou le premier à buzzer dit laquelle et l’hôte tranche. Chaque énigme est tirée à neuf et toutes ont une réponse.',
       title: 'Allumettes — Mêlée'
     },
     quiz: {

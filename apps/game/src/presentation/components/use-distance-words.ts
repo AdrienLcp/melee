@@ -44,6 +44,29 @@ export const useOrderWords = (): ((swappedPairs: number) => string) => {
 }
 
 /**
+ * A move's result in the reader's language: right, the second or third best a
+ * number could be made, better than dealt but not by enough, or nothing.
+ */
+export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
+  const { translate } = useI18n()
+
+  return (placesFromBest) => {
+    switch (placesFromBest) {
+      case null:
+        return translate('matchsticks.reveal.wrong')
+      case 0:
+        return translate('matchsticks.reveal.right')
+      case 1:
+        return translate('matchsticks.reveal.second')
+      case 2:
+        return translate('matchsticks.reveal.third')
+      default:
+        return translate('matchsticks.reveal.short')
+    }
+  }
+}
+
+/**
  * What a revealed answer reads as: the line it was typed or picked as, on the
  * world map its distance and on the timeline the pairs it swapped — the server
  * records a marker as two coordinates and an order as a row of ids, which are
