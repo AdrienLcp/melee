@@ -32,9 +32,9 @@ export const challengeContent = (
  * difference from what the round had already paid — nothing is banked until
  * the next round opens, so the pawns redraw from the correction too.
  *
- * A placed team pays every seat it opened the round with the same points: the
- * team's round result is the mean over those seats, so it is exactly the
- * place's pay, and the pawn walks it on the reveal like any round's.
+ * A placed team pays every seat it opened the round with the same points, and
+ * a team answering as one is paid that once, so its round result is exactly
+ * the place's pay and the pawn walks it on the reveal like any round's.
  */
 export const awardChallengePlaces = ({
   now,
@@ -131,7 +131,7 @@ const payPerSeat = ({
 
 /**
  * A table answering aloud has no seat to pay, so its placed teams are paid
- * straight — the same pay a seated team's mean comes to.
+ * straight — the same pay a seated team's round result comes to.
  */
 const payPerSeatlessTeam = ({
   places,

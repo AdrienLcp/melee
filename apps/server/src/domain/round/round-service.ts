@@ -402,8 +402,7 @@ export type Answerer = { kind: 'seat'; playerId: PlayerId } | { kind: 'wall' }
  * The seats an answer is banked for. Everyone at once, a seat answers for
  * itself. In a turn each team answers as one: whichever of its stamped seats —
  * or the wall, in a whole team's round — speaks first, every seat of that team
- * the round opened on holds the same attempt, so the team's mean is what its
- * answer earned and a pick closes its round. A duel stamps one seat per team,
+ * the round opened on holds the same attempt, and the team is paid it once and a pick closes its round. A duel stamps one seat per team,
  * so each answers for itself.
  */
 const seatsAnsweredFor = ({

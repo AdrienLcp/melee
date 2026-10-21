@@ -336,6 +336,8 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
   room.round === null
     ? 0
     : teamRoundResult({
+        answersAsOne:
+          room.round.turn !== null || room.round.content.kind === 'challenge',
         awards: room.round.awards,
         openedWithPlayerIds: room.round.openedWithPlayerIds,
         seatIds: seatsOf(room, teamId).map((seat) => seat.id)

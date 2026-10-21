@@ -167,8 +167,11 @@ names it, so every screen says the name its own dictionary gives the colour.
   that moves `teams.kind` or the count, and a deal, are `teams_locked` past it;
   `host.moveSeat`, `host.renameTeam` and `host.adjustScore` are allowed in every
   phase.
-- **A team's score is the mean of its seats'.** A round pays each team the mean
-  of what it paid the team's seats it opened on (`teamRoundResult`), banked as
+- **A team's score is the sum of its seats'.** A round pays each team the sum
+  of what it paid the team's seats it opened on (`teamRoundResult`) — a sum
+  rather than a mean, because under a mean a teammate's wrong answer lowers the
+  team's result — and a team answering as one, in a turn or on a challenge's
+  podium, the one answer every seat holds, once. Banked as
   the next round opens or the board goes up; the round on screen is added live,
   because a slate verdict can still be taken back under its reveal. Seat scores
   are untouched, for the individual podium, and a seat's adjustment stays on
@@ -181,7 +184,7 @@ names it, so every screen says the name its own dictionary gives the colour.
   slate — cannot be ticked under it (`isPlayableAloud`), and nor can a set:
   every round is played `together`. `host.awardTeams` pays each team named
   `pointsFor` its verdict straight onto the round's `teamAwards`, added to the
-  seats' mean in the team's round result; it is `host.awardPlaces`'s twin —
+  seats' sum in the team's round result; it is `host.awardPlaces`'s twin —
   the whole round each time, sent while `playing` it pays and ends the round
   the way its game ends one, sent on the reveal it corrects it — and is
   refused `wrong_phase` outside a room answering aloud or in a challenge,
@@ -205,7 +208,7 @@ when the whole team plays — and is `null` when everyone plays.
 
 - **The team answers as one.** The first answer from any of its seats or from
   the wall is banked for every seat of that team the round opened on, so a pick
-  closes the turn and the team's mean is exactly what that answer earned. The
+  closes the turn and the team is paid exactly what that answer earned, once. The
   wall answers in `byTeam` alone: in solo and in a duel the answer is a seat's. The wall reads
   that shared verdict in its own `yourVerdict`, which says how much was right
   and never what the answer is.
@@ -300,7 +303,7 @@ host judges it, so no seat is granted under it — and `player.buzz` is refused
 `host.awardPlaces` carries the whole placement, and the server pays it:
 3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else
 nought. A placed team pays every seat it opened the round with the same, so
-the team's mean is exactly the place's pay and the pawn walks 3, 2 or 1 cases
+the team is paid exactly the place's pay, once, and the pawn walks 3, 2 or 1 cases
 on the reveal. Sent while the round is `playing`, it pays and reveals; sent
 again on that reveal, it corrects it — the awards are rebuilt from the
 placement and every score moves by the difference, which is why it is not

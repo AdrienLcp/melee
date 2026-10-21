@@ -3,9 +3,11 @@
 Every choice this stage left to Adrien. Settling one means updating the step
 it names and deleting its line here.
 
-| # | Decision | Settled | Step |
-|---|---|---|---|
-| 2 | A team's round result | **The sum** of what the round paid its seats, settled 21/10/2026: under a mean a teammate's wrong answer *lowers* the team's result, which names a culprit at a table of children and grandparents; under a sum every answer only adds. The price is a team one seat larger, which drawn teams keep to one at most. A team that answers as one — a turn, a challenge's placing — is paid once, not once per seat. **Not built yet**: `teamRoundResult` in `packages/core/src/team/team-score.ts` is still the mean | a |
+None is open. Settled 21/10/2026 and built: a team's round result is **the
+sum** of what the round paid its seats (2), because under a mean a teammate's
+wrong answer lowers the team's result, which names a culprit at a table of
+children and grandparents; a team answering as one — a turn, a challenge's
+placing — is paid that answer once.
 
 Settled 21/10/2026 and kept as built: the next game drawn, never twice running
 (5); the map's tiers 3 / 2 / 1 `POINT`s at 0, < 500, < 1 500 km (6) and the

@@ -31,7 +31,7 @@ step that lands keeps its line here, dated, and loses its details.
 4. **Teams with no phone at all** — done 21/10/2026: a fifth kind of teams,
    `aloud`, rather than a room setting beside them, since it is a way of
    making teams. Its own message, `host.awardTeams`, rather than `host.judge`,
-   which is bound to a buzz: the round's `teamAwards` add to the seats' mean.
+   which is bound to a buzz: the round's `teamAwards` add to the seats' sum.
    Protocol 33. The reflex race and the slate are greyed beside the map, and
    every round is played together.
 

@@ -212,7 +212,7 @@ describe('a room played in teams', () => {
     expect(errorsIn(anna)[0]?.code).toBe('teams_locked')
   })
 
-  it('[teams] pays a team the mean of what the round paid its seats', async () => {
+  it('[teams] pays a team the sum of what the round paid its seats', async () => {
     const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
     const seats = await seatMany(code, ['Anna', 'Ben', 'Carl'])
     const [anna, ben, carl] = seats.map(idOf)
@@ -240,18 +240,12 @@ describe('a room played in teams', () => {
       hostView(host)?.players.find((player) => player.id === anna)?.score ?? 0
 
     expect(paid).toBeGreaterThan(0)
-    expect(hostView(host)?.teams.map((team) => team.score)).toEqual([
-      Math.round(paid / 2),
-      0
-    ])
+    expect(hostView(host)?.teams.map((team) => team.score)).toEqual([paid, 0])
 
     host.send({ type: 'host.endGame' })
     await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
 
-    expect(hostView(host)?.teams.map((team) => team.score)).toEqual([
-      Math.round(paid / 2),
-      0
-    ])
+    expect(hostView(host)?.teams.map((team) => team.score)).toEqual([paid, 0])
   })
 
   it('[teams] moves a seat, renames a team and adjusts its score mid-game', async () => {

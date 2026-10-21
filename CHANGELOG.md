@@ -34,6 +34,11 @@ one part.
 
 ### Improvements
 
+- `[Server]` **A team scores the sum of its seats, not their mean.** Under a
+  mean a teammate's wrong answer lowered the team's result; now every right
+  answer only adds. A team answering as one — a turn, a challenge's podium —
+  is still paid that answer once, not once per seat.
+
 - `[Game]` **A reader in English no longer downloads French.** The French
   dictionary is a chunk of its own, fetched before the first frame of a French
   page and before a switch to French paints: 15.95 kB gzipped off every English

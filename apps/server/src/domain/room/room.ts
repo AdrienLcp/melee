@@ -224,7 +224,7 @@ export type Round = {
   awards: Award[]
   /**
    * What the host paid each team straight, in a room whose teams answer aloud
-   * and so hold no seat for `awards` to pay. Added to the mean of the seats'
+   * and so hold no seat for `awards` to pay. Added to the sum of the seats'
    * awards in the team's round result, which is nought there.
    */
   teamAwards: TeamAward[]

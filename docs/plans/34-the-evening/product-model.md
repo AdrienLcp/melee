@@ -46,7 +46,7 @@ Two ways, both chosen per round by the host, defaulted by the game:
 
 - **Everyone at once** — every seat answers on its own phone against the same
   clock: Melee's simultaneous rounds, choice or typed, and the map's marker.
-  With Teams on, each team's result is the mean of its members' (decision 2).
+  With Teams on, each team's result is the sum of its members'.
 - **Each team in turn** — a set: team Blue gets its question, then Red its
   own, the others watching the wall. The team answers on any member's phone or
   on the wall itself.

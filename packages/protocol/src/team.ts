@@ -70,8 +70,8 @@ export const teamSchema = z.object({
   name: teamNameSchema.nullable(),
   /**
    * Every round's team result plus the host's adjustments. A round pays a team
-   * the mean of what it paid the seats it opened on, so a team of four is not
-   * paid over a team of three for being four.
+   * the sum of what it paid the seats it opened on, and a team answering as
+   * one — a turn, a challenge's placing — that answer once.
    */
   score: z.number().int().nonnegative(),
   /** In seat order. Empty is a team still waiting for its first seat. */

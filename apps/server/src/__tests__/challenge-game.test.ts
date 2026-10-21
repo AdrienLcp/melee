@@ -7,6 +7,7 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
+import { POINT } from '@melee/protocol/scoring'
 import type {
   HostServerMessage,
   PlayerServerMessage
@@ -234,7 +235,7 @@ describe('a challenge played at the table', () => {
 })
 
 describe('a challenge between teams on a track', () => {
-  it('[challenge] walks the podium three, two and one cases', async () => {
+  it('[challenge] walks the podium three, two and one cases, paid once per team', async () => {
     const { code, host } = await harness.openRoom(ON_A_TRACK)
     const seats = await Promise.all(
       ['Anna', 'Ben', 'Chloe', 'Dan', 'Eve', 'Fred'].map((nickname) =>
@@ -267,6 +268,12 @@ describe('a challenge between teams on a track', () => {
       { case: 2, move: 2 },
       { case: 3, move: 3 },
       { case: 1, move: 1 }
+    ])
+
+    expect(hostView(host)?.teams.map((team) => team.score)).toEqual([
+      2 * POINT,
+      3 * POINT,
+      POINT
     ])
   })
 

@@ -239,6 +239,7 @@ describe('a set of team turns', () => {
     expect(view?.round?.index).toBe(1)
     expect(score('Anna')).toBeGreaterThan(0)
     expect(score('Anna')).toBe(score('Ben'))
+    expect(view?.teams[0]?.score).toBe(score('Anna'))
     expect(score('Carl')).toBeGreaterThan(0)
     expect(score('Dora')).toBeGreaterThan(0)
     expect(view?.teams.every((team) => team.score > 0)).toBe(true)
