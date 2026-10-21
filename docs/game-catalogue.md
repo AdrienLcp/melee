@@ -232,7 +232,10 @@ The same test settled a rival's *where is that line from?* round: a line
 from a film is a quiz question whose answer is the work, so it shipped as a
 ninth chip, `quotes`, and not as a sixth game ([stage 32](plans/32-quotes.md)).
 What would make it a game is a mechanic the quiz lacks — the line revealed word
-by word, an earlier buzz paying more — and not its content.
+by word, an earlier buzz paying more — and not its content. Flags
+([stage 37](plans/37-flags.md)) and the emoji rebus
+([stage 39](plans/39-emoji-rebus.md)) took the same road: a picture or a row
+of emojis is a prompt, and the room names an answer.
 
 What they do change is an assumption everything shipped so far rests on:
 **exactly one player acts at a time**. That is the expensive part, not the UI.

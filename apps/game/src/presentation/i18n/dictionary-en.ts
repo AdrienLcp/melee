@@ -848,6 +848,7 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Which subjects',
       none: 'Pick none and you get every subject.',
       quotes: 'Quotes',
+      rebus: 'Rebus',
       science: 'Science',
       sport: 'Sport',
       videogames: 'Video games'
@@ -862,6 +863,9 @@ export const EN_DICTIONARY = defineDictionary({
     },
     language: 'Question language',
     name: 'Quiz',
+    rebus: {
+      alt: 'The rebus to read:'
+    },
     reveal: {
       title: 'The answer was'
     },

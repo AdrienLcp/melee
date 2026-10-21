@@ -52,6 +52,14 @@
       @include layout.narrow
         --flag-height: clamp(2.75rem, 9dvh, 6rem)
 
+    .rebus-line
+      --rebus-size: min(calc(var(--stage-unit) * 9), 5rem)
+
+      margin-bottom: 0.2em
+
+      @include layout.narrow
+        --rebus-size: clamp(1.75rem, 6dvh, 3rem)
+
     // It declares a container of its own because the title is measured against
     // this column and not against the one the cover shares with it.
     .identity
@@ -305,6 +313,9 @@
 
       .flag-picture
         --flag-height: min(10rem, 20cqh)
+
+      .rebus-line
+        --rebus-size: min(5rem, 10cqh)
 
       .identity
         --answer-size: clamp(1.75rem, min(12cqh, calc(106cqi / var(--longest-word-width, 10)), calc(260cqi / var(--answer-length, 10))), 6rem)

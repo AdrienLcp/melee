@@ -75,6 +75,7 @@ import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
+import { RebusLine } from '@/presentation/components/rebus-line'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
@@ -895,6 +896,7 @@ const Revealed: React.FC<{
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
+  const rebus = quizContent(round)?.prompt.rebus ?? null
   // The times, which a player reads for the same reason the room does: this is
   // the one game whose reveal is not an answer, so the finishing order is what
   // there is to know — and everyone's own number is on it.
@@ -964,6 +966,7 @@ const Revealed: React.FC<{
     return (
       <div className='answer-card' data-game='quiz'>
         {flag !== null && <FlagPicture file={flag} isNamedBeside />}
+        {rebus !== null && <RebusLine isNamedBeside rebus={rebus} />}
         <div className='identity'>
           <p className='revealed-title' style={answerFitting(question.answer)}>
             <VisuallyHidden elementType='span'>

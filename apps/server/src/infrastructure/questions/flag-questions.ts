@@ -126,6 +126,7 @@ export const bankedFlagQuestions = (): BankedQuestion[] => {
         language,
         note: null,
         prompt: PROMPT_BY_LANGUAGE[language],
+        rebus: null,
         theme: 'flag-icons'
       }
     })

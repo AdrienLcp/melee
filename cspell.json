@@ -14,6 +14,7 @@
     "apps/server/scripts/*.json",
     "apps/server/src/infrastructure/questions/question-bank.json",
     "apps/server/src/infrastructure/questions/timeline-bank.json",
+    "apps/server/src/infrastructure/questions/rebus-*.json",
     "apps/server/src/infrastructure/questions/city-bank.ts"
   ],
   "import": ["@cspell/dict-fr-fr/cspell-ext.json"],
@@ -36,6 +37,7 @@
         "apps/server/scripts/polyfact-source.ts",
         "apps/server/scripts/quotes-source.ts",
         "apps/server/src/infrastructure/questions/flag-questions.ts",
+        "apps/server/src/infrastructure/questions/rebus-questions.ts",
         "apps/server/scripts/question-source.test.ts",
         "apps/server/scripts/vikidia-source.ts",
         "apps/server/scripts/wikidata-aliases.ts",
@@ -58,6 +60,7 @@
         "docs/plans/22-thin-french-subjects.md",
         "docs/plans/23-the-name-a-room-shouts.md",
         "docs/plans/24-the-chip-that-says-what-it-gives.md",
+        "docs/plans/39-emoji-rebus.md",
         "docs/plans/25-slate.md",
         "docs/plans/26-slate-labels-and-early-marking.md",
         "docs/plans/27-host-remote.md",
@@ -119,6 +122,7 @@
   "version": "0.2",
   "words": [
     "ABCDABCD",
+    "Noto",
     "innerclock",
     "Horloge",
     "christmas",

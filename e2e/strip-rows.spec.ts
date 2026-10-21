@@ -170,8 +170,18 @@ const sweepShapes = ({
       const counts = [...rows.entries()]
         .sort(([a], [b]) => a - b)
         .map(([, held]) => held)
+      // A grid's last row may run short, since its cells still stand in the
+      // columns above: eleven subjects divide by nothing. A wrap's may not.
+      const isGrid =
+        getComputedStyle(strip.querySelector('.segments') ?? strip).display ===
+        'grid'
+      const fullRows = isGrid ? counts.slice(0, -1) : counts
+      const lastRow = counts.at(-1) ?? 0
+      const isRagged =
+        new Set(fullRows).size > 1 ||
+        (isGrid && fullRows.length > 0 && lastRow > (fullRows[0] ?? 0))
 
-      if (new Set(counts).size > 1) {
+      if (isRagged) {
         faults.push({
           at: Math.round(strip.getBoundingClientRect().width),
           label,

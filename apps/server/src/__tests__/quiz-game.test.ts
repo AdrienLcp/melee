@@ -338,17 +338,18 @@ describe('a quiz through the seam', () => {
     expect(playerView(zoe)?.players[0]?.score).toBe(POINTS_FOR_A_CLAIM)
   })
 
-  it('[quiz] draws a flag on every screen and says nobody’s', async () => {
-    const { host, zoe } = await roundInPlay({
-      ...TYPED_QUIZ,
-      roundCount: QUESTIONS.length
-    })
+  const playUntil = async ({
+    category,
+    host,
+    zoe
+  }: {
+    category: string
+    host: Awaited<ReturnType<typeof roundInPlay>>['host']
+    zoe: Awaited<ReturnType<typeof roundInPlay>>['zoe']
+  }) => {
+    while (quizRound(playerView(zoe))?.prompt.category !== category) {
+      const round = playerView(zoe)?.round?.index ?? 0
 
-    for (let round = 1; round < QUESTIONS.length; round++) {
-      await waitFor(
-        () => playerView(zoe)?.round?.index === round,
-        `round ${round} to open`
-      )
       host.send({
         roundId: playerView(zoe)?.round?.id ?? '',
         type: 'host.reveal'
@@ -358,16 +359,39 @@ describe('a quiz through the seam', () => {
         `round ${round} to close`
       )
       host.send({ type: 'host.nextRound' })
+      await waitFor(
+        () => playerView(zoe)?.round?.index === round + 1,
+        `round ${round + 1} to open`
+      )
     }
+  }
 
-    await waitFor(
-      () => quizRound(playerView(zoe))?.prompt.category === 'flags',
-      'the flag to be asked'
-    )
+  it('[quiz] draws a flag on every screen and says nobody’s', async () => {
+    const { host, zoe } = await roundInPlay({
+      ...TYPED_QUIZ,
+      roundCount: QUESTIONS.length
+    })
+
+    await waitFor(() => playerView(zoe)?.round?.index === 1, 'round 1 to open')
+    await playUntil({ category: 'flags', host, zoe })
 
     expect(quizRound(playerView(zoe))?.prompt.flag).toBe('0123456789ab.svg')
     expect(hostQuestion(host)?.flag).toBe('0123456789ab.svg')
     expect(transcriptOf(zoe)).not.toContain('Japan')
+  })
+
+  it('[quiz] draws a rebus on every screen and keeps its title', async () => {
+    const { host, zoe } = await roundInPlay({
+      ...TYPED_QUIZ,
+      roundCount: QUESTIONS.length
+    })
+
+    await waitFor(() => playerView(zoe)?.round?.index === 1, 'round 1 to open')
+    await playUntil({ category: 'rebus', host, zoe })
+
+    expect(quizRound(playerView(zoe))?.prompt.rebus).toBe('🧊🚢💔')
+    expect(hostQuestion(host)?.rebus).toBe('🧊🚢💔')
+    expect(transcriptOf(zoe)).not.toContain('Titanic')
   })
 
   it('[quiz] never asks the same question twice in one game', async () => {

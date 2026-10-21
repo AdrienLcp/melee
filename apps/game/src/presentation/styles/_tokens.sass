@@ -217,6 +217,9 @@
     // declaration and never to a custom property.
     --font-display: 'Bricolage Grotesque', 'Bricolage Grotesque fallback', system-ui, sans-serif
     --font-base: 'Atkinson Hyperlegible Next', 'Atkinson Hyperlegible Next fallback', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif
+    // A rebus is drawn in the reader's own colour emoji face, named first so
+    // Windows does not reach the monochrome Segoe UI Symbol through `system-ui`.
+    --font-emoji: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif
 
     --layout-padding: clamp(1rem, calc(var(--stage-unit) * 4), 3.5rem)
     // The sides pad by `--gutter-left` and `--gutter-right`, which

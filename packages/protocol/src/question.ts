@@ -17,8 +17,9 @@ import { z } from 'zod'
  * line from a film, a series, a video game, an ad or a real person, and the
  * room names where it comes from. It is not folded into `cinema` because a
  * table asks for it by name, and a room that ticks it alone is playing a
- * different game from one that ticks cinema. `flags` is the other: a flag on
- * every screen, and the room names whose it is.
+ * different game from one that ticks cinema. `flags` is another: a flag on
+ * every screen, and the room names whose it is. `rebus` the third: a title
+ * written in emojis.
  */
 export const questionCategories = [
   'history',
@@ -28,6 +29,7 @@ export const questionCategories = [
   'arts',
   'cinema',
   'quotes',
+  'rebus',
   'videogames',
   'sport',
   'everyday'
@@ -74,7 +76,13 @@ export const questionPromptSchema = z.object({
   /** The flag the question is about, drawn beside the prompt; `null` on every other question. */
   flag: flagFileSchema.nullable(),
   id: z.string().min(1),
-  prompt: z.string().min(1)
+  prompt: z.string().min(1),
+  /**
+   * The title written in emojis, drawn large above the prompt; `null` on every
+   * other question. Its own field rather than part of the prompt, because the
+   * prompt is the sentence asking what to name and this is the thing to read.
+   */
+  rebus: z.string().min(1).max(64).nullable()
 })
 
 /**

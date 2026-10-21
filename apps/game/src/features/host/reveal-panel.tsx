@@ -22,6 +22,7 @@ import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
+import { RebusLine } from '@/presentation/components/rebus-line'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -108,6 +109,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
+  const rebus = quizContent(round)?.prompt.rebus ?? null
   if (track !== null) {
     return (
       <section className='reveal-panel with-cover' data-game='blindtest'>
@@ -152,6 +154,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
         <div className='head'>
           <div className='identity' style={answerFitting(question.answer)}>
             {flag !== null && <FlagPicture file={flag} isNamedBeside />}
+            {rebus !== null && <RebusLine isNamedBeside rebus={rebus} />}
             <p className='title'>
               <VisuallyHidden elementType='span'>
                 {`${translate('quiz.reveal.title')} `}

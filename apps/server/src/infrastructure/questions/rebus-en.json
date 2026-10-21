@@ -1,0 +1,2163 @@
+[
+  {
+    "accepted": [],
+    "answer": "Titanic",
+    "decoys": ["The Abyss", "Pearl Harbor", "Poseidon"],
+    "id": "rebus-en-titanic",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Cameron, 1997.",
+    "rebus": "🧊🚢💔"
+  },
+  {
+    "accepted": ["Lion King"],
+    "answer": "The Lion King",
+    "decoys": ["Madagascar", "The Jungle Book", "Brother Bear"],
+    "id": "rebus-en-the-lion-king",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Roger Allers and Rob Minkoff, 1994.",
+    "rebus": "🦁👑"
+  },
+  {
+    "accepted": ["Spiderman"],
+    "answer": "Spider-Man",
+    "decoys": ["Ant-Man", "Batman", "Daredevil"],
+    "id": "rebus-en-spider-man",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sam Raimi, 2002.",
+    "rebus": "🕷️👨"
+  },
+  {
+    "accepted": [],
+    "answer": "Home Alone",
+    "decoys": ["Problem Child", "Dennis the Menace", "Baby's Day Out"],
+    "id": "rebus-en-home-alone",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Columbus, 1990.",
+    "rebus": "🏠😱👦"
+  },
+  {
+    "accepted": [],
+    "answer": "Ratatouille",
+    "decoys": ["Flushed Away", "The Tale of Despereaux", "An American Tail"],
+    "id": "rebus-en-ratatouille",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brad Bird, 2007.",
+    "rebus": "🐀👨‍🍳"
+  },
+  {
+    "accepted": ["Nemo"],
+    "answer": "Finding Nemo",
+    "decoys": ["Shark Tale", "The Little Mermaid", "Luca"],
+    "id": "rebus-en-finding-nemo",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Andrew Stanton, 2003.",
+    "rebus": "🔍🐠"
+  },
+  {
+    "accepted": [],
+    "answer": "Toy Story",
+    "decoys": ["Monsters, Inc.", "The Lego Movie", "The Brave Little Toaster"],
+    "id": "rebus-en-toy-story",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Lasseter, 1995.",
+    "rebus": "🧸📖"
+  },
+  {
+    "accepted": [],
+    "answer": "Frozen",
+    "decoys": ["Brave", "Tangled", "Happy Feet"],
+    "id": "rebus-en-frozen",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Buck and Jennifer Lee, 2013.",
+    "rebus": "❄️👸⛄"
+  },
+  {
+    "accepted": [],
+    "answer": "Jaws",
+    "decoys": ["Deep Blue Sea", "The Meg", "Piranha"],
+    "id": "rebus-en-jaws",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steven Spielberg, 1975.",
+    "rebus": "🦈👄"
+  },
+  {
+    "accepted": [],
+    "answer": "Jurassic Park",
+    "decoys": ["Godzilla", "The Land Before Time", "The Lost World"],
+    "id": "rebus-en-jurassic-park",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steven Spielberg, 1993.",
+    "rebus": "🦖🌴🎢"
+  },
+  {
+    "accepted": ["Star Wars: A New Hope", "A New Hope"],
+    "answer": "Star Wars",
+    "decoys": ["Star Trek", "Galaxy Quest", "Dune"],
+    "id": "rebus-en-star-wars",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "George Lucas, 1977.",
+    "rebus": "⭐⚔️🌌"
+  },
+  {
+    "accepted": ["Harry Potter and the Sorcerer's Stone", "Harry Potter"],
+    "answer": "Harry Potter and the Philosopher's Stone",
+    "decoys": [
+      "The Chronicles of Narnia",
+      "The Golden Compass",
+      "Percy Jackson & the Olympians: The Lightning Thief"
+    ],
+    "id": "rebus-en-harry-potter-and-the-philosopher-s-stone",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Columbus, 2001.",
+    "rebus": "🧙‍♂️⚡👓🦉"
+  },
+  {
+    "accepted": ["Wizard of Oz"],
+    "answer": "The Wizard of Oz",
+    "decoys": ["Labyrinth", "Oz the Great and Powerful", "The Wiz"],
+    "id": "rebus-en-the-wizard-of-oz",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Victor Fleming, 1939.",
+    "rebus": "🧙‍♂️🌪️👠🟨🧱"
+  },
+  {
+    "accepted": [],
+    "answer": "Ghostbusters",
+    "decoys": ["Casper", "The Frighteners", "The Haunted Mansion"],
+    "id": "rebus-en-ghostbusters",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ivan Reitman, 1984.",
+    "rebus": "👻🚫"
+  },
+  {
+    "accepted": [],
+    "answer": "Back to the Future",
+    "decoys": [
+      "Bill & Ted's Excellent Adventure",
+      "The Terminator",
+      "Hot Tub Time Machine"
+    ],
+    "id": "rebus-en-back-to-the-future",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Zemeckis, 1985.",
+    "rebus": "🔙🚗⚡🔮"
+  },
+  {
+    "accepted": ["Pirates of the Caribbean: The Curse of the Black Pearl"],
+    "answer": "Pirates of the Caribbean",
+    "decoys": ["Hook", "Treasure Planet", "Muppet Treasure Island"],
+    "id": "rebus-en-pirates-of-the-caribbean",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gore Verbinski, 2003.",
+    "rebus": "☠️⛵🏝️🌊"
+  },
+  {
+    "accepted": ["Matrix"],
+    "answer": "The Matrix",
+    "decoys": ["Tron", "Minority Report", "Dark City"],
+    "id": "rebus-en-the-matrix",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "The Wachowskis, 1999.",
+    "rebus": "💊🕶️💻"
+  },
+  {
+    "accepted": ["E.T.", "ET"],
+    "answer": "E.T. the Extra-Terrestrial",
+    "decoys": ["Close Encounters of the Third Kind", "Paul", "Super 8"],
+    "id": "rebus-en-e-t-the-extra-terrestrial",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steven Spielberg, 1982.",
+    "rebus": "👽📞🏠"
+  },
+  {
+    "accepted": [],
+    "answer": "Beauty and the Beast",
+    "decoys": ["Shrek", "Sleeping Beauty", "Tangled"],
+    "id": "rebus-en-beauty-and-the-beast",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gary Trousdale and Kirk Wise, 1991.",
+    "rebus": "👸🌹👹"
+  },
+  {
+    "accepted": ["Snow White"],
+    "answer": "Snow White and the Seven Dwarfs",
+    "decoys": ["Sleeping Beauty", "Mirror Mirror", "Enchanted"],
+    "id": "rebus-en-snow-white-and-the-seven-dwarfs",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "David Hand, 1937.",
+    "rebus": "❄️⚪👸🍎"
+  },
+  {
+    "accepted": [],
+    "answer": "Cinderella",
+    "decoys": ["Sleeping Beauty", "Enchanted", "Ella Enchanted"],
+    "id": "rebus-en-cinderella",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson and Hamilton Luske, 1950.",
+    "rebus": "👠🎃🕛"
+  },
+  {
+    "accepted": ["Little Mermaid"],
+    "answer": "The Little Mermaid",
+    "decoys": ["Splash", "Aquamarine", "Ponyo"],
+    "id": "rebus-en-the-little-mermaid",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Clements and John Musker, 1989.",
+    "rebus": "🤏🧜‍♀️"
+  },
+  {
+    "accepted": [],
+    "answer": "Aladdin",
+    "decoys": [
+      "Sinbad: Legend of the Seven Seas",
+      "The Thief and the Cobbler",
+      "Prince of Persia: The Sands of Time"
+    ],
+    "id": "rebus-en-aladdin",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Clements and John Musker, 1992.",
+    "rebus": "🧞🪔"
+  },
+  {
+    "accepted": [],
+    "answer": "Up",
+    "decoys": ["Coco", "Monster House", "The Red Balloon"],
+    "id": "rebus-en-up",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pete Docter, 2009.",
+    "rebus": "🎈🏠👴"
+  },
+  {
+    "accepted": [],
+    "answer": "Cars",
+    "decoys": ["Turbo", "Planes", "Herbie: Fully Loaded"],
+    "id": "rebus-en-cars",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Lasseter, 2006.",
+    "rebus": "🚗🏁⚡"
+  },
+  {
+    "accepted": ["Monsters Inc"],
+    "answer": "Monsters, Inc.",
+    "decoys": ["Hotel Transylvania", "Monster House", "Monsters vs. Aliens"],
+    "id": "rebus-en-monsters-inc",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pete Docter, 2001.",
+    "rebus": "👹🏢🚪😱"
+  },
+  {
+    "accepted": [],
+    "answer": "Shrek",
+    "decoys": ["The Princess Bride", "Puss in Boots", "Gnomeo & Juliet"],
+    "id": "rebus-en-shrek",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Andrew Adamson and Vicky Jenson, 2001.",
+    "rebus": "🟢👹🐴👸"
+  },
+  {
+    "accepted": [],
+    "answer": "Ice Age",
+    "decoys": ["Madagascar", "The Land Before Time", "Over the Hedge"],
+    "id": "rebus-en-ice-age",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Wedge, 2002.",
+    "rebus": "🧊⏳🐘🐿️"
+  },
+  {
+    "accepted": [],
+    "answer": "Kung Fu Panda",
+    "decoys": ["The Karate Kid", "Kung Fu Hustle", "Turning Red"],
+    "id": "rebus-en-kung-fu-panda",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mark Osborne and John Stevenson, 2008.",
+    "rebus": "🥋🐼"
+  },
+  {
+    "accepted": ["Zootropolis"],
+    "answer": "Zootopia",
+    "decoys": ["Robin Hood", "Sing", "The Secret Life of Pets"],
+    "id": "rebus-en-zootopia",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Byron Howard and Rich Moore, 2016.",
+    "rebus": "🦊🐰🚓"
+  },
+  {
+    "accepted": ["Incredibles"],
+    "answer": "The Incredibles",
+    "decoys": ["Sky High", "Megamind", "Big Hero 6"],
+    "id": "rebus-en-the-incredibles",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brad Bird, 2004.",
+    "rebus": "🦸‍♂️👪"
+  },
+  {
+    "accepted": [],
+    "answer": "Inside Out",
+    "decoys": ["Soul", "Elemental", "Brain Games"],
+    "id": "rebus-en-inside-out",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pete Docter, 2015.",
+    "rebus": "🧠😀😢😡"
+  },
+  {
+    "accepted": [],
+    "answer": "Coco",
+    "decoys": ["The Book of Life", "Corpse Bride", "Soul"],
+    "id": "rebus-en-coco",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lee Unkrich, 2017.",
+    "rebus": "💀🎸🌼"
+  },
+  {
+    "accepted": ["Vaiana"],
+    "answer": "Moana",
+    "decoys": ["Lilo & Stitch", "Luca", "Encanto"],
+    "id": "rebus-en-moana",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Clements and John Musker, 2016.",
+    "rebus": "🌊🌺🐔"
+  },
+  {
+    "accepted": ["Godfather"],
+    "answer": "The Godfather",
+    "decoys": ["Goodfellas", "Scarface", "The Untouchables"],
+    "id": "rebus-en-the-godfather",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Francis Ford Coppola, 1972.",
+    "rebus": "🙏👨‍👦🌹"
+  },
+  {
+    "accepted": [],
+    "answer": "Forrest Gump",
+    "decoys": ["Rain Man", "Big", "Cast Away"],
+    "id": "rebus-en-forrest-gump",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Zemeckis, 1994.",
+    "rebus": "🏃‍♂️🍫🦐🪑"
+  },
+  {
+    "accepted": ["Castaway"],
+    "answer": "Cast Away",
+    "decoys": ["Life of Pi", "The Martian", "Swiss Family Robinson"],
+    "id": "rebus-en-cast-away",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Zemeckis, 2000.",
+    "rebus": "🏝️🏐"
+  },
+  {
+    "accepted": ["Terminator"],
+    "answer": "The Terminator",
+    "decoys": ["RoboCop", "Total Recall", "I, Robot"],
+    "id": "rebus-en-the-terminator",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Cameron, 1984.",
+    "rebus": "🤖🔫🕶️"
+  },
+  {
+    "accepted": [],
+    "answer": "Avatar",
+    "decoys": ["John Carter", "Dune", "FernGully: The Last Rainforest"],
+    "id": "rebus-en-avatar",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Cameron, 2009.",
+    "rebus": "🔵👤🌳🐉"
+  },
+  {
+    "accepted": [],
+    "answer": "King Kong",
+    "decoys": ["Mighty Joe Young", "Godzilla", "Rampage"],
+    "id": "rebus-en-king-kong",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Merian C. Cooper and Ernest B. Schoedsack, 1933.",
+    "rebus": "🦍🏙️"
+  },
+  {
+    "accepted": [],
+    "answer": "Mary Poppins",
+    "decoys": [
+      "Nanny McPhee",
+      "Chitty Chitty Bang Bang",
+      "Bedknobs and Broomsticks"
+    ],
+    "id": "rebus-en-mary-poppins",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Stevenson, 1964.",
+    "rebus": "☂️👩🍭"
+  },
+  {
+    "accepted": [],
+    "answer": "Peter Pan",
+    "decoys": ["Hook", "The Lost Boys", "Tinker Bell"],
+    "id": "rebus-en-peter-pan",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson and Hamilton Luske, 1953.",
+    "rebus": "🧚‍♀️👦🐊⏰"
+  },
+  {
+    "accepted": [],
+    "answer": "Pinocchio",
+    "decoys": ["Dumbo", "Bambi", "The Brave Little Toaster"],
+    "id": "rebus-en-pinocchio",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ben Sharpsteen and Hamilton Luske, 1940.",
+    "rebus": "🤥👦🐋"
+  },
+  {
+    "accepted": [],
+    "answer": "Dumbo",
+    "decoys": ["Babar", "Horton Hears a Who!", "Water for Elephants"],
+    "id": "rebus-en-dumbo",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ben Sharpsteen, 1941.",
+    "rebus": "🐘👂🎪"
+  },
+  {
+    "accepted": [],
+    "answer": "Bambi",
+    "decoys": ["Brother Bear", "The Fox and the Hound", "Balto"],
+    "id": "rebus-en-bambi",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "David Hand, 1942.",
+    "rebus": "🦌🐇🌲"
+  },
+  {
+    "accepted": ["Jungle Book"],
+    "answer": "The Jungle Book",
+    "decoys": ["Tarzan", "George of the Jungle", "Brother Bear"],
+    "id": "rebus-en-the-jungle-book",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Wolfgang Reitherman, 1967.",
+    "rebus": "🌴📖🐻🐍"
+  },
+  {
+    "accepted": [],
+    "answer": "Batman",
+    "decoys": ["Superman", "Daredevil", "The Crow"],
+    "id": "rebus-en-batman",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tim Burton, 1989.",
+    "rebus": "🦇👨"
+  },
+  {
+    "accepted": ["Ironman"],
+    "answer": "Iron Man",
+    "decoys": ["Ant-Man", "RoboCop", "Steel"],
+    "id": "rebus-en-iron-man",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jon Favreau, 2008.",
+    "rebus": "⚙️👨🦾"
+  },
+  {
+    "accepted": ["MIB"],
+    "answer": "Men in Black",
+    "decoys": ["Galaxy Quest", "Independence Day", "Mars Attacks!"],
+    "id": "rebus-en-men-in-black",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Barry Sonnenfeld, 1997.",
+    "rebus": "🕴️🕶️👽"
+  },
+  {
+    "accepted": ["Sound of Music"],
+    "answer": "The Sound of Music",
+    "decoys": ["The King and I", "My Fair Lady", "West Side Story"],
+    "id": "rebus-en-the-sound-of-music",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Robert Wise, 1965.",
+    "rebus": "🔊🎵⛰️"
+  },
+  {
+    "accepted": ["Hunger Games"],
+    "answer": "The Hunger Games",
+    "decoys": ["Divergent", "The Maze Runner", "Battle Royale"],
+    "id": "rebus-en-the-hunger-games",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gary Ross, 2012.",
+    "rebus": "🍽️🏹🔥👧"
+  },
+  {
+    "accepted": [
+      "The Lord of the Rings",
+      "Lord of the Rings",
+      "The Fellowship of the Ring"
+    ],
+    "answer": "The Lord of the Rings: The Fellowship of the Ring",
+    "decoys": [
+      "The Hobbit: An Unexpected Journey",
+      "Willow",
+      "The NeverEnding Story"
+    ],
+    "id": "rebus-en-the-lord-of-the-rings-the-fellowship-of-the-ring",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Peter Jackson, 2001.",
+    "rebus": "👑💍🌋"
+  },
+  {
+    "accepted": ["Fast and Furious", "Fast & Furious"],
+    "answer": "The Fast and the Furious",
+    "decoys": ["Gone in 60 Seconds", "Need for Speed", "Drive"],
+    "id": "rebus-en-the-fast-and-the-furious",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Rob Cohen, 2001.",
+    "rebus": "🏎️💨😡"
+  },
+  {
+    "accepted": [],
+    "answer": "Top Gun",
+    "decoys": ["Iron Eagle", "Pearl Harbor", "Days of Thunder"],
+    "id": "rebus-en-top-gun",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tony Scott, 1986.",
+    "rebus": "🔝🔫✈️"
+  },
+  {
+    "accepted": [],
+    "answer": "Edward Scissorhands",
+    "decoys": [
+      "Corpse Bride",
+      "Frankenweenie",
+      "The Nightmare Before Christmas"
+    ],
+    "id": "rebus-en-edward-scissorhands",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Tim Burton, 1990.",
+    "rebus": "✂️🖐️👦"
+  },
+  {
+    "accepted": ["Willy Wonka and the Chocolate Factory", "Willy Wonka"],
+    "answer": "Charlie and the Chocolate Factory",
+    "decoys": ["Matilda", "Hugo", "James and the Giant Peach"],
+    "id": "rebus-en-charlie-and-the-chocolate-factory",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tim Burton, 2005.",
+    "rebus": "🍫🏭🎫"
+  },
+  {
+    "accepted": [],
+    "answer": "Night at the Museum",
+    "decoys": ["The Pagemaster", "Zathura: A Space Adventure", "Toy Story"],
+    "id": "rebus-en-night-at-the-museum",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Shawn Levy, 2006.",
+    "rebus": "🌙🏛️🦖"
+  },
+  {
+    "accepted": [],
+    "answer": "Jumanji",
+    "decoys": ["Zathura: A Space Adventure", "The Pagemaster", "Jungle Cruise"],
+    "id": "rebus-en-jumanji",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Joe Johnston, 1995.",
+    "rebus": "🎲🐒🌴"
+  },
+  {
+    "accepted": [],
+    "answer": "Mean Girls",
+    "decoys": ["Clueless", "Heathers", "Easy A"],
+    "id": "rebus-en-mean-girls",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mark Waters, 2004.",
+    "rebus": "😠👧👧"
+  },
+  {
+    "accepted": [],
+    "answer": "Twilight",
+    "decoys": ["Interview with the Vampire", "Warm Bodies", "Underworld"],
+    "id": "rebus-en-twilight",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Catherine Hardwicke, 2008.",
+    "rebus": "🌇🧛‍♀️🐺"
+  },
+  {
+    "accepted": ["Beetle Juice"],
+    "answer": "Beetlejuice",
+    "decoys": ["The Addams Family", "Casper", "Hocus Pocus"],
+    "id": "rebus-en-beetlejuice",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Tim Burton, 1988.",
+    "rebus": "🐞🧃"
+  },
+  {
+    "accepted": [],
+    "answer": "Chicken Run",
+    "decoys": [
+      "Flushed Away",
+      "Shaun the Sheep Movie",
+      "Wallace & Gromit: The Curse of the Were-Rabbit"
+    ],
+    "id": "rebus-en-chicken-run",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Peter Lord and Nick Park, 2000.",
+    "rebus": "🐔🏃‍♂️"
+  },
+  {
+    "accepted": [],
+    "answer": "Free Willy",
+    "decoys": ["Flipper", "Andre", "Big Miracle"],
+    "id": "rebus-en-free-willy",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Simon Wincer, 1993.",
+    "rebus": "🔓🐳"
+  },
+  {
+    "accepted": [],
+    "answer": "Die Hard",
+    "decoys": ["Lethal Weapon", "Speed", "Under Siege"],
+    "id": "rebus-en-die-hard",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John McTiernan, 1988.",
+    "rebus": "🎲💪"
+  },
+  {
+    "accepted": [],
+    "answer": "Gladiator",
+    "decoys": ["Troy", "Ben-Hur", "Spartacus"],
+    "id": "rebus-en-gladiator",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Ridley Scott, 2000.",
+    "rebus": "🏛️⚔️🦁"
+  },
+  {
+    "accepted": [],
+    "answer": "Inception",
+    "decoys": ["Interstellar", "Shutter Island", "Tenet"],
+    "id": "rebus-en-inception",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Christopher Nolan, 2010.",
+    "rebus": "💤🌀🏙️"
+  },
+  {
+    "accepted": [],
+    "answer": "Paddington",
+    "decoys": ["Winnie the Pooh", "Ted", "Christopher Robin"],
+    "id": "rebus-en-paddington",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Paul King, 2014.",
+    "rebus": "🐻🧥🍊🍞"
+  },
+  {
+    "accepted": ["Truman Show"],
+    "answer": "The Truman Show",
+    "decoys": ["EDtv", "The Cable Guy", "Pleasantville"],
+    "id": "rebus-en-the-truman-show",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Peter Weir, 1998.",
+    "rebus": "✅👨📺"
+  },
+  {
+    "accepted": [],
+    "answer": "Rain Man",
+    "decoys": ["Awakenings", "Good Will Hunting", "A Beautiful Mind"],
+    "id": "rebus-en-rain-man",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Barry Levinson, 1988.",
+    "rebus": "🌧️👨"
+  },
+  {
+    "accepted": [],
+    "answer": "Alice in Wonderland",
+    "decoys": ["The Wizard of Oz", "Labyrinth", "Through the Looking Glass"],
+    "id": "rebus-en-alice-in-wonderland",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson and Hamilton Luske, 1951.",
+    "rebus": "👧🐇🎩🍵"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["How I Met Your Mother", "Seinfeld", "New Girl"],
+    "id": "rebus-en-friends",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Crane and Marta Kauffman (NBC), 1994.",
+    "rebus": "👫👬👭"
+  },
+  {
+    "accepted": [],
+    "answer": "Breaking Bad",
+    "decoys": ["Better Call Saul", "Ozark", "Narcos"],
+    "id": "rebus-en-breaking-bad",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Vince Gilligan (AMC), 2008.",
+    "rebus": "💔👿🧪"
+  },
+  {
+    "accepted": ["GoT"],
+    "answer": "Game of Thrones",
+    "decoys": ["The Witcher", "The Last Kingdom", "Rome"],
+    "id": "rebus-en-game-of-thrones",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Benioff and D. B. Weiss (HBO), 2011.",
+    "rebus": "🎲👑🪑🐉"
+  },
+  {
+    "accepted": ["Simpsons"],
+    "answer": "The Simpsons",
+    "decoys": ["Family Guy", "Futurama", "King of the Hill"],
+    "id": "rebus-en-the-simpsons",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Matt Groening (Fox), 1989.",
+    "rebus": "🟡👨‍👩‍👧‍👦🍩"
+  },
+  {
+    "accepted": [],
+    "answer": "Stranger Things",
+    "decoys": ["Dark", "Twin Peaks", "The X-Files"],
+    "id": "rebus-en-stranger-things",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "The Duffer Brothers (Netflix), 2016.",
+    "rebus": "🧇🚲🔦👾"
+  },
+  {
+    "accepted": ["Office"],
+    "answer": "The Office",
+    "decoys": ["Parks and Recreation", "Brooklyn Nine-Nine", "Superstore"],
+    "id": "rebus-en-the-office",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Ricky Gervais and Stephen Merchant (BBC), 2001; the US remake by Greg Daniels (NBC), 2005.",
+    "rebus": "🏢📎"
+  },
+  {
+    "accepted": ["Walking Dead"],
+    "answer": "The Walking Dead",
+    "decoys": ["Z Nation", "iZombie", "Kingdom"],
+    "id": "rebus-en-the-walking-dead",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Frank Darabont (AMC), 2010.",
+    "rebus": "🚶🧟"
+  },
+  {
+    "accepted": [],
+    "answer": "Doctor Who",
+    "decoys": ["Torchwood", "Sherlock", "Red Dwarf"],
+    "id": "rebus-en-doctor-who",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "BBC, 1963.",
+    "rebus": "👨‍⚕️❓"
+  },
+  {
+    "accepted": [],
+    "answer": "Sherlock",
+    "decoys": ["Elementary", "Luther", "Agatha Christie's Poirot"],
+    "id": "rebus-en-sherlock",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Steven Moffat and Mark Gatiss (BBC), 2010.",
+    "rebus": "🔍🕵️‍♂️🎻"
+  },
+  {
+    "accepted": ["Big Bang Theory"],
+    "answer": "The Big Bang Theory",
+    "decoys": ["Young Sheldon", "The IT Crowd", "Silicon Valley"],
+    "id": "rebus-en-the-big-bang-theory",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Chuck Lorre and Bill Prady (CBS), 2007.",
+    "rebus": "💥🌌🤓"
+  },
+  {
+    "accepted": [],
+    "answer": "Squid Game",
+    "decoys": ["Alice in Borderland", "Kingdom", "All of Us Are Dead"],
+    "id": "rebus-en-squid-game",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Hwang Dong-hyuk (Netflix), 2021.",
+    "rebus": "🦑🎲"
+  },
+  {
+    "accepted": ["La Casa de Papel"],
+    "answer": "Money Heist",
+    "decoys": ["Prison Break", "Lupin", "Narcos"],
+    "id": "rebus-en-money-heist",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Álex Pina (Antena 3), 2017.",
+    "rebus": "💰🎭🔴"
+  },
+  {
+    "accepted": [],
+    "answer": "Prison Break",
+    "decoys": ["Orange Is the New Black", "Oz", "Escape at Dannemora"],
+    "id": "rebus-en-prison-break",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Paul Scheuring (Fox), 2005.",
+    "rebus": "⛓️💥🏃‍♂️"
+  },
+  {
+    "accepted": ["House M.D.", "House MD"],
+    "answer": "House",
+    "decoys": ["ER", "Scrubs", "Grey's Anatomy"],
+    "id": "rebus-en-house",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Shore (Fox), 2004.",
+    "rebus": "🏠👨‍⚕️"
+  },
+  {
+    "accepted": [],
+    "answer": "Peaky Blinders",
+    "decoys": ["Boardwalk Empire", "Gangs of London", "Taboo"],
+    "id": "rebus-en-peaky-blinders",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Steven Knight (BBC), 2013.",
+    "rebus": "🧢🔪🥃"
+  },
+  {
+    "accepted": [],
+    "answer": "Lost",
+    "decoys": ["Manifest", "Yellowjackets", "Fringe"],
+    "id": "rebus-en-lost",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "J. J. Abrams, Damon Lindelof and Jeffrey Lieber (ABC), 2004.",
+    "rebus": "✈️💥🏝️🧭"
+  },
+  {
+    "accepted": [],
+    "answer": "Wednesday",
+    "decoys": [
+      "Chilling Adventures of Sabrina",
+      "A Series of Unfortunate Events",
+      "Locke & Key"
+    ],
+    "id": "rebus-en-wednesday",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Alfred Gough and Miles Millar (Netflix), 2022.",
+    "rebus": "🖤👧✋🎻"
+  },
+  {
+    "accepted": [],
+    "answer": "The Crown",
+    "decoys": ["Victoria", "The Tudors", "Downton Abbey"],
+    "id": "rebus-en-the-crown",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Peter Morgan (Netflix), 2016.",
+    "rebus": "👑👵🏰"
+  },
+  {
+    "accepted": [],
+    "answer": "Black Mirror",
+    "decoys": ["The Twilight Zone", "Love, Death & Robots", "Westworld"],
+    "id": "rebus-en-black-mirror",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Charlie Brooker (Channel 4), 2011.",
+    "rebus": "⚫📱😨"
+  },
+  {
+    "accepted": ["SpongeBob", "Spongebob Squarepants"],
+    "answer": "SpongeBob SquarePants",
+    "decoys": ["The Fairly OddParents", "Rugrats", "Adventure Time"],
+    "id": "rebus-en-spongebob-squarepants",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Stephen Hillenburg (Nickelodeon), 1999.",
+    "rebus": "🧽🟨👖"
+  },
+  {
+    "accepted": ["Scooby-Doo", "Scooby Doo"],
+    "answer": "Scooby-Doo, Where Are You!",
+    "decoys": [
+      "Courage the Cowardly Dog",
+      "The Real Ghostbusters",
+      "Inspector Gadget"
+    ],
+    "id": "rebus-en-scooby-doo-where-are-you",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Joe Ruby and Ken Spears (CBS), 1969.",
+    "rebus": "🐕👻🚐🥪"
+  },
+  {
+    "accepted": ["Peppa"],
+    "answer": "Peppa Pig",
+    "decoys": ["Bluey", "Ben and Holly's Little Kingdom", "PAW Patrol"],
+    "id": "rebus-en-peppa-pig",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Neville Astley and Mark Baker (Channel 5), 2004.",
+    "rebus": "🌶️🐷"
+  },
+  {
+    "accepted": [],
+    "answer": "Bluey",
+    "decoys": ["Hey Duggee", "PAW Patrol", "Clifford the Big Red Dog"],
+    "id": "rebus-en-bluey",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Joe Brumm (ABC Kids), 2018.",
+    "rebus": "🔵🐕"
+  },
+  {
+    "accepted": [],
+    "answer": "Desperate Housewives",
+    "decoys": ["Big Little Lies", "Devious Maids", "Gossip Girl"],
+    "id": "rebus-en-desperate-housewives",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Marc Cherry (ABC), 2004.",
+    "rebus": "😫🏡👩"
+  },
+  {
+    "accepted": [],
+    "answer": "Gossip Girl",
+    "decoys": ["Pretty Little Liars", "The O.C.", "One Tree Hill"],
+    "id": "rebus-en-gossip-girl",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Josh Schwartz and Stephanie Savage (The CW), 2007.",
+    "rebus": "🤫💬👱‍♀️"
+  },
+  {
+    "accepted": [],
+    "answer": "Mad Men",
+    "decoys": ["Suits", "Boardwalk Empire", "The Americans"],
+    "id": "rebus-en-mad-men",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Matthew Weiner (AMC), 2007.",
+    "rebus": "😡👨👨"
+  },
+  {
+    "accepted": [],
+    "answer": "Suits",
+    "decoys": ["Better Call Saul", "The Good Wife", "Boston Legal"],
+    "id": "rebus-en-suits",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Aaron Korsh (USA Network), 2011.",
+    "rebus": "👔💼"
+  },
+  {
+    "accepted": [],
+    "answer": "Ted Lasso",
+    "decoys": ["Shrinking", "Coach", "The IT Crowd"],
+    "id": "rebus-en-ted-lasso",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Jason Sudeikis, Bill Lawrence, Brendan Hunt and Joe Kelly (Apple TV+), 2020.",
+    "rebus": "🧸➰⚽"
+  },
+  {
+    "accepted": [],
+    "answer": "Dexter",
+    "decoys": ["Hannibal", "Mindhunter", "You"],
+    "id": "rebus-en-dexter",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "James Manos Jr. (Showtime), 2006.",
+    "rebus": "🔪🩸🔬"
+  },
+  {
+    "accepted": ["Sopranos"],
+    "answer": "The Sopranos",
+    "decoys": ["Boardwalk Empire", "Gomorrah", "The Wire"],
+    "id": "rebus-en-the-sopranos",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Chase (HBO), 1999.",
+    "rebus": "👩‍🎤🎶🔫🍝"
+  },
+  {
+    "accepted": [],
+    "answer": "Modern Family",
+    "decoys": ["The Middle", "Black-ish", "Arrested Development"],
+    "id": "rebus-en-modern-family",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Christopher Lloyd and Steven Levitan (ABC), 2009.",
+    "rebus": "📱👨‍👩‍👧‍👦"
+  },
+  {
+    "accepted": ["Flash"],
+    "answer": "The Flash",
+    "decoys": ["Arrow", "Smallville", "Supergirl"],
+    "id": "rebus-en-the-flash",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Greg Berlanti, Andrew Kreisberg and Geoff Johns (The CW), 2014.",
+    "rebus": "📸⚡🏃‍♂️"
+  },
+  {
+    "accepted": [],
+    "answer": "Vikings",
+    "decoys": ["The Last Kingdom", "Spartacus", "Rome"],
+    "id": "rebus-en-vikings",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Michael Hirst (History), 2013.",
+    "rebus": "🪓⛵🛡️"
+  },
+  {
+    "accepted": ["Last of Us"],
+    "answer": "The Last of Us",
+    "decoys": ["Station Eleven", "Z Nation", "Fallout"],
+    "id": "rebus-en-the-last-of-us",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Craig Mazin and Neil Druckmann (HBO), 2023.",
+    "rebus": "🔚🍄🧟‍♂️"
+  },
+  {
+    "accepted": ["Fresh Prince", "Fresh Prince of Bel-Air"],
+    "answer": "The Fresh Prince of Bel-Air",
+    "decoys": ["Family Matters", "Everybody Hates Chris", "The Cosby Show"],
+    "id": "rebus-en-the-fresh-prince-of-bel-air",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Andy and Susan Borowitz (NBC), 1990.",
+    "rebus": "🍃🤴🌴"
+  },
+  {
+    "accepted": [],
+    "answer": "Purple Rain",
+    "decoys": [
+      "November Rain",
+      "Have You Ever Seen the Rain",
+      "When Doves Cry"
+    ],
+    "id": "rebus-en-purple-rain",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Prince, 1984.",
+    "rebus": "🟣🌧️"
+  },
+  {
+    "accepted": [],
+    "answer": "Rocket Man",
+    "decoys": ["Space Oddity", "Starman", "Tiny Dancer"],
+    "id": "rebus-en-rocket-man",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Elton John, 1972.",
+    "rebus": "🚀👨"
+  },
+  {
+    "accepted": [],
+    "answer": "Hotel California",
+    "decoys": ["Californication", "California Dreamin'", "Take It Easy"],
+    "id": "rebus-en-hotel-california",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Eagles, 1977.",
+    "rebus": "🏨🌉🌴"
+  },
+  {
+    "accepted": [],
+    "answer": "Smells Like Teen Spirit",
+    "decoys": ["Come as You Are", "Teenage Dirtbag", "Lithium"],
+    "id": "rebus-en-smells-like-teen-spirit",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Nirvana, 1991.",
+    "rebus": "👃🧒👻"
+  },
+  {
+    "accepted": ["Wonder Wall"],
+    "answer": "Wonderwall",
+    "decoys": [
+      "Don't Look Back in Anger",
+      "Another Brick in the Wall",
+      "Champagne Supernova"
+    ],
+    "id": "rebus-en-wonderwall",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Oasis, 1995.",
+    "rebus": "🤔🧱"
+  },
+  {
+    "accepted": ["Girls Just Wanna Have Fun"],
+    "answer": "Girls Just Want to Have Fun",
+    "decoys": ["Time After Time", "Girls on Film", "Wannabe"],
+    "id": "rebus-en-girls-just-want-to-have-fun",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Cyndi Lauper, 1983.",
+    "rebus": "👧👧🎉"
+  },
+  {
+    "accepted": [],
+    "answer": "Umbrella",
+    "decoys": ["Here Comes the Rain Again", "Singin' in the Rain", "Rude Boy"],
+    "id": "rebus-en-umbrella",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Rihanna, 2007.",
+    "rebus": "☂️🌧️"
+  },
+  {
+    "accepted": ["Fireworks"],
+    "answer": "Firework",
+    "decoys": ["Girl on Fire", "Light My Fire", "Set Fire to the Rain"],
+    "id": "rebus-en-firework",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Katy Perry, 2010.",
+    "rebus": "🔥💼"
+  },
+  {
+    "accepted": [],
+    "answer": "Blue Suede Shoes",
+    "decoys": ["Blue Moon", "These Boots Are Made for Walkin'", "Red Red Wine"],
+    "id": "rebus-en-blue-suede-shoes",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Carl Perkins, 1956, and Elvis Presley the same year.",
+    "rebus": "🔵👞👞"
+  },
+  {
+    "accepted": [],
+    "answer": "Jailhouse Rock",
+    "decoys": ["Rock Around the Clock", "Folsom Prison Blues", "Hound Dog"],
+    "id": "rebus-en-jailhouse-rock",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Elvis Presley, 1957.",
+    "rebus": "⛓️🏠🎸"
+  },
+  {
+    "accepted": [],
+    "answer": "Bad Romance",
+    "decoys": ["Bad Guy", "Just Dance", "Telephone"],
+    "id": "rebus-en-bad-romance",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Lady Gaga, 2009.",
+    "rebus": "👎💏"
+  },
+  {
+    "accepted": [],
+    "answer": "Poker Face",
+    "decoys": ["Telephone", "Ace of Spades", "Lucky"],
+    "id": "rebus-en-poker-face",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Lady Gaga, 2008.",
+    "rebus": "🃏😐"
+  },
+  {
+    "accepted": [],
+    "answer": "Toxic",
+    "decoys": ["Poison", "Womanizer", "Venom"],
+    "id": "rebus-en-toxic",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Britney Spears, 2004.",
+    "rebus": "☠️🧪"
+  },
+  {
+    "accepted": [],
+    "answer": "Ice Ice Baby",
+    "decoys": ["Baby Baby", "Cold as Ice", "U Can't Touch This"],
+    "id": "rebus-en-ice-ice-baby",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Vanilla Ice, 1990.",
+    "rebus": "🧊🧊👶"
+  },
+  {
+    "accepted": ["Sweet Child of Mine"],
+    "answer": "Sweet Child o' Mine",
+    "decoys": ["Sweet Home Alabama", "Paradise City", "Welcome to the Jungle"],
+    "id": "rebus-en-sweet-child-o-mine",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Guns N' Roses, 1988.",
+    "rebus": "🍬🧒⛏️"
+  },
+  {
+    "accepted": [],
+    "answer": "Highway to Hell",
+    "decoys": ["Highway Star", "Hells Bells", "Road to Nowhere"],
+    "id": "rebus-en-highway-to-hell",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "AC/DC, 1979.",
+    "rebus": "🛣️👉🔥😈"
+  },
+  {
+    "accepted": ["Don't Stop Believing"],
+    "answer": "Don't Stop Believin'",
+    "decoys": ["Don't Stop Me Now", "Livin' on a Prayer", "Faith"],
+    "id": "rebus-en-don-t-stop-believin",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Journey, 1981.",
+    "rebus": "🚫🛑🙏"
+  },
+  {
+    "accepted": [],
+    "answer": "Eye of the Tiger",
+    "decoys": ["Eye in the Sky", "Tiger Feet", "The Final Countdown"],
+    "id": "rebus-en-eye-of-the-tiger",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Survivor, 1982.",
+    "rebus": "👁️🐯"
+  },
+  {
+    "accepted": [],
+    "answer": "Let It Go",
+    "decoys": ["Let It Be", "Let It Snow", "Into the Unknown"],
+    "id": "rebus-en-let-it-go",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Idina Menzel, 2013, from Frozen.",
+    "rebus": "❄️👸👋"
+  },
+  {
+    "accepted": ["Octopuses Garden"],
+    "answer": "Octopus's Garden",
+    "decoys": ["Yellow Submarine", "Under the Sea", "Here Comes the Sun"],
+    "id": "rebus-en-octopus-s-garden",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "The Beatles, 1969.",
+    "rebus": "🐙🌷"
+  },
+  {
+    "accepted": ["Strawberry Fields"],
+    "answer": "Strawberry Fields Forever",
+    "decoys": ["Penny Lane", "Forever Young", "Fields of Gold"],
+    "id": "rebus-en-strawberry-fields-forever",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "The Beatles, 1967.",
+    "rebus": "🍓🌾♾️"
+  },
+  {
+    "accepted": [],
+    "answer": "Like a Prayer",
+    "decoys": ["Like a Virgin", "Livin' on a Prayer", "Papa Don't Preach"],
+    "id": "rebus-en-like-a-prayer",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Madonna, 1989.",
+    "rebus": "👍🙏"
+  },
+  {
+    "accepted": [],
+    "answer": "Dancing Queen",
+    "decoys": ["Dancing in the Dark", "Killer Queen", "Mamma Mia"],
+    "id": "rebus-en-dancing-queen",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "ABBA, 1976.",
+    "rebus": "💃👑"
+  },
+  {
+    "accepted": [],
+    "answer": "Waterloo",
+    "decoys": ["Waterloo Sunset", "Mamma Mia", "Waterfalls"],
+    "id": "rebus-en-waterloo",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "ABBA, 1974.",
+    "rebus": "💧🚽"
+  },
+  {
+    "accepted": [],
+    "answer": "Candle in the Wind",
+    "decoys": ["Blowin' in the Wind", "Dust in the Wind", "Light My Fire"],
+    "id": "rebus-en-candle-in-the-wind",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "Elton John, 1973.",
+    "rebus": "🕯️🌬️"
+  },
+  {
+    "accepted": [],
+    "answer": "Crocodile Rock",
+    "decoys": [
+      "Rock Lobster",
+      "Rock Around the Clock",
+      "Saturday Night's Alright for Fighting"
+    ],
+    "id": "rebus-en-crocodile-rock",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "Elton John, 1972.",
+    "rebus": "🐊🎸"
+  },
+  {
+    "accepted": ["Paint It, Black"],
+    "answer": "Paint It Black",
+    "decoys": ["Back in Black", "Black Magic Woman", "Paint the Town Red"],
+    "id": "rebus-en-paint-it-black",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "The Rolling Stones, 1966.",
+    "rebus": "🖌️⬛"
+  },
+  {
+    "accepted": ["Brown-Eyed Girl"],
+    "answer": "Brown Eyed Girl",
+    "decoys": ["Brown Sugar", "Jessie's Girl", "Bette Davis Eyes"],
+    "id": "rebus-en-brown-eyed-girl",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "Van Morrison, 1967.",
+    "rebus": "🟤👁️👧"
+  },
+  {
+    "accepted": [],
+    "answer": "Bad Blood",
+    "decoys": ["Bad Guy", "Shake It Off", "Bloodstream"],
+    "id": "rebus-en-bad-blood",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Taylor Swift, 2015.",
+    "rebus": "👎🩸"
+  },
+  {
+    "accepted": [],
+    "answer": "Love Story",
+    "decoys": ["Love Song", "Story of My Life", "You Belong with Me"],
+    "id": "rebus-en-love-story",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Taylor Swift, 2008.",
+    "rebus": "❤️📖"
+  },
+  {
+    "accepted": [],
+    "answer": "Blank Space",
+    "decoys": ["Space Oddity", "Style", "Wildest Dreams"],
+    "id": "rebus-en-blank-space",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Taylor Swift, 2014.",
+    "rebus": "⬜🪐"
+  },
+  {
+    "accepted": [],
+    "answer": "Watermelon Sugar",
+    "decoys": ["Sugar", "Adore You", "Brown Sugar"],
+    "id": "rebus-en-watermelon-sugar",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Harry Styles, 2019.",
+    "rebus": "🍉🍬"
+  },
+  {
+    "accepted": [],
+    "answer": "Blinding Lights",
+    "decoys": ["Save Your Tears", "Lights", "Starboy"],
+    "id": "rebus-en-blinding-lights",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "The Weeknd, 2019.",
+    "rebus": "🙈💡"
+  },
+  {
+    "accepted": [],
+    "answer": "Old Town Road",
+    "decoys": [
+      "Take Me Home, Country Roads",
+      "Road to Nowhere",
+      "Hit the Road Jack"
+    ],
+    "id": "rebus-en-old-town-road",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Lil Nas X, 2018.",
+    "rebus": "👴🏘️🛣️"
+  },
+  {
+    "accepted": [],
+    "answer": "Happy",
+    "decoys": ["Get Lucky", "Don't Worry, Be Happy", "Shiny Happy People"],
+    "id": "rebus-en-happy",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Pharrell Williams, 2013.",
+    "rebus": "😊👏"
+  },
+  {
+    "accepted": [],
+    "answer": "Uptown Funk",
+    "decoys": ["Uptown Girl", "Treasure", "Can't Stop the Feeling!"],
+    "id": "rebus-en-uptown-funk",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Mark Ronson featuring Bruno Mars, 2014.",
+    "rebus": "⬆️🏙️🕺"
+  },
+  {
+    "accepted": [],
+    "answer": "Hips Don't Lie",
+    "decoys": ["Whenever, Wherever", "She Wolf", "Lies"],
+    "id": "rebus-en-hips-don-t-lie",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Shakira featuring Wyclef Jean, 2006.",
+    "rebus": "💃🚫🤥"
+  },
+  {
+    "accepted": [],
+    "answer": "Message in a Bottle",
+    "decoys": ["Every Breath You Take", "Roxanne", "Please Mr. Postman"],
+    "id": "rebus-en-message-in-a-bottle",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "The Police, 1979.",
+    "rebus": "✉️🍾"
+  },
+  {
+    "accepted": [],
+    "answer": "Walking on Sunshine",
+    "decoys": [
+      "Walking on the Moon",
+      "Here Comes the Sun",
+      "Good Day Sunshine"
+    ],
+    "id": "rebus-en-walking-on-sunshine",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Katrina and the Waves, 1985.",
+    "rebus": "🚶☀️"
+  },
+  {
+    "accepted": [
+      "Sweet Dreams (Are Made of This)",
+      "Sweet Dreams Are Made of This"
+    ],
+    "answer": "Sweet Dreams",
+    "decoys": ["Sweet Caroline", "Dream On", "Daydream Believer"],
+    "id": "rebus-en-sweet-dreams",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Eurythmics, 1983.",
+    "rebus": "🍬💤"
+  },
+  {
+    "accepted": [],
+    "answer": "Africa",
+    "decoys": ["Rosanna", "Circle of Life", "Hold the Line"],
+    "id": "rebus-en-africa",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Toto, 1982.",
+    "rebus": "🦁🦒🌍"
+  },
+  {
+    "accepted": [],
+    "answer": "Roar",
+    "decoys": ["Dark Horse", "The Lion Sleeps Tonight", "Fight Song"],
+    "id": "rebus-en-roar",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Katy Perry, 2013.",
+    "rebus": "🦁📢"
+  },
+  {
+    "accepted": [],
+    "answer": "Video Killed the Radio Star",
+    "decoys": ["Radio Ga Ga", "Video Games", "Starman"],
+    "id": "rebus-en-video-killed-the-radio-star",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "The Buggles, 1979.",
+    "rebus": "📼🔪📻⭐"
+  },
+  {
+    "accepted": [],
+    "answer": "Call Me Maybe",
+    "decoys": ["Call Me", "Hotline Bling", "Good Time"],
+    "id": "rebus-en-call-me-maybe",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Carly Rae Jepsen, 2011.",
+    "rebus": "📞🙋🤷"
+  },
+  {
+    "accepted": [],
+    "answer": "Heartbreak Hotel",
+    "decoys": ["Heartbreaker", "Love Me Tender", "Hound Dog"],
+    "id": "rebus-en-heartbreak-hotel",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Elvis Presley, 1956.",
+    "rebus": "💔🏨"
+  },
+  {
+    "accepted": [],
+    "answer": "Smoke on the Water",
+    "decoys": ["Bridge over Troubled Water", "Highway Star", "Black Night"],
+    "id": "rebus-en-smoke-on-the-water",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Deep Purple, 1972.",
+    "rebus": "💨🌊"
+  },
+  {
+    "accepted": [],
+    "answer": "Baby Shark",
+    "decoys": ["Baby", "The Wheels on the Bus", "Under the Sea"],
+    "id": "rebus-en-baby-shark",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Pinkfong, 2016.",
+    "rebus": "👶🦈"
+  },
+  {
+    "accepted": ["It's raining cats and dogs"],
+    "answer": "Raining cats and dogs",
+    "decoys": [
+      "Let the cat out of the bag",
+      "Every dog has its day",
+      "Come rain or shine"
+    ],
+    "id": "rebus-en-raining-cats-and-dogs",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Raining very heavily.",
+    "rebus": "🌧️🐱🐶"
+  },
+  {
+    "accepted": ["It's a piece of cake", "A piece of cake"],
+    "answer": "Piece of cake",
+    "decoys": ["Have your cake and eat it", "Icing on the cake", "Easy as pie"],
+    "id": "rebus-en-piece-of-cake",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Very easy to do.",
+    "rebus": "🧩🍰"
+  },
+  {
+    "accepted": [],
+    "answer": "Break a leg",
+    "decoys": ["Break the ice", "Cost an arm and a leg", "Pull my leg"],
+    "id": "rebus-en-break-a-leg",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Good luck, said before a performance.",
+    "rebus": "💥🦵"
+  },
+  {
+    "accepted": ["Pigs might fly"],
+    "answer": "When pigs fly",
+    "decoys": ["Time flies", "Make a pig of yourself", "Fly off the handle"],
+    "id": "rebus-en-when-pigs-fly",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Never going to happen.",
+    "rebus": "🐷✈️"
+  },
+  {
+    "accepted": [],
+    "answer": "Let the cat out of the bag",
+    "decoys": [
+      "Curiosity killed the cat",
+      "Raining cats and dogs",
+      "Hit the sack"
+    ],
+    "id": "rebus-en-let-the-cat-out-of-the-bag",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Reveal a secret by mistake.",
+    "rebus": "🐱👜➡️"
+  },
+  {
+    "accepted": ["Elephant in the room"],
+    "answer": "The elephant in the room",
+    "decoys": ["A white elephant", "Couch potato", "An elephant never forgets"],
+    "id": "rebus-en-the-elephant-in-the-room",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "An obvious problem nobody mentions.",
+    "rebus": "🐘🛋️"
+  },
+  {
+    "accepted": ["Get cold feet", "Getting cold feet"],
+    "answer": "Cold feet",
+    "decoys": ["Cold shoulder", "Put your foot in it", "Cold turkey"],
+    "id": "rebus-en-cold-feet",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Sudden nerves before a commitment.",
+    "rebus": "🥶🦶"
+  },
+  {
+    "accepted": [],
+    "answer": "Once in a blue moon",
+    "decoys": ["Over the moon", "Out of the blue", "Ask for the moon"],
+    "id": "rebus-en-once-in-a-blue-moon",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Very rarely.",
+    "rebus": "🔵🌙"
+  },
+  {
+    "accepted": ["Feeling under the weather"],
+    "answer": "Under the weather",
+    "decoys": ["Weather the storm", "Under the radar", "Come rain or shine"],
+    "id": "rebus-en-under-the-weather",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Slightly unwell.",
+    "rebus": "⬇️🌦️"
+  },
+  {
+    "accepted": ["Early bird catches the worm", "The early bird gets the worm"],
+    "answer": "The early bird catches the worm",
+    "decoys": [
+      "A bird in the hand is worth two in the bush",
+      "Birds of a feather flock together",
+      "A can of worms"
+    ],
+    "id": "rebus-en-the-early-bird-catches-the-worm",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Those who start early succeed.",
+    "rebus": "🌅🐦🐛"
+  },
+  {
+    "accepted": [
+      "Don't cry over spilled milk",
+      "No use crying over spilt milk"
+    ],
+    "answer": "Don't cry over spilt milk",
+    "decoys": [
+      "Cry wolf",
+      "Land of milk and honey",
+      "Don't count your chickens before they hatch"
+    ],
+    "id": "rebus-en-don-t-cry-over-spilt-milk",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "No use regretting what cannot be undone.",
+    "rebus": "🚫😭🥛"
+  },
+  {
+    "accepted": [],
+    "answer": "Barking up the wrong tree",
+    "decoys": [
+      "All bark and no bite",
+      "Let sleeping dogs lie",
+      "Can't see the forest for the trees"
+    ],
+    "id": "rebus-en-barking-up-the-wrong-tree",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Pursuing the wrong idea or person.",
+    "rebus": "🐶📢❌🌳"
+  },
+  {
+    "accepted": [],
+    "answer": "Hold your horses",
+    "decoys": [
+      "Don't look a gift horse in the mouth",
+      "Straight from the horse's mouth",
+      "Get off your high horse"
+    ],
+    "id": "rebus-en-hold-your-horses",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Wait, slow down.",
+    "rebus": "✋🐴🐴"
+  },
+  {
+    "accepted": ["Crying wolf", "To cry wolf", "The boy who cried wolf"],
+    "answer": "Cry wolf",
+    "decoys": [
+      "A wolf in sheep's clothing",
+      "Keep the wolf from the door",
+      "Cry me a river"
+    ],
+    "id": "rebus-en-cry-wolf",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Raise a false alarm.",
+    "rebus": "😭🐺"
+  },
+  {
+    "accepted": ["Time flies when you're having fun"],
+    "answer": "Time flies",
+    "decoys": ["When pigs fly", "Time is money", "Better late than never"],
+    "id": "rebus-en-time-flies",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Time passes quickly.",
+    "rebus": "⏰✈️"
+  },
+  {
+    "accepted": ["A picture paints a thousand words"],
+    "answer": "A picture is worth a thousand words",
+    "decoys": [
+      "Actions speak louder than words",
+      "Money talks",
+      "Put words in my mouth"
+    ],
+    "id": "rebus-en-a-picture-is-worth-a-thousand-words",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "An image says more than a description.",
+    "rebus": "🖼️💰💬"
+  },
+  {
+    "accepted": [],
+    "answer": "Curiosity killed the cat",
+    "decoys": [
+      "Let the cat out of the bag",
+      "Cat got your tongue",
+      "A cat has nine lives"
+    ],
+    "id": "rebus-en-curiosity-killed-the-cat",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Being too nosy can get you in trouble.",
+    "rebus": "🧐☠️🐈"
+  },
+  {
+    "accepted": [],
+    "answer": "Every cloud has a silver lining",
+    "decoys": [
+      "Head in the clouds",
+      "Born with a silver spoon in your mouth",
+      "On cloud nine"
+    ],
+    "id": "rebus-en-every-cloud-has-a-silver-lining",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Something good comes out of every bad situation.",
+    "rebus": "☁️🥈"
+  },
+  {
+    "accepted": [],
+    "answer": "Don't put all your eggs in one basket",
+    "decoys": [
+      "Don't count your chickens before they hatch",
+      "Walking on eggshells",
+      "A bad egg"
+    ],
+    "id": "rebus-en-don-t-put-all-your-eggs-in-one-basket",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Don't risk everything on a single plan.",
+    "rebus": "🥚🥚🥚🧺"
+  },
+  {
+    "accepted": ["Ball is in your court"],
+    "answer": "The ball is in your court",
+    "decoys": ["Drop the ball", "On the ball", "Have a ball"],
+    "id": "rebus-en-the-ball-is-in-your-court",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "It's your turn to act.",
+    "rebus": "⚽👉⚖️"
+  },
+  {
+    "accepted": [],
+    "answer": "Over the moon",
+    "decoys": ["Once in a blue moon", "Promise the moon", "Over the hill"],
+    "id": "rebus-en-over-the-moon",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Extremely happy.",
+    "rebus": "😁⤴️🌕"
+  },
+  {
+    "accepted": [],
+    "answer": "Hit the road",
+    "decoys": ["Hit the sack", "Hit the nail on the head", "Road to nowhere"],
+    "id": "rebus-en-hit-the-road",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Leave, set off.",
+    "rebus": "👊🛣️"
+  },
+  {
+    "accepted": ["A couch potato"],
+    "answer": "Couch potato",
+    "decoys": ["Hot potato", "Small potatoes", "Sofa king"],
+    "id": "rebus-en-couch-potato",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Someone who lazes on the sofa watching TV.",
+    "rebus": "🛋️🥔"
+  },
+  {
+    "accepted": [
+      "Apple of my eye",
+      "The apple of his eye",
+      "The apple of her eye"
+    ],
+    "answer": "The apple of my eye",
+    "decoys": [
+      "An apple a day keeps the doctor away",
+      "A bad apple",
+      "See eye to eye"
+    ],
+    "id": "rebus-en-the-apple-of-my-eye",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Someone cherished above all others.",
+    "rebus": "🍎👁️"
+  },
+  {
+    "accepted": ["Have bigger fish to fry", "Other fish to fry"],
+    "answer": "Bigger fish to fry",
+    "decoys": [
+      "Plenty more fish in the sea",
+      "A big fish in a small pond",
+      "Out of the frying pan into the fire"
+    ],
+    "id": "rebus-en-bigger-fish-to-fry",
+    "isWellKnown": false,
+    "kind": "saying",
+    "note": "More important things to deal with.",
+    "rebus": "🐳🐟🍳"
+  },
+  {
+    "accepted": ["Drop in the ocean"],
+    "answer": "A drop in the ocean",
+    "decoys": ["Water under the bridge", "A fish out of water", "Make waves"],
+    "id": "rebus-en-a-drop-in-the-ocean",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "A tiny amount compared with what is needed.",
+    "rebus": "💧🌊"
+  },
+  {
+    "accepted": ["Fish out of water", "Like a fish out of water"],
+    "answer": "A fish out of water",
+    "decoys": [
+      "Plenty more fish in the sea",
+      "Something fishy",
+      "In hot water"
+    ],
+    "id": "rebus-en-a-fish-out-of-water",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Someone uncomfortable in unfamiliar surroundings.",
+    "rebus": "🐠🚫💧"
+  },
+  {
+    "accepted": [],
+    "answer": "Let sleeping dogs lie",
+    "decoys": ["Every dog has its day", "Hit the sack", "Sleep like a log"],
+    "id": "rebus-en-let-sleeping-dogs-lie",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Leave a settled problem alone.",
+    "rebus": "😴🐶🛏️"
+  },
+  {
+    "accepted": ["It's water under the bridge"],
+    "answer": "Water under the bridge",
+    "decoys": [
+      "Cross that bridge when you come to it",
+      "Burn your bridges",
+      "In hot water"
+    ],
+    "id": "rebus-en-water-under-the-bridge",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Past troubles, now forgotten.",
+    "rebus": "💧⬇️🌉"
+  },
+  {
+    "accepted": ["Cat got your tongue?", "Has the cat got your tongue"],
+    "answer": "Cat got your tongue",
+    "decoys": [
+      "Hold your tongue",
+      "Tongue in cheek",
+      "Like the cat that got the cream"
+    ],
+    "id": "rebus-en-cat-got-your-tongue",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Why are you not saying anything?",
+    "rebus": "🐱👅"
+  },
+  {
+    "accepted": [
+      "With a grain of salt",
+      "A grain of salt",
+      "Take it with a pinch of salt",
+      "With a pinch of salt"
+    ],
+    "answer": "Take it with a grain of salt",
+    "decoys": [
+      "Rub salt in the wound",
+      "Salt of the earth",
+      "Separate the wheat from the chaff"
+    ],
+    "id": "rebus-en-take-it-with-a-grain-of-salt",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Don't believe it completely.",
+    "rebus": "🌾🧂"
+  },
+  {
+    "accepted": [
+      "Out of the frying pan and into the fire",
+      "From the frying pan into the fire"
+    ],
+    "answer": "Out of the frying pan into the fire",
+    "decoys": [
+      "Play with fire",
+      "Where there's smoke there's fire",
+      "A flash in the pan"
+    ],
+    "id": "rebus-en-out-of-the-frying-pan-into-the-fire",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "From a bad situation to a worse one.",
+    "rebus": "🍳➡️🔥"
+  },
+  {
+    "accepted": [],
+    "answer": "Wake up and smell the coffee",
+    "decoys": ["Rise and shine", "Not my cup of tea", "Smell a rat"],
+    "id": "rebus-en-wake-up-and-smell-the-coffee",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Face the reality of the situation.",
+    "rebus": "⏰👃☕"
+  },
+  {
+    "accepted": ["Beat about the bush", "Don't beat around the bush"],
+    "answer": "Beat around the bush",
+    "decoys": [
+      "A bird in the hand is worth two in the bush",
+      "March to the beat of your own drum",
+      "Barking up the wrong tree"
+    ],
+    "id": "rebus-en-beat-around-the-bush",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Avoid getting to the point.",
+    "rebus": "🥁🌳"
+  },
+  {
+    "accepted": ["Rome was not built in a day"],
+    "answer": "Rome wasn't built in a day",
+    "decoys": [
+      "When in Rome, do as the Romans do",
+      "All roads lead to Rome",
+      "Call it a day"
+    ],
+    "id": "rebus-en-rome-wasn-t-built-in-a-day",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Great things take time.",
+    "rebus": "🏛️🚫🏗️📅"
+  },
+  {
+    "accepted": [
+      "Open a can of worms",
+      "Opening a can of worms",
+      "Can of worms"
+    ],
+    "answer": "A can of worms",
+    "decoys": [
+      "The early bird catches the worm",
+      "The worm has turned",
+      "Carry the can"
+    ],
+    "id": "rebus-en-a-can-of-worms",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "A situation full of unexpected trouble.",
+    "rebus": "🥫🐛"
+  },
+  {
+    "accepted": [],
+    "answer": "Monkey business",
+    "decoys": ["Monkey see, monkey do", "Business as usual", "Funny business"],
+    "id": "rebus-en-monkey-business",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Mischief or dishonest behaviour.",
+    "rebus": "🐒💼"
+  },
+  {
+    "accepted": [
+      "Born with a silver spoon",
+      "Born with a silver spoon in his mouth",
+      "Born with a silver spoon in her mouth",
+      "Silver spoon"
+    ],
+    "answer": "Born with a silver spoon in your mouth",
+    "decoys": [
+      "Every cloud has a silver lining",
+      "Spoon-feed",
+      "Born yesterday"
+    ],
+    "id": "rebus-en-born-with-a-silver-spoon-in-your-mouth",
+    "isWellKnown": false,
+    "kind": "saying",
+    "note": "Born into a wealthy family.",
+    "rebus": "👶🥈🥄"
+  },
+  {
+    "accepted": ["As cool as a cucumber"],
+    "answer": "Cool as a cucumber",
+    "decoys": ["Keep your cool", "Cool your heels", "Cold as ice"],
+    "id": "rebus-en-cool-as-a-cucumber",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Perfectly calm.",
+    "rebus": "😎🥒"
+  },
+  {
+    "accepted": ["Blessing in disguise"],
+    "answer": "A blessing in disguise",
+    "decoys": ["Count your blessings", "Mixed blessing", "Save face"],
+    "id": "rebus-en-a-blessing-in-disguise",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "A misfortune that turns out well.",
+    "rebus": "🙏🎭"
+  },
+  {
+    "accepted": ["Speak of the devil and he shall appear", "Talk of the devil"],
+    "answer": "Speak of the devil",
+    "decoys": [
+      "Devil's advocate",
+      "The devil is in the details",
+      "Speak your mind"
+    ],
+    "id": "rebus-en-speak-of-the-devil",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "The person we were just talking about has arrived.",
+    "rebus": "🗣️😈"
+  },
+  {
+    "accepted": ["Bull in a china shop", "Like a bull in a china shop"],
+    "answer": "A bull in a china shop",
+    "decoys": [
+      "Take the bull by the horns",
+      "Like a kid in a candy store",
+      "Not for all the tea in China"
+    ],
+    "id": "rebus-en-a-bull-in-a-china-shop",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Someone clumsy where care is needed.",
+    "rebus": "🐂🍽️🏪"
+  },
+  {
+    "accepted": ["Wolf in sheep's clothing"],
+    "answer": "A wolf in sheep's clothing",
+    "decoys": [
+      "Cry wolf",
+      "The black sheep of the family",
+      "Keep the wolf from the door"
+    ],
+    "id": "rebus-en-a-wolf-in-sheep-s-clothing",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "A danger disguised as something harmless.",
+    "rebus": "🐺🐑👕"
+  },
+  {
+    "accepted": [],
+    "answer": "Bring home the bacon",
+    "decoys": ["Save your bacon", "Home sweet home", "Bring to the table"],
+    "id": "rebus-en-bring-home-the-bacon",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Earn the household money.",
+    "rebus": "🏠🥓"
+  },
+  {
+    "accepted": ["Snake in the grass"],
+    "answer": "A snake in the grass",
+    "decoys": [
+      "The grass is always greener on the other side",
+      "Snake oil",
+      "Let the grass grow under your feet"
+    ],
+    "id": "rebus-en-a-snake-in-the-grass",
+    "isWellKnown": false,
+    "kind": "saying",
+    "note": "A treacherous person who pretends to be a friend.",
+    "rebus": "🐍🌱"
+  }
+]

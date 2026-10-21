@@ -3,6 +3,7 @@ import type React from 'react'
 import type { QuestionPrompt } from '@melee/protocol/question'
 
 import { FlagPicture } from '@/presentation/components/flag-picture'
+import { RebusLine } from '@/presentation/components/rebus-line'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { questionCategoryKey } from '@/presentation/i18n/translation'
 
@@ -44,6 +45,7 @@ export const AskedQuestion: React.FC<AskedQuestionProps> = ({ prompt }) => {
         {translate(questionCategoryKey(prompt.category))}
       </p>
       {prompt.flag !== null && <FlagPicture file={prompt.flag} />}
+      {prompt.rebus !== null && <RebusLine rebus={prompt.rebus} />}
     </div>
   )
 }

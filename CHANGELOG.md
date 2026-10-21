@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- **The emoji rebus is an eleventh quiz subject**, and `PROTOCOL_VERSION`
+  goes to 40. A film, a series, a song or a saying written in emojis —
+  🧊🚢💔 for *Titanic* — drawn large on the question card on every screen,
+  with what to name under it (*Which film?*), and kept on the card turned
+  over beside the answer. Each language has its own hand-written list, since
+  a French table reads *poser un lapin* where an English one reads *piece of
+  cake*. Every emoji is from Unicode 12 with no flag, so an older phone draws
+  the same rebus as a new one. Eleven subject chips tile six, four, two and
+  one across, the last row running short.
+
 - `[Game]` **Timeline, the tenth game, is on the shelf**, in a bronze box.
   Every player gets the five events as cards between *earliest* and
   *latest*, dragged into place by their grip or stepped one place at a time

@@ -63,7 +63,8 @@ export const QUESTIONS = [
     flag: null,
     id: 'question-1',
     note: 'Zermatt sits at its foot.',
-    prompt: 'Which mountain is the most recognisable in Switzerland?'
+    prompt: 'Which mountain is the most recognisable in Switzerland?',
+    rebus: null
   },
   {
     accepted: [],
@@ -74,7 +75,8 @@ export const QUESTIONS = [
     flag: null,
     id: 'question-2',
     note: 'Romansh is the fourth, spoken in Grisons.',
-    prompt: 'How many national languages does Switzerland have?'
+    prompt: 'How many national languages does Switzerland have?',
+    rebus: null
   },
   {
     accepted: [],
@@ -85,7 +87,8 @@ export const QUESTIONS = [
     flag: null,
     id: 'question-3',
     note: 'More than thirty per cent of its residents are foreign.',
-    prompt: 'Which is the largest city in Switzerland by area?'
+    prompt: 'Which is the largest city in Switzerland by area?',
+    rebus: null
   },
   {
     accepted: [],
@@ -96,7 +99,20 @@ export const QUESTIONS = [
     flag: '0123456789ab.svg',
     id: 'flag-en-0123456789ab',
     note: null,
-    prompt: 'Whose flag is this?'
+    prompt: 'Whose flag is this?',
+    rebus: null
+  },
+  {
+    accepted: [],
+    answer: 'Titanic',
+    category: 'rebus',
+    choiceOnly: false,
+    decoys: ['The Abyss', 'Pearl Harbor', 'Jaws'],
+    flag: null,
+    id: 'rebus-en-titanic',
+    note: 'James Cameron, 1997.',
+    prompt: 'Which film?',
+    rebus: '🧊🚢💔'
   }
 ]
 

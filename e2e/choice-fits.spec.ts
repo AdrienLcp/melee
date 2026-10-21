@@ -155,7 +155,8 @@ const choosingView = (question: Question) => ({
         category: question.category,
         flag: null,
         id: question.id,
-        prompt: question.prompt
+        prompt: question.prompt,
+        rebus: null
       },
       revealedQuestion: null
     },
@@ -518,7 +519,8 @@ const QUIZ_WITH_A_NOTE = {
     category: LONGEST_PROMPT.category,
     flag: null,
     id: LONGEST_PROMPT.id,
-    prompt: LONGEST_PROMPT.prompt
+    prompt: LONGEST_PROMPT.prompt,
+    rebus: null
   },
   revealedQuestion: {
     answer: 'France',

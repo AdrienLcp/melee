@@ -775,6 +775,7 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Sur quels sujets',
       none: 'N’en choisis aucun et tu as tous les sujets.',
       quotes: 'Citations',
+      rebus: 'Rébus',
       science: 'Sciences',
       sport: 'Sport',
       videogames: 'Jeux vidéo'
@@ -789,6 +790,9 @@ export const FR_DICTIONARY = defineDictionary({
     },
     language: 'Langue des questions',
     name: 'Quiz',
+    rebus: {
+      alt: 'Le rébus à lire :'
+    },
     reveal: {
       title: 'La réponse était'
     },

@@ -246,14 +246,15 @@ describe('drawQuestion', () => {
    * reissues a question under a new pack id often enough that the two banks
    * carried forty-one copies. The build drops them; this is what says so, and
    * what goes red the day a new source is folded in without that pass. Every
-   * flag shares one sentence, so a flag's question is its sentence and its flag.
+   * flag shares one sentence, so a flag's question is its sentence and its flag,
+   * and a rebus is its sentence and its emojis.
    */
   it('[bank] asks no question twice', () => {
     const seen = new Set<string>()
     const repeated: string[] = []
 
     for (const question of BANKED_QUESTIONS) {
-      const key = `${question.language}::${question.flag ?? ''}::${normalizeAnswer(question.prompt)}`
+      const key = `${question.language}::${question.flag ?? ''}::${question.rebus ?? ''}::${normalizeAnswer(question.prompt)}`
 
       if (seen.has(key)) {
         repeated.push(question.id)

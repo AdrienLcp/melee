@@ -12,6 +12,7 @@ import { pickRandom } from '@melee/core/helpers/random'
 
 import { bankedFlagQuestions } from './flag-questions'
 import bank from './question-bank.json' with { type: 'json' }
+import { bankedRebusQuestions } from './rebus-questions'
 
 /**
  * The one module that knows where the questions came from. Everything above it
@@ -44,6 +45,8 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
    */
   isWellKnown: z.boolean(),
   language: questionLanguageSchema,
+  /** Absent from the bank's own rows too: only `rebus-questions.ts` deals one. */
+  rebus: z.string().nullable().default(null),
   /** The upstream pack, so a question that turns out to be wrong is traceable. */
   theme: z.string()
 })
@@ -66,7 +69,8 @@ let parsedBank: BankedQuestion[] | undefined
 export const bankedQuestions = (): BankedQuestion[] => {
   parsedBank ??= [
     ...z.array(bankedQuestionSchema).parse(bank.questions),
-    ...bankedFlagQuestions()
+    ...bankedFlagQuestions(),
+    ...bankedRebusQuestions()
   ]
 
   return parsedBank
@@ -105,7 +109,8 @@ export const hostQuestionOf = ({
   flag,
   id,
   note,
-  prompt
+  prompt,
+  rebus
 }: BankedQuestion): HostQuestion => ({
   accepted,
   answer,
@@ -114,7 +119,8 @@ export const hostQuestionOf = ({
   flag,
   id,
   note,
-  prompt
+  prompt,
+  rebus
 })
 
 /**

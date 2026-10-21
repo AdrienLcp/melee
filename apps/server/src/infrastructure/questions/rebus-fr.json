@@ -1,0 +1,2294 @@
+[
+  {
+    "accepted": [],
+    "answer": "Titanic",
+    "decoys": ["Le Grand Bleu", "Pirates des Caraïbes", "Pearl Harbor"],
+    "id": "rebus-fr-titanic",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Cameron, 1997.",
+    "rebus": "🧊🚢💔"
+  },
+  {
+    "accepted": ["The Lion King"],
+    "answer": "Le Roi lion",
+    "decoys": ["Le Livre de la jungle", "Tarzan", "Frère des ours"],
+    "id": "rebus-fr-le-roi-lion",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Roger Allers et Rob Minkoff, 1994.",
+    "rebus": "👑🦁"
+  },
+  {
+    "accepted": [],
+    "answer": "Ratatouille",
+    "decoys": ["Kung Fu Panda", "Le Monde de Nemo", "Zootopie"],
+    "id": "rebus-fr-ratatouille",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brad Bird, 2007.",
+    "rebus": "🐀👨‍🍳"
+  },
+  {
+    "accepted": ["Spiderman"],
+    "answer": "Spider-Man",
+    "decoys": ["Ant-Man", "Iron Man", "Daredevil"],
+    "id": "rebus-fr-spider-man",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Sam Raimi, 2002.",
+    "rebus": "🕷️👨"
+  },
+  {
+    "accepted": ["Frozen"],
+    "answer": "La Reine des neiges",
+    "decoys": ["Raiponce", "Cendrillon", "Rebelle"],
+    "id": "rebus-fr-la-reine-des-neiges",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Buck et Jennifer Lee, 2013.",
+    "rebus": "👸❄️⛄"
+  },
+  {
+    "accepted": ["Nemo", "Finding Nemo"],
+    "answer": "Le Monde de Nemo",
+    "decoys": ["La Petite Sirène", "Gang de requins", "Ponyo sur la falaise"],
+    "id": "rebus-fr-le-monde-de-nemo",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Andrew Stanton, 2003.",
+    "rebus": "🌍🐠🔍"
+  },
+  {
+    "accepted": ["Jaws"],
+    "answer": "Les Dents de la mer",
+    "decoys": ["Le Grand Bleu", "Abyss", "Waterworld"],
+    "id": "rebus-fr-les-dents-de-la-mer",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steven Spielberg, 1975.",
+    "rebus": "🦈🦷🌊"
+  },
+  {
+    "accepted": ["Harry Potter"],
+    "answer": "Harry Potter à l'école des sorciers",
+    "decoys": [
+      "Les Animaux fantastiques",
+      "Le Monde de Narnia",
+      "L'Apprenti sorcier"
+    ],
+    "id": "rebus-fr-harry-potter-a-l-ecole-des-sorciers",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Columbus, 2001.",
+    "rebus": "🧙‍♂️⚡👓🏫"
+  },
+  {
+    "accepted": ["The Lord of the Rings"],
+    "answer": "Le Seigneur des anneaux",
+    "decoys": ["Le Monde de Narnia", "Willow", "Eragon"],
+    "id": "rebus-fr-le-seigneur-des-anneaux",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Peter Jackson, 2001.",
+    "rebus": "🤴💍🌋"
+  },
+  {
+    "accepted": ["La Guerre des étoiles"],
+    "answer": "Star Wars",
+    "decoys": ["Star Trek", "Dune", "Les Gardiens de la Galaxie"],
+    "id": "rebus-fr-star-wars",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "George Lucas, 1977.",
+    "rebus": "⭐⚔️🌌"
+  },
+  {
+    "accepted": [],
+    "answer": "Avatar",
+    "decoys": ["Les Schtroumpfs", "Dune", "Pocahontas"],
+    "id": "rebus-fr-avatar",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Cameron, 2009.",
+    "rebus": "🔵👽🌳"
+  },
+  {
+    "accepted": [],
+    "answer": "Jurassic Park",
+    "decoys": ["Godzilla", "King Kong", "Le Monde perdu"],
+    "id": "rebus-fr-jurassic-park",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steven Spielberg, 1993.",
+    "rebus": "🦖🦕🌴🚙"
+  },
+  {
+    "accepted": ["Ice Age", "L'Age de glace"],
+    "answer": "L'Âge de glace",
+    "decoys": ["Frère des ours", "Rio", "Les Croods"],
+    "id": "rebus-fr-l-age-de-glace",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Wedge, 2002.",
+    "rebus": "🧊🦥🐿️"
+  },
+  {
+    "accepted": [],
+    "answer": "Madagascar",
+    "decoys": ["Zootopie", "Rio", "Le Livre de la jungle"],
+    "id": "rebus-fr-madagascar",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Eric Darnell et Tom McGrath, 2005.",
+    "rebus": "🦁🦓🦒🦛🏝️"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Bronzés",
+    "decoys": ["Camping", "Les Visiteurs", "Les Vacances de Monsieur Hulot"],
+    "id": "rebus-fr-les-bronzes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Patrice Leconte, 1978.",
+    "rebus": "🌞😎🧴🏝️"
+  },
+  {
+    "accepted": ["Les Ch'tis", "Bienvenue chez les Chtis"],
+    "answer": "Bienvenue chez les Ch'tis",
+    "decoys": ["Rien à déclarer", "Intouchables", "La Ch'tite Famille"],
+    "id": "rebus-fr-bienvenue-chez-les-ch-tis",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Dany Boon, 2008.",
+    "rebus": "👋🏠🍟🌧️"
+  },
+  {
+    "accepted": ["Le Diner de cons"],
+    "answer": "Le Dîner de cons",
+    "decoys": [
+      "Le Père Noël est une ordure",
+      "Les Visiteurs",
+      "La Cité de la peur"
+    ],
+    "id": "rebus-fr-le-diner-de-cons",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Francis Veber, 1998.",
+    "rebus": "🍽️🤡"
+  },
+  {
+    "accepted": ["Mission Cléopâtre", "Astérix et Obélix Mission Cléopâtre"],
+    "answer": "Astérix et Obélix : Mission Cléopâtre",
+    "decoys": [
+      "OSS 117 : Le Caire, nid d'espions",
+      "La Cité de la peur",
+      "Les Dix Commandements"
+    ],
+    "id": "rebus-fr-asterix-et-obelix-mission-cleopatre",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Alain Chabat, 2002.",
+    "rebus": "🐗💪🐍🔺"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Visiteurs",
+    "decoys": [
+      "Retour vers le futur",
+      "Kaamelott : Premier Volet",
+      "Le Dîner de cons"
+    ],
+    "id": "rebus-fr-les-visiteurs",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jean-Marie Poiré, 1993.",
+    "rebus": "🛡️🤴⏳🚽"
+  },
+  {
+    "accepted": ["Back to the Future"],
+    "answer": "Retour vers le futur",
+    "decoys": ["Terminator", "Interstellar", "Les Visiteurs"],
+    "id": "rebus-fr-retour-vers-le-futur",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Zemeckis, 1985.",
+    "rebus": "🚗⚡⏰🔙"
+  },
+  {
+    "accepted": ["Les Intouchables"],
+    "answer": "Intouchables",
+    "decoys": [
+      "Le Fabuleux Destin d'Amélie Poulain",
+      "La Famille Bélier",
+      "Le Sens de la fête"
+    ],
+    "id": "rebus-fr-intouchables",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Olivier Nakache et Éric Toledano, 2011.",
+    "rebus": "🚫👆♿"
+  },
+  {
+    "accepted": ["Amélie Poulain", "Amélie"],
+    "answer": "Le Fabuleux Destin d'Amélie Poulain",
+    "decoys": ["Intouchables", "La Môme", "Les Choristes"],
+    "id": "rebus-fr-le-fabuleux-destin-d-amelie-poulain",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jean-Pierre Jeunet, 2001.",
+    "rebus": "🔮👧🐴"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Choristes",
+    "decoys": ["Le Petit Nicolas", "La Môme", "Être et avoir"],
+    "id": "rebus-fr-les-choristes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Christophe Barratier, 2004.",
+    "rebus": "👦🎶🏫"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Père Noël est une ordure",
+    "decoys": ["Le Dîner de cons", "Les Bronzés", "Le Grinch"],
+    "id": "rebus-fr-le-pere-noel-est-une-ordure",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Jean-Marie Poiré, 1982.",
+    "rebus": "🎅🗑️"
+  },
+  {
+    "accepted": ["Maman j'ai raté l'avion", "Home Alone"],
+    "answer": "Maman, j'ai raté l'avion !",
+    "decoys": ["Y a-t-il un pilote dans l'avion ?", "Le Grinch", "Elfe"],
+    "id": "rebus-fr-maman-j-ai-rate-l-avion",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Chris Columbus, 1990.",
+    "rebus": "👩 ✈️💨😱"
+  },
+  {
+    "accepted": [],
+    "answer": "Toy Story",
+    "decoys": ["Les Indestructibles", "Wall-E", "Cars"],
+    "id": "rebus-fr-toy-story",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Lasseter, 1995.",
+    "rebus": "🤠🚀🧸"
+  },
+  {
+    "accepted": ["Monstres & Cie", "Monsters, Inc."],
+    "answer": "Monstres et Cie",
+    "decoys": ["Hôtel Transylvanie", "Toy Story", "Les Croods"],
+    "id": "rebus-fr-monstres-et-cie",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pete Docter, 2001.",
+    "rebus": "👾👁️🚪😱"
+  },
+  {
+    "accepted": [],
+    "answer": "Cars",
+    "decoys": ["Planes", "Turbo", "Fast and Furious"],
+    "id": "rebus-fr-cars",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "John Lasseter, 2006.",
+    "rebus": "🏎️🏁🏆"
+  },
+  {
+    "accepted": ["Up", "La-haut"],
+    "answer": "Là-haut",
+    "decoys": ["Coco", "Vice-versa", "Wall-E"],
+    "id": "rebus-fr-la-haut",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pete Docter, 2009.",
+    "rebus": "🎈🏠☁️"
+  },
+  {
+    "accepted": [],
+    "answer": "Coco",
+    "decoys": ["Encanto", "Les Noces funèbres", "La Légende de Manolo"],
+    "id": "rebus-fr-coco",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Lee Unkrich, 2017.",
+    "rebus": "💀🎸🌼"
+  },
+  {
+    "accepted": ["Inside Out", "Vice versa"],
+    "answer": "Vice-versa",
+    "decoys": ["Soul", "Là-haut", "Les Indestructibles"],
+    "id": "rebus-fr-vice-versa",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pete Docter, 2015.",
+    "rebus": "😀😢😡🧠"
+  },
+  {
+    "accepted": ["The Incredibles"],
+    "answer": "Les Indestructibles",
+    "decoys": ["Les 4 Fantastiques", "Big Hero 6", "Megamind"],
+    "id": "rebus-fr-les-indestructibles",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Brad Bird, 2004.",
+    "rebus": "🦸‍♂️👨‍👩‍👧‍👦"
+  },
+  {
+    "accepted": ["Moi moche et méchant", "Despicable Me"],
+    "answer": "Moi, moche et méchant",
+    "decoys": ["Megamind", "Shrek", "Les Indestructibles"],
+    "id": "rebus-fr-moi-moche-et-mechant",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Pierre Coffin et Chris Renaud, 2010.",
+    "rebus": "🙋‍♂️🤢😈"
+  },
+  {
+    "accepted": [],
+    "answer": "Shrek",
+    "decoys": ["Raiponce", "Il était une fois", "Monstres et Cie"],
+    "id": "rebus-fr-shrek",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Andrew Adamson et Vicky Jenson, 2001.",
+    "rebus": "👹💚🐴👸"
+  },
+  {
+    "accepted": ["The Jungle Book"],
+    "answer": "Le Livre de la jungle",
+    "decoys": ["Tarzan", "Le Roi lion", "Rox et Rouky"],
+    "id": "rebus-fr-le-livre-de-la-jungle",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Wolfgang Reitherman, 1967.",
+    "rebus": "📖🌴🐻🐍"
+  },
+  {
+    "accepted": ["Blanche-Neige", "Blanche Neige"],
+    "answer": "Blanche-Neige et les Sept Nains",
+    "decoys": ["La Belle au bois dormant", "Cendrillon", "Raiponce"],
+    "id": "rebus-fr-blanche-neige-et-les-sept-nains",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "David Hand, 1937.",
+    "rebus": "🤍❄️🍎⛏️"
+  },
+  {
+    "accepted": ["La Belle et la Bete"],
+    "answer": "La Belle et la Bête",
+    "decoys": ["La Belle au bois dormant", "Cendrillon", "Shrek"],
+    "id": "rebus-fr-la-belle-et-la-bete",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gary Trousdale et Kirk Wise, 1991.",
+    "rebus": "👸🐺🌹"
+  },
+  {
+    "accepted": ["Cinderella"],
+    "answer": "Cendrillon",
+    "decoys": [
+      "Blanche-Neige et les Sept Nains",
+      "La Belle au bois dormant",
+      "Raiponce"
+    ],
+    "id": "rebus-fr-cendrillon",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson et Hamilton Luske, 1950.",
+    "rebus": "👠🎃🕛"
+  },
+  {
+    "accepted": ["Aladin"],
+    "answer": "Aladdin",
+    "decoys": ["Le Prince d'Égypte", "Sinbad", "Le Roi lion"],
+    "id": "rebus-fr-aladdin",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Clements et John Musker, 1992.",
+    "rebus": "🧞🪔🐒"
+  },
+  {
+    "accepted": ["La Petite Sirene", "The Little Mermaid"],
+    "answer": "La Petite Sirène",
+    "decoys": ["Le Monde de Nemo", "Vaiana", "Ponyo sur la falaise"],
+    "id": "rebus-fr-la-petite-sirene",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Clements et John Musker, 1989.",
+    "rebus": "🧜‍♀️🐚🦀"
+  },
+  {
+    "accepted": ["101 Dalmatiens", "Les Cent Un Dalmatiens"],
+    "answer": "Les 101 Dalmatiens",
+    "decoys": ["La Belle et le Clochard", "Volt", "Beethoven"],
+    "id": "rebus-fr-les-101-dalmatiens",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Wolfgang Reitherman, Hamilton Luske et Clyde Geronimi, 1961.",
+    "rebus": "🐕⚫⚪🧥"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Petit Prince",
+    "decoys": ["Le Petit Nicolas", "Le Prince d'Égypte", "Wall-E"],
+    "id": "rebus-fr-le-petit-prince",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Mark Osborne, 2015.",
+    "rebus": "👦👑🦊🪐"
+  },
+  {
+    "accepted": ["SOS Fantomes", "Ghostbusters"],
+    "answer": "SOS Fantômes",
+    "decoys": ["Beetlejuice", "Casper", "Gremlins"],
+    "id": "rebus-fr-sos-fantomes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ivan Reitman, 1984.",
+    "rebus": "🆘👻"
+  },
+  {
+    "accepted": ["E.T.", "ET"],
+    "answer": "E.T. l'extra-terrestre",
+    "decoys": [
+      "Rencontres du troisième type",
+      "Men in Black",
+      "Independence Day"
+    ],
+    "id": "rebus-fr-e-t-l-extra-terrestre",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Steven Spielberg, 1982.",
+    "rebus": "👽🚲🌕☎️"
+  },
+  {
+    "accepted": ["Pirates of the Caribbean"],
+    "answer": "Pirates des Caraïbes",
+    "decoys": ["Peter Pan", "Hook", "L'Île au trésor"],
+    "id": "rebus-fr-pirates-des-caraibes",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gore Verbinski, 2003.",
+    "rebus": "☠️⛵🏝️🦜"
+  },
+  {
+    "accepted": ["Aristochats"],
+    "answer": "Les Aristochats",
+    "decoys": [
+      "Oliver et Compagnie",
+      "La Belle et le Clochard",
+      "Le Chat potté"
+    ],
+    "id": "rebus-fr-les-aristochats",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Wolfgang Reitherman, 1970.",
+    "rebus": "🎩🐱🎹"
+  },
+  {
+    "accepted": [],
+    "answer": "Batman",
+    "decoys": ["Superman", "Iron Man", "Hulk"],
+    "id": "rebus-fr-batman",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Tim Burton, 1989.",
+    "rebus": "🦇👨"
+  },
+  {
+    "accepted": [],
+    "answer": "Kung Fu Panda",
+    "decoys": ["Karaté Kid", "Mulan", "Tigre et Dragon"],
+    "id": "rebus-fr-kung-fu-panda",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Mark Osborne et John Stevenson, 2008.",
+    "rebus": "🥋🐼"
+  },
+  {
+    "accepted": ["The Wolf of Wall Street"],
+    "answer": "Le Loup de Wall Street",
+    "decoys": ["Arrête-moi si tu peux", "Wall Street", "The Big Short"],
+    "id": "rebus-fr-le-loup-de-wall-street",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Martin Scorsese, 2013.",
+    "rebus": "🐺💵📈"
+  },
+  {
+    "accepted": ["Les Gendarmes de Saint-Tropez"],
+    "answer": "Le Gendarme de Saint-Tropez",
+    "decoys": ["La Grande Vadrouille", "Le Corniaud", "Les Bronzés"],
+    "id": "rebus-fr-le-gendarme-de-saint-tropez",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jean Girault, 1964.",
+    "rebus": "👮‍♂️☀️⛵"
+  },
+  {
+    "accepted": [],
+    "answer": "Taxi",
+    "decoys": ["Le Transporteur", "Drive", "Fast and Furious"],
+    "id": "rebus-fr-taxi",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Gérard Pirès, 1998.",
+    "rebus": "🚕🏎️💨"
+  },
+  {
+    "accepted": ["Le 5e Élément", "The Fifth Element"],
+    "answer": "Le Cinquième Élément",
+    "decoys": ["Valérian et la Cité des mille planètes", "Dune", "Lucy"],
+    "id": "rebus-fr-le-cinquieme-element",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Luc Besson, 1997.",
+    "rebus": "🖐️🔥💧🌍💨"
+  },
+  {
+    "accepted": ["Qu'est-ce qu'on a fait au Bon Dieu", "Bon Dieu"],
+    "answer": "Qu'est-ce qu'on a fait au Bon Dieu ?",
+    "decoys": ["Intouchables", "Le Sens de la fête", "La Famille Bélier"],
+    "id": "rebus-fr-qu-est-ce-qu-on-a-fait-au-bon-dieu",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Philippe de Chauveron, 2014.",
+    "rebus": "🤷‍♂️🙏💒👰"
+  },
+  {
+    "accepted": [],
+    "answer": "Pinocchio",
+    "decoys": ["Peter Pan", "Dumbo", "Bambi"],
+    "id": "rebus-fr-pinocchio",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ben Sharpsteen et Hamilton Luske, 1940.",
+    "rebus": "🤥👃🐋"
+  },
+  {
+    "accepted": [],
+    "answer": "Peter Pan",
+    "decoys": [
+      "Pinocchio",
+      "Alice au pays des merveilles",
+      "Le Livre de la jungle"
+    ],
+    "id": "rebus-fr-peter-pan",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson et Hamilton Luske, 1953.",
+    "rebus": "🧚‍♀️👦⏰🐊"
+  },
+  {
+    "accepted": ["Alice"],
+    "answer": "Alice au pays des merveilles",
+    "decoys": ["Le Magicien d'Oz", "Peter Pan", "Pinocchio"],
+    "id": "rebus-fr-alice-au-pays-des-merveilles",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Clyde Geronimi, Wilfred Jackson et Hamilton Luske, 1951.",
+    "rebus": "👧🐇🎩🍄"
+  },
+  {
+    "accepted": ["La Planete des singes"],
+    "answer": "La Planète des singes",
+    "decoys": ["King Kong", "Tarzan", "Jumanji"],
+    "id": "rebus-fr-la-planete-des-singes",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Franklin J. Schaffner, 1968.",
+    "rebus": "🪐🐒"
+  },
+  {
+    "accepted": [],
+    "answer": "Jumanji",
+    "decoys": ["Zathura", "La Nuit au musée", "Jurassic Park"],
+    "id": "rebus-fr-jumanji",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Joe Johnston, 1995.",
+    "rebus": "🎲🌴🦏🐘"
+  },
+  {
+    "accepted": [],
+    "answer": "Terminator",
+    "decoys": ["RoboCop", "Matrix", "Predator"],
+    "id": "rebus-fr-terminator",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "James Cameron, 1984.",
+    "rebus": "🤖🔫🏍️"
+  },
+  {
+    "accepted": ["The Devil Wears Prada"],
+    "answer": "Le Diable s'habille en Prada",
+    "decoys": [
+      "Pretty Woman",
+      "Confessions d'une accro du shopping",
+      "Coup de foudre à Notting Hill"
+    ],
+    "id": "rebus-fr-le-diable-s-habille-en-prada",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "David Frankel, 2006.",
+    "rebus": "😈👗👠"
+  },
+  {
+    "accepted": ["Zootopia"],
+    "answer": "Zootopie",
+    "decoys": ["Robin des Bois", "Madagascar", "Kung Fu Panda"],
+    "id": "rebus-fr-zootopie",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Byron Howard et Rich Moore, 2016.",
+    "rebus": "🐰👮‍♀️🦊"
+  },
+  {
+    "accepted": ["Robin Hood"],
+    "answer": "Robin des Bois",
+    "decoys": ["Merlin l'Enchanteur", "Rebelle", "Rox et Rouky"],
+    "id": "rebus-fr-robin-des-bois",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Wolfgang Reitherman, 1973.",
+    "rebus": "🐦🏹🌳🌲"
+  },
+  {
+    "accepted": ["Tangled"],
+    "answer": "Raiponce",
+    "decoys": ["Rebelle", "La Belle au bois dormant", "Cendrillon"],
+    "id": "rebus-fr-raiponce",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Nathan Greno et Byron Howard, 2010.",
+    "rebus": "👸💇‍♀️🗼🍳"
+  },
+  {
+    "accepted": ["Moana", "Vaiana, la légende du bout du monde"],
+    "answer": "Vaiana",
+    "decoys": ["Lilo et Stitch", "Les Croods", "Pocahontas"],
+    "id": "rebus-fr-vaiana",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Ron Clements et John Musker, 2016.",
+    "rebus": "🌊🛶🐔"
+  },
+  {
+    "accepted": ["Wall E", "WALL-E"],
+    "answer": "Wall-E",
+    "decoys": ["Robots", "Le Géant de fer", "Big Hero 6"],
+    "id": "rebus-fr-wall-e",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Andrew Stanton, 2008.",
+    "rebus": "🤖🌱🗑️"
+  },
+  {
+    "accepted": ["The Silence of the Lambs"],
+    "answer": "Le Silence des agneaux",
+    "decoys": ["Seven", "Shining", "Psychose"],
+    "id": "rebus-fr-le-silence-des-agneaux",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Jonathan Demme, 1991.",
+    "rebus": "🤫🐑🐑"
+  },
+  {
+    "accepted": ["Tuche"],
+    "answer": "Les Tuche",
+    "decoys": ["Camping", "Babysitting", "Les Profs"],
+    "id": "rebus-fr-les-tuche",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Olivier Baroux, 2011.",
+    "rebus": "🍟💶🏰"
+  },
+  {
+    "accepted": [],
+    "answer": "Camping",
+    "decoys": ["Les Bronzés", "Les Vacances de Monsieur Hulot", "Les Profs"],
+    "id": "rebus-fr-camping",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Fabien Onteniente, 2006.",
+    "rebus": "⛺🚐🏖️"
+  },
+  {
+    "accepted": [],
+    "answer": "Top Gun",
+    "decoys": ["Pearl Harbor", "Independence Day", "Air Force One"],
+    "id": "rebus-fr-top-gun",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Tony Scott, 1986.",
+    "rebus": "🔝🔫✈️"
+  },
+  {
+    "accepted": ["Les 3 Frères", "Les Trois Freres"],
+    "answer": "Les Trois Frères",
+    "decoys": ["La Vérité si je mens !", "Le Pari", "Les Bronzés"],
+    "id": "rebus-fr-les-trois-freres",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Didier Bourdon et Bernard Campan, 1995.",
+    "rebus": "👨👨👨💰"
+  },
+  {
+    "accepted": [],
+    "answer": "Mary Poppins",
+    "decoys": [
+      "Nanny McPhee",
+      "Chitty Chitty Bang Bang",
+      "L'Apprentie sorcière"
+    ],
+    "id": "rebus-fr-mary-poppins",
+    "isWellKnown": true,
+    "kind": "film",
+    "note": "Robert Stevenson, 1964.",
+    "rebus": "☂️👩💨"
+  },
+  {
+    "accepted": ["Le Masque"],
+    "answer": "The Mask",
+    "decoys": ["Ace Ventura", "Beetlejuice", "Dick Tracy"],
+    "id": "rebus-fr-the-mask",
+    "isWellKnown": false,
+    "kind": "film",
+    "note": "Chuck Russell, 1994.",
+    "rebus": "🎭💚🤪"
+  },
+  {
+    "accepted": ["GOT", "Le Trône de fer"],
+    "answer": "Game of Thrones",
+    "decoys": ["The Witcher", "Vikings", "Les Anneaux de pouvoir"],
+    "id": "rebus-fr-game-of-thrones",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Benioff et D. B. Weiss (HBO), 2011.",
+    "rebus": "🎲🪑👑🐉"
+  },
+  {
+    "accepted": ["Casa de papel", "Money Heist"],
+    "answer": "La Casa de papel",
+    "decoys": ["Lupin", "Narcos", "Élite"],
+    "id": "rebus-fr-la-casa-de-papel",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Álex Pina, 2017.",
+    "rebus": "🏠📄💰🎭"
+  },
+  {
+    "accepted": [],
+    "answer": "Stranger Things",
+    "decoys": ["Dark", "Les Revenants", "Locke & Key"],
+    "id": "rebus-fr-stranger-things",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Matt et Ross Duffer, 2016.",
+    "rebus": "🔦🚲🧇🙃"
+  },
+  {
+    "accepted": ["The Simpsons", "Simpson"],
+    "answer": "Les Simpson",
+    "decoys": ["Les Griffin", "South Park", "Futurama"],
+    "id": "rebus-fr-les-simpson",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Matt Groening, 1989.",
+    "rebus": "🍩💛🛋️"
+  },
+  {
+    "accepted": ["Camelot"],
+    "answer": "Kaamelott",
+    "decoys": ["Merlin", "Vikings", "Le Visiteur du futur"],
+    "id": "rebus-fr-kaamelott",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Alexandre Astier (M6), 2005.",
+    "rebus": "🤴⚔️🏰😂"
+  },
+  {
+    "accepted": ["PBLV"],
+    "answer": "Plus belle la vie",
+    "decoys": [
+      "Demain nous appartient",
+      "Un si grand soleil",
+      "Ici tout commence"
+    ],
+    "id": "rebus-fr-plus-belle-la-vie",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "France 3, 2004.",
+    "rebus": "➕👸🌱"
+  },
+  {
+    "accepted": ["Arsène Lupin"],
+    "answer": "Lupin",
+    "decoys": ["Sherlock", "Le Bureau des légendes", "Marianne"],
+    "id": "rebus-fr-lupin",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "George Kay et François Uzan (Netflix), 2021.",
+    "rebus": "🎩🧐💎📖"
+  },
+  {
+    "accepted": [],
+    "answer": "Friends",
+    "decoys": ["How I Met Your Mother", "The Big Bang Theory", "Seinfeld"],
+    "id": "rebus-fr-friends",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Crane et Marta Kauffman, 1994.",
+    "rebus": "👫👬👭☕"
+  },
+  {
+    "accepted": ["HIMYM"],
+    "answer": "How I Met Your Mother",
+    "decoys": ["Friends", "Modern Family", "New Girl"],
+    "id": "rebus-fr-how-i-met-your-mother",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Carter Bays et Craig Thomas, 2005.",
+    "rebus": "❓🙋‍♂️🤝👩"
+  },
+  {
+    "accepted": ["Big Bang Theory"],
+    "answer": "The Big Bang Theory",
+    "decoys": ["Silicon Valley", "The IT Crowd", "Friends"],
+    "id": "rebus-fr-the-big-bang-theory",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Chuck Lorre et Bill Prady, 2007.",
+    "rebus": "💥🔬🧪"
+  },
+  {
+    "accepted": [],
+    "answer": "Breaking Bad",
+    "decoys": ["Narcos", "Ozark", "Weeds"],
+    "id": "rebus-fr-breaking-bad",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Vince Gilligan, 2008.",
+    "rebus": "🧪🚐👨‍🦲"
+  },
+  {
+    "accepted": ["Walking Dead"],
+    "answer": "The Walking Dead",
+    "decoys": ["Z Nation", "The Last of Us", "Les Revenants"],
+    "id": "rebus-fr-the-walking-dead",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Frank Darabont, 2010.",
+    "rebus": "🧟🚶"
+  },
+  {
+    "accepted": ["La Petite Maison dans la Prairie"],
+    "answer": "La Petite Maison dans la prairie",
+    "decoys": ["Docteur Quinn, femme médecin", "Heidi", "Les Feux de l'amour"],
+    "id": "rebus-fr-la-petite-maison-dans-la-prairie",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "NBC, 1974.",
+    "rebus": "🤏🏠🌾"
+  },
+  {
+    "accepted": ["The Young and the Restless"],
+    "answer": "Les Feux de l'amour",
+    "decoys": ["Amour, Gloire et Beauté", "Dallas", "Plus belle la vie"],
+    "id": "rebus-fr-les-feux-de-l-amour",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "William J. Bell et Lee Phillip Bell, 1973.",
+    "rebus": "🔥🔥❤️"
+  },
+  {
+    "accepted": ["Dr House", "House", "Dr. House"],
+    "answer": "Docteur House",
+    "decoys": ["Grey's Anatomy", "Urgences", "Scrubs"],
+    "id": "rebus-fr-docteur-house",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "David Shore, 2004.",
+    "rebus": "👨‍⚕️🏠💊"
+  },
+  {
+    "accepted": [],
+    "answer": "Squid Game",
+    "decoys": ["Alice in Borderland", "Kingdom", "Sweet Home"],
+    "id": "rebus-fr-squid-game",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Hwang Dong-hyuk, 2021.",
+    "rebus": "🦑🎮"
+  },
+  {
+    "accepted": ["SpongeBob"],
+    "answer": "Bob l'éponge",
+    "decoys": ["Oggy et les Cafards", "Zig et Sharko", "Les Razmoket"],
+    "id": "rebus-fr-bob-l-eponge",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Stephen Hillenburg, 1999.",
+    "rebus": "🧽🍍"
+  },
+  {
+    "accepted": ["Camera Cafe"],
+    "answer": "Caméra Café",
+    "decoys": ["Kaamelott", "Scènes de ménages", "Un gars, une fille"],
+    "id": "rebus-fr-camera-cafe",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "M6, 2001.",
+    "rebus": "🎥☕"
+  },
+  {
+    "accepted": ["Scenes de menages"],
+    "answer": "Scènes de ménages",
+    "decoys": ["Caméra Café", "Un gars, une fille", "En famille"],
+    "id": "rebus-fr-scenes-de-menages",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "M6, 2009.",
+    "rebus": "🎭🧹"
+  },
+  {
+    "accepted": ["Un gars une fille"],
+    "answer": "Un gars, une fille",
+    "decoys": ["Scènes de ménages", "Caméra Café", "Fais pas ci, fais pas ça"],
+    "id": "rebus-fr-un-gars-une-fille",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "France 2, 1999.",
+    "rebus": "☝️👨☝️👩"
+  },
+  {
+    "accepted": [],
+    "answer": "Prison Break",
+    "decoys": ["Oz", "Orange Is the New Black", "Lost"],
+    "id": "rebus-fr-prison-break",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Paul Scheuring, 2005.",
+    "rebus": "🔒💥🏃‍♂️"
+  },
+  {
+    "accepted": ["Lost : Les Disparus", "Lost, les disparus"],
+    "answer": "Lost",
+    "decoys": ["Prison Break", "Manifest", "Heroes"],
+    "id": "rebus-fr-lost",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "J. J. Abrams, Damon Lindelof et Jeffrey Lieber, 2004.",
+    "rebus": "🏝️✈️💥❓"
+  },
+  {
+    "accepted": [],
+    "answer": "Desperate Housewives",
+    "decoys": ["Gossip Girl", "Sex and the City", "Mad Men"],
+    "id": "rebus-fr-desperate-housewives",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Marc Cherry, 2004.",
+    "rebus": "😩🏠👩"
+  },
+  {
+    "accepted": [],
+    "answer": "Peaky Blinders",
+    "decoys": ["Boardwalk Empire", "Les Soprano", "Taboo"],
+    "id": "rebus-fr-peaky-blinders",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Steven Knight, 2013.",
+    "rebus": "🧢🪒🥃"
+  },
+  {
+    "accepted": ["Wednesday"],
+    "answer": "Mercredi",
+    "decoys": [
+      "Les Nouvelles Aventures de Sabrina",
+      "Riverdale",
+      "Locke & Key"
+    ],
+    "id": "rebus-fr-mercredi",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Alfred Gough et Miles Millar (Netflix), 2022.",
+    "rebus": "📅🖐️🖤"
+  },
+  {
+    "accepted": [],
+    "answer": "Vikings",
+    "decoys": ["The Last Kingdom", "Spartacus", "Rome"],
+    "id": "rebus-fr-vikings",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Michael Hirst, 2013.",
+    "rebus": "🪓⛵🛡️"
+  },
+  {
+    "accepted": ["CSI"],
+    "answer": "Les Experts",
+    "decoys": ["NCIS : Enquêtes spéciales", "Bones", "Esprits criminels"],
+    "id": "rebus-fr-les-experts",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Anthony E. Zuiker, 2000.",
+    "rebus": "🔬🔍🧤"
+  },
+  {
+    "accepted": [],
+    "answer": "Columbo",
+    "decoys": ["Derrick", "Inspecteur Barnaby", "Navarro"],
+    "id": "rebus-fr-columbo",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "Richard Levinson et William Link, 1968.",
+    "rebus": "🧥🚬🐶🚗"
+  },
+  {
+    "accepted": ["Josephine ange gardien", "Joséphine ange gardien"],
+    "answer": "Joséphine, ange gardien",
+    "decoys": ["Navarro", "Section de recherches", "Une famille formidable"],
+    "id": "rebus-fr-josephine-ange-gardien",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "TF1, 1997.",
+    "rebus": "👼🥅"
+  },
+  {
+    "accepted": ["Pokemon"],
+    "answer": "Pokémon",
+    "decoys": ["Digimon", "Yu-Gi-Oh!", "Beyblade"],
+    "id": "rebus-fr-pokemon",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "OLM, 1997.",
+    "rebus": "⚡🐭⚪🔴"
+  },
+  {
+    "accepted": ["Dragon Ball Z", "DBZ"],
+    "answer": "Dragon Ball",
+    "decoys": ["Naruto", "Les Chevaliers du Zodiaque", "One Piece"],
+    "id": "rebus-fr-dragon-ball",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Toei Animation, 1986.",
+    "rebus": "🐉🟠⭐👊"
+  },
+  {
+    "accepted": [],
+    "answer": "One Piece",
+    "decoys": ["Naruto", "Fairy Tail", "Bleach"],
+    "id": "rebus-fr-one-piece",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Toei Animation, 1999.",
+    "rebus": "👒🍖☠️"
+  },
+  {
+    "accepted": [],
+    "answer": "Naruto",
+    "decoys": ["One Piece", "Bleach", "Hunter x Hunter"],
+    "id": "rebus-fr-naruto",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Studio Pierrot, 2002.",
+    "rebus": "🍥🦊🍜"
+  },
+  {
+    "accepted": ["Prince de Bel-Air", "The Fresh Prince of Bel-Air"],
+    "answer": "Le Prince de Bel-Air",
+    "decoys": [
+      "Ma famille d'abord",
+      "Notre belle famille",
+      "Tout le monde déteste Chris"
+    ],
+    "id": "rebus-fr-le-prince-de-bel-air",
+    "isWellKnown": true,
+    "kind": "series",
+    "note": "Andy et Susan Borowitz, 1990.",
+    "rebus": "🤴💨🏀"
+  },
+  {
+    "accepted": ["Helene et les garcons"],
+    "answer": "Hélène et les Garçons",
+    "decoys": ["Le Miel et les Abeilles", "Premiers Baisers", "Sous le soleil"],
+    "id": "rebus-fr-helene-et-les-garcons",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "TF1, 1992.",
+    "rebus": "👱‍♀️👦👦🎸"
+  },
+  {
+    "accepted": [],
+    "answer": "Dexter",
+    "decoys": ["Mindhunter", "You", "Hannibal"],
+    "id": "rebus-fr-dexter",
+    "isWellKnown": false,
+    "kind": "series",
+    "note": "James Manos Jr., 2006.",
+    "rebus": "🔪🩸👮"
+  },
+  {
+    "accepted": ["Champs-Élysées", "Aux Champs-Élysées"],
+    "answer": "Les Champs-Élysées",
+    "decoys": ["Les Lacs du Connemara", "Ne me quitte pas", "La Javanaise"],
+    "id": "rebus-fr-les-champs-elysees",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Joe Dassin, 1969.",
+    "rebus": "🌾🌾 🗼"
+  },
+  {
+    "accepted": [],
+    "answer": "Alors on danse",
+    "decoys": ["Formidable", "Tous les mêmes", "Ta fête"],
+    "id": "rebus-fr-alors-on-danse",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Stromae, 2009.",
+    "rebus": "🤷 💃🕺"
+  },
+  {
+    "accepted": [],
+    "answer": "Despacito",
+    "decoys": ["Bailando", "La Bicicleta", "Gasolina"],
+    "id": "rebus-fr-despacito",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Luis Fonsi et Daddy Yankee, 2017.",
+    "rebus": "🐌🐢 💃"
+  },
+  {
+    "accepted": [],
+    "answer": "Bohemian Rhapsody",
+    "decoys": ["We Will Rock You", "Hotel California", "Stairway to Heaven"],
+    "id": "rebus-fr-bohemian-rhapsody",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Queen, 1975.",
+    "rebus": "👑 🎭🎸"
+  },
+  {
+    "accepted": [],
+    "answer": "La Vie en rose",
+    "decoys": ["Non, je ne regrette rien", "L'Hymne à l'amour", "Milord"],
+    "id": "rebus-fr-la-vie-en-rose",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Édith Piaf, 1947.",
+    "rebus": "👓🌹 ❤️"
+  },
+  {
+    "accepted": [],
+    "answer": "Ne me quitte pas",
+    "decoys": [
+      "Amsterdam",
+      "Quand on n’a que l’amour",
+      "La Valse à mille temps"
+    ],
+    "id": "rebus-fr-ne-me-quitte-pas",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Jacques Brel, 1959.",
+    "rebus": "🙏 🚪🚶"
+  },
+  {
+    "accepted": ["The Lion Sleeps Tonight"],
+    "answer": "Le Lion est mort ce soir",
+    "decoys": [
+      "Le Loup, la Biche et le Chevalier",
+      "Syracuse",
+      "Jardin d’hiver"
+    ],
+    "id": "rebus-fr-le-lion-est-mort-ce-soir",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Henri Salvador, 1962.",
+    "rebus": "🦁💀 🌙"
+  },
+  {
+    "accepted": ["Papa où t’es", "Papa où t'es"],
+    "answer": "Papaoutai",
+    "decoys": ["Formidable", "Alors on danse", "Ta fête"],
+    "id": "rebus-fr-papaoutai",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Stromae, 2013.",
+    "rebus": "👨 ❓ 🍵"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Démons de minuit",
+    "decoys": ["Les Sunlights des tropiques", "Le Bal masqué", "Nuit de folie"],
+    "id": "rebus-fr-les-demons-de-minuit",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Images, 1986.",
+    "rebus": "😈 🕛🌙"
+  },
+  {
+    "accepted": ["Aigle noir"],
+    "answer": "L'Aigle noir",
+    "decoys": ["Göttingen", "Dis, quand reviendras-tu ?", "Nantes"],
+    "id": "rebus-fr-l-aigle-noir",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Barbara, 1970.",
+    "rebus": "🦅 ⚫"
+  },
+  {
+    "accepted": [],
+    "answer": "La Montagne",
+    "decoys": ["Que serais-je sans toi", "Ma France", "Nuit et brouillard"],
+    "id": "rebus-fr-la-montagne",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Jean Ferrat, 1964.",
+    "rebus": "⛰️🐐"
+  },
+  {
+    "accepted": [],
+    "answer": "Mistral gagnant",
+    "decoys": ["Laisse béton", "Morgane de toi", "Dans mon HLM"],
+    "id": "rebus-fr-mistral-gagnant",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Renaud, 1985.",
+    "rebus": "🌬️ 🏆 🍬"
+  },
+  {
+    "accepted": [],
+    "answer": "Dernière danse",
+    "decoys": ["Tourner dans le vide", "S.O.S", "Love Story"],
+    "id": "rebus-fr-derniere-danse",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Indila, 2013.",
+    "rebus": "🔚 💃"
+  },
+  {
+    "accepted": ["Les Copains d’abord"],
+    "answer": "Les Copains d'abord",
+    "decoys": [
+      "Le Gorille",
+      "Les Amoureux des bancs publics",
+      "La Mauvaise Réputation"
+    ],
+    "id": "rebus-fr-les-copains-d-abord",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Georges Brassens, 1964.",
+    "rebus": "👬 🥇 ⛵"
+  },
+  {
+    "accepted": [],
+    "answer": "Allumer le feu",
+    "decoys": ["Que je t’aime", "Gabrielle", "Requiem pour un fou"],
+    "id": "rebus-fr-allumer-le-feu",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Johnny Hallyday, 1998.",
+    "rebus": "💡🔥"
+  },
+  {
+    "accepted": ["Petit bonhomme en mousse"],
+    "answer": "Le Petit Bonhomme en mousse",
+    "decoys": ["Les Sardines", "Le Sirop typhon", "La Danse des canards"],
+    "id": "rebus-fr-le-petit-bonhomme-en-mousse",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Patrick Sébastien.",
+    "rebus": "🤏 ⛄ 🍺"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Sardines",
+    "decoys": ["Le Petit Bonhomme en mousse", "Tata Yoyo", "La Chenille"],
+    "id": "rebus-fr-les-sardines",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Patrick Sébastien.",
+    "rebus": "🐟🐟 🥫"
+  },
+  {
+    "accepted": [],
+    "answer": "La Danse des canards",
+    "decoys": ["La Chenille", "Le Bal masqué", "Les Sardines"],
+    "id": "rebus-fr-la-danse-des-canards",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "J.J. Lionel, 1980.",
+    "rebus": "💃 🦆🦆"
+  },
+  {
+    "accepted": [],
+    "answer": "Thriller",
+    "decoys": ["Billie Jean", "Beat It", "Bad"],
+    "id": "rebus-fr-thriller",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Michael Jackson, 1982.",
+    "rebus": "🧟🌕 🕺"
+  },
+  {
+    "accepted": [],
+    "answer": "Yellow Submarine",
+    "decoys": ["Let It Be", "Hey Jude", "Yesterday"],
+    "id": "rebus-fr-yellow-submarine",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "The Beatles, 1966.",
+    "rebus": "🟡 🌊🚢"
+  },
+  {
+    "accepted": [],
+    "answer": "Hotel California",
+    "decoys": ["Bohemian Rhapsody", "Stairway to Heaven", "Born in the U.S.A."],
+    "id": "rebus-fr-hotel-california",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Eagles, 1977.",
+    "rebus": "🏨 🌴☀️"
+  },
+  {
+    "accepted": [],
+    "answer": "Purple Rain",
+    "decoys": ["When Doves Cry", "Kiss", "Like a Prayer"],
+    "id": "rebus-fr-purple-rain",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Prince, 1984.",
+    "rebus": "💜 🌧️"
+  },
+  {
+    "accepted": [],
+    "answer": "Umbrella",
+    "decoys": ["Diamonds", "Toxic", "Crazy in Love"],
+    "id": "rebus-fr-umbrella",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Rihanna, 2007.",
+    "rebus": "☂️ 🌧️ 💃"
+  },
+  {
+    "accepted": [],
+    "answer": "Diamonds",
+    "decoys": ["Umbrella", "Firework", "Single Ladies"],
+    "id": "rebus-fr-diamonds",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Rihanna, 2012.",
+    "rebus": "💎💎 ✨"
+  },
+  {
+    "accepted": [],
+    "answer": "Firework",
+    "decoys": ["Roar", "Diamonds", "Rolling in the Deep"],
+    "id": "rebus-fr-firework",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Katy Perry, 2010.",
+    "rebus": "🎆🎇"
+  },
+  {
+    "accepted": [],
+    "answer": "Happy",
+    "decoys": ["Get Lucky", "Uptown Funk", "Blurred Lines"],
+    "id": "rebus-fr-happy",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Pharrell Williams, 2013.",
+    "rebus": "😀 👏🎩"
+  },
+  {
+    "accepted": [],
+    "answer": "Toxic",
+    "decoys": ["Oops!... I Did It Again", "Umbrella", "Crazy in Love"],
+    "id": "rebus-fr-toxic",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Britney Spears, 2003.",
+    "rebus": "☠️ 💋 🧪"
+  },
+  {
+    "accepted": [],
+    "answer": "Dancing Queen",
+    "decoys": ["Mamma Mia", "Waterloo", "I Will Survive"],
+    "id": "rebus-fr-dancing-queen",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "ABBA, 1976.",
+    "rebus": "💃 👑"
+  },
+  {
+    "accepted": [],
+    "answer": "Waterloo",
+    "decoys": ["Dancing Queen", "Mamma Mia", "Gimme! Gimme! Gimme!"],
+    "id": "rebus-fr-waterloo",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "ABBA, 1974.",
+    "rebus": "💧🚽 ⚔️"
+  },
+  {
+    "accepted": [],
+    "answer": "Highway to Hell",
+    "decoys": ["Back in Black", "Smoke on the Water", "Born to Be Wild"],
+    "id": "rebus-fr-highway-to-hell",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "AC/DC, 1979.",
+    "rebus": "🛣️ ➡️ 😈🔥"
+  },
+  {
+    "accepted": [],
+    "answer": "Smoke on the Water",
+    "decoys": ["Highway to Hell", "Stairway to Heaven", "Born to Be Wild"],
+    "id": "rebus-fr-smoke-on-the-water",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Deep Purple, 1972.",
+    "rebus": "💨 🌊"
+  },
+  {
+    "accepted": [],
+    "answer": "Another Brick in the Wall",
+    "decoys": ["Wish You Were Here", "Comfortably Numb", "Hotel California"],
+    "id": "rebus-fr-another-brick-in-the-wall",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Pink Floyd, 1979.",
+    "rebus": "🧱🧱 🏫"
+  },
+  {
+    "accepted": [],
+    "answer": "Imagine",
+    "decoys": ["Let It Be", "Hey Jude", "Blowin’ in the Wind"],
+    "id": "rebus-fr-imagine",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "John Lennon, 1971.",
+    "rebus": "💭 🕊️🌍"
+  },
+  {
+    "accepted": [],
+    "answer": "Cendrillon",
+    "decoys": [
+      "Un autre monde",
+      "Ça (c’est vraiment toi)",
+      "New York avec toi"
+    ],
+    "id": "rebus-fr-cendrillon-telephone",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Téléphone, 1982.",
+    "rebus": "👠🎃 🕛"
+  },
+  {
+    "accepted": [],
+    "answer": "Ça plane pour moi",
+    "decoys": ["Born to Be Alive", "Lætitia", "Le Jerk"],
+    "id": "rebus-fr-ca-plane-pour-moi",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Plastic Bertrand, 1977.",
+    "rebus": "✈️ 🙋"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Bal masqué",
+    "decoys": [
+      "Ça fait rire les oiseaux",
+      "Les Démons de minuit",
+      "La Danse des canards"
+    ],
+    "id": "rebus-fr-le-bal-masque",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "La Compagnie créole, 1985.",
+    "rebus": "💃 🎭"
+  },
+  {
+    "accepted": [],
+    "answer": "Petit Papa Noël",
+    "decoys": ["Vive le vent", "Mon beau sapin", "Il est né le divin enfant"],
+    "id": "rebus-fr-petit-papa-noel",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Tino Rossi, 1946.",
+    "rebus": "🤏 🎅🎄"
+  },
+  {
+    "accepted": [],
+    "answer": "Frère Jacques",
+    "decoys": [
+      "Au clair de la lune",
+      "Une souris verte",
+      "Il était un petit navire"
+    ],
+    "id": "rebus-fr-frere-jacques",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Comptine traditionnelle.",
+    "rebus": "👬 🔔😴"
+  },
+  {
+    "accepted": [],
+    "answer": "Une souris verte",
+    "decoys": [
+      "Frère Jacques",
+      "Ainsi font, font, font",
+      "Il était un petit navire"
+    ],
+    "id": "rebus-fr-une-souris-verte",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Comptine traditionnelle.",
+    "rebus": "🐭💚"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Feuilles mortes",
+    "decoys": ["À bicyclette", "Le Temps des cerises", "La Mer"],
+    "id": "rebus-fr-les-feuilles-mortes",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Yves Montand, 1946.",
+    "rebus": "🍂💀"
+  },
+  {
+    "accepted": [],
+    "answer": "Le Temps des cerises",
+    "decoys": ["Les Feuilles mortes", "Douce France", "La Mer"],
+    "id": "rebus-fr-le-temps-des-cerises",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "Jean-Baptiste Clément et Antoine Renard, 1866.",
+    "rebus": "⏳ 🍒"
+  },
+  {
+    "accepted": [],
+    "answer": "La Mer",
+    "decoys": ["Douce France", "Y’a d’la joie", "Les Feuilles mortes"],
+    "id": "rebus-fr-la-mer",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Charles Trenet, 1946.",
+    "rebus": "🌊 🐚"
+  },
+  {
+    "accepted": [],
+    "answer": "Tombe la neige",
+    "decoys": [
+      "Inch’Allah",
+      "Vous permettez, monsieur ?",
+      "Mes mains sur tes hanches"
+    ],
+    "id": "rebus-fr-tombe-la-neige",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Adamo, 1963.",
+    "rebus": "⬇️ 🌨️"
+  },
+  {
+    "accepted": [],
+    "answer": "Elle a les yeux revolver",
+    "decoys": ["Les Mots bleus", "Ma préférence", "Toute première fois"],
+    "id": "rebus-fr-elle-a-les-yeux-revolver",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Marc Lavoine, 1985.",
+    "rebus": "👩 👀 🔫"
+  },
+  {
+    "accepted": [],
+    "answer": "Les Mots bleus",
+    "decoys": ["Aline", "Elle a les yeux revolver", "Ma préférence"],
+    "id": "rebus-fr-les-mots-bleus",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "Christophe, 1974.",
+    "rebus": "💬💙"
+  },
+  {
+    "accepted": ["Paris s’éveille", "Paris s'éveille", "Il est cinq heures"],
+    "answer": "Il est cinq heures, Paris s'éveille",
+    "decoys": [
+      "Et moi, et moi, et moi",
+      "Les Champs-Élysées",
+      "Sous le ciel de Paris"
+    ],
+    "id": "rebus-fr-il-est-cinq-heures-paris-s-eveille",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Jacques Dutronc, 1968.",
+    "rebus": "🕔 🗼🌅"
+  },
+  {
+    "accepted": ["Libérée délivrée", "Let It Go"],
+    "answer": "Libérée, délivrée",
+    "decoys": [
+      "Je voudrais un bonhomme de neige",
+      "Ce rêve bleu",
+      "Hakuna Matata"
+    ],
+    "id": "rebus-fr-liberee-delivree",
+    "isWellKnown": true,
+    "kind": "song",
+    "note": "Anaïs Delva, La Reine des neiges, 2013.",
+    "rebus": "❄️👸 🔓"
+  },
+  {
+    "accepted": [],
+    "answer": "Tata Yoyo",
+    "decoys": ["Les Sardines", "La Bonne du curé", "La Chenille"],
+    "id": "rebus-fr-tata-yoyo",
+    "isWellKnown": false,
+    "kind": "song",
+    "note": "Annie Cordy, 1980.",
+    "rebus": "👵 🪀"
+  },
+  {
+    "accepted": [],
+    "answer": "Poser un lapin",
+    "decoys": [
+      "Courir deux lièvres à la fois",
+      "Avoir une mémoire de poisson rouge",
+      "Être une poule mouillée"
+    ],
+    "id": "rebus-fr-poser-un-lapin",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Ne pas venir à un rendez-vous.",
+    "rebus": "📍🐰"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir un chat dans la gorge",
+    "decoys": [
+      "Donner sa langue au chat",
+      "Appeler un chat un chat",
+      "Avoir d’autres chats à fouetter"
+    ],
+    "id": "rebus-fr-avoir-un-chat-dans-la-gorge",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être enroué, avoir du mal à parler.",
+    "rebus": "🐱 🗣️"
+  },
+  {
+    "accepted": [],
+    "answer": "Quand les poules auront des dents",
+    "decoys": [
+      "Être une poule mouillée",
+      "Avoir la chair de poule",
+      "Se coucher avec les poules"
+    ],
+    "id": "rebus-fr-quand-les-poules-auront-des-dents",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Jamais.",
+    "rebus": "🐔 🦷"
+  },
+  {
+    "accepted": ["Il tombe des cordes"],
+    "answer": "Il pleut des cordes",
+    "decoys": [
+      "Il pleut comme vache qui pisse",
+      "Après la pluie, le beau temps",
+      "Ennuyeux comme la pluie"
+    ],
+    "id": "rebus-fr-il-pleut-des-cordes",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Il pleut très fort.",
+    "rebus": "🌧️ 🎻"
+  },
+  {
+    "accepted": ["Poule mouillée"],
+    "answer": "Être une poule mouillée",
+    "decoys": [
+      "Quand les poules auront des dents",
+      "Avoir la chair de poule",
+      "Se coucher avec les poules"
+    ],
+    "id": "rebus-fr-etre-une-poule-mouillee",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être peureux.",
+    "rebus": "🐔 💧"
+  },
+  {
+    "accepted": ["Mémoire de poisson rouge"],
+    "answer": "Avoir une mémoire de poisson rouge",
+    "decoys": [
+      "Être muet comme une carpe",
+      "Être comme un poisson dans l’eau",
+      "Noyer le poisson"
+    ],
+    "id": "rebus-fr-avoir-une-memoire-de-poisson-rouge",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Tout oublier très vite.",
+    "rebus": "🧠 🐟🔴"
+  },
+  {
+    "accepted": [],
+    "answer": "Courir deux lièvres à la fois",
+    "decoys": [
+      "Poser un lapin",
+      "Courir sur le haricot",
+      "Prendre ses jambes à son cou"
+    ],
+    "id": "rebus-fr-courir-deux-lievres-a-la-fois",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Poursuivre deux buts en même temps, au risque de rater les deux.",
+    "rebus": "🏃 🐇🐇"
+  },
+  {
+    "accepted": [],
+    "answer": "Donner sa langue au chat",
+    "decoys": [
+      "Avoir un chat dans la gorge",
+      "Avoir une langue de vipère",
+      "Appeler un chat un chat"
+    ],
+    "id": "rebus-fr-donner-sa-langue-au-chat",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Renoncer à trouver la réponse.",
+    "rebus": "👅 🎁 🐱"
+  },
+  {
+    "accepted": [],
+    "answer": "Appeler un chat un chat",
+    "decoys": [
+      "Donner sa langue au chat",
+      "Il n’y a pas un chat",
+      "Avoir un chat dans la gorge"
+    ],
+    "id": "rebus-fr-appeler-un-chat-un-chat",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Dire les choses franchement.",
+    "rebus": "📞 🐱🐱"
+  },
+  {
+    "accepted": [],
+    "answer": "Mettre la charrue avant les bœufs",
+    "decoys": [
+      "Qui vole un œuf vole un bœuf",
+      "Prendre le taureau par les cornes",
+      "Avoir un travail de bœuf"
+    ],
+    "id": "rebus-fr-mettre-la-charrue-avant-les-boeufs",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Faire les choses dans le mauvais ordre.",
+    "rebus": "🚜 🐂"
+  },
+  {
+    "accepted": [],
+    "answer": "Tirer les vers du nez",
+    "decoys": [
+      "Les doigts dans le nez",
+      "Mener par le bout du nez",
+      "Ne pas voir plus loin que le bout de son nez"
+    ],
+    "id": "rebus-fr-tirer-les-vers-du-nez",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Faire avouer quelqu’un petit à petit.",
+    "rebus": "🐛 👃"
+  },
+  {
+    "accepted": [],
+    "answer": "Coûter les yeux de la tête",
+    "decoys": [
+      "Avoir les yeux plus gros que le ventre",
+      "Ne pas avoir froid aux yeux",
+      "Mon œil"
+    ],
+    "id": "rebus-fr-couter-les-yeux-de-la-tete",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Coûter très cher.",
+    "rebus": "💸 👁️👁️"
+  },
+  {
+    "accepted": [],
+    "answer": "Tomber dans les pommes",
+    "decoys": [
+      "Haut comme trois pommes",
+      "Se faire du pain bénit",
+      "Ramener sa fraise"
+    ],
+    "id": "rebus-fr-tomber-dans-les-pommes",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "S’évanouir.",
+    "rebus": "😵 🍎🍏"
+  },
+  {
+    "accepted": [],
+    "answer": "Raconter des salades",
+    "decoys": [
+      "Raconter des bobards",
+      "Faire chou blanc",
+      "Les carottes sont cuites"
+    ],
+    "id": "rebus-fr-raconter-des-salades",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Mentir, raconter des histoires.",
+    "rebus": "🗣️ 🥗"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir la pêche",
+    "decoys": ["Avoir la banane", "Avoir la frite", "Se fendre la poire"],
+    "id": "rebus-fr-avoir-la-peche",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être en pleine forme.",
+    "rebus": "🍑 💪"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir la banane",
+    "decoys": ["Avoir la pêche", "Avoir la frite", "Avoir le melon"],
+    "id": "rebus-fr-avoir-la-banane",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Avoir le sourire, être de bonne humeur.",
+    "rebus": "🍌 😁"
+  },
+  {
+    "accepted": [
+      "C’est pas de la tarte",
+      "C'est pas de la tarte",
+      "Ce n’est pas de la tarte"
+    ],
+    "answer": "Ce n'est pas de la tarte",
+    "decoys": [
+      "C’est du gâteau",
+      "Pour des prunes",
+      "C’est la fin des haricots"
+    ],
+    "id": "rebus-fr-ce-n-est-pas-de-la-tarte",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "C’est difficile.",
+    "rebus": "🚫 🥧"
+  },
+  {
+    "accepted": [],
+    "answer": "Les carottes sont cuites",
+    "decoys": [
+      "C’est la fin des haricots",
+      "Raconter des salades",
+      "Faire chou blanc"
+    ],
+    "id": "rebus-fr-les-carottes-sont-cuites",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "C’est fichu, plus rien à faire.",
+    "rebus": "🥕 🔥"
+  },
+  {
+    "accepted": [],
+    "answer": "Faire chou blanc",
+    "decoys": [
+      "Ménager la chèvre et le chou",
+      "Les carottes sont cuites",
+      "Être dans les choux"
+    ],
+    "id": "rebus-fr-faire-chou-blanc",
+    "isWellKnown": false,
+    "kind": "saying",
+    "note": "Échouer, revenir bredouille.",
+    "rebus": "🥬 ⚪"
+  },
+  {
+    "accepted": ["Dans la lune"],
+    "answer": "Être dans la lune",
+    "decoys": [
+      "Décrocher la lune",
+      "Promettre la lune",
+      "Avoir la tête dans les nuages"
+    ],
+    "id": "rebus-fr-etre-dans-la-lune",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être distrait, rêvasser.",
+    "rebus": "💭 🌕"
+  },
+  {
+    "accepted": ["Mettre de l'eau dans son vin"],
+    "answer": "Mettre de l’eau dans son vin",
+    "decoys": [
+      "Se noyer dans un verre d’eau",
+      "Il y a de l’eau dans le gaz",
+      "Quand le vin est tiré, il faut le boire"
+    ],
+    "id": "rebus-fr-mettre-de-l-eau-dans-son-vin",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Modérer ses exigences.",
+    "rebus": "💧 ➡️ 🍷"
+  },
+  {
+    "accepted": [],
+    "answer": "Mettre les pieds dans le plat",
+    "decoys": [
+      "Casser les pieds",
+      "Partir du bon pied",
+      "Mettre la main à la pâte"
+    ],
+    "id": "rebus-fr-mettre-les-pieds-dans-le-plat",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Aborder maladroitement un sujet délicat.",
+    "rebus": "🦶 🍽️"
+  },
+  {
+    "accepted": [],
+    "answer": "Casser les pieds",
+    "decoys": [
+      "Mettre les pieds dans le plat",
+      "Casser du sucre sur le dos",
+      "Se lever du pied gauche"
+    ],
+    "id": "rebus-fr-casser-les-pieds",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Ennuyer, agacer quelqu’un.",
+    "rebus": "🔨 🦶"
+  },
+  {
+    "accepted": ["Avoir le coup de foudre"],
+    "answer": "Coup de foudre",
+    "decoys": ["Coup de cœur", "Coup de théâtre", "Avoir le cœur sur la main"],
+    "id": "rebus-fr-coup-de-foudre",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Tomber amoureux au premier regard.",
+    "rebus": "⚡ ❤️"
+  },
+  {
+    "accepted": ["Un froid de canard"],
+    "answer": "Il fait un froid de canard",
+    "decoys": [
+      "Un vilain petit canard",
+      "Ça ne casse pas trois pattes à un canard",
+      "Il fait un temps de chien"
+    ],
+    "id": "rebus-fr-il-fait-un-froid-de-canard",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Il fait très froid.",
+    "rebus": "🥶 🦆"
+  },
+  {
+    "accepted": ["Une faim de loup"],
+    "answer": "Avoir une faim de loup",
+    "decoys": [
+      "Quand on parle du loup",
+      "Se jeter dans la gueule du loup",
+      "Un froid de canard"
+    ],
+    "id": "rebus-fr-avoir-une-faim-de-loup",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Avoir très faim.",
+    "rebus": "😋 🐺"
+  },
+  {
+    "accepted": ["Quand on parle du loup, on en voit la queue"],
+    "answer": "Quand on parle du loup",
+    "decoys": [
+      "Avoir une faim de loup",
+      "Se jeter dans la gueule du loup",
+      "Hurler avec les loups"
+    ],
+    "id": "rebus-fr-quand-on-parle-du-loup",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "La personne dont on parle arrive justement.",
+    "rebus": "🗣️ 🐺"
+  },
+  {
+    "accepted": ["Malade comme un chien"],
+    "answer": "Être malade comme un chien",
+    "decoys": [
+      "Avoir un mal de chien",
+      "S’entendre comme chien et chat",
+      "Il fait un temps de chien"
+    ],
+    "id": "rebus-fr-etre-malade-comme-un-chien",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être très malade.",
+    "rebus": "🤒 🐶"
+  },
+  {
+    "accepted": ["Langue de vipère"],
+    "answer": "Avoir une langue de vipère",
+    "decoys": [
+      "Donner sa langue au chat",
+      "Avoir la langue bien pendue",
+      "Tourner sept fois sa langue dans sa bouche"
+    ],
+    "id": "rebus-fr-avoir-une-langue-de-vipere",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Dire du mal des autres.",
+    "rebus": "👅 🐍"
+  },
+  {
+    "accepted": ["Larmes de crocodile"],
+    "answer": "Verser des larmes de crocodile",
+    "decoys": [
+      "Pleurer comme une Madeleine",
+      "Rire jaune",
+      "Avoir une langue de vipère"
+    ],
+    "id": "rebus-fr-verser-des-larmes-de-crocodile",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Faire semblant d’être triste.",
+    "rebus": "😢 🐊"
+  },
+  {
+    "accepted": ["Fier comme un paon"],
+    "answer": "Être fier comme un paon",
+    "decoys": [
+      "Être fier comme Artaban",
+      "Se pavaner",
+      "Être rusé comme un renard"
+    ],
+    "id": "rebus-fr-etre-fier-comme-un-paon",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être très orgueilleux.",
+    "rebus": "😤 🦚"
+  },
+  {
+    "accepted": ["Muet comme une carpe"],
+    "answer": "Être muet comme une carpe",
+    "decoys": [
+      "Avoir une mémoire de poisson rouge",
+      "Être comme un poisson dans l’eau",
+      "Noyer le poisson"
+    ],
+    "id": "rebus-fr-etre-muet-comme-une-carpe",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Ne rien dire du tout.",
+    "rebus": "🤐 🐟"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir des fourmis dans les jambes",
+    "decoys": [
+      "Prendre ses jambes à son cou",
+      "Casser les pieds",
+      "Avoir les jambes en coton"
+    ],
+    "id": "rebus-fr-avoir-des-fourmis-dans-les-jambes",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Avoir les jambes engourdies, ou envie de bouger.",
+    "rebus": "🐜 🦵"
+  },
+  {
+    "accepted": ["Revenons à nos moutons"],
+    "answer": "Revenir à ses moutons",
+    "decoys": [
+      "Compter les moutons",
+      "Le mouton noir",
+      "Suivre comme un mouton"
+    ],
+    "id": "rebus-fr-revenir-a-ses-moutons",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Revenir au sujet de départ.",
+    "rebus": "🔙 🐑🐑"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir la main verte",
+    "decoys": [
+      "Avoir le cœur sur la main",
+      "Mettre la main à la pâte",
+      "Avoir un poil dans la main"
+    ],
+    "id": "rebus-fr-avoir-la-main-verte",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être doué pour faire pousser les plantes.",
+    "rebus": "🤚 💚 🌱"
+  },
+  {
+    "accepted": [
+      "Vendre la peau de l’ours",
+      "Vendre la peau de l'ours",
+      "Vendre la peau de l’ours avant de l’avoir tué"
+    ],
+    "answer": "Vendre la peau de l'ours avant de l'avoir tué",
+    "decoys": [
+      "Qui vole un œuf vole un bœuf",
+      "Tourner autour du pot",
+      "Mettre la charrue avant les bœufs"
+    ],
+    "id": "rebus-fr-vendre-la-peau-de-l-ours-avant-de-l-avoir-tue",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Se réjouir d’un succès avant de l’avoir obtenu.",
+    "rebus": "💰 🐻"
+  },
+  {
+    "accepted": [],
+    "answer": "La nuit porte conseil",
+    "decoys": [
+      "La nuit, tous les chats sont gris",
+      "Après la pluie, le beau temps",
+      "Le monde appartient à ceux qui se lèvent tôt"
+    ],
+    "id": "rebus-fr-la-nuit-porte-conseil",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Mieux vaut dormir avant de décider.",
+    "rebus": "🌙 😴 💡"
+  },
+  {
+    "accepted": ["Après la pluie le beau temps"],
+    "answer": "Après la pluie, le beau temps",
+    "decoys": [
+      "Il pleut des cordes",
+      "La nuit porte conseil",
+      "Une hirondelle ne fait pas le printemps"
+    ],
+    "id": "rebus-fr-apres-la-pluie-le-beau-temps",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Les bons moments suivent les mauvais.",
+    "rebus": "🌧️ ➡️ ☀️"
+  },
+  {
+    "accepted": [],
+    "answer": "Qui vole un œuf vole un bœuf",
+    "decoys": [
+      "Mettre la charrue avant les bœufs",
+      "On ne fait pas d’omelette sans casser des œufs",
+      "Mettre tous ses œufs dans le même panier"
+    ],
+    "id": "rebus-fr-qui-vole-un-oeuf-vole-un-boeuf",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Qui commet un petit vol en commettra de plus grands.",
+    "rebus": "🦹 🥚 🐂"
+  },
+  {
+    "accepted": [],
+    "answer": "Tourner autour du pot",
+    "decoys": [
+      "Le pot aux roses",
+      "Payer les pots cassés",
+      "Tourner sept fois sa langue dans sa bouche"
+    ],
+    "id": "rebus-fr-tourner-autour-du-pot",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Ne pas aller droit au but.",
+    "rebus": "🔄 🍯"
+  },
+  {
+    "accepted": [],
+    "answer": "Couper la poire en deux",
+    "decoys": [
+      "Se fendre la poire",
+      "Ménager la chèvre et le chou",
+      "Garder une poire pour la soif"
+    ],
+    "id": "rebus-fr-couper-la-poire-en-deux",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Faire un compromis.",
+    "rebus": "✂️ 🍐"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir du pain sur la planche",
+    "decoys": [
+      "Ça se vend comme des petits pains",
+      "Être bon comme du bon pain",
+      "Avoir la tête dans le guidon"
+    ],
+    "id": "rebus-fr-avoir-du-pain-sur-la-planche",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Avoir beaucoup de travail.",
+    "rebus": "🍞 🏄"
+  },
+  {
+    "accepted": ["Être haut comme trois pommes"],
+    "answer": "Haut comme trois pommes",
+    "decoys": [
+      "Tomber dans les pommes",
+      "Pour des prunes",
+      "Se fendre la poire"
+    ],
+    "id": "rebus-fr-haut-comme-trois-pommes",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Tout petit, en parlant d’un enfant.",
+    "rebus": "🧒 🍎🍎🍎"
+  },
+  {
+    "accepted": [],
+    "answer": "Rire jaune",
+    "decoys": [
+      "Rire aux larmes",
+      "Rire comme une baleine",
+      "Avoir une peur bleue"
+    ],
+    "id": "rebus-fr-rire-jaune",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Rire à contrecœur, par gêne.",
+    "rebus": "😂 💛"
+  },
+  {
+    "accepted": ["Une peur bleue"],
+    "answer": "Avoir une peur bleue",
+    "decoys": ["Rire jaune", "Voir rouge", "Être vert de rage"],
+    "id": "rebus-fr-avoir-une-peur-bleue",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Avoir très peur.",
+    "rebus": "😱 💙"
+  },
+  {
+    "accepted": [],
+    "answer": "Avoir le cœur sur la main",
+    "decoys": [
+      "Avoir la main verte",
+      "Avoir un cœur d’artichaut",
+      "Coup de foudre"
+    ],
+    "id": "rebus-fr-avoir-le-coeur-sur-la-main",
+    "isWellKnown": true,
+    "kind": "saying",
+    "note": "Être très généreux.",
+    "rebus": "❤️ ✋"
+  }
+]
