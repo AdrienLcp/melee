@@ -20,9 +20,13 @@ the step it names and deleting its line here.
 | 13 | *Ready* between rounds | An indicator on the wall, never a gate | b |
 | 14 | Presets for December | *Soirée de Noël*: quiz, blind test, world map, buzzer; Teams drawn; Board on | b |
 | 15 | Board default | On whenever Teams is on; off otherwise | f |
-| 16 | The December cut | Steps a → g and s; everything in h after the rehearsal | index |
 | 17 | A round that pays a team less than a whole `POINT` | Floored to nought cases, so in teams of two or more a right buzz (1/n `POINT`) or a quiz half the team got right moves no pawn — four of Christmas's sixteen rounds are buzzer; recommended alternative: the pawn stands on the team's whole score in `POINT`s, floored, so fractions bank across rounds and case and score rank alike | f |
 | 18 | Track length and the end | 30 cases for Christmas (twelve people, sixteen rounds, one or two cases a round); the evening ends on the reveal a pawn reaches the finish, after the set under way; the track is locked past the lobby | f |
+| 19 | Board strategies | `points` (today) or `rank` (3/2/1 cases by the round's team ranking, ties share the better place), plus a `catchUp` switch giving a team alone at the back one case more on a round it scores; alternatives: a track sized to the evening, case values scaled to the planned rounds with a final race | h2 |
+| 20 | Solo and duel | Solo: one seat answers for its team, rotating set after set; duel: two seats of two teams head to head, every seat duelling before anyone twice | h3 |
+| 21 | Teams with no phone | *Answers aloud*: teams named on the console, every round judged there by tapping the team(s) that had it; the world map unavailable under it | h4 |
+| 22 | French cities | Prefectures and large cities of metropolitan France; tiers to the city itself: under 25 km 3 `POINT`s, under 75 km 2, under 150 km 1 | h5 |
+| 23 | The screen-only evening | The host console on the touch display, the wall's layout with the host's presses in a drawer | h6 |
 
 
 Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** (step a, done); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing (s, done); a podium closes the evening, with no booby prize (f, done). Settled 20/10/2026: a challenge played off screen pays its placings 3, 2 and 1 `POINT`s (i).
