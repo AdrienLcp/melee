@@ -62,10 +62,10 @@ cinema*, each its own tick, drawn round by round like any game today.
   same one, so two blind tests and a quiz alternate blind test, quiz, blind
   test. A reload after a draw between two entries of one game may draw again;
   the guard on the kind cannot tell them apart.
-- **The console**: the round's settings open on *Ensuite*, a row of every
+- **The console**: the round's settings open on *Next up*, a row of every
   entry — picking one is picking what the next round is on and what the fold
-  below sets — with *Ajouter une variante* (games with settings of their own,
-  `canHoldVariants`) and *Retirer*. The blind-test picker's draft is committed
+  below sets — with *Add a variant* (games with settings of their own,
+  `canHoldVariants`) and *Take it out*. The blind-test picker's draft is committed
   into its entry before the row moves elsewhere.
 - **Seen muted** at 1280 on the console and the wall and at 390 on a phone: a
   game night, a film-score variant added beside the charts, a round played on
