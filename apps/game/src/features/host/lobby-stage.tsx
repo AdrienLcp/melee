@@ -58,7 +58,10 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
     <div className='stage lobby' data-aloud={playsAloud || undefined}>
       {/* Nobody joins a table answering aloud, so there is nothing to scan. */}
       {!playsAloud && (
-        <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
+        <RoomInvitation
+          isUnattended={controls === null || controls.isRoomScreen}
+          roomCode={roomCode}
+        />
       )}
 
       <div className='host-side'>
@@ -79,16 +82,18 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           <GamePitch isUnattended={controls === null} view={view} />
         </section>
 
-        {controls !== null && view.settings.game?.kind === 'slate' && (
-          <SlatePreparation
-            game={view.settings.game}
-            isLive={controls.isLive}
-            onChange={controls.onSettingsChange}
-            onPrepareKey={controls.onRememberSlateKey}
-            preparedKeys={controls.preparedSlateKeys}
-            settings={view.settings}
-          />
-        )}
+        {controls !== null &&
+          !controls.isRoomScreen &&
+          view.settings.game?.kind === 'slate' && (
+            <SlatePreparation
+              game={view.settings.game}
+              isLive={controls.isLive}
+              onChange={controls.onSettingsChange}
+              onPrepareKey={controls.onRememberSlateKey}
+              preparedKeys={controls.preparedSlateKeys}
+              settings={view.settings}
+            />
+          )}
 
         <section className='roster'>
           {playsAloud ? (
@@ -107,7 +112,11 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           ) : (
             <Scoreboard
               hasPawns
-              onRemove={controls?.onRemovePlayer}
+              onRemove={
+                controls?.isRoomScreen === true
+                  ? undefined
+                  : controls?.onRemovePlayer
+              }
               players={view.players}
               youId={youId}
             />
@@ -126,6 +135,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             the form would be a second way to do the same thing.
           */}
           {controls !== null &&
+            !controls.isRoomScreen &&
             !playsAloud &&
             !launchesWithHostSeated({
               game: view.settings.game?.kind ?? null,

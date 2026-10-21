@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Game]` **A touch screen can run the evening on its own.** *Cet écran est
+  celui de la salle*, in the host's menu, turns the console into the room's
+  screen for good on that machine: the stage the wall draws, every answer
+  folded until the host shows it, one press bottom right for what the room is
+  waiting on, and everything else — the setup, the hold, ending the game,
+  removing a player, taking a seat, closing the table — in *Animer*, a drawer
+  from the side, or from the bottom on a narrow screen.
+
 - `[Shared]` **The map can ask for French cities**, and `PROTOCOL_VERSION`
   goes to 34. *À placer* in the round's settings switches the world map to a
   map of France and a bank of 137 towns — every prefecture but Paris' inner

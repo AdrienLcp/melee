@@ -1,0 +1,51 @@
+@use '../styles/layout'
+@use '../styles/leaflet'
+@use '../styles/sheet'
+
+@layer components
+  .drawer-overlay
+    @include sheet.overlay
+
+    @include layout.wide
+      align-items: stretch
+      justify-content: start
+
+  .drawer
+    @include sheet.surface
+    @include leaflet.leaflet
+
+    @include layout.narrow
+      border-end-end-radius: 0
+      border-end-start-radius: 0
+      box-shadow: 0 0 0 1px var(--rule), var(--shadow-sheet)
+      padding-block: 0 max(var(--space-m), var(--safe-area-bottom))
+      padding-inline: var(--gutter-left) var(--gutter-right)
+
+      .react-aria-Dialog
+        margin-inline: auto
+        max-inline-size: 30rem
+
+    // Along the start edge, the screen's height, sliding in from it: a host
+    // standing at a wall reaches the corner they opened it from, and the room
+    // keeps the rest of the stage in view beside it.
+    @include layout.wide
+      border-end-start-radius: 0
+      border-start-start-radius: 0
+      box-shadow: 0 0 0 1px var(--rule), var(--shadow-overlay)
+      inline-size: min(28rem, 90vw)
+      max-block-size: none
+      padding: var(--layout-padding-block-start) var(--space-l) var(--layout-padding-block-end) var(--gutter-left)
+      translate: none
+
+      &[data-entering]
+        animation: drawer-slide var(--transition-base, 0s) var(--ease-out)
+
+      &[data-exiting]
+        animation: drawer-slide var(--transition-fast, 0s) var(--ease-out) reverse
+
+      .sheet-grabber
+        display: none
+
+  @keyframes drawer-slide
+    from
+      translate: -100% 0rem

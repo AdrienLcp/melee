@@ -99,7 +99,10 @@
   // A host's menu on a landscape phone holds the invitation, the wall doors,
   // the seat, the preferences and three exits, and ran off the bottom with the
   // exits unreachable until the leaflet scrolled inside itself.
-  .app-menu-leaflet
+  // The room's own screen draws the same exits in its drawer, sized against
+  // the same narrow box.
+  .app-menu-leaflet,
+  .room-exits
     &.sheet-popover
       max-width: min(92vw, 20rem)
 

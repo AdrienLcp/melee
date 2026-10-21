@@ -28,6 +28,7 @@ import { readStoredWithSchema } from './read-stored-with-schema'
 export const HOST_SETUP_KEY = 'melee:host-setup'
 export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
+export const ROOM_SCREEN_KEY = 'melee:room-screen'
 export const VOLUME_KEY = 'melee:volume'
 
 /**
@@ -134,6 +135,35 @@ export const writeStoredNickname = (
   nickname: Nickname
 ): Result<void, StorageWriteError> =>
   writeStoredText({ key: NICKNAME_KEY, text: nickname })
+
+const ROOM_SCREEN_VALUES = ['true', 'false'] as const
+
+const isRoomScreenValue = (
+  text: string
+): text is (typeof ROOM_SCREEN_VALUES)[number] =>
+  ROOM_SCREEN_VALUES.some((value) => value === text)
+
+/**
+ * Whether this machine is the room's own screen when it runs a room — a touch
+ * display hung up for the evening rather than the host's laptop. Said by the
+ * host and never guessed: nothing a browser reports tells a television on the
+ * wall from a laptop on the table. Succeeds with `false` when never said.
+ */
+export const readStoredRoomScreen = (): Result<boolean, StorageReadError> => {
+  const stored = readRecognizedText({
+    isRecognized: isRoomScreenValue,
+    key: ROOM_SCREEN_KEY
+  })
+
+  return stored.status === 'success'
+    ? Result.success(stored.data === 'true')
+    : stored
+}
+
+export const writeStoredRoomScreen = (
+  isRoomScreen: boolean
+): Result<void, StorageWriteError> =>
+  writeStoredText({ key: ROOM_SCREEN_KEY, text: String(isRoomScreen) })
 
 const isVolume = (volume: number): boolean =>
   Number.isFinite(volume) && volume >= 0 && volume <= 1

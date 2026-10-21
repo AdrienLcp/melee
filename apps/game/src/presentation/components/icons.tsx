@@ -17,6 +17,7 @@ import {
   Plus,
   QrCode,
   Share,
+  SlidersHorizontal,
   Trophy,
   Tv,
   X,
@@ -50,6 +51,7 @@ const inFamily =
 
 export const CheckIcon = inFamily(Check)
 export const ChevronIcon = inFamily(ChevronDown)
+export const ControlsIcon = inFamily(SlidersHorizontal)
 export const CopyIcon = inFamily(Copy)
 export const CrossIcon = inFamily(X)
 export const LockIcon = inFamily(Lock)

@@ -105,6 +105,7 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     adjustScore: null,
     closeRoom: null,
     endGame: null,
+    isRoomScreen: false,
     leaveSeat: nickname === null ? null : leave,
     playsSound: false,
     refusedNickname:
@@ -116,6 +117,7 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: NOBODY,
     scoredTeams: NOBODY,
     seatNickname,
+    setRoomScreen: null,
     trackLength: null
   })
 

@@ -8,7 +8,10 @@ import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
 import {
   HOST_SETUP_KEY,
-  readStoredHostPreferences
+  ROOM_SCREEN_KEY,
+  readStoredHostPreferences,
+  readStoredRoomScreen,
+  writeStoredRoomScreen
 } from './preferences-storage'
 
 const storedBeforeTheBoard = (teams: object) => {
@@ -75,5 +78,40 @@ describe('readStoredHostPreferences', () => {
       ...DEFAULT_TRACK_SETTINGS,
       length: 40
     })
+  })
+})
+
+describe('readStoredRoomScreen', () => {
+  let store: Map<string, string>
+
+  beforeEach(() => {
+    store = new Map()
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => store.get(key) ?? null,
+      removeItem: (key: string) => store.delete(key),
+      setItem: (key: string, value: string) => store.set(key, value)
+    })
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('[room-screen] reads a machine never said to be the room’s as the host’s own', () => {
+    expect(readStoredRoomScreen()).toEqual({ data: false, status: 'success' })
+  })
+
+  it('[room-screen] reads back what the switch wrote, both ways', () => {
+    writeStoredRoomScreen(true)
+    expect(readStoredRoomScreen()).toEqual({ data: true, status: 'success' })
+
+    writeStoredRoomScreen(false)
+    expect(readStoredRoomScreen()).toEqual({ data: false, status: 'success' })
+  })
+
+  it('[room-screen] refuses a value it never writes', () => {
+    store.set(ROOM_SCREEN_KEY, 'yes')
+
+    expect(readStoredRoomScreen().status).toBe('failure')
   })
 })

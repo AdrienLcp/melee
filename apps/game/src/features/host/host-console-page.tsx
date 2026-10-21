@@ -24,6 +24,7 @@ import { playsThisTurn } from '@melee/core/team/team-turn'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { BoardTrack } from '@/features/wall/board-track'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
   useCameFromWall,
@@ -33,8 +34,10 @@ import {
 } from '@/infrastructure/router/navigation'
 import {
   readStoredHostPreferences,
+  readStoredRoomScreen,
   writeStoredHostPreferences,
-  writeStoredNickname
+  writeStoredNickname,
+  writeStoredRoomScreen
 } from '@/infrastructure/storage/preferences-storage'
 import {
   readPreparedSlateKeys,
@@ -72,10 +75,11 @@ import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { ArrivalNotice, useArrival } from './arrival-notice'
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { ClipOffer } from './clip-offer'
-import { HostActions } from './host-actions'
+import { HostActions, type HostActionsProps } from './host-actions'
 import { HostRefused } from './host-refused'
 import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
+import { RoomScreenPresses } from './room-screen-presses'
 import { RoomStage, type StageControls } from './room-stage'
 import { useRoundAudio } from './round-audio'
 import { SetupFields, type SetupFieldsProps } from './setup-fields'
@@ -86,12 +90,19 @@ import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
 
 import './host-console-page.sass'
+import '@/features/wall/wall-page.sass'
 
 import { Main } from '@/presentation/components/main'
 import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
 /** Where a press to play right away is: waiting for its seat, or for its first round. */
 type RightAwayStart = 'idle' | 'seating' | 'starting'
+
+const isStoredRoomScreen = (): boolean => {
+  const stored = readStoredRoomScreen()
+
+  return stored.status === 'success' && stored.data
+}
 
 const storedHostPreferencesOrNone = (): HostPreferences | null => {
   const stored = readStoredHostPreferences()
@@ -133,6 +144,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [preferences, setPreferences] = useState(storedHostPreferencesOrNone)
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
   const [challengeText, setChallengeText] = useState('')
+  const [isRoomScreen, setIsRoomScreen] = useState(isStoredRoomScreen)
   const arrival = useArrival(view)
   const playsRightAway = useTakePlayRightAway()
   // Set by the door's navigation or by the empty lobby's launch, spent on the
@@ -344,10 +356,16 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     }
   }, [choosingRoundId, send])
 
+  const setRoomScreen = useCallback((next: boolean) => {
+    writeStoredRoomScreen(next)
+    setIsRoomScreen(next)
+  }, [])
+
   useReportRoomActions({
     adjustScore: view === null ? null : adjustScore,
     closeRoom,
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
+    isRoomScreen,
     leaveSeat: view?.youId == null ? null : leaveSeat,
     playsSound: isSpeaker,
     refusedNickname:
@@ -359,6 +377,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: view?.players ?? NOBODY,
     scoredTeams: view?.teams ?? NOBODY,
     seatNickname: seatedAs,
+    setRoomScreen,
     trackLength:
       view?.settings.board.kind === 'track' ? view.settings.board.length : null
   })
@@ -487,9 +506,87 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     view: current
   })
 
-  const controls: StageControls = {
-    isAnswerFolded: cameFromWall,
+  const hostActionsProps = (current: HostRoomView): HostActionsProps => ({
+    challengeLine:
+      current.settings.game?.kind === 'challenge'
+        ? { onChange: setChallengeText, text: challengeText }
+        : null,
+    draftSource,
     isLive,
+    onOpenRound: () => {
+      // Inside the press, never in an effect: the autoplay policy grants
+      // permission only from a real gesture, and it cannot be asked for later
+      // when the track arrives.
+      armAudio()
+      // The press has already read the line it sends, and the next challenge
+      // is never this one again.
+      setChallengeText('')
+
+      // What the picker is showing is what the host chose, and a round about
+      // to be drawn is the moment that means something — which is why every
+      // control that opens one comes through here rather than the launch
+      // alone. Re-sending an unchanged source is free: the server drops the
+      // pool only when it differs.
+      const game = current.settings.game
+
+      if (draftSource !== null && game?.kind === 'blindtest') {
+        changeSettings({
+          ...current.settings,
+          game: { ...game, source: draftSource }
+        })
+      }
+    },
+    onPlayRightAway: playRightAway,
+    onPlayStyle: setPlayStyle,
+    onSettingsChange: changeSettings,
+    playStyle,
+    preferences,
+    send,
+    slateKeys: preparedSlateKeys,
+    slateWall,
+    view: current
+  })
+
+  const header = (
+    <header>
+      <ArrivalNotice arrival={arrival} />
+      {view?.round != null && view.phase !== 'finished' && (
+        <p className='round-index'>
+          {view.settings.roundCount === null
+            ? translate('round.indexOpen', { index: view.round.index })
+            : translate('round.index', {
+                index: view.round.index,
+                total: view.settings.roundCount
+              })}
+        </p>
+      )}
+      {view?.round?.turn != null && view.phase !== 'finished' && (
+        <TurnBadge
+          players={view.players}
+          seatId={view.youId}
+          teams={view.teams}
+          turn={view.round.turn}
+        />
+      )}
+      {/*
+          The lobby is the one phase that excludes it, because the invitation
+          is already the stage's larger half there. `finished` used to be
+          excluded too and that was backwards: the final board is precisely
+          when somebody says *one more, I'll call Marc*, and the room
+          still answers.
+        */}
+      {view !== null &&
+        view.phase !== 'lobby' &&
+        view.settings.teams.kind !== 'aloud' && (
+          <JoinReminder roomCode={roomCode} />
+        )}
+    </header>
+  )
+
+  const controls: StageControls = {
+    isAnswerFolded: cameFromWall || isRoomScreen,
+    isLive,
+    isRoomScreen,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,
@@ -499,55 +596,60 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     send
   }
 
+  const stage = (
+    <RoomStage
+      canPlay={canPlay}
+      clock={clock}
+      controls={controls}
+      isSpeaker={isSpeaker}
+      onUnlockAudio={armAudio}
+      refusal={refusal}
+      roomCode={roomCode}
+      slateWall={slateWall}
+      view={view}
+    />
+  )
+
+  // The wall's screen with a hand on it: the same header, stage and board the
+  // wall draws, the answers folded, and the presses at the screen's foot.
+  if (isRoomScreen) {
+    return (
+      <PawnColoursProvider view={view}>
+        <Main className='host-console-page wall-page room-screen'>
+          <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+          {header}
+          {stage}
+          {view !== null &&
+            view.phase !== 'lobby' &&
+            view.settings.board.kind === 'track' &&
+            view.teams.length > 0 && (
+              <BoardTrack
+                length={view.settings.board.length}
+                teams={view.teams}
+              />
+            )}
+        </Main>
+        {view !== null && (
+          <RoomScreenPresses
+            actions={hostActionsProps(view)}
+            error={error}
+            onRememberSlateKey={rememberPreparedKey}
+            onRemovePlayer={removePlayer}
+            preparedSlateKeys={preparedKeys}
+            setup={setupProps(view)}
+          />
+        )}
+      </PawnColoursProvider>
+    )
+  }
+
   return (
     <PawnColoursProvider view={view}>
       <Main className='host-console-page'>
         <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
-        <header>
-          <ArrivalNotice arrival={arrival} />
-          {view?.round != null && view.phase !== 'finished' && (
-            <p className='round-index'>
-              {view.settings.roundCount === null
-                ? translate('round.indexOpen', { index: view.round.index })
-                : translate('round.index', {
-                    index: view.round.index,
-                    total: view.settings.roundCount
-                  })}
-            </p>
-          )}
-          {view?.round?.turn != null && view.phase !== 'finished' && (
-            <TurnBadge
-              players={view.players}
-              seatId={view.youId}
-              teams={view.teams}
-              turn={view.round.turn}
-            />
-          )}
-          {/*
-          The lobby is the one phase that excludes it, because the invitation
-          is already the stage's larger half there. `finished` used to be
-          excluded too and that was backwards: the final board is precisely
-          when somebody says *one more, I'll call Marc*, and the room
-          still answers.
-        */}
-          {view !== null &&
-            view.phase !== 'lobby' &&
-            view.settings.teams.kind !== 'aloud' && (
-              <JoinReminder roomCode={roomCode} />
-            )}
-        </header>
+        {header}
 
-        <RoomStage
-          canPlay={canPlay}
-          clock={clock}
-          controls={controls}
-          isSpeaker={isSpeaker}
-          onUnlockAudio={armAudio}
-          refusal={refusal}
-          roomCode={roomCode}
-          slateWall={slateWall}
-          view={view}
-        />
+        {stage}
 
         <footer>
           {error !== null && (
@@ -557,47 +659,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           )}
           {view !== null && (
             <>
-              <HostActions
-                challengeLine={
-                  view.settings.game?.kind === 'challenge'
-                    ? { onChange: setChallengeText, text: challengeText }
-                    : null
-                }
-                draftSource={draftSource}
-                isLive={isLive}
-                onOpenRound={() => {
-                  // Inside the press, never in an effect: the autoplay policy
-                  // grants permission only from a real gesture, and it cannot be
-                  // asked for later when the track arrives.
-                  armAudio()
-                  // The press has already read the line it sends, and the
-                  // next challenge is never this one again.
-                  setChallengeText('')
-
-                  // What the picker is showing is what the host chose, and a
-                  // round about to be drawn is the moment that means something —
-                  // which is why every control that opens one comes through here
-                  // rather than the launch alone. Re-sending an unchanged source
-                  // is free: the server drops the pool only when it differs.
-                  const game = view.settings.game
-
-                  if (draftSource !== null && game?.kind === 'blindtest') {
-                    changeSettings({
-                      ...view.settings,
-                      game: { ...game, source: draftSource }
-                    })
-                  }
-                }}
-                onPlayRightAway={playRightAway}
-                onPlayStyle={setPlayStyle}
-                onSettingsChange={changeSettings}
-                playStyle={playStyle}
-                preferences={preferences}
-                send={send}
-                slateKeys={preparedSlateKeys}
-                slateWall={slateWall}
-                view={view}
-              />
+              <HostActions {...hostActionsProps(view)} />
               {/*
               `finished` is not a phase of a game, it is the result of one, and
               both of these act on a game in flight: how long a reveal is held

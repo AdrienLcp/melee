@@ -41,10 +41,17 @@ import { VerdictPanel } from './verdict-panel'
 export type StageControls = {
   /**
    * The answer is behind a press rather than printed, because this console is
-   * the room's own screen, taken over while its host was away.
+   * the room's own screen — taken over from the wall while its host was away,
+   * or said to be one in the menu.
    */
   isAnswerFolded: boolean
   isLive: boolean
+  /**
+   * This console is the room's own screen: what only the host may touch —
+   * copying the link, removing a seat, typing a slate's key — leaves the stage
+   * for the drawer, and the stage reads as the wall's.
+   */
+  isRoomScreen: boolean
   /** Keeps a key typed mid-sheet for the next sheet this host opens. */
   onRememberSlateKey: (itemIndex: number, key: string) => void
   /** Aimed at the console's own seat too, which is why it is not a bare frame. */
@@ -110,7 +117,10 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   if (view === null) {
     return (
       <div className='stage lobby'>
-        <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
+        <RoomInvitation
+          isUnattended={controls === null || controls.isRoomScreen}
+          roomCode={roomCode}
+        />
       </div>
     )
   }

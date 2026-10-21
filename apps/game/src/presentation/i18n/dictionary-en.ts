@@ -360,6 +360,15 @@ export const EN_DICTIONARY = defineDictionary({
       warning: 'Everyone is sent out, and the code stops working.'
     },
     countdown: 'Countdown',
+    /**
+     * The room's own screen keeps one press on the stage and everything else
+     * behind `open`, at the screen's foot; `removePlayer` heads the seats it
+     * can take off the table.
+     */
+    drawer: {
+      open: 'Run the table',
+      removePlayer: 'Remove a player'
+    },
     endGame: 'End the game',
     final: {
       nobody: 'Nobody scored',
@@ -607,6 +616,8 @@ export const EN_DICTIONARY = defineDictionary({
       logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
       nickname:
         'The name you last played under, so the next table fills it in for you.',
+      roomScreen:
+        'Whether this screen is the room’s own, so it stays one from one table to the next.',
       seats:
         'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
       server:
@@ -662,6 +673,12 @@ export const EN_DICTIONARY = defineDictionary({
       teams: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} team', other: '{?} teams' } }
       })
+    },
+    /** Said by the host, about the machine rather than the table: it outlives the room. */
+    roomScreen: {
+      description:
+        'For the screen everyone reads. Answers stay hidden until you show them, and your controls move to Run the table.',
+      label: 'This screen is the room’s'
     }
   },
   /**

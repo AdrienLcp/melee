@@ -10,6 +10,7 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
+import { PrimaryPress, SecondaryPresses, useActionSlot } from './action-slot'
 import { BoardMoves } from './board-moves'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
@@ -27,6 +28,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   view
 }) => {
   const { locale, translate } = useI18n()
+  const slot = useActionSlot()
   const { settings } = view
   const total = settings.roundCount
 
@@ -40,26 +42,33 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   if (hasTurnsAfter(view.round?.turn ?? null)) {
     return (
       <div className='reveal-actions'>
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            onOpenRound()
-            send({ type: 'host.nextRound' })
-          }}
-          size='large'
-        >
-          {translate('host.nextTurn')}
-        </Button>
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            send({ type: 'host.endGame' })
-          }}
-          variant='underlined'
-        >
-          {translate('host.endGame')}
-        </Button>
-        <BoardMoves isLive={isLive} send={send} view={view} />
+        <PrimaryPress>
+          <Button
+            isDisabled={!isLive}
+            onPress={() => {
+              onOpenRound()
+              send({ type: 'host.nextRound' })
+            }}
+            size='large'
+          >
+            {translate('host.nextTurn')}
+          </Button>
+        </PrimaryPress>
+        {/* The drawer ends a game among the room's other exits. */}
+        {slot === 'all' && (
+          <Button
+            isDisabled={!isLive}
+            onPress={() => {
+              send({ type: 'host.endGame' })
+            }}
+            variant='underlined'
+          >
+            {translate('host.endGame')}
+          </Button>
+        )}
+        <SecondaryPresses>
+          <BoardMoves isLive={isLive} send={send} view={view} />
+        </SecondaryPresses>
       </div>
     )
   }
@@ -67,16 +76,20 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   if (total !== null && (view.round?.index ?? 0) >= total) {
     return (
       <div className='reveal-actions'>
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            send({ type: 'host.nextRound' })
-          }}
-          size='large'
-        >
-          {translate('host.seeResults')}
-        </Button>
-        <BoardMoves isLive={isLive} send={send} view={view} />
+        <PrimaryPress>
+          <Button
+            isDisabled={!isLive}
+            onPress={() => {
+              send({ type: 'host.nextRound' })
+            }}
+            size='large'
+          >
+            {translate('host.seeResults')}
+          </Button>
+        </PrimaryPress>
+        <SecondaryPresses>
+          <BoardMoves isLive={isLive} send={send} view={view} />
+        </SecondaryPresses>
       </div>
     )
   }
@@ -87,67 +100,76 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         The game the draw landed on, already selected: one press opens it, and
         the others are one press away when the table shouts for something else.
       */}
-      {settings.lineUp.length > 1 && (
-        <SegmentedControl
-          className='next-game'
+      <SecondaryPresses>
+        {settings.lineUp.length > 1 && (
+          <SegmentedControl
+            className='next-game'
+            isDisabled={!isLive}
+            label={translate('host.lineUp.next')}
+            onChange={(game) => {
+              if (isShelvedGame(game) && game !== settings.game?.kind) {
+                onSettingsChange(
+                  movedToGame({
+                    game,
+                    locale,
+                    remembered: rememberedSetupFor({ game, preferences }),
+                    settings
+                  })
+                )
+              }
+            }}
+            options={settings.lineUp.map((game) => ({
+              label: translate(gameNameKey(game)),
+              value: game
+            }))}
+            value={settings.game?.kind ?? null}
+          />
+        )}
+        {challengeLine !== null && (
+          <ChallengeLineField
+            isDisabled={!isLive}
+            onChange={challengeLine.onChange}
+            value={challengeLine.text}
+          />
+        )}
+        <TurnsChoice
           isDisabled={!isLive}
-          label={translate('host.lineUp.next')}
-          onChange={(game) => {
-            if (isShelvedGame(game) && game !== settings.game?.kind) {
-              onSettingsChange(
-                movedToGame({
-                  game,
-                  locale,
-                  remembered: rememberedSetupFor({ game, preferences }),
-                  settings
-                })
-              )
-            }
+          onChange={onPlayStyle}
+          playStyle={playStyle}
+          view={view}
+        />
+      </SecondaryPresses>
+      <PrimaryPress>
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            onOpenRound()
+            send({
+              challengeText: challengeLine?.text,
+              playStyle: playStyleFor({ playStyle, view }),
+              type: 'host.nextRound'
+            })
           }}
-          options={settings.lineUp.map((game) => ({
-            label: translate(gameNameKey(game)),
-            value: game
-          }))}
-          value={settings.game?.kind ?? null}
-        />
-      )}
-      {challengeLine !== null && (
-        <ChallengeLineField
+          size='large'
+        >
+          {translate('host.nextRound')}
+        </Button>
+      </PrimaryPress>
+      {/* The drawer ends a game among the room's other exits. */}
+      {slot === 'all' && (
+        <Button
           isDisabled={!isLive}
-          onChange={challengeLine.onChange}
-          value={challengeLine.text}
-        />
+          onPress={() => {
+            send({ type: 'host.endGame' })
+          }}
+          variant='underlined'
+        >
+          {translate('host.endGame')}
+        </Button>
       )}
-      <TurnsChoice
-        isDisabled={!isLive}
-        onChange={onPlayStyle}
-        playStyle={playStyle}
-        view={view}
-      />
-      <Button
-        isDisabled={!isLive}
-        onPress={() => {
-          onOpenRound()
-          send({
-            challengeText: challengeLine?.text,
-            playStyle: playStyleFor({ playStyle, view }),
-            type: 'host.nextRound'
-          })
-        }}
-        size='large'
-      >
-        {translate('host.nextRound')}
-      </Button>
-      <Button
-        isDisabled={!isLive}
-        onPress={() => {
-          send({ type: 'host.endGame' })
-        }}
-        variant='underlined'
-      >
-        {translate('host.endGame')}
-      </Button>
-      <BoardMoves isLive={isLive} send={send} view={view} />
+      <SecondaryPresses>
+        <BoardMoves isLive={isLive} send={send} view={view} />
+      </SecondaryPresses>
     </div>
   )
 }

@@ -333,6 +333,10 @@ export const FR_DICTIONARY = defineDictionary({
       warning: 'Tout le monde sort, et le code cesse de fonctionner.'
     },
     countdown: 'Décompte',
+    drawer: {
+      open: 'Animer',
+      removePlayer: 'Retirer un joueur'
+    },
     endGame: 'Terminer la partie',
     final: {
       nobody: 'Personne n’a marqué',
@@ -566,6 +570,8 @@ export const FR_DICTIONARY = defineDictionary({
       logs: 'Cloudflare garde un journal de chaque requête pendant trois jours, pour trouver ce qui a cassé : il contient ton adresse IP et le nom de ton navigateur à côté du code de la table, jamais un pseudo ni une réponse.',
       nickname:
         'Le nom sous lequel tu as joué la dernière fois, pour que la table suivante le remplisse pour toi.',
+      roomScreen:
+        'Si cet écran est celui de la salle, pour qu’il le reste d’une table à l’autre.',
       seats:
         'La place que tu occupes à chaque table rejointe, pour qu’un rechargement ou un écran verrouillé t’y ramène avec ton score. Oubliée au bout d’un jour.',
       server:
@@ -607,6 +613,11 @@ export const FR_DICTIONARY = defineDictionary({
       teams: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} équipe', other: '{?} équipes' } }
       })
+    },
+    roomScreen: {
+      description:
+        'Pour l’écran que toute la salle regarde. Les réponses restent cachées tant que tu ne les montres pas, et tes commandes passent dans Animer.',
+      label: 'Cet écran est celui de la salle'
     }
   },
   navigation: {

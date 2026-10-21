@@ -20,6 +20,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { PrimaryPress, SecondaryPresses } from './action-slot'
 import type { StageControls } from './room-stage'
 import { ScoreTrack, type SeatProgress } from './score-track'
 import { SlateKeyEditor } from './slate-key-editor'
@@ -593,30 +594,34 @@ export const SlateCorrectionActions: React.FC<SlateStageProps> = ({
 
   return (
     <div className='slate-actions'>
-      <Button
-        isDisabled={!isLive || previous === undefined}
-        onPress={() => {
-          if (previous !== undefined) {
-            send({
-              itemIndex: previous,
-              roundId: round.id,
-              type: 'host.showItem'
-            })
-          }
-        }}
-        variant='outlined'
-      >
-        {translate('slate.correct.previous')}
-      </Button>
-      {primary}
-      <Button
-        className='aside'
-        onPress={wall.showSheets}
-        size='small'
-        variant='underlined'
-      >
-        {translate(hasOpenItem ? 'slate.wall.toSheets' : 'slate.wall.toList')}
-      </Button>
+      <SecondaryPresses>
+        <Button
+          isDisabled={!isLive || previous === undefined}
+          onPress={() => {
+            if (previous !== undefined) {
+              send({
+                itemIndex: previous,
+                roundId: round.id,
+                type: 'host.showItem'
+              })
+            }
+          }}
+          variant='outlined'
+        >
+          {translate('slate.correct.previous')}
+        </Button>
+      </SecondaryPresses>
+      <PrimaryPress>{primary}</PrimaryPress>
+      <SecondaryPresses>
+        <Button
+          className='aside'
+          onPress={wall.showSheets}
+          size='small'
+          variant='underlined'
+        >
+          {translate(hasOpenItem ? 'slate.wall.toSheets' : 'slate.wall.toList')}
+        </Button>
+      </SecondaryPresses>
     </div>
   )
 }
@@ -642,25 +647,33 @@ export const SlateWritingActions: React.FC<SlateStageProps> = ({
   return (
     <div className='slate-actions'>
       {hasOpenItem && (
-        <Button
-          isDisabled={!isLive}
-          onPress={() =>
-            send({ roundId: round.id, type: 'host.collectSheets' })
-          }
-        >
-          {translate(
-            hasClosedItem ? 'slate.wall.collectRest' : 'slate.wall.collect'
-          )}
-        </Button>
+        <PrimaryPress>
+          <Button
+            isDisabled={!isLive}
+            onPress={() =>
+              send({ roundId: round.id, type: 'host.collectSheets' })
+            }
+          >
+            {translate(
+              hasClosedItem ? 'slate.wall.collectRest' : 'slate.wall.collect'
+            )}
+          </Button>
+        </PrimaryPress>
       )}
-      {hasClosedItem && (
-        <Button
-          onPress={wall.showWall}
-          variant={hasOpenItem ? 'outlined' : 'filled'}
-        >
-          {translate('slate.wall.toWall')}
-        </Button>
-      )}
+      {hasClosedItem &&
+        (hasOpenItem ? (
+          <SecondaryPresses>
+            <Button onPress={wall.showWall} variant='outlined'>
+              {translate('slate.wall.toWall')}
+            </Button>
+          </SecondaryPresses>
+        ) : (
+          <PrimaryPress>
+            <Button onPress={wall.showWall}>
+              {translate('slate.wall.toWall')}
+            </Button>
+          </PrimaryPress>
+        ))}
     </div>
   )
 }

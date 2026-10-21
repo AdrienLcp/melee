@@ -26,7 +26,6 @@ the step it names and deleting its line here.
 | 20 | Solo and duel | Solo: one seat answers for its team, rotating set after set; duel: two seats of two teams head to head, every seat duelling before anyone twice | h3 |
 | 21 | Teams with no phone | *Aloud*, a fifth kind of teams: named on the console, no seat, every round played together and judged there by tapping the team(s) that had it; the map, the reflex race and the slate unavailable under it | h4 |
 | 22 | French cities | Prefectures and large cities of metropolitan France; tiers to the city itself: under 25 km 3 `POINT`s, under 75 km 2, under 150 km 1 | h5 |
-| 23 | The screen-only evening | The host console on the touch display, the wall's layout with the host's presses in a drawer | h6 |
 
 
 Settled 17/10/2026, and moved into the steps: the name is **Melee** (done, `a6169a6`); teams can be drawn **or chosen by the players** (step a, done); the host drives from a phone or a laptop, the wall is the big screen ([product model](product-model.md)); the setup's leaflet and sharing (s, done); a podium closes the evening, with no booby prize (f, done). Settled 20/10/2026: a challenge played off screen pays its placings 3, 2 and 1 `POINT`s (i).

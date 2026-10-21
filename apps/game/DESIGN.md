@@ -768,6 +768,20 @@ their keyframes (`styles/_sheet.sass`), `leaflet.sass` the look. The sheet is a
 plain modal with its own rise, not react-aria's `Sheet`, which enters through
 the browser's smooth scroll and takes over half a second.
 
+### The room's own screen (`RoomScreenPresses`, `Drawer`)
+A console switched to the room's screen in the menu (`melee:room-screen`) is
+drawn as the wall — `wall-page room-screen` on `<main>`, the same header,
+stage and board track, every answer folded behind *Voir la réponse* — with the
+host's hand at its foot, fixed beside `<main>`: the phase's one press bottom
+right, large and filled, and *Animer* bottom left. The page pays for them in
+its own `--layout-padding-block-end`, so every stage sized to the viewport
+sizes to what is left. `ActionSlot` splits each phase's presses rather than
+drawing them twice: `PrimaryPress` is the one the room waits on, with the line
+that says why it refuses; `SecondaryPresses` go to the drawer. `Drawer` is a
+panel from the start edge past the split, 28rem, sliding in on `base`; below
+it, the leaflet's sheet with its grabber. The face is the stylesheet's, so
+no media query is read in a component.
+
 ## Do's and Don'ts
 
 ### Do:

@@ -46,6 +46,13 @@ step that lands keeps its line here, dated, and loses its details.
    France is a second geometry in `world-geometry.ts`, Lambert's parallels,
    cut to a rectangle with only its neighbours drawn. Protocol 34.
 
-6. **The screen-only evening** (decision 23). No host phone: the host console
-   runs on the touch display itself, in a layout that is the wall's with the
-   host's presses in a drawer. Its shape is the first thing the step settles.
+6. **The screen-only evening** — done 21/10/2026, on proposal C: *Cet écran
+   est celui de la salle*, a switch in the menu stored per machine
+   (`melee:room-screen`), draws the console as the wall — the answers folded,
+   no copy, share, seat form or remove cross on the stage, the board track
+   under it — with the phase's one press bottom right and everything else in
+   *Animer*, a drawer from the start edge past the split and a sheet below it
+   (`presentation/components/drawer.tsx`). The phase components split
+   through `ActionSlot` (`features/host/action-slot.tsx`) rather than being
+   written twice; the drawer carries the rest of the phase, the hold, the
+   seats to remove, the setup, the slate's key and the menu's exits.
