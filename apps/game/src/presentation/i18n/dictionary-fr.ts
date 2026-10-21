@@ -345,6 +345,9 @@ export const FR_DICTIONARY = defineDictionary({
       several: 'Plusieurs jeux'
     },
     hostDecides: 'Tu décides',
+    inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
+      plural: { count: { other: '{?}' } }
+    }),
     lineUp: {
       first: 'En premier',
       next: 'Ensuite',

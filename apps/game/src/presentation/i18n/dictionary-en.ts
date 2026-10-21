@@ -370,6 +370,9 @@ export const EN_DICTIONARY = defineDictionary({
       several: 'Several games'
     },
     hostDecides: 'You decide',
+    inPlay: defineTranslation('{count:plural} of {total:number} in play', {
+      plural: { count: { other: '{?}' } }
+    }),
     lineUp: {
       first: 'First up',
       next: 'Next up',

@@ -16,7 +16,7 @@ import { MapPrompt } from '@/presentation/components/map-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { AnsweredPawns } from './answered-pawns'
+import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 import { PrintedChoices } from './printed-choices'
 
 import './playing-stage.sass'
@@ -143,9 +143,14 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           youId={answersAs}
         />
       )}
-      {mode !== 'buzzer' && view.players.length > 0 && (
-        <AnsweredPawns players={view.players} round={round} />
-      )}
+      {view.players.length > 0 &&
+        (mode !== 'buzzer' ? (
+          <AnsweredPawns players={view.players} round={round} />
+        ) : (
+          round.content.kind !== 'challenge' && (
+            <BuzzerPawns players={view.players} round={round} />
+          )
+        ))}
       {children}
     </div>
   )
