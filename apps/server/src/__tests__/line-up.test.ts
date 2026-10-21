@@ -1,6 +1,10 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
+import {
+  DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_BUZZER_SETTINGS,
+  type GameSettings
+} from '@melee/protocol/game'
 import { createRoomResponseSchema } from '@melee/protocol/http'
 import type { RoomSettings } from '@melee/protocol/room'
 import { API_ROUTES } from '@melee/protocol/routes'
@@ -26,13 +30,28 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
 
 const EVENING: RoomSettings = {
   ...FAST_GAME,
-  lineUp: ['blindtest', 'buzzer'],
+  lineUp: [...FAST_GAME.lineUp, DEFAULT_BUZZER_SETTINGS],
   roundCount: 6
 }
 
 const ON_THE_BUZZER: RoomSettings = {
   ...EVENING,
-  game: DEFAULT_BUZZER_SETTINGS
+  game: DEFAULT_BUZZER_SETTINGS,
+  lineUpAt: 1
+}
+
+const ON_THE_CHARTS: GameSettings = {
+  ...DEFAULT_BLINDTEST_SETTINGS,
+  roundDurationMs: 5_000
+}
+
+const FILM_SCORES: GameSettings = { ...ON_THE_CHARTS, source: { kind: 'film' } }
+
+const TWO_BLIND_TESTS: RoomSettings = {
+  ...FAST_GAME,
+  game: ON_THE_CHARTS,
+  lineUp: [ON_THE_CHARTS, ON_THE_CHARTS],
+  roundCount: 6
 }
 
 describe('an evening of several games', () => {
@@ -87,13 +106,48 @@ describe('an evening of several games', () => {
     const { host } = await harness.openRoom(EVENING)
 
     host.send({
-      settings: { ...ON_THE_BUZZER, lineUp: ['blindtest'] },
+      settings: { ...ON_THE_BUZZER, lineUpAt: 0 },
       type: 'host.updateSettings'
     })
     await waitFor(() => errorsIn(host).length > 0, 'the refusal')
 
     expect(errorsIn(host)[0]?.code).toBe('invalid_message')
-    expect(hostView(host)?.settings.lineUp).toEqual(['blindtest', 'buzzer'])
+    expect(hostView(host)?.settings.lineUpAt).toBe(0)
+    expect(hostView(host)?.settings.game?.kind).toBe('blindtest')
+  })
+
+  it('[line-up] writes the game back into its entry, so a variant keeps its own source', async () => {
+    const { host } = await harness.openRoom(TWO_BLIND_TESTS)
+
+    host.send({
+      settings: { ...TWO_BLIND_TESTS, game: FILM_SCORES, lineUpAt: 1 },
+      type: 'host.updateSettings'
+    })
+    await waitFor(
+      () => hostView(host)?.settings.lineUpAt === 1,
+      'the move to the second blind test'
+    )
+
+    const settings = hostView(host)?.settings ?? TWO_BLIND_TESTS
+
+    host.send({
+      settings: {
+        ...settings,
+        game: ON_THE_CHARTS,
+        lineUpAt: 0
+      },
+      type: 'host.updateSettings'
+    })
+    await waitFor(
+      () => hostView(host)?.settings.lineUpAt === 0,
+      'the move back to the first'
+    )
+
+    expect(hostView(host)?.settings.lineUp).toEqual([
+      ON_THE_CHARTS,
+      FILM_SCORES
+    ])
+    expect(hostView(host)?.settings.game).toEqual(ON_THE_CHARTS)
   })
 
   it('[ready] shows a seat back at the table to every screen, until the round opens', async () => {
@@ -162,7 +216,8 @@ describe('an evening of several games', () => {
     expect(hostView(host)?.settings).toMatchObject({
       board: { kind: 'track', length: 24 },
       game: { kind: 'quiz' },
-      lineUp: ['quiz', 'blindtest', 'buzzer'],
+      lineUp: [{ kind: 'quiz' }, { kind: 'blindtest' }, { kind: 'buzzer' }],
+      lineUpAt: 0,
       roundCount: 12,
       teams: { count: 3, kind: 'drawn' }
     })

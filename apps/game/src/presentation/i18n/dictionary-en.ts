@@ -397,11 +397,14 @@ export const EN_DICTIONARY = defineDictionary({
       plural: { count: { other: '{?}' } }
     }),
     lineUp: {
+      addVariant: 'Add a variant',
+      entryHint: 'The settings below are this one’s.',
       first: 'First up',
       next: 'Next up',
       ready: defineTranslation('{count:plural} of {total:number} ready', {
         plural: { count: { other: '{?}' } }
-      })
+      }),
+      takeOut: 'Take it out'
     },
     needsGame: 'Pick what the table is playing',
     needsPlayer: 'You need at least one at the table',
@@ -839,6 +842,9 @@ export const EN_DICTIONARY = defineDictionary({
         'Everyone types their answer at once. The right one scores three, and the earlier you find it the more the clock adds — up to double.'
     },
     tagline: 'A question, and the first one who knows it.',
+    variant: {
+      wellKnown: 'Crowd-pleasers'
+    },
     wellKnown: {
       hint: 'Fewer to draw from, but nobody is left stuck.',
       label: 'Stay on the crowd-pleasers'
@@ -897,6 +903,8 @@ export const EN_DICTIONARY = defineDictionary({
      */
     award: '{points:number}',
     awardWithSpeed: '{answer:number} +{speed:number}',
+    /** One entry of an evening's line-up nothing else tells from another of its game. */
+    entryNumbered: '{name} {number:number}',
     index: 'Round {index:number} of {total:number}',
     indexOpen: 'Round {index:number}',
     /**

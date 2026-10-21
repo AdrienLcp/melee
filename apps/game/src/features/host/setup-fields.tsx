@@ -16,6 +16,7 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { GamePicker } from './game-picker'
 import { HostSeat } from './host-seat'
+import { LineUpEntries } from './line-up-entries'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
@@ -173,8 +174,19 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
             label={translate('host.setup.group.round')}
             summary={summaries.round}
           >
+            <LineUpEntries
+              draftSource={draftSource}
+              isDisabled={!isLive || roundInPlay}
+              onChange={onSettingsChange}
+              preferences={preferences}
+              settings={settings}
+            />
             {game.kind === 'blindtest' && (
-              <PlaylistPicker onDraftChange={onDraftSource} settings={game} />
+              <PlaylistPicker
+                key={settings.lineUpAt}
+                onDraftChange={onDraftSource}
+                settings={game}
+              />
             )}
             <SettingsPanel
               draftSource={draftSource}

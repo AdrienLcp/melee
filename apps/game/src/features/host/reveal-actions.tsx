@@ -1,14 +1,13 @@
 import type React from 'react'
 
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
-import { movedToGame } from '@melee/core/room/room-settings'
-import { isShelvedGame } from '@melee/core/room/shelved-game'
+import { movedToEntry } from '@melee/core/room/room-settings'
 import { hasTurnsAfter } from '@melee/core/team/team-turn'
 
 import { Button } from '@/presentation/components/button'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
-import { gameNameKey } from '@/presentation/i18n/translation'
+import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 
 import { PrimaryPress, SecondaryPresses, useActionSlot } from './action-slot'
 import { BoardMoves } from './board-moves'
@@ -32,6 +31,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   const { locale, translate } = useI18n()
   const slot = useActionSlot()
   const { settings } = view
+  const entryNames = useLineUpEntryNames(settings.lineUp)
   const total = settings.roundCount
 
   // The server ends the game rather than opening a round past the last one, so
@@ -108,23 +108,31 @@ export const RevealActions: React.FC<HostActionsProps> = ({
             className='next-game'
             isDisabled={!isLive}
             label={translate('host.lineUp.next')}
-            onChange={(game) => {
-              if (isShelvedGame(game) && game !== settings.game?.kind) {
+            onChange={(value) => {
+              const at = Number(value)
+              const entry = settings.lineUp[at]
+
+              if (entry !== undefined && at !== settings.lineUpAt) {
                 onSettingsChange(
-                  movedToGame({
-                    game,
+                  movedToEntry({
+                    at,
                     locale,
-                    remembered: rememberedSetupFor({ game, preferences }),
+                    remembered: rememberedSetupFor({
+                      game: entry.kind,
+                      preferences
+                    }),
                     settings
                   })
                 )
               }
             }}
-            options={settings.lineUp.map((game) => ({
-              label: translate(gameNameKey(game)),
-              value: game
+            options={entryNames.map((name, at) => ({
+              label: name,
+              value: String(at)
             }))}
-            value={settings.game?.kind ?? null}
+            value={
+              settings.lineUpAt === null ? null : String(settings.lineUpAt)
+            }
           />
         )}
         {innerclockTarget !== null && (

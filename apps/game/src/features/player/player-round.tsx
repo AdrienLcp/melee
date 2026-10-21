@@ -77,6 +77,7 @@ import {
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 import {
   buzzBlockerKey,
   gameNameKey,
@@ -166,7 +167,8 @@ const BackAtTheTable: React.FC<{
   view: PlayerRoomView
 }> = ({ onReady, round, view }) => {
   const translate = useTranslate()
-  const { game, lineUp, roundCount } = view.settings
+  const { game, lineUp, lineUpAt, roundCount } = view.settings
+  const entryNames = useLineUpEntryNames(lineUp)
   const you = view.players.find((player) => player.id === view.youId)
 
   if (
@@ -182,7 +184,9 @@ const BackAtTheTable: React.FC<{
     <div className='back-at-the-table'>
       <p className='next-game'>
         {translate('player.lineUp.next', {
-          game: translate(gameNameKey(game.kind))
+          game:
+            (lineUpAt === null ? undefined : entryNames[lineUpAt]) ??
+            translate(gameNameKey(game.kind))
         })}
       </p>
       <ToggleButton

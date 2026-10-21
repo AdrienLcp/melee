@@ -55,7 +55,7 @@ out whether anything is usable yet.
 | [37 — Flags](37-flags.md) | to do | A flag on every screen, the room names the country, four choices or typed, decoys that look alike |
 | [38 — Timeline](38-timeline.md) | to do | Four or five dated events each player orders on their own screen; the wall shows the true order and the years |
 | [39 — Emoji rebus](39-emoji-rebus.md) | to do | A film, song or saying written in emojis; the room names it |
-| [40 — A line-up of variants](40-line-up-of-variants.md) | to do | The host ticks variants, not only games — two blind tests on different sources, a quiz held to one subject — each drawn round by round. A line-up entry carries its game's settings |
+| [40 — A line-up of variants](40-line-up-of-variants.md) | **done** 21/10/2026 | The host ticks variants, not only games — two blind tests on different sources, a quiz held to one subject — each drawn round by round. `settings.lineUp` holds whole game arms and `lineUpAt` points at the one `game` was opened from; the server writes `game` back into it on every frame, so the fold edits the variant. Names are generated, never typed; presets still tick kinds |
 
 ## Order, and what can move
 

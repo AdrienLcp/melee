@@ -1,6 +1,7 @@
 import type { GameKind } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
+import { followedByLineUp } from './line-up'
 import type { GameSetup } from './room-settings'
 
 /**
@@ -23,7 +24,7 @@ export type HostPreferences = {
    * which is this evening's and not this host's: a quick game opened from its
    * front door next week is one game, whatever was ticked tonight.
    */
-  room: Omit<RoomSettings, keyof GameSetup | 'lineUp'>
+  room: Omit<RoomSettings, keyof GameSetup | 'lineUp' | 'lineUpAt'>
 }
 
 /**
@@ -62,7 +63,8 @@ export const rememberedSetupFor = ({
  * reads off the host's own interface.
  *
  * An evening keeps what its preset decided — the teams, the track, the length
- * and the hold — and takes from the host only how each game is played.
+ * and the hold — and takes from the host only how each game is played, every
+ * entry of it.
  */
 export const restoredSettings = ({
   preferences,
@@ -77,18 +79,22 @@ export const restoredSettings = ({
       : rememberedSetupFor({ game: settings.game.kind, preferences })
 
   if (isEvening(settings)) {
-    return {
+    return followedByLineUp({
       ...settings,
       ...preferences.room,
       ...remembered,
       autoAdvanceMs: settings.autoAdvanceMs,
       board: settings.board,
+      lineUp: settings.lineUp.map(
+        (entry) =>
+          rememberedSetupFor({ game: entry.kind, preferences })?.game ?? entry
+      ),
       roundCount: settings.roundCount,
       teams: settings.teams
-    }
+    })
   }
 
-  return { ...settings, ...preferences.room, ...remembered }
+  return followedByLineUp({ ...settings, ...preferences.room, ...remembered })
 }
 
 /**
@@ -111,7 +117,8 @@ export const rememberSettings = ({
   preferences: HostPreferences | null
   settings: RoomSettings
 }): HostPreferences => {
-  const { autoAdvanceMs, game, lineUp, mode, roundCount, ...room } = settings
+  const { autoAdvanceMs, game, lineUp, lineUpAt, mode, roundCount, ...room } =
+    settings
   const evening = isEvening(settings)
   const filed =
     evening && game !== null

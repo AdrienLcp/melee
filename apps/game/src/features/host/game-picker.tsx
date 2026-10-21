@@ -9,7 +9,7 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { toggledInLineUp } from '@melee/core/room/line-up'
+import { kindsInLineUp, toggledInLineUp } from '@melee/core/room/line-up'
 import { movedToGame } from '@melee/core/room/room-settings'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 
@@ -50,6 +50,7 @@ export const GamePicker: React.FC<GamePickerProps> = ({
   const isEvening = wantsSeveral || settings.lineUp.length > 1
   const rememberedFor = (game: GameKind) =>
     rememberedSetupFor({ game, preferences })
+  const ticked = kindsInLineUp(settings.lineUp)
 
   const options = shelvedGames.map((game) => {
     const playsAloud = isPlayableAloud({ game, teams: settings.teams })
@@ -65,9 +66,7 @@ export const GamePicker: React.FC<GamePickerProps> = ({
       icon: <GameIcon game={game} />,
       isDisabled:
         !playsAloud ||
-        (isEvening &&
-          settings.lineUp.length === 1 &&
-          settings.lineUp.includes(game)),
+        (isEvening && ticked.length === 1 && ticked.includes(game)),
       label: translate(gameNameKey(game)),
       spine: `var(--spine-${game})`,
       value: game
@@ -85,7 +84,7 @@ export const GamePicker: React.FC<GamePickerProps> = ({
 
         // Back to one game is back to the one the next round is on.
         if (!isSelected && settings.game !== null) {
-          onChange({ ...settings, lineUp: [settings.game.kind] })
+          onChange({ ...settings, lineUp: [settings.game], lineUpAt: 0 })
         }
       }}
     />
@@ -98,9 +97,9 @@ export const GamePicker: React.FC<GamePickerProps> = ({
         className='game-picker'
         isDisabled={isDisabled}
         label={translate('host.game.labelSeveral')}
-        onChange={(ticked) => {
+        onChange={(nowTicked) => {
           const toggled = shelvedGames.find(
-            (game) => ticked.includes(game) !== settings.lineUp.includes(game)
+            (game) => nowTicked.includes(game) !== ticked.includes(game)
           )
 
           if (toggled !== undefined) {
@@ -115,7 +114,7 @@ export const GamePicker: React.FC<GamePickerProps> = ({
           }
         }}
         options={options}
-        value={[...settings.lineUp]}
+        value={ticked}
       />
     )
   }

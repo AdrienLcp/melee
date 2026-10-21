@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
 import { boardSettingsSchema, DEFAULT_BOARD_SETTINGS } from './board'
-import { gameKindSchema, gameKinds, gameSettingsSchema } from './game'
+import { gameSettingsSchema } from './game'
 import {
   nicknameSchema,
   playerIdSchema,
@@ -96,6 +96,13 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('point') })
 ])
 
+/**
+ * How many entries an evening may tick. Every shelved game once, with room for
+ * a few variants on top: past a dozen the line-up stops fitting the strip the
+ * console draws it in, and no evening plays that many games anyway.
+ */
+export const LINE_UP_MAX_ENTRIES = 12
+
 export const roomSettingsSchema = z.object({
   /**
    * How long a reveal stays on screen before the next round starts itself, or
@@ -127,21 +134,31 @@ export const roomSettingsSchema = z.object({
    */
   game: gameSettingsSchema.nullable(),
   /**
-   * The games ticked for the evening: what the next round may be drawn from.
-   * `game` stays what the next round *is* played on, and is always one of them;
-   * a room with no game yet has ticked none. One tick is a room playing one
-   * game, which is every room opened from a game's own front door.
+   * The games ticked for the evening, each with its own settings: what the next
+   * round may be drawn from. Two entries may share a game — a blind test on the
+   * charts and one on film scores are two ticks — which is why an entry is the
+   * game's whole arm rather than its kind. A room with no game yet has ticked
+   * none; one entry is a room playing one game, which is every room opened from
+   * a game's own front door.
    *
    * Kinds rather than shelved games, so a settings frame may still put a room
    * on a game that is served before it has a front door — the line-up only
    * ever has to hold what `game` may.
    */
-  lineUp: z
-    .array(gameKindSchema)
-    .max(gameKinds.length)
-    .refine((kinds) => new Set(kinds).size === kinds.length, {
-      message: 'A game is ticked once'
-    }),
+  lineUp: z.array(gameSettingsSchema).max(LINE_UP_MAX_ENTRIES),
+  /**
+   * Which entry `game` was opened from, and `null` exactly when there is no
+   * game. `game` is the copy the round is played on and the entry follows it:
+   * the server writes every accepted frame's `game` back into this entry, so a
+   * setting changed in the fold is the variant's from then on, and an entry
+   * drawn again later opens on what it was last left at.
+   */
+  lineUpAt: z
+    .number()
+    .int()
+    .min(0)
+    .max(LINE_UP_MAX_ENTRIES - 1)
+    .nullable(),
   /** How a round is answered, and the settings only that mode has. */
   mode: modeSettingsSchema,
   /**
@@ -181,6 +198,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,
   lineUp: [],
+  lineUpAt: null,
   /**
    * Everyone plays every round, which is what a party wants: the buzzer gives
    * the floor to whoever is quickest and leaves the rest of the room watching.

@@ -21,6 +21,7 @@ import {
   hostView,
   type Peer,
   type RoomHarness,
+  ticked,
   waitFor
 } from './room-harness'
 
@@ -203,7 +204,7 @@ describe('a table answering aloud', () => {
 
     await harness.seat({ code, nickname: 'Anna' })
     await sendAndLand(host, {
-      settings: { ...QUIZ, lineUp: ['quiz'], teams: ALOUD_IN_THREE },
+      settings: { ...ticked(QUIZ), teams: ALOUD_IN_THREE },
       type: 'host.updateSettings'
     })
 

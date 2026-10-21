@@ -34,7 +34,8 @@ const CHALLENGE_GAME: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
   game: DEFAULT_CHALLENGE_SETTINGS,
-  lineUp: ['challenge'],
+  lineUp: [DEFAULT_CHALLENGE_SETTINGS],
+  lineUpAt: 0,
   mode: DEFAULT_MODE_SETTINGS.buzzer,
   roundCount: null
 }
@@ -207,7 +208,7 @@ describe('a challenge played at the table', () => {
     const { code, host } = await harness.openRoom({
       ...CHALLENGE_GAME,
       game: { kind: 'buzzer', locksOutOnMiss: true },
-      lineUp: ['buzzer']
+      lineUp: [{ kind: 'buzzer', locksOutOnMiss: true }]
     })
     const anna = await harness.seat({ code, nickname: 'Anna' })
 

@@ -1,0 +1,17 @@
+@use '../../presentation/styles/strip'
+
+@layer components
+  .line-up-entries
+    display: flex
+    flex-direction: column
+    gap: var(--space-xs)
+
+    // A name runs as long as *Blind test · Film scores*: three of them side by
+    // side stop fitting long before the fold does.
+    .entries
+      @include strip.stacks-below(30rem)
+
+    .entry-actions
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)

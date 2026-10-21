@@ -14,7 +14,7 @@ import type { PlayStyle, RoomSettings } from '@melee/protocol/room'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { offersAnswerMode } from '@melee/core/room/game-modes'
-import { lineUpHolds } from '@melee/core/room/line-up'
+import { followedByLineUp, lineUpHolds } from '@melee/core/room/line-up'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { reshapesRound } from '@melee/core/room/room-settings'
 import { newSessionId } from '@melee/core/room/session-id'
@@ -1473,7 +1473,8 @@ const reconfigure = (
     sendError(outbound, {
       code: 'invalid_message',
       fatal: false,
-      message: 'The game the next round is on must be one of the games ticked'
+      message:
+        'The game the next round is on must be the entry it was opened from'
     })
 
     return
@@ -1535,7 +1536,7 @@ const reconfigure = (
   const previousGame = room.settings.game
   const previousHoldMs = room.settings.autoAdvanceMs
 
-  updateSettings(room, settings, now)
+  updateSettings(room, followedByLineUp(settings), now)
   fitTeamsToSettings(room)
   discardPoolIfStale({ previousGame, room })
   unseatConsolesThatMustJudge(engine)

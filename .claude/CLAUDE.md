@@ -149,10 +149,13 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
   included, reachable only by a settings frame. The two lists happen to be equal
   today and that is a coincidence, not a rule. The game owns
   its arm of `settings.game` and `round.content`, and narrows the answer mode
-- **Line-up** — the games ticked for the evening, `settings.lineUp`, and
-  `game` is always one of them: what the next round is played on, drawn by the
-  console as each reveal goes up (`nextGame`, never the game just played when
-  there is another) and changed by the host beside *Next round*. One tick is a
+- **Line-up** — the entries ticked for the evening, `settings.lineUp`, each
+  a game's whole settings so two may share a game (a **variant**: a blind test
+  on film scores beside one on the charts). `game` is a copy of the entry
+  `lineUpAt` points at, written back into it by the server on every frame:
+  what the next round is played on, drawn by the console as each reveal goes
+  up (`nextEntryAt`, another game before another entry of the same one) and
+  changed by the host beside *Next round*. One tick is a
   room playing one game, which every game's front door opens; a **preset** opens
   several, its length and its teams, and is app data that never travels. An
   evening of several keeps its own `roundCount` and reveal hold across a switch,

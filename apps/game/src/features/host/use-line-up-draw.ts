@@ -6,8 +6,8 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { nextGame } from '@melee/core/room/next-game'
-import { movedToGame } from '@melee/core/room/room-settings'
+import { nextEntryAt } from '@melee/core/room/next-game'
+import { movedToEntry } from '@melee/core/room/room-settings'
 import { hasTurnsAfter } from '@melee/core/team/team-turn'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
@@ -63,18 +63,19 @@ export const useLineUpDraw = ({
       return
     }
 
-    const drawn = nextGame({
-      last,
+    const drawn = nextEntryAt({
+      lastAt: settings.lineUpAt,
       lineUp: settings.lineUp,
       random: Math.random
     })
+    const entry = drawn === null ? undefined : settings.lineUp[drawn]
 
-    if (drawn !== null && drawn !== last) {
+    if (drawn !== null && entry !== undefined && drawn !== settings.lineUpAt) {
       onSettingsChange(
-        movedToGame({
-          game: drawn,
+        movedToEntry({
+          at: drawn,
           locale,
-          remembered: rememberedSetupFor({ game: drawn, preferences }),
+          remembered: rememberedSetupFor({ game: entry.kind, preferences }),
           settings
         })
       )

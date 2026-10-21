@@ -1,31 +1,69 @@
-import type { GameKind } from '@melee/protocol/game'
+import {
+  DEFAULT_GAME_SETTINGS,
+  type GameKind,
+  type GameSettings
+} from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
-import type { RoomSettings } from '@melee/protocol/room'
+import { LINE_UP_MAX_ENTRIES, type RoomSettings } from '@melee/protocol/room'
 
 import { isPlayableAloud } from './game-capabilities'
-import { type GameSetup, movedToGame } from './room-settings'
+import {
+  type GameSetup,
+  movedToEntry,
+  movedToGame,
+  openedSetup
+} from './room-settings'
 
 /**
- * Whether `game` is one of the games ticked — always, once there is a game,
- * and none ticked before there is. The schema cannot say it across two fields,
- * so the server asks here before it accepts a settings frame. Nor can it say
- * that a table answering aloud ticks only games played without a screen.
- */
-export const lineUpHolds = (settings: RoomSettings): boolean =>
-  (settings.game === null
-    ? settings.lineUp.length === 0
-    : settings.lineUp.includes(settings.game.kind)) &&
-  settings.lineUp.every((game) =>
-    isPlayableAloud({ game, teams: settings.teams })
-  )
-
-/**
- * The settings with `game` ticked into the line-up or taken out of it.
+ * Whether `game` was opened from the entry `lineUpAt` points at — always, once
+ * there is a game, and nothing ticked before there is. The schema cannot say
+ * it across three fields, so the server asks here before it accepts a settings
+ * frame. Nor can it say that a table answering aloud ticks only games played
+ * without a screen.
  *
- * The first tick of a room still deciding picks its game. Taking out the game
- * the next round is on moves the room to the first one left, with what this
- * host last left that game set to. The last tick cannot be taken out: a room
- * that has picked a game does not go back to deciding.
+ * The kind is what has to agree, not the settings: the entry follows `game`
+ * once the frame is accepted, which is `followedByLineUp`.
+ */
+export const lineUpHolds = (settings: RoomSettings): boolean => {
+  const { game, lineUp, lineUpAt, teams } = settings
+
+  if (game === null) {
+    return lineUp.length === 0 && lineUpAt === null
+  }
+
+  return (
+    lineUpAt !== null &&
+    lineUp[lineUpAt]?.kind === game.kind &&
+    lineUp.every((entry) => isPlayableAloud({ game: entry.kind, teams }))
+  )
+}
+
+/**
+ * The settings with `game` written back into the entry it was opened from, so
+ * a blind test moved to film scores in the fold is the film-score entry from
+ * then on, and comes back on them when it is drawn again.
+ */
+export const followedByLineUp = (settings: RoomSettings): RoomSettings =>
+  settings.game === null || settings.lineUpAt === null
+    ? settings
+    : {
+        ...settings,
+        lineUp: settings.lineUp.with(settings.lineUpAt, settings.game)
+      }
+
+/** The games ticked, each once, in the order they were first ticked. */
+export const kindsInLineUp = (lineUp: readonly GameSettings[]): GameKind[] => [
+  ...new Set(lineUp.map((entry) => entry.kind))
+]
+
+/**
+ * The settings with every entry of `game` ticked into the line-up or taken out
+ * of it.
+ *
+ * The first tick of a room still deciding picks its game. A game joins on what
+ * this host last left it set to. Taking out the game the next round is on
+ * moves the room to the first entry left. The last game cannot be taken out: a
+ * room that has picked a game does not go back to deciding.
  */
 export const toggledInLineUp = ({
   game,
@@ -39,29 +77,129 @@ export const toggledInLineUp = ({
   rememberedFor: (game: GameKind) => GameSetup | null
   settings: RoomSettings
 }): RoomSettings => {
-  if (!settings.lineUp.includes(game)) {
-    return settings.game === null
-      ? movedToGame({ game, locale, remembered: rememberedFor(game), settings })
-      : { ...settings, lineUp: [...settings.lineUp, game] }
+  const { lineUp } = settings
+
+  if (!lineUp.some((entry) => entry.kind === game)) {
+    if (settings.game === null) {
+      return movedToGame({
+        game,
+        locale,
+        remembered: rememberedFor(game),
+        settings
+      })
+    }
+
+    if (lineUp.length >= LINE_UP_MAX_ENTRIES) {
+      return settings
+    }
+
+    const joining = (rememberedFor(game) ?? openedSetup({ game, locale })).game
+
+    return { ...settings, lineUp: [...lineUp, joining] }
   }
 
-  const rest = settings.lineUp.filter((ticked) => ticked !== game)
-  const [first] = rest
+  return withoutEntries({
+    isTakenOut: (entry) => entry.kind === game,
+    locale,
+    rememberedFor,
+    settings
+  })
+}
 
-  if (first === undefined) {
+/**
+ * Whether a second entry of `game` could ever differ from the first: a game
+ * with no settings of its own — a reflex race, a challenge, the inner clock —
+ * would only ever add itself twice.
+ */
+export const canHoldVariants = (game: GameKind): boolean =>
+  Object.keys(DEFAULT_GAME_SETTINGS[game]).length > 1
+
+/**
+ * The settings with a second entry of the game the next round is on, set as
+ * it is, placed after the last entry of that game and made the one the next
+ * round is on — so the fold the host is looking at is now the variant's, and
+ * the first change there is what tells the two apart.
+ */
+export const withVariantAdded = (settings: RoomSettings): RoomSettings => {
+  const { game, lineUp } = settings
+
+  if (game === null || lineUp.length >= LINE_UP_MAX_ENTRIES) {
     return settings
   }
 
-  if (settings.game?.kind !== game) {
-    return { ...settings, lineUp: rest }
+  const at = lineUp.findLastIndex((entry) => entry.kind === game.kind) + 1
+
+  return {
+    ...settings,
+    lineUp: lineUp.toSpliced(at, 0, game),
+    lineUpAt: at
+  }
+}
+
+/**
+ * The settings with the line-up's entry `at` taken out. When it was the one
+ * the next round is on, the room moves to the entry after it, or to the one
+ * before it at the end; the last entry cannot be taken out.
+ */
+export const withoutEntry = ({
+  at,
+  locale,
+  rememberedFor,
+  settings
+}: {
+  at: number
+  locale: Locale
+  rememberedFor: (game: GameKind) => GameSetup | null
+  settings: RoomSettings
+}): RoomSettings =>
+  withoutEntries({
+    isTakenOut: (_entry, index) => index === at,
+    locale,
+    rememberedFor,
+    settings
+  })
+
+const withoutEntries = ({
+  isTakenOut,
+  locale,
+  rememberedFor,
+  settings
+}: {
+  isTakenOut: (entry: GameSettings, index: number) => boolean
+  locale: Locale
+  rememberedFor: (game: GameKind) => GameSetup | null
+  settings: RoomSettings
+}): RoomSettings => {
+  const { lineUp, lineUpAt } = settings
+  const kept = lineUp.flatMap((entry, index) =>
+    isTakenOut(entry, index) ? [] : [{ entry, index }]
+  )
+
+  if (kept.length === 0 || kept.length === lineUp.length) {
+    return settings
   }
 
-  return movedToGame({
-    game: first,
-    locale,
-    remembered: rememberedFor(first),
-    settings: { ...settings, lineUp: rest }
-  })
+  const rest = kept.map(({ entry }) => entry)
+  const stillAt = kept.findIndex(({ index }) => index === lineUpAt)
+
+  if (stillAt !== -1) {
+    return { ...settings, lineUp: rest, lineUpAt: stillAt }
+  }
+
+  const after = kept.findIndex(
+    ({ index }) => lineUpAt === null || index > lineUpAt
+  )
+  const at = after === -1 ? rest.length - 1 : after
+  const landing = rest[at]
+
+  return landing === undefined
+    ? settings
+    : movedToEntry({
+        at,
+        locale,
+        remembered: rememberedFor(landing.kind),
+        settings: { ...settings, lineUp: rest }
+      })
 }
 
 /** What an evening falls back to when none of its games can be played aloud. */
@@ -84,19 +222,20 @@ export const fittedToAloud = ({
 }): RoomSettings => {
   const playsAloud = (game: GameKind) =>
     isPlayableAloud({ game, teams: settings.teams })
+  const kinds = kindsInLineUp(settings.lineUp)
 
-  if (settings.lineUp.length === 0 || settings.lineUp.every(playsAloud)) {
+  if (kinds.length === 0 || kinds.every(playsAloud)) {
     return settings
   }
 
   const toggle = (from: RoomSettings, game: GameKind) =>
     toggledInLineUp({ game, locale, rememberedFor, settings: from })
 
-  const withOne = settings.lineUp.some(playsAloud)
+  const withOne = kinds.some(playsAloud)
     ? settings
     : toggle(settings, FIRST_GAME_ALOUD)
 
-  return withOne.lineUp
+  return kindsInLineUp(withOne.lineUp)
     .filter((game) => !playsAloud(game))
     .reduce(toggle, withOne)
 }

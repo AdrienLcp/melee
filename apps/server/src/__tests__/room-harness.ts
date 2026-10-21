@@ -140,7 +140,8 @@ export const FAST_GAME: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
   game: { ...DEFAULT_BLINDTEST_SETTINGS, roundDurationMs: 5_000 },
-  lineUp: ['blindtest'],
+  lineUp: [{ ...DEFAULT_BLINDTEST_SETTINGS, roundDurationMs: 5_000 }],
+  lineUpAt: 0,
   mode: DEFAULT_MODE_SETTINGS.buzzer,
   roundCount: 3
 }
@@ -150,9 +151,11 @@ export const FAST_GAME: RoomSettings = {
  * playing one game is that game, which is what every door but a preset opens.
  */
 export const ticked = (settings: RoomSettings): RoomSettings =>
-  settings.game === null || settings.lineUp.includes(settings.game.kind)
+  settings.game === null ||
+  (settings.lineUpAt !== null &&
+    settings.lineUp[settings.lineUpAt]?.kind === settings.game.kind)
     ? settings
-    : { ...settings, lineUp: [settings.game.kind] }
+    : { ...settings, lineUp: [settings.game], lineUpAt: 0 }
 
 /**
  * The same game in a mode its console may play in. A seat is withheld from a

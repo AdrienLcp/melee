@@ -77,6 +77,7 @@ const hostPreferencesSchema = z.object({
       autoAdvanceMs: true,
       game: true,
       lineUp: true,
+      lineUpAt: true,
       mode: true,
       roundCount: true
     })

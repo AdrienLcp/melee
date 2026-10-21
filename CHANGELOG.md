@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **An evening ticks variants, not only games**, and
+  `PROTOCOL_VERSION` goes to 36. A blind test on the charts and one on film
+  scores are two entries of the same evening, each drawn round by round on its
+  own settings: *Add a variant* at the head of the round's settings copies the
+  game being set, the fold then changes the copy, and the same row picks which
+  entry the next round is on. Each entry is named from what tells it apart —
+  *Blind test · Film scores* — on the console, the wall and every player's
+  screen. The draw prefers another game before another entry of the same one.
+
 - `[Shared]` **Inner clock, the eighth game**, and `PROTOCOL_VERSION` goes to
   35. The wall says *count to 42 seconds in your head*, a countdown, a start —
   and then nothing on any screen moves: no clock, no bar, no name appearing as

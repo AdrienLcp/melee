@@ -368,11 +368,14 @@ export const FR_DICTIONARY = defineDictionary({
       plural: { count: { other: '{?}' } }
     }),
     lineUp: {
+      addVariant: 'Ajouter une variante',
+      entryHint: 'Les réglages ci-dessous sont les siens.',
       first: 'En premier',
       next: 'Ensuite',
       ready: defineTranslation('{count:plural} sur {total:number}', {
         plural: { count: { one: '{?} prêt', other: '{?} prêts' } }
-      })
+      }),
+      takeOut: 'Retirer'
     },
     needsGame: 'Choisis à quoi la table joue',
     needsPlayer: 'Il faut au moins quelqu’un à table',
@@ -766,6 +769,9 @@ export const FR_DICTIONARY = defineDictionary({
         'Tout le monde tape sa réponse en même temps. La bonne rapporte 3 points, et plus tu la trouves tôt, plus la montre ajoute — jusqu’au double.'
     },
     tagline: 'Une question, et le premier qui sait.',
+    variant: {
+      wellKnown: 'Grand public'
+    },
     wellKnown: {
       hint: 'Il y en a moins à tirer, mais personne ne sèche.',
       label: 'Rester grand public'
@@ -814,6 +820,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     award: '{points:number}',
     awardWithSpeed: '{answer:number} +{speed:number}',
+    entryNumbered: '{name} {number:number}',
     index: 'Manche {index:number} sur {total:number}',
     indexOpen: 'Manche {index:number}',
     missed: 'Rien cette fois.',

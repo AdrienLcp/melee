@@ -180,7 +180,17 @@ const choosingView = (question: Question) => ({
       roundDurationMs: 30_000,
       wellKnownOnly: false
     },
-    lineUp: ['quiz'],
+    lineUp: [
+      {
+        allowsAdultContent: false,
+        categories: [],
+        kind: 'quiz',
+        language: 'fr',
+        roundDurationMs: 30_000,
+        wellKnownOnly: false
+      }
+    ],
+    lineUpAt: 0,
     mode: { kind: 'choice' },
     roundCount: 10,
     teams: { kind: 'off' }
@@ -653,7 +663,15 @@ const blindTestRound = (phase: 'buzzed' | 'countdown') => {
         roundDurationMs: 30_000,
         source: { genreIds: [], kind: 'chart' }
       },
-      lineUp: ['blindtest'],
+      lineUp: [
+        {
+          difficulty: 'mixed',
+          kind: 'blindtest',
+          roundDurationMs: 30_000,
+          source: { genreIds: [], kind: 'chart' }
+        }
+      ],
+      lineUpAt: 0,
       mode: { answerWindowMs: 10_000, kind: 'buzzer' }
     }
   }
@@ -839,7 +857,8 @@ const slateView = ({
     settings: {
       ...view.settings,
       game: { itemCount: SLATE_ITEMS, kind: 'slate', labels: [] },
-      lineUp: ['slate'],
+      lineUp: [{ itemCount: SLATE_ITEMS, kind: 'slate', labels: [] }],
+      lineUpAt: 0,
       mode: { kind: 'typed' }
     }
   }
@@ -931,7 +950,8 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
       ...view.settings,
       autoAdvanceMs: phase === 'revealed' ? 25_000 : null,
       game: { kind: 'reflex' },
-      lineUp: ['reflex'],
+      lineUp: [{ kind: 'reflex' }],
+      lineUpAt: 0,
       mode: { answerWindowMs: 10_000, kind: 'buzzer' }
     }
   }
@@ -1016,7 +1036,8 @@ const buzzerView = ({
     settings: {
       ...view.settings,
       game,
-      lineUp: [game.kind],
+      lineUp: [game],
+      lineUpAt: 0,
       mode: { answerWindowMs: 10_000, kind: 'buzzer' }
     }
   }
@@ -1211,7 +1232,8 @@ const playerSlateView = ({ isAllCollected }: { isAllCollected: boolean }) => {
     settings: {
       ...typedChoosing.settings,
       game: { itemCount: SLATE_ITEMS, kind: 'slate', labels: [] },
-      lineUp: ['slate'],
+      lineUp: [{ itemCount: SLATE_ITEMS, kind: 'slate', labels: [] }],
+      lineUpAt: 0,
       mode: { kind: 'typed' }
     }
   }
@@ -1437,7 +1459,10 @@ const WALL_SCREENS = [
           places: 'countries',
           roundDurationMs: 30_000
         },
-        lineUp: ['worldmap'],
+        lineUp: [
+          { kind: 'worldmap', places: 'countries', roundDurationMs: 30_000 }
+        ],
+        lineUpAt: 0,
         mode: { kind: 'point' }
       }
     }

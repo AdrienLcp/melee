@@ -1,19 +1,20 @@
 import type React from 'react'
 
-import type { GameKind } from '@melee/protocol/game'
+import type { GameSettings } from '@melee/protocol/game'
 import type { PublicPlayer } from '@melee/protocol/room'
 
 import { GameIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { gameNameKey } from '@/presentation/i18n/translation'
+import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 
 import './next-up.sass'
 
 type NextUpProps = {
-  /** What the next round is played on — drawn, or picked by the host since. */
-  game: GameKind
+  /** The entry the next round is played on — drawn, or picked by the host since. */
+  at: number
+  lineUp: readonly GameSettings[]
   players: readonly PublicPlayer[]
 }
 
@@ -24,9 +25,15 @@ type NextUpProps = {
  * outlines of the ones still away. It says who, never waits on them: the host
  * starts when they like.
  */
-export const NextUp: React.FC<NextUpProps> = ({ game, players }) => {
+export const NextUp: React.FC<NextUpProps> = ({ at, lineUp, players }) => {
   const translate = useTranslate()
+  const name = useLineUpEntryNames(lineUp)[at]
+  const game = lineUp[at]?.kind
   const readyCount = players.filter((player) => player.isReady).length
+
+  if (game === undefined) {
+    return null
+  }
 
   return (
     <section className='next-up'>
@@ -34,7 +41,7 @@ export const NextUp: React.FC<NextUpProps> = ({ game, players }) => {
         <span className='then'>{translate('host.lineUp.next')}</span>
         <span className='name'>
           <GameIcon game={game} />
-          {translate(gameNameKey(game))}
+          {name}
         </span>
       </p>
       {players.length > 0 && (

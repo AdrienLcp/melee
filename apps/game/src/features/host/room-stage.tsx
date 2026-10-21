@@ -331,10 +331,10 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       round.advancesAt === null || holdMs === null
         ? null
         : { advancesAt: round.advancesAt, holdMs }
-    const { lineUp, roundCount } = view.settings
-    const nextGame =
+    const { lineUp, lineUpAt, roundCount } = view.settings
+    const nextAt =
       lineUp.length > 1 && (roundCount === null || round.index < roundCount)
-        ? (view.settings.game?.kind ?? null)
+        ? lineUpAt
         : null
 
     // The standings, at the one moment the room asks for them. They are on this
@@ -354,7 +354,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
           className={classNames(
             'stage revealed',
             hold !== null && 'holding',
-            nextGame !== null && 'with-next-up'
+            nextAt !== null && 'with-next-up'
           )}
           style={{
             '--standings-rows': standingsRowsOf({
@@ -382,8 +382,8 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             teams={view.teams}
             youId={youId}
           />
-          {nextGame !== null && (
-            <NextUp game={nextGame} players={view.players} />
+          {nextAt !== null && (
+            <NextUp at={nextAt} lineUp={lineUp} players={view.players} />
           )}
           {hold !== null && <RevealHold clock={clock} {...hold} />}
         </div>

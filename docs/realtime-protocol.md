@@ -129,16 +129,23 @@ round is a clip that runs out, so a lockout there expires on its own; a game
 whose question the room owns has no such clock.
 
 **An evening is a line-up, not a new object.** `settings.lineUp` holds the
-games ticked; `settings.game` stays the one the next round is played on and is
-always among them, and a room with no game has ticked none (`lineUpHolds`,
-refused `invalid_message`). One tick is a room playing one game, which is what
-every game's front door opens. The draw between two rounds is the console's
-(`nextGame`, never the game just played when another is ticked): it lands as an
-ordinary settings frame between the reveal and `host.nextRound`, so the wall
-reads the next game off `settings.game` like everything else. `POST /api/rooms`
-takes a `preset` — the line-up, the length and the teams — in place of a
-`game`; the preset's name and why it ticks what it ticks are the app's, and
-never travel.
+entries ticked, each a game's whole settings arm, so two entries may share a
+game — a blind test on the charts and one on film scores. `settings.game` is
+the copy the next round is played on and `settings.lineUpAt` the entry it was
+opened from; the kinds must agree, a room with no game has ticked none and
+points at nothing (`lineUpHolds`, refused `invalid_message`), and the server
+writes every accepted frame's `game` back into that entry
+(`followedByLineUp`), so a setting changed in the fold belongs to the variant
+from then on. One entry is a room playing one game, which is what every game's
+front door opens. The draw between two rounds is the console's (`nextEntryAt`:
+another game before another entry of the same one, never the entry just
+played): it lands as an ordinary settings frame between the reveal and
+`host.nextRound`, so the wall reads the next game off `settings.game` like
+everything else. `POST /api/rooms` takes a `preset` — the games, the length
+and the teams — in place of a `game`; it ticks kinds, each opened on its
+defaults, because that request has no version handshake and a tab opened
+before variants still posts. The preset's name and why it ticks what it ticks
+are the app's, and never travel.
 
 - **Scores survive the switch.** Nothing a settings frame carries touches a
   seat's score; only `host.playAgain` starts them again.

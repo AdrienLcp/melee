@@ -195,7 +195,12 @@ describe('an evening of several games', () => {
     expect(restored.roundCount).toBe(12)
     expect(restored.teams).toEqual({ count: 3, kind: 'drawn' })
     expect(restored.board).toEqual(DEFAULT_TRACK_SETTINGS)
-    expect(restored.lineUp).toEqual(['quiz', 'blindtest', 'buzzer'])
+    expect(restored.lineUp.map((entry) => entry.kind)).toEqual([
+      'quiz',
+      'blindtest',
+      'buzzer'
+    ])
+    expect(restored.lineUp[0]).toEqual(restored.game)
   })
 
   it('[host-preferences] files neither the line-up, the length nor the teams of an evening', () => {
@@ -207,5 +212,6 @@ describe('an evening of several games', () => {
     expect(remembered.games.quiz?.roundCount).toBe(20)
     expect(remembered.room.teams).toEqual({ kind: 'off' })
     expect(remembered.room).not.toHaveProperty('lineUp')
+    expect(remembered.room).not.toHaveProperty('lineUpAt')
   })
 })

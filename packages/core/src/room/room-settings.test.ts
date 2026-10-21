@@ -4,12 +4,20 @@ import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
 import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
+  DEFAULT_GAME_SETTINGS,
+  type GameKind,
   gameKinds
 } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 
 import { offersAnswerMode } from './game-modes'
 import { movedToGame, reshapesRound, roomSettingsFor } from './room-settings'
+
+const entries = (...games: GameKind[]) =>
+  games.map((game) => DEFAULT_GAME_SETTINGS[game])
+
+const kinds = (settings: RoomSettings): GameKind[] =>
+  settings.lineUp.map((entry) => entry.kind)
 
 describe('roomSettingsFor', () => {
   it('[room-settings] opens a room on the game it was created for', () => {
@@ -47,10 +55,12 @@ describe('roomSettingsFor', () => {
   })
 
   it('[room-settings] ticks the one game a front door opens on, and none from the shelf', () => {
-    expect(roomSettingsFor({ game: 'quiz', locale: 'fr' }).lineUp).toEqual([
-      'quiz'
-    ])
+    const onTheQuiz = roomSettingsFor({ game: 'quiz', locale: 'fr' })
+
+    expect(onTheQuiz.lineUp).toEqual([onTheQuiz.game])
+    expect(onTheQuiz.lineUpAt).toBe(0)
     expect(roomSettingsFor({ game: null, locale: 'fr' }).lineUp).toEqual([])
+    expect(roomSettingsFor({ game: null, locale: 'fr' }).lineUpAt).toBeNull()
   })
 
   it('[room-settings] opens a preset on its first game with its own length and teams', () => {
@@ -66,7 +76,8 @@ describe('roomSettingsFor', () => {
     })
 
     expect(settings.game?.kind).toBe('quiz')
-    expect(settings.lineUp).toEqual(['quiz', 'blindtest', 'buzzer'])
+    expect(kinds(settings)).toEqual(['quiz', 'blindtest', 'buzzer'])
+    expect(settings.lineUpAt).toBe(0)
     expect(settings.roundCount).toBe(12)
     expect(settings.teams).toEqual({ count: 3, kind: 'drawn' })
     expect(settings.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
@@ -109,7 +120,7 @@ describe('movedToGame', () => {
       settings: onTheBuzzer
     })
 
-    expect(moved.lineUp).toEqual(['blindtest'])
+    expect(kinds(moved)).toEqual(['blindtest'])
   })
 
   it('[room-settings] switches inside an evening without ending it on the game’s own count', () => {
@@ -117,11 +128,16 @@ describe('movedToGame', () => {
       game: 'quiz',
       locale: 'fr',
       remembered: null,
-      settings: { ...onTheBuzzer, lineUp: ['buzzer', 'quiz'], roundCount: 12 }
+      settings: {
+        ...onTheBuzzer,
+        lineUp: entries('buzzer', 'quiz'),
+        roundCount: 12
+      }
     })
 
     expect(moved.game?.kind).toBe('quiz')
-    expect(moved.lineUp).toEqual(['buzzer', 'quiz'])
+    expect(kinds(moved)).toEqual(['buzzer', 'quiz'])
+    expect(moved.lineUpAt).toBe(1)
     expect(moved.roundCount).toBe(12)
   })
 
@@ -130,10 +146,29 @@ describe('movedToGame', () => {
       game: 'blindtest',
       locale: 'fr',
       remembered: null,
-      settings: { ...onTheBuzzer, lineUp: ['buzzer', 'blindtest'] }
+      settings: { ...onTheBuzzer, lineUp: entries('buzzer', 'blindtest') }
     })
 
     expect(moved.autoAdvanceMs).toBeNull()
+  })
+
+  it('[room-settings] goes to the entry an evening already ticks, on that entry’s own settings', () => {
+    const onFilmScores = {
+      ...DEFAULT_BLINDTEST_SETTINGS,
+      source: { kind: 'film' }
+    } as const
+    const moved = movedToGame({
+      game: 'blindtest',
+      locale: 'fr',
+      remembered: null,
+      settings: {
+        ...onTheBuzzer,
+        lineUp: [DEFAULT_BUZZER_SETTINGS, onFilmScores]
+      }
+    })
+
+    expect(moved.game).toEqual(onFilmScores)
+    expect(moved.lineUpAt).toBe(1)
   })
 
   it('[room-settings] leaves the settings that are the host’s alone', () => {

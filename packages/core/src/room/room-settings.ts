@@ -108,19 +108,27 @@ export const roomSettingsFor = ({
       ...DEFAULT_ROOM_SETTINGS,
       ...openedSetup({ game: presetFirst, locale }),
       board: preset.board,
-      lineUp: preset.lineUp,
+      lineUp: preset.lineUp.map((ticked) =>
+        openedGameSettings({ game: ticked, locale })
+      ),
+      lineUpAt: 0,
       roundCount: preset.roundCount,
       teams: preset.teams
     }
   }
 
-  return game === null
-    ? DEFAULT_ROOM_SETTINGS
-    : {
-        ...DEFAULT_ROOM_SETTINGS,
-        ...openedSetup({ game, locale }),
-        lineUp: [game]
-      }
+  if (game === null) {
+    return DEFAULT_ROOM_SETTINGS
+  }
+
+  const setup = openedSetup({ game, locale })
+
+  return {
+    ...DEFAULT_ROOM_SETTINGS,
+    ...setup,
+    lineUp: [setup.game],
+    lineUpAt: 0
+  }
 }
 
 /**
@@ -141,7 +149,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
 }
 
 /** What a game answers before anybody has told it otherwise. */
-const openedSetup = ({
+export const openedSetup = ({
   game,
   locale
 }: {
@@ -189,11 +197,8 @@ const openedGameSettings = ({
  * which is a different thing entirely and the only reason `remembered` exists.
  *
  * A room playing one game moves its line-up along with it — that is today's
- * picker — while an evening of several adds the game to the ones ticked and
- * keeps its own length and its own hold. The count is the evening's: a quiz's
- * ten rounds landing on round twelve would end it on the spot. So is the hold:
- * the switch lands while the last game's reveal is still up, and the blind
- * test's eight seconds would cut a quiz note off mid-sentence.
+ * picker — while an evening of several goes to the first entry of that game,
+ * or ticks it when none is.
  */
 export const movedToGame = ({
   game,
@@ -207,31 +212,63 @@ export const movedToGame = ({
   remembered: GameSetup | null
   settings: RoomSettings
 }): RoomSettings => {
+  const isEvening = settings.lineUp.length > 1
+  const ticked = settings.lineUp.findIndex((entry) => entry.kind === game)
+
+  if (isEvening && ticked !== -1) {
+    return movedToEntry({ at: ticked, locale, remembered, settings })
+  }
+
   const setup = remembered ?? openedSetup({ game, locale })
-  const lineUp = lineUpWith({ game, lineUp: settings.lineUp })
-  const isEvening = lineUp.length > 1
+  const lineUp = isEvening ? [...settings.lineUp, setup.game] : [setup.game]
+
+  return movedToEntry({
+    at: lineUp.length - 1,
+    locale,
+    remembered: setup,
+    settings: { ...settings, lineUp }
+  })
+}
+
+/**
+ * The room set to play the line-up's entry `at`, on that entry's own settings.
+ * How it is answered is still this host's last word on the game, because an
+ * entry carries the game's settings and the mode is the room's.
+ *
+ * An evening keeps its own length and its own hold. The count is the
+ * evening's: a quiz's ten rounds landing on round twelve would end it on the
+ * spot. So is the hold: the switch lands while the last game's reveal is still
+ * up, and the blind test's eight seconds would cut a quiz note off mid-sentence.
+ */
+export const movedToEntry = ({
+  at,
+  locale,
+  remembered,
+  settings
+}: {
+  at: number
+  locale: Locale
+  /** What this host last left the entry's game set to, or `null` if they never have. */
+  remembered: GameSetup | null
+  settings: RoomSettings
+}): RoomSettings => {
+  const entry = settings.lineUp[at]
+
+  if (entry === undefined) {
+    return settings
+  }
+
+  const setup = remembered ?? openedSetup({ game: entry.kind, locale })
+  const isEvening = settings.lineUp.length > 1
 
   return {
     ...settings,
     ...setup,
     autoAdvanceMs: isEvening ? settings.autoAdvanceMs : setup.autoAdvanceMs,
-    lineUp,
+    game: entry,
+    lineUpAt: at,
     roundCount: isEvening ? settings.roundCount : setup.roundCount
   }
-}
-
-const lineUpWith = ({
-  game,
-  lineUp
-}: {
-  game: GameKind
-  lineUp: readonly GameKind[]
-}): GameKind[] => {
-  if (lineUp.length <= 1) {
-    return [game]
-  }
-
-  return lineUp.includes(game) ? [...lineUp] : [...lineUp, game]
 }
 
 /**
