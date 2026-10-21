@@ -196,14 +196,30 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Your questions, and a race to the buzzer.'
   },
   challenge: {
+    atTheTable: 'Played at the table — the host calls the placings.',
     home: {
       description:
         'Cut a vegetable into two halves of the same weight, stack the most raclette potatoes: the challenge is played at the table, away from every screen. The host puts it up on the wall, says who came first, second and third, and the points land on the board like any round’s.'
     },
+    line: {
+      description: 'Shown large on the wall. Left empty, you say it aloud.',
+      label: 'The challenge',
+      placeholder: 'Stack the most potatoes'
+    },
     name: 'Challenge',
+    places: {
+      confirm: 'Confirm the placings',
+      first: '1st',
+      label: 'Placings',
+      nobody: 'Nobody wins',
+      none: '—',
+      second: '2nd',
+      third: '3rd'
+    },
     scoring:
       'Played at the table. The host places the first three: 3 points for first, 2 for second, 1 for third — a tie shares its place.',
-    tagline: 'Played at the table, counted on the board.'
+    tagline: 'Played at the table, counted on the board.',
+    untitled: 'A challenge at the table'
   },
   connection: {
     clock: '· clock ±{milliseconds:number} ms',
@@ -297,7 +313,8 @@ export const EN_DICTIONARY = defineDictionary({
     presets: {
       christmas: {
         name: 'Christmas party',
-        tagline: 'Quiz, blind test, buzzer and world map, played in teams'
+        tagline:
+          'Quiz, blind test, buzzer, world map and challenges, played in teams'
       },
       how: '{rounds:number} rounds, the game drawn before each · {teams:number} teams drawn at random',
       open: 'Open the evening'

@@ -378,28 +378,30 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
       {/*
         Buzzer-moded and still nothing to hold: a reflex press takes no floor
-        and waits for no verdict, so how long a player has to answer is a
-        setting about a moment this game does not have.
+        and waits for no verdict, and nobody buzzes a challenge at all, so how
+        long a player has to answer is a setting about a moment neither has.
       */}
-      {mode.kind === 'buzzer' && game?.kind !== 'reflex' && (
-        <NumberChoice
-          className='answer-window'
-          isDisabled={isDisabled}
-          label={translate('host.answerWindow.label')}
-          onChange={(chosen) => {
-            onChange({
-              ...settings,
-              mode: {
-                ...mode,
-                answerWindowMs: chosen === NO_LIMIT ? null : chosen
-              }
-            })
-          }}
-          optionLabel={openEndedSecondsLabel}
-          options={ANSWER_WINDOWS_MS}
-          value={mode.answerWindowMs ?? NO_LIMIT}
-        />
-      )}
+      {mode.kind === 'buzzer' &&
+        game?.kind !== 'reflex' &&
+        game?.kind !== 'challenge' && (
+          <NumberChoice
+            className='answer-window'
+            isDisabled={isDisabled}
+            label={translate('host.answerWindow.label')}
+            onChange={(chosen) => {
+              onChange({
+                ...settings,
+                mode: {
+                  ...mode,
+                  answerWindowMs: chosen === NO_LIMIT ? null : chosen
+                }
+              })
+            }}
+            optionLabel={openEndedSecondsLabel}
+            options={ANSWER_WINDOWS_MS}
+            value={mode.answerWindowMs ?? NO_LIMIT}
+          />
+        )}
     </section>
   )
 }

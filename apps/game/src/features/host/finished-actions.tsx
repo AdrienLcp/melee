@@ -3,11 +3,13 @@ import type React from 'react'
 import { Button } from '@/presentation/components/button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { byTeamFor } from './turns-choice'
 import { useSettingsSummary } from './use-settings-summary'
 
 export const FinishedActions: React.FC<HostActionsProps> = ({
+  challengeLine,
   draftSource,
   isLive,
   onOpenRound,
@@ -21,6 +23,13 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
 
   return (
     <>
+      {challengeLine !== null && (
+        <ChallengeLineField
+          isDisabled={!isLive}
+          onChange={challengeLine.onChange}
+          value={challengeLine.text}
+        />
+      )}
       <Button
         isDisabled={!isLive || view.players.length === 0}
         onPress={() => {
@@ -32,6 +41,7 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
           send({ type: 'host.playAgain' })
           send({
             byTeam: byTeamFor({ prefersByTeam, view }),
+            challengeText: challengeLine?.text,
             slateKeys,
             type: 'host.startRound'
           })

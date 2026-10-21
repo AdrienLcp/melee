@@ -207,6 +207,15 @@
         text-align: center
         text-wrap: balance
 
+      // What the host typed, so it takes the card the way a question does.
+      .challenge-line
+        font-size: clamp(var(--text-xl), min(7cqi, 16cqh), 7rem)
+
+      .challenge-where
+        color: var(--card-muted)
+        font-size: clamp(var(--text-s), 2.6cqmin, 1.5rem)
+        text-align: center
+
   // Whose round it is, ringed around the card the whole room reads — the
   // team's colour pulled forward the way a chosen lid is on the shelf.
   .stage.playing[data-turn] .round-card

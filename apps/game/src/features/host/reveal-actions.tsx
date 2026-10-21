@@ -11,10 +11,12 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { BoardMoves } from './board-moves'
+import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { byTeamFor, TurnsChoice } from './turns-choice'
 
 export const RevealActions: React.FC<HostActionsProps> = ({
+  challengeLine,
   isLive,
   onOpenRound,
   onPrefersByTeam,
@@ -109,6 +111,13 @@ export const RevealActions: React.FC<HostActionsProps> = ({
           value={settings.game?.kind ?? null}
         />
       )}
+      {challengeLine !== null && (
+        <ChallengeLineField
+          isDisabled={!isLive}
+          onChange={challengeLine.onChange}
+          value={challengeLine.text}
+        />
+      )}
       <TurnsChoice
         isDisabled={!isLive}
         onChange={onPrefersByTeam}
@@ -121,6 +130,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
           onOpenRound()
           send({
             byTeam: byTeamFor({ prefersByTeam, view }),
+            challengeText: challengeLine?.text,
             type: 'host.nextRound'
           })
         }}

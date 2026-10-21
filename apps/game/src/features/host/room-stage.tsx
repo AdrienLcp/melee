@@ -22,6 +22,7 @@ import { Countdown } from '@/presentation/components/countdown'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { RevealHold } from '@/presentation/components/round-progress'
 
+import { ChallengePlacing } from './challenge-placing'
 import { ClipOffer } from './clip-offer'
 import { FinalBoard } from './final-board'
 import { LobbyStage } from './lobby-stage'
@@ -205,7 +206,17 @@ export const RoomStage: React.FC<RoomStageProps> = ({
         }
         round={round}
         view={view}
-      />
+      >
+        {controls !== null && round.content.kind === 'challenge' && (
+          <ChallengePlacing
+            isLive={controls.isLive}
+            key={round.id}
+            round={round}
+            send={controls.send}
+            view={view}
+          />
+        )}
+      </PlayingStage>
     )
   }
 

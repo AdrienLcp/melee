@@ -13,7 +13,15 @@ import { RoundActions } from './round-actions'
 import { SlateCorrectionActions, SlateWritingActions } from './slate-stages'
 import type { SlateWall } from './use-slate-wall'
 
+/** The line a challenge round opens on, held on the console until the press that sends it. */
+export type ChallengeLine = {
+  onChange: (text: string) => void
+  text: string
+}
+
 export type HostActionsProps = {
+  /** `null` unless the next round is a challenge. */
+  challengeLine: ChallengeLine | null
   /** What the picker is showing, which `onOpenRound` commits — so it is what the next round will be built from. */
   draftSource: TrackSource | null
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
@@ -70,7 +78,10 @@ export const HostActions: React.FC<HostActionsProps> = (props) => {
       // somebody never does. There is no answer to give and no field to
       // reopen, so there is nothing here to press — which is also what leaves
       // the screen the room is staring at with nothing on it that moves.
-      return props.view.round?.content.kind === 'reflex' ? null : (
+      // A challenge is placed, or given to nobody, from the stage, beside the
+      // teams it is placing.
+      return props.view.round?.content.kind === 'reflex' ||
+        props.view.round?.content.kind === 'challenge' ? null : (
         <RoundActions {...props} />
       )
     // The floor is held, and the only thing left to decide is the verdict —

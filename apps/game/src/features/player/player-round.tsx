@@ -437,6 +437,18 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     // when its owner has taken a seat, and it is already showing the question.
     const prompt = quizContent(round)?.prompt ?? null
 
+    // Nothing to press: the table plays it, and the host calls who won.
+    if (round.content.kind === 'challenge') {
+      return (
+        <section className='player-round notice'>
+          <NoticeCard
+            detail={translate('challenge.atTheTable')}
+            title={round.content.text ?? translate('challenge.untitled')}
+          />
+        </section>
+      )
+    }
+
     if (round.content.kind === 'reflex') {
       return (
         <ReflexBuzzer

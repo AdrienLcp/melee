@@ -17,8 +17,8 @@ export type RoomPresetId = (typeof roomPresetIds)[number]
 export const ROOM_PRESETS: Record<RoomPresetId, RoomPreset> = {
   christmas: {
     board: DEFAULT_TRACK_SETTINGS,
-    lineUp: ['quiz', 'blindtest', 'buzzer', 'worldmap'],
-    roundCount: 16,
+    lineUp: ['quiz', 'blindtest', 'buzzer', 'worldmap', 'challenge'],
+    roundCount: 20,
     teams: { count: 3, kind: 'drawn' }
   }
 }

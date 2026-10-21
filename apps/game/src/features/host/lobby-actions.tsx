@@ -6,10 +6,12 @@ import { Button } from '@/presentation/components/button'
 import { PlayRightAway } from '@/presentation/components/play-right-away'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { byTeamFor, TurnsChoice } from './turns-choice'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
+  challengeLine,
   isLive,
   onOpenRound,
   onPlayRightAway,
@@ -47,6 +49,13 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
 
   return (
     <div className='launch'>
+      {challengeLine !== null && (
+        <ChallengeLineField
+          isDisabled={!isLive}
+          onChange={challengeLine.onChange}
+          value={challengeLine.text}
+        />
+      )}
       <TurnsChoice
         isDisabled={!isLive}
         onChange={onPrefersByTeam}
@@ -59,6 +68,7 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
           onOpenRound()
           send({
             byTeam: byTeamFor({ prefersByTeam, view }),
+            challengeText: challengeLine?.text,
             slateKeys,
             type: 'host.startRound'
           })

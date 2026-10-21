@@ -131,6 +131,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
   const [preferences, setPreferences] = useState(storedHostPreferencesOrNone)
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
+  const [challengeText, setChallengeText] = useState('')
   const arrival = useArrival(view)
   const playsRightAway = useTakePlayRightAway()
   // Set by the door's navigation or by the empty lobby's launch, spent on the
@@ -558,6 +559,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           {view !== null && (
             <>
               <HostActions
+                challengeLine={
+                  view.settings.game?.kind === 'challenge'
+                    ? { onChange: setChallengeText, text: challengeText }
+                    : null
+                }
                 draftSource={draftSource}
                 isLive={isLive}
                 onOpenRound={() => {
@@ -565,6 +571,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   // grants permission only from a real gesture, and it cannot be
                   // asked for later when the track arrives.
                   armAudio()
+                  // The press has already read the line it sends, and the
+                  // next challenge is never this one again.
+                  setChallengeText('')
 
                   // What the picker is showing is what the host chose, and a
                   // round about to be drawn is the moment that means something —

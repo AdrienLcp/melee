@@ -40,6 +40,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'A buzzer for the whole room and nothing else: you bring the charade, the quiz on paper or the lesson, and the screen settles who was first. Every buzz is stamped by the server, so the race cannot be argued with.',
       title: 'Buzzer — Mêlée'
     },
+    challenge: {
+      description:
+        'A challenge played at the table, away from every screen: the wall shows what it is, the host says who came first, second and third, and the points land on the board with every other round of the evening.',
+      title: 'Challenge — Mêlée'
+    },
     credits: {
       description:
         "Where Mêlée's question banks come from, what was changed to bundle them, and the licence the assembled bank is shared under.",
@@ -47,7 +52,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate and World map.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map and Challenge.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     legal: {
@@ -87,6 +92,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         "Un buzzer pour toute la salle et rien d'autre : vous apportez la charade, le quiz sur papier ou la leçon, l'écran tranche qui a été le premier. Chaque buzz est horodaté par le serveur, la course ne se discute pas.",
       title: 'Buzzer — Mêlée'
     },
+    challenge: {
+      description:
+        "Un défi qui se joue à table, loin des écrans : le mur affiche ce qu'il faut faire, l'hôte dit qui finit premier, deuxième et troisième, et les points arrivent au tableau avec toutes les autres manches de la soirée.",
+      title: 'Défi — Mêlée'
+    },
     credits: {
       description:
         "D'où viennent les banques de questions de Mêlée, ce qui a été modifié pour les embarquer, et sous quelle licence la banque assemblée est partagée.",
@@ -94,7 +104,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise et Carte du monde.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde et Défi.',
       title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
     },
     legal: {

@@ -30,6 +30,8 @@ type PlayingStageProps = {
    * the first seat of the team on turn, which holds the team's one answer.
    */
   answersAs: PlayerId | null
+  /** What the host does to the round from beside the card — a challenge's placings — and nothing on the wall. */
+  children?: React.ReactNode
   /** The offer to unmute this screen, or nothing when it owes the room none. */
   clipOffer: React.ReactNode
   /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
@@ -46,6 +48,7 @@ type PlayingStageProps = {
  */
 export const PlayingStage: React.FC<PlayingStageProps> = ({
   answersAs,
+  children,
   clipOffer,
   onAnswer,
   round,
@@ -87,6 +90,15 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
         ) : worldmap !== null ? (
           <MapPrompt countryCode={worldmap.countryCode} />
+        ) : round.content.kind === 'challenge' ? (
+          <>
+            <p className='now challenge-line'>
+              {round.content.text ?? translate('challenge.untitled')}
+            </p>
+            <p className='challenge-where'>
+              {translate('challenge.atTheTable')}
+            </p>
+          </>
         ) : (
           <p className='now'>
             {translate(
@@ -134,6 +146,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       {mode !== 'buzzer' && view.players.length > 0 && (
         <AnsweredPawns players={view.players} round={round} />
       )}
+      {children}
     </div>
   )
 }

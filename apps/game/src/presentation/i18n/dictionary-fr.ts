@@ -175,14 +175,30 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Tes questions, et une course au buzz.'
   },
   challenge: {
+    atTheTable: 'Ça se joue à table — l’hôte annonce le classement.',
     home: {
       description:
         'Couper un légume en deux moitiés du même poids, empiler le plus de pommes de terre à raclette : le défi se joue à table, loin des écrans. L’hôte l’affiche au mur, dit qui finit premier, deuxième et troisième, et les points arrivent au tableau comme ceux de n’importe quelle manche.'
     },
+    line: {
+      description: 'Affiché en grand au mur. Vide, tu l’annonces à voix haute.',
+      label: 'Le défi',
+      placeholder: 'Empiler le plus de pommes de terre'
+    },
     name: 'Défi',
+    places: {
+      confirm: 'Valider le classement',
+      first: '1er',
+      label: 'Classement',
+      nobody: 'Personne ne gagne',
+      none: '—',
+      second: '2e',
+      third: '3e'
+    },
     scoring:
       'Ça se joue à table. L’hôte classe les trois premiers : 3 points au premier, 2 au deuxième, 1 au troisième — une égalité partage la place.',
-    tagline: 'Joué à table, compté au tableau.'
+    tagline: 'Joué à table, compté au tableau.',
+    untitled: 'Défi à table'
   },
   connection: {
     clock: '· horloge ±{milliseconds:number} ms',
@@ -271,7 +287,7 @@ export const FR_DICTIONARY = defineDictionary({
     presets: {
       christmas: {
         name: 'Soirée de Noël',
-        tagline: 'Quiz, blind test, buzzer et carte du monde, en équipes'
+        tagline: 'Quiz, blind test, buzzer, carte du monde et défis, en équipes'
       },
       how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',
       open: 'Ouvrir la soirée'
