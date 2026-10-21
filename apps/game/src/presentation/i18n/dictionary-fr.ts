@@ -1073,9 +1073,39 @@ export const FR_DICTIONARY = defineDictionary({
     yours: 'Ton équipe'
   },
   timeline: {
+    answer: {
+      drag: 'Déplacer « {event} »',
+      earliest: 'Le plus ancien',
+      hint: 'Glisse les cartes dans l’ordre, ou fais-les bouger avec les flèches',
+      label: 'Ton ordre, du plus ancien au plus récent',
+      latest: 'Le plus récent',
+      moveDown: 'Faire descendre « {event} »',
+      moveUp: 'Faire remonter « {event} »',
+      send: 'J’envoie mon ordre',
+      sent: 'Ton ordre est parti. On attend les autres.'
+    },
+    dealt:
+      'Lequel d’abord ? Remettez-les dans l’ordre, du plus ancien au plus récent.',
+    duration: 'Temps par manche',
+    home: {
+      description:
+        'Cinq événements tombent d’un coup — les premiers pas sur la Lune, la chute du mur de Berlin, le premier iPhone, une finale de Coupe du monde. Chacun les remet dans l’ordre, du plus ancien au plus récent, et les années tombent au dévoilement. Tout juste rapporte le plus, et une paire inversée marque encore.'
+    },
     name: 'Frise chronologique',
+    reveal: {
+      perfect: 'Dans l’ordre',
+      swapped: defineTranslation('{pairs:plural}', {
+        plural: {
+          pairs: { one: '{?} paire inversée', other: '{?} paires inversées' }
+        }
+      }),
+      title: 'L’ordre :',
+      unsent: 'L’ordre',
+      yours: 'Ton ordre'
+    },
     scoring:
-      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 3 points, une paire inversée 2, deux paires 1 — et le chrono s’y ajoute.'
+      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 3 points, une paire inversée 2, deux paires 1 — et le chrono s’y ajoute.',
+    tagline: 'Cinq événements. Lequel d’abord ?'
   },
   wall: {
     door: {

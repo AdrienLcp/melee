@@ -206,6 +206,30 @@
         @include question-card.clock-margin
         width: auto
 
+  .player-round.timeline-round
+    justify-content: center
+
+  // This seat's order turned over, the years printed on it.
+  .timeline-revealed
+    display: grid
+    gap: var(--space-xs)
+    min-width: 0
+
+    .order-title
+      @include typography.title
+
+      align-items: baseline
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs) var(--space-s)
+      margin: 0
+
+    .order-words
+      @include typography.strong
+
+      color: var(--ink-muted)
+      font-size: var(--text-m)
+
   // What the round was, what it paid this player, and where it left the room.
   .player-round.revealed
     .outcome

@@ -37,6 +37,7 @@ export type PlayerAnswer =
   | { choiceIndex: number; kind: 'choice' }
   | { guess: string; kind: 'typed' }
   | { kind: 'point'; point: GeoPoint }
+  | { eventIds: string[]; kind: 'order' }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A

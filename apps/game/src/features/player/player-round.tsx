@@ -12,6 +12,7 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 import type { TeamId } from '@melee/protocol/team'
+import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
@@ -44,6 +45,7 @@ import {
   SlateSheet,
   SlateWholeSheet
 } from '@/features/player/slate-sheet'
+import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { TrackStrip } from '@/features/player/track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
@@ -52,6 +54,9 @@ import {
   matchsticksContent,
   quizContent,
   reflexContent,
+  sentOrderOf,
+  swappedPairsOf,
+  timelineContent,
   worldmapContent
 } from '@/helpers/round-content'
 import { slateLabelsOf } from '@/helpers/slate-labels'
@@ -72,7 +77,9 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
+import { useOrderWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import {
   floorOutcome,
@@ -570,6 +577,20 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    if (timelineContent(round) !== null) {
+      return (
+        <section className='player-round timeline-round'>
+          <RoundClock clock={clock} view={view} />
+          <TimelineAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            round={round}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
     if (round.answerMode === 'choice') {
       return (
         <ChoosingRound
@@ -889,6 +910,12 @@ const Revealed: React.FC<{
     return <MapReveal players={view.players} round={round} />
   }
 
+  const dated = timelineContent(round)?.revealedEvents ?? null
+
+  if (dated !== null) {
+    return <TimelineRevealed dated={dated} round={round} youId={view.youId} />
+  }
+
   const solved = matchsticksContent(round)
 
   if (solved !== null && solved.revealedSolution !== null) {
@@ -951,6 +978,41 @@ const Revealed: React.FC<{
   }
 
   return null
+}
+
+/**
+ * The cards turned over: this seat's own order with every year now printed on
+ * it, so whatever is out of place reads at a glance, and the pairs it swapped
+ * said above. A seat that sent nothing reads the true order instead.
+ */
+const TimelineRevealed: React.FC<{
+  dated: DatedTimelineEvent[]
+  round: RoundView
+  youId: PlayerRoomView['youId']
+}> = ({ dated, round, youId }) => {
+  const translate = useTranslate()
+  const orderWords = useOrderWords()
+  const sent = sentOrderOf(round, youId)
+  const swappedPairs = youId === null ? null : swappedPairsOf(round, youId)
+  const title = translate(
+    sent === null ? 'timeline.reveal.unsent' : 'timeline.reveal.yours'
+  )
+
+  return (
+    <div className='timeline-revealed'>
+      <p className='order-title'>
+        {title}
+        {swappedPairs !== null && (
+          <span className='order-words'>{orderWords(swappedPairs)}</span>
+        )}
+      </p>
+      <TimelineStrip
+        aria-label={title}
+        events={sent ?? dated}
+        layout='ordered'
+      />
+    </div>
+  )
 }
 
 /**

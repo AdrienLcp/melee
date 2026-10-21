@@ -1173,9 +1173,38 @@ export const EN_DICTIONARY = defineDictionary({
     yours: 'Your team'
   },
   timeline: {
+    answer: {
+      drag: 'Move “{event}”',
+      earliest: 'Earliest',
+      hint: 'Drag the cards into order, or move them with the arrows',
+      label: 'Your order, earliest first',
+      latest: 'Latest',
+      moveDown: 'Move “{event}” later',
+      moveUp: 'Move “{event}” earlier',
+      send: 'Send my order',
+      sent: 'Your order is in. Waiting for the others.'
+    },
+    dealt: 'Which came first? Put them in order, earliest first.',
+    duration: 'Time per round',
+    home: {
+      description:
+        'Five events come up at once — the first steps on the Moon, the fall of the Berlin Wall, the first iPhone, a World Cup final. Everyone puts them in order, earliest first, and the years come out at the reveal. All five right pays the most, and one pair the wrong way round still scores.'
+    },
     name: 'Timeline',
+    reveal: {
+      perfect: 'In order',
+      swapped: defineTranslation('{pairs:plural}', {
+        plural: {
+          pairs: { one: '{?} pair swapped', other: '{?} pairs swapped' }
+        }
+      }),
+      title: 'The order:',
+      unsent: 'The order',
+      yours: 'Your order'
+    },
     scoring:
-      'Five events to put in order, earliest first. All of them right is 3 points, one pair the wrong way round 2, two pairs 1 — and the clock adds to it.'
+      'Five events to put in order, earliest first. All of them right is 3 points, one pair the wrong way round 2, two pairs 1 — and the clock adds to it.',
+    tagline: 'Five events. Which came first?'
   },
   wall: {
     door: {

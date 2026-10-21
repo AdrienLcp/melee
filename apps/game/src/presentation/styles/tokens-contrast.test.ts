@@ -98,6 +98,11 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.text
         },
         {
+          background: '--spine-timeline',
+          foreground: '--on-spine-timeline',
+          minimum: WCAG_AA.text
+        },
+        {
           background: '--selection',
           foreground: '--board-ink',
           minimum: WCAG_AA.text

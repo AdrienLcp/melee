@@ -12,6 +12,7 @@ import {
   quizContent,
   reflexContent,
   revealedInOrder,
+  timelineContent,
   worldmapContent
 } from '@/helpers/round-content'
 import { CountedBoard } from '@/presentation/components/counted-board'
@@ -21,6 +22,7 @@ import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
+import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -174,6 +176,26 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
           <MatchsticksPrompt
             puzzle={solved.puzzle}
             solution={solved.revealedSolution}
+          />
+        </div>
+
+        <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
+  const dated = timelineContent(round)?.revealedEvents ?? null
+
+  // The cards strung along the line in the order they happened, each with its
+  // year, and the table fewest pairs swapped first.
+  if (dated !== null) {
+    return (
+      <section className='reveal-panel' data-game='timeline'>
+        <div className='head'>
+          <TimelineStrip
+            aria-label={translate('timeline.reveal.title')}
+            events={dated}
+            layout='ordered'
           />
         </div>
 

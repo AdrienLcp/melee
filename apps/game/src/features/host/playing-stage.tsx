@@ -10,15 +10,18 @@ import {
   TypedAnswer
 } from '@/features/player/answer-forms'
 import { MapAnswer } from '@/features/player/map-answer'
+import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   matchsticksContent,
   quizContent,
+  timelineContent,
   worldmapContent
 } from '@/helpers/round-content'
 import { AskedQuestion } from '@/presentation/components/asked-question'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
+import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
@@ -69,6 +72,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   )
   const worldmap = worldmapContent(round)
   const matchsticks = matchsticksContent(round)
+  const timeline = timelineContent(round)
 
   return (
     <div
@@ -77,6 +81,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-choices={mode === 'choice' || undefined}
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-map={(worldmap !== null && onAnswer !== null) || undefined}
+      data-timeline={
+        timeline === null
+          ? undefined
+          : onAnswer === null
+            ? 'dealt'
+            : 'answering'
+      }
       data-turn={teamOnTurn !== undefined || undefined}
       style={{
         '--choice-length': choiceLength,
@@ -100,6 +111,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <MapPrompt target={worldmap.target} />
         ) : matchsticks !== null ? (
           <MatchsticksPrompt puzzle={matchsticks.puzzle} />
+        ) : timeline !== null ? (
+          <p className='now timeline-question'>{translate('timeline.dealt')}</p>
         ) : round.content.kind === 'challenge' ? (
           <>
             <p className='now challenge-line'>
@@ -153,6 +166,21 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           youId={answersAs}
         />
       )}
+      {timeline !== null &&
+        (onAnswer === null ? (
+          <TimelineStrip
+            aria-label={translate('timeline.dealt')}
+            events={timeline.events}
+            layout='dealt'
+          />
+        ) : (
+          <TimelineAnswer
+            key={round.id}
+            onAnswer={onAnswer}
+            round={round}
+            youId={answersAs}
+          />
+        ))}
       {view.players.length > 0 &&
         (mode !== 'buzzer' ? (
           <AnsweredPawns players={view.players} round={round} />

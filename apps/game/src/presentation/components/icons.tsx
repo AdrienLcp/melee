@@ -3,11 +3,13 @@ import {
   BellRing,
   Check,
   ChevronDown,
+  ChevronUp,
   CircleQuestionMark,
   Copy,
   Dice5,
   Earth,
   Flame,
+  GripVertical,
   History,
   Hourglass,
   Lock,
@@ -55,6 +57,7 @@ const inFamily =
 
 export const CheckIcon = inFamily(Check)
 export const ChevronIcon = inFamily(ChevronDown)
+export const ChevronUpIcon = inFamily(ChevronUp)
 export const ControlsIcon = inFamily(SlidersHorizontal)
 export const CopyIcon = inFamily(Copy)
 export const CrossIcon = inFamily(X)
@@ -65,6 +68,7 @@ export const MenuIcon = inFamily(Menu, {
   strokeWidth: 2.6
 })
 export const DiceIcon = inFamily(Dice5)
+export const GripIcon = inFamily(GripVertical)
 export const MinusIcon = inFamily(Minus)
 export const MoveIcon = inFamily(ArrowRightLeft)
 export const RenameIcon = inFamily(Pencil)

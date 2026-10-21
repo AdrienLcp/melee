@@ -1,7 +1,11 @@
 import type { RoundView } from '@melee/protocol/room'
 import type { WorldmapTargetKind } from '@melee/protocol/worldmap'
 
-import { distanceOf, worldmapContent } from '@/helpers/round-content'
+import {
+  distanceOf,
+  swappedPairsOf,
+  worldmapContent
+} from '@/helpers/round-content'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 type DistanceForm = 'away' | 'km'
@@ -29,10 +33,21 @@ export const useDistanceWords = (
         })
 }
 
+/** An order's result in the reader's language: *In order*, or how many pairs it swapped. */
+export const useOrderWords = (): ((swappedPairs: number) => string) => {
+  const { translate } = useI18n()
+
+  return (swappedPairs) =>
+    swappedPairs === 0
+      ? translate('timeline.reveal.perfect')
+      : translate('timeline.reveal.swapped', { pairs: swappedPairs })
+}
+
 /**
- * What a revealed answer reads as: the line it was typed or picked as, and
- * on the world map its distance — the server records a marker as two
- * coordinates, which is nobody's answer to read.
+ * What a revealed answer reads as: the line it was typed or picked as, on the
+ * world map its distance and on the timeline the pairs it swapped — the server
+ * records a marker as two coordinates and an order as a row of ids, which are
+ * nobody's answer to read.
  */
 export const useAnswerWords = (
   round: RoundView
@@ -41,9 +56,16 @@ export const useAnswerWords = (
     worldmapContent(round)?.target.kind ?? 'country'
   )
 
+  const orderWords = useOrderWords()
+
   return (answer) => {
     const distanceKm = distanceOf(round, answer.playerId)
+    const swappedPairs = swappedPairsOf(round, answer.playerId)
 
-    return distanceKm === null ? answer.said : distanceWords(distanceKm, 'away')
+    return distanceKm !== null
+      ? distanceWords(distanceKm, 'away')
+      : swappedPairs !== null
+        ? orderWords(swappedPairs)
+        : answer.said
   }
 }

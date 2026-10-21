@@ -1,6 +1,6 @@
 # 38 — Timeline
 
-**Served 21/10/2026; screens owed.** Asked 21/10/2026. Five dated events dealt
+**Done 21/10/2026.** Asked 21/10/2026, served and drawn the same day. Five dated events dealt
 at once; each player puts them in order on their own screen, and the wall shows
 the true order on the reveal with each year.
 
@@ -48,18 +48,42 @@ the true order on the reveal with each year.
   and gives it the `History` glyph, so every exhaustive switch compiles. No
   screen draws it yet.
 
-## What the screens session owes
+## What was built — the screens
 
-- The player's form: the five events as a list reordered by drag **and by
-  keyboard** — react-aria's `GridList` with `useDragAndDrop` reorders both
-  ways — and one button that sends the order. Nothing is sent until then.
-- The console and wall stage: the events as dealt while the round is open,
-  who has sent (the `answers` count), and on the reveal the true order with
-  each year, each seat's pairs swapped and its pay.
-- The player's reveal: their own order beside the true one, the swapped pairs
-  shown rather than computed again.
-- The shelf: a spine, a tagline and the door's description, then
-  `shelvedGames`; the settings fold with the time per round.
+- **An event is a printed card** (`TimelineCard`): the year slot on top, a
+  dashed empty slot until the reveal prints the date in it, the name in the
+  reader's own locale under it. `TimelineStrip` lays cards down two ways —
+  `dealt`, side by side in no order, and `ordered`, hung off one line with a
+  dot each, across a box 40rem wide or more and down a narrower one.
+- **The player's form** (`TimelineAnswer`, over `TimelineOrderList` in
+  `presentation/components`, which wraps react-aria's `GridList` and
+  `useDragAndDrop`): the five cards between *earliest* and *latest*, each with
+  a grip — dragged by a pointer, a finger or the keyboard through the drag
+  button — and two arrows that step it one place, because a hand that has
+  never dragged anything on a screen finds a press first. One coral press
+  sends the order; the sent order stays on the line, years still empty,
+  until the reveal. A reload after sending says the order is in and draws
+  nothing, since no screen is told what anyone sent. A seated console and the
+  wall answering for a team draw the same form on the stage.
+- **The console and the wall** put the line *which came first?* on the round
+  card and the five cards dealt across the stage under it, with the count of
+  who is in.
+- **The reveal** strings the cards along the line with their years on the
+  console and the wall, every seat's pairs swapped beside its name, fewest
+  first (`nearnessOf` and `revealedInOrder` read a swapped-pair count where
+  the map reads kilometres). A player reads their own order back with the
+  years on it — what is out of place shows without anything recounted — and
+  the pairs swapped beside the title; a seat that sent nothing reads the true
+  order. The order comes back from the revealed answer's line, joined by
+  `TIMELINE_ORDER_SEPARATOR` in `protocol/timeline.ts` on both ends.
+- **The shelf**: a bronze spine, `oklch(46% 0.09 100)`, a tagline and the
+  door's description, `shelvedGames`, the document heads, and the time per
+  round in the settings fold (30, 45 or 90 s).
+- Seen muted through a Playwright script at 1280×800 and 390×844, light in
+  English and dark in French: the shelf, the fold, the dealt stage, an arrow
+  and a drag reordering the player's cards, the sent order, and the reveal on
+  the console (wide and narrow) and the player. A paired wall and a seated
+  console were not seen.
 
 ## Decisions for Adrien to read
 
@@ -67,3 +91,6 @@ the true order on the reveal with each year.
   pairs swapped.
 - Five events a round, at least five years apart, fixed rather than a setting.
 - One bank in both languages rather than a language setting like the quiz's.
+- Arrows on every card beside the drag, rather than the drag alone.
+- The player's reveal shows their own order with the years rather than the
+  true order, which the room's screen carries.

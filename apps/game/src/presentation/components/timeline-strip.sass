@@ -1,0 +1,73 @@
+@layer components
+  // Dealt, the cards lie side by side in no order; ordered, they hang off one
+  // line earliest first, a dot where each meets it — across when
+  // five fit side by side, down a narrow screen.
+  .timeline-strip
+    --dot: 0.875rem
+
+    container-type: inline-size
+    min-width: 0
+
+    > ol
+      display: grid
+      gap: clamp(var(--space-xs), 1.6cqi, var(--space-m))
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+    li
+      display: grid
+      min-width: 0
+
+  .timeline-strip[data-layout='ordered'] > ol
+    grid-template-columns: repeat(5, minmax(0, 1fr))
+    padding-block-start: calc(var(--dot) + var(--space-s))
+    position: relative
+
+    &::before
+      background: var(--ink)
+      block-size: var(--stroke-bold)
+      content: ''
+      inset-block-start: calc(var(--dot) / 2 - var(--stroke-bold) / 2)
+      inset-inline: 0
+      position: absolute
+
+    > li
+      position: relative
+
+      &::before
+        background: var(--ink)
+        block-size: var(--dot)
+        border-radius: var(--radius-full)
+        content: ''
+        inline-size: var(--dot)
+        inset-block-start: calc(-1 * (var(--dot) + var(--space-s)))
+        inset-inline-start: calc(50% - var(--dot) / 2)
+        position: absolute
+
+  // Down a narrow screen the line runs at the start, and each card is one row:
+  // its year, then its name.
+  @container (width < 40rem)
+    .timeline-strip[data-layout='ordered'] > ol
+      grid-template-columns: minmax(0, 1fr)
+      padding-block-start: 0
+      padding-inline-start: calc(var(--dot) + var(--space-s))
+
+      &::before
+        block-size: auto
+        inline-size: var(--stroke-bold)
+        inset-block: 0
+        inset-inline: calc(var(--dot) / 2 - var(--stroke-bold) / 2) auto
+
+      > li::before
+        inset-block-start: calc(50% - var(--dot) / 2)
+        inset-inline-start: calc(-1 * (var(--dot) + var(--space-s)))
+
+      .timeline-card
+        --timeline-card-padding: var(--space-xs) var(--space-s)
+        --timeline-year-size: var(--text-l)
+
+        align-items: baseline
+        column-gap: var(--space-s)
+        grid-template-columns: 3.2em minmax(0, 1fr)

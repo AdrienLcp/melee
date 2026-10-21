@@ -43,6 +43,13 @@ export const timelineOrderSchema = z
   .min(2)
   .max(TIMELINE_EVENTS_PER_ROUND)
 
+/**
+ * What joins the ids of an order in the line a revealed answer says, which is
+ * how a player's screen reads back the order it sent after a reload. An id
+ * never holds a space, so it never holds this.
+ */
+export const TIMELINE_ORDER_SEPARATOR = ' < '
+
 export type TimelineEventId = z.infer<typeof timelineEventIdSchema>
 export type TimelineLabels = z.infer<typeof timelineLabelsSchema>
 export type TimelineEvent = z.infer<typeof timelineEventSchema>

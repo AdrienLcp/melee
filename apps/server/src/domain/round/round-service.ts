@@ -6,6 +6,7 @@ import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { Verdict } from '@melee/protocol/scoring'
+import { TIMELINE_ORDER_SEPARATOR } from '@melee/protocol/timeline'
 import type { HostTrack } from '@melee/protocol/track'
 import type { GeoPoint } from '@melee/protocol/worldmap'
 
@@ -949,7 +950,7 @@ const grade = ({
 
     return verdict === null
       ? null
-      : { said: attempt.eventIds.join(' < '), verdict }
+      : { said: attempt.eventIds.join(TIMELINE_ORDER_SEPARATOR), verdict }
   }
 
   if (attempt.kind === 'point' || attempt.kind === 'order') {

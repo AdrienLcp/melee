@@ -7,7 +7,11 @@ import {
   hasAnybodyScored
 } from '@melee/core/scoring/scoreboard'
 
-import { nearnessOf, worldmapContent } from '@/helpers/round-content'
+import {
+  nearnessOf,
+  timelineContent,
+  worldmapContent
+} from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -58,14 +62,19 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
       className={['round-board', isRanked && 'ranked', isPaying && 'paying']
         .filter(Boolean)
         .join(' ')}
-      data-inline-words={worldmapContent(round) !== null || undefined}
+      data-inline-words={
+        worldmapContent(round) !== null ||
+        timelineContent(round) !== null ||
+        undefined
+      }
       // How many rows the screen's budget is divided by. The room's size rather
       // than the list's own length, because they are the same number here and
       // the room is the fact the stage is budgeting for.
       style={{ '--board-rows': view.players.length }}
     >
-      {/* Level on the board, the nearer pawn first — on every other game
-          nobody has a distance and the roster's order stands. */}
+      {/* Level on the board, the nearer pawn first — on every game but the
+          map and the timeline nobody is near or far and the roster's order
+          stands. */}
       {buildScoreboard(view.players)
         .toSorted(
           (left, right) =>

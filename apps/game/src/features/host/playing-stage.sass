@@ -99,6 +99,29 @@
         > .answered-pawns
           margin-block-end: 13vh
 
+    // The cards dealt across the stage, read from across the room, under the
+    // question that says which way round to put them.
+    &[data-timeline]
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      > .timeline-strip,
+      > .answer-form.timeline-answer
+        align-self: center
+        inline-size: min(100%, 80rem)
+
+      > .timeline-strip
+        --timeline-label-size: clamp(var(--text-m), 3.4cqmin, 2.25rem)
+        --timeline-card-padding: clamp(var(--space-s), 2.4cqmin, var(--space-l))
+        --timeline-year-size: clamp(var(--text-l), 5cqmin, 3.5rem)
+
+        margin-block: auto
+
+      > .answer-form.timeline-answer
+        flex: 1 1 0
+        inline-size: min(100%, 40rem)
+
     @media (aspect-ratio >= 13 / 10)
       &[data-answering],
       &[data-choices]

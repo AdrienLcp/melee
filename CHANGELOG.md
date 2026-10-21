@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Game]` **Timeline, the tenth game, is on the shelf**, in a bronze box.
+  Every player gets the five events as cards between *earliest* and
+  *latest*, dragged into place by their grip or stepped one place at a time
+  by two arrows, and sends the order once. The room's screen deals the same
+  cards with an empty slot where the year goes; the reveal strings them along
+  a line, each year printed on its card, with every seat's pairs swapped
+  beside its name, and each player reads their own order back with the
+  years on it. The settings fold sets the time per round.
+
 - `[Server]` **The timeline is served**, not yet shelved, and
   `PROTOCOL_VERSION` goes to 39. A round deals five dated events at least five
   years apart from a bank of 214 written in French and English — history,

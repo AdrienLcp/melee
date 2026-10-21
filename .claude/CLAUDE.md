@@ -151,7 +151,7 @@ which is why a user-visible string written into a component is a bug — see
   for, and the create-room request carries which. It must **not** collapse into
   `gameKinds`, because it is what refuses a game that is served but has no
   screens yet — every game so far spent a stage in that window, `reflex`
-  included, reachable only by a settings frame, and `timeline` sits in it now. The game owns
+  included, reachable only by a settings frame. The game owns
   its arm of `settings.game` and `round.content`, and narrows the answer mode
 - **Line-up** — the entries ticked for the evening, `settings.lineUp`, each
   a game's whole settings so two may share a game (a **variant**: a blind test

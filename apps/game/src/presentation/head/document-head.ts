@@ -52,7 +52,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock and Matchsticks.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock, Matchsticks and Timeline.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -85,6 +85,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Numbered things to guess and a private answer sheet on every screen. Nobody copies the loudest voice; the host marks the papers one number at a time on the big screen.',
       title: 'Slate — Mêlée'
     },
+    timeline: {
+      description:
+        'Five events come up at once — the Moon landing, the fall of the Berlin Wall, the first iPhone — and the whole room puts them in order on their own screens, earliest first. The years come out at the reveal. Scan the QR code and play — no install, no account.',
+      title: 'Timeline — Mêlée'
+    },
     worldmap: {
       description:
         'A country comes up and everyone puts a pawn on a world map, from their own screen. Inside scores in full, outside is paid by the kilometre to the border, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
@@ -114,7 +119,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne et Allumettes.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes et Frise chronologique.',
       title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
     },
     innerclock: {
@@ -146,6 +151,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         "Des choses numérotées à deviner et une feuille de réponses privée sur chaque écran. Personne ne copie la voix la plus forte ; l'hôte corrige les copies numéro par numéro sur le grand écran.",
       title: "L'Ardoise — Mêlée"
+    },
+    timeline: {
+      description:
+        'Cinq événements tombent d’un coup — les premiers pas sur la Lune, la chute du mur de Berlin, le premier iPhone — et toute la salle les remet dans l’ordre depuis son écran, du plus ancien au plus récent. Les années tombent au dévoilement. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Frise chronologique — Mêlée'
     },
     worldmap: {
       description:

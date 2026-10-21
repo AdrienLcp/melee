@@ -1,0 +1,73 @@
+@use '../styles/focus'
+
+@layer components
+  // Each card between its grip and its two arrows, all three on the board: the
+  // card is the thing that moves, the rest are what moves it.
+  .timeline-order-list
+    display: grid
+    gap: var(--space-xs)
+    min-height: 0
+    outline: none
+
+    .order-row
+      align-items: center
+      border-radius: var(--radius-m)
+      column-gap: var(--space-xs)
+      display: grid
+      grid-template-columns: auto minmax(0, 1fr) auto
+      outline: none
+
+      &[data-focus-visible]
+        @include focus.ring
+
+    // The year is the answer, and a row being ordered has none to show.
+    .timeline-card
+      --timeline-label-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), 1.25rem)
+
+      min-height: 3rem
+      align-content: center
+
+      .year
+        display: none
+
+    // The slot the card left while it travels: an empty socket, never a faded card.
+    .order-row[data-dragging] .timeline-card
+      background: var(--socket)
+      box-shadow: var(--shadow-recess-shallow)
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: -2px
+
+      .label
+        color: var(--ink-muted)
+
+    .grip
+      align-items: center
+      background: none
+      border: 0
+      border-radius: var(--radius-s)
+      color: var(--ink-muted)
+      cursor: grab
+      display: grid
+      block-size: 2.75rem
+      inline-size: 2rem
+      justify-items: center
+      padding: 0
+      touch-action: none
+
+      &[data-pressed]
+        cursor: grabbing
+
+      &[data-focus-visible]
+        @include focus.ring
+
+    .steps
+      display: flex
+      gap: var(--space-xs)
+
+    .drop-line
+      block-size: 0
+      outline: none
+
+      &[data-drop-target]
+        border-block-start: var(--stroke-bold) solid var(--primary)
+        margin-block: calc(-1 * var(--stroke-bold) / 2)

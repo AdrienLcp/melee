@@ -251,6 +251,21 @@
           block-size: 1.1em
           inline-size: auto
 
+    // The dates read from across the room, the line taking the whole width.
+    &[data-game='timeline'] .head
+      .timeline-strip
+        --timeline-card-padding: var(--space-s) clamp(var(--space-xs), calc(var(--stage-unit) * 1.4), var(--space-m))
+        --timeline-label-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.1), 1.5rem)
+        --timeline-year-size: clamp(var(--text-xl), calc(var(--stage-unit) * 5.4), 4.5rem)
+
+        flex: 1 1 auto
+
+        // Five cards share half the stage here, and a long word is wider than
+        // one of them: broken at a syllable rather than run past the card.
+        .label
+          hyphenate-limit-chars: 10
+          hyphens: auto
+
     // The same card the puzzle was played on, the stick now moved.
     &[data-game='matchsticks'] .matchsticks-prompt
       @include piece.card

@@ -5,6 +5,10 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 import type { HalvesVerdict, Verdict } from '@melee/protocol/scoring'
+import {
+  type DatedTimelineEvent,
+  TIMELINE_ORDER_SEPARATOR
+} from '@melee/protocol/timeline'
 
 /**
  * A round's content is a union, and a screen only ever renders one arm of it.
@@ -40,6 +44,11 @@ export const slateContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'slate' }> | null =>
   round?.content.kind === 'slate' ? round.content : null
+
+export const timelineContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'timeline' }> | null =>
+  round?.content.kind === 'timeline' ? round.content : null
 
 export const worldmapContent = (
   round: RoundView | null | undefined
@@ -120,22 +129,64 @@ export const distanceOf = (
   return verdict?.kind === 'distance' ? verdict.distanceKm : null
 }
 
+/** How many pairs a seat put the wrong way round, `null` for a seat that sent no order or a round off the timeline. */
+export const swappedPairsOf = (
+  round: RoundView,
+  playerId: string
+): number | null => {
+  const verdict = round.awards.find(
+    (award) => award.playerId === playerId
+  )?.verdict
+
+  return verdict?.kind === 'order' ? verdict.swappedPairs : null
+}
+
 /**
- * A distance to sort on, every seat without one level last: a subtraction of
- * two infinities is `NaN`, which no sort survives.
+ * The order a seat sent, read back from its revealed answer with every year
+ * now on it, or `null` before the reveal and for a seat that sent none. Its
+ * own screen forgets the order on a reload, and the server's line is the one
+ * record of it.
+ */
+export const sentOrderOf = (
+  round: RoundView,
+  playerId: string | null
+): DatedTimelineEvent[] | null => {
+  const dated = timelineContent(round)?.revealedEvents ?? null
+  const said = round.revealedAnswers.find(
+    (answer) => answer.playerId === playerId
+  )?.said
+
+  if (dated === null || said === undefined) {
+    return null
+  }
+
+  const sent = said
+    .split(TIMELINE_ORDER_SEPARATOR)
+    .map((id) => dated.find((event) => event.id === id))
+    .filter((event) => event !== undefined)
+
+  return sent.length === dated.length ? sent : null
+}
+
+/**
+ * How far a seat landed from the answer — kilometres on the map, pairs swapped
+ * on the timeline — every seat without one level last: a subtraction of two
+ * infinities is `NaN`, which no sort survives.
  */
 export const nearnessOf = (round: RoundView, playerId: string): number =>
-  distanceOf(round, playerId) ?? Number.MAX_VALUE
+  distanceOf(round, playerId) ??
+  swappedPairsOf(round, playerId) ??
+  Number.MAX_VALUE
 
 /**
  * The answers in the order the reveal reads them: nearest first on the world
- * map, where the distance is the result, and as the server sent them in every
- * other game.
+ * map and the timeline, where how far is the result, and as the server sent
+ * them in every other game.
  */
 export const revealedInOrder = (
   round: RoundView
 ): RoundView['revealedAnswers'] =>
-  worldmapContent(round) === null
+  worldmapContent(round) === null && timelineContent(round) === null
     ? round.revealedAnswers
     : round.revealedAnswers.toSorted(
         (left, right) =>

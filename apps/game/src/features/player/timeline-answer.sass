@@ -1,0 +1,32 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The five cards between the two ends of time, and the press that sends
+  // them under the last.
+  .timeline-answer
+    align-content: center
+    display: grid
+    gap: var(--space-xs)
+    grid-template-columns: minmax(0, 1fr)
+    min-height: 0
+
+    .end
+      @include typography.caption-strong
+
+      color: var(--ink-muted)
+      margin: 0
+      text-transform: uppercase
+
+    .end.latest
+      margin-block-end: var(--space-s)
+
+    .button
+      inline-size: 100%
+
+    .hint
+      @include typography.strong
+
+      color: var(--ink)
+      margin: 0
+      text-align: center
+      text-wrap: balance

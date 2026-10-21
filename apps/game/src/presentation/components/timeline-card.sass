@@ -1,0 +1,39 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  // An event printed on a card from the box: the year slot on top, empty and
+  // ruled until the reveal prints the date in it, the name under it.
+  .timeline-card
+    @include piece.card(var(--radius-m))
+
+    --ground: var(--card)
+
+    align-content: start
+    display: grid
+    gap: var(--space-xs)
+    min-width: 0
+    padding: var(--timeline-card-padding, var(--space-s) var(--space-m))
+
+    .year
+      @include typography.score
+
+      color: var(--card-ink)
+      font-size: var(--timeline-year-size, clamp(var(--text-l), calc(var(--stage-unit) * 4), 3rem))
+      font-variant-numeric: tabular-nums
+
+    &:not([data-dated]) .year
+      border-radius: var(--radius-s)
+      color: var(--card-muted)
+      justify-self: start
+      outline: var(--stroke-thin) dashed var(--rule-strong)
+      outline-offset: -2px
+      padding-inline: var(--space-s)
+
+    .label
+      @include typography.strong
+
+      color: var(--card-ink)
+      font-size: var(--timeline-label-size, clamp(var(--text-s), calc(var(--stage-unit) * 2.2), 1.5rem))
+      overflow-wrap: break-word
+      text-wrap: pretty
