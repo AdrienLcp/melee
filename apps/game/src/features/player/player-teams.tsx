@@ -6,6 +6,7 @@ import type { TeamId } from '@melee/protocol/team'
 import {
   buildTeamBoard,
   hasAnyTeamScored,
+  isEveryTeamItsOwnSeat,
   teamOfSeat
 } from '@melee/core/team/team-board'
 
@@ -105,7 +106,9 @@ export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
           </p>
         </div>
       )}
-      <SeatPodium players={view.players} youId={view.youId} />
+      {!isEveryTeamItsOwnSeat(view) && (
+        <SeatPodium players={view.players} youId={view.youId} />
+      )}
       <TeamRoster
         isRanked
         label={translate('host.standings')}

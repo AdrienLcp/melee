@@ -5,7 +5,11 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
-import { buildTeamBoard, hasAnyTeamScored } from '@melee/core/team/team-board'
+import {
+  buildTeamBoard,
+  hasAnyTeamScored,
+  isEveryTeamItsOwnSeat
+} from '@melee/core/team/team-board'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
@@ -44,7 +48,8 @@ type TeamRosterProps = {
  * The room as teams: one tray per team, banded in its pawn's colour, its name
  * and score in the head and its seats as chips under it. The band carries the
  * colour and the name carries the meaning, so no team is told apart by hue
- * alone.
+ * alone. Where every team is one seat named after itself, the seats are not
+ * drawn: each would only say its team's name a second time.
  */
 export const TeamRoster: React.FC<TeamRosterProps> = ({
   isRanked = false,
@@ -60,6 +65,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   const translate = useTranslate()
   const teamName = useTeamName()
   const showsRank = isRanked && hasAnyTeamScored(teams)
+  const showsSeats = !isEveryTeamItsOwnSeat({ players, teams })
   const entries = isRanked
     ? buildTeamBoard(teams)
     : teams.map((team) => ({ rank: null, team }))
@@ -106,7 +112,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
               {teamAction?.(team)}
             </div>
             {teamDetail?.(team)}
-            {members.length === 0 ? (
+            {!showsSeats ? null : members.length === 0 ? (
               <p className='empty'>{translate('team.empty')}</p>
             ) : (
               <SeatChips

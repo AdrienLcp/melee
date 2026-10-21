@@ -2,7 +2,12 @@ import { describe, expect, it } from 'vitest'
 
 import type { Team } from '@melee/protocol/team'
 
-import { buildTeamBoard, teamOfSeat, teamWinnersOf } from './team-board'
+import {
+  buildTeamBoard,
+  isEveryTeamItsOwnSeat,
+  teamOfSeat,
+  teamWinnersOf
+} from './team-board'
 
 const team = (colour: number, score: number, seatIds: string[] = []): Team => ({
   board: null,
@@ -57,5 +62,35 @@ describe('team board', () => {
 
     expect(teamOfSeat({ playerId: 'ben', teams })?.id).toBe('team-2')
     expect(teamOfSeat({ playerId: 'carl', teams })).toBeNull()
+  })
+
+  it('[team-board] reads a team named after its only seat as that seat', () => {
+    const seat = (id: string, nickname: string) => ({ id, nickname })
+    const named = (colour: number, name: string, seatIds: string[]): Team => ({
+      ...team(colour, 0, seatIds),
+      name
+    })
+    const players = [
+      seat('a', 'Les Bleus'),
+      seat('b', 'Mamie'),
+      seat('c', 'Léo')
+    ]
+
+    expect(
+      isEveryTeamItsOwnSeat({
+        players,
+        teams: [named(1, 'Les Bleus', ['a']), named(2, 'Mamie', ['b'])]
+      })
+    ).toBe(true)
+    expect(
+      isEveryTeamItsOwnSeat({
+        players,
+        teams: [named(1, 'Les Bleus', ['a']), named(2, 'Mamie', ['b', 'c'])]
+      })
+    ).toBe(false)
+    expect(isEveryTeamItsOwnSeat({ players, teams: [team(1, 0, ['a'])] })).toBe(
+      false
+    )
+    expect(isEveryTeamItsOwnSeat({ players, teams: [] })).toBe(false)
   })
 })

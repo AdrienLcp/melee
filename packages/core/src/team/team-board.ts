@@ -1,4 +1,5 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
 export type TeamBoardEntry = {
@@ -61,3 +62,25 @@ export const teamOfSeat = ({
   playerId === null
     ? null
     : (teams.find((team) => team.seatIds.includes(playerId)) ?? null)
+
+/**
+ * Whether every team is one seat named after itself — a screen per team, where
+ * a team's seat would only repeat the team's name under it.
+ */
+export const isEveryTeamItsOwnSeat = ({
+  players,
+  teams
+}: {
+  players: readonly Pick<PublicPlayer, 'id' | 'nickname'>[]
+  teams: readonly Team[]
+}): boolean =>
+  teams.length > 0 &&
+  teams.every((team) => {
+    const [seatId, ...others] = team.seatIds
+
+    return (
+      others.length === 0 &&
+      team.name !== null &&
+      players.find((player) => player.id === seatId)?.nickname === team.name
+    )
+  })

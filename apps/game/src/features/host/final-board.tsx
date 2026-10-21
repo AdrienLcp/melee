@@ -5,7 +5,10 @@ import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
 import { winnersOf } from '@melee/core/scoring/scoreboard'
-import { teamWinnersOf } from '@melee/core/team/team-board'
+import {
+  isEveryTeamItsOwnSeat,
+  teamWinnersOf
+} from '@melee/core/team/team-board'
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import { Pawn } from '@/presentation/components/pawn'
@@ -89,7 +92,9 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
         )}
       </div>
 
-      {teams.length > 0 && <SeatPodium players={players} youId={youId} />}
+      {teams.length > 0 && !isEveryTeamItsOwnSeat({ players, teams }) && (
+        <SeatPodium players={players} youId={youId} />
+      )}
       <Standings players={players} teams={teams} youId={youId} />
       <ScoreTrack players={players} teams={teams} youId={youId} />
     </section>

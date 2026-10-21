@@ -6,6 +6,8 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
+import { isEveryTeamItsOwnSeat } from '@melee/core/team/team-board'
+
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -30,7 +32,8 @@ type StandingsProps = {
 /**
  * How many rows the standings take, which the boxed layouts divide their height
  * by: a team is its name and a row of its seats, so a room in teams is two rows
- * a team rather than one a seat — three where the board reads its pawn's case.
+ * a team rather than one a seat — three where the board reads its pawn's case,
+ * and one fewer where each team is a seat of its own and draws no seats.
  */
 export const standingsRowsOf = ({
   board,
@@ -41,7 +44,9 @@ export const standingsRowsOf = ({
     return players.length
   }
 
-  return teams.length * (board?.kind === 'track' ? 3 : 2)
+  const seatRows = isEveryTeamItsOwnSeat({ players, teams }) ? 0 : 1
+
+  return teams.length * (1 + seatRows + (board?.kind === 'track' ? 1 : 0))
 }
 
 /**
