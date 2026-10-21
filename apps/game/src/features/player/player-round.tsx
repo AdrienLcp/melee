@@ -3,10 +3,12 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
+import type { PlayerId } from '@melee/protocol/identifiers'
 import type {
   ActiveBuzz,
   PlayerRoomView,
   RoomPhase,
+  RoundTurn,
   RoundView
 } from '@melee/protocol/room'
 import type { TeamId } from '@melee/protocol/team'
@@ -388,18 +390,55 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     )
   }
 
-  // Another team's round in a set: the seat is in the game and owes nothing,
-  // and the round is theirs to watch — on the wall, or across the table.
-  const teamOnTurn = view.teams.find((team) => team.id === round?.turn?.teamId)
+  // A round that is not this seat's — another team's, a teammate's in solo,
+  // two others' duel: the seat is in the game and owes nothing, and the round
+  // is theirs to watch — on the wall, or across the table.
+  const turn = round?.turn ?? null
+  const teamOnTurn = view.teams.find((team) => team.id === turn?.teamIds[0])
+
+  const nameOf = (playerId: PlayerId | undefined) =>
+    view.players.find((player) => player.id === playerId)?.nickname ?? ''
+
+  const watchNotice = (turn: RoundTurn, team: string) => {
+    const [chosenId, rivalId] = turn.seatIds ?? []
+
+    if (turn.style === 'duel') {
+      return {
+        detail: translate('team.turn.watch.duel.detail'),
+        title: translate('team.turn.duel', {
+          first: nameOf(chosenId),
+          second: nameOf(rivalId)
+        })
+      }
+    }
+
+    if (
+      turn.style === 'solo' &&
+      turn.teamIds[0] ===
+        teamOfSeat({ playerId: view.youId, teams: view.teams })?.id
+    ) {
+      return {
+        detail: translate('team.turn.watch.teammate.detail'),
+        title: translate('team.turn.watch.teammate.title', {
+          name: nameOf(chosenId)
+        })
+      }
+    }
+
+    return {
+      detail: translate('team.turn.watch.detail'),
+      title:
+        turn.style === 'solo'
+          ? translate('team.turn.watch.seat.title', { name: nameOf(chosenId) })
+          : translate('team.turn.watch.title', { team })
+    }
+  }
 
   if (
     view.phase === 'playing' &&
+    turn !== null &&
     teamOnTurn !== undefined &&
-    !playsThisTurn({
-      seatId: view.youId,
-      teams: view.teams,
-      turn: round?.turn ?? null
-    })
+    !playsThisTurn({ seatId: view.youId, teams: view.teams, turn })
   ) {
     return (
       <section
@@ -407,12 +446,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         data-team
         style={{ '--team': `var(--pawn-${teamOnTurn.colour})` }}
       >
-        <NoticeCard
-          detail={translate('team.turn.watch.detail')}
-          title={translate('team.turn.watch.title', {
-            team: teamName(teamOnTurn)
-          })}
-        />
+        <NoticeCard {...watchNotice(turn, teamName(teamOnTurn))} />
       </section>
     )
   }

@@ -8,7 +8,11 @@ import {
   roundIdSchema,
   sessionIdSchema
 } from './identifiers'
-import { MAX_PLAYERS_PER_ROOM, roomSettingsSchema } from './room'
+import {
+  MAX_PLAYERS_PER_ROOM,
+  playStyleSchema,
+  roomSettingsSchema
+} from './room'
 import { POINT, singleVerdictSchema, verdictSchema } from './scoring'
 import {
   MAX_SLATE_ITEMS,
@@ -179,11 +183,12 @@ export const updateSettingsMessageSchema = z.object({
  * `challengeText` is what a challenge round asks the table to do, typed on the
  * console as it is launched. Ignored by every other game.
  *
- * `byTeam` asks for a set: one round per team in turn, see `nextRoundMessageSchema`.
+ * `playStyle` says who plays the rounds, see `nextRoundMessageSchema`; absent
+ * is everyone at once.
  */
 export const startRoundMessageSchema = z.object({
-  byTeam: z.boolean().optional(),
   challengeText: challengeTextSchema.optional(),
+  playStyle: playStyleSchema.optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
 })
@@ -331,16 +336,18 @@ export const awardPlacesMessageSchema = z.object({
 })
 
 /**
- * `byTeam` says how the rounds from here on are played: everyone at once, or
- * a set — each team its own round in turn while the others watch. Absent, the
- * room keeps playing the way it last did, which is what the reveal hold opens
- * the next round on. A set under way plays its remaining turns whatever this
- * says: a team left without its turn would be a team left behind.
+ * `playStyle` says how the rounds from here on are played: everyone at once;
+ * a set — each team its own round in turn while the others watch, answered by
+ * the whole team or by one of its seats in rotation; or a duel, one seat from
+ * each of two teams. Absent, the room keeps playing the way it last did, which
+ * is what the reveal hold opens the next round on. A set under way plays its
+ * remaining turns whatever this says: a team left without its turn would be a
+ * team left behind.
  */
 export const nextRoundMessageSchema = z.object({
-  byTeam: z.boolean().optional(),
   /** The next round's challenge, when it is one — as on `host.startRound`. */
   challengeText: challengeTextSchema.optional(),
+  playStyle: playStyleSchema.optional(),
   type: z.literal('host.nextRound')
 })
 

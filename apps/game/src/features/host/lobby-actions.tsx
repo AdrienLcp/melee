@@ -8,15 +8,15 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
-import { byTeamFor, TurnsChoice } from './turns-choice'
+import { playStyleFor, TurnsChoice } from './turns-choice'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
   challengeLine,
   isLive,
   onOpenRound,
   onPlayRightAway,
-  onPrefersByTeam,
-  prefersByTeam,
+  onPlayStyle,
+  playStyle,
   send,
   slateKeys,
   view
@@ -58,8 +58,8 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
       )}
       <TurnsChoice
         isDisabled={!isLive}
-        onChange={onPrefersByTeam}
-        prefersByTeam={prefersByTeam}
+        onChange={onPlayStyle}
+        playStyle={playStyle}
         view={view}
       />
       <Button
@@ -67,8 +67,8 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
         onPress={() => {
           onOpenRound()
           send({
-            byTeam: byTeamFor({ prefersByTeam, view }),
             challengeText: challengeLine?.text,
+            playStyle: playStyleFor({ playStyle, view }),
             slateKeys,
             type: 'host.startRound'
           })

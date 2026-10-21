@@ -23,6 +23,16 @@ one part.
 
 ### Breaking Changes
 
+- `[Shared]` **A set can be played solo or in duels**, and `PROTOCOL_VERSION`
+  goes to 32. `playStyle` (`together`, `byTeam`, `solo`, `duel`) replaces
+  `byTeam` on `host.startRound` and `host.nextRound`, and `round.turn` names
+  the seats on turn. Solo: one seat answers for its team, the next one set
+  after set. Duel: two seats of two teams head to head, every seat duelling
+  before any duels twice. The console offers the four under *Comment jouer*,
+  the badge names the seat or the pair, and a watching phone is told whose
+  turn it is and that its own will come. A team-kind strip too narrow for two
+  columns now falls to one, as it said it would.
+
 - `[Shared]` **The board ranks, and helps the last team**, and
   `PROTOCOL_VERSION` goes to 31. A track's `strategy` can be `rank`: the
   round's best team moves 3 cases, the second 2, the third 1, ties sharing the

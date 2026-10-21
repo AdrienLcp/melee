@@ -63,9 +63,10 @@ export const protocolErrorCodes = [
    */
   'joined_mid_round',
   /**
-   * An answer from a seat whose team is not the one on turn. Its own code
-   * rather than `joined_mid_round`: the seat was there all along, and the
-   * screen owes it a wait for its team's round rather than for the next one.
+   * An answer from a seat the turn did not choose — another team's round, or
+   * a teammate's in solo or a duel. Its own code rather than
+   * `joined_mid_round`: the seat was there all along, and the screen owes it a
+   * wait for its own turn rather than for the next round.
    */
   'not_your_turn',
   /**

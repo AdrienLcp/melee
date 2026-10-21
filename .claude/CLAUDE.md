@@ -169,10 +169,12 @@ string written into a component is a bug — see `.claude/rules/i18n.md`.
   no race, so a latecomer is owed one. A screen that arrives after keeps its seat, is refused everything it
   could send with `joined_mid_round`, and plays from the next round
 - **Set** — one round per team in turn, each team its own question, the others
-  watching: `byTeam` on the host's start or next, `round.turn` on the view. A
-  turn is an ordinary round stamped on that team's seats alone; the team
-  answers as one — from any of its phones or from the wall — and the evening
-  counts the whole set as one round
+  watching: `playStyle` on the host's start or next, `round.turn` on the view. A
+  turn is an ordinary round stamped on the seats it chose. `byTeam` stamps the
+  whole team, which answers as one — from any of its phones or from the wall;
+  `solo` stamps one seat of it, the next one set after set; a `duel` is a set
+  of one round stamping two seats of two teams, every seat duelling before any
+  duels twice. The evening counts the whole set as one round
 - **Answer mode** — `typed` (one field), `choice` (four candidates, what the
   blind test and the quiz open on) or `buzzer` (one player, judged by the
   host). The first two are everyone at once, decided by the server and scored

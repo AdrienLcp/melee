@@ -59,7 +59,9 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(round)
   const isTyping = mode === 'typed' && onAnswer !== null
-  const teamOnTurn = view.teams.find((team) => team.id === round.turn?.teamId)
+  const teamOnTurn = view.teams.find(
+    (team) => team.id === round.turn?.teamIds[0]
+  )
   const worldmap = worldmapContent(round)
 
   return (

@@ -13,16 +13,16 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 import { BoardMoves } from './board-moves'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
-import { byTeamFor, TurnsChoice } from './turns-choice'
+import { playStyleFor, TurnsChoice } from './turns-choice'
 
 export const RevealActions: React.FC<HostActionsProps> = ({
   challengeLine,
   isLive,
   onOpenRound,
-  onPrefersByTeam,
+  onPlayStyle,
   onSettingsChange,
   preferences,
-  prefersByTeam,
+  playStyle,
   send,
   view
 }) => {
@@ -120,8 +120,8 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       )}
       <TurnsChoice
         isDisabled={!isLive}
-        onChange={onPrefersByTeam}
-        prefersByTeam={prefersByTeam}
+        onChange={onPlayStyle}
+        playStyle={playStyle}
         view={view}
       />
       <Button
@@ -129,8 +129,8 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         onPress={() => {
           onOpenRound()
           send({
-            byTeam: byTeamFor({ prefersByTeam, view }),
             challengeText: challengeLine?.text,
+            playStyle: playStyleFor({ playStyle, view }),
             type: 'host.nextRound'
           })
         }}

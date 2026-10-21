@@ -1370,6 +1370,10 @@ const evening = (view: ReturnType<typeof consoleView>) => ({
 
 const eveningRound = evening(consoleView(LONGEST_PROMPT))
 
+const duellists = eveningRound.teams
+  .slice(0, 2)
+  .flatMap((team) => team.seatIds.slice(0, 1))
+
 const WALL_SCREENS = [
   {
     name: 'lobby',
@@ -1385,7 +1389,31 @@ const WALL_SCREENS = [
       round: {
         ...eveningRound.round,
         openedWithPlayerIds: eveningRound.teams[1]?.seatIds ?? [],
-        turn: { index: 1, of: 3, teamId: 'team-2' }
+        turn: {
+          index: 1,
+          of: 3,
+          seatIds: null,
+          style: 'byTeam',
+          teamIds: ['team-2']
+        }
+      }
+    }
+  },
+  {
+    name: 'duel',
+    ready: '.turn-badge[data-duel]',
+    view: {
+      ...eveningRound,
+      round: {
+        ...eveningRound.round,
+        openedWithPlayerIds: duellists,
+        turn: {
+          index: 0,
+          of: 1,
+          seatIds: duellists,
+          style: 'duel',
+          teamIds: ['team-1', 'team-2']
+        }
       }
     }
   },

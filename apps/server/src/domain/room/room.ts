@@ -11,6 +11,7 @@ import type {
 import type { HostQuestion } from '@melee/protocol/question'
 import type {
   ModeSettings,
+  PlayStyle,
   RoomPhase,
   RoomSettings,
   RoundTurn
@@ -32,6 +33,8 @@ import type { SheetItem } from '@melee/core/slate/sheet-marking'
 export type Room = {
   code: RoomCode
   createdAt: number
+  /** Duels each seat has played this evening, which is who is drawn next — see `drawDuel`. */
+  duelsBySeat: Map<PlayerId, number>
   /**
    * When the last console's socket went, and `null` while one is attached. The
    * grace window a second screen has to wait out is measured from here.
@@ -57,15 +60,18 @@ export type Room = {
   players: Map<PlayerId, Participant>
   /**
    * How the rounds from here on are played, as the host last said: everyone at
-   * once, or a set of team turns. It is a wish rather than a rule — a round the
-   * room cannot play by team (a race, a single team) opens for everyone, and
-   * the next one that can goes back to sets.
+   * once, a set of team turns, or duels. It is a wish rather than a rule — a
+   * round the room cannot play by team (a race, a single team) opens for
+   * everyone, and the next one that can goes back to turns.
    */
-  playsByTeam: boolean
+  playStyle: PlayStyle
   round: Round | null
   /** The set under way, and `null` between two and whenever everyone plays. */
   set: TeamSet | null
-  /** Sets already opened, which is what turns who goes first — see `setOrder`. */
+  /**
+   * Sets already opened, which is what turns who goes first — see `setOrder` —
+   * and who answers for a team in solo — see `soloSeat`.
+   */
   setsPlayed: number
   settings: RoomSettings
   /**
@@ -111,6 +117,9 @@ export type TeamSet = {
   order: TeamId[]
   /** Turns already opened; the set is over once it reaches `order.length`. */
   played: number
+  /** The sets opened before this one, which picks the seat answering in solo. */
+  setsBefore: number
+  style: 'byTeam' | 'solo'
 }
 
 export type RoomTeam = {

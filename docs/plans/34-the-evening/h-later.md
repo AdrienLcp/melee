@@ -20,13 +20,13 @@ step that lands keeps its line here, dated, and loses its details.
    turn ranks the team on it alone, since the waiting teams were paid nothing:
    ranking over the whole set would hold every move until the last turn.
 
-3. **Solo and duel** (decision 20). Two more ways to play a set beside
-   *Everyone at once* and *Team by team*: *solo* — each team's turn is played
-   by one of its seats, rotating set after set so everybody answers in turn;
-   *duel* — two seats from two teams head to head, the rest watching, pairs
-   drawn so every seat duels before anyone duels twice. Both are roster rules
-   on the round's stamp (`round.turn` names seats, not only a team);
-   `canPlayByTeam` becomes the capability that offers all three.
+3. **Solo and duel** — done 21/10/2026: `playStyle` (`together`, `byTeam`,
+   `solo`, `duel`) replaces `byTeam` on the host's start and next, protocol 32,
+   and `round.turn` names `teamIds` and `seatIds`. Both are roster rules on the
+   round's stamp, drawn in `core/team/turn-seats.ts`; a duel is a set of one,
+   and the wall answers in `byTeam` alone, since in solo or a duel the answer
+   is a seat's. The console offers the four under *Comment jouer*, two by two,
+   with what the chosen one does written under it.
 
 4. **Teams with no phone at all** (decision 21). A room setting, *Answers
    aloud*: no seat needed, teams are named on the console, the wall shows the

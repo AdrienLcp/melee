@@ -5,7 +5,8 @@ import {
   RadioButton,
   RadioField,
   RadioGroup,
-  type RadioGroupProps
+  type RadioGroupProps,
+  Text
 } from 'react-aria-components'
 
 import './segmented-control.sass'
@@ -19,6 +20,8 @@ type SegmentedControlProps = Omit<
   RadioGroupProps,
   'children' | 'orientation'
 > & {
+  /** Said under the segments, and read with the group: what the chosen option does. */
+  description?: string
   /** Shown above the segments; a radio group without one is unreachable by name. */
   label: string
   /** Rendered in order, one segment each. */
@@ -38,6 +41,7 @@ type SegmentedControlProps = Omit<
  */
 export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   className,
+  description,
   label,
   options,
   ...props
@@ -59,5 +63,10 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
         </RadioField>
       ))}
     </div>
+    {description !== undefined && (
+      <Text className='description' slot='description'>
+        {description}
+      </Text>
+    )}
   </RadioGroup>
 )

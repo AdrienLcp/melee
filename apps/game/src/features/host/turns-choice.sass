@@ -1,0 +1,19 @@
+@use '../../presentation/styles/strip'
+
+@layer components
+  // Two by two beside the press that opens the round, one column where even
+  // two do not fit: the French stamps measure 146px at the widest and 476px
+  // as one row, which no launch column has to spare.
+  //
+  // A width of its own because the strip is a size container dropped into
+  // boxes sized by their content — the lobby's `auto` launch track, the
+  // reveal's centred column — and a size container's content counts for
+  // nothing: the two resolve to zero, as `.auto-advance` once did. A length
+  // rather than a percentage, which an intrinsic size reads as `auto`.
+  .turns-choice
+    @include strip.stacks-below(40rem)
+    @include strip.tiles-below(40rem, 2)
+    @include strip.tiles-below(18.5rem, 1)
+
+    max-width: 100%
+    width: 20rem

@@ -7,6 +7,7 @@ import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
+  PlayStyle,
   RoomSettings,
   RoundView
 } from '@melee/protocol/room'
@@ -117,7 +118,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // that puts the name back on the next `hello` — and a console whose tab was
   // discarded on a screen lock reloads rather than blinks, so a seat kept in
   // component state alone came back as no seat at all.
-  const [prefersByTeam, setPrefersByTeam] = useState(true)
+  const [playStyle, setPlayStyle] = useState<PlayStyle>('byTeam')
   const [seatNickname, setSeatNickname] = useState(() =>
     readSeatNickname({ role: 'host', roomCode })
   )
@@ -521,6 +522,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           )}
           {view?.round?.turn != null && view.phase !== 'finished' && (
             <TurnBadge
+              players={view.players}
               seatId={view.youId}
               teams={view.teams}
               turn={view.round.turn}
@@ -590,10 +592,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   }
                 }}
                 onPlayRightAway={playRightAway}
-                onPrefersByTeam={setPrefersByTeam}
+                onPlayStyle={setPlayStyle}
                 onSettingsChange={changeSettings}
+                playStyle={playStyle}
                 preferences={preferences}
-                prefersByTeam={prefersByTeam}
                 send={send}
                 slateKeys={preparedSlateKeys}
                 slateWall={slateWall}

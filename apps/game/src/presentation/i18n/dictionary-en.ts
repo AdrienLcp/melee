@@ -287,7 +287,7 @@ export const EN_DICTIONARY = defineDictionary({
     nickname_taken: 'Someone already took that nickname.',
     no_content_available: 'Nothing left to play. Try other settings.',
     no_game_chosen: 'Pick a game first.',
-    not_your_turn: 'Another team is playing this round. Yours is coming.',
+    not_your_turn: 'Someone else is playing this round. Yours is coming.',
     pairing_not_found:
       'That screen code has expired. Open the screen again for a new one.',
     player_locked_out: 'You are out for this round.',
@@ -466,9 +466,18 @@ export const EN_DICTIONARY = defineDictionary({
     startGame: 'Gather round',
     /** How the rounds from here are played, offered where a round can be one team's. */
     turns: {
-      byTeam: 'Team by team',
+      byTeam: 'By team',
+      duel: 'Duels',
+      /** Under the choice: what the one chosen does, since a stamp cannot say it. */
+      hint: {
+        byTeam: 'Each team plays its own round while the others watch.',
+        duel: 'Two players from two teams face off while everyone else watches.',
+        solo: 'Each team plays its own round, answered by one of its players in turn.',
+        together: 'Everyone answers every round.'
+      },
       label: 'How to play',
-      together: 'Everyone at once'
+      solo: 'One per team',
+      together: 'Everyone'
     },
     verdict: {
       right: 'Right',
@@ -1015,16 +1024,33 @@ export const EN_DICTIONARY = defineDictionary({
     },
     title: 'The teams',
     turn: {
+      /** Two seats head to head, each named beside its team's pawn. */
+      duel: '{first} vs {second}',
       /** How far a set has come: the turn on screen, of how many teams. */
       of: '{index:number} of {of:number}',
       plays: '{team} play',
+      /** One seat answering for its team. */
+      seatPlays: '{name} plays',
       /** A seat watching another team's round. */
       watch: {
         detail:
           'Your team plays its own round in this set — this one is theirs.',
+        duel: {
+          detail:
+            'Two players face off, each for their team — your turn will come.'
+        },
+        seat: {
+          title: '{name} plays this one'
+        },
+        teammate: {
+          detail: 'One of you answers each round, in turn — yours will come.',
+          title: '{name} answers for your team'
+        },
         title: '{team} play this one'
       },
-      yours: 'Your turn'
+      yours: 'Your turn',
+      /** The seat a turn chose, alone, rather than its whole team. */
+      yoursAlone: 'Your turn'
     },
     unassigned: {
       chosen: 'No team yet',

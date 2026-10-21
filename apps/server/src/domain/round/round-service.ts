@@ -221,15 +221,26 @@ export const startRoundClock = ({
   return true
 }
 
-/** A team's round is played by that team's seats alone; the others watch it. */
+/**
+ * A team's round is played by that team's seats alone, and a turn that chose
+ * its seats by those still in the room; the others watch it.
+ */
 const rosterOf = (room: Room, round: Round): Round['openedWithPlayerIds'] => {
   if (round.content.kind === 'slate') {
     return null
   }
 
+  if (round.turn?.seatIds != null) {
+    return new Set(
+      round.turn.seatIds.filter((seatId) => room.players.has(seatId))
+    )
+  }
+
   if (round.turn !== null) {
     return new Set(
-      seatsOf(room, round.turn.teamId).map((participant) => participant.id)
+      round.turn.teamIds.flatMap((teamId) =>
+        seatsOf(room, teamId).map((participant) => participant.id)
+      )
     )
   }
 
@@ -382,9 +393,11 @@ export type Answerer = { kind: 'seat'; playerId: PlayerId } | { kind: 'wall' }
 
 /**
  * The seats an answer is banked for. Everyone at once, a seat answers for
- * itself. In a team's round the team answers as one: whichever member or the
- * wall speaks first, every seat the round opened on holds the same attempt, so
- * the team's mean is what its answer earned and a pick closes its round.
+ * itself. In a turn each team answers as one: whichever of its stamped seats —
+ * or the wall, in a whole team's round — speaks first, every seat of that team
+ * the round opened on holds the same attempt, so the team's mean is what its
+ * answer earned and a pick closes its round. A duel stamps one seat per team,
+ * so each answers for itself.
  */
 const seatsAnsweredFor = ({
   from,
@@ -410,20 +423,29 @@ const seatsAnsweredFor = ({
       : Result.success([from.playerId])
   }
 
-  const teamSeats = [...(roster ?? [])]
+  const rosterSeats = [...(roster ?? [])]
 
   if (from.kind === 'wall') {
-    return round.content.kind !== 'slate' &&
+    return round.turn.style === 'byTeam' &&
+      round.content.kind !== 'slate' &&
       capabilitiesOf(round.content.kind).wallAnswers
-      ? Result.success(teamSeats)
+      ? Result.success(rosterSeats)
       : Result.failure('wall_cannot_answer')
   }
 
+  const teamId = room.players.get(from.playerId)?.teamId
+
   if (roster?.has(from.playerId) === true) {
-    return Result.success(teamSeats)
+    return Result.success(
+      rosterSeats.filter(
+        (seatId) => room.players.get(seatId)?.teamId === teamId
+      )
+    )
   }
 
-  return room.players.get(from.playerId)?.teamId === round.turn.teamId
+  return round.turn.seatIds === null &&
+    teamId != null &&
+    round.turn.teamIds.includes(teamId)
     ? Result.failure('joined_mid_round')
     : Result.failure('not_your_turn')
 }

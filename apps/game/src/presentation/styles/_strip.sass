@@ -61,6 +61,14 @@
 
     color: var(--ink-muted)
 
+  // What the chosen option does, under the strip and read with it: an option
+  // whose name cannot say it all on a stamp says the rest here.
+  .description
+    @include typography.caption
+
+    color: var(--ink-muted)
+    text-wrap: pretty
+
   // Ruled, never dimmed — the rule the whole material system runs on. The
   // selected stamp drops its ink ground and keeps the ink as an edge, so the
   // strip stays at full contrast and a host reading their settings over a dead

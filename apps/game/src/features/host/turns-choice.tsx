@@ -1,16 +1,21 @@
 import type React from 'react'
 
-import type { HostRoomView } from '@melee/protocol/room'
+import {
+  type HostRoomView,
+  type PlayStyle,
+  playStyleSchema
+} from '@melee/protocol/room'
 
 import { canPlayByTeam } from '@melee/core/team/team-turn'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-const BY_TEAM = 'byTeam'
-const TOGETHER = 'together'
+import './turns-choice.sass'
 
-/** Whether the next round may be played team by team, read off the room as it stands. */
+const PLAY_STYLES: readonly PlayStyle[] = ['together', 'byTeam', 'solo', 'duel']
+
+/** Whether the next round may be one team's, read off the room as it stands. */
 export const offersTurns = (view: HostRoomView): boolean =>
   canPlayByTeam({
     game: view.settings.game?.kind ?? null,
@@ -19,30 +24,30 @@ export const offersTurns = (view: HostRoomView): boolean =>
   })
 
 /** What the press opening the next round asks for: the host's wish, where the room can grant it. */
-export const byTeamFor = ({
-  prefersByTeam,
+export const playStyleFor = ({
+  playStyle,
   view
 }: {
-  prefersByTeam: boolean
+  playStyle: PlayStyle
   view: HostRoomView
-}): boolean => prefersByTeam && offersTurns(view)
+}): PlayStyle => (offersTurns(view) ? playStyle : 'together')
 
 type TurnsChoiceProps = {
   isDisabled: boolean
-  onChange: (prefersByTeam: boolean) => void
-  prefersByTeam: boolean
+  onChange: (playStyle: PlayStyle) => void
+  playStyle: PlayStyle
   view: HostRoomView
 }
 
 /**
- * Everyone at once or team by team, beside the press that opens the next
- * round — and nothing at all where a round cannot be one team's, because an
- * option that would be refused is not one.
+ * Everyone at once, team by team, one seat per team or in duels, beside the
+ * press that opens the next round — and nothing at all where a round cannot
+ * be one team's, because an option that would be refused is not one.
  */
 export const TurnsChoice: React.FC<TurnsChoiceProps> = ({
   isDisabled,
   onChange,
-  prefersByTeam,
+  playStyle,
   view
 }) => {
   const translate = useTranslate()
@@ -54,14 +59,15 @@ export const TurnsChoice: React.FC<TurnsChoiceProps> = ({
   return (
     <SegmentedControl
       className='turns-choice'
+      description={translate(`host.turns.hint.${playStyle}`)}
       isDisabled={isDisabled}
       label={translate('host.turns.label')}
-      onChange={(value) => onChange(value === BY_TEAM)}
-      options={[
-        { label: translate('host.turns.together'), value: TOGETHER },
-        { label: translate('host.turns.byTeam'), value: BY_TEAM }
-      ]}
-      value={prefersByTeam ? BY_TEAM : TOGETHER}
+      onChange={(value) => onChange(playStyleSchema.parse(value))}
+      options={PLAY_STYLES.map((style) => ({
+        label: translate(`host.turns.${style}`),
+        value: style
+      }))}
+      value={playStyle}
     />
   )
 }

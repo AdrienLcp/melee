@@ -261,7 +261,7 @@ export const FR_DICTIONARY = defineDictionary({
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',
-    not_your_turn: 'Une autre équipe joue cette manche. La tienne arrive.',
+    not_your_turn: 'Quelqu’un d’autre joue cette manche. Ton tour arrive.',
     pairing_not_found:
       'Ce code d’écran a expiré. Rouvre l’écran pour en avoir un nouveau.',
     player_locked_out: 'Tu es hors-jeu pour cette manche.',
@@ -429,9 +429,17 @@ export const FR_DICTIONARY = defineDictionary({
     standings: 'Classement',
     startGame: 'À table\u00a0!',
     turns: {
-      byTeam: 'Équipe par équipe',
+      byTeam: 'Par équipe',
+      duel: 'En duel',
+      hint: {
+        byTeam: 'Chaque équipe joue sa manche, les autres regardent.',
+        duel: 'Deux joueurs de deux équipes s’affrontent, les autres regardent.',
+        solo: 'Chaque équipe joue sa manche, et un de ses joueurs répond pour elle, chacun son tour.',
+        together: 'Tout le monde répond à chaque manche.'
+      },
       label: 'Comment jouer',
-      together: 'Tous en même temps'
+      solo: 'Un par équipe',
+      together: 'Tous ensemble'
     },
     verdict: {
       right: 'Bonne réponse',
@@ -926,14 +934,29 @@ export const FR_DICTIONARY = defineDictionary({
     },
     title: 'Les équipes',
     turn: {
+      duel: '{first} contre {second}',
       of: '{index:number} sur {of:number}',
       plays: 'À jouer : {team}',
+      seatPlays: 'À jouer : {name}',
       watch: {
         detail:
           'Ton équipe joue sa propre manche dans ce tour — celle-ci est la leur.',
+        duel: {
+          detail:
+            'Deux joueurs s’affrontent, chacun pour son équipe — ton tour viendra.'
+        },
+        seat: {
+          title: 'À jouer : {name}'
+        },
+        teammate: {
+          detail:
+            'Un seul d’entre vous répond à chaque manche, chacun son tour — le tien viendra.',
+          title: '{name} répond pour ton équipe'
+        },
         title: 'À jouer : {team}'
       },
-      yours: 'À vous !'
+      yours: 'À vous !',
+      yoursAlone: 'À toi !'
     },
     unassigned: {
       chosen: 'Pas encore d’équipe',

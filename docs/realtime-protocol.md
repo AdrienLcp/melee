@@ -81,7 +81,7 @@ before the reveal.
 | `wall.answer` | wall | `roundId`, `answer` — as `player.answer`, for the team on turn |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `byTeam` (optional) — play in sets |
+| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `playStyle` (optional) — `together`, `byTeam`, `solo` or `duel`; absent, everyone at once |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
@@ -97,7 +97,7 @@ before the reveal.
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
-| `host.nextRound` | host | `byTeam` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound` |
+| `host.nextRound` | host | `playStyle` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound` |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
@@ -173,18 +173,24 @@ names it, so every screen says the name its own dictionary gives the colour.
   are untouched, for the individual podium, and a seat's adjustment stays on
   the seat. Neither score goes below zero.
 
-**A set is rounds played in turn, not a round holding turns.** `byTeam` on
-`host.startRound` or `host.nextRound` asks for sets: each team plays an
-ordinary round of its own, with its own draw, while the others watch. The
-server orders them (`setOrder`, first turn passed round the table set after
-set) and stamps the round on the turn team's seats alone, so the roster rule
-already refuses everybody else — `not_your_turn` for a seat of another team,
-`joined_mid_round` for one that arrived late. `round.turn` says whose round it
-is and where it falls (`{ teamId, index, of }`), `null` when everyone plays.
+**A set is rounds played in turn, not a round holding turns.** `playStyle`
+on `host.startRound` or `host.nextRound` asks for one of three: `byTeam`, each
+team plays an ordinary round of its own, with its own draw, while the others
+watch; `solo`, the same set with one seat answering for its team, the next seat
+of that team on the next set (`soloSeat`); `duel`, a set of one round where two
+seats of two teams answer head to head, drawn so every seat duels before any
+duels twice (`drawDuel`, over `duelsBySeat`). The server orders the turns
+(`setOrder`, first turn passed round the table set after set) and stamps the
+round on the seats it chose, so the roster rule already refuses everybody else
+— `not_your_turn` for a seat the turn did not choose, `joined_mid_round` for a
+seat of the turn's team that arrived late. `round.turn` says whose round it is
+and where it falls — `{ style, teamIds, seatIds, index, of }`, `seatIds` `null`
+when the whole team plays — and is `null` when everyone plays.
 
 - **The team answers as one.** The first answer from any of its seats or from
-  the wall is banked for every seat the round opened on, so a pick closes the
-  turn and the team's mean is exactly what that answer earned. The wall reads
+  the wall is banked for every seat of that team the round opened on, so a pick
+  closes the turn and the team's mean is exactly what that answer earned. The
+  wall answers in `byTeam` alone: in solo and in a duel the answer is a seat's. The wall reads
   that shared verdict in its own `yourVerdict`, which says how much was right
   and never what the answer is.
 - **The evening counts a set as one round.** Every turn of a set shares one

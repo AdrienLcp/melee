@@ -347,15 +347,32 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
 ])
 
 /**
- * A team's round inside a set: which team plays it, and where it falls in the
- * set — "Blue plays, 2 of 3". The set shares one `index`, because the evening
- * counts it as one round however many teams it takes.
+ * Who answers a round that is not everyone's: `byTeam` the whole team on turn,
+ * `solo` one of its seats for it, `duel` one seat from each of two teams head
+ * to head.
+ */
+export const turnStyleSchema = z.enum(['byTeam', 'duel', 'solo'])
+
+/** How the host asks the rounds from here on to be played: a turn style, or everyone at once. */
+export const playStyleSchema = z.enum(['byTeam', 'duel', 'solo', 'together'])
+
+/**
+ * A round that is not everyone's: who plays it, and where it falls in its set
+ * — "Blue plays, 2 of 3". The set shares one `index`, because the evening
+ * counts it as one round however many teams it takes; a duel is a set of one.
  */
 export const roundTurnSchema = z.object({
   /** 0-based, so the last turn is `index === of - 1`. */
   index: z.number().int().nonnegative(),
   of: z.number().int().positive(),
-  teamId: teamIdSchema
+  /**
+   * The seats chosen to play it, in `teamIds` order, and `null` when the whole
+   * team does — who that is, the round's stamp says.
+   */
+  seatIds: z.array(playerIdSchema).min(1).max(2).nullable(),
+  style: turnStyleSchema,
+  /** The team on turn, or the two a duel sets against each other. */
+  teamIds: z.array(teamIdSchema).min(1).max(2)
 })
 
 export const roundViewSchema = z.object({
@@ -417,9 +434,9 @@ export const roundViewSchema = z.object({
    */
   startsAt: serverTimeSchema.nullable(),
   /**
-   * The team this round belongs to when it is one of a set, and `null` when
-   * everyone plays it. Only that team's seats are stamped on the round, and
-   * the wall may answer for it.
+   * Who this round belongs to when it is not everyone's, and `null` when it
+   * is. Only those seats are stamped on the round, and in a whole team's
+   * round the wall may answer for it.
    */
   turn: roundTurnSchema.nullable()
 })
@@ -607,6 +624,8 @@ export type ActiveBuzz = z.infer<typeof activeBuzzSchema>
 export type RoundContent = z.infer<typeof roundContentSchema>
 export type HostRoundContent = z.infer<typeof hostRoundContentSchema>
 export type RoundTurn = z.infer<typeof roundTurnSchema>
+export type TurnStyle = z.infer<typeof turnStyleSchema>
+export type PlayStyle = z.infer<typeof playStyleSchema>
 export type RoundView = z.infer<typeof roundViewSchema>
 export type HostRoomView = z.infer<typeof hostRoomViewSchema>
 export type PlayerRoomView = z.infer<typeof playerRoomViewSchema>

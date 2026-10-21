@@ -5,7 +5,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
-import { byTeamFor } from './turns-choice'
+import { playStyleFor } from './turns-choice'
 import { useSettingsSummary } from './use-settings-summary'
 
 export const FinishedActions: React.FC<HostActionsProps> = ({
@@ -13,7 +13,7 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
   draftSource,
   isLive,
   onOpenRound,
-  prefersByTeam,
+  playStyle,
   send,
   slateKeys,
   view
@@ -40,8 +40,8 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
           // "again?" was yes.
           send({ type: 'host.playAgain' })
           send({
-            byTeam: byTeamFor({ prefersByTeam, view }),
             challengeText: challengeLine?.text,
+            playStyle: playStyleFor({ playStyle, view }),
             slateKeys,
             type: 'host.startRound'
           })

@@ -153,6 +153,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           )}
           {view?.round?.turn != null && view.phase !== 'finished' && (
             <TurnBadge
+              players={view.players}
               seatId={view.youId}
               teams={view.teams}
               turn={view.round.turn}

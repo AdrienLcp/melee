@@ -10,7 +10,7 @@ import {
 } from '@melee/protocol/client-message'
 import { decodeMessage } from '@melee/protocol/codec'
 import type { Nickname, PlayerId, RoundId } from '@melee/protocol/identifiers'
-import type { RoomSettings } from '@melee/protocol/room'
+import type { PlayStyle, RoomSettings } from '@melee/protocol/room'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { offersAnswerMode } from '@melee/core/room/game-modes'
@@ -446,10 +446,10 @@ const dispatch = ({
     }
     case 'host.startRound': {
       start({
-        byTeam: message.byTeam ?? false,
         challengeText: message.challengeText,
         engine,
         outbound,
+        playStyle: message.playStyle ?? 'together',
         slateKeys: message.slateKeys
       })
       break
@@ -619,10 +619,10 @@ const dispatch = ({
     }
     case 'host.nextRound': {
       advance({
-        byTeam: message.byTeam,
         challengeText: message.challengeText,
         engine,
-        outbound
+        outbound,
+        playStyle: message.playStyle
       })
       break
     }
@@ -946,16 +946,16 @@ const reopenFloor = (
 }
 
 const start = ({
-  byTeam,
   challengeText,
   engine,
   outbound,
+  playStyle,
   slateKeys
 }: {
-  byTeam: boolean
   challengeText: string | undefined
   engine: RoomEngine
   outbound: Outbound
+  playStyle: PlayStyle
   slateKeys: readonly (string | null)[] | undefined
 }): void => {
   if (engine.room.phase !== 'lobby') {
@@ -972,7 +972,7 @@ const start = ({
     return
   }
 
-  if (refuseTeamTurns({ byTeam, engine, outbound })) {
+  if (refuseTeamTurns({ engine, outbound, playStyle })) {
     return
   }
 
@@ -1132,15 +1132,15 @@ const answer = (
 }
 
 const advance = ({
-  byTeam,
   challengeText,
   engine,
-  outbound
+  outbound,
+  playStyle
 }: {
-  byTeam: boolean | undefined
   challengeText: string | undefined
   engine: RoomEngine
   outbound: Outbound
+  playStyle: PlayStyle | undefined
 }): void => {
   if (engine.room.phase !== 'revealed') {
     sendError(outbound, {
@@ -1162,7 +1162,10 @@ const advance = ({
     return
   }
 
-  if (byTeam !== undefined && refuseTeamTurns({ byTeam, engine, outbound })) {
+  if (
+    playStyle !== undefined &&
+    refuseTeamTurns({ engine, outbound, playStyle })
+  ) {
     return
   }
 
@@ -1174,15 +1177,15 @@ const advance = ({
  * the room cannot play — the console offers one only where it can.
  */
 const refuseTeamTurns = ({
-  byTeam,
   engine,
-  outbound
+  outbound,
+  playStyle
 }: {
-  byTeam: boolean
   engine: RoomEngine
   outbound: Outbound
+  playStyle: PlayStyle
 }): boolean => {
-  if (byTeam && !canPlayByTeam(engine.room)) {
+  if (playStyle !== 'together' && !canPlayByTeam(engine.room)) {
     sendError(outbound, {
       code: 'invalid_message',
       fatal: false,
@@ -1192,7 +1195,7 @@ const refuseTeamTurns = ({
     return true
   }
 
-  engine.room.playsByTeam = byTeam
+  engine.room.playStyle = playStyle
 
   return false
 }

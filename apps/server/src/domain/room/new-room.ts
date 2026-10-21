@@ -33,6 +33,7 @@ export const newRoom = ({
   const room: Room = {
     code,
     createdAt: now,
+    duelsBySeat: new Map(),
     hostLeftAt: null,
     hostSessionId: null,
     hostToken,
@@ -40,7 +41,7 @@ export const newRoom = ({
     phase: 'lobby',
     playedContentIds: new Set(),
     players: new Map(),
-    playsByTeam: false,
+    playStyle: 'together',
     round: null,
     set: null,
     setsPlayed: 0,

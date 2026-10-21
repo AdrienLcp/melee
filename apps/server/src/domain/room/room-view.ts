@@ -90,7 +90,8 @@ export const toWallView = ({
 const verdictOfTeamOnTurn = (room: Room): Verdict | null => {
   const round = room.round
 
-  if (round === null || round.turn === null) {
+  // A duel is two teams on turn, and no one answer is the wall's to show.
+  if (round === null || round.turn === null || round.turn.style === 'duel') {
     return null
   }
 

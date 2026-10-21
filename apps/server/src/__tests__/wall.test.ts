@@ -214,7 +214,7 @@ describe('the wall', () => {
 
     await harness.seat({ code, nickname: 'Zoe' })
     await harness.seat({ code, nickname: 'Max' })
-    host.send({ byTeam: true, type: 'host.startRound' })
+    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
     await waitFor(
       () => wallView(wall)?.phase === 'playing' && hostQuestion(host) !== null,
       'the first team’s question'

@@ -5,6 +5,7 @@ import type { HostToken } from '@melee/protocol/identifiers'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
+  type PlayStyle,
   type RoomSettings
 } from '@melee/protocol/room'
 import {
@@ -137,7 +138,7 @@ describe('a set of team turns', () => {
       'the deal'
     )
 
-    return { anna, ben, carl, host, wall }
+    return { anna, ben, carl, dora, host, wall }
   }
 
   const turnOpens = async (host: Peer<HostServerMessage>, index: number) => {
@@ -157,28 +158,30 @@ describe('a set of team turns', () => {
 
   const playThroughTwoTurns = async (
     host: Peer<HostServerMessage>,
-    byTeam: boolean | undefined
+    playStyle: PlayStyle | undefined
   ) => {
     for (const index of [0, 1]) {
       const { roundId } = await turnOpens(host, index)
 
       host.send({ roundId, type: 'host.reveal' })
       await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
-      host.send({ byTeam, type: 'host.nextRound' })
+      host.send({ playStyle, type: 'host.nextRound' })
     }
   }
 
   it('[team-turns] plays one round per team, each answered from its own screen', async () => {
     const { ben, carl, host, wall } = await openTeams(QUIZ_IN_THREE_TEAMS)
 
-    host.send({ byTeam: true, type: 'host.startRound' })
+    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
 
     const first = await turnOpens(host, 0)
 
     expect(hostView(host)?.round?.turn).toEqual({
       index: 0,
       of: 3,
-      teamId: 'team-1'
+      seatIds: null,
+      style: 'byTeam',
+      teamIds: ['team-1']
     })
     expect(hostView(host)?.round?.openedWithPlayerIds).toHaveLength(2)
 
@@ -244,25 +247,27 @@ describe('a set of team turns', () => {
   it('[team-turns] counts a set as one round and hands the next set to the next team', async () => {
     const { carl, host } = await openTeams(QUIZ_IN_TWO_TEAMS)
 
-    host.send({ byTeam: true, type: 'host.startRound' })
+    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
     await playThroughTwoTurns(host, undefined)
     await turnOpens(host, 0)
 
     expect(hostView(host)?.round?.index).toBe(2)
-    expect(hostView(host)?.round?.turn?.teamId).toBe('team-2')
+    expect(hostView(host)?.round?.turn?.teamIds).toEqual(['team-2'])
 
     expect(playerView(carl)?.round?.turn).toEqual({
       index: 0,
       of: 2,
-      teamId: 'team-2'
+      seatIds: null,
+      style: 'byTeam',
+      teamIds: ['team-2']
     })
   })
 
   it('[team-turns] finishes a set before the host’s word on the next round lands', async () => {
     const { host } = await openTeams(QUIZ_IN_TWO_TEAMS)
 
-    host.send({ byTeam: true, type: 'host.startRound' })
-    await playThroughTwoTurns(host, false)
+    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
+    await playThroughTwoTurns(host, 'together')
     await waitFor(
       () =>
         hostView(host)?.phase === 'playing' &&
@@ -294,7 +299,7 @@ describe('a set of team turns', () => {
     const { code, host } = await harness.openRoom(FAST_GAME)
 
     await harness.seat({ code, nickname: 'Anna' })
-    host.send({ byTeam: true, type: 'host.startRound' })
+    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
     await waitFor(() => errorsIn(host).length > 0, 'the refusal')
 
     expect(errorsIn(host)[0]?.code).toBe('invalid_message')
@@ -304,7 +309,7 @@ describe('a set of team turns', () => {
   it('[team-turns] refuses the wall’s frame from a phone', async () => {
     const { anna, host } = await openTeams(QUIZ_IN_THREE_TEAMS)
 
-    host.send({ byTeam: true, type: 'host.startRound' })
+    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
 
     const first = await turnOpens(host, 0)
 
@@ -316,5 +321,121 @@ describe('a set of team turns', () => {
     await waitFor(() => errorsIn(anna).length > 0, 'the refusal')
 
     expect(errorsIn(anna)[0]?.code).toBe('invalid_message')
+  })
+  const scoreOf = (host: Peer<HostServerMessage>, name: string) =>
+    hostView(host)?.players.find((player) => player.nickname === name)?.score ??
+    0
+
+  it('[team-turns] hands a solo turn to one seat, the next one down every set', async () => {
+    const { anna, ben, host, wall } = await openTeams(QUIZ_IN_TWO_TEAMS)
+
+    host.send({ playStyle: 'solo', type: 'host.startRound' })
+
+    const first = await turnOpens(host, 0)
+
+    expect(hostView(host)?.round?.turn).toEqual({
+      index: 0,
+      of: 2,
+      seatIds: [idOf(anna)],
+      style: 'solo',
+      teamIds: ['team-1']
+    })
+
+    for (const peer of [ben, wall]) {
+      peer.send({
+        answer: { guess: first.answer, kind: 'typed' },
+        roundId: first.roundId,
+        type: peer === wall ? 'wall.answer' : 'player.answer'
+      })
+    }
+    await waitFor(
+      () => errorsIn(ben).length > 0 && errorsIn(wall).length > 0,
+      'Ben and the wall to be refused'
+    )
+
+    expect(errorsIn(ben)[0]?.code).toBe('not_your_turn')
+    expect(errorsIn(wall)[0]?.code).toBe('wall_cannot_answer')
+
+    anna.send({
+      answer: { guess: first.answer, kind: 'typed' },
+      roundId: first.roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(scoreOf(host, 'Anna')).toBeGreaterThan(0)
+    expect(scoreOf(host, 'Ben')).toBe(0)
+
+    host.send({ type: 'host.nextRound' })
+    await turnOpens(host, 1)
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+    host.send({ type: 'host.nextRound' })
+    await turnOpens(host, 0)
+
+    expect(hostView(host)?.round?.turn?.teamIds).toEqual(['team-2'])
+    expect(hostView(host)?.round?.turn?.seatIds).toHaveLength(1)
+    expect(hostView(host)?.round?.turn?.seatIds).not.toContain(
+      hostView(host)?.players.find((player) => player.nickname === 'Carl')?.id
+    )
+  })
+
+  it('[team-turns] sets two seats of two teams head to head in a duel', async () => {
+    const { anna, ben, carl, dora, host } = await openTeams(QUIZ_IN_TWO_TEAMS)
+
+    host.send({ playStyle: 'duel', type: 'host.startRound' })
+
+    const first = await turnOpens(host, 0)
+
+    expect(hostView(host)?.round?.turn).toEqual({
+      index: 0,
+      of: 1,
+      seatIds: [idOf(anna), idOf(carl)],
+      style: 'duel',
+      teamIds: ['team-1', 'team-2']
+    })
+
+    ben.send({
+      answer: { guess: first.answer, kind: 'typed' },
+      roundId: first.roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => errorsIn(ben).length > 0, 'Ben to be refused')
+
+    expect(errorsIn(ben)[0]?.code).toBe('not_your_turn')
+
+    anna.send({
+      answer: { guess: first.answer, kind: 'typed' },
+      roundId: first.roundId,
+      type: 'player.answer'
+    })
+    carl.send({
+      answer: { guess: 'Nowhere at all', kind: 'typed' },
+      roundId: first.roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (hostView(host)?.round?.answers.length ?? 0) >= 2,
+      'both duellists to answer'
+    )
+    host.send({ roundId: first.roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(scoreOf(host, 'Anna')).toBeGreaterThan(0)
+    expect(scoreOf(host, 'Carl')).toBe(0)
+    expect(scoreOf(host, 'Dora')).toBe(0)
+
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () =>
+        hostView(host)?.phase === 'playing' &&
+        hostView(host)?.round?.index === 2,
+      'the second duel'
+    )
+
+    expect(hostView(host)?.round?.turn?.seatIds).toEqual([
+      idOf(ben),
+      idOf(dora)
+    ])
   })
 })

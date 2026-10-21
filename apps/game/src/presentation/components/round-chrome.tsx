@@ -116,7 +116,13 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
         </p>
       )}
       {turn !== null && roundIndex !== null && (
-        <TurnBadge isCompact seatId={youId} teams={teams} turn={turn} />
+        <TurnBadge
+          isCompact
+          players={players}
+          seatId={youId}
+          teams={teams}
+          turn={turn}
+        />
       )}
       <p className='you'>
         <Pawn seat={Math.max(0, youSeat)} />
