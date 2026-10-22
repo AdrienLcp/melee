@@ -65,7 +65,6 @@ import {
 import { slateLabelsOf } from '@/helpers/slate-labels'
 import { buzzFeedback } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
-import { useRoomCodeParam } from '@/infrastructure/router/navigation'
 import { AskedQuestion } from '@/presentation/components/asked-question'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
@@ -80,7 +79,6 @@ import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
-import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
@@ -257,7 +255,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
 }) => {
   const translate = useTranslate()
   const teamName = useTeamName()
-  const roomCode = useRoomCodeParam()
   const round = view.round
   const isPickingTeam =
     view.settings.teams.kind === 'chosen' &&
@@ -331,14 +328,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         ) : (
           <NoticeCard title={translate('buzz.blocked.host_away')} />
         )}
-        {/*
-          The way in, on the screen of somebody who is already through it. The
-          room's code is on the console — which is allowed to be a phone in one
-          person's hand, and is exactly the evening where nobody else can read
-          it. Between the pitch and the roster rather than under them: it is the
-          action this phase is for, and a roster grows.
-        */}
-        {roomCode !== null && <RoomInvitation roomCode={roomCode} />}
 
         {/* The seats are a grid counted against the box around them, which a
             container query can only read from an ancestor. */}

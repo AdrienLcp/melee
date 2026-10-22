@@ -1,7 +1,6 @@
 import type React from 'react'
 
 import { paths } from '@/infrastructure/router/navigation'
-import { Disclosure } from '@/presentation/components/disclosure'
 import { ScreenIcon } from '@/presentation/components/icons'
 import { Link } from '@/presentation/components/link'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -12,9 +11,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
  * nothing on its own — the screen it opens shows a code, and only the device
  * holding the table's token can answer it.
  *
- * Folded, because it is a rare job beside the two the page is for. A third
- * door at the weight of *open a table* and *join* is a fork every
- * visitor has to read past to reach the two that are theirs.
+ * Under the shelf rather than beside the two doors, because it is a rare
+ * job — and spelled out rather than folded, because a folded title is all a
+ * visitor reads of it, and the title alone never said what the press does.
  */
 export const WallDoor: React.FC<{
   /** Set while the page is already opening a room, which is where it is about to go. */
@@ -23,16 +22,15 @@ export const WallDoor: React.FC<{
   const translate = useTranslate()
 
   return (
-    <Disclosure
-      className='wall-door'
-      icon={<ScreenIcon />}
-      label={translate('wall.door.label')}
-      summary={translate('wall.door.summary')}
-    >
+    <section className='wall-door'>
+      <h3>
+        <ScreenIcon />
+        {translate('wall.door.label')}
+      </h3>
       <p className='description'>{translate('wall.door.description')}</p>
       <Link href={paths.wallPairing} isDisabled={isDisabled} variant='outlined'>
         {translate('wall.door.action')}
       </Link>
-    </Disclosure>
+    </section>
   )
 }

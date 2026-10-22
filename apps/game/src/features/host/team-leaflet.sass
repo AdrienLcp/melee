@@ -21,11 +21,19 @@
     padding-inline: 0
     width: 2.5rem
 
-  // Inside a seat's chip the press is a smaller piece than the chip around it.
+  // Inside a seat's chip the press says what it does in a word beside its
+  // glyph: the glyph alone, squeezed to the chip's height, read as nothing.
   .member .team-press
-    --control-height: 1.75rem
+    --control-height: 2rem
 
     font-size: var(--text-xs)
-    height: 1.75rem
+    gap: var(--space-2xs)
+    height: 2rem
     min-height: 0
-    width: 1.75rem
+    padding-inline: var(--space-xs)
+    width: auto
+
+    .menu-icon
+      flex: none
+      height: 1em
+      width: 1em

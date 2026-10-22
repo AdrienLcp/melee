@@ -27,10 +27,17 @@
       border: 0
       border-radius: var(--radius-m)
       box-shadow: var(--shadow-field), inset 0 0 0 var(--stroke-thin) var(--rule-strong)
+      // The body's caret is the board's ink, which the dark palette makes
+      // cream: on this cream paper a typing field showed no caret at all.
+      caret-color: var(--card-ink)
       color: var(--card-ink)
       min-height: var(--control-height)
       padding: 0 var(--space-s)
       width: 100%
+
+      // A tap draws no focus ring, so the edge thickens to say *typing here*.
+      &[data-focused]
+        box-shadow: var(--shadow-field), inset 0 0 0 var(--stroke-bold) var(--card-ink)
 
       // Measured on the tighter of the two grounds — the dark palette's cream,
       // where 0.6 lands at 4.65:1 and 0.55 falls under 4.5:1.

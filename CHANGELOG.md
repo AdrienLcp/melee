@@ -126,6 +126,28 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The front door reads in one pass.** Side by side, the lid with
+  its two doors stays in view while the shelf scrolls; the shelf is two
+  shelves, *An evening, ready to play* and *Or one game*, every box squared
+  to the same width; and the two folded doors under it are spelled out under
+  *Another screen in the room?* — putting the game on the TV, and showing the
+  QR code on a screen of its own — each saying in a sentence what it does.
+
+- `[Game]` **The games of the evening tell in from out at a glance.** A ticked
+  box keeps its paper, its ring and a tick that was never drawn before; the
+  others sit back on the socket with their band faded. Ten lids lay out in
+  two rows of five, and a long name hyphenates inside its lid instead of
+  running out of it.
+
+- `[Game]` **The lobby says what its presses do.** *Draw the teams* says how
+  many players it needs instead of doing nothing; a seat's chip moves it with
+  a labelled *Team* press instead of a squeezed glyph; *Who plays the round*
+  reads *Everyone*, *One team*, *One player* and *One on one*, each with a
+  sentence; and *Several games* reads *Several games in a row*.
+
+- `[Game]` **A player waiting in the lobby sees the game and the table, not
+  the invitation.** The code and the QR code stay one press away in the menu.
+
 - `[Server]` **A team scores the sum of its seats, not their mean.** Under a
   mean a teammate's wrong answer lowered the team's result; now every right
   answer only adds. A team answering as one — a turn, a challenge's podium —
@@ -145,6 +167,14 @@ one part.
   instead of pushing the third team under the fold.
 
 ### Fixes
+
+- `[Game]` **A text field shows its caret in the dark palette**, where the
+  board's cream ink was drawn on the field's cream paper, and its edge
+  thickens while it is being typed in, which a tap never showed.
+
+- `[Game]` **The room screen's presses no longer cover the page under them**:
+  the strip keeps room for the line saying why the press refuses, and the
+  page scrolls under the board's own ground rather than into the buttons.
 
 - **A reload on the reveal no longer draws the next round a second time**
   when the evening holds two variants of one game. Each round now carries

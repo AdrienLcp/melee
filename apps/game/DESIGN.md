@@ -595,8 +595,8 @@ a word; a spent tile is a socket.
 miter joins, `aria-hidden` — the library's own 2-unit round hairline reads as
 another product beside lettering this heavy. Each game has a glyph (`GameIcon`),
 printed before its name on the spine and on the host's box at `0.8em` and 2.75
-units, where 3.5 closes up the question mark's counter. The folded doors on the
-front page carry one each, the screen and the QR code. A glyph never travels alone: it sits
+units, where 3.5 closes up the question mark's counter. The two other-screen
+cards on the front page carry one each, the screen and the QR code. A glyph never travels alone: it sits
 beside the word, or its control carries the name.
 
 **The mark** (`public/favicon.svg`) is the four answer tokens in dealing
@@ -654,11 +654,14 @@ ink keyline.
   `--rule`, `--edge`, `--ground` at the paper so any board component prints
   correctly on it. The front doors, the nickname form and the slate's line in
   hand are lids; a game's own door is its lid banded in `--spine-*`.
-- **`BoxShelf`** (console lobby game picker): five lids on one shelf, or a
-  column when the names would not fit whole; the chosen one pulled forward.
-- **`GameSpines`** (`features/home`): the five games seen by their spines, each
-  in its spine colour with its name in the display face, leaning by hand once
-  the stack is wider than 26rem. A refusal lands under the spine that earned it.
+- **`BoxShelf`** (console lobby game picker): ten lids in two rows of five, or
+  a column when the names would not fit whole; the chosen ones pulled forward
+  with a tick, and once anything is chosen the rest sit back on `--socket`
+  with their band faded.
+- **`GameSpines`** (`features/home`): the evenings, then the games, seen by
+  their spines, each in its spine colour with its name in the display face,
+  squared to the shelf's width. Side by side, the lid beside them is sticky.
+  A refusal lands under the spine that earned it.
 
 ### Room invitation (`RoomInvitation`)
 The code on the saffron token (`--tile-2`, `monument`, a piece at

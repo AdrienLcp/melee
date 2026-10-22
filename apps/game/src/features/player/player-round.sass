@@ -109,48 +109,12 @@
         font-size: clamp(1.25rem, calc(var(--stage-unit) * 4), 1.75rem)
         text-wrap: balance
 
-  // The invitation sized for the column it is given rather than the console's
-  // screen: four `W` in the display face come to 4.78 times their size.
   .player-round.lobby
-    .room-invitation
-      --invitation-code-size: min(clamp(2.5rem, calc(var(--stage-unit) * 12), 5rem), 20cqi)
-
     .table
       container-type: inline-size
 
     .seats
       @include seat-grid.seat-grid
-
-    // A seat still choosing has one thing to do here, and on a phone the
-    // invitation and its square would push it under the fold.
-    @include layout.narrow
-      &[data-picking-team] .room-invitation
-        order: 1
-
-    // Two audiences, a column each — the console's own lobby, one screen
-    // down. What this player waits on is the lid and the table; the invitation
-    // is the way in for the person beside them, so it takes the narrow track.
-    // Areas rather than a span, because naming a row is what declares it, and
-    // `1fr` names where the spanning invitation's surplus goes.
-    @include layout.wide
-      &:has(.room-invitation)
-        align-content: center
-        column-gap: var(--space-xl)
-        display: grid
-        grid-template-areas: 'pitch invitation' 'table invitation'
-        grid-template-columns: minmax(0, 1fr) minmax(0, 0.62fr)
-        grid-template-rows: auto 1fr
-        row-gap: var(--space-l)
-
-        > :first-child
-          grid-area: pitch
-
-        .room-invitation
-          align-self: start
-          grid-area: invitation
-
-        .table
-          grid-area: table
 
   // The question on its paper card with the round's sand along its top, the
   // way the framed rounds print it — and with no question, the groove alone.

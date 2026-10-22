@@ -9,7 +9,6 @@ import { parseRoomCodeInput } from '@melee/core/room/room-code'
 
 import { invitePathFor } from '@/infrastructure/router/navigation'
 import { Button } from '@/presentation/components/button'
-import { Disclosure } from '@/presentation/components/disclosure'
 import { QrCodeIcon } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
 import {
@@ -34,9 +33,9 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
  * that waited on a request to fold out a rarely-used panel would be spending
  * everybody's first second on somebody else's evening.
  *
- * Folded, because it is a rare job beside the two the page is for. A third
- * field at the weight of *open a table* and *join* is a fork every
- * visitor has to read past to reach the two that are theirs.
+ * Under the shelf rather than beside the two doors, because it is a rare
+ * job — and spelled out rather than folded, because a folded title is all a
+ * visitor reads of it, and the title alone never said what the field does.
  */
 export const ProjectWithCode: React.FC<{
   /** Set while the page is already opening a room, which is where it is about to go. */
@@ -74,12 +73,12 @@ export const ProjectWithCode: React.FC<{
   }
 
   return (
-    <Disclosure
-      className='project-with-code'
-      icon={<QrCodeIcon />}
-      label={translate('invite.door.label')}
-      summary={translate('invite.door.summary')}
-    >
+    <section className='project-with-code'>
+      <h3>
+        <QrCodeIcon />
+        {translate('invite.door.label')}
+      </h3>
+      <p className='description'>{translate('invite.door.description')}</p>
       <Form
         onSubmit={(event) => {
           void project(event)
@@ -88,7 +87,6 @@ export const ProjectWithCode: React.FC<{
         <TextField
           autoCapitalize='characters'
           autoComplete='off'
-          description={translate('invite.door.description')}
           errorMessage={fieldErrorMessage({ error: codeError, translate })}
           isDisabled={isDisabled}
           isInvalid={codeError !== null}
@@ -106,6 +104,6 @@ export const ProjectWithCode: React.FC<{
           {translate('invite.door.action')}
         </Button>
       </Form>
-    </Disclosure>
+    </section>
   )
 }

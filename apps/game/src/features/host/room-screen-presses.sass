@@ -2,9 +2,10 @@
 @use '../../presentation/styles/text-box'
 
 /// How much of the screen's foot the presses keep for themselves: the large
-/// press and the line of space above it. The page takes it into its own bottom
-/// padding, so every stage sized to the viewport sizes to what is left.
-$presses-height: calc(4.5rem + var(--space-m))
+/// press, the line saying why it refuses, and the space above them. The page
+/// takes it into its own bottom padding, so every stage sized to the viewport
+/// sizes to what is left.
+$presses-height: calc(4.5rem + var(--text-s) * 2 + var(--space-m) * 2)
 
 @layer components
   .host-console-page.room-screen
@@ -14,9 +15,13 @@ $presses-height: calc(4.5rem + var(--space-m))
   // transform, and a fixed box inside a transformed one is fixed to that box.
   // Only the two presses take a pointer, so the stage between them stays
   // pressable — the lobby's last row of lids runs under this strip's middle.
+  // The board's own ground under the strip, faded in from above: a page that
+  // scrolls passes under it rather than colliding with the two presses.
   .room-screen-presses
     align-items: end
-    bottom: max(var(--layout-padding), var(--safe-area-bottom))
+    background: linear-gradient(to top, var(--field) 75%, transparent)
+    bottom: 0
+    padding-block: var(--space-l) max(var(--layout-padding), var(--safe-area-bottom))
     display: flex
     gap: var(--space-m)
     inset-inline: 0

@@ -7,8 +7,13 @@
     container-type: inline-size
     display: flex
     flex-direction: column
-    gap: var(--space-s)
+    gap: var(--space-l)
     min-width: 0
+
+    .shelf
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
 
     h2
       @include typography.title
@@ -35,32 +40,12 @@
       min-width: 0
       padding: var(--space-s) var(--space-m)
       text-align: start
+      width: 100%
 
       @container (width >= 26rem)
-        grid-template-columns: minmax(0, 1fr) auto
-        min-height: clamp(4.75rem, 15cqi, 5.75rem)
+        grid-template-columns: minmax(min-content, 1fr) auto
+        min-height: clamp(4.25rem, 13cqi, 5rem)
         padding-inline: clamp(var(--space-m), 4.5cqi, 1.75rem)
-
-    // Boxes put back by hand, never squared up: the stack only leans once it
-    // is wide enough that a lean costs no box its tagline.
-    @container (width >= 26rem)
-      .shelf-box:nth-of-type(1)
-        margin-inline-end: 5cqi
-
-      .shelf-box:nth-of-type(2)
-        margin-inline-start: 3cqi
-
-      .shelf-box:nth-of-type(3)
-        margin-inline-end: 2cqi
-
-      .shelf-box:nth-of-type(4)
-        margin-inline-start: 6cqi
-
-      .shelf-box:nth-of-type(5)
-        margin-inline-end: 7cqi
-
-      .shelf-box:nth-of-type(6)
-        margin-inline-start: 2cqi
 
     .name
       @include typography.spine-name
@@ -69,9 +54,7 @@
       display: flex
       font-size: clamp(var(--text-xl), 9cqi, 2.5rem)
       gap: var(--space-xs)
-
-      @container (width >= 26rem)
-        white-space: nowrap
+      text-wrap: balance
 
     .tagline
       @include typography.tagline
@@ -93,12 +76,6 @@
       flex: none
       height: 0.8em
       width: 0.8em
-
-    // An opened box stands out of the lean, its lid laid open under its
-    // spine: the doors need the shelf's whole width more than the stack needs
-    // its hand-placed look.
-    .shelf-box[data-expanded]
-      margin-inline: 0
 
     // Collapsed, react-aria leaves the panel in the page as `hidden="until-found"`,
     // which keeps its box — and a lid's padding and paper with it.

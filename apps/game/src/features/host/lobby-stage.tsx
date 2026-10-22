@@ -162,13 +162,14 @@ const LobbyTeams: React.FC<{
   const teams = view.settings.teams
   const isDrawn = teams.kind === 'drawn'
   const hasDealt = view.teams.some((team) => team.seatIds.length > 0)
+  const isShortOfPlayers = isDrawn && view.players.length < teams.count
 
   return (
     <>
       {controls !== null && isDrawn && (
         <Button
           className='draw-teams'
-          isDisabled={!controls.isLive}
+          isDisabled={!controls.isLive || isShortOfPlayers}
           onPress={() => {
             controls.send({
               assignment: dealTeams({
@@ -182,6 +183,11 @@ const LobbyTeams: React.FC<{
         >
           {translate(hasDealt ? 'team.redraw' : 'team.draw')}
         </Button>
+      )}
+      {controls !== null && isShortOfPlayers && (
+        <p className='draw-needs'>
+          {translate('team.drawNeeds', { count: teams.count })}
+        </p>
       )}
       <TeamRoster
         label={translate('team.title')}

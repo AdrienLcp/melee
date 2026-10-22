@@ -315,7 +315,8 @@ export const EN_DICTIONARY = defineDictionary({
     wrong_phase: 'Too late, the game has moved on.'
   },
   home: {
-    games: 'The games',
+    evening: 'An evening, ready to play',
+    games: 'Or one game',
     heldRooms: {
       host: 'Your table',
       player: 'Your seat',
@@ -323,6 +324,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     oneRoom:
       'One table for all of them: switch games without anyone joining twice.',
+    otherScreens: 'Another screen in the room?',
     pitch: {
       lead: 'Playing in seconds.',
       rest: 'Nothing to install, no accounts: one code, one QR code, and the whole table is seated.'
@@ -395,7 +397,7 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Which game',
       labelSeveral: 'Tonight’s games',
       prompt: 'Pick one and the table is set. You can change your mind later.',
-      several: 'Several games'
+      several: 'Several games in a row'
     },
     hostDecides: 'You decide',
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
@@ -484,17 +486,18 @@ export const EN_DICTIONARY = defineDictionary({
     startGame: 'Gather round',
     /** How the rounds from here are played, offered where a round can be one team's. */
     turns: {
-      byTeam: 'By team',
-      duel: 'Duels',
+      byTeam: 'One team',
+      duel: 'One on one',
       /** Under the choice: what the one chosen does, since a stamp cannot say it. */
       hint: {
-        byTeam: 'Each team plays its own round while the others watch.',
-        duel: 'Two players from two teams face off while everyone else watches.',
-        solo: 'Each team plays its own round, answered by one of its players in turn.',
-        together: 'Everyone answers every round.'
+        byTeam:
+          'One team plays the round, all its players together, while the others watch. Then the next team.',
+        duel: 'A player from one team against a player from another, while the room watches.',
+        solo: 'One team plays the round, but only one of its players answers for it — each in turn.',
+        together: 'Every player answers every round, all at once.'
       },
-      label: 'How to play',
-      solo: 'One per team',
+      label: 'Who plays the round',
+      solo: 'One player',
       together: 'Everyone'
     },
     verdict: {
@@ -552,9 +555,8 @@ export const EN_DICTIONARY = defineDictionary({
     door: {
       action: 'Show it',
       description:
-        'It grants nothing: no seat, no game, and no way to run the table. It draws what the table is already showing.',
-      label: 'Show the code to join',
-      summary: 'The code and the square, on a screen of their own'
+        'For a screen by the door or on the wall: type the code of an open table, and this screen shows its code and QR code, big. It does not join the game.',
+      label: 'Show the QR code elsewhere'
     },
     joinLate: 'Join any time',
     nextRound: 'Anyone who arrives during a round plays from the next one.',
@@ -1128,6 +1130,8 @@ export const EN_DICTIONARY = defineDictionary({
     },
     count: 'How many teams',
     draw: 'Draw the teams',
+    drawNeeds:
+      'At least {count:number} players to make {count:number} teams. Fewer teams are set in the settings.',
     empty: 'Nobody yet',
     final: {
       podium: 'Individual podium',
@@ -1142,7 +1146,8 @@ export const EN_DICTIONARY = defineDictionary({
     },
     join: 'Join',
     move: {
-      label: 'Move {nickname}',
+      label: 'Move {nickname} to another team',
+      short: 'Team',
       to: 'To the {team}'
     },
     pick: 'Pick your team',
@@ -1247,9 +1252,8 @@ export const EN_DICTIONARY = defineDictionary({
     door: {
       action: 'Show the game here',
       description:
-        'For the screen the whole table can see. It shows a code, the host confirms it, and the game appears here — with no answers and nothing to press.',
-      label: 'Show the game on this screen',
-      summary: 'The game, big, with nothing to run'
+        'Open this page on the TV or the projector and press below. It shows a code, the host confirms it, and the game appears big — without the answers.',
+      label: 'Put the game on the TV'
     },
     hostAway: {
       takeOver: 'Run the table from here',

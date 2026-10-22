@@ -33,7 +33,9 @@ type GameSpinesProps = {
  * page to reach them; that page stays the arrival a shared link or a search
  * result makes, and `sitemap.xml` keeps it reachable.
  *
- * One lid open at a time, which is what a `DisclosureGroup` holds by default.
+ * Two shelves, the evenings packed ready and the single games, and one lid
+ * open at a time across both, which is what a `DisclosureGroup` holds by
+ * default.
  * react-aria's primitives rather than the design system's `Disclosure`: that
  * one is a ruled row with a summary, and a spine is a piece of the box with
  * two lines on it.
@@ -42,38 +44,45 @@ export const GameSpines: React.FC<GameSpinesProps> = ({ createRoom }) => {
   const translate = useTranslate()
 
   return (
-    <section className='game-spines'>
-      <h2>{translate('home.games')}</h2>
-      <DisclosureGroup className='stack'>
-        {roomPresetIds.map((preset) => (
-          <PresetBox createRoom={createRoom} key={preset} preset={preset} />
-        ))}
-        {shelvedGames.map((game) => (
-          <Disclosure
-            className='shelf-box'
-            id={game}
-            key={game}
-            style={spineStyle(game)}
-          >
-            <Heading level={3}>
-              <Button className='spine' slot='trigger'>
-                <span className='name'>
-                  <GameIcon game={game} />
-                  {translate(gameNameKey(game))}
-                </span>
-                <span className='tagline'>
-                  {translate(gameTaglineKey(game))}
-                </span>
-              </Button>
-            </Heading>
-            <DisclosurePanel className='opened-lid'>
-              <GameDoors createRoom={createRoom} game={game} />
-            </DisclosurePanel>
-          </Disclosure>
-        ))}
-      </DisclosureGroup>
-      <p className='one-room'>{translate('home.oneRoom')}</p>
-    </section>
+    <DisclosureGroup className='game-spines'>
+      <section className='shelf'>
+        <h2>{translate('home.evening')}</h2>
+        <div className='stack'>
+          {roomPresetIds.map((preset) => (
+            <PresetBox createRoom={createRoom} key={preset} preset={preset} />
+          ))}
+        </div>
+      </section>
+      <section className='shelf'>
+        <h2>{translate('home.games')}</h2>
+        <div className='stack'>
+          {shelvedGames.map((game) => (
+            <Disclosure
+              className='shelf-box'
+              id={game}
+              key={game}
+              style={spineStyle(game)}
+            >
+              <Heading level={3}>
+                <Button className='spine' slot='trigger'>
+                  <span className='name'>
+                    <GameIcon game={game} />
+                    {translate(gameNameKey(game))}
+                  </span>
+                  <span className='tagline'>
+                    {translate(gameTaglineKey(game))}
+                  </span>
+                </Button>
+              </Heading>
+              <DisclosurePanel className='opened-lid'>
+                <GameDoors createRoom={createRoom} game={game} />
+              </DisclosurePanel>
+            </Disclosure>
+          ))}
+        </div>
+        <p className='one-room'>{translate('home.oneRoom')}</p>
+      </section>
+    </DisclosureGroup>
   )
 }
 

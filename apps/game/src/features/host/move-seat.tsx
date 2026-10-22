@@ -43,6 +43,7 @@ export const MoveSeat: React.FC<MoveSeatProps> = ({
         variant='outlined'
       >
         <MoveIcon />
+        {translate('team.move.short')}
       </Button>
       <Leaflet aria-label={label} className='team-leaflet' placement='bottom'>
         {({ close }) => (

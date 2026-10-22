@@ -290,7 +290,8 @@ export const FR_DICTIONARY = defineDictionary({
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   home: {
-    games: 'Les jeux',
+    evening: 'Une soirée toute prête',
+    games: 'Ou un seul jeu',
     heldRooms: {
       host: 'Votre table',
       player: 'Votre place',
@@ -298,6 +299,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     oneRoom:
       'Une seule table pour tous : on change de jeu sans rejoindre deux fois.',
+    otherScreens: 'Un autre écran dans la pièce ?',
     pitch: {
       lead: 'On joue en quelques secondes.',
       rest: 'Rien à installer, aucun compte : un code, un QR code, et toute la table est assise.'
@@ -366,7 +368,7 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Quel jeu',
       labelSeveral: 'Les jeux de la soirée',
       prompt: 'Choisis-en un et la table est prête. Tu pourras changer d’avis.',
-      several: 'Plusieurs jeux'
+      several: 'Plusieurs jeux à la suite'
     },
     hostDecides: 'Tu décides',
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
@@ -443,17 +445,18 @@ export const FR_DICTIONARY = defineDictionary({
     standings: 'Classement',
     startGame: 'À table\u00a0!',
     turns: {
-      byTeam: 'Par équipe',
-      duel: 'En duel',
+      byTeam: 'Une équipe',
+      duel: 'Un contre un',
       hint: {
-        byTeam: 'Chaque équipe joue sa manche, les autres regardent.',
-        duel: 'Deux joueurs de deux équipes s’affrontent, les autres regardent.',
-        solo: 'Chaque équipe joue sa manche, et un de ses joueurs répond pour elle, chacun son tour.',
-        together: 'Tout le monde répond à chaque manche.'
+        byTeam:
+          'Une équipe joue la manche, tous ses joueurs ensemble, les autres regardent. Puis c’est à la suivante.',
+        duel: 'Un joueur d’une équipe contre un joueur d’une autre, toute la salle regarde.',
+        solo: 'Une équipe joue la manche, mais un seul de ses joueurs répond pour elle — chacun son tour.',
+        together: 'Tous les joueurs répondent à chaque manche, en même temps.'
       },
-      label: 'Comment jouer',
-      solo: 'Un par équipe',
-      together: 'Tous ensemble'
+      label: 'Qui joue la manche',
+      solo: 'Un joueur',
+      together: 'Tout le monde'
     },
     verdict: {
       right: 'Bonne réponse',
@@ -510,9 +513,8 @@ export const FR_DICTIONARY = defineDictionary({
     door: {
       action: 'Afficher',
       description:
-        'Ça ne donne rien : ni place, ni partie, ni la main sur la table. Ça montre ce que la table affiche déjà.',
-      label: 'Afficher le code pour rejoindre',
-      summary: 'Le code et le carré, sur un écran à part'
+        'Pour un écran à l’entrée ou au mur : tape le code d’une table ouverte, et cet écran affiche son code et son QR code en grand. Il ne rejoint pas la partie.',
+      label: 'Afficher le QR code ailleurs'
     },
     joinLate: 'Rejoins quand tu veux',
     nextRound: 'Qui arrive pendant une manche joue dès la suivante.',
@@ -1031,6 +1033,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     count: 'Combien d’équipes',
     draw: 'Tirer les équipes',
+    drawNeeds:
+      'Il faut au moins {count:number} joueurs pour faire {count:number} équipes. Le nombre d’équipes se règle dans les réglages.',
     empty: 'Personne pour l’instant',
     final: {
       podium: 'Podium individuel',
@@ -1045,7 +1049,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     join: 'Rejoindre',
     move: {
-      label: 'Déplacer {nickname}',
+      label: 'Mettre {nickname} dans une autre équipe',
+      short: 'Équipe',
       to: 'Chez les {team}'
     },
     pick: 'Choisis ton équipe',
@@ -1148,9 +1153,8 @@ export const FR_DICTIONARY = defineDictionary({
     door: {
       action: 'Afficher la partie ici',
       description:
-        'Pour l’écran que toute la table voit. Il affiche un code, l’hôte le confirme, et la partie apparaît ici — sans les réponses et sans rien à presser.',
-      label: 'Afficher la partie sur cet écran',
-      summary: 'La partie en grand, sans rien à tenir'
+        'Ouvre cette page sur la télé ou le projecteur et appuie ci-dessous. L’écran affiche un code, l’hôte le valide, et la partie apparaît en grand — sans les réponses.',
+      label: 'Mettre la partie sur la télé'
     },
     hostAway: {
       takeOver: 'Tenir la table d’ici',

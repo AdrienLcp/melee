@@ -2,6 +2,7 @@ import { ProjectWithCode } from '@/features/invite/project-with-code'
 import { JoinWithCode } from '@/features/join/join-with-code'
 import { WallDoor } from '@/features/wall/wall-door'
 import { Button } from '@/presentation/components/button'
+import { Main } from '@/presentation/components/main'
 import { PAGE_HEADS } from '@/presentation/head/document-head'
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -11,7 +12,6 @@ import { HeldRooms } from './held-rooms'
 import { useCreateRoom } from './use-create-room'
 
 import './home-page.sass'
-import { Main } from '@/presentation/components/main'
 
 /**
  * The product's front door, and the one screen that belongs to no game: the
@@ -21,6 +21,10 @@ import { Main } from '@/presentation/components/main'
  * goes up, the players arrive, and the table decides what to play while they
  * do, which is why opening one here asks nothing and the shelf is a shortcut
  * rather than the only way through.
+ *
+ * Side by side, the lid stays in view while the shelf scrolls past it, and
+ * the screens a room may add — the TV, a second QR code — close the shelf,
+ * each saying in a sentence what it does.
  */
 export const HomePage: React.FC = () => {
   const { locale } = useI18n()
@@ -69,24 +73,23 @@ export const HomePage: React.FC = () => {
         </section>
 
         {/*
-          Under the lid rather than in it, and the reason is a measurement: the
-          section is drawn only once the server has said which remembered rooms
-          still resolve, so it *arrives*, and above the doors it moved the one a
-          press aims at by 221px. A first-time visitor holds no key and sees no
-          section at all.
+          Under the lid rather than in it: the section is drawn only once the
+          server has said which remembered rooms still resolve, and above the
+          doors its arrival moved the one a press aims at by 221px.
         */}
         <HeldRooms isDisabled={isOpeningAny} />
       </div>
 
-      <GameSpines createRoom={createRoom} />
+      <div className='shelf-side'>
+        <GameSpines createRoom={createRoom} />
 
-      {/*
-        Folded and last: rare jobs beside the two doors, and neither is a way
-        into a room — one shows a table and runs nothing.
-      */}
-      <div className='more'>
-        <WallDoor isDisabled={isOpeningAny} />
-        <ProjectWithCode isDisabled={isOpeningAny} />
+        <section className='other-screens'>
+          <h2>{translate('home.otherScreens')}</h2>
+          <div className='screens'>
+            <WallDoor isDisabled={isOpeningAny} />
+            <ProjectWithCode isDisabled={isOpeningAny} />
+          </div>
+        </section>
       </div>
     </Main>
   )

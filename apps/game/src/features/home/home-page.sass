@@ -12,25 +12,35 @@ $side-by-side: 60rem
     @include layout.screen
 
     display: grid
-    align-content: center
+    gap: var(--space-xl)
     padding-block-start: var(--menu-block-inset)
 
     // Columns are set only here: a column template outside the query would
     // stack every child into one cell on a phone.
     @media (width >= $side-by-side)
-      align-items: center
+      align-items: start
       column-gap: clamp(var(--space-l), 4vw, var(--space-xl))
-      row-gap: var(--space-s)
-      grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr)
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
       max-width: var(--stage-max-width)
 
-      .more
-        grid-column: 1 / -1
+      // Held in view while the shelf scrolls past it, and centred in the
+      // screen rather than in the page the shelf makes tall.
+      .door-side
+        justify-content: center
+        min-height: calc(100dvh - var(--layout-padding-block-start) - var(--layout-padding-block-end))
+        position: sticky
+        top: var(--layout-padding-block-start)
 
     .door-side
       display: flex
       flex-direction: column
       gap: var(--space-l)
+      min-width: 0
+
+    .shelf-side
+      display: flex
+      flex-direction: column
+      gap: var(--space-xl)
       min-width: 0
 
     .lid
@@ -130,31 +140,54 @@ $side-by-side: 60rem
 
       @include text-box.trimmed-block(var(--space-2xs))
 
-    // Columns fixed by the row, not by what is open: sized to content, an
-    // opened panel's paragraph widened its door and pushed the other one down.
-    .more
-      align-items: start
-      display: grid
-      gap: var(--space-s) var(--space-l)
-      grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr))
-
-    .project-with-code
-      .react-aria-Form
-        align-items: start
-        display: flex
-        flex-direction: column
-        gap: var(--space-s)
-
-        .text-field
-          align-self: stretch
-
-    .wall-door .panel-content
-      align-items: start
+    .other-screens
       display: flex
       flex-direction: column
       gap: var(--space-s)
+
+      h2
+        @include typography.title
+
+      .screens
+        display: grid
+        gap: var(--space-s)
+        grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr))
+
+    .wall-door,
+    .project-with-code
+      @include box-lid.box-lid
+
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+      padding: var(--space-l)
+
+      h3
+        @include typography.lid-name
+
+        align-items: center
+        display: flex
+        font-size: var(--text-l)
+        gap: var(--space-xs)
 
       .description
         @include typography.body
 
         color: var(--ink-muted)
+        text-wrap: pretty
+
+      .link,
+      .react-aria-Form
+        margin-block-start: auto
+
+    .project-with-code .react-aria-Form
+      align-items: start
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+      .text-field
+        align-self: stretch
+
+    .wall-door .link
+      align-self: start
