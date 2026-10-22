@@ -26,6 +26,7 @@ const runningRound: RoundView = {
   id: 'r1',
   index: 1,
   joinedAfterStart: false,
+  lineUpAt: 0,
   lockedOutPlayerIds: [],
   openedWithPlayerIds: null,
   revealedAnswers: [],

@@ -18,8 +18,10 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
  * like everything else, and the host's *change* is the same frame again.
  *
  * Once per round on this screen: a host who picks the game just played back
- * is answered, not drawn over. A reveal that already moved off the game it
- * revealed was drawn before a reload, and is left as it is. The last round of
+ * is answered, not drawn over. A reveal whose settings already moved off the
+ * entry the round was opened from was drawn before a reload, or picked by the
+ * host, and is left as it is — compared by entry rather than by game, because
+ * two variants of one game share a kind. The last round of
  * a counted evening has no next one to draw.
  */
 export const useLineUpDraw = ({
@@ -50,7 +52,6 @@ export const useLineUpDraw = ({
     drawnForRoundId.current = round.id
 
     const { settings } = view
-    const last = round.content.kind
     const isFinal =
       settings.roundCount !== null && round.index >= settings.roundCount
 
@@ -58,13 +59,13 @@ export const useLineUpDraw = ({
       isFinal ||
       hasTurnsAfter(round.turn) ||
       settings.lineUp.length < 2 ||
-      settings.game?.kind !== last
+      settings.lineUpAt !== round.lineUpAt
     ) {
       return
     }
 
     const drawn = nextEntryAt({
-      lastAt: settings.lineUpAt,
+      lastAt: round.lineUpAt,
       lineUp: settings.lineUp,
       random: Math.random
     })

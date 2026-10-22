@@ -328,6 +328,8 @@ export type Round = {
   elapsedMs: number
   id: RoundId
   index: number
+  /** The line-up entry the round was opened from — see `RoundView['lineUpAt']`. */
+  lineUpAt: number | null
   lockedOutPlayerIds: Set<PlayerId>
   /**
    * The answer mode the round was opened on. A simultaneous round is scored on

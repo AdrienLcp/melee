@@ -335,6 +335,7 @@ const toRoundView = ({
       openedWithPlayerIds: round.openedWithPlayerIds,
       playerId: youId
     }),
+  lineUpAt: round.lineUpAt,
   lockedOutPlayerIds: [...round.lockedOutPlayerIds],
   openedWithPlayerIds:
     round.openedWithPlayerIds === null ? null : [...round.openedWithPlayerIds],

@@ -60,8 +60,12 @@ cinema*, each its own tick, drawn round by round like any game today.
   line-up.
 - **The draw** (`nextEntryAt`) prefers another game over another entry of the
   same one, so two blind tests and a quiz alternate blind test, quiz, blind
-  test. A reload after a draw between two entries of one game may draw again;
-  the guard on the kind cannot tell them apart.
+  test. The round stamps the entry it was opened from (`round.lineUpAt`), and
+  a reveal whose `settings.lineUpAt` already moved off it is not drawn over —
+  so a reload after a draw between two entries of one game keeps the draw.
+  Taking out an entry *before* the one in play shifts its index, and that
+  reveal then reads as already drawn: the next round stays on the same
+  variant unless the host picks.
 - **The console**: the round's settings open on *Next up*, a row of every
   entry — picking one is picking what the next round is on and what the fold
   below sets — with *Add a variant* (games with settings of their own,

@@ -444,6 +444,7 @@ Shared by all three:
                     "expiresAt": 1786215024311 },  // null → the host decides
     "lockedOutPlayerIds": ["…"],   // answered wrong, out for this round
     "joinedAfterStart": false,     // you took your seat mid-round; in from the next
+    "lineUpAt": 0,                 // the line-up entry this round was opened from
     "awards": [{ "playerId": "…", "points": 2, "verdict": { … } }],
     "content": { "kind": "blindtest", "choices": [],
                  "revealedTrack": null }  // filled at reveal, for everyone

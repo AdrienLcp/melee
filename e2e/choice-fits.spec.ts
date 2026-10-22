@@ -163,6 +163,7 @@ const choosingView = (question: Question) => ({
     id: 'r4',
     index: 4,
     joinedAfterStart: false,
+    lineUpAt: 0,
     lockedOutPlayerIds: [],
     openedWithPlayerIds: null,
     revealedAnswers: [],

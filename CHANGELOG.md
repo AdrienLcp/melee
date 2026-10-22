@@ -144,6 +144,15 @@ one part.
   hung upright the wall's lobby sets the code and its square side by side
   instead of pushing the third team under the fold.
 
+### Fixes
+
+- **A reload on the reveal no longer draws the next round a second time**
+  when the evening holds two variants of one game. Each round now carries
+  the line-up entry it was opened from (`round.lineUpAt`), so a console
+  coming back to a reveal whose next round is already chosen — drawn, or
+  picked by the host — leaves it alone, where it could only compare games
+  before and two blind tests looked the same.
+
 ### Breaking Changes
 
 - `[Shared]` **A set can be played solo or in duels**, and `PROTOCOL_VERSION`

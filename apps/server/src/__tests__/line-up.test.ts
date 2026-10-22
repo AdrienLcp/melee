@@ -150,6 +150,25 @@ describe('an evening of several games', () => {
     expect(hostView(host)?.settings.game).toEqual(ON_THE_CHARTS)
   })
 
+  it('[line-up] keeps on the round the variant it was opened from, when the settings move to another', async () => {
+    const { code, host } = await harness.openRoom(TWO_BLIND_TESTS)
+    await harness.seat({ code, nickname: 'Anna' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    host.send({
+      settings: { ...TWO_BLIND_TESTS, game: FILM_SCORES, lineUpAt: 1 },
+      type: 'host.updateSettings'
+    })
+    await waitFor(
+      () => hostView(host)?.settings.lineUpAt === 1,
+      'the move to the second blind test'
+    )
+
+    expect(hostView(host)?.round?.lineUpAt).toBe(0)
+  })
+
   it('[ready] shows a seat back at the table to every screen, until the round opens', async () => {
     const { code, host } = await harness.openRoom(EVENING)
     const anna = await harness.seat({ code, nickname: 'Anna' })

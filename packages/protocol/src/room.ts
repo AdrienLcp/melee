@@ -119,6 +119,13 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
  */
 export const LINE_UP_MAX_ENTRIES = 12
 
+const lineUpAtSchema = z
+  .number()
+  .int()
+  .min(0)
+  .max(LINE_UP_MAX_ENTRIES - 1)
+  .nullable()
+
 export const roomSettingsSchema = z.object({
   /**
    * How long a reveal stays on screen before the next round starts itself, or
@@ -169,12 +176,7 @@ export const roomSettingsSchema = z.object({
    * setting changed in the fold is the variant's from then on, and an entry
    * drawn again later opens on what it was last left at.
    */
-  lineUpAt: z
-    .number()
-    .int()
-    .min(0)
-    .max(LINE_UP_MAX_ENTRIES - 1)
-    .nullable(),
+  lineUpAt: lineUpAtSchema,
   /** How a round is answered, and the settings only that mode has. */
   mode: modeSettingsSchema,
   /**
@@ -494,6 +496,13 @@ export const roundViewSchema = z.object({
    * no seat, because a console is never a latecomer to its own room.
    */
   joinedAfterStart: z.boolean(),
+  /**
+   * The line-up entry this round was opened from, stamped as it opens. Two
+   * variants of one game share `content.kind`, so this is the only way a
+   * screen arriving at a reveal can tell the next round was already drawn
+   * (`settings.lineUpAt` moved off it) from a draw still owed.
+   */
+  lineUpAt: lineUpAtSchema,
   /**
    * Answered wrong this round — cannot buzz again until the next one, or until
    * the host reopens the field with `host.clearLockouts`.

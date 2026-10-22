@@ -191,6 +191,7 @@ export const openRound = ({
     id,
     // A set is one round of the evening however many teams it takes.
     index: turn !== null && turn.index > 0 ? previousIndex : previousIndex + 1,
+    lineUpAt: room.settings.lineUpAt,
     lockedOutPlayerIds: new Set(),
     mode: room.settings.mode,
     openedWithPlayerIds: null,
