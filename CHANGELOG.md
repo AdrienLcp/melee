@@ -3065,6 +3065,12 @@ one part.
 
 ### Internal
 
+- `[Game]` **The script budget goes back to 275 000 bytes.** Matchsticks,
+  flags, the timeline and the rebus put their English strings in the
+  dictionary every page loads, and took `/en` to 264 243 against 260 000,
+  which held every deploy since. The lever left is zod, 93 kB of the home
+  page's entry, needed there only to read three API answers.
+
 - `[Game]` **Images and fonts are binary to git.** `.gitattributes` marks them
   so, after a share image lost the carriage return of every CR LF pair and no
   link preview could decode it, and a test checks `og.png`'s signature, every
