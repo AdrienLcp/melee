@@ -7,7 +7,6 @@ import { PrimaryPress, SecondaryPresses } from './action-slot'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
-import { playStyleFor } from './turns-choice'
 import { useSettingsSummary } from './use-settings-summary'
 
 export const FinishedActions: React.FC<HostActionsProps> = ({
@@ -16,7 +15,6 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
   draftSource,
   isLive,
   onOpenRound,
-  playStyle,
   send,
   slateKeys,
   view
@@ -55,7 +53,6 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
             send({
               challengeText: challengeLine?.text,
               innerclockTargetSeconds: targetToSend(innerclockTarget),
-              playStyle: playStyleFor({ playStyle, view }),
               slateKeys,
               type: 'host.startRound'
             })

@@ -9,7 +9,6 @@ import type {
   ActiveBuzz,
   PlayerRoomView,
   RoomPhase,
-  RoundTurn,
   RoundView
 } from '@melee/protocol/room'
 import type { TeamId } from '@melee/protocol/team'
@@ -26,8 +25,8 @@ import {
   hasAnybodyScored,
   standingOf
 } from '@melee/core/scoring/scoreboard'
+import { playsThisRound } from '@melee/core/team/duel'
 import { teamOfSeat } from '@melee/core/team/team-board'
-import { playsThisTurn } from '@melee/core/team/team-turn'
 import {
   type ClockEstimate,
   millisecondsUntil
@@ -100,7 +99,6 @@ import {
   scoringKey,
   type Translate
 } from '@/presentation/i18n/translation'
-import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './player-round.sass'
 
@@ -254,7 +252,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   view
 }) => {
   const translate = useTranslate()
-  const teamName = useTeamName()
   const round = view.round
   const isPickingTeam =
     view.settings.teams.kind === 'chosen' &&
@@ -418,63 +415,29 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     )
   }
 
-  // A round that is not this seat's — another team's, a teammate's in solo,
-  // two others' duel: the seat is in the game and owes nothing, and the round
-  // is theirs to watch — on the wall, or across the table.
-  const turn = round?.turn ?? null
-  const teamOnTurn = view.teams.find((team) => team.id === turn?.teamIds[0])
+  // A duel between two other seats: this one is in the game and owes nothing,
+  // and the round is theirs to watch — on the wall, or across the table.
+  const duel = round?.duel ?? null
 
-  const nameOf = (playerId: PlayerId | undefined) =>
+  const nameOf = (playerId: PlayerId) =>
     view.players.find((player) => player.id === playerId)?.nickname ?? ''
-
-  const watchNotice = (turn: RoundTurn, team: string) => {
-    const [chosenId, rivalId] = turn.seatIds ?? []
-
-    if (turn.style === 'duel') {
-      return {
-        detail: translate('team.turn.watch.duel.detail'),
-        title: translate('team.turn.duel', {
-          first: nameOf(chosenId),
-          second: nameOf(rivalId)
-        })
-      }
-    }
-
-    if (
-      turn.style === 'solo' &&
-      turn.teamIds[0] ===
-        teamOfSeat({ playerId: view.youId, teams: view.teams })?.id
-    ) {
-      return {
-        detail: translate('team.turn.watch.teammate.detail'),
-        title: translate('team.turn.watch.teammate.title', {
-          name: nameOf(chosenId)
-        })
-      }
-    }
-
-    return {
-      detail: translate('team.turn.watch.detail'),
-      title:
-        turn.style === 'solo'
-          ? translate('team.turn.watch.seat.title', { name: nameOf(chosenId) })
-          : translate('team.turn.watch.title', { team })
-    }
-  }
 
   if (
     view.phase === 'playing' &&
-    turn !== null &&
-    teamOnTurn !== undefined &&
-    !playsThisTurn({ seatId: view.youId, teams: view.teams, turn })
+    duel !== null &&
+    !playsThisRound({ duel, seatId: view.youId })
   ) {
+    const [firstId, secondId] = duel.seatIds
+
     return (
-      <section
-        className='player-round notice'
-        data-team
-        style={{ '--team': `var(--pawn-${teamOnTurn.colour})` }}
-      >
-        <NoticeCard {...watchNotice(turn, teamName(teamOnTurn))} />
+      <section className='player-round notice'>
+        <NoticeCard
+          detail={translate('team.duel.watch')}
+          title={translate('team.duel.title', {
+            first: nameOf(firstId),
+            second: nameOf(secondId)
+          })}
+        />
       </section>
     )
   }

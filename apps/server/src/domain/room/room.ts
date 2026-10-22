@@ -1,5 +1,4 @@
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { GameKind } from '@melee/protocol/game'
 import type {
   HostToken,
   Nickname,
@@ -16,10 +15,9 @@ import type {
 import type { HostQuestion } from '@melee/protocol/question'
 import type {
   ModeSettings,
-  PlayStyle,
   RoomPhase,
   RoomSettings,
-  RoundTurn
+  RoundDuel
 } from '@melee/protocol/room'
 import type { Award, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
@@ -65,6 +63,11 @@ export type Room = {
    * `hostSessionId`, and the only frame carrying it travels the other way.
    */
   hostToken: HostToken
+  /**
+   * Whether the host asked for the next round to be a duel, spent as that
+   * round opens — see `takeDuel`.
+   */
+  isDuelAsked: boolean
   lastActivityAt: number
   phase: RoomPhase
   /**
@@ -75,21 +78,7 @@ export type Room = {
    */
   playedContentIds: Set<string>
   players: Map<PlayerId, Participant>
-  /**
-   * How the rounds from here on are played, as the host last said: everyone at
-   * once, a set of team turns, or duels. It is a wish rather than a rule — a
-   * round the room cannot play by team (a race, a single team) opens for
-   * everyone, and the next one that can goes back to turns.
-   */
-  playStyle: PlayStyle
   round: Round | null
-  /** The set under way, and `null` between two and whenever everyone plays. */
-  set: TeamSet | null
-  /**
-   * Sets already opened, which is what turns who goes first — see `setOrder` —
-   * and who answers for a team in solo — see `soloSeat`.
-   */
-  setsPlayed: number
   settings: RoomSettings
   /**
    * As many as `settings.teams` counts, in team order, and empty when the room
@@ -122,21 +111,6 @@ export type Participant = {
   score: number
   /** `null` in a room without teams, and for a seat still waiting to be dealt or to choose. */
   teamId: TeamId | null
-}
-
-/**
- * One round per team, each team its own question, in an order fixed as the set
- * opens. The game is held so that a line-up moving on mid-set ends it rather
- * than handing the last team a different game from the others'.
- */
-export type TeamSet = {
-  game: GameKind
-  order: TeamId[]
-  /** Turns already opened; the set is over once it reaches `order.length`. */
-  played: number
-  /** The sets opened before this one, which picks the seat answering in solo. */
-  setsBefore: number
-  style: 'byTeam' | 'solo'
 }
 
 export type RoomTeam = {
@@ -318,6 +292,8 @@ export type Round = {
    * the setting mid-round decides the next round rather than cutting this one
    * short. `null` for a game with no round clock.
    */
+  /** The two seats this round is a duel between, `null` when everyone plays it. */
+  duel: RoundDuel | null
   durationMs: number | null
   /**
    * The round's own clock, and the pair that makes a miss resumable: a buzz
@@ -351,6 +327,4 @@ export type Round = {
   /** Server time the round last started or resumed running; `null` while paused. */
   runningSince: number | null
   startsAt: number | null
-  /** The team this round belongs to inside a set, `null` when everyone plays it. */
-  turn: RoundTurn | null
 }

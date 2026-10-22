@@ -206,40 +206,6 @@ describe('the wall', () => {
     }
   })
 
-  it('[wall] answers for the team on turn and still holds no answer', async () => {
-    const { code, host, hostToken } = await harness.openRoom({
-      ...TYPED_QUIZ,
-      teams: { count: 2, kind: 'drawn' }
-    })
-    const wall = await pairedWall({ code, hostToken })
-
-    await harness.seat({ code, nickname: 'Zoe' })
-    await harness.seat({ code, nickname: 'Max' })
-    host.send({ playStyle: 'byTeam', type: 'host.startRound' })
-    await waitFor(
-      () => wallView(wall)?.phase === 'playing' && hostQuestion(host) !== null,
-      'the first team’s question'
-    )
-
-    wall.send({
-      answer: { guess: 'Probablement Gustave', kind: 'typed' },
-      roundId: wallView(wall)?.round?.id ?? '',
-      type: 'wall.answer'
-    })
-    await waitFor(
-      () => wallView(wall)?.yourVerdict != null,
-      'the wall to read its own miss'
-    )
-
-    expect(wallView(wall)?.phase).toBe('playing')
-
-    for (const { answer, note } of QUESTIONS) {
-      for (const secret of note === null ? [answer] : [answer, note]) {
-        expect(transcriptOf(wall)).not.toContain(secret)
-      }
-    }
-  })
-
   it('[wall] never holds the slate key the host noted', async () => {
     const { code, host, hostToken } = await harness.openRoom(SLATE)
     const wall = await pairedWall({ code, hostToken })

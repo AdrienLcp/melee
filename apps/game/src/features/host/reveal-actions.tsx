@@ -1,8 +1,10 @@
 import type React from 'react'
 
+import type { HostRoomView } from '@melee/protocol/room'
+
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
 import { movedToEntry } from '@melee/core/room/room-settings'
-import { hasTurnsAfter } from '@melee/core/team/team-turn'
+import { canPlayDuel } from '@melee/core/team/duel'
 
 import { Button } from '@/presentation/components/button'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
@@ -14,17 +16,26 @@ import { BoardMoves } from './board-moves'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
-import { playStyleFor, TurnsChoice } from './turns-choice'
+
+/**
+ * Whether the next round may be a duel, read off the room as it stands: two
+ * teams holding a seat each, in a game and a mode a duel can be played in.
+ */
+const offersDuel = (view: HostRoomView): boolean =>
+  view.settings.teams.kind !== 'aloud' &&
+  canPlayDuel({
+    game: view.settings.game?.kind ?? null,
+    mode: view.settings.mode.kind,
+    teamCount: view.teams.filter((team) => team.seatIds.length > 0).length
+  })
 
 export const RevealActions: React.FC<HostActionsProps> = ({
   challengeLine,
   innerclockTarget,
   isLive,
   onOpenRound,
-  onPlayStyle,
   onSettingsChange,
   preferences,
-  playStyle,
   send,
   view
 }) => {
@@ -34,47 +45,20 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   const entryNames = useLineUpEntryNames(settings.lineUp)
   const total = settings.roundCount
 
+  const openNextRound = ({ isDuel }: { isDuel: boolean }) => {
+    onOpenRound()
+    send({
+      challengeText: challengeLine?.text,
+      innerclockTargetSeconds: targetToSend(innerclockTarget),
+      isDuel,
+      type: 'host.nextRound'
+    })
+  }
+
   // The server ends the game rather than opening a round past the last one, so
   // on that reveal "next round" is a button that does something else than it
   // says — and the way out beside it reads as abandoning a game that is already
   // over. One control, named after what it opens.
-  // A set owes the next team its round, whatever the line-up or the count
-  // says: the press opens that team's turn, and nothing here may change the
-  // game under the teams still waiting.
-  if (hasTurnsAfter(view.round?.turn ?? null)) {
-    return (
-      <div className='reveal-actions'>
-        <PrimaryPress>
-          <Button
-            isDisabled={!isLive}
-            onPress={() => {
-              onOpenRound()
-              send({ type: 'host.nextRound' })
-            }}
-            size='large'
-          >
-            {translate('host.nextTurn')}
-          </Button>
-        </PrimaryPress>
-        {/* The drawer ends a game among the room's other exits. */}
-        {slot === 'all' && (
-          <Button
-            isDisabled={!isLive}
-            onPress={() => {
-              send({ type: 'host.endGame' })
-            }}
-            variant='underlined'
-          >
-            {translate('host.endGame')}
-          </Button>
-        )}
-        <SecondaryPresses>
-          <BoardMoves isLive={isLive} send={send} view={view} />
-        </SecondaryPresses>
-      </div>
-    )
-  }
-
   if (total !== null && (view.round?.index ?? 0) >= total) {
     return (
       <div className='reveal-actions'>
@@ -149,29 +133,26 @@ export const RevealActions: React.FC<HostActionsProps> = ({
             value={challengeLine.text}
           />
         )}
-        <TurnsChoice
-          isDisabled={!isLive}
-          onChange={onPlayStyle}
-          playStyle={playStyle}
-          view={view}
-        />
       </SecondaryPresses>
       <PrimaryPress>
         <Button
           isDisabled={!isLive}
-          onPress={() => {
-            onOpenRound()
-            send({
-              challengeText: challengeLine?.text,
-              innerclockTargetSeconds: targetToSend(innerclockTarget),
-              playStyle: playStyleFor({ playStyle, view }),
-              type: 'host.nextRound'
-            })
-          }}
+          onPress={() => openNextRound({ isDuel: false })}
           size='large'
         >
           {translate('host.nextRound')}
         </Button>
+        {/* Beside the press it varies, wherever that press is drawn. */}
+        {offersDuel(view) && (
+          <Button
+            isDisabled={!isLive}
+            onPress={() => openNextRound({ isDuel: true })}
+            size='large'
+            variant='outlined'
+          >
+            {translate('host.nextDuel')}
+          </Button>
+        )}
       </PrimaryPress>
       {/* The drawer ends a game among the room's other exits. */}
       {slot === 'all' && (

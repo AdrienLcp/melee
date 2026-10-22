@@ -61,17 +61,12 @@ export type GameCapabilities = {
    */
   playsAloud: boolean
   /**
-   * Whether one team can play a round of it while the others watch. A race
-   * cannot — the bare buzzer and the reflex race are decided *between* players
-   * — and neither can a sheet the host marks across the whole room.
+   * Whether two seats can play a round of it head to head while the room
+   * watches. A race cannot — the bare buzzer and the reflex race are decided
+   * *between* players — and neither can a sheet the host marks across the
+   * whole room.
    */
-  playsInTeamTurns: boolean
-  /**
-   * Whether the wall may answer for a team, which takes a round every screen
-   * answers at once against something served: a press on the wall cannot win a
-   * race against a phone, and a sheet is private to the seat writing it.
-   */
-  wallAnswers: boolean
+  playsDuels: boolean
 }
 
 /**
@@ -85,52 +80,45 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: SERVED_MODES,
         playsAloud: true,
-        playsInTeamTurns: true,
-        wallAnswers: true
+        playsDuels: true
       }
     case 'buzzer':
     case 'challenge':
       return {
         answerModes: BUZZER_ONLY,
         playsAloud: true,
-        playsInTeamTurns: false,
-        wallAnswers: false
+        playsDuels: false
       }
     case 'matchsticks':
       return {
         answerModes: MOVE_OR_BUZZER,
         playsAloud: true,
-        playsInTeamTurns: false,
-        wallAnswers: false
+        playsDuels: false
       }
     case 'innerclock':
     case 'reflex':
       return {
         answerModes: BUZZER_ONLY,
         playsAloud: false,
-        playsInTeamTurns: false,
-        wallAnswers: false
+        playsDuels: false
       }
     case 'slate':
       return {
         answerModes: TYPED_ONLY,
         playsAloud: false,
-        playsInTeamTurns: false,
-        wallAnswers: false
+        playsDuels: false
       }
     case 'timeline':
       return {
         answerModes: ORDER_ONLY,
         playsAloud: false,
-        playsInTeamTurns: true,
-        wallAnswers: true
+        playsDuels: true
       }
     case 'worldmap':
       return {
         answerModes: POINT_ONLY,
         playsAloud: false,
-        playsInTeamTurns: true,
-        wallAnswers: true
+        playsDuels: true
       }
   }
 }

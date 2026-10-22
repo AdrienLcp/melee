@@ -1,13 +1,13 @@
 import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type { PublicPlayer, RoundTurn } from '@melee/protocol/room'
+import type { PublicPlayer, RoundDuel } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
 import { teamOfSeat } from '@melee/core/team/team-board'
 
+import { DuelBadge } from '@/presentation/components/duel-badge'
 import { Pawn } from '@/presentation/components/pawn'
-import { TurnBadge } from '@/presentation/components/turn-badge'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
@@ -22,6 +22,8 @@ type RoundChromeProps = {
    * console offers it here because its four tiles leave no other room. Absent
    * on a player's screen, which has the menu's invitation.
    */
+  /** The two seats this round is a duel between, which take the pips' place. */
+  duel?: RoundDuel | null
   invitation?: React.ReactNode
   /**
    * A passing line at the start of the header, which takes the place of the
@@ -44,8 +46,6 @@ type RoundChromeProps = {
   roundIndex: number | null
   /** The room's teams, so the line names the seat's own once it has one. */
   teams: readonly Team[]
-  /** The team whose round this is inside a set, which takes the pips' place. */
-  turn?: RoundTurn | null
   /** The seat whose pawn and score the line carries. */
   youId: PlayerId
 }
@@ -65,7 +65,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   roundCount,
   roundIndex,
   teams,
-  turn = null,
+  duel = null,
   youId
 }) => {
   const translate = useTranslate()
@@ -95,7 +95,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
           <span aria-hidden='true' className='figures'>
             {roundCount === null ? roundIndex : `${roundIndex}/${roundCount}`}
           </span>
-          {roundCount !== null && roundCount <= MOST_PIPS && turn === null && (
+          {roundCount !== null && roundCount <= MOST_PIPS && duel === null && (
             <span aria-hidden='true' className='pips'>
               {Array.from({ length: roundCount }, (_, pip) => pip + 1).map(
                 (pipRound) => (
@@ -115,14 +115,8 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
           )}
         </p>
       )}
-      {turn !== null && roundIndex !== null && (
-        <TurnBadge
-          isCompact
-          players={players}
-          seatId={youId}
-          teams={teams}
-          turn={turn}
-        />
+      {duel !== null && roundIndex !== null && (
+        <DuelBadge duel={duel} players={players} seatId={youId} teams={teams} />
       )}
       <p className='you'>
         <Pawn seat={Math.max(0, youSeat)} />

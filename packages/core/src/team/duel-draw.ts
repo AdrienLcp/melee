@@ -1,7 +1,7 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { TeamId } from '@melee/protocol/team'
 
-/** A team as a turn sees it: who sits in it, in the room's order. */
+/** A team as a duel draws from it: who sits in it, in the room's order. */
 export type TeamSeats = {
   id: TeamId
   seatIds: readonly PlayerId[]
@@ -9,26 +9,14 @@ export type TeamSeats = {
 
 /** Two seats of two teams, head to head, in the order they were drawn. */
 export type Duel = {
-  seatIds: PlayerId[]
-  teamIds: TeamId[]
+  seatIds: [PlayerId, PlayerId]
+  teamIds: [TeamId, TeamId]
 }
 
 type Seat = {
   seatId: PlayerId
   teamId: TeamId
 }
-
-/**
- * The seat answering for its team in a solo set: one further down the team
- * every set, so everybody answers in turn before anyone answers twice.
- */
-export const soloSeat = ({
-  seatIds,
-  setsPlayed
-}: {
-  seatIds: readonly PlayerId[]
-  setsPlayed: number
-}): PlayerId | null => seatIds[setsPlayed % seatIds.length] ?? null
 
 /**
  * Every seat dealt round the table — each team's first, then each team's

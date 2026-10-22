@@ -264,7 +264,7 @@ export const FR_DICTIONARY = defineDictionary({
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',
-    not_your_turn: 'Quelqu’un d’autre joue cette manche. Ton tour arrive.',
+    not_your_turn: 'Cette manche est un duel entre deux autres joueurs.',
     pairing_not_found:
       'Ce code d’écran a expiré. Rouvre l’écran pour en avoir un nouveau.',
     player_locked_out: 'Tu es hors-jeu pour cette manche.',
@@ -284,7 +284,6 @@ export const FR_DICTIONARY = defineDictionary({
     },
     stale_round: 'Cette manche est déjà terminée.',
     teams_locked: 'Les équipes ne peuvent plus changer comme ça.',
-    wall_cannot_answer: 'Cet écran ne peut pas répondre à cette manche.',
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
@@ -385,8 +384,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     needsGame: 'Choisis à quoi la table joue',
     needsPlayer: 'Il faut au moins quelqu’un à table',
+    nextDuel: 'En duel',
     nextRound: 'Manche suivante',
-    nextTurn: 'Équipe suivante',
     playAgain: 'Rejouer',
     players: {
       empty: 'Encore personne. Ça ne va pas durer.',
@@ -443,20 +442,6 @@ export const FR_DICTIONARY = defineDictionary({
     },
     standings: 'Classement',
     startGame: 'À table\u00a0!',
-    turns: {
-      byTeam: 'Une équipe',
-      duel: 'Un contre un',
-      hint: {
-        byTeam:
-          'Une équipe joue la manche, tous ses joueurs ensemble, les autres regardent. Puis c’est à la suivante.',
-        duel: 'Un joueur d’une équipe contre un joueur d’une autre, toute la salle regarde.',
-        solo: 'Une équipe joue la manche, mais un seul de ses joueurs répond pour elle — chacun son tour.',
-        together: 'Tous les joueurs répondent à chaque manche, en même temps.'
-      },
-      label: 'Qui joue la manche',
-      solo: 'Un joueur',
-      together: 'Tout le monde'
-    },
     verdict: {
       right: 'Bonne réponse',
       showAnswer: 'Voir la réponse',
@@ -1034,6 +1019,11 @@ export const FR_DICTIONARY = defineDictionary({
     draw: 'Tirer les équipes',
     drawNeeds:
       'Il faut au moins {count:number} joueurs pour faire {count:number} équipes — ou choisis moins d’équipes.',
+    duel: {
+      title: '{first} contre {second}',
+      watch:
+        'Deux joueurs s’affrontent, chacun pour son équipe — toute la salle regarde.'
+    },
     empty: 'Personne pour l’instant',
     final: {
       podium: 'Podium individuel',
@@ -1082,31 +1072,6 @@ export const FR_DICTIONARY = defineDictionary({
       teamsOnly: 'Un écran par équipe'
     },
     title: 'Les équipes',
-    turn: {
-      duel: '{first} contre {second}',
-      of: '{index:number} sur {of:number}',
-      plays: 'À jouer : {team}',
-      seatPlays: 'À jouer : {name}',
-      watch: {
-        detail:
-          'Ton équipe joue sa propre manche dans ce tour — celle-ci est la leur.',
-        duel: {
-          detail:
-            'Deux joueurs s’affrontent, chacun pour son équipe — ton tour viendra.'
-        },
-        seat: {
-          title: 'À jouer : {name}'
-        },
-        teammate: {
-          detail:
-            'Un seul d’entre vous répond à chaque manche, chacun son tour — le tien viendra.',
-          title: '{name} répond pour ton équipe'
-        },
-        title: 'À jouer : {team}'
-      },
-      yours: 'À vous !',
-      yoursAlone: 'À toi !'
-    },
     unassigned: {
       chosen: 'Pas encore d’équipe',
       drawn: 'En attente du tirage'

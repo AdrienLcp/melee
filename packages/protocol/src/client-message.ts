@@ -10,11 +10,7 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import { stickMoveSchema } from './matchsticks'
-import {
-  MAX_PLAYERS_PER_ROOM,
-  playStyleSchema,
-  roomSettingsSchema
-} from './room'
+import { MAX_PLAYERS_PER_ROOM, roomSettingsSchema } from './room'
 import { POINT, singleVerdictSchema, verdictSchema } from './scoring'
 import {
   MAX_SLATE_ITEMS,
@@ -202,14 +198,10 @@ export const updateSettingsMessageSchema = z.object({
  *
  * `innerclockTargetSeconds` is how long an inner clock round asks the table to
  * count; absent, the server draws one. Ignored by every other game.
- *
- * `playStyle` says who plays the rounds, see `nextRoundMessageSchema`; absent
- * is everyone at once.
  */
 export const startRoundMessageSchema = z.object({
   challengeText: challengeTextSchema.optional(),
   innerclockTargetSeconds: innerclockTargetSecondsSchema.optional(),
-  playStyle: playStyleSchema.optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
 })
@@ -368,21 +360,18 @@ export const awardTeamsMessageSchema = z.object({
   verdicts: z.array(teamVerdictSchema).max(MAX_TEAMS)
 })
 
-/**
- * `playStyle` says how the rounds from here on are played: everyone at once;
- * a set — each team its own round in turn while the others watch, answered by
- * the whole team or by one of its seats in rotation; or a duel, one seat from
- * each of two teams. Absent, the room keeps playing the way it last did, which
- * is what the reveal hold opens the next round on. A set under way plays its
- * remaining turns whatever this says: a team left without its turn would be a
- * team left behind.
- */
 export const nextRoundMessageSchema = z.object({
   /** The next round's challenge, when it is one — as on `host.startRound`. */
   challengeText: challengeTextSchema.optional(),
   /** The next round's count, when it is one — as on `host.startRound`. */
   innerclockTargetSeconds: innerclockTargetSecondsSchema.optional(),
-  playStyle: playStyleSchema.optional(),
+  /**
+   * Asks for the next round to be a duel: one seat from each of two teams,
+   * drawn so every seat duels before any duels twice. Absent, everyone plays
+   * it â€” a duel is asked for one round at a time, so the reveal hold never
+   * opens one.
+   */
+  isDuel: z.boolean().optional(),
   type: z.literal('host.nextRound')
 })
 
@@ -459,22 +448,10 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   writeSlateLineMessageSchema
 ])
 
-/**
- * The wall answering for the team on turn, in the shape a phone answers in —
- * accepted only in a team's round of a game whose capabilities allow it.
- */
-export const wallAnswerMessageSchema = answerMessageSchema.extend({
-  type: z.literal('wall.answer')
-})
-
-/**
- * A wall says who it is and keeps its clock — and, in a team's round, answers
- * for that team. It never controls the room.
- */
+/** A wall says who it is and keeps its clock. It never controls the room, nor answers. */
 export const wallClientMessageSchema = z.discriminatedUnion('type', [
   helloMessageSchema,
-  timePingMessageSchema,
-  wallAnswerMessageSchema
+  timePingMessageSchema
 ])
 
 /** Everything the server's decoder accepts, before it knows which role sent it. */
@@ -487,7 +464,6 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
-  wallAnswerMessageSchema,
   writeSlateLineMessageSchema,
   updateSettingsMessageSchema,
   startRoundMessageSchema,
@@ -567,6 +543,5 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
  */
 export const FLOOR_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.buzz',
-  'player.answer',
-  'wall.answer'
+  'player.answer'
 ])

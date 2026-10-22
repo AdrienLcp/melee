@@ -80,28 +80,8 @@ export const toWallView = ({
     room.round === null
       ? null
       : toWallContent(toHostContent({ room, round: room.round, seatId: null })),
-  yourVerdict: verdictOfTeamOnTurn(room)
+  yourVerdict: null
 })
-
-/**
- * What the team on turn has banked, which is the wall's own answer when it
- * answers for them: every seat of that team holds the same attempt. A verdict
- * says how much was right and never what the answer is.
- */
-const verdictOfTeamOnTurn = (room: Room): Verdict | null => {
-  const round = room.round
-
-  // A duel is two teams on turn, and no one answer is the wall's to show.
-  if (round === null || round.turn === null || round.turn.style === 'duel') {
-    return null
-  }
-
-  return (
-    round.attempts.find(
-      (entry) => round.openedWithPlayerIds?.has(entry.playerId) === true
-    )?.verdict ?? null
-  )
-}
 
 const toWallContent = (content: HostRoundContent): WallRoundContent => {
   switch (content.kind) {
@@ -326,6 +306,7 @@ const toRoundView = ({
   })),
   awards: round.awards,
   content: toContentView({ round, youId }),
+  duel: round.duel,
   durationMs: round.durationMs,
   id: round.id,
   index: round.index,
@@ -347,8 +328,7 @@ const toRoundView = ({
         said: saidBy(attempts)
       }))
     : [],
-  startsAt: round.startsAt,
-  turn: round.turn
+  startsAt: round.startsAt
 })
 
 /**

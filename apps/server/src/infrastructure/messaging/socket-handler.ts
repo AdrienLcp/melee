@@ -10,7 +10,7 @@ import {
 } from '@melee/protocol/client-message'
 import { decodeMessage } from '@melee/protocol/codec'
 import type { Nickname, PlayerId, RoundId } from '@melee/protocol/identifiers'
-import type { PlayStyle, RoomSettings } from '@melee/protocol/room'
+import type { RoomSettings } from '@melee/protocol/room'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { offersAnswerMode } from '@melee/core/room/game-modes'
@@ -47,12 +47,12 @@ import {
   awardChallengePlaces,
   type ChallengeRejection
 } from '@/domain/round/challenge-round'
+import { canPlayDuel } from '@/domain/round/duels'
 import {
   everyoneHasCounted,
   registerInnerclockPress
 } from '@/domain/round/innerclock-round'
 import {
-  type Answerer,
   applyVerdict,
   clearLockouts,
   closeRound,
@@ -79,7 +79,6 @@ import {
   showSlateItem,
   writeSlateLine
 } from '@/domain/round/slate-round'
-import { canPlayByTeam } from '@/domain/round/team-turns'
 import { discardPoolIfStale } from '@/domain/round/track-pool'
 import { nowMs } from '@/infrastructure/clock'
 import { newPlayerId } from '@/infrastructure/ids'
@@ -444,8 +443,7 @@ const dispatch = ({
       buzz(message.roundId, active, outbound, engine)
       break
     }
-    case 'player.answer':
-    case 'wall.answer': {
+    case 'player.answer': {
       answer(message, active, outbound, engine)
       break
     }
@@ -459,7 +457,6 @@ const dispatch = ({
         engine,
         innerclockTargetSeconds: message.innerclockTargetSeconds,
         outbound,
-        playStyle: message.playStyle ?? 'together',
         slateKeys: message.slateKeys
       })
       break
@@ -645,8 +642,8 @@ const dispatch = ({
         challengeText: message.challengeText,
         engine,
         innerclockTargetSeconds: message.innerclockTargetSeconds,
-        outbound,
-        playStyle: message.playStyle
+        isDuel: message.isDuel ?? false,
+        outbound
       })
       break
     }
@@ -1018,14 +1015,12 @@ const start = ({
   engine,
   innerclockTargetSeconds,
   outbound,
-  playStyle,
   slateKeys
 }: {
   challengeText: string | undefined
   engine: RoomEngine
   innerclockTargetSeconds: number | undefined
   outbound: Outbound
-  playStyle: PlayStyle
   slateKeys: readonly (string | null)[] | undefined
 }): void => {
   if (engine.room.phase !== 'lobby') {
@@ -1039,10 +1034,6 @@ const start = ({
   }
 
   if (refuseWithoutGame(outbound, engine)) {
-    return
-  }
-
-  if (refuseTeamTurns({ engine, outbound, playStyle })) {
     return
   }
 
@@ -1142,38 +1133,20 @@ const reveal = (
   publishRoom(engine)
 }
 
-/**
- * A seat answers with `player.answer` and the wall with `wall.answer`, each
- * from its own role: the wall's frame from a phone would let a player answer
- * for a team that is not theirs.
- */
-const answererOf = (
-  type: 'player.answer' | 'wall.answer',
-  active: Connection
-): Answerer | null => {
-  if (type === 'wall.answer') {
-    return active.role === 'wall' ? { kind: 'wall' } : null
-  }
-
-  return active.playerId === null
-    ? null
-    : { kind: 'seat', playerId: active.playerId }
-}
-
 const answer = (
-  message: Extract<ClientMessage, { type: 'player.answer' | 'wall.answer' }>,
+  message: Extract<ClientMessage, { type: 'player.answer' }>,
   active: Connection,
   outbound: Outbound,
   engine: RoomEngine
 ): void => {
   const { room } = engine
-  const from = answererOf(message.type, active)
+  const playerId = active.playerId
 
-  if (from === null) {
+  if (playerId === null) {
     sendError(outbound, {
       code: 'invalid_message',
       fatal: false,
-      message: 'Only a seated player or the wall answers'
+      message: 'Only a seated player answers'
     })
 
     return
@@ -1181,8 +1154,8 @@ const answer = (
 
   const registered = registerAnswer({
     attempt: message.answer,
-    from,
     now: engine.now(),
+    playerId,
     room,
     roundId: message.roundId,
     shapeOf: countryShapeOf
@@ -1209,14 +1182,14 @@ const advance = ({
   challengeText,
   engine,
   innerclockTargetSeconds,
-  outbound,
-  playStyle
+  isDuel,
+  outbound
 }: {
   challengeText: string | undefined
   engine: RoomEngine
   innerclockTargetSeconds: number | undefined
+  isDuel: boolean
   outbound: Outbound
-  playStyle: PlayStyle | undefined
 }): void => {
   if (engine.room.phase !== 'revealed') {
     sendError(outbound, {
@@ -1238,42 +1211,21 @@ const advance = ({
     return
   }
 
-  if (
-    playStyle !== undefined &&
-    refuseTeamTurns({ engine, outbound, playStyle })
-  ) {
-    return
+  if (isDuel) {
+    if (!canPlayDuel(engine.room)) {
+      sendError(outbound, {
+        code: 'invalid_message',
+        fatal: false,
+        message: 'This round cannot be played as a duel'
+      })
+
+      return
+    }
+
+    engine.room.isDuelAsked = true
   }
 
   void beginRound(engine, { challengeText, innerclockTargetSeconds })
-}
-
-/**
- * Takes the host's word on how the rounds from here are played, refusing a set
- * the room cannot play — the console offers one only where it can.
- */
-const refuseTeamTurns = ({
-  engine,
-  outbound,
-  playStyle
-}: {
-  engine: RoomEngine
-  outbound: Outbound
-  playStyle: PlayStyle
-}): boolean => {
-  if (playStyle !== 'together' && !canPlayByTeam(engine.room)) {
-    sendError(outbound, {
-      code: 'invalid_message',
-      fatal: false,
-      message: 'This round cannot be played team by team'
-    })
-
-    return true
-  }
-
-  engine.room.playStyle = playStyle
-
-  return false
 }
 
 const end = (engine: RoomEngine): void => {

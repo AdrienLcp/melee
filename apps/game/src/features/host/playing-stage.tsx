@@ -68,9 +68,6 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(round)
   const isTyping = mode === 'typed' && onAnswer !== null
-  const teamOnTurn = view.teams.find(
-    (team) => team.id === round.turn?.teamIds[0]
-  )
   const worldmap = worldmapContent(round)
   const matchsticks = matchsticksContent(round)
   const timeline = timelineContent(round)
@@ -128,14 +125,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             ? 'dealt'
             : 'answering'
       }
-      data-turn={teamOnTurn !== undefined || undefined}
-      style={{
-        '--choice-length': choiceLength,
-        '--team':
-          teamOnTurn === undefined
-            ? undefined
-            : `var(--pawn-${teamOnTurn.colour})`
-      }}
+      style={{ '--choice-length': choiceLength }}
     >
       {clipOffer}
       {isMoving && onAnswer !== null ? (

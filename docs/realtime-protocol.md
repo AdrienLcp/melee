@@ -61,10 +61,8 @@ device posts the code with the room code and the token to
 collects the token once and the pairing is gone. The code can sit on a screen
 the whole room reads, because it pairs nothing without the token beside it.
 
-The wall **sends one frame besides its hello**: `wall.answer`, the answer of the
-team on turn in a set — see *A set is rounds played in turn*. Everywhere else it
-is refused `wall_cannot_answer`, and still nothing it receives names an answer
-before the reveal.
+The wall **sends nothing but its hello**, and nothing it receives names an
+answer before the reveal.
 
 ## Client → server
 
@@ -78,10 +76,9 @@ before the reveal.
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
-| `wall.answer` | wall | `roundId`, `answer` — as `player.answer`, for the team on turn |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent; `playStyle` (optional) — `together`, `byTeam`, `solo` or `duel`; absent, everyone at once |
+| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
@@ -98,7 +95,7 @@ before the reveal.
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
 | `host.awardTeams` | host | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing |
-| `host.nextRound` | host | `playStyle` (optional) — absent, the room plays on as it last did; `challengeText` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound` |
+| `host.nextRound` | host | `isDuel` (optional) — the next round is a duel, see *A duel is one round asked for*; `challengeText` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound` |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
@@ -199,34 +196,22 @@ names it, so every screen says the name its own dictionary gives the colour.
   `invalid_message` for a team named twice, a team not there, or a verdict of
   the wrong shape.
 
-**A set is rounds played in turn, not a round holding turns.** `playStyle`
-on `host.startRound` or `host.nextRound` asks for one of three: `byTeam`, each
-team plays an ordinary round of its own, with its own draw, while the others
-watch; `solo`, the same set with one seat answering for its team, the next seat
-of that team on the next set (`soloSeat`); `duel`, a set of one round where two
-seats of two teams answer head to head, drawn so every seat duels before any
-duels twice (`drawDuel`, over `duelsBySeat`). The server orders the turns
-(`setOrder`, first turn passed round the table set after set) and stamps the
-round on the seats it chose, so the roster rule already refuses everybody else
-— `not_your_turn` for a seat the turn did not choose, `joined_mid_round` for a
-seat of the turn's team that arrived late. `round.turn` says whose round it is
-and where it falls — `{ style, teamIds, seatIds, index, of }`, `seatIds` `null`
-when the whole team plays — and is `null` when everyone plays.
+**A duel is one round asked for, never a mode.** `isDuel` on `host.nextRound`
+asks for the next round alone to be two seats of two teams head to head while
+the room watches, drawn so every seat duels before any duels twice
+(`drawDuel`, over `duelsBySeat`). The server stamps the round on those two
+seats, so the roster rule already refuses everybody else with
+`not_your_turn`. `round.duel` — `{ seatIds, teamIds }` — names them, and is
+`null` when everyone plays.
 
-- **The team answers as one.** The first answer from any of its seats or from
-  the wall is banked for every seat of that team the round opened on, so a pick
-  closes the turn and the team is paid exactly what that answer earned, once. The
-  wall answers in `byTeam` alone: in solo and in a duel the answer is a seat's. The wall reads
-  that shared verdict in its own `yourVerdict`, which says how much was right
-  and never what the answer is.
-- **The evening counts a set as one round.** Every turn of a set shares one
-  `index`, and `isFinalRound` waits for the last turn.
-- **A set is a wish the room may not grant.** Asked for where the round cannot
-  be one team's — a game whose capabilities say no, the buzzer mode, a room
-  without teams — it is refused `invalid_message`. Granted, it holds until the
-  host says otherwise; a round that cannot be one team's after all — the
-  line-up moved on to a race, a single team holds every seat — opens for
-  everyone and ends the set, and the next one that can opens a new set.
+- **The wish is spent as the round opens** (`takeDuel`): the reveal hold, which
+  sends no frame, always opens a round for everyone.
+- **A duel the room cannot play is refused `invalid_message`** — a game whose
+  capabilities say no (`playsDuels`), the buzzer mode, a room without two
+  teams. Two teams that no longer both hold a seat open the round for everyone.
+- **There are no team turns.** A round one team plays while the others watch,
+  and a seat answering for its team, were removed at protocol 42: they made
+  spectators of a room that came to play.
 
 **The board is the teams' score walked on a track.** `settings.board` is
 `off` or `{ kind: 'track', length, strategy, catchUp }`, laid in the lobby only — a

@@ -178,13 +178,12 @@ which is why a user-visible string written into a component is a bug — see
   players and nobody else — one stamp for the whole round. The slate stamps at **collection** instead: a sheet has no clock and
   no race, so a latecomer is owed one. A screen that arrives after keeps its seat, is refused everything it
   could send with `joined_mid_round`, and plays from the next round
-- **Set** — one round per team in turn, each team its own question, the others
-  watching: `playStyle` on the host's start or next, `round.turn` on the view. A
-  turn is an ordinary round stamped on the seats it chose. `byTeam` stamps the
-  whole team, which answers as one — from any of its phones or from the wall;
-  `solo` stamps one seat of it, the next one set after set; a `duel` is a set
-  of one round stamping two seats of two teams, every seat duelling before any
-  duels twice. The evening counts the whole set as one round
+- **Duel** — one round two seats of two teams play head to head while the
+  room watches: `isDuel` on the host's *next round*, `round.duel` on the view,
+  an ordinary round stamped on those two seats, drawn so every seat duels
+  before any duels twice. Asked one round at a time, never a mode: everyone
+  plays every other round, because a round played by one team makes
+  spectators of the rest
 - **Answer mode** — `typed` (one field), `choice` (four candidates, what the
   blind test and the quiz open on) or `buzzer` (one player, judged by the
   host); a game with an answer of its own shape takes a mode of its own —

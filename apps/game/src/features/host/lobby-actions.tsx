@@ -10,7 +10,6 @@ import { PrimaryPress, SecondaryPresses, useActionSlot } from './action-slot'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
-import { playStyleFor, TurnsChoice } from './turns-choice'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
   challengeLine,
@@ -18,8 +17,6 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   isLive,
   onOpenRound,
   onPlayRightAway,
-  onPlayStyle,
-  playStyle,
   send,
   slateKeys,
   view
@@ -73,12 +70,6 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
             value={challengeLine.text}
           />
         )}
-        <TurnsChoice
-          isDisabled={!isLive}
-          onChange={onPlayStyle}
-          playStyle={playStyle}
-          view={view}
-        />
       </SecondaryPresses>
       <PrimaryPress>
         <Button
@@ -88,7 +79,6 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
             send({
               challengeText: challengeLine?.text,
               innerclockTargetSeconds: targetToSend(innerclockTarget),
-              playStyle: playStyleFor({ playStyle, view }),
               slateKeys,
               type: 'host.startRound'
             })

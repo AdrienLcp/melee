@@ -22,12 +22,6 @@
     align-items: center
     justify-content: center
 
-  // Another team's round: the card carries that team's band, the way its tray
-  // does, so the colour on the phone is the colour ringed on the wall.
-  .player-round.notice[data-team] .notice-card
-    box-shadow: inset 0 0.625rem 0 var(--team), 0 var(--edge) 0 var(--chipboard), var(--shadow-card)
-    padding-block-start: calc(0.625rem + clamp(var(--space-m), calc(var(--stage-unit) * 6), var(--space-xl)))
-
   .notice-card
     @include piece.card
 

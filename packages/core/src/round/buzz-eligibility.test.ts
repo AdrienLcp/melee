@@ -22,6 +22,7 @@ const runningRound: RoundView = {
   answers: [],
   awards: [],
   content: { choices: [], kind: 'blindtest', revealedTrack: null },
+  duel: null,
   durationMs: 30_000,
   id: 'r1',
   index: 1,
@@ -30,8 +31,7 @@ const runningRound: RoundView = {
   lockedOutPlayerIds: [],
   openedWithPlayerIds: null,
   revealedAnswers: [],
-  startsAt: 1_000,
-  turn: null
+  startsAt: 1_000
 }
 
 const viewFor = (

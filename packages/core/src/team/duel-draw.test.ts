@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 
-import { drawDuel, soloSeat, type TeamSeats } from './turn-seats'
+import { drawDuel, type TeamSeats } from './duel-draw'
 
 const TEAMS: TeamSeats[] = [
   { id: 'team-1', seatIds: ['anna', 'ben'] },
@@ -24,24 +24,15 @@ const playDuels = (count: number): PlayerId[][] => {
   })
 }
 
-describe('turn seats', () => {
-  it('[turn-seats] hands a solo turn one seat further down the team every set', () => {
-    const seatIds = ['anna', 'ben', 'carl']
-
-    expect(
-      [0, 1, 2, 3].map((setsPlayed) => soloSeat({ seatIds, setsPlayed }))
-    ).toEqual(['anna', 'ben', 'carl', 'anna'])
-    expect(soloSeat({ seatIds: [], setsPlayed: 2 })).toBeNull()
-  })
-
-  it('[turn-seats] sets two teams against each other in a duel', () => {
+describe('duel draw', () => {
+  it('[duel-draw] sets two teams against each other in a duel', () => {
     expect(drawDuel({ duelsBySeat: new Map(), teams: TEAMS })).toEqual({
       seatIds: ['anna', 'carl'],
       teamIds: ['team-1', 'team-2']
     })
   })
 
-  it('[turn-seats] lets every seat duel before anyone duels twice', () => {
+  it('[duel-draw] lets every seat duel before anyone duels twice', () => {
     const firstThree = playDuels(3).flat()
 
     expect(firstThree.slice(0, 4).toSorted()).toEqual(
@@ -50,7 +41,7 @@ describe('turn seats', () => {
     expect(firstThree).toContain('emil')
   })
 
-  it('[turn-seats] draws no duel without two teams holding a seat', () => {
+  it('[duel-draw] draws no duel without two teams holding a seat', () => {
     expect(
       drawDuel({
         duelsBySeat: new Map(),

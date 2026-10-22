@@ -1,11 +1,7 @@
 import type React from 'react'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
-import type {
-  HostRoomView,
-  PlayStyle,
-  RoomSettings
-} from '@melee/protocol/room'
+import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
@@ -33,8 +29,6 @@ export type HostActionsProps = {
   draftSource: TrackSource | null
   /** The socket is open. Every control here sends a frame, so none of them work without it. */
   isLive: boolean
-  /** Sets how the rounds from here are played: everyone at once, by team, one per team or in duels. */
-  onPlayStyle: (playStyle: PlayStyle) => void
   /** Commits the picker's draft and blesses the audio element — every control that opens a round calls it first. */
   onOpenRound: () => void
   /** Seats this console under the name and starts the first round once the seat is granted — the empty lobby's launch. */
@@ -43,11 +37,6 @@ export type HostActionsProps = {
   onSettingsChange: (settings: RoomSettings) => void
   /** What this host last left each game set to, so a game drawn or picked opens as they like it. */
   preferences: HostPreferences | null
-  /**
-   * How the host wishes the rounds played, kept on this screen and sent with
-   * every press that opens a round — granted only where a round can be one team's.
-   */
-  playStyle: PlayStyle
   send: (message: ClientMessage) => boolean
   /** The answer key this host prepared, sent with the press that opens a slate; absent on any other game. */
   slateKeys: (string | null)[] | undefined

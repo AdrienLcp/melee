@@ -7,7 +7,7 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
 import type { PlayerRoomView } from '@melee/protocol/room'
 
-import { playsThisTurn } from '@melee/core/team/team-turn'
+import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { slateContent } from '@/helpers/round-content'
@@ -252,11 +252,11 @@ const Lobby: React.FC<{
       <PawnColoursProvider view={view}>
         <Main className='player-page playing framed'>
           <RoundChrome
+            duel={view.round?.duel ?? null}
             players={view.players}
             roundCount={view.settings.roundCount}
             roundIndex={view.round?.index ?? 0}
             teams={view.teams}
-            turn={view.round?.turn ?? null}
             youId={view.youId}
           />
           <div className='card-clock'>
@@ -290,6 +290,7 @@ const Lobby: React.FC<{
         ) : (
           <>
             <RoundChrome
+              duel={view.round?.duel ?? null}
               players={view.players}
               roomCode={roomCode}
               roundCount={view.settings.roundCount}
@@ -301,7 +302,6 @@ const Lobby: React.FC<{
                   : view.round.index
               }
               teams={view.teams}
-              turn={view.round?.turn ?? null}
               youId={view.youId}
             />
             <PlayerRound
@@ -336,11 +336,7 @@ const isFramed = (view: PlayerRoomView): boolean =>
   view.isHostConnected &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
-  playsThisTurn({
-    seatId: view.youId,
-    teams: view.teams,
-    turn: view.round.turn
-  }) &&
+  playsThisRound({ duel: view.round.duel, seatId: view.youId }) &&
   ((view.phase === 'playing' && view.round.answerMode === 'choice') ||
     ((view.phase === 'playing' || view.phase === 'buzzed') &&
       view.round.answerMode === 'buzzer'))

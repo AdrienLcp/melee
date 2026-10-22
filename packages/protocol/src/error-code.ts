@@ -63,17 +63,11 @@ export const protocolErrorCodes = [
    */
   'joined_mid_round',
   /**
-   * An answer from a seat the turn did not choose — another team's round, or
-   * a teammate's in solo or a duel. Its own code rather than
+   * An answer from a seat a duel did not draw. Its own code rather than
    * `joined_mid_round`: the seat was there all along, and the screen owes it a
-   * wait for its own turn rather than for the next round.
+   * wait for the duel to end rather than an apology for arriving late.
    */
   'not_your_turn',
-  /**
-   * An answer from the wall in a round it may not answer: everyone plays at
-   * once, or the game is one a press on the wall cannot fairly take part in.
-   */
-  'wall_cannot_answer',
   /**
    * A matchstick move the sticks cannot make: no stick where it was lifted, a
    * stick already where it was laid, or a glyph left that is no digit or sign.

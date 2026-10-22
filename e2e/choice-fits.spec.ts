@@ -160,6 +160,7 @@ const choosingView = (question: Question) => ({
       },
       revealedQuestion: null
     },
+    duel: null,
     id: 'r4',
     index: 4,
     joinedAfterStart: false,
@@ -167,8 +168,7 @@ const choosingView = (question: Question) => ({
     lockedOutPlayerIds: [],
     openedWithPlayerIds: null,
     revealedAnswers: [],
-    startsAt: SERVER_TIME - 2_000,
-    turn: null
+    startsAt: SERVER_TIME - 2_000
   },
   roundElapsedMs: 2_000,
   settings: {
@@ -1409,38 +1409,14 @@ const WALL_SCREENS = [
   },
   { name: 'round', ready: '.answer-tile', view: eveningRound },
   {
-    name: 'set',
-    ready: '.answer-tile',
-    view: {
-      ...eveningRound,
-      round: {
-        ...eveningRound.round,
-        openedWithPlayerIds: eveningRound.teams[1]?.seatIds ?? [],
-        turn: {
-          index: 1,
-          of: 3,
-          seatIds: null,
-          style: 'byTeam',
-          teamIds: ['team-2']
-        }
-      }
-    }
-  },
-  {
     name: 'duel',
-    ready: '.turn-badge[data-duel]',
+    ready: '.duel-badge',
     view: {
       ...eveningRound,
       round: {
         ...eveningRound.round,
-        openedWithPlayerIds: duellists,
-        turn: {
-          index: 0,
-          of: 1,
-          seatIds: duellists,
-          style: 'duel',
-          teamIds: ['team-1', 'team-2']
-        }
+        duel: { seatIds: duellists, teamIds: ['team-1', 'team-2'] },
+        openedWithPlayerIds: duellists
       }
     }
   },

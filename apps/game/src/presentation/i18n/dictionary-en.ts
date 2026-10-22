@@ -290,7 +290,7 @@ export const EN_DICTIONARY = defineDictionary({
     nickname_taken: 'Someone already took that nickname.',
     no_content_available: 'Nothing left to play. Try other settings.',
     no_game_chosen: 'Pick a game first.',
-    not_your_turn: 'Someone else is playing this round. Yours is coming.',
+    not_your_turn: 'This round is a duel between two other players.',
     pairing_not_found:
       'That screen code has expired. Open the screen again for a new one.',
     player_locked_out: 'You are out for this round.',
@@ -309,7 +309,6 @@ export const EN_DICTIONARY = defineDictionary({
     },
     stale_round: 'That round is already over.',
     teams_locked: 'The teams cannot change that way now.',
-    wall_cannot_answer: 'This screen cannot answer this round.',
     wall_not_paired:
       'This screen is not paired. Pair it from the device running the table.',
     wrong_phase: 'Too late, the game has moved on.'
@@ -414,9 +413,10 @@ export const EN_DICTIONARY = defineDictionary({
     },
     needsGame: 'Pick what the table is playing',
     needsPlayer: 'You need at least one at the table',
+    /** Beside *Next round*: opens it as two seats of two teams head to head, the room watching. */
+    nextDuel: 'As a duel',
     nextRound: 'Next round',
     /** The reveal of a turn with another team still to play its round. */
-    nextTurn: 'Next team',
     playAgain: 'Play again',
     players: {
       empty: 'Nobody yet. That will not last.',
@@ -484,21 +484,6 @@ export const EN_DICTIONARY = defineDictionary({
     standings: 'Standings',
     startGame: 'Gather round',
     /** How the rounds from here are played, offered where a round can be one team's. */
-    turns: {
-      byTeam: 'One team',
-      duel: 'One on one',
-      /** Under the choice: what the one chosen does, since a stamp cannot say it. */
-      hint: {
-        byTeam:
-          'One team plays the round, all its players together, while the others watch. Then the next team.',
-        duel: 'A player from one team against a player from another, while the room watches.',
-        solo: 'One team plays the round, but only one of its players answers for it — each in turn.',
-        together: 'Every player answers every round, all at once.'
-      },
-      label: 'Who plays the round',
-      solo: 'One player',
-      together: 'Everyone'
-    },
     verdict: {
       right: 'Right',
       showAnswer: 'Show me the answer',
@@ -1131,6 +1116,13 @@ export const EN_DICTIONARY = defineDictionary({
     draw: 'Draw the teams',
     drawNeeds:
       'At least {count:number} players to make {count:number} teams — or pick fewer teams.',
+    /** Two seats head to head, each named beside its team's pawn. */
+    duel: {
+      title: '{first} vs {second}',
+      /** What a seat watching the duel reads. */
+      watch:
+        'Two players face off, each for their team, while the room watches.'
+    },
     empty: 'Nobody yet',
     final: {
       podium: 'Individual podium',
@@ -1178,35 +1170,6 @@ export const EN_DICTIONARY = defineDictionary({
       teamsOnly: 'A screen per team'
     },
     title: 'The teams',
-    turn: {
-      /** Two seats head to head, each named beside its team's pawn. */
-      duel: '{first} vs {second}',
-      /** How far a set has come: the turn on screen, of how many teams. */
-      of: '{index:number} of {of:number}',
-      plays: '{team} play',
-      /** One seat answering for its team. */
-      seatPlays: '{name} plays',
-      /** A seat watching another team's round. */
-      watch: {
-        detail:
-          'Your team plays its own round in this set — this one is theirs.',
-        duel: {
-          detail:
-            'Two players face off, each for their team — your turn will come.'
-        },
-        seat: {
-          title: '{name} plays this one'
-        },
-        teammate: {
-          detail: 'One of you answers each round, in turn — yours will come.',
-          title: '{name} answers for your team'
-        },
-        title: '{team} play this one'
-      },
-      yours: 'Your turn',
-      /** The seat a turn chose, alone, rather than its whole team. */
-      yoursAlone: 'Your turn'
-    },
     unassigned: {
       chosen: 'No team yet',
       drawn: 'Waiting for the draw'

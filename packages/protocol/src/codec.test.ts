@@ -17,6 +17,7 @@ const runningRound = {
     kind: 'blindtest' as const,
     revealedTrack: null
   },
+  duel: null,
   durationMs: 30_000,
   id: 'r1',
   index: 1,
@@ -25,8 +26,7 @@ const runningRound = {
   lockedOutPlayerIds: [],
   openedWithPlayerIds: null,
   revealedAnswers: [],
-  startsAt: 1_700_000_000_000,
-  turn: null
+  startsAt: 1_700_000_000_000
 }
 
 const playerView: PlayerRoomView = {

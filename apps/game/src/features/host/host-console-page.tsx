@@ -7,7 +7,6 @@ import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
-  PlayStyle,
   RoomSettings,
   RoundView
 } from '@melee/protocol/room'
@@ -21,7 +20,7 @@ import {
 } from '@melee/core/room/host-preferences'
 import { isGameInPlay } from '@melee/core/room/room-phase'
 import { withPreparedKey } from '@melee/core/slate/prepared-keys'
-import { playsThisTurn } from '@melee/core/team/team-turn'
+import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
@@ -54,10 +53,10 @@ import {
 } from '@/infrastructure/storage/session-storage'
 import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
+import { DuelBadge } from '@/presentation/components/duel-badge'
 import { Loader } from '@/presentation/components/loader'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
-import { TurnBadge } from '@/presentation/components/turn-badge'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import {
   reflexOutcome,
@@ -130,7 +129,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // that puts the name back on the next `hello` — and a console whose tab was
   // discarded on a screen lock reloads rather than blinks, so a seat kept in
   // component state alone came back as no seat at all.
-  const [playStyle, setPlayStyle] = useState<PlayStyle>('byTeam')
   const [seatNickname, setSeatNickname] = useState(() =>
     readSeatNickname({ role: 'host', roomCode })
   )
@@ -449,13 +447,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         <Main className='host-console-page framed'>
           <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
           <RoundChrome
+            duel={choosing.round.duel}
             invitation={<InvitePiece roomCode={roomCode} />}
             notice={<ArrivalNotice arrival={arrival} />}
             players={view.players}
             roundCount={view.settings.roundCount}
             roundIndex={choosing.round.index}
             teams={view.teams}
-            turn={choosing.round.turn}
             youId={choosing.youId}
           />
           <div className='card-clock'>
@@ -544,9 +542,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       }
     },
     onPlayRightAway: playRightAway,
-    onPlayStyle: setPlayStyle,
     onSettingsChange: changeSettings,
-    playStyle,
     preferences,
     send,
     slateKeys: preparedSlateKeys,
@@ -567,12 +563,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
               })}
         </p>
       )}
-      {view?.round?.turn != null && view.phase !== 'finished' && (
-        <TurnBadge
+      {view?.round?.duel != null && view.phase !== 'finished' && (
+        <DuelBadge
+          duel={view.round.duel}
           players={view.players}
           seatId={view.youId}
           teams={view.teams}
-          turn={view.round.turn}
         />
       )}
       {/*
@@ -737,10 +733,6 @@ const seatedChoosingRound = (
   view.youId !== null &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
-  playsThisTurn({
-    seatId: view.youId,
-    teams: view.teams,
-    turn: view.round.turn
-  })
+  playsThisRound({ duel: view.round.duel, seatId: view.youId })
     ? { round: view.round, youId: view.youId }
     : null

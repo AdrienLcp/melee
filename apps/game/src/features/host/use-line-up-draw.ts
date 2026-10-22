@@ -8,7 +8,6 @@ import {
 } from '@melee/core/room/host-preferences'
 import { nextEntryAt } from '@melee/core/room/next-game'
 import { movedToEntry } from '@melee/core/room/room-settings'
-import { hasTurnsAfter } from '@melee/core/team/team-turn'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -57,7 +56,6 @@ export const useLineUpDraw = ({
 
     if (
       isFinal ||
-      hasTurnsAfter(round.turn) ||
       settings.lineUp.length < 2 ||
       settings.lineUpAt !== round.lineUpAt
     ) {

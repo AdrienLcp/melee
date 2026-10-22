@@ -3,7 +3,7 @@ import type React from 'react'
 import { useState } from 'react'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
-import type { PlayerId, RoomCode, RoundId } from '@melee/protocol/identifiers'
+import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
   RoomSettings,
@@ -13,10 +13,9 @@ import { POINT } from '@melee/protocol/scoring'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
-import { playsThisTurn } from '@melee/core/team/team-turn'
+import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
-import type { PlayerAnswer } from '@/features/player/answer-forms'
 import {
   holdsTheAnswer,
   innerclockContent,
@@ -86,11 +85,6 @@ type RoomStageProps = {
   isSpeaker: boolean
   /** The gesture a screen that cannot play a clip has to be offered. */
   onUnlockAudio: () => void
-  /**
-   * The wall's answer for the team on turn, and `null` everywhere it may not
-   * answer — which is every round but a team's, and every screen but the wall.
-   */
-  onWallAnswer?: ((answer: PlayerAnswer, roundId: RoundId) => boolean) | null
   /** Why the last press did not arm this screen, and `null` while none has failed. */
   refusal: ClipRefusal | null
   roomCode: RoomCode
@@ -109,7 +103,6 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   controls,
   isSpeaker,
   onUnlockAudio,
-  onWallAnswer = null,
   refusal,
   roomCode,
   slateWall,
@@ -141,11 +134,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   const youId = isSeated ? view.youId : null
   const playsThisRound =
     isSeated &&
-    playsThisTurn({
-      seatId: view.youId,
-      teams: view.teams,
-      turn: round?.turn ?? null
-    })
+    seatPlaysRound({ duel: round?.duel ?? null, seatId: view.youId })
 
   const clipOffer = (
     <ClipOffer
@@ -252,9 +241,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
                   roundId: round.id,
                   type: 'player.answer'
                 })
-            : onWallAnswer === null
-              ? null
-              : (answer) => onWallAnswer(answer, round.id)
+            : null
         }
         round={round}
         view={view}

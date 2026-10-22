@@ -13,7 +13,8 @@
     > header:not(.round-chrome)
       align-items: baseline
       display: flex
-      gap: var(--space-m)
+      flex-wrap: wrap
+      gap: var(--space-xs) var(--space-m)
       justify-content: space-between
       min-height: var(--control-height)
       padding-inline-end: var(--menu-inset)
@@ -33,6 +34,12 @@
       // the exact moment the room is deciding whether to play another.
       .join-reminder
         margin-inline-start: auto
+
+      // Two names are what it says: it takes a line of its own before it
+      // shrinks to its two pawns.
+      .duel-badge
+        flex-shrink: 0
+        max-width: 100%
 
     .stage
       display: flex

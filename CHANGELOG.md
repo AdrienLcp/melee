@@ -204,6 +204,14 @@ one part.
 
 ### Breaking Changes
 
+- `[Shared]` **Every round is everyone's, and a duel is asked for one round at
+  a time**, and `PROTOCOL_VERSION` goes to 42. The *Who plays the round* choice
+  is gone from the lobby and the reveal: no more rounds one team plays while
+  the others watch, nor one player answering for a team. *As a duel*, beside
+  *Next round*, sets one player of a team against one of another for
+  that round alone, the room watching. `isDuel` on `host.nextRound` replaces
+  `playStyle`, `round.duel` replaces `round.turn`, and `wall.answer` is gone.
+
 - `[Shared]` **A set can be played solo or in duels**, and `PROTOCOL_VERSION`
   goes to 32. `playStyle` (`together`, `byTeam`, `solo`, `duel`) replaces
   `byTeam` on `host.startRound` and `host.nextRound`, and `round.turn` names

@@ -34,21 +34,18 @@ describe('answerModesFor', () => {
 })
 
 describe('capabilitiesOf', () => {
-  it('[game-capabilities] keeps a race out of team turns and off the wall', () => {
+  it('[game-capabilities] keeps a race out of duels', () => {
     for (const game of ['buzzer', 'reflex'] as const) {
-      expect(capabilitiesOf(game)).toMatchObject({
-        playsInTeamTurns: false,
-        wallAnswers: false
-      })
+      expect(capabilitiesOf(game).playsDuels).toBe(false)
     }
   })
 
-  it('[game-capabilities] lets the wall answer a round served to every screen at once', () => {
-    expect(capabilitiesOf('quiz').wallAnswers).toBe(true)
-    expect(capabilitiesOf('blindtest').wallAnswers).toBe(true)
+  it('[game-capabilities] duels on a round served to every screen at once', () => {
+    expect(capabilitiesOf('quiz').playsDuels).toBe(true)
+    expect(capabilitiesOf('blindtest').playsDuels).toBe(true)
   })
 
-  it('[game-capabilities] keeps a private sheet off the wall', () => {
-    expect(capabilitiesOf('slate').wallAnswers).toBe(false)
+  it('[game-capabilities] keeps a private sheet out of duels', () => {
+    expect(capabilitiesOf('slate').playsDuels).toBe(false)
   })
 })

@@ -429,32 +429,13 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
 ])
 
 /**
- * Who answers a round that is not everyone's: `byTeam` the whole team on turn,
- * `solo` one of its seats for it, `duel` one seat from each of two teams head
- * to head.
+ * A round two seats of two teams play head to head while the rest of the room
+ * watches, asked for by the host one round at a time.
  */
-export const turnStyleSchema = z.enum(['byTeam', 'duel', 'solo'])
-
-/** How the host asks the rounds from here on to be played: a turn style, or everyone at once. */
-export const playStyleSchema = z.enum(['byTeam', 'duel', 'solo', 'together'])
-
-/**
- * A round that is not everyone's: who plays it, and where it falls in its set
- * — "Blue plays, 2 of 3". The set shares one `index`, because the evening
- * counts it as one round however many teams it takes; a duel is a set of one.
- */
-export const roundTurnSchema = z.object({
-  /** 0-based, so the last turn is `index === of - 1`. */
-  index: z.number().int().nonnegative(),
-  of: z.number().int().positive(),
-  /**
-   * The seats chosen to play it, in `teamIds` order, and `null` when the whole
-   * team does — who that is, the round's stamp says.
-   */
-  seatIds: z.array(playerIdSchema).min(1).max(2).nullable(),
-  style: turnStyleSchema,
-  /** The team on turn, or the two a duel sets against each other. */
-  teamIds: z.array(teamIdSchema).min(1).max(2)
+export const roundDuelSchema = z.object({
+  /** The two seats drawn, in `teamIds` order. */
+  seatIds: z.tuple([playerIdSchema, playerIdSchema]),
+  teamIds: z.tuple([teamIdSchema, teamIdSchema])
 })
 
 export const roundViewSchema = z.object({
@@ -479,6 +460,11 @@ export const roundViewSchema = z.object({
   /** Points already granted this round, in the order the host granted them. */
   awards: z.array(awardSchema),
   content: roundContentSchema,
+  /**
+   * The two seats this round is a duel between, and `null` when everyone plays
+   * it. Only those seats are stamped on the round.
+   */
+  duel: roundDuelSchema.nullable(),
   /**
    * How long the open phase runs, as it stood when the round opened, and `null`
    * for a game with no round clock. Read here for the reason `answerMode` is.
@@ -521,13 +507,7 @@ export const roundViewSchema = z.object({
    * Every client schedules against its own clock offset, which is what lands the
    * countdown on every device together.
    */
-  startsAt: serverTimeSchema.nullable(),
-  /**
-   * Who this round belongs to when it is not everyone's, and `null` when it
-   * is. Only those seats are stamped on the round, and in a whole team's
-   * round the wall may answer for it.
-   */
-  turn: roundTurnSchema.nullable()
+  startsAt: serverTimeSchema.nullable()
 })
 
 const baseRoomViewSchema = z.object({
@@ -733,9 +713,7 @@ export type PublicPlayer = z.infer<typeof publicPlayerSchema>
 export type ActiveBuzz = z.infer<typeof activeBuzzSchema>
 export type RoundContent = z.infer<typeof roundContentSchema>
 export type HostRoundContent = z.infer<typeof hostRoundContentSchema>
-export type RoundTurn = z.infer<typeof roundTurnSchema>
-export type TurnStyle = z.infer<typeof turnStyleSchema>
-export type PlayStyle = z.infer<typeof playStyleSchema>
+export type RoundDuel = z.infer<typeof roundDuelSchema>
 export type RoundView = z.infer<typeof roundViewSchema>
 export type HostRoomView = z.infer<typeof hostRoomViewSchema>
 export type PlayerRoomView = z.infer<typeof playerRoomViewSchema>
