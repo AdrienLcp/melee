@@ -81,7 +81,11 @@ const hostPreferencesSchema = z.object({
       mode: true,
       roundCount: true
     })
-    .extend({ board: boardSettingsSchema.optional().catch(undefined) })
+    .extend({
+      board: boardSettingsSchema.optional().catch(undefined),
+      /** Stored before a room could have a judge, which no room did. */
+      hasJudge: z.boolean().catch(false)
+    })
     .transform(({ board, ...room }) => ({
       ...room,
       board: board ?? boardLaidWith(room.teams)

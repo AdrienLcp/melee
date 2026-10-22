@@ -16,6 +16,7 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { GamePicker } from './game-picker'
 import { HostSeat } from './host-seat'
+import { JudgeSwitch } from './judge-switch'
 import { LineUpEntries } from './line-up-entries'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { PlaylistPicker } from './playlist-picker'
@@ -168,6 +169,12 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
               value={settings.roundCount ?? NO_LIMIT}
             />
           )}
+          <JudgeSwitch
+            isDisabled={!isLive}
+            onChange={onSettingsChange}
+            preferences={preferences}
+            settings={settings}
+          />
         </Disclosure>
 
         {/* Nothing about a round until there is a game to play it. */}

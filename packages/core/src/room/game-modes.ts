@@ -45,9 +45,11 @@ export const isJudgedByHost = ({
 
 /**
  * `isJudgedByHost` over the whole room: a table answering aloud is judged on
- * its console every round, whatever the game, and the console holds no seat.
+ * its console every round, whatever the game, and the console holds no seat —
+ * nor does it in a room that has a judge.
  */
 export const isRoomJudgedByHost = (settings: RoomSettings): boolean =>
+  settings.hasJudge ||
   settings.teams.kind === 'aloud' ||
   isJudgedByHost({
     game: settings.game?.kind ?? null,

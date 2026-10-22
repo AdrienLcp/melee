@@ -137,7 +137,9 @@ which is why a user-visible string written into a component is a bug — see
   seated or not, until a **wall** is there to be it instead. The rule is the **room's**, so the server grants no
   seat under it and takes back the one it granted when the settings frame moves
   the room to a game it must judge. It is the only role that can **close** the
-  room — see `Exits` below
+  room — see `Exits` below. **`hasJudge`** says somebody runs the room and
+  never plays: the console holds no seat under any game, and an evening plays
+  each game on the mode its judge last left it on rather than on the game's own
 - **Wall** — the room's own screen, paired to it by the host's device: it shows
   the game, plays the clip and holds no answer, no control and no seat. A third
   role, so nothing written for the host reaches it — see `docs/realtime-protocol.md`

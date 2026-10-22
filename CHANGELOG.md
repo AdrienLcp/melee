@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- **An evening can have a judge**, and `PROTOCOL_VERSION` goes to 43. *A judge
+  runs the room and doesn't play*, under *Animer › The evening*: the console
+  then takes no seat under any game, and each game of the evening is played
+  the way the judge last left it — a quiz on the buzzer, answers said aloud,
+  comes back on the buzzer every time it is drawn. Without one, an evening
+  still opens every game on its own mode, and no longer overwrites the mode a
+  host remembered for a game with it.
+
 - `[Game]` **Matchsticks is played on every screen.** Each player picks a
   match up and lays it on an empty place — with a finger, a pointer or the
   keyboard — sees the puzzle as the move leaves it, can put it back, and

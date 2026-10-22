@@ -401,6 +401,11 @@ export const EN_DICTIONARY = defineDictionary({
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
       plural: { count: { other: '{?}' } }
     }),
+    judge: {
+      hint: 'Nobody plays on this screen, so an evening can be played on the buzzer, answers said aloud.',
+      label: 'A judge runs the room and doesn’t play',
+      summary: 'With a judge'
+    },
     lineUp: {
       addVariant: 'Add a variant',
       entryHint: 'The settings below are this one’s.',

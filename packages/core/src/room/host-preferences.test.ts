@@ -44,6 +44,7 @@ describe('rememberSettings', () => {
     expect(remembered.room).toEqual({
       board: { kind: 'off' },
       countdownMs: 10_000,
+      hasJudge: false,
       teams: { kind: 'off' }
     })
   })
@@ -161,6 +162,7 @@ describe('rememberedSetupFor', () => {
       room: {
         board: { kind: 'off' },
         countdownMs: 3_000,
+        hasJudge: false,
         teams: { kind: 'off' }
       }
     }
@@ -183,7 +185,7 @@ describe('an evening of several games', () => {
 
   const quickQuizHost: HostPreferences = rememberSettings({
     preferences: null,
-    settings: { ...onTheQuiz, roundCount: 20 }
+    settings: { ...onTheQuiz, hasJudge: true, roundCount: 20 }
   })
 
   it('[host-preferences] keeps the preset’s length, teams and track over the host’s last quick game', () => {
@@ -201,6 +203,34 @@ describe('an evening of several games', () => {
       'buzzer'
     ])
     expect(restored.lineUp[0]).toEqual(restored.game)
+  })
+
+  it('[host-preferences] keeps the mode a host judged a game on through an evening with no judge', () => {
+    const buzzerQuizHost = rememberSettings({
+      preferences: null,
+      settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
+    })
+
+    const afterTheEvening = rememberSettings({
+      preferences: buzzerQuizHost,
+      settings: restoredSettings({
+        preferences: buzzerQuizHost,
+        settings: evening
+      })
+    })
+
+    expect(afterTheEvening.games.quiz?.mode).toEqual(
+      DEFAULT_MODE_SETTINGS.buzzer
+    )
+  })
+
+  it('[host-preferences] opens an evening without the judge the host’s last quick game had', () => {
+    const restored = restoredSettings({
+      preferences: quickQuizHost,
+      settings: evening
+    })
+
+    expect(restored.hasJudge).toBe(false)
   })
 
   it('[host-preferences] plays the evening’s quiz on four candidates for a host who last judged one aloud', () => {

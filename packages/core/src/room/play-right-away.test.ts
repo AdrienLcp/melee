@@ -94,23 +94,38 @@ describe('settingsToPlayRightAway', () => {
 
 describe('launchesWithHostSeated', () => {
   it('[play-right-away] seats the host at an empty table that lets them play', () => {
-    expect(
-      launchesWithHostSeated({ game: 'quiz', mode: 'choice', seated: 0 })
-    ).toBe(true)
+    expect(launchesWithHostSeated({ seated: 0, settings: onTheQuiz })).toBe(
+      true
+    )
   })
 
   it('[play-right-away] hands the launch back to the group once anybody sits', () => {
-    expect(
-      launchesWithHostSeated({ game: 'quiz', mode: 'choice', seated: 1 })
-    ).toBe(false)
+    expect(launchesWithHostSeated({ seated: 1, settings: onTheQuiz })).toBe(
+      false
+    )
   })
 
   it('[play-right-away] waits for a game, and for a way of answering with no judge', () => {
     expect(
-      launchesWithHostSeated({ game: null, mode: 'choice', seated: 0 })
+      launchesWithHostSeated({
+        seated: 0,
+        settings: { ...onTheQuiz, game: null }
+      })
     ).toBe(false)
     expect(
-      launchesWithHostSeated({ game: 'quiz', mode: 'buzzer', seated: 0 })
+      launchesWithHostSeated({
+        seated: 0,
+        settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
+      })
+    ).toBe(false)
+  })
+
+  it('[play-right-away] leaves the launch to the group in a room with a judge', () => {
+    expect(
+      launchesWithHostSeated({
+        seated: 0,
+        settings: { ...onTheQuiz, hasJudge: true }
+      })
     ).toBe(false)
   })
 })

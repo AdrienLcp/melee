@@ -372,6 +372,11 @@ export const FR_DICTIONARY = defineDictionary({
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
       plural: { count: { other: '{?}' } }
     }),
+    judge: {
+      hint: 'Personne ne joue sur cet écran : une soirée peut alors se jouer au buzzer, les réponses dites à voix haute.',
+      label: 'Un juge anime sans jouer',
+      summary: 'Avec un juge'
+    },
     lineUp: {
       addVariant: 'Ajouter une variante',
       entryHint: 'Les réglages ci-dessous sont les siens.',

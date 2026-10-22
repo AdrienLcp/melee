@@ -72,7 +72,12 @@ export const useSetupSummaries = ({
         })
 
   return {
-    evening: [join(parts.filter(isRoundCount)), teamsSummary, boardSummary]
+    evening: [
+      join(parts.filter(isRoundCount)),
+      teamsSummary,
+      boardSummary,
+      settings.hasJudge ? translate('host.judge.summary') : ''
+    ]
       .filter((part) => part !== '')
       .join(' · '),
     room: [

@@ -183,6 +183,7 @@ const choosingView = (question: Question) => ({
       roundDurationMs: 30_000,
       wellKnownOnly: false
     },
+    hasJudge: false,
     lineUp: [
       {
         allowsAdultContent: false,

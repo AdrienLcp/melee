@@ -164,6 +164,24 @@ describe('movedToGame', () => {
     expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
   })
 
+  it('[room-settings] lands an evening with a judge on the mode this host left the game on', () => {
+    const moved = movedToGame({
+      game: 'quiz',
+      locale: 'fr',
+      remembered: {
+        ...openedSetup({ game: 'quiz', locale: 'fr' }),
+        mode: DEFAULT_MODE_SETTINGS.buzzer
+      },
+      settings: {
+        ...onTheBuzzer,
+        hasJudge: true,
+        lineUp: entries('buzzer', 'quiz')
+      }
+    })
+
+    expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.buzzer)
+  })
+
   it('[room-settings] keeps the evening’s hold when the draw lands on a game with its own', () => {
     const moved = movedToGame({
       game: 'blindtest',

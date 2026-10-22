@@ -547,7 +547,9 @@ that moves the room to one takes back the seat it already granted — the picker
 sits on the lobby stage, where a console may already be playing. `isJudgedByHost`
 is the rule and it is the room's, not the form's: a console remembers the name it
 was seated under and replays it on every reconnect, so a rule enforced only where
-the control is drawn is a rule the next `hello` walks through. Buzzer mode is
+the control is drawn is a rule the next `hello` walks through. A room with
+`settings.hasJudge` set is one the console judges under every game, whatever
+the round asks — someone runs it and never plays. Buzzer mode is
 what asks for a judge; the reflex race shares that mode and needs none, because
 being first *is* being right there. The slate is the other way round: it is
 `typed` — a sheet is typed — and still judged, because its host holds the key

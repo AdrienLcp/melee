@@ -143,9 +143,8 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             !controls.isRoomScreen &&
             !playsAloud &&
             !launchesWithHostSeated({
-              game: view.settings.game?.kind ?? null,
-              mode: view.settings.mode.kind,
-              seated: view.players.length
+              seated: view.players.length,
+              settings: view.settings
             }) && <HostSeat onTakeSeat={controls.onTakeSeat} view={view} />}
         </section>
       </div>

@@ -40,9 +40,8 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
     slot === 'all' &&
     !playsAloud &&
     launchesWithHostSeated({
-      game: view.settings.game?.kind ?? null,
-      mode: view.settings.mode.kind,
-      seated: view.players.length
+      seated: view.players.length,
+      settings: view.settings
     })
   ) {
     return (

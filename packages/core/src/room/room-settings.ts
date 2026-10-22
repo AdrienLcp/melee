@@ -240,7 +240,8 @@ export const movedToGame = ({
 /**
  * The room set to play the line-up's entry `at`, on that entry's own settings.
  * How it is answered is still this host's last word on the game, because an
- * entry carries the game's settings and the mode is the room's.
+ * entry carries the game's settings and the mode is the room's — in an evening,
+ * only when it has a judge.
  *
  * An evening keeps its own length and its own hold. The count is the
  * evening's: a quiz's ten rounds landing on round twelve would end it on the
@@ -275,10 +276,10 @@ export const movedToEntry = ({
     autoAdvanceMs: isEvening ? settings.autoAdvanceMs : setup.autoAdvanceMs,
     game: entry,
     lineUpAt: at,
-    // An evening has nobody set aside to judge, so each game is answered the
-    // way it opens — four candidates for the quiz — whatever this host left it
-    // on when they ran it alone with a judge.
-    mode: isEvening ? opened.mode : setup.mode,
+    // An evening with no judge has nobody set aside to hear an answer, so each
+    // game is answered the way it opens — four candidates for the quiz —
+    // whatever this host left it on when they ran it alone with a judge.
+    mode: isEvening && !settings.hasJudge ? opened.mode : setup.mode,
     roundCount: isEvening ? settings.roundCount : setup.roundCount
   }
 }

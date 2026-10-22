@@ -62,10 +62,11 @@ export const rememberedSetupFor = ({
  * keeps what the door decided — the question language above all, which the door
  * reads off the host's own interface.
  *
- * An evening keeps what its preset decided — the teams, the track, the length
- * and the hold — and takes from the host only each entry's game settings. Not
- * the answer mode: an evening has nobody set aside to judge, so each game is
- * answered the way it opens — see `movedToEntry`.
+ * An evening keeps what its preset decided — the teams, the track, the length,
+ * the hold and whether it has a judge — and takes from the host only each
+ * entry's game settings. Not the answer mode: an evening opens with nobody set
+ * aside to judge, so each game is answered the way it opens — see
+ * `movedToEntry`.
  */
 export const restoredSettings = ({
   preferences,
@@ -86,6 +87,7 @@ export const restoredSettings = ({
       ...remembered,
       autoAdvanceMs: settings.autoAdvanceMs,
       board: settings.board,
+      hasJudge: settings.hasJudge,
       lineUp: settings.lineUp.map(
         (entry) =>
           rememberedSetupFor({ game: entry.kind, preferences })?.game ?? entry
@@ -110,7 +112,8 @@ export const restoredSettings = ({
  *
  * An evening files how each game was played and nothing of its own: its
  * length, its hold and its teams were the evening's, and remembering them
- * would hand tonight's party to next week's quick game.
+ * would hand tonight's party to next week's quick game. Nor, with no judge, its
+ * answer mode: that is the game's own opening, not this host's word on it.
  */
 export const rememberSettings = ({
   preferences,
@@ -126,9 +129,11 @@ export const rememberSettings = ({
     evening && game !== null
       ? (rememberedSetupFor({ game: game.kind, preferences }) ?? {
           autoAdvanceMs,
+          mode,
           roundCount
         })
-      : { autoAdvanceMs, roundCount }
+      : { autoAdvanceMs, mode, roundCount }
+  const filedMode = evening && !settings.hasJudge ? filed.mode : mode
 
   return {
     games:
@@ -139,7 +144,7 @@ export const rememberSettings = ({
             [game.kind]: {
               autoAdvanceMs: filed.autoAdvanceMs,
               game,
-              mode,
+              mode: filedMode,
               roundCount: filed.roundCount
             }
           },

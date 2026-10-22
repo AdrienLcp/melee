@@ -130,6 +130,23 @@ describe('a console that plays the room it runs', () => {
     expect(hostView(host)?.players).toEqual([])
   })
 
+  it('[host-seat] takes the seat back when the room is given a judge', async () => {
+    const { host } = await harness.openRoom(SEATED_CONSOLE_GAME, 'Marina')
+
+    expect(hostView(host)?.youId).not.toBeNull()
+
+    host.send({
+      settings: ticked({ ...SEATED_CONSOLE_GAME, hasJudge: true }),
+      type: 'host.updateSettings'
+    })
+    await waitFor(
+      () => hostView(host)?.youId === null,
+      'the console to give the seat up'
+    )
+
+    expect(hostView(host)?.players).toEqual([])
+  })
+
   /**
    * A mode moved mid-round lands on the next round, and so does what it costs:
    * the console keeps playing the typed round in front of it and is unseated

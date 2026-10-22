@@ -22,9 +22,11 @@ import { publishRoom, type RoomEngine } from './room-engine'
  * reconnect — a rule enforced only where the form is drawn is a rule the next
  * `hello` walks straight through.
  *
- * A table answering aloud is judged by its console on every round.
+ * A table answering aloud is judged by its console on every round, and a room
+ * with a judge keeps its console off the board whatever the round asks.
  */
 export const hostMustJudge = (room: Room): boolean =>
+  room.settings.hasJudge ||
   room.settings.teams.kind === 'aloud' ||
   (isRoundInPlay(room.phase) && room.round !== null
     ? isJudgedByHost({

@@ -1,12 +1,8 @@
 import type { GameKind } from '@melee/protocol/game'
-import {
-  type AnswerMode,
-  DEFAULT_MODE_SETTINGS,
-  type RoomSettings
-} from '@melee/protocol/room'
+import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 
 import { answerModesFor } from './game-capabilities'
-import { isJudgedByHost, modeOfferedBy } from './game-modes'
+import { isJudgedByHost, isRoomJudgedByHost, modeOfferedBy } from './game-modes'
 import { type HostPreferences, restoredSettings } from './host-preferences'
 
 /**
@@ -49,16 +45,15 @@ export const settingsToPlayRightAway = ({
 
 /**
  * Whether the lobby's launch is the press that seats its host and starts: the
- * table is empty, a game is chosen, and that game lets its host play. The
+ * table is empty, a game is chosen, and the room lets its host play. The
  * moment anybody else sits down it is the group's launch again.
  */
 export const launchesWithHostSeated = ({
-  game,
-  mode,
-  seated
+  seated,
+  settings
 }: {
-  game: GameKind | null
-  mode: AnswerMode
   /** How many seats the room holds. */
   seated: number
-}): boolean => seated === 0 && game !== null && !isJudgedByHost({ game, mode })
+  settings: RoomSettings
+}): boolean =>
+  seated === 0 && settings.game !== null && !isRoomJudgedByHost(settings)
