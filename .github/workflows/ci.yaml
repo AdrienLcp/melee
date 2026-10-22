@@ -10,8 +10,10 @@ on:
 
 concurrency:
   # Each push runs in a group of its own: GitHub cancels a run left waiting
-  # behind another of its group, and mails every cancelled run.
-  group: ci-${{ github.event_name == 'pull_request' && github.ref || github.sha }}
+  # behind another of its group, and mails every cancelled run. The event is
+  # part of the key, or a deploy dispatched on the commit just pushed queues
+  # behind that push's whole run before starting its own.
+  group: ci-${{ github.event_name == 'pull_request' && github.ref || format('{0}-{1}', github.event_name, github.sha) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
@@ -66,9 +68,14 @@ jobs:
       # between the pieces fails on a hash mismatch and takes the whole job with
       # it, for minutes or for hours. Dropping the source leaves the step
       # standing on Ubuntu's mirrors alone.
+      #
+      # Those mirrors stall now and then: apt waited one to three minutes on
+      # each font package before trying the next mirror, and the step took 12
+      # minutes instead of 20 seconds. A short timeout moves on at once.
       - name: Install Chromium
         run: |
           sudo rm -f /etc/apt/sources.list.d/*google*
+          echo 'Acquire::http::Timeout "15"; Acquire::https::Timeout "15"; Acquire::Retries "3";' | sudo tee /etc/apt/apt.conf.d/99-stalled-mirror
           pnpm exec playwright install --with-deps chromium
 
       - name: Test end to end
