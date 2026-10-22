@@ -153,6 +153,11 @@ one part.
   picked by the host — leaves it alone, where it could only compare games
   before and two blind tests looked the same.
 
+### Internal
+
+- **Page views are counted under `melee`**, the analytics site id that took
+  Taverla's history; the tracker sent `taverla` until now.
+
 ### Breaking Changes
 
 - `[Shared]` **A set can be played solo or in duels**, and `PROTOCOL_VERSION`
