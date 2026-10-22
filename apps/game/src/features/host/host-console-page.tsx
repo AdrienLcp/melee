@@ -622,16 +622,20 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
           {header}
           {stage}
-          {view !== null &&
-            view.phase !== 'lobby' &&
-            view.settings.board.kind === 'track' &&
-            view.teams.length > 0 && (
-              <BoardTrack
-                length={view.settings.board.length}
-                teams={view.teams}
-              />
-            )}
         </Main>
+        {/*
+          Beside the page rather than inside it, like the presses: the page
+          keeps its entrance's transform, and a track fixed inside it would
+          run down a lobby long enough to scroll.
+        */}
+        {view !== null &&
+          view.settings.board.kind === 'track' &&
+          view.teams.length > 0 && (
+            <BoardTrack
+              length={view.settings.board.length}
+              teams={view.teams}
+            />
+          )}
         {view !== null && (
           <RoomScreenPresses
             actions={hostActionsProps(view)}

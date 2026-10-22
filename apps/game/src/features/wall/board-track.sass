@@ -18,6 +18,15 @@
     pointer-events: none
     position: fixed
 
+    // The board under the top row, between its cases: a lobby long enough to
+    // scroll passes under the track rather than showing through it.
+    &::before
+      background: var(--field)
+      content: ''
+      height: calc(var(--board-edge) + var(--board-band))
+      inset: 0 0 auto
+      position: absolute
+
     .cases
       display: grid
       gap: var(--board-gap)

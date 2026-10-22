@@ -1,3 +1,4 @@
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
 
@@ -10,6 +11,15 @@ $presses-height: calc(4.5rem + var(--text-s) * 2 + var(--space-m) * 2)
 @layer components
   .host-console-page.room-screen
     --layout-padding-block-end: calc(max(var(--layout-padding), var(--safe-area-bottom)) + #{$presses-height})
+
+  // The track ends above the presses rather than under them: its first
+  // cases are the start, where every pawn stands before the first round.
+  .host-console-page.room-screen ~ .board-track
+    bottom: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 4.5rem + var(--space-s))
+
+    // Under the split the two presses take a line each.
+    @include layout.narrow
+      bottom: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 9rem + var(--space-m) + var(--space-s))
 
   // Fixed beside `<main>` rather than inside it: the page's entrance leaves a
   // transform, and a fixed box inside a transformed one is fixed to that box.
@@ -71,6 +81,18 @@ $presses-height: calc(4.5rem + var(--text-s) * 2 + var(--space-m) * 2)
         flex-direction: column
         gap: var(--space-2xs)
 
+      // *Draw again* beside the launch, where a held screen has room for
+      // both; under the split it waits in the drawer.
+      .launch-presses
+        display: flex
+        flex-wrap: wrap
+        gap: var(--space-xs)
+        justify-content: end
+
+        .redraw
+          @include layout.narrow
+            display: none
+
       // *Next round* and its duel side by side, the duel dropping under it
       // where the two do not fit on one line.
       .reveal-actions
@@ -91,6 +113,10 @@ $presses-height: calc(4.5rem + var(--text-s) * 2 + var(--space-m) * 2)
       gap: var(--space-m)
 
       &:empty
+        display: none
+
+    .drawer-presses > .launch > .redraw
+      @include layout.wide
         display: none
 
     .remove-players

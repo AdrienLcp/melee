@@ -39,6 +39,7 @@ import { RevealPanel } from './reveal-panel'
 import { ScoreTrack } from './score-track'
 import { SlateCorrectionStage, SlateWritingStage } from './slate-stages'
 import { Standings, standingsRowsOf } from './standings'
+import { isSetAsTable, TableLobby } from './table-lobby'
 import { TeamVerdicts } from './team-verdicts'
 import type { SlateWall } from './use-slate-wall'
 import { VerdictPanel } from './verdict-panel'
@@ -394,6 +395,22 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       <div className='stage finished'>
         <FinalBoard players={view.players} teams={view.teams} youId={youId} />
       </div>
+    )
+  }
+
+  // A table of teams sitting down, read across the room: the setup is the
+  // drawer's, and what the room reads is who sits with whom.
+  if (
+    (controls === null || controls.isRoomScreen) &&
+    isSetAsTable(view.settings.teams)
+  ) {
+    return (
+      <TableLobby
+        controls={controls}
+        roomCode={roomCode}
+        view={view}
+        youId={youId}
+      />
     )
   }
 

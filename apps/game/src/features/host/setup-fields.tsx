@@ -20,6 +20,7 @@ import { LineUpEntries } from './line-up-entries'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
+import { isSetAsTable } from './table-lobby'
 import { TeamsSetup } from './teams-setup'
 import { useSetupSummaries } from './use-settings-summary'
 
@@ -90,7 +91,7 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
   const game = settings.game
   const isInLobby = view.phase === 'lobby'
   const roundInPlay = isRoundInPlay(view.phase)
-  const { playsSound } = useRoomActions()
+  const { isRoomScreen, playsSound } = useRoomActions()
   const { setVolume, volume } = useVolume()
   const { seconds } = useDurationLabels()
   const summaries = useSetupSummaries({ draftSource, settings })
@@ -112,12 +113,14 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
           summary={summaries.evening}
         >
           {/*
-            In the lobby the game is the stage's, beside the QR code. Past it,
+            In the lobby the game is the stage's, beside the QR code — save on
+            the room's own screen set as a table of teams, whose stage is the
+            room's to read. Past it,
             a round on screen is one arm of `round.content`, so a game switched
             under it would leave the screens rendering the other; the server
             refuses that, and the control says so first.
           */}
-          {!isInLobby && (
+          {(!isInLobby || (isRoomScreen && isSetAsTable(settings.teams))) && (
             <GamePicker
               isDisabled={!isLive || roundInPlay}
               onChange={onSettingsChange}

@@ -483,6 +483,32 @@ export const EN_DICTIONARY = defineDictionary({
     },
     standings: 'Standings',
     startGame: 'Gather round',
+    /** The room's own screen while the teams sit down: the evening's card and the trays under it. */
+    table: {
+      arrivals: {
+        chosen: '{count:number} at the table, picking their teams',
+        drawn: '{count:number} at the table, waiting for the draw'
+      },
+      evening: 'Team game night',
+      nobody: {
+        detail: 'Every name shows up here as people join.',
+        seat: 'A seat'
+      },
+      rules: {
+        points: defineTranslation(
+          '{rounds:plural}: the team that scores most wins.',
+          {
+            plural: { rounds: { one: '{?} round', other: '{?} rounds' } }
+          }
+        ),
+        pointsOpen: 'The team that scores most wins.',
+        track: defineTranslation(
+          '{rounds:plural}, {length:number} squares: the first team home wins.',
+          { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }
+        ),
+        trackOpen: '{length:number} squares: the first team home wins.'
+      }
+    },
     /** How the rounds from here are played, offered where a round can be one team's. */
     verdict: {
       right: 'Right',

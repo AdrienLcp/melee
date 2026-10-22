@@ -296,7 +296,7 @@ const pawnScaleFor = (standing: number): number => {
     return 0.34
   }
 
-  return 0.26
+  return 0.22
 }
 
 const markOf = ({

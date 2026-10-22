@@ -1,13 +1,11 @@
 import type React from 'react'
-import { useEffect, useEffectEvent, useState } from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
-import { suggestedTeamCount } from '@melee/core/team/team-count'
-import { dealTeams } from '@melee/core/team/team-draw'
+import { teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
@@ -29,6 +27,7 @@ import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
 import { SlatePreparation } from './slate-preparation'
 import { TEAM_COUNTS } from './teams-setup'
+import { useTeamCountFollowingHeadcount, useTeamDeal } from './use-team-deal'
 
 /** As many pawns as a box holds: the roster shows an empty socket for each one still in it. */
 type LobbyStageProps = {
@@ -57,6 +56,8 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 }) => {
   const translate = useTranslate()
   const playsAloud = view.settings.teams.kind === 'aloud'
+
+  useTeamCountFollowingHeadcount({ controls, view })
 
   return (
     <div className='stage lobby' data-aloud={playsAloud || undefined}>
@@ -157,10 +158,8 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
  * shuffle on this screen, checked by the server — names them and moves a seat
  * between them; the wall shows the same trays and touches nothing.
  *
- * The count is set here, beside the draw, and follows the headcount until the
- * host picks one or deals: a host who has never seen the settings still splits
- * twelve people in four. A new count after a deal deals again, because a team
- * left out would strand its seats.
+ * The count is set here, beside the draw; `useTeamCountFollowingHeadcount`
+ * keeps it in step with the room.
  */
 const LobbyTeams: React.FC<{
   controls: StageControls | null
@@ -168,39 +167,11 @@ const LobbyTeams: React.FC<{
   youId: PlayerId | null
 }> = ({ controls, view, youId }) => {
   const translate = useTranslate()
-  const [hasChosenCount, setHasChosenCount] = useState(false)
   const teams = view.settings.teams
-  const isDrawn = teams.kind === 'drawn'
-  const hasDealt = view.teams.some((team) => team.seatIds.length > 0)
-  const seatIds = view.players.map((player) => player.id)
-  const isShortOfPlayers = isDrawn && seatIds.length < teams.count
-  const suggested = suggestedTeamCount(seatIds.length)
-  const followsHeadcount =
-    controls?.isLive === true &&
-    isDrawn &&
-    !hasDealt &&
-    !hasChosenCount &&
-    teams.count !== suggested
-
-  const followHeadcount = useEffectEvent((count: number) => {
-    controls?.onSettingsChange({
-      ...view.settings,
-      teams: { count, kind: 'drawn' }
-    })
+  const { deal, hasDealt, isDrawn, isShortOfPlayers } = useTeamDeal({
+    send: controls?.send ?? null,
+    view
   })
-
-  useEffect(() => {
-    if (followsHeadcount) {
-      followHeadcount(suggested)
-    }
-  }, [followsHeadcount, suggested])
-
-  const deal = (count: number) => {
-    controls?.send({
-      assignment: dealTeams({ count, seatIds }),
-      type: 'host.drawTeams'
-    })
-  }
 
   return (
     <>
@@ -213,15 +184,10 @@ const LobbyTeams: React.FC<{
               isDisabled={!controls.isLive}
               label={translate('team.count')}
               onChange={(count) => {
-                setHasChosenCount(true)
                 controls.onSettingsChange({
                   ...view.settings,
                   teams: { ...teams, count }
                 })
-
-                if (isDrawn && hasDealt && seatIds.length >= count) {
-                  deal(count)
-                }
               }}
               optionLabel={String}
               options={TEAM_COUNTS}
@@ -231,9 +197,7 @@ const LobbyTeams: React.FC<{
               <Button
                 className='draw-teams'
                 isDisabled={!controls.isLive || isShortOfPlayers}
-                onPress={() => {
-                  deal(teams.count)
-                }}
+                onPress={deal}
                 variant={hasDealt ? 'outlined' : 'filled'}
               >
                 {translate(hasDealt ? 'team.redraw' : 'team.draw')}
@@ -243,7 +207,7 @@ const LobbyTeams: React.FC<{
         )}
       {controls !== null && isShortOfPlayers && (
         <p className='draw-needs'>
-          {translate('team.drawNeeds', { count: teams.count })}
+          {translate('team.drawNeeds', { count: teamCountOf(teams) })}
         </p>
       )}
       <TeamRoster

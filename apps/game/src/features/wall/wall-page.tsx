@@ -193,16 +193,12 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           slateWall={slateWall}
           view={view}
         />
-        {view !== null &&
-          view.phase !== 'lobby' &&
-          view.settings.board.kind === 'track' &&
-          view.teams.length > 0 && (
-            <BoardTrack
-              length={view.settings.board.length}
-              teams={view.teams}
-            />
-          )}
       </Main>
+      {view !== null &&
+        view.settings.board.kind === 'track' &&
+        view.teams.length > 0 && (
+          <BoardTrack length={view.settings.board.length} teams={view.teams} />
+        )}
     </PawnColoursProvider>
   )
 }

@@ -442,6 +442,30 @@ export const FR_DICTIONARY = defineDictionary({
     },
     standings: 'Classement',
     startGame: 'À table\u00a0!',
+    table: {
+      arrivals: {
+        chosen: '{count:number} à table, chacun choisit son équipe',
+        drawn: '{count:number} à table, en attente du tirage'
+      },
+      evening: 'Soirée en équipes',
+      nobody: {
+        detail: 'Chaque nom apparaît ici dès qu’on rejoint.',
+        seat: 'Une place'
+      },
+      rules: {
+        points: defineTranslation(
+          '{rounds:plural}\u00a0: l’équipe qui marque le plus gagne.',
+          { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
+        ),
+        pointsOpen: 'L’équipe qui marque le plus gagne.',
+        track: defineTranslation(
+          '{rounds:plural}, {length:number} cases\u00a0: la première équipe à l’arrivée gagne.',
+          { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
+        ),
+        trackOpen:
+          '{length:number} cases\u00a0: la première équipe à l’arrivée gagne.'
+      }
+    },
     verdict: {
       right: 'Bonne réponse',
       showAnswer: 'Voir la réponse',

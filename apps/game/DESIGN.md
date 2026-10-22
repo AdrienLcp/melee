@@ -806,6 +806,40 @@ panel from the start edge past the split, 28rem, sliding in on `base`; below
 it, the leaflet's sheet with its grabber. The face is the stylesheet's, so
 no media query is read in a component.
 
+The track ends above the presses rather than under them (two rows of them
+under the split), so the start — where every pawn stands before the first
+round — is never behind *Next round*. It renders beside `<main>`, like the
+presses: inside it, the page's leftover transform would run it down a lobby
+long enough to scroll. The board fills in behind its top row, so a scrolling
+lobby passes under the cases rather than through their gaps.
+
+### The table (`TableLobby`)
+A room of teams in its lobby, on the wall and on the room's own screen —
+direction D, chosen 2026-10-22 (`.impeccable/directions/board-lobby/`, local).
+The track is already up, every team's pawn on the start. Centred inside it: a
+**lid** (`box-lid`) with the evening's name — *Soirée en équipes*, or the one
+game's — how it is won, the line-up as spines in the order the box deals them,
+and the invitation laid on the lid's own grid (`display: contents`): the code
+token and the words beside it on the last line, the square down the right
+edge; under 34rem of lid, the code on its own line and the square under it.
+Under the lid, the seats no team holds yet in a dashed recess, then one tray
+per team. Before the deal the trays are empty recesses with their band — the
+arrivals above already say why; a team left empty after it shows one dashed
+place. Names wrap inside their tray, never under an ellipsis.
+
+The lid and the arrivals keep a 60rem column; the trays widen past it by 15rem
+a team, to the U's width. Measured at 1440×900 and 1920×1080 with 15 seats in
+3×5 and 5×3, and 24 in 6×4, before and after the deal: nothing scrolls. The
+code is 9.5 stage units on the lid — `.room-invitation` declares its own size,
+so the lid sets it on the invitation, not on itself. Under the split the page
+scrolls inside the U, reserving the two rows of presses.
+
+Its presses are the room's: *Draw the teams* until the deal, then *Draw again*
+beside *Gather round* (in the drawer under the split). The games and the team
+count are the drawer's, and the count follows the headcount until the host
+picks one there; a new count after a deal deals again
+(`useTeamCountFollowingHeadcount`).
+
 ## Do's and Don'ts
 
 ### Do:

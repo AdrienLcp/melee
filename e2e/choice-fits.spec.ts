@@ -1404,7 +1404,7 @@ const duellists = eveningRound.teams
 const WALL_SCREENS = [
   {
     name: 'lobby',
-    ready: '.stage.lobby',
+    ready: '.stage.table-lobby',
     view: { ...eveningRound, phase: 'lobby', round: null }
   },
   { name: 'round', ready: '.answer-tile', view: eveningRound },
