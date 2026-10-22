@@ -4,8 +4,6 @@ on:
   push:
     branches: [main]
   pull_request:
-  # Melee does not reach production until it replaces Taverla: a deploy is run
-  # by hand, `gh workflow run ci.yaml --ref main`.
   workflow_dispatch:
 
 concurrency:
@@ -108,7 +106,7 @@ jobs:
   # room in progress survives it: its Durable Object keeps its state across a
   # deploy, and the screens reconnect on their own.
   deploy:
-    if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: validate
     runs-on: ubuntu-latest
     timeout-minutes: 10

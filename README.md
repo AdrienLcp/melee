@@ -102,8 +102,7 @@ room keeps its state across a deploy and nothing sleeps between two evenings.
 [`apps/server/wrangler.jsonc`](apps/server/wrangler.jsonc) is the whole
 configuration.
 
-Deploys are manual until Melee replaces Taverla: `gh workflow run ci.yaml`
-deploys `main` once lint, tests and the end-to-end journeys are green, with the
+Every push to `main`, or `gh workflow run ci.yaml` by hand, deploys `main` once lint, tests and the end-to-end journeys are green, with the
 `CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repository secrets. It
 previews at `https://melee.adrienlcp.com`.
 

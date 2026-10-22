@@ -54,7 +54,7 @@ built back to back and emit a byte-identical payload. See
 ## Commands
 
 `pnpm dev` runs the Worker under `wrangler dev` (3100) and the app (5273) in
-parallel, deploys are manual (`gh workflow run ci.yaml`) until Melee replaces Taverla, `pnpm test`
+parallel, every push to `main` deploys once CI is green, `pnpm test`
 covers protocol, core and server, `pnpm test:core:watch` is the red-green loop,
 and `pnpm test:e2e` runs three Playwright journeys on ports of their own.
 **`pnpm validate`** is what CI runs — lint, spell, build, typecheck, tests with
