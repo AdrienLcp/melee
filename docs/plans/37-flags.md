@@ -75,7 +75,7 @@ it alone plays a flags round; one that ticks it beside history mixes them.
   the question on console and player, then the reveal on both. The wall renders
   the same `RoomStage` and was not seen paired.
 
-## Decisions for Adrien
+## Decisions taken
 
 - A rubric rather than a game, as above.
 - Monaco is out rather than shown at 4:3 beside Indonesia.

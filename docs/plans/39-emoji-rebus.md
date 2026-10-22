@@ -42,7 +42,7 @@ switch is its difficulty.
   one across, and its last row runs short. `e2e/strip-rows.spec.ts` now lets
   a **grid's** last row run short, and still refuses a wrap's.
 
-## Decisions for Adrien
+## Decisions taken
 
 - A rubric rather than a game, as above.
 - **No filter by kind.** The plan asked that a host could hold an evening to

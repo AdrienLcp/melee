@@ -85,7 +85,7 @@ the true order on the reveal with each year.
   the console (wide and narrow) and the player. A paired wall and a seated
   console were not seen.
 
-## Decisions for Adrien to read
+## Decisions taken
 
 - Pairs rather than positions, and the tiers 3 / 2 / 1 for none, one and two
   pairs swapped.

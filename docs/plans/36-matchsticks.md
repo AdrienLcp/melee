@@ -69,7 +69,7 @@ What was built, and where it left the plan above:
 ## B1 — served (done 21/10/2026)
 
 The stick moved on a screen, server, protocol and core only; the app holds what
-compiles. Built on decisions taken for Adrien, listed here for him to settle:
+compiles. Built on these decisions:
 
 - **A mode of its own, `move`, offered by matchsticks alone**, beside
   `buzzer`: `answerModes` is `['move', 'buzzer']`, and `move` is the default a
@@ -172,9 +172,11 @@ compiles. Built on decisions taken for Adrien, listed here for him to settle:
   in dark, held, laid, sent and revealed. **Not seen**: a paired wall (it
   draws the console's stage without the form), and a real phone.
 
-## For Adrien
+## Decisions taken
 
 - **Team turns and the wall answering** stay off for `move`
-  (`playsInTeamTurns`, `wallAnswers` false): worth it only if the table asks.
-- The chips draw a seat's move small (about 1.85em tall): readable on a
-  laptop, small from across a room, where the solution above is the large one.
+  (`playsInTeamTurns`, `wallAnswers` false): a puzzle is solved in silence on
+  each screen, and a team passing one phone around is the buzzer mode's job.
+- **The chips draw a seat's move small** (about 1.85em tall), the solution
+  above them large: across a room the solution is what is read, and a chip's
+  place in the ranking already says who found it.
