@@ -7,11 +7,11 @@
     .spine
       background: var(--card)
       color: var(--card-ink)
-      grid-template-columns: auto minmax(0, 1fr)
+      grid-template-columns: auto minmax(min-content, 1fr)
       padding-inline-start: var(--space-s)
 
       @container (width >= 26rem)
-        grid-template-columns: auto minmax(0, 1fr) auto
+        grid-template-columns: auto minmax(min-content, 1fr) auto
 
     .packed
       align-self: stretch

@@ -176,6 +176,11 @@ one part.
   the strip keeps room for the line saying why the press refuses, and the
   page scrolls under the board's own ground rather than into the buttons.
 
+- `[Game]` **A long game name on the shelf no longer runs into its
+  tagline.** *Grande soirée*, *Frise chronologique*, *Game night* and three
+  others spilled under the line beside them between a tablet and a laptop
+  width; a name too long for its spine now breaks over two balanced lines.
+
 - **A reload on the reveal no longer draws the next round a second time**
   when the evening holds two variants of one game. Each round now carries
   the line-up entry it was opened from (`round.lineUpAt`), so a console
