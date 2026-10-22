@@ -109,6 +109,44 @@ describe('a room played in teams', () => {
     ])
   })
 
+  it('[teams] re-deals the seats when the lobby changes the count after a draw', async () => {
+    const { code, host } = await harness.openRoom(DRAWN_IN_THREE)
+    const seats = await seatMany(code, ['A', 'B', 'C', 'D', 'E', 'F'])
+    const [a, b, c, d, e, f] = seats.map(idOf)
+
+    host.send({
+      assignment: [
+        [a ?? '', d ?? ''],
+        [b ?? '', e ?? ''],
+        [c ?? '', f ?? '']
+      ],
+      type: 'host.drawTeams'
+    })
+    await waitFor(
+      () => hostView(host)?.teams[2]?.seatIds.length === 2,
+      'the deal in three'
+    )
+
+    host.send({ settings: DRAWN_IN_TWO, type: 'host.updateSettings' })
+    host.send({
+      assignment: [
+        [a ?? '', b ?? '', c ?? ''],
+        [d ?? '', e ?? '', f ?? '']
+      ],
+      type: 'host.drawTeams'
+    })
+    await waitFor(
+      () => viewOf(seats[0])?.teams[0]?.seatIds.length === 3,
+      'the deal in two to reach a phone'
+    )
+
+    expect(errorsIn(host)).toEqual([])
+    expect(viewOf(seats[0])?.teams.map((team) => team.seatIds)).toEqual([
+      [a, b, c],
+      [d, e, f]
+    ])
+  })
+
   it('[teams] refuses a deal two seats apart, and keeps the teams as they were', async () => {
     const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
     const [a, b, c, d] = (await seatMany(code, ['A', 'B', 'C', 'D'])).map(idOf)

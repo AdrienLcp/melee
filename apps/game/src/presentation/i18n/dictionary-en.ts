@@ -394,10 +394,9 @@ export const EN_DICTIONARY = defineDictionary({
       })
     },
     game: {
-      label: 'Which game',
-      labelSeveral: 'Tonight’s games',
-      prompt: 'Pick one and the table is set. You can change your mind later.',
-      several: 'Several games in a row'
+      label: 'What we’re playing',
+      prompt:
+        'Tick one and the table is set, or several to play them in a row. You can change your mind later.'
     },
     hostDecides: 'You decide',
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
@@ -1131,7 +1130,7 @@ export const EN_DICTIONARY = defineDictionary({
     count: 'How many teams',
     draw: 'Draw the teams',
     drawNeeds:
-      'At least {count:number} players to make {count:number} teams. Fewer teams are set in the settings.',
+      'At least {count:number} players to make {count:number} teams — or pick fewer teams.',
     empty: 'Nobody yet',
     final: {
       podium: 'Individual podium',

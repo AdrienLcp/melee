@@ -41,11 +41,11 @@ export const hostConsole = (page: Page) => ({
   openSettings: page.getByRole('button', { name: 'Settings' }),
   /**
    * One picker exists at a time: the lobby keeps it on the stage, every later
-   * phase keeps it with the settings. The label rather than the radio it names,
-   * same reason as `buzzerMode`.
+   * phase keeps it with the settings. The label rather than the checkbox it
+   * names, same reason as `buzzerMode`.
    */
   pickBlindTest: page
-    .getByRole('radiogroup', { name: 'Which game' })
+    .getByRole('group', { name: 'What we’re playing' })
     .getByText('Blind test', { exact: true }),
   refusal: page.getByRole('heading', {
     name: 'No table under that code.'

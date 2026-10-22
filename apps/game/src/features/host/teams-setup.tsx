@@ -29,7 +29,8 @@ const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'teamsOnly', 'aloud'] as const
 
 type TeamsKind = (typeof TEAMS_KINDS)[number]
 
-const TEAM_COUNTS = Array.from(
+/** Every count a room may split into, in order. */
+export const TEAM_COUNTS = Array.from(
   { length: MAX_TEAMS - MIN_TEAMS + 1 },
   (_, offset) => MIN_TEAMS + offset
 )

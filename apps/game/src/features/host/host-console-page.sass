@@ -215,8 +215,17 @@
         min-height: 2rem
         padding: 0 var(--space-2xs)
 
-      .draw-teams
-        justify-self: start
+      .team-deal
+        align-items: end
+        display: flex
+        flex-wrap: wrap
+        gap: var(--space-xs) var(--space-s)
+
+        .team-count .segment
+          align-content: center
+          font-size: var(--text-m)
+          min-height: var(--control-height)
+          min-width: 3rem
 
       .draw-needs
         @include typography.caption
@@ -842,9 +851,8 @@
         .game-picker .box
           min-height: 0
 
-      // The head carries the label alone, or the label and the *several
-      // games* switch beside it; either way it is the row the menu stands on.
-      .game-choice .box-shelf > :is(.react-aria-Label, .shelf-head)
+      // The shelf's label is the row the menu stands on.
+      .game-choice .box-shelf > .react-aria-Label
         align-items: center
         display: flex
         min-height: var(--control-height)

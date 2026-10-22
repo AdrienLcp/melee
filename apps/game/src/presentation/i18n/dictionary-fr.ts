@@ -365,10 +365,9 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     game: {
-      label: 'Quel jeu',
-      labelSeveral: 'Les jeux de la soirée',
-      prompt: 'Choisis-en un et la table est prête. Tu pourras changer d’avis.',
-      several: 'Plusieurs jeux à la suite'
+      label: 'À quoi on joue',
+      prompt:
+        'Coches-en un et la table est prête, plusieurs pour les enchaîner. Tu pourras changer d’avis.'
     },
     hostDecides: 'Tu décides',
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
@@ -1034,7 +1033,7 @@ export const FR_DICTIONARY = defineDictionary({
     count: 'Combien d’équipes',
     draw: 'Tirer les équipes',
     drawNeeds:
-      'Il faut au moins {count:number} joueurs pour faire {count:number} équipes. Le nombre d’équipes se règle dans les réglages.',
+      'Il faut au moins {count:number} joueurs pour faire {count:number} équipes — ou choisis moins d’équipes.',
     empty: 'Personne pour l’instant',
     final: {
       podium: 'Podium individuel',

@@ -4,18 +4,14 @@ import {
   Checkbox,
   CheckboxGroup,
   type CheckboxGroupProps,
-  Label,
-  RadioButton,
-  RadioField,
-  RadioGroup,
-  type RadioGroupProps
+  Label
 } from 'react-aria-components'
 
 import { CheckIcon } from './icons'
 
 import './box-shelf.sass'
 
-type BoxShelfOption = {
+type TickShelfOption = {
   /** A word printed on the box's band — which of several ticked comes first. */
   badge?: string
   /** One short line under the name, printed on the box's lid. */
@@ -31,33 +27,15 @@ type BoxShelfOption = {
 }
 
 type ShelfProps = {
-  /** Beside the label, on the shelf's own row — a control that changes how the shelf is chosen from. */
-  aside?: React.ReactNode
   /** Shown above the boxes; a group without one is unreachable by name. */
   label: string
   /** Rendered in order, one box each. */
-  options: readonly BoxShelfOption[]
+  options: readonly TickShelfOption[]
 }
-
-type BoxShelfProps = Omit<RadioGroupProps, 'children' | 'orientation'> &
-  ShelfProps
 
 type TickShelfProps = Omit<CheckboxGroupProps, 'children'> & ShelfProps
 
-const ShelfLabel: React.FC<Pick<ShelfProps, 'aside' | 'label'>> = ({
-  aside,
-  label
-}) =>
-  aside === undefined ? (
-    <Label>{label}</Label>
-  ) : (
-    <div className='shelf-head'>
-      <Label>{label}</Label>
-      {aside}
-    </div>
-  )
-
-const BoxFace: React.FC<{ option: BoxShelfOption }> = ({ option }) => (
+const BoxFace: React.FC<{ option: TickShelfOption }> = ({ option }) => (
   <>
     <span className='band'>
       {option.badge !== undefined && (
@@ -78,46 +56,10 @@ const BoxFace: React.FC<{ option: BoxShelfOption }> = ({ option }) => (
 )
 
 /**
- * A radio group drawn as boxes on a shelf: the chosen one is pulled forward
- * out of the row. The same semantics as `SegmentedControl`, for a choice whose
- * options each need a line of their own.
- */
-export const BoxShelf: React.FC<BoxShelfProps> = ({
-  aside,
-  className,
-  label,
-  options,
-  ...props
-}) => (
-  <RadioGroup
-    {...props}
-    className={composeClassName(className, 'box-shelf')}
-    orientation='horizontal'
-  >
-    <ShelfLabel aside={aside} label={label} />
-    <div className='boxes'>
-      {options.map((option) => (
-        <RadioField
-          className='box-field'
-          isDisabled={option.isDisabled}
-          key={option.value}
-          value={option.value}
-        >
-          <RadioButton className='box' style={{ '--spine': option.spine }}>
-            <BoxFace option={option} />
-          </RadioButton>
-        </RadioField>
-      ))}
-    </div>
-  </RadioGroup>
-)
-
-/**
- * The same shelf for a choice of several: every box ticked is pulled forward,
- * and the tick its lid already carries is the checkbox's own.
+ * A choice of several drawn as boxes on a shelf: every box ticked is pulled
+ * forward out of the row, and the tick its lid carries is the checkbox's own.
  */
 export const TickShelf: React.FC<TickShelfProps> = ({
-  aside,
   className,
   label,
   options,
@@ -127,7 +69,7 @@ export const TickShelf: React.FC<TickShelfProps> = ({
     {...props}
     className={composeClassName(className, 'box-shelf')}
   >
-    <ShelfLabel aside={aside} label={label} />
+    <Label>{label}</Label>
     <div className='boxes'>
       {options.map((option) => (
         <Checkbox

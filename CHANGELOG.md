@@ -126,6 +126,15 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The lobby picks games by ticking them, and splits the teams
+  beside the draw.** The *Several games* switch is gone: the shelf is always
+  ticks — one game is a room playing it, several are the evening — and
+  switching game is ticking the new one and taking the old one out. A table
+  drawing its teams chooses how many next to *Draw the teams*; until the host
+  picks or deals, the count follows the headcount (two teams up to seven
+  players, three up to eleven, four beyond), and a new count after a deal
+  deals again.
+
 - `[Game]` **The front door reads in one pass.** Side by side, the lid with
   its two doors stays in view while the shelf scrolls; the shelf is two
   shelves, *An evening, ready to play* and *Or one game*, every box squared

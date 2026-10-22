@@ -10,17 +10,10 @@
     gap: var(--space-s)
     min-width: 0
 
-    > .react-aria-Label,
-    > .shelf-head > .react-aria-Label
+    > .react-aria-Label
       @include typography.label
 
       color: var(--ink-muted)
-
-    > .shelf-head
-      align-items: center
-      display: flex
-      flex-wrap: wrap
-      gap: var(--space-2xs) var(--space-l)
 
     // Ten lids: two even rows of five where they fit, as many columns as the
     // names allow below that, and a column on a phone.
@@ -50,9 +43,6 @@
 
         .band
           opacity: 0.35
-
-    .box-field
-      display: contents
 
     .box
       @include piece.piece(var(--radius-m))

@@ -654,9 +654,9 @@ ink keyline.
   `--rule`, `--edge`, `--ground` at the paper so any board component prints
   correctly on it. The front doors, the nickname form and the slate's line in
   hand are lids; a game's own door is its lid banded in `--spine-*`.
-- **`BoxShelf`** (console lobby game picker): ten lids in two rows of five, or
-  a column when the names would not fit whole; the chosen ones pulled forward
-  with a tick, and once anything is chosen the rest sit back on `--socket`
+- **`TickShelf`** (console lobby game picker): ten lids in two rows of five,
+  or a column when the names would not fit whole; the ticked ones pulled
+  forward with a tick — one is a game, several an evening — and once anything is chosen the rest sit back on `--socket`
   with their band faded.
 - **`GameSpines`** (`features/home`): the evenings, then the games, seen by
   their spines, each in its spine colour with its name in the display face,

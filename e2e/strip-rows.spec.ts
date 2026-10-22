@@ -248,6 +248,8 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
   await expect(games.first()).toBeVisible()
 
   const gameCount = await games.count()
+  // The second locale starts on the game the first one left ticked.
+  let lastTicked: number | null = null
 
   for (const locale of ['en', 'fr']) {
     await page.evaluate((chosen) => {
@@ -265,11 +267,20 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         await expect(page.locator(SETUP_LEAFLET)).toHaveCount(0)
       }
 
+      // Ticking a game adds it to the evening; taking the previous one out is
+      // what moves the room onto it, since the last tick cannot be taken out.
       await games.nth(index).click()
-      // The panel for this game renders in the same commit that marks the
-      // stamp, so waiting on the stamp is what stops the reads below from
-      // finding the previous game's strips — or none at all.
-      await expect(games.nth(index)).toHaveAttribute('data-selected', 'true')
+      await expect(games.nth(index)).toHaveAttribute('data-selected')
+
+      if (lastTicked !== null) {
+        await games.nth(lastTicked).click()
+        // The panel for this game renders in the same commit that drops the
+        // previous stamp, so waiting on it is what stops the reads below from
+        // finding the previous game's strips.
+        await expect(games.nth(lastTicked)).not.toHaveAttribute('data-selected')
+      }
+
+      lastTicked = index
 
       await openEveryGroup(page)
 
