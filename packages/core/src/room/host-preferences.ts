@@ -63,8 +63,9 @@ export const rememberedSetupFor = ({
  * reads off the host's own interface.
  *
  * An evening keeps what its preset decided — the teams, the track, the length
- * and the hold — and takes from the host only how each game is played, every
- * entry of it.
+ * and the hold — and takes from the host only each entry's game settings. Not
+ * the answer mode: an evening has nobody set aside to judge, so each game is
+ * answered the way it opens — see `movedToEntry`.
  */
 export const restoredSettings = ({
   preferences,
@@ -89,6 +90,7 @@ export const restoredSettings = ({
         (entry) =>
           rememberedSetupFor({ game: entry.kind, preferences })?.game ?? entry
       ),
+      mode: settings.mode,
       roundCount: settings.roundCount,
       teams: settings.teams
     })

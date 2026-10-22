@@ -13,6 +13,9 @@
     > header:not(.round-chrome)
       align-items: baseline
       display: flex
+      // Its column's width and no more: a badge's names, held whole, would
+      // otherwise widen it past the menu's inset and under the menu.
+      min-width: 0
       flex-wrap: wrap
       gap: var(--space-xs) var(--space-m)
       justify-content: space-between
@@ -36,7 +39,8 @@
         margin-inline-start: auto
 
       // Two names are what it says: it takes a line of its own before it
-      // shrinks to its two pawns.
+      // shrinks to its two pawns, and cuts the names short rather than pushing
+      // the header under the menu.
       .duel-badge
         flex-shrink: 0
         max-width: 100%

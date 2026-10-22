@@ -203,6 +203,21 @@ describe('an evening of several games', () => {
     expect(restored.lineUp[0]).toEqual(restored.game)
   })
 
+  it('[host-preferences] plays the evening’s quiz on four candidates for a host who last judged one aloud', () => {
+    const buzzerQuizHost = rememberSettings({
+      preferences: null,
+      settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
+    })
+
+    const restored = restoredSettings({
+      preferences: buzzerQuizHost,
+      settings: evening
+    })
+
+    expect(restored.game?.kind).toBe('quiz')
+    expect(restored.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+  })
+
   it('[host-preferences] files neither the line-up, the length nor the teams of an evening', () => {
     const remembered = rememberSettings({
       preferences: quickQuizHost,

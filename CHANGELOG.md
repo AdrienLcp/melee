@@ -126,6 +126,15 @@ one part.
 
 ### Improvements
 
+- `[Game]` **An evening plays its quiz on four choices**, and every game of an
+  evening the way it opens, whatever the console remembered from a game run
+  alone with a judge: the buzzer mode needs somebody who sees the answer, and
+  an evening has nobody set aside for it. The host can still switch a round's
+  mode in *Animer*; the next game of the evening goes back to its own.
+
+- `[Game]` **The room screen's header stays clear of the menu on a phone**: a
+  duel's two names are cut short rather than widening the header under *Menu*.
+
 - `[Game]` **The lobby picks games by ticking them, and splits the teams
   beside the draw.** The *Several games* switch is gone: the shelf is always
   ticks — one game is a room playing it, several are the evening — and

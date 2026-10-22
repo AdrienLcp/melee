@@ -265,7 +265,8 @@ export const movedToEntry = ({
     return settings
   }
 
-  const setup = remembered ?? openedSetup({ game: entry.kind, locale })
+  const opened = openedSetup({ game: entry.kind, locale })
+  const setup = remembered ?? opened
   const isEvening = settings.lineUp.length > 1
 
   return {
@@ -274,6 +275,10 @@ export const movedToEntry = ({
     autoAdvanceMs: isEvening ? settings.autoAdvanceMs : setup.autoAdvanceMs,
     game: entry,
     lineUpAt: at,
+    // An evening has nobody set aside to judge, so each game is answered the
+    // way it opens — four candidates for the quiz — whatever this host left it
+    // on when they ran it alone with a judge.
+    mode: isEvening ? opened.mode : setup.mode,
     roundCount: isEvening ? settings.roundCount : setup.roundCount
   }
 }

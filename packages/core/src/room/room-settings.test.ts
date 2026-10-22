@@ -11,7 +11,12 @@ import {
 import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 
 import { offersAnswerMode } from './game-modes'
-import { movedToGame, reshapesRound, roomSettingsFor } from './room-settings'
+import {
+  movedToGame,
+  openedSetup,
+  reshapesRound,
+  roomSettingsFor
+} from './room-settings'
 
 const entries = (...games: GameKind[]) =>
   games.map((game) => DEFAULT_GAME_SETTINGS[game])
@@ -142,6 +147,21 @@ describe('movedToGame', () => {
     expect(kinds(moved)).toEqual(['buzzer', 'quiz'])
     expect(moved.lineUpAt).toBe(1)
     expect(moved.roundCount).toBe(12)
+  })
+
+  it('[room-settings] lands an evening on the game’s own mode, not the one this host remembered', () => {
+    const moved = movedToGame({
+      game: 'quiz',
+      locale: 'fr',
+      remembered: {
+        ...openedSetup({ game: 'quiz', locale: 'fr' }),
+        mode: DEFAULT_MODE_SETTINGS.buzzer
+      },
+      settings: { ...onTheBuzzer, lineUp: entries('buzzer', 'quiz') }
+    })
+
+    expect(moved.game?.kind).toBe('quiz')
+    expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
   })
 
   it('[room-settings] keeps the evening’s hold when the draw lands on a game with its own', () => {
