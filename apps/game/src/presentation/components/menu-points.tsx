@@ -11,12 +11,12 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 import { Button } from './button'
 import { Disclosure } from './disclosure'
 import { MinusIcon, PlusIcon } from './icons'
-import { Pawn } from './pawn'
+import { Pawn, pawnNumberOf } from './pawn'
 
 import './menu-points.sass'
 
 type PointsRow = {
-  /** The pawn beside a team's name; a seat has none of its own. */
+  /** The pawn beside the name, `null` for a seat with no pawn on a track. */
   colour: number | null
   /** Whether a point less would change anything: the server floors at nought. */
   canTake: boolean
@@ -72,15 +72,28 @@ export const MenuPoints: React.FC = () => {
           target: { kind: 'team', teamId: team.id }
         }
       })
-    : scoredPlayers.map((player) => ({
-        canGive: true,
-        canTake: player.score > 0,
-        colour: null,
-        id: player.id,
-        name: player.nickname,
-        standing: translate('player.score', { points: player.score }),
-        target: { kind: 'seat', playerId: player.id }
-      }))
+    : scoredPlayers.map((player, seat) => {
+        const pawnCase =
+          trackLength === null || player.board === null
+            ? null
+            : player.board.case
+
+        return {
+          canGive: pawnCase === null || pawnCase < (trackLength ?? 0),
+          canTake: pawnCase === null ? player.score > 0 : pawnCase > 0,
+          colour: pawnCase === null ? null : pawnNumberOf(seat),
+          id: player.id,
+          name: player.nickname,
+          standing:
+            pawnCase === null
+              ? translate('player.score', { points: player.score })
+              : translate('board.case', {
+                  case: pawnCase,
+                  length: trackLength ?? 0
+                }),
+          target: { kind: 'seat', playerId: player.id }
+        }
+      })
 
   return (
     <Disclosure

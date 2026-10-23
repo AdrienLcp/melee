@@ -402,7 +402,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   // drawer's, and what the room reads is who sits with whom.
   if (
     (controls === null || controls.isRoomScreen) &&
-    isSetAsTable(view.settings.teams)
+    isSetAsTable(view.settings)
   ) {
     return (
       <TableLobby

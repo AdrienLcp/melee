@@ -2,8 +2,11 @@ import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type { HostRoomView, PublicPlayer } from '@melee/protocol/room'
-import type { TeamsSettings } from '@melee/protocol/team'
+import type {
+  HostRoomView,
+  PublicPlayer,
+  RoomSettings
+} from '@melee/protocol/room'
 
 import { GameIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
@@ -20,12 +23,18 @@ import { useTeamCountFollowingHeadcount } from './use-team-deal'
 import './table-lobby.sass'
 
 /**
- * Whether the room's own screen sets its lobby as a table of teams: seats that
- * are dealt into teams or pick one. Its setup — the games included — is then
- * the drawer's, because the stage is the room's to read.
+ * Whether the room's own screen sets its lobby as a table: seats that are
+ * dealt into teams or pick one, or seats racing a pawn each round the track.
+ * Its setup — the games included — is then the drawer's, because the stage is
+ * the room's to read.
  */
-export const isSetAsTable = (teams: TeamsSettings): boolean =>
-  teams.kind === 'drawn' || teams.kind === 'chosen'
+export const isSetAsTable = ({
+  board,
+  teams
+}: Pick<RoomSettings, 'board' | 'teams'>): boolean =>
+  teams.kind === 'drawn' ||
+  teams.kind === 'chosen' ||
+  (teams.kind === 'off' && board.kind === 'track')
 
 /** The empty seats an empty table shows, enough to read as a table without crowding it. */
 const SEATS_AT_AN_EMPTY_TABLE = 4
@@ -58,6 +67,7 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
   const teamName = useTeamName()
   const { players, settings, teams } = view
   const isDrawn = settings.teams.kind === 'drawn'
+  const isBySeat = settings.teams.kind === 'off'
   // Before the deal every tray is empty, and the arrivals above say why.
   const isWaitingForDraw =
     isDrawn && !teams.some((team) => team.seatIds.length > 0)
@@ -94,9 +104,11 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
             <div className='arrivals-head'>
               <h3>
                 {translate(
-                  isDrawn
-                    ? 'host.table.arrivals.drawn'
-                    : 'host.table.arrivals.chosen',
+                  isBySeat
+                    ? 'host.table.arrivals.seats'
+                    : isDrawn
+                      ? 'host.table.arrivals.drawn'
+                      : 'host.table.arrivals.chosen',
                   { count: unassigned.length }
                 )}
               </h3>
@@ -106,38 +118,40 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
         )
       )}
 
-      <ol aria-label={translate('team.title')} className='table-teams'>
-        {teams.map((team) => {
-          const members = seatsOf(team)
+      {!isBySeat && (
+        <ol aria-label={translate('team.title')} className='table-teams'>
+          {teams.map((team) => {
+            const members = seatsOf(team)
 
-          return (
-            <li
-              className={classNames(
-                'team-block',
-                youId !== null && team.seatIds.includes(youId) && 'yours'
-              )}
-              data-waiting={isWaitingForDraw || undefined}
-              key={team.id}
-              style={{ '--team': `var(--pawn-${team.colour})` }}
-            >
-              <h3 className='team-head'>
-                <Pawn colour={team.colour} />
-                <span className='team-name'>{teamName(team)}</span>
-              </h3>
-              {members.length > 0 ? (
-                <SeatChips players={members} roster={players} youId={youId} />
-              ) : (
-                !isWaitingForDraw && (
-                  <EmptySeats
-                    count={1}
-                    label={translate('host.table.nobody.seat')}
-                  />
-                )
-              )}
-            </li>
-          )
-        })}
-      </ol>
+            return (
+              <li
+                className={classNames(
+                  'team-block',
+                  youId !== null && team.seatIds.includes(youId) && 'yours'
+                )}
+                data-waiting={isWaitingForDraw || undefined}
+                key={team.id}
+                style={{ '--team': `var(--pawn-${team.colour})` }}
+              >
+                <h3 className='team-head'>
+                  <Pawn colour={team.colour} />
+                  <span className='team-name'>{teamName(team)}</span>
+                </h3>
+                {members.length > 0 ? (
+                  <SeatChips players={members} roster={players} youId={youId} />
+                ) : (
+                  !isWaitingForDraw && (
+                    <EmptySeats
+                      count={1}
+                      label={translate('host.table.nobody.seat')}
+                    />
+                  )
+                )}
+              </li>
+            )
+          })}
+        </ol>
+      )}
     </div>
   )
 }
@@ -151,27 +165,35 @@ const TableCard: React.FC<{ roomCode: RoomCode; view: HostRoomView }> = ({
   view
 }) => {
   const translate = useTranslate()
-  const { board, game, lineUp, roundCount } = view.settings
+  const { board, game, lineUp, roundCount, teams } = view.settings
+  const isBySeat = teams.kind === 'off'
   const names = useLineUpEntryNames(lineUp)
   const isEvening = lineUp.length > 1
 
   const title = isEvening
-    ? translate('host.table.evening')
+    ? translate(isBySeat ? 'host.table.eveningSeats' : 'host.table.evening')
     : game === null
       ? translate('player.choosingGame')
       : translate(gameNameKey(game.kind))
 
   const rules =
-    board.kind === 'track'
+    board.kind === 'track' && isBySeat
       ? roundCount === null
-        ? translate('host.table.rules.trackOpen', { length: board.length })
-        : translate('host.table.rules.track', {
+        ? translate('host.table.rules.seatTrackOpen', { length: board.length })
+        : translate('host.table.rules.seatTrack', {
             length: board.length,
             rounds: roundCount
           })
-      : roundCount === null
-        ? translate('host.table.rules.pointsOpen')
-        : translate('host.table.rules.points', { rounds: roundCount })
+      : board.kind === 'track'
+        ? roundCount === null
+          ? translate('host.table.rules.trackOpen', { length: board.length })
+          : translate('host.table.rules.track', {
+              length: board.length,
+              rounds: roundCount
+            })
+        : roundCount === null
+          ? translate('host.table.rules.pointsOpen')
+          : translate('host.table.rules.points', { rounds: roundCount })
 
   return (
     <article className='table-card'>

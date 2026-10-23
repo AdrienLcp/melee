@@ -133,11 +133,13 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   board: {
+    at: 'Case {case:number}',
     back: 'Reculer {team} d’une case',
     case: 'Case {case:number} sur {length:number}',
     finish: 'Arrivée',
     fix: 'Corriger les cases',
     forward: 'Avancer {team} d’une case',
+    more: '+{count:number}',
     setting: {
       catchUp: {
         hint: 'Seul à la dernière place, on avance d’une case de plus sur une manche où l’on marque.',
@@ -452,9 +454,11 @@ export const FR_DICTIONARY = defineDictionary({
     table: {
       arrivals: {
         chosen: '{count:number} à table, chacun choisit son équipe',
-        drawn: '{count:number} à table, en attente du tirage'
+        drawn: '{count:number} à table, en attente du tirage',
+        seats: '{count:number} à table, chacun son pion sur Départ'
       },
       evening: 'Soirée en équipes',
+      eveningSeats: 'Soirée jeux',
       nobody: {
         detail: 'Chaque nom apparaît ici dès qu’on rejoint.',
         seat: 'Une place'
@@ -465,6 +469,12 @@ export const FR_DICTIONARY = defineDictionary({
           { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
         ),
         pointsOpen: 'L’équipe qui marque le plus gagne.',
+        seatTrack: defineTranslation(
+          '{rounds:plural}, {length:number} cases\u00a0: le premier à l’arrivée gagne.',
+          { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
+        ),
+        seatTrackOpen:
+          '{length:number} cases\u00a0: le premier à l’arrivée gagne.',
         track: defineTranslation(
           '{rounds:plural}, {length:number} cases\u00a0: la première équipe à l’arrivée gagne.',
           { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }

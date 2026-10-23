@@ -122,7 +122,7 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
             under it would leave the screens rendering the other; the server
             refuses that, and the control says so first.
           */}
-          {(!isInLobby || (isRoomScreen && isSetAsTable(settings.teams))) && (
+          {(!isInLobby || (isRoomScreen && isSetAsTable(settings))) && (
             <GamePicker
               isDisabled={!isLive || roundInPlay}
               onChange={onSettingsChange}

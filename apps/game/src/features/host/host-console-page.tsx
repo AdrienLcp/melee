@@ -12,6 +12,7 @@ import type {
 } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { drawTargetSeconds } from '@melee/core/innerclock/target'
 import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
 import {
@@ -628,14 +629,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           keeps its entrance's transform, and a track fixed inside it would
           run down a lobby long enough to scroll.
         */}
-        {view !== null &&
-          view.settings.board.kind === 'track' &&
-          view.teams.length > 0 && (
-            <BoardTrack
-              length={view.settings.board.length}
-              teams={view.teams}
-            />
-          )}
+        {view !== null && view.settings.board.kind === 'track' && (
+          <BoardTrack
+            length={view.settings.board.length}
+            pawns={trackPawnsOf(view)}
+          />
+        )}
         {view !== null && (
           <RoomScreenPresses
             actions={hostActionsProps(view)}

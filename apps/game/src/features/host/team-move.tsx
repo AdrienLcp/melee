@@ -1,11 +1,10 @@
 import type React from 'react'
 
-import type { Team } from '@melee/protocol/team'
+import type { BoardPosition } from '@melee/protocol/board'
 
 import { Button } from '@/presentation/components/button'
 import { MinusIcon, PlusIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './team-leaflet.sass'
 import './team-move.sass'
@@ -14,31 +13,34 @@ type TeamMoveProps = {
   /** The track's last case, which the readout counts towards. */
   length: number
   /**
-   * Walks the pawn a case either way, through the team's score. Absent on a
-   * screen that moves nothing, which reads the move and offers no press.
+   * Walks the pawn a case either way, through its team's or its seat's score.
+   * Absent on a screen that moves nothing, which reads the move and offers no
+   * press.
    */
   onAdjust?: (cases: 1 | -1) => void
-  team: Team
+  /** Whom the pawn stands for, in the presses' accessible names. */
+  name: string
+  /** Where the pawn stands; `null` draws nothing, as on a board that is off. */
+  position: BoardPosition | null
 }
 
 /**
- * What the round walked a team's pawn and where it stands now, under the
- * team's head: the line the table checks before *Next round*, and the one
+ * What the round walked a pawn and where it stands now, under its name: the line the table checks before *Next round*, and the one
  * place the host puts a miscounted case right.
  */
 export const TeamMove: React.FC<TeamMoveProps> = ({
   length,
+  name,
   onAdjust,
-  team
+  position
 }) => {
   const translate = useTranslate()
-  const teamName = useTeamName()
 
-  if (team.board === null) {
+  if (position === null) {
     return null
   }
 
-  const { case: standsOn, move } = team.board
+  const { case: standsOn, move } = position
 
   return (
     <div className='team-move'>
@@ -54,7 +56,7 @@ export const TeamMove: React.FC<TeamMoveProps> = ({
       </p>
       {onAdjust !== undefined && (
         <Button
-          aria-label={translate('board.back', { team: teamName(team) })}
+          aria-label={translate('board.back', { team: name })}
           className='team-press'
           isDisabled={standsOn === 0}
           onPress={() => {
@@ -68,7 +70,7 @@ export const TeamMove: React.FC<TeamMoveProps> = ({
       )}
       {onAdjust !== undefined && (
         <Button
-          aria-label={translate('board.forward', { team: teamName(team) })}
+          aria-label={translate('board.forward', { team: name })}
           className='team-press'
           isDisabled={standsOn >= length}
           onPress={() => {

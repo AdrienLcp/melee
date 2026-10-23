@@ -1,0 +1,101 @@
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .track-podium
+    align-content: start
+    display: grid
+    gap: var(--space-m)
+    min-height: 0
+    overflow-y: auto
+
+    .steps
+      align-items: end
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: 1fr 1.15fr 1fr
+      list-style: none
+
+    .step
+      @include piece.card(var(--radius-m))
+
+      display: grid
+      gap: var(--space-2xs)
+      justify-items: center
+      min-width: 0
+      padding: var(--space-s) var(--space-2xs) var(--space-m)
+      text-align: center
+
+      .pawn
+        font-size: clamp(2rem, calc(var(--stage-unit) * 7), 4.5rem)
+
+      // Second on the left, first in the middle and raised, third on the right.
+      &[data-place='1']
+        grid-column: 2
+        grid-row: 1
+        padding-block: var(--space-m) var(--space-l)
+
+        .pawn
+          font-size: clamp(2.5rem, calc(var(--stage-unit) * 9.5), 6rem)
+
+        .name
+          color: var(--primary-edge)
+
+      &[data-place='2']
+        grid-column: 1
+        grid-row: 1
+
+      &[data-place='3']
+        grid-column: 3
+        grid-row: 1
+
+      &.you
+        outline: var(--stroke-bold) solid var(--card-ink)
+
+    .step .name
+      @include typography.title
+
+      max-width: 100%
+      overflow-x: clip
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .step .at
+      @include typography.caption-strong
+
+      color: var(--card-muted)
+
+    .rest
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-xs)
+      justify-content: center
+      list-style: none
+
+    .chip
+      @include typography.caption-strong
+
+      align-items: center
+      background: var(--track-a)
+      border-radius: var(--radius-s)
+      box-shadow: 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
+      color: var(--track-ink)
+      display: flex
+      gap: var(--space-2xs)
+      max-width: 100%
+      padding: var(--space-2xs) var(--space-xs)
+
+      .pawn
+        font-size: var(--text-em-xl)
+
+      .name
+        min-width: 0
+        overflow-x: clip
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      .at
+        @include typography.numeric
+
+      &.you
+        outline: var(--stroke-bold) solid var(--ink)

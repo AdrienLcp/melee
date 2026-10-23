@@ -115,11 +115,28 @@ model already treated as one more tick.
    table* with a count, beside *I'm playing too* — off and explained when every
    ticked game is judged — and the name. The presets, the pitch and the two
    other-screen cards are gone; *Become the room's screen* and *Show a table's
-   QR code* moved to a *This device* section of the menu, off a room. **Left:
-   *La table* in *Animer*** — teams, board and judge as three independent
-   switches (`boardFor` in `teams-setup.tsx` still ties board to teams), and
-   the lobby read off board-or-teams. Mocks: `.impeccable/directions/one-table/`
-   `animer.html`, `c-tete-de-course.html`.
+   QR code* moved to a *This device* section of the menu, off a room.
+
+   ***La table* in *Animer* done** (`e53950e`): teams, board and judge are
+   three independent switches.
+
+   **A pawn per seat done.** `@melee/core/board/track-pawns` lists the pawns
+   from a view (`trackPawnsOf`, `rankTrackPawns`, `scoreTargetOf`), and every
+   screen draws from it: the wall's and the console's track (four a case, then
+   three and `+n`), the player's strip, *Fix the squares*, the menu's points
+   (a seat row reads its case), and the reveal's standings, which become a
+   podium of three and chips (`track-podium.tsx`) when the seats walk. The
+   lobby is a table under board-or-teams (`isSetAsTable` takes both), its seats
+   *each with a pawn on Start*. Seen muted at 1440 light, 1920 dark and 390
+   with 15 and 24 seats.
+
+   The choice strips' selected stamp moved from an ink block to a
+   `--primary` piece lifted out of a tray (`_strip.sass`, `DESIGN.md`), at
+   Adrien's ask; the stamps pay for the tray out of their own sides, so every
+   caller's `stacks-below` threshold still holds (`strip-rows.spec.ts`).
+
+   **Left:** the presses inside the U at 390 —
+   `room-screen-presses.sass` still lifts the track's foot above them.
 
 ## Done when
 

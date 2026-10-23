@@ -4,6 +4,8 @@ import { useEffect, useEffectEvent } from 'react'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
 
+import { trackPawnsOf } from '@melee/core/board/track-pawns'
+
 import { JoinReminder } from '@/features/host/join-reminder'
 import { RoomStage } from '@/features/host/room-stage'
 import { useRoundAudio } from '@/features/host/round-audio'
@@ -194,11 +196,12 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           view={view}
         />
       </Main>
-      {view !== null &&
-        view.settings.board.kind === 'track' &&
-        view.teams.length > 0 && (
-          <BoardTrack length={view.settings.board.length} teams={view.teams} />
-        )}
+      {view !== null && view.settings.board.kind === 'track' && (
+        <BoardTrack
+          length={view.settings.board.length}
+          pawns={trackPawnsOf(view)}
+        />
+      )}
     </PawnColoursProvider>
   )
 }

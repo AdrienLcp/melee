@@ -154,11 +154,13 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   board: {
+    at: 'Square {case:number}',
     back: 'Move {team} back a square',
     case: 'Square {case:number} of {length:number}',
     finish: 'Finish',
     fix: 'Fix the squares',
     forward: 'Move {team} forward a square',
+    more: '+{count:number}',
     setting: {
       catchUp: {
         hint: 'Whoever is alone in last place moves one square more on a round they score.',
@@ -493,9 +495,11 @@ export const EN_DICTIONARY = defineDictionary({
     table: {
       arrivals: {
         chosen: '{count:number} at the table, picking their teams',
-        drawn: '{count:number} at the table, waiting for the draw'
+        drawn: '{count:number} at the table, waiting for the draw',
+        seats: '{count:number} at the table, each with a pawn on Start'
       },
       evening: 'Team game night',
+      eveningSeats: 'Game night',
       nobody: {
         detail: 'Every name shows up here as people join.',
         seat: 'A seat'
@@ -508,6 +512,11 @@ export const EN_DICTIONARY = defineDictionary({
           }
         ),
         pointsOpen: 'The team that scores most wins.',
+        seatTrack: defineTranslation(
+          '{rounds:plural}, {length:number} squares: the first one home wins.',
+          { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }
+        ),
+        seatTrackOpen: '{length:number} squares: the first one home wins.',
         track: defineTranslation(
           '{rounds:plural}, {length:number} squares: the first team home wins.',
           { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }

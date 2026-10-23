@@ -20,7 +20,8 @@ export type PawnProps =
       colour: number
     }
 
-const pawnNumberOf = (seat: number): number => (seat % PAWN_COLOURS) + 1
+/** A seat's own pawn colour, 1-based, in a room with no teams. */
+export const pawnNumberOf = (seat: number): number => (seat % PAWN_COLOURS) + 1
 
 /** Which of the eight pawn colours a seat plays in, its team's when there are teams. */
 export const usePawnNumber = (props: PawnProps): number => {

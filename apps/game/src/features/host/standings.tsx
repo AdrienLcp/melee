@@ -6,13 +6,16 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
+import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isEveryTeamItsOwnSeat } from '@melee/core/team/team-board'
 
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import { TeamMove } from './team-move'
+import { TrackPodium } from './track-podium'
 
 type StandingsProps = {
   /**
@@ -62,6 +65,11 @@ export const Standings: React.FC<StandingsProps> = ({
 }) => {
   const translate = useTranslate()
   const titleId = useId()
+  const teamName = useTeamName()
+  const seatPawns =
+    teams.length === 0 && board?.kind === 'track'
+      ? trackPawnsOf({ players, teams })
+      : []
 
   return (
     <section aria-labelledby={titleId} className='standings'>
@@ -78,6 +86,7 @@ export const Standings: React.FC<StandingsProps> = ({
               ? (team) => (
                   <TeamMove
                     length={board.length}
+                    name={teamName(team)}
                     onAdjust={
                       onAdjust === undefined
                         ? undefined
@@ -85,7 +94,7 @@ export const Standings: React.FC<StandingsProps> = ({
                             onAdjust(team, cases)
                           }
                     }
-                    team={team}
+                    position={team.board}
                   />
                 )
               : undefined
@@ -93,6 +102,8 @@ export const Standings: React.FC<StandingsProps> = ({
           teams={teams}
           youId={youId}
         />
+      ) : seatPawns.length > 0 ? (
+        <TrackPodium pawns={seatPawns} youId={youId} />
       ) : (
         <Scoreboard hasPawns players={players} youId={youId} />
       )}

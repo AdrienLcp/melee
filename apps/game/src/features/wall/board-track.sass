@@ -98,6 +98,18 @@
       @media (prefers-reduced-motion: no-preference)
         animation: pawn-hops var(--transition-base, 0s) var(--ease-out) both
 
+    // The crowd past three on one case, a counter beside the pawns drawn.
+    .more
+      @include typography.numeric
+      @include typography.solid
+
+      align-self: center
+      background: var(--board-ink)
+      border-radius: var(--radius-full)
+      color: var(--track-a)
+      font-size: clamp(var(--text-3xs), 18cqmin, var(--text-s))
+      padding: 0.2em 0.4em
+
   @keyframes pawn-hops
     from
       transform: translateY(-55%) scale(1.08)

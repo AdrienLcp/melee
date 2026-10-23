@@ -8,58 +8,64 @@ import {
   useState
 } from 'react'
 
-import type { Team, TeamId } from '@melee/protocol/team'
+import type { PawnId } from '@melee/core/board/board-strategy'
+import type { TrackPawn } from '@melee/core/board/track-pawns'
 
-import { Pawn } from '@/presentation/components/pawn'
+import {
+  TrackPawnPiece,
+  useTrackPawnName
+} from '@/presentation/components/track-pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './board-track.sass'
 
 const CASES_PER_MARK = 5
 const MIN_ROWS = 2
 const MIN_TOP_COLUMNS = 1
+/** Past this many on one case, three are drawn and a count stands for the rest. */
+const MAX_PAWNS_DRAWN = 4
+const PAWNS_BESIDE_COUNT = 3
 const STEP_MS = 240
 /** Long enough for the answer to land before the pawns set off. */
 const WALK_DELAY_MS = 600
 
 type TrackShape = { columns: number; rows: number }
 
-type WalkTarget = { id: TeamId; move: number; target: number }
+type WalkTarget = { id: PawnId; move: number; target: number }
 
 type BoardTrackProps = {
   /** The track's length in cases: the start is nought, the finish this. */
   length: number
-  /** The teams racing, each standing on its `board.case`. */
-  teams: readonly Team[]
+  /** The pawns racing — the teams', or every seat's — each on its `board.case`. */
+  pawns: readonly TrackPawn[]
 }
 
 /**
- * The teams' race, printed round the wall like a board game's track: up the
+ * The table's race, printed round the wall like a board game's track: up the
  * left side from the start, across the top, down the right side to the
  * finish, the bottom left open for the round. Its rows follow the screen's
  * aspect, so a wall lying down and one standing up draw the same U.
  *
- * At a reveal each pawn walks the cases its team just won rather than
- * teleporting, which is the moment the room watches.
+ * At a reveal each pawn walks the cases it just won rather than teleporting,
+ * which is the moment the room watches.
  */
-export const BoardTrack: React.FC<BoardTrackProps> = ({ length, teams }) => {
+export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
   const translate = useTranslate()
-  const teamName = useTeamName()
+  const pawnName = useTrackPawnName()
   const trackRef = useRef<HTMLDivElement>(null)
   const shape = useTrackShape({ caseCount: length + 1, trackRef })
-  const shownCases = useWalkedCases(teams)
+  const shownCases = useWalkedCases(pawns)
 
   return (
     <div className='board-track' ref={trackRef}>
       <VisuallyHidden elementType='ol'>
-        {teams.map((team) => (
-          <li key={team.id}>
+        {pawns.map((pawn) => (
+          <li key={pawn.id}>
             {translate('board.standing', {
-              case: team.board?.case ?? 0,
+              case: pawn.board.case,
               length,
-              team: teamName(team)
+              team: pawnName(pawn)
             })}
           </li>
         ))}
@@ -75,9 +81,13 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, teams }) => {
         >
           {casesOf(length).map((caseIndex) => {
             const [column, row] = cellOf({ caseIndex, shape })
-            const standing = teams.filter(
-              (team) => shownCases.get(team.id) === caseIndex
+            const standing = pawns.filter(
+              (pawn) => shownCases.get(pawn.id) === caseIndex
             )
+            const drawn =
+              standing.length > MAX_PAWNS_DRAWN
+                ? standing.slice(0, PAWNS_BESIDE_COUNT)
+                : standing
 
             return (
               <div
@@ -87,7 +97,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, teams }) => {
                 key={caseIndex}
                 style={{
                   '--column': column,
-                  '--pawn-scale': pawnScaleFor(standing.length),
+                  '--pawn-scale': pawnScaleFor(drawn.length),
                   '--row': row
                 }}
               >
@@ -100,16 +110,23 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, teams }) => {
                 </span>
                 {standing.length > 0 && (
                   <span className='pawns'>
-                    {standing.map((team) => (
+                    {drawn.map((pawn) => (
                       <span
                         className='standing'
                         // Keyed on the case too, so each step is a new element
                         // that hops in rather than one that slides.
-                        key={`${team.id}:${caseIndex}`}
+                        key={`${pawn.id}:${caseIndex}`}
                       >
-                        <Pawn colour={team.colour} />
+                        <TrackPawnPiece pawn={pawn} />
                       </span>
                     ))}
+                    {drawn.length < standing.length && (
+                      <span className='more'>
+                        {translate('board.more', {
+                          count: standing.length - drawn.length
+                        })}
+                      </span>
+                    )}
                   </span>
                 )}
               </div>
@@ -181,22 +198,22 @@ const useTrackShape = ({
 }
 
 /**
- * The case each team's pawn is drawn on. A pawn the round has just moved
+ * The case each pawn is drawn on. A pawn the round has just moved
  * starts back where it stood and steps a case at a time to its new one; a
  * correction after that walks from wherever it is drawn. Under reduced motion
- * every pawn is simply where its team is.
+ * every pawn is simply where it stands.
  */
 const useWalkedCases = (
-  teams: readonly Team[]
-): ReadonlyMap<TeamId, number> => {
-  const [shown, setShown] = useState<ReadonlyMap<TeamId, number>>(
-    () => new Map(teams.map((team) => [team.id, team.board?.case ?? 0]))
+  pawns: readonly TrackPawn[]
+): ReadonlyMap<PawnId, number> => {
+  const [shown, setShown] = useState<ReadonlyMap<PawnId, number>>(
+    () => new Map(pawns.map((pawn) => [pawn.id, pawn.board.case]))
   )
-  const seenMoves = useRef<ReadonlyMap<TeamId, number>>(new Map())
-  const targets = teams.map((team) => ({
-    id: team.id,
-    move: team.board?.move ?? 0,
-    target: team.board?.case ?? 0
+  const seenMoves = useRef<ReadonlyMap<PawnId, number>>(new Map())
+  const targets = pawns.map((pawn) => ({
+    id: pawn.id,
+    move: pawn.board.move,
+    target: pawn.board.case
   }))
   const signature = targets
     .map(({ id, move, target }) => `${id}:${target}:${move}`)
@@ -209,7 +226,7 @@ const useWalkedCases = (
     const isReduced = prefersReducedMotion()
     const startOf = (
       entry: WalkTarget,
-      current: ReadonlyMap<TeamId, number>
+      current: ReadonlyMap<PawnId, number>
     ) => {
       if (isReduced) {
         return entry.target
@@ -259,9 +276,9 @@ const stepTowards = ({
   current,
   targets
 }: {
-  current: ReadonlyMap<TeamId, number>
+  current: ReadonlyMap<PawnId, number>
   targets: readonly WalkTarget[]
-}): ReadonlyMap<TeamId, number> => {
+}): ReadonlyMap<PawnId, number> => {
   const hasArrived = targets.every(
     ({ id, target }) => current.get(id) === target
   )
@@ -281,7 +298,7 @@ const stepTowards = ({
 
 /**
  * A pawn's height as a share of the band, measured so a case's whole crowd
- * fits under its number: every team starts on one case.
+ * fits under its number: every pawn starts on one case.
  */
 const pawnScaleFor = (standing: number): number => {
   if (standing <= 1) {
