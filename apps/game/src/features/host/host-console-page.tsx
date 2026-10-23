@@ -16,6 +16,7 @@ import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { drawTargetSeconds } from '@melee/core/innerclock/target'
 import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
 import {
+  askedIn,
   type HostPreferences,
   rememberSettings
 } from '@melee/core/room/host-preferences'
@@ -64,7 +65,7 @@ import {
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { protocolErrorKey } from '@/presentation/i18n/translation'
 import {
   NOBODY,
@@ -125,7 +126,7 @@ export const HostConsolePage: React.FC = () => {
 }
 
 const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   // Read from storage rather than started empty, because this is the only thing
   // that puts the name back on the next `hello` — and a console whose tab was
   // discarded on a screen lock reloads rather than blinks, so a seat kept in
@@ -152,7 +153,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     setDraftedForAt(lineUpAt)
     setDraftSource(null)
   }
-  const [preferences, setPreferences] = useState(storedHostPreferencesOrNone)
+  const [preferences, setPreferences] = useState(() => {
+    const stored = storedHostPreferencesOrNone()
+
+    return stored === null ? null : askedIn({ locale, preferences: stored })
+  })
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
   const [challengeText, setChallengeText] = useState('')
   const [targetSeconds, setTargetSeconds] = useState(drawTargetSeconds)

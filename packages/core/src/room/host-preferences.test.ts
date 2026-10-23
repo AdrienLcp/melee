@@ -5,6 +5,7 @@ import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
 
 import {
+  askedIn,
   type HostPreferences,
   rememberedSetupFor,
   rememberSettings,
@@ -129,6 +130,22 @@ describe('restoredSettings', () => {
     })
 
     expect(restored.game).toEqual(inEnglish.game)
+  })
+})
+
+describe('askedIn', () => {
+  // The quiz was last played from an English interface, and this host opens
+  // the console in French: the questions follow the language read today.
+  it('[host-preferences] asks the remembered quiz in the language the host reads', () => {
+    const inEnglish = rememberSettings({
+      preferences: null,
+      settings: roomSettingsFor({ games: ['quiz'], locale: 'en' })
+    })
+    const asked = askedIn({ locale: 'fr', preferences: inEnglish })
+
+    expect(
+      rememberedSetupFor({ game: 'quiz', preferences: asked })?.game
+    ).toEqual(onTheQuiz.game)
   })
 })
 

@@ -1,6 +1,8 @@
 import type { GameKind } from '@melee/protocol/game'
+import type { Locale } from '@melee/protocol/locale'
 import type { RoomSettings } from '@melee/protocol/room'
 
+import { questionLanguageFor } from '../quiz/question-language'
 import { followedByLineUp, lineUpHolds } from './line-up'
 import type { GameSetup } from './room-settings'
 
@@ -29,6 +31,38 @@ export type HostPreferences = {
     RoomSettings,
     keyof GameSetup | 'lineUp' | 'lineUpAt' | 'runningOrder'
   >
+}
+
+/**
+ * The same preferences, with the quiz asking in the language this host reads
+ * today. A remembered question language is most often the one a door read off
+ * another interface rather than anybody's choice, and a room opened in French
+ * that draws English questions is the wrong game. A host who wants the other
+ * bank picks it in the room, and keeps it until they leave the console.
+ */
+export const askedIn = ({
+  locale,
+  preferences
+}: {
+  locale: Locale
+  preferences: HostPreferences
+}): HostPreferences => {
+  const quiz = preferences.games.quiz
+
+  if (quiz?.game.kind !== 'quiz') {
+    return preferences
+  }
+
+  return {
+    ...preferences,
+    games: {
+      ...preferences.games,
+      quiz: {
+        ...quiz,
+        game: { ...quiz.game, language: questionLanguageFor(locale) }
+      }
+    }
+  }
 }
 
 const isEvening = (settings: RoomSettings): boolean =>
