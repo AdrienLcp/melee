@@ -35,6 +35,13 @@ model already treated as one more tick.
   The per-game pages stay, for a shared link and a search result, and open a
   table with their game ticked. Asked 23/10/2026: simple, quick, readable by
   everyone, nothing on screen that is not needed.
+- **Home is direction B, *Le comptoir*** (chosen 23/10/2026): the wordmark and
+  a small join box on top, the ticks as the page (two columns wide), and the
+  press with *I play too* in a tray pinned to the bottom at every width. The
+  promise, the pitch, the join hint, the shelf's lead line and the note under
+  the press leave home. *Another screen in the room?* leaves the page for
+  `AppMenu`, as two entries under *This device*: become the room's screen, and
+  show a table's QR code.
 - **No preset, no name for the evening.** The table is Melee; the games in it
   already have names. `room-presets.ts`, `PresetBox`, the `preset` arm of
   `createRoomRequestSchema` and its resolution in `roomSettingsFor` go. Ticking
