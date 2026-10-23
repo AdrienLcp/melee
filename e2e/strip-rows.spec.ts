@@ -129,7 +129,7 @@ const sweepShapes = ({
 }) => {
   const faults: Fault[] = []
   const seen: string[] = []
-  const unfloored: string[] = []
+  const withoutFloor: string[] = []
 
   for (const strip of document.querySelectorAll(
     '.segmented-control, .toggle-group'
@@ -156,7 +156,7 @@ const sweepShapes = ({
     const floor = floors[label]
 
     if (floor === undefined) {
-      unfloored.push(label)
+      withoutFloor.push(label)
       continue
     }
 
@@ -216,7 +216,7 @@ const sweepShapes = ({
     styled.style.width = restore
   }
 
-  return { faults, seen, unfloored }
+  return { faults, seen, withoutFloor }
 }
 
 /**
@@ -271,7 +271,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
   const collapsed: string[] = []
   const faults: string[] = []
-  const unfloored: string[] = []
+  const withoutFloor: string[] = []
   const measured = new Set<string>()
 
   await page.goto('/')
@@ -363,7 +363,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         const {
           faults: found,
           seen,
-          unfloored: unread
+          withoutFloor: unread
         } = await page.evaluate(sweepShapes, {
           floors,
           step: STEP_PX,
@@ -375,7 +375,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         }
 
         for (const label of unread) {
-          unfloored.push(`${locale} · ${label}`)
+          withoutFloor.push(`${locale} · ${label}`)
         }
 
         for (const fault of found) {
@@ -388,7 +388,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
   }
 
   expect(collapsed).toEqual([])
-  expect(unfloored).toEqual([])
+  expect(withoutFloor).toEqual([])
   expect(faults).toEqual([])
   expect(measured.size).toBeGreaterThanOrEqual(STRIPS_EXPECTED)
 })
