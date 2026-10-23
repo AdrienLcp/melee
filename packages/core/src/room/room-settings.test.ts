@@ -1,6 +1,5 @@
 import { describe, expect, it } from 'vitest'
 
-import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
 import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
@@ -26,22 +25,22 @@ const kinds = (settings: RoomSettings): GameKind[] =>
 
 describe('roomSettingsFor', () => {
   it('[room-settings] opens a room on the game it was created for', () => {
-    expect(roomSettingsFor({ game: 'buzzer', locale: 'fr' }).game?.kind).toBe(
-      'buzzer'
-    )
+    expect(
+      roomSettingsFor({ games: ['buzzer'], locale: 'fr' }).game?.kind
+    ).toBe('buzzer')
   })
 
   // The front door creates the room and the table decides afterwards, so this
   // is the ordinary case rather than a half-built one.
   it('[room-settings] opens a room with no game on nothing to play', () => {
-    expect(roomSettingsFor({ game: null, locale: 'fr' }).game).toBeNull()
+    expect(roomSettingsFor({ games: [], locale: 'fr' }).game).toBeNull()
   })
 
   // The pair travels together everywhere, and a room that opened on a mode its
   // own game refuses is one whose first "start" the server rejects.
   it('[room-settings] never opens a room on a mode its game does not offer', () => {
     for (const game of gameKinds) {
-      const settings = roomSettingsFor({ game, locale: 'fr' })
+      const settings = roomSettingsFor({ games: [game], locale: 'fr' })
 
       expect(offersAnswerMode({ game, mode: settings.mode.kind })).toBe(true)
     }
@@ -51,58 +50,54 @@ describe('roomSettingsFor', () => {
   // room-wide default was serving the quiz a field where the room reads faster
   // than it types.
   it('[room-settings] opens each game on the mode it is played in', () => {
-    expect(roomSettingsFor({ game: 'quiz', locale: 'fr' }).mode).toEqual(
+    expect(roomSettingsFor({ games: ['quiz'], locale: 'fr' }).mode).toEqual(
       DEFAULT_MODE_SETTINGS.choice
     )
-    expect(roomSettingsFor({ game: 'blindtest', locale: 'fr' }).mode).toEqual(
-      DEFAULT_MODE_SETTINGS.choice
-    )
-    expect(roomSettingsFor({ game: 'matchsticks', locale: 'fr' }).mode).toEqual(
-      DEFAULT_MODE_SETTINGS.move
-    )
+    expect(
+      roomSettingsFor({ games: ['blindtest'], locale: 'fr' }).mode
+    ).toEqual(DEFAULT_MODE_SETTINGS.choice)
+    expect(
+      roomSettingsFor({ games: ['matchsticks'], locale: 'fr' }).mode
+    ).toEqual(DEFAULT_MODE_SETTINGS.move)
   })
 
   it('[room-settings] ticks the one game a front door opens on, and none from the shelf', () => {
-    const onTheQuiz = roomSettingsFor({ game: 'quiz', locale: 'fr' })
+    const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
 
     expect(onTheQuiz.lineUp).toEqual([onTheQuiz.game])
     expect(onTheQuiz.lineUpAt).toBe(0)
-    expect(roomSettingsFor({ game: null, locale: 'fr' }).lineUp).toEqual([])
-    expect(roomSettingsFor({ game: null, locale: 'fr' }).lineUpAt).toBeNull()
+    expect(roomSettingsFor({ games: [], locale: 'fr' }).lineUp).toEqual([])
+    expect(roomSettingsFor({ games: [], locale: 'fr' }).lineUpAt).toBeNull()
   })
 
-  it('[room-settings] opens a preset on its first game with its own length and teams', () => {
+  it('[room-settings] opens several ticked games as a line-up on the first, four rounds a game, the reveal held for the host', () => {
     const settings = roomSettingsFor({
-      game: null,
-      locale: 'fr',
-      preset: {
-        board: DEFAULT_TRACK_SETTINGS,
-        lineUp: ['quiz', 'blindtest', 'buzzer'],
-        roundCount: 12,
-        teams: { count: 3, kind: 'drawn' }
-      }
+      games: ['blindtest', 'quiz', 'buzzer'],
+      locale: 'fr'
     })
 
-    expect(settings.game?.kind).toBe('quiz')
-    expect(kinds(settings)).toEqual(['quiz', 'blindtest', 'buzzer'])
+    expect(settings.game?.kind).toBe('blindtest')
+    expect(kinds(settings)).toEqual(['blindtest', 'quiz', 'buzzer'])
     expect(settings.lineUpAt).toBe(0)
     expect(settings.roundCount).toBe(12)
-    expect(settings.teams).toEqual({ count: 3, kind: 'drawn' })
+    expect(settings.autoAdvanceMs).toBeNull()
+    expect(settings.teams).toEqual({ kind: 'off' })
+    expect(settings.board).toEqual({ kind: 'off' })
     expect(settings.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
   })
 
   it('[room-settings] leaves a game with no natural end running until the host stops it', () => {
     expect(
-      roomSettingsFor({ game: 'buzzer', locale: 'fr' }).roundCount
+      roomSettingsFor({ games: ['buzzer'], locale: 'fr' }).roundCount
     ).toBeNull()
     expect(
-      roomSettingsFor({ game: 'blindtest', locale: 'fr' }).roundCount
+      roomSettingsFor({ games: ['blindtest'], locale: 'fr' }).roundCount
     ).toBe(10)
   })
 })
 
 describe('movedToGame', () => {
-  const onTheBuzzer = roomSettingsFor({ game: 'buzzer', locale: 'fr' })
+  const onTheBuzzer = roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
 
   // The bug this exists for: a room that came from the bare buzzer used to land
   // on a blind test in buzzer mode, with no round limit — its own settings worn
@@ -242,7 +237,7 @@ describe('movedToGame', () => {
       game: 'buzzer',
       locale: 'fr',
       remembered: null,
-      settings: roomSettingsFor({ game: 'blindtest', locale: 'fr' })
+      settings: roomSettingsFor({ games: ['blindtest'], locale: 'fr' })
     })
 
     expect(moved.mode.kind).toBe('buzzer')
@@ -275,11 +270,11 @@ describe('movedToGame', () => {
 
 describe('reshapesRound', () => {
   const blindtest: RoomSettings = {
-    ...roomSettingsFor({ game: 'blindtest', locale: 'fr' }),
+    ...roomSettingsFor({ games: ['blindtest'], locale: 'fr' }),
     game: DEFAULT_BLINDTEST_SETTINGS
   }
   const buzzer: RoomSettings = {
-    ...roomSettingsFor({ game: 'buzzer', locale: 'fr' }),
+    ...roomSettingsFor({ games: ['buzzer'], locale: 'fr' }),
     game: DEFAULT_BUZZER_SETTINGS
   }
 

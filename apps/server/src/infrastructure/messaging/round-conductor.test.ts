@@ -75,7 +75,7 @@ const host: Connection = {
 const revealedBlindtest = (): Room => {
   const room = newRoom({
     code: 'ABCD',
-    game: 'blindtest',
+    games: ['blindtest'],
     hostToken: generateHostToken(),
     locale: 'fr',
     now: OPENED_AT

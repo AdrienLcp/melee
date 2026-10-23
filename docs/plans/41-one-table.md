@@ -86,7 +86,17 @@ model already treated as one more tick.
 ## Order
 
 1. Protocol and core: seat board position, pawn track, preset removed,
-   preferences rule. Tests first, each seen red.
+   preferences rule. Tests first, each seen red. **Done.** `POST /api/rooms`
+   takes `games` (none, one, several) in place of `game` and `preset`;
+   several open on the first, `ROUNDS_PER_TICKED_GAME` (4) a game and the
+   reveal held for the host. `advanceOnTrack` and `isTrackFinished` take
+   pawns (`PawnId` = a team or a seat); `buildScoreboard` ranks seats by case
+   then score, as the teams' board does. `restoredSettings` lays the host's
+   teams, board and judge over a table of several and gives way to the door's
+   teams when the host's would refuse a game ticked (aloud over a slate);
+   `rememberSettings` files them for every table. `PROTOCOL_VERSION` 44. The
+   server sends every seat `board: null` until step 2, and the home preset
+   box sends only its games until step 4 removes it.
 2. Server: the track over pawns; a race, a slate and a judged buzzer round
    each move seat pawns.
 3. Design pass (`impeccable`): home with one door, *La table* in *Animer*, the

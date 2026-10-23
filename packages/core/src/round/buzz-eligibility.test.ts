@@ -42,7 +42,14 @@ const viewFor = (
   isHostConnected: true,
   phase,
   players: [
-    { id: 'me', isConnected: true, isReady: false, nickname: 'Alice', score: 0 }
+    {
+      board: null,
+      id: 'me',
+      isConnected: true,
+      isReady: false,
+      nickname: 'Alice',
+      score: 0
+    }
   ],
   round,
   roundElapsedMs: 0,

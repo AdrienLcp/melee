@@ -30,7 +30,7 @@ const poolSurvives = ({
 }): boolean => {
   const room = newRoom({
     code: 'ABCD',
-    game: 'blindtest',
+    games: ['blindtest'],
     hostToken: generateHostToken(),
     locale: 'en',
     now: 0

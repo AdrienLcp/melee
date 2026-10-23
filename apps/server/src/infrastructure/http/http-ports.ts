@@ -4,7 +4,6 @@ import type { GameKind } from '@melee/protocol/game'
 import type {
   CreateRoomResponse,
   OpenWallPairingResponse,
-  RoomPreset,
   WallPairingCode,
   WallPairingPollResponse
 } from '@melee/protocol/http'
@@ -22,9 +21,8 @@ export type RoomDoor = {
   }) => Promise<boolean>
   /** `null` when no free code could be drawn. */
   openRoom: (input: {
-    game: GameKind | null
+    games: readonly GameKind[]
     locale: Locale
-    preset: RoomPreset | null
   }) => Promise<CreateRoomResponse | null>
   roomExists: (code: RoomCode) => Promise<boolean>
 }

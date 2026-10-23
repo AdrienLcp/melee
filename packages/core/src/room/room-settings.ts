@@ -3,7 +3,6 @@ import {
   type GameKind,
   type GameSettings
 } from '@melee/protocol/game'
-import type { RoomPreset } from '@melee/protocol/http'
 import type { Locale } from '@melee/protocol/locale'
 import {
   type AnswerMode,
@@ -84,55 +83,57 @@ export type GameSetup = {
 }
 
 /**
+ * How many rounds of each game a table of several plays: the company raclette
+ * the line-up was built for ticked five games for twenty rounds, and two games
+ * ticked for an evening are eight rounds, not forty.
+ */
+const ROUNDS_PER_TICKED_GAME = 4
+
+/**
  * What a freshly opened room is set to. The shell's defaults, with the four
  * fields the game gets a say in.
  *
- * `null` is a room opened from the front door, where the code goes up before
+ * No game is a room opened from the front door, where the code goes up before
  * anybody has decided what to play. It is the shell's defaults and nothing
  * else: the four fields below are the game's to answer, and there is no game
  * yet to answer them.
  *
- * A preset opens on its first game, set as that game opens, with the evening's
- * length and teams laid over it — the two things a preset decides that no one
- * game could.
+ * Several games open on the first, with a length of their own and the reveal
+ * held for the host: the first game's count would end the table on its own
+ * game, and the blind test's eight seconds would cut a quiz note off.
  */
 export const roomSettingsFor = ({
-  game,
-  locale,
-  preset = null
+  games,
+  locale
 }: {
-  game: GameKind | null
+  games: readonly GameKind[]
   /** The host's, and the only evidence available for what a room has not been asked. */
   locale: Locale
-  preset?: RoomPreset | null
 }): RoomSettings => {
-  const [presetFirst] = preset?.lineUp ?? []
+  const [first] = games
 
-  if (preset !== null && presetFirst !== undefined) {
-    return {
-      ...DEFAULT_ROOM_SETTINGS,
-      ...openedSetup({ game: presetFirst, locale }),
-      board: preset.board,
-      lineUp: preset.lineUp.map((ticked) =>
-        openedGameSettings({ game: ticked, locale })
-      ),
-      lineUpAt: 0,
-      roundCount: preset.roundCount,
-      teams: preset.teams
-    }
-  }
-
-  if (game === null) {
+  if (first === undefined) {
     return DEFAULT_ROOM_SETTINGS
   }
 
-  const setup = openedSetup({ game, locale })
+  const setup = openedSetup({ game: first, locale })
+
+  if (games.length === 1) {
+    return {
+      ...DEFAULT_ROOM_SETTINGS,
+      ...setup,
+      lineUp: [setup.game],
+      lineUpAt: 0
+    }
+  }
 
   return {
     ...DEFAULT_ROOM_SETTINGS,
     ...setup,
-    lineUp: [setup.game],
-    lineUpAt: 0
+    autoAdvanceMs: null,
+    lineUp: games.map((ticked) => openedGameSettings({ game: ticked, locale })),
+    lineUpAt: 0,
+    roundCount: games.length * ROUNDS_PER_TICKED_GAME
   }
 }
 

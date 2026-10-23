@@ -33,7 +33,7 @@ const join = (nickname: string, sessionId: string) =>
 beforeEach(() => {
   room = newRoom({
     code: 'ABCD',
-    game: 'blindtest',
+    games: ['blindtest'],
     hostToken: generateHostToken(),
     locale: 'fr',
     now: NOW

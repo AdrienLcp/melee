@@ -45,7 +45,7 @@ describe('http routes', () => {
 
     const response = await app.request(
       API_ROUTES.rooms,
-      postJson(JSON.stringify({ game: 'chess' }))
+      postJson(JSON.stringify({ games: ['chess'] }))
     )
 
     expect(response.status).toBe(400)

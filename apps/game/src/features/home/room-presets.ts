@@ -1,4 +1,14 @@
-import type { RoomPreset } from '@melee/protocol/http'
+import type { BoardSettings } from '@melee/protocol/board'
+import type { ShelvedGame } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
+import type { TeamsSettings } from '@melee/protocol/team'
+
+type RoomPreset = {
+  board: BoardSettings
+  lineUp: readonly ShelvedGame[]
+  roundCount: RoomSettings['roundCount']
+  teams: TeamsSettings
+}
 
 /** The evenings the shelf offers ready-made, in the order it draws them. */
 export const roomPresetIds = ['teamNight'] as const

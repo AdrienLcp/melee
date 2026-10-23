@@ -24,9 +24,9 @@ const neverPlayed = (_game: GameKind): GameSetup | null => null
 const toggle = (settings: RoomSettings, game: GameKind): RoomSettings =>
   toggledInLineUp({ game, locale: 'fr', rememberedFor: neverPlayed, settings })
 
-const onNothing = roomSettingsFor({ game: null, locale: 'fr' })
-const onTheQuiz = roomSettingsFor({ game: 'quiz', locale: 'fr' })
-const onTheCharts = roomSettingsFor({ game: 'blindtest', locale: 'fr' })
+const onNothing = roomSettingsFor({ games: [], locale: 'fr' })
+const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
+const onTheCharts = roomSettingsFor({ games: ['blindtest'], locale: 'fr' })
 
 const entries = (...games: GameKind[]) =>
   games.map((game) => DEFAULT_GAME_SETTINGS[game])

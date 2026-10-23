@@ -163,8 +163,9 @@ which is why a user-visible string written into a component is a bug — see
   what the next round is played on, drawn by the console as each reveal goes
   up (`nextEntryAt`, another game before another entry of the same one) and
   changed by the host beside *Next round*. One tick is a
-  room playing one game, which every game's front door opens; a **preset** opens
-  several, its length and its teams, and is app data that never travels. An
+  room playing one game, which every game's front door opens; several ticked on
+  home open a line-up of four rounds a game. Teams, board and judge are the
+  host's, remembered once and laid over every table, one game or several. An
   evening of several keeps its own `roundCount` and reveal hold across a switch,
   because a game's own would end it or cut a reveal short. **Ready** is a seat
   saying it is back at the table between two rounds, on the wall beside the next

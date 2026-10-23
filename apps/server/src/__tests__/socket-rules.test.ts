@@ -177,6 +177,7 @@ describe('the rules every socket obeys', () => {
     expect(playerView(reloaded)?.youId).toBe(aliceId)
     expect(playerView(reloaded)?.players).toEqual([
       {
+        board: null,
         id: aliceId,
         isConnected: true,
         isReady: false,
@@ -248,7 +249,7 @@ describe('the rules every socket obeys', () => {
   // what is missing.
   it('[settings] refuses to open a round in a room with no game', async () => {
     const { code, host } = await room.openRoom(
-      roomSettingsFor({ game: null, locale: 'fr' })
+      roomSettingsFor({ games: [], locale: 'fr' })
     )
 
     await room.seat({ code, nickname: 'Alice' })
@@ -264,7 +265,7 @@ describe('the rules every socket obeys', () => {
 
   it('[settings] opens the round once the table has picked one', async () => {
     const { code, host } = await room.openRoom(
-      roomSettingsFor({ game: null, locale: 'fr' })
+      roomSettingsFor({ games: [], locale: 'fr' })
     )
 
     await room.seat({ code, nickname: 'Alice' })

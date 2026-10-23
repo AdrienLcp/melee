@@ -12,8 +12,8 @@ import {
 } from './host-preferences'
 import { roomSettingsFor } from './room-settings'
 
-const onTheQuiz = roomSettingsFor({ game: 'quiz', locale: 'fr' })
-const onNothing = roomSettingsFor({ game: null, locale: 'fr' })
+const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
+const onNothing = roomSettingsFor({ games: [], locale: 'fr' })
 
 describe('rememberSettings', () => {
   it('[host-preferences] files the room’s four game-owned fields under that game', () => {
@@ -52,7 +52,7 @@ describe('rememberSettings', () => {
   it('[host-preferences] leaves the other games it has learned alone', () => {
     const afterTheBuzzer = rememberSettings({
       preferences: null,
-      settings: roomSettingsFor({ game: 'buzzer', locale: 'fr' })
+      settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
     })
 
     const afterTheQuiz = rememberSettings({
@@ -109,7 +109,7 @@ describe('restoredSettings', () => {
   // The host played the quiz last time and opened this room on the buzzer: the
   // countdown is theirs, and everything the quiz answered is the quiz's.
   it('[host-preferences] applies nothing from a game the room is not playing', () => {
-    const onTheBuzzer = roomSettingsFor({ game: 'buzzer', locale: 'fr' })
+    const onTheBuzzer = roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
     const restored = restoredSettings({ preferences, settings: onTheBuzzer })
 
     expect(restored.countdownMs).toBe(10_000)
@@ -122,7 +122,7 @@ describe('restoredSettings', () => {
   // remembered it — so the room keeps what it opened on rather than losing it to
   // an absent preference.
   it('[host-preferences] leaves a field nobody remembered as the door set it', () => {
-    const inEnglish = roomSettingsFor({ game: 'quiz', locale: 'en' })
+    const inEnglish = roomSettingsFor({ games: ['quiz'], locale: 'en' })
     const restored = restoredSettings({
       preferences: { games: {}, room: preferences.room },
       settings: inEnglish
@@ -171,32 +171,32 @@ describe('rememberedSetupFor', () => {
   })
 })
 
-describe('an evening of several games', () => {
+describe('a table of several games', () => {
   const evening = roomSettingsFor({
-    game: null,
-    locale: 'fr',
-    preset: {
+    games: ['quiz', 'blindtest', 'buzzer'],
+    locale: 'fr'
+  })
+
+  const teamsHost: HostPreferences = rememberSettings({
+    preferences: null,
+    settings: {
+      ...onTheQuiz,
       board: DEFAULT_TRACK_SETTINGS,
-      lineUp: ['quiz', 'blindtest', 'buzzer'],
-      roundCount: 12,
+      hasJudge: true,
+      roundCount: 20,
       teams: { count: 3, kind: 'drawn' }
     }
   })
 
-  const quickQuizHost: HostPreferences = rememberSettings({
-    preferences: null,
-    settings: { ...onTheQuiz, hasJudge: true, roundCount: 20 }
-  })
-
-  it('[host-preferences] keeps the preset’s length, teams and track over the host’s last quick game', () => {
+  it('[host-preferences] lays the host’s teams, track and judge over a table of several games', () => {
     const restored = restoredSettings({
-      preferences: quickQuizHost,
+      preferences: teamsHost,
       settings: evening
     })
 
-    expect(restored.roundCount).toBe(12)
     expect(restored.teams).toEqual({ count: 3, kind: 'drawn' })
     expect(restored.board).toEqual(DEFAULT_TRACK_SETTINGS)
+    expect(restored.hasJudge).toBe(true)
     expect(restored.lineUp.map((entry) => entry.kind)).toEqual([
       'quiz',
       'blindtest',
@@ -205,7 +205,31 @@ describe('an evening of several games', () => {
     expect(restored.lineUp[0]).toEqual(restored.game)
   })
 
-  it('[host-preferences] keeps the mode a host judged a game on through an evening with no judge', () => {
+  it('[host-preferences] keeps the table’s own length over the host’s last game of one', () => {
+    const restored = restoredSettings({
+      preferences: teamsHost,
+      settings: evening
+    })
+
+    expect(restored.roundCount).toBe(evening.roundCount)
+    expect(restored.autoAdvanceMs).toBe(evening.autoAdvanceMs)
+  })
+
+  it('[host-preferences] keeps the door’s teams when the host’s would refuse a game ticked', () => {
+    const aloudHost = rememberSettings({
+      preferences: null,
+      settings: { ...onTheQuiz, teams: { count: 2, kind: 'aloud' } }
+    })
+
+    const restored = restoredSettings({
+      preferences: aloudHost,
+      settings: roomSettingsFor({ games: ['quiz', 'slate'], locale: 'fr' })
+    })
+
+    expect(restored.teams).toEqual({ kind: 'off' })
+  })
+
+  it('[host-preferences] keeps the mode a host judged a game on through a table with no judge', () => {
     const buzzerQuizHost = rememberSettings({
       preferences: null,
       settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
@@ -224,16 +248,7 @@ describe('an evening of several games', () => {
     )
   })
 
-  it('[host-preferences] opens an evening without the judge the host’s last quick game had', () => {
-    const restored = restoredSettings({
-      preferences: quickQuizHost,
-      settings: evening
-    })
-
-    expect(restored.hasJudge).toBe(false)
-  })
-
-  it('[host-preferences] plays the evening’s quiz on four candidates for a host who last judged one aloud', () => {
+  it('[host-preferences] plays the table’s quiz on four candidates for a host who last judged one aloud', () => {
     const buzzerQuizHost = rememberSettings({
       preferences: null,
       settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
@@ -248,15 +263,30 @@ describe('an evening of several games', () => {
     expect(restored.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
   })
 
-  it('[host-preferences] files neither the line-up, the length nor the teams of an evening', () => {
+  it('[host-preferences] files the teams, the track and the judge of a table of several games', () => {
     const remembered = rememberSettings({
-      preferences: quickQuizHost,
+      preferences: null,
+      settings: {
+        ...evening,
+        board: DEFAULT_TRACK_SETTINGS,
+        hasJudge: true,
+        teams: { count: 2, kind: 'chosen' }
+      }
+    })
+
+    expect(remembered.room.teams).toEqual({ count: 2, kind: 'chosen' })
+    expect(remembered.room.board).toEqual(DEFAULT_TRACK_SETTINGS)
+    expect(remembered.room.hasJudge).toBe(true)
+    expect(remembered.room).not.toHaveProperty('lineUp')
+    expect(remembered.room).not.toHaveProperty('lineUpAt')
+  })
+
+  it('[host-preferences] files neither the length nor the hold of a table of several games', () => {
+    const remembered = rememberSettings({
+      preferences: teamsHost,
       settings: evening
     })
 
     expect(remembered.games.quiz?.roundCount).toBe(20)
-    expect(remembered.room.teams).toEqual({ kind: 'off' })
-    expect(remembered.room).not.toHaveProperty('lineUp')
-    expect(remembered.room).not.toHaveProperty('lineUpAt')
   })
 })

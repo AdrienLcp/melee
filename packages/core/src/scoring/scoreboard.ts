@@ -16,27 +16,37 @@ export type ScoreboardEntry = {
  * and the final board names nobody.
  */
 export const hasAnybodyScored = (players: readonly PublicPlayer[]): boolean =>
-  players.some((player) => player.score > 0)
+  players.some((player) => player.score > 0 || caseOf(player) > 0)
+
+const caseOf = (player: PublicPlayer): number => player.board?.case ?? 0
 
 /**
- * Ties break on nickname so the board does not reshuffle itself between two
- * renders of the same scores — the players are watching it on a wall.
+ * On a track the pawn furthest along leads and the score breaks a tie, as the
+ * teams' board ranks. Ties break on nickname so the board does not reshuffle
+ * itself between two renders of the same scores — the players are watching it
+ * on a wall.
  */
 export const buildScoreboard = (
   players: readonly PublicPlayer[]
 ): ScoreboardEntry[] => {
   const ordered = players.toSorted(
     (left, right) =>
-      right.score - left.score || compareText(left.nickname, right.nickname)
+      caseOf(right) - caseOf(left) ||
+      right.score - left.score ||
+      compareText(left.nickname, right.nickname)
   )
 
   let currentRank = 0
-  let previousScore: number | null = null
+  let previous: PublicPlayer | null = null
 
   return ordered.map((player, index) => {
-    if (player.score !== previousScore) {
+    if (
+      previous === null ||
+      caseOf(player) !== caseOf(previous) ||
+      player.score !== previous.score
+    ) {
       currentRank = index + 1
-      previousScore = player.score
+      previous = player
     }
 
     return { player, rank: currentRank }

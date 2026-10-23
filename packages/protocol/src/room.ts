@@ -1,6 +1,10 @@
 import { z } from 'zod'
 
-import { boardSettingsSchema, DEFAULT_BOARD_SETTINGS } from './board'
+import {
+  boardPositionSchema,
+  boardSettingsSchema,
+  DEFAULT_BOARD_SETTINGS
+} from './board'
 import { gameSettingsSchema } from './game'
 import {
   nicknameSchema,
@@ -237,6 +241,11 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
 }
 
 export const publicPlayerSchema = z.object({
+  /**
+   * The seat's own pawn on the track, and `null` when the board is off or the
+   * room plays in teams — the team's pawn is the one that walks then.
+   */
+  board: boardPositionSchema.nullable(),
   id: playerIdSchema,
   isConnected: z.boolean(),
   /**

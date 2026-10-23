@@ -81,10 +81,10 @@ export const useCreateRoom = () => {
 
       const created = await createRoom(
         door === null
-          ? { locale }
+          ? { games: [], locale }
           : isRoomPresetId(door)
-            ? { locale, preset: ROOM_PRESETS[door] }
-            : { game: door, locale }
+            ? { games: ROOM_PRESETS[door].lineUp, locale }
+            : { games: [door], locale }
       )
 
       if (created.status === 'failure') {

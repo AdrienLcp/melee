@@ -64,7 +64,7 @@ const restore = (snapshot: Room, { at }: { at: number }) => {
 const buzzerRoomInCountdown = (): Room => {
   const room = newRoom({
     code: 'ABCD',
-    game: 'buzzer',
+    games: ['buzzer'],
     hostToken: generateHostToken(),
     locale: 'fr',
     now: OPENED_AT

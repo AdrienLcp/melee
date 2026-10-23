@@ -1,6 +1,5 @@
 import { z } from 'zod'
 
-import { boardSettingsSchema } from './board'
 import { protocolErrorCodeSchema } from './error-code'
 import { shelvedGameSchema, shelvedGames } from './game'
 import {
@@ -9,8 +8,6 @@ import {
   roomCodeSchema
 } from './identifiers'
 import { DEFAULT_LOCALE, localeSchema } from './locale'
-import { roomSettingsSchema } from './room'
-import { teamsSettingsSchema } from './team'
 import {
   trackDecadeSchema,
   trackDifficultySchema,
@@ -26,40 +23,25 @@ import {
  * and it keeps `apps/game` from depending on `apps/server`.
  */
 /**
- * The room comes first and the game second: a code goes up, the players arrive,
- * and the table decides while they do. So the game is **optional** — omitted by
- * the front door, and carried by a game's own page, which is a shortcut for a
- * host who already knows what they came to play.
+ * The room comes first and the games second: a code goes up, the players
+ * arrive, and the table decides while they do. So `games` may be **empty** —
+ * the front door with nothing ticked — one game plays that game as its own
+ * page opens it, and several open a line-up on the first. Teams, board and
+ * judge never travel here: they are the host's, laid over the room by the
+ * console's first settings frame.
  *
- * It stays a `ShelvedGame` when it is sent. A game can be served in full before
- * it has screens, and a room opened on one of those would render another game's
- * round.
+ * Each stays a `ShelvedGame` when it is sent. A game can be served in full
+ * before it has screens, and a room opened on one of those would render
+ * another game's round.
  */
-/**
- * What a preset opens a room on: the games ticked, how long the evening runs
- * and whether it is played in teams. The preset itself — its name, why those
- * games — is the app's, and never travels; the room only holds the settings it
- * resolves to. Its first game is the first round's.
- *
- * At least two games, because that is what a preset is and how the console
- * tells one apart: a line-up of one reads as that game's own door, and the
- * host's stored setup for it would replace the preset's length and teams.
- */
-export const roomPresetSchema = z.object({
-  board: boardSettingsSchema,
-  lineUp: z
+export const createRoomRequestSchema = z.object({
+  games: z
     .array(shelvedGameSchema)
-    .min(2)
     .max(shelvedGames.length)
     .refine((games) => new Set(games).size === games.length, {
       message: 'A game is ticked once'
-    }),
-  roundCount: roomSettingsSchema.shape.roundCount,
-  teams: teamsSettingsSchema
-})
-
-export const createRoomRequestSchema = z.object({
-  game: shelvedGameSchema.optional(),
+    })
+    .default([]),
   /**
    * The host's interface language, and the only thing a room can go on for a
    * setting nobody has been asked about yet — the quiz has to be drawn in *some*
@@ -69,9 +51,7 @@ export const createRoomRequestSchema = z.object({
    * Defaulted rather than required, because this door has no version handshake
    * the way the socket does: a tab opened before the field existed still posts.
    */
-  locale: localeSchema.default(DEFAULT_LOCALE),
-  /** In place of `game`, for a room opened on a whole evening rather than one game. */
-  preset: roomPresetSchema.optional()
+  locale: localeSchema.default(DEFAULT_LOCALE)
 })
 
 /**
@@ -203,7 +183,6 @@ export const apiErrorResponseSchema = z.object({
   message: z.string()
 })
 
-export type RoomPreset = z.infer<typeof roomPresetSchema>
 export type CreateRoomRequest = z.infer<typeof createRoomRequestSchema>
 export type CreateRoomResponse = z.infer<typeof createRoomResponseSchema>
 export type RoomExistsResponse = z.infer<typeof roomExistsResponseSchema>

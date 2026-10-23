@@ -12,9 +12,9 @@ export const MIN_BOARD_LENGTH = 10
 export const MAX_BOARD_LENGTH = 60
 
 /**
- * Whether the teams race on a track, and how. A room setting, because it is
- * true of every game on the line-up, and read only where the room has teams:
- * a track with no team on it is a track nobody advances on.
+ * Whether the table races on a track, and how. A room setting, because it is
+ * true of every game on the line-up, and independent of the teams: a room in
+ * teams walks a pawn per team, a room without walks a pawn per seat.
  */
 export const boardSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('off') }),
@@ -33,7 +33,8 @@ export const boardSettingsSchema = z.discriminatedUnion('kind', [
 ])
 
 /**
- * Where a team's pawn stands, public on every screen like the score beside it.
+ * Where a pawn stands — a team's or a seat's — public on every screen like the
+ * score beside it.
  * `move` is what the round on screen walked it, so a screen can play the walk
  * from `case - move` rather than teleport the pawn — nought until the reveal,
  * because a pawn that moves mid-round is an answer given away.

@@ -1,5 +1,4 @@
 import type { GameKind } from '@melee/protocol/game'
-import type { RoomPreset } from '@melee/protocol/http'
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 
@@ -32,13 +31,11 @@ export const findRoomEngine = (code: RoomCode): RoomEngine | null =>
   engines.get(code) ?? null
 
 export const openRoomInProcess = ({
-  game,
-  locale,
-  preset = null
+  games,
+  locale
 }: {
-  game: GameKind | null
+  games: readonly GameKind[]
   locale: Locale
-  preset?: RoomPreset | null
 }): RoomEngine | null => {
   const code = drawUnusedCode()
 
@@ -49,11 +46,10 @@ export const openRoomInProcess = ({
   const engine = engineFor(
     newRoom({
       code,
-      game,
+      games,
       hostToken: newHostToken(),
       locale,
-      now: nowMs(),
-      preset
+      now: nowMs()
     })
   )
 

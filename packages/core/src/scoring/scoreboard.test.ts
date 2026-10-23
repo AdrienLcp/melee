@@ -10,11 +10,25 @@ import {
 } from './scoreboard'
 
 const playerOn = (nickname: string, score: number): PublicPlayer => ({
+  board: null,
   id: nickname.toLowerCase(),
   isConnected: true,
   isReady: false,
   nickname,
   score
+})
+
+const pawnOn = ({
+  at,
+  nickname,
+  score
+}: {
+  at: number
+  nickname: string
+  score: number
+}): PublicPlayer => ({
+  ...playerOn(nickname, score),
+  board: { case: at, move: 0 }
 })
 
 describe('buildScoreboard', () => {
@@ -48,6 +62,21 @@ describe('buildScoreboard', () => {
 
     expect(nicknames(oneWay)).toEqual(['Alice', 'Bob'])
     expect(nicknames(oneWay.toReversed())).toEqual(['Alice', 'Bob'])
+  })
+
+  it('[scoring] puts the pawn furthest along first on a track, the score breaking a tie', () => {
+    const board = buildScoreboard([
+      pawnOn({ at: 3, nickname: 'Alice', score: 9 }),
+      pawnOn({ at: 5, nickname: 'Bob', score: 2 }),
+      pawnOn({ at: 3, nickname: 'Chloe', score: 4 })
+    ])
+
+    expect(board.map((entry) => entry.player.nickname)).toEqual([
+      'Bob',
+      'Alice',
+      'Chloe'
+    ])
+    expect(board.map((entry) => entry.rank)).toEqual([1, 2, 3])
   })
 
   it('[scoring] handles an empty room', () => {

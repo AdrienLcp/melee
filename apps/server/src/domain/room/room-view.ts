@@ -270,6 +270,7 @@ const yourVerdictIn = ({
       null)
 
 const toPublicPlayer = (participant: Participant): PublicPlayer => ({
+  board: null,
   id: participant.id,
   isConnected: participant.isConnected,
   isReady: participant.isReady,

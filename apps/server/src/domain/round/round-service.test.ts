@@ -27,7 +27,7 @@ const revealedRoom = ({
 }) => {
   const room = newRoom({
     code: 'ABCD',
-    game,
+    games: [game],
     hostToken: generateHostToken(),
     locale: 'fr',
     now: OPENED_AT

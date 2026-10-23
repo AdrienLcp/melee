@@ -34,15 +34,15 @@ const play = ({
       catchUp,
       length: LENGTH,
       positions,
-      results: Object.entries(round).map(([teamId, points]) => ({
-        points,
-        teamId
+      results: Object.entries(round).map(([pawnId, points]) => ({
+        pawnId,
+        points
       })),
       strategy
     })
 
     for (const position of progress.positions) {
-      positions.set(position.teamId, position.case)
+      positions.set(position.pawnId, position.case)
     }
 
     log.push({
@@ -75,11 +75,11 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map(),
-      results: [{ points: 0.99 * POINT, teamId: 'blue' }],
+      results: [{ pawnId: 'blue', points: 0.99 * POINT }],
       strategy: 'onePointOneCase'
     })
 
-    expect(progress.moves).toEqual([{ cases: 0, teamId: 'blue' }])
+    expect(progress.moves).toEqual([{ cases: 0, pawnId: 'blue' }])
   })
 
   it('[board] stops a pawn on the last case and ends there', () => {
@@ -87,14 +87,14 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 1]]),
-      results: [{ points: 3 * POINT, teamId: 'blue' }],
+      results: [{ pawnId: 'blue', points: 3 * POINT }],
       strategy: 'onePointOneCase'
     })
 
     expect(progress).toEqual({
       isOver: true,
-      moves: [{ cases: 1, teamId: 'blue' }],
-      positions: [{ case: LENGTH, teamId: 'blue' }]
+      moves: [{ cases: 1, pawnId: 'blue' }],
+      positions: [{ case: LENGTH, pawnId: 'blue' }]
     })
   })
 
@@ -103,7 +103,7 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 4]]),
-      results: [{ points: 3 * POINT, teamId: 'blue' }],
+      results: [{ pawnId: 'blue', points: 3 * POINT }],
       strategy: 'onePointOneCase'
     })
 
@@ -127,21 +127,21 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { points: 2 * POINT, teamId: 'blue' },
-        { points: 2 * POINT, teamId: 'red' },
-        { points: POINT, teamId: 'green' },
-        { points: 0.5 * POINT, teamId: 'gold' },
-        { points: 0, teamId: 'pink' }
+        { pawnId: 'blue', points: 2 * POINT },
+        { pawnId: 'red', points: 2 * POINT },
+        { pawnId: 'green', points: POINT },
+        { pawnId: 'gold', points: 0.5 * POINT },
+        { pawnId: 'pink', points: 0 }
       ],
       strategy: 'rank'
     })
 
     expect(progress.moves).toEqual([
-      { cases: 3, teamId: 'blue' },
-      { cases: 3, teamId: 'red' },
-      { cases: 1, teamId: 'green' },
-      { cases: 0, teamId: 'gold' },
-      { cases: 0, teamId: 'pink' }
+      { cases: 3, pawnId: 'blue' },
+      { cases: 3, pawnId: 'red' },
+      { cases: 1, pawnId: 'green' },
+      { cases: 0, pawnId: 'gold' },
+      { cases: 0, pawnId: 'pink' }
     ])
   })
 
@@ -151,15 +151,15 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { points: 0.4 * POINT, teamId: 'blue' },
-        { points: 0, teamId: 'red' }
+        { pawnId: 'blue', points: 0.4 * POINT },
+        { pawnId: 'red', points: 0 }
       ],
       strategy: 'rank'
     })
 
     expect(progress.moves).toEqual([
-      { cases: 3, teamId: 'blue' },
-      { cases: 0, teamId: 'red' }
+      { cases: 3, pawnId: 'blue' },
+      { cases: 0, pawnId: 'red' }
     ])
   })
 

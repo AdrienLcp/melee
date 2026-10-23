@@ -7,7 +7,7 @@ import { findRoomEngine, openRoomInProcess } from './in-process-rooms'
 describe('openRoomInProcess', () => {
   it('[room] never hands out a code a live room holds, and frees it once closed', () => {
     const engines = Array.from({ length: 50 }, () => {
-      const engine = openRoomInProcess({ game: 'blindtest', locale: 'fr' })
+      const engine = openRoomInProcess({ games: ['blindtest'], locale: 'fr' })
 
       if (engine === null) {
         throw new Error('the process refused to allocate a room')

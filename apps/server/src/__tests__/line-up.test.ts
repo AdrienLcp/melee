@@ -198,23 +198,11 @@ describe('an evening of several games', () => {
     expect(errorsIn(anna)[0]?.code).toBe('wrong_phase')
   })
 
-  it('[line-up] opens a room on a preset’s games, length, teams and track', async () => {
+  it('[line-up] opens a room on the games ticked, four rounds a game', async () => {
     const response = await fetch(
       `http://${harness.origin}${API_ROUTES.rooms}`,
       {
-        body: JSON.stringify({
-          preset: {
-            board: {
-              catchUp: false,
-              kind: 'track',
-              length: 24,
-              strategy: 'onePointOneCase'
-            },
-            lineUp: ['quiz', 'blindtest', 'buzzer'],
-            roundCount: 12,
-            teams: { count: 3, kind: 'drawn' }
-          }
-        }),
+        body: JSON.stringify({ games: ['quiz', 'blindtest', 'buzzer'] }),
         headers: { 'content-type': 'application/json' },
         method: 'POST'
       }
@@ -233,33 +221,20 @@ describe('an evening of several games', () => {
     await waitFor(() => hostView(host) !== null, 'the host to be seated')
 
     expect(hostView(host)?.settings).toMatchObject({
-      board: { kind: 'track', length: 24 },
+      board: { kind: 'off' },
       game: { kind: 'quiz' },
       lineUp: [{ kind: 'quiz' }, { kind: 'blindtest' }, { kind: 'buzzer' }],
       lineUpAt: 0,
       roundCount: 12,
-      teams: { count: 3, kind: 'drawn' }
+      teams: { kind: 'off' }
     })
-    expect(hostView(host)?.teams).toHaveLength(3)
   })
 
-  it('[line-up] refuses a preset of one game, which the console would take for that game’s own door', async () => {
+  it('[line-up] refuses a game ticked twice at the door', async () => {
     const response = await fetch(
       `http://${harness.origin}${API_ROUTES.rooms}`,
       {
-        body: JSON.stringify({
-          preset: {
-            board: {
-              catchUp: false,
-              kind: 'track',
-              length: 24,
-              strategy: 'onePointOneCase'
-            },
-            lineUp: ['quiz'],
-            roundCount: 12,
-            teams: { count: 3, kind: 'drawn' }
-          }
-        }),
+        body: JSON.stringify({ games: ['quiz', 'quiz'] }),
         headers: { 'content-type': 'application/json' },
         method: 'POST'
       }

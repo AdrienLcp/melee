@@ -1292,7 +1292,7 @@ export const isFinalRound = (room: Room): boolean => {
     total !== null && (room.round?.index ?? 0) >= total
   const hasPawnHome = isTrackFinished({
     board: room.settings.board,
-    teams: toTeamViews(room)
+    pawns: toTeamViews(room)
   })
 
   return hasPlayedEveryRound || hasPawnHome

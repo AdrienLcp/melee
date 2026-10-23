@@ -504,7 +504,9 @@ export const harnessAt = ({
     )
 
     const response = await fetch(`http://${origin}${API_ROUTES.rooms}`, {
-      body: JSON.stringify({ game: doorGame }),
+      body: JSON.stringify({
+        games: doorGame === undefined ? [] : [doorGame]
+      }),
       headers: { 'content-type': 'application/json' },
       method: 'POST'
     })

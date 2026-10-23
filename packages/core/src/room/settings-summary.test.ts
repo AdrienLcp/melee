@@ -6,7 +6,7 @@ import { roomSettingsFor } from './room-settings'
 import { settingsSummary } from './settings-summary'
 
 describe('settingsSummary', () => {
-  const blindtest = roomSettingsFor({ game: 'blindtest', locale: 'fr' })
+  const blindtest = roomSettingsFor({ games: ['blindtest'], locale: 'fr' })
 
   it('[settings-summary] reads left to right, from the game down to how long the evening runs', () => {
     expect(settingsSummary({ draftSource: null, settings: blindtest })).toEqual(
@@ -33,7 +33,7 @@ describe('settingsSummary', () => {
   it('[settings-summary] says nothing about a source in a game that serves none', () => {
     const parts = settingsSummary({
       draftSource: { kind: 'search', query: 'yacht rock' },
-      settings: roomSettingsFor({ game: 'buzzer', locale: 'fr' })
+      settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
     })
 
     expect(parts.some((part) => part.kind === 'source')).toBe(false)
@@ -44,7 +44,7 @@ describe('settingsSummary', () => {
     expect(
       settingsSummary({
         draftSource: null,
-        settings: roomSettingsFor({ game: 'slate', locale: 'fr' })
+        settings: roomSettingsFor({ games: ['slate'], locale: 'fr' })
       })
     ).toEqual([
       { game: 'slate', kind: 'game' },
@@ -54,7 +54,7 @@ describe('settingsSummary', () => {
   })
 
   it('[settings-summary] names the map only when it asks for French cities', () => {
-    const worldmap = roomSettingsFor({ game: 'worldmap', locale: 'fr' })
+    const worldmap = roomSettingsFor({ games: ['worldmap'], locale: 'fr' })
     const placesOf = (settings: typeof worldmap) =>
       settingsSummary({ draftSource: null, settings }).filter(
         (part) => part.kind === 'places'
@@ -76,7 +76,7 @@ describe('settingsSummary', () => {
   it('[settings-summary] says nothing about an answer mode the host was never offered', () => {
     const parts = settingsSummary({
       draftSource: null,
-      settings: roomSettingsFor({ game: 'buzzer', locale: 'fr' })
+      settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
     })
 
     expect(parts.some((part) => part.kind === 'answerMode')).toBe(false)
@@ -91,7 +91,7 @@ describe('settingsSummary', () => {
       expect(
         settingsSummary({
           draftSource: null,
-          settings: roomSettingsFor({ game, locale: 'fr' })
+          settings: roomSettingsFor({ games: [game], locale: 'fr' })
         })
       ).toContainEqual({ game, kind: 'game' })
     }
@@ -103,7 +103,7 @@ describe('settingsSummary', () => {
     expect(
       settingsSummary({
         draftSource: null,
-        settings: roomSettingsFor({ game: null, locale: 'fr' })
+        settings: roomSettingsFor({ games: [], locale: 'fr' })
       })
     ).toEqual([{ count: 10, kind: 'roundCount' }])
   })
@@ -112,7 +112,7 @@ describe('settingsSummary', () => {
     expect(
       settingsSummary({
         draftSource: null,
-        settings: roomSettingsFor({ game: 'buzzer', locale: 'fr' })
+        settings: roomSettingsFor({ games: ['buzzer'], locale: 'fr' })
       })
     ).toContainEqual({ count: null, kind: 'roundCount' })
   })

@@ -10,7 +10,7 @@ import {
 } from './play-right-away'
 import { roomSettingsFor } from './room-settings'
 
-const onTheQuiz = roomSettingsFor({ game: 'quiz', locale: 'fr' })
+const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
 
 describe('canPlayRightAway', () => {
   it('[play-right-away] offers it where a way of answering owes no verdict', () => {
@@ -66,7 +66,10 @@ describe('settingsToPlayRightAway', () => {
   })
 
   it('[play-right-away] trades a remembered buzzer on matchsticks for moving the stick', () => {
-    const onTheMatches = roomSettingsFor({ game: 'matchsticks', locale: 'en' })
+    const onTheMatches = roomSettingsFor({
+      games: ['matchsticks'],
+      locale: 'en'
+    })
     const preferences = rememberSettings({
       preferences: null,
       settings: { ...onTheMatches, mode: DEFAULT_MODE_SETTINGS.buzzer }
@@ -78,7 +81,7 @@ describe('settingsToPlayRightAway', () => {
   })
 
   it('[play-right-away] keeps the reflex race on the buzzer it is raced on', () => {
-    const onTheRace = roomSettingsFor({ game: 'reflex', locale: 'en' })
+    const onTheRace = roomSettingsFor({ games: ['reflex'], locale: 'en' })
 
     expect(
       settingsToPlayRightAway({ preferences: null, settings: onTheRace }).mode

@@ -5,6 +5,7 @@ import type { PublicPlayer } from '@melee/protocol/room'
 import { arrivedPlayers } from './arrivals'
 
 const seat = (id: string, nickname: string): PublicPlayer => ({
+  board: null,
   id,
   isConnected: true,
   isReady: false,

@@ -138,11 +138,12 @@ front door opens. The draw between two rounds is the console's (`nextEntryAt`:
 another game before another entry of the same one, never the entry just
 played): it lands as an ordinary settings frame between the reveal and
 `host.nextRound`, so the wall reads the next game off `settings.game` like
-everything else. `POST /api/rooms` takes a `preset` — the games, the length
-and the teams — in place of a `game`; it ticks kinds, each opened on its
-defaults, because that request has no version handshake and a tab opened
-before variants still posts. The preset's name and why it ticks what it ticks
-are the app's, and never travel.
+everything else. `POST /api/rooms` takes the `games` ticked on home — none,
+one, or several opened as a line-up of four rounds a game; it ticks kinds,
+each opened on its defaults, because that request has no version handshake and
+a tab opened before variants still posts. Teams, board and judge never travel
+there: they are the host's, laid over the room by the console's first settings
+frame.
 
 - **Scores survive the switch.** Nothing a settings frame carries touches a
   seat's score; only `host.playAgain` starts them again.

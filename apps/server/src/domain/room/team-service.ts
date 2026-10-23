@@ -11,7 +11,7 @@ import {
   type TeamsSettings
 } from '@melee/protocol/team'
 
-import { advanceOnTrack, type TeamMove } from '@melee/core/board/board-strategy'
+import { advanceOnTrack, type PawnMove } from '@melee/core/board/board-strategy'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
 import { teamCountOf, teamIdAt } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
@@ -350,7 +350,7 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
  * What the round on screen walks each pawn, from the cases they stood on
  * before it. Empty on a room whose board is off.
  */
-const liveMoves = (room: Room): TeamMove[] => {
+const liveMoves = (room: Room): PawnMove[] => {
   const { board } = room.settings
 
   if (board.kind === 'off' || room.round === null) {
@@ -362,15 +362,15 @@ const liveMoves = (room: Room): TeamMove[] => {
     length: board.length,
     positions: new Map(room.teams.map((team) => [team.id, team.bankedCase])),
     results: room.teams.map((team) => ({
-      points: liveRoundResult(room, team.id),
-      teamId: team.id
+      pawnId: team.id,
+      points: liveRoundResult(room, team.id)
     })),
     strategy: board.strategy
   }).moves
 }
 
 const liveMoveOf = (room: Room, teamId: TeamId): number =>
-  liveMoves(room).find((move) => move.teamId === teamId)?.cases ?? 0
+  liveMoves(room).find((move) => move.pawnId === teamId)?.cases ?? 0
 
 /**
  * The round on screen paid into each team for good, called just before it is
@@ -381,7 +381,7 @@ export const bankTeamRound = (room: Room): void => {
 
   for (const team of room.teams) {
     team.bankedScore += liveRoundResult(room, team.id)
-    team.bankedCase += moves.find((move) => move.teamId === team.id)?.cases ?? 0
+    team.bankedCase += moves.find((move) => move.pawnId === team.id)?.cases ?? 0
   }
 }
 
@@ -400,7 +400,7 @@ export const resetTeamScores = (room: Room): void => {
 const boardPositionOf = (
   room: Room,
   team: RoomTeam,
-  moves: readonly TeamMove[]
+  moves: readonly PawnMove[]
 ): BoardPosition | null => {
   if (room.settings.board.kind === 'off') {
     return null
@@ -408,7 +408,7 @@ const boardPositionOf = (
 
   const move =
     room.phase === 'revealed'
-      ? (moves.find((entry) => entry.teamId === team.id)?.cases ?? 0)
+      ? (moves.find((entry) => entry.pawnId === team.id)?.cases ?? 0)
       : 0
 
   return { case: team.bankedCase + move, move }

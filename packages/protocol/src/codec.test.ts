@@ -34,7 +34,14 @@ const playerView: PlayerRoomView = {
   isHostConnected: true,
   phase: 'playing',
   players: [
-    { id: 'p1', isConnected: true, isReady: false, nickname: 'Alice', score: 2 }
+    {
+      board: null,
+      id: 'p1',
+      isConnected: true,
+      isReady: false,
+      nickname: 'Alice',
+      score: 2
+    }
   ],
   round: runningRound,
   roundElapsedMs: 8_200,

@@ -15,7 +15,6 @@ import {
   openWallPairingResponseSchema,
   type PairWallRequest,
   type PlaylistPreviewQuery,
-  type RoomPreset,
   roomExistsResponseSchema,
   type TrackSearchQuery,
   trackListResponseSchema,
@@ -55,20 +54,20 @@ const TOO_MANY_REQUESTS = 429
  * through the socket instead — see `infrastructure/messaging`.
  */
 export const createRoom = async ({
-  game,
+  games,
   locale,
-  preset,
   signal
 }: Cancellable & {
-  /** Omitted by the shelf's own front door: the room is opened, then the table decides. */
-  game?: ShelvedGame
+  /** The games ticked: none opens a room on nothing chosen, several a line-up. */
+  games: readonly ShelvedGame[]
   /** What the host reads, which is what a quiz opens on until they say otherwise. */
   locale: Locale
-  /** In place of `game`, for a room opened on a whole evening. */
-  preset?: RoomPreset
 }): Promise<Result<CreateRoomResponse, ApiFailure>> =>
   request(API_ROUTES.rooms, createRoomResponseSchema, {
-    body: JSON.stringify({ game, locale, preset } satisfies CreateRoomRequest),
+    body: JSON.stringify({
+      games: [...games],
+      locale
+    } satisfies CreateRoomRequest),
     headers: { 'content-type': 'application/json' },
     method: 'POST',
     signal
