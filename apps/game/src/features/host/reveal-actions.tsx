@@ -148,6 +148,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
                   random: Math.random,
                   rememberedFor: (game) =>
                     rememberedSetupFor({ game, preferences }),
+                  roundAt: view.round?.index ?? 0,
                   roundsLeft:
                     settings.roundCount === null
                       ? null

@@ -117,6 +117,34 @@ describe('an evening of several games', () => {
     expect(hostView(host)?.settings.game?.kind).toBe('blindtest')
   })
 
+  it('[running-order] keeps the order a host put the evening in', async () => {
+    const { host } = await harness.openRoom(EVENING)
+
+    host.send({
+      settings: { ...EVENING, runningOrder: [1, null, 0] },
+      type: 'host.updateSettings'
+    })
+    await waitFor(
+      () => hostView(host)?.settings.runningOrder !== null,
+      'the order'
+    )
+
+    expect(hostView(host)?.settings.runningOrder).toEqual([1, null, 0])
+  })
+
+  it('[running-order] refuses an order pointing past the line-up', async () => {
+    const { host } = await harness.openRoom(EVENING)
+
+    host.send({
+      settings: { ...EVENING, runningOrder: [0, 2] },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => errorsIn(host).length > 0, 'the refusal')
+
+    expect(errorsIn(host)[0]?.code).toBe('invalid_message')
+    expect(hostView(host)?.settings.runningOrder).toBeNull()
+  })
+
   it('[line-up] writes the game back into its entry, so a variant keeps its own source', async () => {
     const { host } = await harness.openRoom(TWO_BLIND_TESTS)
 

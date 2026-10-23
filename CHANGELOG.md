@@ -227,6 +227,10 @@ one part.
 
 - **Page views are counted under `melee`**, the analytics site id that took
   Taverla's history; the tracker sent `taverla` until now.
+- `[Shared]` **A room can hold the order of its rounds**, and
+  `PROTOCOL_VERSION` goes to 45. `settings.runningOrder` lists the entry each
+  round plays, or a round left to chance, and the draw follows it; it stays
+  `null`, and every evening drawn, until the console offers the switch.
 
 ### Breaking Changes
 

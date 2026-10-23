@@ -1,6 +1,6 @@
 # 42 — A prepared evening
 
-**In progress** — steps 1 to 4 done. Asked 23/10/2026, after stage 41. The host can prepare the
+**In progress** — steps 1 to 4 done, step 5's stored order done. Asked 23/10/2026, after stage 41. The host can prepare the
 evening's rounds before it starts — one, four or all thirty — each a game with
 its own options, and the rest is drawn. Every entry is played at least once,
 and nothing is played that the host has not either prepared or left to chance.
@@ -121,5 +121,16 @@ and nothing is played that the host has not either prepared or left to chance.
    even when it leaves a single entry, which `movedToEntry` alone would hand
    that game's own.
 5. The *In order* switch — the list as the running order, chance rounds as
-   rows, reordered by drag, its stored order. Preparing a second challenge or
+   rows, reordered by drag, its stored order. **Stored order done**:
+   `settings.runningOrder` (protocol 45), a row per round from the first —
+   a line-up index, or `null` for a round left to chance — `null` as a whole
+   while the evening is drawn, and never remembered past the room.
+   `scheduledEntryAt` (`core/room/running-order.ts`) plays the row, and draws
+   a chance row, a gone or played-out one, or a round past the order's end
+   among the entries serving their own content. Taking an entry out leaves
+   its rows to chance (`remappedOrder`), adding one plays it last, a skip
+   leaves its row to chance; the server refuses a row past the line-up
+   (`lineUpHolds`). **Left**: the switch and the drag list in
+   `EveningRounds`, which on turning the order on builds it from the list and
+   moves the next round onto its row. Preparing a second challenge or
    slate ahead still needs its line and key on the entry, which they are not.

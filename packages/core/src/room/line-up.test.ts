@@ -288,3 +288,55 @@ describe('fittedToAloud', () => {
     expect(aloud(onNothing).game).toBeNull()
   })
 })
+
+describe('the running order across line-up edits', () => {
+  const inOrder = (order: RoomSettings['runningOrder']): RoomSettings => ({
+    ...roomSettingsFor({
+      games: ['quiz', 'challenge', 'blindtest'],
+      locale: 'fr'
+    }),
+    runningOrder: order
+  })
+
+  it('[running-order] refuses a row pointing past the line-up', () => {
+    expect(lineUpHolds(inOrder([0, 3]))).toBe(false)
+    expect(lineUpHolds(inOrder([2, null, 0]))).toBe(true)
+  })
+
+  it('[running-order] refuses an order in a room still deciding', () => {
+    expect(lineUpHolds({ ...onNothing, runningOrder: [] })).toBe(false)
+  })
+
+  it('[running-order] plays a round added to an ordered evening last', () => {
+    const added = withEntryAdded({
+      game: 'slate',
+      locale: 'fr',
+      remembered: null,
+      settings: inOrder([1, null, 0, 2])
+    })
+
+    expect(added.runningOrder).toEqual([1, null, 0, 2, 3])
+  })
+
+  it('[running-order] leaves the rows of an entry taken out to chance', () => {
+    const taken = withoutEntry({
+      at: 1,
+      locale: 'fr',
+      rememberedFor: neverPlayed,
+      settings: inOrder([1, null, 0, 2])
+    })
+
+    expect(taken.runningOrder).toEqual([null, null, 0, 1])
+  })
+
+  it('[running-order] leaves a drawn evening drawn', () => {
+    const added = withEntryAdded({
+      game: 'slate',
+      locale: 'fr',
+      remembered: null,
+      settings: inOrder(null)
+    })
+
+    expect(added.runningOrder).toBeNull()
+  })
+})

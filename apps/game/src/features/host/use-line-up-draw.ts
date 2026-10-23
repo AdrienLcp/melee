@@ -6,14 +6,15 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { endsTheEvening, nextEntryAt } from '@melee/core/room/next-game'
+import { endsTheEvening } from '@melee/core/room/next-game'
 import { movedToEntry } from '@melee/core/room/room-settings'
+import { scheduledEntryAt } from '@melee/core/room/running-order'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 /**
  * Deals the next round's game as each reveal of an evening goes up
- * (`nextEntryAt` says how), and sends it as an ordinary settings frame — so
+ * (`scheduledEntryAt` says how), and sends it as an ordinary settings frame — so
  * the wall reads it off `settings.game`
  * like everything else, and the host's *change* is the same frame again.
  *
@@ -67,11 +68,13 @@ export const useLineUpDraw = ({
       return
     }
 
-    const drawn = nextEntryAt({
+    const drawn = scheduledEntryAt({
       lastAt: round.lineUpAt,
       lineUp: settings.lineUp,
+      order: settings.runningOrder,
       played: view.lineUpPlayed,
       random: Math.random,
+      roundAt: round.index,
       roundsLeft:
         settings.roundCount === null ? null : settings.roundCount - round.index
     })

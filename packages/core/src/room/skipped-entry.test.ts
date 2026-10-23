@@ -108,6 +108,7 @@ describe('withEntrySkipped', () => {
       played: [1, 0, 0],
       random: () => 0,
       rememberedFor: neverPlayed,
+      roundAt: 1,
       roundsLeft: 5,
       settings: onEntry({ at: 1, games: ['quiz', 'challenge', 'blindtest'] })
     })
@@ -128,6 +129,7 @@ describe('withEntrySkipped', () => {
       played: [3, 0],
       random: () => 0,
       rememberedFor: neverPlayed,
+      roundAt: 1,
       roundsLeft: 4,
       settings
     })
@@ -135,5 +137,24 @@ describe('withEntrySkipped', () => {
     expect(skipped.roundCount).toBe(settings.roundCount)
     expect(skipped.game?.kind).toBe('quiz')
     expect(skipped.lineUpAt).toBe(0)
+  })
+
+  it('[running-order] leaves a skipped round of an ordered evening to chance', () => {
+    const skipped = withEntrySkipped({
+      lastAt: 0,
+      locale: 'fr',
+      played: [1, 0, 0],
+      random: () => 0,
+      rememberedFor: neverPlayed,
+      roundAt: 1,
+      roundsLeft: 5,
+      settings: {
+        ...onEntry({ at: 1, games: ['quiz', 'challenge', 'blindtest'] }),
+        runningOrder: [0, 1, 2]
+      }
+    })
+
+    expect(skipped.runningOrder).toEqual([0, null, 1])
+    expect(skipped.game?.kind).toBe('blindtest')
   })
 })

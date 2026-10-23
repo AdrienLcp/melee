@@ -79,7 +79,8 @@ const hostPreferencesSchema = z.object({
       lineUp: true,
       lineUpAt: true,
       mode: true,
-      roundCount: true
+      roundCount: true,
+      runningOrder: true
     })
     .extend({
       board: boardSettingsSchema.optional().catch(undefined),

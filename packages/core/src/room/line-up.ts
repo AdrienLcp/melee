@@ -9,6 +9,7 @@ import {
   movedToGame,
   openedSetup
 } from './room-settings'
+import { orderHolds, orderWithEntryAdded, remappedOrder } from './running-order'
 
 /**
  * Whether `game` was opened from the entry `lineUpAt` points at — always, once
@@ -18,17 +19,19 @@ import {
  * without a screen.
  *
  * The kind is what has to agree, not the settings: the entry follows `game`
- * once the frame is accepted, which is `followedByLineUp`.
+ * once the frame is accepted, which is `followedByLineUp`. A running order
+ * points at entries of the line-up and nowhere else.
  */
 export const lineUpHolds = (settings: RoomSettings): boolean => {
-  const { game, lineUp, lineUpAt, teams } = settings
+  const { game, lineUp, lineUpAt, runningOrder, teams } = settings
 
   if (game === null) {
-    return lineUp.length === 0 && lineUpAt === null
+    return lineUp.length === 0 && lineUpAt === null && runningOrder === null
   }
 
   return (
     lineUpAt !== null &&
+    orderHolds({ lineUp, order: runningOrder }) &&
     lineUp[lineUpAt]?.kind === game.kind &&
     lineUp.every((entry) => isPlayableAloud({ game: entry.kind, teams }))
   )
@@ -96,8 +99,9 @@ export const toggledInLineUp = ({
  * The settings with one more entry of `game` at the end of the line-up, on
  * what this host last left the game set to — a second entry of a game already
  * there is a variant the host then sets apart. The next round stays where it
- * was: adding a round to the evening is not choosing it. A room still deciding
- * picks the game instead, and a full line-up is left as it is.
+ * was: adding a round to the evening is not choosing it, and an evening in
+ * order plays it last. A room still deciding picks the game instead, and a
+ * full line-up is left as it is.
  */
 export const withEntryAdded = ({
   game,
@@ -121,7 +125,14 @@ export const withEntryAdded = ({
 
   const joining = (remembered ?? openedSetup({ game, locale })).game
 
-  return { ...settings, lineUp: [...settings.lineUp, joining] }
+  return {
+    ...settings,
+    lineUp: [...settings.lineUp, joining],
+    runningOrder: orderWithEntryAdded({
+      at: settings.lineUp.length,
+      order: settings.runningOrder
+    })
+  }
 }
 
 /**
@@ -168,10 +179,19 @@ const withoutEntries = ({
   }
 
   const rest = kept.map(({ entry }) => entry)
-  const stillAt = kept.findIndex(({ index }) => index === lineUpAt)
+  const indexAfter = (index: number) => {
+    const at = kept.findIndex((candidate) => candidate.index === index)
 
-  if (stillAt !== -1) {
-    return { ...settings, lineUp: rest, lineUpAt: stillAt }
+    return at === -1 ? null : at
+  }
+  const runningOrder = remappedOrder({
+    indexAfter,
+    order: settings.runningOrder
+  })
+  const stillAt = lineUpAt === null ? null : indexAfter(lineUpAt)
+
+  if (stillAt !== null) {
+    return { ...settings, lineUp: rest, lineUpAt: stillAt, runningOrder }
   }
 
   const after = kept.findIndex(
@@ -186,7 +206,7 @@ const withoutEntries = ({
         at,
         locale,
         remembered: rememberedFor(landing.kind),
-        settings: { ...settings, lineUp: rest }
+        settings: { ...settings, lineUp: rest, runningOrder }
       })
 }
 

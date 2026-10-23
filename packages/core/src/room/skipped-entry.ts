@@ -3,8 +3,9 @@ import type { Locale } from '@melee/protocol/locale'
 import type { RoomSettings } from '@melee/protocol/room'
 
 import { capabilitiesOf } from './game-capabilities'
-import { isPlayedOut, nextEntryAt } from './next-game'
+import { isPlayedOut } from './next-game'
 import { type GameSetup, movedToEntry } from './room-settings'
+import { remappedOrder, scheduledEntryAt } from './running-order'
 
 const isBlank = (text: string | null | undefined): boolean =>
   (text ?? '').trim() === ''
@@ -86,7 +87,8 @@ export const offersSkip = ({
  * The settings with the entry the next round is on taken out of the evening
  * and another drawn in its place. The evening keeps its length: the rounds
  * that entry would have played go back to the draw, which deals them among
- * the entries left — played ones included.
+ * the entries left — played ones included. In an evening in order, its row
+ * is left to chance.
  */
 export const withEntrySkipped = ({
   lastAt,
@@ -94,6 +96,7 @@ export const withEntrySkipped = ({
   played,
   random,
   rememberedFor,
+  roundAt,
   roundsLeft,
   settings
 }: {
@@ -103,6 +106,8 @@ export const withEntrySkipped = ({
   played: readonly number[]
   random: () => number
   rememberedFor: (game: GameKind) => GameSetup | null
+  /** As `scheduledEntryAt`'s. */
+  roundAt: number
   /** As `nextEntryAt`'s. */
   roundsLeft: number | null
   settings: RoomSettings
@@ -120,11 +125,18 @@ export const withEntrySkipped = ({
       : lastAt > lineUpAt
         ? lastAt - 1
         : lastAt
-  const drawn = nextEntryAt({
+  const runningOrder = remappedOrder({
+    indexAfter: (index) =>
+      index === lineUpAt ? null : index > lineUpAt ? index - 1 : index,
+    order: settings.runningOrder
+  })
+  const drawn = scheduledEntryAt({
     lastAt: shiftedLastAt,
     lineUp: rest,
+    order: runningOrder,
     played: withoutIndex(played, lineUpAt),
     random,
+    roundAt,
     roundsLeft
   })
   const landing = drawn === null ? undefined : rest[drawn]
@@ -140,7 +152,7 @@ export const withEntrySkipped = ({
       at: drawn,
       locale,
       remembered: rememberedFor(landing.kind),
-      settings: { ...settings, lineUp: rest }
+      settings: { ...settings, lineUp: rest, runningOrder }
     }),
     autoAdvanceMs: settings.autoAdvanceMs,
     roundCount: settings.roundCount

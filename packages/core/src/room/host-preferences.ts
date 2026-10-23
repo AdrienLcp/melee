@@ -22,10 +22,13 @@ export type HostPreferences = {
   /**
    * Everything no game answers — the teams, the board and the judge among it —
    * so it survives every switch and opens every table, one game or several.
-   * Not the line-up, which is this evening's and not this host's: what to play
-   * tonight is decided tonight.
+   * Not the line-up nor its order, which are this evening's and not this
+   * host's: what to play tonight is decided tonight.
    */
-  room: Omit<RoomSettings, keyof GameSetup | 'lineUp' | 'lineUpAt'>
+  room: Omit<
+    RoomSettings,
+    keyof GameSetup | 'lineUp' | 'lineUpAt' | 'runningOrder'
+  >
 }
 
 const isEvening = (settings: RoomSettings): boolean =>
@@ -133,8 +136,16 @@ export const rememberSettings = ({
   preferences: HostPreferences | null
   settings: RoomSettings
 }): HostPreferences => {
-  const { autoAdvanceMs, game, lineUp, lineUpAt, mode, roundCount, ...room } =
-    settings
+  const {
+    autoAdvanceMs,
+    game,
+    lineUp,
+    lineUpAt,
+    mode,
+    roundCount,
+    runningOrder,
+    ...room
+  } = settings
   const evening = isEvening(settings)
   const filed =
     evening && game !== null

@@ -123,6 +123,9 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
  */
 export const LINE_UP_MAX_ENTRIES = 12
 
+/** The longest evening a room may be set to, in rounds. */
+export const ROUND_COUNT_MAX = 50
+
 const lineUpAtSchema = z
   .number()
   .int()
@@ -197,7 +200,16 @@ export const roomSettingsSchema = z.object({
    * the wrong one for a host running a charade evening, who stops when they
    * stop. The final board already knows how to arrive on a press.
    */
-  roundCount: z.number().int().min(1).max(50).nullable(),
+  roundCount: z.number().int().min(1).max(ROUND_COUNT_MAX).nullable(),
+  /**
+   * The evening's rounds in the order the host put them, or `null` while it is
+   * drawn. A row per round, from the first: the line-up entry it plays, or
+   * `null` for a round left to chance. Rounds past its end are drawn too.
+   *
+   * Indices rather than entries, so an entry changed in the fold keeps its
+   * place; an edit that takes an entry out rewrites the rows with it.
+   */
+  runningOrder: z.array(lineUpAtSchema).max(ROUND_COUNT_MAX).nullable(),
   /** Whether the room plays in teams, and how its seats get into them — see `team.ts`. */
   teams: teamsSettingsSchema
 })
@@ -237,6 +249,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 10,
+  runningOrder: null,
   teams: DEFAULT_TEAMS_SETTINGS
 }
 
