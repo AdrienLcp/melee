@@ -152,9 +152,8 @@ frame.
   starts whenever.
 
 **Teams are the shell's, and no game's arm learns what one is.**
-`settings.teams` is `off`, `drawn`, `chosen` or `aloud` with a `count` of 2–6,
-or `teamsOnly` — which keeps no team on the server at all: each team is one seat
-named after itself. Under `drawn`, `chosen` or `aloud` the room holds that many teams,
+`settings.teams` is `off`, or `drawn`, `chosen` or `aloud` with a `count` of
+2–6. Under `drawn`, `chosen` or `aloud` the room holds that many teams,
 `team-1` onwards, each coloured by its pawn and named `null` until the host
 names it, so every screen says the name its own dictionary gives the colour.
 

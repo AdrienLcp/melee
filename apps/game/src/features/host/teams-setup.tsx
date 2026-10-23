@@ -17,7 +17,7 @@ import { NumberChoice } from './number-choice'
 
 import './teams-setup.sass'
 
-const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'teamsOnly', 'aloud'] as const
+const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'aloud'] as const
 
 type TeamsKind = (typeof TEAMS_KINDS)[number]
 
@@ -44,14 +44,10 @@ const teamsOfKind = (
   kind: TeamsKind,
   current: TeamsSettings
 ): TeamsSettings => {
-  const count =
-    current.kind === 'off' || current.kind === 'teamsOnly'
-      ? FIRST_TEAM_COUNT
-      : current.count
+  const count = current.kind === 'off' ? FIRST_TEAM_COUNT : current.count
 
   switch (kind) {
     case 'off':
-    case 'teamsOnly':
       return { kind }
     case 'aloud':
     case 'drawn':
@@ -112,7 +108,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         }))}
         value={teams.kind}
       />
-      {teams.kind !== 'off' && teams.kind !== 'teamsOnly' && (
+      {teams.kind !== 'off' && (
         <NumberChoice
           className='team-count'
           isDisabled={isDisabled}
@@ -132,9 +128,6 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         <p className='hint' role='status'>
           {translate('team.setting.aloudNeedsNoPhone')}
         </p>
-      )}
-      {teams.kind === 'teamsOnly' && (
-        <p className='hint'>{translate('team.setting.teamsOnlyHint')}</p>
       )}
     </div>
   )

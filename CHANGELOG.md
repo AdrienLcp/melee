@@ -271,6 +271,12 @@ one part.
 
 ### Breaking Changes
 
+- `[Shared]` **No more *A screen per team***, and `PROTOCOL_VERSION` goes to
+  47. It made each joining screen a team named after it — every player for
+  themselves with a colour on the board — so a table that shares a screen
+  joins under the team's name and plays without teams. A setup remembered on it
+  opens without teams; the rest of it is kept.
+
 - `[Shared]` **Every round is everyone's, and a duel is asked for one round at
   a time**, and `PROTOCOL_VERSION` goes to 42. The *Who plays the round* choice
   is gone from the lobby and the reveal: no more rounds one team plays while

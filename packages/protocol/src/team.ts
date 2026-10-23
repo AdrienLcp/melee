@@ -22,10 +22,6 @@ const teamCountSchema = z.number().int().min(MIN_TEAMS).max(MAX_TEAMS)
  * the lobby. Either way a seat still without a team when a round opens is
  * placed by the late-seat rule, so *Start* never waits on a phone.
  *
- * `teamsOnly` has each team take one seat named after itself, on one phone or
- * on the wall: the server gives every seat a team of its own as it arrives,
- * named after it, so the board and the team scores work as in any other room.
- *
  * `aloud` is a table with no phone at all: the teams are named on the console,
  * no screen takes a seat, the wall shows the question and the host taps the
  * teams that had it (`host.awardTeams`). A game that needs a screen in every
@@ -35,7 +31,6 @@ export const teamsSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('off') }),
   z.object({ count: teamCountSchema, kind: z.literal('drawn') }),
   z.object({ count: teamCountSchema, kind: z.literal('chosen') }),
-  z.object({ kind: z.literal('teamsOnly') }),
   z.object({ count: teamCountSchema, kind: z.literal('aloud') })
 ])
 

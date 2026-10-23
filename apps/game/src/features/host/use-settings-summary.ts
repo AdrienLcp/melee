@@ -53,7 +53,7 @@ export const useSetupSummaries = ({
   const teams = settings.teams
 
   const teamsSummary =
-    teams.kind === 'off' || teams.kind === 'teamsOnly'
+    teams.kind === 'off'
       ? translate(`team.summary.${teams.kind}`)
       : translate(`team.summary.${teams.kind}`, { count: teams.count })
 

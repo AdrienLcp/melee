@@ -19,7 +19,11 @@ import { gameKindSchema, gameSettingsSchema } from '@melee/protocol/game'
 import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 import { modeSettingsSchema, roomSettingsSchema } from '@melee/protocol/room'
-import type { TeamsSettings } from '@melee/protocol/team'
+import {
+  DEFAULT_TEAMS_SETTINGS,
+  type TeamsSettings,
+  teamsSettingsSchema
+} from '@melee/protocol/team'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 
@@ -85,7 +89,9 @@ const hostPreferencesSchema = z.object({
     .extend({
       board: boardSettingsSchema.optional().catch(undefined),
       /** Stored before a room could have a judge, which no room did. */
-      hasJudge: z.boolean().catch(false)
+      hasJudge: z.boolean().catch(false),
+      /** *A screen per team* is gone: its seats played as everyone for themselves. */
+      teams: teamsSettingsSchema.catch(DEFAULT_TEAMS_SETTINGS)
     })
     .transform(({ board, ...room }) => ({
       ...room,

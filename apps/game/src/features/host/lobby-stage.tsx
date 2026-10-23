@@ -187,36 +187,34 @@ const LobbyTeams: React.FC<{
 
   return (
     <>
-      {controls !== null &&
-        teams.kind !== 'off' &&
-        teams.kind !== 'teamsOnly' && (
-          <div className='team-deal'>
-            <NumberChoice
-              className='team-count'
-              isDisabled={!controls.isLive}
-              label={translate('team.count')}
-              onChange={(count) => {
-                controls.onSettingsChange({
-                  ...view.settings,
-                  teams: { ...teams, count }
-                })
-              }}
-              optionLabel={String}
-              options={TEAM_COUNTS}
-              value={teams.count}
-            />
-            {isDrawn && (
-              <Button
-                className='draw-teams'
-                isDisabled={!controls.isLive || isShortOfPlayers}
-                onPress={deal}
-                variant={hasDealt ? 'outlined' : 'filled'}
-              >
-                {translate(hasDealt ? 'team.redraw' : 'team.draw')}
-              </Button>
-            )}
-          </div>
-        )}
+      {controls !== null && teams.kind !== 'off' && (
+        <div className='team-deal'>
+          <NumberChoice
+            className='team-count'
+            isDisabled={!controls.isLive}
+            label={translate('team.count')}
+            onChange={(count) => {
+              controls.onSettingsChange({
+                ...view.settings,
+                teams: { ...teams, count }
+              })
+            }}
+            optionLabel={String}
+            options={TEAM_COUNTS}
+            value={teams.count}
+          />
+          {isDrawn && (
+            <Button
+              className='draw-teams'
+              isDisabled={!controls.isLive || isShortOfPlayers}
+              onPress={deal}
+              variant={hasDealt ? 'outlined' : 'filled'}
+            >
+              {translate(hasDealt ? 'team.redraw' : 'team.draw')}
+            </Button>
+          )}
+        </div>
+      )}
       {controls !== null && isShortOfPlayers && (
         <p className='draw-needs'>
           {translate('team.drawNeeds', { count: teamCountOf(teams) })}

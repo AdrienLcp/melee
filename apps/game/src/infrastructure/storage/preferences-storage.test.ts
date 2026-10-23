@@ -39,6 +39,27 @@ describe('readStoredHostPreferences', () => {
     vi.unstubAllGlobals()
   })
 
+  it('[host-setup] reads a setup left on a screen per team as one without teams, keeping the rest', () => {
+    store.set(
+      HOST_SETUP_KEY,
+      JSON.stringify({
+        games: {},
+        room: {
+          ...DEFAULT_ROOM_SETTINGS,
+          hasJudge: true,
+          teams: { kind: 'teamsOnly' }
+        }
+      })
+    )
+
+    const stored = readStoredHostPreferences()
+
+    expect(stored.status === 'success' && stored.data?.room).toMatchObject({
+      hasJudge: true,
+      teams: { kind: 'off' }
+    })
+  })
+
   it('[host-setup] reads a setup in teams stored before the board as one raced on the track', () => {
     store.set(HOST_SETUP_KEY, storedBeforeTheBoard({ count: 3, kind: 'drawn' }))
 

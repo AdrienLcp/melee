@@ -1142,17 +1142,13 @@ export const FR_DICTIONARY = defineDictionary({
       drawn: 'Tirées au sort',
       label: 'Équipes',
       locked: 'Les équipes et le plateau se règlent avant la première manche.',
-      off: 'Chacun pour soi',
-      teamsOnly: 'Un écran par équipe',
-      teamsOnlyHint:
-        'Chaque équipe rejoint sur un seul écran, sous le nom de l’équipe.'
+      off: 'Chacun pour soi'
     },
     summary: {
       aloud: '{count:number} équipes à voix haute',
       chosen: '{count:number} équipes au choix',
       drawn: '{count:number} équipes tirées au sort',
-      off: 'Sans équipes',
-      teamsOnly: 'Un écran par équipe'
+      off: 'Sans équipes'
     },
     title: 'Les équipes',
     unassigned: {

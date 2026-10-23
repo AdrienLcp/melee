@@ -7,11 +7,10 @@
     gap: var(--space-s)
     min-width: 0
 
-    // Five stamps, the French teams-only label the longest: five divides into
-    // no grid but a row and a column, so one row while all five fit and one
-    // column under it.
+    // One row while every stamp fits — the English row measures 615px — and
+    // one column under it.
     .teams-kind
-      @include strip.stacks-below(60rem)
+      @include strip.stacks-below(40rem)
 
     .team-count
       @include strip.stacks-below(14rem)

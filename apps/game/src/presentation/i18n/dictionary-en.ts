@@ -1240,16 +1240,13 @@ export const EN_DICTIONARY = defineDictionary({
       drawn: 'Drawn',
       label: 'Teams',
       locked: 'Teams and the board are settled before the first round.',
-      off: 'Every player for themselves',
-      teamsOnly: 'A screen per team',
-      teamsOnlyHint: 'Each team joins on one screen, under the team’s name.'
+      off: 'Every player for themselves'
     },
     summary: {
       aloud: '{count:number} teams answering aloud',
       chosen: '{count:number} teams, players choose',
       drawn: '{count:number} drawn teams',
-      off: 'No teams',
-      teamsOnly: 'A screen per team'
+      off: 'No teams'
     },
     title: 'The teams',
     unassigned: {
