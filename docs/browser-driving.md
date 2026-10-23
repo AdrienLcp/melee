@@ -356,6 +356,15 @@ does not give its unwrapped width back — `WONDERWALL` read 0.983 broken in two
 and 0.927 whole, on one node at one size — so a sample taken in a column narrow
 enough to break it describes a face that does not exist.
 
+## A stylesheet written by the shell can reach the page empty
+
+A file created with `cat > x.sass <<EOF` is truncated before it is written, and
+Vite's watcher can read it in between: the page gets an empty `<style>` for it,
+a reload keeps serving the empty module, and the change reads as a selector
+that matches nothing. Read `style[data-vite-dev-id*="name"]`'s text before
+debugging the rule; append a byte and take it back off to force a recompile, or
+write the file with the editor's tools in the first place.
+
 ## Two things a browser can be asked that no test can
 
 - **What the answer is, mid-round.** The console does not render a blind test's
