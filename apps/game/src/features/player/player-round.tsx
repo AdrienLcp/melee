@@ -432,7 +432,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     return (
       <section className='player-round notice'>
         <NoticeCard
-          detail={translate('team.duel.watch')}
           title={translate('team.duel.title', {
             first: nameOf(firstId),
             second: nameOf(secondId)

@@ -94,7 +94,6 @@ export const PlayRightAway: React.FC<PlayRightAwayProps> = ({
           </Button>
         </p>
       )}
-      <p className='aside'>{translate('join.rightAway.joinLater')}</p>
     </Form>
   )
 }

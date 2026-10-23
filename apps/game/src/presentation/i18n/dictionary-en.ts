@@ -224,7 +224,7 @@ export const EN_DICTIONARY = defineDictionary({
         'Cut a vegetable into two halves of the same weight, stack the most raclette potatoes: the challenge is played at the table, away from every screen. The host puts it up on the wall, says who came first, second and third, and the points land on the board like any round’s.'
     },
     line: {
-      description: 'Shown large on the wall. Left empty, you say it aloud.',
+      description: 'Left empty, you say it aloud.',
       label: 'The challenge',
       placeholder: 'Stack the most potatoes'
     },
@@ -383,7 +383,6 @@ export const EN_DICTIONARY = defineDictionary({
       chance: {
         among: 'among {games}, never the same game twice in a row',
         closed: 'Nothing else to draw',
-        closedHint: 'The evening ends once these rounds are played.',
         counted: defineTranslation('{count:plural}', {
           plural: {
             count: {
@@ -394,7 +393,6 @@ export const EN_DICTIONARY = defineDictionary({
         }),
         endless: 'Then by chance, until you stop',
         none: 'Nothing left to chance',
-        noneHint: 'Every round still to play is already in the list.',
         over: 'too many for {total:number} rounds',
         overHint:
           'Every round added is played at least once, so the evening has to grow.',
@@ -441,8 +439,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     game: {
       label: 'What we’re playing',
-      prompt:
-        'Tick one and the table is set, or several to play them in a row. You can change your mind later.'
+      prompt: 'Tick one and the table is set, or several to play them in a row.'
     },
     hostDecides: 'You decide',
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
@@ -607,7 +604,7 @@ export const EN_DICTIONARY = defineDictionary({
     silent: 'never pressed',
     tagline: 'Count in your head. Stop on the dot.',
     target: {
-      description: 'Seconds, from 10 to 180. Shown large on the wall.',
+      description: 'Seconds, from 10 to 180.',
       draw: 'Draw another',
       label: 'Count to'
     }
@@ -635,8 +632,7 @@ export const EN_DICTIONARY = defineDictionary({
   join: {
     divider: 'or',
     host: {
-      action: 'Open a table',
-      description: 'You run the table. The others just have to join.'
+      action: 'Open a table'
     },
     player: {
       action: 'Join',
@@ -651,7 +647,6 @@ export const EN_DICTIONARY = defineDictionary({
       action: 'Play right away',
       as: 'As {nickname}',
       change: 'Change',
-      joinLater: 'The others can join you along the way.',
       judged:
         'Here the host judges every answer, so the table waits for its players.',
       name: 'What should we call you?',
@@ -854,7 +849,6 @@ export const EN_DICTIONARY = defineDictionary({
       },
       title: 'This device',
       wall: {
-        description: 'The TV or the projector shows the game, big.',
         label: 'Become the room’s screen'
       }
     }
@@ -943,7 +937,6 @@ export const EN_DICTIONARY = defineDictionary({
   },
   quiz: {
     adult: {
-      hint: 'You are the only one who knows who is at the table.',
       label: 'Include adult questions'
     },
     category: {
@@ -1112,7 +1105,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     key: {
       field: 'Answer for {item}',
-      hint: 'Kept on this screen and sent when the sheets open. Players only see an answer once you reveal it.',
+      hint: 'Kept on this screen, and sent when the sheets open.',
       label: 'Answer key',
       summary: defineTranslation('{count:plural}', {
         plural: { count: { other: 'Hidden · {?} noted' } }
@@ -1120,7 +1113,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     labels: {
       duplicate: 'Another item already shows this.',
-      hint: 'Leave a box empty to keep its number. A letter, an emoji or a short word all work.',
+      hint: 'Leave a box empty to keep its number.',
       label: 'Names on the items',
       none: 'Numbered 1, 2, 3…',
       some: defineTranslation('{count:plural}', {
@@ -1151,8 +1144,7 @@ export const EN_DICTIONARY = defineDictionary({
       key: 'Answer: {key}',
       next: 'Next',
       previous: 'Previous',
-      saved:
-        'Saved as you write. You can change an answer until the host collects it.',
+      saved: 'You can change an answer until the host collects it.',
       tile: {
         empty: '{item}, empty',
         filled: '{item}: {answer}',
@@ -1210,10 +1202,7 @@ export const EN_DICTIONARY = defineDictionary({
       'At least {count:number} players to make {count:number} teams — or pick fewer teams.',
     /** Two seats head to head, each named beside its team's pawn. */
     duel: {
-      title: '{first} vs {second}',
-      /** What a seat watching the duel reads. */
-      watch:
-        'Two players face off, each for their team, while the room watches.'
+      title: '{first} vs {second}'
     },
     empty: 'Nobody yet',
     final: {

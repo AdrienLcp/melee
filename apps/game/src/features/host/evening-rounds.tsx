@@ -502,7 +502,6 @@ const EveningChanceLine: React.FC<{
         <ChanceSaid
           count='0'
           headline={translate('host.evening.chance.closed')}
-          hint={translate('host.evening.chance.closedHint')}
         />
       )
     case 'endless':
@@ -518,7 +517,6 @@ const EveningChanceLine: React.FC<{
         <ChanceSaid
           count='0'
           headline={translate('host.evening.chance.none')}
-          hint={translate('host.evening.chance.noneHint')}
         />
       ) : (
         <ChanceSaid
@@ -576,13 +574,13 @@ const OverTheCount: React.FC<{
 const ChanceSaid: React.FC<{
   count: string
   headline: string
-  hint: string
+  hint?: string
 }> = ({ count, headline, hint }) => (
   <div className='evening-chance'>
     <span className='count'>{count}</span>
     <span className='said'>
       <span className='headline'>{headline}</span>
-      <span className='hint'>{hint}</span>
+      {hint !== undefined && <span className='hint'>{hint}</span>}
     </span>
   </div>
 )

@@ -44,7 +44,6 @@ export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
         >
           {translate('join.host.action')}
         </Button>
-        <p className='aside'>{translate('join.host.description')}</p>
       </div>
 
       {canPlayRightAway(game) ? (

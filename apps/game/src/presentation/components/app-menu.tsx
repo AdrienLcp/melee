@@ -527,13 +527,8 @@ export const AppMenu: React.FC = () => {
                       variant='outlined'
                     >
                       <ScreenIcon />
-                      <span className='words'>
-                        <span className='name'>
-                          {translate('menu.thisDevice.wall.label')}
-                        </span>
-                        <span className='description'>
-                          {translate('menu.thisDevice.wall.description')}
-                        </span>
+                      <span className='name'>
+                        {translate('menu.thisDevice.wall.label')}
                       </span>
                     </Link>
                   )}

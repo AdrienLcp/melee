@@ -144,7 +144,6 @@ const QuestionBankSettings: React.FC<{
       */}
       {hasAdultContent(game.language) && (
         <Switch
-          description={translate('quiz.adult.hint')}
           isDisabled={isDisabled}
           isSelected={game.allowsAdultContent}
           label={translate('quiz.adult.label')}

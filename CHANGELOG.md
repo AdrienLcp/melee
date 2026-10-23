@@ -143,6 +143,15 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Fewer sentences that say what the screen already shows.** Gone:
+  the line under *Open a table* and under *Play right away*, the one under
+  *Become the room's screen*, the adult questions' hint, the line a seat
+  watching a duel read under *A vs B*, and the hint under *Nothing else to
+  draw* and *Nothing left to chance*. Shortened: the game picker's prompt, the
+  challenge line and the inner clock's target (no more *shown large on the
+  wall*), the slate's labels hint, its answer key's hint and the saved-sheet
+  line. The search hint stays, because it says the query leaves for Deezer.
+
 - `[Game]` **The front door offers one way back, and only to the host.** The
   four *Resume* pills under the code box are gone — a player who types the
   code again lands on the seat it already holds, so they said nothing the

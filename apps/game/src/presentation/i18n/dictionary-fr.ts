@@ -203,7 +203,7 @@ export const FR_DICTIONARY = defineDictionary({
         'Couper un légume en deux moitiés du même poids, empiler le plus de pommes de terre à raclette : le défi se joue à table, loin des écrans. L’hôte l’affiche au mur, dit qui finit premier, deuxième et troisième, et les points arrivent au tableau comme ceux de n’importe quelle manche.'
     },
     line: {
-      description: 'Affiché en grand au mur. Vide, tu l’annonces à voix haute.',
+      description: 'Vide, tu l’annonces à voix haute.',
       label: 'Le défi',
       placeholder: 'Empiler le plus de pommes de terre'
     },
@@ -352,7 +352,6 @@ export const FR_DICTIONARY = defineDictionary({
       chance: {
         among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
         closed: 'Rien d’autre à tirer',
-        closedHint: 'La soirée finit une fois ces manches jouées.',
         counted: defineTranslation('{count:plural}', {
           plural: {
             count: { one: 'manche au hasard', other: 'manches au hasard' }
@@ -360,7 +359,6 @@ export const FR_DICTIONARY = defineDictionary({
         }),
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
         none: 'Plus rien au hasard',
-        noneHint: 'Chaque manche restante est déjà dans la liste.',
         over: 'de trop pour {total:number} manches',
         overHint:
           'Chaque manche ajoutée se joue au moins une fois : la soirée doit s’allonger.',
@@ -411,7 +409,7 @@ export const FR_DICTIONARY = defineDictionary({
     game: {
       label: 'À quoi on joue',
       prompt:
-        'Coches-en un et la table est prête, plusieurs pour les enchaîner. Tu pourras changer d’avis.'
+        'Coches-en un et la table est prête, plusieurs pour les enchaîner.'
     },
     hostDecides: 'Tu décides',
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
@@ -562,7 +560,7 @@ export const FR_DICTIONARY = defineDictionary({
     silent: 'n’a pas appuyé',
     tagline: 'Compte dans ta tête. Arrête-toi pile.',
     target: {
-      description: 'En secondes, de 10 à 180. Affiché en grand sur le mur.',
+      description: 'En secondes, de 10 à 180.',
       draw: 'Tirer au sort',
       label: 'Compter jusqu’à'
     }
@@ -590,9 +588,7 @@ export const FR_DICTIONARY = defineDictionary({
   join: {
     divider: 'ou',
     host: {
-      action: 'Ouvrir une table',
-      description:
-        'C’est toi qui tiens la table. Les autres n’ont plus qu’à rejoindre.'
+      action: 'Ouvrir une table'
     },
     player: {
       action: 'Rejoindre',
@@ -602,7 +598,6 @@ export const FR_DICTIONARY = defineDictionary({
       action: 'Jouer tout de suite',
       as: 'Sous le nom de {nickname}',
       change: 'Changer',
-      joinLater: 'Les autres pourront te rejoindre en route.',
       judged: 'Ici, l’hôte juge chaque réponse : la table attend ses joueurs.',
       name: 'On t’appelle comment ?',
       starting: 'On installe la table…'
@@ -790,7 +785,6 @@ export const FR_DICTIONARY = defineDictionary({
       },
       title: 'Cet appareil',
       wall: {
-        description: 'La télé ou le projecteur affiche la partie en grand.',
         label: 'Devenir l’écran de la pièce'
       }
     }
@@ -867,7 +861,6 @@ export const FR_DICTIONARY = defineDictionary({
   },
   quiz: {
     adult: {
-      hint: 'Tu es le seul à savoir qui est à table.',
       label: 'Inclure les questions pour adultes'
     },
     category: {
@@ -1014,7 +1007,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     key: {
       field: 'Réponse pour {item}',
-      hint: 'Gardé sur cet écran et envoyé à l’ouverture des feuilles. Les joueurs ne voient une réponse que quand vous la dévoilez.',
+      hint: 'Gardé sur cet écran, et envoyé à l’ouverture des feuilles.',
       label: 'Corrigé',
       summary: defineTranslation('{count:plural}', {
         plural: {
@@ -1024,7 +1017,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     labels: {
       duplicate: 'Une autre case affiche déjà ça.',
-      hint: 'Laisse une case vide pour garder son numéro. Une lettre, un emoji ou un mot court, tout marche.',
+      hint: 'Laisse une case vide pour garder son numéro.',
       label: 'Noms des choses à deviner',
       none: 'Numérotées 1, 2, 3…',
       some: defineTranslation('{count:plural}', {
@@ -1055,8 +1048,7 @@ export const FR_DICTIONARY = defineDictionary({
       key: 'Réponse : {key}',
       next: 'Suivant',
       previous: 'Précédent',
-      saved:
-        'Enregistré au fil de l’eau. Tu peux changer une réponse jusqu’à ce que l’hôte la ramasse.',
+      saved: 'Tu peux changer une réponse jusqu’à ce que l’hôte la ramasse.',
       tile: {
         empty: '{item}, vide',
         filled: '{item} : {answer}',
@@ -1109,9 +1101,7 @@ export const FR_DICTIONARY = defineDictionary({
     drawNeeds:
       'Il faut au moins {count:number} joueurs pour faire {count:number} équipes — ou choisis moins d’équipes.',
     duel: {
-      title: '{first} contre {second}',
-      watch:
-        'Deux joueurs s’affrontent, chacun pour son équipe — toute la salle regarde.'
+      title: '{first} contre {second}'
     },
     empty: 'Personne pour l’instant',
     final: {
