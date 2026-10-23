@@ -67,6 +67,13 @@ export type GameCapabilities = {
    * whole room.
    */
   playsDuels: boolean
+  /**
+   * Whether a round of it brings its own question. The bare buzzer, the slate
+   * and the challenge play what the host brings, so an entry of one plays once
+   * an evening — a second round would replay the same sheet or the same line —
+   * and only the others fill the rounds left over.
+   */
+  servesItsOwnContent: boolean
 }
 
 /**
@@ -80,45 +87,52 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: SERVED_MODES,
         playsAloud: true,
-        playsDuels: true
+        playsDuels: true,
+        servesItsOwnContent: true
       }
     case 'buzzer':
     case 'challenge':
       return {
         answerModes: BUZZER_ONLY,
         playsAloud: true,
-        playsDuels: false
+        playsDuels: false,
+        servesItsOwnContent: false
       }
     case 'matchsticks':
       return {
         answerModes: MOVE_OR_BUZZER,
         playsAloud: true,
-        playsDuels: false
+        playsDuels: false,
+        servesItsOwnContent: true
       }
     case 'innerclock':
     case 'reflex':
       return {
         answerModes: BUZZER_ONLY,
         playsAloud: false,
-        playsDuels: false
+        playsDuels: false,
+        servesItsOwnContent: true
       }
     case 'slate':
       return {
         answerModes: TYPED_ONLY,
         playsAloud: false,
-        playsDuels: false
+        playsDuels: false,
+        servesItsOwnContent: false
       }
     case 'timeline':
       return {
         answerModes: ORDER_ONLY,
         playsAloud: false,
-        playsDuels: true
+        playsDuels: true,
+        servesItsOwnContent: true
       }
     case 'worldmap':
       return {
         answerModes: POINT_ONLY,
         playsAloud: false,
-        playsDuels: true
+        playsDuels: true,
+        servesItsOwnContent: true
       }
   }
 }

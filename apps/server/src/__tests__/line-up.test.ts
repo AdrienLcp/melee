@@ -3,6 +3,7 @@ import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
+  DEFAULT_CHALLENGE_SETTINGS,
   type GameSettings
 } from '@melee/protocol/game'
 import { createRoomResponseSchema } from '@melee/protocol/http'
@@ -167,6 +168,63 @@ describe('an evening of several games', () => {
     )
 
     expect(hostView(host)?.round?.lineUpAt).toBe(0)
+  })
+
+  it('[line-up] counts each round towards its entry, until the table plays again', async () => {
+    const { code, host } = await harness.openRoom(EVENING)
+    await harness.seat({ code, nickname: 'Anna' })
+
+    expect(hostView(host)?.lineUpPlayed).toEqual([0, 0])
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    expect(hostView(host)?.lineUpPlayed).toEqual([1, 0])
+
+    host.send({ type: 'host.endGame' })
+    await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
+    host.send({ type: 'host.playAgain' })
+    await waitFor(() => hostView(host)?.phase === 'lobby', 'the new game')
+
+    expect(hostView(host)?.lineUpPlayed).toEqual([0, 0])
+  })
+
+  it('[line-up] ends an evening once every host-brought entry is played', async () => {
+    const hostBrought: RoomSettings = {
+      ...FAST_GAME,
+      game: DEFAULT_BUZZER_SETTINGS,
+      lineUp: [DEFAULT_BUZZER_SETTINGS, DEFAULT_CHALLENGE_SETTINGS],
+      lineUpAt: 0,
+      roundCount: 6
+    }
+    const { code, host } = await harness.openRoom(hostBrought)
+    await harness.seat({ code, nickname: 'Anna' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the buzzer')
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'its reveal')
+    host.send({
+      settings: {
+        ...hostBrought,
+        game: DEFAULT_CHALLENGE_SETTINGS,
+        lineUpAt: 1
+      },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => hostView(host)?.settings.lineUpAt === 1, 'the draw')
+    host.send({ challengeText: 'Mime a film', type: 'host.nextRound' })
+    await waitFor(
+      () => hostView(host)?.round?.content.kind === 'challenge',
+      'the challenge'
+    )
+    await waitFor(() => hostView(host)?.phase === 'playing', 'its line')
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'its reveal')
+    host.send({ type: 'host.nextRound' })
+    await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
+
+    expect(hostView(host)?.round).toBeNull()
   })
 
   it('[ready] shows a seat back at the table to every screen, until the round opens', async () => {

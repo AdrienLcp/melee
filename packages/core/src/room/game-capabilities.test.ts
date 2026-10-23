@@ -49,3 +49,19 @@ describe('capabilitiesOf', () => {
     expect(capabilitiesOf('slate').playsDuels).toBe(false)
   })
 })
+
+describe('capabilitiesOf servesItsOwnContent', () => {
+  it('[game-capabilities] leaves the content of a buzzer, a slate and a challenge to the host', () => {
+    for (const game of ['buzzer', 'challenge', 'slate'] as const) {
+      expect(capabilitiesOf(game).servesItsOwnContent).toBe(false)
+    }
+  })
+
+  it('[game-capabilities] serves every other game from the server', () => {
+    const hostBrought = new Set(['buzzer', 'challenge', 'slate'])
+
+    for (const game of gameKinds.filter((kind) => !hostBrought.has(kind))) {
+      expect(capabilitiesOf(game).servesItsOwnContent).toBe(true)
+    }
+  })
+})

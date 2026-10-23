@@ -222,6 +222,7 @@ const seatedHostView = (question: Question) => ({
   ...choosingView(question),
   currentContent: { kind: 'quiz', question: null },
   isWallConnected: true,
+  lineUpPlayed: [],
   remainingPoolSize: 40
 })
 

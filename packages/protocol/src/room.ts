@@ -673,6 +673,14 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
    * there, so this is what tells the console to keep the clip to itself.
    */
   isWallConnected: z.boolean(),
+  /**
+   * How many rounds of this game each line-up entry has opened, by index —
+   * what the console's draw deals the evening from. The host's alone: it says
+   * which games are still owed, which is the next round's surprise.
+   */
+  lineUpPlayed: z
+    .array(z.number().int().nonnegative())
+    .max(LINE_UP_MAX_ENTRIES),
   remainingPoolSize: z.number().int().nonnegative(),
   /**
    * The seat this console took, and `null` while it is only running the room.

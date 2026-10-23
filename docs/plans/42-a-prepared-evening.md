@@ -1,6 +1,6 @@
 # 42 — A prepared evening
 
-**To do.** Asked 23/10/2026, after stage 41. The host can prepare the
+**In progress** — steps 1 and 2 done. Asked 23/10/2026, after stage 41. The host can prepare the
 evening's rounds before it starts — one, four or all thirty — each a game with
 its own options, and the rest is drawn. Every entry is played at least once,
 and nothing is played that the host has not either prepared or left to chance.
@@ -48,17 +48,34 @@ and nothing is played that the host has not either prepared or left to chance.
   and a line saying how many rounds are left to chance.
 - The home press says how the deck is cut (*4 rounds a game*).
 
-## Open before starting
+## Settled
 
-- Where the deck lives: in `settings` beside `lineUpAt`, server-owned, so a
-  reload of the console keeps it, and *play again* rebuilds it.
-- Whether a prepared entry is remembered past the evening (a slate written at
-  home the day before). Stage 41 says the line-up is not remembered; this may
-  overturn it.
+- **The deck is dealt, not stored.** No list of cards is kept: `nextEntryAt`
+  draws each round from how many times each entry has opened, so an edit, a
+  skip or a replacement beside *Next round* reflows the rest for free. Every
+  entry comes up once before any twice; a counted evening spends its last
+  rounds on the entries still owed; another game than the last wins over
+  balance.
+- **Prepared means host-brought, decided by the game.** `servesItsOwnContent`
+  on `capabilitiesOf` is `false` for the buzzer, the slate and the challenge:
+  an entry of one plays once an evening, and only the others fill the rounds
+  left over. An evening of several entries with nothing left to deal is final
+  (`hasEntryLeftToDeal`, read by the server's `isFinalRound`); a room of one
+  game plays on as it always did.
+- **The server counts, by value.** `room.openedEntries` keeps the entry each
+  round opened on, emptied by *play again*; the host view carries
+  `lineUpPlayed`, matched by value (`playedPerEntry`) because a tick or a
+  variant shifts every index after it. The draw stays on the console.
+- **"A played entry is fixed" needs no refusal.** Counted by value, a played
+  entry changed in the fold is a new entry, owed once — a different sheet is a
+  different round. Refusing it would freeze a room of one game on its first
+  quiz, which stage 41 promised plays on as before.
+- Remembering a prepared entry past the evening is still open, for step 3.
 
 ## Order
 
-1. Core: the deck — build, draw, reflow on an edit — tests first.
-2. Protocol and server: the deck in the room, consumed per round, edits
-   refused on a played entry.
+1. Core: the deck — build, draw, reflow on an edit — tests first. **Done.**
+2. Protocol and server: the deck in the room, consumed per round. **Done**
+   — `openedEntries`, `lineUpPlayed`, an exhausted line-up ends the evening.
+   The console still labels that last press *Next round*: step 3's.
 3. Design pass (`impeccable`), then the list of rounds in *La table*.

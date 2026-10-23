@@ -12,8 +12,9 @@ import { movedToEntry } from '@melee/core/room/room-settings'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 /**
- * Draws the next round's game as each reveal of an evening goes up, and sends
- * it as an ordinary settings frame — so the wall reads it off `settings.game`
+ * Deals the next round's game as each reveal of an evening goes up
+ * (`nextEntryAt` says how), and sends it as an ordinary settings frame — so
+ * the wall reads it off `settings.game`
  * like everything else, and the host's *change* is the same frame again.
  *
  * Once per round on this screen: a host who picks the game just played back
@@ -65,7 +66,10 @@ export const useLineUpDraw = ({
     const drawn = nextEntryAt({
       lastAt: round.lineUpAt,
       lineUp: settings.lineUp,
-      random: Math.random
+      played: view.lineUpPlayed,
+      random: Math.random,
+      roundsLeft:
+        settings.roundCount === null ? null : settings.roundCount - round.index
     })
     const entry = drawn === null ? undefined : settings.lineUp[drawn]
 

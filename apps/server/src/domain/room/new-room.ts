@@ -35,6 +35,7 @@ export const newRoom = ({
     hostToken,
     isDuelAsked: false,
     lastActivityAt: now,
+    openedEntries: [],
     phase: 'lobby',
     playedContentIds: new Set(),
     players: new Map(),

@@ -13,6 +13,7 @@ import type { Verdict } from '@melee/protocol/scoring'
 import type { SlateLine } from '@melee/protocol/slate'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
+import { playedPerEntry } from '@melee/core/room/next-game'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { pointsFor } from '@melee/core/scoring/verdict'
 import {
@@ -56,6 +57,10 @@ export const toHostView = ({
       ? null
       : toHostContent({ room, round: room.round, seatId }),
   isWallConnected,
+  lineUpPlayed: playedPerEntry({
+    lineUp: room.settings.lineUp,
+    opened: room.openedEntries
+  }),
   remainingPoolSize: room.trackPool.length,
   youId: seatId
 })

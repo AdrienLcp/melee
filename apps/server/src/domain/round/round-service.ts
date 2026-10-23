@@ -28,6 +28,7 @@ import {
   reflexRoundDurationMs
 } from '@melee/core/reflex/flip-schedule'
 import { isFalseStart } from '@melee/core/reflex/reaction'
+import { hasEntryLeftToDeal, playedPerEntry } from '@melee/core/room/next-game'
 import {
   type BuzzRejection,
   findBuzzRejection,
@@ -201,6 +202,10 @@ export const openRound = ({
 
   room.round = round
   room.phase = 'countdown'
+
+  if (room.settings.game !== null) {
+    room.openedEntries.push(room.settings.game)
+  }
   touch(room, now)
 
   return round
@@ -1252,6 +1257,7 @@ export const restartGame = (room: Room, now: number): void => {
   }
 
   resetTeamScores(room)
+  room.openedEntries = []
   room.phase = 'lobby'
   room.round = null
   room.isDuelAsked = false
@@ -1285,8 +1291,8 @@ export const advanceDueAt = (room: Room): number | null => {
 }
 
 /**
- * Final once the rounds planned are played or a pawn has reached the track's
- * end.
+ * Final once the rounds planned are played, a pawn has reached the track's
+ * end, or the line-up has nothing left to deal.
  */
 export const isFinalRound = (room: Room): boolean => {
   const total = room.settings.roundCount
@@ -1300,7 +1306,15 @@ export const isFinalRound = (room: Room): boolean => {
     ]
   })
 
-  return hasPlayedEveryRound || hasPawnHome
+  const hasDealtEveryEntry = !hasEntryLeftToDeal({
+    lineUp: room.settings.lineUp,
+    played: playedPerEntry({
+      lineUp: room.settings.lineUp,
+      opened: room.openedEntries
+    })
+  })
+
+  return hasPlayedEveryRound || hasPawnHome || hasDealtEveryEntry
 }
 
 export const elapsedRoundMs = (round: Round, now: number): number =>

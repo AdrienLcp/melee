@@ -1,4 +1,5 @@
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { GameSettings } from '@melee/protocol/game'
 import type {
   HostToken,
   Nickname,
@@ -69,6 +70,12 @@ export type Room = {
    */
   isDuelAsked: boolean
   lastActivityAt: number
+  /**
+   * The line-up entry each round of this game opened on, as it stood then —
+   * kept by value because an edit to the line-up shifts its indices. Emptied
+   * by a restart, so *play again* deals the evening afresh.
+   */
+  openedEntries: GameSettings[]
   phase: RoomPhase
   /**
    * Every track and every question already used, so a pool refilled mid-game
