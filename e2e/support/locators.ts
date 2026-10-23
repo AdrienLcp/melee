@@ -36,12 +36,12 @@ export const hostConsole = (page: Page) => ({
   /** What the QR code encodes. Following it is what scanning it does. */
   joinUrl: page.locator('.join-url'),
   /**
-   * The blind test's row in the leaflet's list of rounds, which opens its page
+   * The blind test's row in the leaflet's list of planned games, which opens its page
    * — the answer mode among its settings. The lobby opens the leaflet on that
    * list. Its name runs on into the row's detail and stamp.
    */
   openBlindTestRound: page
-    .getByRole('list', { name: 'The rounds' })
+    .getByRole('list', { name: 'Planned games' })
     .getByRole('button', { name: /^Blind test/ }),
   /** The settings are on a leaflet, so anything on it is opened before it is reached. */
   openSettings: page.getByRole('button', { name: 'Settings' }),

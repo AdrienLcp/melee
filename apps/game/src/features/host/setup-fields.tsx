@@ -243,6 +243,7 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
             />
           )}
           <NumberChoice
+            className='countdown'
             isDisabled={!isLive}
             label={translate('host.countdown')}
             onChange={(countdownMs) => {

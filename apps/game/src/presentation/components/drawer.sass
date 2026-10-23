@@ -29,6 +29,9 @@
       translate: none
 
       > .react-aria-Dialog
+        // As the sheet's: the drawer covers the board track it would clear.
+        --gutter-left: max(var(--gutter), var(--safe-area-left))
+
         padding: var(--layout-padding-block-start) var(--space-l) var(--layout-padding-block-end) var(--gutter-left)
 
       &[data-entering]

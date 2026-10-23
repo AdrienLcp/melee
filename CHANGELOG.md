@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **The evening is its planned games.** *Planned games* lists one
+  row per game of the evening, in the order it is played, each saying what it
+  is set to — the decades, the subjects, the round's length — and dragged into
+  another order as before; the rounds the count holds past them are drawn by
+  chance, which a line under the list says (*14 more rounds, by chance*). A
+  game taken out or skipped hands its place to the next planned one.
+
 - `[Shared]` **Every evening is in order**, and `PROTOCOL_VERSION` goes to
   46. The *In order* switch is gone: an evening of several games is dealt
   round by round the moment it is made — every game at least once, never the
@@ -227,6 +234,11 @@ one part.
   instead of pushing the third team under the fold.
 
 ### Fixes
+
+- `[Game]` A sheet on a phone and the console's side drawer no longer keep
+  clear of the board track they cover: the setup gains 80px of width at 390.
+- `[Game]` The countdown strip stacks in a narrow box instead of wrapping to
+  two segments over one.
 
 - `[Game]` **A text field shows its caret in the dark palette**, where the
   board's cream ink was drawn on the field's cream paper, and its edge

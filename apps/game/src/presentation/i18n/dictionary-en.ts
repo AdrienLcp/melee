@@ -376,7 +376,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     endGame: 'End the game',
     evening: {
-      add: 'Add a round',
+      add: 'Add a game',
       challengeLine:
         'Its line is written when its round comes up, beside the press that opens it.',
       chance: {
@@ -384,8 +384,22 @@ export const EN_DICTIONARY = defineDictionary({
         endless: 'Then by chance, until you stop',
         over: 'too many for {total:number} rounds',
         overHint:
-          'Every round added is played at least once, so the evening has to grow.',
-        raise: 'Make it {count:number}'
+          'Every planned game is played once, so the evening has to grow.',
+        raise: 'Make it {count:number}',
+        rest: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: 'more round, by chance',
+              other: 'more rounds, by chance'
+            }
+          }
+        })
+      },
+      detail: {
+        allSubjects: 'Every subject',
+        nothingToSet: 'Nothing to set',
+        oneGo: 'One go each',
+        subjects: '{count:number} subjects'
       },
       drag: 'Move round {number:number}, {name}',
       fills: 'Fills the evening',
@@ -397,7 +411,7 @@ export const EN_DICTIONARY = defineDictionary({
       playFirst: 'Play first',
       playNext: 'Play next',
       roundNamed: 'Round {number:number}: {name}',
-      rounds: 'The rounds',
+      rounds: 'Planned games',
       slateKeyLater: 'Its answers are typed once it is up next.',
       stamp: {
         beyond: 'Past the end',

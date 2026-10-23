@@ -804,6 +804,11 @@ their keyframes (`styles/_sheet.sass`), `leaflet.sass` the look. The sheet is a
 plain modal with its own rise, not react-aria's `Sheet`, which enters through
 the browser's smooth scroll and takes over half a second.
 
+A sheet, and the `Drawer` past the split, pads by the page's own gutter, never
+the board track's: the track widens `--gutter-left` and `--gutter-right` on
+`:root` to keep the page clear of it, and a sheet covering the track inherited
+56px a side at 390 — 278px of controls out of 390 — for an edge it hides.
+
 ### The room's own screen (`RoomScreenPresses`, `Drawer`)
 A console switched to the room's screen in the menu (`melee:room-screen`) is
 drawn as the wall — `wall-page room-screen` on `<main>`, the same header,

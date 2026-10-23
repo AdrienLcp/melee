@@ -142,3 +142,20 @@ and nothing is played that the host has not either prepared or left to chance.
    added is appended and plays last. Locked while a round plays. Preparing a
    second challenge or slate ahead still needs its line and key on the
    entry, which they are not.
+6. The planned games — the list as one row per entry rather than one per
+   round, after directions A (games and a token tray), B (rounds in tours) and
+   C (tabs) were turned down for it. **Done**: `dealtOrder` keeps one row per
+   entry still to come, the host's rows first and the entries never played
+   dealt after them on `nextEntryAt`'s rule; a hole or a second row closes up,
+   and no row is given up over the count — an entry the count cannot reach
+   is stamped *Past the end* beside the raise press, as before. A round whose
+   row is gone takes the next one (`scheduledEntryAt`), so a skip plays the
+   next planned game; every round past the last row is drawn as it comes.
+   `EveningRounds` is headed *Planned games*, each row saying every setting
+   its name leaves unsaid and the round length (`useLineUpEntrySummaries`:
+   the decades, the subjects, the goals, *One go each*, *Nothing to set*),
+   the stamp on the settings line so the name keeps the width, and the chance
+   line says *N more rounds, by chance* under a counted evening too. A sheet
+   and the wide drawer take the page's gutter back from the board track they
+   cover (56px a side at 390 before), and the countdown strip stacks below
+   10rem, which `strip-rows.spec.ts` had caught as a 2+1 wrap.

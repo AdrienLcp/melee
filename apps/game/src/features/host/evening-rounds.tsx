@@ -39,7 +39,7 @@ import {
 } from '@/presentation/components/icons'
 import { useTouchReorder } from '@/presentation/components/use-touch-reorder'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useLineUpEntryDetail } from '@/presentation/i18n/line-up-entry-names'
+import { useLineUpEntrySummaries } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningStamp, eveningStampOf } from './evening-stamp'
@@ -59,7 +59,7 @@ const roundCountHolding = (needed: number): number =>
   ROUND_COUNT_STEPS.find((step) => step >= needed) ??
   Math.min(needed, MAX_ROUND_COUNT)
 
-/** The games the rounds past an endless evening's rows are drawn among: those serving their own content, or every one when none does. */
+/** The games the rounds past the evening's rows are drawn among: those serving their own content, or every one when none does. */
 const fillersOf = (lineUp: readonly GameSettings[]): GameKind[] => {
   const games = [...new Set(lineUp.map((entry) => entry.kind))]
   const serving = games.filter(
@@ -83,9 +83,10 @@ type EveningRoundsProps = {
 }
 
 /**
- * The evening as its running order: a numbered row per round still to come,
- * each opening the page of its entry, put in order by drag — the server dealt
- * it the moment the evening was made. A room of one game is that game's row
+ * The evening as its planned games: a numbered row per entry still to come,
+ * saying what it is set to and opening its page, put in order by drag — the
+ * server dealt it the moment the evening was made — and a line under them for
+ * the rounds drawn once they are played. A room of one game is that game's row
  * alone, fixed once played if the host brought it.
  */
 export const EveningRounds: React.FC<EveningRoundsProps> = ({
@@ -168,6 +169,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
           isLive={isLive}
           onSettingsChange={onSettingsChange}
           settings={view.settings}
+          upcoming={upcoming}
         />
       )}
     </div>
@@ -180,8 +182,7 @@ const OnlyRound: React.FC<{
   onOpen: (at: number) => void
   view: HostRoomView
 }> = ({ entry, isEveningOver, onOpen, view }) => {
-  const translate = useTranslate()
-  const detailOf = useLineUpEntryDetail()
+  const [summary] = useLineUpEntrySummaries([entry])
   const timesPlayed = view.lineUpPlayed[0] ?? 0
   const stamp = eveningStampOf({
     entry,
@@ -205,8 +206,8 @@ const OnlyRound: React.FC<{
       >
         <span className='band' />
         <GameIcon game={entry.kind} />
-        <span className='name'>{translate(gameNameKey(entry.kind))}</span>
-        <span className='detail'>{detailOf(entry)}</span>
+        <span className='name'>{summary?.name}</span>
+        <span className='detail'>{summary?.settings}</span>
         {stamp !== null && <EveningStamp kind={stamp} played={timesPlayed} />}
         <ChevronRightIcon className='chevron' />
       </AriaButton>
@@ -281,8 +282,8 @@ const OrderedRounds: React.FC<{
   view: HostRoomView
 }> = ({ coming, isEditable, labelId, onArrange, onOpen, view }) => {
   const translate = useTranslate()
-  const detailOf = useLineUpEntryDetail()
   const { lineUp } = view.settings
+  const summaries = useLineUpEntrySummaries(lineUp)
   const rounds = keyedRounds(coming)
   const list = useRef<HTMLDivElement>(null)
 
@@ -336,8 +337,8 @@ const OrderedRounds: React.FC<{
     >
       {(round) => {
         const entry = lineUp[round.at]
-        const name =
-          entry === undefined ? '' : translate(gameNameKey(entry.kind))
+        const summary = summaries[round.at]
+        const name = summary?.name ?? ''
         const number = round.roundAt + 1
 
         return (
@@ -364,8 +365,8 @@ const OrderedRounds: React.FC<{
             <span className='band' />
             {entry !== undefined && <GameIcon game={entry.kind} />}
             <span className='name'>{name}</span>
-            {entry !== undefined && (
-              <span className='detail'>{detailOf(entry)}</span>
+            {summary !== undefined && (
+              <span className='detail'>{summary.settings}</span>
             )}
             {round.isPastTheEnd ? (
               <EveningStamp kind='beyond' played={0} />
@@ -387,15 +388,17 @@ const OrderedRounds: React.FC<{
 
 /**
  * What the list cannot show: how many rounds the count lacks for every entry
- * the host brought, or the draw that goes on past the rows of an evening with
- * no count.
+ * the host brought, or the rounds drawn past the rows — so many, or until the
+ * host stops.
  */
 const EveningChanceLine: React.FC<{
   coming: readonly ComingRound[]
   isLive: boolean
   onSettingsChange: (settings: RoomSettings) => void
   settings: RoomSettings
-}> = ({ coming, isLive, onSettingsChange, settings }) => {
+  /** The round about to open, counted from 0. */
+  upcoming: number
+}> = ({ coming, isLive, onSettingsChange, settings, upcoming }) => {
   const translate = useTranslate()
   const pastTheEnd = coming.filter((round) => round.isPastTheEnd)
   const lastPast = pastTheEnd.at(-1)
@@ -412,15 +415,30 @@ const EveningChanceLine: React.FC<{
     )
   }
 
-  return settings.roundCount === null ? (
+  const among = translate('host.evening.chance.among', {
+    games: fillersOf(settings.lineUp)
+      .map((game) => translate(gameNameKey(game)))
+      .join(', ')
+  })
+
+  if (settings.roundCount === null) {
+    return (
+      <ChanceSaid
+        count='∞'
+        headline={translate('host.evening.chance.endless')}
+        hint={among}
+      />
+    )
+  }
+
+  const drawn =
+    settings.roundCount - ((coming.at(-1)?.roundAt ?? upcoming - 1) + 1)
+
+  return drawn > 0 ? (
     <ChanceSaid
-      count='∞'
-      headline={translate('host.evening.chance.endless')}
-      hint={translate('host.evening.chance.among', {
-        games: fillersOf(settings.lineUp)
-          .map((game) => translate(gameNameKey(game)))
-          .join(', ')
-      })}
+      count={String(drawn)}
+      headline={translate('host.evening.chance.rest', { count: drawn })}
+      hint={among}
     />
   ) : null
 }

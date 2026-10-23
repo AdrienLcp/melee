@@ -53,5 +53,10 @@
   box-shadow: 0 0 0 1px var(--rule), var(--shadow-sheet)
 
   > .react-aria-Dialog
+    // The board track widens the gutters on `:root` to keep the page clear of
+    // it, and a sheet covers the track: it takes the page's own back.
+    --gutter-left: max(var(--gutter), var(--safe-area-left))
+    --gutter-right: max(var(--gutter), var(--safe-area-right))
+
     padding-block: 0 max(var(--space-m), var(--safe-area-bottom))
     padding-inline: max(var(--gutter-left), (100% - 30rem) / 2) max(var(--gutter-right), (100% - 30rem) / 2)
