@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useRef } from 'react'
 import {
   DropIndicator,
   GridList,
@@ -14,6 +15,7 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { Button } from './button'
 import { ChevronIcon, ChevronUpIcon, GripIcon } from './icons'
 import { TimelineCard } from './timeline-card'
+import { useTouchReorder } from './use-touch-reorder'
 
 import './timeline-order-list.sass'
 
@@ -41,7 +43,7 @@ const moved = ({
 }
 
 /**
- * The events as cards to put in order: dragged by their grip — by a pointer,
+ * The events as cards to put in order: dragged by their grip — by a mouse,
  * a finger, or the keyboard through react-aria's drag button — or stepped one
  * place at a time by the two arrows on each card, which is the press a hand
  * that has never dragged anything on a screen finds first.
@@ -53,6 +55,13 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
 }) => {
   const { locale, translate } = useI18n()
   const order = events.map((event) => event.id)
+  const list = useRef<HTMLDivElement>(null)
+
+  useTouchReorder({
+    grip: '.grip',
+    list,
+    onMove: (id, at) => onReorder(moved({ at, ids: [id], order }))
+  })
 
   const { dragAndDropHooks } = useDragAndDrop({
     getItems: (keys) =>
@@ -88,6 +97,7 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
       className='timeline-order-list'
       dragAndDropHooks={dragAndDropHooks}
       items={events}
+      ref={list}
     >
       {(event) => {
         const at = order.indexOf(event.id)
