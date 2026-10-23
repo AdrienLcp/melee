@@ -9,7 +9,6 @@ import { DocumentTitle } from '@/presentation/head/document-title'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { GameTicks } from './game-ticks'
-import { HeldRooms } from './held-rooms'
 import { HomeTray } from './home-tray'
 import { useCreateRoom } from './use-create-room'
 
@@ -42,7 +41,6 @@ export const HomePage: React.FC = () => {
         </h1>
         <div className='join-box'>
           <JoinWithCode isDisabled={createRoom.isOpeningAny} />
-          <HeldRooms isDisabled={createRoom.isOpeningAny} />
         </div>
       </header>
 

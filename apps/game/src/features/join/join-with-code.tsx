@@ -95,7 +95,6 @@ export const JoinWithCode: React.FC<JoinWithCodeProps> = ({ isDisabled }) => {
         <TextField
           autoCapitalize='characters'
           autoComplete='off'
-          description={translate('join.roomCode.description')}
           errorMessage={fieldErrorMessage({ error: codeError, translate })}
           isDisabled={isDisabled}
           isInvalid={codeError !== null}

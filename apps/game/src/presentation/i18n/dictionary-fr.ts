@@ -299,17 +299,13 @@ export const FR_DICTIONARY = defineDictionary({
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   home: {
-    heldRooms: {
-      host: 'Reprendre ta table',
-      player: 'Reprendre ta place',
-      title: 'Où tu étais'
-    },
     open: {
       count: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
       }),
       several: 'Ouvrir la table'
     },
+    resume: 'Reprendre',
     seat: {
       judgedOnly: '{games:list} : tu juges chaque réponse, tu ne joues pas.',
       judgesSome: 'Tu juges {games:list}, tu joues aux autres.',
@@ -612,7 +608,6 @@ export const FR_DICTIONARY = defineDictionary({
       starting: 'On installe la table…'
     },
     roomCode: {
-      description: 'L’hôte l’a sous les yeux.',
       label: 'Code de la table',
       unknown: 'Aucune table sous ce code.',
       unsupportedCharacters:

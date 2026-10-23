@@ -143,6 +143,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The front door offers one way back, and only to the host.** The
+  four *Resume* pills under the code box are gone — a player who types the
+  code again lands on the seat it already holds, so they said nothing the
+  field did not. *Resume K7PX* now sits beside *Open a table*, for the last
+  table this device opened and only while it is still open. The code box
+  loses its *The host has it in front of them* hint.
+
 - `[Game]` **An evening plays its quiz on four choices**, and every game of an
   evening the way it opens, whatever the console remembered from a game run
   alone with a judge: the buzzer mode needs somebody who sees the answer, and

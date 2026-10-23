@@ -10,7 +10,7 @@ import {
   usePairingCodeParam
 } from '@/infrastructure/router/navigation'
 import {
-  readHeldRooms,
+  readHostedRoomCodes,
   readHostToken
 } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'
@@ -38,9 +38,7 @@ export const PairWallPage: React.FC = () => {
   const { locale } = useI18n()
   const translate = useTranslate()
   const pairingCode = usePairingCodeParam()
-  const [hosted] = useState(() =>
-    readHeldRooms().filter((room) => room.role === 'host')
-  )
+  const [hosted] = useState(readHostedRoomCodes)
   const [pairing, setPairing] = useState<Pairing>({ status: 'idle' })
 
   usePhaseField('lobby')
@@ -101,7 +99,7 @@ export const PairWallPage: React.FC = () => {
       <p>{translate('wall.pair.description', { code: pairingCode })}</p>
 
       <div className='tables'>
-        {hosted.map(({ roomCode }) => (
+        {hosted.map((roomCode) => (
           <Button
             isDisabled={pairing.status === 'pairing'}
             key={roomCode}

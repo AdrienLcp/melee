@@ -668,8 +668,9 @@ tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
   `sticky` at the bottom of the page. Its label follows the ticks (*Open a
   table*, *Play Quiz*, *Open the table* with a count pill), and beside it
   *I'm playing too* and the name. The press sits right of the seat from 47.5rem.
-- **`HeldRooms`**: a pill per room the device holds a key to — the code on an
-  ink chip, *Resume your table*, an arrow — under a dashed rule in the code box.
+  While the last table this device opened is still open, *Resume K7PX* — an
+  underlined link, the code in the room-code face — sits between the seat and
+  the press, or under the seat on a phone too narrow for both.
 
 ### Room invitation (`RoomInvitation`)
 The code on the saffron token (`--tile-2`, `monument`, a piece at

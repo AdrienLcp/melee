@@ -324,17 +324,13 @@ export const EN_DICTIONARY = defineDictionary({
     wrong_phase: 'Too late, the game has moved on.'
   },
   home: {
-    heldRooms: {
-      host: 'Resume your table',
-      player: 'Resume your seat',
-      title: 'Where you were'
-    },
     open: {
       count: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} game', other: '{?} games' } }
       }),
       several: 'Open the table'
     },
+    resume: 'Resume',
     seat: {
       judgedOnly: '{games:list}: you judge every answer, you do not play.',
       judgesSome: 'You judge {games:list}, you play the rest.',
@@ -662,7 +658,6 @@ export const EN_DICTIONARY = defineDictionary({
       starting: 'Setting the table…'
     },
     roomCode: {
-      description: 'The host has it in front of them.',
       label: 'Table code',
       unknown: 'No table under that code.',
       unsupportedCharacters: 'A table code never contains {characters}.',

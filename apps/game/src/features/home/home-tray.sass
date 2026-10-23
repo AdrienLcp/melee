@@ -1,6 +1,7 @@
 // Side-effect module: the component's rules, in the components layer.
 
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
 
@@ -19,9 +20,33 @@ $side-by-side: 47.5rem
     position: sticky
     z-index: 1
 
+    // The way back shares the seat's row while both fit whole, and drops
+    // under it on a phone too narrow for the two; the press keeps its own row.
+    &:has(.resume)
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-s)
+
+      .seat
+        flex: 1 1 auto
+
+      .resume
+        margin-inline-start: auto
+
+      .press
+        flex-basis: 100%
+
     @media (width >= $side-by-side)
       grid-template-columns: minmax(0, 1fr) auto
       padding-inline: var(--space-l) var(--space-m)
+
+      &:has(.resume)
+        display: grid
+        gap: var(--space-s) var(--space-l)
+        grid-template-columns: minmax(0, 1fr) auto auto
+
+        .press
+          grid-column: 3
 
       .press
         grid-column: 2
@@ -47,6 +72,10 @@ $side-by-side: 47.5rem
       .text-field
         width: 100%
 
+      // Whole, so the way back drops under it rather than breaking it.
+      .switch-button
+        white-space: nowrap
+
     .as
       @include typography.caption
 
@@ -58,6 +87,18 @@ $side-by-side: 47.5rem
 
       .seated-as
         overflow-wrap: anywhere
+
+    .resume
+      @include layout.arriving
+
+      grid-column: 2
+      grid-row: 1
+      justify-self: end
+
+      .code
+        @include typography.room-code-small
+
+        font-size: inherit
 
     .press
       display: grid

@@ -16,8 +16,7 @@ import {
 import { newSessionId } from '@melee/core/room/session-id'
 import {
   forgetSeat,
-  type HeldRoom,
-  heldRooms,
+  hostedRoomCodes,
   hostTokenFor,
   hostTokensWithout,
   type RememberedHostToken,
@@ -179,14 +178,9 @@ export const forgetHostToken = (roomCode: RoomCode): void => {
   writeHostTokens(hostTokensWithout({ roomCode, tokens: readHostTokens() }))
 }
 
-/**
- * Every room this device still has a way back into, newest first. It is offered
- * *before* the server has been asked whether any of them resolve — the home
- * checks each one and drops what has gone, which is what keeps a list of ghosts
- * off the front door.
- */
-export const readHeldRooms = (): HeldRoom[] =>
-  heldRooms({ seats: readSeats(), tokens: readHostTokens() })
+/** Every room whose console this device can reopen, newest first, before the server is asked which still resolve. */
+export const readHostedRoomCodes = (): RoomCode[] =>
+  hostedRoomCodes(readHostTokens())
 
 /**
  * The code has stopped resolving, so nothing this device holds for it opens

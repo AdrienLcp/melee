@@ -7,14 +7,18 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 
 import { canPlayRightAway } from '@melee/core/room/play-right-away'
 
+import { hostPathFor } from '@/infrastructure/router/navigation'
 import { readStoredNickname } from '@/infrastructure/storage/preferences-storage'
 import { Button } from '@/presentation/components/button'
+import { ArrowIcon } from '@/presentation/components/icons'
+import { Link } from '@/presentation/components/link'
 import { Switch } from '@/presentation/components/switch'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey, gamePlayKey } from '@/presentation/i18n/translation'
 
 import type { CreateRoom } from './use-create-room'
+import { useLastHostedRoom } from './use-last-hosted-room'
 
 import './home-tray.sass'
 
@@ -39,6 +43,10 @@ const storedNicknameOrNone = (): string => {
  *
  * A game the host must judge leaves them no seat: when every ticked game is
  * one, the switch is off and says why.
+ *
+ * Beside the press, the way back to the last table this device opened, while
+ * it is still open — the host's other door, so it sits with the first one. A
+ * player needs none: typing the code again finds the seat it already holds.
  */
 export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom, ticked }) => {
   const translate = useTranslate()
@@ -47,6 +55,7 @@ export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom, ticked }) => {
   const [draft, setDraft] = useState(remembered)
   const [isNaming, setIsNaming] = useState(remembered === '')
   const [wantsSeat, setWantsSeat] = useState(false)
+  const lastHosted = useLastHostedRoom()
 
   const judged = ticked.filter((game) => !canPlayRightAway(game))
   const isJudgedOnly = ticked.length > 0 && judged.length === ticked.length
@@ -113,6 +122,22 @@ export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom, ticked }) => {
           </p>
         )}
       </div>
+
+      {lastHosted !== null && (
+        <Link
+          className='resume'
+          href={hostPathFor(lastHosted)}
+          isDisabled={isOpeningAny}
+          size='small'
+          variant='underlined'
+        >
+          <span className='label'>
+            {translate('home.resume')}{' '}
+            <span className='code'>{lastHosted}</span>
+          </span>
+          <ArrowIcon />
+        </Link>
+      )}
 
       <div className='press'>
         <Button
