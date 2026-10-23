@@ -1,38 +1,44 @@
 import type React from 'react'
 
-import type { PlayerRoomView } from '@melee/protocol/room'
+import type { TrackPawn } from '@melee/core/board/track-pawns'
 
-import { type TrackPawn, trackPawnsOf } from '@melee/core/board/track-pawns'
-
-import {
-  TrackPawnPiece,
-  trackPawnNumberOf
-} from '@/presentation/components/track-pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+
+import { TrackPawnPiece, trackPawnNumberOf } from './track-pawn'
 
 import './track-strip.sass'
 
 const CASES_SHOWN = 7
+/** The other pawns a case shows before it says how many more stand there. */
+const OTHERS_SHOWN = 3
+
+type TrackStripProps = {
+  /** The cases between the start and the finish. */
+  length: number
+  /** Every pawn on the track: a team's, or a seat's when the room plays alone. */
+  pawns: readonly TrackPawn[]
+  /**
+   * The pawn this screen plays, stood up and ringed, and what the strip is
+   * centred on; `undefined` on a screen holding none, which shows the start
+   * and says how long the race is.
+   */
+  yours: TrackPawn | undefined
+}
 
 /**
- * The stretch of the track this player's pawn — their team's, or their own —
- * stands on, centred on it:
- * the wall draws the whole race, a screen in the hand needs where its own
- * pawn is and who is close. The ends of the strip fade where the track runs
- * on past them, and stop square on the start and the finish.
+ * The stretch of the track a pawn stands on, centred on it: the wall draws
+ * the whole race, a screen in the hand needs where its own pawn is and who is
+ * close. The ends of the strip fade where the track runs on past them, and
+ * stop square on the start and the finish.
  */
-export const TrackStrip: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
+export const TrackStrip: React.FC<TrackStripProps> = ({
+  length,
+  pawns,
+  yours
+}) => {
   const translate = useTranslate()
-  const { board } = view.settings
-  const pawns = trackPawnsOf(view)
-  const yours = pawns.find((pawn) => isPlayersPawn({ pawn, view }))
-
-  if (board.kind !== 'track' || yours === undefined) {
-    return null
-  }
-
-  const { length } = board
-  const { case: at, move } = yours.board
+  const at = yours?.board.case ?? 0
+  const move = yours?.board.move ?? 0
   const cases = casesAround({ at, length })
   const first = cases[0] ?? 0
   const last = cases.at(-1) ?? length
@@ -41,10 +47,16 @@ export const TrackStrip: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
     <div
       className='track-strip'
       data-runs-on={runsOnOf({ first, last, length })}
-      style={{ '--team': `var(--pawn-${trackPawnNumberOf(yours)})` }}
+      style={
+        yours === undefined
+          ? undefined
+          : { '--team': `var(--pawn-${trackPawnNumberOf(yours)})` }
+      }
     >
       <p className='where'>
-        {translate('board.case', { case: at, length })}
+        {yours === undefined
+          ? translate('board.setting.length', { length })
+          : translate('board.case', { case: at, length })}
         {move > 0 && (
           <span className='walked'>
             {translate('board.walked', { count: move })}
@@ -58,7 +70,7 @@ export const TrackStrip: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
       >
         {cases.map((caseIndex) => {
           const others = pawns.filter(
-            (pawn) => pawn.id !== yours.id && pawn.board.case === caseIndex
+            (pawn) => pawn.id !== yours?.id && pawn.board.case === caseIndex
           )
 
           return (
@@ -66,7 +78,9 @@ export const TrackStrip: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
               className='case'
               data-mark={markOf({ caseIndex, length })}
               data-parity={caseIndex % 2 === 0 ? 'even' : 'odd'}
-              data-yours={caseIndex === at || undefined}
+              data-yours={
+                (yours !== undefined && caseIndex === at) || undefined
+              }
               key={caseIndex}
             >
               <span className='number'>
@@ -78,12 +92,19 @@ export const TrackStrip: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
               </span>
               {others.length > 0 && (
                 <span className='others'>
-                  {others.map((pawn) => (
+                  {others.slice(0, OTHERS_SHOWN).map((pawn) => (
                     <TrackPawnPiece key={pawn.id} pawn={pawn} />
                   ))}
+                  {others.length > OTHERS_SHOWN && (
+                    <span className='more'>
+                      {translate('board.more', {
+                        count: others.length - OTHERS_SHOWN
+                      })}
+                    </span>
+                  )}
                 </span>
               )}
-              {caseIndex === at && (
+              {yours !== undefined && caseIndex === at && (
                 // Keyed on the case, so a correction is a fresh hop.
                 <span className='own' key={at}>
                   <TrackPawnPiece pawn={yours} />
@@ -96,17 +117,6 @@ export const TrackStrip: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
     </div>
   )
 }
-
-const isPlayersPawn = ({
-  pawn,
-  view
-}: {
-  pawn: TrackPawn
-  view: PlayerRoomView
-}): boolean =>
-  pawn.kind === 'seat'
-    ? pawn.id === view.youId
-    : pawn.team.seatIds.includes(view.youId)
 
 /** Seven cases with `at` in the middle, slid inward rather than cut at an end. */
 const casesAround = ({

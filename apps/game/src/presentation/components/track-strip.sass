@@ -1,4 +1,4 @@
-@use '../../presentation/styles/typography'
+@use '../styles/typography'
 
 @layer components
   // A piece of the wall's track held in the hand: the same printed cases,
@@ -86,6 +86,14 @@
 
       .pawn
         margin-inline-start: -0.15em
+
+    .more
+      @include typography.numeric
+      @include typography.solid
+
+      align-self: center
+      font-size: var(--text-em-s)
+      margin-inline-start: 0.15em
 
     .own
       bottom: 8%

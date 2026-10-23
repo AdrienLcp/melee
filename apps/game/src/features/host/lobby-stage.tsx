@@ -3,6 +3,7 @@ import type React from 'react'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 
+import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { teamCountOf } from '@melee/core/team/team-count'
@@ -12,6 +13,7 @@ import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TeamRoster } from '@/presentation/components/team-roster'
+import { TrackStrip } from '@/presentation/components/track-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import {
   gameDescriptionKey,
@@ -99,6 +101,17 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               settings={view.settings}
             />
           )}
+
+        {view.settings.board.kind === 'track' && (
+          <section className='board-preview'>
+            <h2>{translate('board.setting.label')}</h2>
+            <TrackStrip
+              length={view.settings.board.length}
+              pawns={trackPawnsOf(view)}
+              yours={undefined}
+            />
+          </section>
+        )}
 
         <section className='roster'>
           {playsAloud ? (

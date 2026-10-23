@@ -47,7 +47,7 @@ import {
   SlateWholeSheet
 } from '@/features/player/slate-sheet'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
-import { TrackStrip } from '@/features/player/track-strip'
+import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
@@ -143,7 +143,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
     <div className='outcome'>
       <Revealed round={round} view={view} />
       <YourRound round={round} view={view} />
-      <TrackStrip view={view} />
+      <YourTrackStrip view={view} />
     </div>
     <RoundBoard round={round} view={view} />
     <div className='hold'>
@@ -325,6 +325,8 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         ) : (
           <NoticeCard title={translate('buzz.blocked.host_away')} />
         )}
+
+        <YourTrackStrip view={view} />
 
         {/* The seats are a grid counted against the box around them, which a
             container query can only read from an ancestor. */}

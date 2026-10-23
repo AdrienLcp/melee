@@ -208,6 +208,20 @@
       gap: var(--space-m)
       min-width: 0
 
+    // The race the evening is played for, every pawn on the start before it
+    // begins, so a board switched on is seen before the first round rather
+    // than discovered at its reveal.
+    .board-preview
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      min-width: 0
+
+      h2
+        @include typography.label
+
+        color: var(--ink-muted)
+
     // Who has sat down, and a socket for every pawn still in the box.
     .roster
       @include seat-grid.seat-grid
