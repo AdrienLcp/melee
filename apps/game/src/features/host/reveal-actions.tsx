@@ -5,6 +5,7 @@ import type { HostRoomView } from '@melee/protocol/room'
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
 import { endsTheEvening } from '@melee/core/room/next-game'
 import { movedToEntry } from '@melee/core/room/room-settings'
+import { orderWithEntryNext } from '@melee/core/room/running-order'
 import { offersSkip, withEntrySkipped } from '@melee/core/room/skipped-entry'
 import { canPlayDuel } from '@melee/core/team/duel'
 
@@ -107,17 +108,24 @@ export const RevealActions: React.FC<HostActionsProps> = ({
               const entry = settings.lineUp[at]
 
               if (entry !== undefined && at !== settings.lineUpAt) {
-                onSettingsChange(
-                  movedToEntry({
+                const moved = movedToEntry({
+                  at,
+                  locale,
+                  remembered: rememberedSetupFor({
+                    game: entry.kind,
+                    preferences
+                  }),
+                  settings
+                })
+
+                onSettingsChange({
+                  ...moved,
+                  runningOrder: orderWithEntryNext({
                     at,
-                    locale,
-                    remembered: rememberedSetupFor({
-                      game: entry.kind,
-                      preferences
-                    }),
-                    settings
+                    order: moved.runningOrder,
+                    upcoming: view.round?.index ?? 0
                   })
-                )
+                })
               }
             }}
             options={entryNames.map((name, at) => ({

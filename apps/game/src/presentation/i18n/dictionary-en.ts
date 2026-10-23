@@ -381,6 +381,7 @@ export const EN_DICTIONARY = defineDictionary({
     endGame: 'End the game',
     evening: {
       add: 'Add a round',
+      byChance: 'By chance',
       challengeLine:
         'Its line is written when its round comes up, beside the press that opens it.',
       chance: {
@@ -403,17 +404,21 @@ export const EN_DICTIONARY = defineDictionary({
           'Every round added is played at least once, so the evening has to grow.',
         raise: 'Make it {count:number}'
       },
+      drag: 'Move round {number:number}, {name}',
       fills: 'Fills the evening',
       fixed: 'Already played: it no longer changes.',
+      inOrder: 'In order',
       once: 'Played once',
       pick: 'Which round?',
       pickHint:
         'A game you bring the content for is played once. The others fill the rounds you have not prepared.',
       playFirst: 'Play first',
       playNext: 'Play next',
+      roundNamed: 'Round {number:number}: {name}',
       rounds: 'The rounds',
       slateKeyLater: 'Its answers are typed once it is up next.',
       stamp: {
+        beyond: 'Past the end',
         count: '{count:number}×',
         first: 'First',
         next: 'Next',
@@ -542,7 +547,6 @@ export const EN_DICTIONARY = defineDictionary({
       evening: 'Team game night',
       eveningSeats: 'Game night',
       nobody: {
-        detail: 'Every name shows up here as people join.',
         seat: 'A seat'
       },
       rules: {

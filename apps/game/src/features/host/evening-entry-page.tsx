@@ -13,6 +13,7 @@ import { followedByLineUp, withoutEntry } from '@melee/core/room/line-up'
 import { endsTheEvening, isPlayedOut } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
+import { orderWithEntryNext } from '@melee/core/room/running-order'
 
 import { Button } from '@/presentation/components/button'
 import { CrossIcon, GameIcon } from '@/presentation/components/icons'
@@ -193,14 +194,21 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
             <Button
               isDisabled={!isLive || roundInPlay}
               onPress={() => {
-                onSettingsChange(
-                  movedToEntry({
+                const moved = movedToEntry({
+                  at,
+                  locale,
+                  remembered: rememberedFor(entry.kind),
+                  settings: withDraft
+                })
+
+                onSettingsChange({
+                  ...moved,
+                  runningOrder: orderWithEntryNext({
                     at,
-                    locale,
-                    remembered: rememberedFor(entry.kind),
-                    settings: withDraft
+                    order: moved.runningOrder,
+                    upcoming: view.round?.index ?? 0
                   })
-                )
+                })
               }}
               size='small'
             >

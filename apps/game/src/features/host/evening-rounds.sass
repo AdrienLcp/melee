@@ -7,6 +7,14 @@
     flex-direction: column
     gap: var(--space-s)
 
+    .rounds-head
+      align-items: center
+      column-gap: var(--space-m)
+      display: flex
+      flex-wrap: wrap
+      justify-content: space-between
+      row-gap: var(--space-xs)
+
     .rounds-label
       @include typography.label
 
@@ -89,6 +97,112 @@
 
       .detail
         color: var(--socket-ink)
+
+    .order
+      display: grid
+      outline: none
+
+    .order-round
+      @include focus.ring-inset
+
+      align-items: center
+      color: var(--ink)
+      column-gap: var(--space-xs)
+      cursor: pointer
+      display: grid
+      grid-template-areas: 'band grip number icon name stamp chevron' 'band grip number icon detail detail chevron'
+      grid-template-columns: var(--space-2xs) auto auto auto minmax(0, 1fr) auto auto
+      min-height: var(--control-height)
+      outline: none
+      padding: var(--space-xs) var(--space-s) var(--space-xs) 0
+
+      + .order-round
+        border-top: var(--hairline)
+
+      &[data-hovered],
+      &[data-pressed]
+        background: var(--socket)
+
+      // react-aria wraps the content in a `display: contents` cell, so the
+      // row's grid still places it, through one more level of the tree.
+      > [role='gridcell'] > svg:not(.chevron)
+        grid-area: icon
+
+      .evening-stamp
+        grid-area: stamp
+
+      // The slot a round leaves while it travels: an empty socket, never a faded row.
+      &[data-dragging]
+        background: var(--socket)
+        box-shadow: var(--shadow-recess-shallow)
+
+        > *
+          opacity: 0.4
+
+      // A chance round has no page to open: it is a draw, printed in the socket's line.
+      &[data-chance]
+        cursor: default
+
+        grid-template-areas: 'band grip number icon name stamp chevron'
+        min-height: auto
+
+        .band
+          background: var(--socket-line)
+
+        [role='gridcell'] > svg,
+        .name
+          color: var(--ink-muted)
+
+      &[data-past-the-end]
+        background: var(--socket)
+        color: var(--socket-ink)
+
+        .band
+          background: var(--socket-line)
+
+        .detail
+          color: var(--socket-ink)
+
+    .grip
+      @include focus.ring-inset
+
+      align-items: center
+      background: none
+      block-size: 2.75rem
+      border: 0
+      border-radius: var(--radius-s)
+      color: var(--ink-muted)
+      cursor: grab
+      display: grid
+      grid-area: grip
+      inline-size: 1.5rem
+      justify-items: center
+      padding: 0
+      touch-action: none
+
+      &[data-pressed]
+        cursor: grabbing
+
+    .number
+      @include typography.score
+
+      color: var(--ink-muted)
+      font-size: var(--text-m)
+      font-variant-numeric: tabular-nums
+      grid-area: number
+      min-inline-size: 1.25rem
+      text-align: end
+
+    .drop-line
+      block-size: 0
+      outline: none
+
+      &[data-drop-target]
+        border-block-start: var(--stroke-bold) solid var(--primary)
+        margin-block: calc(-1 * var(--stroke-bold) / 2)
+
+    .rounds[data-ordered] > .add
+      border-top: var(--hairline)
 
     .add
       .round

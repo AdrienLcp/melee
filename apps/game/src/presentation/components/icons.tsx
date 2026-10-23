@@ -73,7 +73,8 @@ export const MenuIcon = inFamily(Menu, {
   strokeLinecap: 'round',
   strokeWidth: 2.6
 })
-export const DiceIcon = inFamily(Dice5)
+// Its pips are near-zero-length strokes, which a butt cap draws as nothing.
+export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const GripIcon = inFamily(GripVertical)
 export const MinusIcon = inFamily(Minus)
 export const MoveIcon = inFamily(ArrowRightLeft)

@@ -130,7 +130,17 @@ and nothing is played that the host has not either prepared or left to chance.
    among the entries serving their own content. Taking an entry out leaves
    its rows to chance (`remappedOrder`), adding one plays it last, a skip
    leaves its row to chance; the server refuses a row past the line-up
-   (`lineUpHolds`). **Left**: the switch and the drag list in
-   `EveningRounds`, which on turning the order on builds it from the list and
-   moves the next round onto its row. Preparing a second challenge or
-   slate ahead still needs its line and key on the entry, which they are not.
+   (`lineUpHolds`). **Done**: *In order* beside *The rounds* in
+   `EveningRounds` builds the order from the list (`listedOrder`: the next
+   round first, each entry still owed once, chance up to the count) and turns
+   the list into a numbered react-aria `GridList` of the rounds to come
+   (`comingRounds`), dragged by the row or by its grip on the keyboard. The
+   first row is always the entry already drawn, whatever its row says; a
+   round dragged first becomes the next one (`movedToEntry`), and a chance
+   round dragged first is drawn there and then. *Play next* and the reveal's
+   next-game picker swap rows (`orderWithEntryNext`) so the displaced entry
+   keeps a round; an entry added lands on the count's last chance round
+   (`orderWithLastRowSettled`). A row past the count is stamped *Past the
+   end* with the raise press under it. Locked while a round plays. Preparing
+   a second challenge or slate ahead still needs its line and key on the
+   entry, which they are not.

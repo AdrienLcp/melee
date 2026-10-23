@@ -18,8 +18,10 @@ import './evening-stamp.sass'
  * - `played` — a round the host brought, played and fixed
  * - `count` — a game that fills the evening, and how often it has
  * - `once` — a round the host brings, still to come
+ * - `beyond` — a round of an evening in order placed after its count's last
  */
 export type EveningStampKind =
+  | 'beyond'
   | 'count'
   | 'first'
   | 'next'

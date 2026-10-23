@@ -91,7 +91,6 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
         <section className='arrivals'>
           <div className='arrivals-head'>
             <h3>{translate('team.empty')}</h3>
-            <p>{translate('host.table.nobody.detail')}</p>
           </div>
           <EmptySeats
             count={SEATS_AT_AN_EMPTY_TABLE}
