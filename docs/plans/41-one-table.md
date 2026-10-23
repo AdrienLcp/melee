@@ -41,7 +41,9 @@ model already treated as one more tick.
   promise, the pitch, the join hint, the shelf's lead line and the note under
   the press leave home. *Another screen in the room?* leaves the page for
   `AppMenu`, as two entries under *This device*: become the room's screen, and
-  show a table's QR code.
+  show a table's QR code. *Where you were* becomes one pill per held room
+  inside the join box (the code, *Resume your table* or *your seat*, an
+  arrow), under a dashed rule — getting into a room is one box.
 - **No preset, no name for the evening.** The table is Melee; the games in it
   already have names. `room-presets.ts`, `PresetBox`, the `preset` arm of
   `createRoomRequestSchema` and its resolution in `roomSettingsFor` go. Ticking
