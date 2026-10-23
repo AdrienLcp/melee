@@ -78,6 +78,11 @@ out to learn nothing, and a loaded machine ran the spec past its 60-second
 timeout on them. A container query that grows a segment as its box widens
 would break that premise.
 
+A strip swept with **no floor** read at 320px is a failure of its own, never a
+sweep from 0: a resize that remounts the leaflet has not drawn its rounds yet,
+and a read taken there once measured the groups page instead, so the quiz's
+duration strip "broke" at a width no screen reaches.
+
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped
 finding controls reports exactly what a console with nothing wrong reports.
 

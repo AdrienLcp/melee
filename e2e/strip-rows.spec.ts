@@ -129,6 +129,7 @@ const sweepShapes = ({
 }) => {
   const faults: Fault[] = []
   const seen: string[] = []
+  const unfloored: string[] = []
 
   for (const strip of document.querySelectorAll(
     '.segmented-control, .toggle-group'
@@ -152,13 +153,20 @@ const sweepShapes = ({
 
     seen.push(label)
 
+    const floor = floors[label]
+
+    if (floor === undefined) {
+      unfloored.push(label)
+      continue
+    }
+
     if (styled === null) {
       continue
     }
 
     const restore = styled.style.width
 
-    for (let width = floors[label] ?? 0; width <= widest; width += step) {
+    for (let width = floor; width <= widest; width += step) {
       styled.style.width = `${width}px`
 
       const rows = new Map<number, number>()
@@ -186,7 +194,7 @@ const sweepShapes = ({
       if (isRagged) {
         faults.push({
           at: Math.round(strip.getBoundingClientRect().width),
-          from: floors[label] ?? 0,
+          from: floor,
           label,
           shape: counts.join('+')
         })
@@ -208,7 +216,7 @@ const sweepShapes = ({
     styled.style.width = restore
   }
 
-  return { faults, seen }
+  return { faults, seen, unfloored }
 }
 
 /**
@@ -242,10 +250,15 @@ const openTheRound = async (page: Page): Promise<void> => {
   const round = page.locator(
     `${SETUP_LEAFLET} .evening-rounds li:not(.add) .round`
   )
+  const roundPage = page.locator(`${SETUP_LEAFLET} .evening-page`)
 
-  if ((await round.count()) > 0) {
+  // A resize that remounted the leaflet has not drawn its rounds yet: counting
+  // them there read nothing, and the floors were taken off the groups instead.
+  await expect(roundPage.or(round.first())).toBeVisible()
+
+  if (await roundPage.isHidden()) {
     await round.first().click()
-    await expect(page.locator(`${SETUP_LEAFLET} .evening-page`)).toBeVisible()
+    await expect(roundPage).toBeVisible()
   }
 }
 
@@ -258,6 +271,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
   const collapsed: string[] = []
   const faults: string[] = []
+  const unfloored: string[] = []
   const measured = new Set<string>()
 
   await page.goto('/')
@@ -346,7 +360,11 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         await open(page)
         await page.evaluate(loadEveryFace)
 
-        const { faults: found, seen } = await page.evaluate(sweepShapes, {
+        const {
+          faults: found,
+          seen,
+          unfloored: unread
+        } = await page.evaluate(sweepShapes, {
           floors,
           step: STEP_PX,
           widest: WIDEST_PX
@@ -354,6 +372,10 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
         for (const label of seen) {
           measured.add(label)
+        }
+
+        for (const label of unread) {
+          unfloored.push(`${locale} · ${label}`)
         }
 
         for (const fault of found) {
@@ -366,6 +388,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
   }
 
   expect(collapsed).toEqual([])
+  expect(unfloored).toEqual([])
   expect(faults).toEqual([])
   expect(measured.size).toBeGreaterThanOrEqual(STRIPS_EXPECTED)
 })
