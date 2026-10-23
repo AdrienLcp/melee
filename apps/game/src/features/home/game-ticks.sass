@@ -1,0 +1,95 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .game-ticks
+    container-type: inline-size
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+    min-width: 0
+
+    .shelf-title
+      @include typography.title
+
+    .stack
+      display: grid
+      gap: var(--space-xs)
+
+      @container (width >= 52rem)
+        column-gap: var(--space-s)
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+
+  .spine-tick
+    @include piece.piece(var(--radius-s))
+    @include piece.pressable
+    @include focus.ring
+
+    --ground: var(--field)
+
+    align-items: center
+    background: var(--spine)
+    color: var(--spine-ink)
+    cursor: pointer
+    display: grid
+    gap: var(--space-2xs) var(--space-m)
+    grid-template-columns: auto minmax(0, 1fr)
+    min-height: 4.5rem
+    min-width: 0
+    padding: var(--space-s) var(--space-m) var(--space-s) var(--space-s)
+    -webkit-tap-highlight-color: transparent
+    user-select: none
+
+    // A socket cut into the box, filled with the box's own ink once ticked.
+    .well
+      align-items: center
+      background: color-mix(in oklab, var(--spine) 72%, var(--chipboard-dark))
+      border-radius: var(--radius-s)
+      box-shadow: var(--shadow-recess), inset 0 0 0 var(--stroke-thin) color-mix(in oklab, var(--spine-ink) 30%, transparent)
+      display: grid
+      grid-row: span 2
+      height: 2.5rem
+      justify-items: center
+      transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+      width: 2.5rem
+
+      svg
+        color: var(--spine)
+        height: 1.6rem
+        opacity: 0
+        scale: 0.4
+        stroke-width: 3.5
+        transition: opacity var(--transition-fast, 0s) var(--ease-out), scale var(--transition-base, 0s) var(--ease-out)
+        width: 1.6rem
+
+    &[data-selected] .well
+      background: var(--spine-ink)
+      box-shadow: 0 2px 0 color-mix(in oklab, var(--spine) 50%, var(--chipboard-dark))
+
+      svg
+        opacity: 1
+        scale: 1
+
+    .name
+      @include typography.spine-name
+
+      align-items: center
+      display: flex
+      font-size: clamp(var(--text-xl), 7cqi, 2.1rem)
+      gap: var(--space-xs)
+      min-width: 0
+      text-wrap: balance
+
+    .game-icon
+      flex: none
+      height: 0.8em
+      width: 0.8em
+
+    .tagline
+      @include typography.tagline
+
+      font-size: var(--text-s)
+      text-wrap: balance

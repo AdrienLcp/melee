@@ -1,0 +1,83 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+// Where the press moves beside the seat rather than under it.
+$side-by-side: 47.5rem
+
+@layer components
+  .home-tray
+    @include box-lid.box-lid
+
+    align-items: center
+    bottom: max(var(--space-s), var(--safe-area-bottom))
+    display: grid
+    gap: var(--space-s) var(--space-l)
+    padding: var(--space-m)
+    position: sticky
+    z-index: 1
+
+    @media (width >= $side-by-side)
+      grid-template-columns: minmax(0, 1fr) auto
+      padding-inline: var(--space-l) var(--space-m)
+
+      .press
+        grid-column: 2
+        grid-row: 1
+        justify-items: end
+
+        .button
+          min-width: 18rem
+
+      .seat
+        grid-column: 1
+        grid-row: 1
+
+        .text-field
+          max-width: 18rem
+
+    .seat
+      display: grid
+      gap: var(--space-xs)
+      justify-items: start
+      min-width: 0
+
+      .text-field
+        width: 100%
+
+    .as
+      @include typography.caption
+
+      align-items: baseline
+      color: var(--ink-muted)
+      display: flex
+      flex-wrap: wrap
+      gap: 0 var(--space-xs)
+
+      .seated-as
+        overflow-wrap: anywhere
+
+    .press
+      display: grid
+      gap: var(--space-xs)
+
+      .button
+        gap: var(--space-s)
+
+    .count
+      @include typography.label
+
+      background: color-mix(in oklab, var(--on-primary) 18%, var(--primary))
+      border-radius: var(--radius-full)
+      padding: var(--space-2xs) var(--space-xs)
+
+    .error
+      @include typography.caption-strong
+
+      background: var(--danger)
+      color: var(--danger-ink)
+      padding: var(--space-2xs) var(--space-s)
+
+      @include text-box.trimmed-block(var(--space-2xs))
