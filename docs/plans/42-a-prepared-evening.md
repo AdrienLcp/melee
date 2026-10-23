@@ -33,6 +33,15 @@ and nothing is played that the host has not either prepared or left to chance.
 - **Editable until played.** An entry whose round has not been played can be
   changed or removed between rounds, and the deck reflows. A played one is
   fixed. Replacing the next round beside *Next round* puts its card back.
+- **Preparing is never owed.** Ticking games and pressing still opens a table
+  that draws every round, as in stage 41: the deck is built from the ticks
+  alone, and the list of rounds is there for a host who wants it.
+- **A round nobody prepared can be skipped.** A buzzer, slate or challenge
+  drawn with nothing in it — ticked in a hurry — offers *skip* beside *Next
+  round*: that entry leaves the evening, and its cards still in the deck are
+  redrawn among the entries that serve their own content, ones already played
+  included, so the evening keeps its length. Only the host sees it; the room
+  just sees the next game.
 - **One host screen to prepare it**: the list of rounds in *Animer › La
   table*, on the console in the lobby while players arrive and between
   rounds — add a round (pick a game, set its options, prepare its content),
