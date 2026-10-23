@@ -509,6 +509,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const setupProps = (current: HostRoomView): SetupFieldsProps => ({
     draftSource,
     isLive,
+    isRoomScreen,
     onDraftSource: setDraftSource,
     onRememberSlateKey: rememberPreparedKey,
     onSettingsChange: changeSettings,
@@ -650,9 +651,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           <RoomScreenPresses
             actions={hostActionsProps(view)}
             error={error}
-            onRememberSlateKey={rememberPreparedKey}
             onRemovePlayer={removePlayer}
-            preparedSlateKeys={preparedKeys}
             setup={setupProps(view)}
           />
         )}

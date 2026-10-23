@@ -45,6 +45,8 @@ export type SetupFieldsProps = {
   draftSource: TrackSource | null
   /** The socket is open. Everything inside sends a frame, so none of it works without it. */
   isLive: boolean
+  /** The room's own screen, whose lobby stage draws no slate sheet: its round's page holds it instead. */
+  isRoomScreen: boolean
   /** Must be stable — the picker reports upward from an effect. */
   onDraftSource: (source: TrackSource | null) => void
   /** Files one key of the slate's answer key on this tab. */
@@ -88,6 +90,7 @@ type SetupPage =
 export const SetupFields: React.FC<SetupFieldsProps> = ({
   draftSource,
   isLive,
+  isRoomScreen,
   onDraftSource,
   onRememberSlateKey,
   onSettingsChange,
@@ -117,6 +120,7 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
           at={page.at}
           draftSource={draftSource}
           isLive={isLive}
+          isRoomScreen={isRoomScreen}
           onBack={backToGroups}
           onDraftSource={onDraftSource}
           onRememberSlateKey={onRememberSlateKey}

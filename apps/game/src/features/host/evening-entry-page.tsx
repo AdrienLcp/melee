@@ -32,6 +32,8 @@ type EveningEntryPageProps = {
   /** The blind test's source as the picker shows it, while this entry is the next round's. */
   draftSource: TrackSource | null
   isLive: boolean
+  /** The room's own screen, whose lobby stage draws no slate sheet. */
+  isRoomScreen: boolean
   onBack: () => void
   /** Must be stable — the picker reports upward from an effect. */
   onDraftSource: (source: TrackSource | null) => void
@@ -58,6 +60,7 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
   at,
   draftSource,
   isLive,
+  isRoomScreen,
   onBack,
   onDraftSource,
   onRememberSlateKey,
@@ -169,7 +172,7 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
             isLive={isLive}
             isNextRound={isNext}
             isRoundInPlay={roundInPlay && isNext}
-            isSheetOnStage={view.phase === 'lobby' && isNext}
+            isSheetOnStage={view.phase === 'lobby' && isNext && !isRoomScreen}
             onChange={changeEntry}
             onPrepareSlateKey={onRememberSlateKey}
             preparedSlateKeys={preparedSlateKeys}

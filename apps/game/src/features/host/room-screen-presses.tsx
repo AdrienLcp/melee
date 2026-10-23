@@ -15,7 +15,6 @@ import { ActionSlotProvider } from './action-slot'
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { HostActions, type HostActionsProps } from './host-actions'
 import { SetupFields, type SetupFieldsProps } from './setup-fields'
-import { SlatePreparation } from './slate-preparation'
 
 import './room-screen-presses.sass'
 
@@ -25,9 +24,6 @@ type RoomScreenPressesProps = {
   /** The last refusal, said above the press the room is waiting on. */
   error: { code: ProtocolErrorCode } | null
   onRemovePlayer: (playerId: PlayerId) => void
-  /** Keeps a key typed for the next sheet, as the lobby's own preparation does. */
-  onRememberSlateKey: (itemIndex: number, key: string) => void
-  preparedSlateKeys: readonly (string | null)[]
   setup: SetupFieldsProps
 }
 
@@ -38,14 +34,12 @@ type RoomScreenPressesProps = {
  * the stage between them with nothing on it but the game.
  *
  * Nothing that prints an answer is drawn until somebody opens the drawer, which
- * is why the slate's key is in it rather than on the lobby's stage.
+ * is why the slate's key is on its round's page rather than on the lobby's stage.
  */
 export const RoomScreenPresses: React.FC<RoomScreenPressesProps> = ({
   actions,
   error,
   onRemovePlayer,
-  onRememberSlateKey,
-  preparedSlateKeys,
   setup
 }) => {
   const translate = useTranslate()
@@ -73,17 +67,6 @@ export const RoomScreenPresses: React.FC<RoomScreenPressesProps> = ({
                 <AutoAdvanceChoice
                   isLive={isLive}
                   onSettingsChange={onSettingsChange}
-                  settings={view.settings}
-                />
-              )}
-
-              {view.phase === 'lobby' && game?.kind === 'slate' && (
-                <SlatePreparation
-                  game={game}
-                  isLive={isLive}
-                  onChange={onSettingsChange}
-                  onPrepareKey={onRememberSlateKey}
-                  preparedKeys={preparedSlateKeys}
                   settings={view.settings}
                 />
               )}
