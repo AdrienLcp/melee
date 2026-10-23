@@ -4,6 +4,8 @@ import {
   BellRing,
   Check,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   ChevronUp,
   CircleQuestionMark,
   Copy,
@@ -59,6 +61,8 @@ const inFamily =
 export const ArrowIcon = inFamily(ArrowRight)
 export const CheckIcon = inFamily(Check)
 export const ChevronIcon = inFamily(ChevronDown)
+export const ChevronLeftIcon = inFamily(ChevronLeft)
+export const ChevronRightIcon = inFamily(ChevronRight)
 export const ChevronUpIcon = inFamily(ChevronUp)
 export const ControlsIcon = inFamily(SlidersHorizontal)
 export const CopyIcon = inFamily(Copy)

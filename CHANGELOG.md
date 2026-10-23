@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Game]` **The evening is a list of rounds.** *Settings › The table* lists
+  every round of the evening — its game, what it is set to, and whether it is
+  next, played, played once or how often — and says how many rounds are left
+  to chance, or how many too many the count holds, with a press that raises
+  it. Each round opens a page of its own with its settings, *Play next* and
+  *Take it out*; *Add a round* opens the shelf as a page. *The round* group is
+  gone: setting a round no longer makes it the next one. The last round of an
+  evening with nothing left to deal now ends on *See the results*.
+
 - **An evening can have a judge**, and `PROTOCOL_VERSION` goes to 43. *A judge
   runs the room and doesn't play*, under *Animer › The evening*: the console
   then takes no seat under any game, and each game of the evening is played

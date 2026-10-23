@@ -1,5 +1,6 @@
 import type React from 'react'
-import { DisclosureGroup, type Key } from 'react-aria-components'
+import { useState } from 'react'
+import { DisclosureGroup } from 'react-aria-components'
 
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
@@ -15,20 +16,28 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
-import { GamePicker } from './game-picker'
+import { EveningAddPage } from './evening-add-page'
+import { EveningEntryPage } from './evening-entry-page'
+import { EveningRounds, ROUND_COUNT_STEPS } from './evening-rounds'
 import { HostSeat } from './host-seat'
 import { JudgeSwitch } from './judge-switch'
-import { LineUpEntries } from './line-up-entries'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
-import { PlaylistPicker } from './playlist-picker'
-import { SettingsPanel } from './settings-panel'
-import { isSetAsTable } from './table-lobby'
 import { TeamsSetup } from './teams-setup'
 import { useSetupSummaries } from './use-settings-summary'
 
 import './setup-fields.sass'
 
-const ROUND_COUNT_OPTIONS = [5, 10, 20, 30, NO_LIMIT] as const
+/**
+ * The strip's counts, with the one the room is on when it is none of them —
+ * three games ticked on home make twelve, and a strip with nothing pressed
+ * says the evening has no length.
+ */
+const roundCountOptions = (roundCount: number | null): number[] =>
+  roundCount === null || ROUND_COUNT_STEPS.some((step) => step === roundCount)
+    ? [...ROUND_COUNT_STEPS, NO_LIMIT]
+    : [...ROUND_COUNT_STEPS, roundCount]
+        .toSorted((a, b) => a - b)
+        .concat(NO_LIMIT)
 const COUNTDOWN_DURATIONS_MS = [3_000, 5_000, 10_000] as const
 
 export type SetupFieldsProps = {
@@ -49,15 +58,14 @@ export type SetupFieldsProps = {
   view: HostRoomView
 }
 
-type SetupGroup = 'room' | 'round' | 'table'
-
 /**
- * The group a host opening the setup most likely came for: the evening's shape
- * while nothing has been played and it can still be decided, the game's own
- * settings once a round is what the next press opens.
+ * What the leaflet shows: its groups, or a page of the evening in their
+ * place — one entry's, or the shelf a round is added from.
  */
-const groupOpenedFirst = (view: HostRoomView): SetupGroup =>
-  view.phase === 'lobby' || view.settings.game === null ? 'table' : 'round'
+type SetupPage =
+  | { kind: 'adding' }
+  | { at: number; kind: 'entry' }
+  | { kind: 'groups' }
 
 /**
  * How the evening is played, rather than inside the lobby: the countdown, the
@@ -65,17 +73,17 @@ const groupOpenedFirst = (view: HostRoomView): SetupGroup =>
  * the one on screen, and a host who has to end the game to reach them is a
  * host who does not change them.
  *
- * Three groups, each closed on what it is set to: **the evening** (the game on
- * the shelf, the teams, its length), **the round** (what the game asks of each
- * one) and **the room** (the hold, the countdown, this screen's volume and seat
- * — what no game answers). One opens with the leaflet and the host opens the
- * others beside it: a quiz's subjects alone run to nine rows, and a leaflet
- * opening on all three is a scroll nobody finishes reading.
+ * Two groups, each closed on what it is set to: **the table** (the evening's
+ * rounds, the teams, its length) and **the room** (the hold, the countdown,
+ * this screen's volume and seat — what no game answers). The table opens with
+ * the leaflet. Each round of the evening opens a page of its own in place of
+ * the groups, holding what the game asks of it: a quiz's subjects alone run to
+ * nine rows, and ten games' worth under one fold is a scroll nobody finishes.
  *
- * The game and the seat are here for every phase but the lobby, where each of
- * them is the decision the room is waiting on and the stage draws it instead. A
- * round in play holds the seat back on top of that, because taking it reopens
- * the socket and a re-seat mid-clip would drop the answer being typed.
+ * The seat is here for every phase but the lobby, where it is a decision the
+ * room is waiting on and the stage draws it instead. A round in play holds it
+ * back on top of that, because taking it reopens the socket and a re-seat
+ * mid-clip would drop the answer being typed.
  */
 export const SetupFields: React.FC<SetupFieldsProps> = ({
   draftSource,
@@ -93,11 +101,50 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
   const game = settings.game
   const isInLobby = view.phase === 'lobby'
   const roundInPlay = isRoundInPlay(view.phase)
-  const { isRoomScreen, playsSound } = useRoomActions()
+  const { playsSound } = useRoomActions()
   const { setVolume, volume } = useVolume()
   const { seconds } = useDurationLabels()
   const summaries = useSetupSummaries({ draftSource, settings })
-  const defaultExpandedKeys: Key[] = [groupOpenedFirst(view)]
+  const [page, setPage] = useState<SetupPage>({ kind: 'groups' })
+  const backToGroups = () => {
+    setPage({ kind: 'groups' })
+  }
+
+  if (page.kind === 'entry') {
+    return (
+      <div className='setup-fields'>
+        <EveningEntryPage
+          at={page.at}
+          draftSource={draftSource}
+          isLive={isLive}
+          onBack={backToGroups}
+          onDraftSource={onDraftSource}
+          onRememberSlateKey={onRememberSlateKey}
+          onSettingsChange={onSettingsChange}
+          preferences={preferences}
+          preparedSlateKeys={preparedSlateKeys}
+          view={view}
+        />
+      </div>
+    )
+  }
+
+  if (page.kind === 'adding') {
+    return (
+      <div className='setup-fields'>
+        <EveningAddPage
+          isLive={isLive}
+          onAdded={(added, at) => {
+            onSettingsChange(added)
+            setPage({ at, kind: 'entry' })
+          }}
+          onBack={backToGroups}
+          preferences={preferences}
+          settings={settings}
+        />
+      </div>
+    )
+  }
 
   return (
     <div className='setup-fields'>
@@ -107,29 +154,24 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
       <DisclosureGroup
         allowsMultipleExpanded
         className='setup-groups'
-        defaultExpandedKeys={defaultExpandedKeys}
+        defaultExpandedKeys={['table']}
       >
         <Disclosure
           id='table'
           label={translate('host.setup.group.table')}
           summary={summaries.table}
         >
-          {/*
-            In the lobby the game is the stage's, beside the QR code — save on
-            the room's own screen set as a table of teams, whose stage is the
-            room's to read. Past it,
-            a round on screen is one arm of `round.content`, so a game switched
-            under it would leave the screens rendering the other; the server
-            refuses that, and the control says so first.
-          */}
-          {(!isInLobby || (isRoomScreen && isSetAsTable(settings))) && (
-            <GamePicker
-              isDisabled={!isLive || roundInPlay}
-              onChange={onSettingsChange}
-              preferences={preferences}
-              settings={settings}
-            />
-          )}
+          <EveningRounds
+            isLive={isLive}
+            onAdd={() => {
+              setPage({ kind: 'adding' })
+            }}
+            onOpen={(at) => {
+              setPage({ at, kind: 'entry' })
+            }}
+            onSettingsChange={onSettingsChange}
+            view={view}
+          />
           {/*
             Ruled rather than hidden past the lobby: the server refuses a new
             deal once the game runs, and a host looking for the teams should
@@ -157,11 +199,11 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
             settings={settings}
           />
           {/*
-            A slate is one sheet, marked once: the next sheet is the next game,
-            set up afresh, and a strip offering five of them would offer no
-            *one*.
+            A room of one slate is one sheet, marked once: the next sheet is the
+            next game, set up afresh, and a strip offering five of them would
+            offer no *one*. An evening counts its rounds whatever they are.
           */}
-          {game?.kind !== 'slate' && (
+          {(settings.lineUp.length > 1 || game?.kind !== 'slate') && (
             <NumberChoice
               className='round-count'
               isDisabled={!isLive}
@@ -177,45 +219,11 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
                   ? translate('host.roundCount.open')
                   : String(count)
               }
-              options={ROUND_COUNT_OPTIONS}
+              options={roundCountOptions(settings.roundCount)}
               value={settings.roundCount ?? NO_LIMIT}
             />
           )}
         </Disclosure>
-
-        {/* Nothing about a round until there is a game to play it. */}
-        {game !== null && (
-          <Disclosure
-            id='round'
-            label={translate('host.setup.group.round')}
-            summary={summaries.round}
-          >
-            <LineUpEntries
-              draftSource={draftSource}
-              isDisabled={!isLive || roundInPlay}
-              onChange={onSettingsChange}
-              preferences={preferences}
-              settings={settings}
-            />
-            {game.kind === 'blindtest' && (
-              <PlaylistPicker
-                key={settings.lineUpAt}
-                onDraftChange={onDraftSource}
-                settings={game}
-              />
-            )}
-            <SettingsPanel
-              draftSource={draftSource}
-              isLive={isLive}
-              isRoundInPlay={roundInPlay}
-              isSheetOnStage={isInLobby}
-              onChange={onSettingsChange}
-              onPrepareSlateKey={onRememberSlateKey}
-              preparedSlateKeys={preparedSlateKeys}
-              settings={settings}
-            />
-          </Disclosure>
-        )}
 
         <Disclosure
           id='room'

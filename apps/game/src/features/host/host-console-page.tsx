@@ -141,6 +141,17 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [hasOfferedToken, setHasOfferedToken] = useState(false)
   const { volume } = useVolume()
   const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
+  const lineUpAt = view?.settings.lineUpAt ?? null
+  const [draftedForAt, setDraftedForAt] = useState(lineUpAt)
+
+  // The picker's draft is the source of the entry the next round is on. Once
+  // the draw or *Play next* moves that round to another entry, the draft is
+  // that entry's no longer, and committing it at the launch would hand one
+  // blind test's source to the other.
+  if (draftedForAt !== lineUpAt) {
+    setDraftedForAt(lineUpAt)
+    setDraftSource(null)
+  }
   const [preferences, setPreferences] = useState(storedHostPreferencesOrNone)
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
   const [challengeText, setChallengeText] = useState('')

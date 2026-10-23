@@ -209,7 +209,7 @@ const sweepShapes = ({
 }
 
 /**
- * The setup's strips live on its leaflet, in three groups of which one opens
+ * The setup's strips live on its leaflet, in two groups of which one opens
  * with it. Crossing the split trades the popover for the sheet, which mounts
  * the groups afresh, so this runs again after every resize.
  */
@@ -225,6 +225,24 @@ const openEveryGroup = async (page: Page): Promise<void> => {
 
   while ((await closed.count()) > 0) {
     await closed.first().click()
+  }
+}
+
+/**
+ * The game's own strips are on its round's page, which takes the groups'
+ * place in the leaflet. A room of one game has one round to open; a resize
+ * that mounted the leaflet afresh is back on the groups, so it opens again.
+ */
+const openTheRound = async (page: Page): Promise<void> => {
+  await openEveryGroup(page)
+
+  const round = page.locator(
+    `${SETUP_LEAFLET} .evening-rounds li:not(.add) .round`
+  )
+
+  if ((await round.count()) > 0) {
+    await round.first().click()
+    await expect(page.locator(`${SETUP_LEAFLET} .evening-page`)).toBeVisible()
   }
 }
 
@@ -282,7 +300,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
       lastTicked = index
 
-      await openEveryGroup(page)
+      await openTheRound(page)
 
       // Two strips only exist once another strip has been pressed: the decade
       // grid, and the window a buzz has to be answered in. `decade` is second
@@ -302,36 +320,44 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         await modes.first().click()
       }
 
-      await page.setViewportSize({ height: 900, width: NARROWEST_SCREEN })
-      await openEveryGroup(page)
-      await page.evaluate(loadEveryFace)
-
-      const floors = await page.evaluate(readFloors)
-
-      for (const [label, floor] of Object.entries(floors)) {
-        if (floor === 0) {
-          collapsed.push(`${locale} · ${label}`)
+      // The round's own page first, then the groups it took the place of.
+      for (const open of [openTheRound, openEveryGroup]) {
+        if (open === openEveryGroup) {
+          await page.keyboard.press('Escape')
+          await expect(page.locator(SETUP_LEAFLET)).toHaveCount(0)
         }
-      }
 
-      await page.setViewportSize({ height: 900, width: WIDEST_PX })
-      await openEveryGroup(page)
-      await page.evaluate(loadEveryFace)
+        await page.setViewportSize({ height: 900, width: NARROWEST_SCREEN })
+        await open(page)
+        await page.evaluate(loadEveryFace)
 
-      const { faults: found, seen } = await page.evaluate(sweepShapes, {
-        floors,
-        step: STEP_PX,
-        widest: WIDEST_PX
-      })
+        const floors = await page.evaluate(readFloors)
 
-      for (const label of seen) {
-        measured.add(label)
-      }
+        for (const [label, floor] of Object.entries(floors)) {
+          if (floor === 0) {
+            collapsed.push(`${locale} · ${label}`)
+          }
+        }
 
-      for (const fault of found) {
-        faults.push(
-          `${locale} · ${fault.label} · ${fault.shape} at ${fault.at}px`
-        )
+        await page.setViewportSize({ height: 900, width: WIDEST_PX })
+        await open(page)
+        await page.evaluate(loadEveryFace)
+
+        const { faults: found, seen } = await page.evaluate(sweepShapes, {
+          floors,
+          step: STEP_PX,
+          widest: WIDEST_PX
+        })
+
+        for (const label of seen) {
+          measured.add(label)
+        }
+
+        for (const fault of found) {
+          faults.push(
+            `${locale} · ${fault.label} · ${fault.shape} at ${fault.at}px`
+          )
+        }
       }
     }
   }

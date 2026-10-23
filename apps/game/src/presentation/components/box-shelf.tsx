@@ -1,6 +1,8 @@
+import { classNames } from '@adrienlcp/react'
 import { composeClassName } from '@adrienlcp/react-aria'
 import type React from 'react'
 import {
+  Button,
   Checkbox,
   CheckboxGroup,
   type CheckboxGroupProps,
@@ -85,3 +87,45 @@ export const TickShelf: React.FC<TickShelfProps> = ({
     </div>
   </CheckboxGroup>
 )
+
+type PickShelfProps = ShelfProps & {
+  className?: string
+  /** Every box is held, whatever each option says. */
+  isDisabled?: boolean
+  /** Called with the value of the box pressed. */
+  onPick: (value: string) => void
+}
+
+/**
+ * The same shelf for a choice that is an action rather than a state: each box
+ * is a press that takes one off the shelf, so nothing is ticked and a screen
+ * reader hears buttons, never checkboxes it could leave checked.
+ */
+export const PickShelf: React.FC<PickShelfProps> = ({
+  className,
+  isDisabled = false,
+  label,
+  onPick,
+  options
+}) => {
+  return (
+    <fieldset className={classNames(className, 'box-shelf')}>
+      <legend className='shelf-label'>{label}</legend>
+      <div className='boxes'>
+        {options.map((option) => (
+          <Button
+            className='box'
+            isDisabled={isDisabled || option.isDisabled}
+            key={option.value}
+            onPress={() => {
+              onPick(option.value)
+            }}
+            style={{ '--spine': option.spine }}
+          >
+            <BoxFace option={option} />
+          </Button>
+        ))}
+      </div>
+    </fieldset>
+  )
+}

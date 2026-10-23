@@ -9,13 +9,12 @@ import {
 import type { RoomSettings } from '@melee/protocol/room'
 
 import {
-  canHoldVariants,
   fittedToAloud,
   followedByLineUp,
   lineUpHolds,
   toggledInLineUp,
-  withoutEntry,
-  withVariantAdded
+  withEntryAdded,
+  withoutEntry
 } from './line-up'
 import { type GameSetup, roomSettingsFor } from './room-settings'
 
@@ -124,7 +123,12 @@ describe('toggledInLineUp', () => {
 
   it('[line-up] takes out every entry of a game at once', () => {
     const evening = toggle(
-      withVariantAdded(toggle(onTheCharts, 'quiz')),
+      withEntryAdded({
+        game: 'blindtest',
+        locale: 'fr',
+        remembered: null,
+        settings: toggle(onTheCharts, 'quiz')
+      }),
       'blindtest'
     )
 
@@ -154,19 +158,44 @@ describe('toggledInLineUp', () => {
 })
 
 describe('variants', () => {
-  it('[line-up] adds a copy of the game the next round is on, beside it, and moves to it', () => {
-    const evening = withVariantAdded(toggle(onTheCharts, 'quiz'))
+  const onTheChartsTwice = withEntryAdded({
+    game: 'blindtest',
+    locale: 'fr',
+    remembered: null,
+    settings: onTheCharts
+  })
 
-    expect(kinds(evening)).toEqual(['blindtest', 'blindtest', 'quiz'])
-    expect(evening.lineUpAt).toBe(1)
-    expect(evening.lineUp[1]).toEqual(evening.game)
+  it('[line-up] adds a round at the end without making it the next one', () => {
+    const evening = withEntryAdded({
+      game: 'blindtest',
+      locale: 'fr',
+      remembered: null,
+      settings: toggle(onTheCharts, 'quiz')
+    })
+
+    expect(kinds(evening)).toEqual(['blindtest', 'quiz', 'blindtest'])
+    expect(evening.lineUpAt).toBe(0)
     expect(lineUpHolds(evening)).toBe(true)
+  })
+
+  it('[line-up] picks the game when the room is still deciding', () => {
+    const picked = withEntryAdded({
+      game: 'slate',
+      locale: 'fr',
+      remembered: null,
+      settings: onNothing
+    })
+
+    expect(kinds(picked)).toEqual(['slate'])
+    expect(picked.game?.kind).toBe('slate')
+    expect(picked.lineUpAt).toBe(0)
   })
 
   it('[line-up] writes the game back into the entry it was opened from', () => {
     const followed = followedByLineUp({
-      ...withVariantAdded(onTheCharts),
-      game: FILM_SCORES
+      ...onTheChartsTwice,
+      game: FILM_SCORES,
+      lineUpAt: 1
     })
 
     expect(followed.lineUp).toEqual([onTheCharts.game, FILM_SCORES])
@@ -174,8 +203,9 @@ describe('variants', () => {
 
   it('[line-up] moves off an entry taken out to the one after it, on its own settings', () => {
     const evening = followedByLineUp({
-      ...withVariantAdded(onTheCharts),
-      game: FILM_SCORES
+      ...onTheChartsTwice,
+      game: FILM_SCORES,
+      lineUpAt: 1
     })
     const firstOut = withoutEntry({
       at: 0,
@@ -209,13 +239,6 @@ describe('variants', () => {
     expect(kinds(without)).toEqual(['buzzer', 'slate'])
     expect(without.lineUpAt).toBe(0)
     expect(without.game?.kind).toBe('buzzer')
-  })
-
-  it('[line-up] offers a variant only of a game with settings of its own', () => {
-    expect(canHoldVariants('blindtest')).toBe(true)
-    expect(canHoldVariants('buzzer')).toBe(true)
-    expect(canHoldVariants('reflex')).toBe(false)
-    expect(canHoldVariants('innerclock')).toBe(false)
   })
 
   it('[line-up] keeps the last entry', () => {

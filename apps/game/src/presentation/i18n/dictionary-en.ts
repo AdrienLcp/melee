@@ -379,6 +379,49 @@ export const EN_DICTIONARY = defineDictionary({
       removePlayer: 'Remove a player'
     },
     endGame: 'End the game',
+    evening: {
+      add: 'Add a round',
+      challengeLine:
+        'Its line is written when its round comes up, beside the press that opens it.',
+      chance: {
+        among: 'among {games}, never the same game twice in a row',
+        closed: 'Nothing else to draw',
+        closedHint: 'The evening ends once these rounds are played.',
+        counted: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: 'round left to chance',
+              other: 'rounds left to chance'
+            }
+          }
+        }),
+        endless: 'Then by chance, until you stop',
+        none: 'Nothing left to chance',
+        noneHint: 'Every round still to play is already in the list.',
+        over: 'too many for {total:number} rounds',
+        overHint:
+          'Every round added is played at least once, so the evening has to grow.',
+        raise: 'Make it {count:number}'
+      },
+      fills: 'Fills the evening',
+      fixed: 'Already played: it no longer changes.',
+      once: 'Played once',
+      pick: 'Which round?',
+      pickHint:
+        'A game you bring the content for is played once. The others fill the rounds you have not prepared.',
+      playFirst: 'Play first',
+      playNext: 'Play next',
+      rounds: 'The rounds',
+      slateKeyLater: 'Its answers are typed once it is up next.',
+      stamp: {
+        count: '{count:number}×',
+        first: 'First',
+        next: 'Next',
+        now: 'Now',
+        once: 'Once',
+        played: 'Played'
+      }
+    },
     final: {
       nobody: 'Nobody scored',
       tied: defineTranslation('{points:plural}', {
@@ -410,8 +453,6 @@ export const EN_DICTIONARY = defineDictionary({
       summary: 'With a judge'
     },
     lineUp: {
-      addVariant: 'Add a variant',
-      entryHint: 'The settings below are this one’s.',
       first: 'First up',
       next: 'Next up',
       ready: defineTranslation('{count:plural} of {total:number} ready', {
@@ -477,7 +518,6 @@ export const EN_DICTIONARY = defineDictionary({
     setup: {
       group: {
         room: 'The room',
-        round: 'The round',
         table: 'The table'
       },
       label: 'Settings',

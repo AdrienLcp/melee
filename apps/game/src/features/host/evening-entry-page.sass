@@ -1,0 +1,59 @@
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .evening-page
+    .entry-lid
+      @include box-lid.box-lid
+
+      align-items: center
+      box-shadow: inset 0 var(--space-xs) 0 var(--spine), 0 var(--edge) 0 0 var(--chipboard), var(--shadow-print)
+      column-gap: var(--space-s)
+      display: grid
+      grid-template-areas: 'icon name stamp' 'icon said stamp'
+      grid-template-columns: auto minmax(0, 1fr) auto
+      padding: calc(var(--space-m) + var(--space-xs)) var(--space-m) var(--space-m)
+      row-gap: var(--space-2xs)
+
+      &::before
+        display: none
+
+      > svg
+        font-size: var(--text-xl)
+        grid-area: icon
+
+      h2
+        @include typography.lid-name
+
+        font-size: var(--text-xl)
+        grid-area: name
+        margin: 0
+
+      p
+        @include typography.caption
+
+        color: var(--ink-muted)
+        grid-area: said
+        margin: 0
+
+      .evening-stamp
+        grid-area: stamp
+
+    .entry-settings
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+
+    .fixed
+      @include typography.caption
+
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      color: var(--socket-ink)
+      margin: 0
+      padding: var(--space-s) var(--space-m)
+
+    .entry-actions
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)

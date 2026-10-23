@@ -6,7 +6,13 @@ import {
   type GameSettings
 } from '@melee/protocol/game'
 
-import { hasEntryLeftToDeal, nextEntryAt, playedPerEntry } from './next-game'
+import {
+  endsTheEvening,
+  hasEntryLeftToDeal,
+  isPlayedOut,
+  nextEntryAt,
+  playedPerEntry
+} from './next-game'
 
 const lineUp = [
   DEFAULT_GAME_SETTINGS.quiz,
@@ -264,5 +270,54 @@ describe('hasEntryLeftToDeal', () => {
     expect(
       hasEntryLeftToDeal({ lineUp: hostBrought.slice(0, 1), played: [3] })
     ).toBe(true)
+  })
+})
+
+describe('endsTheEvening', () => {
+  it('[next-game] ends on the round that reaches the count', () => {
+    expect(
+      endsTheEvening({
+        lineUp,
+        played: [3, 3, 1],
+        roundCount: 7,
+        roundIndex: 7
+      })
+    ).toBe(true)
+  })
+
+  it('[next-game] ends an evening short of its count once nothing is left to deal', () => {
+    expect(
+      endsTheEvening({
+        lineUp: [DEFAULT_GAME_SETTINGS.slate, DEFAULT_GAME_SETTINGS.challenge],
+        played: [1, 1],
+        roundCount: 20,
+        roundIndex: 2
+      })
+    ).toBe(true)
+  })
+
+  it('[next-game] goes on while an entry is still owed', () => {
+    expect(
+      endsTheEvening({
+        lineUp: [DEFAULT_GAME_SETTINGS.slate, DEFAULT_GAME_SETTINGS.challenge],
+        played: [1, 0],
+        roundCount: 20,
+        roundIndex: 1
+      })
+    ).toBe(false)
+  })
+})
+
+describe('isPlayedOut', () => {
+  it('[next-game] fixes an entry the host brought once it has opened a round', () => {
+    expect(isPlayedOut({ entry: DEFAULT_GAME_SETTINGS.slate, played: 1 })).toBe(
+      true
+    )
+    expect(isPlayedOut({ entry: DEFAULT_GAME_SETTINGS.slate, played: 0 })).toBe(
+      false
+    )
+    expect(isPlayedOut({ entry: DEFAULT_GAME_SETTINGS.quiz, played: 4 })).toBe(
+      false
+    )
   })
 })

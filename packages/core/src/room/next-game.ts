@@ -71,6 +71,41 @@ export const hasEntryLeftToDeal = ({
   played: readonly number[]
 }): boolean => lineUp.length < 2 || entriesInDeck({ lineUp, played }).length > 0
 
+/**
+ * Whether the round about to be revealed is the evening's last: its count is
+ * reached, or an evening of several entries has none left to deal. The
+ * console names its last press after this, as the server ends on it.
+ */
+export const endsTheEvening = ({
+  lineUp,
+  played,
+  roundCount,
+  roundIndex
+}: {
+  lineUp: readonly GameSettings[]
+  /** As `nextEntryAt`'s, the round on screen included. */
+  played: readonly number[]
+  roundCount: number | null
+  /** The round on screen, counted from 1. */
+  roundIndex: number
+}): boolean =>
+  (roundCount !== null && roundIndex >= roundCount) ||
+  !hasEntryLeftToDeal({ lineUp, played })
+
+/**
+ * Whether an entry is done with for the evening: one whose content the host
+ * brought, once it has opened a round. Changing it would replay the same
+ * sheet or the same line under another name.
+ */
+export const isPlayedOut = ({
+  entry,
+  played
+}: {
+  entry: GameSettings
+  /** How many rounds this entry has opened. */
+  played: number
+}): boolean => !capabilitiesOf(entry.kind).servesItsOwnContent && played > 0
+
 const entriesInDeck = ({
   lineUp,
   played
@@ -79,9 +114,7 @@ const entriesInDeck = ({
   played: readonly number[]
 }): number[] =>
   lineUp.flatMap((entry, index) =>
-    capabilitiesOf(entry.kind).servesItsOwnContent || (played[index] ?? 0) === 0
-      ? [index]
-      : []
+    isPlayedOut({ entry, played: played[index] ?? 0 }) ? [] : [index]
   )
 
 /**

@@ -3,6 +3,7 @@ import type React from 'react'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
+import { endsTheEvening } from '@melee/core/room/next-game'
 import { movedToEntry } from '@melee/core/room/room-settings'
 import { canPlayDuel } from '@melee/core/team/duel'
 
@@ -43,7 +44,6 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   const slot = useActionSlot()
   const { settings } = view
   const entryNames = useLineUpEntryNames(settings.lineUp)
-  const total = settings.roundCount
 
   const openNextRound = ({ isDuel }: { isDuel: boolean }) => {
     onOpenRound()
@@ -55,11 +55,19 @@ export const RevealActions: React.FC<HostActionsProps> = ({
     })
   }
 
-  // The server ends the game rather than opening a round past the last one, so
-  // on that reveal "next round" is a button that does something else than it
+  // The server ends the game rather than opening a round past the last one —
+  // the count reached, or nothing left to deal — so on that reveal "next
+  // round" is a button that does something else than it
   // says — and the way out beside it reads as abandoning a game that is already
   // over. One control, named after what it opens.
-  if (total !== null && (view.round?.index ?? 0) >= total) {
+  if (
+    endsTheEvening({
+      lineUp: settings.lineUp,
+      played: view.lineUpPlayed,
+      roundCount: settings.roundCount,
+      roundIndex: view.round?.index ?? 0
+    })
+  ) {
     return (
       <div className='reveal-actions'>
         <PrimaryPress>

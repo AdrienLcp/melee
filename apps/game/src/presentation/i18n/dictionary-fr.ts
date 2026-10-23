@@ -348,6 +348,46 @@ export const FR_DICTIONARY = defineDictionary({
       removePlayer: 'Retirer un joueur'
     },
     endGame: 'Terminer la partie',
+    evening: {
+      add: 'Ajouter une manche',
+      challengeLine:
+        'Sa phrase s’écrit quand sa manche arrive, à côté du bouton qui la lance.',
+      chance: {
+        among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
+        closed: 'Rien d’autre à tirer',
+        closedHint: 'La soirée finit une fois ces manches jouées.',
+        counted: defineTranslation('{count:plural}', {
+          plural: {
+            count: { one: 'manche au hasard', other: 'manches au hasard' }
+          }
+        }),
+        endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
+        none: 'Plus rien au hasard',
+        noneHint: 'Chaque manche restante est déjà dans la liste.',
+        over: 'de trop pour {total:number} manches',
+        overHint:
+          'Chaque manche ajoutée se joue au moins une fois : la soirée doit s’allonger.',
+        raise: 'Passer à {count:number}'
+      },
+      fills: 'Remplit la soirée',
+      fixed: 'Déjà jouée : elle ne change plus.',
+      once: 'Se joue une fois',
+      pick: 'Quelle manche ?',
+      pickHint:
+        'Un jeu dont tu apportes le contenu se joue une fois. Les autres remplissent les manches que tu n’as pas préparées.',
+      playFirst: 'Jouer en premier',
+      playNext: 'Jouer ensuite',
+      rounds: 'Les manches',
+      slateKeyLater: 'Ses réponses se tapent quand elle passe en prochaine.',
+      stamp: {
+        count: '{count:number}×',
+        first: 'En premier',
+        next: 'Ensuite',
+        now: 'En cours',
+        once: 'Une fois',
+        played: 'Jouée'
+      }
+    },
     final: {
       nobody: 'Personne n’a marqué',
       tied: defineTranslation('{points:plural}', {
@@ -382,8 +422,6 @@ export const FR_DICTIONARY = defineDictionary({
       summary: 'Avec un juge'
     },
     lineUp: {
-      addVariant: 'Ajouter une variante',
-      entryHint: 'Les réglages ci-dessous sont les siens.',
       first: 'En premier',
       next: 'Ensuite',
       ready: defineTranslation('{count:plural} sur {total:number}', {
@@ -437,7 +475,6 @@ export const FR_DICTIONARY = defineDictionary({
     setup: {
       group: {
         room: 'La salle',
-        round: 'La manche',
         table: 'La table'
       },
       label: 'Réglages',

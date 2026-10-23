@@ -4,16 +4,21 @@
 
 @layer components
   .box-shelf
+    border: 0
     container-type: inline-size
     display: flex
     flex-direction: column
     gap: var(--space-s)
+    margin: 0
     min-width: 0
+    padding: 0
 
-    > .react-aria-Label
+    > .react-aria-Label,
+    > .shelf-label
       @include typography.label
 
       color: var(--ink-muted)
+      padding: 0
 
     // Ten lids: two even rows of five where they fit, as many columns as the
     // names allow below that, and a column on a phone.

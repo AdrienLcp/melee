@@ -1,6 +1,6 @@
 # 42 — A prepared evening
 
-**In progress** — steps 1 and 2 done. Asked 23/10/2026, after stage 41. The host can prepare the
+**In progress** — steps 1 to 3 done. Asked 23/10/2026, after stage 41. The host can prepare the
 evening's rounds before it starts — one, four or all thirty — each a game with
 its own options, and the rest is drawn. Every entry is played at least once,
 and nothing is played that the host has not either prepared or left to chance.
@@ -42,7 +42,7 @@ and nothing is played that the host has not either prepared or left to chance.
   redrawn among the entries that serve their own content, ones already played
   included, so the evening keeps its length. Only the host sees it; the room
   just sees the next game.
-- **One host screen to prepare it**: the list of rounds in *Animer › La
+- **One host screen to prepare it**: the list of rounds in *Settings › The
   table*, on the console in the lobby while players arrive and between
   rounds — add a round (pick a game, set its options, prepare its content),
   and a line saying how many rounds are left to chance.
@@ -70,15 +70,25 @@ and nothing is played that the host has not either prepared or left to chance.
   entry changed in the fold is a new entry, owed once — a different sheet is a
   different round. Refusing it would freeze a room of one game on its first
   quiz, which stage 41 promised plays on as before.
-- Remembering a prepared entry past the evening is still open, for step 3.
+- Remembering a prepared entry past the evening is still open.
+- **What a page sets is the entry, never the room.** The entry the next round
+  is on is set through the room's own settings, as the fold always set it; any
+  other through a copy of the room moved onto it (`movedToEntry`), with only
+  its game's settings written back into the line-up. The answer mode, its
+  window and the slate's key on this tab are the next round's, so only the
+  next entry's page offers them (`SettingsPanel`'s `isNextRound`).
+- **A non-next blind test commits its source as it is picked**, since no
+  launch is coming to commit it; the next one keeps the picker's draft. The
+  console drops that draft whenever `lineUpAt` moves, so a draw or *Play next*
+  never hands one blind test's source to another.
 - **The list of rounds is direction B** (`.impeccable/directions/prepared-evening/`,
-  local), chosen 23/10/2026: a short list in *La table*, each round opening a
-  page of its own in the leaflet (*‹ Les manches*), adding one opening the
-  shelf of ten as a page. *La manche* leaves the setup; setting an entry no
+  local), chosen 23/10/2026: a short list in *The table*, each round opening a
+  page of its own in the leaflet (*‹ The rounds*), adding one opening the
+  shelf of ten as a page. *The round* leaves the setup; setting an entry no
   longer makes it the next one — *Play next* does.
 - **Random by default, an order on request.** A switch *In order* turns the
   list into the evening's running order: one row per round, the chance rounds
-  as *Au hasard* rows, all reordered by drag (react-aria's `useDragAndDrop`,
+  as *By chance* rows, all reordered by drag (react-aria's `useDragAndDrop`,
   which carries keyboard and touch). It stores an order the dealt deck never
   needed, so it is the one place the room keeps a sequence — `null` while
   random, which leaves every random evening on the draw above.
@@ -89,4 +99,21 @@ and nothing is played that the host has not either prepared or left to chance.
 2. Protocol and server: the deck in the room, consumed per round. **Done**
    — `openedEntries`, `lineUpPlayed`, an exhausted line-up ends the evening.
    The console still labels that last press *Next round*: step 3's.
-3. Design pass (`impeccable`), then the list of rounds in *La table*.
+3. Design pass (`impeccable`), then the list of rounds in *The table*.
+   **Done** — `EveningRounds` (a row per entry: spine band, icon, name, a
+   detail, one stamp — first/next/now, played, `N×`, once — and *Add a round*),
+   the chance line under it (`eveningChance`, with its over-the-count state
+   and a press raising the count), a page per entry (`EveningEntryPage`: lid,
+   the existing `PlaylistPicker` and `SettingsPanel`, *Play next*, *Take it
+   out*, a played-out entry fixed) and the shelf as a page (`PickShelf`, a
+   button twin of `TickShelf`, adding with `withEntryAdded`). *The round*
+   group, `LineUpEntries` and `withVariantAdded` are gone. The last press of
+   an evening with nothing left to deal reads *See the results*
+   (`endsTheEvening`). The round count strip shows the count it is on when
+   the line-up made it one of no step (twelve for three games).
+4. The *In order* switch — the list as the running order, chance rounds as
+   rows, reordered by drag, its stored order — and *skip* beside *Next round*
+   for a drawn round nobody prepared. Settles what *unprepared* means first:
+   the challenge's line is typed at the press and is not on the entry, and
+   the slate's key is one per tab rather than one per entry, so neither can be
+   prepared ahead for a second entry of its game yet.

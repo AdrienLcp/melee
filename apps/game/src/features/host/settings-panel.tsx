@@ -198,6 +198,12 @@ type SettingsPanelProps = {
   isRoundInPlay: boolean
   /** The lobby's stage carries the sheet's own setup, so the fold does not repeat it. */
   isSheetOnStage: boolean
+  /**
+   * The entry being set is the one the next round opens on. The answer mode,
+   * its window and the slate's key on this tab are the next round's rather
+   * than an entry's, so they are offered only then.
+   */
+  isNextRound: boolean
   /** Applied to the room as it is pressed; nothing here waits for the launch. */
   onChange: (settings: RoomSettings) => void
   /** Files one key on this tab; the room hears of it only when the sheets open. */
@@ -217,6 +223,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   isLive,
   isRoundInPlay,
   isSheetOnStage,
+  isNextRound,
   onChange,
   onPrepareSlateKey,
   preparedSlateKeys,
@@ -250,7 +257,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             with a single segment asks the host to choose something they have no
             choice about.
           */}
-          {offeredModes.length > 1 && (
+          {isNextRound && offeredModes.length > 1 && (
             <SegmentedControl
               className='answer-mode'
               isDisabled={isDisabled}
@@ -376,16 +383,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {game?.kind === 'slate' && !isSheetOnStage && !isRoundInPlay && (
-        <SlateKeyEditor
-          hint={translate('slate.key.hint')}
-          isDisabled={false}
-          itemCount={game.itemCount}
-          keys={preparedSlateKeys}
-          labels={game.labels}
-          onSetKey={onPrepareSlateKey}
-        />
-      )}
+      {game?.kind === 'slate' &&
+        isNextRound &&
+        !isSheetOnStage &&
+        !isRoundInPlay && (
+          <SlateKeyEditor
+            hint={translate('slate.key.hint')}
+            isDisabled={false}
+            itemCount={game.itemCount}
+            keys={preparedSlateKeys}
+            labels={game.labels}
+            onSetKey={onPrepareSlateKey}
+          />
+        )}
 
       {game?.kind === 'quiz' && (
         <QuestionBankSettings
@@ -478,7 +488,8 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         and waits for no verdict, nor does a count stopping, and nobody buzzes a challenge at all, so how
         long a player has to answer is a setting about a moment neither has.
       */}
-      {mode.kind === 'buzzer' &&
+      {isNextRound &&
+        mode.kind === 'buzzer' &&
         game?.kind !== 'reflex' &&
         game?.kind !== 'innerclock' &&
         game?.kind !== 'challenge' && (

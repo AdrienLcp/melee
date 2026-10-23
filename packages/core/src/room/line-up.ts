@@ -1,8 +1,4 @@
-import {
-  DEFAULT_GAME_SETTINGS,
-  type GameKind,
-  type GameSettings
-} from '@melee/protocol/game'
+import type { GameKind, GameSettings } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
 import { LINE_UP_MAX_ENTRIES, type RoomSettings } from '@melee/protocol/room'
 
@@ -80,22 +76,12 @@ export const toggledInLineUp = ({
   const { lineUp } = settings
 
   if (!lineUp.some((entry) => entry.kind === game)) {
-    if (settings.game === null) {
-      return movedToGame({
-        game,
-        locale,
-        remembered: rememberedFor(game),
-        settings
-      })
-    }
-
-    if (lineUp.length >= LINE_UP_MAX_ENTRIES) {
-      return settings
-    }
-
-    const joining = (rememberedFor(game) ?? openedSetup({ game, locale })).game
-
-    return { ...settings, lineUp: [...lineUp, joining] }
+    return withEntryAdded({
+      game,
+      locale,
+      remembered: rememberedFor(game),
+      settings
+    })
   }
 
   return withoutEntries({
@@ -107,33 +93,35 @@ export const toggledInLineUp = ({
 }
 
 /**
- * Whether a second entry of `game` could ever differ from the first: a game
- * with no settings of its own — a reflex race, a challenge, the inner clock —
- * would only ever add itself twice.
+ * The settings with one more entry of `game` at the end of the line-up, on
+ * what this host last left the game set to — a second entry of a game already
+ * there is a variant the host then sets apart. The next round stays where it
+ * was: adding a round to the evening is not choosing it. A room still deciding
+ * picks the game instead, and a full line-up is left as it is.
  */
-export const canHoldVariants = (game: GameKind): boolean =>
-  Object.keys(DEFAULT_GAME_SETTINGS[game]).length > 1
+export const withEntryAdded = ({
+  game,
+  locale,
+  remembered,
+  settings
+}: {
+  game: GameKind
+  locale: Locale
+  /** What this host last left `game` set to, or `null` if they never have. */
+  remembered: GameSetup | null
+  settings: RoomSettings
+}): RoomSettings => {
+  if (settings.game === null) {
+    return movedToGame({ game, locale, remembered, settings })
+  }
 
-/**
- * The settings with a second entry of the game the next round is on, set as
- * it is, placed after the last entry of that game and made the one the next
- * round is on — so the fold the host is looking at is now the variant's, and
- * the first change there is what tells the two apart.
- */
-export const withVariantAdded = (settings: RoomSettings): RoomSettings => {
-  const { game, lineUp } = settings
-
-  if (game === null || lineUp.length >= LINE_UP_MAX_ENTRIES) {
+  if (settings.lineUp.length >= LINE_UP_MAX_ENTRIES) {
     return settings
   }
 
-  const at = lineUp.findLastIndex((entry) => entry.kind === game.kind) + 1
+  const joining = (remembered ?? openedSetup({ game, locale })).game
 
-  return {
-    ...settings,
-    lineUp: lineUp.toSpliced(at, 0, game),
-    lineUpAt: at
-  }
+  return { ...settings, lineUp: [...settings.lineUp, joining] }
 }
 
 /**

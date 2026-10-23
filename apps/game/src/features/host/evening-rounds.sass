@@ -1,0 +1,139 @@
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .evening-rounds
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+
+    .rounds-label
+      @include typography.label
+
+      color: var(--ink-muted)
+
+    .rounds
+      border-radius: var(--radius-m)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule)
+      display: grid
+      list-style: none
+      margin: 0
+      overflow: hidden
+      padding: 0
+
+      > li + li
+        border-top: var(--hairline)
+
+    .round
+      @include focus.ring-inset
+
+      align-items: center
+      background: transparent
+      border: 0
+      color: var(--ink)
+      column-gap: var(--space-s)
+      cursor: pointer
+      display: grid
+      grid-template-areas: 'band icon name stamp chevron' 'band icon detail stamp chevron'
+      grid-template-columns: var(--space-2xs) auto minmax(0, 1fr) auto auto
+      min-height: var(--control-height)
+      padding: var(--space-xs) var(--space-s) var(--space-xs) 0
+      text-align: start
+      width: 100%
+
+      &[data-hovered],
+      &[data-pressed]
+        background: var(--socket)
+
+      &[data-disabled]
+        cursor: not-allowed
+        opacity: 0.55
+
+      > svg:not(.chevron)
+        grid-area: icon
+
+    .band
+      align-self: stretch
+      background: var(--spine)
+      grid-area: band
+      margin-block: calc(var(--space-xs) * -1)
+
+    .name
+      @include typography.lid-name
+
+      font-size: var(--text-m)
+      grid-area: name
+
+    .detail
+      @include typography.caption
+
+      color: var(--ink-muted)
+      grid-area: detail
+      text-wrap: pretty
+
+    .evening-stamp
+      grid-area: stamp
+
+    .chevron
+      color: var(--ink-muted)
+      grid-area: chevron
+
+    // Played and fixed: printed in the socket, the band faded with it, so the
+    // list tells what can still change before anyone opens it.
+    li[data-played-out] .round
+      background: var(--socket)
+      color: var(--socket-ink)
+
+      .band
+        background: var(--socket-line)
+
+      .detail
+        color: var(--socket-ink)
+
+    .add
+      .round
+        grid-template-areas: 'band icon name chevron'
+        grid-template-columns: var(--space-2xs) auto minmax(0, 1fr) auto
+
+      .band
+        background: transparent
+
+    .evening-chance
+      align-items: baseline
+      column-gap: var(--space-s)
+      display: grid
+      grid-template-columns: auto minmax(0, 1fr)
+      row-gap: var(--space-xs)
+
+      .count
+        @include typography.score
+
+        font-size: var(--text-xl)
+
+      .said
+        display: flex
+        flex-direction: column
+        gap: var(--space-2xs)
+
+      .headline
+        @include typography.heading
+
+        font-size: var(--text-m)
+
+      .hint
+        @include typography.caption
+
+        color: var(--ink-muted)
+
+      .raise
+        grid-column: 2
+        justify-self: start
+
+      // Over the count is an error the host has to act on: the figure is
+      // stamped in a block of its own, never tinted text.
+      &[data-over] .count
+        background: var(--danger)
+        border-radius: var(--radius-s)
+        color: var(--danger-ink)
+        font-size: var(--text-l)
+        padding-inline: var(--space-xs)

@@ -1,0 +1,255 @@
+import type React from 'react'
+import { useCallback } from 'react'
+
+import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
+
+import { capabilitiesOf } from '@melee/core/room/game-capabilities'
+import {
+  type HostPreferences,
+  rememberedSetupFor
+} from '@melee/core/room/host-preferences'
+import { followedByLineUp, withoutEntry } from '@melee/core/room/line-up'
+import { endsTheEvening, isPlayedOut } from '@melee/core/room/next-game'
+import { isRoundInPlay } from '@melee/core/room/room-phase'
+import { movedToEntry } from '@melee/core/room/room-settings'
+
+import { Button } from '@/presentation/components/button'
+import { CrossIcon, GameIcon } from '@/presentation/components/icons'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
+import { gameNameKey } from '@/presentation/i18n/translation'
+
+import { EveningPage } from './evening-page'
+import { EveningStamp, eveningStampOf } from './evening-stamp'
+import { PlaylistPicker } from './playlist-picker'
+import { SettingsPanel } from './settings-panel'
+
+import './evening-entry-page.sass'
+
+type EveningEntryPageProps = {
+  /** The entry's index in the line-up. */
+  at: number
+  /** The blind test's source as the picker shows it, while this entry is the next round's. */
+  draftSource: TrackSource | null
+  isLive: boolean
+  onBack: () => void
+  /** Must be stable — the picker reports upward from an effect. */
+  onDraftSource: (source: TrackSource | null) => void
+  onRememberSlateKey: (itemIndex: number, key: string) => void
+  onSettingsChange: (settings: RoomSettings) => void
+  /** What this host last left each game set to, or `null` if they never set anything. */
+  preferences: HostPreferences | null
+  preparedSlateKeys: readonly (string | null)[]
+  view: HostRoomView
+}
+
+/**
+ * One round of the evening on a page of its own: what the game is, its
+ * settings, and the two things done to a round — playing it next, or taking
+ * it out. Setting it changes the entry and nothing else; *Play next* is what
+ * moves the next round onto it.
+ *
+ * The entry the next round is on is set through the room's own settings, as
+ * the fold always set it. Any other is set through a copy of the room moved
+ * onto it, and only its game's settings are written back into the line-up:
+ * the answer mode is the next round's, so it is offered on that page alone.
+ */
+export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
+  at,
+  draftSource,
+  isLive,
+  onBack,
+  onDraftSource,
+  onRememberSlateKey,
+  onSettingsChange,
+  preferences,
+  preparedSlateKeys,
+  view
+}) => {
+  const { locale, translate } = useI18n()
+  const { settings } = view
+  const entry = settings.lineUp[at]
+  const isNext = at === settings.lineUpAt
+  const roundInPlay = isRoundInPlay(view.phase)
+
+  const commitSource = useCallback(
+    (source: TrackSource | null) => {
+      const current = settings.lineUp[at]
+
+      if (
+        source === null ||
+        current?.kind !== 'blindtest' ||
+        JSON.stringify(source) === JSON.stringify(current.source)
+      ) {
+        return
+      }
+
+      onSettingsChange({
+        ...settings,
+        lineUp: settings.lineUp.with(at, { ...current, source })
+      })
+    },
+    [at, onSettingsChange, settings]
+  )
+
+  if (entry === undefined) {
+    return <EveningPage onBack={onBack} />
+  }
+
+  const played = view.lineUpPlayed[at] ?? 0
+  const rememberedFor = (game: typeof entry.kind) =>
+    rememberedSetupFor({ game, preferences })
+  const withDraft = withDraftSource({ draftSource, settings })
+  const entrySettings = isNext
+    ? settings
+    : movedToEntry({
+        at,
+        locale,
+        remembered: rememberedFor(entry.kind),
+        settings
+      })
+  const changeEntry = (changed: RoomSettings) => {
+    onSettingsChange(
+      isNext
+        ? changed
+        : {
+            ...settings,
+            lineUp: settings.lineUp.with(at, changed.game ?? entry)
+          }
+    )
+  }
+  const stamp = eveningStampOf({
+    entry,
+    isEveningOver:
+      view.phase === 'revealed' &&
+      endsTheEvening({
+        lineUp: settings.lineUp,
+        played: view.lineUpPlayed,
+        roundCount: settings.roundCount,
+        roundIndex: view.round?.index ?? 0
+      }),
+    isNext,
+    isOnlyEntry: settings.lineUp.length < 2,
+    phase: view.phase,
+    played
+  })
+  const isFixed = isPlayedOut({ entry, played })
+
+  return (
+    <EveningPage onBack={onBack}>
+      <header
+        className='entry-lid'
+        style={{ '--spine': `var(--spine-${entry.kind})` }}
+      >
+        <GameIcon game={entry.kind} />
+        <h2>{translate(gameNameKey(entry.kind))}</h2>
+        <p>
+          {translate(
+            capabilitiesOf(entry.kind).servesItsOwnContent
+              ? 'host.evening.fills'
+              : 'host.evening.once'
+          )}
+        </p>
+        {stamp !== null && <EveningStamp kind={stamp} played={played} />}
+      </header>
+
+      {isFixed ? (
+        <p className='fixed'>{translate('host.evening.fixed')}</p>
+      ) : (
+        <div className='entry-settings'>
+          {entry.kind === 'blindtest' && (
+            <PlaylistPicker
+              key={at}
+              onDraftChange={isNext ? onDraftSource : commitSource}
+              settings={entry}
+            />
+          )}
+          <SettingsPanel
+            draftSource={isNext ? draftSource : null}
+            isLive={isLive}
+            isNextRound={isNext}
+            isRoundInPlay={roundInPlay && isNext}
+            isSheetOnStage={view.phase === 'lobby' && isNext}
+            onChange={changeEntry}
+            onPrepareSlateKey={onRememberSlateKey}
+            preparedSlateKeys={preparedSlateKeys}
+            settings={entrySettings}
+          />
+          {entry.kind === 'challenge' && (
+            <p className='hint'>{translate('host.evening.challengeLine')}</p>
+          )}
+          {entry.kind === 'slate' && !isNext && (
+            <p className='hint'>{translate('host.evening.slateKeyLater')}</p>
+          )}
+        </div>
+      )}
+
+      {!isFixed && (!isNext || settings.lineUp.length > 1) && (
+        <div className='entry-actions'>
+          {!isNext && (
+            <Button
+              isDisabled={!isLive || roundInPlay}
+              onPress={() => {
+                onSettingsChange(
+                  movedToEntry({
+                    at,
+                    locale,
+                    remembered: rememberedFor(entry.kind),
+                    settings: withDraft
+                  })
+                )
+              }}
+              size='small'
+            >
+              {translate(
+                view.phase === 'lobby'
+                  ? 'host.evening.playFirst'
+                  : 'host.evening.playNext'
+              )}
+            </Button>
+          )}
+          {settings.lineUp.length > 1 && (
+            <Button
+              isDisabled={!isLive || roundInPlay}
+              onPress={() => {
+                onSettingsChange(
+                  withoutEntry({
+                    at,
+                    locale,
+                    rememberedFor,
+                    settings: withDraft
+                  })
+                )
+                onBack()
+              }}
+              size='small'
+              variant='outlined'
+            >
+              <CrossIcon />
+              {translate('host.lineUp.takeOut')}
+            </Button>
+          )}
+        </div>
+      )}
+    </EveningPage>
+  )
+}
+
+/**
+ * The settings with the picker's source in the blind test the next round is
+ * on, and in its entry, so a press that moves the next round elsewhere does
+ * not drop what was chosen there.
+ */
+const withDraftSource = ({
+  draftSource,
+  settings
+}: {
+  draftSource: TrackSource | null
+  settings: RoomSettings
+}): RoomSettings =>
+  draftSource === null || settings.game?.kind !== 'blindtest'
+    ? settings
+    : followedByLineUp({
+        ...settings,
+        game: { ...settings.game, source: draftSource }
+      })

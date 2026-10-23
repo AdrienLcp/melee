@@ -35,7 +35,7 @@ test('[e2e] a room, a scan, a buzz, a verdict and a point', async ({
   await host.pickBlindTest.click()
 
   await host.openSettings.click()
-  await host.openRoundSettings.click()
+  await host.openBlindTestRound.click()
   await host.buzzerMode.click()
   // The leaflet is modal, so it is put away before the launch behind it.
   await bigScreen.keyboard.press('Escape')

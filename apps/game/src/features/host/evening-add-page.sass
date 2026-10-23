@@ -1,0 +1,9 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .evening-shelf.box-shelf
+    > .shelf-label
+      @include typography.lid-name
+
+      color: var(--ink)
+      font-size: var(--text-xl)

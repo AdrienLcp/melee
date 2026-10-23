@@ -1,7 +1,12 @@
 import type { GameSettings } from '@melee/protocol/game'
 
 import { useTranslate } from './i18n-provider'
-import { gameNameKey, questionCategoryKey, type Translate } from './translation'
+import {
+  gameNameKey,
+  gameTaglineKey,
+  questionCategoryKey,
+  type Translate
+} from './translation'
 
 /**
  * What tells one entry of a game from another, most telling first. A blind
@@ -96,3 +101,24 @@ export const lineUpEntryNames = ({
 export const useLineUpEntryNames = (
   lineUp: readonly GameSettings[]
 ): string[] => lineUpEntryNames({ lineUp, translate: useTranslate() })
+
+/**
+ * One line saying what an entry is set to, under its game's name in the list
+ * of rounds: the settings that tell it apart, the size of a slate's sheet, or
+ * the game's own tagline when it has nothing of its own to say.
+ */
+export const useLineUpEntryDetail = (): ((entry: GameSettings) => string) => {
+  const translate = useTranslate()
+
+  return (entry) => {
+    if (entry.kind === 'slate') {
+      return translate('slate.items.summary', { count: entry.itemCount })
+    }
+
+    const details = detailsOf({ entry, translate })
+
+    return details.length > 0
+      ? details.join(' · ')
+      : translate(gameTaglineKey(entry.kind))
+  }
+}

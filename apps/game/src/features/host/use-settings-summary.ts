@@ -33,12 +33,12 @@ type SummaryInput = {
 }
 
 /** What each group of the setup says while it is closed, the same way the whole of it does. */
-export type SetupSummaries = Record<'room' | 'round' | 'table', string>
+export type SetupSummaries = Record<'room' | 'table', string>
 
 /**
- * The setup's line cut along its groups. The round count moves to the evening,
- * because it is the evening's length whichever game a round is drawn from; the
- * teams join it; the room says how a round is led in and let go.
+ * The setup's line cut along its groups. The table says the evening's length,
+ * whichever game a round is drawn from, and its teams; the room says how a
+ * round is led in and let go. What each round is set to is its own page's.
  */
 export const useSetupSummaries = ({
   draftSource,
@@ -76,7 +76,6 @@ export const useSetupSummaries = ({
         duration: seconds(settings.countdownMs)
       })
     ].join(' · '),
-    round: join(parts.filter((part) => !isRoundCount(part))),
     table: [
       join(parts.filter(isRoundCount)),
       teamsSummary,

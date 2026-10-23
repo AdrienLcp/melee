@@ -1,0 +1,30 @@
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .evening-stamp
+    @include typography.caption-strong
+    @include text-box.trimmed-block(var(--space-2xs))
+
+    border-radius: var(--radius-s)
+    box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule-strong)
+    color: var(--ink)
+    font-size: var(--text-2xs)
+    padding-inline: var(--space-xs)
+    white-space: nowrap
+
+    &:is([data-stamp='first'], [data-stamp='next'])
+      background: var(--primary)
+      box-shadow: none
+      color: var(--on-primary)
+
+    &[data-stamp='now']
+      background: var(--ink)
+      box-shadow: none
+      color: var(--field)
+
+    &:is([data-stamp='played'], [data-stamp='count'])
+      background: var(--socket)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      color: var(--socket-ink)
+      font-variant-numeric: tabular-nums

@@ -45,7 +45,7 @@ test('[e2e] two players type over the same clip, and the reveal says what they s
 
   // A blind test opens on four choices, so typing is picked.
   await host.openSettings.click()
-  await host.openRoundSettings.click()
+  await host.openBlindTestRound.click()
   await host.typedMode.click()
   // The leaflet is modal, so it is put away before the launch behind it.
   await bigScreen.keyboard.press('Escape')
