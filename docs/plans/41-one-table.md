@@ -1,6 +1,6 @@
 # 41 — One table
 
-**To do.** Asked 23/10/2026. Melee is one table: the host opens it, ticks one
+**Done** 23/10/2026. Asked 23/10/2026. Melee is one table: the host opens it, ticks one
 game or several, and sets three things that do not depend on each other —
 **teams or not**, **a board or not**, **a judge or not**. The game night stops
 being a game on the shelf beside "or a single game"; it was a line-up the
@@ -135,8 +135,14 @@ model already treated as one more tick.
    Adrien's ask; the stamps pay for the tray out of their own sides, so every
    caller's `stacks-below` threshold still holds (`strip-rows.spec.ts`).
 
-   **Left:** the presses inside the U at 390 —
-   `room-screen-presses.sass` still lifts the track's foot above them.
+   **The presses inside the U at 390 done.** Under the split the track runs
+   to the screen's foot and the presses' strip stands between its legs
+   (`room-screen-presses.sass`); above it the track still ends over them.
+   The start and finish words and the fives' larger figure had never been
+   drawn — `[data-mark] &` under `.board-track .number` compiles to an
+   ancestor of the track — and now are, the two words dropping their
+   capitals in a leg too narrow for them (`board-track.sass`). Seen muted at
+   390 light and dark, and 1440.
 
 ## Done when
 

@@ -271,6 +271,11 @@ primitive is the same trap one level up: `isHovered`, `isPressed` and
 they match nothing, the build stays green, and the control has stopped answering
 the pointer.
 
+**A parent's state written `[data-x] &` prefixes the whole nested chain**:
+under `.board-track` › `.number` it compiles to `[data-x] .board-track .number`,
+an ancestor of the track, and matches nothing — the board's start, finish and
+fives went undrawn that way. Write `&:is([data-x] > *)` instead.
+
 Visually hidden text is `accessibility.visually-hidden` from
 `@adrienlcp/styles/accessibility`, and the ring is `_focus.sass`'s — neither is
 written by hand. A ring drawn on a descendant of the focused element passes it

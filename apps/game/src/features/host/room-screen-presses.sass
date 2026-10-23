@@ -14,12 +14,16 @@ $presses-height: calc(4.5rem + var(--text-s) * 2 + var(--space-m) * 2)
 
   // The track ends above the presses rather than under them: its first
   // cases are the start, where every pawn stands before the first round.
+  // Under the split the presses stack instead, narrow enough to stand between
+  // its two legs, so the track runs to the foot and keeps its height.
   .host-console-page.room-screen ~ .board-track
-    bottom: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 4.5rem + var(--space-s))
+    @include layout.wide
+      bottom: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 4.5rem + var(--space-s))
 
-    // Under the split the two presses take a line each.
+  .board-track ~ .room-screen-presses
     @include layout.narrow
-      bottom: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 9rem + var(--space-m) + var(--space-s))
+      inset-inline: var(--gutter-left) var(--gutter-right)
+      padding-inline: 0
 
   // Fixed beside `<main>` rather than inside it: the page's entrance leaves a
   // transform, and a fixed box inside a transformed one is fixed to that box.

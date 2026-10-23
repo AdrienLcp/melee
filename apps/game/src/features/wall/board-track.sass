@@ -68,12 +68,21 @@
       inset: 0.3em auto auto 0.45em
       position: absolute
 
-      [data-mark='five'] &
+      &:is([data-mark='five'] > *)
         font-size: clamp(var(--text-3xs), 30cqmin, var(--text-xl))
 
-      :is([data-mark='start'], [data-mark='finish']) &
+      &:is([data-mark='start'] > *, [data-mark='finish'] > *)
         font-size: clamp(var(--text-3xs), 16cqmin, var(--text-s))
-        text-transform: uppercase
+
+        // A narrow leg is narrower than either word at the type's floor:
+        // there they drop the capitals and run over into the clearance on the
+        // stage's side, short of the presses, rather than off the screen.
+        @container (width >= 3.5rem)
+          text-transform: uppercase
+
+      &:is([data-mark='finish'] > *)
+        @container (width < 3.5rem)
+          inset: 0.3em 0.45em auto auto
 
     .pawns
       align-content: flex-end
@@ -86,7 +95,7 @@
       position: absolute
       row-gap: 0.08em
 
-      [data-mark='finish'] &
+      &:is([data-mark='finish'] > *)
         bottom: 26%
 
     .standing
