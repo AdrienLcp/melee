@@ -48,11 +48,13 @@ describe('scheduledEntryAt', () => {
     expect(drawnAt({ order: [3, 1, 0], roundAt: 1 })).toBe(1)
   })
 
-  it('[running-order] draws a chance round among the entries serving their own content', () => {
+  it('[running-order] closes up on the next row when the round’s row is a hole', () => {
+    expect(drawnAt({ order: [0, null, 3, 1], roundAt: 1 })).toBe(3)
+  })
+
+  it('[running-order] draws a round with no row left among the entries serving their own content', () => {
     for (const roll of ROLLS) {
-      expect([0, 2]).toContain(
-        drawnAt({ order: [null, 1, 3], roll, roundAt: 0 })
-      )
+      expect([0, 2]).toContain(drawnAt({ order: [null], roll, roundAt: 0 }))
     }
   })
 
@@ -87,14 +89,12 @@ describe('dealtOrder', () => {
     order = [],
     played = lineUp.map(() => 0),
     roll,
-    roundCount,
     upcoming = 0
   }: {
     drawnAt?: number | null
     order?: RoomSettings['runningOrder']
     played?: readonly number[]
     roll: number
-    roundCount: number | null
     upcoming?: number
   }) =>
     dealtOrder({
@@ -103,64 +103,56 @@ describe('dealtOrder', () => {
       order,
       played,
       random: () => roll,
-      roundCount,
       upcoming
     })
 
-  it('[running-order] deals every round of a counted evening, the next one first', () => {
+  it('[running-order] deals one row per entry, the next one first', () => {
     for (const roll of ROLLS) {
-      const order = dealt({ drawnAt: 2, roll, roundCount: 6 })
+      const order = dealt({ drawnAt: 2, roll })
 
-      expect(order).toHaveLength(6)
       expect(order[0]).toBe(2)
-      expect(order.filter((row) => row === 1)).toHaveLength(1)
-      expect(order.filter((row) => row === 3)).toHaveLength(1)
-      expect(order).toContain(0)
+      expect(order.toSorted()).toEqual([0, 1, 2, 3])
     }
   })
 
-  it('[running-order] keeps the rows it was given and deals the holes to the entries owed', () => {
+  it('[running-order] keeps the host’s rows in order, closes the holes and adds the entries owed', () => {
     for (const roll of ROLLS) {
-      const order = dealt({
-        drawnAt: 2,
-        order: [2, null, 1, null],
-        roll,
-        roundCount: 4
-      })
+      const order = dealt({ drawnAt: 2, order: [2, null, 1, null], roll })
 
-      expect([order[0], order[2]]).toEqual([2, 1])
-      expect([order[1], order[3]].toSorted()).toEqual([0, 3])
+      expect(order.slice(0, 2)).toEqual([2, 1])
+      expect(order.slice(2).toSorted()).toEqual([0, 3])
     }
   })
 
-  it('[running-order] gives up rounds over the count from the end, never an entry the host brought', () => {
-    expect(
-      dealt({ drawnAt: 0, order: [0, 2, 0, 2, 1], roll: 0, roundCount: 3 })
-    ).toEqual([0, 2, 1, 3])
+  it('[running-order] drops a second row for one entry', () => {
+    expect(dealt({ drawnAt: 0, order: [0, 2, 0, 2, 1], roll: 0 })).toEqual([
+      0, 2, 1, 3
+    ])
   })
 
-  it('[running-order] deals again a row whose entry the host brought is played', () => {
+  it('[running-order] drops the row of an entry the host brought once it is played', () => {
     for (const roll of ROLLS) {
       const order = dealt({
         order: [1, 1, 0],
         played: [0, 1, 0, 0],
         roll,
-        roundCount: 3,
         upcoming: 1
       })
 
-      expect(order.slice(1)).not.toContain(1)
-      expect(order.slice(1)).toEqual(expect.arrayContaining([0, 2, 3]))
+      expect(order.slice(0, 2)).toEqual([1, 0])
+      expect(order.slice(2).toSorted()).toEqual([2, 3])
     }
   })
 
-  it('[running-order] holds one round per entry in an evening with no count', () => {
-    for (const roll of ROLLS) {
-      const order = dealt({ drawnAt: 1, roll, roundCount: null })
-
-      expect(order[0]).toBe(1)
-      expect(order.toSorted()).toEqual([0, 1, 2, 3])
-    }
+  it('[running-order] gives no new row to an entry already played', () => {
+    expect(
+      dealt({ order: [0], played: [1, 0, 0, 0], roll: 0, upcoming: 1 })
+        .slice(1)
+        .toSorted()
+    ).toEqual([1, 2, 3])
+    expect(
+      dealt({ order: [0, 1, 2, 3], played: [1, 1, 1, 1], roll: 0, upcoming: 4 })
+    ).toEqual([0, 1, 2, 3])
   })
 
   it('[running-order] holds nothing for a single entry', () => {
@@ -171,7 +163,6 @@ describe('dealtOrder', () => {
         order: [0, 0],
         played: [0],
         random: () => 0,
-        roundCount: 4,
         upcoming: 0
       })
     ).toEqual([])

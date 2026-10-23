@@ -7,9 +7,9 @@ import { isPlayedOut, nextEntryAt } from './next-game'
 type Order = RoomSettings['runningOrder']
 
 /**
- * Which entry the round at `roundAt` is on: its row, or a draw. A row whose
- * entry is gone or played out is drawn, and so is every round past the order's
- * end.
+ * Which entry the round at `roundAt` is on: its row, or the next row the
+ * evening still holds when that one's entry is gone or played out — the
+ * planned games close up — or a draw past the order's end.
  *
  * Such a round is drawn among the entries that serve their own content, since
  * every entry the host brings has a row of its own further down; only an
@@ -37,14 +37,9 @@ export const scheduledEntryAt = ({
   /** As `nextEntryAt`'s. */
   roundsLeft: number | null
 }): number | null => {
-  const placed = order[roundAt] ?? null
-  const placedEntry = placed === null ? undefined : lineUp[placed]
+  const placed = order.slice(roundAt).find(isLeftToDeal({ lineUp, played }))
 
-  if (
-    placed !== null &&
-    placedEntry !== undefined &&
-    !isPlayedOut({ entry: placedEntry, played: played[placed] ?? 0 })
-  ) {
+  if (placed !== undefined) {
     return placed
   }
 
@@ -78,8 +73,8 @@ export const orderHolds = ({
 
 /**
  * The order with the line-up's indices moved by an edit: `indexAfter` says
- * where each entry now is, `null` for one taken out, whose rows are left as
- * holes for `dealtOrder` rather than dropped — the evening keeps its length.
+ * where each entry now is, `null` for one taken out, whose row is left as a
+ * hole for `dealtOrder` to close.
  */
 export const remappedOrder = ({
   indexAfter,
@@ -90,9 +85,8 @@ export const remappedOrder = ({
 }): Order => order.map((row) => (row === null ? null : indexAfter(row)))
 
 /**
- * The order with a row for an entry just added at `at`, as the last round.
- * Past a count already full, `dealtOrder` then gives up a round of a game
- * that serves its own content to make room for it.
+ * The order with a row for an entry just added at `at`, as the last planned
+ * game.
  */
 export const orderWithEntryAdded = ({
   at,
@@ -103,15 +97,14 @@ export const orderWithEntryAdded = ({
 }): Order => [...order, at]
 
 /**
- * The order the evening plays, dealt by `nextEntryAt`'s rule: every row the
- * host left stands, and every hole — a round added to the count, an entry taken
- * out, a skip — is drawn as if the rounds before it had played. The round
- * about to open is `drawnAt`'s when it is settled, and every entry still owed
- * a round has one: past a counted evening's end only when the count is too
- * short for every entry the host brought, which the console then offers to
- * raise. Rows over the count are given up from the end, a round of a game
- * serving its own content that has another one; an evening with no count holds
- * one round per entry still in the deck, and draws the rest as they come.
+ * The order the evening plays: one row per entry still to come, the host's
+ * rows first in the host's order, then every entry never played and given no
+ * row yet, dealt by `nextEntryAt`'s rule — another game before another entry
+ * of the same one. A row the evening no longer holds — an entry taken out or
+ * played out, a second row for one entry — is dropped, and the list closes
+ * up. The round about to open is `drawnAt`'s when it is settled. Every round
+ * past the last row is drawn as it comes (`scheduledEntryAt`), and a row past
+ * a counted evening's end is never reached, which the console shows the host.
  *
  * Empty for a single entry, which plays every round.
  */
@@ -121,7 +114,6 @@ export const dealtOrder = ({
   order,
   played,
   random,
-  roundCount,
   upcoming
 }: {
   /** The entry the round about to open is on, or `null` while it is not settled. */
@@ -132,7 +124,6 @@ export const dealtOrder = ({
   played: readonly number[]
   /** In `[0, 1)`, as `Math.random`. */
   random: () => number
-  roundCount: number | null
   /** The round about to open, counted from 0. */
   upcoming: number
 }): Order => {
@@ -144,7 +135,38 @@ export const dealtOrder = ({
     drawnAt === null
       ? order
       : orderWithEntryNext({ at: drawnAt, order, upcoming })
-  const isLeftToDeal = (row: number | null) => {
+  const isLive = isLeftToDeal({ lineUp, played })
+  const kept = placed
+    .slice(upcoming)
+    .filter(
+      (row, index, rows): row is number =>
+        isLive(row) && rows.indexOf(row) === index
+    )
+  const owed = lineUp.flatMap((_entry, at) =>
+    (played[at] ?? 0) === 0 && !kept.includes(at) ? [at] : []
+  )
+
+  return [
+    ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
+    ...kept,
+    ...dealtInTurn({
+      lastAt: kept.at(-1) ?? placed[upcoming - 1] ?? null,
+      lineUp,
+      owed,
+      random
+    })
+  ].slice(0, RUNNING_ORDER_MAX_ROWS)
+}
+
+const isLeftToDeal =
+  ({
+    lineUp,
+    played
+  }: {
+    lineUp: readonly GameSettings[]
+    played: readonly number[]
+  }) =>
+  (row: number | null): row is number => {
     const entry = row === null ? undefined : lineUp[row]
 
     return (
@@ -153,136 +175,39 @@ export const dealtOrder = ({
       !isPlayedOut({ entry, played: played[row] ?? 0 })
     )
   }
-  const inDeck = lineUp.flatMap((_entry, at) => (isLeftToDeal(at) ? [at] : []))
-  const isRepeatable = (row: number) => {
-    const entry = lineUp[row]
 
-    return entry !== undefined && capabilitiesOf(entry.kind).servesItsOwnContent
-  }
-  const kept = placed
-    .slice(upcoming)
-    .map((row, index, rows) =>
-      row !== null &&
-      isLeftToDeal(row) &&
-      (isRepeatable(row) || rows.indexOf(row) === index)
-        ? row
-        : null
-    )
-  const length =
-    roundCount === null
-      ? Math.max(kept.length, inDeck.length)
-      : Math.max(kept.length, roundCount - upcoming)
-  const dealt = withHolesDealt({
-    lastAt: placed[upcoming - 1] ?? null,
-    lineUp,
-    played,
-    random,
-    rows: Array.from({ length }, (_, at) => kept[at] ?? null)
-  })
-  const owed = inDeck.filter(
-    (at) => (played[at] ?? 0) === 0 && !dealt.includes(at)
-  )
-  const coming = withRowsOverTheCountGivenUp({
-    isNextSettled: drawnAt !== null,
-    lineUp,
-    played,
-    rows: [...dealt, ...owed],
-    target: roundCount === null ? null : roundCount - upcoming
-  })
-
-  return [
-    ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
-    ...coming
-  ].slice(0, RUNNING_ORDER_MAX_ROWS)
-}
-
-const withHolesDealt = ({
+const dealtInTurn = ({
   lastAt,
   lineUp,
-  played,
-  random,
-  rows
+  owed,
+  random
 }: {
   lastAt: number | null
   lineUp: readonly GameSettings[]
-  played: readonly number[]
+  owed: readonly number[]
   random: () => number
-  rows: readonly (number | null)[]
 }): number[] => {
-  const planned = lineUp.map((_entry, at) => played[at] ?? 0)
-
-  for (const row of rows) {
-    if (row !== null) {
-      planned[row] = (planned[row] ?? 0) + 1
-    }
-  }
-
+  const planned = lineUp.map((_entry, at) => (owed.includes(at) ? 0 : 1))
   const dealt: number[] = []
-  let holesLeft = rows.filter((row) => row === null).length
 
-  for (const row of rows) {
-    if (row !== null) {
-      dealt.push(row)
-      continue
-    }
-
+  for (let left = owed.length; left > 0; left -= 1) {
     const drawn = nextEntryAt({
       lastAt: dealt.at(-1) ?? lastAt,
       lineUp,
       played: planned,
       random,
-      roundsLeft: holesLeft
+      roundsLeft: left
     })
 
-    holesLeft -= 1
-
-    if (drawn !== null) {
-      dealt.push(drawn)
-      planned[drawn] = (planned[drawn] ?? 0) + 1
-    }
-  }
-
-  return dealt
-}
-
-const withRowsOverTheCountGivenUp = ({
-  isNextSettled,
-  lineUp,
-  played,
-  rows,
-  target
-}: {
-  /** The first row is the round already drawn, and stays. */
-  isNextSettled: boolean
-  lineUp: readonly GameSettings[]
-  played: readonly number[]
-  rows: readonly number[]
-  target: number | null
-}): number[] => {
-  const kept = [...rows]
-  const isSpare = (row: number, index: number) => {
-    const entry = lineUp[row]
-
-    return (
-      (index > 0 || !isNextSettled) &&
-      entry !== undefined &&
-      capabilitiesOf(entry.kind).servesItsOwnContent &&
-      ((played[row] ?? 0) > 0 ||
-        kept.some((other, at) => at !== index && other === row))
-    )
-  }
-
-  while (target !== null && kept.length > Math.max(0, target)) {
-    const spare = kept.findLastIndex(isSpare)
-
-    if (spare === -1) {
+    if (drawn === null) {
       break
     }
 
-    kept.splice(spare, 1)
+    dealt.push(drawn)
+    planned[drawn] = 1
   }
 
-  return kept
+  return dealt
 }
 
 /** One round still to come. */

@@ -117,7 +117,7 @@ describe('an evening of several games', () => {
     expect(hostView(host)?.settings.game?.kind).toBe('blindtest')
   })
 
-  it('[running-order] keeps the order a host put the evening in', async () => {
+  it('[running-order] keeps one row per entry, in the order the host put them', async () => {
     const { host } = await harness.openRoom(EVENING)
 
     host.send({
@@ -125,14 +125,14 @@ describe('an evening of several games', () => {
       type: 'host.updateSettings'
     })
     await waitFor(
-      () => hostView(host)?.settings.runningOrder[3] === 1,
+      () => hostView(host)?.settings.runningOrder.length === 2,
       'the order'
     )
 
-    expect(hostView(host)?.settings.runningOrder).toEqual([0, 0, 0, 1, 0, 0])
+    expect(hostView(host)?.settings.runningOrder).toEqual([0, 1])
   })
 
-  it('[running-order] deals every round, and one to each entry the host brought', async () => {
+  it('[running-order] deals one row to each entry, whatever the count', async () => {
     const { host } = await harness.openRoom(EVENING)
 
     host.send({
@@ -143,15 +143,13 @@ describe('an evening of several games', () => {
 
     const order = hostView(host)?.settings.runningOrder ?? []
 
-    expect(order).toHaveLength(5)
-    expect(order[0]).toBe(0)
-    expect(order.filter((row) => row === 1)).toHaveLength(1)
+    expect(order).toEqual([0, 1])
   })
 
   it('[running-order] refuses an order pointing past the line-up', async () => {
     const { host } = await harness.openRoom(EVENING)
     await waitFor(
-      () => hostView(host)?.settings.runningOrder.length === 6,
+      () => hostView(host)?.settings.runningOrder.length === 2,
       'the order dealt'
     )
     const dealt = hostView(host)?.settings.runningOrder

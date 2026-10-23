@@ -87,8 +87,8 @@ export const offersSkip = ({
  * The settings with the entry the next round is on taken out of the evening
  * and another drawn in its place. The evening keeps its length: the rounds
  * that entry would have played go back to the draw, which deals them among
- * the entries left — played ones included. In an evening in order, its row
- * is left to chance.
+ * the entries left — played ones included. In an evening in order, the next
+ * planned game closes up on its row.
  */
 export const withEntrySkipped = ({
   lastAt,

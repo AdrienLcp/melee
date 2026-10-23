@@ -147,7 +147,6 @@ export const roomSettingsFor = ({
       order: [],
       played: lineUp.map(() => 0),
       random: randomUnit,
-      roundCount,
       upcoming: 0
     })
   }

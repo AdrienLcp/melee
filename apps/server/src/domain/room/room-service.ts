@@ -292,7 +292,7 @@ export const updateSettings = (
   settings: RoomSettings,
   now: number
 ): void => {
-  const { lineUp, lineUpAt, roundCount, runningOrder } = settings
+  const { lineUp, lineUpAt, runningOrder } = settings
   const isNextSettled =
     room.phase === 'lobby' ||
     (room.phase === 'revealed' && room.round?.lineUpAt !== lineUpAt)
@@ -305,7 +305,6 @@ export const updateSettings = (
       order: runningOrder,
       played: playedPerEntry({ lineUp, opened: room.openedEntries }),
       random: randomUnit,
-      roundCount,
       upcoming: room.round?.index ?? 0
     })
   }
