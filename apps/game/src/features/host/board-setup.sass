@@ -1,0 +1,22 @@
+@use '../../presentation/styles/strip'
+
+@layer components
+  .board-setup
+    display: grid
+    gap: var(--space-s)
+    min-width: 0
+
+    // A recess under the switch: the rules belong to the track it laid.
+    .track-rules
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      display: grid
+      gap: var(--space-s)
+      padding: var(--space-s)
+
+    // « 40 cases » three times over is wider than a count of digits.
+    .board-length
+      @include strip.stacks-below(13rem)
+
+    .board-strategy
+      @include strip.stacks-below(14rem)

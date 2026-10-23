@@ -1,13 +1,6 @@
 import type React from 'react'
 import { useState } from 'react'
 
-import {
-  type BoardSettings,
-  boardStrategySchema,
-  DEFAULT_BOARD_SETTINGS,
-  DEFAULT_TRACK_SETTINGS,
-  type TrackSettings
-} from '@melee/protocol/board'
 import type { RoomSettings } from '@melee/protocol/room'
 import { MAX_TEAMS, MIN_TEAMS, type TeamsSettings } from '@melee/protocol/team'
 
@@ -18,10 +11,9 @@ import {
 import { fittedToAloud } from '@melee/core/room/line-up'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
-import { Switch } from '@/presentation/components/switch'
-import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 
-import { NO_LIMIT, NumberChoice } from './number-choice'
+import { NumberChoice } from './number-choice'
 
 import './teams-setup.sass'
 
@@ -37,8 +29,6 @@ export const TEAM_COUNTS = Array.from(
 
 /** The count a room turning teams on starts from: twelve at a table split three ways. */
 const FIRST_TEAM_COUNT = 3
-
-const BOARD_LENGTHS = [NO_LIMIT, 20, 30, 40] as const
 
 type TeamsSetupProps = {
   /** A phone holds a seat, which a table answering aloud has none of. */
@@ -68,84 +58,6 @@ const teamsOfKind = (
     case 'chosen':
       return { count, kind }
   }
-}
-
-const playsInTeams = (teams: TeamsSettings): boolean => teams.kind !== 'off'
-
-/**
- * The track follows the teams in and out: a room splitting into teams is an
- * evening raced on a board, and a room with no teams has nobody to walk a
- * pawn. A track already laid survives a change of how the seats are dealt.
- */
-const boardFor = ({
-  board,
-  from,
-  to
-}: {
-  board: BoardSettings
-  from: TeamsSettings
-  to: TeamsSettings
-}): BoardSettings => {
-  if (!playsInTeams(to)) {
-    return DEFAULT_BOARD_SETTINGS
-  }
-
-  return playsInTeams(from) ? board : DEFAULT_TRACK_SETTINGS
-}
-
-/** The strip's lengths, with a track laid at another length kept selectable. */
-const boardLengthsWith = (board: BoardSettings): number[] =>
-  board.kind === 'track' && !BOARD_LENGTHS.some((n) => n === board.length)
-    ? [...BOARD_LENGTHS, board.length].toSorted((a, b) => a - b)
-    : [...BOARD_LENGTHS]
-
-type BoardRulesProps = {
-  board: TrackSettings
-  isDisabled: boolean
-  onChange: (board: TrackSettings) => void
-}
-
-/** How a laid track walks the pawns, locked past the lobby like its length. */
-const BoardRules: React.FC<BoardRulesProps> = ({
-  board,
-  isDisabled,
-  onChange
-}) => {
-  const translate = useTranslate()
-
-  return (
-    <>
-      <SegmentedControl
-        className='board-strategy'
-        isDisabled={isDisabled}
-        label={translate('board.setting.strategy.label')}
-        onChange={(next) => {
-          const strategy = boardStrategySchema.safeParse(next)
-
-          if (strategy.success) {
-            onChange({ ...board, strategy: strategy.data })
-          }
-        }}
-        options={boardStrategySchema.options.map((strategy) => ({
-          label: translate(`board.setting.strategy.${strategy}`),
-          value: strategy
-        }))}
-        value={board.strategy}
-      />
-      <p className='hint'>
-        {translate(`board.setting.strategy.hint.${board.strategy}`)}
-      </p>
-      <Switch
-        description={translate('board.setting.catchUp.hint')}
-        isDisabled={isDisabled}
-        isSelected={board.catchUp}
-        label={translate('board.setting.catchUp.label')}
-        onChange={(catchUp) => {
-          onChange({ ...board, catchUp })
-        }}
-      />
-    </>
-  )
 }
 
 /**
@@ -190,15 +102,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
               locale,
               rememberedFor: (game) =>
                 rememberedSetupFor({ game, preferences }),
-              settings: {
-                ...settings,
-                board: boardFor({
-                  board: settings.board,
-                  from: teams,
-                  to: chosen
-                }),
-                teams: chosen
-              }
+              settings: { ...settings, teams: chosen }
             })
           )
         }}
@@ -228,45 +132,6 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         <p className='hint' role='status'>
           {translate('team.setting.aloudNeedsNoPhone')}
         </p>
-      )}
-      {playsInTeams(teams) && (
-        <NumberChoice
-          className='board-length'
-          isDisabled={isDisabled}
-          label={translate('board.setting.label')}
-          onChange={(length) => {
-            onChange({
-              ...settings,
-              board:
-                length === NO_LIMIT
-                  ? DEFAULT_BOARD_SETTINGS
-                  : {
-                      ...(settings.board.kind === 'track'
-                        ? settings.board
-                        : DEFAULT_TRACK_SETTINGS),
-                      length
-                    }
-            })
-          }}
-          optionLabel={(length) =>
-            length === NO_LIMIT
-              ? translate('board.setting.off')
-              : translate('board.setting.length', { length })
-          }
-          options={boardLengthsWith(settings.board)}
-          value={
-            settings.board.kind === 'track' ? settings.board.length : NO_LIMIT
-          }
-        />
-      )}
-      {playsInTeams(teams) && settings.board.kind === 'track' && (
-        <BoardRules
-          board={settings.board}
-          isDisabled={isDisabled}
-          onChange={(board) => {
-            onChange({ ...settings, board })
-          }}
-        />
       )}
       {teams.kind === 'teamsOnly' && (
         <p className='hint'>{translate('team.setting.teamsOnlyHint')}</p>

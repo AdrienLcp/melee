@@ -33,7 +33,7 @@ type SummaryInput = {
 }
 
 /** What each group of the setup says while it is closed, the same way the whole of it does. */
-export type SetupSummaries = Record<'evening' | 'room' | 'round', string>
+export type SetupSummaries = Record<'room' | 'round' | 'table', string>
 
 /**
  * The setup's line cut along its groups. The round count moves to the evening,
@@ -58,9 +58,7 @@ export const useSetupSummaries = ({
       : translate(`team.summary.${teams.kind}`, { count: teams.count })
 
   const boardSummary =
-    settings.board.kind === 'track' &&
-    teams.kind !== 'off' &&
-    teams.kind !== 'teamsOnly'
+    settings.board.kind === 'track'
       ? translate('board.summary', { length: settings.board.length })
       : ''
 
@@ -72,21 +70,21 @@ export const useSetupSummaries = ({
         })
 
   return {
-    evening: [
-      join(parts.filter(isRoundCount)),
-      teamsSummary,
-      boardSummary,
-      settings.hasJudge ? translate('host.judge.summary') : ''
-    ]
-      .filter((part) => part !== '')
-      .join(' · '),
     room: [
       hold,
       translate('host.setup.summary.countdown', {
         duration: seconds(settings.countdownMs)
       })
     ].join(' · '),
-    round: join(parts.filter((part) => !isRoundCount(part)))
+    round: join(parts.filter((part) => !isRoundCount(part))),
+    table: [
+      join(parts.filter(isRoundCount)),
+      teamsSummary,
+      boardSummary,
+      settings.hasJudge ? translate('host.judge.summary') : ''
+    ]
+      .filter((part) => part !== '')
+      .join(' · ')
   }
 }
 

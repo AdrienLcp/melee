@@ -14,6 +14,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useRoomActions } from '@/presentation/room-actions/room-actions-provider'
 
 import { AutoAdvanceChoice } from './auto-advance-choice'
+import { BoardSetup } from './board-setup'
 import { GamePicker } from './game-picker'
 import { HostSeat } from './host-seat'
 import { JudgeSwitch } from './judge-switch'
@@ -48,7 +49,7 @@ export type SetupFieldsProps = {
   view: HostRoomView
 }
 
-type SetupGroup = 'evening' | 'room' | 'round'
+type SetupGroup = 'room' | 'round' | 'table'
 
 /**
  * The group a host opening the setup most likely came for: the evening's shape
@@ -56,7 +57,7 @@ type SetupGroup = 'evening' | 'room' | 'round'
  * settings once a round is what the next press opens.
  */
 const groupOpenedFirst = (view: HostRoomView): SetupGroup =>
-  view.phase === 'lobby' || view.settings.game === null ? 'evening' : 'round'
+  view.phase === 'lobby' || view.settings.game === null ? 'table' : 'round'
 
 /**
  * How the evening is played, rather than inside the lobby: the countdown, the
@@ -109,9 +110,9 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
         defaultExpandedKeys={defaultExpandedKeys}
       >
         <Disclosure
-          id='evening'
-          label={translate('host.setup.group.evening')}
-          summary={summaries.evening}
+          id='table'
+          label={translate('host.setup.group.table')}
+          summary={summaries.table}
         >
           {/*
             In the lobby the game is the stage's, beside the QR code — save on
@@ -141,9 +142,20 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
             preferences={preferences}
             settings={settings}
           />
+          <BoardSetup
+            isDisabled={!isLive || !isInLobby}
+            onChange={onSettingsChange}
+            settings={settings}
+          />
           {!isInLobby && (
             <p className='hint'>{translate('team.setting.locked')}</p>
           )}
+          <JudgeSwitch
+            isDisabled={!isLive}
+            onChange={onSettingsChange}
+            preferences={preferences}
+            settings={settings}
+          />
           {/*
             A slate is one sheet, marked once: the next sheet is the next game,
             set up afresh, and a strip offering five of them would offer no
@@ -169,12 +181,6 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
               value={settings.roundCount ?? NO_LIMIT}
             />
           )}
-          <JudgeSwitch
-            isDisabled={!isLive}
-            onChange={onSettingsChange}
-            preferences={preferences}
-            settings={settings}
-          />
         </Disclosure>
 
         {/* Nothing about a round until there is a game to play it. */}

@@ -140,16 +140,21 @@ export const FR_DICTIONARY = defineDictionary({
     forward: 'Avancer {team} d’une case',
     setting: {
       catchUp: {
-        hint: 'Une équipe seule à la dernière place avance d’une case de plus sur une manche où elle marque.',
+        hint: 'Seul à la dernière place, on avance d’une case de plus sur une manche où l’on marque.',
         label: 'Coup de pouce au dernier'
+      },
+      hint: {
+        off: 'Des pions sur un parcours, autour de l’écran de la salle.',
+        seats: 'Un pion par joueur, qui avance à chaque manche.',
+        teams: 'Un pion par équipe, qui avance à chaque manche.'
       },
       label: 'Plateau',
       length: '{length:number} cases',
-      off: 'Sans',
+      lengthLabel: 'Longueur',
       strategy: {
         hint: {
           onePointOneCase: 'Une case par point gagné dans la manche.',
-          rank: 'La meilleure équipe de la manche avance de 3 cases, la deuxième de 2, la troisième de 1.'
+          rank: 'Le premier de la manche avance de 3 cases, le deuxième de 2, le troisième de 1.'
         },
         label: 'Les pions avancent',
         onePointOneCase: 'Aux points',
@@ -429,9 +434,9 @@ export const FR_DICTIONARY = defineDictionary({
     seeResults: 'Voir les résultats',
     setup: {
       group: {
-        evening: 'La soirée',
         room: 'La salle',
-        round: 'La manche'
+        round: 'La manche',
+        table: 'La table'
       },
       label: 'Réglages',
       roundInPlay: 'Les changements s’appliquent à la manche suivante',
@@ -1089,14 +1094,14 @@ export const FR_DICTIONARY = defineDictionary({
     setting: {
       aloud: 'À voix haute',
       aloudHint:
-        'Sans téléphone : le mur pose la question, les équipes crient, tu touches celles qui ont trouvé.',
+        'Personne ne rejoint : le mur pose la question, les équipes crient, tu touches celles qui ont trouvé.',
       aloudNeedsNoPhone:
-        'Pour jouer à voix haute, la table doit être sans téléphone : demande-leur de quitter d’abord.',
+        'Pour jouer à voix haute, personne ne doit avoir rejoint : demande à chacun de quitter d’abord.',
       chosen: 'Au choix',
       drawn: 'Tirées au sort',
       label: 'Équipes',
-      locked: 'Les équipes se règlent avant la première manche.',
-      off: 'Sans',
+      locked: 'Les équipes et le plateau se règlent avant la première manche.',
+      off: 'Chacun pour soi',
       teamsOnly: 'Un écran par équipe',
       teamsOnlyHint:
         'Chaque équipe rejoint sur un seul écran, sous le nom de l’équipe.'

@@ -161,16 +161,21 @@ export const EN_DICTIONARY = defineDictionary({
     forward: 'Move {team} forward a square',
     setting: {
       catchUp: {
-        hint: 'A team alone in last place moves one square more on a round it scores.',
-        label: 'Help the last team'
+        hint: 'Whoever is alone in last place moves one square more on a round they score.',
+        label: 'Help whoever is last'
+      },
+      hint: {
+        off: 'Pawns racing round a track on the room’s screen.',
+        seats: 'A pawn for every player, moving on after each round.',
+        teams: 'A pawn for every team, moving on after each round.'
       },
       label: 'Board',
       length: '{length:number} squares',
-      off: 'None',
+      lengthLabel: 'Length',
       strategy: {
         hint: {
           onePointOneCase: 'One square for every point the round paid.',
-          rank: 'The round’s best team moves 3 squares, the second 2, the third 1.'
+          rank: 'The round’s best moves 3 squares, the second 2, the third 1.'
         },
         label: 'Pawns move',
         onePointOneCase: 'By points',
@@ -469,9 +474,9 @@ export const EN_DICTIONARY = defineDictionary({
     seeResults: 'See the results',
     setup: {
       group: {
-        evening: 'The evening',
         room: 'The room',
-        round: 'The round'
+        round: 'The round',
+        table: 'The table'
       },
       label: 'Settings',
       roundInPlay: 'Changes apply from the next round',
@@ -1189,14 +1194,14 @@ export const EN_DICTIONARY = defineDictionary({
     setting: {
       aloud: 'Aloud',
       aloudHint:
-        'No phones: the wall asks, the teams shout, and you tap who got it.',
+        'Nobody joins: the wall asks, the teams shout, and you tap who got it.',
       aloudNeedsNoPhone:
-        'Answering aloud takes a table with no phone in it: ask them to leave first.',
+        'Answering aloud takes a table nobody has joined: ask everyone to leave first.',
       chosen: 'Players choose',
       drawn: 'Drawn',
       label: 'Teams',
-      locked: 'Teams are settled before the first round.',
-      off: 'None',
+      locked: 'Teams and the board are settled before the first round.',
+      off: 'Every player for themselves',
       teamsOnly: 'A screen per team',
       teamsOnlyHint: 'Each team joins on one screen, under the team’s name.'
     },
