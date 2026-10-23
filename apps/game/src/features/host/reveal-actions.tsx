@@ -5,6 +5,7 @@ import type { HostRoomView } from '@melee/protocol/room'
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
 import { endsTheEvening } from '@melee/core/room/next-game'
 import { movedToEntry } from '@melee/core/room/room-settings'
+import { offersSkip, withEntrySkipped } from '@melee/core/room/skipped-entry'
 import { canPlayDuel } from '@melee/core/team/duel'
 
 import { Button } from '@/presentation/components/button'
@@ -38,6 +39,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   onSettingsChange,
   preferences,
   send,
+  slateKeys,
   view
 }) => {
   const { locale, translate } = useI18n()
@@ -126,6 +128,38 @@ export const RevealActions: React.FC<HostActionsProps> = ({
               settings.lineUpAt === null ? null : String(settings.lineUpAt)
             }
           />
+        )}
+        {offersSkip({
+          challengeText: challengeLine?.text,
+          lineUp: settings.lineUp,
+          lineUpAt: settings.lineUpAt,
+          played: view.lineUpPlayed,
+          slateKeys: slateKeys ?? []
+        }) && (
+          <Button
+            className='skip-round'
+            isDisabled={!isLive}
+            onPress={() => {
+              onSettingsChange(
+                withEntrySkipped({
+                  lastAt: view.round?.lineUpAt ?? null,
+                  locale,
+                  played: view.lineUpPlayed,
+                  random: Math.random,
+                  rememberedFor: (game) =>
+                    rememberedSetupFor({ game, preferences }),
+                  roundsLeft:
+                    settings.roundCount === null
+                      ? null
+                      : settings.roundCount - (view.round?.index ?? 0),
+                  settings
+                })
+              )
+            }}
+            variant='underlined'
+          >
+            {translate('host.skipRound')}
+          </Button>
         )}
         {innerclockTarget !== null && (
           <InnerclockTargetField

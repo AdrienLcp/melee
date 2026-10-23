@@ -1,6 +1,6 @@
 # 42 — A prepared evening
 
-**In progress** — steps 1 to 3 done. Asked 23/10/2026, after stage 41. The host can prepare the
+**In progress** — steps 1 to 4 done. Asked 23/10/2026, after stage 41. The host can prepare the
 evening's rounds before it starts — one, four or all thirty — each a game with
 its own options, and the rest is drawn. Every entry is played at least once,
 and nothing is played that the host has not either prepared or left to chance.
@@ -111,9 +111,15 @@ and nothing is played that the host has not either prepared or left to chance.
    an evening with nothing left to deal reads *See the results*
    (`endsTheEvening`). The round count strip shows the count it is on when
    the line-up made it one of no step (twelve for three games).
-4. The *In order* switch — the list as the running order, chance rounds as
-   rows, reordered by drag, its stored order — and *skip* beside *Next round*
-   for a drawn round nobody prepared. Settles what *unprepared* means first:
-   the challenge's line is typed at the press and is not on the entry, and
-   the slate's key is one per tab rather than one per entry, so neither can be
-   prepared ahead for a second entry of its game yet.
+4. *Skip* for a drawn round nobody prepared. **Done** — `offersSkip` and
+   `withEntrySkipped` (`core/room/skipped-entry.ts`): *Skip this round* beside
+   the next game on the reveal, for an unplayed buzzer, a slate with no label
+   and no key noted, or a challenge with no line typed. Only the next round
+   is ever asked, so the line and the keys staying on the console rather than
+   on the entry is no obstacle. Never offered when it would leave nothing to
+   deal — *End game* says that. A skip keeps the evening's count and hold
+   even when it leaves a single entry, which `movedToEntry` alone would hand
+   that game's own.
+5. The *In order* switch — the list as the running order, chance rounds as
+   rows, reordered by drag, its stored order. Preparing a second challenge or
+   slate ahead still needs its line and key on the entry, which they are not.

@@ -529,6 +529,7 @@ export const EN_DICTIONARY = defineDictionary({
       },
       volume: 'Volume on this screen'
     },
+    skipRound: 'Skip this round',
     standings: 'Standings',
     startGame: 'Gather round',
     /** The room's own screen while the teams sit down: the evening's card and the trays under it. */

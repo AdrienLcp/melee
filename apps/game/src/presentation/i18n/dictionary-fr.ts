@@ -486,6 +486,7 @@ export const FR_DICTIONARY = defineDictionary({
       },
       volume: 'Volume de cet écran'
     },
+    skipRound: 'Passer cette manche',
     standings: 'Classement',
     startGame: 'À table\u00a0!',
     table: {
