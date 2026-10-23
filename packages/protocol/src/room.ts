@@ -126,6 +126,12 @@ export const LINE_UP_MAX_ENTRIES = 12
 /** The longest evening a room may be set to, in rounds. */
 export const ROUND_COUNT_MAX = 50
 
+/**
+ * How many rows a running order holds at most. An evening with no count runs
+ * past `ROUND_COUNT_MAX`, and its rows are counted from the first round.
+ */
+export const RUNNING_ORDER_MAX_ROWS = 4 * ROUND_COUNT_MAX
+
 const lineUpAtSchema = z
   .number()
   .int()
@@ -202,14 +208,16 @@ export const roomSettingsSchema = z.object({
    */
   roundCount: z.number().int().min(1).max(ROUND_COUNT_MAX).nullable(),
   /**
-   * The evening's rounds in the order the host put them, or `null` while it is
-   * drawn. A row per round, from the first: the line-up entry it plays, or
-   * `null` for a round left to chance. Rounds past its end are drawn too.
+   * The evening's rounds in the order they play, empty for a room of one game.
+   * A row per round, from the first: the line-up entry it plays. The server
+   * deals it as the evening is made and deals again every frame, so `null` is
+   * a hole a frame leaves for it — an entry taken out, a round skipped —
+   * never a row it sends. Rounds past its end are drawn as they come.
    *
    * Indices rather than entries, so an entry changed in the fold keeps its
    * place; an edit that takes an entry out rewrites the rows with it.
    */
-  runningOrder: z.array(lineUpAtSchema).max(ROUND_COUNT_MAX).nullable(),
+  runningOrder: z.array(lineUpAtSchema).max(RUNNING_ORDER_MAX_ROWS),
   /** Whether the room plays in teams, and how its seats get into them — see `team.ts`. */
   teams: teamsSettingsSchema
 })
@@ -249,7 +257,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 10,
-  runningOrder: null,
+  runningOrder: [],
   teams: DEFAULT_TEAMS_SETTINGS
 }
 

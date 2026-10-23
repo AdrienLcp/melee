@@ -26,7 +26,7 @@ export const lineUpHolds = (settings: RoomSettings): boolean => {
   const { game, lineUp, lineUpAt, runningOrder, teams } = settings
 
   if (game === null) {
-    return lineUp.length === 0 && lineUpAt === null && runningOrder === null
+    return lineUp.length === 0 && lineUpAt === null && runningOrder.length === 0
   }
 
   return (
@@ -99,8 +99,8 @@ export const toggledInLineUp = ({
  * The settings with one more entry of `game` at the end of the line-up, on
  * what this host last left the game set to — a second entry of a game already
  * there is a variant the host then sets apart. The next round stays where it
- * was: adding a round to the evening is not choosing it, and an evening in
- * order plays it last. A room still deciding picks the game instead, and a
+ * was: adding a round to the evening is not choosing it, and the evening
+ * plays it last. A room still deciding picks the game instead, and a
  * full line-up is left as it is.
  */
 export const withEntryAdded = ({

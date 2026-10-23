@@ -304,7 +304,7 @@ describe('the running order across line-up edits', () => {
   })
 
   it('[running-order] refuses an order in a room still deciding', () => {
-    expect(lineUpHolds({ ...onNothing, runningOrder: [] })).toBe(false)
+    expect(lineUpHolds({ ...onNothing, runningOrder: [0] })).toBe(false)
   })
 
   it('[running-order] plays a round added to an ordered evening last', () => {
@@ -327,16 +327,5 @@ describe('the running order across line-up edits', () => {
     })
 
     expect(taken.runningOrder).toEqual([null, null, 0, 1])
-  })
-
-  it('[running-order] leaves a drawn evening drawn', () => {
-    const added = withEntryAdded({
-      game: 'slate',
-      locale: 'fr',
-      remembered: null,
-      settings: inOrder(null)
-    })
-
-    expect(added.runningOrder).toBeNull()
   })
 })

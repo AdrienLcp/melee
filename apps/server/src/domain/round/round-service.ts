@@ -60,7 +60,7 @@ import type {
   Round,
   WorldmapRoundTarget
 } from '@/domain/room/room'
-import { touch } from '@/domain/room/room-service'
+import { touch, updateSettings } from '@/domain/room/room-service'
 import {
   bankRound,
   placeUnseatedSeats,
@@ -1246,9 +1246,10 @@ export const finishGame = (room: Room, now: number): void => {
 }
 
 /**
- * The same players in the same seats, scores at zero. `playedContentIds`
- * survives on purpose: a second game in the same room should not replay the
- * tracks the first one just burnt through.
+ * The same players in the same seats, scores at zero, and the evening's order
+ * dealt again from its first round. `playedContentIds` survives on purpose: a
+ * second game in the same room should not replay the tracks the first one just
+ * burnt through.
  */
 export const restartGame = (room: Room, now: number): void => {
   for (const participant of room.players.values()) {
@@ -1261,7 +1262,7 @@ export const restartGame = (room: Room, now: number): void => {
   room.phase = 'lobby'
   room.round = null
   room.isDuelAsked = false
-  touch(room, now)
+  updateSettings(room, { ...room.settings, runningOrder: [] }, now)
 }
 
 /**

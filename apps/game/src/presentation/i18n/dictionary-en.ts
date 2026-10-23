@@ -377,22 +377,11 @@ export const EN_DICTIONARY = defineDictionary({
     endGame: 'End the game',
     evening: {
       add: 'Add a round',
-      byChance: 'By chance',
       challengeLine:
         'Its line is written when its round comes up, beside the press that opens it.',
       chance: {
         among: 'among {games}, never the same game twice in a row',
-        closed: 'Nothing else to draw',
-        counted: defineTranslation('{count:plural}', {
-          plural: {
-            count: {
-              one: 'round left to chance',
-              other: 'rounds left to chance'
-            }
-          }
-        }),
         endless: 'Then by chance, until you stop',
-        none: 'Nothing left to chance',
         over: 'too many for {total:number} rounds',
         overHint:
           'Every round added is played at least once, so the evening has to grow.',
@@ -401,7 +390,6 @@ export const EN_DICTIONARY = defineDictionary({
       drag: 'Move round {number:number}, {name}',
       fills: 'Fills the evening',
       fixed: 'Already played: it no longer changes.',
-      inOrder: 'In order',
       once: 'Played once',
       pick: 'Which round?',
       pickHint:

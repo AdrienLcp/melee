@@ -12,8 +12,10 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
+import { randomUnit } from '../helpers/random'
 import { questionLanguageFor } from '../quiz/question-language'
 import { modeOfferedBy } from './game-modes'
+import { dealtOrder } from './running-order'
 
 /**
  * How many rounds a game opens on, and `null` where the honest answer is "until
@@ -127,13 +129,27 @@ export const roomSettingsFor = ({
     }
   }
 
+  const lineUp = games.map((ticked) =>
+    openedGameSettings({ game: ticked, locale })
+  )
+  const roundCount = games.length * ROUNDS_PER_TICKED_GAME
+
   return {
     ...DEFAULT_ROOM_SETTINGS,
     ...setup,
     autoAdvanceMs: null,
-    lineUp: games.map((ticked) => openedGameSettings({ game: ticked, locale })),
+    lineUp,
     lineUpAt: 0,
-    roundCount: games.length * ROUNDS_PER_TICKED_GAME
+    roundCount,
+    runningOrder: dealtOrder({
+      drawnAt: 0,
+      lineUp,
+      order: [],
+      played: lineUp.map(() => 0),
+      random: randomUnit,
+      roundCount,
+      upcoming: 0
+    })
   }
 }
 

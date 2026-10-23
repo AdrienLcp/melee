@@ -26,3 +26,6 @@ export const pickRandom = <TItem>(items: readonly TItem[]): TItem | null =>
 /** Inclusive at both ends, like the range a rule states. */
 export const randomIntBetween = (min: number, max: number): number =>
   min + Math.floor(Math.random() * (max - min + 1))
+
+/** In `[0, 1)`, for a rule that takes its randomness as an argument. */
+export const randomUnit = (): number => Math.random()

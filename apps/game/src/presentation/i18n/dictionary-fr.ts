@@ -346,19 +346,11 @@ export const FR_DICTIONARY = defineDictionary({
     endGame: 'Terminer la partie',
     evening: {
       add: 'Ajouter une manche',
-      byChance: 'Au hasard',
       challengeLine:
         'Sa phrase s’écrit quand sa manche arrive, à côté du bouton qui la lance.',
       chance: {
         among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
-        closed: 'Rien d’autre à tirer',
-        counted: defineTranslation('{count:plural}', {
-          plural: {
-            count: { one: 'manche au hasard', other: 'manches au hasard' }
-          }
-        }),
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
-        none: 'Plus rien au hasard',
         over: 'de trop pour {total:number} manches',
         overHint:
           'Chaque manche ajoutée se joue au moins une fois : la soirée doit s’allonger.',
@@ -367,7 +359,6 @@ export const FR_DICTIONARY = defineDictionary({
       drag: 'Déplacer la manche {number:number}, {name}',
       fills: 'Remplit la soirée',
       fixed: 'Déjà jouée : elle ne change plus.',
-      inOrder: 'Dans l’ordre',
       once: 'Se joue une fois',
       pick: 'Quelle manche ?',
       pickHint:

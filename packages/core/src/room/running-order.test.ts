@@ -5,9 +5,8 @@ import type { RoomSettings } from '@melee/protocol/room'
 
 import {
   comingRounds,
-  listedOrder,
+  dealtOrder,
   orderWithEntryNext,
-  orderWithLastRowSettled,
   scheduledEntryAt
 } from './running-order'
 
@@ -80,49 +79,102 @@ describe('scheduledEntryAt', () => {
   it('[running-order] leaves a row whose entry is gone to chance', () => {
     expect(drawnAt({ order: [7], roundAt: 0 })).not.toBeNull()
   })
-
-  it('[running-order] draws as before with no order', () => {
-    for (const roll of ROLLS) {
-      expect(drawnAt({ lastAt: 0, order: null, roll, roundAt: 1 })).not.toBe(0)
-    }
-  })
 })
 
-describe('listedOrder', () => {
-  it('[running-order] puts the next round first, then each entry owed, then chance to the count', () => {
-    expect(
-      listedOrder({
-        lineUp,
-        lineUpAt: 2,
-        played: [0, 0, 0, 0],
-        roundCount: 6,
-        upcoming: 0
-      })
-    ).toEqual([2, 0, 1, 3, null, null])
+describe('dealtOrder', () => {
+  const dealt = ({
+    drawnAt = null,
+    order = [],
+    played = lineUp.map(() => 0),
+    roll,
+    roundCount,
+    upcoming = 0
+  }: {
+    drawnAt?: number | null
+    order?: RoomSettings['runningOrder']
+    played?: readonly number[]
+    roll: number
+    roundCount: number | null
+    upcoming?: number
+  }) =>
+    dealtOrder({
+      drawnAt,
+      lineUp,
+      order,
+      played,
+      random: () => roll,
+      roundCount,
+      upcoming
+    })
+
+  it('[running-order] deals every round of a counted evening, the next one first', () => {
+    for (const roll of ROLLS) {
+      const order = dealt({ drawnAt: 2, roll, roundCount: 6 })
+
+      expect(order).toHaveLength(6)
+      expect(order[0]).toBe(2)
+      expect(order.filter((row) => row === 1)).toHaveLength(1)
+      expect(order.filter((row) => row === 3)).toHaveLength(1)
+      expect(order).toContain(0)
+    }
   })
 
-  it('[running-order] leaves the rounds already opened and the entries played out to chance', () => {
-    expect(
-      listedOrder({
-        lineUp,
-        lineUpAt: 0,
-        played: [1, 1, 0, 0],
-        roundCount: 5,
-        upcoming: 2
+  it('[running-order] keeps the rows it was given and deals the holes to the entries owed', () => {
+    for (const roll of ROLLS) {
+      const order = dealt({
+        drawnAt: 2,
+        order: [2, null, 1, null],
+        roll,
+        roundCount: 4
       })
-    ).toEqual([null, null, 0, 2, 3])
+
+      expect([order[0], order[2]]).toEqual([2, 1])
+      expect([order[1], order[3]].toSorted()).toEqual([0, 3])
+    }
   })
 
-  it('[running-order] gives an endless evening a row per entry', () => {
+  it('[running-order] gives up rounds over the count from the end, never an entry the host brought', () => {
     expect(
-      listedOrder({
-        lineUp,
-        lineUpAt: 1,
-        played: [0, 0, 0, 0],
-        roundCount: null,
+      dealt({ drawnAt: 0, order: [0, 2, 0, 2, 1], roll: 0, roundCount: 3 })
+    ).toEqual([0, 2, 1, 3])
+  })
+
+  it('[running-order] deals again a row whose entry the host brought is played', () => {
+    for (const roll of ROLLS) {
+      const order = dealt({
+        order: [1, 1, 0],
+        played: [0, 1, 0, 0],
+        roll,
+        roundCount: 3,
+        upcoming: 1
+      })
+
+      expect(order.slice(1)).not.toContain(1)
+      expect(order.slice(1)).toEqual(expect.arrayContaining([0, 2, 3]))
+    }
+  })
+
+  it('[running-order] holds one round per entry in an evening with no count', () => {
+    for (const roll of ROLLS) {
+      const order = dealt({ drawnAt: 1, roll, roundCount: null })
+
+      expect(order[0]).toBe(1)
+      expect(order.toSorted()).toEqual([0, 1, 2, 3])
+    }
+  })
+
+  it('[running-order] holds nothing for a single entry', () => {
+    expect(
+      dealtOrder({
+        drawnAt: 0,
+        lineUp: [DEFAULT_GAME_SETTINGS.quiz],
+        order: [0, 0],
+        played: [0],
+        random: () => 0,
+        roundCount: 4,
         upcoming: 0
       })
-    ).toEqual([1, 0, 2, 3])
+    ).toEqual([])
   })
 })
 
@@ -131,25 +183,20 @@ describe('comingRounds', () => {
     expect(
       comingRounds({
         drawnAt: 3,
-        order: [null, 0, 1, null],
+        order: [null, 0, 1, 2],
         roundCount: 4,
         upcoming: 1
       }).map((round) => round.at)
-    ).toEqual([3, 1, null])
+    ).toEqual([3, 1, 2])
   })
 
-  it('[running-order] shows a row past the count only when it holds an entry', () => {
+  it('[running-order] marks the rows past the count', () => {
     expect(
-      comingRounds({
-        drawnAt: 0,
-        order: [0, null, null, 1, null],
-        roundCount: 2,
-        upcoming: 0
-      })
+      comingRounds({ drawnAt: 0, order: [0, 1, 3], roundCount: 2, upcoming: 0 })
     ).toEqual([
       { at: 0, isPastTheEnd: false, roundAt: 0 },
-      { at: null, isPastTheEnd: false, roundAt: 1 },
-      { at: 1, isPastTheEnd: true, roundAt: 3 }
+      { at: 1, isPastTheEnd: false, roundAt: 1 },
+      { at: 3, isPastTheEnd: true, roundAt: 2 }
     ])
   })
 })
@@ -165,31 +212,5 @@ describe('orderWithEntryNext', () => {
     expect(
       orderWithEntryNext({ at: 3, order: [0, 1, 2, null], upcoming: 1 })
     ).toEqual([0, 3, 2, 1])
-  })
-
-  it('[running-order] leaves an evening with no order alone', () => {
-    expect(orderWithEntryNext({ at: 1, order: null, upcoming: 0 })).toBeNull()
-  })
-})
-
-describe('orderWithLastRowSettled', () => {
-  it('[running-order] moves an added entry onto the count’s last chance round', () => {
-    expect(
-      orderWithLastRowSettled({
-        order: [0, 1, null, null, 2],
-        roundCount: 4,
-        upcoming: 0
-      })
-    ).toEqual([0, 1, null, 2])
-  })
-
-  it('[running-order] keeps it past the end when every round to come holds an entry', () => {
-    expect(
-      orderWithLastRowSettled({
-        order: [null, 0, 1, 2],
-        roundCount: 3,
-        upcoming: 1
-      })
-    ).toEqual([null, 0, 1, 2])
   })
 })

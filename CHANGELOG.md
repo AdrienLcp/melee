@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **Every evening is in order**, and `PROTOCOL_VERSION` goes to
+  46. The *In order* switch is gone: an evening of several games is dealt
+  round by round the moment it is made — every game at least once, never the
+  same game twice in a row when it can help it — and *The rounds* lists it,
+  numbered, to drag into another order with a mouse, the keyboard or a finger.
+  Changing the count, adding or taking out a game, or skipping a round deals
+  the rounds it leaves again, and keeps the ones the host placed.
+  `settings.runningOrder` is never `null` and the server fills it.
+
 - `[Game]` **The evening is a list of rounds.** *Settings › The table* lists
   every round of the evening — its game, what it is set to, and whether it is
   next, played, played once or how often — and says how many rounds are left

@@ -7,7 +7,6 @@ import type { TrackSource } from '@melee/protocol/track'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
-import { orderWithLastRowSettled } from '@melee/core/room/running-order'
 
 import { useVolume } from '@/presentation/audio/volume-provider'
 import { Disclosure } from '@/presentation/components/disclosure'
@@ -140,14 +139,7 @@ export const SetupFields: React.FC<SetupFieldsProps> = ({
         <EveningAddPage
           isLive={isLive}
           onAdded={(added, at) => {
-            onSettingsChange({
-              ...added,
-              runningOrder: orderWithLastRowSettled({
-                order: added.runningOrder,
-                roundCount: added.roundCount,
-                upcoming: view.round?.index ?? 0
-              })
-            })
+            onSettingsChange(added)
             setPage({ at, kind: 'entry' })
           }}
           onBack={backToGroups}

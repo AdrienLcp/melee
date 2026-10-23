@@ -86,12 +86,12 @@ and nothing is played that the host has not either prepared or left to chance.
   page of its own in the leaflet (*‹ The rounds*), adding one opening the
   shelf of ten as a page. *The round* leaves the setup; setting an entry no
   longer makes it the next one — *Play next* does.
-- **Random by default, an order on request.** A switch *In order* turns the
-  list into the evening's running order: one row per round, the chance rounds
-  as *By chance* rows, all reordered by drag (react-aria's `useDragAndDrop`,
-  which carries keyboard and touch). It stores an order the dealt deck never
-  needed, so it is the one place the room keeps a sequence — `null` while
-  random, which leaves every random evening on the draw above.
+- ~~Random by default, an order on request.~~ Superseded 23/10/2026: the
+  *In order* switch is gone. Every evening of several entries holds its
+  running order from the moment it is made, dealt by `nextEntryAt`'s rule,
+  shown as the list and edited by drag — a random evening and an ordered one
+  were the same list with a mode between them, and the mode was the
+  confusing part.
 
 ## Order
 
@@ -120,27 +120,25 @@ and nothing is played that the host has not either prepared or left to chance.
    deal — *End game* says that. A skip keeps the evening's count and hold
    even when it leaves a single entry, which `movedToEntry` alone would hand
    that game's own.
-5. The *In order* switch — the list as the running order, chance rounds as
-   rows, reordered by drag, its stored order. **Stored order done**:
-   `settings.runningOrder` (protocol 45), a row per round from the first —
-   a line-up index, or `null` for a round left to chance — `null` as a whole
-   while the evening is drawn, and never remembered past the room.
-   `scheduledEntryAt` (`core/room/running-order.ts`) plays the row, and draws
-   a chance row, a gone or played-out one, or a round past the order's end
-   among the entries serving their own content. Taking an entry out leaves
-   its rows to chance (`remappedOrder`), adding one plays it last, a skip
-   leaves its row to chance; the server refuses a row past the line-up
-   (`lineUpHolds`). **Done**: *In order* beside *The rounds* in
-   `EveningRounds` builds the order from the list (`listedOrder`: the next
-   round first, each entry still owed once, chance up to the count) and turns
-   the list into a numbered react-aria `GridList` of the rounds to come
-   (`comingRounds`), dragged by the row or by its grip on the keyboard. The
-   first row is always the entry already drawn, whatever its row says; a
-   round dragged first becomes the next one (`movedToEntry`), and a chance
-   round dragged first is drawn there and then. *Play next* and the reveal's
-   next-game picker swap rows (`orderWithEntryNext`) so the displaced entry
-   keeps a round; an entry added lands on the count's last chance round
-   (`orderWithLastRowSettled`). A row past the count is stamped *Past the
-   end* with the raise press under it. Locked while a round plays. Preparing
-   a second challenge or slate ahead still needs its line and key on the
+5. The running order — the list as the evening's rounds, reordered by drag,
+   its stored order. **Done**: `settings.runningOrder` (protocol 46), a row
+   per round from the first, a line-up index; empty for a room of one game,
+   never `null`, never remembered past the room. The server deals it
+   (`dealtOrder`, `core/room/running-order.ts`) as the room opens
+   (`roomSettingsFor`), on every settings frame (`updateSettings`) and on a
+   restart: the host's rows stand, a hole — an entry taken out
+   (`remappedOrder`), a skip, a raised count — is drawn as if the rounds
+   before it had played, every entry still owed gets a row, and rows over the
+   count go from the end, a round of a game serving its own content that has
+   another one. A host entry the count cannot hold stays past the end, stamped
+   *Past the end* with the raise press under it. An endless evening holds one
+   row per entry still in the deck and draws past them (`scheduledEntryAt`).
+   The round about to open is `lineUpAt`'s in the lobby, and on a reveal once
+   the console has drawn it. `EveningRounds` is a numbered react-aria
+   `GridList` of the rounds to come (`comingRounds`), dragged by the grip with
+   a mouse or the keyboard, and with a finger through `useTouchReorder`; a
+   round dragged first becomes the next one (`movedToEntry`). *Play next* and
+   the reveal's next-game picker swap rows (`orderWithEntryNext`); an entry
+   added is appended and plays last. Locked while a round plays. Preparing a
+   second challenge or slate ahead still needs its line and key on the
    entry, which they are not.

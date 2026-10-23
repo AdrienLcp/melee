@@ -8,7 +8,10 @@ import type {
 } from '@melee/protocol/identifiers'
 import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@melee/protocol/room'
 
+import { randomUnit } from '@melee/core/helpers/random'
+import { playedPerEntry } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
+import { dealtOrder } from '@melee/core/room/running-order'
 import { isAbandoned } from '@melee/core/room/seat-presence'
 
 import type { Participant, Room } from './room'
@@ -279,12 +282,33 @@ export const markReady = ({
   return Result.success()
 }
 
+/**
+ * Writes the settings a host sent, with the running order dealt over them
+ * (`dealtOrder`). The round about to open is settled in the lobby, and on a
+ * reveal once the console has drawn it off the entry just played.
+ */
 export const updateSettings = (
   room: Room,
   settings: RoomSettings,
   now: number
 ): void => {
-  room.settings = settings
+  const { lineUp, lineUpAt, roundCount, runningOrder } = settings
+  const isNextSettled =
+    room.phase === 'lobby' ||
+    (room.phase === 'revealed' && room.round?.lineUpAt !== lineUpAt)
+
+  room.settings = {
+    ...settings,
+    runningOrder: dealtOrder({
+      drawnAt: isNextSettled ? lineUpAt : null,
+      lineUp,
+      order: runningOrder,
+      played: playedPerEntry({ lineUp, opened: room.openedEntries }),
+      random: randomUnit,
+      roundCount,
+      upcoming: room.round?.index ?? 0
+    })
+  }
   touch(room, now)
 }
 

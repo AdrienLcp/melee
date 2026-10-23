@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import {
   Button as AriaButton,
   DropIndicator,
@@ -16,7 +16,6 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
-import { eveningChance } from '@melee/core/room/evening-chance'
 import { capabilitiesOf } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
@@ -28,20 +27,17 @@ import { movedToEntry } from '@melee/core/room/room-settings'
 import {
   type ComingRound,
   comingRounds,
-  listedOrder,
-  orderWithComingRounds,
-  scheduledEntryAt
+  orderWithComingRounds
 } from '@melee/core/room/running-order'
 
 import { Button } from '@/presentation/components/button'
 import {
   ChevronRightIcon,
-  DiceIcon,
   GameIcon,
   GripIcon,
   PlusIcon
 } from '@/presentation/components/icons'
-import { Switch } from '@/presentation/components/switch'
+import { useTouchReorder } from '@/presentation/components/use-touch-reorder'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntryDetail } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
@@ -63,19 +59,7 @@ const roundCountHolding = (needed: number): number =>
   ROUND_COUNT_STEPS.find((step) => step >= needed) ??
   Math.min(needed, MAX_ROUND_COUNT)
 
-/**
- * Each entry with its index and a key: two entries of one game may hold the
- * same settings, so the only identity an entry has is which of its game's
- * entries it is.
- */
-const rowsOf = (lineUp: readonly GameSettings[]) =>
-  lineUp.map((entry, at) => ({
-    at,
-    entry,
-    key: `${entry.kind}:${lineUp.slice(0, at).filter((other) => other.kind === entry.kind).length}`
-  }))
-
-/** The games a chance round is drawn among: those serving their own content, or every one when none does. */
+/** The games the rounds past an endless evening's rows are drawn among: those serving their own content, or every one when none does. */
 const fillersOf = (lineUp: readonly GameSettings[]): GameKind[] => {
   const games = [...new Set(lineUp.map((entry) => entry.kind))]
   const serving = games.filter(
@@ -99,13 +83,10 @@ type EveningRoundsProps = {
 }
 
 /**
- * The evening as a short list of its rounds, each opening a page of its own,
- * and a line under it saying how many rounds the draw is left to fill. A round
- * the host brought is fixed once played, and the list says so before anyone
- * opens it.
- *
- * *In order* turns the list into the evening's running order: a numbered row
- * per round still to come, the chance rounds among them, put in order by drag.
+ * The evening as its running order: a numbered row per round still to come,
+ * each opening the page of its entry, put in order by drag — the server dealt
+ * it the moment the evening was made. A room of one game is that game's row
+ * alone, fixed once played if the host brought it.
  */
 export const EveningRounds: React.FC<EveningRoundsProps> = ({
   isLive,
@@ -116,7 +97,6 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
   view
 }) => {
   const { locale, translate } = useI18n()
-  const detailOf = useLineUpEntryDetail()
   const labelId = useId()
   const { lineUp, lineUpAt, roundCount, runningOrder } = view.settings
   const played = view.lineUpPlayed
@@ -130,16 +110,12 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
     })
   const upcoming = view.round?.index ?? 0
   const isDrawn = !isRoundInPlay(view.phase) && !isEveningOver
-  const isEditable = isLive && isDrawn
-  const coming =
-    runningOrder === null
-      ? null
-      : comingRounds({
-          drawnAt: isDrawn ? lineUpAt : null,
-          order: runningOrder,
-          roundCount,
-          upcoming
-        })
+  const coming = comingRounds({
+    drawnAt: isDrawn ? lineUpAt : null,
+    order: runningOrder,
+    roundCount,
+    upcoming
+  })
   const addRow = lineUp.length < LINE_UP_MAX_ENTRIES && (
     <AriaButton className='round' isDisabled={!isLive} onPress={onAdd}>
       <span className='band' />
@@ -148,6 +124,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
       <ChevronRightIcon className='chevron' />
     </AriaButton>
   )
+  const onlyEntry = lineUp[0]
 
   return (
     <div className='evening-rounds'>
@@ -155,75 +132,24 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
         <span className='rounds-label' id={labelId}>
           {translate('host.evening.rounds')}
         </span>
-        {(lineUp.length > 1 || runningOrder !== null) && (
-          <Switch
-            className='in-order'
-            isDisabled={!isEditable}
-            isSelected={runningOrder !== null}
-            label={translate('host.evening.inOrder')}
-            onChange={(isOrdered) => {
-              onSettingsChange({
-                ...view.settings,
-                runningOrder: isOrdered
-                  ? listedOrder({
-                      lineUp,
-                      lineUpAt,
-                      played,
-                      roundCount,
-                      upcoming
-                    })
-                  : null
-              })
-            }}
-          />
-        )}
       </div>
-      {coming === null ? (
+      {lineUp.length < 2 ? (
         <ul aria-labelledby={labelId} className='rounds'>
-          {rowsOf(lineUp).map(({ at, entry, key }) => {
-            const timesPlayed = played[at] ?? 0
-            const stamp = eveningStampOf({
-              entry,
-              isEveningOver,
-              isNext: at === lineUpAt,
-              isOnlyEntry: lineUp.length < 2,
-              phase: view.phase,
-              played: timesPlayed
-            })
-
-            return (
-              <li
-                data-played-out={stamp === 'played' || undefined}
-                key={key}
-                style={{ '--spine': `var(--spine-${entry.kind})` }}
-              >
-                <AriaButton
-                  className='round'
-                  onPress={() => {
-                    onOpen(at)
-                  }}
-                >
-                  <span className='band' />
-                  <GameIcon game={entry.kind} />
-                  <span className='name'>
-                    {translate(gameNameKey(entry.kind))}
-                  </span>
-                  <span className='detail'>{detailOf(entry)}</span>
-                  {stamp !== null && (
-                    <EveningStamp kind={stamp} played={timesPlayed} />
-                  )}
-                  <ChevronRightIcon className='chevron' />
-                </AriaButton>
-              </li>
-            )
-          })}
+          {onlyEntry !== undefined && (
+            <OnlyRound
+              entry={onlyEntry}
+              isEveningOver={isEveningOver}
+              onOpen={onOpen}
+              view={view}
+            />
+          )}
           {addRow !== false && <li className='add'>{addRow}</li>}
         </ul>
       ) : (
         <div className='rounds' data-ordered>
           <OrderedRounds
             coming={coming}
-            isEditable={isEditable}
+            isEditable={isLive && isDrawn}
             labelId={labelId}
             onArrange={(rows) => {
               onSettingsChange(
@@ -241,18 +167,56 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
           coming={coming}
           isLive={isLive}
           onSettingsChange={onSettingsChange}
-          view={view}
+          settings={view.settings}
         />
       )}
     </div>
   )
 }
 
+const OnlyRound: React.FC<{
+  entry: GameSettings
+  isEveningOver: boolean
+  onOpen: (at: number) => void
+  view: HostRoomView
+}> = ({ entry, isEveningOver, onOpen, view }) => {
+  const translate = useTranslate()
+  const detailOf = useLineUpEntryDetail()
+  const timesPlayed = view.lineUpPlayed[0] ?? 0
+  const stamp = eveningStampOf({
+    entry,
+    isEveningOver,
+    isNext: view.settings.lineUpAt === 0,
+    isOnlyEntry: true,
+    phase: view.phase,
+    played: timesPlayed
+  })
+
+  return (
+    <li
+      data-played-out={stamp === 'played' || undefined}
+      style={{ '--spine': `var(--spine-${entry.kind})` }}
+    >
+      <AriaButton
+        className='round'
+        onPress={() => {
+          onOpen(0)
+        }}
+      >
+        <span className='band' />
+        <GameIcon game={entry.kind} />
+        <span className='name'>{translate(gameNameKey(entry.kind))}</span>
+        <span className='detail'>{detailOf(entry)}</span>
+        {stamp !== null && <EveningStamp kind={stamp} played={timesPlayed} />}
+        <ChevronRightIcon className='chevron' />
+      </AriaButton>
+    </li>
+  )
+}
+
 /**
  * The evening once a drag has put the rounds to come in `rows`' order. A round
- * put first is the next one, so the room moves onto its entry; a chance round
- * put first is drawn there and then, so the list never says *By chance* over
- * a game the room already shows.
+ * put first is the next one, so the room moves onto its entry.
  */
 const arrangedEvening = ({
   locale,
@@ -263,32 +227,21 @@ const arrangedEvening = ({
 }: {
   locale: Locale
   preferences: HostPreferences | null
-  rows: readonly (number | null)[]
+  rows: readonly number[]
   /** The round about to open, counted from 0. */
   upcoming: number
   view: HostRoomView
 }): RoomSettings => {
   const { settings } = view
   const runningOrder = orderWithComingRounds({
-    order: settings.runningOrder ?? [],
+    order: settings.runningOrder,
     rows,
     upcoming
   })
-  const first =
-    rows[0] ??
-    scheduledEntryAt({
-      lastAt: view.round?.lineUpAt ?? null,
-      lineUp: settings.lineUp,
-      order: runningOrder,
-      played: view.lineUpPlayed,
-      random: Math.random,
-      roundAt: upcoming,
-      roundsLeft:
-        settings.roundCount === null ? null : settings.roundCount - upcoming
-    })
-  const entry = first === null ? undefined : settings.lineUp[first]
+  const first = rows[0]
+  const entry = first === undefined ? undefined : settings.lineUp[first]
 
-  if (first === null || entry === undefined) {
+  if (first === undefined || entry === undefined) {
     return { ...settings, runningOrder }
   }
 
@@ -302,12 +255,12 @@ const arrangedEvening = ({
           settings
         })
 
-  return { ...moved, runningOrder: runningOrder.with(upcoming, first) }
+  return { ...moved, runningOrder }
 }
 
 /**
  * Each round to come with a key that follows it through a drag: which of the
- * rounds on its entry it is, or which of the chance rounds.
+ * rounds on its entry it is.
  */
 const keyedRounds = (coming: readonly ComingRound[]) =>
   coming.map((round, index) => {
@@ -315,10 +268,7 @@ const keyedRounds = (coming: readonly ComingRound[]) =>
       .slice(0, index)
       .filter((other) => other.at === round.at).length
 
-    return {
-      ...round,
-      id: round.at === null ? `chance:${nth}` : `entry:${round.at}:${nth}`
-    }
+    return { ...round, id: `entry:${round.at}:${nth}` }
   })
 
 const OrderedRounds: React.FC<{
@@ -326,7 +276,7 @@ const OrderedRounds: React.FC<{
   /** Between two rounds, on a live socket: the order can still move. */
   isEditable: boolean
   labelId: string
-  onArrange: (rows: (number | null)[]) => void
+  onArrange: (rows: number[]) => void
   onOpen: (at: number) => void
   view: HostRoomView
 }> = ({ coming, isEditable, labelId, onArrange, onOpen, view }) => {
@@ -334,23 +284,35 @@ const OrderedRounds: React.FC<{
   const detailOf = useLineUpEntryDetail()
   const { lineUp } = view.settings
   const rounds = keyedRounds(coming)
+  const list = useRef<HTMLDivElement>(null)
+
+  const arrange = ({ at, ids }: { at: number; ids: ReadonlySet<string> }) => {
+    const moving = rounds.filter((round) => ids.has(round.id))
+    const rest = rounds.filter((round) => !ids.has(round.id))
+
+    onArrange(rest.toSpliced(at, 0, ...moving).map((round) => round.at))
+  }
+
+  useTouchReorder({
+    grip: '.grip',
+    list,
+    onMove: (id, at) => {
+      arrange({ at, ids: new Set([id]) })
+    }
+  })
 
   const { dragAndDropHooks } = useDragAndDrop({
     getItems: (keys) => [...keys].map((key) => ({ 'text/plain': String(key) })),
     onReorder: ({ keys, target }) => {
-      const moving = rounds.filter((round) => keys.has(round.id))
-      const rest = rounds.filter((round) => !keys.has(round.id))
-      const targetAt = rest.findIndex((round) => round.id === target.key)
+      const ids = new Set([...keys].map(String))
+      const targetAt = rounds
+        .filter((round) => !ids.has(round.id))
+        .findIndex((round) => round.id === target.key)
 
-      onArrange(
-        rest
-          .toSpliced(
-            target.dropPosition === 'after' ? targetAt + 1 : targetAt,
-            0,
-            ...moving
-          )
-          .map((round) => round.at)
-      )
+      arrange({
+        at: target.dropPosition === 'after' ? targetAt + 1 : targetAt,
+        ids
+      })
     },
     renderDropIndicator: (target) => (
       <DropIndicator className='drop-line' target={target} />
@@ -366,23 +328,21 @@ const OrderedRounds: React.FC<{
       onAction={(key) => {
         const at = rounds.find((round) => round.id === key)?.at
 
-        if (at != null) {
+        if (at !== undefined) {
           onOpen(at)
         }
       }}
+      ref={list}
     >
       {(round) => {
-        const entry = round.at === null ? undefined : lineUp[round.at]
+        const entry = lineUp[round.at]
         const name =
-          entry === undefined
-            ? translate('host.evening.byChance')
-            : translate(gameNameKey(entry.kind))
+          entry === undefined ? '' : translate(gameNameKey(entry.kind))
         const number = round.roundAt + 1
 
         return (
           <GridListItem
             className='order-round'
-            data-chance={entry === undefined || undefined}
             data-past-the-end={round.isPastTheEnd || undefined}
             style={
               entry === undefined
@@ -402,11 +362,7 @@ const OrderedRounds: React.FC<{
             )}
             <span className='number'>{number}</span>
             <span className='band' />
-            {entry === undefined ? (
-              <DiceIcon />
-            ) : (
-              <GameIcon game={entry.kind} />
-            )}
+            {entry !== undefined && <GameIcon game={entry.kind} />}
             <span className='name'>{name}</span>
             {entry !== undefined && (
               <span className='detail'>{detailOf(entry)}</span>
@@ -414,15 +370,14 @@ const OrderedRounds: React.FC<{
             {round.isPastTheEnd ? (
               <EveningStamp kind='beyond' played={0} />
             ) : (
-              round.roundAt === (view.round?.index ?? 0) &&
-              entry !== undefined && (
+              round.roundAt === (view.round?.index ?? 0) && (
                 <EveningStamp
                   kind={view.phase === 'lobby' ? 'first' : 'next'}
                   played={0}
                 />
               )
             )}
-            {entry !== undefined && <ChevronRightIcon className='chevron' />}
+            <ChevronRightIcon className='chevron' />
           </GridListItem>
         )
       }}
@@ -430,107 +385,44 @@ const OrderedRounds: React.FC<{
   )
 }
 
+/**
+ * What the list cannot show: how many rounds the count lacks for every entry
+ * the host brought, or the draw that goes on past the rows of an evening with
+ * no count.
+ */
 const EveningChanceLine: React.FC<{
-  /** The rounds still to come of an evening in order, `null` while it is drawn. */
-  coming: readonly ComingRound[] | null
+  coming: readonly ComingRound[]
   isLive: boolean
   onSettingsChange: (settings: RoomSettings) => void
-  view: HostRoomView
-}> = ({ coming, isLive, onSettingsChange, view }) => {
+  settings: RoomSettings
+}> = ({ coming, isLive, onSettingsChange, settings }) => {
   const translate = useTranslate()
-  const { settings } = view
-  const chance = eveningChance({
-    lineUp: settings.lineUp,
-    played: view.lineUpPlayed,
-    roundCount: settings.roundCount,
-    roundsOpened: view.round?.index ?? 0
-  })
-  const amongGames = (fillers: readonly GameKind[]) =>
-    translate('host.evening.chance.among', {
-      games: fillers.map((game) => translate(gameNameKey(game))).join(', ')
-    })
+  const pastTheEnd = coming.filter((round) => round.isPastTheEnd)
+  const lastPast = pastTheEnd.at(-1)
 
-  if (coming !== null) {
-    const pastTheEnd = coming.filter((round) => round.isPastTheEnd)
-    const lastPast = pastTheEnd.at(-1)
-
-    if (lastPast !== undefined) {
-      return (
-        <OverTheCount
-          excess={pastTheEnd.length}
-          isLive={isLive}
-          needed={lastPast.roundAt + 1}
-          onSettingsChange={onSettingsChange}
-          settings={settings}
-        />
-      )
-    }
-
-    if (chance.kind === 'endless') {
-      return (
-        <ChanceSaid
-          count='∞'
-          headline={translate('host.evening.chance.endless')}
-          hint={amongGames(fillersOf(settings.lineUp))}
-        />
-      )
-    }
-
-    const chanceRounds = coming.filter((round) => round.at === null).length
-
-    return chanceRounds === 0 ? null : (
-      <ChanceSaid
-        count={String(chanceRounds)}
-        headline={translate('host.evening.chance.counted', {
-          count: chanceRounds
-        })}
-        hint={amongGames(fillersOf(settings.lineUp))}
+  if (lastPast !== undefined) {
+    return (
+      <OverTheCount
+        excess={pastTheEnd.length}
+        isLive={isLive}
+        needed={lastPast.roundAt + 1}
+        onSettingsChange={onSettingsChange}
+        settings={settings}
       />
     )
   }
 
-  switch (chance.kind) {
-    case 'over':
-      return (
-        <OverTheCount
-          excess={chance.excess}
-          isLive={isLive}
-          needed={chance.needed}
-          onSettingsChange={onSettingsChange}
-          settings={settings}
-        />
-      )
-    case 'closed':
-      return (
-        <ChanceSaid
-          count='0'
-          headline={translate('host.evening.chance.closed')}
-        />
-      )
-    case 'endless':
-      return (
-        <ChanceSaid
-          count='∞'
-          headline={translate('host.evening.chance.endless')}
-          hint={amongGames(chance.fillers)}
-        />
-      )
-    case 'counted':
-      return chance.count === 0 ? (
-        <ChanceSaid
-          count='0'
-          headline={translate('host.evening.chance.none')}
-        />
-      ) : (
-        <ChanceSaid
-          count={String(chance.count)}
-          headline={translate('host.evening.chance.counted', {
-            count: chance.count
-          })}
-          hint={amongGames(chance.fillers)}
-        />
-      )
-  }
+  return settings.roundCount === null ? (
+    <ChanceSaid
+      count='∞'
+      headline={translate('host.evening.chance.endless')}
+      hint={translate('host.evening.chance.among', {
+        games: fillersOf(settings.lineUp)
+          .map((game) => translate(gameNameKey(game)))
+          .join(', ')
+      })}
+    />
+  ) : null
 }
 
 const OverTheCount: React.FC<{

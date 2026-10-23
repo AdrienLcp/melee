@@ -121,19 +121,40 @@ describe('an evening of several games', () => {
     const { host } = await harness.openRoom(EVENING)
 
     host.send({
-      settings: { ...EVENING, runningOrder: [1, null, 0] },
+      settings: { ...EVENING, runningOrder: [0, 0, 0, 1] },
       type: 'host.updateSettings'
     })
     await waitFor(
-      () => hostView(host)?.settings.runningOrder !== null,
+      () => hostView(host)?.settings.runningOrder[3] === 1,
       'the order'
     )
 
-    expect(hostView(host)?.settings.runningOrder).toEqual([1, null, 0])
+    expect(hostView(host)?.settings.runningOrder).toEqual([0, 0, 0, 1, 0, 0])
+  })
+
+  it('[running-order] deals every round, and one to each entry the host brought', async () => {
+    const { host } = await harness.openRoom(EVENING)
+
+    host.send({
+      settings: { ...EVENING, roundCount: 5, runningOrder: [] },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => hostView(host)?.settings.roundCount === 5, 'the count')
+
+    const order = hostView(host)?.settings.runningOrder ?? []
+
+    expect(order).toHaveLength(5)
+    expect(order[0]).toBe(0)
+    expect(order.filter((row) => row === 1)).toHaveLength(1)
   })
 
   it('[running-order] refuses an order pointing past the line-up', async () => {
     const { host } = await harness.openRoom(EVENING)
+    await waitFor(
+      () => hostView(host)?.settings.runningOrder.length === 6,
+      'the order dealt'
+    )
+    const dealt = hostView(host)?.settings.runningOrder
 
     host.send({
       settings: { ...EVENING, runningOrder: [0, 2] },
@@ -142,7 +163,7 @@ describe('an evening of several games', () => {
     await waitFor(() => errorsIn(host).length > 0, 'the refusal')
 
     expect(errorsIn(host)[0]?.code).toBe('invalid_message')
-    expect(hostView(host)?.settings.runningOrder).toBeNull()
+    expect(hostView(host)?.settings.runningOrder).toEqual(dealt)
   })
 
   it('[line-up] writes the game back into its entry, so a variant keeps its own source', async () => {

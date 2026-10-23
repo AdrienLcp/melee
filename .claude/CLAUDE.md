@@ -160,9 +160,11 @@ which is why a user-visible string written into a component is a bug — see
   a game's whole settings so two may share a game (a **variant**: a blind test
   on film scores beside one on the charts). `game` is a copy of the entry
   `lineUpAt` points at, written back into it by the server on every frame:
-  what the next round is played on, drawn by the console as each reveal goes
-  up (`nextEntryAt`, another game before another entry of the same one) and
-  changed by the host beside *Next round*. One tick is a
+  what the next round is played on, read off the **running order** as each
+  reveal goes up and changed by the host beside *Next round*. The server deals
+  that order whenever the evening changes (`dealtOrder`, on `nextEntryAt`'s
+  rule: another game before another entry of the same one), the setup lists it
+  and a drag edits it — there is no random mode beside it. One tick is a
   room playing one game, which every game's front door opens; several ticked on
   home open a line-up of four rounds a game. Teams, board and judge are the
   host's, remembered once and laid over every table, one game or several. An

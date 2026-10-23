@@ -206,7 +206,7 @@ const choosingView = (question: Question) => ({
     lineUpAt: 0,
     mode: { kind: 'choice' },
     roundCount: 10,
-    runningOrder: null,
+    runningOrder: [],
     teams: { kind: 'off' }
   },
   teams: [],
