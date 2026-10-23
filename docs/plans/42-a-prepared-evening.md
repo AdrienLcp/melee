@@ -71,6 +71,17 @@ and nothing is played that the host has not either prepared or left to chance.
   different round. Refusing it would freeze a room of one game on its first
   quiz, which stage 41 promised plays on as before.
 - Remembering a prepared entry past the evening is still open, for step 3.
+- **The list of rounds is direction B** (`.impeccable/directions/prepared-evening/`,
+  local), chosen 23/10/2026: a short list in *La table*, each round opening a
+  page of its own in the leaflet (*‹ Les manches*), adding one opening the
+  shelf of ten as a page. *La manche* leaves the setup; setting an entry no
+  longer makes it the next one — *Play next* does.
+- **Random by default, an order on request.** A switch *In order* turns the
+  list into the evening's running order: one row per round, the chance rounds
+  as *Au hasard* rows, all reordered by drag (react-aria's `useDragAndDrop`,
+  which carries keyboard and touch). It stores an order the dealt deck never
+  needed, so it is the one place the room keeps a sequence — `null` while
+  random, which leaves every random evening on the draw above.
 
 ## Order
 
