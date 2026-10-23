@@ -1,4 +1,5 @@
 import {
+  ArrowRight,
   ArrowRightLeft,
   BellRing,
   Check,
@@ -55,6 +56,7 @@ const inFamily =
   (Glyph: LucideIcon, overrides: LucideProps = {}): React.FC<LucideProps> =>
   (props) => <Glyph {...FAMILY} {...overrides} {...props} />
 
+export const ArrowIcon = inFamily(ArrowRight)
 export const CheckIcon = inFamily(Check)
 export const ChevronIcon = inFamily(ChevronDown)
 export const ChevronUpIcon = inFamily(ChevronUp)

@@ -8,39 +8,35 @@ import { ROOM_CODE_LENGTH } from '@melee/protocol/identifiers'
 import { parseRoomCodeInput } from '@melee/core/room/room-code'
 
 import { invitePathFor } from '@/infrastructure/router/navigation'
-import { Button } from '@/presentation/components/button'
-import { QrCodeIcon } from '@/presentation/components/icons'
-import { TextField } from '@/presentation/components/text-field'
 import {
   type FieldError,
   fieldErrorMessage
 } from '@/presentation/i18n/field-error'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { Button } from './button'
+import { Disclosure } from './disclosure'
+import { QrCodeIcon } from './icons'
+import { TextField } from './text-field'
+
 /**
- * The third door to the poster, and the only one that starts from a code rather
- * than from a room somebody is already in: the laptop wired to the projector at
- * an event is rarely the laptop hosting.
+ * The way to the poster that starts from a code rather than from a room
+ * somebody is already in: the laptop wired to the projector at an event is
+ * rarely the laptop hosting.
  *
  * **Typing a code here grants nothing** — no seat, no console, no token, no
- * frame sent. That is the whole difference between this field and the console
- * door that was proposed for the same page and refused, which would have handed
- * over the room to whoever read the code off the wall. So it does not collapse into the join field
- * either: that one seats you, this one shows what the table is already showing.
+ * frame sent. That is the whole difference between this field and the join
+ * field: that one seats you, this one shows what the table is already showing.
+ * It asks the server nothing either; whether the code opens a room is the
+ * poster's own question, answered on the screen that would be projecting it.
  *
- * It asks the server nothing. Whether the code opens a room is the poster's own
- * question, answered on the screen that would be projecting it — a front door
- * that waited on a request to fold out a rarely-used panel would be spending
- * everybody's first second on somebody else's evening.
- *
- * Under the shelf rather than beside the two doors, because it is a rare
- * job — and spelled out rather than folded, because a folded title is all a
- * visitor reads of it, and the title alone never said what the field does.
+ * Folded in the menu, because it is a rare job: the summary says what it does,
+ * which a bare title never did.
  */
 export const ProjectWithCode: React.FC<{
-  /** Set while the page is already opening a room, which is where it is about to go. */
-  isDisabled: boolean
-}> = ({ isDisabled }) => {
+  /** Called once the poster is on its way, so the menu can close behind it. */
+  onDone: () => void
+}> = ({ onDone }) => {
   const navigate = useNavigate()
   const translate = useTranslate()
   const [code, setCode] = useState('')
@@ -69,16 +65,17 @@ export const ProjectWithCode: React.FC<{
       return
     }
 
+    onDone()
     await navigate(invitePathFor(parsed.code))
   }
 
   return (
-    <section className='project-with-code'>
-      <h3>
-        <QrCodeIcon />
-        {translate('invite.door.label')}
-      </h3>
-      <p className='description'>{translate('invite.door.description')}</p>
+    <Disclosure
+      className='project-with-code'
+      icon={<QrCodeIcon />}
+      label={translate('menu.thisDevice.qrCode.label')}
+      summary={translate('menu.thisDevice.qrCode.description')}
+    >
       <Form
         onSubmit={(event) => {
           void project(event)
@@ -88,7 +85,6 @@ export const ProjectWithCode: React.FC<{
           autoCapitalize='characters'
           autoComplete='off'
           errorMessage={fieldErrorMessage({ error: codeError, translate })}
-          isDisabled={isDisabled}
           isInvalid={codeError !== null}
           label={translate('join.roomCode.label')}
           maxLength={ROOM_CODE_LENGTH + 2}
@@ -100,10 +96,10 @@ export const ProjectWithCode: React.FC<{
           placeholder={'•'.repeat(ROOM_CODE_LENGTH)}
           value={code}
         />
-        <Button isDisabled={isDisabled} type='submit' variant='outlined'>
-          {translate('invite.door.action')}
+        <Button size='small' type='submit' variant='outlined'>
+          {translate('menu.thisDevice.qrCode.action')}
         </Button>
       </Form>
-    </section>
+    </Disclosure>
   )
 }

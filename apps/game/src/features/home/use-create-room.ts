@@ -4,6 +4,8 @@ import { useNavigate } from 'react-router'
 import type { ShelvedGame } from '@melee/protocol/game'
 import type { Nickname } from '@melee/protocol/identifiers'
 
+import { canPlayRightAway } from '@melee/core/room/play-right-away'
+
 import { createRoom } from '@/infrastructure/api/melee-api'
 import {
   hostPathFor,
@@ -20,32 +22,29 @@ import {
   type PlainTranslationKey
 } from '@/presentation/i18n/translation'
 
-import { isRoomPresetId, ROOM_PRESETS, type RoomPresetId } from './room-presets'
-
-/**
- * Which door a room is being opened through. `null` is the shelf's own — a room
- * with nothing chosen yet — and it is a value rather than an absence: the page
- * draws that door beside the games' and the evenings', and has to tell which
- * one is working.
- */
-export type RoomDoor = ShelvedGame | RoomPresetId | null
-
 type RoomOpening =
-  | { door: RoomDoor; error: PlainTranslationKey; status: 'refused' }
-  | { door: RoomDoor; seatAs: Nickname | null; status: 'opening' }
+  | { error: PlainTranslationKey; status: 'refused' }
+  | { seatAs: Nickname | null; status: 'opening' }
   | { status: 'idle' }
 
 /**
+ * A seated host cannot take a seat under a game they must judge, and a line-up
+ * opens on its first entry — so a game somebody can play goes first.
+ */
+const playableFirst = (games: readonly ShelvedGame[]): readonly ShelvedGame[] =>
+  games.toSorted(
+    (a, b) => Number(canPlayRightAway(b)) - Number(canPlayRightAway(a))
+  )
+
+/**
  * The one trip to the network every front door makes, and the console it lands
- * on. The shelf's own door opens a room with nothing chosen; a game's door
- * carries which, because a host who came through it has already answered the
- * question the lobby would ask.
+ * on. It carries the games ticked — none, one or several — because a host who
+ * ticked them has already answered the question the lobby would ask.
  *
- * It is one state and not a boolean beside an error, because the page now has
- * six doors sharing this hook and a spinner has to appear on the one that was
- * pressed. That is also what closes the second press: a door already opening a
- * room refuses to open another, and `isOpeningAny` is what greys the other
- * doors out so they stop looking pressable while it does.
+ * It is one state and not a boolean beside an error, because a game's own page
+ * draws two presses on it and the spinner has to appear on the one pressed.
+ * That is also what closes the second press: a room already opening refuses to
+ * open another.
  */
 export const useCreateRoom = () => {
   const navigate = useNavigate()
@@ -53,45 +52,42 @@ export const useCreateRoom = () => {
   const [opening, setOpening] = useState<RoomOpening>({ status: 'idle' })
 
   return {
-    /** The door's own *open a table* is on its way, rather than its *play right away*. */
-    isOpening: (door: RoomDoor): boolean =>
-      opening.status === 'opening' &&
-      opening.door === door &&
-      opening.seatAs === null,
+    /** The table is opening for the group, with nobody seated. */
+    isOpening: opening.status === 'opening' && opening.seatAs === null,
     isOpeningAny: opening.status === 'opening',
-    isStartingRightAway: (door: RoomDoor): boolean =>
-      opening.status === 'opening' &&
-      opening.door === door &&
-      opening.seatAs !== null,
+    /** The table is opening with whoever pressed already seated. */
+    isStartingRightAway:
+      opening.status === 'opening' && opening.seatAs !== null,
     /**
-     * Opens the room for `door`. With `seatAs`, the console it lands on takes
-     * the host's seat under that name and starts the first round itself: the
-     * seat is written where the console's `hello` reads it, and the start rides
-     * the navigation, which the console consumes once.
+     * Opens a table on `games`. With `seatAs`, the console it lands on takes
+     * the host's seat under that name — written where the console's `hello`
+     * reads it — and with exactly one game it starts the first round itself,
+     * through the navigation the console consumes once. Several wait in the
+     * lobby with the host already at the table.
      */
-    open: async (
-      door: RoomDoor,
-      seatAs: Nickname | null = null
-    ): Promise<void> => {
+    open: async ({
+      games,
+      seatAs = null
+    }: {
+      games: readonly ShelvedGame[]
+      seatAs?: Nickname | null
+    }): Promise<void> => {
       if (opening.status === 'opening') {
         return
       }
 
-      setOpening({ door, seatAs, status: 'opening' })
+      setOpening({ seatAs, status: 'opening' })
 
-      const created = await createRoom(
-        door === null
-          ? { games: [], locale }
-          : isRoomPresetId(door)
-            ? { games: ROOM_PRESETS[door].lineUp, locale }
-            : { games: [door], locale }
-      )
+      const created = await createRoom({
+        games: seatAs === null ? games : playableFirst(games),
+        locale
+      })
 
       if (created.status === 'failure') {
         setOpening(
           created.error === 'aborted'
             ? { status: 'idle' }
-            : { door, error: apiErrorKey(created.error), status: 'refused' }
+            : { error: apiErrorKey(created.error), status: 'refused' }
         )
 
         return
@@ -114,15 +110,16 @@ export const useCreateRoom = () => {
         role: 'host',
         roomCode: created.data.code
       })
-      await navigate(hostPathFor(created.data.code), playRightAwayNavigation)
+      await navigate(
+        hostPathFor(created.data.code),
+        games.length === 1 ? playRightAwayNavigation : undefined
+      )
     },
     /**
-     * The refusal and the door that met it. Every cause is the room service
-     * rather than the game — a rate limit, a dead network — so the shelf draws
-     * one message for its five cards and reads the door only to know it is not
-     * the one above them.
+     * Every cause is the room service rather than the game — a rate limit, a
+     * dead network — so one message serves whichever press met it.
      */
-    refusal: opening.status === 'refused' ? opening : null
+    refusal: opening.status === 'refused' ? opening.error : null
   }
 }
 

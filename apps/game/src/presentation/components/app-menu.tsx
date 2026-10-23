@@ -25,6 +25,7 @@ import {
   homePathFor,
   inviteUrlFor,
   legalPathFor,
+  paths,
   useIsCurrentPath,
   useNavigateToLocale,
   useRoomCodeParam,
@@ -52,10 +53,11 @@ import {
   connectionStatusKey
 } from './connection-status'
 import { Disclosure } from './disclosure'
-import { MenuIcon } from './icons'
+import { MenuIcon, ScreenIcon } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { MenuPoints } from './menu-points'
+import { ProjectWithCode } from './project-with-code'
 import { RoomInvitation } from './room-invitation'
 import { SegmentedControl } from './segmented-control'
 import { Slider } from './slider'
@@ -413,6 +415,7 @@ export const AppMenu: React.FC = () => {
     useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
+  const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
   const { setVolume, volume } = useVolume()
   const [build, setBuild] = useState<string | null>(null)
   const trigger = useRef<HTMLButtonElement>(null)
@@ -511,6 +514,31 @@ export const AppMenu: React.FC = () => {
 
                   {closeRoom !== null && <WallDoors roomCode={roomCode} />}
                 </div>
+              )}
+
+              {!isInsideRoom && (
+                <section className='this-device'>
+                  <h2>{translate('menu.thisDevice.title')}</h2>
+                  {!isOnWallPairing && (
+                    <Link
+                      className='become-wall'
+                      href={paths.wallPairing}
+                      onPress={close}
+                      variant='outlined'
+                    >
+                      <ScreenIcon />
+                      <span className='words'>
+                        <span className='name'>
+                          {translate('menu.thisDevice.wall.label')}
+                        </span>
+                        <span className='description'>
+                          {translate('menu.thisDevice.wall.description')}
+                        </span>
+                      </span>
+                    </Link>
+                  )}
+                  <ProjectWithCode onDone={close} />
+                </section>
               )}
 
               {/*

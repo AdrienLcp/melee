@@ -7,13 +7,17 @@ import type { Page } from '@playwright/test'
  * is the exception, not a licence to add test ids.
  */
 export const homePage = (page: Page) => ({
-  /** The shelf's card for the blind test: one press opens its lid, with the game's two doors on it. */
-  blindTest: page.getByRole('button', { name: /^Blind test/ }),
-  /** The table door on the blind test's opened lid: a room already set to it. */
-  blindTestTable: page
-    .getByRole('group', { name: /Blind test/ })
-    .getByRole('button', { name: 'Open a table' }),
-  /** The front door: a room with nothing chosen yet. */
+  /**
+   * The blind test's spine on the shelf. The spine is what is pressed: the
+   * checkbox inside it is visually hidden, and Playwright refuses a click the
+   * label in front of it would intercept.
+   */
+  blindTest: page
+    .locator('label')
+    .filter({ has: page.getByRole('checkbox', { name: /^Blind test/ }) }),
+  /** The press once the blind test alone is ticked: a room already set to it. */
+  blindTestTable: page.getByRole('button', { name: 'Play Blind test' }),
+  /** The press with nothing ticked: a room with nothing chosen yet. */
   createRoom: page.getByRole('button', { name: 'Open a table' })
 })
 

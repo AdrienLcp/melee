@@ -156,6 +156,15 @@ export const gameDescriptionKey = (
   game: ShelvedGame
 ): BuiltKey<`${ShelvedGame}.home.description`> => `${game}.home.description`
 
+/**
+ * The home press with one game ticked. A whole sentence per game rather than
+ * *Play {name}*, because French elides and contracts the article into the verb
+ * — *au*, *à l’*, *aux*, one per game.
+ */
+export const gamePlayKey = (
+  game: ShelvedGame
+): BuiltKey<`${ShelvedGame}.play`> => `${game}.play`
+
 const TEAM_COLOUR_KEYS = [
   'team.colour.pawn1',
   'team.colour.pawn2',

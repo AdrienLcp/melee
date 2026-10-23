@@ -35,10 +35,10 @@ export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
     <div className='game-doors'>
       <div className='door'>
         <Button
-          isDisabled={isOpeningAny && !isOpening(game)}
-          isPending={isOpening(game)}
+          isDisabled={isOpeningAny && !isOpening}
+          isPending={isOpening}
           onPress={() => {
-            void open(game)
+            void open({ games: [game] })
           }}
           size='large'
         >
@@ -54,10 +54,10 @@ export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
           </p>
           <PlayRightAway
             className='door right-away'
-            isDisabled={isOpeningAny && !isStartingRightAway(game)}
-            isPending={isStartingRightAway(game)}
+            isDisabled={isOpeningAny && !isStartingRightAway}
+            isPending={isStartingRightAway}
             onPlay={(nickname) => {
-              void open(game, nickname)
+              void open({ games: [game], seatAs: nickname })
             }}
           />
         </>
@@ -65,9 +65,9 @@ export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
         <p className='door judged'>{translate('join.rightAway.judged')}</p>
       )}
 
-      {refusal?.door === game && (
+      {refusal !== null && (
         <p className='error' role='alert'>
-          {translate(refusal.error)}
+          {translate(refusal)}
         </p>
       )}
     </div>

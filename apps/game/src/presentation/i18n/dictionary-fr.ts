@@ -77,6 +77,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     listening: 'À l’écoute…',
     name: 'Blind test',
+    play: 'Jouer au Blind test',
     reveal: {
       title: 'C’était'
     },
@@ -182,6 +183,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     lockout: 'Une mauvaise réponse met hors-jeu',
     name: 'Buzzer',
+    play: 'Jouer au Buzzer',
     running: 'Pose ta question',
     scoring:
       'Le plus rapide répond à voix haute, et l’hôte dit si c’est bon. 1 point si c’est juste — et une mauvaise réponse te met hors-jeu jusqu’à ce qu’il te remette en jeu.',
@@ -208,6 +210,7 @@ export const FR_DICTIONARY = defineDictionary({
       second: '2e',
       third: '3e'
     },
+    play: 'Jouer au Défi',
     scoring:
       'Ça se joue à table. L’hôte classe les trois premiers : 3 points au premier, 2 au deuxième, 1 au troisième — une égalité partage la place.',
     tagline: 'Joué à table, compté au tableau.',
@@ -289,29 +292,23 @@ export const FR_DICTIONARY = defineDictionary({
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   home: {
-    evening: 'Une soirée toute prête',
-    games: 'Ou un seul jeu',
     heldRooms: {
-      host: 'Votre table',
-      player: 'Votre place',
-      title: 'Où vous étiez'
+      host: 'Reprendre ta table',
+      player: 'Reprendre ta place',
+      title: 'Où tu étais'
     },
-    oneRoom:
-      'Une seule table pour tous : on change de jeu sans rejoindre deux fois.',
-    otherScreens: 'Un autre écran dans la pièce ?',
-    pitch: {
-      lead: 'On joue en quelques secondes.',
-      rest: 'Rien à installer, aucun compte : un code, un QR code, et toute la table est assise.'
+    open: {
+      count: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
+      }),
+      several: 'Ouvrir la table'
     },
-    presets: {
-      how: '{rounds:number} manches, le jeu tiré avant chacune · {teams:number} équipes tirées au sort',
-      open: 'Ouvrir la soirée',
-      teamNight: {
-        name: 'Grande soirée',
-        tagline: 'Quiz, blind test, buzzer, carte du monde et défis, en équipes'
-      }
+    seat: {
+      judgedOnly: '{games:list} : tu juges chaque réponse, tu ne joues pas.',
+      judgesSome: 'Tu juges {games:list}, tu joues aux autres.',
+      label: 'Je joue aussi'
     },
-    promise: 'Une étagère de jeux pour toute la soirée.',
+    shelf: 'À quoi on joue ?',
     title: 'Mêlée'
   },
   host: {
@@ -500,6 +497,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     name: 'Horloge interne',
     nobody: 'Personne n’a appuyé',
+    play: 'Jouer à l’Horloge interne',
     press: 'Stop',
     pressed: 'C’est noté. Quelqu’un compte encore.',
     prompt: {
@@ -523,12 +521,6 @@ export const FR_DICTIONARY = defineDictionary({
     copyFailed: 'Copie impossible',
     copyLink: 'Copier le lien',
     documentTitle: 'Invitation — Mêlée',
-    door: {
-      action: 'Afficher',
-      description:
-        'Pour un écran à l’entrée ou au mur : tape le code d’une table ouverte, et cet écran affiche son code et son QR code en grand. Il ne rejoint pas la partie.',
-      label: 'Afficher le QR code ailleurs'
-    },
     joinLate: 'Rejoins quand tu veux',
     nextRound: 'Qui arrive pendant une manche joue dès la suivante.',
     project: 'Afficher le QR code en grand',
@@ -699,6 +691,7 @@ export const FR_DICTIONARY = defineDictionary({
       undo: 'La remettre'
     },
     name: 'Allumettes',
+    play: 'Jouer aux Allumettes',
     reveal: {
       right: 'juste',
       second: 'deuxième meilleur',
@@ -736,6 +729,18 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Pour l’écran que toute la salle regarde. Les réponses restent cachées tant que tu ne les montres pas, et tes commandes passent dans Animer.',
       label: 'Cet écran est celui de la salle'
+    },
+    thisDevice: {
+      qrCode: {
+        action: 'Afficher',
+        description: 'Pour un écran à l’entrée, sans rejoindre la partie.',
+        label: 'Afficher le QR code d’une table'
+      },
+      title: 'Cet appareil',
+      wall: {
+        description: 'La télé ou le projecteur affiche la partie en grand.',
+        label: 'Devenir l’écran de la pièce'
+      }
     }
   },
   navigation: {
@@ -838,6 +843,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     language: 'Langue des questions',
     name: 'Quiz',
+    play: 'Jouer au Quiz',
     rebus: {
       alt: 'Le rébus à lire :'
     },
@@ -879,6 +885,7 @@ export const FR_DICTIONARY = defineDictionary({
     }),
     name: 'Réflexe',
     nobody: 'Personne n’a bougé',
+    play: 'Jouer à Réflexe',
     pressed: 'C’est pris.',
     reaction: '{milliseconds:number} ms',
     scoring:
@@ -976,6 +983,7 @@ export const FR_DICTIONARY = defineDictionary({
       now: 'En correction'
     },
     name: 'L’Ardoise',
+    play: 'Jouer à l’Ardoise',
     prepare: {
       keys: defineTranslation('{count:plural}', {
         plural: {
@@ -1127,6 +1135,7 @@ export const FR_DICTIONARY = defineDictionary({
         'Cinq événements tombent d’un coup — les premiers pas sur la Lune, la chute du mur de Berlin, le premier iPhone, une finale de Coupe du monde. Chacun les remet dans l’ordre, du plus ancien au plus récent, et les années tombent au dévoilement. Tout juste rapporte le plus, et une paire inversée marque encore.'
     },
     name: 'Frise chronologique',
+    play: 'Jouer à la Frise chronologique',
     reveal: {
       perfect: 'Dans l’ordre',
       swapped: defineTranslation('{pairs:plural}', {
@@ -1143,12 +1152,6 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Cinq événements. Lequel d’abord ?'
   },
   wall: {
-    door: {
-      action: 'Afficher la partie ici',
-      description:
-        'Ouvre cette page sur la télé ou le projecteur et appuie ci-dessous. L’écran affiche un code, l’hôte le valide, et la partie apparaît en grand — sans les réponses.',
-      label: 'Mettre la partie sur la télé'
-    },
     hostAway: {
       takeOver: 'Tenir la table d’ici',
       title: 'L’hôte a décroché. La partie attend son retour.'
@@ -1217,6 +1220,7 @@ export const FR_DICTIONARY = defineDictionary({
       frenchCities: 'Villes de France',
       label: 'À placer'
     },
+    play: 'Jouer à la Carte du monde',
     prompt: 'Place {place}',
     reveal: {
       away: 'à {distance} km',

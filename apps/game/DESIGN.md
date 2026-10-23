@@ -658,10 +658,15 @@ ink keyline.
   or a column when the names would not fit whole; the ticked ones pulled
   forward with a tick — one is a game, several an evening — and once anything is chosen the rest sit back on `--socket`
   with their band faded.
-- **`GameSpines`** (`features/home`): the evenings, then the games, seen by
-  their spines, each in its spine colour with its name in the display face,
-  squared to the shelf's width. Side by side, the lid beside them is sticky.
-  A refusal lands under the spine that earned it.
+- **`GameTicks`** (`features/home`): the ten games as spines, each a tick —
+  its spine colour, its name in the display face, a well that fills with the
+  spine's ink once ticked; two columns from a 52rem container.
+- **`HomeTray`** (`features/home`): the front door's one press, a lid held
+  `sticky` at the bottom of the page. Its label follows the ticks (*Open a
+  table*, *Play Quiz*, *Open the table* with a count pill), and beside it
+  *I'm playing too* and the name. The press sits right of the seat from 47.5rem.
+- **`HeldRooms`**: a pill per room the device holds a key to — the code on an
+  ink chip, *Resume your table*, an arrow — under a dashed rule in the code box.
 
 ### Room invitation (`RoomInvitation`)
 The code on the saffron token (`--tile-2`, `monument`, a piece at

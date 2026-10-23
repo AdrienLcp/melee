@@ -20,8 +20,8 @@ test('[e2e] two players type over the same clip, and the reveal says what they s
 
   const host = hostConsole(bigScreen)
 
-  // Through the shelf card, whose lid opens a room already set to a blind test.
-  // `full-game.spec.ts` goes through the front door, which opens one with
+  // The blind test ticked, so the room opens already set to it.
+  // `full-game.spec.ts` presses with nothing ticked, which opens one with
   // nothing chosen — the two are different rooms and the difference shows up
   // much later, at a launch that stays greyed out.
   await bigScreen.goto('/en')

@@ -101,6 +101,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     listening: 'Listening…',
     name: 'Blind test',
+    play: 'Play Blind test',
     reveal: {
       title: 'It was'
     },
@@ -203,6 +204,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     lockout: 'A wrong answer sits you out',
     name: 'Buzzer',
+    play: 'Play Buzzer',
     running: 'Ask away',
     scoring:
       'First in answers out loud, and the host says right or wrong. A point for right — and a wrong answer sits you out until they let you back in.',
@@ -229,6 +231,7 @@ export const EN_DICTIONARY = defineDictionary({
       second: '2nd',
       third: '3rd'
     },
+    play: 'Play Challenge',
     scoring:
       'Played at the table. The host places the first three: 3 points for first, 2 for second, 1 for third — a tie shares its place.',
     tagline: 'Played at the table, counted on the board.',
@@ -314,30 +317,23 @@ export const EN_DICTIONARY = defineDictionary({
     wrong_phase: 'Too late, the game has moved on.'
   },
   home: {
-    evening: 'An evening, ready to play',
-    games: 'Or one game',
     heldRooms: {
-      host: 'Your table',
-      player: 'Your seat',
+      host: 'Resume your table',
+      player: 'Resume your seat',
       title: 'Where you were'
     },
-    oneRoom:
-      'One table for all of them: switch games without anyone joining twice.',
-    otherScreens: 'Another screen in the room?',
-    pitch: {
-      lead: 'Playing in seconds.',
-      rest: 'Nothing to install, no accounts: one code, one QR code, and the whole table is seated.'
+    open: {
+      count: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} game', other: '{?} games' } }
+      }),
+      several: 'Open the table'
     },
-    presets: {
-      how: '{rounds:number} rounds, the game drawn before each · {teams:number} teams drawn at random',
-      open: 'Open the evening',
-      teamNight: {
-        name: 'Game night',
-        tagline:
-          'Quiz, blind test, buzzer, world map and challenges, played in teams'
-      }
+    seat: {
+      judgedOnly: '{games:list}: you judge every answer, you do not play.',
+      judgesSome: 'You judge {games:list}, you play the rest.',
+      label: 'I play too'
     },
-    promise: 'A shelf of games for the whole evening.',
+    shelf: 'What are we playing?',
     title: 'Mêlée'
   },
   host: {
@@ -544,6 +540,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     name: 'Inner clock',
     nobody: 'Nobody pressed',
+    play: 'Play Inner clock',
     press: 'Stop',
     pressed: 'Stopped. Somebody is still counting.',
     prompt: {
@@ -567,12 +564,6 @@ export const EN_DICTIONARY = defineDictionary({
     copyFailed: 'Could not copy',
     copyLink: 'Copy the link',
     documentTitle: 'Invitation — Mêlée',
-    door: {
-      action: 'Show it',
-      description:
-        'For a screen by the door or on the wall: type the code of an open table, and this screen shows its code and QR code, big. It does not join the game.',
-      label: 'Show the QR code elsewhere'
-    },
     joinLate: 'Join any time',
     nextRound: 'Anyone who arrives during a round plays from the next one.',
     project: 'Show the QR code, big',
@@ -750,6 +741,7 @@ export const EN_DICTIONARY = defineDictionary({
       undo: 'Put it back'
     },
     name: 'Matchsticks',
+    play: 'Play Matchsticks',
     reveal: {
       right: 'right',
       second: 'second best',
@@ -799,6 +791,18 @@ export const EN_DICTIONARY = defineDictionary({
       description:
         'For the screen everyone reads. Answers stay hidden until you show them, and your controls move to Run the table.',
       label: 'This screen is the room’s'
+    },
+    thisDevice: {
+      qrCode: {
+        action: 'Show it',
+        description: 'For a screen by the door, without joining the game.',
+        label: 'Show a table’s QR code'
+      },
+      title: 'This device',
+      wall: {
+        description: 'The TV or the projector shows the game, big.',
+        label: 'Become the room’s screen'
+      }
     }
   },
   /**
@@ -913,6 +917,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     language: 'Question language',
     name: 'Quiz',
+    play: 'Play Quiz',
     rebus: {
       alt: 'The rebus to read:'
     },
@@ -952,6 +957,7 @@ export const EN_DICTIONARY = defineDictionary({
     }),
     name: 'Reflex',
     nobody: 'Nobody moved',
+    play: 'Play Reflex',
     pressed: 'In.',
     reaction: '{milliseconds:number} ms',
     scoring:
@@ -1071,6 +1077,7 @@ export const EN_DICTIONARY = defineDictionary({
       now: 'Being marked'
     },
     name: 'Slate',
+    play: 'Play Slate',
     prepare: {
       keys: defineTranslation('{count:plural}', {
         plural: {
@@ -1226,6 +1233,7 @@ export const EN_DICTIONARY = defineDictionary({
         'Five events come up at once — the first steps on the Moon, the fall of the Berlin Wall, the first iPhone, a World Cup final. Everyone puts them in order, earliest first, and the years come out at the reveal. All five right pays the most, and one pair the wrong way round still scores.'
     },
     name: 'Timeline',
+    play: 'Play Timeline',
     reveal: {
       perfect: 'In order',
       swapped: defineTranslation('{pairs:plural}', {
@@ -1242,12 +1250,6 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Five events. Which came first?'
   },
   wall: {
-    door: {
-      action: 'Show the game here',
-      description:
-        'Open this page on the TV or the projector and press below. It shows a code, the host confirms it, and the game appears big — without the answers.',
-      label: 'Put the game on the TV'
-    },
     hostAway: {
       takeOver: 'Run the table from here',
       title: 'The host stepped away. The game is waiting for them.'
@@ -1316,6 +1318,7 @@ export const EN_DICTIONARY = defineDictionary({
       frenchCities: 'Cities of France',
       label: 'What to place'
     },
+    play: 'Play World map',
     prompt: 'Place {place}',
     reveal: {
       away: '{distance} km away',

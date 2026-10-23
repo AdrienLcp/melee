@@ -26,12 +26,12 @@ stand in for two browsers, two forms and a screen that has to end up showing
 both answers. They run on ports of their own against `support/deezer-stub.ts`,
 so neither the dev server nor today's charts can turn them red.
 
-**One journey per door**, which is how the room-first flow got covered without a
-fourth: the buzzer game goes through the front page and picks its game on the
-console, the simultaneous one goes through a game's own page. Both pages carry a
-**"Open a table"** — clicking before the navigation lands opens a room with no
-game, and that failure surfaces a minute later at a launch that stays greyed
-out, so the landing is awaited between the two clicks.
+**One journey per way in**, which is how the room-first flow got covered
+without a fourth: the buzzer game presses the home page's **"Open a table"**
+with nothing ticked and picks its game on the console, the simultaneous one
+ticks the blind test and presses **"Play Blind test"**. A press that reads
+*Open a table* opens a room with no game, and that failure surfaces a minute
+later at a launch that stays greyed out.
 
 Playwright is the slowest tool available. Before adding a fourth spec, ask what
 it covers that a socket test cannot; the answer is usually "nothing".

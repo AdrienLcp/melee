@@ -1,106 +1,56 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
-@use '../../presentation/styles/text-box'
 
-// Where the lid and the shelf stand side by side: below it the spines sit
-// under the lid, a shelf you reach by scrolling past the promise.
-$side-by-side: 60rem
+// Where the code box moves beside the wordmark rather than under it.
+$masthead-side-by-side: 60rem
 
 @layer components
   .home-page
     @include layout.screen
 
-    display: grid
     gap: var(--space-xl)
+    max-width: var(--stage-max-width)
     padding-block-start: var(--menu-block-inset)
 
-    // Columns are set only here: a column template outside the query would
-    // stack every child into one cell on a phone.
-    @media (width >= $side-by-side)
-      align-items: start
-      column-gap: clamp(var(--space-l), 4vw, var(--space-xl))
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
-      max-width: var(--stage-max-width)
-
-      // Held in view while the shelf scrolls past it, and centred in the
-      // screen rather than in the page the shelf makes tall.
-      .door-side
-        justify-content: center
-        min-height: calc(100dvh - var(--layout-padding-block-start) - var(--layout-padding-block-end))
-        position: sticky
-        top: var(--layout-padding-block-start)
-
-    .door-side
-      display: flex
-      flex-direction: column
+    .masthead
+      align-items: center
+      display: grid
       gap: var(--space-l)
-      min-width: 0
 
-    .shelf-side
-      display: flex
-      flex-direction: column
-      gap: var(--space-xl)
-      min-width: 0
+      // A fixed track rather than `auto`: the code box is a size container,
+      // and an `auto` track sized by its content collapses it to nothing.
+      @media (width >= $masthead-side-by-side)
+        grid-template-columns: minmax(0, 1fr) minmax(0, 26rem)
 
-    .lid
+    .wordmark
+      @include typography.wordmark
+
+      font-size: clamp(var(--text-4xl), calc(var(--stage-unit) * 16), 9.25rem)
+
+      .dot
+        color: var(--primary)
+
+    .join-box
       @include box-lid.box-lid
 
       container-type: inline-size
       display: flex
       flex-direction: column
-      gap: var(--space-m)
-      padding: clamp(var(--space-l), 7vw, 3.25rem) clamp(var(--space-l), 7vw, 3.5rem)
-
-    .wordmark
-      @include typography.wordmark
-
-      font-size: clamp(var(--text-4xl), 21cqi, 9.25rem)
-
-      .dot
-        color: var(--primary)
-
-    h1
-      @include typography.door-headline
-
-      font-size: clamp(var(--text-xl), 6.6cqi, 2.75rem)
-      max-width: var(--measure-door-headline)
-      text-wrap: balance
-
-    .pitch
-      @include typography.pitch
-
-      color: var(--ink-muted)
-      font-size: clamp(var(--text-s), 3.6cqi, 1.375rem)
-      max-width: var(--measure-door-pitch)
-      text-wrap: pretty
-
-      strong
-        color: var(--ink)
-
-    .doors
-      align-items: end
-      display: flex
-      flex-wrap: wrap
-      gap: var(--space-l) var(--space-xl)
-      margin-block-start: auto
-      padding-block-start: var(--space-s)
-
-    .open
-      display: flex
-      flex-direction: column
-      gap: var(--space-xs)
+      gap: var(--space-s)
+      padding: var(--space-m) var(--space-m)
 
     // The code and its button on one line, the label over the code and the
     // note under it: the field is four characters, never a full-width input.
     .join-with-code
-      flex: 1 1 16rem
       gap: var(--space-xs)
 
+      // The field's own label already says it, one line under.
       h2
-        @include typography.label
-
-        color: var(--ink-muted)
+        @include accessibility.visually-hidden
 
       .react-aria-Form
         display: grid
@@ -111,7 +61,7 @@ $side-by-side: 60rem
           grid-column: 2
           grid-row: 2
 
-        // A lid too narrow for four characters beside the button puts the
+        // A box too narrow for four characters beside the button puts the
         // button under the code instead of squeezing the code to nothing.
         @container (width < 17rem)
           grid-template-columns: minmax(0, 1fr)
@@ -130,64 +80,3 @@ $side-by-side: 60rem
           grid-column: 1
           grid-row: 2
           min-width: 0
-
-    .error
-      @include typography.caption-strong
-
-      background: var(--danger)
-      color: var(--danger-ink)
-      padding: var(--space-2xs) var(--space-s)
-
-      @include text-box.trimmed-block(var(--space-2xs))
-
-    .other-screens
-      display: flex
-      flex-direction: column
-      gap: var(--space-s)
-
-      h2
-        @include typography.title
-
-      .screens
-        display: grid
-        gap: var(--space-s)
-        grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr))
-
-    .wall-door,
-    .project-with-code
-      @include box-lid.box-lid
-
-      display: flex
-      flex-direction: column
-      gap: var(--space-s)
-      padding: var(--space-l)
-
-      h3
-        @include typography.lid-name
-
-        align-items: center
-        display: flex
-        font-size: var(--text-l)
-        gap: var(--space-xs)
-
-      .description
-        @include typography.body
-
-        color: var(--ink-muted)
-        text-wrap: pretty
-
-      .link,
-      .react-aria-Form
-        margin-block-start: auto
-
-    .project-with-code .react-aria-Form
-      align-items: start
-      display: flex
-      flex-direction: column
-      gap: var(--space-s)
-
-      .text-field
-        align-self: stretch
-
-    .wall-door .link
-      align-self: start

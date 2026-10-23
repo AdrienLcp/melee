@@ -133,6 +133,34 @@
     // Its gap closes to the dialog's own, because the popover already spends
     // `--space-m` between every block in it and a wider one inside would read
     // as two blocks rather than one.
+    .this-device
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+      h2
+        @include typography.label
+
+        color: var(--ink-muted)
+
+    // A row with a name and a sentence under it, where a control centres one
+    // line: the glyph at the start, the words left-aligned beside it.
+    .become-wall
+      align-items: start
+      gap: var(--space-s)
+      justify-content: start
+      padding-block: var(--space-s)
+      text-align: start
+
+      .words
+        display: grid
+        gap: var(--space-2xs)
+
+      .description
+        @include typography.caption
+
+        color: var(--ink-muted)
+
     // One group, so the doors to a wall read as belonging to the invitation
     // above them rather than to the preferences below. The dialog spends
     // `--space-m` between blocks; inside one, less.

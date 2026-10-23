@@ -109,6 +109,18 @@ model already treated as one more tick.
    as full example pages behind one index link before any screen is written.
 4. Screens and copy in both dictionaries.
 
+   **Home and menu done.** Home is the wordmark, the code box with a pill per
+   held room, the ten games as ticks (`game-ticks.tsx`) and a sticky tray
+   (`home-tray.tsx`): the press reads *Open a table*, *Play Quiz* or *Open the
+   table* with a count, beside *I'm playing too* — off and explained when every
+   ticked game is judged — and the name. The presets, the pitch and the two
+   other-screen cards are gone; *Become the room's screen* and *Show a table's
+   QR code* moved to a *This device* section of the menu, off a room. **Left:
+   *La table* in *Animer*** — teams, board and judge as three independent
+   switches (`boardFor` in `teams-setup.tsx` still ties board to teams), and
+   the lobby read off board-or-teams. Mocks: `.impeccable/directions/one-table/`
+   `animer.html`, `c-tete-de-course.html`.
+
 ## Done when
 
 - Home ticks games behind one press and holds no preset; a game's own page
