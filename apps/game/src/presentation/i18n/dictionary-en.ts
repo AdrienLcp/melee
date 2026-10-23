@@ -397,7 +397,6 @@ export const EN_DICTIONARY = defineDictionary({
       },
       detail: {
         allSubjects: 'Every subject',
-        nothingToSet: 'Nothing to set',
         oneGo: 'One go each',
         subjects: '{count:number} subjects'
       },

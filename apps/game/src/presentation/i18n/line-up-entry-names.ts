@@ -157,8 +157,11 @@ export const useLineUpEntryNames = (
 export type LineUpEntrySummary = {
   /** As `lineUpEntryNames` says it. */
   name: string
-  /** Every setting the name leaves unsaid, round length last, in one line. */
-  settings: string
+  /**
+   * Every setting the name leaves unsaid, round length last, in one line;
+   * `null` for a game with nothing to set.
+   */
+  settings: string | null
 }
 
 /** Each entry of the line-up as the setup lists it, in its order. */
@@ -179,10 +182,7 @@ export const useLineUpEntrySummaries = (
 
     return {
       name,
-      settings:
-        rest.length > 0
-          ? rest.join(' · ')
-          : translate('host.evening.detail.nothingToSet')
+      settings: rest.length > 0 ? rest.join(' · ') : null
     }
   })
 }

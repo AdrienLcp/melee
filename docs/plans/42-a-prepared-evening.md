@@ -153,7 +153,7 @@ and nothing is played that the host has not either prepared or left to chance.
    next planned game; every round past the last row is drawn as it comes.
    `EveningRounds` is headed *Planned games*, each row saying every setting
    its name leaves unsaid and the round length (`useLineUpEntrySummaries`:
-   the decades, the subjects, the goals, *One go each*, *Nothing to set*),
+   the decades, the subjects, the goals, *One go each*; nothing under a game with nothing to set),
    the stamp on the settings line so the name keeps the width, and the chance
    line says *N more rounds, by chance* under a counted evening too. A sheet
    and the wide drawer take the page's gutter back from the board track they

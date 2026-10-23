@@ -207,7 +207,9 @@ const OnlyRound: React.FC<{
         <span className='band' />
         <GameIcon game={entry.kind} />
         <span className='name'>{summary?.name}</span>
-        <span className='detail'>{summary?.settings}</span>
+        {summary?.settings != null && (
+          <span className='detail'>{summary.settings}</span>
+        )}
         {stamp !== null && <EveningStamp kind={stamp} played={timesPlayed} />}
         <ChevronRightIcon className='chevron' />
       </AriaButton>
@@ -365,7 +367,7 @@ const OrderedRounds: React.FC<{
             <span className='band' />
             {entry !== undefined && <GameIcon game={entry.kind} />}
             <span className='name'>{name}</span>
-            {summary !== undefined && (
+            {summary?.settings != null && (
               <span className='detail'>{summary.settings}</span>
             )}
             {round.isPastTheEnd ? (

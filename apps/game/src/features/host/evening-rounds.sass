@@ -49,6 +49,9 @@
       text-align: start
       width: 100%
 
+      &:not(:has(.detail))
+        grid-template-areas: 'band icon name stamp chevron'
+
       &[data-hovered],
       &[data-pressed]
         background: var(--socket)
@@ -112,6 +115,9 @@
       display: grid
       grid-template-areas: 'band grip number icon name name chevron' 'band grip number icon detail stamp chevron'
       grid-template-columns: var(--space-2xs) auto auto auto minmax(0, 1fr) auto auto
+
+      &:not(:has(.detail))
+        grid-template-areas: 'band grip number icon name stamp chevron'
       min-height: var(--control-height)
       outline: none
       padding: var(--space-xs) var(--space-s) var(--space-xs) 0
