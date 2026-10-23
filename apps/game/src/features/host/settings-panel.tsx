@@ -40,8 +40,7 @@ import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
 import {
   answerModeLabelKey,
   type PlainTranslationKey,
-  questionCategoryKey,
-  scoringKey
+  questionCategoryKey
 } from '@/presentation/i18n/translation'
 
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
@@ -245,51 +244,26 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   return (
     <section className='settings-panel'>
       {/*
-        Nothing about answering until there is a game to answer: which modes are
-        on offer is the game's to narrow, and what a round pays is the game's to
-        say.
+        Hidden rather than disabled when the game offers one mode: a control
+        with a single segment asks the host to choose something they have no
+        choice about.
       */}
-      {game !== null && (
-        <>
-          {/*
-            Hidden rather than disabled when the game offers one mode: a control
-            with a single segment asks the host to choose something they have no
-            choice about.
-          */}
-          {isNextRound && offeredModes.length > 1 && (
-            <SegmentedControl
-              className='answer-mode'
-              isDisabled={isDisabled}
-              label={translate('host.answerMode.label')}
-              onChange={(next) => {
-                if (isAnswerMode(next)) {
-                  onChange({ ...settings, mode: DEFAULT_MODE_SETTINGS[next] })
-                }
-              }}
-              options={offeredModes.map((offered) => ({
-                label: translate(answerModeLabelKey(offered)),
-                value: offered
-              }))}
-              value={mode.kind}
-            />
-          )}
-          {/*
-            Under the control that chooses it rather than on the screen where it
-            is played: the lobby is the only moment nobody is against a clock,
-            and the host is the one deciding what the evening will be worth.
-          */}
-          <p className='hint'>
-            {translate(
-              scoringKey({
-                answerMode: mode.kind,
-                asksForACity:
-                  game.kind === 'worldmap' && game.places === 'frenchCities',
-                asksForAFilm: pinsItsOwnDifficulty,
-                game: game.kind
-              })
-            )}
-          </p>
-        </>
+      {game !== null && isNextRound && offeredModes.length > 1 && (
+        <SegmentedControl
+          className='answer-mode'
+          isDisabled={isDisabled}
+          label={translate('host.answerMode.label')}
+          onChange={(next) => {
+            if (isAnswerMode(next)) {
+              onChange({ ...settings, mode: DEFAULT_MODE_SETTINGS[next] })
+            }
+          }}
+          options={offeredModes.map((offered) => ({
+            label: translate(answerModeLabelKey(offered)),
+            value: offered
+          }))}
+          value={mode.kind}
+        />
       )}
 
       {game?.kind === 'worldmap' && (

@@ -69,6 +69,11 @@ describe('colour tokens', () => {
           foreground: `--on-spine-${game}`,
           minimum: WCAG_AA.text
         })),
+        ...shelvedGames.map((game) => ({
+          background: '--on-spine',
+          foreground: `--spine-mark-${game}`,
+          minimum: WCAG_AA.nonText
+        })),
         ...PHASE_MARKS.map((pair) => ({ ...pair, minimum: WCAG_AA.text })),
         ...TILES.flatMap((tile) => [
           {

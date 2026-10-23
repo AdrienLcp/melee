@@ -43,7 +43,6 @@
     -webkit-tap-highlight-color: transparent
     user-select: none
 
-    // A socket cut into the box, filled with the box's own ink once ticked.
     .well
       align-items: center
       background: color-mix(in oklab, var(--spine) 72%, var(--chipboard-dark))
@@ -57,7 +56,7 @@
       width: 2.5rem
 
       svg
-        color: var(--spine)
+        color: var(--spine-mark)
         height: 1.6rem
         opacity: 0
         scale: 0.4
@@ -66,7 +65,7 @@
         width: 1.6rem
 
     &[data-selected] .well
-      background: var(--spine-ink)
+      background: var(--on-spine)
       box-shadow: 0 2px 0 color-mix(in oklab, var(--spine) 50%, var(--chipboard-dark))
 
       svg

@@ -62,5 +62,6 @@ export const GameTicks: React.FC<GameTicksProps> = ({ onChange, ticked }) => {
 
 const spineStyle = (game: ShelvedGame): React.CSSProperties => ({
   '--spine': `var(--spine-${game})`,
-  '--spine-ink': `var(--on-spine-${game})`
+  '--spine-ink': `var(--on-spine-${game})`,
+  '--spine-mark': `var(--spine-mark-${game})`
 })
