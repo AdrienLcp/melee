@@ -122,6 +122,7 @@ const SERVER_TIME = 1_800_000_000_000
 
 const players = [
   {
+    board: null,
     id: 'p1',
     isConnected: true,
     isReady: false,
@@ -129,13 +130,21 @@ const players = [
     score: 11
   },
   {
+    board: null,
     id: 'p2',
     isConnected: true,
     isReady: false,
     nickname: 'Mamie Jo',
     score: 14
   },
-  { id: 'p3', isConnected: true, isReady: false, nickname: 'Théo', score: 8 }
+  {
+    board: null,
+    id: 'p3',
+    isConnected: true,
+    isReady: false,
+    nickname: 'Théo',
+    score: 8
+  }
 ]
 
 const choosingView = (question: Question) => ({
@@ -226,6 +235,7 @@ const table = [
   'Anne-Charlotte',
   'Marc'
 ].map((nickname, seat) => ({
+  board: null,
   id: `p${seat + 1}`,
   isConnected: true,
   isReady: false,
