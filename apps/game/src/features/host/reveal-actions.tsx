@@ -20,6 +20,18 @@ import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 
+import './reveal-actions.sass'
+
+/** The most entries a row of the next-game strip holds beside the other presses. */
+const MOST_ENTRIES_A_ROW = 5
+
+/**
+ * As many columns as the fewest rows need, so the rows come out as even as the
+ * count allows — six in two rows of three, never five and one.
+ */
+const balancedColumns = (count: number): number =>
+  Math.ceil(count / Math.ceil(count / MOST_ENTRIES_A_ROW))
+
 /**
  * Whether the next round may be a duel, read off the room as it stands: two
  * teams holding a seat each, in a game and a mode a duel can be played in.
@@ -132,6 +144,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
               label: name,
               value: String(at)
             }))}
+            style={{ '--columns': balancedColumns(settings.lineUp.length) }}
             value={
               settings.lineUpAt === null ? null : String(settings.lineUpAt)
             }

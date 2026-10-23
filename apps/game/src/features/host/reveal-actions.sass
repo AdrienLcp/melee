@@ -1,0 +1,21 @@
+@use '../../presentation/styles/layout'
+
+@layer components
+  // The line-up holds two games or ten, so no one threshold says when the
+  // strip's single row stops fitting, and the strip's own wrap stretched a
+  // last game alone across the tray. Columns counted for even rows put every
+  // stamp under one above it instead, as wide as its name beside the other
+  // presses, where the footer has no width to spare; on a line of its own the
+  // strip is two even columns, the most a variant's long name leaves room for.
+  .reveal-actions .next-game
+    .segments
+      display: grid
+      grid-template-columns: repeat(var(--columns), auto)
+
+      @include layout.narrow
+        grid-template-columns: repeat(2, minmax(0rem, 1fr))
+
+    .segment
+      align-content: center
+      text-wrap: balance
+      white-space: normal
