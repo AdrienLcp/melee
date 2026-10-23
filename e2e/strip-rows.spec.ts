@@ -66,6 +66,8 @@ const loadEveryFace = () =>
 type Fault = {
   /** The width of the strip's own layout box, in CSS pixels. */
   at: number
+  /** The width the sweep started from, read on the narrowest screen. */
+  from: number
   label: string
   /** `3+2+1` — how many segments each row holds, top to bottom. */
   shape: string
@@ -184,6 +186,7 @@ const sweepShapes = ({
       if (isRagged) {
         faults.push({
           at: Math.round(strip.getBoundingClientRect().width),
+          from: floors[label] ?? 0,
           label,
           shape: counts.join('+')
         })
@@ -355,7 +358,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
         for (const fault of found) {
           faults.push(
-            `${locale} · ${fault.label} · ${fault.shape} at ${fault.at}px`
+            `${locale} · ${fault.label} · ${fault.shape} at ${fault.at}px, swept from ${fault.from}px`
           )
         }
       }
