@@ -645,9 +645,12 @@ ring, 52px — never taller than the button that submits it. Invalid: a 3px
 `--danger` ring and a stamped `--danger` block under it.
 
 ### Strips (`SegmentedControl`, `ToggleGroup` — `_strip.sass`)
-Stamps ruled off by 2px gaps of `--rule`, `caption` 700 uppercase, `flex: 1`.
-Selected is ink ground, field text; disabled keeps the selected one as a 3px
-ink keyline.
+Stamps in a tray (`--ink` at 7% over `--field`, padding equal to the gap),
+`caption` 700 uppercase, `flex: 1`. Selected is a piece lifted out of the tray:
+`--primary` ground, `--on-primary` text, a `--primary-edge` edge under it — the
+edge and the shape say which one is on where two options would leave the colour
+alone ambiguous. The ink block it replaced read as a square frame against the
+tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
 
 ### Box lid, shelf and spines
 - **`box-lid`**: a paper card with its keyline, re-pointing `--field`, `--ink`,
