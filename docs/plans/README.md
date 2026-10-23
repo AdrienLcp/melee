@@ -57,6 +57,7 @@ out whether anything is usable yet.
 | [39 — Emoji rebus](39-emoji-rebus.md) | **done** 21/10/2026 | An eleventh quiz chip rather than a game: a film, series, song or saying written in emojis, drawn large on every screen, the room names it in either mode. Hand-written lists in each language, every emoji from Unicode 12 with no flag so every phone draws the same rebus |
 | [40 — A line-up of variants](40-line-up-of-variants.md) | **done** 21/10/2026 | The host ticks variants, not only games — two blind tests on different sources, a quiz held to one subject — each drawn round by round. `settings.lineUp` holds whole game arms and `lineUpAt` points at the one `game` was opened from; the server writes `game` back into it on every frame, so the fold edits the variant. Names are generated, never typed; presets still tick kinds |
 | [41 — One table](41-one-table.md) | **to do** | Home opens one table and nothing else: the preset and its name go, the host ticks one game or several, and teams, a board and a judge are three switches that no longer depend on each other. A board without teams is a pawn per seat; one ticked game plays as it did before the game night |
+| [42 — A prepared evening](42-a-prepared-evening.md) | **to do** | The evening becomes a deck of rounds: the host prepares one, four or all of them — each a game with its options and its content — the rest is drawn, every entry plays at least once, a prepared one exactly once, and a round not yet played stays editable |
 
 ## Order, and what can move
 
