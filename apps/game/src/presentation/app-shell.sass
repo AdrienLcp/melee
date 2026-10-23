@@ -26,7 +26,11 @@
     // adding to it, so it is the one that has to carry the top inset itself. On
     // a Dynamic Island the plain padding put the menu's 59px of housing over a
     // headline that had only moved 64px down.
-    --menu-block-inset: calc(var(--layout-padding-block-start) + var(--space-xl))
+    //
+    // Reserved as the trigger's own height plus a gap, never a guessed space:
+    // a flat `--space-xl` was 4px shorter than the 52px trigger, and the home
+    // page's code box, beside the wordmark from 60rem, ran under the menu.
+    --menu-block-inset: calc(var(--layout-padding-block-start) + var(--control-height) + var(--space-m))
 
     display: flex
     flex: 1
