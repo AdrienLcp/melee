@@ -23,9 +23,12 @@
         gap: var(--space-s)
         padding-bottom: var(--space-m)
 
-    // Measured with the labels at their ceiling, French: 276px.
     .round-count
-      @include strip.stacks-below(18rem)
+      @include strip.stacks-below(18.5rem)
+
+      // A seventh stamp is the count the room is on when it is off the steps.
+      &:has(.segment-field:nth-child(7))
+        @include strip.stacks-below(21rem)
 
     .hint
       @include typography.caption

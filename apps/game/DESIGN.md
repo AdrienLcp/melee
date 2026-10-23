@@ -435,7 +435,10 @@ dealt down then across in one to three columns (`dealtRows`).
 `strip` mixin: one row or one column (`stacks-below($width)`), or an even grid
 (`tiles-below($width, $columns)`), never a ragged wrap — chosen by a container
 query, because the same control is drawn in boxes the viewport cannot tell
-apart. `$width` is measured in the longer locale and given in `rem`.
+apart. `$width` is measured in the longer locale and given in `rem`. The round
+count's row is 290px in French with its six stamps and about 326px with a
+seventh (a count off the steps, twelve for three games), so it stacks below
+18.5rem and 21rem.
 
 **The No-Scroll Rule.** A question and its four choices never scroll.
 `e2e/choice-fits.spec.ts` stubs the socket and measures sixteen viewports —
