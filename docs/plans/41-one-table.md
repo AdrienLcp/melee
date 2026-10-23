@@ -26,9 +26,15 @@ model already treated as one more tick.
 
 ## The shape
 
-- **One door on home.** *Open a table* opens a room on no game, as today. The
-  shelf below it stays: each game's door opens a table with that game ticked,
-  and the per-game pages keep doing exactly that.
+- **The games are ticked on home, behind one press.** The shelf becomes a
+  list of ticks and one press whose label follows them: nothing ticked opens a
+  table on no game, the picker in the lobby as today; one ticked plays that
+  game exactly as before; several open a line-up. One place to choose, no
+  click spent opening a table to choose in it. *I play too* is a switch under
+  the press, where a game's two doors (for the group / play right away) were.
+  The per-game pages stay, for a shared link and a search result, and open a
+  table with their game ticked. Asked 23/10/2026: simple, quick, readable by
+  everyone, nothing on screen that is not needed.
 - **No preset, no name for the evening.** The table is Melee; the games in it
   already have names. `room-presets.ts`, `PresetBox`, the `preset` arm of
   `createRoomRequestSchema` and its resolution in `roomSettingsFor` go. Ticking
@@ -81,7 +87,12 @@ model already treated as one more tick.
 
 ## Done when
 
-- Home has one door and no preset; a game's door opens a table with it ticked.
+- Home ticks games behind one press and holds no preset; a game's own page
+  opens a table with it ticked.
+- The board without teams is direction C (*Tête de course*, chosen
+  23/10/2026): coloured pawns only, three a case then `+n`, names on a podium
+  and chips at the centre of the U between rounds; the presses sit inside the
+  U at 390 rather than over its last cases.
 - One game ticked, no board, no teams: the lobby, a round and the reveal look
   as they did before stage 34.
 - No teams with the board on: 15 seats, a pawn each, move on the wall, the
