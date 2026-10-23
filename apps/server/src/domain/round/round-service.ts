@@ -61,9 +61,10 @@ import type {
 } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
 import {
-  bankTeamRound,
+  bankRound,
   placeUnseatedSeats,
   resetTeamScores,
+  toSeatBoards,
   toTeamViews
 } from '@/domain/room/team-service'
 import { takeDuel } from '@/domain/round/duels'
@@ -168,7 +169,7 @@ export const openRound = ({
    */
   startsAt?: number
 }): Round => {
-  bankTeamRound(room)
+  bankRound(room)
   placeUnseatedSeats(room)
 
   for (const participant of room.players.values()) {
@@ -1232,7 +1233,7 @@ export const closeRound = (room: Room, now: number): void => {
 }
 
 export const finishGame = (room: Room, now: number): void => {
-  bankTeamRound(room)
+  bankRound(room)
   room.isDuelAsked = false
   room.phase = 'finished'
   room.round = null
@@ -1246,6 +1247,7 @@ export const finishGame = (room: Room, now: number): void => {
  */
 export const restartGame = (room: Room, now: number): void => {
   for (const participant of room.players.values()) {
+    participant.bankedCase = 0
     participant.score = 0
   }
 
@@ -1292,7 +1294,10 @@ export const isFinalRound = (room: Room): boolean => {
     total !== null && (room.round?.index ?? 0) >= total
   const hasPawnHome = isTrackFinished({
     board: room.settings.board,
-    pawns: toTeamViews(room)
+    pawns: [
+      ...toTeamViews(room),
+      ...[...toSeatBoards(room).values()].map((board) => ({ board }))
+    ]
   })
 
   return hasPlayedEveryRound || hasPawnHome

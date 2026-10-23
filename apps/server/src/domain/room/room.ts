@@ -96,6 +96,11 @@ export type Room = {
 
 export type Participant = {
   /**
+   * The seat's pawn before the round on screen, in a room on a track that
+   * plays without teams; nought everywhere else. See `RoomTeam.bankedCase`.
+   */
+  bankedCase: number
+  /**
    * When the socket closed, and `null` while it is open. It is what tells a
    * player who locked their screen apart from one who has gone: see
    * `@melee/core/room/seat-presence` for the two windows it feeds.

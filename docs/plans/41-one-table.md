@@ -95,10 +95,15 @@ model already treated as one more tick.
    teams, board and judge over a table of several and gives way to the door's
    teams when the host's would refuse a game ticked (aloud over a slate);
    `rememberSettings` files them for every table. `PROTOCOL_VERSION` 44. The
-   server sends every seat `board: null` until step 2, and the home preset
-   box sends only its games until step 4 removes it.
+   home preset box sends only its games until step 4 removes it.
 2. Server: the track over pawns; a race, a slate and a judged buzzer round
-   each move seat pawns.
+   each move seat pawns. **Done.** `team-service.ts` walks the teams in a
+   room that plays in teams and every seat otherwise (`trackPawnsOf`), save a
+   seat that arrived after the round opened, which stands where it is until
+   the next one. A seat banks its case on `Participant.bankedCase` as a team
+   does, a host's correction to a seat moves its pawn, *play again* puts it
+   back on Départ, and `isFinalRound` reads the seats' pawns beside the
+   teams'.
 3. Design pass (`impeccable`): home with one door, *La table* in *Animer*, the
    lid and the track with a pawn per seat at 15 and 24 seats. Directions shown
    as full example pages behind one index link before any screen is written.

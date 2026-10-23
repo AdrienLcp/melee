@@ -191,6 +191,32 @@ describe('a heat nobody has to judge', () => {
     ).toEqual([aliceId, bobId])
   })
 
+  it('[reflex] walks the winner of a heat a case on a track with no teams', async () => {
+    const { alice, bob, host, round } = await openPlayingRound({
+      ...REFLEX_GAME,
+      board: {
+        catchUp: false,
+        kind: 'track',
+        length: 10,
+        strategy: 'onePointOneCase'
+      }
+    })
+
+    await untilTheFlipIsFair(host)
+    alice.send({ roundId: round.id, type: 'player.buzz' })
+    await waitFor(
+      () => (reflexRound(hostView(host))?.presses.length ?? 0) === 1,
+      "Alice's press"
+    )
+    bob.send({ roundId: round.id, type: 'player.buzz' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(hostView(host)?.players.map((player) => player.board)).toEqual([
+      { case: 1, move: 1 },
+      { case: 0, move: 0 }
+    ])
+  })
+
   // Nobody holds the floor in this game, so the phase a buzz would move the room
   // into is one it never reaches — and `applyVerdict` is not on the path at all.
   it('[reflex] never takes a floor', async () => {

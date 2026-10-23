@@ -104,6 +104,9 @@ describe('a room racing on a track', () => {
       { case: 2, move: 2 },
       { case: 0, move: 0 }
     ])
+    expect(playerView(room.ben)?.players.map((player) => player.board)).toEqual(
+      [null, null]
+    )
 
     room.host.send({ type: 'host.nextRound' })
     await waitFor(
@@ -182,5 +185,144 @@ describe('a room racing on a track', () => {
     await waitFor(() => errorsIn(room.host).length > 0, 'the refusal')
 
     expect(errorsIn(room.host)[0]?.code).toBe('wrong_phase')
+  })
+})
+
+describe('a room racing every seat on a track', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  const openTwoSeats = async () => {
+    const { code, host } = await harness.openRoom({
+      ...FAST_GAME,
+      board: TRACK
+    })
+    const anna = await harness.seat({ code, nickname: 'Anna' })
+    const ben = await harness.seat({ code, nickname: 'Ben' })
+
+    return { anna, ben, code, host }
+  }
+
+  const boardsOf = (host: Peer<HostServerMessage>) =>
+    Object.fromEntries(
+      (hostView(host)?.players ?? []).map((player) => [
+        player.nickname,
+        player.board
+      ])
+    )
+
+  const revealRight = async ({
+    host,
+    player
+  }: {
+    host: Peer<HostServerMessage>
+    player: Peer<PlayerServerMessage>
+  }) => {
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    const roundId = hostView(host)?.round?.id ?? ''
+
+    player.send({ roundId, type: 'player.buzz' })
+    await waitFor(() => hostView(host)?.phase === 'buzzed', 'the buzz')
+    host.send({
+      playerId: idOf(player),
+      roundId,
+      type: 'host.judge',
+      verdict: halves(true, true)
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+  }
+
+  it('[board] walks the seat a judged buzz paid, a pawn per seat', async () => {
+    const { anna, ben, host } = await openTwoSeats()
+
+    host.send({ type: 'host.startRound' })
+    await revealRight({ host, player: anna })
+
+    expect(hostView(host)?.teams).toEqual([])
+    expect(boardsOf(host)).toEqual({
+      Anna: { case: 2, move: 2 },
+      Ben: { case: 0, move: 0 }
+    })
+    expect(playerView(ben)?.players.map((player) => player.board)).toEqual([
+      { case: 2, move: 2 },
+      { case: 0, move: 0 }
+    ])
+
+    host.send({ type: 'host.nextRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the next clip')
+
+    expect(boardsOf(host).Anna).toEqual({ case: 2, move: 0 })
+  })
+
+  it('[board] starts a seat that arrives mid-round on the start', async () => {
+    const { anna, code, host } = await openTwoSeats()
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+    await harness.seat({ code, nickname: 'Carl' })
+    await revealRight({ host, player: anna })
+
+    expect(boardsOf(host).Carl).toEqual({ case: 0, move: 0 })
+  })
+
+  it('[board] takes a pawn off the track with the seat that leaves', async () => {
+    const { anna, ben, host } = await openTwoSeats()
+
+    host.send({ type: 'host.startRound' })
+    await revealRight({ host, player: anna })
+    ben.send({ type: 'player.leave' })
+    await waitFor(
+      () => hostView(host)?.players.length === 1,
+      "Ben's seat to go"
+    )
+
+    expect(boardsOf(host)).toEqual({ Anna: { case: 2, move: 2 } })
+  })
+
+  it('[board] lets the host move a seat, and puts every pawn back on the start to play again', async () => {
+    const { anna, host } = await openTwoSeats()
+
+    host.send({
+      points: 3_000,
+      target: { kind: 'seat', playerId: idOf(anna) },
+      type: 'host.adjustScore'
+    })
+    await waitFor(
+      () => boardsOf(host).Anna?.case === 3,
+      'the correction to move the pawn'
+    )
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+    host.send({ type: 'host.endGame' })
+    await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
+
+    expect(boardsOf(host).Anna).toEqual({ case: 3, move: 0 })
+
+    host.send({ type: 'host.playAgain' })
+    await waitFor(() => hostView(host)?.phase === 'lobby', 'the lobby')
+
+    expect(boardsOf(host).Anna).toEqual({ case: 0, move: 0 })
+  })
+
+  it('[board] ends the game on the reveal a seat reaches the last case', async () => {
+    const { anna, host } = await openTwoSeats()
+
+    host.send({
+      points: 9_000,
+      target: { kind: 'seat', playerId: idOf(anna) },
+      type: 'host.adjustScore'
+    })
+    host.send({ type: 'host.startRound' })
+    await revealRight({ host, player: anna })
+    host.send({ type: 'host.nextRound' })
+    await waitFor(() => hostView(host)?.phase === 'finished', 'the final board')
   })
 })

@@ -71,6 +71,7 @@ export const joinAsPlayer = ({
   }
 
   const participant: Participant = {
+    bankedCase: 0,
     disconnectedAt: null,
     id: newPlayerId,
     isConnected: true,

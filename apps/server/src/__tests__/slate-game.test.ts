@@ -218,6 +218,37 @@ describe('slate', () => {
     })
   }
 
+  it('[slate] walks each seat its marked sheet on a track with no teams', async () => {
+    const { ana, bo, host, roundId } = await openSheets({
+      ...SLATE,
+      board: {
+        catchUp: false,
+        kind: 'track',
+        length: 10,
+        strategy: 'onePointOneCase'
+      }
+    })
+
+    await write({ answer: 'Sel', itemIndex: 0, player: ana, roundId })
+    await write({ answer: 'Poivre', itemIndex: 0, player: bo, roundId })
+    await collect({ host, roundId })
+    judge({ groupKey: 'sel', host, isCorrect: true, itemIndex: 0, roundId })
+    await waitFor(() => scoreOf(host, idOf(ana)) === POINT, 'the group paid')
+
+    expect(hostView(host)?.players.map((player) => player.board)).toEqual([
+      { case: 0, move: 0 },
+      { case: 0, move: 0 }
+    ])
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(bo)?.phase === 'revealed', 'the reveal')
+
+    expect(playerView(bo)?.players.map((player) => player.board)).toEqual([
+      { case: 1, move: 1 },
+      { case: 0, move: 0 }
+    ])
+  })
+
   it('[slate] runs a whole sheet: write, collect, correct, reveal, final board', async () => {
     const { ana, bo, host, roundId } = await openSheets()
 

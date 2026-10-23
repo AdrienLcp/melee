@@ -27,8 +27,8 @@ import { earliestFirst } from '@melee/core/timeline/deal'
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
-import type { Participant, PlayerAttempts, Room, Round } from './room'
-import { toTeamViews } from './team-service'
+import type { PlayerAttempts, Room, Round } from './room'
+import { toSeatBoards, toTeamViews } from './team-service'
 
 /**
  * The single seam between the server's model and the wire. Everything secret —
@@ -241,7 +241,7 @@ const toBaseView = ({
   code: room.code,
   isHostConnected,
   phase: room.phase,
-  players: [...room.players.values()].map(toPublicPlayer),
+  players: toPublicPlayers(room),
   round: room.round === null ? null : toRoundView({ round: room.round, youId }),
   roundElapsedMs: room.round === null ? 0 : elapsedRoundMs(room.round, now),
   settings: room.settings,
@@ -269,14 +269,18 @@ const yourVerdictIn = ({
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
       null)
 
-const toPublicPlayer = (participant: Participant): PublicPlayer => ({
-  board: null,
-  id: participant.id,
-  isConnected: participant.isConnected,
-  isReady: participant.isReady,
-  nickname: participant.nickname,
-  score: participant.score
-})
+const toPublicPlayers = (room: Room): PublicPlayer[] => {
+  const seatBoards = toSeatBoards(room)
+
+  return [...room.players.values()].map((participant) => ({
+    board: seatBoards.get(participant.id) ?? null,
+    id: participant.id,
+    isConnected: participant.isConnected,
+    isReady: participant.isReady,
+    nickname: participant.nickname,
+    score: participant.score
+  }))
+}
 
 /**
  * `correctChoiceIndex` is absent from this object, and that absence is the

@@ -11,7 +11,12 @@ import {
   type TeamsSettings
 } from '@melee/protocol/team'
 
-import { advanceOnTrack, type PawnMove } from '@melee/core/board/board-strategy'
+import {
+  advanceOnTrack,
+  type PawnId,
+  type PawnMove
+} from '@melee/core/board/board-strategy'
+import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
 import { teamCountOf, teamIdAt } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
@@ -248,6 +253,11 @@ export const adjustScore = ({
     }
 
     participant.score = Math.max(0, participant.score + points)
+
+    if (room.teams.length === 0) {
+      adjustCase({ holder: participant, points, room })
+    }
+
     touch(room, now)
 
     return Result.success()
@@ -264,14 +274,7 @@ export const adjustScore = ({
     team.bankedScore + points
   )
 
-  if (room.settings.board.kind === 'track') {
-    const move = liveMoveOf(room, team.id)
-
-    team.bankedCase = Math.min(
-      room.settings.board.length - move,
-      Math.max(-move, team.bankedCase + Math.trunc(points / POINT))
-    )
-  }
+  adjustCase({ holder: team, points, room })
 
   touch(room, now)
 
@@ -346,6 +349,39 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
         .filter((award) => award.teamId === teamId)
         .reduce((total, award) => total + award.points, 0)
 
+/** Whose pawn walks, and what the round on screen paid it. */
+type TrackPawn = {
+  holder: Participant | RoomTeam
+  points: number
+}
+
+/**
+ * The teams in a room that plays in teams, and every seat otherwise — save a
+ * seat that arrived after the round opened, which plays from the next one and
+ * so stands where it is through this one.
+ */
+const trackPawnsOf = (room: Room): TrackPawn[] => {
+  if (room.teams.length > 0) {
+    return room.teams.map((team) => ({
+      holder: team,
+      points: liveRoundResult(room, team.id)
+    }))
+  }
+
+  const openedWithPlayerIds = room.round?.openedWithPlayerIds ?? null
+
+  return [...room.players.values()]
+    .filter(
+      (seat) => !hasJoinedAfterStart({ openedWithPlayerIds, playerId: seat.id })
+    )
+    .map((seat) => ({
+      holder: seat,
+      points: (room.round?.awards ?? [])
+        .filter((award) => award.playerId === seat.id)
+        .reduce((total, award) => total + award.points, 0)
+    }))
+}
+
 /**
  * What the round on screen walks each pawn, from the cases they stood on
  * before it. Empty on a room whose board is off.
@@ -357,32 +393,66 @@ const liveMoves = (room: Room): PawnMove[] => {
     return []
   }
 
+  const pawns = trackPawnsOf(room)
+
   return advanceOnTrack({
     catchUp: board.catchUp,
     length: board.length,
-    positions: new Map(room.teams.map((team) => [team.id, team.bankedCase])),
-    results: room.teams.map((team) => ({
-      pawnId: team.id,
-      points: liveRoundResult(room, team.id)
+    positions: new Map(
+      pawns.map((pawn) => [pawn.holder.id, pawn.holder.bankedCase])
+    ),
+    results: pawns.map((pawn) => ({
+      pawnId: pawn.holder.id,
+      points: pawn.points
     })),
     strategy: board.strategy
   }).moves
 }
 
-const liveMoveOf = (room: Room, teamId: TeamId): number =>
-  liveMoves(room).find((move) => move.pawnId === teamId)?.cases ?? 0
+const moveOf = (moves: readonly PawnMove[], pawnId: PawnId): number =>
+  moves.find((move) => move.pawnId === pawnId)?.cases ?? 0
 
 /**
- * The round on screen paid into each team for good, called just before it is
- * left behind — by the next round, or by the final board.
+ * The round on screen paid into each team and each pawn for good, called just
+ * before it is left behind — by the next round, or by the final board.
  */
-export const bankTeamRound = (room: Room): void => {
+export const bankRound = (room: Room): void => {
   const moves = liveMoves(room)
 
   for (const team of room.teams) {
     team.bankedScore += liveRoundResult(room, team.id)
-    team.bankedCase += moves.find((move) => move.pawnId === team.id)?.cases ?? 0
   }
+
+  for (const pawn of trackPawnsOf(room)) {
+    pawn.holder.bankedCase += moveOf(moves, pawn.holder.id)
+  }
+}
+
+/**
+ * A host's correction walks the pawn a case per `POINT`, never behind the start
+ * nor past the end once the round's own move is counted.
+ */
+const adjustCase = ({
+  holder,
+  points,
+  room
+}: {
+  holder: Participant | RoomTeam
+  points: number
+  room: Room
+}): void => {
+  const { board } = room.settings
+
+  if (board.kind === 'off') {
+    return
+  }
+
+  const move = moveOf(liveMoves(room), holder.id)
+
+  holder.bankedCase = Math.min(
+    board.length - move,
+    Math.max(-move, holder.bankedCase + Math.trunc(points / POINT))
+  )
 }
 
 export const resetTeamScores = (room: Room): void => {
@@ -397,21 +467,42 @@ export const resetTeamScores = (room: Room): void => {
  * and not before: a pawn that walks while the round is open has said who is
  * answering right.
  */
-const boardPositionOf = (
-  room: Room,
-  team: RoomTeam,
+const boardPositionOf = ({
+  holder,
+  moves,
+  room
+}: {
+  holder: Participant | RoomTeam
   moves: readonly PawnMove[]
-): BoardPosition | null => {
+  room: Room
+}): BoardPosition | null => {
   if (room.settings.board.kind === 'off') {
     return null
   }
 
-  const move =
-    room.phase === 'revealed'
-      ? (moves.find((entry) => entry.pawnId === team.id)?.cases ?? 0)
-      : 0
+  const move = room.phase === 'revealed' ? moveOf(moves, holder.id) : 0
 
-  return { case: team.bankedCase + move, move }
+  return { case: holder.bankedCase + move, move }
+}
+
+/**
+ * Each seat's pawn, in a room on a track that plays without teams; empty
+ * otherwise, where a seat carries none.
+ */
+export const toSeatBoards = (room: Room): Map<PlayerId, BoardPosition> => {
+  if (room.teams.length > 0 || room.settings.board.kind === 'off') {
+    return new Map()
+  }
+
+  const moves = liveMoves(room)
+
+  return new Map(
+    [...room.players.values()].flatMap((seat) => {
+      const position = boardPositionOf({ holder: seat, moves, room })
+
+      return position === null ? [] : [[seat.id, position] as const]
+    })
+  )
 }
 
 /** A `teamsOnly` team is named after the seat it is: the name typed on its screen. */
@@ -424,7 +515,7 @@ export const toTeamViews = (room: Room): Team[] => {
   const moves = liveMoves(room)
 
   return room.teams.map((team) => ({
-    board: boardPositionOf(room, team, moves),
+    board: boardPositionOf({ holder: team, moves, room }),
     colour: team.colour,
     id: team.id,
     name: team.name ?? nameOfOnlySeat(room, team),
