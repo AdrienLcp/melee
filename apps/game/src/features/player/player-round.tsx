@@ -153,7 +153,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
     <div className='outcome'>
       <Revealed round={round} view={view} />
       <YourRound round={round} view={view} />
-      <YourTrackStrip view={view} />
+      <YourTrackStrip isWholeWithoutWall view={view} />
     </div>
     <RoundBoard round={round} view={view} />
     <div className='hold'>

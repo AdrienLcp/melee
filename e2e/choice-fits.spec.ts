@@ -150,6 +150,7 @@ const players = [
 const choosingView = (question: Question) => ({
   code: ROOM_CODE,
   isHostConnected: true,
+  isWallConnected: false,
   phase: 'playing',
   players,
   round: {
@@ -221,10 +222,10 @@ const choosingView = (question: Question) => ({
  */
 const seatedHostView = (question: Question) => ({
   ...choosingView(question),
+  challengeHand: [],
   currentContent: { kind: 'quiz', question: null },
   isWallConnected: true,
   lineUpPlayed: [],
-  nextChallenge: null,
   remainingPoolSize: 40
 })
 

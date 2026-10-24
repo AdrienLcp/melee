@@ -17,7 +17,6 @@ export const asRoomScreenView = (view: WallRoomView): HostRoomView => ({
   challengeHand: [],
   currentContent:
     view.currentContent === null ? null : withheld(view.currentContent),
-  isWallConnected: true,
   lineUpPlayed: [],
   remainingPoolSize: 0,
   youId: null

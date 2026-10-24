@@ -160,8 +160,19 @@ export const EN_DICTIONARY = defineDictionary({
     finish: 'Finish',
     fix: 'Fix the squares',
     forward: 'Move {team} forward a square',
+    /** Under the whole track, on a screen in the hand when no wall draws the race. */
+    lead: {
+      ahead: defineTranslation('In front by {gap:plural}', {
+        plural: { gap: { one: '{?} square', other: '{?} squares' } }
+      }),
+      behind: defineTranslation('{leader} in front, {gap:plural} ahead', {
+        plural: { gap: { one: '{?} square', other: '{?} squares' } }
+      }),
+      level: 'Level at the front'
+    },
     more: '+{count:number}',
     none: 'No board',
+    recentre: 'Back to my square',
     setting: {
       catchUp: {
         hint: 'Whoever is alone in last place moves one square more on a round they score.',

@@ -32,6 +32,7 @@ const runningRound = {
 const playerView: PlayerRoomView = {
   code: 'K3M9',
   isHostConnected: true,
+  isWallConnected: false,
   phase: 'playing',
   players: [
     {

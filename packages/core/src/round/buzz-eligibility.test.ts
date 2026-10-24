@@ -40,6 +40,7 @@ const viewFor = (
 ): PlayerRoomView => ({
   code: 'K3M9',
   isHostConnected: true,
+  isWallConnected: false,
   phase,
   players: [
     {

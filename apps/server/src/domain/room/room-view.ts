@@ -55,7 +55,7 @@ export const toHostView = ({
   /** The seat this host took, if they took one — they then read what a player reads. */
   seatId: PlayerId | null
 }): HostRoomView => ({
-  ...toBaseView({ isHostConnected, now, room, youId: seatId }),
+  ...toBaseView({ isHostConnected, isWallConnected, now, room, youId: seatId }),
   challengeHand: (room.challengeHand ?? [])
     .slice(0, seatId === null ? undefined : 1)
     .map(({ labels }) => labels),
@@ -63,7 +63,6 @@ export const toHostView = ({
     room.round === null
       ? null
       : toHostContent({ room, round: room.round, seatId }),
-  isWallConnected,
   lineUpPlayed: playedPerEntry({
     lineUp: room.settings.lineUp,
     opened: room.openedEntries
@@ -87,7 +86,13 @@ export const toWallView = ({
   now: number
   room: Room
 }): WallRoomView => ({
-  ...toBaseView({ isHostConnected, now, room, youId: null }),
+  ...toBaseView({
+    isHostConnected,
+    isWallConnected: true,
+    now,
+    room,
+    youId: null
+  }),
   currentContent:
     room.round === null
       ? null
@@ -232,26 +237,30 @@ const toHostSlateContent = ({
 
 export const toPlayerView = ({
   isHostConnected,
+  isWallConnected,
   now,
   room,
   youId
 }: {
   isHostConnected: boolean
+  isWallConnected: boolean
   now: number
   room: Room
   youId: PlayerId
 }): PlayerRoomView => ({
-  ...toBaseView({ isHostConnected, now, room, youId }),
+  ...toBaseView({ isHostConnected, isWallConnected, now, room, youId }),
   youId
 })
 
 const toBaseView = ({
   isHostConnected,
+  isWallConnected,
   now,
   room,
   youId
 }: {
   isHostConnected: boolean
+  isWallConnected: boolean
   /** The time the frame carrying this view is stamped with. */
   now: number
   room: Room
@@ -259,6 +268,7 @@ const toBaseView = ({
 }) => ({
   code: room.code,
   isHostConnected,
+  isWallConnected,
   phase: room.phase,
   players: toPublicPlayers(room),
   round:

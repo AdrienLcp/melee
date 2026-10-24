@@ -139,8 +139,18 @@ export const FR_DICTIONARY = defineDictionary({
     finish: 'Arrivée',
     fix: 'Corriger les cases',
     forward: 'Avancer {team} d’une case',
+    lead: {
+      ahead: defineTranslation('En tête de {gap:plural}', {
+        plural: { gap: { one: '{?} case', other: '{?} cases' } }
+      }),
+      behind: defineTranslation('{leader} en tête, {gap:plural} devant', {
+        plural: { gap: { one: '{?} case', other: '{?} cases' } }
+      }),
+      level: 'À égalité en tête'
+    },
     more: '+{count:number}',
     none: 'Sans plateau',
+    recentre: 'Recentrer',
     setting: {
       catchUp: {
         hint: 'Seul à la dernière place, on avance d’une case de plus sur une manche où l’on marque.',

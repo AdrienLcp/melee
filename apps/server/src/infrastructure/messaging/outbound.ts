@@ -96,6 +96,7 @@ const encodeViewFor = (
         ...envelope,
         view: toPlayerView({
           isHostConnected: isHostThere,
+          isWallConnected: isWallThere,
           now,
           room,
           youId: connection.playerId

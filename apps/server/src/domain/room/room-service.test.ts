@@ -289,7 +289,13 @@ describe('the two views', () => {
     }
 
     const serialised = JSON.stringify(
-      toPlayerView({ isHostConnected: true, now: NOW, room, youId: player.id })
+      toPlayerView({
+        isHostConnected: true,
+        isWallConnected: false,
+        now: NOW,
+        room,
+        youId: player.id
+      })
     )
 
     expect(serialised).not.toContain('Daft Punk')
@@ -306,6 +312,7 @@ describe('the two views', () => {
     expect(
       toPlayerView({
         isHostConnected: true,
+        isWallConnected: false,
         now: NOW,
         room,
         youId: alice?.id ?? ''
@@ -313,6 +320,7 @@ describe('the two views', () => {
     ).not.toBe(
       toPlayerView({
         isHostConnected: true,
+        isWallConnected: false,
         now: NOW,
         room,
         youId: bob?.id ?? ''

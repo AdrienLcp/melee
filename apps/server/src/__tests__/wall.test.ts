@@ -267,6 +267,26 @@ describe('the wall', () => {
     )
   })
 
+  it('[wall] tells every seat it is there, so a phone knows to draw the board', async () => {
+    const { code, hostToken } = await harness.openRoom()
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+
+    expect(playerView(zoe)?.isWallConnected).toBe(false)
+
+    const wall = await pairedWall({ code, hostToken })
+
+    await waitFor(
+      () => playerView(zoe)?.isWallConnected === true,
+      'the seat to learn of the wall'
+    )
+
+    wall.close()
+    await waitFor(
+      () => playerView(zoe)?.isWallConnected === false,
+      'the seat to draw the board again'
+    )
+  })
+
   it('[wall] keeps the room frozen while only the wall is left', async () => {
     const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
     const wall = await pairedWall({ code, hostToken })

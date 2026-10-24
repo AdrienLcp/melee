@@ -626,6 +626,12 @@ const baseRoomViewSchema = z.object({
    * server freezes the round while this is `false`.
    */
   isHostConnected: z.boolean(),
+  /**
+   * Whether a wall is showing the room. It is the speaker whenever it is
+   * there, so this is what tells the console to keep the clip to itself, and
+   * a player's screen to draw the whole board when nobody else does.
+   */
+  isWallConnected: z.boolean(),
   phase: roomPhaseSchema,
   players: z.array(publicPlayerSchema),
   round: roundViewSchema.nullable(),
@@ -780,11 +786,6 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
    */
   challengeHand: z.array(challengeLabelsSchema).max(CHALLENGE_HAND_SIZE),
   currentContent: hostRoundContentSchema.nullable(),
-  /**
-   * Whether a wall is showing the room. It is the speaker whenever it is
-   * there, so this is what tells the console to keep the clip to itself.
-   */
-  isWallConnected: z.boolean(),
   /**
    * How many rounds of this game each line-up entry has opened, by index —
    * what the console's draw deals the evening from. The host's alone: it says
