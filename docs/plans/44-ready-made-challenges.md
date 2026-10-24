@@ -142,3 +142,25 @@ R S T) by the server's draw, so the console's line ahead already shows its
 letter and a redeal draws another line rather than another letter.
 `hasFestiveLines` left the challenge arm, which is `{ kind }` alone again; a
 setup stored with it parses, the key stripped.
+
+## Step 6 — a hand of lines for a judging host
+
+Asked 24/10/2026. The line-up already plans the evening's *games* ahead, but a
+challenge's *line* is still typed as the round opens or taken as dealt. A host
+who only runs the room (`hasJudge`) gets a hand instead of one line:
+
+- **Lines prepared before the evening.** The setup takes a list of the host's
+  own lines, kept on the console's machine like the slate's answer keys, and
+  sent on the press that opens the round. They are dealt first, in the order
+  typed; the bank fills the hand once they run out.
+- **A hand of three to five.** The host arm carries the next lines as a list
+  (`nextChallenge` becomes a list, host arm only). Each slot can be redealt
+  alone — the line it drops is not marked played — or pressed to open the round
+  on it, and only that line is marked played. A typed line still wins.
+- **Said aloud.** An explicit choice opens a round with a neutral wall, for a
+  host who would rather announce the line than show it.
+- A **seated** host keeps one line and the die: it plays the round, so it must
+  not read a hand of lines it is about to be asked.
+
+Screens through `impeccable`, directions as complete example pages behind one
+index link, before any of it is built.
