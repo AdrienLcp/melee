@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Shared]` **A challenge deals its own line.** Left empty, a challenge round
+  opens on a line from a bank of ready-made ones — *bring back something red*,
+  *everyone in the team on one chair* — read on every screen in its own
+  language, never the same twice in an evening and varied from the last. The
+  host sees it ahead in the field, deals another with the die beside it, or
+  types their own, which wins; festive lines wait for a switch in the
+  challenge's settings. `PROTOCOL_VERSION` goes to 48.
+
 - `[Shared]` **The evening is its planned games.** *Planned games* lists one
   row per game of the evening, in the order it is played, each saying what it
   is set to — the decades, the subjects, the round's length — and dragged into

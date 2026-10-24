@@ -514,7 +514,14 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const hostActionsProps = (current: HostRoomView): HostActionsProps => ({
     challengeLine:
       current.settings.game?.kind === 'challenge'
-        ? { onChange: setChallengeText, text: challengeText }
+        ? {
+            dealtLine: current.nextChallenge?.[locale] ?? null,
+            onChange: setChallengeText,
+            onRedeal: () => {
+              send({ type: 'host.redealChallenge' })
+            },
+            text: challengeText
+          }
         : null,
     draftSource,
     innerclockTarget:

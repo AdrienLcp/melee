@@ -24,7 +24,7 @@ import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
 
@@ -63,7 +63,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   round,
   view
 }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   const roundDurationMs = round.durationMs
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(round)
@@ -94,7 +94,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       ) : round.content.kind === 'challenge' ? (
         <>
           <p className='now challenge-line'>
-            {round.content.text ?? translate('challenge.untitled')}
+            {round.content.labels?.[locale] ?? translate('challenge.untitled')}
           </p>
           <p className='challenge-where'>{translate('challenge.atTheTable')}</p>
         </>

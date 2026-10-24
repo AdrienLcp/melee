@@ -47,6 +47,16 @@ a typed one carries the typed text, two rounds of an evening never deal the
 same line, and no seat's or wall's transcript carries the line before its
 round opens (step 3's `nextChallenge`).
 
+**Done, with step 3.** The challenge arm's `text` is `labels: ChallengeLabels |
+null` (a typed line is the same text under each locale; `null` only once the
+bank is spent), so `PROTOCOL_VERSION` goes to 48 — an old tab cannot parse the
+arm. The deal lives in `infrastructure/questions/challenge-dealer.ts`:
+`keepChallengeAhead` runs as a room is created and after every settings frame,
+`takeChallengeLine` as an untyped round opens (marks it played, deals the next
+from another category), `redealChallenge` for the host's press. A blank typed
+line deals. `room.nextChallenge` is read through `?? null`, since a room stored
+before it reads `undefined`.
+
 ## Step 3 — the console
 
 The server deals the next line **ahead**, between rounds, and carries it on the
@@ -60,6 +70,16 @@ game's setup.
 Verified in a browser, muted: a challenge opened with an empty field shows a
 dealt line on the wall and on a phone in another locale, *Draw* fills the field,
 a typed line wins.
+
+**Done.** *Another* is the die beside the field (`challenge.line.redeal`), as
+the inner clock's count has; it redeals rather than filling the field, since
+the placeholder already is the line. The field became a growing text area
+(`TextField`'s new `isMultiline`, Enter inserting nothing): a dealt line
+scrolled out of a one-line input before the host could read it. The festive
+switch sits in the challenge's entry settings; turning it off redeals a festive
+line held ahead. Seen muted: dealt placeholder and redeal on the console, the
+line on a paired wall in English and on a seat in French, a typed line
+winning on both, the switch remembered in `melee:host-setup`.
 
 ## Step 4 — reflex takes the pale ink
 

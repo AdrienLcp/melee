@@ -17,6 +17,7 @@ import {
   type RoomEngine
 } from '@/infrastructure/messaging/room-engine'
 import { wakeRoom } from '@/infrastructure/messaging/round-conductor'
+import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 
 /**
  * Every room this process holds, in memory and nowhere else: a restart or a
@@ -53,6 +54,7 @@ export const openRoomInProcess = ({
     })
   )
 
+  keepChallengeAhead(engine.room)
   engines.set(code, engine)
   commitRoom(engine)
 

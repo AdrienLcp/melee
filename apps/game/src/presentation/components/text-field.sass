@@ -20,7 +20,8 @@
     //
     // Never taller than the button that submits it: an input that outweighs its
     // own action is what makes a form read as a wall of slabs.
-    .react-aria-Input
+    .react-aria-Input,
+    .react-aria-TextArea
       @include typography.title
 
       background: var(--card)
@@ -44,7 +45,14 @@
       &::placeholder
         color: var(--card-muted)
 
-    &[data-invalid] .react-aria-Input
+    // Grows with its line; `rows` is the floor where `field-sizing` is unknown.
+    .react-aria-TextArea
+      field-sizing: content
+      padding-block: var(--space-xs)
+      resize: none
+
+    &[data-invalid] .react-aria-Input,
+    &[data-invalid] .react-aria-TextArea
       box-shadow: var(--shadow-field), inset 0 0 0 var(--stroke-bold) var(--danger)
 
     .react-aria-Text[slot='description']

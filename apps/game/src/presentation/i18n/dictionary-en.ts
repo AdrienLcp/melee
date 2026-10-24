@@ -220,14 +220,20 @@ export const EN_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Played at the table — the host calls the placings.',
+    festive: {
+      hint: 'Something that glitters, wrapping paper, a bauble.',
+      label: 'Festive challenges'
+    },
     home: {
       description:
         'Cut a vegetable into two halves of the same weight, stack the most raclette potatoes: the challenge is played at the table, away from every screen. The host puts it up on the wall, says who came first, second and third, and the points land on the board like any round’s.'
     },
     line: {
-      description: 'Left empty, you say it aloud.',
+      aloud: 'Left empty, you say it aloud.',
+      description: 'Left empty, the line shown is played — or type your own.',
       label: 'The challenge',
-      placeholder: 'Stack the most potatoes'
+      placeholder: 'Stack the most potatoes',
+      redeal: 'Deal another line'
     },
     name: 'Challenge',
     places: {
@@ -362,7 +368,7 @@ export const EN_DICTIONARY = defineDictionary({
     evening: {
       add: 'Add a game',
       challengeLine:
-        'Its line is written when its round comes up, beside the press that opens it.',
+        'Its line is dealt when its round comes up: keep it, deal another or write your own.',
       chance: {
         among: 'among {games}, never the same game twice in a row',
         endless: 'Then by chance, until you stop',

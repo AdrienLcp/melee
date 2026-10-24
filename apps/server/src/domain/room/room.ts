@@ -1,3 +1,7 @@
+import type {
+  ChallengeCategory,
+  ChallengeLabels
+} from '@melee/protocol/challenge'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
@@ -71,6 +75,13 @@ export type Room = {
   isDuelAsked: boolean
   lastActivityAt: number
   /**
+   * The ready-made line the next challenge round opens on when the host types
+   * none, dealt ahead so the console can read it out first. Never in
+   * `playedContentIds` until a round opens on it, and `null` while nothing has
+   * been dealt or the bank is spent.
+   */
+  nextChallenge: DealtChallengeLine | null
+  /**
    * The line-up entry each round of this game opened on, as it stood then —
    * kept by value because an edit to the line-up shifts its indices. Emptied
    * by a restart, so *play again* deals the evening afresh.
@@ -99,6 +110,13 @@ export type Room = {
    * the playable `HostTrack` is resolved when a round starts, not here.
    */
   trackPool: TrackIdentity[]
+}
+
+/** A ready-made line as the bank deals it: its category is what the next deal varies from. */
+export type DealtChallengeLine = {
+  category: ChallengeCategory
+  id: string
+  labels: ChallengeLabels
 }
 
 export type Participant = {
@@ -240,8 +258,11 @@ export type Round = {
     | { kind: 'buzzer' }
     | {
         kind: 'challenge'
-        /** What the host typed as the round was launched; `null` for one nobody pressed for. */
-        text: string | null
+        /**
+         * The line in every locale — a typed one is the same text under each —
+         * and `null` once the bank is spent and nothing was typed.
+         */
+        labels: ChallengeLabels | null
       }
     | {
         kind: 'innerclock'

@@ -84,6 +84,10 @@ import { nowMs } from '@/infrastructure/clock'
 import { newPlayerId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
+import {
+  keepChallengeAhead,
+  redealChallenge
+} from '@/infrastructure/questions/challenge-dealer'
 
 import type { Connection, Outbound, Socket } from './connection'
 import {
@@ -645,6 +649,10 @@ const dispatch = ({
         isDuel: message.isDuel ?? false,
         outbound
       })
+      break
+    }
+    case 'host.redealChallenge': {
+      redeal(outbound, engine)
       break
     }
     case 'host.endGame': {
@@ -1228,6 +1236,30 @@ const advance = ({
   void beginRound(engine, { challengeText, innerclockTargetSeconds })
 }
 
+const redeal = (outbound: Outbound, engine: RoomEngine): void => {
+  if (engine.room.settings.game?.kind !== 'challenge') {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a challenge deals a line'
+    })
+
+    return
+  }
+
+  if (!redealChallenge(engine.room)) {
+    sendError(outbound, {
+      code: 'no_content_available',
+      fatal: false,
+      message: 'No other line is left to deal'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
 const end = (engine: RoomEngine): void => {
   finishGame(engine.room, engine.now())
   publishRoom(engine)
@@ -1491,6 +1523,7 @@ const reconfigure = (
   updateSettings(room, followedByLineUp(settings), now)
   fitTeamsToSettings(room)
   discardPoolIfStale({ previousGame, room })
+  keepChallengeAhead(room)
   unseatConsolesThatMustJudge(engine)
 
   // `revealed` sits outside `isRoundInPlay`, so the hold is the one setting a

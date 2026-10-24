@@ -183,8 +183,10 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       )}
       {challengeLine !== null && (
         <ChallengeLineField
+          dealtLine={challengeLine.dealtLine}
           isDisabled={!isLive}
           onChange={challengeLine.onChange}
+          onRedeal={challengeLine.onRedeal}
           value={challengeLine.text}
         />
       )}

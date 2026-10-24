@@ -1,0 +1,30 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The field and its die on one line, the die standing at the field's foot
+  // so it lines up with the input rather than with the label.
+  .challenge-line-field
+    align-items: end
+    display: grid
+    gap: var(--space-2xs) var(--space-xs)
+    grid-template-columns: minmax(0rem, 1fr) auto
+
+    // Square, and a die rather than a word: the label is its accessible name.
+    .button.redeal
+      justify-content: center
+      padding-inline: 0rem
+      width: var(--control-height)
+
+      svg
+        flex: none
+        block-size: 1.5em
+        inline-size: 1.5em
+
+    .description
+      @include typography.caption
+
+      color: var(--ink-muted)
+      grid-column: 1 / -1
+      // Wraps under the field rather than widening the field's column.
+      min-width: 100%
+      width: 0rem

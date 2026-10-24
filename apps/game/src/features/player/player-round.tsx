@@ -90,7 +90,7 @@ import {
   reflexOutcome,
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 import {
   buzzBlockerKey,
@@ -250,7 +250,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   onWriteLine,
   view
 }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   const round = view.round
   const isPickingTeam =
     view.settings.teams.kind === 'chosen' &&
@@ -453,7 +453,9 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       <section className='player-round notice'>
         <NoticeCard
           detail={translate('challenge.atTheTable')}
-          title={round.content.text ?? translate('challenge.untitled')}
+          title={
+            round.content.labels?.[locale] ?? translate('challenge.untitled')
+          }
         />
       </section>
     )

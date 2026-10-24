@@ -27,6 +27,7 @@ import {
   type JoinedSocket,
   receiveFrame
 } from '@/infrastructure/messaging/socket-handler'
+import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
 
 const ROOM_KEY = 'room'
 
@@ -122,6 +123,7 @@ export class RoomObject extends DurableObject<Env> {
       })
     )
 
+    keepChallengeAhead(engine.room)
     this.engine = engine
     commitRoom(engine)
 

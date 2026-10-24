@@ -1,10 +1,13 @@
 import type { GameSettings } from '@melee/protocol/game'
 import type { WorldmapPlaces } from '@melee/protocol/worldmap'
 
-import type { Round, WorldmapRoundTarget } from '@/domain/room/room'
+import type { Room, Round, WorldmapRoundTarget } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
 import { releaseAbandonedSeats } from '@/domain/room/room-service'
-import { challengeContent } from '@/domain/round/challenge-round'
+import {
+  challengeContent,
+  typedChallengeLabels
+} from '@/domain/round/challenge-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   matchsticksContent,
@@ -33,6 +36,7 @@ import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { isOutage, NOTHING_PLAYABLE } from '@/infrastructure/music/music-source'
+import { takeChallengeLine } from '@/infrastructure/questions/challenge-dealer'
 import { drawCity, playedCityId } from '@/infrastructure/questions/city-bank'
 import {
   drawCountry,
@@ -98,6 +102,7 @@ const servedContent = ({
   challengeText,
   game,
   innerclockTargetSeconds,
+  room,
   slateKeys
 }: {
   challengeText: string | undefined
@@ -106,13 +111,16 @@ const servedContent = ({
     { kind: 'buzzer' | 'challenge' | 'innerclock' | 'reflex' | 'slate' }
   >
   innerclockTargetSeconds: number | undefined
+  room: Room
   slateKeys: readonly (string | null)[]
 }): Round['content'] => {
   switch (game.kind) {
     case 'buzzer':
       return { kind: 'buzzer' }
     case 'challenge':
-      return challengeContent(challengeText)
+      return challengeContent(
+        typedChallengeLabels(challengeText) ?? takeChallengeLine(room)
+      )
     case 'innerclock':
       return innerclockContent(innerclockTargetSeconds)
     case 'reflex':
@@ -202,6 +210,7 @@ export const beginRound = async (
         challengeText,
         game,
         innerclockTargetSeconds,
+        room,
         slateKeys
       }),
       id: newRoundId(),

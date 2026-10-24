@@ -329,6 +329,18 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
+      {game?.kind === 'challenge' && (
+        <Switch
+          description={translate('challenge.festive.hint')}
+          isDisabled={isDisabled}
+          isSelected={game.hasFestiveLines}
+          label={translate('challenge.festive.label')}
+          onChange={(hasFestiveLines) => {
+            onChange({ ...settings, game: { ...game, hasFestiveLines } })
+          }}
+        />
+      )}
+
       {game?.kind === 'slate' && !isSheetOnStage && (
         <NumberField
           className='item-count'

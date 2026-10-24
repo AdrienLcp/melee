@@ -224,6 +224,7 @@ const seatedHostView = (question: Question) => ({
   currentContent: { kind: 'quiz', question: null },
   isWallConnected: true,
   lineUpPlayed: [],
+  nextChallenge: null,
   remainingPoolSize: 40
 })
 

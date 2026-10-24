@@ -16,7 +16,11 @@ import type { SlateWall } from './use-slate-wall'
 
 /** The line a challenge round opens on, held on the console until the press that sends it. */
 export type ChallengeLine = {
+  /** The line dealt ahead, in this screen's language; `null` once the bank is spent. */
+  dealtLine: string | null
   onChange: (text: string) => void
+  /** Asks the server for another line in place of the one dealt. */
+  onRedeal: () => void
   text: string
 }
 

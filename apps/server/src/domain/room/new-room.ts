@@ -35,6 +35,7 @@ export const newRoom = ({
     hostToken,
     isDuelAsked: false,
     lastActivityAt: now,
+    nextChallenge: null,
     openedEntries: [],
     phase: 'lobby',
     playedContentIds: new Set(),

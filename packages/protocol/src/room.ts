@@ -5,6 +5,7 @@ import {
   boardSettingsSchema,
   DEFAULT_BOARD_SETTINGS
 } from './board'
+import { challengeLabelsSchema } from './challenge'
 import { gameSettingsSchema } from './game'
 import {
   nicknameSchema,
@@ -341,12 +342,13 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('challenge'),
     /**
-     * What the table is asked to do, public from the first frame: it is the
-     * question, and the answer happens at the table where no screen sees it.
-     * `null` for a round nobody typed one for — one the reveal hold opened —
-     * which the host says aloud.
+     * What the table is asked to do, in every locale so each screen reads its
+     * own; public from the first frame, because it is the question and the
+     * answer happens at the table where no screen sees it. A line the host
+     * typed is the same text under every locale. `null` only once the bank is
+     * spent and nothing was typed, which the host says aloud.
      */
-    text: z.string().nullable()
+    labels: challengeLabelsSchema.nullable()
   }),
   z.object({
     /**
@@ -702,6 +704,13 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
   lineUpPlayed: z
     .array(z.number().int().nonnegative())
     .max(LINE_UP_MAX_ENTRIES),
+  /**
+   * The ready-made line the next challenge round opens on when the host types
+   * none, dealt ahead so the console can show it. The host's alone — on the
+   * wall or a seat it would spoil the round — and `null` once the bank is
+   * spent.
+   */
+  nextChallenge: challengeLabelsSchema.nullable(),
   remainingPoolSize: z.number().int().nonnegative(),
   /**
    * The seat this console took, and `null` while it is only running the room.

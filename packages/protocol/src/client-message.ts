@@ -194,7 +194,8 @@ export const updateSettingsMessageSchema = z.object({
  * reloads mid-game has nothing to send again. Ignored by every other game.
  *
  * `challengeText` is what a challenge round asks the table to do, typed on the
- * console as it is launched. Ignored by every other game.
+ * console as it is launched; absent or empty, the server deals the line it
+ * holds ahead (`nextChallenge`). Ignored by every other game.
  *
  * `innerclockTargetSeconds` is how long an inner clock round asks the table to
  * count; absent, the server draws one. Ignored by every other game.
@@ -368,11 +369,19 @@ export const nextRoundMessageSchema = z.object({
   /**
    * Asks for the next round to be a duel: one seat from each of two teams,
    * drawn so every seat duels before any duels twice. Absent, everyone plays
-   * it â€” a duel is asked for one round at a time, so the reveal hold never
+   * it — a duel is asked for one round at a time, so the reveal hold never
    * opens one.
    */
   isDuel: z.boolean().optional(),
   type: z.literal('host.nextRound')
+})
+
+/**
+ * Asks for another ready-made line in place of the one dealt ahead — the
+ * console's *Another*. Refused outside a challenge game.
+ */
+export const redealChallengeMessageSchema = z.object({
+  type: z.literal('host.redealChallenge')
 })
 
 export const endGameMessageSchema = z.object({
@@ -429,6 +438,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   adjustScoreMessageSchema,
   awardPlacesMessageSchema,
   awardTeamsMessageSchema,
+  redealChallengeMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -483,6 +493,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   adjustScoreMessageSchema,
   awardPlacesMessageSchema,
   awardTeamsMessageSchema,
+  redealChallengeMessageSchema,
   nextRoundMessageSchema,
   endGameMessageSchema,
   playAgainMessageSchema,
@@ -522,6 +533,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.adjustScore',
   'host.awardPlaces',
   'host.awardTeams',
+  'host.redealChallenge',
   'host.nextRound',
   'host.endGame',
   'host.playAgain',

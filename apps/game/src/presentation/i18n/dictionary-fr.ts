@@ -199,14 +199,21 @@ export const FR_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Ça se joue à table — l’hôte annonce le classement.',
+    festive: {
+      hint: 'Quelque chose qui brille, du papier cadeau, une boule de sapin.',
+      label: 'Défis de fêtes'
+    },
     home: {
       description:
         'Couper un légume en deux moitiés du même poids, empiler le plus de pommes de terre à raclette : le défi se joue à table, loin des écrans. L’hôte l’affiche au mur, dit qui finit premier, deuxième et troisième, et les points arrivent au tableau comme ceux de n’importe quelle manche.'
     },
     line: {
-      description: 'Vide, tu l’annonces à voix haute.',
+      aloud: 'Vide, tu l’annonces à voix haute.',
+      description:
+        'Vide, c’est le défi affiché qui se joue — ou écris le tien.',
       label: 'Le défi',
-      placeholder: 'Empiler le plus de pommes de terre'
+      placeholder: 'Empiler le plus de pommes de terre',
+      redeal: 'Tirer un autre défi'
     },
     name: 'Défi',
     places: {
@@ -336,7 +343,7 @@ export const FR_DICTIONARY = defineDictionary({
     evening: {
       add: 'Ajouter un jeu',
       challengeLine:
-        'Sa phrase s’écrit quand sa manche arrive, à côté du bouton qui la lance.',
+        'Son défi est tiré quand sa manche arrive : garde-le, tires-en un autre ou écris le tien.',
       chance: {
         among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',

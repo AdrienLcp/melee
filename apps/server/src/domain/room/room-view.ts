@@ -61,6 +61,7 @@ export const toHostView = ({
     lineUp: room.settings.lineUp,
     opened: room.openedEntries
   }),
+  nextChallenge: room.nextChallenge?.labels ?? null,
   remainingPoolSize: room.trackPool.length,
   youId: seatId
 })
@@ -365,7 +366,7 @@ const toContentView = ({
   }
 
   if (content.kind === 'challenge') {
-    return { kind: 'challenge', text: content.text }
+    return { kind: 'challenge', labels: content.labels }
   }
 
   if (content.kind === 'innerclock') {

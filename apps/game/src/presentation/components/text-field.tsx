@@ -6,7 +6,8 @@ import {
   Label,
   TextField as ReactAriaTextField,
   type TextFieldProps as ReactAriaTextFieldProps,
-  Text
+  Text,
+  TextArea
 } from 'react-aria-components'
 
 import './text-field.sass'
@@ -25,6 +26,12 @@ type TextFieldProps = ReactAriaTextFieldProps & {
    */
   enterKeyHint?: 'done' | 'go' | 'next' | 'send'
   errorMessage?: string
+  /**
+   * Wraps a long line onto as many rows as it takes rather than scrolling it
+   * out of sight, for a line meant to be read whole before it is sent. Enter
+   * still inserts nothing: the value stays one line.
+   */
+  isMultiline?: boolean
   label: string
   placeholder?: string
 }
@@ -36,6 +43,7 @@ export const TextField: React.FC<TextFieldProps> = ({
   enterKeyHint,
   errorMessage,
   isInvalid = false,
+  isMultiline = false,
   label,
   placeholder,
   ...props
@@ -46,15 +54,32 @@ export const TextField: React.FC<TextFieldProps> = ({
     isInvalid={isInvalid}
   >
     <Label>{label}</Label>
-    <Input
-      autoCapitalize={autoCapitalize}
-      enterKeyHint={enterKeyHint}
-      placeholder={placeholder}
-      spellCheck={false}
-    />
+    {isMultiline ? (
+      <TextArea
+        autoCapitalize={autoCapitalize}
+        enterKeyHint={enterKeyHint}
+        onKeyDown={refuseLineBreak}
+        placeholder={placeholder}
+        rows={2}
+        spellCheck={false}
+      />
+    ) : (
+      <Input
+        autoCapitalize={autoCapitalize}
+        enterKeyHint={enterKeyHint}
+        placeholder={placeholder}
+        spellCheck={false}
+      />
+    )}
     {description !== undefined && !isInvalid && (
       <Text slot='description'>{description}</Text>
     )}
     <FieldError>{errorMessage}</FieldError>
   </ReactAriaTextField>
 )
+
+const refuseLineBreak = (event: React.KeyboardEvent): void => {
+  if (event.key === 'Enter') {
+    event.preventDefault()
+  }
+}

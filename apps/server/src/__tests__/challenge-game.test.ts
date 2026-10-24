@@ -1,17 +1,26 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { ChallengeFinisher } from '@melee/protocol/challenge'
+import type {
+  ChallengeFinisher,
+  ChallengeLabels
+} from '@melee/protocol/challenge'
 import { DEFAULT_CHALLENGE_SETTINGS } from '@melee/protocol/game'
+import type { HostToken } from '@melee/protocol/identifiers'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
 import { POINT } from '@melee/protocol/scoring'
-import type {
-  HostServerMessage,
-  PlayerServerMessage
+import {
+  type HostServerMessage,
+  type PlayerServerMessage,
+  type WallServerMessage,
+  wallServerMessageSchema
 } from '@melee/protocol/server-message'
+import { PROTOCOL_VERSION } from '@melee/protocol/version'
+
+import { bankedChallengeLines } from '@/infrastructure/questions/challenge-bank'
 
 import { startRoomHarness } from './node-room-harness'
 import {
@@ -120,8 +129,14 @@ describe('a challenge played at the table', () => {
   it('[challenge] puts what the host typed on every screen', async () => {
     const { anna, host } = await openChallenge()
 
-    expect(challengeRound(playerView(anna))?.text).toBe(POTATOES)
-    expect(challengeRound(hostView(host))?.text).toBe(POTATOES)
+    expect(challengeRound(playerView(anna))?.labels).toEqual({
+      en: POTATOES,
+      fr: POTATOES
+    })
+    expect(challengeRound(hostView(host))?.labels).toEqual({
+      en: POTATOES,
+      fr: POTATOES
+    })
     expect(hostView(host)?.currentContent).toEqual({ kind: 'challenge' })
   })
 
@@ -293,5 +308,236 @@ describe('a challenge between teams on a track', () => {
     expect(errorsIn(host).map((error) => error.code)).toEqual([
       'invalid_message'
     ])
+  })
+})
+
+const categoryOf = (labels: ChallengeLabels | null | undefined) =>
+  bankedChallengeLines().find((line) => line.labels.en === labels?.en)?.category
+
+const pairedWall = async ({
+  code,
+  hostToken
+}: {
+  code: string
+  hostToken: HostToken
+}): Promise<Peer<WallServerMessage>> => {
+  const wall = await harness.connect(code, wallServerMessageSchema)
+
+  wall.send({
+    hostToken,
+    protocolVersion: PROTOCOL_VERSION,
+    role: 'wall',
+    type: 'hello'
+  })
+  await waitFor(() => wall.frames.length > 0, 'the wall to be welcomed')
+
+  return wall
+}
+
+/** A room that deals every line, with its wall and one seat. */
+const openDealtChallenge = async (settings: RoomSettings = CHALLENGE_GAME) => {
+  const { code, host, hostToken } = await harness.openRoom(settings)
+  const wall = await pairedWall({ code, hostToken })
+  const anna = await harness.seat({ code, nickname: 'Anna' })
+
+  await waitFor(
+    () => (hostView(host)?.nextChallenge ?? null) !== null,
+    'a line dealt ahead'
+  )
+
+  return { anna, host, wall }
+}
+
+type DealtRound = {
+  ahead: ChallengeLabels | null
+  dealt: ChallengeLabels | null
+}
+
+/**
+ * Opens each round with nothing typed and places nobody, so it reveals. What
+ * each round opened on, beside what the console held ahead of it.
+ */
+const playDealtRounds = async ({
+  count,
+  host
+}: {
+  count: number
+  host: Peer<HostServerMessage>
+}): Promise<DealtRound[]> => {
+  const rounds: DealtRound[] = []
+
+  for (let index = 0; index < count; index += 1) {
+    const ahead = hostView(host)?.nextChallenge ?? null
+    const previousId = hostView(host)?.round?.id
+
+    host.send(
+      index === 0 ? { type: 'host.startRound' } : { type: 'host.nextRound' }
+    )
+    await waitFor(
+      () =>
+        hostView(host)?.phase === 'playing' &&
+        hostView(host)?.round?.id !== previousId,
+      'the next challenge'
+    )
+    rounds.push({
+      ahead,
+      dealt: challengeRound(hostView(host))?.labels ?? null
+    })
+    await awardPlaces({
+      host,
+      places: [],
+      roundId: hostView(host)?.round?.id ?? ''
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+  }
+
+  return rounds
+}
+
+const redeal = async (host: Peer<HostServerMessage>) => {
+  const before = hostView(host)?.nextChallenge
+
+  host.send({ type: 'host.redealChallenge' })
+  await waitFor(
+    () => hostView(host)?.nextChallenge?.en !== before?.en,
+    'another line'
+  )
+}
+
+describe('a challenge dealt from the bank', () => {
+  it('[challenge] opens a round left empty on the line dealt ahead, in every locale', async () => {
+    const { anna, host } = await openDealtChallenge()
+    const [round] = await playDealtRounds({ count: 1, host })
+
+    expect(round?.dealt).toEqual(round?.ahead)
+    expect(categoryOf(round?.dealt)).toBeDefined()
+    expect(round?.dealt?.fr).not.toBe(round?.dealt?.en)
+    expect(challengeRound(playerView(anna))?.labels).toEqual(round?.dealt)
+  })
+
+  it('[challenge] reads a blank typed line as none, and deals', async () => {
+    const { host } = await openDealtChallenge()
+    const ahead = hostView(host)?.nextChallenge
+
+    host.send({ challengeText: '   ', type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
+
+    expect(challengeRound(hostView(host))?.labels).toEqual(ahead)
+  })
+
+  it('[challenge] keeps the line dealt ahead for later when the host types one', async () => {
+    const { host } = await openDealtChallenge()
+    const ahead = hostView(host)?.nextChallenge
+
+    host.send({ challengeText: POTATOES, type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
+
+    expect(challengeRound(hostView(host))?.labels?.en).toBe(POTATOES)
+    expect(hostView(host)?.nextChallenge).toEqual(ahead)
+  })
+
+  it('[challenge] never deals one line twice in an evening, and varies the category', async () => {
+    const { host } = await openDealtChallenge()
+    const rounds = await playDealtRounds({ count: 6, host })
+    const categories = rounds.map((round) => categoryOf(round.dealt))
+
+    expect(new Set(rounds.map((round) => round.dealt?.en)).size).toBe(6)
+    expect(
+      categories.filter(
+        (category, index) => index > 0 && category === categories[index - 1]
+      )
+    ).toEqual([])
+  })
+
+  it('[challenge] deals no festive line unless the host asks', async () => {
+    const { host } = await openDealtChallenge()
+
+    for (let attempt = 0; attempt < 20; attempt += 1) {
+      await redeal(host)
+      expect(categoryOf(hostView(host)?.nextChallenge)).not.toBe('festive')
+    }
+  })
+
+  it('[challenge] redeals a festive line held ahead once the host turns them off', async () => {
+    const festiveGame = { ...DEFAULT_CHALLENGE_SETTINGS, hasFestiveLines: true }
+    const { host } = await openDealtChallenge({
+      ...CHALLENGE_GAME,
+      game: festiveGame,
+      lineUp: [festiveGame]
+    })
+
+    for (
+      let attempt = 0;
+      attempt < 60 && categoryOf(hostView(host)?.nextChallenge) !== 'festive';
+      attempt += 1
+    ) {
+      await redeal(host)
+    }
+    expect(categoryOf(hostView(host)?.nextChallenge)).toBe('festive')
+
+    host.send({ settings: CHALLENGE_GAME, type: 'host.updateSettings' })
+    await waitFor(
+      () => categoryOf(hostView(host)?.nextChallenge) !== 'festive',
+      'a line that is not festive'
+    )
+  })
+
+  it('[challenge] never shows a seat or the wall a line before its round opens', async () => {
+    const { anna, host, wall } = await openDealtChallenge()
+    const rounds = await playDealtRounds({ count: 3, host })
+    const stillAhead = hostView(host)?.nextChallenge?.fr ?? ''
+    const transcripts = [anna.frames, wall.frames].map((frames) =>
+      frames.map(({ raw }) => raw)
+    )
+
+    expect(stillAhead).not.toBe('')
+
+    for (const raws of transcripts) {
+      expect(raws.join('\n')).not.toContain('nextChallenge')
+      expect(raws.join('\n')).not.toContain(stillAhead)
+
+      for (const { dealt } of rounds) {
+        const line = dealt?.fr ?? ''
+        const firstShown = raws.findIndex((raw) => raw.includes(line))
+        const roundOpened = raws.findIndex(
+          (raw) => raw.includes(line) && raw.includes('"countdown"')
+        )
+
+        expect(firstShown).toBeGreaterThan(-1)
+        expect(firstShown).toBe(roundOpened)
+      }
+    }
+  })
+
+  it('[challenge] deals another line ahead on request, and refuses a player', async () => {
+    const { anna, host } = await openDealtChallenge()
+    const before = hostView(host)?.nextChallenge
+
+    await redeal(host)
+    expect(categoryOf(hostView(host)?.nextChallenge)).not.toBe(
+      categoryOf(before)
+    )
+
+    anna.send({ type: 'host.redealChallenge' })
+    await waitFor(() => errorsIn(anna).length > 0, 'the refusal')
+    expect(errorsIn(anna).map((error) => error.code)).toEqual([
+      'host_only_action'
+    ])
+  })
+
+  it('[challenge] refuses a redeal outside a challenge', async () => {
+    const { host } = await harness.openRoom({
+      ...CHALLENGE_GAME,
+      game: { kind: 'buzzer', locksOutOnMiss: true },
+      lineUp: [{ kind: 'buzzer', locksOutOnMiss: true }]
+    })
+
+    host.send({ type: 'host.redealChallenge' })
+    await waitFor(() => errorsIn(host).length > 0, 'the refusal')
+
+    expect(errorsIn(host).map((error) => error.code)).toEqual([
+      'invalid_message'
+    ])
+    expect(hostView(host)?.nextChallenge).toBeNull()
   })
 })

@@ -1,6 +1,9 @@
 import { Result } from '@adrienlcp/result'
 
-import type { ChallengeFinisher } from '@melee/protocol/challenge'
+import type {
+  ChallengeFinisher,
+  ChallengeLabels
+} from '@melee/protocol/challenge'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { Award } from '@melee/protocol/scoring'
@@ -17,13 +20,20 @@ export type ChallengeRejection = Extract<
   'invalid_message' | 'stale_round' | 'wrong_phase'
 >
 
-/** An empty line is no challenge: the host says that one aloud. */
 export const challengeContent = (
+  labels: ChallengeLabels | null
+): Round['content'] => ({ kind: 'challenge', labels })
+
+/**
+ * A line the host typed was typed in one language, and every screen reads it
+ * as written. `undefined` for an empty one, which is a line left to the deal.
+ */
+export const typedChallengeLabels = (
   text: string | undefined
-): Round['content'] => ({
-  kind: 'challenge',
-  text: text === undefined || text === '' ? null : text
-})
+): ChallengeLabels | undefined =>
+  text === undefined || text.trim() === ''
+    ? undefined
+    : { en: text.trim(), fr: text.trim() }
 
 /**
  * The host's word on who finished where. Sent while the table plays, it pays
