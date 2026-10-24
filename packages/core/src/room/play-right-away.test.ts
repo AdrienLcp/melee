@@ -4,27 +4,12 @@ import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
 
 import { rememberSettings } from './host-preferences'
 import {
-  canPlayRightAway,
   launchesWithHostSeated,
   settingsToPlayRightAway
 } from './play-right-away'
 import { roomSettingsFor } from './room-settings'
 
 const onTheQuiz = roomSettingsFor({ games: ['quiz'], locale: 'fr' })
-
-describe('canPlayRightAway', () => {
-  it('[play-right-away] offers it where a way of answering owes no verdict', () => {
-    expect(canPlayRightAway('blindtest')).toBe(true)
-    expect(canPlayRightAway('quiz')).toBe(true)
-    expect(canPlayRightAway('reflex')).toBe(true)
-    expect(canPlayRightAway('matchsticks')).toBe(true)
-  })
-
-  it('[play-right-away] withholds it from the games their host judges', () => {
-    expect(canPlayRightAway('buzzer')).toBe(false)
-    expect(canPlayRightAway('slate')).toBe(false)
-  })
-})
 
 describe('settingsToPlayRightAway', () => {
   it('[play-right-away] opens on the setup the host left the game in', () => {

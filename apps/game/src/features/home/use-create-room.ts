@@ -22,16 +22,22 @@ import {
 
 type RoomOpening =
   | { error: PlainTranslationKey; status: 'refused' }
-  | { seatAs: Nickname | null; status: 'opening' }
+  | {
+      games: readonly ShelvedGame[]
+      seatAs: Nickname | null
+      status: 'opening'
+    }
   | { status: 'idle' }
 
 /**
  * The one trip to the network every front door makes, and the console it lands
- * on. It carries the game a game's own page opens for — none from home, where
- * the lobby asks — because that host has already answered the question.
+ * on. It carries the game a spine or a game's own page opens for — none from
+ * the home tray, where the lobby asks — because that host has already answered
+ * the question.
  *
- * It is one state and not a boolean beside an error, because a game's own page
- * draws two presses on it and the spinner has to appear on the one pressed.
+ * It is one state and not a boolean beside an error, because the home page
+ * draws a press per game beside its tray and the spinner has to appear on the
+ * one pressed.
  * That is also what closes the second press: a room already opening refuses to
  * open another.
  */
@@ -65,7 +71,7 @@ export const useCreateRoom = () => {
         return
       }
 
-      setOpening({ seatAs, status: 'opening' })
+      setOpening({ games, seatAs, status: 'opening' })
 
       const created = await createRoom({
         games,
@@ -104,6 +110,8 @@ export const useCreateRoom = () => {
         games.length === 1 ? playRightAwayNavigation : undefined
       )
     },
+    /** The games the table being opened plays, or `null` when none is opening. */
+    openingFor: opening.status === 'opening' ? opening.games : null,
     /**
      * Every cause is the room service rather than the game — a rate limit, a
      * dead network — so one message serves whichever press met it.

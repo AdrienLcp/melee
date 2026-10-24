@@ -644,7 +644,6 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   join: {
-    divider: 'or',
     host: {
       action: 'Open a table'
     },
@@ -661,8 +660,6 @@ export const EN_DICTIONARY = defineDictionary({
       action: 'Play right away',
       as: 'As {nickname}',
       change: 'Change',
-      judged:
-        'Here the host judges every answer, so the table waits for its players.',
       name: 'What should we call you?',
       starting: 'Setting the table…'
     },

@@ -14,8 +14,8 @@ import './home-page.sass'
  * The product's front door, and the one screen that belongs to no game. Three
  * things and nothing else: the code box for whoever was told four characters,
  * the press that opens a table — which game it plays is chosen in the lobby,
- * while the others join — and the shelf, each game a way to its own page and
- * its rules. The screens a room may add are in the menu.
+ * while the others join — and the shelf, each spine a table opened on its
+ * game. The screens a room may add are in the menu.
  */
 export const HomePage: React.FC = () => {
   const { locale } = useI18n()
@@ -40,7 +40,7 @@ export const HomePage: React.FC = () => {
 
       <HomeTray createRoom={createRoom} />
 
-      <GameShelf />
+      <GameShelf createRoom={createRoom} />
     </Main>
   )
 }

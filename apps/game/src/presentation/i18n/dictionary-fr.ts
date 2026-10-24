@@ -603,7 +603,6 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   join: {
-    divider: 'ou',
     host: {
       action: 'Ouvrir une table'
     },
@@ -615,7 +614,6 @@ export const FR_DICTIONARY = defineDictionary({
       action: 'Jouer tout de suite',
       as: 'Sous le nom de {nickname}',
       change: 'Changer',
-      judged: 'Ici, l’hôte juge chaque réponse : la table attend ses joueurs.',
       name: 'On t’appelle comment ?',
       starting: 'On installe la table…'
     },

@@ -75,6 +75,16 @@
       transition: translate var(--transition-fast, 0s) var(--ease-out)
       width: 1.5rem
 
+    > .spinner
+      grid-column: 2
+      grid-row: 1 / span 2
+      height: 1.25rem
+      margin: 0
+      width: 1.25rem
+
+    &[data-disabled]
+      cursor: progress
+
     @media (hover: hover) and (pointer: fine)
       &[data-hovered] > svg
         translate: var(--space-2xs) 0

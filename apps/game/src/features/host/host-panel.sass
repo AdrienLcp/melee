@@ -64,9 +64,20 @@
         font-size: clamp(var(--text-l), calc(var(--stage-unit) * 3), var(--text-xl))
 
   // On a desk: the panel stands beside the stage on paper, the stage taking
-  // what is left. The document still scrolls a long stage, so the panel holds
-  // to the viewport and scrolls inside itself.
+  // what is left, and each scrolls inside itself. The document never does:
+  // its scrollbar, and the gutter `globals` reserves for it, would stand
+  // between the panel and the window edge.
   @include layout.desk
+    html:has(.host-desk)
+      overflow: hidden
+      scrollbar-gutter: auto
+
+    .host-desk > .host-console-page
+      height: 100dvh
+      overflow: hidden auto
+      overscroll-behavior: contain
+      scrollbar-gutter: stable
+
     .host-desk
       display: grid
       grid-template-columns: minmax(0, 1fr) var(--host-panel-width)

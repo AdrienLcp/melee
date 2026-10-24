@@ -1,18 +1,7 @@
-import type { GameKind } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 
-import { answerModesFor } from './game-capabilities'
 import { isJudgedByHost, isRoomJudgedByHost, modeOfferedBy } from './game-modes'
 import { type HostPreferences, restoredSettings } from './host-preferences'
-
-/**
- * Whether a game can open with the person who opened it already playing. It
- * can wherever some way of answering it owes nobody a verdict: the bare buzzer
- * and the slate are judged by their host under every mode they offer, so a
- * table there waits for players before it starts.
- */
-export const canPlayRightAway = (game: GameKind): boolean =>
-  answerModesFor(game).some((mode) => !isJudgedByHost({ game, mode }))
 
 /**
  * The room a host who pressed *play right away* starts on: their remembered

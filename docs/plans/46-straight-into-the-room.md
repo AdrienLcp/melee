@@ -1,6 +1,6 @@
 # 46 — Straight into the room
 
-**To do.** Asked 24/10/2026. Two fixes to what a host sees first: a game
+**Done** 24/10/2026. Asked 24/10/2026. Two fixes to what a host sees first: a game
 clicked on the home page opens its room, and the console's side panel stops
 leaving page background around it.
 
@@ -40,3 +40,22 @@ tokens, both palettes.
 spine opens a room on its game; a game page has no nickname field; the panel on
 the right and on the left, wide, with a scrolling tab, shows no strip and a
 scrollbar on the panel's colours, light and dark.
+
+## What landed
+
+- A plain press on a spine opens a room on that game through the home page's
+  one `useCreateRoom`, which now records the games it is opening for
+  (`openingFor`), so the spinner lands on the spine pressed and the tray's
+  press stays still. A modified click still follows the `href` to the game's
+  page.
+- A game page has one door, *Open a table*. The play-right-away door went with
+  the nickname field, and so did `canPlayRightAway`, its only reader; the
+  console's own *play right away* in the lobby is untouched.
+- **The strip was the root's reserved gutter.** On a desk the console's
+  document no longer scrolls at all: the stage column scrolls inside itself, as
+  the panel already did, so nothing stands between the panel and the window
+  edge on either side. A paper surface (`box-lid.paper`) sets its own
+  `scrollbar-color`, because the root's is inherited already resolved to the
+  board's colours — the same reason the lid redeclares its rules.
+- In passing: the *Host judges* stamp on an unticked game, printed on the
+  socket in dark, was card ink on a dark socket; it now follows its box's ink.

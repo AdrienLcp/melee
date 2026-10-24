@@ -7,10 +7,8 @@ import type { Page } from '@playwright/test'
  * is the exception, not a licence to add test ids.
  */
 export const homePage = (page: Page) => ({
-  /** The blind test's spine on the shelf, a link to the game's own page. */
+  /** The blind test's spine on the shelf: a press opens a room set to it. */
   blindTest: page.getByRole('link', { name: /^Blind test/ }),
-  /** The press on the blind test's own page: a room already set to it. */
-  blindTestTable: page.getByRole('button', { name: 'Open a table' }),
   /** The press on home: a room with nothing chosen yet. */
   createRoom: page.getByRole('button', { name: 'Open a table' })
 })
