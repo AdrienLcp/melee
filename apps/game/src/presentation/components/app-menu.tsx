@@ -28,6 +28,7 @@ import {
   paths,
   useIsCurrentPath,
   useNavigateToLocale,
+  usePathname,
   useRoomCodeParam,
   wallUrlFor
 } from '@/infrastructure/router/navigation'
@@ -53,6 +54,7 @@ import {
   connectionStatusKey
 } from './connection-status'
 import { Disclosure } from './disclosure'
+import { HandOverDoor } from './hand-over-door'
 import { MenuIcon, ScreenIcon } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
@@ -86,6 +88,7 @@ const MENU_MAX_HEIGHT_PX = 520
  * console vouches for it with the token.
  */
 const WallDoors: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
+  const { handOver } = useRoomActions()
   const translate = useTranslate()
   const [code, setCode] = useState('')
   const [outcome, setOutcome] = useState<'failed' | 'idle' | 'paired'>('idle')
@@ -164,6 +167,9 @@ const WallDoors: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           {translate('wall.menu.pair')}
         </Button>
       </Form>
+      {handOver !== null && (
+        <HandOverDoor onOpen={handOver} roomCode={roomCode} />
+      )}
     </div>
   )
 }
@@ -419,6 +425,10 @@ export const AppMenu: React.FC = () => {
   const { setVolume, volume } = useVolume()
   const [build, setBuild] = useState<string | null>(null)
   const trigger = useRef<HTMLButtonElement>(null)
+  // Open on one page only: a console handed over becomes the wall under a menu
+  // still open on the square that handed it, in front of the whole room.
+  const pathname = usePathname()
+  const [openOn, setOpenOn] = useState<string | null>(null)
 
   useMenuWidth(trigger)
 
@@ -447,7 +457,10 @@ export const AppMenu: React.FC = () => {
       </p>
 
       <DialogTrigger
+        isOpen={openOn === pathname}
         onOpenChange={(isOpen) => {
+          setOpenOn(isOpen ? pathname : null)
+
           if (isOpen && build === null) {
             void loadBuild()
           }

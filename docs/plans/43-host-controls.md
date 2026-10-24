@@ -1,6 +1,6 @@
 # 43 — Host controls
 
-**In progress** — steps 1 to 3 done. Asked 24/10/2026. The room's screen never shows
+**In progress** — steps 1 to 4 done. Asked 24/10/2026. The room's screen never shows
 a control, the host's controls are always on a screen only the host sees, in
 one side panel, and the *This screen is the room's* switch goes away.
 
@@ -92,10 +92,18 @@ that.
 
 2. ~~Fix the two gaps above.~~ Done.
 3. ~~One side panel for the host's settings.~~ Done.
-4. **Run the room from my phone**: a QR code and a link in the console's menu
-   that hand the console to another device (it carries the host token, so only
-   the console's menu shows it) and turn the current screen into the wall. Read
-   `docs/realtime-protocol.md` (host token, wall pairing) first.
+4. ~~Run the room from my phone.~~ Done: *Run the table from another screen*,
+   folded under the console menu's wall doors (`HandOverDoor`), unfolds a
+   square and *Copy the link* for `/host/:code#host=<token>`
+   (`handOverUrlFor`). The fragment never reaches a server; the console that
+   opens it keeps the token before its socket opens and wipes it from the
+   address (`useHandedHostToken`), and its token claim displaces this one.
+   Unfolding marks this console as handing over (`handOver` on the room
+   actions), so the `host_already_connected` that follows sends it to
+   `/wall/:code` — the path a console that came from the wall already took —
+   instead of the refusal. The menu closes on any change of page, or it stayed
+   open over the new wall. A seat the old console held stays with its old
+   session.
 5. **Remove the switch** (`menu.roomScreen` in `app-menu.tsx`) once 4 covers
    it; the drawer already went in step 3.
 6. **Home page**: drop the game checkboxes, which duplicate the lobby's picker;

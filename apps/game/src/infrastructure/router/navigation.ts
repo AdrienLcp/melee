@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useEffectEvent, useState } from 'react'
 import {
   generatePath,
   type PathParam,
@@ -13,7 +13,11 @@ import {
   type WallPairingCode,
   wallPairingCodeSchema
 } from '@melee/protocol/http'
-import type { RoomCode } from '@melee/protocol/identifiers'
+import {
+  type HostToken,
+  hostTokenSchema,
+  type RoomCode
+} from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 
 import { normalizeRoomCode } from '@melee/core/room/room-code'
@@ -218,6 +222,43 @@ export const playUrlFor = (code: RoomCode): string =>
  */
 export const wallUrlFor = (code: RoomCode): string =>
   `${location.origin}${wallPathFor(code)}`
+
+const HANDED_TOKEN_KEY = 'host'
+
+/**
+ * The console, handed to whichever device opens it: the room's token rides in
+ * the fragment, which no request carries to a server and no log keeps.
+ */
+export const handOverUrlFor = ({
+  hostToken,
+  roomCode
+}: {
+  hostToken: HostToken
+  roomCode: RoomCode
+}): string =>
+  `${location.origin}${hostPathFor(roomCode)}#${new URLSearchParams({ [HANDED_TOKEN_KEY]: hostToken })}`
+
+/**
+ * Takes a token handed over in the address, gives it to `keep`, and wipes it
+ * from the address so it outlives the page in neither the history nor a shared
+ * screenshot of the bar.
+ */
+export const useHandedHostToken = (keep: (hostToken: HostToken) => void) => {
+  const { hash, pathname, search } = useLocation()
+  const navigate = useNavigate()
+  const onHanded = useEffectEvent(keep)
+
+  useEffect(() => {
+    const handed = hostTokenSchema.safeParse(
+      new URLSearchParams(hash.slice(1)).get(HANDED_TOKEN_KEY)
+    )
+
+    if (handed.success) {
+      onHanded(handed.data)
+      void navigate({ pathname, search }, { replace: true })
+    }
+  }, [hash, navigate, pathname, search])
+}
 
 /**
  * What the waiting wall's QR code encodes. Scanned by anyone it is harmless: the

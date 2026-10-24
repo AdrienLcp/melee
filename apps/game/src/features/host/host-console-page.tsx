@@ -31,6 +31,7 @@ import { BoardTrack } from '@/features/wall/board-track'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
   useCameFromWall,
+  useHandedHostToken,
   useRoomCodeParam,
   useTakePlayRightAway,
   wallPathFor
@@ -140,6 +141,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [seatNickname, setSeatNickname] = useState(() =>
     readSeatNickname({ role: 'host', roomCode })
   )
+  // Kept before the socket opens, so the claim it makes carries the token and
+  // takes the room from the screen that handed it over.
+  useHandedHostToken((hostToken) => {
+    writeHostToken({ hostToken, roomCode })
+  })
   const { clearError, clock, error, retry, send, status, view } =
     useHostConnection(roomCode, seatNickname)
   const [requestedNickname, setRequestedNickname] = useState<string | null>(
@@ -379,6 +385,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     }
   }, [choosingRoundId, send])
 
+  const [isHandingOver, setIsHandingOver] = useState(false)
+  const handOver = useCallback(() => {
+    setIsHandingOver(true)
+  }, [])
+
   const setRoomScreen = useCallback((next: boolean) => {
     writeStoredRoomScreen(next)
     setIsRoomScreen(next)
@@ -388,6 +399,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     adjustScore: view === null ? null : adjustScore,
     closeRoom,
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
+    handOver,
     isRoomScreen,
     leaveSeat: view?.youId == null ? null : leaveSeat,
     playsSound: isSpeaker,
@@ -414,11 +426,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   }
 
   // A console the wall turned into steps back the moment the host's own screen
-  // takes the room again, rather than showing that screen's owner a refusal.
+  // takes the room again, rather than showing that screen's owner a refusal —
+  // and so does one that handed the room over, since the screen the room was
+  // handed to is the one the host now holds.
   const cameFromWall = useCameFromWall()
   const navigate = useNavigate()
   const isDisplacedWall =
-    cameFromWall &&
+    (cameFromWall || isHandingOver) &&
     status === 'refused' &&
     error?.code === 'host_already_connected'
 

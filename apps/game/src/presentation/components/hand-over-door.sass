@@ -1,0 +1,27 @@
+@use '../styles/piece'
+
+@layer components
+  .hand-over-door
+    .panel-content
+      align-items: start
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+    // White in both palettes, as the invitation's: an inverted square fails
+    // half the cameras in a room. Held at the invitation's menu size, scanned
+    // at arm's length off the screen it is drawn on.
+    .qr-card
+      @include piece.card(var(--radius-m))
+
+      inline-size: min(100%, 11.25rem)
+      padding: var(--space-xs)
+
+      svg
+        block-size: auto
+        display: block
+        inline-size: 100%
+
+    .hint
+      color: var(--ink-muted)
+      font-size: var(--text-s)

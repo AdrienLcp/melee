@@ -28,6 +28,12 @@ export type RoomActions = {
   /** Ends the game and puts the final board up. `null` while no game is in play. */
   endGame: (() => void) | null
   /**
+   * Says this console is handing the room to another screen, so the claim that
+   * takes it turns this one into the wall rather than a refusal. The host
+   * console's alone.
+   */
+  handOver: (() => void) | null
+  /**
    * Whether this console is drawn as the room's own screen: the wall's stage,
    * every answer folded. `false` on every other screen.
    */
@@ -68,6 +74,7 @@ const NO_ACTIONS: RoomActions = {
   adjustScore: null,
   closeRoom: null,
   endGame: null,
+  handOver: null,
   isRoomScreen: false,
   leaveSeat: null,
   playsSound: false,
@@ -134,6 +141,7 @@ export const useReportRoomActions = ({
   adjustScore,
   closeRoom,
   endGame,
+  handOver,
   isRoomScreen,
   leaveSeat,
   playsSound,
@@ -153,6 +161,7 @@ export const useReportRoomActions = ({
       adjustScore,
       closeRoom,
       endGame,
+      handOver,
       isRoomScreen,
       leaveSeat,
       playsSound,
@@ -173,6 +182,7 @@ export const useReportRoomActions = ({
     adjustScore,
     closeRoom,
     endGame,
+    handOver,
     isRoomScreen,
     leaveSeat,
     playsSound,

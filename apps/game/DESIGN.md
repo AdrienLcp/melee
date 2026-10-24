@@ -849,8 +849,11 @@ stage and board track, every answer folded behind *Voir la réponse* — with
 the host's panel beside it and the phase's presses under the stage, as on any
 console. The lobby's launch deals the teams first when they are drawn, since
 the table it draws has no trays to deal from (`LobbyActions`, `isRoomScreen`).
-The switch goes in plan 43's step 5, once the console can be handed to
-another screen.
+The switch goes in plan 43's step 5: the console can now be handed to
+another screen (*Run the table from another screen*, a disclosure under the
+menu's wall doors: the square on a white card at the invitation's menu size,
+a muted line under it, *Copy the link*, never the address printed — it
+carries the token).
 
 The track renders beside `<main>`: inside it, the page's leftover transform
 would run it down a lobby long enough to scroll. The board fills in behind its

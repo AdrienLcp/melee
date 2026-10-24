@@ -1216,6 +1216,11 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Ouvre la table sur un autre écran, puis tape le code qu’il affiche.',
       failed: 'Ce code n’affiche rien. L’écran en montre peut-être un nouveau.',
+      handOver: {
+        hint: 'Scanne-le depuis l’écran qui tiendra la table. Il donne la table à qui l’ouvre : garde-le pour toi.',
+        label: 'Tenir la table depuis un autre écran',
+        summary: 'Cet écran devient alors celui de la salle.'
+      },
       label: 'Code de l’écran',
       openHere: 'Afficher la partie dans un nouvel onglet',
       pair: 'Y afficher la table',

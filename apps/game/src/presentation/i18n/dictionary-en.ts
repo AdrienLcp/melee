@@ -1313,6 +1313,11 @@ export const EN_DICTIONARY = defineDictionary({
       description:
         'Open the table on another screen, then type the code it shows.',
       failed: 'That code shows nothing. The screen may have a new one.',
+      handOver: {
+        hint: 'Scan it from the screen that will run the table. It hands the table to whoever opens it, so keep it to yourself.',
+        label: 'Run the table from another screen',
+        summary: 'This screen then becomes the room’s.'
+      },
       label: 'Screen code',
       openHere: 'Show the game in a new tab',
       pair: 'Show the table there',

@@ -41,6 +41,12 @@ after the last one dropped (`host_reconnecting`), which is the Wi-Fi blink and
 the closing lid; past that window the code alone is enough, because a room
 nobody can pick up is a party ended by a dead battery.
 
+A console hands itself to another device the same way: its menu offers
+`/host/:code#host=<token>`, the fragment no request carries, and the device
+that opens it keeps the token and claims with it. The screen that offered it
+reads the `host_already_connected` that follows as its cue to reopen as the
+wall, on the token it still holds — a client decision, nothing on the wire.
+
 ### The wall
 
 `role: 'wall'` is the room's own screen — a television, a projector, a laptop
