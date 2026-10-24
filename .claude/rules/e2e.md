@@ -79,15 +79,15 @@ timeout on them. A container query that grows a segment as its box widens
 would break that premise.
 
 A strip swept with **no floor** read at 320px is a failure of its own, never a
-sweep from 0: a resize that remounts the leaflet has not drawn its rounds yet,
+sweep from 0: a resize that remounts the host's panel has not drawn its rounds yet,
 and a read taken there once measured the groups page instead, so the quiz's
 duration strip "broke" at a width no screen reaches. The same goes for a strip
 a press reveals: the answer window renders off the server's echo of the mode,
 so the spec waits for the pressed segment's `data-selected` before reading
 floors, or a slow runner sweeps a strip it read no floor for. And a resize
-returns before React swaps the leaflet's popover for its sheet: `resizeTo`
-waits until no leaflet of the other width's face is left, or the floors are
-read off one about to unmount.
+returns before React swaps the panel's column for its tab bar: `resizeTo`
+waits for the bar's *Partie* tab to exist below the split and nowhere above
+it, or the floors are read off a face about to unmount.
 
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped
 finding controls reports exactly what a console with nothing wrong reports.

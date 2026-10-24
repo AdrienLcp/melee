@@ -56,7 +56,7 @@ export type StageControls = {
   /**
    * This console is the room's own screen: what only the host may touch —
    * copying the link, removing a seat, typing a slate's key — leaves the stage
-   * for the drawer, and the stage reads as the wall's.
+   * for the panel beside it, and the stage reads as the wall's.
    */
   isRoomScreen: boolean
   /** Keeps a key typed mid-sheet for the next sheet this host opens. */
@@ -399,7 +399,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   }
 
   // A table of teams sitting down, read across the room: the setup is the
-  // drawer's, and what the room reads is who sits with whom.
+  // panel's, and what the room reads is who sits with whom.
   if (
     (controls === null || controls.isRoomScreen) &&
     isSetAsTable(view.settings)

@@ -8,9 +8,14 @@ import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
 import {
   HOST_SETUP_KEY,
+  PANEL_SIDE_KEY,
   ROOM_SCREEN_KEY,
   readStoredHostPreferences,
+  readStoredPanelFolded,
+  readStoredPanelSide,
   readStoredRoomScreen,
+  writeStoredPanelFolded,
+  writeStoredPanelSide,
   writeStoredRoomScreen
 } from './preferences-storage'
 
@@ -134,5 +139,24 @@ describe('readStoredRoomScreen', () => {
     store.set(ROOM_SCREEN_KEY, 'yes')
 
     expect(readStoredRoomScreen().status).toBe('failure')
+  })
+
+  it('[panel] opens a panel never folded, on the right', () => {
+    expect(readStoredPanelFolded()).toEqual({ data: false, status: 'success' })
+    expect(readStoredPanelSide()).toEqual({ data: 'right', status: 'success' })
+  })
+
+  it('[panel] reads back the fold and the side the host left', () => {
+    writeStoredPanelFolded(true)
+    writeStoredPanelSide('left')
+
+    expect(readStoredPanelFolded()).toEqual({ data: true, status: 'success' })
+    expect(readStoredPanelSide()).toEqual({ data: 'left', status: 'success' })
+  })
+
+  it('[panel] refuses a side it never writes', () => {
+    store.set(PANEL_SIDE_KEY, 'top')
+
+    expect(readStoredPanelSide().status).toBe('failure')
   })
 })

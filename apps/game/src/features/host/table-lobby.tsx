@@ -25,7 +25,7 @@ import './table-lobby.sass'
 /**
  * Whether the room's own screen sets its lobby as a table: seats that are
  * dealt into teams or pick one, or seats racing a pawn each round the track.
- * Its setup — the games included — is then the drawer's, because the stage is
+ * Its setup — the games included — is then the panel's, because the stage is
  * the room's to read.
  */
 export const isSetAsTable = ({

@@ -20,7 +20,6 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { PrimaryPress, SecondaryPresses } from './action-slot'
 import type { StageControls } from './room-stage'
 import { ScoreTrack, type SeatProgress } from './score-track'
 import { SlateKeyEditor } from './slate-key-editor'
@@ -312,8 +311,8 @@ export const SlateWritingStage: React.FC<SlateBoardProps> = ({
 
 /**
  * The answer key and the items' names, which the host keeps writing while the
- * sheets are open: beside the board above the split, and in the setup leaflet
- * on a console held in a hand.
+ * sheets are open: beside the board above the split, and on the panel's game
+ * tab below it.
  */
 export const SlateEditors: React.FC<{
   controls: StageControls
@@ -594,34 +593,30 @@ export const SlateCorrectionActions: React.FC<SlateStageProps> = ({
 
   return (
     <div className='slate-actions'>
-      <SecondaryPresses>
-        <Button
-          isDisabled={!isLive || previous === undefined}
-          onPress={() => {
-            if (previous !== undefined) {
-              send({
-                itemIndex: previous,
-                roundId: round.id,
-                type: 'host.showItem'
-              })
-            }
-          }}
-          variant='outlined'
-        >
-          {translate('slate.correct.previous')}
-        </Button>
-      </SecondaryPresses>
-      <PrimaryPress>{primary}</PrimaryPress>
-      <SecondaryPresses>
-        <Button
-          className='aside'
-          onPress={wall.showSheets}
-          size='small'
-          variant='underlined'
-        >
-          {translate(hasOpenItem ? 'slate.wall.toSheets' : 'slate.wall.toList')}
-        </Button>
-      </SecondaryPresses>
+      <Button
+        isDisabled={!isLive || previous === undefined}
+        onPress={() => {
+          if (previous !== undefined) {
+            send({
+              itemIndex: previous,
+              roundId: round.id,
+              type: 'host.showItem'
+            })
+          }
+        }}
+        variant='outlined'
+      >
+        {translate('slate.correct.previous')}
+      </Button>
+      {primary}
+      <Button
+        className='aside'
+        onPress={wall.showSheets}
+        size='small'
+        variant='underlined'
+      >
+        {translate(hasOpenItem ? 'slate.wall.toSheets' : 'slate.wall.toList')}
+      </Button>
     </div>
   )
 }
@@ -647,32 +642,26 @@ export const SlateWritingActions: React.FC<SlateStageProps> = ({
   return (
     <div className='slate-actions'>
       {hasOpenItem && (
-        <PrimaryPress>
-          <Button
-            isDisabled={!isLive}
-            onPress={() =>
-              send({ roundId: round.id, type: 'host.collectSheets' })
-            }
-          >
-            {translate(
-              hasClosedItem ? 'slate.wall.collectRest' : 'slate.wall.collect'
-            )}
-          </Button>
-        </PrimaryPress>
+        <Button
+          isDisabled={!isLive}
+          onPress={() =>
+            send({ roundId: round.id, type: 'host.collectSheets' })
+          }
+        >
+          {translate(
+            hasClosedItem ? 'slate.wall.collectRest' : 'slate.wall.collect'
+          )}
+        </Button>
       )}
       {hasClosedItem &&
         (hasOpenItem ? (
-          <SecondaryPresses>
-            <Button onPress={wall.showWall} variant='outlined'>
-              {translate('slate.wall.toWall')}
-            </Button>
-          </SecondaryPresses>
+          <Button onPress={wall.showWall} variant='outlined'>
+            {translate('slate.wall.toWall')}
+          </Button>
         ) : (
-          <PrimaryPress>
-            <Button onPress={wall.showWall}>
-              {translate('slate.wall.toWall')}
-            </Button>
-          </PrimaryPress>
+          <Button onPress={wall.showWall}>
+            {translate('slate.wall.toWall')}
+          </Button>
         ))}
     </div>
   )

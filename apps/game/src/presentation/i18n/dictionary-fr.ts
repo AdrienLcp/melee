@@ -140,6 +140,7 @@ export const FR_DICTIONARY = defineDictionary({
     fix: 'Corriger les cases',
     forward: 'Avancer {team} d’une case',
     more: '+{count:number}',
+    none: 'Sans plateau',
     setting: {
       catchUp: {
         hint: 'Seul à la dernière place, on avance d’une case de plus sur une manche où l’on marque.',
@@ -339,10 +340,6 @@ export const FR_DICTIONARY = defineDictionary({
       warning: 'Tout le monde sort, et le code cesse de fonctionner.'
     },
     countdown: 'Décompte',
-    drawer: {
-      open: 'Animer',
-      removePlayer: 'Retirer un joueur'
-    },
     endGame: 'Terminer la partie',
     evening: {
       add: 'Ajouter un jeu',
@@ -436,6 +433,21 @@ export const FR_DICTIONARY = defineDictionary({
     needsPlayer: 'Il faut au moins quelqu’un à table',
     nextDuel: 'En duel',
     nextRound: 'Manche suivante',
+    panel: {
+      fold: 'Replier le panneau',
+      label: 'Animer la table',
+      settled: 'Fixé pour la partie',
+      tabs: {
+        game: 'Jeu',
+        players: 'Joueurs',
+        room: 'Salle',
+        stage: 'Partie',
+        table: 'Table'
+      },
+      toLeft: 'Mettre le panneau à gauche',
+      toRight: 'Mettre le panneau à droite',
+      unfold: 'Déplier le panneau'
+    },
     playAgain: 'Rejouer',
     players: {
       count: defineTranslation('{count:plural}', {
@@ -481,7 +493,6 @@ export const FR_DICTIONARY = defineDictionary({
         room: 'La salle',
         table: 'La table'
       },
-      label: 'Réglages',
       roundInPlay: 'Les changements s’appliquent à la manche suivante',
       summary: {
         countdown: 'Décompte de {duration}',
@@ -676,6 +687,9 @@ export const FR_DICTIONARY = defineDictionary({
       logs: 'Cloudflare garde un journal de chaque requête pendant trois jours, pour trouver ce qui a cassé : il contient ton adresse IP et le nom de ton navigateur à côté du code de la table, jamais un pseudo ni une réponse.',
       nickname:
         'Le nom sous lequel tu as joué la dernière fois, pour que la table suivante le remplisse pour toi.',
+      panelFolded:
+        'Si tu as replié le panneau à côté de la table que tu animes.',
+      panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
       roomScreen:
         'Si cet écran est celui de la salle, pour qu’il le reste d’une table à l’autre.',
       seats:
@@ -779,7 +793,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roomScreen: {
       description:
-        'Pour l’écran que toute la salle regarde. Les réponses restent cachées tant que tu ne les montres pas, et tes commandes passent dans Animer.',
+        'Pour l’écran que toute la salle regarde. Les réponses restent cachées tant que tu ne les montres pas.',
       label: 'Cet écran est celui de la salle'
     },
     thisDevice: {
@@ -1142,7 +1156,6 @@ export const FR_DICTIONARY = defineDictionary({
       chosen: 'Au choix',
       drawn: 'Tirées au sort',
       label: 'Équipes',
-      locked: 'Les équipes et le plateau se règlent avant la première manche.',
       off: 'Chacun pour soi'
     },
     summary: {

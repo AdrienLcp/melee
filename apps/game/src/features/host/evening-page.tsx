@@ -9,12 +9,12 @@ import './evening-page.sass'
 type EveningPageProps = {
   /** The page itself; none while the entry it opens is still on its way from the room. */
   children?: React.ReactNode
-  /** Back to the list of rounds, which the page took the leaflet's place from. */
+  /** Back to the list of rounds, whose place on the game tab the page took. */
   onBack: () => void
 }
 
 /**
- * A page of the leaflet in place of its groups — one round, or the shelf a
+ * A page of the game tab in place of its list — one round, or the shelf a
  * round is added from — with the way back to the list on top, focused as it
  * opens so a keyboard lands where the list was left.
  */

@@ -1,4 +1,5 @@
 import { useScreenAwake } from '@adrienlcp/browser/react'
+import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
@@ -78,14 +79,19 @@ import { ArrivalNotice, useArrival } from './arrival-notice'
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { ClipOffer } from './clip-offer'
 import { HostActions, type HostActionsProps } from './host-actions'
+import { HostPanel } from './host-panel'
 import { HostRefused } from './host-refused'
 import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
-import { RoomScreenPresses } from './room-screen-presses'
 import { RoomStage, type StageControls } from './room-stage'
 import { useRoundAudio } from './round-audio'
-import { SetupFields, type SetupFieldsProps } from './setup-fields'
-import { SetupPopover } from './setup-popover'
+import {
+  GameTab,
+  PlayersTab,
+  RoomTab,
+  type SetupTabsProps,
+  TableTab
+} from './setup-tabs'
 import { SlateEditors } from './slate-stages'
 import { useLineUpDraw } from './use-line-up-draw'
 import { useRestoreStoredSetup } from './use-restore-stored-setup'
@@ -511,19 +517,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
-  const setupProps = (current: HostRoomView): SetupFieldsProps => ({
-    draftSource,
-    isLive,
-    isRoomScreen,
-    onDraftSource: setDraftSource,
-    onRememberSlateKey: rememberPreparedKey,
-    onSettingsChange: changeSettings,
-    onTakeSeat: takeSeat,
-    preferences,
-    preparedSlateKeys: preparedKeys,
-    view: current
-  })
-
   const hostActionsProps = (current: HostRoomView): HostActionsProps => ({
     challengeLine:
       current.settings.game?.kind === 'challenge'
@@ -535,6 +528,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         ? { onChange: setTargetSeconds, seconds: targetSeconds }
         : null,
     isLive,
+    isRoomScreen,
     onOpenRound: () => {
       // Inside the press, never in an effect: the autoplay policy grants
       // permission only from a real gesture, and it cannot be asked for later
@@ -617,121 +611,119 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     send
   }
 
-  const stage = (
-    <RoomStage
-      canPlay={canPlay}
-      clock={clock}
-      controls={controls}
-      isSpeaker={isSpeaker}
-      onUnlockAudio={armAudio}
-      refusal={refusal}
-      roomCode={roomCode}
-      slateWall={slateWall}
-      view={view}
-    />
+  const setupProps = (current: HostRoomView): SetupTabsProps => ({
+    draftSource,
+    isLive,
+    isRoomScreen,
+    onDraftSource: setDraftSource,
+    onLeaveSeat: leaveSeat,
+    onRememberSlateKey: rememberPreparedKey,
+    onRemovePlayer: removePlayer,
+    onSettingsChange: changeSettings,
+    onTakeSeat: takeSeat,
+    preferences,
+    preparedSlateKeys: preparedKeys,
+    slateEditors:
+      current.phase === 'playing' &&
+      current.round?.content.kind === 'slate' &&
+      !slateWall.isOnWall ? (
+        <SlateEditors controls={controls} view={current} />
+      ) : null,
+    view: current
+  })
+
+  // The room's own screen keeps the wall's face — the same header, stage and
+  // board, the answers folded — with the console's panel and presses beside it.
+  const page = (
+    <Main
+      className={classNames(
+        'host-console-page',
+        isRoomScreen && 'wall-page room-screen'
+      )}
+    >
+      <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+      {header}
+
+      <RoomStage
+        canPlay={canPlay}
+        clock={clock}
+        controls={controls}
+        isSpeaker={isSpeaker}
+        onUnlockAudio={armAudio}
+        refusal={refusal}
+        roomCode={roomCode}
+        slateWall={slateWall}
+        view={view}
+      />
+
+      <footer>
+        {error !== null && (
+          <p className='error' role='alert'>
+            {translate(protocolErrorKey(error.code))}
+          </p>
+        )}
+        {view !== null && (
+          <>
+            <HostActions {...hostActionsProps(view)} />
+            {/*
+              The reveal's alone, because the reveal is what it holds: under a
+              round in play it was a row of a screen the question and its four
+              tiles could not spare, for a choice the reveal puts back in reach
+              the moment it applies.
+            */}
+            {view.phase === 'revealed' &&
+              view.settings.game?.kind !== 'slate' && (
+                <AutoAdvanceChoice
+                  isLive={isLive}
+                  onSettingsChange={changeSettings}
+                  settings={view.settings}
+                />
+              )}
+          </>
+        )}
+      </footer>
+    </Main>
   )
 
-  // The wall's screen with a hand on it: the same header, stage and board the
-  // wall draws, the answers folded, and the presses at the screen's foot.
-  if (isRoomScreen) {
-    return (
-      <PawnColoursProvider view={view}>
-        <Main className='host-console-page wall-page room-screen'>
-          <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
-          {header}
-          {stage}
-        </Main>
+  if (view === null) {
+    return <PawnColoursProvider view={view}>{page}</PawnColoursProvider>
+  }
+
+  const setup = setupProps(view)
+
+  return (
+    <PawnColoursProvider view={view}>
+      <HostPanel
+        defaultTab={view.phase === 'lobby' ? 'game' : 'players'}
+        isStageFull={
+          view.phase === 'playing' && view.round?.answerMode === 'choice'
+        }
+        narrowStart={
+          view.phase === 'lobby' && view.settings.game === null
+            ? 'game'
+            : 'stage'
+        }
+        playerCount={view.players.length}
+        tabs={{
+          game: <GameTab {...setup} />,
+          players: <PlayersTab {...setup} />,
+          room: <RoomTab {...setup} />,
+          table: <TableTab {...setup} />
+        }}
+      >
+        {page}
         {/*
-          Beside the page rather than inside it, like the presses: the page
-          keeps its entrance's transform, and a track fixed inside it would
-          run down a lobby long enough to scroll.
+          Beside the page rather than inside it: the page keeps its entrance's
+          transform, and a track fixed inside it would run down a lobby long
+          enough to scroll.
         */}
-        {view !== null && view.settings.board.kind === 'track' && (
+        {isRoomScreen && view.settings.board.kind === 'track' && (
           <BoardTrack
             length={view.settings.board.length}
             pawns={trackPawnsOf(view)}
           />
         )}
-        {view !== null && (
-          <RoomScreenPresses
-            actions={hostActionsProps(view)}
-            error={error}
-            onRemovePlayer={removePlayer}
-            setup={setupProps(view)}
-          />
-        )}
-      </PawnColoursProvider>
-    )
-  }
-
-  return (
-    <PawnColoursProvider view={view}>
-      <Main className='host-console-page'>
-        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
-        {header}
-
-        {stage}
-
-        <footer>
-          {error !== null && (
-            <p className='error' role='alert'>
-              {translate(protocolErrorKey(error.code))}
-            </p>
-          )}
-          {view !== null && (
-            <>
-              <HostActions {...hostActionsProps(view)} />
-              {/*
-              `finished` is not a phase of a game, it is the result of one, and
-              both of these act on a game in flight: how long a reveal is held
-              before the room is moved on, and the settings the next round is
-              built from. Neither has anything on this screen to act on, and
-              both are behind the button beside them — *back to the table* lands
-              on the lobby, whose stage is the picker, the roster and the seat,
-              with the rest folded under it.
-
-              They cost 158px of a 302px footer, which is what the final board
-              was overflowing by: nine players on a 1280×800 put the replay
-              half under the fold and the way back entirely below it.
-            */}
-              {view.phase !== 'finished' && (
-                <>
-                  {/*
-                    The reveal's alone, because the reveal is what it holds:
-                    under a round in play it was a row of a screen the question
-                    and its four tiles could not spare, for a choice the reveal
-                    puts back in reach the moment it applies.
-                  */}
-                  {view.phase === 'revealed' &&
-                    view.settings.game?.kind !== 'slate' && (
-                      <AutoAdvanceChoice
-                        isLive={isLive}
-                        onSettingsChange={changeSettings}
-                        settings={view.settings}
-                      />
-                    )}
-                  {/*
-                    The slate's key rides on the same leaflet while the sheets
-                    are open and no wall is marking them, so a console held in a
-                    hand reaches it mid-game.
-                  */}
-                  <SetupPopover
-                    draftSource={draftSource}
-                    settings={view.settings}
-                  >
-                    {view.phase === 'playing' &&
-                      view.round?.content.kind === 'slate' &&
-                      !slateWall.isOnWall && (
-                        <SlateEditors controls={controls} view={view} />
-                      )}
-                    <SetupFields {...setupProps(view)} />
-                  </SetupPopover>
-                </>
-              )}
-            </>
-          )}
-        </footer>
-      </Main>
+      </HostPanel>
     </PawnColoursProvider>
   )
 }

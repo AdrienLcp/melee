@@ -427,8 +427,13 @@ const measure = (): Overflow => {
   // A folded panel keeps its contents laid out under `content-visibility:
   // hidden`, which still reports a box; nobody can see it, so it reaches
   // nowhere.
+  // The host's panel scrolls inside its own box, so nothing in it reaches
+  // past the screen.
   const furthest = [...document.body.querySelectorAll<HTMLElement>('*')]
-    .filter((element) => element.checkVisibility())
+    .filter(
+      (element) =>
+        element.checkVisibility() && element.closest('.panel-screen') === null
+    )
     .map((element) => ({
       bottom: element.getBoundingClientRect().bottom,
       element
@@ -625,8 +630,13 @@ const measureReveal = (): RevealOverflow => {
       '.stage.revealed .reveal-panel li, .stage:is(.revealed, .finished, .slate-correcting) .standings li, .slate-correcting .groups li, .slate-writing :is(.items, .progress) li'
     )
   ]
+  // The host's panel scrolls inside its own box, so nothing in it reaches
+  // past the screen.
   const furthest = [...document.body.querySelectorAll<HTMLElement>('*')]
-    .filter((element) => element.checkVisibility())
+    .filter(
+      (element) =>
+        element.checkVisibility() && element.closest('.panel-screen') === null
+    )
     .map((element) => ({
       bottom: element.getBoundingClientRect().bottom,
       element

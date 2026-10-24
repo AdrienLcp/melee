@@ -1,0 +1,257 @@
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .host-desk
+    display: flex
+    flex: 1
+    flex-direction: column
+
+    .panel-tab
+      align-content: center
+      border-radius: var(--radius-m)
+      color: var(--ink-muted)
+      cursor: pointer
+      display: grid
+      font-size: var(--text-2xs)
+      gap: var(--space-2xs)
+      justify-items: center
+      min-height: 3.5rem
+      min-width: 0
+      outline: none
+      padding: var(--space-2xs)
+      position: relative
+
+      @include typography.label
+
+      svg
+        font-size: var(--text-m)
+
+      &[data-hovered]
+        color: var(--ink)
+
+      &[data-selected]
+        background: var(--tab-selected)
+        box-shadow: 0 var(--edge, 0.1875rem) 0 var(--chipboard)
+        color: var(--ink)
+
+      &[data-focus-visible]
+        outline: var(--stroke-bold) solid var(--ink)
+        outline-offset: calc(var(--stroke-bold) * -1)
+
+    .tab-badge
+      background: var(--tile-2)
+      border-radius: var(--radius-full)
+      color: var(--tile-ink)
+      font-size: var(--text-3xs)
+      inset: var(--space-2xs) auto auto calc(50% + var(--space-xs))
+      padding: 0.125rem var(--space-2xs)
+      position: absolute
+
+      @include typography.numeric
+
+    .panel-screen
+      align-content: start
+      display: grid
+      gap: var(--space-m)
+      grid-template-columns: minmax(0, 1fr)
+      outline: none
+
+      > h2
+        @include typography.title
+
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 3), var(--text-xl))
+
+  // On a desk: the panel stands beside the stage on paper, the stage taking
+  // what is left. The document still scrolls a long stage, so the panel holds
+  // to the viewport and scrolls inside itself.
+  @include layout.desk
+    .host-desk
+      display: grid
+      grid-template-columns: minmax(0, 1fr) var(--host-panel-width)
+      transition: grid-template-columns var(--transition-base, 0s) var(--ease-out)
+
+      &[data-folded]
+        grid-template-columns: minmax(0, 1fr) var(--host-rail-width)
+
+      &[data-side='left']
+        grid-template-columns: var(--host-panel-width) minmax(0, 1fr)
+
+        &[data-folded]
+          grid-template-columns: var(--host-rail-width) minmax(0, 1fr)
+
+        .host-panel
+          border-radius: 0 var(--radius-l) var(--radius-l) 0
+          box-shadow: 1px 0 0 var(--card-rule), var(--shadow-panel-start)
+          order: -1
+
+        .panel-tool svg
+          scale: -1 1
+
+      > .host-console-page
+        min-width: 0
+
+    .host-panel
+      @include box-lid.paper
+
+      --tab-selected: var(--card-well)
+
+      align-self: start
+      border-radius: var(--radius-l) 0 0 var(--radius-l)
+      box-shadow: -1px 0 0 var(--card-rule), var(--shadow-panel-end)
+      display: grid
+      height: 100dvh
+      min-height: 0
+      overflow: hidden
+      position: sticky
+      top: 0
+      z-index: 1
+
+      > .react-aria-Tabs
+        display: grid
+        grid-template-rows: auto minmax(0, 1fr)
+        min-height: 0
+
+    .panel-head
+      align-items: center
+      display: flex
+      gap: var(--space-2xs)
+      padding: var(--layout-padding-block-start) var(--space-m) var(--space-s)
+
+    .panel-tabs
+      display: flex
+      flex: 1
+      gap: var(--space-2xs)
+      min-width: 0
+
+      .panel-tab
+        flex: 1
+
+    .panel-tools
+      display: flex
+      flex: none
+      gap: 0.125rem
+
+    .panel-tool
+      border-radius: var(--radius-s)
+      color: var(--ink-muted)
+      cursor: pointer
+      display: grid
+      height: var(--target)
+      place-items: center
+      width: var(--target)
+
+      svg
+        font-size: var(--text-m)
+
+      &[data-hovered]
+        background: var(--card-well)
+        color: var(--ink)
+
+    .panel-screen
+      overflow: hidden auto
+      overscroll-behavior: contain
+      padding: var(--space-xs) var(--space-m) var(--layout-padding-block-end)
+      scrollbar-width: thin
+
+    .panel-rail
+      align-content: start
+      display: grid
+      gap: var(--space-xs)
+      padding: var(--layout-padding-block-start) var(--space-xs)
+
+      .panel-tools
+        flex-direction: column
+        margin-bottom: var(--space-xs)
+
+      .panel-tool
+        width: 100%
+
+      .panel-tab
+        min-height: 4.25rem
+
+  // Off the desk: a tab bar, the game its first tab, and each other tab the
+  // whole screen in the stage's place. Along the foot when the screen stands
+  // up; down the side when it lies down, where the foot is the height a
+  // question and its four choices cannot spare.
+  @include layout.off-desk
+    .host-desk
+      // By its id: the stage's own phase rules set its display at a weight
+      // no class here outranks.
+      &:not([data-screen='stage']) > #main
+        display: none
+
+    .host-panel
+      --tab-selected: var(--board)
+
+    .panel-tabs
+      background: var(--track-b)
+      display: grid
+      gap: var(--space-2xs)
+      padding: var(--space-2xs)
+      position: fixed
+      z-index: 2
+
+      .panel-tab
+        font-size: var(--text-3xs)
+        gap: 0.125rem
+        min-height: var(--target)
+
+        svg
+          font-size: var(--text-s)
+
+    .panel-screen
+      padding-block: var(--layout-padding-block-start) var(--layout-padding-block-end)
+      padding-inline: var(--gutter-left) var(--gutter-right)
+
+      > h2
+        align-items: center
+        display: flex
+        min-height: var(--control-height)
+        padding-inline-end: var(--menu-inset)
+
+  @include layout.off-desk
+    @media (aspect-ratio < 13 / 10)
+      .host-desk
+        --panel-bar-foot: var(--panel-bar-height)
+
+        > #main,
+        .panel-screen
+          --layout-padding-block-end: calc(max(var(--layout-padding), var(--safe-area-bottom)) + var(--panel-bar-height))
+
+      .panel-tabs
+        border-top: var(--hairline)
+        bottom: 0
+        grid-auto-columns: minmax(0, 1fr)
+        grid-auto-flow: column
+        inset-inline: 0
+        padding-bottom: max(var(--space-2xs), var(--safe-area-bottom))
+
+    @media (aspect-ratio >= 13 / 10)
+      .host-desk
+        > #main,
+        .panel-screen
+          --gutter-right: calc(max(var(--gutter), var(--safe-area-right)) + var(--panel-bar-width))
+
+      .panel-tabs
+        --gutter-right: max(var(--space-2xs), var(--safe-area-right))
+
+        align-content: center
+        border-inline-start: var(--hairline)
+        grid-auto-rows: minmax(0, 4.25rem)
+        inset-block: 0
+        inset-inline-end: 0
+        padding-inline-end: var(--gutter-right)
+        width: var(--panel-bar-width)
+
+        .panel-tab
+          font-size: var(--text-3xs)
+          padding-inline: 0rem
+
+      .host-desk[data-screen='stage'][data-stage-full]
+        > #main
+          --gutter-right: max(var(--gutter), var(--safe-area-right))
+
+        .host-panel
+          display: none

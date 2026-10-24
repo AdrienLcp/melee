@@ -21,8 +21,10 @@ import { homePage } from './support/locators'
  * being asked in two locales. The two of them together are every strip there
  * is, which is why the selector below is spelled out inside each browser
  * function rather than shared — nothing in this file's scope reaches in there.
+ * Both read the host's panel alone: below the split the stage is hidden behind
+ * whichever tab is open, and a hidden strip would read as a collapsed one.
  */
-const SETUP_LEAFLET = '.setup-leaflet'
+const PANEL_SCREEN = '.host-panel .panel-screen'
 
 /** No phone is narrower, so no strip is ever handed less than it gets here. */
 const NARROWEST_SCREEN = 320
@@ -89,7 +91,7 @@ const readFloors = () => {
   const floors: Record<string, number> = {}
 
   for (const strip of document.querySelectorAll(
-    '.segmented-control, .toggle-group'
+    '.host-panel :is(.segmented-control, .toggle-group)'
   )) {
     const label = strip.querySelector('.react-aria-Label')?.textContent ?? ''
     let box: Element = strip
@@ -132,7 +134,7 @@ const sweepShapes = ({
   const withoutFloor: string[] = []
 
   for (const strip of document.querySelectorAll(
-    '.segmented-control, .toggle-group'
+    '.host-panel :is(.segmented-control, .toggle-group)'
   )) {
     const label = strip.querySelector('.react-aria-Label')?.textContent ?? ''
     let styled = strip instanceof HTMLElement ? strip : null
@@ -219,11 +221,15 @@ const sweepShapes = ({
   return { faults, seen, withoutFloor }
 }
 
+/** One of the panel's tabs, found by its key since its name is a locale's. */
+const panelTab = (page: Page, key: string) =>
+  page.locator(`.panel-tabs .panel-tab[data-key='${key}']`)
+
 /**
- * The leaflet is a sheet on the narrow screen and a popover on the wide one,
- * and the resize returns before React swaps them: an open leaflet read straight
- * after it is the other width's, about to unmount, and a CI runner took the
- * floors off it and found no strip at all.
+ * The panel is a column beside the stage on the wide screen and a tab bar on
+ * the narrow one, and the resize returns before React swaps them: the bar's
+ * first tab, the game itself, exists below the split alone, so waiting on it is
+ * waiting for the face this width draws.
  */
 const resizeTo = async ({
   page,
@@ -232,47 +238,37 @@ const resizeTo = async ({
   page: Page
   width: number
 }): Promise<void> => {
-  const face = width === NARROWEST_SCREEN ? '.sheet' : '.sheet-popover'
-
   await page.setViewportSize({ height: 900, width })
-  await expect(page.locator(`${SETUP_LEAFLET}:not(${face})`)).toHaveCount(0)
-}
-
-/**
- * The setup's strips live on its leaflet, in two groups of which one opens
- * with it. Crossing the split trades the popover for the sheet, which mounts
- * the groups afresh, so this runs again after every resize.
- */
-const openEveryGroup = async (page: Page): Promise<void> => {
-  if ((await page.locator(SETUP_LEAFLET).count()) === 0) {
-    await page.locator('.setup-trigger').click()
-    await expect(page.locator(SETUP_LEAFLET)).toBeVisible()
-  }
-
-  const closed = page.locator(
-    `${SETUP_LEAFLET} .setup-groups > .disclosure:not([data-expanded]) .trigger`
+  await expect(panelTab(page, 'stage')).toHaveCount(
+    width === NARROWEST_SCREEN ? 1 : 0
   )
+}
 
-  while ((await closed.count()) > 0) {
-    await closed.first().click()
+const openTab = async (page: Page, key: string): Promise<void> => {
+  const tab = panelTab(page, key)
+
+  if ((await tab.getAttribute('aria-selected')) !== 'true') {
+    await tab.click()
   }
+
+  await expect(tab).toHaveAttribute('aria-selected', 'true')
 }
 
 /**
- * The game's own strips are on its round's page, which takes the groups'
- * place in the leaflet. A room of one game has one round to open; a resize
- * that mounted the leaflet afresh is back on the groups, so it opens again.
+ * The game's own strips are on its round's page, which takes the planned
+ * games' place on the games tab. A room of one game has one round to open; a
+ * resize that mounted the tab afresh is back on the list, so it opens again.
  */
 const openTheRound = async (page: Page): Promise<void> => {
-  await openEveryGroup(page)
+  await openTab(page, 'game')
 
   const round = page.locator(
-    `${SETUP_LEAFLET} .evening-rounds li:not(.add) .round`
+    `${PANEL_SCREEN} .evening-rounds li:not(.add) .round`
   )
-  const roundPage = page.locator(`${SETUP_LEAFLET} .evening-page`)
+  const roundPage = page.locator(`${PANEL_SCREEN} .evening-page`)
 
-  // A resize that remounted the leaflet has not drawn its rounds yet: counting
-  // them there read nothing, and the floors were taken off the groups instead.
+  // A resize that remounted the tab has not drawn its rounds yet: counting
+  // them there read nothing, and the floors were taken off the shelf instead.
   await expect(roundPage.or(round.first())).toBeVisible()
 
   if (await roundPage.isHidden()) {
@@ -280,6 +276,12 @@ const openTheRound = async (page: Page): Promise<void> => {
     await expect(roundPage).toBeVisible()
   }
 }
+
+/** The table's strips — the teams and the evening's length. */
+const openTheTable = (page: Page): Promise<void> => openTab(page, 'table')
+
+/** The room's strips — the hold and the countdown. */
+const openTheRoom = (page: Page): Promise<void> => openTab(page, 'room')
 
 test('[layout] no strip on the console ever holds rows of two different lengths', async ({
   page
@@ -314,12 +316,8 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
     await page.evaluate(loadEveryFace)
 
     for (let index = 0; index < gameCount; index++) {
-      // The leaflet is modal: the shelf behind it takes no press while it is
-      // up, so it is put away before the next game is picked.
-      if ((await page.locator(SETUP_LEAFLET).count()) > 0) {
-        await page.keyboard.press('Escape')
-        await expect(page.locator(SETUP_LEAFLET)).toHaveCount(0)
-      }
+      // The shelf is on the games tab, which the last sweep left for another.
+      await openTab(page, 'game')
 
       // Ticking a game adds it to the evening; taking the previous one out is
       // what moves the room onto it, since the last tick cannot be taken out.
@@ -359,13 +357,8 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
         await expect(modes.first()).toHaveAttribute('data-selected')
       }
 
-      // The round's own page first, then the groups it took the place of.
-      for (const open of [openTheRound, openEveryGroup]) {
-        if (open === openEveryGroup) {
-          await page.keyboard.press('Escape')
-          await expect(page.locator(SETUP_LEAFLET)).toHaveCount(0)
-        }
-
+      // The round's own page first, then the two tabs of the room's settings.
+      for (const open of [openTheRound, openTheTable, openTheRoom]) {
         await resizeTo({ page, width: NARROWEST_SCREEN })
         await open(page)
         await page.evaluate(loadEveryFace)

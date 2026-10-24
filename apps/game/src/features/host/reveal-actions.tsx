@@ -14,7 +14,6 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 
-import { PrimaryPress, SecondaryPresses, useActionSlot } from './action-slot'
 import { BoardMoves } from './board-moves'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
@@ -56,7 +55,6 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   view
 }) => {
   const { locale, translate } = useI18n()
-  const slot = useActionSlot()
   const { settings } = view
   const entryNames = useLineUpEntryNames(settings.lineUp)
 
@@ -85,20 +83,16 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   ) {
     return (
       <div className='reveal-actions'>
-        <PrimaryPress>
-          <Button
-            isDisabled={!isLive}
-            onPress={() => {
-              send({ type: 'host.nextRound' })
-            }}
-            size='large'
-          >
-            {translate('host.seeResults')}
-          </Button>
-        </PrimaryPress>
-        <SecondaryPresses>
-          <BoardMoves isLive={isLive} send={send} view={view} />
-        </SecondaryPresses>
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            send({ type: 'host.nextRound' })
+          }}
+          size='large'
+        >
+          {translate('host.seeResults')}
+        </Button>
+        <BoardMoves isLive={isLive} send={send} view={view} />
       </div>
     )
   }
@@ -109,130 +103,119 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         The game the draw landed on, already selected: one press opens it, and
         the others are one press away when the table shouts for something else.
       */}
-      <SecondaryPresses>
-        {settings.lineUp.length > 1 && (
-          <SegmentedControl
-            className='next-game'
-            isDisabled={!isLive}
-            label={translate('host.lineUp.next')}
-            onChange={(value) => {
-              const at = Number(value)
-              const entry = settings.lineUp[at]
-
-              if (entry !== undefined && at !== settings.lineUpAt) {
-                const moved = movedToEntry({
-                  at,
-                  locale,
-                  remembered: rememberedSetupFor({
-                    game: entry.kind,
-                    preferences
-                  }),
-                  settings
-                })
-
-                onSettingsChange({
-                  ...moved,
-                  runningOrder: orderWithEntryNext({
-                    at,
-                    order: moved.runningOrder,
-                    upcoming: view.round?.index ?? 0
-                  })
-                })
-              }
-            }}
-            options={entryNames.map((name, at) => ({
-              label: name,
-              value: String(at)
-            }))}
-            style={{ '--columns': balancedColumns(settings.lineUp.length) }}
-            value={
-              settings.lineUpAt === null ? null : String(settings.lineUpAt)
-            }
-          />
-        )}
-        {offersSkip({
-          challengeText: challengeLine?.text,
-          lineUp: settings.lineUp,
-          lineUpAt: settings.lineUpAt,
-          played: view.lineUpPlayed,
-          slateKeys: slateKeys ?? []
-        }) && (
-          <Button
-            className='skip-round'
-            isDisabled={!isLive}
-            onPress={() => {
-              onSettingsChange(
-                withEntrySkipped({
-                  lastAt: view.round?.lineUpAt ?? null,
-                  locale,
-                  played: view.lineUpPlayed,
-                  random: Math.random,
-                  rememberedFor: (game) =>
-                    rememberedSetupFor({ game, preferences }),
-                  roundAt: view.round?.index ?? 0,
-                  roundsLeft:
-                    settings.roundCount === null
-                      ? null
-                      : settings.roundCount - (view.round?.index ?? 0),
-                  settings
-                })
-              )
-            }}
-            variant='underlined'
-          >
-            {translate('host.skipRound')}
-          </Button>
-        )}
-        {innerclockTarget !== null && (
-          <InnerclockTargetField
-            isDisabled={!isLive}
-            onChange={innerclockTarget.onChange}
-            seconds={innerclockTarget.seconds}
-          />
-        )}
-        {challengeLine !== null && (
-          <ChallengeLineField
-            isDisabled={!isLive}
-            onChange={challengeLine.onChange}
-            value={challengeLine.text}
-          />
-        )}
-      </SecondaryPresses>
-      <PrimaryPress>
-        <Button
+      {settings.lineUp.length > 1 && (
+        <SegmentedControl
+          className='next-game'
           isDisabled={!isLive}
-          onPress={() => openNextRound({ isDuel: false })}
-          size='large'
-        >
-          {translate('host.nextRound')}
-        </Button>
-        {/* Beside the press it varies, wherever that press is drawn. */}
-        {offersDuel(view) && (
-          <Button
-            isDisabled={!isLive}
-            onPress={() => openNextRound({ isDuel: true })}
-            size='large'
-            variant='outlined'
-          >
-            {translate('host.nextDuel')}
-          </Button>
-        )}
-      </PrimaryPress>
-      {/* The drawer ends a game among the room's other exits. */}
-      {slot === 'all' && (
+          label={translate('host.lineUp.next')}
+          onChange={(value) => {
+            const at = Number(value)
+            const entry = settings.lineUp[at]
+
+            if (entry !== undefined && at !== settings.lineUpAt) {
+              const moved = movedToEntry({
+                at,
+                locale,
+                remembered: rememberedSetupFor({
+                  game: entry.kind,
+                  preferences
+                }),
+                settings
+              })
+
+              onSettingsChange({
+                ...moved,
+                runningOrder: orderWithEntryNext({
+                  at,
+                  order: moved.runningOrder,
+                  upcoming: view.round?.index ?? 0
+                })
+              })
+            }
+          }}
+          options={entryNames.map((name, at) => ({
+            label: name,
+            value: String(at)
+          }))}
+          style={{ '--columns': balancedColumns(settings.lineUp.length) }}
+          value={settings.lineUpAt === null ? null : String(settings.lineUpAt)}
+        />
+      )}
+      {offersSkip({
+        challengeText: challengeLine?.text,
+        lineUp: settings.lineUp,
+        lineUpAt: settings.lineUpAt,
+        played: view.lineUpPlayed,
+        slateKeys: slateKeys ?? []
+      }) && (
         <Button
+          className='skip-round'
           isDisabled={!isLive}
           onPress={() => {
-            send({ type: 'host.endGame' })
+            onSettingsChange(
+              withEntrySkipped({
+                lastAt: view.round?.lineUpAt ?? null,
+                locale,
+                played: view.lineUpPlayed,
+                random: Math.random,
+                rememberedFor: (game) =>
+                  rememberedSetupFor({ game, preferences }),
+                roundAt: view.round?.index ?? 0,
+                roundsLeft:
+                  settings.roundCount === null
+                    ? null
+                    : settings.roundCount - (view.round?.index ?? 0),
+                settings
+              })
+            )
           }}
           variant='underlined'
         >
-          {translate('host.endGame')}
+          {translate('host.skipRound')}
         </Button>
       )}
-      <SecondaryPresses>
-        <BoardMoves isLive={isLive} send={send} view={view} />
-      </SecondaryPresses>
+      {innerclockTarget !== null && (
+        <InnerclockTargetField
+          isDisabled={!isLive}
+          onChange={innerclockTarget.onChange}
+          seconds={innerclockTarget.seconds}
+        />
+      )}
+      {challengeLine !== null && (
+        <ChallengeLineField
+          isDisabled={!isLive}
+          onChange={challengeLine.onChange}
+          value={challengeLine.text}
+        />
+      )}
+      <Button
+        isDisabled={!isLive}
+        onPress={() => openNextRound({ isDuel: false })}
+        size='large'
+      >
+        {translate('host.nextRound')}
+      </Button>
+      {/* Beside the press it varies. */}
+      {offersDuel(view) && (
+        <Button
+          isDisabled={!isLive}
+          onPress={() => openNextRound({ isDuel: true })}
+          size='large'
+          variant='outlined'
+        >
+          {translate('host.nextDuel')}
+        </Button>
+      )}
+      <Button
+        isDisabled={!isLive}
+        onPress={() => {
+          send({ type: 'host.endGame' })
+        }}
+        variant='underlined'
+      >
+        {translate('host.endGame')}
+      </Button>
+      <BoardMoves isLive={isLive} send={send} view={view} />
     </div>
   )
 }

@@ -13,6 +13,23 @@
 /// one.
 $poster-screen: 75rem
 
+/// Where the host's panel can stand beside the stage and still leave it about
+/// as wide as the split: `$wide-screen` and the panel's 25rem, rounded down to
+/// a 1280px laptop, whose stage keeps 880px. Below it the panel's tabs take
+/// turns with the stage instead — at 1024px beside a 400px panel, the reveal's
+/// standings spilt their names.
+$desk-screen: 80rem
+
+/// Wide enough for the host's panel beside the stage.
+@mixin desk
+  @media (width >= $desk-screen)
+    @content
+
+/// Too narrow for it: the panel's tabs replace the stage, one at a time.
+@mixin off-desk
+  @media (width < $desk-screen)
+    @content
+
 /// Past `wide`, where a stage whose payload is a grid can afford a column
 /// beside it and still keep the grid five cards across. Between the two the
 /// column goes under the grid instead, because beside it the grid dropped to

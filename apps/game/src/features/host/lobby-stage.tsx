@@ -4,7 +4,6 @@ import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
-import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { teamCountOf } from '@melee/core/team/team-count'
 
@@ -21,8 +20,6 @@ import {
   scoringKey
 } from '@/presentation/i18n/translation'
 
-import { GamePicker } from './game-picker'
-import { HostSeat } from './host-seat'
 import { MoveSeat } from './move-seat'
 import { NumberChoice } from './number-choice'
 import { RenameTeam } from './rename-team'
@@ -47,8 +44,9 @@ type LobbyStageProps = {
  * play, which is the one decision the room is waiting on.
  *
  * The two columns are two audiences. The invitation is what the room is
- * reading; the game and the roster are the host's own — and on the wall they
- * are the room's too, read rather than set.
+ * reading; the roster is the host's own — and on the wall, with the game's
+ * name and pitch above it, the room's too. The console chooses the game in its
+ * panel, beside the stage rather than on it.
  */
 export const LobbyStage: React.FC<LobbyStageProps> = ({
   controls,
@@ -72,22 +70,16 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
       )}
 
       <div className='host-side'>
-        <section className='game-choice'>
-          {controls === null && view.settings.game !== null && (
-            <h2 className='game-name'>
-              {translate(gameNameKey(view.settings.game.kind))}
-            </h2>
-          )}
-          {controls !== null && (
-            <GamePicker
-              isDisabled={!controls.isLive}
-              onChange={controls.onSettingsChange}
-              preferences={controls.preferences}
-              settings={view.settings}
-            />
-          )}
-          <GamePitch isUnattended={controls === null} view={view} />
-        </section>
+        {controls === null && (
+          <section className='game-choice'>
+            {view.settings.game !== null && (
+              <h2 className='game-name'>
+                {translate(gameNameKey(view.settings.game.kind))}
+              </h2>
+            )}
+            <GamePitch isUnattended view={view} />
+          </section>
+        )}
 
         {controls !== null &&
           !controls.isRoomScreen &&
@@ -142,23 +134,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           {view.teams.length === 0 && (
             <EmptySockets seated={view.players.length} />
           )}
-
-          {/*
-            Inside the count rather than beside it, because taking a seat is
-            joining that list — and in a room of one it is what the launch is
-            refusing for, which it spent its whole life saying from behind a
-            collapsed disclosure three sections below the button it unblocks.
-            Every later phase keeps it there, where it is a setting rather than
-            the way in. At an empty table the launch itself takes the seat, so
-            the form would be a second way to do the same thing.
-          */}
-          {controls !== null &&
-            !controls.isRoomScreen &&
-            !playsAloud &&
-            !launchesWithHostSeated({
-              seated: view.players.length,
-              settings: view.settings
-            }) && <HostSeat onTakeSeat={controls.onTakeSeat} view={view} />}
         </section>
       </div>
     </div>
@@ -277,10 +252,10 @@ const LobbyTeams: React.FC<{
  * sentence was in the setup fold, which is collapsed at every width. So it is
  * here too, under the promise it is the terms of.
  */
-const GamePitch: React.FC<{ isUnattended: boolean; view: HostRoomView }> = ({
-  isUnattended,
-  view
-}) => {
+export const GamePitch: React.FC<{
+  isUnattended: boolean
+  view: HostRoomView
+}> = ({ isUnattended, view }) => {
   const translate = useTranslate()
   const game = view.settings.game
 

@@ -34,11 +34,9 @@ test('[e2e] a room, a scan, a buzz, a verdict and a point', async ({
   await expect(host.startGame).toBeDisabled()
   await host.pickBlindTest.click()
 
-  await host.openSettings.click()
+  await host.openGamesTab.click()
   await host.openBlindTestRound.click()
   await host.buzzerMode.click()
-  // The leaflet is modal, so it is put away before the launch behind it.
-  await bigScreen.keyboard.press('Escape')
   await screen.goto(await host.joinUrl.innerText())
   await player.nickname.fill(NICKNAME)
   await player.join.click()

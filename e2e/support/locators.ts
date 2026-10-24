@@ -36,19 +36,18 @@ export const hostConsole = (page: Page) => ({
   /** What the QR code encodes. Following it is what scanning it does. */
   joinUrl: page.locator('.join-url'),
   /**
-   * The blind test's row in the leaflet's list of planned games, which opens its page
-   * — the answer mode among its settings. The lobby opens the leaflet on that
-   * list. Its name runs on into the row's detail and stamp.
+   * The blind test's row in the panel's list of planned games, which opens its
+   * page — the answer mode among its settings. Its name runs on into the row's
+   * detail and stamp.
    */
   openBlindTestRound: page
     .getByRole('list', { name: 'Planned games' })
     .getByRole('button', { name: /^Blind test/ }),
-  /** The settings are on a leaflet, so anything on it is opened before it is reached. */
-  openSettings: page.getByRole('button', { name: 'Settings' }),
+  /** The panel's games tab, where the shelf and the planned games are. */
+  openGamesTab: page.getByRole('tab', { name: 'Games' }),
   /**
-   * One picker exists at a time: the lobby keeps it on the stage, every later
-   * phase keeps it with the settings. The label rather than the checkbox it
-   * names, same reason as `buzzerMode`.
+   * The lobby's shelf, on the panel's games tab. The label rather than the
+   * checkbox it names, same reason as `buzzerMode`.
    */
   pickBlindTest: page
     .getByRole('group', { name: 'What we’re playing' })

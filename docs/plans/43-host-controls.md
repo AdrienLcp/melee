@@ -1,6 +1,6 @@
 # 43 — Host controls
 
-**In progress** — step 1 done. Asked 24/10/2026. The room's screen never shows
+**In progress** — steps 1 to 3 done. Asked 24/10/2026. The room's screen never shows
 a control, the host's controls are always on a screen only the host sees, in
 one side panel, and the *This screen is the room's* switch goes away.
 
@@ -62,6 +62,24 @@ so no real round reaches it. The duel badge now yields in `RoundChrome` rather
 than clipping the round index and the score on a narrow screen.
 `e2e/choice-fits.spec.ts` holds a spectator to the same floor as a player.
 
+Step 3 (done): the settings leaflet (`SetupPopover`, `SetupFields`) and the
+room screen's drawer (`RoomScreenPresses`, `Drawer`, `ActionSlot`) are gone,
+replaced by `HostPanel` (`host-panel.tsx`) and its four tabs
+(`setup-tabs.tsx`): *Games* — the lobby's shelf, moved off the stage, and the
+planned games with their pages; *Table* — teams, board, judge, rounds, the
+first two one line past the lobby (*No teams · No board, settled for this
+game*); *Room* — hold, countdown, volume; *Players* — the roster with its ✕
+and the seat, field full width and the press under it, now with *Give up the
+seat* once taken. Wide, the panel stands on paper beside the stage, folds to
+a rail and switches sides, both remembered (`melee:panel-folded`,
+`melee:panel-side`) and never changed on their own. Narrow, a bottom bar with
+*Play* first, each tab the whole screen; a console with no game yet opens on
+*Games*, and the seated host's four tiles keep their bar-less screen. The
+phase's presses stay under the stage. The room-screen mode keeps its wall face
+with the panel beside it; its launch still deals drawn teams first. Direction
+D of `.impeccable/directions/host-panel/` (local), approved 2026-10-24;
+DESIGN.md § The setup holds the measures.
+
 **Seat refusal today** (`host-seat.tsx`, `isSeatWithheldByMode` in
 `packages/core/src/room/game-modes.ts`): a quiz, blind test or matchsticks left
 on `buzzer` replaces the seat form with `host.seat.judged` (*You judge the
@@ -73,17 +91,13 @@ that.
 ## Next steps
 
 2. ~~Fix the two gaps above.~~ Done.
-3. **One side panel for the host's settings**, starting with `/impeccable`:
-   *Settings* (a popup today, cramped on desktop) and *Run the room*
-   (`room-screen-presses.tsx`, a `Drawer`) become one panel, always beside the
-   game on a wide screen and sliding in from the edge on a phone. The lobby's
-   game picker belongs to it.
+3. ~~One side panel for the host's settings.~~ Done.
 4. **Run the room from my phone**: a QR code and a link in the console's menu
    that hand the console to another device (it carries the host token, so only
    the console's menu shows it) and turn the current screen into the wall. Read
    `docs/realtime-protocol.md` (host token, wall pairing) first.
-5. **Remove the switch** (`menu.roomScreen` in `app-menu.tsx`) and the
-   `RoomScreenPresses` drawer once 3 and 4 cover them.
+5. **Remove the switch** (`menu.roomScreen` in `app-menu.tsx`) once 4 covers
+   it; the drawer already went in step 3.
 6. **Home page**: drop the game checkboxes, which duplicate the lobby's picker;
    home becomes *Open a table* plus a card per game linking to its page. Check
    first what the game front doors are for (search, shared links).

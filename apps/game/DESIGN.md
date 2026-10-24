@@ -484,28 +484,61 @@ floor and the reflex race keep their footer under the stage at every ratio.
   each answer on one line with its pawns.
 - **The final board** keeps the ruled standings while its box is 26rem tall
   and takes the track under that; a tie stands its pawns over the names.
-- **The hold strip** is not drawn; `SetupPopover`'s press carries it, with
-  the slate's key and item names while the sheets are open.
+- **The hold strip** is not drawn; the panel's room tab carries it, and the
+  games tab the slate's key and item names while the sheets are open.
 
 ### The setup
 
-The settings are never unfolded into the page, at any width: an inline fold
-opened under the launch made a 1440×900 console 1 739px tall and carried the
-launch down with it. `SetupPopover` is one underlined press in the footer —
-the room's summary under it past the split, its description only below — and
-it opens a `Leaflet`: a popover above the press, a 30rem column, or the sheet
-below the split. Inside, `SetupFields` is a `DisclosureGroup` of three, each
-closed on its own summary and one open with the leaflet: **the evening** (the game past
-the lobby, the teams, the round count), **the round** (the game's own
-settings, absent until there is a game) and **the room** (the hold, the
-countdown, this screen's volume and seat). The evening opens first in the
-lobby, the round after it. The teams strip lives here rather than on the lobby
-stage, which keeps the trays, the draw and the seats; past the lobby it is
-ruled, with the reason under it.
+The host's controls live in one panel the room never sees (`HostPanel`,
+direction D of `.impeccable/directions/host-panel/`, local, approved
+2026-10-24). Four tabs, each a `TabPanel` of `setup-tabs.tsx`: **Games** (the
+lobby's shelf and the game's scoring line, then the planned games, each
+opening its own page in the tab's place), **Table** (the teams, the board,
+the judge and the round count), **Room** (the hold, the countdown, this
+screen's volume) and **Players** (the roster with its ✕, then this console's
+seat: the field the panel's full width, *Take a seat* under it at the same
+width). The phase's presses are never in it: they stay in `HostActions` under
+the stage, so a folded panel or another tab never hides what the room waits on.
 
+- **Past the split** the panel stands beside the stage, `--host-panel-width`
+  (25rem), on paper (`box-lid.paper`: rounded on the stage's side, a hairline
+  and `--shadow-panel-*` cast toward the stage), held to the viewport and
+  scrolling inside itself. The tabs run across its top, the chosen one in
+  `--card-well` with a chipboard edge; the players' tab carries the head count.
+  Beside them, two tools: the side switch (right by default) and the fold,
+  which leaves a rail of the same tabs, `--host-rail-width` (5.75rem); a rail
+  tab opens the panel on itself. It never folds on its own, and both choices
+  are remembered on the machine (`melee:panel-folded`, `melee:panel-side`).
+  The fixed menu moves off the panel when the panel is on the right.
+- **Below it** the tabs are a bar along the foot, `--panel-bar-height`
+  (3.625rem, the measured bar: a tab at the touch target, its glyph at
+  `--text-s` over a `--text-3xs` label) on `--track-b`, with a fifth tab
+  first, **Play** — the stage and its presses. On a screen lying down the same
+  bar runs down the right edge, `--panel-bar-width` (4rem, the widest label
+  with no inline padding). Every rem of either is taken from the stage: at
+  4.5rem the slate's board of 26 items fell under its floor at 320×568. A tab
+  replaces the whole screen, native-style; nothing slides in over the stage.
+  The stage's page pays for the bar in its `--layout-padding-block-end` (its
+  right gutter, lying down), and the lobby's sticky launch stands on it. A
+  console opened with no game chosen starts on Games. The seated host's four
+  tiles are their own screen with no bar, so a question and its choices never
+  scroll; the unseated console's four tiles, lying down, drop the side bar
+  until the round ends (`data-stage-full`), because the column it takes is
+  the one the longest choice wraps into — 568×320 ran 14px off the screen.
+- **Past the lobby** the teams and the board, which the server no longer lets
+  change, are one ruled line (*No teams · No board*, *Settled for this game*)
+  rather than controls drawn dead. Under a round in play, Table and
+  Room say the changes apply from the next round; the seat waits for the
+  round to end, since taking it reopens the socket.
 
 ### Measured traps
 
+- The console's phase rules (`.host-console-page:has(> .stage.…)`) set the
+  page's `display` at a weight no single class outranks, so the narrow panel
+  hides the stage behind a tab by its id (`#main`).
+- `.countdown` is the countdown token's class wherever it is drawn: a strip
+  named that inside the panel came out as a 400px disc. The strip is
+  `.countdown-choice`.
 - A `position: fixed` element inside a page is fixed to the page, not the
   viewport: the entrance animation leaves a `transform`. Anything fixed renders
   beside `<main>`.
@@ -791,7 +824,7 @@ On the wall the chrome goes idle
 `ConnectionStatus` tells its four states by shape and motion, never by hue.
 
 ### Leaflet: popover or sheet
-`Leaflet` is what a trigger opens — the menu, the folded setup. At or past the
+`Leaflet` is what a trigger opens — the menu, a seat's move. At or past the
 split it is a popover beside the trigger; below it, a sheet rising from the
 bottom edge across the whole width, its controls held to a 30rem column, its
 top a grabber a thumb pulls down (past a quarter of its height, or flicked).
@@ -804,31 +837,25 @@ their keyframes (`styles/_sheet.sass`), `leaflet.sass` the look. The sheet is a
 plain modal with its own rise, not react-aria's `Sheet`, which enters through
 the browser's smooth scroll and takes over half a second.
 
-A sheet, and the `Drawer` past the split, pads by the page's own gutter, never
+A sheet pads by the page's own gutter, never
 the board track's: the track widens `--gutter-left` and `--gutter-right` on
 `:root` to keep the page clear of it, and a sheet covering the track inherited
 56px a side at 390 — 278px of controls out of 390 — for an edge it hides.
 
-### The room's own screen (`RoomScreenPresses`, `Drawer`)
+### The room's own screen
 A console switched to the room's screen in the menu (`melee:room-screen`) is
 drawn as the wall — `wall-page room-screen` on `<main>`, the same header,
-stage and board track, every answer folded behind *Voir la réponse* — with the
-host's hand at its foot, fixed beside `<main>`: the phase's one press bottom
-right, large and filled, and *Animer* bottom left. The page pays for them in
-its own `--layout-padding-block-end`, so every stage sized to the viewport
-sizes to what is left. `ActionSlot` splits each phase's presses rather than
-drawing them twice: `PrimaryPress` is the one the room waits on, with the line
-that says why it refuses; `SecondaryPresses` go to the drawer. `Drawer` is a
-panel from the start edge past the split, 28rem, sliding in on `base`; below
-it, the leaflet's sheet with its grabber. The face is the stylesheet's, so
-no media query is read in a component.
+stage and board track, every answer folded behind *Voir la réponse* — with
+the host's panel beside it and the phase's presses under the stage, as on any
+console. The lobby's launch deals the teams first when they are drawn, since
+the table it draws has no trays to deal from (`LobbyActions`, `isRoomScreen`).
+The switch goes in plan 43's step 5, once the console can be handed to
+another screen.
 
-The track ends above the presses rather than under them (two rows of them
-under the split), so the start — where every pawn stands before the first
-round — is never behind *Next round*. It renders beside `<main>`, like the
-presses: inside it, the page's leftover transform would run it down a lobby
-long enough to scroll. The board fills in behind its top row, so a scrolling
-lobby passes under the cases rather than through their gaps.
+The track renders beside `<main>`: inside it, the page's leftover transform
+would run it down a lobby long enough to scroll. The board fills in behind its
+top row, so a scrolling lobby passes under the cases rather than through their
+gaps.
 
 ### The table (`TableLobby`)
 A room of teams in its lobby, on the wall and on the room's own screen —
@@ -852,9 +879,8 @@ so the lid sets it on the invitation, not on itself. Under the split the page
 scrolls inside the U, reserving the two rows of presses.
 
 Its presses are the room's: *Draw the teams* until the deal, then *Draw again*
-beside *Gather round* (in the drawer under the split). The games and the team
-count are the drawer's, and the count follows the headcount until the host
-picks one there; a new count after a deal deals again
+beside *Gather round*. The games are the panel's, and the team count follows
+the headcount; a new count after a deal deals again
 (`useTeamCountFollowingHeadcount`).
 
 ## Do's and Don'ts

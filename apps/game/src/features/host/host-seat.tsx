@@ -18,6 +18,8 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import './host-seat.sass'
 
 type HostSeatProps = {
+  /** Gives the seat this console holds back to the room. */
+  onLeaveSeat: () => void
   /** Reopens the socket with a name on it, which is what takes the seat. */
   onTakeSeat: (nickname: string) => void
   view: HostRoomView
@@ -37,7 +39,11 @@ type HostSeatProps = {
  * Taking it withholds the answer from this screen's own payload until the
  * reveal, so the seat costs the host what it costs everyone else.
  */
-export const HostSeat: React.FC<HostSeatProps> = ({ onTakeSeat, view }) => {
+export const HostSeat: React.FC<HostSeatProps> = ({
+  onLeaveSeat,
+  onTakeSeat,
+  view
+}) => {
   const translate = useTranslate()
   // The same name a player's join form fills itself in with. It is the device
   // saying what it likes being called, and a console is a device like any other.
@@ -68,9 +74,12 @@ export const HostSeat: React.FC<HostSeatProps> = ({ onTakeSeat, view }) => {
 
   if (takenAs !== null) {
     return (
-      <p className='host-seat taken'>
-        {translate('host.seat.taken', { nickname: takenAs })}
-      </p>
+      <section className='host-seat taken'>
+        <p>{translate('host.seat.taken', { nickname: takenAs })}</p>
+        <Button onPress={onLeaveSeat} size='small' variant='underlined'>
+          {translate('host.seat.leave')}
+        </Button>
+      </section>
     )
   }
 

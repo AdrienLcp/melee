@@ -5,13 +5,15 @@
     border-top: var(--hairline)
     padding-top: var(--space-m)
 
+    // The field takes the panel's width and the press stands under it at the
+    // same width: side by side, a name of any length was cut to a few letters.
     .react-aria-Form
       display: flex
       flex-direction: column
       gap: var(--space-s)
 
-    .button
-      align-self: flex-start
+    .react-aria-Form > .button
+      align-self: stretch
 
     // The two lines that stand in for the form. They keep the section's rule
     // so the boundary above the seat is there whether or not there is one to
@@ -22,3 +24,10 @@
       @include typography.caption
 
       color: var(--ink-muted)
+
+    &.taken
+      align-items: baseline
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-m)
+      justify-content: space-between

@@ -1,0 +1,60 @@
+@use '@adrienlcp/styles/accessibility'
+
+@use '../../presentation/styles/strip'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .host-panel
+    .held,
+    .tab-summary
+      @include typography.caption
+
+      color: var(--ink-muted)
+
+    .game-choice
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+      // The tab's own heading already names the shelf.
+      .box-shelf > .react-aria-Label
+        @include accessibility.visually-hidden
+
+      .scoring,
+      .prompt
+        @include typography.caption
+
+        color: var(--ink-muted)
+
+    // What the teams and the board were settled on, once the server stops
+    // taking either: a printed slip rather than two controls drawn dead.
+    .settled
+      border-radius: var(--radius-m)
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      border: var(--hairline)
+      padding: var(--space-s) var(--space-m)
+
+      strong
+        @include typography.heading
+
+      span
+        @include typography.caption
+
+        color: var(--ink-muted)
+
+    .countdown-choice
+      @include strip.stacks-below(10rem)
+
+    .round-count
+      @include strip.stacks-below(18.5rem)
+
+      // A seventh stamp is the count the room is on when it is off the steps.
+      &:has(.segment-field:nth-child(7))
+        @include strip.stacks-below(21rem)
+
+    // The roster above it is already ruled off.
+    .host-seat
+      border-top: none
+      padding-top: var(--space-xs)

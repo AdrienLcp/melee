@@ -53,6 +53,9 @@
     --shadow-pulled: 0 18px 22px -10px var(--shadow-ink)
     --shadow-overlay: 0 24px 40px -16px var(--shadow-ink)
     --shadow-sheet: 0 -12px 28px -12px var(--shadow-ink)
+    // The host's panel, cast toward the stage from whichever edge it stands on.
+    --shadow-panel-end: -10px 0 28px -18px var(--shadow-ink)
+    --shadow-panel-start: 10px 0 28px -18px var(--shadow-ink)
     --shadow-print: 0 6px 12px -8px var(--shadow-ink)
     --shadow-recess: inset 0 3px 8px -2px var(--shadow-ink)
     --shadow-recess-shallow: inset 0 3px 6px -4px var(--shadow-ink)
@@ -65,6 +68,8 @@
     --card-muted: oklch(42% 0.03 255)
     // The keyline printed inside a box lid, a margin in from its edge.
     --card-rule: color-mix(in oklab, var(--card-ink) 14%, var(--card))
+    // A pressed-in patch of paper: the console panel's chosen tab.
+    --card-well: color-mix(in oklab, var(--card-ink) 8%, var(--card))
 
     // A recess a piece sits in when the box is empty.
     --socket: light-dark(oklch(88% 0.03 218), oklch(25% 0.035 226))
@@ -253,6 +258,14 @@
     --framed-padding-block-end: max(clamp(var(--space-xs), calc(var(--stage-unit) * 2), 1rem), var(--safe-area-bottom))
 
     --stage-max-width: 112.5rem
+    // The host's panel beside a wide console's stage, open and folded to its
+    // rail. The fixed menu reads them to stay over the stage rather than the panel.
+    --host-panel-width: 25rem
+    --host-rail-width: 5.75rem
+    // Off the desk, the same tabs as a bar: along the foot, or down the side
+    // of a screen lying down. Every rem of either is taken from the stage.
+    --panel-bar-height: 3.625rem
+    --panel-bar-width: 4rem
     --column-max-width: 38.75rem
     --column-wide-max-width: #{layout.$wide-screen}
 

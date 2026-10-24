@@ -29,7 +29,7 @@ export type RoomActions = {
   endGame: (() => void) | null
   /**
    * Whether this console is drawn as the room's own screen: the wall's stage,
-   * every answer folded, the presses in a drawer. `false` on every other screen.
+   * every answer folded. `false` on every other screen.
    */
   isRoomScreen: boolean
   /** Gives the seat up, so the roster on the console is true at once. */

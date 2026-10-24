@@ -32,6 +32,8 @@ import { readStoredWithSchema } from './read-stored-with-schema'
 export const HOST_SETUP_KEY = 'melee:host-setup'
 export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
+export const PANEL_FOLDED_KEY = 'melee:panel-folded'
+export const PANEL_SIDE_KEY = 'melee:panel-side'
 export const ROOM_SCREEN_KEY = 'melee:room-screen'
 export const VOLUME_KEY = 'melee:volume'
 
@@ -176,6 +178,55 @@ export const writeStoredRoomScreen = (
   isRoomScreen: boolean
 ): Result<void, StorageWriteError> =>
   writeStoredText({ key: ROOM_SCREEN_KEY, text: String(isRoomScreen) })
+
+const PANEL_FOLDED_VALUES = ['true', 'false'] as const
+
+const isPanelFoldedValue = (
+  text: string
+): text is (typeof PANEL_FOLDED_VALUES)[number] =>
+  PANEL_FOLDED_VALUES.some((value) => value === text)
+
+/** Whether the host last folded the console's panel down to its rail; never stored means open. */
+export const readStoredPanelFolded = (): Result<boolean, StorageReadError> => {
+  const stored = readRecognizedText({
+    isRecognized: isPanelFoldedValue,
+    key: PANEL_FOLDED_KEY
+  })
+
+  return stored.status === 'success'
+    ? Result.success(stored.data === 'true')
+    : stored
+}
+
+export const writeStoredPanelFolded = (
+  isFolded: boolean
+): Result<void, StorageWriteError> =>
+  writeStoredText({ key: PANEL_FOLDED_KEY, text: String(isFolded) })
+
+/** The edge of a wide console the panel stands against. */
+export type PanelSide = 'left' | 'right'
+
+const PANEL_SIDES = ['left', 'right'] as const satisfies readonly PanelSide[]
+
+const isPanelSide = (text: string): text is PanelSide =>
+  PANEL_SIDES.some((side) => side === text)
+
+/** The side the host last put the console's panel on; never stored means the right. */
+export const readStoredPanelSide = (): Result<PanelSide, StorageReadError> => {
+  const stored = readRecognizedText({
+    isRecognized: isPanelSide,
+    key: PANEL_SIDE_KEY
+  })
+
+  return stored.status === 'success'
+    ? Result.success(stored.data ?? 'right')
+    : stored
+}
+
+export const writeStoredPanelSide = (
+  side: PanelSide
+): Result<void, StorageWriteError> =>
+  writeStoredText({ key: PANEL_SIDE_KEY, text: side })
 
 const isVolume = (volume: number): boolean =>
   Number.isFinite(volume) && volume >= 0 && volume <= 1

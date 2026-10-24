@@ -1,3 +1,4 @@
+@use '../styles/layout'
 @use '../styles/typography'
 @use '@adrienlcp/styles/accessibility'
 
@@ -18,6 +19,21 @@
 
     :root:has(.player-page.framed, .host-console-page.framed) &
       inset-block-start: var(--framed-padding-block-start)
+
+    // Over the stage rather than the host's panel, when the panel stands
+    // along the same edge — or its tab bar, down the side of a screen lying
+    // down.
+    @include layout.desk
+      :root:has(.host-desk[data-side='right']) &
+        inset-inline-end: calc(var(--host-panel-width) + var(--gutter-right))
+
+      :root:has(.host-desk[data-side='right'][data-folded]) &
+        inset-inline-end: calc(var(--host-rail-width) + var(--gutter-right))
+
+    @include layout.off-desk
+      @media (aspect-ratio >= 13 / 10)
+        :root:has(.host-desk:not([data-screen='stage'][data-stage-full])) &
+          inset-inline-end: calc(var(--panel-bar-width) + var(--gutter-right))
 
     // A screen of four tiles lying down gives the tiles the whole right-hand
     // column, so the menu moves to the start of the chrome over the question.
@@ -99,10 +115,7 @@
   // A host's menu on a landscape phone holds the invitation, the wall doors,
   // the seat, the preferences and three exits, and ran off the bottom with the
   // exits unreachable until the leaflet scrolled inside itself.
-  // The room's own screen draws the same exits in its drawer, sized against
-  // the same narrow box.
-  .app-menu-leaflet,
-  .room-exits
+  .app-menu-leaflet
     &.sheet-popover
       max-width: min(92vw, 20rem)
 

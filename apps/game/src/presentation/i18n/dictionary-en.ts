@@ -161,6 +161,7 @@ export const EN_DICTIONARY = defineDictionary({
     fix: 'Fix the squares',
     forward: 'Move {team} forward a square',
     more: '+{count:number}',
+    none: 'No board',
     setting: {
       catchUp: {
         hint: 'Whoever is alone in last place moves one square more on a round they score.',
@@ -365,15 +366,6 @@ export const EN_DICTIONARY = defineDictionary({
       warning: 'Everyone is sent out, and the code stops working.'
     },
     countdown: 'Countdown',
-    /**
-     * The room's own screen keeps one press on the stage and everything else
-     * behind `open`, at the screen's foot; `removePlayer` heads the seats it
-     * can take off the table.
-     */
-    drawer: {
-      open: 'Run the table',
-      removePlayer: 'Remove a player'
-    },
     endGame: 'End the game',
     evening: {
       add: 'Add a game',
@@ -464,6 +456,26 @@ export const EN_DICTIONARY = defineDictionary({
     /** Beside *Next round*: opens it as two seats of two teams head to head, the room watching. */
     nextDuel: 'As a duel',
     nextRound: 'Next round',
+    /**
+     * The console's own panel beside the stage, or its screens behind a tab bar
+     * below the split. `stage` is the bar's first tab, the game itself.
+     */
+    panel: {
+      fold: 'Fold the panel',
+      label: 'Run the table',
+      /** Past the lobby, in place of the teams and the board the server no longer lets change. */
+      settled: 'Settled for this game',
+      tabs: {
+        game: 'Games',
+        players: 'Players',
+        room: 'Room',
+        stage: 'Play',
+        table: 'Table'
+      },
+      toLeft: 'Move the panel to the left',
+      toRight: 'Move the panel to the right',
+      unfold: 'Open the panel'
+    },
     /** The reveal of a turn with another team still to play its round. */
     playAgain: 'Play again',
     players: {
@@ -520,7 +532,6 @@ export const EN_DICTIONARY = defineDictionary({
         room: 'The room',
         table: 'The table'
       },
-      label: 'Settings',
       roundInPlay: 'Changes apply from the next round',
       summary: {
         countdown: 'Countdown of {duration}',
@@ -722,6 +733,9 @@ export const EN_DICTIONARY = defineDictionary({
       logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
       nickname:
         'The name you last played under, so the next table fills it in for you.',
+      panelFolded:
+        'Whether you last folded the panel beside the table you run.',
+      panelSide: 'Which side of the screen you put that panel on.',
       roomScreen:
         'Whether this screen is the room’s own, so it stays one from one table to the next.',
       seats:
@@ -840,7 +854,7 @@ export const EN_DICTIONARY = defineDictionary({
     /** Said by the host, about the machine rather than the table: it outlives the room. */
     roomScreen: {
       description:
-        'For the screen everyone reads. Answers stay hidden until you show them, and your controls move to Run the table.',
+        'For the screen everyone reads. Answers stay hidden until you show them.',
       label: 'This screen is the room’s'
     },
     thisDevice: {
@@ -1240,7 +1254,6 @@ export const EN_DICTIONARY = defineDictionary({
       chosen: 'Players choose',
       drawn: 'Drawn',
       label: 'Teams',
-      locked: 'Teams and the board are settled before the first round.',
       off: 'Every player for themselves'
     },
     summary: {

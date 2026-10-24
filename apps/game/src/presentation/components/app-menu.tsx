@@ -282,7 +282,7 @@ const SeatName: React.FC = () => {
  * Closing asks twice, because it is the only one that cannot be undone: the
  * code stops resolving, so a player cannot reload their way back in.
  */
-export const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
+const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   const { locale } = useI18n()
   const { closeRoom, endGame, leaveSeat } = useRoomActions()
   const [isConfirmingClose, setIsConfirmingClose] = useState(false)

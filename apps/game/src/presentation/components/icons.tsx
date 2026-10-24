@@ -1,4 +1,5 @@
 import {
+  ArrowLeftRight,
   ArrowRight,
   ArrowRightLeft,
   BellRing,
@@ -20,7 +21,11 @@ import {
   type LucideProps,
   Menu,
   Minus,
+  MonitorPlay,
   Music,
+  PanelRightClose,
+  PanelRightOpen,
+  PanelsTopLeft,
   Pencil,
   PencilLine,
   Plus,
@@ -29,6 +34,7 @@ import {
   SlidersHorizontal,
   Trophy,
   Tv,
+  Users,
   X,
   Zap
 } from 'lucide-react'
@@ -78,10 +84,16 @@ export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const GripIcon = inFamily(GripVertical)
 export const MinusIcon = inFamily(Minus)
 export const MoveIcon = inFamily(ArrowRightLeft)
+export const PanelFoldIcon = inFamily(PanelRightClose)
+export const PanelOpenIcon = inFamily(PanelRightOpen)
+export const PanelSideIcon = inFamily(ArrowLeftRight)
+export const PlayersIcon = inFamily(Users)
 export const RenameIcon = inFamily(Pencil)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)
+export const StageIcon = inFamily(MonitorPlay)
+export const TableIcon = inFamily(PanelsTopLeft)
 export const ShareIcon = inFamily(Share)
 export const WorldIcon = inFamily(Earth)
 

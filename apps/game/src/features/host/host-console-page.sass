@@ -180,8 +180,8 @@
       gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-xl))
       min-width: 0
 
-    // The one decision a freshly opened room is waiting on, so it is on the
-    // stage rather than folded away with the numbers.
+    // On the wall, what the table is about to play: the console chooses it in
+    // its panel.
     .game-choice
       display: flex
       flex-direction: column
@@ -253,37 +253,6 @@
         color: var(--ink-muted)
         text-wrap: pretty
 
-      // The seat form closes the table rather than sitting under a rule of its
-      // own: taking a seat is joining this list. One line, the name and the
-      // press beside it, because the table above it is what the room reads.
-      .host-seat
-        border-top: none
-        padding-top: var(--space-xs)
-
-        .react-aria-Form
-          align-items: center
-          column-gap: var(--space-s)
-          display: grid
-          grid-template-areas: 'label label' 'input press' 'note note'
-          grid-template-columns: minmax(0, 1fr) auto
-          row-gap: var(--space-2xs)
-
-        .text-field
-          display: contents
-
-          .react-aria-Label
-            grid-area: label
-
-          .react-aria-Input
-            grid-area: input
-
-          [slot='description'],
-          .react-aria-FieldError
-            grid-area: note
-
-        .button
-          grid-area: press
-
     .now
       @include typography.billboard
 
@@ -346,14 +315,14 @@
         flex-direction: column
         gap: var(--space-m)
 
-      // The launch and why it refuses, as one object: under the setup's press
-      // rather than above it, and pinned to the bottom of the screen, so a
-      // lobby long enough to scroll still has the press in front of the host.
+      // The launch and why it refuses, as one object, pinned to the bottom of
+      // the screen — above the tab bar below the split — so a lobby long
+      // enough to scroll still has the press in front of the host.
       .launch
         align-items: center
         align-self: stretch
         background: var(--field)
-        bottom: 0
+        bottom: var(--panel-bar-foot, 0rem)
         display: flex
         flex-direction: column
         gap: var(--space-2xs)
@@ -402,10 +371,6 @@
             flex-direction: column
             gap: var(--space-s)
 
-        .setup-entry
-          align-items: center
-          flex-basis: 100%
-
   // A round in play is held to the screen the ring leaves, like the framed
   // seat: the stage takes what the header and the footer do not, and sizes its
   // type to that. Its floor is what keeps a tall footer a scroll rather than a
@@ -426,8 +391,8 @@
         // which a removed header would silence.
         @include accessibility.visually-hidden
 
-    // One row above the split, and on any screen lying down: the setup's
-    // press and the one that gives the answer away.
+    // One row above the split, and on any screen lying down: the press that
+    // gives the answer away, and whatever stands beside it.
     @media (width >= layout.$wide-screen), (aspect-ratio >= 13 / 10)
       > footer
         column-gap: var(--space-l)
@@ -436,10 +401,6 @@
 
         .error
           flex-basis: 100%
-
-        .setup-entry
-          flex: 1 1 12rem
-          order: -1
 
   // The slate held to the screen the ring leaves, like a round in play: the
   // board of items and the marking each divide the box between the header and
@@ -467,10 +428,6 @@
 
         .error
           flex-basis: 100%
-
-        .setup-entry
-          flex: 1 1 12rem
-          order: -1
 
   // The countdown with nothing to recap is the token alone, sized against the
   // box the header and the footer leave it rather than the viewport, which
@@ -794,8 +751,8 @@
           .verdict-panel .holder
             padding-inline-end: 0
 
-  // On either shape the hold strip gives way to the setup's press, which
-  // carries it on the leaflet.
+  // Below the split the hold strip gives way to the stage: the room tab
+  // carries it.
   .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting), > .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
     @include layout.narrow
       > footer
@@ -803,9 +760,6 @@
 
         > .auto-advance
           display: none
-
-        .setup-trigger
-          display: inline-flex
 
         .reveal-actions,
         .slate-actions
@@ -871,13 +825,6 @@
         .game-picker .box
           min-height: 0
 
-      // The shelf's label is the row the menu stands on.
-      .game-choice .box-shelf > .react-aria-Label
-        align-items: center
-        display: flex
-        min-height: var(--control-height)
-        padding-inline-end: var(--menu-inset)
-
       // A table answering aloud has no invitation to give the left: the
       // table and the launch take the middle, at the shelf's reading width.
       &:has(> .stage.lobby[data-aloud])
@@ -900,18 +847,24 @@
         > .host-side
           grid-area: side
 
+          // The first heading is the row the menu stands on.
+          > :first-child > h2
+            align-items: center
+            display: flex
+            min-height: var(--control-height)
+            padding-inline-end: var(--menu-inset)
+
       > footer
         align-items: center
         display: grid
         gap: var(--space-2xs) var(--space-l)
         grid-area: footer
-        grid-template-areas: 'error error' 'fold launch'
-        grid-template-columns: minmax(0, 1fr) auto
+        grid-template-areas: 'error' 'launch'
+        justify-items: end
 
         .error
           grid-area: error
 
-        // Beside the setup's press, at the end of its row.
         .launch
           align-items: end
           align-self: end
@@ -920,9 +873,6 @@
 
         .reason
           text-align: end
-
-        .setup-entry
-          grid-area: fold
 
   // Stacked, the lobby is in one hand and the order is what that hand does:
   // the code and its square shrunk to one row, then the game, then the press,
