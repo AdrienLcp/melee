@@ -4,46 +4,32 @@ import type { DealtChallengeLine, Room } from '@/domain/room/room'
 
 import { drawChallengeLine, playedChallengeLineId } from './challenge-bank'
 
-const challengeSettingsOf = (room: Room) =>
-  room.settings.game?.kind === 'challenge' ? room.settings.game : null
-
-/** A line from another category than `after`, and never `after` itself. */
+/** Any line but `after`, which the room is about to be dealt or has just been. */
 const drawAfter = (
   room: Room,
   after: DealtChallengeLine | null
 ): DealtChallengeLine | null =>
-  drawChallengeLine({
-    avoidCategory: after?.category ?? null,
-    hasFestiveLines: challengeSettingsOf(room)?.hasFestiveLines ?? false,
-    playedIds:
-      after === null
-        ? room.playedContentIds
-        : new Set([...room.playedContentIds, playedChallengeLineId(after.id)])
-  })
+  drawChallengeLine(
+    after === null
+      ? room.playedContentIds
+      : new Set([...room.playedContentIds, playedChallengeLineId(after.id)])
+  )
 
 /**
  * Deals the line the next challenge round opens on, when the room plays the
- * challenge and holds none that its festive setting still allows. Run wherever
- * the game can become the challenge, so the console always has one to show.
+ * challenge and holds none. Run wherever the game can become the challenge, so
+ * the console always has one to show.
  */
 export const keepChallengeAhead = (room: Room): void => {
-  const settings = challengeSettingsOf(room)
-
-  if (settings === null) {
-    return
-  }
-
   // A room stored before the field existed reads it as `undefined`.
-  const ahead = room.nextChallenge ?? null
-
   if (
-    ahead !== null &&
-    (settings.hasFestiveLines || ahead.category !== 'festive')
+    room.settings.game?.kind !== 'challenge' ||
+    (room.nextChallenge ?? null) !== null
   ) {
     return
   }
 
-  room.nextChallenge = drawAfter(room, ahead)
+  room.nextChallenge = drawAfter(room, null)
 }
 
 /**

@@ -199,10 +199,6 @@ export const FR_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Ça se joue à table — l’hôte annonce le classement.',
-    festive: {
-      hint: 'Quelque chose qui brille, du papier cadeau, une boule de sapin.',
-      label: 'Défis de fêtes'
-    },
     home: {
       description:
         'Couper un légume en deux moitiés du même poids, empiler le plus de pommes de terre à raclette : le défi se joue à table, loin des écrans. L’hôte l’affiche au mur, dit qui finit premier, deuxième et troisième, et les points arrivent au tableau comme ceux de n’importe quelle manche.'

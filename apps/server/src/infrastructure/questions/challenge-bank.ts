@@ -1,22 +1,20 @@
 import { z } from 'zod'
 
-import {
-  type ChallengeCategory,
-  challengeCategorySchema,
-  challengeLabelsSchema
-} from '@melee/protocol/challenge'
+import { challengeLabelsSchema } from '@melee/protocol/challenge'
 
 import { dealLine } from '@melee/core/challenge/deal-line'
+import { fillLetterSlot } from '@melee/core/challenge/letter-slot'
 
 import bank from './challenge-bank.json' with { type: 'json' }
 
 /**
- * Written by hand, in both languages at once: a line a living room can play in
- * under two minutes, by anyone — seated included — with nothing bought and
- * nothing broken, and judged by who finished first rather than by taste.
+ * Written by hand, in both languages at once: one object to bring back, found
+ * in a home as in an office, by anyone — seated included — with nothing bought
+ * and nothing broken, and judged by who is back first rather than by taste.
+ * Several seats doing something out loud at once is noise the host cannot
+ * place, so every line is a fetch.
  */
 const bankedChallengeLineSchema = z.object({
-  category: challengeCategorySchema,
   id: z.string().regex(/^[a-z0-9-]{1,64}$/),
   labels: challengeLabelsSchema
 })
@@ -34,21 +32,12 @@ export const bankedChallengeLines = (): readonly BankedChallengeLine[] => {
 
 export const playedChallengeLineId = (id: string): string => `challenge:${id}`
 
-/** A line the room has not been dealt, varied from the last one; `null` once the bank is spent. */
-export const drawChallengeLine = ({
-  avoidCategory,
-  hasFestiveLines,
-  playedIds
-}: {
-  avoidCategory: ChallengeCategory | null
-  hasFestiveLines: boolean
+/** A line the room has not been dealt, its letter drawn; `null` once the bank is spent. */
+export const drawChallengeLine = (
   playedIds: ReadonlySet<string>
-}): BankedChallengeLine | null => {
+): BankedChallengeLine | null => {
   const lines = bankedChallengeLines()
-
-  return dealLine({
-    avoidCategory,
-    hasFestiveLines,
+  const line = dealLine({
     lines,
     playedIds: new Set(
       lines
@@ -56,4 +45,8 @@ export const drawChallengeLine = ({
         .map(({ id }) => id)
     )
   })
+
+  return line === null
+    ? null
+    : { id: line.id, labels: fillLetterSlot({ labels: line.labels }) }
 }

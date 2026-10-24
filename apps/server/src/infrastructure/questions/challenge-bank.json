@@ -1,6 +1,5 @@
 [
   {
-    "category": "fetch",
     "id": "something-red",
     "labels": {
       "en": "Bring back something red",
@@ -8,7 +7,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-blue",
     "labels": {
       "en": "Bring back something blue",
@@ -16,7 +14,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-yellow",
     "labels": {
       "en": "Bring back something yellow",
@@ -24,7 +21,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-green",
     "labels": {
       "en": "Bring back something green",
@@ -32,71 +28,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "red-yellow-blue",
-    "labels": {
-      "en": "Bring back something red, something yellow and something blue",
-      "fr": "Rapportez un objet rouge, un jaune et un bleu"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "five-same-colour",
-    "labels": {
-      "en": "Bring back five things of the same colour",
-      "fr": "Rapportez cinq objets de la même couleur"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "two-identical",
-    "labels": {
-      "en": "Bring back two identical objects",
-      "fr": "Rapportez deux objets identiques"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "odd-sock",
-    "labels": {
-      "en": "Bring back an odd sock",
-      "fr": "Rapportez une chaussette orpheline"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "foreign-coin",
-    "labels": {
-      "en": "Bring back a coin from another country",
-      "fr": "Rapportez une pièce d'un autre pays"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "three-coins",
-    "labels": {
-      "en": "Bring back three coins",
-      "fr": "Rapportez trois pièces de monnaie"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "starts-with-m",
-    "labels": {
-      "en": "Bring back something that starts with M",
-      "fr": "Rapportez quelque chose qui commence par M"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "starts-with-b",
-    "labels": {
-      "en": "Bring back something that starts with B",
-      "fr": "Rapportez quelque chose qui commence par B"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "your-initial",
     "labels": {
       "en": "Bring back something that starts with your initial",
@@ -104,7 +35,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-round",
     "labels": {
       "en": "Bring back something round",
@@ -112,7 +42,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-square",
     "labels": {
       "en": "Bring back something square",
@@ -120,7 +49,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "heart-shaped",
     "labels": {
       "en": "Bring back something heart-shaped",
@@ -128,7 +56,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-striped",
     "labels": {
       "en": "Bring back something striped",
@@ -136,7 +63,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-transparent",
     "labels": {
       "en": "Bring back something see-through",
@@ -144,7 +70,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "made-of-wood",
     "labels": {
       "en": "Bring back something made of wood",
@@ -152,7 +77,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "made-of-metal",
     "labels": {
       "en": "Bring back something made of metal",
@@ -160,7 +84,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-cold",
     "labels": {
       "en": "Bring back something cold",
@@ -168,15 +91,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "something-with-wheels",
-    "labels": {
-      "en": "Bring back something with wheels",
-      "fr": "Rapportez quelque chose qui a des roues"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "something-that-rolls",
     "labels": {
       "en": "Bring back something that rolls",
@@ -184,7 +98,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-with-a-lid",
     "labels": {
       "en": "Bring back something with a lid",
@@ -192,7 +105,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-with-a-zip",
     "labels": {
       "en": "Bring back something with a zip",
@@ -200,7 +112,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "something-with-buttons",
     "labels": {
       "en": "Bring back something with buttons",
@@ -208,7 +119,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "runs-on-batteries",
     "labels": {
       "en": "Bring back something that runs on batteries",
@@ -216,7 +126,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "lights-up",
     "labels": {
       "en": "Bring back something that lights up, other than a phone",
@@ -224,7 +133,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "makes-a-noise",
     "labels": {
       "en": "Bring back something that makes a noise",
@@ -232,7 +140,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "a-face-on-it",
     "labels": {
       "en": "Bring back something with a face on it",
@@ -240,7 +147,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "an-animal-on-it",
     "labels": {
       "en": "Bring back something with an animal on it",
@@ -248,7 +154,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "number-seven",
     "labels": {
       "en": "Bring back something with the number 7 on it",
@@ -256,7 +161,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "another-language",
     "labels": {
       "en": "Bring back something written in another language",
@@ -264,15 +168,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "book-number-title",
-    "labels": {
-      "en": "Bring back a book with a number in its title",
-      "fr": "Rapportez un livre avec un nombre dans son titre"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "a-key",
     "labels": {
       "en": "Bring back a key",
@@ -280,7 +175,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "a-pen-that-writes",
     "labels": {
       "en": "Bring back a pen that writes",
@@ -288,15 +182,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "a-receipt",
-    "labels": {
-      "en": "Bring back a receipt",
-      "fr": "Rapportez un ticket de caisse"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "a-hair-tie",
     "labels": {
       "en": "Bring back a hair tie",
@@ -304,7 +189,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "a-paperclip",
     "labels": {
       "en": "Bring back a paperclip",
@@ -312,7 +196,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "a-remote",
     "labels": {
       "en": "Bring back a remote control",
@@ -320,7 +203,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "a-charger",
     "labels": {
       "en": "Bring back a phone charger",
@@ -328,15 +210,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "fork-and-spoon",
-    "labels": {
-      "en": "Bring back a fork and a spoon",
-      "fr": "Rapportez une fourchette et une cuillère"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "a-mug",
     "labels": {
       "en": "Bring back a mug",
@@ -344,7 +217,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "a-fruit",
     "labels": {
       "en": "Bring back a piece of fruit",
@@ -352,15 +224,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "a-vegetable",
-    "labels": {
-      "en": "Bring back a vegetable",
-      "fr": "Rapportez un légume"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "a-hat",
     "labels": {
       "en": "Bring back a hat or a cap",
@@ -368,23 +231,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "a-glove",
-    "labels": {
-      "en": "Bring back a glove",
-      "fr": "Rapportez un gant"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-scarf",
-    "labels": {
-      "en": "Bring back a scarf",
-      "fr": "Rapportez une écharpe"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "someone-elses-shoe",
     "labels": {
       "en": "Bring back someone else's shoe",
@@ -392,7 +238,6 @@
     }
   },
   {
-    "category": "fetch",
     "id": "sunglasses",
     "labels": {
       "en": "Bring back a pair of sunglasses",
@@ -400,55 +245,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "a-tea-towel",
-    "labels": {
-      "en": "Bring back a tea towel",
-      "fr": "Rapportez un torchon"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-cushion",
-    "labels": {
-      "en": "Bring back a cushion",
-      "fr": "Rapportez un coussin"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-candle",
-    "labels": {
-      "en": "Bring back a candle",
-      "fr": "Rapportez une bougie"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-toothbrush",
-    "labels": {
-      "en": "Bring back a toothbrush",
-      "fr": "Rapportez une brosse à dents"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-comb",
-    "labels": {
-      "en": "Bring back a comb or a hairbrush",
-      "fr": "Rapportez un peigne ou une brosse à cheveux"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-plaster",
-    "labels": {
-      "en": "Bring back a plaster",
-      "fr": "Rapportez un pansement"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "a-magazine",
     "labels": {
       "en": "Bring back a magazine or a newspaper",
@@ -456,47 +252,6 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "a-die",
-    "labels": {
-      "en": "Bring back a die",
-      "fr": "Rapportez un dé"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-playing-card",
-    "labels": {
-      "en": "Bring back a playing card",
-      "fr": "Rapportez une carte à jouer"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-toy",
-    "labels": {
-      "en": "Bring back a toy",
-      "fr": "Rapportez un jouet"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "an-envelope",
-    "labels": {
-      "en": "Bring back an envelope",
-      "fr": "Rapportez une enveloppe"
-    }
-  },
-  {
-    "category": "fetch",
-    "id": "a-stamp",
-    "labels": {
-      "en": "Bring back a stamp",
-      "fr": "Rapportez un timbre"
-    }
-  },
-  {
-    "category": "fetch",
     "id": "a-bottle-cap",
     "labels": {
       "en": "Bring back a bottle cap",
@@ -504,579 +259,367 @@
     }
   },
   {
-    "category": "fetch",
-    "id": "three-from-pockets",
+    "id": "starts-with-letter",
     "labels": {
-      "en": "Bring back three things from your pockets",
-      "fr": "Sortez trois objets de vos poches"
+      "en": "Bring back something that starts with {letter}",
+      "fr": "Rapportez quelque chose qui commence par {letter}"
     }
   },
   {
-    "category": "fetch",
-    "id": "belongs-to-whoever-lives-here",
+    "id": "something-white",
     "labels": {
-      "en": "Bring back something that belongs to whoever lives here",
-      "fr": "Rapportez quelque chose qui appartient à la personne qui vous reçoit"
+      "en": "Bring back something white",
+      "fr": "Rapportez quelque chose de blanc"
     }
   },
   {
-    "category": "fetch",
-    "id": "paper-and-pencil",
+    "id": "something-black",
     "labels": {
-      "en": "Bring back a sheet of paper and a pencil",
-      "fr": "Rapportez une feuille et un crayon"
+      "en": "Bring back something black",
+      "fr": "Rapportez quelque chose de noir"
     }
   },
   {
-    "category": "fetch",
-    "id": "animal-photo",
+    "id": "something-orange",
     "labels": {
-      "en": "Show a photo of an animal on a phone",
-      "fr": "Montrez une photo d'animal sur un téléphone"
+      "en": "Bring back something orange",
+      "fr": "Rapportez quelque chose d’orange"
     }
   },
   {
-    "category": "do",
-    "id": "hum-a-tune",
+    "id": "something-pink",
     "labels": {
-      "en": "One of you hums a tune, the others name it",
-      "fr": "L'un de vous fredonne un air, les autres le trouvent"
+      "en": "Bring back something pink",
+      "fr": "Rapportez quelque chose de rose"
     }
   },
   {
-    "category": "do",
-    "id": "mime-a-film",
+    "id": "something-purple",
     "labels": {
-      "en": "One of you mimes a film, the others name it",
-      "fr": "L'un de vous mime un film, les autres le trouvent"
+      "en": "Bring back something purple",
+      "fr": "Rapportez quelque chose de violet"
     }
   },
   {
-    "category": "do",
-    "id": "draw-an-animal",
+    "id": "something-grey",
     "labels": {
-      "en": "One of you draws an animal, the others name it",
-      "fr": "L'un de vous dessine un animal, les autres le trouvent"
+      "en": "Bring back something grey",
+      "fr": "Rapportez quelque chose de gris"
     }
   },
   {
-    "category": "do",
-    "id": "tower-of-five",
+    "id": "something-shiny",
     "labels": {
-      "en": "Build a tower of five objects that stands on its own",
-      "fr": "Construisez une tour de cinq objets qui tient toute seule"
-    }
-  },
-  {
-    "category": "do",
-    "id": "house-of-cards",
-    "labels": {
-      "en": "Build a house of cards two storeys high",
-      "fr": "Construisez un château de cartes de deux étages"
-    }
-  },
-  {
-    "category": "do",
-    "id": "stack-ten-coins",
-    "labels": {
-      "en": "Stack ten coins into one pile",
-      "fr": "Empilez dix pièces de monnaie"
-    }
-  },
-  {
-    "category": "do",
-    "id": "paperclip-chain",
-    "labels": {
-      "en": "Make a chain of ten paperclips",
-      "fr": "Faites une chaîne de dix trombones"
-    }
-  },
-  {
-    "category": "do",
-    "id": "melee-in-objects",
-    "labels": {
-      "en": "Write MELEE in objects on the table",
-      "fr": "Écrivez MELEE avec des objets sur la table"
-    }
-  },
-  {
-    "category": "do",
-    "id": "paper-plane",
-    "labels": {
-      "en": "Fold a paper plane that flies across the table",
-      "fr": "Pliez un avion en papier qui traverse la table"
-    }
-  },
-  {
-    "category": "do",
-    "id": "paper-boat",
-    "labels": {
-      "en": "Fold a paper boat",
-      "fr": "Pliez un bateau en papier"
-    }
-  },
-  {
-    "category": "do",
-    "id": "paper-ball-in-mug",
-    "labels": {
-      "en": "Throw a paper ball into a mug from across the table",
-      "fr": "Lancez une boule de papier dans une tasse depuis l'autre bout de la table"
-    }
-  },
-  {
-    "category": "do",
-    "id": "bottle-flip",
-    "labels": {
-      "en": "Flip a plastic bottle so it lands standing up",
-      "fr": "Faites retomber une bouteille en plastique debout"
-    }
-  },
-  {
-    "category": "do",
-    "id": "coin-on-edge",
-    "labels": {
-      "en": "Stand a coin on its edge",
-      "fr": "Faites tenir une pièce sur la tranche"
-    }
-  },
-  {
-    "category": "do",
-    "id": "spoon-on-nose",
-    "labels": {
-      "en": "Balance a spoon on your nose for five seconds",
-      "fr": "Tenez une cuillère en équilibre sur le nez pendant cinq secondes"
-    }
-  },
-  {
-    "category": "do",
-    "id": "pen-under-nose",
-    "labels": {
-      "en": "Hold a pen between your nose and lip for five seconds",
-      "fr": "Coincez un stylo entre le nez et la lèvre pendant cinq secondes"
-    }
-  },
-  {
-    "category": "do",
-    "id": "three-heads",
-    "labels": {
-      "en": "Toss a coin until it lands heads three times in a row",
-      "fr": "Obtenez trois fois face d'affilée à pile ou face"
-    }
-  },
-  {
-    "category": "do",
-    "id": "roll-a-double",
-    "labels": {
-      "en": "Roll a double with two dice",
-      "fr": "Faites un double avec deux dés"
-    }
-  },
-  {
-    "category": "do",
-    "id": "sock-inside-out",
-    "labels": {
-      "en": "Turn a sock inside out with one hand",
-      "fr": "Retournez une chaussette d'une seule main"
-    }
-  },
-  {
-    "category": "do",
-    "id": "sort-cards-by-suit",
-    "labels": {
-      "en": "Sort a deck of cards by suit",
-      "fr": "Triez un jeu de cartes par couleur"
-    }
-  },
-  {
-    "category": "do",
-    "id": "line-up-by-birthday",
-    "labels": {
-      "en": "Line up by birthday, January to December",
-      "fr": "Mettez-vous en rang par date d'anniversaire, de janvier à décembre"
-    }
-  },
-  {
-    "category": "do",
-    "id": "line-up-by-name",
-    "labels": {
-      "en": "Line up in alphabetical order of first name",
-      "fr": "Mettez-vous en rang par ordre alphabétique de prénom"
-    }
-  },
-  {
-    "category": "do",
-    "id": "group-photo",
-    "labels": {
-      "en": "Take a photo with every player in it",
-      "fr": "Prenez une photo où figurent tous les joueurs"
-    }
-  },
-  {
-    "category": "do",
-    "id": "high-five-everyone",
-    "labels": {
-      "en": "High-five every player at the table",
-      "fr": "Tapez dans la main de chaque joueur"
-    }
-  },
-  {
-    "category": "do",
-    "id": "collect-signatures",
-    "labels": {
-      "en": "Get every player to sign one sheet of paper",
-      "fr": "Faites signer tous les joueurs sur une même feuille"
-    }
-  },
-  {
-    "category": "do",
-    "id": "house-without-lifting",
-    "labels": {
-      "en": "Draw a house without lifting the pen",
-      "fr": "Dessinez une maison sans lever le crayon"
-    }
-  },
-  {
-    "category": "do",
-    "id": "alphabet-other-hand",
-    "labels": {
-      "en": "Write the alphabet with your other hand",
-      "fr": "Écrivez l'alphabet de votre autre main"
-    }
-  },
-  {
-    "category": "do",
-    "id": "names-backwards",
-    "labels": {
-      "en": "Write every player's first name backwards",
-      "fr": "Écrivez à l'envers le prénom de chaque joueur"
-    }
-  },
-  {
-    "category": "do",
-    "id": "all-words-start-with-s",
-    "labels": {
-      "en": "Write a sentence where every word starts with S",
-      "fr": "Écrivez une phrase dont tous les mots commencent par S"
-    }
-  },
-  {
-    "category": "do",
-    "id": "ten-word-story",
-    "labels": {
-      "en": "Tell a ten-word story, one word each in turn",
-      "fr": "Racontez une histoire de dix mots, un mot chacun à tour de rôle"
-    }
-  },
-  {
-    "category": "do",
-    "id": "spell-surname-backwards",
-    "labels": {
-      "en": "Spell your surname backwards out loud",
-      "fr": "Épelez votre nom de famille à l'envers, à voix haute"
-    }
-  },
-  {
-    "category": "do",
-    "id": "alphabet-backwards",
-    "labels": {
-      "en": "Recite the alphabet backwards",
-      "fr": "Récitez l'alphabet à l'envers"
-    }
-  },
-  {
-    "category": "do",
-    "id": "months-backwards",
-    "labels": {
-      "en": "Recite the months of the year backwards",
-      "fr": "Récitez les mois de l'année à l'envers"
-    }
-  },
-  {
-    "category": "do",
-    "id": "count-down-in-sevens",
-    "labels": {
-      "en": "Count down from 100 in sevens",
-      "fr": "Comptez à rebours de 100 en retirant 7 à chaque fois"
-    }
-  },
-  {
-    "category": "do",
-    "id": "tongue-twister",
-    "labels": {
-      "en": "Say \"red lorry, yellow lorry\" five times without a slip",
-      "fr": "Dites « un chasseur sachant chasser » cinq fois sans vous tromper"
-    }
-  },
-  {
-    "category": "do",
-    "id": "nursery-rhyme",
-    "labels": {
-      "en": "Recite a nursery rhyme from start to finish",
-      "fr": "Récitez une comptine en entier"
-    }
-  },
-  {
-    "category": "do",
-    "id": "love-song",
-    "labels": {
-      "en": "Sing a line of a song with \"love\" in it",
-      "fr": "Chantez un bout de chanson avec le mot « amour »"
-    }
-  },
-  {
-    "category": "do",
-    "id": "five-rhymes-cat",
-    "labels": {
-      "en": "Name five words that rhyme with \"cat\"",
-      "fr": "Citez cinq mots qui riment avec « chat »"
-    }
-  },
-  {
-    "category": "do",
-    "id": "planets-in-order",
-    "labels": {
-      "en": "Name the planets in order from the Sun",
-      "fr": "Citez les planètes dans l'ordre, depuis le Soleil"
-    }
-  },
-  {
-    "category": "do",
-    "id": "seven-dwarfs",
-    "labels": {
-      "en": "Name the seven dwarfs",
-      "fr": "Citez les sept nains"
-    }
-  },
-  {
-    "category": "do",
-    "id": "ten-cheeses",
-    "labels": {
-      "en": "Name ten cheeses",
-      "fr": "Citez dix fromages"
-    }
-  },
-  {
-    "category": "do",
-    "id": "five-capitals-b",
-    "labels": {
-      "en": "Name five capital cities starting with B",
-      "fr": "Citez cinq capitales qui commencent par B"
-    }
-  },
-  {
-    "category": "do",
-    "id": "six-countries-b",
-    "labels": {
-      "en": "Name six countries starting with B",
-      "fr": "Citez six pays qui commencent par B"
-    }
-  },
-  {
-    "category": "do",
-    "id": "animals-a-to-j",
-    "labels": {
-      "en": "Name an animal for each letter from A to J",
-      "fr": "Citez un animal pour chaque lettre de A à J"
-    }
-  },
-  {
-    "category": "do",
-    "id": "colour-songs",
-    "labels": {
-      "en": "Name five songs with a colour in the title",
-      "fr": "Citez cinq chansons avec une couleur dans le titre"
-    }
-  },
-  {
-    "category": "do",
-    "id": "number-films",
-    "labels": {
-      "en": "Name five films with a number in the title",
-      "fr": "Citez cinq films avec un nombre dans le titre"
-    }
-  },
-  {
-    "category": "do",
-    "id": "ball-sports",
-    "labels": {
-      "en": "Name ten sports played with a ball",
-      "fr": "Citez dix sports qui se jouent avec un ballon"
-    }
-  },
-  {
-    "category": "do",
-    "id": "disney-films",
-    "labels": {
-      "en": "Name ten Disney animated films",
-      "fr": "Citez dix dessins animés de Disney"
-    }
-  },
-  {
-    "category": "do",
-    "id": "fruits-alphabetical",
-    "labels": {
-      "en": "Name ten fruits in alphabetical order",
-      "fr": "Citez dix fruits dans l'ordre alphabétique"
-    }
-  },
-  {
-    "category": "festive",
-    "id": "something-that-glitters",
-    "labels": {
-      "en": "Bring back something that glitters",
+      "en": "Bring back something shiny",
       "fr": "Rapportez quelque chose qui brille"
     }
   },
   {
-    "category": "festive",
-    "id": "wrapping-paper",
+    "id": "something-soft",
     "labels": {
-      "en": "Bring back a piece of wrapping paper",
-      "fr": "Rapportez un bout de papier cadeau"
+      "en": "Bring back something soft",
+      "fr": "Rapportez quelque chose de doux"
     }
   },
   {
-    "category": "festive",
-    "id": "a-bauble",
+    "id": "something-triangular",
     "labels": {
-      "en": "Bring back a bauble",
-      "fr": "Rapportez une boule de Noël"
+      "en": "Bring back something triangular",
+      "fr": "Rapportez quelque chose de triangulaire"
     }
   },
   {
-    "category": "festive",
-    "id": "tinsel",
+    "id": "longer-than-your-arm",
     "labels": {
-      "en": "Bring back some tinsel",
-      "fr": "Rapportez un bout de guirlande"
+      "en": "Bring back something longer than your arm",
+      "fr": "Rapportez quelque chose de plus long que votre bras"
     }
   },
   {
-    "category": "festive",
-    "id": "a-ribbon",
+    "id": "smaller-than-a-thumb",
     "labels": {
-      "en": "Bring back a ribbon",
-      "fr": "Rapportez un ruban"
+      "en": "Bring back something smaller than your thumb",
+      "fr": "Rapportez quelque chose de plus petit que votre pouce"
     }
   },
   {
-    "category": "festive",
-    "id": "a-greetings-card",
+    "id": "something-that-folds",
     "labels": {
-      "en": "Bring back a greetings card",
-      "fr": "Rapportez une carte de vœux"
+      "en": "Bring back something that folds",
+      "fr": "Rapportez quelque chose qui se plie"
     }
   },
   {
-    "category": "festive",
-    "id": "something-gold",
+    "id": "something-that-bounces",
     "labels": {
-      "en": "Bring back something gold",
-      "fr": "Rapportez quelque chose de doré"
+      "en": "Bring back something that bounces",
+      "fr": "Rapportez quelque chose qui rebondit"
     }
   },
   {
-    "category": "festive",
-    "id": "something-silver",
+    "id": "something-that-sticks",
     "labels": {
-      "en": "Bring back something silver",
-      "fr": "Rapportez quelque chose d'argenté"
+      "en": "Bring back something sticky",
+      "fr": "Rapportez quelque chose qui colle"
     }
   },
   {
-    "category": "festive",
-    "id": "star-shaped",
+    "id": "something-that-smells-good",
     "labels": {
-      "en": "Bring back something shaped like a star",
-      "fr": "Rapportez quelque chose en forme d'étoile"
+      "en": "Bring back something that smells nice",
+      "fr": "Rapportez quelque chose qui sent bon"
     }
   },
   {
-    "category": "festive",
-    "id": "red-and-white",
+    "id": "made-of-plastic",
     "labels": {
-      "en": "Bring back something red and white",
-      "fr": "Rapportez quelque chose de rouge et blanc"
+      "en": "Bring back something made of plastic",
+      "fr": "Rapportez quelque chose en plastique"
     }
   },
   {
-    "category": "festive",
-    "id": "a-pine-needle",
+    "id": "made-of-glass",
     "labels": {
-      "en": "Bring back a needle from the tree",
-      "fr": "Rapportez une aiguille du sapin"
+      "en": "Bring back something made of glass",
+      "fr": "Rapportez quelque chose en verre"
     }
   },
   {
-    "category": "festive",
-    "id": "a-chocolate",
+    "id": "made-of-paper",
     "labels": {
-      "en": "Bring back a chocolate",
-      "fr": "Rapportez un chocolat"
+      "en": "Bring back something made of paper",
+      "fr": "Rapportez quelque chose en papier"
     }
   },
   {
-    "category": "festive",
-    "id": "a-champagne-cork",
+    "id": "made-of-fabric",
     "labels": {
-      "en": "Bring back a champagne cork",
-      "fr": "Rapportez un bouchon de champagne"
+      "en": "Bring back something made of fabric",
+      "fr": "Rapportez quelque chose en tissu"
     }
   },
   {
-    "category": "festive",
-    "id": "gift-wrap-a-mug",
+    "id": "something-with-a-hole",
     "labels": {
-      "en": "Wrap a mug like a present",
-      "fr": "Emballez une tasse comme un cadeau"
+      "en": "Bring back something with a hole in it",
+      "fr": "Rapportez quelque chose avec un trou"
     }
   },
   {
-    "category": "festive",
-    "id": "paper-crown",
+    "id": "something-with-a-handle",
     "labels": {
-      "en": "Make a paper crown and put it on",
-      "fr": "Fabriquez une couronne en papier et mettez-la"
+      "en": "Bring back something with a handle",
+      "fr": "Rapportez quelque chose avec une poignée ou une anse"
     }
   },
   {
-    "category": "festive",
-    "id": "clementine-peel",
+    "id": "something-with-a-cable",
     "labels": {
-      "en": "Peel a clementine in one piece",
-      "fr": "Épluchez une clémentine d'un seul tenant"
+      "en": "Bring back something with a cable",
+      "fr": "Rapportez quelque chose avec un câble"
     }
   },
   {
-    "category": "festive",
-    "id": "reindeer",
+    "id": "something-with-a-barcode",
     "labels": {
-      "en": "Name five of Santa's reindeer",
-      "fr": "Citez cinq rennes du Père Noël"
+      "en": "Bring back something with a barcode",
+      "fr": "Rapportez quelque chose avec un code-barres"
     }
   },
   {
-    "category": "festive",
-    "id": "carol",
+    "id": "something-with-a-date",
     "labels": {
-      "en": "Sing the first verse of a Christmas carol",
-      "fr": "Chantez le premier couplet d'un chant de Noël"
+      "en": "Bring back something with a date on it",
+      "fr": "Rapportez quelque chose sur lequel figure une date"
     }
   },
   {
-    "category": "festive",
-    "id": "christmas-songs",
+    "id": "something-with-a-logo",
     "labels": {
-      "en": "Name five Christmas songs",
-      "fr": "Citez cinq chansons de Noël"
+      "en": "Bring back something with a logo on it",
+      "fr": "Rapportez quelque chose avec un logo"
     }
   },
   {
-    "category": "festive",
-    "id": "christmas-films",
+    "id": "tells-the-time",
     "labels": {
-      "en": "Name five Christmas films",
-      "fr": "Citez cinq films de Noël"
+      "en": "Bring back something that tells the time, other than a phone",
+      "fr": "Rapportez quelque chose qui donne l’heure, à part un téléphone"
+    }
+  },
+  {
+    "id": "holds-water",
+    "labels": {
+      "en": "Bring back something that can hold water",
+      "fr": "Rapportez quelque chose qui peut contenir de l’eau"
+    }
+  },
+  {
+    "id": "a-spoon",
+    "labels": {
+      "en": "Bring back a spoon",
+      "fr": "Rapportez une cuillère"
+    }
+  },
+  {
+    "id": "a-glass",
+    "labels": {
+      "en": "Bring back a glass",
+      "fr": "Rapportez un verre"
+    }
+  },
+  {
+    "id": "a-bottle",
+    "labels": {
+      "en": "Bring back a bottle",
+      "fr": "Rapportez une bouteille"
+    }
+  },
+  {
+    "id": "a-sheet-of-paper",
+    "labels": {
+      "en": "Bring back a sheet of paper",
+      "fr": "Rapportez une feuille de papier"
+    }
+  },
+  {
+    "id": "a-pencil",
+    "labels": {
+      "en": "Bring back a pencil",
+      "fr": "Rapportez un crayon"
+    }
+  },
+  {
+    "id": "a-notebook",
+    "labels": {
+      "en": "Bring back a notebook",
+      "fr": "Rapportez un carnet ou un cahier"
+    }
+  },
+  {
+    "id": "a-book",
+    "labels": {
+      "en": "Bring back a book",
+      "fr": "Rapportez un livre"
+    }
+  },
+  {
+    "id": "a-sticky-note",
+    "labels": {
+      "en": "Bring back a sticky note",
+      "fr": "Rapportez une note autocollante"
+    }
+  },
+  {
+    "id": "a-roll-of-tape",
+    "labels": {
+      "en": "Bring back a roll of tape",
+      "fr": "Rapportez un rouleau de ruban adhésif"
+    }
+  },
+  {
+    "id": "a-rubber-band",
+    "labels": {
+      "en": "Bring back a rubber band",
+      "fr": "Rapportez un élastique"
+    }
+  },
+  {
+    "id": "a-tissue",
+    "labels": {
+      "en": "Bring back a tissue",
+      "fr": "Rapportez un mouchoir"
+    }
+  },
+  {
+    "id": "a-paper-napkin",
+    "labels": {
+      "en": "Bring back a paper napkin",
+      "fr": "Rapportez une serviette en papier"
+    }
+  },
+  {
+    "id": "a-tea-bag",
+    "labels": {
+      "en": "Bring back a tea bag",
+      "fr": "Rapportez un sachet de thé"
+    }
+  },
+  {
+    "id": "a-sugar-cube",
+    "labels": {
+      "en": "Bring back a sugar cube",
+      "fr": "Rapportez un morceau de sucre"
+    }
+  },
+  {
+    "id": "a-plant",
+    "labels": {
+      "en": "Bring back a plant",
+      "fr": "Rapportez une plante"
+    }
+  },
+  {
+    "id": "a-bag",
+    "labels": {
+      "en": "Bring back a bag",
+      "fr": "Rapportez un sac"
+    }
+  },
+  {
+    "id": "a-coat",
+    "labels": {
+      "en": "Bring back a coat or a jacket",
+      "fr": "Rapportez un manteau ou une veste"
+    }
+  },
+  {
+    "id": "a-sock",
+    "labels": {
+      "en": "Bring back a sock",
+      "fr": "Rapportez une chaussette"
+    }
+  },
+  {
+    "id": "a-watch",
+    "labels": {
+      "en": "Bring back a watch",
+      "fr": "Rapportez une montre"
+    }
+  },
+  {
+    "id": "headphones",
+    "labels": {
+      "en": "Bring back earphones or headphones",
+      "fr": "Rapportez des écouteurs ou un casque"
+    }
+  },
+  {
+    "id": "a-battery",
+    "labels": {
+      "en": "Bring back a battery",
+      "fr": "Rapportez une pile"
+    }
+  },
+  {
+    "id": "a-usb-stick",
+    "labels": {
+      "en": "Bring back a USB stick",
+      "fr": "Rapportez une clé USB"
+    }
+  },
+  {
+    "id": "a-chair",
+    "labels": {
+      "en": "Bring back a chair",
+      "fr": "Rapportez une chaise"
+    }
+  },
+  {
+    "id": "a-coat-hanger",
+    "labels": {
+      "en": "Bring back a coat hanger",
+      "fr": "Rapportez un cintre"
     }
   }
 ]

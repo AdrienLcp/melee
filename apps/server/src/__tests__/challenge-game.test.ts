@@ -20,6 +20,8 @@ import {
 } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
+import { LETTER_SLOT, SLOT_LETTERS } from '@melee/core/challenge/letter-slot'
+
 import { bankedChallengeLines } from '@/infrastructure/questions/challenge-bank'
 
 import { startRoomHarness } from './node-room-harness'
@@ -311,8 +313,12 @@ describe('a challenge between teams on a track', () => {
   })
 })
 
-const categoryOf = (labels: ChallengeLabels | null | undefined) =>
-  bankedChallengeLines().find((line) => line.labels.en === labels?.en)?.category
+const isBankedLine = (labels: ChallengeLabels | null | undefined) =>
+  bankedChallengeLines().some(({ labels: banked }) =>
+    SLOT_LETTERS.some(
+      (letter) => banked.en.replaceAll(LETTER_SLOT, letter) === labels?.en
+    )
+  )
 
 const pairedWall = async ({
   code,
@@ -410,7 +416,7 @@ describe('a challenge dealt from the bank', () => {
     const [round] = await playDealtRounds({ count: 1, host })
 
     expect(round?.dealt).toEqual(round?.ahead)
-    expect(categoryOf(round?.dealt)).toBeDefined()
+    expect(isBankedLine(round?.dealt)).toBe(true)
     expect(round?.dealt?.fr).not.toBe(round?.dealt?.en)
     expect(challengeRound(playerView(anna))?.labels).toEqual(round?.dealt)
   })
@@ -436,50 +442,11 @@ describe('a challenge dealt from the bank', () => {
     expect(hostView(host)?.nextChallenge).toEqual(ahead)
   })
 
-  it('[challenge] never deals one line twice in an evening, and varies the category', async () => {
+  it('[challenge] never deals one line twice in an evening', async () => {
     const { host } = await openDealtChallenge()
     const rounds = await playDealtRounds({ count: 6, host })
-    const categories = rounds.map((round) => categoryOf(round.dealt))
 
     expect(new Set(rounds.map((round) => round.dealt?.en)).size).toBe(6)
-    expect(
-      categories.filter(
-        (category, index) => index > 0 && category === categories[index - 1]
-      )
-    ).toEqual([])
-  })
-
-  it('[challenge] deals no festive line unless the host asks', async () => {
-    const { host } = await openDealtChallenge()
-
-    for (let attempt = 0; attempt < 20; attempt += 1) {
-      await redeal(host)
-      expect(categoryOf(hostView(host)?.nextChallenge)).not.toBe('festive')
-    }
-  })
-
-  it('[challenge] redeals a festive line held ahead once the host turns them off', async () => {
-    const festiveGame = { ...DEFAULT_CHALLENGE_SETTINGS, hasFestiveLines: true }
-    const { host } = await openDealtChallenge({
-      ...CHALLENGE_GAME,
-      game: festiveGame,
-      lineUp: [festiveGame]
-    })
-
-    for (
-      let attempt = 0;
-      attempt < 60 && categoryOf(hostView(host)?.nextChallenge) !== 'festive';
-      attempt += 1
-    ) {
-      await redeal(host)
-    }
-    expect(categoryOf(hostView(host)?.nextChallenge)).toBe('festive')
-
-    host.send({ settings: CHALLENGE_GAME, type: 'host.updateSettings' })
-    await waitFor(
-      () => categoryOf(hostView(host)?.nextChallenge) !== 'festive',
-      'a line that is not festive'
-    )
   })
 
   it('[challenge] never shows a seat or the wall a line before its round opens', async () => {
@@ -514,9 +481,8 @@ describe('a challenge dealt from the bank', () => {
     const before = hostView(host)?.nextChallenge
 
     await redeal(host)
-    expect(categoryOf(hostView(host)?.nextChallenge)).not.toBe(
-      categoryOf(before)
-    )
+    expect(isBankedLine(hostView(host)?.nextChallenge)).toBe(true)
+    expect(hostView(host)?.nextChallenge).not.toEqual(before)
 
     anna.send({ type: 'host.redealChallenge' })
     await waitFor(() => errorsIn(anna).length > 0, 'the refusal')

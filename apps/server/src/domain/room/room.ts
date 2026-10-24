@@ -1,7 +1,4 @@
-import type {
-  ChallengeCategory,
-  ChallengeLabels
-} from '@melee/protocol/challenge'
+import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
@@ -112,9 +109,8 @@ export type Room = {
   trackPool: TrackIdentity[]
 }
 
-/** A ready-made line as the bank deals it: its category is what the next deal varies from. */
+/** A ready-made line as the bank deals it, its letter already filled in. */
 export type DealtChallengeLine = {
-  category: ChallengeCategory
   id: string
   labels: ChallengeLabels
 }

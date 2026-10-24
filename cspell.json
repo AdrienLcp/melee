@@ -70,6 +70,7 @@
         "docs/plans/34-the-evening/*.md",
         "docs/plans/README.md",
         "docs/plans/41-one-table.md",
+        "packages/core/src/challenge/letter-slot.test.ts",
         "packages/core/src/blindtest/film-score.test.ts",
         "packages/core/src/blindtest/film-score.ts",
         "packages/core/src/quiz/question-answer.test.ts",

@@ -220,10 +220,6 @@ export const EN_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Played at the table — the host calls the placings.',
-    festive: {
-      hint: 'Something that glitters, wrapping paper, a bauble.',
-      label: 'Festive challenges'
-    },
     home: {
       description:
         'Cut a vegetable into two halves of the same weight, stack the most raclette potatoes: the challenge is played at the table, away from every screen. The host puts it up on the wall, says who came first, second and third, and the points land on the board like any round’s.'

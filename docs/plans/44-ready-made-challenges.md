@@ -132,3 +132,13 @@ Asked 24/10/2026 after reading the 135 lines. The bank becomes **fetch only**:
 
 Then render the bank to a page for Adrien to keep sorting (one table per
 category, French beside English) before anything else lands.
+
+**Done.** 89 lines, every one a fetch: 37 kept, 52 written. With one kind of
+line left the `category` went too — `challengeCategories`, `avoidCategory` and
+the deal's *vary from the last* rule had nothing left to vary — so `dealLine`
+is an unplayed line at random. `{letter}` is `LETTER_SLOT` in
+`core/challenge/letter-slot.ts`, filled from `SLOT_LETTERS` (A B C D F G L M P
+R S T) by the server's draw, so the console's line ahead already shows its
+letter and a redeal draws another line rather than another letter.
+`hasFestiveLines` left the challenge arm, which is `{ kind }` alone again; a
+setup stored with it parses, the key stripped.

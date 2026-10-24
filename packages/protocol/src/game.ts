@@ -78,16 +78,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
      */
     locksOutOnMiss: z.boolean()
   }),
-  z.object({
-    /**
-     * Whether a festive line — wrapping paper, a bauble — may be dealt. Off
-     * unless the host asks, and defaulted so a setup remembered before it
-     * existed still parses. The line itself changes every round, so it rides
-     * the press that opens one rather than sitting in the settings.
-     */
-    hasFestiveLines: z.boolean().default(false),
-    kind: z.literal('challenge')
-  }),
+  /**
+   * Nothing of its own: the line changes every round, so it rides the press
+   * that opens one rather than sitting in the settings.
+   */
+  z.object({ kind: z.literal('challenge') }),
   /**
    * Nothing of its own, like a challenge: the count changes every round, so it
    * rides the press that opens one.
@@ -204,7 +199,6 @@ export const DEFAULT_BUZZER_SETTINGS: BuzzerSettings = {
 }
 
 export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
-  hasFestiveLines: false,
   kind: 'challenge'
 }
 
