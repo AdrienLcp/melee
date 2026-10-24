@@ -498,10 +498,20 @@ direction D of `.impeccable/directions/host-panel/`, local, approved
 2026-10-24). Four tabs, each a `TabPanel` of `setup-tabs.tsx`: **Games** (the
 lobby's shelf and the game's scoring line, then the planned games, each
 opening its own page in the tab's place), **Table** (the teams, the board,
-the judge and the round count), **Room** (the hold, the countdown, this
-screen's volume) and **Players** (the roster with its ✕, then this console's
-seat: the field the panel's full width, *Take a seat* under it at the same
-width). The phase's presses are never in it: they stay in `HostActions` under
+the judge and the round count), **Room** (the room drawn from above, then the hold
+and the countdown) and **Players** (the roster with its ✕).
+
+The Room tab draws the room as a selector, one `ToggleButtonGroup` of three
+shapes: the room's screen on top (dashed while none is paired), the table in
+the middle with the other seats' pawns round its rim (drawn, not pressable),
+and the host's side under it — *Your seat* and *This screen*, marked *Here*.
+A pick rings the face in `--primary` and underlines the name, no box; what it
+does opens in a well under the drawing: pairing a screen by its code or
+letting it go, the seat's form, this screen's volume. The hand-over stays the
+menu's folded `HandOverDoor` there too, never an open square — this tab is
+often open on the screen the whole room faces, and the square hands the table
+to whoever scans it. The lobby says it once, with no wall only: *Another
+screen nearby, or playing too? Everything is set in Room*. The phase's presses are never in it: they stay in `HostActions` under
 the stage, so a folded panel or another tab never hides what the room waits on.
 
 - **Past the split** the panel stands beside the stage, `--host-panel-width`

@@ -1,6 +1,6 @@
 # 47 — Which screen does what
 
-**Half done** — steps 1 and 2 landed 24/10/2026. Asked 24/10/2026. Directions approved by Adrien the same night, from the pages
+**Three steps of four** — steps 1 and 2 landed 24/10/2026, step 3 the same night. Asked 24/10/2026. Directions approved by Adrien the same night, from the pages
 in `.impeccable/directions/screens-roles/` (git-excluded). The board stays the
 wall's; a room without one stops losing it, and the console says, once and in
 one place, what each screen is for — **never suggesting a second screen is
@@ -70,3 +70,13 @@ stage, the panel outside it, and only with no wall on a wide screen.
 - In passing: the console's stubbed views in `e2e/choice-fits.spec.ts` still
   carried `nextChallenge` from before plan 44 renamed it `challengeHand`, so
   every console and room case there had been failing on `main` since.
+- **Step 3.** The Room tab's scene is `features/host/room-scene.tsx`; the
+  seat moved there from Players, and the volume from the tab's foot into
+  *This screen*. Two departures from `f-salle.html`: the hand-over stays
+  folded (`HandOverDoor`), because the tab's default pick with no wall would
+  otherwise put the room's token on the screen the room is facing; and
+  *unpair* needed a frame that did not exist — `host.dismissWall`, a fatal
+  `wall_dismissed` to the wall, which goes back to `/wall`. The pairing form
+  left the menu for `presentation/components/wall-pairing-form.tsx`, shared by
+  both. The lobby's pointer opens the tab through `useOptionalPanelTabOpener`
+  (`host-panel.tsx`).

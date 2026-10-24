@@ -6,14 +6,10 @@ import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
-import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 
-import { useVolume } from '@/presentation/audio/volume-provider'
 import { Scoreboard } from '@/presentation/components/scoreboard'
-import { Slider } from '@/presentation/components/slider'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useRoomActions } from '@/presentation/room-actions/room-actions-provider'
 
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
@@ -21,10 +17,10 @@ import { EveningAddPage } from './evening-add-page'
 import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds, ROUND_COUNT_STEPS } from './evening-rounds'
 import { GamePicker } from './game-picker'
-import { HostSeat } from './host-seat'
 import { JudgeSwitch } from './judge-switch'
 import { GamePitch } from './lobby-stage'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
+import { RoomScene } from './room-scene'
 import { TeamsSetup } from './teams-setup'
 import { useSetupSummaries } from './use-settings-summary'
 
@@ -50,6 +46,8 @@ export type SetupTabsProps = {
   isLive: boolean
   /** Must be stable — the picker reports upward from an effect. */
   onDraftSource: (source: TrackSource | null) => void
+  /** Lets the room's screen go, so this one is the speaker again. */
+  onDismissWall: () => void
   /** Gives up the seat this console holds. */
   onLeaveSeat: () => void
   /** Files one key of the slate's answer key on this tab. */
@@ -260,22 +258,33 @@ export const TableTab: React.FC<SetupTabsProps> = ({
   )
 }
 
-/** How a round is led in and let go, and this screen's own volume — what no game answers. */
+/**
+ * The room from above — which screen does what, the seat, this screen's
+ * volume — then how a round is led in and let go, which no game answers.
+ */
 export const RoomTab: React.FC<SetupTabsProps> = ({
   draftSource,
   isLive,
+  onDismissWall,
+  onLeaveSeat,
   onSettingsChange,
+  onTakeSeat,
   view
 }) => {
   const translate = useTranslate()
   const settings = view.settings
   const summaries = useSetupSummaries({ draftSource, settings })
-  const { playsSound } = useRoomActions()
-  const { setVolume, volume } = useVolume()
   const { seconds } = useDurationLabels()
 
   return (
     <>
+      <RoomScene
+        isLive={isLive}
+        onDismissWall={onDismissWall}
+        onLeaveSeat={onLeaveSeat}
+        onTakeSeat={onTakeSeat}
+        view={view}
+      />
       <HeldNote view={view} />
       <p className='tab-summary'>{summaries.room}</p>
       {settings.game?.kind !== 'slate' && (
@@ -296,70 +305,25 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
         options={COUNTDOWN_DURATIONS_MS}
         value={settings.countdownMs}
       />
-      {/*
-        This screen's, not the room's: the same value as the menu's slider,
-        offered again where a host setting up the evening is already looking.
-        Absent once a wall is the room's speaker, because this screen is then
-        silent.
-      */}
-      {playsSound && (
-        <Slider
-          formatOptions={{ style: 'percent' }}
-          label={translate('host.setup.volume')}
-          maxValue={1}
-          minValue={0}
-          onChange={setVolume}
-          step={0.05}
-          value={volume}
-        />
-      )}
     </>
   )
 }
 
-/**
- * Who is at the table, each removable, and this console's own seat. The seat
- * is held back under a round in play, because taking it reopens the socket
- * beneath a running clip; and at an empty table the launch takes it itself,
- * so the form would be a second way to do the same thing.
- */
+/** Who is at the table, each removable. This console's own seat is the Room tab's. */
 export const PlayersTab: React.FC<SetupTabsProps> = ({
-  onLeaveSeat,
   onRemovePlayer,
-  onTakeSeat,
   view
 }) => {
   const translate = useTranslate()
-  const isInLobby = view.phase === 'lobby'
-  const offersSeat =
-    !isRoundInPlay(view.phase) &&
-    !(
-      isInLobby &&
-      launchesWithHostSeated({
-        seated: view.players.length,
-        settings: view.settings
-      })
-    )
 
-  return (
-    <>
-      {view.players.length === 0 ? (
-        <p className='tab-summary'>{translate('team.empty')}</p>
-      ) : (
-        <Scoreboard
-          hasPawns
-          onRemove={onRemovePlayer}
-          players={view.players}
-          youId={view.youId}
-        />
-      )}
-      {offersSeat && (
-        <HostSeat
-          onLeaveSeat={onLeaveSeat}
-          onTakeSeat={onTakeSeat}
-          view={view}
-        />
-      )}
-    </>
+  return view.players.length === 0 ? (
+    <p className='tab-summary'>{translate('team.empty')}</p>
+  ) : (
+    <Scoreboard
+      hasPawns
+      onRemove={onRemovePlayer}
+      players={view.players}
+      youId={view.youId}
+    />
   )
 }

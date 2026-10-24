@@ -9,6 +9,7 @@ import { teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
+import { ChevronRightIcon } from '@/presentation/components/icons'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TeamRoster } from '@/presentation/components/team-roster'
@@ -20,6 +21,7 @@ import {
   scoringKey
 } from '@/presentation/i18n/translation'
 
+import { useOptionalPanelTabOpener } from './host-panel'
 import { MoveSeat } from './move-seat'
 import { NumberChoice } from './number-choice'
 import { RenameTeam } from './rename-team'
@@ -56,6 +58,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 }) => {
   const translate = useTranslate()
   const playsAloud = view.settings.teams.kind === 'aloud'
+  const openTab = useOptionalPanelTabOpener()
 
   useTeamCountFollowingHeadcount({ controls, view })
 
@@ -126,6 +129,26 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             <EmptySockets seated={view.players.length} />
           )}
         </section>
+
+        {/* Said once, and only while this screen is the whole room: the
+            rest is the Room tab's, so the lobby never insists. */}
+        {controls !== null &&
+          !view.isWallConnected &&
+          openTab !== undefined && (
+            <p className='room-pointer'>
+              {translate('host.roomScene.pointer.lead')}{' '}
+              <Button
+                onPress={() => {
+                  openTab('room')
+                }}
+                size='small'
+                variant='underlined'
+              >
+                {translate('host.roomScene.pointer.action')}
+                <ChevronRightIcon />
+              </Button>
+            </p>
+          )}
       </div>
     </div>
   )

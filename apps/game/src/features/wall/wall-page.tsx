@@ -15,6 +15,7 @@ import { useWallConnection } from '@/infrastructure/messaging/use-wall-connectio
 import {
   hostFromWallPathFor,
   paths,
+  useReturnToWallPairing,
   useRoomCodeParam
 } from '@/infrastructure/router/navigation'
 import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
@@ -77,6 +78,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   })
 
   useReportConnection({ clock, status })
+  useReturnToWallPairing(error?.code === 'wall_dismissed')
   usePhaseField(view?.phase ?? null)
   useMarkingField(view?.phase === 'playing' && slateWall.isOnWall)
   useScreenAwake(!isRefused)

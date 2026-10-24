@@ -686,6 +686,10 @@ const dispatch = ({
       disband(engine)
       break
     }
+    case 'host.dismissWall': {
+      dismissWalls(engine)
+      break
+    }
     case 'host.updateSettings': {
       reconfigure(message.settings, outbound, engine)
       break
@@ -1343,6 +1347,28 @@ const disband = (engine: RoomEngine): void => {
   }
 
   closeRoomEngine(engine)
+}
+
+/**
+ * Unregistered before the publish, as `evict` does, so the view that tells the
+ * console it is the speaker again is not also sent to the screen let go.
+ */
+const dismissWalls = (engine: RoomEngine): void => {
+  for (const connection of engine.connections.all()) {
+    if (connection.role !== 'wall') {
+      continue
+    }
+
+    sendError(connection, {
+      code: 'wall_dismissed',
+      fatal: true,
+      message: 'The host let this screen go'
+    })
+
+    engine.connections.remove(connection)
+  }
+
+  publishRoom(engine)
 }
 
 const replay = (outbound: Outbound, engine: RoomEngine): void => {

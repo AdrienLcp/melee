@@ -5,21 +5,17 @@ import {
 } from '@adrienlcp/theme-preference'
 import { useThemePreference } from '@adrienlcp/theme-preference/react'
 import type React from 'react'
-import { type FormEvent, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import {
   DialogTrigger,
   Form,
   Button as ReactAriaButton
 } from 'react-aria-components'
 
-import {
-  WALL_PAIRING_CODE_LENGTH,
-  wallPairingCodeSchema
-} from '@melee/protocol/http'
 import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
 import { isLocale, LOCALES } from '@melee/protocol/locale'
 
-import { fetchHealth, pairWall } from '@/infrastructure/api/melee-api'
+import { fetchHealth } from '@/infrastructure/api/melee-api'
 import {
   creditsPathFor,
   homePathFor,
@@ -66,6 +62,7 @@ import { Slider } from './slider'
 import { TextField } from './text-field'
 import { TextLink } from './text-link'
 import { useMenuWidth } from './use-menu-width'
+import { WallPairingForm } from './wall-pairing-form'
 
 import './app-menu.sass'
 
@@ -89,35 +86,6 @@ const MENU_MAX_HEIGHT_PX = 520
 const WallDoors: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const { handOver } = useRoomActions()
   const translate = useTranslate()
-  const [code, setCode] = useState('')
-  const [outcome, setOutcome] = useState<'failed' | 'idle' | 'paired'>('idle')
-
-  const pair = async (event: FormEvent): Promise<void> => {
-    event.preventDefault()
-
-    const pairingCode = wallPairingCodeSchema.safeParse(
-      code.replace(/[\s-]/g, '').toUpperCase()
-    )
-    const hostToken = readHostToken(roomCode)
-
-    if (!pairingCode.success || hostToken === null) {
-      setOutcome('failed')
-
-      return
-    }
-
-    const paired = await pairWall({
-      hostToken,
-      pairingCode: pairingCode.data,
-      roomCode
-    })
-
-    setOutcome(paired.status === 'success' ? 'paired' : 'failed')
-
-    if (paired.status === 'success') {
-      setCode('')
-    }
-  }
 
   return (
     <div className='wall-doors'>
@@ -137,35 +105,7 @@ const WallDoors: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       >
         {translate('wall.menu.openHere')}
       </Link>
-      <Form
-        onSubmit={(event) => {
-          void pair(event)
-        }}
-      >
-        <TextField
-          autoCapitalize='characters'
-          autoComplete='off'
-          description={
-            outcome === 'paired'
-              ? translate('wall.menu.paired')
-              : translate('wall.menu.description')
-          }
-          errorMessage={translate('wall.menu.failed')}
-          isInvalid={outcome === 'failed'}
-          label={translate('wall.menu.label')}
-          maxLength={WALL_PAIRING_CODE_LENGTH + 2}
-          name='wallCode'
-          onChange={(next) => {
-            setCode(next)
-            setOutcome('idle')
-          }}
-          placeholder={'•'.repeat(WALL_PAIRING_CODE_LENGTH)}
-          value={code}
-        />
-        <Button size='small' type='submit' variant='outlined'>
-          {translate('wall.menu.pair')}
-        </Button>
-      </Form>
+      <WallPairingForm roomCode={roomCode} />
       {handOver !== null && (
         <HandOverDoor onOpen={handOver} roomCode={roomCode} />
       )}

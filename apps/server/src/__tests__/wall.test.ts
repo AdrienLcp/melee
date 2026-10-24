@@ -267,6 +267,27 @@ describe('the wall', () => {
     )
   })
 
+  it('[wall] is sent away by the console, which is the speaker again', async () => {
+    const { code, host, hostToken } = await harness.openRoom()
+    const wall = await pairedWall({ code, hostToken })
+
+    await waitFor(
+      () => hostView(host)?.isWallConnected === true,
+      'the console to learn of the wall'
+    )
+    host.send({ type: 'host.dismissWall' })
+
+    await waitFor(() => errorsIn(wall).length > 0, 'the wall to be told')
+    expect(errorsIn(wall)[0]).toMatchObject({
+      code: 'wall_dismissed',
+      fatal: true
+    })
+    await waitFor(
+      () => hostView(host)?.isWallConnected === false,
+      'the console to be the speaker again'
+    )
+  })
+
   it('[wall] tells every seat it is there, so a phone knows to draw the board', async () => {
     const { code, hostToken } = await harness.openRoom()
     const zoe = await harness.seat({ code, nickname: 'Zoe' })

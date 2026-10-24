@@ -354,6 +354,7 @@ export const EN_DICTIONARY = defineDictionary({
       'Team by team needs two teams with somebody in each.',
     stale_round: 'That round is already over.',
     teams_locked: 'The teams cannot change that way now.',
+    wall_dismissed: 'The host let this screen go.',
     wall_not_paired:
       'This screen is not paired. Pair it from the device running the table.',
     wrong_phase: 'Too late, the game has moved on.'
@@ -583,6 +584,59 @@ export const EN_DICTIONARY = defineDictionary({
       reveal: 'Show the recovery code'
     },
     reveal: 'Give it away',
+    /** The console's Room tab: the room drawn from above, each shape the button for what it does. */
+    roomScene: {
+      here: {
+        mark: 'Here',
+        name: 'This screen',
+        playsToo: 'You play on it too.',
+        runs: 'This screen runs the table.',
+        showsGame: 'It shows the game and plays the sound.',
+        state: 'you run it'
+      },
+      label: 'The room from above',
+      pointer: {
+        action: 'Everything is set in Room',
+        lead: 'Another screen nearby, or playing too?'
+      },
+      seat: {
+        betweenRounds: 'You can take a seat between two rounds.',
+        free: 'free',
+        launchSeats:
+          'Nobody has sat down yet: starting the game gives you a seat.',
+        lines:
+          'You run the table without playing. Take a seat to answer from this screen, as everyone does from theirs.',
+        name: 'Your seat',
+        title: 'Play too',
+        titleTaken: 'Your seat at the table'
+      },
+      table: {
+        count: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: '{?} player on their own screen',
+              other: '{?} players, each on their own'
+            }
+          }
+        }),
+        empty: 'Nobody at the table yet'
+      },
+      wall: {
+        dismiss: 'Let the room’s screen go',
+        linesOff:
+          'For now, this screen shows the game and plays the sound. Nothing else is needed: the table plays fine like this.',
+        linesOn:
+          'It shows the game and plays the sound; this screen stays silent and keeps the controls.',
+        name: 'The room’s screen',
+        off: 'none for now',
+        on: 'connected',
+        pairLines:
+          'Open Mêlée on it and choose “Become the room’s screen”, then type the code it shows here.',
+        pairTitle: 'A screen nearby',
+        titleOff: 'Put the game on another screen',
+        titleOn: 'The room’s screen'
+      }
+    },
     roundCount: {
       open: 'No end',
       openSummary: 'Until you stop',

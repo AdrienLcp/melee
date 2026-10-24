@@ -31,6 +31,11 @@ export const protocolErrorCodes = [
    * the screen has to be paired by the host's device first.
    */
   'wall_not_paired',
+  /**
+   * The console let this wall go. Fatal, so it stops reconnecting on the token
+   * it still holds; the screen goes back to offering a pairing code.
+   */
+  'wall_dismissed',
   /** A wall pairing code that expired, was collected, or never existed. */
   'pairing_not_found',
   /**

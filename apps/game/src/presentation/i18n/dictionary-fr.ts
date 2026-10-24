@@ -329,6 +329,7 @@ export const FR_DICTIONARY = defineDictionary({
       'Équipe par équipe, il faut deux équipes avec quelqu’un dans chacune.',
     stale_round: 'Cette manche est déjà terminée.',
     teams_locked: 'Les équipes ne peuvent plus changer comme ça.',
+    wall_dismissed: 'L’hôte a libéré cet écran.',
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
@@ -557,6 +558,58 @@ export const FR_DICTIONARY = defineDictionary({
       reveal: 'Afficher le code de reprise'
     },
     reveal: 'Donner la réponse',
+    roomScene: {
+      here: {
+        mark: 'Ici',
+        name: 'Cet écran',
+        playsToo: 'Et tu y joues.',
+        runs: 'C’est cet écran qui tient la table.',
+        showsGame: 'Il montre la partie et joue le son.',
+        state: 'tu mènes'
+      },
+      label: 'La salle vue de dessus',
+      pointer: {
+        action: 'Tout se règle dans Salle',
+        lead: 'Un autre écran à côté, envie de jouer aussi ?'
+      },
+      seat: {
+        betweenRounds: 'Tu pourras prendre une place entre deux manches.',
+        free: 'libre',
+        launchSeats:
+          'Personne ne s’est encore assis : lancer la partie te donne une place.',
+        lines:
+          'Tu mènes sans jouer. Prends une place pour répondre depuis cet écran, comme les autres depuis le leur.',
+        name: 'Ta place',
+        title: 'Jouer aussi',
+        titleTaken: 'Ta place à table'
+      },
+      table: {
+        count: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: '{?} joueur, sur son écran',
+              other: '{?} joueurs, chacun le sien'
+            }
+          }
+        }),
+        empty: 'Personne à table pour l’instant'
+      },
+      wall: {
+        dismiss: 'Libérer l’écran de la salle',
+        linesOff:
+          'Pour l’instant, cet écran montre la partie et joue le son. Rien d’autre n’est nécessaire : on joue très bien comme ça.',
+        linesOn:
+          'Il montre la partie et joue le son ; cet écran-ci reste silencieux et garde les commandes.',
+        name: 'L’écran de la salle',
+        off: 'aucun pour l’instant',
+        on: 'branché',
+        pairLines:
+          'Ouvre Mêlée dessus et choisis « Devenir l’écran de la pièce », puis tape ici le code qu’il affiche.',
+        pairTitle: 'Un écran à côté',
+        titleOff: 'Mettre la partie sur un autre écran',
+        titleOn: 'L’écran de la salle'
+      }
+    },
     roundCount: {
       open: 'Sans fin',
       openSummary: 'Jusqu’à ce que tu arrêtes',

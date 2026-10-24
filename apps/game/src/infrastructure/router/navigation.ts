@@ -186,6 +186,20 @@ export const useCameFromWall = (): boolean => {
   return searchParams.get(FROM_WALL_PARAM) === FROM_WALL_VALUE
 }
 
+/**
+ * A wall the console let go goes back to offering a code, by replacing its
+ * room's address: left on it, a reload would reconnect on the token it holds.
+ */
+export const useReturnToWallPairing = (isLetGo: boolean): void => {
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (isLetGo) {
+      void navigate(paths.wallPairing, { replace: true })
+    }
+  }, [isLetGo, navigate])
+}
+
 export const wallPathFor = (code: RoomCode): string =>
   pathFor(paths.wall, { roomCode: code })
 

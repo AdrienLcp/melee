@@ -70,6 +70,12 @@ the whole room reads, because it pairs nothing without the token beside it.
 The wall **sends nothing but its hello**, and nothing it receives names an
 answer before the reveal.
 
+The console lets it go with `host.dismissWall`: every wall is sent a fatal
+`wall_dismissed`, unregistered, and the room published, so the console is the
+speaker again. The token is not rotated — the wall is the host's own screen —
+and the screen leaves its room's address for `/wall`, so a reload does not
+reconnect on the token it still holds.
+
 ## Client → server
 
 | Type | Sent by | Payload |
@@ -108,6 +114,7 @@ answer before the reveal.
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
 | `host.closeRoom` | host | — |
+| `host.dismissWall` | host | — |
 
 **The `player.` prefix names the seat, not the role.** `player.leave` and
 `player.rename` are the two a console holding a seat sends as well, which is why

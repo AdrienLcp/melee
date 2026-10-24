@@ -442,6 +442,15 @@ export const closeRoomMessageSchema = z.object({
 })
 
 /**
+ * The room's screen let go: every wall is sent a fatal `wall_dismissed` and the
+ * console is the speaker again. The token is not rotated — the wall is the
+ * host's own screen, and a fatal frame is what stops it reconnecting.
+ */
+export const dismissWallMessageSchema = z.object({
+  type: z.literal('host.dismissWall')
+})
+
+/**
  * What a host socket may send. Splitting the union by role means a player
  * screen cannot even construct `host.judge` — the server still enforces it,
  * because a socket is whatever its owner makes it, but the client code gets the
@@ -473,7 +482,8 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   endGameMessageSchema,
   playAgainMessageSchema,
   removePlayerMessageSchema,
-  closeRoomMessageSchema
+  closeRoomMessageSchema,
+  dismissWallMessageSchema
 ])
 
 export const playerClientMessageSchema = z.discriminatedUnion('type', [
@@ -530,7 +540,8 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   endGameMessageSchema,
   playAgainMessageSchema,
   removePlayerMessageSchema,
-  closeRoomMessageSchema
+  closeRoomMessageSchema,
+  dismissWallMessageSchema
 ])
 
 export type ConnectionRole = z.infer<typeof connectionRoleSchema>
@@ -570,7 +581,8 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.endGame',
   'host.playAgain',
   'host.removePlayer',
-  'host.closeRoom'
+  'host.closeRoom',
+  'host.dismissWall'
 ])
 
 /**

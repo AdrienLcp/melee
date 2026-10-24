@@ -677,6 +677,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const setupProps = (current: HostRoomView): SetupTabsProps => ({
     draftSource,
     isLive,
+    onDismissWall: () => {
+      send({ type: 'host.dismissWall' })
+    },
     onDraftSource: setDraftSource,
     onLeaveSeat: leaveSeat,
     onRememberSlateKey: rememberPreparedKey,
