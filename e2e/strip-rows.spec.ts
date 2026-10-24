@@ -333,8 +333,11 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
 
       const modes = page.locator('.answer-mode .segment')
 
+      // The answer window renders off the server's echo, not the press: a slow
+      // runner read the floors before it landed and swept a strip it never had.
       if ((await modes.count()) > 0) {
         await modes.first().click()
+        await expect(modes.first()).toHaveAttribute('data-selected')
       }
 
       // The round's own page first, then the groups it took the place of.
