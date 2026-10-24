@@ -32,7 +32,7 @@ import './setup-tabs.sass'
 
 /**
  * The strip's counts, with the one the room is on when it is none of them —
- * three games ticked on home make twelve, and a strip with nothing pressed
+ * three games ticked in the lobby make twelve, and a strip with nothing pressed
  * says the evening has no length.
  */
 const roundCountOptions = (roundCount: number | null): number[] =>

@@ -325,19 +325,11 @@ export const EN_DICTIONARY = defineDictionary({
     wrong_phase: 'Too late, the game has moved on.'
   },
   home: {
-    open: {
-      count: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} game', other: '{?} games' } }
-      }),
-      several: 'Open the table'
-    },
     resume: 'Resume',
     seat: {
-      judgedOnly: '{games:list}: you judge every answer, you do not play.',
-      judgesSome: 'You judge {games:list}, you play the rest.',
       label: 'I play too'
     },
-    shelf: 'What are we playing?',
+    shelf: 'The games',
     title: 'Mêlée'
   },
   host: {

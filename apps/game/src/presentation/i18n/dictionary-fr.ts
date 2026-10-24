@@ -300,19 +300,11 @@ export const FR_DICTIONARY = defineDictionary({
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   home: {
-    open: {
-      count: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
-      }),
-      several: 'Ouvrir la table'
-    },
     resume: 'Reprendre',
     seat: {
-      judgedOnly: '{games:list} : tu juges chaque réponse, tu ne joues pas.',
-      judgesSome: 'Tu juges {games:list}, tu joues aux autres.',
       label: 'Je joue aussi'
     },
-    shelf: 'À quoi on joue ?',
+    shelf: 'Les jeux',
     title: 'Mêlée'
   },
   host: {

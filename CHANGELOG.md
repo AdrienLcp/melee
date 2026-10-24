@@ -159,6 +159,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Home opens a table and shows the games.** The game checkboxes are
+  gone, since the lobby already asks what the table plays: *Open a table* sits
+  under the code box, and each game's spine on the shelf links to its own page.
+
 - `[Game]` **Fewer sentences that say what the screen already shows.** Gone:
   the line under *Open a table* and under *Play right away*, the one under
   *Become the room's screen*, the adult questions' hint, the line a seat

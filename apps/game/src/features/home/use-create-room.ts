@@ -4,8 +4,6 @@ import { useNavigate } from 'react-router'
 import type { ShelvedGame } from '@melee/protocol/game'
 import type { Nickname } from '@melee/protocol/identifiers'
 
-import { canPlayRightAway } from '@melee/core/room/play-right-away'
-
 import { createRoom } from '@/infrastructure/api/melee-api'
 import {
   hostPathFor,
@@ -28,18 +26,9 @@ type RoomOpening =
   | { status: 'idle' }
 
 /**
- * A seated host cannot take a seat under a game they must judge, and a line-up
- * opens on its first entry — so a game somebody can play goes first.
- */
-const playableFirst = (games: readonly ShelvedGame[]): readonly ShelvedGame[] =>
-  games.toSorted(
-    (a, b) => Number(canPlayRightAway(b)) - Number(canPlayRightAway(a))
-  )
-
-/**
  * The one trip to the network every front door makes, and the console it lands
- * on. It carries the games ticked — none, one or several — because a host who
- * ticked them has already answered the question the lobby would ask.
+ * on. It carries the game a game's own page opens for — none from home, where
+ * the lobby asks — because that host has already answered the question.
  *
  * It is one state and not a boolean beside an error, because a game's own page
  * draws two presses on it and the spinner has to appear on the one pressed.
@@ -79,7 +68,7 @@ export const useCreateRoom = () => {
       setOpening({ seatAs, status: 'opening' })
 
       const created = await createRoom({
-        games: seatAs === null ? games : playableFirst(games),
+        games,
         locale
       })
 

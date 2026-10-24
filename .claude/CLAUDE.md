@@ -166,8 +166,8 @@ which is why a user-visible string written into a component is a bug — see
   evening changes (`dealtOrder`, on `nextEntryAt`'s rule: another game before
   another entry of the same one), the setup lists it and a drag edits it, and
   every round past its last row is drawn as it comes (`scheduledEntryAt`). One tick is a
-  room playing one game, which every game's front door opens; several ticked on
-  home open a line-up of four rounds a game. Teams, board and judge are the
+  room playing one game, which every game's front door opens; several ticked in
+  the lobby open a line-up of four rounds a game. Teams, board and judge are the
   host's, remembered once and laid over every table, one game or several. An
   evening of several keeps its own `roundCount` and reveal hold across a switch,
   because a game's own would end it or cut a reveal short. **Ready** is a seat

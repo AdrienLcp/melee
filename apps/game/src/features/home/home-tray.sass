@@ -13,12 +13,9 @@ $side-by-side: 47.5rem
     @include box-lid.box-lid
 
     align-items: center
-    bottom: max(var(--space-s), var(--safe-area-bottom))
     display: grid
     gap: var(--space-s) var(--space-l)
     padding: var(--space-m)
-    position: sticky
-    z-index: 1
 
     // The way back shares the seat's row while both fit whole, and drops
     // under it on a phone too narrow for the two; the press keeps its own row.
@@ -106,13 +103,6 @@ $side-by-side: 47.5rem
 
       .button
         gap: var(--space-s)
-
-    .count
-      @include typography.label
-
-      background: color-mix(in oklab, var(--on-primary) 18%, var(--primary))
-      border-radius: var(--radius-full)
-      padding: var(--space-2xs) var(--space-xs)
 
     .error
       @include typography.caption-strong

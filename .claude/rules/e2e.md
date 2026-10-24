@@ -28,9 +28,9 @@ so neither the dev server nor today's charts can turn them red.
 
 **One journey per way in**, which is how the room-first flow got covered
 without a fourth: the buzzer game presses the home page's **"Open a table"**
-with nothing ticked and picks its game on the console, the simultaneous one
-ticks the blind test and presses **"Play Blind test"**. A press that reads
-*Open a table* opens a room with no game, and that failure surfaces a minute
+and picks its game on the console, the simultaneous one follows the blind
+test's spine to its own page and presses **"Open a table"** there. The press on home
+opens a room with no game, and that failure surfaces a minute
 later at a launch that stays greyed out.
 
 Playwright is the slowest tool available. Before adding a fourth spec, ask what

@@ -48,7 +48,7 @@ import './evening-rounds.sass'
 
 /**
  * The counts the setup's strip offers, which a raised evening lands on when it
- * can. Forty is every game ticked on home, four rounds each.
+ * can. Forty is every game ticked in the lobby, four rounds each.
  */
 export const ROUND_COUNT_STEPS = [5, 10, 20, 30, 40] as const
 

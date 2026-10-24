@@ -697,13 +697,14 @@ tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
   or a column when the names would not fit whole; the ticked ones pulled
   forward with a tick — one is a game, several an evening — and once anything is chosen the rest sit back on `--socket`
   with their band faded.
-- **`GameTicks`** (`features/home`): the ten games as spines, each a tick —
-  its spine colour, its name in the display face, a well that fills with the
-  spine's ink once ticked; two columns from a 52rem container.
-- **`HomeTray`** (`features/home`): the front door's one press, a lid held
-  `sticky` at the bottom of the page. Its label follows the ticks (*Open a
-  table*, *Play Quiz*, *Open the table* with a count pill), and beside it
-  *I'm playing too* and the name. The press sits right of the seat from 47.5rem.
+- **`GameShelf`** (`features/home`): the ten games as spines, each a link to
+  its own page — its spine colour, its name in the display face, its tagline,
+  an arrow that steps right under a pointer; two columns from a 52rem
+  container. Nothing is ticked on home: what the table plays is chosen in the
+  lobby.
+- **`HomeTray`** (`features/home`): the front door's one press, *Open a
+  table*, a lid between the masthead and the shelf, and beside it *I play
+  too* and the name. The press sits right of the seat from 47.5rem.
   While the last table this device opened is still open, *Resume K7PX* — an
   underlined link, the code in the room-code face — sits between the seat and
   the press, or under the seat on a phone too narrow for both.

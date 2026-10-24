@@ -1,6 +1,6 @@
 # 43 — Host controls
 
-**In progress** — steps 1 to 5 done. Asked 24/10/2026. The room's screen never shows
+**In progress** — steps 1 to 6 done. Asked 24/10/2026. The room's screen never shows
 a control, the host's controls are always on a screen only the host sees, in
 one side panel, and the *This screen is the room's* switch goes away.
 
@@ -110,9 +110,12 @@ that.
    deal-first launch in `LobbyActions`, the board track beside the console.
    `TableLobby` is the wall's alone. `isAnswerFolded` stays, for a console
    that took over from the wall.
-6. **Home page**: drop the game checkboxes, which duplicate the lobby's picker;
-   home becomes *Open a table* plus a card per game linking to its page. Check
-   first what the game front doors are for (search, shared links).
+6. ~~Home page.~~ Done: the ticks are gone, and `GameShelf` draws the same
+   spines as links to each game's page — the front doors stay, for search and
+   for a link shared in a group chat, since each is a prerendered page with a
+   head of its own. *Open a table* moved up from a sticky bar to a lid under
+   the masthead and always opens with no game, the lobby's picker asking;
+   `useCreateRoom` lost `playableFirst`, which only ordered several games.
 7. **Mark the modes that need a referee**: a small *Referee* label on the
    `buzzer` answer mode and on the Buzzer game's card, and one sentence where
    the host would take a seat in every judged room, the three silent games
