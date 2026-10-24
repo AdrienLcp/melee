@@ -8,6 +8,7 @@ import {
   longestChoiceLength,
   type PlayerAnswer
 } from '@/features/player/answer-forms'
+import { PrintedChoices } from '@/features/player/printed-choices'
 import { quizContent } from '@/helpers/round-content'
 import { AskedQuestion } from '@/presentation/components/asked-question'
 
@@ -21,8 +22,8 @@ import './choosing-round.sass'
 const LONG_CHOICE_LENGTH = 60
 
 type ChoosingRoundProps = {
-  /** Sends the pick, and says whether the socket took it. */
-  onAnswer: (answer: PlayerAnswer) => boolean
+  /** Sends the pick, and says whether the socket took it; `null` for a seat watching a duel, which is shown the tiles printed. */
+  onAnswer: ((answer: PlayerAnswer) => boolean) | null
   round: RoundView
   /** The seat answering: a player's, or the console's once its host sat down. */
   youId: PlayerId | null
@@ -47,12 +48,16 @@ export const ChoosingRound: React.FC<ChoosingRoundProps> = ({
       style={{ '--choice-length': choiceLength }}
     >
       <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
-      <ChoiceAnswer
-        key={round.id}
-        onAnswer={onAnswer}
-        round={round}
-        youId={youId}
-      />
+      {onAnswer === null ? (
+        <PrintedChoices round={round} />
+      ) : (
+        <ChoiceAnswer
+          key={round.id}
+          onAnswer={onAnswer}
+          round={round}
+          youId={youId}
+        />
+      )}
     </section>
   )
 }

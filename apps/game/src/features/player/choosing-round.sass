@@ -46,20 +46,24 @@
       li
         min-height: 0
 
-      .answer-tile
-        font-size: clamp(var(--text-xs), calc(var(--choice-k) / sqrt(var(--choice-length, 20))), var(--choice-cap))
+    .printed-choices
+      gap: clamp(var(--space-2xs), 1.8cqmin, var(--space-s))
+      grid-area: choices
+
+    :is(.answer-form.choices, .printed-choices) .answer-tile
+      font-size: clamp(var(--text-xs), calc(var(--choice-k) / sqrt(var(--choice-length, 20))), var(--choice-cap))
 
     // A blind test asks no question, and its candidates are two lines of
     // title and two of artist at most: four tiles as tall as the tallest of
     // them needs, with the box's spare height left around them rather than
     // poured into each one. A quiz candidate can be a whole sentence, and
     // keeps its share of the box.
-    &:not(:has(.asked-question)) .answer-form.choices ul
+    &:not(:has(.asked-question)) :is(.answer-form.choices ul, .printed-choices)
       align-self: center
       grid-template-rows: repeat(4, 1fr)
 
     @media (width >= 35rem) and (aspect-ratio <= 13 / 10)
-      &:not([data-long-choices]) .answer-form.choices ul
+      &:not([data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
         grid-template-columns: 1fr 1fr
         grid-template-rows: repeat(2, minmax(min-content, 1fr))
 
@@ -72,7 +76,7 @@
       --choice-k: min(15cqi, 32cqh)
       --choice-cap: min(2.8cqi, 6cqh)
 
-      &:not([data-long-choices]) .answer-form.choices ul
+      &:not([data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
         grid-template-columns: 1fr 1fr
         grid-template-rows: repeat(2, minmax(min-content, 1fr))
 

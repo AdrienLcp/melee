@@ -23,6 +23,13 @@
       gap: var(--space-xs)
       min-width: 0
 
+    // The badge's names are the ones that may run out of room: the round and
+    // the score are read in a glance, and an ellipsis inside a figure is a lie.
+    &:has(> .duel-badge)
+      > .round-index,
+      > .you
+        flex: none
+
     .figures,
     .score
       @include typography.numeric

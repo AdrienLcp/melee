@@ -267,7 +267,36 @@ const consoleView = (question: Question) => {
   }
 }
 
+/**
+ * The same round on the screen of a seat outside its duel, which reads it over
+ * a duellist's shoulder: the question and the four tiles, printed.
+ */
+const duelWatchedView = (question: Question) => {
+  const view = choosingView(question)
+  const duellists = ['p2', 'p3']
+
+  return {
+    ...view,
+    round: {
+      ...view.round,
+      duel: { seatIds: duellists, teamIds: ['team-1', 'team-2'] },
+      openedWithPlayerIds: duellists
+    },
+    settings: { ...view.settings, teams: { count: 2, kind: 'drawn' } },
+    teams: [['p1', 'p2'], ['p3']].map((seatIds, team) => ({
+      board: null,
+      colour: team + 1,
+      id: `team-${team + 1}`,
+      name: null,
+      score: 0,
+      seatIds
+    }))
+  }
+}
+
 type Seat = {
+  /** What the test is titled by. */
+  name: string
   /** The route the screen is opened on. */
   path: string
   role: 'host' | 'player' | 'room'
@@ -275,9 +304,25 @@ type Seat = {
 }
 
 const SEATS: Seat[] = [
-  { path: `/play/${ROOM_CODE}`, role: 'player', view: choosingView },
-  { path: `/host/${ROOM_CODE}`, role: 'host', view: seatedHostView },
-  { path: `/host/${ROOM_CODE}`, role: 'room', view: consoleView }
+  {
+    name: 'player',
+    path: `/play/${ROOM_CODE}`,
+    role: 'player',
+    view: choosingView
+  },
+  {
+    name: 'player watching a duel',
+    path: `/play/${ROOM_CODE}`,
+    role: 'player',
+    view: duelWatchedView
+  },
+  {
+    name: 'host',
+    path: `/host/${ROOM_CODE}`,
+    role: 'host',
+    view: seatedHostView
+  },
+  { name: 'room', path: `/host/${ROOM_CODE}`, role: 'room', view: consoleView }
 ]
 
 const isRecord = (value: unknown): value is Record<string, unknown> =>
@@ -441,7 +486,7 @@ test.beforeEach(async ({ context }) => {
 
 for (const seat of SEATS) {
   for (const question of WORST_CASES) {
-    test(`[layout] ${seat.role}, ${question.id}: the question and its four choices never scroll`, async ({
+    test(`[layout] ${seat.name}, ${question.id}: the question and its four choices never scroll`, async ({
       page
     }) => {
       await serveRoom({ page, view: seat.view(question) })
@@ -1274,6 +1319,17 @@ const PLAYER_PAGE_SCREENS = [
     view: {
       ...typedChoosing,
       settings: { ...typedChoosing.settings, mode: { kind: 'typed' } }
+    }
+  },
+  {
+    name: 'a typed duel between two other seats',
+    ready: '.typed-round .asked-question',
+    view: {
+      ...duelWatchedView(LONGEST_PROMPT),
+      settings: {
+        ...duelWatchedView(LONGEST_PROMPT).settings,
+        mode: { kind: 'typed' }
+      }
     }
   },
   {

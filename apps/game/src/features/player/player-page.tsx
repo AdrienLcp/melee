@@ -7,8 +7,6 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
 import type { PlayerRoomView } from '@melee/protocol/room'
 
-import { playsThisRound } from '@melee/core/team/duel'
-
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { slateContent } from '@/helpers/round-content'
 import {
@@ -336,7 +334,6 @@ const isFramed = (view: PlayerRoomView): boolean =>
   view.isHostConnected &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
-  playsThisRound({ duel: view.round.duel, seatId: view.youId }) &&
   ((view.phase === 'playing' && view.round.answerMode === 'choice') ||
     ((view.phase === 'playing' || view.phase === 'buzzed') &&
       view.round.answerMode === 'buzzer'))

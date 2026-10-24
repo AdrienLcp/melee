@@ -42,7 +42,7 @@ the clip and the buzz cue alike.
 
 Every reveal shows the answer, your points and the board.
 
-**Two gaps, both bugs to fix (step 2):**
+**Two gaps, both fixed in step 2:**
 
 - **A duel's spectators see nothing of it.** Seats outside the duel get a notice
   naming the two duellists (`team.duel.title`, `player-round.tsx`), never the
@@ -51,6 +51,16 @@ Every reveal shows the answer, your points and the board.
   read-only.
 - **A challenge in the `buzzed` phase** falls through to the plain `Buzzer`,
   which does not draw the host's line.
+
+Step 2 (done): a seat outside a duel is drawn the round read-only —
+`WatchedDuel` in `player-round.tsx`: the four tiles printed through
+`ChoosingRound` with no `onAnswer` (`PrintedChoices` moved to
+`features/player/`), the question card, the map's prompt or the dealt cards —
+and the four tiles are framed for it as for a player. The challenge's line
+holds through `buzzed` as well as `playing`; the server refuses a buzz there,
+so no real round reaches it. The duel badge now yields in `RoundChrome` rather
+than clipping the round index and the score on a narrow screen.
+`e2e/choice-fits.spec.ts` holds a spectator to the same floor as a player.
 
 **Seat refusal today** (`host-seat.tsx`, `isSeatWithheldByMode` in
 `packages/core/src/room/game-modes.ts`): a quiz, blind test or matchsticks left
@@ -62,7 +72,7 @@ that.
 
 ## Next steps
 
-2. Fix the two gaps above.
+2. ~~Fix the two gaps above.~~ Done.
 3. **One side panel for the host's settings**, starting with `/impeccable`:
    *Settings* (a popup today, cramped on desktop) and *Run the room*
    (`room-screen-presses.tsx`, a `Drawer`) become one panel, always beside the

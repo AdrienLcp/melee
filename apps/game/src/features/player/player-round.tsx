@@ -3,7 +3,6 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
-import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
   ActiveBuzz,
@@ -418,29 +417,15 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   }
 
   // A duel between two other seats: this one is in the game and owes nothing,
-  // and the round is theirs to watch — on the wall, or across the table.
-  const duel = round?.duel ?? null
-
-  const nameOf = (playerId: PlayerId) =>
-    view.players.find((player) => player.id === playerId)?.nickname ?? ''
-
+  // so it reads the round over a duellist's shoulder — the room may have no
+  // wall to watch it on.
   if (
     view.phase === 'playing' &&
-    duel !== null &&
-    !playsThisRound({ duel, seatId: view.youId })
+    round != null &&
+    round.duel !== null &&
+    !playsThisRound({ duel: round.duel, seatId: view.youId })
   ) {
-    const [firstId, secondId] = duel.seatIds
-
-    return (
-      <section className='player-round notice'>
-        <NoticeCard
-          title={translate('team.duel.title', {
-            first: nameOf(firstId),
-            second: nameOf(secondId)
-          })}
-        />
-      </section>
-    )
+    return <WatchedDuel clock={clock} round={round} view={view} />
   }
 
   // Below the reveal and the final board on purpose: those are what the round
@@ -453,6 +438,22 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         <NoticeCard
           detail={translate('player.midRound.detail')}
           title={translate('player.midRound.title')}
+        />
+      </section>
+    )
+  }
+
+  // Nothing to press in any phase: the table plays it, the host calls who
+  // won, and the server refuses a buzz.
+  if (
+    (view.phase === 'playing' || view.phase === 'buzzed') &&
+    round?.content.kind === 'challenge'
+  ) {
+    return (
+      <section className='player-round notice'>
+        <NoticeCard
+          detail={translate('challenge.atTheTable')}
+          title={round.content.text ?? translate('challenge.untitled')}
         />
       </section>
     )
@@ -490,18 +491,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     // Here rather than inside the forms: the host console renders those too
     // when its owner has taken a seat, and it is already showing the question.
     const prompt = quizContent(round)?.prompt ?? null
-
-    // Nothing to press: the table plays it, and the host calls who won.
-    if (round.content.kind === 'challenge') {
-      return (
-        <section className='player-round notice'>
-          <NoticeCard
-            detail={translate('challenge.atTheTable')}
-            title={round.content.text ?? translate('challenge.untitled')}
-          />
-        </section>
-      )
-    }
 
     if (round.content.kind === 'innerclock') {
       return <InnerclockPress onPress={onBuzz} round={round} />
@@ -661,6 +650,58 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         )}
       </p>
     </div>
+  )
+}
+
+/**
+ * The round two other seats are duelling, as they are shown it and with
+ * nothing on it to press: the question on its card, the four tiles printed,
+ * the cards dealt face up. The server would refuse anything this seat sent.
+ */
+const WatchedDuel: React.FC<{
+  clock: ClockEstimate | null
+  round: RoundView
+  view: PlayerRoomView
+}> = ({ clock, round, view }) => {
+  const translate = useTranslate()
+  const worldmap = worldmapContent(round)
+  const timeline = timelineContent(round)
+
+  if (round.answerMode === 'choice') {
+    return <ChoosingRound onAnswer={null} round={round} youId={view.youId} />
+  }
+
+  if (timeline !== null) {
+    return (
+      <section className='player-round timeline-round'>
+        <RoundClock clock={clock} view={view} />
+        <TimelineStrip
+          aria-label={translate('timeline.dealt')}
+          events={timeline.events}
+          layout='dealt'
+        />
+      </section>
+    )
+  }
+
+  if (worldmap !== null) {
+    return (
+      <section className='player-round map-round'>
+        <div className='round-card'>
+          <MapPrompt target={worldmap.target} />
+          <RoundClock clock={clock} view={view} />
+        </div>
+      </section>
+    )
+  }
+
+  return (
+    <section className='player-round typed-round'>
+      <div className='round-card'>
+        <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
+        <RoundClock clock={clock} view={view} />
+      </div>
+    </section>
   )
 }
 

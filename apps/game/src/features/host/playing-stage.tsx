@@ -11,6 +11,7 @@ import {
 } from '@/features/player/answer-forms'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
+import { PrintedChoices } from '@/features/player/printed-choices'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   matchsticksContent,
@@ -26,7 +27,6 @@ import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
-import { PrintedChoices } from './printed-choices'
 
 import './playing-stage.sass'
 
