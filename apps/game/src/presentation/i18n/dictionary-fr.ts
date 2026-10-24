@@ -438,9 +438,10 @@ export const FR_DICTIONARY = defineDictionary({
     nextRound: 'Manche suivante',
     playAgain: 'Rejouer',
     players: {
-      empty: 'Encore personne. Ça ne va pas durer.',
-      removeNamed: 'Retirer {nickname}',
-      title: 'Les joueurs'
+      count: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} joueur', other: '{?} joueurs' } }
+      }),
+      removeNamed: 'Retirer {nickname}'
     },
     recovery: {
       action: 'Tenir la table d’ici',

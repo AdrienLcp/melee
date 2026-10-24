@@ -118,14 +118,14 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             <h2>{translate('team.title')}</h2>
           ) : (
             <h2>
-              {translate('host.players.title')} {view.players.length}
+              {translate('host.players.count', {
+                count: view.players.length
+              })}
             </h2>
           )}
           {playsAloud ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
-          ) : view.players.length === 0 ? (
-            <p className='empty'>{translate('host.players.empty')}</p>
-          ) : view.teams.length > 0 ? (
+          ) : view.players.length === 0 ? null : view.teams.length > 0 ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
           ) : (
             <Scoreboard

@@ -467,9 +467,10 @@ export const EN_DICTIONARY = defineDictionary({
     /** The reveal of a turn with another team still to play its round. */
     playAgain: 'Play again',
     players: {
-      empty: 'Nobody yet. That will not last.',
-      removeNamed: 'Remove {nickname}',
-      title: 'The players'
+      count: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} player', other: '{?} players' } }
+      }),
+      removeNamed: 'Remove {nickname}'
     },
     recovery: {
       action: 'Run the table from here',
