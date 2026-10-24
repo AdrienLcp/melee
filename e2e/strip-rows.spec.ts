@@ -220,6 +220,25 @@ const sweepShapes = ({
 }
 
 /**
+ * The leaflet is a sheet on the narrow screen and a popover on the wide one,
+ * and the resize returns before React swaps them: an open leaflet read straight
+ * after it is the other width's, about to unmount, and a CI runner took the
+ * floors off it and found no strip at all.
+ */
+const resizeTo = async ({
+  page,
+  width
+}: {
+  page: Page
+  width: number
+}): Promise<void> => {
+  const face = width === NARROWEST_SCREEN ? '.sheet' : '.sheet-popover'
+
+  await page.setViewportSize({ height: 900, width })
+  await expect(page.locator(`${SETUP_LEAFLET}:not(${face})`)).toHaveCount(0)
+}
+
+/**
  * The setup's strips live on its leaflet, in two groups of which one opens
  * with it. Crossing the split trades the popover for the sheet, which mounts
  * the groups afresh, so this runs again after every resize.
@@ -347,7 +366,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
           await expect(page.locator(SETUP_LEAFLET)).toHaveCount(0)
         }
 
-        await page.setViewportSize({ height: 900, width: NARROWEST_SCREEN })
+        await resizeTo({ page, width: NARROWEST_SCREEN })
         await open(page)
         await page.evaluate(loadEveryFace)
 
@@ -359,7 +378,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
           }
         }
 
-        await page.setViewportSize({ height: 900, width: WIDEST_PX })
+        await resizeTo({ page, width: WIDEST_PX })
         await open(page)
         await page.evaluate(loadEveryFace)
 
