@@ -13,6 +13,7 @@
     "apps/game/public/flags",
     "apps/server/scripts/*.json",
     "apps/server/src/infrastructure/questions/question-bank.json",
+    "apps/server/src/infrastructure/questions/challenge-bank.json",
     "apps/server/src/infrastructure/questions/timeline-bank.json",
     "apps/server/src/infrastructure/questions/rebus-*.json",
     "apps/server/src/infrastructure/questions/city-bank.ts"
@@ -123,6 +124,10 @@
   "version": "0.2",
   "words": [
     "ABCDABCD",
+    "Devineuf",
+    "guessnine",
+    "redeal",
+    "Romanc",
     "Animer",
     "Noto",
     "innerclock",
