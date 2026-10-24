@@ -6,6 +6,7 @@ import type { TrackSource } from '@melee/protocol/track'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 
+import type { ChallengeLine } from './challenge-line'
 import { FinishedActions } from './finished-actions'
 import type { InnerclockTarget } from './innerclock-target-field'
 import { LobbyActions } from './lobby-actions'
@@ -13,16 +14,6 @@ import { RevealActions } from './reveal-actions'
 import { RoundActions } from './round-actions'
 import { SlateCorrectionActions, SlateWritingActions } from './slate-stages'
 import type { SlateWall } from './use-slate-wall'
-
-/** The line a challenge round opens on, held on the console until the press that sends it. */
-export type ChallengeLine = {
-  /** The line dealt ahead, in this screen's language; `null` once the bank is spent. */
-  dealtLine: string | null
-  onChange: (text: string) => void
-  /** Asks the server for another line in place of the one dealt. */
-  onRedeal: () => void
-  text: string
-}
 
 export type HostActionsProps = {
   /** `null` unless the next round is a challenge. */

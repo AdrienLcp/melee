@@ -199,6 +199,13 @@ export const FR_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Ça se joue à table — l’hôte annonce le classement.',
+    hand: {
+      aloud: 'Je l’annonce à voix haute',
+      own: 'Ton défi',
+      spent: 'La banque est épuisée : écris le défi, ou annonce-le.',
+      write: 'Écrire le mien',
+      writePlaceholder: 'Ou écris le tien…'
+    },
     home: {
       description:
         'Couper un légume en deux moitiés du même poids, empiler le plus de pommes de terre à raclette : le défi se joue à table, loin des écrans. L’hôte l’affiche au mur, dit qui finit premier, deuxième et troisième, et les points arrivent au tableau comme ceux de n’importe quelle manche.'
@@ -212,6 +219,18 @@ export const FR_DICTIONARY = defineDictionary({
       redeal: 'Tirer un autre défi'
     },
     name: 'Défi',
+    own: {
+      add: 'Ajouter',
+      description:
+        'Joués en premier, dans cet ordre ; la banque prend le relais quand il n’y en a plus. Gardés sur cet appareil.',
+      field: 'Défi {index:number}',
+      new: 'Un nouveau défi',
+      newPlaceholder: 'Écris un défi…',
+      played: 'Joué',
+      remove: 'Retirer le défi {index:number}',
+      summary: '{count:number} à venir',
+      title: 'Tes défis'
+    },
     places: {
       confirm: 'Valider le classement',
       first: '1er',
@@ -405,7 +424,7 @@ export const FR_DICTIONARY = defineDictionary({
     evening: {
       add: 'Ajouter un jeu',
       challengeLine:
-        'Son défi est tiré quand sa manche arrive : garde-le, tires-en un autre ou écris le tien.',
+        'Son défi se choisit quand sa manche arrive, parmi trois : tes défis d’abord, puis la banque.',
       chance: {
         among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
@@ -741,6 +760,8 @@ export const FR_DICTIONARY = defineDictionary({
     storage: {
       analyticsOptOut:
         'Ton refus de la mesure d’audience, si tu la coupes plus bas.',
+      challengeLines:
+        'Les défis que l’hôte a écrits à l’avance, et lesquels ont déjà été joués.',
       device:
         'Mêlée ne dépose aucun cookie. Ce qu’elle retient reste dans ton navigateur, pour ce site seulement, jusqu’à ce que tu l’effaces :',
       heading: 'Ce que Mêlée garde',

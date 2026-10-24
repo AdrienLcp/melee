@@ -220,6 +220,13 @@ export const EN_DICTIONARY = defineDictionary({
   },
   challenge: {
     atTheTable: 'Played at the table — the host calls the placings.',
+    hand: {
+      aloud: 'I’ll say it aloud',
+      own: 'Yours',
+      spent: 'The bank is spent: write the line, or say it aloud.',
+      write: 'Write my own',
+      writePlaceholder: 'Or write your own…'
+    },
     home: {
       description:
         'Cut a vegetable into two halves of the same weight, stack the most raclette potatoes: the challenge is played at the table, away from every screen. The host puts it up on the wall, says who came first, second and third, and the points land on the board like any round’s.'
@@ -232,6 +239,18 @@ export const EN_DICTIONARY = defineDictionary({
       redeal: 'Deal another line'
     },
     name: 'Challenge',
+    own: {
+      add: 'Add',
+      description:
+        'Dealt first, in this order; the bank takes over once they run out. Kept on this device.',
+      field: 'Line {index:number}',
+      new: 'A new line',
+      newPlaceholder: 'Write a line…',
+      played: 'Played',
+      remove: 'Remove line {index:number}',
+      summary: '{count:number} to come',
+      title: 'Your lines'
+    },
     places: {
       confirm: 'Confirm the placings',
       first: '1st',
@@ -426,7 +445,7 @@ export const EN_DICTIONARY = defineDictionary({
     evening: {
       add: 'Add a game',
       challengeLine:
-        'Its line is dealt when its round comes up: keep it, deal another or write your own.',
+        'Its line is picked when its round comes up, from three: your own lines first, then the bank.',
       chance: {
         among: 'among {games}, never the same game twice in a row',
         endless: 'Then by chance, until you stop',
@@ -782,6 +801,8 @@ export const EN_DICTIONARY = defineDictionary({
     storage: {
       analyticsOptOut:
         'Your refusal of audience measurement, if you turn it off below.',
+      challengeLines:
+        'The challenge lines the host wrote in advance, and which of them have been played.',
       device:
         'Mêlée sets no cookies. What it remembers stays in your browser, for this site only, until you clear it:',
       heading: 'What Mêlée keeps',

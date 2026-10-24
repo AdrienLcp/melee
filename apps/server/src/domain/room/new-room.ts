@@ -27,6 +27,7 @@ export const newRoom = ({
   now: number
 }): Room => {
   const room: Room = {
+    challengeHand: [],
     code,
     createdAt: now,
     duelsBySeat: new Map(),
@@ -37,7 +38,6 @@ export const newRoom = ({
     isDuelAsked: false,
     keepsBySeat: new Map(),
     lastActivityAt: now,
-    nextChallenge: null,
     openedEntries: [],
     phase: 'lobby',
     playedContentIds: new Set(),

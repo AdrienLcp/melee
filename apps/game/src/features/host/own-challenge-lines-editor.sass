@@ -1,0 +1,63 @@
+@use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .own-challenge-lines
+    display: grid
+    gap: var(--space-s)
+
+    header
+      align-items: baseline
+      display: flex
+      gap: var(--space-s)
+      justify-content: space-between
+
+    h3
+      @include typography.title
+
+    .summary,
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+
+    .hint
+      max-inline-size: var(--measure)
+      text-wrap: pretty
+
+    .lines
+      display: grid
+      gap: var(--space-xs)
+      list-style: none
+      padding: 0rem
+
+    li
+      align-items: center
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: auto minmax(0rem, 1fr) auto auto
+
+    .index
+      @include typography.numeric
+
+      min-width: 1.25em
+      text-align: end
+
+    .line label
+      @include accessibility.visually-hidden
+
+    .line :is(input, textarea)
+      font-size: var(--text-s)
+
+    li[data-played] .line :is(input, textarea)
+      background: var(--socket)
+      color: var(--ink-muted)
+
+    .played
+      @include typography.label
+
+    .add
+      align-items: end
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: minmax(0rem, 1fr) auto

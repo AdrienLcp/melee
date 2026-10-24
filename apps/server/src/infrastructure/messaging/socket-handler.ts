@@ -87,6 +87,7 @@ import { newPlayerId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import {
+  type ChallengePick,
   keepChallengeAhead,
   redealChallenge
 } from '@/infrastructure/questions/challenge-dealer'
@@ -463,7 +464,11 @@ const dispatch = ({
     }
     case 'host.startRound': {
       start({
-        challengeText: message.challengeText,
+        challenge: {
+          at: message.challengeAt,
+          isSaidAloud: message.isChallengeSaidAloud,
+          text: message.challengeText
+        },
         engine,
         innerclockTargetSeconds: message.innerclockTargetSeconds,
         outbound,
@@ -649,7 +654,11 @@ const dispatch = ({
     }
     case 'host.nextRound': {
       advance({
-        challengeText: message.challengeText,
+        challenge: {
+          at: message.challengeAt,
+          isSaidAloud: message.isChallengeSaidAloud,
+          text: message.challengeText
+        },
         engine,
         innerclockTargetSeconds: message.innerclockTargetSeconds,
         isDuel: message.isDuel ?? false,
@@ -658,7 +667,7 @@ const dispatch = ({
       break
     }
     case 'host.redealChallenge': {
-      redeal(outbound, engine)
+      redeal(message.at ?? 0, outbound, engine)
       break
     }
     case 'host.endGame': {
@@ -1070,13 +1079,13 @@ const reopenFloor = (
 }
 
 const start = ({
-  challengeText,
+  challenge,
   engine,
   innerclockTargetSeconds,
   outbound,
   slateKeys
 }: {
-  challengeText: string | undefined
+  challenge: ChallengePick
   engine: RoomEngine
   innerclockTargetSeconds: number | undefined
   outbound: Outbound
@@ -1097,7 +1106,7 @@ const start = ({
   }
 
   void beginRound(engine, {
-    challengeText,
+    challenge,
     innerclockTargetSeconds,
     slateKeys
   })
@@ -1238,13 +1247,13 @@ const answer = (
 }
 
 const advance = ({
-  challengeText,
+  challenge,
   engine,
   innerclockTargetSeconds,
   isDuel,
   outbound
 }: {
-  challengeText: string | undefined
+  challenge: ChallengePick
   engine: RoomEngine
   innerclockTargetSeconds: number | undefined
   isDuel: boolean
@@ -1284,10 +1293,10 @@ const advance = ({
     engine.room.isDuelAsked = true
   }
 
-  void beginRound(engine, { challengeText, innerclockTargetSeconds })
+  void beginRound(engine, { challenge, innerclockTargetSeconds })
 }
 
-const redeal = (outbound: Outbound, engine: RoomEngine): void => {
+const redeal = (at: number, outbound: Outbound, engine: RoomEngine): void => {
   if (engine.room.settings.game?.kind !== 'challenge') {
     sendError(outbound, {
       code: 'invalid_message',
@@ -1298,7 +1307,7 @@ const redeal = (outbound: Outbound, engine: RoomEngine): void => {
     return
   }
 
-  if (!redealChallenge(engine.room)) {
+  if (!redealChallenge(engine.room, at)) {
     sendError(outbound, {
       code: 'no_content_available',
       fatal: false,

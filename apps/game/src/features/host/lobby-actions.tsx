@@ -6,7 +6,8 @@ import { Button } from '@/presentation/components/button'
 import { PlayRightAway } from '@/presentation/components/play-right-away'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { ChallengeLineField } from './challenge-line-field'
+import { challengePickFor } from './challenge-line'
+import { ChallengeLinePicker } from './challenge-line-picker'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 
@@ -57,13 +58,7 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
         />
       )}
       {challengeLine !== null && (
-        <ChallengeLineField
-          dealtLine={challengeLine.dealtLine}
-          isDisabled={!isLive}
-          onChange={challengeLine.onChange}
-          onRedeal={challengeLine.onRedeal}
-          value={challengeLine.text}
-        />
+        <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
     </>
   )
@@ -76,7 +71,7 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
         onPress={() => {
           onOpenRound()
           send({
-            challengeText: challengeLine?.text,
+            ...challengePickFor(challengeLine),
             innerclockTargetSeconds: targetToSend(innerclockTarget),
             slateKeys,
             type: 'host.startRound'

@@ -14,11 +14,11 @@ import type {
  */
 export const asRoomScreenView = (view: WallRoomView): HostRoomView => ({
   ...view,
+  challengeHand: [],
   currentContent:
     view.currentContent === null ? null : withheld(view.currentContent),
   isWallConnected: true,
   lineUpPlayed: [],
-  nextChallenge: null,
   remainingPoolSize: 0,
   youId: null
 })

@@ -56,6 +56,9 @@ export const toHostView = ({
   seatId: PlayerId | null
 }): HostRoomView => ({
   ...toBaseView({ isHostConnected, now, room, youId: seatId }),
+  challengeHand: (room.challengeHand ?? [])
+    .slice(0, seatId === null ? undefined : 1)
+    .map(({ labels }) => labels),
   currentContent:
     room.round === null
       ? null
@@ -65,7 +68,6 @@ export const toHostView = ({
     lineUp: room.settings.lineUp,
     opened: room.openedEntries
   }),
-  nextChallenge: room.nextChallenge?.labels ?? null,
   remainingPoolSize: room.trackPool.length,
   youId: seatId
 })

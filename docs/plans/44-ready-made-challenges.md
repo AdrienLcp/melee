@@ -1,6 +1,6 @@
 # 44 — Ready-made challenges
 
-**To do.** Asked 24/10/2026. A challenge round no longer needs the host to
+**Done.** Asked 24/10/2026. A challenge round no longer needs the host to
 think of one: *Bring back something red* is dealt from a bank when the line is
 left empty, and the host can still type one of their own.
 
@@ -164,3 +164,23 @@ who only runs the room (`hasJudge`) gets a hand instead of one line:
 
 Screens through `impeccable`, directions as complete example pages behind one
 index link, before any of it is built.
+
+**Done.** Direction B of `.impeccable/directions/challenge-hand/` (local),
+chosen 24/10/2026 over a row of cards that each opened the round on a press:
+one coral press per moment, and the first line ticked so an untouched hand is
+today's gesture. The server holds `challengeHand`, **three** lines
+(`CHALLENGE_HAND_SIZE`; five ate the stage on a phone), one to a seated console;
+`host.startRound` / `host.nextRound` carry `challengeAt` and
+`isChallengeSaidAloud`, `host.redealChallenge` an `at`, and `PROTOCOL_VERSION`
+goes to 53. The console's hand is `ChoiceList` (a new radio-row primitive),
+composed by `challengeHandOf` in `core/challenge/challenge-hand.ts`: the
+host's own unplayed lines first, then the bank's. An own line rides the wire
+as typed text and is marked played on the machine once a round opens on it;
+its die sets it aside until then rather than playing it. The own lines live in
+`melee:challenge-lines` (`localStorage`, since they are written the day
+before), edited under the challenge's page of the Games tab — reachable after
+the game has been played, because they are no room setting. A round the hold
+opens on its own takes the bank's first line, never an own one. Seen muted:
+a picked slot after a redeal, an own line played and marked, *said aloud*
+reaching a seat as *A challenge at the table*, the hand on a held console.
+

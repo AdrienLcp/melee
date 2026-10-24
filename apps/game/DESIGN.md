@@ -816,6 +816,16 @@ shown the **turn badge** (`GuessNineTurn`): the duel badge's material, the
 guessing team's band and pawn, the keeper's pawn and name beside it, also in
 the console's and the wall's header.
 
+### Challenge hand (`ChallengeLinePicker`, `ChoiceList`)
+Direction B, *choose then launch*, chosen 2026-10-24
+(`.impeccable/directions/challenge-hand/`, local). Between two rounds a
+console that only runs the room shows the next challenge as a `ChoiceList`
+above the one coral press: three lines on `--track-a` pieces, a die beside
+each, the chosen row in the *yours* keyline with a coral dot; the host's own
+line carries a pen and *Yours* in `--tile-mark-3`. Under them the typed line
+(a paper field) and *I'll say it aloud* on a socket. A seated console keeps
+the single field and its die.
+
 ### Slate
 Every item is a piece: paper with a groove inked as far as the table has
 written; the saffron token once collected and owed to the wall (a lock and the marking

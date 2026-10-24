@@ -15,7 +15,8 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 
 import { BoardMoves } from './board-moves'
-import { ChallengeLineField } from './challenge-line-field'
+import { challengePickFor } from './challenge-line'
+import { ChallengeLinePicker } from './challenge-line-picker'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 
@@ -61,7 +62,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   const openNextRound = ({ isDuel }: { isDuel: boolean }) => {
     onOpenRound()
     send({
-      challengeText: challengeLine?.text,
+      ...challengePickFor(challengeLine),
       innerclockTargetSeconds: targetToSend(innerclockTarget),
       isDuel,
       type: 'host.nextRound'
@@ -142,7 +143,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         />
       )}
       {offersSkip({
-        challengeText: challengeLine?.text,
+        challengeText: challengePickFor(challengeLine).challengeText,
         lineUp: settings.lineUp,
         lineUpAt: settings.lineUpAt,
         played: view.lineUpPlayed,
@@ -182,13 +183,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
         />
       )}
       {challengeLine !== null && (
-        <ChallengeLineField
-          dealtLine={challengeLine.dealtLine}
-          isDisabled={!isLive}
-          onChange={challengeLine.onChange}
-          onRedeal={challengeLine.onRedeal}
-          value={challengeLine.text}
-        />
+        <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
       <Button
         isDisabled={!isLive}

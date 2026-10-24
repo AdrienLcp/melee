@@ -20,6 +20,7 @@ import {
   Lock,
   type LucideIcon,
   type LucideProps,
+  Megaphone,
   Menu,
   Minus,
   MonitorPlay,
@@ -29,6 +30,7 @@ import {
   PanelsTopLeft,
   Pencil,
   PencilLine,
+  PenLine,
   Plus,
   QrCode,
   Share,
@@ -65,6 +67,7 @@ const inFamily =
   (Glyph: LucideIcon, overrides: LucideProps = {}): React.FC<LucideProps> =>
   (props) => <Glyph {...FAMILY} {...overrides} {...props} />
 
+export const AnnounceIcon = inFamily(Megaphone)
 export const ArrowIcon = inFamily(ArrowRight)
 export const CheckIcon = inFamily(Check)
 export const ChevronIcon = inFamily(ChevronDown)
@@ -90,6 +93,7 @@ export const PanelOpenIcon = inFamily(PanelRightOpen)
 export const PanelSideIcon = inFamily(ArrowLeftRight)
 export const PlayersIcon = inFamily(Users)
 export const RenameIcon = inFamily(Pencil)
+export const PenIcon = inFamily(PenLine)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)

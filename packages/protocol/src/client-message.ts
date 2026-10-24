@@ -1,6 +1,10 @@
 import { z } from 'zod'
 
-import { challengeFinisherSchema, challengeTextSchema } from './challenge'
+import {
+  challengeFinisherSchema,
+  challengeHandSlotSchema,
+  challengeTextSchema
+} from './challenge'
 import { guessNineCellSchema } from './guess-nine'
 import {
   hostTokenSchema,
@@ -210,15 +214,19 @@ export const updateSettingsMessageSchema = z.object({
  * reloads mid-game has nothing to send again. Ignored by every other game.
  *
  * `challengeText` is what a challenge round asks the table to do, typed on the
- * console as it is launched; absent or empty, the server deals the line it
- * holds ahead (`nextChallenge`). Ignored by every other game.
+ * console as it is launched; absent or empty, the round opens on the line of
+ * the hand at `challengeAt` (`challengeHand`, the first by default), or on
+ * none at all when `isChallengeSaidAloud` — the host announces it and the
+ * wall shows the game alone. Ignored by every other game.
  *
  * `innerclockTargetSeconds` is how long an inner clock round asks the table to
  * count; absent, the server draws one. Ignored by every other game.
  */
 export const startRoundMessageSchema = z.object({
+  challengeAt: challengeHandSlotSchema.optional(),
   challengeText: challengeTextSchema.optional(),
   innerclockTargetSeconds: innerclockTargetSecondsSchema.optional(),
+  isChallengeSaidAloud: z.boolean().optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
 })
@@ -378,10 +386,14 @@ export const awardTeamsMessageSchema = z.object({
 })
 
 export const nextRoundMessageSchema = z.object({
+  /** The next round's line of the hand, when it is a challenge — as on `host.startRound`. */
+  challengeAt: challengeHandSlotSchema.optional(),
   /** The next round's challenge, when it is one — as on `host.startRound`. */
   challengeText: challengeTextSchema.optional(),
   /** The next round's count, when it is one — as on `host.startRound`. */
   innerclockTargetSeconds: innerclockTargetSecondsSchema.optional(),
+  /** The next round's challenge is announced aloud — as on `host.startRound`. */
+  isChallengeSaidAloud: z.boolean().optional(),
   /**
    * Asks for the next round to be a duel: one seat from each of two teams,
    * drawn so every seat duels before any duels twice. Absent, everyone plays
@@ -393,10 +405,12 @@ export const nextRoundMessageSchema = z.object({
 })
 
 /**
- * Asks for another ready-made line in place of the one dealt ahead — the
- * console's *Another*. Refused outside a challenge game.
+ * Asks for another ready-made line in place of the hand's line at `at` (the
+ * first by default) — the die beside it. The line it drops is not played.
+ * Refused outside a challenge game.
  */
 export const redealChallengeMessageSchema = z.object({
+  at: challengeHandSlotSchema.optional(),
   type: z.literal('host.redealChallenge')
 })
 

@@ -1,0 +1,42 @@
+@use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .challenge-line-picker
+    display: grid
+    gap: var(--space-xs)
+    min-width: 0rem
+
+    .own-mark
+      @include typography.label
+
+      align-items: center
+      color: var(--tile-mark-3)
+      display: flex
+      gap: var(--space-2xs)
+      margin-block-start: var(--space-2xs)
+
+    .aloud
+      align-items: center
+      display: inline-flex
+      gap: var(--space-xs)
+
+    .button.redeal
+      justify-content: center
+      padding-inline: 0rem
+      width: 2.5rem
+
+    .typed-line
+      flex: 1
+      min-width: 0rem
+
+      label
+        @include accessibility.visually-hidden
+
+      textarea
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2), var(--text-m))
+
+    .spent
+      @include typography.caption
+
+      color: var(--ink-muted)

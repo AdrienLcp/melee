@@ -3,7 +3,8 @@ import type React from 'react'
 import { Button } from '@/presentation/components/button'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { ChallengeLineField } from './challenge-line-field'
+import { challengePickFor } from './challenge-line'
+import { ChallengeLinePicker } from './challenge-line-picker'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 import { useSettingsSummary } from './use-settings-summary'
@@ -31,13 +32,7 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
         />
       )}
       {challengeLine !== null && (
-        <ChallengeLineField
-          dealtLine={challengeLine.dealtLine}
-          isDisabled={!isLive}
-          onChange={challengeLine.onChange}
-          onRedeal={challengeLine.onRedeal}
-          value={challengeLine.text}
-        />
+        <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
       <Button
         isDisabled={!isLive || view.players.length === 0}
@@ -49,7 +44,7 @@ export const FinishedActions: React.FC<HostActionsProps> = ({
           // "again?" was yes.
           send({ type: 'host.playAgain' })
           send({
-            challengeText: challengeLine?.text,
+            ...challengePickFor(challengeLine),
             innerclockTargetSeconds: targetToSend(innerclockTarget),
             slateKeys,
             type: 'host.startRound'

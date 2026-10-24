@@ -22,6 +22,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningPage } from './evening-page'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
+import { OwnChallengeLinesEditor } from './own-challenge-lines-editor'
 import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
 
@@ -184,6 +185,8 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
           )}
         </div>
       )}
+
+      {entry.kind === 'challenge' && <OwnChallengeLinesEditor />}
 
       {!isFixed && (!isNext || settings.lineUp.length > 1) && (
         <div className='entry-actions'>

@@ -4,10 +4,7 @@ import type { WorldmapPlaces } from '@melee/protocol/worldmap'
 import type { Room, Round, WorldmapRoundTarget } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
 import { releaseAbandonedSeats } from '@/domain/room/room-service'
-import {
-  challengeContent,
-  typedChallengeLabels
-} from '@/domain/round/challenge-round'
+import { challengeContent } from '@/domain/round/challenge-round'
 import {
   canTakeSpokenTurn,
   guessNineContent
@@ -40,7 +37,10 @@ import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { isOutage, NOTHING_PLAYABLE } from '@/infrastructure/music/music-source'
-import { takeChallengeLine } from '@/infrastructure/questions/challenge-dealer'
+import {
+  type ChallengePick,
+  pickChallengeLabels
+} from '@/infrastructure/questions/challenge-dealer'
 import { drawCity, playedCityId } from '@/infrastructure/questions/city-bank'
 import {
   drawCountry,
@@ -107,13 +107,13 @@ const drawWorldmapTarget = (
 
 /** What a game the room already holds the question for opens its round on. */
 const servedContent = ({
-  challengeText,
+  challenge,
   game,
   innerclockTargetSeconds,
   room,
   slateKeys
 }: {
-  challengeText: string | undefined
+  challenge: ChallengePick
   game: Extract<
     GameSettings,
     { kind: 'buzzer' | 'challenge' | 'innerclock' | 'reflex' | 'slate' }
@@ -126,9 +126,7 @@ const servedContent = ({
     case 'buzzer':
       return { kind: 'buzzer' }
     case 'challenge':
-      return challengeContent(
-        typedChallengeLabels(challengeText) ?? takeChallengeLine(room)
-      )
+      return challengeContent(pickChallengeLabels(room, challenge))
     case 'innerclock':
       return innerclockContent(innerclockTargetSeconds)
     case 'reflex':
@@ -144,7 +142,7 @@ const servedContent = ({
  * itself are not messages anyone sent, but they still end in a broadcast.
  *
  * `slateKeys` is what a host prepared before the evening, carried by the press
- * that opens the sheet, `challengeText` what a challenge asks the table and
+ * that opens the sheet, `challenge` which line a challenge asks the table and
  * `innerclockTargetSeconds` how long a count runs — every path nobody pressed
  * opens with none, and a count is then drawn.
  * `heldUntil` is the instant the hold promised the next clip, on the one path
@@ -153,12 +151,12 @@ const servedContent = ({
 export const beginRound = async (
   engine: RoomEngine,
   {
-    challengeText,
+    challenge = {},
     heldUntil = null,
     innerclockTargetSeconds,
     slateKeys = []
   }: {
-    challengeText?: string
+    challenge?: ChallengePick
     heldUntil?: number | null
     innerclockTargetSeconds?: number
     slateKeys?: readonly (string | null)[]
@@ -215,7 +213,7 @@ export const beginRound = async (
   ) {
     openRound({
       content: servedContent({
-        challengeText,
+        challenge,
         game,
         innerclockTargetSeconds,
         room,

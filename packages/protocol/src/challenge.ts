@@ -25,6 +25,20 @@ export const challengeLabelsSchema = z.record(
   z.string().min(1).max(CHALLENGE_TEXT_MAX_LENGTH)
 )
 
+/**
+ * How many ready-made lines a console that only runs the room holds ahead, to
+ * pick the next round's from. A seated console is shown the first alone: it is
+ * about to be asked one of them.
+ */
+export const CHALLENGE_HAND_SIZE = 3
+
+/** A slot of the hand, counted from the first line. */
+export const challengeHandSlotSchema = z
+  .number()
+  .int()
+  .nonnegative()
+  .max(CHALLENGE_HAND_SIZE - 1)
+
 export const challengePlaces = [1, 2, 3] as const
 
 /** First, second or third. Two finishers may share one; everyone unplaced is paid nought. */

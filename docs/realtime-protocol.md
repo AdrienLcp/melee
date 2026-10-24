@@ -85,7 +85,7 @@ answer before the reveal.
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `guessnine.tick` | player | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken guess nine alone, the black word once and for good |
 | `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
+| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `challengeAt` (optional) — the slot of `challengeHand` an untyped challenge opens on, the first by default; `isChallengeSaidAloud` (optional) — an untyped challenge opens on no line, the host announcing it; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
@@ -102,8 +102,8 @@ answer before the reveal.
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
 | `host.awardTeams` | host | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing |
-| `host.redealChallenge` | host | nothing — another ready-made line in place of `nextChallenge`; `invalid_message` outside a challenge, `no_content_available` when the bank holds no other |
-| `host.nextRound` | host | `isDuel` (optional) — the next round is a duel, see *A duel is one round asked for*; `challengeText` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound` |
+| `host.redealChallenge` | host | `at` (optional, the first by default) — another ready-made line in place of that slot of `challengeHand`, the dropped one left unplayed; `invalid_message` outside a challenge, `no_content_available` when the bank holds no other |
+| `host.nextRound` | host | `isDuel` (optional) — the next round is a duel, see *A duel is one round asked for*; `challengeText`, `challengeAt`, `isChallengeSaidAloud` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound` |
 | `host.endGame` | host | — |
 | `host.playAgain` | host | — |
 | `host.removePlayer` | host | `playerId` |
@@ -297,14 +297,17 @@ What the table is asked to do rides the press that opens the round —
 `round.content` as `{ kind: 'challenge', labels }`, on all three views: it is
 the question, and the answer happens where no screen sees it. `labels` holds
 the line in every locale, so each screen reads its own; a typed line is the
-same text under each. Left empty, the round opens on the ready-made line the
+same text under each. Left empty, the round opens on a ready-made line the
 server dealt **ahead** from its bank and showed the host alone as
-`nextChallenge` on the host view — never the wall's or a seat's, which would
-spoil it — and deals the next one behind it. A line holding a `{letter}` slot
+`challengeHand` on the host view — never the wall's or a seat's, which would
+spoil it: three lines to pick from with `challengeAt`, one to a seated console,
+which is about to be asked it. The slot taken is dealt again behind it. A host
+who would rather announce the line sends `isChallengeSaidAloud`, and the round
+opens with `labels: null` and takes nothing from the hand. A line holding a `{letter}` slot
 takes its letter as it is dealt, the same in every locale. A line joins
 `playedContentIds` only as a round opens on it, so the evening never deals it
-twice. `labels` is `null` only once the bank is spent and nothing
-was typed. The host and the wall arms carry nothing but the kind. The round is buzzer-moded because its
+twice. `labels` is `null` when said aloud, or once the bank is spent and
+nothing was typed. The host and the wall arms carry nothing but the kind. The round is buzzer-moded because its
 host judges it, so no seat is granted under it — and `player.buzz` is refused
 `wrong_phase`, because the race is at the table.
 
@@ -534,7 +537,7 @@ The host view adds what only the host may see:
                       "audioUrl": "https://cdnt-preview…",
                       "track": { "id": "…", "title": "…", "artist": "…",
                                  "coverUrl": "…", "previewUrl": "…" } },
-  "nextChallenge": null,
+  "challengeHand": [],
   "remainingPoolSize": 7
 }
 ```

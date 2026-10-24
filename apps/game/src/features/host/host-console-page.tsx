@@ -3,6 +3,7 @@ import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
 
+import { CHALLENGE_HAND_SIZE } from '@melee/protocol/challenge'
 import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
@@ -12,6 +13,11 @@ import type {
 } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
+import {
+  type ChallengeChoice,
+  challengeHandOf,
+  FIRST_HAND_LINE
+} from '@melee/core/challenge/challenge-hand'
 import { drawTargetSeconds } from '@melee/core/innerclock/target'
 import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
 import {
@@ -75,6 +81,7 @@ import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import { ArrivalNotice, useArrival } from './arrival-notice'
 import { AutoAdvanceChoice } from './auto-advance-choice'
+import { type ChallengeLine, challengePickFor } from './challenge-line'
 import { ClipOffer } from './clip-offer'
 import { HostActions, type HostActionsProps } from './host-actions'
 import { HostPanel } from './host-panel'
@@ -92,6 +99,10 @@ import {
 } from './setup-tabs'
 import { SlateEditors } from './slate-stages'
 import { useLineUpDraw } from './use-line-up-draw'
+import {
+  markOwnLinePlayed,
+  useOwnChallengeLines
+} from './use-own-challenge-lines'
 import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
 
@@ -162,6 +173,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   })
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
   const [challengeText, setChallengeText] = useState('')
+  const [challengeChoice, setChallengeChoice] =
+    useState<ChallengeChoice>(FIRST_HAND_LINE)
+  const [setAsideOwnLines, setSetAsideOwnLines] = useState<ReadonlySet<number>>(
+    () => new Set()
+  )
+  const ownChallengeLines = useOwnChallengeLines()
   const [targetSeconds, setTargetSeconds] = useState(drawTargetSeconds)
   const arrival = useArrival(view)
   const playsRightAway = useTakePlayRightAway()
@@ -513,56 +530,91 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
-  const hostActionsProps = (current: HostRoomView): HostActionsProps => ({
-    challengeLine:
-      current.settings.game?.kind === 'challenge'
-        ? {
-            dealtLine: current.nextChallenge?.[locale] ?? null,
-            onChange: setChallengeText,
-            onRedeal: () => {
-              send({ type: 'host.redealChallenge' })
-            },
-            text: challengeText
-          }
-        : null,
-    draftSource,
-    innerclockTarget:
-      current.settings.game?.kind === 'innerclock'
-        ? { onChange: setTargetSeconds, seconds: targetSeconds }
-        : null,
-    isLive,
-    onOpenRound: () => {
-      // Inside the press, never in an effect: the autoplay policy grants
-      // permission only from a real gesture, and it cannot be asked for later
-      // when the track arrives.
-      armAudio()
-      // The press has already read the line it sends, and the next challenge
-      // is never this one again.
-      setChallengeText('')
-      setTargetSeconds(drawTargetSeconds())
+  const challengeLineOf = (current: HostRoomView): ChallengeLine | null => {
+    if (current.settings.game?.kind !== 'challenge') {
+      return null
+    }
 
-      // What the picker is showing is what the host chose, and a round about
-      // to be drawn is the moment that means something — which is why every
-      // control that opens one comes through here rather than the launch
-      // alone. Re-sending an unchanged source is free: the server drops the
-      // pool only when it differs.
-      const game = current.settings.game
+    const isSeated = current.youId !== null
+    const hand = challengeHandOf({
+      dealt: current.challengeHand.map((labels) => labels[locale]),
+      own: ownChallengeLines,
+      setAside: setAsideOwnLines,
+      size: isSeated ? 1 : CHALLENGE_HAND_SIZE
+    })
 
-      if (draftSource !== null && game?.kind === 'blindtest') {
-        changeSettings({
-          ...current.settings,
-          game: { ...game, source: draftSource }
+    return {
+      choice: challengeChoice,
+      hand,
+      isSeated,
+      onChange: (text) => {
+        setChallengeText(text)
+        setChallengeChoice({ kind: 'typed' })
+      },
+      onChoose: setChallengeChoice,
+      onRedeal: (at) => {
+        const card = hand[at]
+
+        if (card?.kind === 'own') {
+          setSetAsideOwnLines((previous) => new Set([...previous, card.ownAt]))
+        } else if (card?.kind === 'dealt') {
+          send({ at: card.slot, type: 'host.redealChallenge' })
+        }
+      },
+      text: challengeText
+    }
+  }
+
+  const hostActionsProps = (current: HostRoomView): HostActionsProps => {
+    const challengeLine = challengeLineOf(current)
+
+    return {
+      challengeLine,
+      draftSource,
+      innerclockTarget:
+        current.settings.game?.kind === 'innerclock'
+          ? { onChange: setTargetSeconds, seconds: targetSeconds }
+          : null,
+      isLive,
+      onOpenRound: () => {
+        // Inside the press, never in an effect: the autoplay policy grants
+        // permission only from a real gesture, and it cannot be asked for later
+        // when the track arrives.
+        armAudio()
+        // The press has already read the line it sends, and the next challenge
+        // is never this one again.
+        markOwnLinePlayed({
+          lines: ownChallengeLines,
+          sent: challengePickFor(challengeLine).challengeText
         })
-      }
-    },
-    onPlayRightAway: playRightAway,
-    onSettingsChange: changeSettings,
-    preferences,
-    send,
-    slateKeys: preparedSlateKeys,
-    slateWall,
-    view: current
-  })
+        setChallengeText('')
+        setChallengeChoice(FIRST_HAND_LINE)
+        setSetAsideOwnLines(new Set())
+        setTargetSeconds(drawTargetSeconds())
+
+        // What the picker is showing is what the host chose, and a round about
+        // to be drawn is the moment that means something — which is why every
+        // control that opens one comes through here rather than the launch
+        // alone. Re-sending an unchanged source is free: the server drops the
+        // pool only when it differs.
+        const game = current.settings.game
+
+        if (draftSource !== null && game?.kind === 'blindtest') {
+          changeSettings({
+            ...current.settings,
+            game: { ...game, source: draftSource }
+          })
+        }
+      },
+      onPlayRightAway: playRightAway,
+      onSettingsChange: changeSettings,
+      preferences,
+      send,
+      slateKeys: preparedSlateKeys,
+      slateWall,
+      view: current
+    }
+  }
 
   const spokenTurn = guessNineContent(view?.round)?.spoken ?? null
 

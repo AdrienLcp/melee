@@ -52,6 +52,12 @@ export type TeamAward = {
 }
 
 export type Room = {
+  /**
+   * The ready-made lines the next challenge round is picked from, dealt ahead
+   * so the console can read them first. None is in `playedContentIds` until a
+   * round opens on it; short or empty once the bank runs out.
+   */
+  challengeHand: DealtChallengeLine[]
   code: RoomCode
   createdAt: number
   /** Duels each seat has played this evening, which is who is drawn next — see `drawDuel`. */
@@ -79,13 +85,6 @@ export type Room = {
   /** Spoken guess-nine lists each seat has kept this evening — see `drawSpokenTurn`. */
   keepsBySeat: Map<PlayerId, number>
   lastActivityAt: number
-  /**
-   * The ready-made line the next challenge round opens on when the host types
-   * none, dealt ahead so the console can read it out first. Never in
-   * `playedContentIds` until a round opens on it, and `null` while nothing has
-   * been dealt or the bank is spent.
-   */
-  nextChallenge: DealtChallengeLine | null
   /**
    * The line-up entry each round of this game opened on, as it stood then —
    * kept by value because an edit to the line-up shifts its indices. Emptied

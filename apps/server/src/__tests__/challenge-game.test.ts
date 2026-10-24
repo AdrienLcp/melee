@@ -1,8 +1,9 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type {
-  ChallengeFinisher,
-  ChallengeLabels
+import {
+  CHALLENGE_HAND_SIZE,
+  type ChallengeFinisher,
+  type ChallengeLabels
 } from '@melee/protocol/challenge'
 import { DEFAULT_CHALLENGE_SETTINGS } from '@melee/protocol/game'
 import type { HostToken } from '@melee/protocol/identifiers'
@@ -347,8 +348,8 @@ const openDealtChallenge = async (settings: RoomSettings = CHALLENGE_GAME) => {
   const anna = await harness.seat({ code, nickname: 'Anna' })
 
   await waitFor(
-    () => (hostView(host)?.nextChallenge ?? null) !== null,
-    'a line dealt ahead'
+    () => hostView(host)?.challengeHand.length === CHALLENGE_HAND_SIZE,
+    'a hand dealt ahead'
   )
 
   return { anna, host, wall }
@@ -373,7 +374,7 @@ const playDealtRounds = async ({
   const rounds: DealtRound[] = []
 
   for (let index = 0; index < count; index += 1) {
-    const ahead = hostView(host)?.nextChallenge ?? null
+    const ahead = hostView(host)?.challengeHand[0] ?? null
     const previousId = hostView(host)?.round?.id
 
     host.send(
@@ -401,11 +402,11 @@ const playDealtRounds = async ({
 }
 
 const redeal = async (host: Peer<HostServerMessage>) => {
-  const before = hostView(host)?.nextChallenge
+  const before = hostView(host)?.challengeHand[0]
 
   host.send({ type: 'host.redealChallenge' })
   await waitFor(
-    () => hostView(host)?.nextChallenge?.en !== before?.en,
+    () => hostView(host)?.challengeHand[0]?.en !== before?.en,
     'another line'
   )
 }
@@ -423,7 +424,7 @@ describe('a challenge dealt from the bank', () => {
 
   it('[challenge] reads a blank typed line as none, and deals', async () => {
     const { host } = await openDealtChallenge()
-    const ahead = hostView(host)?.nextChallenge
+    const ahead = hostView(host)?.challengeHand[0]
 
     host.send({ challengeText: '   ', type: 'host.startRound' })
     await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
@@ -433,13 +434,13 @@ describe('a challenge dealt from the bank', () => {
 
   it('[challenge] keeps the line dealt ahead for later when the host types one', async () => {
     const { host } = await openDealtChallenge()
-    const ahead = hostView(host)?.nextChallenge
+    const ahead = hostView(host)?.challengeHand[0]
 
     host.send({ challengeText: POTATOES, type: 'host.startRound' })
     await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
 
     expect(challengeRound(hostView(host))?.labels?.en).toBe(POTATOES)
-    expect(hostView(host)?.nextChallenge).toEqual(ahead)
+    expect(hostView(host)?.challengeHand[0]).toEqual(ahead)
   })
 
   it('[challenge] never deals one line twice in an evening', async () => {
@@ -452,7 +453,7 @@ describe('a challenge dealt from the bank', () => {
   it('[challenge] never shows a seat or the wall a line before its round opens', async () => {
     const { anna, host, wall } = await openDealtChallenge()
     const rounds = await playDealtRounds({ count: 3, host })
-    const stillAhead = hostView(host)?.nextChallenge?.fr ?? ''
+    const stillAhead = hostView(host)?.challengeHand[0]?.fr ?? ''
     const transcripts = [anna.frames, wall.frames].map((frames) =>
       frames.map(({ raw }) => raw)
     )
@@ -478,11 +479,11 @@ describe('a challenge dealt from the bank', () => {
 
   it('[challenge] deals another line ahead on request, and refuses a player', async () => {
     const { anna, host } = await openDealtChallenge()
-    const before = hostView(host)?.nextChallenge
+    const before = hostView(host)?.challengeHand[0]
 
     await redeal(host)
-    expect(isBankedLine(hostView(host)?.nextChallenge)).toBe(true)
-    expect(hostView(host)?.nextChallenge).not.toEqual(before)
+    expect(isBankedLine(hostView(host)?.challengeHand[0])).toBe(true)
+    expect(hostView(host)?.challengeHand[0]).not.toEqual(before)
 
     anna.send({ type: 'host.redealChallenge' })
     await waitFor(() => errorsIn(anna).length > 0, 'the refusal')
@@ -504,6 +505,50 @@ describe('a challenge dealt from the bank', () => {
     expect(errorsIn(host).map((error) => error.code)).toEqual([
       'invalid_message'
     ])
-    expect(hostView(host)?.nextChallenge).toBeNull()
+    expect(hostView(host)?.challengeHand).toEqual([])
+  })
+
+  it('[challenge] opens on the slot of the hand the host picked, and keeps the rest', async () => {
+    const { host } = await openDealtChallenge()
+    const hand = hostView(host)?.challengeHand ?? []
+
+    host.send({ challengeAt: 2, type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
+
+    expect(challengeRound(hostView(host))?.labels).toEqual(hand[2])
+    expect(hostView(host)?.challengeHand.slice(0, 2)).toEqual(hand.slice(0, 2))
+    expect(hostView(host)?.challengeHand).toHaveLength(CHALLENGE_HAND_SIZE)
+    expect(hostView(host)?.challengeHand).not.toContainEqual(hand[2])
+  })
+
+  it('[challenge] redeals one slot of the hand alone', async () => {
+    const { host } = await openDealtChallenge()
+    const hand = hostView(host)?.challengeHand ?? []
+
+    host.send({ at: 1, type: 'host.redealChallenge' })
+    await waitFor(
+      () => hostView(host)?.challengeHand[1]?.en !== hand[1]?.en,
+      'another line in the second slot'
+    )
+
+    const redealt = hostView(host)?.challengeHand ?? []
+
+    expect(redealt[0]).toEqual(hand[0])
+    expect(redealt[2]).toEqual(hand[2])
+    expect(new Set(redealt.map((line) => line.en)).size).toBe(
+      CHALLENGE_HAND_SIZE
+    )
+  })
+
+  it('[challenge] opens on no line when the host says it aloud, and takes nothing from the hand', async () => {
+    const { anna, host } = await openDealtChallenge()
+    const hand = hostView(host)?.challengeHand
+
+    host.send({ isChallengeSaidAloud: true, type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
+
+    expect(challengeRound(hostView(host))).toMatchObject({ labels: null })
+    expect(challengeRound(playerView(anna))).toMatchObject({ labels: null })
+    expect(hostView(host)?.challengeHand).toEqual(hand)
   })
 })

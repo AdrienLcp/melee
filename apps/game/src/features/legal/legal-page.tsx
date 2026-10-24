@@ -3,6 +3,7 @@ import { useId } from 'react'
 
 import { homePathFor } from '@/infrastructure/router/navigation'
 import { ANALYTICS_OPT_OUT_KEY } from '@/infrastructure/storage/analytics-opt-out-storage'
+import { OWN_CHALLENGE_LINES_KEY } from '@/infrastructure/storage/own-challenge-lines-storage'
 import {
   HOST_SETUP_KEY,
   LOCALE_KEY,
@@ -50,6 +51,7 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: SEATS_KEY, what: 'legal.storage.seats' },
   { key: HOST_TOKENS_KEY, what: 'legal.storage.hostTokens' },
   { key: HOST_SETUP_KEY, what: 'legal.storage.hostSetup' },
+  { key: OWN_CHALLENGE_LINES_KEY, what: 'legal.storage.challengeLines' },
   { key: VOLUME_KEY, what: 'legal.storage.volume' },
   { key: PANEL_FOLDED_KEY, what: 'legal.storage.panelFolded' },
   { key: PANEL_SIDE_KEY, what: 'legal.storage.panelSide' },
