@@ -141,6 +141,30 @@ pages behind one index link before any of them is built.
   word last and on its own.
 - The game goes into `shelvedGames`, its front door and its line-up tile.
 
+**Direction A, *the grid*, chosen 24/10/2026** over B, nine ruled lines in
+finding order (`.impeccable/directions/guess-nine/`, local):
+
+- **A seat's grid** is 3 × 3 in cell order, so a cell's place says its tier;
+  an empty cell is a socket printing its tier as one to three pips, a found
+  one a `--good-soft` piece with **the line the seat typed** — it is never sent
+  a cell's text, so the screen keeps what it sent. Under about 10rem of box
+  (a small phone with its keyboard up) the grid becomes one row of nine.
+- A line matching nothing is echoed above the field in muted ink
+  (*« Jackie Brown » : rien*), a hit with what it paid.
+- **The black word is an ink piece** (`--black-word`, a new token), never the
+  danger stamp: a trap, not a fault. On the seat it lies over the grid, the
+  found cells under it voided; the field gives way to *the others are still
+  looking*.
+- **The wall**: the theme on a lid banded in the game's spine, the clock along
+  its top, and under it nine tokens checked as the room's count rises — a
+  gauge, never positions. The reveal: the grid as nine paper cards (name,
+  pips and what it pays, the finders' pawns, *Nobody* on a socket) and the
+  black word as a tall ink card beside it, with its `why` and who lost the
+  round on it.
+- **The spine is a wine**, `oklch(40% 0.12 8)`: an ink-black spine vanishes
+  on the dark board, and every other free hue sits within twenty degrees of
+  a neighbour's.
+
 Verified in a browser, muted, with three seats: a hit lights one seat's grid and
 no other's, a black word ends that seat's round and voids it, the reveal names
 the nine and the word.
