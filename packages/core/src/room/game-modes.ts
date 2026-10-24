@@ -57,28 +57,45 @@ export const isRoomJudgedByHost = (settings: RoomSettings): boolean =>
   })
 
 /**
- * Whether the missing seat is worth explaining, which is narrower than the seat
- * being withheld: it is withheld wherever a verdict is owed, and only here is
- * that something the room can undo.
- *
- * The bare buzzer is judged and offers nothing else, so there is no seat to be
- * had and nothing to say about its absence. A room that has picked no game is
- * the same — the seat is waiting on the decision the lobby is already asking
- * for, not on how this game is answered. What is left is a quiz or a blind test
- * left on `buzzer`, where the control simply vanished: the host is remembered
- * per game, so a room can arrive in that state without anyone choosing it this
- * evening, and a screen that says nothing reads as the seat being broken.
+ * Whether every way this game can be answered ends in a verdict the host
+ * grants — the bare buzzer, the challenge and the slate — as opposed to a game
+ * that merely offers a judged mode beside others. The first kind is a promise
+ * about the game itself, which is what lets its box on the shelf say so.
  */
-export const isSeatWithheldByMode = ({
-  game,
-  mode
-}: {
-  game: GameKind | null
-  mode: AnswerMode
-}): boolean =>
-  game !== null &&
-  isJudgedByHost({ game, mode }) &&
-  answerModesFor(game).length > 1
+export const isJudgedInEveryMode = (game: GameKind): boolean =>
+  answerModesFor(game).every((mode) => isJudgedByHost({ game, mode }))
+
+/**
+ * Why a console holds no seat, in the terms the host can act on — `null`
+ * where it could hold one, or where the lobby is still asking what to play and
+ * the seat waits on that rather than on anything to explain:
+ *
+ * - `judge` — the room has a judge, who never plays;
+ * - `aloud` — the teams answer aloud, judged on the console every round;
+ * - `mode` — a game answered by a buzz that offers other ways to answer;
+ * - `game` — a game judged by hand however it is answered.
+ */
+export type SeatWithheldReason = 'aloud' | 'game' | 'judge' | 'mode'
+
+export const seatWithheldReason = (
+  settings: RoomSettings
+): SeatWithheldReason | null => {
+  if (settings.hasJudge) {
+    return 'judge'
+  }
+
+  if (settings.teams.kind === 'aloud') {
+    return 'aloud'
+  }
+
+  const game = settings.game?.kind ?? null
+
+  if (game === null || !isJudgedByHost({ game, mode: settings.mode.kind })) {
+    return null
+  }
+
+  return isJudgedInEveryMode(game) ? 'game' : 'mode'
+}
 
 /**
  * The nearest thing to `preferred` that this game can serve, with its own

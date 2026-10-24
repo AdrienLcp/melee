@@ -24,9 +24,10 @@ export const hostConsole = (page: Page) => ({
    *
    * The label rather than the radio it names — react-aria hides the `<input>`
    * under a `<label>` that takes the pointer, so the accessible name is what
-   * finds it and the label is what can be clicked.
+   * finds it and the label is what can be clicked. Its text runs on into the
+   * *Host judges* stamp under it, so the match is anchored, not exact.
    */
-  buzzerMode: page.getByText('First to buzz', { exact: true }),
+  buzzerMode: page.getByText(/^First to buzz/),
   /** What the QR code encodes. Following it is what scanning it does. */
   joinUrl: page.locator('.join-url'),
   /**

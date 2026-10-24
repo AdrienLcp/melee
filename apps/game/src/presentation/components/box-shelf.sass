@@ -144,7 +144,25 @@
 
       color: var(--card-muted)
       font-size: clamp(var(--text-2xs), 1.6cqi, 0.9375rem)
+      margin-block-start: auto
       text-wrap: pretty
+
+    // A keyline stamp rather than a filled one: the filled pill on the band
+    // already says which box opens first, and the two must not read alike.
+    .mark
+      @include typography.label
+
+      align-self: flex-start
+      border: var(--stroke-thin) solid var(--card-ink)
+      border-radius: var(--radius-full)
+      color: var(--card-ink)
+      font-size: var(--text-3xs)
+      padding: 0.1em 0.6em
+      white-space: nowrap
+
+      @container (width < 30rem)
+        align-self: center
+        margin-inline-start: auto
 
     .tick
       align-self: center

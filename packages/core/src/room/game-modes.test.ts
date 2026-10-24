@@ -1,14 +1,32 @@
 import { describe, expect, it } from 'vitest'
 
-import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
+import type { GameKind } from '@melee/protocol/game'
+import {
+  type AnswerMode,
+  DEFAULT_MODE_SETTINGS,
+  type RoomSettings
+} from '@melee/protocol/room'
 
 import { answerModesFor } from './game-capabilities'
 import {
   isJudgedByHost,
-  isSeatWithheldByMode,
+  isJudgedInEveryMode,
   modeOfferedBy,
-  offersAnswerMode
+  offersAnswerMode,
+  seatWithheldReason
 } from './game-modes'
+import { roomSettingsFor } from './room-settings'
+
+const settingsPlaying = ({
+  game,
+  mode
+}: {
+  game: GameKind
+  mode: AnswerMode
+}): RoomSettings => ({
+  ...roomSettingsFor({ games: [game], locale: 'en' }),
+  mode: DEFAULT_MODE_SETTINGS[mode]
+})
 
 describe('offersAnswerMode', () => {
   it('[game-modes] refuses a typed field to a game with nothing to type against', () => {
@@ -42,7 +60,6 @@ describe('isJudgedByHost', () => {
   it('[game-modes] keeps the slate’s host marking the sheets under its typed mode', () => {
     expect(answerModesFor('slate')).toEqual(['typed'])
     expect(isJudgedByHost({ game: 'slate', mode: 'typed' })).toBe(true)
-    expect(isSeatWithheldByMode({ game: 'slate', mode: 'typed' })).toBe(false)
   })
 
   it('[game-modes] withholds the seat from a room that has picked nothing yet', () => {
@@ -61,28 +78,66 @@ describe('isJudgedByHost', () => {
   it('[game-modes] judges a matchstick said aloud and not one moved on a screen', () => {
     expect(isJudgedByHost({ game: 'matchsticks', mode: 'buzzer' })).toBe(true)
     expect(isJudgedByHost({ game: 'matchsticks', mode: 'move' })).toBe(false)
-    expect(isSeatWithheldByMode({ game: 'matchsticks', mode: 'buzzer' })).toBe(
-      true
-    )
   })
 })
 
-describe('isSeatWithheldByMode', () => {
-  it('[game-modes] explains the seat a quiz took away with its answer mode', () => {
-    expect(isSeatWithheldByMode({ game: 'quiz', mode: 'buzzer' })).toBe(true)
-    expect(isSeatWithheldByMode({ game: 'blindtest', mode: 'buzzer' })).toBe(
-      true
-    )
+describe('isJudgedInEveryMode', () => {
+  it('[game-modes] marks the games judged however they are answered', () => {
+    expect(isJudgedInEveryMode('buzzer')).toBe(true)
+    expect(isJudgedInEveryMode('challenge')).toBe(true)
+    expect(isJudgedInEveryMode('slate')).toBe(true)
   })
 
-  it('[game-modes] says nothing where a seat was never on offer', () => {
-    expect(isSeatWithheldByMode({ game: 'buzzer', mode: 'buzzer' })).toBe(false)
-    expect(isSeatWithheldByMode({ game: null, mode: 'buzzer' })).toBe(false)
+  it('[game-modes] leaves out a game that merely offers a judged mode', () => {
+    expect(isJudgedInEveryMode('quiz')).toBe(false)
+    expect(isJudgedInEveryMode('matchsticks')).toBe(false)
+    expect(isJudgedInEveryMode('reflex')).toBe(false)
+  })
+})
+
+describe('seatWithheldReason', () => {
+  it('[game-modes] names the answer mode where another one gives the seat back', () => {
+    expect(
+      seatWithheldReason(settingsPlaying({ game: 'quiz', mode: 'buzzer' }))
+    ).toBe('mode')
+    expect(
+      seatWithheldReason(
+        settingsPlaying({ game: 'matchsticks', mode: 'buzzer' })
+      )
+    ).toBe('mode')
   })
 
-  it('[game-modes] says nothing about a seat the host already has', () => {
-    expect(isSeatWithheldByMode({ game: 'quiz', mode: 'typed' })).toBe(false)
-    expect(isSeatWithheldByMode({ game: 'reflex', mode: 'buzzer' })).toBe(false)
+  it('[game-modes] names the game where every way to answer it is judged', () => {
+    expect(
+      seatWithheldReason(settingsPlaying({ game: 'buzzer', mode: 'buzzer' }))
+    ).toBe('game')
+    expect(
+      seatWithheldReason(settingsPlaying({ game: 'slate', mode: 'typed' }))
+    ).toBe('game')
+    expect(
+      seatWithheldReason(settingsPlaying({ game: 'challenge', mode: 'buzzer' }))
+    ).toBe('game')
+  })
+
+  it('[game-modes] names the judge and the aloud teams before the game', () => {
+    const quizTyped = settingsPlaying({ game: 'quiz', mode: 'typed' })
+
+    expect(seatWithheldReason({ ...quizTyped, hasJudge: true })).toBe('judge')
+    expect(
+      seatWithheldReason({ ...quizTyped, teams: { count: 2, kind: 'aloud' } })
+    ).toBe('aloud')
+  })
+
+  it('[game-modes] says nothing where the console may sit, or no game is picked', () => {
+    expect(
+      seatWithheldReason(settingsPlaying({ game: 'quiz', mode: 'typed' }))
+    ).toBeNull()
+    expect(
+      seatWithheldReason(settingsPlaying({ game: 'reflex', mode: 'buzzer' }))
+    ).toBeNull()
+    expect(
+      seatWithheldReason(roomSettingsFor({ games: [], locale: 'en' }))
+    ).toBeNull()
   })
 })
 

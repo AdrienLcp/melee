@@ -4,6 +4,7 @@ import { type GameKind, shelvedGames } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
 import { isPlayableAloud } from '@melee/core/room/game-capabilities'
+import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
 import {
   type HostPreferences,
   rememberedSetupFor
@@ -59,6 +60,9 @@ export const GamePicker: React.FC<GamePickerProps> = ({
       icon: <GameIcon game={game} />,
       isDisabled: !playsAloud || (ticked.length === 1 && ticked.includes(game)),
       label: translate(gameNameKey(game)),
+      mark: isJudgedInEveryMode(game)
+        ? translate('host.judgedMark')
+        : undefined,
       spine: `var(--spine-${game})`,
       value: game
     }

@@ -1,6 +1,6 @@
 # 43 — Host controls
 
-**In progress** — steps 1 to 6 done. Asked 24/10/2026. The room's screen never shows
+**Done** — steps 1 to 7. Asked 24/10/2026. The room's screen never shows
 a control, the host's controls are always on a screen only the host sees, in
 one side panel, and the *This screen is the room's* switch goes away.
 
@@ -116,7 +116,14 @@ that.
    head of its own. *Open a table* moved up from a sticky bar to a lid under
    the masthead and always opens with no game, the lobby's picker asking;
    `useCreateRoom` lost `playableFirst`, which only ordered several games.
-7. **Mark the modes that need a referee**: a small *Referee* label on the
-   `buzzer` answer mode and on the Buzzer game's card, and one sentence where
-   the host would take a seat in every judged room, the three silent games
-   included. Not on a card that merely *offers* a judged mode.
+7. ~~Mark the modes that need a referee.~~ Done, in the product's own word:
+   *Host judges* (`host.judgedMark`), not *Referee* — the setup already says
+   *A judge runs the room*. Under the label of every judged answer mode
+   (`isJudgedByHost`), and as a keyline stamp on the lid of every game judged
+   however it is answered (`isJudgedInEveryMode`: the Buzzer, the slate and
+   the challenge — the plan named only the Buzzer, but the other two promise
+   the same). `seatWithheldReason` replaced `isSeatWithheldByMode` and gives
+   the seat a sentence for each of its four reasons — a judge, teams answering
+   aloud, a judged mode, a judged game; a room with no game still says
+   nothing. The Players tab no longer hides the seat from aloud teams in the
+   lobby, or that sentence never showed.

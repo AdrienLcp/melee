@@ -413,6 +413,7 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Un juge anime sans jouer',
       summary: 'Avec un juge'
     },
+    judgedMark: 'L’hôte juge',
     lineUp: {
       first: 'En premier',
       next: 'Ensuite',
@@ -472,11 +473,16 @@ export const FR_DICTIONARY = defineDictionary({
         hiddenAnswer: 'Tu ne verras plus la réponse avant les autres.',
         sharedScreen: 'Tu cours sur l’écran que toute la table regarde.'
       },
-      judged:
-        'Tu juges les buzz, donc pas de place ici. N’importe quelle autre façon de répondre t’en rend une.',
       label: 'Jouer aussi, sous le nom de',
       leave: 'Rendre sa place',
-      taken: 'Tu joues sous le nom de {nickname}.'
+      taken: 'Tu joues sous le nom de {nickname}.',
+      withheld: {
+        aloud:
+          'Les équipes répondent à voix haute et tu les juges, donc pas de place ici.',
+        game: 'Tu juges chaque réponse dans ce jeu, donc pas de place ici.',
+        judge: 'Tu tiens la table en juge, donc pas de place ici.',
+        mode: 'Tu juges les buzz, donc pas de place ici. N’importe quelle autre façon de répondre t’en rend une.'
+      }
     },
     seconds: '{seconds:number} s',
     seeResults: 'Voir les résultats',

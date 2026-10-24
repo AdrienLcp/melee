@@ -13,6 +13,8 @@ import './segmented-control.sass'
 
 type SegmentedControlOption = {
   label: string
+  /** A word printed under the label, read with it: what choosing this one commits the room to. */
+  mark?: string
   value: string
 }
 
@@ -59,7 +61,12 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
           key={option.value}
           value={option.value}
         >
-          <RadioButton className='segment'>{option.label}</RadioButton>
+          <RadioButton className='segment'>
+            {option.label}
+            {option.mark !== undefined && (
+              <span className='mark'>{option.mark}</span>
+            )}
+          </RadioButton>
         </RadioField>
       ))}
     </div>

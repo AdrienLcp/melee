@@ -687,6 +687,9 @@ Stamps in a tray (`--ink` at 7% over `--field`, padding equal to the gap),
 edge and the shape say which one is on where two options would leave the colour
 alone ambiguous. The ink block it replaced read as a square frame against the
 tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
+An option may carry a `mark`, a `--text-3xs` line under its label and never
+beside it, so no strip widens past its measured `stacks-below`: *Host judges*
+under every answer mode a verdict is owed in.
 
 ### Box lid, shelf and spines
 - **`box-lid`**: a paper card with its keyline, re-pointing `--field`, `--ink`,
@@ -696,7 +699,10 @@ tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
 - **`TickShelf`** (console lobby game picker): ten lids in two rows of five,
   or a column when the names would not fit whole; the ticked ones pulled
   forward with a tick — one is a game, several an evening — and once anything is chosen the rest sit back on `--socket`
-  with their band faded.
+  with their band faded. A game judged however it is answered carries *Host
+  judges* as a `mark`: a keyline stamp on the lid under the description, at
+  the row's end in the list layout — outlined because the filled pill on the
+  band already says which box opens first.
 - **`GameShelf`** (`features/home`): the ten games as spines, each a link to
   its own page — its spine colour, its name in the display face, its tagline,
   an arrow that steps right under a pointer; two columns from a 52rem

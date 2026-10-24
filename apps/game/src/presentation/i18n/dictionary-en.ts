@@ -435,6 +435,8 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'A judge runs the room and doesn’t play',
       summary: 'With a judge'
     },
+    /** On a judged answer mode and on the box of a game judged however it is answered. */
+    judgedMark: 'Host judges',
     lineUp: {
       first: 'First up',
       next: 'Next up',
@@ -506,16 +508,21 @@ export const EN_DICTIONARY = defineDictionary({
         hiddenAnswer: 'You stop seeing the answer before everyone else.',
         sharedScreen: 'You race on the screen the whole table is watching.'
       },
-      /**
-       * Why there is no seat here, where the room could have one. It names the
-       * way out rather than the rule, because the strip that undoes it is on
-       * the same screen a few lines up.
-       */
-      judged:
-        'You judge the buzzes, so there is no seat here. Any other way to answer gives you one.',
       label: 'Play too, as',
       leave: 'Give up the seat',
-      taken: 'You are playing as {nickname}.'
+      taken: 'You are playing as {nickname}.',
+      /**
+       * Why there is no seat here, one line per `SeatWithheldReason`. `mode`
+       * names the way out rather than the rule, because the strip that undoes
+       * it is on the same screen a few lines up.
+       */
+      withheld: {
+        aloud:
+          'The teams answer aloud and you judge them, so there is no seat here.',
+        game: 'You judge every answer in this game, so there is no seat here.',
+        judge: 'You run the table as its judge, so there is no seat here.',
+        mode: 'You judge the buzzes, so there is no seat here. Any other way to answer gives you one.'
+      }
     },
     seconds: '{seconds:number}s',
     seeResults: 'See the results',

@@ -159,6 +159,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The host is told when they judge.** *Host judges* sits under
+  every judged answer mode and on the boxes of the Buzzer, the slate and the
+  challenge, judged however they are answered. Where the console holds no
+  seat, the Players tab now says why in every case — a judge, teams answering
+  aloud, a judged mode, a judged game — where the three games judged in their
+  only mode used to say nothing.
+
 - `[Game]` **Home opens a table and shows the games.** The game checkboxes are
   gone, since the lobby already asks what the table plays: *Open a table* sits
   under the code box, and each game's spine on the shelf links to its own page.

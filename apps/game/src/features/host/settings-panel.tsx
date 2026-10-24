@@ -30,6 +30,7 @@ import {
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
 import { answerModesFor } from '@melee/core/room/game-capabilities'
+import { isJudgedByHost } from '@melee/core/room/game-modes'
 
 import { NumberField } from '@/presentation/components/number-field'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
@@ -260,6 +261,9 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           }}
           options={offeredModes.map((offered) => ({
             label: translate(answerModeLabelKey(offered)),
+            mark: isJudgedByHost({ game: game.kind, mode: offered })
+              ? translate('host.judgedMark')
+              : undefined,
             value: offered
           }))}
           value={mode.kind}

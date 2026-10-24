@@ -23,6 +23,8 @@ type TickShelfOption = {
   /** Kept as it is while the rest of the shelf stays pressable — a tick that cannot be taken out, a game the room cannot play. */
   isDisabled?: boolean
   label: string
+  /** A word stamped on the lid under the description: what the game asks of the table. */
+  mark?: string
   /** The colour of the box's spine, as a CSS colour — usually a `var()`. */
   spine: string
   value: string
@@ -50,6 +52,7 @@ const BoxFace: React.FC<{ option: TickShelfOption }> = ({ option }) => (
         {option.label}
       </span>
       <span className='description'>{option.description}</span>
+      {option.mark !== undefined && <span className='mark'>{option.mark}</span>}
     </span>
     <span className='tick'>
       <CheckIcon />

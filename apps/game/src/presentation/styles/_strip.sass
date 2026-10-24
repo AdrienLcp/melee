@@ -133,3 +133,10 @@
       background: var(--primary)
       box-shadow: 0 2px 0 var(--primary-edge), var(--shadow-piece)
       color: var(--on-primary)
+
+    // Under the label and never beside it: a stamp no wider than its label
+    // leaves every caller's `stacks-below` measure standing.
+    .mark
+      display: block
+      font-size: var(--text-3xs)
+      margin-block-start: var(--space-2xs)

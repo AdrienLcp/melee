@@ -7,7 +7,7 @@ import type { HostRoomView } from '@melee/protocol/room'
 
 import {
   isRoomJudgedByHost,
-  isSeatWithheldByMode
+  seatWithheldReason
 } from '@melee/core/room/game-modes'
 
 import { readStoredNickname } from '@/infrastructure/storage/preferences-storage'
@@ -28,9 +28,9 @@ type HostSeatProps = {
 /**
  * The screen in the middle of the table is the speaker and a player at once,
  * and this is everything that screen gets to say about its own seat: the form
- * where the room can grant one, the name it already holds, the sentence that
- * explains an absence worth explaining, and nothing at all where there was
- * never a seat to be had.
+ * where the room can grant one, the name it already holds, or the sentence
+ * that says why there is none — and nothing where a room with no game yet
+ * withholds it, the seat waiting on the decision the lobby is asking for.
  *
  * The rule is the room's rather than the caller's — a judged round needs a
  * judge, and a judge who is also answering is not one — so it is decided here
@@ -54,22 +54,24 @@ export const HostSeat: React.FC<HostSeatProps> = ({
   })
 
   const game = view.settings.game
-  const answering = {
-    game: game?.kind ?? null,
-    mode: view.settings.mode.kind
-  }
+  const withheld = seatWithheldReason(view.settings)
   // The name the room has for this seat, not the one this screen asked for: a
   // console removed from its own roster row keeps the second and holds none.
   const takenAs =
     view.players.find((player) => player.id === view.youId)?.nickname ?? null
 
+  if (withheld !== null) {
+    // In its place: the control vanishing on its own is what makes a judged
+    // room read as a broken seat rather than as a room that owes a verdict.
+    return (
+      <p className='host-seat held'>
+        {translate(`host.seat.withheld.${withheld}`)}
+      </p>
+    )
+  }
+
   if (isRoomJudgedByHost(view.settings)) {
-    // In its place, and only where the room could have had one: the control
-    // vanishing on its own is what makes a quiz left on `buzzer` read as a
-    // broken seat rather than as a room that owes a verdict.
-    return isSeatWithheldByMode(answering) ? (
-      <p className='host-seat held'>{translate('host.seat.judged')}</p>
-    ) : null
+    return null
   }
 
   if (takenAs !== null) {

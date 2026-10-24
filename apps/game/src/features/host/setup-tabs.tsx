@@ -335,11 +335,10 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
     !isRoundInPlay(view.phase) &&
     !(
       isInLobby &&
-      (view.settings.teams.kind === 'aloud' ||
-        launchesWithHostSeated({
-          seated: view.players.length,
-          settings: view.settings
-        }))
+      launchesWithHostSeated({
+        seated: view.players.length,
+        settings: view.settings
+      })
     )
 
   return (
