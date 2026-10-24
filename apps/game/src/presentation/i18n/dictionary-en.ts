@@ -350,12 +350,20 @@ export const EN_DICTIONARY = defineDictionary({
       description:
         'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
     },
+    lone: {
+      doubled: '×2',
+      hint: 'An answer only one player finds pays double.',
+      label: 'Nobody else had it',
+      said: 'Nobody else had it, so it paid double'
+    },
     name: 'Guess nine',
     nobody: 'Nobody',
     othersLooking: 'The others are still looking.',
     play: 'Play Guess nine',
     scoring:
       'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.',
+    scoringLoneFinds:
+      'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
     scoringSpoken:
       'One team says its answers out loud and somebody from another team ticks them off: the three best known pay 1 point, the next three 2, the last three 3. Say the black word and the team’s round is worth nothing.',
     spoken: {

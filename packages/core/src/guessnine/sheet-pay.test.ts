@@ -5,6 +5,7 @@ import { POINT } from '@melee/protocol/scoring'
 import {
   EMPTY_SHEET,
   isSheetClosed,
+  loneCellsOf,
   pointsForCells,
   tierOfCell,
   withCellTicked,
@@ -30,6 +31,22 @@ describe('what a guess-nine sheet pays', () => {
 
   it('[guessnine] pays nothing once the black word is hit, whatever the sheet held', () => {
     expect(pointsForCells(sheetOf([6, 7, 8], true))).toBe(0)
+  })
+
+  it('[guessnine] pays double the cells a sheet found alone', () => {
+    expect(pointsForCells({ ...sheetOf([0, 8]), doubledCells: [8] })).toBe(
+      (1 + 2 * 3) * POINT
+    )
+  })
+
+  it('[guessnine] pays a voided sheet nothing, lone finds included', () => {
+    expect(pointsForCells({ ...sheetOf([8], true), doubledCells: [8] })).toBe(0)
+  })
+
+  it('[guessnine] finds a cell alone only when no other sheet holds it, voided or not', () => {
+    expect(
+      loneCellsOf([sheetOf([0, 4, 7]), sheetOf([0, 5]), sheetOf([7], true)])
+    ).toEqual([4, 5])
   })
 
   it('[guessnine] closes a sheet on the black word or on all nine, never on a hit', () => {

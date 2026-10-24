@@ -71,6 +71,7 @@ import {
 } from '@/domain/room/team-service'
 import { takeDuel } from '@/domain/round/duels'
 import {
+  doubledCellsOf,
   gradeSheetLine,
   keepSheetLine,
   payGuessingTeam,
@@ -635,9 +636,11 @@ export const settleSimultaneousRound = ({
   }
 
   const roundDurationMs = round.durationMs
+  const doubledCells = doubledCellsOf(round)
 
   for (const attempts of round.attempts.toSorted(byFirstScored)) {
     const earned = pointsForSimultaneousAnswer({
+      doubledCells,
       mode,
       verdict: attempts.verdict
     })

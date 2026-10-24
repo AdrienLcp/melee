@@ -81,7 +81,9 @@ export const revealedGuessNineSchema = z.object({
     .length(GUESS_NINE_CELL_COUNT),
   blackWord: guessNineBlackWordSchema.extend({
     hitBy: z.array(playerIdSchema)
-  })
+  }),
+  /** Whether this round paid a cell found by one seat alone double, as it was opened. */
+  doublesLoneFinds: z.boolean()
 })
 
 export type GuessNineCell = z.infer<typeof guessNineCellSchema>

@@ -331,12 +331,20 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
     },
+    lone: {
+      doubled: '×2',
+      hint: 'Une réponse trouvée par un seul joueur rapporte double.',
+      label: 'Personne d’autre ne l’a trouvée',
+      said: 'Personne d’autre ne l’a trouvée : points doublés'
+    },
     name: 'Devineuf',
     nobody: 'Personne',
     othersLooking: 'Les autres cherchent encore.',
     play: 'Jouer à Devineuf',
     scoring:
       'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+    scoringLoneFinds:
+      'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3, et le double si personne d’autre ne la trouve. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringSpoken:
       'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
     spoken: {

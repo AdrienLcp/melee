@@ -1,4 +1,5 @@
 import type { GameKind } from '@melee/protocol/game'
+import type { GuessNineCell } from '@melee/protocol/guess-nine'
 import type { AnswerMode } from '@melee/protocol/room'
 import {
   POINTS_FOR_A_CLAIM,
@@ -112,9 +113,12 @@ export type SimultaneousMode = Exclude<AnswerMode, 'buzzer' | 'spoken'>
  * something on its own.
  */
 export const pointsForSimultaneousAnswer = ({
+  doubledCells,
   mode,
   verdict
 }: {
+  /** A guess-nine sheet's lone finds, in a room playing *Nobody else had it*. */
+  doubledCells?: readonly GuessNineCell[]
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
@@ -132,7 +136,7 @@ export const pointsForSimultaneousAnswer = ({
   }
 
   if (verdict.kind === 'cells') {
-    return pointsForCells(verdict)
+    return pointsForCells({ ...verdict, doubledCells })
   }
 
   if (verdict.kind === 'single') {

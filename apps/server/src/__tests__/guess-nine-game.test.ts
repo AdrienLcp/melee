@@ -145,9 +145,16 @@ const pairedWall = async ({
   return wall
 }
 
-const roundInPlay = async (hostNickname?: string) => {
+const roundInPlay = async ({
+  hostNickname,
+  settings = GUESS_NINE
+}: {
+  /** Seats the console under this name. */
+  hostNickname?: string
+  settings?: RoomSettings
+} = {}) => {
   const { code, host, hostToken } = await harness.openRoom(
-    GUESS_NINE,
+    settings,
     hostNickname
   )
   const wall = await pairedWall({ code, hostToken })
@@ -299,6 +306,38 @@ describe('a guess-nine round through the seam', () => {
     ).toMatchObject({ points: 9 * POINT, speedBonus: 0 })
   })
 
+  it('[guessnine] pays double a cell one seat alone found, when the room plays nobody else had it', async () => {
+    const { host, max, roundId, type, zoe } = await roundInPlay({
+      settings: {
+        ...GUESS_NINE,
+        game: { ...DEFAULT_GUESS_NINE_SETTINGS, doublesLoneFinds: true }
+      }
+    })
+
+    type(zoe, 'Mercury')
+    type(zoe, 'Neptune')
+    type(max, 'Mercury')
+    await waitFor(
+      () =>
+        guessNineRound(playerView(zoe))?.foundCellCount === 2 &&
+        guessNineRound(playerView(max))?.yourLines?.length === 1,
+      'both sheets banked'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const pointsOf = (seat: typeof zoe) =>
+      hostView(host)?.round?.awards.find(
+        (award) => award.playerId === playerView(seat)?.youId
+      )?.points
+
+    expect(pointsOf(zoe)).toBe((1 + 2 * 3) * POINT)
+    expect(pointsOf(max)).toBe(POINT)
+    expect(guessNineRound(hostView(host))?.revealed?.doublesLoneFinds).toBe(
+      true
+    )
+  })
+
   it('[guessnine] tells a player and the wall no answer the seat never typed, then reveals the grid', async () => {
     const { host, max, roundId, type, wall, zoe } = await roundInPlay()
 
@@ -330,7 +369,7 @@ describe('a guess-nine round through the seam', () => {
   })
 
   it('[guessnine] hands a seated console no grid until the reveal', async () => {
-    const { host } = await roundInPlay('Marina')
+    const { host } = await roundInPlay({ hostNickname: 'Marina' })
 
     expect(hostView(host)?.youId).not.toBeNull()
     expect(hostView(host)?.currentContent).toEqual({

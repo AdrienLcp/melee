@@ -86,6 +86,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
    */
   z.object({ kind: z.literal('challenge') }),
   z.object({
+    /**
+     * *Nobody else had it*: at the reveal, a cell one seat alone found pays
+     * double. Typed rounds only — a spoken round has one team guessing, so
+     * every find is that team's alone. Defaulted so a setup remembered before
+     * the switch existed still parses.
+     */
+    doublesLoneFinds: z.boolean().default(false),
     kind: z.literal('guessnine'),
     /**
      * How long a sheet stays open. Longer than a question's, because a round
@@ -215,6 +222,7 @@ export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
 }
 
 export const DEFAULT_GUESS_NINE_SETTINGS: GuessNineSettings = {
+  doublesLoneFinds: false,
   kind: 'guessnine',
   roundDurationMs: 60_000
 }

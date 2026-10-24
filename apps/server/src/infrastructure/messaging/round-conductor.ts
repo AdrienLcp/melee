@@ -328,7 +328,13 @@ export const beginRound = async (
     room.playedContentIds.add(playedGuessNineThemeId(theme.id))
 
     openRound({
-      content: guessNineContent(theme),
+      content: guessNineContent({
+        doublesLoneFinds:
+          room.settings.game?.kind === 'guessnine' &&
+          room.settings.game.doublesLoneFinds &&
+          room.settings.mode.kind === 'typed',
+        theme
+      }),
       id: newRoundId(),
       now: engine.now(),
       room,

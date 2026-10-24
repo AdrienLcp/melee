@@ -467,6 +467,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
+      {/* A spoken round has one team guessing, so every find there is its alone. */}
+      {game?.kind === 'guessnine' && mode.kind === 'typed' && (
+        <Switch
+          description={translate('guessnine.lone.hint')}
+          isDisabled={isDisabled}
+          isSelected={game.doublesLoneFinds}
+          label={translate('guessnine.lone.label')}
+          onChange={(doublesLoneFinds) => {
+            onChange({ ...settings, game: { ...game, doublesLoneFinds } })
+          }}
+        />
+      )}
+
       {game?.kind === 'timeline' && (
         <NumberChoice
           isDisabled={isDisabled}

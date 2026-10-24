@@ -17,6 +17,7 @@ import { gradeLine } from '@melee/core/guessnine/line-match'
 import {
   EMPTY_SHEET,
   isSheetClosed,
+  loneCellsOf,
   pointsForCells,
   tierOfCell,
   withCellTicked,
@@ -39,7 +40,14 @@ const namesOf = ({ aliases, labels }: Named): string[] => [
   ...Object.values(aliases).flat()
 ]
 
-export const guessNineContent = (theme: GuessNineTheme): GuessNineContent => ({
+export const guessNineContent = ({
+  doublesLoneFinds,
+  theme
+}: {
+  doublesLoneFinds: boolean
+  theme: GuessNineTheme
+}): GuessNineContent => ({
+  doublesLoneFinds,
   kind: 'guessnine',
   lines: [],
   spoken: null,
@@ -295,6 +303,12 @@ const sheetsOf = (
   )
 }
 
+/** The cells one seat alone found, in a round playing *Nobody else had it*; none otherwise. */
+export const doubledCellsOf = (round: Round): GuessNineCell[] =>
+  round.content.kind === 'guessnine' && round.content.doublesLoneFinds
+    ? loneCellsOf(sheetsOf(round).map(({ sheet }) => sheet))
+    : []
+
 /**
  * What every screen holds of a guess-nine round: the theme, a count of the
  * cells the room has found, and the grid once it is revealed. A voided sheet
@@ -336,7 +350,8 @@ export const guessNineContentView = ({
             hitBy: sheets
               .filter(({ sheet }) => sheet.hitBlackWord)
               .map(({ playerId }) => playerId)
-          }
+          },
+          doublesLoneFinds: content.doublesLoneFinds
         }
       : null,
     spoken:

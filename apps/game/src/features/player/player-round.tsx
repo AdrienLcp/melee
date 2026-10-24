@@ -692,6 +692,8 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
               game.kind === 'worldmap' && game.places === 'frenchCities',
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
+            doublesLoneFinds:
+              game.kind === 'guessnine' && game.doublesLoneFinds,
             game: game.kind
           })
         )}

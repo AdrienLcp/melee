@@ -70,6 +70,7 @@ export const scoringKey = ({
   answerMode,
   asksForACity,
   asksForAFilm,
+  doublesLoneFinds,
   game
 }: {
   answerMode: AnswerMode
@@ -77,11 +78,14 @@ export const scoringKey = ({
   asksForACity: boolean
   /** The blind test's two halves are a film and its composer on one source out of five. */
   asksForAFilm: boolean
+  /** Guess nine's *Nobody else had it*, which doubles a lone find. */
+  doublesLoneFinds: boolean
   game: GameKind
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
   | 'guessnine.scoring'
+  | 'guessnine.scoringLoneFinds'
   | 'guessnine.scoringSpoken'
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
@@ -119,8 +123,12 @@ export const scoringKey = ({
     case 'challenge':
       return 'challenge.scoring'
     case 'guessnine':
-      return answerMode === 'spoken'
-        ? 'guessnine.scoringSpoken'
+      if (answerMode === 'spoken') {
+        return 'guessnine.scoringSpoken'
+      }
+
+      return doublesLoneFinds
+        ? 'guessnine.scoringLoneFinds'
         : 'guessnine.scoring'
     case 'innerclock':
       return 'innerclock.scoring'

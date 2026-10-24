@@ -4,6 +4,8 @@ import type { RevealedGuessNine } from '@melee/protocol/guess-nine'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 
+import { LONE_FIND_MULTIPLIER } from '@melee/core/guessnine/sheet-pay'
+
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { GuessNinePips, pointsOfTier } from './guess-nine-pips'
@@ -21,8 +23,9 @@ type GuessNineRevealProps = {
 
 /**
  * The grid turned over: nine paper cards in cell order — the name, its pips
- * and what it pays, the pawns of whoever found it, a socket for one nobody did
- * — and the black word beside them as a tall ink card, with why it is wrong
+ * and what it pays, the pawns of whoever found it, a socket for one nobody did,
+ * an ink tag on one a seat alone found when the round paid that double — and
+ * the black word beside them as a tall ink card, with why it is wrong
  * and who lost the round on it.
  */
 export const GuessNineReveal: React.FC<GuessNineRevealProps> = ({
@@ -43,9 +46,12 @@ export const GuessNineReveal: React.FC<GuessNineRevealProps> = ({
         <ol aria-label={translate('guessnine.grid')} className='answers'>
           {revealed.answers.map((answer) => {
             const isYours = youId !== null && answer.foundBy.includes(youId)
+            const isDoubled =
+              revealed.doublesLoneFinds && answer.foundBy.length === 1
 
             return (
               <li
+                data-doubled={isDoubled || undefined}
                 data-nobody={answer.foundBy.length === 0 || undefined}
                 data-yours={isYours || undefined}
                 key={answer.labels.en}
@@ -65,13 +71,27 @@ export const GuessNineReveal: React.FC<GuessNineRevealProps> = ({
                     <VisuallyHidden>
                       {answer.foundBy.map(nameOf).join(', ')}
                       {isYours && ` — ${translate('guessnine.yours')}`}
+                      {isDoubled &&
+                        ` — ${translate('guessnine.lone.said')}, ${translate(
+                          'guessnine.tier',
+                          { points: answer.tier * LONE_FIND_MULTIPLIER }
+                        )}`}
                     </VisuallyHidden>
                   </span>
                   <span className='worth'>
-                    <GuessNinePips tier={answer.tier} />
+                    {/* In the pips' place, so a lone find takes no width a long name needs. */}
+                    {isDoubled ? (
+                      <span aria-hidden='true' className='doubled'>
+                        {translate('guessnine.lone.doubled')}
+                      </span>
+                    ) : (
+                      <GuessNinePips tier={answer.tier} />
+                    )}
                     <span aria-hidden='true'>
                       {translate('round.scored', {
-                        points: pointsOfTier(answer.tier)
+                        points:
+                          pointsOfTier(answer.tier) *
+                          (isDoubled ? LONE_FIND_MULTIPLIER : 1)
                       })}
                     </span>
                   </span>

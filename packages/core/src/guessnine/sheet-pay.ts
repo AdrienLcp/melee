@@ -22,18 +22,45 @@ export const EMPTY_SHEET: CellsVerdict = {
   kind: 'cells'
 }
 
+/** What a cell found by one seat alone is multiplied by, when the room plays *Nobody else had it*. */
+export const LONE_FIND_MULTIPLIER = 2
+
 /**
  * What a sheet is worth, which is nothing once it fell on the black word:
  * cutting alone would leave nothing at stake past the first few answers, and a
  * negative score would punish a late round more than an early one.
  */
 export const pointsForCells = ({
+  doubledCells = [],
   foundCells,
   hitBlackWord
-}: Pick<CellsVerdict, 'foundCells' | 'hitBlackWord'>): number =>
+}: Pick<CellsVerdict, 'foundCells' | 'hitBlackWord'> & {
+  /** The cells this sheet found alone, in a room playing *Nobody else had it*. */
+  doubledCells?: readonly GuessNineCell[]
+}): number =>
   hitBlackWord
     ? 0
-    : foundCells.reduce((total, cell) => total + tierOfCell(cell) * POINT, 0)
+    : foundCells.reduce(
+        (total, cell) =>
+          total +
+          tierOfCell(cell) *
+            POINT *
+            (doubledCells.includes(cell) ? LONE_FIND_MULTIPLIER : 1),
+        0
+      )
+
+/**
+ * The cells exactly one sheet found — *Pointless* without a survey, the table
+ * being the survey. A sheet voided on the black word still found its cells:
+ * whoever fell had it too, so it is nobody's lone find.
+ */
+export const loneCellsOf = (
+  sheets: readonly Pick<CellsVerdict, 'foundCells'>[]
+): GuessNineCell[] =>
+  Array.from({ length: GUESS_NINE_CELL_COUNT }, (_, cell) => cell).filter(
+    (cell) =>
+      sheets.filter((sheet) => sheet.foundCells.includes(cell)).length === 1
+  )
 
 /** Whether a seat can send no more lines: it fell on the black word, or holds all nine. */
 export const isSheetClosed = ({

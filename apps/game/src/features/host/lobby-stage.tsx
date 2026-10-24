@@ -271,6 +271,8 @@ export const GamePitch: React.FC<{
               game.kind === 'worldmap' && game.places === 'frenchCities',
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
+            doublesLoneFinds:
+              game.kind === 'guessnine' && game.doublesLoneFinds,
             game: game.kind
           })
         )}

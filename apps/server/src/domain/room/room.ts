@@ -269,6 +269,12 @@ export type Round = {
         labels: ChallengeLabels | null
       }
     | {
+        /**
+         * Whether a cell one seat alone found pays double, read off the
+         * settings as the round opens so a switch flipped mid-round pays the
+         * next one. Never in a spoken round.
+         */
+        doublesLoneFinds: boolean
         kind: 'guessnine'
         /**
          * Each seat's lines that found something, and its latest that found

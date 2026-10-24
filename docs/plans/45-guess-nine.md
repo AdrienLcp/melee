@@ -1,6 +1,6 @@
 # 45 — Guess nine
 
-**Steps 1 to 4 landed — the bank, the server, the screens and the spoken mode.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
+**Done — the bank, the server, the screens, the spoken mode and *Nobody else had it*.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
 *Quentin Tarantino's films* — and nine answers are hidden behind it, each worth
 more the less obvious it is. Hidden with them is one **black word**: an answer
 that sounds right and is not (*True Romance*, written by Tarantino, directed by
@@ -252,3 +252,22 @@ A switch on the game's arm, off by default: at the reveal, an answer found by
 **one seat alone** pays double. It is *Pointless* without a survey — the table
 is the survey — and it needs no other change, because the reveal already knows
 who found what. Typed mode only: in spoken mode one team guesses at a time.
+
+**Done 24/10/2026.** `doublesLoneFinds` on the game's arm, defaulted to `false`
+so a setup remembered before it still parses, `PROTOCOL_VERSION` 52. What it
+settled beyond the plan:
+
+- **Frozen on the round as it opens**, like the content a round is asked about,
+  and carried on the reveal: a switch flipped mid-round pays the next one, and
+  the reveal draws what this one paid.
+- **A voided sheet's cell is nobody's lone find.** The seat that fell had it
+  too; the table is the survey, and the room's count already reads it so.
+- **The *×2* takes the pips' place**, not a place beside them: at 360 px a
+  three-line name leaves the foot no width to spare, and a tag beside the pips
+  pushed it out of the card. The amount printed is the doubled one.
+- **The console offers it in typed mode only**, and the scoring sentence on the
+  lobby and each seat's *up next* says so when it is on.
+
+Seen muted through a Playwright script: the switch on the planned game's page,
+then a round at 1280×800, 390×844 dark in French and 360×640 light, two seats
+with one shared find and two lone ones each side, paid 11 000 and 5 000.

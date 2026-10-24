@@ -93,6 +93,15 @@
       gap: 0.4em
       white-space: nowrap
 
+    // Printed in the card's own ink, so a lone find reads as stamped on.
+    .doubled
+      @include typography.caption-strong
+
+      background: var(--card-ink)
+      border-radius: var(--radius-s)
+      color: var(--card)
+      padding: 0.05em 0.35em
+
     .black-word-piece
       @include black-word.piece
 
