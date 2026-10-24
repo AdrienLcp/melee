@@ -61,6 +61,7 @@ out whether anything is usable yet.
 | [43 — Host controls](43-host-controls.md) | **done** | The room's screen never shows a control: the host's live in one side panel on a screen only the host sees, a phone can take the console over and leave the computer as the wall, and the *This screen is the room's* switch goes. Every game already plays on phones alone, save a duel's spectators |
 | [44 — Ready-made challenges](44-ready-made-challenges.md) | **to do** | A challenge round left empty is dealt a line from a bilingual bank — *bring back something red* — instead of drawing *untitled*; the console sees the next line ahead and can redeal or rewrite it. Content for an existing game, not a new one |
 | [45 — Guess nine](45-guess-nine.md) | **to do** | *Devineuf*: a theme, nine hidden answers paid by obscurity, one black word that cuts and voids the round. Typed on every screen and judged by the server, or spoken, one team guessing while a seat of another keeps the list. Four sessions and a half: bank, server, screens, spoken mode, then *Nobody else had it* |
+| [46 — Straight into the room](46-straight-into-the-room.md) | **to do** | A game clicked on the home page opens its room instead of its page, game pages lose the nickname field, and the console's side panel stops showing page background and a blue scrollbar beside it. One session |
 
 ## Order, and what can move
 
