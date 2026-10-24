@@ -1,6 +1,6 @@
 # 45 — Guess nine
 
-**To do.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
+**Half done — step 1 landed.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
 *Quentin Tarantino's films* — and nine answers are hidden behind it, each worth
 more the less obvious it is. Hidden with them is one **black word**: an answer
 that sounds right and is not (*True Romance*, written by Tarantino, directed by
@@ -63,6 +63,29 @@ Target: 150 themes, each with nine answers named in both languages. A theme
 whose answers a French table would not know under the French title (a film
 released under another name) carries that name as the French label, not a
 translation.
+
+**Done 24/10/2026: 154 themes**, built by `pnpm run guessnine:build` from
+`scripts/guess-nine-themes.ts`, every black word read by hand and many picked
+by hand where the neighbouring property offered nothing that bites (*Old Boy*
+under Bong Joon-ho, *Le Jardin des délices* under Bruegel). What it taught:
+
+- **Wikidata pollutes truths more than candidates**, and `excluded` only
+  filters candidates, so a wrong truth drops the theme. Every `songs-by` went,
+  most `albums-by-band`, eight `countries-bordering`, OPEC, ASEAN, English,
+  Spanish and Arabic as official languages, the Tour, the Eurovision, the Euro,
+  Molière, Shakespeare, Rowling, Hemingway (*For sale: baby shoes*), Leone (a
+  nine needs two films he did not direct alone), the Pulitzer and the Grammy
+  (works and people mixed), the BAFTA (*Julia* read as a first name), Italy
+  (five regions filed apart) and the franchises (Simpsons, Star Wars, Harry
+  Potter, Friends, One Piece, Tintin).
+- **`award-winning-films` and `award-winning-people`** filter the truths by
+  kind; `award-winners` stays unfiltered because the Goncourt banks books.
+- **A black word may share a nickname with an answer** — *The Amazing
+  Spider-Man* is also *Spider-Man* — so the build strips from it every alias a
+  true answer holds, and the test grades the black word's names as decoys, as
+  step 2's matcher must.
+- **Clubs have no short names on Wikidata**: `SPOKEN_ALIASES` adds the ones a
+  table says (*PSG*, *Barça*, *Nantes*, *Real*).
 
 — cut here: bank committed, its test checks nine answers and one black word per
 theme, no black word matching any answer —
