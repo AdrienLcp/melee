@@ -108,3 +108,27 @@ reflex round through its flip and reveal.
   every other bank without repeats.
 - **No new game.** The bank is the challenge's content, the way flags are the
   quiz's.
+
+## Step 5 — the bank, sorted by Adrien
+
+Asked 24/10/2026 after reading the 135 lines. The bank becomes **fetch only**:
+
+- **Drop the `do` category whole**, its tongue twister, *count to 100* and the
+  lines where the table names things: several seats doing it at once out loud
+  is noise the host cannot place.
+- **Drop `festive` whole**, and with it `hasFestiveLines` — the setting, its
+  switch in the entry settings, its tests and its strings.
+- **One object per line.** Nothing that asks for several things at once.
+- **Findable at home and at the office**: no candle, toothbrush and the like,
+  no stamp, no envelope, nothing out of the pockets, no odd sock, no coin from
+  another country.
+- *Something with wheels* goes, *something that rolls* stays.
+- **A letter drawn at random.** *Something that starts with M* becomes one
+  templated line, `{letter}` filled when the line is dealt, from a short list
+  that leaves out the letters nobody can find an object for (K, Q, W, X, Y, Z…);
+  the letter is the same in every locale. A rule with no I/O, so the letter set
+  and the fill live in `packages/core/src/challenge/`.
+- Add new fetch lines in the same spirit to make up the count.
+
+Then render the bank to a page for Adrien to keep sorting (one table per
+category, French beside English) before anything else lands.
