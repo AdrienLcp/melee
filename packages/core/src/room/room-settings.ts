@@ -28,6 +28,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   buzzer: null,
   /** Challenges are the evening's interludes, played until the host moves on. */
   challenge: null,
+  /** A sheet is a minute of nine answers and a black word, and six of them are an evening's game. */
+  guessnine: 6,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
   matchsticks: 10,
@@ -58,6 +60,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   blindtest: 'choice',
   buzzer: 'buzzer',
   challenge: 'buzzer',
+  guessnine: 'typed',
   innerclock: 'buzzer',
   matchsticks: 'move',
   quiz: 'choice',
@@ -162,6 +165,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   blindtest: 8_000,
   buzzer: null,
   challenge: null,
+  guessnine: null,
   innerclock: null,
   matchsticks: null,
   quiz: null,

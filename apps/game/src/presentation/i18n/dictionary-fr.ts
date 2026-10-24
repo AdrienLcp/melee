@@ -302,6 +302,11 @@ export const FR_DICTIONARY = defineDictionary({
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
+  guessnine: {
+    name: 'Devineuf',
+    scoring:
+      'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.'
+  },
   home: {
     resume: 'Reprendre',
     seat: {

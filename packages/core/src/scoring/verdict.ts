@@ -10,6 +10,7 @@ import {
   type Verdict
 } from '@melee/protocol/scoring'
 
+import { isSheetClosed, pointsForCells } from '../guessnine/sheet-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
 import { isBullseye, pointsForDistance } from '../worldmap/distance-tiers'
@@ -50,6 +51,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForMove(verdict)
   }
 
+  if (verdict.kind === 'cells') {
+    return pointsForCells(verdict)
+  }
+
   return (
     (verdict.titleCorrect ? POINTS_PER_TITLE : 0) +
     (verdict.artistCorrect ? POINTS_PER_ARTIST : 0)
@@ -76,8 +81,18 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isPerfectOrder(verdict)
     case 'move':
       return isBestMove(verdict)
+    case 'cells':
+      return isSheetClosed(verdict)
   }
 }
+
+/**
+ * Whether the clock adds to what this answer earned. A guess-nine sheet is many
+ * answers rather than one, and a bonus on it would pay the fastest typist
+ * rather than the best-read player.
+ */
+export const isPaidForSpeed = (verdict: Verdict): boolean =>
+  verdict.kind !== 'cells'
 
 /** Everyone answers at once in these, so none is decided by who was first to the buzzer. */
 export type SimultaneousMode = Exclude<AnswerMode, 'buzzer'>
@@ -99,7 +114,7 @@ export const pointsForSimultaneousAnswer = ({
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
-  // A marker, an order and a move are priced by how far they are, which the mode has no say in.
+  // A marker, an order, a move and a sheet are priced by how far they are, which the mode has no say in.
   if (verdict.kind === 'distance') {
     return pointsForDistance(verdict)
   }
@@ -110,6 +125,10 @@ export const pointsForSimultaneousAnswer = ({
 
   if (verdict.kind === 'move') {
     return pointsForMove(verdict)
+  }
+
+  if (verdict.kind === 'cells') {
+    return pointsForCells(verdict)
   }
 
   if (verdict.kind === 'single') {

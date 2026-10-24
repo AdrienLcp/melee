@@ -380,6 +380,25 @@ is `invalid_message`. The bank is bundled with the server
 (`timeline-bank.json`), and a round's events are at least `MIN_YEARS_APART`
 from one another.
 
+**Guess nine sends a seat its own cells and nothing else.** The public arm is
+`{ kind: 'guessnine', theme, foundCellCount, revealed }`: the theme per locale,
+how many of the nine cells *any* seat has found — a count, never which — and
+`revealed`, `null` until the reveal, then every answer with its `tier` and
+`foundBy`, and the black word with its `why` and `hitBy`. The reader's own
+cells are `yourVerdict`, a fifth shape of verdict, `{ kind: 'cells',
+foundCells, hitBlackWord }`, so a cell's index reaches a seat only once it
+typed that answer. The host arm is `{ kind: 'guessnine', grid }`, the nine
+most read first with their tiers and the black word, never an alias, and
+`null` while the console holds a seat; the wall arm is the kind alone. A seat
+sends as many `player.answer` `{ kind: 'typed', guess }` lines as the round
+lasts — a hit never closes its sheet, only all nine or the black word do, and
+a line after that is `already_buzzed`. `@melee/core/guessnine/line-match`
+matches a line whole against every name in both languages, each answer's
+rivals being the black word and the other eight; `sheet-pay` prices it, 1, 2
+and 3 `POINT`s by tier, nothing once the black word is hit, and no clock on
+top. `guess-nine-game.test.ts` searches each seat's and the wall's whole
+transcript for a name it never typed.
+
 `host.awardPlaces` carries the whole placement, and the server pays it:
 3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else
 nought. A placed team pays every seat it opened the round with the same, so

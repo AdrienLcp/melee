@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { pickRandom } from '@melee/core/helpers/random'
+
 import bank from './guess-nine-bank.json' with { type: 'json' }
 
 const bilingualSchema = z.object({ en: z.string(), fr: z.string() })
@@ -43,3 +45,17 @@ export const bankedGuessNineThemes = (): readonly GuessNineTheme[] => {
 
   return parsed
 }
+
+export const playedGuessNineThemeId = (id: string): string => `guessnine:${id}`
+
+/** A theme the room has not been dealt, or `null` once the bank is spent. */
+export const drawGuessNineTheme = ({
+  playedIds
+}: {
+  playedIds: ReadonlySet<string>
+}): GuessNineTheme | null =>
+  pickRandom(
+    bankedGuessNineThemes().filter(
+      ({ id }) => !playedIds.has(playedGuessNineThemeId(id))
+    )
+  )

@@ -42,6 +42,7 @@ import { speedBonusForElapsed } from '@melee/core/scoring/speed-bonus'
 import {
   isFullyBanked,
   isMiss,
+  isPaidForSpeed,
   nothingScored,
   pointsFor,
   pointsForSimultaneousAnswer,
@@ -69,6 +70,7 @@ import {
   toTeamViews
 } from '@/domain/room/team-service'
 import { takeDuel } from '@/domain/round/duels'
+import { gradeSheetLine } from '@/domain/round/guess-nine-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import { markEveryItem } from '@/domain/round/slate-round'
@@ -625,11 +627,13 @@ export const settleSimultaneousRound = ({
       continue
     }
 
-    const speedBonus = speedBonusForElapsed({
-      answerPaid: earned,
-      elapsedMs: attempts.scoredAfterMs,
-      roundDurationMs
-    })
+    const speedBonus = isPaidForSpeed(attempts.verdict)
+      ? speedBonusForElapsed({
+          answerPaid: earned,
+          elapsedMs: attempts.scoredAfterMs,
+          roundDurationMs
+        })
+      : 0
 
     const points = earned + speedBonus
 
@@ -926,6 +930,19 @@ const grade = ({
     return graded === null
       ? null
       : { said: graded.made, verdict: graded.verdict }
+  }
+
+  if (content.kind === 'guessnine') {
+    return attempt.kind === 'typed'
+      ? {
+          said: attempt.guess,
+          verdict: gradeSheetLine({
+            content,
+            held: held?.verdict ?? null,
+            line: attempt.guess
+          })
+        }
+      : null
   }
 
   if (

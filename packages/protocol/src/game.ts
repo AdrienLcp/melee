@@ -10,6 +10,7 @@ export const gameKinds = [
   'blindtest',
   'buzzer',
   'challenge',
+  'guessnine',
   'innerclock',
   'matchsticks',
   'quiz',
@@ -83,6 +84,15 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
    * that opens one rather than sitting in the settings.
    */
   z.object({ kind: z.literal('challenge') }),
+  z.object({
+    kind: z.literal('guessnine'),
+    /**
+     * How long a sheet stays open. Longer than a question's, because a round
+     * is up to nine answers and a seat keeps sending until its black word or
+     * this runs out.
+     */
+    roundDurationMs: z.number().int().min(30_000).max(180_000)
+  }),
   /**
    * Nothing of its own, like a challenge: the count changes every round, so it
    * rides the press that opens one.
@@ -144,6 +154,7 @@ export type GameSettings = z.infer<typeof gameSettingsSchema>
 export type BlindtestSettings = Extract<GameSettings, { kind: 'blindtest' }>
 export type BuzzerSettings = Extract<GameSettings, { kind: 'buzzer' }>
 export type ChallengeSettings = Extract<GameSettings, { kind: 'challenge' }>
+export type GuessNineSettings = Extract<GameSettings, { kind: 'guessnine' }>
 export type InnerclockSettings = Extract<GameSettings, { kind: 'innerclock' }>
 export type MatchsticksSettings = Extract<GameSettings, { kind: 'matchsticks' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
@@ -202,6 +213,11 @@ export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
   kind: 'challenge'
 }
 
+export const DEFAULT_GUESS_NINE_SETTINGS: GuessNineSettings = {
+  kind: 'guessnine',
+  roundDurationMs: 60_000
+}
+
 export const DEFAULT_INNERCLOCK_SETTINGS: InnerclockSettings = {
   kind: 'innerclock'
 }
@@ -246,6 +262,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   blindtest: DEFAULT_BLINDTEST_SETTINGS,
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
+  guessnine: DEFAULT_GUESS_NINE_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,

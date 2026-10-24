@@ -67,6 +67,7 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     // all, and the slate is a sheet rather than a pick.
     case 'buzzer':
     case 'challenge':
+    case 'guessnine':
     case 'innerclock':
     case 'matchsticks':
     case 'reflex':

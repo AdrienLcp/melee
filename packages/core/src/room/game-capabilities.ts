@@ -105,6 +105,13 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsDuels: false,
         servesItsOwnContent: true
       }
+    case 'guessnine':
+      return {
+        answerModes: TYPED_ONLY,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
     case 'innerclock':
     case 'reflex':
       return {

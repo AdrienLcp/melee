@@ -1,6 +1,7 @@
 import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { GameSettings } from '@melee/protocol/game'
+import type { GuessNineTheme } from '@melee/protocol/guess-nine'
 import type {
   HostToken,
   Nickname,
@@ -259,6 +260,11 @@ export type Round = {
          * and `null` once the bank is spent and nothing was typed.
          */
         labels: ChallengeLabels | null
+      }
+    | {
+        kind: 'guessnine'
+        /** The nine and the black word; what each seat found is on its attempts. */
+        theme: GuessNineTheme
       }
     | {
         kind: 'innerclock'

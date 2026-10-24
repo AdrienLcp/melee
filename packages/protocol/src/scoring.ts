@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { GUESS_NINE_CELL_COUNT, guessNineCellSchema } from './guess-nine'
 import { playerIdSchema } from './identifiers'
 import { worldmapTargetKindSchema } from './worldmap'
 
@@ -145,12 +146,25 @@ export const moveVerdictSchema = z.object({
   placesFromBest: z.number().int().nonnegative().nullable()
 })
 
+/**
+ * A guess-nine sheet: the cells a seat has found so far, in the order it found
+ * them, and whether it fell on the black word — which voids the sheet whatever
+ * it holds, and closes it. `@melee/core/guessnine/sheet-pay` prices it. The
+ * server grades every line; no screen ever sends one.
+ */
+export const cellsVerdictSchema = z.object({
+  foundCells: z.array(guessNineCellSchema).max(GUESS_NINE_CELL_COUNT),
+  hitBlackWord: z.boolean(),
+  kind: z.literal('cells')
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
   distanceVerdictSchema,
   orderVerdictSchema,
-  moveVerdictSchema
+  moveVerdictSchema,
+  cellsVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -173,4 +187,5 @@ export type SingleVerdict = z.infer<typeof singleVerdictSchema>
 export type DistanceVerdict = z.infer<typeof distanceVerdictSchema>
 export type OrderVerdict = z.infer<typeof orderVerdictSchema>
 export type MoveVerdict = z.infer<typeof moveVerdictSchema>
+export type CellsVerdict = z.infer<typeof cellsVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

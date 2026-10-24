@@ -281,6 +281,14 @@ one part.
 
 ### Internal
 
+- `[Shared]` **Guess nine is served**, and `PROTOCOL_VERSION` goes to 49. A
+  `guessnine` round deals a theme from the bank and takes typed lines until a
+  seat holds all nine, lands on the black word or the clock runs out; each line
+  is matched whole against the nine and the black word in both languages, a
+  cell pays its tier (1, 2 or 3 points by obscurity) with no speed bonus, and
+  the black word voids the sheet. A seat is sent its own cells, the room a
+  count, the console the grid unless it holds a seat. Reachable by a settings
+  frame only until it has screens.
 - **Page views are counted under `melee`**, the analytics site id that took
   Taverla's history; the tracker sent `taverla` until now.
 - `[Shared]` **A room can hold the order of its rounds**, and

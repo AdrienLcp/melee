@@ -25,6 +25,10 @@ import {
 } from '@melee/core/slate/sheet-marking'
 import { earliestFirst } from '@melee/core/timeline/deal'
 
+import {
+  guessNineContentView,
+  guessNineGrid
+} from '@/domain/round/guess-nine-round'
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
@@ -142,6 +146,13 @@ const toHostContent = ({
     return {
       kind: 'matchsticks',
       solutions: seatId === null ? content.solutions : null
+    }
+  }
+
+  if (content.kind === 'guessnine') {
+    return {
+      grid: seatId === null ? guessNineGrid(content.theme) : null,
+      kind: 'guessnine'
     }
   }
 
@@ -417,6 +428,10 @@ const toContentView = ({
       kind: 'reflex',
       presses: [...content.presses]
     }
+  }
+
+  if (content.kind === 'guessnine') {
+    return guessNineContentView({ content, round })
   }
 
   if (content.kind === 'timeline') {

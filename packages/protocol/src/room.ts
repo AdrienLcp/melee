@@ -8,6 +8,13 @@ import {
 import { challengeLabelsSchema } from './challenge'
 import { gameSettingsSchema } from './game'
 import {
+  GUESS_NINE_CELL_COUNT,
+  guessNineAnswerSchema,
+  guessNineBlackWordSchema,
+  guessNineLabelsSchema,
+  revealedGuessNineSchema
+} from './guess-nine'
+import {
   nicknameSchema,
   playerIdSchema,
   roomCodeSchema,
@@ -352,6 +359,18 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     /**
+     * How many of the nine cells at least one seat has found — a count, so the
+     * room feels the grid filling without a seat learning which cell to stop
+     * looking for. The reader's own cells are `yourVerdict`.
+     */
+    foundCellCount: z.number().int().min(0).max(GUESS_NINE_CELL_COUNT),
+    kind: z.literal('guessnine'),
+    /** The whole grid and the black word, and `null` until the reveal. */
+    revealed: revealedGuessNineSchema.nullable(),
+    theme: guessNineLabelsSchema
+  }),
+  z.object({
+    /**
      * Whether the reader's own press has landed, and `false` for a reader
      * with no seat. Not when: a player who knew they stopped at 74 s could say
      * so aloud to the ones still counting.
@@ -617,6 +636,19 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('buzzer') }),
   /** Nothing to withhold: the server never learns who won until the host says. */
   z.object({ kind: z.literal('challenge') }),
+  z.object({
+    /**
+     * The nine, most read first, and the black word — `null` while the
+     * console holds a seat, which is sent them at the reveal like everyone.
+     */
+    grid: z
+      .object({
+        answers: z.array(guessNineAnswerSchema).length(GUESS_NINE_CELL_COUNT),
+        blackWord: guessNineBlackWordSchema
+      })
+      .nullable(),
+    kind: z.literal('guessnine')
+  }),
   /**
    * Nothing at all, and on purpose: the console is a screen the room reads, so
    * who has pressed stays off it until the reveal like everywhere else.
@@ -740,6 +772,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({ kind: z.literal('buzzer') }),
   z.object({ kind: z.literal('challenge') }),
+  z.object({ kind: z.literal('guessnine') }),
   z.object({ kind: z.literal('innerclock') }),
   z.object({ kind: z.literal('matchsticks') }),
   z.object({ kind: z.literal('quiz') }),

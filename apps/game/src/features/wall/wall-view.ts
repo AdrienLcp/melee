@@ -41,6 +41,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, keys: content.filledCounts.map(() => null) }
     }
 
+    case 'guessnine': {
+      return { ...content, grid: null }
+    }
+
     case 'timeline': {
       return { ...content, datedEvents: null }
     }

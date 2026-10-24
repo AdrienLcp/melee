@@ -326,6 +326,11 @@ export const EN_DICTIONARY = defineDictionary({
       'This screen is not paired. Pair it from the device running the table.',
     wrong_phase: 'Too late, the game has moved on.'
   },
+  guessnine: {
+    name: 'Guess nine',
+    scoring:
+      'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.'
+  },
   home: {
     resume: 'Resume',
     seat: {

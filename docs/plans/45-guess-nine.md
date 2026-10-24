@@ -1,6 +1,6 @@
 # 45 — Guess nine
 
-**Half done — step 1 landed.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
+**Steps 1 and 2 landed — the bank and the server.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
 *Quentin Tarantino's films* — and nine answers are hidden behind it, each worth
 more the less obvious it is. Hidden with them is one **black word**: an answer
 that sounds right and is not (*True Romance*, written by Tarantino, directed by
@@ -110,6 +110,22 @@ theme, no black word matching any answer —
   and is seen red with the guard removed.
 - The reveal carries the grid with every answer, its tier, who found it, and the
   black word with its `why`.
+
+**Done 24/10/2026.** The verdict is a fifth shape, `cells` — the cells found
+and whether the black word was hit — so a seat's own grid rides `yourVerdict`
+and the shell's typed path (retries until `isFullyBanked`, `everyoneIsDone`)
+needed no new branch. What it settled beyond the plan:
+
+- **Every name in both languages counts**, whatever the room's locale: a
+  French table types *Pulp Fiction* as often as *Fiction pulpeuse*.
+- **An answer's rivals are the black word and the other eight**, so *Kill Bill
+  Volume 3* is forgiven into neither volume, and a line naming two cells at
+  once (*Kill Bill*, a short name both hold) finds both.
+- **The room's count includes a voided sheet's cells**: the black word costs
+  the seat its points, not the room what it found.
+- **`isPaidForSpeed`** in `core/scoring/verdict.ts` is where the clock is
+  refused, by verdict shape, because `settleSimultaneousRound` is otherwise the
+  shell's.
 
 — cut here: server and core green, the game reachable by a settings frame —
 

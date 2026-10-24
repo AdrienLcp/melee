@@ -8,6 +8,7 @@ import {
   challengeContent,
   typedChallengeLabels
 } from '@/domain/round/challenge-round'
+import { guessNineContent } from '@/domain/round/guess-nine-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   matchsticksContent,
@@ -42,6 +43,10 @@ import {
   drawCountry,
   playedCountryId
 } from '@/infrastructure/questions/country-bank'
+import {
+  drawGuessNineTheme,
+  playedGuessNineThemeId
+} from '@/infrastructure/questions/guess-nine-bank'
 import {
   drawQuestion,
   hostQuestionOf
@@ -283,6 +288,34 @@ export const beginRound = async (
 
     openRound({
       content,
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'guessnine') {
+    const theme = drawGuessNineTheme({ playedIds: room.playedContentIds })
+
+    if (theme === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'Every guess-nine theme has been played in this room'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(playedGuessNineThemeId(theme.id))
+
+    openRound({
+      content: guessNineContent(theme),
       id: newRoundId(),
       now: engine.now(),
       room,

@@ -81,6 +81,7 @@ export const scoringKey = ({
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
+  | 'guessnine.scoring'
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
@@ -112,6 +113,8 @@ export const scoringKey = ({
       return 'buzzer.scoring'
     case 'challenge':
       return 'challenge.scoring'
+    case 'guessnine':
+      return 'guessnine.scoring'
     case 'innerclock':
       return 'innerclock.scoring'
     case 'matchsticks':
