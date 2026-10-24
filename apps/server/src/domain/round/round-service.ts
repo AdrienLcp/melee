@@ -66,6 +66,7 @@ import {
   bankRound,
   placeUnseatedSeats,
   resetTeamScores,
+  standDownTeamsShortOfPlayers,
   toSeatBoards,
   toTeamViews
 } from '@/domain/room/team-service'
@@ -179,6 +180,11 @@ export const openRound = ({
   startsAt?: number
 }): Round => {
   bankRound(room)
+
+  if (room.phase === 'lobby') {
+    standDownTeamsShortOfPlayers(room)
+  }
+
   placeUnseatedSeats(room)
 
   for (const participant of room.players.values()) {

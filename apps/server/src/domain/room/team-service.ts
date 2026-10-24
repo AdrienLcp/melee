@@ -4,6 +4,7 @@ import type { BoardPosition } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import { POINT } from '@melee/protocol/scoring'
 import {
+  DEFAULT_TEAMS_SETTINGS,
   PAWN_COLOUR_COUNT,
   type Team,
   type TeamId,
@@ -18,7 +19,7 @@ import {
 } from '@melee/core/board/board-strategy'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
-import { teamCountOf, teamIdAt } from '@melee/core/team/team-count'
+import { fieldsTeams, teamCountOf, teamIdAt } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
 import { teamRoundResult } from '@melee/core/team/team-score'
 
@@ -278,6 +279,33 @@ export const placeUnseatedSeats = (room: Room): void => {
       placeSeat(room, participant)
     }
   }
+}
+
+/**
+ * Turns the teams off when the table cannot field them, at the round that
+ * takes the room out of the lobby: past it the teams are locked, so this is
+ * the last moment a table of one is still told it plays alone. Teams answering
+ * aloud hold no seats and are the host's to count.
+ */
+export const standDownTeamsShortOfPlayers = (room: Room): void => {
+  const { kind } = room.settings.teams
+
+  if (kind !== 'drawn' && kind !== 'chosen') {
+    return
+  }
+
+  placeUnseatedSeats(room)
+
+  const filledTeamCount = room.teams.filter(
+    (team) => seatsOf(room, team.id).length > 0
+  ).length
+
+  if (fieldsTeams({ filledTeamCount, seatCount: room.players.size })) {
+    return
+  }
+
+  room.settings = { ...room.settings, teams: DEFAULT_TEAMS_SETTINGS }
+  fitTeamsToSettings(room)
 }
 
 const placeSeat = (room: Room, participant: Participant): void => {

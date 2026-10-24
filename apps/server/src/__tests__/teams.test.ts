@@ -158,7 +158,7 @@ describe('a room played in teams', () => {
   it('[teams] refuses a new team count once the game is under way', async () => {
     const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
 
-    await seatMany(code, ['A', 'B'])
+    await seatMany(code, ['A', 'B', 'C'])
     host.send({ type: 'host.startRound' })
     await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
 
@@ -221,6 +221,35 @@ describe('a room played in teams', () => {
     expect(hostView(host)?.teams[1]?.seatIds).toEqual([idOf(carl)])
   })
 
+  it('[teams] plays a table of one alone, whatever the setting asked', async () => {
+    const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
+
+    await seatMany(code, ['Anna'])
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    expect(hostView(host)?.teams).toEqual([])
+    expect(hostView(host)?.settings.teams).toEqual({ kind: 'off' })
+  })
+
+  it('[teams] plays alone when every seat picked the same team', async () => {
+    const { code, host } = await harness.openRoom(CHOSEN_IN_TWO)
+    const seats = await seatMany(code, ['Anna', 'Ben', 'Carl'])
+
+    for (const seat of seats) {
+      seat.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+    }
+    await waitFor(
+      () => hostView(host)?.teams[0]?.seatIds.length === 3,
+      'three picks'
+    )
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    expect(hostView(host)?.teams).toEqual([])
+  })
+
   it('[teams] refuses a pick in a room whose console deals', async () => {
     const { code } = await harness.openRoom(DRAWN_IN_TWO)
     const anna = await harness.seat({ code, nickname: 'Anna' })
@@ -269,10 +298,12 @@ describe('a room played in teams', () => {
 
   it('[teams] moves a seat, renames a team and adjusts its score mid-game', async () => {
     const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
-    const [anna, ben] = (await seatMany(code, ['Anna', 'Ben'])).map(idOf)
+    const [anna, ben, carl] = (
+      await seatMany(code, ['Anna', 'Ben', 'Carl'])
+    ).map(idOf)
 
     host.send({
-      assignment: [[anna ?? ''], [ben ?? '']],
+      assignment: [[anna ?? ''], [ben ?? '', carl ?? '']],
       type: 'host.drawTeams'
     })
     host.send({ type: 'host.startRound' })
@@ -301,17 +332,19 @@ describe('a room played in teams', () => {
 
     expect(hostView(host)?.teams).toMatchObject([
       { score: 0, seatIds: [anna, ben] },
-      { name: 'Fondue Club', seatIds: [] }
+      { name: 'Fondue Club', seatIds: [carl] }
     ])
     expect(errorsIn(host)).toEqual([])
   })
 
   it('[teams] starts the scores again with the same teams on play again', async () => {
     const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
-    const [anna, ben] = (await seatMany(code, ['Anna', 'Ben'])).map(idOf)
+    const [anna, ben, carl] = (
+      await seatMany(code, ['Anna', 'Ben', 'Carl'])
+    ).map(idOf)
 
     host.send({
-      assignment: [[anna ?? ''], [ben ?? '']],
+      assignment: [[anna ?? ''], [ben ?? '', carl ?? '']],
       type: 'host.drawTeams'
     })
     host.send({
@@ -331,7 +364,7 @@ describe('a room played in teams', () => {
 
     expect(hostView(host)?.teams).toMatchObject([
       { score: 0, seatIds: [anna] },
-      { score: 0, seatIds: [ben] }
+      { score: 0, seatIds: [ben, carl] }
     ])
   })
 })

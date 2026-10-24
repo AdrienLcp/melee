@@ -19,3 +19,23 @@ export const suggestedTeamCount = (seated: number): number => {
 
   return seated <= 11 ? 3 : 4
 }
+
+/**
+ * The smallest table sides change anything for: two against one. Under it,
+ * two teams are two players dressed as teams, or one player beside an empty
+ * team.
+ */
+export const MIN_SEATS_FOR_TEAMS = 3
+
+/**
+ * Whether a table plays in the teams its setting asked for once every seat is
+ * placed: enough seats, and at least two teams holding one, so no screen ever
+ * shows a team nobody is in.
+ */
+export const fieldsTeams = ({
+  filledTeamCount,
+  seatCount
+}: {
+  filledTeamCount: number
+  seatCount: number
+}): boolean => seatCount >= MIN_SEATS_FOR_TEAMS && filledTeamCount >= 2
