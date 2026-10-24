@@ -7,22 +7,9 @@
     flex-direction: column
     gap: var(--space-s)
 
-    .rounds-head
-      align-items: center
-      column-gap: var(--space-m)
-      display: flex
-      flex-wrap: wrap
-      justify-content: space-between
-      row-gap: var(--space-xs)
-
-    .rounds-label
-      @include typography.label
-
-      color: var(--ink-muted)
-
     .rounds
+      border: var(--stroke-thin) solid var(--rule)
       border-radius: var(--radius-m)
-      box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule)
       display: grid
       list-style: none
       margin: 0
@@ -54,7 +41,7 @@
 
       &[data-hovered],
       &[data-pressed]
-        background: var(--socket)
+        background: var(--card-well)
 
       &[data-disabled]
         cursor: not-allowed
@@ -137,7 +124,7 @@
 
       &[data-hovered],
       &[data-pressed]
-        background: var(--socket)
+        background: var(--card-well)
 
       // react-aria wraps the content in a `display: contents` cell, so the
       // row's grid still places it, through one more level of the tree.

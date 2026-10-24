@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useId, useRef } from 'react'
+import { useRef } from 'react'
 import {
   Button as AriaButton,
   DropIndicator,
@@ -98,7 +98,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
   view
 }) => {
   const { locale, translate } = useI18n()
-  const labelId = useId()
+  const roundsLabel = translate('host.evening.rounds')
   const { lineUp, lineUpAt, roundCount, runningOrder } = view.settings
   const played = view.lineUpPlayed
   const isEveningOver =
@@ -129,13 +129,8 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
 
   return (
     <div className='evening-rounds'>
-      <div className='rounds-head'>
-        <span className='rounds-label' id={labelId}>
-          {translate('host.evening.rounds')}
-        </span>
-      </div>
       {lineUp.length < 2 ? (
-        <ul aria-labelledby={labelId} className='rounds'>
+        <ul aria-label={roundsLabel} className='rounds'>
           {onlyEntry !== undefined && (
             <OnlyRound
               entry={onlyEntry}
@@ -151,7 +146,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
           <OrderedRounds
             coming={coming}
             isEditable={isLive && isDrawn}
-            labelId={labelId}
+            label={roundsLabel}
             onArrange={(rows) => {
               onSettingsChange(
                 arrangedEvening({ locale, preferences, rows, upcoming, view })
@@ -278,11 +273,11 @@ const OrderedRounds: React.FC<{
   coming: readonly ComingRound[]
   /** Between two rounds, on a live socket: the order can still move. */
   isEditable: boolean
-  labelId: string
+  label: string
   onArrange: (rows: number[]) => void
   onOpen: (at: number) => void
   view: HostRoomView
-}> = ({ coming, isEditable, labelId, onArrange, onOpen, view }) => {
+}> = ({ coming, isEditable, label, onArrange, onOpen, view }) => {
   const translate = useTranslate()
   const { lineUp } = view.settings
   const summaries = useLineUpEntrySummaries(lineUp)
@@ -324,7 +319,7 @@ const OrderedRounds: React.FC<{
 
   return (
     <GridList
-      aria-labelledby={labelId}
+      aria-label={label}
       className='order'
       dragAndDropHooks={isEditable ? dragAndDropHooks : undefined}
       items={rounds}
