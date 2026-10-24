@@ -61,6 +61,18 @@ Verified in a browser, muted: a challenge opened with an empty field shows a
 dealt line on the wall and on a phone in another locale, *Draw* fills the field,
 a typed line wins.
 
+## Step 4 — reflex takes the pale ink
+
+Asked 24/10/2026, beside this stage. Reflex is the one spine on the home
+shelf still inked dark: its saffron (`--spine-reflex`, `_tokens.sass`) is too
+light to carry the pale ink, so `--on-spine-reflex` takes the dark one and the
+card reads as the odd one out. Find it a background — still reflex's warm
+yellow-to-amber family, still distinct from every other spine — dark enough for
+`--on-spine-light` to pass WCAG AA (4.5:1 for the card's text) in **both**
+palettes, then drop the exception and its comment. `impeccable` first; measure
+the contrast rather than eyeball it, and check every place the spine is drawn
+(home shelf, ticked box mark, `--phase-ink` on the reflex stage) in a browser.
+
 ## Decisions taken
 
 - **Dealt by the server, not drawn in the console.** A round drawn from the
