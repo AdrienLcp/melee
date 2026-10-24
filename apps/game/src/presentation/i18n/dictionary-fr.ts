@@ -690,8 +690,6 @@ export const FR_DICTIONARY = defineDictionary({
       panelFolded:
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
-      roomScreen:
-        'Si cet écran est celui de la salle, pour qu’il le reste d’une table à l’autre.',
       seats:
         'La place que tu occupes à chaque table rejointe, pour qu’un rechargement ou un écran verrouillé t’y ramène avec ton score. Oubliée au bout d’un jour.',
       server:
@@ -790,11 +788,6 @@ export const FR_DICTIONARY = defineDictionary({
       teams: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} équipe', other: '{?} équipes' } }
       })
-    },
-    roomScreen: {
-      description:
-        'Pour l’écran que toute la salle regarde. Les réponses restent cachées tant que tu ne les montres pas.',
-      label: 'Cet écran est celui de la salle'
     },
     thisDevice: {
       qrCode: {

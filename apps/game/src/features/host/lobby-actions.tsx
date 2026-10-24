@@ -1,7 +1,6 @@
 import type React from 'react'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
-import { teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
 import { PlayRightAway } from '@/presentation/components/play-right-away'
@@ -10,13 +9,11 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { ChallengeLineField } from './challenge-line-field'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
-import { useTeamDeal } from './use-team-deal'
 
 export const LobbyActions: React.FC<HostActionsProps> = ({
   challengeLine,
   innerclockTarget,
   isLive,
-  isRoomScreen,
   onOpenRound,
   onPlayRightAway,
   send,
@@ -27,18 +24,11 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
   const playsAloud = view.settings.teams.kind === 'aloud'
   const isRoomEmpty = view.players.length === 0 && !playsAloud
   const hasNoGame = view.settings.game === null
-  const table = useTeamDeal({ send, view })
-  // The room's own screen draws the table rather than the trays and their
-  // draw, so the deal comes to its foot, where the launch will be.
-  const dealsHere = isRoomScreen && table.isDrawn
 
   // An empty table's launch seats its host and starts, which is the one press
   // somebody playing alone needs — the seat form and a greyed *gather round*
-  // were three. The moment a player arrives it is the group's launch again.
-  // The room's own screen is nobody's seat until the host says so, so its
-  // launch stays the group's.
+  // The moment a player arrives it is the group's launch again.
   if (
-    !isRoomScreen &&
     !playsAloud &&
     launchesWithHostSeated({
       seated: view.players.length,
@@ -76,44 +66,9 @@ export const LobbyActions: React.FC<HostActionsProps> = ({
     </>
   )
 
-  if (dealsHere && !table.hasDealt) {
-    return (
-      <div className='launch'>
-        {fields}
-        <Button
-          isDisabled={!isLive || isRoomEmpty || table.isShortOfPlayers}
-          onPress={table.deal}
-          size='large'
-        >
-          {translate('team.draw')}
-        </Button>
-        {isRoomEmpty ? (
-          <p className='reason'>{translate('host.needsPlayer')}</p>
-        ) : (
-          table.isShortOfPlayers && (
-            <p className='reason'>
-              {translate('team.drawNeeds', {
-                count: teamCountOf(view.settings.teams)
-              })}
-            </p>
-          )
-        )}
-      </div>
-    )
-  }
-
   return (
     <div className='launch'>
       {fields}
-      {dealsHere && (
-        <Button
-          isDisabled={!isLive || table.isShortOfPlayers}
-          onPress={table.deal}
-          variant='outlined'
-        >
-          {translate('team.redraw')}
-        </Button>
-      )}
       <Button
         isDisabled={!isLive || isRoomEmpty || hasNoGame}
         onPress={() => {

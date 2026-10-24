@@ -34,7 +34,6 @@ export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
 export const PANEL_SIDE_KEY = 'melee:panel-side'
-export const ROOM_SCREEN_KEY = 'melee:room-screen'
 export const VOLUME_KEY = 'melee:volume'
 
 /**
@@ -149,35 +148,6 @@ export const writeStoredNickname = (
   nickname: Nickname
 ): Result<void, StorageWriteError> =>
   writeStoredText({ key: NICKNAME_KEY, text: nickname })
-
-const ROOM_SCREEN_VALUES = ['true', 'false'] as const
-
-const isRoomScreenValue = (
-  text: string
-): text is (typeof ROOM_SCREEN_VALUES)[number] =>
-  ROOM_SCREEN_VALUES.some((value) => value === text)
-
-/**
- * Whether this machine is the room's own screen when it runs a room — a touch
- * display hung up for the evening rather than the host's laptop. Said by the
- * host and never guessed: nothing a browser reports tells a television on the
- * wall from a laptop on the table. Succeeds with `false` when never said.
- */
-export const readStoredRoomScreen = (): Result<boolean, StorageReadError> => {
-  const stored = readRecognizedText({
-    isRecognized: isRoomScreenValue,
-    key: ROOM_SCREEN_KEY
-  })
-
-  return stored.status === 'success'
-    ? Result.success(stored.data === 'true')
-    : stored
-}
-
-export const writeStoredRoomScreen = (
-  isRoomScreen: boolean
-): Result<void, StorageWriteError> =>
-  writeStoredText({ key: ROOM_SCREEN_KEY, text: String(isRoomScreen) })
 
 const PANEL_FOLDED_VALUES = ['true', 'false'] as const
 

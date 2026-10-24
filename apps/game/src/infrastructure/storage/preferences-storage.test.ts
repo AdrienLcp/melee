@@ -9,14 +9,11 @@ import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 import {
   HOST_SETUP_KEY,
   PANEL_SIDE_KEY,
-  ROOM_SCREEN_KEY,
   readStoredHostPreferences,
   readStoredPanelFolded,
   readStoredPanelSide,
-  readStoredRoomScreen,
   writeStoredPanelFolded,
-  writeStoredPanelSide,
-  writeStoredRoomScreen
+  writeStoredPanelSide
 } from './preferences-storage'
 
 const storedBeforeTheBoard = (teams: object) => {
@@ -107,7 +104,7 @@ describe('readStoredHostPreferences', () => {
   })
 })
 
-describe('readStoredRoomScreen', () => {
+describe('readStoredPanelFolded', () => {
   let store: Map<string, string>
 
   beforeEach(() => {
@@ -121,24 +118,6 @@ describe('readStoredRoomScreen', () => {
 
   afterEach(() => {
     vi.unstubAllGlobals()
-  })
-
-  it('[room-screen] reads a machine never said to be the room’s as the host’s own', () => {
-    expect(readStoredRoomScreen()).toEqual({ data: false, status: 'success' })
-  })
-
-  it('[room-screen] reads back what the switch wrote, both ways', () => {
-    writeStoredRoomScreen(true)
-    expect(readStoredRoomScreen()).toEqual({ data: true, status: 'success' })
-
-    writeStoredRoomScreen(false)
-    expect(readStoredRoomScreen()).toEqual({ data: false, status: 'success' })
-  })
-
-  it('[room-screen] refuses a value it never writes', () => {
-    store.set(ROOM_SCREEN_KEY, 'yes')
-
-    expect(readStoredRoomScreen().status).toBe('failure')
   })
 
   it('[panel] opens a panel never folded, on the right', () => {

@@ -1,5 +1,4 @@
 import { useScreenAwake } from '@adrienlcp/browser/react'
-import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
@@ -13,7 +12,6 @@ import type {
 } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
-import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { drawTargetSeconds } from '@melee/core/innerclock/target'
 import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
 import {
@@ -27,7 +25,6 @@ import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
-import { BoardTrack } from '@/features/wall/board-track'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
   useCameFromWall,
@@ -38,10 +35,8 @@ import {
 } from '@/infrastructure/router/navigation'
 import {
   readStoredHostPreferences,
-  readStoredRoomScreen,
   writeStoredHostPreferences,
-  writeStoredNickname,
-  writeStoredRoomScreen
+  writeStoredNickname
 } from '@/infrastructure/storage/preferences-storage'
 import {
   readPreparedSlateKeys,
@@ -99,19 +94,12 @@ import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
 
 import './host-console-page.sass'
-import '@/features/wall/wall-page.sass'
 
 import { Main } from '@/presentation/components/main'
 import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
 /** Where a press to play right away is: waiting for its seat, or for its first round. */
 type RightAwayStart = 'idle' | 'seating' | 'starting'
-
-const isStoredRoomScreen = (): boolean => {
-  const stored = readStoredRoomScreen()
-
-  return stored.status === 'success' && stored.data
-}
 
 const storedHostPreferencesOrNone = (): HostPreferences | null => {
   const stored = readStoredHostPreferences()
@@ -173,7 +161,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
   const [challengeText, setChallengeText] = useState('')
   const [targetSeconds, setTargetSeconds] = useState(drawTargetSeconds)
-  const [isRoomScreen, setIsRoomScreen] = useState(isStoredRoomScreen)
   const arrival = useArrival(view)
   const playsRightAway = useTakePlayRightAway()
   // Set by the door's navigation or by the empty lobby's launch, spent on the
@@ -390,17 +377,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     setIsHandingOver(true)
   }, [])
 
-  const setRoomScreen = useCallback((next: boolean) => {
-    writeStoredRoomScreen(next)
-    setIsRoomScreen(next)
-  }, [])
-
   useReportRoomActions({
     adjustScore: view === null ? null : adjustScore,
     closeRoom,
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
     handOver,
-    isRoomScreen,
     leaveSeat: view?.youId == null ? null : leaveSeat,
     playsSound: isSpeaker,
     refusedNickname:
@@ -412,7 +393,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: view?.players ?? NOBODY,
     scoredTeams: view?.teams ?? NOBODY,
     seatNickname: seatedAs,
-    setRoomScreen,
     trackLength:
       view?.settings.board.kind === 'track' ? view.settings.board.length : null
   })
@@ -542,7 +522,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         ? { onChange: setTargetSeconds, seconds: targetSeconds }
         : null,
     isLive,
-    isRoomScreen,
     onOpenRound: () => {
       // Inside the press, never in an effect: the autoplay policy grants
       // permission only from a real gesture, and it cannot be asked for later
@@ -613,9 +592,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   )
 
   const controls: StageControls = {
-    isAnswerFolded: cameFromWall || isRoomScreen,
+    isAnswerFolded: cameFromWall,
     isLive,
-    isRoomScreen,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,
@@ -628,7 +606,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const setupProps = (current: HostRoomView): SetupTabsProps => ({
     draftSource,
     isLive,
-    isRoomScreen,
     onDraftSource: setDraftSource,
     onLeaveSeat: leaveSeat,
     onRememberSlateKey: rememberPreparedKey,
@@ -646,15 +623,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     view: current
   })
 
-  // The room's own screen keeps the wall's face — the same header, stage and
-  // board, the answers folded — with the console's panel and presses beside it.
   const page = (
-    <Main
-      className={classNames(
-        'host-console-page',
-        isRoomScreen && 'wall-page room-screen'
-      )}
-    >
+    <Main className='host-console-page'>
       <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
       {header}
 
@@ -726,17 +696,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         }}
       >
         {page}
-        {/*
-          Beside the page rather than inside it: the page keeps its entrance's
-          transform, and a track fixed inside it would run down a lobby long
-          enough to scroll.
-        */}
-        {isRoomScreen && view.settings.board.kind === 'track' && (
-          <BoardTrack
-            length={view.settings.board.length}
-            pawns={trackPawnsOf(view)}
-          />
-        )}
       </HostPanel>
     </PawnColoursProvider>
   )

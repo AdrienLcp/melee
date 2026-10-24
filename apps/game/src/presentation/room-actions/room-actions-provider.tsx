@@ -33,11 +33,6 @@ export type RoomActions = {
    * console's alone.
    */
   handOver: (() => void) | null
-  /**
-   * Whether this console is drawn as the room's own screen: the wall's stage,
-   * every answer folded. `false` on every other screen.
-   */
-  isRoomScreen: boolean
   /** Gives the seat up, so the roster on the console is true at once. */
   leaveSeat: (() => void) | null
   /**
@@ -50,8 +45,6 @@ export type RoomActions = {
   playsSound: boolean
   /** Changes the name the seat is held under, socket and round untouched. */
   rename: ((nickname: string) => void) | null
-  /** Says whether this machine is the room's own screen. The host console's alone. */
-  setRoomScreen: ((isRoomScreen: boolean) => void) | null
   /**
    * Ends the round in play and shows its answer. Offered only where the stage
    * has no room for it: a seated host's four tiles fill the whole screen.
@@ -75,7 +68,6 @@ const NO_ACTIONS: RoomActions = {
   closeRoom: null,
   endGame: null,
   handOver: null,
-  isRoomScreen: false,
   leaveSeat: null,
   playsSound: false,
   refusedNickname: null,
@@ -84,7 +76,6 @@ const NO_ACTIONS: RoomActions = {
   scoredPlayers: NOBODY,
   scoredTeams: NOBODY,
   seatNickname: null,
-  setRoomScreen: null,
   trackLength: null
 }
 
@@ -142,7 +133,6 @@ export const useReportRoomActions = ({
   closeRoom,
   endGame,
   handOver,
-  isRoomScreen,
   leaveSeat,
   playsSound,
   refusedNickname,
@@ -151,7 +141,6 @@ export const useReportRoomActions = ({
   scoredPlayers,
   scoredTeams,
   seatNickname,
-  setRoomScreen,
   trackLength
 }: RoomActions) => {
   const { report } = useChannel()
@@ -162,7 +151,6 @@ export const useReportRoomActions = ({
       closeRoom,
       endGame,
       handOver,
-      isRoomScreen,
       leaveSeat,
       playsSound,
       refusedNickname,
@@ -171,7 +159,6 @@ export const useReportRoomActions = ({
       scoredPlayers,
       scoredTeams,
       seatNickname,
-      setRoomScreen,
       trackLength
     })
 
@@ -183,7 +170,6 @@ export const useReportRoomActions = ({
     closeRoom,
     endGame,
     handOver,
-    isRoomScreen,
     leaveSeat,
     playsSound,
     refusedNickname,
@@ -193,7 +179,6 @@ export const useReportRoomActions = ({
     scoredPlayers,
     scoredTeams,
     seatNickname,
-    setRoomScreen,
     trackLength
   ])
 }

@@ -63,7 +63,6 @@ import { ProjectWithCode } from './project-with-code'
 import { RoomInvitation } from './room-invitation'
 import { SegmentedControl } from './segmented-control'
 import { Slider } from './slider'
-import { Switch } from './switch'
 import { TextField } from './text-field'
 import { TextLink } from './text-link'
 import { useMenuWidth } from './use-menu-width'
@@ -417,8 +416,7 @@ export const AppMenu: React.FC = () => {
   const roomCode = useRoomCodeParam()
   // The console is the screen that can send the invitation somewhere else, and
   // `closeRoom` is what says a screen is one — the same test `RoomExit` makes.
-  const { closeRoom, isRoomScreen, playsSound, revealRound, setRoomScreen } =
-    useRoomActions()
+  const { closeRoom, playsSound, revealRound } = useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
@@ -566,19 +564,6 @@ export const AppMenu: React.FC = () => {
                   onChange={setVolume}
                   step={0.05}
                   value={volume}
-                />
-              )}
-
-              {/*
-                  A machine's own, beside its volume: what kind of screen this
-                  is outlives the room, and only the host can say it.
-                */}
-              {setRoomScreen !== null && (
-                <Switch
-                  description={translate('menu.roomScreen.description')}
-                  isSelected={isRoomScreen}
-                  label={translate('menu.roomScreen.label')}
-                  onChange={setRoomScreen}
                 />
               )}
 

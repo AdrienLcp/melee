@@ -47,18 +47,12 @@ import { VerdictPanel } from './verdict-panel'
 /** What the console can do to the room from its stage. A wall has none of it. */
 export type StageControls = {
   /**
-   * The answer is behind a press rather than printed, because this console is
-   * the room's own screen — taken over from the wall while its host was away,
-   * or said to be one in the menu.
+   * The answer is behind a press rather than printed, because this console
+   * took over from the wall while its host was away, so the room may be
+   * reading it.
    */
   isAnswerFolded: boolean
   isLive: boolean
-  /**
-   * This console is the room's own screen: what only the host may touch —
-   * copying the link, removing a seat, typing a slate's key — leaves the stage
-   * for the panel beside it, and the stage reads as the wall's.
-   */
-  isRoomScreen: boolean
   /** Keeps a key typed mid-sheet for the next sheet this host opens. */
   onRememberSlateKey: (itemIndex: number, key: string) => void
   /** Aimed at the console's own seat too, which is why it is not a bare frame. */
@@ -118,10 +112,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   if (view === null) {
     return (
       <div className='stage lobby'>
-        <RoomInvitation
-          isUnattended={controls === null || controls.isRoomScreen}
-          roomCode={roomCode}
-        />
+        <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
       </div>
     )
   }
@@ -400,18 +391,8 @@ export const RoomStage: React.FC<RoomStageProps> = ({
 
   // A table of teams sitting down, read across the room: the setup is the
   // panel's, and what the room reads is who sits with whom.
-  if (
-    (controls === null || controls.isRoomScreen) &&
-    isSetAsTable(view.settings)
-  ) {
-    return (
-      <TableLobby
-        controls={controls}
-        roomCode={roomCode}
-        view={view}
-        youId={youId}
-      />
-    )
+  if (controls === null && isSetAsTable(view.settings)) {
+    return <TableLobby roomCode={roomCode} view={view} youId={youId} />
   }
 
   return (

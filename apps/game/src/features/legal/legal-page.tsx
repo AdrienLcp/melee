@@ -9,7 +9,6 @@ import {
   NICKNAME_KEY,
   PANEL_FOLDED_KEY,
   PANEL_SIDE_KEY,
-  ROOM_SCREEN_KEY,
   VOLUME_KEY
 } from '@/infrastructure/storage/preferences-storage'
 import { PREPARED_KEYS_KEY } from '@/infrastructure/storage/prepared-keys-storage'
@@ -52,7 +51,6 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: HOST_TOKENS_KEY, what: 'legal.storage.hostTokens' },
   { key: HOST_SETUP_KEY, what: 'legal.storage.hostSetup' },
   { key: VOLUME_KEY, what: 'legal.storage.volume' },
-  { key: ROOM_SCREEN_KEY, what: 'legal.storage.roomScreen' },
   { key: PANEL_FOLDED_KEY, what: 'legal.storage.panelFolded' },
   { key: PANEL_SIDE_KEY, what: 'legal.storage.panelSide' },
   { key: ANALYTICS_OPT_OUT_KEY, what: 'legal.storage.analyticsOptOut' }

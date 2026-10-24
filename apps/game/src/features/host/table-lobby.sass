@@ -24,15 +24,6 @@
   // The header holds nothing the table reads in the lobby, and its band is
   // the height of a row of seats. It keeps the menu's corner clear, so it goes
   // only where the card stops short of that corner.
-  // Its presses keep the screen's foot, and nothing this stage draws under
-  // them waits on a refusal's line: the column is centred, the line flush right.
-  .host-console-page.room-screen:has(> .stage.table-lobby)
-    --layout-padding-block-end: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 4.5rem + var(--space-xl))
-
-    // Under the split the two presses take a line each.
-    @include layout.narrow
-      --layout-padding-block-end: calc(max(var(--layout-padding), var(--safe-area-bottom)) + 9rem + var(--space-m) + var(--space-xl))
-
   @media (width >= 85rem)
     .host-console-page:has(> .stage.table-lobby) > header:not(:has(.sound-offer))
       display: none

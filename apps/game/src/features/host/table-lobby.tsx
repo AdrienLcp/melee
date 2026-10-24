@@ -17,9 +17,6 @@ import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
-import type { StageControls } from './room-stage'
-import { useTeamCountFollowingHeadcount } from './use-team-deal'
-
 import './table-lobby.sass'
 
 /**
@@ -40,8 +37,6 @@ export const isSetAsTable = ({
 const SEATS_AT_AN_EMPTY_TABLE = 4
 
 type TableLobbyProps = {
-  /** `null` on the wall; the room's own screen, whose presses are at its foot. */
-  controls: StageControls | null
   roomCode: RoomCode
   view: HostRoomView
   /** The seat this console took, in a keyline; `null` on the wall. */
@@ -54,11 +49,9 @@ type TableLobbyProps = {
  * under it the seats as they arrive, then the teams they are dealt into. The
  * track runs round it already, every team's pawn on the start.
  *
- * It carries no control: the draw and the launch are the presses at the foot
- * of the room's own screen, and the wall has none.
+ * It carries no control: it is the wall's alone.
  */
 export const TableLobby: React.FC<TableLobbyProps> = ({
-  controls,
   roomCode,
   view,
   youId
@@ -74,8 +67,6 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
   const unassigned = players.filter(
     (player) => !teams.some((team) => team.seatIds.includes(player.id))
   )
-
-  useTeamCountFollowingHeadcount({ controls, view })
 
   const seatsOf = (team: (typeof teams)[number]): PublicPlayer[] =>
     players.filter((player) => team.seatIds.includes(player.id))

@@ -88,7 +88,6 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     closeRoom: null,
     endGame: null,
     handOver: null,
-    isRoomScreen: false,
     leaveSeat: null,
     playsSound: true,
     refusedNickname: null,
@@ -97,7 +96,6 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     scoredPlayers: NOBODY,
     scoredTeams: NOBODY,
     seatNickname: null,
-    setRoomScreen: null,
     trackLength: null
   })
 

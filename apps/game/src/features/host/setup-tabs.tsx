@@ -48,8 +48,6 @@ export type SetupTabsProps = {
   draftSource: TrackSource | null
   /** The socket is open. Everything inside sends a frame, so none of it works without it. */
   isLive: boolean
-  /** The room's own screen, whose lobby stage draws no slate sheet: its round's page holds it instead. */
-  isRoomScreen: boolean
   /** Must be stable — the picker reports upward from an effect. */
   onDraftSource: (source: TrackSource | null) => void
   /** Gives up the seat this console holds. */
@@ -84,7 +82,6 @@ type GamePage =
 export const GameTab: React.FC<SetupTabsProps> = ({
   draftSource,
   isLive,
-  isRoomScreen,
   onDraftSource,
   onRememberSlateKey,
   onSettingsChange,
@@ -104,7 +101,6 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         at={page.at}
         draftSource={draftSource}
         isLive={isLive}
-        isRoomScreen={isRoomScreen}
         onBack={backToList}
         onDraftSource={onDraftSource}
         onRememberSlateKey={onRememberSlateKey}
@@ -328,7 +324,6 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
  * so the form would be a second way to do the same thing.
  */
 export const PlayersTab: React.FC<SetupTabsProps> = ({
-  isRoomScreen,
   onLeaveSeat,
   onRemovePlayer,
   onTakeSeat,
@@ -340,8 +335,7 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
     !isRoundInPlay(view.phase) &&
     !(
       isInLobby &&
-      (isRoomScreen ||
-        view.settings.teams.kind === 'aloud' ||
+      (view.settings.teams.kind === 'aloud' ||
         launchesWithHostSeated({
           seated: view.players.length,
           settings: view.settings

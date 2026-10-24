@@ -842,27 +842,23 @@ the board track's: the track widens `--gutter-left` and `--gutter-right` on
 `:root` to keep the page clear of it, and a sheet covering the track inherited
 56px a side at 390 — 278px of controls out of 390 — for an edge it hides.
 
-### The room's own screen
-A console switched to the room's screen in the menu (`melee:room-screen`) is
-drawn as the wall — `wall-page room-screen` on `<main>`, the same header,
-stage and board track, every answer folded behind *Voir la réponse* — with
-the host's panel beside it and the phase's presses under the stage, as on any
-console. The lobby's launch deals the teams first when they are drawn, since
-the table it draws has no trays to deal from (`LobbyActions`, `isRoomScreen`).
-The switch goes in plan 43's step 5: the console can now be handed to
-another screen (*Run the table from another screen*, a disclosure under the
-menu's wall doors: the square on a white card at the invitation's menu size,
-a muted line under it, *Copy the link*, never the address printed — it
-carries the token).
+### Handing the console over
+The room's screen never shows a control, so there is no switch making a
+console the room's: the console is handed to another screen instead (*Run the
+table from another screen*, a disclosure under the menu's wall doors: the
+square on a white card at the invitation's menu size, a muted line under it,
+*Copy the link*, never the address printed — it carries the token), and the
+screen that handed it over becomes the wall. A console that took over from the
+wall keeps every answer folded behind *Voir la réponse*.
 
-The track renders beside `<main>`: inside it, the page's leftover transform
-would run it down a lobby long enough to scroll. The board fills in behind its
+On the wall, the board track renders beside `<main>`: inside it, the page's
+leftover transform would run it down a lobby long enough to scroll. The board fills in behind its
 top row, so a scrolling lobby passes under the cases rather than through their
 gaps.
 
 ### The table (`TableLobby`)
-A room of teams in its lobby, on the wall and on the room's own screen —
-direction D, chosen 2026-10-22 (`.impeccable/directions/board-lobby/`, local).
+A room of teams in its lobby, on the wall — direction D, chosen 2026-10-22
+(`.impeccable/directions/board-lobby/`, local).
 The track is already up, every team's pawn on the start. Centred inside it: a
 **lid** (`box-lid`) with the evening's name — *Soirée en équipes*, or the one
 game's — how it is won, the line-up as spines in the order the box deals them,

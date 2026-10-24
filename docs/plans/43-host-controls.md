@@ -1,6 +1,6 @@
 # 43 — Host controls
 
-**In progress** — steps 1 to 4 done. Asked 24/10/2026. The room's screen never shows
+**In progress** — steps 1 to 5 done. Asked 24/10/2026. The room's screen never shows
 a control, the host's controls are always on a screen only the host sees, in
 one side panel, and the *This screen is the room's* switch goes away.
 
@@ -104,8 +104,12 @@ that.
    instead of the refusal. The menu closes on any change of page, or it stayed
    open over the new wall. A seat the old console held stays with its old
    session.
-5. **Remove the switch** (`menu.roomScreen` in `app-menu.tsx`) once 4 covers
-   it; the drawer already went in step 3.
+5. ~~Remove the switch.~~ Done: `menu.roomScreen`, `melee:room-screen` and
+   its legal line are gone, and so is everything the console drew as the
+   wall — `isRoomScreen` on the stage controls and the room actions, the
+   deal-first launch in `LobbyActions`, the board track beside the console.
+   `TableLobby` is the wall's alone. `isAnswerFolded` stays, for a console
+   that took over from the wall.
 6. **Home page**: drop the game checkboxes, which duplicate the lobby's picker;
    home becomes *Open a table* plus a card per game linking to its page. Check
    first what the game front doors are for (search, shared links).

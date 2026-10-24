@@ -736,8 +736,6 @@ export const EN_DICTIONARY = defineDictionary({
       panelFolded:
         'Whether you last folded the panel beside the table you run.',
       panelSide: 'Which side of the screen you put that panel on.',
-      roomScreen:
-        'Whether this screen is the room’s own, so it stays one from one table to the next.',
       seats:
         'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
       server:
@@ -852,11 +850,6 @@ export const EN_DICTIONARY = defineDictionary({
       })
     },
     /** Said by the host, about the machine rather than the table: it outlives the room. */
-    roomScreen: {
-      description:
-        'For the screen everyone reads. Answers stay hidden until you show them.',
-      label: 'This screen is the room’s'
-    },
     thisDevice: {
       qrCode: {
         action: 'Show it',
