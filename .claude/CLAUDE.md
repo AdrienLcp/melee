@@ -195,8 +195,9 @@ which is why a user-visible string written into a component is a bug — see
 - **Answer mode** — `typed` (one field), `choice` (four candidates, what the
   blind test and the quiz open on) or `buzzer` (one player, judged by the
   host); a game with an answer of its own shape takes a mode of its own —
-  `point` on the map, `order` on the timeline, `move` for a matchstick. All
-  but `buzzer` are everyone at once, decided by the server and scored
+  `point` on the map, `order` on the timeline, `move` for a matchstick, and
+  `spoken` for guess nine said by one team and ticked by a keeper of another.
+  All but `buzzer` and `spoken` are everyone at once, decided by the server and scored
   by the clock on top of being right — `MOST_A_SPEED_BONUS_PAYS` at nought,
   falling linearly to nothing when the round runs out, on a board counted in
   `POINT`s of a thousand so the clock separates players by the millisecond:

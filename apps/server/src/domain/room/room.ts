@@ -25,7 +25,7 @@ import type {
   RoomSettings,
   RoundDuel
 } from '@melee/protocol/room'
-import type { Award, Verdict } from '@melee/protocol/scoring'
+import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
@@ -56,6 +56,8 @@ export type Room = {
   createdAt: number
   /** Duels each seat has played this evening, which is who is drawn next — see `drawDuel`. */
   duelsBySeat: Map<PlayerId, number>
+  /** Spoken guess-nine rounds each team has guessed this evening — see `drawSpokenTurn`. */
+  guessesByTeam: Map<TeamId, number>
   /**
    * When the last console's socket went, and `null` while one is attached. The
    * grace window a second screen has to wait out is measured from here.
@@ -74,6 +76,8 @@ export type Room = {
    * round opens — see `takeDuel`.
    */
   isDuelAsked: boolean
+  /** Spoken guess-nine lists each seat has kept this evening — see `drawSpokenTurn`. */
+  keepsBySeat: Map<PlayerId, number>
   lastActivityAt: number
   /**
    * The ready-made line the next challenge round opens on when the host types
@@ -272,6 +276,17 @@ export type Round = {
          * hundred lines holds eleven at most.
          */
         lines: (GuessNineSentLine & { playerId: PlayerId })[]
+        /**
+         * Who says the answers and who ticks them, in a spoken round; `null`
+         * in a typed one. `guessers` is the guessing team as the round opened,
+         * so the reveal names who found the cells the keeper ticked.
+         */
+        spoken: {
+          guessers: PlayerId[]
+          guessingTeamId: TeamId
+          keeperId: PlayerId
+          sheet: CellsVerdict
+        } | null
         /** The nine and the black word; what each seat found is on its attempts. */
         theme: GuessNineTheme
       }

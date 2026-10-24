@@ -176,6 +176,7 @@ describe('a guess-nine round through the seam', () => {
       foundCellCount: 0,
       kind: 'guessnine',
       revealed: null,
+      spoken: null,
       theme: THEME.labels,
       yourLines: []
     })
@@ -350,5 +351,166 @@ describe('a guess-nine round through the seam', () => {
     expect(errorsIn(host).map(({ code }) => code)).toContain(
       'no_content_available'
     )
+  })
+})
+
+const SPOKEN: RoomSettings = {
+  ...GUESS_NINE,
+  mode: DEFAULT_MODE_SETTINGS.spoken,
+  teams: { count: 2, kind: 'chosen' }
+}
+
+/** Anna and Ben guess for the first team; Carl, alone in the second, keeps the list. */
+const spokenRoundInPlay = async () => {
+  const { code, host, hostToken } = await harness.openRoom(SPOKEN)
+  const wall = await pairedWall({ code, hostToken })
+  const anna = await harness.seat({ code, nickname: 'Anna' })
+  const ben = await harness.seat({ code, nickname: 'Ben' })
+  const carl = await harness.seat({ code, nickname: 'Carl' })
+
+  anna.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+  ben.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+  carl.send({ teamId: 'team-2', type: 'player.chooseTeam' })
+  await waitFor(
+    () => hostView(host)?.teams[1]?.seatIds.length === 1,
+    'the teams picked'
+  )
+  host.send({ type: 'host.startRound' })
+  await waitFor(() => playerView(carl)?.phase === 'playing', 'the theme')
+
+  const roundId = playerView(carl)?.round?.id ?? ''
+  const tick = (
+    seat: typeof carl,
+    cell: number | 'blackWord',
+    isTicked = true
+  ) => seat.send({ cell, isTicked, roundId, type: 'guessnine.tick' })
+
+  return { anna, ben, carl, host, roundId, tick, wall }
+}
+
+describe('a spoken guess-nine round through the seam', () => {
+  it('[guessnine] hands the list to the keeper alone, never to the guessing team', async () => {
+    const { anna, ben, carl, wall } = await spokenRoundInPlay()
+
+    const spoken = guessNineRound(playerView(carl))?.spoken
+
+    expect(spoken?.guessingTeamId).toBe('team-1')
+    expect(spoken?.keeperId).toBe(playerView(carl)?.youId)
+    expect(spoken?.list?.answers.map(({ labels }) => labels.en)).toEqual(
+      ANSWER_NAMES
+    )
+    expect(spoken?.list?.blackWord.why).toEqual(THEME.blackWord.why)
+    expect(guessNineRound(playerView(anna))?.spoken?.list).toBeNull()
+    expect(leakedIn({ peer: anna, typed: [] })).toEqual([])
+    expect(leakedIn({ peer: ben, typed: [] })).toEqual([])
+    expect(leakedIn({ peer: wall, typed: [] })).toEqual([])
+  })
+
+  it('[guessnine] takes the list back from a keeper moved into the guessing team', async () => {
+    const { carl, host, tick } = await spokenRoundInPlay()
+
+    host.send({
+      playerId: playerView(carl)?.youId ?? '',
+      teamId: 'team-1',
+      type: 'host.moveSeat'
+    })
+    await waitFor(
+      () => guessNineRound(playerView(carl))?.spoken?.list === null,
+      'the list taken back'
+    )
+    tick(carl, 0)
+    await waitFor(() => errorsIn(carl).length > 0, 'the tick refused')
+
+    expect(errorsIn(carl).map(({ code }) => code)).toEqual(['not_your_turn'])
+  })
+
+  it('[guessnine] lets the keeper alone tick, and pays the guessing team once at the reveal', async () => {
+    const { anna, ben, carl, host, roundId, tick } = await spokenRoundInPlay()
+
+    tick(anna, 0)
+    anna.send({
+      answer: { guess: 'Mercury', kind: 'typed' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => errorsIn(anna).length === 2, 'both refused')
+    tick(carl, 0)
+    tick(carl, 3)
+    tick(carl, 6)
+    tick(carl, 1)
+    tick(carl, 1, false)
+    await waitFor(
+      () =>
+        guessNineRound(playerView(anna))?.spoken?.tickedCells.join() ===
+        '0,3,6',
+      'three ticks seen by the guessers'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+    const revealed = guessNineRound(playerView(carl))?.revealed
+
+    expect(errorsIn(anna).map(({ code }) => code)).toEqual([
+      'not_your_turn',
+      'invalid_message'
+    ])
+    expect(
+      view?.round?.awards.map(({ playerId, points }) => [playerId, points])
+    ).toEqual([
+      [playerView(anna)?.youId, 6 * POINT],
+      [playerView(ben)?.youId, 6 * POINT]
+    ])
+    expect(view?.teams.map(({ score }) => score)).toEqual([6 * POINT, 0])
+    expect(revealed?.answers[3]?.foundBy).toEqual([
+      playerView(anna)?.youId,
+      playerView(ben)?.youId
+    ])
+    expect(revealed?.answers[1]?.foundBy).toEqual([])
+  })
+
+  it('[guessnine] ends and voids the round on the black word ticked', async () => {
+    const { carl, host, tick } = await spokenRoundInPlay()
+
+    tick(carl, 8)
+    tick(carl, 'blackWord')
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(hostView(host)?.teams.map(({ score }) => score)).toEqual([0, 0])
+    expect(
+      guessNineRound(playerView(carl))?.revealed?.blackWord.hitBy
+    ).toHaveLength(2)
+  })
+
+  it('[guessnine] refuses a spoken room without teams', async () => {
+    const { host } = await harness.openRoom(GUESS_NINE)
+
+    host.send({
+      settings: { ...GUESS_NINE, mode: DEFAULT_MODE_SETTINGS.spoken },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => errorsIn(host).length > 0, 'the refusal')
+
+    expect(hostView(host)?.settings.mode.kind).toBe('typed')
+  })
+
+  it('[guessnine] opens no spoken round while one team holds every seat', async () => {
+    const { code, host } = await harness.openRoom(SPOKEN)
+    const anna = await harness.seat({ code, nickname: 'Anna' })
+    const ben = await harness.seat({ code, nickname: 'Ben' })
+
+    anna.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+    ben.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+    await waitFor(
+      () => hostView(host)?.teams[0]?.seatIds.length === 2,
+      'one team holding both'
+    )
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => errorsIn(host).length > 0, 'the refusal')
+
+    expect(errorsIn(host).map(({ code }) => code)).toEqual([
+      'spoken_needs_two_teams'
+    ])
+    expect(hostView(host)?.phase).toBe('lobby')
   })
 })

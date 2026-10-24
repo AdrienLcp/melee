@@ -11,6 +11,7 @@ import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 
 import { offersAnswerMode } from './game-modes'
 import {
+  fittedToTeams,
   movedToGame,
   openedSetup,
   reshapesRound,
@@ -265,6 +266,43 @@ describe('movedToGame', () => {
       ...DEFAULT_BLINDTEST_SETTINGS,
       difficulty: 'obscure'
     })
+  })
+})
+
+describe('a spoken guess nine and its teams', () => {
+  const spokenInTeams: RoomSettings = {
+    ...roomSettingsFor({ games: ['guessnine'], locale: 'fr' }),
+    mode: DEFAULT_MODE_SETTINGS.spoken,
+    teams: { count: 2, kind: 'chosen' }
+  }
+
+  it('[room-settings] types the round once the teams that kept the list are gone', () => {
+    const fitted = fittedToTeams({
+      locale: 'fr',
+      settings: { ...spokenInTeams, teams: { kind: 'off' } }
+    })
+
+    expect(fitted.mode).toEqual(DEFAULT_MODE_SETTINGS.typed)
+  })
+
+  it('[room-settings] keeps a spoken round its teams can play', () => {
+    expect(
+      fittedToTeams({ locale: 'fr', settings: spokenInTeams }).mode
+    ).toEqual(DEFAULT_MODE_SETTINGS.spoken)
+  })
+
+  it('[room-settings] never restores a spoken round a room without teams cannot play', () => {
+    const moved = movedToGame({
+      game: 'guessnine',
+      locale: 'fr',
+      remembered: {
+        ...openedSetup({ game: 'guessnine', locale: 'fr' }),
+        mode: DEFAULT_MODE_SETTINGS.spoken
+      },
+      settings: roomSettingsFor({ games: ['quiz'], locale: 'fr' })
+    })
+
+    expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.typed)
   })
 })
 

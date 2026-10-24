@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **Guess nine, team by team.** A room in teams can play it out
+  loud: each round one team says its answers and somebody from another team
+  holds the list on their screen — hidden behind one press so it can be held
+  up — ticking what they hear, the black word asked twice before it ends the
+  round. Every team guesses in turn and everyone keeps once before anyone
+  keeps twice. `PROTOCOL_VERSION` goes to 51.
+
 - `[Shared]` **Guess nine is on the shelf**, the eleventh game — *Devineuf*
   in French. A theme comes up and nine answers hide behind a 3 × 3 grid, the
   less obvious paying more; everyone fires answers from their own screen, as

@@ -12,6 +12,7 @@ import {
   GUESS_NINE_LINES_READ_BACK,
   guessNineAnswerSchema,
   guessNineBlackWordSchema,
+  guessNineCellSchema,
   guessNineLabelsSchema,
   guessNineSentLineSchema,
   revealedGuessNineSchema
@@ -73,7 +74,8 @@ export const answerModes = [
   'typed',
   'point',
   'order',
-  'move'
+  'move',
+  'spoken'
 ] as const
 
 /**
@@ -84,6 +86,10 @@ export const answerModes = [
  * `buzzer` is one player, the first, judged by the host. `choice` and `typed`
  * are everyone at once, decided by the server — exactly, then fuzzily — and
  * scored by speed on top of being right.
+ *
+ * `spoken` is a guess-nine round played aloud: one team says its answers and a
+ * seat of another team ticks what it hears, so nobody answers on a screen and
+ * the clock pays nothing.
  *
  * It is the room's, not a game's: the shell reads it everywhere a round is
  * answered and scored, and what a game does is *narrow* it — see
@@ -123,7 +129,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('typed') }),
   z.object({ kind: z.literal('point') }),
   z.object({ kind: z.literal('order') }),
-  z.object({ kind: z.literal('move') })
+  z.object({ kind: z.literal('move') }),
+  z.object({ kind: z.literal('spoken') })
 ])
 
 /**
@@ -249,6 +256,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   move: { kind: 'move' },
   order: { kind: 'order' },
   point: { kind: 'point' },
+  spoken: { kind: 'spoken' },
   typed: { kind: 'typed' }
 }
 
@@ -369,6 +377,36 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('guessnine'),
     /** The whole grid and the black word, and `null` until the reveal. */
     revealed: revealedGuessNineSchema.nullable(),
+    /**
+     * Who guesses aloud this round and who keeps the list, in a `spoken`
+     * round, and `null` in a typed one.
+     */
+    spoken: z
+      .object({
+        guessingTeamId: teamIdSchema,
+        keeperId: playerIdSchema,
+        /**
+         * The list, to the keeper alone — the one place a seat is sent an
+         * answer, and safe only because the keeper's team is not playing the
+         * round. `null` on every other screen, and on the keeper's too the
+         * moment it sits in the guessing team.
+         */
+        list: z
+          .object({
+            answers: z
+              .array(guessNineAnswerSchema)
+              .length(GUESS_NINE_CELL_COUNT),
+            blackWord: guessNineBlackWordSchema
+          })
+          .nullable(),
+        /**
+         * The cells the keeper has ticked, to everyone: the guessing team said
+         * them aloud, and the room heard. Indices, never text, because a
+         * mistaken tick is undone before anyone reads it.
+         */
+        tickedCells: z.array(guessNineCellSchema).max(GUESS_NINE_CELL_COUNT)
+      })
+      .nullable(),
     theme: guessNineLabelsSchema,
     /**
      * The reader's own lines, in the order sent — every one that found

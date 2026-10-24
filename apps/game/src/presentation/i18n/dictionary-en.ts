@@ -320,6 +320,8 @@ export const EN_DICTIONARY = defineDictionary({
       reload: 'Reload the page',
       title: 'Something broke'
     },
+    spoken_needs_two_teams:
+      'Team by team needs two teams with somebody in each.',
     stale_round: 'That round is already over.',
     teams_locked: 'The teams cannot change that way now.',
     wall_not_paired:
@@ -354,6 +356,23 @@ export const EN_DICTIONARY = defineDictionary({
     play: 'Play Guess nine',
     scoring:
       'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.',
+    scoringSpoken:
+      'One team says its answers out loud and somebody from another team ticks them off: the three best known pay 1 point, the next three 2, the last three 3. Say the black word and the team’s round is worth nothing.',
+    spoken: {
+      blackWord: {
+        ask: 'Did they say it? Their round ends, worth nothing.',
+        confirm: 'They said it',
+        keep: 'Not said'
+      },
+      guessing: 'Out loud: {team}',
+      hidden:
+        'Hidden, so you can hold the screen up without giving anything away.',
+      hide: 'Hide the list',
+      keep: 'You keep the list for {team}. Tick each answer you hear.',
+      keeper: '{nickname} keeps the list',
+      show: 'Show the list',
+      yourTeam: 'Say your answers out loud. {nickname} ticks them off.'
+    },
     tagline: 'Nine answers. One black word.',
     tier: defineTranslation('{points:plural}', {
       plural: { points: { one: '{?} point', other: '{?} points' } }
@@ -379,6 +398,7 @@ export const EN_DICTIONARY = defineDictionary({
       move: 'Move the match',
       order: 'Put them in order',
       point: 'Pin it on the map',
+      spoken: 'Team by team',
       typed: 'Type it'
     },
     answerWindow: {

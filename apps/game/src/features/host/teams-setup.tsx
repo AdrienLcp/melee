@@ -9,6 +9,7 @@ import {
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
 import { fittedToAloud } from '@melee/core/room/line-up'
+import { fittedToTeams } from '@melee/core/room/room-settings'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
@@ -94,11 +95,14 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           const chosen = teamsOfKind(kind, teams)
 
           onChange(
-            fittedToAloud({
+            fittedToTeams({
               locale,
-              rememberedFor: (game) =>
-                rememberedSetupFor({ game, preferences }),
-              settings: { ...settings, teams: chosen }
+              settings: fittedToAloud({
+                locale,
+                rememberedFor: (game) =>
+                  rememberedSetupFor({ game, preferences }),
+                settings: { ...settings, teams: chosen }
+              })
             })
           )
         }}

@@ -94,8 +94,12 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
 export const isPaidForSpeed = (verdict: Verdict): boolean =>
   verdict.kind !== 'cells'
 
-/** Everyone answers at once in these, so none is decided by who was first to the buzzer. */
-export type SimultaneousMode = Exclude<AnswerMode, 'buzzer'>
+/**
+ * Everyone answers at once in these, so none is decided by who was first to the
+ * buzzer. Not a spoken round, answered by nobody on a screen: a keeper ticks
+ * what one team says.
+ */
+export type SimultaneousMode = Exclude<AnswerMode, 'buzzer' | 'spoken'>
 
 /**
  * What a simultaneous answer is worth before the speed bonus is added to it.

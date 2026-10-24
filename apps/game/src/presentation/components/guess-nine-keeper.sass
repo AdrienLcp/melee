@@ -1,0 +1,138 @@
+@use '../styles/black-word'
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  // Held to whatever height its parent gives it, like the seat's sheet: the
+  // list takes what the brief, the black word and the press leave.
+  .guess-nine-keeper
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: auto minmax(0, 1fr) auto auto
+    min-block-size: 0
+
+    .brief
+      @include typography.caption-strong
+
+      color: var(--ink)
+      margin: 0
+
+    .hidden-note
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin: 0
+
+    .keeper-cells
+      container-type: size
+      display: grid
+      gap: clamp(var(--space-xs), 2cqmin, var(--space-s))
+      grid-template: repeat(3, minmax(0, 1fr)) / repeat(3, minmax(0, 1fr))
+      list-style: none
+      margin: 0
+      min-block-size: 0
+      padding: 0
+
+      > li
+        display: grid
+        min-block-size: 0
+        min-width: 0
+
+    .keeper-cell
+      @include piece.piece($nubs: false)
+      @include piece.pressable
+
+      align-content: space-between
+      background: var(--card)
+      color: var(--card-ink)
+      cursor: pointer
+      display: grid
+      font: inherit
+      gap: 0.3em
+      min-block-size: 0
+      min-width: 0
+      overflow: hidden
+      padding: 0.45em 0.5em
+      text-align: start
+      touch-action: manipulation
+
+      .name
+        @include typography.answer
+
+        font-size: clamp(var(--text-xs), min(4.4cqi, 6.2cqb), var(--text-xl))
+        hyphens: auto
+        overflow-wrap: break-word
+        text-wrap: balance
+
+      .foot
+        align-items: center
+        color: var(--card-muted)
+        display: flex
+        font-size: clamp(var(--text-2xs), 3cqmin, var(--text-m))
+        justify-content: space-between
+
+        > svg
+          visibility: hidden
+
+      &[data-selected]
+        --edge: 0.1875rem
+
+        background: var(--good-soft)
+        box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
+        color: var(--tile-ink)
+
+        .foot
+          color: var(--good-edge)
+
+          > svg
+            visibility: visible
+
+    .black-word-press,
+    .black-word-ask
+      @include black-word.piece
+
+    .black-word-press
+      @include piece.pressable
+
+      align-items: baseline
+      cursor: pointer
+      display: flex
+      font: inherit
+      gap: var(--space-s)
+      justify-content: center
+      min-block-size: var(--control-height)
+      padding: var(--space-xs) var(--space-m)
+      touch-action: manipulation
+
+      .word
+        @include typography.title
+
+        font-size: var(--text-l)
+        overflow-wrap: anywhere
+
+    .black-word-ask
+      // The muted and plain inks re-pointed at the piece, so the underlined
+      // press under the question prints on the ink rather than the board.
+      --ink: var(--on-black-word)
+      --ink-muted: var(--black-word-muted)
+
+      display: grid
+      gap: var(--space-s)
+      padding: var(--space-s) var(--space-m)
+
+      .ask
+        display: grid
+        gap: var(--space-2xs)
+        margin: 0
+
+        .word
+          @include typography.title
+
+          font-size: var(--text-l)
+          overflow-wrap: anywhere
+
+      .answers
+        align-items: center
+        display: flex
+        flex-wrap: wrap
+        gap: var(--space-s) var(--space-m)

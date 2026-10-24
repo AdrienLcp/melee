@@ -7,6 +7,7 @@ import {
   isSheetClosed,
   pointsForCells,
   tierOfCell,
+  withCellTicked,
   withLineBanked
 } from './sheet-pay'
 
@@ -63,5 +64,33 @@ describe('banking a guess-nine line', () => {
     expect(
       withLineBanked({ graded: { kind: 'blackWord' }, sheet: sheetOf([1]) })
     ).toEqual(sheetOf([1], true))
+  })
+})
+
+describe('ticking a spoken guess-nine list', () => {
+  it('[guessnine] banks a ticked cell once, however often it is ticked', () => {
+    const once = withCellTicked({ cell: 4, isTicked: true, sheet: EMPTY_SHEET })
+
+    expect(withCellTicked({ cell: 4, isTicked: true, sheet: once })).toEqual(
+      sheetOf([4])
+    )
+  })
+
+  it('[guessnine] takes a mistaken tick back', () => {
+    expect(
+      withCellTicked({ cell: 4, isTicked: false, sheet: sheetOf([2, 4]) })
+    ).toEqual(sheetOf([2]))
+  })
+
+  it('[guessnine] never takes the black word back once ticked', () => {
+    const fallen = withCellTicked({
+      cell: 'blackWord',
+      isTicked: true,
+      sheet: sheetOf([2])
+    })
+
+    expect(
+      withCellTicked({ cell: 'blackWord', isTicked: false, sheet: fallen })
+    ).toEqual(sheetOf([2], true))
   })
 })

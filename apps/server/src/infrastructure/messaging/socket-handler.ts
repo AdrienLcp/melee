@@ -13,6 +13,7 @@ import type { Nickname, PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { RoomSettings } from '@melee/protocol/room'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
+import { isPlayableWithTeams } from '@melee/core/room/game-capabilities'
 import { offersAnswerMode } from '@melee/core/room/game-modes'
 import { followedByLineUp, lineUpHolds } from '@melee/core/room/line-up'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
@@ -48,6 +49,7 @@ import {
   type ChallengeRejection
 } from '@/domain/round/challenge-round'
 import { canPlayDuel } from '@/domain/round/duels'
+import { tickSpokenCell } from '@/domain/round/guess-nine-round'
 import {
   everyoneHasCounted,
   registerInnerclockPress
@@ -455,6 +457,10 @@ const dispatch = ({
       writeLine(message, active, outbound, engine)
       break
     }
+    case 'guessnine.tick': {
+      tick(message, active, outbound, engine)
+      break
+    }
     case 'host.startRound': {
       start({
         challengeText: message.challengeText,
@@ -855,6 +861,51 @@ const writeLine = (
       roundId: message.roundId
     })
   })
+}
+
+const tick = (
+  message: Extract<ClientMessage, { type: 'guessnine.tick' }>,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const { room } = engine
+
+  if (active.playerId === null) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seated player keeps a list'
+    })
+
+    return
+  }
+
+  const ticked = tickSpokenCell({
+    cell: message.cell,
+    isTicked: message.isTicked,
+    playerId: active.playerId,
+    room,
+    roundId: message.roundId
+  })
+
+  if (ticked.status === 'failure') {
+    sendError(outbound, {
+      code: ticked.error,
+      fatal: false,
+      message: 'That tick was not kept'
+    })
+
+    return
+  }
+
+  if (ticked.data.closes) {
+    closeRound(room, engine.now())
+  } else {
+    touch(room, engine.now())
+  }
+
+  publishRoom(engine)
 }
 
 const buzz = (
@@ -1448,6 +1499,18 @@ const reconfigure = (
       code: 'invalid_message',
       fatal: false,
       message: 'That game does not offer that answer mode'
+    })
+
+    return
+  }
+
+  if (
+    !isPlayableWithTeams({ mode: settings.mode.kind, teams: settings.teams })
+  ) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'A spoken round needs teams that hold seats'
     })
 
     return

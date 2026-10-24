@@ -20,6 +20,16 @@ const BUZZER_ONLY = ['buzzer'] as const satisfies readonly AnswerMode[]
 const TYPED_ONLY = ['typed'] as const satisfies readonly AnswerMode[]
 
 /**
+ * Guess nine is typed on every screen at once, or said aloud by one team while
+ * a seat of another ticks what it hears — which needs teams with seats, and
+ * `isPlayableWithTeams` says so.
+ */
+const TYPED_OR_SPOKEN = [
+  'typed',
+  'spoken'
+] as const satisfies readonly AnswerMode[]
+
+/**
  * The world map is answered by putting a marker down, which is neither a pick
  * among four nor a line typed: the answer is a place, and the server measures it.
  */
@@ -107,7 +117,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       }
     case 'guessnine':
       return {
-        answerModes: TYPED_ONLY,
+        answerModes: TYPED_OR_SPOKEN,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -161,3 +171,17 @@ export const isPlayableAloud = ({
  */
 export const answerModesFor = (game: GameKind | null): readonly AnswerMode[] =>
   game === null ? answerModes : capabilitiesOf(game).answerModes
+
+/**
+ * Whether a room's teams can play `mode`: a spoken round needs a team to guess
+ * and a seat of another to keep the list, so it asks for teams that hold seats
+ * — never none, never a table answering aloud with no screen in hand.
+ */
+export const isPlayableWithTeams = ({
+  mode,
+  teams
+}: {
+  mode: AnswerMode
+  teams: TeamsSettings
+}): boolean =>
+  mode !== 'spoken' || teams.kind === 'drawn' || teams.kind === 'chosen'

@@ -296,6 +296,8 @@ export const FR_DICTIONARY = defineDictionary({
       reload: 'Recharger la page',
       title: 'Quelque chose a cassé'
     },
+    spoken_needs_two_teams:
+      'Équipe par équipe, il faut deux équipes avec quelqu’un dans chacune.',
     stale_round: 'Cette manche est déjà terminée.',
     teams_locked: 'Les équipes ne peuvent plus changer comme ça.',
     wall_not_paired:
@@ -335,6 +337,22 @@ export const FR_DICTIONARY = defineDictionary({
     play: 'Jouer à Devineuf',
     scoring:
       'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+    scoringSpoken:
+      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
+    spoken: {
+      blackWord: {
+        ask: 'Ils l’ont dit ? Leur manche s’arrête et ne vaut plus rien.',
+        confirm: 'Ils l’ont dit',
+        keep: 'Pas dit'
+      },
+      guessing: 'À voix haute : {team}',
+      hidden: 'Cachée : tu peux montrer l’écran sans rien dévoiler.',
+      hide: 'Cacher la liste',
+      keep: 'Tu tiens la liste pour {team}. Coche chaque réponse entendue.',
+      keeper: '{nickname} tient la liste',
+      show: 'Voir la liste',
+      yourTeam: 'Dites vos réponses à voix haute. {nickname} les coche.'
+    },
     tagline: 'Neuf réponses. Un mot noir.',
     tier: defineTranslation('{points:plural}', {
       plural: { points: { one: '{?} point', other: '{?} points' } }
@@ -360,6 +378,7 @@ export const FR_DICTIONARY = defineDictionary({
       move: 'On déplace l’allumette',
       order: 'Dans l’ordre',
       point: 'On pointe sur la carte',
+      spoken: 'Équipe par équipe',
       typed: 'On tape'
     },
     answerWindow: {

@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import type { GuessNineCell } from '@melee/protocol/guess-nine'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
@@ -22,6 +23,7 @@ import {
   worldmapContent
 } from '@/helpers/round-content'
 import { AskedQuestion } from '@/presentation/components/asked-question'
+import { GuessNineSpoken } from '@/presentation/components/guess-nine-spoken'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
@@ -48,6 +50,10 @@ type PlayingStageProps = {
   clipOffer: React.ReactNode
   /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
   onAnswer: ((answer: PlayerAnswer) => boolean) | null
+  /** Sends the seat's tick when it keeps a spoken guess nine's list; `null` when this screen keeps none. */
+  onTick:
+    | ((cell: GuessNineCell | 'blackWord', isTicked: boolean) => boolean)
+    | null
   round: RoundView
   view: HostRoomView
 }
@@ -63,6 +69,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   children,
   clipOffer,
   onAnswer,
+  onTick,
   round,
   view
 }) => {
@@ -203,6 +210,15 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       {guessNine !== null &&
         (onAnswer === null ? (
           <GuessNineGauge foundCellCount={guessNine.foundCellCount} />
+        ) : guessNine.spoken !== null ? (
+          <GuessNineSpoken
+            key={round.id}
+            onTick={onTick}
+            players={view.players}
+            seatId={answersAs}
+            spoken={guessNine.spoken}
+            teams={view.teams}
+          />
         ) : (
           <GuessNineAnswer
             key={round.id}
@@ -212,6 +228,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           />
         ))}
       {view.players.length > 0 &&
+        mode !== 'spoken' &&
         (mode !== 'buzzer' ? (
           <AnsweredPawns players={view.players} round={round} />
         ) : (

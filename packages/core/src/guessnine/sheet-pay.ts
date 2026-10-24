@@ -65,3 +65,26 @@ export const withLineBanked = ({
       return sheet
   }
 }
+
+/**
+ * The sheet after the keeper of a spoken round ticks or unticks one of the
+ * nine, which only the keeper's hand decides: a mistaken tick is taken back
+ * until the reveal, and the black word, once ticked, is not.
+ */
+export const withCellTicked = ({
+  cell,
+  isTicked,
+  sheet
+}: {
+  cell: GuessNineCell | 'blackWord'
+  isTicked: boolean
+  sheet: CellsVerdict
+}): CellsVerdict => {
+  if (cell === 'blackWord') {
+    return isTicked ? { ...sheet, hitBlackWord: true } : sheet
+  }
+
+  const others = sheet.foundCells.filter((found) => found !== cell)
+
+  return { ...sheet, foundCells: isTicked ? [...others, cell] : others }
+}

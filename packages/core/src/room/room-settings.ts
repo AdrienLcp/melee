@@ -11,9 +11,11 @@ import {
   type ModeSettings,
   type RoomSettings
 } from '@melee/protocol/room'
+import type { TeamsSettings } from '@melee/protocol/team'
 
 import { randomUnit } from '../helpers/random'
 import { questionLanguageFor } from '../quiz/question-language'
+import { isPlayableWithTeams } from './game-capabilities'
 import { modeOfferedBy } from './game-modes'
 import { dealtOrder } from './running-order'
 
@@ -299,10 +301,48 @@ export const movedToEntry = ({
     // An evening with no judge has nobody set aside to hear an answer, so each
     // game is answered the way it opens — four candidates for the quiz —
     // whatever this host left it on when they ran it alone with a judge.
-    mode: isEvening && !settings.hasJudge ? opened.mode : setup.mode,
+    mode: modeFittedToTeams({
+      fallback: opened.mode,
+      mode: isEvening && !settings.hasJudge ? opened.mode : setup.mode,
+      teams: settings.teams
+    }),
     roundCount: isEvening ? settings.roundCount : setup.roundCount
   }
 }
+
+const modeFittedToTeams = ({
+  fallback,
+  mode,
+  teams
+}: {
+  fallback: ModeSettings
+  mode: ModeSettings
+  teams: TeamsSettings
+}): ModeSettings =>
+  isPlayableWithTeams({ mode: mode.kind, teams }) ? mode : fallback
+
+/**
+ * The settings with a mode their teams cannot play taken back to the game's
+ * own: turning the teams off under a spoken guess nine leaves nobody to keep
+ * the list, so the press that does it types the round instead.
+ */
+export const fittedToTeams = ({
+  locale,
+  settings
+}: {
+  locale: Locale
+  settings: RoomSettings
+}): RoomSettings =>
+  settings.game === null
+    ? settings
+    : {
+        ...settings,
+        mode: modeFittedToTeams({
+          fallback: openedSetup({ game: settings.game.kind, locale }).mode,
+          mode: settings.mode,
+          teams: settings.teams
+        })
+      }
 
 /**
  * Whether the change would alter what a round already under way is *built on*.

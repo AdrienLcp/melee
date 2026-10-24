@@ -235,6 +235,17 @@ export const RoomStage: React.FC<RoomStageProps> = ({
                 })
             : null
         }
+        onTick={
+          playsThisRound
+            ? (cell, isTicked) =>
+                controls.send({
+                  cell,
+                  isTicked,
+                  roundId: round.id,
+                  type: 'guessnine.tick'
+                })
+            : null
+        }
         round={round}
         view={view}
       >

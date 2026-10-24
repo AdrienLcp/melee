@@ -22,6 +22,8 @@ import { teamCountOf, teamIdAt } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
 import { teamRoundResult } from '@melee/core/team/team-score'
 
+import { isSpokenRound } from '@/domain/round/guess-nine-round'
+
 import type { Participant, Room, RoomTeam } from './room'
 import { touch } from './room-service'
 
@@ -294,7 +296,9 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
     ? 0
     : teamRoundResult({
         answersAsOne:
-          room.round.duel !== null || room.round.content.kind === 'challenge',
+          room.round.duel !== null ||
+          room.round.content.kind === 'challenge' ||
+          isSpokenRound(room.round),
         awards: room.round.awards,
         openedWithPlayerIds: room.round.openedWithPlayerIds,
         seatIds: seatsOf(room, teamId).map((seat) => seat.id)

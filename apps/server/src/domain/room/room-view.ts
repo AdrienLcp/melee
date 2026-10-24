@@ -259,7 +259,10 @@ const toBaseView = ({
   isHostConnected,
   phase: room.phase,
   players: toPublicPlayers(room),
-  round: room.round === null ? null : toRoundView({ round: room.round, youId }),
+  round:
+    room.round === null
+      ? null
+      : toRoundView({ room, round: room.round, youId }),
   roundElapsedMs: room.round === null ? 0 : elapsedRoundMs(room.round, now),
   settings: room.settings,
   teams: toTeamViews(room),
@@ -306,9 +309,11 @@ const toPublicPlayers = (room: Room): PublicPlayer[] => {
  * this is the floor above it.
  */
 const toRoundView = ({
+  room,
   round,
   youId
 }: {
+  room: Room
   round: Round
   youId: PlayerId | null
 }): RoundView => ({
@@ -327,7 +332,7 @@ const toRoundView = ({
     playerId
   })),
   awards: round.awards,
-  content: toContentView({ round, youId }),
+  content: toContentView({ room, round, youId }),
   duel: round.duel,
   durationMs: round.durationMs,
   id: round.id,
@@ -364,9 +369,11 @@ const saidBy = (attempts: PlayerAttempts): string =>
     : (attempts.lastMiss ?? '')
 
 const toContentView = ({
+  room,
   round,
   youId
 }: {
+  room: Room
   round: Round
   youId: PlayerId | null
 }): RoundContent => {
@@ -431,7 +438,7 @@ const toContentView = ({
   }
 
   if (content.kind === 'guessnine') {
-    return guessNineContentView({ content, round, youId })
+    return guessNineContentView({ content, room, round, youId })
   }
 
   if (content.kind === 'timeline') {

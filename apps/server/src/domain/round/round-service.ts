@@ -70,7 +70,12 @@ import {
   toTeamViews
 } from '@/domain/room/team-service'
 import { takeDuel } from '@/domain/round/duels'
-import { gradeSheetLine, keepSheetLine } from '@/domain/round/guess-nine-round'
+import {
+  gradeSheetLine,
+  keepSheetLine,
+  payGuessingTeam,
+  takeSpokenTurn
+} from '@/domain/round/guess-nine-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import { markEveryItem } from '@/domain/round/slate-round'
@@ -180,6 +185,10 @@ export const openRound = ({
   }
 
   const duel = takeDuel(room)
+
+  if (content.kind === 'guessnine') {
+    content.spoken = takeSpokenTurn(room)
+  }
 
   const round: Round = {
     activeBuzz: null,
@@ -453,7 +462,8 @@ export const registerAnswer = ({
     return Result.failure('stale_round')
   }
 
-  if (round.mode.kind === 'buzzer') {
+  // A spoken round is answered aloud and ticked by its keeper, never typed.
+  if (round.mode.kind === 'buzzer' || round.mode.kind === 'spoken') {
     return Result.failure('invalid_message')
   }
 
@@ -1262,6 +1272,13 @@ export const closeRound = (room: Room, now: number): void => {
   const mode = round.mode.kind
 
   if (mode === 'buzzer') {
+    revealRound(room, now)
+
+    return
+  }
+
+  if (mode === 'spoken') {
+    payGuessingTeam(room)
     revealRound(room, now)
 
     return

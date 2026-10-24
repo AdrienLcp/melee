@@ -29,7 +29,10 @@ import {
 } from '@melee/protocol/worldmap'
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
-import { answerModesFor } from '@melee/core/room/game-capabilities'
+import {
+  answerModesFor,
+  isPlayableWithTeams
+} from '@melee/core/room/game-capabilities'
 import { isJudgedByHost } from '@melee/core/room/game-modes'
 
 import { NumberField } from '@/presentation/components/number-field'
@@ -234,7 +237,9 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   const isDisabled = !isLive
   const game = settings.game
   const mode = settings.mode
-  const offeredModes = answerModesFor(game?.kind ?? null)
+  const offeredModes = answerModesFor(game?.kind ?? null).filter((offered) =>
+    isPlayableWithTeams({ mode: offered, teams: settings.teams })
+  )
   // Read from the draft rather than from the room, or this strip goes on
   // claiming to work for a whole round after the composers were chosen.
   const chosenSource =

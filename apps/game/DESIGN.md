@@ -806,6 +806,16 @@ it pays, the finders' pawns, *Nobody* on a socket, the seat's own in the
 than 3:2, a strip under them otherwise. Nothing moves inside the round: a hit
 lights its cell without the strike the comp drew.
 
+**Team by team** (the spoken mode) keeps the same grid. The keeper's list is
+the nine as paper presses — name, pips, a check once ticked on `--good-soft` —
+and the black word an ink press under them that turns into its own question
+(*did they say it?*) before it ends anything; the list opens hidden, the grid
+printing its pips alone. Every other seat reads the grid lighting as the
+keeper ticks, the guessing team told who to say its answers to, the rest
+shown the **turn badge** (`GuessNineTurn`): the duel badge's material, the
+guessing team's band and pawn, the keeper's pawn and name beside it, also in
+the console's and the wall's header.
+
 ### Slate
 Every item is a piece: paper with a groove inked as far as the table has
 written; the saffron token once collected and owed to the wall (a lock and the marking

@@ -3,7 +3,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
-import type { GuessNineLabels } from '@melee/protocol/guess-nine'
+import type { GuessNineCell, GuessNineLabels } from '@melee/protocol/guess-nine'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
   ActiveBuzz,
@@ -74,6 +74,7 @@ import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { GuessNineReveal } from '@/presentation/components/guess-nine-reveal'
+import { GuessNineSpoken } from '@/presentation/components/guess-nine-spoken'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -117,6 +118,12 @@ type PlayerRoundProps = {
   onChooseTeam: (teamId: TeamId) => boolean
   /** `false` from the socket means the frame was never written. */
   onReady: (isReady: boolean) => boolean
+  /** The keeper's tick in a spoken guess nine; `false` from the socket means the frame was never written. */
+  onTick: (tick: {
+    cell: GuessNineCell | 'blackWord'
+    isTicked: boolean
+    roundId: string
+  }) => boolean
   /** `false` from the socket means the frame was never written. */
   onWriteLine: (itemIndex: number, answer: string, roundId: string) => boolean
   view: PlayerRoomView
@@ -251,6 +258,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   onBuzz,
   onChooseTeam,
   onReady,
+  onTick,
   onWriteLine,
   view
 }) => {
@@ -557,12 +565,25 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             theme={guessNine.theme}
             view={view}
           />
-          <GuessNineAnswer
-            key={round.id}
-            onAnswer={answerWithRound}
-            round={round}
-            verdict={view.yourVerdict}
-          />
+          {guessNine.spoken === null ? (
+            <GuessNineAnswer
+              key={round.id}
+              onAnswer={answerWithRound}
+              round={round}
+              verdict={view.yourVerdict}
+            />
+          ) : (
+            <GuessNineSpoken
+              key={round.id}
+              onTick={(cell, isTicked) =>
+                onTick({ cell, isTicked, roundId: round.id })
+              }
+              players={view.players}
+              seatId={view.youId}
+              spoken={guessNine.spoken}
+              teams={view.teams}
+            />
+          )}
         </section>
       )
     }

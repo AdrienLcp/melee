@@ -1,6 +1,7 @@
 import { z } from 'zod'
 
 import { challengeFinisherSchema, challengeTextSchema } from './challenge'
+import { guessNineCellSchema } from './guess-nine'
 import {
   hostTokenSchema,
   nicknameSchema,
@@ -180,6 +181,21 @@ export const writeSlateLineMessageSchema = z.object({
   itemIndex: slateItemIndexSchema,
   roundId: roundIdSchema,
   type: z.literal('slate.write')
+})
+
+/**
+ * The keeper of a spoken guess-nine round ticking what the guessing team said,
+ * or taking back a mistaken tick. The black word is ticked once and for good:
+ * it cuts the round and voids it, so the screen asks twice before sending it.
+ *
+ * In the game's namespace, like `slate.write`: nothing else on the shelf has a
+ * seat keeping somebody else's list.
+ */
+export const tickGuessNineMessageSchema = z.object({
+  cell: z.union([guessNineCellSchema, z.literal('blackWord')]),
+  isTicked: z.boolean(),
+  roundId: roundIdSchema,
+  type: z.literal('guessnine.tick')
 })
 
 export const updateSettingsMessageSchema = z.object({
@@ -455,7 +471,8 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
-  writeSlateLineMessageSchema
+  writeSlateLineMessageSchema,
+  tickGuessNineMessageSchema
 ])
 
 /** A wall says who it is and keeps its clock. It never controls the room, nor answers. */
@@ -475,6 +492,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema,
+  tickGuessNineMessageSchema,
   updateSettingsMessageSchema,
   startRoundMessageSchema,
   judgeMessageSchema,
@@ -555,5 +573,6 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
  */
 export const FLOOR_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.buzz',
-  'player.answer'
+  'player.answer',
+  'guessnine.tick'
 ])

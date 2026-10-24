@@ -8,7 +8,10 @@ import {
   challengeContent,
   typedChallengeLabels
 } from '@/domain/round/challenge-round'
-import { guessNineContent } from '@/domain/round/guess-nine-round'
+import {
+  canTakeSpokenTurn,
+  guessNineContent
+} from '@/domain/round/guess-nine-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   matchsticksContent,
@@ -300,6 +303,16 @@ export const beginRound = async (
   }
 
   if (game.kind === 'guessnine') {
+    if (room.settings.mode.kind === 'spoken' && !canTakeSpokenTurn(room)) {
+      tellHost(engine, {
+        code: 'spoken_needs_two_teams',
+        message: 'A spoken round needs two teams with a seat each'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
     const theme = drawGuessNineTheme({ playedIds: room.playedContentIds })
 
     if (theme === null) {

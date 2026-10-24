@@ -1,6 +1,6 @@
 # 45 — Guess nine
 
-**Steps 1 to 3 landed — the bank, the server and the screens.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
+**Steps 1 to 4 landed — the bank, the server, the screens and the spoken mode.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
 *Quentin Tarantino's films* — and nine answers are hidden behind it, each worth
 more the less obvious it is. Hidden with them is one **black word**: an answer
 that sounds right and is not (*True Romance*, written by Tarantino, directed by
@@ -215,6 +215,34 @@ seat keeps before any keeps twice — the duel's draw.
 - The device is never assumed: the keeper may be a phone held up to the
   guessers or a laptop turned round; the keeper's screen hides the list behind
   one press so it can be shown without spoiling.
+
+**Done 24/10/2026.** `spoken` is an answer mode, `guessnine.tick` the keeper's
+frame, `PROTOCOL_VERSION` 51. What it settled beyond the plan:
+
+- **Named *Team by team* / *Équipe par équipe*** on the console, never *aloud*:
+  the teams' own *aloud* setting is a table with no screen at all, and the two
+  side by side in one panel said the same word for opposite things.
+- **The keeper ticks; the server only counts.** The ticked cells go to every
+  screen as indices — the room heard them — and the list is checked on every
+  frame rather than at the draw, so a keeper the host moves into the guessing
+  team loses it and its ticks are `not_your_turn`.
+- **The pay is the challenge's**: each guessing seat is paid the sheet and the
+  team once (`answersAsOne`), so a seat's reveal says what the round did to it.
+  A `teamAwards` path paid the team right and told each guesser *nothing this
+  time*.
+- **A room that cannot hold the mode is fitted, never refused on the frame
+  the host did not mean**: `fittedToTeams` types the round when the teams go
+  off, and `movedToEntry` never restores a spoken setup the teams cannot play.
+- **Not built: the console as keeper** for a room without teams. A host who
+  wants it said aloud with no teams has nobody on another team to hold the
+  list; the mode is simply not offered there.
+
+Seen muted through a Playwright script at 1280×800, 390×844, 360×640 and
+430×932, light in English and dark in French, with three teams: the keeper's
+list hidden and shown, ticks and a taken-back tick on every screen, the black
+word asked twice and voiding the round, the console's reveal and each seat's.
+A seated console keeping the list and a paired wall were not seen; both draw
+the same components.
 
 — cut here: spoken mode shipped —
 

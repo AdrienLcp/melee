@@ -269,6 +269,7 @@ const Lobby: React.FC<{
               send({ teamId, type: 'player.chooseTeam' })
             }
             onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+            onTick={(tick) => send({ ...tick, type: 'guessnine.tick' })}
             onWriteLine={(itemIndex, answer, roundId) =>
               send({ answer, itemIndex, roundId, type: 'slate.write' })
             }
@@ -311,6 +312,7 @@ const Lobby: React.FC<{
                 send({ teamId, type: 'player.chooseTeam' })
               }
               onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+              onTick={(tick) => send({ ...tick, type: 'guessnine.tick' })}
               onWriteLine={(itemIndex, answer, roundId) =>
                 send({ answer, itemIndex, roundId, type: 'slate.write' })
               }

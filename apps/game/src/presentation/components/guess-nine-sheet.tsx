@@ -2,6 +2,7 @@ import type React from 'react'
 
 import {
   GUESS_NINE_CELL_COUNT,
+  type GuessNineCell,
   type GuessNineSentLine
 } from '@melee/protocol/guess-nine'
 
@@ -16,6 +17,11 @@ import './guess-nine-sheet.sass'
 type GuessNineSheetProps = {
   /** The seat's own lines as the server read them back, which is all it knows of a cell's text. */
   lines: readonly GuessNineSentLine[]
+  /**
+   * The cells a keeper ticked in a spoken round, lit with their pips alone: the
+   * table said them aloud, and the screen was never sent their names.
+   */
+  tickedCells?: readonly GuessNineCell[]
 }
 
 const CELLS = Array.from({ length: GUESS_NINE_CELL_COUNT }, (_, cell) => cell)
@@ -28,7 +34,10 @@ const CELLS = Array.from({ length: GUESS_NINE_CELL_COUNT }, (_, cell) => cell)
  * The black word lies over the grid once the seat lands on it, the cells under
  * it voided: the round is cut and worth nothing.
  */
-export const GuessNineSheet: React.FC<GuessNineSheetProps> = ({ lines }) => {
+export const GuessNineSheet: React.FC<GuessNineSheetProps> = ({
+  lines,
+  tickedCells = []
+}) => {
   const translate = useTranslate()
   const blackWord = lines.find((line) => line.hitBlackWord)?.line ?? null
 
@@ -40,9 +49,10 @@ export const GuessNineSheet: React.FC<GuessNineSheetProps> = ({ lines }) => {
       <ol aria-label={translate('guessnine.grid')}>
         {CELLS.map((cell) => {
           const typed = lines.find((line) => line.cells.includes(cell))?.line
+          const isFound = typed !== undefined || tickedCells.includes(cell)
 
           return (
-            <li data-found={typed !== undefined || undefined} key={cell}>
+            <li data-found={isFound || undefined} key={cell}>
               {typed !== undefined && <span className='typed'>{typed}</span>}
               <GuessNinePips tier={tierOfCell(cell)} />
             </li>

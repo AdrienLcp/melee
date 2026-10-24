@@ -7,7 +7,8 @@ import { capabilitiesOf } from '../room/game-capabilities'
 /**
  * Whether a round of this game could be a duel while the room watches. A race
  * cannot — the buzzer mode, the bare buzzer and the reflex race are decided
- * *between* players — and one team has nobody to duel.
+ * *between* players — nor a spoken round, which one whole team already plays
+ * while the room listens; and one team has nobody to duel.
  */
 export const canPlayDuel = ({
   game,
@@ -21,6 +22,7 @@ export const canPlayDuel = ({
   game !== null &&
   capabilitiesOf(game).playsDuels &&
   mode !== 'buzzer' &&
+  mode !== 'spoken' &&
   teamCount > 1
 
 /** Whether this seat plays the round: everyone does, unless it is a duel between two others. */

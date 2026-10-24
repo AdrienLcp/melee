@@ -94,6 +94,12 @@ export const protocolErrorCodes = [
    * without one, and the host can switch the room back in the lobby.
    */
   'room_plays_aloud',
+  /**
+   * A spoken guess-nine round asked of a room where fewer than two teams hold
+   * a connected seat: one team guesses and a seat of another keeps the list,
+   * so the round cannot open until the teams are filled.
+   */
+  'spoken_needs_two_teams',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

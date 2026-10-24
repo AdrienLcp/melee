@@ -40,7 +40,9 @@ import { asRoomScreenView } from './wall-view'
 import '@/features/host/host-console-page.sass'
 import './wall-page.sass'
 
+import { guessNineContent } from '@/helpers/round-content'
 import { DuelBadge } from '@/presentation/components/duel-badge'
+import { GuessNineTurn } from '@/presentation/components/guess-nine-turn'
 import { Main } from '@/presentation/components/main'
 import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
@@ -130,6 +132,8 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
+  const spokenTurn = guessNineContent(view?.round)?.spoken ?? null
+
   return (
     <PawnColoursProvider view={view}>
       <Main className='host-console-page wall-page'>
@@ -153,6 +157,16 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
               teams={view.teams}
             />
           )}
+          {spokenTurn !== null &&
+            view !== null &&
+            view.phase !== 'finished' && (
+              <GuessNineTurn
+                players={view.players}
+                seatId={view.youId}
+                spoken={spokenTurn}
+                teams={view.teams}
+              />
+            )}
           {!canPlay && (
             <Button
               className='sound-offer'

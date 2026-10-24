@@ -56,7 +56,7 @@ export const answerModeLabelKey = (
 ): BuiltKey<`host.answerMode.${AnswerMode}`> => `host.answerMode.${mode}`
 
 /** The modes a game answering against its own question offers. */
-type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point'>
+type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point' | 'spoken'>
 
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
@@ -82,6 +82,7 @@ export const scoringKey = ({
   | 'buzzer.scoring'
   | 'challenge.scoring'
   | 'guessnine.scoring'
+  | 'guessnine.scoringSpoken'
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
@@ -94,11 +95,15 @@ export const scoringKey = ({
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
 > => {
-  // A marker is the map's alone, an order the timeline's and a move the
-  // matchsticks', so the two games that serve their own question are never in
-  // any of them; reading them as a pick keeps the switch total.
+  // A marker is the map's alone, an order the timeline's, a move the
+  // matchsticks' and a spoken round guess nine's, so the two games that serve
+  // their own question are never in any of them; reading them as a pick keeps
+  // the switch total.
   const served =
-    answerMode === 'point' || answerMode === 'order' || answerMode === 'move'
+    answerMode === 'point' ||
+    answerMode === 'order' ||
+    answerMode === 'move' ||
+    answerMode === 'spoken'
       ? 'choice'
       : answerMode
 
@@ -114,7 +119,9 @@ export const scoringKey = ({
     case 'challenge':
       return 'challenge.scoring'
     case 'guessnine':
-      return 'guessnine.scoring'
+      return answerMode === 'spoken'
+        ? 'guessnine.scoringSpoken'
+        : 'guessnine.scoring'
     case 'innerclock':
       return 'innerclock.scoring'
     case 'matchsticks':
