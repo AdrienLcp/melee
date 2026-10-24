@@ -80,3 +80,14 @@ stage, the panel outside it, and only with no wall on a wide screen.
   left the menu for `presentation/components/wall-pairing-form.tsx`, shared by
   both. The lobby's pointer opens the tab through `useOptionalPanelTabOpener`
   (`host-panel.tsx`).
+- **Step 4.** `trackShapeFor` and `trackCellOf` in
+  `packages/core/src/board/track-shape.ts`; `BoardTrack` moved to
+  `presentation/components/` and the console mounts it on a desk with no wall,
+  bounded to the stage by `host-panel.sass` — the panel keeps its own padding.
+  Measured at 1440 × 900: 10 → line, 30 → U, 60 → loop, nothing under the track.
+  Two departures from `g-u-console.html`: the legs are drawn in one band (a
+  case's smaller side) with the cases along them sharing out the rest, because
+  a U of stretched cells gave a standing wall a top row 102px thick; and that
+  band is held to the wall's old `clamp(2.5rem, 9vmin, 7rem)`, which a standing
+  768 × 1024 wall needs for its final board — so the 10-case line is 81px tall
+  at 900, not 88.

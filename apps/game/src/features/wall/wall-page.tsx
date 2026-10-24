@@ -20,6 +20,7 @@ import {
 } from '@/infrastructure/router/navigation'
 import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
+import { BoardTrack } from '@/presentation/components/board-track'
 import { Button } from '@/presentation/components/button'
 import { ConnectionRefused } from '@/presentation/components/connection-refused'
 import { Link } from '@/presentation/components/link'
@@ -34,7 +35,6 @@ import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { useIdleChrome } from '@/presentation/use-idle-chrome'
 
-import { BoardTrack } from './board-track'
 import { useAbsentFor } from './use-absent-for'
 import { asRoomScreenView } from './wall-view'
 

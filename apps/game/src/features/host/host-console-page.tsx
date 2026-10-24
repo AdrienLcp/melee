@@ -1,4 +1,4 @@
-import { useScreenAwake } from '@adrienlcp/browser/react'
+import { useMediaQuery, useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
@@ -13,6 +13,7 @@ import type {
 } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import {
   type ChallengeChoice,
   challengeHandOf,
@@ -59,6 +60,7 @@ import {
 } from '@/infrastructure/storage/session-storage'
 import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
+import { BoardTrack } from '@/presentation/components/board-track'
 import { DuelBadge } from '@/presentation/components/duel-badge'
 import { GuessNineTurn } from '@/presentation/components/guess-nine-turn'
 import { Loader } from '@/presentation/components/loader'
@@ -76,6 +78,7 @@ import {
   NOBODY,
   useReportRoomActions
 } from '@/presentation/room-actions/room-actions-provider'
+import { DESK_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
@@ -199,6 +202,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // are the flange stage 10 measured — so the console falls silent while one is
   // there, and picks the clip up again where the room's clock says it is.
   const isSpeaker = view?.isWallConnected !== true
+  const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
   const { canPlay, refusal, unlock } = useRoundAudio({
     clock,
     view: isSpeaker ? view : null,
@@ -770,6 +774,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         }}
       >
         {page}
+        {isSpeaker && isDesk && view.settings.board.kind === 'track' && (
+          <BoardTrack
+            length={view.settings.board.length}
+            pawns={trackPawnsOf(view)}
+          />
+        )}
       </HostPanel>
     </PawnColoursProvider>
   )

@@ -103,6 +103,24 @@
       > .host-console-page
         min-width: 0
 
+      // The track stands round the stage, never round the host's own panel.
+      > .board-track
+        inset-inline-end: var(--host-panel-width)
+
+      &[data-folded] > .board-track
+        inset-inline-end: var(--host-rail-width)
+
+      &[data-side='left'] > .board-track
+        inset-inline: var(--host-panel-width) 0
+
+      &[data-side='left'][data-folded] > .board-track
+        inset-inline: var(--host-rail-width) 0
+
+      // The track's clearance is the stage's: the panel keeps its own padding.
+      > .board-track ~ .host-panel
+        --layout-padding-block-end: max(var(--layout-padding), var(--safe-area-bottom))
+        --layout-padding-block-start: max(var(--layout-padding), var(--safe-area-top))
+
     .host-panel
       @include box-lid.paper
 

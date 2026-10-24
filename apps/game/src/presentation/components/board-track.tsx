@@ -10,6 +10,11 @@ import {
 
 import type { PawnId } from '@melee/core/board/board-strategy'
 import type { TrackPawn } from '@melee/core/board/track-pawns'
+import {
+  type TrackShape,
+  trackCellOf,
+  trackShapeFor
+} from '@melee/core/board/track-shape'
 
 import {
   TrackPawnPiece,
@@ -21,16 +26,12 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import './board-track.sass'
 
 const CASES_PER_MARK = 5
-const MIN_ROWS = 2
-const MIN_TOP_COLUMNS = 1
 /** Past this many on one case, three are drawn and a count stands for the rest. */
 const MAX_PAWNS_DRAWN = 4
 const PAWNS_BESIDE_COUNT = 3
 const STEP_MS = 240
 /** Long enough for the answer to land before the pawns set off. */
 const WALK_DELAY_MS = 600
-
-type TrackShape = { columns: number; rows: number }
 
 type WalkTarget = { id: PawnId; move: number; target: number }
 
@@ -42,10 +43,11 @@ type BoardTrackProps = {
 }
 
 /**
- * The table's race, printed round the wall like a board game's track: up the
- * left side from the start, across the top, down the right side to the
- * finish, the bottom left open for the round. Its rows follow the screen's
- * aspect, so a wall lying down and one standing up draw the same U.
+ * The table's race, printed round the stage like a board game's track: one
+ * line along the top while its cases stay readable, else up the left side,
+ * across the top and down the right, the bottom left open for the round, else
+ * closed along the bottom too (`trackShapeFor`). It fills the wall, or a
+ * console's stage beside its panel when no wall is in the room.
  *
  * At a reveal each pawn walks the cases it just won rather than teleporting,
  * which is the moment the room watches.
@@ -58,7 +60,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
   const shownCases = useWalkedCases(pawns)
 
   return (
-    <div className='board-track' ref={trackRef}>
+    <div className='board-track' data-shape={shape?.kind} ref={trackRef}>
       <VisuallyHidden elementType='ol'>
         {pawns.map((pawn) => (
           <li key={pawn.id}>
@@ -80,7 +82,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
           }}
         >
           {casesOf(length).map((caseIndex) => {
-            const [column, row] = cellOf({ caseIndex, shape })
+            const [column, row] = trackCellOf({ caseIndex, shape })
             const standing = pawns.filter(
               (pawn) => shownCases.get(pawn.id) === caseIndex
             )
@@ -139,9 +141,9 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
 }
 
 /**
- * The U's rows and columns for this screen: as many rows as keep the cases
- * near square once the two sides and the top share the track out, and never
- * so many that the top keeps no case of its own.
+ * The track's shape in the box it fills, re-measured as the box changes. The
+ * smaller side of a case is published on the root element, where the page's gutters and the fixed menu read it to keep
+ * clear of the track.
  */
 const useTrackShape = ({
   caseCount,
@@ -159,38 +161,40 @@ const useTrackShape = ({
       return
     }
 
-    const measure = () => {
-      const { clientHeight, clientWidth } = track
+    const root = document.documentElement.style
 
-      if (clientHeight === 0 || clientWidth === 0) {
+    const measure = () => {
+      const { clientHeight: height, clientWidth: width } = track
+
+      if (height === 0 || width === 0) {
         setShape(null)
 
         return
       }
 
-      const maxRows = Math.floor((caseCount - MIN_TOP_COLUMNS) / 2)
-      const rows = Math.min(
-        maxRows,
-        Math.max(
-          MIN_ROWS,
-          Math.round((caseCount + 2) / (2 + clientWidth / clientHeight))
-        )
-      )
-      const columns = caseCount + 2 - 2 * rows
+      const next = trackShapeFor({ caseCount, height, width })
 
+      root.setProperty(
+        '--board-case',
+        `${Math.min(next.cellWidth, next.cellHeight)}px`
+      )
       setShape((current) =>
-        current?.columns === columns && current.rows === rows
+        current?.kind === next.kind &&
+        current.columns === next.columns &&
+        current.rows === next.rows
           ? current
-          : { columns, rows }
+          : next
       )
     }
 
     const observer = new ResizeObserver(measure)
 
+    measure()
     observer.observe(track)
 
     return () => {
       observer.disconnect()
+      root.removeProperty('--board-case')
     }
   }, [caseCount, trackRef])
 
@@ -336,25 +340,3 @@ const markOf = ({
 
 const casesOf = (length: number): number[] =>
   Array.from({ length: length + 1 }, (_, caseIndex) => caseIndex)
-
-/**
- * The grid cell, one-based, of a case: up the first column from the bottom,
- * along the top row, down the last column.
- */
-const cellOf = ({
-  caseIndex,
-  shape: { columns, rows }
-}: {
-  caseIndex: number
-  shape: TrackShape
-}): [number, number] => {
-  if (caseIndex < rows) {
-    return [1, rows - caseIndex]
-  }
-
-  if (caseIndex < rows + columns - 2) {
-    return [caseIndex - rows + 2, 1]
-  }
-
-  return [columns, caseIndex - rows - columns + 3]
-}

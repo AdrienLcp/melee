@@ -1,17 +1,26 @@
-@use '../../presentation/styles/typography'
+@use '../styles/typography'
 
 @layer components
-  // The page inside the U keeps clear of it, and so does the fixed menu,
-  // because both are measured from the gutters and the top padding. The
-  // bottom stays the page's own: the track leaves it open for the round.
-  \:root:has(.board-track)
-    --board-band: clamp(2.5rem, 9vmin, 7rem)
+  // The page inside the track keeps clear of it, and so does the fixed menu,
+  // because both are measured from the gutters and the block padding. The
+  // bottom stays the page's own until the track closes into a loop.
+  \:root:has(.board-track[data-shape])
+    // The case `BoardTrack` measured, held to the band the wall was drawn in
+    // before the track took a shape: past it the stage gives up rows a final
+    // board needs on a screen standing up.
+    --board-band: min(var(--board-case), clamp(2.5rem, calc(var(--stage-unit) * 9), 7rem))
     --board-edge: clamp(0.25rem, 0.8vmin, 0.625rem)
     --board-gap: clamp(0.125rem, 0.4vmin, 0.3125rem)
-    --board-clearance: calc(var(--board-edge) + var(--board-band) + clamp(0.75rem, 2.4vmin, 2rem))
+    --board-breathe: clamp(0.75rem, 2.4vmin, 2rem)
+    --board-clearance: calc(var(--board-edge) + var(--board-band) + var(--board-breathe))
+    --layout-padding-block-start: max(var(--board-clearance), var(--safe-area-top))
+
+  \:root:has(.board-track:is([data-shape='u'], [data-shape='loop']))
     --gutter-left: max(var(--board-clearance), var(--safe-area-left))
     --gutter-right: max(var(--board-clearance), var(--safe-area-right))
-    --layout-padding-block-start: max(var(--board-clearance), var(--safe-area-top))
+
+  \:root:has(.board-track[data-shape='loop'])
+    --layout-padding-block-end: max(var(--board-clearance), var(--safe-area-bottom))
 
   .board-track
     inset: 0
@@ -19,22 +28,45 @@
     position: fixed
 
     // The board under the top row, between its cases: a lobby long enough to
-    // scroll passes under the track rather than showing through it.
-    &::before
+    // scroll passes under the track rather than showing through it. A loop
+    // lays the same strip under its bottom row.
+    &::before,
+    &::after
       background: var(--field)
-      content: ''
       height: calc(var(--board-edge) + var(--board-band))
-      inset: 0 0 auto
+      inset-inline: 0
       position: absolute
+
+    &[data-shape]::before
+      content: ''
+      inset-block-start: 0
+
+    &[data-shape='loop']::after
+      content: ''
+      inset-block-end: 0
 
     .cases
       display: grid
       gap: var(--board-gap)
+      // The legs are drawn in the band and the rest of the stage is shared
+      // out between the cases along it, so a screen standing up keeps a top
+      // row no thicker than its sides.
       grid-template-columns: var(--board-band) repeat(calc(var(--track-columns) - 2), minmax(0, 1fr)) var(--board-band)
       grid-template-rows: var(--board-band) repeat(calc(var(--track-rows) - 1), minmax(0, 1fr))
       inset: 0
       padding: var(--board-edge)
       position: absolute
+      // Over the strips laid under its rows, the bottom one included, which
+      // comes after it.
+      z-index: 1
+
+      &:is([data-shape='line'] > *)
+        grid-template-columns: repeat(var(--track-columns), minmax(0, 1fr))
+        grid-template-rows: var(--board-band)
+        inset-block-end: auto
+
+      &:is([data-shape='loop'] > *)
+        grid-template-rows: var(--board-band) repeat(calc(var(--track-rows) - 2), minmax(0, 1fr)) var(--board-band)
 
     .case
       background: var(--track-a)
