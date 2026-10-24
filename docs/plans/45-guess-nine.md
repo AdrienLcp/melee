@@ -1,6 +1,6 @@
 # 45 — Guess nine
 
-**Steps 1 and 2 landed — the bank and the server.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
+**Steps 1 to 3 landed — the bank, the server and the screens.** Asked 24/10/2026. *Devineuf* in French. A theme goes up —
 *Quentin Tarantino's films* — and nine answers are hidden behind it, each worth
 more the less obvious it is. Hidden with them is one **black word**: an answer
 that sounds right and is not (*True Romance*, written by Tarantino, directed by
@@ -168,6 +168,26 @@ finding order (`.impeccable/directions/guess-nine/`, local):
 Verified in a browser, muted, with three seats: a hit lights one seat's grid and
 no other's, a black word ends that seat's round and voids it, the reveal names
 the nine and the word.
+
+**Done 24/10/2026**, seen muted through a Playwright script at 1280×800,
+1440×900, 390×844 and 360×380, light in English and dark in French: the
+picker, three seats typing, a miss and three hits, the black word on a seat,
+the keyboard-up row of nine, the console's gauge, the reveal on the console
+wide and narrow and on every seat, and a seated console playing. A paired wall
+was not seen; it draws the console's stage. What it settled beyond the plan:
+
+- **The server reads a seat its own lines back** (`yourLines` on the public
+  arm, `PROTOCOL_VERSION` 50): every line that found something, then the
+  latest if it found nothing, so the grid prints what the seat typed and the
+  echo says what the last line did — after a reload too. A screen keeping its
+  own lines could not tell a miss from a snapshot that left before its line
+  was read. Never another seat's: a line is the text of a cell.
+- **The hint is the echo's first line**, *one of them is the black word*,
+  which keeps the field and its press on one row.
+- **No strike on a hit**: nothing moves inside a running round
+  (`DESIGN.md`), so the cell lights and the echo says it.
+- **The reveal is the scoreline**: no list of who said what under it, since
+  the finders stand on each card and the points are on the track.
 
 — cut here: typed mode shipped —
 

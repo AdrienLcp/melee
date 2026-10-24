@@ -1,0 +1,137 @@
+@use '../styles/black-word'
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  // Held to the box it is given: the cards divide its height, and the black
+  // word stands beside them once the box is wide enough, under them when not.
+  .guess-nine-reveal
+    --finder-size: clamp(1.25rem, 4.4cqmin, 2.25rem)
+
+    container-type: size
+    min-block-size: 0
+    min-width: 0
+
+    > .board
+      block-size: 100%
+      display: grid
+      gap: clamp(var(--space-xs), 2.4cqmin, var(--space-l))
+      grid-template: minmax(0, 1fr) auto / minmax(0, 1fr)
+
+    .answers
+      display: grid
+      gap: clamp(var(--space-2xs), 1.6cqmin, var(--space-s))
+      grid-template: repeat(3, minmax(0, 1fr)) / repeat(3, minmax(0, 1fr))
+      list-style: none
+      margin: 0
+      min-block-size: 0
+      padding: 0
+
+    li
+      @include piece.card(var(--radius-m))
+
+      align-content: space-between
+      display: grid
+      gap: var(--space-2xs)
+      min-block-size: 0
+      min-width: 0
+      overflow: hidden
+      padding: clamp(var(--space-2xs), 1.8cqmin, var(--space-m))
+
+    li[data-nobody]
+      background: var(--socket)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      color: var(--ink)
+
+      .worth,
+      .missed-by-all
+        color: var(--ink-muted)
+
+    li[data-yours]
+      box-shadow: 0 var(--edge) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--card-ink)
+
+    .name
+      @include typography.billboard-wrapping
+
+      font-size: clamp(var(--text-xs), min(4.6cqi, 6.6cqh), 2.6rem)
+      hyphens: auto
+      overflow-wrap: break-word
+      text-wrap: balance
+
+    .foot
+      align-items: end
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs)
+      justify-content: space-between
+      min-width: 0
+
+    .finders
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: 0.15rem 0.3rem
+      min-width: 0
+
+      .pawn
+        block-size: var(--finder-size)
+        inline-size: auto
+
+    .missed-by-all
+      @include typography.caption
+
+      color: var(--card-muted)
+      font-size: clamp(var(--text-2xs), 1.8cqmin, var(--text-m))
+
+    .worth
+      @include typography.numeric
+
+      align-items: center
+      color: var(--card-muted)
+      display: flex
+      font-size: clamp(var(--text-2xs), 2.4cqmin, var(--text-xl))
+      gap: 0.4em
+      white-space: nowrap
+
+    .black-word-piece
+      @include black-word.piece
+
+      align-content: center
+      display: grid
+      gap: clamp(var(--space-2xs), 1.6cqmin, var(--space-m))
+      padding: clamp(var(--space-s), 2.8cqmin, var(--space-xl))
+
+      .word
+        @include typography.billboard-wrapping
+
+        font-size: clamp(var(--text-l), 6cqmin, 5rem)
+        overflow-wrap: anywhere
+
+      .fell
+        @include typography.title
+
+        align-items: center
+        display: flex
+        font-size: clamp(var(--text-s), 2.4cqmin, var(--text-xl))
+        gap: var(--space-xs)
+
+        .pawn
+          block-size: 1.5em
+          inline-size: auto
+
+  // Lying down, the ink card stands as tall as the grid at its side.
+  @container (aspect-ratio >= 3 / 2) and (width >= 40rem)
+    .guess-nine-reveal > .board
+      grid-template: minmax(0, 1fr) / minmax(0, 2.2fr) minmax(14rem, 1fr)
+
+  // A narrow box keeps the word, its why and who fell on one short strip.
+  @container (aspect-ratio < 3 / 2) or (width < 40rem)
+    .guess-nine-reveal .black-word-piece
+      align-items: baseline
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-s)
+      padding: var(--space-xs) var(--space-s)
+
+      .word
+        font-size: clamp(var(--text-m), 5cqi, var(--text-xl))

@@ -327,9 +327,38 @@ export const EN_DICTIONARY = defineDictionary({
     wrong_phase: 'Too late, the game has moved on.'
   },
   guessnine: {
+    answer: {
+      hit: '“{line}” +{points:number}',
+      label: 'An answer',
+      miss: '“{line}”: nothing',
+      retry: 'As many as you like. One of them is the black word.'
+    },
+    blackWord: {
+      ends: 'Your round stops here. It is worth nothing.',
+      fell: '{nickname} lost the round on it',
+      nobodyFell: 'Nobody fell for it',
+      stamp: 'Black word'
+    },
+    duration: 'Time per round',
+    found: defineTranslation('{count:plural}', {
+      plural: { count: { other: '{?} of 9 found by the table' } }
+    }),
+    grid: 'The nine answers',
+    home: {
+      description:
+        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
+    },
     name: 'Guess nine',
+    nobody: 'Nobody',
+    othersLooking: 'The others are still looking.',
+    play: 'Play Guess nine',
     scoring:
-      'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.'
+      'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.',
+    tagline: 'Nine answers. One black word.',
+    tier: defineTranslation('{points:plural}', {
+      plural: { points: { one: '{?} point', other: '{?} points' } }
+    }),
+    yours: 'You found it'
   },
   home: {
     resume: 'Resume',

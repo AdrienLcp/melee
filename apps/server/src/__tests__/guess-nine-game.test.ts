@@ -176,7 +176,8 @@ describe('a guess-nine round through the seam', () => {
       foundCellCount: 0,
       kind: 'guessnine',
       revealed: null,
-      theme: THEME.labels
+      theme: THEME.labels,
+      yourLines: []
     })
     expect(wallView(wall)?.currentContent).toEqual({ kind: 'guessnine' })
 
@@ -217,6 +218,33 @@ describe('a guess-nine round through the seam', () => {
     })
     expect(playerView(max)?.yourVerdict).toBeNull()
     expect(playerView(zoe)?.phase).toBe('playing')
+  })
+
+  it('[guessnine] reads a seat its own lines back, a miss giving way to the next', async () => {
+    const { max, type, zoe } = await roundInPlay()
+
+    type(zoe, 'Not a planet')
+    type(zoe, 'jupiter')
+    type(zoe, 'Still not one')
+    type(zoe, 'Nor this')
+    type(max, 'Venus')
+    await waitFor(
+      () => guessNineRound(playerView(zoe))?.foundCellCount === 2,
+      'two cells found'
+    )
+    await waitFor(
+      () =>
+        guessNineRound(playerView(zoe))?.yourLines?.at(-1)?.line === 'Nor this',
+      'the last miss read back'
+    )
+
+    expect(guessNineRound(playerView(zoe))?.yourLines).toEqual([
+      { cells: [4], hitBlackWord: false, line: 'jupiter' },
+      { cells: [], hitBlackWord: false, line: 'Nor this' }
+    ])
+    expect(guessNineRound(playerView(max))?.yourLines).toEqual([
+      { cells: [1], hitBlackWord: false, line: 'Venus' }
+    ])
   })
 
   it('[guessnine] closes and voids a sheet on the black word', async () => {

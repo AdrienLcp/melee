@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **Guess nine is on the shelf**, the eleventh game — *Devineuf*
+  in French. A theme comes up and nine answers hide behind a 3 × 3 grid, the
+  less obvious paying more; everyone fires answers from their own screen, as
+  many as they like, and a hit lights its cell with the words they typed. One
+  answer that sounds right is the black word: whoever lands on it loses the
+  round. The room's screen counts what the table has found, never which, and
+  the reveal turns the nine over with who found each. `PROTOCOL_VERSION` goes
+  to 50.
+
 - `[Shared]` **A challenge deals its own line.** Left empty, a challenge round
   opens on a line from a bank of 89 ready-made ones — *bring back something
   red*, *something that starts with P* — one object each, found at home as at

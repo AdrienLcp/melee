@@ -1,7 +1,10 @@
 import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { GameSettings } from '@melee/protocol/game'
-import type { GuessNineTheme } from '@melee/protocol/guess-nine'
+import type {
+  GuessNineSentLine,
+  GuessNineTheme
+} from '@melee/protocol/guess-nine'
 import type {
   HostToken,
   Nickname,
@@ -263,6 +266,12 @@ export type Round = {
       }
     | {
         kind: 'guessnine'
+        /**
+         * Each seat's lines that found something, and its latest that found
+         * nothing — a miss replaces the one before, so a seat sending a
+         * hundred lines holds eleven at most.
+         */
+        lines: (GuessNineSentLine & { playerId: PlayerId })[]
         /** The nine and the black word; what each seat found is on its attempts. */
         theme: GuessNineTheme
       }

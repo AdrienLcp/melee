@@ -62,6 +62,8 @@ const PUZZLE_DURATIONS_MS = [30_000, 60_000, 120_000] as const
 
 const TIMELINE_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
+const GUESS_NINE_DURATIONS_MS = [45_000, 60_000, 90_000] as const
+
 const MATCHSTICKS_GOAL_KEYS = {
   biggest: 'matchsticks.goals.biggest',
   equation: 'matchsticks.goals.equation',
@@ -443,6 +445,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           }}
           optionLabel={secondsLabel}
           options={PUZZLE_DURATIONS_MS}
+          value={game.roundDurationMs}
+        />
+      )}
+
+      {game?.kind === 'guessnine' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('guessnine.duration')}
+          onChange={(roundDurationMs) => {
+            onChange({ ...settings, game: { ...game, roundDurationMs } })
+          }}
+          optionLabel={secondsLabel}
+          options={GUESS_NINE_DURATIONS_MS}
           value={game.roundDurationMs}
         />
       )}

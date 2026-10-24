@@ -70,7 +70,7 @@ import {
   toTeamViews
 } from '@/domain/room/team-service'
 import { takeDuel } from '@/domain/round/duels'
-import { gradeSheetLine } from '@/domain/round/guess-nine-round'
+import { gradeSheetLine, keepSheetLine } from '@/domain/round/guess-nine-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import { markEveryItem } from '@/domain/round/slate-round'
@@ -482,7 +482,23 @@ export const registerAnswer = ({
     )
   }
 
+  const heldBefore = held?.verdict ?? null
+
   bank({ graded, held, now, playerId, round })
+
+  if (
+    round.content.kind === 'guessnine' &&
+    attempt.kind === 'typed' &&
+    graded.verdict.kind === 'cells'
+  ) {
+    keepSheetLine({
+      after: graded.verdict,
+      before: heldBefore,
+      content: round.content,
+      line: attempt.guess,
+      playerId
+    })
+  }
 
   if (round.content.kind === 'worldmap' && attempt.kind === 'point') {
     round.content.placements.push({ playerId, point: attempt.point })

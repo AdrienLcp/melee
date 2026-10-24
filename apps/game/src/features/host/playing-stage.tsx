@@ -9,11 +9,13 @@ import {
   type PlayerAnswer,
   TypedAnswer
 } from '@/features/player/answer-forms'
+import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { PrintedChoices } from '@/features/player/printed-choices'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
+  guessNineContent,
   matchsticksContent,
   quizContent,
   timelineContent,
@@ -27,6 +29,7 @@ import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
+import { GuessNineGauge } from './guess-nine-gauge'
 
 import './playing-stage.sass'
 
@@ -67,7 +70,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const roundDurationMs = round.durationMs
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(round)
-  const isTyping = mode === 'typed' && onAnswer !== null
+  const guessNine = guessNineContent(round)
+  const isTyping = mode === 'typed' && onAnswer !== null && guessNine === null
   const worldmap = worldmapContent(round)
   const matchsticks = matchsticksContent(round)
   const timeline = timelineContent(round)
@@ -91,6 +95,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         </MatchsticksPrompt>
       ) : timeline !== null ? (
         <p className='now timeline-question'>{translate('timeline.dealt')}</p>
+      ) : guessNine !== null ? (
+        <h2 className='now guess-nine-theme'>{guessNine.theme[locale]}</h2>
       ) : round.content.kind === 'challenge' ? (
         <>
           <p className='now challenge-line'>
@@ -115,6 +121,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       className='stage playing'
       data-answering={isTyping || undefined}
       data-choices={mode === 'choice' || undefined}
+      data-guess-nine={
+        guessNine === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
+      }
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-map={(worldmap !== null && onAnswer !== null) || undefined}
       data-moving={isMoving || undefined}
@@ -185,6 +198,17 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             onAnswer={onAnswer}
             round={round}
             youId={answersAs}
+          />
+        ))}
+      {guessNine !== null &&
+        (onAnswer === null ? (
+          <GuessNineGauge foundCellCount={guessNine.foundCellCount} />
+        ) : (
+          <GuessNineAnswer
+            key={round.id}
+            onAnswer={onAnswer}
+            round={round}
+            verdict={view.yourVerdict}
           />
         ))}
       {view.players.length > 0 &&

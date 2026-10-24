@@ -104,6 +104,7 @@
     --spine-innerclock: oklch(44% 0.08 235)
     --spine-matchsticks: oklch(45% 0.14 305)
     --spine-timeline: oklch(46% 0.09 100)
+    --spine-guessnine: oklch(40% 0.12 8)
     --on-spine: oklch(99% 0.005 95)
     // What each lid's name is printed in.
     --on-spine-blindtest: var(--on-spine)
@@ -116,6 +117,7 @@
     --on-spine-innerclock: var(--on-spine)
     --on-spine-matchsticks: var(--on-spine)
     --on-spine-timeline: var(--on-spine)
+    --on-spine-guessnine: var(--on-spine)
     // A ticked box is the pale ink with the spine drawn on it.
     --spine-mark-blindtest: var(--spine-blindtest)
     --spine-mark-quiz: var(--spine-quiz)
@@ -127,6 +129,7 @@
     --spine-mark-innerclock: var(--spine-innerclock)
     --spine-mark-matchsticks: var(--spine-matchsticks)
     --spine-mark-timeline: var(--spine-timeline)
+    --spine-mark-guessnine: var(--spine-guessnine)
 
     // A match is a printed piece: pale pine with a red head, the same in both
     // palettes, and always laid on paper, where the edge is what holds 3:1 and
@@ -161,6 +164,12 @@
     --good: oklch(52% 0.13 155)
     --good-edge: oklch(38% 0.1 155)
     --good-soft: light-dark(oklch(86% 0.09 155), oklch(75% 0.11 155))
+
+    // Guess nine's black word is a trap, not a fault: an ink piece rather than
+    // the danger stamp, the same in both palettes.
+    --black-word: oklch(21% 0.03 255)
+    --on-black-word: oklch(97% 0.008 95)
+    --black-word-muted: oklch(84% 0.015 250)
 
     // An error is a stamped block, never tinted text: inside its own block the
     // contrast is fixed, so the stamp is the same in both palettes.

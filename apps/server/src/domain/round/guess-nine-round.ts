@@ -2,6 +2,7 @@ import type {
   GuessNineAnswer,
   GuessNineBlackWord,
   GuessNineLabels,
+  GuessNineSentLine,
   GuessNineTheme
 } from '@melee/protocol/guess-nine'
 import type { PlayerId } from '@melee/protocol/identifiers'
@@ -29,8 +30,42 @@ const namesOf = ({ aliases, labels }: Named): string[] => [
 
 export const guessNineContent = (theme: GuessNineTheme): GuessNineContent => ({
   kind: 'guessnine',
+  lines: [],
   theme
 })
+
+const isMiss = (line: GuessNineSentLine): boolean =>
+  line.cells.length === 0 && !line.hitBlackWord
+
+/**
+ * Keeps the line a seat just sent beside what it found, read off the sheet
+ * before and after it: the seat's earlier miss gives way to it.
+ */
+export const keepSheetLine = ({
+  after,
+  before,
+  content,
+  line,
+  playerId
+}: {
+  after: CellsVerdict
+  before: Verdict | null
+  content: GuessNineContent
+  line: string
+  playerId: PlayerId
+}): void => {
+  const held = before?.kind === 'cells' ? before : EMPTY_SHEET
+
+  content.lines = content.lines.filter(
+    (kept) => kept.playerId !== playerId || !isMiss(kept)
+  )
+  content.lines.push({
+    cells: after.foundCells.filter((cell) => !held.foundCells.includes(cell)),
+    hitBlackWord: after.hitBlackWord && !held.hitBlackWord,
+    line,
+    playerId
+  })
+}
 
 /** A seat's sheet once this line is read against it. */
 export const gradeSheetLine = ({
@@ -85,10 +120,13 @@ const sheetsOf = (
  */
 export const guessNineContentView = ({
   content,
-  round
+  round,
+  youId
 }: {
   content: GuessNineContent
   round: Round
+  /** The reader's seat, `null` for a screen holding none. */
+  youId: PlayerId | null
 }): Extract<RoundContent, { kind: 'guessnine' }> => {
   const sheets = sheetsOf(round)
   const foundBy = (cell: number): PlayerId[] =>
@@ -116,6 +154,16 @@ export const guessNineContentView = ({
           }
         }
       : null,
-    theme: labelsOf(content.theme.labels)
+    theme: labelsOf(content.theme.labels),
+    yourLines:
+      youId === null
+        ? null
+        : content.lines
+            .filter(({ playerId }) => playerId === youId)
+            .map(({ cells, hitBlackWord, line }) => ({
+              cells: [...cells],
+              hitBlackWord,
+              line
+            }))
   }
 }

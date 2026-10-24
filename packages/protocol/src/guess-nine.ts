@@ -57,6 +57,23 @@ export const guessNineBlackWordSchema = z.object({
   why: guessNineLabelsSchema
 })
 
+/**
+ * A line a seat sent and what it found: the cells it lit, none for a miss, and
+ * whether it was the black word. The seat's own words, read back to it alone,
+ * so its grid prints what it typed and survives a reload.
+ */
+export const guessNineSentLineSchema = z.object({
+  cells: z.array(guessNineCellSchema).max(GUESS_NINE_CELL_COUNT),
+  hitBlackWord: z.boolean(),
+  line: z.string().min(1).max(120)
+})
+
+/**
+ * How many lines a seat is read back: every one that found something — nine
+ * cells and the black word at most — and the latest, when it found nothing.
+ */
+export const GUESS_NINE_LINES_READ_BACK = GUESS_NINE_CELL_COUNT + 2
+
 /** The grid once the round is over: every answer, who found it, and who fell on the black word. */
 export const revealedGuessNineSchema = z.object({
   answers: z
@@ -72,5 +89,6 @@ export type GuessNineTier = z.infer<typeof guessNineTierSchema>
 export type GuessNineLabels = z.infer<typeof guessNineLabelsSchema>
 export type GuessNineTheme = z.infer<typeof guessNineThemeSchema>
 export type GuessNineAnswer = z.infer<typeof guessNineAnswerSchema>
+export type GuessNineSentLine = z.infer<typeof guessNineSentLineSchema>
 export type GuessNineBlackWord = z.infer<typeof guessNineBlackWordSchema>
 export type RevealedGuessNine = z.infer<typeof revealedGuessNineSchema>

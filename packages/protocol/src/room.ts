@@ -9,9 +9,11 @@ import { challengeLabelsSchema } from './challenge'
 import { gameSettingsSchema } from './game'
 import {
   GUESS_NINE_CELL_COUNT,
+  GUESS_NINE_LINES_READ_BACK,
   guessNineAnswerSchema,
   guessNineBlackWordSchema,
   guessNineLabelsSchema,
+  guessNineSentLineSchema,
   revealedGuessNineSchema
 } from './guess-nine'
 import {
@@ -367,7 +369,16 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('guessnine'),
     /** The whole grid and the black word, and `null` until the reveal. */
     revealed: revealedGuessNineSchema.nullable(),
-    theme: guessNineLabelsSchema
+    theme: guessNineLabelsSchema,
+    /**
+     * The reader's own lines, in the order sent — every one that found
+     * something, then the latest if it found nothing — and `null` for a reader
+     * holding no seat. Never another seat's: a line is the text of a cell.
+     */
+    yourLines: z
+      .array(guessNineSentLineSchema)
+      .max(GUESS_NINE_LINES_READ_BACK)
+      .nullable()
   }),
   z.object({
     /**

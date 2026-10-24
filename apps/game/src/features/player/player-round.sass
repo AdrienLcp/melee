@@ -140,6 +140,36 @@
         @include question-card.clock-margin
         width: auto
 
+  // The theme on its card with the round's sand along its top, and the sheet
+  // taking everything under it, down to the field.
+  .player-round.guess-nine-round
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: auto minmax(0, 1fr)
+    min-height: 0
+
+    .round-card
+      display: grid
+
+      > *
+        grid-area: 1 / 1
+
+      .guess-nine-theme
+        @include question-card.card
+        @include typography.billboard-wrapping
+
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 4.2), 2.4rem)
+        margin: 0
+        overflow-wrap: anywhere
+        text-wrap: balance
+
+      .guess-nine-theme + .round-progress
+        --clock-ink: var(--card-ink)
+
+        align-self: start
+        @include question-card.clock-margin
+        width: auto
+
   // The country on its card with the round's sand along its top, and the map
   // taking everything under it.
   .player-round.map-round
@@ -260,7 +290,10 @@
 
     // A round before the first point, or one whose question the room owned,
     // leaves the payout alone on the screen: one object, centred.
-    &:not(:has(.round-board, .answer-card, .reaction-board))
+    .guess-nine-reveal
+      block-size: clamp(14rem, 46dvh, 32rem)
+
+    &:not(:has(.round-board, .answer-card, .reaction-board, .guess-nine-reveal))
       align-items: center
       justify-content: center
 

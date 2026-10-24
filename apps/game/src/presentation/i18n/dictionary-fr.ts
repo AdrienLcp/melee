@@ -303,9 +303,43 @@ export const FR_DICTIONARY = defineDictionary({
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   guessnine: {
+    answer: {
+      hit: '« {line} » +{points:number}',
+      label: 'Une réponse',
+      miss: '« {line} » : rien',
+      retry: 'Autant que tu veux. L’une d’elles est le mot noir.'
+    },
+    blackWord: {
+      ends: 'Ta manche s’arrête là. Elle ne rapporte rien.',
+      fell: '{nickname} y a laissé sa manche',
+      nobodyFell: 'Personne n’est tombé dedans',
+      stamp: 'Mot noir'
+    },
+    duration: 'Temps par manche',
+    found: defineTranslation('{count:plural}', {
+      plural: {
+        count: {
+          one: '{?} sur 9 trouvée par la table',
+          other: '{?} sur 9 trouvées par la table'
+        }
+      }
+    }),
+    grid: 'Les neuf réponses',
+    home: {
+      description:
+        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
+    },
     name: 'Devineuf',
+    nobody: 'Personne',
+    othersLooking: 'Les autres cherchent encore.',
+    play: 'Jouer à Devineuf',
     scoring:
-      'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.'
+      'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+    tagline: 'Neuf réponses. Un mot noir.',
+    tier: defineTranslation('{points:plural}', {
+      plural: { points: { one: '{?} point', other: '{?} points' } }
+    }),
+    yours: 'Trouvée par toi'
   },
   home: {
     resume: 'Reprendre',

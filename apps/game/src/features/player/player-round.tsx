@@ -3,6 +3,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
+import type { GuessNineLabels } from '@melee/protocol/guess-nine'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
   ActiveBuzz,
@@ -33,6 +34,7 @@ import {
 
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
@@ -50,6 +52,7 @@ import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
+  guessNineContent,
   innerclockContent,
   matchsticksContent,
   placesFromBestOf,
@@ -70,6 +73,7 @@ import { CountedBoard } from '@/presentation/components/counted-board'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
+import { GuessNineReveal } from '@/presentation/components/guess-nine-reveal'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -543,6 +547,26 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    const guessNine = guessNineContent(round)
+
+    if (guessNine !== null) {
+      return (
+        <section className='player-round guess-nine-round'>
+          <GuessNineThemeCard
+            clock={clock}
+            theme={guessNine.theme}
+            view={view}
+          />
+          <GuessNineAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            round={round}
+            verdict={view.yourVerdict}
+          />
+        </section>
+      )
+    }
+
     const matchsticks = matchsticksContent(round)
 
     if (matchsticks !== null && round.answerMode === 'move') {
@@ -668,9 +692,18 @@ const WatchedDuel: React.FC<{
   const translate = useTranslate()
   const worldmap = worldmapContent(round)
   const timeline = timelineContent(round)
+  const guessNine = guessNineContent(round)
 
   if (round.answerMode === 'choice') {
     return <ChoosingRound onAnswer={null} round={round} youId={view.youId} />
+  }
+
+  if (guessNine !== null) {
+    return (
+      <section className='player-round guess-nine-round'>
+        <GuessNineThemeCard clock={clock} theme={guessNine.theme} view={view} />
+      </section>
+    )
   }
 
   if (timeline !== null) {
@@ -704,6 +737,22 @@ const WatchedDuel: React.FC<{
         <RoundClock clock={clock} view={view} />
       </div>
     </section>
+  )
+}
+
+/** The theme on its paper card, the round's clock along the top. */
+const GuessNineThemeCard: React.FC<{
+  clock: ClockEstimate | null
+  theme: GuessNineLabels
+  view: PlayerRoomView
+}> = ({ clock, theme, view }) => {
+  const { locale } = useI18n()
+
+  return (
+    <div className='round-card'>
+      <h2 className='guess-nine-theme'>{theme[locale]}</h2>
+      <RoundClock clock={clock} view={view} />
+    </div>
   )
 }
 
@@ -941,6 +990,18 @@ const Revealed: React.FC<{
 
   if (dated !== null) {
     return <TimelineRevealed dated={dated} round={round} youId={view.youId} />
+  }
+
+  const grid = guessNineContent(round)?.revealed ?? null
+
+  if (grid !== null) {
+    return (
+      <GuessNineReveal
+        players={view.players}
+        revealed={grid}
+        youId={view.youId}
+      />
+    )
   }
 
   const solved = matchsticksContent(round)

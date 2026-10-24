@@ -7,6 +7,7 @@ import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
   blindtestContent,
+  guessNineContent,
   innerclockContent,
   matchsticksContent,
   quizContent,
@@ -17,6 +18,7 @@ import {
 } from '@/helpers/round-content'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { FlagPicture } from '@/presentation/components/flag-picture'
+import { GuessNineReveal } from '@/presentation/components/guess-nine-reveal'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -27,7 +29,7 @@ import { RebusLine } from '@/presentation/components/rebus-line'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './reveal-panel.sass'
 
@@ -106,7 +108,7 @@ const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
  * has nothing to give away, and the panel is the scoreline alone.
  */
 export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
@@ -204,6 +206,23 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
         </div>
 
         <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
+  const guessNine = guessNineContent(round)
+
+  // The grid is the scoreline: who found each cell stands on it, and what it
+  // paid them is on the score track.
+  if (guessNine?.revealed != null) {
+    return (
+      <section className='reveal-panel' data-game='guessnine'>
+        <h2 className='guess-nine-theme'>{guessNine.theme[locale]}</h2>
+        <GuessNineReveal
+          players={players}
+          revealed={guessNine.revealed}
+          youId={null}
+        />
       </section>
     )
   }

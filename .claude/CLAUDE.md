@@ -17,7 +17,9 @@ and pays each single press by its gap to the target, and **Matchsticks** draws
 an equation or a number in matches that one moved match fixes, moved on
 every screen and judged by the server — or said aloud and judged by the
 host, and **Timeline** deals five dated events everyone puts in order on their
-own screen, the years held back until the reveal.
+own screen, the years held back until the reveal. **Guess nine** hides nine
+answers to a theme behind a grid, the less obvious paying more, beside one
+black word that costs whoever lands on it the round.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -303,7 +305,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Ten games share the room, the QR code and every screen, and the rule that got
+Eleven games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

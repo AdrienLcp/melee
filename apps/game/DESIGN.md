@@ -37,6 +37,8 @@ colors:
   spine-innerclock: "oklch(44% 0.08 235)"
   spine-matchsticks: "oklch(45% 0.14 305)"
   spine-timeline: "oklch(46% 0.09 100)"
+  spine-guessnine: "oklch(40% 0.12 8)"
+  black-word: "oklch(21% 0.03 255)"
   on-spine: "oklch(99% 0.005 95)"
   on-spine-light: "oklch(20% 0.03 255)"
   pawn-1: "oklch(58% 0.19 28)"
@@ -219,7 +221,9 @@ A cool printed board under warm, saturated die-cut inks, every value one
   reads as its family; `--spine-matchsticks` plum — a matchbox, far enough
   round from indigo and magenta to sit between them; `--spine-timeline`
   bronze — an old atlas's olive-gold, halfway round from walnut to leaf so it
-  reads as neither): each
+  reads as neither; `--spine-guessnine` wine — an ink-black spine vanishes on
+  the dark board, and every other free hue sits within twenty degrees of a
+  neighbour's): each
   game's box colour, on the shelf, the band across a game's lid, the player's
   *up next* lid. Names print in `--on-spine-<game>`: pale `--on-spine`
   everywhere but reflex, which takes the dark `--on-spine-light`.
@@ -696,14 +700,14 @@ under every answer mode a verdict is owed in.
   `--rule`, `--edge`, `--ground` at the paper so any board component prints
   correctly on it. The front doors, the nickname form and the slate's line in
   hand are lids; a game's own door is its lid banded in `--spine-*`.
-- **`TickShelf`** (console lobby game picker): ten lids in two rows of five,
+- **`TickShelf`** (console lobby game picker): eleven lids,
   or a column when the names would not fit whole; the ticked ones pulled
   forward with a tick — one is a game, several an evening — and once anything is chosen the rest sit back on `--socket`
   with their band faded. A game judged however it is answered carries *Host
   judges* as a `mark`: a keyline stamp on the lid under the description, at
   the row's end in the list layout — outlined because the filled pill on the
   band already says which box opens first.
-- **`GameShelf`** (`features/home`): the ten games as spines, each a link to
+- **`GameShelf`** (`features/home`): the eleven games as spines, each a link to
   its own page — its spine colour, its name in the display face, its tagline,
   an arrow that steps right under a pointer; two columns from a 52rem
   container. Nothing is ticked on home: what the table plays is chosen in the
@@ -781,6 +785,26 @@ in a keyline. Standings beside them sit under a title and divide their own box
 marking). The final board stands the winner's pawn oversize, the name sized by
 its longest run (`answerFitting`), *wins with N points* under it; a tie stands
 every winner's pawn at one shared size.
+
+### Guess nine (`GuessNineSheet`, `GuessNineReveal`, `GuessNineGauge`)
+Direction A, *the grid*, chosen 2026-10-24 (`.impeccable/directions/guess-nine/`,
+local). A seat's grid is 3 × 3 in cell order, so a cell's place says its tier:
+an empty cell is a socket printing one to three pips, a found one a
+`--good-soft` piece with the line the seat typed, read back by the server
+(`yourLines`), never the answer's own name. Under 10rem of box — a small
+screen with its keyboard up — the nine go to one row and print their pips
+alone. The last line is echoed above the field in muted ink, a hit with what
+it paid; before the first, the line says one of them is the black word. **The
+black word is an ink piece** (`--black-word`, `--on-black-word`,
+`--black-word-muted`), never the danger stamp: a trap, not a fault. On a seat
+it lies over the grid with the found cells voided under it, and the field
+gives way to *the others are still looking*. The room's screen bands the
+theme's card in the spine and counts the room's finds as nine tokens — a
+gauge, never positions. The reveal is nine paper cards (name, pips and what
+it pays, the finders' pawns, *Nobody* on a socket, the seat's own in the
+*yours* keyline) and the black word as an ink card beside them on a box wider
+than 3:2, a strip under them otherwise. Nothing moves inside the round: a hit
+lights its cell without the strike the comp drew.
 
 ### Slate
 Every item is a piece: paper with a groove inked as far as the table has

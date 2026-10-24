@@ -1,0 +1,23 @@
+// Pure module: one mixin, no top-level CSS.
+
+@use 'typography'
+
+/// Guess nine's black word as a printed ink piece, the one black thing on the
+/// board: a trap, never the danger stamp. Its `.stamp` names it, `.why` says
+/// why it is wrong.
+@mixin piece
+  --edge: 0.1875rem
+
+  background: var(--black-word)
+  border-radius: var(--radius-m)
+  box-shadow: 0 var(--edge) 0 0 var(--chipboard-dark), 0 0 0 var(--stroke-thin) var(--rule-strong), var(--shadow-card)
+  color: var(--on-black-word)
+
+  .stamp
+    @include typography.caption-strong
+
+  .why,
+  .what
+    @include typography.caption
+
+    color: var(--black-word-muted)

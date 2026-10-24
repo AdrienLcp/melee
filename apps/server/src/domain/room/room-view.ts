@@ -431,7 +431,7 @@ const toContentView = ({
   }
 
   if (content.kind === 'guessnine') {
-    return guessNineContentView({ content, round })
+    return guessNineContentView({ content, round, youId })
   }
 
   if (content.kind === 'timeline') {
