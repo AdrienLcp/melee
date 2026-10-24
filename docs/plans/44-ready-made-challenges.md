@@ -73,6 +73,14 @@ palettes, then drop the exception and its comment. `impeccable` first; measure
 the contrast rather than eyeball it, and check every place the spine is drawn
 (home shelf, ticked box mark, `--phase-ink` on the reflex stage) in a browser.
 
+**Done.** `--spine-reflex` is `oklch(55% 0.115 75)` (#986603, in gamut): the
+pale `--on-spine` reads on it at 4.81:1, the spine is one value in both
+palettes. Its dark-ink exception, `--on-spine-light` itself and the darkened
+`--spine-mark-reflex` are gone; the countdown phase, the reveal's place chip and
+the dropped-connection trigger take the pale ink. Seen muted on the shelf
+(both palettes, phone and desktop), the reflex page, a ticked lobby box and a
+reflex round through its flip and reveal.
+
 ## Decisions taken
 
 - **Dealt by the server, not drawn in the console.** A round drawn from the

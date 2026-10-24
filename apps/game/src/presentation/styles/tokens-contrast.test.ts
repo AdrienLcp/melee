@@ -11,7 +11,7 @@ const TILES = [1, 2, 3, 4] as const
 
 const PHASE_MARKS = [
   { background: '--track-five', foreground: '--track-ink' },
-  { background: '--spine-reflex', foreground: '--on-spine-light' },
+  { background: '--spine-reflex', foreground: '--on-spine' },
   { background: '--spine-quiz', foreground: '--on-spine' },
   { background: '--primary', foreground: '--on-primary' },
   { background: '--good', foreground: '--on-spine' }

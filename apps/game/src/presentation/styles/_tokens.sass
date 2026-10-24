@@ -97,7 +97,7 @@
     --spine-blindtest: oklch(50% 0.16 345)
     --spine-quiz: oklch(50% 0.15 262)
     --spine-buzzer: oklch(55% 0.19 30)
-    --spine-reflex: oklch(82% 0.15 85)
+    --spine-reflex: oklch(55% 0.115 75)
     --spine-slate: oklch(50% 0.09 185)
     --spine-worldmap: oklch(48% 0.11 140)
     --spine-challenge: oklch(42% 0.09 52)
@@ -105,25 +105,22 @@
     --spine-matchsticks: oklch(45% 0.14 305)
     --spine-timeline: oklch(46% 0.09 100)
     --on-spine: oklch(99% 0.005 95)
-    --on-spine-light: oklch(20% 0.03 255)
-    // What each lid's name is printed in: every spine is dark enough for the
-    // pale ink but reflex's saffron, which takes the dark one.
+    // What each lid's name is printed in.
     --on-spine-blindtest: var(--on-spine)
     --on-spine-quiz: var(--on-spine)
     --on-spine-buzzer: var(--on-spine)
-    --on-spine-reflex: var(--on-spine-light)
+    --on-spine-reflex: var(--on-spine)
     --on-spine-slate: var(--on-spine)
     --on-spine-worldmap: var(--on-spine)
     --on-spine-challenge: var(--on-spine)
     --on-spine-innerclock: var(--on-spine)
     --on-spine-matchsticks: var(--on-spine)
     --on-spine-timeline: var(--on-spine)
-    // A ticked box is the pale ink with the spine drawn on it, which reflex's
-    // saffron is too light to be: it takes its own amber, darkened.
+    // A ticked box is the pale ink with the spine drawn on it.
     --spine-mark-blindtest: var(--spine-blindtest)
     --spine-mark-quiz: var(--spine-quiz)
     --spine-mark-buzzer: var(--spine-buzzer)
-    --spine-mark-reflex: oklch(52% 0.12 75)
+    --spine-mark-reflex: var(--spine-reflex)
     --spine-mark-slate: var(--spine-slate)
     --spine-mark-worldmap: var(--spine-worldmap)
     --spine-mark-challenge: var(--spine-challenge)
@@ -308,7 +305,7 @@
 
   \:root[data-phase='countdown']
     --phase-ink: var(--spine-reflex)
-    --phase-on-ink: var(--on-spine-light)
+    --phase-on-ink: var(--on-spine)
 
   \:root[data-phase='playing']
     --phase-ink: var(--spine-quiz)

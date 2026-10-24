@@ -62,7 +62,7 @@
     // French `connection.closed` beside it took a 390px header down to 97px;
     // hung below it instead, the sentence lay over the question card's clock
     // and the lobby's lids. So the sentence is heard and never drawn, and the
-    // trigger itself turns to the countdown's saffron with the dot pulsing in
+    // trigger itself turns to the countdown's amber with the dot pulsing in
     // it — the popover's first line spells the state out for whoever opens it.
     .alert
       @include accessibility.visually-hidden
@@ -70,7 +70,7 @@
     &[data-connection]:not([data-connection='open']) .trigger
       background: var(--spine-reflex)
       box-shadow: 0 var(--edge) 0 var(--chipboard-dark)
-      color: var(--on-spine-light)
+      color: var(--on-spine)
 
     .trigger
       @include typography.label
