@@ -1,8 +1,17 @@
 import { describe, expect, it } from 'vitest'
 
-import { gameKinds } from '@melee/protocol/game'
+import {
+  DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_PETIT_BAC_SETTINGS,
+  DEFAULT_TIMELINE_SETTINGS,
+  gameKinds
+} from '@melee/protocol/game'
 
-import { answerModesFor, capabilitiesOf } from './game-capabilities'
+import {
+  answerModesFor,
+  capabilitiesOf,
+  isEveningSilent
+} from './game-capabilities'
 
 describe('answerModesFor', () => {
   it('[game-capabilities] narrows the bare buzzer to the one mode it can serve', () => {
@@ -64,5 +73,29 @@ describe('capabilitiesOf servesItsOwnContent', () => {
     for (const game of gameKinds.filter((kind) => !hostBrought.has(kind))) {
       expect(capabilitiesOf(game).servesItsOwnContent).toBe(true)
     }
+  })
+})
+
+describe('isEveningSilent', () => {
+  it('[game-capabilities] calls an evening of written games silent', () => {
+    expect(
+      isEveningSilent({
+        game: DEFAULT_PETIT_BAC_SETTINGS,
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS]
+      })
+    ).toBe(true)
+  })
+
+  it('[game-capabilities] hears an evening with one blind test ticked anywhere in it', () => {
+    expect(
+      isEveningSilent({
+        game: DEFAULT_PETIT_BAC_SETTINGS,
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_BLINDTEST_SETTINGS]
+      })
+    ).toBe(false)
+  })
+
+  it('[game-capabilities] never calls an evening silent before a game is picked', () => {
+    expect(isEveningSilent({ game: null, lineUp: [] })).toBe(false)
   })
 })

@@ -220,6 +220,14 @@ standings go under the grid in two columns, because ten columns beside them
 broke a seven-letter word on a 1280 px wall. `hyphens: auto` does nothing in Chromium
 on Windows, which ships no French dictionary, so no layout here leans on it.
 
+Four glitches seen on the way were the shell's, and fixed for every game: in a
+team room the seat's header carries its team's score, its place line the
+team's place (`teamStandingOf`) and its reveal the teams ranked
+(`TeamRoster`, as on the final board) rather than the seats; the payout disc
+sizes its figure by its length, so `+14 000` stays inside the rim; and a wall
+offers no sound to an evening of games that make none (`makesSound`,
+`isEveningSilent`).
+
 — cut here: the seat committed; the wall, the console, the reveal and the shelf are next —
 
 Verified muted in a browser with three seats: a stop closes the others' sheets,

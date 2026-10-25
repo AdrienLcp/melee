@@ -2,6 +2,8 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
+import type { Standing } from '../scoring/scoreboard'
+
 export type TeamBoardEntry = {
   /** Standard competition ranking, as the seats' board ranks: two teams on 5 are both 1st. */
   rank: number
@@ -62,6 +64,31 @@ export const teamOfSeat = ({
   playerId === null
     ? null
     : (teams.find((team) => team.seatIds.includes(playerId)) ?? null)
+
+/**
+ * Where a seat's team stands among the teams — in a team room the place a
+ * seat is owed is its team's. `null` for a seat no team holds, and until a
+ * team has scored.
+ */
+export const teamStandingOf = ({
+  playerId,
+  teams
+}: {
+  playerId: PlayerId | null
+  teams: readonly Team[]
+}): Standing | null => {
+  const yours = teamOfSeat({ playerId, teams })
+
+  if (yours === null || !hasAnyTeamScored(teams)) {
+    return null
+  }
+
+  const placing = buildTeamBoard(teams).find(({ team }) => team.id === yours.id)
+
+  return placing === undefined
+    ? null
+    : { rank: placing.rank, roomSize: teams.length }
+}
 
 /**
  * Whether every team is one seat named after itself — a screen per team, where

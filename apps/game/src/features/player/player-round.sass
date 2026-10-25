@@ -487,7 +487,9 @@
       border-radius: 50%
       display: grid
       flex: none
-      font-size: calc(var(--token) * 0.42)
+      // Held inside the disc whatever the round paid: `+2 000` at the size a
+      // lone `0` takes runs past the rim.
+      font-size: calc(var(--token) * min(0.42, 1.75 / var(--payout-length, 1)))
       justify-items: center
       width: var(--token)
 

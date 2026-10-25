@@ -5,6 +5,7 @@ import { useEffect, useEffectEvent } from 'react'
 import type { RoomCode } from '@melee/protocol/identifiers'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
+import { isEveningSilent } from '@melee/core/room/game-capabilities'
 
 import { JoinReminder } from '@/features/host/join-reminder'
 import { RoomStage } from '@/features/host/room-stage'
@@ -169,7 +170,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                 teams={view.teams}
               />
             )}
-          {!canPlay && (
+          {!canPlay && (view === null || !isEveningSilent(view.settings)) && (
             <Button
               className='sound-offer'
               onPress={armAudio}

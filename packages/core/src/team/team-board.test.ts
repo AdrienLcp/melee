@@ -6,6 +6,7 @@ import {
   buildTeamBoard,
   isEveryTeamItsOwnSeat,
   teamOfSeat,
+  teamStandingOf,
   teamWinnersOf
 } from './team-board'
 
@@ -92,5 +93,31 @@ describe('team board', () => {
       false
     )
     expect(isEveryTeamItsOwnSeat({ players, teams: [] })).toBe(false)
+  })
+})
+
+describe('teamStandingOf', () => {
+  it('[team-board] places a seat where its team stands, among the teams', () => {
+    const teams = [team(1, 2, ['ann']), team(2, 5, ['bob']), team(3, 3, ['cy'])]
+
+    expect(teamStandingOf({ playerId: 'cy', teams })).toEqual({
+      rank: 2,
+      roomSize: 3
+    })
+  })
+
+  it('[team-board] places nobody before a team has scored', () => {
+    expect(
+      teamStandingOf({
+        playerId: 'ann',
+        teams: [team(1, 0, ['ann']), team(2, 0)]
+      })
+    ).toBeNull()
+  })
+
+  it('[team-board] places no seat a team does not hold', () => {
+    expect(
+      teamStandingOf({ playerId: 'dan', teams: [team(1, 4, ['ann'])] })
+    ).toBeNull()
   })
 })

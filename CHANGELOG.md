@@ -333,6 +333,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` In a team room a seat's header, its place and its reveal speak for
+  its team — the team's score, the team's place, the teams ranked — where they
+  showed the seat's own.
+- `[Game]` A long payout, `+14 000`, stays inside its disc.
+- `[Game]` The wall no longer offers *Mettre le son* to an evening of games
+  that make no sound.
 - `[Game]` A sheet on a phone and the console's side drawer no longer keep
   clear of the board track they cover: the setup gains 80px of width at 390.
 - `[Game]` The countdown strip stacks in a narrow box instead of wrapping to

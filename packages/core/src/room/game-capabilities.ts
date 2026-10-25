@@ -1,4 +1,4 @@
-import type { GameKind } from '@melee/protocol/game'
+import type { GameKind, GameSettings } from '@melee/protocol/game'
 import { type AnswerMode, answerModes } from '@melee/protocol/room'
 import type { TeamsSettings } from '@melee/protocol/team'
 
@@ -65,6 +65,12 @@ export type GameCapabilities = {
    */
   answerModes: readonly AnswerMode[]
   /**
+   * Whether a round of it can make the room's speaker sound: a clip, or the
+   * honk when a buzz takes the floor. A screen that plays none owes nobody
+   * an offer to unmute it.
+   */
+  makesSound: boolean
+  /**
    * Whether a table with no phone can play it, the wall showing the round and
    * the host tapping who had it. Not a game whose answer *is* a screen: a pawn
    * put down on a map, a press racing a colour, a sheet written in private.
@@ -96,6 +102,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'quiz':
       return {
         answerModes: SERVED_MODES,
+        makesSound: true,
         playsAloud: true,
         playsDuels: true,
         servesItsOwnContent: true
@@ -104,6 +111,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'challenge':
       return {
         answerModes: BUZZER_ONLY,
+        makesSound: true,
         playsAloud: true,
         playsDuels: false,
         servesItsOwnContent: false
@@ -111,6 +119,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'matchsticks':
       return {
         answerModes: MOVE_OR_BUZZER,
+        makesSound: true,
         playsAloud: true,
         playsDuels: false,
         servesItsOwnContent: true
@@ -118,6 +127,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'guessnine':
       return {
         answerModes: TYPED_OR_SPOKEN,
+        makesSound: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -126,6 +136,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'reflex':
       return {
         answerModes: BUZZER_ONLY,
+        makesSound: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: true
@@ -135,6 +146,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'petitbac':
       return {
         answerModes: TYPED_ONLY,
+        makesSound: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: true
@@ -142,6 +154,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'slate':
       return {
         answerModes: TYPED_ONLY,
+        makesSound: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: false
@@ -149,6 +162,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'timeline':
       return {
         answerModes: ORDER_ONLY,
+        makesSound: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -156,6 +170,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'worldmap':
       return {
         answerModes: POINT_ONLY,
+        makesSound: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -194,3 +209,23 @@ export const isPlayableWithTeams = ({
   teams: TeamsSettings
 }): boolean =>
   mode !== 'spoken' || teams.kind === 'drawn' || teams.kind === 'chosen'
+
+/**
+ * Whether nothing the evening plays makes a sound — every game ticked and the
+ * one on now. An evening whose game is not picked yet is not silent: what the
+ * table settles on may be a blind test.
+ */
+export const isEveningSilent = ({
+  game,
+  lineUp
+}: {
+  game: GameSettings | null
+  lineUp: readonly GameSettings[]
+}): boolean => {
+  const games = game === null ? lineUp : [...lineUp, game]
+
+  return (
+    games.length > 0 &&
+    games.every(({ kind }) => !capabilitiesOf(kind).makesSound)
+  )
+}

@@ -46,7 +46,7 @@ type RoundChromeProps = {
   roundIndex: number | null
   /** The room's teams, so the line names the seat's own once it has one. */
   teams: readonly Team[]
-  /** The seat whose pawn and score the line carries. */
+  /** The seat whose pawn the line carries, and whose score — its team's, once it has one. */
   youId: PlayerId
 }
 
@@ -73,7 +73,7 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   const yourTeam = teamOfSeat({ playerId: youId, teams })
   const youSeat = players.findIndex((player) => player.id === youId)
   const you = players[youSeat]
-  const score = you?.score ?? 0
+  const score = yourTeam?.score ?? you?.score ?? 0
 
   return (
     <header className='round-chrome'>

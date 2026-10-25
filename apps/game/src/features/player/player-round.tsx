@@ -27,7 +27,7 @@ import {
   standingOf
 } from '@melee/core/scoring/scoreboard'
 import { playsThisRound } from '@melee/core/team/duel'
-import { teamOfSeat } from '@melee/core/team/team-board'
+import { teamOfSeat, teamStandingOf } from '@melee/core/team/team-board'
 import {
   type ClockEstimate,
   millisecondsUntil
@@ -87,6 +87,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { TeamRoster } from '@/presentation/components/team-roster'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import {
@@ -150,6 +151,30 @@ type RevealedRoundProps = {
   view: PlayerRoomView
 }
 
+/**
+ * The room's round under this seat's own: the seats ranked, or in a team room
+ * the teams — the place a seat is owed there is its team's, as on the final
+ * board.
+ */
+const RevealBoard: React.FC<{ round: RoundView; view: PlayerRoomView }> = ({
+  round,
+  view
+}) => {
+  const translate = useTranslate()
+
+  return view.teams.length > 0 ? (
+    <TeamRoster
+      isRanked
+      label={translate('host.standings')}
+      players={view.players}
+      teams={view.teams}
+      youId={view.youId}
+    />
+  ) : (
+    <RoundBoard round={round} view={view} />
+  )
+}
+
 const RevealedRound: React.FC<RevealedRoundProps> = ({
   clock,
   countingInTo,
@@ -166,7 +191,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
       <YourRound round={round} view={view} />
       <YourTrackStrip isWholeWithoutWall view={view} />
     </div>
-    <RoundBoard round={round} view={view} />
+    <RevealBoard round={round} view={view} />
     <div className='hold'>
       {countingInTo !== null && (
         <Countdown
@@ -870,12 +895,16 @@ const YourRound: React.FC<{
   const award = round.awards.find((entry) => entry.playerId === view.youId)
   const points = award?.points ?? 0
   const speedBonus = award?.speedBonus ?? 0
-  const standing = standingOf({ players: view.players, youId: view.youId })
+  const payout = points > 0 ? translate('round.scored', { points }) : '0'
+  const standing =
+    view.teams.length > 0
+      ? teamStandingOf({ playerId: view.youId, teams: view.teams })
+      : standingOf({ players: view.players, youId: view.youId })
 
   return (
     <div className={classNames('your-round', points > 0 ? 'scored' : 'missed')}>
-      <p className='payout'>
-        {points > 0 ? translate('round.scored', { points }) : '0'}
+      <p className='payout' style={{ '--payout-length': payout.length }}>
+        {payout}
       </p>
       <div className='payout-words'>
         {points === 0 && (

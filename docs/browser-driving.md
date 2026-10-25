@@ -206,6 +206,13 @@ More that cost time to learn:
   never runs. Reach that branch by hand instead: drop whatever the user agent
   would have dropped, then `document.dispatchEvent(new Event('visibilitychange'))`.
 
+- **The test browser lets a page play unasked**, so the wall arms its sound on
+  arrival and *Mettre le son* never shows. To see the offer, refuse the gesture
+  in an init script on that page alone before it loads: `HTMLMediaElement.prototype.play`
+  returning a rejected `NotAllowedError`, and an `AudioContext` subclass whose
+  `resume` rejects the same way. Compare two games, one that makes a sound and
+  one that does not, or the absence proves nothing.
+
 ## Sweeping a responsive control without resizing the window
 
 Setting `element.style.width` on the element that carries `container-type:
