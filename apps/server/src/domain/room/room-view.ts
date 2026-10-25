@@ -33,6 +33,7 @@ import {
   guessNineGrid
 } from '@/domain/round/guess-nine-round'
 import {
+  canCancelPetitBacStop,
   petitBacLinesFor,
   petitBacRowsFor,
   votingCategoryIndex
@@ -197,6 +198,7 @@ const toHostContent = ({
 
   if (content.kind === 'petitbac') {
     return {
+      canCancelStop: canCancelPetitBacStop({ content, room }),
       kind: 'petitbac',
       progress: petitBacProgress({ content, room, round })
     }
@@ -618,6 +620,7 @@ const petitBacContentView = ({
           .map(([rowKey]) => rowKey)
 
   return {
+    barredStopperIds: [...content.barredStoppers],
     categories: [...content.categories],
     categoryStates: [...content.categoryStates],
     kind: 'petitbac',
@@ -632,6 +635,7 @@ const petitBacContentView = ({
     sheetsClosed: content.sheetsClosed,
     stopClosesAtElapsedMs: content.stopClosesAtElapsedMs,
     stoppedBy: content.stoppedBy,
+    stopsWhenFull: content.stopsWhenFull,
     votesDone: [...content.votesDone],
     yourRefusals,
     yourSheet: isSeated

@@ -368,8 +368,11 @@ one part.
   a strict majority of the seats that did not write it, or on the judge's word
   under `hasJudge`, and an accepted answer pays 2 points alone and 1 shared,
   off-the-letter and blank lines nothing. No seat, console or wall reads
-  another seat's word before its category is voted. Reachable by a settings
-  frame only until it has screens.
+  another seat's word before its category is voted. A stop is refused unless
+  every line is a word of two letters or more on the letter, and the console's
+  `host.cancelStop` takes one back until the vote moves past its first
+  category — the sheets reopen on the time left and the caller may not stop
+  again that round. Reachable by a settings frame only until it has screens.
 - `[Shared]` **Guess nine is served**, and `PROTOCOL_VERSION` goes to 49. A
   `guessnine` round deals a theme from the bank and takes typed lines until a
   seat holds all nine, lands on the black word or the clock runs out; each line

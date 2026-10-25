@@ -350,7 +350,8 @@ export const EN_DICTIONARY = defineDictionary({
       reload: 'Reload the page',
       title: 'Something broke'
     },
-    sheet_not_full: 'Fill in every line before calling stop.',
+    sheet_not_full:
+      'Every line needs a word on the letter before calling stop.',
     spoken_needs_two_teams:
       'Team by team needs two teams with somebody in each.',
     stale_round: 'That round is already over.',

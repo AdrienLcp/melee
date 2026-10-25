@@ -9,7 +9,7 @@ import { POINT } from '@melee/protocol/scoring'
 
 import { drawCategories } from './category-draw'
 import { drawLetter, playableLetters } from './letter-draw'
-import { startsWithLetter } from './letter-match'
+import { isStoppableLine, startsWithLetter } from './letter-match'
 import { isRowRefused } from './row-vote'
 import { categoryOutcomes, sheetPoints } from './sheet-pay'
 
@@ -57,6 +57,22 @@ describe('startsWithLetter', () => {
   it('[petitbac] refuses an answer on another letter', () => {
     expect(startsWithLetter({ answer: 'Belgique', letter: 'P' })).toBe(false)
     expect(startsWithLetter({ answer: 'Le Havre', letter: 'R' })).toBe(false)
+  })
+})
+
+describe('isStoppableLine', () => {
+  it('[petitbac] takes a word on the letter', () => {
+    expect(isStoppableLine({ answer: 'Bo', letter: 'B' })).toBe(true)
+    expect(isStoppableLine({ answer: 'La Rochelle', letter: 'R' })).toBe(true)
+  })
+
+  it('[petitbac] refuses an initial alone, punctuated or not', () => {
+    expect(isStoppableLine({ answer: 'B', letter: 'B' })).toBe(false)
+    expect(isStoppableLine({ answer: ' b. ', letter: 'B' })).toBe(false)
+  })
+
+  it('[petitbac] refuses a word on another letter', () => {
+    expect(isStoppableLine({ answer: 'Chat', letter: 'B' })).toBe(false)
   })
 })
 

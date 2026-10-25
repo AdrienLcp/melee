@@ -24,3 +24,21 @@ export const startsWithLetter = ({
     normalizeKeepingArticle(answer).startsWith(initial)
   )
 }
+
+/** The shortest folded line a stop accepts: an initial alone is not an answer. */
+export const MIN_STOPPABLE_LETTERS = 2
+
+/**
+ * Whether a line lets its sheet call stop: on the letter, and more than an
+ * initial. A sheet of `B` six times would otherwise close every other sheet
+ * for nothing but speed.
+ */
+export const isStoppableLine = ({
+  answer,
+  letter
+}: {
+  answer: string
+  letter: PetitBacLetter
+}): boolean =>
+  startsWithLetter({ answer, letter }) &&
+  normalizeKeepingArticle(answer).length >= MIN_STOPPABLE_LETTERS

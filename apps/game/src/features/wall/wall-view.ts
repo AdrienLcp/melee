@@ -48,6 +48,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, datedEvents: null }
     }
 
+    case 'petitbac': {
+      return { ...content, canCancelStop: false }
+    }
+
     default: {
       return content
     }

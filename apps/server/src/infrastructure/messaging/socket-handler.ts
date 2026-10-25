@@ -55,6 +55,7 @@ import {
   registerInnerclockPress
 } from '@/domain/round/innerclock-round'
 import {
+  cancelPetitBacStop,
   finishPetitBacVote,
   isPetitBacWriting,
   nextPetitBacCategory,
@@ -490,6 +491,15 @@ const dispatch = ({
           room,
           roundId: message.roundId
         })
+      })
+      break
+    }
+    case 'host.cancelStop': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'The stop can no longer be taken back',
+        result: cancelPetitBacStop({ now, room, roundId: message.roundId })
       })
       break
     }

@@ -477,6 +477,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     yourMove: stickMoveSchema.nullable()
   }),
   z.object({
+    /** The seats whose stop the console took back this round; none of them may call another. */
+    barredStopperIds: z.array(playerIdSchema),
     categories: z
       .array(petitBacCategorySchema)
       .min(MIN_PETIT_BAC_CATEGORIES)
@@ -500,6 +502,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      */
     stopClosesAtElapsedMs: z.number().int().nonnegative().nullable(),
     stoppedBy: playerIdSchema.nullable(),
+    /** Whether a full sheet may call stop this round, stamped as it opened. */
+    stopsWhenFull: z.boolean(),
     /** Who has said they are done voting the category in play; the room moves on once every seat has. */
     votesDone: z.array(playerIdSchema),
     /** The rows of the category in play the reader refused, by key. */
@@ -776,6 +780,8 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
    * `round.content.rows`, for every screen at once.
    */
   z.object({
+    /** Whether `host.cancelStop` would be taken: a stop was called and the vote has not moved past its first category. */
+    canCancelStop: z.boolean(),
     kind: z.literal('petitbac'),
     progress: z.array(petitBacProgressSchema)
   }),

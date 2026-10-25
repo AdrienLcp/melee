@@ -106,6 +106,7 @@ reconnect on the token it still holds.
 | `host.collectSheets` | host | `roundId` — closes every item still open |
 | `host.showItem` | host | `roundId`, `itemIndex` |
 | `host.judgeGroup` | host | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}` |
+| `host.cancelStop` | host | `roundId` — takes a Petit Bac stop back and reopens every sheet on the time it left, until the vote moves past its first category |
 | `host.nextCategory` | host | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last |
 | `host.refuseRow` | host | `roundId`, `categoryIndex`, `rowKey`, `refuses` — the judge's own refusal, under `hasJudge` alone |
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
@@ -441,9 +442,14 @@ and its `lines` once it is `settled`. `petit-bac-game.test.ts` searches the
 console's, the wall's and each seat's whole transcript for another seat's word.
 
 The sheets close on the round's clock, or `PETIT_BAC_STOP_GRACE_MS` after a
-`petitbac.stop` from a seat whose every line is filled (`sheet_not_full`
-otherwise, `wrong_phase` when the room turned the stop off or one is already
-counting). The grace is `stopClosesAtElapsedMs`, round time like `durationMs`,
+`petitbac.stop` from a seat whose every line is a word on the letter, two
+letters or more after the fold (`sheet_not_full` otherwise, `wrong_phase` when
+the room turned the stop off, one is already counting, or the console took
+this seat's back). Until a category with a row has settled, the console's
+`host.cancelStop` takes the stop back, judge or not: the sheets reopen on the
+round clock as it stood when the stop was called, the votes so far are
+dropped, and the caller joins `barredStopperIds` for the round —
+`canCancelStop` on the console's content says whether it would be taken. The grace is `stopClosesAtElapsedMs`, round time like `durationMs`,
 so a console away freezes it with the clock; it is the round's deadline, and a
 line written after it is `wrong_phase`. The vote then opens on the first
 category with a row — one with none settles on the spot. A row is a group of

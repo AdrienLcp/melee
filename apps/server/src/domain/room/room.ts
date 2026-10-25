@@ -333,6 +333,8 @@ export type Round = {
         categories: PetitBacCategory[]
         /** One per category, in order: every one `open` until the sheets close, then voted one at a time. */
         categoryStates: PetitBacCategoryState[]
+        /** The seats whose stop the console took back this round, barred from calling another. */
+        barredStoppers: Set<PlayerId>
         /** Whether the console refuses rows itself, read off `hasJudge` as the round opens. */
         isJudged: boolean
         /** The judge's own refusals by category index, then row key; the room's vote under `hasJudge`. */

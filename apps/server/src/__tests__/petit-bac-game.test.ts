@@ -228,8 +228,8 @@ describe('a Petit Bac round through the seam', () => {
     expect(transcriptOf(max)).not.toContain('Bhoutan')
     expect(transcriptOf(zoe)).not.toContain('Botswana')
 
-    expect(wallView(wall)?.currentContent).toEqual(
-      hostView(host)?.currentContent
+    expect(hostView(host)?.currentContent).toMatchObject(
+      wallView(wall)?.currentContent ?? {}
     )
   })
 
@@ -276,6 +276,80 @@ describe('a Petit Bac round through the seam', () => {
       'open',
       'open'
     ])
+  })
+
+  it('[petitbac] refuses a stop from a sheet off the letter or of bare initials', async () => {
+    const { lea, stop, write, zoe } = await roundInPlay()
+
+    await write(zoe, ['Belgique', 'Chat', 'Bastien'])
+    stop(zoe)
+    await write(lea, ['B', 'b.', 'B'])
+    stop(lea)
+    await waitFor(
+      () =>
+        [zoe, lea].every((seat) =>
+          errorsIn(seat).some(({ code }) => code === 'sheet_not_full')
+        ),
+      'both junk sheets to be refused'
+    )
+
+    expect(petitBacRound(playerView(zoe))?.stoppedBy).toBeNull()
+  })
+
+  it('[petitbac] reopens every sheet on a cancelled stop, and bars its caller from stopping again', async () => {
+    const {
+      doneVoting,
+      host,
+      idOf,
+      max,
+      roundId,
+      sheetsClosed,
+      stop,
+      write,
+      zoe
+    } = await roundInPlay()
+
+    await write(zoe, SHEETS.zoe)
+    stop(zoe)
+    await sheetsClosed()
+
+    host.send({ roundId, type: 'host.cancelStop' })
+    await waitFor(
+      () => petitBacRound(playerView(max))?.sheetsClosed === false,
+      'the sheets to reopen'
+    )
+
+    expect(petitBacRound(playerView(max))).toMatchObject({
+      barredStopperIds: [idOf(zoe)],
+      categoryStates: ['open', 'open', 'open'],
+      stopClosesAtElapsedMs: null,
+      stoppedBy: null
+    })
+
+    stop(zoe)
+    await waitFor(
+      () => errorsIn(zoe).some(({ code }) => code === 'wrong_phase'),
+      'a second stop from the same seat to be refused'
+    )
+
+    await write(max, SHEETS.max)
+    stop(max)
+    await sheetsClosed()
+    doneVoting(0)
+    await waitFor(
+      () => petitBacRound(playerView(zoe))?.categoryStates[0] === 'settled',
+      'the first category to settle'
+    )
+
+    expect(hostView(host)?.currentContent).toMatchObject({
+      canCancelStop: false
+    })
+
+    host.send({ roundId, type: 'host.cancelStop' })
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'wrong_phase'),
+      'a cancel after the vote moved on to be refused'
+    )
   })
 
   it('[petitbac] groups a category’s answers into rows, and lets a seat refuse none of its own', async () => {

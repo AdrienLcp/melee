@@ -175,7 +175,12 @@ the server refuses a stop unless every line starts with the letter and holds
 two letters or more, and the console carries *cancel the stop* — the sheets
 reopen on the time left when it was called, the stopper may not stop again
 that round — until the first category's vote has moved on. Judge or not: the
-console runs the room either way.
+console runs the room either way. **Landed 25/10/2026**: `isStoppableLine` in
+`core/petitbac/letter-match.ts`, `host.cancelStop`, `canCancelStop` on the
+console's arm and `barredStopperIds` and `stopsWhenFull` on the seat's — the
+screens below read those three rather than guessing. The clock is put back by
+setting `round.elapsedMs` to the moment of the stop; not tested over a socket,
+like the clock running out.
 
 - **A seat**: the letter large, one field per category, the stop once the
   sheet is full, the grace counting down; then the category being voted, its

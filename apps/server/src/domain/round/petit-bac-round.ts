@@ -12,10 +12,13 @@ import {
 
 import { drawCategories } from '@melee/core/petitbac/category-draw'
 import { drawLetter } from '@melee/core/petitbac/letter-draw'
-import { startsWithLetter } from '@melee/core/petitbac/letter-match'
+import {
+  isStoppableLine,
+  startsWithLetter
+} from '@melee/core/petitbac/letter-match'
 import { isRowRefused } from '@melee/core/petitbac/row-vote'
 import { categoryOutcomes, sheetPoints } from '@melee/core/petitbac/sheet-pay'
-import { groupAnswers, isBlankAnswer } from '@melee/core/round/answer-groups'
+import { groupAnswers } from '@melee/core/round/answer-groups'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -58,6 +61,7 @@ export const petitBacContent = ({
   room.playedLetters.push(letter)
 
   return {
+    barredStoppers: new Set(),
     categories,
     categoryStates: categories.map(() => 'open'),
     isJudged: room.settings.hasJudge,
@@ -179,7 +183,8 @@ export const writePetitBacLine = ({
 /**
  * A full sheet calling time on everyone's. The sheets close a grace later
  * rather than at once, so the word a hand is still finishing lands; a second
- * stop inside that grace changes nothing and is refused.
+ * stop inside that grace changes nothing and is refused. Full means every line
+ * a word on the letter, so a sheet of initials closes nobody's.
  */
 export const stopPetitBac = ({
   now,
@@ -207,14 +212,18 @@ export const stopPetitBac = ({
   if (
     !content.stopsWhenFull ||
     content.sheetsClosed ||
-    content.stoppedBy !== null
+    content.stoppedBy !== null ||
+    content.barredStoppers.has(playerId)
   ) {
     return Result.failure('wrong_phase')
   }
 
   const sheet = content.sheets.get(playerId)
-  const isFull = content.categories.every(
-    (_, index) => !isBlankAnswer(sheet?.get(index) ?? null)
+  const isFull = content.categories.every((_, index) =>
+    isStoppableLine({
+      answer: sheet?.get(index) ?? '',
+      letter: content.letter
+    })
   )
 
   if (!isFull) {
@@ -224,6 +233,73 @@ export const stopPetitBac = ({
   content.stoppedBy = playerId
   content.stopClosesAtElapsedMs =
     elapsedRoundMs(round, now) + PETIT_BAC_STOP_GRACE_MS
+  touch(room, now)
+
+  return Result.success()
+}
+
+/**
+ * Whether the console may still take the stop back: one was called, and no
+ * category with a row has settled yet — once the room has moved past a vote,
+ * reopening the sheets would hand everyone the answers they just read.
+ */
+export const canCancelPetitBacStop = ({
+  content,
+  room
+}: {
+  content: PetitBacContent
+  room: Room
+}): boolean =>
+  room.phase === 'playing' &&
+  content.stoppedBy !== null &&
+  content.stopClosesAtElapsedMs !== null &&
+  !content.categoryStates.some(
+    (state, categoryIndex) =>
+      state === 'settled' && petitBacRowsFor({ categoryIndex, room }).length > 0
+  )
+
+/**
+ * The console taking a stop back, judge or not. The sheets reopen on the
+ * clock as it stood when the stop was called, the vote so far is dropped, and
+ * the caller may not stop again this round.
+ */
+export const cancelPetitBacStop = ({
+  now,
+  room,
+  roundId
+}: {
+  now: number
+  room: Room
+  roundId: RoundId
+}): Result<void, PetitBacRejection> => {
+  const found = livePetitBacRoundIn({ room, roundId })
+
+  if (found.status === 'failure') {
+    return found
+  }
+
+  const { content, round } = found.data
+  const { stopClosesAtElapsedMs, stoppedBy } = content
+
+  if (
+    stoppedBy === null ||
+    stopClosesAtElapsedMs === null ||
+    !canCancelPetitBacStop({ content, room })
+  ) {
+    return Result.failure('wrong_phase')
+  }
+
+  round.elapsedMs = stopClosesAtElapsedMs - PETIT_BAC_STOP_GRACE_MS
+  round.runningSince = round.runningSince === null ? null : now
+  content.barredStoppers.add(stoppedBy)
+  content.stoppedBy = null
+  content.stopClosesAtElapsedMs = null
+  content.sheetsClosed = false
+  content.categoryStates = content.categories.map(() => 'open')
+  content.refusals = new Map()
+  content.judgeRefusals = new Map()
+  content.votesDone = new Set()
+  rescore({ content, room, round })
   touch(room, now)
 
   return Result.success()

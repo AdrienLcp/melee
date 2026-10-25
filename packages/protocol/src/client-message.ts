@@ -275,6 +275,16 @@ export const nextCategoryMessageSchema = z.object({
   type: z.literal('host.nextCategory')
 })
 
+/**
+ * Takes a stop back and reopens every sheet on the time it left, the caller
+ * barred from stopping again that round — until the vote has moved past its
+ * first category.
+ */
+export const cancelStopMessageSchema = z.object({
+  roundId: roundIdSchema,
+  type: z.literal('host.cancelStop')
+})
+
 /** The judge's own refusal of a row, in a room with one — where the seats only watch. */
 export const refuseRowMessageSchema = z.object({
   categoryIndex: petitBacCategoryIndexSchema,
@@ -525,6 +535,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   showItemMessageSchema,
   judgeGroupMessageSchema,
   nextCategoryMessageSchema,
+  cancelStopMessageSchema,
   refuseRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
@@ -593,6 +604,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   showItemMessageSchema,
   judgeGroupMessageSchema,
   nextCategoryMessageSchema,
+  cancelStopMessageSchema,
   refuseRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
@@ -636,6 +648,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.showItem',
   'host.judgeGroup',
   'host.nextCategory',
+  'host.cancelStop',
   'host.refuseRow',
   'host.drawTeams',
   'host.renameTeam',

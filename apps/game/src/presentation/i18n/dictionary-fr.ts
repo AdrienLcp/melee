@@ -325,7 +325,8 @@ export const FR_DICTIONARY = defineDictionary({
       reload: 'Recharger la page',
       title: 'Quelque chose a cassé'
     },
-    sheet_not_full: 'Remplis toutes les lignes avant de crier stop.',
+    sheet_not_full:
+      'Il faut un mot sur la lettre à chaque ligne avant de crier stop.',
     spoken_needs_two_teams:
       'Équipe par équipe, il faut deux équipes avec quelqu’un dans chacune.',
     stale_round: 'Cette manche est déjà terminée.',
