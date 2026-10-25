@@ -55,9 +55,10 @@ describe('a room racing on a track', () => {
     const { code, host } = await harness.openRoom({ ...ON_A_TRACK, board })
     const anna = await harness.seat({ code, nickname: 'Anna' })
     const ben = await harness.seat({ code, nickname: 'Ben' })
+    const carl = await harness.seat({ code, nickname: 'Carl' })
 
     host.send({
-      assignment: [[idOf(anna)], [idOf(ben)]],
+      assignment: [[idOf(anna)], [idOf(ben), idOf(carl)]],
       type: 'host.drawTeams'
     })
 
@@ -105,7 +106,7 @@ describe('a room racing on a track', () => {
       { case: 0, move: 0 }
     ])
     expect(playerView(room.ben)?.players.map((player) => player.board)).toEqual(
-      [null, null]
+      [null, null, null]
     )
 
     room.host.send({ type: 'host.nextRound' })

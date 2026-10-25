@@ -299,6 +299,8 @@ describe('a challenge between teams on a track', () => {
   it('[challenge] refuses a seat placed in a room playing in teams', async () => {
     const { code, host } = await harness.openRoom(ON_A_TRACK)
     const anna = await harness.seat({ code, nickname: 'Anna' })
+    await harness.seat({ code, nickname: 'Ben' })
+    await harness.seat({ code, nickname: 'Chloe' })
 
     host.send({ challengeText: POTATOES, type: 'host.startRound' })
     await waitFor(() => hostView(host)?.phase === 'playing', 'the challenge')
