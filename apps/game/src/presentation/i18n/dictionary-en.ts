@@ -595,10 +595,6 @@ export const EN_DICTIONARY = defineDictionary({
         state: 'you run it'
       },
       label: 'The room from above',
-      pointer: {
-        action: 'Everything is set in Room',
-        lead: 'Another screen nearby, or playing too?'
-      },
       seat: {
         betweenRounds: 'You can take a seat between two rounds.',
         free: 'free',

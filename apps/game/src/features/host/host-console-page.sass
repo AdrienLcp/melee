@@ -124,15 +124,6 @@
         @include layout.narrow
           grid-template-columns: minmax(0, 1fr)
 
-        .room-pointer
-          @include typography.caption
-
-          align-items: center
-          color: var(--ink-muted)
-          display: flex
-          flex-wrap: wrap
-          gap: 0 var(--space-2xs)
-
         // Nobody joins a table answering aloud: no invitation, one column.
         &[data-aloud]
           grid-template-columns: minmax(0, 1fr)
@@ -890,9 +881,6 @@
 
       .roster
         order: 4
-
-      .room-pointer
-        order: 5
 
       // The square takes the larger share of the row: the console is held out
       // to the person scanning it, and the code beside it is only read aloud.

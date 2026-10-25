@@ -1,5 +1,4 @@
 import { useMediaQuery } from '@adrienlcp/browser/react'
-import { createSafeContext } from '@adrienlcp/react'
 import type React from 'react'
 import { useState } from 'react'
 import {
@@ -73,10 +72,6 @@ const PANEL_TABS: readonly PanelTabFace[] = [
   }
 ]
 
-/** Opens one of the panel's tabs from the stage; the optional hook is `undefined` on the wall, which has no panel. */
-export const [PanelTabOpenerContext, , useOptionalPanelTabOpener] =
-  createSafeContext<(tab: PanelTab) => void>('HostPanel')
-
 const isPanelTab = (key: React.Key): key is PanelTab =>
   PANEL_TABS.some((tab) => tab.id === key)
 
@@ -149,15 +144,6 @@ export const HostPanel: React.FC<HostPanelProps> = ({
     setSide(next)
   }
 
-  const openTab = (id: PanelTab) => {
-    if (isDesk) {
-      setChosenTab(id)
-      fold(false)
-    } else {
-      setScreen(id)
-    }
-  }
-
   const badge = (id: PanelTab) =>
     id === 'players' && playerCount > 0 ? (
       <span className='tab-badge'>{playerCount}</span>
@@ -200,7 +186,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
       data-side={side}
       data-stage-full={isStageFull || undefined}
     >
-      <PanelTabOpenerContext value={openTab}>{children}</PanelTabOpenerContext>
+      {children}
       <aside aria-label={translate('host.panel.label')} className='host-panel'>
         {isRail ? (
           <div className='panel-rail'>

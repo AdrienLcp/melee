@@ -45,7 +45,8 @@ marked *Here*. A pick rings the face and underlines it, no box.
   unpair.
 - *Your seat*: take or leave it.
 
-The lobby keeps one line, with no wall only: *Everything is set in Room*.
+The lobby carried one line, with no wall only: *Everything is set in Room*;
+removed on 2026-10-25 at Adrien's ask — the panel's tab is in sight already.
 
 ## Step 4 — the board's shape follows its case size
 

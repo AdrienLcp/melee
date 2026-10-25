@@ -568,10 +568,6 @@ export const FR_DICTIONARY = defineDictionary({
         state: 'tu mènes'
       },
       label: 'La salle vue de dessus',
-      pointer: {
-        action: 'Tout se règle dans Salle',
-        lead: 'Un autre écran à côté, envie de jouer aussi ?'
-      },
       seat: {
         betweenRounds: 'Tu pourras prendre une place entre deux manches.',
         free: 'libre',

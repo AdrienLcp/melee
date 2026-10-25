@@ -510,8 +510,7 @@ does opens in a well under the drawing: pairing a screen by its code or
 letting it go, the seat's form, this screen's volume. The hand-over stays the
 menu's folded `HandOverDoor` there too, never an open square — this tab is
 often open on the screen the whole room faces, and the square hands the table
-to whoever scans it. The lobby says it once, with no wall only: *Another
-screen nearby, or playing too? Everything is set in Room*. The phase's presses are never in it: they stay in `HostActions` under
+to whoever scans it. The phase's presses are never in it: they stay in `HostActions` under
 the stage, so a folded panel or another tab never hides what the room waits on.
 
 - **Past the split** the panel stands beside the stage, `--host-panel-width`
