@@ -360,6 +360,28 @@ const withStampedRound = (view: object): object => {
  * snapshot to the hello, a pong to every ping. The protocol version is echoed
  * from the hello, so a bump never strands this check on a stale number.
  */
+/**
+ * A resize returns before the page has answered it: React swaps the host's
+ * panel on a media query, and a size read in that window measures the layout
+ * of the previous viewport. Two frames is the swap committed and laid out.
+ */
+const resizeTo = async ({
+  height,
+  page,
+  width
+}: {
+  height: number
+  page: Page
+  width: number
+}): Promise<void> => {
+  await page.setViewportSize({ height, width })
+  await page.evaluate(async () => {
+    await document.fonts.ready
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+  })
+}
+
 const serveRoom = async ({ page, view }: { page: Page; view: object }) => {
   await page.routeWebSocket(/\/ws\/rooms\//, (socket) => {
     socket.onMessage((raw) => {
@@ -507,8 +529,7 @@ for (const seat of SEATS) {
       for (const [width, height] of seat.role === 'room'
         ? ROOM_VIEWPORTS
         : VIEWPORTS) {
-        await page.setViewportSize({ height, width })
-        await page.evaluate(() => document.fonts.ready.then(() => {}))
+        await resizeTo({ height, page, width })
 
         const overflow = await page.evaluate(measure)
 
@@ -683,8 +704,7 @@ for (const reveal of REVEALS) {
     const faults: string[] = []
 
     for (const [width, height] of ROOM_VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
 
@@ -780,8 +800,7 @@ for (const screen of FLOOR_SCREENS) {
     const faults: string[] = []
 
     for (const [width, height] of ROOM_VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
 
@@ -835,8 +854,7 @@ for (const final of FINALS) {
     const faults: string[] = []
 
     for (const [width, height] of ROOM_VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
 
@@ -967,8 +985,7 @@ for (const screen of SLATE_SCREENS) {
     const faults: string[] = []
 
     for (const [width, height] of ROOM_VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
 
@@ -1066,8 +1083,7 @@ for (const screen of REFLEX_SCREENS) {
     const faults: string[] = []
 
     for (const [width, height] of ROOM_VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
 
@@ -1231,8 +1247,7 @@ for (const screen of PLAYER_BUZZER_SCREENS) {
     const faults: string[] = []
 
     for (const [width, height] of VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measurePress)
 
@@ -1405,8 +1420,7 @@ for (const screen of PLAYER_PAGE_SCREENS) {
     const faults: string[] = []
 
     for (const [width, height] of VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measurePage)
 
@@ -1430,8 +1444,7 @@ test('[layout] player, the reveal of a full table: never scrolls', async ({
   const faults: string[] = []
 
   for (const [width, height] of VIEWPORTS) {
-    await page.setViewportSize({ height, width })
-    await page.evaluate(() => document.fonts.ready.then(() => {}))
+    await resizeTo({ height, page, width })
 
     const overflow = await page.evaluate(() => {
       const root = document.scrollingElement ?? document.documentElement
@@ -1565,8 +1578,7 @@ for (const screen of WALL_SCREENS) {
     const faults: string[] = []
 
     for (const [width, height] of WALL_VIEWPORTS) {
-      await page.setViewportSize({ height, width })
-      await page.evaluate(() => document.fonts.ready.then(() => {}))
+      await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measureReveal)
 
@@ -1593,7 +1605,7 @@ test('[scale] wall: a 4K panel draws the stage a 1080p one does, twice as large'
 
   const atFullHd = await page.evaluate(largestType)
 
-  await page.setViewportSize({ height: 2160, width: 3840 })
+  await resizeTo({ height: 2160, page, width: 3840 })
   const atFourK = await page.evaluate(largestType)
 
   expect(atFourK / atFullHd).toBeCloseTo(2, 1)
