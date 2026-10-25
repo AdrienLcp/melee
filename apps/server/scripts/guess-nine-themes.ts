@@ -1,8 +1,13 @@
+import type { CountryCode } from '@melee/protocol/country-code'
+
+import { bankedCapitals } from '../src/infrastructure/questions/capital-bank'
 import type { TemplateName, Wording } from './guess-nine-templates'
 
 export type ThemeSpec = {
   /** The candidate to bank as the black word, over the most read one. */
   blackWord?: string
+  /** The states a capitals template lists, by code. */
+  countries?: readonly CountryCode[]
   /** Candidates read and refused, each one a true answer Wikidata missed or a word too weak to bite. */
   excluded?: string[]
   /** The theme's wording, where the template's would not read right. */
@@ -19,13 +24,38 @@ export type ThemeSpec = {
   why?: Wording
 }
 
+/** A seat is a capital a table may give and be right, so it banks the capital's cell. */
+const seatNamesByCapital = (): Record<string, readonly string[]> =>
+  Object.fromEntries(
+    bankedCapitals()
+      .filter(({ seats }) => seats.length > 0)
+      .map(({ capital, seats }) => [
+        capital.id,
+        [...new Set(seats.flatMap(({ names }) => [names.en, names.fr]))]
+      ])
+  )
+
 /** Names a table says that Wikidata does not hold, keyed by entity. */
 export const SPOKEN_ALIASES: Readonly<Record<string, readonly string[]>> = {
+  ...seatNamesByCapital(),
   Q7156: ['Barça', 'Barcelona'],
+  Q8678: ['Rio'],
   Q8682: ['Real'],
   Q192071: ['Nantes'],
   Q483020: ['PSG', 'Paris Saint-Germain', 'Paris SG']
 }
+
+/** The states of an M49 region or intermediate region, as the capital bank files them. */
+const countriesIn = (
+  m49: string,
+  { except }: { except?: string } = {}
+): CountryCode[] =>
+  bankedCapitals()
+    .filter(
+      ({ region, subregion }) =>
+        (region === m49 || subregion === m49) && subregion !== except
+    )
+    .map(({ code }) => code)
 
 export const GUESS_NINE_THEMES: readonly ThemeSpec[] = [
   {
@@ -1525,6 +1555,207 @@ export const GUESS_NINE_THEMES: readonly ThemeSpec[] = [
     why: {
       en: 'A painting by Hieronymus Bosch',
       fr: 'Un tableau de Jérôme Bosch'
+    }
+  },
+  {
+    blackWord: 'Q72',
+    countries: countriesIn('150'),
+    labels: { en: 'Capitals of Europe', fr: 'Les capitales d’Europe' },
+    subject: 'europe',
+    template: 'capitals-of',
+    why: {
+      en: 'Switzerland’s largest city; its capital is Bern',
+      fr: 'La plus grande ville de Suisse ; sa capitale est Berne'
+    }
+  },
+  {
+    blackWord: 'Q8678',
+    countries: countriesIn('005'),
+    labels: {
+      en: 'Capitals of South America',
+      fr: 'Les capitales d’Amérique du Sud'
+    },
+    subject: 'south-america',
+    template: 'capitals-of',
+    why: {
+      en: 'Brazil’s capital until 1960; Brasília since',
+      fr: 'Capitale du Brésil jusqu’en 1960 ; Brasília depuis'
+    }
+  },
+  {
+    blackWord: 'Q7903',
+    countries: countriesIn('002'),
+    labels: { en: 'Capitals of Africa', fr: 'Les capitales d’Afrique' },
+    subject: 'africa',
+    template: 'capitals-of',
+    why: {
+      en: 'Morocco’s largest city; its capital is Rabat',
+      fr: 'La plus grande ville du Maroc ; sa capitale est Rabat'
+    }
+  },
+  {
+    blackWord: 'Q406',
+    countries: countriesIn('142'),
+    labels: { en: 'Capitals of Asia', fr: 'Les capitales d’Asie' },
+    subject: 'asia',
+    template: 'capitals-of',
+    why: {
+      en: 'Turkey’s largest city; its capital is Ankara',
+      fr: 'La plus grande ville de Turquie ; sa capitale est Ankara'
+    }
+  },
+  {
+    blackWord: 'Q3130',
+    countries: countriesIn('009'),
+    labels: { en: 'Capitals of Oceania', fr: 'Les capitales d’Océanie' },
+    subject: 'oceania',
+    template: 'capitals-of',
+    why: {
+      en: 'Australia’s largest city; its capital is Canberra',
+      fr: 'La plus grande ville d’Australie ; sa capitale est Canberra'
+    }
+  },
+  {
+    blackWord: 'Q60',
+    countries: countriesIn('019', { except: '005' }),
+    labels: {
+      en: 'Capitals of North and Central America',
+      fr: 'Les capitales d’Amérique du Nord et centrale'
+    },
+    subject: 'north-and-central-america',
+    template: 'capitals-of',
+    why: {
+      en: 'The largest city of the United States; its capital is Washington',
+      fr: 'La plus grande ville des États-Unis ; leur capitale est Washington'
+    }
+  },
+  {
+    blackWord: 'Q71',
+    countries: countriesIn('155'),
+    labels: {
+      en: 'Capitals of Western Europe',
+      fr: 'Les capitales d’Europe de l’Ouest'
+    },
+    subject: 'western-europe',
+    template: 'capitals-of',
+    why: {
+      en: 'Home to the UN in Europe, but Switzerland’s capital is Bern',
+      fr: 'Siège de l’ONU en Europe, mais la capitale suisse est Berne'
+    }
+  },
+  {
+    blackWord: 'Q25287',
+    countries: countriesIn('154'),
+    labels: {
+      en: 'Capitals of Northern Europe',
+      fr: 'Les capitales d’Europe du Nord'
+    },
+    subject: 'northern-europe',
+    template: 'capitals-of',
+    why: {
+      en: 'Sweden’s second city; its capital is Stockholm',
+      fr: 'La deuxième ville de Suède ; sa capitale est Stockholm'
+    }
+  },
+  {
+    blackWord: 'Q490',
+    countries: countriesIn('039'),
+    labels: {
+      en: 'Capitals of Southern Europe',
+      fr: 'Les capitales d’Europe du Sud'
+    },
+    subject: 'southern-europe',
+    template: 'capitals-of',
+    why: {
+      en: 'Italy’s business capital; its capital is Rome',
+      fr: 'La capitale économique de l’Italie ; sa capitale est Rome'
+    }
+  },
+  {
+    blackWord: 'Q656',
+    countries: countriesIn('151'),
+    labels: {
+      en: 'Capitals of Eastern Europe',
+      fr: 'Les capitales d’Europe de l’Est'
+    },
+    subject: 'eastern-europe',
+    template: 'capitals-of',
+    why: {
+      en: 'Russia’s capital until 1918; Moscow since',
+      fr: 'Capitale de la Russie jusqu’en 1918 ; Moscou depuis'
+    }
+  },
+  {
+    blackWord: 'Q37995',
+    countries: countriesIn('035'),
+    labels: {
+      en: 'Capitals of South-eastern Asia',
+      fr: 'Les capitales d’Asie du Sud-Est'
+    },
+    subject: 'south-eastern-asia',
+    template: 'capitals-of',
+    why: {
+      en: 'Myanmar’s capital until 2006; Naypyidaw since',
+      fr: 'Capitale de la Birmanie jusqu’en 2006 ; Naypyidaw depuis'
+    }
+  },
+  {
+    blackWord: 'Q71',
+    countries: [
+      'AND',
+      'BEL',
+      'BRA',
+      'CHE',
+      'DEU',
+      'ESP',
+      'ITA',
+      'LUX',
+      'MCO',
+      'NLD',
+      'SUR'
+    ],
+    labels: {
+      en: 'Capitals of the countries bordering France',
+      fr: 'Les capitales des pays frontaliers de la France'
+    },
+    subject: 'bordering-france',
+    template: 'capitals-of',
+    why: {
+      en: 'On the French border, but Switzerland’s capital is Bern',
+      fr: 'À la frontière française, mais la capitale suisse est Berne'
+    }
+  },
+  {
+    blackWord: 'Q38',
+    countries: [
+      'AUS',
+      'BOL',
+      'BRA',
+      'CAN',
+      'CHE',
+      'CIV',
+      'ECU',
+      'KAZ',
+      'LKA',
+      'MAR',
+      'NGA',
+      'NZL',
+      'PAK',
+      'TUR',
+      'TZA',
+      'USA',
+      'VNM',
+      'ZAF'
+    ],
+    labels: {
+      en: 'Countries whose capital is not their largest city',
+      fr: 'Les pays dont la capitale n’est pas la plus grande ville'
+    },
+    subject: 'capital-not-largest-city',
+    template: 'countries-listed',
+    why: {
+      en: 'Rome is its largest city too; Milan is only its richest',
+      fr: 'Rome est aussi sa plus grande ville ; Milan n’est que la plus riche'
     }
   }
 ]

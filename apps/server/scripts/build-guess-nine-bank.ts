@@ -133,7 +133,11 @@ const themeIdOf = ({ neighbour, subject, template }: ThemeSpec): string =>
 
 const entitiesOf = async (spec: ThemeSpec): Promise<ThemeEntities> => {
   const template = TEMPLATES[spec.template]
-  const query = { neighbour: spec.neighbour ?? null, subject: spec.subject }
+  const query = {
+    countries: spec.countries ?? null,
+    neighbour: spec.neighbour ?? null,
+    subject: spec.subject
+  }
 
   if (template.needsNeighbour && spec.neighbour === undefined) {
     throw new Error(`${themeIdOf(spec)} needs a neighbour`)

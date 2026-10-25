@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { gradeLine } from '@melee/core/guessnine/line-match'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
 import { bankedGuessNineThemes, type GuessNineAnswer } from './guess-nine-bank'
@@ -69,5 +70,25 @@ describe('the guess-nine bank', () => {
     )
 
     expect(collisions).toEqual([])
+  })
+  it('[guessnine] banks a capital under any of its seats, and Rio as the black word', () => {
+    const theme = bankedGuessNineThemes().find(
+      ({ id }) => id === 'capitals-of:south-america'
+    )
+
+    if (theme === undefined) {
+      throw new Error('capitals of South America are not banked')
+    }
+
+    const grade = (line: string) =>
+      gradeLine({
+        answers: theme.answers.map(namesOf),
+        blackWord: namesOf(theme.blackWord),
+        line
+      })
+    const sucre = theme.answers.findIndex(({ labels }) => labels.en === 'Sucre')
+
+    expect(grade('La Paz')).toEqual({ cells: [sucre], kind: 'cells' })
+    expect(grade('Rio')).toEqual({ kind: 'blackWord' })
   })
 })

@@ -12,10 +12,16 @@
  * answer from them; what is left is still read by hand.
  */
 
+import type { CountryCode } from '@melee/protocol/country-code'
+
+import { bankedCapitals } from '../src/infrastructure/questions/capital-bank'
+
 /** The labels a template words a theme with. */
 export type Wording = { en: string; fr: string }
 
 export type TemplateQuery = {
+  /** The states a template lists rather than asks Wikidata for, where it reads some. */
+  countries: readonly CountryCode[] | null
   /** Another entity the template reads beside the subject, where it needs one. */
   neighbour: string | null
   subject: string
@@ -77,6 +83,28 @@ const currentMember = ({
     `?item p:${property} ?membership . ?membership ps:${property} wd:${organisation} .`,
     'FILTER NOT EXISTS { ?membership pq:P582 [] }'
   ].join('\n')
+
+/**
+ * Capitals come from the capital bank rather than from `P36`, which holds a
+ * past capital or several current ones for too many states to be read raw.
+ */
+const capitalRowsOf = ({ countries }: TemplateQuery) => {
+  if (countries === null) {
+    throw new Error('this template lists its countries')
+  }
+
+  const listed = new Set<string>(countries)
+  const rows = bankedCapitals().filter(({ code }) => listed.has(code))
+
+  if (rows.length !== listed.size) {
+    throw new Error(`no capital banked for one of ${countries.join(' ')}`)
+  }
+
+  return rows
+}
+
+const itemAmong = (ids: readonly string[]): string =>
+  `VALUES ?item { ${ids.map((id) => `wd:${id}`).join(' ')} }`
 
 const neighbourOf = ({ neighbour }: TemplateQuery): string => {
   if (neighbour === null) {
@@ -151,6 +179,21 @@ export const TEMPLATES = {
     needsNeighbour: false,
     truths: ({ subject }) => `?item wdt:P50 wd:${subject} . ${BOOK}`
   },
+  'capitals-of': {
+    candidates: (query) =>
+      itemAmong(
+        capitalRowsOf(query).flatMap(({ largestCities }) =>
+          largestCities.map(({ id }) => id)
+        )
+      ),
+    label: ({ en, fr }) => ({
+      en: `Capitals of ${en}`,
+      fr: `Les capitales de ${fr}`
+    }),
+    needsNeighbour: false,
+    truths: (query) =>
+      itemAmong(capitalRowsOf(query).map(({ capital }) => capital.id))
+  },
   'characters-of-work': {
     candidates: ({ neighbour, subject }) =>
       neighbour === null
@@ -190,6 +233,18 @@ export const TEMPLATES = {
         `wd:${subject} p:P47 ?border . ?border ps:P47 ?item .`,
         'FILTER NOT EXISTS { ?border pq:P582 [] }',
         COUNTRY
+      ].join('\n')
+  },
+  'countries-listed': {
+    candidates: () => COUNTRY,
+    label: ({ en, fr }) => ({ en, fr }),
+    needsNeighbour: false,
+    truths: (query) =>
+      [
+        `VALUES ?code { ${capitalRowsOf(query)
+          .map(({ code }) => `"${code}"`)
+          .join(' ')} }`,
+        `?item wdt:P298 ?code . ${COUNTRY}`
       ].join('\n')
   },
   'countries-speaking': {

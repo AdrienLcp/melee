@@ -8,6 +8,12 @@ one part.
 
 ### Features
 
+- `[Server]` **Guess nine on capitals**, thirteen themes: the capitals of
+  every continent, of six of its regions and of the countries bordering
+  France, and the countries whose capital is not their largest city. The black
+  word is the city a table takes for the capital — Zurich, Casablanca, New
+  York, Istanbul, Rio. A second capital counts: La Paz finds Sucre.
+
 - `[Shared]` **World capitals on the map**, a third *What to place* —
   *Capitales du monde* in French. The map names a capital, *Place Canberra*,
   and keeps whose it is off every screen until the reveal, which dots it and

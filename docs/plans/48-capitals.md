@@ -1,6 +1,6 @@
 # 48 — Capitals
 
-**To do.** Asked 24/10/2026. Capitals across three games at once: guess nine
+**Done 25/10/2026.** Asked 24/10/2026. Capitals across three games at once: guess nine
 themes on capitals, a capitals chip in the quiz, and world capitals to place on
 the map. One bank feeds all three, and each step ships on its own.
 
@@ -173,7 +173,7 @@ What the session found:
 
 — cut here: the map asks for capitals, `pnpm validate` green —
 
-## Step 4 — guess nine on capitals (one session)
+## Step 4 — guess nine on capitals — done
 
 Read [45](45-guess-nine.md) first. Capitals do not go through a `P36` query:
 plan 45 lost eight `countries-bordering` themes to polluted truths, and the
@@ -229,3 +229,32 @@ muted: a typed *Capitals of South America* round at 1280 and 390, *La Paz*
 banking Bolivia and *Rio* voiding the sheet.
 
 — cut here: themes banked, `pnpm validate` green —
+
+What the session found:
+
+- **The two templates take `countries`**, codes on the spec, and read the
+  capital bank rather than Wikidata: `capitals-of` lists the capitals' ids as
+  truths and those countries' `largestCities` as candidates;
+  `countries-listed` finds each state by its ISO code (`P298`) and takes every
+  current state as a candidate. `countriesIn(m49)` writes a region's list from
+  the bank's own `region` and `subregion`, so a theme never repeats it.
+- **Seats bank their capital everywhere**: `SPOKEN_ALIASES` folds in every
+  seat's names from the bank — La Paz for Sucre, Cape Town and Bloemfontein
+  for Pretoria, Colombo for Kotte — rather than one hand entry for Bolivia.
+  *Rio* is the one hand alias the session added: Wikidata holds no short name
+  for Rio de Janeiro, and it is what a table says.
+- **Two black words changed on the traffic.** Lagos is not among the five most
+  read cities of Africa for a French table; **Casablanca** is the first, with
+  Rabat on the board. **New York** replaces Toronto for North and Central
+  America: it is read two and a half times as much, and Washington is on the
+  board. Gothenburg stays for Northern Europe over Edinburgh, which *is* a
+  capital, of a country that is not a state.
+- **City-states stay true answers**: Monaco, the Vatican and Singapore cost
+  nothing to name and are the most read, so the ranking already pays them
+  least. Western Europe has exactly nine states with Monaco in it.
+- **13 themes, 167 in the bank**, none dropped; the 154 already there came out
+  of the rebuild unchanged. Sri Lanka and South Africa joined the
+  capital-not-largest list, which the bank's own seats show.
+
+Test: *La Paz* banks Sucre's cell and *Rio* is the black word in *Capitals of
+South America*, seen red with the La Paz alias removed from the bank.

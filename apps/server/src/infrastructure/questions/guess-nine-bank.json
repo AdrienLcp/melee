@@ -23506,5 +23506,2447 @@
       "en": "Paintings by Pieter Brueghel the Elder",
       "fr": "Les tableaux de Pieter Brueghel l'Ancien"
     }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["City of Light", "City of Love", "Lutetia"],
+          "fr": [
+            "FR-75",
+            "Lutèce",
+            "Paname",
+            "Pantruche",
+            "Ville de Paris",
+            "Ville de l'Amour",
+            "Ville-Lumière"
+          ]
+        },
+        "id": "Q90",
+        "labels": {
+          "en": "Paris",
+          "fr": "Paris"
+        },
+        "views": 151803
+      },
+      {
+        "aliases": {
+          "en": [
+            "Fort-Hercule",
+            "Mùnegu",
+            "Principality and Diocese of Monaco",
+            "Principality of Monaco",
+            "Principato di Monaco",
+            "Principatu de Mu̍negu",
+            "Principauté de Monaco",
+            "Prinçipatu de Mùnegu",
+            "mc"
+          ],
+          "fr": [
+            "Fort-Hercule",
+            "Monaco (rattachée au District de Menton en 1793)",
+            "Principatu de Mu̍negu",
+            "Principauté de Monaco",
+            "la Principauté de Monaco",
+            "mc"
+          ]
+        },
+        "id": "Q235",
+        "labels": {
+          "en": "Monaco",
+          "fr": "Monaco"
+        },
+        "views": 62128
+      },
+      {
+        "aliases": {
+          "en": [
+            "Augusta",
+            "Big Smoke",
+            "Kaerlud",
+            "Karelundein",
+            "LDN",
+            "Llan Dian",
+            "Llyn Dain",
+            "Lon.",
+            "Lond.",
+            "Londini",
+            "Londiniensium",
+            "Londinio",
+            "Londinion",
+            "Londinium",
+            "London U.K.",
+            "London UK",
+            "London, England",
+            "London, UK",
+            "London, United Kingdom",
+            "Loniniensi",
+            "Loñ",
+            "Loñ.",
+            "Lunden",
+            "Lundenburgh",
+            "Lundenburh",
+            "Lundenwic",
+            "Trinovantum",
+            "the Big Smoke"
+          ],
+          "fr": ["Londres, Angleterre"]
+        },
+        "id": "Q84",
+        "labels": {
+          "en": "London",
+          "fr": "Londres"
+        },
+        "views": 36865
+      },
+      {
+        "aliases": {
+          "en": [
+            "Capital of the World",
+            "City of Marble",
+            "City of Seven Hills",
+            "Eternal City",
+            "Rome, Italy",
+            "The Capital of the World",
+            "The City of Marble",
+            "The Eternal City"
+          ],
+          "fr": ["La ville aux sept collines", "La ville éternelle", "l'Urbs"]
+        },
+        "id": "Q220",
+        "labels": {
+          "en": "Rome",
+          "fr": "Rome"
+        },
+        "views": 28866
+      },
+      {
+        "aliases": {
+          "en": ["City of Prague", "Hlavní město Praha"],
+          "fr": []
+        },
+        "id": "Q1085",
+        "labels": {
+          "en": "Prague",
+          "fr": "Prague"
+        },
+        "views": 27941
+      },
+      {
+        "aliases": {
+          "en": [
+            "Città del Vaticano",
+            "Holy See",
+            "Papal State",
+            "State of Vatican City",
+            "Stato della Città del Vaticano",
+            "Status Civitatis Vaticanae",
+            "The Vatican",
+            "Vatican",
+            "Vatican City State"
+          ],
+          "fr": ["Cité du Vatican", "État de la Cité du Vatican"]
+        },
+        "id": "Q237",
+        "labels": {
+          "en": "Vatican City",
+          "fr": "Vatican"
+        },
+        "views": 26357
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Madrid (Espagne)"]
+        },
+        "id": "Q2807",
+        "labels": {
+          "en": "Madrid",
+          "fr": "Madrid"
+        },
+        "views": 25934
+      },
+      {
+        "aliases": {
+          "en": [
+            "Brussels (municipality)",
+            "Brussels City",
+            "City of Brussels"
+          ],
+          "fr": ["Bruxelles-Ville", "Ville de Bruxelles"]
+        },
+        "id": "Q239",
+        "labels": {
+          "en": "Brussels",
+          "fr": "Bruxelles"
+        },
+        "views": 22977
+      },
+      {
+        "aliases": {
+          "en": ["Vienna, Austria"],
+          "fr": []
+        },
+        "id": "Q1741",
+        "labels": {
+          "en": "Vienna",
+          "fr": "Vienne"
+        },
+        "views": 21683
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "City of Zurich",
+          "Stadt Zürich",
+          "Zurich, Switzerland",
+          "Zürich"
+        ],
+        "fr": ["Zuerich", "Zürich", "ville de Zurich"]
+      },
+      "id": "Q72",
+      "labels": {
+        "en": "Zurich",
+        "fr": "Zurich"
+      },
+      "why": {
+        "en": "Switzerland’s largest city; its capital is Bern",
+        "fr": "La plus grande ville de Suisse ; sa capitale est Berne"
+      }
+    },
+    "id": "capitals-of:europe",
+    "labels": {
+      "en": "Capitals of Europe",
+      "fr": "Les capitales d’Europe"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Ciudad Autonoma de Buenos Aires", "Ciudad de Buenos Aires"],
+          "fr": []
+        },
+        "id": "Q1486",
+        "labels": {
+          "en": "Buenos Aires",
+          "fr": "Buenos Aires"
+        },
+        "views": 15525
+      },
+      {
+        "aliases": {
+          "en": ["Bogota, Colombia", "Bogotá, D.C.", "Santafé de Bogotá"],
+          "fr": ["Bogotá D.C."]
+        },
+        "id": "Q2841",
+        "labels": {
+          "en": "Bogotá",
+          "fr": "Bogota"
+        },
+        "views": 10755
+      },
+      {
+        "aliases": {
+          "en": ["City of the Kings"],
+          "fr": []
+        },
+        "id": "Q2868",
+        "labels": {
+          "en": "Lima",
+          "fr": "Lima"
+        },
+        "views": 8314
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q2844",
+        "labels": {
+          "en": "Brasília",
+          "fr": "Brasilia"
+        },
+        "views": 7042
+      },
+      {
+        "aliases": {
+          "en": ["Greater Santiago", "Santiago, Chile"],
+          "fr": ["Saint-Jacques du Chili", "Santiago du Chili"]
+        },
+        "id": "Q2887",
+        "labels": {
+          "en": "Santiago",
+          "fr": "Santiago"
+        },
+        "views": 6396
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Montévidéo", "San Felipe y Santiago de Montevideo"]
+        },
+        "id": "Q1335",
+        "labels": {
+          "en": "Montevideo",
+          "fr": "Montevideo"
+        },
+        "views": 5495
+      },
+      {
+        "aliases": {
+          "en": ["Kitu", "Quito, Ecuador"],
+          "fr": []
+        },
+        "id": "Q2900",
+        "labels": {
+          "en": "Quito",
+          "fr": "Quito"
+        },
+        "views": 4507
+      },
+      {
+        "aliases": {
+          "en": ["CCS", "Carracas", "Santiago de León de Caracas"],
+          "fr": ["Santiago de León de Caracas"]
+        },
+        "id": "Q1533",
+        "labels": {
+          "en": "Caracas",
+          "fr": "Caracas"
+        },
+        "views": 3196
+      },
+      {
+        "aliases": {
+          "en": [
+            "Charcas",
+            "Chuquisaca",
+            "La Plata",
+            "The Illustrious and Heroic Sucre"
+          ],
+          "fr": ["La Paz"]
+        },
+        "id": "Q2907",
+        "labels": {
+          "en": "Sucre",
+          "fr": "Sucre"
+        },
+        "views": 2868
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "City of Río de Janeiro",
+          "Rio de Janeiro city",
+          "Río de Janeiro City"
+        ],
+        "fr": ["Río de Janeiro", "Rio"]
+      },
+      "id": "Q8678",
+      "labels": {
+        "en": "Rio de Janeiro",
+        "fr": "Rio de Janeiro"
+      },
+      "why": {
+        "en": "Brazil’s capital until 1960; Brasília since",
+        "fr": "Capitale du Brésil jusqu’en 1960 ; Brasília depuis"
+      }
+    },
+    "id": "capitals-of:south-america",
+    "labels": {
+      "en": "Capitals of South America",
+      "fr": "Les capitales d’Amérique du Sud"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Leopoldstad"],
+          "fr": []
+        },
+        "id": "Q3838",
+        "labels": {
+          "en": "Kinshasa",
+          "fr": "Kinshasa"
+        },
+        "views": 29464
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q3561",
+        "labels": {
+          "en": "Algiers",
+          "fr": "Alger"
+        },
+        "views": 17353
+      },
+      {
+        "aliases": {
+          "en": ["Rabbat"],
+          "fr": ["Rabbat"]
+        },
+        "id": "Q3551",
+        "labels": {
+          "en": "Rabat",
+          "fr": "Rabat"
+        },
+        "views": 15098
+      },
+      {
+        "aliases": {
+          "en": ["Cairo, Egypt", "Qahira", "ghahere"],
+          "fr": ["Caire", "Cairo"]
+        },
+        "id": "Q85",
+        "labels": {
+          "en": "Cairo",
+          "fr": "Le Caire"
+        },
+        "views": 14724
+      },
+      {
+        "aliases": {
+          "en": ["Analamanga", "Iarivo", "Tananarive"],
+          "fr": ["Iarivo", "Tananarive"]
+        },
+        "id": "Q3915",
+        "labels": {
+          "en": "Antananarivo",
+          "fr": "Antananarivo"
+        },
+        "views": 11184
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q3718",
+        "labels": {
+          "en": "Dakar",
+          "fr": "Dakar"
+        },
+        "views": 10948
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q3703",
+        "labels": {
+          "en": "Bamako",
+          "fr": "Bamako"
+        },
+        "views": 9886
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q3844",
+        "labels": {
+          "en": "Brazzaville",
+          "fr": "Brazzaville"
+        },
+        "views": 8724
+      },
+      {
+        "aliases": {
+          "en": ["Kumbee-Tenga", "Ouaga", "Wagadugu"],
+          "fr": []
+        },
+        "id": "Q3777",
+        "labels": {
+          "en": "Ouagadougou",
+          "fr": "Ouagadougou"
+        },
+        "views": 8557
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "Anfa",
+          "Bedawa",
+          "Dar el-Beida",
+          "White House",
+          "ad-Dār al-Bayḍāʾ",
+          "الدار البيضاء"
+        ],
+        "fr": [
+          "Ad-dar Al Bayda",
+          "Anfa",
+          "Commune de Casablanca",
+          "Maison Blanche",
+          "Ville de Casablanca",
+          "ad-Dār al-Bayḍāʾ"
+        ]
+      },
+      "id": "Q7903",
+      "labels": {
+        "en": "Casablanca",
+        "fr": "Casablanca"
+      },
+      "why": {
+        "en": "Morocco’s largest city; its capital is Rabat",
+        "fr": "La plus grande ville du Maroc ; sa capitale est Rabat"
+      }
+    },
+    "id": "capitals-of:africa",
+    "labels": {
+      "en": "Capitals of Africa",
+      "fr": "Les capitales d’Afrique"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Garden City",
+            "Lion City",
+            "Republic of Singapore",
+            "S'pore",
+            "Singapore City",
+            "sg"
+          ],
+          "fr": ["République de Singapour"]
+        },
+        "id": "Q334",
+        "labels": {
+          "en": "Singapore",
+          "fr": "Singapour"
+        },
+        "views": 67842
+      },
+      {
+        "aliases": {
+          "en": [
+            "Edo",
+            "Jedo",
+            "Tokei",
+            "Tokio",
+            "Tokyo (Japan)",
+            "Tokyo Metropolis",
+            "Tokyo Metropolitan prefecture",
+            "Tokyo Prefecture",
+            "Tokyo, Japan",
+            "Tokyo-to",
+            "Tôkyô",
+            "Tôkyô-to",
+            "Tōkyō-to",
+            "Yedo"
+          ],
+          "fr": [
+            "Tokyo Metropolis",
+            "Tokyo-to",
+            "Tôkyô",
+            "Tôkyô-to",
+            "Tōkyō-to",
+            "métropole de Tokyo",
+            "préfecture de Tokyo",
+            "préfecture métropolitaine de Tokyo"
+          ]
+        },
+        "id": "Q1490",
+        "labels": {
+          "en": "Tokyo",
+          "fr": "Tokyo"
+        },
+        "views": 29320
+      },
+      {
+        "aliases": {
+          "en": [
+            "DKI Jakarta",
+            "Djakarta",
+            "Jakarta Province",
+            "Jakarta Specific Region",
+            "Jakarta, Indonesia",
+            "Specific Capital Region of Jakarta",
+            "Specific Region of Jakarta"
+          ],
+          "fr": ["Batavia", "Djakarta"]
+        },
+        "id": "Q3630",
+        "labels": {
+          "en": "Jakarta",
+          "fr": "Jakarta"
+        },
+        "views": 14233
+      },
+      {
+        "aliases": {
+          "en": [
+            "BJ",
+            "Beeijing",
+            "Bei Jing Shi",
+            "Beijing Shi",
+            "Beiping",
+            "Bākgīng",
+            "Chi",
+            "Chi-ch'eng",
+            "Chi-cheng",
+            "Chi-ch’êng",
+            "Chung-tu",
+            "Chungtu",
+            "Ji",
+            "Jicheng",
+            "Khanbalik",
+            "Khanbaliq",
+            "Pak-kiann",
+            "Pe-king",
+            "Pei-ching",
+            "Pei-p'ing",
+            "Pei-ping",
+            "Peip'ing",
+            "Peiping",
+            "Pekin",
+            "Peking Shi",
+            "Poh-cin",
+            "Shun-t'ien",
+            "Shun-tien",
+            "Shuntian",
+            "Shuntian Fu",
+            "Shuntianfu",
+            "Yan-ching",
+            "Yanjing",
+            "Yanking",
+            "Zhongdu"
+          ],
+          "fr": ["Pe-king", "Pé-king", "Péking"]
+        },
+        "id": "Q956",
+        "labels": {
+          "en": "Beijing",
+          "fr": "Pékin"
+        },
+        "views": 13343
+      },
+      {
+        "aliases": {
+          "en": [
+            "Bangkok, Thailand",
+            "Krung Thep",
+            "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit",
+            "Sia-Yut'hia"
+          ],
+          "fr": [
+            "Krung Thep",
+            "Krungthep mahanakhon amon rattanakosin mahintara ayuthaya mahadilok phop noppharat ratchathani burirom udomratchaniwet mahasathan amon piman awatan sathit sakkathattiya witsanukam prasit",
+            "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit"
+          ]
+        },
+        "id": "Q1861",
+        "labels": {
+          "en": "Bangkok",
+          "fr": "Bangkok"
+        },
+        "views": 12766
+      },
+      {
+        "aliases": {
+          "en": [
+            "Gyeongseong",
+            "Hanseong",
+            "Hanyang",
+            "Keijou",
+            "Keijō",
+            "Namgyeong",
+            "Seoul Special City",
+            "Sŏul T'ŭkpyŏlsi",
+            "Wiryeseong"
+          ],
+          "fr": [
+            "Gyeongseong",
+            "Hanseong",
+            "Kenghi",
+            "Sŏul",
+            "Ville spéciale de Séoul",
+            "Wiryeseong"
+          ]
+        },
+        "id": "Q8684",
+        "labels": {
+          "en": "Seoul",
+          "fr": "Séoul"
+        },
+        "views": 12232
+      },
+      {
+        "aliases": {
+          "en": ["Baki", "Baky", "City of Winds"],
+          "fr": []
+        },
+        "id": "Q9248",
+        "labels": {
+          "en": "Baku",
+          "fr": "Bakou"
+        },
+        "views": 10754
+      },
+      {
+        "aliases": {
+          "en": [
+            "Cadmendu",
+            "Catmandir",
+            "Catmeduour",
+            "City of Temples",
+            "Kadmendu",
+            "Kantipur",
+            "Kasthamandap",
+            "Kathmandu Metropolitan City",
+            "Kathmandu Valley",
+            "Katmandir",
+            "Katmandou",
+            "Katmandu",
+            "Khatmandu",
+            "Káthmándú",
+            "Yambu",
+            "Yen"
+          ],
+          "fr": []
+        },
+        "id": "Q3037",
+        "labels": {
+          "en": "Kathmandu",
+          "fr": "Katmandou"
+        },
+        "views": 10744
+      },
+      {
+        "aliases": {
+          "en": [
+            "Tbilisi, Georgia",
+            "Tbilissi",
+            "Tiflis",
+            "Tpilisi",
+            "Tpilissi"
+          ],
+          "fr": ["Tiflis"]
+        },
+        "id": "Q994",
+        "labels": {
+          "en": "Tbilisi",
+          "fr": "Tbilissi"
+        },
+        "views": 10462
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Istamboul", "Istambul", "Stamboul"]
+      },
+      "id": "Q406",
+      "labels": {
+        "en": "Istanbul",
+        "fr": "Istanbul"
+      },
+      "why": {
+        "en": "Turkey’s largest city; its capital is Ankara",
+        "fr": "La plus grande ville de Turquie ; sa capitale est Ankara"
+      }
+    },
+    "id": "capitals-of:asia",
+    "labels": {
+      "en": "Capitals of Asia",
+      "fr": "Les capitales d’Asie"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Canberra, Australia",
+            "Canberra, Australian Capital Territory"
+          ],
+          "fr": []
+        },
+        "id": "Q3114",
+        "labels": {
+          "en": "Canberra",
+          "fr": "Canberra"
+        },
+        "views": 7924
+      },
+      {
+        "aliases": {
+          "en": [
+            "Port Nicholson",
+            "Port Nick",
+            "Pōneke",
+            "Te Whanga-nui-a-Tara",
+            "Te Whanganui-a-Tara",
+            "Wellington metropolitan area",
+            "Wellington, NZ",
+            "Wellington, New Zealand"
+          ],
+          "fr": [
+            "District de Wellington",
+            "Pōneke",
+            "Te Whanganui-a-Tara",
+            "Ville de Wellington"
+          ]
+        },
+        "id": "Q23661",
+        "labels": {
+          "en": "Wellington",
+          "fr": "Wellington"
+        },
+        "views": 4464
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Port Vila", "Port-vila"]
+        },
+        "id": "Q37806",
+        "labels": {
+          "en": "Port Vila",
+          "fr": "Port-Vila"
+        },
+        "views": 2250
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Port-Moresby", "Pot Mosbi"]
+        },
+        "id": "Q36526",
+        "labels": {
+          "en": "Port Moresby",
+          "fr": "Port Moresby"
+        },
+        "views": 2048
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q38807",
+        "labels": {
+          "en": "Suva",
+          "fr": "Suva"
+        },
+        "views": 1381
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Faleolo"]
+        },
+        "id": "Q36260",
+        "labels": {
+          "en": "Apia",
+          "fr": "Apia"
+        },
+        "views": 1080
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q515229",
+        "labels": {
+          "en": "Ngerulmud",
+          "fr": "Ngerulmud"
+        },
+        "views": 1012
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Bairiki", "Tarawa sud"]
+        },
+        "id": "Q131233",
+        "labels": {
+          "en": "South Tarawa",
+          "fr": "Tarawa-Sud"
+        },
+        "views": 810
+      },
+      {
+        "aliases": {
+          "en": ["Nuku'alofa"],
+          "fr": ["Nuku'alofa", "Nukualofa", "Nuku’alofa"]
+        },
+        "id": "Q38834",
+        "labels": {
+          "en": "Nukuʻalofa",
+          "fr": "Nukuʻalofa"
+        },
+        "views": 772
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "Emerald City",
+          "Eora",
+          "Gadi",
+          "Gadigal",
+          "Greater Sydney",
+          "Harbour City",
+          "Port Jackson",
+          "Sydney, Australia",
+          "Sydney, N. S. W.",
+          "Sydney, N.S.W.",
+          "Sydney, NSW",
+          "Sydney, NSW, Australia",
+          "Sydney, New South Wales",
+          "Sydney, New South Wales, Australia",
+          "Warrane"
+        ],
+        "fr": ["Port-Jackson"]
+      },
+      "id": "Q3130",
+      "labels": {
+        "en": "Sydney",
+        "fr": "Sydney"
+      },
+      "why": {
+        "en": "Australia’s largest city; its capital is Canberra",
+        "fr": "La plus grande ville d’Australie ; sa capitale est Canberra"
+      }
+    },
+    "id": "capitals-of:oceania",
+    "labels": {
+      "en": "Capitals of Oceania",
+      "fr": "Les capitales d’Océanie"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "City of Washington, D.C.",
+            "D.C.",
+            "D.C. Washington",
+            "District of Columbia",
+            "Federal City (D.C.)",
+            "Nation's Capital (D.C.)",
+            "The District",
+            "Washington City, D.C.",
+            "Washington, District of Columbia"
+          ],
+          "fr": [
+            "D.C.",
+            "DC",
+            "Washington D.C.",
+            "Washington DC",
+            "Washington, D.C.",
+            "Washington, District de Columbia",
+            "Washington, district de Columbia"
+          ]
+        },
+        "id": "Q61",
+        "labels": {
+          "en": "Washington, D.C.",
+          "fr": "Washington"
+        },
+        "views": 20465
+      },
+      {
+        "aliases": {
+          "en": [
+            "City of Mexico",
+            "Mexico",
+            "Mexico City, Mexico",
+            "Mexico D.F."
+          ],
+          "fr": ["Cité de Mexico", "Cité du Mexique", "Ville du Mexique"]
+        },
+        "id": "Q1489",
+        "labels": {
+          "en": "Mexico City",
+          "fr": "Mexico"
+        },
+        "views": 13978
+      },
+      {
+        "aliases": {
+          "en": ["City of Ottawa", "Ottawa, ON", "Ottawa, Ontario"],
+          "fr": ["Ottawa (Ontario)", "Ville d'Ottawa"]
+        },
+        "id": "Q1930",
+        "labels": {
+          "en": "Ottawa",
+          "fr": "Ottawa"
+        },
+        "views": 13507
+      },
+      {
+        "aliases": {
+          "en": [
+            "San Domingo",
+            "Santo Domingo de Guzman",
+            "Santo Domingo, Dominican Republic"
+          ],
+          "fr": [
+            "Dominicaine",
+            "Saint Domingue",
+            "Saint-domingue",
+            "San Domingo",
+            "Santo Dominguo",
+            "Santo-Domingo",
+            "Ville de Saint-Domingue"
+          ]
+        },
+        "id": "Q34820",
+        "labels": {
+          "en": "Santo Domingo",
+          "fr": "Saint-Domingue"
+        },
+        "views": 6515
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Port-Républicain", "Port-au-prince"]
+        },
+        "id": "Q34261",
+        "labels": {
+          "en": "Port-au-Prince",
+          "fr": "Port-au-Prince"
+        },
+        "views": 6427
+      },
+      {
+        "aliases": {
+          "en": ["City of Nassau"],
+          "fr": ["ville de Nassau"]
+        },
+        "id": "Q2467",
+        "labels": {
+          "en": "Nassau",
+          "fr": "Nassau"
+        },
+        "views": 5906
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q3110",
+        "labels": {
+          "en": "San Salvador",
+          "fr": "San Salvador"
+        },
+        "views": 5041
+      },
+      {
+        "aliases": {
+          "en": ["Habana", "Havana, Cuba", "La Habana"],
+          "fr": []
+        },
+        "id": "Q1563",
+        "labels": {
+          "en": "Havana",
+          "fr": "La Havane"
+        },
+        "views": 4318
+      },
+      {
+        "aliases": {
+          "en": ["Kingston, Jamaica", "Kingston, Surrey"],
+          "fr": ["Tinson"]
+        },
+        "id": "Q34692",
+        "labels": {
+          "en": "Kingston",
+          "fr": "Kingston"
+        },
+        "views": 3404
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "Capital of the World",
+          "Center of the Universe",
+          "City of New York",
+          "Empire City",
+          "N. Y., N. Y.",
+          "NY City",
+          "NY, NY",
+          "New York (NY)",
+          "New York (city)",
+          "New York City (NYC)",
+          "New York City, NY",
+          "New York City, New York",
+          "New York City, New York, United States",
+          "New York City, USA",
+          "New York City, United States",
+          "New York City, United States of America",
+          "New York, N.Y.",
+          "New York, NY",
+          "New York, New York, USA",
+          "city of New York",
+          "the five boroughs"
+        ],
+        "fr": [
+          "La Grosse Pomme",
+          "New-York",
+          "Ville de New York",
+          "Ville de New-York"
+        ]
+      },
+      "id": "Q60",
+      "labels": {
+        "en": "New York City",
+        "fr": "New York"
+      },
+      "why": {
+        "en": "The largest city of the United States; its capital is Washington",
+        "fr": "La plus grande ville des États-Unis ; leur capitale est Washington"
+      }
+    },
+    "id": "capitals-of:north-and-central-america",
+    "labels": {
+      "en": "Capitals of North and Central America",
+      "fr": "Les capitales d’Amérique du Nord et centrale"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["City of Light", "City of Love", "Lutetia"],
+          "fr": [
+            "FR-75",
+            "Lutèce",
+            "Paname",
+            "Pantruche",
+            "Ville de Paris",
+            "Ville de l'Amour",
+            "Ville-Lumière"
+          ]
+        },
+        "id": "Q90",
+        "labels": {
+          "en": "Paris",
+          "fr": "Paris"
+        },
+        "views": 151803
+      },
+      {
+        "aliases": {
+          "en": [
+            "Fort-Hercule",
+            "Mùnegu",
+            "Principality and Diocese of Monaco",
+            "Principality of Monaco",
+            "Principato di Monaco",
+            "Principatu de Mu̍negu",
+            "Principauté de Monaco",
+            "Prinçipatu de Mùnegu",
+            "mc"
+          ],
+          "fr": [
+            "Fort-Hercule",
+            "Monaco (rattachée au District de Menton en 1793)",
+            "Principatu de Mu̍negu",
+            "Principauté de Monaco",
+            "la Principauté de Monaco",
+            "mc"
+          ]
+        },
+        "id": "Q235",
+        "labels": {
+          "en": "Monaco",
+          "fr": "Monaco"
+        },
+        "views": 62128
+      },
+      {
+        "aliases": {
+          "en": [
+            "Brussels (municipality)",
+            "Brussels City",
+            "City of Brussels"
+          ],
+          "fr": ["Bruxelles-Ville", "Ville de Bruxelles"]
+        },
+        "id": "Q239",
+        "labels": {
+          "en": "Brussels",
+          "fr": "Bruxelles"
+        },
+        "views": 22977
+      },
+      {
+        "aliases": {
+          "en": ["Vienna, Austria"],
+          "fr": []
+        },
+        "id": "Q1741",
+        "labels": {
+          "en": "Vienna",
+          "fr": "Vienne"
+        },
+        "views": 21683
+      },
+      {
+        "aliases": {
+          "en": [
+            "A'dam",
+            "Amsterdam, NL",
+            "Amsterdam, Netherlands",
+            "Amsterdam, North Holland",
+            "Mokum"
+          ],
+          "fr": ["A'dam"]
+        },
+        "id": "Q727",
+        "labels": {
+          "en": "Amsterdam",
+          "fr": "Amsterdam"
+        },
+        "views": 21545
+      },
+      {
+        "aliases": {
+          "en": ["Berlin, Germany", "DE-BE"],
+          "fr": []
+        },
+        "id": "Q64",
+        "labels": {
+          "en": "Berlin",
+          "fr": "Berlin"
+        },
+        "views": 21256
+      },
+      {
+        "aliases": {
+          "en": ["Berna", "Berne", "city of Bern"],
+          "fr": []
+        },
+        "id": "Q70",
+        "labels": {
+          "en": "Bern",
+          "fr": "Berne"
+        },
+        "views": 13730
+      },
+      {
+        "aliases": {
+          "en": ["City of Luxembourg", "Luxembourg City", "Luxemburg"],
+          "fr": ["Luxembourg-Ville", "Ville de Luxembourg"]
+        },
+        "id": "Q1842",
+        "labels": {
+          "en": "Luxembourg",
+          "fr": "Luxembourg"
+        },
+        "views": 9949
+      },
+      {
+        "aliases": {
+          "en": ["Vaduz, Liechtenstein"],
+          "fr": []
+        },
+        "id": "Q1844",
+        "labels": {
+          "en": "Vaduz",
+          "fr": "Vaduz"
+        },
+        "views": 4217
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Geneva GE", "Genf"],
+        "fr": ["Cité de Calvin", "GE", "Ville de Genève"]
+      },
+      "id": "Q71",
+      "labels": {
+        "en": "Geneva",
+        "fr": "Genève"
+      },
+      "why": {
+        "en": "Home to the UN in Europe, but Switzerland’s capital is Bern",
+        "fr": "Siège de l’ONU en Europe, mais la capitale suisse est Berne"
+      }
+    },
+    "id": "capitals-of:western-europe",
+    "labels": {
+      "en": "Capitals of Western Europe",
+      "fr": "Les capitales d’Europe de l’Ouest"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Augusta",
+            "Big Smoke",
+            "Kaerlud",
+            "Karelundein",
+            "LDN",
+            "Llan Dian",
+            "Llyn Dain",
+            "Lon.",
+            "Lond.",
+            "Londini",
+            "Londiniensium",
+            "Londinio",
+            "Londinion",
+            "Londinium",
+            "London U.K.",
+            "London UK",
+            "London, England",
+            "London, UK",
+            "London, United Kingdom",
+            "Loniniensi",
+            "Loñ",
+            "Loñ.",
+            "Lunden",
+            "Lundenburgh",
+            "Lundenburh",
+            "Lundenwic",
+            "Trinovantum",
+            "the Big Smoke"
+          ],
+          "fr": ["Londres, Angleterre"]
+        },
+        "id": "Q84",
+        "labels": {
+          "en": "London",
+          "fr": "Londres"
+        },
+        "views": 36865
+      },
+      {
+        "aliases": {
+          "en": [
+            "CPH",
+            "Copenhagen, Denmark",
+            "Hafn",
+            "KBH",
+            "Kbh.",
+            "Kobenhavn",
+            "Kopenhagen",
+            "Köbenhavn"
+          ],
+          "fr": []
+        },
+        "id": "Q1748",
+        "labels": {
+          "en": "Copenhagen",
+          "fr": "Copenhague"
+        },
+        "views": 19803
+      },
+      {
+        "aliases": {
+          "en": ["NOOSL", "Oslo, Norway"],
+          "fr": []
+        },
+        "id": "Q585",
+        "labels": {
+          "en": "Oslo",
+          "fr": "Oslo"
+        },
+        "views": 16304
+      },
+      {
+        "aliases": {
+          "en": ["STHLM", "Sthlm"],
+          "fr": ["STHLM"]
+        },
+        "id": "Q1754",
+        "labels": {
+          "en": "Stockholm",
+          "fr": "Stockholm"
+        },
+        "views": 14851
+      },
+      {
+        "aliases": {
+          "en": ["City of Dublin", "Dublin city", "Dublin, Ireland"],
+          "fr": ["Duibhlinn"]
+        },
+        "id": "Q1761",
+        "labels": {
+          "en": "Dublin",
+          "fr": "Dublin"
+        },
+        "views": 13529
+      },
+      {
+        "aliases": {
+          "en": ["Reykjavik", "Reykjavikurborg", "Reykjavíkurborg"],
+          "fr": ["Reykjavík", "Reykjavíkurborg"]
+        },
+        "id": "Q1764",
+        "labels": {
+          "en": "Reykjavík",
+          "fr": "Reykjavik"
+        },
+        "views": 12105
+      },
+      {
+        "aliases": {
+          "en": ["Helsingia", "Helsingin kaupunki", "Hesa", "Stadi"],
+          "fr": []
+        },
+        "id": "Q1757",
+        "labels": {
+          "en": "Helsinki",
+          "fr": "Helsinki"
+        },
+        "views": 9255
+      },
+      {
+        "aliases": {
+          "en": ["Rige", "Riia", "Rija", "Rīgõ"],
+          "fr": []
+        },
+        "id": "Q1773",
+        "labels": {
+          "en": "Riga",
+          "fr": "Riga"
+        },
+        "views": 8097
+      },
+      {
+        "aliases": {
+          "en": [
+            "Kolywan",
+            "Lindanäs",
+            "Lyndanisse",
+            "Reuel",
+            "Reval",
+            "Revel",
+            "Rewel",
+            "Tallinn, Estonia"
+          ],
+          "fr": []
+        },
+        "id": "Q1770",
+        "labels": {
+          "en": "Tallinn",
+          "fr": "Tallinn"
+        },
+        "views": 7697
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Gothenburg, Sweden", "Göteborg"],
+        "fr": ["Goteborg", "Gotembourg", "Gothembourg", "Gothenburg"]
+      },
+      "id": "Q25287",
+      "labels": {
+        "en": "Gothenburg",
+        "fr": "Göteborg"
+      },
+      "why": {
+        "en": "Sweden’s second city; its capital is Stockholm",
+        "fr": "La deuxième ville de Suède ; sa capitale est Stockholm"
+      }
+    },
+    "id": "capitals-of:northern-europe",
+    "labels": {
+      "en": "Capitals of Northern Europe",
+      "fr": "Les capitales d’Europe du Nord"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Capital of the World",
+            "City of Marble",
+            "City of Seven Hills",
+            "Eternal City",
+            "Rome, Italy",
+            "The Capital of the World",
+            "The City of Marble",
+            "The Eternal City"
+          ],
+          "fr": ["La ville aux sept collines", "La ville éternelle", "l'Urbs"]
+        },
+        "id": "Q220",
+        "labels": {
+          "en": "Rome",
+          "fr": "Rome"
+        },
+        "views": 28866
+      },
+      {
+        "aliases": {
+          "en": [
+            "Città del Vaticano",
+            "Holy See",
+            "Papal State",
+            "State of Vatican City",
+            "Stato della Città del Vaticano",
+            "Status Civitatis Vaticanae",
+            "The Vatican",
+            "Vatican",
+            "Vatican City State"
+          ],
+          "fr": ["Cité du Vatican", "État de la Cité du Vatican"]
+        },
+        "id": "Q237",
+        "labels": {
+          "en": "Vatican City",
+          "fr": "Vatican"
+        },
+        "views": 26357
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Madrid (Espagne)"]
+        },
+        "id": "Q2807",
+        "labels": {
+          "en": "Madrid",
+          "fr": "Madrid"
+        },
+        "views": 25934
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q597",
+        "labels": {
+          "en": "Lisbon",
+          "fr": "Lisbonne"
+        },
+        "views": 19254
+      },
+      {
+        "aliases": {
+          "en": ["Athenae", "Athens city"],
+          "fr": ["Athenes"]
+        },
+        "id": "Q1524",
+        "labels": {
+          "en": "Athens",
+          "fr": "Athènes"
+        },
+        "views": 19095
+      },
+      {
+        "aliases": {
+          "en": ["Labacum", "Ljubljana, Slovenia", "Lublana"],
+          "fr": ["Laybach", "Lioubiana", "Lioubliana", "Loubiana"]
+        },
+        "id": "Q437",
+        "labels": {
+          "en": "Ljubljana",
+          "fr": "Ljubljana"
+        },
+        "views": 15078
+      },
+      {
+        "aliases": {
+          "en": ["Bosna-Serai", "City of Sarajevo"],
+          "fr": []
+        },
+        "id": "Q11194",
+        "labels": {
+          "en": "Sarajevo",
+          "fr": "Sarajevo"
+        },
+        "views": 12475
+      },
+      {
+        "aliases": {
+          "en": ["Belgrade, Serbia", "City of Belgrade"],
+          "fr": []
+        },
+        "id": "Q3711",
+        "labels": {
+          "en": "Belgrade",
+          "fr": "Belgrade"
+        },
+        "views": 9602
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q1435",
+        "labels": {
+          "en": "Zagreb",
+          "fr": "Zagreb"
+        },
+        "views": 8627
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Mailand", "Milan, Italy", "Milan, Lombardy", "Milano, Italy"],
+        "fr": []
+      },
+      "id": "Q490",
+      "labels": {
+        "en": "Milan",
+        "fr": "Milan"
+      },
+      "why": {
+        "en": "Italy’s business capital; its capital is Rome",
+        "fr": "La capitale économique de l’Italie ; sa capitale est Rome"
+      }
+    },
+    "id": "capitals-of:southern-europe",
+    "labels": {
+      "en": "Capitals of Southern Europe",
+      "fr": "Les capitales d’Europe du Sud"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["City of Prague", "Hlavní město Praha"],
+          "fr": []
+        },
+        "id": "Q1085",
+        "labels": {
+          "en": "Prague",
+          "fr": "Prague"
+        },
+        "views": 27941
+      },
+      {
+        "aliases": {
+          "en": [
+            "Alt-Ofen",
+            "Buda",
+            "Buda Pest",
+            "Buda-Pest",
+            "Buda-Pesth",
+            "Budapest, Hungary",
+            "Budapesta",
+            "Budapeszt",
+            "Budapešť",
+            "Budim",
+            "Budon",
+            "Budín",
+            "Ofen",
+            "Pest",
+            "Pešta",
+            "Pešť"
+          ],
+          "fr": []
+        },
+        "id": "Q1781",
+        "labels": {
+          "en": "Budapest",
+          "fr": "Budapest"
+        },
+        "views": 18926
+      },
+      {
+        "aliases": {
+          "en": [
+            "City of Moscow",
+            "Moscow, Russia",
+            "Moscow, Russian Federation",
+            "Moscow, Russian SFSR",
+            "Moscow, Soviet Union",
+            "Moscow, USSR",
+            "Moskovĭ",
+            "Moskva Federal City, Russia",
+            "Moskva, Rossiya",
+            "Moskva, Russia",
+            "Moskve",
+            "Moskvi",
+            "Moskvë",
+            "Mosky",
+            "Москва"
+          ],
+          "fr": []
+        },
+        "id": "Q649",
+        "labels": {
+          "en": "Moscow",
+          "fr": "Moscou"
+        },
+        "views": 13843
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q270",
+        "labels": {
+          "en": "Warsaw",
+          "fr": "Varsovie"
+        },
+        "views": 12494
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Presbourg"]
+        },
+        "id": "Q1780",
+        "labels": {
+          "en": "Bratislava",
+          "fr": "Bratislava"
+        },
+        "views": 11938
+      },
+      {
+        "aliases": {
+          "en": [
+            "Kief",
+            "Kieff",
+            "Kiew",
+            "Kiof",
+            "Kioff",
+            "Kiou",
+            "Kiovia",
+            "Kiow",
+            "Kiowia",
+            "Kiyev",
+            "Kyiw",
+            "Kyjiw",
+            "Kyïv",
+            "Kyїv"
+          ],
+          "fr": ["Kyiv", "Kyïv"]
+        },
+        "id": "Q1899",
+        "labels": {
+          "en": "Kyiv",
+          "fr": "Kiev"
+        },
+        "views": 9762
+      },
+      {
+        "aliases": {
+          "en": [
+            "Bucharest, Romania",
+            "Bucuresti",
+            "Bucureşti",
+            "București",
+            "Little Paris",
+            "Paris of the East"
+          ],
+          "fr": [
+            "Bucuresti",
+            "Bucureşti",
+            "Paris des Balkans",
+            "capitale de la Roumanie",
+            "municipalité de Bucarest",
+            "petit Paris",
+            "petit Paris des Balkans"
+          ]
+        },
+        "id": "Q19660",
+        "labels": {
+          "en": "Bucharest",
+          "fr": "Bucarest"
+        },
+        "views": 7707
+      },
+      {
+        "aliases": {
+          "en": ["Serdica", "Sofija", "Sredets", "Sredez"],
+          "fr": []
+        },
+        "id": "Q472",
+        "labels": {
+          "en": "Sofia",
+          "fr": "Sofia"
+        },
+        "views": 6922
+      },
+      {
+        "aliases": {
+          "en": [
+            "Chisinau",
+            "Chisnau",
+            "Chişinău",
+            "Keshenev",
+            "Keshinov",
+            "Khisinau",
+            "Kischinew",
+            "Kischiniov",
+            "Kiscinev",
+            "Kishinef",
+            "Kishinev",
+            "Kishinëv",
+            "Kiszyniów",
+            "Kişinev",
+            "Kišinìv",
+            "Kyshyniv"
+          ],
+          "fr": [
+            "Capitale de la Moldavie",
+            "Chisinau",
+            "Chisinău",
+            "Chişinau",
+            "Chişinău",
+            "Kichinev",
+            "Kichiniov",
+            "Kischinev",
+            "Kishinev",
+            "Kishinew",
+            "Kishinyov",
+            "Кишинёв"
+          ]
+        },
+        "id": "Q21197",
+        "labels": {
+          "en": "Chișinău",
+          "fr": "Chișinău"
+        },
+        "views": 5680
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [
+          "Petersburg",
+          "Sankt-Peterburg",
+          "St Petersburg",
+          "St.Petersburg"
+        ],
+        "fr": ["Léningrad", "St Petersbourg"]
+      },
+      "id": "Q656",
+      "labels": {
+        "en": "Saint Petersburg",
+        "fr": "Saint-Pétersbourg"
+      },
+      "why": {
+        "en": "Russia’s capital until 1918; Moscow since",
+        "fr": "Capitale de la Russie jusqu’en 1918 ; Moscou depuis"
+      }
+    },
+    "id": "capitals-of:eastern-europe",
+    "labels": {
+      "en": "Capitals of Eastern Europe",
+      "fr": "Les capitales d’Europe de l’Est"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Garden City",
+            "Lion City",
+            "Republic of Singapore",
+            "S'pore",
+            "Singapore City",
+            "sg"
+          ],
+          "fr": ["République de Singapour"]
+        },
+        "id": "Q334",
+        "labels": {
+          "en": "Singapore",
+          "fr": "Singapour"
+        },
+        "views": 67842
+      },
+      {
+        "aliases": {
+          "en": [
+            "DKI Jakarta",
+            "Djakarta",
+            "Jakarta Province",
+            "Jakarta Specific Region",
+            "Jakarta, Indonesia",
+            "Specific Capital Region of Jakarta",
+            "Specific Region of Jakarta"
+          ],
+          "fr": ["Batavia", "Djakarta"]
+        },
+        "id": "Q3630",
+        "labels": {
+          "en": "Jakarta",
+          "fr": "Jakarta"
+        },
+        "views": 14233
+      },
+      {
+        "aliases": {
+          "en": [
+            "Bangkok, Thailand",
+            "Krung Thep",
+            "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit",
+            "Sia-Yut'hia"
+          ],
+          "fr": [
+            "Krung Thep",
+            "Krungthep mahanakhon amon rattanakosin mahintara ayuthaya mahadilok phop noppharat ratchathani burirom udomratchaniwet mahasathan amon piman awatan sathit sakkathattiya witsanukam prasit",
+            "Krungthepmahanakhon Amonrattanakosin Mahintharayutthaya Mahadilokphop Noppharatratchathaniburirom Udomratchaniwetmahasathan Amonphimanawatansathit Sakkathattiyawitsanukamprasit"
+          ]
+        },
+        "id": "Q1861",
+        "labels": {
+          "en": "Bangkok",
+          "fr": "Bangkok"
+        },
+        "views": 12766
+      },
+      {
+        "aliases": {
+          "en": ["Federal Territory of Kuala Lumpur", "K.L.", "KL"],
+          "fr": ["KL", "Putrajaya"]
+        },
+        "id": "Q1865",
+        "labels": {
+          "en": "Kuala Lumpur",
+          "fr": "Kuala Lumpur"
+        },
+        "views": 9892
+      },
+      {
+        "aliases": {
+          "en": [
+            "Dong Do",
+            "Ha Noi",
+            "Hà Nội",
+            "Thang Long",
+            "Tonkin",
+            "Đại La"
+          ],
+          "fr": ["Hanoi", "Hà Nội"]
+        },
+        "id": "Q1858",
+        "labels": {
+          "en": "Hanoi",
+          "fr": "Hanoï"
+        },
+        "views": 8250
+      },
+      {
+        "aliases": {
+          "en": [
+            "City of Manila",
+            "Pearl of the Orient",
+            "Queen City of the Pacific and others"
+          ],
+          "fr": ["Ville de Manille"]
+        },
+        "id": "Q1461",
+        "labels": {
+          "en": "Manila",
+          "fr": "Manille"
+        },
+        "views": 6292
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q1850",
+        "labels": {
+          "en": "Phnom Penh",
+          "fr": "Phnom Penh"
+        },
+        "views": 5805
+      },
+      {
+        "aliases": {
+          "en": [
+            "Bientani",
+            "Nakhon Viangchan",
+            "Viang chan",
+            "Viangchan",
+            "Vien Chang",
+            "Vienchan",
+            "Vieng-Cæn",
+            "Viengchan",
+            "Vientane",
+            "Vieṅ Čan",
+            "Vieṅg-Čăn",
+            "Vyentyan",
+            "Wei-t'ien",
+            "Wiangcan",
+            "Wīangčhan",
+            "urban Vientiane"
+          ],
+          "fr": []
+        },
+        "id": "Q9326",
+        "labels": {
+          "en": "Vientiane",
+          "fr": "Vientiane"
+        },
+        "views": 3105
+      },
+      {
+        "aliases": {
+          "en": ["Nay Pyi Taw", "Naypyitaw"],
+          "fr": ["Nay Pyi Daw", "Naypidaw", "Pyinmana", "နေပြည်တော်"]
+        },
+        "id": "Q37400",
+        "labels": {
+          "en": "Naypyidaw",
+          "fr": "Naypyidaw"
+        },
+        "views": 2857
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Rangoon City", "Yangon City", "Yangon Region"],
+        "fr": []
+      },
+      "id": "Q37995",
+      "labels": {
+        "en": "Yangon",
+        "fr": "Rangoun"
+      },
+      "why": {
+        "en": "Myanmar’s capital until 2006; Naypyidaw since",
+        "fr": "Capitale de la Birmanie jusqu’en 2006 ; Naypyidaw depuis"
+      }
+    },
+    "id": "capitals-of:south-eastern-asia",
+    "labels": {
+      "en": "Capitals of South-eastern Asia",
+      "fr": "Les capitales d’Asie du Sud-Est"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Fort-Hercule",
+            "Mùnegu",
+            "Principality and Diocese of Monaco",
+            "Principality of Monaco",
+            "Principato di Monaco",
+            "Principatu de Mu̍negu",
+            "Principauté de Monaco",
+            "Prinçipatu de Mùnegu",
+            "mc"
+          ],
+          "fr": [
+            "Fort-Hercule",
+            "Monaco (rattachée au District de Menton en 1793)",
+            "Principatu de Mu̍negu",
+            "Principauté de Monaco",
+            "la Principauté de Monaco",
+            "mc"
+          ]
+        },
+        "id": "Q235",
+        "labels": {
+          "en": "Monaco",
+          "fr": "Monaco"
+        },
+        "views": 62128
+      },
+      {
+        "aliases": {
+          "en": [
+            "Capital of the World",
+            "City of Marble",
+            "City of Seven Hills",
+            "Eternal City",
+            "Rome, Italy",
+            "The Capital of the World",
+            "The City of Marble",
+            "The Eternal City"
+          ],
+          "fr": ["La ville aux sept collines", "La ville éternelle", "l'Urbs"]
+        },
+        "id": "Q220",
+        "labels": {
+          "en": "Rome",
+          "fr": "Rome"
+        },
+        "views": 28866
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Madrid (Espagne)"]
+        },
+        "id": "Q2807",
+        "labels": {
+          "en": "Madrid",
+          "fr": "Madrid"
+        },
+        "views": 25934
+      },
+      {
+        "aliases": {
+          "en": [
+            "Brussels (municipality)",
+            "Brussels City",
+            "City of Brussels"
+          ],
+          "fr": ["Bruxelles-Ville", "Ville de Bruxelles"]
+        },
+        "id": "Q239",
+        "labels": {
+          "en": "Brussels",
+          "fr": "Bruxelles"
+        },
+        "views": 22977
+      },
+      {
+        "aliases": {
+          "en": [
+            "A'dam",
+            "Amsterdam, NL",
+            "Amsterdam, Netherlands",
+            "Amsterdam, North Holland",
+            "Mokum"
+          ],
+          "fr": ["A'dam"]
+        },
+        "id": "Q727",
+        "labels": {
+          "en": "Amsterdam",
+          "fr": "Amsterdam"
+        },
+        "views": 21545
+      },
+      {
+        "aliases": {
+          "en": ["Berlin, Germany", "DE-BE"],
+          "fr": []
+        },
+        "id": "Q64",
+        "labels": {
+          "en": "Berlin",
+          "fr": "Berlin"
+        },
+        "views": 21256
+      },
+      {
+        "aliases": {
+          "en": ["Berna", "Berne", "city of Bern"],
+          "fr": []
+        },
+        "id": "Q70",
+        "labels": {
+          "en": "Bern",
+          "fr": "Berne"
+        },
+        "views": 13730
+      },
+      {
+        "aliases": {
+          "en": ["City of Luxembourg", "Luxembourg City", "Luxemburg"],
+          "fr": ["Luxembourg-Ville", "Ville de Luxembourg"]
+        },
+        "id": "Q1842",
+        "labels": {
+          "en": "Luxembourg",
+          "fr": "Luxembourg"
+        },
+        "views": 9949
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "id": "Q2844",
+        "labels": {
+          "en": "Brasília",
+          "fr": "Brasilia"
+        },
+        "views": 7042
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Geneva GE", "Genf"],
+        "fr": ["Cité de Calvin", "GE", "Ville de Genève"]
+      },
+      "id": "Q71",
+      "labels": {
+        "en": "Geneva",
+        "fr": "Genève"
+      },
+      "why": {
+        "en": "On the French border, but Switzerland’s capital is Bern",
+        "fr": "À la frontière française, mais la capitale suisse est Berne"
+      }
+    },
+    "id": "capitals-of:bordering-france",
+    "labels": {
+      "en": "Capitals of the countries bordering France",
+      "fr": "Les capitales des pays frontaliers de la France"
+    }
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [
+            "Merica",
+            "Murica",
+            "U. S.",
+            "U. S. A.",
+            "U.S. of America",
+            "US of A",
+            "US of America",
+            "United States of America",
+            "the States",
+            "the U.S.",
+            "the U.S. of A",
+            "the U.S. of America",
+            "the U.S.A.",
+            "the US",
+            "the US of A",
+            "the US of America",
+            "the USA",
+            "the United States",
+            "the United States of America"
+          ],
+          "fr": [
+            "Amérique",
+            "E.-U.",
+            "Etats-Unis",
+            "Etats-unis",
+            "Oncle Sam",
+            "Pays de l'Oncle Sam",
+            "States",
+            "les États",
+            "les États-Unis d’Amérique",
+            "pays de l’Oncle Sam",
+            "É-U",
+            "É-U.",
+            "É.-U.",
+            "É.-U. A.",
+            "É.U.",
+            "ÉU",
+            "États-Unis d'Amérique",
+            "États-Unis d’Amérique",
+            "États-unis"
+          ]
+        },
+        "id": "Q30",
+        "labels": {
+          "en": "United States",
+          "fr": "États-Unis"
+        },
+        "views": 159957
+      },
+      {
+        "aliases": {
+          "en": ["Confoederatio Helvetica", "Swiss", "Swiss Confederation"],
+          "fr": [
+            "Confédération helvétique",
+            "Confédération suisse",
+            "Helvétie",
+            "la Confédération suisse"
+          ]
+        },
+        "id": "Q39",
+        "labels": {
+          "en": "Switzerland",
+          "fr": "Suisse"
+        },
+        "views": 95951
+      },
+      {
+        "aliases": {
+          "en": [
+            "Kingdom of Morocco",
+            "Lmaġrib",
+            "Maroc",
+            "Marocco",
+            "al-Maġrib"
+          ],
+          "fr": ["Royaume du Maroc"]
+        },
+        "id": "Q1028",
+        "labels": {
+          "en": "Morocco",
+          "fr": "Maroc"
+        },
+        "views": 93572
+      },
+      {
+        "aliases": {
+          "en": ["CA", "CAN"],
+          "fr": ["le Canada"]
+        },
+        "id": "Q16",
+        "labels": {
+          "en": "Canada",
+          "fr": "Canada"
+        },
+        "views": 88740
+      },
+      {
+        "aliases": {
+          "en": ["Republic of Turkey", "Republic of Türkiye"],
+          "fr": [
+            "République de Turquie",
+            "République turque",
+            "Turq",
+            "la République de Turquie"
+          ]
+        },
+        "id": "Q43",
+        "labels": {
+          "en": "Turkey",
+          "fr": "Turquie"
+        },
+        "views": 82249
+      },
+      {
+        "aliases": {
+          "en": ["Federative Republic of Brazil"],
+          "fr": [
+            "Amérique lusophone",
+            "Auriverde",
+            "Brazil",
+            "Bresil",
+            "Bré.",
+            "Brés.",
+            "Brésilien",
+            "Brésilienne",
+            "Brézil",
+            "République des États-Unis du Brésil",
+            "République fédérative du Brésil",
+            "la République fédérative du Brésil"
+          ]
+        },
+        "id": "Q155",
+        "labels": {
+          "en": "Brazil",
+          "fr": "Brésil"
+        },
+        "views": 53864
+      },
+      {
+        "aliases": {
+          "en": [
+            "'Straya",
+            "Aussieland",
+            "Commonwealth of Australia",
+            "Down Under",
+            "New Holland",
+            "New Hollandia",
+            "Nova Hollandia",
+            "Oz",
+            "Stralia",
+            "Straya",
+            "Stria",
+            "The Commonwealth of Australia"
+          ],
+          "fr": ["Commonwealth d'Australie", "Nouvelle-Hollande", "l'Australie"]
+        },
+        "id": "Q408",
+        "labels": {
+          "en": "Australia",
+          "fr": "Australie"
+        },
+        "views": 51819
+      },
+      {
+        "aliases": {
+          "en": [
+            "Cote Ivoire",
+            "Cote d'Ivoire",
+            "Cote d'lvoire",
+            "Cote-d'Ivoire",
+            "Côte-d'Ivoire",
+            "Republic of Cote d'Ivoire",
+            "Republic of Côte d'Ivoire",
+            "Republic of Ivory Coast",
+            "Republic of the Ivory Coast",
+            "The Ivory Coast",
+            "ci"
+          ],
+          "fr": [
+            "Cote d'ivoire",
+            "Côte-d'Ivoire",
+            "Côte-d’Ivoire",
+            "république de Côte d’Ivoire"
+          ]
+        },
+        "id": "Q1008",
+        "labels": {
+          "en": "Ivory Coast",
+          "fr": "Côte d'Ivoire"
+        },
+        "views": 49294
+      },
+      {
+        "aliases": {
+          "en": [
+            "Qazaqstan",
+            "Republic of Kazakhstan",
+            "Republic of Qazaqstan",
+            "kz"
+          ],
+          "fr": [
+            "Kazakh.",
+            "Kazakstan",
+            "Qazaqstan",
+            "la République du Kazakhstan"
+          ]
+        },
+        "id": "Q232",
+        "labels": {
+          "en": "Kazakhstan",
+          "fr": "Kazakhstan"
+        },
+        "views": 48886
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Italian Republic", "Republic of Italy"],
+        "fr": [
+          "It.",
+          "Ita.",
+          "Ital.",
+          "République italienne",
+          "la République italienne"
+        ]
+      },
+      "id": "Q38",
+      "labels": {
+        "en": "Italy",
+        "fr": "Italie"
+      },
+      "why": {
+        "en": "Rome is its largest city too; Milan is only its richest",
+        "fr": "Rome est aussi sa plus grande ville ; Milan n’est que la plus riche"
+      }
+    },
+    "id": "countries-listed:capital-not-largest-city",
+    "labels": {
+      "en": "Countries whose capital is not their largest city",
+      "fr": "Les pays dont la capitale n’est pas la plus grande ville"
+    }
   }
 ]
