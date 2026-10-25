@@ -997,6 +997,12 @@ bounced. Durations:
 
 - **Page arrival** — `page-enter`, 8px and a fade on `base`, carried by the
   `screen` and `stage` mixins (`arriving`). Never on a framed screen.
+- **A panel tab opening** — `panel-screen-in`, a fade alone on `fast` × 1.5:
+  the panel is beside the game, and must not pull the eye off it.
+- **The map's zoom** — a press or a wheel notch glides 200ms on an ease-out
+  cubic (`use-eased-map-view.ts`), each notch building on where the last was
+  going; a finger, a pinch and a trackpad pinch land at once. Reduced motion
+  jumps.
 - **A piece in life** — lift under a pointer, sink under a press, on `fast`.
   Nothing else moves a piece.
 - **Countdown** — each second struck onto the token (`countdown-strike`,

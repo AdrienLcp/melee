@@ -30,6 +30,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { Button } from './button'
 import { MinusIcon, PlusIcon, WorldIcon } from './icons'
 import { PAWN_BOX, PawnShape, usePawnNumber } from './pawn'
+import { useEasedMapView } from './use-eased-map-view'
 import { useMapGestures } from './use-map-gestures'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -156,7 +157,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
   const map = { height: world.height, width: world.width }
   const target =
     revealed === undefined ? null : targetOutlineOf(geometry, revealed.target)
-  const [view, setView] = useState<MapView>(() =>
+  const { easeView, setView, view } = useEasedMapView(() =>
     revealed === undefined || target === null
       ? fittedView({ frame, map })
       : clampedView({
@@ -185,6 +186,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         }
 
   const gestures = useMapGestures({
+    easeView,
     frame,
     map,
     markerAt,
@@ -195,7 +197,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
   })
 
   const zoomBy = (factor: number) => {
-    setView((current) =>
+    easeView((current) =>
       zoomedAround({
         factor,
         focus: markerAt ?? [frame.width / 2, frame.height / 2],
@@ -287,7 +289,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
               : 'worldmap.map.whole'
           )}
           onPress={() =>
-            setView(
+            easeView(() =>
               clampedView({ frame, map, view: fittedView({ frame, map }) })
             )
           }

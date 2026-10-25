@@ -39,6 +39,8 @@ type Gesture =
   | { from: readonly [Point, Point]; kind: 'pinching'; view: MapView }
 
 type MapGestures = {
+  /** Glides to a view rather than landing on it: a wheel notch jumps, a finger never does. */
+  easeView: (update: (view: MapView) => MapView) => void
   frame: Size
   map: Size
   /** Where the pawn's foot is on the screen, or `null` with no pawn down. */
@@ -58,6 +60,7 @@ const distance = (a: Point, b: Point) => Math.hypot(a[0] - b[0], a[1] - b[1])
  * same code. The page never scrolls under it: the surface claims every touch.
  */
 export const useMapGestures = ({
+  easeView,
   frame,
   map,
   markerAt,
@@ -209,8 +212,11 @@ export const useMapGestures = ({
       event.preventDefault()
 
       const box = element.getBoundingClientRect()
+      // A trackpad pinch arrives as a wheel with the control key held, and a
+      // pinch stays under the fingers.
+      const moveView = event.ctrlKey ? setView : easeView
 
-      setView((view) =>
+      moveView((view) =>
         zoomedAround({
           factor: Math.exp(-event.deltaY * WHEEL_ZOOM_RATE),
           focus: [event.clientX - box.left, event.clientY - box.top],
@@ -226,7 +232,7 @@ export const useMapGestures = ({
     return () => {
       element.removeEventListener('wheel', zoomOnWheel)
     }
-  }, [frame, map, setView, surface])
+  }, [easeView, frame, map, setView, surface])
 
   return {
     onPointerCancel: onPointerUp,

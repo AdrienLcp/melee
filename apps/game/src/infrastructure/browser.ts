@@ -48,3 +48,6 @@ export const buzzFeedback = (moment: BuzzMoment): void => {
  */
 export const sendsGlobalPrivacyControl = (): boolean =>
   'globalPrivacyControl' in navigator && navigator.globalPrivacyControl === true
+
+export const prefersReducedMotion = (): boolean =>
+  matchMedia('(prefers-reduced-motion: reduce)').matches

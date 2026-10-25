@@ -203,6 +203,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The map zooms smoothly and the panel's tabs fade in.** A zoom
+  button or a wheel notch glides to its view rather than jumping, while a
+  finger or a pinch still follows the hand exactly; switching tab in the
+  console's panel fades the new one in. Both stand still under reduced motion.
+
 - `[Game]` **The console's panel tidies its edges.** Moving the panel to the
   other side waits at its foot, named, rather than beside the tabs; the time
   before the next round is set from the Room tab alone, no longer under the

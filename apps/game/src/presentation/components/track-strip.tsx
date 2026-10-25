@@ -3,6 +3,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 
 import type { TrackPawn } from '@melee/core/board/track-pawns'
 
+import { prefersReducedMotion } from '@/infrastructure/browser'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { Button } from './button'
@@ -258,9 +259,7 @@ const useRibbon = ({ at, isWhole }: { at: number; isWhole: boolean }) => {
       if (ref.current !== null) {
         centreOn({
           at,
-          behavior: matchMedia('(prefers-reduced-motion: reduce)').matches
-            ? 'instant'
-            : 'smooth',
+          behavior: prefersReducedMotion() ? 'instant' : 'smooth',
           scroller: ref.current
         })
       }

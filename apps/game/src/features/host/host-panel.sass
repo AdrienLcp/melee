@@ -53,6 +53,7 @@
 
     .panel-screen
       align-content: start
+      animation: panel-screen-in calc(var(--transition-fast, 0s) * 1.5) var(--ease-out)
       display: grid
       gap: var(--space-m)
       grid-template-columns: minmax(0, 1fr)
@@ -298,3 +299,7 @@
 
         .host-panel
           display: none
+
+  @keyframes panel-screen-in
+    from
+      opacity: 0
