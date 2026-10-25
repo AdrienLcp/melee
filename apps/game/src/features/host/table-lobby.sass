@@ -31,6 +31,13 @@
   .table-lobby .table-card
     @include box-lid.box-lid
 
+    // The card answers its parent's width and the invitation's pieces would
+    // answer the card's narrower content box: sized through these, both sides
+    // of the query are read off the same box.
+    --table-code-size: clamp(2.5rem, calc(var(--stage-unit) * 9.5), 7rem)
+    --table-qr-width: clamp(9rem, calc(var(--stage-unit) * 30), 20rem)
+    --table-words-align: end
+
     align-items: center
     column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 2.4), var(--space-xl))
     container-type: inline-size
@@ -46,9 +53,8 @@
     .room-invitation .qr
       display: contents
 
-    // On the invitation itself, which declares its own default.
     .room-invitation
-      --invitation-code-size: clamp(2.5rem, calc(var(--stage-unit) * 9.5), 7rem)
+      --invitation-code-size: var(--table-code-size)
 
     .room-invitation .code
       --ground: var(--card)
@@ -65,10 +71,10 @@
     .room-invitation .qr-card
       align-self: center
       grid-area: qr
-      width: clamp(9rem, calc(var(--stage-unit) * 30), 20rem)
+      width: var(--table-qr-width)
 
     .room-invitation .qr-words
-      align-self: end
+      align-self: var(--table-words-align)
       grid-area: words
       margin-block-start: var(--space-s)
       text-align: start
@@ -79,22 +85,12 @@
     // A column of a phone's width: the square takes the larger share of the
     // row, the code and the words stacked beside it.
     @container (width < 34rem)
+      --table-code-size: 2rem
+      --table-qr-width: 100%
+      --table-words-align: start
+
       grid-template-areas: 'title title' 'rules rules' 'spines spines' 'qr code' 'qr words'
-      grid-template-columns: auto minmax(0, 1fr)
-
-      // The invitation declares itself a container, and drawn as `contents` it
-      // has no box to measure: `cqi` has to reach the card instead.
-      .room-invitation
-        --invitation-code-size: 2rem
-
-        container-type: normal
-
-      .room-invitation .qr-card
-        margin-block-start: var(--space-s)
-        width: 55cqi
-
-      .room-invitation .qr-words
-        align-self: start
+      grid-template-columns: minmax(0, 11fr) minmax(0, 9fr)
 
   .table-lobby .table-title
     @include typography.billboard-wrapping
