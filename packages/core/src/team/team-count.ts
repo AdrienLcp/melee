@@ -33,13 +33,13 @@ export const suggestedTeamCount = (seated: number): number => {
 export const MIN_SEATS_FOR_TEAMS = 3
 
 /**
- * The most teams `seatCount` seats split into: `k` teams need `2k − 1`
- * seats, so at most one team plays alone — four seats in three is two teams
- * of one beside a pair. Under `MIN_TEAMS` when the table is too small for
- * teams at all.
+ * The most teams `seatCount` seats split into: one fewer than the seats, so
+ * one team always holds two — four seats in three is a pair beside two
+ * players alone, which the mean of `balanced` scoring keeps fair. Under
+ * `MIN_TEAMS` when the table is too small for teams at all.
  */
 export const mostTeamsFor = (seatCount: number): number =>
-  Math.min(MAX_TEAMS, Math.floor((seatCount + 1) / 2))
+  Math.min(MAX_TEAMS, seatCount - 1)
 
 /** Every count `seatCount` seats may be dealt into, in order; empty under `MIN_SEATS_FOR_TEAMS`. */
 export const teamCountsFor = (seatCount: number): number[] =>

@@ -1385,6 +1385,14 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Team name',
       submit: 'Rename'
     },
+    scoring: {
+      balanced: 'Balanced',
+      balancedHint:
+        'Each team scores its average per player, so a bigger team does not win on numbers alone.',
+      label: 'Team score',
+      sum: 'Added up',
+      sumHint: 'Each team scores every point its players make.'
+    },
     setting: {
       aloud: 'Aloud',
       aloudHint:

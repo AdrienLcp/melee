@@ -46,6 +46,7 @@ describe('rememberSettings', () => {
       board: { kind: 'off' },
       countdownMs: 10_000,
       hasJudge: false,
+      teamScoring: 'balanced',
       teams: { kind: 'off' }
     })
   })
@@ -180,6 +181,7 @@ describe('rememberedSetupFor', () => {
         board: { kind: 'off' },
         countdownMs: 3_000,
         hasJudge: false,
+        teamScoring: 'balanced',
         teams: { kind: 'off' }
       }
     }

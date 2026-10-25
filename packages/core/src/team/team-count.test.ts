@@ -26,12 +26,12 @@ describe('the counts a table may be dealt into', () => {
     ])
   })
 
-  it('[team-count] adds a team for every two seats, so at most one plays alone', () => {
-    expect([3, 4, 5, 7].map(teamCountsFor)).toEqual([
-      [2],
+  it('[team-count] offers one team fewer than the seats, so one team holds two', () => {
+    expect([3, 4, 5, 6].map(teamCountsFor)).toEqual([
       [2],
       [2, 3],
-      [2, 3, 4]
+      [2, 3, 4],
+      [2, 3, 4, 5]
     ])
   })
 

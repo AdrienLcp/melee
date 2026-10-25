@@ -1290,6 +1290,14 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Nom de l’équipe',
       submit: 'Renommer'
     },
+    scoring: {
+      balanced: 'Équilibré',
+      balancedHint:
+        'Chaque équipe marque sa moyenne par joueur : une grande équipe ne gagne pas juste par le nombre.',
+      label: 'Score des équipes',
+      sum: 'Additionné',
+      sumHint: 'Chaque équipe marque tous les points de ses joueurs.'
+    },
     setting: {
       aloud: 'À voix haute',
       aloudHint:

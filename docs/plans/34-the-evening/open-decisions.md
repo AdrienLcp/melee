@@ -3,11 +3,14 @@
 Every choice this stage left to Adrien. Settling one means updating the step
 it names and deleting its line here.
 
-None is open. Settled 21/10/2026 and built: a team's round result is **the
-sum** of what the round paid its seats (2), because under a mean a teammate's
-wrong answer lowers the team's result, which names a culprit at a table of
-children and grandparents; a team answering as one — a turn, a challenge's
-placing — is paid that answer once.
+None is open. Settled 21/10/2026 and revised 25/10/2026: a team's round
+result is a **room setting**, `teamScoring` (2). The 21st built the sum alone,
+because under a mean a teammate's wrong answer lowers the team's result and
+names a culprit; the 25th let a table split into one team fewer than its seats
+(2/1/1 at four), where a sum hands the larger team the evening, so the mean
+over the seats the round opened on is the default and the sum the host's
+choice. A team answering as one — a turn, a challenge's placing — is paid that
+answer once under either.
 
 Settled 21/10/2026 and kept as built: the next game drawn, never twice running
 (5); the map's tiers 3 / 2 / 1 `POINT`s at 0, < 500, < 1 500 km (6) and the

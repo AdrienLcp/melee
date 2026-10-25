@@ -34,6 +34,15 @@ export const teamsSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ count: teamCountSchema, kind: z.literal('aloud') })
 ])
 
+/**
+ * How a round's seats add up to the team's result. `sum` pays the team every
+ * point its seats made, so no answer ever costs it anything; `balanced` pays
+ * the mean over the seats the round opened on, so a team of three does not
+ * outscore a team of one by being three. Balanced is the default because a
+ * table rarely splits evenly, and a sum hands the larger team the evening.
+ */
+export const teamScoringSchema = z.enum(['sum', 'balanced'])
+
 export const teamIdSchema = z.string().min(1).max(16)
 
 /** Whom points are paid to by the host's hand: a team, or one seat. */
@@ -65,8 +74,9 @@ export const teamSchema = z.object({
   name: teamNameSchema.nullable(),
   /**
    * Every round's team result plus the host's adjustments. A round pays a team
-   * the sum of what it paid the seats it opened on, and a team answering as
-   * one — a turn, a challenge's placing — that answer once.
+   * what it paid the seats it opened on, added up or averaged as
+   * `teamScoring` says, and a team answering as one — a turn, a challenge's
+   * placing — that answer once.
    */
   score: z.number().int().nonnegative(),
   /** In seat order. Empty is a team still waiting for its first seat. */
@@ -82,6 +92,7 @@ export const teamVerdictSchema = z.object({
   verdict: verdictSchema
 })
 
+export type TeamScoring = z.infer<typeof teamScoringSchema>
 export type TeamVerdict = z.infer<typeof teamVerdictSchema>
 export type TeamsSettings = z.infer<typeof teamsSettingsSchema>
 export type TeamId = z.infer<typeof teamIdSchema>
@@ -89,3 +100,5 @@ export type TeamName = z.infer<typeof teamNameSchema>
 export type Team = z.infer<typeof teamSchema>
 
 export const DEFAULT_TEAMS_SETTINGS: TeamsSettings = { kind: 'off' }
+
+export const DEFAULT_TEAM_SCORING: TeamScoring = 'balanced'

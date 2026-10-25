@@ -26,6 +26,7 @@ const inTeams = (teams: TeamsSettings) => ({ ...FAST_GAME, teams })
 const DRAWN_IN_TWO = inTeams({ count: 2, kind: 'drawn' })
 const DRAWN_IN_THREE = inTeams({ count: 3, kind: 'drawn' })
 const CHOSEN_IN_TWO = inTeams({ count: 2, kind: 'chosen' })
+const SUMMED_IN_TWO = { ...DRAWN_IN_TWO, teamScoring: 'sum' as const }
 
 const viewOf = (player: Peer<PlayerServerMessage> | undefined) =>
   player === undefined ? null : playerView(player)
@@ -232,14 +233,14 @@ describe('a room played in teams', () => {
     expect(hostView(host)?.settings.teams).toEqual({ kind: 'off' })
   })
 
-  it('[teams] brings a count four seats cannot fill down to two of two', async () => {
+  it('[teams] brings a count three seats cannot fill down to two', async () => {
     const { code, host } = await harness.openRoom(DRAWN_IN_THREE)
-    const [anna, ben, carl, dora] = (
-      await seatMany(code, ['Anna', 'Ben', 'Carl', 'Dora'])
+    const [anna, ben, carl] = (
+      await seatMany(code, ['Anna', 'Ben', 'Carl'])
     ).map(idOf)
 
     host.send({
-      assignment: [[anna ?? '', ben ?? ''], [carl ?? ''], [dora ?? '']],
+      assignment: [[anna ?? ''], [ben ?? ''], [carl ?? '']],
       type: 'host.drawTeams'
     })
     await waitFor(
@@ -250,9 +251,11 @@ describe('a room played in teams', () => {
     await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
 
     expect(hostView(host)?.settings.teams).toEqual({ count: 2, kind: 'drawn' })
-    expect(hostView(host)?.teams.map((team) => team.seatIds.length)).toEqual([
-      2, 2
-    ])
+    expect(
+      hostView(host)
+        ?.teams.map((team) => team.seatIds.length)
+        .toSorted()
+    ).toEqual([1, 2])
   })
 
   it('[teams] plays alone when every seat picked the same team', async () => {
@@ -284,7 +287,7 @@ describe('a room played in teams', () => {
   })
 
   it('[teams] pays a team the sum of what the round paid its seats', async () => {
-    const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
+    const { code, host } = await harness.openRoom(SUMMED_IN_TWO)
     const seats = await seatMany(code, ['Anna', 'Ben', 'Carl'])
     const [anna, ben, carl] = seats.map(idOf)
 
@@ -317,6 +320,63 @@ describe('a room played in teams', () => {
     await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
 
     expect(hostView(host)?.teams.map((team) => team.score)).toEqual([paid, 0])
+  })
+
+  it('[teams] pays a balanced team the mean of its seats', async () => {
+    const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
+    const seats = await seatMany(code, ['Anna', 'Ben', 'Carl'])
+    const [anna, ben, carl] = seats.map(idOf)
+
+    host.send({
+      assignment: [[anna ?? '', ben ?? ''], [carl ?? '']],
+      type: 'host.drawTeams'
+    })
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    const roundId = hostView(host)?.round?.id ?? ''
+
+    seats[0]?.send({ roundId, type: 'player.buzz' })
+    await waitFor(() => hostView(host)?.phase === 'buzzed', 'the buzz')
+    host.send({
+      playerId: anna ?? '',
+      roundId,
+      type: 'host.judge',
+      verdict: halves(true, true)
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const paid =
+      hostView(host)?.players.find((player) => player.id === anna)?.score ?? 0
+
+    expect(paid).toBeGreaterThan(0)
+    expect(hostView(host)?.teams.map((team) => team.score)).toEqual([
+      Math.round(paid / 2),
+      0
+    ])
+  })
+
+  it('[teams] refuses a new team scoring once the game is under way', async () => {
+    const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
+    await seatMany(code, ['Anna', 'Ben', 'Carl'])
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    const settings = hostView(host)?.settings
+
+    if (settings !== undefined) {
+      host.send({
+        settings: { ...settings, teamScoring: 'sum' },
+        type: 'host.updateSettings'
+      })
+    }
+    await waitFor(
+      () => errorsIn(host).some((error) => error.code === 'teams_locked'),
+      'the refusal'
+    )
+
+    expect(hostView(host)?.settings.teamScoring).toBe('balanced')
   })
 
   it('[teams] moves a seat, renames a team and adjusts its score mid-game', async () => {

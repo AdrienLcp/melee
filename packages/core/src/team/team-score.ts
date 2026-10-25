@@ -1,4 +1,5 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { TeamScoring } from '@melee/protocol/team'
 
 type PaidSeat = {
   playerId: PlayerId
@@ -6,10 +7,10 @@ type PaidSeat = {
 }
 
 /**
- * What one round pays a team: the sum of what it paid the team's seats it
- * opened on. A sum rather than a mean, because under a mean a teammate's wrong
- * answer lowers the team's result and names a culprit; under a sum every answer
- * only adds (open decision 2).
+ * What one round pays a team out of what it paid the team's seats it opened
+ * on: their sum, or under `balanced` their mean, rounded to a whole score.
+ * The mean is over the seats the round opened on rather than the whole team,
+ * so a seat that arrived late does not halve its teammates.
  *
  * A team that `answersAsOne` — a turn, where every seat it was stamped on holds
  * the same attempt, or a challenge's placing, paid to each of them — is paid
@@ -23,22 +24,29 @@ export const teamRoundResult = ({
   answersAsOne,
   awards,
   openedWithPlayerIds,
+  scoring,
   seatIds
 }: {
   answersAsOne: boolean
   awards: readonly PaidSeat[]
   openedWithPlayerIds: ReadonlySet<PlayerId> | null
+  scoring: TeamScoring
   seatIds: readonly PlayerId[]
 }): number => {
+  const playingSeatIds = seatIds.filter(
+    (seatId) => openedWithPlayerIds?.has(seatId) ?? true
+  )
   const paid = awards
-    .filter(
-      (award) =>
-        seatIds.includes(award.playerId) &&
-        (openedWithPlayerIds?.has(award.playerId) ?? true)
-    )
+    .filter((award) => playingSeatIds.includes(award.playerId))
     .map((award) => award.points)
 
-  return answersAsOne
-    ? Math.max(0, ...paid)
-    : paid.reduce((total, points) => total + points, 0)
+  if (answersAsOne) {
+    return Math.max(0, ...paid)
+  }
+
+  const total = paid.reduce((sum, points) => sum + points, 0)
+
+  return scoring === 'sum' || playingSeatIds.length === 0
+    ? total
+    : Math.round(total / playingSeatIds.length)
 }

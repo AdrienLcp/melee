@@ -8,6 +8,18 @@ one part.
 
 ### Features
 
+- `[Shared]` **Team score, balanced or added up**, a room setting beside the
+  teams — *Score des équipes* in French. *Équilibré*, the default, pays a team
+  the mean of what a round paid the seats it opened on, so a pair does not beat
+  a lone player by being two; *Additionné* pays the sum, as every team was paid
+  until now. A team answering as one is paid that answer once under either.
+  `PROTOCOL_VERSION` goes to 56.
+
+- `[Shared]` **As many teams as the seats allow, minus one**, picked with a −
+  and a +: four seats may play in three teams, a pair beside two alone. Under
+  three seats, still no teams. A count the seats can no longer fill comes down
+  when the first round opens.
+
 - `[Server]` **Guess nine on capitals**, thirteen themes: the capitals of
   every continent, of six of its regions and of the countries bordering
   France, and the countries whose capital is not their largest city. The black

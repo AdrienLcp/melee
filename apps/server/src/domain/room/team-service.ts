@@ -347,6 +347,7 @@ const liveRoundResult = (room: Room, teamId: TeamId): number =>
           isSpokenRound(room.round),
         awards: room.round.awards,
         openedWithPlayerIds: room.round.openedWithPlayerIds,
+        scoring: room.settings.teamScoring,
         seatIds: seatsOf(room, teamId).map((seat) => seat.id)
       }) +
       room.round.teamAwards

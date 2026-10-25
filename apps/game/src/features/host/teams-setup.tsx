@@ -2,7 +2,11 @@ import type React from 'react'
 import { useState } from 'react'
 
 import type { RoomSettings } from '@melee/protocol/room'
-import { MAX_TEAMS, MIN_TEAMS, type TeamsSettings } from '@melee/protocol/team'
+import {
+  MAX_TEAMS,
+  type TeamScoring,
+  type TeamsSettings
+} from '@melee/protocol/team'
 
 import {
   type HostPreferences,
@@ -10,45 +14,44 @@ import {
 } from '@melee/core/room/host-preferences'
 import { fittedToAloud } from '@melee/core/room/line-up'
 import { fittedToTeams } from '@melee/core/room/room-settings'
-import { teamCountOf, teamCountsFor } from '@melee/core/team/team-count'
+import { mostTeamsFor } from '@melee/core/team/team-count'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
-import { NumberChoice } from './number-choice'
+import { TeamCountField } from './team-count-field'
 
 import './teams-setup.sass'
 
 const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'aloud'] as const
 
+const TEAM_SCORING_CHOICES = [
+  'balanced',
+  'sum'
+] as const satisfies TeamScoring[]
+
 type TeamsKind = (typeof TEAMS_KINDS)[number]
 
-/** Every count a room may split into, in order. */
-const TEAM_COUNTS = Array.from(
-  { length: MAX_TEAMS - MIN_TEAMS + 1 },
-  (_, offset) => MIN_TEAMS + offset
-)
-
 /**
- * The counts the host is offered: every one for teams answering aloud, which
- * hold no seats, and only those the seats can fill otherwise — none at all
- * under the smallest table for teams.
+ * The most teams the host is offered: the room's ceiling for teams answering
+ * aloud, which hold no seats, and only what the seats can fill otherwise —
+ * under `MIN_TEAMS`, so no count at all, below the smallest table for teams.
  */
-export const teamCountsOffered = ({
+export const mostTeamsOffered = ({
   seatCount,
   teams
 }: {
   seatCount: number
   teams: TeamsSettings
-}): number[] => {
+}): number => {
   switch (teams.kind) {
     case 'off':
-      return []
+      return 0
     case 'aloud':
-      return TEAM_COUNTS
+      return MAX_TEAMS
     case 'drawn':
     case 'chosen':
-      return teamCountsFor(seatCount)
+      return mostTeamsFor(seatCount)
   }
 }
 
@@ -99,7 +102,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
   const { locale, translate } = useI18n()
   const teams = settings.teams
   const [isAloudRefused, setIsAloudRefused] = useState(false)
-  const counts = teamCountsOffered({ seatCount, teams })
+  const mostTeams = mostTeamsOffered({ seatCount, teams })
 
   return (
     <div className='teams-setup'>
@@ -140,18 +143,41 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         }))}
         value={teams.kind}
       />
-      {teams.kind !== 'off' && counts.length > 0 && (
-        <NumberChoice
-          className='team-count'
+      {teams.kind !== 'off' && (
+        <TeamCountField
           isDisabled={isDisabled}
-          label={translate('team.count')}
+          mostTeams={mostTeams}
           onChange={(count) => {
             onChange({ ...settings, teams: { ...teams, count } })
           }}
-          optionLabel={String}
-          options={counts}
-          value={teamCountOf(teams)}
+          teams={teams}
         />
+      )}
+      {(teams.kind === 'drawn' || teams.kind === 'chosen') && (
+        <>
+          <SegmentedControl
+            className='team-scoring'
+            isDisabled={isDisabled}
+            label={translate('team.scoring.label')}
+            onChange={(next) => {
+              const teamScoring = TEAM_SCORING_CHOICES.find(
+                (candidate) => candidate === next
+              )
+
+              if (teamScoring !== undefined) {
+                onChange({ ...settings, teamScoring })
+              }
+            }}
+            options={TEAM_SCORING_CHOICES.map((scoring) => ({
+              label: translate(`team.scoring.${scoring}`),
+              value: scoring
+            }))}
+            value={settings.teamScoring}
+          />
+          <p className='hint'>
+            {translate(`team.scoring.${settings.teamScoring}Hint`)}
+          </p>
+        </>
       )}
       {teams.kind === 'aloud' && (
         <p className='hint'>{translate('team.setting.aloudHint')}</p>

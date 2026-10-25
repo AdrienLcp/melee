@@ -25,8 +25,10 @@ import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 import { modeSettingsSchema, roomSettingsSchema } from '@melee/protocol/room'
 import {
+  DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
   type TeamsSettings,
+  teamScoringSchema,
   teamsSettingsSchema
 } from '@melee/protocol/team'
 
@@ -97,6 +99,8 @@ const hostPreferencesSchema = z.object({
       board: boardSettingsSchema.optional().catch(undefined),
       /** Stored before a room could have a judge, which no room did. */
       hasJudge: z.boolean().catch(false),
+      /** Stored before the choice existed: the default, not the sum it played then. */
+      teamScoring: teamScoringSchema.catch(DEFAULT_TEAM_SCORING),
       /** *A screen per team* is gone: its seats played as everyone for themselves. */
       teams: teamsSettingsSchema.catch(DEFAULT_TEAMS_SETTINGS)
     })

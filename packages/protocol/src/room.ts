@@ -46,9 +46,11 @@ import {
   slateProgressSchema
 } from './slate'
 import {
+  DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
   teamIdSchema,
   teamSchema,
+  teamScoringSchema,
   teamsSettingsSchema
 } from './team'
 import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
@@ -235,6 +237,11 @@ export const roomSettingsSchema = z.object({
    * place; an edit that takes an entry out rewrites the rows with it.
    */
   runningOrder: z.array(lineUpAtSchema).max(RUNNING_ORDER_MAX_ROWS),
+  /**
+   * Whether a team is paid the sum or the mean of its seats — see `team.ts`.
+   * Ignored by a room without seated teams.
+   */
+  teamScoring: teamScoringSchema,
   /** Whether the room plays in teams, and how its seats get into them — see `team.ts`. */
   teams: teamsSettingsSchema
 })
@@ -276,6 +283,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 10,
   runningOrder: [],
+  teamScoring: DEFAULT_TEAM_SCORING,
   teams: DEFAULT_TEAMS_SETTINGS
 }
 

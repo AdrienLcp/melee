@@ -208,6 +208,7 @@ const choosingView = (question: Question) => ({
     mode: { kind: 'choice' },
     roundCount: 10,
     runningOrder: [],
+    teamScoring: 'balanced',
     teams: { kind: 'off' }
   },
   teams: [],

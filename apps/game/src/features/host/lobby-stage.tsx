@@ -2,6 +2,7 @@ import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
+import { MIN_TEAMS } from '@melee/protocol/team'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
@@ -21,11 +22,11 @@ import {
 } from '@/presentation/i18n/translation'
 
 import { MoveSeat } from './move-seat'
-import { NumberChoice } from './number-choice'
 import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
 import { SlatePreparation } from './slate-preparation'
-import { teamCountsOffered } from './teams-setup'
+import { TeamCountField } from './team-count-field'
+import { mostTeamsOffered } from './teams-setup'
 import { useTeamCountFollowingHeadcount, useTeamDeal } from './use-team-deal'
 
 /** As many pawns as a box holds: the roster shows an empty socket for each one still in it. */
@@ -150,28 +151,25 @@ const LobbyTeams: React.FC<{
     send: controls?.send ?? null,
     view
   })
-  const counts = teamCountsOffered({
+  const mostTeams = mostTeamsOffered({
     seatCount: view.players.length,
     teams
   })
 
   return (
     <>
-      {controls !== null && teams.kind !== 'off' && counts.length > 0 && (
+      {controls !== null && teams.kind !== 'off' && mostTeams >= MIN_TEAMS && (
         <div className='team-deal'>
-          <NumberChoice
-            className='team-count'
+          <TeamCountField
             isDisabled={!controls.isLive}
-            label={translate('team.count')}
+            mostTeams={mostTeams}
             onChange={(count) => {
               controls.onSettingsChange({
                 ...view.settings,
                 teams: { ...teams, count }
               })
             }}
-            optionLabel={String}
-            options={counts}
-            value={teamCountOf(teams)}
+            teams={teams}
           />
           {isDrawn && (
             <Button

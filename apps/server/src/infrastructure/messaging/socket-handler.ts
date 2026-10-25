@@ -1580,7 +1580,8 @@ const reconfigure = (
 
   if (
     room.phase !== 'lobby' &&
-    changesTeams({ from: room.settings.teams, to: settings.teams })
+    (changesTeams({ from: room.settings.teams, to: settings.teams }) ||
+      settings.teamScoring !== room.settings.teamScoring)
   ) {
     sendError(outbound, {
       code: 'teams_locked',
