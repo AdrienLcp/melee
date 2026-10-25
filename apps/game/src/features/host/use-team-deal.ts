@@ -3,7 +3,11 @@ import { useEffect, useEffectEvent, useRef } from 'react'
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { HostRoomView } from '@melee/protocol/room'
 
-import { suggestedTeamCount, teamCountOf } from '@melee/core/team/team-count'
+import {
+  MIN_SEATS_FOR_TEAMS,
+  suggestedTeamCount,
+  teamCountOf
+} from '@melee/core/team/team-count'
 import { dealTeams } from '@melee/core/team/team-draw'
 
 import type { StageControls } from './room-stage'
@@ -18,6 +22,13 @@ export type TeamDeal = {
   isDrawn: boolean
   /** Fewer seats than teams: the server refuses a deal that leaves one empty. */
   isShortOfPlayers: boolean
+  /**
+   * Why the table cannot play in teams yet, `null` once it can:
+   * - `teams`: under `MIN_SEATS_FOR_TEAMS`, which the first round would stand
+   *   down to everyone for themselves, whoever sits where;
+   * - `draw`: enough for teams, but fewer seats than the count to deal.
+   */
+  shortfall: 'draw' | 'teams' | null
 }
 
 export const useTeamDeal = ({
@@ -30,6 +41,16 @@ export const useTeamDeal = ({
   const teams = view.settings.teams
   const isDrawn = teams.kind === 'drawn'
   const seatIds = view.players.map((player) => player.id)
+  const isShortOfPlayers = isDrawn && seatIds.length < teamCountOf(teams)
+  const holdsSeats = teams.kind === 'drawn' || teams.kind === 'chosen'
+
+  const shortfall = (): TeamDeal['shortfall'] => {
+    if (holdsSeats && seatIds.length < MIN_SEATS_FOR_TEAMS) {
+      return 'teams'
+    }
+
+    return isShortOfPlayers ? 'draw' : null
+  }
 
   return {
     deal: () => {
@@ -40,7 +61,8 @@ export const useTeamDeal = ({
     },
     hasDealt: view.teams.some((team) => team.seatIds.length > 0),
     isDrawn,
-    isShortOfPlayers: isDrawn && seatIds.length < teamCountOf(teams)
+    isShortOfPlayers,
+    shortfall: shortfall()
   }
 }
 

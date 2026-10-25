@@ -5,7 +5,7 @@ import type { HostRoomView } from '@melee/protocol/room'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
-import { teamCountOf } from '@melee/core/team/team-count'
+import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
@@ -169,7 +169,7 @@ const LobbyTeams: React.FC<{
 }> = ({ controls, view, youId }) => {
   const translate = useTranslate()
   const teams = view.settings.teams
-  const { deal, hasDealt, isDrawn, isShortOfPlayers } = useTeamDeal({
+  const { deal, hasDealt, isDrawn, isShortOfPlayers, shortfall } = useTeamDeal({
     send: controls?.send ?? null,
     view
   })
@@ -204,9 +204,11 @@ const LobbyTeams: React.FC<{
           )}
         </div>
       )}
-      {controls !== null && isShortOfPlayers && (
+      {controls !== null && shortfall !== null && (
         <p className='draw-needs'>
-          {translate('team.drawNeeds', { count: teamCountOf(teams) })}
+          {shortfall === 'teams'
+            ? translate('team.needsSeats', { count: MIN_SEATS_FOR_TEAMS })
+            : translate('team.drawNeeds', { count: teamCountOf(teams) })}
         </p>
       )}
       <TeamRoster

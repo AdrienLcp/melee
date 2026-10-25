@@ -1283,6 +1283,8 @@ export const FR_DICTIONARY = defineDictionary({
       short: 'Équipe',
       to: 'Chez les {team}'
     },
+    needsSeats:
+      'Les équipes se forment à partir de {count:number} joueurs — d’ici là, chacun joue pour soi.',
     pick: 'Choisis ton équipe',
     redraw: 'Nouveau tirage',
     rename: {

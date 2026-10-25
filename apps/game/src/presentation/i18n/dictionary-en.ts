@@ -1378,6 +1378,8 @@ export const EN_DICTIONARY = defineDictionary({
       short: 'Team',
       to: 'To the {team}'
     },
+    needsSeats:
+      'Teams start at {count:number} players — until then, everyone plays for themselves.',
     pick: 'Pick your team',
     redraw: 'Draw again',
     rename: {
