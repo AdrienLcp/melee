@@ -1026,6 +1026,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     category: {
       arts: 'Arts et culture',
+      capitals: 'Capitales',
       cinema: 'Cinéma',
       everyday: 'Quotidien',
       flags: 'Drapeaux',

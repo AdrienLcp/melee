@@ -1096,6 +1096,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     category: {
       arts: 'Arts and culture',
+      capitals: 'Capitals',
       cinema: 'Cinema',
       everyday: 'Everyday',
       flags: 'Flags',

@@ -28,19 +28,12 @@
     .track-difficulty
       @include strip.stacks-below(33rem)
 
-    // Eleven divide by nothing: on six, four and two columns the last row is
-    // one cell short, and its last chip takes that cell rather than leave it
-    // empty.
     .question-subjects
       @include strip.stacks-below(78rem)
       @include strip.tiles-below(78rem, 6)
       @include strip.tiles-below(66rem, 4)
       @include strip.tiles-below(44rem, 2)
       @include strip.tiles-below(22rem, 1)
-
-      @container (22rem <= width < 78rem)
-        .segment:last-child
-          grid-column-end: span 2
 
     .matchsticks-goals
       @include strip.stacks-below(32rem)

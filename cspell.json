@@ -42,6 +42,8 @@
         "apps/server/scripts/polyfact-source.test.ts",
         "apps/server/scripts/polyfact-source.ts",
         "apps/server/scripts/quotes-source.ts",
+        "apps/server/src/infrastructure/questions/capital-questions.test.ts",
+        "apps/server/src/infrastructure/questions/capital-questions.ts",
         "apps/server/src/infrastructure/questions/flag-questions.ts",
         "apps/server/src/infrastructure/questions/rebus-questions.ts",
         "apps/server/scripts/question-source.test.ts",
@@ -90,6 +92,7 @@
       ],
       "language": "en,en-GB,fr",
       "words": [
+        "aeiouyh",
         "Aceuil",
         "acueil",
         "ALPHAQUIZZ",

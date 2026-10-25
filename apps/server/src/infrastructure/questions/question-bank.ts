@@ -10,6 +10,10 @@ import {
 
 import { pickRandom } from '@melee/core/helpers/random'
 
+import {
+  asksACapitalTheRubricAsks,
+  bankedCapitalQuestions
+} from './capital-questions'
 import { bankedFlagQuestions } from './flag-questions'
 import bank from './question-bank.json' with { type: 'json' }
 import { bankedRebusQuestions } from './rebus-questions'
@@ -68,8 +72,12 @@ let parsedBank: BankedQuestion[] | undefined
 
 export const bankedQuestions = (): BankedQuestion[] => {
   parsedBank ??= [
-    ...z.array(bankedQuestionSchema).parse(bank.questions),
+    ...z
+      .array(bankedQuestionSchema)
+      .parse(bank.questions)
+      .filter((question) => !asksACapitalTheRubricAsks(question)),
     ...bankedFlagQuestions(),
+    ...bankedCapitalQuestions(),
     ...bankedRebusQuestions()
   ]
 

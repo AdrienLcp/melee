@@ -19,12 +19,13 @@ import { z } from 'zod'
  * table asks for it by name, and a room that ticks it alone is playing a
  * different game from one that ticks cinema. `flags` is another: a flag on
  * every screen, and the room names whose it is. `rebus` the third: a title
- * written in emojis.
+ * written in emojis. `capitals` the fourth: the room names a country's capital.
  */
 export const questionCategories = [
   'history',
   'geography',
   'flags',
+  'capitals',
   'science',
   'arts',
   'cinema',

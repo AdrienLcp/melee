@@ -62,7 +62,7 @@ there is no browser pass.
 
 — cut here: bank committed, `pnpm validate` green —
 
-## Step 2 — a capitals chip in the quiz (one session)
+## Step 2 — a capitals chip in the quiz — done
 
 The flags road ([37](37-flags.md)): a **rubric, not a game**. `capitals` joins
 `questionCategories`, and `capital-questions.ts` deals the rows from the bank
@@ -90,6 +90,26 @@ already covers them. `PROTOCOL_VERSION` goes up: a player tab parses
 - **The chip, the twelfth.** Ten tiled five by two and the rebus made eleven;
   how twelve tile on the console and at 390 is a layout question, so it opens
   with the `impeccable` skill before any CSS.
+
+What the session found:
+
+- **The bank already asked 66 of them**, under geography and elsewhere —
+  *What is the capital city of New Zealand?*, *Quelle est la capitale de Cuba,
+  réputée pour ses cigares ?* `asksACapitalTheRubricAsks` drops a row whose
+  answer is a capital the rubric asks and whose prompt names that country, so a
+  room ticking both chips is never asked it twice under two ids. It costs
+  two rows it should not: *the capital nearest the equator* names *Équateur*
+  in French, and *whose capital is Djibouti?* asks the other way round —
+  cheaper lost than a rule that reads a sentence.
+- **Israel stays out of the prompt test**: the bank leaves it out, so *d’* is
+  tested on Oman.
+- **Panama for Panama City is not forgiveness**: the capital’s English name
+  holds the country’s, the Luxembourg case. The test is that a country’s name
+  is never forgiven into a capital called otherwise — *Tunisie* for *Tunis*.
+- **Twelve divide by six, four, two and one**, so the chips tile with no rule:
+  the last chip’s span, which filled eleven’s gap, went.
+- The decoy floor is 50 sitelinks, the bank’s median city standing at 70; a
+  state with no city above it (Vanuatu) takes its neighbours’ capitals.
 
 Seen muted (`melee:volume` = `'0'` before the first navigation, see
 [`browser-driving.md`](../browser-driving.md)): a capitals round alone in

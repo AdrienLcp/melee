@@ -234,8 +234,9 @@ from a film is a quiz question whose answer is the work, so it shipped as a
 ninth chip, `quotes`, and not as a sixth game ([stage 32](plans/32-quotes.md)).
 What would make it a game is a mechanic the quiz lacks — the line revealed word
 by word, an earlier buzz paying more — and not its content. Flags
-([stage 37](plans/37-flags.md)) and the emoji rebus
-([stage 39](plans/39-emoji-rebus.md)) took the same road: a picture or a row
+([stage 37](plans/37-flags.md)), the emoji rebus
+([stage 39](plans/39-emoji-rebus.md)) and capitals
+([stage 48](plans/48-capitals.md)) took the same road: a picture or a row
 of emojis is a prompt, and the room names an answer.
 
 What they do change is an assumption everything shipped so far rests on:

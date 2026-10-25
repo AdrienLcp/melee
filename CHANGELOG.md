@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **Capitals in the quiz**, a twelfth chip — *Capitales* in
+  French. *What is the capital of Australia?*, with Sydney and Melbourne among
+  the four: the country’s own big cities stand beside its capital, the
+  nearest states’ capitals fill the rest. Every seat is right — La Paz for
+  Bolivia — and a city-state is never asked. The capital questions the bank
+  held under geography moved into it. `PROTOCOL_VERSION` goes to 54.
+
 - `[Shared]` **Guess nine, team by team.** A room in teams can play it out
   loud: each round one team says its answers and somebody from another team
   holds the list on their screen — hidden behind one press so it can be held
