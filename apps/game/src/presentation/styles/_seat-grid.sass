@@ -37,13 +37,24 @@
     box-shadow: 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
     padding: var(--space-2xs) var(--space-xs) var(--space-2xs) var(--space-s)
 
+    // A chip a third of the roster wide has no room for `away` beside a
+    // name, and the word never shrinks: it goes under the name rather than
+    // cutting `Camille` to its `C`.
     .nickname
       align-items: center
+      column-gap: var(--space-xs)
+      display: grid
       font-size: clamp(1rem, calc(var(--stage-unit) * 2.4), 1.375rem)
-      gap: var(--space-xs)
+      grid-template-columns: auto minmax(0, 1fr)
 
     .pawn
       font-size: var(--text-em-xl)
+
+    .state
+      grid-column: 2
+
+    &:has(.state) .pawn
+      grid-row: span 2
 
   // The seat that is this screen's own, held in a keyline of the ink rather
   // than the name stamped: a stamp inside a chip is a box in a box.

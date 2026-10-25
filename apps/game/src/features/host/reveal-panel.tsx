@@ -47,6 +47,12 @@ const ROWS_PER_SINGLE_COLUMN = 4
 const ROWS_PER_DOUBLE_COLUMN = 12
 
 /**
+ * Past this a Petit Bac grid takes the whole width and the standings go under
+ * it: ten columns beside them broke a seven-letter word on a 1280px wall.
+ */
+const MOST_CATEGORIES_BESIDE_STANDINGS = 7
+
+/**
  * How a list of `count` rows is dealt, published for the stylesheet: a row's
  * type is the height of its column divided by the rows in it, and only the
  * component knows how many rows there are.
@@ -230,9 +236,18 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
     )
   }
 
-  if (petitBacContent(round) !== null) {
+  const petitBac = petitBacContent(round)
+
+  if (petitBac !== null) {
     return (
-      <section className='reveal-panel' data-game='petitbac'>
+      <section
+        className='reveal-panel'
+        data-game='petitbac'
+        data-long-sheet={
+          petitBac.categories.length > MOST_CATEGORIES_BESIDE_STANDINGS ||
+          undefined
+        }
+      >
         <PetitBacGrid players={players} round={round} />
       </section>
     )

@@ -283,7 +283,7 @@ const SeatDetail: React.FC<{
       {!isSeated && (
         <p className='lines'>{translate('host.roomScene.seat.lines')}</p>
       )}
-      {isRoundInPlay(view.phase) ? (
+      {isRoundInPlay(view.phase) && !isSeated ? (
         <p className='lines'>
           {translate('host.roomScene.seat.betweenRounds')}
         </p>

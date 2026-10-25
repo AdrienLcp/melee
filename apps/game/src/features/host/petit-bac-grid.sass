@@ -19,7 +19,11 @@
       align-self: center
       border-collapse: separate
       border-spacing: clamp(var(--space-2xs), calc(var(--stage-unit) * 0.7), var(--space-xs))
-      table-layout: fixed
+      // The categories share the width by what was written in them, so a
+      // column of short words gives its room to one of long ones; the floor
+      // on a column is what keeps a word broken anywhere from being broken
+      // after every letter.
+      table-layout: auto
       width: 100%
 
     caption
@@ -33,11 +37,15 @@
       padding: 0 var(--space-2xs) var(--space-2xs)
       text-align: start
 
-    thead .corner
-      inline-size: 19%
+    thead th:not(.corner, .total)
+      min-inline-size: calc(var(--cell-size) * 4.5)
 
+    thead .corner
+      inline-size: calc(var(--cell-size) * 7)
+
+    // Wide enough for the round's best, `+20 000`, at the size it is set in.
     thead .total
-      inline-size: 12%
+      inline-size: calc(var(--cell-size) * 6.4)
 
     .letter-piece
       @include typography.monument
@@ -80,7 +88,7 @@
       font-size: var(--cell-size)
       overflow: hidden
       overflow-wrap: anywhere
-      padding: var(--space-2xs) var(--space-xs)
+      padding: var(--space-2xs) calc(var(--space-2xs) * 1.5)
       vertical-align: middle
 
       &.total
@@ -147,14 +155,17 @@
     // A console held upright: the pawn names the seat and the categories keep
     // the width, a word breaking where the language allows it.
     @container (width < 36rem)
+      // Shared evenly again: a line cut to an ellipsis has no width to offer.
       table
         border-spacing: var(--space-2xs)
+        table-layout: fixed
 
       thead .corner
         inline-size: 1.75rem
 
-      thead .total
-        inline-size: 3.5rem
+      thead th.total
+        inline-size: 4.5rem
+        overflow-wrap: normal
         padding-inline: 0
 
       td.total
@@ -170,7 +181,8 @@
       th:not(.seat)
         font-size: var(--cell-size)
         hyphens: auto
-        overflow-wrap: normal
+        min-inline-size: 0rem
+        overflow-wrap: break-word
         padding-inline: 0.2em
 
       td

@@ -146,7 +146,7 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
 
   return (
     <section className='petit-bac-sheet'>
-      <div className='sheet'>
+      <div className='answer-sheet'>
         <div className='head'>
           <LetterPiece letter={letter} />
           <div
@@ -295,7 +295,7 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
 
   return (
     <section className='petit-bac-vote'>
-      <div className='sheet'>
+      <div className='answer-sheet'>
         <header className='head'>
           <LetterPiece letter={content.letter} />
           <h2>{petitBacCategoryName({ category, translate })}</h2>

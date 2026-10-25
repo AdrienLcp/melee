@@ -207,6 +207,19 @@ spine is `--spine-petitbac`, and *Categories* is the English name in the
 dictionary. Seen muted at 390 px in both palettes and at 1280 px: a stop
 from another seat, its grace, a majority refusal over three seats.
 
+**The wall, the console and the reveal landed 25/10/2026**, seen muted at
+1280 and 390 px: the lobby's setup (the bank two to a row in the side panel,
+the host's own lines, the 3–10 bounds, letters, duration, stop switch),
+*cancel the stop*, *next category* and *show the scores*, the judge's
+refusal, and a seated console writing, stopping and voting. Petit Bac's sheet
+is `.answer-sheet`: a bare `.sheet` met `Leaflet`'s global rule, which makes
+every child scroll. The reveal grid is laid out `table-layout: auto`, each
+category column floored at 4.5 of its cell size, so the width follows what
+was written; past seven categories (`MOST_CATEGORIES_BESIDE_STANDINGS`) the
+standings go under the grid in two columns, because ten columns beside them
+broke a seven-letter word on a 1280 px wall. `hyphens: auto` does nothing in Chromium
+on Windows, which ships no French dictionary, so no layout here leans on it.
+
 — cut here: the seat committed; the wall, the console, the reveal and the shelf are next —
 
 Verified muted in a browser with three seats: a stop closes the others' sheets,

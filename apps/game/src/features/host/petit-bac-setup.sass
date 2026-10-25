@@ -12,8 +12,14 @@
     .letters .segments
       display: grid
 
+    // Two to a row in the side panel, a long label taking a second line,
+    // rather than thirty rows of one.
     .bank .segments
-      grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr))
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 8.5rem), 1fr))
+
+    .bank .segment
+      text-wrap: balance
+      white-space: normal
 
     .letters .segments
       grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr))

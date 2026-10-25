@@ -120,7 +120,7 @@ const PetitBacWriting: React.FC<Omit<PetitBacStageProps, 'onRefuseRow'>> = ({
         data-step='writing'
         style={{ '--categories': categories.length }}
       >
-        <section className='sheet'>
+        <section className='answer-sheet'>
           <div className='head'>
             <LetterPiece letter={letter} />
             {content.sheetsClosed ? null : stopClosesAtElapsedMs === null ? (

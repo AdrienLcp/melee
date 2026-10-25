@@ -536,6 +536,39 @@
           > .standings
             flex: none
 
+  // Every sheet turned over is a column per category, ten at most, and the
+  // board already reads each seat's round at the end of its row: the grid
+  // takes the width and the standings keep the slate's narrow column.
+  .host-console-page:has(> .stage.revealed > .reveal-panel[data-game='petitbac'])
+    @include layout.wide
+      > .stage.revealed
+        grid-template-columns: minmax(0, 1fr) clamp(16rem, 26cqi, 24rem)
+
+  .host-console-page:has(> .stage.revealed > .reveal-panel[data-game='petitbac'][data-long-sheet])
+    @include layout.wide
+      > .stage.revealed
+        grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 24cqh) / minmax(0, 1fr)
+
+        &.holding
+          grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 24cqh) 'hold' auto / minmax(0, 1fr)
+
+        &.with-next-up
+          grid-template: 'panel' minmax(0, 1fr) 'next' auto 'standings' minmax(0, 24cqh) / minmax(0, 1fr)
+
+          &.holding
+            grid-template: 'panel' minmax(0, 1fr) 'next' auto 'standings' minmax(0, 24cqh) 'hold' auto / minmax(0, 1fr)
+
+        // Two columns read downwards, so a rank stays beside its score across
+        // the width and the rows divide half the height they would stacked.
+        > .standings > .scoreboard
+          column-gap: var(--space-2xl)
+          columns: 2
+          display: block
+
+          li
+            break-inside: avoid
+            font-size: clamp(var(--text-xs), calc(100cqh / (var(--standings-rows, 8) + 1) * 2 / 2.3), 1.75rem)
+
   // An upright screen turning the map over, whatever the board: one column,
   // the map first and as wide as the stage, then the list and the standings
   // under it — side by side the map was a third of the width over half a
