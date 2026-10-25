@@ -2,9 +2,11 @@ import { useEffect, useEffectEvent, useRef } from 'react'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { HostRoomView } from '@melee/protocol/room'
+import { MIN_TEAMS } from '@melee/protocol/team'
 
 import {
   MIN_SEATS_FOR_TEAMS,
+  mostTeamsFor,
   suggestedTeamCount,
   teamCountOf
 } from '@melee/core/team/team-count'
@@ -94,6 +96,13 @@ export const useTeamCountFollowingHeadcount = ({
   const count = teamCountOf(view.settings.teams)
   const suggested = suggestedTeamCount(view.players.length)
   const followsHeadcount = isLive && isDrawn && !hasDealt && count !== suggested
+  const teams = view.settings.teams
+  const mostTeams = mostTeamsFor(view.players.length)
+  const outnumbersSeats =
+    isLive &&
+    (teams.kind === 'drawn' || teams.kind === 'chosen') &&
+    count > mostTeams &&
+    mostTeams >= MIN_TEAMS
 
   const answerNewCount = useEffectEvent((next: number) => {
     if (followedTo.current === next) {
@@ -143,4 +152,23 @@ export const useTeamCountFollowingHeadcount = ({
       follow(suggested)
     }
   }, [followsHeadcount, suggested])
+
+  const lowerTo = useEffectEvent((next: number) => {
+    if (teams.kind === 'off') {
+      return
+    }
+
+    controls?.onSettingsChange({
+      ...view.settings,
+      teams: { ...teams, count: next }
+    })
+  })
+
+  // A seat leaving can take the count past what the rest fill; the lowered
+  // count is answered like a picked one, so a dealt table is dealt again.
+  useEffect(() => {
+    if (outnumbersSeats) {
+      lowerTo(mostTeams)
+    }
+  }, [outnumbersSeats, mostTeams])
 }

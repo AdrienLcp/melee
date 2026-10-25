@@ -10,6 +10,7 @@ import {
 } from '@melee/core/room/host-preferences'
 import { fittedToAloud } from '@melee/core/room/line-up'
 import { fittedToTeams } from '@melee/core/room/room-settings'
+import { teamCountOf, teamCountsFor } from '@melee/core/team/team-count'
 
 import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
@@ -23,10 +24,33 @@ const TEAMS_KINDS = ['off', 'drawn', 'chosen', 'aloud'] as const
 type TeamsKind = (typeof TEAMS_KINDS)[number]
 
 /** Every count a room may split into, in order. */
-export const TEAM_COUNTS = Array.from(
+const TEAM_COUNTS = Array.from(
   { length: MAX_TEAMS - MIN_TEAMS + 1 },
   (_, offset) => MIN_TEAMS + offset
 )
+
+/**
+ * The counts the host is offered: every one for teams answering aloud, which
+ * hold no seats, and only those the seats can fill otherwise — none at all
+ * under the smallest table for teams.
+ */
+export const teamCountsOffered = ({
+  seatCount,
+  teams
+}: {
+  seatCount: number
+  teams: TeamsSettings
+}): number[] => {
+  switch (teams.kind) {
+    case 'off':
+      return []
+    case 'aloud':
+      return TEAM_COUNTS
+    case 'drawn':
+    case 'chosen':
+      return teamCountsFor(seatCount)
+  }
+}
 
 /** The count a room turning teams on starts from: twelve at a table split three ways. */
 const FIRST_TEAM_COUNT = 3
@@ -38,6 +62,8 @@ type TeamsSetupProps = {
   onChange: (settings: RoomSettings) => void
   /** What this host last left each game set to, for a game answering aloud moves the room to. */
   preferences: HostPreferences | null
+  /** The seats at the table, which bound the counts a table holding seats is offered. */
+  seatCount: number
   settings: RoomSettings
 }
 
@@ -67,11 +93,13 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
   isDisabled,
   onChange,
   preferences,
+  seatCount,
   settings
 }) => {
   const { locale, translate } = useI18n()
   const teams = settings.teams
   const [isAloudRefused, setIsAloudRefused] = useState(false)
+  const counts = teamCountsOffered({ seatCount, teams })
 
   return (
     <div className='teams-setup'>
@@ -112,7 +140,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
         }))}
         value={teams.kind}
       />
-      {teams.kind !== 'off' && (
+      {teams.kind !== 'off' && counts.length > 0 && (
         <NumberChoice
           className='team-count'
           isDisabled={isDisabled}
@@ -121,8 +149,8 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
             onChange({ ...settings, teams: { ...teams, count } })
           }}
           optionLabel={String}
-          options={TEAM_COUNTS}
-          value={teams.count}
+          options={counts}
+          value={teamCountOf(teams)}
         />
       )}
       {teams.kind === 'aloud' && (

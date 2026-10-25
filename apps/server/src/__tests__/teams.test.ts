@@ -232,6 +232,29 @@ describe('a room played in teams', () => {
     expect(hostView(host)?.settings.teams).toEqual({ kind: 'off' })
   })
 
+  it('[teams] brings a count four seats cannot fill down to two of two', async () => {
+    const { code, host } = await harness.openRoom(DRAWN_IN_THREE)
+    const [anna, ben, carl, dora] = (
+      await seatMany(code, ['Anna', 'Ben', 'Carl', 'Dora'])
+    ).map(idOf)
+
+    host.send({
+      assignment: [[anna ?? '', ben ?? ''], [carl ?? ''], [dora ?? '']],
+      type: 'host.drawTeams'
+    })
+    await waitFor(
+      () => hostView(host)?.teams[2]?.seatIds.length === 1,
+      'the deal'
+    )
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    expect(hostView(host)?.settings.teams).toEqual({ count: 2, kind: 'drawn' })
+    expect(hostView(host)?.teams.map((team) => team.seatIds.length)).toEqual([
+      2, 2
+    ])
+  })
+
   it('[teams] plays alone when every seat picked the same team', async () => {
     const { code, host } = await harness.openRoom(CHOSEN_IN_TWO)
     const seats = await seatMany(code, ['Anna', 'Ben', 'Carl'])

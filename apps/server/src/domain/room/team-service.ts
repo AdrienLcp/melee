@@ -5,6 +5,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import { POINT } from '@melee/protocol/scoring'
 import {
   DEFAULT_TEAMS_SETTINGS,
+  MIN_TEAMS,
   PAWN_COLOUR_COUNT,
   type Team,
   type TeamId,
@@ -19,7 +20,12 @@ import {
 } from '@melee/core/board/board-strategy'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { teamForLateSeat } from '@melee/core/team/late-seat'
-import { fieldsTeams, teamCountOf, teamIdAt } from '@melee/core/team/team-count'
+import {
+  fieldsTeams,
+  mostTeamsFor,
+  teamCountOf,
+  teamIdAt
+} from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
 import { teamRoundResult } from '@melee/core/team/team-score'
 
@@ -284,14 +290,26 @@ export const placeUnseatedSeats = (room: Room): void => {
 /**
  * Turns the teams off when the table cannot field them, at the round that
  * takes the room out of the lobby: past it the teams are locked, so this is
- * the last moment a table of one is still told it plays alone. Teams answering
- * aloud hold no seats and are the host's to count.
+ * the last moment a table of one is still told it plays alone. A count the
+ * seats cannot fill comes down to the most they can, so the seats of the teams
+ * it takes out are placed again rather than left as teams of one. Teams
+ * answering aloud hold no seats and are the host's to count.
  */
 export const standDownTeamsShortOfPlayers = (room: Room): void => {
-  const { kind } = room.settings.teams
+  const { teams } = room.settings
 
-  if (kind !== 'drawn' && kind !== 'chosen') {
+  if (teams.kind !== 'drawn' && teams.kind !== 'chosen') {
     return
+  }
+
+  const mostTeams = mostTeamsFor(room.players.size)
+
+  if (teams.count > mostTeams && mostTeams >= MIN_TEAMS) {
+    room.settings = {
+      ...room.settings,
+      teams: { ...teams, count: mostTeams }
+    }
+    fitTeamsToSettings(room)
   }
 
   placeUnseatedSeats(room)

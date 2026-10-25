@@ -196,6 +196,7 @@ export const TableTab: React.FC<SetupTabsProps> = ({
             isDisabled={!isLive}
             onChange={onSettingsChange}
             preferences={preferences}
+            seatCount={view.players.length}
             settings={settings}
           />
           <BoardSetup

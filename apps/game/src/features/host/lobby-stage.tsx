@@ -25,7 +25,7 @@ import { NumberChoice } from './number-choice'
 import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
 import { SlatePreparation } from './slate-preparation'
-import { TEAM_COUNTS } from './teams-setup'
+import { teamCountsOffered } from './teams-setup'
 import { useTeamCountFollowingHeadcount, useTeamDeal } from './use-team-deal'
 
 /** As many pawns as a box holds: the roster shows an empty socket for each one still in it. */
@@ -150,10 +150,14 @@ const LobbyTeams: React.FC<{
     send: controls?.send ?? null,
     view
   })
+  const counts = teamCountsOffered({
+    seatCount: view.players.length,
+    teams
+  })
 
   return (
     <>
-      {controls !== null && teams.kind !== 'off' && (
+      {controls !== null && teams.kind !== 'off' && counts.length > 0 && (
         <div className='team-deal'>
           <NumberChoice
             className='team-count'
@@ -166,8 +170,8 @@ const LobbyTeams: React.FC<{
               })
             }}
             optionLabel={String}
-            options={TEAM_COUNTS}
-            value={teams.count}
+            options={counts}
+            value={teamCountOf(teams)}
           />
           {isDrawn && (
             <Button
