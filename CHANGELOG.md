@@ -203,6 +203,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The console's panel tidies its edges.** Moving the panel to the
+  other side waits at its foot, named, rather than beside the tabs; the time
+  before the next round is set from the Room tab alone, no longer under the
+  reveal; and the tabs have room to breathe.
+
 - `[Game]` **The host is told when they judge.** *Host judges* sits under
   every judged answer mode and on the boxes of the Buzzer, the slate and the
   challenge, judged however they are answered. Where the console holds no
