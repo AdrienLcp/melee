@@ -40,7 +40,7 @@ const storedNicknameOrNone = (): string => {
  */
 export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom }) => {
   const translate = useTranslate()
-  const { isOpeningAny, open, openingFor, refusal } = createRoom
+  const { isOpeningAny, isOpeningLobby, openLobby, refusal } = createRoom
   const [remembered] = useState(storedNicknameOrNone)
   const [draft, setDraft] = useState(remembered)
   const [isNaming, setIsNaming] = useState(remembered === '')
@@ -48,7 +48,6 @@ export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom }) => {
   const lastHosted = useLastHostedRoom()
 
   const nickname = draft.trim()
-  const isOpeningLobby = openingFor?.length === 0
 
   return (
     <Form
@@ -60,7 +59,7 @@ export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom }) => {
           return
         }
 
-        void open({ games: [], seatAs: isSeated ? nickname : null })
+        void openLobby({ seatAs: isSeated ? nickname : null })
       }}
     >
       <div className='seat'>

@@ -6,6 +6,7 @@ import { ANALYTICS_OPT_OUT_KEY } from '@/infrastructure/storage/analytics-opt-ou
 import { OWN_CHALLENGE_LINES_KEY } from '@/infrastructure/storage/own-challenge-lines-storage'
 import {
   HOST_SETUP_KEY,
+  LINE_UP_GAMES_KEY,
   LOCALE_KEY,
   NICKNAME_KEY,
   PANEL_FOLDED_KEY,
@@ -51,6 +52,7 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: SEATS_KEY, what: 'legal.storage.seats' },
   { key: HOST_TOKENS_KEY, what: 'legal.storage.hostTokens' },
   { key: HOST_SETUP_KEY, what: 'legal.storage.hostSetup' },
+  { key: LINE_UP_GAMES_KEY, what: 'legal.storage.lineUpGames' },
   { key: OWN_CHALLENGE_LINES_KEY, what: 'legal.storage.challengeLines' },
   { key: VOLUME_KEY, what: 'legal.storage.volume' },
   { key: PANEL_FOLDED_KEY, what: 'legal.storage.panelFolded' },

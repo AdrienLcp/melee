@@ -832,6 +832,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Comment tu as réglé la dernière table que tu as tenue, jeu par jeu, pour que la suivante s’ouvre pareil.',
       hostTokens:
         'La clé de chaque table que tu as ouverte, qui te permet de la reprendre depuis un autre écran. Oubliée au bout d’un jour.',
+      lineUpGames:
+        'Les jeux de la dernière soirée que tu as tenue, cochés à nouveau sur la prochaine table que tu ouvres.',
       locale: 'La langue que tu as choisie.',
       logs: 'Cloudflare garde un journal de chaque requête pendant trois jours, pour trouver ce qui a cassé : il contient ton adresse IP et le nom de ton navigateur à côté du code de la table, jamais un pseudo ni une réponse.',
       nickname:

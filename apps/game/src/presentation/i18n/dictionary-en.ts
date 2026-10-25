@@ -875,6 +875,8 @@ export const EN_DICTIONARY = defineDictionary({
         'How you set up the last table you ran, game by game, so the next one opens the same way.',
       hostTokens:
         'The key to each table you opened, which lets you take it back from another screen. Forgotten after a day.',
+      lineUpGames:
+        'The games of the last evening you ran, ticked again on the next table you open.',
       locale: 'The language you picked.',
       logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
       nickname:

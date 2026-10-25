@@ -15,7 +15,12 @@ import {
   DEFAULT_BOARD_SETTINGS,
   DEFAULT_TRACK_SETTINGS
 } from '@melee/protocol/board'
-import { gameKindSchema, gameSettingsSchema } from '@melee/protocol/game'
+import {
+  gameKindSchema,
+  gameSettingsSchema,
+  type ShelvedGame,
+  shelvedGameSchema
+} from '@melee/protocol/game'
 import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 import { modeSettingsSchema, roomSettingsSchema } from '@melee/protocol/room'
@@ -30,6 +35,7 @@ import type { HostPreferences } from '@melee/core/room/host-preferences'
 import { readStoredWithSchema } from './read-stored-with-schema'
 
 export const HOST_SETUP_KEY = 'melee:host-setup'
+export const LINE_UP_GAMES_KEY = 'melee:line-up-games'
 export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
@@ -274,3 +280,40 @@ export const writeStoredHostPreferences = (
   preferences: HostPreferences
 ): Result<void, StorageWriteError> =>
   writeStoredJson({ key: HOST_SETUP_KEY, value: preferences })
+
+/**
+ * Game by game, so one this build no longer shelves costs its own tick and not
+ * the evening's.
+ */
+const lineUpGamesSchema = z.array(z.unknown()).transform((stored) => [
+  ...new Set(
+    stored.flatMap((game) => {
+      const shelved = shelvedGameSchema.safeParse(game)
+
+      return shelved.success ? [shelved.data] : []
+    })
+  )
+])
+
+/**
+ * The games of the last evening this host ran, which the home tray's next table
+ * opens on. Succeeds with none when no evening was ever played.
+ */
+export const readStoredLineUpGames = (): Result<
+  readonly ShelvedGame[],
+  StorageReadError
+> => {
+  const stored = readStoredWithSchema({
+    key: LINE_UP_GAMES_KEY,
+    schema: lineUpGamesSchema
+  })
+
+  return stored.status === 'success'
+    ? Result.success(stored.data ?? [])
+    : stored
+}
+
+export const writeStoredLineUpGames = (
+  games: readonly ShelvedGame[]
+): Result<void, StorageWriteError> =>
+  writeStoredJson({ key: LINE_UP_GAMES_KEY, value: games })

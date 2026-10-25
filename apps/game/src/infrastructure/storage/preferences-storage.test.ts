@@ -8,8 +8,10 @@ import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
 import {
   HOST_SETUP_KEY,
+  LINE_UP_GAMES_KEY,
   PANEL_SIDE_KEY,
   readStoredHostPreferences,
+  readStoredLineUpGames,
   readStoredPanelFolded,
   readStoredPanelSide,
   writeStoredPanelFolded,
@@ -137,5 +139,38 @@ describe('readStoredPanelFolded', () => {
     store.set(PANEL_SIDE_KEY, 'top')
 
     expect(readStoredPanelSide().status).toBe('failure')
+  })
+})
+
+describe('readStoredLineUpGames', () => {
+  let store: Map<string, string>
+
+  beforeEach(() => {
+    store = new Map()
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => store.get(key) ?? null,
+      removeItem: (key: string) => store.delete(key),
+      setItem: (key: string, value: string) => store.set(key, value)
+    })
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  it('[line-up] opens on no game before any evening was played', () => {
+    expect(readStoredLineUpGames()).toEqual({ data: [], status: 'success' })
+  })
+
+  it('[line-up] keeps the shelved games in their order and drops the rest', () => {
+    store.set(
+      LINE_UP_GAMES_KEY,
+      JSON.stringify(['quiz', 'chess', 'blindtest', 'quiz'])
+    )
+
+    expect(readStoredLineUpGames()).toEqual({
+      data: ['quiz', 'blindtest'],
+      status: 'success'
+    })
   })
 })

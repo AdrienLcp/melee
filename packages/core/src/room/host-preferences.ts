@@ -24,8 +24,9 @@ export type HostPreferences = {
   /**
    * Everything no game answers — the teams, the board and the judge among it —
    * so it survives every switch and opens every table, one game or several.
-   * Not the line-up nor its order, which are this evening's and not this
-   * host's: what to play tonight is decided tonight.
+   * Not the line-up nor its order, which are this evening's: the games of the
+   * last evening are kept apart, by the home tray that opens on them, and its
+   * variants and running order are dealt again tonight.
    */
   room: Omit<
     RoomSettings,
