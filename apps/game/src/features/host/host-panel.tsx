@@ -8,7 +8,9 @@ import {
   TabPanel,
   Tabs
 } from 'react-aria-components'
+import { flushSync } from 'react-dom'
 
+import { moveLayout } from '@/infrastructure/browser'
 import {
   type PanelSide,
   readStoredPanelFolded,
@@ -147,14 +149,26 @@ export const HostPanel: React.FC<HostPanelProps> = ({
     setScreen(narrowStart)
   }
 
-  const fold = (next: boolean) => {
+  const fold = (next: boolean, openTab?: PanelTab) => {
     writeStoredPanelFolded(next)
-    setIsFolded(next)
+    moveLayout(() => {
+      flushSync(() => {
+        setIsFolded(next)
+
+        if (openTab !== undefined) {
+          setChosenTab(openTab)
+        }
+      })
+    })
   }
 
   const moveTo = (next: PanelSide) => {
     writeStoredPanelSide(next)
-    setSide(next)
+    moveLayout(() => {
+      flushSync(() => {
+        setSide(next)
+      })
+    })
   }
 
   const badge = (id: PanelTab) =>
@@ -209,8 +223,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
                 className='panel-tab'
                 key={id}
                 onPress={() => {
-                  setChosenTab(id)
-                  fold(false)
+                  fold(false, id)
                 }}
               >
                 <Icon />

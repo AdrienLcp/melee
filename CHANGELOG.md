@@ -226,6 +226,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The console's panel moves instead of jumping.** Folding it,
+  unfolding it or sending it to the other side slides the panel and the stage
+  to where they now stand, and every case of the board track travels to its
+  new place round the stage rather than the track being redrawn. Under reduced
+  motion, or in a browser without view transitions, the change is immediate as
+  before.
+
 - `[Game]` **Teams and the running order move too.** At the reveal, a team
   that changed places slides from its old tray to its new one, like the seats'
   board; a round dragged in the running order slides into its place instead of

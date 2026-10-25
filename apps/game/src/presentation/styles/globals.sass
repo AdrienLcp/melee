@@ -13,6 +13,13 @@
 @layer base
   @include focus.ring-focusables
 
+  // A layout move (`moveLayout`) runs at the pace of a layout change.
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*)
+    animation-duration: calc(var(--transition-base, 0s) * 1.25)
+    animation-timing-function: var(--ease-out)
+
   // `min-height`, and `dvh` rather than `vh` or a percentage chain. A fixed
   // `height: 100%` pins the app to the viewport it was laid out in: taller
   // content still scrolls on a desktop browser, but on a phone the height does

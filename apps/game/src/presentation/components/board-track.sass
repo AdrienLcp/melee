@@ -77,6 +77,8 @@
       grid-column: var(--column)
       grid-row: var(--row)
       position: relative
+      view-transition-class: board-case
+      view-transition-name: match-element
 
       &[data-parity='odd']
         background: var(--track-b)
@@ -150,6 +152,12 @@
       color: var(--track-a)
       font-size: clamp(var(--text-3xs), 18cqmin, var(--text-s))
       padding: 0.2em 0.4em
+
+  // When the stage beside the track changes size, each case travels to its
+  // new place on the board rather than the board being redrawn.
+  ::view-transition-old(*.board-case),
+  ::view-transition-new(*.board-case)
+    block-size: 100%
 
   @keyframes pawn-hops
     from

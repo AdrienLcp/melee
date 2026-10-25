@@ -51,3 +51,39 @@ export const sendsGlobalPrivacyControl = (): boolean =>
 
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
+
+const LAYOUT_MOVED_EVENT = 'melee:layout-moved'
+
+/**
+ * Plays a change of layout as one move from the old screen to the new, where
+ * the browser can and the visitor has not asked for less motion. `update` must
+ * reach the DOM before it returns, so a React state change goes in `flushSync`.
+ */
+export const moveLayout = (update: () => void): void => {
+  if (
+    prefersReducedMotion() ||
+    typeof document.startViewTransition !== 'function'
+  ) {
+    update()
+
+    return
+  }
+
+  document.startViewTransition(() => {
+    update()
+    window.dispatchEvent(new Event(LAYOUT_MOVED_EVENT))
+  })
+}
+
+/**
+ * The browser holds every `ResizeObserver` back until a transition has
+ * captured the new screen, so whatever lays itself out by measuring measures
+ * again here, or it is captured at its old size and jumps once the move ends.
+ */
+export const onLayoutMoved = (listener: () => void): (() => void) => {
+  window.addEventListener(LAYOUT_MOVED_EVENT, listener)
+
+  return () => {
+    window.removeEventListener(LAYOUT_MOVED_EVENT, listener)
+  }
+}

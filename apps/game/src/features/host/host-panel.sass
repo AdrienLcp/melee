@@ -87,7 +87,15 @@
     .host-desk
       display: grid
       grid-template-columns: minmax(0, 1fr) var(--host-panel-width)
-      transition: grid-template-columns var(--transition-base, 0s) var(--ease-out)
+
+      // Where the browser plays a move as a view transition, the columns
+      // change at once under it: easing them as well would animate the new
+      // screen the transition is already moving to.
+      @supports not (view-transition-name: none)
+        transition: grid-template-columns var(--transition-base, 0s) var(--ease-out)
+
+      > .host-console-page
+        view-transition-name: host-stage
 
       &[data-folded]
         grid-template-columns: minmax(0, 1fr) var(--host-rail-width)
@@ -136,6 +144,7 @@
       --tab-selected: var(--card-well)
 
       animation: panel-dock calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
+      view-transition-name: host-panel
 
       align-self: start
       border-radius: var(--radius-l) 0 0 var(--radius-l)
@@ -309,6 +318,26 @@
 
         .host-panel
           display: none
+
+  // A fold or a change of side is one move: the panel and the stage slide to
+  // where they now stand, each at its own size, the old picture fading into
+  // the new, so neither is stretched to the other's width on the way. A docked
+  // panel holds to its window edge while it narrows or widens.
+  ::view-transition-group(host-panel),
+  ::view-transition-group(host-stage)
+    overflow: clip
+
+  ::view-transition-old(host-panel),
+  ::view-transition-new(host-panel),
+  ::view-transition-old(host-stage),
+  ::view-transition-new(host-stage)
+    block-size: auto
+    inline-size: auto
+
+  html:has(.host-desk[data-side='right'])
+    &::view-transition-old(host-panel),
+    &::view-transition-new(host-panel)
+      inset-inline: auto 0
 
   @keyframes panel-screen-in
     from

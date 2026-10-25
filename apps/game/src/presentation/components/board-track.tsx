@@ -7,6 +7,7 @@ import {
   useRef,
   useState
 } from 'react'
+import { flushSync } from 'react-dom'
 
 import type { PawnId } from '@melee/core/board/board-strategy'
 import type { TrackPawn } from '@melee/core/board/track-pawns'
@@ -16,6 +17,7 @@ import {
   trackShapeFor
 } from '@melee/core/board/track-shape'
 
+import { onLayoutMoved } from '@/infrastructure/browser'
 import {
   TrackPawnPiece,
   useTrackPawnName
@@ -188,12 +190,16 @@ const useTrackShape = ({
     }
 
     const observer = new ResizeObserver(measure)
+    const stopFollowingMoves = onLayoutMoved(() => {
+      flushSync(measure)
+    })
 
     measure()
     observer.observe(track)
 
     return () => {
       observer.disconnect()
+      stopFollowingMoves()
       root.removeProperty('--board-case')
     }
   }, [caseCount, trackRef])
