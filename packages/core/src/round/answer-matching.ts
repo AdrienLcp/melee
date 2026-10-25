@@ -38,12 +38,16 @@ const LEADING_ARTICLE = /^(?:the|an?|le|la|les|une?|des|du)\s+|^l['’]/u
  * answers that differ only in where the spaces fall are the same guess.
  */
 export const normalizeAnswer = (answer: string): string =>
-  answer
-    .normalize('NFD')
-    .replace(DIACRITICS, '')
-    .toLowerCase()
+  foldCaseAndAccents(answer)
     .replace(LEADING_ARTICLE, '')
     .replace(NOT_A_LETTER_OR_DIGIT, '')
+
+/** `normalizeAnswer` with the article kept: *La Rochelle* is `larochelle` here and `rochelle` there. */
+export const normalizeKeepingArticle = (answer: string): string =>
+  foldCaseAndAccents(answer).replace(NOT_A_LETTER_OR_DIGIT, '')
+
+const foldCaseAndAccents = (answer: string): string =>
+  answer.normalize('NFD').replace(DIACRITICS, '').toLowerCase()
 
 /**
  * How many single-character corrections are forgiven, from the length of the

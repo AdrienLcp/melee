@@ -1,8 +1,8 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SlateItemState } from '@melee/protocol/slate'
 
+import { answerGroupKey, isBlankAnswer } from '../round/answer-groups'
 import { pointsFor } from '../scoring/verdict'
-import { answerGroupKey, isBlankAnswer } from './answer-groups'
 
 /**
  * How far one item's marking has gone. `judged` holds the host's verdicts by

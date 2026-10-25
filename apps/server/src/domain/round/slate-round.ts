@@ -9,7 +9,7 @@ import {
   type AnswerGroup,
   groupAnswers,
   isBlankAnswer
-} from '@melee/core/slate/answer-groups'
+} from '@melee/core/round/answer-groups'
 import {
   closedItem,
   OPEN_ITEM,

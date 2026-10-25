@@ -1,7 +1,7 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 
 import { compareText } from '../helpers/collation'
-import { normalizeAnswer } from '../round/answer-matching'
+import { normalizeAnswer } from './answer-matching'
 
 export type SheetAnswer = {
   playerId: PlayerId
@@ -19,7 +19,8 @@ export type AnswerGroup = {
 /**
  * The shared normalisation and nothing more: case, accents, spacing and a
  * leading article. No typo tolerance — a group is *the same answer*, and
- * whether a near miss is close enough is the host's call, made on the wall.
+ * whether a near miss is close enough is a judgement — the host's on the
+ * slate, the room's vote in Petit Bac.
  * No catalogue-noise folding either; that is the blind test's alone.
  */
 export const answerGroupKey = (text: string): string => normalizeAnswer(text)
