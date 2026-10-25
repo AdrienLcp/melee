@@ -20,7 +20,7 @@
       min-height: 3.5rem
       min-width: 0
       outline: none
-      padding: var(--space-2xs)
+      padding: var(--space-xs) var(--space-s)
       position: relative
 
       @include typography.label
@@ -139,7 +139,7 @@
 
       > .react-aria-Tabs
         display: grid
-        grid-template-rows: auto minmax(0, 1fr)
+        grid-template-rows: auto minmax(0, 1fr) auto
         min-height: 0
 
     .panel-head
@@ -157,16 +157,12 @@
       .panel-tab
         flex: 1
 
-    .panel-tools
-      display: flex
-      flex: none
-      gap: 0.125rem
-
     .panel-tool
       border-radius: var(--radius-s)
       color: var(--ink-muted)
       cursor: pointer
       display: grid
+      flex: none
       height: var(--target)
       place-items: center
       width: var(--target)
@@ -178,24 +174,41 @@
         background: var(--card-well)
         color: var(--ink)
 
+    // The side is chosen once and rarely again, so it waits at the foot of
+    // the panel rather than beside the tabs, under every tab's own scroll.
+    .panel-foot
+      border-top: var(--hairline)
+      padding: var(--space-xs) var(--space-m) var(--layout-padding-block-end)
+
+      .side-tool
+        display: flex
+        font-size: var(--text-xs)
+        gap: var(--space-xs)
+        padding-inline: var(--space-xs)
+        width: auto
+
+        @include typography.label
+
     .panel-screen
       overflow: hidden auto
       overscroll-behavior: contain
-      padding: var(--space-xs) var(--space-m) var(--layout-padding-block-end)
+      padding: var(--space-xs) var(--space-m) var(--space-m)
       scrollbar-width: thin
 
     .panel-rail
-      align-content: start
-      display: grid
+      display: flex
+      flex-direction: column
       gap: var(--space-xs)
-      padding: var(--layout-padding-block-start) var(--space-xs)
-
-      .panel-tools
-        flex-direction: column
-        margin-bottom: var(--space-xs)
+      padding: var(--layout-padding-block-start) var(--space-xs) var(--layout-padding-block-end)
 
       .panel-tool
         width: 100%
+
+        &:first-child
+          margin-bottom: var(--space-xs)
+
+      .side-tool
+        margin-top: auto
 
       .panel-tab
         min-height: 4.25rem
@@ -226,6 +239,7 @@
         font-size: var(--text-3xs)
         gap: 0.125rem
         min-height: var(--target)
+        padding-inline: var(--space-2xs)
 
         svg
           font-size: var(--text-s)

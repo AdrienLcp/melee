@@ -83,7 +83,6 @@ import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import { ArrivalNotice, useArrival } from './arrival-notice'
-import { AutoAdvanceChoice } from './auto-advance-choice'
 import { type ChallengeLine, challengePickFor } from './challenge-line'
 import { ClipOffer } from './clip-offer'
 import { HostActions, type HostActionsProps } from './host-actions'
@@ -726,25 +725,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
             {translate(protocolErrorKey(error.code))}
           </p>
         )}
-        {view !== null && (
-          <>
-            <HostActions {...hostActionsProps(view)} />
-            {/*
-              The reveal's alone, because the reveal is what it holds: under a
-              round in play it was a row of a screen the question and its four
-              tiles could not spare, for a choice the reveal puts back in reach
-              the moment it applies.
-            */}
-            {view.phase === 'revealed' &&
-              view.settings.game?.kind !== 'slate' && (
-                <AutoAdvanceChoice
-                  isLive={isLive}
-                  onSettingsChange={changeSettings}
-                  settings={view.settings}
-                />
-              )}
-          </>
-        )}
+        {view !== null && <HostActions {...hostActionsProps(view)} />}
       </footer>
     </Main>
   )

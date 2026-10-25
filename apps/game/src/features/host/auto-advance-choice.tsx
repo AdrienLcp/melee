@@ -26,11 +26,9 @@ type AutoAdvanceChoiceProps = {
 }
 
 /**
- * How long the answer stays up before the room is moved on. It lives in the
- * setup fold beside the round count, where an evening is planned, and again on
- * the reveal: it is the one setting a host reaches *because* of what they just
- * watched happen, on the screen where they watched it. Chaining rounds is the
- * room's, so it stays under every game.
+ * How long the answer stays up before the room is moved on, in the panel's
+ * room tab and never on the stage, whose reveal is the room's to read.
+ * Chaining rounds is the room's, so it stays under every game.
  */
 export const AutoAdvanceChoice: React.FC<AutoAdvanceChoiceProps> = ({
   isLive,

@@ -300,24 +300,6 @@
         margin-top: calc(var(--space-m) * -1 + var(--space-2xs))
         text-align: center
 
-      // A size container cannot be shrink-to-fit. `container-type: inline-size`
-      // implies `contain: inline-size`, so the box lays out as though it held
-      // nothing — and this footer is a centred column, where an item with no
-      // imposed width is as wide as its content. The two together resolve to
-      // **zero**: every container query this strip owns fired at once, its four
-      // segments stacked, and the French `host.autoAdvance` label came down a
-      // 100px column in five lines on a 1440px screen. It is the inline twin of
-      // the height trap the reveal's budget already carries, and it fails the
-      // same silent way — a strip that has always been a column reads as one
-      // somebody meant to draw.
-      //
-      // 24rem is this one's: the French row at the label's ceiling is 296px,
-      // so it clears `stacks-below`'s 19rem with room to spare and sits under
-      // the action it belongs to rather than across the screen. A direct child
-      // only: the same strip inside the setup lines up with its other strips.
-      > .auto-advance
-        width: min(24rem, 100%)
-
       .reveal-actions
         align-items: center
         display: flex
@@ -760,15 +742,10 @@
           .verdict-panel .holder
             padding-inline-end: 0
 
-  // Below the split the hold strip gives way to the stage: the room tab
-  // carries it.
   .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting), > .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
     @include layout.narrow
       > footer
         gap: var(--space-xs)
-
-        > .auto-advance
-          display: none
 
         .reveal-actions,
         .slate-actions

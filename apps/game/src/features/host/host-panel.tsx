@@ -163,31 +163,33 @@ export const HostPanel: React.FC<HostPanelProps> = ({
       <span className='tab-badge'>{playerCount}</span>
     ) : null
 
-  const tools = (
-    <div className='panel-tools'>
-      <ReactAriaButton
-        aria-label={translate(
-          side === 'right' ? 'host.panel.toLeft' : 'host.panel.toRight'
-        )}
-        className='panel-tool'
-        onPress={() => {
-          moveTo(side === 'right' ? 'left' : 'right')
-        }}
-      >
-        <PanelSideIcon />
-      </ReactAriaButton>
-      <ReactAriaButton
-        aria-label={translate(
-          isFolded ? 'host.panel.unfold' : 'host.panel.fold'
-        )}
-        className='panel-tool'
-        onPress={() => {
-          fold(!isFolded)
-        }}
-      >
-        {isFolded ? <PanelOpenIcon /> : <PanelFoldIcon />}
-      </ReactAriaButton>
-    </div>
+  const foldTool = (
+    <ReactAriaButton
+      aria-label={translate(isFolded ? 'host.panel.unfold' : 'host.panel.fold')}
+      className='panel-tool'
+      onPress={() => {
+        fold(!isFolded)
+      }}
+    >
+      {isFolded ? <PanelOpenIcon /> : <PanelFoldIcon />}
+    </ReactAriaButton>
+  )
+
+  const sideLabel = translate(
+    side === 'right' ? 'host.panel.toLeft' : 'host.panel.toRight'
+  )
+
+  const sideTool = (
+    <ReactAriaButton
+      aria-label={isRail ? sideLabel : undefined}
+      className='panel-tool side-tool'
+      onPress={() => {
+        moveTo(side === 'right' ? 'left' : 'right')
+      }}
+    >
+      <PanelSideIcon />
+      {!isRail && sideLabel}
+    </ReactAriaButton>
   )
 
   return (
@@ -202,7 +204,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
       <aside aria-label={translate('host.panel.label')} className='host-panel'>
         {isRail ? (
           <div className='panel-rail'>
-            {tools}
+            {foldTool}
             {PANEL_TABS.map(({ icon: Icon, id, label }) => (
               <ReactAriaButton
                 className='panel-tab'
@@ -217,6 +219,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
                 {badge(id)}
               </ReactAriaButton>
             ))}
+            {sideTool}
           </div>
         ) : (
           <Tabs
@@ -248,7 +251,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
                   </Tab>
                 ))}
               </TabList>
-              {isDesk && tools}
+              {isDesk && foldTool}
             </div>
             {PANEL_TABS.map(({ heading, id }) => (
               <TabPanel className='panel-screen' id={id} key={id}>
@@ -256,6 +259,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
                 {tabs[id]}
               </TabPanel>
             ))}
+            {isDesk && <div className='panel-foot'>{sideTool}</div>}
           </Tabs>
         )}
       </aside>
