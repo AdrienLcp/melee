@@ -45,6 +45,11 @@ export const slateContent = (
 ): Extract<RoundContent, { kind: 'slate' }> | null =>
   round?.content.kind === 'slate' ? round.content : null
 
+export const petitBacContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'petitbac' }> | null =>
+  round?.content.kind === 'petitbac' ? round.content : null
+
 export const guessNineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'guessnine' }> | null =>

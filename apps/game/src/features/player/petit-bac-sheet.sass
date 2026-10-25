@@ -1,0 +1,194 @@
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .petit-bac-sheet,
+  .petit-bac-vote
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+
+    .sheet
+      @include piece.card(var(--radius-l))
+      @include box-lid.paper
+
+      display: flex
+      flex-direction: column
+      padding: clamp(var(--space-s), 2.4vmin, var(--space-m))
+      padding-inline-end: clamp(var(--space-s), 3vmin, var(--space-l))
+
+    .head
+      align-items: center
+      display: flex
+      gap: var(--space-s)
+      padding-block-end: var(--space-s)
+
+    .letter-piece
+      @include typography.monument
+
+      background: var(--spine-petitbac)
+      border-radius: var(--radius-m)
+      box-shadow: 0 var(--edge) 0 var(--chipboard)
+      color: var(--on-spine-petitbac)
+      display: grid
+      flex: none
+      font-size: clamp(2.6rem, calc(var(--stage-unit) * 9), 4.5rem)
+      block-size: 1.35em
+      inline-size: 1.35em
+      place-items: center
+
+    .clock
+      flex: 1
+      min-inline-size: 0
+
+      &.grace
+        --phase-ink: var(--primary)
+
+  .petit-bac-sheet
+    .lines
+      display: grid
+
+    // The category in the margin and the word on the line: the paper game's
+    // two columns, ruled once between lines rather than boxed per field.
+    .line
+      border-block-start: var(--stroke-thin) solid var(--card-rule)
+      padding-block: var(--space-2xs)
+
+      &:last-child
+        border-block-end: var(--stroke-thin) solid var(--card-rule)
+
+      .text-field
+        align-items: center
+        column-gap: var(--space-s)
+        display: grid
+        grid-template-columns: minmax(5.5rem, 34%) minmax(0, 1fr)
+        min-block-size: 3.6rem
+
+      .react-aria-Label
+        font-size: clamp(0.9rem, calc(var(--stage-unit) * 2), 1.1rem)
+        overflow-wrap: anywhere
+
+      .react-aria-Input
+        @include typography.strong
+
+        font-size: clamp(1.1rem, calc(var(--stage-unit) * 2.8), 1.5rem)
+
+        &::placeholder
+          @include typography.regular
+
+    .stop
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+
+      .button
+        inline-size: 100%
+
+    .stop-banner
+      @include typography.title
+
+      align-items: center
+      background: var(--primary)
+      border-radius: var(--radius-m)
+      box-shadow: 0 0.25rem 0 var(--primary-edge)
+      color: var(--on-primary)
+      display: flex
+      gap: var(--space-xs)
+      min-block-size: 4.5rem
+      padding: var(--space-xs) var(--space-m)
+
+      // A seat's pawn may be the stop's own red; the paper's outline keeps it a piece.
+      .pawn
+        block-size: 2rem
+        filter: drop-shadow(0 0 1px var(--card)) drop-shadow(0 0 1px var(--card))
+        inline-size: auto
+
+  .petit-bac-vote
+    .head
+      h2
+        @include typography.billboard
+
+        font-size: clamp(1.5rem, calc(var(--stage-unit) * 5), 2.4rem)
+        overflow-wrap: anywhere
+
+      .letter-piece
+        font-size: var(--text-2xl)
+
+      .of
+        @include typography.caption-strong
+
+        color: var(--card-muted)
+        margin-inline-start: auto
+        white-space: nowrap
+
+    .rows
+      display: grid
+
+    .row
+      align-items: center
+      border-block-start: var(--stroke-thin) solid var(--card-rule)
+      column-gap: var(--space-xs)
+      display: grid
+      grid-template-columns: minmax(0, 1fr) auto
+      min-block-size: 3.75rem
+      padding-block: var(--space-xs)
+
+      &:last-child
+        border-block-end: var(--stroke-thin) solid var(--card-rule)
+
+      .text
+        @include typography.heading
+
+        font-size: clamp(1.15rem, calc(var(--stage-unit) * 3), 1.6rem)
+        overflow-wrap: anywhere
+
+      .authors
+        display: flex
+        gap: var(--space-2xs)
+        grid-column: 1
+
+        .pawn
+          block-size: 1.25rem
+          inline-size: auto
+
+      .side
+        grid-column: 2
+        grid-row: 1 / span 2
+
+      .yours,
+      .refused
+        @include typography.caption-strong
+
+        border-radius: var(--radius-s)
+        display: inline-block
+        padding: var(--space-xs) var(--space-s)
+
+      .yours
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
+
+      .refused
+        background: var(--danger)
+        color: var(--danger-ink)
+
+      .refuse[data-selected]
+        background: var(--danger)
+        color: var(--danger-ink)
+
+      &.out .text
+        color: var(--card-muted)
+        text-decoration: line-through var(--stroke-thin)
+
+    .vote-foot
+      align-items: center
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs) var(--space-m)
+
+  .petit-bac-sheet .stop-note,
+  .petit-bac-vote .vote-note
+    @include typography.caption
+
+    color: var(--ink-muted)
+    flex: 1 1 12rem
+    text-wrap: pretty

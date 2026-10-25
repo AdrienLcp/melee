@@ -38,6 +38,7 @@ colors:
   spine-matchsticks: "oklch(45% 0.14 305)"
   spine-timeline: "oklch(46% 0.09 100)"
   spine-guessnine: "oklch(40% 0.12 8)"
+  spine-petitbac: "oklch(46% 0.13 285)"
   black-word: "oklch(21% 0.03 255)"
   on-spine: "oklch(99% 0.005 95)"
   on-spine-light: "oklch(20% 0.03 255)"
@@ -223,7 +224,9 @@ A cool printed board under warm, saturated die-cut inks, every value one
   bronze — an old atlas's olive-gold, halfway round from walnut to leaf so it
   reads as neither; `--spine-guessnine` wine — an ink-black spine vanishes on
   the dark board, and every other free hue sits within twenty degrees of a
-  neighbour's): each
+  neighbour's; `--spine-petitbac` violet — a school ink, the colour of the pen
+  the paper game was played with, twenty degrees short of the plum and as far
+  again past the quiz's indigo): each
   game's box colour, on the shelf, the band across a game's lid, the player's
   *up next* lid. Names print in `--on-spine-<game>`: pale `--on-spine`
   everywhere but reflex, which takes the dark `--on-spine-light`.

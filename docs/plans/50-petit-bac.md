@@ -1,6 +1,6 @@
 # 50 — Petit Bac
 
-**Two steps of three** — the rules and the server landed. Asked 25/10/2026. A letter goes up — *B* — beside six categories —
+**Two steps of three, and the seat** — the rules, the server and the player's screen landed. Asked 25/10/2026. A letter goes up — *B* — beside six categories —
 *a country, an animal, a first name, a job, a brand, something in a kitchen* —
 and every screen fills its own grid against the clock: *Belgique, baleine,
 Bastien, boulanger, Bic, bouilloire*. The first sheet full may call **stop**.
@@ -194,6 +194,20 @@ like the clock running out.
 - **The reveal**: every seat's sheet as a grid, unique and shared told apart.
 - The game into `shelvedGames`, its front door, its line-up tile, both
   dictionaries, the category bank's labels.
+
+**The seat landed 25/10/2026** (`features/player/petit-bac-sheet.tsx`): the
+sheet with the letter at its head, each line saving itself on the slate's
+debounce, the stop enabled only when `isStoppableLine` holds for every line
+(the server's rule, imported, so the press and the refusal agree), the grace
+drawn as a groove in the stop's ink; then the vote, *doesn't count* per row,
+*yours* on the seat's own, *done* and its count. The sheet stays writable
+while the console is away, as the slate's does, because the server still
+takes `petitbac.write` then; the stop and the vote wait for the host. The
+spine is `--spine-petitbac`, and *Categories* is the English name in the
+dictionary. Seen muted at 390 px in both palettes and at 1280 px: a stop
+from another seat, its grace, a majority refusal over three seats.
+
+— cut here: the seat committed; the wall, the console, the reveal and the shelf are next —
 
 Verified muted in a browser with three seats: a stop closes the others' sheets,
 a word never reaches another screen before the vote, a refused row pays

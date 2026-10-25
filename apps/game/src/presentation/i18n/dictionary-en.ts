@@ -1045,9 +1045,68 @@ export const EN_DICTIONARY = defineDictionary({
     title: 'Nobody here'
   },
   petitbac: {
-    name: 'Petit Bac',
+    category: {
+      animal: 'Animal',
+      bodyPart: 'Body part',
+      brand: 'Brand',
+      cartoonCharacter: 'Cartoon character',
+      cheese: 'Cheese',
+      city: 'City',
+      clothing: 'Clothing',
+      colour: 'Colour',
+      country: 'Country',
+      dish: 'Dish',
+      drink: 'Drink',
+      famousPerson: 'Famous person',
+      fictionalCharacter: 'Fictional character',
+      film: 'Film',
+      firstName: 'First name',
+      fruitOrVegetable: 'Fruit or vegetable',
+      gift: 'Gift',
+      hobby: 'Hobby',
+      instrument: 'Musical instrument',
+      job: 'Job',
+      kitchenThing: 'Something in a kitchen',
+      lateExcuse: 'Excuse for being late',
+      plant: 'Plant',
+      series: 'TV series',
+      singer: 'Singer',
+      sport: 'Sport',
+      thingInABag: 'Something in a bag',
+      tool: 'Tool',
+      toy: 'Toy',
+      vehicle: 'Vehicle'
+    },
+    letter: 'Letter {letter}',
+    name: 'Categories',
     scoring:
-      'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 2, one you shared scores 1.'
+      'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 2, one you shared scores 1.',
+    sheet: {
+      field: '{category}, starting with {letter}',
+      label: 'Your sheet'
+    },
+    stop: {
+      barred: 'Your stop was taken back: the others finish the round.',
+      called: '{name} said stop',
+      calledByYou: 'You said stop',
+      filling: 'Stop · {filled:number}/{count:number}',
+      offLetter: 'To stop, every line needs a word starting with {letter}.',
+      press: 'Stop!'
+    },
+    vote: {
+      done: 'Done',
+      doneCount: defineTranslation(
+        '{done:plural} · the vote moves on once everyone is done',
+        { plural: { done: { other: '{?} done' } } }
+      ),
+      judged: 'The host decides which answers count.',
+      moveOn: 'The vote moves on once everyone is done.',
+      of: '{index:number} of {count:number}',
+      refuse: 'Doesn’t count',
+      refused: 'Out',
+      refuseRow: 'Doesn’t count: {answer}',
+      yours: 'Yours'
+    }
   },
   player: {
     /** A seat whose screen has gone quiet — beside that name, on every board. */

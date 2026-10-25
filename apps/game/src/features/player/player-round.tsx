@@ -3,6 +3,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
+import type { PlayerClientMessage } from '@melee/protocol/client-message'
 import type { GuessNineCell, GuessNineLabels } from '@melee/protocol/guess-nine'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
@@ -38,6 +39,7 @@ import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
+import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
 import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
 import { RoundBoard } from '@/features/player/round-board'
@@ -106,6 +108,11 @@ import {
 
 import './player-round.sass'
 
+type PetitBacSeatMessage = Extract<
+  PlayerClientMessage,
+  { type: `petitbac.${string}` }
+>
+
 const ROUND_IS_RUNNING = new Set<RoomPhase>(['buzzed', 'countdown', 'playing'])
 
 type PlayerRoundProps = {
@@ -124,6 +131,8 @@ type PlayerRoundProps = {
     isTicked: boolean
     roundId: string
   }) => boolean
+  /** A Petit Bac line, stop, vote or done; `false` from the socket means the frame was never written. */
+  onPetitBac: (message: PetitBacSeatMessage) => boolean
   /** `false` from the socket means the frame was never written. */
   onWriteLine: (itemIndex: number, answer: string, roundId: string) => boolean
   view: PlayerRoomView
@@ -257,6 +266,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   onAnswer,
   onBuzz,
   onChooseTeam,
+  onPetitBac,
   onReady,
   onTick,
   onWriteLine,
@@ -279,7 +289,9 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   // A sheet is the exception: a line moves nothing along, so the server keeps
   // taking them while the console is away, and the pen stays in the hand.
   const isWritingASheet =
-    view.phase === 'playing' && round?.content.kind === 'slate'
+    view.phase === 'playing' &&
+    (round?.content.kind === 'slate' ||
+      (round?.content.kind === 'petitbac' && !round.content.sheetsClosed))
 
   if (
     !view.isHostConnected &&
@@ -491,6 +503,46 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         )}
         {round.content.currentItemIndex !== null && (
           <SlateWholeSheet labels={labels} round={round} />
+        )}
+      </section>
+    )
+  }
+
+  if (view.phase === 'playing' && round?.content.kind === 'petitbac') {
+    const roundId = round.id
+
+    return (
+      <section className='player-round petit-bac-round'>
+        {round.content.sheetsClosed ? (
+          <PetitBacVote
+            onDone={(categoryIndex) =>
+              onPetitBac({
+                categoryIndex,
+                roundId,
+                type: 'petitbac.doneVoting'
+              })
+            }
+            onVote={(vote) =>
+              onPetitBac({ ...vote, roundId, type: 'petitbac.vote' })
+            }
+            round={round}
+            view={view}
+          />
+        ) : (
+          <PetitBacSheet
+            clock={clock}
+            onStop={() => onPetitBac({ roundId, type: 'petitbac.stop' })}
+            onWrite={(categoryIndex, answer) =>
+              onPetitBac({
+                answer,
+                categoryIndex,
+                roundId,
+                type: 'petitbac.write'
+              })
+            }
+            round={round}
+            view={view}
+          />
         )}
       </section>
     )

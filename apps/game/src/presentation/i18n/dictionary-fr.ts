@@ -984,9 +984,68 @@ export const FR_DICTIONARY = defineDictionary({
     title: 'Personne ici'
   },
   petitbac: {
+    category: {
+      animal: 'Animal',
+      bodyPart: 'Partie du corps',
+      brand: 'Marque',
+      cartoonCharacter: 'Personnage de dessin animé',
+      cheese: 'Fromage',
+      city: 'Ville',
+      clothing: 'Vêtement',
+      colour: 'Couleur',
+      country: 'Pays',
+      dish: 'Plat',
+      drink: 'Boisson',
+      famousPerson: 'Personnalité',
+      fictionalCharacter: 'Personnage de fiction',
+      film: 'Film',
+      firstName: 'Prénom',
+      fruitOrVegetable: 'Fruit ou légume',
+      gift: 'Cadeau',
+      hobby: 'Loisir',
+      instrument: 'Instrument de musique',
+      job: 'Métier',
+      kitchenThing: 'Dans une cuisine',
+      lateExcuse: 'Excuse pour un retard',
+      plant: 'Plante',
+      series: 'Série',
+      singer: 'Chanteur ou chanteuse',
+      sport: 'Sport',
+      thingInABag: 'Dans un sac',
+      tool: 'Outil',
+      toy: 'Jouet',
+      vehicle: 'Véhicule'
+    },
+    letter: 'Lettre {letter}',
     name: 'Petit Bac',
     scoring:
-      'Une lettre, un mot par catégorie. La table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte 2, une réponse partagée 1.'
+      'Une lettre, un mot par catégorie. La table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte 2, une réponse partagée 1.',
+    sheet: {
+      field: '{category}, en {letter}',
+      label: 'Ta feuille'
+    },
+    stop: {
+      barred: 'Ton stop a été annulé : les autres finissent la manche.',
+      called: '{name} a dit stop',
+      calledByYou: 'Tu as dit stop',
+      filling: 'Stop · {filled:number}/{count:number}',
+      offLetter: 'Pour dire stop, chaque ligne doit commencer par {letter}.',
+      press: 'Stop !'
+    },
+    vote: {
+      done: 'J’ai fini',
+      doneCount: defineTranslation(
+        '{done:plural} · le vote passe à la suite quand tout le monde a fini',
+        { plural: { done: { one: '{?} a fini', other: '{?} ont fini' } } }
+      ),
+      judged: 'L’hôte décide des réponses qui comptent.',
+      moveOn: 'Le vote passe à la suite quand tout le monde a fini.',
+      of: '{index:number} sur {count:number}',
+      refuse: 'Ne compte pas',
+      refused: 'Refusé',
+      refuseRow: 'Ne compte pas : {answer}',
+      yours: 'La tienne'
+    }
   },
   player: {
     away: 'plus là',
