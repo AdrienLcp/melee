@@ -39,6 +39,22 @@ another night.
 - **The order is kept as saved**, past rounds included: an evening kept
   mid-way runs again from its first round in the order it was dealt.
 
+## Follow-up: export and import by file
+
+Under the kept evenings, *Exporter* downloads one JSON — the evenings and the
+host's own challenge lines, under `kind: 'melee-host-export'`
+(`infrastructure/storage/host-export-file.ts`) — and *Importer* (react-aria's
+`FileTrigger`) folds one in: `withEveningsImported` replaces a same-name
+evening in place and appends the rest up to `SAVED_EVENINGS_MAX`, never
+pushing a kept one out; `withOwnLinesImported` skips a line already written.
+Each entry is read through the stores' own schemas, so a file costs what the
+build cannot read entry by entry. No key and nothing sent, so `/legal` is
+unchanged; sharing by link stays a later, larger idea.
+
+Found on the way: an entry kept as its bare game (`SavedEntry`'s string arm)
+was dropped on the next read, so an evening whose every entry had lost its
+settings vanished. `entryKindSchema` reads both shapes.
+
 ## Done when
 
 Seen muted at 1280 and 390: an evening of three kept, *Replace* on a

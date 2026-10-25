@@ -332,7 +332,11 @@ export const writeStoredLineUpGames = (
 ): Result<void, StorageWriteError> =>
   writeStoredJson({ key: LINE_UP_GAMES_KEY, value: games })
 
-const entryKindSchema = z.object({ kind: gameKindSchema })
+/** Its settings gone, or saved already as its game alone — what `SavedEntry` writes back. */
+const entryKindSchema = z.union([
+  z.object({ kind: gameKindSchema }).transform(({ kind }) => kind),
+  gameKindSchema
+])
 
 /**
  * An entry this build can no longer read keeps its game when it still names
@@ -348,7 +352,7 @@ const savedEntryOf = (stored: unknown): SavedEntry[] => {
 
   const kept = entryKindSchema.safeParse(stored)
 
-  return kept.success ? [kept.data.kind] : []
+  return kept.success ? [kept.data] : []
 }
 
 const savedEveningSchema = z
@@ -373,8 +377,11 @@ const savedEveningSchema = z
     }
   })
 
-/** Evening by evening, so one this build cannot read costs that one alone. */
-const savedEveningsSchema = z.array(z.unknown()).transform((stored) =>
+/**
+ * Evening by evening, so one this build cannot read costs that one alone —
+ * whether it was stored here or read from a file another machine wrote.
+ */
+export const savedEveningsSchema = z.array(z.unknown()).transform((stored) =>
   stored.flatMap((evening) => {
     const saved = savedEveningSchema.safeParse(evening)
 

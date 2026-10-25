@@ -13,6 +13,7 @@ import {
   CircleQuestionMark,
   Copy,
   Dice5,
+  Download,
   Earth,
   Flame,
   Grid3x3,
@@ -39,6 +40,7 @@ import {
   SlidersHorizontal,
   Trophy,
   Tv,
+  Upload,
   Users,
   X,
   Zap
@@ -86,6 +88,8 @@ export const MenuIcon = inFamily(Menu, {
   strokeWidth: 2.6
 })
 // Its pips are near-zero-length strokes, which a butt cap draws as nothing.
+export const ExportIcon = inFamily(Download)
+export const ImportIcon = inFamily(Upload)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const GripIcon = inFamily(GripVertical)
 export const MinusIcon = inFamily(Minus)

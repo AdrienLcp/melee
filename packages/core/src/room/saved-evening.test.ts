@@ -13,6 +13,7 @@ import {
   type SavedEvening,
   savedEveningOf,
   withEveningSaved,
+  withEveningsImported,
   withoutEvening,
   withSavedEvening
 } from './saved-evening'
@@ -124,5 +125,37 @@ describe('withEveningSaved', () => {
     expect(withoutEvening({ evenings: [evening], name: 'game night' })).toEqual(
       []
     )
+  })
+})
+
+describe('withEveningsImported', () => {
+  const named = (name: string): SavedEvening => ({ ...gameNight, name })
+
+  it('[saved-evening] adds an imported evening after the kept ones and replaces one of the same name in place', () => {
+    const imported = withEveningsImported({
+      evenings: [named('Christmas'), named('Game night')],
+      imported: [{ ...named('game NIGHT'), roundCount: 5 }, named('Birthday')]
+    })
+
+    expect(imported.map(({ name }) => name)).toEqual([
+      'Christmas',
+      'game NIGHT',
+      'Birthday'
+    ])
+    expect(imported[1]?.roundCount).toBe(5)
+  })
+
+  it('[saved-evening] never pushes out a kept evening to make room for an imported one', () => {
+    const kept = Array.from({ length: SAVED_EVENINGS_MAX }, (_, index) =>
+      named(`Evening ${index}`)
+    )
+    const imported = withEveningsImported({
+      evenings: kept,
+      imported: [named('Birthday'), { ...named('evening 3'), roundCount: 5 }]
+    })
+
+    expect(imported).toHaveLength(SAVED_EVENINGS_MAX)
+    expect(imported.map(({ name }) => name)).not.toContain('Birthday')
+    expect(imported[3]?.roundCount).toBe(5)
   })
 })

@@ -22,6 +22,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningPage } from './evening-page'
+import { SavedEveningsTransfer } from './saved-evenings-transfer'
 
 import './saved-evenings.sass'
 
@@ -77,6 +78,8 @@ type SavedEveningsPageProps = {
   isLive: boolean
   onBack: () => void
   onForget: (name: string) => void
+  /** Folds the evenings a file from another machine carried in among these. */
+  onImport: (evenings: readonly SavedEvening[]) => void
   /** Puts the room on `evening`, from its first round. */
   onRun: (evening: SavedEvening) => void
   /** Keeps the evening the room is on under `name`. */
@@ -87,13 +90,15 @@ type SavedEveningsPageProps = {
 /**
  * The evenings this host kept, each run again with one press while the table
  * is still in its lobby, and — once the room is on a game — the field that
- * keeps this one, replacing a kept evening of the same name.
+ * keeps this one, replacing a kept evening of the same name — and the file
+ * that carries them, with the host's own lines, to another machine.
  */
 export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   evenings,
   isLive,
   onBack,
   onForget,
+  onImport,
   onRun,
   onSave,
   view
@@ -154,6 +159,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
             </ul>
           </>
         )}
+        <SavedEveningsTransfer evenings={evenings} onImport={onImport} />
       </section>
     </EveningPage>
   )

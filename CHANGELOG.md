@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Game]` **A host's line-ups and challenge lines travel as one file.**
+  *Exporter* under the saved line-ups downloads them with the host's own
+  challenge lines; *Importer* folds such a file in on another machine — a
+  line-up of the same name replaced, the rest added after the ones already
+  kept up to twenty, a line already written skipped — and says what it took.
+  Nothing leaves the device but through the visitor's own hands, and an entry
+  the build cannot read costs that entry alone.
+
 - `[Game]` **Petit Bac is on the shelf**, the twelfth game — *Categories* in
   English. A letter and three to ten categories go up, every screen fills its
   own sheet until the clock runs out or a full sheet calls stop, then the room
@@ -360,6 +368,10 @@ one part.
   instead of pushing the third team under the fold.
 
 ### Fixes
+
+- `[Game]` A saved line-up entry kept as its game alone — what the console
+  writes once its settings no longer read — is read back rather than dropped,
+  which emptied the line-up on the next load.
 
 - `[Game]` In a team room a seat's header, its place and its reveal speak for
   its team — the team's score, the team's place, the teams ranked — where they

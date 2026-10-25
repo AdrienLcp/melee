@@ -628,8 +628,26 @@ export const FR_DICTIONARY = defineDictionary({
       empty:
         'Aucune partie gardée pour l’instant. Donne un nom à celle-ci pour la relancer une autre fois.',
       endless: 'Sans fin',
+      export: 'Exporter',
+      exportFileName: 'melee-parties.json',
       forget: 'Oublier {name}',
       heading: 'Parties enregistrées',
+      import: 'Importer',
+      imported: defineTranslation('{evenings:plural} et {lines:plural}.', {
+        plural: {
+          evenings: {
+            one: '{?} partie importée',
+            other: '{?} parties importées',
+            zero: 'Aucune partie importée'
+          },
+          lines: {
+            one: '{?} défi ajouté',
+            other: '{?} défis ajoutés',
+            zero: 'aucun nouveau défi'
+          }
+        }
+      }),
+      importRefused: 'Ce fichier n’est pas un export de Mêlée.',
       inLobby: 'Une partie enregistrée se lance avant la première manche.',
       name: 'Nom de la partie',
       replace: 'Remplacer',
@@ -637,7 +655,9 @@ export const FR_DICTIONARY = defineDictionary({
         plural: { count: { one: '{?} manche', other: '{?} manches' } }
       }),
       run: 'Lancer {name}',
-      save: 'La garder'
+      save: 'La garder',
+      transferHint:
+        'Tes parties et tes défis tiennent dans un fichier, pour les retrouver sur une autre machine.'
     },
     seat: {
       action: 'Prendre place',

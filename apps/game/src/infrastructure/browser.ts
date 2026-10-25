@@ -1,3 +1,5 @@
+import { Result } from '@adrienlcp/result'
+
 /**
  * The socket shares the page's origin: in dev the Vite proxy forwards `/ws` to
  * the server, in production the same host serves both. That is what lets the
@@ -85,5 +87,38 @@ export const onLayoutMoved = (listener: () => void): (() => void) => {
 
   return () => {
     window.removeEventListener(LAYOUT_MOVED_EVENT, listener)
+  }
+}
+
+/** Hands `text` to the browser as a file to save under `name`. */
+export const saveTextFile = ({
+  name,
+  text
+}: {
+  name: string
+  text: string
+}): void => {
+  const url = URL.createObjectURL(
+    new Blob([text], { type: 'application/json' })
+  )
+  const link = document.createElement('a')
+
+  link.download = name
+  link.href = url
+  link.click()
+  // Safari drops a download whose URL is revoked in the same task as the click.
+  setTimeout(() => {
+    URL.revokeObjectURL(url)
+  })
+}
+
+/** The text of a file the visitor picked; `unreadable` when the browser refuses it. */
+export const readFileText = async (
+  file: File
+): Promise<Result<string, 'unreadable'>> => {
+  try {
+    return Result.success(await file.text())
+  } catch {
+    return Result.failure('unreadable')
   }
 }

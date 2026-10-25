@@ -3,6 +3,7 @@ import { useState } from 'react'
 import {
   type SavedEvening,
   withEveningSaved,
+  withEveningsImported,
   withoutEvening
 } from '@melee/core/room/saved-evening'
 
@@ -18,7 +19,7 @@ const storedEvenings = (): readonly SavedEvening[] => {
 }
 
 /**
- * The evenings this host kept on this machine, and the two ways the list
+ * The evenings this host kept on this machine, and the ways the list
  * changes. Written through on every change, so a console closed straight after
  * keeping one has kept it.
  */
@@ -34,6 +35,9 @@ export const useSavedEvenings = () => {
     evenings,
     forget: (name: string) => {
       keep(withoutEvening({ evenings, name }))
+    },
+    importEvenings: (imported: readonly SavedEvening[]) => {
+      keep(withEveningsImported({ evenings, imported }))
     },
     save: (evening: SavedEvening) => {
       keep(withEveningSaved({ evening, evenings }))

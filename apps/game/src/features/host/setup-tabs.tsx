@@ -113,6 +113,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         isLive={isLive}
         onBack={backToList}
         onForget={saved.forget}
+        onImport={saved.importEvenings}
         onRun={(evening) => {
           onSettingsChange(
             withSavedEvening({

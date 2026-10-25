@@ -651,8 +651,26 @@ export const EN_DICTIONARY = defineDictionary({
       doorEmpty: 'Keep this one to run it again another time',
       empty: 'No line-up kept yet. Name this one to run it again another time.',
       endless: 'No end',
+      export: 'Export',
+      exportFileName: 'melee-line-ups.json',
       forget: 'Forget {name}',
       heading: 'Saved line-ups',
+      import: 'Import',
+      imported: defineTranslation('{evenings:plural}, {lines:plural}.', {
+        plural: {
+          evenings: {
+            one: '{?} line-up imported',
+            other: '{?} line-ups imported',
+            zero: 'No line-up imported'
+          },
+          lines: {
+            one: '{?} new line added',
+            other: '{?} new lines added',
+            zero: 'no new line'
+          }
+        }
+      }),
+      importRefused: 'This file is not a Mêlée export.',
       inLobby: 'A saved line-up is run before the first round.',
       name: 'Name this line-up',
       replace: 'Replace',
@@ -660,7 +678,9 @@ export const EN_DICTIONARY = defineDictionary({
         plural: { count: { one: '{?} round', other: '{?} rounds' } }
       }),
       run: 'Run {name}',
-      save: 'Keep it'
+      save: 'Keep it',
+      transferHint:
+        'Your line-ups and your lines fit in one file, to pick up on another machine.'
     },
     seat: {
       action: 'Take a seat',

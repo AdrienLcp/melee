@@ -228,6 +228,17 @@ describe('readStoredSavedEvenings', () => {
     })
   })
 
+  it('[saved-evening] reads back an entry kept as its game alone, as it was written', () => {
+    const kept = { ...gameNight, lineUp: ['quiz', DEFAULT_BLINDTEST_SETTINGS] }
+
+    store.set(SAVED_EVENINGS_KEY, JSON.stringify([kept]))
+
+    expect(readStoredSavedEvenings()).toEqual({
+      data: [kept],
+      status: 'success'
+    })
+  })
+
   it('[saved-evening] drops a game this build does not serve and has the room deal the order', () => {
     store.set(
       SAVED_EVENINGS_KEY,

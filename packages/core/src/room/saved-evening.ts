@@ -70,6 +70,34 @@ export const withEveningSaved = ({
     : evenings.with(at, evening)
 }
 
+/**
+ * The evenings with `imported` folded in from another machine: one of the
+ * same name is replaced in place, as keeping it again would, and the rest are
+ * added after the ones already here — up to `SAVED_EVENINGS_MAX`, so a file
+ * never pushes out an evening this host kept here.
+ */
+export const withEveningsImported = ({
+  evenings,
+  imported
+}: {
+  evenings: readonly SavedEvening[]
+  imported: readonly SavedEvening[]
+}): SavedEvening[] => {
+  const kept = [...evenings]
+
+  for (const evening of imported) {
+    const at = kept.findIndex((saved) => isSameName(saved.name, evening.name))
+
+    if (at !== -1) {
+      kept[at] = evening
+    } else if (kept.length < SAVED_EVENINGS_MAX) {
+      kept.push(evening)
+    }
+  }
+
+  return kept
+}
+
 export const withoutEvening = ({
   evenings,
   name

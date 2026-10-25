@@ -10,7 +10,7 @@ export const OWN_CHALLENGE_LINES_KEY = 'melee:challenge-lines'
 /** As many as a long evening plays, and a bound on what a page can be asked to draw. */
 export const OWN_CHALLENGE_LINES_MAX = 60
 
-const ownChallengeLineSchema = z.object({
+export const ownChallengeLineSchema = z.object({
   isPlayed: z.boolean(),
   text: challengeTextSchema.min(1)
 })
