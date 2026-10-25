@@ -360,6 +360,16 @@ one part.
 
 ### Internal
 
+- `[Shared]` **Petit Bac is served**, and `PROTOCOL_VERSION` goes to 58. A
+  `petitbac` round draws a letter no round of the room has played since the
+  last cycle and three to ten categories, and every seat writes its own sheet
+  until the clock runs out or a full sheet calls stop, which closes everyone's
+  five seconds later. The room then votes category by category: a row falls on
+  a strict majority of the seats that did not write it, or on the judge's word
+  under `hasJudge`, and an accepted answer pays 2 points alone and 1 shared,
+  off-the-letter and blank lines nothing. No seat, console or wall reads
+  another seat's word before its category is voted. Reachable by a settings
+  frame only until it has screens.
 - `[Shared]` **Guess nine is served**, and `PROTOCOL_VERSION` goes to 49. A
   `guessnine` round deals a theme from the bank and takes typed lines until a
   seat holds all nine, lands on the black word or the clock runs out; each line

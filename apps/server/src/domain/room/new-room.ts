@@ -41,6 +41,7 @@ export const newRoom = ({
     openedEntries: [],
     phase: 'lobby',
     playedContentIds: new Set(),
+    playedLetters: [],
     players: new Map(),
     round: null,
     settings: roomSettingsFor({ games, locale }),

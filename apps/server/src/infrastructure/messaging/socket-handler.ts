@@ -55,6 +55,16 @@ import {
   registerInnerclockPress
 } from '@/domain/round/innerclock-round'
 import {
+  finishPetitBacVote,
+  isPetitBacWriting,
+  nextPetitBacCategory,
+  type PetitBacRejection,
+  refusePetitBacRow,
+  stopPetitBac,
+  votePetitBacRow,
+  writePetitBacLine
+} from '@/domain/round/petit-bac-round'
+import {
   applyVerdict,
   clearLockouts,
   closeRound,
@@ -462,6 +472,43 @@ const dispatch = ({
       tick(message, active, outbound, engine)
       break
     }
+    case 'petitbac.write':
+    case 'petitbac.stop':
+    case 'petitbac.vote':
+    case 'petitbac.doneVoting': {
+      playPetitBac(message, active, outbound, engine)
+      break
+    }
+    case 'host.nextCategory': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'The vote has moved on',
+        result: nextPetitBacCategory({
+          categoryIndex: message.categoryIndex,
+          now,
+          room,
+          roundId: message.roundId
+        })
+      })
+      break
+    }
+    case 'host.refuseRow': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'That refusal was not kept',
+        result: refusePetitBacRow({
+          categoryIndex: message.categoryIndex,
+          now,
+          refuses: message.refuses,
+          room,
+          roundId: message.roundId,
+          rowKey: message.rowKey
+        })
+      })
+      break
+    }
     case 'host.startRound': {
       start({
         challenge: {
@@ -723,6 +770,127 @@ const answerSlateFrame = ({
   }
 
   publishRoom(engine)
+}
+
+/**
+ * A Petit Bac frame is refused with the room's code, or published. A stop
+ * arms no timer here: the grace is the round's deadline, re-read as the room
+ * is committed.
+ */
+const answerPetitBacFrame = ({
+  engine,
+  outbound,
+  refusal,
+  result
+}: {
+  engine: RoomEngine
+  outbound: Outbound
+  refusal: string
+  result: Result<void, PetitBacRejection>
+}): void => {
+  if (result.status === 'failure') {
+    sendError(outbound, {
+      code: result.error,
+      fatal: false,
+      message: refusal
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const playPetitBac = (
+  message: Extract<
+    ClientMessage,
+    {
+      type:
+        | 'petitbac.doneVoting'
+        | 'petitbac.stop'
+        | 'petitbac.vote'
+        | 'petitbac.write'
+    }
+  >,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const playerId = active.playerId
+
+  if (playerId === null) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seated player holds a sheet'
+    })
+
+    return
+  }
+
+  const { room } = engine
+  const now = engine.now()
+  const { roundId } = message
+
+  switch (message.type) {
+    case 'petitbac.write': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'That line was not saved',
+        result: writePetitBacLine({
+          answer: message.answer,
+          categoryIndex: message.categoryIndex,
+          now,
+          playerId,
+          room,
+          roundId
+        })
+      })
+      break
+    }
+    case 'petitbac.stop': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'The stop was not called',
+        result: stopPetitBac({ now, playerId, room, roundId })
+      })
+      break
+    }
+    case 'petitbac.vote': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'That vote was not kept',
+        result: votePetitBacRow({
+          categoryIndex: message.categoryIndex,
+          now,
+          playerId,
+          refuses: message.refuses,
+          room,
+          roundId,
+          rowKey: message.rowKey
+        })
+      })
+      break
+    }
+    case 'petitbac.doneVoting': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'The vote has moved on',
+        result: finishPetitBacVote({
+          categoryIndex: message.categoryIndex,
+          now,
+          playerId,
+          room,
+          roundId
+        })
+      })
+      break
+    }
+  }
 }
 
 /** A placement is refused with the room's code, or published with the reveal it ends in. */
@@ -1196,6 +1364,19 @@ const reveal = (
       code: 'wrong_phase',
       fatal: false,
       message: 'An item is still open'
+    })
+
+    return
+  }
+
+  // The vote reads every sheet, so the round ends only once the sheets have
+  // closed on the clock or on a stop; from then on a reveal settles the
+  // categories left on the votes as they stand.
+  if (isPetitBacWriting(room)) {
+    sendError(outbound, {
+      code: 'wrong_phase',
+      fatal: false,
+      message: 'The sheets are still being written'
     })
 
     return

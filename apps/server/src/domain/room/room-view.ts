@@ -1,4 +1,5 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PetitBacProgress } from '@melee/protocol/petit-bac'
 import type {
   HostRoomView,
   HostRoundContent,
@@ -15,6 +16,7 @@ import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 import type { WorldmapTarget } from '@melee/protocol/worldmap'
 
 import { playedPerEntry } from '@melee/core/room/next-game'
+import { isBlankAnswer } from '@melee/core/round/answer-groups'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
 import { pointsFor } from '@melee/core/scoring/verdict'
 import {
@@ -30,6 +32,11 @@ import {
   guessNineContentView,
   guessNineGrid
 } from '@/domain/round/guess-nine-round'
+import {
+  petitBacLinesFor,
+  petitBacRowsFor,
+  votingCategoryIndex
+} from '@/domain/round/petit-bac-round'
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
@@ -107,6 +114,10 @@ const toWallContent = (content: HostRoundContent): WallRoundContent => {
       return { audioUrl: content.audioUrl, kind: 'blindtest' }
     }
 
+    case 'petitbac': {
+      return { kind: 'petitbac', progress: content.progress }
+    }
+
     case 'slate': {
       return {
         correction: content.correction,
@@ -182,6 +193,13 @@ const toHostContent = ({
 
   if (content.kind === 'slate') {
     return toHostSlateContent({ content, room })
+  }
+
+  if (content.kind === 'petitbac') {
+    return {
+      kind: 'petitbac',
+      progress: petitBacProgress({ content, room, round })
+    }
   }
 
   return {
@@ -514,6 +532,10 @@ const toContentView = ({
     }
   }
 
+  if (content.kind === 'petitbac') {
+    return petitBacContentView({ content, room, round, youId })
+  }
+
   if (content.kind === 'slate') {
     return {
       currentItemIndex: content.currentItemIndex,
@@ -533,6 +555,88 @@ const toContentView = ({
     choices: content.choices,
     kind: 'blindtest',
     revealedTrack: round.revealed ? toTrackIdentity(content.track) : null
+  }
+}
+
+type PetitBacContent = Extract<Round['content'], { kind: 'petitbac' }>
+
+/** How many lines each seat has filled, and never what: the wall and the console read the same. */
+const petitBacProgress = ({
+  content,
+  room,
+  round
+}: {
+  content: PetitBacContent
+  room: Room
+  round: Round
+}): PetitBacProgress[] =>
+  [...room.players.keys()]
+    .filter(
+      (playerId) =>
+        !hasJoinedAfterStart({
+          openedWithPlayerIds: round.openedWithPlayerIds,
+          playerId
+        })
+    )
+    .map((playerId) => ({
+      filled: content.categories.filter(
+        (_, index) =>
+          !isBlankAnswer(content.sheets.get(playerId)?.get(index) ?? null)
+      ).length,
+      playerId
+    }))
+
+/**
+ * A seat's own sheet and nothing of anybody else's until the vote: a
+ * category's rows reach every screen once it is voted, and its lines once it
+ * has settled.
+ */
+const petitBacContentView = ({
+  content,
+  room,
+  round,
+  youId
+}: {
+  content: PetitBacContent
+  room: Room
+  round: Round
+  youId: PlayerId | null
+}): RoundContent => {
+  const votingAt = votingCategoryIndex(content)
+  const sheet = youId === null ? undefined : content.sheets.get(youId)
+  const isSeated =
+    youId !== null &&
+    !hasJoinedAfterStart({
+      openedWithPlayerIds: round.openedWithPlayerIds,
+      playerId: youId
+    })
+  const yourRefusals =
+    votingAt === null || youId === null
+      ? []
+      : [...(content.refusals.get(votingAt) ?? new Map())]
+          .filter(([, refusedBy]) => refusedBy.has(youId))
+          .map(([rowKey]) => rowKey)
+
+  return {
+    categories: [...content.categories],
+    categoryStates: [...content.categoryStates],
+    kind: 'petitbac',
+    letter: content.letter,
+    lines: content.categoryStates.map((state, categoryIndex) =>
+      state === 'settled' ? petitBacLinesFor({ categoryIndex, room }) : null
+    ),
+    rows:
+      votingAt === null
+        ? null
+        : petitBacRowsFor({ categoryIndex: votingAt, room }),
+    sheetsClosed: content.sheetsClosed,
+    stopClosesAtElapsedMs: content.stopClosesAtElapsedMs,
+    stoppedBy: content.stoppedBy,
+    votesDone: [...content.votesDone],
+    yourRefusals,
+    yourSheet: isSeated
+      ? content.categories.map((_, index) => sheet?.get(index) ?? '')
+      : null
   }
 }
 

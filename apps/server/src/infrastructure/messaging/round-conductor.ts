@@ -15,6 +15,11 @@ import {
   playedPuzzleId
 } from '@/domain/round/matchsticks-round'
 import {
+  closePetitBacSheets,
+  isPetitBacWriting,
+  petitBacContent
+} from '@/domain/round/petit-bac-round'
+import {
   blindtestContent,
   closeRound,
   finishGame,
@@ -138,7 +143,15 @@ const servedContent = ({
   challenge: ChallengePick
   game: Extract<
     GameSettings,
-    { kind: 'buzzer' | 'challenge' | 'innerclock' | 'reflex' | 'slate' }
+    {
+      kind:
+        | 'buzzer'
+        | 'challenge'
+        | 'innerclock'
+        | 'petitbac'
+        | 'reflex'
+        | 'slate'
+    }
   >
   innerclockTargetSeconds: number | undefined
   room: Room
@@ -151,6 +164,8 @@ const servedContent = ({
       return challengeContent(pickChallengeLabels(room, challenge))
     case 'innerclock':
       return innerclockContent(innerclockTargetSeconds)
+    case 'petitbac':
+      return petitBacContent({ room, settings: game })
     case 'reflex':
       return reflexContent()
     case 'slate':
@@ -225,11 +240,12 @@ export const beginRound = async (
 
   // No catalogue, no network call, and nothing to fail — the room already holds
   // the question, or there is no question at all. Opening the round is the whole
-  // of serving these five.
+  // of serving these six.
   if (
     game.kind === 'buzzer' ||
     game.kind === 'challenge' ||
     game.kind === 'innerclock' ||
+    game.kind === 'petitbac' ||
     game.kind === 'reflex' ||
     game.kind === 'slate'
   ) {
@@ -605,8 +621,13 @@ const runDeadline = (
 
     // The round running out ends it the same way the last answer does, scoring
     // included: whoever did not answer simply did not.
+    // A Petit Bac clock running out closes the sheets and opens the vote,
+    // which is the round's middle rather than its end.
     case 'round': {
-      closeRound(room, now)
+      if (!isPetitBacWriting(room) || closePetitBacSheets(room)) {
+        closeRound(room, now)
+      }
+
       publishRoom(engine)
 
       return

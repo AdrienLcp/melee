@@ -70,6 +70,7 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     case 'guessnine':
     case 'innerclock':
     case 'matchsticks':
+    case 'petitbac':
     case 'reflex':
     case 'slate':
     case 'timeline':

@@ -101,6 +101,7 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
     case 'buzzer':
     case 'challenge':
     case 'innerclock':
+    case 'petitbac':
     case 'reflex':
     case 'slate':
     case 'worldmap':

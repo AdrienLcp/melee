@@ -350,6 +350,7 @@ export const EN_DICTIONARY = defineDictionary({
       reload: 'Reload the page',
       title: 'Something broke'
     },
+    sheet_not_full: 'Fill in every line before calling stop.',
     spoken_needs_two_teams:
       'Team by team needs two teams with somebody in each.',
     stale_round: 'That round is already over.',
@@ -1041,6 +1042,11 @@ export const EN_DICTIONARY = defineDictionary({
     description: 'That game is over, or the code was mistyped.',
     documentTitle: 'Nobody here — Mêlée',
     title: 'Nobody here'
+  },
+  petitbac: {
+    name: 'Petit Bac',
+    scoring:
+      'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 2, one you shared scores 1.'
   },
   player: {
     /** A seat whose screen has gone quiet — beside that name, on every board. */

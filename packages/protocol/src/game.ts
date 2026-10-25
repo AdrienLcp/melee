@@ -1,6 +1,16 @@
 import { z } from 'zod'
 
 import { matchsticksGoalSchema } from './matchsticks'
+import {
+  MAX_PETIT_BAC_CATEGORIES,
+  MIN_PETIT_BAC_CATEGORIES,
+  MIN_PLAYABLE_PETIT_BAC_LETTERS,
+  petitBacCategoryCountSchema,
+  petitBacCategorySchema,
+  petitBacLetterSchema,
+  petitBacLetters,
+  RARE_PETIT_BAC_LETTERS
+} from './petit-bac'
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { trackDifficultySchema, trackSourceSchema } from './track'
@@ -13,6 +23,7 @@ export const gameKinds = [
   'guessnine',
   'innerclock',
   'matchsticks',
+  'petitbac',
   'quiz',
   'reflex',
   'slate',
@@ -117,6 +128,28 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     /** How long a puzzle stays up before the room is shown the move. */
     roundDurationMs: z.number().int().min(10_000).max(180_000)
   }),
+  z.object({
+    /**
+     * The host's own list, played every round, or `null` to draw
+     * `categoryCount` from the bank for each round.
+     */
+    categories: z
+      .array(petitBacCategorySchema)
+      .min(MIN_PETIT_BAC_CATEGORIES)
+      .max(MAX_PETIT_BAC_CATEGORIES)
+      .nullable(),
+    /** How many a drawn round deals; a fixed list is as long as it is. */
+    categoryCount: petitBacCategoryCountSchema,
+    /** Left out of the draw, so some letter always stays playable. */
+    excludedLetters: z
+      .array(petitBacLetterSchema)
+      .max(petitBacLetters.length - MIN_PLAYABLE_PETIT_BAC_LETTERS),
+    kind: z.literal('petitbac'),
+    /** How long the sheets stay open, unless a full one calls stop first. */
+    roundDurationMs: z.number().int().min(60_000).max(300_000),
+    /** Whether a seat whose every line is filled may close everyone's sheet. */
+    stopsWhenFull: z.boolean()
+  }),
   questionDrawSettingsSchema.extend({
     kind: z.literal('quiz'),
     /** How long a question stays open before the round times out. */
@@ -165,6 +198,7 @@ export type ChallengeSettings = Extract<GameSettings, { kind: 'challenge' }>
 export type GuessNineSettings = Extract<GameSettings, { kind: 'guessnine' }>
 export type InnerclockSettings = Extract<GameSettings, { kind: 'innerclock' }>
 export type MatchsticksSettings = Extract<GameSettings, { kind: 'matchsticks' }>
+export type PetitBacSettings = Extract<GameSettings, { kind: 'petitbac' }>
 export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
@@ -237,6 +271,15 @@ export const DEFAULT_MATCHSTICKS_SETTINGS: MatchsticksSettings = {
   roundDurationMs: 60_000
 }
 
+export const DEFAULT_PETIT_BAC_SETTINGS: PetitBacSettings = {
+  categories: null,
+  categoryCount: 6,
+  excludedLetters: [...RARE_PETIT_BAC_LETTERS],
+  kind: 'petitbac',
+  roundDurationMs: 120_000,
+  stopsWhenFull: true
+}
+
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
   allowsAdultContent: false,
   categories: [],
@@ -274,6 +317,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   guessnine: DEFAULT_GUESS_NINE_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
+  petitbac: DEFAULT_PETIT_BAC_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,

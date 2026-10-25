@@ -1,6 +1,6 @@
 # 50 — Petit Bac
 
-**Half done** — step 1 landed. Asked 25/10/2026. A letter goes up — *B* — beside six categories —
+**Two steps of three** — the rules and the server landed. Asked 25/10/2026. A letter goes up — *B* — beside six categories —
 *a country, an animal, a first name, a job, a brand, something in a kitchen* —
 and every screen fills its own grid against the clock: *Belgique, baleine,
 Bastien, boulanger, Bic, bouilloire*. The first sheet full may call **stop**.
@@ -135,6 +135,26 @@ the English name is the screens' session to settle, and is not *Scattergories*
   the guard removed; a stop closes every sheet at its deadline; a vote's
   majority, its tie and the authors left out; the pay unique against shared;
   a latecomer refused `joined_mid_round`.
+
+**Done 25/10/2026.** What it settled beyond the plan:
+
+- **`petitbac.doneVoting` is the signal "every seat has voted"** needs, because
+  every row counts by default and nobody presses *keep* on each one. A category
+  with no row — nothing written on the letter — settles on the spot rather than
+  waiting on it.
+- **`playedLetters` sits beside `playedContentIds`, not in it**: a set cannot
+  hold a letter twice, which `drawLetter`'s cycle reads. It survives a *play
+  again* the way `playedContentIds` does.
+- **The stop's grace is round time** (`stopClosesAtElapsedMs`), so a console
+  away freezes it with the clock, and `openPhaseDurationMs` reads it as the
+  round's deadline — `null` once the sheets close, because the vote runs on the
+  room's word. The `'round'` deadline closes the sheets rather than the round.
+- **`isJudged` and `stopsWhenFull` are stamped on the round** as it opens, the
+  way `doublesLoneFinds` is: a switch flipped mid-round decides the next one.
+- **Who votes is the round's stamped seats still holding one**, so a seat that
+  leaves mid-vote leaves no voter the majority waits on.
+- **Not tested over a socket**: the clock running out, whose minimum is a
+  minute; the grace path ends through the same deadline.
 
 — cut here: server green, the game reachable by a settings frame —
 

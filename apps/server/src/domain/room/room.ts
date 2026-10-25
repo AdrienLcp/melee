@@ -18,6 +18,11 @@ import type {
   MatchsticksSolution,
   SentMove
 } from '@melee/protocol/matchsticks'
+import type {
+  PetitBacCategory,
+  PetitBacCategoryState,
+  PetitBacLetter
+} from '@melee/protocol/petit-bac'
 import type { HostQuestion } from '@melee/protocol/question'
 import type {
   ModeSettings,
@@ -108,6 +113,12 @@ export type Room = {
    * remembered would leak one party into another.
    */
   playedContentIds: Set<string>
+  /**
+   * Every Petit Bac letter this room has played, oldest first. Not in
+   * `playedContentIds`: a set cannot hold a letter twice, and the draw cycles
+   * through them again once every one has gone.
+   */
+  playedLetters: PetitBacLetter[]
   players: Map<PlayerId, Participant>
   round: Round | null
   settings: RoomSettings
@@ -317,6 +328,29 @@ export type Round = {
         puzzle: MatchsticksPuzzle
         /** Every move that answers it; never empty, and it reaches the host arm alone. */
         solutions: MatchsticksSolution[]
+      }
+    | {
+        categories: PetitBacCategory[]
+        /** One per category, in order: every one `open` until the sheets close, then voted one at a time. */
+        categoryStates: PetitBacCategoryState[]
+        /** Whether the console refuses rows itself, read off `hasJudge` as the round opens. */
+        isJudged: boolean
+        /** The judge's own refusals by category index, then row key; the room's vote under `hasJudge`. */
+        judgeRefusals: Map<number, Set<string>>
+        kind: 'petitbac'
+        letter: PetitBacLetter
+        /** Who refused which row, by category index then row key. */
+        refusals: Map<number, Map<string, Set<PlayerId>>>
+        /** Every seat's lines by category index; a cleared line is deleted, never stored empty. */
+        sheets: Map<PlayerId, Map<number, string>>
+        sheetsClosed: boolean
+        /** Round time the sheets close at after a stop — elapsed, so a paused room freezes the grace too. */
+        stopClosesAtElapsedMs: number | null
+        stoppedBy: PlayerId | null
+        /** Read off the settings as the round opens, so a switch flipped mid-round decides the next one. */
+        stopsWhenFull: boolean
+        /** Who said they are done with the category being voted; emptied as the next one goes up. */
+        votesDone: Set<PlayerId>
       }
     | {
         choices: string[]

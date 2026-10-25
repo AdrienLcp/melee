@@ -15,6 +15,7 @@ import {
 } from './identifiers'
 import { innerclockTargetSecondsSchema } from './innerclock'
 import { stickMoveSchema } from './matchsticks'
+import { petitBacAnswerSchema, petitBacCategoryIndexSchema } from './petit-bac'
 import { MAX_PLAYERS_PER_ROOM, roomSettingsSchema } from './room'
 import { POINT, singleVerdictSchema, verdictSchema } from './scoring'
 import {
@@ -202,6 +203,42 @@ export const tickGuessNineMessageSchema = z.object({
   type: z.literal('guessnine.tick')
 })
 
+/**
+ * One line of a Petit Bac sheet, saved as it is written — the slate's upsert,
+ * an empty `answer` taking the line back.
+ */
+export const writePetitBacLineMessageSchema = z.object({
+  answer: petitBacAnswerSchema,
+  categoryIndex: petitBacCategoryIndexSchema,
+  roundId: roundIdSchema,
+  type: z.literal('petitbac.write')
+})
+
+/** A full sheet closing everyone's, `PETIT_BAC_STOP_GRACE_MS` later. */
+export const stopPetitBacMessageSchema = z.object({
+  roundId: roundIdSchema,
+  type: z.literal('petitbac.stop')
+})
+
+/**
+ * A seat refusing a row of the category in play, or taking a refusal back.
+ * `categoryIndex` guards against a tap landing after the room moved on.
+ */
+export const votePetitBacMessageSchema = z.object({
+  categoryIndex: petitBacCategoryIndexSchema,
+  refuses: z.boolean(),
+  roundId: roundIdSchema,
+  rowKey: z.string().min(1),
+  type: z.literal('petitbac.vote')
+})
+
+/** A seat saying it has read the category in play; once every seat has, the room moves on. */
+export const finishPetitBacVoteMessageSchema = z.object({
+  categoryIndex: petitBacCategoryIndexSchema,
+  roundId: roundIdSchema,
+  type: z.literal('petitbac.doneVoting')
+})
+
 export const updateSettingsMessageSchema = z.object({
   settings: roomSettingsSchema,
   type: z.literal('host.updateSettings')
@@ -229,6 +266,22 @@ export const startRoundMessageSchema = z.object({
   isChallengeSaidAloud: z.boolean().optional(),
   slateKeys: z.array(slateKeySchema.nullable()).max(MAX_SLATE_ITEMS).optional(),
   type: z.literal('host.startRound')
+})
+
+/** Settles the Petit Bac category in play and puts up the next, or the reveal after the last. */
+export const nextCategoryMessageSchema = z.object({
+  categoryIndex: petitBacCategoryIndexSchema,
+  roundId: roundIdSchema,
+  type: z.literal('host.nextCategory')
+})
+
+/** The judge's own refusal of a row, in a room with one — where the seats only watch. */
+export const refuseRowMessageSchema = z.object({
+  categoryIndex: petitBacCategoryIndexSchema,
+  refuses: z.boolean(),
+  roundId: roundIdSchema,
+  rowKey: z.string().min(1),
+  type: z.literal('host.refuseRow')
 })
 
 /** Judging is the host's call; `roundId` guards against a late click on a round that already moved on. */
@@ -471,6 +524,8 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   collectSheetsMessageSchema,
   showItemMessageSchema,
   judgeGroupMessageSchema,
+  nextCategoryMessageSchema,
+  refuseRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   moveSeatMessageSchema,
@@ -496,7 +551,11 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema,
-  tickGuessNineMessageSchema
+  tickGuessNineMessageSchema,
+  writePetitBacLineMessageSchema,
+  stopPetitBacMessageSchema,
+  votePetitBacMessageSchema,
+  finishPetitBacVoteMessageSchema
 ])
 
 /** A wall says who it is and keeps its clock. It never controls the room, nor answers. */
@@ -517,6 +576,10 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   answerMessageSchema,
   writeSlateLineMessageSchema,
   tickGuessNineMessageSchema,
+  writePetitBacLineMessageSchema,
+  stopPetitBacMessageSchema,
+  votePetitBacMessageSchema,
+  finishPetitBacVoteMessageSchema,
   updateSettingsMessageSchema,
   startRoundMessageSchema,
   judgeMessageSchema,
@@ -529,6 +592,8 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   collectSheetsMessageSchema,
   showItemMessageSchema,
   judgeGroupMessageSchema,
+  nextCategoryMessageSchema,
+  refuseRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   moveSeatMessageSchema,
@@ -570,6 +635,8 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.collectSheets',
   'host.showItem',
   'host.judgeGroup',
+  'host.nextCategory',
+  'host.refuseRow',
   'host.drawTeams',
   'host.renameTeam',
   'host.moveSeat',
@@ -595,10 +662,15 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
  *
  * `slate.write` is not here either: a line on a sheet moves nothing along —
  * only the host closes an item — and refusing a save over a console's Wi-Fi blink
- * would lose an answer the player believes is kept.
+ * would lose an answer the player believes is kept. `petitbac.write` is not
+ * here for the same reason: its clock is frozen with the room, and a word
+ * kept is worth more than the seconds it was written in.
  */
 export const FLOOR_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.buzz',
   'player.answer',
-  'guessnine.tick'
+  'guessnine.tick',
+  'petitbac.stop',
+  'petitbac.vote',
+  'petitbac.doneVoting'
 ])

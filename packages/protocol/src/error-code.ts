@@ -105,6 +105,11 @@ export const protocolErrorCodes = [
    * so the round cannot open until the teams are filled.
    */
   'spoken_needs_two_teams',
+  /**
+   * A Petit Bac stop from a sheet with a line still blank. Its own code: the
+   * seat can act on it — one more word and the stop is theirs.
+   */
+  'sheet_not_full',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

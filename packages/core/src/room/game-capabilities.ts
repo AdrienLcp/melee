@@ -130,6 +130,15 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsDuels: false,
         servesItsOwnContent: true
       }
+    // A sheet paid by what nobody else wrote needs the whole room writing it,
+    // so it never plays as a duel.
+    case 'petitbac':
+      return {
+        answerModes: TYPED_ONLY,
+        playsAloud: false,
+        playsDuels: false,
+        servesItsOwnContent: true
+      }
     case 'slate':
       return {
         answerModes: TYPED_ONLY,

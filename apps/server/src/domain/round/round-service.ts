@@ -80,6 +80,7 @@ import {
 } from '@/domain/round/guess-nine-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
+import { settleEveryCategory } from '@/domain/round/petit-bac-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { gradeOrder } from '@/domain/round/timeline-round'
 import { drawChoices } from '@/domain/round/track-pool'
@@ -1278,6 +1279,13 @@ export const closeRound = (room: Room, now: number): void => {
     return
   }
 
+  if (round.content.kind === 'petitbac') {
+    settleEveryCategory(room)
+    revealRound(room, now)
+
+    return
+  }
+
   const mode = round.mode.kind
 
   if (mode === 'buzzer') {
@@ -1384,7 +1392,7 @@ export const elapsedRoundMs = (round: Round, now: number): number =>
   )
 
 /**
- * How long the open round runs for, and the two games that answer it from
+ * How long the open round runs for, and the three games that answer it from
  * somewhere other than the round duration. The reflex race draws its wait per
  * round, so the only thing that knows how long the heat runs is the heat; the
  * inner clock's cap is its target's, which the settings never hold either.
@@ -1401,6 +1409,17 @@ const openPhaseDurationMs = (room: Room): number | null => {
       return innerclockRoundDurationMs(round.content.targetSeconds * 1_000)
     case 'reflex':
       return reflexRoundDurationMs(round.content.flipDelayMs)
+    // Once the sheets close the vote runs on the room's word, and until then a
+    // stop's grace may come before the clock.
+    case 'petitbac':
+      if (round.content.sheetsClosed || round.durationMs === null) {
+        return null
+      }
+
+      return Math.min(
+        round.durationMs,
+        round.content.stopClosesAtElapsedMs ?? round.durationMs
+      )
     default:
       return round.durationMs
   }

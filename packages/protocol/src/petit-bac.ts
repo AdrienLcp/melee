@@ -151,8 +151,25 @@ export const petitBacLineOutcomeSchema = z.enum([
  */
 export const petitBacRowSchema = z.object({
   authors: z.array(playerIdSchema).min(1),
+  /** The shared normalisation every spelling folds to: what a vote names the row by. */
+  key: z.string().min(1),
   refusals: z.number().int().min(0),
+  /** Whether it falls as the votes stand — a majority of its voters, or the judge. */
+  refused: z.boolean(),
   text: z.string().min(1).max(PETIT_BAC_ANSWER_MAX_LENGTH)
+})
+
+/** One seat's line on a settled category, as the reveal's grid draws it. `text` is empty for a blank. */
+export const petitBacSettledLineSchema = z.object({
+  outcome: petitBacLineOutcomeSchema,
+  playerId: playerIdSchema,
+  text: petitBacAnswerSchema
+})
+
+/** How many lines of a seat's sheet hold something — never what. */
+export const petitBacProgressSchema = z.object({
+  filled: z.number().int().min(0).max(MAX_PETIT_BAC_CATEGORIES),
+  playerId: playerIdSchema
 })
 
 export type PetitBacLetter = (typeof petitBacLetters)[number]
@@ -161,3 +178,5 @@ export type PetitBacCategory = z.infer<typeof petitBacCategorySchema>
 export type PetitBacCategoryState = z.infer<typeof petitBacCategoryStateSchema>
 export type PetitBacLineOutcome = z.infer<typeof petitBacLineOutcomeSchema>
 export type PetitBacRow = z.infer<typeof petitBacRowSchema>
+export type PetitBacSettledLine = z.infer<typeof petitBacSettledLineSchema>
+export type PetitBacProgress = z.infer<typeof petitBacProgressSchema>

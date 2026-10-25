@@ -32,6 +32,17 @@ import {
   stickMoveSchema
 } from './matchsticks'
 import {
+  MAX_PETIT_BAC_CATEGORIES,
+  MIN_PETIT_BAC_CATEGORIES,
+  petitBacAnswerSchema,
+  petitBacCategorySchema,
+  petitBacCategoryStateSchema,
+  petitBacLetterSchema,
+  petitBacProgressSchema,
+  petitBacRowSchema,
+  petitBacSettledLineSchema
+} from './petit-bac'
+import {
   hostQuestionSchema,
   questionPromptSchema,
   revealedQuestionSchema
@@ -466,6 +477,40 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     yourMove: stickMoveSchema.nullable()
   }),
   z.object({
+    categories: z
+      .array(petitBacCategorySchema)
+      .min(MIN_PETIT_BAC_CATEGORIES)
+      .max(MAX_PETIT_BAC_CATEGORIES),
+    /** One per category. Every one is `open` until the sheets close, then the room votes them in order. */
+    categoryStates: z.array(petitBacCategoryStateSchema),
+    kind: z.literal('petitbac'),
+    letter: petitBacLetterSchema,
+    /**
+     * Per category, every seat's line and what it paid, and `null` until the
+     * category settles — nobody reads another seat's word before the vote.
+     */
+    lines: z.array(z.array(petitBacSettledLineSchema).nullable()),
+    /** The rows of the category being voted, and `null` while none is. Blank and off-the-letter lines are never a row. */
+    rows: z.array(petitBacRowSchema).nullable(),
+    /** Whether every sheet has closed: written by the clock, or by a stop and its grace. */
+    sheetsClosed: z.boolean(),
+    /**
+     * When the sheets close after a stop, as round time — `round.durationMs`
+     * measured the same way — and `null` until a seat calls one.
+     */
+    stopClosesAtElapsedMs: z.number().int().nonnegative().nullable(),
+    stoppedBy: playerIdSchema.nullable(),
+    /** Who has said they are done voting the category in play; the room moves on once every seat has. */
+    votesDone: z.array(playerIdSchema),
+    /** The rows of the category in play the reader refused, by key. */
+    yourRefusals: z.array(z.string()),
+    /**
+     * The reader's own lines, one per category with `''` for a blank, and
+     * `null` for a reader with no seat in the round. What a reload comes back to.
+     */
+    yourSheet: z.array(petitBacAnswerSchema).nullable()
+  }),
+  z.object({
     /** Choice mode only, and shuffled per round. */
     choices: z.array(z.string()),
     kind: z.literal('quiz'),
@@ -725,6 +770,15 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
      */
     solutions: z.array(matchsticksSolutionSchema).nullable()
   }),
+  /**
+   * Each seat's count of filled lines, and never a word: the console is a
+   * screen the room reads, judge or not. The words arrive with the vote, on
+   * `round.content.rows`, for every screen at once.
+   */
+  z.object({
+    kind: z.literal('petitbac'),
+    progress: z.array(petitBacProgressSchema)
+  }),
   z.object({
     kind: z.literal('quiz'),
     question: hostQuestionSchema.nullable()
@@ -834,6 +888,10 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('guessnine') }),
   z.object({ kind: z.literal('innerclock') }),
   z.object({ kind: z.literal('matchsticks') }),
+  z.object({
+    kind: z.literal('petitbac'),
+    progress: z.array(petitBacProgressSchema)
+  }),
   z.object({ kind: z.literal('quiz') }),
   z.object({ kind: z.literal('reflex') }),
   z.object({

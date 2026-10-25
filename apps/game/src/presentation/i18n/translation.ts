@@ -97,6 +97,7 @@ export const scoringKey = ({
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
+  | 'petitbac.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'timeline.scoring'
@@ -144,6 +145,8 @@ export const scoringKey = ({
       return answerMode === 'move'
         ? 'matchsticks.scoringMove'
         : 'matchsticks.scoring'
+    case 'petitbac':
+      return 'petitbac.scoring'
     case 'quiz':
       return `quiz.scoring.${served}`
     case 'reflex':

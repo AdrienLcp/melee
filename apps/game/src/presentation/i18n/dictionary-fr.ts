@@ -325,6 +325,7 @@ export const FR_DICTIONARY = defineDictionary({
       reload: 'Recharger la page',
       title: 'Quelque chose a cassé'
     },
+    sheet_not_full: 'Remplis toutes les lignes avant de crier stop.',
     spoken_needs_two_teams:
       'Équipe par équipe, il faut deux équipes avec quelqu’un dans chacune.',
     stale_round: 'Cette manche est déjà terminée.',
@@ -980,6 +981,11 @@ export const FR_DICTIONARY = defineDictionary({
     description: 'La partie est finie, ou le code a été mal tapé.',
     documentTitle: 'Personne ici — Mêlée',
     title: 'Personne ici'
+  },
+  petitbac: {
+    name: 'Petit Bac',
+    scoring:
+      'Une lettre, un mot par catégorie. La table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte 2, une réponse partagée 1.'
   },
   player: {
     away: 'plus là',

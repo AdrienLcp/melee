@@ -89,6 +89,10 @@ reconnect on the token it still holds.
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
+| `petitbac.write` | player | `roundId`, `categoryIndex`, `answer` — an upsert of one line of the sheet, at most 60 characters; `''` clears it |
+| `petitbac.stop` | player | `roundId` — a full sheet closing everyone's, `PETIT_BAC_STOP_GRACE_MS` later |
+| `petitbac.vote` | player | `roundId`, `categoryIndex`, `rowKey`, `refuses` — a refusal of a row of the category being voted, or one taken back |
+| `petitbac.doneVoting` | player | `roundId`, `categoryIndex` — the seat has read the category being voted |
 | `guessnine.tick` | player | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken guess nine alone, the black word once and for good |
 | `host.updateSettings` | host | `settings` |
 | `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `challengeAt` (optional) — the slot of `challengeHand` an untyped challenge opens on, the first by default; `isChallengeSaidAloud` (optional) — an untyped challenge opens on no line, the host announcing it; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
@@ -102,6 +106,8 @@ reconnect on the token it still holds.
 | `host.collectSheets` | host | `roundId` — closes every item still open |
 | `host.showItem` | host | `roundId`, `itemIndex` |
 | `host.judgeGroup` | host | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}` |
+| `host.nextCategory` | host | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last |
+| `host.refuseRow` | host | `roundId`, `categoryIndex`, `rowKey`, `refuses` — the judge's own refusal, under `hasJudge` alone |
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
 | `host.renameTeam` | host | `teamId`, `name` |
 | `host.moveSeat` | host | `playerId`, `teamId` |
@@ -424,6 +430,37 @@ the keeper's `guessnine.tick` moves the sheet, the black word or all nine
 closing the round. The reveal pays the sheet to each seat of the guessing
 team and the team once, the challenge's path (`answersAsOne`).
 
+**Petit Bac writes in private, then votes in public, one category at a
+time.** No phase is added: the sheets and the vote are both `playing`, and the
+arm carries `sheetsClosed` and a state per category, `open | voting | settled`.
+While a sheet is open a seat is sent its own lines (`yourSheet`) and nothing
+else; the console and the wall are sent `progress` — each seat's count of
+filled lines, never a word — seated host and judge alike. A category's `rows`
+reach every screen once it is `voting`, which is after every sheet has closed,
+and its `lines` once it is `settled`. `petit-bac-game.test.ts` searches the
+console's, the wall's and each seat's whole transcript for another seat's word.
+
+The sheets close on the round's clock, or `PETIT_BAC_STOP_GRACE_MS` after a
+`petitbac.stop` from a seat whose every line is filled (`sheet_not_full`
+otherwise, `wrong_phase` when the room turned the stop off or one is already
+counting). The grace is `stopClosesAtElapsedMs`, round time like `durationMs`,
+so a console away freezes it with the clock; it is the round's deadline, and a
+line written after it is `wrong_phase`. The vote then opens on the first
+category with a row — one with none settles on the spot. A row is a group of
+the round's answers on the letter under the shared normalisation, named by its
+`key`; a seat refuses any row it did not write (`invalid_message` on its own),
+and a row falls on a **strict majority** of the round's seats that did not
+write it. Every seat sending `petitbac.doneVoting`, or the console's
+`host.nextCategory`, settles the category and moves on; a `categoryIndex` that
+is not the one being voted is `stale_round`. Under `hasJudge` the seats' votes
+are `wrong_phase` and the judge's `host.refuseRow` decides alone. Each vote
+re-pays the round from the sheets — 2 `POINT`s for an accepted answer nobody
+else wrote, 1 for a shared one, no speed bonus — and `host.reveal` is refused
+`wrong_phase` while the sheets are open, then settles what is left on the votes
+as they stand. A seat the round did not open on is `joined_mid_round` on every
+frame. `petitbac.stop`, `petitbac.vote` and `petitbac.doneVoting` are floor
+frames; `petitbac.write` is not, for the slate's reason.
+
 `host.awardPlaces` carries the whole placement, and the server pays it:
 3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else
 nought. A placed team pays every seat it opened the round with the same, so
@@ -705,7 +742,7 @@ inherits it rather than re-deciding it.
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
 `nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
-`invalid_message`.
+`invalid_message`, `sheet_not_full`.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.
