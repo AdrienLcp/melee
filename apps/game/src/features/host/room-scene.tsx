@@ -124,7 +124,11 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
           ))}
           <span className='count'>
             {others.length === 0
-              ? translate('host.roomScene.table.empty')
+              ? translate(
+                  seatedAs === null
+                    ? 'host.roomScene.table.empty'
+                    : 'host.roomScene.table.emptyButYou'
+                )
               : translate('host.roomScene.table.count', {
                   count: others.length
                 })}

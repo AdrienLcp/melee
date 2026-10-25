@@ -611,7 +611,8 @@ export const EN_DICTIONARY = defineDictionary({
             }
           }
         }),
-        empty: 'Nobody at the table yet'
+        empty: 'Nobody at the table yet',
+        emptyButYou: 'Nobody else at the table yet'
       },
       wall: {
         dismiss: 'Let the room’s screen go',

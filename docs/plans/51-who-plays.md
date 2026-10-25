@@ -1,6 +1,6 @@
 # 51 — Who plays
 
-**Two steps of three done** — step 1 landed 25/10/2026, step 2 on 26/10/2026. Asked 25/10/2026: the host's *I play too* switch (home) and the
+**Done** — step 1 landed 25/10/2026, steps 2 and 3 on 26/10/2026. Asked 25/10/2026: the host's *I play too* switch (home) and the
 *A judge runs the room* switch (Table tab) ask the wrong question in the wrong
 place. A TV that only shows the code is offered a seat it will never use, and a
 seated host who picks a judged game loses the seat — and its score — without a
@@ -43,7 +43,12 @@ joining, with a name.** A host who plays is a player with controls.
 3. **Screens** (through `impeccable`, example pages first): home without the
    switch; the lobby's *Play from this screen*; the warning on a judged game or
    mode for a seated host; the seat's *sitting this one out* line replacing the
-   `host.seat.withheld.*` sentences.
+   `host.seat.withheld.*` sentences. **Done 26/10/2026**, without example
+   pages: there was no direction to choose, the roster being where every player
+   already appears. The home tray is one press; `SeatOffer` sits above the
+   roster's empty sockets until the console is seated; a seated console reads
+   *You judge without playing* in the game picker and the answer-mode strip; the
+   Salle tab says *Nobody else at the table yet* once the host sits alone.
 
 ## Decisions
 

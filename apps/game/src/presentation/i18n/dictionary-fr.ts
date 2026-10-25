@@ -585,7 +585,8 @@ export const FR_DICTIONARY = defineDictionary({
             }
           }
         }),
-        empty: 'Personne à table pour l’instant'
+        empty: 'Personne à table pour l’instant',
+        emptyButYou: 'Personne d’autre à table pour l’instant'
       },
       wall: {
         dismiss: 'Libérer l’écran de la salle',

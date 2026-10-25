@@ -113,6 +113,14 @@ More that cost time to learn:
   this pass did not touch, and the ports: a second `pnpm dev` finds 3100 and
   5273 taken and a Vite on someone else's server answers instead of yours.
 
+- **An init script outlives the session that added it.** `page.addInitScript`
+  stays on the MCP's default page for as long as the browser lives, so a
+  script an earlier session left there keeps rewriting storage on every
+  navigation: `melee:nickname` written `Adrien` came back `"Adrien"` after each
+  load, with no `setItem` from the page at all, and the roster showed the name
+  in quotes. Drive a check in a fresh `browser.newContext()` — the mute script
+  added to it — and a stray value has only this pass to come from.
+
 - **A room can be opened without walking the front door.** `POST /api/rooms`
   from a page already on the app's origin answers `{ code, hostToken }`; write
   `melee:host-tokens` with it — `[{ at: Date.now(), hostToken, roomCode }]` —
