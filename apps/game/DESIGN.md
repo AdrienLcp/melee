@@ -1009,6 +1009,13 @@ bounced. Durations:
   `base` × 3.5).
 - **Reveal** — `card-strike`, scale 1.06 to 1 on `slow`, on the card and never
   the screen holding it (`reveal-panel.sass`, `player-round.sass`).
+- **The standings moving** — after the strike (`slow` of delay), a seat that
+  changed places travels from its old row on `slow` × 1.5 (`standing-moves`,
+  `scoreboard.sass`); a climber passes over the rows it overtakes. The order
+  before the reveal is the screen's memory (`useStandingBeforeTheReveal`), so
+  a reload on a reveal draws the board in place. One column only.
+- **The payout** — the player's token set down a beat after the card
+  (`payout-stamp`, scale 1.4 to 1 on `base`).
 - **The round's clock** — a CSS animation (`round-drain`) whose duration is the
   server's remaining time, drained from the fraction still standing and
   re-keyed on every snapshot; absent while the host is away. One groove

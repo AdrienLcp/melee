@@ -203,6 +203,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The standings move at the reveal.** Once the round's card has
+  struck, every seat that changed places slides from its old row to its new
+  one, so the room sees who passed whom; on a player's screen, what the round
+  paid is set down on its token a beat after the card. Both stand still under
+  reduced motion.
+
 - `[Game]` **The map zooms smoothly and the panel's tabs fade in.** A zoom
   button or a wheel notch glides to its view rather than jumping, while a
   finger or a pinch still follows the hand exactly; switching tab in the

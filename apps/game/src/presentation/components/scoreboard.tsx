@@ -55,6 +55,12 @@ type ScoreboardProps = {
   onRemove?: (playerId: string) => void
   /** Ranked here, not by the caller — ties share a rank and the order is stable. */
   players: readonly PublicPlayer[]
+  /**
+   * The order the rows stood in before the scores last moved. A row that
+   * changed places travels from its old one; omitted, every row is drawn where
+   * it stands. Only for a single column, where a place is one row's height.
+   */
+  rankedBefore?: readonly PlayerId[] | null
   /** Only ever CSS custom properties a layout needs at runtime. */
   style?: React.CSSProperties
   /**
@@ -71,6 +77,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   label,
   onRemove,
   players,
+  rankedBefore,
   style,
   youId
 }) => {
@@ -101,64 +108,94 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
           : style
       }
     >
-      {buildScoreboard(players).map(({ player, rank }) => (
-        <li
-          className={[
-            player.isConnected ? 'connected' : 'away',
-            player.id === youId && 'you'
-          ]
-            .filter(Boolean)
-            .join(' ')}
-          // The rank as ranked, so a board can style a podium without counting
-          // rows: two players sharing first are both `1`, and the row after
-          // them is `3`. Absent until somebody has scored, the same way the
-          // column is.
-          data-rank={isRanked ? rank : undefined}
-          key={player.id}
-        >
-          {isRanked && <span className='rank'>{rank}</span>}
-          <span className='nickname'>
-            {hasPawns === true && (
-              <Pawn
-                seat={players.findIndex((seated) => seated.id === player.id)}
-              />
-            )}
-            <span className='name'>{player.nickname}</span>
-            {/*
+      {buildScoreboard(players).map(({ player, rank }, at) => {
+        const placesClimbed = placesClimbedBy({ at, player, rankedBefore })
+
+        return (
+          <li
+            className={[
+              player.isConnected ? 'connected' : 'away',
+              player.id === youId && 'you'
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            // The rank as ranked, so a board can style a podium without counting
+            // rows: two players sharing first are both `1`, and the row after
+            // them is `3`. Absent until somebody has scored, the same way the
+            // column is.
+            data-moved={
+              placesClimbed === 0
+                ? undefined
+                : placesClimbed > 0
+                  ? 'up'
+                  : 'down'
+            }
+            data-rank={isRanked ? rank : undefined}
+            key={player.id}
+            style={
+              placesClimbed === 0
+                ? undefined
+                : { '--moved-from': `${placesClimbed * 100}%` }
+            }
+          >
+            {isRanked && <span className='rank'>{rank}</span>}
+            <span className='nickname'>
+              {hasPawns === true && (
+                <Pawn
+                  seat={players.findIndex((seated) => seated.id === player.id)}
+                />
+              )}
+              <span className='name'>{player.nickname}</span>
+              {/*
               A seat whose screen has gone. It used to be the row's opacity and
               nothing else, which said it by taking the whole row under the
               contrast floor and said it to no reader who was not looking at it.
               The word is the signal now; the ink only seconds it.
             */}
-            {!player.isConnected && (
-              <span className='state'>{translate('player.away')}</span>
-            )}
-            {player.id === youId && (
-              <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
-            )}
-          </span>
-          {isRanked && (
-            <span className='score'>
-              {translate('player.score', { points: player.score })}
+              {!player.isConnected && (
+                <span className='state'>{translate('player.away')}</span>
+              )}
+              {player.id === youId && (
+                <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
+              )}
             </span>
-          )}
-          {onRemove !== undefined && (
-            <Button
-              aria-label={translate('host.players.removeNamed', {
-                nickname: player.nickname
-              })}
-              className='remove'
-              onPress={() => {
-                onRemove(player.id)
-              }}
-              size='small'
-              variant='outlined'
-            >
-              <CrossIcon />
-            </Button>
-          )}
-        </li>
-      ))}
+            {isRanked && (
+              <span className='score'>
+                {translate('player.score', { points: player.score })}
+              </span>
+            )}
+            {onRemove !== undefined && (
+              <Button
+                aria-label={translate('host.players.removeNamed', {
+                  nickname: player.nickname
+                })}
+                className='remove'
+                onPress={() => {
+                  onRemove(player.id)
+                }}
+                size='small'
+                variant='outlined'
+              >
+                <CrossIcon />
+              </Button>
+            )}
+          </li>
+        )
+      })}
     </ol>
   )
+}
+
+const placesClimbedBy = ({
+  at,
+  player,
+  rankedBefore
+}: {
+  at: number
+  player: PublicPlayer
+  rankedBefore: ScoreboardProps['rankedBefore']
+}): number => {
+  const before = rankedBefore?.indexOf(player.id) ?? -1
+
+  return before === -1 ? 0 : before - at
 }

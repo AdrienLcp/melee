@@ -13,6 +13,7 @@ import { POINT } from '@melee/protocol/scoring'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
+import { buildScoreboard } from '@melee/core/scoring/scoreboard'
 import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
@@ -104,6 +105,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   view
 }) => {
   const lastRevealed = useRoundStillBeingTalkedAbout(view)
+  const rankedBefore = useStandingBeforeTheReveal(view)
 
   // The invitation is drawn from the code in the address bar and this origin,
   // so the room can start reading it out before the socket has answered. Two
@@ -380,6 +382,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
                   }
             }
             players={view.players}
+            rankedBefore={rankedBefore}
             teams={view.teams}
             youId={youId}
           />
@@ -451,4 +454,33 @@ const useRoundStillBeingTalkedAbout = (
   }
 
   return lastRevealed
+}
+
+/**
+ * The order the seats stood in before the reveal moved them, so the standings
+ * can travel to their new places rather than arrive re-ranked. The scores land
+ * with the reveal, which leaves the last snapshot before it holding the old
+ * ones. The screen's own memory again: one that reloads on a reveal draws the
+ * board where it stands.
+ */
+const useStandingBeforeTheReveal = (
+  view: HostRoomView | null
+): readonly PlayerId[] | null => {
+  const [rankedBefore, setRankedBefore] = useState<readonly PlayerId[] | null>(
+    null
+  )
+
+  if (view !== null && view.phase !== 'revealed') {
+    const ranked = buildScoreboard(view.players).map(({ player }) => player.id)
+
+    if (
+      rankedBefore === null ||
+      ranked.length !== rankedBefore.length ||
+      ranked.some((id, at) => id !== rankedBefore[at])
+    ) {
+      setRankedBefore(ranked)
+    }
+  }
+
+  return rankedBefore
 }

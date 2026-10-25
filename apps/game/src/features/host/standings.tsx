@@ -26,6 +26,8 @@ type StandingsProps = {
   /** Walks a team's pawn a case either way; absent on a screen that moves nothing. */
   onAdjust?: (team: Team, cases: 1 | -1) => void
   players: readonly PublicPlayer[]
+  /** The seats' order before the round moved them, which the rows travel from. */
+  rankedBefore?: readonly PlayerId[] | null
   /** Ranked in the seats' place when the room plays in teams, the seats under them. */
   teams: readonly Team[]
   /** The seated host's own row, highlighted; `null` on a screen nobody sits at. */
@@ -60,6 +62,7 @@ export const Standings: React.FC<StandingsProps> = ({
   board,
   onAdjust,
   players,
+  rankedBefore,
   teams,
   youId
 }) => {
@@ -105,7 +108,12 @@ export const Standings: React.FC<StandingsProps> = ({
       ) : seatPawns.length > 0 ? (
         <TrackPodium pawns={seatPawns} youId={youId} />
       ) : (
-        <Scoreboard hasPawns players={players} youId={youId} />
+        <Scoreboard
+          hasPawns
+          players={players}
+          rankedBefore={rankedBefore}
+          youId={youId}
+        />
       )}
     </section>
   )

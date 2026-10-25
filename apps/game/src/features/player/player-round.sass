@@ -491,6 +491,10 @@
       justify-items: center
       width: var(--token)
 
+      // Set down on the card once it has struck, the way a token is played:
+      // what the round paid is the one figure this screen exists to say.
+      animation: payout-stamp var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
+
     &.scored .payout
       background: var(--good)
       box-shadow: inset 0 0 0 calc(var(--token) * 0.05) var(--good), inset 0 0 0 calc(var(--token) * 0.065) color-mix(in oklab, var(--on-spine) 50%, var(--good)), 0 4px 0 var(--good-edge), var(--shadow-lifted)
@@ -743,3 +747,8 @@
     stroke-dashoffset: var(--drained, 0)
   to
     stroke-dashoffset: 1
+
+@keyframes payout-stamp
+  from
+    opacity: 0
+    scale: 1.4
