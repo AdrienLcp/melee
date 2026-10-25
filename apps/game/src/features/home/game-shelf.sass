@@ -32,6 +32,14 @@
       margin: 0
       padding: 0
 
+      // Shelved one after the other on arrival, the whole row inside half a
+      // second whatever the shelf holds. On the item and not the spine: a
+      // disabled react-aria `Link` swaps its `<a>` for a `<span>`, so a spine
+      // is drawn anew the moment a table starts opening.
+      > li
+        animation: spine-shelve var(--transition-slow, 0s) var(--ease-out) backwards
+        animation-delay: calc(var(--transition-fast, 0s) * (1 + min(var(--shelf-index), 10) * 0.3))
+
       @container (width >= 52rem)
         column-gap: var(--space-s)
         grid-template-columns: repeat(2, minmax(0, 1fr))
@@ -55,12 +63,6 @@
     padding: var(--space-s) var(--space-m)
     text-decoration: none
     -webkit-tap-highlight-color: transparent
-
-    // Shelved one after the other on arrival, the whole row inside half a second
-    // whatever the shelf holds.
-    // `backwards`, so the lift and the press own `transform` once it has landed.
-    animation: spine-shelve var(--transition-slow, 0s) var(--ease-out) backwards
-    animation-delay: calc(var(--transition-fast, 0s) * (1 + min(var(--shelf-index), 10) * 0.3))
 
     .name
       @include typography.spine-name

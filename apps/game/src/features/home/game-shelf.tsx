@@ -42,7 +42,7 @@ export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
       </h2>
       <ul className='stack'>
         {shelvedGames.map((game, index) => (
-          <li key={game}>
+          <li key={game} style={shelfIndexStyle(index)}>
             <Link
               className='spine-link'
               href={gameHomePathFor({ game, locale })}
@@ -55,7 +55,7 @@ export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
                 event.preventDefault()
                 void open({ games: [game] })
               }}
-              style={spineStyle({ game, index })}
+              style={spineStyle(game)}
             >
               <span className='name'>
                 <GameIcon game={game} />
@@ -78,14 +78,11 @@ const isModifiedClick = (event: React.MouseEvent): boolean =>
   event.metaKey ||
   event.shiftKey
 
-const spineStyle = ({
-  game,
-  index
-}: {
-  game: ShelvedGame
-  index: number
-}): React.CSSProperties => ({
-  '--shelf-index': index,
+const shelfIndexStyle = (index: number): React.CSSProperties => ({
+  '--shelf-index': index
+})
+
+const spineStyle = (game: ShelvedGame): React.CSSProperties => ({
   '--spine': `var(--spine-${game})`,
   '--spine-ink': `var(--on-spine-${game})`
 })
