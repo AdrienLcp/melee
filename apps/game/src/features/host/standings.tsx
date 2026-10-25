@@ -4,7 +4,7 @@ import { useId } from 'react'
 import type { BoardSettings } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
-import type { Team } from '@melee/protocol/team'
+import type { Team, TeamId } from '@melee/protocol/team'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isEveryTeamItsOwnSeat } from '@melee/core/team/team-board'
@@ -26,12 +26,18 @@ type StandingsProps = {
   /** Walks a team's pawn a case either way; absent on a screen that moves nothing. */
   onAdjust?: (team: Team, cases: 1 | -1) => void
   players: readonly PublicPlayer[]
-  /** The seats' order before the round moved them, which the rows travel from. */
-  rankedBefore?: readonly PlayerId[] | null
+  /** The order before the round moved it, which the rows and trays travel from. */
+  rankedBefore?: StandingBefore | null
   /** Ranked in the seats' place when the room plays in teams, the seats under them. */
   teams: readonly Team[]
   /** The seated host's own row, highlighted; `null` on a screen nobody sits at. */
   youId: PlayerId | null
+}
+
+/** The seats' and the teams' order, each by id, as the board last ranked them. */
+export type StandingBefore = {
+  seats: readonly PlayerId[]
+  teams: readonly TeamId[]
 }
 
 /**
@@ -84,6 +90,7 @@ export const Standings: React.FC<StandingsProps> = ({
           isRanked
           label={translate('host.standings')}
           players={players}
+          rankedBefore={rankedBefore?.teams}
           teamDetail={
             board?.kind === 'track'
               ? (team) => (
@@ -111,7 +118,7 @@ export const Standings: React.FC<StandingsProps> = ({
         <Scoreboard
           hasPawns
           players={players}
-          rankedBefore={rankedBefore}
+          rankedBefore={rankedBefore?.seats}
           youId={youId}
         />
       )}

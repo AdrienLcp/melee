@@ -37,6 +37,7 @@ import {
   GripIcon,
   PlusIcon
 } from '@/presentation/components/icons'
+import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { useTouchReorder } from '@/presentation/components/use-touch-reorder'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntrySummaries } from '@/presentation/i18n/line-up-entry-names'
@@ -283,8 +284,11 @@ const OrderedRounds: React.FC<{
   const summaries = useLineUpEntrySummaries(lineUp)
   const rounds = keyedRounds(coming)
   const list = useRef<HTMLDivElement>(null)
+  const order = rounds.map((round) => round.id).join(' ')
 
   const arrange = ({ at, ids }: { at: number; ids: ReadonlySet<string> }) => {
+    remember()
+
     const moving = rounds.filter((round) => ids.has(round.id))
     const rest = rounds.filter((round) => !ids.has(round.id))
 
@@ -296,8 +300,11 @@ const OrderedRounds: React.FC<{
     list,
     onMove: (id, at) => {
       arrange({ at, ids: new Set([id]) })
-    }
+    },
+    order
   })
+
+  const remember = useRowsTravel({ list, order, pace: 'reorder' })
 
   const { dragAndDropHooks } = useDragAndDrop({
     getItems: (keys) => [...keys].map((key) => ({ 'text/plain': String(key) })),

@@ -1,9 +1,10 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
+import { useRef } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
-import type { Team } from '@melee/protocol/team'
+import type { Team, TeamId } from '@melee/protocol/team'
 
 import {
   buildTeamBoard,
@@ -15,6 +16,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import { Pawn } from './pawn'
+import { useRowsTravel } from './use-rows-travel'
 import { VisuallyHidden } from './visually-hidden'
 
 import './team-roster.sass'
@@ -28,6 +30,11 @@ type TeamRosterProps = {
    */
   isRanked?: boolean
   players: readonly PublicPlayer[]
+  /**
+   * The teams' ids in the order they stood before the reveal moved them, which
+   * a ranked tray travels from. Omitted, the trays are drawn where they stand.
+   */
+  rankedBefore?: readonly TeamId[] | null
   /** The press a seat offers beside its name: the host's *Move*. */
   seatAction?: (player: PublicPlayer) => React.ReactNode
   /** The presses a team offers in its head: the host's *Rename*, a player's *Join*. */
@@ -55,6 +62,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   isRanked = false,
   label,
   players,
+  rankedBefore,
   seatAction,
   teamAction,
   teamDetail,
@@ -72,6 +80,15 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   const entries = isRanked
     ? buildTeamBoard(teams)
     : teams.map((team) => ({ rank: null, team }))
+  const list = useRef<HTMLOListElement>(null)
+
+  useRowsTravel({
+    from: rankedBefore,
+    list,
+    order: entries.map(({ team }) => team.id).join(' '),
+    pace: 'reveal'
+  })
+
   const unassigned = players.filter(
     (player) => !teams.some((team) => team.seatIds.includes(player.id))
   )
@@ -84,7 +101,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
     })
 
   return (
-    <ol aria-label={label} className='team-roster'>
+    <ol aria-label={label} className='team-roster' ref={list}>
       {entries.map(({ rank, team }) => {
         const members = seatsOf(team.seatIds)
         const isYours = youId !== null && team.seatIds.includes(youId)
@@ -92,6 +109,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
         return (
           <li
             className={classNames('team', isYours && 'yours')}
+            data-key={team.id}
             data-rank={showsRank ? (rank ?? undefined) : undefined}
             key={team.id}
             style={{ '--team': `var(--pawn-${team.colour})` }}

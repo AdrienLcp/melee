@@ -60,7 +60,8 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
   useTouchReorder({
     grip: '.grip',
     list,
-    onMove: (id, at) => onReorder(moved({ at, ids: [id], order }))
+    onMove: (id, at) => onReorder(moved({ at, ids: [id], order })),
+    order: order.join(' ')
   })
 
   const { dragAndDropHooks } = useDragAndDrop({

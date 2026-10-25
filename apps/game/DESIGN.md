@@ -1016,7 +1016,20 @@ bounced. Durations:
   changed places travels from its old row on `slow` × 1.5 (`standing-moves`,
   `scoreboard.sass`); a climber passes over the rows it overtakes. The order
   before the reveal is the screen's memory (`useStandingBeforeTheReveal`), so
-  a reload on a reveal draws the board in place. One column only.
+  a reload on a reveal draws the board in place. One column only. Team trays
+  travel the same way, measured rather than counted in rows: trays are of
+  uneven height and deal across columns, so each starts from the box the tray
+  now holding its old place sits in (`use-rows-travel.ts`, Web Animations on the same
+  tokens).
+- **The running order reordered** — after a drop, every row slides from where
+  it was drawn when the order was sent to its new place, on `base`. A finger's
+  drop holds the rows where it left them until the new order is drawn (two
+  seconds at most, then they step home), so nothing steps back for the round
+  trip. react-aria writes a reorder to the DOM a commit late, so both wait for
+  the rows to stand in the new order (`when-rows-drawn.ts`) before measuring.
+  A row arriving or leaving, as a round opens, moves nobody.
+- **A seat back at the table** — its pawn under *Next* is stamped on
+  (`tick-stamp` on `base`) as it stands up from its outline.
 - **The payout** — the player's token set down a beat after the card
   (`payout-stamp`, scale 1.4 to 1 on `base`).
 - **A mark earned** — a box's tick and its order badge, and a copy's check,

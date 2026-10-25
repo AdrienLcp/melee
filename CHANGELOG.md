@@ -203,6 +203,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Teams and the running order move too.** At the reveal, a team
+  that changed places slides from its old tray to its new one, like the seats'
+  board; a round dragged in the running order slides into its place instead of
+  jumping there, and one dropped by a finger stays where it was left rather
+  than stepping back while the table catches up. A seat back at the table has
+  its pawn stamped on under *Next*. All of it stands still under reduced
+  motion.
+
 - `[Game]` **Small things answer as they change.** Ticking a game's box
   presses its tick on, and the boxes left out fade back into the row rather
   than switching; copying the code or the link stamps its check; the menu's

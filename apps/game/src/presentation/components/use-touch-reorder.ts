@@ -1,9 +1,22 @@
-import { type RefObject, useEffect, useEffectEvent } from 'react'
+import {
+  type RefObject,
+  useEffect,
+  useEffectEvent,
+  useLayoutEffect,
+  useRef
+} from 'react'
+
+import { whenRowsDrawn } from './when-rows-drawn'
 
 /** The custom property a row is shifted by while a finger drags. */
 const SHIFT_PROPERTY = '--touch-shift'
 /** The attribute the row under the finger carries, for the sheet to lift it. */
 const LIFTED_ATTRIBUTE = 'data-touch-lifted'
+/**
+ * How long a dropped row holds where the finger left it, waiting for the order
+ * to come back: past it, the move was refused and the rows step home.
+ */
+const HELD_DROP_MS = 2000
 
 type TouchReorderOptions = {
   /** Matches the grip inside a row that a finger picks the row up by. */
@@ -12,6 +25,8 @@ type TouchReorderOptions = {
   list: RefObject<HTMLElement | null>
   /** Called once the finger lifts, with the row's key and the index it lands at. */
   onMove: (key: string, at: number) => void
+  /** The rows' keys in the order drawn, joined: the drop holds until it changes. */
+  order: string
 }
 
 type Drag = {
@@ -31,18 +46,62 @@ const settle = (rows: readonly HTMLElement[]): void => {
   }
 }
 
+/** Settles rows without the step home a transition would draw: they are already there. */
+const settleInPlace = (rows: readonly HTMLElement[]): void => {
+  settle(rows)
+
+  for (const row of rows) {
+    for (const animation of row.getAnimations()) {
+      if (animation instanceof CSSTransition) {
+        animation.cancel()
+      }
+    }
+  }
+}
+
 /**
  * react-aria drags a row through the browser's own drag and drop, which a
  * phone starts on a long press when it starts it at all. A finger on the grip
  * moves the row here instead, on pointer events, while the rows it passes step
- * aside; a mouse and the keyboard stay react-aria's.
+ * aside; a mouse and the keyboard stay react-aria's. A dropped row stays where
+ * the finger left it until the new order is drawn, rather than stepping back
+ * to its old place for the length of the round trip.
  */
 export const useTouchReorder = ({
   grip,
   list,
-  onMove
+  onMove,
+  order
 }: TouchReorderOptions): void => {
   const land = useEffectEvent(onMove)
+  const dropOrder = useEffectEvent(() => order)
+  const held = useRef<{
+    order: string
+    rows: HTMLElement[]
+    timer: number
+  } | null>(null)
+
+  const release = useEffectEvent((drawn: string) => {
+    const drop = held.current
+    const element = list.current
+
+    if (drop === null || drop.order === drawn || element === null) {
+      return
+    }
+
+    held.current = null
+    clearTimeout(drop.timer)
+
+    return whenRowsDrawn({
+      list: element,
+      onDrawn: () => {
+        settleInPlace(drop.rows)
+      },
+      order: drawn
+    })
+  })
+
+  useLayoutEffect(() => release(order), [order])
 
   useEffect(() => {
     const element = list.current
@@ -125,11 +184,21 @@ export const useTouchReorder = ({
       const key = rows[from]?.dataset.key
 
       drag = null
-      settle(rows)
 
-      if (event.type === 'pointerup' && key !== undefined && to !== from) {
-        land(key, to)
+      if (event.type !== 'pointerup' || key === undefined || to === from) {
+        settle(rows)
+        return
       }
+
+      held.current = {
+        order: dropOrder(),
+        rows,
+        timer: window.setTimeout(() => {
+          settle(rows)
+          held.current = null
+        }, HELD_DROP_MS)
+      }
+      land(key, to)
     }
 
     element.addEventListener('pointerdown', onPointerDown)

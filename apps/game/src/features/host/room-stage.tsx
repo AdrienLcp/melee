@@ -15,6 +15,7 @@ import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 import { buildScoreboard } from '@melee/core/scoring/scoreboard'
 import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
+import { buildTeamBoard } from '@melee/core/team/team-board'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import {
@@ -39,7 +40,7 @@ import { ReflexStage } from './reflex-stage'
 import { RevealPanel } from './reveal-panel'
 import { ScoreTrack } from './score-track'
 import { SlateCorrectionStage, SlateWritingStage } from './slate-stages'
-import { Standings, standingsRowsOf } from './standings'
+import { type StandingBefore, Standings, standingsRowsOf } from './standings'
 import { isSetAsTable, TableLobby } from './table-lobby'
 import { TeamVerdicts } from './team-verdicts'
 import type { SlateWall } from './use-slate-wall'
@@ -457,26 +458,27 @@ const useRoundStillBeingTalkedAbout = (
 }
 
 /**
- * The order the seats stood in before the reveal moved them, so the standings
- * can travel to their new places rather than arrive re-ranked. The scores land
+ * The order the seats and the teams stood in before the reveal moved them, so
+ * the standings can travel to their new places rather than arrive re-ranked. The scores land
  * with the reveal, which leaves the last snapshot before it holding the old
  * ones. The screen's own memory again: one that reloads on a reveal draws the
  * board where it stands.
  */
 const useStandingBeforeTheReveal = (
   view: HostRoomView | null
-): readonly PlayerId[] | null => {
-  const [rankedBefore, setRankedBefore] = useState<readonly PlayerId[] | null>(
-    null
-  )
+): StandingBefore | null => {
+  const [rankedBefore, setRankedBefore] = useState<StandingBefore | null>(null)
 
   if (view !== null && view.phase !== 'revealed') {
-    const ranked = buildScoreboard(view.players).map(({ player }) => player.id)
+    const ranked: StandingBefore = {
+      seats: buildScoreboard(view.players).map(({ player }) => player.id),
+      teams: buildTeamBoard(view.teams).map(({ team }) => team.id)
+    }
 
     if (
       rankedBefore === null ||
-      ranked.length !== rankedBefore.length ||
-      ranked.some((id, at) => id !== rankedBefore[at])
+      !isSameOrder({ left: ranked.seats, right: rankedBefore.seats }) ||
+      !isSameOrder({ left: ranked.teams, right: rankedBefore.teams })
     ) {
       setRankedBefore(ranked)
     }
@@ -484,3 +486,12 @@ const useStandingBeforeTheReveal = (
 
   return rankedBefore
 }
+
+const isSameOrder = ({
+  left,
+  right
+}: {
+  left: readonly string[]
+  right: readonly string[]
+}): boolean =>
+  left.length === right.length && left.every((id, at) => id === right[at])
