@@ -200,13 +200,6 @@ export const roomSettingsSchema = z.object({
    */
   game: gameSettingsSchema.nullable(),
   /**
-   * Whether somebody runs the room and never plays: the console holds no seat
-   * under any game, and an evening plays each game the way its judge last left
-   * it — a buzzer quiz read aloud included. Without one an evening has nobody
-   * set aside to hear an answer, so each game opens the way it opens alone.
-   */
-  hasJudge: z.boolean(),
-  /**
    * The games ticked for the evening, each with its own settings: what the next
    * round may be drawn from. Two entries may share a game — a blind test on the
    * charts and one on film scores are two ticks — which is why an entry is the
@@ -284,7 +277,6 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   countdownMs: 3_000,
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,
-  hasJudge: false,
   lineUp: [],
   lineUpAt: null,
   /**

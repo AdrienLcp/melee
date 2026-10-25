@@ -275,19 +275,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       )
     }
 
-    return (
-      <PetitBacStage
-        onRefuseRow={
-          controls !== null && view.settings.hasJudge
-            ? (refusal) => {
-                controls.send({ ...refusal, roundId, type: 'host.refuseRow' })
-              }
-            : null
-        }
-        round={round}
-        view={view}
-      />
-    )
+    return <PetitBacStage round={round} view={view} />
   }
 
   if (view.phase === 'playing' && round != null) {

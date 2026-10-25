@@ -25,7 +25,6 @@ import { EveningAddPage } from './evening-add-page'
 import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds, ROUND_COUNT_STEPS } from './evening-rounds'
 import { GamePicker } from './game-picker'
-import { JudgeSwitch } from './judge-switch'
 import { GamePitch } from './lobby-stage'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { RoomScene } from './room-scene'
@@ -275,12 +274,6 @@ export const TableTab: React.FC<SetupTabsProps> = ({
           <span>{translate('host.panel.settled')}</span>
         </p>
       )}
-      <JudgeSwitch
-        isDisabled={!isLive}
-        onChange={onSettingsChange}
-        preferences={preferences}
-        settings={settings}
-      />
       {/*
         A room of one slate is one sheet, marked once: the next sheet is the
         next game, set up afresh, and a strip offering five of them would

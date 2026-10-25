@@ -22,7 +22,7 @@ export type HostPreferences = {
   /** What this host last left each game set to; absent until they have played it. */
   games: Partial<Record<GameKind, GameSetup>>
   /**
-   * Everything no game answers — the teams, the board and the judge among it —
+   * Everything no game answers — the teams and the board among it —
    * so it survives every switch and opens every table, one game or several.
    * Not the line-up nor its order, which are this evening's: the games of the
    * last evening are kept apart, by the home tray that opens on them, and its
@@ -112,8 +112,7 @@ const restoredTable = ({
         ? settings.game
         : (lineUp[settings.lineUpAt] ?? settings.game),
     lineUp,
-    mode:
-      table.hasJudge && remembered !== null ? remembered.mode : settings.mode
+    mode: remembered?.mode ?? settings.mode
   }
 }
 
@@ -123,10 +122,10 @@ const restoredTable = ({
  * keeps what the door decided — the question language above all, which the door
  * reads off the host's own interface.
  *
- * The teams, the board and the judge are this host's on any table. A table of
- * several keeps its own length and hold, takes each entry's game settings from
- * the host, and is answered on the host's mode with a judge and on each
- * game's own without, as `movedToEntry` answers every later switch. Teams that would refuse a game ticked — a
+ * The teams and the board are this host's on any table. A table of several
+ * keeps its own length and hold, and takes each entry's game settings and
+ * answer mode from the host, as `movedToEntry` answers every later switch.
+ * Teams that would refuse a game ticked — a
  * table answering aloud over a slate — give way to the door's.
  */
 export const restoredSettings = ({
@@ -159,10 +158,9 @@ export const restoredSettings = ({
  * game to file it under, and its `mode`, `roundCount` and reveal hold are the
  * shell's placeholders rather than anybody's choice.
  *
- * A table of several files how each game was played, and the teams, board and
- * judge as any table does — but not its length or its hold, which were the
- * table's, nor, with no judge, its answer mode: that is the game's own
- * opening, not this host's word on it.
+ * A table of several files how each game was answered, and the teams and
+ * board as any table does — but not its length or its hold, which were the
+ * table's.
  */
 export const rememberSettings = ({
   preferences,
@@ -190,7 +188,6 @@ export const rememberSettings = ({
           roundCount
         })
       : { autoAdvanceMs, mode, roundCount }
-  const filedMode = evening && !settings.hasJudge ? filed.mode : mode
 
   return {
     games:
@@ -201,7 +198,7 @@ export const rememberSettings = ({
             [game.kind]: {
               autoAdvanceMs: filed.autoAdvanceMs,
               game,
-              mode: filedMode,
+              mode,
               roundCount: filed.roundCount
             }
           },

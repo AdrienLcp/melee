@@ -64,8 +64,6 @@ export const petitBacContent = ({
     barredStoppers: new Set(),
     categories,
     categoryStates: categories.map(() => 'open'),
-    isJudged: room.settings.hasJudge,
-    judgeRefusals: new Map(),
     kind: 'petitbac',
     letter,
     refusals: new Map(),
@@ -259,7 +257,7 @@ export const canCancelPetitBacStop = ({
   )
 
 /**
- * The console taking a stop back, judge or not. The sheets reopen on the
+ * The console taking a stop back. The sheets reopen on the
  * clock as it stood when the stop was called, the vote so far is dropped, and
  * the caller may not stop again this round.
  */
@@ -297,7 +295,6 @@ export const cancelPetitBacStop = ({
   content.sheetsClosed = false
   content.categoryStates = content.categories.map(() => 'open')
   content.refusals = new Map()
-  content.judgeRefusals = new Map()
   content.votesDone = new Set()
   rescore({ content, room, round })
   touch(room, now)
@@ -351,10 +348,6 @@ export const votePetitBacRow = ({
 
   const { content, round } = found.data
 
-  if (content.isJudged) {
-    return Result.failure('wrong_phase')
-  }
-
   if (!isSeatedIn({ playerId, round })) {
     return Result.failure('joined_mid_round')
   }
@@ -378,57 +371,6 @@ export const votePetitBacRow = ({
 
   byRow.set(rowKey, refusedBy)
   content.refusals.set(categoryIndex, byRow)
-  rescore({ content, room, round })
-  touch(room, now)
-
-  return Result.success()
-}
-
-/** The judge's refusal of a row, in a room where the seats only watch. */
-export const refusePetitBacRow = ({
-  categoryIndex,
-  now,
-  refuses,
-  room,
-  roundId,
-  rowKey
-}: {
-  categoryIndex: number
-  now: number
-  refuses: boolean
-  room: Room
-  roundId: RoundId
-  rowKey: string
-}): Result<void, PetitBacRejection> => {
-  const found = votingRoundIn({ categoryIndex, room, roundId })
-
-  if (found.status === 'failure') {
-    return found
-  }
-
-  const { content, round } = found.data
-
-  if (!content.isJudged) {
-    return Result.failure('wrong_phase')
-  }
-
-  const isRow = petitBacRowsFor({ categoryIndex, room }).some(
-    (row) => row.key === rowKey
-  )
-
-  if (!isRow) {
-    return Result.failure('invalid_message')
-  }
-
-  const refused = content.judgeRefusals.get(categoryIndex) ?? new Set<string>()
-
-  if (refuses) {
-    refused.add(rowKey)
-  } else {
-    refused.delete(rowKey)
-  }
-
-  content.judgeRefusals.set(categoryIndex, refused)
   rescore({ content, room, round })
   touch(room, now)
 
@@ -459,10 +401,6 @@ export const finishPetitBacVote = ({
   }
 
   const { content, round } = found.data
-
-  if (content.isJudged) {
-    return Result.failure('wrong_phase')
-  }
 
   if (!isSeatedIn({ playerId, round })) {
     return Result.failure('joined_mid_round')
@@ -556,7 +494,6 @@ export const petitBacRowsFor = ({
   const seats = petitBacSeats({ room, round })
   const roster = new Set(seats)
   const refusals = content.refusals.get(categoryIndex)
-  const judgeRefusals = content.judgeRefusals.get(categoryIndex)
 
   return groupAnswers(
     seats.flatMap((playerId) => {
@@ -576,9 +513,7 @@ export const petitBacRowsFor = ({
       refusals: [...refusedBy].filter(
         (playerId) => roster.has(playerId) && !playerIds.includes(playerId)
       ).length,
-      refused: content.isJudged
-        ? (judgeRefusals?.has(key) ?? false)
-        : isRowRefused({ authors: playerIds, refusedBy, roster }),
+      refused: isRowRefused({ authors: playerIds, refusedBy, roster }),
       text
     }
   })

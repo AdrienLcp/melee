@@ -76,12 +76,7 @@ export const useSetupSummaries = ({
         duration: seconds(settings.countdownMs)
       })
     ].join(' · '),
-    table: [
-      join(parts.filter(isRoundCount)),
-      teamsSummary,
-      boardSummary,
-      settings.hasJudge ? translate('host.judge.summary') : ''
-    ]
+    table: [join(parts.filter(isRoundCount)), teamsSummary, boardSummary]
       .filter((part) => part !== '')
       .join(' · ')
   }

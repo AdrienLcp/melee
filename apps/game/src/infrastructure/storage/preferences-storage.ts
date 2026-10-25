@@ -107,8 +107,6 @@ const hostPreferencesSchema = z.object({
     })
     .extend({
       board: boardSettingsSchema.optional().catch(undefined),
-      /** Stored before a room could have a judge, which no room did. */
-      hasJudge: z.boolean().catch(false),
       /** Stored before the choice existed: the default, not the sum it played then. */
       teamScoring: teamScoringSchema.catch(DEFAULT_TEAM_SCORING),
       /** *A screen per team* is gone: its seats played as everyone for themselves. */

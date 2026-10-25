@@ -1,6 +1,6 @@
 # 51 — Who plays
 
-**Half done** — step 1 landed 25/10/2026. Asked 25/10/2026: the host's *I play too* switch (home) and the
+**Two steps of three done** — step 1 landed 25/10/2026, step 2 on 26/10/2026. Asked 25/10/2026: the host's *I play too* switch (home) and the
 *A judge runs the room* switch (Table tab) ask the wrong question in the wrong
 place. A TV that only shows the code is offered a seat it will never use, and a
 seated host who picks a judged game loses the seat — and its score — without a
@@ -34,16 +34,24 @@ joining, with a name.** A host who plays is a player with controls.
    and the `hello` refusal. Tests: a seated host across quiz → buzzer quiz →
    quiz keeps one player and its points, gets the answer on the buzzer round
    only, is not waited for there.
-2. **`hasJudge` goes.** Its readers move to *the console holds a seat*: the
-   remembered mode per game in a line-up (`movedToEntry`, `restoredSettings`),
-   Petit Bac's judged sheet. `PROTOCOL_VERSION` bump; stored preferences drop
-   the field. `JudgeSwitch` and its strings go.
+2. **Done.** **`hasJudge` goes**, with `JudgeSwitch`, its strings and
+   `host.refuseRow` (protocol 59; a stored setup drops the field on read). A
+   line-up plays each game on the mode this host last left it on, seated or
+   not — a seated host sits the judged ones out, which is what step 1 bought.
+   Petit Bac is always the room's vote (see Decisions). The seat is withheld
+   for aloud teams alone.
 3. **Screens** (through `impeccable`, example pages first): home without the
    switch; the lobby's *Play from this screen*; the warning on a judged game or
    mode for a seated host; the seat's *sitting this one out* line replacing the
    `host.seat.withheld.*` sentences.
 
 ## Decisions
+
+- **Petit Bac lost its judge rather than keying it on the seat.** The plan
+  said the judged sheet would follow *the console holds no seat*; that is a
+  television on the wall — the common case — and it would have taken the
+  table's vote, which is the game, away from every room without a seated host.
+  A referee refusing rows alone is gone; the vote is the only one.
 
 - **Sitting out, not unseating.** Unseating wiped the points a host earned on
   the games before; a line-up mixing a quiz and the bare buzzer made the host a

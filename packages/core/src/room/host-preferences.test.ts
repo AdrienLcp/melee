@@ -45,7 +45,6 @@ describe('rememberSettings', () => {
     expect(remembered.room).toEqual({
       board: { kind: 'off' },
       countdownMs: 10_000,
-      hasJudge: false,
       teamScoring: 'balanced',
       teams: { kind: 'off' }
     })
@@ -180,7 +179,6 @@ describe('rememberedSetupFor', () => {
       room: {
         board: { kind: 'off' },
         countdownMs: 3_000,
-        hasJudge: false,
         teamScoring: 'balanced',
         teams: { kind: 'off' }
       }
@@ -201,13 +199,12 @@ describe('a table of several games', () => {
     settings: {
       ...onTheQuiz,
       board: DEFAULT_TRACK_SETTINGS,
-      hasJudge: true,
       roundCount: 20,
       teams: { count: 3, kind: 'drawn' }
     }
   })
 
-  it('[host-preferences] lays the host’s teams, track and judge over a table of several games', () => {
+  it('[host-preferences] lays the host’s teams and track over a table of several games', () => {
     const restored = restoredSettings({
       preferences: teamsHost,
       settings: evening
@@ -215,7 +212,6 @@ describe('a table of several games', () => {
 
     expect(restored.teams).toEqual({ count: 3, kind: 'drawn' })
     expect(restored.board).toEqual(DEFAULT_TRACK_SETTINGS)
-    expect(restored.hasJudge).toBe(true)
     expect(restored.lineUp.map((entry) => entry.kind)).toEqual([
       'quiz',
       'blindtest',
@@ -248,7 +244,7 @@ describe('a table of several games', () => {
     expect(restored.teams).toEqual({ kind: 'off' })
   })
 
-  it('[host-preferences] keeps the mode a host judged a game on through a table with no judge', () => {
+  it('[host-preferences] keeps the mode a host judged a game on through a table of several', () => {
     const buzzerQuizHost = rememberSettings({
       preferences: null,
       settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
@@ -267,7 +263,7 @@ describe('a table of several games', () => {
     )
   })
 
-  it('[host-preferences] plays the table’s quiz on four candidates for a host who last judged one aloud', () => {
+  it('[host-preferences] plays the table’s quiz on the mode its host last left it on', () => {
     const buzzerQuizHost = rememberSettings({
       preferences: null,
       settings: { ...onTheQuiz, mode: DEFAULT_MODE_SETTINGS.buzzer }
@@ -279,23 +275,21 @@ describe('a table of several games', () => {
     })
 
     expect(restored.game?.kind).toBe('quiz')
-    expect(restored.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+    expect(restored.mode).toEqual(DEFAULT_MODE_SETTINGS.buzzer)
   })
 
-  it('[host-preferences] files the teams, the track and the judge of a table of several games', () => {
+  it('[host-preferences] files the teams and the track of a table of several games', () => {
     const remembered = rememberSettings({
       preferences: null,
       settings: {
         ...evening,
         board: DEFAULT_TRACK_SETTINGS,
-        hasJudge: true,
         teams: { count: 2, kind: 'chosen' }
       }
     })
 
     expect(remembered.room.teams).toEqual({ count: 2, kind: 'chosen' })
     expect(remembered.room.board).toEqual(DEFAULT_TRACK_SETTINGS)
-    expect(remembered.room.hasJudge).toBe(true)
     expect(remembered.room).not.toHaveProperty('lineUp')
     expect(remembered.room).not.toHaveProperty('lineUpAt')
   })

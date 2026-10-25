@@ -288,7 +288,6 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
     return null
   }
 
-  const isJudged = view.settings.hasJudge
   const hasVoted = content.votesDone.includes(view.youId)
   const seatOf = (playerId: string): number =>
     view.players.findIndex((player) => player.id === playerId)
@@ -309,9 +308,7 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
         <ol className='rows'>
           {(content.rows ?? []).map((row) => {
             const isYours = row.authors.includes(view.youId)
-            const isOut = isJudged
-              ? row.refused
-              : content.yourRefusals.includes(row.key)
+            const isOut = content.yourRefusals.includes(row.key)
 
             return (
               <li className={isOut ? 'row out' : 'row'} key={row.key}>
@@ -326,12 +323,6 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
                     <span className='yours'>
                       {translate('petitbac.vote.yours')}
                     </span>
-                  ) : isJudged ? (
-                    isOut && (
-                      <span className='refused'>
-                        {translate('petitbac.vote.refused')}
-                      </span>
-                    )
                   ) : (
                     <ToggleButton
                       aria-label={translate('petitbac.vote.refuseRow', {
@@ -355,27 +346,23 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
         </ol>
       </div>
 
-      {isJudged ? (
-        <p className='vote-note'>{translate('petitbac.vote.judged')}</p>
-      ) : (
-        <div className='vote-foot'>
-          <Button
-            isDisabled={hasVoted}
-            onPress={() => onDone(categoryIndex)}
-            variant={hasVoted ? 'outlined' : 'filled'}
-          >
-            <CheckIcon />
-            {translate('petitbac.vote.done')}
-          </Button>
-          <p className='vote-note'>
-            {content.votesDone.length === 0
-              ? translate('petitbac.vote.moveOn')
-              : translate('petitbac.vote.doneCount', {
-                  done: content.votesDone.length
-                })}
-          </p>
-        </div>
-      )}
+      <div className='vote-foot'>
+        <Button
+          isDisabled={hasVoted}
+          onPress={() => onDone(categoryIndex)}
+          variant={hasVoted ? 'outlined' : 'filled'}
+        >
+          <CheckIcon />
+          {translate('petitbac.vote.done')}
+        </Button>
+        <p className='vote-note'>
+          {content.votesDone.length === 0
+            ? translate('petitbac.vote.moveOn')
+            : translate('petitbac.vote.doneCount', {
+                done: content.votesDone.length
+              })}
+        </p>
+      </div>
     </section>
   )
 }

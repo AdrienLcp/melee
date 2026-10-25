@@ -509,11 +509,6 @@ export const FR_DICTIONARY = defineDictionary({
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
       plural: { count: { other: '{?}' } }
     }),
-    judge: {
-      hint: 'Personne ne joue sur cet écran : une partie peut alors se jouer au buzzer, les réponses dites à voix haute.',
-      label: 'Un juge anime sans jouer',
-      summary: 'Avec un juge'
-    },
     judgedMark: 'L’hôte juge',
     lineUp: {
       first: 'En premier',
@@ -671,8 +666,7 @@ export const FR_DICTIONARY = defineDictionary({
       taken: 'Tu joues sous le nom de {nickname}.',
       withheld: {
         aloud:
-          'Les équipes répondent à voix haute et tu les juges, donc pas de place ici.',
-        judge: 'Tu tiens la table en juge, donc pas de place ici.'
+          'Les équipes répondent à voix haute et tu les juges, donc pas de place ici.'
       }
     },
     seconds: '{seconds:number} s',
@@ -1100,11 +1094,9 @@ export const FR_DICTIONARY = defineDictionary({
         '{done:plural} · le vote passe à la suite quand tout le monde a fini',
         { plural: { done: { one: '{?} a fini', other: '{?} ont fini' } } }
       ),
-      judged: 'L’hôte décide des réponses qui comptent.',
       moveOn: 'Le vote passe à la suite quand tout le monde a fini.',
       of: '{index:number} sur {count:number}',
       refuse: 'Ne compte pas',
-      refused: 'Refusé',
       refuseRow: 'Ne compte pas : {answer}',
       yours: 'La tienne'
     },

@@ -526,11 +526,6 @@ export const EN_DICTIONARY = defineDictionary({
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
       plural: { count: { other: '{?}' } }
     }),
-    judge: {
-      hint: 'Nobody plays on this screen, so the games can be played on the buzzer, answers said aloud.',
-      label: 'A judge runs the room and doesn’t play',
-      summary: 'With a judge'
-    },
     /** On a judged answer mode and on the box of a game judged however it is answered. */
     judgedMark: 'Host judges',
     lineUp: {
@@ -704,8 +699,7 @@ export const EN_DICTIONARY = defineDictionary({
        */
       withheld: {
         aloud:
-          'The teams answer aloud and you judge them, so there is no seat here.',
-        judge: 'You run the table as its judge, so there is no seat here.'
+          'The teams answer aloud and you judge them, so there is no seat here.'
       }
     },
     seconds: '{seconds:number}s',
@@ -1157,11 +1151,9 @@ export const EN_DICTIONARY = defineDictionary({
         '{done:plural} · the vote moves on once everyone is done',
         { plural: { done: { other: '{?} done' } } }
       ),
-      judged: 'The host decides which answers count.',
       moveOn: 'The vote moves on once everyone is done.',
       of: '{index:number} of {count:number}',
       refuse: 'Doesn’t count',
-      refused: 'Out',
       refuseRow: 'Doesn’t count: {answer}',
       yours: 'Yours'
     },

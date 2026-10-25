@@ -45,11 +45,9 @@ export const isJudgedByHost = ({
 
 /**
  * `isJudgedByHost` over the whole room: a table answering aloud is judged on
- * its console every round, whatever the game, and the console holds no seat —
- * nor does it in a room that has a judge.
+ * its console every round, whatever the game, and the console holds no seat.
  */
 export const isRoomJudgedByHost = (settings: RoomSettings): boolean =>
-  settings.hasJudge ||
   settings.teams.kind === 'aloud' ||
   isJudgedByHost({
     game: settings.game?.kind ?? null,
@@ -67,26 +65,18 @@ export const isJudgedInEveryMode = (game: GameKind): boolean =>
 
 /**
  * Why a console holds no seat, in the terms the host can act on — `null`
- * where it could hold one, or where the lobby is still asking what to play and
- * the seat waits on that rather than on anything to explain:
- *
- * - `judge` — the room has a judge, who never plays;
- * - `aloud` — the teams answer aloud, judged on the console every round.
+ * where it could hold one: `aloud` when the teams answer aloud, judged on the
+ * console every round.
  *
  * A game or a mode the console judges withholds nothing: the seat sits those
  * rounds out and keeps its score (`isRoundJudgedByHost`).
  */
-export type SeatWithheldReason = 'aloud' | 'judge'
+export type SeatWithheldReason = 'aloud'
 
 export const seatWithheldReason = (
   settings: RoomSettings
-): SeatWithheldReason | null => {
-  if (settings.hasJudge) {
-    return 'judge'
-  }
-
-  return settings.teams.kind === 'aloud' ? 'aloud' : null
-}
+): SeatWithheldReason | null =>
+  settings.teams.kind === 'aloud' ? 'aloud' : null
 
 /**
  * Whether the round on screen is one the console judges, from what it was

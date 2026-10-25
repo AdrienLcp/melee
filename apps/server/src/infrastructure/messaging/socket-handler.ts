@@ -62,7 +62,6 @@ import {
   isPetitBacWriting,
   nextPetitBacCategory,
   type PetitBacRejection,
-  refusePetitBacRow,
   stopPetitBac,
   votePetitBacRow,
   writePetitBacLine
@@ -523,22 +522,6 @@ const dispatch = ({
         outbound,
         refusal: 'The stop can no longer be taken back',
         result: cancelPetitBacStop({ now, room, roundId: message.roundId })
-      })
-      break
-    }
-    case 'host.refuseRow': {
-      answerPetitBacFrame({
-        engine,
-        outbound,
-        refusal: 'That refusal was not kept',
-        result: refusePetitBacRow({
-          categoryIndex: message.categoryIndex,
-          now,
-          refuses: message.refuses,
-          room,
-          roundId: message.roundId,
-          rowKey: message.rowKey
-        })
       })
       break
     }

@@ -65,9 +65,11 @@ describe('readStoredHostPreferences', () => {
     const stored = readStoredHostPreferences()
 
     expect(stored.status === 'success' && stored.data?.room).toMatchObject({
-      hasJudge: true,
       teams: { kind: 'off' }
     })
+    expect(stored.status === 'success' && stored.data?.room).not.toHaveProperty(
+      'hasJudge'
+    )
   })
 
   it('[host-setup] reads a setup in teams stored before the board as one raced on the track', () => {

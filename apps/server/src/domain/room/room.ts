@@ -335,10 +335,6 @@ export type Round = {
         categoryStates: PetitBacCategoryState[]
         /** The seats whose stop the console took back this round, barred from calling another. */
         barredStoppers: Set<PlayerId>
-        /** Whether the console refuses rows itself, read off `hasJudge` as the round opens. */
-        isJudged: boolean
-        /** The judge's own refusals by category index, then row key; the room's vote under `hasJudge`. */
-        judgeRefusals: Map<number, Set<string>>
         kind: 'petitbac'
         letter: PetitBacLetter
         /** Who refused which row, by category index then row key. */

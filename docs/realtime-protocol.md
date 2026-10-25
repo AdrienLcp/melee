@@ -108,7 +108,6 @@ reconnect on the token it still holds.
 | `host.judgeGroup` | host | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}` |
 | `host.cancelStop` | host | `roundId` — takes a Petit Bac stop back and reopens every sheet on the time it left, until the vote moves past its first category |
 | `host.nextCategory` | host | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last |
-| `host.refuseRow` | host | `roundId`, `categoryIndex`, `rowKey`, `refuses` — the judge's own refusal, under `hasJudge` alone |
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
 | `host.renameTeam` | host | `teamId`, `name` |
 | `host.moveSeat` | host | `playerId`, `teamId` |
@@ -458,8 +457,10 @@ the round's answers on the letter under the shared normalisation, named by its
 and a row falls on a **strict majority** of the round's seats that did not
 write it. Every seat sending `petitbac.doneVoting`, or the console's
 `host.nextCategory`, settles the category and moves on; a `categoryIndex` that
-is not the one being voted is `stale_round`. Under `hasJudge` the seats' votes
-are `wrong_phase` and the judge's `host.refuseRow` decides alone. Each vote
+is not the one being voted is `stale_round`. The room's vote is the only one:
+a judge refusing rows alone went with `hasJudge`, because the one fact left to
+key it on — the console holds no seat — is a television on the wall, which would
+have lost the table its vote. Each vote
 re-pays the round from the sheets — 2 `POINT`s for an accepted answer nobody
 else wrote, 1 for a shared one, no speed bonus — and `host.reveal` is refused
 `wrong_phase` while the sheets are open, then settles what is left on the votes
@@ -657,9 +658,8 @@ round are refused `judging_round`, and the host view carries the answer as if
 nobody were seated. It plays again on the next round nobody judges — a line-up
 mixing a quiz and the bare buzzer used to make the host a spectator for the rest
 of the evening, its points gone with the seat. `isJudgedByHost` over what the
-round was **opened** on is the rule. Only two things withhold the seat itself,
-on `hello` and on the settings frame that sets them (`hostMustJudge`): a room
-with `settings.hasJudge`, which someone runs and never plays, and teams
+round was **opened** on is the rule. Only one thing withholds the seat itself,
+on `hello` and on the settings frame that sets it (`hostMustJudge`): teams
 answering aloud. Buzzer mode is
 what asks for a judge; the reflex race shares that mode and needs none, because
 being first *is* being right there. The slate is the other way round: it is

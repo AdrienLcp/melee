@@ -224,4 +224,4 @@ the code compiles.
   here, so a claim about a single screen still rests on a browser pass
 - A stage leaves no message unserved. The `not_implemented` code that used to
   cover one is gone — see [`../realtime-protocol.md`](../realtime-protocol.md)
-| [51 — Who plays](51-who-plays.md) | **half done** — step 1: a seated host sits out the rounds it judges, seat and score kept; owed: `hasJudge` removed, then the screens | Playing is joining: no seat switch on home, no judge switch; a seated host sits out the rounds it must judge and keeps its score |
+| [51 — Who plays](51-who-plays.md) | **two of three done** — step 1: a seated host sits out the rounds it judges, seat and score kept; step 2: `hasJudge` and the judge switch gone, Petit Bac always the room's vote; owed: the screens | Playing is joining: no seat switch on home, no judge switch; a seated host sits out the rounds it must judge and keeps its score |

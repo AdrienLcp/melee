@@ -17,11 +17,10 @@ import { publishRoom, type RoomEngine } from './room-engine'
  * reconnect — a rule enforced only where the form is drawn is a rule the next
  * `hello` walks straight through.
  *
- * A table answering aloud is judged by its console on every round, and a room
- * with a judge keeps its console off the board whatever the round asks.
+ * A table answering aloud is judged by its console on every round.
  */
 export const hostMustJudge = (room: Room): boolean =>
-  room.settings.hasJudge || room.settings.teams.kind === 'aloud'
+  room.settings.teams.kind === 'aloud'
 
 // Removed from the roster before the buzz is released, so that the player
 // being unseated cannot be the one counted as still able to answer — and off
@@ -37,8 +36,8 @@ export const unseat = (playerId: PlayerId, engine: RoomEngine): void => {
 }
 
 /**
- * A seat can outlive the reason it was allowed: a host seated before turning
- * on a judge, or before the table chose to answer aloud. Run where the
+ * A seat can outlive the reason it was allowed: a host seated before the
+ * table chose to answer aloud. Run where the
  * settings change.
  *
  * Every host connection rather than the one that sent the frame — a second tab

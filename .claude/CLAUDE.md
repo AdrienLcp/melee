@@ -141,9 +141,9 @@ which is why a user-visible string written into a component is a bug — see
   be it instead. A round `isJudgedByHost` says the host must judge — every mode
   but `buzzer` plus the reflex race need none — is **sat out** by that seat: it
   keeps its score, gets the answer, and plays again on the next round. It is the only role that can **close** the
-  room — see `Exits` below. **`hasJudge`** says somebody runs the room and
-  never plays: the console holds no seat under any game, and an evening plays
-  each game on the mode its judge last left it on rather than on the game's own
+  room — see `Exits` below. There is no judge switch: an evening plays each
+  game on the mode this host last left it on, and a seated host judging one sits
+  those rounds out.
 - **Wall** — the room's own screen, paired to it by the host's device: it shows
   the game, plays the clip and holds no answer, no control and no seat. A third
   role, so nothing written for the host reaches it — see `docs/realtime-protocol.md`

@@ -107,13 +107,4 @@ describe('launchesWithHostSeated', () => {
       })
     ).toBe(false)
   })
-
-  it('[play-right-away] leaves the launch to the group in a room with a judge', () => {
-    expect(
-      launchesWithHostSeated({
-        seated: 0,
-        settings: { ...onTheQuiz, hasJudge: true }
-      })
-    ).toBe(false)
-  })
 })

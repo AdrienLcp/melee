@@ -285,15 +285,6 @@ export const cancelStopMessageSchema = z.object({
   type: z.literal('host.cancelStop')
 })
 
-/** The judge's own refusal of a row, in a room with one — where the seats only watch. */
-export const refuseRowMessageSchema = z.object({
-  categoryIndex: petitBacCategoryIndexSchema,
-  refuses: z.boolean(),
-  roundId: roundIdSchema,
-  rowKey: z.string().min(1),
-  type: z.literal('host.refuseRow')
-})
-
 /** Judging is the host's call; `roundId` guards against a late click on a round that already moved on. */
 export const judgeMessageSchema = z.object({
   playerId: playerIdSchema,
@@ -536,7 +527,6 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   judgeGroupMessageSchema,
   nextCategoryMessageSchema,
   cancelStopMessageSchema,
-  refuseRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   moveSeatMessageSchema,
@@ -605,7 +595,6 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   judgeGroupMessageSchema,
   nextCategoryMessageSchema,
   cancelStopMessageSchema,
-  refuseRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   moveSeatMessageSchema,
@@ -649,7 +638,6 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.judgeGroup',
   'host.nextCategory',
   'host.cancelStop',
-  'host.refuseRow',
   'host.drawTeams',
   'host.renameTeam',
   'host.moveSeat',

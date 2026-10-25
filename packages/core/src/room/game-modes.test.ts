@@ -106,10 +106,9 @@ describe('seatWithheldReason', () => {
     ).toBeNull()
   })
 
-  it('[game-modes] names the judge and the aloud teams', () => {
+  it('[game-modes] names the aloud teams', () => {
     const quizTyped = settingsPlaying({ game: 'quiz', mode: 'typed' })
 
-    expect(seatWithheldReason({ ...quizTyped, hasJudge: true })).toBe('judge')
     expect(
       seatWithheldReason({ ...quizTyped, teams: { count: 2, kind: 'aloud' } })
     ).toBe('aloud')

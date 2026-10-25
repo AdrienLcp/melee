@@ -156,20 +156,13 @@
         grid-column: 2
         grid-row: 1 / span 2
 
-      .yours,
-      .refused
+      .yours
         @include typography.caption-strong
 
         border-radius: var(--radius-s)
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
         display: inline-block
         padding: var(--space-xs) var(--space-s)
-
-      .yours
-        box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
-
-      .refused
-        background: var(--danger)
-        color: var(--danger-ink)
 
       .refuse[data-selected]
         background: var(--danger)

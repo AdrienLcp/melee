@@ -168,13 +168,17 @@ describe('a console that plays the room it runs', () => {
     expect(hostContent(host)?.track).toBeNull()
   })
 
-  it('[host-seat] takes the seat back when the room is given a judge', async () => {
+  it('[host-seat] takes the seat back when the table chooses to answer aloud', async () => {
     const { host } = await harness.openRoom(SEATED_CONSOLE_GAME, 'Marina')
 
     expect(hostView(host)?.youId).not.toBeNull()
 
     host.send({
-      settings: ticked({ ...SEATED_CONSOLE_GAME, hasJudge: true }),
+      settings: ticked({
+        ...SEATED_CONSOLE_GAME,
+        mode: DEFAULT_MODE_SETTINGS.buzzer,
+        teams: { count: 2, kind: 'aloud' }
+      }),
       type: 'host.updateSettings'
     })
     await waitFor(

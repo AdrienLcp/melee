@@ -55,8 +55,6 @@ const PETIT_BAC: RoomSettings = {
   roundCount: 3
 }
 
-const JUDGED: RoomSettings = { ...PETIT_BAC, hasJudge: true }
-
 const petitBacRound = (
   view: { round: { content: RoundContent } | null } | null
 ): Extract<RoundContent, { kind: 'petitbac' }> | null => {
@@ -457,43 +455,6 @@ describe('a Petit Bac round through the seam', () => {
     expect(
       firstNames?.find(({ playerId }) => playerId === idOf(lea))?.outcome
     ).toBe('offLetter')
-  })
-
-  it('[petitbac] leaves the refusing to the judge in a judged room', async () => {
-    const { host, lea, roundId, sheetsClosed, stop, vote, write, zoe } =
-      await roundInPlay({ settings: JUDGED })
-
-    await write(zoe, SHEETS.zoe)
-    await write(lea, SHEETS.lea)
-    stop(zoe)
-    await sheetsClosed()
-
-    vote({ rowKey: 'belgique', seat: lea })
-    await waitFor(
-      () => errorsIn(lea).some(({ code }) => code === 'wrong_phase'),
-      'a seat’s vote to be refused'
-    )
-
-    host.send({
-      categoryIndex: 0,
-      refuses: true,
-      roundId,
-      rowKey: 'belgique',
-      type: 'host.refuseRow'
-    })
-    await waitFor(
-      () =>
-        petitBacRound(playerView(zoe))?.rows?.find(
-          (row) => row.key === 'belgique'
-        )?.refused === true,
-      'the judge’s refusal to drop the row'
-    )
-
-    host.send({ categoryIndex: 0, roundId, type: 'host.nextCategory' })
-    await waitFor(
-      () => petitBacRound(playerView(zoe))?.categoryStates[1] === 'voting',
-      'the console to move the room on'
-    )
   })
 
   it('[petitbac] refuses a reveal while the sheets are being written', async () => {
