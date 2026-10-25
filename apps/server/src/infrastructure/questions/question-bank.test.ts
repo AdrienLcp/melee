@@ -157,12 +157,18 @@ describe('drawQuestion', () => {
   it('[bank] mixes the subjects evenly when the host has ticked none', () => {
     const counts = new Map<QuestionCategory, number>()
 
-    for (const question of drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_500 })) {
+    const draws = 1_500
+
+    for (const question of drawMany(DEFAULT_QUIZ_SETTINGS, { times: draws })) {
       counts.set(question.category, (counts.get(question.category) ?? 0) + 1)
     }
 
+    // Half the even share sits five deviations under it, so chance never trips
+    // it; a draw weighted by each subject's rows starves the flags below it.
+    const evenShare = draws / questionCategories.length
+
     expect(counts.size).toBe(questionCategories.length)
-    expect(Math.min(...counts.values())).toBeGreaterThan(100)
+    expect(Math.min(...counts.values())).toBeGreaterThan(evenShare / 2)
   }, 30_000)
 
   /**
