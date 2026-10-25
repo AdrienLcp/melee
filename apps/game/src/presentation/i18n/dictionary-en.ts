@@ -464,8 +464,7 @@ export const EN_DICTIONARY = defineDictionary({
         among: 'among {games}, never the same game twice in a row',
         endless: 'Then by chance, until you stop',
         over: 'too many for {total:number} rounds',
-        overHint:
-          'Every planned game is played once, so the evening has to grow.',
+        overHint: 'Every planned game is played once, so it needs more rounds.',
         raise: 'Make it {count:number}',
         rest: defineTranslation('{count:plural}', {
           plural: {
@@ -482,7 +481,7 @@ export const EN_DICTIONARY = defineDictionary({
         subjects: '{count:number} subjects'
       },
       drag: 'Move round {number:number}, {name}',
-      fills: 'Fills the evening',
+      fills: 'Fills the rest',
       fixed: 'Already played: it no longer changes.',
       once: 'Played once',
       pick: 'Which round?',
@@ -528,7 +527,7 @@ export const EN_DICTIONARY = defineDictionary({
       plural: { count: { other: '{?}' } }
     }),
     judge: {
-      hint: 'Nobody plays on this screen, so an evening can be played on the buzzer, answers said aloud.',
+      hint: 'Nobody plays on this screen, so the games can be played on the buzzer, answers said aloud.',
       label: 'A judge runs the room and doesn’t play',
       summary: 'With a judge'
     },
@@ -645,18 +644,17 @@ export const EN_DICTIONARY = defineDictionary({
     },
     rounds: 'Rounds',
     saved: {
-      door: 'Saved evenings',
+      door: 'Saved line-ups',
       doorCount: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} kept', other: '{?} kept' } }
       }),
-      doorEmpty: 'Keep this one to run it again another night',
-      empty:
-        'No evening kept yet. Name this one to run it again another night.',
+      doorEmpty: 'Keep this one to run it again another time',
+      empty: 'No line-up kept yet. Name this one to run it again another time.',
       endless: 'No end',
       forget: 'Forget {name}',
-      heading: 'Saved evenings',
-      inLobby: 'A saved evening is run before the first round.',
-      name: 'Name this evening',
+      heading: 'Saved line-ups',
+      inLobby: 'A saved line-up is run before the first round.',
+      name: 'Name this line-up',
       replace: 'Replace',
       rounds: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} round', other: '{?} rounds' } }
@@ -716,8 +714,8 @@ export const EN_DICTIONARY = defineDictionary({
         drawn: '{count:number} at the table, waiting for the draw',
         seats: '{count:number} at the table, each with a pawn on Start'
       },
-      evening: 'Team game night',
-      eveningSeats: 'Game night',
+      evening: 'Team games',
+      eveningSeats: 'Party games',
       nobody: {
         seat: 'A seat'
       },
@@ -895,7 +893,7 @@ export const EN_DICTIONARY = defineDictionary({
       hostTokens:
         'The key to each table you opened, which lets you take it back from another screen. Forgotten after a day.',
       lineUpGames:
-        'The games of the last evening you ran, ticked again on the next table you open.',
+        'The games of the last table you ran, ticked again on the next table you open.',
       locale: 'The language you picked.',
       logs: 'Cloudflare keeps a log of each request for three days, to find what broke: it holds your IP address and your browser’s name beside the table’s code, and never a nickname or an answer.',
       nickname:
@@ -904,7 +902,7 @@ export const EN_DICTIONARY = defineDictionary({
         'Whether you last folded the panel beside the table you run.',
       panelSide: 'Which side of the screen you put that panel on.',
       savedEvenings:
-        'The evenings you saved under a name, each game with its settings, to run them again.',
+        'The line-ups you saved under a name, each game with its settings, to run them again.',
       seats:
         'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
       server:
@@ -947,7 +945,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'A false equation drawn in matches — or a number to make as big, or as small, as one match allows. Everyone picks a match up on their own screen and lays it somewhere else: the answer pays most, the next best numbers a little less, and the clock adds to it. Or play it aloud: first to buzz says which match moves and where, and the host says right or wrong. Every puzzle is dealt fresh, so the evening never runs out, and every one has an answer.'
+        'A false equation drawn in matches — or a number to make as big, or as small, as one match allows. Everyone picks a match up on their own screen and lays it somewhere else: the answer pays most, the next best numbers a little less, and the clock adds to it. Or play it aloud: first to buzz says which match moves and where, and the host says right or wrong. Every puzzle is dealt fresh, so the game never runs out, and every one has an answer.'
     },
     move: {
       groove:

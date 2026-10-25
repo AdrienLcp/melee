@@ -56,6 +56,9 @@
       animation: panel-screen-in calc(var(--transition-fast, 0s) * 1.5) var(--ease-out)
       display: grid
       gap: var(--space-m)
+      // An auto row in a fixed-height grid that overflows shrinks to its
+      // item's declared min-height, which cut a two-line button to one.
+      grid-auto-rows: max-content
       grid-template-columns: minmax(0, 1fr)
       outline: none
 

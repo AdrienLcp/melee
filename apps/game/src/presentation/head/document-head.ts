@@ -42,7 +42,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     challenge: {
       description:
-        'A challenge played at the table, away from every screen: the wall shows what it is, the host says who came first, second and third, and the points land on the board with every other round of the evening.',
+        'A challenge played at the table, away from every screen: the wall shows what it is, the host says who came first, second and third, and the points land on the board with every other round played.',
       title: 'Challenge — Mêlée'
     },
     credits: {
@@ -119,7 +119,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     challenge: {
       description:
-        "Un défi qui se joue à table, loin des écrans : le mur affiche ce qu'il faut faire, l'hôte dit qui finit premier, deuxième et troisième, et les points arrivent au tableau avec toutes les autres manches de la soirée.",
+        "Un défi qui se joue à table, loin des écrans : le mur affiche ce qu'il faut faire, l'hôte dit qui finit premier, deuxième et troisième, et les points arrivent au tableau avec toutes les autres manches de la partie.",
       title: 'Défi — Mêlée'
     },
     credits: {
@@ -135,7 +135,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     home: {
       description:
         'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes, Frise chronologique, Devineuf et Petit Bac.',
-      title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
+      title: 'Mêlée — des jeux à plusieurs pour un écran et toute la salle'
     },
     innerclock: {
       description:

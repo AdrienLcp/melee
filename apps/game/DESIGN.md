@@ -516,7 +516,7 @@ often open on the screen the whole room faces, and the square hands the table
 to whoever scans it. The phase's presses are never in it: they stay in `HostActions` under
 the stage, so a folded panel or another tab never hides what the room waits on.
 
-- **Saved evenings** are one more row under the planned games, the same
+- **Saved line-ups** (*Parties enregistrées*) are one more row under the planned games, the same
   ruled box as the add row, opening a page in the tab's place: the naming
   field with its press under it at the panel's width (the seat's form), then
   a ruled list whose row is the evening's entries as a line of spine ticks,

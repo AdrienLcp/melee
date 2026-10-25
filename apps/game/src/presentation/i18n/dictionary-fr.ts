@@ -443,7 +443,7 @@ export const FR_DICTIONARY = defineDictionary({
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
         over: 'de trop pour {total:number} manches',
         overHint:
-          'Chaque jeu prévu se joue une fois : la soirée doit s’allonger.',
+          'Chaque jeu prévu se joue une fois : la partie doit s’allonger.',
         raise: 'Passer à {count:number}',
         rest: defineTranslation('{count:plural}', {
           plural: {
@@ -460,7 +460,7 @@ export const FR_DICTIONARY = defineDictionary({
         subjects: '{count:number} sujets'
       },
       drag: 'Déplacer la manche {number:number}, {name}',
-      fills: 'Remplit la soirée',
+      fills: 'Remplit la partie',
       fixed: 'Déjà jouée : elle ne change plus.',
       once: 'Se joue une fois',
       pick: 'Quelle manche ?',
@@ -472,7 +472,7 @@ export const FR_DICTIONARY = defineDictionary({
       rounds: 'Les jeux prévus',
       slateKeyLater: 'Ses réponses se tapent quand elle passe en prochaine.',
       stamp: {
-        beyond: 'Hors soirée',
+        beyond: 'Hors programme',
         count: '{count:number}×',
         first: 'En premier',
         next: 'Ensuite',
@@ -510,7 +510,7 @@ export const FR_DICTIONARY = defineDictionary({
       plural: { count: { other: '{?}' } }
     }),
     judge: {
-      hint: 'Personne ne joue sur cet écran : une soirée peut alors se jouer au buzzer, les réponses dites à voix haute.',
+      hint: 'Personne ne joue sur cet écran : une partie peut alors se jouer au buzzer, les réponses dites à voix haute.',
       label: 'Un juge anime sans jouer',
       summary: 'Avec un juge'
     },
@@ -618,20 +618,20 @@ export const FR_DICTIONARY = defineDictionary({
     },
     rounds: 'Manches',
     saved: {
-      door: 'Soirées enregistrées',
+      door: 'Parties enregistrées',
       doorCount: defineTranslation('{count:plural}', {
         plural: {
           count: { one: '{?} gardée', other: '{?} gardées' }
         }
       }),
-      doorEmpty: 'Garde celle-ci pour la relancer un autre soir',
+      doorEmpty: 'Garde celle-ci pour la relancer une autre fois',
       empty:
-        'Aucune soirée gardée pour l’instant. Donne un nom à celle-ci pour la relancer un autre soir.',
+        'Aucune partie gardée pour l’instant. Donne un nom à celle-ci pour la relancer une autre fois.',
       endless: 'Sans fin',
       forget: 'Oublier {name}',
-      heading: 'Soirées enregistrées',
-      inLobby: 'Une soirée enregistrée se lance avant la première manche.',
-      name: 'Nom de la soirée',
+      heading: 'Parties enregistrées',
+      inLobby: 'Une partie enregistrée se lance avant la première manche.',
+      name: 'Nom de la partie',
       replace: 'Remplacer',
       rounds: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} manche', other: '{?} manches' } }
@@ -680,8 +680,8 @@ export const FR_DICTIONARY = defineDictionary({
         drawn: '{count:number} à table, en attente du tirage',
         seats: '{count:number} à table, chacun son pion sur Départ'
       },
-      evening: 'Soirée en équipes',
-      eveningSeats: 'Soirée jeux',
+      evening: 'Partie en équipes',
+      eveningSeats: 'Partie de jeux',
       nobody: {
         seat: 'Une place'
       },
@@ -854,7 +854,7 @@ export const FR_DICTIONARY = defineDictionary({
       hostTokens:
         'La clé de chaque table que tu as ouverte, qui te permet de la reprendre depuis un autre écran. Oubliée au bout d’un jour.',
       lineUpGames:
-        'Les jeux de la dernière soirée que tu as tenue, cochés à nouveau sur la prochaine table que tu ouvres.',
+        'Les jeux de la dernière partie que tu as tenue, cochés à nouveau sur la prochaine table que tu ouvres.',
       locale: 'La langue que tu as choisie.',
       logs: 'Cloudflare garde un journal de chaque requête pendant trois jours, pour trouver ce qui a cassé : il contient ton adresse IP et le nom de ton navigateur à côté du code de la table, jamais un pseudo ni une réponse.',
       nickname:
@@ -863,7 +863,7 @@ export const FR_DICTIONARY = defineDictionary({
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
       savedEvenings:
-        'Les soirées que tu as enregistrées sous un nom, chaque jeu avec ses réglages, pour les relancer.',
+        'Les parties que tu as enregistrées sous un nom, chaque jeu avec ses réglages, pour les relancer.',
       seats:
         'La place que tu occupes à chaque table rejointe, pour qu’un rechargement ou un écran verrouillé t’y ramène avec ton score. Oubliée au bout d’un jour.',
       server:
@@ -903,7 +903,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Une égalité fausse dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Chacun prend une allumette sur son écran et la pose ailleurs : la bonne réponse rapporte le plus, les nombres suivants un peu moins, et le chrono s’y ajoute. Ou à voix haute : le premier à buzzer dit quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la soirée ne s’épuise jamais, et toutes ont une réponse.'
+        'Une égalité fausse dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Chacun prend une allumette sur son écran et la pose ailleurs : la bonne réponse rapporte le plus, les nombres suivants un peu moins, et le chrono s’y ajoute. Ou à voix haute : le premier à buzzer dit quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la partie ne s’épuise jamais, et toutes ont une réponse.'
     },
     move: {
       groove:
