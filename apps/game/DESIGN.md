@@ -866,9 +866,13 @@ always laid on paper.
 `body` / `--card-muted`. The reflex wait is the same card under the reflex lid's
 saffron band, with no groove — this round must show no clock.
 
-The order of preference before any spinner: draw what is already known (the
-console's code, QR and address come from the address bar before the socket
-answers); say it in words; reserve the box and let content arrive (cover art).
+The order of preference before any spinner: draw what is already known; say it
+in words; reserve the box and let content arrive (cover art). *Known* means
+known: the console's stage stays empty until the first snapshot, because an
+invitation drawn from the address bar was only right for a lobby without teams —
+a reload mid-round, or a wall whose table sits down in teams, flashed it before
+the real stage swapped in. The wall's pairing title waits for its code the same
+way, rather than sitting centred and jumping when the code lands.
 `Loader` — a turning ring and a **required** named line — is the last rung,
 today the cold load of a route. It waits 250ms before appearing and mounts its
 `role='status'` empty, filling it after, so a screen reader hears the change.

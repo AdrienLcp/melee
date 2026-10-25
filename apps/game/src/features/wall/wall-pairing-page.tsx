@@ -161,15 +161,18 @@ const PairingScreen: React.FC<{ onStale: () => void }> = ({ onStale }) => {
   return (
     <Main className='wall-pairing-page'>
       <DocumentTitle>{translate('wall.pairing.documentTitle')}</DocumentTitle>
-      <h1>{translate('wall.pairing.title')}</h1>
+      {/* Drawn alone while the code is fetched, the centred title jumps when the invitation lands under it. */}
       {pairing.status === 'waiting' && (
-        <CodeAndSquare
-          caption={translate('wall.pairing.caption')}
-          code={pairing.pairingCode}
-          codeCaption={translate('wall.pairing.codeCaption')}
-          isUnattended
-          url={pairWallUrlFor(pairing.pairingCode)}
-        />
+        <>
+          <h1>{translate('wall.pairing.title')}</h1>
+          <CodeAndSquare
+            caption={translate('wall.pairing.caption')}
+            code={pairing.pairingCode}
+            codeCaption={translate('wall.pairing.codeCaption')}
+            isUnattended
+            url={pairWallUrlFor(pairing.pairingCode)}
+          />
+        </>
       )}
     </Main>
   )

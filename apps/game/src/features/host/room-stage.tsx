@@ -26,7 +26,6 @@ import {
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
-import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { RevealHold } from '@/presentation/components/round-progress'
 
 import { ChallengePlacing } from './challenge-placing'
@@ -114,16 +113,11 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   const lastRevealed = useRoundStillBeingTalkedAbout(view)
   const rankedBefore = useStandingBeforeTheReveal(view)
 
-  // The invitation is drawn from the code in the address bar and this origin,
-  // so the room can start reading it out before the socket has answered. Two
-  // columns with one child on purpose: it lands in the column it keeps, and
-  // nothing moves when the first snapshot arrives.
+  // Empty, not an invitation guessed from the address bar: a reload mid-round,
+  // or a wall whose table sits down in teams, flashed the lobby's invitation
+  // before the snapshot swapped in a different stage.
   if (view === null) {
-    return (
-      <div className='stage lobby'>
-        <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
-      </div>
-    )
+    return <div className='stage' />
   }
 
   const round = view.round
