@@ -308,6 +308,10 @@ const OrderedRounds: React.FC<{
 
   const { dragAndDropHooks } = useDragAndDrop({
     getItems: (keys) => [...keys].map((key) => ({ 'text/plain': String(key) })),
+    // Disabled rather than withheld: `GridList` calls the drag hooks only when
+    // it is handed them, so handing them over mid-life changes its hook order
+    // and React throws — which is what the first round's start used to do.
+    isDisabled: !isEditable,
     onReorder: ({ keys, target }) => {
       const ids = new Set([...keys].map(String))
       const targetAt = rounds
@@ -328,7 +332,7 @@ const OrderedRounds: React.FC<{
     <GridList
       aria-label={label}
       className='order'
-      dragAndDropHooks={isEditable ? dragAndDropHooks : undefined}
+      dragAndDropHooks={dragAndDropHooks}
       items={rounds}
       onAction={(key) => {
         const at = rounds.find((round) => round.id === key)?.at
