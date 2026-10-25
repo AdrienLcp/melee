@@ -203,6 +203,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Small things answer as they change.** Ticking a game's box
+  presses its tick on, and the boxes left out fade back into the row rather
+  than switching; copying the code or the link stamps its check; the menu's
+  leaflet slides away rather than vanishing; and the line saying somebody sat
+  down fades out instead of disappearing. All of it stands still under reduced
+  motion.
+
 - `[Game]` **The standings move at the reveal.** Once the round's card has
   struck, every seat that changed places slides from its old row to its new
   one, so the room sees who passed whom; on a player's screen, what the round

@@ -76,25 +76,39 @@ export const useArrival = (view: HostRoomView | null): Arrival | null => {
  * every width.
  *
  * The live region is mounted empty and stays mounted, because one that
- * appears with its first message is a message nobody hears.
+ * appears with its first message is a message nobody hears. The line it let go
+ * stays drawn until its exit has played, then the region empties.
  */
 export const ArrivalNotice: React.FC<{ arrival: Arrival | null }> = ({
   arrival
 }) => {
   const translate = useTranslate()
+  const [leaving, setLeaving] = useState<Arrival | null>(null)
+  const [said, setSaid] = useState<Arrival | null>(arrival)
+
+  if (arrival !== said) {
+    setLeaving(arrival === null ? said : null)
+    setSaid(arrival)
+  }
+
+  const drawn = arrival ?? leaving
 
   return (
     <p
       aria-live='polite'
       className='arrival-notice'
-      data-shown={arrival !== null || undefined}
+      data-leaving={leaving !== null || undefined}
+      data-shown={drawn !== null || undefined}
+      onAnimationEnd={() => {
+        setLeaving(null)
+      }}
       role='status'
     >
-      {arrival !== null && (
+      {drawn !== null && (
         <>
-          <Pawn seat={arrival.seat} />
+          <Pawn seat={drawn.seat} />
           <span className='words'>
-            {translate('host.arrival', { nickname: arrival.nickname })}
+            {translate('host.arrival', { nickname: drawn.nickname })}
           </span>
         </>
       )}

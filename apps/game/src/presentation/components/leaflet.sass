@@ -10,6 +10,9 @@
     &[data-entering]
       animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
 
+    &[data-exiting]
+      animation: popover-strike calc(var(--transition-fast, 0s) * 0.7) var(--ease-out) reverse
+
   .sheet
     @include leaflet.leaflet
     @include leaflet.sheet

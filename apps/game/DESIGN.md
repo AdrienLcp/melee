@@ -1019,6 +1019,15 @@ bounced. Durations:
   a reload on a reveal draws the board in place. One column only.
 - **The payout** — the player's token set down a beat after the card
   (`payout-stamp`, scale 1.4 to 1 on `base`).
+- **A mark earned** — a box's tick and its order badge, and a copy's check,
+  pressed on (`tick-stamp`, scale 0.4 to 1: `base` on a box, `fast` on a
+  button). A box's paper and band follow its lift on `base`.
+- **Leaving** — exits run faster than their entry: a popover leaflet reverses
+  its strike at `fast` × 0.7 (the sheet face has its own), and the arrival
+  notice keeps its line drawn through `notice-leave` (`base` × 0.6) before the
+  region empties. An exit takes its own keyframe, never the entry reversed:
+  the same name with a new direction resumes the finished entry, which ends at
+  once and never reports its end.
 - **The round's clock** — a CSS animation (`round-drain`) whose duration is the
   server's remaining time, drained from the fraction still standing and
   re-keyed on every snapshot; absent while the host is away. One groove

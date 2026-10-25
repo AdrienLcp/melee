@@ -8,6 +8,8 @@ import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import { Button } from './button'
 import { CheckIcon, CopyIcon } from './icons'
 
+import './copy-button.sass'
+
 /** Long enough to be read from where the host is standing, gone before the next glance. */
 const CONFIRMATION_MS = 2_000
 
@@ -65,6 +67,8 @@ export const CopyButton: React.FC<CopyButtonProps> = ({ label, value }) => {
 
   return (
     <Button
+      className='copy-button'
+      data-outcome={state === 'idle' ? undefined : state}
       onPress={() => {
         void copy()
       }}

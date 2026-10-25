@@ -68,7 +68,12 @@
       @container (width >= 30rem)
         min-height: clamp(5.5rem, 13cqi, 8.5rem)
 
+      // A box put back in the row or taken out of it changes paper, not just
+      // place, and the paper follows the lift rather than landing before it.
+      transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), background-color var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+
       &[data-selected] .tick
+        animation: tick-stamp var(--transition-base, 0s) var(--ease-out)
         display: grid
 
       &[data-disabled]
@@ -90,12 +95,14 @@
       border-radius: var(--radius-m) var(--radius-m) 0 0
       grid-column: 1 / -1
       height: clamp(0.5rem, 1.4cqi, 1rem)
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
 
     // On the corner across from the tick, which says the box is in: this says
     // which of the boxes in is opened first.
     .badge
       @include typography.label
 
+      animation: tick-stamp var(--transition-base, 0s) var(--ease-out)
       background: var(--card-ink)
       border-radius: var(--radius-full)
       color: var(--card)

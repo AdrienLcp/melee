@@ -32,6 +32,11 @@
       pointer-events: none
       white-space: nowrap
 
+      // Its own keyframe rather than the entry reversed: the same name with a
+      // new direction resumes the finished entry and never ends again.
+      &[data-leaving]
+        animation: notice-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-out) both
+
     // The band is what the menu and the invitation leave, 156px at 390 and 76
     // at 320: the pawn goes first.
     .pawn
@@ -61,3 +66,8 @@
     visibility: hidden
     white-space: nowrap
     width: 0
+
+  @keyframes notice-leave
+    to
+      opacity: 0
+      transform: translateY(-0.25rem)
