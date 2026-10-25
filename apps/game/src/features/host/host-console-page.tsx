@@ -732,7 +732,19 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   )
 
   if (view === null) {
-    return <PawnColoursProvider view={view}>{page}</PawnColoursProvider>
+    return (
+      <PawnColoursProvider view={view}>
+        <HostPanel
+          defaultTab='game'
+          isStageFull={false}
+          narrowStart={null}
+          playerCount={0}
+          tabs={null}
+        >
+          {page}
+        </HostPanel>
+      </PawnColoursProvider>
+    )
   }
 
   const setup = setupProps(view)

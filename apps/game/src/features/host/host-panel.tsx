@@ -97,12 +97,20 @@ type HostPanelProps = {
    * column beside: off the desk, the bar steps aside until the round ends.
    */
   isStageFull: boolean
-  /** What a console off the desk opens on: the game, or a tab whose decision the room is waiting on. */
-  narrowStart: NarrowScreen
+  /**
+   * What a console off the desk opens on: the game, or a tab whose decision
+   * the room is waiting on. `null` until the room's first view says which,
+   * and the first answer is the one kept.
+   */
+  narrowStart: NarrowScreen | null
   /** Shown on the players' tab, so a folded rail still counts who arrived. */
   playerCount: number
-  /** What each tab holds. */
-  tabs: Record<PanelTab, React.ReactNode>
+  /**
+   * What each tab holds, or `null` before the room's first view: the panel
+   * stands empty rather than absent, so the stage beside it is laid out at
+   * its final width from the first frame.
+   */
+  tabs: Record<PanelTab, React.ReactNode> | null
 }
 
 /**
@@ -130,9 +138,14 @@ export const HostPanel: React.FC<HostPanelProps> = ({
   const [isFolded, setIsFolded] = useState(storedFoldOrOpen)
   const [side, setSide] = useState(storedSideOrRight)
   const [chosenTab, setChosenTab] = useState<PanelTab | null>(null)
-  const [screen, setScreen] = useState(narrowStart)
+  const [startScreen, setScreen] = useState(narrowStart)
+  const screen = startScreen ?? 'stage'
   const wideTab = chosenTab ?? defaultTab
   const isRail = isDesk && isFolded
+
+  if (startScreen === null && narrowStart !== null) {
+    setScreen(narrowStart)
+  }
 
   const fold = (next: boolean) => {
     writeStoredPanelFolded(next)
@@ -242,7 +255,7 @@ export const HostPanel: React.FC<HostPanelProps> = ({
             {PANEL_TABS.map(({ heading, id }) => (
               <TabPanel className='panel-screen' id={id} key={id}>
                 <h2>{translate(heading)}</h2>
-                {tabs[id]}
+                {tabs?.[id]}
               </TabPanel>
             ))}
             {isDesk && <div className='panel-foot'>{sideTool}</div>}

@@ -1003,7 +1003,12 @@ bounced. Durations:
 520ms.
 
 - **Page arrival** — `page-enter`, 8px and a fade on `base`, carried by the
-  `screen` and `stage` mixins (`arriving`). Never on a framed screen.
+  `screen` and `stage` mixins (`arriving`). Never on a framed screen. The
+  console's panel stands, empty, from the first frame (`tabs={null}` before the
+  room's first view): drawn only with the view, it arrived up to a second late
+  and pushed the invitation 330px across a 1440px desk — new nodes, so
+  `layout-shift` never counted it, and a filmstrip is how a late arrival is
+  found.
 - **A panel tab opening** — `panel-screen-in`, a fade alone on `fast` × 1.5:
   the panel is beside the game, and must not pull the eye off it. The tab
   being left is hidden on `[data-exiting]`: react-aria keeps an exiting panel
