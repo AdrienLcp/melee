@@ -32,6 +32,7 @@
   "private": true,
   "scripts": {
     "build": "wrangler types && tsc --noEmit && tsc --noEmit -p tsconfig.worker.json && wrangler deploy --dry-run --outdir dist",
+    "capitals:build": "node --import tsx scripts/build-capital-bank.ts",
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "flags:build": "node --import tsx scripts/build-flag-bank.ts",

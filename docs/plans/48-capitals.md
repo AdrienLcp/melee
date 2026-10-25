@@ -4,7 +4,7 @@
 themes on capitals, a capitals chip in the quiz, and world capitals to place on
 the map. One bank feeds all three, and each step ships on its own.
 
-## Step 1 — one bank, three readers (one session)
+## Step 1 — one bank, three readers — done
 
 `apps/server/src/infrastructure/questions/capital-bank.json`, read through
 `capital-bank.ts`, written by `scripts/build-capital-bank.ts`
@@ -15,8 +15,15 @@ the map. One bank feeds all three, and each step ships on its own.
 - `seats`: other capitals a table may give and be right (Bolivia's La Paz
   beside Sucre, South Africa's Cape Town and Bloemfontein beside Pretoria)
 - `largestCities`: up to five cities of the same country that are not a
-  capital or a seat, most populous first, with names, aliases, Wikidata id
-  and sitelinks
+  capital or a seat, the best known (by sitelinks) of its 25 most populous
+  cities and its 25 most populous municipalities — Seville, Valencia, Sfax
+  and León are filed only as the latter, and one query asking both times out
+  on Russia — with names, aliases, Wikidata id and sitelinks. The
+  Netherlands' cities are asked of the country (Q55), not of the Kingdom the
+  state is. Population alone ranks
+  badly: Veracruz carries its state's eight million. A row filed as a
+  metropolitan area, a province or a métropole is dropped unless it is also
+  filed as a city outright, which keeps Lagos and Melbourne
 - `subregion`: the UN M49 code, from the UN's own M49 table, read at build time
 
 Decisions:

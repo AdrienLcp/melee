@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { distanceToCountryKm } from '@melee/core/worldmap/distance'
 
+import { bankedCapitals } from '@/infrastructure/questions/capital-bank'
 import { BANKED_CITIES } from '@/infrastructure/questions/city-bank'
 import { BANKED_COUNTRIES } from '@/infrastructure/questions/country-bank'
 
@@ -80,5 +81,25 @@ describe('the French cities the bank asks for', () => {
     const names = BANKED_CITIES.map(({ name }) => name)
 
     expect(new Set(names).size).toBe(names.length)
+  })
+})
+
+/**
+ * An atoll capital stands on a reef the 1:50m outline smooths away: South
+ * Tarawa sits 5.1 km off its shape. A swapped coordinate lands thousands off.
+ */
+const ATOLL_SLACK_KM = 10
+
+describe('the capitals the bank holds', () => {
+  it('[worldmap] stands every capital in its own country, so a swapped coordinate cannot ask for the sea', () => {
+    const astray = bankedCapitals()
+      .filter(
+        ({ capital, code }) =>
+          distanceToCountryKm({ point: capital.point, shape: shapeOf(code) }) >
+          ATOLL_SLACK_KM
+      )
+      .map(({ capital, code }) => `${code}:${capital.names.en}`)
+
+    expect(astray).toEqual([])
   })
 })
