@@ -246,7 +246,6 @@ export const EN_DICTIONARY = defineDictionary({
       aloud: 'Left empty, you say it aloud.',
       description: 'Left empty, the line shown is played — or type your own.',
       label: 'The challenge',
-      placeholder: 'Stack the most potatoes',
       redeal: 'Deal another line'
     },
     name: 'Challenge',
@@ -328,6 +327,7 @@ export const EN_DICTIONARY = defineDictionary({
     internal_error: 'Something broke on our side. Try again.',
     invalid_message: 'We did not understand that. Try again.',
     joined_mid_round: 'You are in from the next round.',
+    judging_round: 'You are judging this round, and play again from the next.',
     music_source_unavailable:
       'The music has stopped answering. Try again in a moment.',
     nickname_taken: 'Someone already took that nickname.',
@@ -695,6 +695,7 @@ export const EN_DICTIONARY = defineDictionary({
       },
       label: 'Play too, as',
       leave: 'Give up the seat',
+      sittingOut: 'You judge this round, and play again from the next.',
       taken: 'You are playing as {nickname}.',
       /**
        * Why there is no seat here, one line per `SeatWithheldReason`. `mode`
@@ -704,9 +705,7 @@ export const EN_DICTIONARY = defineDictionary({
       withheld: {
         aloud:
           'The teams answer aloud and you judge them, so there is no seat here.',
-        game: 'You judge every answer in this game, so there is no seat here.',
-        judge: 'You run the table as its judge, so there is no seat here.',
-        mode: 'You judge the buzzes, so there is no seat here. Any other way to answer gives you one.'
+        judge: 'You run the table as its judge, so there is no seat here.'
       }
     },
     seconds: '{seconds:number}s',

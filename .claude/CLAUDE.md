@@ -135,13 +135,12 @@ which is why a user-visible string written into a component is a bug — see
 - **Room** — one game, addressed by a 4-character code from an alphabet with no
   confusable glyphs (`O`/`0`, `I`/`1`, `S`/`5`, `Z`/`2` are all excluded)
 - **Host** — the screen running the room. Shows the QR code, plays the audio,
-  judges answers. It can also take a **seat** and play — everywhere
-  `isJudgedByHost` says no verdict is owed, which is every mode but `buzzer` plus
-  the reflex race — and the server then withholds the track's **title and
-  artist** while still sending it the clip; that screen is the room's speaker,
-  seated or not, until a **wall** is there to be it instead. The rule is the **room's**, so the server grants no
-  seat under it and takes back the one it granted when the settings frame moves
-  the room to a game it must judge. It is the only role that can **close** the
+  judges answers. It can also take a **seat** and play, and the server then
+  withholds the track's **title and artist** while still sending it the clip;
+  that screen is the room's speaker, seated or not, until a **wall** is there to
+  be it instead. A round `isJudgedByHost` says the host must judge — every mode
+  but `buzzer` plus the reflex race need none — is **sat out** by that seat: it
+  keeps its score, gets the answer, and plays again on the next round. It is the only role that can **close** the
   room — see `Exits` below. **`hasJudge`** says somebody runs the room and
   never plays: the console holds no seat under any game, and an evening plays
   each game on the mode its judge last left it on rather than on the game's own

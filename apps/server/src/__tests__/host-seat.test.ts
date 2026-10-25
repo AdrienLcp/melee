@@ -10,6 +10,7 @@ import {
   CATALOGUE,
   errorsIn,
   FAST_GAME,
+  hostContent,
   hostView,
   type RoomHarness,
   SEATED_CONSOLE_GAME,
@@ -104,30 +105,67 @@ describe('a console that plays the room it runs', () => {
     expect(hostView(reloaded)?.players[0]?.score).toBe(scoreBefore)
   })
 
-  it('[host-seat] leaves a console unseated on a game it has to judge', async () => {
+  it('[host-seat] seats a console on a game it has to judge', async () => {
     const { host } = await harness.openRoom(JUDGED_GAME, 'Marina')
 
-    expect(hostView(host)?.youId).toBeNull()
-    expect(hostView(host)?.players).toEqual([])
+    expect(hostView(host)?.youId).not.toBeNull()
+    expect(hostView(host)?.players).toHaveLength(1)
   })
 
   /**
-   * The picker sits on the lobby stage, where a console may already be seated —
-   * so the seat outlives the reason it was allowed unless the frame that
-   * changes the game is what takes it back.
+   * A line-up mixing a game the console plays and one it judges: the judged
+   * round is sat out, with the answer on the console and the seat refused a
+   * frame, and the seat plays again with its points once nobody has to judge.
    */
-  it('[host-seat] takes the seat back when the room moves to a game its console must judge', async () => {
+  it('[host-seat] sits a judged round out and keeps the seat and its score', async () => {
     const { host } = await harness.openRoom(SEATED_CONSOLE_GAME, 'Marina')
 
-    expect(hostView(host)?.youId).not.toBeNull()
+    await winTheRound(host)
 
-    host.send({ settings: ticked(JUDGED_GAME), type: 'host.updateSettings' })
+    const seat = hostView(host)?.youId
+    const score = hostView(host)?.players[0]?.score ?? 0
+
+    expect(hostContent(host)?.track).toBeNull()
+
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+    host.send({
+      settings: { ...SEATED_CONSOLE_GAME, mode: DEFAULT_MODE_SETTINGS.buzzer },
+      type: 'host.updateSettings'
+    })
+    host.send({ type: 'host.nextRound' })
     await waitFor(
-      () => hostView(host)?.youId === null,
-      'the console to give the seat up'
+      () =>
+        hostView(host)?.phase === 'playing' &&
+        hostView(host)?.round?.answerMode === 'buzzer',
+      'the judged round'
     )
 
-    expect(hostView(host)?.players).toEqual([])
+    expect(hostView(host)?.youId).toBe(seat)
+    expect(hostView(host)?.players[0]?.score).toBe(score)
+    expect(hostContent(host)?.track).not.toBeNull()
+
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'player.buzz' })
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'judging_round'),
+      'the buzz refused'
+    )
+
+    expect(hostView(host)?.round?.activeBuzz ?? null).toBeNull()
+
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+    host.send({ settings: SEATED_CONSOLE_GAME, type: 'host.updateSettings' })
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () =>
+        hostView(host)?.phase === 'playing' &&
+        hostView(host)?.round?.answerMode === 'typed',
+      'the round played again'
+    )
+
+    expect(hostView(host)?.youId).toBe(seat)
+    expect(hostContent(host)?.track).toBeNull()
   })
 
   it('[host-seat] takes the seat back when the room is given a judge', async () => {
@@ -145,42 +183,6 @@ describe('a console that plays the room it runs', () => {
     )
 
     expect(hostView(host)?.players).toEqual([])
-  })
-
-  /**
-   * A mode moved mid-round lands on the next round, and so does what it costs:
-   * the console keeps playing the typed round in front of it and is unseated
-   * as the round it would have to judge opens.
-   */
-  it('[host-seat] keeps the seat through the round a buzzer switch was made in', async () => {
-    const { host } = await harness.openRoom(SEATED_CONSOLE_GAME, 'Marina')
-
-    host.send({ type: 'host.startRound' })
-    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
-
-    host.send({
-      settings: { ...SEATED_CONSOLE_GAME, mode: DEFAULT_MODE_SETTINGS.buzzer },
-      type: 'host.updateSettings'
-    })
-    await waitFor(
-      () => hostView(host)?.settings.mode.kind === 'buzzer',
-      'the new mode'
-    )
-
-    expect(hostView(host)?.youId).not.toBeNull()
-
-    host.send({
-      roundId: hostView(host)?.round?.id ?? '',
-      type: 'host.reveal'
-    })
-    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
-    host.send({ type: 'host.nextRound' })
-    await waitFor(
-      () => hostView(host)?.youId === null,
-      'the console to give the seat up'
-    )
-
-    expect(errorsIn(host)).toEqual([])
   })
 
   /**

@@ -55,6 +55,7 @@ import {
   greatCircleKm
 } from '@melee/core/worldmap/distance'
 
+import { playingSeatIds } from '@/domain/room/console-seat'
 import type {
   PlayerAttempts,
   Room,
@@ -268,7 +269,7 @@ const rosterOf = (room: Room, round: Round): Round['openedWithPlayerIds'] => {
     )
   }
 
-  return new Set(room.players.keys())
+  return playingSeatIds(room)
 }
 
 export const registerBuzz = ({

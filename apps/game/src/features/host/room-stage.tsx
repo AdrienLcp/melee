@@ -12,6 +12,7 @@ import type {
 import { POINT } from '@melee/protocol/scoring'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
+import { isRoundJudgedByHost } from '@melee/core/room/game-modes'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 import { buildScoreboard } from '@melee/core/scoring/scoreboard'
 import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
@@ -128,7 +129,8 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   // The room's answer, never what this console asked for: a seat can go without
   // this screen deciding it — the host takes it off the roster, or the sweeper
   // gives it up — and a screen still drawing its own answer form owns nothing.
-  const isSeated = controls !== null && view.youId !== null
+  const isSeated =
+    controls !== null && view.youId !== null && !isRoundJudgedByHost(round)
   const youId = isSeated ? view.youId : null
   const playsThisRound =
     isSeated &&

@@ -71,11 +71,12 @@ export const isJudgedInEveryMode = (game: GameKind): boolean =>
  * the seat waits on that rather than on anything to explain:
  *
  * - `judge` — the room has a judge, who never plays;
- * - `aloud` — the teams answer aloud, judged on the console every round;
- * - `mode` — a game answered by a buzz that offers other ways to answer;
- * - `game` — a game judged by hand however it is answered.
+ * - `aloud` — the teams answer aloud, judged on the console every round.
+ *
+ * A game or a mode the console judges withholds nothing: the seat sits those
+ * rounds out and keeps its score (`isRoundJudgedByHost`).
  */
-export type SeatWithheldReason = 'aloud' | 'game' | 'judge' | 'mode'
+export type SeatWithheldReason = 'aloud' | 'judge'
 
 export const seatWithheldReason = (
   settings: RoomSettings
@@ -84,18 +85,19 @@ export const seatWithheldReason = (
     return 'judge'
   }
 
-  if (settings.teams.kind === 'aloud') {
-    return 'aloud'
-  }
-
-  const game = settings.game?.kind ?? null
-
-  if (game === null || !isJudgedByHost({ game, mode: settings.mode.kind })) {
-    return null
-  }
-
-  return isJudgedInEveryMode(game) ? 'game' : 'mode'
+  return settings.teams.kind === 'aloud' ? 'aloud' : null
 }
+
+/**
+ * Whether the round on screen is one the console judges, from what it was
+ * opened on rather than the settings, which may already have moved on. A
+ * seated console sits it out and plays again on the next.
+ */
+export const isRoundJudgedByHost = (
+  round: { answerMode: AnswerMode; content: { kind: GameKind } } | null
+): boolean =>
+  round !== null &&
+  isJudgedByHost({ game: round.content.kind, mode: round.answerMode })
 
 /**
  * The nearest thing to `preferred` that this game can serve, with its own

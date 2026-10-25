@@ -6,7 +6,7 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import {
-  isRoomJudgedByHost,
+  isRoundJudgedByHost,
   seatWithheldReason
 } from '@melee/core/room/game-modes'
 
@@ -29,12 +29,10 @@ type HostSeatProps = {
  * The screen in the middle of the table is the speaker and a player at once,
  * and this is everything that screen gets to say about its own seat: the form
  * where the room can grant one, the name it already holds, or the sentence
- * that says why there is none — and nothing where a room with no game yet
- * withholds it, the seat waiting on the decision the lobby is asking for.
+ * that says why there is none.
  *
- * The rule is the room's rather than the caller's — a judged round needs a
- * judge, and a judge who is also answering is not one — so it is decided here
- * instead of at each of the two places this is drawn.
+ * A round the console judges does not take the seat: it is sat out, and the
+ * seat plays again on the next round nobody has to judge.
  *
  * Taking it withholds the answer from this screen's own payload until the
  * reveal, so the seat costs the host what it costs everyone else.
@@ -70,14 +68,13 @@ export const HostSeat: React.FC<HostSeatProps> = ({
     )
   }
 
-  if (isRoomJudgedByHost(view.settings)) {
-    return null
-  }
-
   if (takenAs !== null) {
     return (
       <section className='host-seat taken'>
         <p>{translate('host.seat.taken', { nickname: takenAs })}</p>
+        {isRoundJudgedByHost(view.round) && (
+          <p>{translate('host.seat.sittingOut')}</p>
+        )}
         <Button onPress={onLeaveSeat} size='small' variant='underlined'>
           {translate('host.seat.leave')}
         </Button>

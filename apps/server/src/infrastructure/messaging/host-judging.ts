@@ -1,8 +1,5 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 
-import { isJudgedByHost } from '@melee/core/room/game-modes'
-import { isRoundInPlay } from '@melee/core/room/room-phase'
-
 import type { Room } from '@/domain/room/room'
 import { removePlayer } from '@/domain/room/room-service'
 import { releaseBuzz } from '@/domain/round/round-service'
@@ -11,11 +8,9 @@ import { forgetSeat } from './room-connections'
 import { publishRoom, type RoomEngine } from './room-engine'
 
 /**
- * Whether the room needs its console to judge, which is the one thing that
- * keeps that screen out of its own game. A round under way answers from what it
- * was opened on, because the settings may already have moved on to the next
- * one: a seated host who switches the answer mode to `buzzer` mid-round keeps
- * playing the round in front of them and gives up the seat when the next opens.
+ * Whether the room keeps its console off the board altogether. A single round
+ * the console judges does not: its seat sits that round out and keeps its score
+ * (`@/domain/room/console-seat`).
  *
  * Read where a seat is granted as well as where the rules change, because a
  * console remembers the name it was seated under and replays it on every
@@ -26,17 +21,7 @@ import { publishRoom, type RoomEngine } from './room-engine'
  * with a judge keeps its console off the board whatever the round asks.
  */
 export const hostMustJudge = (room: Room): boolean =>
-  room.settings.hasJudge ||
-  room.settings.teams.kind === 'aloud' ||
-  (isRoundInPlay(room.phase) && room.round !== null
-    ? isJudgedByHost({
-        game: room.round.content.kind,
-        mode: room.round.mode.kind
-      })
-    : isJudgedByHost({
-        game: room.settings.game?.kind ?? null,
-        mode: room.settings.mode.kind
-      }))
+  room.settings.hasJudge || room.settings.teams.kind === 'aloud'
 
 // Removed from the roster before the buzz is released, so that the player
 // being unseated cannot be the one counted as still able to answer — and off
@@ -52,12 +37,9 @@ export const unseat = (playerId: PlayerId, engine: RoomEngine): void => {
 }
 
 /**
- * A seat can outlive the reason it was allowed. The picker sits on the lobby
- * stage where a console may already be seated, so a host who takes a seat and
- * then chooses the bare buzzer holds one with nothing behind it: on the board,
- * unable to score, and the only screen that could judge the round. Run where
- * the settings change and again as a round opens, which is where a change made
- * mid-round takes hold.
+ * A seat can outlive the reason it was allowed: a host seated before turning
+ * on a judge, or before the table chose to answer aloud. Run where the
+ * settings change.
  *
  * Every host connection rather than the one that sent the frame — a second tab
  * of the same browser is let in on purpose, and the seat is on whichever of

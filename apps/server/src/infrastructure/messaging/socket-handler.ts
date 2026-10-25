@@ -3,6 +3,7 @@ import type { WSEvents } from 'hono/ws'
 
 import {
   type ClientMessage,
+  type ClientMessageType,
   clientMessageSchema,
   FLOOR_MESSAGE_TYPES,
   type HelloMessage,
@@ -20,6 +21,7 @@ import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { reshapesRound } from '@melee/core/room/room-settings'
 import { newSessionId } from '@melee/core/room/session-id'
 
+import { isRoundJudgedByConsole } from '@/domain/room/console-seat'
 import {
   claimHost,
   type HostClaimError,
@@ -126,6 +128,12 @@ type RoomActionMessage = Exclude<
 
 /** Policy violation. The client shows the error it was just sent and stops retrying. */
 const CLOSE_CODE_POLICY = 1008
+
+const ROUND_PLAY_MESSAGE_TYPES = new Set<ClientMessageType>([
+  ...FLOOR_MESSAGE_TYPES,
+  'slate.write',
+  'petitbac.write'
+])
 
 const HOST_CLAIM_REFUSALS: Record<HostClaimError, string> = {
   host_already_connected: 'This room is already being hosted',
@@ -439,6 +447,21 @@ const dispatch = ({
 
   const { room } = engine
   const now = engine.now()
+
+  if (
+    active.role === 'host' &&
+    active.playerId !== null &&
+    ROUND_PLAY_MESSAGE_TYPES.has(message.type) &&
+    isRoundJudgedByConsole(room)
+  ) {
+    sendError(outbound, {
+      code: 'judging_round',
+      fatal: false,
+      message: 'The console judges this round'
+    })
+
+    return
+  }
 
   switch (message.type) {
     case 'player.leave': {

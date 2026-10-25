@@ -101,8 +101,8 @@ guard on the socket is the rule**.
 buzz lands and stamped into the buzz as `expiresAt`, so moving it decides the
 next *floor* rather than the next round (`floorWindowMs`). The seat rule follows
 the stamp too: a seated host who switches to `buzzer` mid-round keeps playing
-the round in front of them, and `unseatConsolesThatMustJudge` takes the seat as
-the next round opens (`host-judging.ts`).
+the round in front of them, and sits the next one out to judge it, seat and
+score kept (`domain/room/console-seat.ts`).
 
 ### One snapshot, not deltas
 

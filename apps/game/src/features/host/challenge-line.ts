@@ -8,10 +8,8 @@ import {
 export type ChallengeLine = {
   /** Which line of the hand, the typed one, or none said aloud. */
   choice: ChallengeChoice
-  /** The host's own unplayed lines first, then the bank's; one line to a seated console. */
+  /** The host's own unplayed lines first, then the bank's. */
   hand: readonly ChallengeHandLine[]
-  /** The console holds a seat, so it keeps one line and the die rather than a hand. */
-  isSeated: boolean
   onChange: (text: string) => void
   onChoose: (choice: ChallengeChoice) => void
   /** Another line in place of the hand's at that place; an own line is set aside until the round opens. */

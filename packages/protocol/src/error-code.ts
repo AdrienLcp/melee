@@ -68,6 +68,12 @@ export const protocolErrorCodes = [
    */
   'joined_mid_round',
   /**
+   * A frame playing the round from the console's own seat while that round is
+   * one the console judges. The seat and its score are kept; it plays again on
+   * the next round nobody has to judge.
+   */
+  'judging_round',
+  /**
    * An answer from a seat a duel did not draw. Its own code rather than
    * `joined_mid_round`: the seat was there all along, and the screen owes it a
    * wait for the duel to end rather than an apology for arriving late.

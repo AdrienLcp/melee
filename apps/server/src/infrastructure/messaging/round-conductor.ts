@@ -68,7 +68,6 @@ import {
   playedCapitalId
 } from '@/infrastructure/questions/world-capitals'
 
-import { unseatConsolesThatMustJudge } from './host-judging'
 import { sendError } from './outbound'
 import { forgetSeat, hostConnectionIn } from './room-connections'
 import {
@@ -223,10 +222,6 @@ export const beginRound = async (
   ) {
     room.round.advancesAt = null
   }
-
-  // An answer mode moved to `buzzer` mid-round left a seated console playing
-  // the round it was in; the round about to open is the one it must judge.
-  unseatConsolesThatMustJudge(engine)
 
   // Nobody has chosen what the room is playing, so there is nothing to open a
   // round on. The socket refuses `host.startRound` with a code the host can

@@ -322,7 +322,7 @@ takes its letter as it is dealt, the same in every locale. A line joins
 `playedContentIds` only as a round opens on it, so the evening never deals it
 twice. `labels` is `null` when said aloud, or once the bank is spent and
 nothing was typed. The host and the wall arms carry nothing but the kind. The round is buzzer-moded because its
-host judges it, so no seat is granted under it — and `player.buzz` is refused
+host judges it, so a seated console sits it out — and `player.buzz` is refused
 `wrong_phase`, because the race is at the table.
 
 **The inner clock shows nothing, so its views carry nothing that moves.** The
@@ -650,14 +650,17 @@ discarded on a screen lock is a *reload*, and a name held in component state
 alone died with it. It is kept on `melee:seats` beside that room's session id,
 which is what makes the two survive together.
 
-**A room the console has to judge is granted no seat**, and the settings frame
-that moves the room to one takes back the seat it already granted — the picker
-sits on the lobby stage, where a console may already be playing. `isJudgedByHost`
-is the rule and it is the room's, not the form's: a console remembers the name it
-was seated under and replays it on every reconnect, so a rule enforced only where
-the control is drawn is a rule the next `hello` walks through. A room with
-`settings.hasJudge` set is one the console judges under every game, whatever
-the round asks — someone runs it and never plays. Buzzer mode is
+**A round the console has to judge is sat out by its seat**, never taken from
+it: the seat keeps its player and its score, is left out of the round's stamp
+(`playingSeatIds` in `domain/room/console-seat.ts`), its frames playing that
+round are refused `judging_round`, and the host view carries the answer as if
+nobody were seated. It plays again on the next round nobody judges — a line-up
+mixing a quiz and the bare buzzer used to make the host a spectator for the rest
+of the evening, its points gone with the seat. `isJudgedByHost` over what the
+round was **opened** on is the rule. Only two things withhold the seat itself,
+on `hello` and on the settings frame that sets them (`hostMustJudge`): a room
+with `settings.hasJudge`, which someone runs and never plays, and teams
+answering aloud. Buzzer mode is
 what asks for a judge; the reflex race shares that mode and needs none, because
 being first *is* being right there. The slate is the other way round: it is
 `typed` — a sheet is typed — and still judged, because its host holds the key

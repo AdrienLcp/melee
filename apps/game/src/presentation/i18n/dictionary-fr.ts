@@ -225,7 +225,6 @@ export const FR_DICTIONARY = defineDictionary({
       description:
         'Vide, c’est le défi affiché qui se joue — ou écris le tien.',
       label: 'Le défi',
-      placeholder: 'Empiler le plus de pommes de terre',
       redeal: 'Tirer un autre défi'
     },
     name: 'Défi',
@@ -302,6 +301,7 @@ export const FR_DICTIONARY = defineDictionary({
     internal_error: 'Ça a cassé de notre côté. Réessaie.',
     invalid_message: 'On n’a pas compris. Réessaie.',
     joined_mid_round: 'Tu joues à partir de la prochaine manche.',
+    judging_round: 'Tu juges cette manche, tu rejoues à la suivante.',
     music_source_unavailable:
       'La musique ne répond plus. Réessaie dans un instant.',
     nickname_taken: 'Ce pseudo est déjà pris.',
@@ -667,13 +667,12 @@ export const FR_DICTIONARY = defineDictionary({
       },
       label: 'Jouer aussi, sous le nom de',
       leave: 'Rendre sa place',
+      sittingOut: 'Tu juges cette manche, tu rejoues à la suivante.',
       taken: 'Tu joues sous le nom de {nickname}.',
       withheld: {
         aloud:
           'Les équipes répondent à voix haute et tu les juges, donc pas de place ici.',
-        game: 'Tu juges chaque réponse dans ce jeu, donc pas de place ici.',
-        judge: 'Tu tiens la table en juge, donc pas de place ici.',
-        mode: 'Tu juges les buzz, donc pas de place ici. N’importe quelle autre façon de répondre t’en rend une.'
+        judge: 'Tu tiens la table en juge, donc pas de place ici.'
       }
     },
     seconds: '{seconds:number} s',

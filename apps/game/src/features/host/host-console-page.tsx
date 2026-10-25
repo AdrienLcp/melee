@@ -20,7 +20,7 @@ import {
   FIRST_HAND_LINE
 } from '@melee/core/challenge/challenge-hand'
 import { drawTargetSeconds } from '@melee/core/innerclock/target'
-import { isRoomJudgedByHost } from '@melee/core/room/game-modes'
+import { seatWithheldReason } from '@melee/core/room/game-modes'
 import {
   askedIn,
   type HostPreferences,
@@ -240,10 +240,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
       // The server takes the seat back on this frame, and the console follows
       // it here rather than by watching the answer come back: a name still
-      // remembered would put the seat on the next reconnect, under a game that
+      // remembered would put the seat on the next reconnect, under a room that
       // would then have to refuse it — and inferring the loss from the room's
       // view cannot tell "refused" from "the reconnect has not answered yet".
-      if (isRoomJudgedByHost(settings)) {
+      if (seatWithheldReason(settings) !== null) {
         forgetSeatNickname({ role: 'host', roomCode })
         setSeatNickname(null)
       }
@@ -540,18 +540,16 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       return null
     }
 
-    const isSeated = current.youId !== null
     const hand = challengeHandOf({
       dealt: current.challengeHand.map((labels) => labels[locale]),
       own: ownChallengeLines,
       setAside: setAsideOwnLines,
-      size: isSeated ? 1 : CHALLENGE_HAND_SIZE
+      size: CHALLENGE_HAND_SIZE
     })
 
     return {
       choice: challengeChoice,
       hand,
-      isSeated,
       onChange: (text) => {
         setChallengeText(text)
         setChallengeChoice({ kind: 'typed' })

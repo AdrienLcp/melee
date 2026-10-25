@@ -17,6 +17,7 @@ import {
   sheetPoints
 } from '@melee/core/slate/sheet-marking'
 
+import { playingSeatIds } from '@/domain/room/console-seat'
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
 
@@ -297,7 +298,7 @@ export const closeSlateItem = ({
     return Result.failure('wrong_phase')
   }
 
-  content.items[itemIndex] = closedItem(new Set(room.players.keys()))
+  content.items[itemIndex] = closedItem(playingSeatIds(room))
   moveWall({ content, itemIndex })
   settle({ content, room, round })
   touch(room, now)
@@ -516,7 +517,7 @@ const closeOpenItems = ({
   content: SlateContent
   room: Room
 }): void => {
-  const roster = new Set(room.players.keys())
+  const roster = playingSeatIds(room)
 
   content.items = content.items.map((item) =>
     item.state === 'open' ? closedItem(roster) : item

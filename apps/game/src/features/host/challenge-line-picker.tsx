@@ -18,7 +18,6 @@ import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { ChallengeLine } from './challenge-line'
-import { ChallengeLineField } from './challenge-line-field'
 
 import './challenge-line-picker.sass'
 
@@ -45,30 +44,14 @@ const choiceOf = (value: string): ChallengeChoice => {
 }
 
 /**
- * The line the next challenge round opens on. A console that only runs the
- * room picks it from a hand — the host's own lines first, then the bank's —
- * or writes one, or says it aloud; a seated one keeps a single line and the
- * die, because it is about to be asked one of them.
+ * The line the next challenge round opens on, picked from a hand — the host's
+ * own lines first, then the bank's — or written, or said aloud.
  */
 export const ChallengeLinePicker: React.FC<ChallengeLinePickerProps> = ({
   isDisabled,
   line
 }) => {
   const translate = useTranslate()
-
-  if (line.isSeated) {
-    return (
-      <ChallengeLineField
-        dealtLine={line.hand[0]?.text ?? null}
-        isDisabled={isDisabled}
-        onChange={line.onChange}
-        onRedeal={() => {
-          line.onRedeal(0)
-        }}
-        value={line.text}
-      />
-    )
-  }
 
   const handOption = (card: ChallengeHandLine, at: number) => ({
     aside: (

@@ -11,6 +11,7 @@ import { answerModesFor } from './game-capabilities'
 import {
   isJudgedByHost,
   isJudgedInEveryMode,
+  isRoundJudgedByHost,
   modeOfferedBy,
   offersAnswerMode,
   seatWithheldReason
@@ -96,30 +97,16 @@ describe('isJudgedInEveryMode', () => {
 })
 
 describe('seatWithheldReason', () => {
-  it('[game-modes] names the answer mode where another one gives the seat back', () => {
+  it('[game-modes] withholds nothing for a game or a mode the console judges', () => {
     expect(
       seatWithheldReason(settingsPlaying({ game: 'quiz', mode: 'buzzer' }))
-    ).toBe('mode')
-    expect(
-      seatWithheldReason(
-        settingsPlaying({ game: 'matchsticks', mode: 'buzzer' })
-      )
-    ).toBe('mode')
-  })
-
-  it('[game-modes] names the game where every way to answer it is judged', () => {
-    expect(
-      seatWithheldReason(settingsPlaying({ game: 'buzzer', mode: 'buzzer' }))
-    ).toBe('game')
+    ).toBeNull()
     expect(
       seatWithheldReason(settingsPlaying({ game: 'slate', mode: 'typed' }))
-    ).toBe('game')
-    expect(
-      seatWithheldReason(settingsPlaying({ game: 'challenge', mode: 'buzzer' }))
-    ).toBe('game')
+    ).toBeNull()
   })
 
-  it('[game-modes] names the judge and the aloud teams before the game', () => {
+  it('[game-modes] names the judge and the aloud teams', () => {
     const quizTyped = settingsPlaying({ game: 'quiz', mode: 'typed' })
 
     expect(seatWithheldReason({ ...quizTyped, hasJudge: true })).toBe('judge')
@@ -163,5 +150,23 @@ describe('modeOfferedBy', () => {
         preferred: { answerWindowMs: null, kind: 'buzzer' }
       })
     ).toEqual({ answerWindowMs: null, kind: 'buzzer' })
+  })
+})
+
+describe('isRoundJudgedByHost', () => {
+  it('[game-modes] reads the round on screen, never the settings that follow it', () => {
+    expect(
+      isRoundJudgedByHost({ answerMode: 'buzzer', content: { kind: 'quiz' } })
+    ).toBe(true)
+    expect(
+      isRoundJudgedByHost({ answerMode: 'typed', content: { kind: 'slate' } })
+    ).toBe(true)
+    expect(
+      isRoundJudgedByHost({ answerMode: 'typed', content: { kind: 'quiz' } })
+    ).toBe(false)
+    expect(
+      isRoundJudgedByHost({ answerMode: 'buzzer', content: { kind: 'reflex' } })
+    ).toBe(false)
+    expect(isRoundJudgedByHost(null)).toBe(false)
   })
 })

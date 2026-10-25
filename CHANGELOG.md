@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Shared]` **A host who plays keeps the seat through a game they judge.**
+  A round the console must judge — the bare buzzer, the challenge, the slate,
+  a buzzer-moded quiz or blind test — is sat out by the host's seat rather than
+  taking it: the console gets the answer and judges, says *you judge this
+  round, you play again from the next*, and the seat plays the next round that
+  needs no judge with its score intact. A line-up mixing the two used to leave
+  the host a spectator for the rest of the game, points gone. A frame playing
+  such a round from the console is refused `judging_round`, and a seated host
+  sees the whole hand of challenge lines.
+
 - `[Game]` **A host's line-ups and challenge lines travel as one file.**
   *Exporter* under the saved line-ups downloads them with the host's own
   challenge lines; *Importer* folds such a file in on another machine — a

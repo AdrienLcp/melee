@@ -660,18 +660,25 @@ describe('slate', () => {
     ])
   })
 
-  // The host holds the key and marks the sheets, so a seat would be a sheet
-  // filled in from the answers.
-  it('[slate] gives the console no seat', async () => {
+  // The host holds the key and marks the sheets, so a sheet written from the
+  // console's own seat would be filled in from the answers.
+  it('[slate] keeps a seated console off the sheets', async () => {
     const { host } = await harness.openRoom(SLATE, 'Console')
 
-    await waitFor(
-      () => hostView(host)?.settings.game?.kind === 'slate',
-      'the slate to be set'
-    )
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the sheets')
 
-    expect(hostView(host)?.youId).toBeNull()
-    expect(hostView(host)?.players).toEqual([])
+    const roundId = hostView(host)?.round?.id ?? ''
+
+    host.send({ answer: 'Poivre', itemIndex: 0, roundId, type: 'slate.write' })
+    await waitFor(() => errorsIn(host).length > 0, 'the line refused')
+
+    expect(errorsIn(host).map((error) => error.code)).toEqual(['judging_round'])
+    expect(hostView(host)?.youId).not.toBeNull()
+
+    const content = hostView(host)?.currentContent
+
+    expect(content?.kind === 'slate' ? content.progress : null).toEqual([])
   })
 
   it('[slate] refuses the reveal while an item is still open', async () => {

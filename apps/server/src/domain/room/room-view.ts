@@ -41,6 +41,7 @@ import {
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
+import { isRoundJudgedByConsole, playingSeatIds } from './console-seat'
 import type { PlayerAttempts, Room, Round, WorldmapRoundTarget } from './room'
 import { toSeatBoards, toTeamViews } from './team-service'
 
@@ -63,22 +64,30 @@ export const toHostView = ({
   room: Room
   /** The seat this host took, if they took one — they then read what a player reads. */
   seatId: PlayerId | null
-}): HostRoomView => ({
-  ...toBaseView({ isHostConnected, isWallConnected, now, room, youId: seatId }),
-  challengeHand: (room.challengeHand ?? [])
-    .slice(0, seatId === null ? undefined : 1)
-    .map(({ labels }) => labels),
-  currentContent:
-    room.round === null
-      ? null
-      : toHostContent({ room, round: room.round, seatId }),
-  lineUpPlayed: playedPerEntry({
-    lineUp: room.settings.lineUp,
-    opened: room.openedEntries
-  }),
-  remainingPoolSize: room.trackPool.length,
-  youId: seatId
-})
+}): HostRoomView => {
+  const playingSeatId = isRoundJudgedByConsole(room) ? null : seatId
+
+  return {
+    ...toBaseView({
+      isHostConnected,
+      isWallConnected,
+      now,
+      room,
+      youId: seatId
+    }),
+    challengeHand: (room.challengeHand ?? []).map(({ labels }) => labels),
+    currentContent:
+      room.round === null
+        ? null
+        : toHostContent({ room, round: room.round, seatId: playingSeatId }),
+    lineUpPlayed: playedPerEntry({
+      lineUp: room.settings.lineUp,
+      opened: room.openedEntries
+    }),
+    remainingPoolSize: room.trackPool.length,
+    youId: seatId
+  }
+}
 
 /**
  * What the room's own screen reads: a seatless player's view, plus the clip it
@@ -243,13 +252,13 @@ const toHostSlateContent = ({
           },
     filledCounts: filledCountsPerItem({
       itemCount: content.items.length,
-      sheets: [...room.players.keys()].map(
+      sheets: [...playingSeatIds(room)].map(
         (playerId) => content.sheets.get(playerId) ?? new Map()
       )
     }),
     keys: content.items.map((_, index) => content.keys.get(index) ?? null),
     kind: 'slate',
-    progress: [...room.players.keys()].map((playerId) => ({
+    progress: [...playingSeatIds(room)].map((playerId) => ({
       filledCount: filledLineCount(content.sheets.get(playerId) ?? new Map()),
       playerId
     }))
