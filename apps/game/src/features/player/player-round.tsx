@@ -39,6 +39,7 @@ import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
+import { PetitBacReveal } from '@/features/player/petit-bac-reveal'
 import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
 import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
@@ -57,6 +58,7 @@ import {
   guessNineContent,
   innerclockContent,
   matchsticksContent,
+  petitBacContent,
   placesFromBestOf,
   quizContent,
   reflexContent,
@@ -1064,6 +1066,10 @@ const Revealed: React.FC<{
 
   if (dated !== null) {
     return <TimelineRevealed dated={dated} round={round} youId={view.youId} />
+  }
+
+  if (petitBacContent(round) !== null) {
+    return <PetitBacReveal round={round} youId={view.youId} />
   }
 
   const grid = guessNineContent(round)?.revealed ?? null

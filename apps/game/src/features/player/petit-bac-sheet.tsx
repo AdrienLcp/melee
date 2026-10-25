@@ -37,7 +37,8 @@ const focusLineAfter = (target: EventTarget) => {
   lines[lines.indexOf(target) + 1]?.focus()
 }
 
-const categoryId = (category: PetitBacCategory): string =>
+/** What a category's line is keyed by, the same on the sheet and on its reveal. */
+export const petitBacCategoryId = (category: PetitBacCategory): string =>
   category.kind === 'own' ? `own:${category.label}` : category.key
 
 type LetterPieceProps = {
@@ -160,7 +161,7 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
             return (
               <li
                 className={answers[index] === '' ? 'line' : 'line filled'}
-                key={categoryId(category)}
+                key={petitBacCategoryId(category)}
               >
                 <TextField
                   aria-label={translate('petitbac.sheet.field', {

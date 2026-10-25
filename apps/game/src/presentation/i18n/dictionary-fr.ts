@@ -1018,6 +1018,16 @@ export const FR_DICTIONARY = defineDictionary({
     },
     letter: 'Lettre {letter}',
     name: 'Petit Bac',
+    reveal: {
+      outcome: {
+        empty: 'Vide',
+        offLetter: 'Pas un {letter}',
+        refused: 'Ne compte pas',
+        shared: 'Partagée',
+        unique: 'Personne d’autre'
+      },
+      title: 'Ta feuille'
+    },
     scoring:
       'Une lettre, un mot par catégorie. La table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte 2, une réponse partagée 1.',
     sheet: {

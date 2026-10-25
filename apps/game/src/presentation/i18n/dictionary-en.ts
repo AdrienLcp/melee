@@ -1079,6 +1079,16 @@ export const EN_DICTIONARY = defineDictionary({
     },
     letter: 'Letter {letter}',
     name: 'Categories',
+    reveal: {
+      outcome: {
+        empty: 'Blank',
+        offLetter: 'Not a {letter}',
+        refused: 'Doesn’t count',
+        shared: 'Shared',
+        unique: 'Nobody else'
+      },
+      title: 'Your sheet'
+    },
     scoring:
       'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 2, one you shared scores 1.',
     sheet: {
