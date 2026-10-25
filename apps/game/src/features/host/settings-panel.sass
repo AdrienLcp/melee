@@ -13,10 +13,10 @@
     // difficulty goes the other way. Rounded up to the next `rem` for headroom,
     // the way the game picker's 476 became 30.
     //
-    //   answer mode 536 · difficulty 520 · subjects 1 031, and 510 for
-    //   three by three, which nine tile into before they stack
+    //   answer mode 536 · difficulty 520 · subjects 1 249 in French on one
+    //   row of twelve, which is also where six by two takes over
     //   rounds 276 · auto-advance and answer window 296
-    //   what the map places 515, in English
+    //   what the map places 572, in English
     //
     // All of them measured with the labels at their **ceiling**: a label is
     // sized against the viewport and these against the container, so a strip in
@@ -30,14 +30,14 @@
       @include strip.stacks-below(33rem)
 
     .question-subjects
-      @include strip.stacks-below(78rem)
-      @include strip.tiles-below(78rem, 6)
+      @include strip.stacks-below(80rem)
+      @include strip.tiles-below(80rem, 6)
       @include strip.tiles-below(66rem, 4)
       @include strip.tiles-below(44rem, 2)
       @include strip.tiles-below(22rem, 1)
 
     .worldmap-places
-      @include strip.stacks-below(33rem)
+      @include strip.stacks-below(36rem)
 
     .matchsticks-goals
       @include strip.stacks-below(32rem)

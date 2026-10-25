@@ -166,8 +166,10 @@ What the session found:
 - **`scoringKey` takes `worldmapPlaces`** rather than a second boolean beside
   `asksForACity`: three places, three sentences, one lookup table.
 - **Three places wrap the strip 2 + 1** in the console's 360px panel, the
-  shape `stacks-below` exists to refuse: it stacks below 33rem, the English
-  row measuring 515px.
+  shape `stacks-below` exists to refuse: it stacks below 36rem, the English
+  row measuring 572px with the labels at their ceiling. The twelfth quiz chip
+  had pushed the subjects' French row to 1 249px, a pixel past their 78rem,
+  and turned CI red on step 2: they stack and tile below 80rem now.
 
 — cut here: the map asks for capitals, `pnpm validate` green —
 
