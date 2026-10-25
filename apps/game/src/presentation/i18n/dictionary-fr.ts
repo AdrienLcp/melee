@@ -1016,6 +1016,11 @@ export const FR_DICTIONARY = defineDictionary({
       toy: 'Jouet',
       vehicle: 'Véhicule'
     },
+    host: {
+      cancelStop: 'Annuler le stop',
+      nextCategory: 'Catégorie suivante',
+      toScores: 'Voir les scores'
+    },
     letter: 'Lettre {letter}',
     name: 'Petit Bac',
     reveal: {
@@ -1030,6 +1035,27 @@ export const FR_DICTIONARY = defineDictionary({
     },
     scoring:
       'Une lettre, un mot par catégorie. La table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte 2, une réponse partagée 1.',
+    setup: {
+      add: 'Ajouter',
+      bank: 'Toutes prêtes',
+      categories: 'Catégories',
+      count: 'Catégories par manche',
+      drawn: 'Nouvelles à chaque manche',
+      duration: 'Temps pour écrire',
+      fixed: 'Les mêmes à chaque manche',
+      letters: 'Lettres qui peuvent tomber',
+      new: 'Une catégorie à toi',
+      newPlaceholder: 'Un truc vert',
+      own: 'Tes catégories',
+      remove: 'Retirer {label}',
+      stop: 'Une feuille pleine peut dire stop',
+      summary: defineTranslation(
+        '{count:plural} · entre {min:number} et {max:number}',
+        {
+          plural: { count: { one: '{?} catégorie', other: '{?} catégories' } }
+        }
+      )
+    },
     sheet: {
       field: '{category}, en {letter}',
       label: 'Ta feuille'

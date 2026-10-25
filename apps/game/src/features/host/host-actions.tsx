@@ -10,6 +10,7 @@ import type { ChallengeLine } from './challenge-line'
 import { FinishedActions } from './finished-actions'
 import type { InnerclockTarget } from './innerclock-target-field'
 import { LobbyActions } from './lobby-actions'
+import { PetitBacActions } from './petit-bac-actions'
 import { RevealActions } from './reveal-actions'
 import { RoundActions } from './round-actions'
 import { SlateCorrectionActions, SlateWritingActions } from './slate-stages'
@@ -62,6 +63,12 @@ export const HostActions: React.FC<HostActionsProps> = (props) => {
         ) : (
           <SlateWritingActions {...props} wall={props.slateWall} />
         )
+      }
+
+      // The sheets close on the clock or a stop and the vote moves on by
+      // category, so a reveal is the last category's to make.
+      if (props.view.round?.content.kind === 'petitbac') {
+        return <PetitBacActions {...props} />
       }
 
       // The one round that ends without being ended: a heat closes when

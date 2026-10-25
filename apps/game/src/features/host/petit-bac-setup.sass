@@ -1,0 +1,51 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .petit-bac-setup
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+
+    // Thirty categories and twenty-six letters never make one row, so they are
+    // tiles from the start, each column as wide as the longest label it holds.
+    .bank .segments,
+    .letters .segments
+      display: grid
+
+    .bank .segments
+      grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr))
+
+    .letters .segments
+      grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr))
+
+    .fixed-categories
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+    .summary
+      @include typography.caption
+
+      color: var(--ink-muted)
+
+    .own-categories
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs)
+      list-style: none
+      margin: 0
+      padding: 0
+
+      li
+        align-items: center
+        border: var(--hairline)
+        border-radius: var(--radius-m)
+        display: flex
+        gap: var(--space-2xs)
+        padding-inline-start: var(--space-s)
+
+    .add
+      align-items: end
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: minmax(0rem, 1fr) auto

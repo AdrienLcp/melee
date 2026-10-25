@@ -12,8 +12,10 @@ import {
   petitBacCategoryId
 } from '@/features/player/petit-bac-sheet'
 import { petitBacContent } from '@/helpers/round-content'
+import { CrossIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
 import { RoundProgress } from '@/presentation/components/round-progress'
+import { ToggleButton } from '@/presentation/components/toggle-button'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
@@ -22,7 +24,19 @@ import { ScoreTrack, type SeatProgress } from './score-track'
 
 import './petit-bac-stage.sass'
 
+/** A judge's word on one row of the category being voted. */
+export type RowRefusal = {
+  categoryIndex: number
+  refuses: boolean
+  rowKey: string
+}
+
 type PetitBacStageProps = {
+  /**
+   * The judge's refusal, on the console of a room with one; `null` on the
+   * wall, and wherever the seats vote instead.
+   */
+  onRefuseRow: ((refusal: RowRefusal) => void) | null
   round: RoundView
   view: HostRoomView
 }
@@ -34,6 +48,7 @@ type PetitBacStageProps = {
  * category the room is voting with every answer on it.
  */
 export const PetitBacStage: React.FC<PetitBacStageProps> = ({
+  onRefuseRow,
   round,
   view
 }) => {
@@ -48,14 +63,22 @@ export const PetitBacStage: React.FC<PetitBacStageProps> = ({
   return votingIndex === -1 ? (
     <PetitBacWriting round={round} view={view} />
   ) : (
-    <PetitBacVoting categoryIndex={votingIndex} round={round} view={view} />
+    <PetitBacVoting
+      categoryIndex={votingIndex}
+      onRefuseRow={onRefuseRow}
+      round={round}
+      view={view}
+    />
   )
 }
 
 const seatOf = (players: readonly PublicPlayer[], playerId: string): number =>
   players.findIndex((player) => player.id === playerId)
 
-const PetitBacWriting: React.FC<PetitBacStageProps> = ({ round, view }) => {
+const PetitBacWriting: React.FC<Omit<PetitBacStageProps, 'onRefuseRow'>> = ({
+  round,
+  view
+}) => {
   const translate = useTranslate()
   const content = petitBacContent(round)
 
@@ -165,6 +188,7 @@ type PetitBacVotingProps = PetitBacStageProps & {
 
 const PetitBacVoting: React.FC<PetitBacVotingProps> = ({
   categoryIndex,
+  onRefuseRow,
   round,
   view
 }) => {
@@ -203,7 +227,7 @@ const PetitBacVoting: React.FC<PetitBacVotingProps> = ({
             data-refused={row.refused || undefined}
             key={row.key}
           >
-            {row.refused && (
+            {row.refused && onRefuseRow === null && (
               <span className='stamp'>{translate('petitbac.vote.refuse')}</span>
             )}
             <span className='text'>{row.text}</span>
@@ -222,6 +246,22 @@ const PetitBacVoting: React.FC<PetitBacVotingProps> = ({
                     .join(', ')}`}
                 </VisuallyHidden>
               </span>
+              {isJudged && onRefuseRow !== null && (
+                <ToggleButton
+                  aria-label={translate('petitbac.vote.refuseRow', {
+                    answer: row.text
+                  })}
+                  className='refuse'
+                  isSelected={row.refused}
+                  onChange={(refuses) =>
+                    onRefuseRow({ categoryIndex, refuses, rowKey: row.key })
+                  }
+                  size='small'
+                >
+                  {row.refused && <CrossIcon />}
+                  {translate('petitbac.vote.refuse')}
+                </ToggleButton>
+              )}
               {!isJudged && row.refusals > 0 && (
                 <span className='against'>
                   {translate('petitbac.wall.against', {

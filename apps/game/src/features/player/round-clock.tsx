@@ -11,7 +11,11 @@ import {
 
 type RoundClockProps = {
   clock: ClockEstimate | null
-  view: PlayerRoomView
+  /** A seat's view, or a seated console's: the clock reads nothing a seat alone holds. */
+  view: Pick<
+    PlayerRoomView,
+    'isHostConnected' | 'phase' | 'round' | 'roundElapsedMs' | 'settings'
+  >
 }
 
 /**

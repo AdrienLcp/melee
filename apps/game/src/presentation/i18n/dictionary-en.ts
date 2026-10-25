@@ -1077,6 +1077,11 @@ export const EN_DICTIONARY = defineDictionary({
       toy: 'Toy',
       vehicle: 'Vehicle'
     },
+    host: {
+      cancelStop: 'Cancel the stop',
+      nextCategory: 'Next category',
+      toScores: 'Show the scores'
+    },
     letter: 'Letter {letter}',
     name: 'Categories',
     reveal: {
@@ -1091,6 +1096,25 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring:
       'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 2, one you shared scores 1.',
+    setup: {
+      add: 'Add',
+      bank: 'Ready-made',
+      categories: 'Categories',
+      count: 'Categories per round',
+      drawn: 'New each round',
+      duration: 'Time to write',
+      fixed: 'Same every round',
+      letters: 'Letters that can come up',
+      new: 'A category of your own',
+      newPlaceholder: 'Something green',
+      own: 'Your own categories',
+      remove: 'Remove {label}',
+      stop: 'A full sheet can call stop',
+      summary: defineTranslation(
+        '{count:plural} · between {min:number} and {max:number}',
+        { plural: { count: { one: '{?} category', other: '{?} categories' } } }
+      )
+    },
     sheet: {
       field: '{category}, starting with {letter}',
       label: 'Your sheet'

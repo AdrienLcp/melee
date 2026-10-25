@@ -18,6 +18,7 @@ import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
 import { buildTeamBoard } from '@melee/core/team/team-board'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
+import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
 import {
   holdsTheAnswer,
   innerclockContent,
@@ -224,7 +225,67 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   }
 
   if (view.phase === 'playing' && round?.content.kind === 'petitbac') {
-    return <PetitBacStage round={round} view={view} />
+    const roundId = round.id
+
+    // A seat stamped on the round writes and votes here like any other; one
+    // that arrived after it watches the wall's stage until the next.
+    if (
+      controls !== null &&
+      youId !== null &&
+      round.content.yourSheet !== null
+    ) {
+      const reading = { ...view, youId }
+
+      return (
+        <div className='stage petit-bac-seat'>
+          {round.content.sheetsClosed ? (
+            <PetitBacVote
+              onDone={(categoryIndex) =>
+                controls.send({
+                  categoryIndex,
+                  roundId,
+                  type: 'petitbac.doneVoting'
+                })
+              }
+              onVote={(vote) =>
+                controls.send({ ...vote, roundId, type: 'petitbac.vote' })
+              }
+              round={round}
+              view={reading}
+            />
+          ) : (
+            <PetitBacSheet
+              clock={clock}
+              onStop={() => controls.send({ roundId, type: 'petitbac.stop' })}
+              onWrite={(categoryIndex, answer) =>
+                controls.send({
+                  answer,
+                  categoryIndex,
+                  roundId,
+                  type: 'petitbac.write'
+                })
+              }
+              round={round}
+              view={reading}
+            />
+          )}
+        </div>
+      )
+    }
+
+    return (
+      <PetitBacStage
+        onRefuseRow={
+          controls !== null && view.settings.hasJudge
+            ? (refusal) => {
+                controls.send({ ...refusal, roundId, type: 'host.refuseRow' })
+              }
+            : null
+        }
+        round={round}
+        view={view}
+      />
+    )
   }
 
   if (view.phase === 'playing' && round != null) {

@@ -1,6 +1,7 @@
 import type React from 'react'
 import { useEffect, useEffectEvent, useState } from 'react'
 
+import type { PlayerId } from '@melee/protocol/identifiers'
 import {
   PETIT_BAC_ANSWER_MAX_LENGTH,
   PETIT_BAC_STOP_GRACE_MS,
@@ -59,6 +60,17 @@ export const LetterPiece: React.FC<LetterPieceProps> = ({ letter }) => {
   )
 }
 
+/** What a sheet reads of the room: a seat's view, or a seated console's. */
+export type SheetReading = Pick<
+  PlayerRoomView,
+  | 'isHostConnected'
+  | 'phase'
+  | 'players'
+  | 'round'
+  | 'roundElapsedMs'
+  | 'settings'
+> & { youId: PlayerId }
+
 type PetitBacSheetProps = {
   clock: ClockEstimate | null
   /** `false` from the socket means the frame was never written. */
@@ -66,7 +78,7 @@ type PetitBacSheetProps = {
   /** `false` from the socket means the frame was never written. */
   onWrite: (categoryIndex: number, answer: string) => boolean
   round: RoundView
-  view: PlayerRoomView
+  view: SheetReading
 }
 
 /**
@@ -247,7 +259,7 @@ type PetitBacVoteProps = {
     rowKey: string
   }) => boolean
   round: RoundView
-  view: PlayerRoomView
+  view: SheetReading
 }
 
 /**

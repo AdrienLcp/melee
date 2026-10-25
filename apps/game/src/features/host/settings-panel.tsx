@@ -48,6 +48,7 @@ import {
 } from '@/presentation/i18n/translation'
 
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
+import { PetitBacSetup } from './petit-bac-setup'
 import { SlateKeyEditor } from './slate-key-editor'
 import { SlateLabelsEditor } from './slate-labels-editor'
 
@@ -476,6 +477,16 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           label={translate('guessnine.lone.label')}
           onChange={(doublesLoneFinds) => {
             onChange({ ...settings, game: { ...game, doublesLoneFinds } })
+          }}
+        />
+      )}
+
+      {game?.kind === 'petitbac' && (
+        <PetitBacSetup
+          game={game}
+          isDisabled={isDisabled}
+          onChange={(next) => {
+            onChange({ ...settings, game: next })
           }}
         />
       )}
