@@ -12,9 +12,9 @@ import { Link } from '@/presentation/components/link'
 import { Switch } from '@/presentation/components/switch'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useOpenHostedRooms } from '@/presentation/room-actions/use-open-hosted-rooms'
 
 import type { CreateRoom } from './use-create-room'
-import { useLastHostedRoom } from './use-last-hosted-room'
 
 import './home-tray.sass'
 
@@ -45,7 +45,7 @@ export const HomeTray: React.FC<HomeTrayProps> = ({ createRoom }) => {
   const [draft, setDraft] = useState(remembered)
   const [isNaming, setIsNaming] = useState(remembered === '')
   const [isSeated, setIsSeated] = useState(false)
-  const lastHosted = useLastHostedRoom()
+  const lastHosted = useOpenHostedRooms()?.[0] ?? null
 
   const nickname = draft.trim()
 

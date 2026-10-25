@@ -9,19 +9,22 @@ import {
 } from '@/infrastructure/storage/session-storage'
 
 /**
- * The newest room whose console this device can reopen and which is still
- * open, or `null`. The token lasts a day and a room can be gone in ten minutes,
- * so every remembered code is asked at once and nothing is offered before the
- * answers land — a door put up early would be an offer withdrawn.
+ * Every room whose console this device can reopen and which is still open,
+ * newest first, or `null` while the server is being asked. The token lasts a day
+ * and a room can be gone in ten minutes, so every remembered code is asked at
+ * once and nothing is offered before the answers land — a door put up early
+ * would be an offer withdrawn.
  *
  * **A lookup that fails is not a refusal.** Only `exists: false` says a room has
  * gone; a request that never landed says nothing, and withholding the door then
  * is the failure it exists to fix — the console's own refusal screen says so if
  * the room turns out to be dead. Only a confirmed absence prunes the store.
  */
-export const useLastHostedRoom = (): RoomCode | null => {
+export const useOpenHostedRooms = (): RoomCode[] | null => {
   const [hosted] = useState(readHostedRoomCodes)
-  const [stillOpen, setStillOpen] = useState<RoomCode | null>(null)
+  const [stillOpen, setStillOpen] = useState<RoomCode[] | null>(
+    hosted.length === 0 ? [] : null
+  )
 
   useEffect(() => {
     if (hosted.length === 0) {
@@ -50,11 +53,11 @@ export const useLastHostedRoom = (): RoomCode | null => {
       }
 
       if (!controller.signal.aborted) {
-        const newestOpen = answers.find(
-          ({ found }) => found.status === 'failure' || found.data
+        setStillOpen(
+          answers
+            .filter(({ found }) => found.status === 'failure' || found.data)
+            .map(({ roomCode }) => roomCode)
         )
-
-        setStillOpen(newestOpen?.roomCode ?? null)
       }
     }
 

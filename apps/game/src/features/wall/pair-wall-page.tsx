@@ -9,18 +9,16 @@ import {
   hostPathFor,
   usePairingCodeParam
 } from '@/infrastructure/router/navigation'
-import {
-  readHostedRoomCodes,
-  readHostToken
-} from '@/infrastructure/storage/session-storage'
+import { readHostToken } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'
 import { Link } from '@/presentation/components/link'
+import { Main } from '@/presentation/components/main'
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useOpenHostedRooms } from '@/presentation/room-actions/use-open-hosted-rooms'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
 import './pair-wall-page.sass'
-import { Main } from '@/presentation/components/main'
 
 type Pairing =
   | { status: 'failed' }
@@ -38,7 +36,7 @@ export const PairWallPage: React.FC = () => {
   const { locale } = useI18n()
   const translate = useTranslate()
   const pairingCode = usePairingCodeParam()
-  const [hosted] = useState(readHostedRoomCodes)
+  const hosted = useOpenHostedRooms()
   const [pairing, setPairing] = useState<Pairing>({ status: 'idle' })
 
   usePhaseField('lobby')
@@ -75,6 +73,14 @@ export const PairWallPage: React.FC = () => {
         >
           {translate('wall.pair.backToTable')}
         </Link>
+      </Main>
+    )
+  }
+
+  if (hosted === null) {
+    return (
+      <Main className='pair-wall-page'>
+        <DocumentTitle>{translate('wall.pair.documentTitle')}</DocumentTitle>
       </Main>
     )
   }
