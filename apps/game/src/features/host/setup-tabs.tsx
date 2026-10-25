@@ -15,6 +15,7 @@ import {
   withSavedEvening
 } from '@melee/core/room/saved-evening'
 
+import { PointsRows } from '@/presentation/components/points-rows'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -359,21 +360,35 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
   )
 }
 
-/** Who is at the table, each removable. This console's own seat is the Room tab's. */
+/**
+ * Who is at the table, each removable, then points by hand once the game runs:
+ * on a desk this tab stands beside the stage, so a bonus called out at the
+ * table needs no trip to the menu. This console's own seat is the Room tab's.
+ */
 export const PlayersTab: React.FC<SetupTabsProps> = ({
   onRemovePlayer,
   view
 }) => {
   const translate = useTranslate()
 
-  return view.players.length === 0 ? (
-    <p className='tab-summary'>{translate('team.empty')}</p>
-  ) : (
-    <Scoreboard
-      hasPawns
-      onRemove={onRemovePlayer}
-      players={view.players}
-      youId={view.youId}
-    />
+  if (view.players.length === 0) {
+    return <p className='tab-summary'>{translate('team.empty')}</p>
+  }
+
+  return (
+    <>
+      <Scoreboard
+        hasPawns
+        onRemove={onRemovePlayer}
+        players={view.players}
+        youId={view.youId}
+      />
+      {view.phase !== 'lobby' && (
+        <section className='hand-points'>
+          <h3>{translate('menu.points.label')}</h3>
+          <PointsRows />
+        </section>
+      )}
+    </>
   )
 }

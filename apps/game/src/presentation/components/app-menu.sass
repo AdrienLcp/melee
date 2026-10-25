@@ -112,7 +112,7 @@
         .trigger-label
           @include accessibility.visually-hidden
 
-  // A host's menu on a landscape phone holds the invitation, the wall doors,
+  // A host's menu on a landscape phone holds the invitation, the points,
   // the seat, the preferences and three exits, and ran off the bottom with the
   // exits unreachable until the leaflet scrolled inside itself.
   .app-menu-leaflet
@@ -128,8 +128,7 @@
     //
     // The size alone was not enough, and the second half is the one every
     // control carries: `_control.sass` refuses a line break everywhere, so
-    // the French `host.recovery.reveal` still ran eleven pixels past its own
-    // edge. A block whose width is a constant rather than its content's is the
+    // a long French label still ran eleven pixels past its own edge. A block whose width is a constant rather than its content's is the
     // one place that refusal cannot hold.
     .button,
     .link
@@ -160,19 +159,6 @@
       gap: var(--space-s)
       justify-content: start
       text-align: start
-
-    // One group, so the doors to a wall read as belonging to the invitation
-    // above them rather than to the preferences below. The dialog spends
-    // `--space-m` between blocks; inside one, less.
-    .invitation
-      display: flex
-      flex-direction: column
-      gap: var(--space-s)
-
-    .wall-doors
-      display: flex
-      flex-direction: column
-      gap: var(--space-s)
 
     .project-with-code form
       align-items: start
@@ -215,28 +201,6 @@
       display: flex
       flex-direction: column
       gap: var(--space-s)
-
-    // Not an exit, so not in that ladder: it is the one thing in this menu that
-    // is read out rather than pressed, and the only one that stays hidden until
-    // it is asked for.
-    .recovery
-      display: flex
-      flex-direction: column
-      gap: var(--space-xs)
-
-      .token
-        @include typography.room-code-small
-
-        font-size: var(--text-l)
-        text-align: center
-        user-select: text
-
-      .hint
-        @include typography.caption
-
-        color: var(--ink-muted)
-        text-align: center
-        text-wrap: balance
 
     .warning
       @include typography.caption

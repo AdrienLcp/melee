@@ -551,7 +551,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     recovery: {
       action: 'Tenir la table d’ici',
-      description: 'Il est dans le menu de l’hôte.',
+      description: 'Il est dans l’onglet Salle de l’hôte, sous Cet écran.',
       field: 'Code de reprise',
       hint: 'À saisir ailleurs pour reprendre la table depuis là-bas.',
       invalid: 'Ce n’est pas un code de reprise.',
@@ -604,6 +604,7 @@ export const FR_DICTIONARY = defineDictionary({
         pairLines:
           'Ouvre Mêlée dessus et choisis « Devenir l’écran de la pièce », puis tape ici le code qu’il affiche.',
         pairTitle: 'Un écran à côté',
+        tabTitle: 'Ou un onglet de celui-ci',
         titleOff: 'Mettre la partie sur un autre écran',
         titleOn: 'L’écran de la salle'
       }

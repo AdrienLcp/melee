@@ -12,23 +12,20 @@ import {
   Button as ReactAriaButton
 } from 'react-aria-components'
 
-import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
+import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 import { isLocale, LOCALES } from '@melee/protocol/locale'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
 import {
   creditsPathFor,
   homePathFor,
-  inviteUrlFor,
   legalPathFor,
   paths,
   useIsCurrentPath,
   useNavigateToLocale,
   usePathname,
-  useRoomCodeParam,
-  wallUrlFor
+  useRoomCodeParam
 } from '@/infrastructure/router/navigation'
-import { readHostToken } from '@/infrastructure/storage/session-storage'
 import { useVolume } from '@/presentation/audio/volume-provider'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -50,7 +47,6 @@ import {
   connectionStatusKey
 } from './connection-status'
 import { Disclosure } from './disclosure'
-import { HandOverDoor } from './hand-over-door'
 import { MenuIcon, ScreenIcon } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
@@ -62,7 +58,6 @@ import { Slider } from './slider'
 import { TextField } from './text-field'
 import { TextLink } from './text-link'
 import { useMenuWidth } from './use-menu-width'
-import { WallPairingForm } from './wall-pairing-form'
 
 import './app-menu.sass'
 
@@ -73,80 +68,6 @@ import './app-menu.sass'
  * is bounded by the screen instead.
  */
 const MENU_MAX_HEIGHT_PX = 520
-
-/**
- * The ways to put this table on a big screen. The invitation is the code and
- * the square alone, for a crowd that only has to get in; the wall is the whole
- * game. The same machine opens either in a new tab — a plain navigation off the
- * console would close its socket, and the server cannot tell that from a closed
- * tab — which is also what lets the tab be dragged onto the screen wired to the
- * projector. Any other screen shows a code of its own at `/wall`, and this
- * console vouches for it with the token.
- */
-const WallDoors: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
-  const { handOver } = useRoomActions()
-  const translate = useTranslate()
-
-  return (
-    <div className='wall-doors'>
-      <Link
-        href={inviteUrlFor(roomCode)}
-        rel='noreferrer'
-        target='_blank'
-        variant='underlined'
-      >
-        {translate('invite.project')}
-      </Link>
-      <Link
-        href={wallUrlFor(roomCode)}
-        rel='noreferrer'
-        target='_blank'
-        variant='underlined'
-      >
-        {translate('wall.menu.openHere')}
-      </Link>
-      <WallPairingForm roomCode={roomCode} />
-      {handOver !== null && (
-        <HandOverDoor onOpen={handOver} roomCode={roomCode} />
-      )}
-    </div>
-  )
-}
-
-/**
- * The room's own secret, on the one screen that holds it. Hidden until it is
- * asked for: this menu opens on a console that is often a television, and a code
- * the room can read over the host's shoulder is a room the room can take.
- */
-const RoomRecovery: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
-  const [isRevealed, setIsRevealed] = useState(false)
-  const translate = useTranslate()
-  const hostToken = readHostToken(roomCode)
-
-  // A console that took the room over on the grace window alone runs it without
-  // ever learning the token, and has nothing here to show.
-  if (hostToken === null) {
-    return null
-  }
-
-  return isRevealed ? (
-    <div className='recovery'>
-      <p className='token'>{hostToken}</p>
-      <p className='hint'>{translate('host.recovery.hint')}</p>
-    </div>
-  ) : (
-    <div className='recovery'>
-      <Button
-        onPress={() => {
-          setIsRevealed(true)
-        }}
-        variant='outlined'
-      >
-        {translate('host.recovery.reveal')}
-      </Button>
-    </div>
-  )
-}
 
 /**
  * The name this screen is playing under. A device that has played before never
@@ -232,7 +153,6 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   const { closeRoom, endGame, leaveSeat } = useRoomActions()
   const [isConfirmingClose, setIsConfirmingClose] = useState(false)
   const connection = useConnection()
-  const roomCode = useRoomCodeParam()
   const translate = useTranslate()
   const isOnHome = useIsCurrentPath(homePathFor(locale))
   // Every exit here but the plain navigation sends a frame, and a frame written
@@ -269,67 +189,63 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   }
 
   return (
-    <>
-      {roomCode !== null && <RoomRecovery roomCode={roomCode} />}
+    <div className='exits'>
+      {/*
+        Widest scope last, and this is the only screen that shows more than
+        one of them: a host who took a seat can give it back without giving up
+        the room, which is what makes the three separate scopes worth having.
+      */}
+      {leaveSeat !== null && (
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            leaveSeat()
+            onDone()
+          }}
+          variant='outlined'
+        >
+          {translate('host.seat.leave')}
+        </Button>
+      )}
 
-      <div className='exits'>
-        {/*
-          Widest scope last, and this is the only screen that shows more than
-          one of them: a host who took a seat can give it back without giving up
-          the room, which is what makes the three separate scopes worth having.
-        */}
-        {leaveSeat !== null && (
-          <Button
-            isDisabled={!isLive}
+      {endGame !== null && (
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            endGame()
+            onDone()
+          }}
+          variant='outlined'
+        >
+          {translate('host.endGame')}
+        </Button>
+      )}
+
+      {isConfirmingClose ? (
+        <>
+          <p className='warning'>{translate('host.closeRoom.warning')}</p>
+          <Link
+            href={homePathFor(locale)}
             onPress={() => {
-              leaveSeat()
+              closeRoom()
               onDone()
             }}
-            variant='outlined'
           >
-            {translate('host.seat.leave')}
-          </Button>
-        )}
-
-        {endGame !== null && (
-          <Button
-            isDisabled={!isLive}
-            onPress={() => {
-              endGame()
-              onDone()
-            }}
-            variant='outlined'
-          >
-            {translate('host.endGame')}
-          </Button>
-        )}
-
-        {isConfirmingClose ? (
-          <>
-            <p className='warning'>{translate('host.closeRoom.warning')}</p>
-            <Link
-              href={homePathFor(locale)}
-              onPress={() => {
-                closeRoom()
-                onDone()
-              }}
-            >
-              {translate('host.closeRoom.confirm')}
-            </Link>
-          </>
-        ) : (
-          <Button
-            isDisabled={!isLive}
-            onPress={() => {
-              setIsConfirmingClose(true)
-            }}
-            variant='outlined'
-          >
-            {translate('host.closeRoom.label')}
-          </Button>
-        )}
-      </div>
-    </>
+            {translate('host.closeRoom.confirm')}
+          </Link>
+        </>
+      ) : (
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            setIsConfirmingClose(true)
+          }}
+          variant='outlined'
+        >
+          {translate('host.closeRoom.label')}
+        </Button>
+      )}
+    </div>
   )
 }
 
@@ -354,9 +270,7 @@ export const AppMenu: React.FC = () => {
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
   const roomCode = useRoomCodeParam()
-  // The console is the screen that can send the invitation somewhere else, and
-  // `closeRoom` is what says a screen is one — the same test `RoomExit` makes.
-  const { closeRoom, playsSound, revealRound } = useRoomActions()
+  const { playsSound, revealRound } = useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
@@ -460,11 +374,7 @@ export const AppMenu: React.FC = () => {
                   find, and it is not a way out of the room.
                 */}
               {isInsideRoom && roomCode !== null && (
-                <div className='invitation'>
-                  <RoomInvitation roomCode={roomCode} />
-
-                  {closeRoom !== null && <WallDoors roomCode={roomCode} />}
-                </div>
+                <RoomInvitation roomCode={roomCode} />
               )}
 
               {!isInsideRoom && (

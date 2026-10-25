@@ -1,0 +1,15 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // A way of the Room tab's detail, whose rule and gap it takes.
+  .room-recovery
+    .token
+      @include typography.room-code-small
+
+      font-size: var(--text-l)
+      user-select: text
+
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)

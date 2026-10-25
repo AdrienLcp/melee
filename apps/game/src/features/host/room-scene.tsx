@@ -9,10 +9,12 @@ import type { HostRoomView } from '@melee/protocol/room'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 
+import { inviteUrlFor, wallUrlFor } from '@/infrastructure/router/navigation'
 import { useVolume } from '@/presentation/audio/volume-provider'
 import { Button } from '@/presentation/components/button'
 import { HandOverDoor } from '@/presentation/components/hand-over-door'
 import { PlusIcon, ScreenIcon } from '@/presentation/components/icons'
+import { Link } from '@/presentation/components/link'
 import { Pawn } from '@/presentation/components/pawn'
 import { Slider } from '@/presentation/components/slider'
 import { WallPairingForm } from '@/presentation/components/wall-pairing-form'
@@ -21,6 +23,7 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 import { DESK_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
 
 import { HostSeat } from './host-seat'
+import { RoomRecovery } from './room-recovery'
 
 import './room-scene.sass'
 
@@ -199,7 +202,7 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
 }
 
 /**
- * Folded behind a press, as in the menu: the square hands the table to whoever
+ * Folded behind a press: the square hands the table to whoever
  * scans it, and this tab is often open on the screen the whole room is facing.
  */
 const HandOverWay: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
@@ -207,6 +210,39 @@ const HandOverWay: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   return handOver === null ? null : (
     <HandOverDoor onOpen={handOver} roomCode={roomCode} />
+  )
+}
+
+/**
+ * The room's screen opened beside the console on this machine: a new tab, since
+ * a plain navigation off the console would close its socket and the server
+ * cannot tell that from a closed tab. That tab can be dragged onto the screen
+ * wired to the projector — the invitation for a crowd that only has to get in,
+ * the wall for the whole game.
+ */
+const TabWay: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
+  const translate = useTranslate()
+
+  return (
+    <div className='way'>
+      <h4>{translate('host.roomScene.wall.tabTitle')}</h4>
+      <Link
+        href={wallUrlFor(roomCode)}
+        rel='noreferrer'
+        target='_blank'
+        variant='underlined'
+      >
+        {translate('wall.menu.openHere')}
+      </Link>
+      <Link
+        href={inviteUrlFor(roomCode)}
+        rel='noreferrer'
+        target='_blank'
+        variant='underlined'
+      >
+        {translate('invite.project')}
+      </Link>
+    </div>
   )
 }
 
@@ -247,6 +283,7 @@ const WallDetail: React.FC<{
           roomCode={view.code}
         />
       </div>
+      <TabWay roomCode={view.code} />
       {isDesk && <HandOverWay roomCode={view.code} />}
     </>
   )
@@ -332,6 +369,7 @@ const HereDetail: React.FC<{
           />
         </div>
       )}
+      <RoomRecovery roomCode={view.code} />
     </>
   )
 }

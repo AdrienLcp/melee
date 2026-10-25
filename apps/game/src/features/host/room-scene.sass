@@ -166,6 +166,12 @@
       gap: var(--space-xs)
       padding-top: var(--space-s)
 
+    // The control register is sized against the viewport, and a link set in it
+    // ran wider than this column: in here it takes the column's own size.
+    .way .link
+      font-size: var(--text-s)
+      white-space: normal
+
     .hand-over-door,
     .host-seat,
     .slider

@@ -54,6 +54,15 @@
       &:has(.segment-field:nth-child(7))
         @include strip.stacks-below(21rem)
 
+    // Its own block under the roster: the rows keep the roster's order, and
+    // their heading says why the same names stand a second time.
+    .hand-points
+      display: grid
+      gap: var(--space-s)
+
+      h3
+        @include typography.heading
+
     // The roster above it is already ruled off.
     .host-seat
       border-top: none

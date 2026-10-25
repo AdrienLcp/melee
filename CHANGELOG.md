@@ -226,6 +226,16 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The menu keeps what a round needs, the console's panel the rest.**
+  The ways to put the table on another screen — pairing a screen by its code,
+  the game or the QR code in a new tab, handing the table over — are all in the
+  Room tab's *Room's screen* now, and the recovery code is under *This screen*:
+  both are set up between rounds, and they made the host's menu the longest in
+  the product. Points by hand are in both: still folded in the menu for a
+  narrow console mid-round, and listed under the roster in the Players tab once
+  the game runs, where a desk already has them beside the stage. The refused
+  console says where the recovery code now is.
+
 - `[Game]` **The console's panel moves instead of jumping.** Folding it,
   unfolding it or sending it to the other side slides the panel and the stage
   to where they now stand, and every case of the board track travels to its

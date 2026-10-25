@@ -577,7 +577,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     recovery: {
       action: 'Run the table from here',
-      description: 'It is in the host’s own menu.',
+      description: 'It is in the host’s Room tab, under This screen.',
       field: 'Recovery code',
       hint: 'Type it elsewhere to run the table from there.',
       invalid: 'That is not a recovery code.',
@@ -631,6 +631,7 @@ export const EN_DICTIONARY = defineDictionary({
         pairLines:
           'Open Mêlée on it and choose “Become the room’s screen”, then type the code it shows here.',
         pairTitle: 'A screen nearby',
+        tabTitle: 'Or a tab of this one',
         titleOff: 'Put the game on another screen',
         titleOn: 'The room’s screen'
       }
