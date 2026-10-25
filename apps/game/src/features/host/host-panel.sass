@@ -59,6 +59,11 @@
       grid-template-columns: minmax(0, 1fr)
       outline: none
 
+      // react-aria keeps a tab it leaves mounted until that tab's fade-in
+      // ends: a quick switch would stack both tabs for that long.
+      &[data-exiting]
+        display: none
+
       > h2
         @include typography.title
 
