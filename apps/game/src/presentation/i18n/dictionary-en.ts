@@ -1077,6 +1077,10 @@ export const EN_DICTIONARY = defineDictionary({
       toy: 'Toy',
       vehicle: 'Vehicle'
     },
+    home: {
+      description:
+        'A letter comes up and every screen gets the same sheet — a country, an animal, a first name — to fill with words starting with it. The first to fill theirs can call stop. Then the room votes on each category, and a word nobody else wrote pays double.'
+    },
     host: {
       cancelStop: 'Cancel the stop',
       nextCategory: 'Next category',
@@ -1084,6 +1088,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     letter: 'Letter {letter}',
     name: 'Categories',
+    play: 'Play Categories',
     reveal: {
       outcome: {
         empty: 'Blank',
@@ -1127,6 +1132,7 @@ export const EN_DICTIONARY = defineDictionary({
       offLetter: 'To stop, every line needs a word starting with {letter}.',
       press: 'Stop!'
     },
+    tagline: 'One letter. Fill every line.',
     vote: {
       done: 'Done',
       doneCount: defineTranslation(

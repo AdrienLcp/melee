@@ -8,7 +8,7 @@ import { Main } from '@/presentation/components/main'
 
 /**
  * Named, because the build-time prerender refuses to write a document carrying
- * it: an unresolved `lazy` route renders this into all sixteen files with the
+ * it: an unresolved `lazy` route renders this into every file with the
  * build green, and a loader is what a crawler would then index.
  */
 export const ROUTE_FALLBACK_CLASS = 'route-fallback'

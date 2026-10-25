@@ -91,8 +91,8 @@ const handler = createStaticHandler(routes)
 /**
  * `createStaticHandler` rather than a memory router, because every page is
  * `lazy` and `query` is the only thing that awaits those chunks. A synchronous
- * render over an unresolved tree writes the route fallback into all sixteen
- * documents and leaves the build green.
+ * render over an unresolved tree writes the route fallback into every
+ * document and leaves the build green.
  */
 export const renderPage = async ({
   locale,
@@ -111,7 +111,7 @@ export const renderPage = async ({
 
   // `dataRoutes` rather than `routes`: it is the tree `query` resolved every
   // `lazy` into. Handed the original, the router has no component to mount and
-  // renders `HydrateFallback` instead — a loader, in all sixteen documents,
+  // renders `HydrateFallback` instead — a loader, in every document,
   // with nothing red anywhere.
   const markup = renderToStaticMarkup(
     <AppProviders locale={locale}>

@@ -1016,6 +1016,10 @@ export const FR_DICTIONARY = defineDictionary({
       toy: 'Jouet',
       vehicle: 'Véhicule'
     },
+    home: {
+      description:
+        'Une lettre tombe et chaque écran reçoit la même grille — un pays, un animal, un prénom — à remplir de mots qui commencent par elle. Le premier qui a tout rempli peut crier stop. Puis la salle vote catégorie par catégorie, et un mot que personne d’autre n’a écrit rapporte double.'
+    },
     host: {
       cancelStop: 'Annuler le stop',
       nextCategory: 'Catégorie suivante',
@@ -1023,6 +1027,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     letter: 'Lettre {letter}',
     name: 'Petit Bac',
+    play: 'Jouer au Petit Bac',
     reveal: {
       outcome: {
         empty: 'Vide',
@@ -1068,6 +1073,7 @@ export const FR_DICTIONARY = defineDictionary({
       offLetter: 'Pour dire stop, chaque ligne doit commencer par {letter}.',
       press: 'Stop !'
     },
+    tagline: 'Une lettre. Remplis chaque ligne.',
     vote: {
       done: 'J’ai fini',
       doneCount: defineTranslation(

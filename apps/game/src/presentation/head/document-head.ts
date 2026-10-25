@@ -23,7 +23,7 @@ export type PageHead = {
  * says `Mêlée` and `A shelf of games for the whole evening.`, and neither is a search result.
  *
  * Read twice. Each page renders its title as `<title>`, which the build-time
- * prerender lifts into the head of sixteen documents beside the description it
+ * prerender lifts into the head of every document beside the description it
  * writes itself, and React keeps in the tab after an in-app navigation. Typed over
  * `ShelvedGame`, so putting a game on the shelf stops compiling here until both
  * languages can introduce it to a stranger.
@@ -57,7 +57,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock, Matchsticks, Timeline and Guess nine.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock, Matchsticks, Timeline, Guess nine and Categories.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -74,6 +74,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'A false equation drawn in matches, or a number to make as big or as small as it can be: one match moves. Everyone moves it on their own screen and the best move pays most, or the first to buzz says which and the host says right or wrong. Every puzzle is dealt fresh and every one has an answer.',
       title: 'Matchsticks — Mêlée'
+    },
+    petitbac: {
+      description:
+        'A letter comes up and everyone fills the same sheet on their own screen — a country, an animal, a first name, all starting with it. The first to finish calls stop, the room votes on what counts, and a word nobody else wrote pays double. Scan the QR code and play — no install, no account.',
+      title: 'Categories — Mêlée'
     },
     quiz: {
       description:
@@ -129,7 +134,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes, Frise chronologique et Devineuf.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes, Frise chronologique, Devineuf et Petit Bac.',
       title: 'Mêlée — des jeux de soirée pour un écran et toute la salle'
     },
     innerclock: {
@@ -146,6 +151,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Une égalité fausse dessinée en allumettes, ou un nombre à rendre le plus grand ou le plus petit possible : une seule allumette bouge. Chacun la déplace sur son écran et le meilleur coup rapporte le plus, ou le premier à buzzer dit laquelle et l’hôte tranche. Chaque énigme est tirée à neuf et toutes ont une réponse.',
       title: 'Allumettes — Mêlée'
+    },
+    petitbac: {
+      description:
+        'Une lettre tombe et chacun remplit la même grille sur son écran — un pays, un animal, un prénom, tous commençant par elle. Le premier qui a fini crie stop, la salle vote sur ce qui compte, et un mot que personne d’autre n’a écrit rapporte double. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Petit Bac — Mêlée'
     },
     quiz: {
       description:

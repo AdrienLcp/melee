@@ -1,6 +1,6 @@
 # 50 — Petit Bac
 
-**Two steps of three, and the seat** — the rules, the server and the player's screen landed. Asked 25/10/2026. A letter goes up — *B* — beside six categories —
+**Done** — the rules, the server, the screens and the shelf, all landed 25/10/2026, the day it was asked. A letter goes up — *B* — beside six categories —
 *a country, an animal, a first name, a job, a brand, something in a kitchen* —
 and every screen fills its own grid against the clock: *Belgique, baleine,
 Bastien, boulanger, Bic, bouilloire*. The first sheet full may call **stop**.
@@ -228,7 +228,13 @@ sizes its figure by its length, so `+14 000` stays inside the rim; and a wall
 offers no sound to an evening of games that make none (`makesSound`,
 `isEveningSilent`).
 
-— cut here: the seat committed; the wall, the console, the reveal and the shelf are next —
+**The shelf landed 25/10/2026**: `petitbac` in `shelvedGames`, its door
+(`/fr/petitbac`, `/en/petitbac`, prerendered with the rest — thirty documents
+now, which is why the comments stopped counting them), its tagline and head
+copy in both languages. Its icon is lucide's `CaseSensitive`, the *Aa* of a
+game about one letter: the `TableProperties` it first had read as Guess nine's
+grid one row up. Seen muted at 1280 px in French and English: the shelf, the
+door, and the door opening a room with Petit Bac ticked in the picker.
 
 Verified muted in a browser with three seats: a stop closes the others' sheets,
 a word never reaches another screen before the vote, a refused row pays

@@ -8,6 +8,17 @@ one part.
 
 ### Features
 
+- `[Game]` **Petit Bac is on the shelf**, the twelfth game — *Categories* in
+  English. A letter and three to ten categories go up, every screen fills its
+  own sheet until the clock runs out or a full sheet calls stop, then the room
+  votes category by category, *doesn't count* on the others' rows, and a word
+  nobody else wrote pays double. The wall shows the letter, each seat's filled
+  lines and the vote as it falls; the console picks the categories from a bank
+  or writes its own, can take a stop back until the vote moves on, and judges
+  the refusals itself when it runs the room as judge; the reveal is every
+  seat's sheet as one grid, a lone find told apart from a shared one. It has
+  its front door at `/fr/petitbac` and `/en/petitbac`, and an *Aa* on its spine.
+
 - `[Shared]` **Team score, balanced or added up**, a room setting beside the
   teams — *Score des équipes* in French. *Équilibré*, the default, pays a team
   the mean of what a round paid the seats it opened on, so a pair does not beat
