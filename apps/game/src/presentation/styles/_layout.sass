@@ -46,14 +46,11 @@ $desk-screen: 80rem
 /// the moving parts by design, and a screen that resettled on every snapshot
 /// would read as lag on a surface that is timing people.
 ///
-/// A prerendered document's first screen is already painted when the app
-/// replaces it with its own nodes, so under `data-landing` it does not arrive:
-/// it would fade in once from the document and again from the app.
+/// A prerendered document arrives on its own, before the app replaces its
+/// nodes: `landing-arrival.ts` carries the app's arrival on from where the
+/// document's had reached, so it is seen once.
 @mixin arriving
   animation: page-enter var(--transition-base, 0s) var(--ease-out) both
-
-  :root[data-landing] &
-    animation: none
 
 /// A narrow-first column. Used by every screen a player sees.
 ///

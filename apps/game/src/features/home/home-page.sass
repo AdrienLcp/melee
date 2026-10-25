@@ -32,7 +32,9 @@ $masthead-side-by-side: 60rem
       font-size: clamp(var(--text-4xl), calc(var(--stage-unit) * 16), 9.25rem)
 
       .dot
+        animation: tick-stamp var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 1.4) both
         color: var(--primary)
+        display: inline-block
 
     .join-box
       @include box-lid.box-lid

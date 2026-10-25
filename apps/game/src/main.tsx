@@ -7,6 +7,7 @@ import { reloadOnStaleBuild } from '@/infrastructure/stale-build'
 import { AppProviders } from '@/presentation/app-providers'
 import { i18n } from '@/presentation/i18n/i18n'
 import { applyInitialLocale } from '@/presentation/i18n/initial-locale'
+import { holdLandingArrival } from '@/presentation/landing-arrival'
 
 import '@/presentation/styles/globals.sass'
 
@@ -26,6 +27,8 @@ if (container == null) {
 }
 
 const router = createBrowserRouter(routes)
+
+holdLandingArrival()
 
 /**
  * `createRoot` over the prerendered markup rather than `hydrateRoot`, and that

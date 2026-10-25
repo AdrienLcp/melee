@@ -5,8 +5,8 @@ import { Outlet } from 'react-router'
 import { AppMenu } from '@/presentation/components/app-menu'
 import { SkipLink } from '@/presentation/components/skip-link'
 import { ConnectionProvider } from '@/presentation/connection/connection-provider'
+import { useResumeLandingArrival } from '@/presentation/landing-arrival'
 import { RoomActionsProvider } from '@/presentation/room-actions/room-actions-provider'
-import { useEndLandingOnNavigation } from '@/presentation/use-end-landing-on-navigation'
 import { useFocusMainOnNavigation } from '@/presentation/use-focus-main-on-navigation'
 
 import './app-shell.sass'
@@ -18,7 +18,7 @@ import './app-shell.sass'
  */
 export const AppShell: React.FC = () => {
   useFocusMainOnNavigation()
-  useEndLandingOnNavigation()
+  useResumeLandingArrival()
 
   return (
     <AriaRouterProvider>
