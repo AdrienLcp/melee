@@ -998,7 +998,10 @@ bounced. Durations:
 - **Page arrival** — `page-enter`, 8px and a fade on `base`, carried by the
   `screen` and `stage` mixins (`arriving`). Never on a framed screen.
 - **A panel tab opening** — `panel-screen-in`, a fade alone on `fast` × 1.5:
-  the panel is beside the game, and must not pull the eye off it.
+  the panel is beside the game, and must not pull the eye off it. The tab
+  being left is hidden on `[data-exiting]`: react-aria keeps an exiting panel
+  mounted until every animation on it settles, the entry fade included, so a
+  quick switch stacked both tabs.
 - **The map's zoom** — a press or a wheel notch glides 200ms on an ease-out
   cubic (`use-eased-map-view.ts`), each notch building on where the last was
   going; a finger, a pinch and a trackpad pinch land at once. Reduced motion
