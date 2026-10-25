@@ -160,8 +160,22 @@ the English name is the screens' session to settle, and is not *Scattergories*
 
 ## Step 3 — the screens (one or two sessions)
 
-Starts with the `impeccable` skill, and the directions go to Adrien as complete
-pages behind one index link before any of them is built.
+Direction A, *the sheet*, chosen 2026-10-25 over *one line in hand*
+(`.impeccable/directions/petit-bac/`, local): the whole sheet on one card,
+the category in the margin and the word on the line; a *doesn't count* toggle
+per row in the vote, the seat's own row marked *yours*; on the wall the letter
+beside the categories as empty ruled lines and a groove per seat, a card per
+row with a dot per voter in the vote, and a seats × categories grid at the
+reveal, *found alone* on `--good-soft` with ×2. The spine is a violet school
+ink, `oklch(46% 0.13 285)`, and the English name is **Categories** — the
+paper game's generic name.
+
+**Two guards against a stop called on a junk sheet**, added with the screens:
+the server refuses a stop unless every line starts with the letter and holds
+two letters or more, and the console carries *cancel the stop* — the sheets
+reopen on the time left when it was called, the stopper may not stop again
+that round — until the first category's vote has moved on. Judge or not: the
+console runs the room either way.
 
 - **A seat**: the letter large, one field per category, the stop once the
   sheet is full, the grace counting down; then the category being voted, its
