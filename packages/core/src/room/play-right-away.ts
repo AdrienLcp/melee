@@ -1,36 +1,6 @@
-import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
+import type { RoomSettings } from '@melee/protocol/room'
 
-import { isJudgedByHost, isRoomJudgedByHost, modeOfferedBy } from './game-modes'
-import { type HostPreferences, restoredSettings } from './host-preferences'
-
-/**
- * The room a host who pressed *play right away* starts on: their remembered
- * setup for the game, except a way of answering that would make them the
- * judge — a judge cannot take the seat the press asked for, so a quiz or a
- * blind test remembered on `buzzer` opens on four choices instead.
- */
-export const settingsToPlayRightAway = ({
-  preferences,
-  settings
-}: {
-  preferences: HostPreferences | null
-  settings: RoomSettings
-}): RoomSettings => {
-  const restored =
-    preferences === null
-      ? settings
-      : restoredSettings({ preferences, settings })
-  const game = restored.game?.kind ?? null
-
-  if (game === null || !isJudgedByHost({ game, mode: restored.mode.kind })) {
-    return restored
-  }
-
-  return {
-    ...restored,
-    mode: modeOfferedBy({ game, preferred: DEFAULT_MODE_SETTINGS.choice })
-  }
-}
+import { isRoomJudgedByHost } from './game-modes'
 
 /**
  * Whether the lobby's launch is the press that seats its host and starts: the

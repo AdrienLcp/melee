@@ -171,6 +171,7 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
             isLive={isLive}
             isNextRound={isNext}
             isRoundInPlay={roundInPlay && isNext}
+            isSeated={view.youId !== null}
             isSheetOnStage={view.phase === 'lobby' && isNext}
             onChange={changeEntry}
             onPrepareSlateKey={onRememberSlateKey}

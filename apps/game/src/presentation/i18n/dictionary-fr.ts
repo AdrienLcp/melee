@@ -401,9 +401,6 @@ export const FR_DICTIONARY = defineDictionary({
   },
   home: {
     resume: 'Reprendre',
-    seat: {
-      label: 'Je joue aussi'
-    },
     shelf: 'Les jeux',
     title: 'Mêlée'
   },
@@ -509,7 +506,10 @@ export const FR_DICTIONARY = defineDictionary({
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
       plural: { count: { other: '{?}' } }
     }),
-    judgedMark: 'L’hôte juge',
+    judgedMark: {
+      host: 'L’hôte juge',
+      you: 'Tu juges sans jouer'
+    },
     lineUp: {
       first: 'En premier',
       next: 'Ensuite',
@@ -660,8 +660,9 @@ export const FR_DICTIONARY = defineDictionary({
         hiddenAnswer: 'Tu ne verras plus la réponse avant les autres.',
         sharedScreen: 'Tu cours sur l’écran que toute la table regarde.'
       },
-      label: 'Jouer aussi, sous le nom de',
+      label: 'Jouer depuis cet écran, sous le nom de',
       leave: 'Rendre sa place',
+      offer: 'Jouer depuis cet écran',
       sittingOut: 'Tu juges cette manche, tu rejoues à la suivante.',
       taken: 'Tu joues sous le nom de {nickname}.',
       withheld: {

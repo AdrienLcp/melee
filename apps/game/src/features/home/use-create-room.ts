@@ -2,21 +2,11 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router'
 
 import type { ShelvedGame } from '@melee/protocol/game'
-import type { Nickname } from '@melee/protocol/identifiers'
 
 import { createRoom } from '@/infrastructure/api/melee-api'
-import {
-  hostPathFor,
-  playRightAwayNavigation
-} from '@/infrastructure/router/navigation'
-import {
-  readStoredLineUpGames,
-  writeStoredNickname
-} from '@/infrastructure/storage/preferences-storage'
-import {
-  writeHostToken,
-  writeSeatNickname
-} from '@/infrastructure/storage/session-storage'
+import { hostPathFor } from '@/infrastructure/router/navigation'
+import { readStoredLineUpGames } from '@/infrastructure/storage/preferences-storage'
+import { writeHostToken } from '@/infrastructure/storage/session-storage'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import {
   apiErrorKey,
@@ -35,7 +25,6 @@ type RoomOpening =
       games: readonly ShelvedGame[]
       /** Opened from the home tray, on the games of the last evening rather than on one game. */
       isLobby: boolean
-      seatAs: Nickname | null
       status: 'opening'
     }
   | { status: 'idle' }
@@ -60,18 +49,16 @@ export const useCreateRoom = () => {
 
   const openRoom = async ({
     games,
-    isLobby,
-    seatAs
+    isLobby
   }: {
     games: readonly ShelvedGame[]
     isLobby: boolean
-    seatAs: Nickname | null
   }): Promise<void> => {
     if (opening.status === 'opening') {
       return
     }
 
-    setOpening({ games, isLobby, seatAs, status: 'opening' })
+    setOpening({ games, isLobby, status: 'opening' })
 
     const created = await createRoom({
       games,
@@ -93,56 +80,22 @@ export const useCreateRoom = () => {
       roomCode: created.data.code
     })
 
-    if (seatAs === null) {
-      await navigate(hostPathFor(created.data.code))
-
-      return
-    }
-
-    writeStoredNickname(seatAs)
-    writeSeatNickname({
-      nickname: seatAs,
-      role: 'host',
-      roomCode: created.data.code
-    })
-    await navigate(
-      hostPathFor(created.data.code),
-      games.length === 1 ? playRightAwayNavigation : undefined
-    )
+    await navigate(hostPathFor(created.data.code))
   }
 
   return {
-    /** The table is opening for the group, with nobody seated. */
-    isOpening: opening.status === 'opening' && opening.seatAs === null,
     isOpeningAny: opening.status === 'opening',
     /** The home tray's table is opening. */
     isOpeningLobby: opening.status === 'opening' && opening.isLobby,
-    /** The table is opening with whoever pressed already seated. */
-    isStartingRightAway:
-      opening.status === 'opening' && opening.seatAs !== null,
-    /**
-     * Opens a table on `games`. With `seatAs`, the console it lands on takes
-     * the host's seat under that name — written where the console's `hello`
-     * reads it — and with exactly one game it starts the first round itself,
-     * through the navigation the console consumes once. Several wait in the
-     * lobby with the host already at the table.
-     */
-    open: ({
-      games,
-      seatAs = null
-    }: {
-      games: readonly ShelvedGame[]
-      seatAs?: Nickname | null
-    }): Promise<void> => openRoom({ games, isLobby: false, seatAs }),
+    /** Opens a table on `games`, its console in the lobby with nobody seated. */
+    open: ({ games }: { games: readonly ShelvedGame[] }): Promise<void> =>
+      openRoom({ games, isLobby: false }),
     /** The game a door is opening a table for, or `null` when none is. */
     openingFor:
       opening.status === 'opening' && !opening.isLobby ? opening.games : null,
-    /**
-     * Opens the home tray's table, on the games of the host's last evening,
-     * and seated under `seatAs` when it is given.
-     */
-    openLobby: ({ seatAs }: { seatAs: Nickname | null }): Promise<void> =>
-      openRoom({ games: storedLineUpGamesOrNone(), isLobby: true, seatAs }),
+    /** Opens the home tray's table, on the games of the host's last line-up. */
+    openLobby: (): Promise<void> =>
+      openRoom({ games: storedLineUpGamesOrNone(), isLobby: true }),
     /**
      * Every cause is the room service rather than the game — a rate limit, a
      * dead network — so one message serves whichever press met it.

@@ -422,9 +422,6 @@ export const EN_DICTIONARY = defineDictionary({
   },
   home: {
     resume: 'Resume',
-    seat: {
-      label: 'I play too'
-    },
     shelf: 'The games',
     title: 'Mêlée'
   },
@@ -527,7 +524,10 @@ export const EN_DICTIONARY = defineDictionary({
       plural: { count: { other: '{?}' } }
     }),
     /** On a judged answer mode and on the box of a game judged however it is answered. */
-    judgedMark: 'Host judges',
+    judgedMark: {
+      host: 'Host judges',
+      you: 'You judge, sitting out'
+    },
     lineUp: {
       first: 'First up',
       next: 'Next up',
@@ -688,8 +688,9 @@ export const EN_DICTIONARY = defineDictionary({
         hiddenAnswer: 'You stop seeing the answer before everyone else.',
         sharedScreen: 'You race on the screen the whole table is watching.'
       },
-      label: 'Play too, as',
+      label: 'Play from this screen, as',
       leave: 'Give up the seat',
+      offer: 'Play from this screen',
       sittingOut: 'You judge this round, and play again from the next.',
       taken: 'You are playing as {nickname}.',
       /**

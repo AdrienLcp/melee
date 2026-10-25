@@ -5,6 +5,7 @@ import type { HostRoomView } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
 import { trackPawnsOf } from '@melee/core/board/track-pawns'
+import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
 
@@ -24,6 +25,7 @@ import {
 import { MoveSeat } from './move-seat'
 import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
+import { SeatOffer } from './seat-offer'
 import { SlatePreparation } from './slate-preparation'
 import { TeamCountField } from './team-count-field'
 import { mostTeamsOffered } from './teams-setup'
@@ -60,6 +62,16 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 }) => {
   const translate = useTranslate()
   const playsAloud = view.settings.teams.kind === 'aloud'
+  // An empty table's launch already seats its host, so the offer would be a
+  // second press doing the same thing.
+  const offersSeat =
+    controls !== null &&
+    youId === null &&
+    !playsAloud &&
+    !launchesWithHostSeated({
+      seated: view.players.length,
+      settings: view.settings
+    })
 
   useTeamCountFollowingHeadcount({ controls, view })
 
@@ -124,6 +136,13 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               onRemove={controls?.onRemovePlayer}
               players={view.players}
               youId={youId}
+            />
+          )}
+          {offersSeat && (
+            <SeatOffer
+              game={view.settings.game?.kind ?? null}
+              isDisabled={!controls.isLive}
+              onTakeSeat={controls.onTakeSeat}
             />
           )}
           {view.teams.length === 0 && (

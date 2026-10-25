@@ -5,7 +5,7 @@
 @use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
 
-// Where the press moves beside the seat rather than under it.
+// Where the way back moves beside the press rather than above it.
 $side-by-side: 47.5rem
 
 @layer components
@@ -17,33 +17,20 @@ $side-by-side: 47.5rem
     gap: var(--space-s) var(--space-l)
     padding: var(--space-m)
 
-    // The way back shares the seat's row while both fit whole, and drops
-    // under it on a phone too narrow for the two; the press keeps its own row.
-    &:has(.resume)
-      display: flex
-      flex-wrap: wrap
-      gap: var(--space-s)
-
-      .seat
-        flex: 1 1 auto
-
-      .resume
-        margin-inline-start: auto
-
-      .press
-        flex-basis: 100%
-
     @media (width >= $side-by-side)
       grid-template-columns: minmax(0, 1fr) auto
       padding-inline: var(--space-l) var(--space-m)
 
-      &:has(.resume)
-        display: grid
-        gap: var(--space-s) var(--space-l)
-        grid-template-columns: minmax(0, 1fr) auto auto
+      // Alone, the press keeps the lid to its own width, under the code box,
+      // rather than a full-width box with nothing in it but one button.
+      &:not(:has(.resume))
+        grid-template-columns: auto
+        margin-inline-start: auto
+        padding-inline: var(--space-m)
+        width: fit-content
 
         .press
-          grid-column: 3
+          grid-column: 1
 
       .press
         grid-column: 2
@@ -53,44 +40,10 @@ $side-by-side: 47.5rem
         .button
           min-width: 18rem
 
-      .seat
-        grid-column: 1
-        grid-row: 1
-
-        .text-field
-          max-width: 18rem
-
-    .seat
-      display: grid
-      gap: var(--space-xs)
-      justify-items: start
-      min-width: 0
-
-      .text-field
-        width: 100%
-
-      // Whole, so the way back drops under it rather than breaking it.
-      .switch-button
-        white-space: nowrap
-
-    .as
-      @include typography.caption
-
-      align-items: baseline
-      color: var(--ink-muted)
-      display: flex
-      flex-wrap: wrap
-      gap: 0 var(--space-xs)
-
-      .seated-as
-        overflow-wrap: anywhere
-
     .resume
       @include layout.arriving
 
-      grid-column: 2
-      grid-row: 1
-      justify-self: end
+      justify-self: start
 
       .code
         @include typography.room-code-small

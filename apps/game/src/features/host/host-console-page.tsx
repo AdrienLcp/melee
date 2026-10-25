@@ -38,7 +38,6 @@ import {
   useCameFromWall,
   useHandedHostToken,
   useRoomCodeParam,
-  useTakePlayRightAway,
   wallPathFor
 } from '@/infrastructure/router/navigation'
 import {
@@ -184,13 +183,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const ownChallengeLines = useOwnChallengeLines()
   const [targetSeconds, setTargetSeconds] = useState(drawTargetSeconds)
   const arrival = useArrival(view)
-  const playsRightAway = useTakePlayRightAway()
-  // Set by the door's navigation or by the empty lobby's launch, spent on the
-  // first view that holds this console's seat, and done once the room has left
-  // the lobby — never kept anywhere a reload would find it again.
-  const [rightAway, setRightAway] = useState<RightAwayStart>(
-    playsRightAway ? 'seating' : 'idle'
-  )
+  // Set by the empty lobby's launch, spent on the first view that holds this
+  // console's seat, and done once the room has left the lobby — never kept
+  // anywhere a reload would find it again.
+  const [rightAway, setRightAway] = useState<RightAwayStart>('idle')
 
   useReportConnection({ clock, status })
   usePhaseField(view?.phase ?? null)
@@ -256,7 +252,6 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   useRememberLineUpGames(view)
   useRestoreStoredSetup({
     onRestore: changeSettings,
-    playsRightAway,
     preferences,
     view
   })

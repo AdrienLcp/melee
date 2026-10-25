@@ -19,6 +19,8 @@ import { gameNameKey, gameTaglineKey } from '@/presentation/i18n/translation'
 type GamePickerProps = {
   /** The socket is closed, or a round is under way and the server would refuse the switch. */
   isDisabled: boolean
+  /** This console holds a seat, so a judged game is one it sits out rather than one somebody else judges. */
+  isSeated: boolean
   onChange: (settings: RoomSettings) => void
   /** What this host last left each game set to, or `null` if they never set anything. */
   preferences: HostPreferences | null
@@ -37,6 +39,7 @@ type GamePickerProps = {
  */
 export const GamePicker: React.FC<GamePickerProps> = ({
   isDisabled,
+  isSeated,
   onChange,
   preferences,
   settings
@@ -61,7 +64,7 @@ export const GamePicker: React.FC<GamePickerProps> = ({
       isDisabled: !playsAloud || (ticked.length === 1 && ticked.includes(game)),
       label: translate(gameNameKey(game)),
       mark: isJudgedInEveryMode(game)
-        ? translate('host.judgedMark')
+        ? translate(isSeated ? 'host.judgedMark.you' : 'host.judgedMark.host')
         : undefined,
       spine: `var(--spine-${game})`,
       value: game

@@ -172,6 +172,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         <div className='game-choice'>
           <GamePicker
             isDisabled={!isLive}
+            isSeated={view.youId !== null}
             onChange={onSettingsChange}
             preferences={preferences}
             settings={view.settings}

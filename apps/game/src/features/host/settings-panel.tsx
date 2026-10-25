@@ -203,6 +203,8 @@ type SettingsPanelProps = {
   isRoundInPlay: boolean
   /** The lobby's stage carries the sheet's own setup, so the fold does not repeat it. */
   isSheetOnStage: boolean
+  /** This console holds a seat, so a judged game is one it sits out rather than one somebody else judges. */
+  isSeated: boolean
   /**
    * The entry being set is the one the next round opens on. The answer mode,
    * its window and the slate's key on this tab are the next round's rather
@@ -227,6 +229,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   draftSource,
   isLive,
   isRoundInPlay,
+  isSeated,
   isSheetOnStage,
   isNextRound,
   onChange,
@@ -270,7 +273,9 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           options={offeredModes.map((offered) => ({
             label: translate(answerModeLabelKey(offered)),
             mark: isJudgedByHost({ game: game.kind, mode: offered })
-              ? translate('host.judgedMark')
+              ? translate(
+                  isSeated ? 'host.judgedMark.you' : 'host.judgedMark.host'
+                )
               : undefined,
             value: offered
           }))}

@@ -20,12 +20,12 @@ type GameDoorsProps = {
  */
 export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
   const translate = useTranslate()
-  const { isOpening, open, refusal } = createRoom
+  const { isOpeningAny, open, refusal } = createRoom
 
   return (
     <div className='game-doors'>
       <Button
-        isPending={isOpening}
+        isPending={isOpeningAny}
         onPress={() => {
           void open({ games: [game] })
         }}
