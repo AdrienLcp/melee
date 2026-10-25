@@ -203,6 +203,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           canPlay={canPlay}
           clock={clock}
           controls={null}
+          isBoardAround
           isSpeaker
           onUnlockAudio={armAudio}
           refusal={refusal}

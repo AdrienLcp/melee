@@ -76,6 +76,11 @@ type RoomStageProps = {
   /** `null` on the wall, which shows the room and changes nothing about it. */
   controls: StageControls | null
   /**
+   * The whole track is drawn around the stage on this screen, so its lobby owes
+   * the room no preview of it.
+   */
+  isBoardAround: boolean
+  /**
    * This screen plays the clip. A console stops being the speaker while a wall
    * is there, and then owes the room no offer to unmute itself.
    */
@@ -98,6 +103,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   canPlay,
   clock,
   controls,
+  isBoardAround,
   isSpeaker,
   onUnlockAudio,
   refusal,
@@ -413,6 +419,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   return (
     <LobbyStage
       controls={controls}
+      isBoardAround={isBoardAround}
       roomCode={roomCode}
       view={view}
       youId={youId}

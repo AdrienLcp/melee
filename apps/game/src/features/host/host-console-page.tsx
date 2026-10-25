@@ -711,6 +711,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         canPlay={canPlay}
         clock={clock}
         controls={controls}
+        isBoardAround={isSpeaker && isDesk}
         isSpeaker={isSpeaker}
         onUnlockAudio={armAudio}
         refusal={refusal}

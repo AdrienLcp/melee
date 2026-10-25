@@ -33,6 +33,8 @@ import { useTeamCountFollowingHeadcount, useTeamDeal } from './use-team-deal'
 type LobbyStageProps = {
   /** `null` on the wall, which shows who has arrived and what they will play. */
   controls: StageControls | null
+  /** As on `RoomStage`: a preview beside the whole track would show the board twice. */
+  isBoardAround: boolean
   roomCode: RoomCode
   view: HostRoomView
   /** The seat this console took; `null` on the wall and on an unseated console. */
@@ -51,6 +53,7 @@ type LobbyStageProps = {
  */
 export const LobbyStage: React.FC<LobbyStageProps> = ({
   controls,
+  isBoardAround,
   roomCode,
   view,
   youId
@@ -90,7 +93,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           />
         )}
 
-        {view.settings.board.kind === 'track' && (
+        {!isBoardAround && view.settings.board.kind === 'track' && (
           <section className='board-preview'>
             <h2>{translate('board.setting.label')}</h2>
             <TrackStrip
