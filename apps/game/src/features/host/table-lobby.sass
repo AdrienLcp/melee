@@ -65,7 +65,7 @@
     .room-invitation .qr-card
       align-self: center
       grid-area: qr
-      width: clamp(7rem, calc(var(--stage-unit) * 19), 13rem)
+      width: clamp(9rem, calc(var(--stage-unit) * 30), 20rem)
 
     .room-invitation .qr-words
       align-self: end
@@ -76,18 +76,25 @@
     .room-invitation .invite
       font-size: clamp(var(--text-m), calc(var(--stage-unit) * 2.4), var(--text-xl))
 
-    // A column of a phone's width: the code on a line of its own, the square
-    // under it beside the words that say what it is for.
+    // A column of a phone's width: the square takes the larger share of the
+    // row, the code and the words stacked beside it.
     @container (width < 34rem)
-      grid-template-areas: 'title title' 'rules rules' 'spines spines' 'code code' 'qr words'
+      grid-template-areas: 'title title' 'rules rules' 'spines spines' 'qr code' 'qr words'
       grid-template-columns: auto minmax(0, 1fr)
+
+      // The invitation declares itself a container, and drawn as `contents` it
+      // has no box to measure: `cqi` has to reach the card instead.
+      .room-invitation
+        --invitation-code-size: 2rem
+
+        container-type: normal
 
       .room-invitation .qr-card
         margin-block-start: var(--space-s)
-        width: 6.5rem
+        width: 55cqi
 
       .room-invitation .qr-words
-        align-self: center
+        align-self: start
 
   .table-lobby .table-title
     @include typography.billboard-wrapping

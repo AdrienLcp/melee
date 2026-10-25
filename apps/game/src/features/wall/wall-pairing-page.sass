@@ -55,9 +55,26 @@
       // Six characters here where a room has four, so the same measure over
       // half as many again: `100 / 7.17`.
       --invitation-code-size: min(calc(var(--stage-unit) * 22), 13.5cqi)
-      --invitation-qr-max-width: min(calc(var(--stage-unit) * 60), 100%)
+      --invitation-qr-max-width: min(100%, calc(var(--stage-unit) * 75))
 
       gap: var(--space-stage-split)
+
+      @include layout.poster-wide
+        --invitation-qr-max-width: min(calc(var(--stage-unit) * 60), 100%)
+
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+
+      // As on the invite page: the token is never wider than the square, and
+      // the words go under it.
+      .code
+        align-self: center
+        justify-self: center
+        width: min(100%, var(--invitation-qr-max-width))
+
+      .qr
+        grid-template-columns: minmax(0, var(--invitation-qr-max-width))
+        justify-content: center
+        text-align: center
 
       // The code's column, not the invitation's. Split in two, the invitation is
       // twice the box the code is drawn in, and a unit measured against the
@@ -78,13 +95,6 @@
 
       .join-url
         font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.4), 2.5rem)
-
-      // Split into a poster, the square already has a column of its own, and
-      // the words beside it were squeezed to nothing: they go under it.
-      @include layout.poster-wide
-        .qr
-          grid-template-columns: minmax(0, var(--invitation-qr-max-width))
-          text-align: center
 
     // No code to show, because the server could not be reached for one.
     &.failed

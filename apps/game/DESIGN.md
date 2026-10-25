@@ -736,7 +736,14 @@ business, through `--invitation-code-size` and a container. Below 25rem — any
 phone's column — the caption and the address are centred under a square that
 keeps its full size; above it they sit beside the square, from the left. Each
 half carries its own instruction: the code's under the code, the square's
-under the square. The address breaks between host and path (`<wbr>`), never
+under the square. **The square is the largest object wherever it is drawn**:
+it is what a camera across the room has to resolve, while the code is only
+read aloud. Side by side, the token is never wider than the square — the
+console lobby caps both at 37 `stage-unit` (400px at 1920) — and in a row too
+narrow for that the square takes the larger share (55% on a held console, 1.4
+parts of 2.4 on a narrow wall, 55cqi on a narrow table lid). The invite and
+wall-pairing posters set the token to the square's width with the words under
+the square. The address breaks between host and path (`<wbr>`), never
 inside the code. On a screen somebody holds, the code carries *Copy the code*
 and the address *Copy the link* and — only where the device has a share sheet
 (`canShareLinks`) — *Share*, small outlined pieces under the address. A wall
@@ -924,7 +931,8 @@ The track is already up, every team's pawn on the start. Centred inside it: a
 game's — how it is won, the line-up as spines in the order the box deals them,
 and the invitation laid on the lid's own grid (`display: contents`): the code
 token and the words beside it on the last line, the square down the right
-edge; under 34rem of lid, the code on its own line and the square under it.
+edge at up to 30 `stage-unit`; under 34rem of lid, the square on the left at
+55cqi, the code and the words stacked beside it.
 Under the lid, the seats no team holds yet in a dashed recess, then one tray
 per team. Before the deal the trays are empty recesses with their band — the
 arrivals above already say why; a team left empty after it shows one dashed
