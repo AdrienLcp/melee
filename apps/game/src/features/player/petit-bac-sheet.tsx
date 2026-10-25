@@ -45,7 +45,8 @@ type LetterPieceProps = {
   letter: string
 }
 
-const LetterPiece: React.FC<LetterPieceProps> = ({ letter }) => {
+/** The round's letter as a piece of the box, named for a screen reader. */
+export const LetterPiece: React.FC<LetterPieceProps> = ({ letter }) => {
   const translate = useTranslate()
 
   return (

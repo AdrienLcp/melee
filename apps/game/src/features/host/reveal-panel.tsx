@@ -10,6 +10,7 @@ import {
   guessNineContent,
   innerclockContent,
   matchsticksContent,
+  petitBacContent,
   quizContent,
   reflexContent,
   revealedInOrder,
@@ -30,6 +31,8 @@ import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
+
+import { PetitBacGrid } from './petit-bac-grid'
 
 import './reveal-panel.sass'
 
@@ -223,6 +226,14 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
           revealed={guessNine.revealed}
           youId={null}
         />
+      </section>
+    )
+  }
+
+  if (petitBacContent(round) !== null) {
+    return (
+      <section className='reveal-panel' data-game='petitbac'>
+        <PetitBacGrid players={players} round={round} />
       </section>
     )
   }

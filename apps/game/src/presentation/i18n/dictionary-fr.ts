@@ -1055,6 +1055,15 @@ export const FR_DICTIONARY = defineDictionary({
       refused: 'Refusé',
       refuseRow: 'Ne compte pas : {answer}',
       yours: 'La tienne'
+    },
+    wall: {
+      against: '{refusals:number} contre',
+      grid: 'Les feuilles de la manche, lettre {letter}',
+      legendNothing: 'Ne compte pas, pas un {letter} ou vide · rien',
+      lines: 'Les catégories',
+      progress: '{filled:number}/{count:number}',
+      roundTotal: 'Manche',
+      sheets: 'Lignes remplies'
     }
   },
   player: {

@@ -34,6 +34,7 @@ import { FinalBoard } from './final-board'
 import { InnerclockStage } from './innerclock-stage'
 import { LobbyStage } from './lobby-stage'
 import { NextUp } from './next-up'
+import { PetitBacStage } from './petit-bac-stage'
 import { PlayingStage } from './playing-stage'
 import { ReflexStage } from './reflex-stage'
 import { RevealPanel } from './reveal-panel'
@@ -220,6 +221,10 @@ export const RoomStage: React.FC<RoomStageProps> = ({
     ) : (
       <SlateWritingStage controls={controls} view={view} />
     )
+  }
+
+  if (view.phase === 'playing' && round?.content.kind === 'petitbac') {
+    return <PetitBacStage round={round} view={view} />
   }
 
   if (view.phase === 'playing' && round != null) {

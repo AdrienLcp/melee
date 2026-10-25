@@ -1116,6 +1116,15 @@ export const EN_DICTIONARY = defineDictionary({
       refused: 'Out',
       refuseRow: 'Doesn’t count: {answer}',
       yours: 'Yours'
+    },
+    wall: {
+      against: '{refusals:number} against',
+      grid: 'Every sheet of the round, letter {letter}',
+      legendNothing: 'Doesn’t count, not a {letter} or blank · nothing',
+      lines: 'The categories',
+      progress: '{filled:number}/{count:number}',
+      roundTotal: 'Round',
+      sheets: 'Lines filled'
     }
   },
   player: {
