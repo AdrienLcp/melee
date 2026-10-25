@@ -137,19 +137,28 @@
         &[data-aloud]
           grid-template-columns: minmax(0, 1fr)
 
-        // The room code is the one thing read from four metres, so it is the
-        // largest object in the product and nothing shares its line.
-        // The fit is measured, not chosen: four `W`, the widest glyph the code
-        // alphabet holds, set in `monument` come to 2.98 times their own size,
-        // and the token's inline padding, a `--space-m` each side, comes off
-        // the column at that same ratio.
+        // The square is the largest object on the left: it is what a camera
+        // across the room has to resolve, while the code only has to be read
+        // aloud. Four `W`, the widest glyph the code alphabet holds, set in
+        // `monument` come to 2.98 times their own size, so at 25cqi the code
+        // spans three quarters of a token no wider than the square.
         .room-invitation
-          --invitation-code-size: min(clamp(4rem, calc(var(--stage-unit) * 21), 16rem), calc(33cqi - var(--space-m) * 2 / 2.98))
+          --invitation-code-size: min(clamp(4rem, calc(var(--stage-unit) * 21), 16rem), 25cqi)
 
-          // Stacked, the console is in somebody's hand and the square is
-          // scanned off it at arm's length: it keeps the component's full size.
+          // The height bound keeps the square, the code and the words under it
+          // on one screen of a 16:10 laptop.
           @include layout.wide
-            --invitation-qr-max-width: clamp(8.75rem, calc(var(--stage-unit) * 24), 15rem)
+            --invitation-qr-max-width: 100%
+
+            justify-self: center
+            width: min(100%, calc(var(--stage-unit) * 46))
+
+            .qr
+              grid-template-columns: minmax(0, 1fr)
+              text-align: center
+
+            .link-actions
+              justify-content: center
 
     // The one screen in the product that admits to being silent, and it is a
     // line and a press rather than a warning block: the round is running, the
@@ -885,11 +894,13 @@
       .room-pointer
         order: 5
 
+      // The square takes the larger share of the row: the console is held out
+      // to the person scanning it, and the code beside it is only read aloud.
       .room-invitation
-        --invitation-code-size: 3.25rem
-        --invitation-qr-max-width: 7rem
+        --invitation-code-size: 2.75rem
+        --invitation-qr-max-width: 55%
 
-        align-items: stretch
+        align-items: start
         flex-direction: row
         gap: var(--space-s)
 
@@ -900,6 +911,7 @@
         .qr
           align-content: start
           flex: none
+          grid-template-columns: minmax(0, 1fr)
           width: var(--invitation-qr-max-width)
 
         .join-url
