@@ -45,10 +45,17 @@
     @include layout.container
     @include typography.body
 
-    caret-color: var(--ink)
+    // Chrome's caret browsing (F7) blinks a caret in any text that can be
+    // selected, and the room code is the one such text on a console: only a
+    // field being typed in shows one.
+    caret-color: transparent
     color: var(--ink)
     font-family: var(--font-base)
     font-synthesis: none
+
+  input,
+  textarea
+    caret-color: var(--ink)
 
   #root
     display: flex
