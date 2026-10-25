@@ -1006,8 +1006,16 @@ bounced. Durations:
 `--transition-fast` 140ms, `--transition-base` 260ms, `--transition-slow`
 520ms.
 
-- **Page arrival** — `page-enter`, 8px and a fade on `base`, carried by the
-  `screen` and `stage` mixins (`arriving`). Never on a framed screen. The
+- **Page arrival** — `page-lay`, carried by the `screen` and `stage` mixins
+  (`arriving`): the page is laid down top to bottom, a feathered mask sweeping
+  down while it settles 8px, on `base` × 1.5. The mask staggers the blocks in
+  reading order with no per-child delay, so a block mounting later — inside a
+  round — never inherits an entrance. Filled backwards only: a mask left in
+  place clips every shadow past the page's edge. Never on a framed screen.
+  The host's panel slides in from the edge it is docked to (`panel-dock`,
+  1rem and a fade on the same duration, the side read from
+  `--panel-arrival-from`). No scale and no overshoot: a page is set down, not
+  dropped. The
   console's panel stands, empty, from the first frame (`tabs={null}` before the
   room's first view): drawn only with the view, it arrived up to a second late
   and pushed the invitation 330px across a 1440px desk — new nodes, so

@@ -49,8 +49,13 @@ $desk-screen: 80rem
 /// A prerendered document arrives on its own, before the app replaces its
 /// nodes: `landing-arrival.ts` carries the app's arrival on from where the
 /// document's had reached, so it is seen once.
+///
+/// Laid down rather than faded in: a feathered mask sweeps from the top, so the
+/// blocks land in reading order without a stagger to keep in step with what
+/// mounts. Filled backwards only — a mask left standing would clip every
+/// shadow past the page's edge.
 @mixin arriving
-  animation: page-enter var(--transition-base, 0s) var(--ease-out) both
+  animation: page-lay calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
 
 /// A narrow-first column. Used by every screen a player sees.
 ///

@@ -99,6 +99,8 @@
           grid-template-columns: var(--host-rail-width) minmax(0, 1fr)
 
         .host-panel
+          --panel-arrival-from: -1rem
+
           border-radius: 0 var(--radius-l) var(--radius-l) 0
           box-shadow: 1px 0 0 var(--card-rule), var(--shadow-panel-start)
           order: -1
@@ -130,7 +132,10 @@
     .host-panel
       @include box-lid.paper
 
+      --panel-arrival-from: 1rem
       --tab-selected: var(--card-well)
+
+      animation: panel-dock calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
 
       align-self: start
       border-radius: var(--radius-l) 0 0 var(--radius-l)
@@ -308,3 +313,10 @@
   @keyframes panel-screen-in
     from
       opacity: 0
+
+  // Slid in from the edge it is docked to, the way a lid is pushed onto the
+  // table: the side is read from `--panel-arrival-from`, which `data-side` flips.
+  @keyframes panel-dock
+    from
+      opacity: 0
+      transform: translateX(var(--panel-arrival-from))

@@ -115,9 +115,10 @@ export const RoomStage: React.FC<RoomStageProps> = ({
 
   // Empty, not an invitation guessed from the address bar: a reload mid-round,
   // or a wall whose table sits down in teams, flashed the lobby's invitation
-  // before the snapshot swapped in a different stage.
+  // before the snapshot swapped in a different stage. Keyed, so the stage the
+  // snapshot brings is a new node and runs its own arrival.
   if (view === null) {
-    return <div className='stage' />
+    return <div className='stage' key='awaiting-view' />
   }
 
   const round = view.round

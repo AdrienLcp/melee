@@ -31,7 +31,7 @@
     scrollbar-gutter: stable
     transition: background-color var(--transition-slow, 0s) var(--ease-out)
 
-  // `page-enter` lowers a page that already fills the viewport, and a
+  // `page-lay` lowers a page that already fills the viewport, and a
   // transform still counts as scrollable overflow: unclipped, every arrival
   // makes the document scroll by a few pixels until it settles. `clip`, not
   // `hidden`, so the root never becomes a scroller and `sticky` keeps working.
@@ -69,6 +69,18 @@
 /// and a fade where `card-strike` uses scale, on `base` where it uses `slow`.
 /// The reveal is what a round pays out, and a navigation must not borrow its
 /// weight.
+@keyframes page-lay
+  from
+    mask-image: linear-gradient(#000 33.3%, transparent 66.7%)
+    mask-position: 0 100%
+    mask-size: 100% 300%
+    transform: translateY(0.5rem)
+  to
+    mask-image: linear-gradient(#000 33.3%, transparent 66.7%)
+    mask-position: 0 0
+    mask-size: 100% 300%
+    transform: translateY(0)
+
 @keyframes page-enter
   from
     opacity: 0
