@@ -258,3 +258,8 @@ What the session found:
 
 Test: *La Paz* banks Sucre's cell and *Rio* is the black word in *Capitals of
 South America*, seen red with the La Paz alias removed from the bank.
+
+Seen muted on a typed round, one seat, at 1280 and 390: *La Paz* turns Sucre's
+three-point cell green and pays +3 000; *Rio* ends the sheet, the reveal names
+Rio de Janeiro as the black word with its note, Sucre keeps *found by you*, and
+the board stays at 0. Nothing overflows at 390.
