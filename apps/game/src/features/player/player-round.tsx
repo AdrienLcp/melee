@@ -688,13 +688,12 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         {translate(
           scoringKey({
             answerMode: view.settings.mode.kind,
-            asksForACity:
-              game.kind === 'worldmap' && game.places === 'frenchCities',
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
             doublesLoneFinds:
               game.kind === 'guessnine' && game.doublesLoneFinds,
-            game: game.kind
+            game: game.kind,
+            worldmapPlaces: game.kind === 'worldmap' ? game.places : null
           })
         )}
       </p>

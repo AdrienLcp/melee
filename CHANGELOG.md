@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **World capitals on the map**, a third *What to place* —
+  *Capitales du monde* in French. The map names a capital, *Place Canberra*,
+  and keeps whose it is off every screen until the reveal, which dots it and
+  names the country. Within 100 km pays three, 300 km two, 1 000 km one, so
+  Sydney for Canberra always costs a tier. The capitals are those of the
+  countries the map already asks. `PROTOCOL_VERSION` goes to 55.
+
 - `[Shared]` **Capitals in the quiz**, a twelfth chip — *Capitales* in
   French. *What is the capital of Australia?*, with Sydney and Melbourne among
   the four: the country’s own big cities stand beside its capital, the

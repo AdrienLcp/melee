@@ -12,7 +12,7 @@ type DistanceForm = 'away' | 'km'
 
 /**
  * A marker's distance in the reader's language: *Dedans* at nought from a
- * country, *Dans le mille* on a city, otherwise *à 1 480 km* in a sentence or
+ * country, *Dans le mille* on a city or a capital, otherwise *à 1 480 km* in a sentence or
  * *1 480 km* on the map's own line.
  */
 export const useDistanceWords = (
@@ -24,9 +24,9 @@ export const useDistanceWords = (
   return (distanceKm, form) =>
     distanceKm === 0
       ? translate(
-          target === 'city'
-            ? 'worldmap.reveal.onTheSpot'
-            : 'worldmap.reveal.inside'
+          target === 'country'
+            ? 'worldmap.reveal.inside'
+            : 'worldmap.reveal.onTheSpot'
         )
       : translate(`worldmap.reveal.${form}`, {
           distance: kilometres.format(distanceKm)

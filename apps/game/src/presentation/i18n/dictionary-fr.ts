@@ -1422,12 +1422,15 @@ export const FR_DICTIONARY = defineDictionary({
     places: {
       countries: 'Pays du monde',
       frenchCities: 'Villes de France',
-      label: 'À placer'
+      label: 'À placer',
+      worldCapitals: 'Capitales du monde'
     },
     play: 'Jouer à la Carte du monde',
     prompt: 'Place {place}',
     reveal: {
       away: 'à {distance} km',
+      capitalOf: '{capital}, {country}',
+      capitalTitle: 'La capitale :',
       cityTitle: 'La ville :',
       inside: 'Dedans',
       km: '{distance} km',
@@ -1436,6 +1439,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     scoring:
       'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 3 points, à moins de 500 km de sa frontière 2, à moins de 1 500 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringCapitals:
+      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 3 points, à moins de 300 km 2, à moins de 1 000 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
     scoringCities:
       'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 3 points, à moins de 75 km 2, à moins de 150 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
     tagline: 'Un pays. Pose ton pion dessus.'

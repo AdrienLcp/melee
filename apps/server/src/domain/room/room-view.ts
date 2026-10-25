@@ -12,6 +12,7 @@ import type {
 import type { Verdict } from '@melee/protocol/scoring'
 import type { SlateLine } from '@melee/protocol/slate'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
+import type { WorldmapTarget } from '@melee/protocol/worldmap'
 
 import { playedPerEntry } from '@melee/core/room/next-game'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
@@ -32,7 +33,7 @@ import {
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
-import type { PlayerAttempts, Room, Round } from './room'
+import type { PlayerAttempts, Room, Round, WorldmapRoundTarget } from './room'
 import { toSeatBoards, toTeamViews } from './team-service'
 
 /**
@@ -380,6 +381,33 @@ const saidBy = (attempts: PlayerAttempts): string =>
     ? attempts.landed.join(' · ')
     : (attempts.lastMiss ?? '')
 
+/** A map round's target as a screen may hold it: where it stands, and whose capital it is, only once it is revealed. */
+const worldmapTargetView = ({
+  isRevealed,
+  target
+}: {
+  isRevealed: boolean
+  target: WorldmapRoundTarget
+}): WorldmapTarget => {
+  switch (target.kind) {
+    case 'country':
+      return target
+    case 'city':
+      return {
+        kind: 'city',
+        name: target.name,
+        point: isRevealed ? { ...target.point } : null
+      }
+    case 'capital':
+      return {
+        countryCode: isRevealed ? target.countryCode : null,
+        kind: 'capital',
+        names: { en: target.names.en, fr: target.names.fr },
+        point: isRevealed ? { ...target.point } : null
+      }
+  }
+}
+
 const toContentView = ({
   room,
   round,
@@ -479,14 +507,10 @@ const toContentView = ({
             point: { latitude: point.latitude, longitude: point.longitude }
           }))
         : null,
-      target:
-        content.target.kind === 'country'
-          ? content.target
-          : {
-              kind: 'city',
-              name: content.target.name,
-              point: round.revealed ? { ...content.target.point } : null
-            }
+      target: worldmapTargetView({
+        isRevealed: round.revealed,
+        target: content.target
+      })
     }
   }
 

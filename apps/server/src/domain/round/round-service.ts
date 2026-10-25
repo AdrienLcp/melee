@@ -703,7 +703,7 @@ export const worldmapContent = (
   target
 })
 
-/** To a country's nearest border, or to the city itself; `null` for a country the atlas does not draw. */
+/** To a country's nearest border, or to the city or the capital itself; `null` for a country the atlas does not draw. */
 const distanceToTargetKm = ({
   point,
   shapeOf,
@@ -713,7 +713,7 @@ const distanceToTargetKm = ({
   shapeOf: ShapeOf
   target: WorldmapRoundTarget
 }): number | null => {
-  if (target.kind === 'city') {
+  if (target.kind !== 'country') {
     return greatCircleKm(point, target.point)
   }
 

@@ -572,14 +572,19 @@ is public from the first frame — naming it *is* the question, and every screen
 already draws the map that answers it. A French city (`settings.game.places:
 'frenchCities'`) is the one target with something to hide: its `{ kind: 'city',
 name, point }` carries the name from the first frame and the point `null` until
-the reveal, since where it stands is the answer and no screen draws it. What a player answers is a point in degrees, which the device
+the reveal, since where it stands is the answer and no screen draws it. A
+world capital (`'worldCapitals'`) hides one thing more: `{ kind: 'capital',
+names, point, countryCode }` carries its name in both languages from the first
+frame, and both the point and the country `null` until the reveal, because a
+country named beside Canberra turns *where is it* into *what is the capital of
+Australia*. What a player answers is a point in degrees, which the device
 inverts from its own projection: the server decides what it hit, against
 Natural Earth's 1:50m outlines read once as the round opens, and no screen ever
 sends a country or a distance. `revealedPlacements` (`{ playerId, point }` per
 seat) is `null` until the reveal, because a marker seen on another screen is an
 answer to copy. The grade is a third shape of verdict, `{ kind: 'distance',
 distanceKm, target }` — to a country nought inside, otherwise the way to the
-nearest border; to a city the way to the city itself — priced by the
+nearest border; to a city or a capital the way to the place itself — priced by the
 `target`'s own tiers in `@melee/core/worldmap/distance-tiers`, the speed bonus capped by
 the tier as everywhere else. It is answered in a mode of its own, `point`: one
 shot a seat, like a pick, and offered by no other game.

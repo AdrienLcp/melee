@@ -118,7 +118,7 @@ console and phone.
 
 — cut here: the chip in the quiz setup, `pnpm validate` green —
 
-## Step 3 — world capitals on the map (one session)
+## Step 3 — world capitals on the map — done
 
 A third value of `settings.game.places`: `worldCapitals`, on the world
 projection the country rounds already draw.
@@ -155,6 +155,19 @@ projection the country rounds already draw.
 Test: a player's whole transcript holds neither the capital's point nor its
 country before the reveal, seen red with the guard removed. Seen muted at
 1280 and 390: a capital round in each language, then a country round after it.
+
+What the session found:
+
+- **155 capitals**: `BANKED_COUNTRIES` minus Israel, which the bank leaves
+  out, and Greenland, a territory with a seat. `world-capitals.test.ts` names
+  the two, so a third dropping out is seen.
+- **The reveal caption is *Canberra, Australie***, through one
+  `worldmap.reveal.capitalOf` string, so a locale can order the two.
+- **`scoringKey` takes `worldmapPlaces`** rather than a second boolean beside
+  `asksForACity`: three places, three sentences, one lookup table.
+- **Three places wrap the strip 2 + 1** in the console's 360px panel, the
+  shape `stacks-below` exists to refuse: it stacks below 33rem, the English
+  row measuring 515px.
 
 — cut here: the map asks for capitals, `pnpm validate` green —
 

@@ -1516,12 +1516,15 @@ export const EN_DICTIONARY = defineDictionary({
     places: {
       countries: 'Countries of the world',
       frenchCities: 'Cities of France',
-      label: 'What to place'
+      label: 'What to place',
+      worldCapitals: 'World capitals'
     },
     play: 'Play World map',
     prompt: 'Place {place}',
     reveal: {
       away: '{distance} km away',
+      capitalOf: '{capital}, {country}',
+      capitalTitle: 'The capital:',
       cityTitle: 'The city:',
       inside: 'Inside',
       km: '{distance} km',
@@ -1530,6 +1533,8 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring:
       'Everyone puts a pawn down at once. Inside the country it scores three, within 500 km of its border two, within 1,500 km one — and the earlier your pawn, the more the clock adds, up to double.',
+    scoringCapitals:
+      'Everyone puts a pawn down at once. Within 100 km of the capital it scores three, within 300 km two, within 1,000 km one — and the earlier your pawn, the more the clock adds, up to double.',
     scoringCities:
       'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores three, within 75 km two, within 150 km one — and the earlier your pawn, the more the clock adds, up to double.',
     tagline: 'One country. Put your pawn on it.'

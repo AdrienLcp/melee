@@ -34,6 +34,18 @@ vi.mock('@/infrastructure/questions/city-bank', () => ({
   playedCityId: (name: string) => `worldmap:city:${name}`
 }))
 
+const CANBERRA = {
+  countryCode: 'AUS',
+  names: { en: 'Canberra', fr: 'Canberra' },
+  point: { latitude: -35.293, longitude: 149.127 }
+} as const
+
+vi.mock('@/infrastructure/questions/world-capitals', () => ({
+  drawCapital: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
+    playedIds.has('worldmap:capital:AUS') ? null : CANBERRA,
+  playedCapitalId: (code: string) => `worldmap:capital:${code}`
+}))
+
 const WORLDMAP: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
@@ -47,9 +59,15 @@ const FRENCH_CITIES: RoomSettings = {
   game: { ...DEFAULT_WORLDMAP_SETTINGS, places: 'frenchCities' }
 }
 
+const WORLD_CAPITALS: RoomSettings = {
+  ...WORLDMAP,
+  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: 'worldCapitals' }
+}
+
 const PARIS = { latitude: 48.8566, longitude: 2.3522 }
 const BESIDE_RENNES = { latitude: 48.2, longitude: -1.678 }
 const NANTES = { latitude: 47.218, longitude: -1.554 }
+const SYDNEY = { latitude: -33.869, longitude: 151.209 }
 const OFF_BRITTANY = { latitude: 48.0123, longitude: -6.5432 }
 
 const transcriptOf = (peer: { frames: { raw: string }[] }): string =>
@@ -276,5 +294,83 @@ describe('a French city round through the seam', () => {
     ).toEqual({ distanceKm: 9, kind: 'distance', target: 'city' })
     expect(basePointsFor({ playerId: zoeId, view })).toBe(3 * POINT)
     expect(basePointsFor({ playerId: maxId, view })).toBe(POINT)
+  })
+})
+
+describe('a world capital round through the seam', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  const roundInPlay = async () => {
+    const { code, host } = await harness.openRoom(WORLD_CAPITALS)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const max = await harness.seat({ code, nickname: 'Max' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the map to open')
+
+    return { host, max, roundId: playerView(zoe)?.round?.id ?? '', zoe }
+  }
+
+  it('[worldmap] names the capital and keeps where it stands and whose it is off every screen until the reveal', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    expect(worldmapRound(playerView(zoe))?.target).toEqual({
+      countryCode: null,
+      kind: 'capital',
+      names: CANBERRA.names,
+      point: null
+    })
+
+    for (const peer of [zoe, max, host]) {
+      expect(transcriptOf(peer)).not.toContain('-35.293')
+      expect(transcriptOf(peer)).not.toContain('"AUS"')
+    }
+
+    for (const seat of [zoe, max]) {
+      seat.send({
+        answer: { kind: 'point', point: SYDNEY },
+        roundId,
+        type: 'player.answer'
+      })
+    }
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    expect(worldmapRound(playerView(zoe))?.target).toEqual({
+      kind: 'capital',
+      ...CANBERRA
+    })
+  })
+
+  it('[worldmap] pays the big city taken for the capital a tier below the capital itself', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    zoe.send({
+      answer: { kind: 'point', point: CANBERRA.point },
+      roundId,
+      type: 'player.answer'
+    })
+    max.send({
+      answer: { kind: 'point', point: SYDNEY },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+
+    expect(
+      basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
+    ).toBe(3 * POINT)
+    expect(
+      basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
+    ).toBe(2 * POINT)
   })
 })

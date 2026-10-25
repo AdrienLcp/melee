@@ -10,6 +10,9 @@ const country = (distanceKm: number) =>
 const city = (distanceKm: number) =>
   pointsForDistance({ distanceKm, target: 'city' })
 
+const capital = (distanceKm: number) =>
+  pointsForDistance({ distanceKm, target: 'capital' })
+
 describe('what a marker earns by how far it fell from a country', () => {
   it('[worldmap] pays the typed answer’s price inside the country', () => {
     expect(country(0)).toBe(3 * POINT)
@@ -47,5 +50,20 @@ describe('what a marker earns by how far it fell from a city', () => {
     expect(isBullseye({ distanceKm: 25, target: 'city' })).toBe(false)
     expect(isBullseye({ distanceKm: 0, target: 'country' })).toBe(true)
     expect(isBullseye({ distanceKm: 1, target: 'country' })).toBe(false)
+  })
+})
+
+describe('what a marker earns by how far it fell from a capital', () => {
+  it('[worldmap] pays the whole price inside the right country, near enough the city', () => {
+    expect(capital(0)).toBe(3 * POINT)
+    expect(capital(99)).toBe(3 * POINT)
+  })
+
+  it('[worldmap] pays the big city taken for the capital at least a tier less', () => {
+    expect(capital(100)).toBe(2 * POINT)
+    expect(capital(299)).toBe(2 * POINT)
+    expect(capital(300)).toBe(POINT)
+    expect(capital(999)).toBe(POINT)
+    expect(capital(1_000)).toBe(0)
   })
 })

@@ -4,6 +4,7 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { GameKind, ShelvedGame } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { AnswerMode } from '@melee/protocol/room'
+import type { WorldmapPlaces } from '@melee/protocol/worldmap'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { BuzzBlocker } from '@melee/core/round/buzz-eligibility'
@@ -58,6 +59,12 @@ export const answerModeLabelKey = (
 /** The modes a game answering against its own question offers. */
 type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point' | 'spoken'>
 
+const WORLDMAP_SCORING_KEYS = {
+  countries: 'worldmap.scoring',
+  frenchCities: 'worldmap.scoringCities',
+  worldCapitals: 'worldmap.scoringCapitals'
+} as const satisfies Record<WorldmapPlaces, string>
+
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
  * does what is being paid for: the blind test's buzzer sentence is about a title
@@ -68,19 +75,19 @@ type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point' | 'spoken'>
  */
 export const scoringKey = ({
   answerMode,
-  asksForACity,
   asksForAFilm,
   doublesLoneFinds,
-  game
+  game,
+  worldmapPlaces
 }: {
   answerMode: AnswerMode
-  /** The world map prices a French city by its own, tighter tiers. */
-  asksForACity: boolean
   /** The blind test's two halves are a film and its composer on one source out of five. */
   asksForAFilm: boolean
   /** Guess nine's *Nobody else had it*, which doubles a lone find. */
   doublesLoneFinds: boolean
   game: GameKind
+  /** What a map room places, each priced by its own tiers; `null` off the map. */
+  worldmapPlaces: WorldmapPlaces | null
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
@@ -94,6 +101,7 @@ export const scoringKey = ({
   | 'slate.scoring'
   | 'timeline.scoring'
   | 'worldmap.scoring'
+  | 'worldmap.scoringCapitals'
   | 'worldmap.scoringCities'
   | `blindtest.scoring.${ServedMode}`
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
@@ -145,7 +153,7 @@ export const scoringKey = ({
     case 'timeline':
       return 'timeline.scoring'
     case 'worldmap':
-      return asksForACity ? 'worldmap.scoringCities' : 'worldmap.scoring'
+      return WORLDMAP_SCORING_KEYS[worldmapPlaces ?? 'countries']
   }
 }
 

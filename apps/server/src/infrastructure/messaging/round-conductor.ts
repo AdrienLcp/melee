@@ -58,6 +58,10 @@ import {
   drawTimelineEvents,
   playedTimelineEventId
 } from '@/infrastructure/questions/timeline-bank'
+import {
+  drawCapital,
+  playedCapitalId
+} from '@/infrastructure/questions/world-capitals'
 
 import { unseatConsolesThatMustJudge } from './host-judging'
 import { sendError } from './outbound'
@@ -98,11 +102,29 @@ const drawWorldmapTarget = (
     return city === null ? null : { kind: 'city', ...city }
   }
 
+  if (places === 'worldCapitals') {
+    const capital = drawCapital({ playedIds })
+
+    return capital === null ? null : { kind: 'capital', ...capital }
+  }
+
   const countryCode = drawCountry({ playedIds })
 
   return countryCode === null || countryShapeOf(countryCode) === null
     ? null
     : { countryCode, kind: 'country' }
+}
+
+/** The id a target takes in the room's no-repeat set, so no place is asked twice in one evening. */
+const playedTargetId = (target: WorldmapRoundTarget): string => {
+  switch (target.kind) {
+    case 'capital':
+      return playedCapitalId(target.countryCode)
+    case 'city':
+      return playedCityId(target.name)
+    case 'country':
+      return playedCountryId(target.countryCode)
+  }
 }
 
 /** What a game the room already holds the question for opens its round on. */
@@ -387,11 +409,7 @@ export const beginRound = async (
       return
     }
 
-    room.playedContentIds.add(
-      target.kind === 'city'
-        ? playedCityId(target.name)
-        : playedCountryId(target.countryCode)
-    )
+    room.playedContentIds.add(playedTargetId(target))
 
     openRound({
       content: worldmapContent(target),

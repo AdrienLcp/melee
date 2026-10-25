@@ -7,7 +7,7 @@ import {
   mapRegionOf,
   worldmapContent
 } from '@/helpers/round-content'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { LazyWorldMap } from './lazy-world-map'
 import { useDistanceWords } from './use-distance-words'
@@ -24,11 +24,11 @@ type MapRevealProps = {
 
 /**
  * The map round turned over, on every screen alike: the country named and
- * filled or the city dotted, every pawn where it landed, and a line from each
+ * filled, or the city or the capital dotted — the capital beside its country — every pawn where it landed, and a line from each
  * one off it to the nearest border or to the city, with how far that was.
  */
 export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   const content = worldmapContent(round)
   const distanceWords = useDistanceWords(content?.target.kind ?? 'country')
 
@@ -43,6 +43,33 @@ export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
       : target.point === null
         ? null
         : { kind: 'city', point: target.point }
+
+  const captionTitle = (): string => {
+    switch (target.kind) {
+      case 'capital':
+        return translate('worldmap.reveal.capitalTitle')
+      case 'city':
+        return translate('worldmap.reveal.cityTitle')
+      case 'country':
+        return translate('worldmap.reveal.title')
+    }
+  }
+
+  const captionName = (): string => {
+    switch (target.kind) {
+      case 'capital':
+        return target.countryCode === null
+          ? target.names[locale]
+          : translate('worldmap.reveal.capitalOf', {
+              capital: target.names[locale],
+              country: translate(`worldmap.country.${target.countryCode}.name`)
+            })
+      case 'city':
+        return target.name
+      case 'country':
+        return translate(`worldmap.country.${target.countryCode}.name`)
+    }
+  }
 
   const markers = (content.revealedPlacements ?? []).flatMap(
     (placement): RevealedMarker[] => {
@@ -68,11 +95,9 @@ export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
     <figure className='map-reveal'>
       <figcaption className='country'>
         <VisuallyHidden elementType='span'>
-          {`${translate(target.kind === 'city' ? 'worldmap.reveal.cityTitle' : 'worldmap.reveal.title')} `}
+          {`${captionTitle()} `}
         </VisuallyHidden>
-        {target.kind === 'city'
-          ? target.name
-          : translate(`worldmap.country.${target.countryCode}.name`)}
+        {captionName()}
       </figcaption>
       <LazyWorldMap
         marker={null}

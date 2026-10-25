@@ -10,6 +10,11 @@ type DistanceTier = { points: number; withinKm: number }
  * A `withinKm` of nought is *inside*, and only a country has one.
  */
 export const DISTANCE_TIERS = {
+  capital: [
+    { points: 3 * POINT, withinKm: 100 },
+    { points: 2 * POINT, withinKm: 300 },
+    { points: POINT, withinKm: 1_000 }
+  ],
   city: [
     { points: 3 * POINT, withinKm: 25 },
     { points: 2 * POINT, withinKm: 75 },

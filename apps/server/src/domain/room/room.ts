@@ -41,10 +41,19 @@ import type { SheetItem } from '@melee/core/slate/sheet-marking'
  * onto the wire.
  */
 
-/** What a map round asks for, the city's point included: the view withholds it until the reveal. */
+/**
+ * What a map round asks for, the city's point included, and the capital's
+ * country: the view withholds both until the reveal.
+ */
 export type WorldmapRoundTarget =
   | { countryCode: CountryCode; kind: 'country' }
   | { kind: 'city'; name: string; point: GeoPoint }
+  | {
+      countryCode: CountryCode
+      kind: 'capital'
+      names: { en: string; fr: string }
+      point: GeoPoint
+    }
 
 export type TeamAward = {
   points: number
