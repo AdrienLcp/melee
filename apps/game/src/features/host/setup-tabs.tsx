@@ -5,11 +5,18 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
-import type { HostPreferences } from '@melee/core/room/host-preferences'
+import {
+  type HostPreferences,
+  rememberedSetupFor
+} from '@melee/core/room/host-preferences'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
+import {
+  savedEveningOf,
+  withSavedEvening
+} from '@melee/core/room/saved-evening'
 
 import { Scoreboard } from '@/presentation/components/scoreboard'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
@@ -21,7 +28,9 @@ import { JudgeSwitch } from './judge-switch'
 import { GamePitch } from './lobby-stage'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { RoomScene } from './room-scene'
+import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
 import { TeamsSetup } from './teams-setup'
+import { useSavedEvenings } from './use-saved-evenings'
 import { useSetupSummaries } from './use-settings-summary'
 
 import './setup-tabs.sass'
@@ -70,6 +79,7 @@ type GamePage =
   | { kind: 'adding' }
   | { at: number; kind: 'entry' }
   | { kind: 'list' }
+  | { kind: 'saved' }
 
 /**
  * What the table plays. In the lobby the shelf comes first, because it is the
@@ -88,9 +98,38 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   slateEditors,
   view
 }) => {
+  const { locale } = useI18n()
   const [page, setPage] = useState<GamePage>({ kind: 'list' })
+  const saved = useSavedEvenings()
   const backToList = () => {
     setPage({ kind: 'list' })
+  }
+
+  if (page.kind === 'saved') {
+    return (
+      <SavedEveningsPage
+        evenings={saved.evenings}
+        isLive={isLive}
+        onBack={backToList}
+        onForget={saved.forget}
+        onRun={(evening) => {
+          onSettingsChange(
+            withSavedEvening({
+              evening,
+              locale,
+              rememberedFor: (game) =>
+                rememberedSetupFor({ game, preferences }),
+              settings: view.settings
+            })
+          )
+          backToList()
+        }}
+        onSave={(name) => {
+          saved.save(savedEveningOf({ name, settings: view.settings }))
+        }}
+        view={view}
+      />
+    )
   }
 
   if (page.kind === 'entry') {
@@ -151,6 +190,16 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           onSettingsChange={onSettingsChange}
           preferences={preferences}
           view={view}
+        />
+      )}
+      {(view.settings.game !== null ||
+        (view.phase === 'lobby' && saved.evenings.length > 0)) && (
+        <SavedEveningsDoor
+          count={saved.evenings.length}
+          isDisabled={!isLive}
+          onOpen={() => {
+            setPage({ kind: 'saved' })
+          }}
         />
       )}
     </>

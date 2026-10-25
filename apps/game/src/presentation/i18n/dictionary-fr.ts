@@ -614,6 +614,28 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     rounds: 'Manches',
+    saved: {
+      door: 'Soirées enregistrées',
+      doorCount: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} gardée', other: '{?} gardées' }
+        }
+      }),
+      doorEmpty: 'Garde celle-ci pour la relancer un autre soir',
+      empty:
+        'Aucune soirée gardée pour l’instant. Donne un nom à celle-ci pour la relancer un autre soir.',
+      endless: 'Sans fin',
+      forget: 'Oublier {name}',
+      heading: 'Soirées enregistrées',
+      inLobby: 'Une soirée enregistrée se lance avant la première manche.',
+      name: 'Nom de la soirée',
+      replace: 'Remplacer',
+      rounds: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} manche', other: '{?} manches' } }
+      }),
+      run: 'Lancer {name}',
+      save: 'La garder'
+    },
     seat: {
       action: 'Prendre place',
       cost: {
@@ -837,6 +859,8 @@ export const FR_DICTIONARY = defineDictionary({
       panelFolded:
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
+      savedEvenings:
+        'Les soirées que tu as enregistrées sous un nom, chaque jeu avec ses réglages, pour les relancer.',
       seats:
         'La place que tu occupes à chaque table rejointe, pour qu’un rechargement ou un écran verrouillé t’y ramène avec ton score. Oubliée au bout d’un jour.',
       server:

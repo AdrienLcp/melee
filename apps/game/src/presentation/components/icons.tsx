@@ -3,6 +3,7 @@ import {
   ArrowRight,
   ArrowRightLeft,
   BellRing,
+  Bookmark,
   Check,
   ChevronDown,
   ChevronLeft,
@@ -93,6 +94,7 @@ export const PanelOpenIcon = inFamily(PanelRightOpen)
 export const PanelSideIcon = inFamily(ArrowLeftRight)
 export const PlayersIcon = inFamily(Users)
 export const RenameIcon = inFamily(Pencil)
+export const SavedIcon = inFamily(Bookmark)
 export const PenIcon = inFamily(PenLine)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)

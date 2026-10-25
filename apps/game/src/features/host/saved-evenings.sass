@@ -1,0 +1,136 @@
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .saved-evenings-door
+    @include focus.ring-inset
+
+    align-items: center
+    background: transparent
+    border: var(--stroke-thin) solid var(--rule)
+    border-radius: var(--radius-m)
+    color: var(--ink)
+    column-gap: var(--space-s)
+    cursor: pointer
+    display: grid
+    grid-template-areas: 'icon name chevron' 'icon detail chevron'
+    grid-template-columns: auto minmax(0, 1fr) auto
+    min-height: var(--control-height)
+    padding: var(--space-xs) var(--space-s)
+    text-align: start
+    width: 100%
+
+    &[data-hovered],
+    &[data-pressed]
+      background: var(--card-well)
+
+    > svg:not(.chevron)
+      color: var(--ink-muted)
+      grid-area: icon
+
+    .name
+      @include typography.lid-name
+
+      font-size: var(--text-m)
+      grid-area: name
+
+    .detail
+      @include typography.caption
+
+      color: var(--ink-muted)
+      grid-area: detail
+      text-wrap: pretty
+
+    .chevron
+      color: var(--ink-muted)
+      grid-area: chevron
+
+  .saved-evenings
+    display: flex
+    flex-direction: column
+    gap: var(--space-m)
+
+    > .heading
+      @include typography.lid-name
+
+      font-size: var(--text-xl)
+      margin: 0
+
+    // The field takes the panel's width and the press stands under it, as the
+    // seat's form does: side by side, a name was cut to a few letters.
+    .keep
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
+      > .button
+        align-self: stretch
+
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin: 0
+      text-wrap: pretty
+
+    .evenings
+      border: var(--stroke-thin) solid var(--rule)
+      border-radius: var(--radius-m)
+      list-style: none
+      margin: 0
+      overflow: hidden
+      padding: 0
+
+      > li
+        align-items: center
+        display: flex
+        gap: var(--space-2xs)
+        padding-inline-end: var(--space-xs)
+
+      > li + li
+        border-top: var(--hairline)
+
+    .evening
+      @include focus.ring-inset
+
+      background: transparent
+      border: 0
+      color: var(--ink)
+      cursor: pointer
+      display: grid
+      flex: 1
+      gap: var(--space-2xs) 0
+      min-height: var(--control-height)
+      min-width: 0
+      padding: var(--space-xs) var(--space-s)
+      text-align: start
+
+      &[data-hovered],
+      &[data-pressed]
+        background: var(--card-well)
+
+      &[data-disabled]
+        cursor: default
+
+    .spines
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs)
+
+      > span
+        background: var(--spine)
+        block-size: var(--space-2xs)
+        border-radius: var(--radius-xs)
+        inline-size: var(--space-m)
+
+    .name
+      @include typography.lid-name
+
+      font-size: var(--text-m)
+      overflow-wrap: anywhere
+
+    .detail
+      @include typography.caption
+
+      color: var(--ink-muted)
+      text-wrap: pretty

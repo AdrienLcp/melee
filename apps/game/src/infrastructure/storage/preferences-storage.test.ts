@@ -4,6 +4,10 @@ import {
   DEFAULT_BOARD_SETTINGS,
   DEFAULT_TRACK_SETTINGS
 } from '@melee/protocol/board'
+import {
+  DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_QUIZ_SETTINGS
+} from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
 import {
@@ -14,6 +18,8 @@ import {
   readStoredLineUpGames,
   readStoredPanelFolded,
   readStoredPanelSide,
+  readStoredSavedEvenings,
+  SAVED_EVENINGS_KEY,
   writeStoredPanelFolded,
   writeStoredPanelSide
 } from './preferences-storage'
@@ -170,6 +176,70 @@ describe('readStoredLineUpGames', () => {
 
     expect(readStoredLineUpGames()).toEqual({
       data: ['quiz', 'blindtest'],
+      status: 'success'
+    })
+  })
+})
+
+describe('readStoredSavedEvenings', () => {
+  const store = new Map<string, string>()
+
+  beforeEach(() => {
+    store.clear()
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => store.get(key) ?? null,
+      removeItem: (key: string) => store.delete(key),
+      setItem: (key: string, value: string) => store.set(key, value)
+    })
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  const gameNight = {
+    lineUp: [DEFAULT_QUIZ_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
+    name: 'Game night',
+    roundCount: 8,
+    runningOrder: [1, 0]
+  }
+
+  it('[saved-evening] keeps none before any evening was saved', () => {
+    expect(readStoredSavedEvenings()).toEqual({ data: [], status: 'success' })
+  })
+
+  it('[saved-evening] keeps the game of an entry whose settings changed shape', () => {
+    store.set(
+      SAVED_EVENINGS_KEY,
+      JSON.stringify([
+        {
+          ...gameNight,
+          lineUp: [
+            { ...DEFAULT_QUIZ_SETTINGS, roundDurationMs: 'long' },
+            gameNight.lineUp[1]
+          ]
+        }
+      ])
+    )
+
+    expect(readStoredSavedEvenings()).toEqual({
+      data: [{ ...gameNight, lineUp: ['quiz', DEFAULT_BLINDTEST_SETTINGS] }],
+      status: 'success'
+    })
+  })
+
+  it('[saved-evening] drops a game this build does not serve and has the room deal the order', () => {
+    store.set(
+      SAVED_EVENINGS_KEY,
+      JSON.stringify([
+        { ...gameNight, lineUp: [{ kind: 'chess' }, ...gameNight.lineUp] },
+        { ...gameNight, lineUp: [{ kind: 'chess' }], name: 'Gone' },
+        { name: 'Broken' }
+      ])
+    )
+
+    expect(readStoredSavedEvenings()).toEqual({
+      data: [{ ...gameNight, runningOrder: [] }],
       status: 'success'
     })
   })

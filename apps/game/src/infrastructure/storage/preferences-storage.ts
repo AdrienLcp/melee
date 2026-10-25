@@ -23,7 +23,11 @@ import {
 } from '@melee/protocol/game'
 import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
-import { modeSettingsSchema, roomSettingsSchema } from '@melee/protocol/room'
+import {
+  DEFAULT_ROOM_SETTINGS,
+  modeSettingsSchema,
+  roomSettingsSchema
+} from '@melee/protocol/room'
 import {
   DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
@@ -33,6 +37,11 @@ import {
 } from '@melee/protocol/team'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
+import {
+  SAVED_EVENING_NAME_MAX_LENGTH,
+  type SavedEntry,
+  type SavedEvening
+} from '@melee/core/room/saved-evening'
 
 import { readStoredWithSchema } from './read-stored-with-schema'
 
@@ -42,6 +51,7 @@ export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
 export const PANEL_SIDE_KEY = 'melee:panel-side'
+export const SAVED_EVENINGS_KEY = 'melee:saved-evenings'
 export const VOLUME_KEY = 'melee:volume'
 
 /**
@@ -321,3 +331,73 @@ export const writeStoredLineUpGames = (
   games: readonly ShelvedGame[]
 ): Result<void, StorageWriteError> =>
   writeStoredJson({ key: LINE_UP_GAMES_KEY, value: games })
+
+const entryKindSchema = z.object({ kind: gameKindSchema })
+
+/**
+ * An entry this build can no longer read keeps its game when it still names
+ * one: the evening plays it on what the host last left it at, rather than
+ * losing a round to a setting that changed shape.
+ */
+const savedEntryOf = (stored: unknown): SavedEntry[] => {
+  const entry = gameSettingsSchema.safeParse(stored)
+
+  if (entry.success) {
+    return [entry.data]
+  }
+
+  const kept = entryKindSchema.safeParse(stored)
+
+  return kept.success ? [kept.data.kind] : []
+}
+
+const savedEveningSchema = z
+  .object({
+    lineUp: z.array(z.unknown()),
+    name: z.string().trim().min(1).max(SAVED_EVENING_NAME_MAX_LENGTH),
+    roundCount: roomSettingsSchema.shape.roundCount.catch(
+      DEFAULT_ROOM_SETTINGS.roundCount
+    ),
+    runningOrder: roomSettingsSchema.shape.runningOrder.catch([])
+  })
+  .transform((stored): SavedEvening => {
+    const lineUp = stored.lineUp.flatMap(savedEntryOf)
+
+    // An entry gone shifts every index after it, so the order no longer says
+    // what it said, and the room deals one instead.
+    return {
+      ...stored,
+      lineUp,
+      runningOrder:
+        lineUp.length === stored.lineUp.length ? stored.runningOrder : []
+    }
+  })
+
+/** Evening by evening, so one this build cannot read costs that one alone. */
+const savedEveningsSchema = z.array(z.unknown()).transform((stored) =>
+  stored.flatMap((evening) => {
+    const saved = savedEveningSchema.safeParse(evening)
+
+    return saved.success && saved.data.lineUp.length > 0 ? [saved.data] : []
+  })
+)
+
+/** The evenings this host kept under a name; none when they never kept one. */
+export const readStoredSavedEvenings = (): Result<
+  readonly SavedEvening[],
+  StorageReadError
+> => {
+  const stored = readStoredWithSchema({
+    key: SAVED_EVENINGS_KEY,
+    schema: savedEveningsSchema
+  })
+
+  return stored.status === 'success'
+    ? Result.success(stored.data ?? [])
+    : stored
+}
+
+export const writeStoredSavedEvenings = (
+  evenings: readonly SavedEvening[]
+): Result<void, StorageWriteError> =>
+  writeStoredJson({ key: SAVED_EVENINGS_KEY, value: evenings })

@@ -11,6 +11,7 @@ import {
   NICKNAME_KEY,
   PANEL_FOLDED_KEY,
   PANEL_SIDE_KEY,
+  SAVED_EVENINGS_KEY,
   VOLUME_KEY
 } from '@/infrastructure/storage/preferences-storage'
 import { PREPARED_KEYS_KEY } from '@/infrastructure/storage/prepared-keys-storage'
@@ -53,6 +54,7 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: HOST_TOKENS_KEY, what: 'legal.storage.hostTokens' },
   { key: HOST_SETUP_KEY, what: 'legal.storage.hostSetup' },
   { key: LINE_UP_GAMES_KEY, what: 'legal.storage.lineUpGames' },
+  { key: SAVED_EVENINGS_KEY, what: 'legal.storage.savedEvenings' },
   { key: OWN_CHALLENGE_LINES_KEY, what: 'legal.storage.challengeLines' },
   { key: VOLUME_KEY, what: 'legal.storage.volume' },
   { key: PANEL_FOLDED_KEY, what: 'legal.storage.panelFolded' },

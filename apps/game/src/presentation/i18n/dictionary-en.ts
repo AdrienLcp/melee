@@ -641,6 +641,26 @@ export const EN_DICTIONARY = defineDictionary({
       })
     },
     rounds: 'Rounds',
+    saved: {
+      door: 'Saved evenings',
+      doorCount: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} kept', other: '{?} kept' } }
+      }),
+      doorEmpty: 'Keep this one to run it again another night',
+      empty:
+        'No evening kept yet. Name this one to run it again another night.',
+      endless: 'No end',
+      forget: 'Forget {name}',
+      heading: 'Saved evenings',
+      inLobby: 'A saved evening is run before the first round.',
+      name: 'Name this evening',
+      replace: 'Replace',
+      rounds: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} round', other: '{?} rounds' } }
+      }),
+      run: 'Run {name}',
+      save: 'Keep it'
+    },
     seat: {
       action: 'Take a seat',
       /**
@@ -880,6 +900,8 @@ export const EN_DICTIONARY = defineDictionary({
       panelFolded:
         'Whether you last folded the panel beside the table you run.',
       panelSide: 'Which side of the screen you put that panel on.',
+      savedEvenings:
+        'The evenings you saved under a name, each game with its settings, to run them again.',
       seats:
         'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
       server:
