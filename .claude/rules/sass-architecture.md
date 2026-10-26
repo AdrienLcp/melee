@@ -224,10 +224,12 @@ every page would pay the inset twice. A raw `env()` is never written.
 rather than faked; `::selection` is `--selection` under `--ink`, a pair in
 `tokens-contrast.test.ts`; `#root` fills `100dvh` and clips both axes, so a page
 entering with a `transform` or a drawer parked off-screen never scrolls the
-document. Both faces load `optional`, and each the first screen reads is
+document. Both faces load `swap`, never `optional`: a room's screens land on
+the `index.html` shell, which preloads nothing, and an `optional` face missed
+its window there for the whole evening. Each face the first screen reads is
 preloaded at the default priority by the prerender's `addFontPreloads`, in the
-prerendered pages only — the `index.html` shell also serves the redirect and
-the not-found page, where a preloaded font sits unused while the browser warns.
+prerendered pages only — the shell also serves the redirect and the not-found
+page, where a preloaded font sits unused while the browser warns.
 The fallback faces are written per weight band in `_fonts.sass`
 (`fonts.fallback-faces`, skipped in fontaine): with `font-synthesis: none`,
 fontaine's one regular Arial face would set every bold title regular. The font

@@ -4,8 +4,11 @@
 // lettering printed on the box — a lid title, a room code, a score — and its
 // width axis is what lets a game's name sit condensed on a spine. Atkinson
 // Hyperlegible Next is everything read, chosen for the grandparent at the
-// table. Party Wi-Fi is why both are subset, preloaded by the prerender, and
-// left at `optional`: a face that misses the first paint never swaps in.
+// table. Party Wi-Fi is why both are subset and preloaded by the prerender.
+// They `swap` rather than stay `optional`: the QR code lands on the SPA shell,
+// which injects its stylesheets from JavaScript and preloads nothing, so an
+// `optional` face missed its window on every phone that joined and the room
+// read the fallback all evening. The fallbacks below keep the swap still.
 
 @use '@adrienlcp/styles/fonts'
 
@@ -14,10 +17,10 @@ $bricolage-metrics: (ascent: 0.93, descent: 0.27, cap-height: 0.66)
 $atkinson-metrics: (ascent: 0.984, descent: 0.316, cap-height: 0.668)
 
 @layer base
-  @include fonts.font-face('Bricolage Grotesque', '/fonts/bricolage-grotesque-latin.woff2', fonts.$latin, $weight: 200 800, $stretch: 75% 100%)
-  @include fonts.font-face('Bricolage Grotesque', '/fonts/bricolage-grotesque-latin-ext.woff2', fonts.$latin-ext, $weight: 200 800, $stretch: 75% 100%)
-  @include fonts.font-face('Atkinson Hyperlegible Next', '/fonts/atkinson-hyperlegible-next-latin.woff2', fonts.$latin, $weight: 200 800)
-  @include fonts.font-face('Atkinson Hyperlegible Next', '/fonts/atkinson-hyperlegible-next-latin-ext.woff2', fonts.$latin-ext, $weight: 200 800)
+  @include fonts.font-face('Bricolage Grotesque', '/fonts/bricolage-grotesque-latin.woff2', fonts.$latin, $weight: 200 800, $stretch: 75% 100%, $display: swap)
+  @include fonts.font-face('Bricolage Grotesque', '/fonts/bricolage-grotesque-latin-ext.woff2', fonts.$latin-ext, $weight: 200 800, $stretch: 75% 100%, $display: swap)
+  @include fonts.font-face('Atkinson Hyperlegible Next', '/fonts/atkinson-hyperlegible-next-latin.woff2', fonts.$latin, $weight: 200 800, $display: swap)
+  @include fonts.font-face('Atkinson Hyperlegible Next', '/fonts/atkinson-hyperlegible-next-latin-ext.woff2', fonts.$latin-ext, $weight: 200 800, $display: swap)
 
   // fontaine's size-adjust for each file, from its average character width;
   // each width ratio is the scaled Arial's over the face's at that band's

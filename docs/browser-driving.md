@@ -146,17 +146,11 @@ More that cost time to learn:
   first.
 - Playwright MCP writes its screenshots and `.playwright-mcp/` at the
   **repository root**. Delete them before committing.
-- **On Vite's port, a page loaded cold is set in the fallback faces, and that
-  is the dev server, not the page.** Both faces are `font-display: optional`
-  and only the prerendered documents preload them; Vite serves no prerendered
-  document and injects its stylesheets from JavaScript, so the faces are asked
-  for after their 100ms window and the fallback holds for the life of the page
-  — a reload included. Measured on `/fr/quiz` in a fresh context: on 5273
-  `document.fonts` lists the `… fallback` faces `loaded` and no font preload;
-  on the Worker's 3100, serving the built documents, the two preloads are
-  there, the fallbacks stay `unloaded` and the wordmark is Bricolage. A page
-  reached by a client-side navigation after the faces arrived (the lobby) looks
-  right on 5273 too. Judge type on 3100, after `pnpm build`.
+- **On Vite's port, a page loaded cold paints in the fallback faces first.**
+  Vite serves no prerendered document and injects its stylesheets from
+  JavaScript, so the faces are asked for late and swap in a moment after the
+  first paint. The fallbacks are scaled to keep that swap from moving a line;
+  judge type once `document.fonts` lists the web faces `loaded`.
 - **The launch is disabled with an empty room**, so nothing that needs a round
   can be driven from the console alone. A second page at `/play/:code` is what
   unblocks it, and with `melee:nickname` set it needs no interaction at all —
