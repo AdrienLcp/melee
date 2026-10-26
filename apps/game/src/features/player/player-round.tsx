@@ -83,6 +83,7 @@ import { CountedBoard } from '@/presentation/components/counted-board'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
+import { CheckIcon } from '@/presentation/components/icons'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -105,10 +106,12 @@ import {
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
+import {
+  useEntryName,
+  useLaterEntryNames
+} from '@/presentation/i18n/line-up-entry-names'
 import {
   buzzBlockerKey,
-  gameNameKey,
   scoringKey,
   type Translate
 } from '@/presentation/i18n/translation'
@@ -147,10 +150,7 @@ type PlayerRoundProps = {
 
 type RevealedRoundProps = {
   clock: ClockEstimate | null
-  /** When the next round's clip starts, while it counts in over this reveal. */
-  countingInTo: number | null
-  /** Absent while the next round counts in, when there is nothing left to be ready for. */
-  onReady?: (isReady: boolean) => boolean
+  onReady: (isReady: boolean) => boolean
   round: RoundView
   view: PlayerRoomView
 }
@@ -179,9 +179,52 @@ const RevealBoard: React.FC<{ round: RoundView; view: PlayerRoomView }> = ({
   )
 }
 
+/**
+ * The game a line-up's next round is on, on its lid, over the count into it:
+ * the round about to start may be another game than the one just revealed.
+ * A room of one game has nothing to announce.
+ */
+const CountingInGame: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
+  const entryName = useEntryName(view.settings)
+  const game = view.settings.game
+
+  if (view.settings.lineUp.length < 2 || game === null || entryName === null) {
+    return null
+  }
+
+  return (
+    <div className='up-next' data-game={game.kind}>
+      <p className='game-name'>{entryName}</p>
+    </div>
+  )
+}
+
+/**
+ * The reveal's view with its hold ending where the next round's countdown
+ * takes the whole screen, rather than at the first note the server counts to.
+ */
+const holdUntilTheCountdown = (
+  round: RoundView,
+  view: PlayerRoomView
+): PlayerRoomView => {
+  const { autoAdvanceMs, countdownMs, roundCount } = view.settings
+  const isLastRound = roundCount !== null && round.index >= roundCount
+
+  if (round.advancesAt === null || autoAdvanceMs === null || isLastRound) {
+    return view
+  }
+
+  const heldMs = autoAdvanceMs - countdownMs
+
+  return {
+    ...view,
+    round: { ...round, advancesAt: round.advancesAt - countdownMs },
+    settings: { ...view.settings, autoAdvanceMs: heldMs > 0 ? heldMs : null }
+  }
+}
+
 const RevealedRound: React.FC<RevealedRoundProps> = ({
   clock,
-  countingInTo,
   onReady,
   round,
   view
@@ -197,25 +240,9 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
     </div>
     <RevealBoard round={round} view={view} />
     <div className='hold'>
-      {countingInTo !== null && (
-        <Countdown
-          className='counting-in'
-          clock={clock}
-          target={countingInTo}
-        />
-      )}
-      <RoundClock
-        clock={clock}
-        view={
-          countingInTo === null
-            ? view
-            : { ...view, round: { ...round, advancesAt: countingInTo } }
-        }
-      />
+      <RoundClock clock={clock} view={holdUntilTheCountdown(round, view)} />
     </div>
-    {onReady !== undefined && (
-      <BackAtTheTable onReady={onReady} round={round} view={view} />
-    )}
+    <BackAtTheTable onReady={onReady} round={round} view={view} />
   </section>
 )
 
@@ -231,13 +258,13 @@ const BackAtTheTable: React.FC<{
   view: PlayerRoomView
 }> = ({ onReady, round, view }) => {
   const translate = useTranslate()
-  const { game, lineUp, lineUpAt, roundCount } = view.settings
-  const entryNames = useLineUpEntryNames(lineUp)
+  const { lineUp, roundCount } = view.settings
+  const entryName = useEntryName(view.settings)
   const you = view.players.find((player) => player.id === view.youId)
 
   if (
     lineUp.length < 2 ||
-    game === null ||
+    entryName === null ||
     you === undefined ||
     (roundCount !== null && round.index >= roundCount)
   ) {
@@ -247,11 +274,7 @@ const BackAtTheTable: React.FC<{
   return (
     <div className='back-at-the-table'>
       <p className='next-game'>
-        {translate('player.lineUp.next', {
-          game:
-            (lineUpAt === null ? undefined : entryNames[lineUpAt]) ??
-            translate(gameNameKey(game.kind))
-        })}
+        {translate('player.lineUp.next', { game: entryName })}
       </p>
       <ToggleButton
         isSelected={you.isReady}
@@ -260,36 +283,11 @@ const BackAtTheTable: React.FC<{
         }}
         size='large'
       >
-        {translate(
-          you.isReady ? 'player.lineUp.ready' : 'player.lineUp.getReady'
-        )}
+        {you.isReady && <CheckIcon />}
+        {translate('player.lineUp.backAtTheTable')}
       </ToggleButton>
     </div>
   )
-}
-
-/**
- * The reveal the next round's countdown is drawn over. The view stops carrying
- * it the moment that round opens, so it is this screen's memory of what it
- * drew — the console keeps the same one, for the same reason.
- */
-const useRevealStillBeingRead = (
-  view: PlayerRoomView
-): PlayerRoomView | null => {
-  const [lastRevealed, setLastRevealed] = useState<PlayerRoomView | null>(null)
-
-  if (view.phase === 'revealed' && view !== lastRevealed) {
-    setLastRevealed(view)
-  }
-
-  if (
-    lastRevealed !== null &&
-    (view.phase === 'lobby' || view.phase === 'finished')
-  ) {
-    setLastRevealed(null)
-  }
-
-  return lastRevealed
 }
 
 export const PlayerRound: React.FC<PlayerRoundProps> = ({
@@ -310,8 +308,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     teamOfSeat({ playerId: view.youId, teams: view.teams }) === null
 
   useBuzzOutcome(reflexOutcome({ round, youId: view.youId }))
-
-  const lastRevealed = useRevealStillBeingRead(view)
 
   // Ahead of every mode, because the server has frozen the round and none of
   // the three screens below would say why. The buzzer carries its own reason
@@ -413,27 +409,16 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     if (counting !== null) {
       return (
         <section className='player-round notice'>
+          <CountingInGame view={view} />
           <CountPrompt isCompact targetSeconds={counting.targetSeconds} />
           <Countdown clock={clock} target={round.startsAt} />
         </section>
       )
     }
 
-    // The next round counts in over the answer the room is still reading, and
-    // the hold's groove runs on to the first note: one wait, not two.
-    if (lastRevealed?.round != null) {
-      return (
-        <RevealedRound
-          clock={clock}
-          countingInTo={round.startsAt}
-          round={lastRevealed.round}
-          view={lastRevealed}
-        />
-      )
-    }
-
     return (
       <section className='player-round notice'>
+        <CountingInGame view={view} />
         <Countdown clock={clock} target={round.startsAt} />
       </section>
     )
@@ -443,7 +428,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     return (
       <RevealedRound
         clock={clock}
-        countingInTo={null}
         onReady={onReady}
         round={round}
         view={view}
@@ -742,13 +726,16 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
  * lobby: the room is opened before the table decides, so "the host is choosing"
  * is a state and not a gap. Once they have, the game names itself and says what
  * it pays — the same pitch the shelf shows, on the screen the player is
- * holding.
+ * holding — and a line-up says what follows it, since the lid names only the
+ * first.
  */
 const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   const translate = useTranslate()
   const game = view.settings.game
+  const entryName = useEntryName(view.settings)
+  const laterEntryNames = useLaterEntryNames(view.settings)
 
-  if (game === null || !isShelvedGame(game.kind)) {
+  if (game === null || entryName === null || !isShelvedGame(game.kind)) {
     return (
       <div className='up-next undecided'>
         <p className='game-name'>{translate('player.choosingGame')}</p>
@@ -762,7 +749,7 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         <VisuallyHidden elementType='span'>
           {`${translate('player.upNext')} `}
         </VisuallyHidden>
-        {translate(gameNameKey(game.kind))}
+        {entryName}
       </p>
       <p className='how-it-scores'>
         {translate(
@@ -777,6 +764,13 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
           })
         )}
       </p>
+      {laterEntryNames.length > 0 && (
+        <p className='later-games'>
+          {translate('player.lineUp.afterwards', {
+            games: laterEntryNames.join(' · ')
+          })}
+        </p>
+      )}
     </div>
   )
 }

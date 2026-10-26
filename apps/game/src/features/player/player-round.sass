@@ -60,23 +60,9 @@
     gap: var(--space-s)
     padding: calc(var(--band) + clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))) clamp(var(--space-m), calc(var(--stage-unit) * 4.4), var(--space-l)) clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-l))
 
-    &[data-game='blindtest']
-      --spine: var(--spine-blindtest)
-
-    &[data-game='buzzer']
-      --spine: var(--spine-buzzer)
-
-    &[data-game='quiz']
-      --spine: var(--spine-quiz)
-
-    &[data-game='reflex']
-      --spine: var(--spine-reflex)
-
-    &[data-game='slate']
-      --spine: var(--spine-slate)
-
-    &[data-game='atlas']
-      --spine: var(--spine-atlas)
+    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac
+      &[data-game='#{$game}']
+        --spine: var(--spine-#{$game})
 
     .game-name
       @include typography.monument
@@ -90,6 +76,12 @@
       color: var(--card-muted)
       max-width: var(--measure-note)
       text-wrap: pretty
+
+    .later-games
+      @include typography.label
+
+      color: var(--card-muted)
+      text-wrap: balance
 
     &.undecided
       background: var(--socket)
@@ -272,22 +264,10 @@
     .hold:empty
       display: none
 
-    // The next round counting in, beside the groove that runs to its first
-    // note: a token small enough to leave the answer the screen.
-    .hold:has(.counting-in)
-      align-items: center
-      display: flex
-      gap: var(--space-s)
-
-      > :not(.counting-in)
-        flex: 1
-
-    .countdown.counting-in
-      --token-size: 3.5rem
-
     // Under the thumb, where the next press of the evening lands: the game the
     // next round is on, and the word to the wall that this seat is back.
     .back-at-the-table
+      align-self: stretch
       display: flex
       flex-direction: column
       gap: var(--space-xs)

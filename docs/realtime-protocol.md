@@ -563,8 +563,9 @@ wait they are expecting to watch.
 the server opens that round `countdownMs` earlier — and a blind test draws its
 track two seconds before that — so the countdown runs over the answer the room
 is still reading and the hold is the whole wait. The new round's `startsAt` is
-the old `advancesAt`, and every screen keeps the reveal it drew on screen
-while the round counts in. The last reveal opens nothing and ends the game at
+the old `advancesAt`, and the console and the wall keep the reveal they drew
+on screen while the round counts in. A player's screen counts in full size
+instead, so it ends its hold `countdownMs` before `advancesAt`. The last reveal opens nothing and ends the game at
 `advancesAt` itself. A held draw that fails is tried again three seconds later
 rather than leaving the reveal standing, unless the source has nothing left.
 

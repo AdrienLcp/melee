@@ -1203,9 +1203,9 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     lineUp: {
-      getReady: 'Je suis de retour à table',
-      next: 'Ensuite : {game}',
-      ready: 'Prêt'
+      afterwards: 'Puis : {games}',
+      backAtTheTable: 'Je suis de retour à table',
+      next: 'Ensuite : {game}'
     },
     midRound: {
       detail: 'Ta place est gardée — cette\u00a0manche a commencé sans toi.',

@@ -1,4 +1,5 @@
 import type { GameSettings } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
 
 import { useTranslate } from './i18n-provider'
 import { gameNameKey, questionCategoryKey, type Translate } from './translation'
@@ -185,4 +186,41 @@ export const useLineUpEntrySummaries = (
       settings: rest.length > 0 ? rest.join(' · ') : null
     }
   })
+}
+
+type EntrySettings = Pick<
+  RoomSettings,
+  'game' | 'lineUp' | 'lineUpAt' | 'runningOrder'
+>
+
+/**
+ * The entry the room's next round plays, by the name the line-up gives it —
+ * a variant says which — and `null` while there is no game.
+ */
+export const useEntryName = (settings: EntrySettings): string | null => {
+  const translate = useTranslate()
+  const entryNames = useLineUpEntryNames(settings.lineUp)
+
+  if (settings.game === null) {
+    return null
+  }
+
+  return (
+    (settings.lineUpAt === null ? undefined : entryNames[settings.lineUpAt]) ??
+    translate(gameNameKey(settings.game.kind))
+  )
+}
+
+/**
+ * The entries a line-up plays after the first, each once, in the order the
+ * running order first reaches them; an entry it has not reached yet comes last.
+ */
+export const useLaterEntryNames = (settings: EntrySettings): string[] => {
+  const entryNames = useLineUpEntryNames(settings.lineUp)
+  const planned = [
+    ...settings.runningOrder,
+    ...settings.lineUp.map((_, at) => at)
+  ].flatMap((at) => (at === null || at === settings.lineUpAt ? [] : [at]))
+
+  return [...new Set(planned)].flatMap((at) => entryNames[at] ?? [])
 }

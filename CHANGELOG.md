@@ -408,6 +408,21 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Between two rounds a player's screen counts in, full size.** The
+  next round's countdown was a small token beside the last reveal, and read as
+  no countdown at all; it now takes the screen as the first round's does, under
+  the lid of the game it opens on when a line-up plays several. The reveal's
+  hold ends where the countdown begins.
+
+- `[Game]` **The back-at-the-table press keeps its words.** It read *I'm back at
+  the table*, then *Ready* once pressed, which read as two different buttons;
+  it now says the first throughout and shows a tick while it is on.
+
+- `[Game]` **A line-up's lobby says what comes after the first game**, on a
+  player's screen and on the wall: *Then: Reflex · Quiz*, in the planned order,
+  under the first game's pitch. Every game's lid now wears its own colour,
+  where six fell back to grey.
+
 - `[Game]` **Enter on a game's spine opens a table on it**, as a click does,
   instead of loading the game's own page on the way, and focus stays on the
   spine while the table opens. A refused room code is announced to a screen
