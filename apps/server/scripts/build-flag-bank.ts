@@ -4,10 +4,10 @@ import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
+import type { GeoPoint } from '@melee/protocol/atlas'
 import { COUNTRY_CODES, type CountryCode } from '@melee/protocol/country-code'
-import type { GeoPoint } from '@melee/protocol/worldmap'
 
-import { greatCircleKm } from '@melee/core/worldmap/distance'
+import { greatCircleKm } from '@melee/core/atlas/distance'
 
 import { countryShapeOf } from '../src/infrastructure/map/world-atlas'
 

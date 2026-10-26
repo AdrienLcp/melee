@@ -93,7 +93,7 @@ reconnect on the token it still holds.
 | `petitbac.stop` | player | `roundId` — a full sheet closing everyone's, `PETIT_BAC_STOP_GRACE_MS` later |
 | `petitbac.vote` | player | `roundId`, `categoryIndex`, `rowKey`, `refuses` — a refusal of a row of the category being voted, or one taken back |
 | `petitbac.doneVoting` | player | `roundId`, `categoryIndex` — the seat has read the category being voted |
-| `guessnine.tick` | player | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken guess nine alone, the black word once and for good |
+| `blacksquare.tick` | player | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken black square alone, the black word once and for good |
 | `host.updateSettings` | host | `settings` |
 | `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `challengeAt` (optional) — the slot of `challengeHand` an untyped challenge opens on, the first by default; `isChallengeSaidAloud` (optional) — an untyped challenge opens on no line, the host announcing it; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
@@ -397,26 +397,26 @@ is `invalid_message`. The bank is bundled with the server
 (`timeline-bank.json`), and a round's events are at least `MIN_YEARS_APART`
 from one another.
 
-**Guess nine sends a seat its own cells and nothing else.** The public arm is
-`{ kind: 'guessnine', theme, foundCellCount, revealed }`: the theme per locale,
+**Black square sends a seat its own cells and nothing else.** The public arm is
+`{ kind: 'blacksquare', theme, foundCellCount, revealed }`: the theme per locale,
 how many of the nine cells *any* seat has found — a count, never which — and
 `revealed`, `null` until the reveal, then every answer with its `tier` and
 `foundBy`, and the black word with its `why` and `hitBy`. The reader's own
 cells are `yourVerdict`, a fifth shape of verdict, `{ kind: 'cells',
 foundCells, hitBlackWord }`, so a cell's index reaches a seat only once it
-typed that answer. The host arm is `{ kind: 'guessnine', grid }`, the nine
+typed that answer. The host arm is `{ kind: 'blacksquare', grid }`, the nine
 most read first with their tiers and the black word, never an alias, and
 `null` while the console holds a seat; the wall arm is the kind alone. A seat
 sends as many `player.answer` `{ kind: 'typed', guess }` lines as the round
 lasts — a hit never closes its sheet, only all nine or the black word do, and
-a line after that is `already_buzzed`. `@melee/core/guessnine/line-match`
+a line after that is `already_buzzed`. `@melee/core/blacksquare/line-match`
 matches a line whole against every name in both languages, each answer's
 rivals being the black word and the other eight; `sheet-pay` prices it, 1, 2
 and 3 `POINT`s by tier, nothing once the black word is hit, and no clock on
-top. `guess-nine-game.test.ts` searches each seat's and the wall's whole
+top. `black-square-game.test.ts` searches each seat's and the wall's whole
 transcript for a name it never typed.
 
-**A spoken guess nine sends the list to one seat, of a team not playing.**
+**A spoken black square sends the list to one seat, of a team not playing.**
 Under the `spoken` answer mode — offered only while the teams are `drawn` or
 `chosen` — each round draws a guessing team and a keeper from another team
 (`drawSpokenTurn`: the team that has guessed least, the seat that has kept
@@ -426,7 +426,7 @@ tickedCells, list }`: the ticked cells are indices, to everyone, and `list` —
 the nine and the black word — is filled for the keeper alone, and taken back
 the moment the host moves it into the guessing team, whose seats never receive
 it. Nobody answers on a screen: `player.answer` is `invalid_message`, and only
-the keeper's `guessnine.tick` moves the sheet, the black word or all nine
+the keeper's `blacksquare.tick` moves the sheet, the black word or all nine
 closing the round. The reveal pays the sheet to each seat of the guessing
 team and the team once, the challenge's path (`answersAsOne`).
 
@@ -629,7 +629,7 @@ seat) is `null` until the reveal, because a marker seen on another screen is an
 answer to copy. The grade is a third shape of verdict, `{ kind: 'distance',
 distanceKm, target }` — to a country nought inside, otherwise the way to the
 nearest border; to a city or a capital the way to the place itself — priced by the
-`target`'s own tiers in `@melee/core/worldmap/distance-tiers`, the speed bonus capped by
+`target`'s own tiers in `@melee/core/atlas/distance-tiers`, the speed bonus capped by
 the tier as everywhere else. It is answered in a mode of its own, `point`: one
 shot a seat, like a pick, and offered by no other game.
 

@@ -1,0 +1,112 @@
+@use '../styles/black-word'
+@use '../styles/tier-rows'
+@use '../styles/typography'
+
+@layer components
+  // Held to whatever height its parent gives it, the cells dividing it: under
+  // about 10rem — a small screen with its keyboard up — the cells go to one row
+  // and print their pips alone.
+  .black-square-sheet
+    container-type: size
+    min-block-size: 2.25rem
+    position: relative
+
+    > ol
+      @include tier-rows.grid
+
+      block-size: 100%
+      gap: clamp(var(--space-xs), 2cqmin, var(--space-s))
+      list-style: none
+      margin: 0
+      padding: 0
+
+    li
+      @include tier-rows.cell
+      @include typography.answer
+
+      align-content: center
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      box-shadow: var(--shadow-recess-shallow), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      color: var(--socket-line)
+      display: grid
+      font-size: clamp(var(--text-xs), min(4.4cqi, 6.2cqb), var(--text-xl))
+      gap: 0.3em
+      justify-items: center
+      min-width: 0
+      overflow: hidden
+      padding: 0.4em 0.45em
+      text-align: center
+
+      > .black-square-pips
+        font-size: var(--text-em-xl)
+
+    li[data-found]
+      --edge: 0.1875rem
+
+      background: var(--good-soft)
+      box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
+      color: var(--tile-ink)
+
+      > .black-square-pips
+        color: var(--good-edge)
+        font-size: 1em
+
+    .typed
+      hyphens: auto
+      overflow-wrap: break-word
+      text-wrap: balance
+
+    &[data-voided] li[data-found]
+      background: var(--socket)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      color: var(--ink-muted)
+      text-decoration: line-through var(--stroke-thin)
+
+      > .black-square-pips
+        color: var(--socket-line)
+
+    .black-word-piece
+      @include black-word.piece
+
+      align-content: center
+      display: grid
+      gap: var(--space-s)
+      inset: 12% 4%
+      justify-items: center
+      padding: var(--space-m)
+      position: absolute
+      text-align: center
+
+      .word
+        @include typography.billboard-wrapping
+
+        font-size: clamp(var(--text-xl), 9cqmin, 3rem)
+        overflow-wrap: anywhere
+
+  @container (height < 10rem)
+    .black-square-sheet
+      > ol
+        grid-template: minmax(0, 1fr) / repeat(var(--cell-count), minmax(0, 1fr))
+
+      li
+        font-size: var(--text-2xs)
+        grid-area: auto
+        padding: 0
+
+        > .black-square-pips
+          font-size: 1em
+
+      .typed
+        display: none
+
+      .black-word-piece
+        gap: 0
+        inset: 0
+        padding: var(--space-2xs) var(--space-s)
+
+        .what
+          display: none
+
+        .word
+          font-size: var(--text-l)

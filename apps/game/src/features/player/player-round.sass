@@ -75,8 +75,8 @@
     &[data-game='slate']
       --spine: var(--spine-slate)
 
-    &[data-game='worldmap']
-      --spine: var(--spine-worldmap)
+    &[data-game='atlas']
+      --spine: var(--spine-atlas)
 
     .game-name
       @include typography.monument
@@ -151,7 +151,7 @@
 
   // The theme on its card with the round's sand along its top, and the sheet
   // taking everything under it, down to the field.
-  .player-round.guess-nine-round
+  .player-round.black-square-round
     display: grid
     gap: var(--space-s)
     grid-template-rows: auto minmax(0, 1fr)
@@ -163,7 +163,7 @@
       > *
         grid-area: 1 / 1
 
-      .guess-nine-theme
+      .black-square-theme
         @include question-card.card
         @include typography.billboard-wrapping
 
@@ -172,7 +172,7 @@
         overflow-wrap: anywhere
         text-wrap: balance
 
-      .guess-nine-theme + .round-progress
+      .black-square-theme + .round-progress
         --clock-ink: var(--card-ink)
 
         align-self: start
@@ -299,10 +299,10 @@
 
     // A round before the first point, or one whose question the room owned,
     // leaves the payout alone on the screen: one object, centred.
-    .guess-nine-reveal
+    .black-square-reveal
       block-size: clamp(14rem, 46dvh, 32rem)
 
-    &:not(:has(.round-board, .answer-card, .reaction-board, .guess-nine-reveal, .petit-bac-reveal))
+    &:not(:has(.round-board, .answer-card, .reaction-board, .black-square-reveal, .petit-bac-reveal))
       align-items: center
       justify-content: center
 

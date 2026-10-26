@@ -1,11 +1,12 @@
 import { z } from 'zod'
 
+import { geoPointSchema } from './atlas'
+import { blackSquareCellSchema } from './black-square'
 import {
   challengeFinisherSchema,
   challengeHandSlotSchema,
   challengeTextSchema
 } from './challenge'
-import { guessNineCellSchema } from './guess-nine'
 import {
   hostTokenSchema,
   nicknameSchema,
@@ -33,7 +34,6 @@ import {
   teamVerdictSchema
 } from './team'
 import { timelineOrderSchema } from './timeline'
-import { geoPointSchema } from './worldmap'
 
 /**
  * `wall` is the room's own screen: it shows the game to everyone and holds no
@@ -189,18 +189,18 @@ export const writeSlateLineMessageSchema = z.object({
 })
 
 /**
- * The keeper of a spoken guess-nine round ticking what the guessing team said,
+ * The keeper of a spoken black-square round ticking what the guessing team said,
  * or taking back a mistaken tick. The black word is ticked once and for good:
  * it cuts the round and voids it, so the screen asks twice before sending it.
  *
  * In the game's namespace, like `slate.write`: nothing else on the shelf has a
  * seat keeping somebody else's list.
  */
-export const tickGuessNineMessageSchema = z.object({
-  cell: z.union([guessNineCellSchema, z.literal('blackWord')]),
+export const tickBlackSquareMessageSchema = z.object({
+  cell: z.union([blackSquareCellSchema, z.literal('blackWord')]),
   isTicked: z.boolean(),
   roundId: roundIdSchema,
-  type: z.literal('guessnine.tick')
+  type: z.literal('blacksquare.tick')
 })
 
 /**
@@ -552,7 +552,7 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema,
-  tickGuessNineMessageSchema,
+  tickBlackSquareMessageSchema,
   writePetitBacLineMessageSchema,
   stopPetitBacMessageSchema,
   votePetitBacMessageSchema,
@@ -576,7 +576,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   buzzMessageSchema,
   answerMessageSchema,
   writeSlateLineMessageSchema,
-  tickGuessNineMessageSchema,
+  tickBlackSquareMessageSchema,
   writePetitBacLineMessageSchema,
   stopPetitBacMessageSchema,
   votePetitBacMessageSchema,
@@ -670,7 +670,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
 export const FLOOR_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.buzz',
   'player.answer',
-  'guessnine.tick',
+  'blacksquare.tick',
   'petitbac.stop',
   'petitbac.vote',
   'petitbac.doneVoting'

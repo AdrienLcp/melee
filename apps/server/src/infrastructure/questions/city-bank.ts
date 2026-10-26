@@ -1,4 +1,4 @@
-import type { GeoPoint } from '@melee/protocol/worldmap'
+import type { GeoPoint } from '@melee/protocol/atlas'
 
 import { pickRandom } from '@melee/core/helpers/random'
 
@@ -163,7 +163,7 @@ export const BANKED_CITIES: readonly BankedCity[] = CITIES.map(
 )
 
 /** The id a played city takes in the room's no-repeat set, beside the countries. */
-export const playedCityId = (name: string): string => `worldmap:city:${name}`
+export const playedCityId = (name: string): string => `atlas:city:${name}`
 
 /** A city the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCity = ({

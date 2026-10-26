@@ -270,7 +270,7 @@ const Lobby: React.FC<{
             }
             onPetitBac={(message) => send(message)}
             onReady={(isReady) => send({ isReady, type: 'player.ready' })}
-            onTick={(tick) => send({ ...tick, type: 'guessnine.tick' })}
+            onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
             onWriteLine={(itemIndex, answer, roundId) =>
               send({ answer, itemIndex, roundId, type: 'slate.write' })
             }
@@ -314,7 +314,7 @@ const Lobby: React.FC<{
               }
               onPetitBac={(message) => send(message)}
               onReady={(isReady) => send({ isReady, type: 'player.ready' })}
-              onTick={(tick) => send({ ...tick, type: 'guessnine.tick' })}
+              onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
               onWriteLine={(itemIndex, answer, roundId) =>
                 send({ answer, itemIndex, roundId, type: 'slate.write' })
               }

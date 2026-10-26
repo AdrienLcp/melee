@@ -26,12 +26,13 @@ import { dealtOrder } from './running-order'
  * the blind test's shape wearing the room's name.
  */
 const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
+  atlas: 10,
+  /** A sheet is a minute of nine answers and a black word, and six of them are an evening's game. */
+  blacksquare: 6,
   blindtest: 10,
   buzzer: null,
   /** Challenges are the evening's interludes, played until the host moves on. */
   challenge: null,
-  /** A sheet is a minute of nine answers and a black word, and six of them are an evening's game. */
-  guessnine: 6,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
   matchsticks: 10,
@@ -43,8 +44,7 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   /** One sheet is the evening's tasting; a second is a second tasting, and the host can say so. */
   slate: 1,
   /** Five events a round, so eight rounds deal forty and leave the bank plenty. */
-  timeline: 8,
-  worldmap: 10
+  timeline: 8
 }
 
 /**
@@ -61,18 +61,18 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
  * the four.
  */
 const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
+  atlas: 'point',
+  blacksquare: 'typed',
   blindtest: 'choice',
   buzzer: 'buzzer',
   challenge: 'buzzer',
-  guessnine: 'typed',
   innerclock: 'buzzer',
   matchsticks: 'move',
   petitbac: 'typed',
   quiz: 'choice',
   reflex: 'buzzer',
   slate: 'typed',
-  timeline: 'order',
-  worldmap: 'point'
+  timeline: 'order'
 }
 
 /**
@@ -167,18 +167,18 @@ export const roomSettingsFor = ({
  * goes on playing under it, and the countdown to the next one is inside them.
  */
 const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
+  atlas: null,
+  blacksquare: null,
   blindtest: 8_000,
   buzzer: null,
   challenge: null,
-  guessnine: null,
   innerclock: null,
   matchsticks: null,
   petitbac: null,
   quiz: null,
   reflex: null,
   slate: null,
-  timeline: null,
-  worldmap: null
+  timeline: null
 }
 
 /** What a game answers before anybody has told it otherwise. */
@@ -327,7 +327,7 @@ const modeFittedToTeams = ({
 
 /**
  * The settings with a mode their teams cannot play taken back to the game's
- * own: turning the teams off under a spoken guess nine leaves nobody to keep
+ * own: turning the teams off under a spoken black square leaves nobody to keep
  * the list, so the press that does it types the round instead.
  */
 export const fittedToTeams = ({

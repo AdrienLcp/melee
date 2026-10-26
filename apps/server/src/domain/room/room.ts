@@ -1,10 +1,11 @@
+import type { GeoPoint, LocalizedName, Placement } from '@melee/protocol/atlas'
+import type {
+  BlackSquareSentLine,
+  BlackSquareTheme
+} from '@melee/protocol/black-square'
 import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { GameSettings } from '@melee/protocol/game'
-import type {
-  GuessNineSentLine,
-  GuessNineTheme
-} from '@melee/protocol/guess-nine'
 import type {
   HostToken,
   Nickname,
@@ -34,11 +35,6 @@ import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
-import type {
-  GeoPoint,
-  LocalizedName,
-  Placement
-} from '@melee/protocol/worldmap'
 
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
@@ -54,7 +50,7 @@ import type { SheetItem } from '@melee/core/slate/sheet-marking'
  * What a map round asks for, the city's point included, and the capital's
  * country: the view withholds both until the reveal.
  */
-export type WorldmapRoundTarget =
+export type AtlasRoundTarget =
   | { countryCode: CountryCode; kind: 'country' }
   | { kind: 'city'; name: string; point: GeoPoint }
   | {
@@ -68,7 +64,7 @@ export type WorldmapRoundTarget =
  * What a `name` round needs beside its target: the point it shows, and how the
  * answer is told from a wrong one, typed or picked.
  */
-export type WorldmapNaming = {
+export type AtlasNaming = {
   /** Every spelling that counts, in both languages: a room names a place in either. */
   accepted: string[]
   answer: LocalizedName
@@ -96,7 +92,7 @@ export type Room = {
   createdAt: number
   /** Duels each seat has played this evening, which is who is drawn next — see `drawDuel`. */
   duelsBySeat: Map<PlayerId, number>
-  /** Spoken guess-nine rounds each team has guessed this evening — see `drawSpokenTurn`. */
+  /** Spoken black-square rounds each team has guessed this evening — see `drawSpokenTurn`. */
   guessesByTeam: Map<TeamId, number>
   /**
    * When the last console's socket went, and `null` while one is attached. The
@@ -116,7 +112,7 @@ export type Room = {
    * round opens — see `takeDuel`.
    */
   isDuelAsked: boolean
-  /** Spoken guess-nine lists each seat has kept this evening — see `drawSpokenTurn`. */
+  /** Spoken black-square lists each seat has kept this evening — see `drawSpokenTurn`. */
   keepsBySeat: Map<PlayerId, number>
   lastActivityAt: number
   /**
@@ -314,13 +310,13 @@ export type Round = {
          * next one. Never in a spoken round.
          */
         doublesLoneFinds: boolean
-        kind: 'guessnine'
+        kind: 'blacksquare'
         /**
          * Each seat's lines that found something, and its latest that found
          * nothing — a miss replaces the one before, so a seat sending a
          * hundred lines holds eleven at most.
          */
-        lines: (GuessNineSentLine & { playerId: PlayerId })[]
+        lines: (BlackSquareSentLine & { playerId: PlayerId })[]
         /**
          * Who says the answers and who ticks them, in a spoken round; `null`
          * in a typed one. `guessers` is the guessing team as the round opened,
@@ -333,7 +329,7 @@ export type Round = {
           sheet: CellsVerdict
         } | null
         /** The nine and the black word; what each seat found is on its attempts. */
-        theme: GuessNineTheme
+        theme: BlackSquareTheme
       }
     | {
         kind: 'innerclock'
@@ -407,12 +403,12 @@ export type Round = {
         kind: 'timeline'
       }
     | {
-        kind: 'worldmap'
+        kind: 'atlas'
         /** A `name` round's, and `null` in a `place` round. */
-        naming: WorldmapNaming | null
+        naming: AtlasNaming | null
         /** Every seat's marker, in the order they landed; a team's answer is one per seat. */
         placements: Placement[]
-        target: WorldmapRoundTarget
+        target: AtlasRoundTarget
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

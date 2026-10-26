@@ -1,3 +1,4 @@
+import type { AtlasTarget } from '@melee/protocol/atlas'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PetitBacProgress } from '@melee/protocol/petit-bac'
 import type {
@@ -13,7 +14,6 @@ import type {
 import type { Verdict } from '@melee/protocol/scoring'
 import type { SlateLine } from '@melee/protocol/slate'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
-import type { WorldmapTarget } from '@melee/protocol/worldmap'
 
 import { playedPerEntry } from '@melee/core/room/next-game'
 import { isBlankAnswer } from '@melee/core/round/answer-groups'
@@ -29,9 +29,9 @@ import {
 import { earliestFirst } from '@melee/core/timeline/deal'
 
 import {
-  guessNineContentView,
-  guessNineGrid
-} from '@/domain/round/guess-nine-round'
+  blackSquareContentView,
+  blackSquareGrid
+} from '@/domain/round/black-square-round'
 import {
   canCancelPetitBacStop,
   petitBacLinesFor,
@@ -42,7 +42,7 @@ import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 
 import { isRoundJudgedByConsole, playingSeatIds } from './console-seat'
-import type { PlayerAttempts, Room, Round, WorldmapRoundTarget } from './room'
+import type { AtlasRoundTarget, PlayerAttempts, Room, Round } from './room'
 import { toSeatBoards, toTeamViews } from './team-service'
 
 /**
@@ -178,10 +178,10 @@ const toHostContent = ({
     }
   }
 
-  if (content.kind === 'guessnine') {
+  if (content.kind === 'blacksquare') {
     return {
-      grid: seatId === null ? guessNineGrid(content.theme) : null,
-      kind: 'guessnine'
+      grid: seatId === null ? blackSquareGrid(content.theme) : null,
+      kind: 'blacksquare'
     }
   }
 
@@ -192,13 +192,13 @@ const toHostContent = ({
     }
   }
 
-  if (content.kind === 'worldmap') {
+  if (content.kind === 'atlas') {
     return {
       answer:
         content.naming !== null && seatId === null
-          ? worldmapTargetView({ isRevealed: true, target: content.target })
+          ? atlasTargetView({ isRevealed: true, target: content.target })
           : null,
-      kind: 'worldmap'
+      kind: 'atlas'
     }
   }
 
@@ -420,13 +420,13 @@ const saidBy = (attempts: PlayerAttempts): string =>
     : (attempts.lastMiss ?? '')
 
 /** A map round's target as a screen may hold it: where it stands, and whose capital it is, only once it is revealed. */
-const worldmapTargetView = ({
+const atlasTargetView = ({
   isRevealed,
   target
 }: {
   isRevealed: boolean
-  target: WorldmapRoundTarget
-}): WorldmapTarget => {
+  target: AtlasRoundTarget
+}): AtlasTarget => {
   switch (target.kind) {
     case 'country':
       return target
@@ -515,8 +515,8 @@ const toContentView = ({
     }
   }
 
-  if (content.kind === 'guessnine') {
-    return guessNineContentView({ content, room, round, youId })
+  if (content.kind === 'blacksquare') {
+    return blackSquareContentView({ content, room, round, youId })
   }
 
   if (content.kind === 'timeline') {
@@ -536,13 +536,13 @@ const toContentView = ({
     }
   }
 
-  if (content.kind === 'worldmap') {
+  if (content.kind === 'atlas') {
     const { naming, target } = content
 
     return {
       choices: (naming?.choices ?? []).map(({ en, fr }) => ({ en, fr })),
       direction: naming === null ? 'place' : 'name',
-      kind: 'worldmap',
+      kind: 'atlas',
       revealedPlacements: round.revealed
         ? content.placements.map(({ playerId, point }) => ({
             playerId,
@@ -562,7 +562,7 @@ const toContentView = ({
       target:
         naming !== null && !round.revealed
           ? null
-          : worldmapTargetView({ isRevealed: round.revealed, target })
+          : atlasTargetView({ isRevealed: round.revealed, target })
     }
   }
 

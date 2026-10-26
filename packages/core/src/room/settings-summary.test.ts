@@ -54,38 +54,41 @@ describe('settingsSummary', () => {
   })
 
   it('[settings-summary] names how many answers a black square deals only when it is not nine', () => {
-    const guessNine = roomSettingsFor({ games: ['guessnine'], locale: 'fr' })
-    const countsOf = (settings: typeof guessNine) =>
+    const blackSquare = roomSettingsFor({
+      games: ['blacksquare'],
+      locale: 'fr'
+    })
+    const countsOf = (settings: typeof blackSquare) =>
       settingsSummary({ draftSource: null, settings }).filter(
         (part) => part.kind === 'answerCount'
       )
 
-    expect(countsOf(guessNine)).toEqual([])
+    expect(countsOf(blackSquare)).toEqual([])
     expect(
       countsOf({
-        ...guessNine,
+        ...blackSquare,
         game:
-          guessNine.game?.kind === 'guessnine'
-            ? { ...guessNine.game, answerCount: 5 }
-            : guessNine.game
+          blackSquare.game?.kind === 'blacksquare'
+            ? { ...blackSquare.game, answerCount: 5 }
+            : blackSquare.game
       })
     ).toEqual([{ count: 5, kind: 'answerCount' }])
   })
 
   it('[settings-summary] names the map only when it asks for French cities', () => {
-    const worldmap = roomSettingsFor({ games: ['worldmap'], locale: 'fr' })
-    const placesOf = (settings: typeof worldmap) =>
+    const atlas = roomSettingsFor({ games: ['atlas'], locale: 'fr' })
+    const placesOf = (settings: typeof atlas) =>
       settingsSummary({ draftSource: null, settings }).filter(
         (part) => part.kind === 'places'
       )
 
-    expect(placesOf(worldmap)).toEqual([])
+    expect(placesOf(atlas)).toEqual([])
     expect(
       placesOf({
-        ...worldmap,
+        ...atlas,
         game: {
           direction: 'place',
-          kind: 'worldmap',
+          kind: 'atlas',
           places: ['countries', 'frenchCities'],
           roundDurationMs: 30_000
         }

@@ -174,7 +174,7 @@ export const BANKED_COUNTRIES = [
 ] as const satisfies readonly CountryCode[]
 
 /** The id a played country takes in the room's no-repeat set, beside the quiz's questions. */
-export const playedCountryId = (code: CountryCode): string => `worldmap:${code}`
+export const playedCountryId = (code: CountryCode): string => `atlas:${code}`
 
 /** A country the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCountry = ({

@@ -1,13 +1,10 @@
 import type { DotPath, PlainKey, Translator } from '@adrienlcp/i18n'
 
+import type { AtlasDirection, AtlasPlaces } from '@melee/protocol/atlas'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { GameKind, ShelvedGame } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { AnswerMode } from '@melee/protocol/room'
-import type {
-  WorldmapDirection,
-  WorldmapPlaces
-} from '@melee/protocol/worldmap'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { BuzzBlocker } from '@melee/core/round/buzz-eligibility'
@@ -62,11 +59,11 @@ export const answerModeLabelKey = (
 /** The modes a game answering against its own question offers. */
 type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point' | 'spoken'>
 
-const WORLDMAP_SCORING_KEYS = {
-  countries: 'worldmap.scoring',
-  frenchCities: 'worldmap.scoringCities',
-  worldCapitals: 'worldmap.scoringCapitals'
-} as const satisfies Record<WorldmapPlaces, string>
+const ATLAS_SCORING_KEYS = {
+  countries: 'atlas.scoring',
+  frenchCities: 'atlas.scoringCities',
+  worldCapitals: 'atlas.scoringCapitals'
+} as const satisfies Record<AtlasPlaces, string>
 
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
@@ -81,25 +78,25 @@ export const scoringKey = ({
   asksForAFilm,
   doublesLoneFinds,
   game,
-  worldmap
+  atlas
 }: {
   answerMode: AnswerMode
   /** The blind test's two halves are a film and its composer on one source out of five. */
   asksForAFilm: boolean
-  /** Guess nine's *Nobody else had it*, which doubles a lone find. */
+  /** Black square's *Nobody else had it*, which doubles a lone find. */
   doublesLoneFinds: boolean
   game: GameKind
   /** Which way a map room asks and what it draws from, each kind priced by its own tiers; `null` off the map. */
-  worldmap: {
-    direction: WorldmapDirection
-    places: readonly WorldmapPlaces[]
+  atlas: {
+    direction: AtlasDirection
+    places: readonly AtlasPlaces[]
   } | null
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
-  | 'guessnine.scoring'
-  | 'guessnine.scoringLoneFinds'
-  | 'guessnine.scoringSpoken'
+  | 'blacksquare.scoring'
+  | 'blacksquare.scoringLoneFinds'
+  | 'blacksquare.scoringSpoken'
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
@@ -107,17 +104,17 @@ export const scoringKey = ({
   | 'reflex.scoring'
   | 'slate.scoring'
   | 'timeline.scoring'
-  | 'worldmap.scoring'
-  | 'worldmap.scoringCapitals'
-  | 'worldmap.scoringCities'
-  | 'worldmap.scoringMixed'
-  | `worldmap.scoringName.${Exclude<ServedMode, 'buzzer'>}`
+  | 'atlas.scoring'
+  | 'atlas.scoringCapitals'
+  | 'atlas.scoringCities'
+  | 'atlas.scoringMixed'
+  | `atlas.scoringName.${Exclude<ServedMode, 'buzzer'>}`
   | `blindtest.scoring.${ServedMode}`
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
 > => {
   // A marker is the map's alone, an order the timeline's, a move the
-  // matchsticks' and a spoken round guess nine's, so the two games that serve
+  // matchsticks' and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps
   // the switch total.
   const served =
@@ -139,14 +136,14 @@ export const scoringKey = ({
       return 'buzzer.scoring'
     case 'challenge':
       return 'challenge.scoring'
-    case 'guessnine':
+    case 'blacksquare':
       if (answerMode === 'spoken') {
-        return 'guessnine.scoringSpoken'
+        return 'blacksquare.scoringSpoken'
       }
 
       return doublesLoneFinds
-        ? 'guessnine.scoringLoneFinds'
-        : 'guessnine.scoring'
+        ? 'blacksquare.scoringLoneFinds'
+        : 'blacksquare.scoring'
     case 'innerclock':
       return 'innerclock.scoring'
     case 'matchsticks':
@@ -163,14 +160,14 @@ export const scoringKey = ({
       return 'slate.scoring'
     case 'timeline':
       return 'timeline.scoring'
-    case 'worldmap':
-      if (worldmap?.direction === 'name') {
-        return `worldmap.scoringName.${served === 'typed' ? 'typed' : 'choice'}`
+    case 'atlas':
+      if (atlas?.direction === 'name') {
+        return `atlas.scoringName.${served === 'typed' ? 'typed' : 'choice'}`
       }
 
-      return worldmap !== null && worldmap.places.length > 1
-        ? 'worldmap.scoringMixed'
-        : WORLDMAP_SCORING_KEYS[worldmap?.places[0] ?? 'countries']
+      return atlas !== null && atlas.places.length > 1
+        ? 'atlas.scoringMixed'
+        : ATLAS_SCORING_KEYS[atlas?.places[0] ?? 'countries']
   }
 }
 

@@ -1,10 +1,10 @@
+import type { AtlasPlaces } from '@melee/protocol/atlas'
 import {
-  DEFAULT_GUESS_NINE_SETTINGS,
+  DEFAULT_BLACK_SQUARE_SETTINGS,
   type ShelvedGame
 } from '@melee/protocol/game'
 import type { AnswerMode, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
-import type { WorldmapPlaces } from '@melee/protocol/worldmap'
 
 import { answerModesFor } from './game-capabilities'
 import { isShelvedGame } from './shelved-game'
@@ -21,7 +21,7 @@ export type SettingsSummaryPart =
   | { game: ShelvedGame; kind: 'game' }
   | { kind: 'answerMode'; mode: AnswerMode }
   | { kind: 'source'; source: TrackSource['kind'] }
-  | { kind: 'places'; places: readonly WorldmapPlaces[] }
+  | { kind: 'places'; places: readonly AtlasPlaces[] }
 
 /**
  * What the fold says while it is closed. Only the round count is always there:
@@ -60,7 +60,7 @@ export const settingsSummary = ({
   }
 
   if (
-    game.kind === 'worldmap' &&
+    game.kind === 'atlas' &&
     game.places.some((places) => places !== 'countries')
   ) {
     parts.push({ kind: 'places', places: game.places })
@@ -71,8 +71,8 @@ export const settingsSummary = ({
   }
 
   if (
-    game.kind === 'guessnine' &&
-    game.answerCount !== DEFAULT_GUESS_NINE_SETTINGS.answerCount
+    game.kind === 'blacksquare' &&
+    game.answerCount !== DEFAULT_BLACK_SQUARE_SETTINGS.answerCount
   ) {
     parts.push({ count: game.answerCount, kind: 'answerCount' })
   }

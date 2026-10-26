@@ -108,8 +108,8 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.text
         },
         {
-          background: '--spine-guessnine',
-          foreground: '--on-spine-guessnine',
+          background: '--spine-blacksquare',
+          foreground: '--on-spine-blacksquare',
           minimum: WCAG_AA.text
         },
         {

@@ -181,6 +181,15 @@ describe('readStoredLineUpGames', () => {
       status: 'success'
     })
   })
+
+  it('[line-up] reads a game stored under its old id as the game it names today', () => {
+    store.set(LINE_UP_GAMES_KEY, JSON.stringify(['guessnine', 'worldmap']))
+
+    expect(readStoredLineUpGames()).toEqual({
+      data: ['blacksquare', 'atlas'],
+      status: 'success'
+    })
+  })
 })
 
 describe('readStoredSavedEvenings', () => {

@@ -3,8 +3,11 @@ import type React from 'react'
 import { useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
+import type {
+  BlackSquareCell,
+  BlackSquareLabels
+} from '@melee/protocol/black-square'
 import type { PlayerClientMessage } from '@melee/protocol/client-message'
-import type { GuessNineCell, GuessNineLabels } from '@melee/protocol/guess-nine'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
   ActiveBuzz,
@@ -34,8 +37,8 @@ import {
 } from '@melee/core/time/clock-sync'
 
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
+import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { ChoosingRound } from '@/features/player/choosing-round'
-import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
@@ -55,8 +58,9 @@ import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
+  atlasContent,
+  blackSquareContent,
   blindtestContent,
-  guessNineContent,
   innerclockContent,
   matchsticksContent,
   petitBacContent,
@@ -65,21 +69,20 @@ import {
   reflexContent,
   sentOrderOf,
   swappedPairsOf,
-  timelineContent,
-  worldmapContent
+  timelineContent
 } from '@/helpers/round-content'
 import { slateLabelsOf } from '@/helpers/slate-labels'
 import { buzzFeedback } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import { AskedQuestion } from '@/presentation/components/asked-question'
+import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
+import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
-import { GuessNineReveal } from '@/presentation/components/guess-nine-reveal'
-import { GuessNineSpoken } from '@/presentation/components/guess-nine-spoken'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -129,9 +132,9 @@ type PlayerRoundProps = {
   onChooseTeam: (teamId: TeamId) => boolean
   /** `false` from the socket means the frame was never written. */
   onReady: (isReady: boolean) => boolean
-  /** The keeper's tick in a spoken guess nine; `false` from the socket means the frame was never written. */
+  /** The keeper's tick in a spoken black square; `false` from the socket means the frame was never written. */
   onTick: (tick: {
-    cell: GuessNineCell | 'blackWord'
+    cell: BlackSquareCell | 'blackWord'
     isTicked: boolean
     roundId: string
   }) => boolean
@@ -597,13 +600,13 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       )
     }
 
-    const worldmap = worldmapContent(round)
+    const atlas = atlasContent(round)
 
-    if (worldmap?.target != null) {
+    if (atlas?.target != null) {
       return (
         <section className='player-round map-round'>
           <div className='round-card'>
-            <MapPrompt target={worldmap.target} />
+            <MapPrompt target={atlas.target} />
             <RoundClock clock={clock} view={view} />
           </div>
           <MapAnswer
@@ -631,33 +634,33 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       )
     }
 
-    const guessNine = guessNineContent(round)
+    const blackSquare = blackSquareContent(round)
 
-    if (guessNine !== null) {
+    if (blackSquare !== null) {
       return (
-        <section className='player-round guess-nine-round'>
-          <GuessNineThemeCard
+        <section className='player-round black-square-round'>
+          <BlackSquareThemeCard
             clock={clock}
-            theme={guessNine.theme}
+            theme={blackSquare.theme}
             view={view}
           />
-          {guessNine.spoken === null ? (
-            <GuessNineAnswer
+          {blackSquare.spoken === null ? (
+            <BlackSquareAnswer
               key={round.id}
               onAnswer={answerWithRound}
               round={round}
               verdict={view.yourVerdict}
             />
           ) : (
-            <GuessNineSpoken
-              answerCount={guessNine.answerCount}
+            <BlackSquareSpoken
+              answerCount={blackSquare.answerCount}
               key={round.id}
               onTick={(cell, isTicked) =>
                 onTick({ cell, isTicked, roundId: round.id })
               }
               players={view.players}
               seatId={view.youId}
-              spoken={guessNine.spoken}
+              spoken={blackSquare.spoken}
               teams={view.teams}
             />
           )}
@@ -767,10 +770,10 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
             answerMode: view.settings.mode.kind,
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
+            atlas: game.kind === 'atlas' ? game : null,
             doublesLoneFinds:
-              game.kind === 'guessnine' && game.doublesLoneFinds,
-            game: game.kind,
-            worldmap: game.kind === 'worldmap' ? game : null
+              game.kind === 'blacksquare' && game.doublesLoneFinds,
+            game: game.kind
           })
         )}
       </p>
@@ -789,18 +792,22 @@ const WatchedDuel: React.FC<{
   view: PlayerRoomView
 }> = ({ clock, round, view }) => {
   const translate = useTranslate()
-  const worldmap = worldmapContent(round)
+  const atlas = atlasContent(round)
   const timeline = timelineContent(round)
-  const guessNine = guessNineContent(round)
+  const blackSquare = blackSquareContent(round)
 
   if (round.answerMode === 'choice') {
     return <ChoosingRound onAnswer={null} round={round} youId={view.youId} />
   }
 
-  if (guessNine !== null) {
+  if (blackSquare !== null) {
     return (
-      <section className='player-round guess-nine-round'>
-        <GuessNineThemeCard clock={clock} theme={guessNine.theme} view={view} />
+      <section className='player-round black-square-round'>
+        <BlackSquareThemeCard
+          clock={clock}
+          theme={blackSquare.theme}
+          view={view}
+        />
       </section>
     )
   }
@@ -818,11 +825,11 @@ const WatchedDuel: React.FC<{
     )
   }
 
-  if (worldmap?.target != null) {
+  if (atlas?.target != null) {
     return (
       <section className='player-round map-round'>
         <div className='round-card'>
-          <MapPrompt target={worldmap.target} />
+          <MapPrompt target={atlas.target} />
           <RoundClock clock={clock} view={view} />
         </div>
       </section>
@@ -840,16 +847,16 @@ const WatchedDuel: React.FC<{
 }
 
 /** The theme on its paper card, the round's clock along the top. */
-const GuessNineThemeCard: React.FC<{
+const BlackSquareThemeCard: React.FC<{
   clock: ClockEstimate | null
-  theme: GuessNineLabels
+  theme: BlackSquareLabels
   view: PlayerRoomView
 }> = ({ clock, theme, view }) => {
   const { locale } = useI18n()
 
   return (
     <div className='round-card'>
-      <h2 className='guess-nine-theme'>{theme[locale]}</h2>
+      <h2 className='black-square-theme'>{theme[locale]}</h2>
       <RoundClock clock={clock} view={view} />
     </div>
   )
@@ -1085,7 +1092,7 @@ const Revealed: React.FC<{
     return <CountedBoard players={view.players} round={round} />
   }
 
-  if (worldmapContent(round) !== null) {
+  if (atlasContent(round) !== null) {
     return <MapReveal players={view.players} round={round} />
   }
 
@@ -1099,11 +1106,11 @@ const Revealed: React.FC<{
     return <PetitBacReveal round={round} youId={view.youId} />
   }
 
-  const grid = guessNineContent(round)?.revealed ?? null
+  const grid = blackSquareContent(round)?.revealed ?? null
 
   if (grid !== null) {
     return (
-      <GuessNineReveal
+      <BlackSquareReveal
         players={view.players}
         revealed={grid}
         youId={view.youId}

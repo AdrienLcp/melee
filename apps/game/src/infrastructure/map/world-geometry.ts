@@ -12,13 +12,13 @@ import { merge } from 'topojson-client'
 import atlas from 'world-atlas/countries-50m.json' with { type: 'json' }
 import { z } from 'zod'
 
+import type { GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import {
   COUNTRY_CODE_BY_ATLAS_ID,
   COUNTRY_CODE_BY_ATLAS_NAME
-} from '@melee/core/worldmap/atlas-country-codes'
+} from '@melee/core/atlas/atlas-country-codes'
 
 /**
  * The one module that reads the world's outlines in the browser and projects

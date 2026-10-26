@@ -290,18 +290,18 @@
           hyphenate-limit-chars: 10
           hyphens: auto
 
-    &[data-game='guessnine']
+    &[data-game='blacksquare']
       flex: 1 1 0
       min-height: 0
 
-      > .guess-nine-theme
+      > .black-square-theme
         @include typography.billboard-wrapping
 
         font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 5), 4rem)
         margin: 0
         text-wrap: balance
 
-      > .guess-nine-reveal
+      > .black-square-reveal
         flex: 1 1 0
 
     // The same card the puzzle was played on, the stick now moved.
@@ -368,12 +368,12 @@
 
       // The map is the reveal here, so it takes the room and the list keeps
       // what its rows need, its chips at a size of their own.
-      &[data-game='worldmap']
+      &[data-game='atlas']
         grid-template-rows: minmax(0, 1fr) auto
 
       // Doubled up to outrank the chip sizing below, which divides a height
       // this list no longer has.
-      &[data-game='worldmap']:not(.bare) > .said
+      &[data-game='atlas']:not(.bare) > .said
         container-type: normal
         max-block-size: 40cqh
 

@@ -32,7 +32,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `worldmap.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `guessnine.*`, `petitbac.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -199,7 +199,7 @@ which is why a user-visible string written into a component is a bug — see
   blind test and the quiz open on) or `buzzer` (one player, judged by the
   host); a game with an answer of its own shape takes a mode of its own —
   `point` on the map, `order` on the timeline, `move` for a matchstick, and
-  `spoken` for guess nine said by one team and ticked by a keeper of another.
+  `spoken` for black square said by one team and ticked by a keeper of another.
   All but `buzzer` and `spoken` are everyone at once, decided by the server and scored
   by the clock on top of being right — `MOST_A_SPEED_BONUS_PAYS` at nought,
   falling linearly to nothing when the round runs out, on a board counted in

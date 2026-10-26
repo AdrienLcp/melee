@@ -1,0 +1,39 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .black-square-gauge
+    align-items: center
+    display: grid
+    gap: clamp(var(--space-s), 2.4cqmin, var(--space-l))
+    justify-items: center
+
+    > .tokens
+      display: flex
+      gap: clamp(var(--space-xs), 1.6cqmin, var(--space-m))
+
+      > span
+        --edge: 0.1875rem
+        --token-size: clamp(2rem, 7cqmin, 5.5rem)
+
+        background: var(--socket)
+        block-size: var(--token-size)
+        border-radius: var(--radius-full)
+        box-shadow: var(--shadow-recess-shallow), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+        display: grid
+        inline-size: var(--token-size)
+        place-items: center
+
+        &[data-found]
+          background: var(--good)
+          box-shadow: 0 var(--edge) 0 0 var(--good-edge), var(--shadow-piece)
+          color: var(--on-spine)
+
+        svg
+          block-size: 50%
+          inline-size: 50%
+
+    > .count
+      @include typography.title
+
+      font-size: clamp(var(--text-m), 3.2cqmin, 2.4rem)
+      margin: 0

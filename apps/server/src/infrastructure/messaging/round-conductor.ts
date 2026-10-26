@@ -1,16 +1,16 @@
-import type { GameSettings, WorldmapSettings } from '@melee/protocol/game'
-import type { WorldmapPlaces } from '@melee/protocol/worldmap'
+import type { AtlasPlaces } from '@melee/protocol/atlas'
+import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 
 import { shuffled } from '@melee/core/helpers/random'
 
-import type { Room, Round, WorldmapRoundTarget } from '@/domain/room/room'
+import type { AtlasRoundTarget, Room, Round } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
 import { releaseAbandonedSeats } from '@/domain/room/room-service'
-import { challengeContent } from '@/domain/round/challenge-round'
 import {
-  canTakeSpokenTurn,
-  guessNineContent
-} from '@/domain/round/guess-nine-round'
+  blackSquareContent,
+  canTakeSpokenTurn
+} from '@/domain/round/black-square-round'
+import { challengeContent } from '@/domain/round/challenge-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   matchsticksContent,
@@ -22,6 +22,7 @@ import {
   petitBacContent
 } from '@/domain/round/petit-bac-round'
 import {
+  atlasContent,
   blindtestContent,
   closeRound,
   finishGame,
@@ -34,8 +35,7 @@ import {
   resumeRoundClock,
   startRoundClock,
   TRACK_DRAW_LEAD_MS,
-  timeOutBuzz,
-  worldmapContent
+  timeOutBuzz
 } from '@/domain/round/round-service'
 import { slateContent } from '@/domain/round/slate-round'
 import { timelineContent } from '@/domain/round/timeline-round'
@@ -45,6 +45,10 @@ import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
 import { isOutage, NOTHING_PLAYABLE } from '@/infrastructure/music/music-source'
 import {
+  drawBlackSquareTheme,
+  playedBlackSquareThemeId
+} from '@/infrastructure/questions/black-square-bank'
+import {
   type ChallengePick,
   pickChallengeLabels
 } from '@/infrastructure/questions/challenge-dealer'
@@ -53,10 +57,6 @@ import {
   drawCountry,
   playedCountryId
 } from '@/infrastructure/questions/country-bank'
-import {
-  drawGuessNineTheme,
-  playedGuessNineThemeId
-} from '@/infrastructure/questions/guess-nine-bank'
 import { namingOf } from '@/infrastructure/questions/map-naming'
 import {
   drawQuestion,
@@ -103,9 +103,9 @@ const drawTargetOf = ({
   places,
   playedIds
 }: {
-  places: WorldmapPlaces
+  places: AtlasPlaces
   playedIds: ReadonlySet<string>
-}): WorldmapRoundTarget | null => {
+}): AtlasRoundTarget | null => {
   if (places === 'frenchCities') {
     const city = drawCity({ playedIds })
 
@@ -130,12 +130,12 @@ const drawTargetOf = ({
  * not swamped by a long one — or `null` once every ticked kind is spent. A
  * `name` round passes over a place it cannot show, and spends it.
  */
-const drawWorldmapContent = ({
+const drawAtlasContent = ({
   game,
   isChoice,
   playedIds
 }: {
-  game: WorldmapSettings
+  game: AtlasSettings
   isChoice: boolean
   playedIds: Set<string>
 }): Round['content'] | null => {
@@ -148,13 +148,13 @@ const drawWorldmapContent = ({
       playedIds.add(playedTargetId(target))
 
       if (game.direction === 'place') {
-        return worldmapContent({ naming: null, target })
+        return atlasContent({ naming: null, target })
       }
 
       const naming = namingOf({ isChoice, target })
 
       if (naming !== null) {
-        return worldmapContent({ naming, target })
+        return atlasContent({ naming, target })
       }
     }
   }
@@ -163,7 +163,7 @@ const drawWorldmapContent = ({
 }
 
 /** The id a target takes in the room's no-repeat set, so no place is asked twice in one evening. */
-const playedTargetId = (target: WorldmapRoundTarget): string => {
+const playedTargetId = (target: AtlasRoundTarget): string => {
   switch (target.kind) {
     case 'capital':
       return playedCapitalId(target.countryCode)
@@ -376,7 +376,7 @@ export const beginRound = async (
     return
   }
 
-  if (game.kind === 'guessnine') {
+  if (game.kind === 'blacksquare') {
     if (room.settings.mode.kind === 'spoken' && !canTakeSpokenTurn(room)) {
       tellHost(engine, {
         code: 'spoken_needs_two_teams',
@@ -387,22 +387,22 @@ export const beginRound = async (
       return
     }
 
-    const theme = drawGuessNineTheme({ playedIds: room.playedContentIds })
+    const theme = drawBlackSquareTheme({ playedIds: room.playedContentIds })
 
     if (theme === null) {
       tellHost(engine, {
         code: 'no_content_available',
-        message: 'Every guess-nine theme has been played in this room'
+        message: 'Every black-square theme has been played in this room'
       })
       publishRoom(engine)
 
       return
     }
 
-    room.playedContentIds.add(playedGuessNineThemeId(theme.id))
+    room.playedContentIds.add(playedBlackSquareThemeId(theme.id))
 
     openRound({
-      content: guessNineContent({
+      content: blackSquareContent({
         answerCount: game.answerCount,
         doublesLoneFinds:
           game.doublesLoneFinds && room.settings.mode.kind === 'typed',
@@ -449,8 +449,8 @@ export const beginRound = async (
     return
   }
 
-  if (game.kind === 'worldmap') {
-    const content = drawWorldmapContent({
+  if (game.kind === 'atlas') {
+    const content = drawAtlasContent({
       game,
       isChoice: room.settings.mode.kind === 'choice',
       playedIds: room.playedContentIds

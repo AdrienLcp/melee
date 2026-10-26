@@ -50,24 +50,24 @@ export const petitBacContent = (
 ): Extract<RoundContent, { kind: 'petitbac' }> | null =>
   round?.content.kind === 'petitbac' ? round.content : null
 
-export const guessNineContent = (
+export const blackSquareContent = (
   round: RoundView | null | undefined
-): Extract<RoundContent, { kind: 'guessnine' }> | null =>
-  round?.content.kind === 'guessnine' ? round.content : null
+): Extract<RoundContent, { kind: 'blacksquare' }> | null =>
+  round?.content.kind === 'blacksquare' ? round.content : null
 
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>
   round?.content.kind === 'timeline' ? round.content : null
 
-export const worldmapContent = (
+export const atlasContent = (
   round: RoundView | null | undefined
-): Extract<RoundContent, { kind: 'worldmap' }> | null =>
-  round?.content.kind === 'worldmap' ? round.content : null
+): Extract<RoundContent, { kind: 'atlas' }> | null =>
+  round?.content.kind === 'atlas' ? round.content : null
 
 /** The map a round is played on: France for one of its cities, the world for a country or a capital. */
 export const mapRegionOf = (
-  content: Extract<RoundContent, { kind: 'worldmap' }>
+  content: Extract<RoundContent, { kind: 'atlas' }>
 ): 'france' | 'world' =>
   (content.target ?? content.shown)?.kind === 'city' ? 'france' : 'world'
 
@@ -110,9 +110,9 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
     case 'petitbac':
     case 'reflex':
     case 'slate':
-    case 'worldmap':
+    case 'atlas':
       return true
-    case 'guessnine':
+    case 'blacksquare':
       return content.grid !== null
     case 'matchsticks':
       return content.solutions !== null
@@ -218,7 +218,7 @@ export const nearnessOf = (round: RoundView, playerId: string): number =>
 export const revealedInOrder = (
   round: RoundView
 ): RoundView['revealedAnswers'] =>
-  worldmapContent(round) === null &&
+  atlasContent(round) === null &&
   timelineContent(round) === null &&
   matchsticksContent(round) === null
     ? round.revealedAnswers

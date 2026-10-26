@@ -1,5 +1,5 @@
+import type { BlackSquareCell } from '@melee/protocol/black-square'
 import type { GameKind } from '@melee/protocol/game'
-import type { GuessNineCell } from '@melee/protocol/guess-nine'
 import type { AnswerMode } from '@melee/protocol/room'
 import {
   POINTS_FOR_A_CLAIM,
@@ -11,10 +11,10 @@ import {
   type Verdict
 } from '@melee/protocol/scoring'
 
-import { isSheetClosed, pointsForCells } from '../guessnine/sheet-pay'
+import { isBullseye, pointsForDistance } from '../atlas/distance-tiers'
+import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
-import { isBullseye, pointsForDistance } from '../worldmap/distance-tiers'
 
 /**
  * Which shape of verdict a game is judged in. The blind test asks two
@@ -88,7 +88,7 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
 }
 
 /**
- * Whether the clock adds to what this answer earned. A guess-nine sheet is many
+ * Whether the clock adds to what this answer earned. A black-square sheet is many
  * answers rather than one, and a bonus on it would pay the fastest typist
  * rather than the best-read player.
  */
@@ -117,8 +117,8 @@ export const pointsForSimultaneousAnswer = ({
   mode,
   verdict
 }: {
-  /** A guess-nine sheet's lone finds, in a room playing *Nobody else had it*. */
-  doubledCells?: readonly GuessNineCell[]
+  /** A black-square sheet's lone finds, in a room playing *Nobody else had it*. */
+  doubledCells?: readonly BlackSquareCell[]
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {

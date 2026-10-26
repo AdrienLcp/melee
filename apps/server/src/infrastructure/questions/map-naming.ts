@@ -1,11 +1,11 @@
-import type { GeoPoint, LocalizedName } from '@melee/protocol/worldmap'
+import type { GeoPoint, LocalizedName } from '@melee/protocol/atlas'
 
+import { nearbyDecoys, spellingsOf } from '@melee/core/atlas/place-naming'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 import { shuffled } from '@melee/core/helpers/random'
-import { nearbyDecoys, spellingsOf } from '@melee/core/worldmap/place-naming'
 
-import type { WorldmapNaming, WorldmapRoundTarget } from '@/domain/room/room'
+import type { AtlasNaming, AtlasRoundTarget } from '@/domain/room/room'
 import { pointInsideCountry } from '@/infrastructure/map/world-atlas'
 
 import { BANKED_CITIES } from './city-bank'
@@ -35,7 +35,7 @@ const bankedCountryPlaces = (): NamedPlace[] =>
 
 /** The place a round shows, and the bank its decoys are its neighbours in. */
 const placeAndRivalsOf = (
-  target: WorldmapRoundTarget
+  target: AtlasRoundTarget
 ): { place: NamedPlace; rivals: readonly NamedPlace[] } | null => {
   switch (target.kind) {
     case 'capital':
@@ -83,8 +83,8 @@ export const namingOf = ({
   target
 }: {
   isChoice: boolean
-  target: WorldmapRoundTarget
-}): WorldmapNaming | null => {
+  target: AtlasRoundTarget
+}): AtlasNaming | null => {
   const found = placeAndRivalsOf(target)
 
   if (found === null) {

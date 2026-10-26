@@ -12,6 +12,142 @@ import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
  * word chosen at the call site.
  */
 export const FR_DICTIONARY = defineDictionary({
+  atlas: {
+    answer: {
+      cancel: 'Annuler',
+      confirm: 'Je le pose ici',
+      sent: 'Ton pion est posé. On attend les autres.'
+    },
+    country: COUNTRY_NAMES_FR,
+    direction: {
+      label: 'La manche demande',
+      name: 'Nommer ce qui est montré',
+      place: 'Placer ce qui est nommé'
+    },
+    home: {
+      description:
+        'Un pays, une capitale ou une ville de France s’affiche, et chacun pose son pion sur la carte, zoomée du bout des doigts : dessus, c’est le plein de points ; à côté, ça se paie au kilomètre. Au dévoilement, chaque pion tire son trait jusqu’au lieu. Ou dans l’autre sens : la carte allume un lieu, et la table le nomme.'
+    },
+    map: {
+      hint: 'Zoome, puis pose ton pion dessus',
+      label: 'Carte du monde',
+      labelFrance: 'Carte de France',
+      loading: 'On déplie la carte…',
+      moveHint: 'Touche ailleurs pour le déplacer',
+      whole: 'Le monde entier',
+      wholeFrance: 'Toute la France',
+      zoomIn: 'Zoomer',
+      zoomOut: 'Dézoomer'
+    },
+    name: 'Atlas',
+    naming: {
+      capital: 'Quelle est cette capitale ?',
+      city: 'Quelle est cette ville ?',
+      country: 'Quel est ce pays ?'
+    },
+    places: {
+      countries: 'Pays du monde',
+      frenchCities: 'Villes de France',
+      label: { name: 'À nommer', place: 'À placer' },
+      worldCapitals: 'Capitales du monde'
+    },
+    play: 'Jouer à Atlas',
+    prompt: 'Place {place}',
+    reveal: {
+      away: 'à {distance} km',
+      capitalOf: '{capital}, {country}',
+      capitalTitle: 'La capitale :',
+      cityTitle: 'La ville :',
+      inside: 'Dedans',
+      km: '{distance} km',
+      onTheSpot: 'Dans le mille',
+      title: 'Le pays :'
+    },
+    scoring:
+      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 3 points, à moins de 500 km de sa frontière 2, à moins de 1 500 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringCapitals:
+      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 3 points, à moins de 300 km 2, à moins de 1 000 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringCities:
+      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 3 points, à moins de 75 km 2, à moins de 150 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringMixed:
+      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 3 points, et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringName: {
+      choice:
+        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte un point, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.',
+      typed:
+        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 3 points, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.'
+    },
+    tagline: 'Un lieu. Pose ton pion dessus, ou nomme-le.'
+  },
+  blacksquare: {
+    answer: {
+      hit: '« {line} » +{points:number}',
+      label: 'Une réponse',
+      miss: '« {line} » : rien',
+      retry: 'Autant que tu veux. L’une d’elles est le mot noir.'
+    },
+    answerCount: {
+      label: 'Réponses à trouver',
+      summary: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} réponse', other: '{?} réponses' } }
+      })
+    },
+    blackWord: {
+      ends: 'Ta manche s’arrête là. Elle ne rapporte rien.',
+      fell: '{nickname} y a laissé sa manche',
+      nobodyFell: 'Personne n’est tombé dedans',
+      stamp: 'Mot noir'
+    },
+    duration: 'Temps par manche',
+    found: defineTranslation('{count:plural}', {
+      plural: {
+        count: {
+          one: '{?} sur {total:number} trouvée par la table',
+          other: '{?} sur {total:number} trouvées par la table'
+        }
+      }
+    }),
+    grid: 'Les réponses',
+    home: {
+      description:
+        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
+    },
+    lone: {
+      doubled: '×2',
+      hint: 'Une réponse trouvée par un seul joueur rapporte double.',
+      label: 'Personne d’autre ne l’a trouvée',
+      said: 'Personne d’autre ne l’a trouvée : points doublés'
+    },
+    name: 'Case noire',
+    nobody: 'Personne',
+    othersLooking: 'Les autres cherchent encore.',
+    play: 'Jouer à Case noire',
+    scoring:
+      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+    scoringLoneFinds:
+      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3, et le double si personne d’autre ne la trouve. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+    scoringSpoken:
+      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
+    spoken: {
+      blackWord: {
+        ask: 'Ils l’ont dit ? Leur manche s’arrête et ne vaut plus rien.',
+        confirm: 'Ils l’ont dit',
+        keep: 'Pas dit'
+      },
+      guessing: 'À voix haute : {team}',
+      hidden: 'Cachée : tu peux montrer l’écran sans rien dévoiler.',
+      hide: 'Cacher la liste',
+      keep: 'Tu tiens la liste pour {team}. Coche chaque réponse entendue.',
+      keeper: '{nickname} tient la liste',
+      show: 'Voir la liste',
+      yourTeam: 'Dites vos réponses à voix haute. {nickname} les coche.'
+    },
+    tagline: 'Des réponses cachées. Un mot noir.',
+    tier: defineTranslation('{points:plural}', {
+      plural: { points: { one: '{?} point', other: '{?} points' } }
+    }),
+    yours: 'Trouvée par toi'
+  },
   blindtest: {
     answer: {
       anyOrder:
@@ -335,75 +471,6 @@ export const FR_DICTIONARY = defineDictionary({
     wall_not_paired:
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
-  },
-  guessnine: {
-    answer: {
-      hit: '« {line} » +{points:number}',
-      label: 'Une réponse',
-      miss: '« {line} » : rien',
-      retry: 'Autant que tu veux. L’une d’elles est le mot noir.'
-    },
-    answerCount: {
-      label: 'Réponses à trouver',
-      summary: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} réponse', other: '{?} réponses' } }
-      })
-    },
-    blackWord: {
-      ends: 'Ta manche s’arrête là. Elle ne rapporte rien.',
-      fell: '{nickname} y a laissé sa manche',
-      nobodyFell: 'Personne n’est tombé dedans',
-      stamp: 'Mot noir'
-    },
-    duration: 'Temps par manche',
-    found: defineTranslation('{count:plural}', {
-      plural: {
-        count: {
-          one: '{?} sur {total:number} trouvée par la table',
-          other: '{?} sur {total:number} trouvées par la table'
-        }
-      }
-    }),
-    grid: 'Les réponses',
-    home: {
-      description:
-        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
-    },
-    lone: {
-      doubled: '×2',
-      hint: 'Une réponse trouvée par un seul joueur rapporte double.',
-      label: 'Personne d’autre ne l’a trouvée',
-      said: 'Personne d’autre ne l’a trouvée : points doublés'
-    },
-    name: 'Case noire',
-    nobody: 'Personne',
-    othersLooking: 'Les autres cherchent encore.',
-    play: 'Jouer à Case noire',
-    scoring:
-      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
-    scoringLoneFinds:
-      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3, et le double si personne d’autre ne la trouve. Tombe sur le mot noir et ta manche ne vaut plus rien.',
-    scoringSpoken:
-      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
-    spoken: {
-      blackWord: {
-        ask: 'Ils l’ont dit ? Leur manche s’arrête et ne vaut plus rien.',
-        confirm: 'Ils l’ont dit',
-        keep: 'Pas dit'
-      },
-      guessing: 'À voix haute : {team}',
-      hidden: 'Cachée : tu peux montrer l’écran sans rien dévoiler.',
-      hide: 'Cacher la liste',
-      keep: 'Tu tiens la liste pour {team}. Coche chaque réponse entendue.',
-      keeper: '{nickname} tient la liste',
-      show: 'Voir la liste',
-      yourTeam: 'Dites vos réponses à voix haute. {nickname} les coche.'
-    },
-    tagline: 'Des réponses cachées. Un mot noir.',
-    tier: defineTranslation('{points:plural}', {
-      plural: { points: { one: '{?} point', other: '{?} points' } }
-    }),
-    yours: 'Trouvée par toi'
   },
   home: {
     opening: 'Ouverture de la table…',
@@ -1566,72 +1633,5 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Cet écran attend sa table'
     },
     sound: 'Mettre le son'
-  },
-  worldmap: {
-    answer: {
-      cancel: 'Annuler',
-      confirm: 'Je le pose ici',
-      sent: 'Ton pion est posé. On attend les autres.'
-    },
-    country: COUNTRY_NAMES_FR,
-    direction: {
-      label: 'La manche demande',
-      name: 'Nommer ce qui est montré',
-      place: 'Placer ce qui est nommé'
-    },
-    home: {
-      description:
-        'Un pays, une capitale ou une ville de France s’affiche, et chacun pose son pion sur la carte, zoomée du bout des doigts : dessus, c’est le plein de points ; à côté, ça se paie au kilomètre. Au dévoilement, chaque pion tire son trait jusqu’au lieu. Ou dans l’autre sens : la carte allume un lieu, et la table le nomme.'
-    },
-    map: {
-      hint: 'Zoome, puis pose ton pion dessus',
-      label: 'Carte du monde',
-      labelFrance: 'Carte de France',
-      loading: 'On déplie la carte…',
-      moveHint: 'Touche ailleurs pour le déplacer',
-      whole: 'Le monde entier',
-      wholeFrance: 'Toute la France',
-      zoomIn: 'Zoomer',
-      zoomOut: 'Dézoomer'
-    },
-    name: 'Atlas',
-    naming: {
-      capital: 'Quelle est cette capitale ?',
-      city: 'Quelle est cette ville ?',
-      country: 'Quel est ce pays ?'
-    },
-    places: {
-      countries: 'Pays du monde',
-      frenchCities: 'Villes de France',
-      label: { name: 'À nommer', place: 'À placer' },
-      worldCapitals: 'Capitales du monde'
-    },
-    play: 'Jouer à Atlas',
-    prompt: 'Place {place}',
-    reveal: {
-      away: 'à {distance} km',
-      capitalOf: '{capital}, {country}',
-      capitalTitle: 'La capitale :',
-      cityTitle: 'La ville :',
-      inside: 'Dedans',
-      km: '{distance} km',
-      onTheSpot: 'Dans le mille',
-      title: 'Le pays :'
-    },
-    scoring:
-      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 3 points, à moins de 500 km de sa frontière 2, à moins de 1 500 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
-    scoringCapitals:
-      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 3 points, à moins de 300 km 2, à moins de 1 000 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
-    scoringCities:
-      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 3 points, à moins de 75 km 2, à moins de 150 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
-    scoringMixed:
-      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 3 points, et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
-    scoringName: {
-      choice:
-        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte un point, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.',
-      typed:
-        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 3 points, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.'
-    },
-    tagline: 'Un lieu. Pose ton pion dessus, ou nomme-le.'
   }
 })

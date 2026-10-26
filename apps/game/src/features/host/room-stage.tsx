@@ -302,7 +302,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
                   cell,
                   isTicked,
                   roundId: round.id,
-                  type: 'guessnine.tick'
+                  type: 'blacksquare.tick'
                 })
             : null
         }

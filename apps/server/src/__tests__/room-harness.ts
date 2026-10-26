@@ -391,12 +391,12 @@ export const slateRound = (
   return content?.kind === 'slate' ? content : null
 }
 
-export const worldmapRound = (
+export const atlasRound = (
   view: { round: RoundView | null } | null
-): Extract<RoundContent, { kind: 'worldmap' }> | null => {
+): Extract<RoundContent, { kind: 'atlas' }> | null => {
   const content = view?.round?.content
 
-  return content?.kind === 'worldmap' ? content : null
+  return content?.kind === 'atlas' ? content : null
 }
 
 export const hostSlateContent = (

@@ -17,6 +17,138 @@ import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
  * `docs/game-catalogue.md`.
  */
 export const EN_DICTIONARY = defineDictionary({
+  atlas: {
+    answer: {
+      cancel: 'Cancel',
+      confirm: 'Put it here',
+      sent: 'Your pawn is down. Waiting for the others.'
+    },
+    country: COUNTRY_NAMES_EN,
+    direction: {
+      label: 'The round asks',
+      name: 'Name what is shown',
+      place: 'Place what is named'
+    },
+    home: {
+      description:
+        'A country, a capital or a French city comes up, and everyone puts a pawn down on a map they zoom with their fingers: on it scores in full, off it is paid by the kilometre. At the reveal, every pawn draws its line to the place. Or the other way round: the map lights a place up, and the table names it.'
+    },
+    map: {
+      hint: 'Zoom in, then put your pawn down on it',
+      label: 'World map',
+      labelFrance: 'Map of France',
+      loading: 'Unfolding the map…',
+      moveHint: 'Tap somewhere else to move it',
+      whole: 'Whole world',
+      wholeFrance: 'Whole of France',
+      zoomIn: 'Zoom in',
+      zoomOut: 'Zoom out'
+    },
+    name: 'Atlas',
+    naming: {
+      capital: 'Which capital is this?',
+      city: 'Which city is this?',
+      country: 'Which country is this?'
+    },
+    places: {
+      countries: 'Countries of the world',
+      frenchCities: 'Cities of France',
+      label: { name: 'What to name', place: 'What to place' },
+      worldCapitals: 'World capitals'
+    },
+    play: 'Play Atlas',
+    prompt: 'Place {place}',
+    reveal: {
+      away: '{distance} km away',
+      capitalOf: '{capital}, {country}',
+      capitalTitle: 'The capital:',
+      cityTitle: 'The city:',
+      inside: 'Inside',
+      km: '{distance} km',
+      onTheSpot: 'Spot on',
+      title: 'The country:'
+    },
+    scoring:
+      'Everyone puts a pawn down at once. Inside the country it scores three, within 500 km of its border two, within 1,500 km one — and the earlier your pawn, the more the clock adds, up to double.',
+    scoringCapitals:
+      'Everyone puts a pawn down at once. Within 100 km of the capital it scores three, within 300 km two, within 1,000 km one — and the earlier your pawn, the more the clock adds, up to double.',
+    scoringCities:
+      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores three, within 75 km two, within 150 km one — and the earlier your pawn, the more the clock adds, up to double.',
+    scoringMixed:
+      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to three, and the earlier you put it down the more the clock adds, up to double.',
+    scoringName: {
+      choice:
+        'The map shows a place and offers four names, everyone at once. The right one scores a point, and the earlier you find it the more the clock adds — up to double.',
+      typed:
+        'The map shows a place and everyone types its name at once. The right one scores three, and the earlier you find it the more the clock adds — up to double.'
+    },
+    tagline: 'One place. Put your pawn on it, or name it.'
+  },
+  blacksquare: {
+    answer: {
+      hit: '“{line}” +{points:number}',
+      label: 'An answer',
+      miss: '“{line}”: nothing',
+      retry: 'As many as you like. One of them is the black word.'
+    },
+    answerCount: {
+      label: 'Answers to find',
+      summary: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} answer', other: '{?} answers' } }
+      })
+    },
+    blackWord: {
+      ends: 'Your round stops here. It is worth nothing.',
+      fell: '{nickname} lost the round on it',
+      nobodyFell: 'Nobody fell for it',
+      stamp: 'Black word'
+    },
+    duration: 'Time per round',
+    found: defineTranslation('{count:plural}', {
+      plural: { count: { other: '{?} of {total:number} found by the table' } }
+    }),
+    grid: 'The answers',
+    home: {
+      description:
+        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
+    },
+    lone: {
+      doubled: '×2',
+      hint: 'An answer only one player finds pays double.',
+      label: 'Nobody else had it',
+      said: 'Nobody else had it, so it paid double'
+    },
+    name: 'Black square',
+    nobody: 'Nobody',
+    othersLooking: 'The others are still looking.',
+    play: 'Play Black square',
+    scoring:
+      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3. Hit the black word and your round is worth nothing.',
+    scoringLoneFinds:
+      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
+    scoringSpoken:
+      'One team says its answers out loud and somebody from another team ticks them off: the best known third pay 1 point, the next third 2, the last third 3. Say the black word and the team’s round is worth nothing.',
+    spoken: {
+      blackWord: {
+        ask: 'Did they say it? Their round ends, worth nothing.',
+        confirm: 'They said it',
+        keep: 'Not said'
+      },
+      guessing: 'Out loud: {team}',
+      hidden:
+        'Hidden, so you can hold the screen up without giving anything away.',
+      hide: 'Hide the list',
+      keep: 'You keep the list for {team}. Tick each answer you hear.',
+      keeper: '{nickname} keeps the list',
+      show: 'Show the list',
+      yourTeam: 'Say your answers out loud. {nickname} ticks them off.'
+    },
+    tagline: 'Hidden answers. One black word.',
+    tier: defineTranslation('{points:plural}', {
+      plural: { points: { one: '{?} point', other: '{?} points' } }
+    }),
+    yours: 'You found it'
+  },
   blindtest: {
     answer: {
       anyOrder: 'The title, the artist, or both — as many goes as you like.',
@@ -360,71 +492,6 @@ export const EN_DICTIONARY = defineDictionary({
     wall_not_paired:
       'This screen is not paired. Pair it from the device running the table.',
     wrong_phase: 'Too late, the game has moved on.'
-  },
-  guessnine: {
-    answer: {
-      hit: '“{line}” +{points:number}',
-      label: 'An answer',
-      miss: '“{line}”: nothing',
-      retry: 'As many as you like. One of them is the black word.'
-    },
-    answerCount: {
-      label: 'Answers to find',
-      summary: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} answer', other: '{?} answers' } }
-      })
-    },
-    blackWord: {
-      ends: 'Your round stops here. It is worth nothing.',
-      fell: '{nickname} lost the round on it',
-      nobodyFell: 'Nobody fell for it',
-      stamp: 'Black word'
-    },
-    duration: 'Time per round',
-    found: defineTranslation('{count:plural}', {
-      plural: { count: { other: '{?} of {total:number} found by the table' } }
-    }),
-    grid: 'The answers',
-    home: {
-      description:
-        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
-    },
-    lone: {
-      doubled: '×2',
-      hint: 'An answer only one player finds pays double.',
-      label: 'Nobody else had it',
-      said: 'Nobody else had it, so it paid double'
-    },
-    name: 'Black square',
-    nobody: 'Nobody',
-    othersLooking: 'The others are still looking.',
-    play: 'Play Black square',
-    scoring:
-      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3. Hit the black word and your round is worth nothing.',
-    scoringLoneFinds:
-      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
-    scoringSpoken:
-      'One team says its answers out loud and somebody from another team ticks them off: the best known third pay 1 point, the next third 2, the last third 3. Say the black word and the team’s round is worth nothing.',
-    spoken: {
-      blackWord: {
-        ask: 'Did they say it? Their round ends, worth nothing.',
-        confirm: 'They said it',
-        keep: 'Not said'
-      },
-      guessing: 'Out loud: {team}',
-      hidden:
-        'Hidden, so you can hold the screen up without giving anything away.',
-      hide: 'Hide the list',
-      keep: 'You keep the list for {team}. Tick each answer you hear.',
-      keeper: '{nickname} keeps the list',
-      show: 'Show the list',
-      yourTeam: 'Say your answers out loud. {nickname} ticks them off.'
-    },
-    tagline: 'Hidden answers. One black word.',
-    tier: defineTranslation('{points:plural}', {
-      plural: { points: { one: '{?} point', other: '{?} points' } }
-    }),
-    yours: 'You found it'
   },
   home: {
     opening: 'Opening the table…',
@@ -1654,72 +1721,5 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'This screen is waiting for its table'
     },
     sound: 'Turn the sound on'
-  },
-  worldmap: {
-    answer: {
-      cancel: 'Cancel',
-      confirm: 'Put it here',
-      sent: 'Your pawn is down. Waiting for the others.'
-    },
-    country: COUNTRY_NAMES_EN,
-    direction: {
-      label: 'The round asks',
-      name: 'Name what is shown',
-      place: 'Place what is named'
-    },
-    home: {
-      description:
-        'A country, a capital or a French city comes up, and everyone puts a pawn down on a map they zoom with their fingers: on it scores in full, off it is paid by the kilometre. At the reveal, every pawn draws its line to the place. Or the other way round: the map lights a place up, and the table names it.'
-    },
-    map: {
-      hint: 'Zoom in, then put your pawn down on it',
-      label: 'World map',
-      labelFrance: 'Map of France',
-      loading: 'Unfolding the map…',
-      moveHint: 'Tap somewhere else to move it',
-      whole: 'Whole world',
-      wholeFrance: 'Whole of France',
-      zoomIn: 'Zoom in',
-      zoomOut: 'Zoom out'
-    },
-    name: 'Atlas',
-    naming: {
-      capital: 'Which capital is this?',
-      city: 'Which city is this?',
-      country: 'Which country is this?'
-    },
-    places: {
-      countries: 'Countries of the world',
-      frenchCities: 'Cities of France',
-      label: { name: 'What to name', place: 'What to place' },
-      worldCapitals: 'World capitals'
-    },
-    play: 'Play Atlas',
-    prompt: 'Place {place}',
-    reveal: {
-      away: '{distance} km away',
-      capitalOf: '{capital}, {country}',
-      capitalTitle: 'The capital:',
-      cityTitle: 'The city:',
-      inside: 'Inside',
-      km: '{distance} km',
-      onTheSpot: 'Spot on',
-      title: 'The country:'
-    },
-    scoring:
-      'Everyone puts a pawn down at once. Inside the country it scores three, within 500 km of its border two, within 1,500 km one — and the earlier your pawn, the more the clock adds, up to double.',
-    scoringCapitals:
-      'Everyone puts a pawn down at once. Within 100 km of the capital it scores three, within 300 km two, within 1,000 km one — and the earlier your pawn, the more the clock adds, up to double.',
-    scoringCities:
-      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores three, within 75 km two, within 150 km one — and the earlier your pawn, the more the clock adds, up to double.',
-    scoringMixed:
-      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to three, and the earlier you put it down the more the clock adds, up to double.',
-    scoringName: {
-      choice:
-        'The map shows a place and offers four names, everyone at once. The right one scores a point, and the earlier you find it the more the clock adds — up to double.',
-      typed:
-        'The map shows a place and everyone types its name at once. The right one scores three, and the earlier you find it the more the clock adds — up to double.'
-    },
-    tagline: 'One place. Put your pawn on it, or name it.'
   }
 })

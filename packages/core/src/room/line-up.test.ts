@@ -74,7 +74,7 @@ describe('lineUpHolds', () => {
     expect(lineUpHolds({ ...aloud, lineUp: entries('quiz', 'buzzer') })).toBe(
       true
     )
-    expect(lineUpHolds({ ...aloud, lineUp: entries('quiz', 'worldmap') })).toBe(
+    expect(lineUpHolds({ ...aloud, lineUp: entries('quiz', 'atlas') })).toBe(
       false
     )
     expect(lineUpHolds({ ...aloud, lineUp: entries('quiz', 'reflex') })).toBe(
@@ -262,7 +262,7 @@ describe('fittedToAloud', () => {
     })
 
   it('[line-up] takes out the games a table answering aloud cannot play', () => {
-    const evening = toggle(toggle(onTheQuiz, 'worldmap'), 'buzzer')
+    const evening = toggle(toggle(onTheQuiz, 'atlas'), 'buzzer')
     const fitted = aloud(evening)
 
     expect(kinds(fitted)).toEqual(['quiz', 'buzzer'])
@@ -270,7 +270,7 @@ describe('fittedToAloud', () => {
   })
 
   it('[line-up] moves the next round off a game that cannot be played aloud', () => {
-    const onTheMap = toggle(toggle(onNothing, 'worldmap'), 'blindtest')
+    const onTheMap = toggle(toggle(onNothing, 'atlas'), 'blindtest')
     const fitted = aloud(onTheMap)
 
     expect(fitted.game?.kind).toBe('blindtest')

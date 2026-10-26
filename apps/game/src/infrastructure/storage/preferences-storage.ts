@@ -37,6 +37,7 @@ import {
 } from '@melee/protocol/team'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
+import { withCurrentGameKinds } from '@melee/core/room/renamed-game-kinds'
 import {
   SAVED_EVENING_NAME_MAX_LENGTH,
   type SavedEntry,
@@ -93,30 +94,33 @@ const usableGameSetups = (
 const boardLaidWith = (teams: TeamsSettings): BoardSettings =>
   teams.kind === 'off' ? DEFAULT_BOARD_SETTINGS : DEFAULT_TRACK_SETTINGS
 
-const hostPreferencesSchema = z.object({
-  games: z.record(z.string(), z.unknown()).transform(usableGameSetups),
-  room: roomSettingsSchema
-    .omit({
-      autoAdvanceMs: true,
-      game: true,
-      lineUp: true,
-      lineUpAt: true,
-      mode: true,
-      roundCount: true,
-      runningOrder: true
-    })
-    .extend({
-      board: boardSettingsSchema.optional().catch(undefined),
-      /** Stored before the choice existed: the default, not the sum it played then. */
-      teamScoring: teamScoringSchema.catch(DEFAULT_TEAM_SCORING),
-      /** *A screen per team* is gone: its seats played as everyone for themselves. */
-      teams: teamsSettingsSchema.catch(DEFAULT_TEAMS_SETTINGS)
-    })
-    .transform(({ board, ...room }) => ({
-      ...room,
-      board: board ?? boardLaidWith(room.teams)
-    }))
-})
+const hostPreferencesSchema = z.preprocess(
+  withCurrentGameKinds,
+  z.object({
+    games: z.record(z.string(), z.unknown()).transform(usableGameSetups),
+    room: roomSettingsSchema
+      .omit({
+        autoAdvanceMs: true,
+        game: true,
+        lineUp: true,
+        lineUpAt: true,
+        mode: true,
+        roundCount: true,
+        runningOrder: true
+      })
+      .extend({
+        board: boardSettingsSchema.optional().catch(undefined),
+        /** Stored before the choice existed: the default, not the sum it played then. */
+        teamScoring: teamScoringSchema.catch(DEFAULT_TEAM_SCORING),
+        /** *A screen per team* is gone: its seats played as everyone for themselves. */
+        teams: teamsSettingsSchema.catch(DEFAULT_TEAMS_SETTINGS)
+      })
+      .transform(({ board, ...room }) => ({
+        ...room,
+        board: board ?? boardLaidWith(room.teams)
+      }))
+  })
+)
 
 /**
  * Succeeds with `null` when no locale was ever chosen, which is not the same as
@@ -297,15 +301,18 @@ export const writeStoredHostPreferences = (
  * Game by game, so one this build no longer shelves costs its own tick and not
  * the evening's.
  */
-const lineUpGamesSchema = z.array(z.unknown()).transform((stored) => [
-  ...new Set(
-    stored.flatMap((game) => {
-      const shelved = shelvedGameSchema.safeParse(game)
+const lineUpGamesSchema = z.preprocess(
+  withCurrentGameKinds,
+  z.array(z.unknown()).transform((stored) => [
+    ...new Set(
+      stored.flatMap((game) => {
+        const shelved = shelvedGameSchema.safeParse(game)
 
-      return shelved.success ? [shelved.data] : []
-    })
-  )
-])
+        return shelved.success ? [shelved.data] : []
+      })
+    )
+  ])
+)
 
 /**
  * The games of the last evening this host ran, which the next table opened
@@ -379,12 +386,15 @@ const savedEveningSchema = z
  * Evening by evening, so one this build cannot read costs that one alone —
  * whether it was stored here or read from a file another machine wrote.
  */
-export const savedEveningsSchema = z.array(z.unknown()).transform((stored) =>
-  stored.flatMap((evening) => {
-    const saved = savedEveningSchema.safeParse(evening)
+export const savedEveningsSchema = z.preprocess(
+  withCurrentGameKinds,
+  z.array(z.unknown()).transform((stored) =>
+    stored.flatMap((evening) => {
+      const saved = savedEveningSchema.safeParse(evening)
 
-    return saved.success && saved.data.lineUp.length > 0 ? [saved.data] : []
-  })
+      return saved.success && saved.data.lineUp.length > 0 ? [saved.data] : []
+    })
+  )
 )
 
 /** The evenings this host kept under a name; none when they never kept one. */

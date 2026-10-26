@@ -553,9 +553,9 @@ for (const seat of SEATS) {
   }
 }
 
-const WORLDMAP_NAME_GAME = {
+const ATLAS_NAME_GAME = {
   direction: 'name',
-  kind: 'worldmap',
+  kind: 'atlas',
   places: ['countries'],
   roundDurationMs: 30_000
 }
@@ -589,7 +589,7 @@ const asNameRound = (view: object): object => {
           { en: 'South Sudan', fr: 'Soudan du Sud' }
         ],
         direction: 'name',
-        kind: 'worldmap',
+        kind: 'atlas',
         revealedPlacements: null,
         shown: { kind: 'country', point: { latitude: -2.9, longitude: 23.6 } },
         target: null
@@ -597,8 +597,8 @@ const asNameRound = (view: object): object => {
     },
     settings: {
       ...view.settings,
-      game: WORLDMAP_NAME_GAME,
-      lineUp: [WORLDMAP_NAME_GAME]
+      game: ATLAS_NAME_GAME,
+      lineUp: [ATLAS_NAME_GAME]
     }
   }
 }
@@ -1610,7 +1610,7 @@ const WALL_SCREENS = [
         content: {
           choices: [],
           direction: 'place',
-          kind: 'worldmap',
+          kind: 'atlas',
           revealedPlacements: null,
           shown: null,
           target: { countryCode: 'PER', kind: 'country' }
@@ -1620,14 +1620,14 @@ const WALL_SCREENS = [
         ...eveningRound.settings,
         game: {
           direction: 'place',
-          kind: 'worldmap',
+          kind: 'atlas',
           places: ['countries'],
           roundDurationMs: 30_000
         },
         lineUp: [
           {
             direction: 'place',
-            kind: 'worldmap',
+            kind: 'atlas',
             places: ['countries'],
             roundDurationMs: 30_000
           }

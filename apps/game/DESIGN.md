@@ -32,12 +32,12 @@ colors:
   spine-buzzer: "oklch(48% 0.18 20)"
   spine-reflex: "oklch(82% 0.15 85)"
   spine-slate: "oklch(50% 0.09 185)"
-  spine-worldmap: "oklch(48% 0.11 140)"
+  spine-atlas: "oklch(48% 0.11 140)"
   spine-challenge: "oklch(42% 0.09 52)"
   spine-innerclock: "oklch(44% 0.08 235)"
   spine-matchsticks: "oklch(45% 0.14 305)"
   spine-timeline: "oklch(46% 0.09 100)"
-  spine-guessnine: "oklch(40% 0.12 8)"
+  spine-blacksquare: "oklch(40% 0.12 8)"
   spine-petitbac: "oklch(46% 0.13 285)"
   black-word: "oklch(21% 0.03 255)"
   on-spine: "oklch(99% 0.005 95)"
@@ -216,7 +216,7 @@ A cool printed board under warm, saturated die-cut inks, every value one
   `--spine-buzzer` vermilion — deeper and redder than the coral `--primary`
   it once equalled, so the one press that says *go* is never read as a game's
   box — `--spine-reflex` saffron, `--spine-slate` teal,
-  `--spine-worldmap` leaf, `--spine-challenge` walnut — the game played at the
+  `--spine-atlas` leaf, `--spine-challenge` walnut — the game played at the
   table, off every screen, in the table's own wood, and far enough from magenta
   and indigo that the three never read as one family; `--spine-innerclock`
   dusk — a muted night blue for the game played in silence, dark enough
@@ -224,7 +224,7 @@ A cool printed board under warm, saturated die-cut inks, every value one
   reads as its family; `--spine-matchsticks` plum — a matchbox, far enough
   round from indigo and magenta to sit between them; `--spine-timeline`
   bronze — an old atlas's olive-gold, halfway round from walnut to leaf so it
-  reads as neither; `--spine-guessnine` wine — an ink-black spine vanishes on
+  reads as neither; `--spine-blacksquare` wine — an ink-black spine vanishes on
   the dark board, and every other free hue sits within twenty degrees of a
   neighbour's; `--spine-petitbac` violet — a school ink, the colour of the pen
   the paper game was played with, twenty degrees short of the plum and as far
@@ -825,8 +825,8 @@ marking). The final board stands the winner's pawn oversize, the name sized by
 its longest run (`answerFitting`), *wins with N points* under it; a tie stands
 every winner's pawn at one shared size.
 
-### Guess nine (`GuessNineSheet`, `GuessNineReveal`, `GuessNineGauge`)
-Direction A, *the grid*, chosen 2026-10-24 (`.impeccable/directions/guess-nine/`,
+### Black square (`BlackSquareSheet`, `BlackSquareReveal`, `BlackSquareGauge`)
+Direction A, *the grid*, chosen 2026-10-24 (`.impeccable/directions/black-square/`,
 local). A seat's grid is one tier a row in cell order — 3 × 3 at nine, a short
 row centred on half a cell when the host deals three to eight
 (`_tier-rows.sass`) — so a cell's place says its tier:
@@ -853,7 +853,7 @@ and the black word an ink press under them that turns into its own question
 (*did they say it?*) before it ends anything; the list opens hidden, the grid
 printing its pips alone. Every other seat reads the grid lighting as the
 keeper ticks, the guessing team told who to say its answers to, the rest
-shown the **turn badge** (`GuessNineTurn`): the duel badge's material, the
+shown the **turn badge** (`BlackSquareTurn`): the duel badge's material, the
 guessing team's band and pawn, the keeper's pawn and name beside it, also in
 the console's and the wall's header.
 

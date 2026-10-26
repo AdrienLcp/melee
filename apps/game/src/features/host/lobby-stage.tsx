@@ -295,10 +295,10 @@ export const GamePitch: React.FC<{
             answerMode: view.settings.mode.kind,
             asksForAFilm:
               game.kind === 'blindtest' && game.source.kind === 'film',
+            atlas: game.kind === 'atlas' ? game : null,
             doublesLoneFinds:
-              game.kind === 'guessnine' && game.doublesLoneFinds,
-            game: game.kind,
-            worldmap: game.kind === 'worldmap' ? game : null
+              game.kind === 'blacksquare' && game.doublesLoneFinds,
+            game: game.kind
           })
         )}
       </p>

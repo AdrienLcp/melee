@@ -110,18 +110,18 @@ export const ShareIcon = inFamily(Share)
 export const WorldIcon = inFamily(Earth)
 
 const GAME_GLYPHS = {
+  atlas: Earth,
+  blacksquare: Grid3x3,
   blindtest: Music,
   buzzer: BellRing,
   challenge: Trophy,
-  guessnine: Grid3x3,
   innerclock: Hourglass,
   matchsticks: Flame,
   petitbac: CaseSensitive,
   quiz: CircleQuestionMark,
   reflex: Zap,
   slate: PencilLine,
-  timeline: History,
-  worldmap: Earth
+  timeline: History
 } as const satisfies Record<GameKind, LucideIcon>
 
 type GameIconProps = {

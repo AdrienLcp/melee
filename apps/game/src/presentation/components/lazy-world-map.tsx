@@ -22,7 +22,7 @@ export const LazyWorldMap: React.FC<WorldMapProps> = (props) => {
     <Suspense
       fallback={
         <div className='world-map'>
-          <Loader label={translate('worldmap.map.loading')} />
+          <Loader label={translate('atlas.map.loading')} />
         </div>
       }
     >

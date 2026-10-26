@@ -253,9 +253,9 @@ describe('movedToGame', () => {
   })
 })
 
-describe('a spoken guess nine and its teams', () => {
+describe('a spoken black square and its teams', () => {
   const spokenInTeams: RoomSettings = {
-    ...roomSettingsFor({ games: ['guessnine'], locale: 'fr' }),
+    ...roomSettingsFor({ games: ['blacksquare'], locale: 'fr' }),
     mode: DEFAULT_MODE_SETTINGS.spoken,
     teams: { count: 2, kind: 'chosen' }
   }
@@ -277,10 +277,10 @@ describe('a spoken guess nine and its teams', () => {
 
   it('[room-settings] never restores a spoken round a room without teams cannot play', () => {
     const moved = movedToGame({
-      game: 'guessnine',
+      game: 'blacksquare',
       locale: 'fr',
       remembered: {
-        ...openedSetup({ game: 'guessnine', locale: 'fr' }),
+        ...openedSetup({ game: 'blacksquare', locale: 'fr' }),
         mode: DEFAULT_MODE_SETTINGS.spoken
       },
       settings: roomSettingsFor({ games: ['quiz'], locale: 'fr' })

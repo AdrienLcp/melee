@@ -20,6 +20,7 @@ import {
 } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 
+import { renamedGameKindOf } from '@melee/core/room/renamed-game-kinds'
 import { normalizeRoomCode } from '@melee/core/room/room-code'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 
@@ -320,10 +321,25 @@ export const usePairingCodeParam = (): WallPairingCode | null => {
   return parsed.success ? parsed.data : null
 }
 
+/**
+ * The game the URL names, and a link shared under a game's old id is sent on to
+ * its current one, so the address bar stops spreading the old name.
+ */
 export const useGameParam = (): ShelvedGame | null => {
-  const { game } = useParams<RouteParamOf<typeof paths.game>>()
+  const { game, locale } = useParams<RouteParamOf<typeof paths.game>>()
+  const navigate = useNavigate()
+  const renamed = game === undefined ? null : renamedGameKindOf(game)
+  const current = renamed ?? game
 
-  return game !== undefined && isShelvedGame(game) ? game : null
+  useEffect(() => {
+    if (renamed !== null && locale !== undefined) {
+      void navigate(pathFor(paths.game, { game: renamed, locale }), {
+        replace: true
+      })
+    }
+  }, [locale, navigate, renamed])
+
+  return current !== undefined && isShelvedGame(current) ? current : null
 }
 
 const asLocale = (segment: string | undefined): Locale | null =>

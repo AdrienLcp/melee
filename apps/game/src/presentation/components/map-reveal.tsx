@@ -2,11 +2,7 @@ import type React from 'react'
 
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import {
-  distanceOf,
-  mapRegionOf,
-  worldmapContent
-} from '@/helpers/round-content'
+import { atlasContent, distanceOf, mapRegionOf } from '@/helpers/round-content'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { LazyWorldMap } from './lazy-world-map'
@@ -29,7 +25,7 @@ type MapRevealProps = {
  */
 export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
   const { locale, translate } = useI18n()
-  const content = worldmapContent(round)
+  const content = atlasContent(round)
   const distanceWords = useDistanceWords(content?.target?.kind ?? 'country')
 
   if (content === null || content.target === null) {
@@ -47,11 +43,11 @@ export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
   const captionTitle = (): string => {
     switch (target.kind) {
       case 'capital':
-        return translate('worldmap.reveal.capitalTitle')
+        return translate('atlas.reveal.capitalTitle')
       case 'city':
-        return translate('worldmap.reveal.cityTitle')
+        return translate('atlas.reveal.cityTitle')
       case 'country':
-        return translate('worldmap.reveal.title')
+        return translate('atlas.reveal.title')
     }
   }
 
@@ -60,14 +56,14 @@ export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
       case 'capital':
         return target.countryCode === null
           ? target.names[locale]
-          : translate('worldmap.reveal.capitalOf', {
+          : translate('atlas.reveal.capitalOf', {
               capital: target.names[locale],
-              country: translate(`worldmap.country.${target.countryCode}.name`)
+              country: translate(`atlas.country.${target.countryCode}.name`)
             })
       case 'city':
         return target.name
       case 'country':
-        return translate(`worldmap.country.${target.countryCode}.name`)
+        return translate(`atlas.country.${target.countryCode}.name`)
     }
   }
 

@@ -2,12 +2,12 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
+import type { GeoPoint } from '@melee/protocol/atlas'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
-import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import { whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import {
@@ -75,7 +75,7 @@ export const candidatesIn = ({
     // all, and the slate is a sheet rather than a pick.
     case 'buzzer':
     case 'challenge':
-    case 'guessnine':
+    case 'blacksquare':
     case 'innerclock':
     case 'matchsticks':
     case 'petitbac':
@@ -89,7 +89,7 @@ export const candidatesIn = ({
         subtitle: null,
         title: choice
       }))
-    case 'worldmap':
+    case 'atlas':
       return content.choices.map((choice) => ({
         key: choice.fr,
         subtitle: null,

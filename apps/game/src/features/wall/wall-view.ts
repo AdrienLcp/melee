@@ -40,7 +40,7 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, keys: content.filledCounts.map(() => null) }
     }
 
-    case 'guessnine': {
+    case 'blacksquare': {
       return { ...content, grid: null }
     }
 
@@ -52,7 +52,7 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, canCancelStop: false }
     }
 
-    case 'worldmap': {
+    case 'atlas': {
       return { ...content, answer: null }
     }
 

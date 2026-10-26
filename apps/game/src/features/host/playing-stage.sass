@@ -144,13 +144,13 @@
 
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
-    &[data-guess-nine]
+    &[data-black-square]
       > .round-card
         overflow: hidden
         padding-block-start: calc(clamp(var(--space-xs), 3cqmin, var(--space-l)) + var(--space-m) + var(--space-s))
 
         &::before
-          background: var(--spine-guessnine)
+          background: var(--spine-blacksquare)
           block-size: var(--space-s)
           content: ''
           inset: 0 0 auto
@@ -159,7 +159,7 @@
         > .round-progress
           inset-block-start: calc(clamp(var(--space-xs), 2cqmin, var(--space-s)) + var(--space-s))
 
-      .guess-nine-theme
+      .black-square-theme
         @include typography.billboard-wrapping
 
         font-size: clamp(var(--text-xl), 9cqmin, 8rem)
@@ -168,18 +168,18 @@
         text-align: center
         text-wrap: balance
 
-      > .guess-nine-gauge
+      > .black-square-gauge
         margin-block: auto
 
-    &[data-guess-nine='answering']
+    &[data-black-square='answering']
       > .round-card
         flex: none
         margin-block: 0
 
-        .guess-nine-theme
+        .black-square-theme
           font-size: clamp(var(--text-l), 5cqmin, 3rem)
 
-      > .answer-form.guess-nine-answer
+      > .answer-form.black-square-answer
         align-self: center
         flex: 1 1 0
         inline-size: min(100%, 40rem)

@@ -46,12 +46,12 @@ import {
   type TeamRejection
 } from '@/domain/room/team-service'
 import { awardTeams } from '@/domain/round/aloud-round'
+import { tickSpokenCell } from '@/domain/round/black-square-round'
 import {
   awardChallengePlaces,
   type ChallengeRejection
 } from '@/domain/round/challenge-round'
 import { canPlayDuel } from '@/domain/round/duels'
-import { tickSpokenCell } from '@/domain/round/guess-nine-round'
 import {
   everyoneHasCounted,
   registerInnerclockPress
@@ -491,7 +491,7 @@ const dispatch = ({
       writeLine(message, active, outbound, engine)
       break
     }
-    case 'guessnine.tick': {
+    case 'blacksquare.tick': {
       tick(message, active, outbound, engine)
       break
     }
@@ -1061,7 +1061,7 @@ const writeLine = (
 }
 
 const tick = (
-  message: Extract<ClientMessage, { type: 'guessnine.tick' }>,
+  message: Extract<ClientMessage, { type: 'blacksquare.tick' }>,
   active: Connection,
   outbound: Outbound,
   engine: RoomEngine

@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { WorldmapShown } from '@melee/protocol/worldmap'
+import type { AtlasShown } from '@melee/protocol/atlas'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -10,7 +10,7 @@ import './map-question.sass'
 
 type MapQuestionProps = {
   /** The point a `name` round shows, which is the whole of its question. */
-  shown: WorldmapShown
+  shown: AtlasShown
 }
 
 /**
@@ -21,7 +21,7 @@ type MapQuestionProps = {
  */
 export const MapQuestion: React.FC<MapQuestionProps> = ({ shown }) => {
   const translate = useTranslate()
-  const prompt = translate(`worldmap.naming.${shown.kind}`)
+  const prompt = translate(`atlas.naming.${shown.kind}`)
 
   return (
     <div

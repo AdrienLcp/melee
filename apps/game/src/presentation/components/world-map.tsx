@@ -1,8 +1,8 @@
 import type React from 'react'
 import { useEffect, useId, useRef, useState } from 'react'
 
+import type { AtlasShown, GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { GeoPoint, WorldmapShown } from '@melee/protocol/worldmap'
 
 import {
   clampedView,
@@ -86,7 +86,7 @@ export type WorldMapProps = {
   /** The world for a country, France for one of its cities. */
   region: MapRegion
   /** What a `name` round shows while it is open: the country filled around its point, or a dot. */
-  shown?: WorldmapShown | null
+  shown?: AtlasShown | null
   /** Where a tap or a drag puts the pawn; absent once nothing more can be placed. */
   onPlace?: (point: GeoPoint) => void
 }
@@ -232,9 +232,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       <svg
         aria-describedby={onPlace === undefined ? undefined : hintId}
         aria-label={translate(
-          region === 'france'
-            ? 'worldmap.map.labelFrance'
-            : 'worldmap.map.label'
+          region === 'france' ? 'atlas.map.labelFrance' : 'atlas.map.label'
         )}
         className='surface'
         data-placing={onPlace !== undefined || undefined}
@@ -279,12 +277,12 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       </svg>
       {onPlace !== undefined && (
         <VisuallyHidden id={hintId}>
-          {translate('worldmap.map.hint')}
+          {translate('atlas.map.hint')}
         </VisuallyHidden>
       )}
       <div className='controls'>
         <Button
-          aria-label={translate('worldmap.map.zoomIn')}
+          aria-label={translate('atlas.map.zoomIn')}
           onPress={() => zoomBy(ZOOM_STEP)}
           size='small'
           variant='outlined'
@@ -292,7 +290,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
           <PlusIcon />
         </Button>
         <Button
-          aria-label={translate('worldmap.map.zoomOut')}
+          aria-label={translate('atlas.map.zoomOut')}
           onPress={() => zoomBy(1 / ZOOM_STEP)}
           size='small'
           variant='outlined'
@@ -301,9 +299,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         </Button>
         <Button
           aria-label={translate(
-            region === 'france'
-              ? 'worldmap.map.wholeFrance'
-              : 'worldmap.map.whole'
+            region === 'france' ? 'atlas.map.wholeFrance' : 'atlas.map.whole'
           )}
           onPress={() =>
             easeView(() =>
@@ -408,7 +404,7 @@ const targetOutlineOf = (
  */
 const shownTargetOf = (
   geometry: MapGeometry,
-  shown: WorldmapShown | null
+  shown: AtlasShown | null
 ): RevealedTarget | null => {
   if (shown === null) {
     return null

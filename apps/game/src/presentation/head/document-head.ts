@@ -30,6 +30,16 @@ export type PageHead = {
  */
 export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
   en: {
+    atlas: {
+      description:
+        'A place comes up and everyone puts a pawn on the map, from their own screen — or the map lights a place up and everyone names it. On it scores in full, off it is paid by the kilometre, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
+      title: 'Atlas — Mêlée'
+    },
+    blacksquare: {
+      description:
+        'A theme comes up and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like — and one answer that sounds right is the black word that costs the round. Scan the QR code and play — no install, no account.',
+      title: 'Black square — Mêlée'
+    },
     blindtest: {
       description:
         'One screen plays the track and everyone else buzzes from whatever screen they have to hand. First to name the title and the artist takes the points. Scan the QR code and play — no install, no account.',
@@ -49,11 +59,6 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         "Where Mêlée's question banks come from, what was changed to bundle them, and the licence the assembled bank is shared under.",
       title: 'Credits — Mêlée'
-    },
-    guessnine: {
-      description:
-        'A theme comes up and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like — and one answer that sounds right is the black word that costs the round. Scan the QR code and play — no install, no account.',
-      title: 'Black square — Mêlée'
     },
     home: {
       description:
@@ -99,14 +104,19 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Five events come up at once — the Moon landing, the fall of the Berlin Wall, the first iPhone — and the whole room puts them in order on their own screens, earliest first. The years come out at the reveal. Scan the QR code and play — no install, no account.',
       title: 'Timeline — Mêlée'
-    },
-    worldmap: {
-      description:
-        'A place comes up and everyone puts a pawn on the map, from their own screen — or the map lights a place up and everyone names it. On it scores in full, off it is paid by the kilometre, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
-      title: 'Atlas — Mêlée'
     }
   },
   fr: {
+    atlas: {
+      description:
+        "Un lieu s'affiche et chacun pose son pion sur la carte, depuis son propre écran — ou la carte allume un lieu et chacun le nomme. Dessus, c'est le plein de points ; à côté, ça se paie au kilomètre, et le dévoilement trace le trait de chaque pion. Scannez le QR code et jouez — sans installation, sans compte.",
+      title: 'Atlas — Mêlée'
+    },
+    blacksquare: {
+      description:
+        'Un thème tombe et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut — et une réponse qui sonne juste est le mot noir qui coûte la manche. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Case noire — Mêlée'
+    },
     blindtest: {
       description:
         "Un écran joue le morceau, tout le monde buzze depuis l'écran qu'il a sous la main. Le premier à donner le titre et l'artiste marque. Scannez le QR code et jouez — sans installation, sans compte.",
@@ -126,11 +136,6 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         "D'où viennent les banques de questions de Mêlée, ce qui a été modifié pour les embarquer, et sous quelle licence la banque assemblée est partagée.",
       title: 'Crédits — Mêlée'
-    },
-    guessnine: {
-      description:
-        'Un thème tombe et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut — et une réponse qui sonne juste est le mot noir qui coûte la manche. Scannez le QR code et jouez — sans installation, sans compte.',
-      title: 'Case noire — Mêlée'
     },
     home: {
       description:
@@ -176,11 +181,6 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Cinq événements tombent d’un coup — les premiers pas sur la Lune, la chute du mur de Berlin, le premier iPhone — et toute la salle les remet dans l’ordre depuis son écran, du plus ancien au plus récent. Les années tombent au dévoilement. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Frise chronologique — Mêlée'
-    },
-    worldmap: {
-      description:
-        "Un lieu s'affiche et chacun pose son pion sur la carte, depuis son propre écran — ou la carte allume un lieu et chacun le nomme. Dessus, c'est le plein de points ; à côté, ça se paie au kilomètre, et le dévoilement trace le trait de chaque pion. Scannez le QR code et jouez — sans installation, sans compte.",
-      title: 'Atlas — Mêlée'
     }
   }
 }

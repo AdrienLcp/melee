@@ -1,10 +1,10 @@
+import type { AtlasTargetKind } from '@melee/protocol/atlas'
 import type { RoundView } from '@melee/protocol/room'
-import type { WorldmapTargetKind } from '@melee/protocol/worldmap'
 
 import {
+  atlasContent,
   distanceOf,
-  swappedPairsOf,
-  worldmapContent
+  swappedPairsOf
 } from '@/helpers/round-content'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -16,7 +16,7 @@ type DistanceForm = 'away' | 'km'
  * *1 480 km* on the map's own line.
  */
 export const useDistanceWords = (
-  target: WorldmapTargetKind
+  target: AtlasTargetKind
 ): ((distanceKm: number, form: DistanceForm) => string) => {
   const { locale, translate } = useI18n()
   const kilometres = new Intl.NumberFormat(locale, { maximumFractionDigits: 0 })
@@ -25,10 +25,10 @@ export const useDistanceWords = (
     distanceKm === 0
       ? translate(
           target === 'country'
-            ? 'worldmap.reveal.inside'
-            : 'worldmap.reveal.onTheSpot'
+            ? 'atlas.reveal.inside'
+            : 'atlas.reveal.onTheSpot'
         )
-      : translate(`worldmap.reveal.${form}`, {
+      : translate(`atlas.reveal.${form}`, {
           distance: kilometres.format(distanceKm)
         })
 }
@@ -76,8 +76,8 @@ export const useAnswerWords = (
   round: RoundView
 ): ((answer: { playerId: string; said: string }) => string) => {
   const { locale } = useI18n()
-  const worldmap = worldmapContent(round)
-  const distanceWords = useDistanceWords(worldmap?.target?.kind ?? 'country')
+  const atlas = atlasContent(round)
+  const distanceWords = useDistanceWords(atlas?.target?.kind ?? 'country')
 
   const orderWords = useOrderWords()
 
@@ -85,7 +85,7 @@ export const useAnswerWords = (
     const distanceKm = distanceOf(round, answer.playerId)
     const swappedPairs = swappedPairsOf(round, answer.playerId)
     // A place picked by name is recorded in French, whatever the picker read.
-    const pickedName = worldmap?.choices.find(
+    const pickedName = atlas?.choices.find(
       (choice) => choice.fr === answer.said
     )
 

@@ -20,7 +20,7 @@ const BUZZER_ONLY = ['buzzer'] as const satisfies readonly AnswerMode[]
 const TYPED_ONLY = ['typed'] as const satisfies readonly AnswerMode[]
 
 /**
- * Guess nine is typed on every screen at once, or said aloud by one team while
+ * Black square is typed on every screen at once, or said aloud by one team while
  * a seat of another ticks what it hears — which needs teams with seats, and
  * `isPlayableWithTeams` says so.
  */
@@ -134,7 +134,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsDuels: false,
         servesItsOwnContent: true
       }
-    case 'guessnine':
+    case 'blacksquare':
       return {
         answerModes: TYPED_OR_SPOKEN,
         makesSound: false,
@@ -177,7 +177,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         playsDuels: true,
         servesItsOwnContent: true
       }
-    case 'worldmap':
+    case 'atlas':
       return {
         answerModes: POINT_OR_NAMED,
         makesSound: false,
@@ -210,7 +210,7 @@ export const answerModesFor = (
     return answerModes
   }
 
-  if (game.kind === 'worldmap') {
+  if (game.kind === 'atlas') {
     return game.direction === 'name' ? NAMED : POINT_ONLY
   }
 

@@ -1,10 +1,15 @@
 import type React from 'react'
 
-import type { QuizSettings } from '@melee/protocol/game'
 import {
-  GUESS_NINE_CELL_COUNT,
-  GUESS_NINE_MIN_ANSWER_COUNT
-} from '@melee/protocol/guess-nine'
+  type AtlasDirection,
+  atlasDirectionSchema,
+  atlasPlacesSchema
+} from '@melee/protocol/atlas'
+import {
+  BLACK_SQUARE_CELL_COUNT,
+  BLACK_SQUARE_MIN_ANSWER_COUNT
+} from '@melee/protocol/black-square'
+import type { QuizSettings } from '@melee/protocol/game'
 import {
   type MatchsticksGoal,
   matchsticksGoals
@@ -27,11 +32,6 @@ import {
   type TrackSource,
   trackDifficulties
 } from '@melee/protocol/track'
-import {
-  type WorldmapDirection,
-  worldmapDirectionSchema,
-  worldmapPlacesSchema
-} from '@melee/protocol/worldmap'
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
 import {
@@ -71,7 +71,7 @@ const PUZZLE_DURATIONS_MS = [30_000, 60_000, 120_000] as const
 
 const TIMELINE_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
-const GUESS_NINE_DURATIONS_MS = [45_000, 60_000, 90_000] as const
+const BLACK_SQUARE_DURATIONS_MS = [45_000, 60_000, 90_000] as const
 
 const MATCHSTICKS_GOAL_KEYS = {
   biggest: 'matchsticks.goals.biggest',
@@ -179,8 +179,8 @@ const difficultyLabelKey = (
 const isDifficulty = (value: string): value is TrackDifficulty =>
   trackDifficulties.some((difficulty) => difficulty === value)
 
-const isWorldmapDirection = (value: string): value is WorldmapDirection =>
-  worldmapDirectionSchema.safeParse(value).success
+const isAtlasDirection = (value: string): value is AtlasDirection =>
+  atlasDirectionSchema.safeParse(value).success
 
 const isAnswerMode = (value: string): value is AnswerMode =>
   answerModes.some((mode) => mode === value)
@@ -288,14 +288,14 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {game?.kind === 'worldmap' && (
+      {game?.kind === 'atlas' && (
         <>
           <SegmentedControl
-            className='worldmap-direction'
+            className='atlas-direction'
             isDisabled={isDisabled}
-            label={translate('worldmap.direction.label')}
+            label={translate('atlas.direction.label')}
             onChange={(next) => {
-              if (isWorldmapDirection(next)) {
+              if (isAtlasDirection(next)) {
                 const moved = { ...game, direction: next }
 
                 onChange({
@@ -308,18 +308,18 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
                 })
               }
             }}
-            options={worldmapDirectionSchema.options.map((direction) => ({
-              label: translate(`worldmap.direction.${direction}`),
+            options={atlasDirectionSchema.options.map((direction) => ({
+              label: translate(`atlas.direction.${direction}`),
               value: direction
             }))}
             value={game.direction}
           />
           <ToggleGroup
-            className='worldmap-places'
+            className='atlas-places'
             isDisabled={isDisabled}
-            label={translate(`worldmap.places.label.${game.direction}`)}
+            label={translate(`atlas.places.label.${game.direction}`)}
             onSelectionChange={(keys) => {
-              const ticked = worldmapPlacesSchema.options.filter((places) =>
+              const ticked = atlasPlacesSchema.options.filter((places) =>
                 keys.has(places)
               )
 
@@ -329,8 +329,8 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
                 onChange({ ...settings, game: { ...game, places: ticked } })
               }
             }}
-            options={worldmapPlacesSchema.options.map((places) => ({
-              label: translate(`worldmap.places.${places}`),
+            options={atlasPlacesSchema.options.map((places) => ({
+              label: translate(`atlas.places.${places}`),
               value: places
             }))}
             selectedKeys={game.places}
@@ -497,25 +497,25 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {game?.kind === 'guessnine' && (
+      {game?.kind === 'blacksquare' && (
         <NumberChoice
           isDisabled={isDisabled}
-          label={translate('guessnine.duration')}
+          label={translate('blacksquare.duration')}
           onChange={(roundDurationMs) => {
             onChange({ ...settings, game: { ...game, roundDurationMs } })
           }}
           optionLabel={secondsLabel}
-          options={GUESS_NINE_DURATIONS_MS}
+          options={BLACK_SQUARE_DURATIONS_MS}
           value={game.roundDurationMs}
         />
       )}
 
-      {game?.kind === 'guessnine' && (
+      {game?.kind === 'blacksquare' && (
         <NumberField
           isDisabled={isDisabled}
-          label={translate('guessnine.answerCount.label')}
-          maxValue={GUESS_NINE_CELL_COUNT}
-          minValue={GUESS_NINE_MIN_ANSWER_COUNT}
+          label={translate('blacksquare.answerCount.label')}
+          maxValue={BLACK_SQUARE_CELL_COUNT}
+          minValue={BLACK_SQUARE_MIN_ANSWER_COUNT}
           onChange={(answerCount) => {
             if (Number.isInteger(answerCount)) {
               onChange({ ...settings, game: { ...game, answerCount } })
@@ -526,12 +526,12 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {/* A spoken round has one team guessing, so every find there is its alone. */}
-      {game?.kind === 'guessnine' && mode.kind === 'typed' && (
+      {game?.kind === 'blacksquare' && mode.kind === 'typed' && (
         <Switch
-          description={translate('guessnine.lone.hint')}
+          description={translate('blacksquare.lone.hint')}
           isDisabled={isDisabled}
           isSelected={game.doublesLoneFinds}
-          label={translate('guessnine.lone.label')}
+          label={translate('blacksquare.lone.label')}
           onChange={(doublesLoneFinds) => {
             onChange({ ...settings, game: { ...game, doublesLoneFinds } })
           }}

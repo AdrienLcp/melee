@@ -1,13 +1,13 @@
 # 52 — Black square's answer count, and the map's second direction
 
-**To do.** Asked 26/10/2026. Two games grow out of a fixed shape: guess nine
+**Done 26/10/2026.** Asked the same day. Two games grow out of a fixed shape: guess nine
 stops dealing exactly nine, and the world map gains the reverse of every
 question it asks — *name what is shown* beside *place what is named*.
 
 Done the same day, before this plan: guess nine renamed **Case noire** /
 **Black square** on screen (its French name, *Devineuf*, is an existing
 commercial app's, for the same kind of game). The wire id, the translation
-prefix and the URL slug are still `guessnine` — step 3.
+prefix and the URL slug were still `guessnine` until step 3.
 
 ## Step 1 — Black square: the host picks how many answers (one session)
 
@@ -139,6 +139,16 @@ aliases before typed mode is fair. Scoring by distance stays the *place*
 direction's.
 
 ## Step 3 — the ids follow the names (short session)
+
+**Done 26/10/2026.** Everything named after the old ids moved with them — files,
+symbols, `core/blacksquare/` and `core/atlas/`, the spine tokens — and
+`PROTOCOL_VERSION` went to 62. The map component keeps `world-map`: it draws a
+map, not the game. One table, `core/room/renamed-game-kinds.ts`, reads the old
+ids: the three stores that carry a game (setup, line-up games, saved evenings,
+so an exported file too) run through `withCurrentGameKinds` before their
+schema, and `useGameParam` replaces an old slug in the URL. A live room stored
+by the Durable Object across the deploy is not migrated — it outlives its host
+by ten minutes, and a stale tab is closed by the version bump anyway.
 
 `guessnine` → `blacksquare`, `worldmap` → `atlas`: the `GameKind`, the
 translation prefix, the URL slug (`/fr/guessnine` is what a shared link

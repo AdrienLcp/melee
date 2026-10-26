@@ -29,7 +29,7 @@ import {
 import { isFairDeal } from '@melee/core/team/team-draw'
 import { teamRoundResult } from '@melee/core/team/team-score'
 
-import { isSpokenRound } from '@/domain/round/guess-nine-round'
+import { isSpokenRound } from '@/domain/round/black-square-round'
 
 import type { Participant, Room, RoomTeam } from './room'
 import { touch } from './room-service'

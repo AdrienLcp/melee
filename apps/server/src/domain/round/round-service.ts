@@ -1,5 +1,6 @@
 import { Result } from '@adrienlcp/result'
 
+import type { GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
@@ -9,8 +10,12 @@ import type { HostQuestion } from '@melee/protocol/question'
 import type { Verdict } from '@melee/protocol/scoring'
 import { TIMELINE_ORDER_SEPARATOR } from '@melee/protocol/timeline'
 import type { HostTrack } from '@melee/protocol/track'
-import type { GeoPoint } from '@melee/protocol/worldmap'
 
+import {
+  type CountryShape,
+  distanceToCountryKm,
+  greatCircleKm
+} from '@melee/core/atlas/distance'
 import {
   choiceVerdict,
   gradeGuess,
@@ -49,19 +54,14 @@ import {
   type SimultaneousMode,
   verdictKindFor
 } from '@melee/core/scoring/verdict'
-import {
-  type CountryShape,
-  distanceToCountryKm,
-  greatCircleKm
-} from '@melee/core/worldmap/distance'
 
 import { playingSeatIds } from '@/domain/room/console-seat'
 import type {
+  AtlasNaming,
+  AtlasRoundTarget,
   PlayerAttempts,
   Room,
-  Round,
-  WorldmapNaming,
-  WorldmapRoundTarget
+  Round
 } from '@/domain/room/room'
 import { touch, updateSettings } from '@/domain/room/room-service'
 import {
@@ -72,14 +72,14 @@ import {
   toSeatBoards,
   toTeamViews
 } from '@/domain/room/team-service'
-import { takeDuel } from '@/domain/round/duels'
 import {
   doubledCellsOf,
   gradeSheetLine,
   keepSheetLine,
   payGuessingTeam,
   takeSpokenTurn
-} from '@/domain/round/guess-nine-round'
+} from '@/domain/round/black-square-round'
+import { takeDuel } from '@/domain/round/duels'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import { settleEveryCategory } from '@/domain/round/petit-bac-round'
@@ -196,7 +196,7 @@ export const openRound = ({
 
   const duel = takeDuel(room)
 
-  if (content.kind === 'guessnine') {
+  if (content.kind === 'blacksquare') {
     content.spoken = takeSpokenTurn({ content, room })
   }
 
@@ -507,7 +507,7 @@ export const registerAnswer = ({
   bank({ graded, held, now, playerId, round })
 
   if (
-    round.content.kind === 'guessnine' &&
+    round.content.kind === 'blacksquare' &&
     attempt.kind === 'typed' &&
     graded.verdict.kind === 'cells'
   ) {
@@ -520,7 +520,7 @@ export const registerAnswer = ({
     })
   }
 
-  if (round.content.kind === 'worldmap' && attempt.kind === 'point') {
+  if (round.content.kind === 'atlas' && attempt.kind === 'point') {
     round.content.placements.push({ playerId, point: attempt.point })
   }
 
@@ -698,14 +698,14 @@ type ShapeOf = (code: CountryCode) => CountryShape | null
  * A map round's content. The outlines stay out of it: a room is stored after
  * every change, and a shape's `contains` is a function no storage can clone.
  */
-export const worldmapContent = ({
+export const atlasContent = ({
   naming,
   target
 }: {
-  naming: WorldmapNaming | null
-  target: WorldmapRoundTarget
+  naming: AtlasNaming | null
+  target: AtlasRoundTarget
 }): Round['content'] => ({
-  kind: 'worldmap',
+  kind: 'atlas',
   naming,
   placements: [],
   target
@@ -719,7 +719,7 @@ const distanceToTargetKm = ({
 }: {
   point: GeoPoint
   shapeOf: ShapeOf
-  target: WorldmapRoundTarget
+  target: AtlasRoundTarget
 }): number | null => {
   if (target.kind !== 'country') {
     return greatCircleKm(point, target.point)
@@ -927,11 +927,11 @@ const grade = ({
 }): { said: string; verdict: Verdict } | null => {
   const content = round.content
 
-  if (content.kind === 'worldmap' && content.naming !== null) {
+  if (content.kind === 'atlas' && content.naming !== null) {
     return gradeNaming({ attempt, held, naming: content.naming })
   }
 
-  if (content.kind === 'worldmap') {
+  if (content.kind === 'atlas') {
     if (attempt.kind !== 'point') {
       return null
     }
@@ -979,7 +979,7 @@ const grade = ({
       : { said: graded.made, verdict: graded.verdict }
   }
 
-  if (content.kind === 'guessnine') {
+  if (content.kind === 'blacksquare') {
     return attempt.kind === 'typed'
       ? {
           said: attempt.guess,
@@ -1072,7 +1072,7 @@ const gradeNaming = ({
 }: {
   attempt: Attempt
   held: PlayerAttempts | undefined
-  naming: WorldmapNaming
+  naming: AtlasNaming
 }): { said: string; verdict: Verdict } | null => {
   if (attempt.kind === 'choice') {
     const picked = naming.choices[attempt.choiceIndex]

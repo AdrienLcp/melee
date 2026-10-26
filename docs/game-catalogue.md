@@ -76,7 +76,7 @@ team on the player model and a turn owner.
 | **Inner clock** — count in your head, press once | Buzz-first | Nothing: a press stamped on arrival, paid by its gap to the target | **shipped** ([stage 35](plans/35-inner-clock.md)) |
 | **Matchsticks** — one stick to move | Everyone at once, or buzz-first | A mode of its own, `move`, judged by the server against every one-stick move; on the buzzer the host judges | **shipped** ([stage 36](plans/36-matchsticks.md)) |
 | **Timeline** — five dated events, put them in order | Everyone at once | An answer that is an order: a mode of its own, `order`, and a verdict counting the pairs swapped | **shipped** ([stage 38](plans/38-timeline.md)) |
-| **Guess nine** (Black square · Case noire) — a theme, nine hidden answers, one black word | Everyone at once, or spoken with a keeper | Many guesses per round, a hit banked without closing it; spoken, the one seat ever sent an answer, safe because its team is not playing | typed on the shelf, spoken owed ([stage 45](plans/45-guess-nine.md)) |
+| **Black square** (Case noire) — a theme, three to nine hidden answers, one black word | Everyone at once, or spoken with a keeper | Many guesses per round, a hit banked without closing it; spoken, the one seat ever sent an answer, safe because its team is not playing | typed on the shelf, spoken owed ([stage 45](plans/45-guess-nine.md)) |
 | **Petit Bac** — a letter, six categories, type fast | Submit-then-vote | Scoring by uniqueness, a room vote per category | rules landed, server and screens owed ([stage 50](plans/50-petit-bac.md)) |
 | **Just One** — everyone writes one clue, duplicates cancel | Submit-then-vote | A clue-collision pass | a session |
 | **Qui a écrit ça ?** — answer a prompt, then guess the author | Submit-then-vote | Authorship survives the reveal | a session |
@@ -345,7 +345,7 @@ chosen and the lobby's picker is where the table decides, which is what
 game. See `docs/plans/13-room-first.md`.
 
 **i18n is namespaced by game.** A prefix per game — `blindtest.*`, `buzzer.*`,
-`challenge.*`, `innerclock.*`, `matchsticks.*`, `quiz.*`, `reflex.*`, `slate.*`, `timeline.*`, `worldmap.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
+`challenge.*`, `innerclock.*`, `matchsticks.*`, `quiz.*`, `reflex.*`, `slate.*`, `timeline.*`, `atlas.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
 `error.*`, `connection.*`, `menu.*` and `preferences.*` for the shell. A new game
 adds its own prefix and touches nothing else. The test itself — *would the second
 game display this string unchanged?* — is in

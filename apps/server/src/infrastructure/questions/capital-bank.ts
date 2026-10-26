@@ -1,7 +1,7 @@
 import { z } from 'zod'
 
+import { geoPointSchema } from '@melee/protocol/atlas'
 import { countryCodeSchema } from '@melee/protocol/country-code'
-import { geoPointSchema } from '@melee/protocol/worldmap'
 
 import bank from './capital-bank.json' with { type: 'json' }
 

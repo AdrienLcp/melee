@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { WorldmapTarget } from '@melee/protocol/worldmap'
+import type { AtlasTarget } from '@melee/protocol/atlas'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -11,7 +11,7 @@ import './map-prompt.sass'
  * the capital is public, because naming it is the question — what is hidden is
  * where everyone put it.
  */
-export const MapPrompt: React.FC<{ target: WorldmapTarget }> = ({ target }) => {
+export const MapPrompt: React.FC<{ target: AtlasTarget }> = ({ target }) => {
   const { locale, translate } = useI18n()
 
   const placeNamed = (): string => {
@@ -21,13 +21,13 @@ export const MapPrompt: React.FC<{ target: WorldmapTarget }> = ({ target }) => {
       case 'city':
         return target.name
       case 'country':
-        return translate(`worldmap.country.${target.countryCode}.withArticle`)
+        return translate(`atlas.country.${target.countryCode}.withArticle`)
     }
   }
 
   return (
     <p className='map-prompt'>
-      {translate('worldmap.prompt', { place: placeNamed() })}
+      {translate('atlas.prompt', { place: placeNamed() })}
     </p>
   )
 }

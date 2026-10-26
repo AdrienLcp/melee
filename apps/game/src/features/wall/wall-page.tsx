@@ -42,9 +42,9 @@ import { asRoomScreenView } from './wall-view'
 import '@/features/host/host-console-page.sass'
 import './wall-page.sass'
 
-import { guessNineContent } from '@/helpers/round-content'
+import { blackSquareContent } from '@/helpers/round-content'
+import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { DuelBadge } from '@/presentation/components/duel-badge'
-import { GuessNineTurn } from '@/presentation/components/guess-nine-turn'
 import { Main } from '@/presentation/components/main'
 import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
 
@@ -135,7 +135,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
-  const spokenTurn = guessNineContent(view?.round)?.spoken ?? null
+  const spokenTurn = blackSquareContent(view?.round)?.spoken ?? null
 
   return (
     <PawnColoursProvider view={view}>
@@ -163,7 +163,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           {spokenTurn !== null &&
             view !== null &&
             view.phase !== 'finished' && (
-              <GuessNineTurn
+              <BlackSquareTurn
                 players={view.players}
                 seatId={view.youId}
                 spoken={spokenTurn}

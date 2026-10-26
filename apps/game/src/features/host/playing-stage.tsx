@@ -1,6 +1,6 @@
 import type React from 'react'
 
-import type { GuessNineCell } from '@melee/protocol/guess-nine'
+import type { BlackSquareCell } from '@melee/protocol/black-square'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
@@ -11,19 +11,19 @@ import {
   type PlayerAnswer,
   TypedAnswer
 } from '@/features/player/answer-forms'
-import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
+import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { PrintedChoices } from '@/features/player/printed-choices'
 import { RoundQuestion } from '@/features/player/round-question'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
-  guessNineContent,
+  atlasContent,
+  blackSquareContent,
   matchsticksContent,
-  timelineContent,
-  worldmapContent
+  timelineContent
 } from '@/helpers/round-content'
-import { GuessNineSpoken } from '@/presentation/components/guess-nine-spoken'
+import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
@@ -31,7 +31,7 @@ import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
-import { GuessNineGauge } from './guess-nine-gauge'
+import { BlackSquareGauge } from './black-square-gauge'
 
 import './playing-stage.sass'
 
@@ -50,9 +50,9 @@ type PlayingStageProps = {
   clipOffer: React.ReactNode
   /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
   onAnswer: ((answer: PlayerAnswer) => boolean) | null
-  /** Sends the seat's tick when it keeps a spoken guess nine's list; `null` when this screen keeps none. */
+  /** Sends the seat's tick when it keeps a spoken black square's list; `null` when this screen keeps none. */
   onTick:
-    | ((cell: GuessNineCell | 'blackWord', isTicked: boolean) => boolean)
+    | ((cell: BlackSquareCell | 'blackWord', isTicked: boolean) => boolean)
     | null
   round: RoundView
   view: HostRoomView
@@ -77,9 +77,9 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const roundDurationMs = round.durationMs
   const mode = round.answerMode
   const choiceLength = longestChoiceLength(candidatesIn({ locale, round }))
-  const guessNine = guessNineContent(round)
-  const isTyping = mode === 'typed' && onAnswer !== null && guessNine === null
-  const worldmap = worldmapContent(round)
+  const blackSquare = blackSquareContent(round)
+  const isTyping = mode === 'typed' && onAnswer !== null && blackSquare === null
+  const atlas = atlasContent(round)
   const matchsticks = matchsticksContent(round)
   const timeline = timelineContent(round)
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
@@ -92,18 +92,18 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           elapsedMs={view.roundElapsedMs}
         />
       )}
-      {round.content.kind === 'quiz' || worldmap?.shown != null ? (
+      {round.content.kind === 'quiz' || atlas?.shown != null ? (
         <RoundQuestion round={round} />
-      ) : worldmap?.target != null ? (
-        <MapPrompt target={worldmap.target} />
+      ) : atlas?.target != null ? (
+        <MapPrompt target={atlas.target} />
       ) : matchsticks !== null ? (
         <MatchsticksPrompt puzzle={matchsticks.puzzle}>
           {sticks}
         </MatchsticksPrompt>
       ) : timeline !== null ? (
         <p className='now timeline-question'>{translate('timeline.dealt')}</p>
-      ) : guessNine !== null ? (
-        <h2 className='now guess-nine-theme'>{guessNine.theme[locale]}</h2>
+      ) : blackSquare !== null ? (
+        <h2 className='now black-square-theme'>{blackSquare.theme[locale]}</h2>
       ) : round.content.kind === 'challenge' ? (
         <>
           <p className='now challenge-line'>
@@ -127,17 +127,17 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
     <div
       className='stage playing'
       data-answering={isTyping || undefined}
-      data-choices={mode === 'choice' || undefined}
-      data-guess-nine={
-        guessNine === null
+      data-black-square={
+        blackSquare === null
           ? undefined
           : onAnswer === null
             ? 'watching'
             : 'answering'
       }
+      data-choices={mode === 'choice' || undefined}
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
-      data-map={(worldmap?.target != null && onAnswer !== null) || undefined}
-      data-map-question={worldmap?.shown != null || undefined}
+      data-map={(atlas?.target != null && onAnswer !== null) || undefined}
+      data-map-question={atlas?.shown != null || undefined}
       data-moving={isMoving || undefined}
       data-timeline={
         timeline === null
@@ -184,7 +184,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           verdict={view.yourVerdict}
         />
       )}
-      {worldmap?.target != null && onAnswer !== null && (
+      {atlas?.target != null && onAnswer !== null && (
         <MapAnswer
           key={round.id}
           onAnswer={onAnswer}
@@ -208,24 +208,24 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             youId={answersAs}
           />
         ))}
-      {guessNine !== null &&
+      {blackSquare !== null &&
         (onAnswer === null ? (
-          <GuessNineGauge
-            answerCount={guessNine.answerCount}
-            foundCellCount={guessNine.foundCellCount}
+          <BlackSquareGauge
+            answerCount={blackSquare.answerCount}
+            foundCellCount={blackSquare.foundCellCount}
           />
-        ) : guessNine.spoken !== null ? (
-          <GuessNineSpoken
-            answerCount={guessNine.answerCount}
+        ) : blackSquare.spoken !== null ? (
+          <BlackSquareSpoken
+            answerCount={blackSquare.answerCount}
             key={round.id}
             onTick={onTick}
             players={view.players}
             seatId={answersAs}
-            spoken={guessNine.spoken}
+            spoken={blackSquare.spoken}
             teams={view.teams}
           />
         ) : (
-          <GuessNineAnswer
+          <BlackSquareAnswer
             key={round.id}
             onAnswer={onAnswer}
             round={round}

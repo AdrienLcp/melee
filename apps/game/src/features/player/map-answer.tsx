@@ -1,11 +1,11 @@
 import type React from 'react'
 import { useState } from 'react'
 
+import type { GeoPoint } from '@melee/protocol/atlas'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
-import type { GeoPoint } from '@melee/protocol/worldmap'
 
-import { mapRegionOf, worldmapContent } from '@/helpers/round-content'
+import { atlasContent, mapRegionOf } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { LazyWorldMap } from '@/presentation/components/lazy-world-map'
 import { usePawnNumber } from '@/presentation/components/pawn'
@@ -47,7 +47,7 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
   // since no screen is told where anyone put theirs before the reveal.
   const hasAnswered =
     isSent || round.answers.some((answer) => answer.playerId === youId)
-  const content = worldmapContent(round)
+  const content = atlasContent(round)
 
   return (
     <section
@@ -67,14 +67,14 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
                 }}
                 size='large'
               >
-                {translate('worldmap.answer.confirm')}
+                {translate('atlas.answer.confirm')}
               </Button>
               <Button
                 onPress={() => setPoint(null)}
                 size='large'
                 variant='outlined'
               >
-                {translate('worldmap.answer.cancel')}
+                {translate('atlas.answer.cancel')}
               </Button>
             </>
           )
@@ -85,10 +85,10 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
       <p className='hint' role='status'>
         {translate(
           hasAnswered
-            ? 'worldmap.answer.sent'
+            ? 'atlas.answer.sent'
             : point === null
-              ? 'worldmap.map.hint'
-              : 'worldmap.map.moveHint'
+              ? 'atlas.map.hint'
+              : 'atlas.map.moveHint'
         )}
       </p>
     </section>

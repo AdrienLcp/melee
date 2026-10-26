@@ -1,5 +1,5 @@
+import type { GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import { pickRandom } from '@melee/core/helpers/random'
 
@@ -32,7 +32,7 @@ export const worldCapitals = (): readonly BankedCapital[] =>
 
 /** The id a played capital takes in the room's no-repeat set, beside the countries and the cities. */
 export const playedCapitalId = (code: CountryCode): string =>
-  `worldmap:capital:${code}`
+  `atlas:capital:${code}`
 
 /** A capital the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCapital = ({

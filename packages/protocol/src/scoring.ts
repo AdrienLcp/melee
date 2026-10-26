@@ -1,12 +1,12 @@
 import { z } from 'zod'
 
+import { atlasTargetKindSchema } from './atlas'
 import {
-  GUESS_NINE_CELL_COUNT,
-  guessNineAnswerCountSchema,
-  guessNineCellSchema
-} from './guess-nine'
+  BLACK_SQUARE_CELL_COUNT,
+  blackSquareAnswerCountSchema,
+  blackSquareCellSchema
+} from './black-square'
 import { playerIdSchema } from './identifiers'
-import { worldmapTargetKindSchema } from './worldmap'
 
 /**
  * What one point of the rules is worth on the board. A thousand, because the
@@ -114,7 +114,7 @@ export const singleVerdictSchema = z.object({
 /**
  * How far a marker fell from the answer, which is the world map's whole grade:
  * a point in the sea off Brittany is not *wrong* the way a wrong pick is, and
- * the tiers in `@melee/core/worldmap/distance-tiers` pay it for being close.
+ * the tiers in `@melee/core/atlas/distance-tiers` pay it for being close.
  * Nought means inside a country, or on the city to the kilometre. The server
  * measures it; no screen ever sends one. `target` says which tiers price it,
  * since 50 km is a near miss of a country and a far one of a city.
@@ -122,7 +122,7 @@ export const singleVerdictSchema = z.object({
 export const distanceVerdictSchema = z.object({
   distanceKm: z.number().nonnegative(),
   kind: z.literal('distance'),
-  target: worldmapTargetKindSchema
+  target: atlasTargetKindSchema
 })
 
 /**
@@ -151,15 +151,15 @@ export const moveVerdictSchema = z.object({
 })
 
 /**
- * A guess-nine sheet: the cells a seat has found so far, in the order it found
+ * A black-square sheet: the cells a seat has found so far, in the order it found
  * them, and whether it fell on the black word — which voids the sheet whatever
- * it holds, and closes it. `@melee/core/guessnine/sheet-pay` prices it. The
+ * it holds, and closes it. `@melee/core/blacksquare/sheet-pay` prices it. The
  * server grades every line; no screen ever sends one.
  */
 export const cellsVerdictSchema = z.object({
   /** How many answers the round dealt, which is what a full sheet holds and what its thirds are cut from. */
-  cellCount: guessNineAnswerCountSchema,
-  foundCells: z.array(guessNineCellSchema).max(GUESS_NINE_CELL_COUNT),
+  cellCount: blackSquareAnswerCountSchema,
+  foundCells: z.array(blackSquareCellSchema).max(BLACK_SQUARE_CELL_COUNT),
   hitBlackWord: z.boolean(),
   kind: z.literal('cells')
 })

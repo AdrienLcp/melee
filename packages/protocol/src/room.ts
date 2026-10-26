@@ -1,24 +1,31 @@
 import { z } from 'zod'
 
 import {
+  atlasDirectionSchema,
+  atlasShownSchema,
+  atlasTargetSchema,
+  localizedNameSchema,
+  placementSchema
+} from './atlas'
+import {
+  BLACK_SQUARE_CELL_COUNT,
+  BLACK_SQUARE_LINES_READ_BACK,
+  blackSquareAnswerCountSchema,
+  blackSquareAnswerSchema,
+  blackSquareBlackWordSchema,
+  blackSquareCellSchema,
+  blackSquareLabelsSchema,
+  blackSquareSentLineSchema,
+  dealtAnswersOf,
+  revealedBlackSquareSchema
+} from './black-square'
+import {
   boardPositionSchema,
   boardSettingsSchema,
   DEFAULT_BOARD_SETTINGS
 } from './board'
 import { CHALLENGE_HAND_SIZE, challengeLabelsSchema } from './challenge'
 import { gameSettingsSchema } from './game'
-import {
-  dealtAnswersOf,
-  GUESS_NINE_CELL_COUNT,
-  GUESS_NINE_LINES_READ_BACK,
-  guessNineAnswerCountSchema,
-  guessNineAnswerSchema,
-  guessNineBlackWordSchema,
-  guessNineCellSchema,
-  guessNineLabelsSchema,
-  guessNineSentLineSchema,
-  revealedGuessNineSchema
-} from './guess-nine'
 import {
   nicknameSchema,
   playerIdSchema,
@@ -68,13 +75,6 @@ import {
 } from './team'
 import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
 import { hostTrackSchema, trackIdentitySchema } from './track'
-import {
-  localizedNameSchema,
-  placementSchema,
-  worldmapDirectionSchema,
-  worldmapShownSchema,
-  worldmapTargetSchema
-} from './worldmap'
 
 export const MAX_PLAYERS_PER_ROOM = 24
 
@@ -108,7 +108,7 @@ export const answerModes = [
  * are everyone at once, decided by the server — exactly, then fuzzily — and
  * scored by speed on top of being right.
  *
- * `spoken` is a guess-nine round played aloud: one team says its answers and a
+ * `spoken` is a black-square round played aloud: one team says its answers and a
  * seat of another team ticks what it hears, so nobody answers on a screen and
  * the clock pays nothing.
  *
@@ -388,16 +388,16 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     /** How many answers the round dealt, so a sheet draws its cells before anything is revealed. */
-    answerCount: guessNineAnswerCountSchema,
+    answerCount: blackSquareAnswerCountSchema,
     /**
      * How many of the cells at least one seat has found — a count, so the
      * room feels the grid filling without a seat learning which cell to stop
      * looking for. The reader's own cells are `yourVerdict`.
      */
-    foundCellCount: z.number().int().min(0).max(GUESS_NINE_CELL_COUNT),
-    kind: z.literal('guessnine'),
+    foundCellCount: z.number().int().min(0).max(BLACK_SQUARE_CELL_COUNT),
+    kind: z.literal('blacksquare'),
     /** The whole grid and the black word, and `null` until the reveal. */
-    revealed: revealedGuessNineSchema.nullable(),
+    revealed: revealedBlackSquareSchema.nullable(),
     /**
      * Who guesses aloud this round and who keeps the list, in a `spoken`
      * round, and `null` in a typed one.
@@ -414,8 +414,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
          */
         list: z
           .object({
-            answers: dealtAnswersOf(guessNineAnswerSchema),
-            blackWord: guessNineBlackWordSchema
+            answers: dealtAnswersOf(blackSquareAnswerSchema),
+            blackWord: blackSquareBlackWordSchema
           })
           .nullable(),
         /**
@@ -423,18 +423,18 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
          * them aloud, and the room heard. Indices, never text, because a
          * mistaken tick is undone before anyone reads it.
          */
-        tickedCells: z.array(guessNineCellSchema).max(GUESS_NINE_CELL_COUNT)
+        tickedCells: z.array(blackSquareCellSchema).max(BLACK_SQUARE_CELL_COUNT)
       })
       .nullable(),
-    theme: guessNineLabelsSchema,
+    theme: blackSquareLabelsSchema,
     /**
      * The reader's own lines, in the order sent — every one that found
      * something, then the latest if it found nothing — and `null` for a reader
      * holding no seat. Never another seat's: a line is the text of a cell.
      */
     yourLines: z
-      .array(guessNineSentLineSchema)
-      .max(GUESS_NINE_LINES_READ_BACK)
+      .array(blackSquareSentLineSchema)
+      .max(BLACK_SQUARE_LINES_READ_BACK)
       .nullable()
   }),
   z.object({
@@ -588,8 +588,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      */
     choices: z.array(localizedNameSchema),
     /** Which way the round asks, stamped on it as it opens. */
-    direction: worldmapDirectionSchema,
-    kind: z.literal('worldmap'),
+    direction: atlasDirectionSchema,
+    kind: z.literal('atlas'),
     /**
      * Every marker that landed, and `null` until the reveal: one seen on
      * another screen is an answer to copy. A reader's own marker is the
@@ -597,12 +597,12 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      */
     revealedPlacements: z.array(placementSchema).nullable(),
     /** What a `name` round shows to be named, and `null` in a `place` round. */
-    shown: worldmapShownSchema.nullable(),
+    shown: atlasShownSchema.nullable(),
     /**
      * What a `place` round asks to place, as each screen may hold it. A `name`
      * round's target is its answer, so it is `null` until the reveal.
      */
-    target: worldmapTargetSchema.nullable()
+    target: atlasTargetSchema.nullable()
   })
 ])
 
@@ -768,11 +768,11 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
      */
     grid: z
       .object({
-        answers: dealtAnswersOf(guessNineAnswerSchema),
-        blackWord: guessNineBlackWordSchema
+        answers: dealtAnswersOf(blackSquareAnswerSchema),
+        blackWord: blackSquareBlackWordSchema
       })
       .nullable(),
-    kind: z.literal('guessnine')
+    kind: z.literal('blacksquare')
   }),
   /**
    * Nothing at all, and on purpose: the console is a screen the room reads, so
@@ -853,8 +853,8 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
    * the console holds a seat — or in a `place` round.
    */
   z.object({
-    answer: worldmapTargetSchema.nullable(),
-    kind: z.literal('worldmap')
+    answer: atlasTargetSchema.nullable(),
+    kind: z.literal('atlas')
   })
 ])
 
@@ -909,7 +909,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({ kind: z.literal('buzzer') }),
   z.object({ kind: z.literal('challenge') }),
-  z.object({ kind: z.literal('guessnine') }),
+  z.object({ kind: z.literal('blacksquare') }),
   z.object({ kind: z.literal('innerclock') }),
   z.object({ kind: z.literal('matchsticks') }),
   z.object({
@@ -930,7 +930,7 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
     progress: z.array(slateProgressSchema)
   }),
   z.object({ kind: z.literal('timeline') }),
-  z.object({ kind: z.literal('worldmap') })
+  z.object({ kind: z.literal('atlas') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

@@ -94,14 +94,14 @@ const useSummaryParts = (): ((parts: SettingsSummaryPart[]) => string) => {
         return translate(sourceKindKey(part.source))
       case 'places':
         return part.places
-          .map((places) => translate(`worldmap.places.${places}`))
+          .map((places) => translate(`atlas.places.${places}`))
           .join(', ')
       case 'answerMode':
         return translate(answerModeLabelKey(part.mode))
       case 'itemCount':
         return translate('slate.items.summary', { count: part.count })
       case 'answerCount':
-        return translate('guessnine.answerCount.summary', {
+        return translate('blacksquare.answerCount.summary', {
           count: part.count
         })
       case 'roundCount':

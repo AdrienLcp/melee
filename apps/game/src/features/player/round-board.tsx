@@ -8,9 +8,9 @@ import {
 } from '@melee/core/scoring/scoreboard'
 
 import {
+  atlasContent,
   nearnessOf,
-  timelineContent,
-  worldmapContent
+  timelineContent
 } from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
@@ -63,7 +63,7 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
         .filter(Boolean)
         .join(' ')}
       data-inline-words={
-        worldmapContent(round)?.direction === 'place' ||
+        atlasContent(round)?.direction === 'place' ||
         timelineContent(round) !== null ||
         undefined
       }

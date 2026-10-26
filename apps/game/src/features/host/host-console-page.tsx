@@ -32,7 +32,7 @@ import { playsThisRound } from '@melee/core/team/duel'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { ChoosingRound } from '@/features/player/choosing-round'
-import { guessNineContent } from '@/helpers/round-content'
+import { blackSquareContent } from '@/helpers/round-content'
 import { useHostConnection } from '@/infrastructure/messaging/use-host-connection'
 import {
   useCameFromWall,
@@ -59,9 +59,9 @@ import {
 } from '@/infrastructure/storage/session-storage'
 import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
+import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { BoardTrack } from '@/presentation/components/board-track'
 import { DuelBadge } from '@/presentation/components/duel-badge'
-import { GuessNineTurn } from '@/presentation/components/guess-nine-turn'
 import { Loader } from '@/presentation/components/loader'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { RoundProgress } from '@/presentation/components/round-progress'
@@ -614,7 +614,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     }
   }
 
-  const spokenTurn = guessNineContent(view?.round)?.spoken ?? null
+  const spokenTurn = blackSquareContent(view?.round)?.spoken ?? null
 
   const header = (
     <header>
@@ -638,7 +638,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         />
       )}
       {spokenTurn !== null && view !== null && view.phase !== 'finished' && (
-        <GuessNineTurn
+        <BlackSquareTurn
           players={view.players}
           seatId={view.youId}
           spoken={spokenTurn}

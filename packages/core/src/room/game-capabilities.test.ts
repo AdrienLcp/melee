@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_GAME_SETTINGS,
   DEFAULT_PETIT_BAC_SETTINGS,
   DEFAULT_TIMELINE_SETTINGS,
-  DEFAULT_WORLDMAP_SETTINGS,
   gameKinds
 } from '@melee/protocol/game'
 
@@ -39,9 +39,9 @@ describe('answerModesFor', () => {
   })
 
   it('[game-capabilities] offers the map a marker when it names, and a name when it shows', () => {
-    expect(answerModesFor(DEFAULT_GAME_SETTINGS.worldmap)).toEqual(['point'])
+    expect(answerModesFor(DEFAULT_GAME_SETTINGS.atlas)).toEqual(['point'])
     expect(
-      answerModesFor({ ...DEFAULT_WORLDMAP_SETTINGS, direction: 'name' })
+      answerModesFor({ ...DEFAULT_ATLAS_SETTINGS, direction: 'name' })
     ).toEqual(['choice', 'typed'])
   })
 

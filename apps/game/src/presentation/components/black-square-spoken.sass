@@ -1,0 +1,18 @@
+@use '../styles/typography'
+
+@layer components
+  .black-square-spoken
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: auto minmax(0, 1fr)
+    justify-items: start
+    min-block-size: 0
+
+    > .black-square-sheet
+      justify-self: stretch
+
+    .say
+      @include typography.title
+
+      color: var(--ink)
+      margin: 0

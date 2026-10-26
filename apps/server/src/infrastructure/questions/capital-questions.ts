@@ -4,10 +4,10 @@ import {
   questionLanguages
 } from '@melee/protocol/question'
 
+import { greatCircleKm } from '@melee/core/atlas/distance'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
 import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
-import { greatCircleKm } from '@melee/core/worldmap/distance'
 
 import { bankedCapitals, type CapitalRow } from './capital-bank'
 import type { BankedQuestion } from './question-bank'

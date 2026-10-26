@@ -1,6 +1,10 @@
 import { z } from 'zod'
 
-import { GUESS_NINE_CELL_COUNT, guessNineAnswerCountSchema } from './guess-nine'
+import { atlasDirectionSchema, atlasPlaceSetSchema } from './atlas'
+import {
+  BLACK_SQUARE_CELL_COUNT,
+  blackSquareAnswerCountSchema
+} from './black-square'
 import { matchsticksGoalSchema } from './matchsticks'
 import {
   MAX_PETIT_BAC_CATEGORIES,
@@ -15,13 +19,12 @@ import {
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { trackDifficultySchema, trackSourceSchema } from './track'
-import { worldmapDirectionSchema, worldmapPlaceSetSchema } from './worldmap'
 
 export const gameKinds = [
   'blindtest',
   'buzzer',
   'challenge',
-  'guessnine',
+  'blacksquare',
   'innerclock',
   'matchsticks',
   'petitbac',
@@ -29,7 +32,7 @@ export const gameKinds = [
   'reflex',
   'slate',
   'timeline',
-  'worldmap'
+  'atlas'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -53,12 +56,12 @@ export const shelvedGames = [
   'slate',
   'reflex',
   'buzzer',
-  'worldmap',
+  'atlas',
   'challenge',
   'innerclock',
   'matchsticks',
   'timeline',
-  'guessnine',
+  'blacksquare',
   'petitbac'
 ] as const satisfies readonly GameKind[]
 
@@ -109,9 +112,9 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
      * How many of the theme's answers a round deals, its most read first.
      * Defaulted so a setup remembered before the count existed still parses.
      */
-    answerCount: guessNineAnswerCountSchema.default(GUESS_NINE_CELL_COUNT),
+    answerCount: blackSquareAnswerCountSchema.default(BLACK_SQUARE_CELL_COUNT),
     doublesLoneFinds: z.boolean().default(false),
-    kind: z.literal('guessnine'),
+    kind: z.literal('blacksquare'),
     /**
      * How long a sheet stays open. Longer than a question's, because a round
      * is up to nine answers and a seat keeps sending until its black word or
@@ -186,13 +189,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     /** Defaulted so a setup remembered before the map asked both ways still parses. */
-    direction: worldmapDirectionSchema.default('place'),
-    kind: z.literal('worldmap'),
+    direction: atlasDirectionSchema.default('place'),
+    kind: z.literal('atlas'),
     /**
      * Defaulted so a host's setup remembered before French cities existed
      * still parses, rather than forgetting the whole game.
      */
-    places: worldmapPlaceSetSchema.default(['countries']),
+    places: atlasPlaceSetSchema.default(['countries']),
     /** How long the map stays open before the round times out. */
     roundDurationMs: z.number().int().min(5_000).max(120_000)
   })
@@ -204,7 +207,7 @@ export type GameSettings = z.infer<typeof gameSettingsSchema>
 export type BlindtestSettings = Extract<GameSettings, { kind: 'blindtest' }>
 export type BuzzerSettings = Extract<GameSettings, { kind: 'buzzer' }>
 export type ChallengeSettings = Extract<GameSettings, { kind: 'challenge' }>
-export type GuessNineSettings = Extract<GameSettings, { kind: 'guessnine' }>
+export type BlackSquareSettings = Extract<GameSettings, { kind: 'blacksquare' }>
 export type InnerclockSettings = Extract<GameSettings, { kind: 'innerclock' }>
 export type MatchsticksSettings = Extract<GameSettings, { kind: 'matchsticks' }>
 export type PetitBacSettings = Extract<GameSettings, { kind: 'petitbac' }>
@@ -212,7 +215,7 @@ export type QuizSettings = Extract<GameSettings, { kind: 'quiz' }>
 export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
 export type TimelineSettings = Extract<GameSettings, { kind: 'timeline' }>
-export type WorldmapSettings = Extract<GameSettings, { kind: 'worldmap' }>
+export type AtlasSettings = Extract<GameSettings, { kind: 'atlas' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -264,10 +267,10 @@ export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
   kind: 'challenge'
 }
 
-export const DEFAULT_GUESS_NINE_SETTINGS: GuessNineSettings = {
-  answerCount: GUESS_NINE_CELL_COUNT,
+export const DEFAULT_BLACK_SQUARE_SETTINGS: BlackSquareSettings = {
+  answerCount: BLACK_SQUARE_CELL_COUNT,
   doublesLoneFinds: false,
-  kind: 'guessnine',
+  kind: 'blacksquare',
   roundDurationMs: 60_000
 }
 
@@ -313,25 +316,25 @@ export const DEFAULT_TIMELINE_SETTINGS: TimelineSettings = {
   roundDurationMs: 45_000
 }
 
-export const DEFAULT_WORLDMAP_SETTINGS: WorldmapSettings = {
+export const DEFAULT_ATLAS_SETTINGS: AtlasSettings = {
   direction: 'place',
-  kind: 'worldmap',
+  kind: 'atlas',
   places: ['countries'],
   roundDurationMs: 30_000
 }
 
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
+  atlas: DEFAULT_ATLAS_SETTINGS,
+  blacksquare: DEFAULT_BLACK_SQUARE_SETTINGS,
   blindtest: DEFAULT_BLINDTEST_SETTINGS,
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
-  guessnine: DEFAULT_GUESS_NINE_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   petitbac: DEFAULT_PETIT_BAC_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,
-  timeline: DEFAULT_TIMELINE_SETTINGS,
-  worldmap: DEFAULT_WORLDMAP_SETTINGS
+  timeline: DEFAULT_TIMELINE_SETTINGS
 }

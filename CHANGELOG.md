@@ -8,6 +8,12 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **The ids follow the names: `blacksquare` and `atlas`.** The game
+  kinds, translation prefixes and URL slugs drop `guessnine` and `worldmap`;
+  `PROTOCOL_VERSION` goes to 62. A setup, a line-up or a saved evening stored
+  under an old id is read as the new one, and `/fr/guessnine` is sent on to
+  `/fr/blacksquare`.
+
 - `[Game]` **Guess nine is called *Case noire* / *Black square*.** Its French
   name was an existing commercial app's, *Devineuf*, for the same kind of game.
 

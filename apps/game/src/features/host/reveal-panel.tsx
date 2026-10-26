@@ -6,20 +6,20 @@ import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
+  atlasContent,
+  blackSquareContent,
   blindtestContent,
-  guessNineContent,
   innerclockContent,
   matchsticksContent,
   petitBacContent,
   quizContent,
   reflexContent,
   revealedInOrder,
-  timelineContent,
-  worldmapContent
+  timelineContent
 } from '@/helpers/round-content'
+import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { FlagPicture } from '@/presentation/components/flag-picture'
-import { GuessNineReveal } from '@/presentation/components/guess-nine-reveal'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -219,17 +219,17 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
     )
   }
 
-  const guessNine = guessNineContent(round)
+  const blackSquare = blackSquareContent(round)
 
   // The grid is the scoreline: who found each cell stands on it, and what it
   // paid them is on the score track.
-  if (guessNine?.revealed != null) {
+  if (blackSquare?.revealed != null) {
     return (
-      <section className='reveal-panel' data-game='guessnine'>
-        <h2 className='guess-nine-theme'>{guessNine.theme[locale]}</h2>
-        <GuessNineReveal
+      <section className='reveal-panel' data-game='blacksquare'>
+        <h2 className='black-square-theme'>{blackSquare.theme[locale]}</h2>
+        <BlackSquareReveal
           players={players}
-          revealed={guessNine.revealed}
+          revealed={blackSquare.revealed}
           youId={null}
         />
       </section>
@@ -254,9 +254,9 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
   }
 
   // The map turned over, and the table nearest first.
-  if (worldmapContent(round) !== null) {
+  if (atlasContent(round) !== null) {
     return (
-      <section className='reveal-panel' data-game='worldmap'>
+      <section className='reveal-panel' data-game='atlas'>
         <MapReveal players={players} round={round} />
         <Outcome players={players} round={round} />
       </section>
