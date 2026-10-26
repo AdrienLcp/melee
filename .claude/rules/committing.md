@@ -17,3 +17,8 @@ paths.
 Where a single file carries both sessions' edits there is no split by path —
 hold the other session's lines out of the working tree for the length of the
 commit, then put them back, or change your approach so the file is not shared.
+
+**A new file has to be added first.** `git commit -- <paths>` records only
+paths git already tracks: an untracked file named there is skipped without a
+word, and the commit lands importing a module it does not carry. `git add` the
+new files, then commit with the same path list.
