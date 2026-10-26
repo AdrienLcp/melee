@@ -35,7 +35,6 @@ export const HomePage: React.FC = () => {
               .
             </span>
           </h1>
-          <p className='promise'>{translate('home.promise')}</p>
         </div>
         <div className='join-box'>
           <JoinWithCode isDisabled={createRoom.isOpeningAny} />

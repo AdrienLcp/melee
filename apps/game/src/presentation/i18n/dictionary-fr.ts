@@ -401,8 +401,6 @@ export const FR_DICTIONARY = defineDictionary({
   },
   home: {
     opening: 'Ouverture de la table…',
-    promise:
-      'Un écran ouvre la table, chacun joue sur le sien. Rien à installer.',
     resume: 'Reprendre la table',
     shelf: 'Les jeux',
     shelfHint: 'Un appui ouvre une table sur ce jeu.',

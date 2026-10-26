@@ -732,8 +732,7 @@ under every answer mode a verdict is owed in.
   container. Nothing is ticked on home: what the table plays is chosen in the
   lobby.
 - **The masthead** (`features/home`): two doors on one row, their bottoms on
-  one line from 60rem. Left, under the wordmark and its one-line promise
-  (`door-headline`, `--ink-muted`), the host's door — **`HostDoor`**, *Open a
+  one line from 60rem. Left, under the wordmark, the host's door — **`HostDoor`**, *Open a
   table* as the coral piece printed on the board with no lid under it, at
   least 18rem wide; while the last table this device opened is still open,
   *Back to table K7PX* sits over it, an underlined link a `--target` tall,
