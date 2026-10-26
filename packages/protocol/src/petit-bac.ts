@@ -151,16 +151,20 @@ export const petitBacLineOutcomeSchema = z.enum([
  */
 export const petitBacRowSchema = z.object({
   authors: z.array(playerIdSchema).min(1),
+  /** Whether the console struck it out, which refuses it whatever the votes say. */
+  isStruck: z.boolean(),
   /** The shared normalisation every spelling folds to: what a vote names the row by. */
   key: z.string().min(1),
   refusals: z.number().int().min(0),
-  /** Whether it falls as the votes stand — a majority of its voters, or the judge. */
+  /** Whether it falls as things stand — a majority of its voters, or the console striking it. */
   refused: z.boolean(),
   text: z.string().min(1).max(PETIT_BAC_ANSWER_MAX_LENGTH)
 })
 
 /** One seat's line on a settled category, as the reveal's grid draws it. `text` is empty for a blank. */
 export const petitBacSettledLineSchema = z.object({
+  /** Whether the console struck the word out; it is then `refused`, and the console may put it back. */
+  isStruck: z.boolean(),
   outcome: petitBacLineOutcomeSchema,
   playerId: playerIdSchema,
   text: petitBacAnswerSchema

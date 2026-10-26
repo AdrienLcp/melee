@@ -276,6 +276,20 @@ export const nextCategoryMessageSchema = z.object({
 })
 
 /**
+ * The console striking a word out of a Petit Bac category, or putting it
+ * back, over whatever the room voted. It holds on the category being voted, on
+ * one already settled and on the reveal, because a word nobody refused is
+ * usually noticed once the grid is up.
+ */
+export const strikePetitBacRowMessageSchema = z.object({
+  categoryIndex: petitBacCategoryIndexSchema,
+  isStruck: z.boolean(),
+  roundId: roundIdSchema,
+  rowKey: z.string().min(1),
+  type: z.literal('host.strikeRow')
+})
+
+/**
  * Takes a stop back and reopens every sheet on the time it left, the caller
  * barred from stopping again that round — until the vote has moved past its
  * first category.
@@ -527,6 +541,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   judgeGroupMessageSchema,
   nextCategoryMessageSchema,
   cancelStopMessageSchema,
+  strikePetitBacRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   moveSeatMessageSchema,
@@ -595,6 +610,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   judgeGroupMessageSchema,
   nextCategoryMessageSchema,
   cancelStopMessageSchema,
+  strikePetitBacRowMessageSchema,
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   moveSeatMessageSchema,
@@ -638,6 +654,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.judgeGroup',
   'host.nextCategory',
   'host.cancelStop',
+  'host.strikeRow',
   'host.drawTeams',
   'host.renameTeam',
   'host.moveSeat',

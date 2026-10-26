@@ -116,6 +116,34 @@
       &:is([data-outcome='refused'], [data-outcome='offLetter'])
         text-decoration: line-through var(--stroke-thin)
 
+      &:has(.strike)
+        padding: 0
+
+    .strike
+      background: none
+      block-size: 100%
+      border: 0
+      border-radius: inherit
+      color: inherit
+      cursor: pointer
+      display: block
+      font: inherit
+      inline-size: 100%
+      overflow: hidden
+      overflow-wrap: inherit
+      padding: var(--space-2xs) calc(var(--space-2xs) * 1.5)
+      text-align: start
+      text-decoration: inherit
+      text-overflow: inherit
+      white-space: inherit
+
+      @media (hover: hover) and (pointer: fine)
+        &[data-hovered]
+          text-decoration: line-through var(--stroke-bold)
+
+        &[data-selected][data-hovered]
+          text-decoration: none
+
     .legend
       @include typography.caption
 
@@ -150,6 +178,10 @@
 
       [data-outcome='refused'] i
         box-shadow: inset 0 0 0 var(--stroke-thin) var(--socket-line)
+
+      .strike-hint
+        color: var(--ink-muted)
+        flex-basis: 100%
 
     // A console held upright: the categories keep the width, a word breaking
     // where the language allows it, and the seat's name stands over its row
@@ -197,3 +229,6 @@
         padding-inline: 0.3em
         text-overflow: ellipsis
         white-space: nowrap
+
+      .strike
+        padding-inline: 0.3em

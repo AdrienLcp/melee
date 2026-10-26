@@ -18,7 +18,7 @@ import {
 } from '@melee/core/petitbac/letter-match'
 import { isRowRefused } from '@melee/core/petitbac/row-vote'
 import { categoryOutcomes, sheetPoints } from '@melee/core/petitbac/sheet-pay'
-import { groupAnswers } from '@melee/core/round/answer-groups'
+import { answerGroupKey, groupAnswers } from '@melee/core/round/answer-groups'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -72,6 +72,7 @@ export const petitBacContent = ({
     stopClosesAtElapsedMs: null,
     stoppedBy: null,
     stopsWhenFull: settings.stopsWhenFull,
+    struckKeys: new Map(),
     votesDone: new Set()
   }
 }
@@ -295,6 +296,7 @@ export const cancelPetitBacStop = ({
   content.sheetsClosed = false
   content.categoryStates = content.categories.map(() => 'open')
   content.refusals = new Map()
+  content.struckKeys = new Map()
   content.votesDone = new Set()
   rescore({ content, room, round })
   touch(room, now)
@@ -449,6 +451,74 @@ export const nextPetitBacCategory = ({
   return Result.success()
 }
 
+/**
+ * The console striking a row out, or putting it back, over the votes. It holds
+ * on any category the vote has reached and through the reveal, and scores
+ * again on the spot like a vote.
+ */
+export const strikePetitBacRow = ({
+  categoryIndex,
+  isStruck,
+  now,
+  room,
+  roundId,
+  rowKey
+}: {
+  categoryIndex: number
+  isStruck: boolean
+  now: number
+  room: Room
+  roundId: RoundId
+  rowKey: string
+}): Result<void, PetitBacRejection> => {
+  const round = room.round
+
+  if (round === null || round.content.kind !== 'petitbac') {
+    return Result.failure('wrong_phase')
+  }
+
+  if (round.id !== roundId) {
+    return Result.failure('stale_round')
+  }
+
+  if (room.phase !== 'playing' && room.phase !== 'revealed') {
+    return Result.failure('wrong_phase')
+  }
+
+  const content = round.content
+  const state = content.categoryStates[categoryIndex]
+
+  if (state === undefined) {
+    return Result.failure('invalid_message')
+  }
+
+  if (state === 'open') {
+    return Result.failure('wrong_phase')
+  }
+
+  const isRow = petitBacRowsFor({ categoryIndex, room }).some(
+    (row) => row.key === rowKey
+  )
+
+  if (!isRow) {
+    return Result.failure('invalid_message')
+  }
+
+  const struckKeys = content.struckKeys.get(categoryIndex) ?? new Set<string>()
+
+  if (isStruck) {
+    struckKeys.add(rowKey)
+  } else {
+    struckKeys.delete(rowKey)
+  }
+
+  content.struckKeys.set(categoryIndex, struckKeys)
+  rescore({ content, room, round })
+  touch(room, now)
+
+  return Result.success()
+}
+
 /** Whether the sheets are still being written, which no reveal may cut short. */
 export const isPetitBacWriting = (room: Room): boolean =>
   room.round?.content.kind === 'petitbac' && !room.round.content.sheetsClosed
@@ -494,6 +564,7 @@ export const petitBacRowsFor = ({
   const seats = petitBacSeats({ room, round })
   const roster = new Set(seats)
   const refusals = content.refusals.get(categoryIndex)
+  const struckKeys = content.struckKeys.get(categoryIndex)
 
   return groupAnswers(
     seats.flatMap((playerId) => {
@@ -506,14 +577,17 @@ export const petitBacRowsFor = ({
     })
   ).map(({ key, playerIds, text }) => {
     const refusedBy = refusals?.get(key) ?? new Set<PlayerId>()
+    const isStruck = struckKeys?.has(key) ?? false
 
     return {
       authors: playerIds,
+      isStruck,
       key,
       refusals: [...refusedBy].filter(
         (playerId) => roster.has(playerId) && !playerIds.includes(playerId)
       ).length,
-      refused: isRowRefused({ authors: playerIds, refusedBy, roster }),
+      refused:
+        isStruck || isRowRefused({ authors: playerIds, refusedBy, roster }),
       text
     }
   })
@@ -535,12 +609,21 @@ export const petitBacLinesFor = ({
 
   const content = round.content
   const outcomes = outcomesFor({ categoryIndex, content, room, round })
+  const struckKeys = content.struckKeys.get(categoryIndex)
 
-  return petitBacSeats({ room, round }).map((playerId) => ({
-    outcome: outcomes.get(playerId) ?? 'empty',
-    playerId,
-    text: content.sheets.get(playerId)?.get(categoryIndex) ?? ''
-  }))
+  return petitBacSeats({ room, round }).map((playerId) => {
+    const text = content.sheets.get(playerId)?.get(categoryIndex) ?? ''
+    const outcome = outcomes.get(playerId) ?? 'empty'
+
+    return {
+      isStruck:
+        outcome === 'refused' &&
+        (struckKeys?.has(answerGroupKey(text)) ?? false),
+      outcome,
+      playerId,
+      text
+    }
+  })
 }
 
 const votingRoundIn = ({

@@ -1132,6 +1132,8 @@ export const FR_DICTIONARY = defineDictionary({
         shared: 'Partagée',
         unique: 'Personne d’autre'
       },
+      strike: 'Rayer : {answer}',
+      strikeHint: 'Choisis un mot pour le rayer ou le remettre',
       title: 'Ta feuille'
     },
     scoring:

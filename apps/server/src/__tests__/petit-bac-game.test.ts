@@ -457,6 +457,99 @@ describe('a Petit Bac round through the seam', () => {
     ).toBe('offLetter')
   })
 
+  it('[petitbac] lets the console strike a word nobody refused, on the vote and on the reveal, and put it back', async () => {
+    const {
+      doneVoting,
+      host,
+      idOf,
+      lea,
+      max,
+      roundId,
+      sheetsClosed,
+      stop,
+      write,
+      zoe
+    } = await roundInPlay()
+
+    await write(zoe, SHEETS.zoe)
+    await write(max, SHEETS.max)
+    await write(lea, SHEETS.lea)
+    stop(zoe)
+    await sheetsClosed()
+
+    const strike = ({
+      categoryIndex,
+      isStruck = true,
+      rowKey
+    }: {
+      categoryIndex: number
+      isStruck?: boolean
+      rowKey: string
+    }) =>
+      host.send({
+        categoryIndex,
+        isStruck,
+        roundId,
+        rowKey,
+        type: 'host.strikeRow'
+      })
+
+    strike({ categoryIndex: 0, rowKey: 'belgique' })
+    await waitFor(
+      () =>
+        petitBacRound(playerView(lea))?.rows?.find(
+          ({ key }) => key === 'belgique'
+        )?.refused === true,
+      'the struck row to fall without a vote'
+    )
+
+    for (const categoryIndex of [0, 1, 2]) {
+      doneVoting(categoryIndex)
+      await waitFor(
+        () =>
+          petitBacRound(playerView(zoe))?.categoryStates[categoryIndex] ===
+          'settled',
+        `category ${categoryIndex} to settle`
+      )
+    }
+
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const pointsOf = (seat: Seat) =>
+      hostView(host)?.round?.awards.find(
+        ({ playerId }) => playerId === idOf(seat)
+      )?.points
+    const scoreOf = (seat: Seat) =>
+      hostView(host)?.players.find(({ id }) => id === idOf(seat))?.score
+
+    // Zoe: Belgique struck, Baleine shared, Bastien unique.
+    expect(pointsOf(zoe)).toBe(3 * POINT)
+
+    strike({ categoryIndex: 2, rowKey: 'bastien' })
+    await waitFor(() => pointsOf(zoe) === POINT, 'the reveal to pay again')
+
+    expect(scoreOf(zoe)).toBe(POINT)
+    expect(
+      petitBacRound(playerView(zoe))?.lines[2]?.find(
+        ({ playerId }) => playerId === idOf(zoe)
+      )
+    ).toMatchObject({ isStruck: true, outcome: 'refused' })
+
+    strike({ categoryIndex: 2, isStruck: false, rowKey: 'bastien' })
+    await waitFor(
+      () => pointsOf(zoe) === 3 * POINT,
+      'the word put back to pay again'
+    )
+
+    expect(scoreOf(zoe)).toBe(3 * POINT)
+
+    strike({ categoryIndex: 2, rowKey: 'nobody-wrote-this' })
+    await waitFor(
+      () => errorsIn(host).some(({ code }) => code === 'invalid_message'),
+      'a word nobody wrote to be refused'
+    )
+  })
+
   it('[petitbac] refuses a reveal while the sheets are being written', async () => {
     const { host, roundId } = await roundInPlay()
 

@@ -429,7 +429,20 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             })
           }}
         >
-          <RevealPanel players={view.players} round={round} />
+          <RevealPanel
+            onStrike={
+              controls === null
+                ? undefined
+                : (strike) =>
+                    controls.send({
+                      ...strike,
+                      roundId: round.id,
+                      type: 'host.strikeRow'
+                    })
+            }
+            players={view.players}
+            round={round}
+          />
           <Standings
             board={view.settings.board}
             onAdjust={

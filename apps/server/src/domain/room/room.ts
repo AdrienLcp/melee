@@ -363,6 +363,8 @@ export type Round = {
         stoppedBy: PlayerId | null
         /** Read off the settings as the round opens, so a switch flipped mid-round decides the next one. */
         stopsWhenFull: boolean
+        /** The row keys the console struck out, by category index: refused whatever the votes say. */
+        struckKeys: Map<number, Set<string>>
         /** Who said they are done with the category being voted; emptied as the next one goes up. */
         votesDone: Set<PlayerId>
       }

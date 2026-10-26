@@ -107,6 +107,7 @@ reconnect on the token it still holds.
 | `host.showItem` | host | `roundId`, `itemIndex` |
 | `host.judgeGroup` | host | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}` |
 | `host.cancelStop` | host | `roundId` — takes a Petit Bac stop back and reopens every sheet on the time it left, until the vote moves past its first category |
+| `host.strikeRow` | host | `roundId`, `categoryIndex`, `rowKey`, `isStruck` — strikes a Petit Bac word out over the votes, or puts it back, on any category the vote has reached and through the reveal |
 | `host.nextCategory` | host | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last |
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
 | `host.renameTeam` | host | `teamId`, `name` |
@@ -457,10 +458,16 @@ the round's answers on the letter under the shared normalisation, named by its
 and a row falls on a **strict majority** of the round's seats that did not
 write it. Every seat sending `petitbac.doneVoting`, or the console's
 `host.nextCategory`, settles the category and moves on; a `categoryIndex` that
-is not the one being voted is `stale_round`. The room's vote is the only one:
-a judge refusing rows alone went with `hasJudge`, because the one fact left to
-key it on — the console holds no seat — is a television on the wall, which would
-have lost the table its vote. Each vote
+is not the one being voted is `stale_round`. There is no judge *instead of*
+the vote — that went with `hasJudge`, because the one fact left to key it on,
+the console holding no seat, is a television on the wall, which would have lost
+the table its vote. The console strikes **on top of** it: `host.strikeRow`
+refuses a row whatever its votes say, or puts back one it struck, on the
+category being voted, on any already settled and through the reveal — a word
+nobody bothered to refuse is noticed once the grid is up, and a table that let
+gibberish through by default is the case it exists for. A row the vote refused
+stays the vote's. The row and the settled line carry `isStruck`, and a
+`rowKey` no seat wrote is `invalid_message`. Each vote or strike
 re-pays the round from the sheets — 2 `POINT`s for an accepted answer nobody
 else wrote, 1 for a shared one, no speed bonus — and `host.reveal` is refused
 `wrong_phase` while the sheets are open, then settles what is left on the votes

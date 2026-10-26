@@ -1191,6 +1191,8 @@ export const EN_DICTIONARY = defineDictionary({
         shared: 'Shared',
         unique: 'Nobody else'
       },
+      strike: 'Strike out: {answer}',
+      strikeHint: 'Pick a word to strike it out or put it back',
       title: 'Your sheet'
     },
     scoring:

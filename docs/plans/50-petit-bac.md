@@ -182,6 +182,15 @@ screens below read those three rather than guessing. The clock is put back by
 setting `round.elapsedMs` to the moment of the stop; not tested over a socket,
 like the clock running out.
 
+**The console strikes a word out, 26/10/2026.** A table let a sheet of the
+letter plus gibberish through: a row stands by default and falls only on a
+strict majority, so a room that taps *done* without refusing pays it. `host.strikeRow`
+refuses a row over the votes — or puts it back — from the vote through the
+reveal, and the console's results grid makes every word a room kept a press
+that strikes it (`PetitBacGrid`'s `onStrike`, absent on the wall). Not on
+the console's vote stage: that screen is read by the room, and the grid is
+where the word gets noticed. A struck word re-pays the round on the spot.
+
 - **A seat**: the letter large, one field per category, the stop once the
   sheet is full, the grace counting down; then the category being voted, its
   rows, *doesn't count* on the others'.

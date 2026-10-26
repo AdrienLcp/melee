@@ -63,6 +63,7 @@ import {
   nextPetitBacCategory,
   type PetitBacRejection,
   stopPetitBac,
+  strikePetitBacRow,
   votePetitBacRow,
   writePetitBacLine
 } from '@/domain/round/petit-bac-round'
@@ -512,6 +513,22 @@ const dispatch = ({
           now,
           room,
           roundId: message.roundId
+        })
+      })
+      break
+    }
+    case 'host.strikeRow': {
+      answerPetitBacFrame({
+        engine,
+        outbound,
+        refusal: 'That word cannot be struck out now',
+        result: strikePetitBacRow({
+          categoryIndex: message.categoryIndex,
+          isStruck: message.isStruck,
+          now,
+          room,
+          roundId: message.roundId,
+          rowKey: message.rowKey
         })
       })
       break

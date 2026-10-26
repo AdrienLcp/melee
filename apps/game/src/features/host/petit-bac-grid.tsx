@@ -1,20 +1,32 @@
 import type React from 'react'
+import { ToggleButton } from 'react-aria-components'
 
+import type { PetitBacSettledLine } from '@melee/protocol/petit-bac'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
 import { PETIT_BAC_POINTS } from '@melee/core/petitbac/sheet-pay'
+import { answerGroupKey } from '@melee/core/round/answer-groups'
 
 import { petitBacCategoryId } from '@/features/player/petit-bac-sheet'
 import { petitBacContent } from '@/helpers/round-content'
+import { shownPoints } from '@/helpers/shown-points'
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
 
 import './petit-bac-grid.sass'
-import { shownPoints } from '@/helpers/shown-points'
+
+/** A word the console strikes out over the votes, or puts back. */
+export type PetitBacStrike = {
+  categoryIndex: number
+  isStruck: boolean
+  rowKey: string
+}
 
 type PetitBacGridProps = {
+  /** Present on the console alone: every word on the letter becomes a press that strikes it out or puts it back. */
+  onStrike?: (strike: PetitBacStrike) => void
   /** Needed to turn the lines' player ids into names and pawns. */
   players: readonly PublicPlayer[]
   round: RoundView
@@ -26,6 +38,7 @@ type PetitBacGridProps = {
  * it, and what the round paid at the end of the row.
  */
 export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
+  onStrike,
   players,
   round
 }) => {
@@ -103,10 +116,31 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
                       data-outcome={outcome}
                       key={petitBacCategoryId(category)}
                     >
-                      {line?.text || (
-                        <VisuallyHidden elementType='span'>
-                          {translate('petitbac.reveal.outcome.empty')}
-                        </VisuallyHidden>
+                      {onStrike !== undefined &&
+                      line !== null &&
+                      canBeStruck(line) ? (
+                        <ToggleButton
+                          aria-label={translate('petitbac.reveal.strike', {
+                            answer: line.text
+                          })}
+                          className='strike'
+                          isSelected={line.isStruck}
+                          onChange={(isStruck) =>
+                            onStrike({
+                              categoryIndex: index,
+                              isStruck,
+                              rowKey: answerGroupKey(line.text)
+                            })
+                          }
+                        >
+                          {line.text}
+                        </ToggleButton>
+                      ) : (
+                        line?.text || (
+                          <VisuallyHidden elementType='span'>
+                            {translate('petitbac.reveal.outcome.empty')}
+                          </VisuallyHidden>
+                        )
                       )}
                     </td>
                   )
@@ -144,7 +178,19 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
           <i />
           {translate('petitbac.wall.legendNothing', { letter })}
         </span>
+        {onStrike !== undefined && (
+          <span className='strike-hint'>
+            {translate('petitbac.reveal.strikeHint')}
+          </span>
+        )}
       </p>
     </div>
   )
 }
+
+/**
+ * A word the room kept, or one the console struck: a word the vote refused
+ * stays the vote's, and a blank or off-the-letter line was never a word.
+ */
+const canBeStruck = (line: PetitBacSettledLine): boolean =>
+  line.isStruck || line.outcome === 'unique' || line.outcome === 'shared'

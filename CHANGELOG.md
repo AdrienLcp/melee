@@ -6,6 +6,14 @@ one part.
 
 ## Unreleased
 
+### Features
+
+- `[Shared]` **The host strikes a Petit Bac word out.** On the results grid,
+  every word the room kept is a press that strikes it out — gibberish nobody
+  voted against no longer pays — and a second press puts it back; the round is
+  paid again on the spot. `host.strikeRow` holds from the vote through the
+  reveal, over whatever the votes said.
+
 ### Improvements
 
 - `[Game]` **Scores print a hundred times smaller.** A right pick reads `+10`, a

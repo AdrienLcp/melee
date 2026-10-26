@@ -32,12 +32,14 @@ import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { PetitBacGrid } from './petit-bac-grid'
+import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
 
 import './reveal-panel.sass'
 import { shownPoints } from '@/helpers/shown-points'
 
 type RevealPanelProps = {
+  /** The console striking a Petit Bac word out; absent wherever the reveal is only read. */
+  onStrike?: (strike: PetitBacStrike) => void
   /** Needed to turn the awards' player ids into names and pawns. */
   players: readonly PublicPlayer[]
   round: RoundView
@@ -117,7 +119,11 @@ const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
  * something reveals it here and nowhere else; one whose question the room owns
  * has nothing to give away, and the panel is the scoreline alone.
  */
-export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
+export const RevealPanel: React.FC<RevealPanelProps> = ({
+  onStrike,
+  players,
+  round
+}) => {
   const { locale, translate } = useI18n()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
@@ -249,7 +255,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({ players, round }) => {
           undefined
         }
       >
-        <PetitBacGrid players={players} round={round} />
+        <PetitBacGrid onStrike={onStrike} players={players} round={round} />
       </section>
     )
   }
