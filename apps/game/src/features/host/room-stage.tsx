@@ -29,6 +29,7 @@ import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RevealHold } from '@/presentation/components/round-progress'
+import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 
 import { ChallengePlacing } from './challenge-placing'
 import { ClipOffer } from './clip-offer'
@@ -165,19 +166,20 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   }
 
   if (view.phase === 'countdown' && round?.startsAt != null) {
-    // The round that just ran, still up while the next one counts in. It is the
-    // whole of what made this screen repetitive: a number replacing the answer
-    // the room was in the middle of arguing about. The field is the countdown's
-    // own — the colour is what says a new round is coming, and the content is
-    // what says what the last one was.
+    // The round that just ran, still up while the next one counts in — but only
+    // when the hold opened it: the room was still reading the answer then. A
+    // host who pressed *Next round* has said the room is done with it.
+    const recap =
+      lastRevealed?.advancesAt != null &&
+      round.startsAt >= lastRevealed.advancesAt
+        ? lastRevealed
+        : null
+
     return (
-      <div
-        className={lastRevealed === null ? 'stage solo' : 'stage counting-in'}
-      >
+      <div className={recap === null ? 'stage solo' : 'stage counting-in'}>
+        {recap === null && <NextGameName settings={view.settings} />}
         <Countdown clock={clock} target={round.startsAt} />
-        {lastRevealed !== null && (
-          <RevealPanel players={view.players} round={lastRevealed} />
-        )}
+        {recap !== null && <RevealPanel players={view.players} round={recap} />}
         {clipOffer}
       </div>
     )
@@ -498,6 +500,17 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       youId={youId}
     />
   )
+}
+
+/** The game about to open, named only on an evening of several. */
+const NextGameName: React.FC<{ settings: RoomSettings }> = ({ settings }) => {
+  const entryName = useEntryName(settings)
+
+  if (settings.lineUp.length < 2 || entryName === null) {
+    return null
+  }
+
+  return <h2 className='next-game'>{entryName}</h2>
 }
 
 /**

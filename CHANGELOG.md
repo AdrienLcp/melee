@@ -16,6 +16,11 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A round launched by hand counts in on its own.** When the host
+  presses *Next round*, the console and the wall no longer put the last
+  round's results back up beside the 3-2-1: the countdown stands alone, under
+  the name of the game coming next on a line-up of several. A round the hold
+  opens keeps the results, since the room is still reading them.
 - `[Game]` **Scores print a hundred times smaller.** A right pick reads `+10`, a
   typed answer `+30`, where a single round could print
   `+12 000`. The board still counts in thousandths of a point, so two seats

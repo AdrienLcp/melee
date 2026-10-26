@@ -437,6 +437,17 @@
       .countdown
         --token-size: clamp(4rem, min(calc(var(--stage-unit) * 56), 100cqh - 5rem), 30rem)
 
+      .next-game
+        @include typography.billboard-wrapping
+
+        max-width: 100%
+        overflow-wrap: anywhere
+        text-align: center
+        text-wrap: balance
+
+        + .countdown
+          --token-size: clamp(4rem, min(calc(var(--stage-unit) * 44), 100cqh - 12rem), 24rem)
+
   // The reflex race the same way: its card, its signal and the pawns landing
   // under it are sized against the box the header and the footer leave.
   .host-console-page:has(> .stage.solo > .reflex-stage)
