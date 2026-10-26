@@ -114,6 +114,11 @@
     &:is([aria-busy='true'] *)
       cursor: progress
 
+    &[data-disabled]
+      cursor: not-allowed
+      filter: saturate(0.25)
+      opacity: 0.5
+
     @media (hover: hover) and (pointer: fine)
       &[data-hovered] > svg
         translate: var(--space-2xs) 0

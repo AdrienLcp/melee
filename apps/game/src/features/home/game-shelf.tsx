@@ -30,8 +30,9 @@ type GameShelfProps = {
  * click Enter fires, so a guard there alone let the router follow the link
  * first. Holding Enter's own click back is what keeps it from navigating.
  *
- * Spines stay enabled while a table opens, so focus stays on the one pressed;
- * the hook refuses a second opening.
+ * While a table opens, every spine but the one pressed is disabled: it keeps
+ * its focus and its spinner, and the rest stop answering a press the hook would
+ * refuse anyway.
  *
  * react-aria's `Link` rather than the design-system one: a spine is a piece of
  * the box with two lines on it, not a control with a label.
@@ -62,6 +63,7 @@ export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
             <Link
               className='spine-link'
               href={gameHomePathFor({ game, locale })}
+              isDisabled={isOpeningAny && !openingFor?.includes(game)}
               onClick={(event) => {
                 if (event.button === 0 && !hasModifier(event)) {
                   event.preventDefault()
