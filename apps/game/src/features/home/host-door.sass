@@ -16,18 +16,6 @@
       text-wrap: balance
       white-space: normal
 
-      // The shared pending state blanks the label under a spinner drawn in
-      // coral's own ink, which read as an empty piece for the second a table
-      // takes to open: here the label stays and the spinner follows it at the
-      // control's gap. The door is stretched, so the pair centres without the
-      // piece changing width.
-      &[data-pending]
-        color: var(--on-control)
-
-        .spinner
-          margin: 0 0 0 var(--space-xs)
-          position: static
-
     .resume
       align-items: center
       justify-self: start

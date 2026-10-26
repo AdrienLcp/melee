@@ -10,6 +10,7 @@ import { parseRoomCodeInput } from '@melee/core/room/room-code'
 import { roomExists } from '@/infrastructure/api/melee-api'
 import { playPathFor } from '@/infrastructure/router/navigation'
 import { Button } from '@/presentation/components/button'
+import { ArrowIcon } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
 import {
   type FieldError,
@@ -111,6 +112,7 @@ export const JoinWithCode: React.FC<JoinWithCodeProps> = ({ isDisabled }) => {
           value={code}
         />
         <Button
+          icon={<ArrowIcon />}
           isDisabled={isDisabled}
           isPending={isJoining}
           size='large'

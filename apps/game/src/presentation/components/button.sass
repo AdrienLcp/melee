@@ -6,7 +6,31 @@
 
     // The label keeps its box and only loses its colour while pending, so the
     // button cannot change width under a spinner that replaces nothing.
-    .spinner
+    > .spinner
       inset: 0
       margin: auto
       position: absolute
+
+    // The glyph's box, held whichever of the two is in it.
+    > .control-icon
+      align-items: center
+      display: inline-flex
+      flex: none
+      height: 1.25em
+      justify-content: center
+      width: 1.25em
+
+      > svg
+        transition: translate var(--transition-fast, 0s) var(--ease-out)
+
+      > .spinner
+        height: 1em
+        margin: 0
+        width: 1em
+
+    &[data-pending]:has(> .control-icon)
+      color: var(--on-control)
+
+    @media (hover: hover) and (pointer: fine)
+      &[data-hovered] > .control-icon > svg
+        translate: var(--space-2xs) 0

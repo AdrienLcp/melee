@@ -4,6 +4,7 @@ import type { ShelvedGame } from '@melee/protocol/game'
 
 import type { CreateRoom } from '@/features/home/use-create-room'
 import { Button } from '@/presentation/components/button'
+import { ArrowIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './game-doors.sass'
@@ -25,6 +26,7 @@ export const GameDoors: React.FC<GameDoorsProps> = ({ createRoom, game }) => {
   return (
     <div className='game-doors'>
       <Button
+        icon={<ArrowIcon />}
         isPending={isOpeningAny}
         onPress={() => {
           void open({ games: [game] })

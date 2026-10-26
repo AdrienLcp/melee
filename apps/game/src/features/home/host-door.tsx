@@ -53,6 +53,7 @@ export const HostDoor: React.FC<HostDoorProps> = ({ createRoom }) => {
       )}
 
       <Button
+        icon={<ArrowIcon />}
         isDisabled={isOpeningAny && !isOpeningLobby}
         isPending={isOpeningLobby}
         onPress={() => {
