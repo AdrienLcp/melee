@@ -30,9 +30,9 @@ type MapRevealProps = {
 export const MapReveal: React.FC<MapRevealProps> = ({ players, round }) => {
   const { locale, translate } = useI18n()
   const content = worldmapContent(round)
-  const distanceWords = useDistanceWords(content?.target.kind ?? 'country')
+  const distanceWords = useDistanceWords(content?.target?.kind ?? 'country')
 
-  if (content === null) {
+  if (content === null || content.target === null) {
     return null
   }
 

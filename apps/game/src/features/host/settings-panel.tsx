@@ -245,7 +245,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   const isDisabled = !isLive
   const game = settings.game
   const mode = settings.mode
-  const offeredModes = answerModesFor(game?.kind ?? null).filter((offered) =>
+  const offeredModes = answerModesFor(game).filter((offered) =>
     isPlayableWithTeams({ mode: offered, teams: settings.teams })
   )
   // Read from the draft rather than from the room, or this strip goes on
@@ -294,14 +294,14 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           label={translate('worldmap.places.label')}
           onChange={(next) => {
             if (isWorldmapPlaces(next)) {
-              onChange({ ...settings, game: { ...game, places: next } })
+              onChange({ ...settings, game: { ...game, places: [next] } })
             }
           }}
           options={worldmapPlacesSchema.options.map((places) => ({
             label: translate(`worldmap.places.${places}`),
             value: places
           }))}
-          value={game.places}
+          value={game.places[0] ?? 'countries'}
         />
       )}
 

@@ -602,7 +602,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
 
     const worldmap = worldmapContent(round)
 
-    if (worldmap !== null) {
+    if (worldmap?.target != null) {
       return (
         <section className='player-round map-round'>
           <div className='round-card'>
@@ -821,7 +821,7 @@ const WatchedDuel: React.FC<{
     )
   }
 
-  if (worldmap !== null) {
+  if (worldmap?.target != null) {
     return (
       <section className='player-round map-round'>
         <div className='round-card'>

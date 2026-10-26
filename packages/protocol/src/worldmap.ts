@@ -36,6 +36,33 @@ export const worldmapPlacesSchema = z.enum([
 ])
 
 /**
+ * Every kind of place the table ticked, at least one, so an evening can mix
+ * France and the world: each round draws one kind, and the kind picks its map.
+ * A single kind is read as a set of one — what a setup remembered before the
+ * set existed holds.
+ */
+export const worldmapPlaceSetSchema = z.preprocess(
+  (stored) => (typeof stored === 'string' ? [stored] : stored),
+  z
+    .array(worldmapPlacesSchema)
+    .min(1)
+    .refine((places) => new Set(places).size === places.length)
+)
+
+/**
+ * Which way a round asks: `place` names a place and the table puts a pawn on
+ * it, `name` shows one and the table names it — typed or picked among four,
+ * like a quiz question.
+ */
+export const worldmapDirectionSchema = z.enum(['place', 'name'])
+
+/** A place's name in each language a screen speaks — *Allemagne*, *Germany*. */
+export const localizedNameSchema = z.object({
+  en: z.string().min(1),
+  fr: z.string().min(1)
+})
+
+/**
  * What one round asks for. A country is public from the first frame, because
  * naming it *is* the question and every screen already draws its outline. A
  * city is named from the first frame too, but where it stands is the answer:
@@ -61,13 +88,26 @@ export const worldmapTargetSchema = z.discriminatedUnion('kind', [
     countryCode: countryCodeSchema.nullable(),
     kind: z.literal(worldmapTargetKindSchema.enum.capital),
     /** Its name in each language, because a capital's name changes with it. */
-    names: z.object({ en: z.string().min(1), fr: z.string().min(1) }),
+    names: localizedNameSchema,
     point: geoPointSchema.nullable()
   })
 ])
 
+/**
+ * What a `name` round shows, and nothing it asks: a city's or a capital's own
+ * point, or for a country a point inside it, which the screen fills from its
+ * own outlines. A country's code *is* its answer, so no code rides here.
+ */
+export const worldmapShownSchema = z.object({
+  kind: worldmapTargetKindSchema,
+  point: geoPointSchema
+})
+
 export type GeoPoint = z.infer<typeof geoPointSchema>
 export type Placement = z.infer<typeof placementSchema>
 export type WorldmapPlaces = z.infer<typeof worldmapPlacesSchema>
+export type WorldmapDirection = z.infer<typeof worldmapDirectionSchema>
+export type LocalizedName = z.infer<typeof localizedNameSchema>
+export type WorldmapShown = z.infer<typeof worldmapShownSchema>
 export type WorldmapTargetKind = z.infer<typeof worldmapTargetKindSchema>
 export type WorldmapTarget = z.infer<typeof worldmapTargetSchema>

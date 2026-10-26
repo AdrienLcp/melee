@@ -60,6 +60,7 @@ import type {
   PlayerAttempts,
   Room,
   Round,
+  WorldmapNaming,
   WorldmapRoundTarget
 } from '@/domain/room/room'
 import { touch, updateSettings } from '@/domain/room/room-service'
@@ -697,10 +698,15 @@ type ShapeOf = (code: CountryCode) => CountryShape | null
  * A map round's content. The outlines stay out of it: a room is stored after
  * every change, and a shape's `contains` is a function no storage can clone.
  */
-export const worldmapContent = (
+export const worldmapContent = ({
+  naming,
+  target
+}: {
+  naming: WorldmapNaming | null
   target: WorldmapRoundTarget
-): Round['content'] => ({
+}): Round['content'] => ({
   kind: 'worldmap',
+  naming,
   placements: [],
   target
 })
@@ -921,6 +927,10 @@ const grade = ({
 }): { said: string; verdict: Verdict } | null => {
   const content = round.content
 
+  if (content.kind === 'worldmap' && content.naming !== null) {
+    return gradeNaming({ attempt, held, naming: content.naming })
+  }
+
   if (content.kind === 'worldmap') {
     if (attempt.kind !== 'point') {
       return null
@@ -1047,6 +1057,60 @@ const grade = ({
   }
 
   return null
+}
+
+/**
+ * A `name` round is a quiz question asked by the map, and graded like one:
+ * the whole line against every spelling in both languages, short of the
+ * neighbours. A pick says the name in French, which a screen finds among the
+ * choices to say in its own language.
+ */
+const gradeNaming = ({
+  attempt,
+  held,
+  naming
+}: {
+  attempt: Attempt
+  held: PlayerAttempts | undefined
+  naming: WorldmapNaming
+}): { said: string; verdict: Verdict } | null => {
+  if (attempt.kind === 'choice') {
+    const picked = naming.choices[attempt.choiceIndex]
+
+    return picked === undefined
+      ? null
+      : {
+          said: picked.fr,
+          verdict: {
+            isCorrect: attempt.choiceIndex === naming.correctChoiceIndex,
+            kind: 'single'
+          }
+        }
+  }
+
+  if (attempt.kind !== 'typed') {
+    return null
+  }
+
+  const banked = held?.verdict.kind === 'single' && held.verdict.isCorrect
+  const [answer = naming.answer.fr, ...accepted] = naming.accepted
+
+  return {
+    said: attempt.guess,
+    verdict: {
+      isCorrect:
+        banked ||
+        gradeQuizGuess({
+          guess: attempt.guess,
+          question: {
+            accepted,
+            answer,
+            decoys: naming.decoys.flatMap(({ en, fr }) => [en, fr])
+          }
+        }).isCorrect,
+      kind: 'single'
+    }
+  }
 }
 
 export const applyVerdict = ({

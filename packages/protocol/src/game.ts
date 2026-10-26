@@ -15,7 +15,7 @@ import {
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { trackDifficultySchema, trackSourceSchema } from './track'
-import { worldmapPlacesSchema } from './worldmap'
+import { worldmapDirectionSchema, worldmapPlaceSetSchema } from './worldmap'
 
 export const gameKinds = [
   'blindtest',
@@ -185,12 +185,14 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     roundDurationMs: z.number().int().min(15_000).max(120_000)
   }),
   z.object({
+    /** Defaulted so a setup remembered before the map asked both ways still parses. */
+    direction: worldmapDirectionSchema.default('place'),
     kind: z.literal('worldmap'),
     /**
      * Defaulted so a host's setup remembered before French cities existed
      * still parses, rather than forgetting the whole game.
      */
-    places: worldmapPlacesSchema.default('countries'),
+    places: worldmapPlaceSetSchema.default(['countries']),
     /** How long the map stays open before the round times out. */
     roundDurationMs: z.number().int().min(5_000).max(120_000)
   })
@@ -312,8 +314,9 @@ export const DEFAULT_TIMELINE_SETTINGS: TimelineSettings = {
 }
 
 export const DEFAULT_WORLDMAP_SETTINGS: WorldmapSettings = {
+  direction: 'place',
   kind: 'worldmap',
-  places: 'countries',
+  places: ['countries'],
   roundDurationMs: 30_000
 }
 

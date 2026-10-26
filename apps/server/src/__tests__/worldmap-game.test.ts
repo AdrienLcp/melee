@@ -20,13 +20,19 @@ import {
 } from './room-harness'
 
 vi.mock('@/infrastructure/questions/country-bank', () => ({
-  BANKED_COUNTRIES: ['FRA'],
+  BANKED_COUNTRIES: ['FRA', 'BEL', 'DEU', 'ESP', 'ITA'],
   drawCountry: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
     playedIds.has('worldmap:FRA') ? null : 'FRA',
   playedCountryId: (code: string) => `worldmap:${code}`
 }))
 
 vi.mock('@/infrastructure/questions/city-bank', () => ({
+  BANKED_CITIES: [
+    { name: 'Rennes', point: { latitude: 48.117, longitude: -1.678 } },
+    { name: 'Brest', point: { latitude: 48.39, longitude: -4.486 } },
+    { name: 'Vannes', point: { latitude: 47.658, longitude: -2.76 } },
+    { name: 'Laval', point: { latitude: 48.073, longitude: -0.77 } }
+  ],
   drawCity: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
     playedIds.has('worldmap:city:Rennes')
       ? null
@@ -43,7 +49,8 @@ const CANBERRA = {
 vi.mock('@/infrastructure/questions/world-capitals', () => ({
   drawCapital: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
     playedIds.has('worldmap:capital:AUS') ? null : CANBERRA,
-  playedCapitalId: (code: string) => `worldmap:capital:${code}`
+  playedCapitalId: (code: string) => `worldmap:capital:${code}`,
+  worldCapitals: () => []
 }))
 
 const WORLDMAP: RoomSettings = {
@@ -56,12 +63,33 @@ const WORLDMAP: RoomSettings = {
 
 const FRENCH_CITIES: RoomSettings = {
   ...WORLDMAP,
-  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: 'frenchCities' }
+  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: ['frenchCities'] }
 }
 
 const WORLD_CAPITALS: RoomSettings = {
   ...WORLDMAP,
-  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: 'worldCapitals' }
+  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: ['worldCapitals'] }
+}
+
+const NAME_THE_COUNTRY: RoomSettings = {
+  ...WORLDMAP,
+  game: { ...DEFAULT_WORLDMAP_SETTINGS, direction: 'name' },
+  mode: DEFAULT_MODE_SETTINGS.choice
+}
+
+const NAME_THE_CITY: RoomSettings = {
+  ...WORLDMAP,
+  game: {
+    ...DEFAULT_WORLDMAP_SETTINGS,
+    direction: 'name',
+    places: ['frenchCities']
+  },
+  mode: DEFAULT_MODE_SETTINGS.typed
+}
+
+const COUNTRIES_AND_CITIES: RoomSettings = {
+  ...WORLDMAP,
+  game: { ...DEFAULT_WORLDMAP_SETTINGS, places: ['countries', 'frenchCities'] }
 }
 
 const PARIS = { latitude: 48.8566, longitude: 2.3522 }
@@ -372,5 +400,191 @@ describe('a world capital round through the seam', () => {
     expect(
       basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
     ).toBe(2 * POINT)
+  })
+})
+
+describe('a map round that shows a place for the table to name', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  const roundInPlay = async (settings: RoomSettings) => {
+    const { code, host } = await harness.openRoom(settings)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const max = await harness.seat({ code, nickname: 'Max' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => playerView(zoe)?.phase === 'playing', 'the map to open')
+
+    return { host, max, roundId: playerView(zoe)?.round?.id ?? '', zoe }
+  }
+
+  it('[worldmap] shows a point inside the country and names it to nobody but the console until the reveal', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay(NAME_THE_COUNTRY)
+    const round = worldmapRound(playerView(zoe))
+    const shown = round?.shown?.point
+
+    expect(round?.direction).toBe('name')
+    expect(round?.target).toBeNull()
+    expect(round?.shown?.kind).toBe('country')
+    expect(shown?.latitude).toBeGreaterThan(42)
+    expect(shown?.latitude).toBeLessThan(51)
+    expect(shown?.longitude).toBeGreaterThan(-5)
+    expect(shown?.longitude).toBeLessThan(8)
+    expect(round?.choices).toHaveLength(4)
+    expect(round?.choices).toContainEqual({ en: 'France', fr: 'France' })
+    expect(transcriptOf(zoe)).not.toContain('"FRA"')
+    expect(hostView(host)?.currentContent).toEqual({
+      answer: { countryCode: 'FRA', kind: 'country' },
+      kind: 'worldmap'
+    })
+
+    for (const seat of [zoe, max]) {
+      seat.send({
+        answer: { choiceIndex: 0, kind: 'choice' },
+        roundId,
+        type: 'player.answer'
+      })
+    }
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    expect(worldmapRound(playerView(zoe))?.target).toEqual({
+      countryCode: 'FRA',
+      kind: 'country'
+    })
+  })
+
+  it('[worldmap] pays the right pick among four and nothing for a neighbour', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay(NAME_THE_COUNTRY)
+    const choices = worldmapRound(playerView(zoe))?.choices ?? []
+    const france = choices.findIndex(({ en }) => en === 'France')
+
+    zoe.send({
+      answer: { choiceIndex: france, kind: 'choice' },
+      roundId,
+      type: 'player.answer'
+    })
+    max.send({
+      answer: { choiceIndex: (france + 1) % 4, kind: 'choice' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+
+    expect(
+      basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
+    ).toBe(POINT)
+    expect(
+      basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
+    ).toBe(0)
+  })
+
+  it('[worldmap] sends no screen the city’s name in a typed round, and takes it typed', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay(NAME_THE_CITY)
+
+    expect(worldmapRound(playerView(zoe))?.shown).toEqual({
+      kind: 'city',
+      point: { latitude: 48.117, longitude: -1.678 }
+    })
+    expect(worldmapRound(playerView(zoe))?.choices).toEqual([])
+
+    zoe.send({
+      answer: { guess: 'rennes', kind: 'typed' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the first line to land'
+    )
+
+    expect(transcriptOf(zoe)).not.toContain('Rennes')
+    expect(transcriptOf(max)).not.toContain('Rennes')
+
+    max.send({
+      answer: { guess: 'Vannes', kind: 'typed' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 2,
+      'the second line to land'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+
+    expect(
+      basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
+    ).toBe(3 * POINT)
+    expect(
+      basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
+    ).toBe(0)
+  })
+
+  it('[worldmap] refuses a marker where a name is owed', async () => {
+    const { roundId, zoe } = await roundInPlay(NAME_THE_CITY)
+
+    zoe.send({
+      answer: { kind: 'point', point: PARIS },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => errorsIn(zoe).length === 1, 'the marker refused')
+
+    expect(errorsIn(zoe)[0]?.code).toBe('invalid_message')
+  })
+})
+
+describe('a map evening of several kinds of place', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  it('[worldmap] draws each round from a kind the table ticked, until every one is spent', async () => {
+    const { code, host } = await harness.openRoom(COUNTRIES_AND_CITIES)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const kinds: (string | undefined)[] = []
+
+    host.send({ type: 'host.startRound' })
+
+    for (const index of [1, 2]) {
+      await waitFor(
+        () =>
+          playerView(zoe)?.phase === 'playing' &&
+          playerView(zoe)?.round?.index === index,
+        `round ${index} to open`
+      )
+      kinds.push(worldmapRound(playerView(zoe))?.target?.kind)
+      zoe.send({
+        answer: { kind: 'point', point: PARIS },
+        roundId: playerView(zoe)?.round?.id ?? '',
+        type: 'player.answer'
+      })
+      await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+      host.send({ type: 'host.nextRound' })
+    }
+
+    await waitFor(() => errorsIn(host).length > 0, 'the empty banks')
+
+    expect(kinds.toSorted()).toEqual(['city', 'country'])
+    expect(errorsIn(host).map((error) => error.code)).toContain(
+      'no_content_available'
+    )
   })
 })

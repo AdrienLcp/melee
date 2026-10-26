@@ -1723,7 +1723,7 @@ const reconfigure = (
   // moment one is picked.
   if (
     !offersAnswerMode({
-      game: settings.game?.kind ?? null,
+      game: settings.game,
       mode: settings.mode.kind
     })
   ) {

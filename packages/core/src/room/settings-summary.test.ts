@@ -84,12 +84,13 @@ describe('settingsSummary', () => {
       placesOf({
         ...worldmap,
         game: {
+          direction: 'place',
           kind: 'worldmap',
-          places: 'frenchCities',
+          places: ['countries', 'frenchCities'],
           roundDurationMs: 30_000
         }
       })
-    ).toEqual([{ kind: 'places', places: 'frenchCities' }])
+    ).toEqual([{ kind: 'places', places: ['countries', 'frenchCities'] }])
   })
 
   it('[settings-summary] says nothing about an answer mode the host was never offered', () => {

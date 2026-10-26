@@ -87,7 +87,7 @@ export const scoringKey = ({
   doublesLoneFinds: boolean
   game: GameKind
   /** What a map room places, each priced by its own tiers; `null` off the map. */
-  worldmapPlaces: WorldmapPlaces | null
+  worldmapPlaces: readonly WorldmapPlaces[] | null
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
@@ -156,7 +156,7 @@ export const scoringKey = ({
     case 'timeline':
       return 'timeline.scoring'
     case 'worldmap':
-      return WORLDMAP_SCORING_KEYS[worldmapPlaces ?? 'countries']
+      return WORLDMAP_SCORING_KEYS[worldmapPlaces?.[0] ?? 'countries']
   }
 }
 

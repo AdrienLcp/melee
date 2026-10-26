@@ -68,7 +68,13 @@ import {
 } from './team'
 import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
 import { hostTrackSchema, trackIdentitySchema } from './track'
-import { placementSchema, worldmapTargetSchema } from './worldmap'
+import {
+  localizedNameSchema,
+  placementSchema,
+  worldmapDirectionSchema,
+  worldmapShownSchema,
+  worldmapTargetSchema
+} from './worldmap'
 
 export const MAX_PLAYERS_PER_ROOM = 24
 
@@ -576,6 +582,13 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     revealedEvents: z.array(datedTimelineEventSchema).nullable()
   }),
   z.object({
+    /**
+     * A `name` round's four names, shuffled, and empty in every other round —
+     * neighbours of the answer, because a decoy across the world gives it away.
+     */
+    choices: z.array(localizedNameSchema),
+    /** Which way the round asks, stamped on it as it opens. */
+    direction: worldmapDirectionSchema,
     kind: z.literal('worldmap'),
     /**
      * Every marker that landed, and `null` until the reveal: one seen on
@@ -583,7 +596,13 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      * screen's to remember until then.
      */
     revealedPlacements: z.array(placementSchema).nullable(),
-    target: worldmapTargetSchema
+    /** What a `name` round shows to be named, and `null` in a `place` round. */
+    shown: worldmapShownSchema.nullable(),
+    /**
+     * What a `place` round asks to place, as each screen may hold it. A `name`
+     * round's target is its answer, so it is `null` until the reveal.
+     */
+    target: worldmapTargetSchema.nullable()
   })
 ])
 
@@ -828,10 +847,15 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('timeline')
   }),
   /**
-   * Nothing to withhold: the country is the question, and the markers stay off
-   * every screen alike until the reveal.
+   * A `place` round withholds nothing here: the place is the question, and the
+   * markers stay off every screen alike until the reveal. A `name` round's
+   * target is the answer, held for the console to read out and `null` while
+   * the console holds a seat — or in a `place` round.
    */
-  z.object({ kind: z.literal('worldmap') })
+  z.object({
+    answer: worldmapTargetSchema.nullable(),
+    kind: z.literal('worldmap')
+  })
 ])
 
 /**

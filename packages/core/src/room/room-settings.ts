@@ -188,15 +188,19 @@ export const openedSetup = ({
 }: {
   game: GameKind
   locale: Locale
-}): GameSetup => ({
-  autoAdvanceMs: DEFAULT_HOLD_MS[game],
-  game: openedGameSettings({ game, locale }),
-  mode: modeOfferedBy({
-    game,
-    preferred: DEFAULT_MODE_SETTINGS[DEFAULT_ANSWER_MODE[game]]
-  }),
-  roundCount: DEFAULT_ROUND_COUNT[game]
-})
+}): GameSetup => {
+  const opened = openedGameSettings({ game, locale })
+
+  return {
+    autoAdvanceMs: DEFAULT_HOLD_MS[game],
+    game: opened,
+    mode: modeOfferedBy({
+      game: opened,
+      preferred: DEFAULT_MODE_SETTINGS[DEFAULT_ANSWER_MODE[game]]
+    }),
+    roundCount: DEFAULT_ROUND_COUNT[game]
+  }
+}
 
 /**
  * The game's own defaults, with the one field that cannot have a fixed one. A

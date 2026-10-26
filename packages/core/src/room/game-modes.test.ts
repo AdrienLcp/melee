@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { GameKind } from '@melee/protocol/game'
+import { DEFAULT_GAME_SETTINGS, type GameKind } from '@melee/protocol/game'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
@@ -31,8 +31,12 @@ const settingsPlaying = ({
 
 describe('offersAnswerMode', () => {
   it('[game-modes] refuses a typed field to a game with nothing to type against', () => {
-    expect(offersAnswerMode({ game: 'buzzer', mode: 'typed' })).toBe(false)
-    expect(offersAnswerMode({ game: 'buzzer', mode: 'buzzer' })).toBe(true)
+    expect(
+      offersAnswerMode({ game: DEFAULT_GAME_SETTINGS.buzzer, mode: 'typed' })
+    ).toBe(false)
+    expect(
+      offersAnswerMode({ game: DEFAULT_GAME_SETTINGS.buzzer, mode: 'buzzer' })
+    ).toBe(true)
   })
 })
 
@@ -59,7 +63,7 @@ describe('isJudgedByHost', () => {
   // The slate is typed and still marked by hand: the host holds the key, so a
   // seat for them is a sheet filled in from the answers.
   it('[game-modes] keeps the slate’s host marking the sheets under its typed mode', () => {
-    expect(answerModesFor('slate')).toEqual(['typed'])
+    expect(answerModesFor(DEFAULT_GAME_SETTINGS.slate)).toEqual(['typed'])
     expect(isJudgedByHost({ game: 'slate', mode: 'typed' })).toBe(true)
   })
 
@@ -130,13 +134,19 @@ describe('seatWithheldReason', () => {
 describe('modeOfferedBy', () => {
   it('[game-modes] serves the preference a game offers', () => {
     expect(
-      modeOfferedBy({ game: 'quiz', preferred: DEFAULT_MODE_SETTINGS.typed })
+      modeOfferedBy({
+        game: DEFAULT_GAME_SETTINGS.quiz,
+        preferred: DEFAULT_MODE_SETTINGS.typed
+      })
     ).toEqual({ kind: 'typed' })
   })
 
   it('[game-modes] falls back to the only mode a bare buzzer offers', () => {
     expect(
-      modeOfferedBy({ game: 'buzzer', preferred: DEFAULT_MODE_SETTINGS.typed })
+      modeOfferedBy({
+        game: DEFAULT_GAME_SETTINGS.buzzer,
+        preferred: DEFAULT_MODE_SETTINGS.typed
+      })
     ).toEqual({ answerWindowMs: 10_000, kind: 'buzzer' })
   })
 
@@ -145,7 +155,7 @@ describe('modeOfferedBy', () => {
   it('[game-modes] carries a served mode’s own settings through untouched', () => {
     expect(
       modeOfferedBy({
-        game: 'blindtest',
+        game: DEFAULT_GAME_SETTINGS.blindtest,
         preferred: { answerWindowMs: null, kind: 'buzzer' }
       })
     ).toEqual({ answerWindowMs: null, kind: 'buzzer' })

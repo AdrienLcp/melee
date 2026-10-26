@@ -30,10 +30,17 @@ const TYPED_OR_SPOKEN = [
 ] as const satisfies readonly AnswerMode[]
 
 /**
- * The world map is answered by putting a marker down, which is neither a pick
- * among four nor a line typed: the answer is a place, and the server measures it.
+ * The world map asks both ways. Placing what it names is answered by putting a
+ * marker down, which is neither a pick among four nor a line typed: the answer
+ * is a place, and the server measures it. Naming what it shows is a quiz
+ * question, and opens on four candidates like one.
  */
 const POINT_ONLY = ['point'] as const satisfies readonly AnswerMode[]
+const NAMED = ['choice', 'typed'] as const satisfies readonly AnswerMode[]
+const POINT_OR_NAMED = [
+  ...POINT_ONLY,
+  ...NAMED
+] as const satisfies readonly AnswerMode[]
 
 /** The timeline is answered by sending the events in an order, which the server counts. */
 const ORDER_ONLY = ['order'] as const satisfies readonly AnswerMode[]
@@ -62,6 +69,9 @@ export type GameCapabilities = {
    *
    * A game with one mode is a game whose host is never asked: the panel hides
    * the control rather than offering an option that would break the round.
+   *
+   * Every mode the game may take under some setting of its own —
+   * `answerModesFor` narrows it to what its settings offer now.
    */
   answerModes: readonly AnswerMode[]
   /**
@@ -169,7 +179,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       }
     case 'worldmap':
       return {
-        answerModes: POINT_ONLY,
+        answerModes: POINT_OR_NAMED,
         makesSound: false,
         playsAloud: false,
         playsDuels: true,
@@ -193,8 +203,19 @@ export const isPlayableAloud = ({
  * still shows no strip — "how to answer" cannot be explained without a game —
  * and `movedToGame` narrows whatever was held the moment one is picked.
  */
-export const answerModesFor = (game: GameKind | null): readonly AnswerMode[] =>
-  game === null ? answerModes : capabilitiesOf(game).answerModes
+export const answerModesFor = (
+  game: GameSettings | null
+): readonly AnswerMode[] => {
+  if (game === null) {
+    return answerModes
+  }
+
+  if (game.kind === 'worldmap') {
+    return game.direction === 'name' ? NAMED : POINT_ONLY
+  }
+
+  return capabilitiesOf(game.kind).answerModes
+}
 
 /**
  * Whether a room's teams can play `mode`: a spoken round needs a team to guess

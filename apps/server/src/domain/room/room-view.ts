@@ -192,11 +192,20 @@ const toHostContent = ({
     }
   }
 
+  if (content.kind === 'worldmap') {
+    return {
+      answer:
+        content.naming !== null && seatId === null
+          ? worldmapTargetView({ isRevealed: true, target: content.target })
+          : null,
+      kind: 'worldmap'
+    }
+  }
+
   if (
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
-    content.kind === 'reflex' ||
-    content.kind === 'worldmap'
+    content.kind === 'reflex'
   ) {
     return { kind: content.kind }
   }
@@ -528,7 +537,11 @@ const toContentView = ({
   }
 
   if (content.kind === 'worldmap') {
+    const { naming, target } = content
+
     return {
+      choices: (naming?.choices ?? []).map(({ en, fr }) => ({ en, fr })),
+      direction: naming === null ? 'place' : 'name',
       kind: 'worldmap',
       revealedPlacements: round.revealed
         ? content.placements.map(({ playerId, point }) => ({
@@ -536,10 +549,20 @@ const toContentView = ({
             point: { latitude: point.latitude, longitude: point.longitude }
           }))
         : null,
-      target: worldmapTargetView({
-        isRevealed: round.revealed,
-        target: content.target
-      })
+      shown:
+        naming === null
+          ? null
+          : {
+              kind: target.kind,
+              point: {
+                latitude: naming.shown.latitude,
+                longitude: naming.shown.longitude
+              }
+            },
+      target:
+        naming !== null && !round.revealed
+          ? null
+          : worldmapTargetView({ isRevealed: round.revealed, target })
     }
   }
 

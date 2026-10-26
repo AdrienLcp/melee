@@ -52,6 +52,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, canCancelStop: false }
     }
 
+    case 'worldmap': {
+      return { ...content, answer: null }
+    }
+
     default: {
       return content
     }

@@ -76,7 +76,7 @@ export const useAnswerWords = (
   round: RoundView
 ): ((answer: { playerId: string; said: string }) => string) => {
   const distanceWords = useDistanceWords(
-    worldmapContent(round)?.target.kind ?? 'country'
+    worldmapContent(round)?.target?.kind ?? 'country'
   )
 
   const orderWords = useOrderWords()

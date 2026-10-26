@@ -68,7 +68,8 @@ export const worldmapContent = (
 /** The map a round is played on: France for one of its cities, the world for a country or a capital. */
 export const mapRegionOf = (
   content: Extract<RoundContent, { kind: 'worldmap' }>
-): 'france' | 'world' => (content.target.kind === 'city' ? 'france' : 'world')
+): 'france' | 'world' =>
+  (content.target ?? content.shown)?.kind === 'city' ? 'france' : 'world'
 
 /** The same over the half only the host is sent. */
 export const blindtestHostContent = (

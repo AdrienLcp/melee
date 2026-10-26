@@ -1,4 +1,4 @@
-import type { GameKind } from '@melee/protocol/game'
+import type { GameKind, GameSettings } from '@melee/protocol/game'
 import {
   type AnswerMode,
   DEFAULT_MODE_SETTINGS,
@@ -6,13 +6,13 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
-import { answerModesFor } from './game-capabilities'
+import { answerModesFor, capabilitiesOf } from './game-capabilities'
 
 export const offersAnswerMode = ({
   game,
   mode
 }: {
-  game: GameKind | null
+  game: GameSettings | null
   mode: AnswerMode
 }): boolean => answerModesFor(game).includes(mode)
 
@@ -61,7 +61,9 @@ export const isRoomJudgedByHost = (settings: RoomSettings): boolean =>
  * about the game itself, which is what lets its box on the shelf say so.
  */
 export const isJudgedInEveryMode = (game: GameKind): boolean =>
-  answerModesFor(game).every((mode) => isJudgedByHost({ game, mode }))
+  capabilitiesOf(game).answerModes.every((mode) =>
+    isJudgedByHost({ game, mode })
+  )
 
 /**
  * Why a console holds no seat, in the terms the host can act on — `null`
@@ -99,7 +101,7 @@ export const modeOfferedBy = ({
   game,
   preferred
 }: {
-  game: GameKind
+  game: GameSettings
   preferred: ModeSettings
 }): ModeSettings =>
   offersAnswerMode({ game, mode: preferred.kind })

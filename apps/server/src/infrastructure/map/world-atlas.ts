@@ -1,9 +1,10 @@
-import { geoContains } from 'd3-geo'
+import { geoArea, geoCentroid, geoContains } from 'd3-geo'
 import { merge } from 'topojson-client'
 import atlas from 'world-atlas/countries-50m.json' with { type: 'json' }
 import { z } from 'zod'
 
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { GeoPoint } from '@melee/protocol/worldmap'
 
 import {
   COUNTRY_CODE_BY_ATLAS_ID,
@@ -125,4 +126,38 @@ export const countryShapeOf = (code: CountryCode): CountryShape | null => {
   shapeCache.set(code, shape)
 
   return shape
+}
+
+const pointInsideCache = new Map<CountryCode, GeoPoint | null>()
+
+/**
+ * A point the country's own outline contains, which a screen fills the country
+ * from: the centre of its largest piece, or of the next piece whose centre
+ * falls inside it — a crescent's centre is out at sea. `null` for a code the
+ * atlas does not draw, or one no piece of which holds its own centre.
+ */
+export const pointInsideCountry = (code: CountryCode): GeoPoint | null => {
+  const cached = pointInsideCache.get(code)
+
+  if (cached !== undefined) {
+    return cached
+  }
+
+  const { shapesByCode, topology } = readAtlas()
+  const shapes = shapesByCode.get(code)
+  const geometry = shapes === undefined ? null : merge(topology, shapes)
+
+  const centre =
+    geometry?.coordinates
+      .map((coordinates) => ({ coordinates, type: 'Polygon' as const }))
+      .toSorted((one, other) => geoArea(other) - geoArea(one))
+      .map((piece) => geoCentroid(piece))
+      .find((candidate) => geoContains(geometry, candidate)) ?? null
+
+  const point =
+    centre === null ? null : { latitude: centre[1], longitude: centre[0] }
+
+  pointInsideCache.set(code, point)
+
+  return point
 }

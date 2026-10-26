@@ -34,7 +34,11 @@ import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
-import type { GeoPoint, Placement } from '@melee/protocol/worldmap'
+import type {
+  GeoPoint,
+  LocalizedName,
+  Placement
+} from '@melee/protocol/worldmap'
 
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
@@ -59,6 +63,22 @@ export type WorldmapRoundTarget =
       names: { en: string; fr: string }
       point: GeoPoint
     }
+
+/**
+ * What a `name` round needs beside its target: the point it shows, and how the
+ * answer is told from a wrong one, typed or picked.
+ */
+export type WorldmapNaming = {
+  /** Every spelling that counts, in both languages: a room names a place in either. */
+  accepted: string[]
+  answer: LocalizedName
+  /** Four in a `choice` round, shuffled, and empty in a `typed` one. */
+  choices: LocalizedName[]
+  correctChoiceIndex: number | null
+  /** Its neighbours, which a typo is never forgiven far enough to reach. */
+  decoys: LocalizedName[]
+  shown: GeoPoint
+}
 
 export type TeamAward = {
   points: number
@@ -388,6 +408,8 @@ export type Round = {
       }
     | {
         kind: 'worldmap'
+        /** A `name` round's, and `null` in a `place` round. */
+        naming: WorldmapNaming | null
         /** Every seat's marker, in the order they landed; a team's answer is one per seat. */
         placements: Placement[]
         target: WorldmapRoundTarget

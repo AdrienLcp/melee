@@ -94,7 +94,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       )}
       {round.content.kind === 'quiz' ? (
         <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
-      ) : worldmap !== null ? (
+      ) : worldmap?.target != null ? (
         <MapPrompt target={worldmap.target} />
       ) : matchsticks !== null ? (
         <MatchsticksPrompt puzzle={matchsticks.puzzle}>

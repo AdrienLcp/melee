@@ -1,5 +1,7 @@
-import type { GameSettings } from '@melee/protocol/game'
+import type { GameSettings, WorldmapSettings } from '@melee/protocol/game'
 import type { WorldmapPlaces } from '@melee/protocol/worldmap'
+
+import { shuffled } from '@melee/core/helpers/random'
 
 import type { Room, Round, WorldmapRoundTarget } from '@/domain/room/room'
 import type { RoomDeadlineKind } from '@/domain/room/room-deadlines'
@@ -55,6 +57,7 @@ import {
   drawGuessNineTheme,
   playedGuessNineThemeId
 } from '@/infrastructure/questions/guess-nine-bank'
+import { namingOf } from '@/infrastructure/questions/map-naming'
 import {
   drawQuestion,
   hostQuestionOf
@@ -93,13 +96,16 @@ const LEAST_COUNTDOWN_MS = 1_000
 const DRAW_RETRY_MS = 3_000
 
 /**
- * A place the room has not been asked yet, from the bank its setting names, or
- * `null` once it is spent — or for a country the atlas cannot judge.
+ * A place of `places` the room has not been asked yet, or `null` once it is
+ * spent — or for a country the atlas cannot judge.
  */
-const drawWorldmapTarget = (
-  places: WorldmapPlaces,
+const drawTargetOf = ({
+  places,
+  playedIds
+}: {
+  places: WorldmapPlaces
   playedIds: ReadonlySet<string>
-): WorldmapRoundTarget | null => {
+}): WorldmapRoundTarget | null => {
   if (places === 'frenchCities') {
     const city = drawCity({ playedIds })
 
@@ -117,6 +123,43 @@ const drawWorldmapTarget = (
   return countryCode === null || countryShapeOf(countryCode) === null
     ? null
     : { countryCode, kind: 'country' }
+}
+
+/**
+ * A place of a kind the table ticked, the kind drawn first so a short bank is
+ * not swamped by a long one — or `null` once every ticked kind is spent. A
+ * `name` round passes over a place it cannot show, and spends it.
+ */
+const drawWorldmapContent = ({
+  game,
+  isChoice,
+  playedIds
+}: {
+  game: WorldmapSettings
+  isChoice: boolean
+  playedIds: Set<string>
+}): Round['content'] | null => {
+  for (const places of shuffled(game.places)) {
+    for (
+      let target = drawTargetOf({ places, playedIds });
+      target !== null;
+      target = drawTargetOf({ places, playedIds })
+    ) {
+      playedIds.add(playedTargetId(target))
+
+      if (game.direction === 'place') {
+        return worldmapContent({ naming: null, target })
+      }
+
+      const naming = namingOf({ isChoice, target })
+
+      if (naming !== null) {
+        return worldmapContent({ naming, target })
+      }
+    }
+  }
+
+  return null
 }
 
 /** The id a target takes in the room's no-repeat set, so no place is asked twice in one evening. */
@@ -407,9 +450,13 @@ export const beginRound = async (
   }
 
   if (game.kind === 'worldmap') {
-    const target = drawWorldmapTarget(game.places, room.playedContentIds)
+    const content = drawWorldmapContent({
+      game,
+      isChoice: room.settings.mode.kind === 'choice',
+      playedIds: room.playedContentIds
+    })
 
-    if (target === null) {
+    if (content === null) {
       tellHost(engine, {
         code: 'no_content_available',
         message: 'Every place in the bank has been placed'
@@ -419,10 +466,8 @@ export const beginRound = async (
       return
     }
 
-    room.playedContentIds.add(playedTargetId(target))
-
     openRound({
-      content: worldmapContent(target),
+      content,
       id: newRoundId(),
       now: engine.now(),
       room,

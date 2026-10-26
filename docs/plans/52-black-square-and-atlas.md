@@ -63,6 +63,35 @@ The grid's layout per N is an `impeccable` pass, browser-checked at 3, 5, 9.
 
 ## Step 2 — Atlas: name what the map shows (one or two sessions)
 
+**Wire and server done 26/10/2026; the screens are next.** As settled below,
+with what the build decided:
+
+- **On the wire**: `settings.game.direction` and `places` as a set (a stored
+  single kind reads as a set of one). The public arm carries `direction`,
+  `choices` (`{ en, fr }` names, four in `choice`, none in `typed`), `shown`
+  (`{ kind, point }`, `null` in a `place` round) and `target`, which a `name`
+  round holds back as `null` until the reveal. The host arm's `answer` is the
+  whole target, unseated console only. `PROTOCOL_VERSION` 60 → 61.
+- **Decoys are neighbours by distance**, not by region: three drawn among the
+  eight nearest of the same kind (`core/worldmap/place-naming.ts`), which works
+  for towns as for countries. A country is shown by the centre of its largest
+  piece that falls inside it (`pointInsideCountry`); one with none is passed
+  over and spent.
+- **Typed matching** is the quiz's, over both languages and *St-* / *Ste-*
+  (`spellingsOf`); a pick's `said` is the French name, which a screen finds
+  among the choices to say in its own language.
+- **Each round draws its kind first**, among the ticked ones, then a place.
+- `capabilitiesOf('worldmap').answerModes` is every mode the map may take;
+  `answerModesFor(settings)` narrows by direction, and so do `offersAnswerMode`
+  and `modeOfferedBy`, which now take the game's settings.
+
+**Left for the screens** (an `impeccable` pass, browser-checked): the direction
+control and the places as checkboxes in the setup — today a single choice
+written as a set of one; the `name` round on the seat, the console and the wall
+(`WorldMap` filling the country around `shown`, a dot for a town, the four
+names or a field); the reveal and `said` read back in the screen's language; a
+summary part and a scoring line for `name`; the scoring key for a mixed set.
+
 The world map already places three kinds (`settings.game.places`:
 `countries | frenchCities | worldCapitals`) on two maps — French cities draw
 on France, whose geometry and `MapRegion` are client-side and implied by the

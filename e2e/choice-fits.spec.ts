@@ -1523,20 +1523,29 @@ const WALL_SCREENS = [
       round: {
         ...eveningRound.round,
         content: {
+          choices: [],
+          direction: 'place',
           kind: 'worldmap',
           revealedPlacements: null,
+          shown: null,
           target: { countryCode: 'PER', kind: 'country' }
         }
       },
       settings: {
         ...eveningRound.settings,
         game: {
+          direction: 'place',
           kind: 'worldmap',
-          places: 'countries',
+          places: ['countries'],
           roundDurationMs: 30_000
         },
         lineUp: [
-          { kind: 'worldmap', places: 'countries', roundDurationMs: 30_000 }
+          {
+            direction: 'place',
+            kind: 'worldmap',
+            places: ['countries'],
+            roundDurationMs: 30_000
+          }
         ],
         lineUpAt: 0,
         mode: { kind: 'point' }

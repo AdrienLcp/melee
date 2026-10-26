@@ -21,15 +21,15 @@ export type SettingsSummaryPart =
   | { game: ShelvedGame; kind: 'game' }
   | { kind: 'answerMode'; mode: AnswerMode }
   | { kind: 'source'; source: TrackSource['kind'] }
-  | { kind: 'places'; places: WorldmapPlaces }
+  | { kind: 'places'; places: readonly WorldmapPlaces[] }
 
 /**
  * What the fold says while it is closed. Only the round count is always there:
  * a room whose game nobody has picked has nothing to say about the game or
  * about how it is answered, a game the shelf cannot name is one the room was
  * *moved* to rather than opened on, the source belongs to the blind test alone,
- * the map says so only when it is France's, since *Carte du monde* already
- * says countries,
+ * the map says what it asks only when it is more than countries, since the
+ * game's own name already says those,
  * and a game offering a single answer mode has nothing to report about the
  * choice nobody made.
  *
@@ -59,7 +59,10 @@ export const settingsSummary = ({
     parts.push({ kind: 'source', source: (draftSource ?? game.source).kind })
   }
 
-  if (game.kind === 'worldmap' && game.places !== 'countries') {
+  if (
+    game.kind === 'worldmap' &&
+    game.places.some((places) => places !== 'countries')
+  ) {
     parts.push({ kind: 'places', places: game.places })
   }
 
@@ -74,7 +77,7 @@ export const settingsSummary = ({
     parts.push({ count: game.answerCount, kind: 'answerCount' })
   }
 
-  if (answerModesFor(game.kind).length > 1) {
+  if (answerModesFor(game).length > 1) {
     parts.push({ kind: 'answerMode', mode: settings.mode.kind })
   }
 

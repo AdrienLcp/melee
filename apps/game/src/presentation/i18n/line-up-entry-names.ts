@@ -66,7 +66,9 @@ const detailsOf = ({
     case 'slate':
       return [translate('slate.items.summary', { count: entry.itemCount })]
     case 'worldmap':
-      return [translate(`worldmap.places.${entry.places}`)]
+      return entry.places.map((places) =>
+        translate(`worldmap.places.${places}`)
+      )
     default:
       return []
   }

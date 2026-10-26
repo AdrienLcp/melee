@@ -43,7 +43,9 @@ describe('roomSettingsFor', () => {
     for (const game of gameKinds) {
       const settings = roomSettingsFor({ games: [game], locale: 'fr' })
 
-      expect(offersAnswerMode({ game, mode: settings.mode.kind })).toBe(true)
+      expect(
+        offersAnswerMode({ game: settings.game, mode: settings.mode.kind })
+      ).toBe(true)
     }
   })
 
