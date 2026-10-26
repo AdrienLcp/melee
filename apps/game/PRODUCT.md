@@ -17,8 +17,9 @@ audiences that must both be served, confirmed as equally important:
   which is the stricter of the two constraints and the one that decides the
   tone.
 
-Nobody installs anything and nobody has an account. One screen opens the room;
-everyone else joins from whatever they have to hand — a phone by QR code, a
+Nobody has to install anything and nobody has an account — the menu offers
+the app to whoever wants the browser's bars gone, and no screen asks. One
+screen opens the room; everyone else joins from whatever they have to hand — a phone by QR code, a
 laptop by typing the four characters. **A phone is the common case, never the
 contract**, and nothing user-facing may name the device.
 

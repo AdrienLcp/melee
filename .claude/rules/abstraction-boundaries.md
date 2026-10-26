@@ -36,6 +36,7 @@ paid on every read of the code.
 | the clipboard | `copyText` from `@adrienlcp/browser`, called only by `presentation/components/copy-button.tsx` — the package owns the `execCommand` fallback a host served from a LAN address over plain HTTP needs, since `navigator.clipboard` requires a secure context |
 | the screen wake lock | `useScreenAwake` from `@adrienlcp/browser/react`, called by the host console, the player page and the wall — the package re-takes the lock on every `visibilitychange`. Each page holds it for as long as a game runs, lobby included, and lets go on an exit (a refusal, a finished board), never on a phase: a screen that sleeps through the lobby misses the countdown |
 | `AudioContext`, `Audio` | `apps/game/src/features/host/round-audio.ts` for the clip's element, `apps/game/src/presentation/audio/buzz-cue.ts` for the synthesised buzz cue — two capabilities rather than one library, armed by the same press and refused the same way outside a gesture |
+| `beforeinstallprompt`, `appinstalled` | `apps/game/src/infrastructure/install-prompt.ts` — listening from `main.tsx`, because Chromium fires the prompt once and early; there is no service worker, and Chromium installs without one |
 | `fetch` (browser) | `apps/game/src/infrastructure/api/melee-api.ts` |
 | `Date`, the wall clock | `infrastructure/clock.ts` in each app, through `nowMs()` |
 | `console` in the browser | `apps/game/src/infrastructure/diagnostics.ts` |

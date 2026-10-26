@@ -12,4 +12,21 @@ declare module 'react' {
   }
 }
 
+declare global {
+  /** Chromium's install prompt, fired before the browser offers its own. */
+  interface BeforeInstallPromptEvent extends Event {
+    readonly userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>
+    prompt: () => Promise<void>
+  }
+
+  interface WindowEventMap {
+    beforeinstallprompt: BeforeInstallPromptEvent
+  }
+
+  interface Navigator {
+    /** Safari on iOS, opened from the home screen. */
+    readonly standalone?: boolean
+  }
+}
+
 export {}

@@ -38,6 +38,7 @@ import {
   QrCode,
   Share,
   SlidersHorizontal,
+  SquarePlus,
   Trophy,
   Tv,
   Upload,
@@ -92,6 +93,7 @@ export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const GripIcon = inFamily(GripVertical)
+export const InstallIcon = inFamily(SquarePlus)
 export const MinusIcon = inFamily(Minus)
 export const MoveIcon = inFamily(ArrowRightLeft)
 export const PanelFoldIcon = inFamily(PanelRightClose)

@@ -1038,6 +1038,10 @@ export const FR_DICTIONARY = defineDictionary({
   menu: {
     build: 'Version {build}',
     home: 'Accueil',
+    install: {
+      action: 'Installer Mêlée',
+      apple: 'Pour l’installer : Partager, puis « Sur l’écran d’accueil ».'
+    },
     label: 'Menu',
     leaveRoom: 'Quitter la table',
     nickname: {

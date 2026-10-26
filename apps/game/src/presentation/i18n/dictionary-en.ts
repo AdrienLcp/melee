@@ -1080,6 +1080,11 @@ export const EN_DICTIONARY = defineDictionary({
   menu: {
     build: 'Build {build}',
     home: 'Home',
+    install: {
+      action: 'Install Mêlée',
+      /** Safari's own words for the two steps, which is what the visitor will look for. */
+      apple: 'To install it: Share, then “Add to Home Screen”.'
+    },
     label: 'Menu',
     leaveRoom: 'Leave the table',
     /**

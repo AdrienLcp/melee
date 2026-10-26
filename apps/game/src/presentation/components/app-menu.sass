@@ -160,10 +160,24 @@
 
         color: var(--ink-muted)
 
-    .become-wall
+    .become-wall,
+    .install-app
       gap: var(--space-s)
       justify-content: start
       text-align: start
+
+    .install-hint
+      @include typography.caption
+
+      align-items: start
+      color: var(--ink-muted)
+      display: flex
+      gap: var(--space-xs)
+      text-wrap: pretty
+
+      svg
+        flex: none
+        margin-block-start: 0.15em
 
     .project-with-code form
       align-items: start

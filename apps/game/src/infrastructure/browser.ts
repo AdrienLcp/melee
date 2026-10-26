@@ -51,6 +51,19 @@ export const buzzFeedback = (moment: BuzzMoment): void => {
 export const sendsGlobalPrivacyControl = (): boolean =>
   'globalPrivacyControl' in navigator && navigator.globalPrivacyControl === true
 
+/** Opened as an installed app rather than in a browser tab. */
+export const isStandaloneDisplay = (): boolean =>
+  matchMedia('(display-mode: standalone)').matches ||
+  navigator.standalone === true
+
+/**
+ * iPhone and iPad install from the Share menu and never fire an install
+ * prompt. iPadOS reports itself as a Mac, so a touch screen is what tells.
+ */
+export const isAppleMobile = (): boolean =>
+  /iPhone|iPad|iPod/.test(navigator.userAgent) ||
+  (navigator.userAgent.includes('Macintosh') && navigator.maxTouchPoints > 1)
+
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 

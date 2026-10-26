@@ -15,6 +15,12 @@
     <link href="/favicon.svg" rel="icon" type="image/svg+xml" />
     <!-- iOS ignores an SVG icon outright, and a phone is where this is added to a home screen. -->
     <link href="/apple-touch-icon.png" rel="apple-touch-icon" />
+    <!--
+      What a browser installs, and no service worker beside it: a room is live
+      or it is nothing, so there is nothing to keep offline, and a cached shell
+      is a stale deploy the reload guard would have to fight.
+    -->
+    <link href="/manifest.webmanifest" rel="manifest" />
 
     <!--
       The page says the name and a shelf of games and nothing else; a tab, a search

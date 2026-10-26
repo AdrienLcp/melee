@@ -16,6 +16,7 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 import { isLocale, LOCALES } from '@melee/protocol/locale'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
+import { promptInstall, useInstallState } from '@/infrastructure/install-prompt'
 import {
   creditsPathFor,
   homePathFor,
@@ -47,7 +48,7 @@ import {
   connectionStatusKey
 } from './connection-status'
 import { Disclosure } from './disclosure'
-import { MenuIcon, ScreenIcon } from './icons'
+import { InstallIcon, MenuIcon, ScreenIcon, ShareIcon } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { MenuPoints } from './menu-points'
@@ -249,6 +250,44 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
   )
 }
 
+/**
+ * Offered, never pushed: the front door promises a room with nothing to
+ * install, so the app is one row of the menu for whoever wants the browser's
+ * bars gone, and nothing at all where the page cannot lead to an install.
+ */
+const InstallApp: React.FC = () => {
+  const install = useInstallState()
+  const translate = useTranslate()
+
+  if (install === 'offered') {
+    return (
+      <Button
+        className='install-app'
+        onPress={() => {
+          void promptInstall()
+        }}
+        variant='outlined'
+      >
+        <InstallIcon />
+        <span className='name'>{translate('menu.install.action')}</span>
+      </Button>
+    )
+  }
+
+  // Safari keeps the install behind its own Share menu, so the most a page
+  // can do there is say where it is.
+  if (install === 'manual') {
+    return (
+      <p className='install-hint'>
+        <ShareIcon />
+        <span>{translate('menu.install.apple')}</span>
+      </p>
+    )
+  }
+
+  return null
+}
+
 const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
   dark: 'preferences.theme.dark',
   light: 'preferences.theme.light',
@@ -445,6 +484,8 @@ export const AppMenu: React.FC = () => {
                 }))}
                 value={preference}
               />
+
+              <InstallApp />
 
               <SeatName />
 

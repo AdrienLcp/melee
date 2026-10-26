@@ -915,6 +915,11 @@ sentence takes no room on screen: its `.alert[role=status]` is announced and
 never drawn, and while the socket is not open `.app-menu` carries
 `data-connection` and the trigger turns saffron (`--spine-reflex` on
 `--on-spine-light`) with its dot pulsing — the words are the menu's first line.
+Under the theme, *Install Mêlée* is an outlined row shaped like the wall
+door where the browser holds an install dialog, a muted caption with the
+Share glyph naming Safari's two steps on an iPhone or iPad, and nothing
+anywhere else — the front door promises no install, so this is offered and
+never pushed.
 On the wall the chrome goes idle
 (`data-idle`) and returns on the first pointer, key or focus.
 `ConnectionStatus` tells its four states by shape and motion, never by hue.
