@@ -51,7 +51,7 @@ type RoundChromeProps = {
 }
 
 /**
- * The round and the seat's own pawn and score, on the one line the menu
+ * The seat's own pawn and score, then the round, on the one line the menu
  * trigger ends — the whole of the chrome a screen of four tiles can afford, and
  * the same line on every other screen a seat sees, so it never moves between
  * phases. The pips are the round as squares on a track, dropped when the line
@@ -78,46 +78,6 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   return (
     <header className='round-chrome'>
       {notice}
-      {roundIndex === null ? (
-        roomCode !== undefined && (
-          <p className='room'>{translate('player.room', { code: roomCode })}</p>
-        )
-      ) : (
-        <p className='round-index'>
-          <VisuallyHidden elementType='span'>
-            {roundCount === null
-              ? translate('round.indexOpen', { index: roundIndex })
-              : translate('round.index', {
-                  index: roundIndex,
-                  total: roundCount
-                })}
-          </VisuallyHidden>
-          <span aria-hidden='true' className='figures'>
-            {roundCount === null ? roundIndex : `${roundIndex}/${roundCount}`}
-          </span>
-          {roundCount !== null && roundCount <= MOST_PIPS && duel === null && (
-            <span aria-hidden='true' className='pips'>
-              {Array.from({ length: roundCount }, (_, pip) => pip + 1).map(
-                (pipRound) => (
-                  <i
-                    data-state={
-                      pipRound < roundIndex
-                        ? 'done'
-                        : pipRound === roundIndex
-                          ? 'now'
-                          : 'next'
-                    }
-                    key={pipRound}
-                  />
-                )
-              )}
-            </span>
-          )}
-        </p>
-      )}
-      {duel !== null && roundIndex !== null && (
-        <DuelBadge duel={duel} players={players} seatId={youId} teams={teams} />
-      )}
       <p className='you'>
         <Pawn seat={Math.max(0, youSeat)} />
         {/* The pawn is already the team's colour; the word is what says it
@@ -145,6 +105,49 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
           </>
         )}
       </p>
+      {duel !== null && roundIndex !== null && (
+        <DuelBadge duel={duel} players={players} seatId={youId} teams={teams} />
+      )}
+      {roundIndex === null ? (
+        roomCode !== undefined && (
+          <p className='room'>{translate('player.room', { code: roomCode })}</p>
+        )
+      ) : (
+        <p className='round-index'>
+          <VisuallyHidden elementType='span'>
+            {roundCount === null
+              ? translate('round.indexOpen', { index: roundIndex })
+              : translate('round.index', {
+                  index: roundIndex,
+                  total: roundCount
+                })}
+          </VisuallyHidden>
+          <span aria-hidden='true' className='label'>
+            {translate('round.label')}
+          </span>
+          <span aria-hidden='true' className='figures'>
+            {roundCount === null ? roundIndex : `${roundIndex}/${roundCount}`}
+          </span>
+          {roundCount !== null && roundCount <= MOST_PIPS && duel === null && (
+            <span aria-hidden='true' className='pips'>
+              {Array.from({ length: roundCount }, (_, pip) => pip + 1).map(
+                (pipRound) => (
+                  <i
+                    data-state={
+                      pipRound < roundIndex
+                        ? 'done'
+                        : pipRound === roundIndex
+                          ? 'now'
+                          : 'next'
+                    }
+                    key={pipRound}
+                  />
+                )
+              )}
+            </span>
+          )}
+        </p>
+      )}
       {invitation}
     </header>
   )

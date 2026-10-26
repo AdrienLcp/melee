@@ -1353,6 +1353,7 @@ export const FR_DICTIONARY = defineDictionary({
     entryNumbered: '{name} {number:number}',
     index: 'Manche {index:number} sur {total:number}',
     indexOpen: 'Manche {index:number}',
+    label: 'Manche',
     missed: 'Rien cette fois.',
     nobody: 'Personne n’a trouvé',
     scored: '+{points:number}',

@@ -80,10 +80,19 @@
       @container (width < 18.75rem)
         display: none
 
-    // Beside the invitation rather than centred between it and the round: the
-    // seat and the way in are both the console's own, the round is the room's.
-    .you:not(:last-child)
+    // The seat leads the line, where a glance lands first; the round is the
+    // room's, so it waits at the far end beside the menu and the invitation.
+    .round-index,
+    .room
       margin-inline-start: auto
+
+    .round-index .label
+      @include typography.label
+
+      color: var(--ink-muted)
+
+      @container (width < 15rem)
+        display: none
 
     .you .pawn
       flex: none

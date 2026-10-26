@@ -1429,6 +1429,8 @@ export const EN_DICTIONARY = defineDictionary({
     entryNumbered: '{name} {number:number}',
     index: 'Round {index:number} of {total:number}',
     indexOpen: 'Round {index:number}',
+    /** The word printed before the round's figures, which alone read as a score. */
+    label: 'Round',
     /**
      * The zero arm of `scored`, and the reason the reveal draws a block on
      * every player's screen rather than only on the ones that gained: a round
