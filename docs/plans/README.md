@@ -225,3 +225,4 @@ the code compiles.
 - A stage leaves no message unserved. The `not_implemented` code that used to
   cover one is gone — see [`../realtime-protocol.md`](../realtime-protocol.md)
 | [51 — Who plays](51-who-plays.md) | **done** — step 1: a seated host sits out the rounds it judges, seat and score kept; step 2: `hasJudge` and the judge switch gone, Petit Bac always the room's vote; step 3: one press on home, the seat offered in the lobby roster, a seated console told it judges without playing | Playing is joining: no seat switch on home, no judge switch; a seated host sits out the rounds it must judge and keeps its score |
+| [52 — Black square and Atlas](52-black-square-and-atlas.md) | **to do** — renamed on screen 26/10/2026; step 1 the answer count, step 2 the map's *name it* direction and France ticked as a place, step 3 the ids | Black square deals 3–9 answers; the map names what it shows as well as placing what it names |

@@ -53,11 +53,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     guessnine: {
       description:
         'A theme comes up and nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like — and one answer that sounds right is the black word that costs the round. Scan the QR code and play — no install, no account.',
-      title: 'Guess nine — Mêlée'
+      title: 'Black square — Mêlée'
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock, Matchsticks, Timeline, Guess nine and Categories.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock, Matchsticks, Timeline, Black square and Categories.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -130,11 +130,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     guessnine: {
       description:
         'Un thème tombe et neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut — et une réponse qui sonne juste est le mot noir qui coûte la manche. Scannez le QR code et jouez — sans installation, sans compte.',
-      title: 'Devineuf — Mêlée'
+      title: 'Case noire — Mêlée'
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes, Frise chronologique, Devineuf et Petit Bac.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes, Frise chronologique, Case noire et Petit Bac.',
       title: 'Mêlée — des jeux à plusieurs pour un écran et toute la salle'
     },
     innerclock: {

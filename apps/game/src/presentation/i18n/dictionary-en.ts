@@ -389,10 +389,10 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Nobody else had it',
       said: 'Nobody else had it, so it paid double'
     },
-    name: 'Guess nine',
+    name: 'Black square',
     nobody: 'Nobody',
     othersLooking: 'The others are still looking.',
-    play: 'Play Guess nine',
+    play: 'Play Black square',
     scoring:
       'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.',
     scoringLoneFinds:

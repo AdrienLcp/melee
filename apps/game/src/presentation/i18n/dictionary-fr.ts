@@ -369,10 +369,10 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Personne d’autre ne l’a trouvée',
       said: 'Personne d’autre ne l’a trouvée : points doublés'
     },
-    name: 'Devineuf',
+    name: 'Case noire',
     nobody: 'Personne',
     othersLooking: 'Les autres cherchent encore.',
-    play: 'Jouer à Devineuf',
+    play: 'Jouer à Case noire',
     scoring:
       'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringLoneFinds:

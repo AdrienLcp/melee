@@ -6,6 +6,11 @@ one part.
 
 ## Unreleased
 
+### Improvements
+
+- `[Game]` **Guess nine is called *Case noire* / *Black square*.** Its French
+  name was an existing commercial app's, *Devineuf*, for the same kind of game.
+
 ### Features
 
 - `[Shared]` **A host who plays keeps the seat through a game they judge.**
