@@ -16,6 +16,11 @@ type NextUpProps = {
   at: number
   lineUp: readonly GameSettings[]
   players: readonly PublicPlayer[]
+  /**
+   * Whether the lid of the next game is drawn: on the wall, never on a
+   * console, whose switcher below already names it and lets it change.
+   */
+  showsGame: boolean
 }
 
 /**
@@ -25,7 +30,12 @@ type NextUpProps = {
  * outlines of the ones still away. It says who, never waits on them: the host
  * starts when they like.
  */
-export const NextUp: React.FC<NextUpProps> = ({ at, lineUp, players }) => {
+export const NextUp: React.FC<NextUpProps> = ({
+  at,
+  lineUp,
+  players,
+  showsGame
+}) => {
   const translate = useTranslate()
   const name = useLineUpEntryNames(lineUp)[at]
   const game = lineUp[at]?.kind
@@ -37,13 +47,15 @@ export const NextUp: React.FC<NextUpProps> = ({ at, lineUp, players }) => {
 
   return (
     <section className='next-up'>
-      <p className='next-game' style={{ '--spine': `var(--spine-${game})` }}>
-        <span className='then'>{translate('host.lineUp.next')}</span>
-        <span className='name'>
-          <GameIcon game={game} />
-          {name}
-        </span>
-      </p>
+      {showsGame && (
+        <p className='next-game' style={{ '--spine': `var(--spine-${game})` }}>
+          <span className='then'>{translate('host.lineUp.next')}</span>
+          <span className='name'>
+            <GameIcon game={game} />
+            {name}
+          </span>
+        </p>
+      )}
       {players.length > 0 && (
         <div className='ready'>
           <p className='count' role='status'>

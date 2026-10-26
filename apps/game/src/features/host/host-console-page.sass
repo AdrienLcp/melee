@@ -354,9 +354,12 @@
         flex-flow: row wrap
         justify-content: center
 
+        // A line-up's switcher and a game's own setting widen the row past
+        // any one threshold, so it wraps rather than spill past both edges.
         .reveal-actions
-          flex-direction: row
+          flex-flow: row wrap
           gap: var(--space-m)
+          justify-content: center
 
           @container reveal-footer (width < 66rem)
             flex-direction: column

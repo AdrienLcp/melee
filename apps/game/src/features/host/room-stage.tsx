@@ -397,6 +397,10 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       lineUp.length > 1 && (roundCount === null || round.index < roundCount)
         ? lineUpAt
         : null
+    // The console names the next game in its own switcher, so its stage keeps
+    // only who is back; with nobody seated that leaves nothing to draw.
+    const showsNextUp =
+      nextAt !== null && (controls === null || view.players.length > 0)
 
     // The standings, at the one moment the room asks for them. They are on this
     // screen during `playing` already, where nobody is looking at them — the
@@ -415,7 +419,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
           className={classNames(
             'stage revealed',
             hold !== null && 'holding',
-            nextAt !== null && 'with-next-up'
+            showsNextUp && 'with-next-up'
           )}
           style={{
             '--standings-rows': standingsRowsOf({
@@ -444,8 +448,13 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             teams={view.teams}
             youId={youId}
           />
-          {nextAt !== null && (
-            <NextUp at={nextAt} lineUp={lineUp} players={view.players} />
+          {showsNextUp && nextAt !== null && (
+            <NextUp
+              at={nextAt}
+              lineUp={lineUp}
+              players={view.players}
+              showsGame={controls === null}
+            />
           )}
           {hold !== null && <RevealHold clock={clock} {...hold} />}
         </div>
