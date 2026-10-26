@@ -13,6 +13,14 @@ one part.
 
 ### Features
 
+- `[Shared]` **Atlas plays the other way round: the map shows, the table
+  names.** The world map is called *Atlas*, and a host can set it to *name*:
+  a country is lit, or a dot put on a city or a capital, and everyone picks
+  among four neighbouring names or types one, scored like the quiz — right or
+  wrong, with the speed bonus on top. The places are ticked as a set, so one
+  game can mix France and the world. The country is sent as a point inside it,
+  never its name, and each screen fills it from its own outlines.
+
 - `[Shared]` **A host who plays keeps the seat through a game they judge.**
   A round the console must judge — the bare buzzer, the challenge, the slate,
   a buzzer-moded quiz or blind test — is sat out by the host's seat rather than

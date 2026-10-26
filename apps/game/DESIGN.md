@@ -697,6 +697,9 @@ length, the category (quiz rubric) above it. The round's clock lies along its
 top (`.card-clock`, `RoundProgress`), its seconds in `--card-ink`; the card's
 top padding is the clock's row. The reveal is the card turned over: the answer printed on the same
 paper, a blind test's cover mounted on it.
+Atlas's *name* round mounts its map on the card the way the quiz mounts a
+flag: the country filled from the screen's own outlines, or a dot for a town,
+framed with its neighbours above the four names or the field.
 
 ### Text field (`TextField`)
 A paper slot: `--card` ground, `--card-ink`, inset shadow plus a 2px `--edge`

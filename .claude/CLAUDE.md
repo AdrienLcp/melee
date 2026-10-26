@@ -9,8 +9,9 @@ lesson. **Quiz** serves its own, two question banks bundled with the server in
 French and English, a flags rubric dealt from every country the map
 names, an emoji rebus rubric — a title written in emojis — and a capitals
 rubric. **Reflex** is a race against a screen about to change colour, **Slate** is a private answer sheet on every screen that the host
-marks on the wall, one item at a time, **World map** names a country that
-everyone puts a pawn on, paid by the kilometre to its border, **Challenge**
+marks on the wall, one item at a time, **Atlas** names a place that
+everyone puts a pawn on, paid by the kilometre to its border — or shows one
+for the table to name, **Challenge**
 is played at the table, off every screen: the wall shows the line the host
 typed, and the host places the first three, **Inner clock** asks everyone
 to count to a number of seconds in their head, on screens where nothing moves,
@@ -18,8 +19,8 @@ and pays each single press by its gap to the target, and **Matchsticks** draws
 an equation or a number in matches that one moved match fixes, moved on
 every screen and judged by the server — or said aloud and judged by the
 host, and **Timeline** deals five dated events everyone puts in order on their
-own screen, the years held back until the reveal. **Guess nine** hides nine
-answers to a theme behind a grid, the less obvious paying more, beside one
+own screen, the years held back until the reveal. **Black square** hides three
+to nine answers to a theme behind a grid, the less obvious paying more, beside one
 black word that costs whoever lands on it the round, and **Petit Bac** deals a
 letter and a sheet of categories everyone fills on their own screen, then
 votes on what counts, a word nobody else wrote paying double.

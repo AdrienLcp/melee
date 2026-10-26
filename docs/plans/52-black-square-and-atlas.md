@@ -63,8 +63,9 @@ The grid's layout per N is an `impeccable` pass, browser-checked at 3, 5, 9.
 
 ## Step 2 — Atlas: name what the map shows (one or two sessions)
 
-**Wire and server done 26/10/2026; the screens are next.** As settled below,
-with what the build decided:
+**Done 26/10/2026** — wire, server and screens, checked in a muted browser
+(console 1440×900 and 1920×1080, seat 390×844 and 844×390) and held by a
+`choice-fits` case per seat. As settled below, with what the build decided:
 
 - **On the wire**: `settings.game.direction` and `places` as a set (a stored
   single kind reads as a set of one). The public arm carries `direction`,
@@ -85,7 +86,11 @@ with what the build decided:
   `answerModesFor(settings)` narrows by direction, and so do `offersAnswerMode`
   and `modeOfferedBy`, which now take the game's settings.
 
-**Left for the screens** (an `impeccable` pass, browser-checked): the direction
+**The screens**, as built: the map sits *inside* the question card like a
+quiz flag, so every existing layout holds it unchanged; a shown country is
+framed on a least span of 0.08 of the world, or Jordan is lost in a
+Europe-to-India view. Seen and left: France in a name round is the place
+direction's framed sheet, sea bands and all. What the pass covered: the direction
 control and the places as checkboxes in the setup — today a single choice
 written as a set of one; the `name` round on the seat, the console and the wall
 (`WorldMap` filling the country around `shown`, a dot for a town, the four
