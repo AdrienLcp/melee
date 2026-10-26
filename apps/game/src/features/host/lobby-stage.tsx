@@ -126,6 +126,13 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               })}
             </h2>
           )}
+          {offersSeat && (
+            <SeatOffer
+              game={view.settings.game?.kind ?? null}
+              isDisabled={!controls.isLive}
+              onTakeSeat={controls.onTakeSeat}
+            />
+          )}
           {playsAloud ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
           ) : view.players.length === 0 ? null : view.teams.length > 0 ? (
@@ -136,13 +143,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               onRemove={controls?.onRemovePlayer}
               players={view.players}
               youId={youId}
-            />
-          )}
-          {offersSeat && (
-            <SeatOffer
-              game={view.settings.game?.kind ?? null}
-              isDisabled={!controls.isLive}
-              onTakeSeat={controls.onTakeSeat}
             />
           )}
           {view.teams.length === 0 && (

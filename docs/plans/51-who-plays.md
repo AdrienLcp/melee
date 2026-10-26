@@ -46,7 +46,7 @@ joining, with a name.** A host who plays is a player with controls.
    `host.seat.withheld.*` sentences. **Done 26/10/2026**, without example
    pages: there was no direction to choose, the roster being where every player
    already appears. The home tray is one press; `SeatOffer` sits above the
-   roster's empty sockets until the console is seated; a seated console reads
+   whole roster, so seats and empty sockets stay one grid, until the console is seated; a seated console reads
    *You judge without playing* in the game picker and the answer-mode strip; the
    Salle tab says *Nobody else at the table yet* once the host sits alone.
 
