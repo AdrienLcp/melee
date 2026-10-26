@@ -1562,7 +1562,6 @@ export const FR_DICTIONARY = defineDictionary({
   },
   timeline: {
     answer: {
-      drag: 'Déplacer « {event} »',
       earliest: 'Le plus ancien',
       hint: 'Glisse les cartes dans l’ordre, ou fais-les bouger avec les flèches',
       label: 'Ton ordre, du plus ancien au plus récent',

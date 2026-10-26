@@ -4,7 +4,6 @@ import {
   DropIndicator,
   GridList,
   GridListItem,
-  Button as ReactAriaButton,
   useDragAndDrop
 } from 'react-aria-components'
 
@@ -13,7 +12,7 @@ import type { TimelineEvent, TimelineEventId } from '@melee/protocol/timeline'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { Button } from './button'
-import { ChevronIcon, ChevronUpIcon, GripIcon } from './icons'
+import { ChevronIcon, ChevronUpIcon } from './icons'
 import { TimelineCard } from './timeline-card'
 import { useTouchReorder } from './use-touch-reorder'
 
@@ -43,10 +42,10 @@ const moved = ({
 }
 
 /**
- * The events as cards to put in order: dragged by their grip — by a mouse,
- * a finger, or the keyboard through react-aria's drag button — or stepped one
- * place at a time by the two arrows on each card, which is the press a hand
- * that has never dragged anything on a screen finds first.
+ * The events as cards to put in order: dragged by the card itself, by a mouse
+ * or a finger, or stepped one place at a time by the two arrows beside it —
+ * the press a hand that has never dragged anything on a screen finds first,
+ * and the single-pointer path a drag owes (WCAG 2.5.7), keyboard included.
  */
 export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
   'aria-label': ariaLabel,
@@ -58,7 +57,7 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
   const list = useRef<HTMLDivElement>(null)
 
   useTouchReorder({
-    grip: '.grip',
+    grip: '.timeline-card',
     list,
     onMove: (id, at) => onReorder(moved({ at, ids: [id], order })),
     order: order.join(' ')
@@ -106,23 +105,16 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
 
         return (
           <GridListItem className='order-row' textValue={label}>
-            <ReactAriaButton
-              aria-label={translate('timeline.answer.drag', { event: label })}
-              className='grip'
-              slot='drag'
-            >
-              <GripIcon />
-            </ReactAriaButton>
             <TimelineCard event={event} year={null} />
             <span className='steps'>
               <Button
                 aria-label={translate('timeline.answer.moveUp', {
                   event: label
                 })}
+                className='step'
                 isDisabled={at === 0}
                 onPress={() => step(event.id, -1)}
-                size='small'
-                variant='outlined'
+                variant='underlined'
               >
                 <ChevronUpIcon />
               </Button>
@@ -130,10 +122,10 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
                 aria-label={translate('timeline.answer.moveDown', {
                   event: label
                 })}
+                className='step'
                 isDisabled={at === order.length - 1}
                 onPress={() => step(event.id, 1)}
-                size='small'
-                variant='outlined'
+                variant='underlined'
               >
                 <ChevronIcon />
               </Button>

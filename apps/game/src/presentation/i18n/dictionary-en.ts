@@ -1652,7 +1652,6 @@ export const EN_DICTIONARY = defineDictionary({
   },
   timeline: {
     answer: {
-      drag: 'Move “{event}”',
       earliest: 'Earliest',
       hint: 'Drag the cards into order, or move them with the arrows',
       label: 'Your order, earliest first',

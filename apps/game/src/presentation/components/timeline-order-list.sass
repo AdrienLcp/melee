@@ -1,8 +1,8 @@
 @use '../styles/focus'
 
 @layer components
-  // Each card between its grip and its two arrows, all three on the board: the
-  // card is the thing that moves, the rest are what moves it.
+  // Each card beside its two arrows: the card is both the thing that moves and
+  // what a finger or a mouse moves it by, the arrows the press that needs no drag.
   .timeline-order-list
     display: grid
     gap: var(--space-xs)
@@ -14,7 +14,7 @@
       border-radius: var(--radius-m)
       column-gap: var(--space-xs)
       display: grid
-      grid-template-columns: auto minmax(0, 1fr) auto
+      grid-template-columns: minmax(0, 1fr) auto
       outline: none
       transition: translate var(--transition-fast, 0s) var(--ease-out)
       translate: 0rem var(--touch-shift, 0rem)
@@ -34,8 +34,12 @@
     .timeline-card
       --timeline-label-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), 1.25rem)
 
-      min-height: 3rem
       align-content: center
+      cursor: grab
+      min-height: 3rem
+      // A finger on the card is a drag, not a scroll: `use-touch-reorder` moves it.
+      touch-action: none
+      user-select: none
 
       .year
         display: none
@@ -50,32 +54,40 @@
       .label
         color: var(--ink-muted)
 
-    .grip
-      align-items: center
-      background: none
-      border: 0
-      border-radius: var(--radius-s)
-      color: var(--ink-muted)
-      cursor: grab
-      display: grid
-      block-size: 2.75rem
-      inline-size: 2rem
-      justify-items: center
-      padding: 0
-      // react-aria writes `pointer-events: none` inline on a drag button, so a
-      // finger fell through to the row, which scrolls; `use-touch-reorder` needs it.
-      pointer-events: auto !important
-      touch-action: none
+    .order-row[data-touch-lifted] .timeline-card,
+    .order-row[data-dragging] .timeline-card
+      cursor: grabbing
 
-      &[data-pressed]
-        cursor: grabbing
-
-      &[data-focus-visible]
-        @include focus.ring
-
+    // Bare chevrons as tall as the card: no piece to compete with the card, a
+    // press as large as a fingertip, and none where the card cannot go.
     .steps
+      align-self: stretch
       display: flex
-      gap: var(--space-xs)
+
+      .step
+        block-size: 100%
+        border-radius: var(--radius-s)
+        font-size: var(--text-l)
+        inline-size: 2.75rem
+        padding: 0
+        text-decoration: none
+
+        &:not([data-disabled])
+          --on-control: var(--ink)
+
+        &[data-disabled]
+          --on-control: var(--rule-strong)
+          cursor: default
+
+        &:not([data-disabled])[data-pressed]
+          background: var(--track-a)
+
+        @media (hover: hover) and (pointer: fine)
+          &:not([data-disabled])[data-hovered]
+            background: var(--track-a)
+
+        &[data-focus-visible]
+          @include focus.ring
 
     .drop-line
       block-size: 0
