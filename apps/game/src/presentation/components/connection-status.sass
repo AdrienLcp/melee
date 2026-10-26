@@ -1,11 +1,12 @@
 @use '../styles/typography'
 
 @layer components
-  // The four states are told apart by shape and motion, not by hue. A green
-  // that reads on the aubergine field disappears on the chrome-yellow one, and
-  // the word beside the dot already carries the meaning.
+  // A signal-light hue for the glance, inside a ring of the ink around it:
+  // the amber trigger a dropped socket turns would swallow an amber dot, so
+  // the ring and the shape still tell the four states apart where the hue
+  // cannot, and the word beside it carries the meaning.
   .connection-dot
-    background: currentColor
+    background: var(--signal-open)
     border: var(--stroke-thin) solid currentColor
     border-radius: var(--radius-full)
     flex: none
@@ -13,15 +14,17 @@
     width: 0.75rem
 
     &.connecting
-      background: transparent
+      animation: connection-pulse calc(var(--transition-slow, 0s) * 2.3) ease-in-out infinite
+      background: var(--signal-connecting)
 
     // Half full, and pulsing where motion is welcome: it is on its way back.
     &.closed
       animation: connection-pulse calc(var(--transition-slow, 0s) * 2.3) ease-in-out infinite
-      background: linear-gradient(to top, currentColor 50%, transparent 50%)
+      background: linear-gradient(to top, var(--signal-closed) 50%, transparent 50%)
 
     // Square and still: nothing is coming back on its own.
     &.refused
+      background: var(--signal-refused)
       border-radius: 0
 
   .connection-status
@@ -32,7 +35,7 @@
     display: inline-flex
     gap: var(--space-xs)
 
-    .clock
+    .latency
       @include typography.clock-reading
 
       text-transform: none

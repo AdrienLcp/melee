@@ -19,7 +19,7 @@ export const connectionStatusKey = (
 ): PlainTranslationKey => `connection.${status}`
 
 type ConnectionDotProps = {
-  /** Told apart by shape and motion — a hue that reads on one field vanishes on another. */
+  /** Told apart by hue, and by shape and motion inside an ink ring — a hue alone vanishes on the amber trigger. */
   status: SocketStatus
 }
 
@@ -29,7 +29,7 @@ export const ConnectionDot: React.FC<ConnectionDotProps> = ({ status }) => (
 )
 
 type ConnectionStatusProps = {
-  /** `null` until the first exchange completes; the offset is shown once it lands. */
+  /** `null` until the first exchange completes; the one-way latency is shown once it lands. */
   clock: ClockEstimate | null
   status: SocketStatus
 }
@@ -45,8 +45,8 @@ export const ConnectionStatus: React.FC<ConnectionStatusProps> = ({
       <ConnectionDot status={status} />
       {translate(connectionStatusKey(status))}
       {clock !== null && (
-        <span className='clock'>
-          {translate('connection.clock', {
+        <span className='latency'>
+          {translate('connection.latency', {
             milliseconds: Math.round(clock.roundTripMs / 2)
           })}
         </span>

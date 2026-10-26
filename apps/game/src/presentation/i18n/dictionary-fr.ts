@@ -392,10 +392,10 @@ export const FR_DICTIONARY = defineDictionary({
     untitled: 'Défi à table'
   },
   connection: {
-    clock: '· horloge ±{milliseconds:number} ms',
     closed: 'Reconnexion…',
     connecting: 'Connexion…',
-    open: 'En direct',
+    latency: '· {milliseconds:number} ms',
+    open: 'Connecté',
     refused: 'Déconnecté'
   },
   credits: {

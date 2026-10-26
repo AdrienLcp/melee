@@ -409,10 +409,10 @@ export const EN_DICTIONARY = defineDictionary({
     untitled: 'A challenge at the table'
   },
   connection: {
-    clock: '· clock ±{milliseconds:number} ms',
     closed: 'Reconnecting',
     connecting: 'Connecting',
-    open: 'Live',
+    latency: '· {milliseconds:number} ms',
+    open: 'Connected',
     refused: 'Disconnected'
   },
   /**
