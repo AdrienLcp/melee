@@ -29,7 +29,7 @@ colors:
   tile-mark-4: "oklch(42% 0.12 155)"
   spine-blindtest: "oklch(50% 0.16 345)"
   spine-quiz: "oklch(50% 0.15 262)"
-  spine-buzzer: "oklch(55% 0.19 30)"
+  spine-buzzer: "oklch(48% 0.18 20)"
   spine-reflex: "oklch(82% 0.15 85)"
   spine-slate: "oklch(50% 0.09 185)"
   spine-worldmap: "oklch(48% 0.11 140)"
@@ -213,7 +213,9 @@ A cool printed board under warm, saturated die-cut inks, every value one
   also the room-code token and the slate's *collected* token — the one saffron
   piece on the board.
 - **Spines** (`--spine-blindtest` magenta, `--spine-quiz` indigo,
-  `--spine-buzzer` coral, `--spine-reflex` saffron, `--spine-slate` teal,
+  `--spine-buzzer` vermilion — deeper and redder than the coral `--primary`
+  it once equalled, so the one press that says *go* is never read as a game's
+  box — `--spine-reflex` saffron, `--spine-slate` teal,
   `--spine-worldmap` leaf, `--spine-challenge` walnut — the game played at the
   table, off every screen, in the table's own wood, and far enough from magenta
   and indigo that the three never read as one family; `--spine-innerclock`
@@ -729,12 +731,23 @@ under every answer mode a verdict is owed in.
   an arrow that steps right under a pointer; two columns from a 52rem
   container. Nothing is ticked on home: what the table plays is chosen in the
   lobby.
-- **`HomeTray`** (`features/home`): the front door's one press, *Open a
-  table*, a lid between the masthead and the shelf, and beside it *I play
-  too* and the name. The press sits right of the seat from 47.5rem.
-  While the last table this device opened is still open, *Resume K7PX* — an
-  underlined link, the code in the room-code face — sits between the seat and
-  the press, or under the seat on a phone too narrow for both.
+- **The masthead** (`features/home`): two doors on one row, their bottoms on
+  one line from 60rem. Left, under the wordmark and its one-line promise
+  (`door-headline`, `--ink-muted`), the host's door — **`HostDoor`**, *Open a
+  table* as the coral piece printed on the board with no lid under it, at
+  least 18rem wide; while the last table this device opened is still open,
+  *Back to table K7PX* sits over it, an underlined link a `--target` tall,
+  the code in the title face, and its line is held while the server is
+  asked. Right, the player's door, the code box on its lid. Under 60rem:
+  wordmark, code lid, then the press at the lid's full width. The press
+  keeps its label while pending, the spinner in its end padding — the shared
+  blank-label pending state read as an empty coral piece. The menu scrolls
+  away with the masthead here instead of floating over the shelf.
+- **The shelf's heading** says what a spine does — *One press opens a table
+  on that game* — because nothing else on the page does. A spine opens on
+  `onPress`, keyboard included, and stays enabled while a table opens so
+  focus stays on it; the nav is `aria-busy` meanwhile and a visually hidden
+  status says *Opening the table…*.
 
 ### Room invitation (`RoomInvitation`)
 The code on the saffron token (`--tile-2`, `monument`, a piece at

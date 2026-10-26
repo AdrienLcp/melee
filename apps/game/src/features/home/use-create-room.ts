@@ -23,7 +23,7 @@ type RoomOpening =
   | { error: PlainTranslationKey; status: 'refused' }
   | {
       games: readonly ShelvedGame[]
-      /** Opened from the home tray, on the games of the last evening rather than on one game. */
+      /** Opened from the host's door, on the games of the last evening rather than on one game. */
       isLobby: boolean
       status: 'opening'
     }
@@ -32,12 +32,12 @@ type RoomOpening =
 /**
  * The one trip to the network every front door makes, and the console it lands
  * on. It carries the game a spine or a game's own page opens for, because that
- * host has already answered the question. The home tray carries the games this
+ * host has already answered the question. The host's door carries the games this
  * host last played an evening of, ticked again in the lobby where the table
  * still decides — none until they have played one.
  *
  * It is one state and not a boolean beside an error, because the home page
- * draws a press per game beside its tray and the spinner has to appear on the
+ * draws a press per game beside its door and the spinner has to appear on the
  * one pressed.
  * That is also what closes the second press: a room already opening refuses to
  * open another.
@@ -85,7 +85,7 @@ export const useCreateRoom = () => {
 
   return {
     isOpeningAny: opening.status === 'opening',
-    /** The home tray's table is opening. */
+    /** The table the host's door asked for is opening. */
     isOpeningLobby: opening.status === 'opening' && opening.isLobby,
     /** Opens a table on `games`, its console in the lobby with nobody seated. */
     open: ({ games }: { games: readonly ShelvedGame[] }): Promise<void> =>
@@ -93,7 +93,7 @@ export const useCreateRoom = () => {
     /** The game a door is opening a table for, or `null` when none is. */
     openingFor:
       opening.status === 'opening' && !opening.isLobby ? opening.games : null,
-    /** Opens the home tray's table, on the games of the host's last line-up. */
+    /** Opens the host's door table, on the games of the host's last line-up. */
     openLobby: (): Promise<void> =>
       openRoom({ games: storedLineUpGamesOrNone(), isLobby: true }),
     /**

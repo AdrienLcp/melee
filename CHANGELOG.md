@@ -244,6 +244,16 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The front door shows its two doors side by side.** The host's
+  *Open a table* sits under the wordmark, printed on the board beside a
+  one-line promise, and the code box faces it across the row; on a narrow
+  screen the code comes first. *Back to table K7PX* names the table it
+  reopens and is a full-size target, the shelf says that a spine opens a
+  table, the press keeps its label while the table opens, the menu no longer
+  floats over the shelf on a scroll, and a long game name or the press's
+  label wraps at a large text size instead of running off the screen. The
+  buzzer's spine is a deeper red, no longer the coral of the *go* press.
+
 - `[Game]` **The menu keeps what a round needs, the console's panel the rest.**
   The ways to put the table on another screen — pairing a screen by its code,
   the game or the QR code in a new tab, handing the table over — are all in the
@@ -378,6 +388,11 @@ one part.
   instead of pushing the third team under the fold.
 
 ### Fixes
+
+- `[Game]` **Enter on a game's spine opens a table on it**, as a click does,
+  instead of loading the game's own page on the way, and focus stays on the
+  spine while the table opens. A refused room code is announced to a screen
+  reader as it appears.
 
 - `[Game]` A saved line-up entry kept as its game alone — what the console
   writes once its settings no longer read — is read back rather than dropped,

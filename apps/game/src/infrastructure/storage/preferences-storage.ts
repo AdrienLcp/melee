@@ -308,8 +308,8 @@ const lineUpGamesSchema = z.array(z.unknown()).transform((stored) => [
 ])
 
 /**
- * The games of the last evening this host ran, which the home tray's next table
- * opens on. Succeeds with none when no evening was ever played.
+ * The games of the last evening this host ran, which the next table opened
+ * from the home page opens on. Succeeds with none when no evening was ever played.
  */
 export const readStoredLineUpGames = (): Result<
   readonly ShelvedGame[],

@@ -74,7 +74,11 @@ export const TextField: React.FC<TextFieldProps> = ({
     {description !== undefined && !isInvalid && (
       <Text slot='description'>{description}</Text>
     )}
-    <FieldError>{errorMessage}</FieldError>
+    <FieldError>
+      {errorMessage === undefined ? undefined : (
+        <span role='alert'>{errorMessage}</span>
+      )}
+    </FieldError>
   </ReactAriaTextField>
 )
 

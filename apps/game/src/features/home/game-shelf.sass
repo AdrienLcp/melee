@@ -22,8 +22,17 @@
     gap: var(--space-s)
     min-width: 0
 
+    .shelf-heading
+      display: grid
+      gap: var(--space-2xs)
+
     .shelf-title
       @include typography.title
+
+    .shelf-hint
+      @include typography.caption
+
+      color: var(--ink-muted)
 
     .stack
       display: grid
@@ -34,8 +43,8 @@
 
       // Shelved one after the other on arrival, the whole row inside half a
       // second whatever the shelf holds. On the item and not the spine: a
-      // disabled react-aria `Link` swaps its `<a>` for a `<span>`, so a spine
-      // is drawn anew the moment a table starts opening.
+      // disabled react-aria `Link` swaps its `<a>` for a `<span>`, and a spine
+      // drawn anew would shelve itself again.
       > li
         animation: spine-shelve var(--transition-slow, 0s) var(--ease-out) backwards
         animation-delay: calc(var(--transition-fast, 0s) * (1 + min(var(--shelf-index), 10) * 0.3))
@@ -71,7 +80,9 @@
       display: flex
       font-size: clamp(var(--text-xl), 7cqi, 2.1rem)
       gap: var(--space-xs)
+      hyphens: auto
       min-width: 0
+      overflow-wrap: anywhere
       text-wrap: balance
 
     .game-icon
@@ -100,7 +111,7 @@
       margin: 0
       width: 1.25rem
 
-    &[data-disabled]
+    &:is([aria-busy='true'] *)
       cursor: progress
 
     @media (hover: hover) and (pointer: fine)

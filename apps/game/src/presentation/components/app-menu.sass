@@ -20,6 +20,11 @@
     :root:has(.player-page.framed, .host-console-page.framed) &
       inset-block-start: var(--framed-padding-block-start)
 
+    // The front door scrolls a long shelf: fixed, the menu floated over the
+    // spines, so there it scrolls away with the masthead.
+    :root:has(.home-page) &
+      position: absolute
+
     // Over the stage rather than the host's panel, when the panel stands
     // along the same edge — or its tab bar, down the side of a screen lying
     // down.

@@ -421,8 +421,12 @@ export const EN_DICTIONARY = defineDictionary({
     yours: 'You found it'
   },
   home: {
-    resume: 'Resume',
+    opening: 'Opening the table…',
+    promise:
+      'One screen opens the table, everyone plays on their own. Nothing to install.',
+    resume: 'Back to table',
     shelf: 'The games',
+    shelfHint: 'One press opens a table on that game.',
     title: 'Mêlée'
   },
   host: {

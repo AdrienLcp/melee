@@ -16,15 +16,33 @@ $masthead-side-by-side: 60rem
     max-width: var(--stage-max-width)
     padding-block-start: var(--menu-block-inset)
 
+    // Two doors on one row: the host's under the wordmark, the player's across
+    // from it, their bottoms on one line. On a narrow screen the code comes
+    // first, because whoever is told four characters is most of the room.
     .masthead
-      align-items: center
       display: grid
       gap: var(--space-l)
+      grid-template-areas: 'title' 'join' 'host'
+      grid-template-columns: minmax(0, 1fr)
 
       // A fixed track rather than `auto`: the code box is a size container,
       // and an `auto` track sized by its content collapses it to nothing.
       @media (width >= $masthead-side-by-side)
+        align-items: end
+        column-gap: var(--space-xl)
+        grid-template-areas: 'title join' 'host join'
         grid-template-columns: minmax(0, 1fr) minmax(0, 26rem)
+
+        .host-door
+          justify-items: start
+
+          > .button
+            min-width: 18rem
+
+    .title-block
+      display: grid
+      gap: var(--space-s)
+      grid-area: title
 
     .wordmark
       @include typography.wordmark
@@ -36,11 +54,23 @@ $masthead-side-by-side: 60rem
         color: var(--primary)
         display: inline-block
 
+    .promise
+      @include typography.door-headline
+
+      color: var(--ink-muted)
+      font-size: clamp(var(--text-l), calc(var(--stage-unit) * 2.6), var(--text-2xl))
+      max-width: var(--measure-door-pitch)
+      text-wrap: balance
+
+    .host-door
+      grid-area: host
+
     .join-box
       @include box-lid.box-lid
 
       container-type: inline-size
       display: flex
+      grid-area: join
       flex-direction: column
       gap: var(--space-s)
       padding: var(--space-m) var(--space-m)

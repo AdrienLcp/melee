@@ -25,7 +25,13 @@ type GameShelfProps = {
  * page is for the visitor arriving from a search or a group chat.
  *
  * The spine stays a link to that page — for a crawler, a modified click and a
- * copied address — and only a plain press opens the room instead.
+ * copied address — and only a plain press opens the room instead. The press
+ * opens it, whatever pressed: react-aria never hands a link's `onClick` the
+ * click Enter fires, so a guard there alone let the router follow the link
+ * first. Holding Enter's own click back is what keeps it from navigating.
+ *
+ * Spines stay enabled while a table opens, so focus stays on the one pressed;
+ * the hook refuses a second opening.
  *
  * react-aria's `Link` rather than the design-system one: a spine is a piece of
  * the box with two lines on it, not a control with a label.
@@ -36,24 +42,40 @@ export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
   const { isOpeningAny, open, openingFor } = createRoom
 
   return (
-    <nav aria-labelledby='game-shelf-title' className='game-shelf'>
-      <h2 className='shelf-title' id='game-shelf-title'>
-        {translate('home.shelf')}
-      </h2>
+    <nav
+      aria-busy={isOpeningAny}
+      aria-describedby='game-shelf-hint'
+      aria-labelledby='game-shelf-title'
+      className='game-shelf'
+    >
+      <div className='shelf-heading'>
+        <h2 className='shelf-title' id='game-shelf-title'>
+          {translate('home.shelf')}
+        </h2>
+        <p className='shelf-hint' id='game-shelf-hint'>
+          {translate('home.shelfHint')}
+        </p>
+      </div>
       <ul className='stack'>
         {shelvedGames.map((game, index) => (
           <li key={game} style={shelfIndexStyle(index)}>
             <Link
               className='spine-link'
               href={gameHomePathFor({ game, locale })}
-              isDisabled={isOpeningAny}
               onClick={(event) => {
-                if (isModifiedClick(event)) {
-                  return
+                if (event.button === 0 && !hasModifier(event)) {
+                  event.preventDefault()
                 }
-
-                event.preventDefault()
-                void open({ games: [game] })
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter' && !hasModifier(event)) {
+                  event.preventDefault()
+                }
+              }}
+              onPress={(event) => {
+                if (!hasModifier(event)) {
+                  void open({ games: [game] })
+                }
               }}
               style={spineStyle(game)}
             >
@@ -71,12 +93,12 @@ export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
   )
 }
 
-const isModifiedClick = (event: React.MouseEvent): boolean =>
-  event.button !== 0 ||
-  event.altKey ||
-  event.ctrlKey ||
-  event.metaKey ||
-  event.shiftKey
+const hasModifier = (event: {
+  altKey: boolean
+  ctrlKey: boolean
+  metaKey: boolean
+  shiftKey: boolean
+}): boolean => event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
 
 const shelfIndexStyle = (index: number): React.CSSProperties => ({
   '--shelf-index': index

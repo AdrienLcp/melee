@@ -1,0 +1,47 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .host-door
+    display: grid
+    gap: var(--space-s)
+    justify-items: stretch
+
+    // Printed on the board, no lid under it: a door is the piece itself.
+    // A label that cannot fit on one line at 200 % text wraps rather than
+    // running out of the piece.
+    > .button
+      text-wrap: balance
+      white-space: normal
+
+      // The shared pending state blanks the label under a spinner drawn in
+      // coral's own ink, which read as an empty piece for the second a table
+      // takes to open: here the label stays and the spinner sits in the padding.
+      &[data-pending]
+        color: var(--on-control)
+
+        .spinner
+          inset-inline: auto var(--space-s)
+
+    .resume
+      align-items: center
+      justify-self: start
+      white-space: normal
+      // The line is held while the server is asked, at the height a thumb finds.
+      min-height: var(--target)
+
+      .code
+        @include typography.title
+
+        font-size: inherit
+
+    .error
+      @include typography.caption-strong
+
+      background: var(--danger)
+      color: var(--danger-ink)
+      padding: var(--space-2xs) var(--space-s)
+
+      @include text-box.trimmed-block(var(--space-2xs))
