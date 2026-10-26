@@ -2,6 +2,7 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
+import { GUESS_NINE_CELL_COUNT } from '@melee/protocol/guess-nine'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 
@@ -29,7 +30,7 @@ type GuessNineAnswerProps = {
 /**
  * A seat's sheet: the grid filling with its own hits, the last line it sent
  * echoed above one field that empties on every send, and the round going on
- * after a hit — it closes on the black word, on all nine, or on the clock.
+ * after a hit — it closes on the black word, on every answer, or on the clock.
  *
  * Mounted under `key={round.id}`, so a draft never crosses into the next round.
  */
@@ -40,14 +41,16 @@ export const GuessNineAnswer: React.FC<GuessNineAnswerProps> = ({
 }) => {
   const translate = useTranslate()
   const [guess, setGuess] = useState('')
-  const lines = guessNineContent(round)?.yourLines ?? []
+  const content = guessNineContent(round)
+  const cellCount = content?.answerCount ?? GUESS_NINE_CELL_COUNT
+  const lines = content?.yourLines ?? []
   const isClosed = verdict?.kind === 'cells' && isSheetClosed(verdict)
   const isEmpty = guess.trim() === ''
   const last = lines.at(-1) ?? null
 
   return (
     <section className='answer-form guess-nine-answer'>
-      <GuessNineSheet lines={lines} />
+      <GuessNineSheet cellCount={cellCount} lines={lines} />
       <p
         className='echo'
         data-hit={(last?.cells.length ?? 0) > 0 || undefined}
@@ -61,7 +64,8 @@ export const GuessNineAnswer: React.FC<GuessNineAnswerProps> = ({
               : translate('guessnine.answer.hit', {
                   line: last.line,
                   points: last.cells.reduce(
-                    (total, cell) => total + pointsOfTier(tierOfCell(cell)),
+                    (total, cell) =>
+                      total + pointsOfTier(tierOfCell({ cell, cellCount })),
                     0
                   )
                 }))}

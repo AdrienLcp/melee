@@ -360,10 +360,9 @@ export const beginRound = async (
 
     openRound({
       content: guessNineContent({
+        answerCount: game.answerCount,
         doublesLoneFinds:
-          room.settings.game?.kind === 'guessnine' &&
-          room.settings.game.doublesLoneFinds &&
-          room.settings.mode.kind === 'typed',
+          game.doublesLoneFinds && room.settings.mode.kind === 'typed',
         theme
       }),
       id: newRoundId(),

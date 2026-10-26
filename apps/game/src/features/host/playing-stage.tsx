@@ -209,9 +209,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         ))}
       {guessNine !== null &&
         (onAnswer === null ? (
-          <GuessNineGauge foundCellCount={guessNine.foundCellCount} />
+          <GuessNineGauge
+            answerCount={guessNine.answerCount}
+            foundCellCount={guessNine.foundCellCount}
+          />
         ) : guessNine.spoken !== null ? (
           <GuessNineSpoken
+            answerCount={guessNine.answerCount}
             key={round.id}
             onTick={onTick}
             players={view.players}

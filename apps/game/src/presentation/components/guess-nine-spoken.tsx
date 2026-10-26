@@ -1,6 +1,9 @@
 import type React from 'react'
 
-import type { GuessNineCell } from '@melee/protocol/guess-nine'
+import type {
+  GuessNineAnswerCount,
+  GuessNineCell
+} from '@melee/protocol/guess-nine'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundContent } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
@@ -15,6 +18,8 @@ import { GuessNineTurn } from './guess-nine-turn'
 import './guess-nine-spoken.sass'
 
 type GuessNineSpokenProps = {
+  /** How many answers the round dealt, three to nine. */
+  answerCount: GuessNineAnswerCount
   /** Sends the keeper's tick; `null` on a screen that keeps no list. */
   onTick:
     | ((cell: GuessNineCell | 'blackWord', isTicked: boolean) => boolean)
@@ -32,6 +37,7 @@ type GuessNineSpokenProps = {
  * — the guessing team told who to say its answers to.
  */
 export const GuessNineSpoken: React.FC<GuessNineSpokenProps> = ({
+  answerCount,
   onTick,
   players,
   seatId,
@@ -73,7 +79,11 @@ export const GuessNineSpoken: React.FC<GuessNineSpokenProps> = ({
           teams={teams}
         />
       )}
-      <GuessNineSheet lines={[]} tickedCells={spoken.tickedCells} />
+      <GuessNineSheet
+        cellCount={answerCount}
+        lines={[]}
+        tickedCells={spoken.tickedCells}
+      />
     </section>
   )
 }

@@ -8,6 +8,7 @@ import type {
   GuessNineCell
 } from '@melee/protocol/guess-nine'
 
+import { guessNineCellStyle } from '@/helpers/guess-nine-cell-place'
 import { Button } from '@/presentation/components/button'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -23,7 +24,7 @@ const cellKeyOf = (cell: number): string => `cell-${cell}`
 type GuessNineKeeperProps = {
   /** The name of the team saying its answers aloud, in this screen's language. */
   guessingTeam: string
-  /** The nine and the black word, which this seat alone is sent. */
+  /** The answers dealt and the black word, which this seat alone is sent. */
   list: { answers: GuessNineAnswer[]; blackWord: GuessNineBlackWord }
   /** `false` from the socket means the frame was never written. */
   onTick: (cell: GuessNineCell | 'blackWord', isTicked: boolean) => boolean
@@ -32,7 +33,7 @@ type GuessNineKeeperProps = {
 }
 
 /**
- * The keeper's list in a spoken round: the nine as presses on paper, ticked as
+ * The keeper's list in a spoken round: the answers as presses on paper, ticked as
  * the guessing team says them and taken back on a second press, and the black
  * word in its ink under them, which asks once more before it ends the round.
  *
@@ -58,7 +59,13 @@ export const GuessNineKeeper: React.FC<GuessNineKeeperProps> = ({
       {isShown ? (
         <ol aria-label={translate('guessnine.grid')} className='keeper-cells'>
           {list.answers.map((answer, cell) => (
-            <li key={cellKeyOf(cell)}>
+            <li
+              key={cellKeyOf(cell)}
+              style={guessNineCellStyle({
+                cell,
+                cellCount: list.answers.length
+              })}
+            >
               <ToggleButton
                 className='keeper-cell'
                 isSelected={tickedCells.includes(cell)}
@@ -74,7 +81,11 @@ export const GuessNineKeeper: React.FC<GuessNineKeeperProps> = ({
           ))}
         </ol>
       ) : (
-        <GuessNineSheet lines={[]} tickedCells={tickedCells} />
+        <GuessNineSheet
+          cellCount={list.answers.length}
+          lines={[]}
+          tickedCells={tickedCells}
+        />
       )}
       {!isShown ? (
         <p className='hidden-note'>{translate('guessnine.spoken.hidden')}</p>

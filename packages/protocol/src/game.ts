@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import { GUESS_NINE_CELL_COUNT, guessNineAnswerCountSchema } from './guess-nine'
 import { matchsticksGoalSchema } from './matchsticks'
 import {
   MAX_PETIT_BAC_CATEGORIES,
@@ -104,6 +105,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
      * every find is that team's alone. Defaulted so a setup remembered before
      * the switch existed still parses.
      */
+    /**
+     * How many of the theme's answers a round deals, its most read first.
+     * Defaulted so a setup remembered before the count existed still parses.
+     */
+    answerCount: guessNineAnswerCountSchema.default(GUESS_NINE_CELL_COUNT),
     doublesLoneFinds: z.boolean().default(false),
     kind: z.literal('guessnine'),
     /**
@@ -257,6 +263,7 @@ export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
 }
 
 export const DEFAULT_GUESS_NINE_SETTINGS: GuessNineSettings = {
+  answerCount: GUESS_NINE_CELL_COUNT,
   doublesLoneFinds: false,
   kind: 'guessnine',
   roundDurationMs: 60_000

@@ -1,5 +1,6 @@
 @use '../styles/black-word'
 @use '../styles/piece'
+@use '../styles/tier-rows'
 @use '../styles/typography'
 
 @layer components
@@ -19,15 +20,16 @@
       grid-template: minmax(0, 1fr) auto / minmax(0, 1fr)
 
     .answers
-      display: grid
+      @include tier-rows.grid
+
       gap: clamp(var(--space-2xs), 1.6cqmin, var(--space-s))
-      grid-template: repeat(3, minmax(0, 1fr)) / repeat(3, minmax(0, 1fr))
       list-style: none
       margin: 0
       min-block-size: 0
       padding: 0
 
     li
+      @include tier-rows.cell
       @include piece.card(var(--radius-m))
 
       align-content: space-between

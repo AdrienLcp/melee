@@ -1,0 +1,14 @@
+// Pure module: two mixins, no top-level CSS.
+
+/// A guess-nine grid of three to nine cells, one tier a row: six tracks, so a
+/// cell takes two and a short row centres on half a cell. Each child places
+/// itself with `cell`.
+@mixin grid
+  display: grid
+  grid-template: repeat(3, minmax(0, 1fr)) / repeat(6, minmax(0, 1fr))
+
+/// A cell placed by the `--cell-row` and `--cell-column` that
+/// `guessNineCellStyle` publishes on it.
+@mixin cell
+  grid-column: var(--cell-column) / span 2
+  grid-row: var(--cell-row)

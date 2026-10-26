@@ -98,6 +98,10 @@ const useSummaryParts = (): ((parts: SettingsSummaryPart[]) => string) => {
         return translate(answerModeLabelKey(part.mode))
       case 'itemCount':
         return translate('slate.items.summary', { count: part.count })
+      case 'answerCount':
+        return translate('guessnine.answerCount.summary', {
+          count: part.count
+        })
       case 'roundCount':
         return part.count === null
           ? translate('host.roundCount.openSummary')

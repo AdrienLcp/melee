@@ -11,6 +11,21 @@ prefix and the URL slug are still `guessnine` — step 3.
 
 ## Step 1 — Black square: the host picks how many answers (one session)
 
+**Done 26/10/2026.** As settled below, with three changes met on the way:
+
+- **The count travels on the sheet**: `CellsVerdict.cellCount`, because
+  `isFullyBanked` and `pointsForCells` take a verdict and nothing else —
+  `emptySheet(N)` replaces `EMPTY_SHEET`. `PROTOCOL_VERSION` 59 → 60.
+- **Tiers are `floor(cell × 3 / N) + 1`**, which gives the spare cells of an
+  uneven N to the cheap end: 4 → 1, 1, 2, 3; 5 → 1, 1, 2, 2, 3; 7 → 3, 2, 2.
+- **One tier a row**, which is what the 3 × 3 already said: six tracks, a cell
+  spans two, a short row centres (`helpers/guess-nine-cell-place.ts`,
+  `styles/_tier-rows.sass`). Five is a 2/2/1 pyramid, three a column of one
+  per tier. Browser-checked at 3, 5, 9 and the compact strip, on the seat,
+  the gauge and the reveal; the keeper's list shares the mixin and was not
+  driven. `guessnine.found` takes the total rather than dropping it — the
+  gauge's count reads *2 sur 5*.
+
 **Settled:**
 
 - **`answerCount` on the game's arm, 3–9, default 9**, written with
@@ -43,7 +58,7 @@ Bac's `NumberField` (`petit-bac-setup.tsx:92-104`) into `settings-panel.tsx`
 beside the duration, with an `itemCount`-style part in
 `use-settings-summary.ts`. The copy says nine in `found`, `grid`,
 `home.description`, `scoring*`, `tagline` and both heads: drop the number
-rather than template it (*Les réponses*, *Des réponses cachées. Un mot noir.*).
+rather than template it (*The answers*, *Hidden answers. One black word.*).
 The grid's layout per N is an `impeccable` pass, browser-checked at 3, 5, 9.
 
 ## Step 2 — Atlas: name what the map shows (one or two sessions)

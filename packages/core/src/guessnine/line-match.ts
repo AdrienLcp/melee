@@ -24,7 +24,7 @@ const matchesAnyOf = ({
   )
 
 /**
- * One line against the nine and the black word, matched whole with the quiz's
+ * One line against the answers dealt and the black word, matched whole with the quiz's
  * forgiveness. Every other name on the board is a rival, so a slipped finger is
  * never forgiven into a neighbour: *Terminator 3* is not *Terminator 2*, and
  * *True Romanc* is not a hit it cannot be.
@@ -41,7 +41,7 @@ export const gradeLine = ({
   blackWord,
   line
 }: {
-  /** The nine, in cell order. */
+  /** The answers dealt, in cell order. */
   answers: readonly Names[]
   blackWord: Names
   line: string

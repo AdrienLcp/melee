@@ -343,6 +343,12 @@ export const FR_DICTIONARY = defineDictionary({
       miss: '« {line} » : rien',
       retry: 'Autant que tu veux. L’une d’elles est le mot noir.'
     },
+    answerCount: {
+      label: 'Réponses à trouver',
+      summary: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} réponse', other: '{?} réponses' } }
+      })
+    },
     blackWord: {
       ends: 'Ta manche s’arrête là. Elle ne rapporte rien.',
       fell: '{nickname} y a laissé sa manche',
@@ -353,15 +359,15 @@ export const FR_DICTIONARY = defineDictionary({
     found: defineTranslation('{count:plural}', {
       plural: {
         count: {
-          one: '{?} sur 9 trouvée par la table',
-          other: '{?} sur 9 trouvées par la table'
+          one: '{?} sur {total:number} trouvée par la table',
+          other: '{?} sur {total:number} trouvées par la table'
         }
       }
     }),
-    grid: 'Les neuf réponses',
+    grid: 'Les réponses',
     home: {
       description:
-        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
+        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
     },
     lone: {
       doubled: '×2',
@@ -374,11 +380,11 @@ export const FR_DICTIONARY = defineDictionary({
     othersLooking: 'Les autres cherchent encore.',
     play: 'Jouer à Case noire',
     scoring:
-      'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringLoneFinds:
-      'Neuf réponses sont cachées : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3, et le double si personne d’autre ne la trouve. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3, et le double si personne d’autre ne la trouve. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringSpoken:
-      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : les trois plus connues rapportent 1 point, les trois suivantes 2, les trois dernières 3. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
+      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : le tiers le plus connu rapporte 1 point, le suivant 2, le dernier 3. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
     spoken: {
       blackWord: {
         ask: 'Ils l’ont dit ? Leur manche s’arrête et ne vaut plus rien.',
@@ -393,7 +399,7 @@ export const FR_DICTIONARY = defineDictionary({
       show: 'Voir la liste',
       yourTeam: 'Dites vos réponses à voix haute. {nickname} les coche.'
     },
-    tagline: 'Neuf réponses. Un mot noir.',
+    tagline: 'Des réponses cachées. Un mot noir.',
     tier: defineTranslation('{points:plural}', {
       plural: { points: { one: '{?} point', other: '{?} points' } }
     }),

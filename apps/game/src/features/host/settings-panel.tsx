@@ -2,6 +2,10 @@ import type React from 'react'
 
 import type { QuizSettings } from '@melee/protocol/game'
 import {
+  GUESS_NINE_CELL_COUNT,
+  GUESS_NINE_MIN_ANSWER_COUNT
+} from '@melee/protocol/guess-nine'
+import {
   type MatchsticksGoal,
   matchsticksGoals
 } from '@melee/protocol/matchsticks'
@@ -470,6 +474,21 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           optionLabel={secondsLabel}
           options={GUESS_NINE_DURATIONS_MS}
           value={game.roundDurationMs}
+        />
+      )}
+
+      {game?.kind === 'guessnine' && (
+        <NumberField
+          isDisabled={isDisabled}
+          label={translate('guessnine.answerCount.label')}
+          maxValue={GUESS_NINE_CELL_COUNT}
+          minValue={GUESS_NINE_MIN_ANSWER_COUNT}
+          onChange={(answerCount) => {
+            if (Number.isInteger(answerCount)) {
+              onChange({ ...settings, game: { ...game, answerCount } })
+            }
+          }}
+          value={game.answerCount}
         />
       )}
 

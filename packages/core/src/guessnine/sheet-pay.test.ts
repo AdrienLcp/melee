@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { POINT } from '@melee/protocol/scoring'
 
 import {
-  EMPTY_SHEET,
+  emptySheet,
   isSheetClosed,
   loneCellsOf,
   pointsForCells,
@@ -13,6 +13,7 @@ import {
 } from './sheet-pay'
 
 const sheetOf = (foundCells: number[], hitBlackWord = false) => ({
+  cellCount: 9,
   foundCells,
   hitBlackWord,
   kind: 'cells' as const
@@ -20,7 +21,21 @@ const sheetOf = (foundCells: number[], hitBlackWord = false) => ({
 
 describe('what a guess-nine sheet pays', () => {
   it('[guessnine] pays the most read three one point and the least read three', () => {
-    expect([0, 2, 3, 5, 6, 8].map(tierOfCell)).toEqual([1, 1, 2, 2, 3, 3])
+    expect(
+      [0, 2, 3, 5, 6, 8].map((cell) => tierOfCell({ cell, cellCount: 9 }))
+    ).toEqual([1, 1, 2, 2, 3, 3])
+  })
+
+  it('[guessnine] cuts the thirds from the answers dealt, spares to the most read', () => {
+    const tiersOf = (cellCount: number) =>
+      Array.from({ length: cellCount }, (_, cell) =>
+        tierOfCell({ cell, cellCount })
+      )
+
+    expect(tiersOf(3)).toEqual([1, 2, 3])
+    expect(tiersOf(4)).toEqual([1, 1, 2, 3])
+    expect(tiersOf(5)).toEqual([1, 1, 2, 2, 3])
+    expect(tiersOf(7)).toEqual([1, 1, 1, 2, 2, 3, 3])
   })
 
   it('[guessnine] pays eighteen for a full sheet', () => {
@@ -54,13 +69,22 @@ describe('what a guess-nine sheet pays', () => {
     expect(isSheetClosed(sheetOf([], true))).toBe(true)
     expect(isSheetClosed(sheetOf([0, 1, 2, 3, 4, 5, 6, 7, 8]))).toBe(true)
   })
+
+  it('[guessnine] closes a sheet of five on its fifth cell', () => {
+    expect(isSheetClosed({ ...sheetOf([0, 1, 2, 3, 4]), cellCount: 5 })).toBe(
+      true
+    )
+    expect(isSheetClosed({ ...sheetOf([0, 1, 2, 3]), cellCount: 5 })).toBe(
+      false
+    )
+  })
 })
 
 describe('banking a guess-nine line', () => {
   it('[guessnine] adds a cell once, however often it is found', () => {
     const once = withLineBanked({
       graded: { cells: [2, 3], kind: 'cells' },
-      sheet: EMPTY_SHEET
+      sheet: emptySheet(9)
     })
 
     expect(
@@ -86,7 +110,11 @@ describe('banking a guess-nine line', () => {
 
 describe('ticking a spoken guess-nine list', () => {
   it('[guessnine] banks a ticked cell once, however often it is ticked', () => {
-    const once = withCellTicked({ cell: 4, isTicked: true, sheet: EMPTY_SHEET })
+    const once = withCellTicked({
+      cell: 4,
+      isTicked: true,
+      sheet: emptySheet(9)
+    })
 
     expect(withCellTicked({ cell: 4, isTicked: true, sheet: once })).toEqual(
       sheetOf([4])

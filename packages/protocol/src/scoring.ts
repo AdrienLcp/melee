@@ -1,6 +1,10 @@
 import { z } from 'zod'
 
-import { GUESS_NINE_CELL_COUNT, guessNineCellSchema } from './guess-nine'
+import {
+  GUESS_NINE_CELL_COUNT,
+  guessNineAnswerCountSchema,
+  guessNineCellSchema
+} from './guess-nine'
 import { playerIdSchema } from './identifiers'
 import { worldmapTargetKindSchema } from './worldmap'
 
@@ -153,6 +157,8 @@ export const moveVerdictSchema = z.object({
  * server grades every line; no screen ever sends one.
  */
 export const cellsVerdictSchema = z.object({
+  /** How many answers the round dealt, which is what a full sheet holds and what its thirds are cut from. */
+  cellCount: guessNineAnswerCountSchema,
   foundCells: z.array(guessNineCellSchema).max(GUESS_NINE_CELL_COUNT),
   hitBlackWord: z.boolean(),
   kind: z.literal('cells')

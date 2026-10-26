@@ -196,7 +196,7 @@ export const openRound = ({
   const duel = takeDuel(room)
 
   if (content.kind === 'guessnine') {
-    content.spoken = takeSpokenTurn(room)
+    content.spoken = takeSpokenTurn({ content, room })
   }
 
   const round: Round = {

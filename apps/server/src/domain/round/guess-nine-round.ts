@@ -2,6 +2,7 @@ import { Result } from '@adrienlcp/result'
 
 import type {
   GuessNineAnswer,
+  GuessNineAnswerCount,
   GuessNineBlackWord,
   GuessNineCell,
   GuessNineLabels,
@@ -15,7 +16,7 @@ import type { TeamId } from '@melee/protocol/team'
 
 import { gradeLine } from '@melee/core/guessnine/line-match'
 import {
-  EMPTY_SHEET,
+  emptySheet,
   isSheetClosed,
   loneCellsOf,
   pointsForCells,
@@ -40,10 +41,17 @@ const namesOf = ({ aliases, labels }: Named): string[] => [
   ...Object.values(aliases).flat()
 ]
 
+/**
+ * A round on the theme's `answerCount` most read answers: the bank ranks them
+ * by traffic, so the ones left off are the obscure ones a table never says,
+ * which keeps a true answer missing from the board as rare as it can be.
+ */
 export const guessNineContent = ({
+  answerCount,
   doublesLoneFinds,
   theme
 }: {
+  answerCount: GuessNineAnswerCount
   doublesLoneFinds: boolean
   theme: GuessNineTheme
 }): GuessNineContent => ({
@@ -51,8 +59,11 @@ export const guessNineContent = ({
   kind: 'guessnine',
   lines: [],
   spoken: null,
-  theme
+  theme: { ...theme, answers: theme.answers.slice(0, answerCount) }
 })
+
+const cellCountOf = (content: GuessNineContent): GuessNineAnswerCount =>
+  content.theme.answers.length
 
 const connectedSeatsOf = (room: Room, teamId: TeamId): PlayerId[] =>
   seatsOf(room, teamId)
@@ -92,7 +103,13 @@ export const canTakeSpokenTurn = (room: Room): boolean => {
  * spoken round opens — every seat placed by then. `null` in a typed room, and
  * in one that `canTakeSpokenTurn` would have refused.
  */
-export const takeSpokenTurn = (room: Room): GuessNineContent['spoken'] => {
+export const takeSpokenTurn = ({
+  content,
+  room
+}: {
+  content: GuessNineContent
+  room: Room
+}): GuessNineContent['spoken'] => {
   if (room.settings.mode.kind !== 'spoken') {
     return null
   }
@@ -122,7 +139,7 @@ export const takeSpokenTurn = (room: Room): GuessNineContent['spoken'] => {
   return {
     ...turn,
     guessers: seatsOf(room, turn.guessingTeamId).map((seat) => seat.id),
-    sheet: EMPTY_SHEET
+    sheet: emptySheet(cellCountOf(content))
   }
 }
 
@@ -164,10 +181,14 @@ export const tickSpokenCell = ({
     return Result.failure('stale_round')
   }
 
-  const spoken =
-    round.content.kind === 'guessnine' ? round.content.spoken : null
+  const content = round.content.kind === 'guessnine' ? round.content : null
+  const spoken = content?.spoken ?? null
 
-  if (spoken === null) {
+  if (
+    content === null ||
+    spoken === null ||
+    (cell !== 'blackWord' && cell >= cellCountOf(content))
+  ) {
     return Result.failure('invalid_message')
   }
 
@@ -233,7 +254,8 @@ export const keepSheetLine = ({
   line: string
   playerId: PlayerId
 }): void => {
-  const held = before?.kind === 'cells' ? before : EMPTY_SHEET
+  const held =
+    before?.kind === 'cells' ? before : emptySheet(cellCountOf(content))
 
   content.lines = content.lines.filter(
     (kept) => kept.playerId !== playerId || !isMiss(kept)
@@ -263,20 +285,20 @@ export const gradeSheetLine = ({
       blackWord: namesOf(content.theme.blackWord),
       line
     }),
-    sheet: held?.kind === 'cells' ? held : EMPTY_SHEET
+    sheet: held?.kind === 'cells' ? held : emptySheet(cellCountOf(content))
   })
 
 const labelsOf = (labels: GuessNineTheme['labels']): GuessNineLabels => ({
   ...labels
 })
 
-/** The nine and the black word without a single alias — what a screen allowed to read them shows. */
+/** The answers dealt and the black word without a single alias — what a screen allowed to read them shows. */
 export const guessNineGrid = (
   theme: GuessNineTheme
 ): { answers: GuessNineAnswer[]; blackWord: GuessNineBlackWord } => ({
   answers: theme.answers.map((answer, cell) => ({
     labels: labelsOf(answer.labels),
-    tier: tierOfCell(cell)
+    tier: tierOfCell({ cell, cellCount: theme.answers.length })
   })),
   blackWord: {
     labels: labelsOf(theme.blackWord.labels),
@@ -336,6 +358,7 @@ export const guessNineContentView = ({
   const grid = guessNineGrid(content.theme)
 
   return {
+    answerCount: cellCountOf(content),
     foundCellCount: new Set(sheets.flatMap(({ sheet }) => sheet.foundCells))
       .size,
     kind: 'guessnine',

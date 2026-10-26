@@ -53,6 +53,25 @@ describe('settingsSummary', () => {
     ])
   })
 
+  it('[settings-summary] names how many answers a black square deals only when it is not nine', () => {
+    const guessNine = roomSettingsFor({ games: ['guessnine'], locale: 'fr' })
+    const countsOf = (settings: typeof guessNine) =>
+      settingsSummary({ draftSource: null, settings }).filter(
+        (part) => part.kind === 'answerCount'
+      )
+
+    expect(countsOf(guessNine)).toEqual([])
+    expect(
+      countsOf({
+        ...guessNine,
+        game:
+          guessNine.game?.kind === 'guessnine'
+            ? { ...guessNine.game, answerCount: 5 }
+            : guessNine.game
+      })
+    ).toEqual([{ count: 5, kind: 'answerCount' }])
+  })
+
   it('[settings-summary] names the map only when it asks for French cities', () => {
     const worldmap = roomSettingsFor({ games: ['worldmap'], locale: 'fr' })
     const placesOf = (settings: typeof worldmap) =>

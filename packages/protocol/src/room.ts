@@ -8,8 +8,10 @@ import {
 import { CHALLENGE_HAND_SIZE, challengeLabelsSchema } from './challenge'
 import { gameSettingsSchema } from './game'
 import {
+  dealtAnswersOf,
   GUESS_NINE_CELL_COUNT,
   GUESS_NINE_LINES_READ_BACK,
+  guessNineAnswerCountSchema,
   guessNineAnswerSchema,
   guessNineBlackWordSchema,
   guessNineCellSchema,
@@ -379,8 +381,10 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     labels: challengeLabelsSchema.nullable()
   }),
   z.object({
+    /** How many answers the round dealt, so a sheet draws its cells before anything is revealed. */
+    answerCount: guessNineAnswerCountSchema,
     /**
-     * How many of the nine cells at least one seat has found — a count, so the
+     * How many of the cells at least one seat has found — a count, so the
      * room feels the grid filling without a seat learning which cell to stop
      * looking for. The reader's own cells are `yourVerdict`.
      */
@@ -404,9 +408,7 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
          */
         list: z
           .object({
-            answers: z
-              .array(guessNineAnswerSchema)
-              .length(GUESS_NINE_CELL_COUNT),
+            answers: dealtAnswersOf(guessNineAnswerSchema),
             blackWord: guessNineBlackWordSchema
           })
           .nullable(),
@@ -747,7 +749,7 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
      */
     grid: z
       .object({
-        answers: z.array(guessNineAnswerSchema).length(GUESS_NINE_CELL_COUNT),
+        answers: dealtAnswersOf(guessNineAnswerSchema),
         blackWord: guessNineBlackWordSchema
       })
       .nullable(),

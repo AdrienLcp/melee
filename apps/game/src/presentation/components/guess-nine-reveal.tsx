@@ -6,6 +6,7 @@ import type { PublicPlayer } from '@melee/protocol/room'
 
 import { LONE_FIND_MULTIPLIER } from '@melee/core/guessnine/sheet-pay'
 
+import { guessNineCellStyle } from '@/helpers/guess-nine-cell-place'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { GuessNinePips, pointsOfTier } from './guess-nine-pips'
@@ -22,7 +23,7 @@ type GuessNineRevealProps = {
 }
 
 /**
- * The grid turned over: nine paper cards in cell order — the name, its pips
+ * The grid turned over: a paper card per answer, one tier a row — the name, its pips
  * and what it pays, the pawns of whoever found it, a socket for one nobody did,
  * an ink tag on one a seat alone found when the round paid that double — and
  * the black word beside them as a tall ink card, with why it is wrong
@@ -44,7 +45,7 @@ export const GuessNineReveal: React.FC<GuessNineRevealProps> = ({
     <div className='guess-nine-reveal'>
       <div className='board'>
         <ol aria-label={translate('guessnine.grid')} className='answers'>
-          {revealed.answers.map((answer) => {
+          {revealed.answers.map((answer, cell) => {
             const isYours = youId !== null && answer.foundBy.includes(youId)
             const isDoubled =
               revealed.doublesLoneFinds && answer.foundBy.length === 1
@@ -55,6 +56,10 @@ export const GuessNineReveal: React.FC<GuessNineRevealProps> = ({
                 data-nobody={answer.foundBy.length === 0 || undefined}
                 data-yours={isYours || undefined}
                 key={answer.labels.en}
+                style={guessNineCellStyle({
+                  cell,
+                  cellCount: revealed.answers.length
+                })}
               >
                 <span className='name'>{answer.labels[locale]}</span>
                 <span className='foot'>

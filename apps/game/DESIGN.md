@@ -824,19 +824,21 @@ every winner's pawn at one shared size.
 
 ### Guess nine (`GuessNineSheet`, `GuessNineReveal`, `GuessNineGauge`)
 Direction A, *the grid*, chosen 2026-10-24 (`.impeccable/directions/guess-nine/`,
-local). A seat's grid is 3 × 3 in cell order, so a cell's place says its tier:
+local). A seat's grid is one tier a row in cell order — 3 × 3 at nine, a short
+row centred on half a cell when the host deals three to eight
+(`_tier-rows.sass`) — so a cell's place says its tier:
 an empty cell is a socket printing one to three pips, a found one a
 `--good-soft` piece with the line the seat typed, read back by the server
 (`yourLines`), never the answer's own name. Under 10rem of box — a small
-screen with its keyboard up — the nine go to one row and print their pips
+screen with its keyboard up — the cells go to one row and print their pips
 alone. The last line is echoed above the field in muted ink, a hit with what
 it paid; before the first, the line says one of them is the black word. **The
 black word is an ink piece** (`--black-word`, `--on-black-word`,
 `--black-word-muted`), never the danger stamp: a trap, not a fault. On a seat
 it lies over the grid with the found cells voided under it, and the field
 gives way to *the others are still looking*. The room's screen bands the
-theme's card in the spine and counts the room's finds as nine tokens — a
-gauge, never positions. The reveal is nine paper cards (name, pips and what
+theme's card in the spine and counts the room's finds as a token per answer — a
+gauge, never positions. The reveal is a paper card per answer (name, pips and what
 it pays, the finders' pawns, *Nobody* on a socket, the seat's own in the
 *yours* keyline) and the black word as an ink card beside them on a box wider
 than 3:2, a strip under them otherwise. Nothing moves inside the round: a hit

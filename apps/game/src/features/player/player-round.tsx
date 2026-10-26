@@ -653,6 +653,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             />
           ) : (
             <GuessNineSpoken
+              answerCount={guessNine.answerCount}
               key={round.id}
               onTick={(cell, isTicked) =>
                 onTick({ cell, isTicked, roundId: round.id })

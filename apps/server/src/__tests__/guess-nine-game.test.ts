@@ -180,6 +180,7 @@ describe('a guess-nine round through the seam', () => {
     const { host, wall, zoe } = await roundInPlay()
 
     expect(guessNineRound(playerView(zoe))).toEqual({
+      answerCount: 9,
       foundCellCount: 0,
       kind: 'guessnine',
       revealed: null,
@@ -220,6 +221,7 @@ describe('a guess-nine round through the seam', () => {
     )
 
     expect(playerView(zoe)?.yourVerdict).toEqual({
+      cellCount: 9,
       foundCells: [4, 8],
       hitBlackWord: false,
       kind: 'cells'
@@ -284,6 +286,37 @@ describe('a guess-nine round through the seam', () => {
     expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['already_buzzed'])
     expect(awardOf(zoeId)?.points).toBe(0)
     expect(awardOf(maxId)).toMatchObject({ points: POINT, speedBonus: 0 })
+  })
+
+  it('[guessnine] deals the most read five when the host asks for five, and closes the sheet on them', async () => {
+    const { host, max, type, wall, zoe } = await roundInPlay({
+      settings: {
+        ...GUESS_NINE,
+        game: { ...DEFAULT_GUESS_NINE_SETTINGS, answerCount: 5 }
+      }
+    })
+
+    const console = hostView(host)?.currentContent
+    const grid = console?.kind === 'guessnine' ? console.grid : null
+
+    expect(guessNineRound(playerView(zoe))?.answerCount).toBe(5)
+    expect(
+      grid?.answers.map(({ labels, tier }) => `${labels.en} ${tier}`)
+    ).toEqual(['Mercury 1', 'Venus 1', 'Earth 2', 'Mars 2', 'Jupiter 3'])
+
+    type(zoe, 'Ceres')
+    for (const name of ANSWER_NAMES.slice(0, 5)) {
+      type(zoe, name)
+    }
+    type(max, 'Pluto')
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(playerView(zoe)?.yourVerdict).toMatchObject({
+      cellCount: 5,
+      foundCells: [0, 1, 2, 3, 4]
+    })
+    expect(transcriptOf(wall)).not.toContain('"Saturn"')
+    expect(transcriptOf(host)).not.toContain('"Saturn"')
   })
 
   it('[guessnine] pays each cell its tier, with no speed bonus', async () => {
@@ -400,8 +433,15 @@ const SPOKEN: RoomSettings = {
 }
 
 /** Anna and Ben guess for the first team; Carl, alone in the second, keeps the list. */
-const spokenRoundInPlay = async () => {
-  const { code, host, hostToken } = await harness.openRoom(SPOKEN)
+const spokenRoundInPlay = async ({
+  answerCount = DEFAULT_GUESS_NINE_SETTINGS.answerCount
+}: {
+  answerCount?: number
+} = {}) => {
+  const { code, host, hostToken } = await harness.openRoom({
+    ...SPOKEN,
+    game: { ...DEFAULT_GUESS_NINE_SETTINGS, answerCount }
+  })
   const wall = await pairedWall({ code, hostToken })
   const anna = await harness.seat({ code, nickname: 'Anna' })
   const ben = await harness.seat({ code, nickname: 'Ben' })
@@ -506,6 +546,23 @@ describe('a spoken guess-nine round through the seam', () => {
       playerView(ben)?.youId
     ])
     expect(revealed?.answers[1]?.foundBy).toEqual([])
+  })
+
+  it('[guessnine] refuses a tick past the answers the round dealt', async () => {
+    const { carl, host, tick } = await spokenRoundInPlay({ answerCount: 3 })
+
+    tick(carl, 5)
+    await waitFor(() => errorsIn(carl).length > 0, 'the tick refused')
+    tick(carl, 0)
+    tick(carl, 1)
+    tick(carl, 2)
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    expect(errorsIn(carl).map(({ code }) => code)).toEqual(['invalid_message'])
+    expect(hostView(host)?.teams.map(({ score }) => score)).toEqual([
+      6 * POINT,
+      0
+    ])
   })
 
   it('[guessnine] ends and voids the round on the black word ticked', async () => {

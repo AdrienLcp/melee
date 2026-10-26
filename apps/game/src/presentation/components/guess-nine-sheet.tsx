@@ -1,13 +1,14 @@
 import type React from 'react'
 
-import {
-  GUESS_NINE_CELL_COUNT,
-  type GuessNineCell,
-  type GuessNineSentLine
+import type {
+  GuessNineAnswerCount,
+  GuessNineCell,
+  GuessNineSentLine
 } from '@melee/protocol/guess-nine'
 
 import { tierOfCell } from '@melee/core/guessnine/sheet-pay'
 
+import { guessNineCellStyle } from '@/helpers/guess-nine-cell-place'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { GuessNinePips } from './guess-nine-pips'
@@ -15,6 +16,8 @@ import { GuessNinePips } from './guess-nine-pips'
 import './guess-nine-sheet.sass'
 
 type GuessNineSheetProps = {
+  /** How many answers the round dealt, three to nine. */
+  cellCount: GuessNineAnswerCount
   /** The seat's own lines as the server read them back, which is all it knows of a cell's text. */
   lines: readonly GuessNineSentLine[]
   /**
@@ -24,10 +27,11 @@ type GuessNineSheetProps = {
   tickedCells?: readonly GuessNineCell[]
 }
 
-const CELLS = Array.from({ length: GUESS_NINE_CELL_COUNT }, (_, cell) => cell)
+const cellsOf = (cellCount: GuessNineAnswerCount): GuessNineCell[] =>
+  Array.from({ length: cellCount }, (_, cell) => cell)
 
 /**
- * A seat's grid, three by three in cell order so a cell's place says its tier:
+ * A seat's grid, one tier a row in cell order so a cell's place says what it pays:
  * an empty cell is a socket printing its pips, a found one a green piece with
  * the line the seat typed — never the answer's own name, which it is not sent.
  *
@@ -35,6 +39,7 @@ const CELLS = Array.from({ length: GUESS_NINE_CELL_COUNT }, (_, cell) => cell)
  * it voided: the round is cut and worth nothing.
  */
 export const GuessNineSheet: React.FC<GuessNineSheetProps> = ({
+  cellCount,
   lines,
   tickedCells = []
 }) => {
@@ -46,15 +51,22 @@ export const GuessNineSheet: React.FC<GuessNineSheetProps> = ({
       className='guess-nine-sheet'
       data-voided={blackWord !== null || undefined}
     >
-      <ol aria-label={translate('guessnine.grid')}>
-        {CELLS.map((cell) => {
+      <ol
+        aria-label={translate('guessnine.grid')}
+        style={{ '--cell-count': cellCount }}
+      >
+        {cellsOf(cellCount).map((cell) => {
           const typed = lines.find((line) => line.cells.includes(cell))?.line
           const isFound = typed !== undefined || tickedCells.includes(cell)
 
           return (
-            <li data-found={isFound || undefined} key={cell}>
+            <li
+              data-found={isFound || undefined}
+              key={cell}
+              style={guessNineCellStyle({ cell, cellCount })}
+            >
               {typed !== undefined && <span className='typed'>{typed}</span>}
-              <GuessNinePips tier={tierOfCell(cell)} />
+              <GuessNinePips tier={tierOfCell({ cell, cellCount })} />
             </li>
           )
         })}

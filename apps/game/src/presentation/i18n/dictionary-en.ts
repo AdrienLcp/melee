@@ -368,6 +368,12 @@ export const EN_DICTIONARY = defineDictionary({
       miss: '“{line}”: nothing',
       retry: 'As many as you like. One of them is the black word.'
     },
+    answerCount: {
+      label: 'Answers to find',
+      summary: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} answer', other: '{?} answers' } }
+      })
+    },
     blackWord: {
       ends: 'Your round stops here. It is worth nothing.',
       fell: '{nickname} lost the round on it',
@@ -376,12 +382,12 @@ export const EN_DICTIONARY = defineDictionary({
     },
     duration: 'Time per round',
     found: defineTranslation('{count:plural}', {
-      plural: { count: { other: '{?} of 9 found by the table' } }
+      plural: { count: { other: '{?} of {total:number} found by the table' } }
     }),
-    grid: 'The nine answers',
+    grid: 'The answers',
     home: {
       description:
-        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
+        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
     },
     lone: {
       doubled: '×2',
@@ -394,11 +400,11 @@ export const EN_DICTIONARY = defineDictionary({
     othersLooking: 'The others are still looking.',
     play: 'Play Black square',
     scoring:
-      'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3. Hit the black word and your round is worth nothing.',
+      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3. Hit the black word and your round is worth nothing.',
     scoringLoneFinds:
-      'Nine answers are hidden: the three best known pay 1 point, the next three 2, the last three 3, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
+      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
     scoringSpoken:
-      'One team says its answers out loud and somebody from another team ticks them off: the three best known pay 1 point, the next three 2, the last three 3. Say the black word and the team’s round is worth nothing.',
+      'One team says its answers out loud and somebody from another team ticks them off: the best known third pay 1 point, the next third 2, the last third 3. Say the black word and the team’s round is worth nothing.',
     spoken: {
       blackWord: {
         ask: 'Did they say it? Their round ends, worth nothing.',
@@ -414,7 +420,7 @@ export const EN_DICTIONARY = defineDictionary({
       show: 'Show the list',
       yourTeam: 'Say your answers out loud. {nickname} ticks them off.'
     },
-    tagline: 'Nine answers. One black word.',
+    tagline: 'Hidden answers. One black word.',
     tier: defineTranslation('{points:plural}', {
       plural: { points: { one: '{?} point', other: '{?} points' } }
     }),

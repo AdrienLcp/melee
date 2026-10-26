@@ -52,7 +52,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     guessnine: {
       description:
-        'A theme comes up and nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like — and one answer that sounds right is the black word that costs the round. Scan the QR code and play — no install, no account.',
+        'A theme comes up and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like — and one answer that sounds right is the black word that costs the round. Scan the QR code and play — no install, no account.',
       title: 'Black square — Mêlée'
     },
     home: {
@@ -129,7 +129,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     guessnine: {
       description:
-        'Un thème tombe et neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut — et une réponse qui sonne juste est le mot noir qui coûte la manche. Scannez le QR code et jouez — sans installation, sans compte.',
+        'Un thème tombe et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut — et une réponse qui sonne juste est le mot noir qui coûte la manche. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Case noire — Mêlée'
     },
     home: {

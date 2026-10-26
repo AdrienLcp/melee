@@ -1,4 +1,7 @@
-import type { ShelvedGame } from '@melee/protocol/game'
+import {
+  DEFAULT_GUESS_NINE_SETTINGS,
+  type ShelvedGame
+} from '@melee/protocol/game'
 import type { AnswerMode, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 import type { WorldmapPlaces } from '@melee/protocol/worldmap'
@@ -14,6 +17,7 @@ import { isShelvedGame } from './shelved-game'
 export type SettingsSummaryPart =
   | { count: number | null; kind: 'roundCount' }
   | { count: number; kind: 'itemCount' }
+  | { count: number; kind: 'answerCount' }
   | { game: ShelvedGame; kind: 'game' }
   | { kind: 'answerMode'; mode: AnswerMode }
   | { kind: 'source'; source: TrackSource['kind'] }
@@ -61,6 +65,13 @@ export const settingsSummary = ({
 
   if (game.kind === 'slate') {
     parts.push({ count: game.itemCount, kind: 'itemCount' })
+  }
+
+  if (
+    game.kind === 'guessnine' &&
+    game.answerCount !== DEFAULT_GUESS_NINE_SETTINGS.answerCount
+  ) {
+    parts.push({ count: game.answerCount, kind: 'answerCount' })
   }
 
   if (answerModesFor(game.kind).length > 1) {
