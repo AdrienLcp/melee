@@ -29,6 +29,11 @@
 
       grid-area: card
 
+    // A map is a picture with no length to size it by: it takes the height
+    // and the tiles keep only what their names need.
+    &:has(.map-question)
+      grid-template-rows: minmax(0, 1fr) auto
+
     .answer-form.choices
       display: grid
       gap: clamp(var(--space-2xs), 1.4cqmin, var(--space-xs))

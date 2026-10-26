@@ -140,6 +140,15 @@
         @include question-card.clock-margin
         width: auto
 
+    // A place to name: the map is the question and takes the height, the
+    // field stays right under it for the keyboard to rise to.
+    &:has(.map-question)
+      min-height: 0
+
+      .round-card
+        flex: 1 1 0
+        min-height: min(20rem, 45dvh)
+
   // The theme on its card with the round's sand along its top, and the sheet
   // taking everything under it, down to the field.
   .player-round.guess-nine-round

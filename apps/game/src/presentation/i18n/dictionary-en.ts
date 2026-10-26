@@ -1662,9 +1662,14 @@ export const EN_DICTIONARY = defineDictionary({
       sent: 'Your pawn is down. Waiting for the others.'
     },
     country: COUNTRY_NAMES_EN,
+    direction: {
+      label: 'The round asks',
+      name: 'Name what is shown',
+      place: 'Place what is named'
+    },
     home: {
       description:
-        'A country comes up, and everyone puts a pawn down on a world map they zoom with their fingers. Inside it scores in full; outside, it is paid by the kilometre to the border. At the reveal, every pawn draws its line to the country.'
+        'A country, a capital or a French city comes up, and everyone puts a pawn down on a map they zoom with their fingers: on it scores in full, off it is paid by the kilometre. At the reveal, every pawn draws its line to the place. Or the other way round: the map lights a place up, and the table names it.'
     },
     map: {
       hint: 'Zoom in, then put your pawn down on it',
@@ -1677,14 +1682,19 @@ export const EN_DICTIONARY = defineDictionary({
       zoomIn: 'Zoom in',
       zoomOut: 'Zoom out'
     },
-    name: 'World map',
+    name: 'Atlas',
+    naming: {
+      capital: 'Which capital is this?',
+      city: 'Which city is this?',
+      country: 'Which country is this?'
+    },
     places: {
       countries: 'Countries of the world',
       frenchCities: 'Cities of France',
       label: 'What to place',
       worldCapitals: 'World capitals'
     },
-    play: 'Play World map',
+    play: 'Play Atlas',
     prompt: 'Place {place}',
     reveal: {
       away: '{distance} km away',
@@ -1702,6 +1712,14 @@ export const EN_DICTIONARY = defineDictionary({
       'Everyone puts a pawn down at once. Within 100 km of the capital it scores three, within 300 km two, within 1,000 km one — and the earlier your pawn, the more the clock adds, up to double.',
     scoringCities:
       'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores three, within 75 km two, within 150 km one — and the earlier your pawn, the more the clock adds, up to double.',
-    tagline: 'One country. Put your pawn on it.'
+    scoringMixed:
+      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to three, and the earlier you put it down the more the clock adds, up to double.',
+    scoringName: {
+      choice:
+        'The map shows a place and offers four names, everyone at once. The right one scores a point, and the earlier you find it the more the clock adds — up to double.',
+      typed:
+        'The map shows a place and everyone types its name at once. The right one scores three, and the earlier you find it the more the clock adds — up to double.'
+    },
+    tagline: 'One place. Put your pawn on it, or name it.'
   }
 })

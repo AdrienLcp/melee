@@ -67,28 +67,32 @@ export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
 }
 
 /**
- * What a revealed answer reads as: the line it was typed or picked as, on the
- * world map its distance and on the timeline the pairs it swapped — the server
+ * What a revealed answer reads as: the line it was typed or picked as — a
+ * place picked by name in the reader's language — on the world map its distance and on the timeline the pairs it swapped — the server
  * records a marker as two coordinates and an order as a row of ids, which are
  * nobody's answer to read.
  */
 export const useAnswerWords = (
   round: RoundView
 ): ((answer: { playerId: string; said: string }) => string) => {
-  const distanceWords = useDistanceWords(
-    worldmapContent(round)?.target?.kind ?? 'country'
-  )
+  const { locale } = useI18n()
+  const worldmap = worldmapContent(round)
+  const distanceWords = useDistanceWords(worldmap?.target?.kind ?? 'country')
 
   const orderWords = useOrderWords()
 
   return (answer) => {
     const distanceKm = distanceOf(round, answer.playerId)
     const swappedPairs = swappedPairsOf(round, answer.playerId)
+    // A place picked by name is recorded in French, whatever the picker read.
+    const pickedName = worldmap?.choices.find(
+      (choice) => choice.fr === answer.said
+    )
 
     return distanceKm !== null
       ? distanceWords(distanceKm, 'away')
       : swappedPairs !== null
         ? orderWords(swappedPairs)
-        : answer.said
+        : (pickedName?.[locale] ?? answer.said)
   }
 }

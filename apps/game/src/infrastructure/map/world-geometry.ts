@@ -2,6 +2,7 @@ import {
   type GeoProjection,
   geoBounds,
   geoConicConformal,
+  geoContains,
   geoEqualEarth,
   geoGraticule,
   geoGraticule10,
@@ -133,6 +134,8 @@ export type MapRegion = 'france' | 'world'
 
 /** One map's projection and everything drawn or measured through it. */
 export type MapGeometry = {
+  /** The country drawn on this map that holds a point, or `null` at sea. */
+  countryAt: (point: GeoPoint) => CountryCode | null
   /** The country's outline projected, or `null` for a code the atlas does not draw. */
   countryOutlineOf: (code: CountryCode) => CountryOutline | null
   /**
@@ -213,6 +216,10 @@ const geometryOver = ({
   }
 
   return {
+    countryAt: ({ latitude, longitude }) =>
+      [...outlines].find(([, countryOutline]) =>
+        geoContains(countryOutline, [longitude, latitude])
+      )?.[0] ?? null,
     countryOutlineOf: (code) => {
       const countryOutline = countryOutlines().get(code)
 

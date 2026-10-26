@@ -298,7 +298,7 @@ export const GamePitch: React.FC<{
             doublesLoneFinds:
               game.kind === 'guessnine' && game.doublesLoneFinds,
             game: game.kind,
-            worldmapPlaces: game.kind === 'worldmap' ? game.places : null
+            worldmap: game.kind === 'worldmap' ? game : null
           })
         )}
       </p>

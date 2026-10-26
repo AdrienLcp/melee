@@ -1,0 +1,10 @@
+@layer components
+  // The map takes whatever height the card is given, and the line under it
+  // keeps its own: a card sized to its content would hand the map nothing.
+  .asked-question.map-question
+    display: grid
+    grid-template-rows: minmax(0, 1fr) auto
+    min-height: 0
+
+    .world-map
+      order: -1

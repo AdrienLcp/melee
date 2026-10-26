@@ -57,7 +57,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, World map, Challenge, Inner clock, Matchsticks, Timeline, Black square and Categories.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, Atlas, Challenge, Inner clock, Matchsticks, Timeline, Black square and Categories.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -102,8 +102,8 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     worldmap: {
       description:
-        'A country comes up and everyone puts a pawn on a world map, from their own screen. Inside scores in full, outside is paid by the kilometre to the border, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
-      title: 'World map — Mêlée'
+        'A place comes up and everyone puts a pawn on the map, from their own screen — or the map lights a place up and everyone names it. On it scores in full, off it is paid by the kilometre, and the reveal draws every pawn its line. Scan the QR code and play — no install, no account.',
+      title: 'Atlas — Mêlée'
     }
   },
   fr: {
@@ -134,7 +134,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Carte du monde, Défi, Horloge interne, Allumettes, Frise chronologique, Case noire et Petit Bac.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Atlas, Défi, Horloge interne, Allumettes, Frise chronologique, Case noire et Petit Bac.',
       title: 'Mêlée — des jeux à plusieurs pour un écran et toute la salle'
     },
     innerclock: {
@@ -179,8 +179,8 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     worldmap: {
       description:
-        "Un pays s'affiche et chacun pose son pion sur la carte du monde, depuis son propre écran. Dedans, c'est le plein de points ; à côté, ça se paie au kilomètre près de la frontière, et le dévoilement trace le trait de chaque pion. Scannez le QR code et jouez — sans installation, sans compte.",
-      title: 'Carte du monde — Mêlée'
+        "Un lieu s'affiche et chacun pose son pion sur la carte, depuis son propre écran — ou la carte allume un lieu et chacun le nomme. Dessus, c'est le plein de points ; à côté, ça se paie au kilomètre, et le dévoilement trace le trait de chaque pion. Scannez le QR code et jouez — sans installation, sans compte.",
+      title: 'Atlas — Mêlée'
     }
   }
 }

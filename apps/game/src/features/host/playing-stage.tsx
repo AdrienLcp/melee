@@ -6,6 +6,7 @@ import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
 import {
   ChoiceAnswer,
+  candidatesIn,
   longestChoiceLength,
   type PlayerAnswer,
   TypedAnswer
@@ -14,15 +15,14 @@ import { GuessNineAnswer } from '@/features/player/guess-nine-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { PrintedChoices } from '@/features/player/printed-choices'
+import { RoundQuestion } from '@/features/player/round-question'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   guessNineContent,
   matchsticksContent,
-  quizContent,
   timelineContent,
   worldmapContent
 } from '@/helpers/round-content'
-import { AskedQuestion } from '@/presentation/components/asked-question'
 import { GuessNineSpoken } from '@/presentation/components/guess-nine-spoken'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
@@ -76,7 +76,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const { locale, translate } = useI18n()
   const roundDurationMs = round.durationMs
   const mode = round.answerMode
-  const choiceLength = longestChoiceLength(round)
+  const choiceLength = longestChoiceLength(candidatesIn({ locale, round }))
   const guessNine = guessNineContent(round)
   const isTyping = mode === 'typed' && onAnswer !== null && guessNine === null
   const worldmap = worldmapContent(round)
@@ -92,8 +92,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           elapsedMs={view.roundElapsedMs}
         />
       )}
-      {round.content.kind === 'quiz' ? (
-        <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
+      {round.content.kind === 'quiz' || worldmap?.shown != null ? (
+        <RoundQuestion round={round} />
       ) : worldmap?.target != null ? (
         <MapPrompt target={worldmap.target} />
       ) : matchsticks !== null ? (
@@ -136,7 +136,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             : 'answering'
       }
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
-      data-map={(worldmap !== null && onAnswer !== null) || undefined}
+      data-map={(worldmap?.target != null && onAnswer !== null) || undefined}
+      data-map-question={worldmap?.shown != null || undefined}
       data-moving={isMoving || undefined}
       data-timeline={
         timeline === null
@@ -183,7 +184,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           verdict={view.yourVerdict}
         />
       )}
-      {worldmap !== null && onAnswer !== null && (
+      {worldmap?.target != null && onAnswer !== null && (
         <MapAnswer
           key={round.id}
           onAnswer={onAnswer}

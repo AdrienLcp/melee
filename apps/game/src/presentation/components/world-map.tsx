@@ -2,7 +2,7 @@ import type React from 'react'
 import { useEffect, useId, useRef, useState } from 'react'
 
 import type { CountryCode } from '@melee/protocol/country-code'
-import type { GeoPoint } from '@melee/protocol/worldmap'
+import type { GeoPoint, WorldmapShown } from '@melee/protocol/worldmap'
 
 import {
   clampedView,
@@ -54,6 +54,10 @@ const CONTROLS_INSET = 56
 const RING_RADIUS = 22
 /** The space between the pawn's actions, the pawn and the frame's edges. */
 const PERCH_MARGIN = 12
+/** How many times its own size the view around a shown place spans: a country is named by its neighbours as much as by its shape. */
+const SHOWN_CONTEXT = 3
+/** The least a view around a shown place spans, as a share of the map's width — a dot or an islet still needs a coastline to be found. */
+const SHOWN_LEAST_SPAN = 0.14
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {
@@ -81,6 +85,8 @@ export type WorldMapProps = {
   revealed?: { markers: readonly RevealedMarker[]; target: RevealedTarget }
   /** The world for a country, France for one of its cities. */
   region: MapRegion
+  /** What a `name` round shows while it is open: the country filled around its point, or a dot. */
+  shown?: WorldmapShown | null
   /** Where a tap or a drag puts the pawn; absent once nothing more can be placed. */
   onPlace?: (point: GeoPoint) => void
 }
@@ -96,7 +102,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   markerActions,
   onPlace,
   region,
-  revealed
+  revealed,
+  shown
 }) => {
   const geometry = mapGeometryOf(region)
   const frameRef = useRef<HTMLDivElement>(null)
@@ -132,6 +139,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
           onPlace={onPlace}
           region={region}
           revealed={revealed}
+          shown={shown}
         />
       )}
     </div>
@@ -148,28 +156,39 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
   markerActions,
   onPlace,
   region,
-  revealed
+  revealed,
+  shown
 }) => {
   const translate = useTranslate()
   const hintId = useId()
   const surface = useRef<SVGSVGElement>(null)
   const { geoPointAt, mapPointOf, projected: world } = geometry
   const map = { height: world.height, width: world.width }
+  const shownTarget = shownTargetOf(geometry, shown ?? null)
   const target =
-    revealed === undefined ? null : targetOutlineOf(geometry, revealed.target)
+    revealed === undefined
+      ? shownTarget === null
+        ? null
+        : targetOutlineOf(geometry, shownTarget)
+      : targetOutlineOf(geometry, revealed.target)
+  const markers = revealed?.markers ?? []
   const { easeView, setView, view } = useEasedMapView(() =>
-    revealed === undefined || target === null
+    target === null || (region === 'france' && markers.length === 0)
       ? fittedView({ frame, map })
       : clampedView({
           frame,
           map,
           view: framedOn({
-            box: boxAround({ geometry, markers: revealed.markers, target }),
+            box:
+              markers.length === 0
+                ? boxInContext({ map, target })
+                : boxAround({ geometry, markers, target }),
             frame: { ...frame, width: frame.width - CONTROLS_INSET },
             map
           })
         })
   )
+  const drawnTarget = revealed?.target ?? shownTarget
 
   const markerAt =
     marker === null ? null : toScreen(view, mapPointOf(marker.point))
@@ -228,24 +247,22 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       >
         <g transform={`translate(${view.x} ${view.y}) scale(${view.scale})`}>
           <WorldShapes world={world} />
-          {revealed?.target.kind === 'country' && (
+          {drawnTarget?.kind === 'country' && (
             <path
               className='target'
               d={
                 world.countries.find(
-                  (country) =>
-                    revealed.target.kind === 'country' &&
-                    country.code === revealed.target.countryCode
+                  (country) => country.code === drawnTarget.countryCode
                 )?.path
               }
             />
           )}
         </g>
-        {revealed !== undefined && target !== null && (
+        {drawnTarget !== null && target !== null && (
           <RevealedLayer
-            isCity={revealed.target.kind === 'city'}
+            isCity={drawnTarget.kind === 'city'}
             mapPointOf={mapPointOf}
-            markers={revealed.markers}
+            markers={markers}
             target={target}
             view={view}
           />
@@ -381,6 +398,49 @@ const targetOutlineOf = (
     box: { max: spot, min: spot },
     centre: spot,
     vertices: [spot]
+  }
+}
+
+/**
+ * What a `name` round points at: the country the point falls in, which this
+ * screen finds in its own outlines because no code is sent, or the point
+ * itself for a city or a capital.
+ */
+const shownTargetOf = (
+  geometry: MapGeometry,
+  shown: WorldmapShown | null
+): RevealedTarget | null => {
+  if (shown === null) {
+    return null
+  }
+
+  if (shown.kind !== 'country') {
+    return { kind: 'city', point: shown.point }
+  }
+
+  const countryCode = geometry.countryAt(shown.point)
+
+  return countryCode === null ? null : { countryCode, kind: 'country' }
+}
+
+/** A place with enough of the map around it to be recognised by where it is. */
+const boxInContext = ({
+  map,
+  target
+}: {
+  map: Size
+  target: CountryOutline
+}): MapBox => {
+  const span = Math.max(
+    map.width * SHOWN_LEAST_SPAN,
+    (target.box.max[0] - target.box.min[0]) * SHOWN_CONTEXT,
+    (target.box.max[1] - target.box.min[1]) * SHOWN_CONTEXT
+  )
+  const [centreX, centreY] = target.centre
+
+  return {
+    max: [centreX + span / 2, centreY + span / 2],
+    min: [centreX - span / 2, centreY - span / 2]
   }
 }
 

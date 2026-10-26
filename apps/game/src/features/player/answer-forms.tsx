@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
+import type { Locale } from '@melee/protocol/locale'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
@@ -19,7 +20,7 @@ import { bankedHalves } from '@/helpers/round-content'
 import { AnswerTile } from '@/presentation/components/answer-tile'
 import { Button } from '@/presentation/components/button'
 import { TextField } from '@/presentation/components/text-field'
-import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 
 import './answer-forms.sass'
@@ -53,7 +54,14 @@ export type Candidate = {
   title: string
 }
 
-export const candidatesIn = (round: RoundView): Candidate[] => {
+export const candidatesIn = ({
+  locale,
+  round
+}: {
+  /** The map's names are sent in both languages, and a tile shows the reader's. */
+  locale: Locale
+  round: RoundView
+}): Candidate[] => {
   const content = round.content
 
   switch (content.kind) {
@@ -74,13 +82,18 @@ export const candidatesIn = (round: RoundView): Candidate[] => {
     case 'reflex':
     case 'slate':
     case 'timeline':
-    case 'worldmap':
       return []
     case 'quiz':
       return content.choices.map((choice) => ({
         key: choice,
         subtitle: null,
         title: choice
+      }))
+    case 'worldmap':
+      return content.choices.map((choice) => ({
+        key: choice.fr,
+        subtitle: null,
+        title: choice[locale]
       }))
   }
 }
@@ -95,10 +108,10 @@ type ChoiceAnswerProps = AnswerFormProps & {
  * by — together, so no tile's words are a different size from its neighbour's —
  * and what the question beside them yields to.
  */
-export const longestChoiceLength = (round: RoundView): number =>
+export const longestChoiceLength = (candidates: readonly Candidate[]): number =>
   Math.max(
     1,
-    ...candidatesIn(round).map(
+    ...candidates.map(
       (candidate) => candidate.title.length + (candidate.subtitle?.length ?? 0)
     )
   )
@@ -115,6 +128,7 @@ export const ChoiceAnswer: React.FC<ChoiceAnswerProps> = ({
   round,
   youId
 }) => {
+  const { locale } = useI18n()
   const [chosenIndex, setChosenIndex] = useState<number | null>(null)
 
   if (round === null) {
@@ -127,7 +141,7 @@ export const ChoiceAnswer: React.FC<ChoiceAnswerProps> = ({
   const hasAnswered =
     chosenIndex !== null ||
     round.answers.some((answer) => answer.playerId === youId)
-  const candidates = candidatesIn(round)
+  const candidates = candidatesIn({ locale, round })
 
   return (
     <section className='answer-form choices'>

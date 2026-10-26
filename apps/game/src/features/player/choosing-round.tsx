@@ -5,12 +5,13 @@ import type { RoundView } from '@melee/protocol/room'
 
 import {
   ChoiceAnswer,
+  candidatesIn,
   longestChoiceLength,
   type PlayerAnswer
 } from '@/features/player/answer-forms'
 import { PrintedChoices } from '@/features/player/printed-choices'
-import { quizContent } from '@/helpers/round-content'
-import { AskedQuestion } from '@/presentation/components/asked-question'
+import { RoundQuestion } from '@/features/player/round-question'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import './choosing-round.sass'
 
@@ -39,7 +40,8 @@ export const ChoosingRound: React.FC<ChoosingRoundProps> = ({
   round,
   youId
 }) => {
-  const choiceLength = longestChoiceLength(round)
+  const { locale } = useI18n()
+  const choiceLength = longestChoiceLength(candidatesIn({ locale, round }))
 
   return (
     <section
@@ -47,7 +49,7 @@ export const ChoosingRound: React.FC<ChoosingRoundProps> = ({
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       style={{ '--choice-length': choiceLength }}
     >
-      <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
+      <RoundQuestion round={round} />
       {onAnswer === null ? (
         <PrintedChoices round={round} />
       ) : (

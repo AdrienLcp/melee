@@ -4,7 +4,10 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { GameKind, ShelvedGame } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { AnswerMode } from '@melee/protocol/room'
-import type { WorldmapPlaces } from '@melee/protocol/worldmap'
+import type {
+  WorldmapDirection,
+  WorldmapPlaces
+} from '@melee/protocol/worldmap'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { BuzzBlocker } from '@melee/core/round/buzz-eligibility'
@@ -78,7 +81,7 @@ export const scoringKey = ({
   asksForAFilm,
   doublesLoneFinds,
   game,
-  worldmapPlaces
+  worldmap
 }: {
   answerMode: AnswerMode
   /** The blind test's two halves are a film and its composer on one source out of five. */
@@ -86,8 +89,11 @@ export const scoringKey = ({
   /** Guess nine's *Nobody else had it*, which doubles a lone find. */
   doublesLoneFinds: boolean
   game: GameKind
-  /** What a map room places, each priced by its own tiers; `null` off the map. */
-  worldmapPlaces: readonly WorldmapPlaces[] | null
+  /** Which way a map room asks and what it draws from, each kind priced by its own tiers; `null` off the map. */
+  worldmap: {
+    direction: WorldmapDirection
+    places: readonly WorldmapPlaces[]
+  } | null
 }): BuiltKey<
   | 'buzzer.scoring'
   | 'challenge.scoring'
@@ -104,6 +110,8 @@ export const scoringKey = ({
   | 'worldmap.scoring'
   | 'worldmap.scoringCapitals'
   | 'worldmap.scoringCities'
+  | 'worldmap.scoringMixed'
+  | `worldmap.scoringName.${Exclude<ServedMode, 'buzzer'>}`
   | `blindtest.scoring.${ServedMode}`
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
@@ -156,7 +164,13 @@ export const scoringKey = ({
     case 'timeline':
       return 'timeline.scoring'
     case 'worldmap':
-      return WORLDMAP_SCORING_KEYS[worldmapPlaces?.[0] ?? 'countries']
+      if (worldmap?.direction === 'name') {
+        return `worldmap.scoringName.${served === 'typed' ? 'typed' : 'choice'}`
+      }
+
+      return worldmap !== null && worldmap.places.length > 1
+        ? 'worldmap.scoringMixed'
+        : WORLDMAP_SCORING_KEYS[worldmap?.places[0] ?? 'countries']
   }
 }
 

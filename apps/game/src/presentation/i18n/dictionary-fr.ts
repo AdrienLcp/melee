@@ -1574,9 +1574,14 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Ton pion est posé. On attend les autres.'
     },
     country: COUNTRY_NAMES_FR,
+    direction: {
+      label: 'La manche demande',
+      name: 'Nommer ce qui est montré',
+      place: 'Placer ce qui est nommé'
+    },
     home: {
       description:
-        'Un pays s’affiche, et chacun pose son pion sur la carte du monde, zoomée du bout des doigts. Dedans, c’est le plein de points ; à côté, ça se paie au kilomètre près de la frontière. Au dévoilement, chaque pion tire son trait jusqu’au pays.'
+        'Un pays, une capitale ou une ville de France s’affiche, et chacun pose son pion sur la carte, zoomée du bout des doigts : dessus, c’est le plein de points ; à côté, ça se paie au kilomètre. Au dévoilement, chaque pion tire son trait jusqu’au lieu. Ou dans l’autre sens : la carte allume un lieu, et la table le nomme.'
     },
     map: {
       hint: 'Zoome, puis pose ton pion dessus',
@@ -1589,14 +1594,19 @@ export const FR_DICTIONARY = defineDictionary({
       zoomIn: 'Zoomer',
       zoomOut: 'Dézoomer'
     },
-    name: 'Carte du monde',
+    name: 'Atlas',
+    naming: {
+      capital: 'Quelle est cette capitale ?',
+      city: 'Quelle est cette ville ?',
+      country: 'Quel est ce pays ?'
+    },
     places: {
       countries: 'Pays du monde',
       frenchCities: 'Villes de France',
       label: 'À placer',
       worldCapitals: 'Capitales du monde'
     },
-    play: 'Jouer à la Carte du monde',
+    play: 'Jouer à Atlas',
     prompt: 'Place {place}',
     reveal: {
       away: 'à {distance} km',
@@ -1614,6 +1624,14 @@ export const FR_DICTIONARY = defineDictionary({
       'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 3 points, à moins de 300 km 2, à moins de 1 000 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
     scoringCities:
       'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 3 points, à moins de 75 km 2, à moins de 150 km 1 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
-    tagline: 'Un pays. Pose ton pion dessus.'
+    scoringMixed:
+      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 3 points, et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+    scoringName: {
+      choice:
+        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte un point, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.',
+      typed:
+        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 3 points, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.'
+    },
+    tagline: 'Un lieu. Pose ton pion dessus, ou nomme-le.'
   }
 })

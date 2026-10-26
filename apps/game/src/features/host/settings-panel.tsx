@@ -28,7 +28,8 @@ import {
   trackDifficulties
 } from '@melee/protocol/track'
 import {
-  type WorldmapPlaces,
+  type WorldmapDirection,
+  worldmapDirectionSchema,
   worldmapPlacesSchema
 } from '@melee/protocol/worldmap'
 
@@ -37,7 +38,7 @@ import {
   answerModesFor,
   isPlayableWithTeams
 } from '@melee/core/room/game-capabilities'
-import { isJudgedByHost } from '@melee/core/room/game-modes'
+import { isJudgedByHost, modeOfferedBy } from '@melee/core/room/game-modes'
 
 import { NumberField } from '@/presentation/components/number-field'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
@@ -178,8 +179,8 @@ const difficultyLabelKey = (
 const isDifficulty = (value: string): value is TrackDifficulty =>
   trackDifficulties.some((difficulty) => difficulty === value)
 
-const isWorldmapPlaces = (value: string): value is WorldmapPlaces =>
-  worldmapPlacesSchema.safeParse(value).success
+const isWorldmapDirection = (value: string): value is WorldmapDirection =>
+  worldmapDirectionSchema.safeParse(value).success
 
 const isAnswerMode = (value: string): value is AnswerMode =>
   answerModes.some((mode) => mode === value)
@@ -288,21 +289,53 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {game?.kind === 'worldmap' && (
-        <SegmentedControl
-          className='worldmap-places'
-          isDisabled={isDisabled}
-          label={translate('worldmap.places.label')}
-          onChange={(next) => {
-            if (isWorldmapPlaces(next)) {
-              onChange({ ...settings, game: { ...game, places: [next] } })
-            }
-          }}
-          options={worldmapPlacesSchema.options.map((places) => ({
-            label: translate(`worldmap.places.${places}`),
-            value: places
-          }))}
-          value={game.places[0] ?? 'countries'}
-        />
+        <>
+          <SegmentedControl
+            className='worldmap-direction'
+            isDisabled={isDisabled}
+            label={translate('worldmap.direction.label')}
+            onChange={(next) => {
+              if (isWorldmapDirection(next)) {
+                const moved = { ...game, direction: next }
+
+                onChange({
+                  ...settings,
+                  game: moved,
+                  mode: modeOfferedBy({
+                    game: moved,
+                    preferred: DEFAULT_MODE_SETTINGS.choice
+                  })
+                })
+              }
+            }}
+            options={worldmapDirectionSchema.options.map((direction) => ({
+              label: translate(`worldmap.direction.${direction}`),
+              value: direction
+            }))}
+            value={game.direction}
+          />
+          <ToggleGroup
+            className='worldmap-places'
+            isDisabled={isDisabled}
+            label={translate('worldmap.places.label')}
+            onSelectionChange={(keys) => {
+              const ticked = worldmapPlacesSchema.options.filter((places) =>
+                keys.has(places)
+              )
+
+              // The server refuses a map with nothing to draw from, so the
+              // last kind stays ticked rather than being sent and bounced.
+              if (ticked.length > 0) {
+                onChange({ ...settings, game: { ...game, places: ticked } })
+              }
+            }}
+            options={worldmapPlacesSchema.options.map((places) => ({
+              label: translate(`worldmap.places.${places}`),
+              value: places
+            }))}
+            selectedKeys={game.places}
+          />
+        </>
       )}
 
       {game?.kind === 'blindtest' && (

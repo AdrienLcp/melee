@@ -45,6 +45,7 @@ import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
 import { RoundBoard } from '@/features/player/round-board'
 import { RoundClock } from '@/features/player/round-clock'
+import { RoundQuestion } from '@/features/player/round-question'
 import {
   SlateOnTheWall,
   SlateSheet,
@@ -581,10 +582,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     const answerWithRound = (answer: PlayerAnswer): boolean =>
       onAnswer(answer, round.id)
 
-    // Here rather than inside the forms: the host console renders those too
-    // when its owner has taken a seat, and it is already showing the question.
-    const prompt = quizContent(round)?.prompt ?? null
-
     if (round.content.kind === 'innerclock') {
       return <InnerclockPress onPress={onBuzz} round={round} />
     }
@@ -704,7 +701,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       return (
         <section className='player-round typed-round'>
           <div className='round-card'>
-            <AskedQuestion prompt={prompt} />
+            <RoundQuestion round={round} />
             <RoundClock clock={clock} view={view} />
           </div>
           <TypedAnswer
@@ -773,7 +770,7 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
             doublesLoneFinds:
               game.kind === 'guessnine' && game.doublesLoneFinds,
             game: game.kind,
-            worldmapPlaces: game.kind === 'worldmap' ? game.places : null
+            worldmap: game.kind === 'worldmap' ? game : null
           })
         )}
       </p>
@@ -835,7 +832,7 @@ const WatchedDuel: React.FC<{
   return (
     <section className='player-round typed-round'>
       <div className='round-card'>
-        <AskedQuestion prompt={quizContent(round)?.prompt ?? null} />
+        <RoundQuestion round={round} />
         <RoundClock clock={clock} view={view} />
       </div>
     </section>
