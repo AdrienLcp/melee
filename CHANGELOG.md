@@ -16,6 +16,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A timeline card is ordered by the card itself, beside numbered
+  places.** The grip is gone: a finger or a mouse drags the whole card, the
+  two arrows beside it still step it one place, and an arrow that leads
+  nowhere is no longer drawn. A column of places, 1 to 5, stays put while a
+  card travels, under one line saying that 1 is the earliest. The list now
+  re-renders every row on each move, where a row it had cached could keep the
+  arrows of the place it had left.
 - `[Game]` **A round launched by hand counts in on its own.** When the host
   presses *Next round*, the console and the wall no longer put the last
   round's results back up beside the 3-2-1: the countdown stands alone, under

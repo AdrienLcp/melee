@@ -55,6 +55,9 @@ export const TimelineAnswer: React.FC<TimelineAnswerProps> = ({
       className='answer-form timeline-answer'
       data-sent={hasAnswered || undefined}
     >
+      {!hasAnswered && (
+        <p className='hint'>{translate('timeline.answer.hint')}</p>
+      )}
       {showsCards && (
         <p aria-hidden='true' className='end earliest'>
           {translate('timeline.answer.earliest')}

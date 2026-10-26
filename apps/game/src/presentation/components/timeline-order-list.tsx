@@ -42,7 +42,8 @@ const moved = ({
 }
 
 /**
- * The events as cards to put in order: dragged by the card itself, by a mouse
+ * The events as cards to put in order beside the numbered places they fill,
+ * which stay put while a card travels: dragged by the card itself, by a mouse
  * or a finger, or stepped one place at a time by the two arrows beside it —
  * the press a hand that has never dragged anything on a screen finds first,
  * and the single-pointer path a drag owes (WCAG 2.5.7), keyboard included.
@@ -95,6 +96,7 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
     <GridList
       aria-label={ariaLabel}
       className='timeline-order-list'
+      dependencies={[order.join(' ')]}
       dragAndDropHooks={dragAndDropHooks}
       items={events}
       ref={list}
@@ -105,6 +107,9 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
 
         return (
           <GridListItem className='order-row' textValue={label}>
+            <span aria-hidden='true' className='rank'>
+              {at + 1}
+            </span>
             <TimelineCard event={event} year={null} />
             <span className='steps'>
               <Button

@@ -1563,7 +1563,7 @@ export const FR_DICTIONARY = defineDictionary({
   timeline: {
     answer: {
       earliest: 'Le plus ancien',
-      hint: 'Glisse les cartes dans l’ordre, ou fais-les bouger avec les flèches',
+      hint: 'Fais glisser une carte, ou passe par ses flèches. 1, c’est le plus ancien.',
       label: 'Ton ordre, du plus ancien au plus récent',
       latest: 'Le plus récent',
       moveDown: 'Faire descendre « {event} »',

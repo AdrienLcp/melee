@@ -1,8 +1,10 @@
 @use '../styles/focus'
+@use '../styles/typography'
 
 @layer components
-  // Each card beside its two arrows: the card is both the thing that moves and
-  // what a finger or a mouse moves it by, the arrows the press that needs no drag.
+  // Each card between its place and its two arrows: the card is both the thing
+  // that moves and what a finger or a mouse moves it by, the arrows the press
+  // that needs no drag, and the place the one piece that never moves.
   .timeline-order-list
     display: grid
     gap: var(--space-xs)
@@ -14,21 +16,44 @@
       border-radius: var(--radius-m)
       column-gap: var(--space-xs)
       display: grid
-      grid-template-columns: minmax(0, 1fr) auto
+      grid-template-columns: auto minmax(0, 1fr) auto
       outline: none
-      transition: translate var(--transition-fast, 0s) var(--ease-out)
-      translate: 0rem var(--touch-shift, 0rem)
+
+      // The shift lands on what travels, so a row's number stays on its place.
+      .timeline-card,
+      .steps
+        transition: translate var(--transition-fast, 0s) var(--ease-out)
+        translate: 0rem var(--touch-shift, 0rem)
 
       &[data-touch-lifted]
         position: relative
-        transition: none
         z-index: 1
+
+        .timeline-card,
+        .steps
+          transition: none
 
         .timeline-card
           box-shadow: var(--shadow-lifted)
 
       &[data-focus-visible]
         @include focus.ring
+
+    .rank
+      @include typography.numeric
+      @include typography.solid
+
+      align-self: stretch
+      background: var(--socket)
+      border-radius: var(--radius-m)
+      box-shadow: var(--shadow-recess-shallow)
+      color: var(--ink)
+      display: grid
+      font-size: var(--text-l)
+      inline-size: 2.75rem
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: -2px
+      place-items: center
 
     // The year is the answer, and a row being ordered has none to show.
     .timeline-card
@@ -59,7 +84,8 @@
       cursor: grabbing
 
     // Bare chevrons as tall as the card: no piece to compete with the card, a
-    // press as large as a fingertip, and none where the card cannot go.
+    // press as large as a fingertip, and none drawn where the card cannot go —
+    // hidden rather than removed, so every card keeps one width.
     .steps
       align-self: stretch
       display: flex
@@ -76,8 +102,7 @@
           --on-control: var(--ink)
 
         &[data-disabled]
-          --on-control: var(--rule-strong)
-          cursor: default
+          visibility: hidden
 
         &:not([data-disabled])[data-pressed]
           background: var(--track-a)
