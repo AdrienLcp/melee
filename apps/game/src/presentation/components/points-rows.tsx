@@ -13,6 +13,7 @@ import { MinusIcon, PlusIcon } from './icons'
 import { Pawn, pawnNumberOf } from './pawn'
 
 import './points-rows.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type PointsRow = {
   /** The pawn beside the name, `null` for a seat with no pawn on a track. */
@@ -64,7 +65,7 @@ export const PointsRows: React.FC = () => {
           name: teamName(team),
           standing:
             pawnCase === null
-              ? translate('player.score', { points: team.score })
+              ? translate('player.score', { points: shownPoints(team.score) })
               : translate('board.case', {
                   case: pawnCase,
                   length: trackLength ?? 0
@@ -86,7 +87,7 @@ export const PointsRows: React.FC = () => {
           name: player.nickname,
           standing:
             pawnCase === null
-              ? translate('player.score', { points: player.score })
+              ? translate('player.score', { points: shownPoints(player.score) })
               : translate('board.case', {
                   case: pawnCase,
                   length: trackLength ?? 0
@@ -115,7 +116,10 @@ export const PointsRows: React.FC = () => {
             <span className='points-standing'>{row.standing}</span>
           </p>
           <Button
-            aria-label={translate('menu.points.take', { name: row.name })}
+            aria-label={translate('menu.points.take', {
+              name: row.name,
+              points: shownPoints(POINT)
+            })}
             className='points-press'
             isDisabled={!isLive || !row.canTake}
             onPress={() => {
@@ -127,7 +131,10 @@ export const PointsRows: React.FC = () => {
             <MinusIcon />
           </Button>
           <Button
-            aria-label={translate('menu.points.give', { name: row.name })}
+            aria-label={translate('menu.points.give', {
+              name: row.name,
+              points: shownPoints(POINT)
+            })}
             className='points-press'
             isDisabled={!isLive || !row.canGive}
             onPress={() => {

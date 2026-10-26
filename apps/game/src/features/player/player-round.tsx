@@ -117,6 +117,7 @@ import {
 } from '@/presentation/i18n/translation'
 
 import './player-round.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type PetitBacSeatMessage = Extract<
   PlayerClientMessage,
@@ -894,7 +895,10 @@ const YourRound: React.FC<{
   const award = round.awards.find((entry) => entry.playerId === view.youId)
   const points = award?.points ?? 0
   const speedBonus = award?.speedBonus ?? 0
-  const payout = points > 0 ? translate('round.scored', { points }) : '0'
+  const payout =
+    points > 0
+      ? translate('round.scored', { points: shownPoints(points) })
+      : '0'
   const standing =
     view.teams.length > 0
       ? teamStandingOf({ playerId: view.youId, teams: view.teams })
@@ -911,7 +915,7 @@ const YourRound: React.FC<{
         )}
         {speedBonus > 0 && (
           <p className='speed-bonus'>
-            {translate('round.speedBonus', { points: speedBonus })}
+            {translate('round.speedBonus', { points: shownPoints(speedBonus) })}
           </p>
         )}
         {standing !== null && (
@@ -960,9 +964,13 @@ const YourPlacing: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
       </p>
       <p className='your-total'>
         <span className='value'>
-          {translate('player.score', { points: yours.player.score })}
+          {translate('player.score', {
+            points: shownPoints(yours.player.score)
+          })}
         </span>{' '}
-        {translate('player.points', { points: yours.player.score })}
+        {translate('player.points', {
+          points: shownPoints(yours.player.score)
+        })}
       </p>
     </div>
   )

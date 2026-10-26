@@ -17,6 +17,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './score-track.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 /** One seat's own reading in place of its score: the figure printed, and how far along it is, from 0 to 1. */
 export type SeatProgress = {
@@ -71,7 +72,9 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
     return {
       figure:
         progress?.figure ??
-        (isRanked ? translate('player.score', { points: player.score }) : null),
+        (isRanked
+          ? translate('player.score', { points: shownPoints(player.score) })
+          : null),
       player,
       progress
     }
@@ -126,7 +129,9 @@ const TeamTrack: React.FC<{
   const teamName = useTeamName()
   const isRanked = hasAnyTeamScored(teams)
   const pieces = buildTeamBoard(teams).map(({ team }) => ({
-    figure: isRanked ? translate('player.score', { points: team.score }) : null,
+    figure: isRanked
+      ? translate('player.score', { points: shownPoints(team.score) })
+      : null,
     team
   }))
   const longestFigure = Math.max(

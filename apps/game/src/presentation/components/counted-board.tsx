@@ -5,6 +5,7 @@ import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 import { buildCountedBoard } from '@melee/core/innerclock/counted-board'
 
 import { innerclockContent } from '@/helpers/round-content'
+import { shownPoints } from '@/helpers/shown-points'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -97,7 +98,7 @@ export const CountedBoard: React.FC<CountedBoardProps> = ({
                   </span>
                   <span className='paid'>
                     {translate('round.scored', {
-                      points: paidTo(row.playerId)
+                      points: shownPoints(paidTo(row.playerId))
                     })}
                   </span>
                 </>

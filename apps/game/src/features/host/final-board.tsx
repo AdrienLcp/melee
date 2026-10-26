@@ -11,6 +11,7 @@ import {
 } from '@melee/core/team/team-board'
 
 import { answerFitting } from '@/helpers/answer-fitting'
+import { shownPoints } from '@/helpers/shown-points'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -85,7 +86,7 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
                   : teams.length > 0
                     ? 'team.final.wins'
                     : 'host.final.wins',
-                { points: topScore }
+                { points: shownPoints(topScore) }
               )}
             </p>
           </>

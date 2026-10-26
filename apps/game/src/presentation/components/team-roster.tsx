@@ -20,6 +20,7 @@ import { useRowsTravel } from './use-rows-travel'
 import { VisuallyHidden } from './visually-hidden'
 
 import './team-roster.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type TeamRosterProps = {
   /** Names the list where the screen around it does not. */
@@ -127,7 +128,9 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
               </h3>
               {showsRank && (
                 <span className='score'>
-                  {translate('player.score', { points: team.score })}
+                  {translate('player.score', {
+                    points: shownPoints(team.score)
+                  })}
                 </span>
               )}
               {teamAction?.(team)}

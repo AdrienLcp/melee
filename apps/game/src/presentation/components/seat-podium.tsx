@@ -10,6 +10,7 @@ import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './seat-podium.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 const PODIUM_PLACES = 3
 
@@ -61,7 +62,7 @@ export const SeatPodium: React.FC<SeatPodiumProps> = ({ players, youId }) => {
               )}
             </span>
             <span className='score'>
-              {translate('player.score', { points: player.score })}
+              {translate('player.score', { points: shownPoints(player.score) })}
             </span>
           </li>
         ))}

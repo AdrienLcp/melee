@@ -13,6 +13,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './round-chrome.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 const MOST_PIPS = 15
 
@@ -97,10 +98,10 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
         ) : (
           <>
             <span className='score'>
-              {translate('player.score', { points: score })}
+              {translate('player.score', { points: shownPoints(score) })}
             </span>
             <VisuallyHidden elementType='span'>
-              {translate('player.points', { points: score })}
+              {translate('player.points', { points: shownPoints(score) })}
             </VisuallyHidden>
           </>
         )}

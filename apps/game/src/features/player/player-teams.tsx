@@ -19,6 +19,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './player-teams.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type LobbyTeamsProps = {
   /** `false` from the socket means the frame was never written. */
@@ -100,9 +101,13 @@ export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
           </p>
           <p className='your-total'>
             <span className='value'>
-              {translate('player.score', { points: placing.team.score })}
+              {translate('player.score', {
+                points: shownPoints(placing.team.score)
+              })}
             </span>{' '}
-            {translate('player.points', { points: placing.team.score })}
+            {translate('player.points', {
+              points: shownPoints(placing.team.score)
+            })}
           </p>
         </div>
       )}

@@ -18,6 +18,7 @@ import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './round-board.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type RoundBoardProps = {
   /** The round as it revealed: what everyone said, and what it paid them. */
@@ -125,23 +126,27 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
                     <>
                       <span className='answer-half'>
                         {translate('round.award', {
-                          points: award.points - award.speedBonus
+                          points: shownPoints(award.points - award.speedBonus)
                         })}
                       </span>
                       <span className='speed-half'>
                         {translate('round.speedHalf', {
-                          points: award.speedBonus
+                          points: shownPoints(award.speedBonus)
                         })}
                       </span>
                     </>
                   ) : (
-                    translate('round.award', { points: award.points })
+                    translate('round.award', {
+                      points: shownPoints(award.points)
+                    })
                   )}
                 </span>
               )}
               {isRanked && (
                 <span className='score'>
-                  {translate('player.score', { points: player.score })}
+                  {translate('player.score', {
+                    points: shownPoints(player.score)
+                  })}
                 </span>
               )}
               {answer !== undefined && (

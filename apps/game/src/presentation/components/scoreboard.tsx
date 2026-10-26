@@ -16,6 +16,7 @@ import { Pawn } from './pawn'
 import { VisuallyHidden } from './visually-hidden'
 
 import './scoreboard.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 /** Past this a ranking is read as a block rather than one row at a time. */
 const PLAYERS_PER_COLUMN = 8
@@ -161,7 +162,9 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             </span>
             {isRanked && (
               <span className='score'>
-                {translate('player.score', { points: player.score })}
+                {translate('player.score', {
+                  points: shownPoints(player.score)
+                })}
               </span>
             )}
             {onRemove !== undefined && (

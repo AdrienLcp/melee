@@ -69,18 +69,18 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'The country:'
     },
     scoring:
-      'Everyone puts a pawn down at once. Inside the country it scores three, within 500 km of its border two, within 1,500 km one — and the earlier your pawn, the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once. Inside the country it scores 30 points, within 500 km of its border 20, within 1,500 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
     scoringCapitals:
-      'Everyone puts a pawn down at once. Within 100 km of the capital it scores three, within 300 km two, within 1,000 km one — and the earlier your pawn, the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once. Within 100 km of the capital it scores 30 points, within 300 km 20, within 1,000 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
     scoringCities:
-      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores three, within 75 km two, within 150 km one — and the earlier your pawn, the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores 30 points, within 75 km 20, within 150 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
     scoringMixed:
-      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to three, and the earlier you put it down the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to 30 points, and the earlier you put it down the more the clock adds, up to double.',
     scoringName: {
       choice:
-        'The map shows a place and offers four names, everyone at once. The right one scores a point, and the earlier you find it the more the clock adds — up to double.',
+        'The map shows a place and offers four names, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
       typed:
-        'The map shows a place and everyone types its name at once. The right one scores three, and the earlier you find it the more the clock adds — up to double.'
+        'The map shows a place and everyone types its name at once. The right one scores 30 points, and the earlier you find it the more the clock adds — up to double.'
     },
     tagline: 'One place. Put your pawn on it, or name it.'
   },
@@ -123,11 +123,11 @@ export const EN_DICTIONARY = defineDictionary({
     othersLooking: 'The others are still looking.',
     play: 'Play Black square',
     scoring:
-      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3. Hit the black word and your round is worth nothing.',
+      'Up to nine answers are hidden: the best known third pay 10 points, the next third 20, the last third 30. Hit the black word and your round is worth nothing.',
     scoringLoneFinds:
-      'Up to nine answers are hidden: the best known third pay 1 point, the next third 2, the last third 3, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
+      'Up to nine answers are hidden: the best known third pay 10 points, the next third 20, the last third 30, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
     scoringSpoken:
-      'One team says its answers out loud and somebody from another team ticks them off: the best known third pay 1 point, the next third 2, the last third 3. Say the black word and the team’s round is worth nothing.',
+      'One team says its answers out loud and somebody from another team ticks them off: the best known third pay 10 points, the next third 20, the last third 30. Say the black word and the team’s round is worth nothing.',
     spoken: {
       blackWord: {
         ask: 'Did they say it? Their round ends, worth nothing.',
@@ -239,17 +239,17 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring: {
       buzzer:
-        'First to buzz answers out loud. The host judges the title and the artist, a point each — a wrong answer sits you out for the rest of the round.',
+        'First to buzz answers out loud. The host judges the title and the artist, 10 points each — a wrong answer sits you out for the rest of the round.',
       choice:
-        'Four answers over the same clip, everyone at once. The right one scores a point, and the earlier you find it the more the clock adds — up to double.',
+        'Four answers over the same clip, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
       typed:
-        'Everyone types, over the same clip. Title and artist score a point each and both together score three, and the earlier you get it the more the clock adds — up to double.'
+        'Everyone types, over the same clip. Title and artist score 10 points each and both together score 30, and the earlier you get it the more the clock adds — up to double.'
     },
     scoringFilm: {
       buzzer:
-        'First to buzz answers out loud. The host judges the film and the composer, a point each — a wrong answer sits you out for the rest of the round.',
+        'First to buzz answers out loud. The host judges the film and the composer, 10 points each — a wrong answer sits you out for the rest of the round.',
       typed:
-        'Everyone types, over the same clip. Film and composer score a point each and both together score three, and the earlier you get it the more the clock adds — up to double.'
+        'Everyone types, over the same clip. Film and composer score 10 points each and both together score 30, and the earlier you get it the more the clock adds — up to double.'
     },
     source: {
       chart: 'Top charts',
@@ -320,7 +320,7 @@ export const EN_DICTIONARY = defineDictionary({
       lengthLabel: 'Length',
       strategy: {
         hint: {
-          onePointOneCase: 'One square for every point the round paid.',
+          onePointOneCase: 'One square for every 10 points the round paid.',
           rank: 'The round’s best moves 3 squares, the second 2, the third 1.'
         },
         label: 'Pawns move',
@@ -358,7 +358,7 @@ export const EN_DICTIONARY = defineDictionary({
     play: 'Play Buzzer',
     running: 'Ask away',
     scoring:
-      'First in answers out loud, and the host says right or wrong. A point for right — and a wrong answer sits you out until they let you back in.',
+      'First in answers out loud, and the host says right or wrong. 10 points for right — and a wrong answer sits you out until they let you back in.',
     tagline: 'Your questions, and a race to the buzzer.'
   },
   challenge: {
@@ -404,7 +404,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     play: 'Play Challenge',
     scoring:
-      'Played at the table. The host places the first three: 3 points for first, 2 for second, 1 for third — a tie shares its place.',
+      'Played at the table. The host places the first three: 30 points for first, 20 for second, 10 for third — a tie shares its place.',
     tagline: 'Played at the table, counted on the board.',
     untitled: 'A challenge at the table'
   },
@@ -867,7 +867,7 @@ export const EN_DICTIONARY = defineDictionary({
       before: 'Count to'
     },
     scoring:
-      'Count in your head and press once. 3 points on the dot, nothing a quarter of the count away — the closer, the more.',
+      'Count in your head and press once. 30 points on the dot, nothing a quarter of the count away — the closer, the more.',
     silent: 'never pressed',
     tagline: 'Count in your head. Stop on the dot.',
     target: {
@@ -1072,9 +1072,9 @@ export const EN_DICTIONARY = defineDictionary({
       yours: 'Your move:'
     },
     scoring:
-      'One stick to move. First in says the move out loud, and the host says right or wrong — a point for right.',
+      'One stick to move. First in says the move out loud, and the host says right or wrong — 10 points for right.',
     scoringMove:
-      'One match to move, everyone at once. The answer is 3 points — on a number, the next best 2 and the one after 1 — and the clock adds to it.',
+      'One match to move, everyone at once. The answer is 30 points — on a number, the next best 20 and the one after 10 — and the clock adds to it.',
     tagline: 'One match moves. Find which.'
   },
   menu: {
@@ -1104,9 +1104,9 @@ export const EN_DICTIONARY = defineDictionary({
      * name they sit beside.
      */
     points: {
-      give: 'One point more for {name}',
+      give: '{points:number} points more for {name}',
       label: 'Points',
-      take: 'One point less for {name}',
+      take: '{points:number} points less for {name}',
       teams: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} team', other: '{?} teams' } }
       })
@@ -1194,7 +1194,7 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'Your sheet'
     },
     scoring:
-      'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 2, one you shared scores 1.',
+      'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 20 points, one you shared scores 10.',
     setup: {
       add: 'Add',
       bank: 'Ready-made',
@@ -1356,11 +1356,11 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring: {
       buzzer:
-        'First to buzz answers out loud, and the host says right or wrong. A point for right — and a wrong answer sits you out for the rest of the round.',
+        'First to buzz answers out loud, and the host says right or wrong. 10 points for right — and a wrong answer sits you out for the rest of the round.',
       choice:
-        'Four answers, everyone at once. The right one scores a point, and the earlier you find it the more the clock adds — up to double.',
+        'Four answers, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
       typed:
-        'Everyone types their answer at once. The right one scores three, and the earlier you find it the more the clock adds — up to double.'
+        'Everyone types their answer at once. The right one scores 30 points, and the earlier you find it the more the clock adds — up to double.'
     },
     tagline: 'A question, and the first one who knows it.',
     variant: {
@@ -1391,7 +1391,7 @@ export const EN_DICTIONARY = defineDictionary({
     pressed: 'In.',
     reaction: '{milliseconds:number} ms',
     scoring:
-      'The screen changes, and the first in takes the point. Go before it changes and you sit the round out.',
+      'The screen changes, and the first in takes the 10 points. Go before it changes and you sit the round out.',
     tagline: 'The screen changes. First in wins.',
     tooEarly: 'too early',
     waiting: 'Watch the screen.'
@@ -1475,7 +1475,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Numbered things to guess — cups to taste, photos, prices — and everyone writes on a sheet nobody else can see, in any order they like. Then the host marks the papers one number at a time, and every answer they accept is worth a point.'
+        'Numbered things to guess — cups to taste, photos, prices — and everyone writes on a sheet nobody else can see, in any order they like. Then the host marks the papers one number at a time, and every answer they accept is worth 10 points.'
     },
     item: 'No. {index:number}',
     itemOf: 'No. {index:number} of {count:number}',
@@ -1520,7 +1520,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     progress: '{filled:number}/{count:number}',
     scoring:
-      'Everyone fills in their own sheet in private, then the host marks it: one point per answer they accept.',
+      'Everyone fills in their own sheet in private, then the host marks it: 10 points per answer they accept.',
     sheet: {
       blank: 'Left blank',
       closedBeforeYou: 'Collected before you arrived',
@@ -1680,7 +1680,7 @@ export const EN_DICTIONARY = defineDictionary({
       yours: 'Your order'
     },
     scoring:
-      'Five events to put in order, earliest first. All of them right is 3 points, one pair the wrong way round 2, two pairs 1 — and the clock adds to it.',
+      'Five events to put in order, earliest first. All of them right is 30 points, one pair the wrong way round 20, two pairs 10 — and the clock adds to it.',
     tagline: 'Five events. Which came first?'
   },
   wall: {

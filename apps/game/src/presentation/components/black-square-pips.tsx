@@ -3,6 +3,7 @@ import type React from 'react'
 import type { BlackSquareTier } from '@melee/protocol/black-square'
 import { POINT } from '@melee/protocol/scoring'
 
+import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { VisuallyHidden } from './visually-hidden'
@@ -30,7 +31,9 @@ export const BlackSquarePips: React.FC<BlackSquarePipsProps> = ({ tier }) => {
         <i aria-hidden='true' key={pip} />
       ))}
       <VisuallyHidden>
-        {translate('blacksquare.tier', { points: tier })}
+        {translate('blacksquare.tier', {
+          points: shownPoints(pointsOfTier(tier))
+        })}
       </VisuallyHidden>
     </span>
   )

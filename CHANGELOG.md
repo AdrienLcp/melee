@@ -8,6 +8,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Scores print a hundred times smaller.** A right pick reads `+10`, a
+  typed answer `+30`, where a single round could print
+  `+12 000`. The board still counts in thousandths of a point, so two seats
+  equal on screen are still ranked apart by the clock; only what a screen
+  prints goes through `shownPoints`. The black square tier and the host's ±
+  buttons say the same scale.
+
 - `[Shared]` **The ids follow the names: `blacksquare` and `atlas`.** The game
   kinds, translation prefixes and URL slugs drop `guessnine` and `worldmap`;
   `PROTOCOL_VERSION` goes to 62. A setup, a line-up or a saved evening stored

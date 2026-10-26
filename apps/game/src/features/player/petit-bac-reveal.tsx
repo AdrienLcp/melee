@@ -12,6 +12,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
 
 import './petit-bac-reveal.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 const OUTCOME_WORDS = {
   empty: 'petitbac.reveal.outcome.empty',
@@ -81,7 +82,9 @@ export const PetitBacReveal: React.FC<PetitBacRevealProps> = ({
                   : translate(OUTCOME_WORDS[outcome])}
               </span>
               <span className='points'>
-                {points > 0 ? translate('round.scored', { points }) : '0'}
+                {points > 0
+                  ? translate('round.scored', { points: shownPoints(points) })
+                  : '0'}
               </span>
             </li>
           )

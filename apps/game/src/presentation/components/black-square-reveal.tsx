@@ -7,6 +7,7 @@ import type { PublicPlayer } from '@melee/protocol/room'
 import { LONE_FIND_MULTIPLIER } from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareCellStyle } from '@/helpers/black-square-cell-place'
+import { shownPoints } from '@/helpers/shown-points'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { BlackSquarePips, pointsOfTier } from './black-square-pips'
@@ -79,7 +80,11 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                       {isDoubled &&
                         ` — ${translate('blacksquare.lone.said')}, ${translate(
                           'blacksquare.tier',
-                          { points: answer.tier * LONE_FIND_MULTIPLIER }
+                          {
+                            points: shownPoints(
+                              pointsOfTier(answer.tier) * LONE_FIND_MULTIPLIER
+                            )
+                          }
                         )}`}
                     </VisuallyHidden>
                   </span>
@@ -94,9 +99,10 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                     )}
                     <span aria-hidden='true'>
                       {translate('round.scored', {
-                        points:
+                        points: shownPoints(
                           pointsOfTier(answer.tier) *
-                          (isDoubled ? LONE_FIND_MULTIPLIER : 1)
+                            (isDoubled ? LONE_FIND_MULTIPLIER : 1)
+                        )
                       })}
                     </span>
                   </span>

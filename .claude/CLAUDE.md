@@ -215,7 +215,8 @@ which is why a user-visible string written into a component is a bug — see
   **The clock never pays more
   than the answer did** — its amplitude is the lower of the two, so being fast
   doubles a score at most, and the console prints the two halves apart
-  (`2 000 +1 500`) rather than their total. It stays a *room* setting the
+  (`20 +15`, every figure a screen prints being the board's divided by a
+  hundred) rather than their total. It stays a *room* setting the
   game narrows — the bare buzzer and the reflex race offer only `buzzer`, and a
   frame setting anything else is refused
 - **Guess** — one typed line. Each half is looked for *inside* it over runs of

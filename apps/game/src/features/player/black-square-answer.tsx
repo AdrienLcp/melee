@@ -9,6 +9,7 @@ import type { Verdict } from '@melee/protocol/scoring'
 import { isSheetClosed, tierOfCell } from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareContent } from '@/helpers/round-content'
+import { shownPoints } from '@/helpers/shown-points'
 import { pointsOfTier } from '@/presentation/components/black-square-pips'
 import { BlackSquareSheet } from '@/presentation/components/black-square-sheet'
 import { Button } from '@/presentation/components/button'
@@ -63,10 +64,12 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
               ? translate('blacksquare.answer.miss', { line: last.line })
               : translate('blacksquare.answer.hit', {
                   line: last.line,
-                  points: last.cells.reduce(
-                    (total, cell) =>
-                      total + pointsOfTier(tierOfCell({ cell, cellCount })),
-                    0
+                  points: shownPoints(
+                    last.cells.reduce(
+                      (total, cell) =>
+                        total + pointsOfTier(tierOfCell({ cell, cellCount })),
+                      0
+                    )
                   )
                 }))}
       </p>

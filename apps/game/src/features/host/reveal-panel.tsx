@@ -35,6 +35,7 @@ import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { PetitBacGrid } from './petit-bac-grid'
 
 import './reveal-panel.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type RevealPanelProps = {
   /** Needed to turn the awards' player ids into names and pawns. */
@@ -350,7 +351,9 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
                             answer: paid.points - paid.speedBonus,
                             speed: paid.speedBonus
                           })
-                        : translate('round.award', { points: paid.points })}
+                        : translate('round.award', {
+                            points: shownPoints(paid.points)
+                          })}
                   </span>
                 )}
               </li>
@@ -393,7 +396,7 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
           <Pawn seat={seatOf(award.playerId)} />
           <span className='nickname'>{nameOf(award.playerId)}</span>
           <span className='points'>
-            {translate('round.scored', { points: award.points })}
+            {translate('round.scored', { points: shownPoints(award.points) })}
           </span>
         </li>
       ))}

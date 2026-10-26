@@ -12,6 +12,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
 
 import './petit-bac-grid.sass'
+import { shownPoints } from '@/helpers/shown-points'
 
 type PetitBacGridProps = {
   /** Needed to turn the lines' player ids into names and pawns. */
@@ -111,7 +112,9 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
                   )
                 })}
                 <td className='total'>
-                  {points > 0 ? translate('round.scored', { points }) : '0'}
+                  {points > 0
+                    ? translate('round.scored', { points: shownPoints(points) })
+                    : '0'}
                 </td>
               </tr>
             )
@@ -123,14 +126,18 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
           <i />
           {translate('petitbac.reveal.outcome.unique')}
           <b>
-            {translate('round.scored', { points: PETIT_BAC_POINTS.unique })}
+            {translate('round.scored', {
+              points: shownPoints(PETIT_BAC_POINTS.unique)
+            })}
           </b>
         </span>
         <span data-outcome='shared'>
           <i />
           {translate('petitbac.reveal.outcome.shared')}
           <b>
-            {translate('round.scored', { points: PETIT_BAC_POINTS.shared })}
+            {translate('round.scored', {
+              points: shownPoints(PETIT_BAC_POINTS.shared)
+            })}
           </b>
         </span>
         <span data-outcome='refused'>
