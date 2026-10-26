@@ -1603,7 +1603,7 @@ export const FR_DICTIONARY = defineDictionary({
     places: {
       countries: 'Pays du monde',
       frenchCities: 'Villes de France',
-      label: 'À placer',
+      label: { name: 'À nommer', place: 'À placer' },
       worldCapitals: 'Capitales du monde'
     },
     play: 'Jouer à Atlas',

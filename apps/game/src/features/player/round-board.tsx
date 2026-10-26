@@ -63,7 +63,7 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
         .filter(Boolean)
         .join(' ')}
       data-inline-words={
-        worldmapContent(round) !== null ||
+        worldmapContent(round)?.direction === 'place' ||
         timelineContent(round) !== null ||
         undefined
       }

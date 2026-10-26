@@ -553,6 +553,91 @@ for (const seat of SEATS) {
   }
 }
 
+const WORLDMAP_NAME_GAME = {
+  direction: 'name',
+  kind: 'worldmap',
+  places: ['countries'],
+  roundDurationMs: 30_000
+}
+
+/**
+ * The same seats on Atlas's `name` round, where the map is the question card's
+ * picture: it asks for a share of the height a quiz prompt never did, beside
+ * the longest four country names the map deals.
+ */
+const asNameRound = (view: object): object => {
+  if (
+    !('round' in view && isRecord(view.round)) ||
+    !('settings' in view && isRecord(view.settings))
+  ) {
+    return view
+  }
+
+  return {
+    ...view,
+    ...('currentContent' in view ? { currentContent: null } : {}),
+    round: {
+      ...view.round,
+      content: {
+        choices: [
+          {
+            en: 'Democratic Republic of the Congo',
+            fr: 'République démocratique du Congo'
+          },
+          { en: 'Central African Republic', fr: 'République centrafricaine' },
+          { en: 'Republic of the Congo', fr: 'République du Congo' },
+          { en: 'South Sudan', fr: 'Soudan du Sud' }
+        ],
+        direction: 'name',
+        kind: 'worldmap',
+        revealedPlacements: null,
+        shown: { kind: 'country', point: { latitude: -2.9, longitude: 23.6 } },
+        target: null
+      }
+    },
+    settings: {
+      ...view.settings,
+      game: WORLDMAP_NAME_GAME,
+      lineUp: [WORLDMAP_NAME_GAME]
+    }
+  }
+}
+
+for (const seat of SEATS) {
+  test(`[layout] ${seat.name}, atlas name round: the map and its four choices never scroll`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: asNameRound(seat.view(LONGEST_PROMPT)) })
+    await page.setViewportSize({ height: 844, width: 390 })
+    await page.goto(seat.path)
+    await expect(page.locator('.answer-tile')).toHaveCount(4)
+    await expect(page.locator('.map-question .world-map')).toBeVisible()
+    await page.evaluate(() => document.fonts.ready.then(() => {}))
+
+    const faults: string[] = []
+
+    for (const [width, height] of seat.role === 'room'
+      ? ROOM_VIEWPORTS
+      : VIEWPORTS) {
+      await resizeTo({ height, page, width })
+
+      const overflow = await page.evaluate(measure)
+
+      if (
+        overflow.floor < FLOOR_PX ||
+        overflow.furthest !== null ||
+        overflow.page > 0 ||
+        overflow.spills.length > 0 ||
+        overflow.strays.length > 0
+      ) {
+        faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
+
 /**
  * The reveal on the screen the room reads: the answer, what the table said, the
  * standings and the hold bar, all inside the viewport at once — above the split

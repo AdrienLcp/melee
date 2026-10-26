@@ -57,7 +57,7 @@ const PERCH_MARGIN = 12
 /** How many times its own size the view around a shown place spans: a country is named by its neighbours as much as by its shape. */
 const SHOWN_CONTEXT = 3
 /** The least a view around a shown place spans, as a share of the map's width — a dot or an islet still needs a coastline to be found. */
-const SHOWN_LEAST_SPAN = 0.14
+const SHOWN_LEAST_SPAN = 0.08
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {

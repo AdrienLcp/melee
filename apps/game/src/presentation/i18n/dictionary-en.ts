@@ -1691,7 +1691,7 @@ export const EN_DICTIONARY = defineDictionary({
     places: {
       countries: 'Countries of the world',
       frenchCities: 'Cities of France',
-      label: 'What to place',
+      label: { name: 'What to name', place: 'What to place' },
       worldCapitals: 'World capitals'
     },
     play: 'Play Atlas',

@@ -317,7 +317,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           <ToggleGroup
             className='worldmap-places'
             isDisabled={isDisabled}
-            label={translate('worldmap.places.label')}
+            label={translate(`worldmap.places.label.${game.direction}`)}
             onSelectionChange={(keys) => {
               const ticked = worldmapPlacesSchema.options.filter((places) =>
                 keys.has(places)
