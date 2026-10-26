@@ -7,6 +7,7 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 
+import { PetitBacAuthors } from '@/features/player/petit-bac-authors'
 import {
   LetterPiece,
   petitBacCategoryId
@@ -14,7 +15,6 @@ import {
 import { petitBacContent } from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'
 import { RoundProgress } from '@/presentation/components/round-progress'
-import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
 
@@ -207,20 +207,7 @@ const PetitBacVoting: React.FC<PetitBacVotingProps> = ({
             )}
             <span className='text'>{row.text}</span>
             <span className='foot'>
-              <span className='authors'>
-                {row.authors.map((playerId) => (
-                  <Pawn key={playerId} seat={seatOf(view.players, playerId)} />
-                ))}
-                <VisuallyHidden elementType='span'>
-                  {` — ${row.authors
-                    .map(
-                      (playerId) =>
-                        view.players[seatOf(view.players, playerId)]
-                          ?.nickname ?? ''
-                    )
-                    .join(', ')}`}
-                </VisuallyHidden>
-              </span>
+              <PetitBacAuthors authorIds={row.authors} players={view.players} />
               {row.refusals > 0 && (
                 <span className='against'>
                   {translate('petitbac.wall.against', {

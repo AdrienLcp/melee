@@ -12,6 +12,7 @@ import type { PlayerRoomView, RoundView } from '@melee/protocol/room'
 import { isStoppableLine } from '@melee/core/petitbac/letter-match'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
+import { PetitBacAuthors } from '@/features/player/petit-bac-authors'
 import { RoundClock } from '@/features/player/round-clock'
 import { petitBacContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
@@ -289,8 +290,6 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
   }
 
   const hasVoted = content.votesDone.includes(view.youId)
-  const seatOf = (playerId: string): number =>
-    view.players.findIndex((player) => player.id === playerId)
 
   return (
     <section className='petit-bac-vote'>
@@ -313,11 +312,10 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
             return (
               <li className={isOut ? 'row out' : 'row'} key={row.key}>
                 <span className='text'>{row.text}</span>
-                <span className='authors'>
-                  {row.authors.map((playerId) => (
-                    <Pawn key={playerId} seat={seatOf(playerId)} />
-                  ))}
-                </span>
+                <PetitBacAuthors
+                  authorIds={row.authors}
+                  players={view.players}
+                />
                 <span className='side'>
                   {isYours ? (
                     <span className='yours'>

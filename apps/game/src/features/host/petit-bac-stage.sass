@@ -232,14 +232,12 @@
         gap: var(--space-xs) var(--space-s)
         justify-content: space-between
 
-      .authors
-        display: flex
-        flex-wrap: wrap
-        gap: var(--space-2xs)
+      .petit-bac-authors
+        flex: 1 1 auto
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-xl))
 
         .pawn
           block-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 2.75rem)
-          inline-size: auto
 
       .against
         @include typography.caption-strong
