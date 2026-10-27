@@ -16,6 +16,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The planned games read as a list of rounds.** They carry a
+  heading with the round count (*Les jeux prévus · 6 manches*, then *La suite ·
+  manches 2 à 6* once the game is under way), stand above the shelf once two
+  games are ticked, and print each round's number in the game's colour band.
+  The rounds drawn at random are one row of the list, *En premier* is gone from
+  the list and the shelf, the add row says it adds another go at a game, and a
+  game's page moves it *Plus tôt* or *Plus tard*, so dragging is no longer the
+  only way to reorder.
 - `[Game]` **The QR code scans from further.** A join or pairing square
   encodes its link in upper case, the QR's alphanumeric mode: 25 modules a
   side instead of 29, so each one is larger. The printed, copied and shared

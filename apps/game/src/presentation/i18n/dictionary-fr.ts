@@ -508,24 +508,18 @@ export const FR_DICTIONARY = defineDictionary({
     countdown: 'Décompte',
     endGame: 'Terminer la partie',
     evening: {
-      add: 'Ajouter un jeu',
+      add: 'Une autre partie d’un jeu',
+      addHint: 'Le même jeu, réglé autrement',
       challengeLine:
         'Son défi se choisit quand sa manche arrive, parmi trois : tes défis d’abord, puis la banque.',
       chance: {
         among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
+        drawn: '{count:number} au hasard',
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
         over: 'de trop pour {total:number} manches',
         overHint:
           'Chaque jeu prévu se joue une fois : la partie doit s’allonger.',
-        raise: 'Passer à {count:number}',
-        rest: defineTranslation('{count:plural}', {
-          plural: {
-            count: {
-              one: 'manche de plus, au hasard',
-              other: 'manches de plus, au hasard'
-            }
-          }
-        })
+        raise: 'Passer à {count:number}'
       },
       detail: {
         allSubjects: 'Tous les sujets',
@@ -533,8 +527,11 @@ export const FR_DICTIONARY = defineDictionary({
         subjects: '{count:number} sujets'
       },
       drag: 'Déplacer la manche {number:number}, {name}',
+      earlier: 'Plus tôt',
       fills: 'Remplit la partie',
       fixed: 'Déjà jouée : elle ne change plus.',
+      later: 'Plus tard',
+      next: 'La suite',
       once: 'Se joue une fois',
       pick: 'Quelle manche ?',
       pickHint:
@@ -544,6 +541,20 @@ export const FR_DICTIONARY = defineDictionary({
       roundNamed: 'Manche {number:number} : {name}',
       rounds: 'Les jeux prévus',
       slateKeyLater: 'Ses réponses se tapent quand elle passe en prochaine.',
+      span: {
+        all: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: '{?} manche',
+              other: '{?} manches'
+            }
+          }
+        }),
+        endless: 'jusqu’à ce que tu arrêtes',
+        from: 'dès la manche {from:number}',
+        last: 'manche {number:number}',
+        rest: 'manches {from:number} à {to:number}'
+      },
       stamp: {
         beyond: 'Hors programme',
         count: '{count:number}×',
@@ -587,7 +598,6 @@ export const FR_DICTIONARY = defineDictionary({
       you: 'Tu juges sans jouer'
     },
     lineUp: {
-      first: 'En premier',
       next: 'Ensuite',
       ready: defineTranslation('{count:plural} sur {total:number}', {
         plural: { count: { one: '{?} prêt', other: '{?} prêts' } }

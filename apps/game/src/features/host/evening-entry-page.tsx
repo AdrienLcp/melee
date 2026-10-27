@@ -16,10 +16,16 @@ import { movedToEntry } from '@melee/core/room/room-settings'
 import { orderWithEntryNext } from '@melee/core/room/running-order'
 
 import { Button } from '@/presentation/components/button'
-import { CrossIcon, GameIcon } from '@/presentation/components/icons'
+import {
+  ChevronIcon,
+  ChevronUpIcon,
+  CrossIcon,
+  GameIcon
+} from '@/presentation/components/icons'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
+import { arrangedEvening, eveningOrderOf } from './evening-order'
 import { EveningPage } from './evening-page'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
 import { OwnChallengeLinesEditor } from './own-challenge-lines-editor'
@@ -136,6 +142,26 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
     played
   })
   const isFixed = isPlayedOut({ entry, played })
+  const { coming, isDrawn, upcoming } = eveningOrderOf(view)
+  const rows = coming.map((round) => round.at)
+  const row = rows.indexOf(at)
+  const swappedWith = (other: number) => {
+    const neighbour = rows[other]
+
+    if (neighbour === undefined) {
+      return
+    }
+
+    onSettingsChange(
+      arrangedEvening({
+        locale,
+        preferences,
+        rows: rows.with(row, neighbour).with(other, at),
+        upcoming,
+        view: { ...view, settings: withDraft }
+      })
+    )
+  }
 
   return (
     <EveningPage onBack={onBack}>
@@ -218,6 +244,32 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
                   ? 'host.evening.playFirst'
                   : 'host.evening.playNext'
               )}
+            </Button>
+          )}
+          {row > 0 && (
+            <Button
+              isDisabled={!isLive || !isDrawn}
+              onPress={() => {
+                swappedWith(row - 1)
+              }}
+              size='small'
+              variant='outlined'
+            >
+              <ChevronUpIcon />
+              {translate('host.evening.earlier')}
+            </Button>
+          )}
+          {row >= 0 && row < rows.length - 1 && (
+            <Button
+              isDisabled={!isLive || !isDrawn}
+              onPress={() => {
+                swappedWith(row + 1)
+              }}
+              size='small'
+              variant='outlined'
+            >
+              <ChevronIcon />
+              {translate('host.evening.later')}
             </Button>
           )}
           {settings.lineUp.length > 1 && (

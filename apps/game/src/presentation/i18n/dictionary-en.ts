@@ -529,23 +529,17 @@ export const EN_DICTIONARY = defineDictionary({
     countdown: 'Countdown',
     endGame: 'End the game',
     evening: {
-      add: 'Add a game',
+      add: 'Another go at a game',
+      addHint: 'The same game, set up differently',
       challengeLine:
         'Its line is picked when its round comes up, from three: your own lines first, then the bank.',
       chance: {
         among: 'among {games}, never the same game twice in a row',
+        drawn: '{count:number} by chance',
         endless: 'Then by chance, until you stop',
         over: 'too many for {total:number} rounds',
         overHint: 'Every planned game is played once, so it needs more rounds.',
-        raise: 'Make it {count:number}',
-        rest: defineTranslation('{count:plural}', {
-          plural: {
-            count: {
-              one: 'more round, by chance',
-              other: 'more rounds, by chance'
-            }
-          }
-        })
+        raise: 'Make it {count:number}'
       },
       detail: {
         allSubjects: 'Every subject',
@@ -553,8 +547,11 @@ export const EN_DICTIONARY = defineDictionary({
         subjects: '{count:number} subjects'
       },
       drag: 'Move round {number:number}, {name}',
+      earlier: 'Earlier',
       fills: 'Fills the rest',
       fixed: 'Already played: it no longer changes.',
+      later: 'Later',
+      next: 'Still to come',
       once: 'Played once',
       pick: 'Which round?',
       pickHint:
@@ -564,6 +561,20 @@ export const EN_DICTIONARY = defineDictionary({
       roundNamed: 'Round {number:number}: {name}',
       rounds: 'Planned games',
       slateKeyLater: 'Its answers are typed once it is up next.',
+      span: {
+        all: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: '{?} round',
+              other: '{?} rounds'
+            }
+          }
+        }),
+        endless: 'until you stop',
+        from: 'from round {from:number}',
+        last: 'round {number:number}',
+        rest: 'rounds {from:number} to {to:number}'
+      },
       stamp: {
         beyond: 'Past the end',
         count: '{count:number}×',
@@ -604,7 +615,6 @@ export const EN_DICTIONARY = defineDictionary({
       you: 'You judge, sitting out'
     },
     lineUp: {
-      first: 'First up',
       next: 'Next up',
       ready: defineTranslation('{count:plural} of {total:number} ready', {
         plural: { count: { other: '{?}' } }

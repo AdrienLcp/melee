@@ -53,10 +53,6 @@ export const GamePicker: React.FC<GamePickerProps> = ({
     const playsAloud = isPlayableAloud({ game, teams: settings.teams })
 
     return {
-      badge:
-        settings.lineUp.length > 1 && settings.game?.kind === game
-          ? translate('host.lineUp.first')
-          : undefined,
       description: translate(
         playsAloud ? gameTaglineKey(game) : 'team.aloud.needsScreens'
       ),

@@ -504,7 +504,10 @@ The host's controls live in one panel the room never sees (`HostPanel`,
 direction D of `.impeccable/directions/host-panel/`, local, approved
 2026-10-24). Four tabs, each a `TabPanel` of `setup-tabs.tsx`: **Games** (the
 lobby's shelf and the game's scoring line, then the planned games, each
-opening its own page in the tab's place), **Table** (the teams, the board,
+opening its own page in the tab's place — hoisted above the shelf once two
+are ticked, under a heading carrying the round count, each row's number
+printed in its spine band and the rounds drawn at random one socket row of
+the list; no *First* stamp, because the number says it), **Table** (the teams, the board,
 the judge and the round count), **Room** (the room drawn from above, then the hold
 and the countdown) and **Players** (the roster with its ✕).
 

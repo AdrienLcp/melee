@@ -166,11 +166,31 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     )
   }
 
+  const evening = view.settings.game !== null && (
+    <EveningRounds
+      isLive={isLive}
+      onAdd={() => {
+        setPage({ kind: 'adding' })
+      }}
+      onOpen={(at) => {
+        setPage({ at, kind: 'entry' })
+      }}
+      onSettingsChange={onSettingsChange}
+      preferences={preferences}
+      view={view}
+    />
+  )
+  const isEveningFirst = view.settings.lineUp.length > 1
+
   return (
     <>
       {slateEditors}
+      {isEveningFirst && evening}
       {view.phase === 'lobby' && (
-        <div className='game-choice'>
+        <div
+          className='game-choice'
+          data-after-evening={isEveningFirst || undefined}
+        >
           <GamePicker
             isDisabled={!isLive}
             isSeated={view.youId !== null}
@@ -181,20 +201,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           <GamePitch isUnattended={false} view={view} />
         </div>
       )}
-      {view.settings.game !== null && (
-        <EveningRounds
-          isLive={isLive}
-          onAdd={() => {
-            setPage({ kind: 'adding' })
-          }}
-          onOpen={(at) => {
-            setPage({ at, kind: 'entry' })
-          }}
-          onSettingsChange={onSettingsChange}
-          preferences={preferences}
-          view={view}
-        />
-      )}
+      {!isEveningFirst && evening}
       {(view.settings.game !== null ||
         (view.phase === 'lobby' && saved.evenings.length > 0)) && (
         <SavedEveningsDoor

@@ -7,6 +7,20 @@
     flex-direction: column
     gap: var(--space-s)
 
+    .evening-heading
+      @include typography.heading
+
+      font-size: var(--text-m)
+      margin: 0
+
+      .span
+        @include typography.regular
+
+        color: var(--ink-muted)
+
+        &::before
+          content: ' · '
+
     .rounds
       border: var(--stroke-thin) solid var(--rule)
       border-radius: var(--radius-m)
@@ -30,7 +44,7 @@
       cursor: pointer
       display: grid
       grid-template-areas: 'band icon name stamp chevron' 'band icon detail stamp chevron'
-      grid-template-columns: var(--space-2xs) auto minmax(0, 1fr) auto auto
+      grid-template-columns: var(--space-xl) auto minmax(0, 1fr) auto auto
       min-height: var(--control-height)
       padding: var(--space-xs) var(--space-s) var(--space-xs) 0
       text-align: start
@@ -50,10 +64,20 @@
       > svg:not(.chevron)
         grid-area: icon
 
+    // The spine carries the round's number, so the order reads down the
+    // left edge without a column of its own.
     .band
+      @include typography.score
+
+      align-items: center
       align-self: stretch
       background: var(--spine)
+      color: var(--spine-ink, var(--on-spine))
+      display: grid
+      font-size: var(--text-m)
+      font-variant-numeric: tabular-nums
       grid-area: band
+      justify-items: center
       margin-block: calc(var(--space-xs) * -1)
 
     .name
@@ -100,11 +124,11 @@
       column-gap: var(--space-xs)
       cursor: pointer
       display: grid
-      grid-template-areas: 'band grip number icon name name chevron' 'band grip number icon detail stamp chevron'
-      grid-template-columns: var(--space-2xs) auto auto auto minmax(0, 1fr) auto auto
+      grid-template-areas: 'band grip icon name name chevron' 'band grip icon detail stamp chevron'
+      grid-template-columns: var(--space-xl) auto auto minmax(0, 1fr) auto auto
 
       &:not(:has(.detail))
-        grid-template-areas: 'band grip number icon name stamp chevron'
+        grid-template-areas: 'band grip icon name stamp chevron'
       min-height: var(--control-height)
       outline: none
       padding: var(--space-xs) var(--space-s) var(--space-xs) 0
@@ -142,15 +166,9 @@
         > *
           opacity: 0.4
 
-      &[data-past-the-end]
-        background: var(--socket)
-        color: var(--socket-ink)
-
-        .band
-          background: var(--socket-line)
-
-        .detail
-          color: var(--socket-ink)
+      &[data-past-the-end] .band
+        background: var(--danger)
+        color: var(--danger-ink)
 
     .grip
       @include focus.ring-inset
@@ -175,16 +193,6 @@
       &[data-pressed]
         cursor: grabbing
 
-    .number
-      @include typography.score
-
-      color: var(--ink-muted)
-      font-size: var(--text-m)
-      font-variant-numeric: tabular-nums
-      grid-area: number
-      min-inline-size: 1.25rem
-      text-align: end
-
     .drop-line
       block-size: 0
       outline: none
@@ -193,16 +201,47 @@
         border-block-start: var(--stroke-bold) solid var(--primary)
         margin-block: calc(-1 * var(--stroke-bold) / 2)
 
+    .drawn-rounds
+      align-items: center
+      background: var(--socket)
+      border-top: var(--hairline)
+      color: var(--socket-ink)
+      column-gap: var(--space-xs)
+      display: grid
+      grid-template-areas: 'band icon name' 'band icon detail'
+      grid-template-columns: var(--space-xl) auto minmax(0, 1fr)
+      min-height: var(--control-height)
+      padding: var(--space-xs) var(--space-s) var(--space-xs) 0
+
+      // No game's spine: the rounds are not dealt yet, so the number sits in
+      // the socket, where its ink holds the contrast a filled band would not.
+      .band
+        background: transparent
+        color: var(--socket-ink)
+        font-size: var(--text-s)
+
+      > svg
+        grid-area: icon
+
+      .detail
+        color: var(--socket-ink)
+
     .rounds[data-ordered] > .add
       border-top: var(--hairline)
 
     .add
       .round
-        grid-template-areas: 'band icon name chevron'
-        grid-template-columns: var(--space-2xs) auto minmax(0, 1fr) auto
+        grid-template-areas: 'band name chevron' 'band detail chevron'
+        grid-template-columns: var(--space-xl) minmax(0, 1fr) auto
 
       .band
         background: transparent
+        color: var(--ink)
+
+      .name
+        @include typography.strong
+
+        font-size: var(--text-s)
 
     .evening-chance
       align-items: baseline
@@ -210,11 +249,6 @@
       display: grid
       grid-template-columns: auto minmax(0, 1fr)
       row-gap: var(--space-xs)
-
-      .count
-        @include typography.score
-
-        font-size: var(--text-xl)
 
       .said
         display: flex
@@ -237,7 +271,9 @@
 
       // Over the count is an error the host has to act on: the figure is
       // stamped in a block of its own, never tinted text.
-      &[data-over] .count
+      .count
+        @include typography.score
+
         background: var(--danger)
         border-radius: var(--radius-s)
         color: var(--danger-ink)
