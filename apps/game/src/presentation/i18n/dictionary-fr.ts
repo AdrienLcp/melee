@@ -18,6 +18,15 @@ export const FR_DICTIONARY = defineDictionary({
       confirm: 'Je le pose ici',
       sent: 'Ton pion est posé. On attend les autres.'
     },
+    asks: {
+      name: 'Nommer {places}',
+      place: 'Trouver {places}',
+      places: {
+        countries: 'un pays',
+        frenchCities: 'une ville de France',
+        worldCapitals: 'une capitale'
+      }
+    },
     country: COUNTRY_NAMES_FR,
     direction: {
       label: 'La manche demande',

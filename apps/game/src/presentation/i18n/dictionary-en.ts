@@ -23,6 +23,15 @@ export const EN_DICTIONARY = defineDictionary({
       confirm: 'Put it here',
       sent: 'Your pawn is down. Waiting for the others.'
     },
+    asks: {
+      name: 'Name {places}',
+      place: 'Find {places}',
+      places: {
+        countries: 'a country',
+        frenchCities: 'a city in France',
+        worldCapitals: 'a capital'
+      }
+    },
     country: COUNTRY_NAMES_EN,
     direction: {
       label: 'The round asks',

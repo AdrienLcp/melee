@@ -67,7 +67,13 @@ const detailsOf = ({
     case 'slate':
       return [translate('slate.items.summary', { count: entry.itemCount })]
     case 'atlas':
-      return entry.places.map((places) => translate(`atlas.places.${places}`))
+      return [
+        translate(`atlas.asks.${entry.direction}`, {
+          places: entry.places
+            .map((places) => translate(`atlas.asks.places.${places}`))
+            .join(', ')
+        })
+      ]
     default:
       return []
   }
@@ -85,19 +91,20 @@ const timingOf = ({
     ? [translate('host.seconds', { seconds: entry.roundDurationMs / 1000 })]
     : []
 
-type EntryNaming = {
-  name: string
-  /** How many of the entry's details its name already says. */
-  said: number
-}
-
-const entryNamings = ({
+/**
+ * What each entry of the line-up is called, in its order: the game's name
+ * alone while it is ticked once, and with as much of its settings as it takes
+ * to tell it from the game's other entries once it is not — *Blind test ·
+ * Film scores* beside *Blind test · Charts*. Two entries nothing tells apart
+ * are numbered.
+ */
+export const lineUpEntryNames = ({
   lineUp,
   translate
 }: {
   lineUp: readonly GameSettings[]
   translate: Translate
-}): EntryNaming[] => {
+}): string[] => {
   const details = lineUp.map((entry) => detailsOf({ entry, translate }))
   const said = (at: number, depth: number) =>
     (details[at] ?? []).slice(0, depth).join(' · ')
@@ -109,7 +116,7 @@ const entryNamings = ({
     )
 
     if (siblings.length === 0) {
-      return { name: game, said: 0 }
+      return game
     }
 
     const depth = [1, 2].find(
@@ -119,7 +126,7 @@ const entryNamings = ({
     )
 
     if (depth !== undefined) {
-      return { name: `${game} · ${said(at, depth)}`, said: depth }
+      return `${game} · ${said(at, depth)}`
     }
 
     const ordinal = lineUp
@@ -127,27 +134,12 @@ const entryNamings = ({
       .filter((other) => other.kind === entry.kind).length
     const detail = said(at, 1)
 
-    return {
-      name: translate('round.entryNumbered', {
-        name: detail === '' ? game : `${game} · ${detail}`,
-        number: ordinal
-      }),
-      said: detail === '' ? 0 : 1
-    }
+    return translate('round.entryNumbered', {
+      name: detail === '' ? game : `${game} · ${detail}`,
+      number: ordinal
+    })
   })
 }
-
-/**
- * What each entry of the line-up is called, in its order: the game's name
- * alone while it is ticked once, and with as much of its settings as it takes
- * to tell it from the game's other entries once it is not — *Blind test ·
- * Film scores* beside *Blind test · Charts*. Two entries nothing tells apart
- * are numbered.
- */
-export const lineUpEntryNames = (args: {
-  lineUp: readonly GameSettings[]
-  translate: Translate
-}): string[] => entryNamings(args).map(({ name }) => name)
 
 /** `lineUpEntryNames` in the reader's language. */
 export const useLineUpEntryNames = (
@@ -156,11 +148,14 @@ export const useLineUpEntryNames = (
 
 /** An entry as the setup lists it. */
 export type LineUpEntrySummary = {
-  /** As `lineUpEntryNames` says it. */
+  /**
+   * The game's name, numbered among its own entries once it has several —
+   * *Atlas 2* — because the line under it already says what tells them apart.
+   */
   name: string
   /**
-   * Every setting the name leaves unsaid, round length last, in one line;
-   * `null` for a game with nothing to set.
+   * Every setting of the entry, round length last, in one line; `null` for a
+   * game with nothing to set.
    */
   settings: string | null
 }
@@ -171,19 +166,25 @@ export const useLineUpEntrySummaries = (
 ): LineUpEntrySummary[] => {
   const translate = useTranslate()
 
-  return entryNamings({ lineUp, translate }).map(({ name, said }, at) => {
-    const entry = lineUp[at]
-    const rest =
-      entry === undefined
-        ? []
-        : [
-            ...detailsOf({ entry, translate }).slice(said),
-            ...timingOf({ entry, translate })
-          ]
+  return lineUp.map((entry, at) => {
+    const game = translate(gameNameKey(entry.kind))
+    const sameGame = lineUp.filter((other) => other.kind === entry.kind)
+    const settings = [
+      ...detailsOf({ entry, translate }),
+      ...timingOf({ entry, translate })
+    ]
 
     return {
-      name,
-      settings: rest.length > 0 ? rest.join(' · ') : null
+      name:
+        sameGame.length > 1
+          ? translate('round.entryNumbered', {
+              name: game,
+              number: lineUp
+                .slice(0, at + 1)
+                .filter((other) => other.kind === entry.kind).length
+            })
+          : game,
+      settings: settings.length > 0 ? settings.join(' · ') : null
     }
   })
 }
