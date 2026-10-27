@@ -121,25 +121,19 @@
           border-bottom: var(--hairline)
           border-top: none
 
-    // A player's screen marks its own row rather than tinting it, so the mark
-    // survives whichever field is painted behind it — and it is the ink itself
-    // rather than a shade of it, which is what makes it survive all six.
-    //
-    // It replaced a generated `←`. Generated content is read aloud by some
-    // screen readers and by none of the others, so the row was either
-    // mislabelled or unlabelled depending on the reader; the word now travels
-    // in the markup, hidden. The block is the product's own way of saying *this
-    // one is yours* — a banked half wears the same one.
-    //
-    // The stamp bleeds its own padding to the left so the name stays flush with
-    // the column the other rows align on.
-    .you .nickname
-      background: var(--ink)
-      color: var(--field)
-      margin-inline-start: calc(var(--space-2xs) * -1)
-      max-width: 100%
-      padding-inline: var(--space-2xs)
-      width: fit-content
+    // A player's own row is held in a keyline of the ink, the mark every
+    // other board puts on *this one is yours*, rather than its name stamped
+    // in a block of ink, which read as a highlighter. The ink itself rather
+    // than a shade of it is what survives all six fields; the word travels in
+    // the markup, hidden. The keyline bleeds its own padding out so the names
+    // stay flush with the column the other rows align on, and it takes the
+    // place of the row's rules.
+    li.you
+      border-color: transparent
+      border-radius: var(--radius-s)
+      box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+      margin-inline: calc(var(--space-xs) * -1)
+      padding-inline: var(--space-xs)
 
 @keyframes standing-moves
   from

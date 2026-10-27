@@ -99,12 +99,9 @@
       color: var(--ink-muted)
       font-size: var(--text-em-s)
 
-    // The product's own stamp for *this one is yours*, as the scoreboard
-    // prints it.
-    .you .name
-      background: var(--ink)
-      color: var(--field)
-      padding-inline: 0.25em
+    // *This one is yours* in the keyline the track's podium draws round its step.
+    .you .step
+      outline: var(--stroke-bold) solid var(--ink)
 
 @keyframes seat-podium-lands
   from
