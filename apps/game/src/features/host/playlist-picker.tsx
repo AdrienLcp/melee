@@ -76,8 +76,6 @@ const decadeLabelKey = (
 const asDecade = (value: string | number): TrackDecade | undefined =>
   trackDecades.find((decade) => decade === value)
 
-const PREVIEWED_TITLES = 5
-
 /**
  * What the source kinds that hold a choice need, all at once, so switching kind
  * keeps what was typed. The composers hold none, which is why they are a kind
@@ -316,18 +314,11 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
       )}
 
       {preview.status === 'found' && (
-        <div className='found'>
-          <p className='ready'>
-            {translate('blindtest.source.ready', {
-              count: preview.count
-            })}
-          </p>
-          <ul className='preview'>
-            {preview.titles.slice(0, PREVIEWED_TITLES).map((title) => (
-              <li key={title}>{title}</li>
-            ))}
-          </ul>
-        </div>
+        <p className='ready'>
+          {translate('blindtest.source.ready', {
+            count: preview.count
+          })}
+        </p>
       )}
     </section>
   )

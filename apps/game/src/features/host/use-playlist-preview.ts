@@ -4,8 +4,6 @@ import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import type { CatalogueTrack } from '@melee/protocol/http'
 import type { TrackDifficulty, TrackSource } from '@melee/protocol/track'
 
-import { whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
-
 import {
   type ApiFailure,
   fetchDecadeTracks,
@@ -31,7 +29,7 @@ type PreviewableSource = Exclude<TrackSource, { kind: 'chart' }>
  */
 export type PlaylistPreview =
   | { error: PlainTranslationKey; status: 'failed' }
-  | { count: number; status: 'found'; titles: string[] }
+  | { count: number; status: 'found' }
   | { status: 'idle' }
   | { status: 'previewing' }
 
@@ -43,30 +41,6 @@ const EMPTY_RESULT_KEYS: Record<
   film: 'blindtest.source.noneInFilms',
   playlist: 'blindtest.source.noneInPlaylist',
   search: 'blindtest.source.noneInSearch'
-}
-
-/**
- * What the list shows, as against what the pool holds — which is why the count
- * beside it is the pool's and is not read off this.
- *
- * One film is a dozen cues and two pressings of it differ only in their
- * capitals, so a straight list gave five rows of `Les Choses De La Vie` and two
- * React keys that collided. A repeat is a thinner *preview*, never a thinner
- * pool: the round draws a cue, and a second cue of the same film is a second
- * round.
- */
-const distinctNames = (tracks: readonly CatalogueTrack[]): string[] => {
-  const byFoldedName = new Map<string, string>()
-
-  for (const track of tracks) {
-    const name = whatTheRoomNames(track)
-
-    if (!byFoldedName.has(name.toLowerCase())) {
-      byFoldedName.set(name.toLowerCase(), name)
-    }
-  }
-
-  return [...byFoldedName.values()]
 }
 
 const catalogueFor = async ({
@@ -165,11 +139,7 @@ export const usePlaylistPreview = (difficulty: TrackDifficulty) => {
       return
     }
 
-    setPreview({
-      count: found.data.length,
-      status: 'found',
-      titles: distinctNames(found.data)
-    })
+    setPreview({ count: found.data.length, status: 'found' })
   }
 
   const previewSource = (source: PreviewableSource): Promise<void> =>

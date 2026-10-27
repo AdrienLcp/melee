@@ -7,7 +7,15 @@
     padding-bottom: var(--space-m)
 
     > .back
-      align-self: start
+      align-self: stretch
+      background: var(--field)
+      // A fill rather than a shadow: it paints over the scroller's own padding
+      // above and beside the strip, which the page cannot reach otherwise.
+      box-shadow: 0 calc(var(--space-l) * -1) 0 var(--space-l) var(--field)
+      justify-content: start
+      position: sticky
+      top: var(--safe-area-top)
+      z-index: 1
 
   @keyframes evening-page-in
     from
