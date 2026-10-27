@@ -22,6 +22,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The shelf folds under an evening's planned games.** Once several
+  games are ticked, the twelve boxes sit behind "Change the games" with how
+  many are ticked, so the games tab fits the panel instead of running to twice
+  its height. A shelf a second tick was just made on stays open.
 - `[Game]` **The way back to the planned games stays on screen.** A game's
   page in the panel keeps its back link pinned at the top while its settings
   scroll, so a long setup no longer ends with a scroll back up.

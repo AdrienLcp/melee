@@ -1,6 +1,7 @@
 import type React from 'react'
 import { useState } from 'react'
 
+import { shelvedGames } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
@@ -9,6 +10,7 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
+import { kindsInLineUp } from '@melee/core/room/line-up'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import {
@@ -16,6 +18,7 @@ import {
   withSavedEvening
 } from '@melee/core/room/saved-evening'
 
+import { Disclosure } from '@/presentation/components/disclosure'
 import { PointsRows } from '@/presentation/components/points-rows'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -86,7 +89,8 @@ type GamePage =
  * What the table plays. In the lobby the shelf comes first, because it is the
  * decision the room is waiting on; past it the planned games are what is left
  * to change, each opening a page of its own — a quiz's subjects alone run to
- * nine rows.
+ * nine rows. Once several are ticked the decision is made, and the twelve boxes
+ * fold under the planned games: open, they ran to twice the panel's height.
  */
 export const GameTab: React.FC<SetupTabsProps> = ({
   draftSource,
@@ -99,8 +103,13 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   slateEditors,
   view
 }) => {
-  const { locale } = useI18n()
+  const { locale, translate } = useI18n()
   const [page, setPage] = useState<GamePage>({ kind: 'list' })
+  // Open while a second tick is being made, so the shelf never folds under
+  // the hand that ticked; a console arriving on an evening finds it folded.
+  const [isShelfOpen, setIsShelfOpen] = useState(
+    view.settings.lineUp.length <= 1
+  )
   const saved = useSavedEvenings()
   const backToList = () => {
     setPage({ kind: 'list' })
@@ -187,9 +196,16 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       {slateEditors}
       {isEveningFirst && evening}
       {view.phase === 'lobby' && (
-        <div
+        <Disclosure
           className='game-choice'
-          data-after-evening={isEveningFirst || undefined}
+          data-folds={isEveningFirst || undefined}
+          isExpanded={!isEveningFirst || isShelfOpen}
+          label={translate('host.game.change')}
+          onExpandedChange={setIsShelfOpen}
+          summary={translate('host.game.ticked', {
+            count: kindsInLineUp(view.settings.lineUp).length,
+            total: shelvedGames.length
+          })}
         >
           <GamePicker
             isDisabled={!isLive}
@@ -199,7 +215,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
             settings={view.settings}
           />
           <GamePitch isUnattended={false} view={view} />
-        </div>
+        </Disclosure>
       )}
       {!isEveningFirst && evening}
       {(view.settings.game !== null ||

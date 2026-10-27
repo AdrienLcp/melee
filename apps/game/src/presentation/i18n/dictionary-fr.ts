@@ -596,9 +596,13 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     game: {
+      change: 'Changer les jeux',
       label: 'À quoi on joue',
       prompt:
-        'Coches-en un et la table est prête, plusieurs pour les enchaîner.'
+        'Coches-en un et la table est prête, plusieurs pour les enchaîner.',
+      ticked: defineTranslation('{count:plural} sur {total:number}', {
+        plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
+      })
     },
     hostDecides: 'Tu décides',
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {

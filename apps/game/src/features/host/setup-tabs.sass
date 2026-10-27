@@ -12,16 +12,25 @@
       color: var(--ink-muted)
 
     .game-choice
-      display: flex
-      flex-direction: column
-      gap: var(--space-s)
+      // One game ticked is the decision the room is waiting on, so nothing
+      // folds it: the trigger only exists once the evening has several.
+      &:not([data-folds])
+        border-top: none
+
+        > .react-aria-Heading
+          display: none
+
+      &[data-folds]
+        margin-top: var(--space-m)
+
+      .panel-content
+        display: flex
+        flex-direction: column
+        gap: var(--space-s)
 
       // The tab's own heading already names the shelf.
       .box-shelf > .react-aria-Label
         @include accessibility.visually-hidden
-
-      &[data-after-evening]
-        margin-top: var(--space-m)
 
       .scoring,
       .prompt

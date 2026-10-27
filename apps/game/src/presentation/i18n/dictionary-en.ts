@@ -613,8 +613,13 @@ export const EN_DICTIONARY = defineDictionary({
       })
     },
     game: {
+      change: 'Change the games',
       label: 'What we’re playing',
-      prompt: 'Tick one and the table is set, or several to play them in a row.'
+      prompt:
+        'Tick one and the table is set, or several to play them in a row.',
+      ticked: defineTranslation('{count:plural} of {total:number}', {
+        plural: { count: { one: '{?} game', other: '{?} games' } }
+      })
     },
     hostDecides: 'You decide',
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
