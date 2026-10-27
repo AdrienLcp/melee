@@ -3,7 +3,7 @@ import type React from 'react'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
 
-import { playUrlFor } from '@/infrastructure/router/navigation'
+import { playUrlFor, scannedUrlOf } from '@/infrastructure/router/navigation'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { CopyButton } from './copy-button'
@@ -75,7 +75,10 @@ type CodeAndSquareProps = {
   isUnattended?: boolean
   /** What the share sheet sends with the link; without it there is no share. */
   shareTitle?: string
-  /** What the square encodes, printed under it for whoever cannot scan. */
+  /**
+   * What the square encodes, in upper case, and printed under it as given for
+   * whoever cannot scan — so its path must be one the router reads in any case.
+   */
   url: string
 }
 
@@ -118,7 +121,7 @@ export const CodeAndSquare: React.FC<CodeAndSquareProps> = ({
           fgColor='currentColor'
           marginSize={0}
           size={256}
-          value={url}
+          value={scannedUrlOf(url)}
         />
       </div>
       <div className='qr-words'>

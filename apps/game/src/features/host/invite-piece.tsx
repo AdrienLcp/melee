@@ -9,7 +9,7 @@ import {
 
 import type { RoomCode } from '@melee/protocol/identifiers'
 
-import { playUrlFor } from '@/infrastructure/router/navigation'
+import { playUrlFor, scannedUrlOf } from '@/infrastructure/router/navigation'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -41,7 +41,7 @@ export const InvitePiece: React.FC<InvitePieceProps> = ({ roomCode }) => {
           fgColor='currentColor'
           marginSize={0}
           size={64}
-          value={playUrlFor(roomCode)}
+          value={scannedUrlOf(playUrlFor(roomCode))}
         />
         <span className='words'>
           <span className='label'>{translate('invite.action')}</span>{' '}

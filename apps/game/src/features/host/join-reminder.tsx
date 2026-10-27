@@ -3,7 +3,7 @@ import type React from 'react'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
 
-import { playUrlFor } from '@/infrastructure/router/navigation'
+import { playUrlFor, scannedUrlOf } from '@/infrastructure/router/navigation'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './join-reminder.sass'
@@ -37,7 +37,7 @@ export const JoinReminder: React.FC<JoinReminderProps> = ({ roomCode }) => {
         fgColor='currentColor'
         marginSize={0}
         size={64}
-        value={playUrlFor(roomCode)}
+        value={scannedUrlOf(playUrlFor(roomCode))}
       />
       <div className='words'>
         <p className='label'>{translate('invite.joinLate')}</p>

@@ -16,6 +16,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The QR code scans from further.** A join or pairing square
+  encodes its link in upper case, the QR's alphanumeric mode: 25 modules a
+  side instead of 29, so each one is larger. The printed, copied and shared
+  link stays as it was.
 - `[Game]` **A timeline card is ordered by the card itself, beside numbered
   places.** The grip is gone: a finger or a mouse drags the whole card, the
   two arrows beside it still step it one place, and an arrow that leads

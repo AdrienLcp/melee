@@ -192,6 +192,14 @@ export const playUrlFor = (code: RoomCode): string =>
   `${location.origin}${playPathFor(code)}`
 
 /**
+ * What a QR code encodes for a link the router reads in any case. Upper case is
+ * the QR's alphanumeric mode, a square of 25 modules where the printed link
+ * takes 29 — larger modules, scanned from further. Never a link carrying a
+ * token, which is case-sensitive.
+ */
+export const scannedUrlOf = (url: string): string => url.toUpperCase()
+
+/**
  * The room on a screen of its own, opened in a new tab by the console that
  * holds the token — a document request rather than a client-side navigation,
  * so it can be dragged onto the machine wired to the projector.
