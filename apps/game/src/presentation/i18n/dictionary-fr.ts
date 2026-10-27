@@ -1195,7 +1195,7 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   player: {
-    away: 'plus là',
+    away: 'hors ligne',
     choosingGame: 'L’hôte choisit un jeu',
     final: {
       placing: 'Tu finis',
