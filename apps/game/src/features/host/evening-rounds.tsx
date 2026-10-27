@@ -23,7 +23,7 @@ import {
 } from '@melee/core/room/host-preferences'
 import { endsTheEvening } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
-import { movedToEntry } from '@melee/core/room/room-settings'
+import { movedToEntry, ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import {
   type ComingRound,
   comingRounds,
@@ -46,12 +46,6 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
 
 import './evening-rounds.sass'
-
-/**
- * The counts the setup's strip offers, which a raised evening lands on when it
- * can. Forty is every game ticked in the lobby, four rounds each.
- */
-export const ROUND_COUNT_STEPS = [5, 10, 20, 30, 40] as const
 
 /** The protocol's ceiling on a room's round count. */
 const MAX_ROUND_COUNT = 50

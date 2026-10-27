@@ -10,6 +10,7 @@ import {
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
+import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import {
   savedEveningOf,
   withSavedEvening
@@ -23,7 +24,7 @@ import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
 import { EveningAddPage } from './evening-add-page'
 import { EveningEntryPage } from './evening-entry-page'
-import { EveningRounds, ROUND_COUNT_STEPS } from './evening-rounds'
+import { EveningRounds } from './evening-rounds'
 import { GamePicker } from './game-picker'
 import { GamePitch } from './lobby-stage'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'

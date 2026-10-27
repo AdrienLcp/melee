@@ -330,7 +330,7 @@ describe('an evening of several games', () => {
       game: { kind: 'quiz' },
       lineUp: [{ kind: 'quiz' }, { kind: 'blindtest' }, { kind: 'buzzer' }],
       lineUpAt: 0,
-      roundCount: 12,
+      roundCount: 10,
       teams: { kind: 'off' }
     })
   })

@@ -100,6 +100,22 @@ export type GameSetup = {
 const ROUNDS_PER_TICKED_GAME = 4
 
 /**
+ * The counts the host's strip offers. An opened table lands on one of them,
+ * because a count it does not offer is drawn as an extra stamp that vanishes
+ * the moment the host presses another — and nine games ticked made thirty-six.
+ */
+export const ROUND_COUNT_STEPS = [5, 10, 20, 30, 40] as const
+
+/** The step nearest four rounds a game, the longer of two as near. */
+const lineUpRoundCount = (gameCount: number): number => {
+  const wanted = gameCount * ROUNDS_PER_TICKED_GAME
+
+  return ROUND_COUNT_STEPS.reduce<number>((nearest, step) =>
+    Math.abs(step - wanted) <= Math.abs(nearest - wanted) ? step : nearest
+  )
+}
+
+/**
  * What a freshly opened room is set to. The shell's defaults, with the four
  * fields the game gets a say in.
  *
@@ -140,7 +156,7 @@ export const roomSettingsFor = ({
   const lineUp = games.map((ticked) =>
     openedGameSettings({ game: ticked, locale })
   )
-  const roundCount = games.length * ROUNDS_PER_TICKED_GAME
+  const roundCount = lineUpRoundCount(games.length)
 
   return {
     ...DEFAULT_ROOM_SETTINGS,

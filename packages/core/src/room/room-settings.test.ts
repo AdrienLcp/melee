@@ -73,7 +73,7 @@ describe('roomSettingsFor', () => {
     expect(roomSettingsFor({ games: [], locale: 'fr' }).lineUpAt).toBeNull()
   })
 
-  it('[room-settings] opens several ticked games as a line-up on the first, four rounds a game, the reveal held for the host', () => {
+  it('[room-settings] opens several ticked games as a line-up on the first, about four rounds a game, the reveal held for the host', () => {
     const settings = roomSettingsFor({
       games: ['blindtest', 'quiz', 'buzzer'],
       locale: 'fr'
@@ -82,11 +82,32 @@ describe('roomSettingsFor', () => {
     expect(settings.game?.kind).toBe('blindtest')
     expect(kinds(settings)).toEqual(['blindtest', 'quiz', 'buzzer'])
     expect(settings.lineUpAt).toBe(0)
-    expect(settings.roundCount).toBe(12)
+    expect(settings.roundCount).toBe(10)
     expect(settings.autoAdvanceMs).toBeNull()
     expect(settings.teams).toEqual({ kind: 'off' })
     expect(settings.board).toEqual({ kind: 'off' })
     expect(settings.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
+  })
+
+  it('[room-settings] opens a line-up on a count the setup strip offers', () => {
+    const opened = (games: GameKind[]) =>
+      roomSettingsFor({ games, locale: 'fr' }).roundCount
+
+    expect(opened(['quiz', 'blindtest'])).toBe(10)
+    expect(opened(['quiz', 'blindtest', 'buzzer', 'reflex', 'slate'])).toBe(20)
+    expect(
+      opened([
+        'quiz',
+        'blindtest',
+        'buzzer',
+        'reflex',
+        'slate',
+        'atlas',
+        'timeline',
+        'matchsticks',
+        'innerclock'
+      ])
+    ).toBe(40)
   })
 
   it('[room-settings] leaves a game with no natural end running until the host stops it', () => {
