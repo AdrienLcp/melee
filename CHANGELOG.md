@@ -463,6 +463,11 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Back from a game's settings lands on that game.** Leaving a page
+  of the planned games brings its row into view and focuses it, where the list
+  used to keep the page's scroll — a quiz's subjects left it a screen past the
+  row, or at the top.
+
 - `[Game]` **The board's rules read in the dark.** Under the board switch on
   the Table tab, the recess took the board's socket, night blue in the dark
   palette under the panel's paper inks; it is the paper's own well now.

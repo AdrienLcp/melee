@@ -82,7 +82,7 @@ export type SetupTabsProps = {
 type GamePage =
   | { kind: 'adding' }
   | { at: number; kind: 'entry' }
-  | { kind: 'list' }
+  | { kind: 'list'; returnedFrom: number | null }
   | { kind: 'saved' }
 
 /**
@@ -104,7 +104,10 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   view
 }) => {
   const { locale, translate } = useI18n()
-  const [page, setPage] = useState<GamePage>({ kind: 'list' })
+  const [page, setPage] = useState<GamePage>({
+    kind: 'list',
+    returnedFrom: null
+  })
   // Open while a second tick is being made, so the shelf never folds under
   // the hand that ticked; a console arriving on an evening finds it folded.
   const [isShelfOpen, setIsShelfOpen] = useState(
@@ -112,7 +115,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   )
   const saved = useSavedEvenings()
   const backToList = () => {
-    setPage({ kind: 'list' })
+    setPage({ kind: 'list', returnedFrom: null })
   }
 
   if (page.kind === 'saved') {
@@ -149,7 +152,9 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         at={page.at}
         draftSource={draftSource}
         isLive={isLive}
-        onBack={backToList}
+        onBack={() => {
+          setPage({ kind: 'list', returnedFrom: page.at })
+        }}
         onDraftSource={onDraftSource}
         onRememberSlateKey={onRememberSlateKey}
         onSettingsChange={onSettingsChange}
@@ -186,6 +191,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       }}
       onSettingsChange={onSettingsChange}
       preferences={preferences}
+      returnedFrom={page.returnedFrom}
       view={view}
     />
   )

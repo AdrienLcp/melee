@@ -69,6 +69,8 @@ type EveningRoundsProps = {
   onSettingsChange: (settings: RoomSettings) => void
   /** What this host last left each game set to, for the entry a drag puts first. */
   preferences: HostPreferences | null
+  /** The entry whose page the list was just left for: its row is brought into view and focused. */
+  returnedFrom: number | null
   view: HostRoomView
 }
 
@@ -86,9 +88,23 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
   onOpen,
   onSettingsChange,
   preferences,
+  returnedFrom,
   view
 }) => {
   const { locale, translate } = useI18n()
+  const pendingReturn = useRef(returnedFrom)
+  // GridList mounts its rows a render after the list, so an effect here would
+  // find none: each row reports itself, and the first one matching is taken.
+  const returnTo = (row: HTMLElement | null) => {
+    if (row === null || row.dataset.entryAt !== String(pendingReturn.current)) {
+      return
+    }
+
+    pendingReturn.current = null
+    row.focus({ preventScroll: true })
+    row.scrollIntoView({ block: 'center' })
+  }
+
   const roundsLabel = translate('host.evening.rounds')
   const { lineUp } = view.settings
   const { coming, isDrawn, isEveningOver, upcoming } = eveningOrderOf(view)
@@ -118,6 +134,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
               entry={onlyEntry}
               isEveningOver={isEveningOver}
               onOpen={onOpen}
+              rowRef={returnTo}
               view={view}
             />
           )}
@@ -135,6 +152,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
               )
             }}
             onOpen={onOpen}
+            rowRef={returnTo}
             view={view}
           />
           {!isEveningOver && (
@@ -212,8 +230,9 @@ const OnlyRound: React.FC<{
   entry: GameSettings
   isEveningOver: boolean
   onOpen: (at: number) => void
+  rowRef: React.RefCallback<HTMLElement>
   view: HostRoomView
-}> = ({ entry, isEveningOver, onOpen, view }) => {
+}> = ({ entry, isEveningOver, onOpen, rowRef, view }) => {
   const [summary] = useLineUpEntrySummaries([entry])
   const timesPlayed = view.lineUpPlayed[0] ?? 0
   const stamp = eveningStampOf({
@@ -232,9 +251,11 @@ const OnlyRound: React.FC<{
     >
       <AriaButton
         className='round'
+        data-entry-at={0}
         onPress={() => {
           onOpen(0)
         }}
+        ref={rowRef}
       >
         <span className='band' />
         <GameIcon game={entry.kind} />
@@ -269,8 +290,9 @@ const OrderedRounds: React.FC<{
   label: string
   onArrange: (rows: number[]) => void
   onOpen: (at: number) => void
+  rowRef: React.RefCallback<HTMLElement>
   view: HostRoomView
-}> = ({ coming, isEditable, label, onArrange, onOpen, view }) => {
+}> = ({ coming, isEditable, label, onArrange, onOpen, rowRef, view }) => {
   const translate = useTranslate()
   const { lineUp } = view.settings
   const summaries = useLineUpEntrySummaries(lineUp)
@@ -344,7 +366,9 @@ const OrderedRounds: React.FC<{
         return (
           <GridListItem
             className='order-round'
+            data-entry-at={round.at}
             data-past-the-end={round.isPastTheEnd || undefined}
+            ref={rowRef}
             style={entry === undefined ? undefined : spineOf(entry.kind)}
             textValue={translate('host.evening.roundNamed', { name, number })}
           >
