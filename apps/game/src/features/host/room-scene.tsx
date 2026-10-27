@@ -70,8 +70,7 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
 }) => {
   const translate = useTranslate()
   const hasWall = view.isWallConnected
-  const [chosen, setChosen] = useState<Spot | null>(null)
-  const pick = chosen ?? (hasWall ? 'here' : 'wall')
+  const [pick, setPick] = useState<Spot>('here')
   const seatedAs =
     view.players.find((player) => player.id === view.youId)?.nickname ?? null
   const others = view.players.filter((player) => player.id !== view.youId)
@@ -86,7 +85,7 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
           const [key] = keys
 
           if (key !== undefined && isSpot(key)) {
-            setChosen(key)
+            setPick(key)
           }
         }}
         selectedKeys={[pick]}
