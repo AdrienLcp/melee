@@ -28,10 +28,22 @@
       color: var(--on-spine)
       padding: 0.1em 0.6em
 
+    // The start is always the first case drawn and the finish the last, and
+    // on a narrow strip a seventh of it is narrower than either word at the
+    // type's floor: those two keep the room their word needs.
     .cases
+      --first-case: minmax(0, 1fr)
+      --last-case: minmax(0, 1fr)
+
       display: grid
       gap: clamp(0.125rem, 0.8cqi, 0.25rem)
-      grid-template-columns: repeat(var(--cases), minmax(0, 1fr))
+      grid-template-columns: var(--first-case) repeat(calc(var(--cases) - 2), minmax(0, 1fr)) var(--last-case)
+
+      &:has(> [data-mark='start'])
+        --first-case: minmax(3.25rem, 1fr)
+
+      &:has(> [data-mark='finish'])
+        --last-case: minmax(3.25rem, 1fr)
 
     // The track runs on past a cut end, so that end fades rather than stops:
     // the strip's own ends, or the edges of the view the whole track scrolls
@@ -117,9 +129,13 @@
       inset: 0.25em auto auto 0.4em
       position: absolute
 
-      :is([data-mark='start'], [data-mark='finish']) &
+      &:is([data-mark='start'] > *, [data-mark='finish'] > *)
         font-size: clamp(var(--text-3xs), 15cqmin, var(--text-xs))
-        text-transform: uppercase
+
+        // Either word in capitals is wider than a narrow case at the type's
+        // floor, so they are set only where they fit.
+        @container (width >= 4rem)
+          text-transform: uppercase
 
     .others
       bottom: 10%
