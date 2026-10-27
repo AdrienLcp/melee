@@ -36,15 +36,16 @@ export const hostConsole = (page: Page) => ({
   openBlindTestRound: page
     .getByRole('list', { name: 'Planned games' })
     .getByRole('button', { name: /^Blind test/ }),
-  /** The panel's games tab, where the shelf and the planned games are. */
+  /** The panel's games tab, where the planned games are. */
   openGamesTab: page.getByRole('tab', { name: 'Games' }),
   /**
-   * The lobby's shelf, on the panel's games tab. The label rather than the
-   * checkbox it names, same reason as `buzzerMode`.
+   * The blind test in the games tab's pick list, shown while the room has no
+   * game. A press plans it and opens its page. Its name runs on into the
+   * tagline.
    */
   pickBlindTest: page
-    .getByRole('group', { name: 'What we’re playing' })
-    .getByText('Blind test', { exact: true }),
+    .getByRole('list', { name: 'What we’re playing' })
+    .getByRole('button', { name: /^Blind test/ }),
   refusal: page.getByRole('heading', {
     name: 'No table under that code.'
   }),

@@ -33,9 +33,6 @@ test('[e2e] a room, a scan, a buzz, a verdict and a point', async ({
   // says while it is greyed out.
   await expect(host.startGame).toBeDisabled()
   await host.pickBlindTest.click()
-
-  await host.openGamesTab.click()
-  await host.openBlindTestRound.click()
   await host.buzzerMode.click()
   await screen.goto(await host.joinUrl.innerText())
   await player.nickname.fill(NICKNAME)
