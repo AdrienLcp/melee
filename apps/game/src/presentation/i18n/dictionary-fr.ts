@@ -519,8 +519,9 @@ export const FR_DICTIONARY = defineDictionary({
     countdown: 'Décompte',
     endGame: 'Terminer la partie',
     evening: {
-      add: 'Une autre partie d’un jeu',
-      addHint: 'Le même jeu, réglé autrement',
+      actions: 'Options de {name}',
+      add: 'Ajouter un jeu',
+      addHint: 'Un autre jeu, ou le même réglé autrement',
       challengeLine:
         'Son défi se choisit quand sa manche arrive, parmi trois : tes défis d’abord, puis la banque.',
       chance: {
@@ -538,19 +539,22 @@ export const FR_DICTIONARY = defineDictionary({
         subjects: '{count:number} sujets'
       },
       drag: 'Déplacer la manche {number:number}, {name}',
+      duplicate: 'Dupliquer',
       earlier: 'Plus tôt',
       fills: 'Remplit la partie',
       fixed: 'Déjà jouée : elle ne change plus.',
       later: 'Plus tard',
       next: 'La suite',
       once: 'Se joue une fois',
-      pick: 'Quelle manche ?',
+      pick: 'Ajouter un jeu',
       pickHint:
         'Un jeu dont tu apportes le contenu se joue une fois. Les autres remplissent les manches que tu n’as pas préparées.',
-      playFirst: 'Jouer en premier',
-      playNext: 'Jouer ensuite',
+      planned: defineTranslation('{count:plural}', {
+        plural: { count: { one: 'Prévu', other: 'Prévu {?}×' } }
+      }),
       roundNamed: 'Manche {number:number} : {name}',
       rounds: 'Les jeux prévus',
+      settings: 'Régler',
       slateKeyLater: 'Ses réponses se tapent quand elle passe en prochaine.',
       span: {
         all: defineTranslation('{count:plural}', {
@@ -574,7 +578,9 @@ export const FR_DICTIONARY = defineDictionary({
         now: 'En cours',
         once: 'Une fois',
         played: 'Jouée'
-      }
+      },
+      takenOut: 'Retiré de la partie : {name}',
+      undo: 'Annuler'
     },
     final: {
       nobody: 'Personne n’a marqué',
@@ -596,13 +602,9 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     game: {
-      change: 'Changer les jeux',
       label: 'À quoi on joue',
       prompt:
-        'Coches-en un et la table est prête, plusieurs pour les enchaîner.',
-      ticked: defineTranslation('{count:plural} sur {total:number}', {
-        plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
-      })
+        'Touche un jeu pour le prévoir. Tu pourras en ajouter d’autres pour les enchaîner.'
     },
     hostDecides: 'Tu décides',
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
@@ -798,9 +800,6 @@ export const FR_DICTIONARY = defineDictionary({
       },
       evening: 'Partie en équipes',
       eveningSeats: 'Partie de jeux',
-      nobody: {
-        seat: 'Une place'
-      },
       rules: {
         points: defineTranslation(
           '{rounds:plural}\u00a0: l’équipe qui marque le plus gagne.',

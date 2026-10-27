@@ -33,9 +33,6 @@ export const isSetAsTable = ({
   teams.kind === 'chosen' ||
   (teams.kind === 'off' && board.kind === 'track')
 
-/** The empty seats an empty table shows, enough to read as a table without crowding it. */
-const SEATS_AT_AN_EMPTY_TABLE = 4
-
 type TableLobbyProps = {
   roomCode: RoomCode
   view: HostRoomView
@@ -83,10 +80,6 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
           <div className='arrivals-head'>
             <h3>{translate('team.empty')}</h3>
           </div>
-          <EmptySeats
-            count={SEATS_AT_AN_EMPTY_TABLE}
-            label={translate('host.table.nobody.seat')}
-          />
         </section>
       ) : (
         unassigned.length > 0 && (
@@ -127,15 +120,8 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
                   <Pawn colour={team.colour} />
                   <span className='team-name'>{teamName(team)}</span>
                 </h3>
-                {members.length > 0 ? (
+                {members.length > 0 && (
                   <SeatChips players={members} roster={players} youId={youId} />
-                ) : (
-                  !isWaitingForDraw && (
-                    <EmptySeats
-                      count={1}
-                      label={translate('host.table.nobody.seat')}
-                    />
-                  )
                 )}
               </li>
             )
@@ -239,17 +225,3 @@ const SeatChips: React.FC<{
     </ul>
   )
 }
-
-/** A dashed place on the table for each seat still to come, with what fills it. */
-const EmptySeats: React.FC<{ count: number; label: string }> = ({
-  count,
-  label
-}) => (
-  <ul aria-hidden='true' className='seat-chips empty-seats'>
-    {Array.from({ length: count }, (_, seat) => seat).map((seat) => (
-      <li className='empty-seat' key={seat}>
-        {label}
-      </li>
-    ))}
-  </ul>
-)

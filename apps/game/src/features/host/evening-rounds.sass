@@ -21,9 +21,9 @@
         &::before
           content: ' · '
 
+    // A ruled list straight on the panel, never a box inside it.
     .rounds
-      border: var(--stroke-thin) solid var(--rule)
-      border-radius: var(--radius-m)
+      border-block: var(--hairline)
       display: grid
       list-style: none
       margin: 0
@@ -101,10 +101,26 @@
       color: var(--ink-muted)
       grid-area: chevron
 
+    .action-menu-trigger
+      grid-area: chevron
+      margin-block: calc(var(--space-xs) * -1)
+
+    // A room of one game: the row opens its page, the menu sits beside it.
+    li.only
+      align-items: center
+      display: grid
+      grid-template-columns: minmax(0, 1fr) auto
+      padding-inline-end: var(--space-2xs)
+
+      .action-menu-trigger
+        margin-block: 0
+
     // Played and fixed: printed in the socket, the band faded with it, so the
     // list tells what can still change before anyone opens it.
-    li[data-played-out] .round
+    li[data-played-out]
       background: var(--socket)
+
+    li[data-played-out] .round
       color: var(--socket-ink)
 
       .band
@@ -245,6 +261,21 @@
         @include typography.strong
 
         font-size: var(--text-s)
+
+    // Printed in reverse under the heading, where the row was: the one
+    // place a press that slipped is put right.
+    .evening-undo
+      align-items: center
+      background: var(--ink)
+      border-radius: var(--radius-s)
+      color: var(--field)
+      display: flex
+      gap: var(--space-xs)
+      justify-content: space-between
+      padding: var(--space-2xs) var(--space-s)
+
+      .button
+        color: var(--field)
 
     .evening-chance
       align-items: baseline

@@ -1,9 +1,15 @@
 @use '../../presentation/styles/typography'
 
 @layer components
-  .evening-shelf.box-shelf
-    > .shelf-label
+  .evening-page
+    .add-heading
       @include typography.lid-name
 
-      color: var(--ink)
       font-size: var(--text-xl)
+      margin: 0
+
+    .hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin: 0

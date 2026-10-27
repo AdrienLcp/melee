@@ -843,15 +843,6 @@
       > header
         display: none
 
-      // On a console under 800px tall the lids keep their names alone: the
-      // tagline is what the table can spare, and the launch under it is not.
-      @media (height < 50rem)
-        .game-picker .description
-          display: none
-
-        .game-picker .box
-          min-height: 0
-
       // A table answering aloud has no invitation to give the left: the
       // table and the launch take the middle, at the shelf's reading width.
       &:has(> .stage.lobby[data-aloud])

@@ -84,7 +84,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
         {controls === null && (
           <section className='game-choice'>
             {entryName !== null && <h2 className='game-name'>{entryName}</h2>}
-            <GamePitch isUnattended view={view} />
+            <GamePitch view={view} />
           </section>
         )}
 
@@ -253,9 +253,8 @@ const LobbyTeams: React.FC<{
 }
 
 /**
- * What the chosen game is and what a round of it pays. On the console the lids
- * of the shelf carry the promise, so only the wall — which has no shelf — adds
- * the pitch a game's own front door shows.
+ * On the wall, what the chosen game is and what a round of it pays: the pitch
+ * a game's own front door shows, which the console reads off its games tab.
  *
  * The pitch alone was half of it. Every player in the room is told what the
  * round pays — `UpNext` prints it while the table fills up — and the one screen
@@ -263,26 +262,17 @@ const LobbyTeams: React.FC<{
  * sentence was in the setup fold, which is collapsed at every width. So it is
  * here too, under the promise it is the terms of.
  */
-export const GamePitch: React.FC<{
-  isUnattended: boolean
-  view: HostRoomView
-}> = ({ isUnattended, view }) => {
+const GamePitch: React.FC<{ view: HostRoomView }> = ({ view }) => {
   const translate = useTranslate()
   const game = view.settings.game
 
   if (game === null || !isShelvedGame(game.kind)) {
-    return (
-      <p className='prompt'>
-        {translate(isUnattended ? 'player.choosingGame' : 'host.game.prompt')}
-      </p>
-    )
+    return <p className='prompt'>{translate('player.choosingGame')}</p>
   }
 
   return (
     <>
-      {isUnattended && (
-        <p className='pitch'>{translate(gameDescriptionKey(game.kind))}</p>
-      )}
+      <p className='pitch'>{translate(gameDescriptionKey(game.kind))}</p>
       <p className='scoring'>
         {translate(
           scoringKey({

@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import {
   Button as AriaButton,
   DropIndicator,
@@ -17,13 +17,28 @@ import {
 } from '@melee/protocol/room'
 
 import { capabilitiesOf } from '@melee/core/room/game-capabilities'
-import type { HostPreferences } from '@melee/core/room/host-preferences'
+import {
+  type HostPreferences,
+  rememberedSetupFor
+} from '@melee/core/room/host-preferences'
+import { withEntryDuplicated, withoutEntry } from '@melee/core/room/line-up'
+import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import type { ComingRound } from '@melee/core/room/running-order'
 
+import {
+  ActionMenu,
+  ActionMenuItem,
+  ActionMenuSeparator
+} from '@/presentation/components/action-menu'
 import { Button } from '@/presentation/components/button'
 import {
+  ChevronIcon,
   ChevronRightIcon,
+  ChevronUpIcon,
+  ControlsIcon,
+  CopyIcon,
+  CrossIcon,
   DiceIcon,
   GameIcon,
   GripIcon,
@@ -59,6 +74,29 @@ const spineOf = (game: GameKind): React.CSSProperties => ({
   '--spine-ink': `var(--on-spine-${game})`
 })
 
+/** What a row's menu does to the evening, and which of it the moment allows. */
+type EveningActions = {
+  /** The line-up has room for one more entry, on a live socket. */
+  canDuplicate: boolean
+  /** Between two rounds, on a live socket: the order can still move. */
+  canMove: boolean
+  /** No round is under way, on a live socket, and another entry is left. */
+  canTakeOut: boolean
+  duplicate: (at: number) => void
+  /** Swaps two rounds to come, by their place in the list. */
+  move: (rows: { from: number; to: number }) => void
+  open: (at: number) => void
+  takeOut: (entry: { at: number; name: string }) => void
+}
+
+/** An entry just taken out and the evening as it stood before, kept while undoing it is still the same moment. */
+type TakenOut = {
+  name: string
+  phase: HostRoomView['phase']
+  roundIndex: number | null
+  settings: RoomSettings
+}
+
 type EveningRoundsProps = {
   /** The socket is open: adding a round leads to a press that sends one. */
   isLive: boolean
@@ -77,10 +115,11 @@ type EveningRoundsProps = {
 /**
  * The evening as its planned games, under a heading saying how many rounds it
  * holds: a row per entry still to come, numbered in its spine, saying what it
- * is set to and opening its page, put in order by drag — the server dealt it
- * the moment the evening was made — then a row for the rounds drawn once they
- * are played. A room of one game is that game's row alone, fixed once played
- * if the host brought it.
+ * is set to and opening its page, put in order by drag or by its menu — the
+ * server dealt it the moment the evening was made — then a row for the
+ * rounds drawn once they are played. A room of one game is that game's row
+ * alone. Taking an entry out leaves a way to put it back until the room moves
+ * on.
  */
 export const EveningRounds: React.FC<EveningRoundsProps> = ({
   isLive,
@@ -108,6 +147,65 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
   const roundsLabel = translate('host.evening.rounds')
   const { lineUp } = view.settings
   const { coming, isDrawn, isEveningOver, upcoming } = eveningOrderOf(view)
+  const [takenOut, setTakenOut] = useState<TakenOut | null>(null)
+  const roundIndex = view.round?.index ?? null
+  const undoable =
+    takenOut !== null &&
+    takenOut.phase === view.phase &&
+    takenOut.roundIndex === roundIndex
+      ? takenOut
+      : null
+  const change = (settings: RoomSettings) => {
+    setTakenOut(null)
+    onSettingsChange(settings)
+  }
+  const rowsToCome = coming.map((round) => round.at)
+  const arranged = (rows: readonly number[]) =>
+    arrangedEvening({ locale, preferences, rows, upcoming, view })
+
+  const actions: EveningActions = {
+    canDuplicate: isLive && lineUp.length < LINE_UP_MAX_ENTRIES,
+    canMove: isLive && isDrawn,
+    canTakeOut: isLive && !isRoundInPlay(view.phase) && lineUp.length > 1,
+    duplicate: (at) => {
+      const copied = withEntryDuplicated({
+        at,
+        settings: view.settings,
+        upcoming
+      })
+
+      if (copied !== view.settings) {
+        change(copied)
+        onOpen(copied.lineUp.length - 1)
+      }
+    },
+    move: ({ from, to }) => {
+      const moving = rowsToCome[from]
+      const displaced = rowsToCome[to]
+
+      if (moving !== undefined && displaced !== undefined) {
+        change(arranged(rowsToCome.with(from, displaced).with(to, moving)))
+      }
+    },
+    open: onOpen,
+    takeOut: ({ at, name }) => {
+      onSettingsChange(
+        withoutEntry({
+          at,
+          locale,
+          rememberedFor: (game) => rememberedSetupFor({ game, preferences }),
+          settings: view.settings
+        })
+      )
+      setTakenOut({
+        name,
+        phase: view.phase,
+        roundIndex,
+        settings: view.settings
+      })
+    }
+  }
+
   const addRow = lineUp.length < LINE_UP_MAX_ENTRIES && (
     <AriaButton className='round' isDisabled={!isLive} onPress={onAdd}>
       <span className='band'>
@@ -127,13 +225,30 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
         isEveningOver={isEveningOver}
         view={view}
       />
+      {undoable !== null && (
+        <div className='evening-undo' role='status'>
+          <span>
+            {translate('host.evening.takenOut', { name: undoable.name })}
+          </span>
+          <Button
+            isDisabled={!isLive}
+            onPress={() => {
+              change(undoable.settings)
+            }}
+            size='small'
+            variant='underlined'
+          >
+            {translate('host.evening.undo')}
+          </Button>
+        </div>
+      )}
       {lineUp.length < 2 ? (
         <ul aria-label={roundsLabel} className='rounds'>
           {onlyEntry !== undefined && (
             <OnlyRound
+              actions={actions}
               entry={onlyEntry}
               isEveningOver={isEveningOver}
-              onOpen={onOpen}
               rowRef={returnTo}
               view={view}
             />
@@ -143,15 +258,12 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
       ) : (
         <div className='rounds' data-ordered>
           <OrderedRounds
+            actions={actions}
             coming={coming}
-            isEditable={isLive && isDrawn}
             label={roundsLabel}
             onArrange={(rows) => {
-              onSettingsChange(
-                arrangedEvening({ locale, preferences, rows, upcoming, view })
-              )
+              change(arranged(rows))
             }}
-            onOpen={onOpen}
             rowRef={returnTo}
             view={view}
           />
@@ -169,7 +281,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
         <OverTheCount
           coming={coming}
           isLive={isLive}
-          onSettingsChange={onSettingsChange}
+          onSettingsChange={change}
           settings={view.settings}
         />
       )}
@@ -227,12 +339,12 @@ const EveningHeading: React.FC<{
 }
 
 const OnlyRound: React.FC<{
+  actions: EveningActions
   entry: GameSettings
   isEveningOver: boolean
-  onOpen: (at: number) => void
   rowRef: React.RefCallback<HTMLElement>
   view: HostRoomView
-}> = ({ entry, isEveningOver, onOpen, rowRef, view }) => {
+}> = ({ actions, entry, isEveningOver, rowRef, view }) => {
   const [summary] = useLineUpEntrySummaries([entry])
   const timesPlayed = view.lineUpPlayed[0] ?? 0
   const stamp = eveningStampOf({
@@ -246,6 +358,7 @@ const OnlyRound: React.FC<{
 
   return (
     <li
+      className='only'
       data-played-out={stamp === 'played' || undefined}
       style={spineOf(entry.kind)}
     >
@@ -253,7 +366,7 @@ const OnlyRound: React.FC<{
         className='round'
         data-entry-at={0}
         onPress={() => {
-          onOpen(0)
+          actions.open(0)
         }}
         ref={rowRef}
       >
@@ -264,8 +377,14 @@ const OnlyRound: React.FC<{
           <span className='detail'>{summary.settings}</span>
         )}
         {stamp !== null && <EveningStamp kind={stamp} played={timesPlayed} />}
-        <ChevronRightIcon className='chevron' />
       </AriaButton>
+      <EntryMenu
+        actions={actions}
+        at={0}
+        label={summary?.name ?? ''}
+        name={summary?.name ?? ''}
+        row={null}
+      />
     </li>
   )
 }
@@ -284,21 +403,20 @@ const keyedRounds = (coming: readonly ComingRound[]) =>
   })
 
 const OrderedRounds: React.FC<{
+  actions: EveningActions
   coming: readonly ComingRound[]
-  /** Between two rounds, on a live socket: the order can still move. */
-  isEditable: boolean
   label: string
   onArrange: (rows: number[]) => void
-  onOpen: (at: number) => void
   rowRef: React.RefCallback<HTMLElement>
   view: HostRoomView
-}> = ({ coming, isEditable, label, onArrange, onOpen, rowRef, view }) => {
+}> = ({ actions, coming, label, onArrange, rowRef, view }) => {
   const translate = useTranslate()
   const { lineUp } = view.settings
   const summaries = useLineUpEntrySummaries(lineUp)
   const rounds = keyedRounds(coming)
   const list = useRef<HTMLDivElement>(null)
   const order = rounds.map((round) => round.id).join(' ')
+  const isEditable = actions.canMove
 
   const arrange = ({ at, ids }: { at: number; ids: ReadonlySet<string> }) => {
     remember()
@@ -352,7 +470,7 @@ const OrderedRounds: React.FC<{
         const at = rounds.find((round) => round.id === key)?.at
 
         if (at !== undefined) {
-          onOpen(at)
+          actions.open(at)
         }
       }}
       ref={list}
@@ -362,6 +480,10 @@ const OrderedRounds: React.FC<{
         const summary = summaries[round.at]
         const name = summary?.name ?? ''
         const number = round.roundAt + 1
+        const roundName = translate('host.evening.roundNamed', {
+          name,
+          number
+        })
 
         return (
           <GridListItem
@@ -370,7 +492,7 @@ const OrderedRounds: React.FC<{
             data-past-the-end={round.isPastTheEnd || undefined}
             ref={rowRef}
             style={entry === undefined ? undefined : spineOf(entry.kind)}
-            textValue={translate('host.evening.roundNamed', { name, number })}
+            textValue={roundName}
           >
             <span className='band'>{number}</span>
             {isEditable && (
@@ -388,11 +510,94 @@ const OrderedRounds: React.FC<{
               <span className='detail'>{summary.settings}</span>
             )}
             {round.isPastTheEnd && <EveningStamp kind='beyond' played={0} />}
-            <ChevronRightIcon className='chevron' />
+            <EntryMenu
+              actions={actions}
+              at={round.at}
+              label={roundName}
+              name={name}
+              row={{ count: rounds.length, index: rounds.indexOf(round) }}
+            />
           </GridListItem>
         )
       }}
     </GridList>
+  )
+}
+
+/**
+ * What can be done to one planned game without opening it: its settings, a
+ * copy of it, and — in an evening of several — its place among the rounds to
+ * come, and taking it out.
+ */
+const EntryMenu: React.FC<{
+  actions: EveningActions
+  /** The entry's index in the line-up. */
+  at: number
+  /** The row as the list names it, which names the menu. */
+  label: string
+  /** The entry's own name, which the undo repeats. */
+  name: string
+  /** Where the row sits among the rounds to come; `null` for a room of one game. */
+  row: { count: number; index: number } | null
+}> = ({ actions, at, label, name, row }) => {
+  const translate = useTranslate()
+
+  return (
+    <ActionMenu aria-label={translate('host.evening.actions', { name: label })}>
+      <ActionMenuItem
+        icon={<ControlsIcon />}
+        onAction={() => {
+          actions.open(at)
+        }}
+      >
+        {translate('host.evening.settings')}
+      </ActionMenuItem>
+      <ActionMenuItem
+        icon={<CopyIcon />}
+        isDisabled={!actions.canDuplicate}
+        onAction={() => {
+          actions.duplicate(at)
+        }}
+      >
+        {translate('host.evening.duplicate')}
+      </ActionMenuItem>
+      {row !== null && <ActionMenuSeparator />}
+      {row !== null && (
+        <ActionMenuItem
+          icon={<ChevronUpIcon />}
+          isDisabled={!actions.canMove || row.index === 0}
+          onAction={() => {
+            actions.move({ from: row.index, to: row.index - 1 })
+          }}
+        >
+          {translate('host.evening.earlier')}
+        </ActionMenuItem>
+      )}
+      {row !== null && (
+        <ActionMenuItem
+          icon={<ChevronIcon />}
+          isDisabled={!actions.canMove || row.index === row.count - 1}
+          onAction={() => {
+            actions.move({ from: row.index, to: row.index + 1 })
+          }}
+        >
+          {translate('host.evening.later')}
+        </ActionMenuItem>
+      )}
+      {row !== null && <ActionMenuSeparator />}
+      {row !== null && (
+        <ActionMenuItem
+          icon={<CrossIcon />}
+          isDestructive
+          isDisabled={!actions.canTakeOut}
+          onAction={() => {
+            actions.takeOut({ at, name })
+          }}
+        >
+          {translate('host.lineUp.takeOut')}
+        </ActionMenuItem>
+      )}
+    </ActionMenu>
   )
 }
 

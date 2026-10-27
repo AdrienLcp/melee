@@ -1,37 +1,55 @@
 import type React from 'react'
 
-import { type GameKind, shelvedGames } from '@melee/protocol/game'
+import type { GameKind } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
-import {
-  capabilitiesOf,
-  isPlayableAloud
-} from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
 import { withEntryAdded } from '@melee/core/room/line-up'
 
-import { PickShelf } from '@/presentation/components/box-shelf'
-import { GameIcon } from '@/presentation/components/icons'
-import { useI18n } from '@/presentation/i18n/i18n-provider'
-import {
-  gameNameKey,
-  type PlainTranslationKey
-} from '@/presentation/i18n/translation'
+import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { EveningPage } from './evening-page'
+import { GamePickList } from './game-pick-list'
 
 import './evening-add-page.sass'
 
-const howItPlays = (game: GameKind): PlainTranslationKey =>
-  capabilitiesOf(game).servesItsOwnContent
-    ? 'host.evening.fills'
-    : 'host.evening.once'
+/**
+ * Plans a round of a game at the end of the evening, on what this host last
+ * left it set to — or picks the game, in a room still deciding — and says
+ * where it landed in the line-up.
+ */
+export const usePlanGame = ({
+  onPlanned,
+  preferences,
+  settings
+}: {
+  onPlanned: (settings: RoomSettings, at: number) => void
+  preferences: HostPreferences | null
+  settings: RoomSettings
+}): ((game: GameKind) => void) => {
+  const { locale } = useI18n()
+
+  return (game) => {
+    const added = withEntryAdded({
+      game,
+      locale,
+      remembered: rememberedSetupFor({ game, preferences }),
+      settings
+    })
+
+    if (added !== settings) {
+      onPlanned(added, added.lineUp.length - 1)
+    }
+  }
+}
 
 type EveningAddPageProps = {
   isLive: boolean
+  /** This console holds a seat, so a judged game is one it sits out. */
+  isSeated: boolean
   /** Called with the room's settings once the round is added, and where it landed in the line-up. */
   onAdded: (settings: RoomSettings, at: number) => void
   onBack: () => void
@@ -40,60 +58,28 @@ type EveningAddPageProps = {
   settings: RoomSettings
 }
 
-/**
- * The shelf of games as a page, one press adding a round of it to the end of
- * the evening. Each box says whether its game fills the evening or is played
- * once, which is the one thing about it the list of rounds depends on.
- */
+/** The shelf as a page, one press adding a round of a game to the end of the evening. */
 export const EveningAddPage: React.FC<EveningAddPageProps> = ({
   isLive,
+  isSeated,
   onAdded,
   onBack,
   preferences,
   settings
 }) => {
-  const { locale, translate } = useI18n()
-
-  const options = shelvedGames.map((game) => {
-    const playsAloud = isPlayableAloud({ game, teams: settings.teams })
-
-    return {
-      description: translate(
-        playsAloud ? howItPlays(game) : 'team.aloud.needsScreens'
-      ),
-      icon: <GameIcon game={game} />,
-      isDisabled: !playsAloud,
-      label: translate(gameNameKey(game)),
-      spine: `var(--spine-${game})`,
-      value: game
-    }
-  })
+  const translate = useTranslate()
+  const plan = usePlanGame({ onPlanned: onAdded, preferences, settings })
+  const heading = translate('host.evening.pick')
 
   return (
     <EveningPage onBack={onBack}>
-      <PickShelf
-        className='evening-shelf'
+      <h2 className='add-heading'>{heading}</h2>
+      <GamePickList
+        aria-label={heading}
         isDisabled={!isLive}
-        label={translate('host.evening.pick')}
-        onPick={(value) => {
-          const game = shelvedGames.find((shelved) => shelved === value)
-
-          if (game === undefined) {
-            return
-          }
-
-          const added = withEntryAdded({
-            game,
-            locale,
-            remembered: rememberedSetupFor({ game, preferences }),
-            settings
-          })
-
-          if (added !== settings) {
-            onAdded(added, added.lineUp.length - 1)
-          }
-        }}
-        options={options}
+        isSeated={isSeated}
+        onPick={plan}
+        settings={settings}
       />
       <p className='hint'>{translate('host.evening.pickHint')}</p>
     </EveningPage>

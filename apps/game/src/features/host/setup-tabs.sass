@@ -1,5 +1,3 @@
-@use '@adrienlcp/styles/accessibility'
-
 @use '../../presentation/styles/strip'
 @use '../../presentation/styles/typography'
 
@@ -10,33 +8,6 @@
       @include typography.caption
 
       color: var(--ink-muted)
-
-    .game-choice
-      // One game ticked is the decision the room is waiting on, so nothing
-      // folds it: the trigger only exists once the evening has several.
-      &:not([data-folds])
-        border-top: none
-
-        > .react-aria-Heading
-          display: none
-
-      &[data-folds]
-        margin-top: var(--space-m)
-
-      .panel-content
-        display: flex
-        flex-direction: column
-        gap: var(--space-s)
-
-      // The tab's own heading already names the shelf.
-      .box-shelf > .react-aria-Label
-        @include accessibility.visually-hidden
-
-      .scoring,
-      .prompt
-        @include typography.caption
-
-        color: var(--ink-muted)
 
     // What the teams and the board were settled on, once the server stops
     // taking either: a printed slip rather than two controls drawn dead.

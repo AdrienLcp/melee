@@ -181,6 +181,16 @@
     min-width: 0
     padding: calc(0.5rem + var(--space-xs)) var(--space-s) var(--space-s)
 
+    // A tray nobody sits at yet holds a chip's height, so a row of empty
+    // trays stands as tall as the one it will be.
+    &:not(:has(.seat-chips))::after
+      @include typography.title
+
+      block-size: calc(1lh + var(--space-2xs) * 2)
+      content: ''
+      font-size: clamp(var(--text-m), calc(var(--stage-unit) * 2), var(--text-xl))
+      min-block-size: 2rem
+
     &.yours
       box-shadow: inset 0 0.5rem 0 var(--team), inset 0 0 0 var(--stroke-bold) var(--ink), 0 2px 0 color-mix(in oklab, var(--rule-strong) 55%, var(--field))
 
@@ -252,22 +262,6 @@
 
     &.away .name
       color: var(--ink-muted)
-
-  // The place a seat will take: the recess it sits in, its die-line dashed.
-  .table-lobby .empty-seat
-    @include typography.caption
-
-    align-items: center
-    background: var(--socket)
-    border-radius: var(--radius-s)
-    box-shadow: var(--shadow-recess-shallow)
-    color: var(--socket-ink)
-    display: flex
-    font-size: clamp(var(--text-s), calc(var(--stage-unit) * 1.8), var(--text-m))
-    min-height: 2rem
-    outline: var(--stroke-thin) dashed var(--socket-line)
-    outline-offset: calc(var(--stroke-thin) * -1)
-    padding: var(--space-2xs) var(--space-s)
 
   // A seat set down on the table as it joins.
   @keyframes seat-arrives

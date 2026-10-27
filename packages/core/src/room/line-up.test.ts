@@ -14,6 +14,7 @@ import {
   lineUpHolds,
   toggledInLineUp,
   withEntryAdded,
+  withEntryDuplicated,
   withoutEntry
 } from './line-up'
 import { type GameSetup, roomSettingsFor } from './room-settings'
@@ -178,6 +179,18 @@ describe('variants', () => {
     expect(lineUpHolds(evening)).toBe(true)
   })
 
+  it('[line-up] copies an entry on its own settings, not the remembered ones', () => {
+    const copied = withEntryDuplicated({
+      at: 0,
+      settings: { ...onTheCharts, game: FILM_SCORES },
+      upcoming: 0
+    })
+
+    expect(copied.lineUp).toEqual([FILM_SCORES, FILM_SCORES])
+    expect(copied.lineUpAt).toBe(0)
+    expect(lineUpHolds(copied)).toBe(true)
+  })
+
   it('[line-up] picks the game when the room is still deciding', () => {
     const picked = withEntryAdded({
       game: 'slate',
@@ -316,6 +329,27 @@ describe('the running order across line-up edits', () => {
     })
 
     expect(added.runningOrder).toEqual([1, null, 0, 2, 3])
+  })
+
+  it('[running-order] plans a copy on the row after its original', () => {
+    const copied = withEntryDuplicated({
+      at: 0,
+      settings: inOrder([1, null, 0, 2]),
+      upcoming: 0
+    })
+
+    expect(copied.runningOrder).toEqual([1, null, 0, 3, 2])
+    expect(lineUpHolds(copied)).toBe(true)
+  })
+
+  it('[running-order] plans a copy last when its original has no row left', () => {
+    const copied = withEntryDuplicated({
+      at: 1,
+      settings: inOrder([1, null, 0, 2]),
+      upcoming: 1
+    })
+
+    expect(copied.runningOrder).toEqual([1, null, 0, 2, 3])
   })
 
   it('[running-order] leaves the rows of an entry taken out to chance', () => {

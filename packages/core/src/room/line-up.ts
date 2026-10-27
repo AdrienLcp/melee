@@ -136,6 +136,46 @@ export const withEntryAdded = ({
 }
 
 /**
+ * The settings with a copy of the line-up's entry `at`, set exactly as it is,
+ * planned on the row after its own still to come, or last when it has none.
+ * Copying the entry is what adding its game cannot do: the host's setup is
+ * remembered once per game, so a second quiz added from the shelf joins on
+ * whichever quiz was set last rather than the one being copied. A full
+ * line-up is left as it is.
+ */
+export const withEntryDuplicated = ({
+  at,
+  settings,
+  upcoming
+}: {
+  at: number
+  settings: RoomSettings
+  /** The round about to open, counted from 0. */
+  upcoming: number
+}): RoomSettings => {
+  const followed = followedByLineUp(settings)
+  const entry = followed.lineUp[at]
+
+  if (entry === undefined || followed.lineUp.length >= LINE_UP_MAX_ENTRIES) {
+    return settings
+  }
+
+  const copyAt = followed.lineUp.length
+  const ownRow = followed.runningOrder.findIndex(
+    (row, index) => index >= upcoming && row === at
+  )
+
+  return {
+    ...followed,
+    lineUp: [...followed.lineUp, entry],
+    runningOrder:
+      ownRow === -1
+        ? orderWithEntryAdded({ at: copyAt, order: followed.runningOrder })
+        : followed.runningOrder.toSpliced(ownRow + 1, 0, copyAt)
+  }
+}
+
+/**
  * The settings with the line-up's entry `at` taken out. When it was the one
  * the next round is on, the room moves to the entry after it, or to the one
  * before it at the end; the last entry cannot be taken out.

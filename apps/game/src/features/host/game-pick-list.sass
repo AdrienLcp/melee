@@ -1,0 +1,85 @@
+// Side-effect module: the shelf as a ruled list of games to plan.
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/text-box'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .game-pick-list
+    border-block-start: var(--hairline)
+    display: grid
+    list-style: none
+    margin: 0
+    padding: 0
+
+    > li
+      border-block-end: var(--hairline)
+
+    .pick
+      @include focus.ring-inset
+
+      align-items: center
+      background: transparent
+      border: 0
+      color: var(--ink)
+      column-gap: var(--space-s)
+      cursor: pointer
+      display: grid
+      grid-template-areas: 'tile name mark plus' 'tile blurb mark plus'
+      grid-template-columns: auto minmax(0, 1fr) auto auto
+      min-block-size: var(--control-height)
+      padding: var(--space-xs) var(--space-xs) var(--space-xs) 0
+      row-gap: var(--space-2xs)
+      text-align: start
+      width: 100%
+
+      &[data-hovered],
+      &[data-pressed]
+        background: var(--card-well)
+
+      &[data-disabled]
+        cursor: not-allowed
+        opacity: 0.55
+
+      > svg
+        grid-area: plus
+
+    .tile
+      align-items: center
+      background: var(--spine)
+      border-radius: var(--radius-s)
+      block-size: 2.5rem
+      color: var(--spine-ink)
+      display: grid
+      font-size: var(--text-l)
+      grid-area: tile
+      inline-size: 2.5rem
+      justify-items: center
+
+    .name
+      @include typography.lid-name
+
+      font-size: var(--text-m)
+      grid-area: name
+
+    .blurb
+      @include typography.caption
+
+      color: var(--ink-muted)
+      grid-area: blurb
+      text-wrap: pretty
+
+    .mark
+      @include typography.caption-strong
+      @include text-box.trimmed-block(var(--space-2xs))
+
+      border-radius: var(--radius-s)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule-strong)
+      font-size: var(--text-2xs)
+      grid-area: mark
+      padding-inline: var(--space-xs)
+      white-space: nowrap
+
+      &[data-planned]
+        background: var(--ink)
+        box-shadow: none
+        color: var(--field)

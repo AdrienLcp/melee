@@ -1,7 +1,6 @@
 import type React from 'react'
 import { useState } from 'react'
 
-import { shelvedGames } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
@@ -10,7 +9,6 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { kindsInLineUp } from '@melee/core/room/line-up'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import {
@@ -18,18 +16,16 @@ import {
   withSavedEvening
 } from '@melee/core/room/saved-evening'
 
-import { Disclosure } from '@/presentation/components/disclosure'
 import { PointsRows } from '@/presentation/components/points-rows'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
-import { EveningAddPage } from './evening-add-page'
+import { EveningAddPage, usePlanGame } from './evening-add-page'
 import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds } from './evening-rounds'
-import { GamePicker } from './game-picker'
-import { GamePitch } from './lobby-stage'
+import { GamePickList } from './game-pick-list'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
@@ -78,7 +74,7 @@ export type SetupTabsProps = {
   view: HostRoomView
 }
 
-/** What the games tab shows: the shelf and the planned games, or one page of the evening in their place. */
+/** What the games tab shows: the planned games, or one page of the evening in their place. */
 type GamePage =
   | { kind: 'adding' }
   | { at: number; kind: 'entry' }
@@ -86,11 +82,10 @@ type GamePage =
   | { kind: 'saved' }
 
 /**
- * What the table plays. In the lobby the shelf comes first, because it is the
- * decision the room is waiting on; past it the planned games are what is left
- * to change, each opening a page of its own — a quiz's subjects alone run to
- * nine rows. Once several are ticked the decision is made, and the twelve boxes
- * fold under the planned games: open, they ran to twice the panel's height.
+ * What the table plays: the planned games, the one place the evening is made,
+ * each opening a page of its own — a quiz's subjects alone run to nine rows.
+ * A table nobody has decided for yet shows every game instead, one press
+ * planning it and opening its settings.
  */
 export const GameTab: React.FC<SetupTabsProps> = ({
   draftSource,
@@ -108,15 +103,19 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     kind: 'list',
     returnedFrom: null
   })
-  // Open while a second tick is being made, so the shelf never folds under
-  // the hand that ticked; a console arriving on an evening finds it folded.
-  const [isShelfOpen, setIsShelfOpen] = useState(
-    view.settings.lineUp.length <= 1
-  )
   const saved = useSavedEvenings()
   const backToList = () => {
     setPage({ kind: 'list', returnedFrom: null })
   }
+  const planned = (settings: RoomSettings, at: number) => {
+    onSettingsChange(settings)
+    setPage({ at, kind: 'entry' })
+  }
+  const plan = usePlanGame({
+    onPlanned: planned,
+    preferences,
+    settings: view.settings
+  })
 
   if (page.kind === 'saved') {
     return (
@@ -169,10 +168,8 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     return (
       <EveningAddPage
         isLive={isLive}
-        onAdded={(added, at) => {
-          onSettingsChange(added)
-          setPage({ at, kind: 'entry' })
-        }}
+        isSeated={view.youId !== null}
+        onAdded={planned}
         onBack={backToList}
         preferences={preferences}
         settings={view.settings}
@@ -180,50 +177,35 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     )
   }
 
-  const evening = view.settings.game !== null && (
-    <EveningRounds
-      isLive={isLive}
-      onAdd={() => {
-        setPage({ kind: 'adding' })
-      }}
-      onOpen={(at) => {
-        setPage({ at, kind: 'entry' })
-      }}
-      onSettingsChange={onSettingsChange}
-      preferences={preferences}
-      returnedFrom={page.returnedFrom}
-      view={view}
-    />
-  )
-  const isEveningFirst = view.settings.lineUp.length > 1
-
   return (
     <>
       {slateEditors}
-      {isEveningFirst && evening}
-      {view.phase === 'lobby' && (
-        <Disclosure
-          className='game-choice'
-          data-folds={isEveningFirst || undefined}
-          isExpanded={!isEveningFirst || isShelfOpen}
-          label={translate('host.game.change')}
-          onExpandedChange={setIsShelfOpen}
-          summary={translate('host.game.ticked', {
-            count: kindsInLineUp(view.settings.lineUp).length,
-            total: shelvedGames.length
-          })}
-        >
-          <GamePicker
+      {view.settings.game === null ? (
+        <>
+          <p className='tab-summary'>{translate('host.game.prompt')}</p>
+          <GamePickList
+            aria-label={translate('host.game.label')}
             isDisabled={!isLive}
             isSeated={view.youId !== null}
-            onChange={onSettingsChange}
-            preferences={preferences}
+            onPick={plan}
             settings={view.settings}
           />
-          <GamePitch isUnattended={false} view={view} />
-        </Disclosure>
+        </>
+      ) : (
+        <EveningRounds
+          isLive={isLive}
+          onAdd={() => {
+            setPage({ kind: 'adding' })
+          }}
+          onOpen={(at) => {
+            setPage({ at, kind: 'entry' })
+          }}
+          onSettingsChange={onSettingsChange}
+          preferences={preferences}
+          returnedFrom={page.returnedFrom}
+          view={view}
+        />
       )}
-      {!isEveningFirst && evening}
       {(view.settings.game !== null ||
         (view.phase === 'lobby' && saved.evenings.length > 0)) && (
         <SavedEveningsDoor

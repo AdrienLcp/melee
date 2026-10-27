@@ -15,6 +15,7 @@ import {
   Dice5,
   Download,
   Earth,
+  Ellipsis,
   Flame,
   Grid3x3,
   GripVertical,
@@ -95,6 +96,7 @@ export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)
 export const MinusIcon = inFamily(Minus)
+export const MoreIcon = inFamily(Ellipsis)
 export const MoveIcon = inFamily(ArrowRightLeft)
 export const PanelFoldIcon = inFamily(PanelRightClose)
 export const PanelOpenIcon = inFamily(PanelRightOpen)

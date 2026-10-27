@@ -9,23 +9,14 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { followedByLineUp, withoutEntry } from '@melee/core/room/line-up'
 import { endsTheEvening, isPlayedOut } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
-import { orderWithEntryNext } from '@melee/core/room/running-order'
 
-import { Button } from '@/presentation/components/button'
-import {
-  ChevronIcon,
-  ChevronUpIcon,
-  CrossIcon,
-  GameIcon
-} from '@/presentation/components/icons'
+import { GameIcon } from '@/presentation/components/icons'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
-import { arrangedEvening, eveningOrderOf } from './evening-order'
 import { EveningPage } from './evening-page'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
 import { OwnChallengeLinesEditor } from './own-challenge-lines-editor'
@@ -52,10 +43,9 @@ type EveningEntryPageProps = {
 }
 
 /**
- * One round of the evening on a page of its own: what the game is, its
- * settings, and the two things done to a round — playing it next, or taking
- * it out. Setting it changes the entry and nothing else; *Play next* is what
- * moves the next round onto it.
+ * One round of the evening on a page of its own: what the game is and its
+ * settings, which change the entry and nothing else. What is done to the
+ * round itself — copying it, moving it, taking it out — is its row's menu.
  *
  * The entry the next round is on is set through the room's own settings, as
  * the fold always set it. Any other is set through a copy of the room moved
@@ -105,15 +95,12 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
   }
 
   const played = view.lineUpPlayed[at] ?? 0
-  const rememberedFor = (game: typeof entry.kind) =>
-    rememberedSetupFor({ game, preferences })
-  const withDraft = withDraftSource({ draftSource, settings })
   const entrySettings = isNext
     ? settings
     : movedToEntry({
         at,
         locale,
-        remembered: rememberedFor(entry.kind),
+        remembered: rememberedSetupFor({ game: entry.kind, preferences }),
         settings
       })
   const changeEntry = (changed: RoomSettings) => {
@@ -142,26 +129,6 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
     played
   })
   const isFixed = isPlayedOut({ entry, played })
-  const { coming, isDrawn, upcoming } = eveningOrderOf(view)
-  const rows = coming.map((round) => round.at)
-  const row = rows.indexOf(at)
-  const swappedWith = (other: number) => {
-    const neighbour = rows[other]
-
-    if (neighbour === undefined) {
-      return
-    }
-
-    onSettingsChange(
-      arrangedEvening({
-        locale,
-        preferences,
-        rows: rows.with(row, neighbour).with(other, at),
-        upcoming,
-        view: { ...view, settings: withDraft }
-      })
-    )
-  }
 
   return (
     <EveningPage onBack={onBack}>
@@ -214,106 +181,6 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
       )}
 
       {entry.kind === 'challenge' && <OwnChallengeLinesEditor />}
-
-      {!isFixed && (!isNext || settings.lineUp.length > 1) && (
-        <div className='entry-actions'>
-          {!isNext && (
-            <Button
-              isDisabled={!isLive || roundInPlay}
-              onPress={() => {
-                const moved = movedToEntry({
-                  at,
-                  locale,
-                  remembered: rememberedFor(entry.kind),
-                  settings: withDraft
-                })
-
-                onSettingsChange({
-                  ...moved,
-                  runningOrder: orderWithEntryNext({
-                    at,
-                    order: moved.runningOrder,
-                    upcoming: view.round?.index ?? 0
-                  })
-                })
-              }}
-              size='small'
-            >
-              {translate(
-                view.phase === 'lobby'
-                  ? 'host.evening.playFirst'
-                  : 'host.evening.playNext'
-              )}
-            </Button>
-          )}
-          {row > 0 && (
-            <Button
-              isDisabled={!isLive || !isDrawn}
-              onPress={() => {
-                swappedWith(row - 1)
-              }}
-              size='small'
-              variant='outlined'
-            >
-              <ChevronUpIcon />
-              {translate('host.evening.earlier')}
-            </Button>
-          )}
-          {row >= 0 && row < rows.length - 1 && (
-            <Button
-              isDisabled={!isLive || !isDrawn}
-              onPress={() => {
-                swappedWith(row + 1)
-              }}
-              size='small'
-              variant='outlined'
-            >
-              <ChevronIcon />
-              {translate('host.evening.later')}
-            </Button>
-          )}
-          {settings.lineUp.length > 1 && (
-            <Button
-              isDisabled={!isLive || roundInPlay}
-              onPress={() => {
-                onSettingsChange(
-                  withoutEntry({
-                    at,
-                    locale,
-                    rememberedFor,
-                    settings: withDraft
-                  })
-                )
-                onBack()
-              }}
-              size='small'
-              variant='outlined'
-            >
-              <CrossIcon />
-              {translate('host.lineUp.takeOut')}
-            </Button>
-          )}
-        </div>
-      )}
     </EveningPage>
   )
 }
-
-/**
- * The settings with the picker's source in the blind test the next round is
- * on, and in its entry, so a press that moves the next round elsewhere does
- * not drop what was chosen there.
- */
-const withDraftSource = ({
-  draftSource,
-  settings
-}: {
-  draftSource: TrackSource | null
-  settings: RoomSettings
-}): RoomSettings =>
-  draftSource === null || settings.game?.kind !== 'blindtest'
-    ? settings
-    : followedByLineUp({
-        ...settings,
-        game: { ...settings.game, source: draftSource }
-      })
