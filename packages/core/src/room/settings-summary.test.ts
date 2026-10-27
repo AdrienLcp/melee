@@ -12,7 +12,7 @@ describe('settingsSummary', () => {
     expect(settingsSummary({ draftSource: null, settings: blindtest })).toEqual(
       [
         { game: 'blindtest', kind: 'game' },
-        { kind: 'source', source: 'chart' },
+        { kind: 'source', source: 'all' },
         { kind: 'answerMode', mode: 'choice' },
         { count: 10, kind: 'roundCount' }
       ]

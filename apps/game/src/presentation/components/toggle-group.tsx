@@ -23,6 +23,12 @@ type ToggleGroupProps = Omit<
   label: string
   /** Rendered in order, one segment each. */
   options: readonly ToggleGroupOption[]
+  /**
+   * `single` is for one answer that may also be none — pressing the chosen
+   * segment again lets go of it, which a radio group cannot do. Without that
+   * empty state the question belongs to `SegmentedControl`.
+   */
+  selectionMode?: 'multiple' | 'single'
 }
 
 /**
@@ -37,6 +43,7 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
   className,
   label,
   options,
+  selectionMode = 'multiple',
   ...props
 }) => {
   // `RadioGroup` hands its `Label` an id through context and `ToggleButtonGroup`
@@ -48,7 +55,7 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
       {...props}
       aria-labelledby={labelId}
       className={composeClassName(className, 'toggle-group')}
-      selectionMode='multiple'
+      selectionMode={selectionMode}
     >
       <Label id={labelId}>{label}</Label>
       <div className='segments'>

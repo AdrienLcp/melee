@@ -10,7 +10,6 @@ import {
 } from '@melee/protocol/track'
 
 import { Button } from '@/presentation/components/button'
-import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { TextField } from '@/presentation/components/text-field'
 import { ToggleGroup } from '@/presentation/components/toggle-group'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -22,7 +21,10 @@ import './playlist-picker.sass'
 
 type SourceKind = TrackSource['kind']
 
-const KIND_LABELS: Record<SourceKind, PlainTranslationKey> = {
+/** The kinds the strip offers; `all` is the strip with none of them pressed. */
+type ChosenKind = Exclude<SourceKind, 'all'>
+
+const KIND_LABELS: Record<ChosenKind, PlainTranslationKey> = {
   chart: 'blindtest.source.chart',
   decade: 'blindtest.source.decade',
   film: 'blindtest.source.film',
@@ -30,11 +32,11 @@ const KIND_LABELS: Record<SourceKind, PlainTranslationKey> = {
   search: 'blindtest.source.search'
 }
 
-const isSourceKind = (value: string): value is SourceKind =>
-  value in KIND_LABELS
+const isChosenKind = (value: string | number): value is ChosenKind =>
+  typeof value === 'string' && value in KIND_LABELS
 
 export const sourceKindKey = (kind: SourceKind): PlainTranslationKey =>
-  KIND_LABELS[kind]
+  kind === 'all' ? 'blindtest.source.all' : KIND_LABELS[kind]
 
 /**
  * Deezer's own genre ids, hand-picked down to the ones a party actually asks
@@ -114,6 +116,8 @@ const sourceFromDraft = ({
   query
 }: Draft): TrackSource | null => {
   switch (kind) {
+    case 'all':
+      return { kind: 'all' }
     case 'chart':
       return { genreIds, kind: 'chart' }
     case 'decade':
@@ -196,20 +200,24 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
 
   return (
     <section className='playlist-picker'>
-      <SegmentedControl
-        className='track-source'
-        label={translate('blindtest.source.label')}
-        onChange={(next) => {
-          if (isSourceKind(next)) {
-            chooseKind(next)
-          }
-        }}
-        options={Object.entries(KIND_LABELS).map(([value, key]) => ({
-          label: translate(key),
-          value
-        }))}
-        value={draft.kind}
-      />
+      <div className='sources'>
+        <ToggleGroup
+          className='track-source'
+          label={translate('blindtest.source.label')}
+          onSelectionChange={(keys) => {
+            chooseKind([...keys].find(isChosenKind) ?? 'all')
+          }}
+          options={Object.entries(KIND_LABELS).map(([value, key]) => ({
+            label: translate(key),
+            value
+          }))}
+          selectedKeys={draft.kind === 'all' ? [] : [draft.kind]}
+          selectionMode='single'
+        />
+        {draft.kind === 'all' && (
+          <p className='hint'>{translate('blindtest.source.none')}</p>
+        )}
+      </div>
 
       {draft.kind === 'chart' && (
         <div className='genres'>
@@ -264,7 +272,11 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
           onSubmit={(event) => {
             event.preventDefault()
 
-            if (draftSource !== null && draftSource.kind !== 'chart') {
+            if (
+              draftSource !== null &&
+              draftSource.kind !== 'all' &&
+              draftSource.kind !== 'chart'
+            ) {
               void previewSource(draftSource)
             }
           }}

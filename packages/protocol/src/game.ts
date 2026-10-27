@@ -255,7 +255,7 @@ export const DEFAULT_BLINDTEST_SETTINGS: BlindtestSettings = {
   difficulty: 'wellKnown',
   kind: 'blindtest',
   roundDurationMs: 20_000,
-  source: { genreIds: [], kind: 'chart' }
+  source: { kind: 'all' }
 }
 
 export const DEFAULT_BUZZER_SETTINGS: BuzzerSettings = {

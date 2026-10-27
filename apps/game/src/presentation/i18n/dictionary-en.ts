@@ -261,12 +261,14 @@ export const EN_DICTIONARY = defineDictionary({
         'Everyone types, over the same clip. Film and composer score 10 points each and both together score 30, and the earlier you get it the more the clock adds — up to double.'
     },
     source: {
+      all: 'Every source',
       chart: 'Top charts',
       decade: 'A decade',
       film: 'Film scores',
       filmHint:
         'What a composer wrote for a film or a series — not the songs on its soundtrack.',
       label: 'Where the tracks come from',
+      none: 'Pick none and you get them all mixed: charts, every decade and film scores.',
       noneInDecade: 'Nothing playable in those years. Try another decade.',
       noneInFilms:
         'Nothing playable came back from the composers. Try another source.',

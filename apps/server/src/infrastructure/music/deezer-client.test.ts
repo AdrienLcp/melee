@@ -446,3 +446,95 @@ describe('the film source', () => {
     expect(pool.map((track) => track.film)).toEqual(['Gladiator'])
   })
 })
+
+describe('every source at once', () => {
+  it('[all] samples the decades and the composers beside the whole chart', async () => {
+    const requested = catalogueByPath({})
+
+    await fetchTracksFor({ difficulty: 'mixed', source: { kind: 'all' } })
+
+    const paths = requested().map((path) => path.split('?')[0])
+
+    expect(paths.filter((path) => path === '/chart/0/tracks')).toHaveLength(1)
+    expect(paths.filter((path) => path?.startsWith('/playlist/'))).toHaveLength(
+      3
+    )
+    expect(paths.filter((path) => path?.startsWith('/artist/'))).toHaveLength(3)
+    expect(paths).toHaveLength(7)
+  })
+
+  it('[all] filters each catalogue on its own rules', async () => {
+    // The same cue at 220k: a composer's top lets it in under the film's own
+    // floor, a chart holds it to the room's and refuses it.
+    const cue = scoreCue({
+      album: 'Gladiator - Music From The Motion Picture',
+      rank: 220_000,
+      title: 'Now We Are Free'
+    })
+    const single = namedTrack('single', 'A Single')
+
+    vi.stubGlobal('fetch', async (url: string) => {
+      const path = url.replace(/^https?:\/\/[^/]+/, '')
+      const data = path.startsWith('/artist/')
+        ? [cue]
+        : path.startsWith('/chart/')
+          ? [single, { ...cue, id: 'charted-cue' }]
+          : []
+
+      return new Response(JSON.stringify({ data }), {
+        headers: { 'content-type': 'application/json' },
+        status: 200
+      })
+    })
+
+    const found = await fetchTracksFor({
+      difficulty: 'wellKnown',
+      source: { kind: 'all' }
+    })
+    const pool = found.status === 'success' ? found.data.tracks : []
+
+    expect(
+      pool
+        .map((track) => ({ film: track.film, id: track.id }))
+        .toSorted((left, right) => left.id.localeCompare(right.id))
+    ).toEqual([
+      { film: 'Gladiator', id: 'Hans Zimmer-Now We Are Free' },
+      { film: null, id: 'single' }
+    ])
+  })
+})
+
+describe('every source at once, weighed', () => {
+  it('[all] lets no catalogue outweigh the others', async () => {
+    const cues = Array.from({ length: 12 }, (_, index) =>
+      scoreCue({
+        album: 'Gladiator - Music From The Motion Picture',
+        title: `Cue ${index}`
+      })
+    )
+    const singles = [namedTrack('a', 'A'), namedTrack('b', 'B')]
+
+    vi.stubGlobal('fetch', async (url: string) => {
+      const path = url.replace(/^https?:\/\/[^/]+/, '')
+      const data = path.startsWith('/artist/')
+        ? cues
+        : path.startsWith('/chart/')
+          ? singles
+          : [namedTrack('c', 'C'), namedTrack('d', 'D')]
+
+      return new Response(JSON.stringify({ data }), {
+        headers: { 'content-type': 'application/json' },
+        status: 200
+      })
+    })
+
+    const found = await fetchTracksFor({
+      difficulty: 'wellKnown',
+      source: { kind: 'all' }
+    })
+    const pool = found.status === 'success' ? found.data.tracks : []
+
+    expect(pool.filter((track) => track.film !== null)).toHaveLength(2)
+    expect(pool).toHaveLength(6)
+  })
+})

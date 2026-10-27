@@ -17,10 +17,11 @@ import {
 } from '@/presentation/i18n/translation'
 
 /**
- * Every source but the chart, which is Deezer's own front page: it cannot come
- * back empty, and there is nothing about it a host could have got wrong.
+ * Every source but the chart, which is Deezer's own front page, and the mix,
+ * which holds it: neither can come back empty, and there is nothing about
+ * either a host could have got wrong.
  */
-type PreviewableSource = Exclude<TrackSource, { kind: 'chart' }>
+type PreviewableSource = Exclude<TrackSource, { kind: 'all' | 'chart' }>
 
 /**
  * One value rather than a title list, an error and a flag standing beside each

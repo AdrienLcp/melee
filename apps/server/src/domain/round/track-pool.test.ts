@@ -10,7 +10,7 @@ import { generateHostToken } from '@melee/core/room/host-token'
 
 import { newRoom } from '@/domain/room/new-room'
 
-import { discardPoolIfStale } from './track-pool'
+import { discardPoolIfStale, drawChoices } from './track-pool'
 
 const playingFrom = (source: TrackSource): GameSettings => ({
   ...DEFAULT_BLINDTEST_SETTINGS,
@@ -109,6 +109,15 @@ describe('discardPoolIfStale', () => {
     ).toBe(true)
   })
 
+  it('[pool] keeps the mixed pool, which has nothing to change either', () => {
+    expect(
+      poolSurvives({
+        from: playingFrom({ kind: 'all' }),
+        to: playingFrom({ kind: 'all' })
+      })
+    ).toBe(true)
+  })
+
   it('[pool] drops the pool a room left the blind test holding', () => {
     expect(
       poolSurvives({
@@ -116,5 +125,104 @@ describe('discardPoolIfStale', () => {
         to: null
       })
     ).toBe(false)
+  })
+})
+
+const catalogueTrack = ({ film, id }: { film: string | null; id: string }) => ({
+  artist: 'Someone',
+  coverUrl: null,
+  film,
+  id,
+  title: `Track ${id}`
+})
+
+const roomHolding = (pool: ReturnType<typeof catalogueTrack>[]) => {
+  const room = newRoom({
+    code: 'ABCD',
+    games: ['blindtest'],
+    hostToken: generateHostToken(),
+    locale: 'en',
+    now: 0
+  })
+
+  room.trackPool = pool
+
+  return room
+}
+
+describe('drawChoices', () => {
+  const songs = ['s1', 's2', 's3', 's4'].map((id) =>
+    catalogueTrack({ film: null, id })
+  )
+  const cues = ['f1', 'f2', 'f3', 'f4'].map((id) =>
+    catalogueTrack({ film: `Film ${id}`, id })
+  )
+
+  it('[choices] deals a score cue among score cues in a mixed pool', () => {
+    const room = roomHolding([...songs, ...cues])
+    const { choices } = drawChoices({
+      room,
+      track: {
+        ...catalogueTrack({ film: 'Dune', id: 'f0' }),
+        previewUrl: 'https://example.test/p.mp3'
+      }
+    })
+
+    expect(choices.every((choice) => choice.film !== null)).toBe(true)
+  })
+
+  it('[choices] deals a song among songs in a mixed pool', () => {
+    const room = roomHolding([...songs, ...cues])
+    const { choices } = drawChoices({
+      room,
+      track: {
+        ...catalogueTrack({ film: null, id: 's0' }),
+        previewUrl: 'https://example.test/p.mp3'
+      }
+    })
+
+    expect(choices.every((choice) => choice.film === null)).toBe(true)
+  })
+
+  it('[choices] still deals four when its own kind runs short', () => {
+    const room = roomHolding([
+      ...songs,
+      catalogueTrack({ film: 'Interstellar', id: 'f1' })
+    ])
+    const { choices } = drawChoices({
+      room,
+      track: {
+        ...catalogueTrack({ film: 'Dune', id: 'f0' }),
+        previewUrl: 'https://example.test/p.mp3'
+      }
+    })
+
+    expect(choices).toHaveLength(4)
+  })
+})
+
+describe('drawChoices, read aloud', () => {
+  it('[choices] never deals two buttons that read the same', () => {
+    const sameFilm = ['f1', 'f2', 'f3', 'f4'].map((id) => ({
+      ...catalogueTrack({ film: 'Interstellar', id }),
+      artist: 'Hans Zimmer'
+    }))
+    const room = roomHolding([
+      ...sameFilm,
+      ...['g1', 'g2', 'g3'].map((id) =>
+        catalogueTrack({ film: `Film ${id}`, id })
+      )
+    ])
+    const { choices } = drawChoices({
+      room,
+      track: {
+        ...catalogueTrack({ film: 'Interstellar', id: 'f0' }),
+        artist: 'Hans Zimmer',
+        previewUrl: 'https://example.test/p.mp3'
+      }
+    })
+    const readings = choices.map((choice) => `${choice.film}/${choice.artist}`)
+
+    expect(new Set(readings).size).toBe(4)
   })
 })

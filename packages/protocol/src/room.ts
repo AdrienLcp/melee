@@ -365,6 +365,13 @@ export const revealedAnswerSchema = roundAnswerSchema.extend({
  */
 export const roundContentSchema = z.discriminatedUnion('kind', [
   z.object({
+    /**
+     * Whether the round asks for the film in the title's place. A question
+     * rather than an answer — every screen has to know which half it is
+     * typing — and a fact about the track, not the source, because a room
+     * playing every catalogue deals a score cue beside a chart single.
+     */
+    asksForAFilm: z.boolean(),
     /** Choice mode only, and shuffled per round. */
     choices: z.array(trackIdentitySchema),
     kind: z.literal('blindtest'),

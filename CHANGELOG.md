@@ -8,6 +8,12 @@ one part.
 
 ### Features
 
+- `[Shared]` **A blind test plays every source when none is picked.** The
+  source strip lets go of its choice like the genres do, and nothing pressed
+  mixes the charts, the decades and the film scores — what a room now opens
+  on. Each catalogue pays in an equal share, a round tells every screen whether
+  it asks for the film, and four propositions stay of one kind and never read
+  the same twice. Protocol 63.
 - `[Shared]` **The host strikes a Petit Bac word out.** On the results grid,
   every word the room kept is a press that strikes it out — gibberish nobody
   voted against no longer pays — and a second press puts it back; the round is

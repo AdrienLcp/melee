@@ -108,10 +108,16 @@ export const fetchTracksFor = async ({
   source: TrackSource
 }): Promise<Result<CataloguePool, MusicSourceFailure>> => {
   const fetched = await Promise.all(
-    pathsFor(source).map((path) => requestList(path, signal))
+    strandsOf(source).map(async (strand) => ({
+      lists: await Promise.all(
+        strand.paths.map((path) => requestList(path, signal))
+      ),
+      source: strand.source
+    }))
   )
-  const reached = fetched.filter((list) => list.status === 'success')
-  const failures = fetched.flatMap((list) =>
+  const lists = fetched.flatMap((strand) => strand.lists)
+  const reached = lists.filter((list) => list.status === 'success')
+  const failures = lists.flatMap((list) =>
     list.status === 'failure' ? [list.error] : []
   )
   const faults = failures.flatMap((failure) => failure.faults)
@@ -131,11 +137,21 @@ export const fetchTracksFor = async ({
     })
   }
 
-  const playable = catalogued({
-    difficulty,
-    source,
-    tracks: withoutRepeats(reached.flatMap((list) => list.data))
-  })
+  const playable = withoutRepeats(
+    evenedOut(
+      fetched.map((strand) =>
+        withoutRepeats(
+          catalogued({
+            difficulty,
+            source: strand.source,
+            tracks: strand.lists.flatMap((list) =>
+              list.status === 'success' ? list.data : []
+            )
+          })
+        )
+      )
+    )
+  )
 
   return playable.length === 0
     ? Result.failure({ ...NOTHING_PLAYABLE, faults })
@@ -143,11 +159,30 @@ export const fetchTracksFor = async ({
 }
 
 /**
+ * Each catalogue of a mix pays in as many tracks as the thinnest one that
+ * answered, so a round is as likely to come from one as from another. Left
+ * whole, three composers' tops outweighed the chart and three decades: six
+ * rounds in seven were a score cue, measured 27 October 2026. A single source
+ * is one strand, and keeps everything.
+ */
+const evenedOut = (strands: CatalogueTrack[][]): CatalogueTrack[] => {
+  const answered = strands.filter((strand) => strand.length > 0)
+
+  if (answered.length <= 1) {
+    return answered.flat()
+  }
+
+  const share = Math.min(...answered.map((strand) => strand.length))
+
+  return answered.flatMap((strand) => shuffled(strand).slice(0, share))
+}
+
+/**
  * Deezer puts the same track on more than one genre chart, so a host who picked
  * both rock and pop would otherwise get a pool where the overlap is twice as
  * likely to be drawn.
  */
-const withoutRepeats = (tracks: DeezerTrack[]): DeezerTrack[] => [
+const withoutRepeats = (tracks: CatalogueTrack[]): CatalogueTrack[] => [
   ...new Map(tracks.map((track) => [track.id, track])).values()
 ]
 
@@ -199,7 +234,7 @@ const catalogued = ({
   tracks
 }: {
   difficulty: TrackDifficulty
-  source: TrackSource
+  source: SingleSource
   tracks: DeezerTrack[]
 }): CatalogueTrack[] => {
   if (source.kind !== 'film') {
@@ -354,7 +389,53 @@ const COMPOSERS_PER_POOL = 8
  */
 const FILM_SCORE_FLOOR = 200_000
 
-const pathsFor = (source: TrackSource): string[] => {
+/** A source that is one catalogue, which every arm is but the one that mixes them. */
+type SingleSource = Exclude<TrackSource, { kind: 'all' }>
+
+/**
+ * What one pool of every catalogue asks of each. The decades alone are twelve
+ * playlists and the composers forty-nine artists, so the mix samples both
+ * afresh on every fill — as the film arm already does — rather than asking
+ * Deezer for sixty-two lists to serve one evening. The chart is one list and
+ * goes in whole.
+ */
+const DECADE_PLAYLISTS_PER_MIXED_POOL = 3
+const COMPOSERS_PER_MIXED_POOL = 3
+
+/**
+ * The catalogues a source is drawn from, each with its own paths. They stay
+ * apart until each has been filtered on its own rules: a score cue measured
+ * against a single's rank floor would never get in, and a single measured
+ * against the composer table would never either.
+ */
+const strandsOf = (
+  source: TrackSource
+): { paths: string[]; source: SingleSource }[] => {
+  if (source.kind !== 'all') {
+    return [{ paths: pathsFor(source), source }]
+  }
+
+  const chart: SingleSource = { genreIds: [], kind: 'chart' }
+  const decade: SingleSource = { decades: [], kind: 'decade' }
+  const film: SingleSource = { kind: 'film' }
+
+  return [
+    { paths: pathsFor(chart), source: chart },
+    {
+      paths: shuffled(pathsFor(decade)).slice(
+        0,
+        DECADE_PLAYLISTS_PER_MIXED_POOL
+      ),
+      source: decade
+    },
+    {
+      paths: pathsFor(film).slice(0, COMPOSERS_PER_MIXED_POOL),
+      source: film
+    }
+  ]
+}
+
+const pathsFor = (source: SingleSource): string[] => {
   switch (source.kind) {
     case 'chart': {
       const genreIds =

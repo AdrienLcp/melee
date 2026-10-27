@@ -173,10 +173,9 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       {isTyping && (
         <TypedAnswer
           // A seated console is withheld the answer the same way a player
-          // is, so it reads what the round asks for off the settings too.
+          // is, so it reads what the round asks for off the round too.
           asksForAFilm={
-            view.settings.game?.kind === 'blindtest' &&
-            view.settings.game.source.kind === 'film'
+            round.content.kind === 'blindtest' && round.content.asksForAFilm
           }
           key={round.id}
           onAnswer={onAnswer}

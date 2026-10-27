@@ -111,6 +111,8 @@ export const discardPoolIfStale = ({
 
 const isSameSource = (left: TrackSource, right: TrackSource): boolean => {
   switch (left.kind) {
+    case 'all':
+      return right.kind === 'all'
     case 'chart':
       return (
         right.kind === 'chart' && holdsTheSame(left.genreIds, right.genreIds)
@@ -206,9 +208,19 @@ export const drawChoices = ({
     title: track.title
   }
 
-  const decoys = shuffled(
+  const others = shuffled(
     room.trackPool.filter((candidate) => candidate.id !== track.id)
-  ).slice(0, CHOICES_PER_ROUND - 1)
+  )
+  // A pool of every catalogue holds score cues beside singles, and one film
+  // among three songs is the odd one out. A thin film half lends what it lacks
+  // rather than dealing fewer than four.
+  const decoys = readingApart([
+    answer,
+    ...others.filter((candidate) => isFilm(candidate) === isFilm(track)),
+    ...others.filter((candidate) => isFilm(candidate) !== isFilm(track))
+  ])
+    .slice(1)
+    .slice(0, CHOICES_PER_ROUND - 1)
 
   const choices = shuffled([answer, ...decoys])
 
@@ -217,3 +229,19 @@ export const drawChoices = ({
     correctIndex: choices.findIndex((choice) => choice.id === track.id)
   }
 }
+
+const isFilm = (track: TrackIdentity): boolean => track.film !== null
+
+/**
+ * A choice reads as what the round asks for, so two cues of *Interstellar* are
+ * the same button twice — and a decoy that reads as the answer is a second
+ * right one. The first of each reading is kept, the answer leading.
+ */
+const readingApart = (tracks: TrackIdentity[]): TrackIdentity[] => [
+  ...new Map(
+    tracks.map((track) => [
+      JSON.stringify([track.film ?? track.title, track.artist]),
+      track
+    ])
+  ).values()
+]

@@ -59,6 +59,16 @@ export const trackDecadeSchema = z.enum(trackDecades)
  */
 export const trackSourceSchema = z.discriminatedUnion('kind', [
   /**
+   * Every catalogue at once — the charts, the decades and the composers, drawn
+   * from side by side — and what a room opens on, because a host who has not
+   * chosen yet has not narrowed anything. The strip says it the way the genres
+   * do: nothing picked is everything.
+   *
+   * The two arms that need typing stay out of it. A playlist or a query is a
+   * choice somebody made, and there is no "every playlist".
+   */
+  z.object({ kind: z.literal('all') }),
+  /**
    * Deezer genre charts, merged. The ids are the ones Deezer publishes at
    * `/genre`, and each chart is a hundred tracks that are charting — the
    * cheapest definition of "a song people know".

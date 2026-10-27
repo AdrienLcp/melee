@@ -708,6 +708,7 @@ const REVEALS = [
   },
   {
     content: {
+      asksForAFilm: false,
       choices: [],
       kind: 'blindtest',
       revealedTrack: {
@@ -832,7 +833,12 @@ const blindTestRound = (phase: 'buzzed' | 'countdown') => {
               playerId: 'p7'
             }
           : null,
-      content: { choices: [], kind: 'blindtest', revealedTrack: null },
+      content: {
+        asksForAFilm: false,
+        choices: [],
+        kind: 'blindtest',
+        revealedTrack: null
+      },
       startsAt:
         phase === 'countdown' ? SERVER_TIME + 3_000 : view.round.startsAt
     },

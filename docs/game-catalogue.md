@@ -121,8 +121,11 @@ a prerequisite, and it is the one that should be allowed to force the decision.
 ### Where a question would slot in
 
 The blind test's source picker is the template, and it is more reusable than it
-looks. `TrackSource` is `chart | decade | film | playlist | search` — five ways
-to fill one pool, chosen in the lobby, committed by the launch. A quiz is the same
+looks. `TrackSource` is `all | chart | decade | film | playlist | search` — six
+ways to fill one pool, chosen in the lobby, committed by the launch. `all` is
+the strip with nothing pressed: the three catalogues side by side, each filtered
+on its own rules and evened to the thinnest before they meet, which is also why
+a round, not the settings, says whether it asks for the film. A quiz is the same
 picker with different arms, and the shape underneath is already built: the
 countdown, the buzz order, the lockout, the verdict, the reveal, the scoreboard.
 

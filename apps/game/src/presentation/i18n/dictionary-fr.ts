@@ -241,12 +241,14 @@ export const FR_DICTIONARY = defineDictionary({
         'Tout le monde tape, sur le même extrait. Film et compositeur rapportent 10 points chacun, les deux ensemble 30, et plus tu trouves tôt, plus la montre ajoute — jusqu’au double.'
     },
     source: {
+      all: 'Toutes les sources',
       chart: 'Le top du moment',
       decade: 'Une décennie',
       film: 'Musiques de films',
       filmHint:
         'Ce qu’un compositeur a écrit pour un film ou une série — pas les chansons de la bande originale.',
       label: 'D’où viennent les titres',
+      none: 'N’en choisis aucune et tu as tout, mélangé : le top, toutes les décennies et les musiques de films.',
       noneInDecade:
         'Rien de jouable dans ces années-là. Essaie une autre décennie.',
       noneInFilms:

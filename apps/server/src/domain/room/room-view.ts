@@ -586,6 +586,7 @@ const toContentView = ({
   }
 
   return {
+    asksForAFilm: content.track.film !== null,
     choices: content.choices,
     kind: 'blindtest',
     revealedTrack: round.revealed ? toTrackIdentity(content.track) : null

@@ -13,6 +13,7 @@ const runningRound = {
   answers: [],
   awards: [],
   content: {
+    asksForAFilm: false,
     choices: [],
     kind: 'blindtest' as const,
     revealedTrack: null

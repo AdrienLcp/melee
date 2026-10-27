@@ -21,7 +21,12 @@ const runningRound: RoundView = {
   answerMode: 'buzzer',
   answers: [],
   awards: [],
-  content: { choices: [], kind: 'blindtest', revealedTrack: null },
+  content: {
+    asksForAFilm: false,
+    choices: [],
+    kind: 'blindtest',
+    revealedTrack: null
+  },
   duel: null,
   durationMs: 30_000,
   id: 'r1',

@@ -696,11 +696,10 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             <RoundClock clock={clock} view={view} />
           </div>
           <TypedAnswer
-            // The player is never sent the track, so the settings are the
-            // only place it can read what the round is asking for.
+            // The player is never sent the track, so the round says which
+            // half it is asking for on its own.
             asksForAFilm={
-              view.settings.game?.kind === 'blindtest' &&
-              view.settings.game.source.kind === 'film'
+              round.content.kind === 'blindtest' && round.content.asksForAFilm
             }
             key={round.id}
             onAnswer={answerWithRound}
