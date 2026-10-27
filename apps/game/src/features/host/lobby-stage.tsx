@@ -16,10 +16,7 @@ import { Scoreboard } from '@/presentation/components/scoreboard'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { TrackStrip } from '@/presentation/components/track-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import {
-  useEntryName,
-  useLaterEntryNames
-} from '@/presentation/i18n/line-up-entry-names'
+import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import { gameDescriptionKey, scoringKey } from '@/presentation/i18n/translation'
 
 import { MoveSeat } from './move-seat'
@@ -75,7 +72,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 
   useTeamCountFollowingHeadcount({ controls, view })
   const entryName = useEntryName(view.settings)
-  const laterEntryNames = useLaterEntryNames(view.settings)
 
   return (
     <div className='stage lobby' data-aloud={playsAloud || undefined}>
@@ -89,13 +85,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           <section className='game-choice'>
             {entryName !== null && <h2 className='game-name'>{entryName}</h2>}
             <GamePitch isUnattended view={view} />
-            {laterEntryNames.length > 0 && (
-              <p className='later-games'>
-                {translate('player.lineUp.afterwards', {
-                  games: laterEntryNames.join(' · ')
-                })}
-              </p>
-            )}
           </section>
         )}
 

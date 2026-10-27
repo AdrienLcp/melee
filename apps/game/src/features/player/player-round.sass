@@ -77,12 +77,6 @@
       max-width: var(--measure-note)
       text-wrap: pretty
 
-    .later-games
-      @include typography.label
-
-      color: var(--card-muted)
-      text-wrap: balance
-
     &.undecided
       background: var(--socket)
       box-shadow: var(--shadow-recess), inset 0 0 0 var(--stroke-thin) var(--socket-line)
@@ -264,18 +258,12 @@
     .hold:empty
       display: none
 
-    // Under the thumb, where the next press of the evening lands: the game the
-    // next round is on, and the word to the wall that this seat is back.
+    // Under the thumb, where the next press of the evening lands: the word to
+    // the wall that this seat is back.
     .back-at-the-table
       align-self: stretch
       display: flex
       flex-direction: column
-      gap: var(--space-xs)
-
-      .next-game
-        @include typography.label
-
-        color: var(--ink-muted)
 
     // A round before the first point, or one whose question the room owned,
     // leaves the payout alone on the screen: one object, centred.

@@ -211,17 +211,3 @@ export const useEntryName = (settings: EntrySettings): string | null => {
     translate(gameNameKey(settings.game.kind))
   )
 }
-
-/**
- * The entries a line-up plays after the first, each once, in the order the
- * running order first reaches them; an entry it has not reached yet comes last.
- */
-export const useLaterEntryNames = (settings: EntrySettings): string[] => {
-  const entryNames = useLineUpEntryNames(settings.lineUp)
-  const planned = [
-    ...settings.runningOrder,
-    ...settings.lineUp.map((_, at) => at)
-  ].flatMap((at) => (at === null || at === settings.lineUpAt ? [] : [at]))
-
-  return [...new Set(planned)].flatMap((at) => entryNames[at] ?? [])
-}

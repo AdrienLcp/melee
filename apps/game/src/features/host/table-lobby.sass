@@ -107,30 +107,25 @@
     grid-area: rules
     text-wrap: pretty
 
-  // The games in the order the box deals them, each by its spine.
-  .table-lobby .line-up-spines
-    display: flex
-    flex-wrap: wrap
-    gap: var(--space-xs)
+  // The game the next round comes out of the box on, by its spine.
+  .table-lobby .next-spine
+    @include piece.piece(var(--radius-s), $nubs: false)
+    @include typography.spine-name
+
+    --edge: 0.125rem
+
+    align-items: center
+    background: var(--spine)
+    color: var(--spine-ink)
+    display: inline-flex
+    font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2), var(--text-l))
+    gap: var(--space-2xs)
     grid-area: spines
-    list-style: none
+    justify-self: start
     margin-block-start: var(--space-2xs)
+    padding: var(--space-xs) var(--space-s)
 
-    li
-      @include piece.piece(var(--radius-s), $nubs: false)
-      @include typography.spine-name
-
-      --edge: 0.125rem
-
-      align-items: center
-      background: var(--spine)
-      color: var(--spine-ink)
-      display: inline-flex
-      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2), var(--text-l))
-      gap: var(--space-2xs)
-      padding: var(--space-xs) var(--space-s)
-
-      @include text-box.trimmed-block(var(--space-xs))
+    @include text-box.trimmed-block(var(--space-xs))
 
     .game-icon
       flex: none

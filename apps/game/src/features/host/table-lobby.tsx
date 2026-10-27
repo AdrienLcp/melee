@@ -13,7 +13,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
+import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
@@ -147,8 +147,9 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
 }
 
 /**
- * What the evening is, on paper: its name, how it is won, the games in the
- * order they come out of the box, and the way in.
+ * What the evening is, on paper: its name, how it is won, the game the next
+ * round comes out of the box on, and the way in. The rest of the line-up stays
+ * in the box until its own round.
  */
 const TableCard: React.FC<{ roomCode: RoomCode; view: HostRoomView }> = ({
   roomCode,
@@ -157,7 +158,7 @@ const TableCard: React.FC<{ roomCode: RoomCode; view: HostRoomView }> = ({
   const translate = useTranslate()
   const { board, game, lineUp, roundCount, teams } = view.settings
   const isBySeat = teams.kind === 'off'
-  const names = useLineUpEntryNames(lineUp)
+  const entryName = useEntryName(view.settings)
   const isEvening = lineUp.length > 1
 
   const title = isEvening
@@ -189,22 +190,17 @@ const TableCard: React.FC<{ roomCode: RoomCode; view: HostRoomView }> = ({
     <article className='table-card'>
       <h2 className='table-title'>{title}</h2>
       <p className='table-rules'>{rules}</p>
-      {isEvening && (
-        <ol className='line-up-spines'>
-          {lineUp.map((entry, index) => (
-            <li
-              // Every entry's name is its own: two of one game are numbered.
-              key={names[index]}
-              style={{
-                '--spine': `var(--spine-${entry.kind})`,
-                '--spine-ink': `var(--on-spine-${entry.kind})`
-              }}
-            >
-              <GameIcon game={entry.kind} />
-              {names[index]}
-            </li>
-          ))}
-        </ol>
+      {isEvening && game !== null && (
+        <p
+          className='next-spine'
+          style={{
+            '--spine': `var(--spine-${game.kind})`,
+            '--spine-ink': `var(--on-spine-${game.kind})`
+          }}
+        >
+          <GameIcon game={game.kind} />
+          {entryName}
+        </p>
       )}
       <RoomInvitation isUnattended roomCode={roomCode} />
     </article>

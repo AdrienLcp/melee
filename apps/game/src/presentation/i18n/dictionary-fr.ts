@@ -1229,8 +1229,7 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     lineUp: {
-      afterwards: 'Puis : {games}',
-      next: 'Ensuite : {game}',
+      mystery: 'Les jeux se dévoilent manche après manche',
       ready: 'Prêt'
     },
     midRound: {

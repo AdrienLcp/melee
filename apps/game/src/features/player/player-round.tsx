@@ -106,10 +106,7 @@ import {
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
-import {
-  useEntryName,
-  useLaterEntryNames
-} from '@/presentation/i18n/line-up-entry-names'
+import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import {
   buzzBlockerKey,
   scoringKey,
@@ -259,9 +256,10 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
 
 /**
  * Between two rounds of an evening, the press that tells the wall this seat is
- * back at the table, under the game the next round is on. It is a word to the
- * room, never a gate: the host starts when they like. The last round of a
- * counted evening has nothing after it to be ready for.
+ * back at the table. It is a word to the room, never a gate: the host starts
+ * when they like. The next game stays unnamed until its countdown, so a
+ * planned line-up keeps its surprises. The last round of a counted evening has
+ * nothing after it to be ready for.
  */
 const BackAtTheTable: React.FC<{
   onReady: (isReady: boolean) => boolean
@@ -270,12 +268,10 @@ const BackAtTheTable: React.FC<{
 }> = ({ onReady, round, view }) => {
   const translate = useTranslate()
   const { lineUp, roundCount } = view.settings
-  const entryName = useEntryName(view.settings)
   const you = view.players.find((player) => player.id === view.youId)
 
   if (
     lineUp.length < 2 ||
-    entryName === null ||
     you === undefined ||
     (roundCount !== null && round.index >= roundCount)
   ) {
@@ -284,9 +280,6 @@ const BackAtTheTable: React.FC<{
 
   return (
     <div className='back-at-the-table'>
-      <p className='next-game'>
-        {translate('player.lineUp.next', { game: entryName })}
-      </p>
       <ToggleButton
         isSelected={you.isReady}
         onChange={(isReady) => {
@@ -737,14 +730,21 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
  * lobby: the room is opened before the table decides, so "the host is choosing"
  * is a state and not a gap. Once they have, the game names itself and says what
  * it pays — the same pitch the shelf shows, on the screen the player is
- * holding — and a line-up says what follows it, since the lid names only the
- * first.
+ * holding. A line-up names nothing here: each of its games is announced by its
+ * own countdown, so what the host planned stays a surprise.
  */
 const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   const translate = useTranslate()
   const game = view.settings.game
   const entryName = useEntryName(view.settings)
-  const laterEntryNames = useLaterEntryNames(view.settings)
+
+  if (view.settings.lineUp.length > 1) {
+    return (
+      <div className='up-next undecided'>
+        <p className='game-name'>{translate('player.lineUp.mystery')}</p>
+      </div>
+    )
+  }
 
   if (game === null || entryName === null || !isShelvedGame(game.kind)) {
     return (
@@ -775,13 +775,6 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
           })
         )}
       </p>
-      {laterEntryNames.length > 0 && (
-        <p className='later-games'>
-          {translate('player.lineUp.afterwards', {
-            games: laterEntryNames.join(' · ')
-          })}
-        </p>
-      )}
     </div>
   )
 }
