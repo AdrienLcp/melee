@@ -45,7 +45,7 @@ More that cost time to learn:
 - **A room fills up from one page, not from one browser context per player.**
   Nine seats in a single `browser_evaluate`: open nine `WebSocket`s to
   `ws://localhost:5273/ws/rooms/:code` from a page already on the app, and send
-  each a `hello` carrying `role: 'player'`, its own `sessionId` and a
+  each a `hello` carrying `role: 'player'`, the current `protocolVersion` (`packages/protocol/src/version.ts` — without it the refusal is a non-fatal `invalid_message`), its own `sessionId` and a
   **`nickname`**.
 
   The field is `nickname` and nothing else. `helloMessageSchema` is a plain

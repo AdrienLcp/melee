@@ -46,6 +46,19 @@ export const trackPawnsOf = ({
 export const rankTrackPawns = (pawns: readonly TrackPawn[]): TrackPawn[] =>
   pawns.toSorted((a, b) => b.board.case - a.board.case)
 
+/**
+ * The leader first, each pawn with the place a podium stands it on: pawns on
+ * one case share it and the place after them is skipped, as the scoreboard
+ * counts — so a table nobody has walked yet is first to a pawn.
+ */
+export const placeTrackPawns = (
+  pawns: readonly TrackPawn[]
+): { pawn: TrackPawn; place: number }[] =>
+  rankTrackPawns(pawns).map((pawn, _at, ranked) => ({
+    pawn,
+    place: ranked.findIndex((other) => other.board.case === pawn.board.case) + 1
+  }))
+
 /** Whose score a hand-made move goes through: the server walks that pawn with it. */
 export const scoreTargetOf = (pawn: TrackPawn): ScoreTarget =>
   pawn.kind === 'team'

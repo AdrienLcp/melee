@@ -3,7 +3,12 @@ import { describe, expect, it } from 'vitest'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
-import { rankTrackPawns, scoreTargetOf, trackPawnsOf } from './track-pawns'
+import {
+  placeTrackPawns,
+  rankTrackPawns,
+  scoreTargetOf,
+  trackPawnsOf
+} from './track-pawns'
 
 const seat = (id: string, at: number | null): PublicPlayer => ({
   board: at === null ? null : { case: at, move: 0 },
@@ -68,6 +73,32 @@ describe('rankTrackPawns', () => {
     )
 
     expect(ranked.map((pawn) => pawn.id)).toEqual(['bob', 'ada', 'cy'])
+  })
+})
+
+describe('placeTrackPawns', () => {
+  it('[board] shares a place between pawns on one case and skips the next', () => {
+    const placed = placeTrackPawns(
+      trackPawnsOf({
+        players: [seat('ada', 2), seat('bob', 5), seat('cy', 5), seat('di', 1)],
+        teams: []
+      })
+    )
+
+    expect(placed.map(({ pawn, place }) => [pawn.id, place])).toEqual([
+      ['bob', 1],
+      ['cy', 1],
+      ['ada', 3],
+      ['di', 4]
+    ])
+  })
+
+  it('[board] puts every pawn first while nobody has left the start', () => {
+    const placed = placeTrackPawns(
+      trackPawnsOf({ players: [seat('ada', 0), seat('bob', 0)], teams: [] })
+    )
+
+    expect(placed.map(({ place }) => place)).toEqual([1, 1])
   })
 })
 

@@ -3,7 +3,7 @@ import type React from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 
-import { rankTrackPawns, type TrackPawn } from '@melee/core/board/track-pawns'
+import { placeTrackPawns, type TrackPawn } from '@melee/core/board/track-pawns'
 
 import {
   TrackPawnPiece,
@@ -26,23 +26,24 @@ type TrackPodiumProps = {
  * The head of the race between two rounds, in a room where every seat walks
  * its own pawn: the three leaders on their steps, the second on the left and
  * the third on the right as a podium stands, and everyone else on a chip with
- * the case they stand on. A board of fifteen names read from across the room
+ * the case they stand on. A tie stands its pawns on steps of one height. A board of fifteen names read from across the room
  * is a list nobody reads; three steps and a heap is a race.
  */
 export const TrackPodium: React.FC<TrackPodiumProps> = ({ pawns, youId }) => {
   const translate = useTranslate()
   const pawnName = useTrackPawnName()
-  const ranked = rankTrackPawns(pawns)
-  const leaders = ranked.slice(0, PODIUM_PLACES)
-  const rest = ranked.slice(PODIUM_PLACES)
+  const placed = placeTrackPawns(pawns)
+  const leaders = placed.slice(0, PODIUM_PLACES)
+  const rest = placed.slice(PODIUM_PLACES).map(({ pawn }) => pawn)
 
   return (
     <div className='track-podium'>
       <ol className='steps'>
-        {leaders.map((pawn, place) => (
+        {leaders.map(({ pawn, place }, slot) => (
           <li
             className={classNames('step', pawn.id === youId && 'you')}
-            data-place={place + 1}
+            data-place={place}
+            data-slot={slot + 1}
             key={pawn.id}
           >
             <TrackPawnPiece pawn={pawn} />
