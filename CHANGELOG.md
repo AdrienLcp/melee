@@ -435,6 +435,13 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The board's rules read in the dark.** Under the board switch on
+  the Table tab, the recess took the board's socket, night blue in the dark
+  palette under the panel's paper inks; it is the paper's own well now.
+- `[Shared]` **A line-up opens on a round count the strip offers.** Four
+  rounds a game made nine games thirty-six, drawn as an extra stamp that
+  vanished once another count was pressed; it now opens on the nearest of
+  5, 10, 20, 30 and 40.
 - `[Game]` **Between two rounds a player's screen counts in, full size.** The
   next round's countdown was a small token beside the last reveal, and read as
   no countdown at all; it now takes the screen as the first round's does, under
