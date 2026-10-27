@@ -16,6 +16,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The way back to the planned games stays on screen.** A game's
+  page in the panel keeps its back link pinned at the top while its settings
+  scroll, so a long setup no longer ends with a scroll back up.
+- `[Game]` **The blind test's preview no longer lists titles.** Checking a
+  decade, a playlist or a search says how many tracks are ready and nothing
+  more, so a host who plays has not seen the answers.
 - `[Game]` **The planned games read as a list of rounds.** They carry a
   heading with the round count (*Les jeux prévus · 6 manches*, then *La suite ·
   manches 2 à 6* once the game is under way), stand above the shelf once two
