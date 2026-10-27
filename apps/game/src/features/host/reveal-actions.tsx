@@ -4,33 +4,17 @@ import type { HostRoomView } from '@melee/protocol/room'
 
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
 import { endsTheEvening } from '@melee/core/room/next-game'
-import { movedToEntry } from '@melee/core/room/room-settings'
-import { orderWithEntryNext } from '@melee/core/room/running-order'
 import { offersSkip, withEntrySkipped } from '@melee/core/room/skipped-entry'
 import { canPlayDuel } from '@melee/core/team/duel'
 
 import { Button } from '@/presentation/components/button'
-import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
-import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
 
 import { BoardMoves } from './board-moves'
 import { challengePickFor } from './challenge-line'
 import { ChallengeLinePicker } from './challenge-line-picker'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
-
-import './reveal-actions.sass'
-
-/** The most entries a row of the next-game strip holds beside the other presses. */
-const MOST_ENTRIES_A_ROW = 5
-
-/**
- * As many columns as the fewest rows need, so the rows come out as even as the
- * count allows — six in two rows of three, never five and one.
- */
-const balancedColumns = (count: number): number =>
-  Math.ceil(count / Math.ceil(count / MOST_ENTRIES_A_ROW))
 
 /**
  * Whether the next round may be a duel, read off the room as it stands: two
@@ -57,7 +41,6 @@ export const RevealActions: React.FC<HostActionsProps> = ({
 }) => {
   const { locale, translate } = useI18n()
   const { settings } = view
-  const entryNames = useLineUpEntryNames(settings.lineUp)
 
   const openNextRound = ({ isDuel }: { isDuel: boolean }) => {
     onOpenRound()
@@ -100,48 +83,6 @@ export const RevealActions: React.FC<HostActionsProps> = ({
 
   return (
     <div className='reveal-actions'>
-      {/*
-        The game the draw landed on, already selected: one press opens it, and
-        the others are one press away when the table shouts for something else.
-      */}
-      {settings.lineUp.length > 1 && (
-        <SegmentedControl
-          className='next-game'
-          isDisabled={!isLive}
-          label={translate('host.lineUp.next')}
-          onChange={(value) => {
-            const at = Number(value)
-            const entry = settings.lineUp[at]
-
-            if (entry !== undefined && at !== settings.lineUpAt) {
-              const moved = movedToEntry({
-                at,
-                locale,
-                remembered: rememberedSetupFor({
-                  game: entry.kind,
-                  preferences
-                }),
-                settings
-              })
-
-              onSettingsChange({
-                ...moved,
-                runningOrder: orderWithEntryNext({
-                  at,
-                  order: moved.runningOrder,
-                  upcoming: view.round?.index ?? 0
-                })
-              })
-            }
-          }}
-          options={entryNames.map((name, at) => ({
-            label: name,
-            value: String(at)
-          }))}
-          style={{ '--columns': balancedColumns(settings.lineUp.length) }}
-          value={settings.lineUpAt === null ? null : String(settings.lineUpAt)}
-        />
-      )}
       {offersSkip({
         challengeText: challengePickFor(challengeLine).challengeText,
         lineUp: settings.lineUp,

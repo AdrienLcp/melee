@@ -166,7 +166,7 @@ which is why a user-visible string written into a component is a bug — see
   on film scores beside one on the charts). `game` is a copy of the entry
   `lineUpAt` points at, written back into it by the server on every frame:
   what the next round is played on, read off the **running order** as each
-  reveal goes up and changed by the host beside *Next round*. The order is the
+  reveal goes up and changed by dragging the running order in the panel. The order is the
   **planned games**, one row per entry: the server deals it whenever the
   evening changes (`dealtOrder`, on `nextEntryAt`'s rule: another game before
   another entry of the same one), the setup lists it and a drag edits it, and

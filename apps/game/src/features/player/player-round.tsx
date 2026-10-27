@@ -229,23 +229,33 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
   onReady,
   round,
   view
-}) => (
-  <section className='player-round revealed'>
-    {/* Grouped here rather than placed in the stylesheet, because the wide
+}) => {
+  const translate = useTranslate()
+
+  return (
+    <section className='player-round revealed'>
+      {/* Grouped here rather than placed in the stylesheet, because the wide
         screen lays the two halves side by side and a grid item spanning
         rows it never declared silently resolves back to the first one. */}
-    <div className='outcome'>
-      <Revealed round={round} view={view} />
-      <YourRound round={round} view={view} />
-      <YourTrackStrip isWholeWithoutWall view={view} />
-    </div>
-    <RevealBoard round={round} view={view} />
-    <div className='hold'>
-      <RoundClock clock={clock} view={holdUntilTheCountdown(round, view)} />
-    </div>
-    <BackAtTheTable onReady={onReady} round={round} view={view} />
-  </section>
-)
+      <div className='outcome'>
+        <Revealed round={round} view={view} />
+        <YourRound round={round} view={view} />
+        <YourTrackStrip isWholeWithoutWall view={view} />
+      </div>
+      <RevealBoard round={round} view={view} />
+      {/* The server stops the hold while the console is away, so the slot that
+        counted down to the next round says why nothing comes next. */}
+      <div className='hold'>
+        {view.isHostConnected ? (
+          <RoundClock clock={clock} view={holdUntilTheCountdown(round, view)} />
+        ) : (
+          <NoticeCard title={translate('buzz.blocked.host_away')} />
+        )}
+      </div>
+      <BackAtTheTable onReady={onReady} round={round} view={view} />
+    </section>
+  )
+}
 
 /**
  * Between two rounds of an evening, the press that tells the wall this seat is
@@ -285,7 +295,7 @@ const BackAtTheTable: React.FC<{
         size='large'
       >
         {you.isReady && <CheckIcon />}
-        {translate('player.lineUp.backAtTheTable')}
+        {translate('player.lineUp.ready')}
       </ToggleButton>
     </div>
   )
