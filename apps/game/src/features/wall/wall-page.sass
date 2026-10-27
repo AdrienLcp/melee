@@ -3,6 +3,21 @@
 
 @layer components
   .wall-page
+    // Paired, with the room's first snapshot still on its way. Held back a
+    // beat so a quick link never flashes it, and said at all because a cold
+    // server once left this screen blank long enough to look broken.
+    > .stage.arriving
+      align-items: center
+      display: flex
+      justify-content: center
+
+      > p
+        @include typography.label
+
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) 400ms backwards
+        color: var(--ink-muted)
+        text-align: center
+
     // The one thing this screen asks a hand for, beside the round index where
     // somebody setting the wall up is already looking. It leaves on the press
     // that grants it, which is why it can sit in the header rather than in the

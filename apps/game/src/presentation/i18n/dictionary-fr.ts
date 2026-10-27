@@ -1619,6 +1619,7 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Cinq événements. Lequel d’abord ?'
   },
   wall: {
+    arriving: 'La table arrive…',
     hostAway: {
       takeOver: 'Tenir la table d’ici',
       title: 'L’hôte a décroché. La partie attend son retour.'

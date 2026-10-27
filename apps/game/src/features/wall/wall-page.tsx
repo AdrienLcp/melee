@@ -200,18 +200,24 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           </aside>
         )}
 
-        <RoomStage
-          canPlay={canPlay}
-          clock={clock}
-          controls={null}
-          isBoardAround
-          isSpeaker
-          onUnlockAudio={armAudio}
-          refusal={refusal}
-          roomCode={roomCode}
-          slateWall={slateWall}
-          view={view}
-        />
+        {view === null ? (
+          <div className='stage arriving'>
+            <p role='status'>{translate('wall.arriving')}</p>
+          </div>
+        ) : (
+          <RoomStage
+            canPlay={canPlay}
+            clock={clock}
+            controls={null}
+            isBoardAround
+            isSpeaker
+            onUnlockAudio={armAudio}
+            refusal={refusal}
+            roomCode={roomCode}
+            slateWall={slateWall}
+            view={view}
+          />
+        )}
       </Main>
       {view !== null && (
         <BoardTrack board={view.settings.board} pawns={trackPawnsOf(view)} />

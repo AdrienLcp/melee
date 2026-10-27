@@ -1708,6 +1708,7 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Five events. Which came first?'
   },
   wall: {
+    arriving: 'The table is on its way…',
     hostAway: {
       takeOver: 'Run the table from here',
       title: 'The host stepped away. The game is waiting for them.'

@@ -29,10 +29,16 @@ export const WallPairingForm: React.FC<{
 }> = ({ description, roomCode }) => {
   const translate = useTranslate()
   const [code, setCode] = useState('')
-  const [outcome, setOutcome] = useState<'failed' | 'idle' | 'paired'>('idle')
+  const [outcome, setOutcome] = useState<
+    'failed' | 'idle' | 'paired' | 'pairing'
+  >('idle')
 
   const pair = async (event: FormEvent): Promise<void> => {
     event.preventDefault()
+
+    if (outcome === 'pairing') {
+      return
+    }
 
     const pairingCode = wallPairingCodeSchema.safeParse(
       code.replace(/[\s-]/g, '').toUpperCase()
@@ -44,6 +50,8 @@ export const WallPairingForm: React.FC<{
 
       return
     }
+
+    setOutcome('pairing')
 
     const paired = await pairWall({
       hostToken,
@@ -75,6 +83,7 @@ export const WallPairingForm: React.FC<{
         }
         errorMessage={translate('wall.menu.failed')}
         isInvalid={outcome === 'failed'}
+        isReadOnly={outcome === 'pairing'}
         label={translate('wall.menu.label')}
         maxLength={WALL_PAIRING_CODE_LENGTH + 2}
         name='wallCode'
@@ -85,7 +94,12 @@ export const WallPairingForm: React.FC<{
         placeholder={'•'.repeat(WALL_PAIRING_CODE_LENGTH)}
         value={code}
       />
-      <Button size='small' type='submit' variant='outlined'>
+      <Button
+        isPending={outcome === 'pairing'}
+        size='small'
+        type='submit'
+        variant='outlined'
+      >
         {translate('wall.menu.pair')}
       </Button>
     </Form>
