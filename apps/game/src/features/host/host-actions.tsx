@@ -78,7 +78,9 @@ export const HostActions: React.FC<HostActionsProps> = (props) => {
       // the screen the room is staring at with nothing on it that moves.
       // A challenge is placed, or given to nobody, from the stage, beside the
       // teams it is placing.
-      return props.view.round?.content.kind === 'reflex' ||
+      // Nothing is on the stage yet during the countdown, so nothing to give away.
+      return props.view.phase === 'countdown' ||
+        props.view.round?.content.kind === 'reflex' ||
         props.view.round?.content.kind === 'innerclock' ||
         props.view.round?.content.kind === 'challenge' ? null : (
         <RoundActions {...props} />
