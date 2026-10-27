@@ -277,6 +277,54 @@ const openTheRound = async (page: Page): Promise<void> => {
   }
 }
 
+/**
+ * Moves the room onto one game of the shelf. A room with no game yet picks it
+ * from the games tab itself; otherwise it is added as a second entry and the
+ * first taken out, since the last entry of an evening cannot be.
+ */
+const switchGame = async ({
+  index,
+  page
+}: {
+  index: number
+  page: Page
+}): Promise<void> => {
+  await openTab(page, 'game')
+
+  const panel = page.locator(PANEL_SCREEN)
+  const back = panel.locator('.evening-page .back')
+
+  if (await back.isVisible()) {
+    await back.click()
+  }
+
+  const games = panel.locator('.game-pick-list .pick')
+  const add = panel.locator('.evening-rounds .add .round')
+
+  await expect(games.first().or(add)).toBeVisible()
+
+  if (await games.first().isVisible()) {
+    await games.nth(index).click()
+    await expect(panel.locator('.evening-page')).toBeVisible()
+
+    return
+  }
+
+  await add.click()
+  await games.nth(index).click()
+  await expect(panel.locator('.evening-page')).toBeVisible()
+  await back.click()
+
+  const previous = panel.locator("[data-entry-at='0'] .action-menu-trigger")
+
+  await previous.first().click()
+  await page.locator('.action-menu-item[data-destructive]').click()
+  // The panel for this game renders in the same commit that drops the previous
+  // entry, so waiting on it is what stops the reads that follow from finding
+  // the previous game's strips.
+  await expect(panel.locator("[data-entry-at='1']")).toHaveCount(0)
+}
+
 /** The table's strips — the teams and the evening's length. */
 const openTheTable = (page: Page): Promise<void> => openTab(page, 'table')
 
@@ -299,41 +347,22 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
   await homePage(page).createRoom.click()
   await expect(page).toHaveURL(/\/host\/[A-Z0-9]{4}$/)
 
-  const games = page.locator('.game-picker .box')
+  const games = page.locator(`${PANEL_SCREEN} .game-pick-list .pick`)
 
   await expect(games.first()).toBeVisible()
 
   const gameCount = await games.count()
-  // The second locale starts on the game the first one left ticked.
-  let lastTicked: number | null = null
 
   for (const locale of ['en', 'fr']) {
     await page.evaluate((chosen) => {
       localStorage.setItem('melee:locale', chosen)
     }, locale)
     await page.reload()
-    await expect(games.first()).toBeVisible()
+    await expect(panelTab(page, 'game')).toBeVisible()
     await page.evaluate(loadEveryFace)
 
     for (let index = 0; index < gameCount; index++) {
-      // The shelf is on the games tab, which the last sweep left for another.
-      await openTab(page, 'game')
-
-      // Ticking a game adds it to the evening; taking the previous one out is
-      // what moves the room onto it, since the last tick cannot be taken out.
-      await games.nth(index).click()
-      await expect(games.nth(index)).toHaveAttribute('data-selected')
-
-      if (lastTicked !== null) {
-        await games.nth(lastTicked).click()
-        // The panel for this game renders in the same commit that drops the
-        // previous stamp, so waiting on it is what stops the reads below from
-        // finding the previous game's strips.
-        await expect(games.nth(lastTicked)).not.toHaveAttribute('data-selected')
-      }
-
-      lastTicked = index
-
+      await switchGame({ index, page })
       await openTheRound(page)
 
       // Two strips only exist once another strip has been pressed: the decade
