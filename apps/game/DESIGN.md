@@ -1084,6 +1084,15 @@ bounced. Durations:
   trip. react-aria writes a reorder to the DOM a commit late, so both wait for
   the rows to stand in the new order (`when-rows-drawn.ts`) before measuring.
   A row arriving or leaving, as a round opens, moves nobody.
+- **The board coming and going** — switched on, each case comes in from the
+  edge it lies along, a wave from the start to the finish (`track-arrives`,
+  `slow` with `base` of spread), while the stage draws in to make room: the
+  clearance is read off `--board-presence`, a registered number the root
+  transitions on `slow` × 1.5. Switched off, they go back out finish first
+  (`track-leaves`, `base` with `fast` of spread) and the stage spreads on the
+  same total; the track stays mounted until every animation under it has
+  settled (`use-track-presence.ts`). A screen arriving on a board already up
+  draws it in place.
 - **A seat back at the table** — its pawn under *Next* is stamped on
   (`tick-stamp` on `base`) as it stands up from its outline.
 - **The payout** — the player's token set down a beat after the card

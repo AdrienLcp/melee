@@ -3,6 +3,7 @@ import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 import { useNavigate } from 'react-router'
 
+import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import { CHALLENGE_HAND_SIZE } from '@melee/protocol/challenge'
 import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
@@ -763,9 +764,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         }}
       >
         {page}
-        {isSpeaker && isDesk && view.settings.board.kind === 'track' && (
+        {isSpeaker && (
           <BoardTrack
-            length={view.settings.board.length}
+            board={isDesk ? view.settings.board : DEFAULT_BOARD_SETTINGS}
             pawns={trackPawnsOf(view)}
           />
         )}

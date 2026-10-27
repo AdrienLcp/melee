@@ -9,6 +9,8 @@ import {
 } from 'react'
 import { flushSync } from 'react-dom'
 
+import type { BoardSettings } from '@melee/protocol/board'
+
 import type { PawnId } from '@melee/core/board/board-strategy'
 import type { TrackPawn } from '@melee/core/board/track-pawns'
 import {
@@ -22,6 +24,7 @@ import {
   TrackPawnPiece,
   useTrackPawnName
 } from '@/presentation/components/track-pawn'
+import { useTrackPresence } from '@/presentation/components/use-track-presence'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -38,8 +41,8 @@ const WALK_DELAY_MS = 600
 type WalkTarget = { id: PawnId; move: number; target: number }
 
 type BoardTrackProps = {
-  /** The track's length in cases: the start is nought, the finish this. */
-  length: number
+  /** The room's board; `off` sends a track on the screen back out past the edges. */
+  board: BoardSettings
   /** The pawns racing — the teams', or every seat's — each on its `board.case`. */
   pawns: readonly TrackPawn[]
 }
@@ -52,29 +55,49 @@ type BoardTrackProps = {
  * console's stage beside its panel when no wall is in the room.
  *
  * At a reveal each pawn walks the cases it just won rather than teleporting,
- * which is the moment the room watches.
+ * which is the moment the room watches. Turned on, the cases come in from the
+ * edges they lie along while the stage draws in to make room; turned off, they
+ * go back out and the stage spreads again.
  */
-export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
+export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
   const translate = useTranslate()
   const pawnName = useTrackPawnName()
   const trackRef = useRef<HTMLDivElement>(null)
+  const [length, setLength] = useState(trackLengthOf(board))
   const shape = useTrackShape({ caseCount: length + 1, trackRef })
-  const shownCases = useWalkedCases(pawns)
+  const track = useTrackPresence({
+    board,
+    isDrawn: shape !== null,
+    pawns,
+    trackRef
+  })
+  const shownCases = useWalkedCases(track?.pawns ?? NO_PAWNS)
+
+  if (track !== null && track.length !== length) {
+    setLength(track.length)
+  }
 
   return (
-    <div className='board-track' data-shape={shape?.kind} ref={trackRef}>
-      <VisuallyHidden elementType='ol'>
-        {pawns.map((pawn) => (
-          <li key={pawn.id}>
-            {translate('board.standing', {
-              case: pawn.board.case,
-              length,
-              team: pawnName(pawn)
-            })}
-          </li>
-        ))}
-      </VisuallyHidden>
-      {shape !== null && (
+    <div
+      className='board-track'
+      data-presence={track?.presence}
+      data-shape={track === null ? undefined : shape?.kind}
+      ref={trackRef}
+    >
+      {track !== null && (
+        <VisuallyHidden elementType='ol'>
+          {track.pawns.map((pawn) => (
+            <li key={pawn.id}>
+              {translate('board.standing', {
+                case: pawn.board.case,
+                length,
+                team: pawnName(pawn)
+              })}
+            </li>
+          ))}
+        </VisuallyHidden>
+      )}
+      {track !== null && shape !== null && (
         <div
           aria-hidden='true'
           className='cases'
@@ -85,7 +108,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
         >
           {casesOf(length).map((caseIndex) => {
             const [column, row] = trackCellOf({ caseIndex, shape })
-            const standing = pawns.filter(
+            const standing = track.pawns.filter(
               (pawn) => shownCases.get(pawn.id) === caseIndex
             )
             const drawn =
@@ -98,8 +121,10 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
                 className='case'
                 data-mark={markOf({ caseIndex, length })}
                 data-parity={caseIndex % 2 === 0 ? 'even' : 'odd'}
+                data-side={sideOf({ column, row, shape })}
                 key={caseIndex}
                 style={{
+                  '--case-order': caseIndex / length,
                   '--column': column,
                   '--pawn-scale': pawnScaleFor(drawn.length),
                   '--row': row
@@ -144,8 +169,8 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ length, pawns }) => {
 
 /**
  * The track's shape in the box it fills, re-measured as the box changes. The
- * smaller side of a case is published on the root element, where the page's gutters and the fixed menu read it to keep
- * clear of the track.
+ * smaller side of a case is published on the root element, where the page's
+ * gutters and the fixed menu read it to keep clear of the track.
  */
 const useTrackShape = ({
   caseCount,
@@ -325,6 +350,36 @@ const pawnScaleFor = (standing: number): number => {
 
   return 0.22
 }
+
+/** The edge of the screen a case lies along, which it comes in from and goes back out past. */
+const sideOf = ({
+  column,
+  row,
+  shape
+}: {
+  column: number
+  row: number
+  shape: TrackShape
+}): 'bottom' | 'left' | 'right' | 'top' => {
+  if (shape.kind === 'line' || row === 1) {
+    return 'top'
+  }
+
+  if (column === 1) {
+    return 'left'
+  }
+
+  if (column === shape.columns) {
+    return 'right'
+  }
+
+  return 'bottom'
+}
+
+const NO_PAWNS: readonly TrackPawn[] = []
+
+const trackLengthOf = (board: BoardSettings): number =>
+  board.kind === 'track' ? board.length : 0
 
 const markOf = ({
   caseIndex,

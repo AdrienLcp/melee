@@ -213,11 +213,8 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           view={view}
         />
       </Main>
-      {view !== null && view.settings.board.kind === 'track' && (
-        <BoardTrack
-          length={view.settings.board.length}
-          pawns={trackPawnsOf(view)}
-        />
+      {view !== null && (
+        <BoardTrack board={view.settings.board} pawns={trackPawnsOf(view)} />
       )}
     </PawnColoursProvider>
   )

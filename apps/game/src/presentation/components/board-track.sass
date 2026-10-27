@@ -1,6 +1,25 @@
 @use '../styles/typography'
 
+// Registered so it can be transitioned: the clearance below is drawn from it,
+// so the stage draws in as the cases arrive and spreads as they leave.
+@property --board-presence
+  syntax: '<number>'
+  inherits: true
+  initial-value: 0
+
 @layer components
+  // Only while the board comes or goes, so a screen arriving on a board
+  // already up draws it in place. `globals.sass` transitions the root's
+  // ground, and a list replaces rather than adds, so it is written again.
+  \:root:has(.board-track[data-presence='entering'])
+    transition: background-color var(--transition-slow, 0s) var(--ease-out), --board-presence calc(var(--transition-slow, 0s) * 1.5) var(--ease-out)
+
+  \:root:has(.board-track[data-presence='leaving'])
+    transition: background-color var(--transition-slow, 0s) var(--ease-out), --board-presence calc(var(--transition-base, 0s) + var(--transition-fast, 0s)) var(--ease-out)
+
+  \:root:has(.board-track[data-shape]:not([data-presence='leaving']))
+    --board-presence: 1
+
   // The page inside the track keeps clear of it, and so does the fixed menu,
   // because both are measured from the gutters and the block padding. The
   // bottom stays the page's own until the track closes into a loop.
@@ -13,14 +32,17 @@
     --board-gap: clamp(0.125rem, 0.4vmin, 0.3125rem)
     --board-breathe: clamp(0.75rem, 2.4vmin, 2rem)
     --board-clearance: calc(var(--board-edge) + var(--board-band) + var(--board-breathe))
-    --layout-padding-block-start: max(var(--board-clearance), var(--safe-area-top))
+    // The page's own padding while the board is away, its clearance once it
+    // stands, and every width between while it comes and goes.
+    --board-reach: calc(var(--layout-padding) + (var(--board-clearance) - var(--layout-padding)) * var(--board-presence))
+    --layout-padding-block-start: max(var(--board-reach), var(--safe-area-top))
 
   \:root:has(.board-track:is([data-shape='u'], [data-shape='loop']))
-    --gutter-left: max(var(--board-clearance), var(--safe-area-left))
-    --gutter-right: max(var(--board-clearance), var(--safe-area-right))
+    --gutter-left: max(var(--board-reach), var(--safe-area-left))
+    --gutter-right: max(var(--board-reach), var(--safe-area-right))
 
   \:root:has(.board-track[data-shape='loop'])
-    --layout-padding-block-end: max(var(--board-clearance), var(--safe-area-bottom))
+    --layout-padding-block-end: max(var(--board-reach), var(--safe-area-bottom))
 
   .board-track
     inset: 0
@@ -38,12 +60,24 @@
       position: absolute
 
     &[data-shape]::before
+      --track-from: 0 -100%
+
       content: ''
       inset-block-start: 0
 
     &[data-shape='loop']::after
+      --track-from: 0 100%
+
       content: ''
       inset-block-end: 0
+
+    &[data-presence='entering']::before,
+    &[data-presence='entering']::after
+      animation: track-arrives calc(var(--transition-slow, 0s) * 1.5) var(--ease-out) backwards
+
+    &[data-presence='leaving']::before,
+    &[data-presence='leaving']::after
+      animation: track-leaves calc(var(--transition-base, 0s) + var(--transition-fast, 0s)) var(--ease-out) forwards
 
     .cases
       display: grid
@@ -79,6 +113,26 @@
       position: relative
       view-transition-class: board-case
       view-transition-name: match-element
+      // Fully past the screen's edge: the case's own size, then the edge it
+      // stood off.
+      --track-from: 0 calc(-100% - var(--board-edge))
+
+      &[data-side='left']
+        --track-from: calc(-100% - var(--board-edge)) 0
+
+      &[data-side='right']
+        --track-from: calc(100% + var(--board-edge)) 0
+
+      &[data-side='bottom']
+        --track-from: 0 calc(100% + var(--board-edge))
+
+      // A wave along the track: the start comes in first and leaves last, so
+      // the course is laid out and picked up in the order it is run.
+      &:is([data-presence='entering'] *)
+        animation: track-arrives var(--transition-slow, 0s) var(--ease-out) calc(var(--transition-base, 0s) * var(--case-order)) backwards
+
+      &:is([data-presence='leaving'] *)
+        animation: track-leaves var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * (1 - var(--case-order))) forwards
 
       &[data-parity='odd']
         background: var(--track-b)
@@ -158,6 +212,14 @@
   ::view-transition-old(*.board-case),
   ::view-transition-new(*.board-case)
     block-size: 100%
+
+  @keyframes track-arrives
+    from
+      translate: var(--track-from)
+
+  @keyframes track-leaves
+    to
+      translate: var(--track-from)
 
   @keyframes pawn-hops
     from
