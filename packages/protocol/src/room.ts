@@ -154,15 +154,17 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('spoken') })
 ])
 
-/**
- * How many entries an evening may tick: every shelved game twice, with room
- * for a few variants on top — a saved evening of thirty is one a host asked
- * for. The console lists them a row each, so the count is not a layout's.
- */
-export const LINE_UP_MAX_ENTRIES = 30
-
 /** The longest evening a room may be set to, in rounds. */
 export const ROUND_COUNT_MAX = 50
+
+/**
+ * How many entries an evening may tick: one for every round of the longest
+ * evening, so a host who plans each round never has one drawn for them. It
+ * follows `ROUND_COUNT_MAX` rather than a number of its own, so a longer
+ * evening raises it too. The console lists them a row each, so the count is
+ * not a layout's.
+ */
+export const LINE_UP_MAX_ENTRIES = ROUND_COUNT_MAX
 
 /**
  * How many rows a running order holds at most. An evening with no count runs

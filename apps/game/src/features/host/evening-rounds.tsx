@@ -12,6 +12,7 @@ import type { GameKind, GameSettings } from '@melee/protocol/game'
 import {
   type HostRoomView,
   LINE_UP_MAX_ENTRIES,
+  ROUND_COUNT_MAX,
   type RoomSettings
 } from '@melee/protocol/room'
 
@@ -39,12 +40,9 @@ import { EveningStamp, eveningStampOf } from './evening-stamp'
 
 import './evening-rounds.sass'
 
-/** The protocol's ceiling on a room's round count. */
-const MAX_ROUND_COUNT = 50
-
 const roundCountHolding = (needed: number): number =>
   ROUND_COUNT_STEPS.find((step) => step >= needed) ??
-  Math.min(needed, MAX_ROUND_COUNT)
+  Math.min(needed, ROUND_COUNT_MAX)
 
 /** The games the rounds past the evening's rows are drawn among: those serving their own content, or every one when none does. */
 const fillersOf = (lineUp: readonly GameSettings[]): GameKind[] => {
