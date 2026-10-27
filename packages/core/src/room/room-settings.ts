@@ -110,8 +110,10 @@ export const ROUND_COUNT_STEPS = [5, 10, 20, 30, 40] as const
 const lineUpRoundCount = (gameCount: number): number => {
   const wanted = gameCount * ROUNDS_PER_TICKED_GAME
 
-  return ROUND_COUNT_STEPS.reduce<number>((nearest, step) =>
-    Math.abs(step - wanted) <= Math.abs(nearest - wanted) ? step : nearest
+  return ROUND_COUNT_STEPS.reduce<number>(
+    (nearest, step) =>
+      Math.abs(step - wanted) <= Math.abs(nearest - wanted) ? step : nearest,
+    ROUND_COUNT_STEPS[0]
   )
 }
 
