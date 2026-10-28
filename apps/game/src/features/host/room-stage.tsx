@@ -450,24 +450,27 @@ export const RoomStage: React.FC<RoomStageProps> = ({
             players={view.players}
             round={round}
           />
-          <Standings
-            board={view.settings.board}
-            onAdjust={
-              controls === null
-                ? undefined
-                : (team, cases) => {
-                    controls.send({
-                      points: cases * POINT,
-                      target: { kind: 'team', teamId: team.id },
-                      type: 'host.adjustScore'
-                    })
-                  }
-            }
-            players={view.players}
-            rankedBefore={rankedBefore}
-            teams={view.teams}
-            youId={youId}
-          />
+          {/* On the podium the players' column already ranks them. */}
+          {controls?.isRosterBeside !== true && (
+            <Standings
+              board={view.settings.board}
+              onAdjust={
+                controls === null
+                  ? undefined
+                  : (team, cases) => {
+                      controls.send({
+                        points: cases * POINT,
+                        target: { kind: 'team', teamId: team.id },
+                        type: 'host.adjustScore'
+                      })
+                    }
+              }
+              players={view.players}
+              rankedBefore={rankedBefore}
+              teams={view.teams}
+              youId={youId}
+            />
+          )}
           {showsNextUp && nextAt !== null && (
             <NextUp
               at={nextAt}

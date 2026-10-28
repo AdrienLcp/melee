@@ -1,0 +1,41 @@
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .next-round-card
+    @include box-lid.paper
+
+    // Read at arm's length like the round above it, not across the room.
+    --stage-unit: 0.6vmin
+
+    border-inline-start: 0.5rem solid var(--spine, var(--track-a))
+    border-radius: var(--radius-l)
+    box-shadow: var(--shadow-piece)
+    display: grid
+    gap: var(--space-m)
+    // The planned games' sticky strip below fills twice `--space-l` above
+    // itself, and painted over this card's bottom.
+    margin-block-end: calc(var(--space-l) * 2)
+    padding: var(--space-m) var(--space-l)
+
+    .headline
+      align-items: baseline
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-xs) var(--space-s)
+      justify-content: space-between
+
+    h3
+      @include typography.title
+
+      align-items: center
+      display: flex
+      font-size: var(--text-xl)
+      gap: var(--space-xs)
+      margin: 0
+
+    .reveal-actions
+      align-items: center
+      display: flex
+      flex-flow: row wrap
+      gap: var(--space-s) var(--space-m)

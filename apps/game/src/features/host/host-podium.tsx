@@ -28,6 +28,8 @@ const LoadedSheet = lazy(async () => ({
 }))
 
 type HostPodiumProps = {
+  /** The round after this one, with the presses that open it: at a reveal only. */
+  next: React.ReactNode
   /** The round on now: the console's header, its stage and the phase's presses. */
   round: React.ReactNode
   /** What the panel's tabs are drawn from, laid out flat here instead. */
@@ -45,6 +47,7 @@ type HostPodiumProps = {
  * a press in it.
  */
 export const HostPodium: React.FC<HostPodiumProps> = ({
+  next,
   round,
   setup,
   view
@@ -127,6 +130,7 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
       <div className='podium-track'>
         {round}
         <section className='podium-order'>
+          {next}
           <GameTab {...setup} />
         </section>
       </div>

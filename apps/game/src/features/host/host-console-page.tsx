@@ -91,6 +91,7 @@ import { HostPodium } from './host-podium'
 import { HostRefused } from './host-refused'
 import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
+import { NextRoundCard } from './next-round-card'
 import { RoomStage, type StageControls } from './room-stage'
 import { useRoundAudio } from './round-audio'
 import {
@@ -752,9 +753,18 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const setup = setupProps(view)
 
   if (view.isWallConnected) {
+    const isRevealed = view.phase === 'revealed'
+
     return (
       <PawnColoursProvider view={view}>
         <HostPodium
+          next={
+            isRevealed && (
+              <NextRoundCard view={view}>
+                <HostActions {...hostActionsProps(view)} />
+              </NextRoundCard>
+            )
+          }
           round={
             choosing === null ? (
               <div className='host-console-page podium-round'>
@@ -777,7 +787,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                       {translate(protocolErrorKey(error.code))}
                     </p>
                   )}
-                  <HostActions {...hostActionsProps(view)} />
+                  {!isRevealed && <HostActions {...hostActionsProps(view)} />}
                 </footer>
               </div>
             ) : (

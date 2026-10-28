@@ -62,6 +62,15 @@
         height: var(--podium-round-height)
         padding: var(--space-m) var(--space-l)
 
+        // The players' column ranks them already, so the answer takes the
+        // standings' column too.
+        > .stage.revealed
+          &,
+          &.holding,
+          &.with-next-up,
+          &.with-next-up.holding
+            grid-template: 'panel' minmax(0, 1fr) 'next' auto 'hold' auto / minmax(0, 1fr)
+
         > header .round-index
           @include typography.title
 
