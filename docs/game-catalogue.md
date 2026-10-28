@@ -88,6 +88,7 @@ team on the player model and a turn owner.
 | **Dessine** (Skribbl) — one draws, the others guess | Continuous stream | A stroke channel, a canvas, a word list | two sessions, and read the warning |
 | **Time's Up** — three rounds, same cards, less and less speech | Team relay | Teams, turn owner, per-turn timer | two sessions |
 | **Bingo de soirée** — a grid of things that will happen tonight | Submit-then-vote | Almost nothing; grids and presses | an evening |
+| **Colour memory** — a colour shown a few seconds, then rebuilt on a picker | Everyone at once | A mode of its own, `colour`, paid by perceptual distance (OKLab) computed in core; the picker is react-aria's `ColorArea` + `ColorSlider`, no new library. Owes a rule: the colour *is* sent to every screen before it hides, so it is shown on the wall when there is one, and a phone keeping it is no worse than a photo of it. A second rubric, *a character's colour* (Shrek, the Pink Panther), is a text-only bank of name → colour, no images and so no rights, but every row's colour is an argument and is set by hand | a session for the game, a second for the character bank |
 
 Submit-then-vote is the shape that unlocks the most: six games share it. Their
 appetites assume the engine exists, so the first of them also pays for it, and
