@@ -135,8 +135,14 @@ that.
    from `layout.podium` (64rem) up; below it, the roster in a `Disclosure`
    and the settings in a lazy `Sheet`. `StageControls.isRosterBeside` drops the
    lobby's invitation and seat list there. `choice-fits` measures the console
-   without a wall, since the podium's columns scroll by design. **Open**: the
-   seated host's question still stands beside its tiles on a wide screen (the
-   framed page reads the viewport's ratio, not the column's), and the middle
-   column is the old stage over the planned games, not yet the mock's
-   expanded current and next rounds.
+   without a wall, since the podium's columns scroll by design. Since then a
+   seated round lies down by its `.framed-box`, the reveal hands its presses to
+   `NextRoundCard` and draws no standings beside the roster — its list of what was said keeping
+   what its rows need, the answer taking the card's rest — and
+   `everyone-answers.spec.ts` reads that reveal with the wall open in a tab.
+   **Declined**: the mock's mid-round *Change game / Skip / As a duel* on the
+   next card. The running order is already dragged mid-round, the stage already
+   gives the round away, and a duel stays a property of the press that opens
+   the next round (`host.nextRound.isDuel`, offered on the card at the reveal):
+   arming one ahead would need a host message and a pending state that an
+   auto-advance would have to read, for a press that is one reveal away.
