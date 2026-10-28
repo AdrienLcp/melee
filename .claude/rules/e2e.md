@@ -65,7 +65,7 @@ and an unselected stamp ends up wearing the shape of a selected one.
 It is the answer to the question above rather than an exception to it: the
 stacking widths in `_strip.sass`'s call sites are **measured numbers**, a
 dictionary edit moves them, and geometry is the one thing no socket test has an
-opinion about. It costs about 13 seconds.
+opinion about. It cost 1.8 minutes inside a full `validate` on 2026-10-28, beside the other specs.
 
 It sweeps the **strip's own box**, not the viewport — one `page.evaluate` per
 game instead of eighty resizes — and starts each strip at the width the layout

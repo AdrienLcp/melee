@@ -647,6 +647,18 @@ export const FR_DICTIONARY = defineDictionary({
       }),
       removeNamed: 'Retirer {nickname}'
     },
+    podium: {
+      actions: 'Options pour {nickname}',
+      close: 'Fermer les réglages',
+      empty:
+        'Personne pour l’instant. Lis {code} à voix haute, ou montre le QR de l’écran de la salle.',
+      more: '+{count:number}',
+      pointsHint:
+        '– et + : {points:number} points d’un coup, pour une réponse que le jeu n’a pas vue.',
+      roster: 'Joueurs',
+      settings: 'Réglages',
+      tied: 'à égalité'
+    },
     recovery: {
       action: 'Tenir la table d’ici',
       description: 'Il est dans l’onglet Salle de l’hôte, sous Cet écran.',

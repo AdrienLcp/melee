@@ -58,6 +58,11 @@ export type StageControls = {
    */
   isAnswerFolded: boolean
   isLive: boolean
+  /**
+   * The roster stands in a column beside the stage and the wall shows the
+   * code, so the lobby drops its invitation and its own list of seats.
+   */
+  isRosterBeside: boolean
   /** Keeps a key typed mid-sheet for the next sheet this host opens. */
   onRememberSlateKey: (itemIndex: number, key: string) => void
   /** Aimed at the console's own seat too, which is why it is not a bare frame. */

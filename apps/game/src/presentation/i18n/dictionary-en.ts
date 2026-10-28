@@ -671,6 +671,21 @@ export const EN_DICTIONARY = defineDictionary({
       }),
       removeNamed: 'Remove {nickname}'
     },
+    /** The console laid out in three zones while a wall shows the game. */
+    podium: {
+      /** Names the roster's row menu, whose trigger is a bare glyph. */
+      actions: 'Options for {nickname}',
+      close: 'Close the settings',
+      empty:
+        'Nobody yet. Read {code} aloud, or show the QR code on the room’s screen.',
+      /** The roster's summary on a narrow screen, after its first three seats. */
+      more: '+{count:number}',
+      pointsHint:
+        '− and +: {points:number} points a press, for an answer the game did not see.',
+      roster: 'Players',
+      settings: 'Settings',
+      tied: 'tied'
+    },
     recovery: {
       action: 'Run the table from here',
       description: 'It is in the host’s Room tab, under This screen.',

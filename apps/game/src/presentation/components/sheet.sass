@@ -1,0 +1,67 @@
+@use '../styles/box-lid'
+@use '../styles/typography'
+
+@layer components
+  .sheet-overlay
+    background: var(--scrim)
+    display: flex
+    flex-direction: column
+    inset: 0
+    justify-content: flex-end
+    position: fixed
+    z-index: 2
+
+  .sheet
+    @include box-lid.paper
+
+    border-radius: var(--radius-l) var(--radius-l) 0 0
+    box-shadow: var(--shadow-panel-start)
+    display: flex
+    flex-direction: column
+    max-height: 85dvh
+    min-height: 0
+
+  .sheet-dialog
+    display: grid
+    grid-template-rows: auto minmax(0, 1fr)
+    min-height: 0
+    outline: none
+
+  .sheet-head
+    align-items: center
+    border-bottom: var(--hairline)
+    display: flex
+    gap: var(--space-s)
+    justify-content: space-between
+    padding: var(--space-s) var(--gutter-right) var(--space-s) var(--gutter-left)
+
+    h2
+      @include typography.title
+
+      font-size: var(--text-l)
+
+  .sheet-close
+    align-items: center
+    border-radius: var(--radius-m)
+    color: var(--ink)
+    cursor: pointer
+    display: grid
+    font-size: var(--text-m)
+    min-height: var(--target)
+    min-width: var(--target)
+    outline: none
+    place-items: center
+
+    &[data-hovered]
+      background: var(--card-well)
+
+    &[data-focus-visible]
+      outline: var(--stroke-bold) solid var(--ink)
+
+  .sheet-body
+    display: grid
+    gap: var(--space-m)
+    grid-auto-rows: max-content
+    overflow: auto
+    overscroll-behavior: contain
+    padding: var(--space-m) var(--gutter-right) max(var(--space-l), var(--safe-area-bottom)) var(--gutter-left)

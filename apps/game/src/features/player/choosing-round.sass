@@ -90,3 +90,21 @@
 
         ul
           grid-area: choices
+
+    // Two by two on a screen with room for it, a tile is wide enough to stand
+    // its mark above its name, both centred: the shape is found first, then
+    // the words under it. Stacked in rows the mark stays at the start, where a
+    // thumb reads it before the name.
+    @media (width >= 35rem) and (height >= 36rem)
+      &:not([data-long-choices]) :is(.answer-form.choices, .printed-choices) .answer-tile
+        justify-content: center
+        text-align: center
+
+        .face
+          grid-template: 'mark' auto 'title' auto 'subtitle' auto / minmax(0, 1fr)
+          justify-items: center
+          row-gap: 0.35em
+
+        .tile-mark
+          height: 1.4em
+          width: 1.4em

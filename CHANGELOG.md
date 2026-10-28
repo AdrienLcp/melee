@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Game]` **The console beside a wall is a podium.** Once a wall shows the
+  game, nothing on the host's screen is for the room to read, so it lays the
+  host's work out flat instead of a panel over the room's stage: on a laptop
+  the players down the left — ranked, ties said, −/+ on each seat's line once
+  the game runs and the removal behind a row menu — the round on now and the
+  running order in the middle, the table's and the room's settings down the
+  right. On a phone the round comes first, the players fold to a line under
+  the bar and the settings open in a sheet. A seated host's four tiles stand
+  their shape above their name, centred, wherever they are two by two.
 - `[Shared]` **A blind test plays every source when none is picked.** The
   source strip lets go of its choice like the genres do, and nothing pressed
   mixes the charts, the decades and the film scores — what a room now opens

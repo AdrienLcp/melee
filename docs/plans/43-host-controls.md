@@ -127,3 +127,16 @@ that.
    aloud, a judged mode, a judged game; a room with no game still says
    nothing. The Players tab no longer hides the seat from aloud teams in the
    lobby, or that sentence never showed.
+8. ~~The podium.~~ Done (2026-10-28): with `isWallConnected`, `HostConsole`
+   renders `HostPodium` instead of `HostPanel` — the same `SetupTabsProps`,
+   `RoomStage` and `HostActions`, recomposed: `PodiumRoster` (seat rows over
+   `usePointsRows`, the step `POINT`, printed 10), the round and `GameTab`'s
+   running order in the middle, `TableTab` and `RoomTab` flat on the right,
+   from `layout.podium` (64rem) up; below it, the roster in a `Disclosure`
+   and the settings in a lazy `Sheet`. `StageControls.isRosterBeside` drops the
+   lobby's invitation and seat list there. `choice-fits` measures the console
+   without a wall, since the podium's columns scroll by design. **Open**: the
+   seated host's question still stands beside its tiles on a wide screen (the
+   framed page reads the viewport's ratio, not the column's), and the middle
+   column is the old stage over the planned games, not yet the mock's
+   expanded current and next rounds.

@@ -15,10 +15,16 @@
     inset-inline-end: max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
     position: fixed
     transition: opacity var(--transition-base, 0s) var(--ease-out)
-    z-index: 1
+    // Above the podium's bar, which is sticky on the same edge.
+    z-index: 2
 
     :root:has(.player-page.framed, .host-console-page.framed) &
       inset-block-start: var(--framed-padding-block-start)
+
+    // In the podium's bar, whose padding it shares — matched as deep as the
+    // framed page's rule, which the seated host's tiles also wear.
+    :root:has(.host-podium .podium-bar) &
+      inset-block-start: var(--space-xs)
 
     // The front door scrolls a long shelf: fixed, the menu floated over the
     // spines, so there it scrolls away with the masthead.
@@ -46,6 +52,12 @@
       :root:has(.player-page.framed, .host-console-page.framed) &
         align-items: flex-start
         inset-inline: max(var(--gutter-left), calc(50% - var(--stage-max-width) / 2 + var(--gutter-left))) auto
+
+      // Not in the podium, whose four tiles are in its middle column: the
+      // menu keeps the bar's corner. Matched as deep as the rule above.
+      :root:has(.host-podium .podium-round) &
+        align-items: flex-end
+        inset-inline: auto max(var(--gutter-right), calc(50% - var(--stage-max-width) / 2 + var(--gutter-right)))
 
     // A wall is furniture, and after a few seconds nobody is at it. Only the
     // screen that knows that says so — the invitation page stamps `data-idle`

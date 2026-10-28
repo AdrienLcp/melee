@@ -1,0 +1,190 @@
+@use '@adrienlcp/styles/accessibility'
+@use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/layout'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .host-podium
+    display: flex
+    flex: 1
+    flex-direction: column
+
+    // The round's own page, minus what it took for standing alone: the
+    // podium's columns are its gutters and the bar above is its head.
+    // Five classes deep to outrank the console's own phase layouts, which
+    // hold a page to the screen: here the round is a card in a column that
+    // scrolls, as tall as what it holds.
+    .podium-track .podium-round.host-console-page:has(> .stage, > .choosing-round)
+      animation: none
+      flex: 0 0 auto
+      max-width: none
+      padding: 0rem
+
+      // The lobby's stage is a form and a launch, no taller than they are.
+      &:has(> .stage.lobby)
+        display: flex
+        flex-direction: column
+        gap: var(--space-m)
+
+      // Every other stage is laid out against the box it is given, so the
+      // round on now is given the column's height and the order runs on
+      // under it.
+      &:not(:has(> .stage.lobby))
+        height: max(28rem, calc(100dvh - 9rem))
+
+
+  // In the right-hand column, or in the sheet a narrow screen opens, which
+  // is drawn outside the podium.
+  .podium-group
+    display: grid
+    gap: var(--space-m)
+    grid-auto-rows: max-content
+
+    > h2
+      @include typography.title
+
+      font-size: var(--text-xl)
+
+    & + .podium-group
+      border-top: var(--hairline)
+      padding-top: var(--space-l)
+
+  .podium-sheet
+    display: grid
+    gap: var(--space-l)
+
+  .podium-bar
+    align-items: center
+    background: var(--field)
+    border-bottom: var(--hairline)
+    display: flex
+    gap: var(--space-s)
+    min-height: calc(var(--control-height) + var(--space-xs) * 2)
+    padding: var(--space-xs) calc(var(--menu-inset) + var(--space-s)) var(--space-xs) var(--gutter-left)
+    position: sticky
+    top: 0
+    z-index: 1
+
+    .podium-settings-press
+      margin-inline-start: auto
+
+  .podium-code
+    @include typography.room-code-small
+
+    user-select: text
+
+  .podium-wall
+    @include typography.caption-strong
+
+    align-items: center
+    display: flex
+    gap: var(--space-2xs)
+    min-width: 0
+
+  .podium-wall-on
+    color: var(--ink-muted)
+
+    &::before
+      background: var(--signal-open)
+      border-radius: var(--radius-full)
+      content: ''
+      display: inline-block
+      height: 0.5rem
+      margin-inline: var(--space-2xs)
+      width: 0.5rem
+
+  .podium-players-head
+    align-items: baseline
+    display: flex
+    justify-content: space-between
+
+    h2
+      @include typography.title
+
+      font-size: var(--text-xl)
+
+    span
+      @include typography.caption
+
+      color: var(--ink-muted)
+
+  .podium-track
+    display: flex
+    flex-direction: column
+    gap: var(--space-l)
+
+  .podium-order
+    display: grid
+    gap: var(--space-m)
+    grid-auto-rows: max-content
+
+  @include layout.podium
+    html:has(.host-podium)
+      overflow: hidden
+      scrollbar-gutter: auto
+
+    .host-podium
+      display: grid
+      flex: 0 0 100dvh
+      grid-template-columns: minmax(18rem, 1fr) minmax(0, 2.1fr) minmax(16rem, 1fr)
+      grid-template-rows: auto minmax(0, 1fr)
+      height: 100dvh
+
+      .podium-bar
+        grid-column: 1 / -1
+        position: static
+
+    .podium-players,
+    .podium-track,
+    .podium-settings
+      min-height: 0
+      overflow: hidden auto
+      overscroll-behavior: contain
+      padding: var(--space-l) var(--space-s)
+
+    .podium-players,
+    .podium-settings
+      @include box-lid.paper
+
+      display: flex
+      flex-direction: column
+      gap: var(--space-m)
+
+    .podium-players
+      box-shadow: 1px 0 0 var(--card-rule)
+
+    .podium-settings
+      box-shadow: -1px 0 0 var(--card-rule)
+      gap: var(--space-l)
+
+    .podium-track
+      padding-inline: var(--space-l)
+
+  @include layout.off-podium
+    .podium-wall-name,
+    .podium-wall-on
+      @include accessibility.visually-hidden
+
+    .podium-wall-on::before
+      display: none
+
+    .podium-wall::after
+      background: var(--signal-open)
+      border-radius: var(--radius-full)
+      content: ''
+      height: 0.5rem
+      width: 0.5rem
+
+    .host-podium
+      .podium-track
+        padding: var(--space-m) var(--gutter-right) var(--layout-padding-block-end) var(--gutter-left)
+
+    .podium-players-strip
+      background: var(--field)
+      border-bottom: var(--hairline)
+      max-height: 70dvh
+      overflow: auto
+      padding-inline: var(--gutter-left) var(--gutter-right)
+      position: sticky
+      top: calc(var(--control-height) + var(--space-xs) * 2)
+      z-index: 1

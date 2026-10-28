@@ -30,6 +30,21 @@ $desk-screen: 80rem
   @media (width < $desk-screen)
     @content
 
+/// Where a console beside a wall stands its players, its running order and
+/// its settings side by side: a 1024px laptop, the narrowest whose middle
+/// column still holds the verdict's four presses on one line.
+$podium-screen: 64rem
+
+/// Wide enough for the podium's three zones.
+@mixin podium
+  @media (width >= $podium-screen)
+    @content
+
+/// Too narrow for them: the running order alone, the rest folded.
+@mixin off-podium
+  @media (width < $podium-screen)
+    @content
+
 /// Past `wide`, where a stage whose payload is a grid can afford a column
 /// beside it and still keep the grid five cards across. Between the two the
 /// column goes under the grid instead, because beside it the grid dropped to

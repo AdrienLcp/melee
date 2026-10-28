@@ -90,6 +90,16 @@ Every value lives in the `.sass` beside the component. The one legitimate use of
 A wrapper `<div>` added to receive a layout style is two faults at once — apply
 the layout to the existing root, or to the parent.
 
+## Read what a `useCallback` closes over before handing the view out
+
+The compiler treats every call that receives `view` — `hostActionsProps(view)`,
+`setupProps(view)` — as one that may mutate it. A value derived from `view`
+that a `useCallback` depends on and that is *read again after* such a call
+makes it give up the whole component (`PreserveManualMemo`), and the build
+only warns. Compute what reads it (the seated host's round, in
+`host-console-page.tsx`) before those calls, and grep the build output for
+`react-compiler` after touching a large component.
+
 ## Related
 
 - [`design-system.md`](design-system.md) — wrapping a react-aria primitive

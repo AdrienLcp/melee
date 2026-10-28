@@ -218,14 +218,15 @@ const choosingView = (question: Question) => ({
 
 /**
  * The same round on a console whose host took the first seat. It is withheld
- * the answer the way a player is, and a wall is the speaker, so nothing but the
- * four tiles asks for the screen.
+ * the answer the way a player is. No wall is paired: beside one the console is
+ * the podium, whose columns scroll by design, so the screen held to the
+ * viewport is the console standing alone.
  */
 const seatedHostView = (question: Question) => ({
   ...choosingView(question),
   challengeHand: [],
   currentContent: { kind: 'quiz', question: null },
-  isWallConnected: true,
+  isWallConnected: false,
   lineUpPlayed: [],
   remainingPoolSize: 40
 })

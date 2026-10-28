@@ -1,0 +1,81 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // One grid for every seat, each row a subgrid of it, so the scores and the
+  // presses stand in columns whatever the names and the scores are.
+  .podium-roster
+    column-gap: var(--space-2xs)
+    display: grid
+    grid-template-columns: auto auto minmax(4rem, 1fr) auto auto auto
+    list-style: none
+    row-gap: var(--space-2xs)
+
+  // Rank, pawn, name, score, presses, menu: the columns line up seat over
+  // seat because every row is the same grid, the presses' column empty in
+  // the lobby.
+  .podium-seat
+    align-items: center
+    border-radius: var(--radius-m)
+    display: grid
+    grid-column: 1 / -1
+    grid-template-columns: subgrid
+    min-height: var(--control-height)
+    padding: var(--space-2xs)
+
+    &[data-leads]
+      background: var(--card-well)
+
+    &[data-away]
+      .podium-name
+        color: var(--ink-muted)
+
+  .podium-rank
+    @include typography.numeric
+
+    color: var(--ink-muted)
+    font-size: var(--text-2xs)
+    text-align: center
+
+  .podium-who
+    display: grid
+    min-width: 0
+
+  .podium-name
+    @include typography.title
+
+    font-size: var(--text-m)
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  .podium-note
+    @include typography.caption
+
+    color: var(--ink-muted)
+    font-size: var(--text-2xs)
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  .podium-score
+    @include typography.score
+
+    font-size: var(--text-xl)
+    text-align: end
+
+  .podium-presses
+    display: flex
+    gap: var(--space-2xs)
+
+  .podium-hint,
+  .podium-empty
+    @include typography.caption
+
+    color: var(--ink-muted)
+
+  .podium-team-points
+    display: grid
+    gap: var(--space-s)
+
+    h3
+      @include typography.heading

@@ -15,7 +15,8 @@ import { Pawn, pawnNumberOf } from './pawn'
 import './points-rows.sass'
 import { shownPoints } from '@/helpers/shown-points'
 
-type PointsRow = {
+/** One seat's or one team's line of points by hand. */
+export type PointsRow = {
   /** The pawn beside the name, `null` for a seat with no pawn on a track. */
   colour: number | null
   /** Whether a point less would change anything: the server floors at nought. */
@@ -29,16 +30,15 @@ type PointsRow = {
 }
 
 /**
- * Points by hand, in every phase: a bonus nobody planned, a challenge played at
- * the table, a call to put right. The teams when there are any, since a seat's
- * adjustment never reaches its team; the seats otherwise. Drawn in the menu and
- * in the console's players tab, which call for it on the same room actions.
- *
- * The rows keep the roster's order rather than the standings': a list that
- * re-ranks under the thumb after every press sends the next one to someone
- * else.
+ * The rows `PointsRows` draws, for a caller that lays them out its own way —
+ * the podium's roster puts each seat's presses on the seat's own line. `null`
+ * where there is nothing to adjust: no room actions, or nobody seated.
  */
-export const PointsRows: React.FC = () => {
+export const usePointsRows = (): {
+  isLive: boolean
+  onAdjust: (target: ScoreTarget, points: number) => void
+  rows: PointsRow[]
+} | null => {
   const { adjustScore, scoredPlayers, scoredTeams, trackLength } =
     useRoomActions()
   const connection = useConnection()
@@ -96,6 +96,29 @@ export const PointsRows: React.FC = () => {
         }
       })
 
+  return { isLive, onAdjust: adjustScore, rows }
+}
+
+/**
+ * Points by hand, in every phase: a bonus nobody planned, a challenge played at
+ * the table, a call to put right. The teams when there are any, since a seat's
+ * adjustment never reaches its team; the seats otherwise. Drawn in the menu and
+ * in the console's players tab, which call for it on the same room actions.
+ *
+ * The rows keep the roster's order rather than the standings': a list that
+ * re-ranks under the thumb after every press sends the next one to someone
+ * else.
+ */
+export const PointsRows: React.FC = () => {
+  const translate = useTranslate()
+  const points = usePointsRows()
+
+  if (points === null) {
+    return null
+  }
+
+  const { isLive, onAdjust, rows } = points
+
   return (
     <ul className='points-rows'>
       {rows.map((row) => (
@@ -123,7 +146,7 @@ export const PointsRows: React.FC = () => {
             className='points-press'
             isDisabled={!isLive || !row.canTake}
             onPress={() => {
-              adjustScore(row.target, -POINT)
+              onAdjust(row.target, -POINT)
             }}
             size='small'
             variant='outlined'
@@ -138,7 +161,7 @@ export const PointsRows: React.FC = () => {
             className='points-press'
             isDisabled={!isLive || !row.canGive}
             onPress={() => {
-              adjustScore(row.target, POINT)
+              onAdjust(row.target, POINT)
             }}
             size='small'
             variant='outlined'

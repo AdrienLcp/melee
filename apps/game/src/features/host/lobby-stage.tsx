@@ -72,11 +72,12 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
 
   useTeamCountFollowingHeadcount({ controls, view })
   const entryName = useEntryName(view.settings)
+  const isRosterBeside = controls?.isRosterBeside === true
 
   return (
     <div className='stage lobby' data-aloud={playsAloud || undefined}>
       {/* Nobody joins a table answering aloud, so there is nothing to scan. */}
-      {!playsAloud && (
+      {!playsAloud && !isRosterBeside && (
         <RoomInvitation isUnattended={controls === null} roomCode={roomCode} />
       )}
 
@@ -113,7 +114,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
         <section className='roster'>
           {playsAloud ? (
             <h2>{translate('team.title')}</h2>
-          ) : (
+          ) : isRosterBeside ? null : (
             <h2>
               {translate('host.players.count', {
                 count: view.players.length
@@ -131,7 +132,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             <LobbyTeams controls={controls} view={view} youId={youId} />
           ) : view.players.length === 0 ? null : view.teams.length > 0 ? (
             <LobbyTeams controls={controls} view={view} youId={youId} />
-          ) : (
+          ) : isRosterBeside ? null : (
             <Scoreboard
               hasPawns
               onRemove={controls?.onRemovePlayer}
@@ -139,7 +140,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               youId={youId}
             />
           )}
-          {view.teams.length === 0 && (
+          {view.teams.length === 0 && !isRosterBeside && (
             <EmptySockets seated={view.players.length} />
           )}
         </section>

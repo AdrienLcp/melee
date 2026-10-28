@@ -87,6 +87,7 @@ import { type ChallengeLine, challengePickFor } from './challenge-line'
 import { ClipOffer } from './clip-offer'
 import { HostActions, type HostActionsProps } from './host-actions'
 import { HostPanel } from './host-panel'
+import { HostPodium } from './host-podium'
 import { HostRefused } from './host-refused'
 import { InvitePiece } from './invite-piece'
 import { JoinReminder } from './join-reminder'
@@ -476,56 +477,61 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     )
   }
 
-  if (view !== null && choosing !== null) {
-    const roundDurationMs = choosing.round.durationMs
+  const seatedRound =
+    view !== null && choosing !== null ? (
+      <>
+        <RoundChrome
+          duel={choosing.round.duel}
+          invitation={<InvitePiece roomCode={roomCode} />}
+          notice={<ArrivalNotice arrival={arrival} />}
+          players={view.players}
+          roundCount={view.settings.roundCount}
+          roundIndex={choosing.round.index}
+          teams={view.teams}
+          youId={choosing.youId}
+        />
+        <div className='card-clock'>
+          {choosing.round.durationMs !== null && (
+            <RoundProgress
+              durationMs={choosing.round.durationMs}
+              elapsedMs={view.roundElapsedMs}
+            />
+          )}
+        </div>
+        <ChoosingRound
+          onAnswer={(answer) =>
+            send({
+              answer,
+              roundId: choosing.round.id,
+              type: 'player.answer'
+            })
+          }
+          round={choosing.round}
+          youId={choosing.youId}
+        />
+        <div className='notice'>
+          {error !== null && (
+            <p className='error' role='alert'>
+              {translate(protocolErrorKey(error.code))}
+            </p>
+          )}
+          <ClipOffer
+            canPlay={canPlay}
+            isSpeaker={isSpeaker}
+            onUnlockAudio={armAudio}
+            refusal={refusal}
+            view={view}
+          />
+        </div>
+      </>
+    ) : null
 
+  if (view !== null && choosing !== null && !view.isWallConnected) {
     return (
       <PawnColoursProvider view={view}>
         <Main className='host-console-page framed'>
           <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
-          <RoundChrome
-            duel={choosing.round.duel}
-            invitation={<InvitePiece roomCode={roomCode} />}
-            notice={<ArrivalNotice arrival={arrival} />}
-            players={view.players}
-            roundCount={view.settings.roundCount}
-            roundIndex={choosing.round.index}
-            teams={view.teams}
-            youId={choosing.youId}
-          />
-          <div className='card-clock'>
-            {roundDurationMs !== null && (
-              <RoundProgress
-                durationMs={roundDurationMs}
-                elapsedMs={view.roundElapsedMs}
-              />
-            )}
-          </div>
-          <ChoosingRound
-            onAnswer={(answer) =>
-              send({
-                answer,
-                roundId: choosing.round.id,
-                type: 'player.answer'
-              })
-            }
-            round={choosing.round}
-            youId={choosing.youId}
-          />
-          <div className='notice'>
-            {error !== null && (
-              <p className='error' role='alert'>
-                {translate(protocolErrorKey(error.code))}
-              </p>
-            )}
-            <ClipOffer
-              canPlay={canPlay}
-              isSpeaker={isSpeaker}
-              onUnlockAudio={armAudio}
-              refusal={refusal}
-              view={view}
-            />
-          </div>
+          {seatedRound}
         </Main>
       </PawnColoursProvider>
     )
@@ -655,6 +661,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         */}
       {view !== null &&
         view.phase !== 'lobby' &&
+        !view.isWallConnected &&
         view.settings.teams.kind !== 'aloud' && (
           <JoinReminder roomCode={roomCode} />
         )}
@@ -664,6 +671,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const controls: StageControls = {
     isAnswerFolded: cameFromWall,
     isLive,
+    isRosterBeside: view?.isWallConnected === true,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,
@@ -743,6 +751,48 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   const setup = setupProps(view)
 
+  if (view.isWallConnected) {
+    return (
+      <PawnColoursProvider view={view}>
+        <HostPodium
+          round={
+            choosing === null ? (
+              <div className='host-console-page podium-round'>
+                {header}
+                <RoomStage
+                  canPlay={canPlay}
+                  clock={clock}
+                  controls={controls}
+                  isBoardAround={false}
+                  isSpeaker={isSpeaker}
+                  onUnlockAudio={armAudio}
+                  refusal={refusal}
+                  roomCode={roomCode}
+                  slateWall={slateWall}
+                  view={view}
+                />
+                <footer>
+                  {error !== null && (
+                    <p className='error' role='alert'>
+                      {translate(protocolErrorKey(error.code))}
+                    </p>
+                  )}
+                  <HostActions {...hostActionsProps(view)} />
+                </footer>
+              </div>
+            ) : (
+              <div className='host-console-page framed podium-round'>
+                {seatedRound}
+              </div>
+            )
+          }
+          setup={setup}
+          view={view}
+        />
+      </PawnColoursProvider>
+    )
+  }
+
   return (
     <PawnColoursProvider view={view}>
       <HostPanel
@@ -782,9 +832,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
  * that arrived after the round opened is refused the round anyway, so it keeps
  * the console's own screen.
  */
-const seatedChoosingRound = (
-  view: HostRoomView
-): { round: RoundView; youId: PlayerId } | null =>
+type SeatedChoosing = { round: RoundView; youId: PlayerId }
+
+const seatedChoosingRound = (view: HostRoomView): SeatedChoosing | null =>
   view.phase === 'playing' &&
   view.round?.answerMode === 'choice' &&
   view.youId !== null &&
