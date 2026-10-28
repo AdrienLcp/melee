@@ -17,11 +17,13 @@
     --podium-round-height: clamp(24rem, calc(100dvh - 16rem), 34rem)
 
     // A seated host's round decides whether it lies down by its card, not the
-    // window: a laptop lying down holds a column standing up.
+    // window: a laptop lying down holds a column standing up. It is a
+    // player's screen, four tiles under a question, so it takes the column
+    // down to a glimpse of what comes next.
     .framed-box
       container: framed-box / size
       flex: none
-      height: var(--podium-round-height)
+      height: clamp(24rem, calc(100dvh - 9rem), 40rem)
 
       > .podium-round
         --podium-round-height: 100%
@@ -179,7 +181,7 @@
     .host-podium
       display: grid
       flex: 0 0 100dvh
-      grid-template-columns: minmax(18rem, 1fr) minmax(0, 2.1fr) minmax(16rem, 1fr)
+      grid-template-columns: minmax(20rem, 1fr) minmax(0, 2.1fr) minmax(16rem, 1fr)
       grid-template-rows: auto minmax(0, 1fr)
       height: 100dvh
 
