@@ -18,6 +18,7 @@ import {
 } from './petit-bac'
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
+import { swatchShowMsSchema } from './swatch'
 import { trackDifficultySchema, trackSourceSchema } from './track'
 
 export const gameKinds = [
@@ -32,7 +33,8 @@ export const gameKinds = [
   'reflex',
   'slate',
   'timeline',
-  'atlas'
+  'atlas',
+  'swatch'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -198,6 +200,13 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     places: atlasPlaceSetSchema.default(['countries']),
     /** How long the map stays open before the round times out. */
     roundDurationMs: z.number().int().min(5_000).max(120_000)
+  }),
+  z.object({
+    kind: z.literal('swatch'),
+    /** How long the colour is rebuilt for once it has hidden, the showing not counted. */
+    roundDurationMs: z.number().int().min(10_000).max(60_000),
+    /** How long the colour stays up before every screen hides it. */
+    showMs: swatchShowMsSchema
   })
 ])
 
@@ -216,6 +225,7 @@ export type ReflexSettings = Extract<GameSettings, { kind: 'reflex' }>
 export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
 export type TimelineSettings = Extract<GameSettings, { kind: 'timeline' }>
 export type AtlasSettings = Extract<GameSettings, { kind: 'atlas' }>
+export type SwatchSettings = Extract<GameSettings, { kind: 'swatch' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -240,7 +250,9 @@ export const roundDurationMsOf = (game: GameSettings | null): number | null =>
   game.kind === 'reflex' ||
   game.kind === 'slate'
     ? null
-    : game.roundDurationMs
+    : game.kind === 'swatch'
+      ? game.showMs + game.roundDurationMs
+      : game.roundDurationMs
 
 /**
  * Whether a wrong answer sits the player out for the rest of the round. Only the
@@ -323,6 +335,13 @@ export const DEFAULT_ATLAS_SETTINGS: AtlasSettings = {
   roundDurationMs: 30_000
 }
 
+/** Five seconds shown, a glance a table calls fair, and twenty to rebuild it. */
+export const DEFAULT_SWATCH_SETTINGS: SwatchSettings = {
+  kind: 'swatch',
+  roundDurationMs: 20_000,
+  showMs: 5_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -336,5 +355,6 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,
   slate: DEFAULT_SLATE_SETTINGS,
+  swatch: DEFAULT_SWATCH_SETTINGS,
   timeline: DEFAULT_TIMELINE_SETTINGS
 }

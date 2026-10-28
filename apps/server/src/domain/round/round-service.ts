@@ -8,6 +8,7 @@ import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { HostQuestion } from '@melee/protocol/question'
 import type { Verdict } from '@melee/protocol/scoring'
+import type { ColourHex } from '@melee/protocol/swatch'
 import { TIMELINE_ORDER_SEPARATOR } from '@melee/protocol/timeline'
 import type { HostTrack } from '@melee/protocol/track'
 
@@ -84,6 +85,7 @@ import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import { settleEveryCategory } from '@/domain/round/petit-bac-round'
 import { markEveryItem } from '@/domain/round/slate-round'
+import { gradeColour, isColourShown } from '@/domain/round/swatch-round'
 import { gradeOrder } from '@/domain/round/timeline-round'
 import { drawChoices } from '@/domain/round/track-pool'
 
@@ -406,6 +408,7 @@ export const clearLockouts = ({
 export type AnswerRejection = Extract<
   ProtocolErrorCode,
   | 'already_buzzed'
+  | 'colour_still_shown'
   | 'illegal_move'
   | 'invalid_message'
   | 'joined_mid_round'
@@ -483,6 +486,10 @@ export const registerAnswer = ({
     return Result.failure(refusal)
   }
 
+  if (round.content.kind === 'swatch' && isColourShown({ now, round })) {
+    return Result.failure('colour_still_shown')
+  }
+
   const held = round.attempts.find((entry) => entry.playerId === playerId)
 
   // A pick is one shot — four candidates with retries is just the answer with
@@ -522,6 +529,10 @@ export const registerAnswer = ({
 
   if (round.content.kind === 'atlas' && attempt.kind === 'point') {
     round.content.placements.push({ playerId, point: attempt.point })
+  }
+
+  if (round.content.kind === 'swatch' && attempt.kind === 'colour') {
+    round.content.sent.push({ colour: attempt.colour, playerId })
   }
 
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
@@ -903,6 +914,7 @@ type Attempt =
   | { kind: 'point'; point: GeoPoint }
   | { kind: 'order'; eventIds: string[] }
   | { kind: 'move'; move: StickMove }
+  | { kind: 'colour'; colour: ColourHex }
   | TypedAttempt
 
 /**
@@ -966,6 +978,15 @@ const grade = ({
       : { said: attempt.eventIds.join(TIMELINE_ORDER_SEPARATOR), verdict }
   }
 
+  if (content.kind === 'swatch') {
+    return attempt.kind === 'colour'
+      ? {
+          said: attempt.colour,
+          verdict: gradeColour({ content, sent: attempt.colour })
+        }
+      : null
+  }
+
   // What a move says is the puzzle it made, which the reveal draws it from.
   if (content.kind === 'matchsticks') {
     if (attempt.kind !== 'move') {
@@ -995,7 +1016,8 @@ const grade = ({
   if (
     attempt.kind === 'point' ||
     attempt.kind === 'order' ||
-    attempt.kind === 'move'
+    attempt.kind === 'move' ||
+    attempt.kind === 'colour'
   ) {
     return null
   }

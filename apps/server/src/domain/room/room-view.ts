@@ -40,6 +40,7 @@ import {
 } from '@/domain/round/petit-bac-round'
 import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
+import { hidesAtOf, isColourShown } from '@/domain/round/swatch-round'
 
 import { isRoundJudgedByConsole, playingSeatIds } from './console-seat'
 import type { AtlasRoundTarget, PlayerAttempts, Room, Round } from './room'
@@ -205,7 +206,8 @@ const toHostContent = ({
   if (
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
-    content.kind === 'reflex'
+    content.kind === 'reflex' ||
+    content.kind === 'swatch'
   ) {
     return { kind: content.kind }
   }
@@ -313,7 +315,7 @@ const toBaseView = ({
   round:
     room.round === null
       ? null
-      : toRoundView({ room, round: room.round, youId }),
+      : toRoundView({ now, room, round: room.round, youId }),
   roundElapsedMs: room.round === null ? 0 : elapsedRoundMs(room.round, now),
   settings: room.settings,
   teams: toTeamViews(room),
@@ -324,9 +326,9 @@ const toBaseView = ({
 })
 
 /**
- * What the reader has banked, except a matchstick move before the reveal: the
- * move is one shot, so the verdict helps its seat with nothing, and a seat told
- * it was right has an answer worth whispering to the next one.
+ * What the reader has banked, except a matchstick move or a colour before the
+ * reveal: each is one shot, so the verdict helps its seat with nothing, and a
+ * seat told it was right has an answer worth whispering to the next one.
  */
 const yourVerdictIn = ({
   round,
@@ -335,7 +337,8 @@ const yourVerdictIn = ({
   round: Round
   youId: PlayerId
 }): Verdict | null =>
-  round.content.kind === 'matchsticks' && !round.revealed
+  (round.content.kind === 'matchsticks' || round.content.kind === 'swatch') &&
+  !round.revealed
     ? null
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
       null)
@@ -360,10 +363,12 @@ const toPublicPlayers = (room: Room): PublicPlayer[] => {
  * this is the floor above it.
  */
 const toRoundView = ({
+  now,
   room,
   round,
   youId
 }: {
+  now: number
   room: Room
   round: Round
   youId: PlayerId | null
@@ -383,7 +388,7 @@ const toRoundView = ({
     playerId
   })),
   awards: round.awards,
-  content: toContentView({ room, round, youId }),
+  content: toContentView({ now, room, round, youId }),
   duel: round.duel,
   durationMs: round.durationMs,
   id: round.id,
@@ -447,10 +452,12 @@ const atlasTargetView = ({
 }
 
 const toContentView = ({
+  now,
   room,
   round,
   youId
 }: {
+  now: number
   room: Room
   round: Round
   youId: PlayerId | null
@@ -533,6 +540,19 @@ const toContentView = ({
             year
           }))
         : null
+    }
+  }
+
+  if (content.kind === 'swatch') {
+    return {
+      colour: isColourShown({ now, round }) ? content.colour : null,
+      hidesAt: hidesAtOf(round),
+      kind: 'swatch',
+      revealedColours: round.revealed
+        ? content.sent.map(({ colour, playerId }) => ({ colour, playerId }))
+        : null,
+      yourColour:
+        content.sent.find(({ playerId }) => playerId === youId)?.colour ?? null
     }
   }
 

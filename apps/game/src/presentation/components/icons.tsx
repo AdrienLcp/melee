@@ -29,6 +29,7 @@ import {
   Minus,
   MonitorPlay,
   Music,
+  Palette,
   PanelRightClose,
   PanelRightOpen,
   PanelsTopLeft,
@@ -125,6 +126,7 @@ const GAME_GLYPHS = {
   quiz: CircleQuestionMark,
   reflex: Zap,
   slate: PencilLine,
+  swatch: Palette,
   timeline: History
 } as const satisfies Record<GameKind, LucideIcon>
 

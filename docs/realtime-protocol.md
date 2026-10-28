@@ -749,6 +749,16 @@ measures negative and a negative is under the floor. `packages/core/src/reflex/`
 holds it, with no I/O and a test of its own; the next reflex-shaped game
 inherits it rather than re-deciding it.
 
+**Shades borrows the scheduling and not the floor.** Its colour hides at
+`round.content.hidesAt`, a server timestamp every screen schedules the same
+way, so the room loses the colour at once rather than as each frame lands. The
+colour itself is sent to every screen — a phone keeping it is no worse than a
+photo of it — but only between the round's start and `hidesAt`, and again at
+the reveal: the countdown and every snapshot in between carry `colour: null`,
+so a screen reloading late never sees it, and an answer sent before `hidesAt`
+is refused with `colour_still_shown`, because rebuilding a colour while looking
+at it is copying it. `swatch-game.test.ts` searches the raw frames for it.
+
 ## Errors
 
 ```jsonc
@@ -759,7 +769,7 @@ inherits it rather than re-deciding it.
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
 `nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
-`invalid_message`, `sheet_not_full`.
+`invalid_message`, `sheet_not_full`, `colour_still_shown`.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.

@@ -25,6 +25,7 @@ import {
   slateItemIndexSchema,
   slateKeySchema
 } from './slate'
+import { colourHexSchema } from './swatch'
 import {
   MAX_TEAMS,
   MIN_TEAMS,
@@ -146,6 +147,11 @@ export const answerMessageSchema = z.object({
        * a move the sticks cannot make is refused and spends nothing.
        */
       move: stickMoveSchema
+    }),
+    z.object({
+      /** The colour rebuilt on the picker. One shot, like a pick. */
+      colour: colourHexSchema,
+      kind: z.literal('colour')
     })
   ]),
   roundId: roundIdSchema,

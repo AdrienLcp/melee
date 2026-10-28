@@ -460,6 +460,7 @@ export const EN_DICTIONARY = defineDictionary({
       unexpected_response: 'We did not know what to make of that. Try again.',
       unreachable: 'We cannot reach Mêlée. Try again in a moment.'
     },
+    colour_still_shown: 'Wait for the colour to hide before sending yours.',
     false_start: 'Too soon. Wait for the change.',
     host_already_connected: 'Someone is already running this table.',
     host_away: 'The host stepped away. The round is waiting for them.',
@@ -518,6 +519,7 @@ export const EN_DICTIONARY = defineDictionary({
     answerMode: {
       buzzer: 'First to buzz',
       choice: 'Four choices',
+      colour: 'Rebuild the colour',
       label: 'How to answer',
       move: 'Move the match',
       order: 'Put them in order',
@@ -1593,6 +1595,11 @@ export const EN_DICTIONARY = defineDictionary({
     },
     yourAnswer: 'You wrote',
     yourSheet: 'Your whole sheet'
+  },
+  swatch: {
+    name: 'Shades',
+    scoring:
+      'A colour shows, hides, and you rebuild it. Spot on is 30 points, falling to nothing the further off it is. No bonus for speed.'
   },
   team: {
     aloud: {

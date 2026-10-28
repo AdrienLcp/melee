@@ -1,7 +1,8 @@
 # 54 — Swatch (colour memory)
 
-**Half done** — step 1, the protocol's pieces and the rules in
-`@melee/core/swatch/`, landed 28/10/2026. Steps 2 and 3 are owed.
+**Two thirds done** — step 1, the protocol's pieces and the rules in
+`@melee/core/swatch/`, and step 2, the kind served end to end, landed
+28/10/2026. Step 3, the screens, is owed.
 
 A colour goes up on every screen for a few seconds — a dusty teal, a warm
 ochre — then hides, and every seat rebuilds it on a picker. The server
@@ -13,8 +14,9 @@ The thirteenth game, **everyone at once** in the catalogue's shapes
 family: one answer per seat, sent once, measured by the server.
 
 Kind `swatch`, translation prefix `swatch.*`, answer mode `colour`. *Nuancier*
-in French. The English name is the screens' session to settle, and is **not**
-*Swatch* on screen (a trademark): the id is internal.
+in French, *Shades* in English for now — step 2 owed the dictionaries a
+`swatch.name` — and **not** *Swatch* on screen (a trademark): the id is
+internal. The screens' session may rename it.
 
 ## Rules, as settled
 
@@ -75,12 +77,25 @@ in French. The English name is the screens' session to settle, and is **not**
 1. ~~**Protocol and core.**~~ Done: `protocol/swatch.ts` (hex, show bounds),
    `colourVerdictSchema`, `core/swatch/` — `oklab.ts` (conversion, distance),
    `colour-pay.ts`, `draw.ts`, each tested and broken once.
-2. **The kind, end to end on the wire.** `swatch` in `gameKinds` (not yet
-   `shelvedGames`), its settings arm and default, mode `colour`, the verdict in
-   the union, `round.content` arms for every role, `player.answer`'s `colour`
-   arm, `colour_still_shown`, capabilities, the server's round (draw, hide,
-   measure, settle), and a socket suite — the anti-cheat transcript included:
-   no frame after `hidesAt` carries the colour.
+2. ~~**The kind, end to end on the wire.**~~ Done: `swatch` in `gameKinds`
+   (not `shelvedGames`), mode `colour`, the verdict in the union,
+   `colour_still_shown`, `server/domain/round/swatch-round.ts`, and
+   `swatch-game.test.ts`, each assertion broken once. What reality settled:
+   - `roundDurationMsOf` answers **show plus rebuild** for this game, so the
+     round's clock is the whole round and no special case reaches
+     `openPhaseDurationMs`; `showMs` is stamped on the round's content as it
+     opens, like the reflex race's flip delay, and `hidesAt` is
+     `startsAt + showMs`.
+   - The player content is `colour` (from `startsAt` to `hidesAt`, then from
+     the reveal — **not during the countdown**, so it is never up longer than
+     the room was told), `hidesAt`, `revealedColours` and `yourColour` for a
+     reload. The console's and the wall's arms are `{ kind: 'swatch' }`: the
+     console reads the colour off the round like every seat.
+   - `yourVerdict` is withheld until the reveal, as a matchstick move's is.
+   - The server sends no frame *at* `hidesAt`: every screen hides on its own
+     clock, and the next snapshot simply carries `null`.
+   - The app holds only what compiling demanded — the name, the scoring line,
+     the error, the mode's label and a `Palette` glyph.
 3. **Screens and shelf.** Player picker, wall and console rounds, reveal,
    lobby settings, the spine, `swatch.*` strings in both dictionaries,
    `shelvedGames`. Verified muted in a real browser, phone width and wall.

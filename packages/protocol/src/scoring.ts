@@ -181,7 +181,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   distanceVerdictSchema,
   orderVerdictSchema,
   moveVerdictSchema,
-  cellsVerdictSchema
+  cellsVerdictSchema,
+  colourVerdictSchema
 ])
 
 export const awardSchema = z.object({

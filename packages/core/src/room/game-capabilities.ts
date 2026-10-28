@@ -45,6 +45,9 @@ const POINT_OR_NAMED = [
 /** The timeline is answered by sending the events in an order, which the server counts. */
 const ORDER_ONLY = ['order'] as const satisfies readonly AnswerMode[]
 
+/** A colour is answered by rebuilding it on a picker, which the server measures. */
+const COLOUR_ONLY = ['colour'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -180,6 +183,14 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'atlas':
       return {
         answerModes: POINT_OR_NAMED,
+        makesSound: false,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
+    case 'swatch':
+      return {
+        answerModes: COLOUR_ONLY,
         makesSound: false,
         playsAloud: false,
         playsDuels: true,

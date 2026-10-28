@@ -65,6 +65,7 @@ import {
   slateLineSchema,
   slateProgressSchema
 } from './slate'
+import { colourHexSchema, sentColourSchema } from './swatch'
 import {
   DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
@@ -96,7 +97,8 @@ export const answerModes = [
   'point',
   'order',
   'move',
-  'spoken'
+  'spoken',
+  'colour'
 ] as const
 
 /**
@@ -151,7 +153,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('point') }),
   z.object({ kind: z.literal('order') }),
   z.object({ kind: z.literal('move') }),
-  z.object({ kind: z.literal('spoken') })
+  z.object({ kind: z.literal('spoken') }),
+  z.object({ kind: z.literal('colour') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -274,6 +277,7 @@ export const DEFAULT_BUZZER_MODE_SETTINGS: BuzzerModeSettings = {
 export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   buzzer: DEFAULT_BUZZER_MODE_SETTINGS,
   choice: { kind: 'choice' },
+  colour: { kind: 'colour' },
   move: { kind: 'move' },
   order: { kind: 'order' },
   point: { kind: 'point' },
@@ -612,6 +616,25 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
      * round's target is its answer, so it is `null` until the reveal.
      */
     target: atlasTargetSchema.nullable()
+  }),
+  z.object({
+    /**
+     * The colour to rebuild, from the round's start until `hidesAt` and again
+     * once it is revealed, and `null` in between and during the countdown: a
+     * screen arriving or reloading after it hid never sees it.
+     */
+    colour: colourHexSchema.nullable(),
+    /**
+     * When every screen hides the colour, and `null` until the round's clock
+     * has a start. Each screen hides it on its own clock offset, the reflex
+     * race's `flipsAt` argument; a colour sent before it is refused.
+     */
+    hidesAt: serverTimeSchema.nullable(),
+    kind: z.literal('swatch'),
+    /** Every seat's colour, and `null` until the reveal. */
+    revealedColours: z.array(sentColourSchema).nullable(),
+    /** The reader's own colour once sent, and `null` before or without a seat. What a reload comes back to. */
+    yourColour: colourHexSchema.nullable()
   })
 ])
 
@@ -864,7 +887,9 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     answer: atlasTargetSchema.nullable(),
     kind: z.literal('atlas')
-  })
+  }),
+  /** Nothing withheld: the colour is on every screen until it hides. */
+  z.object({ kind: z.literal('swatch') })
 ])
 
 /**
@@ -939,7 +964,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
     progress: z.array(slateProgressSchema)
   }),
   z.object({ kind: z.literal('timeline') }),
-  z.object({ kind: z.literal('atlas') })
+  z.object({ kind: z.literal('atlas') }),
+  z.object({ kind: z.literal('swatch') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

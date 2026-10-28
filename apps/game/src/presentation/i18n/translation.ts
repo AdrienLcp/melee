@@ -57,7 +57,10 @@ export const answerModeLabelKey = (
 ): BuiltKey<`host.answerMode.${AnswerMode}`> => `host.answerMode.${mode}`
 
 /** The modes a game answering against its own question offers. */
-type ServedMode = Exclude<AnswerMode, 'move' | 'order' | 'point' | 'spoken'>
+type ServedMode = Exclude<
+  AnswerMode,
+  'colour' | 'move' | 'order' | 'point' | 'spoken'
+>
 
 const ATLAS_SCORING_KEYS = {
   countries: 'atlas.scoring',
@@ -103,6 +106,7 @@ export const scoringKey = ({
   | 'petitbac.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
+  | 'swatch.scoring'
   | 'timeline.scoring'
   | 'atlas.scoring'
   | 'atlas.scoringCapitals'
@@ -114,14 +118,15 @@ export const scoringKey = ({
   | `quiz.scoring.${ServedMode}`
 > => {
   // A marker is the map's alone, an order the timeline's, a move the
-  // matchsticks' and a spoken round black square's, so the two games that serve
+  // matchsticks', a colour the shades' and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps
   // the switch total.
   const served =
     answerMode === 'point' ||
     answerMode === 'order' ||
     answerMode === 'move' ||
-    answerMode === 'spoken'
+    answerMode === 'spoken' ||
+    answerMode === 'colour'
       ? 'choice'
       : answerMode
 
@@ -158,6 +163,8 @@ export const scoringKey = ({
       return 'reflex.scoring'
     case 'slate':
       return 'slate.scoring'
+    case 'swatch':
+      return 'swatch.scoring'
     case 'timeline':
       return 'timeline.scoring'
     case 'atlas':

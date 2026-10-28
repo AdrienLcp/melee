@@ -53,7 +53,8 @@ describe('answerModesFor', () => {
       'point',
       'order',
       'move',
-      'spoken'
+      'spoken',
+      'colour'
     ])
   })
 })

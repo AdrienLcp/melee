@@ -81,6 +81,7 @@ export const candidatesIn = ({
     case 'petitbac':
     case 'reflex':
     case 'slate':
+    case 'swatch':
     case 'timeline':
       return []
     case 'quiz':

@@ -38,6 +38,7 @@ import {
   timeOutBuzz
 } from '@/domain/round/round-service'
 import { slateContent } from '@/domain/round/slate-round'
+import { swatchContent } from '@/domain/round/swatch-round'
 import { timelineContent } from '@/domain/round/timeline-round'
 import { drawPlayableTrack } from '@/domain/round/track-pool'
 import { newRoundId } from '@/infrastructure/ids'
@@ -468,6 +469,20 @@ export const beginRound = async (
 
     openRound({
       content,
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'swatch') {
+    openRound({
+      content: swatchContent(game.showMs),
       id: newRoundId(),
       now: engine.now(),
       room,

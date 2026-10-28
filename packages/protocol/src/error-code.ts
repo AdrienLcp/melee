@@ -116,6 +116,12 @@ export const protocolErrorCodes = [
    * seat can act on it — one more word and the stop is theirs.
    */
   'sheet_not_full',
+  /**
+   * A colour sent while the one to rebuild is still on screen. Non-fatal: the
+   * seat keeps its one shot, and rebuilding a colour while looking at it is
+   * copying it.
+   */
+  'colour_still_shown',
   'no_content_available',
   'music_source_unavailable',
   'rate_limited',

@@ -439,6 +439,8 @@ export const FR_DICTIONARY = defineDictionary({
       unexpected_response: 'On n’a pas su quoi en faire. Réessaie.',
       unreachable: 'On n’arrive pas à joindre Mêlée. Réessaie dans un instant.'
     },
+    colour_still_shown:
+      'Attends que la couleur disparaisse avant d’envoyer la tienne.',
     false_start: 'Trop tôt. Attends que ça change.',
     host_already_connected: 'Quelqu’un tient déjà cette table.',
     host_away: 'L’hôte a décroché. La manche attend son retour.',
@@ -498,6 +500,7 @@ export const FR_DICTIONARY = defineDictionary({
     answerMode: {
       buzzer: 'Le premier qui buzze',
       choice: 'Quatre propositions',
+      colour: 'On refait la couleur',
       label: 'Comment on répond',
       move: 'On déplace l’allumette',
       order: 'Dans l’ordre',
@@ -1506,6 +1509,11 @@ export const FR_DICTIONARY = defineDictionary({
     },
     yourAnswer: 'Tu as écrit',
     yourSheet: 'Toute ta feuille'
+  },
+  swatch: {
+    name: 'Nuancier',
+    scoring:
+      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 30 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas de bonus de vitesse.'
   },
   team: {
     aloud: {

@@ -32,6 +32,7 @@ import type {
   RoundDuel
 } from '@melee/protocol/room'
 import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
+import type { ColourHex, SentColour } from '@melee/protocol/swatch'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
@@ -411,6 +412,15 @@ export type Round = {
         /** Every seat's marker, in the order they landed; a team's answer is one per seat. */
         placements: Placement[]
         target: AtlasRoundTarget
+      }
+    | {
+        /** Drawn by the server; on every screen until it hides, and the answer. */
+        colour: ColourHex
+        kind: 'swatch'
+        /** Every seat's colour, in the order they landed. */
+        sent: SentColour[]
+        /** How long the colour stays up, stamped as the round opens. */
+        showMs: number
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving
