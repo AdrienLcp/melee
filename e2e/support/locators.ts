@@ -29,6 +29,13 @@ export const hostConsole = (page: Page) => ({
   /** What the QR code encodes. Following it is what scanning it does. */
   joinUrl: page.locator('.join-url'),
   /**
+   * On the podium, the card under the reveal naming the round that comes next
+   * and holding the press that opens it.
+   */
+  nextRoundCard: page
+    .getByRole('heading', { name: /^Round \d+: / })
+    .locator('xpath=ancestor::section[1]'),
+  /**
    * The blind test's row in the panel's list of planned games, which opens its
    * page — the answer mode among its settings. Its name runs on into the row's
    * detail and stamp.
@@ -65,6 +72,8 @@ export const hostConsole = (page: Page) => ({
       .locator('.reveal-panel, .stage.lobby')
       .getByRole('listitem')
       .filter({ hasText: nickname }),
+  /** The board under the reveal — beside a wall, the players' column ranks them instead. */
+  standings: page.getByRole('region', { name: 'Standings' }),
   startGame: page.getByRole('button', { name: 'Gather round' }),
   theyBuzzed: (nickname: string) =>
     page.getByRole('heading', { name: `${nickname} buzzed` }),

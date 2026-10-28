@@ -19,7 +19,8 @@ still holds its code.
 
 `full-game.spec.ts` plays a whole buzzer game across two browser contexts,
 `everyone-answers.spec.ts` puts two players on the same clip in a simultaneous
-round, and `dead-socket.spec.ts` covers the screen a dead socket leaves behind.
+round — with the wall open in a tab beside the console, so its reveal is read on
+the podium — and `dead-socket.spec.ts` covers the screen a dead socket leaves behind.
 The second earns its place because the two shapes are opposites — one player
 taking the floor against everyone writing at once — and no socket suite can
 stand in for two browsers, two forms and a screen that has to end up showing

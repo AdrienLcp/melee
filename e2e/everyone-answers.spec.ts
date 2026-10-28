@@ -14,7 +14,8 @@ import { homePage, hostConsole, playerScreen } from './support/locators'
 test('[e2e] two players type over the same clip, and the reveal says what they said', async ({
   browser
 }) => {
-  const bigScreen = await browser.newPage()
+  const consoleMachine = await browser.newContext()
+  const bigScreen = await consoleMachine.newPage()
   const firstScreen = await (await browser.newContext()).newPage()
   const secondScreen = await (await browser.newContext()).newPage()
 
@@ -46,6 +47,15 @@ test('[e2e] two players type over the same clip, and the reveal says what they s
   await host.openGamesTab.click()
   await host.openBlindTestRound.click()
   await host.typedMode.click()
+
+  // The room's own screen, opened the way the console's link opens it: a tab
+  // beside the console, which is what holds the host token it gets in with.
+  // Beside it the console lays out flat as the podium the reveal is read on.
+  const roomCode = new URL(bigScreen.url()).pathname.split('/').at(-1)
+  const wall = await consoleMachine.newPage()
+
+  await wall.goto(`/wall/${roomCode}`)
+  await expect(host.startGame).toBeEnabled()
   await host.startGame.click()
 
   const zoe = playerScreen(firstScreen)
@@ -69,6 +79,15 @@ test('[e2e] two players type over the same clip, and the reveal says what they s
 
   // Nobody found anything, so nothing closes this round by itself.
   await host.reveal.click()
+
+  // On the podium the press that goes on leaves the round for the card naming
+  // the next one, and the players' column ranks the room in the standings'
+  // place.
+  await expect(host.nextRoundCard).toContainText('Round 2: Blind test')
+  await expect(
+    host.nextRoundCard.getByRole('button', { exact: true, name: 'Next round' })
+  ).toBeVisible()
+  await expect(host.standings).toHaveCount(0)
 
   // Their latest miss, not their first: a name on the reveal with nothing
   // beside it reads as a bug rather than as a player who tried.
