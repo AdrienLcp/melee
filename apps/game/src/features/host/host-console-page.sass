@@ -804,7 +804,7 @@
       grid-template-areas: 'chrome' 'notice' 'round'
       grid-template-rows: auto auto minmax(0, 1fr)
 
-      @media (aspect-ratio >= 13 / 10)
+      @include framed.lying-down
         grid-template-areas: 'chrome choices' 'notice choices' 'card choices' 'status choices'
         grid-template-rows: auto auto minmax(0, 1fr) auto
 

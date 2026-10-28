@@ -1,3 +1,4 @@
+@use '../../presentation/styles/framed'
 @use '../../presentation/styles/question-card'
 @use '../../presentation/styles/typography'
 
@@ -68,6 +69,11 @@
       grid-template-rows: repeat(4, 1fr)
 
     @media (width >= 35rem) and (aspect-ratio <= 13 / 10)
+      &:not(.framed-box *, [data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
+        grid-template-columns: 1fr 1fr
+        grid-template-rows: repeat(2, minmax(min-content, 1fr))
+
+    @container framed-box (width >= 35rem) and (aspect-ratio <= 13 / 10)
       &:not([data-long-choices]) :is(.answer-form.choices ul, .printed-choices)
         grid-template-columns: 1fr 1fr
         grid-template-rows: repeat(2, minmax(min-content, 1fr))
@@ -75,7 +81,7 @@
     // Lying down: the question beside the tiles, placed by the page's grid.
     // Sized from the box's height first, because that is the side that runs
     // out.
-    @media (aspect-ratio >= 13 / 10)
+    @include framed.lying-down
       --question-k: min(31cqi, 66cqh)
       --question-cap: min(3.6cqi, 7.4cqh)
       --choice-k: min(15cqi, 32cqh)

@@ -1,3 +1,4 @@
+@use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/question-card'
@@ -552,7 +553,7 @@
     grid-template: 'card' auto 'press' minmax(0, 1fr) / minmax(0, 1fr)
     min-height: 0
 
-    @media (aspect-ratio >= 13 / 10)
+    @include framed.lying-down
       --question-k: min(31cqi, 66cqh)
       --question-cap: min(3.6cqi, 7.4cqh)
 

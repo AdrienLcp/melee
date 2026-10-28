@@ -594,6 +594,11 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   spec now fails a row whose contents run past its sides.
 - `scrollWidth` never rises for text overflowing an `overflow: visible` box; a
   spill check must read the text element (`.nickname`) as well as its row.
+- A framed page decides it is lying down by `framed.lying-down`, never a bare
+  `aspect-ratio` media query: in the podium the window lies down while the
+  card in its middle column stands up (1024 and 1440 both), and the tiles ran
+  under the chrome. The podium wraps the seated round in `.framed-box`, a size
+  container the mixin queries instead.
 
 ## Elevation & Depth
 

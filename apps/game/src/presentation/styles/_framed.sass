@@ -4,6 +4,18 @@
 @use 'question-card'
 @use 'typography'
 
+/// Lying down: wider than 13 to 10. A page of its own reads the window; a page
+/// set inside a box declared `container: framed-box / size` — the round on the
+/// host's podium — reads that box, because there a laptop lying down holds a
+/// card standing up.
+@mixin lying-down
+  @media (aspect-ratio >= 13 / 10)
+    &:not(.framed-box *)
+      @content
+
+  @container framed-box (aspect-ratio >= 13 / 10)
+    @content
+
 /// A screen held to the viewport: the page does not scroll, the type fits the
 /// box, and the box never grows to fit the type. A player choosing and a seated
 /// host choosing are the same screen, so both pages include this on their root.
@@ -50,12 +62,12 @@
   // whole height of their column: on a phone held sideways the chrome's row
   // was a fifth of the screen, and it is the tiles that run out of it. The
   // round dissolves into this grid so its card and its tiles can be placed
-  // apart. A media query rather than the container's, because this box is
-  // the one the container is.
+  // apart. Never this box's own query, because this box is the one the
+  // container is.
   //
   // A buzzer with no question has nothing to set beside it, and keeps the one
   // column.
-  @media (aspect-ratio >= 13 / 10)
+  @include lying-down
     &:has(> .choosing-round, > .buzzer-area .asked-question)
       column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2.4), var(--space-m))
       grid-template: 'chrome choices' auto 'card choices' minmax(0, 1fr) 'status choices' auto / minmax(0, 0.82fr) minmax(0, 1.18fr)
@@ -76,13 +88,17 @@
   > .round-chrome
     grid-area: chrome
 
-    // Lying down, the menu has moved to the line's start, over the question,
-    // and the column can be narrower than the line: the score wraps under the
-    // round, in the height the question's column has to spare.
-    @media (aspect-ratio >= 13 / 10)
+    // Lying down, the column can be narrower than the line: the score wraps
+    // under the round, in the height the question's column has to spare.
+    @include lying-down
       flex-wrap: wrap
-      padding-inline: calc(var(--menu-width, 3.5rem) + var(--space-xs)) 0
       row-gap: var(--space-2xs)
+
+    // And the menu has moved to the line's start, over the question — on a
+    // page of its own only, since a boxed page's menu stays in its bar.
+    @media (aspect-ratio >= 13 / 10)
+      &:not(.framed-box *)
+        padding-inline: calc(var(--menu-width, 3.5rem) + var(--space-xs)) 0
 
   // The round's sand: a strip draining along the top of the question card,
   // laid over the card's own area so it moves with whatever the ratio does

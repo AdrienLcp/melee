@@ -781,8 +781,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                 </footer>
               </div>
             ) : (
-              <div className='host-console-page framed podium-round'>
-                {seatedRound}
+              <div className='framed-box'>
+                <div className='host-console-page framed podium-round'>
+                  {seatedRound}
+                </div>
               </div>
             )
           }
