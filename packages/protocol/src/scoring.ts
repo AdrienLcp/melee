@@ -164,6 +164,17 @@ export const cellsVerdictSchema = z.object({
   kind: z.literal('cells')
 })
 
+/**
+ * How far a rebuilt colour is from the one shown, as the Euclidean distance
+ * between the two in OKLab: about `0.02` is the smallest gap an eye sees, and
+ * black to white is `1`. `@melee/core/swatch/colour-pay` prices it. The server
+ * measures it; no screen ever sends one.
+ */
+export const colourVerdictSchema = z.object({
+  distance: z.number().nonnegative(),
+  kind: z.literal('colour')
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -194,4 +205,5 @@ export type DistanceVerdict = z.infer<typeof distanceVerdictSchema>
 export type OrderVerdict = z.infer<typeof orderVerdictSchema>
 export type MoveVerdict = z.infer<typeof moveVerdictSchema>
 export type CellsVerdict = z.infer<typeof cellsVerdictSchema>
+export type ColourVerdict = z.infer<typeof colourVerdictSchema>
 export type Award = z.infer<typeof awardSchema>
