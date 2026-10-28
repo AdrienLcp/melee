@@ -2,6 +2,11 @@
 @use '../styles/typography'
 
 @layer components
+  // A fixed overlay cannot paint over the gutter `html` reserves for its
+  // scrollbar, and the page under the scrim does not scroll anyway.
+  html:has(.sheet-overlay)
+    scrollbar-gutter: auto
+
   .sheet-overlay
     background: var(--scrim)
     display: flex

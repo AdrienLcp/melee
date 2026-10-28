@@ -561,6 +561,16 @@ the stage, so a folded panel or another tab never hides what the room waits on.
 
 ### Measured traps
 
+- On the podium (a wall connected) the round on now is a paper card read at
+  arm's length: `--stage-unit` is `0.6vmin` inside it and the card is
+  `clamp(24rem, 100dvh - 16rem, 34rem)` tall, so the running order shows under
+  it at 1440×900. At `1vmin` and the column's height, the buzzer's pawn and
+  the verdicts were drawn for four metres. The `--space-stage-*` role tokens
+  are redeclared there, because they freeze on `:root`.
+- A podium column is `position: relative`: react-aria's visually hidden
+  inputs inside it otherwise took the viewport as containing block, grew
+  `html` to 1347px at 900, and focusing one scrolled the bar under the menu.
+
 - The console's phase rules (`.host-console-page:has(> .stage.…)`) set the
   page's `display` at a weight no single class outranks, so the narrow panel
   hides the stage behind a tab by its id (`#main`).

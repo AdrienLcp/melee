@@ -20,17 +20,49 @@
       max-width: none
       padding: 0rem
 
+      // Its height clears the corner menu on a page of its own; here the
+      // menu sits in the bar, and an empty lobby header left a band.
+      > header
+        min-height: 0rem
+        padding-inline-end: 0rem
+
       // The lobby's stage is a form and a launch, no taller than they are.
       &:has(> .stage.lobby)
         display: flex
         flex-direction: column
         gap: var(--space-m)
 
-      // Every other stage is laid out against the box it is given, so the
-      // round on now is given the column's height and the order runs on
-      // under it.
+      // Every other stage is laid out against the box it is given: a card
+      // short enough that the round after it shows beneath, its stage drawn
+      // for one reader at arm's length rather than for the room. The role
+      // tokens freeze on `:root`, so they are declared again over the
+      // smaller unit.
       &:not(:has(> .stage.lobby))
-        height: max(28rem, calc(100dvh - 9rem))
+        @include box-lid.paper
+
+        --stage-unit: 0.6vmin
+        --space-stage-split: clamp(var(--space-m), calc(var(--stage-unit) * 5), var(--space-xl))
+        --space-stage-rows: clamp(var(--space-xs), calc(var(--stage-unit) * 2), var(--space-m))
+        --space-framed: clamp(var(--space-xs), calc(var(--stage-unit) * 1.6), var(--space-s))
+
+        border-radius: var(--radius-l)
+        box-shadow: var(--shadow-piece)
+        height: clamp(24rem, calc(100dvh - 16rem), 34rem)
+        padding: var(--space-m) var(--space-l)
+
+        > header .round-index
+          @include typography.title
+
+          color: var(--ink)
+          font-size: var(--text-xl)
+
+        // Read at arm's length by the one who judges, the four verdicts need
+        // no colour to be told apart: the right answer keeps its green, and
+        // the halves are plain pieces rather than three primaries in a row.
+        .verdict-panel .choice.half
+          --on-control: var(--board-ink)
+          --primary: var(--track-a)
+          --primary-edge: var(--chipboard)
 
 
   // In the right-hand column, or in the sheet a narrow screen opens, which
@@ -141,6 +173,10 @@
       overflow: hidden auto
       overscroll-behavior: contain
       padding: var(--space-l) var(--space-s)
+      // react-aria's hidden inputs are positioned: without a containing block
+      // here they hang below the page, and focusing one scrolled the whole
+      // podium, bar and all, up under the menu.
+      position: relative
 
     .podium-players,
     .podium-settings
