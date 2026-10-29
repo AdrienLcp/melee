@@ -20,6 +20,14 @@
       text-wrap: balance
 
     .presses
-      display: grid
+      display: flex
+      flex-wrap: wrap
       gap: var(--space-xs)
-      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr)
+
+      // Each press starts at its own label's width, so neither is squeezed
+      // under it, and the send press is given the most of what is left.
+      > *
+        flex: 1 1 auto
+
+      > :last-child
+        flex-grow: 2
