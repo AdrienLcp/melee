@@ -1528,7 +1528,11 @@ for (const screen of PLAYER_PAGE_SCREENS) {
   })
 }
 
-test('[layout] player, the reveal of a full table: never scrolls', async ({
+/**
+ * A board too tall for a short screen scrolls the page rather than clipping the
+ * last of the standings, but only once every row has shrunk to its floor.
+ */
+test('[layout] player, the reveal of a full table: scrolls only at the floor, never clips a row', async ({
   page
 }) => {
   await serveRoom({ page, view: fullTableReveal })
@@ -1541,14 +1545,49 @@ test('[layout] player, the reveal of a full table: never scrolls', async ({
   for (const [width, height] of VIEWPORTS) {
     await resizeTo({ height, page, width })
 
-    const overflow = await page.evaluate(() => {
+    const board = await page.evaluate(() => {
       const root = document.scrollingElement ?? document.documentElement
+      const list = document.querySelector<HTMLElement>('.round-board')
+      const rows = [
+        ...document.querySelectorAll<HTMLElement>('.round-board li')
+      ]
 
-      return root.scrollHeight - innerHeight
+      if (list === null) {
+        return { aboveFloor: [], clipped: ['no board'], overflow: 0 }
+      }
+
+      const probe = document.createElement('li')
+      probe.style.fontSize = 'var(--text-xs)'
+      list.append(probe)
+      const floor = Number.parseFloat(getComputedStyle(probe).fontSize)
+      probe.remove()
+
+      const listBox = list.getBoundingClientRect()
+
+      return {
+        aboveFloor: rows
+          .map((row) => Number.parseFloat(getComputedStyle(row).fontSize))
+          .filter((size) => size > floor + 0.5),
+        clipped: rows
+          .filter(
+            (row) => row.getBoundingClientRect().bottom > listBox.bottom + 0.5
+          )
+          .map(
+            (row) =>
+              `${row.textContent} ${Math.round(row.getBoundingClientRect().bottom - listBox.bottom)}px under the board`
+          ),
+        overflow: root.scrollHeight - innerHeight
+      }
     })
 
-    if (overflow > 0) {
-      faults.push(`${width}×${height} ${overflow}px`)
+    if (board.clipped.length > 0) {
+      faults.push(`${width}×${height} clips ${JSON.stringify(board.clipped)}`)
+    }
+
+    if (board.overflow > 0 && board.aboveFloor.length > 0) {
+      faults.push(
+        `${width}×${height} scrolls ${board.overflow}px above the floor`
+      )
     }
   }
 
