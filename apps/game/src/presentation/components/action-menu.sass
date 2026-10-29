@@ -62,7 +62,9 @@
 
     &[data-focused],
     &[data-hovered]
-      background: var(--card-well)
+      // The leaflet's own ink over its ground: paper's well under the board's
+      // ink was white on cream in the dark palette.
+      background: color-mix(in oklab, var(--ink) 12%, var(--field))
 
     &[data-focus-visible]
       @include focus.ring-inset
