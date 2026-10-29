@@ -3,6 +3,7 @@ import type { Locale } from '@melee/protocol/locale'
 import type { RoomSettings } from '@melee/protocol/room'
 
 import { capabilitiesOf } from './game-capabilities'
+import { dealsOf } from './line-up-deals'
 import { isPlayedOut } from './next-game'
 import { type GameSetup, movedToEntry } from './room-settings'
 import { remappedOrder, scheduledEntryAt } from './running-order'
@@ -119,6 +120,10 @@ export const withEntrySkipped = ({
   }
 
   const rest = withoutIndex(lineUp, lineUpAt)
+  const lineUpDeals = withoutIndex(
+    dealsOf({ deals: settings.lineUpDeals, lineUp }),
+    lineUpAt
+  )
   const shiftedLastAt =
     lastAt === null || lastAt === lineUpAt
       ? null
@@ -131,6 +136,7 @@ export const withEntrySkipped = ({
     order: settings.runningOrder
   })
   const drawn = scheduledEntryAt({
+    deals: lineUpDeals,
     lastAt: shiftedLastAt,
     lineUp: rest,
     order: runningOrder,
@@ -152,7 +158,7 @@ export const withEntrySkipped = ({
       at: drawn,
       locale,
       remembered: rememberedFor(landing.kind),
-      settings: { ...settings, lineUp: rest, runningOrder }
+      settings: { ...settings, lineUp: rest, lineUpDeals, runningOrder }
     }),
     autoAdvanceMs: settings.autoAdvanceMs,
     roundCount: settings.roundCount

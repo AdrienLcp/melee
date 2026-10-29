@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { DEFAULT_GAME_SETTINGS } from '@melee/protocol/game'
-import type { RoomSettings } from '@melee/protocol/room'
+import type { LineUpDeal, RoomSettings } from '@melee/protocol/room'
 
 import {
   comingRounds,
@@ -20,12 +20,14 @@ const lineUp = [
 const ROLLS = [0, 0.34, 0.5, 0.67, 0.99]
 
 const drawnAt = ({
+  deals = [],
   lastAt = null,
   order,
   played = lineUp.map(() => 0),
   roll = 0,
   roundAt
 }: {
+  deals?: readonly LineUpDeal[]
   lastAt?: number | null
   order: RoomSettings['runningOrder']
   played?: readonly number[]
@@ -33,6 +35,7 @@ const drawnAt = ({
   roundAt: number
 }) =>
   scheduledEntryAt({
+    deals,
     lastAt,
     lineUp,
     order,
@@ -56,6 +59,43 @@ describe('scheduledEntryAt', () => {
     for (const roll of ROLLS) {
       expect([0, 2]).toContain(drawnAt({ order: [null], roll, roundAt: 0 }))
     }
+  })
+
+  it('[chance-pool] draws past the rows among the entries the host put in the draw', () => {
+    for (const roll of ROLLS) {
+      expect(
+        drawnAt({
+          deals: ['row', 'row', 'chance'],
+          order: [null],
+          roll,
+          roundAt: 0
+        })
+      ).toBe(2)
+    }
+  })
+
+  it('[chance-pool] never draws an entry kept to its row, though it serves its own content', () => {
+    for (const roll of ROLLS) {
+      expect(drawnAt({ deals: ['row'], order: [null], roll, roundAt: 0 })).toBe(
+        2
+      )
+    }
+  })
+
+  it('[chance-pool] draws from every entry when the draw holds none', () => {
+    const everyRow: LineUpDeal[] = ['row', 'row', 'row', 'row']
+
+    expect(
+      ROLLS.map((roll) =>
+        drawnAt({ deals: everyRow, order: [null], roll, roundAt: 0 })
+      )
+    ).not.toContain(null)
+  })
+
+  it('[chance-pool] passes over a row whose entry is in the draw alone', () => {
+    expect(
+      drawnAt({ deals: ['both', 'row', 'chance'], order: [2, 1], roundAt: 0 })
+    ).toBe(1)
   })
 
   it('[running-order] draws every round past the order’s end', () => {
@@ -85,12 +125,14 @@ describe('scheduledEntryAt', () => {
 
 describe('dealtOrder', () => {
   const dealt = ({
+    deals = [],
     drawnAt = null,
     order = [],
     played = lineUp.map(() => 0),
     roll,
     upcoming = 0
   }: {
+    deals?: readonly LineUpDeal[]
     drawnAt?: number | null
     order?: RoomSettings['runningOrder']
     played?: readonly number[]
@@ -98,6 +140,7 @@ describe('dealtOrder', () => {
     upcoming?: number
   }) =>
     dealtOrder({
+      deals,
       drawnAt,
       lineUp,
       order,
@@ -155,9 +198,31 @@ describe('dealtOrder', () => {
     ).toEqual([0, 1, 2, 3])
   })
 
+  it('[chance-pool] gives no row to an entry in the draw alone', () => {
+    for (const roll of ROLLS) {
+      expect(
+        dealt({ deals: ['both', 'row', 'chance'], drawnAt: 0, roll }).toSorted()
+      ).toEqual([0, 1, 3])
+    }
+  })
+
+  it('[chance-pool] keeps the round about to open on an entry drawn from the draw alone', () => {
+    for (const roll of ROLLS) {
+      const order = dealt({
+        deals: ['both', 'row', 'chance'],
+        drawnAt: 2,
+        order: [2, 1, 0, 3],
+        roll
+      })
+
+      expect(order).toEqual([2, 1, 0, 3])
+    }
+  })
+
   it('[running-order] holds nothing for a single entry', () => {
     expect(
       dealtOrder({
+        deals: [],
         drawnAt: 0,
         lineUp: [DEFAULT_GAME_SETTINGS.quiz],
         order: [0, 0],

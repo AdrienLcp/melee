@@ -1,8 +1,13 @@
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
-import { LINE_UP_MAX_ENTRIES, type RoomSettings } from '@melee/protocol/room'
+import {
+  LINE_UP_MAX_ENTRIES,
+  type LineUpDeal,
+  type RoomSettings
+} from '@melee/protocol/room'
 
 import { isPlayableAloud } from './game-capabilities'
+import { dealsHold, dealsOf, defaultDealOf } from './line-up-deals'
 import {
   type GameSetup,
   movedToEntry,
@@ -23,15 +28,21 @@ import { orderHolds, orderWithEntryAdded, remappedOrder } from './running-order'
  * points at entries of the line-up and nowhere else.
  */
 export const lineUpHolds = (settings: RoomSettings): boolean => {
-  const { game, lineUp, lineUpAt, runningOrder, teams } = settings
+  const { game, lineUp, lineUpAt, lineUpDeals, runningOrder, teams } = settings
 
   if (game === null) {
-    return lineUp.length === 0 && lineUpAt === null && runningOrder.length === 0
+    return (
+      lineUp.length === 0 &&
+      lineUpAt === null &&
+      lineUpDeals.length === 0 &&
+      runningOrder.length === 0
+    )
   }
 
   return (
     lineUpAt !== null &&
     orderHolds({ lineUp, order: runningOrder }) &&
+    dealsHold({ deals: lineUpDeals, lineUp }) &&
     lineUp[lineUpAt]?.kind === game.kind &&
     lineUp.every((entry) => isPlayableAloud({ game: entry.kind, teams }))
   )
@@ -102,13 +113,19 @@ export const toggledInLineUp = ({
  * was: adding a round to the evening is not choosing it, and the evening
  * plays it last. A room still deciding picks the game instead, and a
  * full line-up is left as it is.
+ *
+ * An entry dealt to the draw alone gets no row; one whose game may not be
+ * drawn is dealt its row whatever `deal` says.
  */
 export const withEntryAdded = ({
+  deal,
   game,
   locale,
   remembered,
   settings
 }: {
+  /** What the entry is dealt to; its game's default (`defaultDealOf`) when absent. */
+  deal?: LineUpDeal
   game: GameKind
   locale: Locale
   /** What this host last left `game` set to, or `null` if they never have. */
@@ -124,20 +141,32 @@ export const withEntryAdded = ({
   }
 
   const joining = (remembered ?? openedSetup({ game, locale })).game
+  const lineUp = [...settings.lineUp, joining]
+  const askedDeals = [
+    ...dealsOf({ deals: settings.lineUpDeals, lineUp: settings.lineUp }),
+    deal ?? defaultDealOf(joining)
+  ]
+  const lineUpDeals = dealsHold({ deals: askedDeals, lineUp })
+    ? askedDeals
+    : askedDeals.with(-1, 'row')
 
   return {
     ...settings,
-    lineUp: [...settings.lineUp, joining],
-    runningOrder: orderWithEntryAdded({
-      at: settings.lineUp.length,
-      order: settings.runningOrder
-    })
+    lineUp,
+    lineUpDeals,
+    runningOrder:
+      lineUpDeals.at(-1) === 'chance'
+        ? settings.runningOrder
+        : orderWithEntryAdded({
+            at: settings.lineUp.length,
+            order: settings.runningOrder
+          })
   }
 }
 
 /**
- * The settings with a copy of the line-up's entry `at`, set exactly as it is,
- * planned on the row after its own still to come, or last when it has none.
+ * The settings with a copy of the line-up's entry `at`, set and dealt exactly
+ * as it is, planned on the row after its own still to come, or last when it has none.
  * Copying the entry is what adding its game cannot do: the host's setup is
  * remembered once per game, so a second quiz added from the shelf joins on
  * whichever quiz was set last rather than the one being copied. A full
@@ -164,10 +193,15 @@ export const withEntryDuplicated = ({
   const ownRow = followed.runningOrder.findIndex(
     (row, index) => index >= upcoming && row === at
   )
+  const deals = dealsOf({
+    deals: followed.lineUpDeals,
+    lineUp: followed.lineUp
+  })
 
   return {
     ...followed,
     lineUp: [...followed.lineUp, entry],
+    lineUpDeals: [...deals, deals[at] ?? defaultDealOf(entry)],
     runningOrder:
       ownRow === -1
         ? orderWithEntryAdded({ at: copyAt, order: followed.runningOrder })
@@ -219,6 +253,8 @@ const withoutEntries = ({
   }
 
   const rest = kept.map(({ entry }) => entry)
+  const deals = dealsOf({ deals: settings.lineUpDeals, lineUp })
+  const lineUpDeals = kept.map(({ index }) => deals[index] ?? 'row')
   const indexAfter = (index: number) => {
     const at = kept.findIndex((candidate) => candidate.index === index)
 
@@ -231,7 +267,13 @@ const withoutEntries = ({
   const stillAt = lineUpAt === null ? null : indexAfter(lineUpAt)
 
   if (stillAt !== null) {
-    return { ...settings, lineUp: rest, lineUpAt: stillAt, runningOrder }
+    return {
+      ...settings,
+      lineUp: rest,
+      lineUpAt: stillAt,
+      lineUpDeals,
+      runningOrder
+    }
   }
 
   const after = kept.findIndex(
@@ -246,7 +288,7 @@ const withoutEntries = ({
         at,
         locale,
         remembered: rememberedFor(landing.kind),
-        settings: { ...settings, lineUp: rest, runningOrder }
+        settings: { ...settings, lineUp: rest, lineUpDeals, runningOrder }
       })
 }
 

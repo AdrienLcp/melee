@@ -4,6 +4,7 @@ import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
   DEFAULT_CHALLENGE_SETTINGS,
+  DEFAULT_QUIZ_SETTINGS,
   type GameSettings
 } from '@melee/protocol/game'
 import { createRoomResponseSchema } from '@melee/protocol/http'
@@ -27,6 +28,12 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
   const { deezerClientStub } = await import('./room-harness')
 
   return deezerClientStub()
+})
+
+vi.mock('@/infrastructure/questions/question-bank', async () => {
+  const { questionBankStub } = await import('./room-harness')
+
+  return questionBankStub()
 })
 
 const EVENING: RoomSettings = {
@@ -272,6 +279,65 @@ describe('an evening of several games', () => {
     await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
 
     expect(hostView(host)?.round).toBeNull()
+  })
+
+  it('[chance-pool] plays an entry in the draw alone, never giving it a row', async () => {
+    const pooled: RoomSettings = {
+      ...FAST_GAME,
+      game: DEFAULT_BUZZER_SETTINGS,
+      lineUp: [DEFAULT_BUZZER_SETTINGS, DEFAULT_QUIZ_SETTINGS],
+      lineUpAt: 0,
+      lineUpDeals: ['row', 'chance'],
+      roundCount: 6
+    }
+    const { code, host } = await harness.openRoom(pooled)
+    await harness.seat({ code, nickname: 'Anna' })
+
+    expect(hostView(host)?.settings.runningOrder).toEqual([0])
+    expect(hostView(host)?.settings.lineUpDeals).toEqual(['row', 'chance'])
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the buzzer')
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'its reveal')
+    host.send({
+      settings: {
+        ...(hostView(host)?.settings ?? pooled),
+        game: DEFAULT_QUIZ_SETTINGS,
+        lineUpAt: 1
+      },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => hostView(host)?.settings.lineUpAt === 1, 'the draw')
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () => hostView(host)?.round?.content.kind === 'quiz',
+      'the quiz drawn'
+    )
+    await waitFor(() => hostView(host)?.phase === 'playing', 'its question')
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'its reveal')
+    host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () => hostView(host)?.round?.index === 3,
+      'another round of the draw'
+    )
+
+    expect(hostView(host)?.phase).not.toBe('finished')
+    expect(hostView(host)?.settings.runningOrder).toEqual([0, 1])
+  })
+
+  it('[chance-pool] refuses a game the host brings in the draw', async () => {
+    const { host } = await harness.openRoom(EVENING)
+
+    host.send({
+      settings: { ...EVENING, lineUpDeals: ['both', 'chance'] },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => errorsIn(host).length > 0, 'the refusal')
+
+    expect(errorsIn(host)[0]?.code).toBe('invalid_message')
+    expect(hostView(host)?.settings.lineUpDeals).toEqual(['both', 'row'])
   })
 
   it('[ready] shows a seat back at the table to every screen, until the round opens', async () => {

@@ -210,10 +210,22 @@ describe('readStoredSavedEvenings', () => {
 
   const gameNight = {
     lineUp: [DEFAULT_QUIZ_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
+    lineUpDeals: ['chance', 'both'],
     name: 'Game night',
     roundCount: 8,
     runningOrder: [1, 0]
   }
+
+  it('[chance-pool] reads an evening kept before the draw was chosen as every entry on its default', () => {
+    const { lineUpDeals: _dropped, ...older } = gameNight
+
+    store.set(SAVED_EVENINGS_KEY, JSON.stringify([older]))
+
+    expect(readStoredSavedEvenings()).toEqual({
+      data: [{ ...older, lineUpDeals: [] }],
+      status: 'success'
+    })
+  })
 
   it('[saved-evening] keeps none before any evening was saved', () => {
     expect(readStoredSavedEvenings()).toEqual({ data: [], status: 'success' })
@@ -261,7 +273,7 @@ describe('readStoredSavedEvenings', () => {
     )
 
     expect(readStoredSavedEvenings()).toEqual({
-      data: [{ ...gameNight, runningOrder: [] }],
+      data: [{ ...gameNight, lineUpDeals: [], runningOrder: [] }],
       status: 'success'
     })
   })

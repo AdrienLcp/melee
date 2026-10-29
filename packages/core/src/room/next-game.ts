@@ -18,12 +18,15 @@ import { capabilitiesOf } from './game-capabilities'
  * entry was the host's and is played.
  */
 export const nextEntryAt = ({
+  isDrawable = () => true,
   lastAt,
   lineUp,
   played,
   random,
   roundsLeft
 }: {
+  /** Whether the entry at an index may be drawn at all; every entry when absent. */
+  isDrawable?: (at: number) => boolean
   /** The entry the round just played was opened from, or `null` before the first. */
   lastAt: number | null
   lineUp: readonly GameSettings[]
@@ -37,7 +40,7 @@ export const nextEntryAt = ({
   const timesPlayed = (index: number) => played[index] ?? 0
   const lastKind = lastAt === null ? null : lineUp[lastAt]?.kind
 
-  const inDeck = entriesInDeck({ lineUp, played })
+  const inDeck = entriesInDeck({ lineUp, played }).filter(isDrawable)
   const owed = inDeck.filter((index) => timesPlayed(index) === 0)
   const due = roundsLeft !== null && roundsLeft <= owed.length ? owed : inDeck
 

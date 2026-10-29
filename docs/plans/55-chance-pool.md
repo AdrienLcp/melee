@@ -40,6 +40,26 @@ Why not a second list of `GameSettings`: `lineUpAt`, `lineUpPlayed`,
 `playedPerEntry` and the "write `game` back into its entry" rule all index
 `lineUp`; a second list would need a second index on every one of them.
 
+## Where it stands
+
+Steps 1, 2 and 4 landed 29/10/2026: `@melee/core/room/line-up-deals.ts` holds
+the default, `dealsHold` and `withEntryDealt`; `nextEntryAt` takes an
+`isDrawable` filter, so the draw keeps its "another game first" rule against
+the round just played whatever pool it draws from. Three departures from the
+model above:
+
+- The default is not a Zod `.default` resolved against `lineUp`: the field
+  defaults to `[]`, and a missing index reads as its entry's default through
+  `dealsOf`. The server writes the full array back on every frame.
+- A game the host brings is refused `both` as well as `chance`, so the rule is
+  one sentence: only a game serving its own content is drawn.
+- `dealtOrder` keeps the round about to open on a `chance` entry when the host
+  or the draw put it there; dropping that row would shift every planned row
+  after it by one.
+
+`docs/game-catalogue.md` names no draw rule, so CLAUDE.md's line-up paragraph
+is where the pool is said. Step 3, the console, is what is left.
+
 ## Steps
 
 1. **Core + protocol**, with tests broken once: the field, its default, the
@@ -56,3 +76,11 @@ Why not a second list of `GameSettings`: `lineUpAt`, `lineUpPlayed`,
    Verified muted in a browser with a pool-only quiz drawn on round 3.
 4. Saved evenings carry the field; `docs/game-catalogue.md` and the CLAUDE.md
    line-up paragraph say what the pool is.
+5. **Overwrite a saved evening** (asked 29/10/2026): updating one today means
+   deleting it and saving again. `withEveningSaved` in
+   `packages/core/src/room/saved-evening.ts` already replaces an evening of
+   the same name in place, so the gap is the console's
+   (`features/host/use-saved-evenings.ts` and its form): an evening loaded
+   from the list, then changed, offers *Save over "<name>"* beside saving
+   under a new name, and typing a name already kept says it will replace it
+   rather than adding a twin. Done with step 3, `impeccable` first.

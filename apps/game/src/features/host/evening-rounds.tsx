@@ -16,12 +16,12 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
-import { capabilitiesOf } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
 import { withEntryDuplicated, withoutEntry } from '@melee/core/room/line-up'
+import { dealsOf, isInTheDraw } from '@melee/core/room/line-up-deals'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import type { ComingRound } from '@melee/core/room/running-order'
@@ -59,14 +59,20 @@ const roundCountHolding = (needed: number): number =>
   ROUND_COUNT_STEPS.find((step) => step >= needed) ??
   Math.min(needed, ROUND_COUNT_MAX)
 
-/** The games the rounds past the evening's rows are drawn among: those serving their own content, or every one when none does. */
-const fillersOf = (lineUp: readonly GameSettings[]): GameKind[] => {
-  const games = [...new Set(lineUp.map((entry) => entry.kind))]
-  const serving = games.filter(
-    (game) => capabilitiesOf(game).servesItsOwnContent
-  )
+/** The games the rounds past the evening's rows are drawn among: those the host put in the draw, or every one when none is. */
+const fillersOf = (settings: RoomSettings): GameKind[] => {
+  const deals = dealsOf({
+    deals: settings.lineUpDeals,
+    lineUp: settings.lineUp
+  })
+  const games = (isDrawn: (at: number) => boolean) => [
+    ...new Set(
+      settings.lineUp.flatMap((entry, at) => (isDrawn(at) ? [entry.kind] : []))
+    )
+  ]
+  const drawn = games((at) => isInTheDraw(deals[at]))
 
-  return serving.length > 0 ? serving : games
+  return drawn.length > 0 ? drawn : games(() => true)
 }
 
 const spineOf = (game: GameKind): React.CSSProperties => ({
@@ -625,7 +631,7 @@ const DrawnRounds: React.FC<{
   }
 
   const among = translate('host.evening.chance.among', {
-    games: fillersOf(settings.lineUp)
+    games: fillersOf(settings)
       .map((game) => translate(gameNameKey(game)))
       .join(', ')
   })

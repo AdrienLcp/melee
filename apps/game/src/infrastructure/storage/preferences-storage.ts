@@ -363,6 +363,7 @@ const savedEntryOf = (stored: unknown): SavedEntry[] => {
 const savedEveningSchema = z
   .object({
     lineUp: z.array(z.unknown()),
+    lineUpDeals: roomSettingsSchema.shape.lineUpDeals.catch([]),
     name: z.string().trim().min(1).max(SAVED_EVENING_NAME_MAX_LENGTH),
     roundCount: roomSettingsSchema.shape.roundCount.catch(
       DEFAULT_ROOM_SETTINGS.roundCount
@@ -372,13 +373,15 @@ const savedEveningSchema = z
   .transform((stored): SavedEvening => {
     const lineUp = stored.lineUp.flatMap(savedEntryOf)
 
-    // An entry gone shifts every index after it, so the order no longer says
-    // what it said, and the room deals one instead.
+    // An entry gone shifts every index after it, so the order and the deals
+    // no longer say what they said, and the room deals both afresh.
+    const isAligned = lineUp.length === stored.lineUp.length
+
     return {
       ...stored,
       lineUp,
-      runningOrder:
-        lineUp.length === stored.lineUp.length ? stored.runningOrder : []
+      lineUpDeals: isAligned ? stored.lineUpDeals : [],
+      runningOrder: isAligned ? stored.runningOrder : []
     }
   })
 

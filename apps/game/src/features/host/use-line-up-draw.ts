@@ -69,6 +69,7 @@ export const useLineUpDraw = ({
     }
 
     const drawn = scheduledEntryAt({
+      deals: settings.lineUpDeals,
       lastAt: round.lineUpAt,
       lineUp: settings.lineUp,
       order: settings.runningOrder,

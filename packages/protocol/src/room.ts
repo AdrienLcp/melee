@@ -182,6 +182,14 @@ const lineUpAtSchema = z
   .max(LINE_UP_MAX_ENTRIES - 1)
   .nullable()
 
+/**
+ * What a line-up entry is dealt to: a planned row of the running order
+ * (`row`), the draw among the rounds past the last row (`chance`), or both.
+ */
+export const lineUpDealSchema = z.enum(['row', 'chance', 'both'])
+
+export type LineUpDeal = z.infer<typeof lineUpDealSchema>
+
 export const roomSettingsSchema = z.object({
   /**
    * How long a reveal stays on screen before the next round starts itself, or
@@ -233,6 +241,16 @@ export const roomSettingsSchema = z.object({
    * drawn again later opens on what it was last left at.
    */
   lineUpAt: lineUpAtSchema,
+  /**
+   * What each entry of `lineUp` is dealt to, by index and remapped with it on
+   * every edit, as `runningOrder` is. An index past its end reads as its
+   * entry's default (`dealOf`), so an old snapshot or a saved evening without
+   * it plays as it always did.
+   *
+   * Not a field of the game's settings: the same settings may sit in the draw
+   * and in a planned row, and the draw is the evening's, not the game's.
+   */
+  lineUpDeals: z.array(lineUpDealSchema).max(LINE_UP_MAX_ENTRIES).default([]),
   /** How a round is answered, and the settings only that mode has. */
   mode: modeSettingsSchema,
   /**
@@ -293,6 +311,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   game: null,
   lineUp: [],
   lineUpAt: null,
+  lineUpDeals: [],
   /**
    * Everyone plays every round, which is what a party wants: the buzzer gives
    * the floor to whoever is quickest and leaves the rest of the room watching.

@@ -33,6 +33,7 @@ const gameNight: SavedEvening = {
     FILM_SCORES,
     DEFAULT_GAME_SETTINGS.timeline
   ],
+  lineUpDeals: ['chance', 'both', 'both'],
   name: 'Game night',
   roundCount: 20,
   runningOrder: [1, 0, 2, 0]
@@ -81,6 +82,20 @@ describe('withSavedEvening', () => {
 
     expect(loaded.runningOrder).toEqual([])
     expect(loaded.lineUpAt).toBe(0)
+    expect(lineUpHolds(loaded)).toBe(true)
+  })
+
+  it('[chance-pool] runs the evening on what each entry was dealt to', () => {
+    expect(load(gameNight).lineUpDeals).toEqual(['chance', 'both', 'both'])
+  })
+
+  it('[chance-pool] deals every entry its default when the deals no longer hold', () => {
+    const loaded = load({
+      ...gameNight,
+      lineUpDeals: ['row', 'row', 'row', 'row']
+    })
+
+    expect(loaded.lineUpDeals).toEqual([])
     expect(lineUpHolds(loaded)).toBe(true)
   })
 

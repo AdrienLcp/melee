@@ -7,6 +7,7 @@ import {
 } from '@melee/protocol/room'
 
 import { fittedToAloud } from './line-up'
+import { dealsHold } from './line-up-deals'
 import { type GameSetup, movedToEntry, openedSetup } from './room-settings'
 import { orderHolds } from './running-order'
 
@@ -31,6 +32,8 @@ export type SavedEntry = GameSettings | GameKind
  */
 export type SavedEvening = {
   lineUp: SavedEntry[]
+  /** What each entry is dealt to; empty for every entry's default. */
+  lineUpDeals: RoomSettings['lineUpDeals']
   name: string
   roundCount: RoomSettings['roundCount']
   /** The order as the host left it; empty to have the room deal one. */
@@ -46,6 +49,7 @@ export const savedEveningOf = ({
   settings: RoomSettings
 }): SavedEvening => ({
   lineUp: settings.lineUp,
+  lineUpDeals: settings.lineUpDeals,
   name: name.trim().slice(0, SAVED_EVENING_NAME_MAX_LENGTH),
   roundCount: settings.roundCount,
   runningOrder: settings.runningOrder
@@ -145,6 +149,9 @@ export const withSavedEvening = ({
   const runningOrder = orderHolds({ lineUp, order: evening.runningOrder })
     ? evening.runningOrder.slice(0, RUNNING_ORDER_MAX_ROWS)
     : []
+  const lineUpDeals = dealsHold({ deals: evening.lineUpDeals, lineUp })
+    ? evening.lineUpDeals
+    : []
   const first =
     lineUp.length > 1 ? (runningOrder.find((row) => row !== null) ?? 0) : 0
   const firstEntry = lineUp[first]
@@ -160,6 +167,7 @@ export const withSavedEvening = ({
     settings: {
       ...settings,
       lineUp,
+      lineUpDeals,
       roundCount: evening.roundCount,
       runningOrder
     }

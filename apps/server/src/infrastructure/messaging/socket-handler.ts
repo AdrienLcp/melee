@@ -1770,7 +1770,7 @@ const reconfigure = (
       code: 'invalid_message',
       fatal: false,
       message:
-        'The game the next round is on must be the entry it was opened from'
+        'The line-up must hold the game, its running order and what each entry is dealt to'
     })
 
     return

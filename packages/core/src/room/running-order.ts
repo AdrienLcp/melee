@@ -1,7 +1,11 @@
 import type { GameSettings } from '@melee/protocol/game'
-import { type RoomSettings, RUNNING_ORDER_MAX_ROWS } from '@melee/protocol/room'
+import {
+  type LineUpDeal,
+  type RoomSettings,
+  RUNNING_ORDER_MAX_ROWS
+} from '@melee/protocol/room'
 
-import { capabilitiesOf } from './game-capabilities'
+import { dealsOf, isDealtARow, isInTheDraw } from './line-up-deals'
 import { isPlayedOut, nextEntryAt } from './next-game'
 
 type Order = RoomSettings['runningOrder']
@@ -11,11 +15,11 @@ type Order = RoomSettings['runningOrder']
  * evening still holds when that one's entry is gone or played out — the
  * planned games close up — or a draw past the order's end.
  *
- * Such a round is drawn among the entries that serve their own content, since
- * every entry the host brings has a row of its own further down; only an
- * evening with none of those draws from the rest.
+ * Such a round is drawn among the entries the host put in the draw
+ * (`lineUpDeals`); only an evening with none there draws from them all.
  */
 export const scheduledEntryAt = ({
+  deals,
   lastAt,
   lineUp,
   order,
@@ -24,6 +28,8 @@ export const scheduledEntryAt = ({
   roundAt,
   roundsLeft
 }: {
+  /** The settings' `lineUpDeals`. */
+  deals: readonly LineUpDeal[]
   /** As `nextEntryAt`'s. */
   lastAt: number | null
   lineUp: readonly GameSettings[]
@@ -37,25 +43,22 @@ export const scheduledEntryAt = ({
   /** As `nextEntryAt`'s. */
   roundsLeft: number | null
 }): number | null => {
-  const placed = order.slice(roundAt).find(isLeftToDeal({ lineUp, played }))
+  const placed = order
+    .slice(roundAt)
+    .find(isOwedItsRow({ deals, lineUp, played }))
 
   if (placed !== undefined) {
     return placed
   }
 
-  const withEveryHostEntryPlaced = played.map((times, index) => {
-    const entry = lineUp[index]
-
-    return entry === undefined || capabilitiesOf(entry.kind).servesItsOwnContent
-      ? times
-      : Math.max(times, 1)
-  })
+  const dealt = dealsOf({ deals, lineUp })
 
   return (
     nextEntryAt({
+      isDrawable: (at) => isInTheDraw(dealt[at]),
       lastAt,
       lineUp,
-      played: withEveryHostEntryPlaced,
+      played,
       random,
       roundsLeft: null
     }) ?? nextEntryAt({ lastAt, lineUp, played, random, roundsLeft })
@@ -99,7 +102,7 @@ export const orderWithEntryAdded = ({
 /**
  * The order the evening plays: one row per entry still to come, the host's
  * rows first in the host's order, then every entry never played and given no
- * row yet, dealt by `nextEntryAt`'s rule — another game before another entry
+ * row yet — save one the host put in the draw alone — dealt by `nextEntryAt`'s rule — another game before another entry
  * of the same one. A row the evening no longer holds — an entry taken out or
  * played out, a second row for one entry — is dropped, and the list closes
  * up. The round about to open is `drawnAt`'s when it is settled. Every round
@@ -109,6 +112,7 @@ export const orderWithEntryAdded = ({
  * Empty for a single entry, which plays every round.
  */
 export const dealtOrder = ({
+  deals,
   drawnAt,
   lineUp,
   order,
@@ -116,6 +120,8 @@ export const dealtOrder = ({
   random,
   upcoming
 }: {
+  /** The settings' `lineUpDeals`. */
+  deals: readonly LineUpDeal[]
   /** The entry the round about to open is on, or `null` while it is not settled. */
   drawnAt: number | null
   lineUp: readonly GameSettings[]
@@ -135,15 +141,20 @@ export const dealtOrder = ({
     drawnAt === null
       ? order
       : orderWithEntryNext({ at: drawnAt, order, upcoming })
-  const isLive = isLeftToDeal({ lineUp, played })
+  const isOwed = isOwedItsRow({ deals, lineUp, played })
+  const isDrawnHere = (row: number | null, index: number) =>
+    index === 0 && drawnAt !== null && row === drawnAt
   const kept = placed
     .slice(upcoming)
     .filter(
       (row, index, rows): row is number =>
-        isLive(row) && rows.indexOf(row) === index
+        (isDrawnHere(row, index) || isOwed(row)) && rows.indexOf(row) === index
     )
+  const dealt = dealsOf({ deals, lineUp })
   const owed = lineUp.flatMap((_entry, at) =>
-    (played[at] ?? 0) === 0 && !kept.includes(at) ? [at] : []
+    (played[at] ?? 0) === 0 && isDealtARow(dealt[at]) && !kept.includes(at)
+      ? [at]
+      : []
   )
 
   return [
@@ -158,11 +169,13 @@ export const dealtOrder = ({
   ].slice(0, RUNNING_ORDER_MAX_ROWS)
 }
 
-const isLeftToDeal =
+const isOwedItsRow =
   ({
+    deals,
     lineUp,
     played
   }: {
+    deals: readonly LineUpDeal[]
     lineUp: readonly GameSettings[]
     played: readonly number[]
   }) =>
@@ -172,6 +185,7 @@ const isLeftToDeal =
     return (
       row !== null &&
       entry !== undefined &&
+      isDealtARow(deals[row]) &&
       !isPlayedOut({ entry, played: played[row] ?? 0 })
     )
   }

@@ -9,6 +9,7 @@ import type {
 import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@melee/protocol/room'
 
 import { randomUnit } from '@melee/core/helpers/random'
+import { dealsOf } from '@melee/core/room/line-up-deals'
 import { playedPerEntry } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { dealtOrder } from '@melee/core/room/running-order'
@@ -292,14 +293,16 @@ export const updateSettings = (
   settings: RoomSettings,
   now: number
 ): void => {
-  const { lineUp, lineUpAt, runningOrder } = settings
+  const { lineUp, lineUpAt, lineUpDeals, runningOrder } = settings
   const isNextSettled =
     room.phase === 'lobby' ||
     (room.phase === 'revealed' && room.round?.lineUpAt !== lineUpAt)
 
   room.settings = {
     ...settings,
+    lineUpDeals: dealsOf({ deals: lineUpDeals, lineUp }),
     runningOrder: dealtOrder({
+      deals: lineUpDeals,
       drawnAt: isNextSettled ? lineUpAt : null,
       lineUp,
       order: runningOrder,

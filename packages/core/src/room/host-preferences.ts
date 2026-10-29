@@ -30,7 +30,7 @@ export type HostPreferences = {
    */
   room: Omit<
     RoomSettings,
-    keyof GameSetup | 'lineUp' | 'lineUpAt' | 'runningOrder'
+    keyof GameSetup | 'lineUp' | 'lineUpAt' | 'lineUpDeals' | 'runningOrder'
   >
 }
 
@@ -174,6 +174,7 @@ export const rememberSettings = ({
     game,
     lineUp,
     lineUpAt,
+    lineUpDeals,
     mode,
     roundCount,
     runningOrder,

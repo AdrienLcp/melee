@@ -170,7 +170,11 @@ which is why a user-visible string written into a component is a bug — see
   **planned games**, one row per entry: the server deals it whenever the
   evening changes (`dealtOrder`, on `nextEntryAt`'s rule: another game before
   another entry of the same one), the setup lists it and a drag edits it, and
-  every round past its last row is drawn as it comes (`scheduledEntryAt`). One tick is a
+  every round past its last row is drawn as it comes (`scheduledEntryAt`)
+  among the **draw**: `lineUpDeals`, parallel to `lineUp`, deals each entry a
+  `row`, `chance` or `both` — a game serving its own content defaults to
+  `both`, one the host brings is `row` and refused anything else, and a
+  `chance` entry sits in the draw without a planned row. One tick is a
   room playing one game, which every game's front door opens; several ticked in
   the lobby open a line-up of four rounds a game. Teams, board and judge are the
   host's, remembered once and laid over every table, one game or several. An

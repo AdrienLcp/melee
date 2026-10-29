@@ -17,6 +17,7 @@ import {
   withEntryDuplicated,
   withoutEntry
 } from './line-up'
+import { dealsOf, withEntryDealt } from './line-up-deals'
 import { type GameSetup, roomSettingsFor } from './room-settings'
 
 const neverPlayed = (_game: GameKind): GameSetup | null => null
@@ -361,5 +362,88 @@ describe('the running order across line-up edits', () => {
     })
 
     expect(taken.runningOrder).toEqual([null, null, 0, 1])
+  })
+})
+
+describe('the chance pool across line-up edits', () => {
+  const evening = roomSettingsFor({
+    games: ['quiz', 'challenge', 'blindtest'],
+    locale: 'fr'
+  })
+  const added = (
+    game: GameKind,
+    deal: 'row' | 'chance' | 'both'
+  ): RoomSettings =>
+    withEntryAdded({
+      deal,
+      game,
+      locale: 'fr',
+      remembered: null,
+      settings: evening
+    })
+
+  it('[chance-pool] deals every entry its game’s default', () => {
+    expect(
+      dealsOf({ deals: evening.lineUpDeals, lineUp: evening.lineUp })
+    ).toEqual(['both', 'row', 'both'])
+  })
+
+  it('[chance-pool] adds an entry to the draw alone without a row', () => {
+    const pooled = added('timeline', 'chance')
+
+    expect(pooled.lineUpDeals).toEqual(['both', 'row', 'both', 'chance'])
+    expect(pooled.runningOrder).toEqual(evening.runningOrder)
+    expect(lineUpHolds(pooled)).toBe(true)
+  })
+
+  it('[chance-pool] deals a game the host brings its row, whatever was asked', () => {
+    const slate = added('slate', 'chance')
+
+    expect(slate.lineUpDeals.at(-1)).toBe('row')
+    expect(slate.runningOrder.at(-1)).toBe(3)
+  })
+
+  it('[chance-pool] refuses a game the host brings in the draw', () => {
+    expect(lineUpHolds({ ...evening, lineUpDeals: ['both', 'chance'] })).toBe(
+      false
+    )
+    expect(lineUpHolds({ ...evening, lineUpDeals: ['both', 'both'] })).toBe(
+      false
+    )
+    expect(
+      withEntryDealt({ at: 1, deal: 'chance', settings: evening }).lineUpDeals
+    ).toEqual(evening.lineUpDeals)
+  })
+
+  it('[chance-pool] refuses more deals than entries', () => {
+    expect(
+      lineUpHolds({ ...evening, lineUpDeals: ['both', 'row', 'both', 'both'] })
+    ).toBe(false)
+  })
+
+  it('[chance-pool] takes an entry out of the planned rows and keeps it in the draw', () => {
+    expect(
+      withEntryDealt({ at: 2, deal: 'chance', settings: evening }).lineUpDeals
+    ).toEqual(['both', 'row', 'chance'])
+  })
+
+  it('[chance-pool] moves the deals with the entries when one is taken out', () => {
+    const pooled = withEntryDealt({ at: 2, deal: 'chance', settings: evening })
+    const taken = withoutEntry({
+      at: 0,
+      locale: 'fr',
+      rememberedFor: neverPlayed,
+      settings: pooled
+    })
+
+    expect(taken.lineUpDeals).toEqual(['row', 'chance'])
+  })
+
+  it('[chance-pool] copies an entry with what it is dealt', () => {
+    const pooled = withEntryDealt({ at: 2, deal: 'chance', settings: evening })
+
+    expect(
+      withEntryDuplicated({ at: 2, settings: pooled, upcoming: 0 }).lineUpDeals
+    ).toEqual(['both', 'row', 'chance', 'chance'])
   })
 })

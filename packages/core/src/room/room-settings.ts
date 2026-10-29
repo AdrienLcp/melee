@@ -171,6 +171,7 @@ export const roomSettingsFor = ({
     lineUpAt: 0,
     roundCount,
     runningOrder: dealtOrder({
+      deals: [],
       drawnAt: 0,
       lineUp,
       order: [],
