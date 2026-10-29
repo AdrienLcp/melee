@@ -452,7 +452,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   if (status === 'refused') {
     return (
       <Main className='host-console-page'>
-        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <RoomDocumentTitle settings={view?.settings ?? null} />
         <div className='stage solo'>
           <HostRefused
             error={error}
@@ -475,7 +475,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   ) {
     return (
       <Main className='host-console-page'>
-        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <RoomDocumentTitle settings={view?.settings ?? null} />
         <div className='stage solo'>
           <Loader label={translate('join.rightAway.starting')} />
         </div>
@@ -536,7 +536,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     return (
       <PawnColoursProvider view={view}>
         <Main className='host-console-page framed'>
-          <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
+          <RoomDocumentTitle settings={view.settings} />
           {seatedRound}
         </Main>
       </PawnColoursProvider>
@@ -712,7 +712,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   const page = (
     <Main className='host-console-page'>
-      <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+      <RoomDocumentTitle settings={view?.settings ?? null} />
       {header}
 
       <RoomStage

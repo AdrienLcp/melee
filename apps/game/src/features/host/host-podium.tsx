@@ -76,7 +76,7 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
 
   return (
     <Main className='host-podium'>
-      <RoomDocumentTitle game={view.settings.game?.kind ?? null} />
+      <RoomDocumentTitle settings={view.settings} />
       <div className='podium-bar'>
         <span className='podium-code'>{view.code}</span>
         <span className='podium-wall'>

@@ -548,7 +548,7 @@ export const EN_DICTIONARY = defineDictionary({
       challengeLine:
         'Its line is picked when its round comes up, from three: your own lines first, then the bank.',
       chance: {
-        among: 'among {games}, never the same game twice in a row',
+        among: 'among {games}',
         drawn: '{count:number} by chance',
         endless: 'Then by chance, until you stop',
         over: 'too many for {total:number} rounds',

@@ -133,7 +133,7 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   return (
     <>
-      <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+      <RoomDocumentTitle settings={view?.settings ?? null} />
       {nickname === null || rejection !== null ? (
         <NicknameForm
           onSubmit={setNickname}

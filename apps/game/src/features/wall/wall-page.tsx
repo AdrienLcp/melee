@@ -124,7 +124,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   if (isRefused) {
     return (
       <Main className='host-console-page wall-page'>
-        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <RoomDocumentTitle settings={view?.settings ?? null} />
         <div className='stage solo'>
           <ConnectionRefused error={error}>
             {error?.code === 'wall_not_paired' && (
@@ -143,7 +143,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   return (
     <PawnColoursProvider view={view}>
       <Main className='host-console-page wall-page'>
-        <RoomDocumentTitle game={view?.settings.game?.kind ?? null} />
+        <RoomDocumentTitle settings={view?.settings ?? null} />
         <header>
           {view?.round != null && view.phase !== 'finished' && (
             <p className='round-index'>

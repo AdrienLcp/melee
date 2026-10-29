@@ -528,7 +528,7 @@ export const FR_DICTIONARY = defineDictionary({
       challengeLine:
         'Son défi se choisit quand sa manche arrive, parmi trois : tes défis d’abord, puis la banque.',
       chance: {
-        among: 'parmi {games}, jamais deux fois le même jeu d’affilée',
+        among: 'parmi {games}',
         drawn: '{count:number} au hasard',
         endless: 'Puis au hasard, jusqu’à ce que tu arrêtes',
         over: 'de trop pour {total:number} manches',
