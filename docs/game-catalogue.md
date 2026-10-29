@@ -79,7 +79,7 @@ team on the player model and a turn owner.
 | **Black square** (Case noire) — a theme, three to nine hidden answers, one black word | Everyone at once, or spoken with a keeper | Many guesses per round, a hit banked without closing it; spoken, the one seat ever sent an answer, safe because its team is not playing | typed on the shelf, spoken owed ([stage 45](plans/45-guess-nine.md)) |
 | **Petit Bac** — a letter, six categories, type fast | Submit-then-vote | Scoring by uniqueness, a room vote per category | rules landed, server and screens owed ([stage 50](plans/50-petit-bac.md)) |
 | **Just One** — everyone writes one clue, duplicates cancel | Submit-then-vote | A clue-collision pass | a session |
-| **Qui a écrit ça ?** — answer a prompt, then guess the author | Submit-then-vote | Authorship survives the reveal | a session |
+| **Qui a écrit ça ?** — answer a prompt, then guess the author — stage [60](plans/60-who-wrote-it.md) | Submit-then-vote | Authorship survives the reveal: Petit Bac's write-then-vote round and Most likely's seat ballot, one per line | planned |
 | **Le curseur** (Wavelength) — a spectrum, a secret target, one clue | Submit-then-vote | A shared slider; the target is hidden from all but one | two sessions |
 | **Undercover** — same secret word for everyone but one | Hidden role | Per-player payloads, a talk phase, a vote | two sessions |
 | **Loup-garou** — the full night/day machine | Hidden role | Phase machine, timers, a narrator screen | the biggest on this list |
@@ -89,6 +89,9 @@ team on the player model and a turn owner.
 | **Time's Up** — three rounds, same cards, less and less speech | Team relay | Teams, turn owner, per-turn timer | two sessions |
 | **Bingo de soirée** — a grid of things that will happen tonight | Submit-then-vote | Almost nothing; grids and presses | an evening |
 | **Colour memory** — a colour shown a few seconds, then rebuilt on a picker — stage [54](plans/54-swatch.md) | Everyone at once | A mode of its own, `colour`, paid by perceptual distance (OKLab) computed in core; the picker is react-aria's `ColorArea` + `ColorSlider`, no new library. Owes a rule: the colour *is* sent to every screen before it hides, so it is shown on the wall when there is one, and a phone keeping it is no worse than a photo of it. A second rubric, *a character's colour* (Shrek, the Pink Panther), is a text-only bank of name → colour, no images and so no rights, but every row's colour is an argument and is set by hand | a session for the game, a second for the character bank |
+| **Le juste chiffre** — a number to estimate — stage [58](plans/58-estimate.md) | Everyone at once | A mode of its own, `number`, paid by place on the ratio to the truth; a quantity bank built from Wikidata | planned |
+| **Plus ou moins** — five pairs, which is higher — stage [59](plans/59-higher-lower.md) | Everyone at once | Nothing but 58's bank, paired within a family; one sheet of five picks | planned |
+| **Silhouettes** — a country's outline — stage [57](plans/57-silhouettes.md) | Buzz-first, a quiz rubric | Nothing: a third rubric beside flags and capitals, outlines drawn once from the atlas topology | planned |
 
 Submit-then-vote is the shape that unlocks the most: six games share it. Their
 appetites assume the engine exists, so the first of them also pays for it, and
