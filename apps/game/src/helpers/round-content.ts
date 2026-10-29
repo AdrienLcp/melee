@@ -117,6 +117,7 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
     case 'slate':
     case 'atlas':
     case 'swatch':
+    case 'mostlikely':
       return true
     case 'blacksquare':
       return content.grid !== null

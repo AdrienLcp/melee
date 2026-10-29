@@ -16,6 +16,7 @@ import {
   matchsticksContent,
   playedPuzzleId
 } from '@/domain/round/matchsticks-round'
+import { mostLikelyContent } from '@/domain/round/most-likely-round'
 import {
   closePetitBacSheets,
   isPetitBacWriting,
@@ -59,6 +60,10 @@ import {
   playedCountryId
 } from '@/infrastructure/questions/country-bank'
 import { namingOf } from '@/infrastructure/questions/map-naming'
+import {
+  drawMostLikelyLine,
+  playedMostLikelyLineId
+} from '@/infrastructure/questions/most-likely-bank'
 import {
   drawQuestion,
   hostQuestionOf
@@ -469,6 +474,34 @@ export const beginRound = async (
 
     openRound({
       content,
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'mostlikely') {
+    const line = drawMostLikelyLine({ playedIds: room.playedContentIds })
+
+    if (line === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'The most-likely bank is empty'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(playedMostLikelyLineId(line.id))
+
+    openRound({
+      content: mostLikelyContent(line.labels),
       id: newRoundId(),
       now: engine.now(),
       room,

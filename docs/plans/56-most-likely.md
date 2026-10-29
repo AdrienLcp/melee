@@ -1,6 +1,6 @@
 # 56 — Most likely (who among us)
 
-**In progress** — the bank is written.
+**In progress** — step 1 done: the kind is served, not shelved.
 
 A line goes up on every screen — *who is most likely to talk to their
 plants?* — every seat votes for a seat on its own screen, and the reveal
@@ -59,6 +59,15 @@ Kind `mostlikely`, translation prefix `mostlikely.*`, answer mode `vote`.
    challenge bank's, with a test. The socket suite: a ballot for a seat the
    round did not open on, a second ballot, a latecomer's — all refused — and
    no ballot but the reader's own on any frame before the reveal.
+   **Done.** As built: the round keeps `ballots: { playerId, seatId }[]`
+   (not `sent[]`); a ballot grades to an empty `said` and a placeholder
+   `single` verdict, which `payBallotsWithTheRoom` rewrites at the close, so
+   the reveal's answer list never says who voted for whom. A ballot for a
+   seat the round did not open on is `invalid_message` — no screen offers
+   one, so it needs no code of its own. A spent bank deals any line again.
+   The French bank test checks for *qui* anywhere, since two lines open on
+   *À qui* and *De qui*. The dictionaries hold only `name`, `scoring` and
+   `host.answerMode.vote` so far.
 2. **Screens**, and `mostlikely` into `shelvedGames`: the line on the wall
    and on every seat, the seat picker, the reveal as a tally, the console's
    setup, the dictionaries, the spine tokens; seen on a wall, a seated

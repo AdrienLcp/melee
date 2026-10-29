@@ -152,6 +152,15 @@ export const answerMessageSchema = z.object({
       /** The colour rebuilt on the picker. One shot, like a pick. */
       colour: colourHexSchema,
       kind: z.literal('colour')
+    }),
+    z.object({
+      kind: z.literal('seat'),
+      /**
+       * The seat voted for, any the round opened on, the voter's own
+       * included. One shot, like a pick: a vote that can move waits to see
+       * the others.
+       */
+      playerId: playerIdSchema
     })
   ]),
   roundId: roundIdSchema,

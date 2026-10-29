@@ -506,7 +506,8 @@ export const FR_DICTIONARY = defineDictionary({
       order: 'Dans l’ordre',
       point: 'On pointe sur la carte',
       spoken: 'Équipe par équipe',
-      typed: 'On tape'
+      typed: 'On tape',
+      vote: 'On vote pour quelqu’un'
     },
     answerWindow: {
       label: 'Temps pour répondre après un buzz'
@@ -1127,6 +1128,11 @@ export const FR_DICTIONARY = defineDictionary({
         label: 'Devenir l’écran de la pièce'
       }
     }
+  },
+  mostlikely: {
+    name: 'Qui de nous ?',
+    scoring:
+      'Une phrase sur l’un de vous s’affiche et chacun vote pour quelqu’un, soi-même compris. Vote comme la table et tu marques 10 points. Pas de bonus de vitesse.'
   },
   navigation: {
     back: 'Retour aux jeux',

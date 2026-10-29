@@ -23,7 +23,11 @@ own screen, the years held back until the reveal. **Black square** hides three
 to nine answers to a theme behind a grid, the less obvious paying more, beside one
 black word that costs whoever lands on it the round, and **Petit Bac** deals a
 letter and a sheet of categories everyone fills on their own screen, then
-votes on what counts, a word nobody else wrote paying double.
+votes on what counts, a word nobody else wrote paying double. **Shades**
+shows a colour for a few seconds and has every screen rebuild it, paid by how
+far off it lands, and **Most likely** puts up a line about one of the people
+at the table — never about the moment — that everyone votes on with a seat,
+the ballots that went with the room paid.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -32,7 +36,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 
@@ -314,7 +318,7 @@ which is why a user-visible string written into a component is a bug — see
 
 ## The blind test is the first game, not the product
 
-Twelve games share the room, the QR code and every screen, and the rule that got
+Fourteen games share the room, the QR code and every screen, and the rule that got
 them there has not changed: **do not weld a seam shut, and do not invent a
 shared shape before there is a second case to measure it against.** **Read
 [`docs/game-catalogue.md`](../docs/game-catalogue.md) before generalising

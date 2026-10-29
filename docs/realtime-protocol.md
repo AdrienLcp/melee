@@ -759,6 +759,16 @@ so a screen reloading late never sees it, and an answer sent before `hidesAt`
 is refused with `colour_still_shown`, because rebuilding a colour while looking
 at it is copying it. `swatch-game.test.ts` searches the raw frames for it.
 
+**Most likely's ballots never leave the server attached to a voter.** A ballot
+is a `player.answer` naming a seat the round opened on, one shot like a pick.
+Until the reveal, a screen is sent its own ballot (`yourBallot`) and nothing
+else: `tally` is `null`, because a count seen while the box is open is a vote
+to follow. At the reveal the tally is counts per seat, and the reveal's list of
+answers carries an empty `said` for every voter — a table of family members
+should not have to explain a vote. The pay says the rest on its own, since a
+paid ballot went with the room. `most-likely-game.test.ts` checks every frame
+sent before the reveal.
+
 ## Errors
 
 ```jsonc

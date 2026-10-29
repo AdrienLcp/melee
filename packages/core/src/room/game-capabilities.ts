@@ -48,6 +48,9 @@ const ORDER_ONLY = ['order'] as const satisfies readonly AnswerMode[]
 /** A colour is answered by rebuilding it on a picker, which the server measures. */
 const COLOUR_ONLY = ['colour'] as const satisfies readonly AnswerMode[]
 
+/** Most likely is answered by voting for a seat, which the server counts. */
+const VOTE_ONLY = ['vote'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -194,6 +197,15 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         makesSound: false,
         playsAloud: false,
         playsDuels: true,
+        servesItsOwnContent: true
+      }
+    // Two seats voting for one of themselves is not a round.
+    case 'mostlikely':
+      return {
+        answerModes: VOTE_ONLY,
+        makesSound: false,
+        playsAloud: false,
+        playsDuels: false,
         servesItsOwnContent: true
       }
   }

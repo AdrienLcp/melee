@@ -59,7 +59,7 @@ export const answerModeLabelKey = (
 /** The modes a game answering against its own question offers. */
 type ServedMode = Exclude<
   AnswerMode,
-  'colour' | 'move' | 'order' | 'point' | 'spoken'
+  'colour' | 'move' | 'order' | 'point' | 'spoken' | 'vote'
 >
 
 const ATLAS_SCORING_KEYS = {
@@ -103,6 +103,7 @@ export const scoringKey = ({
   | 'innerclock.scoring'
   | 'matchsticks.scoring'
   | 'matchsticks.scoringMove'
+  | 'mostlikely.scoring'
   | 'petitbac.scoring'
   | 'reflex.scoring'
   | 'slate.scoring'
@@ -118,7 +119,7 @@ export const scoringKey = ({
   | `quiz.scoring.${ServedMode}`
 > => {
   // A marker is the map's alone, an order the timeline's, a move the
-  // matchsticks', a colour the shades' and a spoken round black square's, so the two games that serve
+  // matchsticks', a colour the shades', a vote most likely's and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps
   // the switch total.
   const served =
@@ -126,7 +127,8 @@ export const scoringKey = ({
     answerMode === 'order' ||
     answerMode === 'move' ||
     answerMode === 'spoken' ||
-    answerMode === 'colour'
+    answerMode === 'colour' ||
+    answerMode === 'vote'
       ? 'choice'
       : answerMode
 
@@ -155,6 +157,8 @@ export const scoringKey = ({
       return answerMode === 'move'
         ? 'matchsticks.scoringMove'
         : 'matchsticks.scoring'
+    case 'mostlikely':
+      return 'mostlikely.scoring'
     case 'petitbac':
       return 'petitbac.scoring'
     case 'quiz':

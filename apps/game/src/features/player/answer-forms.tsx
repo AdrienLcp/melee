@@ -80,6 +80,7 @@ export const candidatesIn = ({
     case 'blacksquare':
     case 'innerclock':
     case 'matchsticks':
+    case 'mostlikely':
     case 'petitbac':
     case 'reflex':
     case 'slate':

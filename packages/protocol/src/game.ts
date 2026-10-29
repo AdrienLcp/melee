@@ -34,7 +34,8 @@ export const gameKinds = [
   'slate',
   'timeline',
   'atlas',
-  'swatch'
+  'swatch',
+  'mostlikely'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -208,6 +209,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     roundDurationMs: z.number().int().min(10_000).max(60_000),
     /** How long the colour stays up before every screen hides it. */
     showMs: swatchShowMsSchema
+  }),
+  z.object({
+    kind: z.literal('mostlikely'),
+    /** How long the ballot box stays open before the votes are counted. */
+    roundDurationMs: z.number().int().min(10_000).max(90_000)
   })
 ])
 
@@ -227,6 +233,7 @@ export type SlateSettings = Extract<GameSettings, { kind: 'slate' }>
 export type TimelineSettings = Extract<GameSettings, { kind: 'timeline' }>
 export type AtlasSettings = Extract<GameSettings, { kind: 'atlas' }>
 export type SwatchSettings = Extract<GameSettings, { kind: 'swatch' }>
+export type MostLikelySettings = Extract<GameSettings, { kind: 'mostlikely' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -343,6 +350,12 @@ export const DEFAULT_SWATCH_SETTINGS: SwatchSettings = {
   showMs: 5_000
 }
 
+/** Thirty seconds: long enough to look round the table, short enough not to wait on it. */
+export const DEFAULT_MOST_LIKELY_SETTINGS: MostLikelySettings = {
+  kind: 'mostlikely',
+  roundDurationMs: 30_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -352,6 +365,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   challenge: DEFAULT_CHALLENGE_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
+  mostlikely: DEFAULT_MOST_LIKELY_SETTINGS,
   petitbac: DEFAULT_PETIT_BAC_SETTINGS,
   quiz: DEFAULT_QUIZ_SETTINGS,
   reflex: DEFAULT_REFLEX_SETTINGS,

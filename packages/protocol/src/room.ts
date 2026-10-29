@@ -40,6 +40,7 @@ import {
   sentMoveSchema,
   stickMoveSchema
 } from './matchsticks'
+import { mostLikelyCountSchema, mostLikelyLabelsSchema } from './most-likely'
 import {
   MAX_PETIT_BAC_CATEGORIES,
   MIN_PETIT_BAC_CATEGORIES,
@@ -98,7 +99,8 @@ export const answerModes = [
   'order',
   'move',
   'spoken',
-  'colour'
+  'colour',
+  'vote'
 ] as const
 
 /**
@@ -154,7 +156,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('order') }),
   z.object({ kind: z.literal('move') }),
   z.object({ kind: z.literal('spoken') }),
-  z.object({ kind: z.literal('colour') })
+  z.object({ kind: z.literal('colour') }),
+  z.object({ kind: z.literal('vote') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -300,7 +303,8 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   order: { kind: 'order' },
   point: { kind: 'point' },
   spoken: { kind: 'spoken' },
-  typed: { kind: 'typed' }
+  typed: { kind: 'typed' },
+  vote: { kind: 'vote' }
 }
 
 export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
@@ -654,6 +658,18 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     revealedColours: z.array(sentColourSchema).nullable(),
     /** The reader's own colour once sent, and `null` before or without a seat. What a reload comes back to. */
     yourColour: colourHexSchema.nullable()
+  }),
+  z.object({
+    kind: z.literal('mostlikely'),
+    /** The line, in every locale so each screen reads its own. */
+    labels: mostLikelyLabelsSchema,
+    /**
+     * How many ballots each seat drew, most first, and `null` until the
+     * reveal: a count seen while the box is open is a vote to follow.
+     */
+    tally: z.array(mostLikelyCountSchema).nullable(),
+    /** The seat the reader voted for, and `null` before or without a seat. What a reload comes back to. */
+    yourBallot: playerIdSchema.nullable()
   })
 ])
 
@@ -908,7 +924,9 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
     kind: z.literal('atlas')
   }),
   /** Nothing withheld: the colour is on every screen until it hides. */
-  z.object({ kind: z.literal('swatch') })
+  z.object({ kind: z.literal('swatch') }),
+  /** Nothing withheld: no answer exists before the votes do. */
+  z.object({ kind: z.literal('mostlikely') })
 ])
 
 /**
@@ -984,7 +1002,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({ kind: z.literal('timeline') }),
   z.object({ kind: z.literal('atlas') }),
-  z.object({ kind: z.literal('swatch') })
+  z.object({ kind: z.literal('swatch') }),
+  z.object({ kind: z.literal('mostlikely') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

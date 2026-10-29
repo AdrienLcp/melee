@@ -84,7 +84,7 @@ team on the player model and a turn owner.
 | **Undercover** — same secret word for everyone but one | Hidden role | Per-player payloads, a talk phase, a vote | two sessions |
 | **Loup-garou** — the full night/day machine | Hidden role | Phase machine, timers, a narrator screen | the biggest on this list |
 | **Deux vérités, un mensonge** | Hidden role | Light: submit three, everyone votes | a session |
-| **Qui est le plus susceptible de…** | Submit-then-vote | Voting for a *player* rather than an answer | an evening |
+| **Qui est le plus susceptible de…** — stage [56](plans/56-most-likely.md) | Submit-then-vote | Voting for a *player* rather than an answer: a `player.answer` arm naming a seat, mode `vote`, paid at the close by the room's choice since a grade at answer time cannot know the majority. Counts are revealed, never who voted for whom | served; screens owed |
 | **Dessine** (Skribbl) — one draws, the others guess | Continuous stream | A stroke channel, a canvas, a word list | two sessions, and read the warning |
 | **Time's Up** — three rounds, same cards, less and less speech | Team relay | Teams, turn owner, per-turn timer | two sessions |
 | **Bingo de soirée** — a grid of things that will happen tonight | Submit-then-vote | Almost nothing; grids and presses | an evening |

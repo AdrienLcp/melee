@@ -15,6 +15,7 @@ import type { Verdict } from '@melee/protocol/scoring'
 import type { SlateLine } from '@melee/protocol/slate'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
+import { tallyBallots } from '@melee/core/mostlikely/tally'
 import { playedPerEntry } from '@melee/core/room/next-game'
 import { isBlankAnswer } from '@melee/core/round/answer-groups'
 import { hasJoinedAfterStart } from '@melee/core/round/round-roster'
@@ -207,7 +208,8 @@ const toHostContent = ({
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
     content.kind === 'reflex' ||
-    content.kind === 'swatch'
+    content.kind === 'swatch' ||
+    content.kind === 'mostlikely'
   ) {
     return { kind: content.kind }
   }
@@ -337,7 +339,9 @@ const yourVerdictIn = ({
   round: Round
   youId: PlayerId
 }): Verdict | null =>
-  (round.content.kind === 'matchsticks' || round.content.kind === 'swatch') &&
+  (round.content.kind === 'matchsticks' ||
+    round.content.kind === 'swatch' ||
+    round.content.kind === 'mostlikely') &&
   !round.revealed
     ? null
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
@@ -540,6 +544,17 @@ const toContentView = ({
             year
           }))
         : null
+    }
+  }
+
+  if (content.kind === 'mostlikely') {
+    return {
+      kind: 'mostlikely',
+      labels: content.labels,
+      tally: round.revealed ? tallyBallots(content.ballots) : null,
+      yourBallot:
+        content.ballots.find(({ playerId }) => playerId === youId)?.seatId ??
+        null
     }
   }
 

@@ -525,7 +525,8 @@ export const EN_DICTIONARY = defineDictionary({
       order: 'Put them in order',
       point: 'Pin it on the map',
       spoken: 'Team by team',
-      typed: 'Type it'
+      typed: 'Type it',
+      vote: 'Vote for someone'
     },
     answerWindow: {
       label: 'Time to answer after a buzz'
@@ -1183,6 +1184,11 @@ export const EN_DICTIONARY = defineDictionary({
         label: 'Become the room’s screen'
       }
     }
+  },
+  mostlikely: {
+    name: 'Most likely',
+    scoring:
+      'A line about one of you goes up and everyone votes for a seat, their own included. Vote with the room and you score 10 points. No bonus for speed.'
   },
   /**
    * The way back to the front door, from any page that is a dead end without

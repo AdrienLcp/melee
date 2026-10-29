@@ -83,6 +83,10 @@ import {
 import { takeDuel } from '@/domain/round/duels'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
+import {
+  isOnTheBallot,
+  payBallotsWithTheRoom
+} from '@/domain/round/most-likely-round'
 import { settleEveryCategory } from '@/domain/round/petit-bac-round'
 import { markEveryItem } from '@/domain/round/slate-round'
 import { gradeColour, isColourShown } from '@/domain/round/swatch-round'
@@ -490,6 +494,13 @@ export const registerAnswer = ({
     return Result.failure('colour_still_shown')
   }
 
+  if (
+    attempt.kind === 'seat' &&
+    !isOnTheBallot({ round, seatId: attempt.playerId })
+  ) {
+    return Result.failure('invalid_message')
+  }
+
   const held = round.attempts.find((entry) => entry.playerId === playerId)
 
   // A pick is one shot — four candidates with retries is just the answer with
@@ -533,6 +544,10 @@ export const registerAnswer = ({
 
   if (round.content.kind === 'swatch' && attempt.kind === 'colour') {
     round.content.sent.push({ colour: attempt.colour, playerId })
+  }
+
+  if (round.content.kind === 'mostlikely' && attempt.kind === 'seat') {
+    round.content.ballots.push({ playerId, seatId: attempt.playerId })
   }
 
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
@@ -915,6 +930,7 @@ type Attempt =
   | { kind: 'order'; eventIds: string[] }
   | { kind: 'move'; move: StickMove }
   | { kind: 'colour'; colour: ColourHex }
+  | { kind: 'seat'; playerId: PlayerId }
   | TypedAttempt
 
 /**
@@ -978,6 +994,14 @@ const grade = ({
       : { said: attempt.eventIds.join(TIMELINE_ORDER_SEPARATOR), verdict }
   }
 
+  // A ballot says nothing on the reveal's list, which would tell who voted for
+  // whom, and is worth nothing until the room's choice is counted at the close.
+  if (content.kind === 'mostlikely') {
+    return attempt.kind === 'seat'
+      ? { said: '', verdict: { isCorrect: false, kind: 'single' } }
+      : null
+  }
+
   if (content.kind === 'swatch') {
     return attempt.kind === 'colour'
       ? {
@@ -1017,7 +1041,8 @@ const grade = ({
     attempt.kind === 'point' ||
     attempt.kind === 'order' ||
     attempt.kind === 'move' ||
-    attempt.kind === 'colour'
+    attempt.kind === 'colour' ||
+    attempt.kind === 'seat'
   ) {
     return null
   }
@@ -1368,6 +1393,13 @@ export const closeRound = (room: Room, now: number): void => {
 
   if (round.content.kind === 'petitbac') {
     settleEveryCategory(room)
+    revealRound(room, now)
+
+    return
+  }
+
+  if (round.content.kind === 'mostlikely') {
+    payBallotsWithTheRoom(room)
     revealRound(room, now)
 
     return

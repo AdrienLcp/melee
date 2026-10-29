@@ -54,7 +54,8 @@ describe('answerModesFor', () => {
       'order',
       'move',
       'spoken',
-      'colour'
+      'colour',
+      'vote'
     ])
   })
 })

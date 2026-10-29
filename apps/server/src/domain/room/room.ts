@@ -19,6 +19,7 @@ import type {
   MatchsticksSolution,
   SentMove
 } from '@melee/protocol/matchsticks'
+import type { MostLikelyLabels } from '@melee/protocol/most-likely'
 import type {
   PetitBacCategory,
   PetitBacCategoryState,
@@ -421,6 +422,12 @@ export type Round = {
         sent: SentColour[]
         /** How long the colour stays up, stamped as the round opens. */
         showMs: number
+      }
+    | {
+        /** Every ballot, in the order they landed; who voted for whom never leaves the server. */
+        ballots: { playerId: PlayerId; seatId: PlayerId }[]
+        kind: 'mostlikely'
+        labels: MostLikelyLabels
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

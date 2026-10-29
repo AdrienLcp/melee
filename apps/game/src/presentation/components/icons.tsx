@@ -122,6 +122,7 @@ const GAME_GLYPHS = {
   challenge: Trophy,
   innerclock: Hourglass,
   matchsticks: Flame,
+  mostlikely: Users,
   petitbac: CaseSensitive,
   quiz: CircleQuestionMark,
   reflex: Zap,
