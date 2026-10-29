@@ -233,4 +233,3 @@ the code compiles.
 | [57 — Silhouettes](57-silhouettes.md) | **done** 29/10/2026 | A quiz rubric beside flags and capitals: a country's outline alone, drawn once from the atlas topology, named by the quiz's four names, a field or a buzz |
 | [58 — Estimate](58-estimate.md) | **done** 29/10/2026 — on the shelf as *Close enough* | *Le juste chiffre*: a question whose answer is a number, every seat types an estimate, paid 3, 2, 1 by ratio to the truth, nothing beyond a factor of ten. Step 1 banked 4 578 quantities (980 well known) from Wikidata and wrote the `number` verdict and its place pay |
 | [59 — Higher or lower](59-higher-lower.md) | **to do** — after 58 | Five pairs of one family from 58's quantity bank, one pick each, the values held back until the reveal |
-| [60 — Who wrote it](60-who-wrote-it.md) | **to do** | A prompt, a line from every seat, then every seat names who wrote each line; guessing right pays and so does fooling the table |

@@ -79,7 +79,6 @@ team on the player model and a turn owner.
 | **Black square** (Case noire) — a theme, three to nine hidden answers, one black word | Everyone at once, or spoken with a keeper | Many guesses per round, a hit banked without closing it; spoken, the one seat ever sent an answer, safe because its team is not playing | typed on the shelf, spoken owed ([stage 45](plans/45-guess-nine.md)) |
 | **Petit Bac** — a letter, six categories, type fast | Submit-then-vote | Scoring by uniqueness, a room vote per category | rules landed, server and screens owed ([stage 50](plans/50-petit-bac.md)) |
 | **Just One** — everyone writes one clue, duplicates cancel | Submit-then-vote | A clue-collision pass | a session |
-| **Qui a écrit ça ?** — answer a prompt, then guess the author — stage [60](plans/60-who-wrote-it.md) | Submit-then-vote | Authorship survives the reveal: Petit Bac's write-then-vote round and Most likely's seat ballot, one per line | planned |
 | **Le curseur** (Wavelength) — a spectrum, a secret target, one clue | Submit-then-vote | A shared slider; the target is hidden from all but one | two sessions |
 | **Undercover** — same secret word for everyone but one | Hidden role | Per-player payloads, a talk phase, a vote | two sessions |
 | **Loup-garou** — the full night/day machine | Hidden role | Phase machine, timers, a narrator screen | the biggest on this list |
