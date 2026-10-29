@@ -190,10 +190,15 @@
     flex-direction: column
     gap: var(--space-l)
 
+  // A page's sticky back paints a fill twice `--space-l` tall above itself,
+  // made for the top of the panel's scroller; here the console page sits
+  // above it in the same track, and the fill covered its launch. The margin
+  // and the track's gap together are exactly that reach.
   .podium-order
     display: grid
     gap: var(--space-m)
     grid-auto-rows: max-content
+    margin-top: var(--space-l)
 
   @include layout.podium
     html:has(.host-podium)
