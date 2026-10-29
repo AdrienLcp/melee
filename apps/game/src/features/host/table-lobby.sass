@@ -5,7 +5,7 @@
 @use '../../presentation/styles/text-box'
 
 @layer components
-  // Centred inside the track: the card and the arrivals in one 60rem column,
+  // Centred inside the track: the card and the arrivals in one 72rem column,
   // the teams under them as wide as they need — four trays share the column,
   // and every team past that widens their row until it meets the U.
   .stage.table-lobby
@@ -16,10 +16,10 @@
     justify-content: safe center
 
     > *
-      width: min(100%, 60rem)
+      width: min(100%, 72rem)
 
     > .table-teams
-      width: min(100%, max(60rem, calc(var(--team-count) * 15rem)))
+      width: min(100%, max(72rem, calc(var(--team-count) * 15rem)))
 
   // The header holds nothing the table reads in the lobby, and its band is
   // the height of a row of seats. It keeps the menu's corner clear, so it goes
@@ -35,7 +35,10 @@
     // answer the card's narrower content box: sized through these, both sides
     // of the query are read off the same box.
     --table-code-size: clamp(2.5rem, calc(var(--stage-unit) * 9.5), 7rem)
-    --table-qr-width: clamp(9rem, calc(var(--stage-unit) * 30), 20rem)
+    // The square is what a camera across the room has to resolve, so it takes
+    // the stage's share up to a TV's, and never more than the card can spare
+    // the words beside it.
+    --table-qr-width: clamp(9rem, min(calc(var(--stage-unit) * 42), 45cqi), 32rem)
     --table-words-align: end
 
     align-items: center
