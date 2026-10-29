@@ -3,10 +3,17 @@
 @layer components
   // The drawing and a press laid over each of its places, both held to the
   // drawing's own proportions so a press sits on the stick it names.
+  // The board takes every pointer itself and hands it to the nearest place,
+  // so a drag never scrolls the page and the presses only ring the focus.
   .matchstick-board
     aspect-ratio: var(--board-aspect)
+    cursor: grab
     margin-inline: auto
     position: relative
+    touch-action: none
+    user-select: none
+    -webkit-tap-highlight-color: transparent
+    -webkit-touch-callout: none
     width: min(100%, calc(var(--sticks-max-height, 40vh) * var(--board-aspect)))
 
     > .matchstick-row
@@ -18,29 +25,22 @@
       inset: 0
       position: absolute
 
+    &[data-dragging]
+      cursor: grabbing
+
     .reach
       background: transparent
       border: 0
       border-radius: var(--radius-s)
-      cursor: pointer
       height: var(--reach-height)
       // The drawing's own coordinates, which a right-to-left page does not mirror.
       left: var(--reach-left)
       outline: none
       padding: 0
+      pointer-events: none
       position: absolute
       top: var(--reach-top)
-      touch-action: manipulation
       width: var(--reach-width)
-      -webkit-tap-highlight-color: transparent
-
-      &[data-disabled]
-        cursor: default
-        pointer-events: none
 
       &[data-focus-visible]
         @include focus.ring
-
-      @media (hover: hover) and (pointer: fine)
-        &[data-hovered]
-          background: color-mix(in oklab, currentColor 9%, transparent)

@@ -91,6 +91,8 @@ type VerdictPanelProps = {
    * own screen, taken over while the host was away, and everyone can read it.
    */
   isAnswerFolded: boolean
+  /** The matchsticks puzzle as dealt, which every solution is drawn on; `null` in any other game. */
+  matchsticksGlyphs?: string | null
   /** Who is holding the buzzer. The host needs the name to look up at the room. */
   nickname: string
   /** `null` on the wall, which draws who has the floor and judges nothing. */
@@ -106,6 +108,7 @@ export const VerdictPanel: React.FC<VerdictPanelProps> = ({
   clock,
   content,
   isAnswerFolded,
+  matchsticksGlyphs = null,
   nickname,
   onJudge,
   seat,
@@ -127,7 +130,7 @@ export const VerdictPanel: React.FC<VerdictPanelProps> = ({
       {content !== null && (
         <div className='judging'>
           {isAnswerShown ? (
-            <Answer content={content} />
+            <Answer content={content} matchsticksGlyphs={matchsticksGlyphs} />
           ) : (
             <Button
               className='show-answer'
@@ -185,7 +188,10 @@ const Choices: React.FC<{
  * owns has nothing to print, and neither has a host who took a seat: the server
  * stops sending them what they are meant to be guessing.
  */
-const Answer: React.FC<{ content: HostRoundContent }> = ({ content }) => {
+const Answer: React.FC<{
+  content: HostRoundContent
+  matchsticksGlyphs: string | null
+}> = ({ content, matchsticksGlyphs }) => {
   switch (content.kind) {
     case 'blindtest':
       return content.track === null ? null : (
@@ -200,11 +206,11 @@ const Answer: React.FC<{ content: HostRoundContent }> = ({ content }) => {
     case 'buzzer':
       return null
     case 'matchsticks':
-      return content.solutions === null ? null : (
+      return content.solutions === null || matchsticksGlyphs === null ? null : (
         <ul className='answer solutions'>
           {content.solutions.map((solution) => (
             <li key={solution.glyphs}>
-              <MatchstickRow glyphs={solution.glyphs} move={solution.move} />
+              <MatchstickRow glyphs={matchsticksGlyphs} move={solution.move} />
             </li>
           ))}
         </ul>

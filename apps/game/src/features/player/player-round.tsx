@@ -1268,7 +1268,11 @@ const MatchsticksYours: React.FC<{ round: RoundView; yours: SentMove }> = ({
           {moveWords(placesFromBestOf(round, yours.playerId))}
         </span>
       </p>
-      <MatchstickRow glyphs={yours.glyphs} isStill move={yours.move} />
+      <MatchstickRow
+        glyphs={matchsticksContent(round)?.puzzle.glyphs ?? ''}
+        isStill
+        move={yours.move}
+      />
     </div>
   )
 }

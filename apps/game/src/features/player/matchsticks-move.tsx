@@ -4,8 +4,6 @@ import { useState } from 'react'
 import type { StickMove, StickPlace } from '@melee/protocol/matchsticks'
 import type { RoundView } from '@melee/protocol/room'
 
-import { applyMove } from '@melee/core/matchsticks/one-move'
-
 import { matchsticksContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { MatchstickBoard } from '@/presentation/components/matchstick-board'
@@ -28,23 +26,11 @@ type MatchsticksMoveProps = {
   round: RoundView
 }
 
-/** A move the reader made, drawn where it landed. */
-const MovedRow: React.FC<{ glyphs: string; move: StickMove }> = ({
-  glyphs,
-  move
-}) => (
-  <MatchstickRow
-    glyphs={applyMove({ glyphs, move }) ?? glyphs}
-    isStill
-    move={move}
-  />
-)
-
 /**
- * One stick picked up and laid somewhere else, as often as the player likes
- * until they send it: a move is one shot a seat, like a pick. A drop the sticks
- * cannot make is refused here, by the same rule the server judges with, before
- * anything is sent.
+ * One stick picked up and laid on any empty place, as often as the player
+ * likes until they send it: a move is one shot a seat, like a pick. Nothing is
+ * refused — sticks that read as nothing simply answer nothing, and saying so
+ * before the send would be a hint.
  *
  * Mounted under `key={round.id}`, so the move is about this round alone.
  */
@@ -57,10 +43,10 @@ export const MatchsticksMove: React.FC<MatchsticksMoveProps> = ({
   const content = matchsticksContent(round)
   const [lifted, setLifted] = useState<StickPlace | null>(null)
   const [placed, setPlaced] = useState<StickMove | null>(null)
-  const [isRefused, setIsRefused] = useState(false)
   const [isSent, setIsSent] = useState(false)
-  // Where focus goes when the board or the send press replaces what held it.
-  const [wasPutBack, setWasPutBack] = useState(false)
+  // Remounts the board with focus on its first stick once a move is put back,
+  // since the press that put it back is disabled under the reader.
+  const [putBackCount, setPutBackCount] = useState(0)
 
   if (content === null) {
     return null
@@ -70,53 +56,33 @@ export const MatchsticksMove: React.FC<MatchsticksMoveProps> = ({
   // The server's copy is what survives a reload.
   const sent = content.yourMove ?? (isSent ? placed : null)
 
-  const lay = (to: StickPlace): void => {
-    if (lifted === null) {
-      return
-    }
-
-    const move = { from: lifted, to }
-
-    if (applyMove({ glyphs, move }) === null) {
-      setIsRefused(true)
-
-      return
-    }
-
-    setPlaced(move)
-    setLifted(null)
-    setIsRefused(false)
-  }
-
   const hintKey: PlainTranslationKey =
     sent !== null
       ? 'matchsticks.move.sent'
-      : isRefused
-        ? 'error.illegal_move'
+      : lifted !== null
+        ? 'matchsticks.move.layDown'
         : placed !== null
           ? 'matchsticks.move.placed'
-          : lifted !== null
-            ? 'matchsticks.move.layDown'
-            : 'matchsticks.move.pickUp'
+          : 'matchsticks.move.pickUp'
 
   return (
     <>
       {card(
         sent !== null ? (
-          <MovedRow glyphs={glyphs} move={sent} />
-        ) : placed !== null ? (
-          <MovedRow glyphs={glyphs} move={placed} />
+          <MatchstickRow glyphs={glyphs} isStill move={sent} />
         ) : (
           <MatchstickBoard
             aria-label={translate('matchsticks.move.label')}
-            autoFocus={wasPutBack}
+            autoFocus={putBackCount > 0}
             glyphs={glyphs}
+            key={putBackCount}
             lifted={lifted}
-            onLay={lay}
-            onLift={(place) => {
-              setLifted(place)
-              setIsRefused(false)
+            onLift={setLifted}
+            onPlace={(move) => {
+              setPlaced(move)
+              setLifted(null)
             }}
+            placed={placed}
           />
         )
       )}
@@ -133,7 +99,8 @@ export const MatchsticksMove: React.FC<MatchsticksMoveProps> = ({
               isDisabled={placed === null}
               onPress={() => {
                 setPlaced(null)
-                setWasPutBack(true)
+                setLifted(null)
+                setPutBackCount((count) => count + 1)
               }}
               size='large'
               variant='outlined'

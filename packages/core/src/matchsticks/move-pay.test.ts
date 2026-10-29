@@ -4,6 +4,7 @@ import type { MatchsticksPuzzle } from '@melee/protocol/matchsticks'
 import { POINT } from '@melee/protocol/scoring'
 
 import { isBestMove, placesFromBestOf, pointsForMove } from './move-pay'
+import { applyMove, solutionsOf } from './one-move'
 
 const placeOf = (puzzle: MatchsticksPuzzle, made: string) =>
   placesFromBestOf({ made, puzzle })
@@ -39,6 +40,22 @@ describe('where a move lands among the answers', () => {
     expect(placeOf(puzzle, '0+4=4')).toBe(0)
     expect(placeOf(puzzle, '8-4=4')).toBe(0)
     expect(placeOf(puzzle, '9+4=4')).toBeNull()
+  })
+})
+
+describe('an equation with more than one answer', () => {
+  it('[matchsticks] places every move that makes it true first, however different', () => {
+    const puzzle: MatchsticksPuzzle = { glyphs: '6+4=4', goal: 'equation' }
+    const solutions = solutionsOf(puzzle)
+    const made = new Set(solutions.map((solution) => solution.glyphs))
+
+    expect(made.size).toBeGreaterThan(1)
+
+    for (const { move } of solutions) {
+      const moved = applyMove({ glyphs: puzzle.glyphs, move })
+
+      expect(moved === null ? null : placeOf(puzzle, moved)).toBe(0)
+    }
   })
 })
 

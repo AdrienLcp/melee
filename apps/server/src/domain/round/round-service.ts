@@ -28,6 +28,7 @@ import {
 import { isTrackFinished } from '@melee/core/board/track-finish'
 import { shuffled } from '@melee/core/helpers/random'
 import { innerclockRoundDurationMs } from '@melee/core/innerclock/gap-pay'
+import { applyMove } from '@melee/core/matchsticks/one-move'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 import {
   drawFlipDelayMs,
@@ -413,7 +414,6 @@ export type AnswerRejection = Extract<
   ProtocolErrorCode,
   | 'already_buzzed'
   | 'colour_still_shown'
-  | 'illegal_move'
   | 'invalid_message'
   | 'joined_mid_round'
   | 'not_your_turn'
@@ -513,11 +513,7 @@ export const registerAnswer = ({
   const graded = grade({ attempt, held, round, shapeOf })
 
   if (graded === null) {
-    return Result.failure(
-      round.content.kind === 'matchsticks' && attempt.kind === 'move'
-        ? 'illegal_move'
-        : 'invalid_message'
-    )
+    return Result.failure('invalid_message')
   }
 
   const heldBefore = held?.verdict ?? null
@@ -552,7 +548,10 @@ export const registerAnswer = ({
 
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
     round.content.moves.push({
-      glyphs: graded.said,
+      glyphs: applyMove({
+        glyphs: round.content.puzzle.glyphs,
+        move: attempt.move
+      }),
       move: attempt.move,
       playerId
     })
@@ -1011,7 +1010,8 @@ const grade = ({
       : null
   }
 
-  // What a move says is the puzzle it made, which the reveal draws it from.
+  // What a move says is the puzzle it made, and nothing for sticks that read
+  // as nothing; the reveal draws it from the puzzle and the move either way.
   if (content.kind === 'matchsticks') {
     if (attempt.kind !== 'move') {
       return null
@@ -1021,7 +1021,7 @@ const grade = ({
 
     return graded === null
       ? null
-      : { said: graded.made, verdict: graded.verdict }
+      : { said: graded.made ?? '', verdict: graded.verdict }
   }
 
   if (content.kind === 'blacksquare') {

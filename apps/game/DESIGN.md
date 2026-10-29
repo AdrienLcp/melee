@@ -916,8 +916,18 @@ Pine matches with red heads on paper, every empty place a faint groove. A held
 stick is raised off its place with a shadow and a coral edge, and the grooves it
 may land in take a dashed die-line; a move is drawn with its old place dashed in
 coral and the stick ringed in green, travelling into place only on the reveal's
-solution (`isStill` everywhere else). The presses are invisible boxes laid over
-the drawing in its own proportions, so the sticks stay the only thing drawn. A
+solution (`isStill` everywhere else). The board takes every pointer itself and
+hands it to the nearest place, measured to the whole stick: a stick is picked
+up within 24 drawing units (about half a stick) and dropped into the nearest
+empty groove within 30 of its centre, so every place answers the whole of the
+drawing closer to it than to any other — the largest press that collides with
+none, which is what a small phone needs. Dragged, the stick rides under the
+pointer with the grip it was taken by, its shadow falling further, and turns to
+the groove it would land in, which inks its die-line in coral; the turn is the
+one motion and takes `--transition-fast`, so reduced motion snaps it. The
+react-aria presses are invisible boxes laid over the drawing in its own
+proportions, there for the keyboard and a screen reader and ringing the focus,
+so the sticks stay the only thing drawn. A
 seat's move on a reveal chip is printed on a slip of `--card`, since a match is
 always laid on paper.
 

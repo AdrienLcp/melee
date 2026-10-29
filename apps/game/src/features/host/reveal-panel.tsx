@@ -354,7 +354,8 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     said: answerWords(answer)
   }))
 
-  const moves = matchsticksContent(round)?.revealedMoves ?? []
+  const matchsticks = matchsticksContent(round)
+  const moves = matchsticks?.revealedMoves ?? []
   const isShades = swatchContent(round) !== null
 
   const nameOf = (playerId: string): string =>
@@ -372,7 +373,11 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     return sent === undefined ? (
       said
     ) : (
-      <MatchstickRow glyphs={sent.glyphs} isStill move={sent.move} />
+      <MatchstickRow
+        glyphs={matchsticks?.puzzle.glyphs ?? ''}
+        isStill
+        move={sent.move}
+      />
     )
   }
 

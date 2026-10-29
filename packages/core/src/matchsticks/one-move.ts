@@ -7,11 +7,37 @@ import type {
 import { emptyPlacesOf, glyphWith, sticksOf } from './glyphs'
 
 /**
- * The puzzle once this stick has moved, or `null` for a move the sticks cannot
- * make: no stick where it is lifted, one already where it is laid, or a glyph
- * left behind that is no digit or sign. A stick lifted off one glyph has to
- * leave a glyph behind, and laid on another has to make one; moved on the same
- * glyph, only the result counts.
+ * Whether the move lifts a stick that is there and lays it on a place that is
+ * empty — all a move has to be. What the sticks read as afterwards is
+ * `applyMove`'s question, and a move that reads as nothing is still a move: it
+ * simply answers nothing.
+ */
+export const isPlayableMove = ({
+  glyphs,
+  move
+}: {
+  glyphs: string
+  move: StickMove
+}): boolean => {
+  const chars = [...glyphs]
+  const { from, to } = move
+  const fromGlyph = chars[from.glyphIndex]
+  const toGlyph = chars[to.glyphIndex]
+
+  return (
+    fromGlyph !== undefined &&
+    toGlyph !== undefined &&
+    sticksOf(fromGlyph).includes(from.slot) &&
+    emptyPlacesOf(toGlyph).includes(to.slot)
+  )
+}
+
+/**
+ * The puzzle once this stick has moved, or `null` when the sticks then read as
+ * nothing — a glyph left behind or made that is no digit or sign — or the move
+ * is not `isPlayableMove`. A stick lifted off one glyph has to leave a glyph
+ * behind, and laid on another has to make one; moved on the same glyph, only
+ * the result counts.
  */
 export const applyMove = ({
   glyphs,
@@ -20,19 +46,14 @@ export const applyMove = ({
   glyphs: string
   move: StickMove
 }): string | null => {
-  const chars = [...glyphs]
-  const { from, to } = move
-  const fromGlyph = chars[from.glyphIndex]
-  const toGlyph = chars[to.glyphIndex]
-
-  if (
-    fromGlyph === undefined ||
-    toGlyph === undefined ||
-    !sticksOf(fromGlyph).includes(from.slot) ||
-    !emptyPlacesOf(toGlyph).includes(to.slot)
-  ) {
+  if (!isPlayableMove({ glyphs, move })) {
     return null
   }
+
+  const chars = [...glyphs]
+  const { from, to } = move
+  const fromGlyph = chars[from.glyphIndex] ?? ''
+  const toGlyph = chars[to.glyphIndex] ?? ''
 
   const kept = sticksOf(fromGlyph).filter((slot) => slot !== from.slot)
 

@@ -35,6 +35,22 @@
       stroke-opacity: 0.4
       stroke-width: 1.5
 
+    // The place a press or a drop would land on, drawn as the die-line inked in.
+    .groove[data-aimed]
+      fill: color-mix(in oklab, var(--primary) 22%, transparent)
+      stroke: var(--primary)
+      stroke-dasharray: none
+      stroke-opacity: 1
+      stroke-width: 2
+
+    .match[data-aimed]:not([data-lifted]) .wood
+      stroke: var(--primary)
+      stroke-width: 2
+
+    .turn
+      rotate: var(--turn)
+      transition: rotate var(--transition-fast, 0s) var(--ease-out)
+
     // Held: raised off its place, its shadow left on the paper under it.
     .match[data-lifted]
       filter: drop-shadow(1px 4px 2px var(--shadow-ink))
@@ -42,6 +58,10 @@
       .wood
         stroke: var(--primary)
         stroke-width: 3
+
+    // Carried under a pointer: higher off the paper, so the shadow falls further.
+    .match[data-dragged]
+      filter: drop-shadow(2px 9px 4px var(--shadow-ink))
 
     &[data-still] .moved
       animation: none

@@ -18,7 +18,12 @@ import {
 } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
-import { isTrueEquation, oneStickMoves } from '@melee/core/matchsticks/one-move'
+import { emptyPlacesOf, sticksOf } from '@melee/core/matchsticks/glyphs'
+import {
+  applyMove,
+  isTrueEquation,
+  oneStickMoves
+} from '@melee/core/matchsticks/one-move'
 
 import { startRoomHarness } from './node-room-harness'
 import {
@@ -40,8 +45,8 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
 })
 
 /**
- * One equation, so a round always has a right move, a wrong one and an illegal
- * one to send: a dealt equation may have no wrong move at all — every stick of
+ * One equation, so a round always has a right move, a wrong one, one whose
+ * sticks read as nothing and one no screen sends: a dealt equation may have no wrong move at all — every stick of
  * `4-1=2` that can move makes it true.
  */
 vi.mock('@melee/core/matchsticks/deal', async () => {
@@ -205,8 +210,9 @@ const MOVES: RoomSettings = {
 }
 
 /**
- * A move the sticks can make that leaves the equation true, one that leaves it
- * false, and one they cannot make — a stick lifted off the equals sign.
+ * A move that leaves the equation true, one that leaves it false, one that
+ * leaves sticks reading as nothing, and one no screen can send — a stick
+ * lifted off the equals sign.
  */
 const movesFor = (glyphs: string) => {
   const legal = oneStickMoves(glyphs)
@@ -217,12 +223,29 @@ const movesFor = (glyphs: string) => {
     throw new Error(`${glyphs} has no right and wrong move to send`)
   }
 
-  const illegal: StickMove = {
+  const impossible: StickMove = {
     from: { glyphIndex: [...glyphs].indexOf('='), slot: 'a' },
     to: { glyphIndex: 0, slot: 'a' }
   }
+  const chars = [...glyphs]
+  const unreadable = chars
+    .flatMap((fromGlyph, fromIndex) =>
+      sticksOf(fromGlyph).flatMap((fromSlot) =>
+        chars.flatMap((toGlyph, toIndex) =>
+          emptyPlacesOf(toGlyph).map((toSlot) => ({
+            from: { glyphIndex: fromIndex, slot: fromSlot },
+            to: { glyphIndex: toIndex, slot: toSlot }
+          }))
+        )
+      )
+    )
+    .find((move) => applyMove({ glyphs, move }) === null)
 
-  return { illegal, right, wrong }
+  if (unreadable === undefined) {
+    throw new Error(`${glyphs} has no move that reads as nothing`)
+  }
+
+  return { impossible, right, unreadable, wrong }
 }
 
 const sendMove = ({
@@ -295,11 +318,42 @@ describe('matchsticks answered by moving a stick', () => {
     expect(view?.round?.lockedOutPlayerIds).toEqual([])
   })
 
-  it('[matchsticks] refuses a move the sticks cannot make without spending the shot, then a second move', async () => {
+  it('[matchsticks] takes a move whose sticks read as nothing, pays it nothing and draws it on the reveal', async () => {
+    const { host, lea, max, moves, roundId, zoe } = await movesInPlay()
+
+    sendMove({ move: moves.unreadable, roundId, seat: zoe })
+    sendMove({ move: moves.right.move, roundId, seat: max })
+    await waitFor(
+      () => matchsticksRound(playerView(zoe))?.yourMove != null,
+      'the move to land'
+    )
+    sendMove({ move: moves.right.move, roundId, seat: lea })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const view = playerView(zoe)
+    const award = view?.round?.awards.find(
+      (entry) => entry.playerId === view.youId
+    )
+
+    expect(errorsIn(zoe)).toEqual([])
+    expect(award?.verdict).toEqual({ kind: 'move', placesFromBest: null })
+    expect(award?.points).toBe(0)
+    expect(matchsticksRound(view)?.revealedMoves).toContainEqual({
+      glyphs: null,
+      move: moves.unreadable,
+      playerId: view?.youId
+    })
+    expect(hostView(host)?.phase).toBe('revealed')
+  })
+
+  it('[matchsticks] refuses a move no screen can send without spending the shot, then a second move', async () => {
     const { moves, roundId, zoe } = await movesInPlay()
 
-    sendMove({ move: moves.illegal, roundId, seat: zoe })
-    await waitFor(() => errorsIn(zoe).length === 1, 'the illegal move refused')
+    sendMove({ move: moves.impossible, roundId, seat: zoe })
+    await waitFor(
+      () => errorsIn(zoe).length === 1,
+      'the impossible move refused'
+    )
     sendMove({ move: moves.wrong.move, roundId, seat: zoe })
     await waitFor(
       () => matchsticksRound(playerView(zoe))?.yourMove != null,
@@ -309,7 +363,7 @@ describe('matchsticks answered by moving a stick', () => {
     await waitFor(() => errorsIn(zoe).length === 2, 'the second move refused')
 
     expect(errorsIn(zoe).map(({ code }) => code)).toEqual([
-      'illegal_move',
+      'invalid_message',
       'already_buzzed'
     ])
     expect(matchsticksRound(playerView(zoe))?.yourMove).toEqual(
@@ -363,7 +417,7 @@ describe('matchsticks answered by moving a stick', () => {
     }
 
     sendMove({ move: moves.wrong.move, roundId, seat: max })
-    sendMove({ move: moves.illegal, roundId, seat: lea })
+    sendMove({ move: moves.impossible, roundId, seat: lea })
     sendMove({ move: moves.wrong.move, roundId, seat: lea })
     await waitFor(() => playerView(max)?.phase === 'revealed', 'the reveal')
 

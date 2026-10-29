@@ -2,9 +2,10 @@ import { describe, expect, it } from 'vitest'
 
 import { stickSlots } from '@melee/protocol/matchsticks'
 
-import { sticksOf } from './glyphs'
+import { emptyPlacesOf, sticksOf } from './glyphs'
 import {
   applyMove,
+  isPlayableMove,
   isTrueEquation,
   numberValue,
   oneStickMoves,
@@ -143,7 +144,66 @@ describe('a move sent by a screen', () => {
     ).toBeNull()
   })
 
-  it('[matchsticks] refuses a move that leaves a glyph that is no digit', () => {
+  it('[matchsticks] plays any stick onto any empty place, whatever the sticks then read as', () => {
+    for (const glyphs of ['6+4=4', '508', '1']) {
+      const chars = [...glyphs]
+      const lifts = chars.flatMap((glyph, glyphIndex) =>
+        sticksOf(glyph).map((slot) => ({ glyphIndex, slot }))
+      )
+      const lays = chars.flatMap((glyph, glyphIndex) =>
+        emptyPlacesOf(glyph).map((slot) => ({ glyphIndex, slot }))
+      )
+
+      for (const from of lifts) {
+        for (const to of lays) {
+          expect(isPlayableMove({ glyphs, move: { from, to } })).toBe(true)
+        }
+      }
+    }
+    expect(
+      applyMove({
+        glyphs: '1',
+        move: {
+          from: { glyphIndex: 0, slot: 'b' },
+          to: { glyphIndex: 0, slot: 'g' }
+        }
+      })
+    ).toBeNull()
+  })
+
+  it('[matchsticks] plays no stick lifted where there is none, or laid where there is one', () => {
+    const glyphs = '6+4=4'
+
+    expect(
+      isPlayableMove({
+        glyphs,
+        move: {
+          from: { glyphIndex: 0, slot: 'b' },
+          to: { glyphIndex: 2, slot: 'a' }
+        }
+      })
+    ).toBe(false)
+    expect(
+      isPlayableMove({
+        glyphs,
+        move: {
+          from: { glyphIndex: 0, slot: 'a' },
+          to: { glyphIndex: 2, slot: 'b' }
+        }
+      })
+    ).toBe(false)
+    expect(
+      isPlayableMove({
+        glyphs,
+        move: {
+          from: { glyphIndex: 3, slot: 'h' },
+          to: { glyphIndex: 1, slot: 'v' }
+        }
+      })
+    ).toBe(false)
+  })
+
+  it('[matchsticks] reads nothing from a move that leaves a glyph that is no digit', () => {
     expect(
       applyMove({
         glyphs: '1',

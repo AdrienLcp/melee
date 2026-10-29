@@ -370,6 +370,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
           content={judging?.content ?? null}
           isAnswerFolded={judging?.controls.isAnswerFolded ?? false}
           key={round.activeBuzz.atServerTime}
+          matchsticksGlyphs={matchsticks?.puzzle.glyphs ?? null}
           nickname={view.players[buzzerSeat]?.nickname ?? '—'}
           onJudge={
             judging === null

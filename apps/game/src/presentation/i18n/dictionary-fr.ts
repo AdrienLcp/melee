@@ -447,7 +447,6 @@ export const FR_DICTIONARY = defineDictionary({
     host_only_action: 'Seul l’hôte peut faire ça.',
     host_reconnecting:
       'Cette table vient de perdre son hôte, et l’attend encore.',
-    illegal_move: 'Cette allumette ne peut pas aller là. Essaie un autre coup.',
     internal_error: 'Ça a cassé de notre côté. Réessaie.',
     invalid_message: 'On n’a pas compris. Réessaie.',
     joined_mid_round: 'Tu joues à partir de la prochaine manche.',
@@ -1075,8 +1074,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Place vide {slot}, dans le {glyph} en position {position:number}',
       label: 'Les allumettes',
       layDown: 'Pose-la maintenant sur une place vide.',
-      pickUp: 'Prends une allumette.',
-      placed: 'Envoie ce coup, ou remets l’allumette.',
+      pickUp: 'Prends une allumette et pose-la ailleurs.',
+      placed: 'Envoie ce coup, ou déplace encore une allumette.',
       send: 'Envoyer le coup',
       sent: 'Ton coup est parti. On attend les autres.',
       slot: {
@@ -1091,7 +1090,8 @@ export const FR_DICTIONARY = defineDictionary({
         v: 'debout'
       },
       stick: 'Allumette {slot}, dans le {glyph} en position {position:number}',
-      undo: 'La remettre'
+      undo: 'La remettre',
+      unreadable: 'Des allumettes qui ne forment ni chiffres ni signes'
     },
     name: 'Allumettes',
     play: 'Jouer aux Allumettes',

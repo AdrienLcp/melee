@@ -141,10 +141,14 @@ compiles. Built on these decisions:
   the old place dashed in coral, the stick ringed in green), with *Put it
   back* and *Send the move* under it; focus goes to the send press, and back
   to the first stick after a put back.
-- **A drop the sticks cannot make is refused before anything is sent**, by
-  `applyMove`, the server's own rule: the stick stays held and the line under
-  the card says `error.illegal_move`. The server's refusal of the same code is
-  then never reached in practice; it stays for a client that skips the check.
+- ~~A drop the sticks cannot make is refused before anything is sent.~~
+  Reversed after a test on small phones (October 2026): the refusal was a hint
+  that told a seat which drops were worth trying. Any stick now goes to any
+  empty place, on the screen and on the server (`isPlayableMove`); sticks that
+  read as nothing answer nothing, `sentMove.glyphs` is `null` for them, and
+  `illegal_move` is gone. The board is dragged as well as pressed — any stick
+  to the nearest empty place within reach — and stays in play after a move
+  until it is sent.
 - `MatchsticksMove` (`features/player/`) is the whole form and takes a `card`
   render prop, so the player's page and a seated console each lay the sticks
   on their own round card (`MatchsticksPrompt` now takes `children` in place

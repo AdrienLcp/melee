@@ -53,7 +53,7 @@ export const MatchsticksPrompt: React.FC<MatchsticksPromptProps> = ({
           <VisuallyHidden>
             {translate('matchsticks.reveal.title')}
           </VisuallyHidden>
-          <MatchstickRow glyphs={solution.glyphs} move={solution.move} />
+          <MatchstickRow glyphs={puzzle.glyphs} move={solution.move} />
         </>
       )}
     </div>

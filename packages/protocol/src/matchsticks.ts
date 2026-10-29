@@ -55,8 +55,12 @@ export const matchsticksSolutionSchema = z.object({
  * at the reveal so every screen can draw the stick each seat moved.
  */
 export const sentMoveSchema = z.object({
-  /** The puzzle as this move left it. */
-  glyphs: matchsticksGlyphsSchema,
+  /**
+   * The puzzle as this move left it, and `null` when the sticks then read as
+   * nothing: any stick may go to any empty place, and such a move answers
+   * nothing. Every screen draws it from the puzzle and the move either way.
+   */
+  glyphs: matchsticksGlyphsSchema.nullable(),
   move: stickMoveSchema,
   playerId: playerIdSchema
 })

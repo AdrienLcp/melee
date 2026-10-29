@@ -5,7 +5,7 @@ import type { MoveVerdict } from '@melee/protocol/scoring'
 import { pickRandom } from '@melee/core/helpers/random'
 import { dealPuzzle } from '@melee/core/matchsticks/deal'
 import { placesFromBestOf } from '@melee/core/matchsticks/move-pay'
-import { applyMove } from '@melee/core/matchsticks/one-move'
+import { applyMove, isPlayableMove } from '@melee/core/matchsticks/one-move'
 
 import type { Round } from '@/domain/room/room'
 
@@ -41,8 +41,10 @@ export const matchsticksContent = ({
 }
 
 /**
- * What a move sent for this round made of the puzzle and what it is worth, or
- * `null` for a move the sticks cannot make.
+ * What a move sent for this round made of the puzzle and what it is worth —
+ * nothing, when the sticks read as nothing afterwards — or `null` for a frame
+ * no screen sends: no stick where it was lifted, or one already where it was
+ * laid.
  */
 export const gradeMove = ({
   content,
@@ -50,16 +52,23 @@ export const gradeMove = ({
 }: {
   content: MatchsticksContent
   move: StickMove
-}): { made: string; verdict: MoveVerdict } | null => {
-  const made = applyMove({ glyphs: content.puzzle.glyphs, move })
+}): { made: string | null; verdict: MoveVerdict } | null => {
+  const { glyphs } = content.puzzle
 
-  return made === null
-    ? null
-    : {
-        made,
-        verdict: {
-          kind: 'move',
-          placesFromBest: placesFromBestOf({ made, puzzle: content.puzzle })
-        }
-      }
+  if (!isPlayableMove({ glyphs, move })) {
+    return null
+  }
+
+  const made = applyMove({ glyphs, move })
+
+  return {
+    made,
+    verdict: {
+      kind: 'move',
+      placesFromBest:
+        made === null
+          ? null
+          : placesFromBestOf({ made, puzzle: content.puzzle })
+    }
+  }
 }

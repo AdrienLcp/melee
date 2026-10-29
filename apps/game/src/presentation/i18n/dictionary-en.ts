@@ -467,7 +467,6 @@ export const EN_DICTIONARY = defineDictionary({
     host_only_action: 'Only the host can do that.',
     host_reconnecting:
       'This table has just lost its host, and is waiting for them.',
-    illegal_move: 'That match cannot go there. Try another move.',
     internal_error: 'Something broke on our side. Try again.',
     invalid_message: 'We did not understand that. Try again.',
     joined_mid_round: 'You are in from the next round.',
@@ -1118,8 +1117,8 @@ export const EN_DICTIONARY = defineDictionary({
         'Empty place {slot}, in the {glyph} at position {position:number}',
       label: 'The matches',
       layDown: 'Now lay it on an empty place.',
-      pickUp: 'Pick up a match.',
-      placed: 'Send this move, or put the match back.',
+      pickUp: 'Pick up a match and lay it somewhere else.',
+      placed: 'Send this move, or move a match again.',
       send: 'Send the move',
       sent: 'Your move is in. Waiting for the others.',
       slot: {
@@ -1134,7 +1133,8 @@ export const EN_DICTIONARY = defineDictionary({
         v: 'upright'
       },
       stick: 'Match {slot}, in the {glyph} at position {position:number}',
-      undo: 'Put it back'
+      undo: 'Put it back',
+      unreadable: 'Matches that read as no digits or signs'
     },
     name: 'Matchsticks',
     play: 'Play Matchsticks',
