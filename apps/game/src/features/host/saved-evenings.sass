@@ -101,6 +101,11 @@
         gap: var(--space-2xs)
         padding-inline-end: var(--space-xs)
 
+        // The whole row lights, the forget press with it: lit alone, the
+        // evening stopped short of the cross and read as a broken row.
+        &:has(> .evening[data-hovered], > .evening[data-pressed])
+          background: var(--well)
+
       > li + li
         border-top: var(--hairline)
 
@@ -118,10 +123,6 @@
       min-width: 0
       padding: var(--space-xs) var(--space-s)
       text-align: start
-
-      &[data-hovered],
-      &[data-pressed]
-        background: var(--well)
 
       &[data-disabled]
         cursor: default
