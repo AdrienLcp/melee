@@ -8,8 +8,8 @@ import './away-mark.sass'
 
 /**
  * A seat whose screen has gone, beside its name on whatever list the room is
- * reading. A tag of its own rather than a word after the name, because
- * `Adrien hors ligne` reads as somebody's name.
+ * reading. A tag of its own rather than a word after the name, because a
+ * muted word set after a name reads as the end of it.
  */
 export const AwayMark: React.FC = () => {
   const translate = useTranslate()

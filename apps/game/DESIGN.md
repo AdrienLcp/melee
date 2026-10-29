@@ -812,8 +812,8 @@ seat in a keyline. `AnsweredPawns` on the console stands a pawn for an answer
 in and dashes one owed — *that*, never *what*. Removing a player is a ✕ named
 `Remove {nickname}`. A seat whose screen has gone mutes its name and carries
 `AwayMark`: an outlined `--radius-full` tag, a wifi-off glyph and the word in
-`--ink-muted` — a tag, never a bare word after the name, because *Adrien hors
-ligne* reads as a name. The score track, too narrow for it, keeps the word for
+`--ink-muted` — a tag, never a bare word after the name, which reads as the end of
+the name. The score track, too narrow for it, keeps the word for
 screen readers alone.
 
 ### Teams (`TeamRoster`, `PawnColoursProvider`)
