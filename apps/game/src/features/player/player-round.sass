@@ -348,12 +348,12 @@
       &:has(.round-board)
         display: grid
         gap: var(--space-s)
-        grid-template: 'outcome' auto 'board' minmax(0, 1fr) 'hold' auto 'ready' auto / minmax(0, 1fr)
+        grid-template: 'outcome' auto 'board' minmax(min-content, 1fr) 'hold' auto 'ready' auto / minmax(0, 1fr)
         min-height: 0
 
         @media (aspect-ratio >= 13 / 10)
           column-gap: var(--space-m)
-          grid-template: 'outcome board' minmax(0, 1fr) 'hold hold' auto 'ready ready' auto / minmax(0, 1fr) minmax(0, 1fr)
+          grid-template: 'outcome board' minmax(min-content, 1fr) 'hold hold' auto 'ready ready' auto / minmax(0, 1fr) minmax(0, 1fr)
 
         .outcome
           gap: var(--space-s)

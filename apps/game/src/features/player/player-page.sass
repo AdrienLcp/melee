@@ -24,9 +24,10 @@
       justify-content: flex-start
       max-width: var(--column-wide-max-width)
 
-  // A reveal with the room's board on it, held to the screen below the split
-  // the way a framed round is: the page does not scroll, the board divides
-  // what it is left.
+  // A reveal with the room's board on it, fitted to the screen below the split
+  // the way a framed round is: the board divides what it is left. A floor,
+  // not a height: a room whose rows at their smallest still overflow the
+  // screen scrolls the page, rather than clipping the last of the standings.
   .player-page.playing:has(> .player-round.revealed > .round-board)
     @include layout.narrow
       animation: none
@@ -35,8 +36,8 @@
       // Declared, because the column's `justify-content` would otherwise
       // shrink an implicit track to its content.
       grid-template-columns: minmax(0, 1fr)
-      grid-template-rows: auto minmax(0, 1fr)
-      height: 100dvh
+      grid-template-rows: auto minmax(min-content, 1fr)
+      min-height: 100dvh
 
   // A sheet is held to the screen at every width: the grid divides what the
   // card and the field leave, which is what a keyboard coming up takes back.

@@ -2,6 +2,9 @@
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
 
+// Below this a revealed board drops the line under each name.
+$short-board: 26rem
+
 @layer components
   // A chip per player, dealt in the order the round left them: filled where
   // they answered right, an empty outline where they did not, the way the
@@ -9,7 +12,9 @@
   .round-board
     // A row's height in its own `em`, which the budget is divided by: the
     // chip's padding, the name, the line under it and the gap between chips.
-    --board-row: 3.35
+    // Measured on the tallest row, one paid for the answer and the clock: the
+    // clock's half goes under the answer's and takes a second line.
+    --board-row: 3.8
 
     // The rows are sized against this, not the viewport: on a laptop the
     // reveal splits and this board is handed a column while `vmin` goes on
@@ -22,7 +27,7 @@
     width: 100%
 
     @supports (text-box: trim-both cap alphabetic)
-      --board-row: 3.15
+      --board-row: 3.6
 
     // How tall a row may be is the stage's to answer: the screen divided by
     // the players in the room. The budget is a `min()` over the clamp, so it
@@ -145,11 +150,21 @@
     @include layout.narrow
       align-content: start
       container-type: size
+      // Every row at the floor its font is clamped to. A size container
+      // reports no height of its own, so without this a room too large for
+      // the box overflows it instead of growing the page. A floor tall enough
+      // to give the rows their second line is floored on the taller row: the
+      // `clamp` is zero below the threshold and the tall floor above it.
+      --board-gaps: calc((var(--board-rows, 5) - 1) * var(--space-2xs))
+      --short-floor: calc(var(--board-rows, 5) * var(--text-xs) * 1.75 + var(--board-gaps))
+      --tall-floor: calc(var(--board-rows, 5) * var(--text-xs) * var(--board-row) + var(--board-gaps))
+
+      min-block-size: max(var(--short-floor), clamp(0px, (var(--short-floor) - #{$short-board}) * 100000, var(--tall-floor)))
 
       li
         font-size: clamp(var(--text-xs), calc((100cqh - (var(--board-rows, 5) - 1) * var(--space-2xs)) / var(--board-rows, 5) / var(--board-row)), 1.5rem)
 
-      @container (height < 26rem)
+      @container (height < #{$short-board})
         li
           --board-row: 1.75
 
