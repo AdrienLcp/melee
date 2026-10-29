@@ -528,6 +528,13 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   field with its press under it at the panel's width (the seat's form), then
   a ruled list whose row is the evening's entries as a line of spine ticks,
   its name and a caption of its games and length, a ✕ beside it.
+- **The draw** (*Au hasard*) is the socket row under the planned games,
+  pressed like the add row: a page in the tab's place under a lid edged in
+  `--socket-line` (no game owns it), then a ruled list of every entry whose
+  game may be drawn. A planned one carries a *Drawn* switch and sinks into the
+  socket when it is off; one in the draw alone says so in its caption and
+  carries a ✕; the last row adds a game to the draw from the shelf, which then
+  lists only the games a draw may land on.
 - **Past the split** the panel stands beside the stage, `--host-panel-width`
   (25rem), on paper (`box-lid.paper`: rounded on the stage's side, a hairline
   and `--shadow-panel-*` cast toward the stage), held to the viewport and

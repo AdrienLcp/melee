@@ -561,6 +561,19 @@ export const EN_DICTIONARY = defineDictionary({
         subjects: '{count:number} subjects'
       },
       drag: 'Move round {number:number}, {name}',
+      draw: {
+        add: 'Add a game to the draw',
+        addHint: 'Drawn only, without a planned round',
+        brought:
+          'A game you bring the content for is played once, so it is never drawn.',
+        empty: 'No game in the draw: any planned game can come up.',
+        heading: 'Drawn by chance',
+        inDraw: 'Drawn',
+        inDrawNamed: '{name} in the draw',
+        onlyDrawn: 'Drawn only',
+        said: 'Every round past the planned ones is drawn among these games.',
+        takeOut: 'Take {name} out of the draw'
+      },
       duplicate: 'Duplicate',
       earlier: 'Earlier',
       fills: 'Fills the rest',

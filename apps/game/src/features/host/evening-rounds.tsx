@@ -110,6 +110,8 @@ type EveningRoundsProps = {
   onAdd: () => void
   /** Opens the page of the line-up's entry at that index. */
   onOpen: (at: number) => void
+  /** Opens the page of the games the rounds past the planned ones are drawn among. */
+  onOpenDraw: () => void
   onSettingsChange: (settings: RoomSettings) => void
   /** What this host last left each game set to, for the entry a drag puts first. */
   preferences: HostPreferences | null
@@ -131,6 +133,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
   isLive,
   onAdd,
   onOpen,
+  onOpenDraw,
   onSettingsChange,
   preferences,
   returnedFrom,
@@ -276,6 +279,8 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
           {!isEveningOver && (
             <DrawnRounds
               coming={coming}
+              isLive={isLive}
+              onOpen={onOpenDraw}
               settings={view.settings}
               upcoming={upcoming}
             />
@@ -609,14 +614,17 @@ const EntryMenu: React.FC<{
 
 /**
  * The rounds past the evening's rows, drawn as they come: so many, or until
- * the host stops. Nothing when a row already lies past the count.
+ * the host stops, opening the page of the games they are drawn among.
+ * Nothing when a row already lies past the count.
  */
 const DrawnRounds: React.FC<{
   coming: readonly ComingRound[]
+  isLive: boolean
+  onOpen: () => void
   settings: RoomSettings
   /** The round about to open, counted from 0. */
   upcoming: number
-}> = ({ coming, settings, upcoming }) => {
+}> = ({ coming, isLive, onOpen, settings, upcoming }) => {
   const translate = useTranslate()
 
   if (coming.some((round) => round.isPastTheEnd)) {
@@ -637,7 +645,7 @@ const DrawnRounds: React.FC<{
   })
 
   return (
-    <div className='drawn-rounds'>
+    <AriaButton className='drawn-rounds' isDisabled={!isLive} onPress={onOpen}>
       <span className='band'>
         {roundCount === null
           ? `${from}+`
@@ -654,7 +662,8 @@ const DrawnRounds: React.FC<{
             })}
       </span>
       <span className='detail'>{among}</span>
-    </div>
+      <ChevronRightIcon className='chevron' />
+    </AriaButton>
   )
 }
 

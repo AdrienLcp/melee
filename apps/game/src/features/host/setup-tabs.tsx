@@ -23,6 +23,7 @@ import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
 import { EveningAddPage, usePlanGame } from './evening-add-page'
+import { EveningDrawPage } from './evening-draw-page'
 import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds } from './evening-rounds'
 import { GamePickList } from './game-pick-list'
@@ -76,8 +77,9 @@ export type SetupTabsProps = {
 
 /** What the games tab shows: the planned games, or one page of the evening in their place. */
 type GamePage =
-  | { kind: 'adding' }
-  | { at: number; kind: 'entry' }
+  | { isDrawnOnly: boolean; kind: 'adding' }
+  | { kind: 'draw' }
+  | { at: number; from: 'draw' | 'list'; kind: 'entry' }
   | { kind: 'list'; returnedFrom: number | null }
   | { kind: 'saved' }
 
@@ -107,10 +109,12 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   const backToList = () => {
     setPage({ kind: 'list', returnedFrom: null })
   }
-  const planned = (settings: RoomSettings, at: number) => {
-    onSettingsChange(settings)
-    setPage({ at, kind: 'entry' })
-  }
+  const plannedFrom =
+    (from: 'draw' | 'list') => (settings: RoomSettings, at: number) => {
+      onSettingsChange(settings)
+      setPage({ at, from, kind: 'entry' })
+    }
+  const planned = plannedFrom('list')
   const plan = usePlanGame({
     onPlanned: planned,
     preferences,
@@ -152,7 +156,11 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         draftSource={draftSource}
         isLive={isLive}
         onBack={() => {
-          setPage({ kind: 'list', returnedFrom: page.at })
+          setPage(
+            page.from === 'draw'
+              ? { kind: 'draw' }
+              : { kind: 'list', returnedFrom: page.at }
+          )
         }}
         onDraftSource={onDraftSource}
         onRememberSlateKey={onRememberSlateKey}
@@ -164,13 +172,38 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     )
   }
 
+  if (page.kind === 'draw') {
+    return (
+      <EveningDrawPage
+        isLive={isLive}
+        onAdd={() => {
+          setPage({ isDrawnOnly: true, kind: 'adding' })
+        }}
+        onBack={backToList}
+        onOpen={(at) => {
+          setPage({ at, from: 'draw', kind: 'entry' })
+        }}
+        onSettingsChange={onSettingsChange}
+        preferences={preferences}
+        view={view}
+      />
+    )
+  }
+
   if (page.kind === 'adding') {
     return (
       <EveningAddPage
+        isDrawnOnly={page.isDrawnOnly}
         isLive={isLive}
         isSeated={view.youId !== null}
-        onAdded={planned}
-        onBack={backToList}
+        onAdded={plannedFrom(page.isDrawnOnly ? 'draw' : 'list')}
+        onBack={
+          page.isDrawnOnly
+            ? () => {
+                setPage({ kind: 'draw' })
+              }
+            : backToList
+        }
         preferences={preferences}
         settings={view.settings}
       />
@@ -195,10 +228,13 @@ export const GameTab: React.FC<SetupTabsProps> = ({
         <EveningRounds
           isLive={isLive}
           onAdd={() => {
-            setPage({ kind: 'adding' })
+            setPage({ isDrawnOnly: false, kind: 'adding' })
           }}
           onOpen={(at) => {
-            setPage({ at, kind: 'entry' })
+            setPage({ at, from: 'list', kind: 'entry' })
+          }}
+          onOpenDraw={() => {
+            setPage({ kind: 'draw' })
           }}
           onSettingsChange={onSettingsChange}
           preferences={preferences}

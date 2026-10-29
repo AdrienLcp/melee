@@ -1,0 +1,124 @@
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .evening-page
+    // No game's spine: the lid is the draw's, so its edge is the socket's line.
+    .draw-lid
+      --spine: var(--socket-line)
+
+      grid-template-areas: 'icon name' 'icon said'
+      grid-template-columns: auto minmax(0, 1fr)
+
+    .draw
+      border-block: var(--hairline)
+      display: grid
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        align-items: center
+        column-gap: var(--space-xs)
+        display: grid
+        grid-template-columns: minmax(0, 1fr) auto
+        padding-inline-end: var(--space-s)
+
+      > li + li
+        border-top: var(--hairline)
+
+      // Out of the draw, the row sinks into the socket like a played one: it
+      // stays to be switched back, but the eye reads past it.
+      > li[data-out-of-the-draw]
+        background: var(--socket)
+
+        .draw-game
+          color: var(--socket-ink)
+
+        .band
+          background: var(--socket-line)
+
+        .detail
+          color: var(--socket-ink)
+
+      > li.add
+        padding-inline-end: 0
+
+        .draw-game
+          grid-template-areas: 'band name chevron' 'band detail chevron'
+          grid-template-columns: var(--space-xl) minmax(0, 1fr) auto
+          padding-inline-end: var(--space-s)
+
+        .band
+          background: transparent
+          color: var(--ink)
+
+        .name
+          @include typography.strong
+
+          font-size: var(--text-s)
+
+    .draw-game
+      @include focus.ring-inset
+
+      align-items: center
+      background: transparent
+      border: 0
+      color: var(--ink)
+      column-gap: var(--space-s)
+      cursor: pointer
+      display: grid
+      grid-template-areas: 'band icon name' 'band icon detail'
+      grid-template-columns: var(--space-xl) auto minmax(0, 1fr)
+      min-height: var(--control-height)
+      padding: var(--space-xs) 0
+      row-gap: var(--space-2xs)
+      text-align: start
+      width: 100%
+
+      &:not(:has(.detail:not(:empty)))
+        grid-template-areas: 'band icon name'
+
+      &[data-hovered],
+      &[data-pressed]
+        background: var(--card-well)
+
+      &[data-disabled]
+        cursor: not-allowed
+        opacity: 0.55
+
+      > svg:not(.chevron)
+        grid-area: icon
+
+      .band
+        align-items: center
+        align-self: stretch
+        background: var(--spine)
+        color: var(--spine-ink, var(--on-spine))
+        display: grid
+        grid-area: band
+        justify-items: center
+        margin-block: calc(var(--space-xs) * -1)
+
+      .name
+        @include typography.lid-name
+
+        font-size: var(--text-m)
+        grid-area: name
+
+      .detail
+        @include typography.caption
+
+        color: var(--ink-muted)
+        grid-area: detail
+        text-wrap: pretty
+
+        &:empty
+          display: none
+
+      .chevron
+        color: var(--ink-muted)
+        grid-area: chevron
+
+    .take-out
+      color: var(--ink-muted)

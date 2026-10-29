@@ -542,6 +542,19 @@ export const FR_DICTIONARY = defineDictionary({
         subjects: '{count:number} sujets'
       },
       drag: 'Déplacer la manche {number:number}, {name}',
+      draw: {
+        add: 'Ajouter un jeu au tirage',
+        addHint: 'Tiré au sort seulement, sans manche prévue',
+        brought:
+          'Un jeu dont tu apportes le contenu se joue une fois : il n’est jamais tiré.',
+        empty: 'Aucun jeu au tirage : n’importe quel jeu prévu peut sortir.',
+        heading: 'Au hasard',
+        inDraw: 'Au tirage',
+        inDrawNamed: '{name} au tirage',
+        onlyDrawn: 'Tirage seulement',
+        said: 'Chaque manche après les jeux prévus est tirée parmi ces jeux.',
+        takeOut: 'Retirer {name} du tirage'
+      },
       duplicate: 'Dupliquer',
       earlier: 'Plus tôt',
       fills: 'Remplit la partie',

@@ -58,7 +58,16 @@ model above:
   after it by one.
 
 `docs/game-catalogue.md` names no draw rule, so CLAUDE.md's line-up paragraph
-is where the pool is said. Step 3, the console, is what is left.
+is where the pool is said.
+
+Step 3 landed 29/10/2026: `evening-draw-page.tsx`, opened from the dice row.
+The shelf takes `isDrawnOnly` and lists only the games a draw may land on,
+rather than offering the others greyed out. An entry's page opened from the
+draw goes back to the draw. Seen muted at 1400×900 and 375×760 dark: a quiz
+switched out, a reflex added to the draw alone, the dice row reading
+*among Reflex*. The round drawn on it is the socket suite's
+(`[chance-pool] plays an entry in the draw alone`), not replayed in a browser.
+Step 5 is what is left.
 
 ## Steps
 

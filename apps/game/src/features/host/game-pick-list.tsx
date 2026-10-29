@@ -4,7 +4,10 @@ import { Button } from 'react-aria-components'
 import { type GameKind, shelvedGames } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
-import { isPlayableAloud } from '@melee/core/room/game-capabilities'
+import {
+  capabilitiesOf,
+  isPlayableAloud
+} from '@melee/core/room/game-capabilities'
 import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
 
 import { GameIcon, PlusIcon } from '@/presentation/components/icons'
@@ -18,6 +21,8 @@ type GamePickListProps = {
   'aria-label': string
   /** The socket is closed: a press would send nothing. */
   isDisabled: boolean
+  /** Only the games a round drawn by chance may land on: those serving their own content. */
+  isDrawnOnly?: boolean
   /** This console holds a seat, so a judged game is one it sits out. */
   isSeated: boolean
   onPick: (game: GameKind) => void
@@ -32,15 +37,19 @@ type GamePickListProps = {
 export const GamePickList: React.FC<GamePickListProps> = ({
   'aria-label': label,
   isDisabled,
+  isDrawnOnly = false,
   isSeated,
   onPick,
   settings
 }) => {
   const translate = useTranslate()
+  const games = isDrawnOnly
+    ? shelvedGames.filter((game) => capabilitiesOf(game).servesItsOwnContent)
+    : shelvedGames
 
   return (
     <ul aria-label={label} className='game-pick-list'>
-      {shelvedGames.map((game) => {
+      {games.map((game) => {
         const playsAloud = isPlayableAloud({ game, teams: settings.teams })
         const planned = settings.lineUp.filter(
           (entry) => entry.kind === game

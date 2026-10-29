@@ -1,7 +1,7 @@
 import type React from 'react'
 
 import type { GameKind } from '@melee/protocol/game'
-import type { RoomSettings } from '@melee/protocol/room'
+import type { LineUpDeal, RoomSettings } from '@melee/protocol/room'
 
 import {
   type HostPreferences,
@@ -22,10 +22,13 @@ import './evening-add-page.sass'
  * where it landed in the line-up.
  */
 export const usePlanGame = ({
+  deal,
   onPlanned,
   preferences,
   settings
 }: {
+  /** What the new entry is dealt to; its game's default when absent. */
+  deal?: LineUpDeal
   onPlanned: (settings: RoomSettings, at: number) => void
   preferences: HostPreferences | null
   settings: RoomSettings
@@ -34,6 +37,7 @@ export const usePlanGame = ({
 
   return (game) => {
     const added = withEntryAdded({
+      deal,
       game,
       locale,
       remembered: rememberedSetupFor({ game, preferences }),
@@ -47,6 +51,8 @@ export const usePlanGame = ({
 }
 
 type EveningAddPageProps = {
+  /** The round joins the draw alone, without a planned row: the shelf offers only the games a draw may land on. */
+  isDrawnOnly?: boolean
   isLive: boolean
   /** This console holds a seat, so a judged game is one it sits out. */
   isSeated: boolean
@@ -60,6 +66,7 @@ type EveningAddPageProps = {
 
 /** The shelf as a page, one press adding a round of a game to the end of the evening. */
 export const EveningAddPage: React.FC<EveningAddPageProps> = ({
+  isDrawnOnly = false,
   isLive,
   isSeated,
   onAdded,
@@ -68,8 +75,15 @@ export const EveningAddPage: React.FC<EveningAddPageProps> = ({
   settings
 }) => {
   const translate = useTranslate()
-  const plan = usePlanGame({ onPlanned: onAdded, preferences, settings })
-  const heading = translate('host.evening.pick')
+  const plan = usePlanGame({
+    deal: isDrawnOnly ? 'chance' : undefined,
+    onPlanned: onAdded,
+    preferences,
+    settings
+  })
+  const heading = translate(
+    isDrawnOnly ? 'host.evening.draw.add' : 'host.evening.pick'
+  )
 
   return (
     <EveningPage onBack={onBack}>
@@ -77,11 +91,16 @@ export const EveningAddPage: React.FC<EveningAddPageProps> = ({
       <GamePickList
         aria-label={heading}
         isDisabled={!isLive}
+        isDrawnOnly={isDrawnOnly}
         isSeated={isSeated}
         onPick={plan}
         settings={settings}
       />
-      <p className='hint'>{translate('host.evening.pickHint')}</p>
+      <p className='hint'>
+        {translate(
+          isDrawnOnly ? 'host.evening.draw.brought' : 'host.evening.pickHint'
+        )}
+      </p>
     </EveningPage>
   )
 }
