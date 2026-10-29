@@ -85,6 +85,11 @@
     .room-invitation .invite
       font-size: clamp(var(--text-m), calc(var(--stage-unit) * 2.4), var(--text-xl))
 
+    // Below the width that hides the header, its band comes back out of the
+    // stage's height, and the square is what gives it up.
+    @media (width < 85rem)
+      --table-qr-width: clamp(9rem, min(calc(var(--stage-unit) * 36), 45cqi), 32rem)
+
     // A column of a phone's width: the square takes the larger share of the
     // row, the code and the words stacked beside it.
     @container (width < 34rem)
