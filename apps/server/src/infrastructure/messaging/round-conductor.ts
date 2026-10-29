@@ -562,7 +562,8 @@ export const beginRound = async (
     if (pairs === null) {
       tellHost(engine, {
         code: 'no_content_available',
-        message: 'Too few quantities the room has not compared are left to deal five pairs'
+        message:
+          'Too few quantities the room has not compared are left to deal five pairs'
       })
       publishRoom(engine)
 
