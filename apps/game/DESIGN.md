@@ -1102,7 +1102,10 @@ bounced. Durations:
   room's first view): drawn only with the view, it arrived up to a second late
   and pushed the invitation 330px across a 1440px desk — new nodes, so
   `layout-shift` never counted it, and a filmstrip is how a late arrival is
-  found.
+  found. The stage waits for that view the same way: empty, it is not laid
+  down (`:has(> .stage:empty)`), so the arrival plays once, over the lobby,
+  and the menu stays hidden until the view puts the board — and the corner it
+  moves the menu to — on screen.
 - **A panel tab opening** — `panel-screen-in`, a fade alone on `fast` × 1.5:
   the panel is beside the game, and must not pull the eye off it. The tab
   being left is hidden on `[data-exiting]`: react-aria keeps an exiting panel

@@ -354,6 +354,12 @@
             flex-direction: column
             gap: var(--space-s)
 
+  // Before the room's first view the stage is an empty box: laid down then, the
+  // arrival plays over nothing and the lobby pops in a beat later. Held, it
+  // plays once the stage has something in it.
+  .host-console-page:has(> .stage:empty)
+    animation: none
+
   // A round in play is held to the screen the ring leaves, like the framed
   // seat: the stage takes what the header and the footer do not, and sizes its
   // type to that. Its floor is what keeps a tall footer a scroll rather than a
