@@ -555,6 +555,13 @@ survive navigation. Traps:
   `Field` colour and flips. It is clipped by its parent, so it is a false
   positive.
 
+Hover contrast stays a script, not an e2e spec. A sweep that hovers every
+control of the front door, the host's tabs, and the player and host screens of
+quiz, atlas, timeline, most likely, Petit Bac and Shades mid-round, in both
+schemes, came back clean after the dark hover fixes, and costs two minutes of
+browser per run. Wait past the countdown before measuring a round: a sweep
+that starts on the `3` hovers one control and reports nothing.
+
 ## What a pass covers
 
 At 414 px and 1920 px:
