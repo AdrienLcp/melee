@@ -26,6 +26,9 @@
     --board: light-dark(oklch(92.5% 0.028 218), oklch(29% 0.04 226))
     --board-ink: light-dark(oklch(24% 0.035 250), oklch(95% 0.012 230))
     --board-muted: light-dark(oklch(43% 0.035 245), oklch(79% 0.025 230))
+    // A row lit under the pointer: a tenth of the board's ink into the board,
+    // written out because the contrast test cannot read a `color-mix`.
+    --board-well: light-dark(oklch(85.6% 0.029 222), oklch(35.6% 0.037 226))
 
     // The board's printed blues: two alternating surfaces, a heavier one, and
     // the ink printed on them.
@@ -315,6 +318,7 @@
     // control's own boundary, which WCAG 1.4.11 asks 3:1 of.
     --rule: color-mix(in oklab, var(--ink) 22%, var(--field))
     --rule-strong: color-mix(in oklab, var(--ink) 60%, var(--field))
+    --well: var(--board-well)
     --cut: var(--card)
     --cut-ink: var(--card-ink)
     // The rule between two regions, whole. Declared again wherever `--rule`

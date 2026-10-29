@@ -144,7 +144,7 @@
       @include box-lid.paper
 
       --panel-arrival-from: 1rem
-      --tab-selected: var(--card-well)
+      --tab-selected: var(--well)
 
       animation: panel-dock calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
       view-transition-name: host-panel
@@ -194,7 +194,7 @@
         font-size: var(--text-m)
 
       &[data-hovered]
-        background: var(--card-well)
+        background: var(--well)
         color: var(--ink)
 
     // The side is chosen once and rarely again, so it waits at the foot of

@@ -143,6 +143,16 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.text
         },
         {
+          background: '--board-well',
+          foreground: '--board-ink',
+          minimum: WCAG_AA.text
+        },
+        {
+          background: '--board-well',
+          foreground: '--board-muted',
+          minimum: WCAG_AA.text
+        },
+        {
           background: '--selection',
           foreground: '--board-ink',
           minimum: WCAG_AA.text
