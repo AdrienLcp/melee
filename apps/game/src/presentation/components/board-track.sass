@@ -7,7 +7,17 @@
   inherits: true
   initial-value: 0
 
+// Registered so it computes to pixels: `BoardTrack` reads it to decide when a
+// line of cases is too thin for the screen it is drawn on.
+@property --board-band-wanted
+  syntax: '<length>'
+  inherits: true
+  initial-value: 0px
+
 @layer components
+  \:root:has(.board-track)
+    --board-band-wanted: clamp(2.5rem, calc(var(--stage-unit) * 9), 7rem)
+
   // Only while the board comes or goes, so a screen arriving on a board
   // already up draws it in place. `globals.sass` transitions the root's
   // ground, and a list replaces rather than adds, so it is written again.
@@ -27,7 +37,7 @@
     // The case `BoardTrack` measured, held to the band the wall was drawn in
     // before the track took a shape: past it the stage gives up rows a final
     // board needs on a screen standing up.
-    --board-band: min(var(--board-case), clamp(2.5rem, calc(var(--stage-unit) * 9), 7rem))
+    --board-band: min(var(--board-case), var(--board-band-wanted))
     --board-edge: clamp(0.25rem, 0.8vmin, 0.625rem)
     --board-gap: clamp(0.125rem, 0.4vmin, 0.3125rem)
     --board-breathe: clamp(0.75rem, 2.4vmin, 2rem)

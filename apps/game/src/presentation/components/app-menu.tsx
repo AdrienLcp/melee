@@ -5,7 +5,7 @@ import {
 } from '@adrienlcp/theme-preference'
 import { useThemePreference } from '@adrienlcp/theme-preference/react'
 import type React from 'react'
-import { useRef, useState } from 'react'
+import { useRef, useState, useSyncExternalStore } from 'react'
 import {
   DialogTrigger,
   Form,
@@ -16,6 +16,12 @@ import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
 import { isLocale, LOCALES } from '@melee/protocol/locale'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
+import {
+  canGoFullscreen,
+  isFullscreen,
+  onFullscreenChange,
+  toggleFullscreen
+} from '@/infrastructure/browser'
 import { promptInstall, useInstallState } from '@/infrastructure/install-prompt'
 import {
   creditsPathFor,
@@ -48,7 +54,14 @@ import {
   connectionStatusKey
 } from './connection-status'
 import { Disclosure } from './disclosure'
-import { InstallIcon, MenuIcon, ScreenIcon, ShareIcon } from './icons'
+import {
+  FullscreenEnterIcon,
+  FullscreenExitIcon,
+  InstallIcon,
+  MenuIcon,
+  ScreenIcon,
+  ShareIcon
+} from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { MenuPoints } from './menu-points'
@@ -288,6 +301,34 @@ const InstallApp: React.FC = () => {
   return null
 }
 
+/**
+ * The browser's bars gone for a screen the room reads from across the table,
+ * without anybody having to know the key their browser keeps it behind.
+ */
+const Fullscreen: React.FC = () => {
+  const translate = useTranslate()
+  const isActive = useSyncExternalStore(onFullscreenChange, isFullscreen)
+
+  if (!canGoFullscreen()) {
+    return null
+  }
+
+  return (
+    <Button
+      className='fullscreen'
+      onPress={() => {
+        void toggleFullscreen()
+      }}
+      variant='outlined'
+    >
+      {isActive ? <FullscreenExitIcon /> : <FullscreenEnterIcon />}
+      <span className='name'>
+        {translate(isActive ? 'menu.fullscreen.exit' : 'menu.fullscreen.enter')}
+      </span>
+    </Button>
+  )
+}
+
 const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
   dark: 'preferences.theme.dark',
   light: 'preferences.theme.light',
@@ -484,6 +525,8 @@ export const AppMenu: React.FC = () => {
                 }))}
                 value={preference}
               />
+
+              <Fullscreen />
 
               <InstallApp />
 

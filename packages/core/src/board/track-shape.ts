@@ -3,6 +3,13 @@ export const MIN_CASE_SIDE_PX = 56
 /** How tall a single line of cases may grow, however wide each case is. */
 export const MAX_LINE_HEIGHT_PX = 88
 
+/**
+ * How much of the band the screen draws a case at a line may give up before
+ * the track folds: a line of forty fits a wide screen with cases a few vmin
+ * across whatever its size, and a folded track draws them at the full band.
+ */
+export const LINE_SHARE_OF_BAND = 0.8
+
 const MIN_ROWS = 2
 const MIN_COLUMNS = 3
 
@@ -71,15 +78,18 @@ const spreadOver = ({
 
 /**
  * The shape a track of `caseCount` cases takes in a box: one line while every
- * case keeps `MIN_CASE_SIDE_PX` of width, else the U whose smaller side is the
+ * case keeps `MIN_CASE_SIDE_PX` of width and `LINE_SHARE_OF_BAND` of
+ * `bandSide`, the side the screen draws a case at, else the U whose smaller side is the
  * largest if that side still keeps it, else the closed loop that draws the
  * largest cases.
  */
 export const trackShapeFor = ({
+  bandSide,
   caseCount,
   height,
   width
 }: {
+  bandSide: number
   caseCount: number
   height: number
   width: number
@@ -93,7 +103,9 @@ export const trackShapeFor = ({
     rows: 1
   }
 
-  if (lineCellWidth >= MIN_CASE_SIDE_PX) {
+  if (
+    lineCellWidth >= Math.max(MIN_CASE_SIDE_PX, bandSide * LINE_SHARE_OF_BAND)
+  ) {
     return line
   }
 

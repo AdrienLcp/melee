@@ -1097,6 +1097,10 @@ export const FR_DICTIONARY = defineDictionary({
   },
   menu: {
     build: 'Version {build}',
+    fullscreen: {
+      enter: 'Plein écran',
+      exit: 'Quitter le plein écran'
+    },
     home: 'Accueil',
     install: {
       action: 'Installer Mêlée',

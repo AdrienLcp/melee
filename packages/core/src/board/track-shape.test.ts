@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  LINE_SHARE_OF_BAND,
   MAX_LINE_HEIGHT_PX,
   MIN_CASE_SIDE_PX,
   type TrackShape,
@@ -8,8 +9,10 @@ import {
   trackShapeFor
 } from './track-shape'
 
-/** A 1440 × 900 console's stage once its panel stands beside it. */
-const DESK_STAGE = { height: 900, width: 1056 }
+/** A 1440 × 900 console's stage once its panel stands beside it, and its 9vmin band. */
+const DESK_STAGE = { bandSide: 81, height: 900, width: 1056 }
+/** A wall on a 2560 × 1440 screen, whose band is 9vmin. */
+const WIDE_WALL = { bandSide: 130, height: 1440, width: 2560 }
 
 const cellsOf = ({
   caseCount,
@@ -38,6 +41,21 @@ describe('trackShapeFor', () => {
     expect(Math.min(shape.cellWidth, shape.cellHeight)).toBeGreaterThanOrEqual(
       MIN_CASE_SIDE_PX
     )
+  })
+
+  it('[board] folds forty cases a wide wall could line up, so they grow with the screen', () => {
+    const shape = trackShapeFor({ caseCount: 40, ...WIDE_WALL })
+
+    expect(shape.kind).toBe('u')
+    expect(Math.min(shape.cellWidth, shape.cellHeight)).toBeGreaterThanOrEqual(
+      WIDE_WALL.bandSide * LINE_SHARE_OF_BAND
+    )
+  })
+
+  it('[board] keeps fourteen cases on a desk in one line a little under its band', () => {
+    const shape = trackShapeFor({ caseCount: 15, ...DESK_STAGE })
+
+    expect(shape.kind).toBe('line')
   })
 
   it('[board] closes sixty cases into a loop with room for every one and a gap', () => {

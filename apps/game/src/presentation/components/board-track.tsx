@@ -199,7 +199,16 @@ const useTrackShape = ({
         return
       }
 
-      const next = trackShapeFor({ caseCount, height, width })
+      const next = trackShapeFor({
+        bandSide: Number.parseFloat(
+          getComputedStyle(document.documentElement).getPropertyValue(
+            '--board-band-wanted'
+          )
+        ),
+        caseCount,
+        height,
+        width
+      })
 
       root.setProperty(
         '--board-case',

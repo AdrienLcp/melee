@@ -24,8 +24,10 @@ import {
   Lock,
   type LucideIcon,
   type LucideProps,
+  Maximize,
   Megaphone,
   Menu,
+  Minimize,
   Minus,
   MonitorPlay,
   Music,
@@ -96,6 +98,8 @@ export const ImportIcon = inFamily(Upload)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
 export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)
+export const FullscreenEnterIcon = inFamily(Maximize)
+export const FullscreenExitIcon = inFamily(Minimize)
 export const MinusIcon = inFamily(Minus)
 export const MoreIcon = inFamily(Ellipsis)
 export const MoveIcon = inFamily(ArrowRightLeft)

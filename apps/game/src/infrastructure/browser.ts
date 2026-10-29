@@ -81,6 +81,30 @@ export const isAppleMobile = (): boolean =>
   /iPhone|iPad|iPod/.test(navigator.userAgent) ||
   (navigator.userAgent.includes('Macintosh') && navigator.maxTouchPoints > 1)
 
+/** Safari on an iPhone keeps fullscreen for a video and refuses it to a page. */
+export const canGoFullscreen = (): boolean => document.fullscreenEnabled
+
+export const isFullscreen = (): boolean => document.fullscreenElement !== null
+
+/** Leaving by Escape or the browser's own control is announced here too. */
+export const onFullscreenChange = (listener: () => void): (() => void) => {
+  document.addEventListener('fullscreenchange', listener)
+
+  return () => {
+    document.removeEventListener('fullscreenchange', listener)
+  }
+}
+
+export const toggleFullscreen = async (): Promise<void> => {
+  if (isFullscreen()) {
+    await document.exitFullscreen()
+
+    return
+  }
+
+  await document.documentElement.requestFullscreen()
+}
+
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 

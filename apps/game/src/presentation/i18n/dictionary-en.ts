@@ -1140,6 +1140,10 @@ export const EN_DICTIONARY = defineDictionary({
   },
   menu: {
     build: 'Build {build}',
+    fullscreen: {
+      enter: 'Full screen',
+      exit: 'Leave full screen'
+    },
     home: 'Home',
     install: {
       action: 'Install Mêlée',
