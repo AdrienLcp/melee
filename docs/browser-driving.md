@@ -524,6 +524,33 @@ frame carries a `roundId`, and a log scanned backwards for `phase === 'playing'`
 answers with the *previous* round's frame the instant it is asked — the new one
 has not arrived yet — so everything sent on it is refused as stale.
 
+## Auditing the dark palette where tokens are applied
+
+`tokens-contrast.test.ts` measures token *pairs*; it cannot see a board token
+read on paper. The Printed Piece Rule makes that measurable on the rendered
+page: everything on a `--card` ground keeps its lightness when the scheme
+flips. Find every element whose background is `var(--card)`, read the colour,
+background, border, fill and stroke of it and its descendants, set
+`document.documentElement.style.colorScheme` to the other scheme, read them
+again, and flag any OKLab lightness jump above 0.15 — the card's own dim is
+0.095. Hover each control on paper and read again, because a hover token is
+where the cream row leaked. Plant a `var(--track-a)` background on one paper
+element once and watch it get flagged before trusting a clean result.
+
+Axe-core, from `node_modules/.pnpm/axe-core@*/`, is the same engine as
+Lighthouse's accessibility audit, and it reaches the in-room screens Lighthouse
+cannot. Inject both through `page.context().addInitScript({ path })` so they
+survive navigation. Traps:
+
+- **Disable transitions around the flip, and flush every element's style
+  before re-enabling them.** Otherwise the ground fades back from the other
+  palette, and an axe run or a screenshot right after reads it mid-fade —
+  `#d3ebf3` behind light ink, a washed-out reveal that is not real.
+- **Run axe and take screenshots before the flip scan**, never after.
+- react-aria's hidden native `input` inside a slider thumb takes the UA's
+  `Field` colour and flips. It is clipped by its parent, so it is a false
+  positive.
+
 ## What a pass covers
 
 At 414 px and 1920 px:
