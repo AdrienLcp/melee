@@ -159,7 +159,9 @@
       bottom: 8%
       display: flex
       filter: drop-shadow(0 2px 0 var(--chipboard-dark))
-      font-size: calc(var(--case-size) * 0.6)
+      // A pawn stands 1.15em: at 0.6 of a case on the strip's floor it rose
+      // over the corner's number, and over the start's word across it.
+      font-size: calc(var(--case-size) * 0.45)
       left: 50%
       position: absolute
       translate: -50% 0
