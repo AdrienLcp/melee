@@ -2,7 +2,11 @@ import { describe, expect, it } from 'vitest'
 
 import { QUANTITY_FAMILIES } from '@melee/protocol/estimate'
 
-import { bankedQuantities } from './quantity-bank'
+import {
+  bankedQuantities,
+  drawPairs,
+  playedPairedQuantityId
+} from './quantity-bank'
 
 /** The fewest well-known rows a family needs to fill an evening of twenty rounds alone. */
 const WELL_KNOWN_FLOOR = 30
@@ -49,5 +53,24 @@ describe('the quantity bank', () => {
 
   it('[estimate] asks the height of a tower standing today, never of one being built', () => {
     expect(bankedValueOf('Jeddah Tower')).toBeUndefined()
+  })
+
+  it('[higherlower] deals twenty rounds of well-known pairs without comparing a row twice', () => {
+    const playedIds = new Set<string>()
+
+    for (let round = 0; round < 20; round++) {
+      const pairs = drawPairs({ playedIds })
+
+      expect(pairs).toHaveLength(5)
+
+      for (const { left, right } of pairs ?? []) {
+        expect([left.isWellKnown, right.isWellKnown]).toEqual([true, true])
+
+        for (const row of [left, right]) {
+          expect(playedIds.has(playedPairedQuantityId(row))).toBe(false)
+          playedIds.add(playedPairedQuantityId(row))
+        }
+      }
+    }
   })
 })

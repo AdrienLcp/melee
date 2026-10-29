@@ -36,7 +36,8 @@ export const gameKinds = [
   'atlas',
   'swatch',
   'mostlikely',
-  'estimate'
+  'estimate',
+  'higherlower'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -222,6 +223,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     kind: z.literal('estimate'),
     /** How long the field stays open; it closes early once every seat has sent. */
     roundDurationMs: z.number().int().min(15_000).max(60_000)
+  }),
+  z.object({
+    kind: z.literal('higherlower'),
+    /** How long the five pairs stay open; the round closes early once every seat has sent its sheet. */
+    roundDurationMs: z.number().int().min(20_000).max(90_000)
   })
 ])
 
@@ -243,6 +249,7 @@ export type AtlasSettings = Extract<GameSettings, { kind: 'atlas' }>
 export type SwatchSettings = Extract<GameSettings, { kind: 'swatch' }>
 export type MostLikelySettings = Extract<GameSettings, { kind: 'mostlikely' }>
 export type EstimateSettings = Extract<GameSettings, { kind: 'estimate' }>
+export type HigherLowerSettings = Extract<GameSettings, { kind: 'higherlower' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -371,6 +378,12 @@ export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
   roundDurationMs: 30_000
 }
 
+/** Nine seconds a pair: enough to weigh two names, too short to look one up. */
+export const DEFAULT_HIGHER_LOWER_SETTINGS: HigherLowerSettings = {
+  kind: 'higherlower',
+  roundDurationMs: 45_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -379,6 +392,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
   estimate: DEFAULT_ESTIMATE_SETTINGS,
+  higherlower: DEFAULT_HIGHER_LOWER_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   mostlikely: DEFAULT_MOST_LIKELY_SETTINGS,

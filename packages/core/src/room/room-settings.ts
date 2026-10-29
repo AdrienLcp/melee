@@ -35,6 +35,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   challenge: null,
   /** A number is half a minute of weighing it, so ten of them are a short game. */
   estimate: 10,
+  /** Five pairs are under a minute, so eight sheets are a short game. */
+  higherlower: 8,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
   matchsticks: 10,
@@ -73,6 +75,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   buzzer: 'buzzer',
   challenge: 'buzzer',
   estimate: 'number',
+  higherlower: 'pairs',
   innerclock: 'buzzer',
   matchsticks: 'move',
   mostlikely: 'vote',
@@ -201,6 +204,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   buzzer: null,
   challenge: null,
   estimate: null,
+  higherlower: null,
   innerclock: null,
   matchsticks: null,
   mostlikely: null,

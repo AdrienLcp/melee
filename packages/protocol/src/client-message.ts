@@ -8,6 +8,7 @@ import {
   challengeTextSchema
 } from './challenge'
 import { estimateGuessSchema } from './estimate'
+import { higherLowerPicksSchema } from './higher-lower'
 import {
   hostTokenSchema,
   nicknameSchema,
@@ -167,6 +168,11 @@ export const answerMessageSchema = z.object({
       /** The estimate, in the question's unit. One shot, like a pick. */
       guess: estimateGuessSchema,
       kind: z.literal('number')
+    }),
+    z.object({
+      kind: z.literal('pairs'),
+      /** One pick per pair, the whole sheet at once. One shot, like a pick. */
+      picks: higherLowerPicksSchema
     })
   ]),
   roundId: roundIdSchema,

@@ -14,6 +14,7 @@ import {
 import { isBullseye, pointsForDistance } from '../atlas/distance-tiers'
 import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
 import { isSpotOn, pointsForEstimate } from '../estimate/estimate-pay'
+import { isWholeSheetRight, pointsForPairs } from '../higherlower/pairs-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { isExactColour, pointsForColour } from '../swatch/colour-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
@@ -66,6 +67,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForEstimate(verdict)
   }
 
+  if (verdict.kind === 'pairs') {
+    return pointsForPairs(verdict)
+  }
+
   return (
     (verdict.titleCorrect ? POINTS_PER_TITLE : 0) +
     (verdict.artistCorrect ? POINTS_PER_ARTIST : 0)
@@ -98,6 +103,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isExactColour(verdict)
     case 'number':
       return isSpotOn(verdict)
+    case 'pairs':
+      return isWholeSheetRight(verdict)
   }
 }
 
@@ -140,7 +147,7 @@ export const pointsForSimultaneousAnswer = ({
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
-  // A marker, an order, a move, a sheet, a colour and an estimate are priced by how far they are, which the mode has no say in.
+  // A marker, an order, a move, a sheet, a colour, an estimate and a pair sheet are priced by how far they are, which the mode has no say in.
   if (verdict.kind === 'distance') {
     return pointsForDistance(verdict)
   }
@@ -163,6 +170,10 @@ export const pointsForSimultaneousAnswer = ({
 
   if (verdict.kind === 'number') {
     return pointsForEstimate(verdict)
+  }
+
+  if (verdict.kind === 'pairs') {
+    return pointsForPairs(verdict)
   }
 
   if (verdict.kind === 'single') {

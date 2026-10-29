@@ -1,4 +1,5 @@
 import type { AtlasTarget } from '@melee/protocol/atlas'
+import type { ValuedHigherLowerPair } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PetitBacProgress } from '@melee/protocol/petit-bac'
 import type {
@@ -215,6 +216,13 @@ const toHostContent = ({
     }
   }
 
+  if (content.kind === 'higherlower') {
+    return {
+      kind: 'higherlower',
+      valuedPairs: seatId === null ? content.pairs.map(valuedPairOf) : null
+    }
+  }
+
   if (
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
@@ -353,7 +361,8 @@ const yourVerdictIn = ({
   (round.content.kind === 'matchsticks' ||
     round.content.kind === 'swatch' ||
     round.content.kind === 'mostlikely' ||
-    round.content.kind === 'estimate') &&
+    round.content.kind === 'estimate' ||
+    round.content.kind === 'higherlower') &&
   !round.revealed
     ? null
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
@@ -439,6 +448,20 @@ const saidBy = (attempts: PlayerAttempts): string =>
   attempts.landed.length > 0
     ? attempts.landed.join(' · ')
     : (attempts.lastMiss ?? '')
+
+const valuedPairOf = ({
+  family,
+  left,
+  leftValue,
+  right,
+  rightValue
+}: ValuedHigherLowerPair): ValuedHigherLowerPair => ({
+  family,
+  left: { ...left },
+  leftValue,
+  right: { ...right },
+  rightValue
+})
 
 /** A map round's target as a screen may hold it: where it stands, and whose capital it is, only once it is revealed. */
 const atlasTargetView = ({
@@ -580,6 +603,26 @@ const toContentView = ({
       yourGuess:
         content.guesses.find(({ playerId }) => playerId === youId)?.guess ??
         null
+    }
+  }
+
+  if (content.kind === 'higherlower') {
+    return {
+      kind: 'higherlower',
+      pairs: content.pairs.map(({ family, left, right }) => ({
+        family,
+        left: { ...left },
+        right: { ...right }
+      })),
+      revealedPairs: round.revealed ? content.pairs.map(valuedPairOf) : null,
+      revealedSheets: round.revealed
+        ? content.sheets.map(({ picks, playerId }) => ({
+            picks: [...picks],
+            playerId
+          }))
+        : null,
+      yourPicks:
+        content.sheets.find(({ playerId }) => playerId === youId)?.picks ?? null
     }
   }
 

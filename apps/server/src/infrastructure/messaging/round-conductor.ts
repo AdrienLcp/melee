@@ -12,6 +12,7 @@ import {
 } from '@/domain/round/black-square-round'
 import { challengeContent } from '@/domain/round/challenge-round'
 import { estimateContent } from '@/domain/round/estimate-round'
+import { higherLowerContent } from '@/domain/round/higher-lower-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   matchsticksContent,
@@ -66,7 +67,9 @@ import {
   playedMostLikelyLineId
 } from '@/infrastructure/questions/most-likely-bank'
 import {
+  drawPairs,
   drawQuantity,
+  playedPairedQuantityId,
   playedQuantityId
 } from '@/infrastructure/questions/quantity-bank'
 import {
@@ -542,6 +545,37 @@ export const beginRound = async (
         question: { family: row.family, names: row.names },
         value: row.value
       }),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'higherlower') {
+    const pairs = drawPairs({ playedIds: room.playedContentIds })
+
+    if (pairs === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'Too few quantities the room has not compared are left to deal five pairs'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    for (const { left, right } of pairs) {
+      room.playedContentIds.add(playedPairedQuantityId(left))
+      room.playedContentIds.add(playedPairedQuantityId(right))
+    }
+
+    openRound({
+      content: higherLowerContent(pairs),
       id: newRoundId(),
       now: engine.now(),
       room,

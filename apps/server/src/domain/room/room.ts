@@ -8,6 +8,10 @@ import type { CountryCode } from '@melee/protocol/country-code'
 import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
+  SentHigherLowerSheet,
+  ValuedHigherLowerPair
+} from '@melee/protocol/higher-lower'
+import type {
   HostToken,
   Nickname,
   PlayerId,
@@ -437,6 +441,13 @@ export type Round = {
         question: EstimateQuestion
         /** The truth, in the family's unit; the answer, sent to no player before the reveal. */
         value: number
+      }
+    | {
+        kind: 'higherlower'
+        /** In the order they are played, each with both values: the answer, sent to no player before the reveal. */
+        pairs: ValuedHigherLowerPair[]
+        /** Every seat's sheet, in the order they landed. */
+        sheets: SentHigherLowerSheet[]
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

@@ -1,6 +1,6 @@
 # 59 — Higher or lower (plus ou moins)
 
-**To do. Starts after stage 58**, whose quantity bank it pairs.
+**In progress.** Step 1 landed 29/10/2026: served, not yet on the shelf.
 
 Two things go up side by side — *Lyon or Marseille, which has more people?
 the Seine or the Rhine, which is longer?* — and every seat picks one. A round
@@ -42,10 +42,17 @@ Kind `higherlower`, translation prefix `higherlower.*`, answer mode `pairs`.
    without values, the sheet), `@melee/core/higherlower/` (the pairing rules
    over the quantity bank's rows, the grade), the kind served with its socket
    suite (no value on any frame before the reveal, a sheet of four refused,
-   a second sheet refused).
+   a second sheet refused). **Done**: `dealPairs` in core over any rows with
+   an entity, a family and a value, `drawPairs` in the quantity bank dealing
+   well-known rows first and marking each row `higherlower:`-played, a `pairs`
+   verdict paid a pick a right pair with the clock on top, and the seat's own
+   verdict held back until the reveal like the estimate's. Eight rounds by
+   default. A bank test deals twenty rounds of well-known pairs without
+   repeating a row.
 2. **Screens.** Two cards side by side on the seat (stacked when the box is
    taller than wide), the pair counter, the wall showing the current pair
-   count of every seat without their picks, the reveal as five rows with both
+   count of the seats that have sent, never their picks — the sheet travels
+   whole, so there is no per-pair progress to show, the reveal as five rows with both
    values and every seat's pick dots. Shelf, spine, dictionaries. Seen muted
    on a wall, a seated console and two phones.
 

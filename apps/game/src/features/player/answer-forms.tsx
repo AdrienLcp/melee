@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
 import type { GeoPoint } from '@melee/protocol/atlas'
+import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 import type { StickMove } from '@melee/protocol/matchsticks'
@@ -44,6 +45,7 @@ export type PlayerAnswer =
   | { kind: 'move'; move: StickMove }
   | { colour: ColourHex; kind: 'colour' }
   | { guess: number; kind: 'number' }
+  | { kind: 'pairs'; picks: HigherLowerPicks }
   | { kind: 'seat'; playerId: PlayerId }
 
 /**
@@ -81,6 +83,7 @@ export const candidatesIn = ({
     case 'challenge':
     case 'blacksquare':
     case 'estimate':
+    case 'higherlower':
     case 'innerclock':
     case 'matchsticks':
     case 'mostlikely':

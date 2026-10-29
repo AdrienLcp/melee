@@ -32,6 +32,12 @@ import {
 } from './estimate'
 import { gameSettingsSchema } from './game'
 import {
+  higherLowerPairSchema,
+  higherLowerPicksSchema,
+  sentHigherLowerSheetSchema,
+  valuedHigherLowerPairSchema
+} from './higher-lower'
+import {
   nicknameSchema,
   playerIdSchema,
   roomCodeSchema,
@@ -106,7 +112,8 @@ export const answerModes = [
   'spoken',
   'colour',
   'vote',
-  'number'
+  'number',
+  'pairs'
 ] as const
 
 /**
@@ -164,7 +171,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('spoken') }),
   z.object({ kind: z.literal('colour') }),
   z.object({ kind: z.literal('vote') }),
-  z.object({ kind: z.literal('number') })
+  z.object({ kind: z.literal('number') }),
+  z.object({ kind: z.literal('pairs') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -309,6 +317,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   move: { kind: 'move' },
   number: { kind: 'number' },
   order: { kind: 'order' },
+  pairs: { kind: 'pairs' },
   point: { kind: 'point' },
   spoken: { kind: 'spoken' },
   typed: { kind: 'typed' },
@@ -689,6 +698,17 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     value: z.number().positive().nullable(),
     /** The reader's own guess once sent, and `null` before or without a seat. What a reload comes back to. */
     yourGuess: estimateGuessSchema.nullable()
+  }),
+  z.object({
+    kind: z.literal('higherlower'),
+    /** The five pairs in the order they are played, without a value: which side is higher is the answer. */
+    pairs: z.array(higherLowerPairSchema),
+    /** The same pairs with both values, and `null` until the reveal. */
+    revealedPairs: z.array(valuedHigherLowerPairSchema).nullable(),
+    /** Every seat's sheet, and `null` until the reveal. */
+    revealedSheets: z.array(sentHigherLowerSheetSchema).nullable(),
+    /** The reader's own sheet once sent, and `null` before or without a seat. What a reload comes back to. */
+    yourPicks: higherLowerPicksSchema.nullable()
   })
 ])
 
@@ -950,6 +970,11 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     kind: z.literal('estimate'),
     value: z.number().positive().nullable()
+  }),
+  /** The pairs with their values, for the console to follow the sheets, and `null` while the console holds a seat. */
+  z.object({
+    kind: z.literal('higherlower'),
+    valuedPairs: z.array(valuedHigherLowerPairSchema).nullable()
   })
 ])
 
@@ -1030,7 +1055,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('atlas') }),
   z.object({ kind: z.literal('swatch') }),
   z.object({ kind: z.literal('mostlikely') }),
-  z.object({ kind: z.literal('estimate') })
+  z.object({ kind: z.literal('estimate') }),
+  z.object({ kind: z.literal('higherlower') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

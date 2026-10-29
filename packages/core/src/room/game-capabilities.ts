@@ -54,6 +54,9 @@ const VOTE_ONLY = ['vote'] as const satisfies readonly AnswerMode[]
 /** An estimate is answered by typing a number, which the server measures against the truth. */
 const NUMBER_ONLY = ['number'] as const satisfies readonly AnswerMode[]
 
+/** Higher or lower is answered by a sheet of five picks, which the server counts. */
+const PAIRS_ONLY = ['pairs'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -214,6 +217,14 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
     case 'estimate':
       return {
         answerModes: NUMBER_ONLY,
+        makesSound: false,
+        playsAloud: false,
+        playsDuels: true,
+        servesItsOwnContent: true
+      }
+    case 'higherlower':
+      return {
+        answerModes: PAIRS_ONLY,
         makesSound: false,
         playsAloud: false,
         playsDuels: true,

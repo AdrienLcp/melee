@@ -553,6 +553,12 @@ export const EN_DICTIONARY = defineDictionary({
       squareKilometres: '{value}\u00a0km²'
     }
   },
+  higherlower: {
+    name: 'Higher or lower',
+    scoring:
+      'Five pairs of the same kind — two cities, two rivers, two mountains — and you pick the bigger one each time. Every right pair scores 10 points, plus a bonus for sending your five fast.',
+    tagline: 'Two names. Which one is bigger?'
+  },
   home: {
     opening: 'Opening the table…',
     resume: 'Back to table',
@@ -572,6 +578,7 @@ export const EN_DICTIONARY = defineDictionary({
       move: 'Move the match',
       number: 'Type a number',
       order: 'Put them in order',
+      pairs: 'Pick the bigger one',
       point: 'Pin it on the map',
       spoken: 'Team by team',
       typed: 'Type it',

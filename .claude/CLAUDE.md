@@ -29,7 +29,8 @@ far off it lands, and **Most likely** puts up a line about one of the people
 at the table — never about the moment — that everyone votes on with a seat,
 the ballots that went with the room paid, and **Le juste chiffre** asks for a
 number — a population, a height, a length — that every screen estimates, the
-closest three paid by place.
+closest three paid by place, and **Plus ou moins** deals five pairs of
+those numbers — two rivers, two cities — and pays every right pick.
 
 A phone is the common case, not the contract: the room code is displayed to be
 read aloud and typed, so a laptop in the same room joins the same way. Nothing
@@ -38,7 +39,7 @@ user-facing may assume the device.
 Two names, two scopes, and the distinction is load-bearing. The product owns
 `@melee/*`, the `melee:*` storage keys and the repository name. A game owns
 its own translation prefix — `blindtest.*`, `buzzer.*`, `quiz.*`, `reflex.*`,
-`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*`, `estimate.*` — and nothing else. A string the next game would show unchanged is the shell's.
+`slate.*`, `atlas.*`, `challenge.*`, `innerclock.*`, `matchsticks.*`, `timeline.*`, `blacksquare.*`, `petitbac.*`, `swatch.*`, `mostlikely.*`, `estimate.*`, `higherlower.*` — and nothing else. A string the next game would show unchanged is the shell's.
 
 ## Tech stack
 

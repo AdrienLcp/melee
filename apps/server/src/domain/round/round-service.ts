@@ -4,6 +4,7 @@ import type { GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
+import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { HostQuestion } from '@melee/protocol/question'
@@ -83,6 +84,7 @@ import {
 } from '@/domain/round/black-square-round'
 import { takeDuel } from '@/domain/round/duels'
 import { payEstimatesByPlace } from '@/domain/round/estimate-round'
+import { gradePicks } from '@/domain/round/higher-lower-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import {
@@ -551,6 +553,10 @@ export const registerAnswer = ({
     round.content.guesses.push({ guess: attempt.guess, playerId })
   }
 
+  if (round.content.kind === 'higherlower' && attempt.kind === 'pairs') {
+    round.content.sheets.push({ picks: attempt.picks, playerId })
+  }
+
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
     round.content.moves.push({
       glyphs: applyMove({
@@ -936,6 +942,7 @@ type Attempt =
   | { kind: 'colour'; colour: ColourHex }
   | { kind: 'seat'; playerId: PlayerId }
   | { kind: 'number'; guess: number }
+  | { kind: 'pairs'; picks: HigherLowerPicks }
   | TypedAttempt
 
 /**
@@ -1022,6 +1029,15 @@ const grade = ({
       : null
   }
 
+  if (content.kind === 'higherlower') {
+    return attempt.kind === 'pairs'
+      ? {
+          said: attempt.picks.join(' '),
+          verdict: gradePicks({ content, picks: attempt.picks })
+        }
+      : null
+  }
+
   if (content.kind === 'swatch') {
     return attempt.kind === 'colour'
       ? {
@@ -1064,7 +1080,8 @@ const grade = ({
     attempt.kind === 'move' ||
     attempt.kind === 'colour' ||
     attempt.kind === 'seat' ||
-    attempt.kind === 'number'
+    attempt.kind === 'number' ||
+    attempt.kind === 'pairs'
   ) {
     return null
   }

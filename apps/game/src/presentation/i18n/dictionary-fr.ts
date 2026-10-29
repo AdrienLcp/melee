@@ -534,6 +534,12 @@ export const FR_DICTIONARY = defineDictionary({
       squareKilometres: '{value}\u00a0km²'
     }
   },
+  higherlower: {
+    name: 'Plus ou moins',
+    scoring:
+      'Cinq paires du même genre — deux villes, deux fleuves, deux sommets — et tu choisis à chaque fois le plus grand. Chaque paire juste rapporte 10 points, plus un bonus si tu envoies tes cinq choix vite.',
+    tagline: 'Deux noms. Lequel est le plus grand ?'
+  },
   home: {
     opening: 'Ouverture de la table…',
     resume: 'Reprendre la table',
@@ -553,6 +559,7 @@ export const FR_DICTIONARY = defineDictionary({
       move: 'On déplace l’allumette',
       number: 'On tape un nombre',
       order: 'Dans l’ordre',
+      pairs: 'On choisit le plus grand',
       point: 'On pointe sur la carte',
       spoken: 'Équipe par équipe',
       typed: 'On tape',

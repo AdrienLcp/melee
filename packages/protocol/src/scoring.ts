@@ -6,6 +6,7 @@ import {
   blackSquareAnswerCountSchema,
   blackSquareCellSchema
 } from './black-square'
+import { HIGHER_LOWER_PAIR_COUNT } from './higher-lower'
 import { playerIdSchema } from './identifiers'
 
 /**
@@ -190,6 +191,16 @@ export const numberVerdictSchema = z.object({
   ratio: z.number().positive()
 })
 
+/**
+ * A higher-or-lower sheet: how many of its pairs were picked the right way.
+ * Five of five is the whole sheet. `@melee/core/higherlower/pairs-pay` prices
+ * it. The server counts it; no screen ever sends one.
+ */
+export const pairsVerdictSchema = z.object({
+  kind: z.literal('pairs'),
+  rightPairs: z.number().int().min(0).max(HIGHER_LOWER_PAIR_COUNT)
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -198,7 +209,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   moveVerdictSchema,
   cellsVerdictSchema,
   colourVerdictSchema,
-  numberVerdictSchema
+  numberVerdictSchema,
+  pairsVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -224,4 +236,5 @@ export type MoveVerdict = z.infer<typeof moveVerdictSchema>
 export type CellsVerdict = z.infer<typeof cellsVerdictSchema>
 export type ColourVerdict = z.infer<typeof colourVerdictSchema>
 export type NumberVerdict = z.infer<typeof numberVerdictSchema>
+export type PairsVerdict = z.infer<typeof pairsVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

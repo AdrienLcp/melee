@@ -141,6 +141,8 @@ export const holdsTheAnswer = (content: HostRoundContent): boolean => {
       return content.datedEvents !== null
     case 'estimate':
       return content.value !== null
+    case 'higherlower':
+      return content.valuedPairs !== null
   }
 }
 
