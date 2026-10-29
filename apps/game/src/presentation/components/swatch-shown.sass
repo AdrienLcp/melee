@@ -1,0 +1,32 @@
+@use '../styles/typography'
+
+@layer components
+  // The chip takes every row its box leaves above the caption, at a fan
+  // deck's proportions.
+  .swatch-shown
+    align-items: center
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: minmax(0, 1fr) auto
+    justify-items: center
+    inline-size: 100%
+    margin: 0
+    min-height: 0
+
+    // The row the chip may fill, measured as a box of its own so the chip
+    // takes whichever of its height or width runs out first.
+    .slot
+      align-self: stretch
+      container-type: size
+      display: grid
+      inline-size: 100%
+      place-items: end center
+
+    .swatch-chip
+      block-size: min(100cqh, 125cqi)
+
+    figcaption
+      @include typography.title
+
+      text-align: center
+      text-wrap: balance

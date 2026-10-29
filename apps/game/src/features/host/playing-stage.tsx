@@ -4,6 +4,8 @@ import type { BlackSquareCell } from '@melee/protocol/black-square'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
+import type { ClockEstimate } from '@melee/core/time/clock-sync'
+
 import {
   ChoiceAnswer,
   candidatesIn,
@@ -16,11 +18,13 @@ import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { PrintedChoices } from '@/features/player/printed-choices'
 import { RoundQuestion } from '@/features/player/round-question'
+import { SwatchRound } from '@/features/player/swatch-round'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   atlasContent,
   blackSquareContent,
   matchsticksContent,
+  swatchContent,
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
@@ -28,6 +32,7 @@ import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
+import { useShownColour } from '@/presentation/components/use-shown-colour'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { AnsweredPawns, BuzzerPawns } from './answered-pawns'
@@ -48,6 +53,8 @@ type PlayingStageProps = {
   children?: React.ReactNode
   /** The offer to unmute this screen, or nothing when it owes the room none. */
   clipOffer: React.ReactNode
+  /** What a shades round hides its colour on, the same estimate every seat reads. */
+  clock: ClockEstimate | null
   /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
   onAnswer: ((answer: PlayerAnswer) => boolean) | null
   /** Sends the seat's tick when it keeps a spoken black square's list; `null` when this screen keeps none. */
@@ -68,6 +75,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   answersAs,
   children,
   clipOffer,
+  clock,
   onAnswer,
   onTick,
   round,
@@ -82,6 +90,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const atlas = atlasContent(round)
   const matchsticks = matchsticksContent(round)
   const timeline = timelineContent(round)
+  const swatch = swatchContent(round)
+  const shownColour = useShownColour({ clock, round })
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
   const roundCard = (sticks: React.ReactNode): React.ReactNode => (
@@ -102,6 +112,12 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         </MatchsticksPrompt>
       ) : timeline !== null ? (
         <p className='now timeline-question'>{translate('timeline.dealt')}</p>
+      ) : swatch !== null ? (
+        <p className='now swatch-line'>
+          {translate(
+            shownColour === null ? 'swatch.hidden' : 'swatch.remember'
+          )}
+        </p>
       ) : blackSquare !== null ? (
         <h2 className='now black-square-theme'>{blackSquare.theme[locale]}</h2>
       ) : round.content.kind === 'challenge' ? (
@@ -139,6 +155,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-map={(atlas?.target != null && onAnswer !== null) || undefined}
       data-map-question={atlas?.shown != null || undefined}
       data-moving={isMoving || undefined}
+      data-swatch={
+        swatch === null
+          ? undefined
+          : shownColour === null && onAnswer !== null
+            ? 'answering'
+            : 'shown'
+      }
       data-timeline={
         timeline === null
           ? undefined
@@ -207,6 +230,15 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             youId={answersAs}
           />
         ))}
+      {swatch !== null && (
+        <SwatchRound
+          clock={clock}
+          isCaptioned={false}
+          onAnswer={onAnswer}
+          round={round}
+          youId={answersAs}
+        />
+      )}
       {blackSquare !== null &&
         (onAnswer === null ? (
           <BlackSquareGauge

@@ -15,6 +15,7 @@ import type {
   RoomPhase,
   RoundView
 } from '@melee/protocol/room'
+import type { ColourHex } from '@melee/protocol/swatch'
 import type { TeamId } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
@@ -54,6 +55,7 @@ import {
   SlateSheet,
   SlateWholeSheet
 } from '@/features/player/slate-sheet'
+import { SwatchRound } from '@/features/player/swatch-round'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
@@ -69,6 +71,7 @@ import {
   reflexContent,
   sentOrderOf,
   swappedPairsOf,
+  swatchContent,
   timelineContent
 } from '@/helpers/round-content'
 import { slateLabelsOf } from '@/helpers/slate-labels'
@@ -92,6 +95,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
@@ -602,6 +606,20 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             onAnswer={answerWithRound}
             round={round}
             seat={view.players.findIndex((player) => player.id === view.youId)}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
+    if (swatchContent(round) !== null) {
+      return (
+        <section className='player-round swatch-round'>
+          <RoundClock clock={clock} view={view} />
+          <SwatchRound
+            clock={clock}
+            onAnswer={answerWithRound}
+            round={round}
             youId={view.youId}
           />
         </section>
@@ -1122,6 +1140,12 @@ const Revealed: React.FC<{
     )
   }
 
+  const shades = swatchContent(round)
+
+  if (shades?.colour != null) {
+    return <SwatchRevealed shown={shades.colour} yours={shades.yourColour} />
+  }
+
   const solved = matchsticksContent(round)
 
   if (solved !== null && solved.revealedSolution !== null) {
@@ -1211,6 +1235,33 @@ const MatchsticksYours: React.FC<{ round: RoundView; yours: SentMove }> = ({
         </span>
       </p>
       <MatchstickRow glyphs={yours.glyphs} isStill move={yours.move} />
+    </div>
+  )
+}
+
+/**
+ * The colour back up beside the one this seat rebuilt, the two chips the same
+ * size so the gap between them is the whole story. A seat that sent nothing
+ * reads the colour alone.
+ */
+const SwatchRevealed: React.FC<{
+  shown: ColourHex
+  yours: ColourHex | null
+}> = ({ shown, yours }) => {
+  const translate = useTranslate()
+
+  return (
+    <div className='answer-card swatch-revealed' data-game='swatch'>
+      <figure>
+        <SwatchChip colour={shown} />
+        <figcaption>{translate('swatch.reveal.title')}</figcaption>
+      </figure>
+      {yours !== null && (
+        <figure>
+          <SwatchChip colour={yours} />
+          <figcaption>{translate('swatch.reveal.yours')}</figcaption>
+        </figure>
+      )}
     </div>
   )
 }

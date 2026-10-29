@@ -15,6 +15,7 @@ import {
   quizContent,
   reflexContent,
   revealedInOrder,
+  swatchContent,
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
@@ -27,6 +28,8 @@ import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
+import { SwatchChip } from '@/presentation/components/swatch-chip'
+import { SwatchShown } from '@/presentation/components/swatch-shown'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -206,6 +209,22 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     )
   }
 
+  const shades = swatchContent(round)
+
+  // The colour back on its chip, and every seat's beside its name under it,
+  // nearest first.
+  if (shades?.colour != null && shades.revealedColours !== null) {
+    return (
+      <section className='reveal-panel' data-game='swatch'>
+        <div className='head'>
+          <SwatchShown colour={shades.colour} isCaptioned={false} />
+        </div>
+
+        <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
   const dated = timelineContent(round)?.revealedEvents ?? null
 
   // The cards strung along the line in the order they happened, each with its
@@ -307,6 +326,7 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   }))
 
   const moves = matchsticksContent(round)?.revealedMoves ?? []
+  const isShades = swatchContent(round) !== null
 
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
@@ -314,6 +334,10 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   // A moved stick is drawn rather than spelled: `6+4=10` in type is not what
   // anybody looked at for a minute.
   const wordsOf = (playerId: string, said: string): React.ReactNode => {
+    if (isShades) {
+      return <SwatchChip colour={said} />
+    }
+
     const sent = moves.find((move) => move.playerId === playerId)
 
     return sent === undefined ? (

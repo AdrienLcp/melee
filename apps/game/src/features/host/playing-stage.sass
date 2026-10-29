@@ -119,6 +119,19 @@
       > .answer-form.choices
         flex: none
 
+    // The line saying whether to remember or rebuild, then the chip — or a
+    // seat's picker — taking every row the stage leaves under it.
+    &[data-swatch]
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      > .swatch-shown,
+      > .answer-form.swatch-answer
+        align-self: center
+        flex: 1 1 0
+        inline-size: min(100%, 40rem)
+
     // The cards dealt across the stage, read from across the room, under the
     // question that says which way round to put them.
     &[data-timeline]

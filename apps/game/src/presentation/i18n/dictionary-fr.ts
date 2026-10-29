@@ -1511,9 +1511,30 @@ export const FR_DICTIONARY = defineDictionary({
     yourSheet: 'Toute ta feuille'
   },
   swatch: {
+    answer: {
+      hue: 'Teinte',
+      label: 'Ta couleur',
+      send: 'J’envoie ma couleur',
+      sent: 'Ta couleur est partie. On attend les autres.',
+      tone: 'Nuance et luminosité'
+    },
+    hidden: 'Disparue. Refais-la de mémoire.',
+    home: {
+      description:
+        'Une couleur s’affiche sur tous les écrans — un bleu canard passé, un ocre chaud — quelques secondes, puis disparaît. Chacun la refait sur son écran, et le dévoilement pose chaque essai à côté de la vraie, la plus proche en premier. Pile dessus rapporte le plus, et de près, ça marque encore.'
+    },
     name: 'Nuancier',
+    play: 'Jouer au Nuancier',
+    rebuildDuration: 'Temps pour la refaire',
+    remember: 'Retiens cette couleur',
+    reveal: {
+      title: 'La couleur',
+      yours: 'La tienne'
+    },
     scoring:
-      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 30 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas de bonus de vitesse.'
+      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 30 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas de bonus de vitesse.',
+    showDuration: 'Couleur affichée',
+    tagline: 'Une couleur, quelques secondes. Refais-la.'
   },
   team: {
     aloud: {

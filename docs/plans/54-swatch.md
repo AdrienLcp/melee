@@ -1,6 +1,6 @@
 # 54 — Swatch (colour memory)
 
-**Two thirds done** — step 1, the protocol's pieces and the rules in
+**Nearly done** — step 1, the protocol's pieces and the rules in
 `@melee/core/swatch/`, and step 2, the kind served end to end, landed
 28/10/2026. Step 3, the screens, is owed.
 
@@ -96,9 +96,19 @@ internal. The screens' session may rename it.
      clock, and the next snapshot simply carries `null`.
    - The app holds only what compiling demanded — the name, the scoring line,
      the error, the mode's label and a `Palette` glyph.
-3. **Screens and shelf.** Player picker, wall and console rounds, reveal,
-   lobby settings, the spine, `swatch.*` strings in both dictionaries,
-   `shelvedGames`. Verified muted in a real browser, phone width and wall.
+3. **Screens and shelf.** Mostly landed 29/10/2026: `swatch` in
+   `shelvedGames`, the spine (`--spine-swatch`, hue 210), `swatch.*` in both
+   dictionaries, the page heads, the setup's two choices (shown 3/5/8 s,
+   rebuild 10/20/30 s). `SwatchChip` (a paint chip: the colour on a card, its
+   field inset rather than padded — a padding's percentage reads the
+   parent's width), `SwatchShown`, `ColourPicker` (react-aria `ColorArea` +
+   `ColorSlider` in HSB, holding its own `Color` so a grey keeps its hue),
+   `useShownColour` (hides on the client clock), `SwatchRound` on the player
+   and on `PlayingStage`, the reveal through the shared scoreline with a chip
+   per row, nearest first (`colourDistanceOf` in `nearnessOf`). Verified muted
+   at 390×780 and 1280×800: shown, hidden at `hidesAt`, picked, sent, revealed.
+   **Still owed**: the paired wall and a seated console seen in a browser, the
+   setup panel seen, and `pnpm validate` (e2e included).
 
 ## How to tell it is done
 

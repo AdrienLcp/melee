@@ -73,6 +73,11 @@ const TIMELINE_DURATIONS_MS = [30_000, 45_000, 90_000] as const
 
 const BLACK_SQUARE_DURATIONS_MS = [45_000, 60_000, 90_000] as const
 
+/** Three seconds is a glance, eight is nearly long enough to name the colour. */
+const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
+
+const SWATCH_REBUILD_MS = [10_000, 20_000, 30_000] as const
+
 const MATCHSTICKS_GOAL_KEYS = {
   biggest: 'matchsticks.goals.biggest',
   equation: 'matchsticks.goals.equation',
@@ -546,6 +551,31 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             onChange({ ...settings, game: next })
           }}
         />
+      )}
+
+      {game?.kind === 'swatch' && (
+        <>
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('swatch.showDuration')}
+            onChange={(showMs) => {
+              onChange({ ...settings, game: { ...game, showMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={SWATCH_SHOW_MS}
+            value={game.showMs}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('swatch.rebuildDuration')}
+            onChange={(roundDurationMs) => {
+              onChange({ ...settings, game: { ...game, roundDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={SWATCH_REBUILD_MS}
+            value={game.roundDurationMs}
+          />
+        </>
       )}
 
       {game?.kind === 'timeline' && (

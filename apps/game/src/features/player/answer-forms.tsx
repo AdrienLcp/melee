@@ -8,6 +8,7 @@ import type { Locale } from '@melee/protocol/locale'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
+import type { ColourHex } from '@melee/protocol/swatch'
 
 import { whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import {
@@ -41,6 +42,7 @@ export type PlayerAnswer =
   | { kind: 'point'; point: GeoPoint }
   | { eventIds: string[]; kind: 'order' }
   | { kind: 'move'; move: StickMove }
+  | { colour: ColourHex; kind: 'colour' }
 
 /**
  * Every arm of a choice round in the one shape a column of buttons needs. A

@@ -1597,9 +1597,30 @@ export const EN_DICTIONARY = defineDictionary({
     yourSheet: 'Your whole sheet'
   },
   swatch: {
+    answer: {
+      hue: 'Hue',
+      label: 'Your colour',
+      send: 'Send my colour',
+      sent: 'Your colour is in. Waiting for the others.',
+      tone: 'Shade and brightness'
+    },
+    hidden: 'Gone. Rebuild it from memory.',
+    home: {
+      description:
+        'A colour comes up on every screen — a dusty teal, a warm ochre — for a few seconds, then hides. Everyone rebuilds it on their own screen, and the reveal lays every guess beside the real one, nearest first. Spot on pays the most, and close still scores.'
+    },
     name: 'Shades',
+    play: 'Play Shades',
+    rebuildDuration: 'Time to rebuild it',
+    remember: 'Remember this colour',
+    reveal: {
+      title: 'The colour',
+      yours: 'Yours'
+    },
     scoring:
-      'A colour shows, hides, and you rebuild it. Spot on is 30 points, falling to nothing the further off it is. No bonus for speed.'
+      'A colour shows, hides, and you rebuild it. Spot on is 30 points, falling to nothing the further off it is. No bonus for speed.',
+    showDuration: 'Colour shown for',
+    tagline: 'One colour, a few seconds. Rebuild it.'
   },
   team: {
     aloud: {

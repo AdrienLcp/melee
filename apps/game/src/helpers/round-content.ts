@@ -55,6 +55,11 @@ export const blackSquareContent = (
 ): Extract<RoundContent, { kind: 'blacksquare' }> | null =>
   round?.content.kind === 'blacksquare' ? round.content : null
 
+export const swatchContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'swatch' }> | null =>
+  round?.content.kind === 'swatch' ? round.content : null
+
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>
@@ -144,6 +149,18 @@ export const distanceOf = (
   return verdict?.kind === 'distance' ? verdict.distanceKm : null
 }
 
+/** How far a seat's colour fell from the one shown, in OKLab, `null` for a seat that sent none or a round with no colour. */
+export const colourDistanceOf = (
+  round: RoundView,
+  playerId: string
+): number | null => {
+  const verdict = round.awards.find(
+    (award) => award.playerId === playerId
+  )?.verdict
+
+  return verdict?.kind === 'colour' ? verdict.distance : null
+}
+
 /** How many pairs a seat put the wrong way round, `null` for a seat that sent no order or a round off the timeline. */
 export const swappedPairsOf = (
   round: RoundView,
@@ -201,7 +218,8 @@ export const sentOrderOf = (
 
 /**
  * How far a seat landed from the answer — kilometres on the map, pairs swapped
- * on the timeline, better results above a moved stick's — every seat without
+ * on the timeline, better results above a moved stick's, how far off a
+ * rebuilt colour — every seat without
  * one level last: a subtraction of two
  * infinities is `NaN`, which no sort survives.
  */
@@ -209,11 +227,12 @@ export const nearnessOf = (round: RoundView, playerId: string): number =>
   distanceOf(round, playerId) ??
   swappedPairsOf(round, playerId) ??
   placesFromBestOf(round, playerId) ??
+  colourDistanceOf(round, playerId) ??
   Number.MAX_VALUE
 
 /**
  * The answers in the order the reveal reads them: nearest first on the world
- * map, the timeline and a moved stick, where how far is the result, and as the server sent
+ * map, the timeline, a moved stick and a rebuilt colour, where how far is the result, and as the server sent
  * them in every other game.
  */
 export const revealedInOrder = (
@@ -221,7 +240,8 @@ export const revealedInOrder = (
 ): RoundView['revealedAnswers'] =>
   atlasContent(round) === null &&
   timelineContent(round) === null &&
-  matchsticksContent(round) === null
+  matchsticksContent(round) === null &&
+  swatchContent(round) === null
     ? round.revealedAnswers
     : round.revealedAnswers.toSorted(
         (left, right) =>

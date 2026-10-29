@@ -1,0 +1,57 @@
+@use '../styles/focus'
+
+@layer components
+  // The square as large as its box allows, the strip its full width under it.
+  // The thumbs are the touch target's size: they are dragged under a finger
+  // that hides whatever is under it.
+  .colour-picker
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: minmax(0, 1fr) auto
+    justify-items: center
+    min-height: 0
+
+    // Measured on its own, so the square is whichever of the row's height
+    // or width runs out first.
+    .slot
+      align-self: stretch
+      container-type: size
+      display: grid
+      inline-size: 100%
+      place-items: center
+
+    .tone
+      block-size: min(100cqh, 100cqi)
+      border-radius: var(--radius-m)
+      box-shadow: 0 0 0 var(--stroke-thin) var(--rule-strong)
+      inline-size: min(100cqh, 100cqi)
+      touch-action: none
+
+    // Inset by half a thumb, so the thumb at either end of the hues stays
+    // inside the column rather than off the screen's edge.
+    .hue
+      box-sizing: border-box
+      inline-size: 100%
+      padding-inline: calc(var(--target) / 2)
+
+    .react-aria-SliderTrack
+      block-size: var(--target)
+      border-radius: var(--radius-m)
+      box-shadow: 0 0 0 var(--stroke-thin) var(--rule-strong)
+      touch-action: none
+
+    .react-aria-ColorThumb
+      @include focus.ring
+
+      block-size: var(--target)
+      border: var(--stroke-bold) solid var(--card)
+      border-radius: var(--radius-full)
+      box-shadow: 0 0 0 var(--stroke-thin) var(--card-ink), var(--shadow-piece)
+      box-sizing: border-box
+      inline-size: var(--target)
+
+      &[data-dragging]
+        scale: 1.25
+
+    .hue .react-aria-ColorThumb
+      top: 50%

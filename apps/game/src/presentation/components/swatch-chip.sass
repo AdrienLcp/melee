@@ -1,0 +1,26 @@
+@use '../styles/piece'
+
+@layer components
+  // Sized by its caller through `inline-size` or `block-size`; the chip keeps
+  // a fan deck's proportions whatever it is given.
+  .swatch-chip
+    @include piece.card(var(--radius-s))
+
+    aspect-ratio: 4 / 5
+    display: inline-block
+    position: relative
+
+    // Inset rather than padded: a padding's percentage is read off the
+    // parent's width, an inset's off the chip itself, at any size it is drawn.
+    .field
+      background: var(--swatch)
+      border-radius: var(--radius-xs)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--card-rule)
+      inset: 6% 7% 20%
+      position: absolute
+
+    &[data-empty] .field
+      background: var(--card-well)
+      box-shadow: var(--shadow-recess-shallow)
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(var(--stroke-thin) * -1)

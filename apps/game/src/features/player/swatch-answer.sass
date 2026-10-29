@@ -1,0 +1,40 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The line saying it hid, the picker taking every spare row, and the chip
+  // previewing the colour beside the press that sends it.
+  .swatch-answer
+    display: grid
+    gap: var(--space-s)
+    grid-template-columns: minmax(0, 1fr)
+    grid-template-rows: auto minmax(0, 1fr) auto
+    min-height: 0
+
+    &[data-sent]
+      align-content: center
+      grid-template-rows: minmax(0, 1fr) auto
+      justify-items: center
+
+    .hint
+      @include typography.strong
+
+      color: var(--ink)
+      margin: 0
+      text-align: center
+      text-wrap: balance
+
+    .send
+      align-items: center
+      display: grid
+      gap: var(--space-s)
+      grid-template-columns: auto minmax(0, 1fr)
+
+    .preview
+      block-size: var(--control-height)
+
+    .yours
+      block-size: 100%
+      max-block-size: calc(var(--stage-unit) * 50)
+
+    .button
+      inline-size: 100%

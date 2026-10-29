@@ -100,6 +100,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'Numbered things to guess and a private answer sheet on every screen. Nobody copies the loudest voice; the host marks the papers one number at a time on the big screen.',
       title: 'Slate — Mêlée'
     },
+    swatch: {
+      description:
+        'A colour comes up on every screen for a few seconds, then hides, and the whole room rebuilds it from memory on their own screens. The reveal lays every guess beside the real one, nearest first. Scan the QR code and play — no install, no account.',
+      title: 'Shades — Mêlée'
+    },
     timeline: {
       description:
         'Five events come up at once — the Moon landing, the fall of the Berlin Wall, the first iPhone — and the whole room puts them in order on their own screens, earliest first. The years come out at the reveal. Scan the QR code and play — no install, no account.',
@@ -176,6 +181,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         "Des choses numérotées à deviner et une feuille de réponses privée sur chaque écran. Personne ne copie la voix la plus forte ; l'hôte corrige les copies numéro par numéro sur le grand écran.",
       title: "L'Ardoise — Mêlée"
+    },
+    swatch: {
+      description:
+        'Une couleur s’affiche sur tous les écrans quelques secondes, puis disparaît, et toute la salle la refait de mémoire depuis son écran. Le dévoilement pose chaque essai à côté de la vraie, la plus proche en premier. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Nuancier — Mêlée'
     },
     timeline: {
       description:

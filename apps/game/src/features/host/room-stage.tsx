@@ -292,6 +292,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
           playsThisRound ? youId : (round.openedWithPlayerIds?.[0] ?? null)
         }
         clipOffer={clipOffer}
+        clock={clock}
         onAnswer={
           playsThisRound
             ? (answer) =>
