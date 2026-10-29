@@ -1094,7 +1094,10 @@ bounced. Durations:
   The host's panel slides in from the edge it is docked to (`panel-dock`,
   1rem and a fade on the same duration, the side read from
   `--panel-arrival-from`). No scale and no overshoot: a page is set down, not
-  dropped. The
+  dropped. The page being left lifts off rather than vanishing: every
+  router navigation is a view transition (`navigateDefaults` in
+  `app-shell.tsx`) whose old root fades on `fast` (`page-leave`) while the new
+  root is shown as is — its own `page-lay` mask is the entrance. The
   console's panel stands, empty, from the first frame (`tabs={null}` before the
   room's first view): drawn only with the view, it arrived up to a second late
   and pushed the invitation 330px across a 1440px desk — new nodes, so

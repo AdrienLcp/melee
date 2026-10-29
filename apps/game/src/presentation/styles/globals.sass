@@ -20,6 +20,15 @@
     animation-duration: calc(var(--transition-base, 0s) * 1.25)
     animation-timing-function: var(--ease-out)
 
+  // A page navigated to is already laid down by its own `page-lay`, under a
+  // mask that starts empty, so only the page being left needs a motion: drawn
+  // over the new one, it lifts off instead of vanishing.
+  ::view-transition-old(root)
+    animation: page-leave var(--transition-fast, 0s) var(--ease-out) both
+
+  ::view-transition-new(root)
+    animation: none
+
   // `min-height`, and `dvh` rather than `vh` or a percentage chain. A fixed
   // `height: 100%` pins the app to the viewport it was laid out in: taller
   // content still scrolls on a desktop browser, but on a phone the height does
@@ -71,6 +80,10 @@
   ::selection
     background: var(--selection)
     color: var(--ink)
+
+@keyframes page-leave
+  to
+    opacity: 0
 
 /// A page settling in, and deliberately quieter than the reveal: a few pixels
 /// and a fade where `card-strike` uses scale, on `base` where it uses `slow`.
