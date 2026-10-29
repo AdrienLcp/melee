@@ -157,11 +157,23 @@ describe('colour tokens', () => {
           foreground: '--board-ink',
           minimum: WCAG_AA.text
         },
-        ...ROUND_CLOCK_INKS.map((foreground) => ({
-          background: '--groove',
-          foreground,
-          minimum: WCAG_AA.nonText
-        }))
+        {
+          background: '--card-tint',
+          foreground: '--card-ink',
+          minimum: WCAG_AA.text
+        },
+        {
+          background: '--card-socket',
+          foreground: '--card-ink',
+          minimum: WCAG_AA.text
+        },
+        ...['--groove', '--card-socket'].flatMap((background) =>
+          ROUND_CLOCK_INKS.map((foreground) => ({
+            background,
+            foreground,
+            minimum: WCAG_AA.nonText
+          }))
+        )
       ])
     ).toEqual([])
   })

@@ -6,9 +6,8 @@
 /// under a press — the only motion a piece has in life.
 ///
 /// The nubs are notches of the ground the piece sits on, so they read
-/// `--ground` and a piece on paper says so with `--ground: var(--card)`. They
-/// take `::before` and `::after`; a piece needing either for something else
-/// passes `$nubs: false`.
+/// `--ground`, which a card re-points at itself. They take `::before` and
+/// `::after`; a piece needing either for something else passes `$nubs: false`.
 ///
 /// `--edge` is the chipboard's depth: the press, the lift and every pull read
 /// their travel from it as well as their shadow, so the two stay in step at
@@ -53,9 +52,35 @@
       box-shadow: 0 calc(var(--edge) * 1.75) 0 0 var(--chipboard), var(--shadow-lifted)
       transform: translateY(calc(var(--edge) * -0.75))
 
+/// The board's inks re-pointed at the paper's, so a component written for the
+/// board — a field, a heading, a hairline, an outlined button, a socket, a
+/// clock's groove — prints correctly on paper and keeps its lightness when the
+/// lights go down. `--rule`, `--rule-strong` and `--hairline` are declared
+/// again because a custom property is resolved where it is declared, and the
+/// root's mix was of the board.
+@mixin paper-inks
+  --board-ink: var(--card-ink)
+  --board-muted: var(--card-muted)
+  --cut: var(--card)
+  --cut-ink: var(--card-ink)
+  --field: var(--card)
+  --groove: var(--card-socket)
+  --ground: var(--card)
+  --hairline: var(--stroke-thin) solid var(--rule)
+  --ink: var(--card-ink)
+  --ink-muted: var(--card-muted)
+  --rule: color-mix(in oklab, var(--card-ink) 22%, var(--card))
+  --rule-strong: color-mix(in oklab, var(--card-ink) 60%, var(--card))
+  --socket: var(--card-socket)
+  --socket-ink: var(--card-ink)
+  --track-a: var(--card-tint)
+  --well: var(--card-well)
+
 /// A printed card: paper, no sprue, a shallow edge. Question cards, the QR
 /// card, a cover's mount.
 @mixin card($radius: var(--radius-l))
+  @include paper-inks
+
   --edge: 0.1875rem
 
   background: var(--card)
