@@ -51,6 +51,9 @@ const COLOUR_ONLY = ['colour'] as const satisfies readonly AnswerMode[]
 /** Most likely is answered by voting for a seat, which the server counts. */
 const VOTE_ONLY = ['vote'] as const satisfies readonly AnswerMode[]
 
+/** An estimate is answered by typing a number, which the server measures against the truth. */
+const NUMBER_ONLY = ['number'] as const satisfies readonly AnswerMode[]
+
 /**
  * Matchsticks is answered by moving a stick on every screen at once, which the
  * server judges — first, so a room opens on it — or aloud on the buzzer, the
@@ -206,6 +209,14 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
         makesSound: false,
         playsAloud: false,
         playsDuels: false,
+        servesItsOwnContent: true
+      }
+    case 'estimate':
+      return {
+        answerModes: NUMBER_ONLY,
+        makesSound: false,
+        playsAloud: false,
+        playsDuels: true,
         servesItsOwnContent: true
       }
   }

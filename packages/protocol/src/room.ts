@@ -25,6 +25,11 @@ import {
   DEFAULT_BOARD_SETTINGS
 } from './board'
 import { CHALLENGE_HAND_SIZE, challengeLabelsSchema } from './challenge'
+import {
+  estimateGuessSchema,
+  estimateQuestionSchema,
+  sentEstimateSchema
+} from './estimate'
 import { gameSettingsSchema } from './game'
 import {
   nicknameSchema,
@@ -100,7 +105,8 @@ export const answerModes = [
   'move',
   'spoken',
   'colour',
-  'vote'
+  'vote',
+  'number'
 ] as const
 
 /**
@@ -157,7 +163,8 @@ export const modeSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('move') }),
   z.object({ kind: z.literal('spoken') }),
   z.object({ kind: z.literal('colour') }),
-  z.object({ kind: z.literal('vote') })
+  z.object({ kind: z.literal('vote') }),
+  z.object({ kind: z.literal('number') })
 ])
 
 /** The longest evening a room may be set to, in rounds. */
@@ -300,6 +307,7 @@ export const DEFAULT_MODE_SETTINGS: Record<AnswerMode, ModeSettings> = {
   choice: { kind: 'choice' },
   colour: { kind: 'colour' },
   move: { kind: 'move' },
+  number: { kind: 'number' },
   order: { kind: 'order' },
   point: { kind: 'point' },
   spoken: { kind: 'spoken' },
@@ -670,6 +678,17 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     tally: z.array(mostLikelyCountSchema).nullable(),
     /** The seat the reader voted for, and `null` before or without a seat. What a reload comes back to. */
     yourBallot: playerIdSchema.nullable()
+  }),
+  z.object({
+    kind: z.literal('estimate'),
+    /** What is asked, the unit derived from its family. */
+    question: estimateQuestionSchema,
+    /** Every seat's guess, and `null` until the reveal: a number seen on another screen is an anchor to copy. */
+    revealedGuesses: z.array(sentEstimateSchema).nullable(),
+    /** The true value, and `null` until the reveal. */
+    value: z.number().positive().nullable(),
+    /** The reader's own guess once sent, and `null` before or without a seat. What a reload comes back to. */
+    yourGuess: estimateGuessSchema.nullable()
   })
 ])
 
@@ -926,7 +945,12 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
   /** Nothing withheld: the colour is on every screen until it hides. */
   z.object({ kind: z.literal('swatch') }),
   /** Nothing withheld: no answer exists before the votes do. */
-  z.object({ kind: z.literal('mostlikely') })
+  z.object({ kind: z.literal('mostlikely') }),
+  /** The true value, for the console to say how close the room is getting, and `null` while the console holds a seat. */
+  z.object({
+    kind: z.literal('estimate'),
+    value: z.number().positive().nullable()
+  })
 ])
 
 /**
@@ -1005,7 +1029,8 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('timeline') }),
   z.object({ kind: z.literal('atlas') }),
   z.object({ kind: z.literal('swatch') }),
-  z.object({ kind: z.literal('mostlikely') })
+  z.object({ kind: z.literal('mostlikely') }),
+  z.object({ kind: z.literal('estimate') })
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({

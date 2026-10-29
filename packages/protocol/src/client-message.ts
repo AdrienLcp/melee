@@ -7,6 +7,7 @@ import {
   challengeHandSlotSchema,
   challengeTextSchema
 } from './challenge'
+import { estimateGuessSchema } from './estimate'
 import {
   hostTokenSchema,
   nicknameSchema,
@@ -161,6 +162,11 @@ export const answerMessageSchema = z.object({
        * the others.
        */
       playerId: playerIdSchema
+    }),
+    z.object({
+      /** The estimate, in the question's unit. One shot, like a pick. */
+      guess: estimateGuessSchema,
+      kind: z.literal('number')
     })
   ]),
   roundId: roundIdSchema,

@@ -5,6 +5,7 @@ import type {
 } from '@melee/protocol/black-square'
 import type { ChallengeLabels } from '@melee/protocol/challenge'
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
 import type { GameSettings } from '@melee/protocol/game'
 import type {
   HostToken,
@@ -428,6 +429,14 @@ export type Round = {
         ballots: { playerId: PlayerId; seatId: PlayerId }[]
         kind: 'mostlikely'
         labels: MostLikelyLabels
+      }
+    | {
+        /** Every seat's guess, in the order they landed. */
+        guesses: SentEstimate[]
+        kind: 'estimate'
+        question: EstimateQuestion
+        /** The truth, in the family's unit; the answer, sent to no player before the reveal. */
+        value: number
       }
   /**
    * How long the open phase runs, stamped as the round opens so a host moving

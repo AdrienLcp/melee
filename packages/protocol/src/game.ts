@@ -35,7 +35,8 @@ export const gameKinds = [
   'timeline',
   'atlas',
   'swatch',
-  'mostlikely'
+  'mostlikely',
+  'estimate'
 ] as const
 
 export const gameKindSchema = z.enum(gameKinds)
@@ -215,6 +216,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     kind: z.literal('mostlikely'),
     /** How long the ballot box stays open before the votes are counted. */
     roundDurationMs: z.number().int().min(10_000).max(90_000)
+  }),
+  z.object({
+    kind: z.literal('estimate'),
+    /** How long the field stays open; it closes early once every seat has sent. */
+    roundDurationMs: z.number().int().min(15_000).max(60_000)
   })
 ])
 
@@ -235,6 +241,7 @@ export type TimelineSettings = Extract<GameSettings, { kind: 'timeline' }>
 export type AtlasSettings = Extract<GameSettings, { kind: 'atlas' }>
 export type SwatchSettings = Extract<GameSettings, { kind: 'swatch' }>
 export type MostLikelySettings = Extract<GameSettings, { kind: 'mostlikely' }>
+export type EstimateSettings = Extract<GameSettings, { kind: 'estimate' }>
 
 /**
  * How long a round stays open unanswered, or `null` for a game whose *settings*
@@ -357,6 +364,12 @@ export const DEFAULT_MOST_LIKELY_SETTINGS: MostLikelySettings = {
   roundDurationMs: 30_000
 }
 
+/** Thirty seconds: long enough to weigh a number, short enough that nobody looks it up. */
+export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
+  kind: 'estimate',
+  roundDurationMs: 30_000
+}
+
 /** A record rather than a switch, so a new kind without a default cannot compile. */
 export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   atlas: DEFAULT_ATLAS_SETTINGS,
@@ -364,6 +377,7 @@ export const DEFAULT_GAME_SETTINGS: Record<GameKind, GameSettings> = {
   blindtest: DEFAULT_BLINDTEST_SETTINGS,
   buzzer: DEFAULT_BUZZER_SETTINGS,
   challenge: DEFAULT_CHALLENGE_SETTINGS,
+  estimate: DEFAULT_ESTIMATE_SETTINGS,
   innerclock: DEFAULT_INNERCLOCK_SETTINGS,
   matchsticks: DEFAULT_MATCHSTICKS_SETTINGS,
   mostlikely: DEFAULT_MOST_LIKELY_SETTINGS,

@@ -504,6 +504,11 @@ export const EN_DICTIONARY = defineDictionary({
       'This screen is not paired. Pair it from the device running the table.',
     wrong_phase: 'Too late, the game has moved on.'
   },
+  estimate: {
+    name: 'Close enough',
+    scoring:
+      'A question whose answer is a number, and everyone types an estimate. The three closest score 30, 20 and 10 points; ten times off or more scores nothing. No bonus for speed.'
+  },
   home: {
     opening: 'Opening the table…',
     resume: 'Back to table',
@@ -521,6 +526,7 @@ export const EN_DICTIONARY = defineDictionary({
       colour: 'Rebuild the colour',
       label: 'How to answer',
       move: 'Move the match',
+      number: 'Type a number',
       order: 'Put them in order',
       point: 'Pin it on the map',
       spoken: 'Team by team',

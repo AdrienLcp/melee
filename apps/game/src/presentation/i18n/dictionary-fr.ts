@@ -485,6 +485,11 @@ export const FR_DICTIONARY = defineDictionary({
       'Cet écran n’est pas appairé. Appaire-le depuis l’appareil qui tient la table.',
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
+  estimate: {
+    name: 'Le juste chiffre',
+    scoring:
+      'Une question dont la réponse est un nombre, et chacun tape son estimation. Les trois plus proches marquent 30, 20 et 10 points ; à dix fois la réponse ou plus, rien. Pas de bonus de vitesse.'
+  },
   home: {
     opening: 'Ouverture de la table…',
     resume: 'Reprendre la table',
@@ -502,6 +507,7 @@ export const FR_DICTIONARY = defineDictionary({
       colour: 'On refait la couleur',
       label: 'Comment on répond',
       move: 'On déplace l’allumette',
+      number: 'On tape un nombre',
       order: 'Dans l’ordre',
       point: 'On pointe sur la carte',
       spoken: 'Équipe par équipe',

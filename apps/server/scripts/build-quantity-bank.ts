@@ -97,61 +97,61 @@ const SOURCES: Record<QuantityFamily, readonly FamilySource[]> = {
     {
       entities: COUNTRIES,
       inUnit: (squareMetres) => squareMetres / 1e6,
+      isCount: false,
       minimum: 0,
-      property: 'P2046',
-      isCount: false
+      property: 'P2046'
     }
   ],
   'elevation.mountain': [
     {
       entities: MOUNTAINS,
       inUnit: asIs,
+      isCount: false,
       minimum: 0,
-      property: 'P2044',
-      isCount: false
+      property: 'P2044'
     }
   ],
   'height.building': [
     {
       entities: BUILDINGS,
       inUnit: asIs,
+      isCount: false,
       minimum: 0,
-      property: 'P2048',
-      isCount: false
+      property: 'P2048'
     }
   ],
   'length.river': [
     {
       entities: RIVERS,
       inUnit: (metres) => metres / 1_000,
+      isCount: false,
       minimum: 0,
-      property: 'P2043',
-      isCount: false
+      property: 'P2043'
     }
   ],
   'population.city': [
     {
       entities: CITIES,
       inUnit: asIs,
+      isCount: true,
       minimum: MIN_CITY_POPULATION,
-      property: 'P1082',
-      isCount: true
+      property: 'P1082'
     },
     {
       entities: FRENCH_COMMUNES,
       inUnit: asIs,
+      isCount: true,
       minimum: MIN_FRENCH_CITY_POPULATION,
-      property: 'P1082',
-      isCount: true
+      property: 'P1082'
     }
   ],
   'population.country': [
     {
       entities: COUNTRIES,
       inUnit: asIs,
+      isCount: true,
       minimum: 0,
-      property: 'P1082',
-      isCount: true
+      property: 'P1082'
     }
   ]
 }

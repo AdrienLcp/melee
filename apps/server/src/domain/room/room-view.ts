@@ -208,6 +208,13 @@ const toHostContent = ({
     }
   }
 
+  if (content.kind === 'estimate') {
+    return {
+      kind: 'estimate',
+      value: seatId === null ? content.value : null
+    }
+  }
+
   if (
     content.kind === 'challenge' ||
     content.kind === 'innerclock' ||
@@ -345,7 +352,8 @@ const yourVerdictIn = ({
 }): Verdict | null =>
   (round.content.kind === 'matchsticks' ||
     round.content.kind === 'swatch' ||
-    round.content.kind === 'mostlikely') &&
+    round.content.kind === 'mostlikely' ||
+    round.content.kind === 'estimate') &&
   !round.revealed
     ? null
     : (round.attempts.find((entry) => entry.playerId === youId)?.verdict ??
@@ -559,6 +567,18 @@ const toContentView = ({
       tally: round.revealed ? tallyBallots(content.ballots) : null,
       yourBallot:
         content.ballots.find(({ playerId }) => playerId === youId)?.seatId ??
+        null
+    }
+  }
+
+  if (content.kind === 'estimate') {
+    return {
+      kind: 'estimate',
+      question: content.question,
+      revealedGuesses: round.revealed ? content.guesses : null,
+      value: round.revealed ? content.value : null,
+      yourGuess:
+        content.guesses.find(({ playerId }) => playerId === youId)?.guess ??
         null
     }
   }

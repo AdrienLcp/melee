@@ -2,6 +2,8 @@ import { z } from 'zod'
 
 import { quantityFamilySchema } from '@melee/protocol/estimate'
 
+import { pickRandom } from '@melee/core/helpers/random'
+
 import bank from './quantity-bank.json' with { type: 'json' }
 
 export const quantityRowSchema = z.object({
@@ -28,4 +30,28 @@ export const bankedQuantities = (): readonly QuantityRow[] => {
   parsed ??= z.array(quantityRowSchema).parse(bank)
 
   return parsed
+}
+
+export const playedQuantityId = ({ entity, family }: QuantityRow): string =>
+  `estimate:${family}:${entity}`
+
+/**
+ * A quantity the room has not been dealt, a well-known one first: the height of
+ * a summit nobody at the table has heard of is a guess at the zeros, not an
+ * estimate. `null` once the whole bank is spent, because a number heard again
+ * is its answer.
+ */
+export const drawQuantity = ({
+  playedIds
+}: {
+  playedIds: ReadonlySet<string>
+}): QuantityRow | null => {
+  const unplayed = bankedQuantities().filter(
+    (row) => !playedIds.has(playedQuantityId(row))
+  )
+
+  return (
+    pickRandom(unplayed.filter(({ isWellKnown }) => isWellKnown)) ??
+    pickRandom(unplayed)
+  )
 }

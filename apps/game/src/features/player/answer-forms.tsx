@@ -79,6 +79,7 @@ export const candidatesIn = ({
     case 'buzzer':
     case 'challenge':
     case 'blacksquare':
+    case 'estimate':
     case 'innerclock':
     case 'matchsticks':
     case 'mostlikely':

@@ -60,6 +60,10 @@ const withheld = (content: WallRoundContent): HostRoundContent => {
       return { ...content, answer: null }
     }
 
+    case 'estimate': {
+      return { ...content, value: null }
+    }
+
     default: {
       return content
     }

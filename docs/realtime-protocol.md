@@ -783,6 +783,16 @@ should not have to explain a vote. The pay says the rest on its own, since a
 paid ballot went with the room. `most-likely-game.test.ts` checks every frame
 sent before the reveal.
 
+**An estimate's value is the console's until the reveal.** A player's round
+carries the question — its family and the place's names, the unit derived from
+the family — and `value: null`; the console reads the value on
+`currentContent` while it holds no seat, and the wall never does. Every seat's
+guess is hidden too (`revealedGuesses: null`), since a number seen on another
+screen is an anchor to copy; a seat reads back its own as `yourGuess`. A guess
+is one shot, refused at nought or below by the schema, and priced only at the
+close, because a place needs the whole room. `estimate-game.test.ts` searches
+every frame for the value.
+
 ## Errors
 
 ```jsonc

@@ -11,6 +11,7 @@ import {
   canTakeSpokenTurn
 } from '@/domain/round/black-square-round'
 import { challengeContent } from '@/domain/round/challenge-round'
+import { estimateContent } from '@/domain/round/estimate-round'
 import { innerclockContent } from '@/domain/round/innerclock-round'
 import {
   matchsticksContent,
@@ -64,6 +65,10 @@ import {
   drawMostLikelyLine,
   playedMostLikelyLineId
 } from '@/infrastructure/questions/most-likely-bank'
+import {
+  drawQuantity,
+  playedQuantityId
+} from '@/infrastructure/questions/quantity-bank'
 import {
   drawQuestion,
   hostQuestionOf
@@ -506,6 +511,37 @@ export const beginRound = async (
 
     openRound({
       content: mostLikelyContent(line.labels),
+      id: newRoundId(),
+      now: engine.now(),
+      room,
+      startsAt: startsAtOf(engine.now())
+    })
+
+    publishRoom(engine)
+
+    return
+  }
+
+  if (game.kind === 'estimate') {
+    const row = drawQuantity({ playedIds: room.playedContentIds })
+
+    if (row === null) {
+      tellHost(engine, {
+        code: 'no_content_available',
+        message: 'Every quantity in the bank has been estimated'
+      })
+      publishRoom(engine)
+
+      return
+    }
+
+    room.playedContentIds.add(playedQuantityId(row))
+
+    openRound({
+      content: estimateContent({
+        question: { family: row.family, names: row.names },
+        value: row.value
+      }),
       id: newRoundId(),
       now: engine.now(),
       room,

@@ -33,6 +33,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   buzzer: null,
   /** Challenges are the evening's interludes, played until the host moves on. */
   challenge: null,
+  /** A number is half a minute of weighing it, so ten of them are a short game. */
+  estimate: 10,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
   matchsticks: 10,
@@ -70,6 +72,7 @@ const DEFAULT_ANSWER_MODE: Record<GameKind, AnswerMode> = {
   blindtest: 'choice',
   buzzer: 'buzzer',
   challenge: 'buzzer',
+  estimate: 'number',
   innerclock: 'buzzer',
   matchsticks: 'move',
   mostlikely: 'vote',
@@ -197,6 +200,7 @@ const DEFAULT_HOLD_MS: Record<GameKind, RoomSettings['autoAdvanceMs']> = {
   blindtest: 8_000,
   buzzer: null,
   challenge: null,
+  estimate: null,
   innerclock: null,
   matchsticks: null,
   mostlikely: null,

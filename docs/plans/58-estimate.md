@@ -1,6 +1,7 @@
 # 58 — Estimate (le juste chiffre)
 
-**Step 1 done** 29/10/2026 — the bank, the protocol and the core. Step 2 is next.
+**Step 1 done** 29/10/2026 — the bank, the protocol and the core. **Step 2a
+done** 29/10/2026 — the kind served end to end; the screens are next.
 
 A question whose answer is a number goes up on every screen — *how many people
 live in Japan? how high is Mont Blanc? how long is the Loire?* — every seat
@@ -99,6 +100,16 @@ with `estimateVerdictsOf` in `@melee/core/estimate/estimate-pay`.
    shelf, the spine, the dictionaries, the `NumberField`, the reveal as a
    number line with every seat's pin on a log scale. Seen muted on a wall, a
    seated console and two phones.
+
+**Step 2a, as built**: the answer arm is `{ kind: 'number', guess }`; the
+player's round carries `question`, `value`, `revealedGuesses` and `yourGuess`,
+the last three `null` until the reveal (the reader's own guess excepted); the
+console's `currentContent` is `{ kind: 'estimate', value }`, the value `null`
+while it holds a seat. The draw is `drawQuantity` in `quantity-bank.ts`: a
+well-known row the room has not played first, any unplayed row next, `null`
+once the bank is spent. The pay is `payEstimatesByPlace` in
+`estimate-round.ts`, a `closeRound` branch of its own like most likely's. Not
+on `shelvedGames` yet — it goes on with its screens.
 
 ## How to tell it is done
 

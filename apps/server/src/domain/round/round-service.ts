@@ -82,6 +82,7 @@ import {
   takeSpokenTurn
 } from '@/domain/round/black-square-round'
 import { takeDuel } from '@/domain/round/duels'
+import { payEstimatesByPlace } from '@/domain/round/estimate-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
 import {
@@ -546,6 +547,10 @@ export const registerAnswer = ({
     round.content.ballots.push({ playerId, seatId: attempt.playerId })
   }
 
+  if (round.content.kind === 'estimate' && attempt.kind === 'number') {
+    round.content.guesses.push({ guess: attempt.guess, playerId })
+  }
+
   if (round.content.kind === 'matchsticks' && attempt.kind === 'move') {
     round.content.moves.push({
       glyphs: applyMove({
@@ -930,6 +935,7 @@ type Attempt =
   | { kind: 'move'; move: StickMove }
   | { kind: 'colour'; colour: ColourHex }
   | { kind: 'seat'; playerId: PlayerId }
+  | { kind: 'number'; guess: number }
   | TypedAttempt
 
 /**
@@ -1001,6 +1007,21 @@ const grade = ({
       : null
   }
 
+  // A place needs the whole room, so a guess is priced at the close and holds
+  // a placeholder until then.
+  if (content.kind === 'estimate') {
+    return attempt.kind === 'number'
+      ? {
+          said: String(attempt.guess),
+          verdict: {
+            kind: 'number',
+            placesFromBest: null,
+            ratio: attempt.guess / content.value
+          }
+        }
+      : null
+  }
+
   if (content.kind === 'swatch') {
     return attempt.kind === 'colour'
       ? {
@@ -1042,7 +1063,8 @@ const grade = ({
     attempt.kind === 'order' ||
     attempt.kind === 'move' ||
     attempt.kind === 'colour' ||
-    attempt.kind === 'seat'
+    attempt.kind === 'seat' ||
+    attempt.kind === 'number'
   ) {
     return null
   }
@@ -1400,6 +1422,13 @@ export const closeRound = (room: Room, now: number): void => {
 
   if (round.content.kind === 'mostlikely') {
     payBallotsWithTheRoom(room)
+    revealRound(room, now)
+
+    return
+  }
+
+  if (round.content.kind === 'estimate') {
+    payEstimatesByPlace(room)
     revealRound(room, now)
 
     return
