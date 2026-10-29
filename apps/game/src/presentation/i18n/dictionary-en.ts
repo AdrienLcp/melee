@@ -735,8 +735,8 @@ export const EN_DICTIONARY = defineDictionary({
         count: defineTranslation('{count:plural}', {
           plural: {
             count: {
-              one: '{?} player on their own screen',
-              other: '{?} players, each on their own'
+              one: '{?} player',
+              other: '{?} players'
             }
           }
         }),

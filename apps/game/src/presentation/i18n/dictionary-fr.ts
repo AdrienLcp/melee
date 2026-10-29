@@ -708,8 +708,8 @@ export const FR_DICTIONARY = defineDictionary({
         count: defineTranslation('{count:plural}', {
           plural: {
             count: {
-              one: '{?} joueur, sur son écran',
-              other: '{?} joueurs, chacun le sien'
+              one: '{?} joueur',
+              other: '{?} joueurs'
             }
           }
         }),
