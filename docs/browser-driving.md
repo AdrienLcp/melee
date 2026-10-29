@@ -524,6 +524,10 @@ frame carries a `roundId`, and a log scanned backwards for `phase === 'playing'`
 answers with the *previous* round's frame the instant it is asked — the new one
 has not arrived yet — so everything sent on it is refused as stale.
 
+**An Atlas pawn is `{ latitude, longitude }`**, not `{ lat, lng }`. The wrong
+keys are refused with a non-fatal `error` frame, the reveal then shows no
+board at all — nobody answered — and reads as a layout that dropped it.
+
 ## Auditing the dark palette where tokens are applied
 
 `tokens-contrast.test.ts` measures token *pairs*; it cannot see a board token
