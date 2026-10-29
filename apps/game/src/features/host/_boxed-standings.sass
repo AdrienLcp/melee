@@ -18,13 +18,17 @@
 
     color: var(--ink-muted)
 
+  // A scrolling box clips both axes, so it widens by the bleed of the keyline
+  // round your own row and pads it back, or the rank and score are cut.
   .scoreboard
     container-type: size
+    margin-inline: calc(var(--space-xs) * -1)
     overflow-y: auto
+    padding-inline: var(--space-xs)
 
     li
       font-size: clamp(var(--text-xs), calc(100cqh / var(--standings-rows, 8) / 2.3), 1.75rem)
-      padding: 0.3em 0
+      padding-block: 0.3em
 
       .rank
         font-size: var(--text-em-s)
