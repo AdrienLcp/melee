@@ -2,7 +2,9 @@ import type React from 'react'
 import { useLayoutEffect } from 'react'
 import { Navigate, Outlet, useLocation } from 'react-router'
 
+import { NotFoundPage } from '@/features/not-found/not-found-page'
 import {
+  localeFreePathUnder,
   localeInPath,
   localizedPathFor
 } from '@/infrastructure/router/navigation'
@@ -48,5 +50,32 @@ export const LocalePrefixedRoutes: React.FC = () => {
     return <NegotiatedLocaleRedirect />
   }
 
+  if (localeFreePathUnder(pathname) !== null) {
+    return <LocaleFreeRedirect />
+  }
+
   return <Outlet />
+}
+
+/**
+ * Drops the language from a room or pairing path written under one. Mounted on
+ * both sides, because `/fr/wall` reaches the prefixed branch as a game while
+ * `/fr/play/ABCD` matches nothing there and lands on the catch-all.
+ */
+const LocaleFreeRedirect: React.FC = () => {
+  const { hash, pathname, search } = useLocation()
+  const localeFreePath = localeFreePathUnder(pathname) ?? pathname
+
+  return <Navigate replace to={{ hash, pathname: localeFreePath, search }} />
+}
+
+/** The 404, unless the path is a room's or a pairing's under a language. */
+export const UnmatchedPathPage: React.FC = () => {
+  const { pathname } = useLocation()
+
+  return localeFreePathUnder(pathname) === null ? (
+    <NotFoundPage />
+  ) : (
+    <LocaleFreeRedirect />
+  )
 }

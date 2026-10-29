@@ -1,9 +1,9 @@
 import type { RouteObject } from 'react-router'
 
-import { NotFoundPage } from '@/features/not-found/not-found-page'
 import {
   LocalePrefixedRoutes,
-  NegotiatedLocaleRedirect
+  NegotiatedLocaleRedirect,
+  UnmatchedPathPage
 } from '@/infrastructure/router/locale-prefix'
 import {
   localizedPaths,
@@ -139,7 +139,7 @@ export const routes: RouteObject[] = [
       },
       ...Object.values(roomPaths).map(routeFor),
       ...Object.values(pairingPaths).map(routeFor),
-      { Component: NotFoundPage, path: '*' }
+      { Component: UnmatchedPathPage, path: '*' }
     ],
     // On the root, so a throw anywhere below replaces the shell instead of
     // rendering a fallback inside chrome that may be part of what broke.

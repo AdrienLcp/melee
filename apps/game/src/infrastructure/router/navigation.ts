@@ -1,6 +1,7 @@
 import { useEffect, useEffectEvent } from 'react'
 import {
   generatePath,
+  matchPath,
   type PathParam,
   useLocation,
   useNavigate,
@@ -260,6 +261,27 @@ export const localizedPathFor = ({
   pathname: string
 }): string =>
   pathname === paths.root ? homePathFor(locale) : `/${locale}${pathname}`
+
+/**
+ * A room or pairing path written under a language — `/fr/wall` — which would
+ * otherwise reach `/:locale/:game` and answer with the 404. Those pages carry
+ * no locale, so the prefix is dropped rather than refused.
+ */
+export const localeFreePathUnder = (pathname: string): string | null => {
+  const [, first, ...rest] = pathname.split('/')
+
+  if (asLocale(first) === null) {
+    return null
+  }
+
+  const unprefixed = `/${rest.join('/')}`
+  const isLocaleFree = [
+    ...Object.values(roomPaths),
+    ...Object.values(pairingPaths)
+  ].some((path) => matchPath(path, unprefixed) !== null)
+
+  return isLocaleFree ? unprefixed : null
+}
 
 /**
  * The locale a path names, read without the router — which is what the entry
