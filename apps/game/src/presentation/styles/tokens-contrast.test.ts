@@ -141,6 +141,11 @@ describe('colour tokens', () => {
           minimum: WCAG_AA.text
         },
         {
+          background: '--spine-estimate',
+          foreground: '--on-spine-estimate',
+          minimum: WCAG_AA.text
+        },
+        {
           background: '--black-word',
           foreground: '--on-black-word',
           minimum: WCAG_AA.text

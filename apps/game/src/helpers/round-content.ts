@@ -10,6 +10,8 @@ import {
   TIMELINE_ORDER_SEPARATOR
 } from '@melee/protocol/timeline'
 
+import { gapOf } from '@melee/core/estimate/estimate-pay'
+
 /**
  * A round's content is a union, and a screen only ever renders one arm of it.
  * Narrowing at every call site says nothing there — `content.kind === 'quiz'`
@@ -64,6 +66,11 @@ export const mostLikelyContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'mostlikely' }> | null =>
   round?.content.kind === 'mostlikely' ? round.content : null
+
+export const estimateContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'estimate' }> | null =>
+  round?.content.kind === 'estimate' ? round.content : null
 
 export const timelineContent = (
   round: RoundView | null | undefined
@@ -169,6 +176,18 @@ export const colourDistanceOf = (
   return verdict?.kind === 'colour' ? verdict.distance : null
 }
 
+/** A seat's guess over the true value, `null` before the reveal and for a seat that sent none. */
+export const estimateRatioOf = (
+  round: RoundView,
+  playerId: string
+): number | null => {
+  const verdict = round.awards.find(
+    (award) => award.playerId === playerId
+  )?.verdict
+
+  return verdict?.kind === 'number' ? verdict.ratio : null
+}
+
 /** How many pairs a seat put the wrong way round, `null` for a seat that sent no order or a round off the timeline. */
 export const swappedPairsOf = (
   round: RoundView,
@@ -227,7 +246,7 @@ export const sentOrderOf = (
 /**
  * How far a seat landed from the answer — kilometres on the map, pairs swapped
  * on the timeline, better results above a moved stick's, how far off a
- * rebuilt colour — every seat without
+ * rebuilt colour, how many times off an estimate — every seat without
  * one level last: a subtraction of two
  * infinities is `NaN`, which no sort survives.
  */
@@ -236,11 +255,18 @@ export const nearnessOf = (round: RoundView, playerId: string): number =>
   swappedPairsOf(round, playerId) ??
   placesFromBestOf(round, playerId) ??
   colourDistanceOf(round, playerId) ??
+  estimateGapOf(round, playerId) ??
   Number.MAX_VALUE
+
+const estimateGapOf = (round: RoundView, playerId: string): number | null => {
+  const ratio = estimateRatioOf(round, playerId)
+
+  return ratio === null ? null : gapOf(ratio)
+}
 
 /**
  * The answers in the order the reveal reads them: nearest first on the world
- * map, the timeline, a moved stick and a rebuilt colour, where how far is the result, and as the server sent
+ * map, the timeline, a moved stick, a rebuilt colour and an estimate, where how far is the result, and as the server sent
  * them in every other game.
  */
 export const revealedInOrder = (
@@ -249,7 +275,8 @@ export const revealedInOrder = (
   atlasContent(round) === null &&
   timelineContent(round) === null &&
   matchsticksContent(round) === null &&
-  swatchContent(round) === null
+  swatchContent(round) === null &&
+  estimateContent(round) === null
     ? round.revealedAnswers
     : round.revealedAnswers.toSorted(
         (left, right) =>

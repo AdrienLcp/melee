@@ -1,0 +1,28 @@
+@use '../styles/typography'
+
+@layer components
+  .estimate-question
+    color: var(--card-ink)
+    display: grid
+    gap: var(--space-2xs)
+    margin: 0
+    text-align: center
+
+    .asks
+      @include typography.strong
+
+      color: var(--card-muted)
+      font-size: var(--estimate-asks-size, var(--text-m))
+      margin: 0
+
+    .name
+      @include typography.billboard
+
+      font-size: var(--estimate-name-size, clamp(var(--text-xl), calc(var(--stage-unit) * 6), 3rem))
+      margin: 0
+      overflow-wrap: anywhere
+      text-wrap: balance
+
+      // Wikidata writes *pic du Canigou* the way a sentence would carry it.
+      &::first-letter
+        text-transform: uppercase

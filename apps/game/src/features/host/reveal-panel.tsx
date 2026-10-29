@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
@@ -9,6 +10,7 @@ import {
   atlasContent,
   blackSquareContent,
   blindtestContent,
+  estimateContent,
   innerclockContent,
   matchsticksContent,
   mostLikelyContent,
@@ -22,6 +24,8 @@ import {
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
+import { EstimateLine } from '@/presentation/components/estimate-line'
+import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
@@ -35,6 +39,7 @@ import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { SwatchShown } from '@/presentation/components/swatch-shown'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
+import { useQuantityWords } from '@/presentation/components/use-quantity-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -131,6 +136,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   round
 }) => {
   const { locale, translate } = useI18n()
+  const quantityWords = useQuantityWords()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
@@ -227,6 +233,34 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           <SwatchShown
             caption={translate('swatch.reveal.title')}
             colour={shades.colour}
+          />
+        </div>
+
+        <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
+  const estimate = estimateContent(round)
+
+  // The question with its true value, every seat's pin on the line under it,
+  // and the table nearest first.
+  if (estimate?.value != null && estimate.revealedGuesses !== null) {
+    return (
+      <section className='reveal-panel' data-game='estimate'>
+        <div className='head'>
+          <EstimateQuestion question={estimate.question} />
+          <p className='estimate-truth'>
+            {quantityWords(
+              estimate.value,
+              UNIT_OF_FAMILY[estimate.question.family]
+            )}
+          </p>
+          <EstimateLine
+            guesses={estimate.revealedGuesses}
+            players={players}
+            value={estimate.value}
+            youId={null}
           />
         </div>
 

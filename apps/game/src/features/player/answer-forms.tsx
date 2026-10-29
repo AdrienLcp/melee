@@ -43,6 +43,7 @@ export type PlayerAnswer =
   | { eventIds: string[]; kind: 'order' }
   | { kind: 'move'; move: StickMove }
   | { colour: ColourHex; kind: 'colour' }
+  | { guess: number; kind: 'number' }
   | { kind: 'seat'; playerId: PlayerId }
 
 /**

@@ -1,0 +1,67 @@
+@use '../styles/typography'
+
+@layer components
+  // Sized by its caller through `--pin-size`; the lanes stack upward from the
+  // ruler so the line keeps its place whatever the crowd above it.
+  .estimate-line
+    --pin-size: 1.6rem
+    --lane-step: calc(var(--pin-size) * 0.8)
+
+    color: var(--card-ink)
+    display: grid
+    gap: var(--space-2xs)
+    inline-size: 100%
+
+    .pins
+      block-size: calc(var(--pin-size) * 1.15 + (var(--lanes) - 1) * var(--lane-step))
+      list-style: none
+      margin: 0
+      padding: 0
+      position: relative
+
+      li
+        display: flex
+        font-size: var(--pin-size)
+        inset-block-end: calc(var(--lane) * var(--lane-step))
+        inset-inline-start: var(--at)
+        position: absolute
+        translate: -50% 0
+
+        // The reader's own pin, raised on a ring of board ink.
+        &[data-yours]
+          border-radius: 50%
+          outline: var(--stroke-bold) solid var(--card-ink)
+          outline-offset: var(--stroke-thin)
+
+    // The paid stretch drawn solid, the ends past ten times off dashed.
+    .ruler
+      block-size: 1.6em
+      border-block-start: var(--stroke-bold) dashed var(--card-rule)
+      position: relative
+
+      &::before
+        border-block-start: var(--stroke-bold) solid var(--card-ink)
+        content: ''
+        inset-block-start: calc(var(--stroke-bold) * -1)
+        inset-inline: 6%
+        position: absolute
+
+    .truth
+      background: var(--card-ink)
+      block-size: calc(var(--pin-size) * 0.7)
+      inline-size: var(--stroke-bold)
+      inset-block-end: 100%
+      inset-inline-start: 50%
+      position: absolute
+      translate: -50% 0
+
+    .tick
+      @include typography.caption
+      @include typography.numeric
+
+      color: var(--card-muted)
+      inset-block-start: var(--space-2xs)
+      inset-inline-start: var(--at)
+      position: absolute
+      translate: -50% 0
+      white-space: nowrap

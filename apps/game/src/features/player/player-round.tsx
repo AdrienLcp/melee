@@ -8,10 +8,13 @@ import type {
   BlackSquareLabels
 } from '@melee/protocol/black-square'
 import type { PlayerClientMessage } from '@melee/protocol/client-message'
+import { type SentEstimate, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
   ActiveBuzz,
   PlayerRoomView,
+  PublicPlayer,
   RoomPhase,
   RoundView
 } from '@melee/protocol/room'
@@ -20,6 +23,7 @@ import type { TeamId } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
+import { isSpotOn } from '@melee/core/estimate/estimate-pay'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import {
   type BuzzBlocker,
@@ -40,6 +44,7 @@ import {
 import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { ChoosingRound } from '@/features/player/choosing-round'
+import { EstimateAnswer } from '@/features/player/estimate-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
@@ -64,6 +69,8 @@ import {
   atlasContent,
   blackSquareContent,
   blindtestContent,
+  estimateContent,
+  estimateRatioOf,
   innerclockContent,
   matchsticksContent,
   mostLikelyContent,
@@ -87,6 +94,8 @@ import { Countdown } from '@/presentation/components/countdown'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
+import { EstimateLine } from '@/presentation/components/estimate-line'
+import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
 import { CheckIcon } from '@/presentation/components/icons'
@@ -107,6 +116,10 @@ import {
   useMoveWords,
   useOrderWords
 } from '@/presentation/components/use-distance-words'
+import {
+  useFactorWords,
+  useQuantityWords
+} from '@/presentation/components/use-quantity-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import {
   floorOutcome,
@@ -622,6 +635,25 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           <RoundClock clock={clock} view={view} />
           <SwatchRound
             clock={clock}
+            onAnswer={answerWithRound}
+            round={round}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
+    const estimate = estimateContent(round)
+
+    if (estimate !== null) {
+      return (
+        <section className='player-round estimate-round'>
+          <div className='round-card'>
+            <EstimateQuestion question={estimate.question} />
+            <RoundClock clock={clock} view={view} />
+          </div>
+          <EstimateAnswer
+            key={round.id}
             onAnswer={answerWithRound}
             round={round}
             youId={view.youId}
@@ -1176,6 +1208,20 @@ const Revealed: React.FC<{
     )
   }
 
+  const estimate = estimateContent(round)
+
+  if (estimate?.value != null && estimate.revealedGuesses !== null) {
+    return (
+      <EstimateRevealed
+        guesses={estimate.revealedGuesses}
+        players={view.players}
+        round={round}
+        value={estimate.value}
+        youId={view.youId}
+      />
+    )
+  }
+
   const shades = swatchContent(round)
 
   if (shades?.colour != null) {
@@ -1278,6 +1324,68 @@ const MatchsticksYours: React.FC<{ round: RoundView; yours: SentMove }> = ({
         isStill
         move={yours.move}
       />
+    </div>
+  )
+}
+
+/**
+ * The true value printed on the card under its question, every seat's pin on
+ * the line under it, and this seat's own guess said against it — how many
+ * times off, which way — since the pin alone does not say by how much.
+ */
+const EstimateRevealed: React.FC<{
+  guesses: readonly SentEstimate[]
+  players: readonly PublicPlayer[]
+  round: RoundView
+  value: number
+  youId: PlayerId | null
+}> = ({ guesses, players, round, value, youId }) => {
+  const translate = useTranslate()
+  const quantityWords = useQuantityWords()
+  const factorWords = useFactorWords()
+  const content = estimateContent(round)
+  const ratio = youId === null ? null : estimateRatioOf(round, youId)
+  const yours = guesses.find((sent) => sent.playerId === youId) ?? null
+
+  if (content === null) {
+    return null
+  }
+
+  const unit = UNIT_OF_FAMILY[content.question.family]
+
+  return (
+    <div className='answer-card estimate-revealed' data-game='estimate'>
+      <EstimateQuestion question={content.question} />
+      <p className='truth'>{quantityWords(value, unit)}</p>
+      <EstimateLine
+        guesses={guesses}
+        players={players}
+        value={value}
+        youId={youId}
+      />
+      {yours !== null && ratio !== null && (
+        <p className='yours'>
+          <span>
+            {translate('estimate.reveal.yours', {
+              guess: quantityWords(yours.guess, unit)
+            })}
+          </span>
+          <span
+            className='how-far'
+            data-spot-on={isSpotOn({ ratio }) || undefined}
+          >
+            {isSpotOn({ ratio })
+              ? translate('estimate.reveal.spotOn')
+              : ratio > 1
+                ? translate('estimate.reveal.over', {
+                    factor: factorWords(ratio)
+                  })
+                : translate('estimate.reveal.under', {
+                    factor: factorWords(1 / ratio)
+                  })}
+          </span>
+        </p>
+      )}
     </div>
   )
 }

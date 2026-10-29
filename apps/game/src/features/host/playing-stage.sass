@@ -199,6 +199,15 @@
 
     // A seated console voting: the line shrinks to its card's height, and the
     // seats take everything under it.
+    &[data-estimate='answering']
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      > .answer-form.estimate-answer
+        align-self: center
+        inline-size: min(100%, 32rem)
+
     &[data-most-likely='voting']
       > .round-card
         flex: none
@@ -354,6 +363,11 @@
         font-size: clamp(var(--text-xl), min(5cqi, 14cqh), 5.5rem)
         text-align: center
         text-wrap: balance
+
+      // The name is the question here, read from across the room.
+      .estimate-question
+        --estimate-asks-size: clamp(var(--text-m), min(3cqi, 7cqh), 2.4rem)
+        --estimate-name-size: clamp(var(--text-xl), min(8cqi, 20cqh), 8rem)
 
       // A sentence of up to 160 characters, so a step under the host's own line.
       .most-likely-line

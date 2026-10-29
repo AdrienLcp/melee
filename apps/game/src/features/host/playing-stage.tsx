@@ -14,6 +14,7 @@ import {
   TypedAnswer
 } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
+import { EstimateAnswer } from '@/features/player/estimate-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -24,12 +25,14 @@ import { TimelineAnswer } from '@/features/player/timeline-answer'
 import {
   atlasContent,
   blackSquareContent,
+  estimateContent,
   matchsticksContent,
   mostLikelyContent,
   swatchContent,
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
+import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
@@ -94,6 +97,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const timeline = timelineContent(round)
   const swatch = swatchContent(round)
   const mostLikely = mostLikelyContent(round)
+  const estimate = estimateContent(round)
   const shownColour = useShownColour({ clock, round })
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
@@ -121,6 +125,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             shownColour === null ? 'swatch.hidden' : 'swatch.remember'
           )}
         </p>
+      ) : estimate !== null ? (
+        <EstimateQuestion question={estimate.question} />
       ) : mostLikely !== null ? (
         <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
@@ -156,6 +162,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             : 'answering'
       }
       data-choices={mode === 'choice' || undefined}
+      data-estimate={
+        estimate === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
+      }
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-map={(atlas?.target != null && onAnswer !== null) || undefined}
       data-map-question={atlas?.shown != null || undefined}
@@ -246,6 +259,14 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         <SwatchRound
           clock={clock}
           isCaptioned={false}
+          onAnswer={onAnswer}
+          round={round}
+          youId={answersAs}
+        />
+      )}
+      {estimate !== null && onAnswer !== null && (
+        <EstimateAnswer
+          key={round.id}
           onAnswer={onAnswer}
           round={round}
           youId={answersAs}

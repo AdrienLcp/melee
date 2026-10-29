@@ -505,9 +505,53 @@ export const EN_DICTIONARY = defineDictionary({
     wrong_phase: 'Too late, the game has moved on.'
   },
   estimate: {
+    answer: {
+      label: 'Your estimate',
+      send: 'Send',
+      sent: 'Your estimate is in. Waiting for the others.'
+    },
+    asks: {
+      area: { country: 'How large is it?' },
+      elevation: { mountain: 'How high is it?' },
+      height: { building: 'How tall is it?' },
+      length: { river: 'How long is it?' },
+      population: {
+        city: 'How many people live here?',
+        country: 'How many people live here?'
+      }
+    },
+    home: {
+      description:
+        'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, how long is the Loire — and everyone types an estimate. Nobody has to know: the three closest score, and the reveal lines every guess up against the truth.'
+    },
+    line: {
+      divided: '÷{factor}',
+      times: '×{factor}'
+    },
     name: 'Close enough',
+    play: 'Play Close enough',
+    reveal: {
+      over: 'Too high · ×{factor}',
+      spotOn: 'Spot on',
+      under: 'Too low · ÷{factor}',
+      yours: 'You said {guess}'
+    },
+    roundDuration: 'Time to estimate',
     scoring:
-      'A question whose answer is a number, and everyone types an estimate. The three closest score 30, 20 and 10 points; ten times off or more scores nothing. No bonus for speed.'
+      'A question whose answer is a number, and everyone types an estimate. The three closest score 30, 20 and 10 points; ten times off or more scores nothing. No bonus for speed.',
+    tagline: 'Nobody knows. Who comes closest?',
+    unitNames: {
+      kilometres: 'km',
+      metres: 'm',
+      people: 'people',
+      squareKilometres: 'km²'
+    },
+    units: {
+      kilometres: '{value}\u00a0km',
+      metres: '{value}\u00a0m',
+      people: '{value} people',
+      squareKilometres: '{value}\u00a0km²'
+    }
   },
   home: {
     opening: 'Opening the table…',

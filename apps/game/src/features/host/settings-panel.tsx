@@ -76,6 +76,9 @@ const BLACK_SQUARE_DURATIONS_MS = [45_000, 60_000, 90_000] as const
 /** Three seconds is a glance, eight is nearly long enough to name the colour. */
 const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
 
+/** Fifteen seconds is a gut call, a minute is long enough to reason it out loud. */
+const ESTIMATE_DURATIONS_MS = [15_000, 30_000, 60_000] as const
+
 const SWATCH_REBUILD_MS = [10_000, 20_000, 30_000] as const
 
 /** Fifteen seconds is a table that knows itself, a minute one that argues first. */
@@ -579,6 +582,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             value={game.roundDurationMs}
           />
         </>
+      )}
+
+      {game?.kind === 'estimate' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('estimate.roundDuration')}
+          onChange={(roundDurationMs) => {
+            onChange({ ...settings, game: { ...game, roundDurationMs } })
+          }}
+          optionLabel={secondsLabel}
+          options={ESTIMATE_DURATIONS_MS}
+          value={game.roundDurationMs}
+        />
       )}
 
       {game?.kind === 'mostlikely' && (

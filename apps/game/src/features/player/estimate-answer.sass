@@ -1,0 +1,34 @@
+@use '../../presentation/styles/typography'
+
+@layer components
+  .estimate-answer
+    align-content: center
+    display: grid
+    gap: var(--space-s)
+
+    form
+      display: grid
+      gap: var(--space-s)
+
+    .button
+      inline-size: 100%
+
+    &[data-sent]
+      justify-items: center
+      text-align: center
+
+    .yours
+      @include typography.billboard
+      @include typography.numeric
+
+      color: var(--ink)
+      font-size: clamp(var(--text-xl), calc(var(--stage-unit) * 7), 3.5rem)
+      margin: 0
+      overflow-wrap: anywhere
+
+    .hint
+      @include typography.strong
+
+      color: var(--ink)
+      margin: 0
+      text-wrap: balance

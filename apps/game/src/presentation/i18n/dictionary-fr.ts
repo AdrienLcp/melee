@@ -486,9 +486,53 @@ export const FR_DICTIONARY = defineDictionary({
     wrong_phase: 'Trop tard, la partie est passée à autre chose.'
   },
   estimate: {
+    answer: {
+      label: 'Ton estimation',
+      send: 'Envoyer',
+      sent: 'Estimation envoyée. On attend les autres.'
+    },
+    asks: {
+      area: { country: 'Quelle superficie ?' },
+      elevation: { mountain: 'Quelle altitude ?' },
+      height: { building: 'Quelle hauteur ?' },
+      length: { river: 'Quelle longueur ?' },
+      population: {
+        city: 'Combien d’habitants ?',
+        country: 'Combien d’habitants ?'
+      }
+    },
+    home: {
+      description:
+        'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, quelle longueur pour la Loire — et chacun tape son estimation. Personne n’a besoin de savoir : les trois plus proches marquent, et le dévoilement aligne chaque essai face à la vraie valeur.'
+    },
+    line: {
+      divided: '÷{factor}',
+      times: '×{factor}'
+    },
     name: 'Le juste chiffre',
+    play: 'Jouer au Juste chiffre',
+    reveal: {
+      over: 'Trop haut · ×{factor}',
+      spotOn: 'Dans le mille',
+      under: 'Trop bas · ÷{factor}',
+      yours: 'Tu as dit {guess}'
+    },
+    roundDuration: 'Temps pour estimer',
     scoring:
-      'Une question dont la réponse est un nombre, et chacun tape son estimation. Les trois plus proches marquent 30, 20 et 10 points ; à dix fois la réponse ou plus, rien. Pas de bonus de vitesse.'
+      'Une question dont la réponse est un nombre, et chacun tape son estimation. Les trois plus proches marquent 30, 20 et 10 points ; à dix fois la réponse ou plus, rien. Pas de bonus de vitesse.',
+    tagline: 'Personne ne sait. Qui tombe le plus près ?',
+    unitNames: {
+      kilometres: 'km',
+      metres: 'm',
+      people: 'habitants',
+      squareKilometres: 'km²'
+    },
+    units: {
+      kilometres: '{value}\u00a0km',
+      metres: '{value}\u00a0m',
+      people: '{value}\u00a0habitants',
+      squareKilometres: '{value}\u00a0km²'
+    }
   },
   home: {
     opening: 'Ouverture de la table…',

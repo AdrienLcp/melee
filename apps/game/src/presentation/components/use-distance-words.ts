@@ -1,12 +1,16 @@
 import type { AtlasTargetKind } from '@melee/protocol/atlas'
+import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import type { RoundView } from '@melee/protocol/room'
 
 import {
   atlasContent,
   distanceOf,
+  estimateContent,
   swappedPairsOf
 } from '@/helpers/round-content'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
+
+import { useQuantityWords } from './use-quantity-words'
 
 type DistanceForm = 'away' | 'km'
 
@@ -68,9 +72,9 @@ export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
 
 /**
  * What a revealed answer reads as: the line it was typed or picked as — a
- * place picked by name in the reader's language — on the world map its distance and on the timeline the pairs it swapped — the server
- * records a marker as two coordinates and an order as a row of ids, which are
- * nobody's answer to read.
+ * place picked by name in the reader's language — on the world map its distance, on the timeline the pairs it swapped, and an estimate with its unit — the server
+ * records a marker as two coordinates, an order as a row of ids and a guess as
+ * bare digits, which are nobody's answer to read.
  */
 export const useAnswerWords = (
   round: RoundView
@@ -80,8 +84,17 @@ export const useAnswerWords = (
   const distanceWords = useDistanceWords(atlas?.target?.kind ?? 'country')
 
   const orderWords = useOrderWords()
+  const quantityWords = useQuantityWords()
+  const estimate = estimateContent(round)
 
   return (answer) => {
+    if (estimate !== null) {
+      return quantityWords(
+        Number(answer.said),
+        UNIT_OF_FAMILY[estimate.question.family]
+      )
+    }
+
     const distanceKm = distanceOf(round, answer.playerId)
     const swappedPairs = swappedPairsOf(round, answer.playerId)
     // A place picked by name is recorded in French, whatever the picker read.

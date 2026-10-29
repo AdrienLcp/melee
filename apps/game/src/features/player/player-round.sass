@@ -196,6 +196,32 @@
         @include question-card.clock-margin
         width: auto
 
+  // The question on its card with the round's sand along its top, and the
+  // slot and its press under it.
+  .player-round.estimate-round
+    align-content: start
+    display: grid
+    gap: var(--space-m)
+    min-height: 0
+
+    .round-card
+      display: grid
+
+      > *
+        grid-area: 1 / 1
+
+      .estimate-question
+        @include question-card.card
+
+        text-align: center
+
+      .estimate-question + .round-progress
+        --clock-ink: var(--card-ink)
+
+        align-self: start
+        @include question-card.clock-margin
+        width: auto
+
   // The country on its card with the round's sand along its top, and the map
   // taking everything under it.
   .player-round.map-round
@@ -429,6 +455,45 @@
 
       .most-likely-tally .verdict
         color: var(--card-ink)
+
+    &.estimate-revealed
+      align-items: stretch
+      flex-direction: column
+      flex-wrap: nowrap
+      gap: var(--space-s)
+
+      .estimate-question
+        --estimate-asks-size: var(--text-s)
+        --estimate-name-size: clamp(var(--text-m), calc(var(--stage-unit) * 4), var(--text-l))
+
+      .truth
+        @include typography.billboard
+        @include typography.numeric
+
+        color: var(--card-ink)
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), 3rem)
+        margin: 0
+        overflow-wrap: anywhere
+        text-align: center
+
+      .yours
+        align-items: baseline
+        color: var(--card-ink)
+        display: flex
+        flex-wrap: wrap
+        gap: var(--space-2xs) var(--space-s)
+        justify-content: center
+        margin: 0
+
+      .how-far
+        @include typography.strong
+
+        // Spot on is stamped on saffron, the room's prize colour.
+        &[data-spot-on]
+          background: var(--tile-2)
+          border-radius: var(--radius-s)
+          color: var(--tile-ink)
+          padding: var(--space-2xs) var(--space-xs)
 
     // This seat's own move, smaller under the one the room is shown.
     // Both colours laid straight on the card, the same size, so the gap
