@@ -1723,7 +1723,7 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Code de l’écran',
       openHere: 'Afficher la partie dans un nouvel onglet',
       pair: 'Y afficher la table',
-      paired: 'C’est fait : la table est sur cet écran.'
+      paired: 'Code accepté : la table arrive sur cet écran…'
     },
     pair: {
       backToTable: 'Retour à ma table',

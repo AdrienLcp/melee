@@ -105,6 +105,7 @@ import {
   TableTab
 } from './setup-tabs'
 import { SlateEditors } from './slate-stages'
+import { useLaidOutWall } from './use-laid-out-wall'
 import { useLineUpDraw } from './use-line-up-draw'
 import {
   markOwnLinePlayed,
@@ -204,6 +205,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // are the flange stage 10 measured — so the console falls silent while one is
   // there, and picks the clip up again where the room's clock says it is.
   const isSpeaker = view?.isWallConnected !== true
+  const isLaidOutForWall = useLaidOutWall(view?.isWallConnected ?? null)
   const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
   const { canPlay, refusal, unlock } = useRoundAudio({
     clock,
@@ -532,7 +534,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       </>
     ) : null
 
-  if (view !== null && choosing !== null && !view.isWallConnected) {
+  if (view !== null && choosing !== null && !isLaidOutForWall) {
     return (
       <PawnColoursProvider view={view}>
         <Main className='host-console-page framed'>
@@ -667,7 +669,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         */}
       {view !== null &&
         view.phase !== 'lobby' &&
-        !view.isWallConnected &&
+        !isLaidOutForWall &&
         view.settings.teams.kind !== 'aloud' && (
           <JoinReminder roomCode={roomCode} />
         )}
@@ -677,7 +679,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const controls: StageControls = {
     isAnswerFolded: cameFromWall,
     isLive,
-    isRosterBeside: view?.isWallConnected === true,
+    isRosterBeside: isLaidOutForWall,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,
@@ -757,7 +759,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   const setup = setupProps(view)
 
-  if (view.isWallConnected) {
+  if (isLaidOutForWall) {
     const isRevealed = view.phase === 'revealed'
 
     return (

@@ -1815,7 +1815,7 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Screen code',
       openHere: 'Show the game in a new tab',
       pair: 'Show the table there',
-      paired: 'Done: the table is on that screen.'
+      paired: 'Code accepted: the table is on its way to that screen…'
     },
     pair: {
       backToTable: 'Back to my table',

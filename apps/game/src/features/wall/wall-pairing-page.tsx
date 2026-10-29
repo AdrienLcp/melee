@@ -8,6 +8,7 @@ import {
   openWallPairing,
   pollWallPairing
 } from '@/infrastructure/api/melee-api'
+import { prefersReducedMotion } from '@/infrastructure/browser'
 import { pairWallUrlFor, wallPathFor } from '@/infrastructure/router/navigation'
 import { writeHostToken } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'
@@ -130,7 +131,10 @@ const PairingScreen: React.FC<{ onStale: () => void }> = ({ onStale }) => {
           hostToken: polled.data.hostToken,
           roomCode: polled.data.roomCode
         })
-        void navigate(wallPathFor(polled.data.roomCode), { replace: true })
+        void navigate(wallPathFor(polled.data.roomCode), {
+          replace: true,
+          viewTransition: !prefersReducedMotion()
+        })
 
         return
       }
