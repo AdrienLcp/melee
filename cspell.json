@@ -19,6 +19,7 @@
     "apps/server/src/infrastructure/questions/timeline-bank.json",
     "apps/server/src/infrastructure/questions/black-square-bank.json",
     "apps/server/src/infrastructure/questions/capital-bank.json",
+    "apps/server/src/infrastructure/questions/quantity-bank.json",
     "apps/server/scripts/black-square-themes.ts",
     "apps/server/src/infrastructure/questions/rebus-*.json",
     "apps/server/src/infrastructure/questions/city-bank.ts"
@@ -163,6 +164,7 @@
     "Guyane",
     "higherlower",
     "Italie",
+    "Jeddah",
     "juste",
     "moins",
     "recentred",

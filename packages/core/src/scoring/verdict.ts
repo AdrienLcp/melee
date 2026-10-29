@@ -13,6 +13,7 @@ import {
 
 import { isBullseye, pointsForDistance } from '../atlas/distance-tiers'
 import { isSheetClosed, pointsForCells } from '../blacksquare/sheet-pay'
+import { isSpotOn, pointsForEstimate } from '../estimate/estimate-pay'
 import { isBestMove, pointsForMove } from '../matchsticks/move-pay'
 import { isExactColour, pointsForColour } from '../swatch/colour-pay'
 import { isPerfectOrder, pointsForOrder } from '../timeline/order-pay'
@@ -61,6 +62,10 @@ export const pointsFor = (verdict: Verdict): number => {
     return pointsForColour(verdict)
   }
 
+  if (verdict.kind === 'number') {
+    return pointsForEstimate(verdict)
+  }
+
   return (
     (verdict.titleCorrect ? POINTS_PER_TITLE : 0) +
     (verdict.artistCorrect ? POINTS_PER_ARTIST : 0)
@@ -91,6 +96,8 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
       return isSheetClosed(verdict)
     case 'colour':
       return isExactColour(verdict)
+    case 'number':
+      return isSpotOn(verdict)
   }
 }
 
@@ -99,9 +106,12 @@ export const isFullyBanked = (verdict: Verdict): boolean => {
  * answers rather than one, and a bonus on it would pay the fastest typist
  * rather than the best-read player. A colour fades as it waits, so a slow one
  * already pays itself less, and a bonus would pay rushing one nobody looked at.
+ * An estimate is not a reflex either: rushing one is guessing.
  */
 export const isPaidForSpeed = (verdict: Verdict): boolean =>
-  verdict.kind !== 'cells' && verdict.kind !== 'colour'
+  verdict.kind !== 'cells' &&
+  verdict.kind !== 'colour' &&
+  verdict.kind !== 'number'
 
 /**
  * Everyone answers at once in these, so none is decided by who was first to the
@@ -130,7 +140,7 @@ export const pointsForSimultaneousAnswer = ({
   mode: SimultaneousMode
   verdict: Verdict
 }): number => {
-  // A marker, an order, a move, a sheet and a colour are priced by how far they are, which the mode has no say in.
+  // A marker, an order, a move, a sheet, a colour and an estimate are priced by how far they are, which the mode has no say in.
   if (verdict.kind === 'distance') {
     return pointsForDistance(verdict)
   }
@@ -149,6 +159,10 @@ export const pointsForSimultaneousAnswer = ({
 
   if (verdict.kind === 'colour') {
     return pointsForColour(verdict)
+  }
+
+  if (verdict.kind === 'number') {
+    return pointsForEstimate(verdict)
   }
 
   if (verdict.kind === 'single') {

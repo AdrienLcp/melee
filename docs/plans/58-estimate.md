@@ -1,6 +1,6 @@
 # 58 — Estimate (le juste chiffre)
 
-**To do.**
+**Step 1 done** 29/10/2026 — the bank, the protocol and the core. Step 2 is next.
 
 A question whose answer is a number goes up on every screen — *how many people
 live in Japan? how high is Mont Blanc? how long is the Loire?* — every seat
@@ -44,10 +44,17 @@ Kind `estimate`, translation prefix `estimate.*`, answer mode `number`.
 `apps/server/src/infrastructure/questions/quantity-bank.json`, built by
 `apps/server/scripts/build-quantity-bank.ts` (`quantities:build`) on the
 capital bank's pattern (`wikimedia-client.ts`, the `question-source.ts`
-cache): one row `{ id, family, entity, labels: { en, fr }, value, isWellKnown }`.
+cache, `wikidata-names.ts` now shared with the capitals): one row
+`{ entity, family, isWellKnown, names: { en, fr }, value }`, unique per
+family and entity — a country's population and its area are two rows of one
+entity.
 
-Families, each a SPARQL query and a sentence per language held in the bank
-script:
+Families, each a SPARQL query in the bank script. **The sentence is the
+dictionary's, not the bank's** (changed from the plan): French puts an article
+before most country names and Wikidata's label carries none, so the question
+travels as `{ family, names }` and each dictionary words it with the name after
+a colon. The unit is `UNIT_OF_FAMILY` in `@melee/protocol/estimate`, derived
+rather than sent.
 
 | Family | Property | Entities |
 |---|---|---|
@@ -62,6 +69,21 @@ script:
 value is rounded to three significant figures in the bank — Wikidata's
 population of Japan is a census figure no table should be paid on to the unit.
 The rows are **shared with stage 59**, which pairs them.
+
+**As built**: 4 578 rows, 980 well known — countries 195 each (all well
+known), cities 955 (369), mountains 1 072 (87), rivers 1 876 (100), towers
+288 (36). Every entity needs an English and a French article and 20 sitelinks.
+The query runs with `hint:Query hint:optimizer "None"`: planned by the service
+it walked every English article first and timed out. Values are read
+normalised to SI (`psn:`), so a summit filed in feet lands in metres. China
+is renamed from its official label; the Jeddah Tower and the second World
+Trade Center are refused as unbuilt (`P5817`).
+
+**The verdict carries the place**, not only the ratio: `numberVerdictSchema`
+is `{ ratio, placesFromBest }`, `placesFromBest` counting the seats strictly
+closer (two tied firsts, then a third) and `null` beyond a factor of ten —
+pay by place needs the whole room, so the server settles every seat at once
+with `estimateVerdictsOf` in `@melee/core/estimate/estimate-pay`.
 
 ## Steps
 

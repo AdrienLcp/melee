@@ -37,6 +37,7 @@
     "deploy": "wrangler deploy",
     "dev": "wrangler dev",
     "flags:build": "node --import tsx scripts/build-flag-bank.ts",
+    "quantities:build": "node --import tsx scripts/build-quantity-bank.ts",
     "questions:build": "node --import tsx scripts/build-question-bank.ts",
     "silhouettes:build": "node --import tsx scripts/build-silhouette-bank.ts",
     "test": "vitest run",

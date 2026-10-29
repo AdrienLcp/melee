@@ -175,6 +175,21 @@ export const colourVerdictSchema = z.object({
   kind: z.literal('colour')
 })
 
+/**
+ * How an estimate fell against the truth. `ratio` is the guess over the true
+ * value, so 0.8 and 1.25 are the same miss on either side, and it is what the
+ * reveal draws. `placesFromBest` is where that miss ranks among the room's —
+ * `0` the closest, ties sharing — or `null` beyond a factor of ten, which is a
+ * guess at the zeros and pays nothing however few seats played.
+ * `@melee/core/estimate/estimate-pay` prices it. The server measures both; no
+ * screen ever sends one.
+ */
+export const numberVerdictSchema = z.object({
+  kind: z.literal('number'),
+  placesFromBest: z.number().int().nonnegative().nullable(),
+  ratio: z.number().positive()
+})
+
 export const verdictSchema = z.discriminatedUnion('kind', [
   halvesVerdictSchema,
   singleVerdictSchema,
@@ -182,7 +197,8 @@ export const verdictSchema = z.discriminatedUnion('kind', [
   orderVerdictSchema,
   moveVerdictSchema,
   cellsVerdictSchema,
-  colourVerdictSchema
+  colourVerdictSchema,
+  numberVerdictSchema
 ])
 
 export const awardSchema = z.object({
@@ -207,4 +223,5 @@ export type OrderVerdict = z.infer<typeof orderVerdictSchema>
 export type MoveVerdict = z.infer<typeof moveVerdictSchema>
 export type CellsVerdict = z.infer<typeof cellsVerdictSchema>
 export type ColourVerdict = z.infer<typeof colourVerdictSchema>
+export type NumberVerdict = z.infer<typeof numberVerdictSchema>
 export type Award = z.infer<typeof awardSchema>

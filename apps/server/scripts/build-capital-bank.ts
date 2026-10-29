@@ -3,7 +3,7 @@ import { writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import { z } from 'zod'
+import type { z } from 'zod'
 
 import {
   type CountryCode,
@@ -13,13 +13,9 @@ import {
 import type { CapitalRow } from '../src/infrastructure/questions/capital-bank'
 import { frenchViewsOf, isWellKnownInFrench } from './frwiki-notability'
 import { orStop, parseJson } from './json-file'
-import {
-  cached,
-  chunked,
-  readCachedEntries,
-  writeCachedEntries
-} from './question-source'
+import { cached } from './question-source'
 import { aliasesOf } from './wikidata-aliases'
+import { type Names, namesOf } from './wikidata-names'
 import {
   bindingValue,
   SPARQL_URL,
@@ -34,7 +30,6 @@ const BANK_PATH = join(
   '../src/infrastructure/questions/capital-bank.json'
 )
 
-const WIKIDATA_API = 'https://www.wikidata.org/w/api.php'
 const M49_URL = 'https://unstats.un.org/unsd/methodology/m49/overview/'
 
 /** A party game does not referee Jerusalem. */
@@ -283,69 +278,6 @@ const pointsOf = async (
   )
 }
 
-const labelsSchema = z.object({
-  entities: z.record(
-    z.string(),
-    z.object({
-      labels: z.record(z.string(), z.object({ value: z.string() })).optional()
-    })
-  )
-})
-
-type Names = { en: string; fr: string }
-
-/**
- * Both names of each place, read from the action API: the query service is
- * silent on some labels (Oslo in French, St. John's in English) that the
- * database holds, and the language-neutral `mul` label stands in where a
- * language has none.
- */
-const namesOf = async (
-  entityIds: readonly string[]
-): Promise<Map<string, Names>> => {
-  const cache = 'capital-labels.json'
-  const known = await readCachedEntries(
-    cache,
-    z.object({ en: z.string(), fr: z.string() }).nullable()
-  )
-  const missing = [...new Set(entityIds)].filter((id) => !(id in known))
-
-  for (const batch of chunked({ items: missing, size: 50 })) {
-    const parameters = new URLSearchParams({
-      action: 'wbgetentities',
-      format: 'json',
-      formatversion: '2',
-      ids: batch.join('|'),
-      languages: 'en|fr|mul',
-      props: 'labels'
-    })
-    const body = await withRetries(labelsSchema, async () =>
-      fetch(`${WIKIDATA_API}?${parameters}`, {
-        headers: { 'user-agent': USER_AGENT }
-      })
-    )
-
-    for (const id of batch) {
-      const labels = body.entities[id]?.labels ?? {}
-      const fallback = labels.mul?.value
-      const en = labels.en?.value ?? fallback
-      const fr = labels.fr?.value ?? fallback
-
-      known[id] = en === undefined || fr === undefined ? null : { en, fr }
-    }
-  }
-
-  await writeCachedEntries({ entries: known, name: cache })
-
-  return new Map(
-    entityIds.flatMap((id) => {
-      const names = known[id]
-
-      return names == null ? [] : [[id, names] as const]
-    })
-  )
-}
-
 type CityCandidate = { id: string; sitelinks: number }
 
 const mostPopulousFiledAs = ({
@@ -489,7 +421,10 @@ const main = async () => {
     ...overriddenIds,
     ...[...cityCandidates.values()].flat().map(({ id }) => id)
   ]
-  const names = await namesOf(everyId)
+  const names = await namesOf({
+    cache: 'capital-labels.json',
+    entityIds: everyId
+  })
   const resolved = [...states].map(([code, state]) => {
     const override = CAPITAL_OVERRIDES[code]
 
