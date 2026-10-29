@@ -1377,7 +1377,6 @@ export const EN_DICTIONARY = defineDictionary({
       })
     },
     lineUp: {
-      mystery: 'Each game is revealed as its round begins',
       ready: 'Ready'
     },
     midRound: {

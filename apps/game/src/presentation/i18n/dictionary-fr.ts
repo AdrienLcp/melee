@@ -1314,7 +1314,6 @@ export const FR_DICTIONARY = defineDictionary({
       })
     },
     lineUp: {
-      mystery: 'Les jeux se dévoilent manche après manche',
       ready: 'Prêt'
     },
     midRound: {

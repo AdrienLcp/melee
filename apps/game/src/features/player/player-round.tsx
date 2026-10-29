@@ -770,7 +770,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
  * lobby: the room is opened before the table decides, so "the host is choosing"
  * is a state and not a gap. Once they have, the game names itself and says what
  * it pays — the same pitch the shelf shows, on the screen the player is
- * holding. A line-up names nothing here: each of its games is announced by its
+ * holding. A line-up shows nothing here: each of its games is announced by its
  * own countdown, so what the host planned stays a surprise.
  */
 const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
@@ -779,11 +779,7 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   const entryName = useEntryName(view.settings)
 
   if (view.settings.lineUp.length > 1) {
-    return (
-      <div className='up-next undecided'>
-        <p className='game-name'>{translate('player.lineUp.mystery')}</p>
-      </div>
-    )
+    return null
   }
 
   if (game === null || entryName === null || !isShelvedGame(game.kind)) {
