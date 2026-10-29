@@ -1186,9 +1186,29 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   mostlikely: {
+    ballot: {
+      label: 'Who is it?',
+      sent: 'Your vote is in. Waiting for the others.',
+      you: 'You'
+    },
+    home: {
+      description:
+        'A line goes up — who is most likely to talk to their plants? — and everyone votes for one of the people at the table, themselves included. Nobody sees who voted for whom: the reveal counts the votes, and everyone who voted with the table scores.'
+    },
     name: 'Most likely',
+    play: 'Play Most likely',
+    reveal: {
+      chose: 'The table chose',
+      nobody: 'Nobody: the votes went every which way.',
+      votes: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} vote', other: '{?} votes' } }
+      }),
+      yourVote: 'Your vote'
+    },
+    roundDuration: 'Time to vote',
     scoring:
-      'A line about one of you goes up and everyone votes for a seat, their own included. Vote with the room and you score 10 points. No bonus for speed.'
+      'A line about one of you goes up and everyone votes for a seat, their own included. Vote with the room and you score 10 points. No bonus for speed.',
+    tagline: 'One line, one of you. Who is it?'
   },
   /**
    * The way back to the front door, from any page that is a dead end without

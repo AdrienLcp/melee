@@ -166,6 +166,36 @@
         @include question-card.clock-margin
         width: auto
 
+  // The line on its card with the round's sand along its top, and the seats
+  // taking everything under it.
+  .player-round.most-likely-round
+    display: grid
+    gap: var(--space-s)
+    grid-template-rows: auto minmax(0, 1fr)
+    min-height: 0
+
+    .round-card
+      display: grid
+
+      > *
+        grid-area: 1 / 1
+
+      .most-likely-line
+        @include question-card.card
+        @include typography.question-prompt
+
+        font-size: clamp(var(--text-m), calc(var(--stage-unit) * 3.6), 2rem)
+        margin: 0
+        overflow-wrap: anywhere
+        text-wrap: balance
+
+      .most-likely-line + .round-progress
+        --clock-ink: var(--card-ink)
+
+        align-self: start
+        @include question-card.clock-margin
+        width: auto
+
   // The country on its card with the round's sand along its top, and the map
   // taking everything under it.
   .player-round.map-round
@@ -380,6 +410,25 @@
 
       color: var(--card-ink)
       flex: 1 1 100%
+
+    // The line read again over its count, the seats left on the board's own
+    // pieces because the paper is only where the line is printed.
+    &.most-likely-revealed
+      align-items: stretch
+      flex-direction: column
+      flex-wrap: nowrap
+
+      .most-likely-line
+        @include typography.question-prompt
+
+        color: var(--card-ink)
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 3), var(--text-l))
+        margin: 0
+        text-align: center
+        text-wrap: balance
+
+      .most-likely-tally .verdict
+        color: var(--card-ink)
 
     // This seat's own move, smaller under the one the room is shown.
     // Both colours laid straight on the card, the same size, so the gap

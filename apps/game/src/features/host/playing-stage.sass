@@ -197,6 +197,21 @@
         flex: 1 1 0
         inline-size: min(100%, 40rem)
 
+    // A seated console voting: the line shrinks to its card's height, and the
+    // seats take everything under it.
+    &[data-most-likely='voting']
+      > .round-card
+        flex: none
+        margin-block: 0
+
+        .most-likely-line
+          font-size: clamp(var(--text-m), 4cqmin, 2.4rem)
+
+      > .answer-form.most-likely-ballot
+        align-self: center
+        flex: 1 1 0
+        inline-size: min(100%, 48rem)
+
     // A seated console moving a stick: the card it moves it on, and the
     // presses that send it under.
     &[data-moving] > .answer-form.matchsticks-move
@@ -341,6 +356,10 @@
         font-size: clamp(var(--text-xl), min(5cqi, 14cqh), 5.5rem)
         text-align: center
         text-wrap: balance
+
+      // A sentence of up to 160 characters, so a step under the host's own line.
+      .most-likely-line
+        font-size: clamp(var(--text-l), min(5cqi, 12cqh), 5rem)
 
       // What the host typed, so it takes the card the way a question does.
       .challenge-line

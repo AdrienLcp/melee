@@ -1,6 +1,6 @@
 # 56 — Most likely (who among us)
 
-**In progress** — step 1 done: the kind is served, not shelved.
+**Done** — served and on the shelf.
 
 A line goes up on every screen — *who is most likely to talk to their
 plants?* — every seat votes for a seat on its own screen, and the reveal
@@ -72,6 +72,16 @@ Kind `mostlikely`, translation prefix `mostlikely.*`, answer mode `vote`.
    and on every seat, the seat picker, the reveal as a tally, the console's
    setup, the dictionaries, the spine tokens; seen on a wall, a seated
    console and two phones, muted.
+   **Done.** As built: the line on a paper card over a grid of `SeatTile`s
+   (pawn and name on a piece, *You* on the voter's own), the pressed one on
+   the saffron piece and the rest sunk once spent, like the answer tiles. The
+   reveal is `MostLikelyTally`, shared by the console and every seat: a row
+   per seat somebody voted for, a dot a vote drawn as one CSS run, the room's
+   choice on saffron, the reader's ballot in the keyline. The console lists
+   who voted with the table under it, and nothing when nobody did — the
+   count already says so. Seen muted in a browser on a 1280 console and a
+   390 seat, a chosen round and a scattered one; the seated console's
+   ballot shares the seat's component and was not driven.
 
 ## Where it lands — swatch is the template
 

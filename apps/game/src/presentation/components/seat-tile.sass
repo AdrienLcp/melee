@@ -1,0 +1,59 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  .seat-tile
+    @include piece.piece($nubs: false)
+    @include piece.pressable
+    @include typography.answer
+
+    align-items: center
+    background: var(--track-a)
+    color: var(--ink)
+    column-gap: var(--space-xs)
+    cursor: pointer
+    display: grid
+    grid-template-areas: 'pawn name' 'pawn mark'
+    grid-template-columns: auto minmax(0, 1fr)
+    grid-template-rows: auto auto
+    height: 100%
+    min-height: var(--control-height)
+    padding: var(--space-2xs) var(--space-s)
+    text-align: start
+    // A press has to land the moment the thumb does; this keeps WebKit from
+    // holding it back to see whether a second tap makes it a zoom.
+    touch-action: manipulation
+    width: 100%
+
+    &:not(:has(> .mark))
+      grid-template-areas: 'pawn name'
+      grid-template-rows: auto
+
+    .pawn
+      font-size: var(--text-em-xl)
+      grid-area: pawn
+
+    .nickname
+      grid-area: name
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .mark
+      @include typography.label
+
+      grid-area: mark
+
+    &[data-disabled]
+      box-shadow: none
+      cursor: default
+      transform: none
+
+    &[data-disabled]:not([data-chosen])
+      background: var(--socket)
+      color: var(--board-muted)
+
+    &[data-chosen]
+      background: var(--tile-2)
+      box-shadow: 0 0 0 var(--stroke-bold) var(--board-ink), 0 var(--edge) 0 var(--stroke-bold) var(--chipboard)
+      color: var(--tile-ink)

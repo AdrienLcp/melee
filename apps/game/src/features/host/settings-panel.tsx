@@ -78,6 +78,9 @@ const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
 
 const SWATCH_REBUILD_MS = [10_000, 20_000, 30_000] as const
 
+/** Fifteen seconds is a table that knows itself, a minute one that argues first. */
+const MOST_LIKELY_DURATIONS_MS = [15_000, 30_000, 60_000] as const
+
 const MATCHSTICKS_GOAL_KEYS = {
   biggest: 'matchsticks.goals.biggest',
   equation: 'matchsticks.goals.equation',
@@ -576,6 +579,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             value={game.roundDurationMs}
           />
         </>
+      )}
+
+      {game?.kind === 'mostlikely' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('mostlikely.roundDuration')}
+          onChange={(roundDurationMs) => {
+            onChange({ ...settings, game: { ...game, roundDurationMs } })
+          }}
+          optionLabel={secondsLabel}
+          options={MOST_LIKELY_DURATIONS_MS}
+          value={game.roundDurationMs}
+        />
       )}
 
       {game?.kind === 'timeline' && (

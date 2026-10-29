@@ -11,6 +11,7 @@ import {
   blindtestContent,
   innerclockContent,
   matchsticksContent,
+  mostLikelyContent,
   petitBacContent,
   quizContent,
   reflexContent,
@@ -25,6 +26,7 @@ import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
+import { MostLikelyTally } from '@/presentation/components/most-likely-tally'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
@@ -228,6 +230,30 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     )
   }
 
+  const tallied = mostLikelyContent(round)
+
+  // The line read again over the count, and who voted with the table under
+  // it: the scoreline, since no seat's words were ever its answer. A table
+  // that chose nobody is said by the count, not a second time under it.
+  if (tallied?.tally != null) {
+    return (
+      <section className='reveal-panel' data-game='mostlikely'>
+        <div className='head'>
+          <p className='most-likely-line'>{tallied.labels[locale]}</p>
+          <MostLikelyTally
+            players={players}
+            tally={tallied.tally}
+            yourBallot={tallied.yourBallot}
+          />
+        </div>
+
+        {round.awards.some((award) => award.points > 0) && (
+          <Scorers players={players} round={round} />
+        )}
+      </section>
+    )
+  }
+
   const dated = timelineContent(round)?.revealedEvents ?? null
 
   // The cards strung along the line in the order they happened, each with its
@@ -414,6 +440,23 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
       </>
     )
   }
+
+  return <Scorers players={players} round={round} />
+}
+
+/** Who the round paid, by name, or that it paid nobody. */
+const Scorers: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
+  players,
+  round
+}) => {
+  const translate = useTranslate()
+  const scorers = round.awards.filter((award) => award.points > 0)
+
+  const nameOf = (playerId: string): string =>
+    players.find((player) => player.id === playerId)?.nickname ?? '—'
+
+  const seatOf = (playerId: string): number =>
+    players.findIndex((player) => player.id === playerId)
 
   // A table answering aloud holds no seat, and its scores are the teams'.
   if (scorers.length === 0) {

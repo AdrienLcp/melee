@@ -43,6 +43,7 @@ import { ChoosingRound } from '@/features/player/choosing-round'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
+import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
 import { PetitBacReveal } from '@/features/player/petit-bac-reveal'
 import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
 import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
@@ -65,6 +66,7 @@ import {
   blindtestContent,
   innerclockContent,
   matchsticksContent,
+  mostLikelyContent,
   petitBacContent,
   placesFromBestOf,
   quizContent,
@@ -91,6 +93,7 @@ import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
+import { MostLikelyTally } from '@/presentation/components/most-likely-tally'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
@@ -626,6 +629,26 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
       )
     }
 
+    const mostLikely = mostLikelyContent(round)
+
+    if (mostLikely !== null) {
+      return (
+        <section className='player-round most-likely-round'>
+          <div className='round-card'>
+            <p className='most-likely-line'>{mostLikely.labels[locale]}</p>
+            <RoundClock clock={clock} view={view} />
+          </div>
+          <MostLikelyBallot
+            key={round.id}
+            onAnswer={answerWithRound}
+            players={view.players}
+            round={round}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
     if (timelineContent(round) !== null) {
       return (
         <section className='player-round timeline-round'>
@@ -1098,7 +1121,7 @@ const Revealed: React.FC<{
   round: RoundView
   view: PlayerRoomView
 }> = ({ round, view }) => {
-  const translate = useTranslate()
+  const { locale, translate } = useI18n()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
@@ -1137,6 +1160,21 @@ const Revealed: React.FC<{
         revealed={grid}
         youId={view.youId}
       />
+    )
+  }
+
+  const tallied = mostLikelyContent(round)
+
+  if (tallied?.tally != null) {
+    return (
+      <div className='answer-card most-likely-revealed' data-game='mostlikely'>
+        <p className='most-likely-line'>{tallied.labels[locale]}</p>
+        <MostLikelyTally
+          players={view.players}
+          tally={tallied.tally}
+          yourBallot={tallied.yourBallot}
+        />
+      </div>
     )
   }
 

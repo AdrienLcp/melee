@@ -60,6 +60,21 @@
       @include layout.narrow
         --rebus-size: clamp(1.75rem, 6dvh, 3rem)
 
+    &[data-game='mostlikely'] > .head
+      align-items: stretch
+      flex-direction: column
+
+    .most-likely-line
+      @include piece.card
+      @include typography.question-prompt
+
+      color: var(--card-ink)
+      font-size: clamp(var(--text-m), calc(var(--stage-unit) * 3.4), 2.6rem)
+      margin: 0
+      padding: var(--space-s) var(--space-m)
+      text-align: center
+      text-wrap: balance
+
     // It declares a container of its own because the title is measured against
     // this column and not against the one the cover shares with it.
     .identity

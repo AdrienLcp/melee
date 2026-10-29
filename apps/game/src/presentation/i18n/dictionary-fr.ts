@@ -1130,9 +1130,29 @@ export const FR_DICTIONARY = defineDictionary({
     }
   },
   mostlikely: {
+    ballot: {
+      label: 'C’est qui ?',
+      sent: 'Ton vote est parti. On attend les autres.',
+      you: 'Toi'
+    },
+    home: {
+      description:
+        'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et chacun vote pour quelqu’un de la table, soi-même compris. Personne ne voit qui a voté pour qui : le dévoilement compte les voix, et tous ceux qui ont voté comme la table marquent.'
+    },
     name: 'Qui de nous ?',
+    play: 'Jouer à Qui de nous ?',
+    reveal: {
+      chose: 'La table a choisi',
+      nobody: 'Personne : les voix sont parties dans tous les sens.',
+      votes: defineTranslation('{count:plural}', {
+        plural: { count: { one: '{?} voix', other: '{?} voix' } }
+      }),
+      yourVote: 'Ton vote'
+    },
+    roundDuration: 'Temps pour voter',
     scoring:
-      'Une phrase sur l’un de vous s’affiche et chacun vote pour quelqu’un, soi-même compris. Vote comme la table et tu marques 10 points. Pas de bonus de vitesse.'
+      'Une phrase sur l’un de vous s’affiche et chacun vote pour quelqu’un, soi-même compris. Vote comme la table et tu marques 10 points. Pas de bonus de vitesse.',
+    tagline: 'Une phrase, l’un de vous. C’est qui ?'
   },
   navigation: {
     back: 'Retour aux jeux',

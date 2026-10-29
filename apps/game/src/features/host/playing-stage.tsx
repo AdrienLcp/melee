@@ -16,6 +16,7 @@ import {
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
+import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
 import { PrintedChoices } from '@/features/player/printed-choices'
 import { RoundQuestion } from '@/features/player/round-question'
 import { SwatchRound } from '@/features/player/swatch-round'
@@ -24,6 +25,7 @@ import {
   atlasContent,
   blackSquareContent,
   matchsticksContent,
+  mostLikelyContent,
   swatchContent,
   timelineContent
 } from '@/helpers/round-content'
@@ -91,6 +93,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const matchsticks = matchsticksContent(round)
   const timeline = timelineContent(round)
   const swatch = swatchContent(round)
+  const mostLikely = mostLikelyContent(round)
   const shownColour = useShownColour({ clock, round })
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
@@ -118,6 +121,8 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             shownColour === null ? 'swatch.hidden' : 'swatch.remember'
           )}
         </p>
+      ) : mostLikely !== null ? (
+        <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
         <h2 className='now black-square-theme'>{blackSquare.theme[locale]}</h2>
       ) : round.content.kind === 'challenge' ? (
@@ -154,6 +159,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-map={(atlas?.target != null && onAnswer !== null) || undefined}
       data-map-question={atlas?.shown != null || undefined}
+      data-most-likely={
+        mostLikely === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'voting'
+      }
       data-moving={isMoving || undefined}
       data-swatch={
         swatch === null
@@ -235,6 +247,15 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           clock={clock}
           isCaptioned={false}
           onAnswer={onAnswer}
+          round={round}
+          youId={answersAs}
+        />
+      )}
+      {mostLikely !== null && onAnswer !== null && (
+        <MostLikelyBallot
+          key={round.id}
+          onAnswer={onAnswer}
+          players={view.players}
           round={round}
           youId={answersAs}
         />

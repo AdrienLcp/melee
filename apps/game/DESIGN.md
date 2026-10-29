@@ -923,6 +923,16 @@ square over a hue strip, thumbs at touch size, with the chip previewing the
 colour beside the press; in a box wider than tall the press moves beside the
 square. The reveal captions the colour, and each seat's row carries its chip.
 
+### Most likely (`SeatTile`, `MostLikelyTally`)
+The line on a paper card, the seats under it as pieces on `--track-a` — pawn,
+name, *You* under the voter's own — in as many columns as 10rem fits. One
+press votes: the seat pressed rises onto the saffron piece (`--tile-2`) in a
+board-ink ring and the rest sink into their sockets, the answer tile's spent
+state. The reveal counts: a row per seat somebody voted for, most first, one
+dot a vote, the room's choice on saffron in the title voice, the reader's own
+ballot in the *yours* keyline with *Your vote* under the name. A round that
+chose nobody says so above the rows and draws no scoreline under them.
+
 ### Waits: `NoticeCard`, `Loader`, `Spinner`
 **A wait is a paper card, never an anonymous spinner.** Every player-side wait
 (host away, round not running, …) is a `NoticeCard` (`player-round.tsx`): a

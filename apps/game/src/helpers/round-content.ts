@@ -60,6 +60,11 @@ export const swatchContent = (
 ): Extract<RoundContent, { kind: 'swatch' }> | null =>
   round?.content.kind === 'swatch' ? round.content : null
 
+export const mostLikelyContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'mostlikely' }> | null =>
+  round?.content.kind === 'mostlikely' ? round.content : null
+
 export const timelineContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'timeline' }> | null =>

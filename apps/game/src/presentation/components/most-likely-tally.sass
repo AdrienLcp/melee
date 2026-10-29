@@ -1,0 +1,85 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  .most-likely-tally
+    display: grid
+    gap: var(--space-s)
+    min-height: 0
+    min-width: 0
+
+    .verdict
+      @include typography.title
+
+      color: var(--ink)
+      margin: 0
+      text-align: center
+      text-wrap: balance
+
+    ol
+      display: grid
+      gap: var(--space-xs)
+      list-style: none
+      margin: 0
+      padding: 0
+
+    li
+      @include piece.piece($nubs: false)
+      @include typography.caption-strong
+
+      align-items: center
+      background: var(--track-a)
+      color: var(--ink)
+      column-gap: var(--space-s)
+      display: grid
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-l))
+      grid-template-areas: 'pawn name pips count'
+      grid-template-columns: auto minmax(0, 1fr) auto auto
+      padding: var(--space-xs) var(--space-s)
+
+      .pawn
+        font-size: var(--text-em-xl)
+        grid-area: pawn
+
+    li[data-chosen]
+      @include typography.title
+
+      background: var(--tile-2)
+      color: var(--tile-ink)
+      font-size: clamp(var(--text-m), calc(var(--stage-unit) * 3.2), var(--text-xl))
+
+    li[data-yours]
+      box-shadow: 0 var(--edge) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--ink)
+      grid-template-areas: 'pawn name pips count' 'pawn mark pips count'
+
+    li[data-chosen][data-yours]
+      box-shadow: 0 var(--edge) 0 var(--chipboard), inset 0 0 0 var(--stroke-bold) var(--tile-ink)
+
+    .nickname
+      grid-area: name
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    // One dot a vote, printed as a run of one tile rather than an element each.
+    .pips
+      --pip: 0.55em
+      --pip-pitch: 0.8em
+
+      background: radial-gradient(circle closest-side, currentColor 98%, transparent) 0 50% / var(--pip-pitch) var(--pip) repeat-x
+      block-size: var(--pip)
+      grid-area: pips
+      inline-size: calc(var(--votes, 1) * var(--pip-pitch))
+      max-inline-size: calc(10 * var(--pip-pitch))
+
+    .count
+      @include typography.numeric
+
+      grid-area: count
+      min-inline-size: 3em
+      text-align: end
+
+    .your-vote
+      @include typography.label
+
+      grid-area: mark

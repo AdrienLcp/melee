@@ -80,6 +80,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'A false equation drawn in matches, or a number to make as big or as small as it can be: one match moves. Everyone moves it on their own screen and the best move pays most, or the first to buzz says which and the host says right or wrong. Every puzzle is dealt fresh and every one has an answer.',
       title: 'Matchsticks — Mêlée'
     },
+    mostlikely: {
+      description:
+        'A line goes up — who is most likely to talk to their plants? — and the whole room votes for one of the people at the table on their own screens. The reveal counts the votes without saying who voted for whom. Scan the QR code and play — no install, no account.',
+      title: 'Most likely — Mêlée'
+    },
     petitbac: {
       description:
         'A letter comes up and everyone fills the same sheet on their own screen — a country, an animal, a first name, all starting with it. The first to finish calls stop, the room votes on what counts, and a word nobody else wrote pays double. Scan the QR code and play — no install, no account.',
@@ -161,6 +166,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Une égalité fausse dessinée en allumettes, ou un nombre à rendre le plus grand ou le plus petit possible : une seule allumette bouge. Chacun la déplace sur son écran et le meilleur coup rapporte le plus, ou le premier à buzzer dit laquelle et l’hôte tranche. Chaque énigme est tirée à neuf et toutes ont une réponse.',
       title: 'Allumettes — Mêlée'
+    },
+    mostlikely: {
+      description:
+        'Une phrase s’affiche — qui a le plus de chances de parler à ses plantes ? — et toute la salle vote pour quelqu’un de la table depuis son écran. Le dévoilement compte les voix sans dire qui a voté pour qui. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Qui de nous ? — Mêlée'
     },
     petitbac: {
       description:
