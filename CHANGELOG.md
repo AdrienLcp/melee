@@ -37,6 +37,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The rounds to come can be reordered while one is played.** The
+  host drags them, or moves one earlier or later, without waiting for the
+  reveal; the round on screen keeps its game, and the next one is drawn off
+  the new order when it ends.
 - `[Game]` **The shelf folds under an evening's planned games.** Once several
   games are ticked, the twelve boxes sit behind "Change the games" with how
   many are ticked, so the games tab fits the panel instead of running to twice

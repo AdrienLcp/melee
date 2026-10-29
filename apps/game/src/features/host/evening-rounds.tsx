@@ -155,7 +155,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
 
   const roundsLabel = translate('host.evening.rounds')
   const { lineUp } = view.settings
-  const { coming, isDrawn, isEveningOver, upcoming } = eveningOrderOf(view)
+  const { coming, isEveningOver, upcoming } = eveningOrderOf(view)
   const [takenOut, setTakenOut] = useState<TakenOut | null>(null)
   const roundIndex = view.round?.index ?? null
   const undoable =
@@ -174,7 +174,7 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
 
   const actions: EveningActions = {
     canDuplicate: isLive && lineUp.length < LINE_UP_MAX_ENTRIES,
-    canMove: isLive && isDrawn,
+    canMove: isLive && !isEveningOver,
     canTakeOut: isLive && !isRoundInPlay(view.phase) && lineUp.length > 1,
     duplicate: (at) => {
       const copied = withEntryDuplicated({

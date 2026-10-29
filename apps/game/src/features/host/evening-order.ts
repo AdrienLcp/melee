@@ -17,7 +17,7 @@ import {
 /** Where the evening stands for its running order, as the console draws it. */
 export type EveningOrder = {
   coming: ComingRound[]
-  /** Between two rounds: the next one is settled and the order can still move. */
+  /** Between two rounds: the next one is settled on its entry. */
   isDrawn: boolean
   /** The round on screen is the evening's last, so nothing comes next. */
   isEveningOver: boolean
@@ -53,7 +53,9 @@ export const eveningOrderOf = (view: HostRoomView): EveningOrder => {
 
 /**
  * The evening once the rounds to come are put in `rows`' order. A round put
- * first is the next one, so the room moves onto its entry.
+ * first is the next one, so the room moves onto its entry — between two rounds
+ * only: mid-round the room stays on the game being played, and the reveal's
+ * draw reads the new order.
  */
 export const arrangedEvening = ({
   locale,
@@ -78,7 +80,7 @@ export const arrangedEvening = ({
   const first = rows[0]
   const entry = first === undefined ? undefined : settings.lineUp[first]
 
-  if (first === undefined || entry === undefined) {
+  if (first === undefined || entry === undefined || isRoundInPlay(view.phase)) {
     return { ...settings, runningOrder }
   }
 
