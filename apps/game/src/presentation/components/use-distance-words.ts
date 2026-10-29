@@ -1,11 +1,14 @@
 import type { AtlasTargetKind } from '@melee/protocol/atlas'
 import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { RoundView } from '@melee/protocol/room'
 
 import {
   atlasContent,
   distanceOf,
   estimateContent,
+  higherLowerContent,
+  rightPairsOf,
   swappedPairsOf
 } from '@/helpers/round-content'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
@@ -74,20 +77,28 @@ export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
  * What a revealed answer reads as: the line it was typed or picked as — a
  * place picked by name in the reader's language — on the world map its distance, on the timeline the pairs it swapped, and an estimate with its unit — the server
  * records a marker as two coordinates, an order as a row of ids and a guess as
- * bare digits, which are nobody's answer to read.
+ * bare digits and a sheet of pairs as five sides, which are nobody's answer to read.
  */
 export const useAnswerWords = (
   round: RoundView
 ): ((answer: { playerId: string; said: string }) => string) => {
-  const { locale } = useI18n()
+  const { locale, translate } = useI18n()
   const atlas = atlasContent(round)
   const distanceWords = useDistanceWords(atlas?.target?.kind ?? 'country')
 
   const orderWords = useOrderWords()
   const quantityWords = useQuantityWords()
   const estimate = estimateContent(round)
+  const isHigherLower = higherLowerContent(round) !== null
 
   return (answer) => {
+    if (isHigherLower) {
+      return translate('higherlower.reveal.score', {
+        count: HIGHER_LOWER_PAIR_COUNT,
+        right: rightPairsOf(round, answer.playerId) ?? 0
+      })
+    }
+
     if (estimate !== null) {
       return quantityWords(
         Number(answer.said),

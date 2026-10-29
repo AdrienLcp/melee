@@ -11,6 +11,7 @@ import {
   blackSquareContent,
   blindtestContent,
   estimateContent,
+  higherLowerContent,
   innerclockContent,
   matchsticksContent,
   mostLikelyContent,
@@ -27,6 +28,7 @@ import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { EstimateLine } from '@/presentation/components/estimate-line'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { FlagPicture } from '@/presentation/components/flag-picture'
+import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
@@ -261,6 +263,31 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
             players={players}
             value={estimate.value}
             youId={null}
+          />
+        </div>
+
+        <Outcome players={players} round={round} />
+      </section>
+    )
+  }
+
+  const higherLower = higherLowerContent(round)
+
+  // The five pairs with both values, every seat's pawn under the side it
+  // picked, and the table most right first.
+  if (
+    higherLower?.revealedPairs != null &&
+    higherLower.revealedSheets !== null
+  ) {
+    return (
+      <section className='reveal-panel' data-game='higherlower'>
+        <div className='head'>
+          <HigherLowerPairs
+            pairs={higherLower.revealedPairs}
+            players={players}
+            sheets={higherLower.revealedSheets}
+            youId={null}
+            yourPicks={null}
           />
         </div>
 

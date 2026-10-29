@@ -79,6 +79,9 @@ const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
 /** Fifteen seconds is a gut call, a minute is long enough to reason it out loud. */
 const ESTIMATE_DURATIONS_MS = [15_000, 30_000, 60_000] as const
 
+/** Six seconds a pair is a gut call, a minute and a half lets the table argue every one. */
+const HIGHER_LOWER_DURATIONS_MS = [30_000, 45_000, 90_000] as const
+
 const SWATCH_REBUILD_MS = [10_000, 20_000, 30_000] as const
 
 /** Fifteen seconds is a table that knows itself, a minute one that argues first. */
@@ -593,6 +596,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           }}
           optionLabel={secondsLabel}
           options={ESTIMATE_DURATIONS_MS}
+          value={game.roundDurationMs}
+        />
+      )}
+
+      {game?.kind === 'higherlower' && (
+        <NumberChoice
+          isDisabled={isDisabled}
+          label={translate('higherlower.roundDuration')}
+          onChange={(roundDurationMs) => {
+            onChange({ ...settings, game: { ...game, roundDurationMs } })
+          }}
+          optionLabel={secondsLabel}
+          options={HIGHER_LOWER_DURATIONS_MS}
           value={game.roundDurationMs}
         />
       )}

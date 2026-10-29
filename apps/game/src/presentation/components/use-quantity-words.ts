@@ -34,3 +34,30 @@ export const useFactorWords = (): ((factor: number) => string) => {
 
   return (factor) => (factor < 10 ? small : large).format(factor)
 }
+
+/** From a million up a figure is read by its millions, which is all a comparison needs. */
+const SHORTENED_FROM = 1_000_000
+
+/**
+ * A quantity as {@link useQuantityWords} says it, shortened from a million up —
+ * *3,7 M habitants* — where two of them share a line and nobody reads the
+ * thousands.
+ */
+export const useShortQuantityWords = (): ((
+  value: number,
+  unit: QuantityUnit
+) => string) => {
+  const { locale, translate } = useI18n()
+  const quantityWords = useQuantityWords()
+  const compact = new Intl.NumberFormat(locale, {
+    maximumSignificantDigits: 3,
+    notation: 'compact'
+  })
+
+  return (value, unit) =>
+    value < SHORTENED_FROM
+      ? quantityWords(value, unit)
+      : translate(`estimate.units.${unit}`, {
+          value: compact.format(value).replaceAll(' ', ' ')
+        })
+}

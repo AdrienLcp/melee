@@ -554,7 +554,33 @@ export const EN_DICTIONARY = defineDictionary({
     }
   },
   higherlower: {
+    answer: {
+      counter: 'Pair {index:number} of {count:number}',
+      sent: 'Your five are in. Waiting for the others.'
+    },
+    asks: {
+      area: { country: 'Which is larger?' },
+      elevation: { mountain: 'Which is higher?' },
+      height: { building: 'Which is taller?' },
+      length: { river: 'Which is longer?' },
+      population: {
+        city: 'Which has more people?',
+        country: 'Which has more people?'
+      }
+    },
+    dealt: 'Five pairs. Pick the bigger one each time.',
+    home: {
+      description:
+        'Two cities, two rivers, two mountains: which one has more people, which is longer, which is higher? Five pairs, one pick each, and the reveal puts all ten numbers up at once.'
+    },
     name: 'Higher or lower',
+    play: 'Play Higher or lower',
+    reveal: {
+      higher: 'the bigger one',
+      score: '{right:number} of {count:number} right',
+      yourPick: 'your pick'
+    },
+    roundDuration: 'Time for the five pairs',
     scoring:
       'Five pairs of the same kind — two cities, two rivers, two mountains — and you pick the bigger one each time. Every right pair scores 10 points, plus a bonus for sending your five fast.',
     tagline: 'Two names. Which one is bigger?'

@@ -530,12 +530,38 @@ export const FR_DICTIONARY = defineDictionary({
     units: {
       kilometres: '{value}\u00a0km',
       metres: '{value}\u00a0m',
-      people: '{value}\u00a0habitants',
+      people: '{value} habitants',
       squareKilometres: '{value}\u00a0km²'
     }
   },
   higherlower: {
+    answer: {
+      counter: 'Paire {index:number} sur {count:number}',
+      sent: 'Tes cinq choix sont partis. On attend les autres.'
+    },
+    asks: {
+      area: { country: 'Le plus vaste ?' },
+      elevation: { mountain: 'Le plus haut ?' },
+      height: { building: 'Le plus haut ?' },
+      length: { river: 'Le plus long ?' },
+      population: {
+        city: 'Le plus d’habitants ?',
+        country: 'Le plus d’habitants ?'
+      }
+    },
+    dealt: 'Cinq paires. À chaque fois, le plus grand.',
+    home: {
+      description:
+        'Deux villes, deux fleuves, deux sommets : lequel compte le plus d’habitants, lequel est le plus long, lequel est le plus haut ? Cinq paires, un choix par paire, et le dévoilement affiche les dix chiffres d’un coup.'
+    },
     name: 'Plus ou moins',
+    play: 'Jouer à Plus ou moins',
+    reveal: {
+      higher: 'le plus grand',
+      score: '{right:number} sur {count:number}',
+      yourPick: 'ton choix'
+    },
+    roundDuration: 'Temps pour les cinq paires',
     scoring:
       'Cinq paires du même genre — deux villes, deux fleuves, deux sommets — et tu choisis à chaque fois le plus grand. Chaque paire juste rapporte 10 points, plus un bonus si tu envoies tes cinq choix vite.',
     tagline: 'Deux noms. Lequel est le plus grand ?'

@@ -1,0 +1,129 @@
+// Side-effect module: styles `.higher-lower-pairs`.
+@use '../styles/typography'
+
+@layer components
+  .higher-lower-pairs
+    color: var(--card-ink)
+    container-type: inline-size
+    display: grid
+    gap: var(--pairs-gap, var(--space-s))
+    list-style: none
+    margin: 0
+    min-width: 0
+    padding: 0
+
+    > li
+      display: grid
+      gap: var(--space-2xs)
+      min-width: 0
+
+      // Wide, the question takes a column of its own and each side prints its
+      // value on the name's line, so five pairs fit a screen without scrolling.
+      @container (width > 40rem)
+        align-items: center
+        column-gap: var(--space-s)
+        grid-template-columns: minmax(0, 1fr) minmax(0, 4fr)
+
+        // The value moves under the name rather than cutting it mid-word.
+        .side
+          align-items: baseline
+          column-gap: var(--space-s)
+          display: flex
+          flex-wrap: wrap
+
+        .name
+          flex: 1 0 auto
+          max-inline-size: 100%
+          overflow-wrap: break-word
+
+        .value
+          margin-inline-start: auto
+
+        .pickers
+          flex-basis: 100%
+
+    .asks
+      @include typography.caption-strong
+
+      color: var(--card-muted)
+      margin: 0
+
+    .sides
+      display: grid
+      gap: var(--space-xs)
+      grid-template-columns: repeat(2, minmax(0, 1fr))
+
+    .side
+      align-content: start
+      border-radius: var(--radius-s)
+      box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule)
+      display: grid
+      gap: var(--space-2xs)
+      grid-template: 'name pick' auto 'value pick' auto 'pickers pickers' auto / minmax(0, 1fr) auto
+      min-width: 0
+      padding: var(--pairs-side-padding, var(--space-xs) var(--space-s))
+      position: relative
+
+      &[data-yours]
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
+
+    // The higher side is inked once the values are in; the lower one stays
+    // a printed outline, so five rows read as five verdicts at a glance.
+    > li[data-revealed] .side
+      &[data-higher]
+        background: var(--good-soft)
+        box-shadow: 0 2px 0 var(--good-edge)
+        color: var(--tile-ink)
+
+      &[data-higher][data-yours]
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--tile-ink), 0 2px 0 var(--good-edge)
+
+      &:not([data-higher])
+        color: var(--card-muted)
+
+    .name
+      @include typography.strong
+
+      font-size: var(--pairs-name-size, var(--text-m))
+      grid-area: name
+      hyphens: auto
+      overflow-wrap: anywhere
+      text-wrap: balance
+
+      &::first-letter
+        text-transform: uppercase
+
+    .value
+      @include typography.numeric
+
+      font-size: var(--pairs-value-size, var(--text-s))
+      grid-area: value
+
+    .pick
+      align-self: start
+      display: grid
+      grid-area: pick
+
+      svg
+        height: 1.25em
+        width: 1.25em
+
+    .side[data-mark='wrong'] .pick
+      color: var(--danger)
+
+    .pickers
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs)
+      grid-area: pickers
+      list-style: none
+      margin: var(--space-2xs) 0 0
+      padding: 0
+
+      li
+        display: grid
+
+        &[data-yours]
+          border-radius: 50%
+          outline: var(--stroke-bold) solid currentcolor
+          outline-offset: var(--stroke-thin)

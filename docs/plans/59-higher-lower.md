@@ -1,6 +1,6 @@
 # 59 — Higher or lower (plus ou moins)
 
-**In progress.** Step 1 landed 29/10/2026: served, not yet on the shelf.
+**Done** 29/10/2026 — served, then on the shelf with its screens.
 
 Two things go up side by side — *Lyon or Marseille, which has more people?
 the Seine or the Rhine, which is longer?* — and every seat picks one. A round
@@ -55,6 +55,15 @@ Kind `higherlower`, translation prefix `higherlower.*`, answer mode `pairs`.
    whole, so there is no per-pair progress to show, the reveal as five rows with both
    values and every seat's pick dots. Shelf, spine, dictionaries. Seen muted
    on a wall, a seated console and two phones.
+   **Done**: the seat's two tiles stack below a 36rem box and sit side by
+   side above it — a height container query matched nothing in Chromium, so
+   width alone decides; the wall prints the five pairs without values, the
+   question beside each pair once the list is wide; the reveal inks the higher
+   side, rings the seat's own pick right or wrong, and stands every seat's
+   pawn under the side it took. Values from a million up are shortened
+   (*3,7 M habitants*), and French *habitants* takes a breaking space so a
+   population wraps instead of overflowing. Seen muted on a console, its
+   reveal at 1280 and 1920, and a phone at 390.
 
 ## How to tell it is done
 

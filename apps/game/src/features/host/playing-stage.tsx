@@ -15,6 +15,7 @@ import {
 } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
+import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
@@ -26,6 +27,7 @@ import {
   atlasContent,
   blackSquareContent,
   estimateContent,
+  higherLowerContent,
   matchsticksContent,
   mostLikelyContent,
   swatchContent,
@@ -33,6 +35,7 @@ import {
 } from '@/helpers/round-content'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
+import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RoundProgress } from '@/presentation/components/round-progress'
@@ -98,6 +101,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   const swatch = swatchContent(round)
   const mostLikely = mostLikelyContent(round)
   const estimate = estimateContent(round)
+  const higherLower = higherLowerContent(round)
   const shownColour = useShownColour({ clock, round })
   const isMoving = matchsticks !== null && mode === 'move' && onAnswer !== null
 
@@ -127,6 +131,12 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         </p>
       ) : estimate !== null ? (
         <EstimateQuestion question={estimate.question} />
+      ) : higherLower !== null ? (
+        (sticks ?? (
+          <p className='now higher-lower-line'>
+            {translate('higherlower.dealt')}
+          </p>
+        ))
       ) : mostLikely !== null ? (
         <p className='now most-likely-line'>{mostLikely.labels[locale]}</p>
       ) : blackSquare !== null ? (
@@ -169,6 +179,13 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
             ? 'watching'
             : 'answering'
       }
+      data-higher-lower={
+        higherLower === null
+          ? undefined
+          : onAnswer === null
+            ? 'watching'
+            : 'answering'
+      }
       data-long-choices={choiceLength > LONG_CHOICE_LENGTH || undefined}
       data-map={(atlas?.target != null && onAnswer !== null) || undefined}
       data-map-question={atlas?.shown != null || undefined}
@@ -204,8 +221,25 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           onAnswer={onAnswer}
           round={round}
         />
+      ) : higherLower !== null && onAnswer !== null ? (
+        <HigherLowerAnswer
+          card={roundCard}
+          key={round.id}
+          onAnswer={onAnswer}
+          round={round}
+          youId={answersAs}
+        />
       ) : (
         roundCard(null)
+      )}
+      {higherLower !== null && onAnswer === null && (
+        <HigherLowerPairs
+          pairs={higherLower.pairs}
+          players={view.players}
+          sheets={[]}
+          youId={null}
+          yourPicks={null}
+        />
       )}
       {mode === 'choice' &&
         (onAnswer === null ? (

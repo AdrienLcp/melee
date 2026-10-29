@@ -61,7 +61,7 @@
     gap: var(--space-s)
     padding: calc(var(--band) + clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))) clamp(var(--space-m), calc(var(--stage-unit) * 4.4), var(--space-l)) clamp(var(--space-m), calc(var(--stage-unit) * 4), var(--space-l))
 
-    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac
+    @each $game in blindtest, buzzer, quiz, reflex, slate, atlas, challenge, innerclock, matchsticks, timeline, blacksquare, petitbac, swatch, mostlikely, estimate, higherlower
       &[data-game='#{$game}']
         --spine: var(--spine-#{$game})
 
@@ -216,6 +216,32 @@
         text-align: center
 
       .estimate-question + .round-progress
+        --clock-ink: var(--card-ink)
+
+        align-self: start
+        @include question-card.clock-margin
+        width: auto
+
+  // The pair's question on its card with the round's sand along its top,
+  // and the two names taking everything under it.
+  .player-round.higher-lower-round
+    display: flex
+    flex-direction: column
+    gap: var(--space-m)
+    min-height: 0
+
+    .round-card
+      display: grid
+      flex: none
+
+      > *
+        grid-area: 1 / 1
+
+      .higher-lower-prompt,
+      .higher-lower-sent
+        @include question-card.card
+
+      .round-progress
         --clock-ink: var(--card-ink)
 
         align-self: start
@@ -494,6 +520,21 @@
           border-radius: var(--radius-s)
           color: var(--tile-ink)
           padding: var(--space-2xs) var(--space-xs)
+
+    &.higher-lower-revealed
+      align-items: stretch
+      flex-direction: column
+      flex-wrap: nowrap
+      gap: var(--space-s)
+
+      .yours
+        @include typography.billboard
+        @include typography.numeric
+
+        color: var(--card-ink)
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 6), 2.5rem)
+        margin: 0
+        text-align: center
 
     // This seat's own move, smaller under the one the room is shown.
     // Both colours laid straight on the card, the same size, so the gap

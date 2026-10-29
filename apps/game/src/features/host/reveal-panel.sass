@@ -80,6 +80,21 @@
       margin: 0
       text-align: center
 
+    &[data-game='higherlower'] > .head
+      @include piece.card
+
+      align-items: stretch
+      flex-direction: column
+      min-height: 0
+      overflow-y: auto
+      padding: var(--space-m) var(--space-l)
+
+      .higher-lower-pairs
+        --pairs-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 1.4), var(--space-m))
+        --pairs-name-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), 1.75rem)
+        --pairs-side-padding: var(--space-2xs) var(--space-xs)
+        --pairs-value-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2), 1.5rem)
+
     &[data-game='mostlikely'] > .head
       align-items: stretch
       flex-direction: column

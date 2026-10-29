@@ -155,6 +155,29 @@
         flex: 1 1 0
         inline-size: min(100%, 40rem)
 
+    // The five pairs printed under the card for the room to argue over, or a
+    // seated console's own two tiles in their place.
+    &[data-higher-lower]
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      > .higher-lower-pairs
+        @include piece.card
+
+        --pairs-gap: clamp(var(--space-xs), 1.6cqmin, var(--space-m))
+        --pairs-name-size: clamp(var(--text-m), 3.4cqmin, 2.5rem)
+
+        align-self: center
+        inline-size: min(100%, 64rem)
+        margin-block: auto
+        overflow-y: auto
+        padding: clamp(var(--space-s), 2.4cqmin, var(--space-l))
+
+      > .answer-form.higher-lower-answer
+        align-self: center
+        inline-size: min(100%, 48rem)
+
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
     &[data-black-square]
@@ -368,6 +391,9 @@
       .estimate-question
         --estimate-asks-size: clamp(var(--text-m), min(3cqi, 7cqh), 2.4rem)
         --estimate-name-size: clamp(var(--text-xl), min(8cqi, 20cqh), 8rem)
+
+      .higher-lower-prompt .asks
+        font-size: clamp(var(--text-xl), min(6cqi, 14cqh), 5rem)
 
       // A sentence of up to 160 characters, so a step under the host's own line.
       .most-likely-line

@@ -9,6 +9,7 @@ import type {
 } from '@melee/protocol/black-square'
 import type { PlayerClientMessage } from '@melee/protocol/client-message'
 import { type SentEstimate, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SentMove } from '@melee/protocol/matchsticks'
 import type {
@@ -45,6 +46,7 @@ import { type PlayerAnswer, TypedAnswer } from '@/features/player/answer-forms'
 import { BlackSquareAnswer } from '@/features/player/black-square-answer'
 import { ChoosingRound } from '@/features/player/choosing-round'
 import { EstimateAnswer } from '@/features/player/estimate-answer'
+import { HigherLowerAnswer } from '@/features/player/higher-lower-answer'
 import { InnerclockPress } from '@/features/player/innerclock-press'
 import { MapAnswer } from '@/features/player/map-answer'
 import { MatchsticksMove } from '@/features/player/matchsticks-move'
@@ -71,6 +73,7 @@ import {
   blindtestContent,
   estimateContent,
   estimateRatioOf,
+  higherLowerContent,
   innerclockContent,
   matchsticksContent,
   mostLikelyContent,
@@ -78,6 +81,7 @@ import {
   placesFromBestOf,
   quizContent,
   reflexContent,
+  rightPairsOf,
   sentOrderOf,
   swappedPairsOf,
   swatchContent,
@@ -98,6 +102,7 @@ import { EstimateLine } from '@/presentation/components/estimate-line'
 import { EstimateQuestion } from '@/presentation/components/estimate-question'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { FloorClock } from '@/presentation/components/floor-clock'
+import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapPrompt } from '@/presentation/components/map-prompt'
 import { MapReveal } from '@/presentation/components/map-reveal'
@@ -653,6 +658,25 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             <RoundClock clock={clock} view={view} />
           </div>
           <EstimateAnswer
+            key={round.id}
+            onAnswer={answerWithRound}
+            round={round}
+            youId={view.youId}
+          />
+        </section>
+      )
+    }
+
+    if (higherLowerContent(round) !== null) {
+      return (
+        <section className='player-round higher-lower-round'>
+          <HigherLowerAnswer
+            card={(prompt) => (
+              <div className='round-card'>
+                {prompt}
+                <RoundClock clock={clock} view={view} />
+              </div>
+            )}
             key={round.id}
             onAnswer={answerWithRound}
             round={round}
@@ -1219,6 +1243,36 @@ const Revealed: React.FC<{
         value={estimate.value}
         youId={view.youId}
       />
+    )
+  }
+
+  const higherLower = higherLowerContent(round)
+
+  if (higherLower?.revealedPairs != null) {
+    const rightPairs =
+      view.youId === null ? null : rightPairsOf(round, view.youId)
+
+    return (
+      <div
+        className='answer-card higher-lower-revealed'
+        data-game='higherlower'
+      >
+        {rightPairs !== null && (
+          <p className='yours'>
+            {translate('higherlower.reveal.score', {
+              count: HIGHER_LOWER_PAIR_COUNT,
+              right: rightPairs
+            })}
+          </p>
+        )}
+        <HigherLowerPairs
+          pairs={higherLower.revealedPairs}
+          players={view.players}
+          sheets={[]}
+          youId={view.youId}
+          yourPicks={higherLower.yourPicks}
+        />
+      </div>
     )
   }
 

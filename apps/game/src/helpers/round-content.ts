@@ -1,3 +1,4 @@
+import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type {
   HostRoomView,
   HostRoundContent,
@@ -71,6 +72,11 @@ export const estimateContent = (
   round: RoundView | null | undefined
 ): Extract<RoundContent, { kind: 'estimate' }> | null =>
   round?.content.kind === 'estimate' ? round.content : null
+
+export const higherLowerContent = (
+  round: RoundView | null | undefined
+): Extract<RoundContent, { kind: 'higherlower' }> | null =>
+  round?.content.kind === 'higherlower' ? round.content : null
 
 export const timelineContent = (
   round: RoundView | null | undefined
@@ -258,7 +264,26 @@ export const nearnessOf = (round: RoundView, playerId: string): number =>
   placesFromBestOf(round, playerId) ??
   colourDistanceOf(round, playerId) ??
   estimateGapOf(round, playerId) ??
+  wrongPairsOf(round, playerId) ??
   Number.MAX_VALUE
+
+/** How many of its five pairs a seat picked the right way, `null` before the reveal and for a seat that sent no sheet. */
+export const rightPairsOf = (
+  round: RoundView,
+  playerId: string
+): number | null => {
+  const verdict = round.awards.find(
+    (award) => award.playerId === playerId
+  )?.verdict
+
+  return verdict?.kind === 'pairs' ? verdict.rightPairs : null
+}
+
+const wrongPairsOf = (round: RoundView, playerId: string): number | null => {
+  const rightPairs = rightPairsOf(round, playerId)
+
+  return rightPairs === null ? null : HIGHER_LOWER_PAIR_COUNT - rightPairs
+}
 
 const estimateGapOf = (round: RoundView, playerId: string): number | null => {
   const ratio = estimateRatioOf(round, playerId)
@@ -268,7 +293,7 @@ const estimateGapOf = (round: RoundView, playerId: string): number | null => {
 
 /**
  * The answers in the order the reveal reads them: nearest first on the world
- * map, the timeline, a moved stick, a rebuilt colour and an estimate, where how far is the result, and as the server sent
+ * map, the timeline, a moved stick, a rebuilt colour, an estimate and a sheet of pairs, where how far is the result, and as the server sent
  * them in every other game.
  */
 export const revealedInOrder = (
@@ -278,7 +303,8 @@ export const revealedInOrder = (
   timelineContent(round) === null &&
   matchsticksContent(round) === null &&
   swatchContent(round) === null &&
-  estimateContent(round) === null
+  estimateContent(round) === null &&
+  higherLowerContent(round) === null
     ? round.revealedAnswers
     : round.revealedAnswers.toSorted(
         (left, right) =>

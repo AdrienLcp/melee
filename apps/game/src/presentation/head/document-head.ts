@@ -65,6 +65,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
         'A question whose answer is a number — how many people live in Japan, how high is Mont Blanc, how long is the Loire — and the whole room types an estimate on their own screens. Nobody has to know: the closest three score, and the reveal lines every guess up against the truth. Scan the QR code and play — no install, no account.',
       title: 'Close enough — Mêlée'
     },
+    higherlower: {
+      description:
+        'Two cities, two rivers, two mountains: which one has more people, which is longer, which is higher? Five pairs on everyone’s own screen, one pick each, and the reveal puts all ten numbers up at once. Scan the QR code and play — no install, no account.',
+      title: 'Higher or lower — Mêlée'
+    },
     home: {
       description:
         'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, Atlas, Challenge, Inner clock, Matchsticks, Timeline, Black square and Categories.',
@@ -156,6 +161,11 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
       description:
         'Une question dont la réponse est un nombre — combien d’habitants au Japon, quelle altitude pour le mont Blanc, quelle longueur pour la Loire — et toute la salle tape son estimation depuis son écran. Personne n’a besoin de savoir : les trois plus proches marquent, et le dévoilement aligne chaque essai face à la vraie valeur. Scannez le QR code et jouez — sans installation, sans compte.',
       title: 'Le juste chiffre — Mêlée'
+    },
+    higherlower: {
+      description:
+        'Deux villes, deux fleuves, deux sommets : lequel compte le plus d’habitants, lequel est le plus long, lequel est le plus haut ? Cinq paires sur l’écran de chacun, un choix par paire, et le dévoilement affiche les dix chiffres d’un coup. Scannez le QR code et jouez — sans installation, sans compte.',
+      title: 'Plus ou moins — Mêlée'
     },
     home: {
       description:
