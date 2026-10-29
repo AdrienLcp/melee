@@ -24,6 +24,7 @@ import { ConnectionRefused } from '@/presentation/components/connection-refused'
 import { RoundChrome } from '@/presentation/components/round-chrome'
 import { TextField } from '@/presentation/components/text-field'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
+import { useTimeOutNudge } from '@/presentation/haptics/time-out-nudge'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { protocolErrorKey } from '@/presentation/i18n/translation'
@@ -230,6 +231,7 @@ const Lobby: React.FC<{
       !slate.itemStates.includes('open')
   )
   useScreenAwake(status !== 'refused' && view?.phase !== 'finished')
+  useTimeOutNudge({ clock, view })
 
   // A table answering aloud turns every phone away without closing the
   // socket, since the host may switch it back; until then this is a dead end.

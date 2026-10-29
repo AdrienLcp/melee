@@ -8,6 +8,12 @@ one part.
 
 ### Features
 
+- `[Game]` **The last seconds are heard and felt.** The screen the room
+  listens to — the wall, else the console — ticks the last five seconds of a
+  round, of a floor that runs out and of the count into a round, higher on the
+  last one, and sounds a falling pair of notes when a round or a floor runs
+  out. A phone still in the race — no answer yet, not locked out, or holding
+  the floor — pulses twice lightly three seconds out and once long at the end.
 - `[Game]` **The console beside a wall is a podium.** Once a wall shows the
   game, nothing on the host's screen is for the room to read, so it lays the
   host's work out flat instead of a panel over the room's stage: on a laptop

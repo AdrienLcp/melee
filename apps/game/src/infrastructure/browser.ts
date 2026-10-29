@@ -44,6 +44,23 @@ export const buzzFeedback = (moment: BuzzMoment): void => {
   navigator.vibrate?.(BUZZ_PATTERNS[moment])
 }
 
+/** A round about to run out under a thumb still in it, and running out. */
+export type ClockMoment = 'closing' | 'timeUp'
+
+/**
+ * Apart from the buzz's set on purpose: a light double tap reads as a warning
+ * rather than an answer, and one long hold as the end of something.
+ */
+const CLOCK_PATTERNS: Record<ClockMoment, VibratePattern> = {
+  closing: [20, 90, 20],
+  timeUp: 250
+}
+
+/** Absent on iOS Safari like `buzzFeedback`, and the screen says it all too. */
+export const clockFeedback = (moment: ClockMoment): void => {
+  navigator.vibrate?.(CLOCK_PATTERNS[moment])
+}
+
 /**
  * The browser sends Global Privacy Control: the visitor refused measurement
  * once, for every site. Not in TypeScript's DOM types yet.

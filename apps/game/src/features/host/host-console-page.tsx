@@ -58,7 +58,9 @@ import {
   writeHostToken,
   writeSeatNickname
 } from '@/infrastructure/storage/session-storage'
-import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
+import { useBuzzCue } from '@/presentation/audio/buzz-cue'
+import { unlockCues } from '@/presentation/audio/cue-audio'
+import { useTimerCue } from '@/presentation/audio/timer-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
 import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { BoardTrack } from '@/presentation/components/board-track'
@@ -71,6 +73,7 @@ import {
   reflexOutcome,
   useBuzzOutcome
 } from '@/presentation/haptics/buzz-outcome'
+import { useTimeOutNudge } from '@/presentation/haptics/time-out-nudge'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { protocolErrorKey } from '@/presentation/i18n/translation'
@@ -209,6 +212,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   })
 
   useBuzzCue(isSpeaker ? (view?.round?.activeBuzz?.atServerTime ?? null) : null)
+  useTimerCue({ clock, view: isSpeaker ? view : null })
+  useTimeOutNudge({ clock, view: view?.youId == null ? null : view })
   useBuzzOutcome(
     reflexOutcome({ round: view?.round ?? null, youId: view?.youId ?? null })
   )
@@ -218,7 +223,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // later — so the console arms them together or not at all.
   const armAudio = () => {
     unlock()
-    unlockBuzzCue()
+    unlockCues()
   }
 
   const isLive = status === 'open'

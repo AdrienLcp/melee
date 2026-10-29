@@ -19,7 +19,9 @@ import {
   useReturnToWallPairing,
   useRoomCodeParam
 } from '@/infrastructure/router/navigation'
-import { unlockBuzzCue, useBuzzCue } from '@/presentation/audio/buzz-cue'
+import { useBuzzCue } from '@/presentation/audio/buzz-cue'
+import { unlockCues } from '@/presentation/audio/cue-audio'
+import { useTimerCue } from '@/presentation/audio/timer-cue'
 import { useVolume } from '@/presentation/audio/volume-provider'
 import { BoardTrack } from '@/presentation/components/board-track'
 import { Button } from '@/presentation/components/button'
@@ -88,6 +90,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const { canPlay, refusal, unlock } = useRoundAudio({ clock, view, volume })
 
   useBuzzCue(view?.round?.activeBuzz?.atServerTime ?? null)
+  useTimerCue({ clock, view })
   useReportRoomActions({
     adjustScore: null,
     closeRoom: null,
@@ -106,7 +109,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   const armAudio = () => {
     unlock()
-    unlockBuzzCue()
+    unlockCues()
   }
 
   // Tried once without a press, because a screen reached by a click inside
