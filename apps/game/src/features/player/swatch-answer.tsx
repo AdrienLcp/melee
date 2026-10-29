@@ -19,6 +19,8 @@ import type { PlayerAnswer } from './answer-forms'
 import './swatch-answer.sass'
 
 type SwatchAnswerProps = {
+  /** `false` where a card above already says the colour has hidden. */
+  isCaptioned?: boolean
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
   round: RoundView
@@ -33,6 +35,7 @@ type SwatchAnswerProps = {
  * Mounted under `key={round.id}`, so every round opens on the neutral grey.
  */
 export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
+  isCaptioned = true,
   onAnswer,
   round,
   youId
@@ -63,28 +66,30 @@ export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
 
   return (
     <section className='answer-form swatch-answer'>
-      <p className='hint'>{translate('swatch.hidden')}</p>
-      <ColourPicker
-        hueLabel={translate('swatch.answer.hue')}
-        onChange={setColour}
-        toneLabel={translate('swatch.answer.tone')}
-      />
-      <div className='send'>
-        <SwatchChip
-          className='preview'
-          colour={colour}
-          label={translate('swatch.answer.label')}
+      <div className='workbench'>
+        {isCaptioned && <p className='hint'>{translate('swatch.hidden')}</p>}
+        <ColourPicker
+          hueLabel={translate('swatch.answer.hue')}
+          onChange={setColour}
+          toneLabel={translate('swatch.answer.tone')}
         />
-        <Button
-          onPress={() => {
-            if (onAnswer({ colour, kind: 'colour' })) {
-              setSentColour(colour)
-            }
-          }}
-          size='large'
-        >
-          {translate('swatch.answer.send')}
-        </Button>
+        <div className='send'>
+          <SwatchChip
+            className='preview'
+            colour={colour}
+            label={translate('swatch.answer.label')}
+          />
+          <Button
+            onPress={() => {
+              if (onAnswer({ colour, kind: 'colour' })) {
+                setSentColour(colour)
+              }
+            }}
+            size='large'
+          >
+            {translate('swatch.answer.send')}
+          </Button>
+        </div>
       </div>
     </section>
   )

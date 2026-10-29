@@ -9,6 +9,8 @@ import { SwatchChip } from './swatch-chip'
 import './swatch-shown.sass'
 
 type SwatchShownProps = {
+  /** What the chip is called once the round says what it was, as a reveal does. */
+  caption?: string
   /** The colour still up, or `null` once it has hidden on this screen. */
   colour: ColourHex | null
   /** `false` where a card above already says it, as the room's screen does. */
@@ -21,13 +23,14 @@ type SwatchShownProps = {
  * the word to rebuild it.
  */
 export const SwatchShown: React.FC<SwatchShownProps> = ({
+  caption: givenCaption,
   colour,
   isCaptioned = true
 }) => {
   const translate = useTranslate()
-  const caption = translate(
-    colour === null ? 'swatch.hidden' : 'swatch.remember'
-  )
+  const caption =
+    givenCaption ??
+    translate(colour === null ? 'swatch.hidden' : 'swatch.remember')
 
   return (
     <figure className='swatch-shown'>

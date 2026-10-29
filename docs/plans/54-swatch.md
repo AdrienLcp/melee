@@ -96,7 +96,7 @@ internal. The screens' session may rename it.
      clock, and the next snapshot simply carries `null`.
    - The app holds only what compiling demanded — the name, the scoring line,
      the error, the mode's label and a `Palette` glyph.
-3. **Screens and shelf.** Mostly landed 29/10/2026: `swatch` in
+3. ~~**Screens and shelf.**~~ Done 29/10/2026: `swatch` in
    `shelvedGames`, the spine (`--spine-swatch`, hue 210), `swatch.*` in both
    dictionaries, the page heads, the setup's two choices (shown 3/5/8 s,
    rebuild 10/20/30 s). `SwatchChip` (a paint chip: the colour on a card, its
@@ -107,8 +107,13 @@ internal. The screens' session may rename it.
    and on `PlayingStage`, the reveal through the shared scoreline with a chip
    per row, nearest first (`colourDistanceOf` in `nearnessOf`). Verified muted
    at 390×780 and 1280×800: shown, hidden at `hidesAt`, picked, sent, revealed.
-   **Still owed**: the paired wall and a seated console seen in a browser, the
-   setup panel seen, and `pnpm validate` (e2e included).
+   Then seen muted with a paired wall, a seated console and two phones, one
+   held sideways, and `pnpm validate` green. What that pass changed: the
+   reveal's chip is captioned *La couleur* (it was named *Retiens cette
+   couleur*), a seated console no longer prints the hidden line twice, and the
+   picker sits beside its press in any box wider than tall — a size container
+   on `.swatch-answer`, which doubled the console's square. Its wrapper is
+   `.workbench`: `leaflet.sass` styles a bare `.sheet` everywhere.
 
 ## How to tell it is done
 

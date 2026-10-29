@@ -217,7 +217,10 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     return (
       <section className='reveal-panel' data-game='swatch'>
         <div className='head'>
-          <SwatchShown colour={shades.colour} isCaptioned={false} />
+          <SwatchShown
+            caption={translate('swatch.reveal.title')}
+            colour={shades.colour}
+          />
         </div>
 
         <Outcome players={players} round={round} />

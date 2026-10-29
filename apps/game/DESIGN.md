@@ -904,6 +904,15 @@ the drawing in its own proportions, so the sticks stay the only thing drawn. A
 seat's move on a reveal chip is printed on a slip of `--card`, since a match is
 always laid on paper.
 
+### Shades (`SwatchChip`, `SwatchShown`, `ColourPicker`)
+A paint chip: the colour on a card at a fan deck's 4 : 5, its field inset
+rather than padded so it keeps its margins at any size, an empty dashed socket
+once the colour has hidden. Every chip sits in a size container and takes
+whichever of the row's height or width runs out first. The picker is a tone
+square over a hue strip, thumbs at touch size, with the chip previewing the
+colour beside the press; in a box wider than tall the press moves beside the
+square. The reveal captions the colour, and each seat's row carries its chip.
+
 ### Waits: `NoticeCard`, `Loader`, `Spinner`
 **A wait is a paper card, never an anonymous spinner.** Every player-side wait
 (host away, round not running, …) is a `NoticeCard` (`player-round.tsx`): a

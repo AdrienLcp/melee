@@ -2,18 +2,55 @@
 
 @layer components
   // The line saying it hid, the picker taking every spare row, and the chip
-  // previewing the colour beside the press that sends it.
+  // previewing the colour beside the press that sends it. Measured as a box
+  // of its own: one wider than tall, a console's or a phone held sideways,
+  // sets the press beside the picker rather than under it, which leaves the
+  // square every row.
   .swatch-answer
+    container-type: size
     display: grid
-    gap: var(--space-s)
-    grid-template-columns: minmax(0, 1fr)
-    grid-template-rows: auto minmax(0, 1fr) auto
+    grid-template-rows: minmax(0, 1fr)
     min-height: 0
 
     &[data-sent]
       align-content: center
+      container-type: normal
+      gap: var(--space-s)
       grid-template-rows: minmax(0, 1fr) auto
       justify-items: center
+
+    .workbench
+      display: grid
+      gap: var(--space-s)
+      grid-template-areas: 'hint' 'picker' 'send'
+      grid-template-columns: minmax(0, 1fr)
+      grid-template-rows: auto minmax(0, 1fr) auto
+      min-height: 0
+
+      > .hint
+        grid-area: hint
+
+      > .colour-picker
+        grid-area: picker
+
+      > .send
+        grid-area: send
+
+      @container (min-aspect-ratio: 5 / 4)
+        align-items: center
+        column-gap: var(--space-l)
+        grid-template-areas: 'hint hint' 'picker send'
+        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr)
+
+        > .colour-picker
+          align-self: stretch
+
+        > .send
+          grid-template-columns: minmax(0, 1fr)
+          justify-items: center
+
+        .preview
+          block-size: calc(var(--control-height) * 2.5)
 
     .hint
       @include typography.strong

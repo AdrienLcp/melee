@@ -40,6 +40,7 @@ export const SwatchRound: React.FC<SwatchRoundProps> = ({
 
   return (
     <SwatchAnswer
+      isCaptioned={isCaptioned}
       key={round.id}
       onAnswer={onAnswer}
       round={round}
