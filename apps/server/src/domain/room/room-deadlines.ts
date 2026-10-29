@@ -5,12 +5,12 @@ import { advanceDueAt, remainingRoundMs } from '@/domain/round/round-service'
 import type { Room } from './room'
 
 /**
- * How long a room with nobody connected is kept, so a host who reloads keeps
- * their game. `ABANDONED_SEAT_MS` is the same ten minutes on purpose — a seat
- * and a room are the same sentence with a different subject, and the two must
- * move together.
+ * How long a room with nobody connected is kept: an hour, so a table that
+ * breaks for dinner or closes the laptop to change rooms finds its game again.
+ * Longer than `ABANDONED_SEAT_MS` on purpose — an empty seat is a name the
+ * others watch not playing, while an empty room keeps nobody waiting.
  */
-export const ABANDONED_ROOM_GRACE_MS = 10 * 60 * 1000
+export const ABANDONED_ROOM_GRACE_MS = 60 * 60 * 1000
 
 /**
  * Everything a room does on its own rather than on a message. Each is read off

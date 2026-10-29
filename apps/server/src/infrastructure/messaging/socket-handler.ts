@@ -1861,7 +1861,7 @@ const leave = (engine: RoomEngine, connection: Connection): void => {
   const { playerId } = connection
   const now = engine.now()
 
-  // The ten minutes a room with nobody connected is kept run from the last
+  // The hour a room with nobody connected is kept runs from the last
   // socket leaving, not from the last frame anyone sent: a host who sat in the
   // lobby for a quarter of an hour and reloads must find the room still there.
   touch(room, now)

@@ -57,7 +57,7 @@ export const MAX_REMEMBERED_SEATS = 8
  * and the two answer different questions — a device that plays one room a month
  * would never reach the count.
  *
- * A day rather than the ten minutes a room outlives its host, because a claim is
+ * A day rather than the hour a room outlives its host, because a claim is
  * stamped when the socket opened: a device that has sat locked since the first
  * round is exactly the one this exists for, and a party runs longer than a room's
  * own grace.

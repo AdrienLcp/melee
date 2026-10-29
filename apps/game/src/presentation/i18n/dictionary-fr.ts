@@ -1016,7 +1016,7 @@ export const FR_DICTIONARY = defineDictionary({
       seats:
         'La place que tu occupes à chaque table rejointe, pour qu’un rechargement ou un écran verrouillé t’y ramène avec ton score. Oubliée au bout d’un jour.',
       server:
-        'Tant qu’une table est jouée, les serveurs de Cloudflare la gardent : les pseudos autour, les réponses données, les scores et les réglages. Elle est supprimée quand l’hôte ferme la table, ou dix minutes après que le dernier écran l’a quittée. Il n’y a pas de compte, et rien de ce qui te concerne ne survit à la table.',
+        'Tant qu’une table est jouée, les serveurs de Cloudflare la gardent : les pseudos autour, les réponses données, les scores et les réglages. Elle est supprimée quand l’hôte ferme la table, ou une heure après que le dernier écran l’a quittée. Il n’y a pas de compte, et rien de ce qui te concerne ne survit à la table.',
       session:
         'Une autre est gardée pour l’onglet ouvert seulement, et part quand il se ferme :',
       slateKeys:

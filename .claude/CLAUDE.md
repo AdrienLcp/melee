@@ -272,7 +272,7 @@ which is why a user-visible string written into a component is a bug — see
   the game can hit. A seated host is the only screen offering all three, and the
   server frees the seat on the frame rather than on the reconnect after it,
   because a judge waiting on that would read no answer until it landed. A room
-  outlives its host by ten minutes so a reload keeps the game; closing is what
+  outlives its host by an hour so a break keeps the game; closing is what
   says otherwise. `host.removePlayer` is the fourth and the only one nobody
   chooses, so it is the one that has to be **said**: a fatal `removed_by_host`
   to that screen alone, before the seat goes, and it voids the seat because the

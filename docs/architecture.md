@@ -78,8 +78,9 @@ snapshot therefore knows what it is waiting for with nothing else surviving,
 and no round deadline falls due while no console is attached — that is the
 whole of the freeze when the host walks away.
 
-A room nobody is connected to is closed ten minutes after the last socket left
-— long enough that a host who reloads keeps their game.
+A room nobody is connected to is closed an hour after the last socket left —
+long enough that a table breaking for dinner keeps its game. A seat is dropped
+after ten minutes, because an empty seat is a name the others watch.
 
 ## Time
 

@@ -1056,7 +1056,7 @@ export const EN_DICTIONARY = defineDictionary({
       seats:
         'The seat you hold at each table you joined, so a reload or a locked screen brings you back to it with your score. Forgotten after a day.',
       server:
-        'While a table is played, Cloudflare’s servers hold it: the nicknames at it, the answers given, the scores and the settings. It is deleted when the host closes the table, or ten minutes after the last screen leaves it. There are no accounts, and nothing about you outlives the table.',
+        'While a table is played, Cloudflare’s servers hold it: the nicknames at it, the answers given, the scores and the settings. It is deleted when the host closes the table, or an hour after the last screen leaves it. There are no accounts, and nothing about you outlives the table.',
       session:
         'One more is kept for the open tab alone, and goes when it closes:',
       slateKeys:

@@ -11,7 +11,7 @@ import {
 /**
  * Every room whose console this device can reopen and which is still open,
  * newest first, or `null` while the server is being asked. The token lasts a day
- * and a room can be gone in ten minutes, so every remembered code is asked at
+ * and a room can be gone in an hour, so every remembered code is asked at
  * once and nothing is offered before the answers land — a door put up early
  * would be an offer withdrawn.
  *

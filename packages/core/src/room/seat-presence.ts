@@ -23,10 +23,9 @@ export const RECONNECT_GRACE_MS = 15_000
  * chains several, so a player who closed their browser in the first one would
  * otherwise sit on the scoreboard through every game after it.
  *
- * Deliberately the same ten minutes the server gives a room with nobody
- * connected at all (`ABANDONED_ROOM_GRACE_MS`), so the product tells one story
- * rather than two: nothing here survives ten minutes of nobody being behind it.
- * The two must move together.
+ * Shorter than the hour the server keeps a room with nobody connected
+ * (`ABANDONED_ROOM_GRACE_MS`): an empty seat is a name the table watches not
+ * playing, an empty room keeps nobody waiting.
  *
  * Long rather than short, because the two mistakes are not the same size — and
  * the size that decides it is how *visible* each one is at a party. Losing your
