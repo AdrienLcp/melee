@@ -96,10 +96,20 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                 )}
               </span>
               <span className='podium-score'>
-                {row?.standing ??
+                {row === undefined ? (
                   translate('player.score', {
                     points: shownPoints(player.score)
-                  })}
+                  })
+                ) : row.pawnCase === null ? (
+                  row.standing
+                ) : (
+                  <>
+                    <span aria-hidden='true'>{row.pawnCase}</span>
+                    <span className='podium-case-label'>
+                      {translate('board.at', { case: row.pawnCase })}
+                    </span>
+                  </>
+                )}
               </span>
               <span className='podium-presses'>
                 {seatPresses !== null && row !== undefined && (

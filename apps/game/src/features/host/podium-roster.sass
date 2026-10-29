@@ -1,4 +1,5 @@
 @use '../../presentation/styles/typography'
+@use '@adrienlcp/styles/accessibility'
 
 @layer components
   // One grid for every seat, each row a subgrid of it, so the scores and the
@@ -68,6 +69,12 @@
 
     font-size: var(--text-xl)
     text-align: end
+    white-space: nowrap
+
+  // The pawn beside the name already says the number is a case, and the
+  // word beside it took the name's room down to five letters.
+  .podium-case-label
+    @include accessibility.visually-hidden
 
   .podium-presses
     display: flex

@@ -25,6 +25,8 @@ export type PointsRow = {
   canGive: boolean
   id: string
   name: string
+  /** The case its pawn stands on, `null` off a board. */
+  pawnCase: number | null
   standing: string
   target: ScoreTarget
 }
@@ -63,6 +65,7 @@ export const usePointsRows = (): {
           colour: team.colour,
           id: team.id,
           name: teamName(team),
+          pawnCase,
           standing:
             pawnCase === null
               ? translate('player.score', { points: shownPoints(team.score) })
@@ -85,6 +88,7 @@ export const usePointsRows = (): {
           colour: pawnCase === null ? null : pawnNumberOf(seat),
           id: player.id,
           name: player.nickname,
+          pawnCase,
           standing:
             pawnCase === null
               ? translate('player.score', { points: shownPoints(player.score) })
