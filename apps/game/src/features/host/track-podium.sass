@@ -29,10 +29,19 @@
       margin-block-start: var(--space-l)
       min-width: 0
       padding: var(--space-s) var(--space-2xs) var(--space-m)
+      position: relative
       text-align: center
 
       .pawn
         font-size: clamp(2rem, calc(var(--stage-unit) * 7), 4.5rem)
+
+      // In the corner, out of the column: a step that grew a line for it
+      // would no longer stand level with the others of its place.
+      .ready-mark
+        font-size: clamp(var(--text-l), calc(var(--stage-unit) * 3), var(--text-2xl))
+        inset-block-start: var(--space-xs)
+        inset-inline-end: var(--space-xs)
+        position: absolute
 
       // The slot stands second on the left and third on the right; the place
       // raises the step, so a tie for first is two steps of one height.

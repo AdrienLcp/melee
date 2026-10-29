@@ -29,14 +29,14 @@ import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { RevealHold } from '@/presentation/components/round-progress'
-import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
+import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { ChallengePlacing } from './challenge-placing'
 import { ClipOffer } from './clip-offer'
 import { FinalBoard } from './final-board'
 import { InnerclockStage } from './innerclock-stage'
 import { LobbyStage } from './lobby-stage'
-import { NextUp } from './next-up'
 import { PetitBacStage } from './petit-bac-stage'
 import { PlayingStage } from './playing-stage'
 import { ReflexStage } from './reflex-stage'
@@ -173,10 +173,12 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   if (view.phase === 'countdown' && round?.startsAt != null) {
     // The round that just ran, still up while the next one counts in — but only
     // when the hold opened it: the room was still reading the answer then. A
-    // host who pressed *Next round* has said the room is done with it.
+    // host who pressed *Next round* has said the room is done with it, and a
+    // switch to another game has the room asking what comes next instead.
     const recap =
       lastRevealed?.advancesAt != null &&
-      round.startsAt >= lastRevealed.advancesAt
+      round.startsAt >= lastRevealed.advancesAt &&
+      lastRevealed.content.kind === round.content.kind
         ? lastRevealed
         : null
 
@@ -400,15 +402,9 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       round.advancesAt === null || holdMs === null
         ? null
         : { advancesAt: round.advancesAt, holdMs }
-    const { lineUp, lineUpAt, roundCount } = view.settings
-    const nextAt =
+    const { lineUp, roundCount } = view.settings
+    const asksReady =
       lineUp.length > 1 && (roundCount === null || round.index < roundCount)
-        ? lineUpAt
-        : null
-    // The console names the next game in its own switcher, so its stage keeps
-    // only who is back; with nobody seated that leaves nothing to draw.
-    const showsNextUp =
-      nextAt !== null && (controls === null || view.players.length > 0)
 
     // The standings, at the one moment the room asks for them. They are on this
     // screen during `playing` already, where nobody is looking at them — the
@@ -424,11 +420,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
       <>
         <ScoreTrack players={view.players} teams={view.teams} youId={youId} />
         <div
-          className={classNames(
-            'stage revealed',
-            hold !== null && 'holding',
-            showsNextUp && 'with-next-up'
-          )}
+          className={classNames('stage revealed', hold !== null && 'holding')}
           style={{
             '--standings-rows': standingsRowsOf({
               board: view.settings.board,
@@ -455,6 +447,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
           {controls?.isRosterBeside !== true && (
             <Standings
               board={view.settings.board}
+              marksReady={asksReady}
               onAdjust={
                 controls === null
                   ? undefined
@@ -470,14 +463,6 @@ export const RoomStage: React.FC<RoomStageProps> = ({
               rankedBefore={rankedBefore}
               teams={view.teams}
               youId={youId}
-            />
-          )}
-          {showsNextUp && nextAt !== null && (
-            <NextUp
-              at={nextAt}
-              lineUp={lineUp}
-              players={view.players}
-              showsGame={controls === null}
             />
           )}
           {hold !== null && <RevealHold clock={clock} {...hold} />}
@@ -511,15 +496,21 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   )
 }
 
-/** The game about to open, named only on an evening of several. */
+/**
+ * The game about to open, named only on an evening of several, and by the
+ * game alone: which of its entries it is belongs to the host's running order,
+ * and an ordinal on the wall reads as the round count.
+ */
 const NextGameName: React.FC<{ settings: RoomSettings }> = ({ settings }) => {
-  const entryName = useEntryName(settings)
+  const translate = useTranslate()
 
-  if (settings.lineUp.length < 2 || entryName === null) {
+  if (settings.lineUp.length < 2 || settings.game === null) {
     return null
   }
 
-  return <h2 className='next-game'>{entryName}</h2>
+  return (
+    <h2 className='next-game'>{translate(gameNameKey(settings.game.kind))}</h2>
+  )
 }
 
 /**

@@ -648,10 +648,6 @@ export const EN_DICTIONARY = defineDictionary({
       you: 'You judge, sitting out'
     },
     lineUp: {
-      next: 'Next up',
-      ready: defineTranslation('{count:plural} of {total:number} ready', {
-        plural: { count: { other: '{?}' } }
-      }),
       takeOut: 'Take it out'
     },
     needsGame: 'Pick what the table is playing',
@@ -1344,6 +1340,8 @@ export const EN_DICTIONARY = defineDictionary({
   player: {
     /** A seat whose screen has gone quiet — beside that name, on every board. */
     away: 'away',
+    /** A seat that pressed *ready* between two rounds, said to a screen reader beside its name. */
+    back: 'back at the table',
     choosingGame: 'The host is choosing a game',
     final: {
       placing: 'You finished',

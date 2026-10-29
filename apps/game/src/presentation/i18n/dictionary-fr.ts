@@ -632,10 +632,6 @@ export const FR_DICTIONARY = defineDictionary({
       you: 'Tu juges sans jouer'
     },
     lineUp: {
-      next: 'Ensuite',
-      ready: defineTranslation('{count:plural} sur {total:number}', {
-        plural: { count: { one: '{?} prêt', other: '{?} prêts' } }
-      }),
       takeOut: 'Retirer'
     },
     needsGame: 'Choisis à quoi la table joue',
@@ -1284,6 +1280,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   player: {
     away: 'hors ligne',
+    back: 'de retour à table',
     choosingGame: 'L’hôte choisit un jeu',
     final: {
       placing: 'Tu finis',

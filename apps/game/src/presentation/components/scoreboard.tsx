@@ -13,6 +13,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { Button } from './button'
 import { CrossIcon } from './icons'
 import { Pawn } from './pawn'
+import { ReadyMark } from './ready-mark'
 import { VisuallyHidden } from './visually-hidden'
 
 import './scoreboard.sass'
@@ -40,6 +41,11 @@ type ScoreboardProps = {
    * cannot see it is told only "list, six items".
    */
   label?: string
+  /**
+   * Checks each seat back at the table between two rounds. Off wherever
+   * nobody is asked to be ready.
+   */
+  marksReady?: boolean
   /**
    * Stands each player's pawn beside their name, coloured by their seat — the
    * roster's order as given, before the board ranks it. Off by default, because
@@ -76,6 +82,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   hasPawns,
   isResult,
   label,
+  marksReady,
   onRemove,
   players,
   rankedBefore,
@@ -147,6 +154,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                 />
               )}
               <span className='name'>{player.nickname}</span>
+              {marksReady === true && player.isReady && <ReadyMark />}
               {/*
               A seat whose screen has gone. It used to be the row's opacity and
               nothing else, which said it by taking the whole row under the

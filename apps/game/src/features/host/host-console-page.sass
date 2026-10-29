@@ -96,11 +96,6 @@
           @include layout.wide
             --hold-bar: calc(var(--text-l) + var(--space-s))
 
-        // The next game's lid and the ready pawns take a row of their own, so
-        // the answer is sized against what is left, as it is for the bar.
-        &.with-next-up
-          --next-up-row: calc(var(--text-xl) + var(--space-l) + var(--reveal-gap))
-
         .standings
           align-self: center
           display: flex
@@ -507,17 +502,6 @@
           grid-template: 'panel standings' minmax(0, 1fr) 'hold hold' auto / minmax(0, 1.75fr) minmax(0, 1fr)
           row-gap: var(--space-s)
 
-        // Under the answer rather than across the screen: the standings keep
-        // the whole of their column, and a board of teams does not shrink.
-        &.with-next-up
-          grid-template: 'panel standings' minmax(0, 1fr) 'next standings' auto / minmax(0, 1.75fr) minmax(0, 1fr)
-
-          &.holding
-            grid-template: 'panel standings' minmax(0, 1fr) 'next standings' auto 'hold hold' auto / minmax(0, 1.75fr) minmax(0, 1fr)
-
-        > .next-up
-          grid-area: next
-
         > .round-progress
           grid-area: hold
           max-width: none
@@ -565,12 +549,6 @@
 
         &.holding
           grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 24cqh) 'hold' auto / minmax(0, 1fr)
-
-        &.with-next-up
-          grid-template: 'panel' minmax(0, 1fr) 'next' auto 'standings' minmax(0, 24cqh) / minmax(0, 1fr)
-
-          &.holding
-            grid-template: 'panel' minmax(0, 1fr) 'next' auto 'standings' minmax(0, 24cqh) 'hold' auto / minmax(0, 1fr)
 
         // Two columns read downwards, so a rank stays beside its score across
         // the width and the rows divide half the height they would stacked.

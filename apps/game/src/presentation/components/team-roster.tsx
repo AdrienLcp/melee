@@ -16,6 +16,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import { Pawn } from './pawn'
+import { ReadyMark } from './ready-mark'
 import { useRowsTravel } from './use-rows-travel'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -30,6 +31,11 @@ type TeamRosterProps = {
    * board. A lobby lists them in colour order, which is the order of the draw.
    */
   isRanked?: boolean
+  /**
+   * Checks each seat back at the table between two rounds. Off wherever
+   * nobody is asked to be ready.
+   */
+  marksReady?: boolean
   players: readonly PublicPlayer[]
   /**
    * The teams' ids in the order they stood before the reveal moved them, which
@@ -62,6 +68,7 @@ type TeamRosterProps = {
 export const TeamRoster: React.FC<TeamRosterProps> = ({
   isRanked = false,
   label,
+  marksReady,
   players,
   rankedBefore,
   seatAction,
@@ -140,6 +147,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
               <p className='empty'>{translate('team.empty')}</p>
             ) : (
               <SeatChips
+                marksReady={marksReady}
                 players={members}
                 roster={players}
                 seatAction={seatAction}
@@ -156,6 +164,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
             <h3 className='team-name'>{unassignedLabel}</h3>
           </div>
           <SeatChips
+            marksReady={marksReady}
             players={unassigned}
             roster={players}
             seatAction={seatAction}
@@ -168,6 +177,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
 }
 
 type SeatChipsProps = {
+  marksReady?: boolean
   players: readonly PublicPlayer[]
   /** The whole room, whose order is what picks a pawn's seat. */
   roster: readonly PublicPlayer[]
@@ -176,6 +186,7 @@ type SeatChipsProps = {
 }
 
 const SeatChips: React.FC<SeatChipsProps> = ({
+  marksReady,
   players,
   roster,
   seatAction,
@@ -196,6 +207,7 @@ const SeatChips: React.FC<SeatChipsProps> = ({
         >
           <Pawn seat={roster.indexOf(player)} />
           <span className='name'>{player.nickname}</span>
+          {marksReady === true && player.isReady && <ReadyMark />}
           {!player.isConnected && (
             <span className='state'>{translate('player.away')}</span>
           )}

@@ -21,6 +21,7 @@ import {
   PointsRows,
   usePointsRows
 } from '@/presentation/components/points-rows'
+import { ReadyMark } from '@/presentation/components/ready-mark'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './podium-roster.sass'
@@ -55,6 +56,7 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
   const isRanked = hasAnybodyScored(view.players)
   const ranked = buildScoreboard(view.players)
   const isInLobby = view.phase === 'lobby'
+  const isBetweenRounds = view.phase === 'revealed'
   const isByTeam = view.teams.length > 0
   const seatPresses = isInLobby || isByTeam ? null : points
   const sharesRank = (rank: number) =>
@@ -85,7 +87,10 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                 seat={view.players.findIndex((seat) => seat.id === player.id)}
               />
               <span className='podium-who'>
-                <span className='podium-name'>{player.nickname}</span>
+                <span className='podium-line'>
+                  <span className='podium-name'>{player.nickname}</span>
+                  {isBetweenRounds && player.isReady && <ReadyMark />}
+                </span>
                 {notes.length > 0 && (
                   <span className='podium-note'>{notes.join(' · ')}</span>
                 )}

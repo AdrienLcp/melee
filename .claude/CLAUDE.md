@@ -184,8 +184,8 @@ which is why a user-visible string written into a component is a bug — see
   host's, remembered once and laid over every table, one game or several. An
   evening of several keeps its own `roundCount` and reveal hold across a switch,
   because a game's own would end it or cut a reveal short. **Ready** is a seat
-  saying it is back at the table between two rounds, on the wall beside the next
-  game, cleared as a round opens and never a gate
+  saying it is back at the table between two rounds, checked on its row of
+  the standings and never counted, cleared as a round opens and never a gate
 - **Round** — one track, one question, a screen about to change colour, or
   nothing at all.
   `lobby → countdown → playing → buzzed → revealed → finished`.
