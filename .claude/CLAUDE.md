@@ -7,8 +7,8 @@ to buzz names the track. **Buzzer** is the same unforgeable race for the floor
 with no content at all — the host brings the charade, the quiz on paper or the
 lesson. **Quiz** serves its own, two question banks bundled with the server in
 French and English, a flags rubric dealt from every country the map
-names, an emoji rebus rubric — a title written in emojis — and a capitals
-rubric. **Reflex** is a race against a screen about to change colour, **Slate** is a private answer sheet on every screen that the host
+names, an emoji rebus rubric — a title written in emojis — a capitals
+rubric, and a silhouettes rubric — a country's outline alone. **Reflex** is a race against a screen about to change colour, **Slate** is a private answer sheet on every screen that the host
 marks on the wall, one item at a time, **Atlas** names a place that
 everyone puts a pawn on, paid by the kilometre to its border — or shows one
 for the table to name, **Challenge**

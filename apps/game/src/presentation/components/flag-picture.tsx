@@ -19,7 +19,7 @@ type FlagPictureProps = {
 
 /**
  * A flag printed onto the card it is asked on, at the 4:3 every file is drawn
- * at. The caller sizes it through `--flag-height`.
+ * at. The caller sizes it through `--prompt-picture-height`.
  */
 export const FlagPicture: React.FC<FlagPictureProps> = ({
   file,

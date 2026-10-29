@@ -38,6 +38,7 @@
     "dev": "wrangler dev",
     "flags:build": "node --import tsx scripts/build-flag-bank.ts",
     "questions:build": "node --import tsx scripts/build-question-bank.ts",
+    "silhouettes:build": "node --import tsx scripts/build-silhouette-bank.ts",
     "test": "vitest run",
     "test:watch": "vitest --watch"
   },

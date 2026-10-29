@@ -6,7 +6,8 @@ import {
   hostQuestionSchema,
   type QuestionCategory,
   type QuestionDrawSettings,
-  questionLanguageSchema
+  questionLanguageSchema,
+  silhouetteFileSchema
 } from '@melee/protocol/question'
 
 import { pickRandom } from '@melee/core/helpers/random'
@@ -18,6 +19,7 @@ import {
 import { bankedFlagQuestions } from './flag-questions'
 import bank from './question-bank.json' with { type: 'json' }
 import { bankedRebusQuestions } from './rebus-questions'
+import { bankedSilhouetteQuestions } from './silhouette-questions'
 
 /**
  * The one module that knows where the questions came from. Everything above it
@@ -52,6 +54,8 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
   language: questionLanguageSchema,
   /** Absent from the bank's own rows too: only `rebus-questions.ts` deals one. */
   rebus: z.string().nullable().default(null),
+  /** Absent from the bank's own rows too: only `silhouette-questions.ts` deals one. */
+  silhouette: silhouetteFileSchema.nullable().default(null),
   /** The upstream pack, so a question that turns out to be wrong is traceable. */
   theme: z.string()
 })
@@ -79,7 +83,8 @@ export const bankedQuestions = (): BankedQuestion[] => {
       .filter((question) => !asksACapitalTheRubricAsks(question)),
     ...bankedFlagQuestions(),
     ...bankedCapitalQuestions(),
-    ...bankedRebusQuestions()
+    ...bankedRebusQuestions(),
+    ...bankedSilhouetteQuestions()
   ]
 
   return parsedBank
@@ -119,7 +124,8 @@ export const hostQuestionOf = ({
   id,
   note,
   prompt,
-  rebus
+  rebus,
+  silhouette
 }: BankedQuestion): HostQuestion => ({
   accepted,
   answer,
@@ -129,7 +135,8 @@ export const hostQuestionOf = ({
   id,
   note,
   prompt,
-  rebus
+  rebus,
+  silhouette
 })
 
 /**

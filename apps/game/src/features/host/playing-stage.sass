@@ -341,8 +341,8 @@
 
         // The picture is the question here, and the sentence under it the
         // same five words every time.
-        .flag-picture
-          --flag-height: clamp(5rem, 40cqh, 22rem)
+        :is(.flag-picture, .country-silhouette)
+          --prompt-picture-height: clamp(5rem, 40cqh, 22rem)
 
         .rebus-line
           --rebus-size: clamp(3rem, 20cqh, 10rem)

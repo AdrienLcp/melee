@@ -20,12 +20,14 @@ import { z } from 'zod'
  * different game from one that ticks cinema. `flags` is another: a flag on
  * every screen, and the room names whose it is. `rebus` the third: a title
  * written in emojis. `capitals` the fourth: the room names a country's capital.
+ * `silhouettes` the fifth: a country's outline alone, and the room names it.
  */
 export const questionCategories = [
   'history',
   'geography',
   'flags',
   'capitals',
+  'silhouettes',
   'science',
   'arts',
   'cinema',
@@ -71,6 +73,12 @@ export const questionSchema = z.object({
  */
 export const flagFileSchema = z.string().regex(/^[0-9a-f]{12}\.svg$/)
 
+/**
+ * A country's outline the app serves under `/silhouettes/`, named after its
+ * own content for the flag's reason.
+ */
+export const silhouetteFileSchema = z.string().regex(/^[0-9a-f]{12}\.svg$/)
+
 /** The half a player may see: the question without any of its answers. */
 export const questionPromptSchema = z.object({
   category: questionCategorySchema,
@@ -83,7 +91,9 @@ export const questionPromptSchema = z.object({
    * other question. Its own field rather than part of the prompt, because the
    * prompt is the sentence asking what to name and this is the thing to read.
    */
-  rebus: z.string().min(1).max(64).nullable()
+  rebus: z.string().min(1).max(64).nullable(),
+  /** The country outline the question is about, drawn beside the prompt; `null` on every other question. */
+  silhouette: silhouetteFileSchema.nullable()
 })
 
 /**
@@ -155,6 +165,7 @@ export type QuestionDrawSettings = z.infer<typeof questionDrawSettingsSchema>
 export type QuestionCategory = z.infer<typeof questionCategorySchema>
 export type Question = z.infer<typeof questionSchema>
 export type FlagFile = z.infer<typeof flagFileSchema>
+export type SilhouetteFile = z.infer<typeof silhouetteFileSchema>
 export type QuestionPrompt = z.infer<typeof questionPromptSchema>
 export type RevealedQuestion = z.infer<typeof revealedQuestionSchema>
 export type HostQuestion = z.infer<typeof hostQuestionSchema>

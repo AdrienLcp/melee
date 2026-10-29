@@ -66,6 +66,7 @@ export const bankedRebusQuestions = (): BankedQuestion[] => {
         language,
         prompt: ASK_BY_KIND[language][kind],
         rebus,
+        silhouette: null,
         theme: 'melee-rebus'
       }))
   )

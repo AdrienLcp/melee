@@ -87,12 +87,23 @@ const readAtlas = () => {
   return atlasByCode
 }
 
+/**
+ * Every shape the atlas draws for a country merged into one MultiPolygon —
+ * mainland, islands and the holes another country makes in it — or `null`
+ * for a code the atlas does not draw.
+ */
+export const countryGeometryOf = (code: CountryCode) => {
+  const { shapesByCode, topology } = readAtlas()
+  const shapes = shapesByCode.get(code)
+
+  return shapes === undefined ? null : merge(topology, shapes)
+}
+
 const shapeCache = new Map<CountryCode, CountryShape>()
 
 /**
- * A country as the judging reads it, every shape the atlas draws for it merged
- * into one — mainland, islands and the holes another country makes in it —
- * or `null` for a code the atlas does not draw.
+ * A country as the judging reads it, or `null` for a code the atlas does not
+ * draw.
  */
 export const countryShapeOf = (code: CountryCode): CountryShape | null => {
   const cached = shapeCache.get(code)
@@ -101,14 +112,12 @@ export const countryShapeOf = (code: CountryCode): CountryShape | null => {
     return cached
   }
 
-  const { shapesByCode, topology } = readAtlas()
-  const shapes = shapesByCode.get(code)
+  const geometry = countryGeometryOf(code)
 
-  if (shapes === undefined) {
+  if (geometry === null) {
     return null
   }
 
-  const geometry = merge(topology, shapes)
   const rings: Ring[] = geometry.coordinates.flatMap((polygon) =>
     polygon.map((ring) =>
       ring.map(
@@ -143,9 +152,7 @@ export const pointInsideCountry = (code: CountryCode): GeoPoint | null => {
     return cached
   }
 
-  const { shapesByCode, topology } = readAtlas()
-  const shapes = shapesByCode.get(code)
-  const geometry = shapes === undefined ? null : merge(topology, shapes)
+  const geometry = countryGeometryOf(code)
 
   const centre =
     geometry?.coordinates

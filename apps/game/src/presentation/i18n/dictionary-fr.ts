@@ -1374,6 +1374,7 @@ export const FR_DICTIONARY = defineDictionary({
       quotes: 'Citations',
       rebus: 'Rébus',
       science: 'Sciences',
+      silhouettes: 'Silhouettes',
       sport: 'Sport',
       videogames: 'Jeux vidéo'
     },
@@ -1401,6 +1402,9 @@ export const FR_DICTIONARY = defineDictionary({
         'Quatre propositions, et tout le monde répond en même temps. La bonne rapporte 10 points, et plus tu la trouves tôt, plus la montre ajoute — jusqu’au double.',
       typed:
         'Tout le monde tape sa réponse en même temps. La bonne rapporte 30 points, et plus tu la trouves tôt, plus la montre ajoute — jusqu’au double.'
+    },
+    silhouette: {
+      alt: 'La forme du pays à reconnaître'
     },
     tagline: 'Une question, et le premier qui sait.',
     variant: {

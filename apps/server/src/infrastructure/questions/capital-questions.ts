@@ -141,6 +141,7 @@ export const bankedCapitalQuestions = (): BankedQuestion[] => {
       note: null,
       prompt: PROMPT_BY_LANGUAGE[language](row.code),
       rebus: null,
+      silhouette: null,
       theme: 'wikidata-capitals'
     }))
   )

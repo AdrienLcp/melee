@@ -21,6 +21,7 @@ import {
 } from '@/helpers/round-content'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
 import { CountedBoard } from '@/presentation/components/counted-board'
+import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
@@ -133,6 +134,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
+  const silhouette = quizContent(round)?.prompt.silhouette ?? null
   const rebus = quizContent(round)?.prompt.rebus ?? null
   if (track !== null) {
     return (
@@ -178,6 +180,9 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
         <div className='head'>
           <div className='identity' style={answerFitting(question.answer)}>
             {flag !== null && <FlagPicture file={flag} isNamedBeside />}
+            {silhouette !== null && (
+              <CountrySilhouette file={silhouette} isNamedBeside />
+            )}
             {rebus !== null && <RebusLine isNamedBeside rebus={rebus} />}
             <p className='title'>
               <VisuallyHidden elementType='span'>

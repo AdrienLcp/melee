@@ -383,8 +383,8 @@
           height: clamp(3.5rem, 12dvh, 8rem)
           width: clamp(3.5rem, 12dvh, 8rem)
 
-        .answer-card .flag-picture
-          --flag-height: clamp(2.75rem, 9dvh, 6rem)
+        .answer-card :is(.flag-picture, .country-silhouette)
+          --prompt-picture-height: clamp(2.75rem, 9dvh, 6rem)
 
         .answer-card .rebus-line
           --rebus-size: clamp(1.75rem, 6dvh, 3rem)
@@ -489,8 +489,8 @@
       object-fit: cover
       width: clamp(6rem, calc(var(--stage-unit) * 22), 10rem)
 
-    .flag-picture
-      --flag-height: clamp(4.5rem, calc(var(--stage-unit) * 16), 7.5rem)
+    :is(.flag-picture, .country-silhouette)
+      --prompt-picture-height: clamp(4.5rem, calc(var(--stage-unit) * 16), 7.5rem)
 
     .rebus-line
       --rebus-size: clamp(2.25rem, calc(var(--stage-unit) * 8), 4rem)

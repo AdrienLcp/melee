@@ -1441,6 +1441,7 @@ export const EN_DICTIONARY = defineDictionary({
       quotes: 'Quotes',
       rebus: 'Rebus',
       science: 'Science',
+      silhouettes: 'Silhouettes',
       sport: 'Sport',
       videogames: 'Video games'
     },
@@ -1468,6 +1469,9 @@ export const EN_DICTIONARY = defineDictionary({
         'Four answers, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
       typed:
         'Everyone types their answer at once. The right one scores 30 points, and the earlier you find it the more the clock adds — up to double.'
+    },
+    silhouette: {
+      alt: 'The country outline to name'
     },
     tagline: 'A question, and the first one who knows it.',
     variant: {

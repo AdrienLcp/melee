@@ -1,0 +1,9 @@
+@layer components
+  // Larger than a flag by default: the outline is the whole question, and a
+  // coast or a border is read at a size a flag's bands are not.
+  .country-silhouette
+    aspect-ratio: 1
+    background: var(--card-ink)
+    flex: none
+    mask: var(--silhouette-url) center / contain no-repeat
+    width: min(100%, var(--prompt-picture-height, clamp(5rem, 32cqmin, 16rem)))

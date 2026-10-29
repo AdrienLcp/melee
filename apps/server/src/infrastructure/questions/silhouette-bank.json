@@ -1,0 +1,1040 @@
+[
+  {
+    "code": "AFG",
+    "decoys": ["PAK", "TJK", "TKM"],
+    "file": "5f427b036db3.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "AGO",
+    "decoys": ["NAM", "ZMB", "COD"],
+    "file": "01aefa7b7d21.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "ALB",
+    "decoys": ["MKD", "XKX", "MNE"],
+    "file": "24034b629008.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ARE",
+    "decoys": ["QAT", "OMN", "KWT"],
+    "file": "0cca36f4379d.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ARG",
+    "decoys": ["CHL", "URY", "PRY"],
+    "file": "2933f419721d.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ARM",
+    "decoys": ["AZE", "GEO", "SYR"],
+    "file": "0b6843307e15.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "AUS",
+    "decoys": ["TLS", "PNG", "NCL"],
+    "file": "e8bdb681c0fe.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "AUT",
+    "decoys": ["SVN", "CZE", "HRV"],
+    "file": "b0e3bffe685b.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "AZE",
+    "decoys": ["ARM", "GEO", "IRQ"],
+    "file": "1df355f92021.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BDI",
+    "decoys": ["RWA", "UGA", "TZA"],
+    "file": "e73dbfbb1b49.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BEL",
+    "decoys": ["LUX", "NLD", "DEU"],
+    "file": "cd3d1aaf3b09.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "BEN",
+    "decoys": ["TGO", "GHA", "BFA"],
+    "file": "df9795e6787b.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BFA",
+    "decoys": ["GHA", "TGO", "BEN"],
+    "file": "84ba3ff7ed03.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BGD",
+    "decoys": ["BTN", "MMR", "NPL"],
+    "file": "fc5892702761.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BGR",
+    "decoys": ["MKD", "ROU", "XKX"],
+    "file": "2fc0c5da057d.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "BHS",
+    "decoys": ["CUB", "JAM", "HTI"],
+    "file": "8b850c4bf197.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BIH",
+    "decoys": ["HRV", "MNE", "SRB"],
+    "file": "029f83d3e00b.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BLR",
+    "decoys": ["LTU", "LVA", "UKR"],
+    "file": "4bc3777add6f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BLZ",
+    "decoys": ["GTM", "HND", "SLV"],
+    "file": "d22e7a17d341.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BOL",
+    "decoys": ["PRY", "PER", "BRA"],
+    "file": "4a2243168797.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "BRA",
+    "decoys": ["BOL", "PRY", "SUR"],
+    "file": "a6b1cc6374a6.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "BRN",
+    "decoys": ["MYS", "IDN", "KHM"],
+    "file": "a10f330208ea.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BTN",
+    "decoys": ["BGD", "NPL", "MMR"],
+    "file": "e82ad67fb00f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "BWA",
+    "decoys": ["NAM", "ZWE", "ZAF"],
+    "file": "f7b6fce844f6.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "CAF",
+    "decoys": ["CMR", "TCD", "COG"],
+    "file": "abaf7fd7087f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "CAN",
+    "decoys": ["USA", "GRL", "MEX"],
+    "file": "9961202df0f4.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CHE",
+    "decoys": ["LUX", "FRA", "AUT"],
+    "file": "451a55593451.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CHL",
+    "decoys": ["ARG", "URY", "PRY"],
+    "file": "5b30a7c24f6d.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CHN",
+    "decoys": ["MNG", "BTN", "MMR"],
+    "file": "401ef504516b.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CIV",
+    "decoys": ["LBR", "GHA", "BFA"],
+    "file": "023db7f7250c.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CMR",
+    "decoys": ["GNQ", "NGA", "GAB"],
+    "file": "75a7d7564b6d.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "COD",
+    "decoys": ["BDI", "RWA", "COG"],
+    "file": "0ca305eca97b.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "COG",
+    "decoys": ["GAB", "GNQ", "CMR"],
+    "file": "d33acc52eeda.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "COL",
+    "decoys": ["ECU", "VEN", "PAN"],
+    "file": "7dfe528dd32b.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CRI",
+    "decoys": ["NIC", "PAN", "HND"],
+    "file": "e9def037ffa9.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "CUB",
+    "decoys": ["BHS", "JAM", "HTI"],
+    "file": "85bb563edc52.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "CYP",
+    "decoys": ["LBN", "PSE", "ISR"],
+    "file": "bbd8f4be2676.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "CZE",
+    "decoys": ["AUT", "SVK", "DEU"],
+    "file": "a4b47be73927.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "DEU",
+    "decoys": ["LUX", "NLD", "CZE"],
+    "file": "28d543acf0e0.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "DJI",
+    "decoys": ["ETH", "ERI", "YEM"],
+    "file": "0f35581a52d3.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "DNK",
+    "decoys": ["NLD", "DEU", "BEL"],
+    "file": "fbe17c62dc29.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "DOM",
+    "decoys": ["HTI", "PRI", "JAM"],
+    "file": "d6d7418b2b37.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "DZA",
+    "decoys": ["TUN", "MAR", "MLI"],
+    "file": "3963f861524a.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ECU",
+    "decoys": ["COL", "PER", "PAN"],
+    "file": "50b521b90932.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "EGY",
+    "decoys": ["ISR", "PSE", "JOR"],
+    "file": "dbb5498e0670.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ERI",
+    "decoys": ["DJI", "ETH", "YEM"],
+    "file": "7d44fe499e9c.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "ESH",
+    "decoys": ["MRT", "MAR", "SEN"],
+    "file": "7a2ef57dc75f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "ESP",
+    "decoys": ["PRT", "FRA", "CHE"],
+    "file": "02f501dba9da.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "EST",
+    "decoys": ["LVA", "LTU", "BLR"],
+    "file": "015759525d7c.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ETH",
+    "decoys": ["DJI", "SOM", "ERI"],
+    "file": "04ae24747529.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "FIN",
+    "decoys": ["SWE", "EST", "NOR"],
+    "file": "dfdea04a90eb.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "FJI",
+    "decoys": ["VUT", "NCL", "SLB"],
+    "file": "7af1cf9ff92d.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "FLK",
+    "decoys": ["ARG", "URY", "CHL"],
+    "file": "f2815cbdb3b9.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "FRA",
+    "decoys": ["CHE", "LUX", "BEL"],
+    "file": "0b5911a2c922.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "GAB",
+    "decoys": ["GNQ", "COG", "CMR"],
+    "file": "1c271e1ebb34.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GBR",
+    "decoys": ["IRL", "NLD", "BEL"],
+    "file": "f86e091dfa95.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "GEO",
+    "decoys": ["ARM", "AZE", "TUR"],
+    "file": "87b2bcbbc3f5.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GHA",
+    "decoys": ["TGO", "BEN", "CIV"],
+    "file": "77af29381e5b.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "GIN",
+    "decoys": ["SLE", "GNB", "LBR"],
+    "file": "ccb5f87ea0dc.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GMB",
+    "decoys": ["SEN", "GNB", "GIN"],
+    "file": "0248222db4cb.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GNB",
+    "decoys": ["GMB", "SEN", "GIN"],
+    "file": "ea80f5f4a12f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GNQ",
+    "decoys": ["GAB", "CMR", "COG"],
+    "file": "136346b46dbd.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GRC",
+    "decoys": ["MKD", "ALB", "XKX"],
+    "file": "a23ca93f0814.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "GRL",
+    "decoys": ["ISL", "NOR", "SWE"],
+    "file": "7126ebdcbfe0.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GTM",
+    "decoys": ["BLZ", "SLV", "HND"],
+    "file": "a971c4719c71.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "GUY",
+    "decoys": ["SUR", "TTO", "VEN"],
+    "file": "7b13a455c449.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "HND",
+    "decoys": ["SLV", "NIC", "BLZ"],
+    "file": "141f336751a5.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "HRV",
+    "decoys": ["BIH", "SVN", "HUN"],
+    "file": "5362dcc7207e.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "HTI",
+    "decoys": ["DOM", "JAM", "PRI"],
+    "file": "966ac4b60d6d.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "HUN",
+    "decoys": ["SVK", "HRV", "SRB"],
+    "file": "87418634eef3.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "IDN",
+    "decoys": ["MYS", "BRN", "TLS"],
+    "file": "1fc64f604061.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "IND",
+    "decoys": ["NPL", "BGD", "BTN"],
+    "file": "2cd3c1593dd1.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "IRL",
+    "decoys": ["GBR", "BEL", "NLD"],
+    "file": "0124dd47b31c.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "IRN",
+    "decoys": ["KWT", "TKM", "QAT"],
+    "file": "f976e45d2d0e.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "IRQ",
+    "decoys": ["SYR", "KWT", "JOR"],
+    "file": "e8d69a22cc03.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ISL",
+    "decoys": ["GRL", "IRL", "NOR"],
+    "file": "5b6bfb966e36.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ISR",
+    "decoys": ["PSE", "JOR", "LBN"],
+    "file": "bc9e70965514.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ITA",
+    "decoys": ["SVN", "HRV", "BIH"],
+    "file": "217b435c62d0.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "JAM",
+    "decoys": ["CUB", "HTI", "DOM"],
+    "file": "8df2be373814.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "JOR",
+    "decoys": ["PSE", "ISR", "LBN"],
+    "file": "3d760eddd7b2.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "JPN",
+    "decoys": ["KOR", "PRK", "TWN"],
+    "file": "a66de1bcafb2.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "KAZ",
+    "decoys": ["UZB", "KGZ", "TJK"],
+    "file": "8ffa07fac295.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "KEN",
+    "decoys": ["UGA", "TZA", "ETH"],
+    "file": "b69785f6a0f8.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "KGZ",
+    "decoys": ["TJK", "UZB", "KAZ"],
+    "file": "c8f6e13234d4.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "KHM",
+    "decoys": ["VNM", "THA", "LAO"],
+    "file": "26994d94db2f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "KOR",
+    "decoys": ["PRK", "JPN", "TWN"],
+    "file": "3e7d22f6d4b2.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "KWT",
+    "decoys": ["IRQ", "QAT", "SAU"],
+    "file": "9a7a10989d25.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "LAO",
+    "decoys": ["VNM", "THA", "KHM"],
+    "file": "ad65f5e1b317.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "LBN",
+    "decoys": ["PSE", "SYR", "CYP"],
+    "file": "566830d0df72.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "LBR",
+    "decoys": ["SLE", "CIV", "GIN"],
+    "file": "b49c17a6b9d6.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "LBY",
+    "decoys": ["TUN", "EGY", "TCD"],
+    "file": "ef5f4bd3950e.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "LKA",
+    "decoys": ["IND", "BGD", "MMR"],
+    "file": "7a9a22dbcd24.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "LSO",
+    "decoys": ["ZAF", "SWZ", "BWA"],
+    "file": "3b27b266001e.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "LTU",
+    "decoys": ["LVA", "BLR", "EST"],
+    "file": "8a709dc2d753.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "LUX",
+    "decoys": ["BEL", "NLD", "DEU"],
+    "file": "1325323d17f0.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "LVA",
+    "decoys": ["LTU", "EST", "BLR"],
+    "file": "866d3e052e47.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "MAR",
+    "decoys": ["ESH", "MRT", "PRT"],
+    "file": "20453dbab668.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "MDA",
+    "decoys": ["ROU", "UKR", "BGR"],
+    "file": "8634deb4de66.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MDG",
+    "decoys": ["MOZ", "MWI", "SWZ"],
+    "file": "40abdd1bbab6.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MEX",
+    "decoys": ["GTM", "BLZ", "SLV"],
+    "file": "1f3919c88491.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "MKD",
+    "decoys": ["XKX", "ALB", "MNE"],
+    "file": "8a209dcbb1b3.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MLI",
+    "decoys": ["BFA", "MRT", "BEN"],
+    "file": "ebec86e3f2a6.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MMR",
+    "decoys": ["BGD", "LAO", "THA"],
+    "file": "14bc8c7a45f7.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MNE",
+    "decoys": ["XKX", "BIH", "ALB"],
+    "file": "732ff2c754ff.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MNG",
+    "decoys": ["CHN", "PRK", "RUS"],
+    "file": "ae7a481f89da.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MOZ",
+    "decoys": ["MWI", "ZWE", "ZMB"],
+    "file": "1c57ecb976c6.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MRT",
+    "decoys": ["ESH", "SEN", "MLI"],
+    "file": "215d375a0c20.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MWI",
+    "decoys": ["MOZ", "ZMB", "TZA"],
+    "file": "d2d18eec1893.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "MYS",
+    "decoys": ["BRN", "IDN", "KHM"],
+    "file": "0418093c35aa.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "NAM",
+    "decoys": ["BWA", "AGO", "ZAF"],
+    "file": "2cde09a66a0f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "NCL",
+    "decoys": ["VUT", "FJI", "SLB"],
+    "file": "52066c5392e6.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "NER",
+    "decoys": ["NGA", "TCD", "BEN"],
+    "file": "833bcb82b26d.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "NGA",
+    "decoys": ["BEN", "CMR", "TGO"],
+    "file": "b1f7d7c9f6fa.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "NIC",
+    "decoys": ["HND", "CRI", "SLV"],
+    "file": "77c44e7260d3.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "NLD",
+    "decoys": ["BEL", "LUX", "DEU"],
+    "file": "6c82e6dd1aaa.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "NOR",
+    "decoys": ["SWE", "FIN", "DNK"],
+    "file": "d54a59ab9ed4.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "NPL",
+    "decoys": ["BTN", "IND", "BGD"],
+    "file": "98fcfa666c58.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "NZL",
+    "decoys": ["NCL", "FJI", "VUT"],
+    "file": "8398966367a3.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "OMN",
+    "decoys": ["ARE", "QAT", "YEM"],
+    "file": "bf28272b410a.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "PAK",
+    "decoys": ["AFG", "TJK", "IND"],
+    "file": "0ccae153b48f.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "PAN",
+    "decoys": ["CRI", "NIC", "COL"],
+    "file": "1193efd51090.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "PER",
+    "decoys": ["ECU", "BOL", "COL"],
+    "file": "46d78541e524.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "PHL",
+    "decoys": ["TWN", "BRN", "MYS"],
+    "file": "30308afbf01f.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "PNG",
+    "decoys": ["SLB", "TLS", "AUS"],
+    "file": "c080d93eadae.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "POL",
+    "decoys": ["SVK", "CZE", "LTU"],
+    "file": "fe26924c3e02.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "PRI",
+    "decoys": ["DOM", "HTI", "TTO"],
+    "file": "d5bcae422f7f.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "PRK",
+    "decoys": ["KOR", "JPN", "TWN"],
+    "file": "c18672105b16.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "PRT",
+    "decoys": ["ESP", "MAR", "FRA"],
+    "file": "3bd4cb90a94c.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "PRY",
+    "decoys": ["BOL", "URY", "ARG"],
+    "file": "699568aa1e66.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "PSE",
+    "decoys": ["ISR", "JOR", "LBN"],
+    "file": "c420738c458c.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "QAT",
+    "decoys": ["ARE", "KWT", "SAU"],
+    "file": "0cb5e968b110.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ROU",
+    "decoys": ["MDA", "BGR", "SRB"],
+    "file": "222f247b431d.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "RUS",
+    "decoys": ["MNG", "KAZ", "KGZ"],
+    "file": "1ae893ac8008.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "RWA",
+    "decoys": ["BDI", "UGA", "COD"],
+    "file": "5dd8c1e2cbc1.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SAU",
+    "decoys": ["KWT", "QAT", "YEM"],
+    "file": "ffc26e6e4769.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "SDN",
+    "decoys": ["ERI", "SSD", "EGY"],
+    "file": "51a3f66410db.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SEN",
+    "decoys": ["GMB", "GNB", "GIN"],
+    "file": "89f30b8acbab.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "SLB",
+    "decoys": ["VUT", "NCL", "PNG"],
+    "file": "9884a9f992a8.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SLE",
+    "decoys": ["GIN", "LBR", "GNB"],
+    "file": "7bf1f428471a.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SLV",
+    "decoys": ["GTM", "HND", "BLZ"],
+    "file": "eceafdc16744.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SOM",
+    "decoys": ["DJI", "ETH", "KEN"],
+    "file": "7f6ef42db607.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SRB",
+    "decoys": ["XKX", "MNE", "BIH"],
+    "file": "956d8233ca85.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "SSD",
+    "decoys": ["UGA", "SDN", "RWA"],
+    "file": "9154cc639722.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SUR",
+    "decoys": ["GUY", "TTO", "VEN"],
+    "file": "6a698a09dc76.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SVK",
+    "decoys": ["HUN", "CZE", "POL"],
+    "file": "e3f3e40277da.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "SVN",
+    "decoys": ["HRV", "AUT", "BIH"],
+    "file": "b24f514dae24.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "SWE",
+    "decoys": ["NOR", "FIN", "EST"],
+    "file": "7ec0c27a4e17.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "SWZ",
+    "decoys": ["LSO", "ZAF", "ZWE"],
+    "file": "9ea47376e408.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "SYR",
+    "decoys": ["LBN", "JOR", "PSE"],
+    "file": "4be9d6696296.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TCD",
+    "decoys": ["CAF", "NER", "SDN"],
+    "file": "17f5a55c6288.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TGO",
+    "decoys": ["BEN", "GHA", "BFA"],
+    "file": "d189b237aaf2.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "THA",
+    "decoys": ["LAO", "KHM", "VNM"],
+    "file": "800e571360b8.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "TJK",
+    "decoys": ["KGZ", "AFG", "UZB"],
+    "file": "01cdfde1a29e.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TKM",
+    "decoys": ["UZB", "AFG", "IRN"],
+    "file": "add53a3eb56a.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TLS",
+    "decoys": ["IDN", "MYS", "BRN"],
+    "file": "c4383585fb9c.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TTO",
+    "decoys": ["VEN", "GUY", "SUR"],
+    "file": "88f169a2e917.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TUN",
+    "decoys": ["DZA", "ITA", "LBY"],
+    "file": "08d1779565e7.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "TUR",
+    "decoys": ["CYP", "SYR", "LBN"],
+    "file": "dcc0c414bfc1.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "TWN",
+    "decoys": ["PHL", "KOR", "VNM"],
+    "file": "9132bd77b248.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "TZA",
+    "decoys": ["BDI", "RWA", "MWI"],
+    "file": "0cedb8f56628.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "UGA",
+    "decoys": ["RWA", "BDI", "KEN"],
+    "file": "e9e5a5607bf7.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "UKR",
+    "decoys": ["MDA", "BLR", "ROU"],
+    "file": "273d203aa547.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "URY",
+    "decoys": ["ARG", "PRY", "CHL"],
+    "file": "7d419cefc0f0.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "USA",
+    "decoys": ["MEX", "CAN", "BHS"],
+    "file": "4b3c4c3caeb3.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "UZB",
+    "decoys": ["TKM", "TJK", "KAZ"],
+    "file": "ed3c1f98dce1.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "VEN",
+    "decoys": ["TTO", "GUY", "COL"],
+    "file": "f28ed0587f64.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "VNM",
+    "decoys": ["LAO", "KHM", "THA"],
+    "file": "8d9a931bd45e.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "VUT",
+    "decoys": ["NCL", "SLB", "FJI"],
+    "file": "5fda50eca0da.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "XKX",
+    "decoys": ["MKD", "MNE", "ALB"],
+    "file": "ab81e6d74033.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "YEM",
+    "decoys": ["DJI", "ERI", "SAU"],
+    "file": "e0e233741ce3.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "ZAF",
+    "decoys": ["LSO", "SWZ", "BWA"],
+    "file": "9080ebd26d4c.svg",
+    "isWellKnown": true
+  },
+  {
+    "code": "ZMB",
+    "decoys": ["ZWE", "MWI", "MOZ"],
+    "file": "58e0b83e1d0b.svg",
+    "isWellKnown": false
+  },
+  {
+    "code": "ZWE",
+    "decoys": ["MOZ", "ZMB", "BWA"],
+    "file": "eb941ef51da2.svg",
+    "isWellKnown": false
+  }
+]

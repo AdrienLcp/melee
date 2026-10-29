@@ -2,6 +2,7 @@ import type React from 'react'
 
 import type { QuestionPrompt } from '@melee/protocol/question'
 
+import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { FlagPicture } from '@/presentation/components/flag-picture'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -46,6 +47,9 @@ export const AskedQuestion: React.FC<AskedQuestionProps> = ({ prompt }) => {
       </p>
       {prompt.flag !== null && <FlagPicture file={prompt.flag} />}
       {prompt.rebus !== null && <RebusLine rebus={prompt.rebus} />}
+      {prompt.silhouette !== null && (
+        <CountrySilhouette file={prompt.silhouette} />
+      )}
     </div>
   )
 }

@@ -1,6 +1,8 @@
 # 57 — Silhouettes (a quiz rubric)
 
-**To do.**
+**Done** 29/10/2026 — 173 outlines, seen muted on a seated console (dark) and a 390 seat (light), question and reveal; the wall's stage reuses the flag's sizing and was not driven.
+
+What reality settled: no `--silhouette-ink` token — the outline is a mask over `--card-ink`, which both palettes already own; the mainland is a rule, not a list (a piece is kept within 1.6× the largest piece's reach of its centre, or at a quarter of its area), with Antarctica and two austral territories left out; outlines are thinned to a 0.6-unit step, 16 kB at most; the decoys are the nearest banked countries; `--flag-height` became `--prompt-picture-height`, shared by both pictures.
 
 A country's outline goes up alone, filled, no map around it, no neighbour, no
 label — *which country is this?* Four names on a pick, a field on a typed

@@ -286,14 +286,14 @@ describe('drawQuestion', () => {
    * carried forty-one copies. The build drops them; this is what says so, and
    * what goes red the day a new source is folded in without that pass. Every
    * flag shares one sentence, so a flag's question is its sentence and its flag,
-   * and a rebus is its sentence and its emojis.
+   * a rebus is its sentence and its emojis, and an outline its sentence and its file.
    */
   it('[bank] asks no question twice', () => {
     const seen = new Set<string>()
     const repeated: string[] = []
 
     for (const question of BANKED_QUESTIONS) {
-      const key = `${question.language}::${question.flag ?? ''}::${question.rebus ?? ''}::${normalizeAnswer(question.prompt)}`
+      const key = `${question.language}::${question.flag ?? ''}::${question.rebus ?? ''}::${question.silhouette ?? ''}::${normalizeAnswer(question.prompt)}`
 
       if (seen.has(key)) {
         repeated.push(question.id)

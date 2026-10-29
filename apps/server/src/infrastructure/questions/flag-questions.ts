@@ -1,18 +1,16 @@
 import { z } from 'zod'
 
-import {
-  type CountryCode,
-  countryCodeSchema
-} from '@melee/protocol/country-code'
+import { countryCodeSchema } from '@melee/protocol/country-code'
 import {
   flagFileSchema,
   type QuestionLanguage,
   questionLanguages
 } from '@melee/protocol/question'
 
-import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
-import { COUNTRY_NAMES_FR } from '@melee/core/countries/country-names-fr'
-
+import {
+  acceptedCountryNames,
+  COUNTRY_NAMES_BY_LANGUAGE
+} from './country-answers'
 import flagBank from './flag-bank.json' with { type: 'json' }
 import type { BankedQuestion } from './question-bank'
 
@@ -36,67 +34,6 @@ const PROMPT_BY_LANGUAGE = {
   fr: 'À qui est ce drapeau ?'
 } as const satisfies Record<QuestionLanguage, string>
 
-const NAMES_BY_LANGUAGE = {
-  en: COUNTRY_NAMES_EN,
-  fr: COUNTRY_NAMES_FR
-} as const satisfies Record<
-  QuestionLanguage,
-  Record<CountryCode, { name: string }>
->
-
-/** What a table says instead of the name the map prints. */
-const ACCEPTED_BY_LANGUAGE = {
-  en: {
-    ARE: ['UAE', 'Emirates'],
-    BIH: ['Bosnia'],
-    CIV: ['Ivory Coast'],
-    COD: ['DRC', 'DR Congo', 'Congo-Kinshasa'],
-    COG: ['Congo-Brazzaville'],
-    CPV: ['Cabo Verde'],
-    CZE: ['Czech Republic'],
-    GBR: ['UK', 'Great Britain', 'Britain'],
-    MKD: ['Macedonia'],
-    MMR: ['Burma'],
-    NLD: ['Holland'],
-    SWZ: ['Swaziland'],
-    TLS: ['East Timor'],
-    USA: ['USA', 'America', 'United States of America'],
-    VAT: ['Vatican', 'Holy See']
-  },
-  fr: {
-    ARE: ['Émirats', 'EAU'],
-    BIH: ['Bosnie'],
-    CAF: ['République centrafricaine'],
-    COD: ['RDC', 'Congo-Kinshasa'],
-    COG: ['Congo-Brazzaville', 'République du Congo'],
-    CZE: ['République tchèque'],
-    GBR: ['Grande-Bretagne'],
-    MKD: ['Macédoine'],
-    MMR: ['Myanmar'],
-    NLD: ['Hollande'],
-    SWZ: ['Swaziland'],
-    TLS: ['Timor-Leste'],
-    USA: ['USA', 'États-Unis d’Amérique'],
-    VAT: ['Saint-Siège']
-  }
-} as const satisfies Record<
-  QuestionLanguage,
-  Partial<Record<CountryCode, readonly string[]>>
->
-
-const acceptedFor = ({
-  code,
-  language
-}: {
-  code: CountryCode
-  language: QuestionLanguage
-}): string[] => {
-  const accepted: Partial<Record<CountryCode, readonly string[]>> =
-    ACCEPTED_BY_LANGUAGE[language]
-
-  return [...(accepted[code] ?? [])]
-}
-
 let flagQuestions: BankedQuestion[] | undefined
 
 /**
@@ -107,10 +44,10 @@ let flagQuestions: BankedQuestion[] | undefined
 export const bankedFlagQuestions = (): BankedQuestion[] => {
   flagQuestions ??= flagBankSchema.parse(flagBank).flatMap((flag) =>
     questionLanguages.map((language) => {
-      const names = NAMES_BY_LANGUAGE[language]
+      const names = COUNTRY_NAMES_BY_LANGUAGE[language]
 
       return {
-        accepted: acceptedFor({ code: flag.code, language }),
+        accepted: acceptedCountryNames({ code: flag.code, language }),
         answer: names[flag.code].name,
         category: 'flags' as const,
         choiceOnly: false,
@@ -127,6 +64,7 @@ export const bankedFlagQuestions = (): BankedQuestion[] => {
         note: null,
         prompt: PROMPT_BY_LANGUAGE[language],
         rebus: null,
+        silhouette: null,
         theme: 'flag-icons'
       }
     })

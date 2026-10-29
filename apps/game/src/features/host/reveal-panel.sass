@@ -43,14 +43,14 @@
       &.placeholder
         background: repeating-linear-gradient(135deg, var(--track-a) 0 10px, var(--track-b) 10px 20px)
 
-    .flag-picture
-      --flag-height: min(calc(var(--stage-unit) * 18), 10rem)
+    :is(.flag-picture, .country-silhouette)
+      --prompt-picture-height: min(calc(var(--stage-unit) * 18), 10rem)
 
       display: block
       margin-bottom: 0.4em
 
       @include layout.narrow
-        --flag-height: clamp(2.75rem, 9dvh, 6rem)
+        --prompt-picture-height: clamp(2.75rem, 9dvh, 6rem)
 
     .rebus-line
       --rebus-size: min(calc(var(--stage-unit) * 9), 5rem)
@@ -367,8 +367,8 @@
       .cover
         --cover-size: min(15.625rem, 34cqh, 22cqi)
 
-      .flag-picture
-        --flag-height: min(10rem, 20cqh)
+      :is(.flag-picture, .country-silhouette)
+        --prompt-picture-height: min(10rem, 20cqh)
 
       .rebus-line
         --rebus-size: min(5rem, 10cqh)
