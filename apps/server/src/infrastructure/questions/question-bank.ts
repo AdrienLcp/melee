@@ -4,6 +4,7 @@ import {
   flagFileSchema,
   type HostQuestion,
   hostQuestionSchema,
+  type QuestionCategory,
   type QuestionDrawSettings,
   questionLanguageSchema
 } from '@melee/protocol/question'
@@ -150,14 +151,20 @@ export const hostQuestionOf = ({
  * `isUsable` is how a game asks for a shape of question rather than a subject.
  * A `choiceOnly` row wants its own decoys on screen, which is true of a quiz in
  * `choice` mode and of nothing else: typed mode has a text field.
+ *
+ * `previousCategory` is the round just played, and is not drawn again while
+ * another category is left: an independent draw dealt two flags in a row one
+ * round in three over three rubrics, and a table reads that as a broken mix.
  */
 export const drawQuestion = ({
   isUsable,
   playedIds,
+  previousCategory = null,
   settings
 }: {
   isUsable: (question: BankedQuestion) => boolean
   playedIds: ReadonlySet<string>
+  previousCategory?: QuestionCategory | null
   settings: QuestionDrawSettings
 }): BankedQuestion | null => {
   const eligible = (byLanguage().get(settings.language) ?? []).filter(
@@ -171,6 +178,10 @@ export const drawQuestion = ({
   )
 
   const byCategory = Map.groupBy(eligible, (question) => question.category)
+
+  if (previousCategory !== null && byCategory.size > 1) {
+    byCategory.delete(previousCategory)
+  }
 
   return pickRandom(pickRandom([...byCategory.values()]) ?? [])
 }

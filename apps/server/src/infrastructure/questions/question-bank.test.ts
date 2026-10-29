@@ -101,6 +101,39 @@ describe('drawQuestion', () => {
     ).toBe(true)
   })
 
+  it('[bank] never deals the category just played while another is left', () => {
+    const settings: QuizSettings = {
+      ...DEFAULT_QUIZ_SETTINGS,
+      categories: ['flags', 'history']
+    }
+
+    const categories = new Set(
+      Array.from(
+        { length: 200 },
+        () =>
+          drawQuestion({
+            isUsable: () => true,
+            playedIds: NOTHING_PLAYED,
+            previousCategory: 'flags',
+            settings
+          })?.category
+      )
+    )
+
+    expect([...categories]).toEqual(['history'])
+  })
+
+  it('[bank] deals the category just played when it is the only one ticked', () => {
+    const question = drawQuestion({
+      isUsable: () => true,
+      playedIds: NOTHING_PLAYED,
+      previousCategory: 'flags',
+      settings: { ...DEFAULT_QUIZ_SETTINGS, categories: ['flags'] }
+    })
+
+    expect(question?.category).toBe('flags')
+  })
+
   it('[bank] runs out rather than repeating what the room has had', () => {
     const settings: QuizSettings = {
       ...DEFAULT_QUIZ_SETTINGS,

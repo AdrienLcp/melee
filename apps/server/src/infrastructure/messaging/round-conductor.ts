@@ -323,6 +323,10 @@ export const beginRound = async (
     const question = drawQuestion({
       isUsable: (row) => showsItsCandidates || !row.choiceOnly,
       playedIds: room.playedContentIds,
+      previousCategory:
+        room.round?.content.kind === 'quiz'
+          ? room.round.content.question.category
+          : null,
       settings: game
     })
 
