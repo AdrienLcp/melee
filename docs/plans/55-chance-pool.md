@@ -1,7 +1,7 @@
 # 55 — The chance pool
 
-Asked 29/10/2026: the dice row under the planned games ("8 au hasard, parmi
-Blind test, Quiz") is read-only. The host wants to choose which games those
+Asked 29/10/2026: the dice row under the planned games ("8 drawn, among
+Blind test, Quiz" on a French console) is read-only. The host wants to choose which games those
 rounds are drawn among, and with which settings — including a game that has no
 planned row of its own.
 
@@ -45,13 +45,13 @@ Why not a second list of `GameSettings`: `lineUpAt`, `lineUpPlayed`,
 1. **Core + protocol**, with tests broken once: the field, its default, the
    remap in `withoutEntry` / `withEntryDuplicated` / the add path, the dealing
    rules above, `hasEntryLeftToDeal` and `endsTheEvening` counting a `chance`
-   entry as dealable.
+   entry as still to deal.
 2. **Server**: refusal of `chance` on a host-content game, socket suite for a
    pool-only entry drawn past the rows and never given one.
 3. **Console** (start with the `impeccable` skill): the dice row becomes a
-   button opening a "Au hasard" page — the pool's games, each opening its
+   button opening a "drawn" page — the pool's games, each opening its
    settings page like a planned entry, a switch per planned entry that serves
-   its own content ("aussi au hasard"), and "Ajouter un jeu au hasard" reusing
+   its own content ("also drawn"), and an "add a game to the draw" row reusing
    the shelf, adding a `chance` entry. The dice row's detail lists the pool.
    Verified muted in a browser with a pool-only quiz drawn on round 3.
 4. Saved evenings carry the field; `docs/game-catalogue.md` and the CLAUDE.md
