@@ -29,6 +29,7 @@ import {
   legalPathFor,
   paths,
   useIsCurrentPath,
+  useIsOnWall,
   useNavigateToLocale,
   usePathname,
   useRoomCodeParam
@@ -354,6 +355,7 @@ export const AppMenu: React.FC = () => {
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
+  const isOnWall = useIsOnWall()
   const { setVolume, volume } = useVolume()
   const [build, setBuild] = useState<string | null>(null)
   const trigger = useRef<HTMLButtonElement>(null)
@@ -457,7 +459,7 @@ export const AppMenu: React.FC = () => {
                 <RoomInvitation roomCode={roomCode} />
               )}
 
-              {!isInsideRoom && (
+              {!isInsideRoom && !isOnWall && (
                 <section className='this-device'>
                   <h2>{translate('menu.thisDevice.title')}</h2>
                   {!isOnWallPairing && (

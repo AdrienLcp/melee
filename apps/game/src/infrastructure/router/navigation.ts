@@ -322,6 +322,10 @@ export const useIsCurrentPath = (path: string): boolean => {
   return withoutTrailingSlash(pathname) === withoutTrailingSlash(path)
 }
 
+/** The room's own screen, which already is what pairing would make it. */
+export const useIsOnWall = (): boolean =>
+  matchPath(paths.wall, useLocation().pathname) !== null
+
 /** The path of the page being drawn, which changes on every navigation. */
 export const usePathname = (): string => useLocation().pathname
 

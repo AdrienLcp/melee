@@ -81,8 +81,15 @@ export const isAppleMobile = (): boolean =>
   /iPhone|iPad|iPod/.test(navigator.userAgent) ||
   (navigator.userAgent.includes('Macintosh') && navigator.maxTouchPoints > 1)
 
-/** Safari on an iPhone keeps fullscreen for a video and refuses it to a page. */
-export const canGoFullscreen = (): boolean => document.fullscreenEnabled
+/**
+ * Safari on an iPhone keeps fullscreen for a video and refuses it to a page,
+ * and an installed app already fills the screen it was given, so the press
+ * would change nothing either way.
+ */
+export const canGoFullscreen = (): boolean =>
+  document.fullscreenEnabled === true &&
+  !isStandaloneDisplay() &&
+  !matchMedia('(display-mode: fullscreen)').matches
 
 export const isFullscreen = (): boolean => document.fullscreenElement !== null
 
