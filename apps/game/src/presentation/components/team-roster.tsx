@@ -15,6 +15,7 @@ import {
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
+import { AwayMark } from './away-mark'
 import { Pawn } from './pawn'
 import { ReadyMark } from './ready-mark'
 import { useRowsTravel } from './use-rows-travel'
@@ -208,9 +209,7 @@ const SeatChips: React.FC<SeatChipsProps> = ({
           <Pawn seat={roster.indexOf(player)} />
           <span className='name'>{player.nickname}</span>
           {marksReady === true && player.isReady && <ReadyMark />}
-          {!player.isConnected && (
-            <span className='state'>{translate('player.away')}</span>
-          )}
+          {!player.isConnected && <AwayMark />}
           {player.id === youId && (
             <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
           )}

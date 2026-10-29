@@ -10,6 +10,7 @@ import {
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { AwayMark } from './away-mark'
 import { Button } from './button'
 import { CrossIcon } from './icons'
 import { Pawn } from './pawn'
@@ -161,9 +162,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
               contrast floor and said it to no reader who was not looking at it.
               The word is the signal now; the ink only seconds it.
             */}
-              {!player.isConnected && (
-                <span className='state'>{translate('player.away')}</span>
-              )}
+              {!player.isConnected && <AwayMark />}
               {player.id === youId && (
                 <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
               )}

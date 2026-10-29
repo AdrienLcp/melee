@@ -1,0 +1,20 @@
+@use '../styles/typography'
+
+@layer components
+  .away-mark
+    @include typography.label
+
+    align-items: center
+    border: var(--stroke-thin) solid var(--rule-strong)
+    border-radius: var(--radius-full)
+    color: var(--ink-muted)
+    display: inline-flex
+    flex: none
+    gap: 0.3em
+    line-height: 1
+    padding: 0.25em 0.6em 0.25em 0.45em
+    white-space: nowrap
+
+    svg
+      height: 1em
+      width: 1em

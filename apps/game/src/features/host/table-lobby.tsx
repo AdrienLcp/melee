@@ -8,6 +8,7 @@ import type {
   RoomSettings
 } from '@melee/protocol/room'
 
+import { AwayMark } from '@/presentation/components/away-mark'
 import { GameIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
@@ -214,9 +215,7 @@ const SeatChips: React.FC<{
         >
           <Pawn seat={roster.indexOf(player)} />
           <span className='name'>{player.nickname}</span>
-          {!player.isConnected && (
-            <span className='state'>{translate('player.away')}</span>
-          )}
+          {!player.isConnected && <AwayMark />}
           {player.id === youId && (
             <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
           )}

@@ -47,6 +47,7 @@ import {
   Tv,
   Upload,
   Users,
+  WifiOff,
   X,
   Zap
 } from 'lucide-react'
@@ -103,6 +104,7 @@ export const FullscreenExitIcon = inFamily(Minimize)
 export const MinusIcon = inFamily(Minus)
 export const MoreIcon = inFamily(Ellipsis)
 export const MoveIcon = inFamily(ArrowRightLeft)
+export const OfflineIcon = inFamily(WifiOff)
 export const PanelFoldIcon = inFamily(PanelRightClose)
 export const PanelOpenIcon = inFamily(PanelRightOpen)
 export const PanelSideIcon = inFamily(ArrowLeftRight)

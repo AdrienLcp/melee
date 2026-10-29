@@ -50,10 +50,11 @@
     .pawn
       font-size: var(--text-em-xl)
 
-    .state
+    .away-mark
       grid-column: 2
+      justify-self: start
 
-    &:has(.state) .pawn
+    &:has(.away-mark) .pawn
       grid-row: span 2
 
   // A chip already has its own box, so the ruled board's bleed comes off it.

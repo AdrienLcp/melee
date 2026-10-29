@@ -648,7 +648,7 @@ quarters and a quarter stays showing.
 
 **The Ruled, Never Dimmed Rule.** A state never lowers opacity. Disabled is
 the empty socket, its label at full text contrast; a gone seat is muted ink plus
-a word; a spent tile is a socket.
+its `AwayMark` tag; a spent tile is a socket.
 
 ## Shapes
 
@@ -750,7 +750,10 @@ under every answer mode a verdict is owed in.
 ### Box lid, shelf and spines
 - **`box-lid`**: a paper card with its keyline, re-pointing `--field`, `--ink`,
   `--rule`, `--edge`, `--ground` at the paper so any board component prints
-  correctly on it. The front doors, the nickname form and the slate's line in
+  correctly on it. Every `piece.card` prints the same inks through
+  `paper-inks` (`_piece.sass`), so a board component set on a card in the dark
+  palette reads the paper's `--card-tint` and `--card-socket`, never the
+  board's. The front doors, the nickname form and the slate's line in
   hand are lids; a game's own door is its lid banded in `--spine-*`.
 - **`TickShelf`** (console lobby game picker): eleven lids,
   or a column when the names would not fit whole; the ticked ones pulled
@@ -807,7 +810,11 @@ or a poster carries none of them.
 on `--track-a` with the pawn and the name, a socket per empty pawn, the own
 seat in a keyline. `AnsweredPawns` on the console stands a pawn for an answer
 in and dashes one owed — *that*, never *what*. Removing a player is a ✕ named
-`Remove {nickname}`.
+`Remove {nickname}`. A seat whose screen has gone mutes its name and carries
+`AwayMark`: an outlined `--radius-full` tag, a wifi-off glyph and the word in
+`--ink-muted` — a tag, never a bare word after the name, because *Adrien hors
+ligne* reads as a name. The score track, too narrow for it, keeps the word for
+screen readers alone.
 
 ### Teams (`TeamRoster`, `PawnColoursProvider`)
 A room playing in teams stands every seat's pawn in its team's colour, on every
