@@ -41,7 +41,7 @@ type MatchstickBoardProps = {
   glyphs: string
   /** The stick being held, and `null` while none is. */
   lifted: StickPlace | null
-  /** A stick picked up, or the held one put back with `null`. */
+  /** A stick picked up — by a press, or as a drag leaves it — or the held one put back with `null`. */
   onLift: (place: StickPlace | null) => void
   /** The held stick laid down: the move it makes now, or `null` once it is back where it started. */
   onPlace: (move: StickMove | null) => void
@@ -265,6 +265,10 @@ export const MatchstickBoard: React.FC<MatchstickBoardProps> = ({
       press.hasTravelled ||
       Math.hypot(event.clientX - press.startX, event.clientY - press.startY) >
         DRAG_SLOP
+
+    if (hasTravelled && !press.hasTravelled && !press.place.isEmpty) {
+      onLift(stickPlaceOf(press.place))
+    }
 
     setPress({ ...press, hasTravelled, pointer })
   }
