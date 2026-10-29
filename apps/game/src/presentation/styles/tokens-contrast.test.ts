@@ -6,6 +6,14 @@ import { describe, expect, it } from 'vitest'
 import { shelvedGames } from '@melee/protocol/game'
 
 const TOKENS = readFileSync(new URL('_tokens.sass', import.meta.url), 'utf8')
+const PIECE = readFileSync(new URL('_piece.sass', import.meta.url), 'utf8')
+
+const declaredNames = (source: string): Set<string> =>
+  new Set(source.match(/^\s+--[a-z0-9-]+(?=:)/gm)?.map((name) => name.trim()))
+
+const PAPER_INKS = declaredNames(
+  PIECE.slice(PIECE.indexOf('@mixin paper-inks'), PIECE.indexOf('@mixin card'))
+)
 
 const TILES = [1, 2, 3, 4] as const
 
@@ -167,6 +175,16 @@ describe('colour tokens', () => {
           foreground: '--card-ink',
           minimum: WCAG_AA.text
         },
+        {
+          background: '--card-socket-well',
+          foreground: '--card-ink',
+          minimum: WCAG_AA.text
+        },
+        {
+          background: '--card-socket',
+          foreground: '--card-socket-line',
+          minimum: WCAG_AA.nonText
+        },
         ...['--groove', '--card-socket'].flatMap((background) =>
           ROUND_CLOCK_INKS.map((foreground) => ({
             background,
@@ -176,5 +194,15 @@ describe('colour tokens', () => {
         )
       ])
     ).toEqual([])
+  })
+
+  it('[contrast] paper re-points every sibling of a board token it re-points', () => {
+    const forgotten = [...declaredNames(TOKENS)].filter(
+      (name) =>
+        !PAPER_INKS.has(name) &&
+        [...PAPER_INKS].some((paperName) => name.startsWith(`${paperName}-`))
+    )
+
+    expect(forgotten).toEqual([])
   })
 })
