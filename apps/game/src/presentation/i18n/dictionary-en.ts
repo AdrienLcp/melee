@@ -744,14 +744,33 @@ export const EN_DICTIONARY = defineDictionary({
         emptyButYou: 'Nobody else at the table yet'
       },
       wall: {
-        dismiss: 'Let the room’s screen go',
+        anotherLines:
+          'It shows the game too, without the sound: one screen plays it. Open Mêlée on it, choose “Become the room’s screen”, then type the code it shows here.',
+        anotherTitle: 'One more screen',
+        dismiss: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: 'Let the room’s screen go',
+              other: 'Let the room’s screens go'
+            }
+          }
+        }),
         linesOff:
           'For now, this screen shows the game and plays the sound. Nothing else is needed: the table plays fine like this.',
-        linesOn:
-          'It shows the game and plays the sound; this screen stays silent and keeps the controls.',
+        linesOn: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: 'It shows the game and plays the sound; this screen stays silent and keeps the controls.',
+              other:
+                'They show the game, one of them plays the sound; this screen stays silent and keeps the controls.'
+            }
+          }
+        }),
         name: 'The room’s screen',
         off: 'none for now',
-        on: 'connected',
+        on: defineTranslation('{count:plural}', {
+          plural: { count: { one: 'connected', other: '{?} connected' } }
+        }),
         pairLines:
           'Open Mêlée on it and choose “Become the room’s screen”, then type the code it shows here.',
         pairTitle: 'A screen nearby',

@@ -14,7 +14,11 @@ import type { Room } from '@/domain/room/room'
 import { toHostView, toPlayerView, toWallView } from '@/domain/room/room-view'
 
 import type { Connection, Outbound } from './connection'
-import { isHostConnected, isWallConnected } from './room-connections'
+import {
+  electSpeakerWall,
+  isHostConnected,
+  wallCountOf
+} from './room-connections'
 import type { RoomEngine } from './room-engine'
 
 export const sendError = (
@@ -59,9 +63,9 @@ const encodeViewFor = (
   {
     envelope,
     isHostThere,
-    isWallThere,
     now,
-    room
+    room,
+    wallCount
   }: {
     envelope:
       | {
@@ -72,21 +76,23 @@ const encodeViewFor = (
         }
       | { type: 'room.updated' }
     isHostThere: boolean
-    isWallThere: boolean
     now: number
     room: Room
+    wallCount: number
   }
 ): string => {
+  const isWallThere = wallCount > 0
+
   switch (connection.role) {
     case 'host': {
       return encodeChecked(hostServerMessageSchema, {
         ...envelope,
         view: toHostView({
           isHostConnected: isHostThere,
-          isWallConnected: isWallThere,
           now,
           room,
-          seatId: connection.playerId
+          seatId: connection.playerId,
+          wallCount
         })
       })
     }
@@ -107,7 +113,12 @@ const encodeViewFor = (
     case 'wall': {
       return encodeChecked(wallServerMessageSchema, {
         ...envelope,
-        view: toWallView({ isHostConnected: isHostThere, now, room })
+        view: toWallView({
+          isHostConnected: isHostThere,
+          isSpeaker: connection.isSpeaker,
+          now,
+          room
+        })
       })
     }
   }
@@ -119,6 +130,7 @@ export const sendWelcome = (
 ): void => {
   const now = engine.now()
 
+  electSpeakerWall(engine)
   connection.send(
     encodeViewFor(connection, {
       envelope: {
@@ -128,17 +140,23 @@ export const sendWelcome = (
         type: 'welcome'
       },
       isHostThere: isHostConnected(engine),
-      isWallThere: isWallConnected(engine),
       now,
-      room: engine.room
+      room: engine.room,
+      wallCount: wallCountOf(engine)
     })
   )
 }
 
-/** Each socket receives its whole role-scoped view, never a delta. */
+/**
+ * Each socket receives its whole role-scoped view, never a delta. Every change
+ * passes here, a wall leaving included, which is what makes it the place a
+ * departed speaker is replaced.
+ */
 export const broadcastRoom = (engine: RoomEngine): void => {
+  electSpeakerWall(engine)
+
   const isHostThere = isHostConnected(engine)
-  const isWallThere = isWallConnected(engine)
+  const wallCount = wallCountOf(engine)
   const now = engine.now()
 
   for (const connection of engine.connections.all()) {
@@ -146,9 +164,9 @@ export const broadcastRoom = (engine: RoomEngine): void => {
       encodeViewFor(connection, {
         envelope: { type: 'room.updated' },
         isHostThere,
-        isWallThere,
         now,
-        room: engine.room
+        room: engine.room,
+        wallCount
       })
     )
   }

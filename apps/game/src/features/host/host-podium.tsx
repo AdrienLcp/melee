@@ -85,7 +85,7 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
             {translate('host.roomScene.wall.name')}
           </span>
           <span className='podium-wall-on'>
-            {translate('host.roomScene.wall.on')}
+            {translate('host.roomScene.wall.on', { count: view.wallCount })}
           </span>
         </span>
         {!isWide && (

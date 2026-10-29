@@ -55,24 +55,24 @@ import { toSeatBoards, toTeamViews } from './team-service'
  */
 export const toHostView = ({
   isHostConnected,
-  isWallConnected,
   now,
   room,
-  seatId
+  seatId,
+  wallCount
 }: {
   isHostConnected: boolean
-  isWallConnected: boolean
   now: number
   room: Room
   /** The seat this host took, if they took one — they then read what a player reads. */
   seatId: PlayerId | null
+  wallCount: number
 }): HostRoomView => {
   const playingSeatId = isRoundJudgedByConsole(room) ? null : seatId
 
   return {
     ...toBaseView({
       isHostConnected,
-      isWallConnected,
+      isWallConnected: wallCount > 0,
       now,
       room,
       youId: seatId
@@ -87,6 +87,7 @@ export const toHostView = ({
       opened: room.openedEntries
     }),
     remainingPoolSize: room.trackPool.length,
+    wallCount,
     youId: seatId
   }
 }
@@ -99,10 +100,12 @@ export const toHostView = ({
  */
 export const toWallView = ({
   isHostConnected,
+  isSpeaker,
   now,
   room
 }: {
   isHostConnected: boolean
+  isSpeaker: boolean
   now: number
   room: Room
 }): WallRoomView => ({
@@ -117,6 +120,7 @@ export const toWallView = ({
     room.round === null
       ? null
       : toWallContent(toHostContent({ room, round: room.round, seatId: null })),
+  isSpeaker,
   yourVerdict: null
 })
 

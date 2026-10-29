@@ -102,9 +102,9 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
           </span>
           <span className='name'>{translate('host.roomScene.wall.name')}</span>
           <span className='state'>
-            {translate(
-              hasWall ? 'host.roomScene.wall.on' : 'host.roomScene.wall.off'
-            )}
+            {hasWall
+              ? translate('host.roomScene.wall.on', { count: view.wallCount })
+              : translate('host.roomScene.wall.off')}
           </span>
         </ToggleButton>
         <div aria-hidden='true' className='table'>
@@ -262,15 +262,24 @@ const WallDetail: React.FC<{
     return (
       <>
         <h3>{translate('host.roomScene.wall.titleOn')}</h3>
-        <p className='lines'>{translate('host.roomScene.wall.linesOn')}</p>
+        <p className='lines'>
+          {translate('host.roomScene.wall.linesOn', { count: view.wallCount })}
+        </p>
         <Button
           isDisabled={!isLive}
           onPress={onDismissWall}
           size='small'
           variant='underlined'
         >
-          {translate('host.roomScene.wall.dismiss')}
+          {translate('host.roomScene.wall.dismiss', { count: view.wallCount })}
         </Button>
+        <div className='way'>
+          <h4>{translate('host.roomScene.wall.anotherTitle')}</h4>
+          <WallPairingForm
+            description={translate('host.roomScene.wall.anotherLines')}
+            roomCode={view.code}
+          />
+        </div>
       </>
     )
   }

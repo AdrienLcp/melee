@@ -48,6 +48,7 @@ const seatAttachmentSchema = z.discriminatedUnion('role', [
     sessionId: sessionIdSchema
   }),
   z.object({
+    isSpeaker: z.boolean().default(false),
     playerId: z.null(),
     role: z.literal('wall'),
     sessionId: sessionIdSchema
@@ -64,12 +65,11 @@ const sendWhileOpen = (socket: WebSocket, payload: string) => {
   }
 }
 
-const attachmentOf = ({
-  playerId,
-  role,
-  sessionId
-}: Connection): z.infer<typeof seatAttachmentSchema> =>
-  seatAttachmentSchema.parse({ playerId, role, sessionId })
+/** The schema strips `send`, which is the one field a socket cannot carry. */
+const attachmentOf = (
+  connection: Connection
+): z.infer<typeof seatAttachmentSchema> =>
+  seatAttachmentSchema.parse(connection)
 
 /**
  * One room: its state in the object's own storage, its sockets through the

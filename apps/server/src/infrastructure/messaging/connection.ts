@@ -27,13 +27,15 @@ export type Socket = Outbound & {
  *
  * A player is never seatless, which is what lets the broadcaster build a player
  * view without inventing a fallback id. A wall never holds one: it is the
- * room's screen, not somebody's.
+ * room's screen, not somebody's. `isSpeaker` is kept on the connection rather
+ * than read off the order of the sockets, which a hibernated room does not
+ * promise to keep.
  */
 export type Connection = Outbound &
   (
     | { playerId: PlayerId | null; role: 'host' }
     | { playerId: PlayerId; role: 'player' }
-    | { playerId: null; role: 'wall' }
+    | { isSpeaker: boolean; playerId: null; role: 'wall' }
   ) & {
     sessionId: SessionId
   }

@@ -266,7 +266,13 @@ const seatWall = ({
     return null
   }
 
-  return { playerId: null, role: 'wall', send: outbound.send, sessionId }
+  return {
+    isSpeaker: false,
+    playerId: null,
+    role: 'wall',
+    send: outbound.send,
+    sessionId
+  }
 }
 
 /**

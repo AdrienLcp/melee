@@ -267,6 +267,26 @@ describe('the wall', () => {
     )
   })
 
+  it('[wall] lets one wall of several play the sound, and hands it on when that one goes', async () => {
+    const { code, host, hostToken } = await harness.openRoom()
+    const first = await pairedWall({ code, hostToken })
+    const second = await pairedWall({ code, hostToken })
+
+    await waitFor(
+      () => hostView(host)?.wallCount === 2,
+      'the console to count both walls'
+    )
+    expect(wallView(first)?.isSpeaker).toBe(true)
+    expect(wallView(second)?.isSpeaker).toBe(false)
+
+    first.close()
+    await waitFor(
+      () => wallView(second)?.isSpeaker === true,
+      'the second wall to take the sound'
+    )
+    expect(hostView(host)?.wallCount).toBe(1)
+  })
+
   it('[wall] is sent away by the console, which is the speaker again', async () => {
     const { code, host, hostToken } = await harness.openRoom()
     const wall = await pairedWall({ code, hostToken })

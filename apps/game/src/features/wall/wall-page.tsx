@@ -65,13 +65,17 @@ export const WallPage: React.FC = () => {
 /**
  * The room on the screen everyone reads, with nobody at it: the same stage the
  * console draws, without a single control and without the answer, which the
- * server never sends here. It is also the room's speaker, which is the one
- * thing it has to ask a hand for.
+ * server never sends here. One wall of several is the room's speaker, which
+ * is the one thing it has to ask a hand for; the rest show the game in silence.
+ * Every wall still arms its sound on arrival, so the one that inherits the
+ * speaker can play at once.
  */
 const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const translate = useTranslate()
   const { clock, error, status, view: wallView } = useWallConnection(roomCode)
   const view = wallView === null ? null : asRoomScreenView(wallView)
+  const isSpeaker = wallView?.isSpeaker === true
+  const speakingView = isSpeaker ? view : null
   const { volume } = useVolume()
   const slateWall = useSlateWall(view)
   const isRefused = status === 'refused'
@@ -87,17 +91,21 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   useScreenAwake(!isRefused)
   useIdleChrome(!isRefused)
 
-  const { canPlay, refusal, unlock } = useRoundAudio({ clock, view, volume })
+  const { canPlay, refusal, unlock } = useRoundAudio({
+    clock,
+    view: speakingView,
+    volume
+  })
 
-  useBuzzCue(view?.round?.activeBuzz?.atServerTime ?? null)
-  useTimerCue({ clock, view })
+  useBuzzCue(speakingView?.round?.activeBuzz?.atServerTime ?? null)
+  useTimerCue({ clock, view: speakingView })
   useReportRoomActions({
     adjustScore: null,
     closeRoom: null,
     endGame: null,
     handOver: null,
     leaveSeat: null,
-    playsSound: true,
+    playsSound: isSpeaker,
     refusedNickname: null,
     rename: null,
     revealRound: null,
@@ -173,16 +181,18 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                 teams={view.teams}
               />
             )}
-          {!canPlay && (view === null || !isEveningSilent(view.settings)) && (
-            <Button
-              className='sound-offer'
-              onPress={armAudio}
-              size='small'
-              variant='outlined'
-            >
-              {translate('wall.sound')}
-            </Button>
-          )}
+          {!canPlay &&
+            (view === null ||
+              (isSpeaker && !isEveningSilent(view.settings))) && (
+              <Button
+                className='sound-offer'
+                onPress={armAudio}
+                size='small'
+                variant='outlined'
+              >
+                {translate('wall.sound')}
+              </Button>
+            )}
           {view !== null &&
             view.phase !== 'lobby' &&
             view.settings.teams.kind !== 'aloud' && (
@@ -213,7 +223,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
             clock={clock}
             controls={null}
             isBoardAround
-            isSpeaker
+            isSpeaker={isSpeaker}
             onUnlockAudio={armAudio}
             refusal={refusal}
             roomCode={roomCode}

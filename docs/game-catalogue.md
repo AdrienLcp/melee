@@ -413,6 +413,18 @@ part becomes knowable.** Until then the cheapest way to stay open is the one
 this file describes — keep the seams visible, and keep the blind test from
 growing into places it does not belong.
 
+### Several consoles — a control room, parked
+
+One console holds a room: a claim with the host token displaces every other
+(`displaceOtherConsoles`), which is what makes a takeover undoable. A streamed
+quiz with a presenter on camera and a crew in the wings running the board is
+the case that would want more, and it is parked rather than refused. Opening
+it is not a flag: two consoles mean two hands on the settings at once, two
+verdicts on one buzz, a question of who closes the room for whom, and probably
+a role of its own — a crew screen that judges and advances but does not own
+the room — rather than a second `host`. Walls already come several to a room
+(`docs/realtime-protocol.md`); consoles wait for a table that asks.
+
 ## Related
 
 - `docs/architecture.md` — how the pieces fit today

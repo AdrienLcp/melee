@@ -952,6 +952,8 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
     .array(z.number().int().nonnegative())
     .max(LINE_UP_MAX_ENTRIES),
   remainingPoolSize: z.number().int().nonnegative(),
+  /** How many walls are showing the room — `isWallConnected` is this above zero. */
+  wallCount: z.number().int().nonnegative(),
   /**
    * The seat this console took, and `null` while it is only running the room.
    * A player always has one, which is why theirs is not nullable — this is the
@@ -1007,7 +1009,13 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
 ])
 
 export const wallRoomViewSchema = baseRoomViewSchema.extend({
-  currentContent: wallRoundContentSchema.nullable()
+  currentContent: wallRoundContentSchema.nullable(),
+  /**
+   * Whether this wall is the room's speaker. One wall plays the clip and the
+   * cues, the rest stay silent — two speakers a few metres apart are an echo,
+   * never in time. The first wall to arrive holds it until it leaves.
+   */
+  isSpeaker: z.boolean()
 })
 
 export type RoomPhase = z.infer<typeof roomPhaseSchema>

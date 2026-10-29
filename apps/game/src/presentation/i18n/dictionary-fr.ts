@@ -717,14 +717,33 @@ export const FR_DICTIONARY = defineDictionary({
         emptyButYou: 'Personne d’autre à table pour l’instant'
       },
       wall: {
-        dismiss: 'Libérer l’écran de la salle',
+        anotherLines:
+          'Il montre la partie aussi, sans le son : un seul écran le joue. Ouvre Mêlée dessus, choisis « Devenir l’écran de la pièce », puis tape ici le code qu’il affiche.',
+        anotherTitle: 'Un écran de plus',
+        dismiss: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: 'Libérer l’écran de la salle',
+              other: 'Libérer les écrans de la salle'
+            }
+          }
+        }),
         linesOff:
           'Pour l’instant, cet écran montre la partie et joue le son. Rien d’autre n’est nécessaire : on joue très bien comme ça.',
-        linesOn:
-          'Il montre la partie et joue le son ; cet écran-ci reste silencieux et garde les commandes.',
+        linesOn: defineTranslation('{count:plural}', {
+          plural: {
+            count: {
+              one: 'Il montre la partie et joue le son ; cet écran-ci reste silencieux et garde les commandes.',
+              other:
+                'Ils montrent la partie, un seul joue le son ; cet écran-ci reste silencieux et garde les commandes.'
+            }
+          }
+        }),
         name: 'L’écran de la salle',
         off: 'aucun pour l’instant',
-        on: 'branché',
+        on: defineTranslation('{count:plural}', {
+          plural: { count: { one: 'branché', other: '{?} branchés' } }
+        }),
         pairLines:
           'Ouvre Mêlée dessus et choisis « Devenir l’écran de la pièce », puis tape ici le code qu’il affiche.',
         pairTitle: 'Un écran à côté',

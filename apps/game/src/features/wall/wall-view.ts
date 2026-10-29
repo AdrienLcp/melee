@@ -12,13 +12,17 @@ import type {
  * reading of the round, and has nothing on the wall to leak because the wall
  * was never sent it.
  */
-export const asRoomScreenView = (view: WallRoomView): HostRoomView => ({
+export const asRoomScreenView = ({
+  isSpeaker: _isSpeaker,
+  ...view
+}: WallRoomView): HostRoomView => ({
   ...view,
   challengeHand: [],
   currentContent:
     view.currentContent === null ? null : withheld(view.currentContent),
   lineUpPlayed: [],
   remainingPoolSize: 0,
+  wallCount: 1,
   youId: null
 })
 

@@ -19,9 +19,24 @@ export const hostConnectionIn = (engine: RoomEngine): Connection | null =>
 export const isHostConnected = (engine: RoomEngine): boolean =>
   engine.connections.all().some((connection) => connection.role === 'host')
 
-/** Read by the console, which leaves the clip to a wall whenever one is there. */
-export const isWallConnected = (engine: RoomEngine): boolean =>
-  engine.connections.all().some((connection) => connection.role === 'wall')
+export const wallCountOf = (engine: RoomEngine): number =>
+  engine.connections.all().filter((connection) => connection.role === 'wall')
+    .length
+
+/**
+ * The wall that plays the clip, named afresh only when none holds the role:
+ * the first to arrive keeps it, and when it leaves the next view hands it on.
+ */
+export const electSpeakerWall = (engine: RoomEngine): void => {
+  const walls = engine.connections
+    .all()
+    .filter((connection) => connection.role === 'wall')
+  const [first] = walls
+
+  if (first !== undefined && !walls.some((wall) => wall.isSpeaker)) {
+    first.isSpeaker = true
+  }
+}
 
 /**
  * The same question for a seat, and a seated host holds one too. Two sockets on
