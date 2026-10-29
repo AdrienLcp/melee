@@ -226,9 +226,11 @@ const seatedHostView = (question: Question) => ({
   ...choosingView(question),
   challengeHand: [],
   currentContent: { kind: 'quiz', question: null },
+  isSpeaker: true,
   isWallConnected: false,
   lineUpPlayed: [],
-  remainingPoolSize: 40
+  remainingPoolSize: 40,
+  wallCount: 0
 })
 
 const table = [
