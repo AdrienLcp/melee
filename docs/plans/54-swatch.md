@@ -109,8 +109,8 @@ internal. The screens' session may rename it.
    at 390×780 and 1280×800: shown, hidden at `hidesAt`, picked, sent, revealed.
    Then seen muted with a paired wall, a seated console and two phones, one
    held sideways, and `pnpm validate` green. What that pass changed: the
-   reveal's chip is captioned *La couleur* (it was named *Retiens cette
-   couleur*), a seated console no longer prints the hidden line twice, and the
+   reveal's chip is captioned with the reveal's title (it was named after the
+   remember line), a seated console no longer prints the hidden line twice, and the
    picker sits beside its press in any box wider than tall — a size container
    on `.swatch-answer`, which doubled the console's square. Its wrapper is
    `.workbench`: `leaflet.sass` styles a bare `.sheet` everywhere.
