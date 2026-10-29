@@ -950,6 +950,18 @@ dot a vote, the room's choice on saffron in the title voice, the reader's own
 ballot in the *yours* keyline with *Your vote* under the name. A round that
 chose nobody says so above the rows and draws no scoreline under them.
 
+### Close enough (`QuantityField`, `EstimateQuestion`, `EstimateLine`)
+The question on a paper card, the unit printed inside the end of the answer
+slot so the number reads as a quantity while it is typed, digits grouped as
+they land. The press is never disabled: a number field commits on blur, so a
+press read off a stale value would send nothing. The reveal draws a ruler
+centred on the answer, a tenth to ten times it on a log scale, solid inside
+that range and dashed beyond it; a guess past either end stacks at the edge
+rather than stretching the scale. Pins sit on lanes 5 % apart so close guesses
+do not cover each other, a spot-on guess on the saffron piece (`--tile-2`),
+and the nearest-first list under it carries each seat's figure. The display
+face draws U+202F almost zero wide, so grouping uses U+00A0 instead.
+
 ### Waits: `NoticeCard`, `Loader`, `Spinner`
 **A wait is a paper card, never an anonymous spinner.** Every player-side wait
 (host away, round not running, …) is a `NoticeCard` (`player-round.tsx`): a

@@ -111,6 +111,16 @@ once the bank is spent. The pay is `payEstimatesByPlace` in
 `estimate-round.ts`, a `closeRound` branch of its own like most likely's. Not
 on `shelvedGames` yet — it goes on with its screens.
 
+**Step 2b, as built**: on the shelf as *Close enough*, spine
+`--spine-estimate`. The seat answers in `QuantityField`, a `NumberField` with
+the unit printed inside its end and digits grouped as typed; the press stays
+enabled, because the field commits on blur. The setup offers 15, 30 or 60
+seconds. The console shows no value while the round plays, like the quiz.
+The reveal is `EstimateLine`: a log ruler from a tenth to ten times the value,
+dashed beyond, every pin on a lane of its own and a guess past either end
+stacked at the edge, then the seats nearest first with their pay. Grouping
+uses U+00A0, because the display face draws U+202F almost zero wide.
+
 ## How to tell it is done
 
 - A room opened on *Le juste chiffre* deals a question with its unit, takes a
