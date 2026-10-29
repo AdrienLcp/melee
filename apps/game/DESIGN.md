@@ -527,7 +527,10 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   ruled box as the add row, opening a page in the tab's place: the naming
   field with its press under it at the panel's width (the seat's form), then
   a ruled list whose row is the evening's entries as a line of spine ticks,
-  its name and a caption of its games and length, a ✕ beside it.
+  its name and a caption of its games and length, a ✕ beside it. Once one was
+  run or kept, the page opens on its name in a strong caption over an outlined
+  *Save over it*, the name kept out of the press because forty characters do
+  not fit the display face.
 - **The draw** (*Au hasard*) is the socket row under the planned games,
   pressed like the add row: a page in the tab's place under a lid edged in
   `--socket-line` (no game owns it), then a ruled list of every entry whose

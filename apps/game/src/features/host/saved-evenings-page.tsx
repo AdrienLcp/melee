@@ -76,6 +76,8 @@ export const SavedEveningsDoor: React.FC<SavedEveningsDoorProps> = ({
 type SavedEveningsPageProps = {
   evenings: readonly SavedEvening[]
   isLive: boolean
+  /** The kept evening this console last ran or kept, which a press saves the room over; `null` for none. */
+  loadedName: string | null
   onBack: () => void
   onForget: (name: string) => void
   /** Folds the evenings a file from another machine carried in among these. */
@@ -96,6 +98,7 @@ type SavedEveningsPageProps = {
 export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   evenings,
   isLive,
+  loadedName,
   onBack,
   onForget,
   onImport,
@@ -107,11 +110,39 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   const [name, setName] = useState('')
   const canRun = isLive && view.phase === 'lobby'
   const isReplacing = evenings.some((evening) => isSameName(evening.name, name))
+  const loaded = evenings.find(
+    (evening) => loadedName !== null && isSameName(evening.name, loadedName)
+  )
+  const [savedOver, setSavedOver] = useState<string | null>(null)
+  const currentSettings = JSON.stringify(view.settings)
+  const isUpToDate = savedOver === currentSettings
 
   return (
     <EveningPage onBack={onBack}>
       <section className='saved-evenings'>
         <h2 className='heading'>{translate('host.saved.heading')}</h2>
+        {view.settings.game !== null && loaded !== undefined && (
+          <div className='over'>
+            <p className='loaded' role='status'>
+              {translate(
+                isUpToDate ? 'host.saved.savedOver' : 'host.saved.loaded',
+                { name: loaded.name }
+              )}
+            </p>
+            <Button
+              aria-label={translate('host.saved.saveOverNamed', {
+                name: loaded.name
+              })}
+              onPress={() => {
+                onSave(loaded.name)
+                setSavedOver(currentSettings)
+              }}
+              variant='outlined'
+            >
+              {translate('host.saved.saveOver')}
+            </Button>
+          </div>
+        )}
         {view.settings.game !== null && (
           <Form
             className='keep'
@@ -119,10 +150,14 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
               event.preventDefault()
               onSave(name)
               setName('')
+              setSavedOver(currentSettings)
             }}
           >
             <TextField
               autoComplete='off'
+              description={
+                isReplacing ? translate('host.saved.replaces') : undefined
+              }
               label={translate('host.saved.name')}
               maxLength={SAVED_EVENING_NAME_MAX_LENGTH}
               onChange={setName}

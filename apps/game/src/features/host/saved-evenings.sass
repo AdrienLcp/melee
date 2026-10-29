@@ -58,6 +58,20 @@
 
     // The field takes the panel's width and the press stands under it, as the
     // seat's form does: side by side, a name was cut to a few letters.
+    .over
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+
+      .loaded
+        @include typography.strong
+
+        margin: 0
+        overflow-wrap: anywhere
+
+      > .button
+        align-self: stretch
+
     .keep
       display: flex
       flex-direction: column

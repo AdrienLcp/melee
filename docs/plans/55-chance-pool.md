@@ -67,7 +67,16 @@ draw goes back to the draw. Seen muted at 1400×900 and 375×760 dark: a quiz
 switched out, a reflex added to the draw alone, the dice row reading
 *among Reflex*. The round drawn on it is the socket suite's
 (`[chance-pool] plays an entry in the draw alone`), not replayed in a browser.
-Step 5 is what is left.
+
+Step 5 landed the same day, with one departure: *Save over* is offered as soon
+as an evening was run from the list or kept, not only once it changed. No
+comparison with the kept copy holds — an empty running order is dealt by the
+server, and the deals fill in — and pressing it unchanged rewrites the same
+evening. The caption above it says *Running "<name>"*, then *"<name>" is up to
+date* until the settings move. The press names no evening on screen (a
+40-character name does not fit the display face), only in its accessible
+name. Typing a kept name says it will take that one's place under the field.
+Plan 55 is done.
 
 ## Steps
 

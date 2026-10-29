@@ -106,6 +106,13 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     returnedFrom: null
   })
   const saved = useSavedEvenings()
+  const [loadedName, setLoadedName] = useState<string | null>(null)
+  const keep = (name: string) => {
+    const evening = savedEveningOf({ name, settings: view.settings })
+
+    saved.save(evening)
+    setLoadedName(evening.name)
+  }
   const backToList = () => {
     setPage({ kind: 'list', returnedFrom: null })
   }
@@ -126,6 +133,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       <SavedEveningsPage
         evenings={saved.evenings}
         isLive={isLive}
+        loadedName={loadedName}
         onBack={backToList}
         onForget={saved.forget}
         onImport={saved.importEvenings}
@@ -139,11 +147,10 @@ export const GameTab: React.FC<SetupTabsProps> = ({
               settings: view.settings
             })
           )
+          setLoadedName(evening.name)
           backToList()
         }}
-        onSave={(name) => {
-          saved.save(savedEveningOf({ name, settings: view.settings }))
-        }}
+        onSave={keep}
         view={view}
       />
     )

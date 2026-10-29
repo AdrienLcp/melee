@@ -776,13 +776,19 @@ export const FR_DICTIONARY = defineDictionary({
       }),
       importRefused: 'Ce fichier n’est pas un export de Mêlée.',
       inLobby: 'Une partie enregistrée se lance avant la première manche.',
+      loaded: 'Partie chargée : « {name} »',
       name: 'Nom de la partie',
       replace: 'Remplacer',
+      replaces:
+        'Une partie est déjà gardée sous ce nom : celle-ci prend sa place.',
       rounds: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} manche', other: '{?} manches' } }
       }),
       run: 'Lancer {name}',
       save: 'La garder',
+      savedOver: '« {name} » est à jour',
+      saveOver: 'Enregistrer par-dessus',
+      saveOverNamed: 'Enregistrer par-dessus « {name} »',
       transferHint:
         'Tes parties et tes défis tiennent dans un fichier, pour les retrouver sur une autre machine.'
     },

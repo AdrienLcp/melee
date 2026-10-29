@@ -800,13 +800,19 @@ export const EN_DICTIONARY = defineDictionary({
       }),
       importRefused: 'This file is not a Mêlée export.',
       inLobby: 'A saved line-up is run before the first round.',
+      loaded: 'Running “{name}”',
       name: 'Name this line-up',
       replace: 'Replace',
+      replaces:
+        'A line-up is already kept under this name: this one takes its place.',
       rounds: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} round', other: '{?} rounds' } }
       }),
       run: 'Run {name}',
       save: 'Keep it',
+      savedOver: '“{name}” is up to date',
+      saveOver: 'Save over it',
+      saveOverNamed: 'Save over “{name}”',
       transferHint:
         'Your line-ups and your lines fit in one file, to pick up on another machine.'
     },
