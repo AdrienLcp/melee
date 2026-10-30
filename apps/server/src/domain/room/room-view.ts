@@ -128,7 +128,11 @@ export const toWallView = ({
 const toWallContent = (content: HostRoundContent): WallRoundContent => {
   switch (content.kind) {
     case 'blindtest': {
-      return { audioUrl: content.audioUrl, kind: 'blindtest' }
+      return {
+        audioUrl: content.audioUrl,
+        kind: 'blindtest',
+        playback: content.playback
+      }
     }
 
     case 'petitbac': {
@@ -248,6 +252,7 @@ const toHostContent = ({
   return {
     audioUrl: content.track.previewUrl,
     kind: 'blindtest',
+    playback: content.playback,
     track: seatId === null ? content.track : null
   }
 }

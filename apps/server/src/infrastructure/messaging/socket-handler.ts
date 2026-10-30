@@ -71,6 +71,7 @@ import {
   applyVerdict,
   clearLockouts,
   closeRound,
+  controlClip,
   everyoneHasPressed,
   everyoneIsDone,
   finishGame,
@@ -738,6 +739,10 @@ const dispatch = ({
       reopenFloor(message.roundId, outbound, engine)
       break
     }
+    case 'host.controlClip': {
+      steerClip(message, outbound, engine)
+      break
+    }
     case 'host.nextRound': {
       advance({
         challenge: {
@@ -1281,6 +1286,31 @@ const reopenFloor = (
       code: cleared.error,
       fatal: false,
       message: 'There is no round to reopen'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const steerClip = (
+  { action, roundId }: Extract<RoomActionMessage, { type: 'host.controlClip' }>,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const steered = controlClip({
+    action,
+    now: engine.now(),
+    room: engine.room,
+    roundId
+  })
+
+  if (steered.status === 'failure') {
+    sendError(outbound, {
+      code: steered.error,
+      fatal: false,
+      message: 'There is no revealed clip to steer'
     })
 
     return

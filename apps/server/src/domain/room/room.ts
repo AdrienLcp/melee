@@ -32,6 +32,7 @@ import type {
 } from '@melee/protocol/petit-bac'
 import type { HostQuestion } from '@melee/protocol/question'
 import type {
+  ClipPlayback,
   ModeSettings,
   RoomPhase,
   RoomSettings,
@@ -299,6 +300,8 @@ export type Round = {
         choices: TrackIdentity[]
         correctChoiceIndex: number | null
         kind: 'blindtest'
+        /** Moved by the host under the reveal alone — see `ClipPlayback`. */
+        playback: ClipPlayback
         track: HostTrack
       }
     | { kind: 'buzzer' }

@@ -108,6 +108,7 @@ reconnect on the token it still holds.
 | `host.judge` | host | `roundId`, `playerId`, `verdict` |
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
+| `host.controlClip` | host | `roundId`, `action` (`pause`, `resume`, `restart`) |
 | `host.addItem` | host | `roundId` |
 | `host.setItemKey` | host | `roundId`, `itemIndex`, `key` — `''` clears it |
 | `host.revealItemKey` | host | `roundId`, `itemIndex` — a closed item with a key; it joins `round.content.revealedKeys` |
@@ -155,6 +156,13 @@ buzzer would pay two points for one charade.
 `host.clearLockouts` puts everyone who missed back in, mid-round. A blind test
 round is a clip that runs out, so a lockout there expires on its own; a game
 whose question the room owns has no such clock.
+
+`host.controlClip` steers the clip under a blind test's reveal, and nowhere
+else: before it the clip is the round's clock. It lands as
+`currentContent.playback` on the host's and the wall's views — `isPaused`, and
+`restarts`, a count the speaker plays the clip from the top on each time it
+moves — so it reaches whichever screen is the speaker. Reaching for the clip
+cancels the reveal's hold: the next round waits for the host's press.
 
 **An evening is a line-up, not a new object.** `settings.lineUp` holds the
 entries ticked, each a game's whole settings arm, so two entries may share a

@@ -13,6 +13,7 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { BoardMoves } from './board-moves'
 import { challengePickFor } from './challenge-line'
 import { ChallengeLinePicker } from './challenge-line-picker'
+import { ClipControls } from './clip-controls'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
 
@@ -67,6 +68,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   ) {
     return (
       <div className='reveal-actions'>
+        <ClipControls isLive={isLive} send={send} view={view} />
         <Button
           isDisabled={!isLive}
           onPress={() => {
@@ -83,6 +85,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
 
   return (
     <div className='reveal-actions'>
+      <ClipControls isLive={isLive} send={send} view={view} />
       {offersSkip({
         challengeText: challengePickFor(challengeLine).challengeText,
         lineUp: settings.lineUp,

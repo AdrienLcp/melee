@@ -170,6 +170,7 @@ export const FR_DICTIONARY = defineDictionary({
       titleFound: 'Titre ✓'
     },
     audio: {
+      pause: 'Pause',
       refused: {
         blocked:
           'Le navigateur a refusé le son. Autorise-le pour ce site, ou tiens la table depuis un autre écran.',
@@ -178,6 +179,8 @@ export const FR_DICTIONARY = defineDictionary({
         unsupported:
           'Cet écran ne sait pas lire l’extrait. Tiens la table depuis un autre écran.'
       },
+      replay: 'Depuis le début',
+      resume: 'Reprendre',
       silent: 'Le son ne sort pas d’ici.',
       start: 'Lancer le son'
     },
@@ -1158,8 +1161,8 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Les allumettes',
       layDown: 'Pose-la maintenant sur une place vide.',
       pickUp: 'Prends une allumette et pose-la ailleurs.',
-      placed: 'Envoie ce coup, ou déplace encore une allumette.',
-      send: 'Envoyer le coup',
+      placed: 'Valide ce coup, ou déplace encore une allumette.',
+      send: 'Valider',
       sent: 'Ton coup est parti. On attend les autres.',
       slot: {
         a: 'en haut',

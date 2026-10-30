@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
 
-import type { HostRoomView } from '@melee/protocol/room'
+import type { ClipPlayback, HostRoomView } from '@melee/protocol/room'
 
 import {
   type ClipRefusal,
@@ -124,6 +124,14 @@ export const useRoundAudio = ({
    * — a boolean beside a ref says the same thing twice and only one of them is
    * in the list.
    */
+  /**
+   * The host's last word on the revealed clip that this screen has acted on.
+   * A pause or a replay is a change to it, never its value: arriving at a
+   * reveal already marked paused, there is nothing to pause.
+   */
+  const steeredRef = useRef<{ playback: ClipPlayback; roundId: string } | null>(
+    null
+  )
   const [decks, setDecks] = useState<Decks | null>(null)
   const [refusal, setRefusal] = useState<ClipRefusal | null>(null)
 
@@ -161,7 +169,10 @@ export const useRoundAudio = ({
 
   const phase = view?.phase ?? null
   const round = view?.round ?? null
-  const previewUrl = blindtestHostContent(view)?.audioUrl ?? null
+  const blindtest = blindtestHostContent(view)
+  const previewUrl = blindtest?.audioUrl ?? null
+  const isPaused = blindtest?.playback.isPaused ?? false
+  const restarts = blindtest?.playback.restarts ?? 0
   const startsAt = round?.startsAt ?? null
   const roundId = round?.id ?? null
   const elapsedMs = view?.roundElapsedMs ?? 0
@@ -180,9 +191,45 @@ export const useRoundAudio = ({
     }
 
     // The reveal is not silence: the clip goes on under the answer, which is
-    // most of what makes the answer land.
+    // most of what makes the answer land — until the host pauses or replays it.
     if (phase === 'revealed') {
+      const loaded = loadedRef.current
+      const steered = steeredRef.current
+      const playback = { isPaused, restarts }
+
+      steeredRef.current = roundId === null ? null : { playback, roundId }
+
+      if (loaded === null || loaded.roundId !== roundId) {
+        return
+      }
+
+      if (steered?.roundId !== roundId) {
+        return
+      }
+
+      if (restarts !== steered.playback.restarts) {
+        moveTo(loaded.deck, 0)
+        play(loaded.deck, disarm)
+      } else if (isPaused !== steered.playback.isPaused) {
+        if (isPaused) {
+          loaded.deck.pause()
+        } else {
+          play(loaded.deck, disarm)
+        }
+      }
+
       return
+    }
+
+    // Past its reveal, a round's clip has had its moment: the next countdown,
+    // or a game with no clip at all, must not play under it.
+    for (const deck of decks) {
+      if (
+        deck !== loadedRef.current?.deck ||
+        loadedRef.current.roundId !== roundId
+      ) {
+        deck.pause()
+      }
     }
 
     if (phase === 'buzzed') {
@@ -257,7 +304,17 @@ export const useRoundAudio = ({
     // The decks are a dependency because arming happens *during* a round now:
     // a console that reloaded mid-clip presses once, and this has to run again
     // or the decks sit blessed and silent until the next round opens.
-  }, [decks, disarm, elapsedMs, phase, previewUrl, roundId, startsAt])
+  }, [
+    decks,
+    disarm,
+    elapsedMs,
+    isPaused,
+    phase,
+    previewUrl,
+    restarts,
+    roundId,
+    startsAt
+  ])
 
   return {
     canPlay: decks !== null,

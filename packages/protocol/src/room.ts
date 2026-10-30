@@ -842,6 +842,17 @@ const baseRoomViewSchema = z.object({
 })
 
 /**
+ * The clip under a blind test's reveal, as the host last left it. A pause or a
+ * replay has to reach whichever screen is the speaker — the wall when there is
+ * one — so it travels as state: `restarts` counts the replays, and a speaker
+ * seeing it move plays the clip again from the top.
+ */
+export const clipPlaybackSchema = z.object({
+  isPaused: z.boolean(),
+  restarts: z.number().int().nonnegative()
+})
+
+/**
  * The round as the one screen judging it sees it — the half no player may hold.
  * The answer goes `null` while the host holds a seat: that screen is a player's
  * then, and a payload it could read in a console is not a guarantee.
@@ -862,6 +873,7 @@ export const hostRoundContentSchema = z.discriminatedUnion('kind', [
      */
     audioUrl: z.url().nullable(),
     kind: z.literal('blindtest'),
+    playback: clipPlaybackSchema,
     track: hostTrackSchema.nullable()
   }),
   z.object({ kind: z.literal('buzzer') }),
@@ -1027,7 +1039,8 @@ export const playerRoomViewSchema = baseRoomViewSchema.extend({
 export const wallRoundContentSchema = z.discriminatedUnion('kind', [
   z.object({
     audioUrl: z.url().nullable(),
-    kind: z.literal('blindtest')
+    kind: z.literal('blindtest'),
+    playback: clipPlaybackSchema
   }),
   z.object({ kind: z.literal('buzzer') }),
   z.object({ kind: z.literal('challenge') }),
@@ -1074,6 +1087,7 @@ export type PublicPlayer = z.infer<typeof publicPlayerSchema>
 export type ActiveBuzz = z.infer<typeof activeBuzzSchema>
 export type RoundContent = z.infer<typeof roundContentSchema>
 export type HostRoundContent = z.infer<typeof hostRoundContentSchema>
+export type ClipPlayback = z.infer<typeof clipPlaybackSchema>
 export type RoundDuel = z.infer<typeof roundDuelSchema>
 export type RoundView = z.infer<typeof roundViewSchema>
 export type HostRoomView = z.infer<typeof hostRoomViewSchema>

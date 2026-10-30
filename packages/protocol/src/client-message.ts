@@ -351,6 +351,17 @@ export const clearLockoutsMessageSchema = z.object({
 })
 
 /**
+ * The clip under a blind test's reveal: paused, picked up again, or played
+ * again from the top, so the room can argue over it. Refused outside a reveal —
+ * the round's own clip is the server's clock, not the host's.
+ */
+export const controlClipMessageSchema = z.object({
+  action: z.enum(['pause', 'resume', 'restart']),
+  roundId: roundIdSchema,
+  type: z.literal('host.controlClip')
+})
+
+/**
  * One more thing to guess on the slate, while the sheets are open. A host who
  * brings the cups one at a time opens on one item and adds as they go.
  */
@@ -559,6 +570,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   judgeMessageSchema,
   revealMessageSchema,
   clearLockoutsMessageSchema,
+  controlClipMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
   revealItemKeyMessageSchema,
@@ -628,6 +640,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   judgeMessageSchema,
   revealMessageSchema,
   clearLockoutsMessageSchema,
+  controlClipMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
   revealItemKeyMessageSchema,
@@ -660,6 +673,7 @@ export type PlayerClientMessage = z.infer<typeof playerClientMessageSchema>
 export type WallClientMessage = z.infer<typeof wallClientMessageSchema>
 export type ClientMessage = z.infer<typeof clientMessageSchema>
 export type ClientMessageType = ClientMessage['type']
+export type ClipAction = z.infer<typeof controlClipMessageSchema>['action']
 export type ScoreTarget = z.infer<typeof adjustScoreMessageSchema>['target']
 
 /**
@@ -672,6 +686,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.judge',
   'host.reveal',
   'host.clearLockouts',
+  'host.controlClip',
   'host.addItem',
   'host.setItemKey',
   'host.revealItemKey',

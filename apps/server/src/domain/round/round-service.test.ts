@@ -8,6 +8,7 @@ import { newRoom } from '@/domain/room/new-room'
 
 import {
   advanceDueAt,
+  controlClip,
   openRound,
   revealRound,
   TRACK_DRAW_LEAD_MS
@@ -45,6 +46,7 @@ const revealedRoom = ({
             choices: [],
             correctChoiceIndex: null,
             kind: 'blindtest',
+            playback: { isPaused: false, restarts: 0 },
             track: {
               artist: 'Daft Punk',
               coverUrl: null,
@@ -100,5 +102,55 @@ describe('advanceDueAt', () => {
     }
 
     expect(advanceDueAt(room)).toBeNull()
+  })
+})
+
+describe('controlClip', () => {
+  const playbackOf = (room: ReturnType<typeof revealedRoom>) =>
+    room.round?.content.kind === 'blindtest'
+      ? room.round.content.playback
+      : null
+
+  it('[clip] pauses, resumes and replays the clip under a reveal', () => {
+    const room = revealedRoom({ game: 'blindtest', roundCount: 10 })
+    const steer = (action: 'pause' | 'restart' | 'resume') =>
+      controlClip({ action, now: REVEALED_AT, room, roundId: 'round-1' })
+
+    steer('pause')
+    expect(playbackOf(room)).toEqual({ isPaused: true, restarts: 0 })
+
+    steer('resume')
+    expect(playbackOf(room)).toEqual({ isPaused: false, restarts: 0 })
+
+    steer('pause')
+    steer('restart')
+    expect(playbackOf(room)).toEqual({ isPaused: false, restarts: 1 })
+  })
+
+  it('[clip] holds the reveal for the host once they reach for the clip', () => {
+    const room = revealedRoom({ game: 'blindtest', roundCount: 10 })
+
+    controlClip({ action: 'pause', now: REVEALED_AT, room, roundId: 'round-1' })
+
+    expect(room.round?.advancesAt).toBeNull()
+    expect(advanceDueAt(room)).toBeNull()
+  })
+
+  it('[clip] leaves the clip of a round still running to the round', () => {
+    const room = revealedRoom({ game: 'blindtest', roundCount: 10 })
+
+    if (room.round !== null) {
+      room.round.revealed = false
+    }
+
+    const steered = controlClip({
+      action: 'pause',
+      now: REVEALED_AT,
+      room,
+      roundId: 'round-1'
+    })
+
+    expect(steered).toEqual({ error: 'wrong_phase', status: 'failure' })
+    expect(playbackOf(room)).toEqual({ isPaused: false, restarts: 0 })
   })
 })

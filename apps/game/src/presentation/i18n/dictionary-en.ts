@@ -190,6 +190,7 @@ export const EN_DICTIONARY = defineDictionary({
        * where it stands is told once what to do instead of three times what
        * went wrong.
        */
+      pause: 'Pause',
       refused: {
         blocked:
           'The browser refused the sound. Allow it for this site, or run the room from another screen.',
@@ -198,6 +199,8 @@ export const EN_DICTIONARY = defineDictionary({
         unsupported:
           'This screen cannot play the clip. Run the room from another screen.'
       },
+      replay: 'From the top',
+      resume: 'Resume',
       silent: 'No sound is coming from here.',
       start: 'Start the music'
     },
@@ -1202,7 +1205,7 @@ export const EN_DICTIONARY = defineDictionary({
       layDown: 'Now lay it on an empty place.',
       pickUp: 'Pick up a match and lay it somewhere else.',
       placed: 'Send this move, or move a match again.',
-      send: 'Send the move',
+      send: 'Send',
       sent: 'Your move is in. Waiting for the others.',
       slot: {
         a: 'at the top',

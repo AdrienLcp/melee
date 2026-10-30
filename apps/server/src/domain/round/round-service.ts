@@ -1,6 +1,7 @@
 import { Result } from '@adrienlcp/result'
 
 import type { GeoPoint } from '@melee/protocol/atlas'
+import type { ClipAction } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
@@ -128,6 +129,7 @@ export const blindtestContent = ({
     choices: drawn?.choices ?? [],
     correctChoiceIndex: drawn?.correctIndex ?? null,
     kind: 'blindtest',
+    playback: { isPaused: false, restarts: 0 },
     track
   }
 }
@@ -408,6 +410,49 @@ export const clearLockouts = ({
   }
 
   round.lockedOutPlayerIds.clear()
+  touch(room, now)
+
+  return Result.success()
+}
+
+/**
+ * The host's hand on the clip under the reveal. Only there: while the round
+ * runs, the clip is the round's clock, and a pause would be the host's own.
+ */
+export const controlClip = ({
+  action,
+  now,
+  room,
+  roundId
+}: {
+  action: ClipAction
+  now: number
+  room: Room
+  roundId: RoundId
+}): Result<void, VerdictRejection> => {
+  const round = room.round
+
+  if (round === null || round.content.kind !== 'blindtest') {
+    return Result.failure('wrong_phase')
+  }
+
+  if (round.id !== roundId) {
+    return Result.failure('stale_round')
+  }
+
+  if (!round.revealed) {
+    return Result.failure('wrong_phase')
+  }
+
+  const { playback } = round.content
+
+  round.content.playback =
+    action === 'restart'
+      ? { isPaused: false, restarts: playback.restarts + 1 }
+      : { ...playback, isPaused: action === 'pause' }
+  // A host reaching for the clip is holding the table on it: the next round
+  // waits for their press rather than cutting the argument off.
+  round.advancesAt = null
   touch(room, now)
 
   return Result.success()

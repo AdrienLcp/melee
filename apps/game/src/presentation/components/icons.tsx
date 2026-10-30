@@ -36,11 +36,14 @@ import {
   PanelRightClose,
   PanelRightOpen,
   PanelsTopLeft,
+  Pause,
   Pencil,
   PencilLine,
   PenLine,
+  Play,
   Plus,
   QrCode,
+  RotateCcw,
   Ruler,
   Share,
   SlidersHorizontal,
@@ -110,7 +113,10 @@ export const OfflineIcon = inFamily(WifiOff)
 export const PanelFoldIcon = inFamily(PanelRightClose)
 export const PanelOpenIcon = inFamily(PanelRightOpen)
 export const PanelSideIcon = inFamily(ArrowLeftRight)
+export const PauseIcon = inFamily(Pause)
+export const PlayIcon = inFamily(Play)
 export const PlayersIcon = inFamily(Users)
+export const ReplayIcon = inFamily(RotateCcw)
 export const RenameIcon = inFamily(Pencil)
 export const SavedIcon = inFamily(Bookmark)
 export const PenIcon = inFamily(PenLine)

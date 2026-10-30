@@ -90,6 +90,7 @@ const revealedBlindtest = (): Room => {
       choices: [],
       correctChoiceIndex: null,
       kind: 'blindtest',
+      playback: { isPaused: false, restarts: 0 },
       track: FIRST_TRACK
     },
     id: 'round-1',
