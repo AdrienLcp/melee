@@ -623,9 +623,18 @@ export const FR_DICTIONARY = defineDictionary({
         raise: 'Passer à {count:number}'
       },
       detail: {
+        adult: 'Questions adultes comprises',
         allSubjects: 'Tous les sujets',
+        drawnCategories: '{count:number} catégories tirées',
+        everyDecade: 'Toutes les décennies',
+        loneFinds: 'Une réponse unique compte double',
         oneGo: 'Un essai chacun',
-        subjects: '{count:number} sujets'
+        openField: 'Essais illimités',
+        playlist: 'Playlist Deezer {id}',
+        search: '«\u00a0{query}\u00a0»',
+        swatch:
+          'Montrée {shown:number}\u00a0s, {rebuild:number}\u00a0s pour la refaire',
+        without: 'Sans {letters}'
       },
       drag: 'Déplacer la manche {number:number}, {name}',
       draw: {
