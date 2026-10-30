@@ -19,7 +19,7 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Ton pion est posé. On attend les autres.'
     },
     asks: {
-      name: 'Nommer {places}',
+      name: 'Nommer {places} sur la carte',
       place: 'Trouver {places}',
       places: {
         countries: 'un pays',
@@ -30,8 +30,8 @@ export const FR_DICTIONARY = defineDictionary({
     country: COUNTRY_NAMES_FR,
     direction: {
       label: 'La manche demande',
-      name: 'Nommer ce qui est montré',
-      place: 'Placer ce qui est nommé'
+      name: 'Nommer le lieu allumé sur la carte',
+      place: 'Placer sur la carte le lieu nommé'
     },
     home: {
       description:

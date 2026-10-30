@@ -24,7 +24,7 @@ export const EN_DICTIONARY = defineDictionary({
       sent: 'Your pawn is down. Waiting for the others.'
     },
     asks: {
-      name: 'Name {places}',
+      name: 'Name {places} on the map',
       place: 'Find {places}',
       places: {
         countries: 'a country',
@@ -35,8 +35,8 @@ export const EN_DICTIONARY = defineDictionary({
     country: COUNTRY_NAMES_EN,
     direction: {
       label: 'The round asks',
-      name: 'Name what is shown',
-      place: 'Place what is named'
+      name: 'Name the place lit up on the map',
+      place: 'Put the named place on the map'
     },
     home: {
       description:
