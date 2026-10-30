@@ -92,12 +92,18 @@
                 flex-direction: column
                 justify-content: center
 
-            > .said
+            > :is(.said, .scorers)
               container-type: normal
               max-block-size: 40cqh
 
               li
                 font-size: var(--text-l)
+
+          // The map's floor is a share of the window, which on a card capped
+          // at 34rem pushed the outcome under it and the round's index off
+          // the card's top: here the card is the box it divides.
+          > .reveal-panel[data-game='atlas'] .world-map
+            min-block-size: 8rem
 
         > header .round-index
           @include typography.title

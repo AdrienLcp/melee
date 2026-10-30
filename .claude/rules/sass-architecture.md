@@ -254,6 +254,31 @@ and `aspect-ratio` in range syntax, thresholds in `rem`. The viewport keeps what
 is positioned against it — the framed screens held to `100dvh` — and what is not
 a width.
 
+**A size container has no size of its own**, so whatever holds one must hand it
+a definite box. `container-type: size` in an `auto` grid row is 0px tall, and
+`inline-size` in a shrink-to-fit parent (`align-items: center`, an `auto`
+column) is as wide as its siblings: black square's reveal grid collapsed to
+slivers under a podium rule written `minmax(0, 1fr) auto` for answer-then-list
+panels, and the player's map and timeline shrank to the payout line under a
+centred reveal. A shared rule that assigns rows by position names the panels it
+fits, or lists the ones it does not. Inside a box of fixed height — the
+podium's round card — a floor written against the viewport (`38dvh`, a
+`--stage-unit` multiple) is not the box's floor: it pushes what follows out of
+the card.
+
+**A word breaks at a syllable or not at all.** Text in a narrow column — a
+heading over a sheet's column, a name in a grid cell, an answer in a card —
+takes `hyphens: auto` (the document's `lang` is the locale, set by
+`i18n-provider.tsx`), so a word too wide breaks with a hyphen where the language
+allows. `overflow-wrap: anywhere` is only a net under that, and it is what
+printed petit bac's *Marqu e*: French will not split *mar-que*. Where nothing
+can hyphenate, the column must be allowed to hold the word — `overflow-wrap:
+normal`, an `auto` table layout and a box that scrolls — or the text is cut
+whole: a line-clamp or an ellipsis on a screen that cannot scroll (the wall), a
+size scaled to the text's length where it must show whole (black square's
+`--name-scale`). Containment skips table cells, so a cell that must not size
+its column contains what it holds, not itself.
+
 ## State comes from react-aria's data attributes
 
 `[data-hovered]`, `[data-pressed]`, `[data-selected]`, `[data-disabled]`,

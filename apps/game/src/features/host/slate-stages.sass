@@ -386,6 +386,9 @@
       display: grid
       gap: var(--space-xs)
       grid-auto-rows: max-content
+      // An `auto` column is as wide as the longest answer on one line, which
+      // pushed the press that judges it off the card.
+      grid-template-columns: minmax(0, 1fr)
       list-style: none
       overflow-y: auto
       padding-block-end: var(--space-2xs)
@@ -440,6 +443,12 @@
         overflow: hidden
         text-overflow: ellipsis
         white-space: nowrap
+
+      // The host judges what it reads, so its copy wraps where the wall's
+      // trails off: a cut answer cannot be marked right.
+      &:has(.toggle-button) .text
+        hyphens: auto
+        white-space: normal
 
       .writers
         align-items: center
@@ -534,8 +543,14 @@
         .toggle-button
           min-height: 1.75em
 
-      .group:not(.blank) .names
-        @include accessibility.visually-hidden
+      .group:not(.blank)
+        // The pawns keep their width and the words wrap beside them, or the
+        // last pawn slid under the press.
+        .writers
+          flex: none
+
+        .names
+          @include accessibility.visually-hidden
 
     .nobody
       @include typography.body

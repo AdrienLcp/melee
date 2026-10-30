@@ -135,12 +135,12 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
                         >
                           {line.text}
                         </ToggleButton>
+                      ) : line?.text ? (
+                        <span className='answer'>{line.text}</span>
                       ) : (
-                        line?.text || (
-                          <VisuallyHidden elementType='span'>
-                            {translate('petitbac.reveal.outcome.empty')}
-                          </VisuallyHidden>
-                        )
+                        <VisuallyHidden elementType='span'>
+                          {translate('petitbac.reveal.outcome.empty')}
+                        </VisuallyHidden>
                       )}
                     </td>
                   )

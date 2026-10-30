@@ -16,6 +16,13 @@ import { VisuallyHidden } from './visually-hidden'
 
 import './black-square-reveal.sass'
 
+/** The longest name the grid's type was fitted on; nine in ten of the bank's answers are no longer. */
+const NAME_LENGTH_AT_FULL_SIZE = 26
+
+/** A name's area grows with its length, so its size shrinks by the square root. */
+const nameScaleOf = (name: string): number =>
+  Math.min(1, Math.sqrt(NAME_LENGTH_AT_FULL_SIZE / name.length))
+
 type BlackSquareRevealProps = {
   players: readonly PublicPlayer[]
   revealed: RevealedBlackSquare
@@ -50,6 +57,7 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
             const isYours = youId !== null && answer.foundBy.includes(youId)
             const isDoubled =
               revealed.doublesLoneFinds && answer.foundBy.length === 1
+            const name = answer.labels[locale]
 
             return (
               <li
@@ -57,12 +65,15 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                 data-nobody={answer.foundBy.length === 0 || undefined}
                 data-yours={isYours || undefined}
                 key={answer.labels.en}
-                style={blackSquareCellStyle({
-                  cell,
-                  cellCount: revealed.answers.length
-                })}
+                style={{
+                  ...blackSquareCellStyle({
+                    cell,
+                    cellCount: revealed.answers.length
+                  }),
+                  '--name-scale': nameScaleOf(name)
+                }}
               >
-                <span className='name'>{answer.labels[locale]}</span>
+                <span className='name'>{name}</span>
                 <span className='foot'>
                   <span className='finders'>
                     {answer.foundBy.length === 0 ? (

@@ -9,7 +9,7 @@
   .black-square-reveal
     --finder-size: clamp(1.25rem, 4.4cqmin, 2.25rem)
 
-    container-type: size
+    container: black-square-reveal / size
     min-block-size: 0
     min-width: 0
 
@@ -32,9 +32,11 @@
       @include tier-rows.cell
       @include piece.card(var(--radius-m))
 
-      align-content: space-between
+      // The foot keeps its row: a name too long for the cell at the floor
+      // size is cut, never the pawns that found it.
       display: grid
       gap: var(--space-2xs)
+      grid-template-rows: minmax(0, 1fr) auto
       min-block-size: 0
       min-width: 0
       overflow: hidden
@@ -55,8 +57,9 @@
     .name
       @include typography.billboard-wrapping
 
-      font-size: clamp(var(--text-xs), min(4.6cqi, 6.6cqh), 2.6rem)
+      font-size: clamp(var(--text-xs), calc(min(4.6cqi, 6.6cqh) * var(--name-scale, 1)), 2.6rem)
       hyphens: auto
+      overflow: hidden
       overflow-wrap: break-word
       text-wrap: balance
 
@@ -131,12 +134,12 @@
           inline-size: auto
 
   // Lying down, the ink card stands as tall as the grid at its side.
-  @container (aspect-ratio >= 3 / 2) and (width >= 40rem)
+  @container black-square-reveal (aspect-ratio >= 3 / 2) and (width >= 40rem)
     .black-square-reveal > .board
       grid-template: minmax(0, 1fr) / minmax(0, 2.2fr) minmax(14rem, 1fr)
 
   // A narrow box keeps the word, its why and who fell on one short strip.
-  @container (aspect-ratio < 3 / 2) or (width < 40rem)
+  @container black-square-reveal (aspect-ratio < 3 / 2) or (width < 40rem)
     .black-square-reveal .black-word-piece
       align-items: baseline
       display: flex
