@@ -19,3 +19,15 @@ this file. Still to do: open a room, open `http://localhost:5273/wall` in two
 tabs, pair both from the console's *Salle* tab (the room's screen card), and
 check the button comes back after the second; decide whether a success wants a
 check glyph in the button's `icon` slot (`impeccable` first).
+
+## 2. A stripe down the right edge of the wall
+
+> On the walls I think there is a gap on the right, probably
+> `scrollbar-gutter: stable`? There will never be a scrollbar on that screen.
+
+**Fixed in `d57fe60`, half seen:** `html:has(.wall-page)` and
+`html:has(.wall-pairing-page)` set `scrollbar-gutter: auto`. The computed value
+was checked on the pairing screen only, in a headless browser with overlay
+scrollbars, so the stripe itself was never seen either way. Still to do: look at
+a *paired* wall mid-game in a browser with classic scrollbars (Windows Chrome,
+headed) and confirm the stripe is gone.

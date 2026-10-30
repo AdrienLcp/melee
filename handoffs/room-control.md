@@ -85,3 +85,26 @@ Tagged server tests for the freeze and the refusals, each broken once. In the
 browser (muted): pause mid-round in a blind test and a quiz, check the host,
 a raw-socket player and a wall all hide the question, then resume and check the
 clock and the clip continue from where they stopped.
+
+## 3. The host can always move a stuck round on
+
+> If nobody presses the buzzer after counting to 36 (inner clock), nothing
+> happens? The host must be able to decide to move on in every game that could
+> get stuck. Unless there is already a limit?
+
+Found so far, not yet confirmed in a browser: the inner clock has no round
+clock (`roundDurationMsOf` returns `null` for it in
+`packages/protocol/src/game.ts`) and no cap anywhere in
+`packages/core/src/innerclock/` or `innerclock-round.ts`. And during `playing`,
+`host-actions.tsx` hides `RoundActions`, the host's *reveal* press, for
+`innerclock`, `reflex` and `challenge`. So a round nobody presses in waits
+forever.
+
+To do: list every game whose round can wait on a press that never comes (inner
+clock, the reflex race, a slate or a sheet nobody sends, a buzzer nobody
+takes…), and give the host a way out in each. Either the existing reveal press
+(`host.reveal`, scoring only what was sent), or a cap the server enforces
+(e.g. inner clock: target plus a margin), or both. The press must not give the
+answer away where the stage hides it — that is why it was hidden for the inner
+clock (the target is the answer). Tagged server tests for whatever closes the
+round.
