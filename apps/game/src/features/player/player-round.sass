@@ -23,30 +23,6 @@
     align-items: center
     justify-content: center
 
-  .notice-card
-    @include piece.card
-
-    display: flex
-    flex-direction: column
-    gap: var(--space-s)
-    max-width: 30rem
-    padding: clamp(var(--space-m), calc(var(--stage-unit) * 6), var(--space-xl)) clamp(var(--space-m), calc(var(--stage-unit) * 6), var(--space-xl))
-    text-align: center
-    width: 100%
-
-    .notice-title
-      @include typography.billboard-wrapping
-
-      font-size: clamp(1.75rem, calc(var(--stage-unit) * 7), 3rem)
-      overflow-wrap: anywhere
-      text-wrap: balance
-
-    .notice-detail
-      @include typography.body
-
-      color: var(--card-muted)
-      text-wrap: balance
-
   // What this player is about to play, on the game's own lid: the spine's
   // colour banded across the top, its name under it, and what a round of it
   // pays. Before the table decides there is no lid yet, only its recess.

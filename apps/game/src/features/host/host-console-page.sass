@@ -58,6 +58,13 @@
         align-items: center
         justify-content: center
 
+      // Read from across the room, by whoever is still at the table.
+      &.paused .notice-card
+        max-width: 40rem
+
+        .notice-title
+          font-size: clamp(2.5rem, calc(var(--stage-unit) * 12), 6rem)
+
       // The countdown over the round it interrupted. The number gives up the
       // whole screen it had — it is a three-second wait, and what the room is
       // reading is underneath it — but it keeps the size that carries to the

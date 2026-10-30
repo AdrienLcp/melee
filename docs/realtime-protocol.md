@@ -109,6 +109,7 @@ reconnect on the token it still holds.
 | `host.reveal` | host | `roundId` |
 | `host.clearLockouts` | host | `roundId` |
 | `host.controlClip` | host | `roundId`, `action` (`pause`, `resume`, `restart`) |
+| `host.pause` | host | `roundId`, `isPaused` |
 | `host.addItem` | host | `roundId` |
 | `host.setItemKey` | host | `roundId`, `itemIndex`, `key` — `''` clears it |
 | `host.revealItemKey` | host | `roundId`, `itemIndex` — a closed item with a key; it joins `round.content.revealedKeys` |
@@ -163,6 +164,31 @@ else: before it the clip is the round's clock. It lands as
 `restarts`, a count the speaker plays the clip from the top on each time it
 moves — so it reaches whichever screen is the speaker. Reaching for the clip
 cancels the reveal's hold: the next round waits for the host's press.
+
+`host.pause` holds the whole room — somebody left the table mid-round. It is
+accepted from the countdown to the reveal and refused `wrong_phase` outside a
+round, and pressed twice it changes nothing. It is the freeze a host walking
+away already causes (`holdRoundClock`), so one flag covers every game: the
+round clock and the answer window stop, the reveal's hold is cancelled, and no
+round deadline falls due (`roomDeadlines`). It lands as `isPaused` on all three
+views; every screen hides the round behind a paused card, and the speaker
+pauses the clip. While it holds, every frame but the table's own business and
+the exits — `player.leave`, `rename`, `chooseTeam`, `ready`, and the host's
+`pause`, `adjustScore`, `renameTeam`, `moveSeat`, `drawTeams`,
+`updateSettings`, `removePlayer`, `dismissWall`, `endGame`, `closeRoom` — is
+refused `room_paused`: a verdict alone would put the clock back on. Letting
+go resumes like a host coming back — the clip and the clock from where they
+stopped, a countdown given back whole, a reveal's hold restarted — and a
+console that reloads while paused comes back to a room still paused, because
+the pause lives on the round, apart from the host's presence.
+
+**No round waits forever on a press.** Every game with a clock ends on it; the
+ones without one end on the host: the bare buzzer and every timed game offer
+`host.reveal` mid-round, a slate or a challenge is closed from its own stage,
+a floor held with no window is judged. The inner clock and the reflex race
+cap themselves — target × 1.25, and the heat's press window — and the inner
+clock's cap runs to minutes on a long count, so its console offers
+`host.reveal` too, labelled as stopping the count, scoring what was pressed.
 
 **An evening is a line-up, not a new object.** `settings.lineUp` holds the
 entries ticked, each a game's whole settings arm, so two entries may share a
@@ -819,7 +845,7 @@ at any other length and refused a second time, and a seat's own verdict stays
 `fatal` decides whether the client stops reconnecting. A refusal the user can
 act on is non-fatal, so the socket stays open and the form retries on it:
 `nickname_taken`, `room_full`, `room_plays_aloud`, `host_only_action`,
-`invalid_message`, `sheet_not_full`, `colour_still_shown`.
+`invalid_message`, `sheet_not_full`, `colour_still_shown`, `room_paused`.
 
 Fatal, followed by close code 1008: `room_not_found`,
 `protocol_version_mismatch`, `host_already_connected`, `host_reconnecting`.

@@ -28,6 +28,7 @@ export type Deadline = {
 /** The fields of any role's view a deadline is read from. */
 export type TimedView = {
   isHostConnected: boolean
+  isPaused: boolean
   phase: RoomPhase
   round: Pick<RoundView, 'activeBuzz' | 'durationMs' | 'id' | 'startsAt'> | null
   roundElapsedMs: number
@@ -35,7 +36,8 @@ export type TimedView = {
 
 /**
  * `null` whenever nothing counts down — a round with no clock, a floor held
- * until the host judges, and a round the server froze because its host left.
+ * until the host judges, and a round the server froze because its host left
+ * or paused it.
  *
  * The round's clock is the server's count of time consumed rather than a
  * deadline, because a buzz pauses it: the deadline only exists between two
@@ -50,7 +52,7 @@ export const currentDeadline = ({
 }): Deadline | null => {
   const round = view.round
 
-  if (round === null) {
+  if (round === null || view.isPaused) {
     return null
   }
 

@@ -76,6 +76,7 @@ import {
   everyoneIsDone,
   finishGame,
   isFinalRound,
+  pauseRound,
   registerAnswer,
   registerBuzz,
   registerReflexPress,
@@ -134,6 +135,28 @@ const ROUND_PLAY_MESSAGE_TYPES = new Set<ClientMessageType>([
   ...FLOOR_MESSAGE_TYPES,
   'slate.write',
   'petitbac.write'
+])
+
+/**
+ * What still goes through while the host holds the room on pause: the table's
+ * own business, and the exits. Everything else moves a round the room has
+ * stopped looking at — a verdict alone would put its clock back on.
+ */
+const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
+  'player.leave',
+  'player.rename',
+  'player.chooseTeam',
+  'player.ready',
+  'host.pause',
+  'host.adjustScore',
+  'host.renameTeam',
+  'host.moveSeat',
+  'host.drawTeams',
+  'host.updateSettings',
+  'host.removePlayer',
+  'host.dismissWall',
+  'host.endGame',
+  'host.closeRoom'
 ])
 
 const HOST_CLAIM_REFUSALS: Record<HostClaimError, string> = {
@@ -452,6 +475,19 @@ const dispatch = ({
     return
   }
 
+  if (
+    engine.room.round?.isPaused === true &&
+    !UNPAUSED_MESSAGE_TYPES.has(message.type)
+  ) {
+    sendError(outbound, {
+      code: 'room_paused',
+      fatal: false,
+      message: 'The host has paused the room'
+    })
+
+    return
+  }
+
   const { room } = engine
   const now = engine.now()
 
@@ -741,6 +777,10 @@ const dispatch = ({
     }
     case 'host.controlClip': {
       steerClip(message, outbound, engine)
+      break
+    }
+    case 'host.pause': {
+      pause(message, outbound, engine)
       break
     }
     case 'host.nextRound': {
@@ -1311,6 +1351,31 @@ const steerClip = (
       code: steered.error,
       fatal: false,
       message: 'There is no revealed clip to steer'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const pause = (
+  { isPaused, roundId }: Extract<RoomActionMessage, { type: 'host.pause' }>,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const paused = pauseRound({
+    isPaused,
+    now: engine.now(),
+    room: engine.room,
+    roundId
+  })
+
+  if (paused.status === 'failure') {
+    sendError(outbound, {
+      code: paused.error,
+      fatal: false,
+      message: 'There is no round to pause'
     })
 
     return

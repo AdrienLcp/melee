@@ -362,6 +362,18 @@ export const controlClipMessageSchema = z.object({
 })
 
 /**
+ * The whole room held where it is, or let go again — somebody left the table
+ * mid-round. Every clock stops, the clip with it, the floor is refused and
+ * every screen hides the round until the host lets it go. Not
+ * `host.controlClip`, which steers the clip under a reveal and nothing else.
+ */
+export const pauseMessageSchema = z.object({
+  isPaused: z.boolean(),
+  roundId: roundIdSchema,
+  type: z.literal('host.pause')
+})
+
+/**
  * One more thing to guess on the slate, while the sheets are open. A host who
  * brings the cups one at a time opens on one item and adds as they go.
  */
@@ -571,6 +583,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   revealMessageSchema,
   clearLockoutsMessageSchema,
   controlClipMessageSchema,
+  pauseMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
   revealItemKeyMessageSchema,
@@ -641,6 +654,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   revealMessageSchema,
   clearLockoutsMessageSchema,
   controlClipMessageSchema,
+  pauseMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
   revealItemKeyMessageSchema,
@@ -687,6 +701,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.reveal',
   'host.clearLockouts',
   'host.controlClip',
+  'host.pause',
   'host.addItem',
   'host.setItemKey',
   'host.revealItemKey',

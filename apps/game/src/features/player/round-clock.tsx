@@ -14,7 +14,12 @@ type RoundClockProps = {
   /** A seat's view, or a seated console's: the clock reads nothing a seat alone holds. */
   view: Pick<
     PlayerRoomView,
-    'isHostConnected' | 'phase' | 'round' | 'roundElapsedMs' | 'settings'
+    | 'isHostConnected'
+    | 'isPaused'
+    | 'phase'
+    | 'round'
+    | 'roundElapsedMs'
+    | 'settings'
   >
 }
 
@@ -24,7 +29,7 @@ type RoundClockProps = {
  * question one phase later.
  *
  * Absent whenever nothing is counting. For the round that is the host being
- * away, because the server has it frozen and a groove still draining would be
+ * away or holding the room on pause, because the server has it frozen and a groove still draining would be
  * timing nobody; for the hold `advancesAt` says the same thing on its own,
  * covering a host who advances by hand and a host who has gone at once.
  */
@@ -41,7 +46,8 @@ export const RoundClock: React.FC<RoundClockProps> = ({ clock, view }) => {
   if (
     durationMs === null ||
     view.phase !== 'playing' ||
-    !view.isHostConnected
+    !view.isHostConnected ||
+    view.isPaused
   ) {
     return null
   }

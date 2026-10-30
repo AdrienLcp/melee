@@ -28,6 +28,7 @@ import {
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
+import { NoticeCard } from '@/presentation/components/notice-card'
 import { RevealHold } from '@/presentation/components/round-progress'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
@@ -119,6 +120,7 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   slateWall,
   view
 }) => {
+  const translate = useTranslate()
   const lastRevealed = useRoundStillBeingTalkedAbout(view)
   const rankedBefore = useStandingBeforeTheReveal(view)
 
@@ -128,6 +130,19 @@ export const RoomStage: React.FC<RoomStageProps> = ({
   // snapshot brings is a new node and runs its own arrival.
   if (view === null) {
     return <div className='stage' key='awaiting-view' />
+  }
+
+  // Ahead of every phase, the reveal included: the room stopped to wait for
+  // somebody, and a question left up is one the rest go on thinking about.
+  if (view.isPaused) {
+    return (
+      <div className='stage solo paused'>
+        <NoticeCard
+          detail={translate('room.pause.detail')}
+          title={translate('room.pause.title')}
+        />
+      </div>
+    )
   }
 
   const round = view.round

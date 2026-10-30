@@ -337,6 +337,7 @@ const Lobby: React.FC<{
  */
 const isFramed = (view: PlayerRoomView): boolean =>
   view.isHostConnected &&
+  !view.isPaused &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
   ((view.phase === 'playing' && view.round.answerMode === 'choice') ||

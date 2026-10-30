@@ -46,7 +46,11 @@ export const RoundActions: React.FC<RoundActionsProps> = ({
         }}
         variant='underlined'
       >
-        {translate('host.reveal')}
+        {translate(
+          view.round?.content.kind === 'innerclock'
+            ? 'innerclock.endCount'
+            : 'host.reveal'
+        )}
       </Button>
     </>
   )

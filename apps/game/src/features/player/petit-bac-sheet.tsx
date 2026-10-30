@@ -65,6 +65,7 @@ export const LetterPiece: React.FC<LetterPieceProps> = ({ letter }) => {
 export type SheetReading = Pick<
   PlayerRoomView,
   | 'isHostConnected'
+  | 'isPaused'
   | 'phase'
   | 'players'
   | 'round'

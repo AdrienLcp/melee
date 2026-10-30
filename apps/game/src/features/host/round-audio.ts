@@ -132,6 +132,12 @@ export const useRoundAudio = ({
   const steeredRef = useRef<{ playback: ClipPlayback; roundId: string } | null>(
     null
   )
+  /**
+   * Whether the last run silenced the clip for a room the host paused. A
+   * reveal only plays on a change of the host's word, so letting go of the
+   * pause has to be that change.
+   */
+  const heldRef = useRef(false)
   const [decks, setDecks] = useState<Decks | null>(null)
   const [refusal, setRefusal] = useState<ClipRefusal | null>(null)
 
@@ -176,6 +182,7 @@ export const useRoundAudio = ({
   const startsAt = round?.startsAt ?? null
   const roundId = round?.id ?? null
   const elapsedMs = view?.roundElapsedMs ?? 0
+  const isRoomPaused = view?.isPaused ?? false
 
   useEffect(() => {
     if (decks === null) {
@@ -189,6 +196,22 @@ export const useRoundAudio = ({
 
       return
     }
+
+    // Every clock stops with the room, the clip first; it picks up from
+    // `roundElapsedMs` below once the room is let go.
+    if (isRoomPaused) {
+      heldRef.current = true
+
+      for (const deck of decks) {
+        deck.pause()
+      }
+
+      return
+    }
+
+    const wasHeld = heldRef.current
+
+    heldRef.current = false
 
     // The reveal is not silence: the clip goes on under the answer, which is
     // most of what makes the answer land — until the host pauses or replays it.
@@ -204,6 +227,12 @@ export const useRoundAudio = ({
       }
 
       if (steered?.roundId !== roundId) {
+        return
+      }
+
+      if (wasHeld && !isPaused) {
+        play(loaded.deck, disarm)
+
         return
       }
 
@@ -309,6 +338,7 @@ export const useRoundAudio = ({
     disarm,
     elapsedMs,
     isPaused,
+    isRoomPaused,
     phase,
     previewUrl,
     restarts,
