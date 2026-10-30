@@ -254,6 +254,18 @@ and `aspect-ratio` in range syntax, thresholds in `rem`. The viewport keeps what
 is positioned against it — the framed screens held to `100dvh` — and what is not
 a width.
 
+**A size container has no size of its own**, so whatever holds one must hand it
+a definite box. `container-type: size` in an `auto` grid row is 0px tall, and
+`inline-size` in a shrink-to-fit parent (`align-items: center`, an `auto`
+column) is as wide as its siblings: black square's reveal grid collapsed to
+slivers under a podium rule written `minmax(0, 1fr) auto` for answer-then-list
+panels, and the player's map and timeline shrank to the payout line under a
+centred reveal. A shared rule that assigns rows by position names the panels it
+fits, or lists the ones it does not. Inside a box of fixed height — the
+podium's round card — a floor written against the viewport (`38dvh`, a
+`--stage-unit` multiple) is not the box's floor: it pushes what follows out of
+the card.
+
 ## State comes from react-aria's data attributes
 
 `[data-hovered]`, `[data-pressed]`, `[data-selected]`, `[data-disabled]`,
