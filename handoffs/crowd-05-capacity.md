@@ -43,6 +43,39 @@ A room handles one message at a time.
   presses' reaction times. **Measure this at 32 first:** have 32 sockets press
   at a controlled spread after the flip, and compare stamped against sent.
 
+## Where a snapshot's bytes go
+
+This is a player's view mid-round at 32 seats, measured on 30/10/2026.
+
+| Part of the view | Size |
+|---|---|
+| `players` (32 × ~105 B: id, nickname, score, isReady, isConnected, board) | 3.4 KB |
+| `round` | ~1 KB |
+| `settings` | ~0.4 KB |
+| **Total** | **~5 KB** |
+
+The 13–16 KB maxima are reveal frames, which carry everyone's answer.
+
+During a round, another seat's answer changes nothing on a player's screen
+except the "N answers out of 32" strip. That player is still sent the whole
+5 KB, once per answer. Adrien asked (30/10) whether everyone needs everything
+every time. They do not.
+
+## Making 32 seats cheap — Adrien's decision: the cap stays at 32
+
+These do not raise the cap; they make the current one cheap.
+
+1. **Coalesce broadcasts.** Send one snapshot per ~50–100 ms window rather
+   than one per frame. This keeps the "whole snapshot, never a delta" rule,
+   and it turns a burst of 32 answers from 32 sends into 2–3.
+2. **Trim the player's view to what its screen draws.** Mid-round, a player
+   needs the answered count and its own state rather than the 32 player
+   records and the full settings. This is still a whole snapshot, just a
+   smaller one per role. Check `docs/game-catalogue.md` and the
+   realtime-protocol rule before changing the shape.
+
+Together they would make 32 seats cheaper than 24 is today.
+
 ## What raising the cap would need
 
 1. **Coalesce broadcasts.** Send one snapshot per ~50–100 ms window rather than
