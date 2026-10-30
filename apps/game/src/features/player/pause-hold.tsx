@@ -8,8 +8,9 @@ import './pause-hold.sass'
 /**
  * The round kept under the paused card rather than swapped out for it: a
  * typed guess, a timeline half put in order or a pawn on the map is the
- * player's own, and the pause has to hand it back. Hidden and inert while it
- * holds, so nothing of the question can be read, pressed or announced.
+ * player's own, and the pause has to hand it back. The card is drawn in front
+ * of the round as its sibling, never around it, so every layout rule and fit
+ * that reads the round as the page's own child still does.
  */
 export const PauseHold: React.FC<{
   children: React.ReactNode
@@ -20,16 +21,14 @@ export const PauseHold: React.FC<{
   return (
     <>
       {isPaused && (
-        <section className='player-round notice'>
+        <section className='player-round notice paused'>
           <NoticeCard
             detail={translate('room.pause.detail')}
             title={translate('room.pause.title')}
           />
         </section>
       )}
-      <div className='pause-hold' hidden={isPaused} inert={isPaused}>
-        {children}
-      </div>
+      {children}
     </>
   )
 }

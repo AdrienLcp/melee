@@ -150,6 +150,7 @@ const players = [
 const choosingView = (question: Question) => ({
   code: ROOM_CODE,
   isHostConnected: true,
+  isPaused: false,
   isWallConnected: false,
   phase: 'playing',
   players,
@@ -231,7 +232,9 @@ const seatedHostView = (question: Question) => ({
   isWallConnected: false,
   lineUpPlayed: [],
   remainingPoolSize: 40,
-  wallCount: 0
+  volume: null,
+  wallCount: 0,
+  walls: []
 })
 
 const table = [
@@ -826,7 +829,12 @@ const blindTestRound = (phase: 'buzzed' | 'countdown') => {
 
   return {
     ...view,
-    currentContent: { audioUrl: null, kind: 'blindtest', track },
+    currentContent: {
+      audioUrl: null,
+      kind: 'blindtest',
+      playback: { isPaused: false, restarts: 0 },
+      track
+    },
     phase,
     round: {
       ...view.round,
@@ -1603,6 +1611,8 @@ test('[layout] player, the reveal of a full table: scrolls only at the floor, ne
  */
 const evening = (view: ReturnType<typeof consoleView>) => ({
   ...view,
+  wallCount: 1,
+  wallNumber: 1,
   settings: {
     ...view.settings,
     board: {

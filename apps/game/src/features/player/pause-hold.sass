@@ -1,8 +1,8 @@
 @layer components
-  // No box of its own while the round is on, so the page lays the round out
-  // as if it were its direct child.
-  .pause-hold:not([hidden])
-    display: contents
+  // Out of the layout, the focus order and the accessibility tree, yet still
+  // mounted, so the draft under it survives the pause.
+  .player-page > .player-round.paused ~ *
+    display: none
 
   // A framed round's own place, rather than a row after it at the foot.
   .player-page.framed > .player-round.notice
