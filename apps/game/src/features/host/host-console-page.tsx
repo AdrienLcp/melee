@@ -88,7 +88,11 @@ import { usePhaseField } from '@/presentation/theme/use-phase-field'
 import { ArrivalNotice, useArrival } from './arrival-notice'
 import { type ChallengeLine, challengePickFor } from './challenge-line'
 import { ClipOffer } from './clip-offer'
-import { HostActions, type HostActionsProps } from './host-actions'
+import {
+  HostActions,
+  type HostActionsProps,
+  MID_ROUND_PHASES
+} from './host-actions'
 import { HostPanel } from './host-panel'
 import { HostPodium } from './host-podium'
 import { HostRefused } from './host-refused'
@@ -401,6 +405,16 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [send]
   )
 
+  const pausableRoundId =
+    view?.round != null && !view.isPaused && MID_ROUND_PHASES.has(view.phase)
+      ? view.round.id
+      : null
+  const pauseRound = useCallback(() => {
+    if (pausableRoundId !== null) {
+      send({ isPaused: true, roundId: pausableRoundId, type: 'host.pause' })
+    }
+  }, [pausableRoundId, send])
+
   const revealRound = useCallback(() => {
     if (choosingRoundId !== null) {
       send({ roundId: choosingRoundId, type: 'host.reveal' })
@@ -436,6 +450,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
     handOver,
     leaveSeat: view?.youId == null ? null : leaveSeat,
+    pauseRound: pausableRoundId === null ? null : pauseRound,
     refusedNickname:
       requestedNickname !== null && error?.code === 'nickname_taken'
         ? requestedNickname

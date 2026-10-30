@@ -41,6 +41,13 @@ export type RoomActions = {
    * `isInvalid` that outlives its reason makes the native submit a silent no-op.
    */
   refusedNickname: string | null
+  /**
+   * Holds the whole room mid-round for somebody who had to leave the table.
+   * In the menu rather than beside the round's presses, because on a console
+   * held in a hand a second row of presses is taken from the stage. The host
+   * console's alone, and `null` outside a round or once it is paused.
+   */
+  pauseRound: (() => void) | null
   /** Changes the name the seat is held under, socket and round untouched. */
   rename: ((nickname: string) => void) | null
   /**
@@ -74,6 +81,7 @@ const NO_ACTIONS: RoomActions = {
   endGame: null,
   handOver: null,
   leaveSeat: null,
+  pauseRound: null,
   refusedNickname: null,
   rename: null,
   revealRound: null,
@@ -140,6 +148,7 @@ export const useReportRoomActions = ({
   endGame,
   handOver,
   leaveSeat,
+  pauseRound,
   refusedNickname,
   rename,
   revealRound,
@@ -159,6 +168,7 @@ export const useReportRoomActions = ({
       endGame,
       handOver,
       leaveSeat,
+      pauseRound,
       refusedNickname,
       rename,
       revealRound,
@@ -179,6 +189,7 @@ export const useReportRoomActions = ({
     endGame,
     handOver,
     leaveSeat,
+    pauseRound,
     refusedNickname,
     rename,
     report,

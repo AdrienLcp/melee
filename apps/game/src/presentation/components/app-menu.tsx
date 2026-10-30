@@ -350,7 +350,8 @@ export const AppMenu: React.FC = () => {
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
   const roomCode = useRoomCodeParam()
-  const { revealRound, roomVolume, setRoomVolume } = useRoomActions()
+  const { pauseRound, revealRound, roomVolume, setRoomVolume } =
+    useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
@@ -431,6 +432,19 @@ export const AppMenu: React.FC = () => {
                   variant='outlined'
                 >
                   {translate('host.reveal')}
+                </Button>
+              )}
+
+              {pauseRound !== null && (
+                <Button
+                  isDisabled={connection?.status !== 'open'}
+                  onPress={() => {
+                    pauseRound()
+                    close()
+                  }}
+                  variant='outlined'
+                >
+                  {translate('room.pause.press')}
                 </Button>
               )}
 

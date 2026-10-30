@@ -110,6 +110,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     endGame: null,
     handOver: null,
     leaveSeat: null,
+    pauseRound: null,
     refusedNickname: null,
     rename: null,
     revealRound: null,

@@ -54,51 +54,37 @@ export type HostActionsProps = {
  */
 export const HostActions: React.FC<HostActionsProps> = (props) => {
   // The stage hides the round while it is paused, so nothing that acts on the
-  // round is offered either — the server would refuse it.
-  if (props.view.isPaused) {
-    return <PauseButton {...props} />
-  }
-
-  return MID_ROUND_PHASES.has(props.view.phase) ? (
-    <>
-      <PhaseActions {...props} />
-      <PauseButton {...props} />
-    </>
+  // round is offered either — the server would refuse it. Pausing is the
+  // menu's, see `pauseRound`.
+  return props.view.isPaused ? (
+    <ResumeButton {...props} />
   ) : (
     <PhaseActions {...props} />
   )
 }
 
-const MID_ROUND_PHASES = new Set<HostRoomView['phase']>([
+/** Mid-round, the phases a pause can hold. */
+export const MID_ROUND_PHASES: ReadonlySet<HostRoomView['phase']> = new Set([
   'countdown',
   'playing',
   'buzzed'
 ])
 
-/**
- * Holds the whole room — the clock, the clip and every screen — for somebody
- * who had to leave the table, and lets it go again. The one press of a paused
- * room, so it is the filled piece then.
- */
-const PauseButton: React.FC<HostActionsProps> = ({ isLive, send, view }) => {
+/** The one press of a paused room, so it is the filled piece. */
+const ResumeButton: React.FC<HostActionsProps> = ({ isLive, send, view }) => {
   const translate = useTranslate()
-  const isPaused = view.isPaused
 
   return (
     <Button
       isDisabled={!isLive}
       onPress={() => {
         if (view.round !== null) {
-          send({
-            isPaused: !isPaused,
-            roundId: view.round.id,
-            type: 'host.pause'
-          })
+          send({ isPaused: false, roundId: view.round.id, type: 'host.pause' })
         }
       }}
-      variant={isPaused ? 'filled' : 'outlined'}
+      variant='filled'
     >
-      {translate(isPaused ? 'room.pause.resume' : 'room.pause.press')}
+      {translate('room.pause.resume')}
     </Button>
   )
 }
