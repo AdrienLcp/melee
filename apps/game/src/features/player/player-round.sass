@@ -357,11 +357,13 @@
       flex-direction: column
 
     // A round before the first point, or one whose question the room owned,
-    // leaves the payout alone on the screen: one object, centred.
+    // leaves the payout alone on the screen: one object, centred. A grid, a
+    // map or a strip of cards is a size container with no width of its own,
+    // and centred it shrank to the payout line under it.
     .black-square-reveal
       block-size: clamp(14rem, 46dvh, 32rem)
 
-    &:not(:has(.round-board, .answer-card, .reaction-board, .black-square-reveal, .petit-bac-reveal))
+    &:not(:has(.round-board, .answer-card, .reaction-board, .black-square-reveal, .map-reveal, .petit-bac-reveal, .timeline-revealed))
       align-items: center
       justify-content: center
 
