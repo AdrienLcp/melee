@@ -432,6 +432,10 @@
       &[data-game='atlas']
         grid-template-rows: minmax(0, 1fr) auto
 
+        // The map's own floor would push it over the list in a short row.
+        .world-map
+          min-block-size: 0
+
       // Doubled up to outrank the chip sizing below, which divides a height
       // this list no longer has.
       &[data-game='atlas']:not(.bare) > .said

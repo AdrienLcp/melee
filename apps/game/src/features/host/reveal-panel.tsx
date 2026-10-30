@@ -478,8 +478,8 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
                       ? null
                       : paid.speedBonus > 0
                         ? translate('round.awardWithSpeed', {
-                            answer: paid.points - paid.speedBonus,
-                            speed: paid.speedBonus
+                            answer: shownPoints(paid.points - paid.speedBonus),
+                            speed: shownPoints(paid.speedBonus)
                           })
                         : translate('round.award', {
                             points: shownPoints(paid.points)

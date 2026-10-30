@@ -89,8 +89,15 @@ The grid's layout per N is an `impeccable` pass, browser-checked at 3, 5, 9.
 **The screens**, as built: the map sits *inside* the question card like a
 quiz flag, so every existing layout holds it unchanged; a shown country is
 framed on a least span of 0.08 of the world, or Jordan is lost in a
-Europe-to-India view. Seen and left: France in a name round is the place
-direction's framed sheet, sea bands and all. What the pass covered: the direction
+Europe-to-India view. The map of France is never framed tighter than itself,
+in either direction: a city is named, and a cluster of pawns read, by where it
+stands in the country. The world map's reveal is grown to a least span of 0.2
+of the world — about a continent. Over a tight cluster, pawns closer than their
+own width shrink towards the gap (`crowdedPawnScale`, no smaller than 0.6), and
+each distance label tries points along its line, then either side of its pawn,
+and is left out when none is free (`placedDistanceLabels`) — the list beside
+the map prints every distance. The direction control names the map (*Nommer le
+lieu allumé sur la carte*): *ce qui est montré* read as a flag. What the pass covered: the direction
 control and the places as checkboxes in the setup — today a single choice
 written as a set of one; the `name` round on the seat, the console and the wall
 (`WorldMap` filling the country around `shown`, a dot for a town, the four

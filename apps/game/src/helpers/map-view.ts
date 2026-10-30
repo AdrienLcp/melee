@@ -18,6 +18,30 @@ type Frame = { frame: Size; map: Size }
 /** A rectangle of the map, by its two corners, in map units. */
 export type MapBox = { max: Point; min: Point }
 
+/**
+ * The box grown about its own centre until each side spans at least `span`
+ * map units — a framing that opens on it then never zooms past the context a
+ * place is recognised in.
+ */
+export const atLeastSpanning = ({
+  box,
+  span
+}: {
+  box: MapBox
+  span: number
+}): MapBox => {
+  const grown = (min: number, max: number): readonly [number, number] => {
+    const half = Math.max(span, max - min) / 2
+    const centre = (min + max) / 2
+
+    return [centre - half, centre + half]
+  }
+  const [minX, maxX] = grown(box.min[0], box.max[0])
+  const [minY, maxY] = grown(box.min[1], box.max[1])
+
+  return { max: [maxX, maxY], min: [minX, minY] }
+}
+
 /** What a framing leaves around the box on each side, as a share of the frame. */
 const FRAMING_MARGIN = 0.15
 

@@ -5,6 +5,11 @@ import type { AtlasShown, GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
 
 import {
+  crowdedPawnScale,
+  placedDistanceLabels
+} from '@/helpers/distance-labels'
+import {
+  atLeastSpanning,
   clampedView,
   fittedView,
   framedOn,
@@ -44,10 +49,8 @@ const ZOOM_STEP = 2
 const SMALL_TARGET_AREA = 900
 /** The city's own dot, in screen pixels. */
 const CITY_RADIUS = 5
-/** Where a line's label stands, from the pawn: the lines meet at the target, so their middles crowd and their starts do not. */
-const LABEL_ALONG = 0.3
-/** How far from its pawn a label stands at least, in screen pixels, so a short line's label does not sit on the pawn. */
-const LABEL_CLEARANCE = 56
+/** A distance label's size bounds in pixels, read across the room on a wall, the frame's own width deciding between them. */
+const DISTANCE_SIZE = { least: 14, most: 28, share: 0.022 } as const
 /** The zoom buttons' column, which a framing keeps clear so no pawn stands under them. */
 const CONTROLS_INSET = 56
 /** The ring's radius on screen, wide enough to read round a pawn standing in it. */
@@ -58,6 +61,12 @@ const PERCH_MARGIN = 12
 const SHOWN_CONTEXT = 3
 /** The least a view around a shown place spans, as a share of the map's width — a dot or an islet still needs a coastline to be found. */
 const SHOWN_LEAST_SPAN = 0.08
+/**
+ * The least the world map's reveal spans, as a share of its width — about a
+ * continent, so a table that all landed near the answer still sees where on
+ * the globe that was. The map of France is never framed tighter than itself.
+ */
+const REVEAL_LEAST_SPAN = 0.2
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {
@@ -173,7 +182,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
       : targetOutlineOf(geometry, revealed.target)
   const markers = revealed?.markers ?? []
   const { easeView, setView, view } = useEasedMapView(() =>
-    target === null || (region === 'france' && markers.length === 0)
+    target === null || region === 'france'
       ? fittedView({ frame, map })
       : clampedView({
           frame,
@@ -182,7 +191,10 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
             box:
               markers.length === 0
                 ? boxInContext({ map, target })
-                : boxAround({ geometry, markers, target }),
+                : atLeastSpanning({
+                    box: boxAround({ geometry, markers, target }),
+                    span: map.width * REVEAL_LEAST_SPAN
+                  }),
             frame: { ...frame, width: frame.width - CONTROLS_INSET },
             map
           })
@@ -258,6 +270,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         </g>
         {drawnTarget !== null && target !== null && (
           <RevealedLayer
+            frame={frame}
             isCity={drawnTarget.kind === 'city'}
             mapPointOf={mapPointOf}
             markers={markers}
@@ -473,28 +486,72 @@ const boxAround = ({
  * line, a ring and a label keep their size at every zoom.
  */
 const RevealedLayer: React.FC<{
+  frame: Size
   /** A city is a spot rather than a shape: dotted, and ringed at every zoom. */
   isCity: boolean
   mapPointOf: MapGeometry['mapPointOf']
   markers: readonly RevealedMarker[]
   target: CountryOutline
   view: MapView
-}> = ({ isCity, mapPointOf, markers, target, view }) => {
+}> = ({ frame, isCity, mapPointOf, markers, target, view }) => {
   const [centreX, centreY] = toScreen(view, target.centre)
   const lines = markers
     .filter((marker) => marker.distanceKm > 0)
+    .toSorted((one, other) => one.distanceKm - other.distanceKm)
     .map((marker) => {
       const at = mapPointOf(marker.point)
 
       return {
+        characters: marker.label.length,
         from: toScreen(view, at),
         marker,
         to: toScreen(view, nearestVertex(target.vertices, at))
       }
     })
+  const pawns = markers.map((marker) => ({
+    at: toScreen(view, mapPointOf(marker.point)),
+    marker
+  }))
+  const pawnScale = crowdedPawnScale({
+    pawnWidth: PAWN_BOX.width,
+    points: pawns.map(({ at }) => at)
+  })
+  const pawn = {
+    height: PAWN_BOX.height * pawnScale,
+    width: PAWN_BOX.width * pawnScale
+  }
+  const distanceSize = Math.min(
+    DISTANCE_SIZE.most,
+    Math.max(DISTANCE_SIZE.least, frame.width * DISTANCE_SIZE.share)
+  )
+  const labelsAt = placedDistanceLabels({
+    fontSize: distanceSize,
+    frame,
+    lines,
+    obstacles: [
+      ...pawns.map(({ at: [x, y] }) => ({
+        ...pawn,
+        x: x - pawn.width / 2,
+        y: y - pawn.height
+      })),
+      {
+        height: RING_RADIUS * 2,
+        width: RING_RADIUS * 2,
+        x: centreX - RING_RADIUS,
+        y: centreY - RING_RADIUS
+      },
+      {
+        height: frame.height,
+        width: CONTROLS_INSET,
+        x: frame.width - CONTROLS_INSET,
+        y: 0
+      }
+    ],
+    pawn
+  })
 
   return (
-    <g className='revealed'>
+    <g className='revealed' style={{ '--distance-size': `${distanceSize}px` }}>
       {lines.map(({ from, marker, to }) => (
         <line
           className='reach'
@@ -511,48 +568,47 @@ const RevealedLayer: React.FC<{
       {isCity && (
         <circle className='city' cx={centreX} cy={centreY} r={CITY_RADIUS} />
       )}
-      {markers.map((marker) => (
+      {pawns.map(({ at, marker }) => (
         <RevealedPawn
-          at={toScreen(view, mapPointOf(marker.point))}
+          at={at}
           key={marker.playerId}
+          scale={pawnScale}
           seat={marker.seat}
         />
       ))}
-      {lines.map(({ from, marker, to }) => {
-        const along = labelAlong(from, to)
+      {lines.map(({ marker }, index) => {
+        const at = labelsAt[index]
 
         return (
-          <text
-            className='distance'
-            key={marker.playerId}
-            x={from[0] + (to[0] - from[0]) * along}
-            y={from[1] + (to[1] - from[1]) * along}
-          >
-            {marker.label}
-          </text>
+          at != null && (
+            <text
+              className='distance'
+              key={marker.playerId}
+              x={at[0]}
+              y={at[1]}
+            >
+              {marker.label}
+            </text>
+          )
         )
       })}
     </g>
   )
 }
 
-/** The share of a line its label stands at: clear of the pawn, and never past the middle, where the lines meet. */
-const labelAlong = (from: Point, to: Point): number => {
-  const length = Math.hypot(to[0] - from[0], to[1] - from[1])
-
-  return length === 0
-    ? 0
-    : Math.min(0.5, Math.max(LABEL_ALONG, LABEL_CLEARANCE / length))
-}
-
-const RevealedPawn: React.FC<{ at: Point; seat: number }> = ({ at, seat }) => {
+const RevealedPawn: React.FC<{
+  at: Point
+  /** Below 1 where the table's pawns crowd one another. */
+  scale: number
+  seat: number
+}> = ({ at, scale, seat }) => {
   const pawnNumber = usePawnNumber({ seat })
 
   return (
     <g
       className='marker'
       style={{ '--pawn': `var(--pawn-${pawnNumber})` }}
-      transform={`translate(${at[0]} ${at[1]}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
+      transform={`translate(${at[0]} ${at[1]}) scale(${scale}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
     >
       <PawnShape />
     </g>

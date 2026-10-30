@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  atLeastSpanning,
   clampedView,
   fittedView,
   framedOn,
@@ -182,5 +183,17 @@ describe('perched over a pawn', () => {
         margin
       }).at[1]
     ).toBe(50)
+  })
+
+  it('[map] grows a box narrower than the least span about its own centre', () => {
+    expect(
+      atLeastSpanning({ box: { max: [110, 205], min: [90, 195] }, span: 200 })
+    ).toEqual({ max: [200, 300], min: [0, 100] })
+  })
+
+  it('[map] leaves a box already wider than the least span as it is', () => {
+    const box = { max: [400, 300], min: [0, 0] } as const
+
+    expect(atLeastSpanning({ box, span: 200 })).toEqual(box)
   })
 })
