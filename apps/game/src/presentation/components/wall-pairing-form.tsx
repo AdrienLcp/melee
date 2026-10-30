@@ -95,7 +95,7 @@ export const WallPairingForm: React.FC<{
         value={code}
       />
       <Button
-        isPending={outcome === 'pairing' || outcome === 'paired'}
+        isPending={outcome === 'pairing'}
         size='small'
         type='submit'
         variant='outlined'

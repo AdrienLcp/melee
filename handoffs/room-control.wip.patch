@@ -1,0 +1,594 @@
+diff --git a/apps/server/src/domain/room/new-room.ts b/apps/server/src/domain/room/new-room.ts
+index 34326cf..903cea9 100644
+--- a/apps/server/src/domain/room/new-room.ts
++++ b/apps/server/src/domain/room/new-room.ts
+@@ -45,6 +45,7 @@ export const newRoom = ({
+     players: new Map(),
+     round: null,
+     settings: roomSettingsFor({ games, locale }),
++    sound: { speaker: null, volume: null },
+     teams: [],
+     trackPool: []
+   }
+diff --git a/apps/server/src/domain/room/room-service.test.ts b/apps/server/src/domain/room/room-service.test.ts
+index 784cd4f..921428b 100644
+--- a/apps/server/src/domain/room/room-service.test.ts
++++ b/apps/server/src/domain/room/room-service.test.ts
+@@ -272,7 +272,7 @@ describe('the two views', () => {
+       now: NOW,
+       room,
+       seatId: null,
+-      wallCount: 0
++      walls: []
+     })
+ 
+     expect(view.remainingPoolSize).toBe(1)
+diff --git a/apps/server/src/domain/room/room-view.ts b/apps/server/src/domain/room/room-view.ts
+index ceed9c6..38afa80 100644
+--- a/apps/server/src/domain/room/room-view.ts
++++ b/apps/server/src/domain/room/room-view.ts
+@@ -14,6 +14,7 @@ import type {
+ } from '@melee/protocol/room'
+ import type { Verdict } from '@melee/protocol/scoring'
+ import type { SlateLine } from '@melee/protocol/slate'
++import type { WallScreen } from '@melee/protocol/sound'
+ import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
+ 
+ import { tallyBallots } from '@melee/core/mostlikely/tally'
+@@ -59,21 +60,21 @@ export const toHostView = ({
+   now,
+   room,
+   seatId,
+-  wallCount
++  walls
+ }: {
+   isHostConnected: boolean
+   now: number
+   room: Room
+   /** The seat this host took, if they took one — they then read what a player reads. */
+   seatId: PlayerId | null
+-  wallCount: number
++  walls: readonly WallScreen[]
+ }): HostRoomView => {
+   const playingSeatId = isRoundJudgedByConsole(room) ? null : seatId
+ 
+   return {
+     ...toBaseView({
+       isHostConnected,
+-      isWallConnected: wallCount > 0,
++      isWallConnected: walls.length > 0,
+       now,
+       room,
+       youId: seatId
+@@ -88,7 +89,9 @@ export const toHostView = ({
+       opened: room.openedEntries
+     }),
+     remainingPoolSize: room.trackPool.length,
+-    wallCount,
++    volume: room.sound.volume,
++    wallCount: walls.length,
++    walls: [...walls],
+     youId: seatId
+   }
+ }
+@@ -101,14 +104,16 @@ export const toHostView = ({
+  */
+ export const toWallView = ({
+   isHostConnected,
+-  isSpeaker,
+   now,
+-  room
++  room,
++  wall,
++  wallCount
+ }: {
+   isHostConnected: boolean
+-  isSpeaker: boolean
+   now: number
+   room: Room
++  wall: { isSpeaker: boolean; number: number }
++  wallCount: number
+ }): WallRoomView => ({
+   ...toBaseView({
+     isHostConnected,
+@@ -121,7 +126,10 @@ export const toWallView = ({
+     room.round === null
+       ? null
+       : toWallContent(toHostContent({ room, round: room.round, seatId: null })),
+-  isSpeaker,
++  isSpeaker: wall.isSpeaker,
++  volume: room.sound.volume,
++  wallCount,
++  wallNumber: wall.number,
+   yourVerdict: null
+ })
+ 
+diff --git a/apps/server/src/domain/room/room-walls.ts b/apps/server/src/domain/room/room-walls.ts
+new file mode 100644
+index 0000000..894b992
+--- /dev/null
++++ b/apps/server/src/domain/room/room-walls.ts
+@@ -0,0 +1,43 @@
++import type { SessionId } from '@melee/protocol/identifiers'
++import type { Speaker } from '@melee/protocol/sound'
++
++type Wall = { isSpeaker: boolean; number: number; sessionId: SessionId }
++
++/**
++ * The wall that sounds, or `null` when the console does. The host's pick wins
++ * while that wall is there; otherwise the wall already sounding keeps it, so a
++ * pick that left does not shuffle the sound between the others, and the first
++ * wall takes it when none holds it. A pick of the console silences them all.
++ */
++export const speakingWallOf = <W extends Wall>({
++  choice,
++  walls
++}: {
++  choice: Speaker | null
++  walls: readonly W[]
++}): W | null => {
++  if (choice?.kind === 'console') {
++    return null
++  }
++
++  const chosen =
++    choice === null
++      ? undefined
++      : walls.find((wall) => wall.sessionId === choice.wallId)
++
++  return chosen ?? walls.find((wall) => wall.isSpeaker) ?? walls[0] ?? null
++}
++
++/** The number a wall arriving is called by: the lowest one no wall holds. */
++export const freeWallNumber = (
++  walls: readonly Pick<Wall, 'number'>[]
++): number => {
++  const taken = new Set(walls.map((wall) => wall.number))
++  let number = 1
++
++  while (taken.has(number)) {
++    number += 1
++  }
++
++  return number
++}
+diff --git a/apps/server/src/domain/room/room.ts b/apps/server/src/domain/room/room.ts
+index 956a13a..55b5474 100644
+--- a/apps/server/src/domain/room/room.ts
++++ b/apps/server/src/domain/room/room.ts
+@@ -39,6 +39,7 @@ import type {
+   RoundDuel
+ } from '@melee/protocol/room'
+ import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
++import type { Speaker } from '@melee/protocol/sound'
+ import type { ColourHex, SentColour } from '@melee/protocol/swatch'
+ import type { TeamId, TeamName } from '@melee/protocol/team'
+ import type { DatedTimelineEvent } from '@melee/protocol/timeline'
+@@ -137,6 +138,12 @@ export type Room = {
+    * remembered would leak one party into another.
+    */
+   playedContentIds: Set<string>
++  /**
++   * The host's word on the sound. `speaker` is `null` until they pick one —
++   * the first wall then sounds, or the console with none — and `volume` until
++   * the console sends its level, each speaker keeping its own meanwhile.
++   */
++  sound: { speaker: Speaker | null; volume: number | null }
+   /**
+    * Every Petit Bac letter this room has played, oldest first. Not in
+    * `playedContentIds`: a set cannot hold a letter twice, and the draw cycles
+diff --git a/apps/server/src/infrastructure/messaging/connection.ts b/apps/server/src/infrastructure/messaging/connection.ts
+index 5d99fd9..b9e8811 100644
+--- a/apps/server/src/infrastructure/messaging/connection.ts
++++ b/apps/server/src/infrastructure/messaging/connection.ts
+@@ -35,7 +35,13 @@ export type Connection = Outbound &
+   (
+     | { playerId: PlayerId | null; role: 'host' }
+     | { playerId: PlayerId; role: 'player' }
+-    | { isSpeaker: boolean; playerId: null; role: 'wall' }
++    | {
++        isSpeaker: boolean
++        /** What the console calls this wall — see `freeWallNumber`. */
++        number: number
++        playerId: null
++        role: 'wall'
++      }
+   ) & {
+     sessionId: SessionId
+   }
+diff --git a/apps/server/src/infrastructure/messaging/outbound.ts b/apps/server/src/infrastructure/messaging/outbound.ts
+index 8759e0d..6d0d295 100644
+--- a/apps/server/src/infrastructure/messaging/outbound.ts
++++ b/apps/server/src/infrastructure/messaging/outbound.ts
+@@ -8,17 +8,14 @@ import {
+   timePongMessageSchema,
+   wallServerMessageSchema
+ } from '@melee/protocol/server-message'
++import type { WallScreen } from '@melee/protocol/sound'
+ import { PROTOCOL_VERSION } from '@melee/protocol/version'
+ 
+ import type { Room } from '@/domain/room/room'
+ import { toHostView, toPlayerView, toWallView } from '@/domain/room/room-view'
+ 
+ import type { Connection, Outbound } from './connection'
+-import {
+-  electSpeakerWall,
+-  isHostConnected,
+-  wallCountOf
+-} from './room-connections'
++import { electSpeakerWall, isHostConnected, wallsOf } from './room-connections'
+ import type { RoomEngine } from './room-engine'
+ 
+ export const sendError = (
+@@ -65,7 +62,7 @@ const encodeViewFor = (
+     isHostThere,
+     now,
+     room,
+-    wallCount
++    walls
+   }: {
+     envelope:
+       | {
+@@ -78,10 +75,10 @@ const encodeViewFor = (
+     isHostThere: boolean
+     now: number
+     room: Room
+-    wallCount: number
++    walls: readonly WallScreen[]
+   }
+ ): string => {
+-  const isWallThere = wallCount > 0
++  const isWallThere = walls.length > 0
+ 
+   switch (connection.role) {
+     case 'host': {
+@@ -92,7 +89,7 @@ const encodeViewFor = (
+           now,
+           room,
+           seatId: connection.playerId,
+-          wallCount
++          walls
+         })
+       })
+     }
+@@ -115,15 +112,25 @@ const encodeViewFor = (
+         ...envelope,
+         view: toWallView({
+           isHostConnected: isHostThere,
+-          isSpeaker: connection.isSpeaker,
+           now,
+-          room
++          room,
++          wall: connection,
++          wallCount: walls.length
+         })
+       })
+     }
+   }
+ }
+ 
++const wallScreensOf = (engine: RoomEngine): WallScreen[] =>
++  wallsOf(engine)
++    .map(({ isSpeaker, number, sessionId }) => ({
++      id: sessionId,
++      isSpeaker,
++      number
++    }))
++    .toSorted((one, other) => one.number - other.number)
++
+ export const sendWelcome = (
+   connection: Connection,
+   { engine, sessionId }: { engine: RoomEngine; sessionId: SessionId }
+@@ -142,7 +149,7 @@ export const sendWelcome = (
+       isHostThere: isHostConnected(engine),
+       now,
+       room: engine.room,
+-      wallCount: wallCountOf(engine)
++      walls: wallScreensOf(engine)
+     })
+   )
+ }
+@@ -156,7 +163,7 @@ export const broadcastRoom = (engine: RoomEngine): void => {
+   electSpeakerWall(engine)
+ 
+   const isHostThere = isHostConnected(engine)
+-  const wallCount = wallCountOf(engine)
++  const walls = wallScreensOf(engine)
+   const now = engine.now()
+ 
+   for (const connection of engine.connections.all()) {
+@@ -166,7 +173,7 @@ export const broadcastRoom = (engine: RoomEngine): void => {
+         isHostThere,
+         now,
+         room: engine.room,
+-        wallCount
++        walls
+       })
+     )
+   }
+diff --git a/apps/server/src/infrastructure/messaging/room-connections.ts b/apps/server/src/infrastructure/messaging/room-connections.ts
+index 7132de7..cc6c0aa 100644
+--- a/apps/server/src/infrastructure/messaging/room-connections.ts
++++ b/apps/server/src/infrastructure/messaging/room-connections.ts
+@@ -1,5 +1,7 @@
+ import type { PlayerId } from '@melee/protocol/identifiers'
+ 
++import { speakingWallOf } from '@/domain/room/room-walls'
++
+ import type { Connection } from './connection'
+ import type { RoomEngine } from './room-engine'
+ 
+@@ -19,22 +21,25 @@ export const hostConnectionIn = (engine: RoomEngine): Connection | null =>
+ export const isHostConnected = (engine: RoomEngine): boolean =>
+   engine.connections.all().some((connection) => connection.role === 'host')
+ 
+-export const wallCountOf = (engine: RoomEngine): number =>
+-  engine.connections.all().filter((connection) => connection.role === 'wall')
+-    .length
++type WallConnection = Extract<Connection, { role: 'wall' }>
++
++export const wallsOf = (engine: RoomEngine): WallConnection[] =>
++  engine.connections
++    .all()
++    .filter(
++      (connection): connection is WallConnection => connection.role === 'wall'
++    )
+ 
+ /**
+- * The wall that plays the clip, named afresh only when none holds the role:
+- * the first to arrive keeps it, and when it leaves the next view hands it on.
++ * The wall that plays the clip, named afresh on every view: the host's pick
++ * while it is there, else the one already sounding — see `speakingWallOf`.
+  */
+ export const electSpeakerWall = (engine: RoomEngine): void => {
+-  const walls = engine.connections
+-    .all()
+-    .filter((connection) => connection.role === 'wall')
+-  const [first] = walls
++  const walls = wallsOf(engine)
++  const speaking = speakingWallOf({ choice: engine.room.sound.speaker, walls })
+ 
+-  if (first !== undefined && !walls.some((wall) => wall.isSpeaker)) {
+-    first.isSpeaker = true
++  for (const wall of walls) {
++    wall.isSpeaker = wall === speaking
+   }
+ }
+ 
+diff --git a/apps/server/src/infrastructure/messaging/socket-handler.ts b/apps/server/src/infrastructure/messaging/socket-handler.ts
+index db16580..fb60793 100644
+--- a/apps/server/src/infrastructure/messaging/socket-handler.ts
++++ b/apps/server/src/infrastructure/messaging/socket-handler.ts
+@@ -34,6 +34,7 @@ import {
+   touch,
+   updateSettings
+ } from '@/domain/room/room-service'
++import { freeWallNumber } from '@/domain/room/room-walls'
+ import {
+   adjustScore,
+   changesTeams,
+@@ -113,7 +114,7 @@ import {
+   unseatConsolesThatMustJudge
+ } from './host-judging'
+ import { sendError, sendPong, sendWelcome } from './outbound'
+-import { isHostConnected, isSeatConnected } from './room-connections'
++import { isHostConnected, isSeatConnected, wallsOf } from './room-connections'
+ import { closeRoomEngine, publishRoom, type RoomEngine } from './room-engine'
+ import {
+   beginRound,
+@@ -269,6 +270,7 @@ const seatWall = ({
+ 
+   return {
+     isSpeaker: false,
++    number: freeWallNumber(wallsOf(engine)),
+     playerId: null,
+     role: 'wall',
+     send: outbound.send,
+@@ -777,6 +779,18 @@ const dispatch = ({
+       disband(engine)
+       break
+     }
++    case 'host.chooseSpeaker': {
++      room.sound.speaker = message.speaker
++      touch(room, now)
++      publishRoom(engine)
++      break
++    }
++    case 'host.setVolume': {
++      room.sound.volume = message.volume
++      touch(room, now)
++      publishRoom(engine)
++      break
++    }
+     case 'host.dismissWall': {
+       dismissWalls(engine)
+       break
+diff --git a/apps/server/src/infrastructure/worker/room-object.ts b/apps/server/src/infrastructure/worker/room-object.ts
+index 9052b73..39f1383 100644
+--- a/apps/server/src/infrastructure/worker/room-object.ts
++++ b/apps/server/src/infrastructure/worker/room-object.ts
+@@ -49,6 +49,7 @@ const seatAttachmentSchema = z.discriminatedUnion('role', [
+   }),
+   z.object({
+     isSpeaker: z.boolean().default(false),
++    number: z.number().int().positive().default(1),
+     playerId: z.null(),
+     role: z.literal('wall'),
+     sessionId: sessionIdSchema
+diff --git a/packages/protocol/src/client-message.ts b/packages/protocol/src/client-message.ts
+index 388b984..5f88aa9 100644
+--- a/packages/protocol/src/client-message.ts
++++ b/packages/protocol/src/client-message.ts
+@@ -27,6 +27,7 @@ import {
+   slateItemIndexSchema,
+   slateKeySchema
+ } from './slate'
++import { roomVolumeSchema, speakerSchema } from './sound'
+ import { colourHexSchema } from './swatch'
+ import {
+   MAX_TEAMS,
+@@ -556,6 +557,22 @@ export const dismissWallMessageSchema = z.object({
+   type: z.literal('host.dismissWall')
+ })
+ 
++/**
++ * The screen the clip and the cues play on. A wall that is not there when this
++ * lands, or that leaves later, hands the sound to another wall or back to the
++ * console, and takes it again when it comes back.
++ */
++export const chooseSpeakerMessageSchema = z.object({
++  speaker: speakerSchema,
++  type: z.literal('host.chooseSpeaker')
++})
++
++/** The level whichever screen is the speaker plays at, set from the console. */
++export const setVolumeMessageSchema = z.object({
++  type: z.literal('host.setVolume'),
++  volume: roomVolumeSchema
++})
++
+ /**
+  * What a host socket may send. Splitting the union by role means a player
+  * screen cannot even construct `host.judge` — the server still enforces it,
+@@ -593,7 +610,9 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
+   playAgainMessageSchema,
+   removePlayerMessageSchema,
+   closeRoomMessageSchema,
+-  dismissWallMessageSchema
++  dismissWallMessageSchema,
++  chooseSpeakerMessageSchema,
++  setVolumeMessageSchema
+ ])
+ 
+ export const playerClientMessageSchema = z.discriminatedUnion('type', [
+@@ -663,7 +682,9 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
+   playAgainMessageSchema,
+   removePlayerMessageSchema,
+   closeRoomMessageSchema,
+-  dismissWallMessageSchema
++  dismissWallMessageSchema,
++  chooseSpeakerMessageSchema,
++  setVolumeMessageSchema
+ ])
+ 
+ export type ConnectionRole = z.infer<typeof connectionRoleSchema>
+@@ -709,7 +730,9 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
+   'host.playAgain',
+   'host.removePlayer',
+   'host.closeRoom',
+-  'host.dismissWall'
++  'host.dismissWall',
++  'host.chooseSpeaker',
++  'host.setVolume'
+ ])
+ 
+ /**
+diff --git a/packages/protocol/src/room.ts b/packages/protocol/src/room.ts
+index 8861058..1a512a4 100644
+--- a/packages/protocol/src/room.ts
++++ b/packages/protocol/src/room.ts
+@@ -77,6 +77,7 @@ import {
+   slateLineSchema,
+   slateProgressSchema
+ } from './slate'
++import { roomVolumeSchema, wallScreenSchema } from './sound'
+ import { colourHexSchema, sentColourSchema } from './swatch'
+ import {
+   DEFAULT_TEAM_SCORING,
+@@ -803,9 +804,9 @@ const baseRoomViewSchema = z.object({
+    */
+   isHostConnected: z.boolean(),
+   /**
+-   * Whether a wall is showing the room. It is the speaker whenever it is
+-   * there, so this is what tells the console to keep the clip to itself, and
+-   * a player's screen to draw the whole board when nobody else does.
++   * Whether a wall is showing the room — what tells a player's screen to draw
++   * the whole board when nobody else does. Which screen sounds is the host's
++   * `walls` and the wall's `isSpeaker`, not this.
+    */
+   isWallConnected: z.boolean(),
+   phase: roomPhaseSchema,
+@@ -1013,8 +1014,18 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
+     .array(z.number().int().nonnegative())
+     .max(LINE_UP_MAX_ENTRIES),
+   remainingPoolSize: z.number().int().nonnegative(),
++  /**
++   * How loud the speaker plays, set from the console, and `null` until the
++   * console says — the speaker then keeps its own level.
++   */
++  volume: roomVolumeSchema.nullable(),
+   /** How many walls are showing the room — `isWallConnected` is this above zero. */
+   wallCount: z.number().int().nonnegative(),
++  /**
++   * Every wall showing the room, by number. None of them `isSpeaker` means the
++   * console is the one sounding.
++   */
++  walls: z.array(wallScreenSchema),
+   /**
+    * The seat this console took, and `null` while it is only running the room.
+    * A player always has one, which is why theirs is not nullable — this is the
+@@ -1075,11 +1086,18 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
+ export const wallRoomViewSchema = baseRoomViewSchema.extend({
+   currentContent: wallRoundContentSchema.nullable(),
+   /**
+-   * Whether this wall is the room's speaker. One wall plays the clip and the
++   * Whether this wall is the room's speaker. One screen plays the clip and the
+    * cues, the rest stay silent — two speakers a few metres apart are an echo,
+-   * never in time. The first wall to arrive holds it until it leaves.
++   * never in time. The host picks it; until they do, the first wall to arrive
++   * holds it until it leaves.
+    */
+-  isSpeaker: z.boolean()
++  isSpeaker: z.boolean(),
++  /** The level the speaker plays at — see the host view's `volume`. */
++  volume: roomVolumeSchema.nullable(),
++  /** How many walls are showing the room, this one included. */
++  wallCount: z.number().int().positive(),
++  /** What the console calls this wall — see `WallScreen.number`. */
++  wallNumber: z.number().int().positive()
+ })
+ 
+ export type RoomPhase = z.infer<typeof roomPhaseSchema>
+diff --git a/packages/protocol/src/sound.ts b/packages/protocol/src/sound.ts
+new file mode 100644
+index 0000000..5d23a8a
+--- /dev/null
++++ b/packages/protocol/src/sound.ts
+@@ -0,0 +1,37 @@
++import { z } from 'zod'
++
++import { sessionIdSchema } from './identifiers'
++
++/**
++ * A wall as the console names it: its session id, which survives the wall's
++ * own reload, so a host's pick outlives a screen that blinked.
++ */
++export const wallIdSchema = sessionIdSchema
++
++/**
++ * The screen that plays the clip and the cues — the console itself, or one of
++ * the walls. Only one ever sounds: two speakers a few metres apart are an echo.
++ */
++export const speakerSchema = z.discriminatedUnion('kind', [
++  z.object({ kind: z.literal('console') }),
++  z.object({ kind: z.literal('wall'), wallId: wallIdSchema })
++])
++
++/** 0 to 1, the scale an `HTMLMediaElement` takes. */
++export const roomVolumeSchema = z.number().min(0).max(1)
++
++/** One wall as the console lists it. */
++export const wallScreenSchema = z.object({
++  id: wallIdSchema,
++  /** Whether this wall is the one sounding right now. */
++  isSpeaker: z.boolean(),
++  /**
++   * What the wall shows of itself and the console calls it by, from 1: the
++   * lowest number no other wall holds as it arrives.
++   */
++  number: z.number().int().positive()
++})
++
++export type WallId = z.infer<typeof wallIdSchema>
++export type Speaker = z.infer<typeof speakerSchema>
++export type WallScreen = z.infer<typeof wallScreenSchema>
