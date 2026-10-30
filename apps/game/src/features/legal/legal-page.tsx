@@ -19,6 +19,7 @@ import {
   HOST_TOKENS_KEY,
   SEATS_KEY
 } from '@/infrastructure/storage/session-storage'
+import { WALL_SESSIONS_KEY } from '@/infrastructure/storage/wall-session-storage'
 import { Link } from '@/presentation/components/link'
 import { Main } from '@/presentation/components/main'
 import { TextLink } from '@/presentation/components/text-link'
@@ -62,9 +63,10 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: ANALYTICS_OPT_OUT_KEY, what: 'legal.storage.analyticsOptOut' }
 ]
 
-/** The one key kept in `sessionStorage`, which the tab drops when it closes. */
+/** The keys kept in `sessionStorage`, which the tab drops when it closes. */
 const SESSION_KEYS: StoredKey[] = [
-  { key: PREPARED_KEYS_KEY, what: 'legal.storage.slateKeys' }
+  { key: PREPARED_KEYS_KEY, what: 'legal.storage.slateKeys' },
+  { key: WALL_SESSIONS_KEY, what: 'legal.storage.wallSessions' }
 ]
 
 type LegalSectionProps = {

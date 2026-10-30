@@ -85,8 +85,9 @@ Every wall arms its sound on arrival, so the heir plays at once.
 Each wall gets a **number** as it arrives, the lowest no other wall holds
 (`freeWallNumber`), and shows it once there is a second to tell it from
 (`wallNumber`, `wallCount` and `isSpeaker` on the wall's view). The console
-lists them in `walls` — `id` (the wall's session id, which survives its
-reload), `number`, `isSpeaker`; none speaking means the console is. It still
+lists them in `walls` — `id` (the wall's session id, kept per tab in
+`sessionStorage`, so a reload keeps it and a second tab is a second wall),
+`number`, `isSpeaker`; none speaking means the console is. It still
 counts them through `wallCount`.
 
 The **room volume** is `volume` on the host's and the wall's views, 0 to 1,

@@ -1165,12 +1165,14 @@ export const EN_DICTIONARY = defineDictionary({
       server:
         'While a table is played, Cloudflare’s servers hold it: the nicknames at it, the answers given, the scores and the settings. It is deleted when the host closes the table, or an hour after the last screen leaves it. There are no accounts, and nothing about you outlives the table.',
       session:
-        'One more is kept for the open tab alone, and goes when it closes:',
+        'Two more are kept for the open tab alone, and go when it closes:',
       slateKeys:
         'The answers to a slate the host typed in advance, before the table opens.',
       theme: 'The theme you picked: light, dark or your system’s.',
       volume:
-        'The room volume last set from this screen, which the next table it opens starts at.'
+        'The room volume last set from this screen, which the next table it opens starts at.',
+      wallSessions:
+        'Which room’s screen this tab is, so a reload keeps it and a second tab is another screen.'
     },
     thirdParties: {
       cloudflare:

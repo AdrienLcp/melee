@@ -1125,13 +1125,15 @@ export const FR_DICTIONARY = defineDictionary({
       server:
         'Tant qu’une table est jouée, les serveurs de Cloudflare la gardent : les pseudos autour, les réponses données, les scores et les réglages. Elle est supprimée quand l’hôte ferme la table, ou une heure après que le dernier écran l’a quittée. Il n’y a pas de compte, et rien de ce qui te concerne ne survit à la table.',
       session:
-        'Une autre est gardée pour l’onglet ouvert seulement, et part quand il se ferme :',
+        'Deux autres sont gardées pour l’onglet ouvert seulement, et partent quand il se ferme :',
       slateKeys:
         'Les réponses d’une ardoise que l’hôte a tapées à l’avance, avant d’ouvrir la table.',
       theme:
         'Le thème que tu as choisi : clair, sombre ou celui de ton système.',
       volume:
-        'Le dernier volume de salle réglé depuis cet écran, celui où démarre la prochaine table qu’il ouvre.'
+        'Le dernier volume de salle réglé depuis cet écran, celui où démarre la prochaine table qu’il ouvre.',
+      wallSessions:
+        'Quel écran de la salle est cet onglet, pour qu’un rechargement le garde et qu’un deuxième onglet soit un autre écran.'
     },
     thirdParties: {
       cloudflare:
