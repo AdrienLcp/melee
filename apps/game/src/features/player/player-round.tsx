@@ -351,17 +351,6 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
     (round?.content.kind === 'slate' ||
       (round?.content.kind === 'petitbac' && !round.content.sheetsClosed))
 
-  if (view.isPaused) {
-    return (
-      <section className='player-round notice'>
-        <NoticeCard
-          detail={translate('room.pause.detail')}
-          title={translate('room.pause.title')}
-        />
-      </section>
-    )
-  }
-
   if (
     !view.isHostConnected &&
     !isWritingASheet &&

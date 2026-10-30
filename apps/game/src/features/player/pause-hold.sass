@@ -1,0 +1,9 @@
+@layer components
+  // No box of its own while the round is on, so the page lays the round out
+  // as if it were its direct child.
+  .pause-hold:not([hidden])
+    display: contents
+
+  // A framed round's own place, rather than a row after it at the foot.
+  .player-page.framed > .player-round.notice
+    grid-area: round

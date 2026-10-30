@@ -35,6 +35,7 @@ import {
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
+import { PauseHold } from './pause-hold'
 import { PlayerRound } from './player-round'
 import { RoundClock } from './round-clock'
 
@@ -261,23 +262,25 @@ const Lobby: React.FC<{
           <div className='card-clock'>
             <RoundClock clock={clock} view={view} />
           </div>
-          <PlayerRound
-            clock={clock}
-            onAnswer={(answer, roundId) =>
-              send({ answer, roundId, type: 'player.answer' })
-            }
-            onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-            onChooseTeam={(teamId) =>
-              send({ teamId, type: 'player.chooseTeam' })
-            }
-            onPetitBac={(message) => send(message)}
-            onReady={(isReady) => send({ isReady, type: 'player.ready' })}
-            onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
-            onWriteLine={(itemIndex, answer, roundId) =>
-              send({ answer, itemIndex, roundId, type: 'slate.write' })
-            }
-            view={view}
-          />
+          <PauseHold isPaused={view.isPaused}>
+            <PlayerRound
+              clock={clock}
+              onAnswer={(answer, roundId) =>
+                send({ answer, roundId, type: 'player.answer' })
+              }
+              onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
+              onChooseTeam={(teamId) =>
+                send({ teamId, type: 'player.chooseTeam' })
+              }
+              onPetitBac={(message) => send(message)}
+              onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+              onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
+              onWriteLine={(itemIndex, answer, roundId) =>
+                send({ answer, itemIndex, roundId, type: 'slate.write' })
+              }
+              view={view}
+            />
+          </PauseHold>
         </Main>
       </PawnColoursProvider>
     )
@@ -305,23 +308,25 @@ const Lobby: React.FC<{
               teams={view.teams}
               youId={view.youId}
             />
-            <PlayerRound
-              clock={clock}
-              onAnswer={(answer, roundId) =>
-                send({ answer, roundId, type: 'player.answer' })
-              }
-              onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-              onChooseTeam={(teamId) =>
-                send({ teamId, type: 'player.chooseTeam' })
-              }
-              onPetitBac={(message) => send(message)}
-              onReady={(isReady) => send({ isReady, type: 'player.ready' })}
-              onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
-              onWriteLine={(itemIndex, answer, roundId) =>
-                send({ answer, itemIndex, roundId, type: 'slate.write' })
-              }
-              view={view}
-            />
+            <PauseHold isPaused={view.isPaused}>
+              <PlayerRound
+                clock={clock}
+                onAnswer={(answer, roundId) =>
+                  send({ answer, roundId, type: 'player.answer' })
+                }
+                onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
+                onChooseTeam={(teamId) =>
+                  send({ teamId, type: 'player.chooseTeam' })
+                }
+                onPetitBac={(message) => send(message)}
+                onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+                onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
+                onWriteLine={(itemIndex, answer, roundId) =>
+                  send({ answer, itemIndex, roundId, type: 'slate.write' })
+                }
+                view={view}
+              />
+            </PauseHold>
           </>
         )}
       </Main>
@@ -337,7 +342,6 @@ const Lobby: React.FC<{
  */
 const isFramed = (view: PlayerRoomView): boolean =>
   view.isHostConnected &&
-  !view.isPaused &&
   view.round !== null &&
   !view.round.joinedAfterStart &&
   ((view.phase === 'playing' && view.round.answerMode === 'choice') ||

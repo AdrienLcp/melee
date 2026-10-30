@@ -59,6 +59,9 @@
         justify-content: center
 
       // Read from across the room, by whoever is still at the table.
+      &.paused ~ :not(footer)
+        display: none
+
       &.paused .notice-card
         max-width: 40rem
 
