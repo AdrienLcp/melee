@@ -101,19 +101,12 @@
       color: var(--ink-muted)
       grid-area: chevron
 
-    .action-menu-trigger
-      grid-area: chevron
-      margin-block: calc(var(--space-xs) * -1)
-
     // A room of one game: the row opens its page, the menu sits beside it.
     li.only
       align-items: center
       display: grid
       grid-template-columns: minmax(0, 1fr) auto
       padding-inline-end: var(--space-2xs)
-
-      .action-menu-trigger
-        margin-block: 0
 
     // Played and fixed: printed in the socket, the band faded with it, so the
     // list tells what can still change before anyone opens it.
@@ -175,6 +168,10 @@
 
       .evening-stamp
         grid-area: stamp
+
+      .action-menu-trigger
+        grid-area: chevron
+        margin-block: calc(var(--space-xs) * -1)
 
       // The slot a round leaves while it travels: an empty socket, never a faded row.
       &[data-dragging]
