@@ -49,6 +49,126 @@
           grid-template-columns: minmax(0, 1fr)
           text-align: center
 
+    // Between two rounds the wall is the room's reason to look up, so every
+    // block stands in the middle of the box it is given rather than at its
+    // top: the answer and what the table said read as one block, the title and
+    // the race as another. Neither divides its box by its rows, because a few
+    // chips stretched to a full height were set at the top of an empty field.
+    > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='petitbac'])
+      @include layout.wide
+        align-content: center
+        grid-template-rows: minmax(0, auto) minmax(0, auto)
+
+        > :is(.said, .scorers)
+          container-type: normal
+
+          li
+            font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), 2rem)
+
+    // The race is drawn as large as the width it stands in — a column beside
+    // the answer lying down, the whole field standing up — and a ruled row no
+    // taller than its share of the screen's height, so a full table still fits.
+    &.host-console-page:has(> .stage:is(.revealed, .finished)) > .stage:is(.revealed, .finished) .standings:not(:has(> .team-roster))
+      --standings-height: calc(100dvh - 18rem)
+
+      align-content: center
+      container: standings / inline-size
+      grid-template-rows: auto minmax(0, auto)
+      max-height: 100%
+
+      .scoreboard
+        container-type: normal
+
+        li
+          font-size: clamp(var(--text-xs), min(5cqi, var(--standings-height) / (var(--standings-rows, 8) + 1) / 2.3), 2.5rem)
+
+      .track-podium
+        justify-items: center
+
+        .steps
+          max-width: 60rem
+          width: 100%
+
+          &:not(:has(> [data-slot='3']))
+            max-width: 40rem
+
+          &:not(:has(> [data-slot='2']))
+            max-width: 20rem
+
+        .step
+          .pawn
+            font-size: clamp(2rem, 11cqi, 7rem)
+
+          &[data-place='1'] .pawn
+            font-size: clamp(2.5rem, 14cqi, 9rem)
+
+          .name
+            font-size: clamp(var(--text-m), 4.6cqi, 3rem)
+
+          .at
+            font-size: clamp(var(--text-xs), 2.6cqi, 1.5rem)
+
+        .chip
+          font-size: clamp(var(--text-s), 2.8cqi, 1.75rem)
+
+    // Lying down, the race takes a wider column than the console gives its
+    // standings: on the wall it is the second thing the room reads, not a
+    // ledger beside the answer.
+    @media (aspect-ratio >= 13 / 10)
+      @include layout.wide
+        &.host-console-page:has(> .stage.revealed > .standings > .track-podium) > .stage.revealed
+          grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)
+
+    // Standing up, a wall is one column across the width the track leaves:
+    // the answer over the race, the winner over the board, centred together.
+    // The console's split put the podium in a third of a 1080px-wide screen,
+    // where two names broke mid-word over half a screen left empty.
+    @media (aspect-ratio < 13 / 10)
+      &:not(:has(> .stage.revealed > .standings > .team-roster, > .stage.revealed > .reveal-panel:is([data-game='atlas'], [data-game='petitbac'])))
+        > .stage.revealed
+          --standings-height: calc(50dvh - 10rem)
+
+          @include layout.wide
+            align-content: center
+            grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, auto) / minmax(0, 1fr)
+            row-gap: var(--space-stage-split)
+
+            &.holding
+              grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, auto) 'hold' auto / minmax(0, 1fr)
+
+      > .stage.finished > .final-board:not(:has(.team-roster))
+        align-content: center
+        grid-template: 'podium' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
+
+        &:has(> .seat-podium)
+          grid-template: 'podium' auto 'seats' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
+
+        > .standings
+          display: grid
+          justify-self: center
+          width: min(100%, 48rem)
+
+        > .score-track
+          display: none
+
+    // A wall is never held in a hand, so a narrow one keeps the standings the
+    // console trades for its score track, under the answer.
+    @include layout.narrow
+      &:has(> .stage.revealed > .standings)
+        > .score-track
+          display: none
+
+        > .stage.revealed
+          justify-content: center
+
+          > .reveal-panel
+            flex: 0 1 auto
+
+          > .standings
+            display: grid
+            flex: 0 1 auto
+            min-height: 0
+
     // Said once the console has been gone longer than a blink, and offered to
     // whoever is standing at the wall. Die-cut, because it is the one line on
     // this screen about the evening rather than the game, and the room reading

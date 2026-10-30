@@ -1035,6 +1035,31 @@ leftover transform would run it down a lobby long enough to scroll. The board fi
 top row, so a scrolling lobby passes under the cases rather than through their
 gaps.
 
+### The wall's composition (`wall-page.sass`)
+**The wall picks its shape by its ratio, never by its width** — it is never
+held in a hand, so the console's split at `$wide-screen` says nothing about it.
+Standing up (`aspect-ratio < 13/10`), the reveal and the final board are one
+column across the width the track leaves: the answer and what the table said
+over the standings, the winner over the board. Lying down they keep the
+console's split, the race on a wider column (1.35fr / 1fr). A narrow wall
+(810×1440) keeps its standings under the answer and draws no score track. A table
+of teams keeps the console's own upright rules: its roster divides its box.
+
+**Every block stands in the middle of the box it is given**: the answer and
+its chips are one block, the title and the race another, and on a standing
+wall the two are centred together. On the wall the chips and the standings
+are sized off the stage unit and the standings' width (`container: standings /
+inline-size`) instead of dividing their box by their rows: a few chips stretched
+over a full height were set at the top of an empty field, and on a 1080×1920
+panel the podium stood in a third of the width while the bottom half of the
+screen stayed blank. The ruled board's rows are still held to a share of the
+screen's height (`--standings-height`), so a full table fits.
+
+**A name breaks between words and nowhere else.** A podium step clamps its
+name to two lines and ends a word longer than the step with an ellipsis —
+`overflow-wrap: anywhere` cut a two-word name into four lines on a portrait wall. Two
+pawns stand on two steps and one on one, rather than beside an empty step.
+
 ### The table (`TableLobby`)
 A room of teams in its lobby, on the wall — direction D, chosen 2026-10-22
 (`.impeccable/directions/board-lobby/`, local).
