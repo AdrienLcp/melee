@@ -35,7 +35,13 @@ export type Connection = Outbound &
   (
     | { playerId: PlayerId | null; role: 'host' }
     | { playerId: PlayerId; role: 'player' }
-    | { isSpeaker: boolean; playerId: null; role: 'wall' }
+    | {
+        isSpeaker: boolean
+        /** What the console calls this wall — see `freeWallNumber`. */
+        number: number
+        playerId: null
+        role: 'wall'
+      }
   ) & {
     sessionId: SessionId
   }

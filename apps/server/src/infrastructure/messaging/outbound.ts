@@ -8,17 +8,14 @@ import {
   timePongMessageSchema,
   wallServerMessageSchema
 } from '@melee/protocol/server-message'
+import type { WallScreen } from '@melee/protocol/sound'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import type { Room } from '@/domain/room/room'
 import { toHostView, toPlayerView, toWallView } from '@/domain/room/room-view'
 
 import type { Connection, Outbound } from './connection'
-import {
-  electSpeakerWall,
-  isHostConnected,
-  wallCountOf
-} from './room-connections'
+import { electSpeakerWall, isHostConnected, wallsOf } from './room-connections'
 import type { RoomEngine } from './room-engine'
 
 export const sendError = (
@@ -65,7 +62,7 @@ const encodeViewFor = (
     isHostThere,
     now,
     room,
-    wallCount
+    walls
   }: {
     envelope:
       | {
@@ -78,10 +75,10 @@ const encodeViewFor = (
     isHostThere: boolean
     now: number
     room: Room
-    wallCount: number
+    walls: readonly WallScreen[]
   }
 ): string => {
-  const isWallThere = wallCount > 0
+  const isWallThere = walls.length > 0
 
   switch (connection.role) {
     case 'host': {
@@ -92,7 +89,7 @@ const encodeViewFor = (
           now,
           room,
           seatId: connection.playerId,
-          wallCount
+          walls
         })
       })
     }
@@ -115,14 +112,29 @@ const encodeViewFor = (
         ...envelope,
         view: toWallView({
           isHostConnected: isHostThere,
-          isSpeaker: connection.isSpeaker,
           now,
-          room
+          room,
+          wall: connection,
+          wallCount: walls.length
         })
       })
     }
   }
 }
+
+/**
+ * One entry per wall session: a wall reloading can be seated again a moment
+ * before its old socket is seen to close.
+ */
+const wallScreensOf = (engine: RoomEngine): WallScreen[] =>
+  [
+    ...new Map(
+      wallsOf(engine).map(({ isSpeaker, number, sessionId }) => [
+        sessionId,
+        { id: sessionId, isSpeaker, number }
+      ])
+    ).values()
+  ].toSorted((one, other) => one.number - other.number)
 
 export const sendWelcome = (
   connection: Connection,
@@ -142,7 +154,7 @@ export const sendWelcome = (
       isHostThere: isHostConnected(engine),
       now,
       room: engine.room,
-      wallCount: wallCountOf(engine)
+      walls: wallScreensOf(engine)
     })
   )
 }
@@ -156,7 +168,7 @@ export const broadcastRoom = (engine: RoomEngine): void => {
   electSpeakerWall(engine)
 
   const isHostThere = isHostConnected(engine)
-  const wallCount = wallCountOf(engine)
+  const walls = wallScreensOf(engine)
   const now = engine.now()
 
   for (const connection of engine.connections.all()) {
@@ -166,7 +178,7 @@ export const broadcastRoom = (engine: RoomEngine): void => {
         isHostThere,
         now,
         room: engine.room,
-        wallCount
+        walls
       })
     )
   }

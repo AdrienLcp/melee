@@ -34,6 +34,7 @@ import {
   touch,
   updateSettings
 } from '@/domain/room/room-service'
+import { freeWallNumber } from '@/domain/room/room-walls'
 import {
   adjustScore,
   changesTeams,
@@ -113,7 +114,7 @@ import {
   unseatConsolesThatMustJudge
 } from './host-judging'
 import { sendError, sendPong, sendWelcome } from './outbound'
-import { isHostConnected, isSeatConnected } from './room-connections'
+import { isHostConnected, isSeatConnected, wallsOf } from './room-connections'
 import { closeRoomEngine, publishRoom, type RoomEngine } from './room-engine'
 import {
   beginRound,
@@ -269,6 +270,7 @@ const seatWall = ({
 
   return {
     isSpeaker: false,
+    number: freeWallNumber(wallsOf(engine)),
     playerId: null,
     role: 'wall',
     send: outbound.send,
@@ -775,6 +777,18 @@ const dispatch = ({
     }
     case 'host.closeRoom': {
       disband(engine)
+      break
+    }
+    case 'host.chooseSpeaker': {
+      room.sound.speaker = message.speaker
+      touch(room, now)
+      publishRoom(engine)
+      break
+    }
+    case 'host.setVolume': {
+      room.sound.volume = message.volume
+      touch(room, now)
+      publishRoom(engine)
       break
     }
     case 'host.dismissWall': {

@@ -77,6 +77,7 @@ import {
   slateLineSchema,
   slateProgressSchema
 } from './slate'
+import { roomVolumeSchema, wallScreenSchema } from './sound'
 import { colourHexSchema, sentColourSchema } from './swatch'
 import {
   DEFAULT_TEAM_SCORING,
@@ -803,9 +804,9 @@ const baseRoomViewSchema = z.object({
    */
   isHostConnected: z.boolean(),
   /**
-   * Whether a wall is showing the room. It is the speaker whenever it is
-   * there, so this is what tells the console to keep the clip to itself, and
-   * a player's screen to draw the whole board when nobody else does.
+   * Whether a wall is showing the room — what tells a player's screen to draw
+   * the whole board when nobody else does. Which screen sounds is the host's
+   * `walls` and the wall's `isSpeaker`, not this.
    */
   isWallConnected: z.boolean(),
   phase: roomPhaseSchema,
@@ -1013,8 +1014,18 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
     .array(z.number().int().nonnegative())
     .max(LINE_UP_MAX_ENTRIES),
   remainingPoolSize: z.number().int().nonnegative(),
+  /**
+   * How loud the speaker plays, set from the console, and `null` until the
+   * console says — the speaker then keeps its own level.
+   */
+  volume: roomVolumeSchema.nullable(),
   /** How many walls are showing the room — `isWallConnected` is this above zero. */
   wallCount: z.number().int().nonnegative(),
+  /**
+   * Every wall showing the room, by number. None of them `isSpeaker` means the
+   * console is the one sounding.
+   */
+  walls: z.array(wallScreenSchema),
   /**
    * The seat this console took, and `null` while it is only running the room.
    * A player always has one, which is why theirs is not nullable — this is the
@@ -1075,11 +1086,18 @@ export const wallRoundContentSchema = z.discriminatedUnion('kind', [
 export const wallRoomViewSchema = baseRoomViewSchema.extend({
   currentContent: wallRoundContentSchema.nullable(),
   /**
-   * Whether this wall is the room's speaker. One wall plays the clip and the
+   * Whether this wall is the room's speaker. One screen plays the clip and the
    * cues, the rest stay silent — two speakers a few metres apart are an echo,
-   * never in time. The first wall to arrive holds it until it leaves.
+   * never in time. The host picks it; until they do, the first wall to arrive
+   * holds it until it leaves.
    */
-  isSpeaker: z.boolean()
+  isSpeaker: z.boolean(),
+  /** The level the speaker plays at — see the host view's `volume`. */
+  volume: roomVolumeSchema.nullable(),
+  /** How many walls are showing the room, this one included. */
+  wallCount: z.number().int().positive(),
+  /** What the console calls this wall — see `WallScreen.number`. */
+  wallNumber: z.number().int().positive()
 })
 
 export type RoomPhase = z.infer<typeof roomPhaseSchema>

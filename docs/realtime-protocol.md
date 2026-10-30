@@ -56,7 +56,7 @@ written for *the* host leaves it out without being touched: it is not a presence
 (`isHostConnected`), it cannot send a `host.*` frame (`host_only_action`), a
 token claim neither displaces it nor is displaced by it, and its arriving or
 leaving freezes and resumes nothing. The console learns it is there from
-`isWallConnected` on its view, and leaves the clip to it.
+`isWallConnected` on its view, and which screen sounds from `walls`.
 
 A wall is admitted on the room's token alone, and refused a fatal
 `wall_not_paired` without it, because it carries the clip and the clip's URL
@@ -70,14 +70,30 @@ the whole room reads, because it pairs nothing without the token beside it.
 The wall **sends nothing but its hello**, and nothing it receives names an
 answer before the reveal.
 
-A room takes **any number of walls**, and one of them is the **speaker**:
-`isSpeaker` on its view says so, and only that one plays the clip and the cues —
-two speakers a few metres apart are an echo, never in time. The first wall to
-arrive holds it, kept on its connection (and its hibernation attachment) rather
-than read off the order of the sockets, which a hibernated room does not
-promise; when it leaves, the next broadcast hands it to another
-(`electSpeakerWall`). Every wall arms its sound on arrival, so the heir plays at
-once. The console counts them through `wallCount`.
+A room takes **any number of walls**, and one screen is the **speaker** — the
+console or one wall: only that one plays the clip and the cues, because two
+speakers a few metres apart are an echo, never in time. The host picks it with
+`host.chooseSpeaker` (`{ kind: 'console' }` or `{ kind: 'wall', wallId }`),
+kept on the room as `sound.speaker`. Each broadcast names it afresh
+(`electSpeakerWall`, over `speakingWallOf`): the picked wall while it is there;
+otherwise the wall already sounding keeps it — held on its connection and its
+hibernation attachment, never read off the order of the sockets — so a pick
+that left does not shuffle the sound among the rest; otherwise the first wall.
+A pick of the console silences every wall, and with no wall the console sounds.
+Every wall arms its sound on arrival, so the heir plays at once.
+
+Each wall gets a **number** as it arrives, the lowest no other wall holds
+(`freeWallNumber`), and shows it once there is a second to tell it from
+(`wallNumber`, `wallCount` and `isSpeaker` on the wall's view). The console
+lists them in `walls` — `id` (the wall's session id, which survives its
+reload), `number`, `isSpeaker`; none speaking means the console is. It still
+counts them through `wallCount`.
+
+The **room volume** is `volume` on the host's and the wall's views, 0 to 1,
+set with `host.setVolume` and played by whichever screen is the speaker. It is
+`null` until the console says, and the console says on its first view with the
+level it last left a room at (`melee:volume`, the console's alone now): a wall
+has no slider of its own.
 
 The console lets them go with `host.dismissWall`: every wall is sent a fatal
 `wall_dismissed`, unregistered, and the room published, so the console is the
@@ -132,6 +148,8 @@ reconnect on the token it still holds.
 | `host.removePlayer` | host | `playerId` |
 | `host.closeRoom` | host | — |
 | `host.dismissWall` | host | — |
+| `host.chooseSpeaker` | host | `speaker` — `{ kind: 'console' }` or `{ kind: 'wall', wallId }`, see *The wall* |
+| `host.setVolume` | host | `volume` — 0 to 1, the room's, played by the speaker |
 
 **The `player.` prefix names the seat, not the role.** `player.leave` and
 `player.rename` are the two a console holding a seat sends as well, which is why

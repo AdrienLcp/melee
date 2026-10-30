@@ -272,7 +272,7 @@ describe('the two views', () => {
       now: NOW,
       room,
       seatId: null,
-      wallCount: 0
+      walls: []
     })
 
     expect(view.remainingPoolSize).toBe(1)
