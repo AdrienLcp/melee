@@ -1611,8 +1611,6 @@ test('[layout] player, the reveal of a full table: scrolls only at the floor, ne
  */
 const evening = (view: ReturnType<typeof consoleView>) => ({
   ...view,
-  wallCount: 1,
-  wallNumber: 1,
   settings: {
     ...view.settings,
     board: {
@@ -1632,7 +1630,9 @@ const evening = (view: ReturnType<typeof consoleView>) => ({
     seatIds: table
       .filter((_, seat) => seat % 3 === team)
       .map((player) => player.id)
-  }))
+  })),
+  wallCount: 1,
+  wallNumber: 1
 })
 
 const eveningRound = evening(consoleView(LONGEST_PROMPT))
