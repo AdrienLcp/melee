@@ -96,8 +96,8 @@ of the world — about a continent. Over a tight cluster, pawns closer than thei
 own width shrink towards the gap (`crowdedPawnScale`, no smaller than 0.6), and
 each distance label tries points along its line, then either side of its pawn,
 and is left out when none is free (`placedDistanceLabels`) — the list beside
-the map prints every distance. The direction control names the map (*Nommer le
-lieu allumé sur la carte*): *ce qui est montré* read as a flag. What the pass covered: the direction
+the map prints every distance. The direction control names the map (*Name the place
+lit on the map*): *Name what is shown* read as a flag. What the pass covered: the direction
 control and the places as checkboxes in the setup — today a single choice
 written as a set of one; the `name` round on the seat, the console and the wall
 (`WorldMap` filling the country around `shown`, a dot for a town, the four
