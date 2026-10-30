@@ -30,6 +30,17 @@
     > header .sound-offer
       flex: none
 
+    // What the console's sound picker calls this screen, said only once there
+    // is another to tell it from.
+    > header .wall-number
+      @include typography.label
+
+      align-items: center
+      color: var(--ink-muted)
+      display: inline-flex
+      flex: none
+      gap: var(--space-2xs)
+
     // Stacked, the console's lobby is a column for a hand to scroll. Nobody
     // holds a wall: a tablet hung upright kept the third team under the fold,
     // so the code and its square share one row there, the square taking the

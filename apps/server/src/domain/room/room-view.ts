@@ -14,6 +14,7 @@ import type {
 } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 import type { SlateLine } from '@melee/protocol/slate'
+import type { WallScreen } from '@melee/protocol/sound'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
 import { tallyBallots } from '@melee/core/mostlikely/tally'
@@ -59,21 +60,21 @@ export const toHostView = ({
   now,
   room,
   seatId,
-  wallCount
+  walls
 }: {
   isHostConnected: boolean
   now: number
   room: Room
   /** The seat this host took, if they took one — they then read what a player reads. */
   seatId: PlayerId | null
-  wallCount: number
+  walls: readonly WallScreen[]
 }): HostRoomView => {
   const playingSeatId = isRoundJudgedByConsole(room) ? null : seatId
 
   return {
     ...toBaseView({
       isHostConnected,
-      isWallConnected: wallCount > 0,
+      isWallConnected: walls.length > 0,
       now,
       room,
       youId: seatId
@@ -88,7 +89,9 @@ export const toHostView = ({
       opened: room.openedEntries
     }),
     remainingPoolSize: room.trackPool.length,
-    wallCount,
+    volume: room.sound.volume,
+    wallCount: walls.length,
+    walls: [...walls],
     youId: seatId
   }
 }
@@ -101,14 +104,16 @@ export const toHostView = ({
  */
 export const toWallView = ({
   isHostConnected,
-  isSpeaker,
   now,
-  room
+  room,
+  wall,
+  wallCount
 }: {
   isHostConnected: boolean
-  isSpeaker: boolean
   now: number
   room: Room
+  wall: { isSpeaker: boolean; number: number }
+  wallCount: number
 }): WallRoomView => ({
   ...toBaseView({
     isHostConnected,
@@ -121,7 +126,10 @@ export const toWallView = ({
     room.round === null
       ? null
       : toWallContent(toHostContent({ room, round: room.round, seatId: null })),
-  isSpeaker,
+  isSpeaker: wall.isSpeaker,
+  volume: room.sound.volume,
+  wallCount,
+  wallNumber: wall.number,
   yourVerdict: null
 })
 

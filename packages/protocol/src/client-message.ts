@@ -27,6 +27,7 @@ import {
   slateItemIndexSchema,
   slateKeySchema
 } from './slate'
+import { roomVolumeSchema, speakerSchema } from './sound'
 import { colourHexSchema } from './swatch'
 import {
   MAX_TEAMS,
@@ -569,6 +570,22 @@ export const dismissWallMessageSchema = z.object({
 })
 
 /**
+ * The screen the clip and the cues play on. A wall that is not there when this
+ * lands, or that leaves later, hands the sound to another wall or back to the
+ * console, and takes it again when it comes back.
+ */
+export const chooseSpeakerMessageSchema = z.object({
+  speaker: speakerSchema,
+  type: z.literal('host.chooseSpeaker')
+})
+
+/** The level whichever screen is the speaker plays at, set from the console. */
+export const setVolumeMessageSchema = z.object({
+  type: z.literal('host.setVolume'),
+  volume: roomVolumeSchema
+})
+
+/**
  * What a host socket may send. Splitting the union by role means a player
  * screen cannot even construct `host.judge` — the server still enforces it,
  * because a socket is whatever its owner makes it, but the client code gets the
@@ -606,7 +623,9 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   playAgainMessageSchema,
   removePlayerMessageSchema,
   closeRoomMessageSchema,
-  dismissWallMessageSchema
+  dismissWallMessageSchema,
+  chooseSpeakerMessageSchema,
+  setVolumeMessageSchema
 ])
 
 export const playerClientMessageSchema = z.discriminatedUnion('type', [
@@ -677,7 +696,9 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   playAgainMessageSchema,
   removePlayerMessageSchema,
   closeRoomMessageSchema,
-  dismissWallMessageSchema
+  dismissWallMessageSchema,
+  chooseSpeakerMessageSchema,
+  setVolumeMessageSchema
 ])
 
 export type ConnectionRole = z.infer<typeof connectionRoleSchema>
@@ -724,7 +745,9 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.playAgain',
   'host.removePlayer',
   'host.closeRoom',
-  'host.dismissWall'
+  'host.dismissWall',
+  'host.chooseSpeaker',
+  'host.setVolume'
 ])
 
 /**

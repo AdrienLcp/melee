@@ -1,5 +1,7 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 
+import { speakingWallOf } from '@/domain/room/room-walls'
+
 import type { Connection } from './connection'
 import type { RoomEngine } from './room-engine'
 
@@ -19,22 +21,25 @@ export const hostConnectionIn = (engine: RoomEngine): Connection | null =>
 export const isHostConnected = (engine: RoomEngine): boolean =>
   engine.connections.all().some((connection) => connection.role === 'host')
 
-export const wallCountOf = (engine: RoomEngine): number =>
-  engine.connections.all().filter((connection) => connection.role === 'wall')
-    .length
+type WallConnection = Extract<Connection, { role: 'wall' }>
+
+export const wallsOf = (engine: RoomEngine): WallConnection[] =>
+  engine.connections
+    .all()
+    .filter(
+      (connection): connection is WallConnection => connection.role === 'wall'
+    )
 
 /**
- * The wall that plays the clip, named afresh only when none holds the role:
- * the first to arrive keeps it, and when it leaves the next view hands it on.
+ * The wall that plays the clip, named afresh on every view: the host's pick
+ * while it is there, else the one already sounding — see `speakingWallOf`.
  */
 export const electSpeakerWall = (engine: RoomEngine): void => {
-  const walls = engine.connections
-    .all()
-    .filter((connection) => connection.role === 'wall')
-  const [first] = walls
+  const walls = wallsOf(engine)
+  const speaking = speakingWallOf({ choice: engine.room.sound.speaker, walls })
 
-  if (first !== undefined && !walls.some((wall) => wall.isSpeaker)) {
-    first.isSpeaker = true
+  for (const wall of walls) {
+    wall.isSpeaker = wall === speaking
   }
 }
 

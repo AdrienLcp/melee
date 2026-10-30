@@ -3,6 +3,7 @@ import { useState } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
+import type { Speaker } from '@melee/protocol/sound'
 import type { TrackSource } from '@melee/protocol/track'
 
 import {
@@ -56,6 +57,8 @@ export type SetupTabsProps = {
   isLive: boolean
   /** Must be stable — the picker reports upward from an effect. */
   onDraftSource: (source: TrackSource | null) => void
+  /** Has the clip and the cues play on this console or on one wall. */
+  onChooseSpeaker: (speaker: Speaker) => void
   /** Lets the room's screen go, so this one is the speaker again. */
   onDismissWall: () => void
   /** Gives up the seat this console holds. */
@@ -366,6 +369,7 @@ export const TableTab: React.FC<SetupTabsProps> = ({
 export const RoomTab: React.FC<SetupTabsProps> = ({
   draftSource,
   isLive,
+  onChooseSpeaker,
   onDismissWall,
   onLeaveSeat,
   onSettingsChange,
@@ -381,6 +385,7 @@ export const RoomTab: React.FC<SetupTabsProps> = ({
     <>
       <RoomScene
         isLive={isLive}
+        onChooseSpeaker={onChooseSpeaker}
         onDismissWall={onDismissWall}
         onLeaveSeat={onLeaveSeat}
         onTakeSeat={onTakeSeat}

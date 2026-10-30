@@ -146,7 +146,8 @@ which is why a user-visible string written into a component is a bug — see
   judges answers. It can also take a **seat** and play, and the server then
   withholds the track's **title and artist** while still sending it the clip;
   that screen is the room's speaker, seated or not, until a **wall** is there to
-  be it instead. A round `isJudgedByHost` says the host must judge — every mode
+  be it instead — or whichever of the two the host picks, at the **room volume**
+  the console sets for whichever screen sounds. A round `isJudgedByHost` says the host must judge — every mode
   but `buzzer` plus the reflex race need none — is **sat out** by that seat: it
   keeps its score, gets the answer, and plays again on the next round. It is the only role that can **close** the
   room — see `Exits` below. There is no judge switch: an evening plays each

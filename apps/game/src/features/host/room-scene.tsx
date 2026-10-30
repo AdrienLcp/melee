@@ -5,17 +5,18 @@ import { ToggleButton, ToggleButtonGroup } from 'react-aria-components'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
+import type { Speaker, WallScreen } from '@melee/protocol/sound'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 
 import { inviteUrlFor, wallUrlFor } from '@/infrastructure/router/navigation'
-import { useVolume } from '@/presentation/audio/volume-provider'
 import { Button } from '@/presentation/components/button'
 import { HandOverDoor } from '@/presentation/components/hand-over-door'
 import { PlusIcon, ScreenIcon } from '@/presentation/components/icons'
 import { Link } from '@/presentation/components/link'
 import { Pawn } from '@/presentation/components/pawn'
+import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Slider } from '@/presentation/components/slider'
 import { WallPairingForm } from '@/presentation/components/wall-pairing-form'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -45,6 +46,8 @@ const isSpot = (key: React.Key): key is Spot =>
 
 type RoomSceneProps = {
   isLive: boolean
+  /** Has the clip and the cues play here or on one wall. */
+  onChooseSpeaker: (speaker: Speaker) => void
   /** Lets every wall go, so this screen is the room's speaker again. */
   onDismissWall: () => void
   onLeaveSeat: () => void
@@ -63,6 +66,7 @@ type RoomSceneProps = {
  */
 export const RoomScene: React.FC<RoomSceneProps> = ({
   isLive,
+  onChooseSpeaker,
   onDismissWall,
   onLeaveSeat,
   onTakeSeat,
@@ -180,6 +184,7 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
           <WallDetail
             hasWall={hasWall}
             isLive={isLive}
+            onChooseSpeaker={onChooseSpeaker}
             onDismissWall={onDismissWall}
             view={view}
           />
@@ -196,6 +201,7 @@ export const RoomScene: React.FC<RoomSceneProps> = ({
           <HereDetail
             hasWall={hasWall}
             isSeated={seatedAs !== null}
+            onChooseSpeaker={onChooseSpeaker}
             view={view}
           />
         )}
@@ -249,12 +255,75 @@ const TabWay: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   )
 }
 
+const CONSOLE_SPEAKER = 'console'
+
+const speakerOf = (value: string): Speaker =>
+  value === CONSOLE_SPEAKER
+    ? { kind: 'console' }
+    : { kind: 'wall', wallId: value }
+
+/**
+ * Where the room hears the game, and how loud: one screen sounds at a time,
+ * because two a few metres apart are an echo. The level is the room's, sent to
+ * whichever screen is sounding — this one or a wall across the room.
+ */
+const SoundWay: React.FC<{
+  onChooseSpeaker: (speaker: Speaker) => void
+  walls: readonly WallScreen[]
+}> = ({ onChooseSpeaker, walls }) => {
+  const translate = useTranslate()
+  const { roomVolume, setRoomVolume } = useRoomActions()
+  const speaking = walls.find((wall) => wall.isSpeaker)?.id ?? CONSOLE_SPEAKER
+
+  return (
+    <div className='way sound'>
+      <h4>{translate('host.roomScene.sound.title')}</h4>
+      {walls.length > 0 && (
+        <SegmentedControl
+          label={translate('host.roomScene.sound.playsOn')}
+          onChange={(value) => {
+            onChooseSpeaker(speakerOf(value))
+          }}
+          options={[
+            {
+              label: translate('host.roomScene.sound.here'),
+              value: CONSOLE_SPEAKER
+            },
+            ...walls.map((wall) => ({
+              label:
+                walls.length === 1
+                  ? translate('host.roomScene.sound.wall')
+                  : translate('host.roomScene.sound.wallNumbered', {
+                      number: wall.number
+                    }),
+              value: wall.id
+            }))
+          ]}
+          value={speaking}
+        />
+      )}
+      {roomVolume !== null && setRoomVolume !== null && (
+        <Slider
+          formatOptions={{ style: 'percent' }}
+          label={translate('preferences.volume')}
+          maxValue={1}
+          minValue={0}
+          onChange={setRoomVolume}
+          step={0.05}
+          value={roomVolume}
+        />
+      )}
+    </div>
+  )
+}
+
 const WallDetail: React.FC<{
   hasWall: boolean
   isLive: boolean
+  onChooseSpeaker: (speaker: Speaker) => void
   onDismissWall: () => void
   view: HostRoomView
-}> = ({ hasWall, isLive, onDismissWall, view }) => {
+}> = ({ hasWall, isLive, onChooseSpeaker, onDismissWall, view }) => {
   const translate = useTranslate()
   const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
 
@@ -273,6 +342,7 @@ const WallDetail: React.FC<{
         >
           {translate('host.roomScene.wall.dismiss', { count: view.wallCount })}
         </Button>
+        <SoundWay onChooseSpeaker={onChooseSpeaker} walls={view.walls} />
         <div className='way'>
           <h4>{translate('host.roomScene.wall.anotherTitle')}</h4>
           <WallPairingForm
@@ -352,12 +422,11 @@ const SeatDetail: React.FC<{
 const HereDetail: React.FC<{
   hasWall: boolean
   isSeated: boolean
+  onChooseSpeaker: (speaker: Speaker) => void
   view: HostRoomView
-}> = ({ hasWall, isSeated, view }) => {
+}> = ({ hasWall, isSeated, onChooseSpeaker, view }) => {
   const translate = useTranslate()
   const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
-  const { playsSound } = useRoomActions()
-  const { setVolume, volume } = useVolume()
 
   return (
     <>
@@ -368,19 +437,7 @@ const HereDetail: React.FC<{
         {isSeated && ` ${translate('host.roomScene.here.playsToo')}`}
       </p>
       {!hasWall && isDesk && <HandOverWay roomCode={view.code} />}
-      {playsSound && (
-        <div className='way'>
-          <Slider
-            formatOptions={{ style: 'percent' }}
-            label={translate('host.setup.volume')}
-            maxValue={1}
-            minValue={0}
-            onChange={setVolume}
-            step={0.05}
-            value={volume}
-          />
-        </div>
-      )}
+      <SoundWay onChooseSpeaker={onChooseSpeaker} walls={view.walls} />
       <RoomRecovery roomCode={view.code} />
     </>
   )

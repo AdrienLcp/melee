@@ -287,6 +287,90 @@ describe('the wall', () => {
     expect(hostView(host)?.wallCount).toBe(1)
   })
 
+  it('[wall] numbers each wall and plays from the one the console picks', async () => {
+    const { code, host, hostToken } = await harness.openRoom()
+    const first = await pairedWall({ code, hostToken })
+    const second = await pairedWall({ code, hostToken })
+
+    await waitFor(
+      () => hostView(host)?.walls.length === 2,
+      'the console to list both walls'
+    )
+    expect(wallView(first)?.wallNumber).toBe(1)
+    expect(wallView(second)?.wallNumber).toBe(2)
+
+    const secondId = hostView(host)?.walls.find((wall) => wall.number === 2)?.id
+
+    if (secondId === undefined) {
+      throw new Error('the second wall is not listed')
+    }
+
+    host.send({
+      speaker: { kind: 'wall', wallId: secondId },
+      type: 'host.chooseSpeaker'
+    })
+    await waitFor(
+      () => wallView(second)?.isSpeaker === true,
+      'the picked wall to take the sound'
+    )
+    expect(wallView(first)?.isSpeaker).toBe(false)
+
+    host.send({ speaker: { kind: 'console' }, type: 'host.chooseSpeaker' })
+    await waitFor(
+      () => hostView(host)?.walls.every((wall) => !wall.isSpeaker) === true,
+      'the console to take the sound back'
+    )
+    expect(wallView(first)?.isSpeaker).toBe(false)
+    expect(wallView(second)?.isSpeaker).toBe(false)
+  })
+
+  it('[wall] hands a picked wall that leaves on to the next, never to silence', async () => {
+    const { code, host, hostToken } = await harness.openRoom()
+    const first = await pairedWall({ code, hostToken })
+    const second = await pairedWall({ code, hostToken })
+
+    await waitFor(
+      () => hostView(host)?.walls.length === 2,
+      'the console to list both walls'
+    )
+
+    const secondId = hostView(host)?.walls.find((wall) => wall.number === 2)?.id
+
+    if (secondId === undefined) {
+      throw new Error('the second wall is not listed')
+    }
+
+    host.send({
+      speaker: { kind: 'wall', wallId: secondId },
+      type: 'host.chooseSpeaker'
+    })
+    await waitFor(
+      () => wallView(second)?.isSpeaker === true,
+      'the picked wall to take the sound'
+    )
+
+    second.close()
+    await waitFor(
+      () => wallView(first)?.isSpeaker === true,
+      'the remaining wall to take the sound'
+    )
+  })
+
+  it('[wall] carries the volume the console sets to the walls', async () => {
+    const { code, host, hostToken } = await harness.openRoom()
+    const wall = await pairedWall({ code, hostToken })
+
+    await waitFor(() => wallView(wall) !== null, 'the wall to be welcomed')
+    expect(wallView(wall)?.volume).toBeNull()
+
+    host.send({ type: 'host.setVolume', volume: 0 })
+    await waitFor(
+      () => wallView(wall)?.volume === 0,
+      'the wall to be told the volume'
+    )
+    expect(hostView(host)?.volume).toBe(0)
+  })
+
   it('[wall] is sent away by the console, which is the speaker again', async () => {
     const { code, host, hostToken } = await harness.openRoom()
     const wall = await pairedWall({ code, hostToken })

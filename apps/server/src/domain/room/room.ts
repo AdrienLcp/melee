@@ -39,6 +39,7 @@ import type {
   RoundDuel
 } from '@melee/protocol/room'
 import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
+import type { Speaker } from '@melee/protocol/sound'
 import type { ColourHex, SentColour } from '@melee/protocol/swatch'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
@@ -137,6 +138,12 @@ export type Room = {
    * remembered would leak one party into another.
    */
   playedContentIds: Set<string>
+  /**
+   * The host's word on the sound. `speaker` is `null` until they pick one —
+   * the first wall then sounds, or the console with none — and `volume` until
+   * the console sends its level, each speaker keeping its own meanwhile.
+   */
+  sound: { speaker: Speaker | null; volume: number | null }
   /**
    * Every Petit Bac letter this room has played, oldest first. Not in
    * `playedContentIds`: a set cannot hold a letter twice, and the draw cycles

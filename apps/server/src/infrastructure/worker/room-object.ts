@@ -49,6 +49,7 @@ const seatAttachmentSchema = z.discriminatedUnion('role', [
   }),
   z.object({
     isSpeaker: z.boolean().default(false),
+    number: z.number().int().positive().default(1),
     playerId: z.null(),
     role: z.literal('wall'),
     sessionId: sessionIdSchema

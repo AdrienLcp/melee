@@ -26,6 +26,7 @@ import { useVolume } from '@/presentation/audio/volume-provider'
 import { BoardTrack } from '@/presentation/components/board-track'
 import { Button } from '@/presentation/components/button'
 import { ConnectionRefused } from '@/presentation/components/connection-refused'
+import { SoundIcon } from '@/presentation/components/icons'
 import { Link } from '@/presentation/components/link'
 import { useReportConnection } from '@/presentation/connection/connection-provider'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
@@ -76,7 +77,8 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const view = wallView === null ? null : asRoomScreenView(wallView)
   const isSpeaker = wallView?.isSpeaker === true
   const speakingView = isSpeaker ? view : null
-  const { volume } = useVolume()
+  const { volume: ownVolume } = useVolume()
+  const volume = wallView?.volume ?? ownVolume
   const slateWall = useSlateWall(view)
   const isRefused = status === 'refused'
   const isHostAway = useAbsentFor({
@@ -97,21 +99,25 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     volume
   })
 
-  useBuzzCue(speakingView?.round?.activeBuzz?.atServerTime ?? null)
-  useTimerCue({ clock, view: speakingView })
+  useBuzzCue({
+    buzzedAt: speakingView?.round?.activeBuzz?.atServerTime ?? null,
+    volume
+  })
+  useTimerCue({ clock, view: speakingView, volume })
   useReportRoomActions({
     adjustScore: null,
     closeRoom: null,
     endGame: null,
     handOver: null,
     leaveSeat: null,
-    playsSound: isSpeaker,
     refusedNickname: null,
     rename: null,
     revealRound: null,
+    roomVolume: null,
     scoredPlayers: NOBODY,
     scoredTeams: NOBODY,
     seatNickname: null,
+    setRoomVolume: null,
     trackLength: null
   })
 
@@ -153,6 +159,14 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       <Main className='host-console-page wall-page'>
         <RoomDocumentTitle settings={view?.settings ?? null} />
         <header>
+          {wallView !== null && wallView.wallCount > 1 && (
+            <p className='wall-number'>
+              {isSpeaker && <SoundIcon />}
+              {translate(isSpeaker ? 'wall.numberSpeaking' : 'wall.number', {
+                number: wallView.wallNumber
+              })}
+            </p>
+          )}
           {view?.round != null && view.phase !== 'finished' && (
             <p className='round-index'>
               {view.settings.roundCount === null

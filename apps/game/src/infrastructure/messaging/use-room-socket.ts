@@ -29,6 +29,7 @@ import {
   forgetSessionId,
   readHostToken
 } from '@/infrastructure/storage/session-storage'
+import { ensureWallSessionId } from '@/infrastructure/storage/wall-session-storage'
 
 import { useSettledStatus } from './use-settled-status'
 
@@ -160,7 +161,10 @@ export const useRoomSocket = ({
             nickname: nickname ?? undefined,
             protocolVersion: PROTOCOL_VERSION,
             role,
-            sessionId: ensureSessionId({ role, roomCode }),
+            sessionId:
+              role === 'wall'
+                ? ensureWallSessionId(roomCode)
+                : ensureSessionId({ role, roomCode }),
             type: 'hello'
           })
         )

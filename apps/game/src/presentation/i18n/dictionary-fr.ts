@@ -799,6 +799,13 @@ export const FR_DICTIONARY = defineDictionary({
         title: 'Jouer aussi',
         titleTaken: 'Ta place à table'
       },
+      sound: {
+        here: 'Ici',
+        playsOn: 'Joué sur',
+        title: 'Le son',
+        wall: 'L’écran de la salle',
+        wallNumbered: 'Écran {number:number}'
+      },
       table: {
         count: defineTranslation('{count:plural}', {
           plural: {
@@ -828,9 +835,9 @@ export const FR_DICTIONARY = defineDictionary({
         linesOn: defineTranslation('{count:plural}', {
           plural: {
             count: {
-              one: 'Il montre la partie et joue le son ; cet écran-ci reste silencieux et garde les commandes.',
+              one: 'Il montre la partie et joue le son, sauf si tu gardes le son ici. Cet écran-ci garde les commandes.',
               other:
-                'Ils montrent la partie, un seul joue le son ; cet écran-ci reste silencieux et garde les commandes.'
+                'Ils montrent la partie ; le son se joue sur celui que tu choisis, ou ici. Cet écran-ci garde les commandes.'
             }
           }
         }),
@@ -931,8 +938,7 @@ export const FR_DICTIONARY = defineDictionary({
         countdown: 'Décompte de {duration}',
         hold: 'Réponse affichée {duration}',
         holdOpen: 'La suite quand tu veux'
-      },
-      volume: 'Volume de cet écran'
+      }
     },
     skipRound: 'Passer cette manche',
     standings: 'Classement',
@@ -1130,12 +1136,15 @@ export const FR_DICTIONARY = defineDictionary({
       server:
         'Tant qu’une table est jouée, les serveurs de Cloudflare la gardent : les pseudos autour, les réponses données, les scores et les réglages. Elle est supprimée quand l’hôte ferme la table, ou une heure après que le dernier écran l’a quittée. Il n’y a pas de compte, et rien de ce qui te concerne ne survit à la table.',
       session:
-        'Une autre est gardée pour l’onglet ouvert seulement, et part quand il se ferme :',
+        'Deux autres sont gardées pour l’onglet ouvert seulement, et partent quand il se ferme :',
       slateKeys:
         'Les réponses d’une ardoise que l’hôte a tapées à l’avance, avant d’ouvrir la table.',
       theme:
         'Le thème que tu as choisi : clair, sombre ou celui de ton système.',
-      volume: 'Le volume de l’écran qui joue la musique.'
+      volume:
+        'Le dernier volume de salle réglé depuis cet écran, celui où démarre la prochaine table qu’il ouvre.',
+      wallSessions:
+        'Quel écran de la salle est cet onglet, pour qu’un rechargement le garde et qu’un deuxième onglet soit un autre écran.'
     },
     thirdParties: {
       cloudflare:
@@ -1452,7 +1461,7 @@ export const FR_DICTIONARY = defineDictionary({
       light: 'Clair',
       system: 'Système'
     },
-    volume: 'Volume'
+    volume: 'Volume de la salle'
   },
   quiz: {
     adult: {
@@ -1850,6 +1859,8 @@ export const FR_DICTIONARY = defineDictionary({
       pair: 'Y afficher la table',
       paired: 'Code accepté : la table arrive sur cet écran…'
     },
+    number: 'Écran {number:number}',
+    numberSpeaking: 'Écran {number:number}, qui joue le son',
     pair: {
       backToTable: 'Retour à ma table',
       description:
