@@ -134,11 +134,11 @@
       column-gap: var(--space-xs)
       cursor: pointer
       display: grid
-      grid-template-areas: 'band grip icon name name chevron' 'band grip icon detail stamp chevron'
-      grid-template-columns: var(--space-xl) auto auto minmax(0, 1fr) auto auto
+      grid-template-areas: 'band icon name name chevron' 'band icon detail stamp chevron'
+      grid-template-columns: var(--space-xl) auto minmax(0, 1fr) auto auto
 
       &:not(:has(.detail))
-        grid-template-areas: 'band grip icon name stamp chevron'
+        grid-template-areas: 'band icon name stamp chevron'
       min-height: var(--control-height)
       outline: none
       padding: var(--space-xs) var(--space-s) var(--space-xs) 0
@@ -188,18 +188,14 @@
     .grip
       @include focus.ring-inset
 
-      align-items: center
-      background: none
-      block-size: 2.75rem
+      align-content: center
       border: 0
-      border-radius: var(--radius-s)
-      color: var(--ink-muted)
       cursor: grab
-      display: grid
-      grid-area: grip
-      inline-size: 1.5rem
-      justify-items: center
       padding: 0
+
+      > svg
+        block-size: 1em
+        inline-size: 1em
       // react-aria writes `pointer-events: none` inline on a drag button, so a
       // finger fell through to the row, which scrolls; `use-touch-reorder` needs it.
       pointer-events: auto !important

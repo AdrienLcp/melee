@@ -505,15 +505,17 @@ const OrderedRounds: React.FC<{
             style={entry === undefined ? undefined : spineOf(entry.kind)}
             textValue={roundName}
           >
-            <span className='band'>{number}</span>
-            {isEditable && (
+            {isEditable ? (
               <AriaButton
                 aria-label={translate('host.evening.drag', { name, number })}
-                className='grip'
+                className='band grip'
                 slot='drag'
               >
+                {number}
                 <GripIcon />
               </AriaButton>
+            ) : (
+              <span className='band'>{number}</span>
             )}
             {entry !== undefined && <GameIcon game={entry.kind} />}
             <span className='name'>{name}</span>
