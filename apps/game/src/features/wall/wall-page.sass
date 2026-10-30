@@ -108,10 +108,10 @@
 
         .step
           .pawn
-            font-size: clamp(2rem, 11cqi, 7rem)
+            font-size: clamp(var(--text-2xl), 11cqi, 7rem)
 
           &[data-place='1'] .pawn
-            font-size: clamp(2.5rem, 14cqi, 9rem)
+            font-size: clamp(calc(var(--text-2xl) * 1.25), 14cqi, 9rem)
 
           .name
             font-size: clamp(var(--text-m), 4.6cqi, 3rem)
