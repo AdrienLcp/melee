@@ -76,8 +76,12 @@
 
           // A card of fixed height whose list kept what its rows left over drew
           // a single chip over a blank half: the list keeps what its rows need,
-          // as the map's does, and the answer's card takes the rest.
-          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='petitbac'])
+          // as the map's does, and the answer's card takes the rest. Black
+          // square is the other way up — a title over a grid that divides the
+          // rest — and keeps the reveal's own `auto minmax(0, 1fr)`: under
+          // this one its grid, a size container, was handed `auto`, which is
+          // nothing.
+          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'])
             grid-template-rows: minmax(0, 1fr) auto
 
             &[data-game='quiz'] > .head
