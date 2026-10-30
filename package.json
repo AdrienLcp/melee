@@ -29,6 +29,7 @@
     "lighthouse": "pnpm build && node --import tsx scripts/lighthouse.ts",
     "lint": "biome check --write",
     "lint:ci": "biome ci",
+    "prepare": "git config core.hooksPath .githooks",
     "spell": "cspell --no-progress --gitignore \"**\"",
     "test": "pnpm --filter @melee/protocol --filter @melee/core --filter @melee/server --filter @melee/game test",
     "test:core:watch": "pnpm --filter @melee/core test:watch",
