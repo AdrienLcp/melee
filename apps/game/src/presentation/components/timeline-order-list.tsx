@@ -72,6 +72,11 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
       })),
     onReorder: ({ keys, target }) => {
       const ids = [...keys].map(String)
+
+      if (ids.includes(String(target.key))) {
+        return
+      }
+
       const rest = order.filter((id) => !ids.includes(id))
       const targetAt = rest.indexOf(String(target.key))
 

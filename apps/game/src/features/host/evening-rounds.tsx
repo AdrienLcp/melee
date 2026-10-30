@@ -457,6 +457,11 @@ const OrderedRounds: React.FC<{
     isDisabled: !isEditable,
     onReorder: ({ keys, target }) => {
       const ids = new Set([...keys].map(String))
+
+      if (ids.has(String(target.key))) {
+        return
+      }
+
       const targetAt = rounds
         .filter((round) => !ids.has(round.id))
         .findIndex((round) => round.id === target.key)
