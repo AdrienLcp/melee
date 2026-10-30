@@ -48,6 +48,12 @@ export const protocolErrorCodes = [
    * that decides.
    */
   'host_away',
+  /**
+   * A frame from the floor while the host holds the room on pause. Its own
+   * code rather than `host_away`, because the console is right there: the
+   * table is waiting for somebody, not for the screen running it.
+   */
+  'room_paused',
   'wrong_phase',
   'stale_round',
   'already_buzzed',

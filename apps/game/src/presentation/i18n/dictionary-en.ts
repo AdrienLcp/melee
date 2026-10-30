@@ -489,6 +489,7 @@ export const EN_DICTIONARY = defineDictionary({
     room_closed: 'The host closed the table.',
     room_full: 'That table is full.',
     room_not_found: 'No table under that code.',
+    room_paused: 'The game is paused. Wait for the host.',
     room_plays_aloud: 'This table answers aloud, with no screen to join on.',
     screen: {
       description:
@@ -1011,6 +1012,7 @@ export const EN_DICTIONARY = defineDictionary({
         seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
       }
     }),
+    endCount: 'Stop the count',
     gap: defineTranslation('{seconds:number} s', {
       number: {
         seconds: {
@@ -1603,7 +1605,13 @@ export const EN_DICTIONARY = defineDictionary({
   },
   room: {
     documentTitle: '{game} — Mêlée',
-    documentTitleLobby: 'Mêlée'
+    documentTitleLobby: 'Mêlée',
+    pause: {
+      detail: 'The round picks up where it stopped.',
+      press: 'Pause',
+      resume: 'Resume the game',
+      title: 'Paused'
+    }
   },
   round: {
     answer: {

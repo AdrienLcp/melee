@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **The host can pause the whole game.** A *Pause* press beside
+  the round's own holds the room for somebody who left the table: the clock,
+  the answer window and the clip stop, every screen — console, wall and
+  players — hides the question behind a paused card, and buzzes and answers
+  are refused. *Resume the game* picks the clock and the clip up where they
+  stopped, and a console that reloads finds the room still paused.
+- `[Game]` **An inner clock can be stopped by the host.** The count closes on
+  its own at a quarter past its target, minutes away on a long one; the
+  console now offers *Stop the count*, scoring what was pressed.
 - `[Game]` **The last seconds are heard and felt.** The screen the room
   listens to — the wall, else the console — ticks the last five seconds of a
   round, of a floor that runs out and of the count into a round, higher on the

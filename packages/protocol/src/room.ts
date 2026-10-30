@@ -803,6 +803,12 @@ const baseRoomViewSchema = z.object({
    */
   isHostConnected: z.boolean(),
   /**
+   * The host is holding the room on pause with `host.pause`: the round's clock,
+   * its clip and its floor are stopped, and every screen hides the round until
+   * it is let go. Only ever `true` while a round is on screen.
+   */
+  isPaused: z.boolean(),
+  /**
    * Whether a wall is showing the room. It is the speaker whenever it is
    * there, so this is what tells the console to keep the clip to itself, and
    * a player's screen to draw the whole board when nobody else does.

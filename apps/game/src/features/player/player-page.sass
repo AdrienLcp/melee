@@ -28,7 +28,7 @@
   // the way a framed round is: the board divides what it is left. A floor,
   // not a height: a room whose rows at their smallest still overflow the
   // screen scrolls the page, rather than clipping the last of the standings.
-  .player-page.playing:has(> .player-round.revealed > .round-board)
+  .player-page.playing:has(> .pause-hold > .player-round.revealed > .round-board)
     @include layout.narrow
       animation: none
       display: grid
@@ -41,7 +41,7 @@
 
   // A sheet is held to the screen at every width: the grid divides what the
   // card and the field leave, which is what a keyboard coming up takes back.
-  .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round))
+  .player-page.playing:has(> .pause-hold > .player-round:is(.black-square-round, .most-likely-round))
     animation: none
     display: grid
     flex: none

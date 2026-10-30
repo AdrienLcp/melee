@@ -6,6 +6,9 @@ import type { TrackSource } from '@melee/protocol/track'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
 
+import { Button } from '@/presentation/components/button'
+import { useTranslate } from '@/presentation/i18n/i18n-provider'
+
 import type { ChallengeLine } from './challenge-line'
 import { FinishedActions } from './finished-actions'
 import type { InnerclockTarget } from './innerclock-target-field'
@@ -50,6 +53,57 @@ export type HostActionsProps = {
  * answers nothing reads as a broken game rather than a broken link.
  */
 export const HostActions: React.FC<HostActionsProps> = (props) => {
+  // The stage hides the round while it is paused, so nothing that acts on the
+  // round is offered either — the server would refuse it.
+  if (props.view.isPaused) {
+    return <PauseButton {...props} />
+  }
+
+  return MID_ROUND_PHASES.has(props.view.phase) ? (
+    <>
+      <PhaseActions {...props} />
+      <PauseButton {...props} />
+    </>
+  ) : (
+    <PhaseActions {...props} />
+  )
+}
+
+const MID_ROUND_PHASES = new Set<HostRoomView['phase']>([
+  'countdown',
+  'playing',
+  'buzzed'
+])
+
+/**
+ * Holds the whole room — the clock, the clip and every screen — for somebody
+ * who had to leave the table, and lets it go again. The one press of a paused
+ * room, so it is the filled piece then.
+ */
+const PauseButton: React.FC<HostActionsProps> = ({ isLive, send, view }) => {
+  const translate = useTranslate()
+  const isPaused = view.isPaused
+
+  return (
+    <Button
+      isDisabled={!isLive}
+      onPress={() => {
+        if (view.round !== null) {
+          send({
+            isPaused: !isPaused,
+            roundId: view.round.id,
+            type: 'host.pause'
+          })
+        }
+      }}
+      variant={isPaused ? 'filled' : 'outlined'}
+    >
+      {translate(isPaused ? 'room.pause.resume' : 'room.pause.press')}
+    </Button>
+  )
+}
+
+const PhaseActions: React.FC<HostActionsProps> = (props) => {
   switch (props.view.phase) {
     case 'lobby':
       return <LobbyActions {...props} />
@@ -73,15 +127,15 @@ export const HostActions: React.FC<HostActionsProps> = (props) => {
 
       // The one round that ends without being ended: a heat closes when
       // everyone expected in it has acted, and the press window closes it when
-      // somebody never does. There is no answer to give and no field to
-      // reopen, so there is nothing here to press — which is also what leaves
-      // the screen the room is staring at with nothing on it that moves.
+      // somebody never does — within seconds, so there is nothing to press.
+      // The inner clock waits up to a quarter past its target, minutes on a
+      // long count, so the host can stop it; the press is a still word on the
+      // console and tells the room nothing about the time.
       // A challenge is placed, or given to nobody, from the stage, beside the
       // teams it is placing.
       // Nothing is on the stage yet during the countdown, so nothing to give away.
       return props.view.phase === 'countdown' ||
         props.view.round?.content.kind === 'reflex' ||
-        props.view.round?.content.kind === 'innerclock' ||
         props.view.round?.content.kind === 'challenge' ? null : (
         <RoundActions {...props} />
       )

@@ -335,6 +335,7 @@ const toBaseView = ({
 }) => ({
   code: room.code,
   isHostConnected,
+  isPaused: room.round?.isPaused === true,
   isWallConnected,
   phase: room.phase,
   players: toPublicPlayers(room),

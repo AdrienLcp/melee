@@ -109,6 +109,7 @@ import { MapReveal } from '@/presentation/components/map-reveal'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { MostLikelyTally } from '@/presentation/components/most-likely-tally'
+import { NoticeCard } from '@/presentation/components/notice-card'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
@@ -952,20 +953,6 @@ const BlackSquareThemeCard: React.FC<{
     </div>
   )
 }
-
-/**
- * A wait printed on a paper card lying face up on the board: the one thing
- * this screen has to say while nothing on it can be pressed.
- */
-const NoticeCard: React.FC<{ detail?: string; title: string }> = ({
-  detail,
-  title
-}) => (
-  <div className='notice-card'>
-    <p className='notice-title'>{title}</p>
-    {detail !== undefined && <p className='notice-detail'>{detail}</p>}
-  </div>
-)
 
 /**
  * What the round did to this player — the moment, above the board that holds

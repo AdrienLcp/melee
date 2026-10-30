@@ -286,6 +286,12 @@ which is why a user-visible string written into a component is a bug — see
   room still answers. **A plain navigation is never an exit** — the server cannot
   tell it from a closed tab, so the menu offers a link out of a room only where
   there is no room, which is why the credits are a front-door concern
+- **Pause** — the host holding the whole room with `host.pause`, for somebody
+  who left the table mid-round: `isPaused` on every view, the round's clocks
+  and clip stopped, every screen showing a paused card in the round's place,
+  and the floor refused `room_paused`. The freeze a host walking away causes,
+  kept on the round apart from it, so a console reloading does not let go of
+  it. Not `host.controlClip`, which steers the clip under a reveal alone
 - **Session id** — minted by the client, stored per room and role; what lets a
   device that locked its screen come back to the same seat. The **name** that
   seat is held under is stored beside it, and that is the console's alone: a

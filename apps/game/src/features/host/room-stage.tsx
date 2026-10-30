@@ -28,6 +28,7 @@ import {
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
+import { NoticeCard } from '@/presentation/components/notice-card'
 import { RevealHold } from '@/presentation/components/round-progress'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey } from '@/presentation/i18n/translation'
@@ -107,7 +108,29 @@ type RoomStageProps = {
  * and the wall render the same stage — one with its hands on it, one without —
  * so what the room reads is the same whichever of them it is looking at.
  */
-export const RoomStage: React.FC<RoomStageProps> = ({
+export const RoomStage: React.FC<RoomStageProps> = (props) => {
+  const translate = useTranslate()
+
+  // Over every phase, the reveal included: the room stopped to wait for
+  // somebody, and a question left up is one the rest go on thinking about.
+  // The stage stays mounted behind the card and is hidden by the sheet, so
+  // what a seated console had half written is still there on the way back.
+  return (
+    <>
+      {props.view?.isPaused === true && (
+        <div className='stage solo paused'>
+          <NoticeCard
+            detail={translate('room.pause.detail')}
+            title={translate('room.pause.title')}
+          />
+        </div>
+      )}
+      <PhaseStage {...props} />
+    </>
+  )
+}
+
+const PhaseStage: React.FC<RoomStageProps> = ({
   canPlay,
   clock,
   controls,

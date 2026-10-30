@@ -201,6 +201,26 @@ describe('a count nobody judges', () => {
       hostView(host)?.round?.awards.some((award) => award.playerId === bobId)
     ).toBe(false)
   })
+
+  it('[innerclock] closes when the host says so, long before the cap, paying what was pressed', async () => {
+    const { alice, bobId, host, round, startsAt } = await openCountingRound()
+
+    // Early enough to still pay, and to leave the cap well out of reach of
+    // the wait below.
+    await untilCounted(startsAt, TARGET_REAL_MS * 0.8)
+    alice.send({ roundId: round.id, type: 'player.buzz' })
+    host.send({ roundId: round.id, type: 'host.reveal' })
+    await waitFor(
+      () => hostView(host)?.phase === 'revealed',
+      'the host to end the count',
+      TARGET_REAL_MS / 5
+    )
+
+    expect(scoreOf(host, 'Alice')).toBeGreaterThan(0)
+    expect(
+      hostView(host)?.round?.awards.some((award) => award.playerId === bobId)
+    ).toBe(false)
+  })
 })
 
 describe('nothing that tells the time', () => {

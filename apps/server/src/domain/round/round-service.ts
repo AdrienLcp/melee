@@ -223,6 +223,7 @@ export const openRound = ({
     elapsedMs: 0,
     id,
     index: (room.round?.index ?? 0) + 1,
+    isPaused: false,
     lineUpAt: room.settings.lineUpAt,
     lockedOutPlayerIds: new Set(),
     mode: room.settings.mode,
@@ -1364,6 +1365,57 @@ const freezeAnswerWindow = (round: Round, now: number): void => {
 }
 
 /**
+ * The host holding the room, or letting it go. The same freeze as a host
+ * walking away, which is what lets one pause cover sixteen games: every clock
+ * a round runs on is the one `holdRoundClock` stops. Pressed twice, it changes
+ * nothing — a second console tab must not restart a countdown.
+ */
+export const pauseRound = ({
+  isPaused,
+  now,
+  room,
+  roundId
+}: {
+  isPaused: boolean
+  now: number
+  room: Room
+  roundId: RoundId
+}): Result<void, VerdictRejection> => {
+  const round = room.round
+
+  if (round === null || !PAUSABLE_PHASES.has(room.phase)) {
+    return Result.failure('wrong_phase')
+  }
+
+  if (round.id !== roundId) {
+    return Result.failure('stale_round')
+  }
+
+  if (round.isPaused === isPaused) {
+    return Result.success()
+  }
+
+  if (isPaused) {
+    holdRoundClock(room, now)
+    round.isPaused = true
+  } else {
+    round.isPaused = false
+    resumeRoundClock(room, now)
+  }
+
+  touch(room, now)
+
+  return Result.success()
+}
+
+const PAUSABLE_PHASES = new Set<Room['phase']>([
+  'countdown',
+  'playing',
+  'buzzed',
+  'revealed'
+])
+
+/**
  * Puts the round back on the clock. A countdown is restarted rather than
  * resumed: its whole purpose is that every device lands on the first note
  * together, and a `startsAt` that elapsed while nobody could hear it would have
@@ -1372,7 +1424,7 @@ const freezeAnswerWindow = (round: Round, now: number): void => {
 export const resumeRoundClock = (room: Room, now: number): void => {
   const round = room.round
 
-  if (round === null) {
+  if (round === null || round.isPaused) {
     return
   }
 

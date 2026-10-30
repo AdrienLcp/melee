@@ -469,6 +469,12 @@ export type Round = {
   elapsedMs: number
   id: RoundId
   index: number
+  /**
+   * The host is holding the room with `host.pause`. Kept apart from the clock
+   * the host walking away holds, because a console coming back must not let go
+   * of a pause it asked for.
+   */
+  isPaused: boolean
   /** The line-up entry the round was opened from — see `RoundView['lineUpAt']`. */
   lineUpAt: number | null
   lockedOutPlayerIds: Set<PlayerId>

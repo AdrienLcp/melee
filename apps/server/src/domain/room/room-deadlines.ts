@@ -40,12 +40,18 @@ export const roomDeadlines = ({
    * is already being advanced — it must not be due again until the draw lands.
    */
   isDrawing: boolean
-  /** The host's browser is the room's speaker and judge, so no round clock runs without it. */
+  /**
+   * The host's browser is the room's speaker and judge, so no round clock runs
+   * without it — nor while the host holds the room on pause.
+   */
   isHostConnected: boolean
   now: number
   room: Room
 }): RoomDeadline[] => {
-  const round = isHostConnected ? roundDeadline({ isDrawing, now, room }) : null
+  const round =
+    isHostConnected && room.round?.isPaused !== true
+      ? roundDeadline({ isDrawing, now, room })
+      : null
   const seats = seatDeadline(room)
 
   return [

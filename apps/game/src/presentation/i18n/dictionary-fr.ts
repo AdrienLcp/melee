@@ -469,6 +469,7 @@ export const FR_DICTIONARY = defineDictionary({
     room_closed: 'L’hôte a fermé la table.',
     room_full: 'Cette table est complète.',
     room_not_found: 'Aucune table sous ce code.',
+    room_paused: 'La partie est en pause. Attendez l’hôte.',
     room_plays_aloud:
       'Cette table joue à voix haute, sans écran pour rejoindre.',
     screen: {
@@ -976,6 +977,7 @@ export const FR_DICTIONARY = defineDictionary({
         seconds: { maximumFractionDigits: 1, minimumFractionDigits: 1 }
       }
     }),
+    endCount: 'Arrêter le compte',
     gap: defineTranslation('{seconds:number} s', {
       number: {
         seconds: {
@@ -1539,7 +1541,13 @@ export const FR_DICTIONARY = defineDictionary({
   },
   room: {
     documentTitle: '{game} — Mêlée',
-    documentTitleLobby: 'Mêlée'
+    documentTitleLobby: 'Mêlée',
+    pause: {
+      detail: 'La manche reprendra là où elle s’est arrêtée.',
+      press: 'Pause',
+      resume: 'Reprendre la partie',
+      title: 'Pause'
+    }
   },
   round: {
     answer: {
