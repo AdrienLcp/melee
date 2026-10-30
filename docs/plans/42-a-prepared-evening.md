@@ -136,7 +136,8 @@ and nothing is played that the host has not either prepared or left to chance.
    The round about to open is `lineUpAt`'s in the lobby, and on a reveal once
    the console has drawn it. `EveningRounds` is a numbered react-aria
    `GridList` of the rounds to come (`comingRounds`), dragged by the grip with
-   a mouse or the keyboard, and with a finger through `useTouchReorder`; a
+   the keyboard through react-aria, and with a mouse or a finger through
+   `usePointerReorder`; a
    round dragged first becomes the next one (`movedToEntry`). *Play next* and
    the reveal's next-game picker swap rows (`orderWithEntryNext`); an entry
    added is appended and plays last. Locked while a round plays. Preparing a

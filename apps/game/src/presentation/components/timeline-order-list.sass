@@ -23,9 +23,9 @@
       .timeline-card,
       .steps
         transition: translate var(--transition-fast, 0s) var(--ease-out)
-        translate: 0rem var(--touch-shift, 0rem)
+        translate: 0rem var(--drag-shift, 0rem)
 
-      &[data-touch-lifted]
+      &[data-lifted]
         position: relative
         z-index: 1
 
@@ -62,7 +62,7 @@
       align-content: center
       cursor: grab
       min-height: 3rem
-      // A finger on the card is a drag, not a scroll: `use-touch-reorder` moves it.
+      // A finger or a mouse on the card is a drag, not a scroll: `use-pointer-reorder` moves it.
       touch-action: none
       user-select: none
 
@@ -79,7 +79,7 @@
       .label
         color: var(--ink-muted)
 
-    .order-row[data-touch-lifted] .timeline-card,
+    .order-row[data-lifted] .timeline-card,
     .order-row[data-dragging] .timeline-card
       cursor: grabbing
 

@@ -14,7 +14,7 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 import { Button } from './button'
 import { ChevronIcon, ChevronUpIcon } from './icons'
 import { TimelineCard } from './timeline-card'
-import { useTouchReorder } from './use-touch-reorder'
+import { usePointerReorder } from './use-pointer-reorder'
 
 import './timeline-order-list.sass'
 
@@ -57,7 +57,7 @@ export const TimelineOrderList: React.FC<TimelineOrderListProps> = ({
   const order = events.map((event) => event.id)
   const list = useRef<HTMLDivElement>(null)
 
-  useTouchReorder({
+  usePointerReorder({
     grip: '.timeline-card',
     list,
     onMove: (id, at) => onReorder(moved({ at, ids: [id], order })),

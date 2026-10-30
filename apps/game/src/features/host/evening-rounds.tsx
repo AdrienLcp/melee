@@ -44,8 +44,8 @@ import {
   GripIcon,
   PlusIcon
 } from '@/presentation/components/icons'
+import { usePointerReorder } from '@/presentation/components/use-pointer-reorder'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
-import { useTouchReorder } from '@/presentation/components/use-touch-reorder'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntrySummaries } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
@@ -438,7 +438,7 @@ const OrderedRounds: React.FC<{
     onArrange(rest.toSpliced(at, 0, ...moving).map((round) => round.at))
   }
 
-  useTouchReorder({
+  usePointerReorder({
     grip: '.grip',
     list,
     onMove: (id, at) => {

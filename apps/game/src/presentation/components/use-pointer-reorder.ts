@@ -8,22 +8,22 @@ import {
 
 import { whenRowsDrawn } from './when-rows-drawn'
 
-/** The custom property a row is shifted by while a finger drags. */
-const SHIFT_PROPERTY = '--touch-shift'
-/** The attribute the row under the finger carries, for the sheet to lift it. */
-const LIFTED_ATTRIBUTE = 'data-touch-lifted'
+/** The custom property a row is shifted by while it is dragged. */
+const SHIFT_PROPERTY = '--drag-shift'
+/** The attribute the dragged row carries, for the sheet to lift it. */
+const LIFTED_ATTRIBUTE = 'data-lifted'
 /**
- * How long a dropped row holds where the finger left it, waiting for the order
+ * How long a dropped row holds where the pointer left it, waiting for the order
  * to come back: past it, the move was refused and the rows step home.
  */
 const HELD_DROP_MS = 2000
 
-type TouchReorderOptions = {
-  /** Matches the grip inside a row that a finger picks the row up by. */
+type PointerReorderOptions = {
+  /** Matches the grip inside a row that a pointer picks the row up by. */
   grip: string
   /** The list whose `[data-key]` rows are reordered. */
   list: RefObject<HTMLElement | null>
-  /** Called once the finger lifts, with the row's key and the index it lands at. */
+  /** Called once the pointer lifts, with the row's key and the index it lands at. */
   onMove: (key: string, at: number) => void
   /** The rows' keys in the order drawn, joined: the drop holds until it changes. */
   order: string
@@ -60,19 +60,20 @@ const settleInPlace = (rows: readonly HTMLElement[]): void => {
 }
 
 /**
- * react-aria drags a row through the browser's own drag and drop, which a
- * phone starts on a long press when it starts it at all. A finger on the grip
- * moves the row here instead, on pointer events, while the rows it passes step
- * aside; a mouse and the keyboard stay react-aria's. A dropped row stays where
- * the finger left it until the new order is drawn, rather than stepping back
- * to its old place for the length of the round trip.
+ * react-aria drags a row with a mouse or a finger through the browser's own
+ * drag and drop: a ghost and a drop line, which a phone starts on a long press
+ * when it starts it at all. A pointer on the grip moves the row here instead,
+ * while the rows it passes step aside, and the native drag is refused; the
+ * keyboard and screen reader drag stay react-aria's, which never go through it.
+ * A dropped row stays where the pointer left it until the new order is drawn,
+ * rather than stepping back to its old place for the length of the round trip.
  */
-export const useTouchReorder = ({
+export const usePointerReorder = ({
   grip,
   list,
   onMove,
   order
-}: TouchReorderOptions): void => {
+}: PointerReorderOptions): void => {
   const land = useEffectEvent(onMove)
   const dropOrder = useEffectEvent(() => order)
   const held = useRef<{
@@ -113,7 +114,7 @@ export const useTouchReorder = ({
     let drag: Drag | null = null
 
     const onPointerDown = (event: PointerEvent): void => {
-      if (event.pointerType === 'mouse' || !(event.target instanceof Element)) {
+      if (event.button !== 0 || !(event.target instanceof Element)) {
         return
       }
 
@@ -201,12 +202,18 @@ export const useTouchReorder = ({
       land(key, to)
     }
 
+    const onNativeDragStart = (event: DragEvent): void => {
+      event.preventDefault()
+    }
+
+    element.addEventListener('dragstart', onNativeDragStart, true)
     element.addEventListener('pointerdown', onPointerDown)
     element.addEventListener('pointermove', onPointerMove)
     element.addEventListener('pointerup', onPointerEnd)
     element.addEventListener('pointercancel', onPointerEnd)
 
     return () => {
+      element.removeEventListener('dragstart', onNativeDragStart, true)
       element.removeEventListener('pointerdown', onPointerDown)
       element.removeEventListener('pointermove', onPointerMove)
       element.removeEventListener('pointerup', onPointerEnd)

@@ -148,9 +148,9 @@
         border-top: var(--hairline)
 
       transition: translate var(--transition-fast, 0s) var(--ease-out)
-      translate: 0rem var(--touch-shift, 0rem)
+      translate: 0rem var(--drag-shift, 0rem)
 
-      &[data-touch-lifted]
+      &[data-lifted]
         background: var(--field)
         box-shadow: var(--shadow-lifted)
         position: relative
@@ -197,11 +197,12 @@
         block-size: 1em
         inline-size: 1em
       // react-aria writes `pointer-events: none` inline on a drag button, so a
-      // finger fell through to the row, which scrolls; `use-touch-reorder` needs it.
+      // finger fell through to the row, which scrolls; `use-pointer-reorder` needs it.
       pointer-events: auto !important
       touch-action: none
 
-      &[data-pressed]
+      &[data-pressed],
+      &:is([data-lifted] *)
         cursor: grabbing
 
     .drop-line
