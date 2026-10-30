@@ -3,8 +3,9 @@
 Parent handoff. Everything from the 30/10 handoffs (atlas, line-up,
 room-control, ui-bugs) plus the wall's portrait layout is built and merged on
 branch `integrate`, worktree `C:/git/wt-integrate`. `main` has none of it except
-the ui-bugs commits. **Nothing is pushed — Adrien froze pushes on 30/10; do not
-push until he lifts it.**
+the ui-bugs commits. Nothing is pushed yet. **Adrien's 30/10 push freeze does
+not cover this branch**: these are fixes for production, and he asked for them
+to ship — push once `validate` is green.
 
 ## Left: 4 end-to-end journeys
 
@@ -31,6 +32,7 @@ page sits on "Taking your seat…".
 1. Full `pnpm validate` in the worktree, green.
 2. Fast-forward `main` to `integrate` (`git merge --ff-only integrate` in
    `C:/git/melee`; another session's uncommitted files live there, leave them).
-3. Push only once Adrien lifts the freeze, then watch CI and the deploy.
+3. `git push origin main` (one push), then watch the CI run with
+   `gh run watch` until the deploy job is green; fix and push again if not.
 4. Remove the worktree (PowerShell `Remove-Item -Recurse -Force`, then
    `git worktree prune`), delete branch `integrate`, and this file.
