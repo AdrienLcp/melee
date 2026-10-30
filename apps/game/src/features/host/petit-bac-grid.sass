@@ -11,17 +11,16 @@
     gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2), var(--space-m))
     min-block-size: 0
     min-inline-size: 0
-    overflow-x: clip
-    overflow-y: auto
+    overflow: auto
 
     table
       align-self: center
       border-collapse: separate
       border-spacing: clamp(var(--space-2xs), calc(var(--stage-unit) * 0.7), var(--space-xs))
       // The categories share the width by what was written in them, so a
-      // column of short words gives its room to one of long ones; the floor
-      // on a column is what keeps a word broken anywhere from being broken
-      // after every letter.
+      // column of short words gives its room to one of long ones. A word
+      // breaks at a syllable or not at all: a column is never narrower than
+      // its longest unbreakable word, and a sheet wider than its box scrolls.
       table-layout: auto
       width: 100%
 
@@ -33,7 +32,6 @@
 
       font-size: calc(var(--cell-size) * 1.1)
       hyphens: auto
-      overflow-wrap: anywhere
       padding: 0 var(--space-2xs) var(--space-2xs)
       text-align: start
 
@@ -86,8 +84,8 @@
       block-size: calc(var(--cell-size) * 2.6)
       border-radius: var(--radius-s)
       font-size: var(--cell-size)
+      hyphens: auto
       overflow: hidden
-      overflow-wrap: anywhere
       padding: var(--space-2xs) calc(var(--space-2xs) * 1.5)
       vertical-align: middle
 
@@ -119,6 +117,15 @@
 
       &:has(.strike)
         padding: 0
+
+    // A sheet nobody strikes is the room's screen, which cannot scroll: an
+    // answer keeps the row's two lines and trails off rather than pushing
+    // the seats under it off the wall.
+    .answer
+      -webkit-box-orient: vertical
+      -webkit-line-clamp: 2
+      display: -webkit-box
+      overflow: hidden
 
     .strike
       background: none
@@ -188,10 +195,8 @@
     // where the language allows it, and the seat's name stands over its row
     // in the spacing between two, since a team's pawns all wear one colour.
     @container (width < 36rem)
-      // Shared evenly again: a line cut to an ellipsis has no width to offer.
       table
         border-spacing: var(--space-2xs) calc(var(--cell-size) * 1.6)
-        table-layout: fixed
 
       thead .corner
         inline-size: 1.75rem
@@ -220,16 +225,21 @@
 
       th:not(.seat)
         font-size: var(--cell-size)
-        hyphens: auto
         min-inline-size: 0rem
-        overflow-wrap: break-word
         padding-inline: 0.2em
 
       td
-        overflow-wrap: normal
         padding-inline: 0.3em
         text-overflow: ellipsis
         white-space: nowrap
+
+      // A line cut to an ellipsis has no width to offer, so the headings
+      // alone size the columns. Containment skips a table cell, so it goes
+      // on what the cell holds.
+      :is(.answer, .strike)
+        contain: inline-size
+        display: block
+        text-overflow: ellipsis
 
       .strike
         padding-inline: 0.3em
