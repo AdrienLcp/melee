@@ -525,9 +525,12 @@ Four types, and two of them are role-scoped.
 | `error` | `code`, `message`, `fatal` |
 
 `room.updated` is the only broadcast: after any state change, every socket
-receives its whole view. No deltas — a room is at most 24 players changing at
-human speed, so a snapshot costs a few hundred bytes and removes every way for a
-client to hold a partially-applied update.
+receives its whole view. No deltas — a room is at most 32 players changing at
+human speed. A snapshot is about 3 KB in a lobby of 24 and 10 KB mid-round
+(measured October 2026), and the room sends one to every socket on every
+answer, so the cost grows with the square of the table: that is what caps
+the seats, not the screens. It removes every way for a client to hold a
+partially-applied update.
 
 ### The three views
 
