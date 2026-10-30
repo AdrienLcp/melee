@@ -789,6 +789,13 @@ export const FR_DICTIONARY = defineDictionary({
         title: 'Jouer aussi',
         titleTaken: 'Ta place à table'
       },
+      sound: {
+        here: 'Ici',
+        playsOn: 'Joué sur',
+        title: 'Le son',
+        wall: 'L’écran de la salle',
+        wallNumbered: 'Écran {number:number}'
+      },
       table: {
         count: defineTranslation('{count:plural}', {
           plural: {
@@ -818,9 +825,9 @@ export const FR_DICTIONARY = defineDictionary({
         linesOn: defineTranslation('{count:plural}', {
           plural: {
             count: {
-              one: 'Il montre la partie et joue le son ; cet écran-ci reste silencieux et garde les commandes.',
+              one: 'Il montre la partie et joue le son, sauf si tu gardes le son ici. Cet écran-ci garde les commandes.',
               other:
-                'Ils montrent la partie, un seul joue le son ; cet écran-ci reste silencieux et garde les commandes.'
+                'Ils montrent la partie ; le son se joue sur celui que tu choisis, ou ici. Cet écran-ci garde les commandes.'
             }
           }
         }),
@@ -921,8 +928,7 @@ export const FR_DICTIONARY = defineDictionary({
         countdown: 'Décompte de {duration}',
         hold: 'Réponse affichée {duration}',
         holdOpen: 'La suite quand tu veux'
-      },
-      volume: 'Volume de cet écran'
+      }
     },
     skipRound: 'Passer cette manche',
     standings: 'Classement',
@@ -1124,7 +1130,8 @@ export const FR_DICTIONARY = defineDictionary({
         'Les réponses d’une ardoise que l’hôte a tapées à l’avance, avant d’ouvrir la table.',
       theme:
         'Le thème que tu as choisi : clair, sombre ou celui de ton système.',
-      volume: 'Le volume de l’écran qui joue la musique.'
+      volume:
+        'Le dernier volume de salle réglé depuis cet écran, celui où démarre la prochaine table qu’il ouvre.'
     },
     thirdParties: {
       cloudflare:
@@ -1441,7 +1448,7 @@ export const FR_DICTIONARY = defineDictionary({
       light: 'Clair',
       system: 'Système'
     },
-    volume: 'Volume'
+    volume: 'Volume de la salle'
   },
   quiz: {
     adult: {
@@ -1833,6 +1840,8 @@ export const FR_DICTIONARY = defineDictionary({
       pair: 'Y afficher la table',
       paired: 'Code accepté : la table arrive sur cet écran…'
     },
+    number: 'Écran {number:number}',
+    numberSpeaking: 'Écran {number:number}, qui joue le son',
     pair: {
       backToTable: 'Retour à ma table',
       description:

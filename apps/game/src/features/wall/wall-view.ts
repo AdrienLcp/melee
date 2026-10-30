@@ -14,6 +14,8 @@ import type {
  */
 export const asRoomScreenView = ({
   isSpeaker: _isSpeaker,
+  wallCount: _wallCount,
+  wallNumber: _wallNumber,
   ...view
 }: WallRoomView): HostRoomView => ({
   ...view,
@@ -23,6 +25,7 @@ export const asRoomScreenView = ({
   lineUpPlayed: [],
   remainingPoolSize: 0,
   wallCount: 1,
+  walls: [],
   youId: null
 })
 

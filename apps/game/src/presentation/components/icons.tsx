@@ -52,6 +52,7 @@ import {
   Tv,
   Upload,
   Users,
+  Volume2,
   WifiOff,
   X,
   Zap
@@ -123,6 +124,7 @@ export const PenIcon = inFamily(PenLine)
 export const PlusIcon = inFamily(Plus)
 export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)
+export const SoundIcon = inFamily(Volume2)
 export const StageIcon = inFamily(MonitorPlay)
 export const TableIcon = inFamily(PanelsTopLeft)
 export const ShareIcon = inFamily(Share)

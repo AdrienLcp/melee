@@ -9,7 +9,11 @@ import {
 
 type VolumeContextValue = {
   setVolume: (volume: number) => void
-  /** 0 to 1, this machine's own — it never reaches the room. */
+  /**
+   * 0 to 1, the level a console last set its room to, which the next room it
+   * opens starts at. The speaker plays the room's `volume`, and this only until
+   * the console has said it.
+   */
   volume: number
 }
 
@@ -27,11 +31,9 @@ export const [VolumeContext, useVolume] =
   createSafeContext<VolumeContextValue>('VolumeProvider')
 
 /**
- * How loud whatever this machine plays comes out, held above the router so the
- * menu and the console read one number rather than two. It is the third
- * preference that never leaves the device — the language and the theme are the
- * other two — and that is what took it out of the console's own footer, where
- * it was drawn under the one game that carries a track.
+ * The room volume this machine remembers, held above the router so the menu
+ * and the console read one number rather than two. A console seeds each room
+ * it opens with it and keeps it in step with the room's slider.
  *
  * Written on every change rather than on unmount: a console is closed by
  * closing the tab, and nothing runs after that.

@@ -8,7 +8,6 @@ import {
 } from '@/presentation/timing/last-seconds'
 
 import { audibleCueContext, SILENT_GAIN } from './cue-audio'
-import { useVolume } from './volume-provider'
 
 /** Five is what a room counts aloud along with; ten would talk over the round. */
 const TICKING_FROM_SECOND = 5
@@ -99,13 +98,14 @@ const playTimeUp = (volume: number): void => {
  */
 export const useTimerCue = ({
   clock,
-  view
+  view,
+  volume
 }: {
   clock: ClockEstimate | null
   view: TimedView | null
+  /** The level the room's speaker plays at. */
+  volume: number
 }): void => {
-  const { volume } = useVolume()
-
   useLastSeconds({
     deadline: view === null ? null : currentDeadline({ clock, view }),
     fromSecond: TICKING_FROM_SECOND,

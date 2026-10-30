@@ -3,7 +3,6 @@ import { useEffect, useRef } from 'react'
 import type { ServerTime } from '@melee/protocol/identifiers'
 
 import { audibleCueContext, SILENT_GAIN } from './cue-audio'
-import { useVolume } from './volume-provider'
 
 /**
  * A perfect fifth, which is the interval a plateau buzzer honks and the one that
@@ -90,9 +89,15 @@ const playBuzzCue = (volume: number): void => {
  * when a host comes back, and a cue keyed on it would fire again on a Wi-Fi
  * blink. Which is why this takes the stamp and not the buzz.
  */
-export const useBuzzCue = (buzzedAt: ServerTime | null): void => {
+export const useBuzzCue = ({
+  buzzedAt,
+  volume
+}: {
+  buzzedAt: ServerTime | null
+  /** The level the room's speaker plays at. */
+  volume: number
+}): void => {
   const playedForRef = useRef<ServerTime | null>(null)
-  const { volume } = useVolume()
 
   useEffect(() => {
     // The guard is what lets the volume sit honestly in the list below: turning

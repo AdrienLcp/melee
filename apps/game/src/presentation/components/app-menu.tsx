@@ -34,7 +34,6 @@ import {
   usePathname,
   useRoomCodeParam
 } from '@/infrastructure/router/navigation'
-import { useVolume } from '@/presentation/audio/volume-provider'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
@@ -351,12 +350,11 @@ export const AppMenu: React.FC = () => {
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
   const roomCode = useRoomCodeParam()
-  const { playsSound, revealRound } = useRoomActions()
+  const { revealRound, roomVolume, setRoomVolume } = useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
   const isOnWall = useIsOnWall()
-  const { setVolume, volume } = useVolume()
   const [build, setBuild] = useState<string | null>(null)
   const trigger = useRef<HTMLButtonElement>(null)
   // Open on one page only: a console handed over becomes the wall under a menu
@@ -480,22 +478,23 @@ export const AppMenu: React.FC = () => {
               )}
 
               {/*
-                  Whichever screen is the room's speaker — the console, or the
-                  wall once one is there. It heads the preferences because it is
-                  the only one of them somebody opens this menu mid-round to
-                  reach, and it is in the menu at all because the console strip
-                  it used to live in is drawn under the one game that carries a
-                  track, while a buzz sounds under all of them.
+                  The room's volume, on the console alone: it reaches whichever
+                  screen is sounding, so a wall carries no slider of its own.
+                  It heads the preferences because it is the only one of them
+                  somebody opens this menu mid-round to reach, and it is in the
+                  menu at all because the console strip it used to live in is
+                  drawn under the one game that carries a track, while a buzz
+                  sounds under all of them.
                 */}
-              {playsSound && (
+              {roomVolume !== null && setRoomVolume !== null && (
                 <Slider
                   formatOptions={{ style: 'percent' }}
                   label={translate('preferences.volume')}
                   maxValue={1}
                   minValue={0}
-                  onChange={setVolume}
+                  onChange={setRoomVolume}
                   step={0.05}
-                  value={volume}
+                  value={roomVolume}
                 />
               )}
 

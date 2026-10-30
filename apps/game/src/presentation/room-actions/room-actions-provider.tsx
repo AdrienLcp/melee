@@ -41,8 +41,6 @@ export type RoomActions = {
    * `isInvalid` that outlives its reason makes the native submit a silent no-op.
    */
   refusedNickname: string | null
-  /** This screen is the room's speaker, so its volume is the room's. */
-  playsSound: boolean
   /** Changes the name the seat is held under, socket and round untouched. */
   rename: ((nickname: string) => void) | null
   /**
@@ -50,10 +48,17 @@ export type RoomActions = {
    * has no room for it: a seated host's four tiles fill the whole screen.
    */
   revealRound: (() => void) | null
+  /**
+   * How loud the room's speaker plays, whichever screen it is. Set from the
+   * console alone, so `null` on every other screen.
+   */
+  roomVolume: number | null
   /** The seats *Points* lists when the room plays without teams. */
   scoredPlayers: readonly PublicPlayer[]
   /** The teams *Points* lists, which take the seats' place whenever there are any. */
   scoredTeams: readonly Team[]
+  /** Sets `roomVolume` for the whole room. The host console's alone. */
+  setRoomVolume: ((volume: number) => void) | null
   /** What the room calls this screen right now. `null` where no seat is held. */
   seatNickname: string | null
   /** The board's last case, so *Points* reads a team's pawn rather than its score. */
@@ -69,13 +74,14 @@ const NO_ACTIONS: RoomActions = {
   endGame: null,
   handOver: null,
   leaveSeat: null,
-  playsSound: false,
   refusedNickname: null,
   rename: null,
   revealRound: null,
+  roomVolume: null,
   scoredPlayers: NOBODY,
   scoredTeams: NOBODY,
   seatNickname: null,
+  setRoomVolume: null,
   trackLength: null
 }
 
@@ -134,13 +140,14 @@ export const useReportRoomActions = ({
   endGame,
   handOver,
   leaveSeat,
-  playsSound,
   refusedNickname,
   rename,
   revealRound,
+  roomVolume,
   scoredPlayers,
   scoredTeams,
   seatNickname,
+  setRoomVolume,
   trackLength
 }: RoomActions) => {
   const { report } = useChannel()
@@ -152,13 +159,14 @@ export const useReportRoomActions = ({
       endGame,
       handOver,
       leaveSeat,
-      playsSound,
       refusedNickname,
       rename,
       revealRound,
+      roomVolume,
       scoredPlayers,
       scoredTeams,
       seatNickname,
+      setRoomVolume,
       trackLength
     })
 
@@ -171,14 +179,15 @@ export const useReportRoomActions = ({
     endGame,
     handOver,
     leaveSeat,
-    playsSound,
     refusedNickname,
     rename,
     report,
     revealRound,
+    roomVolume,
     scoredPlayers,
     scoredTeams,
     seatNickname,
+    setRoomVolume,
     trackLength
   ])
 }

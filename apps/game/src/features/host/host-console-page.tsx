@@ -162,7 +162,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     null
   )
   const [hasOfferedToken, setHasOfferedToken] = useState(false)
-  const { volume } = useVolume()
+  const { setVolume: keepVolume, volume: ownVolume } = useVolume()
   const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
   const lineUpAt = view?.settings.lineUpAt ?? null
   const [draftedForAt, setDraftedForAt] = useState(lineUpAt)
@@ -201,20 +201,26 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   useMarkingField(view?.phase === 'playing' && slateWall.isOnWall)
   useScreenAwake(status !== 'refused' && view?.phase !== 'finished')
 
-  // A wall in the room is its speaker, and two screens a few milliseconds apart
-  // are the flange stage 10 measured — so the console falls silent while one is
-  // there, and picks the clip up again where the room's clock says it is.
-  const isSpeaker = view?.isWallConnected !== true
+  // One screen sounds, and two a few milliseconds apart are the flange stage 10
+  // measured — so the console falls silent while a wall is the speaker, and
+  // picks the clip up again where the room's clock says it is.
+  const isSpeaker = view?.walls.some((wall) => wall.isSpeaker) !== true
+  const roomVolume = view?.volume ?? ownVolume
   const isLaidOutForWall = useLaidOutWall(view?.isWallConnected ?? null)
   const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
   const { canPlay, refusal, unlock } = useRoundAudio({
     clock,
     view: isSpeaker ? view : null,
-    volume
+    volume: roomVolume
   })
 
-  useBuzzCue(isSpeaker ? (view?.round?.activeBuzz?.atServerTime ?? null) : null)
-  useTimerCue({ clock, view: isSpeaker ? view : null })
+  useBuzzCue({
+    buzzedAt: isSpeaker
+      ? (view?.round?.activeBuzz?.atServerTime ?? null)
+      : null,
+    volume: roomVolume
+  })
+  useTimerCue({ clock, view: isSpeaker ? view : null, volume: roomVolume })
   useTimeOutNudge({ clock, view: view?.youId == null ? null : view })
   useBuzzOutcome(
     reflexOutcome({ round: view?.round ?? null, youId: view?.youId ?? null })
@@ -401,6 +407,24 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     }
   }, [choosingRoundId, send])
 
+  // Kept on this machine as well, so the next room this console opens starts
+  // where this one was left.
+  const setRoomVolume = useCallback(
+    (volume: number) => {
+      keepVolume(volume)
+      send({ type: 'host.setVolume', volume })
+    },
+    [keepVolume, send]
+  )
+
+  const isVolumeUnsaid = isLive && view?.volume === null
+
+  useEffect(() => {
+    if (isVolumeUnsaid) {
+      send({ type: 'host.setVolume', volume: ownVolume })
+    }
+  }, [isVolumeUnsaid, ownVolume, send])
+
   const [isHandingOver, setIsHandingOver] = useState(false)
   const handOver = useCallback(() => {
     setIsHandingOver(true)
@@ -412,16 +436,17 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
     handOver,
     leaveSeat: view?.youId == null ? null : leaveSeat,
-    playsSound: isSpeaker,
     refusedNickname:
       requestedNickname !== null && error?.code === 'nickname_taken'
         ? requestedNickname
         : null,
     rename: seatedAs === null ? null : renameSeat,
     revealRound: choosing === null ? null : revealRound,
+    roomVolume: view === null ? null : roomVolume,
     scoredPlayers: view?.players ?? NOBODY,
     scoredTeams: view?.teams ?? NOBODY,
     seatNickname: seatedAs,
+    setRoomVolume: view === null ? null : setRoomVolume,
     trackLength:
       view?.settings.board.kind === 'track' ? view.settings.board.length : null
   })
@@ -692,6 +717,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const setupProps = (current: HostRoomView): SetupTabsProps => ({
     draftSource,
     isLive,
+    onChooseSpeaker: (speaker) => {
+      send({ speaker, type: 'host.chooseSpeaker' })
+    },
     onDismissWall: () => {
       send({ type: 'host.dismissWall' })
     },
