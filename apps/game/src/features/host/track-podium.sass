@@ -19,6 +19,17 @@
       grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr) minmax(0, 1fr)
       list-style: none
 
+      // Two pawns stand on two steps rather than beside a third left empty,
+      // which pushed the podium off its centre.
+      &:not(:has(> [data-slot='3']))
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr)
+
+      &:not(:has(> [data-slot='2']))
+        grid-template-columns: minmax(0, 1fr)
+
+        > [data-slot='1']
+          grid-column: 1
+
     .step
       @include piece.card(var(--radius-m))
 
@@ -72,11 +83,17 @@
         outline: var(--stroke-bold) solid var(--card-ink)
         outline-offset: calc(var(--stroke-bold) * -1)
 
+    // Broken between words and nowhere else: a name split mid-letter reads as
+    // two people. A word longer than the step is cut short with an ellipsis.
     .step .name
       @include typography.title
 
+      -webkit-box-orient: vertical
+      -webkit-line-clamp: 2
+      display: -webkit-box
       max-width: 100%
-      overflow-wrap: anywhere
+      overflow: hidden
+      text-overflow: ellipsis
       text-wrap: balance
 
     .step .at
