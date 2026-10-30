@@ -66,8 +66,11 @@
         .name
           color: var(--primary-edge)
 
+      // Inside the step: the podium scrolls, and a keyline outside the first
+      // place's step is clipped by it.
       &.you
         outline: var(--stroke-bold) solid var(--card-ink)
+        outline-offset: calc(var(--stroke-bold) * -1)
 
     .step .name
       @include typography.title
@@ -115,3 +118,4 @@
 
       &.you
         outline: var(--stroke-bold) solid var(--ink)
+        outline-offset: calc(var(--stroke-bold) * -1)
