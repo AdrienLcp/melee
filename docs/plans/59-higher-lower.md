@@ -65,6 +65,18 @@ Kind `higherlower`, translation prefix `higherlower.*`, answer mode `pairs`.
    population wraps instead of overflowing. Seen muted on a console, its
    reveal at 1280 and 1920, and a phone at 390.
 
+## Revised 30/10/2026 — one famous pair a round
+
+Five pairs a round dealt from the traffic-based `isWellKnown` rows played as
+guesswork: every country and 369 cities clear that bar, so a table got Gabon
+against Gambia. The deal now draws from `FAMOUS_QUANTITY_NAMES` first
+(`apps/server/src/infrastructure/questions/famous-quantities.ts`, ~180 names
+picked by hand, by French name per family), and a round is **one pair**:
+that famous pool would be spent inside one evening at five a round. Ten
+seconds a pick (5–30 s), twelve rounds by default; the seat's pair counter and
+its *n sur n* line are hidden while the count is one. A stored 45 s setup no
+longer parses, so that game's memory falls back to the default.
+
 ## How to tell it is done
 
 - A room opened on *Plus ou moins* deals five pairs, takes one sheet per

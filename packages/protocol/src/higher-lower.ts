@@ -5,16 +5,17 @@ import { playerIdSchema } from './identifiers'
 import { localeSchema } from './locale'
 
 /**
- * Five rather than one, because a single pair is a coin flip: five turn luck
- * into a score, and the reveal of ten numbers is where the table argues.
+ * One, because only a few hundred things are famous enough to rank: five a
+ * round spent them inside an evening and dealt Gabon against Gambia after.
+ * Luck evens out over the rounds, and the clock still separates two right picks.
  */
-export const HIGHER_LOWER_PAIR_COUNT = 5
+export const HIGHER_LOWER_PAIR_COUNT = 1
 
 export const higherLowerSideSchema = z.enum(['left', 'right'])
 
 /**
  * One pick per pair, in the order the pairs were dealt. Sent whole once the
- * fifth is picked: the screen only moves forward, so a pick is final before
+ * last is picked: the screen only moves forward, so a pick is final before
  * the server ever sees it.
  */
 export const higherLowerPicksSchema = z

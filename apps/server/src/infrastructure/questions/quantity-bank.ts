@@ -5,6 +5,7 @@ import { quantityFamilySchema } from '@melee/protocol/estimate'
 import { pickRandom } from '@melee/core/helpers/random'
 import { type DealtPair, dealPairs } from '@melee/core/higherlower/pair-deal'
 
+import { isFamousQuantity } from './famous-quantities'
 import bank from './quantity-bank.json' with { type: 'json' }
 
 export const quantityRowSchema = z.object({
@@ -63,9 +64,9 @@ export const playedPairedQuantityId = ({
 }: QuantityRow): string => `higherlower:${family}:${entity}`
 
 /**
- * Five pairs of quantities the room has not compared, from the well-known rows
- * first: two summits nobody has heard of are a coin flip, not a comparison.
- * `null` once the bank cannot deal a round.
+ * A round of quantities the room has not compared, from the famous rows first
+ * and the well-known after: two summits nobody has heard of are a coin flip,
+ * not a comparison. `null` once the bank cannot deal a round.
  */
 export const drawPairs = ({
   playedIds
@@ -77,6 +78,7 @@ export const drawPairs = ({
   )
 
   return (
+    dealPairs(unplayed.filter(isFamousQuantity)) ??
     dealPairs(unplayed.filter(({ isWellKnown }) => isWellKnown)) ??
     dealPairs(unplayed)
   )

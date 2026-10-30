@@ -103,12 +103,14 @@ export const HigherLowerAnswer: React.FC<HigherLowerAnswerProps> = ({
     <>
       {card(
         <hgroup className='higher-lower-prompt'>
-          <p className='counter'>
-            {translate('higherlower.answer.counter', {
-              count: HIGHER_LOWER_PAIR_COUNT,
-              index: picks.length + 1
-            })}
-          </p>
+          {HIGHER_LOWER_PAIR_COUNT > 1 && (
+            <p className='counter'>
+              {translate('higherlower.answer.counter', {
+                count: HIGHER_LOWER_PAIR_COUNT,
+                index: picks.length + 1
+              })}
+            </p>
+          )}
           <h2 className='asks'>
             {translate(`higherlower.asks.${pair.family}`)}
           </h2>

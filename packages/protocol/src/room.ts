@@ -701,7 +701,7 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     kind: z.literal('higherlower'),
-    /** The five pairs in the order they are played, without a value: which side is higher is the answer. */
+    /** The pairs in the order they are played, without a value: which side is higher is the answer. */
     pairs: z.array(higherLowerPairSchema),
     /** The same pairs with both values, and `null` until the reveal. */
     revealedPairs: z.array(valuedHigherLowerPairSchema).nullable(),

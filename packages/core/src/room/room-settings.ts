@@ -35,8 +35,8 @@ const DEFAULT_ROUND_COUNT: Record<GameKind, number | null> = {
   challenge: null,
   /** A number is half a minute of weighing it, so ten of them are a short game. */
   estimate: 10,
-  /** Five pairs are under a minute, so eight sheets are a short game. */
-  higherlower: 8,
+  /** A pair is ten seconds and its reveal, so twelve of them are a short game. */
+  higherlower: 12,
   /** A count is a minute or so of silence, and five of them are an interlude rather than an evening. */
   innerclock: 5,
   matchsticks: 10,

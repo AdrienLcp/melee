@@ -35,7 +35,7 @@ const everyFamily = QUANTITY_FAMILIES.flatMap((family) =>
 )
 
 describe('dealPairs', () => {
-  it('[higherlower] deals five fair pairs of one family each, from at least three families', () => {
+  it('[higherlower] deals fair pairs of one family each, from as many families as the round asks', () => {
     for (let draw = 0; draw < 200; draw++) {
       const pairs = dealPairs(everyFamily)
 
@@ -84,13 +84,7 @@ describe('dealPairs', () => {
     expect(sides).toEqual(new Set(['left', 'right']))
   })
 
-  it('[higherlower] refuses a round two families could only theme, and values too far apart to compare', () => {
-    expect(
-      dealPairs([
-        ...rowsOf({ count: 20, family: 'area.country' }),
-        ...rowsOf({ count: 20, family: 'length.river' })
-      ])
-    ).toBeNull()
+  it('[higherlower] refuses values too far apart to compare', () => {
     expect(
       dealPairs(
         QUANTITY_FAMILIES.flatMap((family) =>

@@ -1257,7 +1257,7 @@ const Revealed: React.FC<{
         className='answer-card higher-lower-revealed'
         data-game='higherlower'
       >
-        {rightPairs !== null && (
+        {rightPairs !== null && HIGHER_LOWER_PAIR_COUNT > 1 && (
           <p className='yours'>
             {translate('higherlower.reveal.score', {
               count: HIGHER_LOWER_PAIR_COUNT,

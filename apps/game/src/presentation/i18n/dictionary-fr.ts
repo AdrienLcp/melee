@@ -537,7 +537,7 @@ export const FR_DICTIONARY = defineDictionary({
   higherlower: {
     answer: {
       counter: 'Paire {index:number} sur {count:number}',
-      sent: 'Tes cinq choix sont partis. On attend les autres.'
+      sent: 'Ton choix est parti. On attend les autres.'
     },
     asks: {
       area: { country: 'Le plus vaste ?' },
@@ -549,10 +549,10 @@ export const FR_DICTIONARY = defineDictionary({
         country: 'Le plus d’habitants ?'
       }
     },
-    dealt: 'Cinq paires. À chaque fois, le plus grand.',
+    dealt: 'Deux noms. Lequel est le plus grand ?',
     home: {
       description:
-        'Deux villes, deux fleuves, deux sommets : lequel compte le plus d’habitants, lequel est le plus long, lequel est le plus haut ? Cinq paires, un choix par paire, et le dévoilement affiche les dix chiffres d’un coup.'
+        'Deux villes, deux fleuves, deux sommets : lequel compte le plus d’habitants, lequel est le plus long, lequel est le plus haut ? Une paire par manche, un choix, et le dévoilement affiche les deux chiffres.'
     },
     name: 'Plus ou moins',
     play: 'Jouer à Plus ou moins',
@@ -561,9 +561,9 @@ export const FR_DICTIONARY = defineDictionary({
       score: '{right:number} sur {count:number}',
       yourPick: 'ton choix'
     },
-    roundDuration: 'Temps pour les cinq paires',
+    roundDuration: 'Temps pour choisir',
     scoring:
-      'Cinq paires du même genre — deux villes, deux fleuves, deux sommets — et tu choisis à chaque fois le plus grand. Chaque paire juste rapporte 10 points, plus un bonus si tu envoies tes cinq choix vite.',
+      'Deux choses du même genre — deux villes, deux fleuves, deux sommets — et tu choisis la plus grande. Un bon choix rapporte 10 points, plus un bonus si tu choisis vite.',
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {

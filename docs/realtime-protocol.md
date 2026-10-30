@@ -794,7 +794,7 @@ close, because a place needs the whole room. `estimate-game.test.ts` searches
 every frame for the value.
 
 **A higher-or-lower pair carries no value until the reveal.** A player's round
-holds five pairs, each the family and the two names, and which side is higher
+holds the round's pairs (one, `HIGHER_LOWER_PAIR_COUNT`), each the family and the two names, and which side is higher
 is the server's shuffle; the console reads `valuedPairs` while it holds no
 seat, and the wall reads nothing. The sheet is one frame of five picks, refused
 at any other length and refused a second time, and a seat's own verdict stays

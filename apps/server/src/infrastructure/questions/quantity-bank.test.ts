@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { QUANTITY_FAMILIES } from '@melee/protocol/estimate'
 
+import { FAMOUS_QUANTITY_NAMES, isFamousQuantity } from './famous-quantities'
 import {
   bankedQuantities,
   drawPairs,
@@ -55,16 +56,33 @@ describe('the quantity bank', () => {
     expect(bankedValueOf('Jeddah Tower')).toBeUndefined()
   })
 
-  it('[higherlower] deals twenty rounds of well-known pairs without comparing a row twice', () => {
+  it('[higherlower] names no famous row the bank does not hold', () => {
+    const unbanked = QUANTITY_FAMILIES.flatMap((family) =>
+      FAMOUS_QUANTITY_NAMES[family].filter(
+        (fr) =>
+          !isFamousQuantity({ family, names: { fr } }) ||
+          !bankedQuantities().some(
+            (row) => row.family === family && row.names.fr === fr
+          )
+      )
+    )
+
+    expect(unbanked).toEqual([])
+  })
+
+  it('[higherlower] deals four evenings of famous pairs without comparing a row twice', () => {
     const playedIds = new Set<string>()
 
-    for (let round = 0; round < 20; round++) {
+    for (let round = 0; round < 48; round++) {
       const pairs = drawPairs({ playedIds })
 
-      expect(pairs).toHaveLength(5)
+      expect(pairs).toHaveLength(1)
 
       for (const { left, right } of pairs ?? []) {
-        expect([left.isWellKnown, right.isWellKnown]).toEqual([true, true])
+        expect([isFamousQuantity(left), isFamousQuantity(right)]).toEqual([
+          true,
+          true
+        ])
 
         for (const row of [left, right]) {
           expect(playedIds.has(playedPairedQuantityId(row))).toBe(false)

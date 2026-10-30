@@ -227,8 +227,8 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   }),
   z.object({
     kind: z.literal('higherlower'),
-    /** How long the five pairs stay open; the round closes early once every seat has sent its sheet. */
-    roundDurationMs: z.number().int().min(20_000).max(90_000)
+    /** How long the pair stays open; the round closes early once every seat has picked. */
+    roundDurationMs: z.number().int().min(5_000).max(30_000)
   })
 ])
 
@@ -379,10 +379,10 @@ export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
   roundDurationMs: 30_000
 }
 
-/** Nine seconds a pair: enough to weigh two names, too short to look one up. */
+/** Ten seconds: enough to weigh two names, too short to look one up. */
 export const DEFAULT_HIGHER_LOWER_SETTINGS: HigherLowerSettings = {
   kind: 'higherlower',
-  roundDurationMs: 45_000
+  roundDurationMs: 10_000
 }
 
 /** A record rather than a switch, so a new kind without a default cannot compile. */

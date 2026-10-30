@@ -29,7 +29,7 @@ far off it lands, and **Most likely** puts up a line about one of the people
 at the table — never about the moment — that everyone votes on with a seat,
 the ballots that went with the room paid, and **Le juste chiffre** asks for a
 number — a population, a height, a length — that every screen estimates, the
-closest three paid by place, and **Plus ou moins** deals five pairs of
+closest three paid by place, and **Plus ou moins** deals one pair a round of
 those numbers — two rivers, two cities — and pays every right pick.
 
 A phone is the common case, not the contract: the room code is displayed to be

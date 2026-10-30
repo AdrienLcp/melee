@@ -22,8 +22,8 @@ export const MIN_PAIR_RATIO = 1.15
 /** Two values further apart than this are answered by the names alone. */
 export const MAX_PAIR_RATIO = 4
 
-/** A round of five pairs from one or two families is a theme, not a mix. */
-export const MIN_FAMILIES_PER_ROUND = 3
+/** A round of five pairs from one or two families is a theme, not a mix; a round of one is its own family. */
+export const MIN_FAMILIES_PER_ROUND = Math.min(3, HIGHER_LOWER_PAIR_COUNT)
 
 export type DealtPair<TRow extends ComparableQuantity> = {
   left: TRow
@@ -79,8 +79,8 @@ const pairIn = <TRow extends ComparableQuantity>({
 }
 
 /**
- * Five pairs, each two rows of one family a fair comparison apart, from at
- * least three families and never one entity twice — a country's population
+ * A round of pairs, each two rows of one family a fair comparison apart, from
+ * as many families as it holds pairs up to three, and never one entity twice — a country's population
  * and its area are one place. Which side is higher is the shuffle's, never
  * the bigger one on the left. `null` when the rows left cannot deal a round.
  */

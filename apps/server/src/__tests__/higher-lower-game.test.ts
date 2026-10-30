@@ -33,10 +33,10 @@ import {
 } from './room-harness'
 
 /** Distinctive enough that a raw frame carrying one can only be carrying an answer. */
-const VALUES = [111_111_111, 222_222_222, 333_333_333, 444_444_444, 555_555_555]
+const VALUES = [111_111_111]
 
 /** The higher side of each pair, as the mocked deal puts it. */
-const RIGHT: HigherLowerPicks = ['left', 'right', 'left', 'right', 'left']
+const RIGHT: HigherLowerPicks = ['left']
 
 const sideRow = (name: string, value: number) => ({
   entity: name,
@@ -162,11 +162,11 @@ const flipped = (picks: HigherLowerPicks): HigherLowerPicks =>
   picks.map((side) => (side === 'left' ? 'right' : 'left'))
 
 describe('a higher-or-lower round through the seam', () => {
-  it('[higherlower] deals every seat five pairs without a value, and hands the values to the console alone', async () => {
+  it('[higherlower] deals every seat its pair without a value, and hands the values to the console alone', async () => {
     const { host, wall, zoe } = await roundInPlay()
     const round = pairsRound(playerView(zoe))
 
-    expect(round?.pairs).toHaveLength(5)
+    expect(round?.pairs).toHaveLength(1)
     expect(round?.pairs[0]).toEqual({
       family: 'length.river',
       left: { en: 'High0', fr: 'High0' },
@@ -210,11 +210,11 @@ describe('a higher-or-lower round through the seam', () => {
     expect(playerView(max)?.yourVerdict ?? null).toBeNull()
   })
 
-  it('[higherlower] refuses a sheet of four, and a second sheet', async () => {
+  it('[higherlower] refuses a pick too many, and a second sheet', async () => {
     const { roundId, zoe } = await roundInPlay()
 
-    sendSheet({ picks: RIGHT.slice(0, 4), roundId, seat: zoe })
-    await waitFor(() => errorsIn(zoe).length === 1, 'four picks refused')
+    sendSheet({ picks: [...RIGHT, ...RIGHT], roundId, seat: zoe })
+    await waitFor(() => errorsIn(zoe).length === 1, 'two picks refused')
     sendSheet({ picks: RIGHT, roundId, seat: zoe })
     await waitFor(
       () => pairsRound(playerView(zoe))?.yourPicks !== null,
@@ -230,15 +230,11 @@ describe('a higher-or-lower round through the seam', () => {
     expect(pairsRound(playerView(zoe))?.yourPicks).toEqual(RIGHT)
   })
 
-  it('[higherlower] pays a pick per right pair with the clock on top, and reveals ten values with every sheet', async () => {
+  it('[higherlower] pays a right pick with the clock on top, and reveals both values with every sheet', async () => {
     const { host, lou, max, roundId, zoe } = await roundInPlay()
-    const threeRight: HigherLowerPicks = [
-      ...RIGHT.slice(0, 3),
-      ...flipped(RIGHT).slice(3)
-    ]
 
     sendSheet({ picks: RIGHT, roundId, seat: zoe })
-    sendSheet({ picks: threeRight, roundId, seat: max })
+    sendSheet({ picks: flipped(RIGHT), roundId, seat: max })
     sendSheet({ picks: flipped(RIGHT), roundId, seat: lou })
     await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
 
@@ -248,24 +244,23 @@ describe('a higher-or-lower round through the seam', () => {
     const awardOf = (seat: Peer<PlayerServerMessage>) =>
       view?.round?.awards.find((award) => award.playerId === idOf(seat))
 
-    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(5 * POINT)
-    expect(basePointsFor({ playerId: idOf(max), view })).toBe(3 * POINT)
+    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(POINT)
+    expect(awardOf(max)?.points ?? 0).toBe(0)
     expect(awardOf(lou)?.points ?? 0).toBe(0)
-    expect(awardOf(zoe)?.verdict).toEqual({ kind: 'pairs', rightPairs: 5 })
+    expect(awardOf(zoe)?.verdict).toEqual({ kind: 'pairs', rightPairs: 1 })
     expect(awardOf(zoe)?.speedBonus).toBeGreaterThan(0)
     expect(awardOf(zoe)?.speedBonus).toBeLessThanOrEqual(
       MOST_A_SPEED_BONUS_PAYS
     )
-    expect(awardOf(max)?.speedBonus).toBeLessThanOrEqual(3 * POINT)
 
     const revealed = pairsRound(playerView(lou))
 
     expect(
       revealed?.revealedPairs?.map(({ leftValue }) => leftValue)
-    ).toHaveLength(5)
+    ).toHaveLength(1)
     expect(
       revealed?.revealedSheets?.find(({ playerId }) => playerId === idOf(max))
         ?.picks
-    ).toEqual(threeRight)
+    ).toEqual(flipped(RIGHT))
   })
 })
