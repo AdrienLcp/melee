@@ -366,6 +366,22 @@
       > .black-square-reveal
         flex: 1 1 0
 
+    // The host reads every name out, and a share of the stage cut the
+    // longest: the grid grows with them and the panel scrolls. Nobody
+    // scrolls the wall, so it keeps fitting the grid to its box.
+    &[data-game='blacksquare']:not(.wall-page *)
+      overflow-y: auto
+
+      > .black-square-reveal
+        // Measured on its width alone, so it stands the cards over the
+        // black word and lets them take the height their names need.
+        container-type: inline-size
+        flex: none
+
+        > .board
+          block-size: auto
+          min-block-size: clamp(14rem, 46dvh, 32rem)
+
     // The same card the puzzle was played on, the stick now moved.
     &[data-game='matchsticks'] .matchsticks-prompt
       @include piece.card

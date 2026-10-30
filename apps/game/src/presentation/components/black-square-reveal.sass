@@ -9,7 +9,7 @@
   .black-square-reveal
     --finder-size: clamp(1.25rem, 4.4cqmin, 2.25rem)
 
-    container-type: size
+    container: black-square-reveal / size
     min-block-size: 0
     min-width: 0
 
@@ -134,12 +134,12 @@
           inline-size: auto
 
   // Lying down, the ink card stands as tall as the grid at its side.
-  @container (aspect-ratio >= 3 / 2) and (width >= 40rem)
+  @container black-square-reveal (aspect-ratio >= 3 / 2) and (width >= 40rem)
     .black-square-reveal > .board
       grid-template: minmax(0, 1fr) / minmax(0, 2.2fr) minmax(14rem, 1fr)
 
   // A narrow box keeps the word, its why and who fell on one short strip.
-  @container (aspect-ratio < 3 / 2) or (width < 40rem)
+  @container black-square-reveal (aspect-ratio < 3 / 2) or (width < 40rem)
     .black-square-reveal .black-word-piece
       align-items: baseline
       display: flex
