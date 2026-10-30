@@ -300,14 +300,14 @@ export const lineUpEntryNames = ({
   const said = (at: number, depth: number) =>
     (details[at] ?? []).slice(0, depth).join(' · ')
 
-  return lineUp.map((entry, at) => {
+  const named = lineUp.map((entry, at) => {
     const game = translate(gameNameKey(entry.kind))
     const siblings = lineUp.flatMap((other, index) =>
       index !== at && other.kind === entry.kind ? [index] : []
     )
 
     if (siblings.length === 0) {
-      return game
+      return { isNumbered: false, name: game }
     }
 
     const depth = [1, 2].find(
@@ -317,26 +317,34 @@ export const lineUpEntryNames = ({
     )
 
     if (depth !== undefined) {
-      return `${game} · ${said(at, depth)}`
+      return { isNumbered: false, name: `${game} · ${said(at, depth)}` }
     }
 
     if (
       said(at, 1) === '' &&
       siblings.every((index) => said(index, 1) !== '')
     ) {
-      return game
+      return { isNumbered: false, name: game }
     }
 
-    const ordinal = lineUp
-      .slice(0, at + 1)
-      .filter((other) => other.kind === entry.kind).length
     const detail = said(at, 1)
 
-    return translate('round.entryNumbered', {
-      name: detail === '' ? game : `${game} · ${detail}`,
-      number: ordinal
-    })
+    return {
+      isNumbered: true,
+      name: detail === '' ? game : `${game} · ${detail}`
+    }
   })
+
+  return named.map(({ isNumbered, name }, at) =>
+    isNumbered
+      ? translate('round.entryNumbered', {
+          name,
+          number: named
+            .slice(0, at + 1)
+            .filter((other) => other.isNumbered && other.name === name).length
+        })
+      : name
+  )
 }
 
 /** `lineUpEntryNames` in the reader's language. */
@@ -346,10 +354,7 @@ export const useLineUpEntryNames = (
 
 /** An entry as the setup lists it. */
 export type LineUpEntrySummary = {
-  /**
-   * The game's name, numbered among its own entries once it has several —
-   * *Atlas 2* — because the line under it already says what tells them apart.
-   */
+  /** What the line-up calls the entry: `lineUpEntryNames`, as the next-round card says it. */
   name: string
   /**
    * Every setting of the entry, round length last, in one line; `null` for a
@@ -365,25 +370,18 @@ export const lineUpEntrySummaries = ({
 }: {
   lineUp: readonly GameSettings[]
   translate: Translate
-}): LineUpEntrySummary[] =>
-  lineUp.map((entry, at) => {
-    const game = translate(gameNameKey(entry.kind))
-    const sameGame = lineUp.filter((other) => other.kind === entry.kind)
+}): LineUpEntrySummary[] => {
+  const names = lineUpEntryNames({ lineUp, translate })
+
+  return lineUp.map((entry, at) => {
     const settings = settingsOf({ entry, translate })
 
     return {
-      name:
-        sameGame.length > 1
-          ? translate('round.entryNumbered', {
-              name: game,
-              number: lineUp
-                .slice(0, at + 1)
-                .filter((other) => other.kind === entry.kind).length
-            })
-          : game,
+      name: names[at] ?? translate(gameNameKey(entry.kind)),
       settings: settings.length > 0 ? settings.join(SETTINGS_SEPARATOR) : null
     }
   })
+}
 
 /** `lineUpEntrySummaries` in the reader's language. */
 export const useLineUpEntrySummaries = (

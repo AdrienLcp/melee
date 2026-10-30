@@ -73,6 +73,25 @@ describe('lineUpEntryNames', () => {
     ).toEqual(['Quiz 1', 'Quiz 2', 'Quiz · Every subject'])
   })
 
+  it('[line-up] counts only the entries nothing else tells apart', () => {
+    expect(
+      lineUpEntryNames({
+        lineUp: [
+          blindtest({ decades: ['1970s'], kind: 'decade' }),
+          blindtest({ decades: ['1980s', '1990s'], kind: 'decade' }),
+          blindtest({ genreIds: [152], kind: 'chart' }),
+          blindtest({ genreIds: [132, 116], kind: 'chart' })
+        ],
+        translate
+      })
+    ).toEqual([
+      'Blind test · 70s',
+      'Blind test 1',
+      'Blind test · Rock',
+      'Blind test 2'
+    ])
+  })
+
   it('[line-up] says an empty decade list plays every decade', () => {
     expect(
       lineUpEntryNames({
@@ -103,5 +122,18 @@ describe('lineUpEntrySummaries', () => {
       '70s, 80s, 90s\u00a0· Crowd-pleasers\u00a0· 20s',
       'History, Science, Sport, Cinema, Flags\u00a0· English\u00a0· 30s'
     ])
+  })
+
+  it('[line-up] titles a row by the name the next-round card gives it', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [
+          blindtest({ decades: ['1970s'], kind: 'decade' }),
+          quiz(['history', 'science']),
+          quiz(['sport', 'cinema'])
+        ],
+        translate
+      }).map((summary) => summary.name)
+    ).toEqual(['Blind test', 'Quiz 1', 'Quiz 2'])
   })
 })
