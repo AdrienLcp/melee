@@ -1038,12 +1038,15 @@ gaps.
 ### The wall's composition (`wall-page.sass`)
 **The wall picks its shape by its ratio, never by its width** — it is never
 held in a hand, so the console's split at `$wide-screen` says nothing about it.
-Standing up (`aspect-ratio < 13/10`), the reveal and the final board are one
+Taller than wide (`aspect-ratio < 1`), the reveal and the final board are one
 column across the width the track leaves: the answer and what the table said
-over the standings, the winner over the board. Lying down they keep the
-console's split, the race on a wider column (1.35fr / 1fr). A narrow wall
-(810×1440) keeps its standings under the answer and draws no score track. A table
-of teams keeps the console's own upright rules: its roster divides its box.
+over the standings or the teams' trays, the winner over the best seats and the
+board — Petit Bac's sheet included; only Atlas keeps the console's own upright
+column, its map first. A square wall (up to 13/10) cannot stack an answer over a
+table of teams: there the trays stand in one packed column beside it and what
+the table said is one chip a row. Lying down the wall keeps the console's
+split, the race on a wider column (1.35fr / 1fr). A narrow wall (810×1440)
+keeps its standings under the answer and draws no score track.
 
 **Every block stands in the middle of the box it is given**: the answer and
 its chips are one block, the title and the race another, and on a standing
@@ -1057,8 +1060,9 @@ screen's height (`--standings-height`), so a full table fits.
 
 **A name breaks between words and nowhere else.** A podium step clamps its
 name to two lines and ends a word longer than the step with an ellipsis —
-`overflow-wrap: anywhere` cut a two-word name into four lines on a portrait wall. Two
-pawns stand on two steps and one on one, rather than beside an empty step.
+`overflow-wrap: anywhere` cut a two-word name into four lines on a portrait wall. The best seats under a winning team do the same. Two pawns stand on two steps
+and one on one, rather than beside an empty step, and a Petit Bac seat's name
+yields its width (8rem) before a category does.
 
 ### The table (`TableLobby`)
 A room of teams in its lobby, on the wall — direction D, chosen 2026-10-22

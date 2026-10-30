@@ -57,7 +57,7 @@
     > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='petitbac'])
       @include layout.wide
         align-content: center
-        grid-template-rows: minmax(0, auto) minmax(0, auto)
+        grid-template-rows: auto minmax(0, auto)
 
         > :is(.said, .scorers)
           container-type: normal
@@ -119,29 +119,66 @@
         &.host-console-page:has(> .stage.revealed > .standings > .track-podium) > .stage.revealed
           grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)
 
+    // A square wall has the height for neither the answer nor a table of
+    // teams once they are stacked, and a column of trays fits beside it: a
+    // second row of trays pushed the panel's chips over the answer.
+    @media (1 <= aspect-ratio < 13 / 10)
+      @include layout.wide
+        &.host-console-page:has(> .stage.revealed > .standings > .team-roster) > .stage.revealed
+          display: grid
+
+          // A tray a row down that column, packed: four teams of two stood
+          // a tray taller than the screen.
+          .team-roster
+            gap: var(--space-xs)
+
+          .team
+            gap: var(--space-2xs)
+            padding-block-end: var(--space-xs)
+
+          .member
+            font-size: var(--text-s)
+            min-height: 0
+
+          // The answer keeps the narrower column, so what the table said is
+          // one chip a row rather than two cut to their first letters.
+          > .reveal-panel > :is(.said, .scorers)
+            grid-auto-flow: row
+            grid-template-columns: minmax(0, 1fr)
+            grid-template-rows: none
+
     // Standing up, a wall is one column across the width the track leaves:
     // the answer over the race, the winner over the board, centred together.
     // The console's split put the podium in a third of a 1080px-wide screen,
     // where two names broke mid-word over half a screen left empty.
-    @media (aspect-ratio < 13 / 10)
-      &:not(:has(> .stage.revealed > .standings > .team-roster, > .stage.revealed > .reveal-panel:is([data-game='atlas'], [data-game='petitbac'])))
+    @media (aspect-ratio < 1)
+      &:not(:has(> .stage.revealed > .reveal-panel[data-game='atlas']))
         > .stage.revealed
           --standings-height: calc(50dvh - 10rem)
 
           @include layout.wide
             align-content: center
+            display: grid
             grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, auto) / minmax(0, 1fr)
             row-gap: var(--space-stage-split)
 
             &.holding
               grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, auto) 'hold' auto / minmax(0, 1fr)
 
-      > .stage.finished > .final-board:not(:has(.team-roster))
+      > .stage.finished > .final-board
         align-content: center
         grid-template: 'podium' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
 
+        // A team evening stacks three blocks, so the winning team gives up
+        // the height the best seats and the teams' board stand in.
         &:has(> .seat-podium)
           grid-template: 'podium' auto 'seats' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
+
+          .podium .pawns
+            font-size: clamp(2rem, calc(min(14cqh, 30cqi) / var(--winner-count, 1)), 10rem)
+
+          .podium .winners
+            font-size: clamp(1.5rem, min(6cqh, calc(140cqi / var(--longest-word-width, 6))), 5rem)
 
         > .standings
           display: grid
@@ -168,6 +205,11 @@
             display: grid
             flex: 0 1 auto
             min-height: 0
+
+    // A seat's name gives up its width before a category does: unwrapped, a
+    // twenty-letter name ran a narrow wall's sheet under the track.
+    .petit-bac-grid .seat > span
+      max-inline-size: 8rem
 
     // Said once the console has been gone longer than a blink, and offered to
     // whoever is standing at the wall. Die-cut, because it is the one line on
