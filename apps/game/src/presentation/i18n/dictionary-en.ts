@@ -642,9 +642,17 @@ export const EN_DICTIONARY = defineDictionary({
         raise: 'Make it {count:number}'
       },
       detail: {
+        adult: 'Adult questions in',
         allSubjects: 'Every subject',
+        drawnCategories: '{count:number} categories drawn',
+        everyDecade: 'Every decade',
+        loneFinds: 'A lone find pays double',
         oneGo: 'One go each',
-        subjects: '{count:number} subjects'
+        openField: 'Unlimited tries',
+        playlist: 'Deezer playlist {id}',
+        search: '“{query}”',
+        swatch: 'Shown {shown:number}s, {rebuild:number}s to rebuild',
+        without: 'No {letters}'
       },
       drag: 'Move round {number:number}, {name}',
       draw: {

@@ -1,19 +1,121 @@
-import type { GameSettings } from '@melee/protocol/game'
+import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
+import type { QuestionCategory } from '@melee/protocol/question'
 import type { RoomSettings } from '@melee/protocol/room'
+import type { TrackSource } from '@melee/protocol/track'
 
 import { useTranslate } from './i18n-provider'
+import { LANGUAGE_NAMES } from './language-names'
+import { petitBacCategoryName } from './petit-bac-category-name'
+import { asGenreId, decadeLabelKey, genreLabelKey } from './track-labels'
 import { gameNameKey, questionCategoryKey, type Translate } from './translation'
 
-/** A quiz names its subjects while the line can still hold them. */
-const SUBJECTS_NAMED_AT_MOST = 3
+/**
+ * Bound to the setting before it, so a line that wraps breaks after the dot
+ * and never opens on one.
+ */
+const SETTINGS_SEPARATOR = '\u00a0· '
+
+/** A list of picks named in full, one `, ` apart. */
+const listed = (names: readonly string[]): string => names.join(', ')
+
+/** What a list of picks says: each one, and what ticking none stands for. */
+type Picks = {
+  everything: string
+  picks: string[]
+}
 
 /**
- * What tells one entry of a game from another, most telling first. A blind
- * test is its source before its level, a quiz its subjects before its
- * crowd-pleasers, a map its places; a game with nothing of its own says
- * nothing, and the number does the telling.
+ * The pick an entry is named by: the one thing ticked, what ticking nothing
+ * means, or `null` once several are — *Blind test · 70s*, but a blind test on
+ * three decades is a blind test.
  */
-const detailsOf = ({
+const onePick = ({ everything, picks }: Picks): string | null => {
+  if (picks.length === 0) {
+    return everything
+  }
+
+  return picks.length === 1 ? (picks[0] ?? null) : null
+}
+
+/** Every pick, or what ticking none stands for. */
+const allPicks = ({ everything, picks }: Picks): string =>
+  picks.length === 0 ? everything : listed(picks)
+
+const genresOf = ({
+  genreIds,
+  translate
+}: {
+  genreIds: readonly number[]
+  translate: Translate
+}): string[] =>
+  genreIds.flatMap((value) => {
+    const genreId = asGenreId(value)
+
+    return genreId === undefined ? [] : [translate(genreLabelKey(genreId))]
+  })
+
+/** Where a blind test's tracks come from: one name, or a list of picks. */
+const sourceOf = ({
+  source,
+  translate
+}: {
+  source: TrackSource
+  translate: Translate
+}): Picks | string => {
+  switch (source.kind) {
+    case 'all':
+      return translate('blindtest.source.all')
+    case 'chart':
+      return {
+        everything: translate('blindtest.source.chart'),
+        picks: genresOf({ genreIds: source.genreIds, translate })
+      }
+    case 'decade':
+      return {
+        everything: translate('host.evening.detail.everyDecade'),
+        picks: source.decades.map((decade) => translate(decadeLabelKey(decade)))
+      }
+    case 'film':
+      return translate('blindtest.source.film')
+    case 'playlist':
+      return translate('host.evening.detail.playlist', {
+        id: source.playlistId
+      })
+    case 'search':
+      return translate('host.evening.detail.search', { query: source.query })
+  }
+}
+
+const subjectsOf = ({
+  categories,
+  translate
+}: {
+  categories: readonly QuestionCategory[]
+  translate: Translate
+}): Picks => ({
+  everything: translate('host.evening.detail.allSubjects'),
+  picks: categories.map((category) => translate(questionCategoryKey(category)))
+})
+
+const atlasAsks = ({
+  entry,
+  translate
+}: {
+  entry: AtlasSettings
+  translate: Translate
+}): string =>
+  translate(`atlas.asks.${entry.direction}`, {
+    places: listed(
+      entry.places.map((places) => translate(`atlas.asks.places.${places}`))
+    )
+  })
+
+/**
+ * What tells one entry of a game from another, most telling first: its one
+ * pick, then its level. An entry with several picks says nothing and is the
+ * game alone — numbered, when a sibling is too.
+ */
+const namingOf = ({
   entry,
   translate
 }: {
@@ -22,74 +124,163 @@ const detailsOf = ({
 }): string[] => {
   switch (entry.kind) {
     case 'blindtest': {
-      const { source } = entry
-
-      if (source.kind === 'film') {
+      if (entry.source.kind === 'film') {
         return [translate('blindtest.source.film')]
       }
 
-      const from =
-        source.kind === 'decade' && source.decades.length > 0
-          ? source.decades
-              .map((decade) => translate(`blindtest.decade.${decade}`))
-              .join(', ')
-          : translate(`blindtest.source.${source.kind}`)
+      const source = sourceOf({ source: entry.source, translate })
+      const pick = typeof source === 'string' ? source : onePick(source)
 
-      return [from, translate(`blindtest.difficulty.${entry.difficulty}`)]
+      return pick === null
+        ? []
+        : [pick, translate(`blindtest.difficulty.${entry.difficulty}`)]
     }
     case 'buzzer':
       return entry.locksOutOnMiss
         ? [translate('host.evening.detail.oneGo')]
         : []
-    case 'matchsticks':
-      return [
-        entry.goals
-          .map((goal) => translate(`matchsticks.goals.${goal}`))
-          .join(', ')
-      ]
+    case 'matchsticks': {
+      const [goal, ...others] = entry.goals
+
+      return goal !== undefined && others.length === 0
+        ? [translate(`matchsticks.goals.${goal}`)]
+        : []
+    }
     case 'quiz': {
-      const { categories } = entry
-      const subjects =
-        categories.length === 0
-          ? translate('host.evening.detail.allSubjects')
-          : categories.length <= SUBJECTS_NAMED_AT_MOST
-            ? categories
-                .map((category) => translate(questionCategoryKey(category)))
-                .join(', ')
-            : translate('host.evening.detail.subjects', {
-                count: categories.length
-              })
+      const pick = onePick(
+        subjectsOf({ categories: entry.categories, translate })
+      )
+
+      if (pick === null) {
+        return []
+      }
 
       return entry.wellKnownOnly
-        ? [subjects, translate('quiz.variant.wellKnown')]
-        : [subjects]
+        ? [pick, translate('quiz.variant.wellKnown')]
+        : [pick]
     }
     case 'slate':
       return [translate('slate.items.summary', { count: entry.itemCount })]
     case 'atlas':
-      return [
-        translate(`atlas.asks.${entry.direction}`, {
-          places: entry.places
-            .map((places) => translate(`atlas.asks.places.${places}`))
-            .join(', ')
-        })
-      ]
+      return entry.places.length === 1 ? [atlasAsks({ entry, translate })] : []
     default:
       return []
   }
 }
 
-/** What an entry is set to that never tells it apart: how long a round runs. */
-const timingOf = ({
+const secondsOf = ({
+  ms,
+  translate
+}: {
+  ms: number
+  translate: Translate
+}): string => translate('host.seconds', { seconds: ms / 1000 })
+
+/**
+ * Everything an entry is set to, every pick named and its round length last:
+ * what its row in the running order says, so nobody opens a page to learn
+ * which decades a blind test plays.
+ */
+const settingsOf = ({
   entry,
   translate
 }: {
   entry: GameSettings
   translate: Translate
-}): string[] =>
-  'roundDurationMs' in entry
-    ? [translate('host.seconds', { seconds: entry.roundDurationMs / 1000 })]
-    : []
+}): string[] => {
+  switch (entry.kind) {
+    case 'blindtest': {
+      const source = sourceOf({ source: entry.source, translate })
+
+      return [
+        typeof source === 'string' ? source : allPicks(source),
+        ...(entry.source.kind === 'film'
+          ? []
+          : [translate(`blindtest.difficulty.${entry.difficulty}`)]),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    }
+    case 'buzzer':
+      return [
+        translate(
+          entry.locksOutOnMiss
+            ? 'host.evening.detail.oneGo'
+            : 'host.evening.detail.openField'
+        )
+      ]
+    case 'blacksquare':
+      return [
+        translate('blacksquare.answerCount.summary', {
+          count: entry.answerCount
+        }),
+        ...(entry.doublesLoneFinds
+          ? [translate('host.evening.detail.loneFinds')]
+          : []),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    case 'matchsticks':
+      return [
+        listed(
+          entry.goals.map((goal) => translate(`matchsticks.goals.${goal}`))
+        ),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    case 'petitbac':
+      return [
+        entry.categories === null
+          ? translate('host.evening.detail.drawnCategories', {
+              count: entry.categoryCount
+            })
+          : listed(
+              entry.categories.map((category) =>
+                petitBacCategoryName({ category, translate })
+              )
+            ),
+        ...(entry.excludedLetters.length > 0
+          ? [
+              translate('host.evening.detail.without', {
+                letters: listed(entry.excludedLetters)
+              })
+            ]
+          : []),
+        ...(entry.stopsWhenFull ? [translate('petitbac.setup.stop')] : []),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    case 'quiz':
+      return [
+        allPicks(subjectsOf({ categories: entry.categories, translate })),
+        ...(entry.wellKnownOnly ? [translate('quiz.variant.wellKnown')] : []),
+        ...(entry.allowsAdultContent
+          ? [translate('host.evening.detail.adult')]
+          : []),
+        LANGUAGE_NAMES[entry.language],
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    case 'slate':
+      return [translate('slate.items.summary', { count: entry.itemCount })]
+    case 'atlas':
+      return [
+        atlasAsks({ entry, translate }),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    case 'swatch':
+      return [
+        translate('host.evening.detail.swatch', {
+          rebuild: entry.roundDurationMs / 1000,
+          shown: entry.showMs / 1000
+        })
+      ]
+    case 'challenge':
+    case 'innerclock':
+    case 'reflex':
+      return []
+    case 'estimate':
+    case 'higherlower':
+    case 'mostlikely':
+    case 'timeline':
+      return [secondsOf({ ms: entry.roundDurationMs, translate })]
+  }
+}
 
 /**
  * What each entry of the line-up is called, in its order: the game's name
@@ -105,7 +296,7 @@ export const lineUpEntryNames = ({
   lineUp: readonly GameSettings[]
   translate: Translate
 }): string[] => {
-  const details = lineUp.map((entry) => detailsOf({ entry, translate }))
+  const details = lineUp.map((entry) => namingOf({ entry, translate }))
   const said = (at: number, depth: number) =>
     (details[at] ?? []).slice(0, depth).join(' · ')
 
@@ -127,6 +318,13 @@ export const lineUpEntryNames = ({
 
     if (depth !== undefined) {
       return `${game} · ${said(at, depth)}`
+    }
+
+    if (
+      said(at, 1) === '' &&
+      siblings.every((index) => said(index, 1) !== '')
+    ) {
+      return game
     }
 
     const ordinal = lineUp
@@ -161,18 +359,17 @@ export type LineUpEntrySummary = {
 }
 
 /** Each entry of the line-up as the setup lists it, in its order. */
-export const useLineUpEntrySummaries = (
+export const lineUpEntrySummaries = ({
+  lineUp,
+  translate
+}: {
   lineUp: readonly GameSettings[]
-): LineUpEntrySummary[] => {
-  const translate = useTranslate()
-
-  return lineUp.map((entry, at) => {
+  translate: Translate
+}): LineUpEntrySummary[] =>
+  lineUp.map((entry, at) => {
     const game = translate(gameNameKey(entry.kind))
     const sameGame = lineUp.filter((other) => other.kind === entry.kind)
-    const settings = [
-      ...detailsOf({ entry, translate }),
-      ...timingOf({ entry, translate })
-    ]
+    const settings = settingsOf({ entry, translate })
 
     return {
       name:
@@ -184,10 +381,15 @@ export const useLineUpEntrySummaries = (
                 .filter((other) => other.kind === entry.kind).length
             })
           : game,
-      settings: settings.length > 0 ? settings.join(' · ') : null
+      settings: settings.length > 0 ? settings.join(SETTINGS_SEPARATOR) : null
     }
   })
-}
+
+/** `lineUpEntrySummaries` in the reader's language. */
+export const useLineUpEntrySummaries = (
+  lineUp: readonly GameSettings[]
+): LineUpEntrySummary[] =>
+  lineUpEntrySummaries({ lineUp, translate: useTranslate() })
 
 type EntrySettings = Pick<
   RoomSettings,
