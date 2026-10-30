@@ -2,6 +2,11 @@
 @use '../../presentation/styles/typography'
 
 @layer components
+  // Nobody scrolls the room's screen, and the gutter `html` keeps for a
+  // scrollbar that never comes is a stripe down its right edge.
+  html:has(.wall-page)
+    scrollbar-gutter: auto
+
   .wall-page
     // Paired, with the room's first snapshot still on its way. Held back a
     // beat so a quick link never flashes it, and said at all because a cold

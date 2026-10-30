@@ -2,6 +2,11 @@
 @use '../../presentation/styles/typography'
 
 @layer components
+  // Nobody scrolls the room's screen, and the gutter `html` keeps for a
+  // scrollbar that never comes is a stripe down its right edge.
+  html:has(.wall-pairing-page)
+    scrollbar-gutter: auto
+
   // A screen with nothing on it but the way to pair it, so the code takes the
   // whole field rather than a column of it. `vmin` with no ceiling of
   // its own: this page is looked at from wherever the projector reaches, and
