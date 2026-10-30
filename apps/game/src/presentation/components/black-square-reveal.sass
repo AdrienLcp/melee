@@ -32,9 +32,11 @@
       @include tier-rows.cell
       @include piece.card(var(--radius-m))
 
-      align-content: space-between
+      // The foot keeps its row: a name too long for the cell at the floor
+      // size is cut, never the pawns that found it.
       display: grid
       gap: var(--space-2xs)
+      grid-template-rows: minmax(0, 1fr) auto
       min-block-size: 0
       min-width: 0
       overflow: hidden
@@ -55,8 +57,9 @@
     .name
       @include typography.billboard-wrapping
 
-      font-size: clamp(var(--text-xs), min(4.6cqi, 6.6cqh), 2.6rem)
+      font-size: clamp(var(--text-xs), calc(min(4.6cqi, 6.6cqh) * var(--name-scale, 1)), 2.6rem)
       hyphens: auto
+      overflow: hidden
       overflow-wrap: break-word
       text-wrap: balance
 
