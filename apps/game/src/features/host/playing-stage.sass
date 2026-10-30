@@ -155,7 +155,7 @@
         flex: 1 1 0
         inline-size: min(100%, 40rem)
 
-    // The five pairs printed under the card for the room to argue over, or a
+    // The pairs printed under the card for the room to argue over, or a
     // seated console's own two tiles in their place.
     &[data-higher-lower]
       > .round-card
@@ -173,6 +173,13 @@
         margin-block: auto
         overflow-y: auto
         padding: clamp(var(--space-s), 2.4cqmin, var(--space-l))
+
+        // A lone pair's question is already the headline.
+        > li:only-child
+          grid-template-columns: minmax(0, 1fr)
+
+          > .asks
+            display: none
 
       > .answer-form.higher-lower-answer
         align-self: center

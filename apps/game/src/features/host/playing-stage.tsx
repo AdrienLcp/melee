@@ -134,7 +134,9 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       ) : higherLower !== null ? (
         (sticks ?? (
           <p className='now higher-lower-line'>
-            {translate('higherlower.dealt')}
+            {higherLower.pairs.length === 1 && higherLower.pairs[0]
+              ? translate(`higherlower.asks.${higherLower.pairs[0].family}`)
+              : translate('higherlower.dealt')}
           </p>
         ))
       ) : mostLikely !== null ? (

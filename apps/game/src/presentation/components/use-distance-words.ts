@@ -77,7 +77,8 @@ export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
  * What a revealed answer reads as: the line it was typed or picked as — a
  * place picked by name in the reader's language — on the world map its distance, on the timeline the pairs it swapped, and an estimate with its unit — the server
  * records a marker as two coordinates, an order as a row of ids and a guess as
- * bare digits and a sheet of pairs as five sides, which are nobody's answer to read.
+ * bare digits and a sheet of pairs as its sides, which are nobody's answer to read:
+ * a lone pair reads as the name picked, several as how many were right.
  */
 export const useAnswerWords = (
   round: RoundView
@@ -89,10 +90,20 @@ export const useAnswerWords = (
   const orderWords = useOrderWords()
   const quantityWords = useQuantityWords()
   const estimate = estimateContent(round)
-  const isHigherLower = higherLowerContent(round) !== null
+  const higherLower = higherLowerContent(round)
 
   return (answer) => {
-    if (isHigherLower) {
+    if (higherLower !== null) {
+      const onlyPair =
+        higherLower.pairs.length === 1 ? higherLower.pairs[0] : undefined
+
+      if (
+        onlyPair !== undefined &&
+        (answer.said === 'left' || answer.said === 'right')
+      ) {
+        return onlyPair[answer.said][locale]
+      }
+
       return translate('higherlower.reveal.score', {
         count: HIGHER_LOWER_PAIR_COUNT,
         right: rightPairsOf(round, answer.playerId) ?? 0
