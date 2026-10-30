@@ -93,7 +93,7 @@ on the shelf inherits it.
 ## Capabilities and Constraints
 
 - One room, a four-character code from an alphabet with no confusable glyphs,
-  up to 32 players. Each room is a Cloudflare Durable Object and survives a
+  up to 24 players. Each room is a Cloudflare Durable Object and survives a
   deploy; the app is served from `melee.adrienlcp.com`.
 - **Five games**, each owning its name and its translation prefix:
   - **Blind test** — a 30-second Deezer preview on the room's speaker; players

@@ -37,10 +37,6 @@ one part.
 
 ### Improvements
 
-- `[Shared]` **A table seats 32.** Measured with 32 screens on every game: an
-  answer burst settles in under half a second and costs each screen about
-  200 KB a question. The cost grows with the square of the table, which is
-  what holds the cap there rather than the screens.
 - `[Game]` **The rounds to come can be reordered while one is played.** The
   host drags them, or moves one earlier or later, without waiting for the
   reveal; the round on screen keeps its game, and the next one is drawn off

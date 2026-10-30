@@ -89,7 +89,7 @@ import {
 import { datedTimelineEventSchema, timelineEventSchema } from './timeline'
 import { hostTrackSchema, trackIdentitySchema } from './track'
 
-export const MAX_PLAYERS_PER_ROOM = 32
+export const MAX_PLAYERS_PER_ROOM = 24
 
 export const roomPhases = [
   'lobby',
