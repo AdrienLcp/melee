@@ -6,6 +6,9 @@
     align-content: start
     display: grid
     gap: var(--space-m)
+    // Not the implicit column, which never shrinks below the steps' content
+    // and pushed the third step past a column a scrollbar had narrowed.
+    grid-template-columns: minmax(0, 1fr)
     min-height: 0
     overflow-y: auto
 

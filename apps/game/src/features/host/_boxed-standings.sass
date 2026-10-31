@@ -41,6 +41,19 @@
 
         font-size: var(--text-em-xl)
 
+    // The first to give way where the column is narrow (`screen-roles`): the
+    // round's podium already says who scored. Lower than the wall's cut, whose
+    // rows are drawn twice as large.
+    @container (width < 16rem)
+      &.with-gains li
+        grid-template-columns: 1.3em 1fr auto
+
+        &:has(> .case)
+          grid-template-columns: 1.3em 1fr auto auto
+
+      .gain
+        display: none
+
   // Trays and track steps are of uneven height, so nothing divides them by a
   // row count: past what the box holds they scroll inside it, ranked from the
   // top, rather than spilling under the presses below the stage. Their pieces
@@ -50,3 +63,10 @@
     min-height: 0
     overflow-y: auto
     padding-block-end: var(--space-xs)
+
+  .team-roster
+    container-type: inline-size
+
+    @container (width < 16rem)
+      .gain
+        display: none
