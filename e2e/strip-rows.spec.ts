@@ -335,8 +335,9 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
   page
 }) => {
   // The sweep is every game, in both locales, at every width: it grows with
-  // the shelf, and a loaded machine ran the seventh game past 60 s.
-  test.slow()
+  // the shelf. Sixteen games take two to three minutes on an idle machine,
+  // which left `test.slow()`'s 180 s no headroom for a loaded one.
+  test.setTimeout(360_000)
 
   const collapsed: string[] = []
   const faults: string[] = []
