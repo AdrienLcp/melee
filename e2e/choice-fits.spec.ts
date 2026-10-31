@@ -677,6 +677,7 @@ const revealedView = (content: object) => {
     round: {
       ...view.round,
       advancesAt: SERVER_TIME + 20_000,
+      isReadyHold: false,
       awards: revealedAnswers
         .filter((answer) => answer.isCorrect)
         .map(({ playerId }, order) => ({
@@ -1128,6 +1129,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
     round: {
       ...view.round,
       advancesAt: phase === 'revealed' ? SERVER_TIME + 20_000 : null,
+      isReadyHold: false,
       answers: [],
       awards:
         phase === 'revealed'

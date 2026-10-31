@@ -10,21 +10,21 @@ import {
   trackPawnsOf
 } from './track-pawns'
 
-const seat = (id: string, at: number | null): PublicPlayer => ({
+const seat = (id: string, at: number | null, score = 0): PublicPlayer => ({
   board: at === null ? null : { case: at, move: 0 },
   id,
   isConnected: true,
   isReady: false,
   nickname: id,
-  score: 0
+  score
 })
 
-const team = (id: string, at: number | null): Team => ({
+const team = (id: string, at: number | null, score = 0): Team => ({
   board: at === null ? null : { case: at, move: 0 },
   colour: 1,
   id,
   name: null,
-  score: 0,
+  score,
   seatIds: []
 })
 
@@ -73,6 +73,21 @@ describe('rankTrackPawns', () => {
     )
 
     expect(ranked.map((pawn) => pawn.id)).toEqual(['bob', 'ada', 'cy'])
+  })
+
+  it('[board] breaks a tie on one case by the score, as the scoreboard ranks', () => {
+    const ranked = rankTrackPawns([
+      ...trackPawnsOf({
+        players: [seat('ada', 4, 440), seat('bob', 4, 445)],
+        teams: []
+      }),
+      ...trackPawnsOf({
+        players: [],
+        teams: [team('red', 4, 300), team('blue', 4, 500)]
+      })
+    ])
+
+    expect(ranked.map((pawn) => pawn.id)).toEqual(['blue', 'bob', 'ada', 'red'])
   })
 })
 

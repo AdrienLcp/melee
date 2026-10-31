@@ -209,6 +209,12 @@ export const lineUpDealSchema = z.enum(['row', 'chance', 'both'])
 
 export type LineUpDeal = z.infer<typeof lineUpDealSchema>
 
+/**
+ * How long the reveal stays once every seat has said it is ready: long enough
+ * for one of them to take it back, short enough that nobody waits on a press.
+ */
+export const READY_HOLD_MS = 5_000
+
 export const roomSettingsSchema = z.object({
   /**
    * How long a reveal stays on screen before the next round starts itself, or
@@ -734,6 +740,11 @@ export const roundViewSchema = z.object({
    * re-sent on every snapshot to stay true.
    */
   advancesAt: serverTimeSchema.nullable(),
+  /**
+   * Whether `advancesAt` is the hold every seat being ready armed, which runs
+   * `READY_HOLD_MS` rather than the setting's length.
+   */
+  isReadyHold: z.boolean(),
   /**
    * The answer mode this round was opened on. The room's setting can move while
    * the round runs and land on the next one, so a screen drawing *this* round

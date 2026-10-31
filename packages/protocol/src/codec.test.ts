@@ -9,6 +9,7 @@ import { PROTOCOL_VERSION } from './version'
 const runningRound = {
   activeBuzz: null,
   advancesAt: null,
+  isReadyHold: false,
   answerMode: 'buzzer' as const,
   answers: [],
   awards: [],

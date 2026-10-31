@@ -42,9 +42,17 @@ export const trackPawnsOf = ({
   )
 ]
 
-/** The leader first; pawns on one case keep the roster's order. */
+const scoreOf = (pawn: TrackPawn): number =>
+  pawn.kind === 'team' ? pawn.team.score : pawn.player.score
+
+/**
+ * The leader first, and the score breaks a tie between two pawns on one case,
+ * as the scoreboard ranks; pawns level on both keep the roster's order.
+ */
 export const rankTrackPawns = (pawns: readonly TrackPawn[]): TrackPawn[] =>
-  pawns.toSorted((a, b) => b.board.case - a.board.case)
+  pawns.toSorted(
+    (a, b) => b.board.case - a.board.case || scoreOf(b) - scoreOf(a)
+  )
 
 /**
  * The leader first, each pawn with the place a podium stands it on: pawns on

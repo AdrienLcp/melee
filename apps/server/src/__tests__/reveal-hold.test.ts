@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { RoomSettings } from '@melee/protocol/room'
+import { READY_HOLD_MS, type RoomSettings } from '@melee/protocol/room'
 import { hostServerMessageSchema } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
@@ -155,5 +155,91 @@ describe('the wait between a reveal and the round after it', () => {
     expect(
       (playerView(player)?.round?.advancesAt ?? 0) - nowMs()
     ).toBeGreaterThan(20_000)
+  })
+})
+
+describe('a table that says it is ready for the next round', () => {
+  let harness: RoomHarness
+
+  beforeEach(async () => {
+    harness = await startRoomHarness()
+  })
+
+  afterEach(async () => {
+    await harness.stop()
+  })
+
+  const revealedTable = async () => {
+    const { code, host } = await harness.openRoom(FAST_GAME)
+    const zoe = await harness.seat({ code, nickname: 'Zoe' })
+    const max = await harness.seat({ code, nickname: 'Max' })
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(
+      () => hostView(host)?.phase === 'playing',
+      'the clip to start'
+    )
+
+    const roundId = hostView(host)?.round?.id ?? ''
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    return { host, max, roundId, zoe }
+  }
+
+  it('[ready-hold] arms the next round once every seat is ready, on every screen', async () => {
+    const { host, max, zoe } = await revealedTable()
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.players.some((seat) => seat.isReady) === true,
+      'the first ready'
+    )
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
+
+    max.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => playerView(zoe)?.round?.isReadyHold === true,
+      'the ready hold'
+    )
+
+    const advancesAt = hostView(host)?.round?.advancesAt ?? 0
+
+    expect(advancesAt - nowMs()).toBeGreaterThan(READY_HOLD_MS / 2)
+    expect(advancesAt - nowMs()).toBeLessThanOrEqual(READY_HOLD_MS)
+  })
+
+  it('[ready-hold] lets the hold go when one seat takes its ready back', async () => {
+    const { host, max, zoe } = await revealedTable()
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    max.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === true,
+      'the ready hold'
+    )
+    max.send({ isReady: false, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === false,
+      'the hold to go'
+    )
+
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
+  })
+
+  it('[ready-hold] arms nothing once the host keeps the reveal up', async () => {
+    const { host, max, roundId, zoe } = await revealedTable()
+
+    host.send({ roundId, type: 'host.holdReveal' })
+    zoe.send({ isReady: true, type: 'player.ready' })
+    max.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.players.every((seat) => seat.isReady) === true,
+      'both readies'
+    )
+
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
+    expect(hostView(host)?.round?.isReadyHold).toBe(false)
   })
 })

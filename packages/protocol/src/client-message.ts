@@ -375,6 +375,17 @@ export const pauseMessageSchema = z.object({
 })
 
 /**
+ * The reveal on screen stays until the host starts the next round: the hold
+ * the setting armed and the one every seat being ready arms are both let go,
+ * for this reveal alone. Not `host.pause`, which hides the round the table is
+ * still reading behind a paused card.
+ */
+export const holdRevealMessageSchema = z.object({
+  roundId: roundIdSchema,
+  type: z.literal('host.holdReveal')
+})
+
+/**
  * One more thing to guess on the slate, while the sheets are open. A host who
  * brings the cups one at a time opens on one item and adds as they go.
  */
@@ -601,6 +612,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   clearLockoutsMessageSchema,
   controlClipMessageSchema,
   pauseMessageSchema,
+  holdRevealMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
   revealItemKeyMessageSchema,
@@ -674,6 +686,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   clearLockoutsMessageSchema,
   controlClipMessageSchema,
   pauseMessageSchema,
+  holdRevealMessageSchema,
   addItemMessageSchema,
   setItemKeyMessageSchema,
   revealItemKeyMessageSchema,
@@ -723,6 +736,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.clearLockouts',
   'host.controlClip',
   'host.pause',
+  'host.holdReveal',
   'host.addItem',
   'host.setItemKey',
   'host.revealItemKey',

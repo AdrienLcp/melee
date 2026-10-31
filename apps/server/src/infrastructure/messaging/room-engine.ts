@@ -4,6 +4,7 @@ import {
   type RoomDeadline,
   roomDeadlines
 } from '@/domain/room/room-deadlines'
+import { settleReadyHold } from '@/domain/round/round-service'
 
 import type { Connection } from './connection'
 import { broadcastRoom } from './outbound'
@@ -63,6 +64,7 @@ export const commitRoom = (engine: RoomEngine): void => {
 
 /** Where every state change ends: each socket is sent its view, then the room is kept. */
 export const publishRoom = (engine: RoomEngine): void => {
+  settleReadyHold(engine.room, engine.now())
   broadcastRoom(engine)
   commitRoom(engine)
 }

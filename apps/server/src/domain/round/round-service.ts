@@ -9,6 +9,7 @@ import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { StickMove } from '@melee/protocol/matchsticks'
 import type { HostQuestion } from '@melee/protocol/question'
+import { READY_HOLD_MS } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 import type { ColourHex } from '@melee/protocol/swatch'
 import { TIMELINE_ORDER_SEPARATOR } from '@melee/protocol/timeline'
@@ -59,10 +60,11 @@ import {
   verdictKindFor
 } from '@melee/core/scoring/verdict'
 
-import { playingSeatIds } from '@/domain/room/console-seat'
+import { consoleSeatId, playingSeatIds } from '@/domain/room/console-seat'
 import type {
   AtlasNaming,
   AtlasRoundTarget,
+  Participant,
   PlayerAttempts,
   Room,
   Round
@@ -219,6 +221,9 @@ export const openRound = ({
     awards: [],
     content,
     duel,
+    isHoldWaived: false,
+    isReadyHold: false,
+    settingHoldEndsAt: null,
     durationMs: roundDurationMsOf(room.settings.game),
     elapsedMs: 0,
     id,
@@ -453,7 +458,7 @@ export const controlClip = ({
       : { ...playback, isPaused: action === 'pause' }
   // A host reaching for the clip is holding the table on it: the next round
   // waits for their press rather than cutting the argument off.
-  round.advancesAt = null
+  waiveHolds(round)
   touch(room, now)
 
   return Result.success()
@@ -1489,9 +1494,99 @@ export const startAutoAdvanceHold = (room: Room, now: number): void => {
 
   // The console offers no hold for the slate — one sheet, one reveal — so a
   // value remembered from before it was hidden must not end the game unseen.
-  const isHeld = holdMs !== null && room.round.content.kind !== 'slate'
+  const isHeld =
+    holdMs !== null &&
+    room.round.content.kind !== 'slate' &&
+    !room.round.isHoldWaived
 
-  room.round.advancesAt = isHeld ? now + holdMs : null
+  room.round.settingHoldEndsAt = isHeld ? now + holdMs : null
+  room.round.advancesAt = room.round.settingHoldEndsAt
+  room.round.isReadyHold = false
+  settleReadyHold(room, now)
+}
+
+/**
+ * The seats whose ready the room waits on: every one with a screen, less the
+ * console's own, which starts the next round with a press of its own.
+ */
+const seatsAwaited = (room: Room): Participant[] => {
+  const consoleSeat = consoleSeatId(room)
+
+  return [...room.players.values()].filter(
+    (seat) => seat.isConnected && seat.id !== consoleSeat
+  )
+}
+
+/**
+ * Every seat back at the table arms the next round `READY_HOLD_MS` out, unless
+ * the setting's hold ends sooner; one of them taking it back returns the reveal
+ * to the setting's hold. Run on every published change, because a seat leaving
+ * can complete the table as surely as a seat pressing ready.
+ */
+export const settleReadyHold = (room: Room, now: number): void => {
+  const round = room.round
+
+  if (
+    round === null ||
+    room.phase !== 'revealed' ||
+    round.isPaused ||
+    round.isHoldWaived ||
+    round.content.kind === 'slate' ||
+    isFinalRound(room)
+  ) {
+    return
+  }
+
+  const awaited = seatsAwaited(room)
+  const isEveryoneReady =
+    awaited.length > 0 && awaited.every((seat) => seat.isReady)
+
+  if (isEveryoneReady && !round.isReadyHold) {
+    const readyEndsAt = now + READY_HOLD_MS
+
+    if (round.advancesAt === null || round.advancesAt > readyEndsAt) {
+      round.advancesAt = readyEndsAt
+      round.isReadyHold = true
+    }
+  } else if (!isEveryoneReady && round.isReadyHold) {
+    round.advancesAt = round.settingHoldEndsAt
+    round.isReadyHold = false
+  }
+}
+
+/**
+ * The host keeps the reveal up: neither hold opens the next round, which waits
+ * for their press. Refused off a reveal, where there is no hold to let go.
+ */
+export const holdReveal = ({
+  now,
+  room,
+  roundId
+}: {
+  now: number
+  room: Room
+  roundId: RoundId
+}): Result<void, 'stale_round' | 'wrong_phase'> => {
+  const round = room.round
+
+  if (round === null || round.id !== roundId) {
+    return Result.failure('stale_round')
+  }
+
+  if (room.phase !== 'revealed') {
+    return Result.failure('wrong_phase')
+  }
+
+  waiveHolds(round)
+  touch(room, now)
+
+  return Result.success()
+}
+
+const waiveHolds = (round: Round): void => {
+  round.advancesAt = null
+  round.isHoldWaived = true
+  round.isReadyHold = false
 }
 
 /**

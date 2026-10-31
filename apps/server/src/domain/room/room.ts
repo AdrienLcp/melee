@@ -283,6 +283,18 @@ export type Round = {
    * extending a hold already running.
    */
   advancesAt: number | null
+  /**
+   * The host let this reveal's holds go and starts the next round by hand: the
+   * setting's hold and the ready one both stay off until the round opens.
+   */
+  isHoldWaived: boolean
+  /** Whether `advancesAt` is the hold every seat being ready armed. */
+  isReadyHold: boolean
+  /**
+   * Where the setting's own hold ends, kept apart from `advancesAt` so a seat
+   * taking its ready back returns the reveal to it rather than to nothing.
+   */
+  settingHoldEndsAt: number | null
   /** Buzzer mode leaves this empty; the other two fill it as frames arrive. */
   attempts: PlayerAttempts[]
   awards: Award[]

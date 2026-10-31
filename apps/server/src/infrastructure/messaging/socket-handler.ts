@@ -77,6 +77,7 @@ import {
   everyoneIsDone,
   finishGame,
   isFinalRound,
+  holdReveal,
   pauseRound,
   registerAnswer,
   registerBuzz,
@@ -149,6 +150,7 @@ const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.chooseTeam',
   'player.ready',
   'host.pause',
+  'host.holdReveal',
   'host.adjustScore',
   'host.renameTeam',
   'host.moveSeat',
@@ -785,6 +787,10 @@ const dispatch = ({
       pause(message, outbound, engine)
       break
     }
+    case 'host.holdReveal': {
+      keepReveal(message, outbound, engine)
+      break
+    }
     case 'host.nextRound': {
       advance({
         challenge: {
@@ -1390,6 +1396,26 @@ const pause = (
       code: paused.error,
       fatal: false,
       message: 'There is no round to pause'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const keepReveal = (
+  { roundId }: Extract<RoomActionMessage, { type: 'host.holdReveal' }>,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const held = holdReveal({ now: engine.now(), room: engine.room, roundId })
+
+  if (held.status === 'failure') {
+    sendError(outbound, {
+      code: held.error,
+      fatal: false,
+      message: 'There is no reveal to hold'
     })
 
     return
