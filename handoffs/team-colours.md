@@ -38,5 +38,30 @@ room allows), at phone width, muted. Delete this file once it lands.
 - Solo seats on a track (no teams): weigh offering the same choice per seat —
   same palette, same uniqueness — or leave it to teams; Adrien said "its pawn
   and/or its team".
-- Both palettes already define `--pawn-1…8`; a new colour token goes in both
-  (`.claude/rules/sass-architecture.md`).
+- Both palettes already define `--pawn-1…8`
+  (`apps/game/src/presentation/styles/_tokens.sass:182-189`); a new colour
+  token goes in both (`.claude/rules/sass-architecture.md`).
+
+## Eight colours for a room of 24 (32 on `crowd-32`)
+
+> Only 8 colours when we can have 32 players?! Maybe complete that too. Make
+> sure they stand out on the board, though (and everywhere).
+
+- **Teams are fine**: `MAX_TEAMS` = 6 (`team.ts:8`) under 8 colours.
+- **Solo seats are not**: on a track with no teams every seat is a pawn
+  (`trackPawnNumberOf` → `pawnNumberOf(seat)`,
+  `apps/game/src/presentation/components/track-pawn.tsx`), so beyond 8 seats
+  colours repeat and two pawns look identical.
+- **Don't answer with 24–32 colours**: nobody tells that many apart on a small
+  pawn, in both palettes, colour-blind players included — colour alone can
+  never be the identity (WCAG 1.4.1). Decided: widen to the most hues that stay
+  clearly distinct in both palettes against the track (likely 10–12 — measure
+  with `impeccable`, check contrast against the track and each other, simulate
+  the common colour blindnesses), **and** give every pawn a second channel that
+  scales to the cap: the seat's initial or a number on the token, or a shape
+  ring. Pawn identity = colour + mark, unique per seat across the whole room.
+- A solo seat picking its colour (above) then picks a hue; the mark keeps two
+  seats on one hue apart.
+- Verify on every screen that draws a `Pawn` (`grep -rn "<Pawn\|--pawn-"
+  apps/game/src`): the track, the board moves, the challenge placing, the
+  lobby, the rosters — at `MAX_PLAYERS_PER_ROOM` seats.
