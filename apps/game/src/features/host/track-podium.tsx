@@ -19,6 +19,15 @@ const PODIUM_PLACES = 3
 const isReady = (pawn: TrackPawn): boolean =>
   pawn.kind === 'seat' && pawn.player.isReady
 
+/** What the round on screen walked a pawn, before the case it reached. */
+const Walked: React.FC<{ move: number }> = ({ move }) => {
+  const translate = useTranslate()
+
+  return move > 0 ? (
+    <span className='walked'>{translate('board.walked', { count: move })}</span>
+  ) : null
+}
+
 type TrackPodiumProps = {
   /**
    * Checks each seat back at the table between two rounds. Off wherever
@@ -63,6 +72,7 @@ export const TrackPodium: React.FC<TrackPodiumProps> = ({
             <span className='name'>{pawnName(pawn)}</span>
             {marksReady === true && isReady(pawn) && <ReadyMark />}
             <span className='at'>
+              <Walked move={pawn.board.move} />
               {translate('board.at', { case: pawn.board.case })}
             </span>
           </li>
@@ -78,7 +88,10 @@ export const TrackPodium: React.FC<TrackPodiumProps> = ({
               <TrackPawnPiece pawn={pawn} />
               <span className='name'>{pawnName(pawn)}</span>
               {marksReady === true && isReady(pawn) && <ReadyMark />}
-              <span className='at'>{pawn.board.case}</span>
+              <span className='at'>
+                <Walked move={pawn.board.move} />
+                {pawn.board.case}
+              </span>
             </li>
           ))}
         </ol>

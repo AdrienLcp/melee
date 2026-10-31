@@ -13,6 +13,7 @@ import {
 const team = (colour: number, score: number, seatIds: string[] = []): Team => ({
   board: null,
   colour,
+  gain: 0,
   id: `team-${colour}`,
   name: null,
   score,

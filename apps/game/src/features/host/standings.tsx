@@ -98,6 +98,7 @@ export const Standings: React.FC<StandingsProps> = ({
           marksReady={marksReady}
           players={players}
           rankedBefore={rankedBefore?.teams}
+          showsGains={gains !== undefined && board?.kind !== 'track'}
           teamDetail={
             board?.kind === 'track'
               ? (team) => (

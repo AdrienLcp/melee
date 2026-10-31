@@ -316,10 +316,13 @@ describe('a room played in teams', () => {
     expect(paid).toBeGreaterThan(0)
     expect(hostView(host)?.teams.map((team) => team.score)).toEqual([paid, 0])
 
+    expect(hostView(host)?.teams.map((team) => team.gain)).toEqual([paid, 0])
+
     host.send({ type: 'host.endGame' })
     await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
 
     expect(hostView(host)?.teams.map((team) => team.score)).toEqual([paid, 0])
+    expect(hostView(host)?.teams.map((team) => team.gain)).toEqual([0, 0])
   })
 
   it('[teams] pays a balanced team the mean of its seats', async () => {
@@ -351,6 +354,10 @@ describe('a room played in teams', () => {
 
     expect(paid).toBeGreaterThan(0)
     expect(hostView(host)?.teams.map((team) => team.score)).toEqual([
+      Math.round(paid / 2),
+      0
+    ])
+    expect(hostView(host)?.teams.map((team) => team.gain)).toEqual([
       Math.round(paid / 2),
       0
     ])

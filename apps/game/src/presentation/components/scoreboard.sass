@@ -48,7 +48,8 @@
     &.ranked.with-gains li
       grid-template-columns: 1.3em 1fr auto auto
 
-    &.ranked.with-gains li:has(> .case)
+    &.ranked.with-gains li:has(> .case),
+    &.ranked.removable li:has(> .case)
       grid-template-columns: 1.3em 1fr auto auto auto
 
     // What the round paid, quieter than the score it was added to.

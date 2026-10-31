@@ -60,6 +60,20 @@
       font-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 3rem)
       margin-inline-start: auto
 
+    // What the round paid, quieter than the score it was added to; it takes
+    // the push to the end, so the score sits right beside it.
+    .gain
+      @include typography.numeric
+      @include text-box.trimmed-figure
+
+      color: var(--ink-muted)
+      flex: none
+      font-size: clamp(1rem, calc(var(--stage-unit) * 2.6), 1.75rem)
+      margin-inline-start: auto
+
+      + .score
+        margin-inline-start: 0
+
     // A name the host typed can be long: it gives way before the score does.
     .team-name
       @include typography.title

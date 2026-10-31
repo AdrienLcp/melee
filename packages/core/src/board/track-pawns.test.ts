@@ -22,6 +22,7 @@ const seat = (id: string, at: number | null, score = 0): PublicPlayer => ({
 const team = (id: string, at: number | null, score = 0): Team => ({
   board: at === null ? null : { case: at, move: 0 },
   colour: 1,
+  gain: 0,
   id,
   name: null,
   score,

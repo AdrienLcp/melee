@@ -513,12 +513,17 @@ export const toSeatBoards = (room: Room): Map<PlayerId, BoardPosition> => {
 export const toTeamViews = (room: Room): Team[] => {
   const moves = liveMoves(room)
 
-  return room.teams.map((team) => ({
-    board: boardPositionOf({ holder: team, moves, room }),
-    colour: team.colour,
-    id: team.id,
-    name: team.name,
-    score: team.bankedScore + liveRoundResult(room, team.id),
-    seatIds: seatsOf(room, team.id).map((seat) => seat.id)
-  }))
+  return room.teams.map((team) => {
+    const roundResult = liveRoundResult(room, team.id)
+
+    return {
+      board: boardPositionOf({ holder: team, moves, room }),
+      colour: team.colour,
+      gain: room.phase === 'revealed' ? roundResult : 0,
+      id: team.id,
+      name: team.name,
+      score: team.bankedScore + roundResult,
+      seatIds: seatsOf(room, team.id).map((seat) => seat.id)
+    }
+  })
 }

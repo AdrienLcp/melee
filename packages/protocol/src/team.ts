@@ -65,6 +65,12 @@ export const teamSchema = z.object({
   board: boardPositionSchema.nullable(),
   /** Its pawn token, 1-based — the team's colour on every screen. */
   colour: z.number().int().min(1).max(PAWN_COLOUR_COUNT),
+  /**
+   * What the round on screen paid it, and nought until the reveal: no screen
+   * can add it up from the seats' awards once the teams average them or
+   * answer as one.
+   */
+  gain: z.number().int().nonnegative(),
   id: teamIdSchema,
   /**
    * What the host called it, and `null` until they do — every screen then

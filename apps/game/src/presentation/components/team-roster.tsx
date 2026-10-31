@@ -39,6 +39,11 @@ type TeamRosterProps = {
   marksReady?: boolean
   players: readonly PublicPlayer[]
   /**
+   * Prints what the round paid each ranked team beside its score — a reveal.
+   * Off on a track, whose trays say it in cases instead.
+   */
+  showsGains?: boolean
+  /**
    * The teams' ids in the order they stood before the reveal moved them, which
    * a ranked tray travels from. Omitted, the trays are drawn where they stand.
    */
@@ -73,6 +78,7 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
   players,
   rankedBefore,
   seatAction,
+  showsGains = false,
   teamAction,
   teamDetail,
   teams,
@@ -134,6 +140,13 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
                   <VisuallyHidden elementType='span'>{` (${translate('team.yours')})`}</VisuallyHidden>
                 )}
               </h3>
+              {showsRank && showsGains && team.gain > 0 && (
+                <span className='gain'>
+                  {translate('round.scored', {
+                    points: shownPoints(team.gain)
+                  })}
+                </span>
+              )}
               {showsRank && (
                 <span className='score'>
                   {translate('player.score', {

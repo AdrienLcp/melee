@@ -157,7 +157,6 @@ const choosingView = (question: Question) => ({
   round: {
     activeBuzz: null,
     advancesAt: null,
-    isReadyHold: false,
     answers: [],
     awards: [],
     content: {
@@ -176,6 +175,7 @@ const choosingView = (question: Question) => ({
     duel: null,
     id: 'r4',
     index: 4,
+    isReadyHold: false,
     joinedAfterStart: false,
     lineUpAt: 0,
     lockedOutPlayerIds: [],
@@ -297,6 +297,7 @@ const duelWatchedView = (question: Question) => {
     teams: [['p1', 'p2'], ['p3']].map((seatIds, team) => ({
       board: null,
       colour: team + 1,
+      gain: 0,
       id: `team-${team + 1}`,
       name: null,
       score: 0,
@@ -1627,6 +1628,7 @@ const evening = (view: ReturnType<typeof consoleView>) => ({
   teams: [0, 1, 2].map((team) => ({
     board: { case: [12, 7, 21][team] ?? 0, move: 0 },
     colour: team + 1,
+    gain: 0,
     id: `team-${team + 1}`,
     name: null,
     score: [12, 7, 21][team] ?? 0,
