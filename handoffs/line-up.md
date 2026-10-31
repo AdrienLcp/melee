@@ -26,6 +26,14 @@ code (nothing was run yet). Prove it with a failing test first.
 
 Check every game whose modes depend on its settings, not only Atlas.
 
+**Adrien's exported evening backs it** — `C:/Users/AdrienLacourpaille/Downloads/melee-parties.json`
+(a `melee-host-export`, "Soirée Noël", 36 entries, `roundCount` 40, every deal
+`both`, no entry carrying a `mode`). Atlas appears six times: `place` at 2, 18,
+27 and **`name` at 13, 23, 30**. In the running order, entry 13 `atlas(name)`
+comes right after 12 `quiz[flags]` — a refused switch to 13 replays 12, which is
+exactly "two flags in a row". Load this file as the fixture of the regression
+test and of the browser run.
+
 ## 1. "On n'a pas compris, réessaie" on the host screen
 
 > Sometimes a message "we didn't understand, try again" appears on the host's
