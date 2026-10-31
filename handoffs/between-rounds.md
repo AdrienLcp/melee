@@ -1,13 +1,15 @@
 # Between two rounds: ready starts the next one, the round's own result, a final board that agrees with its figures
 
-Three reports from Adrien about the reveal and what follows it. One session.
+Three reports from Adrien about the reveal and what follows it. The server
+and core halves have landed; **what is left is screens, one session**: items
+1 and 3's screen notes below, then item 2. Run `pnpm validate` once at the end.
 UI: `impeccable` first, and the direction pages it produces reach Adrien as
 **one index link** (global rule 1). Check every screen **full**:
 `MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and without a wall.
 Verify muted. Strike each item as it lands, delete this file once none is left.
 
-Run after `handoffs/line-up.md` if both are open — they touch the same reveal.
-`handoffs/timer-beeps.md` depends on item 1's choice: settle it here first.
+`handoffs/timer-beeps.md` depended on item 1's choice, now settled: a 5 s
+ready hold (`READY_HOLD_MS`) arming the existing reveal hold.
 
 ## Where things are
 
@@ -48,7 +50,8 @@ ask ready on every round but the last and never on the slate (one rule in
 `player-round.tsx`, which disagree today on nothing but would drift); the bar's
 length is `READY_HOLD_MS` when `isReadyHold` (`room-stage.tsx` hold,
 `round-clock.tsx`); an **Attendre** press on the console sending
-`host.holdReveal`. Direction pages decide the look.
+`host.holdReveal`. The look is B's (item 2): the ready line under the hold bar, Attendre an
+outlined toggle left of the filled Manche suivante.
 
 > If everyone has been "ready" for 5 seconds, we start the next round without
 > the host clicking "next round"? And the host gets a "pause" button to block
@@ -71,42 +74,48 @@ should not wait on one screen. Decided shape, open to Adrien's pushback:
 - Where ready is not asked (single-game rooms, `room-stage.tsx:430`), weigh
   whether to ask it everywhere now that it does something.
 
-## 2. The round's own result, not only the general standings
+## 2. The round's own result — direction B, chosen 2026-10-31
 
-**Direction pages built, waiting on Adrien's pick** (local, outside git):
-`C:/Users/AdrienLacourpaille/AppData/Local/Temp/claude/C--git-melee/4e7c9a4e-dfba-4c17-8235-5504c770e9f4/scratchpad/reveal-directions/index.html`
-— A side by side (recommended), B headline strip + one list with `+35` and
-↑2 stamps, C one list re-sorting after 3.5 s. All three share the ready line
-("Tout le monde est prêt · la suite dans 5 s"), Attendre as an outlined toggle
-left of Manche suivante, and "Case 29" first on every board ranked by case.
-Hooks found: `reveal-panel.tsx` `Outcome` lists answers in `revealedInOrder`
-order, not by points; `Scoreboard` already computes `placesClimbedBy` from
-`rankedBefore` and prints no number; `holdUntilTheCountdown` on the player side
-subtracts `countdownMs` — check it against a 5 s hold. A's wall must be checked
-at 24 seats with the host panel open (`e2e/choice-fits.spec.ts`).
+Mock (local, git-excluded): `C:/git/melee/.handoff/reveal-directions/b-one-list.html`
+(A and C beside it in `index.html`, for reference only). B: a **headline
+strip** — the answer and the round's podium — over **one list**, the general
+standings, each row carrying its round gain (`+35`) and its movement (↑2).
 
-> When a round's results come up we only see the general standings. Shouldn't
-> it rather be the standings OF THE ROUND that just happened? Or one board on
-> the players' devices and another on the host's — but the host can be a
-> player. Or two screens after a round: "round result" with a "next" button,
-> then the general standings? All of it controllable by the host and by the
-> players, to fit the idea above.
+Adrien's brief on top of the mock, settled:
+- **The strip is the round's podium, not its whole list**: the top three by
+  what the round *paid* (the mock shows the three fastest — fix that), plus the
+  tally ("14 sur 24 ont trouvé"). Fewer at smaller sizes: three, then the
+  first alone with "+ N autres", then the tally alone.
+- **Movement is shown by motion, not only by a stamp**: the standings first
+  appear in the order **before** the round for ~1.5 s, then the rows travel to
+  their new places (FLIP), keeping their `+X`. 1.5 s rather than 2 because the
+  ready hold is 5 s and a ready table must still see the rows land. Within a
+  column a row slides; a row that changes column fades out and in at its new
+  place rather than flying across the others — DESIGN.md limits
+  `standing-moves` to one column for exactly that crossing. Reduced motion:
+  the final order straight away. `Scoreboard` already has `rankedBefore` and
+  `placesClimbedBy`; the console's `useStandingBeforeTheReveal`
+  (`room-stage.tsx:146`) gives the order before.
+- **What goes when room runs out, in this order**: (1) the ↑2/↓1 stamp — the
+  animation already says it; (2) the `+X` tag on each row — the strip says who
+  scored most; (3) the ready mark last. Adrien hesitated on 2 vs 3: ready goes
+  last because it now *starts the round* — the table needs to see who is still
+  holding it up, and nothing else on the screen says that.
+- **Every role, every shape**: wall, console and player, each at 16:9 and 9:16,
+  small and large. The **player** screen scrolls (fine as is). The **wall never
+  scrolls**, 9:16 included: it fits by the drops above, then by shrinking rows
+  over `standingsRowsOf`'s height budget, then by columns (1 at 9:16, up to 3 at
+  16:9). The **console** never scrolls either, and must hold with the host panel
+  open (25rem). Check each at 24 seats with long names, and add the 9:16 wall
+  and console to `e2e/choice-fits.spec.ts`.
 
-Adrien asked for proposals. Recommendation to put to him, as direction pages:
-- **One reveal, two readings, no second step.** Lead with *this round*: who
-  scored, `+points` (the two halves apart, as the console prints them), sorted
-  by what the round paid; then the general standings with each seat's movement
-  (↑2, ↓1). Wide screens (wall, desk console) side by side; a phone leads with
-  "you: +X, now 3rd (↑2)" and the round's list, the general board below.
-- **Against the two-step version**: one more press per round over a forty-round
-  evening, and it splits item 1 — which step does "ready" belong to? A second
-  screen that advances by itself is a slideshow nobody controls.
-- **Against host vs player boards**: the host may be seated and a wall may be
-  the only shared screen; every role should read both.
-
-Before designing, look at what `RevealPanel` already shows from `round.awards`
-in each game — some games already list scorers, so the gap may be ordering and
-emphasis rather than a missing panel.
+Code hooks: `reveal-panel.tsx` `Outcome` lists answers in `revealedInOrder`
+order, not by points; the player's `RoundBoard` (`round-board.tsx`) is already
+B's list without the stamps; `holdUntilTheCountdown` on the player side
+subtracts `countdownMs` from the hold — check it against a 5 s one. New strings
+(French in the mock): "{n} sur 24 ont trouvé", "Tout le monde est prêt · la
+suite dans {s} s", "… · on attend ton signal", "Attendre", "Classement
+inchangé", "Sans réponse", "gagne case {case} · {points} points".
 
 ## 3. The final board ranked 440 above 445
 
