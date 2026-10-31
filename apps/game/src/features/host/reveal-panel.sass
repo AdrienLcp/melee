@@ -463,8 +463,11 @@
         .world-map
           min-block-size: 0
 
+      // Clipped rather than scrolled, in whole chips (`useWholeChips`): a
+      // scroll of a row and a half showed half a chip, and the podium above
+      // already says who scored.
       &:not(.bare) > .tally
-        overflow-y: auto
+        overflow-y: clip
 
       &[data-game='atlas']:not(.bare) > .tally
         max-block-size: 30cqh

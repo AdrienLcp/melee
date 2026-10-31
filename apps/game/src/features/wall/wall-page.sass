@@ -1,6 +1,25 @@
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
 
+/// A ranking past twelve seats in two columns, filled top to bottom, each
+/// row dividing the box by half the table. A row no longer travels: its old
+/// place may be in the other column.
+@mixin two-ranked-columns
+  --row-width-cap: 2.6cqi
+  --rows-per-column: round(up, var(--standings-rows, 8) / 2, 1)
+
+  column-gap: var(--space-l)
+  columns: 2
+  display: block
+
+  li
+    border-bottom: var(--hairline)
+    border-top: none
+    break-inside: avoid
+
+    &[data-moved]
+      animation: none
+
 @layer components
   // Nobody scrolls the room's screen, and the gutter `html` keeps for a
   // scrollbar that never comes is a stripe down its right edge.
@@ -74,18 +93,31 @@
     // the answer lying down, the whole field standing up — and a ruled row no
     // taller than its share of the screen's height, so a full table still fits.
     &.host-console-page:has(> .stage:is(.revealed, .finished)) > .stage:is(.revealed, .finished) .standings:not(:has(> .team-roster))
-      --standings-height: calc(100dvh - 18rem)
-
-      align-content: center
       container: standings / inline-size
-      grid-template-rows: auto minmax(0, auto)
       max-height: 100%
 
+      // The rows divide the box they are given rather than a guess at the
+      // screen's height, centred in it so a table of eight does not hang from
+      // the top of an empty column.
       .scoreboard
-        container-type: normal
+        container-type: size
+        justify-content: center
+        overflow: visible
 
         li
-          font-size: clamp(var(--text-xs), min(5cqi, var(--standings-height) / (var(--standings-rows, 8) + 1) / 2.3), 2.5rem)
+          font-size: clamp(var(--text-xs), min(var(--row-width-cap, 5cqi), calc(100cqh / var(--rows-per-column, var(--standings-rows, 8)) / 2.15)), 2.5rem)
+
+        // The first to give way where the column is narrow: the round's
+        // podium already says who scored.
+        @container (width < 22rem)
+          &.with-gains li
+            grid-template-columns: 1.3em 1fr auto
+
+            &:has(> .case)
+              grid-template-columns: 1.3em 1fr auto auto
+
+          .gain
+            display: none
 
       .track-podium
         justify-items: center
@@ -115,6 +147,27 @@
 
         .chip
           font-size: clamp(var(--text-s), 2.8cqi, 1.75rem)
+
+    // Lying down, a table past twelve seats is read in two columns over an
+    // even split: one column of twenty-four rows on a 720p wall is drawn
+    // under the text floor.
+    @media (aspect-ratio >= 13 / 10)
+      @include layout.wide
+        &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13))
+          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+
+          .scoreboard
+            @include two-ranked-columns
+
+          @container standings (width < 40rem)
+            .scoreboard.with-gains li
+              grid-template-columns: 1.3em 1fr auto
+
+              &:has(> .case)
+                grid-template-columns: 1.3em 1fr auto auto
+
+            .scoreboard .gain
+              display: none
 
     // Lying down, the race takes a wider column than the console gives its
     // standings: on the wall it is the second thing the room reads, not a
@@ -164,6 +217,13 @@
             &.holding
               grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, auto) 'hold' auto / minmax(0, 1fr)
 
+            // A list that divides its box is handed one: what the answer leaves.
+            &:has(> .standings > .scoreboard)
+              grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, 1fr) / minmax(0, 1fr)
+
+              &.holding
+                grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, 1fr) 'hold' auto / minmax(0, 1fr)
+
       > .stage.finished > .final-board
         align-content: center
         grid-template: 'podium' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
@@ -204,6 +264,42 @@
             display: grid
             flex: 0 1 auto
             min-height: 0
+
+          // The list divides its box, so the box is handed a height: what the
+          // answer leaves, the answer held to half the screen and its chips
+          // clipped at that.
+          &:has(> .standings > .scoreboard)
+            > .reveal-panel
+              max-height: 42dvh
+              min-height: 0
+
+              > .tally
+                min-height: 0
+                overflow: clip
+
+            > .standings
+              flex: 1 1 0
+              grid-template-rows: auto minmax(0, 1fr)
+
+              // The rows the console boxes on a wide screen, so the size the
+              // list divides its box by is the size each part is drawn at.
+              li
+                padding-block: 0.3em
+
+                .rank
+                  font-size: var(--text-em-s)
+
+                .nickname
+                  font-size: 1em
+
+                .score
+                  @include typography.solid
+
+                  font-size: var(--text-em-xl)
+
+      &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13)) .scoreboard
+        @include two-ranked-columns
+
 
     // A seat's name gives up its width before a category does: unwrapped, a
     // twenty-letter name ran a narrow wall's sheet under the track.

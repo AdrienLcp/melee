@@ -157,6 +157,7 @@ const choosingView = (question: Question) => ({
   round: {
     activeBuzz: null,
     advancesAt: null,
+    isReadyHold: false,
     answers: [],
     awards: [],
     content: {
@@ -1907,3 +1908,105 @@ for (const screen of CONSOLE_OVER_A_TRACK) {
     expect(faults).toEqual([])
   })
 }
+
+/**
+ * A box on the stage whose content runs past it, scrolled or clipped, and the
+ * standings drawn over the answer.
+ */
+const scrollingBoxes = (): string[] => {
+  const panel = document.querySelector('.reveal-panel')?.getBoundingClientRect()
+  const overlaps =
+    panel !== undefined &&
+    [...document.querySelectorAll('.standings li')].some((row) => {
+      const box = row.getBoundingClientRect()
+
+      return (
+        panel.bottom > box.top + 1 &&
+        panel.right > box.left + 1 &&
+        box.bottom > panel.top + 1 &&
+        box.right > panel.left + 1
+      )
+    })
+
+  return [
+    ...(overlaps ? ['standings over the panel'] : []),
+    ...[...document.querySelectorAll<HTMLElement>('main *')]
+      .filter((element) => {
+        const { overflowY } = getComputedStyle(element)
+
+        return (
+          element.checkVisibility() &&
+          (overflowY === 'auto' || overflowY === 'scroll') &&
+          element.scrollHeight > element.clientHeight + 1
+        )
+      })
+      .map((element) => `${element.tagName.toLowerCase()}.${element.className}`)
+  ]
+}
+
+/** Twenty-four seats who each said something of their own. */
+const wallRevealOfAFullTable = () => {
+  const view = consoleView(LONGEST_PROMPT)
+  const revealedAnswers = fullTable.map(({ id }, seat) => ({
+    atServerTime: SERVER_TIME - 1_000,
+    isCorrect: seat < 5,
+    playerId: id,
+    said: seat < 5 ? 'France' : `${said[seat % said.length]} ${seat}`
+  }))
+
+  return {
+    ...view,
+    phase: 'revealed',
+    players: fullTable,
+    round: {
+      ...view.round,
+      advancesAt: SERVER_TIME + 20_000,
+      awards: fullTable.slice(0, 5).map(({ id }, order) => ({
+        playerId: id,
+        points: (5 - order) * 300,
+        speedBonus: (5 - order) * 100,
+        verdict: { isCorrect: true, kind: 'single' }
+      })),
+      content: QUIZ_WITH_A_NOTE,
+      isReadyHold: false,
+      revealedAnswers
+    },
+    settings: { ...view.settings, autoAdvanceMs: 25_000 },
+    wallCount: 1,
+    wallNumber: 1
+  }
+}
+
+test('[layout] wall, the reveal of a full table: nothing scrolls, from 720p to 4K', async ({
+  page
+}) => {
+  await serveRoom({ page, view: wallRevealOfAFullTable() })
+  await page.addInitScript(() => {
+    localStorage.setItem('melee:locale', 'fr')
+    localStorage.setItem('melee:volume', '0')
+  })
+  await page.setViewportSize({ height: 1080, width: 1920 })
+  await page.goto(`/wall/${ROOM_CODE}`)
+  await expect(page.locator('.reveal-panel .round-podium')).toBeVisible()
+
+  const faults: string[] = []
+
+  for (const [width, height] of WALL_VIEWPORTS) {
+    await resizeTo({ height, page, width })
+
+    const overflow = await page.evaluate(measureReveal)
+    const scrolling = await page.evaluate(scrollingBoxes)
+
+    if (
+      overflow.furthest !== null ||
+      overflow.page > 0 ||
+      scrolling.length > 0
+    ) {
+      faults.push(
+        `${width}×${height} ${JSON.stringify({ ...overflow, scrolling })}`
+      )
+    }
+  }
+
+  expect(faults).toEqual([])
+})

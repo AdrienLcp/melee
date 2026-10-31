@@ -692,9 +692,18 @@
         > .standings
           display: none
 
+        // A size container, so the podium's fallback answers the box a phone
+        // leaves it, and the tally gives way in whole chips before the
+        // presses under it are pushed off the screen.
         > .reveal-panel
+          container-type: size
           flex: 1 1 auto
           min-height: 0
+
+          > .tally
+            flex: 0 1 auto
+            min-height: 0
+            overflow: clip
 
         // The reflex race's finishing order divides the box it is left, the
         // way it does above the split: eight rows on a phone lying down.

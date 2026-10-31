@@ -42,10 +42,13 @@ The wall fits by giving things up, in this order, before it ever scrolls:
 3. the ready mark, last — it starts the next round, and the table needs to see
    who is holding it up.
 
-Then rows shrink over the height budget (`standingsRowsOf`), then columns
-change: one at 9:16, up to three at 16:9. The round's podium drops from three
-to the first alone ("+ N autres") to the tally alone. The other screens may
-use the same order to stay legible.
+Then rows shrink over the height budget (`standingsRowsOf`) down to the
+`--text-xs` floor, then a list past twelve seats takes two columns, filled
+top to bottom — lying down and on a narrow wall, never at 9:16, which has the
+height for one. The round's podium drops from three to the first alone
+("+ N autres") to the count alone, and the tally is cut in whole chips
+(`useWholeChips`), never scrolled. The other screens may use the same order
+to stay legible.
 
 ## The shapes every screen is checked at
 

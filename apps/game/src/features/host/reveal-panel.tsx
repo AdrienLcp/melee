@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useRef } from 'react'
 
 import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
@@ -46,6 +47,7 @@ import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
+import { useWholeChips } from './use-whole-chips'
 
 import './reveal-panel.sass'
 import { shownPoints } from '@/helpers/shown-points'
@@ -390,6 +392,9 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
 
 const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   const translate = useTranslate()
+  const tally = useRef<HTMLUListElement>(null)
+
+  useWholeChips(tally)
   const answerWords = useAnswerWords(round)
   const answers = revealedInOrder(round).map((answer) => ({
     ...answer,
@@ -430,7 +435,7 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     return (
       <>
         <RoundPodium players={players} round={round} wordsOf={wordsOf} />
-        <ul className='tally'>
+        <ul className='tally' ref={tally}>
           {saidTogether(answers).map((group) => (
             <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
               {group.isCorrect && <CheckIcon />}
