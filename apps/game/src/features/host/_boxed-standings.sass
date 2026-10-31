@@ -40,3 +40,13 @@
         @include typography.solid
 
         font-size: var(--text-em-xl)
+
+  // Trays and track steps are of uneven height, so nothing divides them by a
+  // row count: past what the box holds they scroll inside it, ranked from the
+  // top, rather than spilling under the presses below the stage.
+  .team-roster, .track-podium
+    margin-inline: calc(var(--space-xs) * -1)
+    min-height: 0
+    overflow-y: auto
+    padding-block-end: var(--space-xs)
+    padding-inline: var(--space-xs)

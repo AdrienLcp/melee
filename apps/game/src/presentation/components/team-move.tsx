@@ -2,11 +2,11 @@ import type React from 'react'
 
 import type { BoardPosition } from '@melee/protocol/board'
 
-import { Button } from '@/presentation/components/button'
-import { MinusIcon, PlusIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import './team-leaflet.sass'
+import { Button } from './button'
+import { MinusIcon, PlusIcon } from './icons'
+
 import './team-move.sass'
 
 type TeamMoveProps = {

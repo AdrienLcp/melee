@@ -10,11 +10,11 @@ import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isEveryTeamItsOwnSeat } from '@melee/core/team/team-board'
 
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
-import { TeamMove } from './team-move'
 import { TrackPodium } from './track-podium'
 
 type StandingsProps = {

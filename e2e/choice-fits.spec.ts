@@ -677,7 +677,6 @@ const revealedView = (content: object) => {
     round: {
       ...view.round,
       advancesAt: SERVER_TIME + 20_000,
-      isReadyHold: false,
       awards: revealedAnswers
         .filter((answer) => answer.isCorrect)
         .map(({ playerId }, order) => ({
@@ -687,6 +686,7 @@ const revealedView = (content: object) => {
           verdict: { isCorrect: true, kind: 'single' }
         })),
       content,
+      isReadyHold: false,
       revealedAnswers
     },
     settings: { ...view.settings, autoAdvanceMs: 25_000 }
@@ -1129,7 +1129,6 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
     round: {
       ...view.round,
       advancesAt: phase === 'revealed' ? SERVER_TIME + 20_000 : null,
-      isReadyHold: false,
       answers: [],
       awards:
         phase === 'revealed'
@@ -1143,6 +1142,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
             ]
           : [],
       content: { flipsAt, kind: 'reflex', presses },
+      isReadyHold: false,
       lockedOutPlayerIds: phase === 'revealed' ? ['p5', 'p7'] : []
     },
     settings: {
@@ -1767,3 +1767,133 @@ test('[scale] wall: a 4K panel draws the stage a 1080p one does, twice as large'
 
   expect(atFourK / atFullHd).toBeCloseTo(2, 1)
 })
+
+const FULL_TABLE_NAMES = [
+  'Wolfgangamadeusmozar',
+  'Anne-Charlotte Vidal',
+  'Marie-Hélène Fabre',
+  'Barthélemy Gauthier'
+]
+
+const fullTable = Array.from({ length: 24 }, (_, seat) => ({
+  board: null,
+  id: `p${seat + 1}`,
+  isConnected: true,
+  isReady: seat % 2 === 0,
+  nickname: `${FULL_TABLE_NAMES[seat % FULL_TABLE_NAMES.length]?.slice(0, 17)} ${seat + 1}`,
+  score: (24 - seat) * 100
+}))
+
+/**
+ * The console the room reads, with no wall: the track rings it, so the stage
+ * is what the ring leaves, and three trays of eight seats are taller than it.
+ */
+const fullEveningOnTheConsole = (view: ReturnType<typeof consoleView>) => {
+  const { wallNumber: _, ...onTheWall } = evening(view)
+
+  return {
+    ...onTheWall,
+    players: fullTable,
+    teams: onTheWall.teams.map((team, at) => ({
+      ...team,
+      seatIds: fullTable
+        .filter((_, seat) => seat % 3 === at)
+        .map((player) => player.id)
+    })),
+    wallCount: 0
+  }
+}
+
+/** Whatever is drawn past the stage, outside a box made to scroll. */
+const strayFromTheStage = (): string[] => {
+  const stage = document.querySelector<HTMLElement>(
+    '.stage:is(.revealed, .finished)'
+  )
+
+  if (stage === null) {
+    return ['no stage']
+  }
+
+  const box = stage.getBoundingClientRect()
+
+  return [...stage.querySelectorAll<HTMLElement>('*')]
+    .filter(
+      (element) =>
+        element.checkVisibility() &&
+        element.parentElement?.closest(
+          '.team-roster, .track-podium, .scoreboard'
+        ) === null
+    )
+    .filter((element) => {
+      const { bottom, right } = element.getBoundingClientRect()
+
+      return bottom > box.bottom + 1 || right > box.right + 1
+    })
+    .map((element) => `${element.tagName.toLowerCase()}.${element.className}`)
+}
+
+const revealedOnTheTrack = () => {
+  const revealed = revealedView(QUIZ_WITH_A_NOTE)
+  const onTheTrack = fullEveningOnTheConsole(consoleView(LONGEST_PROMPT))
+
+  return {
+    ...onTheTrack,
+    phase: revealed.phase,
+    round: revealed.round,
+    settings: {
+      ...onTheTrack.settings,
+      autoAdvanceMs: revealed.settings.autoAdvanceMs
+    }
+  }
+}
+
+const CONSOLE_OVER_A_TRACK = [
+  {
+    name: 'reveal',
+    ready: '.stage.revealed',
+    view: revealedOnTheTrack()
+  },
+  {
+    name: 'final board',
+    ready: '.stage.finished',
+    view: {
+      ...fullEveningOnTheConsole(consoleView(LONGEST_PROMPT)),
+      phase: 'finished',
+      round: null
+    }
+  }
+]
+
+for (const screen of CONSOLE_OVER_A_TRACK) {
+  test(`[layout] room, ${screen.name} inside a track with a full table: nothing leaves the stage`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: screen.view })
+    await page.addInitScript(() => {
+      localStorage.setItem('melee:locale', 'fr')
+      localStorage.setItem('melee:volume', '0')
+    })
+    await page.setViewportSize({ height: 800, width: 1280 })
+    await page.goto(`/host/${ROOM_CODE}`)
+    await expect(page.locator(screen.ready)).toBeVisible()
+    await expect(page.locator('.board-track')).toBeVisible()
+
+    const faults: string[] = []
+
+    for (const [width, height] of ROOM_VIEWPORTS) {
+      if (width < 900 || width <= height) {
+        continue
+      }
+
+      await resizeTo({ height, page, width })
+
+      const strays = await page.evaluate(strayFromTheStage)
+
+      if (strays.length > 0) {
+        faults.push(`${width}×${height} ${strays.slice(0, 3).join(', ')}`)
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}

@@ -8,41 +8,37 @@ is left, one session**: browser verification of that commit, then item 2. Run
 **full**: `MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and
 without a wall. Verify muted. Delete this file once nothing is left.
 
-## 0. Browser pass of items 1 and 3 — done 2026-10-31, three bugs to fix
+## 0. Browser pass of items 1 and 3 — done 2026-10-31; bugs 1 and 3 fixed
 
-Driven muted: quiz, choice, 24 seats (23 raw sockets + one real player at
-390×844), three drawn teams on a 20-case track, two rounds, console at
-1280×800 with the side panel open. Screenshots (git-ignored, delete once
-read): `C:/git/melee/.playwright-mcp/r1-*.png`, `final-*.png`, `held.png`.
+**Bug 1 fixed** (console overflowing its stage inside a track ring): the cause
+was not the ring but the teams' trays — `dividing-its-box`
+(`features/host/_boxed-standings.sass`) made `.scoreboard` scroll in its box,
+and `.team-roster` / `.track-podium` had no such rule, so three trays of eight
+ran under *Manche suivante* and the final board's exits. They now scroll inside
+the standings box. Re-driven on the real dev server (24 seats, 3 drawn teams,
+track 20): reveal at 1280×800 and final board at 1024×768, 1280×800, 1440×900,
+1920×1080 — nothing past the stage. New e2e test
+`[layout] room, … inside a track with a full table: nothing leaves the stage`
+at the end of `e2e/choice-fits.spec.ts` — **written but never run**: the dev
+server (`wrangler dev` started 11:16 by another session) serves
+`apps/game/dist`, and an e2e build would hang it. First thing next session: run
+it (stop that server by its PID if it is still up and nobody uses it, or run
+it in `pnpm validate`), then break it once on purpose (drop `overflow-y: auto`
+from the new `.team-roster, .track-podium` rule) and watch it fail.
 
-**Works**: the hold starts once the last seat is ready (`advancesAt` set,
-console bar labelled "Tout le monde est prêt", player bar with no label
-counting 2 s — 5 s minus the 3 s countdown, short but it lands); **Attendre**
-clears `advancesAt`, the bar and itself, and the round stays revealed; ready is
-asked on a single-game room and not on the last counted round ("Prêt" absent
-on round 2/2); the final board ranks two teams tied on case 5 by points and
-reads "victoire case 5 · 13 points".
+**Bug 3 fixed**: the player's reveal (`RevealBoard`, `player-round.tsx`) now
+passes `marksReady` (same `asksReady` as `BackAtTheTable`) and a read-only
+`TeamMove` per team on a track; `TeamFinish` (`player-teams.tsx`) prints the
+case on each tray; `RoundBoard` takes `marksReady` and draws `ReadyMark`.
+`TeamMove` moved to `presentation/components/` (both surfaces use it), with its
+own `.team-press` rule. Seen at 390×844: 12 ready marks, "Case 0 sur 20" on
+the three trays, reveal and final. **Still missing**: the case on the player's
+own headline on the final board (`your-placing`, "2e · 8 points") and on a
+seat row of `RoundBoard` in a room with a track and no teams — its row grid
+has no column for it; decide with direction B, whose list carries it.
 
-**Broken — fix first (`impeccable`, then re-drive the same room):**
-1. **Console inside a track ring overflows its stage, reveal and final.** At
-   1280×800 the stage box is 669×407 (`stage finished`, 98–767 × 178–585) and
-   the content runs past it with nothing to contain it: on the reveal,
-   *Manche suivante* (x 303–560) covers the standings column (from x 535) and
-   the hold bar's groove runs across it; on the final board the winner line
-   "victoire case 5 · 13 points" sits on top of "Podium individuel",
-   *Rejouer* covers the "Quiz · Quatre propositions · 2 manches" footer, which
-   covers the second team's "Case 5 sur 20", and *Retour à la table* lands
-   on the standings card. `choice-fits.spec.ts` did not catch it — check
-   which viewport/track combination it measures.
-2. **The reveal's answer grid squeezes names to a letter** at 24 seats in
-   three columns ("A", "E" before the hold bar appears, "An…" after, with an
-   inner scrollbar). Direction B (item 2) replaces this panel; if item 2 lands
-   first this one goes with it.
-3. **The player's standings show no ready mark** on the team cards (the
-   console's do), and no "Case N" on its team rows or its own headline
-   ("2e · 8 points") on the final board — the `Scoreboard` `.case` row the
-   commit added was not seen on the player at all. Check whether the player's
-   team cards go through `Scoreboard` at all.
+**Bug 2** (answer grid squeezing names to a letter at 24 seats) is left for
+direction B, which replaces that panel.
 
 Two driving traps met here are now in `docs/browser-driving.md` (*Seats
 driven from raw sockets*).

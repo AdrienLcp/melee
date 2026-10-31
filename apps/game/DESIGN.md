@@ -433,7 +433,8 @@ through these. A framed screen uses the tighter
 header, stage, footer — whose stage is a size container, and every list divides
 its own box by its rows. Under 576px of height the header goes; under 352px the
 answered pawns go too. Past about fourteen players a list scrolls in its own
-box, never the page.
+box, never the page — teams' trays and the track's steps too, which no row
+count divides.
 
 **Grids are dealt, not guessed.** `useFittedGrid` (`helpers/fitted-grid.ts`)
 tries every column count against the board's own box and pays for its rows; a

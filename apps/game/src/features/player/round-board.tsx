@@ -13,6 +13,7 @@ import {
   timelineContent
 } from '@/helpers/round-content'
 import { Pawn } from '@/presentation/components/pawn'
+import { ReadyMark } from '@/presentation/components/ready-mark'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -21,6 +22,8 @@ import './round-board.sass'
 import { shownPoints } from '@/helpers/shown-points'
 
 type RoundBoardProps = {
+  /** Checks each seat back at the table, wherever the room asks it to be ready. */
+  marksReady: boolean
   /** The round as it revealed: what everyone said, and what it paid them. */
   round: RoundView
   /** The whole room — a board listing only the players who answered is not a
@@ -41,7 +44,11 @@ type RoundBoardProps = {
  * outline where it was not; your own carries a keyline rather than a repeat of
  * the payout above it.
  */
-export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
+export const RoundBoard: React.FC<RoundBoardProps> = ({
+  marksReady,
+  round,
+  view
+}) => {
   const translate = useTranslate()
   const answerWords = useAnswerWords(round)
   const isRanked = hasAnybodyScored(view.players)
@@ -113,6 +120,7 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({ round, view }) => {
                   )}
                 />
                 <span className='name'>{player.nickname}</span>
+                {marksReady && player.isReady && <ReadyMark />}
                 {player.id === view.youId && (
                   <VisuallyHidden elementType='span'>
                     {` (${translate('player.you')})`}

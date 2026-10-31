@@ -117,6 +117,7 @@ import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { SwatchChip } from '@/presentation/components/swatch-chip'
+import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
@@ -141,6 +142,7 @@ import {
   scoringKey,
   type Translate
 } from '@/presentation/i18n/translation'
+import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './player-round.sass'
 import { shownPoints } from '@/helpers/shown-points'
@@ -192,17 +194,36 @@ const RevealBoard: React.FC<{ round: RoundView; view: PlayerRoomView }> = ({
   view
 }) => {
   const translate = useTranslate()
+  const teamName = useTeamName()
+  const { board } = view.settings
+  const marksReady = asksReady({
+    game: round.content.kind,
+    roundCount: view.settings.roundCount,
+    roundIndex: round.index
+  })
 
   return view.teams.length > 0 ? (
     <TeamRoster
       isRanked
       label={translate('host.standings')}
+      marksReady={marksReady}
       players={view.players}
+      teamDetail={
+        board.kind === 'track'
+          ? (team) => (
+              <TeamMove
+                length={board.length}
+                name={teamName(team)}
+                position={team.board}
+              />
+            )
+          : undefined
+      }
       teams={view.teams}
       youId={view.youId}
     />
   ) : (
-    <RoundBoard round={round} view={view} />
+    <RoundBoard marksReady={marksReady} round={round} view={view} />
   )
 }
 

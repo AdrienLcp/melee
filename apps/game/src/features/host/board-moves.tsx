@@ -11,6 +11,7 @@ import {
 
 import { Button } from '@/presentation/components/button'
 import { Leaflet } from '@/presentation/components/leaflet'
+import { TeamMove } from '@/presentation/components/team-move'
 import {
   TrackPawnPiece,
   trackPawnNumberOf,
@@ -19,7 +20,6 @@ import {
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { HostActionsProps } from './host-actions'
-import { TeamMove } from './team-move'
 
 import './board-moves.sass'
 

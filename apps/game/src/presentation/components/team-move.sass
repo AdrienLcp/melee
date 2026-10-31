@@ -1,5 +1,5 @@
-@use '../../presentation/styles/typography'
-@use '../../presentation/styles/text-box'
+@use '../styles/typography'
+@use '../styles/text-box'
 
 @layer components
   // The pawn's line under a team's head, the host's two presses at its end
@@ -37,3 +37,8 @@
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
+
+  .team-move .team-press
+    flex: none
+    padding-inline: 0
+    width: 2.5rem

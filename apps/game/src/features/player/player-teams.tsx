@@ -13,6 +13,7 @@ import {
 import { Button } from '@/presentation/components/button'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
+import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -83,6 +84,7 @@ export const LobbyTeams: React.FC<LobbyTeamsProps> = ({
 export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   const translate = useTranslate()
   const teamName = useTeamName()
+  const { board } = view.settings
   const yours = teamOfSeat({ playerId: view.youId, teams: view.teams })
   const placing = buildTeamBoard(view.teams).find(
     (entry) => entry.team.id === yours?.id
@@ -118,6 +120,17 @@ export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         isRanked
         label={translate('host.standings')}
         players={view.players}
+        teamDetail={
+          board.kind === 'track'
+            ? (team) => (
+                <TeamMove
+                  length={board.length}
+                  name={teamName(team)}
+                  position={team.board}
+                />
+              )
+            : undefined
+        }
         teams={view.teams}
         youId={view.youId}
       />
