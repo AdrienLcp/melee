@@ -141,6 +141,24 @@ const untilHidden = async (seat: Peer<PlayerServerMessage>) => {
   )
 }
 
+/**
+ * A lean is answered with no frame, so a ping sent behind it on the same
+ * socket is what says the server has read it.
+ */
+const afterItsFrames = async (seat: Peer<PlayerServerMessage>) => {
+  const clientSentAt = seat.frames.length + 1
+
+  seat.send({ clientSentAt, type: 'time.ping' })
+  await waitFor(
+    () =>
+      seat.frames.some(
+        ({ message }) =>
+          message.type === 'time.pong' && message.clientSentAt === clientSentAt
+      ),
+    'the frames before the ping to be read'
+  )
+}
+
 describe('a shades round through the seam', () => {
   it('[swatch] shows the colour to every seat with when it hides, and withholds nothing from the console', async () => {
     const { host, wall, zoe } = await roundInPlay()
@@ -258,5 +276,171 @@ describe('a shades round through the seam', () => {
     expect(
       revealed?.revealedColours?.map(({ colour }) => colour).toSorted()
     ).toEqual([NEAR, SHOWN].toSorted())
+  })
+
+  it('[swatch] pays a seat that never sent on where its picker last stood, with no speed bonus, and says so on its award', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    await untilHidden(zoe)
+    zoe.send({
+      answer: { colour: GREY, kind: 'colour' },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({
+      answer: { colour: SHOWN, kind: 'colour' },
+      roundId,
+      type: 'player.lean'
+    })
+    max.send({
+      answer: { colour: NEAR, kind: 'colour' },
+      roundId,
+      type: 'player.answer'
+    })
+    await afterItsFrames(zoe)
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the sent colour to land'
+    )
+
+    expect(playerView(zoe)?.phase).toBe('playing')
+
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const view = hostView(host)
+    const zoeId = playerView(zoe)?.youId ?? null
+    const maxId = playerView(max)?.youId ?? null
+    const awardOf = (playerId: string | null) =>
+      view?.round?.awards.find((award) => award.playerId === playerId)
+
+    expect(awardOf(zoeId)).toMatchObject({
+      isUnsent: true,
+      points: 3 * POINT,
+      speedBonus: 0,
+      verdict: { distance: 0, kind: 'colour' }
+    })
+    expect(awardOf(maxId)?.isUnsent).toBe(false)
+    expect(swatchRound(playerView(zoe))?.yourColour).toBe(SHOWN)
+    expect(
+      swatchRound(playerView(max))
+        ?.revealedColours?.map(({ colour }) => colour)
+        .toSorted()
+    ).toEqual([NEAR, SHOWN].toSorted())
+    expect(errorsIn(zoe)).toEqual([])
+  })
+
+  it('[swatch] pays nothing to a seat that never touched its picker', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    await untilHidden(zoe)
+    max.send({
+      answer: { colour: NEAR, kind: 'colour' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the sent colour to land'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const zoeId = playerView(zoe)?.youId ?? null
+
+    expect(
+      hostView(host)?.round?.awards.some(({ playerId }) => playerId === zoeId)
+    ).toBe(false)
+    expect(swatchRound(playerView(zoe))?.yourColour).toBeNull()
+    expect(swatchRound(playerView(zoe))?.revealedColours).toEqual([
+      { colour: NEAR, playerId: playerView(max)?.youId }
+    ])
+  })
+
+  it('[swatch] never lets a lean replace a colour already sent', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    await untilHidden(zoe)
+    zoe.send({
+      answer: { colour: SHOWN, kind: 'colour' },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({
+      answer: { colour: NEAR, kind: 'colour' },
+      roundId,
+      type: 'player.answer'
+    })
+    zoe.send({
+      answer: { colour: SHOWN, kind: 'colour' },
+      roundId,
+      type: 'player.lean'
+    })
+    await waitFor(() => errorsIn(zoe).length === 1, 'the late lean refused')
+    max.send({
+      answer: { colour: GREY, kind: 'colour' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    const zoeId = playerView(zoe)?.youId ?? null
+
+    expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['already_buzzed'])
+    expect(
+      hostView(host)?.round?.awards.filter(({ playerId }) => playerId === zoeId)
+    ).toMatchObject([
+      {
+        isUnsent: false,
+        verdict: { distance: colourDistance({ sent: NEAR, shown: SHOWN }) }
+      }
+    ])
+    expect(swatchRound(playerView(zoe))?.yourColour).toBe(NEAR)
+  })
+
+  it('[swatch] sends nobody a lean, and refuses one while the colour is still shown', async () => {
+    const { host, max, roundId, wall, zoe } = await roundInPlay()
+    const LEANED = '#123456'
+    const lean = () =>
+      max.send({
+        answer: { colour: LEANED, kind: 'colour' },
+        roundId,
+        type: 'player.lean'
+      })
+
+    lean()
+    await waitFor(() => errorsIn(max).length === 1, 'the early lean refused')
+    await untilHidden(zoe)
+
+    const framesFrom = {
+      host: host.frames.length,
+      max: max.frames.length,
+      wall: wall.frames.length,
+      zoe: zoe.frames.length
+    }
+
+    lean()
+    await afterItsFrames(max)
+    zoe.send({
+      answer: { colour: SHOWN, kind: 'colour' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the sent colour to land'
+    )
+
+    expect(errorsIn(max).map(({ code }) => code)).toEqual([
+      'colour_still_shown'
+    ])
+    expect(
+      [
+        transcriptOf(host.frames.slice(framesFrom.host)),
+        transcriptOf(max.frames.slice(framesFrom.max)),
+        transcriptOf(wall.frames.slice(framesFrom.wall)),
+        transcriptOf(zoe.frames.slice(framesFrom.zoe))
+      ].join('')
+    ).not.toContain(LEANED)
   })
 })

@@ -126,6 +126,7 @@ export const payInnerclockCounts = (room: Room): void => {
     }
 
     round.awards.push({
+      isUnsent: false,
       playerId: press.playerId,
       points,
       speedBonus: 0,

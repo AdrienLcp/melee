@@ -248,6 +248,24 @@ of emojis is a prompt, and the room names an answer.
 What they do change is an assumption everything shipped so far rests on:
 **exactly one player acts at a time**. That is the expensive part, not the UI.
 
+## An answer built on screen is paid if time runs out
+
+Shades scored nothing for a colour rebuilt within a few degrees and not sent
+in time, which punished the slow hand rather than the eye. Three games hold an
+answer on screen before a press sends it — the colour on the picker, the pawn on
+the map, the cards in their order — and all three lose it the same way, so the
+fix is the shell's: `player.lean`, one frame carrying any of those three shapes,
+saved as it moves and paid on close without the speed bonus
+(`realtime-protocol.md`, *A lean is not an answer*). Not a frame per game: three
+cases of one rule were already on the table. A choice, a vote and a typed line
+stay out — one press is the whole answer, and a typed line is a guess only once
+sent. The estimate's number and higher or lower's sheet are the next candidates,
+priced by place and settled before `settleSimultaneousRound`, so they need
+their own close first.
+
+Every seat's reveal says when it was paid that way, and the room's tally names
+those seats, so nobody wonders why a round they never answered scored.
+
 ## A setting has three possible owners, not two
 
 Stage 11 split settings into "the room's" and "the game's". That is one axis

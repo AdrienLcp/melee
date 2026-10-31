@@ -2,6 +2,7 @@ import type React from 'react'
 import { useState } from 'react'
 
 import type { GeoPoint } from '@melee/protocol/atlas'
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 
@@ -12,12 +13,15 @@ import { usePawnNumber } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
+import { useLean } from './use-lean'
 
 import './map-answer.sass'
 
 type MapAnswerProps = {
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
+  /** Saves what the screen holds before it is sent, which the round takes if it runs out first; `null` where nothing is saved. */
+  onLean: ((answer: LeanAnswer | null) => boolean) | null
   round: RoundView
   /** The answering seat's place in the roster, which colours the pawn — its team's when there are teams. */
   seat: number
@@ -28,17 +32,20 @@ type MapAnswerProps = {
 /**
  * The pawn goes down, moves as often as the player likes, and leaves only on
  * the press perched over it: a slipped finger is not an answer, and a map
- * round is one shot a seat.
+ * round is one shot a seat. Where the pawn stands is saved as it moves, and
+ * paid if the clock runs out before the press.
  *
  * Mounted under `key={round.id}`, so the pawn is about this round alone.
  */
 export const MapAnswer: React.FC<MapAnswerProps> = ({
   onAnswer,
+  onLean,
   round,
   seat,
   youId
 }) => {
   const translate = useTranslate()
+  const leaning = useLean(onLean)
   const pawnNumber = usePawnNumber({ seat })
   const [point, setPoint] = useState<GeoPoint | null>(null)
   const [isSent, setIsSent] = useState(false)
@@ -61,6 +68,8 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
             <>
               <Button
                 onPress={() => {
+                  leaning.cancel()
+
                   if (onAnswer({ kind: 'point', point })) {
                     setIsSent(true)
                   }
@@ -70,7 +79,10 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
                 {translate('atlas.answer.confirm')}
               </Button>
               <Button
-                onPress={() => setPoint(null)}
+                onPress={() => {
+                  setPoint(null)
+                  leaning.lean(null)
+                }}
                 size='large'
                 variant='outlined'
               >
@@ -79,7 +91,14 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
             </>
           )
         }
-        onPlace={hasAnswered ? undefined : setPoint}
+        onPlace={
+          hasAnswered
+            ? undefined
+            : (next) => {
+                setPoint(next)
+                leaning.lean({ kind: 'point', point: next })
+              }
+        }
         region={content === null ? 'world' : mapRegionOf(content)}
       />
       <p className='hint' role='status'>

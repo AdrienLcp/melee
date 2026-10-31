@@ -1,6 +1,7 @@
 import type React from 'react'
 import { useState } from 'react'
 
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 import type { ColourHex } from '@melee/protocol/swatch'
@@ -15,6 +16,7 @@ import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
+import { useLean } from './use-lean'
 
 import './swatch-answer.sass'
 
@@ -23,6 +25,8 @@ type SwatchAnswerProps = {
   isCaptioned?: boolean
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
+  /** Saves where the picker stands, which the round takes if it runs out before the press. */
+  onLean: ((answer: LeanAnswer | null) => boolean) | null
   round: RoundView
   /** The seat answering: a player's, a seated console's, or the wall's team. */
   youId: PlayerId | null
@@ -37,10 +41,12 @@ type SwatchAnswerProps = {
 export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
   isCaptioned = true,
   onAnswer,
+  onLean,
   round,
   youId
 }) => {
   const translate = useTranslate()
+  const leaning = useLean(onLean)
   const [colour, setColour] = useState<ColourHex>(PICKER_START_COLOUR)
   const [sentColour, setSentColour] = useState<ColourHex | null>(null)
   // The server's record is what survives a reload, and it carries the colour
@@ -70,7 +76,10 @@ export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
         {isCaptioned && <p className='hint'>{translate('swatch.hidden')}</p>}
         <ColourPicker
           hueLabel={translate('swatch.answer.hue')}
-          onChange={setColour}
+          onChange={(next) => {
+            setColour(next)
+            leaning.lean({ colour: next, kind: 'colour' })
+          }}
           toneLabel={translate('swatch.answer.tone')}
         />
         <div className='send'>
@@ -81,6 +90,8 @@ export const SwatchAnswer: React.FC<SwatchAnswerProps> = ({
           />
           <Button
             onPress={() => {
+              leaning.cancel()
+
               if (onAnswer({ colour, kind: 'colour' })) {
                 setSentColour(colour)
               }

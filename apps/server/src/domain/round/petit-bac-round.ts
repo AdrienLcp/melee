@@ -753,6 +753,7 @@ const rescore = ({
     }
 
     return {
+      isUnsent: false,
       playerId,
       points,
       speedBonus: 0,

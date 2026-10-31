@@ -601,6 +601,7 @@ const rescoreSheets = ({
       }
 
       return {
+        isUnsent: false,
         playerId,
         points,
         speedBonus: 0,

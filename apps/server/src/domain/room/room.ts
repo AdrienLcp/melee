@@ -4,6 +4,7 @@ import type {
   BlackSquareTheme
 } from '@melee/protocol/black-square'
 import type { ChallengeLabels } from '@melee/protocol/challenge'
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { EstimateQuestion, SentEstimate } from '@melee/protocol/estimate'
 import type { GameSettings } from '@melee/protocol/game'
@@ -226,9 +227,17 @@ export type RoomTeam = {
  * judged on one claim is answered simultaneously too — and the shape it is
  * judged in belongs to the game, not to the mode.
  */
+/** One seat's unsent answer — see `player.lean`. */
+export type Lean = {
+  attempt: LeanAnswer
+  graded: { said: string; verdict: Verdict }
+}
+
 export type PlayerAttempts = {
   /** Their first guess of any kind — the name appearing on the room's screen. */
   firstGuessedAt: number
+  /** Taken from the seat's last lean as the round closed, never sent. */
+  isUnsent: boolean
   /**
    * How far **into the round** their first guess that banked a half landed, and
    * `null` while they have none. The speed bonus is paid from this rather than
@@ -298,6 +307,12 @@ export type Round = {
   /** Buzzer mode leaves this empty; the other two fill it as frames arrive. */
   attempts: PlayerAttempts[]
   awards: Award[]
+  /**
+   * What each seat's screen last held and had not sent, graded as it landed so
+   * closing the round needs no atlas to measure a pawn. Read once, as the round
+   * closes, for the seats with no attempt; it never reaches any view.
+   */
+  leans: Map<PlayerId, Lean>
   /**
    * What the host paid each team straight, in a room whose teams answer aloud
    * and so hold no seat for `awards` to pay. Added to the sum of the seats'

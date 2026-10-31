@@ -115,6 +115,7 @@ reconnect on the token it still holds.
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
+| `player.lean` | any seat | `roundId`, `answer` — `{kind:'colour'}`, `{kind:'point'}` or `{kind:'order'}` in `player.answer`'s shape, or `null` to take it back: what the screen holds and has not sent, see *A lean is not an answer* |
 | `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
 | `petitbac.write` | player | `roundId`, `categoryIndex`, `answer` — an upsert of one line of the sheet, at most 60 characters; `''` clears it |
 | `petitbac.stop` | player | `roundId` — a full sheet closing everyone's, `PETIT_BAC_STOP_GRACE_MS` later |
@@ -159,6 +160,25 @@ reconnect on the token it still holds.
 `player.rename` are the two a console holding a seat sends as well, which is why
 neither is in `HOST_ONLY_MESSAGE_TYPES` and why both guard on
 `connection.playerId` rather than on `connection.role`.
+
+### A lean is not an answer
+
+`player.lean` saves what a seat's screen holds before it is sent — the colour
+on the picker, the pawn on the map, the cards in their order — on a trailing
+throttle as it moves. It ends nobody's round, so it stays off `attempts` and
+`everyoneIsDone` never counts it; it is graded as it lands, so closing the round
+measures no pawn. When the round closes, every seat still in the room with a
+lean and no attempt is paid on its last lean, flagged `isUnsent` on its award,
+with **no speed bonus**: it did not answer, it ran out. A sent answer is never
+replaced, and a lean after one is refused `already_buzzed`. A picker never
+touched sends nothing, so the neutral grey is never a guess.
+
+A lean is refused wherever an answer would be, and answered with no frame when
+kept: no view draws it, so it is committed and never broadcast — every seat
+dragging at once costs the room no snapshot. It is not a floor frame, for the
+slate's reason. A pawn lifted off the map sends `null`, which takes the lean
+back: what the screen no longer holds is no guess. The order as dealt is never
+sent either — only an order the seat has moved.
 
 `player.buzz` carries **no timestamp**, and must never gain one. Ordering is
 decided by arrival at the server; anything the client says about "when" is

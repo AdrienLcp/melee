@@ -1,7 +1,7 @@
 import { Result } from '@adrienlcp/result'
 
 import type { GeoPoint } from '@melee/protocol/atlas'
-import type { ClipAction } from '@melee/protocol/client-message'
+import type { ClipAction, LeanAnswer } from '@melee/protocol/client-message'
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
@@ -228,6 +228,7 @@ export const openRound = ({
     isHoldWaived: false,
     isPaused: false,
     isReadyHold: false,
+    leans: new Map(),
     lineUpAt: room.settings.lineUpAt,
     lockedOutPlayerIds: new Set(),
     mode: room.settings.mode,
@@ -499,30 +500,20 @@ const answerRefusal = ({
 }
 
 /**
- * A simultaneous round's answer. Unlike a buzz it neither pauses the clip nor
- * claims the floor: everyone answers over the same music, and the round ends
- * when the last of them has or when the clip runs out.
- *
- * `already_buzzed` is the code for a second answer from the same player —
- * borrowed rather than invented because it says exactly the right thing, "you
- * have had your go".
+ * The open simultaneous round a seat may answer or lean on, or why not: every
+ * check both frames share, so a lean is refused exactly where an answer is.
  */
-export const registerAnswer = ({
-  attempt,
+const answerableRound = ({
   now,
   playerId,
   room,
-  roundId,
-  shapeOf
+  roundId
 }: {
-  attempt: Attempt
   now: number
   playerId: PlayerId
   room: Room
   roundId: RoundId
-  /** Where a map round's marker is measured, read from the atlas the server holds. */
-  shapeOf: ShapeOf
-}): Result<void, AnswerRejection> => {
+}): Result<Round, AnswerRejection> => {
   const round = room.round
 
   if (round === null || room.phase !== 'playing') {
@@ -548,46 +539,19 @@ export const registerAnswer = ({
     return Result.failure('colour_still_shown')
   }
 
-  if (
-    attempt.kind === 'seat' &&
-    !isOnTheBallot({ round, seatId: attempt.playerId })
-  ) {
-    return Result.failure('invalid_message')
-  }
+  return Result.success(round)
+}
 
-  const held = round.attempts.find((entry) => entry.playerId === playerId)
-
-  // A pick is one shot — four candidates with retries is just the answer with
-  // extra steps. Typing is open until the clip runs out, and closes only once
-  // there is nothing left to win.
-  if (held !== undefined && (attempt.kind !== 'typed' || isDone(held))) {
-    return Result.failure('already_buzzed')
-  }
-
-  const graded = grade({ attempt, held, round, shapeOf })
-
-  if (graded === null) {
-    return Result.failure('invalid_message')
-  }
-
-  const heldBefore = held?.verdict ?? null
-
-  bank({ graded, held, now, playerId, round })
-
-  if (
-    round.content.kind === 'blacksquare' &&
-    attempt.kind === 'typed' &&
-    graded.verdict.kind === 'cells'
-  ) {
-    keepSheetLine({
-      after: graded.verdict,
-      before: heldBefore,
-      content: round.content,
-      line: attempt.guess,
-      playerId
-    })
-  }
-
+/** What the reveal draws of an answer, kept on the game's own content. */
+const keepAnswer = ({
+  attempt,
+  playerId,
+  round
+}: {
+  attempt: Attempt
+  playerId: PlayerId
+  round: Round
+}): void => {
   if (round.content.kind === 'atlas' && attempt.kind === 'point') {
     round.content.placements.push({ playerId, point: attempt.point })
   }
@@ -618,7 +582,155 @@ export const registerAnswer = ({
       playerId
     })
   }
+}
 
+/**
+ * Saves what a seat's screen holds and has not sent — see `player.lean`. A
+ * seat that has answered has nothing left to lean on: its answer stands.
+ */
+export const registerLean = ({
+  attempt,
+  now,
+  playerId,
+  room,
+  roundId,
+  shapeOf
+}: {
+  attempt: LeanAnswer | null
+  now: number
+  playerId: PlayerId
+  room: Room
+  roundId: RoundId
+  shapeOf: ShapeOf
+}): Result<void, AnswerRejection> => {
+  const open = answerableRound({ now, playerId, room, roundId })
+
+  if (open.status === 'failure') {
+    return open
+  }
+
+  const round = open.data
+
+  if (round.attempts.some((entry) => entry.playerId === playerId)) {
+    return Result.failure('already_buzzed')
+  }
+
+  if (attempt === null) {
+    round.leans.delete(playerId)
+    touch(room, now)
+
+    return Result.success()
+  }
+
+  const graded = grade({ attempt, held: undefined, round, shapeOf })
+
+  if (graded === null) {
+    return Result.failure('invalid_message')
+  }
+
+  round.leans.set(playerId, { attempt, graded })
+  touch(room, now)
+
+  return Result.success()
+}
+
+/**
+ * Every seat still in the room that leaned and never sent is given its last
+ * lean as its answer, as the round closes. A sent answer is never replaced.
+ */
+const takeUnsentLeans = (room: Room, now: number): void => {
+  const round = room.round
+
+  if (round === null) {
+    return
+  }
+
+  for (const [playerId, { attempt, graded }] of round.leans) {
+    const hasSent = round.attempts.some((entry) => entry.playerId === playerId)
+
+    if (hasSent || !room.players.has(playerId)) {
+      continue
+    }
+
+    bank({ graded, held: undefined, isUnsent: true, now, playerId, round })
+    keepAnswer({ attempt, playerId, round })
+  }
+}
+
+/**
+ * A simultaneous round's answer. Unlike a buzz it neither pauses the clip nor
+ * claims the floor: everyone answers over the same music, and the round ends
+ * when the last of them has or when the clip runs out.
+ *
+ * `already_buzzed` is the code for a second answer from the same player —
+ * borrowed rather than invented because it says exactly the right thing, "you
+ * have had your go".
+ */
+export const registerAnswer = ({
+  attempt,
+  now,
+  playerId,
+  room,
+  roundId,
+  shapeOf
+}: {
+  attempt: Attempt
+  now: number
+  playerId: PlayerId
+  room: Room
+  roundId: RoundId
+  /** Where a map round's marker is measured, read from the atlas the server holds. */
+  shapeOf: ShapeOf
+}): Result<void, AnswerRejection> => {
+  const open = answerableRound({ now, playerId, room, roundId })
+
+  if (open.status === 'failure') {
+    return open
+  }
+
+  const round = open.data
+
+  if (
+    attempt.kind === 'seat' &&
+    !isOnTheBallot({ round, seatId: attempt.playerId })
+  ) {
+    return Result.failure('invalid_message')
+  }
+
+  const held = round.attempts.find((entry) => entry.playerId === playerId)
+
+  // A pick is one shot — four candidates with retries is just the answer with
+  // extra steps. Typing is open until the clip runs out, and closes only once
+  // there is nothing left to win.
+  if (held !== undefined && (attempt.kind !== 'typed' || isDone(held))) {
+    return Result.failure('already_buzzed')
+  }
+
+  const graded = grade({ attempt, held, round, shapeOf })
+
+  if (graded === null) {
+    return Result.failure('invalid_message')
+  }
+
+  const heldBefore = held?.verdict ?? null
+
+  bank({ graded, held, isUnsent: false, now, playerId, round })
+
+  if (
+    round.content.kind === 'blacksquare' &&
+    attempt.kind === 'typed' &&
+    graded.verdict.kind === 'cells'
+  ) {
+    keepSheetLine({
+      after: graded.verdict,
+      before: heldBefore,
+      content: round.content,
+      line: attempt.guess,
+      playerId
+    })
+  }
+
+  keepAnswer({ attempt, playerId, round })
   touch(room, now)
 
   return Result.success()
@@ -630,12 +742,14 @@ const isDone = (attempts: PlayerAttempts): boolean =>
 const bank = ({
   graded,
   held,
+  isUnsent,
   now,
   playerId,
   round
 }: {
   graded: { said: string; verdict: Verdict }
   held: PlayerAttempts | undefined
+  isUnsent: boolean
   now: number
   playerId: PlayerId
   round: Round
@@ -648,6 +762,7 @@ const bank = ({
 
   const entry = held ?? {
     firstGuessedAt: now,
+    isUnsent,
     landed: [],
     lastMiss: null,
     playerId,
@@ -743,6 +858,7 @@ export const settleSimultaneousRound = ({
 
     if (earned === 0 || attempts.scoredAfterMs === null) {
       round.awards.push({
+        isUnsent: attempts.isUnsent,
         playerId: attempts.playerId,
         points: 0,
         speedBonus: 0,
@@ -752,13 +868,15 @@ export const settleSimultaneousRound = ({
       continue
     }
 
-    const speedBonus = isPaidForSpeed(attempts.verdict)
-      ? speedBonusForElapsed({
-          answerPaid: earned,
-          elapsedMs: attempts.scoredAfterMs,
-          roundDurationMs
-        })
-      : 0
+    // An unsent answer did not answer: it ran out, and the clock pays none.
+    const speedBonus =
+      isPaidForSpeed(attempts.verdict) && !attempts.isUnsent
+        ? speedBonusForElapsed({
+            answerPaid: earned,
+            elapsedMs: attempts.scoredAfterMs,
+            roundDurationMs
+          })
+        : 0
 
     const points = earned + speedBonus
 
@@ -769,6 +887,7 @@ export const settleSimultaneousRound = ({
     }
 
     round.awards.push({
+      isUnsent: attempts.isUnsent,
       playerId: attempts.playerId,
       points,
       speedBonus,
@@ -967,6 +1086,7 @@ export const settleReflexRound = (room: Room, now: number): void => {
     // No speed bonus, and this is the game where that reads oddest: the race is
     // the entire round, and it is already paid by being the press that took it.
     round.awards.push({
+      isUnsent: false,
       playerId: first.playerId,
       points,
       speedBonus: 0,
@@ -1297,7 +1417,13 @@ export const applyVerdict = ({
   //
   // No speed bonus: a judged round is one player on the floor, so the order is
   // the buzz and speed is already the whole prize.
-  round.awards.push({ playerId, points, speedBonus: 0, verdict })
+  round.awards.push({
+    isUnsent: false,
+    playerId,
+    points,
+    speedBonus: 0,
+    verdict
+  })
   round.activeBuzz = null
 
   if (!isMiss(verdict)) {
@@ -1658,6 +1784,7 @@ export const closeRound = (room: Room, now: number): void => {
     return
   }
 
+  takeUnsentLeans(room, now)
   settleSimultaneousRound({ mode, now, room })
 }
 

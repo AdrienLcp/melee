@@ -1,6 +1,7 @@
 import type React from 'react'
 import { useState } from 'react'
 
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 import type { TimelineEventId } from '@melee/protocol/timeline'
@@ -12,12 +13,15 @@ import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
+import { useLean } from './use-lean'
 
 import './timeline-answer.sass'
 
 type TimelineAnswerProps = {
   /** `false` from the socket means the frame was never written. */
   onAnswer: (answer: PlayerAnswer) => boolean
+  /** Saves what the screen holds before it is sent, which the round takes if it runs out first; `null` where nothing is saved. */
+  onLean: ((answer: LeanAnswer | null) => boolean) | null
   round: RoundView
   /** The seat answering: a player's, a seated console's, or the wall's team. */
   youId: PlayerId | null
@@ -25,16 +29,20 @@ type TimelineAnswerProps = {
 
 /**
  * The five cards, put in order as often as the player likes, and sent once by
- * the press under them: an order is one shot a seat, like a pick.
+ * the press under them: an order is one shot a seat, like a pick. An order
+ * the player has moved is saved as it changes, and paid if the clock runs out
+ * before the press; the order as dealt is never sent, because it is no guess.
  *
  * Mounted under `key={round.id}`, so the order is about this round alone.
  */
 export const TimelineAnswer: React.FC<TimelineAnswerProps> = ({
   onAnswer,
+  onLean,
   round,
   youId
 }) => {
   const translate = useTranslate()
+  const leaning = useLean(onLean)
   const events = timelineContent(round)?.events ?? []
   const [order, setOrder] = useState<TimelineEventId[]>(() =>
     events.map((event) => event.id)
@@ -75,7 +83,10 @@ export const TimelineAnswer: React.FC<TimelineAnswerProps> = ({
         <TimelineOrderList
           aria-label={translate('timeline.answer.label')}
           events={ordered}
-          onReorder={setOrder}
+          onReorder={(next) => {
+            setOrder(next)
+            leaning.lean({ eventIds: next, kind: 'order' })
+          }}
         />
       )}
       {showsCards && (
@@ -90,6 +101,8 @@ export const TimelineAnswer: React.FC<TimelineAnswerProps> = ({
       ) : (
         <Button
           onPress={() => {
+            leaning.cancel()
+
             if (onAnswer({ eventIds: order, kind: 'order' })) {
               setIsSent(true)
             }

@@ -111,6 +111,24 @@ export const renameMessageSchema = z.object({
   type: z.literal('player.rename')
 })
 
+const pointAnswerSchema = z.object({
+  kind: z.literal('point'),
+  /** Where the marker was confirmed. One shot, like a pick. */
+  point: geoPointSchema
+})
+
+const orderAnswerSchema = z.object({
+  /** Every event of the round, earliest first. One shot, like a pick. */
+  eventIds: timelineOrderSchema,
+  kind: z.literal('order')
+})
+
+const colourAnswerSchema = z.object({
+  /** The colour rebuilt on the picker. One shot, like a pick. */
+  colour: colourHexSchema,
+  kind: z.literal('colour')
+})
+
 /**
  * The other two modes' answer, and it carries no timestamp for the same reason
  * `player.buzz` does not: the server stamps arrival, because the speed bonus is
@@ -134,16 +152,8 @@ export const answerMessageSchema = z.object({
       guess: z.string().min(1).max(120),
       kind: z.literal('typed')
     }),
-    z.object({
-      kind: z.literal('point'),
-      /** Where the marker was confirmed. One shot, like a pick. */
-      point: geoPointSchema
-    }),
-    z.object({
-      /** Every event of the round, earliest first. One shot, like a pick. */
-      eventIds: timelineOrderSchema,
-      kind: z.literal('order')
-    }),
+    pointAnswerSchema,
+    orderAnswerSchema,
     z.object({
       kind: z.literal('move'),
       /**
@@ -152,11 +162,7 @@ export const answerMessageSchema = z.object({
        */
       move: stickMoveSchema
     }),
-    z.object({
-      /** The colour rebuilt on the picker. One shot, like a pick. */
-      colour: colourHexSchema,
-      kind: z.literal('colour')
-    }),
+    colourAnswerSchema,
     z.object({
       kind: z.literal('seat'),
       /**
@@ -179,6 +185,30 @@ export const answerMessageSchema = z.object({
   ]),
   roundId: roundIdSchema,
   type: z.literal('player.answer')
+})
+
+/**
+ * What a seat's screen holds and has not sent yet — the colour on the picker,
+ * the pawn on the map, the cards in their current order — saved as it moves.
+ * It is not an answer: it ends nobody's round and the reveal never draws it
+ * unless the round runs out first. Then a seat that never sent is paid on its
+ * last lean, with no speed bonus, because it did not answer, it ran out. A
+ * pick left untouched is never sent, so it is never a guess.
+ *
+ * Only the answers a seat builds up on screen before sending: a choice or a
+ * vote is one press, and a typed line is a guess only once it is sent.
+ */
+export const leanAnswerSchema = z.discriminatedUnion('kind', [
+  colourAnswerSchema,
+  orderAnswerSchema,
+  pointAnswerSchema
+])
+
+export const leanMessageSchema = z.object({
+  /** `null` takes the lean back: a pawn lifted off the map is no longer a guess. */
+  answer: leanAnswerSchema.nullable(),
+  roundId: roundIdSchema,
+  type: z.literal('player.lean')
 })
 
 /**
@@ -671,6 +701,7 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
+  leanMessageSchema,
   writeSlateLineMessageSchema,
   tickBlackSquareMessageSchema,
   writePetitBacLineMessageSchema,
@@ -696,6 +727,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
+  leanMessageSchema,
   writeSlateLineMessageSchema,
   tickBlackSquareMessageSchema,
   writePetitBacLineMessageSchema,
@@ -745,6 +777,7 @@ export type PlayerClientMessage = z.infer<typeof playerClientMessageSchema>
 export type WallClientMessage = z.infer<typeof wallClientMessageSchema>
 export type ClientMessage = z.infer<typeof clientMessageSchema>
 export type ClientMessageType = ClientMessage['type']
+export type LeanAnswer = z.infer<typeof leanAnswerSchema>
 export type ClipAction = z.infer<typeof controlClipMessageSchema>['action']
 export type ScoreTarget = z.infer<typeof adjustScoreMessageSchema>['target']
 

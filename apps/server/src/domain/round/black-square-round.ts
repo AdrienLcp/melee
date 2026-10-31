@@ -226,7 +226,15 @@ export const payGuessingTeam = (room: Room): void => {
 
     participant.score += points
 
-    return [{ playerId, points, speedBonus: 0, verdict: spoken.sheet }]
+    return [
+      {
+        isUnsent: false,
+        playerId,
+        points,
+        speedBonus: 0,
+        verdict: spoken.sheet
+      }
+    ]
   })
 }
 

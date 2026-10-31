@@ -8,6 +8,12 @@ one part.
 
 ### Features
 
+- `[Shared]` **An answer not sent in time still counts.** A colour rebuilt on
+  the picker, a pawn left on the map or cards moved into an order are saved as
+  they move, and a seat that never pressed send is paid on where its screen
+  stood when the round closed — with no speed bonus, since it did not answer.
+  Its own reveal says so, and the room's names it. A picker never touched, a
+  pawn lifted off the map or cards left as dealt score nothing.
 - `[Shared]` **A team picks its colour.** A palette press in each team's head
   — on the host's table and on the team's own screens — opens every pawn
   colour, the ones other teams hold struck through. Taken in the lobby and

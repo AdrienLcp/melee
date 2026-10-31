@@ -82,6 +82,7 @@ import {
   pauseRound,
   registerAnswer,
   registerBuzz,
+  registerLean,
   registerReflexPress,
   releaseBuzz,
   restartGame,
@@ -118,7 +119,12 @@ import {
 } from './host-judging'
 import { sendError, sendPong, sendWelcome } from './outbound'
 import { isHostConnected, isSeatConnected, wallsOf } from './room-connections'
-import { closeRoomEngine, publishRoom, type RoomEngine } from './room-engine'
+import {
+  closeRoomEngine,
+  commitRoom,
+  publishRoom,
+  type RoomEngine
+} from './room-engine'
 import {
   beginRound,
   holdRoundWhileHostIsAway,
@@ -136,6 +142,7 @@ const CLOSE_CODE_POLICY = 1008
 
 const ROUND_PLAY_MESSAGE_TYPES = new Set<ClientMessageType>([
   ...FLOOR_MESSAGE_TYPES,
+  'player.lean',
   'slate.write',
   'petitbac.write'
 ])
@@ -540,6 +547,10 @@ const dispatch = ({
     }
     case 'player.answer': {
       answer(message, active, outbound, engine)
+      break
+    }
+    case 'player.lean': {
+      lean(message, active, outbound, engine)
       break
     }
     case 'slate.write': {
@@ -1656,6 +1667,51 @@ const answer = (
   }
 
   publishRoom(engine)
+}
+
+/**
+ * A lean is kept and nothing more: no view draws it, so no screen is sent a
+ * frame for it, and a picker dragged by every seat at once costs the room no
+ * broadcast.
+ */
+const lean = (
+  message: Extract<ClientMessage, { type: 'player.lean' }>,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const playerId = active.playerId
+
+  if (playerId === null) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seated player answers'
+    })
+
+    return
+  }
+
+  const leaned = registerLean({
+    attempt: message.answer,
+    now: engine.now(),
+    playerId,
+    room: engine.room,
+    roundId: message.roundId,
+    shapeOf: countryShapeOf
+  })
+
+  if (leaned.status === 'failure') {
+    sendError(outbound, {
+      code: leaned.error,
+      fatal: false,
+      message: 'That lean was not kept'
+    })
+
+    return
+  }
+
+  commitRoom(engine)
 }
 
 const advance = ({

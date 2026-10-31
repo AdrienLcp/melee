@@ -495,6 +495,10 @@ const RoundPodium: React.FC<RoundPodiumProps> = ({
   const seatOf = (playerId: string): number =>
     players.findIndex((player) => player.id === playerId)
 
+  const unsentScorers = scorers
+    .filter((award) => award.isUnsent)
+    .map((award) => award.playerId)
+
   // A table answering aloud holds no seat, and its scores are the teams'.
   if (players.length === 0) {
     return null
@@ -547,6 +551,13 @@ const RoundPodium: React.FC<RoundPodiumProps> = ({
             total: stampedCount
           })}
         </span>
+        {unsentScorers.length > 0 && (
+          <span className='unsent'>
+            {translate('round.unsentSeats', {
+              names: unsentScorers.map(nameOf).join(', ')
+            })}
+          </span>
+        )}
       </p>
     </div>
   )

@@ -331,6 +331,16 @@ const PhaseStage: React.FC<RoomStageProps> = ({
                 })
             : null
         }
+        onLean={
+          playsThisRound
+            ? (answer) =>
+                controls.send({
+                  answer,
+                  roundId: round.id,
+                  type: 'player.lean'
+                })
+            : null
+        }
         onTick={
           playsThisRound
             ? (cell, isTicked) =>

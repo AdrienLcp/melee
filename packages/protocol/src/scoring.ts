@@ -214,6 +214,12 @@ export const verdictSchema = z.discriminatedUnion('kind', [
 ])
 
 export const awardSchema = z.object({
+  /**
+   * Paid on what the seat's screen held when the round closed, because it
+   * never sent an answer — see `player.lean`. Said on that seat's own reveal,
+   * so nobody wonders why a round they never answered scored.
+   */
+  isUnsent: z.boolean(),
   playerId: playerIdSchema,
   /** Everything the round paid, the speed bonus included. */
   points: z.number().int().nonnegative(),

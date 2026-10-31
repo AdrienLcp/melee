@@ -1711,7 +1711,10 @@ export const EN_DICTIONARY = defineDictionary({
      * replaced a rank the room could count, so what it paid has to be said.
      */
     speedBonus: '{points:number} of that for being early',
-    speedHalf: '+{points:number}'
+    speedHalf: '+{points:number}',
+    /** A seat that never sent, paid on what its screen held as the round closed. */
+    unsent: 'Never sent: taken as your screen held it.',
+    unsentSeats: 'Never sent, taken as their screen held it: {names}'
   },
   slate: {
     board: {

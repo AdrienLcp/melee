@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { RoundView } from '@melee/protocol/room'
 
@@ -17,6 +18,8 @@ type SwatchRoundProps = {
   isCaptioned?: boolean
   /** Sends the seat's colour, and `null` on a screen that answers nothing. */
   onAnswer: ((answer: PlayerAnswer) => boolean) | null
+  /** Saves where the seat's picker stands before it is sent, and `null` where nothing is saved. */
+  onLean: ((answer: LeanAnswer | null) => boolean) | null
   round: RoundView
   youId: PlayerId | null
 }
@@ -29,6 +32,7 @@ export const SwatchRound: React.FC<SwatchRoundProps> = ({
   clock,
   isCaptioned,
   onAnswer,
+  onLean,
   round,
   youId
 }) => {
@@ -43,6 +47,7 @@ export const SwatchRound: React.FC<SwatchRoundProps> = ({
       isCaptioned={isCaptioned}
       key={round.id}
       onAnswer={onAnswer}
+      onLean={onLean}
       round={round}
       youId={youId}
     />

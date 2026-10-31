@@ -1,6 +1,7 @@
 import type React from 'react'
 
 import type { BlackSquareCell } from '@melee/protocol/black-square'
+import type { LeanAnswer } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoundView } from '@melee/protocol/room'
 
@@ -65,6 +66,8 @@ type PlayingStageProps = {
   clock: ClockEstimate | null
   /** Sends the seat's or the wall's answer, and says whether the socket took it; `null` when this screen answers nothing. */
   onAnswer: ((answer: PlayerAnswer) => boolean) | null
+  /** Saves what the seat's screen holds before it is sent; `null` when this screen answers nothing. */
+  onLean: ((answer: LeanAnswer | null) => boolean) | null
   /** Sends the seat's tick when it keeps a spoken black square's list; `null` when this screen keeps none. */
   onTick:
     | ((cell: BlackSquareCell | 'blackWord', isTicked: boolean) => boolean)
@@ -85,6 +88,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
   clipOffer,
   clock,
   onAnswer,
+  onLean,
   onTick,
   round,
   view
@@ -274,6 +278,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
         <MapAnswer
           key={round.id}
           onAnswer={onAnswer}
+          onLean={onLean}
           round={round}
           seat={view.players.findIndex((player) => player.id === answersAs)}
           youId={answersAs}
@@ -290,6 +295,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           <TimelineAnswer
             key={round.id}
             onAnswer={onAnswer}
+            onLean={onLean}
             round={round}
             youId={answersAs}
           />
@@ -299,6 +305,7 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
           clock={clock}
           isCaptioned={false}
           onAnswer={onAnswer}
+          onLean={onLean}
           round={round}
           youId={answersAs}
         />

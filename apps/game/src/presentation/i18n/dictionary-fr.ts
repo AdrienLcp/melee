@@ -1619,7 +1619,9 @@ export const FR_DICTIONARY = defineDictionary({
     }),
     scored: '+{points:number}',
     speedBonus: 'dont {points:number} pour la vitesse',
-    speedHalf: '+{points:number}'
+    speedHalf: '+{points:number}',
+    unsent: 'Pas envoyé : pris tel quel sur ton écran.',
+    unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : {names}'
   },
   slate: {
     board: {

@@ -49,6 +49,12 @@ export const payEstimatesByPlace = (room: Room): void => {
       attempts.verdict = verdict
     }
 
-    round.awards.push({ playerId, points, speedBonus: 0, verdict })
+    round.awards.push({
+      isUnsent: false,
+      playerId,
+      points,
+      speedBonus: 0,
+      verdict
+    })
   }
 }

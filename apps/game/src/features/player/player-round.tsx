@@ -168,7 +168,7 @@ type PlayerRoundProps = {
   /** `false` from the socket means the frame was never written. */
   onBuzz: (roundId: string) => boolean
   /** Saves what the seat's screen holds before it is sent; `false` from the socket means the frame was never written. */
-  onLean: (answer: LeanAnswer, roundId: string) => boolean
+  onLean: (answer: LeanAnswer | null, roundId: string) => boolean
   /** A seat's own team frames, joining one or repainting it; `false` from the socket means the frame was never written. */
   onTeam: (message: TeamSeatMessage) => boolean
   /** `false` from the socket means the frame was never written. */
@@ -639,6 +639,8 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
 
     const answerWithRound = (answer: PlayerAnswer): boolean =>
       onAnswer(answer, round.id)
+    const leanWithRound = (answer: LeanAnswer | null): boolean =>
+      onLean(answer, round.id)
 
     if (round.content.kind === 'innerclock') {
       return <InnerclockPress onPress={onBuzz} round={round} />
@@ -667,6 +669,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           <MapAnswer
             key={round.id}
             onAnswer={answerWithRound}
+            onLean={leanWithRound}
             round={round}
             seat={view.players.findIndex((player) => player.id === view.youId)}
             youId={view.youId}
@@ -682,7 +685,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           <SwatchRound
             clock={clock}
             onAnswer={answerWithRound}
-            onLean={(answer) => onLean(answer, round.id)}
+            onLean={leanWithRound}
             round={round}
             youId={view.youId}
           />
@@ -755,6 +758,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           <TimelineAnswer
             key={round.id}
             onAnswer={answerWithRound}
+            onLean={leanWithRound}
             round={round}
             youId={view.youId}
           />
@@ -1048,6 +1052,9 @@ const YourRound: React.FC<{
           <p className='round-placing'>
             {translate('player.standing.ofRound', { rank: roundPlacing })}
           </p>
+        )}
+        {award?.isUnsent === true && (
+          <p className='unsent'>{translate('round.unsent')}</p>
         )}
         {speedBonus > 0 && (
           <p className='speed-bonus'>

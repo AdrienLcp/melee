@@ -271,6 +271,9 @@ const Lobby: React.FC<{
                 send({ answer, roundId, type: 'player.answer' })
               }
               onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
+              onLean={(answer, roundId) =>
+                send({ answer, roundId, type: 'player.lean' })
+              }
               onPetitBac={(message) => send(message)}
               onReady={(isReady) => send({ isReady, type: 'player.ready' })}
               onTeam={(message) => send(message)}
@@ -315,6 +318,9 @@ const Lobby: React.FC<{
                   send({ answer, roundId, type: 'player.answer' })
                 }
                 onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
+                onLean={(answer, roundId) =>
+                  send({ answer, roundId, type: 'player.lean' })
+                }
                 onPetitBac={(message) => send(message)}
                 onReady={(isReady) => send({ isReady, type: 'player.ready' })}
                 onTeam={(message) => send(message)}

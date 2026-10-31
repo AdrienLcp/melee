@@ -183,6 +183,7 @@ const rebuildAwards = ({
     }
 
     return {
+      isUnsent: false,
       playerId,
       points,
       speedBonus: 0,

@@ -216,6 +216,85 @@ describe('a world map round through the seam', () => {
     expect(errorsIn(zoe)[0]?.code).toBe('already_buzzed')
   })
 
+  it('[atlas] pays a pawn left on the map unsent where it stood, with no speed bonus', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    zoe.send({
+      answer: { kind: 'point', point: OFF_BRITTANY },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({
+      answer: { kind: 'point', point: PARIS },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({ clientSentAt: 1, type: 'time.ping' })
+    await waitFor(
+      () => zoe.frames.some(({ message }) => message.type === 'time.pong'),
+      'the leans to be read'
+    )
+    max.send({
+      answer: { kind: 'point', point: OFF_BRITTANY },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the sent marker to land'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const zoeId = playerView(zoe)?.youId
+
+    expect(
+      hostView(host)?.round?.awards.find(({ playerId }) => playerId === zoeId)
+    ).toMatchObject({
+      isUnsent: true,
+      points: 3 * POINT,
+      speedBonus: 0,
+      verdict: { distanceKm: 0 }
+    })
+    expect(atlasRound(playerView(zoe))?.revealedPlacements).toContainEqual({
+      playerId: zoeId,
+      point: PARIS
+    })
+  })
+
+  it('[atlas] pays nothing for a pawn lifted off the map before time ran out', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+
+    zoe.send({
+      answer: { kind: 'point', point: PARIS },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({ answer: null, roundId, type: 'player.lean' })
+    zoe.send({ clientSentAt: 1, type: 'time.ping' })
+    await waitFor(
+      () => zoe.frames.some(({ message }) => message.type === 'time.pong'),
+      'the leans to be read'
+    )
+    max.send({
+      answer: { kind: 'point', point: OFF_BRITTANY },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the sent marker to land'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const zoeId = playerView(zoe)?.youId
+
+    expect(
+      hostView(host)?.round?.awards.some(({ playerId }) => playerId === zoeId)
+    ).toBe(false)
+  })
+
   it('[atlas] refuses a typed line where a marker is owed', async () => {
     const { roundId, zoe } = await roundInPlay()
 

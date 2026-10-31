@@ -184,6 +184,49 @@ describe('a timeline round through the seam', () => {
     expect(basePointsFor({ playerId: maxId, view })).toBe(2 * POINT)
   })
 
+  it('[timeline] pays an order moved and never sent as it stood, with no speed bonus', async () => {
+    const { host, max, roundId, zoe } = await roundInPlay()
+    const [first = '', second = '', ...rest] = TRUE_ORDER
+
+    zoe.send({
+      answer: { eventIds: [second, first, ...rest], kind: 'order' },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({
+      answer: { eventIds: TRUE_ORDER, kind: 'order' },
+      roundId,
+      type: 'player.lean'
+    })
+    zoe.send({ clientSentAt: 1, type: 'time.ping' })
+    await waitFor(
+      () => zoe.frames.some(({ message }) => message.type === 'time.pong'),
+      'the leans to be read'
+    )
+    max.send({
+      answer: { eventIds: TRUE_ORDER, kind: 'order' },
+      roundId,
+      type: 'player.answer'
+    })
+    await waitFor(
+      () => (playerView(zoe)?.round?.answers.length ?? 0) === 1,
+      'the sent order to land'
+    )
+    host.send({ roundId, type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+
+    const zoeId = playerView(zoe)?.youId ?? null
+
+    expect(
+      hostView(host)?.round?.awards.find(({ playerId }) => playerId === zoeId)
+    ).toMatchObject({
+      isUnsent: true,
+      points: 3 * POINT,
+      speedBonus: 0,
+      verdict: { kind: 'order', swappedPairs: 0 }
+    })
+  })
+
   it('[timeline] keeps every year off a player and the wall until the reveal, then shows the true order', async () => {
     const { max, roundId, wall, zoe } = await roundInPlay()
 
