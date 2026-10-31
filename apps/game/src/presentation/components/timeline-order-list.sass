@@ -55,13 +55,16 @@
       outline-offset: -2px
       place-items: center
 
-    // The year is the answer, and a row being ordered has none to show.
+    // The year is the answer, and a row being ordered has none to show. Five
+    // cards and the send press share a 640 px screen that may not scroll, so
+    // a card is padded and set tighter than one standing alone.
     .timeline-card
-      --timeline-label-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), 1.25rem)
+      --timeline-card-padding: var(--space-xs) var(--space-s)
+      --timeline-label-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.4), 1.25rem)
 
       align-content: center
       cursor: grab
-      min-height: 3rem
+      min-height: 3.25rem
       // A finger or a mouse on the card is a drag, not a scroll: `use-pointer-reorder` moves it.
       touch-action: none
       user-select: none
@@ -83,17 +86,19 @@
     .order-row[data-dragging] .timeline-card
       cursor: grabbing
 
-    // Bare chevrons as tall as the card: no piece to compete with the card, a
-    // press as large as a fingertip, and none drawn where the card cannot go —
+    // Bare chevrons stacked up above down, splitting the card's height: the
+    // card keeps the row's width, each half stays a fingertip wide and at
+    // least WCAG's 24 px tall, and none is drawn where the card cannot go —
     // hidden rather than removed, so every card keeps one width.
     .steps
       align-self: stretch
-      display: flex
+      display: grid
+      grid-template-rows: repeat(2, minmax(1.5rem, 1fr))
 
       .step
         block-size: 100%
         border-radius: var(--radius-s)
-        font-size: var(--text-l)
+        font-size: var(--text-m)
         inline-size: 2.75rem
         padding: 0
         text-decoration: none

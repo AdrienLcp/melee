@@ -118,7 +118,10 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       ) : atlas?.target != null ? (
         <MapPrompt target={atlas.target} />
       ) : matchsticks !== null ? (
-        <MatchsticksPrompt puzzle={matchsticks.puzzle}>
+        <MatchsticksPrompt
+          answerMode={round.answerMode}
+          puzzle={matchsticks.puzzle}
+        >
           {sticks}
         </MatchsticksPrompt>
       ) : timeline !== null ? (

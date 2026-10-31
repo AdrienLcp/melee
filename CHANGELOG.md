@@ -46,6 +46,17 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The timeline's arrows stand one above the other.** Each card
+  keeps the row's width instead of sharing it with two arrows side by side,
+  and five cards and the send press fit a 360 × 640 screen without scrolling.
+- `[Game]` **Matchsticks says what a number pays.** Under *the biggest* or
+  *the smallest number*, one line says the best pays 30 and the next two 20
+  and 10 — or, said aloud, that only the best counts — and that a number
+  never starts with 0, so a near miss or a *007* is no surprise at the reveal.
+- `[Game]` **Petit Bac tells a famous person from a personality trait.**
+  *Personnalité* read both ways at the table: the category is now *Personne
+  célèbre*, and *Trait de caractère* / *Personality trait* is one of its own.
+
 - `[Game]` **The rounds to come can be reordered while one is played.** The
   host drags them, or moves one earlier or later, without waiting for the
   reveal; the round on screen keeps its game, and the next one is drawn off
@@ -490,6 +501,10 @@ one part.
   instead of pushing the third team under the fold.
 
 ### Fixes
+
+- `[Game]` **Full screen can be left from the menu.** Once the page was
+  full screen, Chromium reported the display as full screen too and the menu
+  hid the press, leaving Escape the only way out.
 
 - `[Game]` **Back from a game's settings lands on that game.** Leaving a page
   of the planned games brings its row into view and focuses it, where the list

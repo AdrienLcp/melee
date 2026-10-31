@@ -15,6 +15,16 @@
       font-size: clamp(var(--text-m), 4.2cqmin, var(--text-3xl))
       text-wrap: balance
 
+    // Only the podium pays, and a zero in front makes no number: said before
+    // the move, so a near miss is not a surprise at the reveal.
+    .rule
+      @include typography.caption
+
+      color: var(--ink-muted)
+      margin-block-start: calc(-1 * var(--space-xs))
+      max-inline-size: var(--measure)
+      text-wrap: balance
+
     // The caller says how much of the screen the sticks may take upright,
     // where the width alone would make a four-digit number a poster.
     > .matchstick-row

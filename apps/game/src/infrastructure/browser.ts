@@ -84,12 +84,14 @@ export const isAppleMobile = (): boolean =>
 /**
  * Safari on an iPhone keeps fullscreen for a video and refuses it to a page,
  * and an installed app already fills the screen it was given, so the press
- * would change nothing either way.
+ * would change nothing either way. A page the press itself made fullscreen
+ * matches `display-mode: fullscreen` too, and must still be offered the way out.
  */
 export const canGoFullscreen = (): boolean =>
-  document.fullscreenEnabled === true &&
-  !isStandaloneDisplay() &&
-  !matchMedia('(display-mode: fullscreen)').matches
+  isFullscreen() ||
+  (document.fullscreenEnabled === true &&
+    !isStandaloneDisplay() &&
+    !matchMedia('(display-mode: fullscreen)').matches)
 
 export const isFullscreen = (): boolean => document.fullscreenElement !== null
 

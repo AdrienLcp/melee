@@ -793,7 +793,10 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           <MatchsticksMove
             card={(sticks) => (
               <div className='round-card'>
-                <MatchsticksPrompt puzzle={matchsticks.puzzle}>
+                <MatchsticksPrompt
+                  answerMode={round.answerMode}
+                  puzzle={matchsticks.puzzle}
+                >
                   {sticks}
                 </MatchsticksPrompt>
                 <RoundClock clock={clock} view={view} />
@@ -1128,8 +1131,11 @@ const Buzzer: React.FC<{
   return (
     <section className='player-round buzzer-area'>
       <AskedQuestion prompt={quizContent(view.round)?.prompt ?? null} />
-      {matchsticks !== null && (
-        <MatchsticksPrompt puzzle={matchsticks.puzzle} />
+      {matchsticks !== null && view.round !== null && (
+        <MatchsticksPrompt
+          answerMode={view.round.answerMode}
+          puzzle={matchsticks.puzzle}
+        />
       )}
       {/*
         The buzzer and the line that belongs to it, grouped so a screen lying

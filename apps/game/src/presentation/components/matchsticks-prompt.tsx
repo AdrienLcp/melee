@@ -5,6 +5,7 @@ import type {
   MatchsticksPuzzle,
   MatchsticksSolution
 } from '@melee/protocol/matchsticks'
+import type { AnswerMode } from '@melee/protocol/room'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
@@ -21,6 +22,12 @@ const GOAL_KEYS = {
 } as const satisfies Record<MatchsticksGoal, PlainTranslationKey>
 
 type MatchsticksPromptProps = {
+  /**
+   * How this round is answered, which decides what a number pays — `move` the
+   * best three, `buzzer` the best alone. Omitted under a reveal, which shows
+   * the move rather than the rule.
+   */
+  answerMode?: AnswerMode
   /** What stands in for the drawn puzzle under the goal: the sticks a seat is playing with. */
   children?: React.ReactNode
   puzzle: MatchsticksPuzzle
@@ -34,6 +41,7 @@ type MatchsticksPromptProps = {
  * whatever card the caller lays it on and sized by that card.
  */
 export const MatchsticksPrompt: React.FC<MatchsticksPromptProps> = ({
+  answerMode,
   children,
   puzzle,
   solution = null
@@ -46,6 +54,15 @@ export const MatchsticksPrompt: React.FC<MatchsticksPromptProps> = ({
       data-solved={solution !== null || undefined}
     >
       <p className='goal'>{translate(GOAL_KEYS[puzzle.goal])}</p>
+      {puzzle.goal !== 'equation' && answerMode !== undefined && (
+        <p className='rule'>
+          {translate(
+            answerMode === 'move'
+              ? 'matchsticks.numberRule.move'
+              : 'matchsticks.numberRule.buzzer'
+          )}
+        </p>
+      )}
       {solution === null ? (
         (children ?? <MatchstickRow glyphs={puzzle.glyphs} />)
       ) : (

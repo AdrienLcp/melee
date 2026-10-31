@@ -1216,6 +1216,11 @@ export const FR_DICTIONARY = defineDictionary({
       unreadable: 'Des allumettes qui ne forment ni chiffres ni signes'
     },
     name: 'Allumettes',
+    numberRule: {
+      buzzer:
+        'Seul le meilleur nombre compte. Un nombre ne commence jamais par 0.',
+      move: 'Le meilleur nombre vaut 30, les deux suivants 20 et 10. Un nombre ne commence jamais par 0.'
+    },
     play: 'Jouer aux Allumettes',
     reveal: {
       right: 'juste',
@@ -1317,7 +1322,7 @@ export const FR_DICTIONARY = defineDictionary({
       country: 'Pays',
       dish: 'Plat',
       drink: 'Boisson',
-      famousPerson: 'Personnalité',
+      famousPerson: 'Personne célèbre',
       fictionalCharacter: 'Personnage de fiction',
       film: 'Film',
       firstName: 'Prénom',
@@ -1328,6 +1333,7 @@ export const FR_DICTIONARY = defineDictionary({
       job: 'Métier',
       kitchenThing: 'Dans une cuisine',
       lateExcuse: 'Excuse pour un retard',
+      personalityTrait: 'Trait de caractère',
       plant: 'Plante',
       series: 'Série',
       singer: 'Chanteur ou chanteuse',

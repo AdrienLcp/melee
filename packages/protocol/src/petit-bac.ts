@@ -77,6 +77,7 @@ export const petitBacBankCategories = [
   'job',
   'kitchenThing',
   'lateExcuse',
+  'personalityTrait',
   'plant',
   'series',
   'singer',

@@ -413,7 +413,10 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           seat={Math.max(buzzerSeat, 0)}
           stimulus={
             matchsticks === null ? null : (
-              <MatchsticksPrompt puzzle={matchsticks.puzzle} />
+              <MatchsticksPrompt
+                answerMode={round.answerMode}
+                puzzle={matchsticks.puzzle}
+              />
             )
           }
         />

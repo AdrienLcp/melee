@@ -1258,6 +1258,10 @@ export const EN_DICTIONARY = defineDictionary({
       unreadable: 'Matches that read as no digits or signs'
     },
     name: 'Matchsticks',
+    numberRule: {
+      buzzer: 'Only the best number counts. A number never starts with 0.',
+      move: 'The best number pays 30, the next two 20 and 10. A number never starts with 0.'
+    },
     play: 'Play Matchsticks',
     reveal: {
       right: 'right',
@@ -1388,6 +1392,7 @@ export const EN_DICTIONARY = defineDictionary({
       job: 'Job',
       kitchenThing: 'Something in a kitchen',
       lateExcuse: 'Excuse for being late',
+      personalityTrait: 'Personality trait',
       plant: 'Plant',
       series: 'TV series',
       singer: 'Singer',
