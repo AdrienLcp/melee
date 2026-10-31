@@ -59,7 +59,8 @@ export const TrackStrip: React.FC<TrackStripProps> = ({
     : casesAround({ at, length })
   const first = cases[0] ?? 0
   const last = cases.at(-1) ?? length
-  const ribbon = useRibbon({ at, isWhole })
+  const ribbonRef = useRef<HTMLDivElement>(null)
+  const ribbon = useRibbon({ at, isWhole, ref: ribbonRef })
 
   const caseList = (
     <div
@@ -147,7 +148,7 @@ export const TrackStrip: React.FC<TrackStripProps> = ({
         )}
       </p>
       {isWhole ? (
-        <div className='ribbon' onScroll={ribbon.onScroll} ref={ribbon.ref}>
+        <div className='ribbon' onScroll={ribbon.onScroll} ref={ribbonRef}>
           {caseList}
         </div>
       ) : (
@@ -231,10 +232,19 @@ type RibbonScroll = {
 /**
  * The whole track's scroller: opened on the pawn, and again every time the
  * pawn moves, and saying whether the pawn has left the view and which ends
- * run on past it.
+ * run on past it. The scroller's ref stays the caller's: returned beside the
+ * scroll state, it made the compiler read every field as a ref and skip the
+ * strip.
  */
-const useRibbon = ({ at, isWhole }: { at: number; isWhole: boolean }) => {
-  const ref = useRef<HTMLDivElement>(null)
+const useRibbon = ({
+  at,
+  isWhole,
+  ref
+}: {
+  at: number
+  isWhole: boolean
+  ref: React.RefObject<HTMLDivElement | null>
+}) => {
   const [scroll, setScroll] = useState<RibbonScroll>({
     isOwnAway: false,
     runsOn: 'none'
@@ -249,7 +259,7 @@ const useRibbon = ({ at, isWhole }: { at: number; isWhole: boolean }) => {
 
     centreOn({ at, behavior: 'instant', scroller })
     setScroll(ribbonScrollOf({ at, scroller }))
-  }, [at, isWhole])
+  }, [at, isWhole, ref])
 
   return {
     ...scroll,
@@ -263,8 +273,7 @@ const useRibbon = ({ at, isWhole }: { at: number; isWhole: boolean }) => {
           scroller: ref.current
         })
       }
-    },
-    ref
+    }
   }
 }
 

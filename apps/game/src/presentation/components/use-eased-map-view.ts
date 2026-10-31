@@ -67,9 +67,10 @@ export const useEasedMapView = (initial: () => MapView) => {
           return
         }
 
-        current.startedAt ??= time
+        const startedAt = current.startedAt ?? time
+        current.startedAt = startedAt
 
-        const progress = Math.min(1, (time - current.startedAt) / EASE_MS)
+        const progress = Math.min(1, (time - startedAt) / EASE_MS)
 
         show(blended(current, easeOutCubic(progress)))
 
