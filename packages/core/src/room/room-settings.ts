@@ -305,7 +305,9 @@ export const movedToGame = ({
 /**
  * The room set to play the line-up's entry `at`, on that entry's own settings.
  * How it is answered is still this host's last word on the game, because an
- * entry carries the game's settings and the mode is the room's.
+ * entry carries the game's settings and the mode is the room's — narrowed to
+ * what the entry offers, since an Atlas naming a country takes no pawn and the
+ * server refuses a frame pairing the two.
  *
  * An evening keeps its own length and its own hold. The count is the
  * evening's: a quiz's ten rounds landing on round twelve would end it on the
@@ -340,10 +342,13 @@ export const movedToEntry = ({
     autoAdvanceMs: isEvening ? settings.autoAdvanceMs : setup.autoAdvanceMs,
     game: entry,
     lineUpAt: at,
-    mode: modeFittedToTeams({
-      fallback: opened.mode,
-      mode: setup.mode,
-      teams: settings.teams
+    mode: modeOfferedBy({
+      game: entry,
+      preferred: modeFittedToTeams({
+        fallback: opened.mode,
+        mode: setup.mode,
+        teams: settings.teams
+      })
     }),
     roundCount: isEvening ? settings.roundCount : setup.roundCount
   }

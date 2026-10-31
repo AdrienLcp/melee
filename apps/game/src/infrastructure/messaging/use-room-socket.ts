@@ -25,6 +25,10 @@ import {
 import { socketOrigin } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import {
+  isOurOwnMalformedFrame,
+  reportRefusedFrame
+} from '@/infrastructure/diagnostics'
+import {
   ensureSessionId,
   forgetSessionId,
   readHostToken
@@ -201,6 +205,12 @@ export const useRoomSocket = ({
             clientSentAt: control.message.clientSentAt,
             serverTime: control.message.serverTime
           })
+
+          return
+        }
+
+        if (isOurOwnMalformedFrame(control.message)) {
+          reportRefusedFrame(control.message)
 
           return
         }

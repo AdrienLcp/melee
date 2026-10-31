@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import {
+  DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_BUZZER_SETTINGS,
   DEFAULT_GAME_SETTINGS,
@@ -12,6 +13,7 @@ import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
 import { offersAnswerMode } from './game-modes'
 import {
   fittedToTeams,
+  movedToEntry,
   movedToGame,
   openedSetup,
   reshapesRound,
@@ -271,6 +273,71 @@ describe('movedToGame', () => {
       ...DEFAULT_BLINDTEST_SETTINGS,
       difficulty: 'obscure'
     })
+  })
+})
+
+describe('movedToEntry and the answer mode', () => {
+  const evening = roomSettingsFor({ games: ['quiz', 'atlas'], locale: 'fr' })
+  const namingAtlas = { ...DEFAULT_ATLAS_SETTINGS, direction: 'name' as const }
+
+  // The evening that looped: an Atlas variant naming a country, reached with
+  // the host's Atlas remembered on a pawn. The frame was refused, the draw
+  // replayed the round just played, and the name round never opened.
+  it('[room-settings] narrows a remembered mode to the one the entry offers', () => {
+    const moved = movedToEntry({
+      at: 1,
+      locale: 'fr',
+      remembered: openedSetup({ game: 'atlas', locale: 'fr' }),
+      settings: { ...evening, lineUp: evening.lineUp.with(1, namingAtlas) }
+    })
+
+    expect(moved.game).toEqual(namingAtlas)
+    expect(offersAnswerMode({ game: moved.game, mode: moved.mode.kind })).toBe(
+      true
+    )
+  })
+
+  it('[room-settings] narrows the game’s own mode when nothing is remembered', () => {
+    const moved = movedToEntry({
+      at: 1,
+      locale: 'fr',
+      remembered: null,
+      settings: { ...evening, lineUp: evening.lineUp.with(1, namingAtlas) }
+    })
+
+    expect(offersAnswerMode({ game: moved.game, mode: moved.mode.kind })).toBe(
+      true
+    )
+  })
+
+  it('[room-settings] puts a pawn back on a placing entry after a named one', () => {
+    const moved = movedToEntry({
+      at: 1,
+      locale: 'fr',
+      remembered: {
+        ...openedSetup({ game: 'atlas', locale: 'fr' }),
+        game: namingAtlas,
+        mode: DEFAULT_MODE_SETTINGS.typed
+      },
+      settings: evening
+    })
+
+    expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.point)
+  })
+
+  it('[room-settings] keeps a remembered mode the entry offers', () => {
+    const moved = movedToEntry({
+      at: 1,
+      locale: 'fr',
+      remembered: {
+        ...openedSetup({ game: 'atlas', locale: 'fr' }),
+        game: namingAtlas,
+        mode: DEFAULT_MODE_SETTINGS.typed
+      },
+      settings: { ...evening, lineUp: evening.lineUp.with(1, namingAtlas) }
+    })
+
+    expect(moved.mode).toEqual(DEFAULT_MODE_SETTINGS.typed)
   })
 })
 
