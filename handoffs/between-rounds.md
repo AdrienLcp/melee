@@ -73,6 +73,18 @@ should not wait on one screen. Decided shape, open to Adrien's pushback:
 
 ## 2. The round's own result, not only the general standings
 
+**Direction pages built, waiting on Adrien's pick** (local, outside git):
+`C:/Users/AdrienLacourpaille/AppData/Local/Temp/claude/C--git-melee/4e7c9a4e-dfba-4c17-8235-5504c770e9f4/scratchpad/reveal-directions/index.html`
+— A side by side (recommended), B headline strip + one list with `+35` and
+↑2 stamps, C one list re-sorting after 3.5 s. All three share the ready line
+("Tout le monde est prêt · la suite dans 5 s"), Attendre as an outlined toggle
+left of Manche suivante, and "Case 29" first on every board ranked by case.
+Hooks found: `reveal-panel.tsx` `Outcome` lists answers in `revealedInOrder`
+order, not by points; `Scoreboard` already computes `placesClimbedBy` from
+`rankedBefore` and prints no number; `holdUntilTheCountdown` on the player side
+subtracts `countdownMs` — check it against a 5 s hold. A's wall must be checked
+at 24 seats with the host panel open (`e2e/choice-fits.spec.ts`).
+
 > When a round's results come up we only see the general standings. Shouldn't
 > it rather be the standings OF THE ROUND that just happened? Or one board on
 > the players' devices and another on the host's — but the host can be a
