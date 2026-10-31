@@ -37,6 +37,19 @@ Run after `handoffs/line-up.md` if both are open — they touch the same reveal.
 
 ## 1. Everyone ready for 5 s starts the next round
 
+**Server done** (commit "Start the next round once every seat is ready…"):
+`settleReadyHold` in `round-service.ts`, run from `publishRoom`; the console's
+own seat is not awaited (it has its own press); `host.holdReveal` waives both
+holds for the reveal, and `host.controlClip` now waives them too; the view
+carries `round.isReadyHold`, `READY_HOLD_MS` is in `protocol/room.ts`;
+PROTOCOL_VERSION 65; tests in `reveal-hold.test.ts`. **Still owed, screens**:
+ask ready on every round but the last and never on the slate (one rule in
+`packages/core` for `room-stage.tsx:430` and `BackAtTheTable` in
+`player-round.tsx`, which disagree today on nothing but would drift); the bar's
+length is `READY_HOLD_MS` when `isReadyHold` (`room-stage.tsx` hold,
+`round-clock.tsx`); an **Attendre** press on the console sending
+`host.holdReveal`. Direction pages decide the look.
+
 > If everyone has been "ready" for 5 seconds, we start the next round without
 > the host clicking "next round"? And the host gets a "pause" button to block
 > that? And the host can still click "next round".
@@ -84,6 +97,11 @@ in each game — some games already list scorers, so the gap may be ordering and
 emphasis rather than a missing panel.
 
 ## 3. The final board ranked 440 above 445
+
+**Core done**: `rankTrackPawns` ties on one case break by score. **Still owed,
+screens**: print the case wherever a board orders by case — `Scoreboard` and
+`TeamRoster` when a row carries a `board`, and `FinalBoard`, which does not pass
+`board` to `Standings`; the winner line says points while the track decided.
 
 > At the end, I had 440 points but appeared ahead of a player who had 445.
 
