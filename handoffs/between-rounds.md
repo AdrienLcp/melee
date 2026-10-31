@@ -1,9 +1,8 @@
 # Between two rounds: ready starts the next one, the round's own result, a final board that agrees with its figures
 
-Three reports from Adrien about the reveal and what follows it. Server, core
-and the screen halves of items 1 and 3 have landed (commit "Ask ready on every
-reveal, count its five seconds, and print the case a board ranks by"). **What
-is left, one session**: item 2. Run
+Three reports from Adrien about the reveal and what follows it. Items 1 and 3
+have landed, and item 2's first slice. **What is left, one session**: the
+list under item 2. Run
 `pnpm validate` once at the end. UI: `impeccable` first. Check every screen
 **full**: `MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and
 without a wall. Verify muted. Delete this file once nothing is left.
@@ -91,73 +90,52 @@ failed `encodeChecked`** (seen live on `wrangler dev`): `withHoldFields`,
 Server in "Start the next round once every seat is ready…", screens in the
 commit above. Remaining: verification (section 0).
 
-## 2. The round's own result — direction B, chosen 2026-10-31
+## 2. The round's own result — direction B, first slice landed 2026-10-31
 
-Mock (local, git-excluded): `C:/git/melee/.handoff/reveal-directions/b-one-list.html`
-(A and C beside it in `index.html`, for reference only). B: a **headline
-strip** — the answer and the round's podium — over **one list**, the general
-standings, each row carrying its round gain (`+35`) and its movement (↑2).
+**Landed** (commit "Put the round's podium over the reveal and its gains on
+the standings"): `RoundPodium` in `reveal-panel.tsx` replaces the per-seat
+`.said` chips and `Scorers` — the top three by points (answer beside the
+name via `wordsOf`), then `.found` "Trouvé : N sur M" (`round.found`, M =
+`openedWithPlayerIds.length`). Fallback by `@container` on the stage's height
+(`reveal-panel.sass`): `< 20rem` first alone + `round.othersScored`, `< 12rem`
+the count alone. `.tally` is shown above the split again, third grid row,
+`overflow-y: auto`. `Scoreboard` takes `gains` (a `.gain` column, `+X`,
+`with-gains` grid), fed from `round.awards` by `room-stage.tsx` → `Standings`.
+The rows' travel now waits `slow × 3` (~1.5 s) before moving
+(`scoreboard.sass`). Seen at 1280×720, 1920×1080, 1080×1920, 390×844, 844×390
+on the console at 24 seats via a throwaway copy of `choice-fits.spec.ts` with
+24 names (deleted).
 
-Adrien's brief on top of the mock, settled:
-- **The strip is the round's podium, not its whole list**: the top three by
-  what the round *paid* (the mock shows the three fastest — fix that), plus the
-  tally ("14 sur 24 ont trouvé"). Fewer at smaller sizes: three, then the
-  first alone with "+ N autres", then the tally alone.
-- **Movement is shown by motion, not only by a stamp**: the standings first
-  appear in the order **before** the round for ~1.5 s, then the rows travel to
-  their new places (FLIP), keeping their `+X`. 1.5 s rather than 2 because the
-  ready hold is 5 s and a ready table must still see the rows land. Within a
-  column a row slides; a row that changes column fades out and in at its new
-  place rather than flying across the others — DESIGN.md limits
-  `standing-moves` to one column for exactly that crossing. Reduced motion:
-  the final order straight away. `Scoreboard` already has `rankedBefore` and
-  `placesClimbedBy`; the console's `useStandingBeforeTheReveal`
-  (`room-stage.tsx:146`) gives the order before.
-- **What goes when room runs out, in this order**: (1) the ↑2/↓1 stamp — the
-  animation already says it; (2) the `+X` tag on each row — the strip says who
-  scored most; (3) the ready mark last. Adrien hesitated on 2 vs 3: ready goes
-  last because it now *starts the round* — the table needs to see who is still
-  holding it up, and nothing else on the screen says that.
-- **Every role, every shape** — the contract is `.claude/rules/screen-roles.md`
-  (written 2026-10-31 from Adrien's brief, read it first): only the **wall**
-  never scrolls, 9:16 included; the console (with or without a wall) and the
-  player may scroll, an answering screen never does, and a console with no wall
-  keeps the podium, the head of the standings and the next-round press in its
-  first viewport. **That changes `apps/game/DESIGN.md`**, whose *The console
-  held in a hand* says the console's stages never page-scroll, and
-  `e2e/choice-fits.spec.ts`, which measures the console's reveal and final
-  board for overflow: bring both in line with the rule (keep the answering
-  screens' checks; add the 9:16 wall at 24 seats). Check each role at 24 seats
-  with long names.
+**Left, in order:**
+1. **Wall**: the tally scrolls inside its box, and nobody scrolls a wall. On
+   the wall (`wall-page.sass` › `.reveal-panel`) clip it instead (or drop it
+   under the podium's fallback order). Then add the **9:16 wall at 24 seats**
+   to `e2e/choice-fits.spec.ts` (the reveal fixture `revealedView` has 8).
+2. **Gain on teams and the track**: `gains` reaches `Scoreboard` only; a room
+   in teams (`TeamRoster`) or on a track (`TrackPodium`) prints none yet.
+3. **Fallback order on the standings** per `screen-roles.md`: hide `.gain`
+   when the standings box is narrow, the ready mark last. Not done.
+4. **Player side**: `RoundBoard` (`features/player/round-board.tsx`) already
+   is B's list; check it gets the same 1.5 s hold, and the case on
+   `your-placing` and on a `RoundBoard` row with a track and no teams
+   (section 0, still missing).
+5. **Docs**: `apps/game/DESIGN.md` — *The console held in a hand* (says the
+   console never page-scrolls; `screen-roles.md` now allows it), *Results
+   chips* and *The standings moving* (delay is `slow × 3` now) describe the
+   old chips. Update `e2e/choice-fits.spec.ts` expectations if the reveal
+   tests fail on the podium (run them: `npx playwright test -c e2e
+   choice-fits -g reveal`).
+6. `pnpm validate`, then delete this file.
 
-**Read before building the strip** (mapped 2026-10-31, nothing written yet):
-- The strip's podium replaces `.said` in `Outcome` (`reveal-panel.tsx:414`),
-  shared by console and wall — one chip per seat, which is bug 2 at 24 seats.
-  But `.said` is also where each seat's *own answer* is drawn: a moved stick
-  (`MatchstickRow`), a rebuilt colour (`SwatchChip`), the atlas's list (its own
-  size rule, `reveal-panel.sass` `&[data-game='atlas']:not(.bare) > .said`).
-  Decide per game whether the podium shows the answer beside the name or the
-  grouped `.tally` carries it — the tally is `display: none` above the split
-  today (`reveal-panel.sass` `.tally` › `layout.wide`), so the wide screens
-  would lose the answers unless it comes back there.
-- `.said`/`.scorers` rows are sized by `dealtRows` (`--outcome-rows/-columns`)
-  inside a size container (`reveal-panel.sass:465-468`); a three-row podium
-  needs its own sizing and the size fallback (three → first + "+ N autres" →
-  tally alone) is a container query on that box.
-- `e2e/choice-fits.spec.ts` measures these chips at sixteen viewports; expect
-  to rewrite those expectations, not just add the 9:16 wall.
-- `Scorers` (no answers to show — buzzer, most likely) is the same podium
-  without words; one component can serve both.
-- New shell strings go in `round.*` (`{found:number} sur {total:number} ont
-  trouvé`), both dictionaries.
+**Found on the way, not fixed**: with 24 seats instead of 8, every
+`[layout] … the question and its four choices never scroll` test in
+`choice-fits.spec.ts` (player, duel, host, room, atlas) **failed** — an
+answering screen overflows at a full table. Rule 4: fix it; start by
+re-running that copy (24 names in `table`, line ~240) and reading the faults.
+Likely the score track's rows on top of the question at 24 seats.
 
-Code hooks: `reveal-panel.tsx` `Outcome` lists answers in `revealedInOrder`
-order, not by points; the player's `RoundBoard` (`round-board.tsx`) is already
-B's list without the stamps; `holdUntilTheCountdown` on the player side
-subtracts `countdownMs` from the hold — check it against a 5 s one. New strings
-(French in the mock): "{n} sur 24 ont trouvé", "Tout le monde est prêt · la
-suite dans {s} s", "… · on attend ton signal", "Attendre", "Classement
-inchangé", "Sans réponse", "gagne case {case} · {points} points".
+The fixture's award points (3–6) are not in `POINT`s, so screens print
+"0 +0" and "+0" — a fixture artefact, not a bug.
 
 ## 3. The final board ranked 440 above 445 — landed
 
