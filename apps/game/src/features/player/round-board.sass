@@ -126,6 +126,24 @@ $short-row: 2.25
 
       font-size: var(--text-em-l)
 
+      // Under the score rather than beside it, as the clock's half goes under
+      // the answer's: a column more would take the name's width at a phone's.
+      &:has(> .case)
+        align-items: end
+        display: flex
+        flex-direction: column
+        gap: 0.2em
+
+    .case
+      @include typography.caption-strong
+      @include text-box.trimmed-figure
+
+      color: var(--ink-muted)
+      font-size: max(var(--text-xs), 0.4em)
+
+    .right .case
+      color: var(--board-ink)
+
     // What they typed or picked, under their own name: the first line is read
     // down as columns of numbers, and a sentence dropped into it stops that.
     // Prose keeps the caption's floor whatever the row is sized at.

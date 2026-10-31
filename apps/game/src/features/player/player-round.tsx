@@ -208,6 +208,7 @@ const RevealBoard: React.FC<{ round: RoundView; view: PlayerRoomView }> = ({
       label={translate('host.standings')}
       marksReady={marksReady}
       players={view.players}
+      showsGains={board.kind !== 'track'}
       teamDetail={
         board.kind === 'track'
           ? (team) => (
@@ -1075,6 +1076,11 @@ const YourPlacing: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         {translate('player.final.rank', { rank: yours.rank })}
       </p>
       <p className='your-total'>
+        {yours.player.board !== null && (
+          <span className='case'>
+            {translate('board.at', { case: yours.player.board.case })}
+          </span>
+        )}
         <span className='value'>
           {translate('player.score', {
             points: shownPoints(yours.player.score)

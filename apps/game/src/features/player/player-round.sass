@@ -711,6 +711,14 @@
 
           color: var(--ink)
 
+        // Where the pawn finished, before the points: on a track the case is
+        // the race, and the points what walked it there.
+        .case
+          @include typography.numeric
+
+          color: var(--ink)
+          margin-inline-end: 0.6em
+
     .scoreboard .pawn
       font-size: var(--text-em-l)
 

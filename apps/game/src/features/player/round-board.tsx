@@ -155,6 +155,11 @@ export const RoundBoard: React.FC<RoundBoardProps> = ({
                   {translate('player.score', {
                     points: shownPoints(player.score)
                   })}
+                  {player.board !== null && (
+                    <span className='case'>
+                      {translate('board.at', { case: player.board.case })}
+                    </span>
+                  )}
                 </span>
               )}
               {answer !== undefined && (
