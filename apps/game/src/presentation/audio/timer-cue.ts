@@ -109,8 +109,11 @@ export const useTimerCue = ({
   useLastSeconds({
     deadline: view === null ? null : currentDeadline({ clock, view }),
     fromSecond: TICKING_FROM_SECOND,
+    // A clock the room froze has not run out, however close to nought it stopped.
     onEnd: (kind: DeadlineKind) => {
-      if (kind !== 'countdown') {
+      const isFrozen = view === null || view.isPaused || !view.isHostConnected
+
+      if (kind !== 'countdown' && !isFrozen) {
         playTimeUp(volume)
       }
     },

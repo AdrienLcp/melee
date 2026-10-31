@@ -71,7 +71,9 @@ export const useTimeOutNudge = ({
     deadline: view === null ? null : racingDeadline({ clock, view }),
     fromSecond: NUDGE_AT_SECOND,
     onEnd: () => {
-      clockFeedback('timeUp')
+      if (view !== null && !view.isPaused && view.isHostConnected) {
+        clockFeedback('timeUp')
+      }
     },
     onSecond: (second) => {
       if (second === NUDGE_AT_SECOND) {

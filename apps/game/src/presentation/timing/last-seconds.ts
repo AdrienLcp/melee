@@ -30,8 +30,39 @@ export type TimedView = {
   isHostConnected: boolean
   isPaused: boolean
   phase: RoomPhase
-  round: Pick<RoundView, 'activeBuzz' | 'durationMs' | 'id' | 'startsAt'> | null
+  round: Pick<
+    RoundView,
+    'activeBuzz' | 'content' | 'durationMs' | 'id' | 'startsAt'
+  > | null
   roundElapsedMs: number
+}
+
+/**
+ * When the round's open phase ends, as round time, and `null` once it has no
+ * clock left. A Petit Bac runs its vote inside `playing` on a clock that keeps
+ * counting, so the sheets closing — on the clock or a stop's grace — is the
+ * end, and what follows must not tick the round's last seconds over the vote.
+ */
+const openPhaseEndOf = (
+  round: NonNullable<TimedView['round']>
+): { endsAtElapsedMs: number; key: string } | null => {
+  if (round.durationMs === null) {
+    return null
+  }
+
+  if (round.content.kind !== 'petitbac') {
+    return { endsAtElapsedMs: round.durationMs, key: 'clock' }
+  }
+
+  if (round.content.sheetsClosed) {
+    return null
+  }
+
+  const stopAt = round.content.stopClosesAtElapsedMs
+
+  return stopAt === null || stopAt >= round.durationMs
+    ? { endsAtElapsedMs: round.durationMs, key: 'clock' }
+    : { endsAtElapsedMs: stopAt, key: `stop:${stopAt}` }
 }
 
 /**
@@ -64,15 +95,20 @@ export const currentDeadline = ({
     }
   }
 
+  const openPhaseEnd = openPhaseEndOf(round)
+
   if (
     view.phase === 'playing' &&
     view.isHostConnected &&
-    round.durationMs !== null
+    openPhaseEnd !== null
   ) {
     return {
-      id: `round:${round.id}`,
+      id: `round:${round.id}:${openPhaseEnd.key}`,
       kind: 'round',
-      remainingMs: Math.max(0, round.durationMs - view.roundElapsedMs)
+      remainingMs: Math.max(
+        0,
+        openPhaseEnd.endsAtElapsedMs - view.roundElapsedMs
+      )
     }
   }
 
@@ -96,6 +132,52 @@ export const currentDeadline = ({
  * time had run out.
  */
 const RAN_OUT_WITHIN_MS = 400
+
+/**
+ * How late a second's tick may still sound. A snapshot landing mid-second, a
+ * screen mounting mid-round or a throttled timer would otherwise tick a second
+ * already half gone, and the ear hears it crowd the next one: past this, the
+ * second goes by silent and the count picks up on the next whole one.
+ */
+const LATEST_TICK_MS = 150
+
+export type SecondMark =
+  | { kind: 'end' }
+  | { kind: 'same' }
+  | { kind: 'silent' | 'tick'; second: number }
+
+/**
+ * What `leftMs` says to do, given the last whole second already marked: the
+ * countdown has ended, nothing new has begun, or a new second has — ticked
+ * when it is one of the last `fromSecond` and began no more than
+ * `LATEST_TICK_MS` ago.
+ */
+export const markSecond = ({
+  fromSecond,
+  leftMs,
+  markedSecond
+}: {
+  fromSecond: number
+  leftMs: number
+  markedSecond: number
+}): SecondMark => {
+  const second = Math.ceil(leftMs / 1_000)
+
+  if (second <= 0) {
+    return { kind: 'end' }
+  }
+
+  if (second >= markedSecond) {
+    return { kind: 'same' }
+  }
+
+  const lateMs = second * 1_000 - leftMs
+
+  return {
+    kind: second <= fromSecond && lateMs <= LATEST_TICK_MS ? 'tick' : 'silent',
+    second
+  }
+}
 
 type Marks = {
   endsAt: number
@@ -164,9 +246,13 @@ export const useLastSeconds = ({
 
     const check = (): void => {
       const leftMs = marks.endsAt - nowMs()
-      const second = Math.ceil(leftMs / 1_000)
+      const next = markSecond({
+        fromSecond,
+        leftMs,
+        markedSecond: marks.second
+      })
 
-      if (second <= 0) {
+      if (next.kind === 'end') {
         if (!marks.hasEnded) {
           marks.hasEnded = true
           end(kind)
@@ -175,11 +261,11 @@ export const useLastSeconds = ({
         return
       }
 
-      if (second < marks.second) {
-        marks.second = second
+      if (next.kind !== 'same') {
+        marks.second = next.second
 
-        if (second <= fromSecond) {
-          mark(second, kind)
+        if (next.kind === 'tick') {
+          mark(next.second, kind)
         }
       }
 
