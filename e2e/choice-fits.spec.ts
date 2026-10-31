@@ -1816,13 +1816,23 @@ const strayFromTheStage = (): string[] => {
 
   const box = stage.getBoundingClientRect()
 
+  const isInsideAScrollingBox = (element: HTMLElement) => {
+    for (
+      let ancestor = element.parentElement;
+      ancestor !== null && ancestor !== stage;
+      ancestor = ancestor.parentElement
+    ) {
+      if (getComputedStyle(ancestor).overflowY !== 'visible') {
+        return true
+      }
+    }
+
+    return false
+  }
+
   return [...stage.querySelectorAll<HTMLElement>('*')]
     .filter(
-      (element) =>
-        element.checkVisibility() &&
-        element.parentElement?.closest(
-          '.team-roster, .track-podium, .scoreboard'
-        ) === null
+      (element) => element.checkVisibility() && !isInsideAScrollingBox(element)
     )
     .filter((element) => {
       const { bottom, right } = element.getBoundingClientRect()
