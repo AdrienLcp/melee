@@ -524,6 +524,14 @@ frame carries a `roundId`, and a log scanned backwards for `phase === 'playing'`
 answers with the *previous* round's frame the instant it is asked — the new one
 has not arrived yet — so everything sent on it is refused as stale.
 
+**A long name is refused, not cut.** `nickname` stops at
+`NICKNAME_MAX_LENGTH` (20); a longer one is a non-fatal `too_big` on a socket
+that stays open, so a "full" room of long names comes up a few seats short.
+A `/play/:code` page whose stored `melee:nickname` is too long draws the form
+instead of joining. And the app's `/` redirects to `/fr`, dropping any query
+string: a driver page opened as `/?driver=1` is found by `/fr`, not by its
+query.
+
 **An Atlas pawn is `{ latitude, longitude }`**, not `{ lat, lng }`. The wrong
 keys are refused with a non-fatal `error` frame, the reveal then shows no
 board at all — nobody answered — and reads as a layout that dropped it.
