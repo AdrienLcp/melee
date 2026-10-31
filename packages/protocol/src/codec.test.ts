@@ -9,7 +9,6 @@ import { PROTOCOL_VERSION } from './version'
 const runningRound = {
   activeBuzz: null,
   advancesAt: null,
-  isReadyHold: false,
   answerMode: 'buzzer' as const,
   answers: [],
   awards: [],
@@ -23,6 +22,7 @@ const runningRound = {
   durationMs: 30_000,
   id: 'r1',
   index: 1,
+  isReadyHold: false,
   joinedAfterStart: false,
   lineUpAt: 0,
   lockedOutPlayerIds: [],

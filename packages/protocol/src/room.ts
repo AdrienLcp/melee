@@ -741,11 +741,6 @@ export const roundViewSchema = z.object({
    */
   advancesAt: serverTimeSchema.nullable(),
   /**
-   * Whether `advancesAt` is the hold every seat being ready armed, which runs
-   * `READY_HOLD_MS` rather than the setting's length.
-   */
-  isReadyHold: z.boolean(),
-  /**
    * The answer mode this round was opened on. The room's setting can move while
    * the round runs and land on the next one, so a screen drawing *this* round
    * reads it here and never from `settings.mode`.
@@ -769,6 +764,11 @@ export const roundViewSchema = z.object({
   id: roundIdSchema,
   /** 1-based, so it reads as "round 3 of 10" without arithmetic at the call site. */
   index: z.number().int().positive(),
+  /**
+   * Whether `advancesAt` is the hold every seat being ready armed, which runs
+   * `READY_HOLD_MS` rather than the setting's length.
+   */
+  isReadyHold: z.boolean(),
   /**
    * Whether the reader took their seat after this round was under way. They are
    * in from the next one, and until then the screen owes them a wait rather
