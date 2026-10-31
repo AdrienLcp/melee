@@ -239,6 +239,26 @@
           .podium .winners
             font-size: clamp(1.5rem, min(6cqh, calc(140cqi / var(--longest-word-width, 6))), 5rem)
 
+          // Its own width alone stood the best seats 314px tall on a tablet
+          // hung upright, and the third team's tray under the fold; `cqh` is
+          // the stage's, the podium being an inline-size container.
+          .seat-podium ol
+            font-size: clamp(var(--text-m), min(6cqi, 2.6cqh), var(--text-xl))
+
+          .seat-podium .pawn
+            font-size: clamp(var(--text-2xl), min(13cqi, 6cqh), var(--text-4xl))
+
+          .team-roster
+            gap: var(--space-xs)
+
+          .team
+            gap: var(--space-2xs)
+            padding-block-end: var(--space-xs)
+
+          .member
+            font-size: var(--text-s)
+            min-height: 0
+
         > .standings
           display: grid
           justify-self: center

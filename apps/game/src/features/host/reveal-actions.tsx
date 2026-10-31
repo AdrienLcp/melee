@@ -129,22 +129,6 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {challengeLine !== null && (
         <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
-      {/* Only while something counts the reveal down: once held, the next
-        round is the press beside it, as it was before any hold. */}
-      {view.round != null && view.round.advancesAt !== null && (
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            if (view.round != null) {
-              send({ roundId: view.round.id, type: 'host.holdReveal' })
-            }
-          }}
-          size='large'
-          variant='outlined'
-        >
-          {translate('host.holdReveal')}
-        </Button>
-      )}
       <Button
         isDisabled={!isLive}
         onPress={() => openNextRound({ isDuel: false })}
@@ -163,15 +147,32 @@ export const RevealActions: React.FC<HostActionsProps> = ({
           {translate('host.nextDuel')}
         </Button>
       )}
-      <Button
-        isDisabled={!isLive}
-        onPress={() => {
-          send({ type: 'host.endGame' })
-        }}
-        variant='underlined'
-      >
-        {translate('host.endGame')}
-      </Button>
+      <div className='quiet-actions'>
+        {/* Only while something counts the reveal down: once held, the next
+          round waits on the press above, as it did before any hold. */}
+        {view.round != null && view.round.advancesAt !== null && (
+          <Button
+            isDisabled={!isLive}
+            onPress={() => {
+              if (view.round != null) {
+                send({ roundId: view.round.id, type: 'host.holdReveal' })
+              }
+            }}
+            variant='underlined'
+          >
+            {translate('host.holdReveal')}
+          </Button>
+        )}
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            send({ type: 'host.endGame' })
+          }}
+          variant='underlined'
+        >
+          {translate('host.endGame')}
+        </Button>
+      </div>
       <BoardMoves isLive={isLive} send={send} view={view} />
     </div>
   )
