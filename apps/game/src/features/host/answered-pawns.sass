@@ -18,5 +18,7 @@
     ul
       @include pawn-row.pawn-row('[data-answered]')
 
+      // A full table holds one line of pawns, down to the floor: two took the
+      // height the question's words needed on a screen lying down.
       li
-        font-size: clamp(var(--text-l), 5cqmin, 2.5rem)
+        font-size: max(var(--text-s), min(clamp(var(--text-l), 5cqmin, 2.5rem), calc((100cqi - 3rem) / var(--pawns, 8) - var(--space-xs))))

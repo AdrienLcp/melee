@@ -81,7 +81,7 @@ const PawnTally: React.FC<PawnTallyProps> = ({
       <p className='count' role='status'>
         {label(standingCount, owed.length)}
       </p>
-      <ul>
+      <ul style={{ '--pawns': owed.length }}>
         {owed.map((player) => (
           <li data-answered={isStanding(player) || undefined} key={player.id}>
             <Pawn seat={players.indexOf(player)} />

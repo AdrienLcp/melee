@@ -2012,3 +2012,45 @@ test('[layout] wall, the reveal of a full table: nothing scrolls, from 720p to 4
 
   expect(faults).toEqual([])
 })
+
+/** Every answering screen with the room at its largest, each seat named long. */
+for (const seat of SEATS) {
+  test(`[layout] ${seat.name}, a full table: the question and its four choices never scroll`, async ({
+    page
+  }) => {
+    const view = seat.view(LONGEST_PROMPT)
+
+    await serveRoom({
+      page,
+      view: {
+        ...view,
+        players: fullTable.map((player) => ({ ...player, isReady: false }))
+      }
+    })
+    await page.setViewportSize({ height: 844, width: 390 })
+    await page.goto(seat.path)
+    await expect(page.locator('.answer-tile')).toHaveCount(4)
+
+    const faults: string[] = []
+
+    for (const [width, height] of seat.role === 'room'
+      ? ROOM_VIEWPORTS
+      : VIEWPORTS) {
+      await resizeTo({ height, page, width })
+
+      const overflow = await page.evaluate(measure)
+
+      if (
+        overflow.floor < FLOOR_PX ||
+        overflow.furthest !== null ||
+        overflow.page > 0 ||
+        overflow.spills.length > 0 ||
+        overflow.strays.length > 0
+      ) {
+        faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
