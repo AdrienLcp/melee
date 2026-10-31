@@ -31,6 +31,7 @@
       "filename": [
         "CHANGELOG.md",
         "apps/game/DESIGN.md",
+        "handoffs/*.md",
         "apps/game/PRODUCT.md",
         "apps/game/src/presentation/head/document-head.ts",
         "apps/game/src/presentation/i18n/dictionary-fr.ts",
@@ -172,6 +173,7 @@
     "Yangzi",
     "chiffre",
     "écrit",
+    "fullscreen",
     "Guyane",
     "higherlower",
     "Italie",
