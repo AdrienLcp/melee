@@ -87,7 +87,8 @@ other dev servers on the machine.
    an init script before the first navigation — see `docs/browser-driving.md`.
    A screen that lists seats, answers or a board is checked **full**:
    `MAX_PLAYERS_PER_ROOM` seats with long names, at phone width — two seats
-   never show an overflow.
+   never show an overflow. The wall never scrolls; what each screen may do
+   is `screen-roles`.
 
 ## Rules (auto-loaded from `.claude/rules/`)
 
@@ -98,7 +99,8 @@ a locale) · `react-components` (the compiler owns memoization, the `style` prop
 · `data-fetching` (a superseded request is aborted)
 · `privacy` (no cookies, the /legal page stays true) · `search` (one
 normaliser for a record search; answer matching is not one)
-· `design-system` (wrapping a react-aria primitive) · `sass-architecture`
+· `screen-roles` (what each screen is for, which may scroll, what gives
+way first) · `design-system` (wrapping a react-aria primitive) · `sass-architecture`
 (layers, tokens, both palettes, state attributes) · `code-style` ·
 `file-naming` · `comments` · `test-conventions` (tags, the socket harness) ·
 `e2e` (build first, three journeys) · `committing` (another session

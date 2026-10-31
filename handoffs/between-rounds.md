@@ -101,13 +101,17 @@ Adrien's brief on top of the mock, settled:
   scored most; (3) the ready mark last. Adrien hesitated on 2 vs 3: ready goes
   last because it now *starts the round* — the table needs to see who is still
   holding it up, and nothing else on the screen says that.
-- **Every role, every shape**: wall, console and player, each at 16:9 and 9:16,
-  small and large. The **player** screen scrolls (fine as is). The **wall never
-  scrolls**, 9:16 included: it fits by the drops above, then by shrinking rows
-  over `standingsRowsOf`'s height budget, then by columns (1 at 9:16, up to 3 at
-  16:9). The **console** never scrolls either, and must hold with the host panel
-  open (25rem). Check each at 24 seats with long names, and add the 9:16 wall
-  and console to `e2e/choice-fits.spec.ts`.
+- **Every role, every shape** — the contract is `.claude/rules/screen-roles.md`
+  (written 2026-10-31 from Adrien's brief, read it first): only the **wall**
+  never scrolls, 9:16 included; the console (with or without a wall) and the
+  player may scroll, an answering screen never does, and a console with no wall
+  keeps the podium, the head of the standings and the next-round press in its
+  first viewport. **That changes `apps/game/DESIGN.md`**, whose *The console
+  held in a hand* says the console's stages never page-scroll, and
+  `e2e/choice-fits.spec.ts`, which measures the console's reveal and final
+  board for overflow: bring both in line with the rule (keep the answering
+  screens' checks; add the 9:16 wall at 24 seats). Check each role at 24 seats
+  with long names.
 
 Code hooks: `reveal-panel.tsx` `Outcome` lists answers in `revealedInOrder`
 order, not by points; the player's `RoundBoard` (`round-board.tsx`) is already

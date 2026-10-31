@@ -427,6 +427,16 @@ a role of its own — a crew screen that judges and advances but does not own
 the room — rather than a second `host`. Walls already come several to a room
 (`docs/realtime-protocol.md`); consoles wait for a table that asks.
 
+### A round played on the wall — an idea, parked
+
+Every screen but the wall is touched; the wall is only watched. A round — a
+game of its own, or an option inside one — where one seat, or two head to head,
+plays *on the wall* while the room watches would turn that into a stage. Not
+designed: who touches it (a wall is a television as often as a touch panel, so
+the seat may steer it from its own screen), what the others do meanwhile, and
+whether it is the duel (`round.duel`) moved onto the shared screen. Raised by
+Adrien on 2026-10-31.
+
 ## Related
 
 - `docs/architecture.md` — how the pieces fit today
