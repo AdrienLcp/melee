@@ -1,3 +1,9 @@
 @layer components
-  #main:focus
-    outline: none
+  #main
+    transition: opacity var(--transition-base, 0s)
+
+    &:focus
+      outline: none
+
+    &[inert]
+      opacity: 0.45

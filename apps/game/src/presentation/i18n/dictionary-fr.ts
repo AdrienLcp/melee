@@ -1463,7 +1463,7 @@ export const FR_DICTIONARY = defineDictionary({
     score: '{points:number}',
     seating: 'On te trouve une place…',
     standing: {
-      ofRoom: defineTranslation('{rank:plural} sur {count:number}', {
+      ofRound: defineTranslation('{rank:plural} de la manche', {
         plural: {
           rank: {
             one: '{?}er',
@@ -1471,7 +1471,19 @@ export const FR_DICTIONARY = defineDictionary({
             type: 'ordinal'
           }
         }
-      })
+      }),
+      overall: defineTranslation(
+        '{rank:plural} sur {count:number} au général',
+        {
+          plural: {
+            rank: {
+              one: '{?}er',
+              other: '{?}e',
+              type: 'ordinal'
+            }
+          }
+        }
+      )
     },
     table: 'À la table',
     upNext: 'Tu vas jouer à',
@@ -1737,10 +1749,11 @@ export const FR_DICTIONARY = defineDictionary({
     remember: 'Retiens cette couleur',
     reveal: {
       title: 'La couleur',
-      yours: 'La tienne'
+      yours: 'La tienne',
+      yoursUnsent: 'La tienne, prise où était ton curseur'
     },
     scoring:
-      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 30 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas de bonus de vitesse.',
+      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 30 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas envoyée à temps, ta couleur compte là où est ton curseur. Pas de bonus de vitesse.',
     showDuration: 'Couleur affichée',
     tagline: 'Une couleur, quelques secondes. Refais-la.'
   },

@@ -146,6 +146,22 @@
         margin-top: 0.3em
         overflow-wrap: anywhere
 
+      // The question again, quieter than its answer and the first thing to
+      // give way: two lines at most, so a long one never pushes the answer down.
+      .asked
+        @include typography.question-prompt
+
+        -webkit-box-orient: vertical
+        color: var(--ink-muted)
+        display: -webkit-box
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), var(--text-xl))
+        -webkit-line-clamp: 2
+        line-clamp: 2
+        margin-bottom: var(--space-xs)
+        max-width: var(--measure)
+        overflow: hidden
+        text-wrap: balance
+
       // The only prose on a screen read from across the room, so it is capped
       // at a measure.
       .note
@@ -443,6 +459,9 @@
         .note
           font-size: clamp(var(--text-xs), 3.4cqh, 1.25rem)
           margin-top: 0.5em
+
+        .asked
+          font-size: clamp(var(--text-xs), 3.6cqh, var(--text-xl))
 
       &[data-game='quiz'] .identity
         padding: clamp(var(--space-xs), 3cqh, var(--space-l)) clamp(var(--space-s), 3.4cqi, var(--space-l))

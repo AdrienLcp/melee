@@ -1,0 +1,21 @@
+@use '../styles/piece'
+@use '../styles/typography'
+
+@layer components
+  .reconnecting-notice
+    @include typography.label
+    @include piece.card(var(--radius-full))
+
+    align-items: center
+    color: var(--card-ink)
+    display: flex
+    gap: var(--space-xs)
+    inset-block-end: var(--layout-padding-block-end)
+    inset-inline-start: 50%
+    padding: var(--space-xs) var(--space-m)
+    position: fixed
+    translate: -50% 0
+    z-index: 2
+
+    &:empty
+      display: none

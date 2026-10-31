@@ -120,6 +120,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   const quantityWords = useQuantityWords()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
+  const asked = quizContent(round)?.prompt.prompt ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
   const silhouette = quizContent(round)?.prompt.silhouette ?? null
   const rebus = quizContent(round)?.prompt.rebus ?? null
@@ -166,6 +167,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
       <section className='reveal-panel' data-game='quiz'>
         <div className='head'>
           <div className='identity' style={answerFitting(question.answer)}>
+            {asked !== null && <p className='asked'>{asked}</p>}
             {flag !== null && <FlagPicture file={flag} isNamedBeside />}
             {silhouette !== null && (
               <CountrySilhouette file={silhouette} isNamedBeside />

@@ -682,6 +682,7 @@ const revealedView = (content: object) => {
       awards: revealedAnswers
         .filter((answer) => answer.isCorrect)
         .map(({ playerId }, order) => ({
+          isUnsent: false,
           playerId,
           points: 3 + Math.max(0, 3 - order),
           speedBonus: Math.max(0, 3 - order),
@@ -1136,6 +1137,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
         phase === 'revealed'
           ? [
               {
+                isUnsent: false,
                 playerId: 'p3',
                 points: 1,
                 speedBonus: 0,
@@ -1964,6 +1966,7 @@ const wallRevealOfAFullTable = () => {
       ...view.round,
       advancesAt: SERVER_TIME + 20_000,
       awards: fullTable.slice(0, 5).map(({ id }, order) => ({
+        isUnsent: false,
         playerId: id,
         points: (5 - order) * 300,
         speedBonus: (5 - order) * 100,

@@ -377,6 +377,22 @@
         .back-at-the-table
           grid-area: ready
 
+        // A laptop's short screen has the board's height and not the answer
+        // card's: the question gives way first, then the note.
+        @media (height < 50rem)
+          .answer-card :is(.asked, .note)
+            -webkit-box-orient: vertical
+            display: -webkit-box
+            overflow: hidden
+
+          .answer-card .asked
+            -webkit-line-clamp: 1
+            line-clamp: 1
+
+          .answer-card .note
+            -webkit-line-clamp: 2
+            line-clamp: 2
+
     // Below the split the screen the page holds is divided as it is above:
     // the answer and the payout take what they need and the board divides the
     // rest by its rows. Lying down they sit side by side, as on a laptop.
@@ -404,7 +420,7 @@
         .back-at-the-table
           grid-area: ready
 
-        .answer-card .note
+        .answer-card :is(.asked, .note)
           -webkit-box-orient: vertical
           display: -webkit-box
           -webkit-line-clamp: 3
@@ -599,6 +615,15 @@
       gap: 0.3em
       min-width: 0
 
+    .asked
+      @include typography.question-prompt
+
+      color: var(--card-muted)
+      flex: 1 1 100%
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 3.6), var(--text-l))
+      margin: 0
+      text-wrap: balance
+
     .revealed-title
       @include typography.billboard-revealed
 
@@ -664,7 +689,7 @@
       gap: var(--space-2xs)
       min-width: 0
 
-    .standing,
+    .round-placing,
     .you-missed
       @include typography.title
 
@@ -675,6 +700,9 @@
       @include typography.caption
 
       color: var(--ink-muted)
+
+    .standing
+      @include typography.caption-strong
 
   // Where the evening left this player: their pawn stood up oversize beside
   // the place, the way the console stands the winner's.

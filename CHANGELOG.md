@@ -56,6 +56,25 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The quiz's reveal keeps its question.** The answer no longer
+  replaces the question on the console, the wall and every player's screen:
+  the question stays above it, quieter, and on the wall it gives way to two
+  lines before the answer shrinks.
+- `[Game]` **A player's screen says the round's place apart from the game's.**
+  Under what the round paid, *1st this round* names the order the round paid
+  in — the fastest right answer, the closest pawn — and the game's standing
+  reads *4th of 6 overall*, which used to sit there unlabelled and read as the
+  round's. A round that paid nothing claims no place.
+- `[Game]` **A screen reconnecting stands its controls down.** While the
+  socket is away, the page dims and nothing on it can be pressed — a press
+  then went nowhere and read as a broken button — and one line says
+  *Reconnecting…*. The menu stays usable, and everything comes back with the
+  connection.
+- `[Game]` **The Atlas confirm box points cleanly at its pawn.** Its notch was
+  a square half drawn over the box; it is now the box's own outline carried
+  down to a point, its ledge following it, flipped the same way when the box
+  sits under the pawn.
+
 - `[Game]` **The timeline's arrows stand one above the other.** Each card
   keeps the row's width instead of sharing it with two arrows side by side,
   and five cards and the send press fit a 360 × 640 screen without scrolling.

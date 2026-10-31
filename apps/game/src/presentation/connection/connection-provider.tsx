@@ -16,7 +16,7 @@ type ConnectionChannel = {
   report: (connection: ScreenConnection | null) => void
 }
 
-const [ConnectionContext, useChannel] =
+const [ConnectionContext, useChannel, useOptionalChannel] =
   createSafeContext<ConnectionChannel>('ConnectionProvider')
 
 /**
@@ -50,4 +50,16 @@ export const useReportConnection = ({ clock, status }: ScreenConnection) => {
       report(null)
     }
   }, [clock, report, status])
+}
+
+/**
+ * Whether this screen's socket is down and on its way back. A press then goes
+ * nowhere — `send` drops it with no queue — so the page's controls stand down
+ * rather than look broken. A refusal is not reconnecting: it is final, and
+ * the screen it draws carries its own way out.
+ */
+export const useIsReconnecting = (): boolean => {
+  const status = useOptionalChannel()?.connection?.status
+
+  return status === 'connecting' || status === 'closed'
 }

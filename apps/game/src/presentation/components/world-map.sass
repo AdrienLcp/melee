@@ -107,11 +107,13 @@
     // The pawn's own presses, on the rulebook's paper with a notch pointing
     // down at it — or up, flipped under its tip near the frame's top.
     .marker-actions
+      --edge: 0.25rem
       --ground: var(--field)
+      --notch-depth: 0.4375rem
 
       background: var(--field)
       border-radius: var(--radius-l)
-      box-shadow: 0 0 0 1px var(--rule), 0 4px 0 var(--chipboard), var(--shadow-overlay)
+      box-shadow: 0 0 0 1px var(--rule), 0 var(--edge) 0 var(--chipboard), var(--shadow-overlay)
       display: flex
       gap: var(--space-s)
       inset: 0 auto auto 0
@@ -121,20 +123,36 @@
       white-space: nowrap
       z-index: 1
 
+      // The notch is the paper's own outline carried down to a point: the
+      // paper half covers the box's ledge where it leaves the box, and the
+      // ledge (or, flipped, the rule) follows it one edge further out.
+      &::before,
       &::after
-        background: var(--field)
-        block-size: 0.875rem
-        box-shadow: 1px 1px 0 var(--rule)
+        block-size: var(--notch-depth)
+        clip-path: polygon(0 0, 100% 0, 50% 100%)
         content: ''
-        inline-size: 0.875rem
-        inset-block-start: calc(100% - 0.4375rem)
+        inline-size: calc(var(--notch-depth) * 2)
+        inset-block-start: 100%
         inset-inline-start: clamp(var(--radius-l), var(--perch-tip), calc(100% - var(--radius-l)))
         position: absolute
-        transform: translateX(-50%) rotate(45deg)
+        transform: translateX(-50%)
 
+      &::before
+        background: var(--chipboard)
+        translate: 0 var(--edge)
+
+      &::after
+        background: var(--field)
+
+      &[data-below]::before,
       &[data-below]::after
-        box-shadow: -1px -1px 0 var(--rule)
-        inset-block-start: -0.4375rem
+        clip-path: polygon(50% 0, 100% 100%, 0 100%)
+        inset-block-start: auto
+        inset-block-end: 100%
+
+      &[data-below]::before
+        background: var(--rule)
+        translate: 0 calc(var(--stroke-hair) * -1)
 
       &[data-measuring]
         visibility: hidden

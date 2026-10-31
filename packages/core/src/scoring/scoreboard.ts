@@ -1,5 +1,6 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
+import type { Award } from '@melee/protocol/scoring'
 
 import { compareText } from '../helpers/collation'
 
@@ -98,4 +99,26 @@ export const standingOf = ({
   }
 
   return { rank: yours.rank, roomSize: players.length }
+}
+
+/**
+ * Where one seat placed in the round just revealed, among the seats it paid —
+ * the fastest right answer, the closest pawn — with ties sharing a place as the
+ * board ranks them. `null` for a seat the round paid nothing, which placed
+ * nowhere rather than last.
+ */
+export const roundPlacingOf = ({
+  awards,
+  playerId
+}: {
+  awards: readonly Pick<Award, 'playerId' | 'points'>[]
+  playerId: PlayerId | null
+}): number | null => {
+  const yours = awards.find((award) => award.playerId === playerId)
+
+  if (yours === undefined || yours.points === 0) {
+    return null
+  }
+
+  return 1 + awards.filter((award) => award.points > yours.points).length
 }

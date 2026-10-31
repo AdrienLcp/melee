@@ -5,6 +5,7 @@ import type { PublicPlayer } from '@melee/protocol/room'
 import {
   buildScoreboard,
   hasAnybodyScored,
+  roundPlacingOf,
   standingOf,
   winnersOf
 } from './scoreboard'
@@ -155,5 +156,29 @@ describe('standingOf', () => {
 
   it('[scoring] says nothing to a screen holding no seat', () => {
     expect(standingOf({ players: room, youId: null })).toBeNull()
+  })
+})
+
+describe('roundPlacingOf', () => {
+  const awards = [
+    { playerId: 'bob', points: 1500 },
+    { playerId: 'alice', points: 1900 },
+    { playerId: 'chloe', points: 1500 },
+    { playerId: 'dan', points: 0 }
+  ]
+
+  it('[scoring] places the seat the round paid the most first', () => {
+    expect(roundPlacingOf({ awards, playerId: 'alice' })).toBe(1)
+  })
+
+  it('[scoring] gives a tie the place it shares', () => {
+    expect(roundPlacingOf({ awards, playerId: 'chloe' })).toBe(2)
+    expect(roundPlacingOf({ awards, playerId: 'bob' })).toBe(2)
+  })
+
+  it('[scoring] places nowhere a seat the round paid nothing', () => {
+    expect(roundPlacingOf({ awards, playerId: 'dan' })).toBeNull()
+    expect(roundPlacingOf({ awards, playerId: 'erin' })).toBeNull()
+    expect(roundPlacingOf({ awards, playerId: null })).toBeNull()
   })
 })

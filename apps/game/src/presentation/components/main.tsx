@@ -1,5 +1,7 @@
 import type React from 'react'
 
+import { useIsReconnecting } from '@/presentation/connection/connection-provider'
+
 import './main.sass'
 
 const MAIN_ID = 'main'
@@ -18,17 +20,30 @@ const keepBackgroundClicksInert = (
 /**
  * The one `<main>` of a page: the skip link's target and where focus lands
  * after a navigation. Focusable by script, never by Tab.
+ *
+ * Inert while the screen's socket is on its way back, so no press is dropped
+ * on the floor: every page lays out `<main>`'s own children, so the landmark is
+ * the one box that covers the whole stage without wrapping it. The menu is the
+ * shell's and stays usable.
  */
 export const Main: React.FC<
-  Omit<React.ComponentProps<'main'>, 'id' | 'onMouseDown' | 'tabIndex'>
-> = (props) => (
-  <main
-    {...props}
-    id={MAIN_ID}
-    onMouseDown={keepBackgroundClicksInert}
-    tabIndex={-1}
-  />
-)
+  Omit<
+    React.ComponentProps<'main'>,
+    'id' | 'inert' | 'onMouseDown' | 'tabIndex'
+  >
+> = (props) => {
+  const isReconnecting = useIsReconnecting()
+
+  return (
+    <main
+      {...props}
+      id={MAIN_ID}
+      inert={isReconnecting}
+      onMouseDown={keepBackgroundClicksInert}
+      tabIndex={-1}
+    />
+  )
+}
 
 /** Moves focus to the page's landmark, as a navigation does. */
 export const focusMain = (options?: FocusOptions): void => {

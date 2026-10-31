@@ -7,7 +7,10 @@ import type {
   BlackSquareCell,
   BlackSquareLabels
 } from '@melee/protocol/black-square'
-import type { PlayerClientMessage } from '@melee/protocol/client-message'
+import type {
+  LeanAnswer,
+  PlayerClientMessage
+} from '@melee/protocol/client-message'
 import { type SentEstimate, UNIT_OF_FAMILY } from '@melee/protocol/estimate'
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
 import type { PlayerId } from '@melee/protocol/identifiers'
@@ -33,6 +36,7 @@ import {
 import {
   buildScoreboard,
   hasAnybodyScored,
+  roundPlacingOf,
   standingOf
 } from '@melee/core/scoring/scoreboard'
 import { playsThisRound } from '@melee/core/team/duel'
@@ -163,6 +167,8 @@ type PlayerRoundProps = {
   onAnswer: (answer: PlayerAnswer, roundId: string) => boolean
   /** `false` from the socket means the frame was never written. */
   onBuzz: (roundId: string) => boolean
+  /** Saves what the seat's screen holds before it is sent; `false` from the socket means the frame was never written. */
+  onLean: (answer: LeanAnswer, roundId: string) => boolean
   /** A seat's own team frames, joining one or repainting it; `false` from the socket means the frame was never written. */
   onTeam: (message: TeamSeatMessage) => boolean
   /** `false` from the socket means the frame was never written. */
@@ -358,6 +364,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   clock,
   onAnswer,
   onBuzz,
+  onLean,
   onTeam,
   onPetitBac,
   onReady,
@@ -675,6 +682,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
           <SwatchRound
             clock={clock}
             onAnswer={answerWithRound}
+            onLean={(answer) => onLean(answer, round.id)}
             round={round}
             youId={view.youId}
           />
@@ -1018,6 +1026,10 @@ const YourRound: React.FC<{
     points > 0
       ? translate('round.scored', { points: shownPoints(points) })
       : '0'
+  const roundPlacing = roundPlacingOf({
+    awards: round.awards,
+    playerId: view.youId
+  })
   const standing =
     view.teams.length > 0
       ? teamStandingOf({ playerId: view.youId, teams: view.teams })
@@ -1032,6 +1044,11 @@ const YourRound: React.FC<{
         {points === 0 && (
           <p className='you-missed'>{translate('round.missed')}</p>
         )}
+        {roundPlacing !== null && (
+          <p className='round-placing'>
+            {translate('player.standing.ofRound', { rank: roundPlacing })}
+          </p>
+        )}
         {speedBonus > 0 && (
           <p className='speed-bonus'>
             {translate('round.speedBonus', { points: shownPoints(speedBonus) })}
@@ -1039,7 +1056,7 @@ const YourRound: React.FC<{
         )}
         {standing !== null && (
           <p className='standing'>
-            {translate('player.standing.ofRoom', {
+            {translate('player.standing.overall', {
               count: standing.roomSize,
               rank: standing.rank
             })}
@@ -1208,6 +1225,7 @@ const Revealed: React.FC<{
   const { locale, translate } = useI18n()
   const track = blindtestContent(round)?.revealedTrack ?? null
   const question = quizContent(round)?.revealedQuestion ?? null
+  const asked = quizContent(round)?.prompt.prompt ?? null
   const flag = quizContent(round)?.prompt.flag ?? null
   const silhouette = quizContent(round)?.prompt.silhouette ?? null
   const rebus = quizContent(round)?.prompt.rebus ?? null
@@ -1310,7 +1328,15 @@ const Revealed: React.FC<{
   const shades = swatchContent(round)
 
   if (shades?.colour != null) {
-    return <SwatchRevealed shown={shades.colour} yours={shades.yourColour} />
+    return (
+      <SwatchRevealed
+        isUnsent={round.awards.some(
+          (award) => award.playerId === view.youId && award.isUnsent
+        )}
+        shown={shades.colour}
+        yours={shades.yourColour}
+      />
+    )
   }
 
   const solved = matchsticksContent(round)
@@ -1364,6 +1390,7 @@ const Revealed: React.FC<{
   if (question !== null) {
     return (
       <div className='answer-card' data-game='quiz'>
+        {asked !== null && <p className='asked'>{asked}</p>}
         {flag !== null && <FlagPicture file={flag} isNamedBeside />}
         {silhouette !== null && (
           <CountrySilhouette file={silhouette} isNamedBeside />
@@ -1481,9 +1508,11 @@ const EstimateRevealed: React.FC<{
  * reads the colour alone.
  */
 const SwatchRevealed: React.FC<{
+  /** The seat never sent, and was paid on where its picker stood. */
+  isUnsent: boolean
   shown: ColourHex
   yours: ColourHex | null
-}> = ({ shown, yours }) => {
+}> = ({ isUnsent, shown, yours }) => {
   const translate = useTranslate()
 
   return (
@@ -1495,7 +1524,11 @@ const SwatchRevealed: React.FC<{
       {yours !== null && (
         <figure>
           <SwatchChip colour={yours} />
-          <figcaption>{translate('swatch.reveal.yours')}</figcaption>
+          <figcaption>
+            {translate(
+              isUnsent ? 'swatch.reveal.yoursUnsent' : 'swatch.reveal.yours'
+            )}
+          </figcaption>
         </figure>
       )}
     </div>

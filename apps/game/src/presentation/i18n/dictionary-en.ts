@@ -1523,8 +1523,23 @@ export const EN_DICTIONARY = defineDictionary({
     score: '{points:number}',
     seating: 'Taking your seat…',
     standing: {
-      /** The room's board, reduced to the two facts a screen held in a hand needs. */
-      ofRoom: defineTranslation('{rank:plural} of {count:number}', {
+      /** Where this seat placed in the round just revealed, among the seats it paid. */
+      ofRound: defineTranslation('{rank:plural} this round', {
+        plural: {
+          rank: {
+            few: '{?}rd',
+            one: '{?}st',
+            other: '{?}th',
+            two: '{?}nd',
+            type: 'ordinal'
+          }
+        }
+      }),
+      /**
+       * The game's board, reduced to the two facts a screen held in a hand
+       * needs, and said to be the game's so it never reads as the round's.
+       */
+      overall: defineTranslation('{rank:plural} of {count:number} overall', {
         plural: {
           rank: {
             few: '{?}rd',
@@ -1823,10 +1838,11 @@ export const EN_DICTIONARY = defineDictionary({
     remember: 'Remember this colour',
     reveal: {
       title: 'The colour',
-      yours: 'Yours'
+      yours: 'Yours',
+      yoursUnsent: 'Yours, taken where your picker stood'
     },
     scoring:
-      'A colour shows, hides, and you rebuild it. Spot on is 30 points, falling to nothing the further off it is. No bonus for speed.',
+      'A colour shows, hides, and you rebuild it. Spot on is 30 points, falling to nothing the further off it is. Out of time unsent, your picker counts where it stands. No bonus for speed.',
     showDuration: 'Colour shown for',
     tagline: 'One colour, a few seconds. Rebuild it.'
   },

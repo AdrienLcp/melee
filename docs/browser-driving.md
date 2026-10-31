@@ -113,6 +113,12 @@ More that cost time to learn:
   this pass did not touch, and the ports: a second `pnpm dev` finds 3100 and
   5273 taken and a Vite on someone else's server answers instead of yours.
 
+- **Cutting the socket takes Vite down with it.** `pnpm dev` runs the two
+  servers under one `--parallel`, so stopping `wrangler dev`'s process tree to
+  watch a screen reconnect ends Vite too, and the page then waits on a
+  server that is not coming back. Restart each alone —
+  `pnpm --filter @melee/server dev`, `pnpm --filter @melee/game dev` — and
+  stop each by its own tree afterwards.
 - **An init script outlives the session that added it.** `page.addInitScript`
   stays on the MCP's default page for as long as the browser lives, so a
   script an earlier session left there keeps rewriting storage on every
@@ -365,14 +371,17 @@ does not give its unwrapped width back — `WONDERWALL` read 0.983 broken in two
 and 0.927 whole, on one node at one size — so a sample taken in a column narrow
 enough to break it describes a face that does not exist.
 
-## A stylesheet written by the shell can reach the page empty
+## A file written by the shell can reach the page stale
 
 A file created with `cat > x.sass <<EOF` is truncated before it is written, and
 Vite's watcher can read it in between: the page gets an empty `<style>` for it,
 a reload keeps serving the empty module, and the change reads as a selector
 that matches nothing. Read `style[data-vite-dev-id*="name"]`'s text before
 debugging the rule; append a byte and take it back off to force a recompile, or
-write the file with the editor's tools in the first place.
+write the file with the editor's tools in the first place. A module appended
+with `cat >>` fails the same way: Vite kept serving `connection-provider.tsx`
+without the export just appended, and every page importing it died on
+*does not provide an export named …* until an edit through the editor.
 
 ## Two things a browser can be asked that no test can
 
