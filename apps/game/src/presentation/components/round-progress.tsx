@@ -17,6 +17,8 @@ type RoundProgressProps = {
    * which is what makes this the room's clock rather than each device's.
    */
   elapsedMs: number
+  /** Why the bar is counting, read before the groove. */
+  label?: string
 }
 
 /**
@@ -32,7 +34,8 @@ type RoundProgressProps = {
  */
 export const RoundProgress: React.FC<RoundProgressProps> = ({
   durationMs,
-  elapsedMs
+  elapsedMs,
+  label
 }) => {
   const remainingMs = Math.max(0, durationMs - elapsedMs)
 
@@ -50,6 +53,7 @@ export const RoundProgress: React.FC<RoundProgressProps> = ({
         '--seconds-from': (remainingMs / 1_000).toFixed(3)
       }}
     >
+      {label !== undefined && <span className='label'>{label}</span>}
       <div className='groove' />
       {/* Read by the eye alone: a number announced every second would talk over the round. */}
       <span aria-hidden className='seconds' />
@@ -64,6 +68,8 @@ type RevealHoldProps = {
   clock: ClockEstimate | null
   /** The whole wait, from the setting its deadline was stamped against. */
   holdMs: number
+  /** As the bar's. */
+  label?: string
 }
 
 /**
@@ -80,10 +86,12 @@ type RevealHoldProps = {
 export const RevealHold: React.FC<RevealHoldProps> = ({
   advancesAt,
   clock,
-  holdMs
+  holdMs,
+  label
 }) => (
   <RoundProgress
     durationMs={holdMs}
     elapsedMs={holdMs - millisecondsUntil(clock, advancesAt, nowMs())}
+    label={label}
   />
 )

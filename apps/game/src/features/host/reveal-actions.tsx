@@ -129,6 +129,22 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {challengeLine !== null && (
         <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
+      {/* Only while something counts the reveal down: once held, the next
+        round is the press beside it, as it was before any hold. */}
+      {view.round != null && view.round.advancesAt !== null && (
+        <Button
+          isDisabled={!isLive}
+          onPress={() => {
+            if (view.round != null) {
+              send({ roundId: view.round.id, type: 'host.holdReveal' })
+            }
+          }}
+          size='large'
+          variant='outlined'
+        >
+          {translate('host.holdReveal')}
+        </Button>
+      )}
       <Button
         isDisabled={!isLive}
         onPress={() => openNextRound({ isDuel: false })}

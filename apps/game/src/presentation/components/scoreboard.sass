@@ -42,6 +42,9 @@
     &.ranked.removable li
       grid-template-columns: 1.3em 1fr auto auto
 
+    &.ranked li:has(> .case)
+      grid-template-columns: 1.3em 1fr auto auto
+
     .rank
       @include typography.numeric
       @include text-box.trimmed-figure
@@ -64,6 +67,12 @@
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
+
+    // The case ranks the row, so it is printed first and the points beside it:
+    // a list may never order on a figure it does not show.
+    .case
+      @include typography.numeric
+      @include text-box.trimmed-figure
 
     .score
       @include typography.score

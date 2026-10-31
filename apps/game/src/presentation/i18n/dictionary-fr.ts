@@ -704,6 +704,12 @@ export const FR_DICTIONARY = defineDictionary({
           }
         }
       }),
+      tiedOnCase: defineTranslation(
+        'à égalité case {case:number} · {points:plural}',
+        {
+          plural: { points: { one: '{?} point', other: '{?} points' } }
+        }
+      ),
       wins: defineTranslation('{points:plural}', {
         plural: {
           points: {
@@ -711,13 +717,20 @@ export const FR_DICTIONARY = defineDictionary({
             other: 'gagne avec {?} points'
           }
         }
-      })
+      }),
+      winsOnCase: defineTranslation(
+        'gagne case {case:number} · {points:plural}',
+        {
+          plural: { points: { one: '{?} point', other: '{?} points' } }
+        }
+      )
     },
     game: {
       label: 'À quoi on joue',
       prompt:
         'Touche un jeu pour le prévoir. Tu pourras en ajouter d’autres pour les enchaîner.'
     },
+    holdReveal: 'Attendre',
     hostDecides: 'Tu décides',
     inPlay: defineTranslation('{count:plural} sur {total:number} en jeu', {
       plural: { count: { other: '{?}' } }
@@ -766,6 +779,9 @@ export const FR_DICTIONARY = defineDictionary({
       roster: 'Joueurs',
       settings: 'Réglages',
       tied: 'à égalité'
+    },
+    ready: {
+      everyone: 'Tout le monde est prêt'
     },
     recovery: {
       action: 'Tenir la table d’ici',
@@ -1755,7 +1771,13 @@ export const FR_DICTIONARY = defineDictionary({
             other: 'victoire avec {?} points'
           }
         }
-      })
+      }),
+      winsOnCase: defineTranslation(
+        'victoire case {case:number} · {points:plural}',
+        {
+          plural: { points: { one: '{?} point', other: '{?} points' } }
+        }
+      )
     },
     join: 'Rejoindre',
     move: {

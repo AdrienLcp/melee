@@ -13,6 +13,7 @@ import type { Locale } from '@melee/protocol/locale'
 
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
+import { withHoldFields } from '@/domain/room/stored-round'
 import { nowMs } from '@/infrastructure/clock'
 import { newHostToken } from '@/infrastructure/ids'
 import type { Connection } from '@/infrastructure/messaging/connection'
@@ -97,7 +98,10 @@ export class RoomObject extends DurableObject<Env> {
     const stored = ctx.storage.kv.get<Room>(ROOM_KEY)
 
     if (stored !== undefined) {
-      this.engine = this.engineFor(stored)
+      this.engine = this.engineFor({
+        ...stored,
+        round: stored.round === null ? null : withHoldFields(stored.round)
+      })
     }
   }
 

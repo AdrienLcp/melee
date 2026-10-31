@@ -4,6 +4,7 @@ import type { PlayerRoomView } from '@melee/protocol/room'
 
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
+import { revealHoldOf } from '@/helpers/reveal-hold'
 import {
   RevealHold,
   RoundProgress
@@ -34,11 +35,13 @@ type RoundClockProps = {
  * covering a host who advances by hand and a host who has gone at once.
  */
 export const RoundClock: React.FC<RoundClockProps> = ({ clock, view }) => {
-  const holdMs = view.settings.autoAdvanceMs
-  const advancesAt = view.round?.advancesAt ?? null
+  const hold =
+    view.round == null
+      ? null
+      : revealHoldOf({ round: view.round, settings: view.settings })
 
-  if (view.phase === 'revealed' && advancesAt !== null && holdMs !== null) {
-    return <RevealHold advancesAt={advancesAt} clock={clock} holdMs={holdMs} />
+  if (view.phase === 'revealed' && hold !== null) {
+    return <RevealHold clock={clock} {...hold} />
   }
 
   const durationMs = view.round?.durationMs ?? null

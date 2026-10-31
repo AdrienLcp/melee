@@ -23,6 +23,13 @@
     gap: var(--space-xs)
     width: min(var(--column-wide-max-width), 100%)
 
+    .label
+      @include typography.caption-strong
+
+      color: var(--clock-ink, var(--ink))
+      flex: none
+      font-size: var(--clock-seconds-size)
+
     .groove
       background: var(--groove)
       border-radius: var(--radius-full)

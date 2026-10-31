@@ -167,6 +167,11 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                 <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
               )}
             </span>
+            {isRanked && player.board !== null && (
+              <span className='case'>
+                {translate('board.at', { case: player.board.case })}
+              </span>
+            )}
             {isRanked && (
               <span className='score'>
                 {translate('player.score', {

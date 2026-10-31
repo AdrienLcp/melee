@@ -722,16 +722,29 @@ export const EN_DICTIONARY = defineDictionary({
           }
         }
       }),
+      tiedOnCase: defineTranslation(
+        'share first place on case {case:number} · {points:plural}',
+        {
+          plural: { points: { one: '{?} point', other: '{?} points' } }
+        }
+      ),
       wins: defineTranslation('{points:plural}', {
         plural: {
           points: { one: 'wins with {?} point', other: 'wins with {?} points' }
         }
-      })
+      }),
+      winsOnCase: defineTranslation(
+        'wins on case {case:number} · {points:plural}',
+        {
+          plural: { points: { one: '{?} point', other: '{?} points' } }
+        }
+      )
     },
     game: {
       label: 'What we’re playing',
       prompt: 'Pick a game to plan it. You can add others to play in a row.'
     },
+    holdReveal: 'Wait',
     hostDecides: 'You decide',
     inPlay: defineTranslation('{count:plural} of {total:number} in play', {
       plural: { count: { other: '{?}' } }
@@ -791,6 +804,9 @@ export const EN_DICTIONARY = defineDictionary({
       roster: 'Players',
       settings: 'Settings',
       tied: 'tied'
+    },
+    ready: {
+      everyone: 'Everyone’s ready'
     },
     recovery: {
       action: 'Run the table from here',
@@ -1847,7 +1863,13 @@ export const EN_DICTIONARY = defineDictionary({
             other: 'victory with {?} points'
           }
         }
-      })
+      }),
+      winsOnCase: defineTranslation(
+        'victory on case {case:number} · {points:plural}',
+        {
+          plural: { points: { one: '{?} point', other: '{?} points' } }
+        }
+      )
     },
     join: 'Join',
     move: {

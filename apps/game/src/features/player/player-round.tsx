@@ -26,6 +26,7 @@ import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { isSpotOn } from '@melee/core/estimate/estimate-pay'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
+import { asksReady } from '@melee/core/round/asks-ready'
 import {
   type BuzzBlocker,
   findBuzzBlocker
@@ -67,6 +68,7 @@ import { SwatchRound } from '@/features/player/swatch-round'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
+import { revealHoldOf } from '@/helpers/reveal-hold'
 import {
   atlasContent,
   blackSquareContent,
@@ -232,18 +234,23 @@ const holdUntilTheCountdown = (
   round: RoundView,
   view: PlayerRoomView
 ): PlayerRoomView => {
-  const { autoAdvanceMs, countdownMs, roundCount } = view.settings
+  const { countdownMs, roundCount } = view.settings
   const isLastRound = roundCount !== null && round.index >= roundCount
+  const hold = revealHoldOf({ round, settings: view.settings })
 
-  if (round.advancesAt === null || autoAdvanceMs === null || isLastRound) {
+  if (hold === null || isLastRound) {
     return view
   }
 
-  const heldMs = autoAdvanceMs - countdownMs
+  const heldMs = hold.holdMs - countdownMs
 
   return {
     ...view,
-    round: { ...round, advancesAt: round.advancesAt - countdownMs },
+    round: {
+      ...round,
+      advancesAt: hold.advancesAt - countdownMs,
+      isReadyHold: false
+    },
     settings: { ...view.settings, autoAdvanceMs: heldMs > 0 ? heldMs : null }
   }
 }
@@ -282,11 +289,10 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
 }
 
 /**
- * Between two rounds of an evening, the press that tells the wall this seat is
- * back at the table. It is a word to the room, never a gate: the host starts
- * when they like. The next game stays unnamed until its countdown, so a
- * planned line-up keeps its surprises. The last round of a counted evening has
- * nothing after it to be ready for.
+ * Between two rounds, the press that tells the table this seat is back. Every
+ * seat ready starts the next round after a short hold, and the host still
+ * starts it whenever they like. The next game stays unnamed until its
+ * countdown, so a planned line-up keeps its surprises.
  */
 const BackAtTheTable: React.FC<{
   onReady: (isReady: boolean) => boolean
@@ -294,13 +300,15 @@ const BackAtTheTable: React.FC<{
   view: PlayerRoomView
 }> = ({ onReady, round, view }) => {
   const translate = useTranslate()
-  const { lineUp, roundCount } = view.settings
   const you = view.players.find((player) => player.id === view.youId)
 
   if (
-    lineUp.length < 2 ||
     you === undefined ||
-    (roundCount !== null && round.index >= roundCount)
+    !asksReady({
+      game: round.content.kind,
+      roundCount: view.settings.roundCount,
+      roundIndex: round.index
+    })
   ) {
     return null
   }

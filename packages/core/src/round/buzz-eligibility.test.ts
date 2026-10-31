@@ -18,7 +18,6 @@ import {
 const runningRound: RoundView = {
   activeBuzz: null,
   advancesAt: null,
-  isReadyHold: false,
   answerMode: 'buzzer',
   answers: [],
   awards: [],
@@ -32,6 +31,7 @@ const runningRound: RoundView = {
   durationMs: 30_000,
   id: 'r1',
   index: 1,
+  isReadyHold: false,
   joinedAfterStart: false,
   lineUpAt: 0,
   lockedOutPlayerIds: [],

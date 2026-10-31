@@ -1,5 +1,6 @@
 import type React from 'react'
 
+import type { BoardSettings } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
@@ -23,6 +24,11 @@ import { Standings, standingsRowsOf } from './standings'
 import './final-board.sass'
 
 type FinalBoardProps = {
+  /**
+   * The track, when the game was raced on one: it decides the winner and the
+   * order, so the case is printed first wherever it ranks.
+   */
+  board: BoardSettings
   players: readonly PublicPlayer[]
   /** When the room plays in teams, the game ends on a team rather than a seat. */
   teams: readonly Team[]
@@ -40,6 +46,7 @@ type FinalBoardProps = {
  * room can check.
  */
 export const FinalBoard: React.FC<FinalBoardProps> = ({
+  board,
   players,
   teams,
   youId
@@ -49,25 +56,28 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
   const winners =
     teams.length > 0
       ? teamWinnersOf(teams).map((team) => ({
+          case: team.board?.case ?? null,
           id: team.id,
           name: teamName(team),
           pawn: <Pawn colour={team.colour} key={team.id} />,
           score: team.score
         }))
       : winnersOf(players).map((winner) => ({
+          case: winner.board?.case ?? null,
           id: winner.id,
           name: winner.nickname,
           pawn: <Pawn key={winner.id} seat={players.indexOf(winner)} />,
           score: winner.score
         }))
   const topScore = winners[0]?.score ?? 0
+  const topCase = board.kind === 'track' ? (winners[0]?.case ?? null) : null
   const named = winners.map((winner) => winner.name).join(' · ')
 
   return (
     <section
       className='final-board'
       style={{
-        '--standings-rows': standingsRowsOf({ players, teams })
+        '--standings-rows': standingsRowsOf({ board, players, teams })
       }}
     >
       <div className='podium' style={{ '--winner-count': winners.length }}>
@@ -80,14 +90,23 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
               {named}
             </h1>
             <p className='with'>
-              {translate(
-                winners.length > 1
-                  ? 'host.final.tied'
-                  : teams.length > 0
-                    ? 'team.final.wins'
-                    : 'host.final.wins',
-                { points: shownPoints(topScore) }
-              )}
+              {topCase === null
+                ? translate(
+                    winners.length > 1
+                      ? 'host.final.tied'
+                      : teams.length > 0
+                        ? 'team.final.wins'
+                        : 'host.final.wins',
+                    { points: shownPoints(topScore) }
+                  )
+                : translate(
+                    winners.length > 1
+                      ? 'host.final.tiedOnCase'
+                      : teams.length > 0
+                        ? 'team.final.winsOnCase'
+                        : 'host.final.winsOnCase',
+                    { case: topCase, points: shownPoints(topScore) }
+                  )}
             </p>
           </>
         )}
@@ -96,7 +115,7 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
       {teams.length > 0 && !isEveryTeamItsOwnSeat({ players, teams }) && (
         <SeatPodium players={players} youId={youId} />
       )}
-      <Standings players={players} teams={teams} youId={youId} />
+      <Standings board={board} players={players} teams={teams} youId={youId} />
       <ScoreTrack players={players} teams={teams} youId={youId} />
     </section>
   )

@@ -14,12 +14,14 @@ import { POINT } from '@melee/protocol/scoring'
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import { isRoundJudgedByHost } from '@melee/core/room/game-modes'
 import type { HostPreferences } from '@melee/core/room/host-preferences'
+import { asksReady } from '@melee/core/round/asks-ready'
 import { buildScoreboard } from '@melee/core/scoring/scoreboard'
 import { playsThisRound as seatPlaysRound } from '@melee/core/team/duel'
 import { buildTeamBoard } from '@melee/core/team/team-board'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
 import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
+import { revealHoldOf } from '@/helpers/reveal-hold'
 import {
   holdsTheAnswer,
   innerclockContent,
@@ -142,6 +144,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
   slateWall,
   view
 }) => {
+  const translate = useTranslate()
   const lastRevealed = useRoundStillBeingTalkedAbout(view)
   const rankedBefore = useStandingBeforeTheReveal(view)
 
@@ -419,16 +422,12 @@ const PhaseStage: React.FC<RoomStageProps> = ({
   }
 
   if (view.phase === 'revealed' && round != null) {
-    const holdMs = view.settings.autoAdvanceMs
-    // The pair travels stamped together, so one of them missing means nothing
-    // is counting this reveal down and the screen owes the room no bar.
-    const hold =
-      round.advancesAt === null || holdMs === null
-        ? null
-        : { advancesAt: round.advancesAt, holdMs }
-    const { lineUp, roundCount } = view.settings
-    const asksReady =
-      lineUp.length > 1 && (roundCount === null || round.index < roundCount)
+    const hold = revealHoldOf({ round, settings: view.settings })
+    const isReadyAsked = asksReady({
+      game: round.content.kind,
+      roundCount: view.settings.roundCount,
+      roundIndex: round.index
+    })
 
     // The standings, at the one moment the room asks for them. They are on this
     // screen during `playing` already, where nobody is looking at them — the
@@ -471,7 +470,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           {controls?.isRosterBeside !== true && (
             <Standings
               board={view.settings.board}
-              marksReady={asksReady}
+              marksReady={isReadyAsked}
               onAdjust={
                 controls === null
                   ? undefined
@@ -489,7 +488,15 @@ const PhaseStage: React.FC<RoomStageProps> = ({
               youId={youId}
             />
           )}
-          {hold !== null && <RevealHold clock={clock} {...hold} />}
+          {hold !== null && (
+            <RevealHold
+              clock={clock}
+              label={
+                round.isReadyHold ? translate('host.ready.everyone') : undefined
+              }
+              {...hold}
+            />
+          )}
         </div>
       </>
     )
@@ -498,7 +505,12 @@ const PhaseStage: React.FC<RoomStageProps> = ({
   if (view.phase === 'finished') {
     return (
       <div className='stage finished'>
-        <FinalBoard players={view.players} teams={view.teams} youId={youId} />
+        <FinalBoard
+          board={view.settings.board}
+          players={view.players}
+          teams={view.teams}
+          youId={youId}
+        />
       </div>
     )
   }
