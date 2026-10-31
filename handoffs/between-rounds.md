@@ -3,28 +3,18 @@
 Three reports from Adrien about the reveal and what follows it. Server, core
 and the screen halves of items 1 and 3 have landed (commit "Ask ready on every
 reveal, count its five seconds, and print the case a board ranks by"). **What
-is left, one session**: browser verification of that commit, then item 2. Run
+is left, one session**: item 2. Run
 `pnpm validate` once at the end. UI: `impeccable` first. Check every screen
 **full**: `MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and
 without a wall. Verify muted. Delete this file once nothing is left.
 
-## 0. Browser pass of items 1 and 3 — done 2026-10-31; bugs 1 and 3 fixed
+## 0. Browser pass of items 1 and 3 — done 2026-10-31
 
-**Bug 1 fixed** (console overflowing its stage inside a track ring): the cause
-was not the ring but the teams' trays — `dividing-its-box`
-(`features/host/_boxed-standings.sass`) made `.scoreboard` scroll in its box,
-and `.team-roster` / `.track-podium` had no such rule, so three trays of eight
-ran under *Manche suivante* and the final board's exits. They now scroll inside
-the standings box. Re-driven on the real dev server (24 seats, 3 drawn teams,
-track 20): reveal at 1280×800 and final board at 1024×768, 1280×800, 1440×900,
-1920×1080 — nothing past the stage. New e2e test
-`[layout] room, … inside a track with a full table: nothing leaves the stage`
-at the end of `e2e/choice-fits.spec.ts` — **written but never run**: the dev
-server (`wrangler dev` started 11:16 by another session) serves
-`apps/game/dist`, and an e2e build would hang it. First thing next session: run
-it (stop that server by its PID if it is still up and nobody uses it, or run
-it in `pnpm validate`), then break it once on purpose (drop `overflow-y: auto`
-from the new `.team-roster, .track-podium` rule) and watch it fail.
+**Bug 1 fixed** (teams' trays running past the console's stage inside a track
+ring): the trays scroll inside the standings box, with no sideways bleed. The
+e2e test `[layout] room, … inside a track with a full table: nothing leaves the
+stage` (`e2e/choice-fits.spec.ts`) runs green and was seen failing with the
+scroll removed.
 
 **Bug 3 fixed**: the player's reveal (`RevealBoard`, `player-round.tsx`) now
 passes `marksReady` (same `asksReady` as `BackAtTheTable`) and a read-only
@@ -139,6 +129,27 @@ Adrien's brief on top of the mock, settled:
   board for overflow: bring both in line with the rule (keep the answering
   screens' checks; add the 9:16 wall at 24 seats). Check each role at 24 seats
   with long names.
+
+**Read before building the strip** (mapped 2026-10-31, nothing written yet):
+- The strip's podium replaces `.said` in `Outcome` (`reveal-panel.tsx:414`),
+  shared by console and wall — one chip per seat, which is bug 2 at 24 seats.
+  But `.said` is also where each seat's *own answer* is drawn: a moved stick
+  (`MatchstickRow`), a rebuilt colour (`SwatchChip`), the atlas's list (its own
+  size rule, `reveal-panel.sass` `&[data-game='atlas']:not(.bare) > .said`).
+  Decide per game whether the podium shows the answer beside the name or the
+  grouped `.tally` carries it — the tally is `display: none` above the split
+  today (`reveal-panel.sass` `.tally` › `layout.wide`), so the wide screens
+  would lose the answers unless it comes back there.
+- `.said`/`.scorers` rows are sized by `dealtRows` (`--outcome-rows/-columns`)
+  inside a size container (`reveal-panel.sass:465-468`); a three-row podium
+  needs its own sizing and the size fallback (three → first + "+ N autres" →
+  tally alone) is a container query on that box.
+- `e2e/choice-fits.spec.ts` measures these chips at sixteen viewports; expect
+  to rewrite those expectations, not just add the 9:16 wall.
+- `Scorers` (no answers to show — buzzer, most likely) is the same podium
+  without words; one component can serve both.
+- New shell strings go in `round.*` (`{found:number} sur {total:number} ont
+  trouvé`), both dictionaries.
 
 Code hooks: `reveal-panel.tsx` `Outcome` lists answers in `revealedInOrder`
 order, not by points; the player's `RoundBoard` (`round-board.tsx`) is already
