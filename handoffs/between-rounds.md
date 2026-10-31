@@ -106,33 +106,43 @@ The rows' travel now waits `slow × 3` (~1.5 s) before moving
 on the console at 24 seats via a throwaway copy of `choice-fits.spec.ts` with
 24 names (deleted).
 
+**Wall at a full table — landed 2026-10-31** (commit "Fit a full table on
+the wall's reveal and cut the tally in whole chips"): the wall's standings
+divide their own box (size container, `--rows-per-column`,
+`--row-width-cap`), two columns past twelve seats lying down and on a narrow
+wall (`two-ranked-columns` in `wall-page.sass`); the tally is clipped on
+every screen and `useWholeChips` (`features/host/use-whole-chips.ts`) hides
+each chip from the first one cut; on a phone the console's `.reveal-panel` is
+a size container so the podium's fallback fires. New test `[layout] wall,
+the reveal of a full table` (24 seats, every wall viewport, rows against the
+answer). The base round fixture lacked `isReadyHold`, so every `playing`
+screen of `choice-fits` had been failing to decode — fixed, 49 of 51 green.
+
 **Left, in order:**
-1. **Wall**: the tally scrolls inside its box, and nobody scrolls a wall. On
-   the wall (`wall-page.sass` › `.reveal-panel`) clip it instead (or drop it
-   under the podium's fallback order). Then add the **9:16 wall at 24 seats**
-   to `e2e/choice-fits.spec.ts` (the reveal fixture `revealedView` has 8).
+1. **Two `choice-fits` failures, now visible** (rule 4, fix them):
+   - `[layout] room, reflex, the finishing order` at 320×568 and 360×640: the
+     row `Anne-Charlotte` + "parti trop tôt" spills its list (`spills`).
+   - `[layout] wall, board` at 768×1024: a team tray `li.team` runs to 1049px
+     (`3 Bleus 0 Case 7 sur 30 …`) — the final board of teams on a track on
+     an upright tablet wall.
+   Run: `npx playwright test -c e2e choice-fits -g "reflex, the finishing|wall, board"`.
 2. **Gain on teams and the track**: `gains` reaches `Scoreboard` only; a room
    in teams (`TeamRoster`) or on a track (`TrackPodium`) prints none yet.
-3. **Fallback order on the standings** per `screen-roles.md`: hide `.gain`
-   when the standings box is narrow, the ready mark last. Not done.
+3. **Fallback order on the console's standings** per `screen-roles.md`: the
+   wall hides `.gain` when its column is narrow; the console does not yet.
 4. **Player side**: `RoundBoard` (`features/player/round-board.tsx`) already
    is B's list; check it gets the same 1.5 s hold, and the case on
-   `your-placing` and on a `RoundBoard` row with a track and no teams
-   (section 0, still missing).
-5. **Docs**: `apps/game/DESIGN.md` — *The console held in a hand* (says the
-   console never page-scrolls; `screen-roles.md` now allows it), *Results
-   chips* and *The standings moving* (delay is `slow × 3` now) describe the
-   old chips. Update `e2e/choice-fits.spec.ts` expectations if the reveal
-   tests fail on the podium (run them: `npx playwright test -c e2e
-   choice-fits -g reveal`).
-6. `pnpm validate`, then delete this file.
-
-**Found on the way, not fixed**: with 24 seats instead of 8, every
-`[layout] … the question and its four choices never scroll` test in
-`choice-fits.spec.ts` (player, duel, host, room, atlas) **failed** — an
-answering screen overflows at a full table. Rule 4: fix it; start by
-re-running that copy (24 names in `table`, line ~240) and reading the faults.
-Likely the score track's rows on top of the question at 24 seats.
+   `your-placing` and on a `RoundBoard` row with a track and no teams.
+5. **Answering screens at 24 seats** (found last session, not fixed): with 24
+   names in `table` (`choice-fits.spec.ts` ~line 240) every `[layout] … the
+   question and its four choices never scroll` test failed. Likely the score
+   track's rows over the question. Make a 24-seat variant of those tests
+   rather than editing `table`, which the 8-seat reveals also read.
+6. **Docs**: `apps/game/DESIGN.md` — *The console held in a hand* (says the
+   console never page-scrolls; `screen-roles.md` allows it), *Results chips*
+   and *The standings moving* (delay is `slow × 3`) describe the old chips;
+   add the wall's two columns and the whole-chip tally.
+7. `pnpm validate`, then delete this file.
 
 The fixture's award points (3–6) are not in `POINT`s, so screens print
 "0 +0" and "+0" — a fixture artefact, not a bug.
