@@ -1,15 +1,42 @@
 # Between two rounds: ready starts the next one, the round's own result, a final board that agrees with its figures
 
-Three reports from Adrien about the reveal and what follows it. The server
-and core halves have landed; **what is left is screens, one session**: items
-1 and 3's screen notes below, then item 2. Run `pnpm validate` once at the end.
-UI: `impeccable` first, and the direction pages it produces reach Adrien as
-**one index link** (global rule 1). Check every screen **full**:
-`MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and without a wall.
-Verify muted. Strike each item as it lands, delete this file once none is left.
+Three reports from Adrien about the reveal and what follows it. Server, core
+and the screen halves of items 1 and 3 have landed (commit "Ask ready on every
+reveal, count its five seconds, and print the case a board ranks by"). **What
+is left, one session**: browser verification of that commit, then item 2. Run
+`pnpm validate` once at the end. UI: `impeccable` first. Check every screen
+**full**: `MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and
+without a wall. Verify muted. Delete this file once nothing is left.
 
-`handoffs/timer-beeps.md` depended on item 1's choice, now settled: a 5 s
-ready hold (`READY_HOLD_MS`) arming the existing reveal hold.
+## 0. First: see items 1 and 3 in a browser (NOT done yet)
+
+The commit is typechecked, linted and unit-tested, **never rendered**. Drive it
+muted (`docs/browser-driving.md`: raw host socket + seats on one page) and check:
+- a reveal with every seat ready: the bar runs 5 s, labelled "Tout le monde est
+  prêt" (`RevealHold` `label`, `round-progress.tsx/.sass` — a flex item before
+  the groove; check it does not squeeze the groove at phone width), on the
+  console, the wall and the player (`holdUntilTheCountdown` subtracts the
+  countdown from 5 s — the player's bar may be very short; judge it);
+- **Attendre** (`reveal-actions.tsx`, outlined, before Manche suivante, only
+  while `round.advancesAt !== null`) stops it, the next round waits;
+- ready asked on single-game rooms now (`asksReady`, `packages/core/src/round/asks-ready.ts`),
+  never on the slate nor the last counted round;
+- final board over a track: `Standings` gets `board` → `TrackPodium`/`TeamMove`
+  print cases; the winner line reads "gagne case N · X points"; check the final
+  board's height budget (`standingsRowsOf` now counts the team case row) at 24
+  seats, and `choice-fits.spec.ts`'s final-board-over-a-track viewports;
+- `Scoreboard` prints `Case N` before points on a row with a `board`
+  (`.case`, `scoreboard.sass` `li:has(> .case)`).
+
+Dropped from item 1, on purpose: the console line "… · on attend ton signal".
+The view does not say a hold was waived, and the stage grids have no row for a
+line; direction B's restructure (item 2) is where the ready line gets its own
+place, and `isHoldWaived` can join the round view then if the line is wanted.
+
+Also landed: a round stored by the Durable Object before the ready hold lacked
+`isHoldWaived`/`isReadyHold`/`settingHoldEndsAt` and **every view of that room
+failed `encodeChecked`** (seen live on `wrangler dev`): `withHoldFields`,
+`apps/server/src/domain/room/stored-round.ts`, applied in `room-object.ts`.
 
 ## Where things are
 
@@ -37,42 +64,10 @@ ready hold (`READY_HOLD_MS`) arming the existing reveal hold.
   before the reveal are client-side only (`useStandingBeforeTheReveal`,
   `room-stage.tsx:146`).
 
-## 1. Everyone ready for 5 s starts the next round
+## 1. Everyone ready for 5 s starts the next round — landed
 
-**Server done** (commit "Start the next round once every seat is ready…"):
-`settleReadyHold` in `round-service.ts`, run from `publishRoom`; the console's
-own seat is not awaited (it has its own press); `host.holdReveal` waives both
-holds for the reveal, and `host.controlClip` now waives them too; the view
-carries `round.isReadyHold`, `READY_HOLD_MS` is in `protocol/room.ts`;
-PROTOCOL_VERSION 65; tests in `reveal-hold.test.ts`. **Still owed, screens**:
-ask ready on every round but the last and never on the slate (one rule in
-`packages/core` for `room-stage.tsx:430` and `BackAtTheTable` in
-`player-round.tsx`, which disagree today on nothing but would drift); the bar's
-length is `READY_HOLD_MS` when `isReadyHold` (`room-stage.tsx` hold,
-`round-clock.tsx`); an **Attendre** press on the console sending
-`host.holdReveal`. The look is B's (item 2): the ready line under the hold bar, Attendre an
-outlined toggle left of the filled Manche suivante.
-
-> If everyone has been "ready" for 5 seconds, we start the next round without
-> the host clicking "next round"? And the host gets a "pause" button to block
-> that? And the host can still click "next round".
-
-**Do it.** It matches the table: the host is often playing too, and the room
-should not wait on one screen. Decided shape, open to Adrien's pushback:
-- Server-side, as one more way of arming the existing hold: when **every
-  connected seat** is ready (a disconnected seat does not block; a seated
-  host's own seat counts like any other), set `advancesAt = now + 5 s`, unless a
-  shorter hold is already running. A seat un-readying before it fires disarms
-  it. No new timer: the hold machinery and its deadline already exist.
-- The host's control is **not Pause**: Pause hides the round behind a paused
-  card, which is the wrong thing while the table reads the results. Give the
-  hold bar a **"Wait"** press that disarms this reveal's auto-start (the next
-  round goes back to manual for this reveal), beside the existing "next round",
-  which still works at any time. Pause keeps holding everything as it does today.
-- Every screen shows the 5 s as the existing `RevealHold` bar, so nobody is
-  surprised when the round starts.
-- Where ready is not asked (single-game rooms, `room-stage.tsx:430`), weigh
-  whether to ask it everywhere now that it does something.
+Server in "Start the next round once every seat is ready…", screens in the
+commit above. Remaining: verification (section 0).
 
 ## 2. The round's own result — direction B, chosen 2026-10-31
 
@@ -121,28 +116,6 @@ subtracts `countdownMs` from the hold — check it against a 5 s one. New string
 suite dans {s} s", "… · on attend ton signal", "Attendre", "Classement
 inchangé", "Sans réponse", "gagne case {case} · {points} points".
 
-## 3. The final board ranked 440 above 445
+## 3. The final board ranked 440 above 445 — landed
 
-**Core done**: `rankTrackPawns` ties on one case break by score. **Still owed,
-screens**: print the case wherever a board orders by case — `Scoreboard` and
-`TeamRoster` when a row carries a `board`, and `FinalBoard`, which does not pass
-`board` to `Standings`; the winner line says points while the track decided.
-
-> At the end, I had 440 points but appeared ahead of a player who had 445.
-
-Found by reading: every ranking goes through
-`packages/core/src/scoring/scoreboard.ts:32-37` (teams: `team/team-board.ts:28-30`),
-sorted **by track case first**, then score. `final-board.tsx:99` renders
-`Standings` without `board`, so `Scoreboard` prints only points
-(`scoreboard.tsx:173`) but orders by the hidden case; `winnersOf` is case-first
-too (`final-board.tsx:57`). Cases drift from points by design: per-round floor
-(`core/board/one-point-one-case.ts:13`, the speed bonus never makes a case),
-the track's length cap and catch-up bonus (`board-strategy.ts:95-99`), the
-`rank` strategy's 3/2/1 (`rank.ts:18`). Confirm the room had the track on.
-
-Decision: when the track is on, **the track decides** — it is the game the host
-chose, and catch-up and rank payouts exist precisely to make it differ from
-points. So every board ordered by case must **show the case** first, points
-beside it; nowhere may a list order on a figure it does not print. Also
-`rankTrackPawns` (`track-pawns.ts:47`) has no score tie-break: two pawns on one
-case keep roster order — tie-break on score. Test in `packages/core`.
+Core tie-break and screens landed. Remaining: verification (section 0).
