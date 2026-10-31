@@ -473,8 +473,10 @@ type. Any change to a round screen is checked against it.
 
 ### The console held in a hand
 
-Below the split the console's stages are held to the screen like the round in
-play: no page scroll, nothing behind a gesture. The page is a grid of header,
+Below the split the console's stages are drawn to fit the screen like the
+round in play, nothing behind a gesture. The page may still scroll
+(`screen-roles`), but what the room reads — the podium, the head of the
+standings, the next-round press — sits in the first viewport. The page is a grid of header,
 score track, stage and footer (`host-console-page.sass`); under 576px of
 height the header goes and the track keeps the menu's corner clear
 (`--menu-inset`). Lying down (`aspect-ratio >= 13/10`) the track runs across
@@ -854,12 +856,22 @@ The reflex buzzer waits paper side up and turns coral on the flip; a false start
 is a piece in the danger ink.
 
 ### Results chips
-Every reveal, the reflex finishing order and the slate's marking use one chip
-per player or answer: pawn, name, words, points. Right is filled (`--good` /
-`--good-soft`); wrong or silent is an empty dashed outline; the player's own is
-in a keyline. Standings beside them sit under a title and divide their own box
-(`_boxed-standings.sass`, shared by the reveal, the final board and the
-marking). The final board stands the winner's pawn oversize, the name sized by
+The reflex finishing order and the slate's marking use one chip per player or
+answer: pawn, name, words, points. Right is filled (`--good` / `--good-soft`);
+wrong or silent is an empty dashed outline; the player's own is in a keyline.
+**The reveal** shows the round's podium instead (`RoundPodium`): the top three
+by points with what each said, then *Found: N of M*, falling back on the
+stage's height to the first alone (*+ N others*) and then the count alone. The
+tally above it is cut in whole chips (`useWholeChips`), never scrolled. Under
+the next-round press, *Wait* and *End the game* share one quiet row of
+underlined presses. Standings beside them sit under a title and divide their
+own box (`_boxed-standings.sass`, shared by the reveal, the final board and the
+marking), each row printing the round's gain (`+X`) before its score, and a
+team's tray the same off a track — on one, `TeamMove` prints the cases walked.
+The gain is the first thing a narrow column gives up (under 16rem on the
+console, 22rem on the wall). The wall's list past twelve seats takes two
+columns lying down. On a track with seats and no teams the standings are the
+`TrackPodium`: three steps and a heap of chips, in one column that scrolls. The final board stands the winner's pawn oversize, the name sized by
 its longest run (`answerFitting`), *wins with N points* under it; a tie stands
 every winner's pawn at one shared size.
 
@@ -1180,8 +1192,9 @@ bounced. Durations:
   `base` × 3.5).
 - **Reveal** — `card-strike`, scale 1.06 to 1 on `slow`, on the card and never
   the screen holding it (`reveal-panel.sass`, `player-round.sass`).
-- **The standings moving** — after the strike (`slow` of delay), a seat that
-  changed places travels from its old row on `slow` × 1.5 (`standing-moves`,
+- **The standings moving** — after the strike (`slow` × 3 of delay, time to
+  read the podium first), a seat that changed places travels from its old row
+  on `slow` × 1.5 (`standing-moves`,
   `scoreboard.sass`); a climber passes over the rows it overtakes. The order
   before the reveal is the screen's memory (`useStandingBeforeTheReveal`), so
   a reload on a reveal draws the board in place. One column only. Team trays

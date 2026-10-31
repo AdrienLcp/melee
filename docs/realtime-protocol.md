@@ -589,7 +589,10 @@ Shared by all three:
   "phase": "playing",              // lobby | countdown | playing | buzzed | revealed | finished
   "players": [{ "id": "…", "nickname": "Alice", "score": 2, "isConnected": true }],
   "teams": [{ "id": "team-1", "colour": 1, "name": null,   // null → the dictionary's name
-              "score": 1500, "seatIds": ["…"] }],          // empty when the room plays seat by seat
+              "score": 1500, "seatIds": ["…"],
+              "gain": 300,                                  // what the round paid it; 0 outside a reveal
+              "board": null }],                             // { case, move } on a track
+                                                            // teams: empty when the room plays seat by seat
   "settings": { "roundCount": 10,          // null → until the host ends it
                 "countdownMs": 3000,
                 "mode": { "kind": "typed" },   // buzzer arm adds answerWindowMs
