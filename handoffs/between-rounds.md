@@ -1,8 +1,8 @@
 # Between two rounds: ready starts the next one, the round's own result, a final board that agrees with its figures
 
 Three reports from Adrien about the reveal and what follows it. Items 1 and 3
-have landed, and item 2's first slice. **What is left, one session**: the
-list under item 2. Run
+have landed, and most of item 2. **What is left, one session**: the list
+under item 2. Run
 `pnpm validate` once at the end. UI: `impeccable` first. Check every screen
 **full**: `MAX_PLAYERS_PER_ROOM` seats, long names, phone width, with and
 without a wall. Verify muted. Delete this file once nothing is left.
@@ -118,31 +118,52 @@ the reveal of a full table` (24 seats, every wall viewport, rows against the
 answer). The base round fixture lacked `isReadyHold`, so every `playing`
 screen of `choice-fits` had been failing to decode — fixed, 49 of 51 green.
 
+**Landed 2026-10-31 (this session):**
+- "Put the reveal's hold and the way out on one quiet row…": `Attendre` is an
+  underlined press in `.quiet-actions` beside `Terminer la partie`, under the
+  next round (`reveal-actions.tsx`, `host-console-page.sass`) — fixed the
+  reflex finishing order at 320/360. The upright wall's final board bounds
+  `.seat-podium` by the stage's `cqh` and packs the trays (`wall-page.sass`).
+  `choice-fits` 53/53 green after it.
+- "Print what the round paid each team and walked each pawn…": `Team.gain`
+  on the wire (protocol `team.ts`, `toTeamViews`, nought outside `revealed`,
+  tested in `teams.test.ts` and seen red); `TeamRoster` `showsGains` prints
+  `+X` before the score off a track; `TrackPodium` prints `+N` cases (a line
+  of its own on a step). Also fixed: the host's players panel on a seats'
+  track put the remove press on an empty second row (`scoreboard.sass`).
+  Seen at 1280×800 and 390×844 via a throwaway probe spec (deleted).
+
 **Left, in order:**
-1. **Two `choice-fits` failures, now visible** (rule 4, fix them):
-   - `[layout] room, reflex, the finishing order` at 320×568 and 360×640: the
-     row `Anne-Charlotte` + "parti trop tôt" spills its list (`spills`).
-   - `[layout] wall, board` at 768×1024: a team tray `li.team` runs to 1049px
-     (`3 Bleus 0 Case 7 sur 30 …`) — the final board of teams on a track on
-     an upright tablet wall.
-   Run: `npx playwright test -c e2e choice-fits -g "reflex, the finishing|wall, board"`.
-2. **Gain on teams and the track**: `gains` reaches `Scoreboard` only; a room
-   in teams (`TeamRoster`) or on a track (`TrackPodium`) prints none yet.
-3. **Fallback order on the console's standings** per `screen-roles.md`: the
-   wall hides `.gain` when its column is narrow; the console does not yet.
-4. **Player side**: `RoundBoard` (`features/player/round-board.tsx`) already
-   is B's list; check it gets the same 1.5 s hold, and the case on
-   `your-placing` and on a `RoundBoard` row with a track and no teams.
-5. **Answering screens at 24 seats** (found last session, not fixed): with 24
-   names in `table` (`choice-fits.spec.ts` ~line 240) every `[layout] … the
-   question and its four choices never scroll` test failed. Likely the score
-   track's rows over the question. Make a 24-seat variant of those tests
-   rather than editing `table`, which the 8-seat reveals also read.
-6. **Docs**: `apps/game/DESIGN.md` — *The console held in a hand* (says the
+1. **Track podium clipped sideways at 24 seats** (seen, not fixed): console
+   1280×800 with the panel open, seats on a track, no teams — the third step
+   and the rest chips run past the right edge of the standings column
+   (`track-podium.sass`; the podium "scrolls" per its comment, but nothing
+   says so on screen). Decide: shrink steps to the column or wrap the chips.
+2. **Fallback order on the console's standings** per `screen-roles.md`: the
+   wall hides `.gain` when its column is narrow; the console does not yet —
+   now the tray's `.gain` too.
+3. **Player side**: `RoundBoard` (`features/player/round-board.tsx`) already
+   is B's list; check it gets the same 1.5 s hold, the case on `your-placing`
+   and on a `RoundBoard` row with a track and no teams, and whether the
+   player's team trays should print `team.gain`.
+4. **Answering screens at 24 seats** (not fixed): with 24 names in `table`
+   (`choice-fits.spec.ts` ~line 240) every `[layout] … the question and its
+   four choices never scroll` test failed. Likely the score track's rows over
+   the question. Make a 24-seat variant rather than editing `table`.
+5. **Docs**: `docs/realtime-protocol.md` if it lists a team's fields (add
+   `gain`); `apps/game/DESIGN.md` — *The console held in a hand* (says the
    console never page-scrolls; `screen-roles.md` allows it), *Results chips*
    and *The standings moving* (delay is `slow × 3`) describe the old chips;
-   add the wall's two columns and the whole-chip tally.
-7. `pnpm validate`, then delete this file.
+   add the wall's two columns, the whole-chip tally, the quiet row under the
+   next round, and the tray gain.
+6. `pnpm validate`, then delete this file.
+
+Probe trick that worked: copy `choice-fits.spec.ts` to `e2e/tmp-probe.spec.ts`,
+append a test building a view from its helpers, screenshot into the
+scratchpad. Validate a hand-built view with
+`hostRoomViewSchema.safeParse(withStampedRound(view))` — an invalid one just
+leaves the console on *Chargement…* with nothing logged. A track view's first
+paint takes several seconds (lazy chunk): wait for `.stage`, not a timeout.
 
 The fixture's award points (3–6) are not in `POINT`s, so screens print
 "0 +0" and "+0" — a fixture artefact, not a bug.
