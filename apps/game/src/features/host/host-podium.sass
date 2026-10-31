@@ -82,7 +82,7 @@
           // this one its grid, a size container, was handed `auto`, which is
           // nothing.
           > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'])
-            grid-template-rows: minmax(0, 1fr) auto
+            grid-template-rows: minmax(0, 1fr) auto auto
 
             &[data-game='quiz'] > .head
               align-items: stretch
@@ -92,12 +92,9 @@
                 flex-direction: column
                 justify-content: center
 
-            > :is(.said, .scorers)
-              container-type: normal
-              max-block-size: 40cqh
-
-              li
-                font-size: var(--text-l)
+            > .tally
+              max-block-size: 30cqh
+              overflow-y: auto
 
           // The map's floor is a share of the window, which on a card capped
           // at 34rem pushed the outcome under it and the round's index off

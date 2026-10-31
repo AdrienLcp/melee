@@ -27,7 +27,7 @@
     // whom instead of re-reading a board that arrived re-ranked. A climber
     // passes over the rows it overtakes.
     li[data-moved]
-      animation: standing-moves calc(var(--transition-slow, 0s) * 1.5) var(--ease-out) var(--transition-slow, 0s) backwards
+      animation: standing-moves calc(var(--transition-slow, 0s) * 1.5) var(--ease-out) calc(var(--transition-slow, 0s) * 3) backwards
       position: relative
 
     li[data-moved='up']
@@ -44,6 +44,21 @@
 
     &.ranked li:has(> .case)
       grid-template-columns: 1.3em 1fr auto auto
+
+    &.ranked.with-gains li
+      grid-template-columns: 1.3em 1fr auto auto
+
+    &.ranked.with-gains li:has(> .case)
+      grid-template-columns: 1.3em 1fr auto auto auto
+
+    // What the round paid, quieter than the score it was added to.
+    .gain
+      @include typography.numeric
+      @include text-box.trimmed-figure
+
+      color: var(--ink-muted)
+      min-width: 2.5em
+      text-align: end
 
     .rank
       @include typography.numeric

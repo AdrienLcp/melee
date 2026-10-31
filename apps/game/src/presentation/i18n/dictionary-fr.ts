@@ -1588,11 +1588,15 @@ export const FR_DICTIONARY = defineDictionary({
     award: '{points:number}',
     awardWithSpeed: '{answer:number} +{speed:number}',
     entryNumbered: '{name} {number:number}',
+    found: 'Trouvé : {found:number} sur {total:number}',
     index: 'Manche {index:number} sur {total:number}',
     indexOpen: 'Manche {index:number}',
     label: 'Manche',
     missed: 'Rien cette fois.',
     nobody: 'Personne n’a trouvé',
+    othersScored: defineTranslation('{count:plural}', {
+      plural: { count: { one: '+ {?} autre', other: '+ {?} autres' } }
+    }),
     scored: '+{points:number}',
     speedBonus: 'dont {points:number} pour la vitesse',
     speedHalf: '+{points:number}'

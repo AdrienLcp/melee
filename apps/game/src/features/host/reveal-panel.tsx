@@ -58,34 +58,11 @@ type RevealPanelProps = {
   round: RoundView
 }
 
-/** Past this a list deals into a second column, and past twelve a third. */
-const ROWS_PER_SINGLE_COLUMN = 4
-const ROWS_PER_DOUBLE_COLUMN = 12
-
 /**
  * Past this a Petit Bac grid takes the whole width and the standings go under
  * it: ten columns beside them broke a seven-letter word on a 1280px wall.
  */
 const MOST_CATEGORIES_BESIDE_STANDINGS = 7
-
-/**
- * How a list of `count` rows is dealt, published for the stylesheet: a row's
- * type is the height of its column divided by the rows in it, and only the
- * component knows how many rows there are.
- */
-const dealtRows = (count: number): React.CSSProperties => {
-  const columns =
-    count <= ROWS_PER_SINGLE_COLUMN
-      ? 1
-      : count <= ROWS_PER_DOUBLE_COLUMN
-        ? 2
-        : 3
-
-  return {
-    '--outcome-columns': columns,
-    '--outcome-rows': Math.ceil(count / columns)
-  }
-}
 
 type RevealedAnswer = RoundView['revealedAnswers'][number]
 
@@ -314,7 +291,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
         </div>
 
         {round.awards.some((award) => award.points > 0) && (
-          <Scorers players={players} round={round} />
+          <RoundPodium players={players} round={round} />
         )}
       </section>
     )
@@ -414,7 +391,6 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
 const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   const translate = useTranslate()
   const answerWords = useAnswerWords(round)
-  const scorers = round.awards.filter((award) => award.points > 0)
   const answers = revealedInOrder(round).map((answer) => ({
     ...answer,
     said: answerWords(answer)
@@ -453,43 +429,7 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   if (answers.length > 0) {
     return (
       <>
-        <ul className='said' style={dealtRows(answers.length)}>
-          {answers.map((answer) => {
-            const paid = scorers.find(
-              (award) => award.playerId === answer.playerId
-            )
-
-            return (
-              <li
-                className={answer.isCorrect ? 'right' : 'wrong'}
-                key={answer.playerId}
-              >
-                <Pawn seat={seatOf(answer.playerId)} />
-                <span className='nickname'>{nameOf(answer.playerId)}</span>
-                <span className='words'>
-                  {wordsOf(answer.playerId, answer.said)}
-                </span>
-                {/* A round nobody took spends nothing on a column of blanks; one
-                  somebody took keeps the box on every row, or the answers above
-                  and below a miss end on two different right edges. */}
-                {scorers.length > 0 && (
-                  <span className='points'>
-                    {paid === undefined
-                      ? null
-                      : paid.speedBonus > 0
-                        ? translate('round.awardWithSpeed', {
-                            answer: shownPoints(paid.points - paid.speedBonus),
-                            speed: shownPoints(paid.speedBonus)
-                          })
-                        : translate('round.award', {
-                            points: shownPoints(paid.points)
-                          })}
-                  </span>
-                )}
-              </li>
-            )
-          })}
-        </ul>
+        <RoundPodium players={players} round={round} wordsOf={wordsOf} />
         <ul className='tally'>
           {saidTogether(answers).map((group) => (
             <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
@@ -512,16 +452,35 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     )
   }
 
-  return <Scorers players={players} round={round} />
+  return <RoundPodium players={players} round={round} />
 }
 
-/** Who the round paid, by name, or that it paid nobody. */
-const Scorers: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
+type RoundPodiumProps = Omit<RevealPanelProps, 'onStrike'> & {
+  /** Draws a seat's own answer beside its name; omitted where nobody's words were the answer. */
+  wordsOf?: (playerId: string, said: string) => React.ReactNode
+}
+
+const PODIUM_PLACES = 3
+
+/**
+ * The round's podium: the seats it paid the most, each with what it said, over
+ * how many of those it opened on scored. The standings beside it carry every
+ * other seat's gain, so it never grows past three — on a short stage it keeps
+ * the first and counts the rest, then keeps the count alone.
+ */
+const RoundPodium: React.FC<RoundPodiumProps> = ({
   players,
-  round
+  round,
+  wordsOf
 }) => {
   const translate = useTranslate()
-  const scorers = round.awards.filter((award) => award.points > 0)
+  const answerWords = useAnswerWords(round)
+  const scorers = round.awards
+    .filter((award) => award.points > 0)
+    .toSorted((left, right) => right.points - left.points)
+  const podium = scorers.slice(0, PODIUM_PLACES)
+  const answers = revealedInOrder(round)
+  const stampedCount = round.openedWithPlayerIds?.length ?? players.length
 
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
@@ -530,23 +489,58 @@ const Scorers: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
     players.findIndex((player) => player.id === playerId)
 
   // A table answering aloud holds no seat, and its scores are the teams'.
+  if (players.length === 0) {
+    return null
+  }
+
   if (scorers.length === 0) {
-    return players.length === 0 ? null : (
-      <p className='nobody'>{translate('round.nobody')}</p>
-    )
+    return <p className='nobody'>{translate('round.nobody')}</p>
   }
 
   return (
-    <ul className='scorers' style={dealtRows(scorers.length)}>
-      {scorers.map((award) => (
-        <li key={award.playerId}>
-          <Pawn seat={seatOf(award.playerId)} />
-          <span className='nickname'>{nameOf(award.playerId)}</span>
-          <span className='points'>
-            {translate('round.scored', { points: shownPoints(award.points) })}
+    <div className='round-podium'>
+      <ol className='podium'>
+        {podium.map((award) => {
+          const answer = answers.find(
+            (said) => said.playerId === award.playerId
+          )
+
+          return (
+            <li key={award.playerId}>
+              <Pawn seat={seatOf(award.playerId)} />
+              <span className='nickname'>{nameOf(award.playerId)}</span>
+              {wordsOf !== undefined && answer !== undefined && (
+                <span className='words'>
+                  {wordsOf(award.playerId, answerWords(answer))}
+                </span>
+              )}
+              <span className='points'>
+                {award.speedBonus > 0
+                  ? translate('round.awardWithSpeed', {
+                      answer: shownPoints(award.points - award.speedBonus),
+                      speed: shownPoints(award.speedBonus)
+                    })
+                  : translate('round.scored', {
+                      points: shownPoints(award.points)
+                    })}
+              </span>
+            </li>
+          )
+        })}
+      </ol>
+      <p className='found'>
+        {scorers.length > 1 && (
+          <span className='others'>
+            {translate('round.othersScored', { count: scorers.length - 1 })}
           </span>
-        </li>
-      ))}
-    </ul>
+        )}
+        <span>
+          {translate('round.found', {
+            found: scorers.length,
+            total: stampedCount
+          })}
+        </span>
+      </p>
+    </div>
   )
 }

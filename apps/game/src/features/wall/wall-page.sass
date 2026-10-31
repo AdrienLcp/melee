@@ -68,13 +68,7 @@
     > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='petitbac'])
       @include layout.wide
         align-content: center
-        grid-template-rows: auto minmax(0, auto)
-
-        > :is(.said, .scorers)
-          container-type: normal
-
-          li
-            font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), 2rem)
+        grid-template-rows: auto auto minmax(0, auto)
 
     // The race is drawn as large as the width it stands in — a column beside
     // the answer lying down, the whole field standing up — and a ruled row no
@@ -151,12 +145,6 @@
             font-size: var(--text-s)
             min-height: 0
 
-          // The answer keeps the narrower column, so what the table said is
-          // one chip a row rather than two cut to their first letters.
-          > .reveal-panel > :is(.said, .scorers)
-            grid-auto-flow: row
-            grid-template-columns: minmax(0, 1fr)
-            grid-template-rows: none
 
     // Standing up, a wall is one column across the width the track leaves:
     // the answer over the race, the winner over the board, centred together.

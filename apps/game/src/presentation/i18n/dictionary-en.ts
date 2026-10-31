@@ -1665,6 +1665,8 @@ export const EN_DICTIONARY = defineDictionary({
     awardWithSpeed: '{answer:number} +{speed:number}',
     /** One entry of an evening's line-up nothing else tells from another of its game. */
     entryNumbered: '{name} {number:number}',
+    /** The round's podium tally, under the three it paid the most: how many of those it was played on scored. */
+    found: 'Got it: {found:number} of {total:number}',
     index: 'Round {index:number} of {total:number}',
     indexOpen: 'Round {index:number}',
     /** The word printed before the round's figures, which alone read as a score. */
@@ -1678,6 +1680,10 @@ export const EN_DICTIONARY = defineDictionary({
      */
     missed: 'Nothing this time.',
     nobody: 'Nobody got it',
+    /** The round's podium cut to its first: how many more it paid. */
+    othersScored: defineTranslation('{count:plural}', {
+      plural: { count: { other: '+ {?} more' } }
+    }),
     scored: '+{points:number}',
     /**
      * Why two players who both got it right did not get the same. The clock

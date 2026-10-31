@@ -27,6 +27,11 @@ type ScoreboardProps = {
   /** For a caller that lays the rows out differently — the final board does. */
   className?: string
   /**
+   * What the round just paid each seat, in board points, printed beside its
+   * score; a seat it paid nothing keeps an empty cell. Omitted outside a reveal.
+   */
+  gains?: ReadonlyMap<PlayerId, number>
+  /**
    * The board is the game's result rather than who is in the room, which is
    * two things at once: it publishes how tall it is, so a stage with a height
    * budget can divide by it, and it deals into two columns past eight players
@@ -80,6 +85,7 @@ type ScoreboardProps = {
 
 export const Scoreboard: React.FC<ScoreboardProps> = ({
   className,
+  gains,
   hasPawns,
   isResult,
   label,
@@ -99,6 +105,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
       className={[
         'scoreboard',
         isRanked && 'ranked',
+        isRanked && gains !== undefined && 'with-gains',
         isResult === true &&
           players.length > PLAYERS_PER_COLUMN &&
           'in-columns',
@@ -167,6 +174,14 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                 <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
               )}
             </span>
+            {isRanked && gains !== undefined && (
+              <span className='gain'>
+                {(gains.get(player.id) ?? 0) > 0 &&
+                  translate('round.scored', {
+                    points: shownPoints(gains.get(player.id) ?? 0)
+                  })}
+              </span>
+            )}
             {isRanked && player.board !== null && (
               <span className='case'>
                 {translate('board.at', { case: player.board.case })}

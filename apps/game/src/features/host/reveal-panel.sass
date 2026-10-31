@@ -176,41 +176,37 @@
       flex: 1 1 auto
       padding: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l)) clamp(var(--space-s), calc(var(--stage-unit) * 3.4), var(--space-l))
 
-    // What the table said, one chip per player, dealt down then across.
-    // Filled for a right answer, an empty outline for a wrong one — the shape
-    // tells them apart as much as the ink, and the points only ever stand on
-    // the filled ones.
-    .said,
-    .scorers
-      display: grid
-      gap: var(--space-2xs) var(--space-s)
-      grid-auto-flow: column
-      grid-template-columns: repeat(var(--outcome-columns, 1), minmax(0, 1fr))
-      grid-template-rows: repeat(var(--outcome-rows, 1), auto)
-      list-style: none
+    // The round's podium: the seats it paid the most, a chip each, the first
+    // the largest, over the count of who scored. It answers the stage's height
+    // rather than its own, so a short stage keeps the first and counts the rest.
+    .round-podium
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      min-width: 0
 
-      @include layout.narrow
-        grid-auto-flow: row
-        grid-template-columns: minmax(0, 1fr)
-        grid-template-rows: none
+    .podium
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      list-style: none
 
       li
         @include typography.title
 
         align-items: center
-        background: var(--track-a)
+        background: var(--good-soft)
         border-radius: var(--radius-s)
-        box-shadow: 0 2px 0 var(--chipboard)
-        color: var(--board-ink)
+        box-shadow: 0 2px 0 var(--good-edge)
+        color: var(--tile-ink)
         display: flex
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 3), 1.75rem)
         gap: 0.5em
         min-width: 0
         padding: 0.22em 0.6em
 
-        &.wrong
-          background: transparent
-          box-shadow: inset 0 0 0 var(--stroke-thin) var(--rule)
-          color: var(--ink-muted)
+        &:first-child
+          font-size: clamp(var(--text-m), calc(var(--stage-unit) * 4.2), 2.5rem)
 
       // A name is atomic where a title is not — half a nickname names nobody,
       // half a title still reads — so the name is sized on its own text and
@@ -235,14 +231,41 @@
         text-overflow: ellipsis
         white-space: nowrap
 
-      // The only column read *down*, so it holds one width whatever it
-      // carries: the widest form is four figures (`3 +3`).
       .points
         @include typography.numeric
 
         flex: none
-        min-width: 2.66em
+        margin-inline-start: auto
         text-align: end
+
+      .words + .points
+        margin-inline-start: 0
+
+    .found
+      @include typography.caption-strong
+
+      color: var(--ink-muted)
+      display: flex
+      flex-wrap: wrap
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.2), var(--text-m))
+      gap: 0 0.6em
+
+      .others
+        display: none
+
+    @container (height < 20rem)
+      .podium li:not(:first-child)
+        display: none
+
+      .found .others
+        display: inline
+
+    @container (height < 12rem)
+      .podium
+        display: none
+
+      .found .others
+        display: none
 
     // A moved stick printed on a slip of paper, the way every match is laid.
     .words:has(> .matchstick-row)
@@ -257,7 +280,7 @@
       padding: 0.12em 0.3em
       width: auto
 
-    .said .words > .matchstick-row
+    .podium .words > .matchstick-row
       height: 1.85em
 
     // A rebuilt colour on a chip of its own, the way the colour was shown.
@@ -271,28 +294,19 @@
     &[data-game='swatch'] .head .swatch-shown
       block-size: calc(var(--stage-unit) * 48)
 
-    .scorers li
-      justify-content: space-between
-
-      .nickname
-        flex: 1 1 auto
-
     .nobody
       @include typography.title
 
       color: var(--ink-muted)
 
-    // Below the split, one chip per distinct answer in place of one per
-    // player: the room reads who said the same thing, and the score track
-    // above already carries what each of them is owed.
+    // One chip per distinct answer: the room reads who said the same thing,
+    // and the standings beside it carry what each of them is owed.
     .tally
+      align-content: start
       display: flex
       flex-wrap: wrap
       gap: var(--space-2xs) var(--space-xs)
       list-style: none
-
-      @include layout.wide
-        display: none
 
       li
         @include typography.title
@@ -392,17 +406,13 @@
       flex: 1 1 auto
       padding: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
 
-    .said
-      @include layout.narrow
-        display: none
-
     // A game whose question the room owns reveals nothing, so the scoreline is
     // the whole panel rather than the line under an answer.
     &.bare
       justify-content: center
 
       .nobody,
-      .scorers li
+      .podium li
         @include typography.billboard
 
 
@@ -413,7 +423,7 @@
   .stage:is(.revealed, .counting-in) > .reveal-panel
     @include layout.wide
       display: grid
-      grid-template-rows: auto minmax(0, 1fr)
+      grid-template-rows: auto auto minmax(0, 1fr)
       min-height: 0
 
       .cover
@@ -447,31 +457,17 @@
       // The map is the reveal here, so it takes the room and the list keeps
       // what its rows need, its chips at a size of their own.
       &[data-game='atlas']
-        grid-template-rows: minmax(0, 1fr) auto
+        grid-template-rows: minmax(0, 1fr) auto auto
 
         // The map's own floor would push it over the list in a short row.
         .world-map
           min-block-size: 0
 
-      // Doubled up to outrank the chip sizing below, which divides a height
-      // this list no longer has.
-      &[data-game='atlas']:not(.bare) > .said
-        container-type: normal
-        max-block-size: 40cqh
-
-        li
-          font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.6), 1.75rem)
-
-      &:not(.bare) > .said,
-      &:not(.bare) > .scorers
-        align-content: start
-        container-type: size
+      &:not(.bare) > .tally
         overflow-y: auto
 
-        // A chip is its pawn's 1.15em, which stands taller than the line, and
-        // 0.44em of padding, with the gap between rows on top.
-        li
-          font-size: clamp(var(--text-xs), calc((100cqh - (var(--outcome-rows, 1) - 1) * var(--space-2xs)) / var(--outcome-rows, 1) / 1.7), 1.75rem)
+      &[data-game='atlas']:not(.bare) > .tally
+        max-block-size: 30cqh
 
       // A track of its own width: an `auto` one is sized to its content and
       // centred, and a size container has none, so the board drew 0px wide.

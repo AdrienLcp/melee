@@ -795,7 +795,7 @@ for (const reveal of REVEALS) {
     })
     await page.setViewportSize({ height: 720, width: 1280 })
     await page.goto(`/host/${ROOM_CODE}`)
-    await expect(page.locator('.reveal-panel .said li')).toHaveCount(8)
+    await expect(page.locator('.reveal-panel .round-podium')).toBeVisible()
 
     const faults: string[] = []
 

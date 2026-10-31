@@ -470,6 +470,11 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           {controls?.isRosterBeside !== true && (
             <Standings
               board={view.settings.board}
+              gains={
+                new Map(
+                  round.awards.map((award) => [award.playerId, award.points])
+                )
+              }
               marksReady={isReadyAsked}
               onAdjust={
                 controls === null

@@ -23,6 +23,8 @@ type StandingsProps = {
    * trays carry their score alone.
    */
   board?: BoardSettings
+  /** What the round just paid each seat, printed on its row; omitted outside a reveal. */
+  gains?: ReadonlyMap<PlayerId, number>
   /** Checks each seat back at the table, between two rounds of a line-up. */
   marksReady?: boolean
   /** Walks a team's pawn a case either way; absent on a screen that moves nothing. */
@@ -68,6 +70,7 @@ export const standingsRowsOf = ({
  */
 export const Standings: React.FC<StandingsProps> = ({
   board,
+  gains,
   marksReady,
   onAdjust,
   players,
@@ -120,6 +123,7 @@ export const Standings: React.FC<StandingsProps> = ({
         <TrackPodium marksReady={marksReady} pawns={seatPawns} youId={youId} />
       ) : (
         <Scoreboard
+          gains={gains}
           hasPawns
           marksReady={marksReady}
           players={players}
