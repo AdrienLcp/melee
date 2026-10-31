@@ -85,6 +85,9 @@ other dev servers on the machine.
    whether a screen works, there is no component runner here, and this one plays
    music at a stored volume defaulting to 80%. Set `melee:volume` to `'0'` in
    an init script before the first navigation — see `docs/browser-driving.md`.
+   A screen that lists seats, answers or a board is checked **full**:
+   `MAX_PLAYERS_PER_ROOM` seats with long names, at phone width — two seats
+   never show an overflow.
 
 ## Rules (auto-loaded from `.claude/rules/`)
 
