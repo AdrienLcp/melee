@@ -444,6 +444,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     colour_still_shown:
       'Attends que la couleur disparaisse avant d’envoyer la tienne.',
+    colour_taken:
+      'Une autre équipe vient de prendre cette couleur — choisis-en une autre.',
     false_start: 'Trop tôt. Attends que ça change.',
     host_already_connected: 'Quelqu’un tient déjà cette table.',
     host_away: 'L’hôte a décroché. La manche attend son retour.',
@@ -1762,7 +1764,11 @@ export const FR_DICTIONARY = defineDictionary({
       pawn5: 'Violets',
       pawn6: 'Orange',
       pawn7: 'Roses',
-      pawn8: 'Turquoise'
+      pawn8: 'Turquoise',
+      pawn9: 'Anis',
+      pawn10: 'Marron',
+      pawn11: 'Fuchsia',
+      pawn12: 'Ciel'
     },
     count: 'Combien d’équipes',
     draw: 'Tirer les équipes',
@@ -1798,6 +1804,12 @@ export const FR_DICTIONARY = defineDictionary({
     needsSeats:
       'Les équipes se forment à partir de {count:number} joueurs — d’ici là, chacun joue pour soi.',
     pick: 'Choisis ton équipe',
+    recolour: {
+      action: 'Changer la couleur des {team}',
+      label: 'Couleur du pion',
+      taken: '{colour}, déjà pris',
+      takenBy: '{colour}, pris par les {team}'
+    },
     redraw: 'Nouveau tirage',
     rename: {
       action: 'Renommer les {team}',

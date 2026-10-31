@@ -43,6 +43,7 @@ import {
   fitTeamsToSettings,
   moveSeat,
   placeArrivingSeat,
+  recolourTeam,
   renameTeam,
   type TeamRejection
 } from '@/domain/room/team-service'
@@ -148,11 +149,13 @@ const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.leave',
   'player.rename',
   'player.chooseTeam',
+  'player.recolourTeam',
   'player.ready',
   'host.pause',
   'host.holdReveal',
   'host.adjustScore',
   'host.renameTeam',
+  'host.recolourTeam',
   'host.moveSeat',
   'host.drawTeams',
   'host.updateSettings',
@@ -523,6 +526,10 @@ const dispatch = ({
       pickTeam(message.teamId, active, outbound, engine)
       break
     }
+    case 'player.recolourTeam': {
+      recolourOwnTeam(message.colour, active, outbound, engine)
+      break
+    }
     case 'player.ready': {
       sayReady(message.isReady, active, outbound, engine)
       break
@@ -708,6 +715,19 @@ const dispatch = ({
         outbound,
         result: renameTeam({
           name: message.name,
+          now,
+          room,
+          teamId: message.teamId
+        })
+      })
+      break
+    }
+    case 'host.recolourTeam': {
+      answerTeamFrame({
+        engine,
+        outbound,
+        result: recolourTeam({
+          colour: message.colour,
           now,
           room,
           teamId: message.teamId
@@ -1041,6 +1061,39 @@ const answerTeamFrame = ({
   }
 
   publishRoom(engine)
+}
+
+const recolourOwnTeam = (
+  colour: number,
+  active: Connection,
+  outbound: Outbound,
+  engine: RoomEngine
+): void => {
+  const teamId =
+    active.playerId === null
+      ? null
+      : (engine.room.players.get(active.playerId)?.teamId ?? null)
+
+  if (teamId === null) {
+    sendError(outbound, {
+      code: 'teams_locked',
+      fatal: false,
+      message: 'Only a seat in a team repaints it'
+    })
+
+    return
+  }
+
+  answerTeamFrame({
+    engine,
+    outbound,
+    result: recolourTeam({
+      colour,
+      now: engine.now(),
+      room: engine.room,
+      teamId
+    })
+  })
 }
 
 const pickTeam = (

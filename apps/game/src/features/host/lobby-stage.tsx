@@ -13,6 +13,7 @@ import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { TeamColourPress } from '@/presentation/components/team-colour-press'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { TrackStrip } from '@/presentation/components/track-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -231,16 +232,29 @@ const LobbyTeams: React.FC<{
           controls === null
             ? undefined
             : (team) => (
-                <RenameTeam
-                  onRename={(name) => {
-                    controls.send({
-                      name,
-                      teamId: team.id,
-                      type: 'host.renameTeam'
-                    })
-                  }}
-                  team={team}
-                />
+                <>
+                  <TeamColourPress
+                    onRecolour={(colour) => {
+                      controls.send({
+                        colour,
+                        teamId: team.id,
+                        type: 'host.recolourTeam'
+                      })
+                    }}
+                    team={team}
+                    teams={view.teams}
+                  />
+                  <RenameTeam
+                    onRename={(name) => {
+                      controls.send({
+                        name,
+                        teamId: team.id,
+                        type: 'host.renameTeam'
+                      })
+                    }}
+                    team={team}
+                  />
+                </>
               )
         }
         teams={view.teams}

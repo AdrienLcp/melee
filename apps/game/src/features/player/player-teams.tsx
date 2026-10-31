@@ -1,7 +1,7 @@
 import type React from 'react'
 
+import type { PlayerClientMessage } from '@melee/protocol/client-message'
 import type { PlayerRoomView } from '@melee/protocol/room'
-import type { TeamId } from '@melee/protocol/team'
 
 import {
   buildTeamBoard,
@@ -13,6 +13,7 @@ import {
 import { Button } from '@/presentation/components/button'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
+import { TeamColourPress } from '@/presentation/components/team-colour-press'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -22,9 +23,15 @@ import { useTeamName } from '@/presentation/i18n/use-team-name'
 import './player-teams.sass'
 import { shownPoints } from '@/helpers/shown-points'
 
+/** What a seat may say about its own team: which one it sits in, and its colour. */
+export type TeamSeatMessage = Extract<
+  PlayerClientMessage,
+  { type: 'player.chooseTeam' | 'player.recolourTeam' }
+>
+
 type LobbyTeamsProps = {
   /** `false` from the socket means the frame was never written. */
-  onChooseTeam: (teamId: TeamId) => boolean
+  onTeam: (message: TeamSeatMessage) => boolean
   view: PlayerRoomView
 }
 
@@ -32,12 +39,10 @@ type LobbyTeamsProps = {
  * The table as teams, on a player's own screen. Under `chosen` every other
  * team's head carries one press to join it, and switching is the same press;
  * under `drawn` the trays are read, and the player's own is the one in a
- * keyline.
+ * keyline. Either way the player's own team carries the press that repaints
+ * its pawn.
  */
-export const LobbyTeams: React.FC<LobbyTeamsProps> = ({
-  onChooseTeam,
-  view
-}) => {
+export const LobbyTeams: React.FC<LobbyTeamsProps> = ({ onTeam, view }) => {
   const translate = useTranslate()
   const isChosen = view.settings.teams.kind === 'chosen'
   const yours = teamOfSeat({ playerId: view.youId, teams: view.teams })
@@ -50,20 +55,27 @@ export const LobbyTeams: React.FC<LobbyTeamsProps> = ({
       <TeamRoster
         label={translate('team.title')}
         players={view.players}
-        teamAction={
-          isChosen
-            ? (team) =>
-                team.id === yours?.id ? null : (
-                  <Button
-                    className='join'
-                    onPress={() => onChooseTeam(team.id)}
-                    size='small'
-                    variant={yours === null ? 'filled' : 'outlined'}
-                  >
-                    {translate('team.join')}
-                  </Button>
-                )
-            : undefined
+        teamAction={(team) =>
+          team.id === yours?.id ? (
+            <TeamColourPress
+              onRecolour={(colour) =>
+                onTeam({ colour, type: 'player.recolourTeam' })
+              }
+              team={team}
+              teams={view.teams}
+            />
+          ) : isChosen ? (
+            <Button
+              className='join'
+              onPress={() =>
+                onTeam({ teamId: team.id, type: 'player.chooseTeam' })
+              }
+              size='small'
+              variant={yours === null ? 'filled' : 'outlined'}
+            >
+              {translate('team.join')}
+            </Button>
+          ) : null
         }
         teams={view.teams}
         unassignedLabel={translate(

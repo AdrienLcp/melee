@@ -232,7 +232,11 @@ const TEAM_COLOUR_KEYS = [
   'team.colour.pawn5',
   'team.colour.pawn6',
   'team.colour.pawn7',
-  'team.colour.pawn8'
+  'team.colour.pawn8',
+  'team.colour.pawn9',
+  'team.colour.pawn10',
+  'team.colour.pawn11',
+  'team.colour.pawn12'
 ] as const satisfies readonly PlainTranslationKey[]
 
 /** What a team is called before the host names it, from its 1-based pawn number. */

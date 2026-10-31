@@ -1,17 +1,17 @@
 import type React from 'react'
 
+import { seatPawnColourOf } from '@melee/core/board/pawn-marks'
+
 import { useTeamPawnNumber } from './pawn-colours'
 
 import './pawn.sass'
 
-const PAWN_COLOURS = 8
-
-export type PawnProps =
+type PawnColourProps =
   | {
       /**
-       * The player's place in the room's roster, which picks one of the box's
-       * eight pawn colours — or their team's, when the room plays in teams. A
-       * ninth player takes the first colour again.
+       * The player's place in the room's roster, which picks one of the pawn
+       * colours — or their team's, when the room plays in teams. Past the last
+       * colour a seat takes the first again.
        */
       seat: number
     }
@@ -20,11 +20,19 @@ export type PawnProps =
       colour: number
     }
 
-/** A seat's own pawn colour, 1-based, in a room with no teams. */
-export const pawnNumberOf = (seat: number): number => (seat % PAWN_COLOURS) + 1
+export type PawnProps = PawnColourProps & {
+  /**
+   * Printed on the head, for a pawn standing with no name beside it: a seat's
+   * initial on the track, from `pawnMarksOf`. Omitted, the head stays plain.
+   */
+  mark?: string
+}
 
-/** Which of the eight pawn colours a seat plays in, its team's when there are teams. */
-export const usePawnNumber = (props: PawnProps): number => {
+/** A seat's own pawn colour, 1-based, in a room with no teams. */
+export const pawnNumberOf = seatPawnColourOf
+
+/** Which pawn colour a seat plays in, its team's when there are teams. */
+export const usePawnNumber = (props: PawnColourProps): number => {
   const seat = 'seat' in props ? props.seat : -1
   const teamPawn = useTeamPawnNumber(seat)
 
@@ -52,10 +60,25 @@ export const Pawn: React.FC<PawnProps> = (props) => {
       aria-hidden='true'
       className='pawn'
       focusable='false'
-      style={{ '--pawn': `var(--pawn-${pawnNumber})` }}
+      style={{
+        '--on-pawn': `var(--on-pawn-${pawnNumber})`,
+        '--pawn': `var(--pawn-${pawnNumber})`
+      }}
       viewBox={`0 0 ${PAWN_BOX.width} ${PAWN_BOX.height}`}
     >
       <PawnShape />
+      {props.mark !== undefined && props.mark !== '' && (
+        <text
+          className='mark'
+          dominantBaseline='central'
+          fontSize={[...props.mark].length > 1 ? 5.6 : 7.5}
+          textAnchor='middle'
+          x='12'
+          y='6.8'
+        >
+          {props.mark}
+        </text>
+      )}
     </svg>
   )
 }

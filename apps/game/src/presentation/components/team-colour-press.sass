@@ -1,0 +1,66 @@
+@use '../styles/focus'
+@use '../styles/typography'
+
+@layer components
+  .team-colour-press
+    flex: none
+    font-size: var(--text-l)
+    padding-inline: 0
+    width: 2.5rem
+
+  .team-colour-leaflet.sheet-popover
+    max-width: min(92vw, 22rem)
+    width: 100%
+
+  .team-colour-picker
+    display: grid
+    gap: var(--space-s)
+
+    .react-aria-Label
+      @include typography.label
+
+      color: var(--ink-muted)
+
+    // Six to a row, so the twelve pawns are two rows of the box, never three
+    // and a stray.
+    .colours
+      display: grid
+      gap: var(--space-2xs)
+      grid-template-columns: repeat(6, minmax(0, 1fr))
+
+    .colour-field
+      display: contents
+
+    .colour
+      @include focus.ring-inset
+
+      align-items: center
+      aspect-ratio: 1
+      border-radius: var(--radius-m)
+      cursor: pointer
+      display: flex
+      font-size: var(--text-2xl)
+      justify-content: center
+      min-height: var(--target)
+      position: relative
+
+      &[data-hovered],
+      &[data-pressed]
+        background: color-mix(in oklab, var(--ink) 7%, var(--field))
+
+      &[data-selected]
+        box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+
+      // Struck, never dimmed: a taken pawn keeps its colour so the sheet still
+      // says which team holds it.
+      &[data-disabled]
+        cursor: not-allowed
+
+        &::after
+          background: var(--ink)
+          border-radius: var(--radius-full)
+          content: ''
+          height: var(--stroke-bold)
+          inset-inline: 18%
+          position: absolute
+          rotate: -45deg

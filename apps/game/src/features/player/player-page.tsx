@@ -271,11 +271,9 @@ const Lobby: React.FC<{
                 send({ answer, roundId, type: 'player.answer' })
               }
               onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-              onChooseTeam={(teamId) =>
-                send({ teamId, type: 'player.chooseTeam' })
-              }
               onPetitBac={(message) => send(message)}
               onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+              onTeam={(message) => send(message)}
               onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
               onWriteLine={(itemIndex, answer, roundId) =>
                 send({ answer, itemIndex, roundId, type: 'slate.write' })
@@ -317,11 +315,9 @@ const Lobby: React.FC<{
                   send({ answer, roundId, type: 'player.answer' })
                 }
                 onBuzz={(roundId) => send({ roundId, type: 'player.buzz' })}
-                onChooseTeam={(teamId) =>
-                  send({ teamId, type: 'player.chooseTeam' })
-                }
                 onPetitBac={(message) => send(message)}
                 onReady={(isReady) => send({ isReady, type: 'player.ready' })}
+                onTeam={(message) => send(message)}
                 onTick={(tick) => send({ ...tick, type: 'blacksquare.tick' })}
                 onWriteLine={(itemIndex, answer, roundId) =>
                   send({ answer, itemIndex, roundId, type: 'slate.write' })

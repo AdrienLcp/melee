@@ -50,6 +50,10 @@ colors:
   pawn-6: "oklch(74% 0.15 58)"
   pawn-7: "oklch(76% 0.12 355)"
   pawn-8: "oklch(67% 0.1 200)"
+  pawn-9: "oklch(86% 0.17 128)"
+  pawn-10: "oklch(50% 0.085 55)"
+  pawn-11: "oklch(54% 0.22 345)"
+  pawn-12: "oklch(80% 0.09 235)"
   primary: "oklch(55% 0.19 30)"
   primary-edge: "oklch(40% 0.14 30)"
   on-primary: "oklch(99% 0.005 95)"
@@ -190,7 +194,8 @@ never scrolls.
 - Every control is a die-cut piece: a 3px chipboard edge, sprue nubs, lift
   under a pointer, sink under a press.
 - Four answer inks, each with a printed shape, so colour is never the only cue.
-- Eight pawn colours; the same pawn names the same player on every screen.
+- Twelve pawn colours; the same pawn names the same player on every screen,
+  and on the track a seat's pawn carries its initial.
 - Two faces: Bricolage Grotesque condensed for what is printed on the box,
   Atkinson Hyperlegible Next for what is read.
 - A question and its four choices never scroll, measured at sixteen viewports.
@@ -234,9 +239,17 @@ A cool printed board under warm, saturated die-cut inks, every value one
   everywhere but reflex, which takes the dark `--on-spine-light`.
 
 ### Tertiary
-- **Pawns** (`--pawn-1..8`, as many as a box holds; a ninth seat reuses the
-  first, `pawnNumberOf` in `pawn.tsx`). A pawn's colour is never a ground
-  text is printed on.
+- **Pawns** (`--pawn-1..12`; a thirteenth seat reuses the first,
+  `seatPawnColourOf` in `@melee/core/board/pawn-marks`). Twelve because the
+  four added to the original eight — lime, brown, magenta, sky — keep the
+  closest pair in OKLab as far apart as the eight's closest already was
+  (green / teal, 10.8); a thirteenth hue fell under it. Colour-blind
+  simulation already merged pairs among the eight (pink / teal under
+  protanopia), so a pawn is never told apart by its colour alone: a team is
+  named beside its pawn, and a seat's pawn on the track carries its initial.
+  A pawn's colour is never a ground text is printed on; the initial on its
+  head is printed in `--on-pawn-N`, dark on the light pieces and pale on the
+  dark ones, each pair held to 4.5:1 in `tokens-contrast.test.ts`.
 
 ### Neutral
 - **Board** (`--board`, `--board-ink`, `--board-muted`): the ground of every
@@ -677,7 +690,11 @@ its `AwayMark` tag; a spent tile is a socket.
   grid, floated at the start of the tile's first line.
 - **The pawn** (`Pawn`): head, body, base on a 24×28 grid, `fill: var(--pawn)`
   over a 1.5px `--chipboard-dark` drop. An absent pawn is the same silhouette
-  dashed in `--socket-line` inside a socket.
+  dashed in `--socket-line` inside a socket. On the track a seat's pawn takes
+  a `mark` on its head (`pawnMarksOf`): the initial, two letters where a pawn
+  of the same colour shares it, the initial and a count where those match
+  too — set in the display face at 7.5 units, 5.6 for two characters, and
+  dropped on a case under 3rem, where it reads as a smudge.
 - **Danger and good stamps**: rectangular blocks, trimmed to cap height.
 
 ### Icons
@@ -830,6 +847,12 @@ team takes the *yours* keyline. Seats no team holds yet sit in a recess. The
 score track, the standings and the final board rank teams in place of seats
 whenever there are any; the phone's chrome spells the team in the lobby and
 drops the word mid-round under 26rem, where the pawn says it.
+
+A team's colour is picked from the palette press in its head
+(`TeamColourPress`), on the host's table and on the team's own screens in the
+lobby: a sheet of the twelve pawns six to a row, the team's own in an ink
+keyline, a colour another team holds struck through in ink rather than dimmed,
+so the sheet still says which colours are on the table.
 
 ### Duels (`DuelBadge`)
 A duel says whose round it is with the **duel badge**: two teams' trays in

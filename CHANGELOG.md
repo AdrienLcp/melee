@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Shared]` **A team picks its colour.** A palette press in each team's head
+  — on the host's table and on the team's own screens — opens every pawn
+  colour, the ones other teams hold struck through. Taken in the lobby and
+  between rounds, never during one; two teams racing for one colour, the
+  second is told to pick another.
+- `[Game]` **Twelve pawn colours, and an initial on every seat's pawn.** Lime,
+  brown, magenta and sky join the eight, measured to stay as far apart as the
+  closest two already were. Past twelve seats colours repeat, so a seat's pawn
+  on the track carries its initial — two letters, or a number, where two seats
+  of one colour share it.
 - `[Shared]` **The host can pause the whole game.** A *Pause* press beside
   the round's own holds the room for somebody who left the table: the clock,
   the answer window and the clip stop, every screen — console, wall and

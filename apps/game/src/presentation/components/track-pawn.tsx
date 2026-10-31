@@ -6,9 +6,16 @@ import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import { Pawn, pawnNumberOf } from './pawn'
 
-/** A track pawn's piece: its team's colour, or its seat's. */
+/**
+ * A track pawn's piece: its team's colour, or its seat's with the seat's mark
+ * on its head — on the track a seat's pawn stands with no name beside it, and
+ * past the last colour two seats share one.
+ */
 export const TrackPawnPiece: React.FC<{ pawn: TrackPawn }> = ({ pawn }) => (
-  <Pawn colour={trackPawnNumberOf(pawn)} />
+  <Pawn
+    colour={trackPawnNumberOf(pawn)}
+    {...(pawn.kind === 'seat' && { mark: pawn.mark })}
+  />
 )
 
 /**

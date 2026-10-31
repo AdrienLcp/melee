@@ -7,8 +7,15 @@ import { verdictSchema } from './scoring'
 export const MIN_TEAMS = 2
 export const MAX_TEAMS = 6
 
-/** As many as the box holds — the pawn tokens a screen draws a team in. */
-export const PAWN_COLOUR_COUNT = 8
+/**
+ * The pawn hues a screen draws a team or a seat in: as many as stay apart on
+ * the track in both palettes. Past them colour stops being an identity, which
+ * is why a seat's pawn on the track carries its initial too.
+ */
+export const PAWN_COLOUR_COUNT = 12
+
+/** A pawn's token, 1-based. */
+export const pawnColourSchema = z.number().int().min(1).max(PAWN_COLOUR_COUNT)
 
 const teamCountSchema = z.number().int().min(MIN_TEAMS).max(MAX_TEAMS)
 
@@ -64,7 +71,7 @@ export const teamSchema = z.object({
   /** Its pawn on the track, and `null` in a room whose board is off. */
   board: boardPositionSchema.nullable(),
   /** Its pawn token, 1-based — the team's colour on every screen. */
-  colour: z.number().int().min(1).max(PAWN_COLOUR_COUNT),
+  colour: pawnColourSchema,
   /**
    * What the round on screen paid it, and nought until the reveal: no screen
    * can add it up from the seats' awards once the teams average them or

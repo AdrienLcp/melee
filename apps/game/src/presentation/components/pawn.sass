@@ -1,3 +1,5 @@
+@use '../styles/typography'
+
 @layer components
   .pawn
     filter: drop-shadow(0 1.5px 0 var(--chipboard-dark))
@@ -5,3 +7,9 @@
     flex: none
     height: 1.15em
     width: 1em
+
+    .mark
+      @include typography.numeric
+
+      fill: var(--on-pawn)
+      pointer-events: none

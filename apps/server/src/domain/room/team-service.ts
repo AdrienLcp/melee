@@ -34,7 +34,7 @@ import { isSpokenRound } from '@/domain/round/black-square-round'
 import type { Participant, Room, RoomTeam } from './room'
 import { touch } from './room-service'
 
-export type TeamRejection = 'teams_locked'
+export type TeamRejection = 'colour_taken' | 'teams_locked'
 
 export const seatsOf = (room: Room, teamId: TeamId): Participant[] =>
   [...room.players.values()].filter(
@@ -57,10 +57,30 @@ export const changesTeams = ({
   to: TeamsSettings
 }): boolean => teamCountOf(from) !== teamCountOf(to) || from.kind !== to.kind
 
-const newTeam = (index: number): RoomTeam => ({
+/**
+ * The first pawn colour no team holds: a team added after another was
+ * repainted must not take the colour that one moved to.
+ */
+const freeColourFor = (teams: readonly RoomTeam[]): number => {
+  const taken = new Set(teams.map((team) => team.colour))
+
+  return (
+    Array.from({ length: PAWN_COLOUR_COUNT }, (_, index) => index + 1).find(
+      (colour) => !taken.has(colour)
+    ) ?? 1
+  )
+}
+
+const newTeam = ({
+  index,
+  teams
+}: {
+  index: number
+  teams: readonly RoomTeam[]
+}): RoomTeam => ({
   bankedCase: 0,
   bankedScore: 0,
-  colour: (index % PAWN_COLOUR_COUNT) + 1,
+  colour: freeColourFor(teams),
   id: teamIdAt(index),
   name: null
 })
@@ -73,10 +93,13 @@ const newTeam = (index: number): RoomTeam => ({
 export const fitTeamsToSettings = (room: Room): void => {
   const count = teamCountOf(room.settings.teams)
 
-  room.teams = Array.from(
-    { length: count },
-    (_, index): RoomTeam => room.teams[index] ?? newTeam(index)
-  )
+  const teams = room.teams.slice(0, count)
+
+  while (teams.length < count) {
+    teams.push(newTeam({ index: teams.length, teams }))
+  }
+
+  room.teams = teams
 
   for (const participant of room.players.values()) {
     if (
@@ -169,6 +192,44 @@ export const moveSeat = ({
   }
 
   participant.teamId = teamId
+  touch(room, now)
+
+  return Result.success()
+}
+
+/**
+ * The phases a team may change colour in: the lobby and between two rounds,
+ * never while one plays, when its pawn changing colour loses the room the
+ * track for the round.
+ */
+const RECOLOUR_PHASES: ReadonlySet<Room['phase']> = new Set([
+  'finished',
+  'lobby',
+  'revealed'
+])
+
+export const recolourTeam = ({
+  colour,
+  now,
+  room,
+  teamId
+}: {
+  colour: number
+  now: number
+  room: Room
+  teamId: TeamId
+}): Result<void, TeamRejection> => {
+  const team = findTeam(room, teamId)
+
+  if (team === undefined || !RECOLOUR_PHASES.has(room.phase)) {
+    return Result.failure('teams_locked')
+  }
+
+  if (room.teams.some((other) => other !== team && other.colour === colour)) {
+    return Result.failure('colour_taken')
+  }
+
+  team.colour = colour
   touch(room, now)
 
   return Result.success()

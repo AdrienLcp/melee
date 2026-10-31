@@ -111,6 +111,7 @@ reconnect on the token it still holds.
 | `player.leave` | any seat | — |
 | `player.rename` | any seat | `nickname` |
 | `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
+| `player.recolourTeam` | a seat in a team | `colour` — repaints the seat's own team |
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
@@ -139,6 +140,7 @@ reconnect on the token it still holds.
 | `host.nextCategory` | host | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last |
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
 | `host.renameTeam` | host | `teamId`, `name` |
+| `host.recolourTeam` | host | `teamId`, `colour` — a pawn token, 1-based; `colour_taken` when another team holds it |
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
@@ -192,8 +194,8 @@ round clock and the answer window stop, the reveal's hold is cancelled, and no
 round deadline falls due (`roomDeadlines`). It lands as `isPaused` on all three
 views; every screen hides the round behind a paused card, and the speaker
 pauses the clip. While it holds, every frame but the table's own business and
-the exits — `player.leave`, `rename`, `chooseTeam`, `ready`, and the host's
-`pause`, `adjustScore`, `renameTeam`, `moveSeat`, `drawTeams`,
+the exits — `player.leave`, `rename`, `chooseTeam`, `recolourTeam`, `ready`, and the host's
+`pause`, `adjustScore`, `renameTeam`, `recolourTeam`, `moveSeat`, `drawTeams`,
 `updateSettings`, `removePlayer`, `dismissWall`, `endGame`, `closeRoom` — is
 refused `room_paused`: a verdict alone would put the clock back on. Letting
 go resumes like a host coming back — the clip and the clock from where they
@@ -256,6 +258,12 @@ names it, so every screen says the name its own dictionary gives the colour.
   that moves `teams.kind` or the count, and a deal, are `teams_locked` past it;
   `host.moveSeat`, `host.renameTeam` and `host.adjustScore` are allowed in every
   phase.
+- **A team changes colour between rounds, never during one.** `player.recolourTeam`
+  (any seat of the team) and `host.recolourTeam` are taken in the lobby, a
+  reveal and the final board, and refused `teams_locked` while a round plays —
+  a pawn changing colour loses the room the track. Two teams never share a
+  colour: the second of two presses racing for one is `colour_taken`, and a
+  team added later takes the first colour nobody holds.
 - **A team's score is the sum of its seats'.** A round pays each team the sum
   of what it paid the team's seats it opened on (`teamRoundResult`) — a sum
   rather than a mean, because under a mean a teammate's wrong answer lowers the

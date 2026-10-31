@@ -20,7 +20,6 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 import type { ColourHex } from '@melee/protocol/swatch'
-import type { TeamId } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
@@ -54,7 +53,11 @@ import { MatchsticksMove } from '@/features/player/matchsticks-move'
 import { MostLikelyBallot } from '@/features/player/most-likely-ballot'
 import { PetitBacReveal } from '@/features/player/petit-bac-reveal'
 import { PetitBacSheet, PetitBacVote } from '@/features/player/petit-bac-sheet'
-import { LobbyTeams, TeamFinish } from '@/features/player/player-teams'
+import {
+  LobbyTeams,
+  TeamFinish,
+  type TeamSeatMessage
+} from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
 import { RoundBoard } from '@/features/player/round-board'
 import { RoundClock } from '@/features/player/round-clock'
@@ -160,8 +163,8 @@ type PlayerRoundProps = {
   onAnswer: (answer: PlayerAnswer, roundId: string) => boolean
   /** `false` from the socket means the frame was never written. */
   onBuzz: (roundId: string) => boolean
-  /** `false` from the socket means the frame was never written. */
-  onChooseTeam: (teamId: TeamId) => boolean
+  /** A seat's own team frames, joining one or repainting it; `false` from the socket means the frame was never written. */
+  onTeam: (message: TeamSeatMessage) => boolean
   /** `false` from the socket means the frame was never written. */
   onReady: (isReady: boolean) => boolean
   /** The keeper's tick in a spoken black square; `false` from the socket means the frame was never written. */
@@ -355,7 +358,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
   clock,
   onAnswer,
   onBuzz,
-  onChooseTeam,
+  onTeam,
   onPetitBac,
   onReady,
   onTick,
@@ -418,7 +421,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         )}
         <div className='table'>
           <div className='seats'>
-            <LobbyTeams onChooseTeam={onChooseTeam} view={view} />
+            <LobbyTeams onTeam={onTeam} view={view} />
           </div>
         </div>
       </section>
@@ -444,7 +447,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         <div className='table'>
           <div className='seats'>
             {view.teams.length > 0 ? (
-              <LobbyTeams onChooseTeam={onChooseTeam} view={view} />
+              <LobbyTeams onTeam={onTeam} view={view} />
             ) : (
               <>
                 <Scoreboard

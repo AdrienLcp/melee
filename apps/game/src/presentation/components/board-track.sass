@@ -200,6 +200,12 @@
       display: flex
       margin-inline: -0.1em
 
+      // Below this a case's pawns are too small for a letter on the head to
+      // read, and it reads as a smudge instead.
+      @container (width < 3rem)
+        .mark
+          display: none
+
       // Every step is a new element, so each case is a hop and the walk reads
       // as a pawn counted along the track.
       @media (prefers-reduced-motion: no-preference)

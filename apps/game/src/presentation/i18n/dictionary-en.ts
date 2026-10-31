@@ -464,6 +464,7 @@ export const EN_DICTIONARY = defineDictionary({
       unreachable: 'We cannot reach Mêlée. Try again in a moment.'
     },
     colour_still_shown: 'Wait for the colour to hide before sending yours.',
+    colour_taken: 'Another team just took that colour — pick another.',
     false_start: 'Too soon. Wait for the change.',
     host_already_connected: 'Someone is already running this table.',
     host_away: 'The host stepped away. The round is waiting for them.',
@@ -1854,7 +1855,11 @@ export const EN_DICTIONARY = defineDictionary({
       pawn5: 'Purples',
       pawn6: 'Oranges',
       pawn7: 'Pinks',
-      pawn8: 'Teals'
+      pawn8: 'Teals',
+      pawn9: 'Limes',
+      pawn10: 'Browns',
+      pawn11: 'Magentas',
+      pawn12: 'Skies'
     },
     count: 'How many teams',
     draw: 'Draw the teams',
@@ -1891,6 +1896,12 @@ export const EN_DICTIONARY = defineDictionary({
     needsSeats:
       'Teams start at {count:number} players — until then, everyone plays for themselves.',
     pick: 'Pick your team',
+    recolour: {
+      action: 'Repaint the {team}',
+      label: 'Pawn colour',
+      taken: '{colour}, already taken',
+      takenBy: '{colour}, taken by the {team}'
+    },
     redraw: 'Draw again',
     rename: {
       action: 'Rename the {team}',

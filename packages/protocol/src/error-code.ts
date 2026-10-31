@@ -99,6 +99,12 @@ export const protocolErrorCodes = [
    */
   'teams_locked',
   /**
+   * A team asking for a pawn colour another team already holds — the second
+   * of two presses racing for it. Non-fatal: the picker redraws the colour as
+   * taken and the seat picks another.
+   */
+  'colour_taken',
+  /**
    * A phone asking for a seat in a room whose teams answer aloud. Non-fatal
    * like `room_full`: nothing is wrong with the screen, the table simply plays
    * without one, and the host can switch the room back in the lobby.

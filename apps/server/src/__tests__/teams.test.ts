@@ -276,6 +276,64 @@ describe('a room played in teams', () => {
     expect(hostView(host)?.teams).toEqual([])
   })
 
+  it('[teams] lets a seat repaint its team, and refuses the colour another team holds', async () => {
+    const { code, host } = await harness.openRoom(CHOSEN_IN_TWO)
+    const anna = await harness.seat({ code, nickname: 'Anna' })
+    const ben = await harness.seat({ code, nickname: 'Ben' })
+
+    anna.send({ teamId: 'team-1', type: 'player.chooseTeam' })
+    ben.send({ teamId: 'team-2', type: 'player.chooseTeam' })
+    await waitFor(
+      () => hostView(host)?.teams[1]?.seatIds.length === 1,
+      'two picks'
+    )
+
+    anna.send({ colour: 9, type: 'player.recolourTeam' })
+    await waitFor(() => hostView(host)?.teams[0]?.colour === 9, 'the repaint')
+    ben.send({ colour: 9, type: 'player.recolourTeam' })
+    await waitFor(() => errorsIn(ben).length > 0, 'the refusal')
+
+    expect(errorsIn(ben)[0]?.code).toBe('colour_taken')
+    expect(hostView(host)?.teams.map((team) => team.colour)).toEqual([9, 2])
+  })
+
+  it('[teams] refuses a repaint while a round plays, and takes the console repaint between two', async () => {
+    const { code, host } = await harness.openRoom(DRAWN_IN_TWO)
+    const anna = await harness.seat({ code, nickname: 'Anna' })
+    const [ben, carl, dora] = await seatMany(code, ['Ben', 'Carl', 'Dora'])
+
+    host.send({
+      assignment: [
+        [idOf(anna), idOf(carl)],
+        [idOf(ben), idOf(dora)]
+      ],
+      type: 'host.drawTeams'
+    })
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the clip')
+
+    anna.send({ colour: 5, type: 'player.recolourTeam' })
+    await waitFor(() => errorsIn(anna).length > 0, 'the refusal')
+    expect(errorsIn(anna)[0]?.code).toBe('teams_locked')
+
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
+    host.send({ colour: 5, teamId: 'team-2', type: 'host.recolourTeam' })
+    await waitFor(() => hostView(host)?.teams[1]?.colour === 5, 'the repaint')
+  })
+
+  it('[teams] gives a team added after a repaint a colour no team holds', async () => {
+    const { host } = await harness.openRoom(DRAWN_IN_TWO)
+
+    await waitFor(() => hostView(host)?.teams.length === 2, 'two teams')
+    host.send({ colour: 3, teamId: 'team-1', type: 'host.recolourTeam' })
+    await waitFor(() => hostView(host)?.teams[0]?.colour === 3, 'the repaint')
+    host.send({ settings: DRAWN_IN_THREE, type: 'host.updateSettings' })
+    await waitFor(() => hostView(host)?.teams.length === 3, 'three teams')
+
+    expect(hostView(host)?.teams.map((team) => team.colour)).toEqual([3, 2, 1])
+  })
+
   it('[teams] refuses a pick in a room whose console deals', async () => {
     const { code } = await harness.openRoom(DRAWN_IN_TWO)
     const anna = await harness.seat({ code, nickname: 'Anna' })
