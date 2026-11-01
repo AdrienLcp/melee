@@ -82,6 +82,7 @@ import { colourHexSchema, sentColourSchema } from './swatch'
 import {
   DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
+  pawnColourSchema,
   teamIdSchema,
   teamSchema,
   teamScoringSchema,
@@ -357,6 +358,11 @@ export const publicPlayerSchema = z.object({
    * room plays in teams — the team's pawn is the one that walks then.
    */
   board: boardPositionSchema.nullable(),
+  /**
+   * The seat's own pawn colour, picked by the seat and kept by the device.
+   * A seat in a team stands in the team's colour instead — `pawnColourOf`.
+   */
+  colour: pawnColourSchema,
   id: playerIdSchema,
   isConnected: z.boolean(),
   /**

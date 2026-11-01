@@ -191,6 +191,8 @@ export type Participant = {
    * plays without teams; nought everywhere else. See `RoomTeam.bankedCase`.
    */
   bankedCase: number
+  /** The seat's own pawn colour, 1-based; a team's colour covers it. */
+  colour: number
   /**
    * When the socket closed, and `null` while it is open. It is what tells a
    * player who locked their screen apart from one who has gone: see

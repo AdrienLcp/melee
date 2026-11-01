@@ -8,6 +8,18 @@ one part.
 
 ### Features
 
+- `[Shared]` **Every seat picks its pawn colour, not only a team.** A seat
+  holds a colour of its own, the one its pawn stands in wherever no team
+  covers it, and the menu carries it as *My pawn* under the name: the pawn
+  and its colour's name, opening on the twelve pawns, a colour another seat
+  holds struck through until all twelve are taken. It changes between rounds
+  and never during one, which the menu says rather than hiding it; in a team
+  the same place repaints the team. The lobby's own card carries a *Colour*
+  press too, and the team heads' palette press now says the word. The device
+  remembers the colour the room accepted (`melee:pawn-colour`) and asks for
+  it at the next table; a seat that comes back keeps the one it holds.
+  `PROTOCOL_VERSION` goes to 66.
+
 - `[Game]` **The front page opens on the host's own line-ups.** A row of the
   line-ups this host starred, then the tables this device played, latest
   first — one press opens a table on any of them, already laid out — beside a
@@ -212,6 +224,13 @@ one part.
   name was an existing commercial app's, *Devineuf*, for the same kind of game.
 
 ### Fixes
+
+- `[Game]` **The board's length is in plain sight again.** One strip on the
+  Table tab, *Board: None · 20 · 30 · 40 squares*, replaces the switch that
+  hid the length until it was turned on, and the lobby's board preview opens
+  it — on the panel, the bar along the foot or the podium's sheet, wherever the
+  tab lives. A length stored off the strip joins it, selected. It stays
+  *settled for this game* once the game is under way.
 
 - `[Shared]` **Petit Bac keeps the word being typed when time runs out.** A
   line is sent while it is typed rather than after a pause, and when the clock

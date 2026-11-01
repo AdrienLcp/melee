@@ -1,9 +1,4 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
-import { PAWN_COLOUR_COUNT } from '@melee/protocol/team'
-
-/** A seat's own pawn colour, 1-based, in a room with no teams: its place in the roster. */
-export const seatPawnColourOf = (seat: number): number =>
-  (seat % PAWN_COLOUR_COUNT) + 1
 
 const graphemesOf = (nickname: string): string[] =>
   [...new Intl.Segmenter().segment(nickname.trim())].map(
@@ -24,13 +19,13 @@ const twoLettersOf = (graphemes: readonly string[]): string =>
  * colour only — a red *A* and a blue *A* are already two pawns.
  */
 export const pawnMarksOf = (
-  seats: readonly { id: PlayerId; nickname: string }[]
+  seats: readonly { colour: number; id: PlayerId; nickname: string }[]
 ): ReadonlyMap<PlayerId, string> => {
-  const candidates = seats.map(({ id, nickname }, seat) => {
+  const candidates = seats.map(({ colour, id, nickname }) => {
     const graphemes = graphemesOf(nickname)
 
     return {
-      colour: seatPawnColourOf(seat),
+      colour,
       id,
       initial: initialOf(graphemes),
       twoLetters: twoLettersOf(graphemes)

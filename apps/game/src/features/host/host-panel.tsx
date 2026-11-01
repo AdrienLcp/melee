@@ -32,6 +32,8 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 import { DESK_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
 
+import { BoardSetupLandingProvider } from './board-setup-landing'
+
 import './host-panel.sass'
 
 /** The panel's own tabs, in the order they stand. */
@@ -188,6 +190,16 @@ export const HostPanel: React.FC<HostPanelProps> = ({
     </ReactAriaButton>
   )
 
+  const openTable = () => {
+    if (!isDesk) {
+      setScreen('table')
+    } else if (isFolded) {
+      fold(false, 'table')
+    } else {
+      setChosenTab('table')
+    }
+  }
+
   const sideLabel = translate(
     side === 'right' ? 'host.panel.toLeft' : 'host.panel.toRight'
   )
@@ -206,75 +218,80 @@ export const HostPanel: React.FC<HostPanelProps> = ({
   )
 
   return (
-    <div
-      className='host-desk'
-      data-folded={isRail || undefined}
-      data-screen={isDesk ? undefined : screen}
-      data-side={side}
-      data-stage-full={isStageFull || undefined}
-    >
-      {children}
-      <aside aria-label={translate('host.panel.label')} className='host-panel'>
-        {isRail ? (
-          <div className='panel-rail'>
-            {foldTool}
-            {PANEL_TABS.map(({ icon: Icon, id, label }) => (
-              <ReactAriaButton
-                className='panel-tab'
-                key={id}
-                onPress={() => {
-                  fold(false, id)
-                }}
-              >
-                <Icon />
-                {translate(label)}
-                {badge(id)}
-              </ReactAriaButton>
-            ))}
-            {sideTool}
-          </div>
-        ) : (
-          <Tabs
-            onSelectionChange={(key) => {
-              if (!isDesk) {
-                setScreen(isPanelTab(key) ? key : 'stage')
-              } else if (isPanelTab(key)) {
-                setChosenTab(key)
-              }
-            }}
-            selectedKey={isDesk ? wideTab : screen}
-          >
-            <div className='panel-head'>
-              <TabList
-                aria-label={translate('host.panel.label')}
-                className='panel-tabs'
-              >
-                {!isDesk && (
-                  <Tab className='panel-tab' id='stage'>
-                    <StageIcon />
-                    {translate('host.panel.tabs.stage')}
-                  </Tab>
-                )}
-                {PANEL_TABS.map(({ icon: Icon, id, label }) => (
-                  <Tab className='panel-tab' id={id} key={id}>
-                    <Icon />
-                    {translate(label)}
-                    {badge(id)}
-                  </Tab>
-                ))}
-              </TabList>
-              {isDesk && foldTool}
+    <BoardSetupLandingProvider onOpenTable={openTable}>
+      <div
+        className='host-desk'
+        data-folded={isRail || undefined}
+        data-screen={isDesk ? undefined : screen}
+        data-side={side}
+        data-stage-full={isStageFull || undefined}
+      >
+        {children}
+        <aside
+          aria-label={translate('host.panel.label')}
+          className='host-panel'
+        >
+          {isRail ? (
+            <div className='panel-rail'>
+              {foldTool}
+              {PANEL_TABS.map(({ icon: Icon, id, label }) => (
+                <ReactAriaButton
+                  className='panel-tab'
+                  key={id}
+                  onPress={() => {
+                    fold(false, id)
+                  }}
+                >
+                  <Icon />
+                  {translate(label)}
+                  {badge(id)}
+                </ReactAriaButton>
+              ))}
+              {sideTool}
             </div>
-            {PANEL_TABS.map(({ heading, id }) => (
-              <TabPanel className='panel-screen' id={id} key={id}>
-                <h2>{translate(heading)}</h2>
-                {tabs?.[id]}
-              </TabPanel>
-            ))}
-            {isDesk && <div className='panel-foot'>{sideTool}</div>}
-          </Tabs>
-        )}
-      </aside>
-    </div>
+          ) : (
+            <Tabs
+              onSelectionChange={(key) => {
+                if (!isDesk) {
+                  setScreen(isPanelTab(key) ? key : 'stage')
+                } else if (isPanelTab(key)) {
+                  setChosenTab(key)
+                }
+              }}
+              selectedKey={isDesk ? wideTab : screen}
+            >
+              <div className='panel-head'>
+                <TabList
+                  aria-label={translate('host.panel.label')}
+                  className='panel-tabs'
+                >
+                  {!isDesk && (
+                    <Tab className='panel-tab' id='stage'>
+                      <StageIcon />
+                      {translate('host.panel.tabs.stage')}
+                    </Tab>
+                  )}
+                  {PANEL_TABS.map(({ icon: Icon, id, label }) => (
+                    <Tab className='panel-tab' id={id} key={id}>
+                      <Icon />
+                      {translate(label)}
+                      {badge(id)}
+                    </Tab>
+                  ))}
+                </TabList>
+                {isDesk && foldTool}
+              </div>
+              {PANEL_TABS.map(({ heading, id }) => (
+                <TabPanel className='panel-screen' id={id} key={id}>
+                  <h2>{translate(heading)}</h2>
+                  {tabs?.[id]}
+                </TabPanel>
+              ))}
+              {isDesk && <div className='panel-foot'>{sideTool}</div>}
+            </Tabs>
+          )}
+        </aside>
+      </div>
+    </BoardSetupLandingProvider>
   )
 }

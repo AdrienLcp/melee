@@ -73,6 +73,11 @@ type ScoreboardProps = {
   /** Only ever CSS custom properties a layout needs at runtime. */
   style?: React.CSSProperties
   /**
+   * Drawn at the end of the reader's own row, after the name gives way: the
+   * press that repaints the pawn, on a player's lobby roster.
+   */
+  youAction?: React.ReactNode
+  /**
    * Highlights one row: a player passes their own id, a seated host console its
    * seat, and the wall — nobody's screen — passes none.
    */
@@ -89,6 +94,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   players,
   rankedBefore,
   style,
+  youAction,
   youId
 }) => {
   const translate = useTranslate()
@@ -173,6 +179,9 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
               {!player.isConnected && <AwayMark />}
               {player.id === youId && (
                 <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
+              )}
+              {player.id === youId && youAction !== undefined && (
+                <span className='you-action'>{youAction}</span>
               )}
             </span>
             {isRanked && player.board !== null && (

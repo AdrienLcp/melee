@@ -62,6 +62,11 @@ export const connectionRoleSchema = z.enum(connectionRoles)
 export const helloMessageSchema = z.object({
   hostToken: hostTokenSchema.optional(),
   nickname: nicknameSchema.optional(),
+  /**
+   * The pawn colour this device last played in, asked for a new seat. A seat
+   * that comes back keeps the colour it holds, as it keeps its name.
+   */
+  pawnColour: pawnColourSchema.optional(),
   protocolVersion: z.number().int().positive(),
   role: connectionRoleSchema,
   sessionId: sessionIdSchema.optional(),
@@ -231,6 +236,16 @@ export const chooseTeamMessageSchema = z.object({
 export const recolourOwnTeamMessageSchema = z.object({
   colour: pawnColourSchema,
   type: z.literal('player.recolourTeam')
+})
+
+/**
+ * A seat repainting its own pawn, under `player.recolourTeam`'s phases. Refused
+ * `colour_taken` for a colour another seat holds while one is still free —
+ * past twelve seats two share one, and the initial on the pawn tells them apart.
+ */
+export const recolourOwnSeatMessageSchema = z.object({
+  colour: pawnColourSchema,
+  type: z.literal('player.recolourSeat')
 })
 
 /**
@@ -512,6 +527,13 @@ export const recolourTeamMessageSchema = z.object({
   type: z.literal('host.recolourTeam')
 })
 
+/** The host repainting any seat's pawn, under `player.recolourSeat`'s rules. */
+export const recolourSeatMessageSchema = z.object({
+  colour: pawnColourSchema,
+  playerId: playerIdSchema,
+  type: z.literal('host.recolourSeat')
+})
+
 export const renameTeamMessageSchema = z.object({
   name: teamNameSchema,
   teamId: teamIdSchema,
@@ -688,6 +710,7 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   recolourTeamMessageSchema,
+  recolourSeatMessageSchema,
   moveSeatMessageSchema,
   adjustScoreMessageSchema,
   awardPlacesMessageSchema,
@@ -711,6 +734,7 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   renameMessageSchema,
   chooseTeamMessageSchema,
   recolourOwnTeamMessageSchema,
+  recolourOwnSeatMessageSchema,
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
@@ -741,6 +765,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   renameMessageSchema,
   chooseTeamMessageSchema,
   recolourOwnTeamMessageSchema,
+  recolourOwnSeatMessageSchema,
   readyMessageSchema,
   buzzMessageSchema,
   answerMessageSchema,
@@ -772,6 +797,7 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   drawTeamsMessageSchema,
   renameTeamMessageSchema,
   recolourTeamMessageSchema,
+  recolourSeatMessageSchema,
   moveSeatMessageSchema,
   adjustScoreMessageSchema,
   awardPlacesMessageSchema,
@@ -825,6 +851,7 @@ export const HOST_ONLY_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.drawTeams',
   'host.renameTeam',
   'host.recolourTeam',
+  'host.recolourSeat',
   'host.moveSeat',
   'host.adjustScore',
   'host.awardPlaces',

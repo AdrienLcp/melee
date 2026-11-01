@@ -30,6 +30,7 @@ import {
   markHostAway,
   markPlayerDisconnected,
   markReady,
+  recolourSeat,
   renameSeat,
   touch,
   updateSettings
@@ -158,12 +159,14 @@ const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
   'player.rename',
   'player.chooseTeam',
   'player.recolourTeam',
+  'player.recolourSeat',
   'player.ready',
   'host.pause',
   'host.holdReveal',
   'host.adjustScore',
   'host.renameTeam',
   'host.recolourTeam',
+  'host.recolourSeat',
   'host.moveSeat',
   'host.drawTeams',
   'host.updateSettings',
@@ -360,6 +363,7 @@ const seatHost = ({
           newPlayerId: newPlayerId(),
           nickname: message.nickname,
           now: engine.now(),
+          pawnColour: message.pawnColour ?? null,
           room,
           sessionId
         })
@@ -423,6 +427,7 @@ const seatPlayer = ({
     newPlayerId: newPlayerId(),
     nickname: message.nickname,
     now: engine.now(),
+    pawnColour: message.pawnColour ?? null,
     room: engine.room,
     sessionId
   })
@@ -537,6 +542,15 @@ const dispatch = ({
     }
     case 'player.recolourTeam': {
       recolourOwnTeam(message.colour, active, outbound, engine)
+      break
+    }
+    case 'player.recolourSeat': {
+      repaintSeat({
+        colour: message.colour,
+        engine,
+        outbound,
+        playerId: active.playerId
+      })
       break
     }
     case 'player.ready': {
@@ -745,6 +759,15 @@ const dispatch = ({
           room,
           teamId: message.teamId
         })
+      })
+      break
+    }
+    case 'host.recolourSeat': {
+      repaintSeat({
+        colour: message.colour,
+        engine,
+        outbound,
+        playerId: message.playerId
       })
       break
     }
@@ -1082,6 +1105,55 @@ const answerTeamFrame = ({
       code: result.error,
       fatal: false,
       message: 'The teams cannot change that way now'
+    })
+
+    return
+  }
+
+  publishRoom(engine)
+}
+
+const SEAT_RECOLOUR_REFUSALS: Record<'colour_taken' | 'wrong_phase', string> = {
+  colour_taken: 'Another seat already stands in that colour',
+  wrong_phase: 'A pawn keeps its colour while a round plays'
+}
+
+const repaintSeat = ({
+  colour,
+  engine,
+  outbound,
+  playerId
+}: {
+  colour: number
+  engine: RoomEngine
+  outbound: Outbound
+  playerId: PlayerId | null
+}): void => {
+  const participant =
+    playerId === null ? undefined : engine.room.players.get(playerId)
+
+  if (participant === undefined) {
+    sendError(outbound, {
+      code: 'invalid_message',
+      fatal: false,
+      message: 'Only a seat has a pawn to repaint'
+    })
+
+    return
+  }
+
+  const repainted = recolourSeat({
+    colour,
+    now: engine.now(),
+    participant,
+    room: engine.room
+  })
+
+  if (repainted.status === 'failure') {
+    sendError(outbound, {
+      code: repainted.error,
+      fatal: false,
+      message: SEAT_RECOLOUR_REFUSALS[repainted.error]
     })
 
     return

@@ -1,22 +1,20 @@
 import type React from 'react'
 
-import { seatPawnColourOf } from '@melee/core/board/pawn-marks'
-
-import { useTeamPawnNumber } from './pawn-colours'
+import { useSeatPawnColour } from './pawn-colours'
 
 import './pawn.sass'
 
 type PawnColourProps =
   | {
       /**
-       * The player's place in the room's roster, which picks one of the pawn
-       * colours — or their team's, when the room plays in teams. Past the last
-       * colour a seat takes the first again.
+       * The player's place in the room's roster, looked up in the page's
+       * `PawnColoursProvider`: the colour the seat picked, or its team's when
+       * the room plays in teams.
        */
       seat: number
     }
   | {
-      /** A team's own pawn number, 1-based, as the protocol carries it. */
+      /** A pawn number, 1-based, as the protocol carries it. */
       colour: number
     }
 
@@ -28,15 +26,11 @@ export type PawnProps = PawnColourProps & {
   mark?: string
 }
 
-/** A seat's own pawn colour, 1-based, in a room with no teams. */
-export const pawnNumberOf = seatPawnColourOf
-
 /** Which pawn colour a seat plays in, its team's when there are teams. */
 export const usePawnNumber = (props: PawnColourProps): number => {
-  const seat = 'seat' in props ? props.seat : -1
-  const teamPawn = useTeamPawnNumber(seat)
+  const seatPawn = useSeatPawnColour('seat' in props ? props.seat : -1)
 
-  return 'colour' in props ? props.colour : (teamPawn ?? pawnNumberOf(seat))
+  return 'colour' in props ? props.colour : seatPawn
 }
 
 /** The pawn's outline in a 24 × 28 box, standing on its base at the bottom. */

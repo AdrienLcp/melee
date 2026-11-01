@@ -52,6 +52,7 @@ const viewFor = (
   players: [
     {
       board: null,
+      colour: 1,
       id: 'me',
       isConnected: true,
       isReady: false,

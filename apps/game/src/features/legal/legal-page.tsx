@@ -11,6 +11,7 @@ import {
   NICKNAME_KEY,
   PANEL_FOLDED_KEY,
   PANEL_SIDE_KEY,
+  PAWN_COLOUR_KEY,
   RECENT_TABLES_KEY,
   SAVED_EVENINGS_KEY,
   VOLUME_KEY
@@ -52,6 +53,7 @@ const LOCAL_KEYS: StoredKey[] = [
   { key: THEME_STORAGE_KEY, what: 'legal.storage.theme' },
   { key: LOCALE_KEY, what: 'legal.storage.locale' },
   { key: NICKNAME_KEY, what: 'legal.storage.nickname' },
+  { key: PAWN_COLOUR_KEY, what: 'legal.storage.pawnColour' },
   { key: SEATS_KEY, what: 'legal.storage.seats' },
   { key: HOST_TOKENS_KEY, what: 'legal.storage.hostTokens' },
   { key: HOST_SETUP_KEY, what: 'legal.storage.hostSetup' },

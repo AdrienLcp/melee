@@ -4,7 +4,7 @@ import type { TrackPawn } from '@melee/core/board/track-pawns'
 
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
-import { Pawn, pawnNumberOf } from './pawn'
+import { Pawn } from './pawn'
 
 /**
  * A track pawn's piece: its team's colour, or its seat's with the seat's mark
@@ -20,10 +20,10 @@ export const TrackPawnPiece: React.FC<{ pawn: TrackPawn }> = ({ pawn }) => (
 
 /**
  * A track pawn's colour, 1-based: a seat on the track is one in a room with no
- * teams, so its own colour needs no context.
+ * teams, so it walks in the colour it picked.
  */
 export const trackPawnNumberOf = (pawn: TrackPawn): number =>
-  pawn.kind === 'team' ? pawn.team.colour : pawnNumberOf(pawn.seat)
+  pawn.kind === 'team' ? pawn.team.colour : pawn.player.colour
 
 /** Whom a track pawn stands for: the team's name, or the seat's nickname. */
 export const useTrackPawnName = (): ((pawn: TrackPawn) => string) => {

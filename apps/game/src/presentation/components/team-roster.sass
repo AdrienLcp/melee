@@ -71,6 +71,22 @@
       text-overflow: ellipsis
       white-space: nowrap
 
+  // The presses a head carries take a line of their own before the name gives
+  // up a letter: the name's basis is its own width, so the line breaks first.
+  .team-roster .team-head:has(> .team-actions:not(:empty))
+    flex-wrap: wrap
+
+    .team-name
+      flex: 1 1 auto
+
+  .team-roster .team-actions
+    display: flex
+    gap: var(--space-xs)
+    margin-inline-start: auto
+
+    &:empty
+      display: none
+
   .team-roster .empty
     @include typography.caption
 

@@ -35,6 +35,7 @@ import {
 import {
   DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
+  pawnColourSchema,
   type TeamsSettings,
   teamScoringSchema,
   teamsSettingsSchema
@@ -58,6 +59,7 @@ export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
 export const PANEL_SIDE_KEY = 'melee:panel-side'
+export const PAWN_COLOUR_KEY = 'melee:pawn-colour'
 export const RECENT_TABLES_KEY = 'melee:recent-tables'
 export const SAVED_EVENINGS_KEY = 'melee:saved-evenings'
 export const VOLUME_KEY = 'melee:volume'
@@ -177,6 +179,37 @@ export const writeStoredNickname = (
   nickname: Nickname
 ): Result<void, StorageWriteError> =>
   writeStoredText({ key: NICKNAME_KEY, text: nickname })
+
+/**
+ * The pawn colour this device last picked and a table accepted, asked for again
+ * by the next table's `hello`. Never the one a table handed out on arrival, so
+ * a colour somebody else held there does not replace the one that was picked.
+ */
+export const readStoredPawnColour = (): Result<
+  number | null,
+  StorageReadError
+> => {
+  const stored = readStoredText(PAWN_COLOUR_KEY)
+
+  if (stored.status === 'failure') {
+    return stored
+  }
+
+  if (stored.data === null) {
+    return Result.success(null)
+  }
+
+  const parsed = pawnColourSchema.safeParse(Number(stored.data))
+
+  return parsed.success
+    ? Result.success(parsed.data)
+    : Result.failure('unrecognized')
+}
+
+export const writeStoredPawnColour = (
+  colour: number
+): Result<void, StorageWriteError> =>
+  writeStoredText({ key: PAWN_COLOUR_KEY, text: String(colour) })
 
 const PANEL_FOLDED_VALUES = ['true', 'false'] as const
 

@@ -239,6 +239,28 @@ const TEAM_COLOUR_KEYS = [
   'team.colour.pawn12'
 ] as const satisfies readonly PlainTranslationKey[]
 
+const PAWN_COLOUR_KEYS = [
+  'pawn.colour.pawn1',
+  'pawn.colour.pawn2',
+  'pawn.colour.pawn3',
+  'pawn.colour.pawn4',
+  'pawn.colour.pawn5',
+  'pawn.colour.pawn6',
+  'pawn.colour.pawn7',
+  'pawn.colour.pawn8',
+  'pawn.colour.pawn9',
+  'pawn.colour.pawn10',
+  'pawn.colour.pawn11',
+  'pawn.colour.pawn12'
+] as const satisfies readonly PlainTranslationKey[]
+
+/** A pawn's colour named on its own, from its 1-based number — one pawn, never a team. */
+export const pawnColourKey = (
+  colour: number
+): (typeof PAWN_COLOUR_KEYS)[number] =>
+  PAWN_COLOUR_KEYS[(colour - 1) % PAWN_COLOUR_KEYS.length] ??
+  'pawn.colour.pawn1'
+
 /** What a team is called before the host names it, from its 1-based pawn number. */
 export const teamColourKey = (
   colour: number

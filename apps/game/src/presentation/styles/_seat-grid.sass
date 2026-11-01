@@ -54,6 +54,20 @@
       grid-column: 2
       justify-self: start
 
+    // The reader's own press goes under the pawn and the name, across the
+    // whole chip: under the name alone it ran 9px out of a chip a third of a
+    // phone lying down wide.
+    .you-action
+      grid-column: 1 / -1
+      justify-self: start
+      margin-inline-start: 0rem
+
+    &:has(.you-action)
+      padding-block: var(--space-xs)
+
+      .nickname
+        row-gap: var(--space-xs)
+
     &:has(.away-mark) .pawn
       grid-row: span 2
 

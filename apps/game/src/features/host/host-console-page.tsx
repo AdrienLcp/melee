@@ -82,6 +82,7 @@ import {
   NOBODY,
   useReportRoomActions
 } from '@/presentation/room-actions/room-actions-provider'
+import { useSeatPawn } from '@/presentation/room-actions/use-seat-pawn'
 import { DESK_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
@@ -456,6 +457,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     setIsHandingOver(true)
   }, [])
 
+  const pawn = useSeatPawn({ clearError, error, role: 'host', send, view })
+
   useReportRoomActions({
     adjustScore: view === null ? null : adjustScore,
     closeRoom,
@@ -463,6 +466,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     handOver,
     leaveSeat: view?.youId == null ? null : leaveSeat,
     pauseRound: pausableRoundId === null ? null : pauseRound,
+    ...pawn,
     refusedNickname:
       requestedNickname !== null && error?.code === 'nickname_taken'
         ? requestedNickname

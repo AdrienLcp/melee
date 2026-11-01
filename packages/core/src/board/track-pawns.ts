@@ -8,8 +8,8 @@ import { pawnMarksOf } from './pawn-marks'
 
 /**
  * One pawn on the track: a team's in a room that plays in teams, a seat's
- * otherwise. A seat carries its place in the roster, which picks its colour,
- * and the mark its pawn carries on its head (`pawnMarksOf`).
+ * otherwise. A seat carries its place in the roster and the mark its pawn
+ * carries on its head (`pawnMarksOf`).
  */
 export type TrackPawn =
   | { board: BoardPosition; id: TeamId; kind: 'team'; team: Team }

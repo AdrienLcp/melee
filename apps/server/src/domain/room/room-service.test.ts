@@ -26,6 +26,7 @@ const join = (nickname: string, sessionId: string) =>
     newPlayerId: `player-${sessionId}`,
     nickname,
     now: NOW,
+    pawnColour: null,
     room,
     sessionId
   })

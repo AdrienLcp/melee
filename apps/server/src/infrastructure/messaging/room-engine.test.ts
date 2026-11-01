@@ -81,6 +81,7 @@ const buzzerRoomInCountdown = (): Room => {
     newPlayerId: 'alice',
     nickname: 'Alice',
     now: OPENED_AT,
+    pawnColour: null,
     room,
     sessionId: 'alice-session'
   })

@@ -393,6 +393,7 @@ const toPublicPlayers = (room: Room): PublicPlayer[] => {
 
   return [...room.players.values()].map((participant) => ({
     board: seatBoards.get(participant.id) ?? null,
+    colour: participant.colour,
     id: participant.id,
     isConnected: participant.isConnected,
     isReady: participant.isReady,

@@ -1,6 +1,7 @@
 import type React from 'react'
 
 import {
+  type BoardSettings,
   boardStrategySchema,
   DEFAULT_BOARD_SETTINGS,
   DEFAULT_TRACK_SETTINGS,
@@ -12,17 +13,20 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Switch } from '@/presentation/components/switch'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { NumberChoice } from './number-choice'
+import { useBoardSetupLanding } from './board-setup-landing'
+import { NO_LIMIT, NumberChoice } from './number-choice'
 
 import './board-setup.sass'
 
-const BOARD_LENGTHS = [20, 30, 40] as const
+const NO_BOARD = NO_LIMIT
+
+const BOARD_LENGTHS = [NO_BOARD, 20, 30, 40] as const
 
 /** The strip's lengths, with a track laid at another length kept selectable. */
-const boardLengthsWith = (board: TrackSettings): number[] =>
-  BOARD_LENGTHS.some((n) => n === board.length)
-    ? [...BOARD_LENGTHS]
-    : [...BOARD_LENGTHS, board.length].toSorted((a, b) => a - b)
+const boardLengthsWith = (board: BoardSettings): number[] =>
+  board.kind === 'track' && !BOARD_LENGTHS.some((n) => n === board.length)
+    ? [...BOARD_LENGTHS, board.length].toSorted((a, b) => a - b)
+    : [...BOARD_LENGTHS]
 
 type BoardSetupProps = {
   /** The socket is closed, or the game runs and the server refuses a new track. */
@@ -32,8 +36,9 @@ type BoardSetupProps = {
 }
 
 /**
- * Whether the room races pawns round a track, and how they walk it. Its own
- * switch, whatever the teams: without them every seat walks a pawn.
+ * Whether the room races pawns round a track, how long it is and how they
+ * walk it: one strip from *None* to the longest track, whatever the teams —
+ * without them every seat walks a pawn. A new length keeps the track's rules.
  */
 export const BoardSetup: React.FC<BoardSetupProps> = ({
   isDisabled,
@@ -41,7 +46,9 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   settings
 }) => {
   const translate = useTranslate()
+  const landingRef = useBoardSetupLanding()
   const board = settings.board
+  const lengths = boardLengthsWith(board)
   const pawns = settings.teams.kind === 'off' ? 'seats' : 'teams'
 
   const changeTrack = (track: TrackSettings) => {
@@ -49,36 +56,39 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   }
 
   return (
-    <div className='board-setup'>
-      <Switch
+    <div className='board-setup' ref={landingRef}>
+      <NumberChoice
+        className={
+          lengths.length > BOARD_LENGTHS.length
+            ? 'board-length off-list'
+            : 'board-length'
+        }
         description={translate(
           `board.setting.hint.${board.kind === 'track' ? pawns : 'off'}`
         )}
         isDisabled={isDisabled}
-        isSelected={board.kind === 'track'}
         label={translate('board.setting.label')}
-        onChange={(isOn) => {
-          onChange({
-            ...settings,
-            board: isOn ? DEFAULT_TRACK_SETTINGS : DEFAULT_BOARD_SETTINGS
-          })
+        onChange={(length) => {
+          if (length === NO_BOARD) {
+            onChange({ ...settings, board: DEFAULT_BOARD_SETTINGS })
+          } else {
+            changeTrack({
+              ...(board.kind === 'track' ? board : DEFAULT_TRACK_SETTINGS),
+              length
+            })
+          }
         }}
+        optionLabel={(length) =>
+          length === NO_BOARD ? translate('board.setting.off') : String(length)
+        }
+        optionMark={(length) =>
+          length === NO_BOARD ? undefined : translate('board.setting.unit')
+        }
+        options={lengths}
+        value={board.kind === 'track' ? board.length : NO_BOARD}
       />
       {board.kind === 'track' && (
         <div className='track-rules'>
-          <NumberChoice
-            className='board-length'
-            isDisabled={isDisabled}
-            label={translate('board.setting.lengthLabel')}
-            onChange={(length) => {
-              changeTrack({ ...board, length })
-            }}
-            optionLabel={(length) =>
-              translate('board.setting.length', { length })
-            }
-            options={boardLengthsWith(board)}
-            value={board.length}
-          />
           <SegmentedControl
             className='board-strategy'
             description={translate(

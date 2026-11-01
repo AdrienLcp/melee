@@ -13,11 +13,15 @@ export const NO_LIMIT = 0
 type NumberChoiceProps = {
   /** Passed through to the strip, which is where a stacking width is set. */
   className?: string
+  /** Said under the strip, read with it: what the chosen option does. */
+  description?: string
   isDisabled: boolean
   label: string
   onChange: (value: number) => void
   /** How each option reads. `NO_LIMIT` arrives here like any other number. */
   optionLabel: (value: number) => string
+  /** The unit printed under an option's label, which keeps the strip as narrow as its numbers; `undefined` for none. */
+  optionMark?: (value: number) => string | undefined
   options: readonly number[]
   value: number
 }
@@ -28,15 +32,18 @@ type NumberChoiceProps = {
  */
 export const NumberChoice: React.FC<NumberChoiceProps> = ({
   className,
+  description,
   isDisabled,
   label,
   onChange,
   optionLabel,
+  optionMark,
   options,
   value
 }) => (
   <SegmentedControl
     className={className}
+    description={description}
     isDisabled={isDisabled}
     label={label}
     onChange={(next) => {
@@ -48,6 +55,7 @@ export const NumberChoice: React.FC<NumberChoiceProps> = ({
     }}
     options={options.map((option) => ({
       label: optionLabel(option),
+      mark: optionMark?.(option),
       value: String(option)
     }))}
     value={String(value)}

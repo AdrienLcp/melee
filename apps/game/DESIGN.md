@@ -239,8 +239,9 @@ A cool printed board under warm, saturated die-cut inks, every value one
   everywhere but reflex, which takes the dark `--on-spine-light`.
 
 ### Tertiary
-- **Pawns** (`--pawn-1..12`; a thirteenth seat reuses the first,
-  `seatPawnColourOf` in `@melee/core/board/pawn-marks`). Twelve because the
+- **Pawns** (`--pawn-1..12`; each seat picks one, and a thirteenth seat
+  shares the one fewest hold, `pawnColourForArrival` in
+  `@melee/core/board/pawn-colour`). Twelve because the
   four added to the original eight — lime, brown, magenta, sky — keep the
   closest pair in OKLab as far apart as the eight's closest already was
   (green / teal, 10.8); a thirteenth hue fell under it. Colour-blind
@@ -607,6 +608,24 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   scroll; the unseated console's four tiles, lying down, drop the side bar
   until the round ends (`data-stage-full`), because the column it takes is
   the one the longest choice wraps into — 568×320 ran 14px off the screen.
+- **The board** is one strip on the Table tab, *Board*: *None · 20 · 30 ·
+  40*, the unit (*squares*) a `mark` under each number, the hint under the
+  strip saying who walks a pawn. With the unit beside each number it ran
+  26.65rem in English, past the panel's 22.5rem; marked, 18.52rem, so it
+  stacks below 19rem. A track laid at another length (a stored 25) joins the
+  strip in its order rather than falling off it, and that strip of five stacks
+  below 23.5rem. Once a track is laid, its rules — how the pawns move, the
+  help for whoever is last — open in a `--well` recess under the strip. A
+  switch with the length behind it hid the one setting a host looks for.
+- **The lobby's *Board* preview is the way in** on a console: the label with
+  an underlined *Change* beside it — never at the row's end, where a desk's
+  menu covers the column's corner — over the track's strip, or its length, or
+  *No board*, where there is nothing to draw or the whole track runs round the
+  page. *Change* is stretched over the whole preview, so a press on the strip
+  lands too. It opens the Table tab wherever it lives — the panel's tab,
+  unfolding a rail; the bar's screen; the podium's sheet — scrolls the strip
+  to the middle and focuses its chosen segment. Off a console there is no
+  press, and the preview shows only a track.
 - **Past the lobby** the teams and the board, which the server no longer lets
   change, are one ruled line (*No teams · No board*, *Settled for this game*)
   rather than controls drawn dead. Under a round in play, Table and
@@ -920,9 +939,9 @@ the name. The score track, too narrow for it, keeps the word for
 screen readers alone.
 
 ### Teams (`TeamRoster`, `PawnColoursProvider`)
-A room playing in teams stands every seat's pawn in its team's colour, on every
-screen, through one provider per page; a team's own pawn is its 1-based
-`colour`. A team is a tray on `--track-b`, its colour a 0.5rem band printed
+Every seat's pawn stands in the colour the seat picked, or in its team's when
+the room plays in teams (`pawnColourOf`), on every screen, through one provider
+per page; a team's own pawn is its 1-based `colour`. A team is a tray on `--track-b`, its colour a 0.5rem band printed
 across the top — never a ground text sits on — its pawn and name in the head
 (the host's name, or the screen's dictionary word for the colour), its seats as
 chips under it. Ranked, the head carries the rank and the score; the seat's own
@@ -931,11 +950,19 @@ score track, the standings and the final board rank teams in place of seats
 whenever there are any; the phone's chrome spells the team in the lobby and
 drops the word mid-round under 26rem, where the pawn says it.
 
-A team's colour is picked from the palette press in its head
-(`TeamColourPress`), on the host's table and on the team's own screens in the
-lobby: a sheet of the twelve pawns six to a row, the team's own in an ink
-keyline, a colour another team holds struck through in ink rather than dimmed,
-so the sheet still says which colours are on the table.
+A pawn's colour is picked from one press, a seat's or a team's
+(`PawnColourPress`): a small outlined control printing the palette glyph and
+the word *Colour*, whose screen-reader name starts with it and says whose
+(*Colour of the Reds*, *Colour of my pawn*). It sits in each team's head on the
+host's table, and in the lobby on a player's own screen — in the head of the
+player's team, or on the player's own chip of the roster when the room plays
+without teams, across the chip under its pawn and name. A head's presses take a line of
+their own before its name loses a letter. It opens a sheet of
+the twelve pawns six to a row (`PawnColourPicker`), closed by the pick: the
+pawn's own in an ink keyline, a colour another pawn holds struck through in ink
+rather than dimmed and out of reach, so the sheet still says which colours are
+on the table. A seat that finds all twelve held sees none struck, since it may
+share any: the initial on the pawn tells the two apart.
 
 ### Duels (`DuelBadge`)
 A duel says whose round it is with the **duel badge**: two teams' trays in
@@ -1138,6 +1165,13 @@ door where the browser holds an install dialog, a muted caption with the
 Share glyph naming Safari's two steps on an iPhone or iPad, and nothing
 anywhere else — the front door promises no install, so this is offered and
 never pushed.
+Under the name, a seated screen carries *My pawn* (`MenuPawn`) at every phase:
+a disclosure row printing the pawn and its colour's word, opening on the same
+twelve as the press. A seat in a team reads *My team's pawn* and a line saying
+the whole team changes with it; while a round plays the twelve sit at half
+opacity over *It changes between two rounds, not during one*, since the server
+refuses a recolour then, and a refusal prints in the field-error stamp in the
+line's place. The wall and a console only running the room carry none.
 On the wall the chrome goes idle
 (`data-idle`) and returns on the first pointer, key or focus.
 `ConnectionStatus` tells its four states by shape and motion, never by hue.

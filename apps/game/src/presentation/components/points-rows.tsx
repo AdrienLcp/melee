@@ -10,7 +10,7 @@ import { useRoomActions } from '@/presentation/room-actions/room-actions-provide
 
 import { Button } from './button'
 import { MinusIcon, PlusIcon } from './icons'
-import { Pawn, pawnNumberOf } from './pawn'
+import { Pawn } from './pawn'
 
 import './points-rows.sass'
 import { shownPoints } from '@/helpers/shown-points'
@@ -76,7 +76,7 @@ export const usePointsRows = (): {
           target: { kind: 'team', teamId: team.id }
         }
       })
-    : scoredPlayers.map((player, seat) => {
+    : scoredPlayers.map((player) => {
         const pawnCase =
           trackLength === null || player.board === null
             ? null
@@ -85,7 +85,7 @@ export const usePointsRows = (): {
         return {
           canGive: pawnCase === null || pawnCase < (trackLength ?? 0),
           canTake: pawnCase === null ? player.score > 0 : pawnCase > 0,
-          colour: pawnCase === null ? null : pawnNumberOf(seat),
+          colour: pawnCase === null ? null : player.colour,
           id: player.id,
           name: player.nickname,
           pawnCase,

@@ -1,15 +1,20 @@
 import { describe, expect, it } from 'vitest'
 
-import { PAWN_COLOUR_COUNT } from '@melee/protocol/team'
+import { pawnMarksOf } from './pawn-marks'
 
-import { pawnMarksOf, seatPawnColourOf } from './pawn-marks'
-
+/** One seat per name, each in a colour of its own. */
 const seatsNamed = (nicknames: readonly string[]) =>
-  nicknames.map((nickname, seat) => ({ id: `seat-${seat}`, nickname }))
+  nicknames.map((nickname, seat) => ({
+    colour: seat + 1,
+    id: `seat-${seat}`,
+    nickname
+  }))
 
-/** Fills the roster so the next seat shares the first seat's colour. */
-const fillers = (count: number): string[] =>
-  Array.from({ length: count }, (_, index) => `${index}`)
+/** Two seats standing in one colour. */
+const sharingAColour = (first: string, second: string) => [
+  { colour: 4, id: 'seat-0', nickname: first },
+  { colour: 4, id: 'seat-1', nickname: second }
+]
 
 describe('pawnMarksOf', () => {
   it('[pawn] marks a pawn with its initial, upper-cased', () => {
@@ -26,22 +31,17 @@ describe('pawnMarksOf', () => {
   })
 
   it('[pawn] spells two letters where a pawn of the same colour has the same initial', () => {
-    const marks = pawnMarksOf(
-      seatsNamed(['Marie', ...fillers(PAWN_COLOUR_COUNT - 1), 'Michel'])
-    )
+    const marks = pawnMarksOf(sharingAColour('Marie', 'Michel'))
 
     expect(marks.get('seat-0')).toBe('Ma')
-    expect(marks.get(`seat-${PAWN_COLOUR_COUNT}`)).toBe('Mi')
-    expect(seatPawnColourOf(0)).toBe(seatPawnColourOf(PAWN_COLOUR_COUNT))
+    expect(marks.get('seat-1')).toBe('Mi')
   })
 
   it('[pawn] counts two seats of one colour whose first two letters match too', () => {
-    const marks = pawnMarksOf(
-      seatsNamed(['Marie', ...fillers(PAWN_COLOUR_COUNT - 1), 'Mathis'])
-    )
+    const marks = pawnMarksOf(sharingAColour('Marie', 'Mathis'))
 
     expect(marks.get('seat-0')).toBe('M1')
-    expect(marks.get(`seat-${PAWN_COLOUR_COUNT}`)).toBe('M2')
+    expect(marks.get('seat-1')).toBe('M2')
   })
 
   it('[pawn] takes a whole emoji as an initial', () => {

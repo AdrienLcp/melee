@@ -178,6 +178,7 @@ describe('the rules every socket obeys', () => {
     expect(playerView(reloaded)?.players).toEqual([
       {
         board: null,
+        colour: 1,
         id: aliceId,
         isConnected: true,
         isReady: false,

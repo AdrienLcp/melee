@@ -247,6 +247,8 @@ export type RoomHarness = {
   seat: (options: {
     code: string
     nickname: string
+    /** The colour the screen asks for, as a device that played before does. */
+    pawnColour?: number
     sessionId?: string
   }) => Promise<Peer<PlayerServerMessage>>
   stop: () => Promise<void>
@@ -538,16 +540,19 @@ export const harnessAt = ({
   const seat = async ({
     code,
     nickname,
+    pawnColour,
     sessionId
   }: {
     code: string
     nickname: string
+    pawnColour?: number
     sessionId?: string
   }) => {
     const player = await connect(code, playerServerMessageSchema)
 
     player.send({
       nickname,
+      pawnColour,
       protocolVersion: PROTOCOL_VERSION,
       role: 'player',
       sessionId,

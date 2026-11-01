@@ -132,12 +132,13 @@ reconnect on the token it still holds.
 
 | Type | Sent by | Payload |
 |---|---|---|
-| `hello` | both | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `hostToken?` |
+| `hello` | both | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `hostToken?` — `pawnColour` is asked for a new seat only |
 | `time.ping` | both | `clientSentAt` |
 | `player.leave` | any seat | — |
 | `player.rename` | any seat | `nickname` |
 | `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
 | `player.recolourTeam` | a seat in a team | `colour` — repaints the seat's own team |
+| `player.recolourSeat` | any seat | `colour` — repaints the seat's own pawn |
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
@@ -168,6 +169,7 @@ reconnect on the token it still holds.
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
 | `host.renameTeam` | host | `teamId`, `name` |
 | `host.recolourTeam` | host | `teamId`, `colour` — a pawn token, 1-based; `colour_taken` when another team holds it |
+| `host.recolourSeat` | host | `playerId`, `colour` — under `player.recolourSeat`'s rules |
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
@@ -241,8 +243,8 @@ round clock and the answer window stop, the reveal's hold is cancelled, and no
 round deadline falls due (`roomDeadlines`). It lands as `isPaused` on all three
 views; every screen hides the round behind a paused card, and the speaker
 pauses the clip. While it holds, every frame but the table's own business and
-the exits — `player.leave`, `rename`, `chooseTeam`, `recolourTeam`, `ready`, and the host's
-`pause`, `adjustScore`, `renameTeam`, `recolourTeam`, `moveSeat`, `drawTeams`,
+the exits — `player.leave`, `rename`, `chooseTeam`, `recolourTeam`, `recolourSeat`, `ready`, and the host's
+`pause`, `adjustScore`, `renameTeam`, `recolourTeam`, `recolourSeat`, `moveSeat`, `drawTeams`,
 `updateSettings`, `removePlayer`, `dismissWall`, `endGame`, `closeRoom` — is
 refused `room_paused`: a verdict alone would put the clock back on. Letting
 go resumes like a host coming back — the clip and the clock from where they
@@ -311,6 +313,15 @@ names it, so every screen says the name its own dictionary gives the colour.
   a pawn changing colour loses the room the track. Two teams never share a
   colour: the second of two presses racing for one is `colour_taken`, and a
   team added later takes the first colour nobody holds.
+- **A seat holds a colour of its own**, the one its pawn stands in wherever no
+  team covers it. An arriving seat takes the colour its `hello` asks for — the
+  one the device last played in — when no other seat holds it, else the one
+  the fewest seats hold; a seat that comes back keeps its own, as it keeps its
+  name. `player.recolourSeat` and `host.recolourSeat` follow the team's phases,
+  refused `wrong_phase` while a round plays, and `colour_taken` for a colour
+  another seat holds while one is still free: past twelve seats two share one,
+  and the initial on the pawn tells them apart (`pawnColourOf`,
+  `isPawnColourFree` in `@melee/core/board/pawn-colour`).
 - **A team's score is the sum of its seats'.** A round pays each team the sum
   of what it paid the team's seats it opened on (`teamRoundResult`) — a sum
   rather than a mean, because under a mean a teammate's wrong answer lowers the

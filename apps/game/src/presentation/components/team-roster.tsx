@@ -141,7 +141,9 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
                   })}
                 </span>
               )}
-              {teamAction?.(team)}
+              {teamAction !== undefined && (
+                <span className='team-actions'>{teamAction(team)}</span>
+              )}
             </div>
             {teamDetail?.(team)}
             {!showsSeats ? null : members.length === 0 ? (

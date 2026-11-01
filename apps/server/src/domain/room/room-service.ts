@@ -8,6 +8,10 @@ import type {
 } from '@melee/protocol/identifiers'
 import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@melee/protocol/room'
 
+import {
+  isPawnColourFree,
+  pawnColourForArrival
+} from '@melee/core/board/pawn-colour'
 import { randomUnit } from '@melee/core/helpers/random'
 import { dealsOf } from '@melee/core/room/line-up-deals'
 import { playedPerEntry } from '@melee/core/room/next-game'
@@ -34,18 +38,21 @@ export const touch = (room: Room, now: number): void => {
  * **A returning seat keeps the name it holds**, whatever the `hello` says.
  * Renaming is `player.rename`'s job, and a screen that renamed itself carries
  * the old name in memory until it reloads: honouring the hello here would let a
- * Wi-Fi blink undo a rename nobody asked to undo.
+ * Wi-Fi blink undo a rename nobody asked to undo. The pawn colour follows the
+ * same rule: `pawnColour` is asked for a new seat only.
  */
 export const joinAsPlayer = ({
   newPlayerId,
   nickname,
   now,
+  pawnColour,
   room,
   sessionId
 }: {
   newPlayerId: PlayerId
   nickname: Nickname
   now: number
+  pawnColour: number | null
   room: Room
   sessionId: SessionId
 }): Result<Participant, JoinError> => {
@@ -76,6 +83,10 @@ export const joinAsPlayer = ({
 
   const participant: Participant = {
     bankedCase: 0,
+    colour: pawnColourForArrival({
+      asked: pawnColour,
+      heldByOthers: [...room.players.values()].map((other) => other.colour)
+    }),
     disconnectedAt: null,
     id: newPlayerId,
     isConnected: true,
@@ -114,6 +125,40 @@ export const renameSeat = ({
   }
 
   participant.nickname = nickname
+
+  return Result.success(participant)
+}
+
+/**
+ * A seat repainting its pawn: refused while a round is in play, when a pawn
+ * changing colour loses the room the track, and for a colour another seat holds
+ * while one is still free.
+ */
+export const recolourSeat = ({
+  colour,
+  now,
+  participant,
+  room
+}: {
+  colour: number
+  now: number
+  participant: Participant
+  room: Room
+}): Result<Participant, 'colour_taken' | 'wrong_phase'> => {
+  if (isRoundInPlay(room.phase)) {
+    return Result.failure('wrong_phase')
+  }
+
+  const heldByOthers = [...room.players.values()]
+    .filter((other) => other !== participant)
+    .map((other) => other.colour)
+
+  if (!isPawnColourFree({ colour, heldByOthers })) {
+    return Result.failure('colour_taken')
+  }
+
+  participant.colour = colour
+  touch(room, now)
 
   return Result.success(participant)
 }

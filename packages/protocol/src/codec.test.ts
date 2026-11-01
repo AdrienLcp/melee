@@ -40,6 +40,7 @@ const playerView: PlayerRoomView = {
   players: [
     {
       board: null,
+      colour: 1,
       id: 'p1',
       isConnected: true,
       isReady: false,

@@ -19,6 +19,7 @@ import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { PODIUM_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
 
+import { BoardSetupLandingProvider } from './board-setup-landing'
 import { PodiumRoster, useRosterSummary } from './podium-roster'
 import { GameTab, RoomTab, type SetupTabsProps, TableTab } from './setup-tabs'
 
@@ -79,87 +80,95 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
   )
 
   return (
-    <Main className='host-podium'>
-      <RoomDocumentTitle settings={view.settings} />
-      <div className='podium-bar'>
-        <span className='podium-code'>{view.code}</span>
-        <span className='podium-wall'>
-          <ScreenIcon />
-          <span className='podium-wall-name'>
-            {translate('host.roomScene.wall.name')}
+    <BoardSetupLandingProvider
+      onOpenTable={() => {
+        if (!isWide) {
+          setIsSettingsOpen(true)
+        }
+      }}
+    >
+      <Main className='host-podium'>
+        <RoomDocumentTitle settings={view.settings} />
+        <div className='podium-bar'>
+          <span className='podium-code'>{view.code}</span>
+          <span className='podium-wall'>
+            <ScreenIcon />
+            <span className='podium-wall-name'>
+              {translate('host.roomScene.wall.name')}
+            </span>
+            <span className='podium-wall-on'>
+              {translate('host.roomScene.wall.on', { count: view.wallCount })}
+            </span>
           </span>
-          <span className='podium-wall-on'>
-            {translate('host.roomScene.wall.on', { count: view.wallCount })}
-          </span>
-        </span>
-        {!isWide && (
-          <Button
-            aria-label={translate('host.podium.settings')}
-            className='podium-settings-press'
-            onPress={() => {
-              setIsSettingsOpen(true)
-            }}
-            size='small'
-            variant='outlined'
-          >
-            <ControlsIcon />
-          </Button>
-        )}
-      </div>
-      {isWide ? (
-        <section aria-labelledby={rosterTitleId} className='podium-players'>
-          <SectionHeading
-            aside={
-              view.players.length > 0
-                ? translate('player.roomSize', { count: view.players.length })
-                : null
-            }
-            id={rosterTitleId}
-          >
-            {hasAnybodyScored(view.players)
-              ? translate('round.overallStandings')
-              : translate('host.podium.roster')}
-          </SectionHeading>
-          {roster}
-        </section>
-      ) : (
-        <Disclosure
-          className='podium-players-strip'
-          icon={<PlayersIcon />}
-          label={translate('host.podium.roster')}
-          summary={rosterSummary}
-        >
-          {roster}
-        </Disclosure>
-      )}
-      <div className='podium-track'>
-        {round}
-        <section className='podium-order'>
-          {next}
-          <GameTab {...setup} />
-        </section>
-      </div>
-      {isWide ? (
-        <aside
-          aria-label={translate('host.podium.settings')}
-          className='podium-settings'
-        >
-          {settings}
-        </aside>
-      ) : (
-        isSettingsOpen && (
-          <Suspense fallback={null}>
-            <LoadedSheet
-              closeLabel={translate('host.podium.close')}
-              heading={translate('host.podium.settings')}
-              isOpen={isSettingsOpen}
-              onOpenChange={setIsSettingsOpen}
+          {!isWide && (
+            <Button
+              aria-label={translate('host.podium.settings')}
+              className='podium-settings-press'
+              onPress={() => {
+                setIsSettingsOpen(true)
+              }}
+              size='small'
+              variant='outlined'
             >
-              <div className='podium-sheet'>{settings}</div>
-            </LoadedSheet>
-          </Suspense>
-        )
-      )}
-    </Main>
+              <ControlsIcon />
+            </Button>
+          )}
+        </div>
+        {isWide ? (
+          <section aria-labelledby={rosterTitleId} className='podium-players'>
+            <SectionHeading
+              aside={
+                view.players.length > 0
+                  ? translate('player.roomSize', { count: view.players.length })
+                  : null
+              }
+              id={rosterTitleId}
+            >
+              {hasAnybodyScored(view.players)
+                ? translate('round.overallStandings')
+                : translate('host.podium.roster')}
+            </SectionHeading>
+            {roster}
+          </section>
+        ) : (
+          <Disclosure
+            className='podium-players-strip'
+            icon={<PlayersIcon />}
+            label={translate('host.podium.roster')}
+            summary={rosterSummary}
+          >
+            {roster}
+          </Disclosure>
+        )}
+        <div className='podium-track'>
+          {round}
+          <section className='podium-order'>
+            {next}
+            <GameTab {...setup} />
+          </section>
+        </div>
+        {isWide ? (
+          <aside
+            aria-label={translate('host.podium.settings')}
+            className='podium-settings'
+          >
+            {settings}
+          </aside>
+        ) : (
+          isSettingsOpen && (
+            <Suspense fallback={null}>
+              <LoadedSheet
+                closeLabel={translate('host.podium.close')}
+                heading={translate('host.podium.settings')}
+                isOpen={isSettingsOpen}
+                onOpenChange={setIsSettingsOpen}
+              >
+                <div className='podium-sheet'>{settings}</div>
+              </LoadedSheet>
+            </Suspense>
+          )
+        )}
+      </Main>
+    </BoardSetupLandingProvider>
   )
 }

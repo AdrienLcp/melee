@@ -6,7 +6,7 @@
     gap: var(--space-s)
     min-width: 0
 
-    // A recess under the switch: the rules belong to the track it laid. Pressed
+    // A recess under the strip: the rules belong to the track it laid. Pressed
     // into the panel's paper, whose inks stay light-ground in both palettes.
     .track-rules
       background: var(--well)
@@ -15,9 +15,11 @@
       gap: var(--space-s)
       padding: var(--space-s)
 
-    // « 40 cases » three times over is wider than a count of digits.
     .board-length
-      @include strip.stacks-below(13rem)
+      @include strip.stacks-below(19rem)
+
+      &.off-list
+        @include strip.stacks-below(23.5rem)
 
     .board-strategy
       @include strip.stacks-below(14rem)

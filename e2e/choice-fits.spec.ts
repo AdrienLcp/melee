@@ -123,6 +123,7 @@ const SERVER_TIME = 1_800_000_000_000
 const players = [
   {
     board: null,
+    colour: 1,
     id: 'p1',
     isConnected: true,
     isReady: false,
@@ -131,6 +132,7 @@ const players = [
   },
   {
     board: null,
+    colour: 2,
     id: 'p2',
     isConnected: true,
     isReady: false,
@@ -139,6 +141,7 @@ const players = [
   },
   {
     board: null,
+    colour: 3,
     id: 'p3',
     isConnected: true,
     isReady: false,
@@ -250,6 +253,7 @@ const table = [
   'Marc'
 ].map((nickname, seat) => ({
   board: null,
+  colour: (seat % 12) + 1,
   id: `p${seat + 1}`,
   isConnected: true,
   isReady: false,
@@ -1717,6 +1721,7 @@ const FULL_TABLE_NAMES = [
 
 const fullTable = Array.from({ length: 24 }, (_, seat) => ({
   board: null,
+  colour: (seat % 12) + 1,
   id: `p${seat + 1}`,
   isConnected: true,
   isReady: seat % 2 === 0,

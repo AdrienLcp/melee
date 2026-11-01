@@ -122,6 +122,7 @@ import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { MostLikelyTally } from '@/presentation/components/most-likely-tally'
 import { NoticeCard } from '@/presentation/components/notice-card'
+import { OwnPawnPress } from '@/presentation/components/own-pawn-press'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
@@ -512,6 +513,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
                   hasPawns
                   label={translate('player.table')}
                   players={view.players}
+                  youAction={<OwnPawnPress />}
                   youId={view.youId}
                 />
                 <EmptySockets seated={view.players.length} />

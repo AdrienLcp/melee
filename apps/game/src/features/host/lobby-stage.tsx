@@ -4,22 +4,22 @@ import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
-import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
+import { PawnColourPress } from '@/presentation/components/pawn-colour-press'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
-import { TeamColourPress } from '@/presentation/components/team-colour-press'
 import { TeamRoster } from '@/presentation/components/team-roster'
-import { TrackStrip } from '@/presentation/components/track-strip'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import { gameDescriptionKey, scoringKey } from '@/presentation/i18n/translation'
+import { useTeamName } from '@/presentation/i18n/use-team-name'
 
+import { BoardPreview } from './board-preview'
 import { MoveSeat } from './move-seat'
 import { RenameTeam } from './rename-team'
 import type { StageControls } from './room-stage'
@@ -101,16 +101,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           />
         )}
 
-        {!isBoardAround && view.settings.board.kind === 'track' && (
-          <section className='board-preview'>
-            <h2>{translate('board.setting.label')}</h2>
-            <TrackStrip
-              length={view.settings.board.length}
-              pawns={trackPawnsOf(view)}
-              yours={undefined}
-            />
-          </section>
-        )}
+        <BoardPreview isBoardAround={isBoardAround} view={view} />
 
         <section className='roster'>
           {playsAloud ? (
@@ -164,6 +155,7 @@ const LobbyTeams: React.FC<{
   youId: PlayerId | null
 }> = ({ controls, view, youId }) => {
   const translate = useTranslate()
+  const teamName = useTeamName()
   const teams = view.settings.teams
   const { deal, hasDealt, isDrawn, isShortOfPlayers, shortfall } = useTeamDeal({
     send: controls?.send ?? null,
@@ -233,7 +225,18 @@ const LobbyTeams: React.FC<{
             ? undefined
             : (team) => (
                 <>
-                  <TeamColourPress
+                  <PawnColourPress
+                    aria-label={translate('team.recolour.action', {
+                      team: teamName(team)
+                    })}
+                    colour={team.colour}
+                    holders={view.teams
+                      .filter((other) => other.id !== team.id)
+                      .map((other) => ({
+                        colour: other.colour,
+                        name: other.name
+                      }))}
+                    label={translate('team.recolour.label')}
                     onRecolour={(colour) => {
                       controls.send({
                         colour,
@@ -241,8 +244,7 @@ const LobbyTeams: React.FC<{
                         type: 'host.recolourTeam'
                       })
                     }}
-                    team={team}
-                    teams={view.teams}
+                    sharesWhenFull={false}
                   />
                   <RenameTeam
                     onRename={(name) => {

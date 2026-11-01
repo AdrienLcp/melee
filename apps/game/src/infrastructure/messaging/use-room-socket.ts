@@ -28,6 +28,7 @@ import {
   isOurOwnMalformedFrame,
   reportRefusedFrame
 } from '@/infrastructure/diagnostics'
+import { readStoredPawnColour } from '@/infrastructure/storage/preferences-storage'
 import {
   ensureSessionId,
   forgetSessionId,
@@ -36,6 +37,13 @@ import {
 import { ensureWallSessionId } from '@/infrastructure/storage/wall-session-storage'
 
 import { useSettledStatus } from './use-settled-status'
+
+/** The colour a new seat asks for: the one this device last picked, if any. */
+const storedPawnColour = (): number | undefined => {
+  const stored = readStoredPawnColour()
+
+  return stored.status === 'success' ? (stored.data ?? undefined) : undefined
+}
 
 /**
  * `closed` and `refused` both mean "no socket", and the difference is the whole
@@ -163,6 +171,7 @@ export const useRoomSocket = ({
                 ? undefined
                 : (readHostToken(roomCode) ?? undefined),
             nickname: nickname ?? undefined,
+            pawnColour: nickname === null ? undefined : storedPawnColour(),
             protocolVersion: PROTOCOL_VERSION,
             role,
             sessionId:

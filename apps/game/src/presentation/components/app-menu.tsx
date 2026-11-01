@@ -64,6 +64,7 @@ import {
 } from './icons'
 import { Leaflet } from './leaflet'
 import { Link } from './link'
+import { MenuPawn } from './menu-pawn'
 import { MenuPoints } from './menu-points'
 import { ProjectWithCode } from './project-with-code'
 import { RoomInvitation } from './room-invitation'
@@ -546,6 +547,8 @@ export const AppMenu: React.FC = () => {
               <InstallApp />
 
               <SeatName />
+
+              <MenuPawn />
 
               <RoomExit onDone={close} />
 

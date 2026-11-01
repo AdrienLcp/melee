@@ -321,6 +321,8 @@ export const FR_DICTIONARY = defineDictionary({
         hint: 'Seul à la dernière place, on avance d’une case de plus sur une manche où l’on marque.',
         label: 'Coup de pouce au dernier'
       },
+      change: 'Changer',
+      changeLabel: 'Changer le plateau',
       hint: {
         off: 'Des pions sur un parcours, autour de l’écran de la salle.',
         seats: 'Un pion par joueur, qui avance à chaque manche.',
@@ -328,7 +330,7 @@ export const FR_DICTIONARY = defineDictionary({
       },
       label: 'Plateau',
       length: '{length:number} cases',
-      lengthLabel: 'Longueur',
+      off: 'Sans',
       strategy: {
         hint: {
           onePointOneCase:
@@ -338,7 +340,8 @@ export const FR_DICTIONARY = defineDictionary({
         label: 'Les pions avancent',
         onePointOneCase: 'Aux points',
         rank: 'Au classement'
-      }
+      },
+      unit: 'cases'
     },
     standing: '{team} : case {case:number} sur {length:number}',
     start: 'Départ',
@@ -460,7 +463,7 @@ export const FR_DICTIONARY = defineDictionary({
     colour_still_shown:
       'Attends que la couleur disparaisse avant d’envoyer la tienne.',
     colour_taken:
-      'Une autre équipe vient de prendre cette couleur — choisis-en une autre.',
+      'Quelqu’un vient de prendre cette couleur — choisis-en une autre.',
     false_start: 'Trop tôt. Attends que ça change.',
     host_already_connected: 'Quelqu’un tient déjà cette table.',
     host_away: 'L’hôte a décroché. La manche attend son retour.',
@@ -1210,6 +1213,8 @@ export const FR_DICTIONARY = defineDictionary({
       panelFolded:
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
+      pawnColour:
+        'La couleur de pion que tu as choisie la dernière fois, que la table suivante te donne si personne ne l’a déjà.',
       recentTables:
         'Les parties des dernières tables que tu as tenues, avec le code de chacune, quand elle a été jouée et combien de manches elle a duré, pour en relancer une.',
       savedEvenings:
@@ -1375,6 +1380,34 @@ export const FR_DICTIONARY = defineDictionary({
     description: 'La partie est finie, ou le code a été mal tapé.',
     documentTitle: 'Personne ici — Mêlée',
     title: 'Personne ici'
+  },
+  pawn: {
+    betweenRounds: 'Il se change entre deux manches, pas pendant.',
+    colour: {
+      pawn1: 'Rouge',
+      pawn2: 'Bleu',
+      pawn3: 'Jaune',
+      pawn4: 'Vert',
+      pawn5: 'Violet',
+      pawn6: 'Orange',
+      pawn7: 'Rose',
+      pawn8: 'Turquoise',
+      pawn9: 'Anis',
+      pawn10: 'Marron',
+      pawn11: 'Fuchsia',
+      pawn12: 'Ciel'
+    },
+    label: {
+      seat: 'Mon pion',
+      team: 'Le pion de mon équipe'
+    },
+    press: {
+      label: 'Couleur',
+      seat: 'Couleur de mon pion'
+    },
+    taken: '{colour}, déjà pris',
+    takenBy: '{colour}, pris par {holder}',
+    teamHint: 'Toute ton équipe change de couleur avec lui.'
   },
   petitbac: {
     category: {
@@ -1919,10 +1952,8 @@ export const FR_DICTIONARY = defineDictionary({
       'Les équipes se forment à partir de {count:number} joueurs — d’ici là, chacun joue pour soi.',
     pick: 'Choisis ton équipe',
     recolour: {
-      action: 'Changer la couleur des {team}',
-      label: 'Couleur du pion',
-      taken: '{colour}, déjà pris',
-      takenBy: '{colour}, pris par les {team}'
+      action: 'Couleur des {team}',
+      label: 'Couleur du pion'
     },
     redraw: 'Nouveau tirage',
     rename: {

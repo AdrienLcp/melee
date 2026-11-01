@@ -3,8 +3,24 @@ import type React from 'react'
 import { useCallback, useEffect, useState } from 'react'
 
 import type { ScoreTarget } from '@melee/protocol/client-message'
-import type { PublicPlayer } from '@melee/protocol/room'
+import type { ProtocolErrorCode } from '@melee/protocol/error-code'
+import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PublicPlayer, RoomPhase } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
+
+/** The room a seat's pawn is picked against: whose colour is whose, and the phase. */
+export type PawnRoom = {
+  phase: RoomPhase
+  players: readonly PublicPlayer[]
+  teams: readonly Team[]
+  youId: PlayerId | null
+}
+
+/** The refusals a recolour can meet, each with its own words. */
+export type RecolourRefusal = Extract<
+  ProtocolErrorCode,
+  'colour_taken' | 'teams_locked' | 'wrong_phase'
+>
 
 /**
  * What a screen inside a room offers the menu above it. The menu in the shell is
@@ -48,6 +64,22 @@ export type RoomActions = {
    * console's alone, and `null` outside a round or once it is paused.
    */
   pauseRound: (() => void) | null
+  /**
+   * The room this screen's pawn is picked against — the view itself, so its
+   * identity changes only with a snapshot. `null` where no seat is held: the
+   * wall, and a console only running the room.
+   */
+  pawnRoom: PawnRoom | null
+  /**
+   * Repaints this screen's pawn: its team's when the seat sits in one, the
+   * seat's own otherwise. `null` with `pawnRoom`.
+   */
+  recolourPawn: ((colour: number) => void) | null
+  /**
+   * Why the server turned this screen's last recolour down, until another is
+   * asked for or the pawn stands in the colour asked.
+   */
+  refusedRecolour: RecolourRefusal | null
   /** Changes the name the seat is held under, socket and round untouched. */
   rename: ((nickname: string) => void) | null
   /**
@@ -82,7 +114,10 @@ const NO_ACTIONS: RoomActions = {
   handOver: null,
   leaveSeat: null,
   pauseRound: null,
+  pawnRoom: null,
+  recolourPawn: null,
   refusedNickname: null,
+  refusedRecolour: null,
   rename: null,
   revealRound: null,
   roomVolume: null,
@@ -149,7 +184,10 @@ export const useReportRoomActions = ({
   handOver,
   leaveSeat,
   pauseRound,
+  pawnRoom,
+  recolourPawn,
   refusedNickname,
+  refusedRecolour,
   rename,
   revealRound,
   roomVolume,
@@ -169,7 +207,10 @@ export const useReportRoomActions = ({
       handOver,
       leaveSeat,
       pauseRound,
+      pawnRoom,
+      recolourPawn,
       refusedNickname,
+      refusedRecolour,
       rename,
       revealRound,
       roomVolume,
@@ -190,7 +231,10 @@ export const useReportRoomActions = ({
     handOver,
     leaveSeat,
     pauseRound,
+    pawnRoom,
+    recolourPawn,
     refusedNickname,
+    refusedRecolour,
     rename,
     report,
     revealRound,

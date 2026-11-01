@@ -32,6 +32,7 @@ import {
   NOBODY,
   useReportRoomActions
 } from '@/presentation/room-actions/room-actions-provider'
+import { useSeatPawn } from '@/presentation/room-actions/use-seat-pawn'
 import { useMarkingField } from '@/presentation/theme/use-marking-field'
 import { usePhaseField } from '@/presentation/theme/use-phase-field'
 
@@ -101,6 +102,14 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     }
   }, [seatNickname])
 
+  const pawn = useSeatPawn({
+    clearError,
+    error: connection.error,
+    role: 'player',
+    send,
+    view
+  })
+
   useReportRoomActions({
     adjustScore: null,
     closeRoom: null,
@@ -108,6 +117,7 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     handOver: null,
     leaveSeat: nickname === null ? null : leave,
     pauseRound: null,
+    ...pawn,
     refusedNickname:
       requestedNickname !== null && connection.error?.code === 'nickname_taken'
         ? requestedNickname

@@ -11,10 +11,10 @@ import {
 } from '@melee/core/team/team-board'
 
 import { Button } from '@/presentation/components/button'
+import { OwnPawnPress } from '@/presentation/components/own-pawn-press'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
 import { SectionHeading } from '@/presentation/components/section-heading'
-import { TeamColourPress } from '@/presentation/components/team-colour-press'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
@@ -24,10 +24,10 @@ import { useTeamName } from '@/presentation/i18n/use-team-name'
 import './player-teams.sass'
 import { shownPoints } from '@/helpers/shown-points'
 
-/** What a seat may say about its own team: which one it sits in, and its colour. */
+/** What a seat may say about its own team: which one it sits in. */
 export type TeamSeatMessage = Extract<
   PlayerClientMessage,
-  { type: 'player.chooseTeam' | 'player.recolourTeam' }
+  { type: 'player.chooseTeam' }
 >
 
 type LobbyTeamsProps = {
@@ -58,13 +58,7 @@ export const LobbyTeams: React.FC<LobbyTeamsProps> = ({ onTeam, view }) => {
         players={view.players}
         teamAction={(team) =>
           team.id === yours?.id ? (
-            <TeamColourPress
-              onRecolour={(colour) =>
-                onTeam({ colour, type: 'player.recolourTeam' })
-              }
-              team={team}
-              teams={view.teams}
-            />
+            <OwnPawnPress />
           ) : isChosen ? (
             <Button
               className='join'
