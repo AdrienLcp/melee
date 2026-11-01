@@ -587,6 +587,7 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
+    judgedGames: 'Jugés par l’hôte',
     opening: 'Ouverture de la table…',
     openWith: defineTranslation('Ouvrir une table · {count:plural}', {
       plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
@@ -595,7 +596,7 @@ export const FR_DICTIONARY = defineDictionary({
     shelf: 'Ou tes jeux à toi',
     shelfHint:
       'Coche ce que « Ouvrir une table » lance. Tes coches sont gardées pour la prochaine fois.',
-    tickUnjudged: 'Tout cocher sauf « L’hôte juge »',
+    tickUnjudged: 'Tout cocher sauf ceux que l’hôte juge',
     title: 'Mêlée',
     untickAll: 'Tout décocher'
   },

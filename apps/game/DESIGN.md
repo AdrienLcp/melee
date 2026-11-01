@@ -804,8 +804,14 @@ under every answer mode a verdict is owed in.
   spinner replaces the pressed box's arrow and the others are disabled.
 - **`GameShelf`** (`features/home`): the games as spines, each a toggle
   ticking it for the host's door — its spine colour, its name in the display
-  face, its tagline, and *· Host judges* after it for a game judged however
-  it is answered; two columns from a 52rem container. A ticked spine is pulled
+  face, its tagline; two columns from a 52rem container. The games judged
+  however they are answered are shelved last, each group in `shelvedGames`
+  order, under *Judged by the host*: the reveal's block-heading step in full
+  ink, ruled off to the far edge, a `--space-m` above it and a `--space-s`
+  under. Mixed into the run, the three spines a ticked shelf leaves bare read
+  as forgotten boxes; and nothing re-sorts on a tick, so no spine moves under
+  the finger. The lobby's picker keeps the constant's order: nothing there is
+  ticked, and each judged row carries its stamp. A ticked spine is pulled
   forward — twice the chipboard, `--shadow-pulled`, an inset ring of
   `--board-ink` and its tick box printed solid in `--spine-ink`; once anything is
   ticked the rest sit back on `--socket`. Two underlined presses over it tick

@@ -613,6 +613,8 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Two names. Which one is bigger?'
   },
   home: {
+    /** Over the games the host judges however they are answered, shelved after the rest. */
+    judgedGames: 'Judged by the host',
     opening: 'Opening the table…',
     openWith: defineTranslation('Open a table · {count:plural}', {
       plural: { count: { one: '{?} game', other: '{?} games' } }
@@ -621,7 +623,7 @@ export const EN_DICTIONARY = defineDictionary({
     shelf: 'Or your own games',
     shelfHint:
       'Tick what “Open a table” opens. Your ticks are kept for next time.',
-    tickUnjudged: 'Tick all but “Host judges”',
+    tickUnjudged: 'Tick all but those the host judges',
     title: 'Mêlée',
     untickAll: 'Untick all'
   },

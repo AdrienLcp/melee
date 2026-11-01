@@ -97,6 +97,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The front page shelves the games the host judges last, under
+  their own heading.** Slate, Buzzer and Challenge no longer sit among the
+  others as three bare boxes a ticked shelf seems to have forgotten: they come
+  after every game nobody has to judge, under *Judged by the host*, and nothing
+  moves when a box is ticked. The first press over the shelf now reads *Tick
+  all but those the host judges*.
 - `[Game]` **The quiz's reveal keeps its question.** The answer no longer
   replaces the question on the console, the wall and every player's screen:
   the question stays above it, quieter, and on the wall it gives way to two

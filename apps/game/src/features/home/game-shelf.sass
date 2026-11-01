@@ -46,6 +46,29 @@
       @container (width >= 52rem)
         grid-template-columns: repeat(2, minmax(0, 1fr))
 
+    .judged-shelf
+      display: grid
+      gap: var(--space-s)
+      margin-block-start: var(--space-s)
+
+    // The board between two shelves: the group's name ruled off to the far
+    // edge, in the reveal's block-heading step so it divides rather than leads.
+    .judged-title
+      @include typography.title
+
+      align-items: center
+      color: var(--ink)
+      display: flex
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.2), var(--text-l))
+      gap: var(--space-xs)
+      margin: 0
+
+      &::after
+        border-top: var(--hairline)
+        content: ''
+        flex: 1 1 0
+        min-width: var(--space-m)
+
   .spine
     @include piece.piece(var(--radius-s))
     @include piece.pressable

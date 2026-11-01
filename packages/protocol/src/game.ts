@@ -51,9 +51,11 @@ export const gameKindSchema = z.enum(gameKinds)
  * `slate` spent a stage in exactly that window, as `reflex` did before it and
  * every game before that.
  *
- * **The order is the shelf's**, not the alphabet's: it is the order the front
- * door draws its cards in and the order the lobby's picker offers, so the two
- * games a table reaches for first come first. Sorting it is a product change.
+ * **The order is the shelf's**, not the alphabet's: it is the order the lobby's
+ * picker offers and the order the front door draws its cards in — the games a
+ * host judges shelved after the rest there, each group keeping this order — so
+ * the two games a table reaches for first come first. Sorting it is a product
+ * change.
  */
 export const shelvedGames = [
   'blindtest',
