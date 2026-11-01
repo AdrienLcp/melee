@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { clipRefusalFor, isClipUnheard, seekTargetMs } from './clip-audio'
+import {
+  CLIP_STALL_MS,
+  clipRefusalFor,
+  isClipStalled,
+  isClipUnheard,
+  seekTargetMs
+} from './clip-audio'
 
 describe('seekTargetMs', () => {
   it('[clip] leaves a clip that is where the room is', () => {
@@ -79,5 +85,29 @@ describe('clipRefusalFor', () => {
   it('[clip] owns up to a rejection it cannot name', () => {
     expect(clipRefusalFor('QuotaExceededError')).toBe('broken')
     expect(clipRefusalFor(null)).toBe('broken')
+  })
+})
+
+describe('isClipStalled', () => {
+  it('[clip] gives a clip that has just been told to play time to buffer', () => {
+    expect(
+      isClipStalled({
+        hasEnded: false,
+        nowMs: CLIP_STALL_MS - 1,
+        stillSinceMs: 0
+      })
+    ).toBe(false)
+  })
+
+  it('[clip] calls a clip silent once it has sat on one second too long', () => {
+    expect(
+      isClipStalled({ hasEnded: false, nowMs: CLIP_STALL_MS, stillSinceMs: 0 })
+    ).toBe(true)
+  })
+
+  it('[clip] never calls a clip that ran to its end silent', () => {
+    expect(
+      isClipStalled({ hasEnded: true, nowMs: 60_000, stillSinceMs: 0 })
+    ).toBe(false)
   })
 })

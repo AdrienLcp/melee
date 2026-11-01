@@ -27,7 +27,7 @@ import {
   slateItemIndexSchema,
   slateKeySchema
 } from './slate'
-import { roomVolumeSchema, speakerSchema } from './sound'
+import { clipFaultSchema, roomVolumeSchema, speakerSchema } from './sound'
 import { colourHexSchema } from './swatch'
 import {
   MAX_TEAMS,
@@ -647,6 +647,18 @@ export const setVolumeMessageSchema = z.object({
 })
 
 /**
+ * The speaker saying its clip is not sounding, or — `fault: null` — sounding
+ * again. Sent by whichever screen plays the clip, console or wall, because the
+ * wall that most often does is the screen the host is not looking at, and a
+ * silent clip looks exactly like one that plays.
+ */
+export const reportClipMessageSchema = z.object({
+  fault: clipFaultSchema.nullable(),
+  roundId: roundIdSchema,
+  type: z.literal('speaker.reportClip')
+})
+
+/**
  * What a host socket may send. Splitting the union by role means a player
  * screen cannot even construct `host.judge` — the server still enforces it,
  * because a socket is whatever its owner makes it, but the client code gets the
@@ -688,7 +700,8 @@ export const hostClientMessageSchema = z.discriminatedUnion('type', [
   closeRoomMessageSchema,
   dismissWallMessageSchema,
   chooseSpeakerMessageSchema,
-  setVolumeMessageSchema
+  setVolumeMessageSchema,
+  reportClipMessageSchema
 ])
 
 export const playerClientMessageSchema = z.discriminatedUnion('type', [
@@ -710,10 +723,14 @@ export const playerClientMessageSchema = z.discriminatedUnion('type', [
   finishPetitBacVoteMessageSchema
 ])
 
-/** A wall says who it is and keeps its clock. It never controls the room, nor answers. */
+/**
+ * A wall says who it is, keeps its clock, and reports a clip it cannot sound.
+ * It never controls the room, nor answers.
+ */
 export const wallClientMessageSchema = z.discriminatedUnion('type', [
   helloMessageSchema,
-  timePingMessageSchema
+  timePingMessageSchema,
+  reportClipMessageSchema
 ])
 
 /** Everything the server's decoder accepts, before it knows which role sent it. */
@@ -767,7 +784,8 @@ export const clientMessageSchema = z.discriminatedUnion('type', [
   closeRoomMessageSchema,
   dismissWallMessageSchema,
   chooseSpeakerMessageSchema,
-  setVolumeMessageSchema
+  setVolumeMessageSchema,
+  reportClipMessageSchema
 ])
 
 export type ConnectionRole = z.infer<typeof connectionRoleSchema>

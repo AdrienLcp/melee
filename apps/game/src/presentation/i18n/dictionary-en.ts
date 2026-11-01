@@ -190,6 +190,28 @@ export const EN_DICTIONARY = defineDictionary({
        * where it stands is told once what to do instead of three times what
        * went wrong.
        */
+      /**
+       * A clip the speaker was allowed to play and could not: the file, never
+       * the screen, so nothing here asks for a press.
+       */
+      fault: {
+        stalled:
+          'The music is stuck loading here. Check this screen’s connection.',
+        unreachable:
+          'This track’s music would not load. It is the file or the connection, not the speakers.'
+      },
+      /**
+       * Told to the console about the room’s screen, which is the one sounding
+       * and the one the host is not looking at.
+       */
+      onWall: {
+        blocked:
+          'The room’s screen plays no sound until someone presses Start the music on it.',
+        stalled:
+          'The music is stuck loading on the room’s screen. Reveal this one and go on, or check that screen’s connection.',
+        unreachable:
+          'The room’s screen could not load this track’s music. Reveal it and go on to the next.'
+      },
       pause: 'Pause',
       refused: {
         blocked:
@@ -476,7 +498,7 @@ export const EN_DICTIONARY = defineDictionary({
     joined_mid_round: 'You are in from the next round.',
     judging_round: 'You are judging this round, and play again from the next.',
     music_source_unavailable:
-      'The music has stopped answering. Try again in a moment.',
+      'Deezer, where the music comes from, is not answering. It is not your speakers: try again in a moment.',
     nickname_taken: 'Someone already took that nickname.',
     no_content_available: 'Nothing left to play. Try other settings.',
     no_game_chosen: 'Pick a game first.',

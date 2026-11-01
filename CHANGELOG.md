@@ -8,6 +8,16 @@ one part.
 
 ### Features
 
+- `[Shared]` **A blind test that plays no music says so, on the console too.**
+  The screen playing the sound watches its clip: a file that will not load, or
+  a clip sitting on one second for three, puts a line on that screen and is
+  reported to the console, which names the room's screen and what to do —
+  press *Start the music* on it, or reveal the track and go on. A refused clip
+  no longer reads as a screen that cannot play: it stays armed for the next
+  track. When Deezer itself does not answer, the message names Deezer and says
+  it is not the speakers. The evening of 31 October that prompted this left no
+  catalogue failure in the Worker's logs: the tracks were drawn, and the clip
+  was lost in the browser.
 - `[Shared]` **An answer not sent in time still counts.** A colour rebuilt on
   the picker, a pawn left on the map or cards moved into an order are saved as
   they move, and a seat that never pressed send is paid on where its screen

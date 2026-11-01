@@ -80,3 +80,25 @@ export const clipRefusalFor = (name: string | null): ClipRefusal | null => {
       return 'broken'
   }
 }
+
+/**
+ * How long a clip told to play may sit on the same second before its speaker
+ * calls it silent. Long enough for a slow connection to buffer the start of a
+ * thirty-second preview, short enough to be said while the round still runs.
+ */
+export const CLIP_STALL_MS = 3_000
+
+/**
+ * Whether a clip that should be sounding has not moved for too long. A clip
+ * that ran to its end has not stalled: it has nothing left to play.
+ */
+export const isClipStalled = ({
+  hasEnded,
+  stillSinceMs,
+  nowMs
+}: {
+  hasEnded: boolean
+  /** When the clip's position last moved, or when it was told to play. */
+  stillSinceMs: number
+  nowMs: number
+}): boolean => !hasEnded && nowMs - stillSinceMs >= CLIP_STALL_MS

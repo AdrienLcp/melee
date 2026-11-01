@@ -108,6 +108,7 @@ import {
   type SetupTabsProps,
   TableTab
 } from './setup-tabs'
+import { useSilentClipReport } from './silent-clip-report'
 import { SlateEditors } from './slate-stages'
 import { useLaidOutWall } from './use-laid-out-wall'
 import { useLineUpDraw } from './use-line-up-draw'
@@ -212,10 +213,16 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const roomVolume = view?.volume ?? ownVolume
   const isLaidOutForWall = useLaidOutWall(view?.isWallConnected ?? null)
   const isDesk = useMediaQuery(DESK_SCREEN_QUERY)
-  const { canPlay, refusal, unlock } = useRoundAudio({
+  const { canPlay, fault, refusal, unlock } = useRoundAudio({
     clock,
     view: isSpeaker ? view : null,
     volume: roomVolume
+  })
+
+  useSilentClipReport({
+    fault,
+    roundId: isSpeaker ? (view?.round?.id ?? null) : null,
+    send
   })
 
   useBuzzCue({
@@ -565,6 +572,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           )}
           <ClipOffer
             canPlay={canPlay}
+            fault={fault}
             isSpeaker={isSpeaker}
             onUnlockAudio={armAudio}
             refusal={refusal}
@@ -764,6 +772,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         canPlay={canPlay}
         clock={clock}
         controls={controls}
+        fault={fault}
         isBoardAround={isSpeaker && isDesk}
         isSpeaker={isSpeaker}
         onUnlockAudio={armAudio}
@@ -823,6 +832,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   canPlay={canPlay}
                   clock={clock}
                   controls={controls}
+                  fault={fault}
                   isBoardAround={false}
                   isSpeaker={isSpeaker}
                   onUnlockAudio={armAudio}

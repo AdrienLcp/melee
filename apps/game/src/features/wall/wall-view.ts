@@ -24,6 +24,7 @@ export const asRoomScreenView = ({
     view.currentContent === null ? null : withheld(view.currentContent),
   lineUpPlayed: [],
   remainingPoolSize: 0,
+  silentClip: null,
   wallCount: 1,
   walls: [],
   youId: null

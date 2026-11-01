@@ -45,7 +45,7 @@ export const newRoom = ({
     players: new Map(),
     round: null,
     settings: roomSettingsFor({ games, locale }),
-    sound: { speaker: null, volume: null },
+    sound: { silentClip: null, speaker: null, volume: null },
     teams: [],
     trackPool: []
   }

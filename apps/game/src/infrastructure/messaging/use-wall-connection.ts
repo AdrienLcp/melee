@@ -12,8 +12,9 @@ export type WallConnection = RoomSocket & {
 }
 
 /**
- * The room's own screen. It sends nothing but its hello and its clock, and the
- * token it carries in that hello is the whole of what lets it in.
+ * The room's own screen. It sends its hello, its clock and what it hears of
+ * the clip when it is the speaker, and the token it carries in that hello is
+ * the whole of what lets it in.
  */
 export const useWallConnection = (roomCode: RoomCode): WallConnection => {
   const [view, setView] = useState<WallRoomView | null>(null)

@@ -10,6 +10,7 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 import { POINT } from '@melee/protocol/scoring'
+import type { ClipFault } from '@melee/protocol/sound'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import { isRoundJudgedByHost } from '@melee/core/room/game-modes'
@@ -98,6 +99,8 @@ type RoomStageProps = {
   isSpeaker: boolean
   /** The gesture a screen that cannot play a clip has to be offered. */
   onUnlockAudio: () => void
+  /** Why the round's clip is not sounding on this screen, when it is the speaker. */
+  fault: ClipFault | null
   /** Why the last press did not arm this screen, and `null` while none has failed. */
   refusal: ClipRefusal | null
   roomCode: RoomCode
@@ -136,6 +139,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
   canPlay,
   clock,
   controls,
+  fault,
   isBoardAround,
   isSpeaker,
   onUnlockAudio,
@@ -171,6 +175,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
   const clipOffer = (
     <ClipOffer
       canPlay={canPlay}
+      fault={fault}
       isSpeaker={isSpeaker}
       onUnlockAudio={onUnlockAudio}
       refusal={refusal}

@@ -444,4 +444,105 @@ describe('the wall', () => {
 
     expect(errorsIn(wall)).toHaveLength(0)
   })
+  const playingRoundId = async (host: Parameters<typeof hostView>[0]) => {
+    await waitFor(
+      () => hostView(host)?.phase === 'playing',
+      'the clip to start'
+    )
+
+    const roundId = hostView(host)?.round?.id
+
+    if (roundId === undefined) {
+      throw new Error('no round is on screen')
+    }
+
+    return roundId
+  }
+
+  it('[wall] tells the console the clip it sounds is silent, and when it plays again', async () => {
+    const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
+    const wall = await pairedWall({ code, hostToken })
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const roundId = await playingRoundId(host)
+
+    wall.send({ fault: 'unreachable', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip != null,
+      'the console to hear the clip is silent'
+    )
+    expect(hostView(host)?.silentClip).toEqual({
+      cause: 'unreachable',
+      roundId,
+      wallNumber: 1
+    })
+
+    wall.send({ fault: null, roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip === null,
+      'the console to hear the clip again'
+    )
+  })
+
+  it('[wall] is not listened to on a clip another screen sounds', async () => {
+    const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
+    const speaking = await pairedWall({ code, hostToken })
+    const silent = await pairedWall({ code, hostToken })
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const roundId = await playingRoundId(host)
+
+    silent.send({ fault: 'stalled', roundId, type: 'speaker.reportClip' })
+    speaking.send({
+      fault: 'stalled',
+      roundId: 'r-gone',
+      type: 'speaker.reportClip'
+    })
+    host.send({ fault: 'blocked', roundId, type: 'speaker.reportClip' })
+    speaking.send({ fault: 'stalled', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip != null,
+      'the speaking wall to be heard'
+    )
+    expect(hostView(host)?.silentClip).toEqual({
+      cause: 'stalled',
+      roundId,
+      wallNumber: 1
+    })
+    expect(errorsIn(silent)).toEqual([])
+  })
+
+  it('[wall] forgets a silent clip once the sound moves to another screen', async () => {
+    const { code, host, hostToken } = await harness.openRoom(FAST_GAME)
+    const wall = await pairedWall({ code, hostToken })
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const roundId = await playingRoundId(host)
+
+    wall.send({ fault: 'blocked', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip != null,
+      'the console to hear the clip is silent'
+    )
+
+    host.send({ speaker: { kind: 'console' }, type: 'host.chooseSpeaker' })
+    await waitFor(
+      () => hostView(host)?.walls.every((one) => !one.isSpeaker) === true,
+      'the console to take the sound back'
+    )
+    expect(hostView(host)?.silentClip).toBeNull()
+
+    host.send({ fault: 'stalled', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip != null,
+      'the console to report its own clip'
+    )
+    expect(hostView(host)?.silentClip?.wallNumber).toBeNull()
+  })
 })

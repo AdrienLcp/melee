@@ -170,6 +170,20 @@ export const FR_DICTIONARY = defineDictionary({
       titleFound: 'Titre ✓'
     },
     audio: {
+      fault: {
+        stalled:
+          'La musique reste bloquée au chargement ici. Vérifie la connexion de cet écran.',
+        unreachable:
+          'La musique de ce morceau ne charge pas. C’est le fichier ou la connexion, pas les enceintes.'
+      },
+      onWall: {
+        blocked:
+          'L’écran de la salle reste muet tant que personne n’y appuie sur Lancer le son.',
+        stalled:
+          'La musique reste bloquée au chargement sur l’écran de la salle. Révèle ce morceau et passe au suivant, ou vérifie la connexion de cet écran.',
+        unreachable:
+          'L’écran de la salle n’arrive pas à charger la musique de ce morceau. Révèle-le et passe au suivant.'
+      },
       pause: 'Pause',
       refused: {
         blocked:
@@ -457,7 +471,7 @@ export const FR_DICTIONARY = defineDictionary({
     joined_mid_round: 'Tu joues à partir de la prochaine manche.',
     judging_round: 'Tu juges cette manche, tu rejoues à la suivante.',
     music_source_unavailable:
-      'La musique ne répond plus. Réessaie dans un instant.',
+      'Deezer, d’où vient la musique, ne répond plus. Ce ne sont pas tes enceintes : réessaie dans un instant.',
     nickname_taken: 'Ce pseudo est déjà pris.',
     no_content_available: 'Il ne reste rien à jouer. Change les réglages.',
     no_game_chosen: 'Choisis d’abord un jeu.',

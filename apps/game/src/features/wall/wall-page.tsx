@@ -10,6 +10,7 @@ import { isEveningSilent } from '@melee/core/room/game-capabilities'
 import { JoinReminder } from '@/features/host/join-reminder'
 import { RoomStage } from '@/features/host/room-stage'
 import { useRoundAudio } from '@/features/host/round-audio'
+import { useSilentClipReport } from '@/features/host/silent-clip-report'
 import { useSlateWall } from '@/features/host/use-slate-wall'
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { useWallConnection } from '@/infrastructure/messaging/use-wall-connection'
@@ -73,7 +74,13 @@ export const WallPage: React.FC = () => {
  */
 const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const translate = useTranslate()
-  const { clock, error, status, view: wallView } = useWallConnection(roomCode)
+  const {
+    clock,
+    error,
+    send,
+    status,
+    view: wallView
+  } = useWallConnection(roomCode)
   const view = wallView === null ? null : asRoomScreenView(wallView)
   const isSpeaker = wallView?.isSpeaker === true
   const speakingView = isSpeaker ? view : null
@@ -93,10 +100,16 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   useScreenAwake(!isRefused)
   useIdleChrome(!isRefused)
 
-  const { canPlay, refusal, unlock } = useRoundAudio({
+  const { canPlay, fault, refusal, unlock } = useRoundAudio({
     clock,
     view: speakingView,
     volume
+  })
+
+  useSilentClipReport({
+    fault,
+    roundId: speakingView?.round?.id ?? null,
+    send
   })
 
   useBuzzCue({
@@ -237,6 +250,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
             canPlay={canPlay}
             clock={clock}
             controls={null}
+            fault={fault}
             isBoardAround
             isSpeaker={isSpeaker}
             onUnlockAudio={armAudio}

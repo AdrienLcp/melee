@@ -96,6 +96,18 @@ set with `host.setVolume` and played by whichever screen is the speaker. It is
 level it last left a room at (`melee:volume`, the console's alone now): a wall
 has no slider of its own.
 
+A **silent clip** is reported by the speaker itself with
+`speaker.reportClip` — `{ roundId, fault }`, `fault` one of `blocked` (no press
+armed that screen), `unreachable` (the file would not load: an element `error`,
+or `play()` refused with `NotSupportedError` on an element already allowed to
+play) or `stalled` (told to play, position still for `CLIP_STALL_MS`), and
+`null` once it moves again. The host and a wall may send it; the server keeps
+it only from the screen sounding and only for the round on screen, and the
+host's view carries it as `silentClip` with the wall's number — `null` for the
+console. A report outlives neither that round nor that speaker, so nothing
+clears it. It exists because a clip that fails looks exactly like one that
+plays, and the wall that usually sounds is the screen the host is not watching.
+
 The console lets them go with `host.dismissWall`: every wall is sent a fatal
 `wall_dismissed`, unregistered, and the room published, so the console is the
 speaker again. The token is not rotated — the wall is the host's own screen —
@@ -155,6 +167,7 @@ reconnect on the token it still holds.
 | `host.dismissWall` | host | — |
 | `host.chooseSpeaker` | host | `speaker` — `{ kind: 'console' }` or `{ kind: 'wall', wallId }`, see *The wall* |
 | `host.setVolume` | host | `volume` — 0 to 1, the room's, played by the speaker |
+| `speaker.reportClip` | host, wall | `roundId`, `fault` — the speaker's clip silent (`blocked`, `unreachable`, `stalled`) or `null` again; dropped from any other screen |
 
 **The `player.` prefix names the seat, not the role.** `player.leave` and
 `player.rename` are the two a console holding a seat sends as well, which is why

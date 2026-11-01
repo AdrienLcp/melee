@@ -1,5 +1,10 @@
-import type { SessionId } from '@melee/protocol/identifiers'
-import type { Speaker } from '@melee/protocol/sound'
+import type { RoundId, SessionId } from '@melee/protocol/identifiers'
+import type {
+  ClipFault,
+  SilentClip,
+  Speaker,
+  WallScreen
+} from '@melee/protocol/sound'
 
 type Wall = { isSpeaker: boolean; number: number; sessionId: SessionId }
 
@@ -40,4 +45,40 @@ export const freeWallNumber = (
   }
 
   return number
+}
+
+/**
+ * The silent clip the console is told about: the one reported on the round
+ * still on screen, by the screen still sounding. A report outlives neither —
+ * the next round's clip, or another speaker, has not been heard from yet — so
+ * nothing ever has to clear it.
+ */
+export const silentClipOf = ({
+  reported,
+  roundId,
+  walls
+}: {
+  reported: {
+    cause: ClipFault
+    roundId: RoundId
+    wallId: SessionId | null
+  } | null
+  roundId: RoundId | null
+  walls: readonly WallScreen[]
+}): SilentClip | null => {
+  if (reported === null || reported.roundId !== roundId) {
+    return null
+  }
+
+  const speaking = walls.find((wall) => wall.isSpeaker) ?? null
+
+  if ((speaking?.id ?? null) !== reported.wallId) {
+    return null
+  }
+
+  return {
+    cause: reported.cause,
+    roundId: reported.roundId,
+    wallNumber: speaking?.number ?? null
+  }
 }

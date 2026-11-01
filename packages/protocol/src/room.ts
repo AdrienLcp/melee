@@ -77,7 +77,7 @@ import {
   slateLineSchema,
   slateProgressSchema
 } from './slate'
-import { roomVolumeSchema, wallScreenSchema } from './sound'
+import { roomVolumeSchema, silentClipSchema, wallScreenSchema } from './sound'
 import { colourHexSchema, sentColourSchema } from './swatch'
 import {
   DEFAULT_TEAM_SCORING,
@@ -1031,6 +1031,11 @@ export const hostRoomViewSchema = baseRoomViewSchema.extend({
     .array(z.number().int().nonnegative())
     .max(LINE_UP_MAX_ENTRIES),
   remainingPoolSize: z.number().int().nonnegative(),
+  /**
+   * The round on screen's clip, reported silent by the screen meant to sound
+   * it, and `null` while it plays or there is none — see `silentClipSchema`.
+   */
+  silentClip: silentClipSchema.nullable(),
   /**
    * How loud the speaker plays, set from the console, and `null` until the
    * console says — the speaker then keeps its own level.

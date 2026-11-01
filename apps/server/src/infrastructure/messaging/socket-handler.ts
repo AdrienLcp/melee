@@ -169,7 +169,8 @@ const UNPAUSED_MESSAGE_TYPES = new Set<ClientMessageType>([
   'host.removePlayer',
   'host.dismissWall',
   'host.endGame',
-  'host.closeRoom'
+  'host.closeRoom',
+  'speaker.reportClip'
 ])
 
 const HOST_CLAIM_REFUSALS: Record<HostClaimError, string> = {
@@ -862,6 +863,10 @@ const dispatch = ({
       publishRoom(engine)
       break
     }
+    case 'speaker.reportClip': {
+      reportClip({ active, engine, message })
+      break
+    }
     case 'host.setVolume': {
       room.sound.volume = message.volume
       touch(room, now)
@@ -1415,6 +1420,43 @@ const reopenFloor = (
     return
   }
 
+  publishRoom(engine)
+}
+
+/**
+ * Taken from the screen sounding the round on screen and nobody else: a wall
+ * that stopped being the speaker, or a report that arrives as the next round
+ * opens, is about a clip nobody is listening to any more. Dropped without an
+ * answer, because the screen that sent it has nothing it could do with one.
+ */
+const reportClip = ({
+  active,
+  engine,
+  message
+}: {
+  active: Connection
+  engine: RoomEngine
+  message: Extract<RoomActionMessage, { type: 'speaker.reportClip' }>
+}): void => {
+  const { room } = engine
+  const walls = wallsOf(engine)
+  const isSpeaker =
+    active.role === 'wall'
+      ? active.isSpeaker
+      : active.role === 'host' && !walls.some((wall) => wall.isSpeaker)
+
+  if (!isSpeaker || room.round?.id !== message.roundId) {
+    return
+  }
+
+  room.sound.silentClip =
+    message.fault === null
+      ? null
+      : {
+          cause: message.fault,
+          roundId: message.roundId,
+          wallId: active.role === 'wall' ? active.sessionId : null
+        }
   publishRoom(engine)
 }
 

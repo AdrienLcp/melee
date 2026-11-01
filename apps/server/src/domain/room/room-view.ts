@@ -47,6 +47,7 @@ import { hidesAtOf, isColourShown } from '@/domain/round/swatch-round'
 
 import { isRoundJudgedByConsole, playingSeatIds } from './console-seat'
 import type { AtlasRoundTarget, PlayerAttempts, Room, Round } from './room'
+import { silentClipOf } from './room-walls'
 import { toSeatBoards, toTeamViews } from './team-service'
 
 /**
@@ -89,6 +90,11 @@ export const toHostView = ({
       opened: room.openedEntries
     }),
     remainingPoolSize: room.trackPool.length,
+    silentClip: silentClipOf({
+      reported: room.sound.silentClip,
+      roundId: room.round?.id ?? null,
+      walls
+    }),
     volume: room.sound.volume,
     wallCount: walls.length,
     walls: [...walls],

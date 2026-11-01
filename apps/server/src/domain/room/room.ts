@@ -40,7 +40,7 @@ import type {
   RoundDuel
 } from '@melee/protocol/room'
 import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
-import type { Speaker } from '@melee/protocol/sound'
+import type { ClipFault, Speaker, WallId } from '@melee/protocol/sound'
 import type { ColourHex, SentColour } from '@melee/protocol/swatch'
 import type { TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
@@ -143,8 +143,19 @@ export type Room = {
    * The host's word on the sound. `speaker` is `null` until they pick one —
    * the first wall then sounds, or the console with none — and `volume` until
    * the console sends its level, each speaker keeping its own meanwhile.
+   * `silentClip` is the last silent clip a speaker reported, by the round and
+   * the wall it sounds on (`null` for the console), kept as reported and read
+   * only while both are still the ones on screen — see `silentClipOf`.
    */
-  sound: { speaker: Speaker | null; volume: number | null }
+  sound: {
+    silentClip: {
+      cause: ClipFault
+      roundId: RoundId
+      wallId: WallId | null
+    } | null
+    speaker: Speaker | null
+    volume: number | null
+  }
   /**
    * Every Petit Bac letter this room has played, oldest first. Not in
    * `playedContentIds`: a set cannot hold a letter twice, and the draw cycles

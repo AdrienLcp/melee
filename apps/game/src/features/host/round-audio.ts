@@ -1,10 +1,13 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
 
 import type { ClipPlayback, HostRoomView } from '@melee/protocol/room'
+import type { ClipFault } from '@melee/protocol/sound'
 
 import {
   type ClipRefusal,
   clipRefusalFor,
+  isClipStalled,
+  isClipUnheard,
   seekTargetMs
 } from '@melee/core/blindtest/clip-audio'
 import {
@@ -73,6 +76,9 @@ const moveTo = (audio: HTMLAudioElement, positionMs: number): void => {
   audio.currentTime = positionMs / 1_000
 }
 
+/** How often a sounding clip's position is looked at to tell it has stalled. */
+const STALL_CHECK_MS = 1_000
+
 /** The two blessed elements a round's clip alternates between. */
 type Decks = readonly [HTMLAudioElement, HTMLAudioElement]
 
@@ -83,6 +89,13 @@ export type RoundAudio = {
    * three ways of arriving at a running clip with nothing able to play it.
    */
   canPlay: boolean
+  /**
+   * Why the round on screen's clip is not sounding here, and `null` while it
+   * plays or this screen is not the one meant to sound it. `blocked` is a
+   * screen nobody armed — or whose arming was refused — through a round with a
+   * clip; the other two are a clip an armed screen could not play.
+   */
+  fault: ClipFault | null
   /**
    * Why the last attempt to arm or to play was turned down, and `null` while
    * none has been. It is what stops the console offering an identical press
@@ -140,6 +153,10 @@ export const useRoundAudio = ({
   const heldRef = useRef(false)
   const [decks, setDecks] = useState<Decks | null>(null)
   const [refusal, setRefusal] = useState<ClipRefusal | null>(null)
+  const [clipFault, setClipFault] = useState<{
+    cause: ClipFault
+    roundId: string
+  } | null>(null)
 
   // `useCallback` for the one reason that survives the compiler: it is a
   // dependency of the effect below, and a fresh identity there would tear the
@@ -184,9 +201,99 @@ export const useRoundAudio = ({
   const elapsedMs = view?.roundElapsedMs ?? 0
   const isRoomPaused = view?.isPaused ?? false
 
+  // An element that cannot fetch its file says so here, often before `play()`
+  // is even called — a countdown is long enough for a refused URL to fail.
   useEffect(() => {
     if (decks === null) {
       return
+    }
+
+    const onError = (event: Event): void => {
+      const loaded = loadedRef.current
+
+      if (loaded !== null && event.target === loaded.deck) {
+        setClipFault({ cause: 'unreachable', roundId: loaded.roundId })
+      }
+    }
+
+    for (const deck of decks) {
+      deck.addEventListener('error', onError)
+    }
+
+    return () => {
+      for (const deck of decks) {
+        deck.removeEventListener('error', onError)
+      }
+    }
+  }, [decks])
+
+  // `play()` resolving says nothing about sound: a clip can be "playing" on a
+  // second that never moves while it waits for bytes that never come. Its
+  // position moving is the one thing that proves it plays.
+  useEffect(() => {
+    if (
+      decks === null ||
+      phase !== 'playing' ||
+      isRoomPaused ||
+      previewUrl === null ||
+      roundId === null
+    ) {
+      return
+    }
+
+    let position = Number.NaN
+    let stillSinceMs = nowMs()
+
+    const timer = window.setInterval(() => {
+      const loaded = loadedRef.current
+
+      if (loaded?.roundId !== roundId) {
+        return
+      }
+
+      const now = nowMs()
+
+      if (loaded.deck.currentTime !== position) {
+        const hasMoved = !Number.isNaN(position)
+
+        position = loaded.deck.currentTime
+        stillSinceMs = now
+
+        if (hasMoved) {
+          setClipFault((fault) => (fault?.roundId === roundId ? null : fault))
+        }
+
+        return
+      }
+
+      if (
+        isClipStalled({ hasEnded: loaded.deck.ended, nowMs: now, stillSinceMs })
+      ) {
+        setClipFault((fault) =>
+          fault?.roundId === roundId ? fault : { cause: 'stalled', roundId }
+        )
+      }
+    }, STALL_CHECK_MS)
+
+    return () => {
+      window.clearInterval(timer)
+    }
+  }, [decks, isRoomPaused, phase, previewUrl, roundId])
+
+  useEffect(() => {
+    if (decks === null) {
+      return
+    }
+
+    // Refused on a clip this element was already allowed to play silence on,
+    // `NotSupportedError` is the file — a refused or expired URL, a dropped
+    // connection — and never this screen, which stays armed for the next one.
+    const refuse = (refused: ClipRefusal): void => {
+      if (refused === 'unsupported' && roundId !== null) {
+        setClipFault({ cause: 'unreachable', roundId })
+      } else {
+        disarm(refused)
+      }
     }
 
     if (phase === 'lobby' || phase === 'finished') {
@@ -231,19 +338,19 @@ export const useRoundAudio = ({
       }
 
       if (wasHeld && !isPaused) {
-        play(loaded.deck, disarm)
+        play(loaded.deck, refuse)
 
         return
       }
 
       if (restarts !== steered.playback.restarts) {
         moveTo(loaded.deck, 0)
-        play(loaded.deck, disarm)
+        play(loaded.deck, refuse)
       } else if (isPaused !== steered.playback.isPaused) {
         if (isPaused) {
           loaded.deck.pause()
         } else {
-          play(loaded.deck, disarm)
+          play(loaded.deck, refuse)
         }
       }
 
@@ -297,7 +404,7 @@ export const useRoundAudio = ({
         moveTo(deck, seekTo)
       }
 
-      play(deck, disarm)
+      play(deck, refuse)
 
       return
     }
@@ -313,7 +420,7 @@ export const useRoundAudio = ({
     const startWhenDue = (): void => {
       if (millisecondsUntilStart(startsAt) <= 0) {
         other.pause()
-        play(deck, disarm)
+        play(deck, refuse)
 
         return
       }
@@ -346,8 +453,19 @@ export const useRoundAudio = ({
     startsAt
   ])
 
+  const isUnarmed = isClipUnheard({
+    canPlay: decks !== null,
+    hasClip: previewUrl !== null,
+    phase
+  })
+
   return {
     canPlay: decks !== null,
+    fault: isUnarmed
+      ? 'blocked'
+      : clipFault !== null && clipFault.roundId === roundId
+        ? clipFault.cause
+        : null,
     refusal,
     unlock: () => {
       if (decks !== null) {
