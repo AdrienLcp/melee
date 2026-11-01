@@ -244,7 +244,7 @@ export const useRoundAudio = ({
       moveTo(loaded.deck, elapsedMs + nowMs() - elapsedSeenAtRef.current)
       play(loaded.deck, (refused) => {
         if (refused === 'unsupported') {
-          failClip(cause, loaded)
+          setClipFault({ cause, clip })
         } else {
           disarm(refused)
         }
