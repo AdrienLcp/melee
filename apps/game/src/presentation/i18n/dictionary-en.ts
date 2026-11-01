@@ -1566,10 +1566,10 @@ export const EN_DICTIONARY = defineDictionary({
         }
       }),
       /**
-       * The game's board, reduced to the two facts a screen held in a hand
-       * needs, and said to be the game's so it never reads as the round's.
+       * This seat's place on the game's board, at the end of the overall
+       * standings' heading — which is what says it is the game's.
        */
-      overall: defineTranslation('{rank:plural} of {count:number} overall', {
+      overall: defineTranslation('{rank:plural} of {count:number}', {
         plural: {
           rank: {
             few: '{?}rd',
@@ -1747,10 +1747,11 @@ export const EN_DICTIONARY = defineDictionary({
      * players differ — the split is the rule saying itself, and it is how the
      * table learns that answering early pays without anybody explaining it.
      */
-    award: '{points:number}',
     awardWithSpeed: '{answer:number} +{speed:number}',
     /** One entry of an evening's line-up nothing else tells from another of its game. */
     entryNumbered: '{name} {number:number}',
+    /** The ruled heading over the board that ends the game. */
+    finalStandings: 'Final standings',
     /** The round's podium tally, under the three it paid the most: how many of those it was played on scored. */
     found: 'Got it: {found:number} of {total:number}',
     index: 'Round {index:number} of {total:number}',
@@ -1770,13 +1771,22 @@ export const EN_DICTIONARY = defineDictionary({
     othersScored: defineTranslation('{count:plural}', {
       plural: { count: { other: '+ {?} more' } }
     }),
+    /**
+     * The ruled heading over the game so far at a reveal, beside the round's
+     * own block: no figure under it is the round's.
+     */
+    overallStandings: 'Overall standings',
     scored: '+{points:number}',
     /**
      * Why two players who both got it right did not get the same. The clock
      * replaced a rank the room could count, so what it paid has to be said.
      */
     speedBonus: '{points:number} of that for being early',
-    speedHalf: '+{points:number}',
+    /**
+     * The ruled heading under the answer over every figure the round alone
+     * paid — your own result, its podium, who found it.
+     */
+    thisRound: 'This round',
     /** A seat that never sent, paid on what its screen held as the round closed. */
     unsent: 'Never sent: taken as your screen held it.',
     unsentSeats: 'Never sent, taken as their screen held it: {names}'

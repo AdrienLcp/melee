@@ -1,0 +1,21 @@
+// Pure module: mixins only, no top-level CSS.
+@use 'typography'
+@use 'text-box'
+
+/// One tabular figure of the numeric face at the widest stretch a rank is set
+/// in, rounded up (`DESIGN.md`, Results chips).
+$figure-width: 0.64em
+
+/// A place number standing before a pawn: tabular, set right against the pawn
+/// and as wide as `$figures` figures at its own size, so every row's pawn
+/// stands in one column. `$gap` is what the container puts between the place
+/// and the pawn, `$name-gap` what the pawn keeps before the name; the place
+/// takes the difference back so the two read alike — the pawn's ink is inset
+/// by the same 3 units of 24 on either side.
+@mixin before-pawn($figures: 2, $gap: 0rem, $name-gap: var(--space-2xs))
+  @include typography.numeric
+  @include text-box.trimmed-figure
+
+  margin-inline-end: calc(#{$name-gap} - #{$gap})
+  min-width: calc(#{$figures} * #{$figure-width})
+  text-align: end

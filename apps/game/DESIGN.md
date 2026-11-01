@@ -363,7 +363,8 @@ grow, which is the one thing a 4K wall draws thinner.
   name of whoever buzzed, a winner, a notice's title. A line with a French
   grave (`à`) set in it needs line-height 1.2: the accent rises past 0.95.
 - **`title`** (700, stretch 90%, line-height 1.05): control labels, roster
-  names, section titles such as *Standings*.
+  names, and every block's ruled heading (`SectionHeading`): *Cette manche*,
+  *Classement général*, *Classement final*.
 - **`body`** (400, line-height 1.45): the default on `<body>`.
 - **`caption`** (500, line-height 1.35): reasons, details, strip segments.
 - **`label`** (700, tracked 0.005em, sentence case): form labels, menu items.
@@ -503,9 +504,15 @@ floor and the reflex race keep their footer under the stage at every ratio.
   (`--figure-length`), so a table scoring in thousands deals over two rows. On
   the slate it carries each sheet's `n/26` over a groove inked as far as it is
   filled, in seat order.
-- **The reveal** folds what the table said to one chip per distinct answer
-  (`.tally`), the right one on `--good-soft` with a check, each with the pawns
-  of who said it; the note is clamped to three lines, two under 576px.
+- **The reveal** opens the round's block under the answer with its ruled
+  heading, the seated host's own line (pawn, *Toi*, `+35`, *3e de la manche*)
+  at the rule's end so it costs no row; the heading sits a `--space-2xs` over
+  the podium, and the note gives way first on a short stage (two lines under
+  a 30rem stage, one under 22rem); a phone under 45rem drops the heading over
+  the reflex race's order, which needs every row. It folds what the table said
+  to one chip per distinct answer (`.tally`), the right one on `--good-soft`
+  with a check, each with the pawns of who said it; the note is clamped to
+  three lines, two under 576px.
 - **The slate** deals its items as a fitted grid down to 2rem pieces, which
   drop their words for `n/8` and the numeral under 5.5rem; the marking prints
   each answer on one line with its pawns.
@@ -915,17 +922,33 @@ is a piece in the danger ink.
 The reflex finishing order and the slate's marking use one chip per player or
 answer: pawn, name, words, points. Right is filled (`--good` / `--good-soft`);
 wrong or silent is an empty dashed outline; the player's own is in a keyline.
-**The reveal** shows the round's podium instead (`RoundPodium`): the top three
-by points with what each said, then *Found: N of M*, falling back on the
-stage's height to the first alone (*+ N others*) and then the count alone. The
-tally above it is cut in whole chips (`useWholeChips`), never scrolled. Under
-the next-round press, *Wait* and *End the game* share one quiet row of
-underlined presses. Standings beside them sit under a title and divide their
-own box (`_boxed-standings.sass`, shared by the reveal, the final board and the
-marking), each row printing the round's gain (`+X`) before its score, and a
-team's tray the same off a track — on one, `TeamMove` prints the cases walked.
-The gain is the first thing a narrow column gives up (under 16rem on the
-console, 22rem on the wall). The wall's list past twelve seats takes two
+**The reveal** shows the round's podium instead (`RoundPodium`, shared by the
+console, the wall and the player's screen): the top three by points, each with
+its place in the round (ties share one), what it said and its `+N` with the
+speed half, then *Found: N of M*, falling back on the stage's height to the
+first alone (*+ N others*) and then the count alone; the seat a screen holds
+takes the *yours* keyline. The tally above it is cut in whole chips
+(`useWholeChips`), never scrolled. Under the next-round press, *Wait* and *End
+the game* share one quiet row of underlined presses.
+
+**The rank stands against the pawn** (`styles/_rank.sass`): its column is
+two tabular figures wide at the rank's own size (one figure measured 0.63em on
+Bricolage Grotesque at 800, written 0.64em), the digit set right, and the gap
+after it taken back to the pawn's own gap before the name — the pawn's ink is
+inset 3 units of 24 on both sides — so rank-to-pawn measures what pawn-to-name
+does, on every board (6.5px on a phone, 7.4px at 1440×900, measured).
+
+**Two blocks, two anatomies.** Every reveal reads *Cette manche* — the round's
+pieces, filled — then *Classement général* — ruled rows on the field — and no
+row of the standings prints a figure of the round: rank, pawn, name, ready
+mark, case, total, movement stamp. Each block opens on `SectionHeading`: an
+`h2` in `title` at `clamp(--text-s, 2.2 × --stage-unit, --text-l)`, full ink,
+then a `--hairline` running to the block's far edge, an aside at its end where
+the reader has a figure of their own (the player's *7e sur 24*, the seated
+host's round). Standings divide their own box under it
+(`_boxed-standings.sass`, shared by the reveal, the final board and the
+marking); a team's tray on a track prints the cases walked (`TeamMove`) and no
+`+N`. The wall's list past twelve seats takes two
 columns lying down. On a track with seats and no teams the standings are the
 `TrackPodium`: three steps and a heap of chips, in one column that scrolls. The final board stands the winner's pawn oversize, the name sized by
 its longest run (`answerFitting`), *wins with N points* under it; a tie stands
@@ -1331,8 +1354,11 @@ iOS Safari, so every pattern says something the screen says too.
   letters on the score track of a console held in a hand.
 - Below the split a reveal shows one chip per distinct answer; which player
   said what is the player's own screen's, and the points are the track's.
-- A player's reveal below the split is held to the screen too, and its board
-  drops what the others said once the box is under 26rem tall.
+- A player's reveal is not held to the screen: the answer, the round's block,
+  the hold and Ready fill the first viewport, and the standings scroll under
+  them at a fixed size, a column of their own lying down and on a laptop. On a
+  short screen the podium keeps its first alone (under 40rem of height upright,
+  50rem on a laptop), and on a track the pawn's strip heads the standings.
 
 ## Related
 

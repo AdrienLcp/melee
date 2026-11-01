@@ -81,8 +81,13 @@
           // rest — and keeps the reveal's own `auto minmax(0, 1fr)`: under
           // this one its grid, a size container, was handed `auto`, which is
           // nothing.
+          // The answer's card never shrinks under its own lines: the list
+          // under the round's heading and podium gives way first, scrolling.
           > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'])
-            grid-template-rows: minmax(0, 1fr) auto auto
+            grid-template-rows: minmax(min-content, 1fr) auto auto
+
+            &:has(> .tally)
+              grid-template-rows: minmax(min-content, 1fr) auto auto minmax(0, auto)
 
             &[data-game='quiz'] > .head
               align-items: stretch
@@ -176,21 +181,6 @@
       height: 0.5rem
       margin-inline: var(--space-2xs)
       width: 0.5rem
-
-  .podium-players-head
-    align-items: baseline
-    display: flex
-    justify-content: space-between
-
-    h2
-      @include typography.title
-
-      font-size: var(--text-xl)
-
-    span
-      @include typography.caption
-
-      color: var(--ink-muted)
 
   .podium-track
     display: flex

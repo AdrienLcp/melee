@@ -2,9 +2,11 @@ import type React from 'react'
 import { useRef } from 'react'
 
 import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
+import { roundPlacingOf } from '@melee/core/scoring/scoreboard'
 
 import { answerFitting } from '@/helpers/answer-fitting'
 import {
@@ -32,13 +34,13 @@ import { FlagPicture } from '@/presentation/components/flag-picture'
 import { HigherLowerPairs } from '@/presentation/components/higher-lower-pairs'
 import { CheckIcon } from '@/presentation/components/icons'
 import { MapReveal } from '@/presentation/components/map-reveal'
-import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
 import { MostLikelyTally } from '@/presentation/components/most-likely-tally'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
-import { SwatchChip } from '@/presentation/components/swatch-chip'
+import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
+import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchShown } from '@/presentation/components/swatch-shown'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
@@ -58,6 +60,8 @@ type RevealPanelProps = {
   /** Needed to turn the awards' player ids into names and pawns. */
   players: readonly PublicPlayer[]
   round: RoundView
+  /** The seated host's own seat, whose result opens the round's block; `null` on a screen nobody sits at. */
+  youId: PlayerId | null
 }
 
 /**
@@ -114,7 +118,8 @@ const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
 export const RevealPanel: React.FC<RevealPanelProps> = ({
   onStrike,
   players,
-  round
+  round,
+  youId
 }) => {
   const { locale, translate } = useI18n()
   const quantityWords = useQuantityWords()
@@ -155,7 +160,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           </div>
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -183,7 +188,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           </div>
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -200,7 +205,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -219,7 +224,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -247,7 +252,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -272,7 +277,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -295,7 +300,10 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
         </div>
 
         {round.awards.some((award) => award.points > 0) && (
-          <RoundPodium players={players} round={round} />
+          <>
+            <ThisRoundHead players={players} round={round} youId={youId} />
+            <RoundPodium players={players} round={round} youId={youId} />
+          </>
         )}
       </section>
     )
@@ -316,7 +324,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -360,7 +368,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     return (
       <section className='reveal-panel' data-game='atlas'>
         <MapReveal players={players} round={round} />
-        <Outcome players={players} round={round} />
+        <Outcome players={players} round={round} youId={youId} />
       </section>
     )
   }
@@ -371,6 +379,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   if (reflexContent(round) !== null) {
     return (
       <section className='reveal-panel bare'>
+        <ThisRoundHead players={players} round={round} youId={youId} />
         <ReactionBoard players={players} round={round} />
       </section>
     )
@@ -380,6 +389,7 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   if (innerclockContent(round) !== null) {
     return (
       <section className='reveal-panel bare'>
+        <ThisRoundHead players={players} round={round} youId={youId} />
         <CountedBoard players={players} round={round} />
       </section>
     )
@@ -387,12 +397,16 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
 
   return (
     <section className='reveal-panel bare'>
-      <Outcome players={players} round={round} />
+      <Outcome players={players} round={round} youId={youId} />
     </section>
   )
 }
 
-const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
+const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
+  players,
+  round,
+  youId
+}) => {
   const translate = useTranslate()
   const tally = useRef<HTMLUListElement>(null)
 
@@ -403,32 +417,10 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     said: answerWords(answer)
   }))
 
-  const matchsticks = matchsticksContent(round)
-  const moves = matchsticks?.revealedMoves ?? []
-  const isShades = swatchContent(round) !== null
+  const wordsOf = useWordsOf(round)
 
   const nameOf = (playerId: string): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
-
-  // A moved stick is drawn rather than spelled: `6+4=10` in type is not what
-  // anybody looked at for a minute.
-  const wordsOf = (playerId: string, said: string): React.ReactNode => {
-    if (isShades) {
-      return <SwatchChip colour={said} />
-    }
-
-    const sent = moves.find((move) => move.playerId === playerId)
-
-    return sent === undefined ? (
-      said
-    ) : (
-      <MatchstickRow
-        glyphs={matchsticks?.puzzle.glyphs ?? ''}
-        isStill
-        move={sent.move}
-      />
-    )
-  }
 
   const seatOf = (playerId: string): number =>
     players.findIndex((player) => player.id === playerId)
@@ -436,7 +428,13 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
   if (answers.length > 0) {
     return (
       <>
-        <RoundPodium players={players} round={round} wordsOf={wordsOf} />
+        <ThisRoundHead players={players} round={round} youId={youId} />
+        <RoundPodium
+          players={players}
+          round={round}
+          wordsOf={wordsOf}
+          youId={youId}
+        />
         <ul className='tally' ref={tally}>
           {saidTogether(answers).map((group) => (
             <li className={group.isCorrect ? 'right' : 'wrong'} key={group.key}>
@@ -459,106 +457,71 @@ const Outcome: React.FC<RevealPanelProps> = ({ players, round }) => {
     )
   }
 
-  return <RoundPodium players={players} round={round} />
+  return (
+    <>
+      <ThisRoundHead players={players} round={round} youId={youId} />
+      <RoundPodium players={players} round={round} youId={youId} />
+    </>
+  )
 }
-
-type RoundPodiumProps = Omit<RevealPanelProps, 'onStrike'> & {
-  /** Draws a seat's own answer beside its name; omitted where nobody's words were the answer. */
-  wordsOf?: (playerId: string, said: string) => React.ReactNode
-}
-
-const PODIUM_PLACES = 3
 
 /**
- * The round's podium: the seats it paid the most, each with what it said, over
- * how many of those it opened on scored. The standings beside it carry every
- * other seat's gain, so it never grows past three — on a short stage it keeps
- * the first and counts the rest, then keeps the count alone.
+ * The round's block opening under the answer: its name ruled across the
+ * panel, the seated host's own result at the rule's end — the way a player's
+ * screen says theirs, which a host who also plays reads nowhere else — and in
+ * the heading's row, so it costs the stage no line of its own.
  */
-const RoundPodium: React.FC<RoundPodiumProps> = ({
+const ThisRoundHead: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
   players,
   round,
-  wordsOf
+  youId
 }) => {
   const translate = useTranslate()
-  const answerWords = useAnswerWords(round)
-  const scorers = round.awards
-    .filter((award) => award.points > 0)
-    .toSorted((left, right) => right.points - left.points)
-  const podium = scorers.slice(0, PODIUM_PLACES)
-  const answers = revealedInOrder(round)
-  const stampedCount = round.openedWithPlayerIds?.length ?? players.length
-
-  const nameOf = (playerId: string): string =>
-    players.find((player) => player.id === playerId)?.nickname ?? '—'
-
-  const seatOf = (playerId: string): number =>
-    players.findIndex((player) => player.id === playerId)
-
-  const unsentScorers = scorers
-    .filter((award) => award.isUnsent)
-    .map((award) => award.playerId)
-
-  // A table answering aloud holds no seat, and its scores are the teams'.
-  if (players.length === 0) {
-    return null
-  }
-
-  if (scorers.length === 0) {
-    return <p className='nobody'>{translate('round.nobody')}</p>
-  }
+  const seat = players.findIndex((player) => player.id === youId)
+  // A seat that sat the round out to judge was never stamped on it.
+  const isStamped =
+    youId !== null && (round.openedWithPlayerIds?.includes(youId) ?? true)
 
   return (
-    <div className='round-podium'>
-      <ol className='podium'>
-        {podium.map((award) => {
-          const answer = answers.find(
-            (said) => said.playerId === award.playerId
-          )
+    <SectionHeading
+      aside={
+        youId === null || seat === -1 || !isStamped ? null : (
+          <SeatedResult round={round} seat={seat} youId={youId} />
+        )
+      }
+      className='this-round-head'
+    >
+      {translate('round.thisRound')}
+    </SectionHeading>
+  )
+}
 
-          return (
-            <li key={award.playerId}>
-              <Pawn seat={seatOf(award.playerId)} />
-              <span className='nickname'>{nameOf(award.playerId)}</span>
-              {wordsOf !== undefined && answer !== undefined && (
-                <span className='words'>
-                  {wordsOf(award.playerId, answerWords(answer))}
-                </span>
-              )}
-              <span className='points'>
-                {award.speedBonus > 0
-                  ? translate('round.awardWithSpeed', {
-                      answer: shownPoints(award.points - award.speedBonus),
-                      speed: shownPoints(award.speedBonus)
-                    })
-                  : translate('round.scored', {
-                      points: shownPoints(award.points)
-                    })}
-              </span>
-            </li>
-          )
-        })}
-      </ol>
-      <p className='found'>
-        {scorers.length > 1 && (
-          <span className='others'>
-            {translate('round.othersScored', { count: scorers.length - 1 })}
-          </span>
-        )}
-        <span>
-          {translate('round.found', {
-            found: scorers.length,
-            total: stampedCount
-          })}
-        </span>
-        {unsentScorers.length > 0 && (
-          <span className='unsent'>
-            {translate('round.unsentSeats', {
-              names: unsentScorers.map(nameOf).join(', ')
-            })}
-          </span>
-        )}
-      </p>
-    </div>
+/** What the round paid the seat this console holds, beside its pawn. */
+const SeatedResult: React.FC<{
+  round: RoundView
+  /** The seat's index, which colours its pawn. */
+  seat: number
+  youId: PlayerId
+}> = ({ round, seat, youId }) => {
+  const translate = useTranslate()
+  const points =
+    round.awards.find((award) => award.playerId === youId)?.points ?? 0
+  const placing = roundPlacingOf({ awards: round.awards, playerId: youId })
+
+  return (
+    <span className={points > 0 ? 'seated-result scored' : 'seated-result'}>
+      <Pawn seat={seat} />
+      <span className='who'>{translate('player.you')}</span>
+      <span className='payout'>
+        {points > 0
+          ? translate('round.scored', { points: shownPoints(points) })
+          : '0'}
+      </span>
+      <span className='placing'>
+        {placing === null
+          ? translate('round.missed')
+          : translate('player.standing.ofRound', { rank: placing })}
+      </span>
+    </span>
   )
 }

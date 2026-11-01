@@ -91,6 +91,8 @@ export const playerScreen = (page: Page) => ({
   buzz: page.getByRole('button', { name: 'Buzz' }),
   join: page.getByRole('button', { exact: true, name: 'Join' }),
   nickname: page.getByRole('textbox', { name: 'Nickname' }),
-  scored: (points: number) => page.getByText(`+${points}`),
+  /** The payout struck for this seat, apart from the same figure on the round's podium. */
+  scored: (points: number) =>
+    page.getByRole('paragraph').filter({ hasText: `+${points}` }),
   sendAnswer: page.getByRole('button', { name: 'Send it' })
 })

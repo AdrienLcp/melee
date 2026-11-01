@@ -1,8 +1,10 @@
 import { useMediaQuery } from '@adrienlcp/browser/react'
 import type React from 'react'
-import { lazy, Suspense, useState } from 'react'
+import { lazy, Suspense, useId, useState } from 'react'
 
 import type { HostRoomView } from '@melee/protocol/room'
+
+import { hasAnybodyScored } from '@melee/core/scoring/scoreboard'
 
 import { Button } from '@/presentation/components/button'
 import { Disclosure } from '@/presentation/components/disclosure'
@@ -12,6 +14,7 @@ import {
   ScreenIcon
 } from '@/presentation/components/icons'
 import { Main } from '@/presentation/components/main'
+import { SectionHeading } from '@/presentation/components/section-heading'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { PODIUM_SCREEN_QUERY } from '@/presentation/styles/wide-screen'
@@ -56,6 +59,7 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
   const isWide = useMediaQuery(PODIUM_SCREEN_QUERY)
   const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const rosterSummary = useRosterSummary(view)
+  const rosterTitleId = useId()
 
   const roster = (
     <PodiumRoster onRemovePlayer={setup.onRemovePlayer} view={view} />
@@ -103,18 +107,19 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
         )}
       </div>
       {isWide ? (
-        <section
-          aria-label={translate('host.podium.roster')}
-          className='podium-players'
-        >
-          <div className='podium-players-head'>
-            <h2>{translate('host.podium.roster')}</h2>
-            {view.players.length > 0 && (
-              <span>
-                {translate('player.roomSize', { count: view.players.length })}
-              </span>
-            )}
-          </div>
+        <section aria-labelledby={rosterTitleId} className='podium-players'>
+          <SectionHeading
+            aside={
+              view.players.length > 0
+                ? translate('player.roomSize', { count: view.players.length })
+                : null
+            }
+            id={rosterTitleId}
+          >
+            {hasAnybodyScored(view.players)
+              ? translate('round.overallStandings')
+              : translate('host.podium.roster')}
+          </SectionHeading>
           {roster}
         </section>
       ) : (

@@ -1,6 +1,6 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
-import { useState } from 'react'
+import { useId, useState } from 'react'
 import { Button as ReactAriaButton } from 'react-aria-components'
 
 import type {
@@ -40,7 +40,11 @@ import {
   standingOf
 } from '@melee/core/scoring/scoreboard'
 import { playsThisRound } from '@melee/core/team/duel'
-import { teamOfSeat, teamStandingOf } from '@melee/core/team/team-board'
+import {
+  hasAnyTeamScored,
+  teamOfSeat,
+  teamStandingOf
+} from '@melee/core/team/team-board'
 import {
   type ClockEstimate,
   millisecondsUntil
@@ -63,7 +67,6 @@ import {
   type TeamSeatMessage
 } from '@/features/player/player-teams'
 import { ReflexBuzzer } from '@/features/player/reflex-buzzer'
-import { RoundBoard } from '@/features/player/round-board'
 import { RoundClock } from '@/features/player/round-clock'
 import { RoundQuestion } from '@/features/player/round-question'
 import {
@@ -122,7 +125,9 @@ import { NoticeCard } from '@/presentation/components/notice-card'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
+import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
@@ -194,46 +199,85 @@ type RevealedRoundProps = {
 }
 
 /**
- * The room's round under this seat's own: the seats ranked, or in a team room
- * the teams — the place a seat is owed there is its team's, as on the final
- * board.
+ * The game so far under the round, ruled off from it: the seats ranked, or in
+ * a team room the teams — the place a seat is owed there is its team's, as on
+ * the final board. Its heading carries this seat's place, and on a track the
+ * case its pawn stands on comes first; no row carries what the round paid,
+ * which is the round's block.
  */
-const RevealBoard: React.FC<{ round: RoundView; view: PlayerRoomView }> = ({
-  round,
-  view
-}) => {
+const OverallStandings: React.FC<{
+  round: RoundView
+  view: PlayerRoomView
+}> = ({ round, view }) => {
   const translate = useTranslate()
   const teamName = useTeamName()
+  const titleId = useId()
   const { board } = view.settings
+  const isByTeam = view.teams.length > 0
   const marksReady = asksReady({
     game: round.content.kind,
     roundCount: view.settings.roundCount,
     roundIndex: round.index
   })
+  const isRanked = isByTeam
+    ? hasAnyTeamScored(view.teams)
+    : hasAnybodyScored(view.players)
+  const standing = isByTeam
+    ? teamStandingOf({ playerId: view.youId, teams: view.teams })
+    : standingOf({ players: view.players, youId: view.youId })
+  const title = translate('round.overallStandings')
 
-  return view.teams.length > 0 ? (
-    <TeamRoster
-      isRanked
-      label={translate('host.standings')}
-      marksReady={marksReady}
-      players={view.players}
-      showsGains={board.kind !== 'track'}
-      teamDetail={
-        board.kind === 'track'
-          ? (team) => (
-              <TeamMove
-                length={board.length}
-                name={teamName(team)}
-                position={team.board}
-              />
-            )
-          : undefined
-      }
-      teams={view.teams}
-      youId={view.youId}
-    />
-  ) : (
-    <RoundBoard marksReady={marksReady} round={round} view={view} />
+  // Before the first point it would be a roster, which is not what a reveal
+  // is for — unless it is where the table reads who is back.
+  if (!isRanked && !marksReady) {
+    return null
+  }
+
+  return (
+    <section aria-labelledby={titleId} className='overall'>
+      <SectionHeading
+        aside={
+          standing === null
+            ? null
+            : translate('player.standing.overall', {
+                count: standing.roomSize,
+                rank: standing.rank
+              })
+        }
+        id={titleId}
+      >
+        {title}
+      </SectionHeading>
+      <YourTrackStrip isWholeWithoutWall view={view} />
+      {isByTeam ? (
+        <TeamRoster
+          isRanked
+          label={title}
+          marksReady={marksReady}
+          players={view.players}
+          teamDetail={
+            board.kind === 'track'
+              ? (team) => (
+                  <TeamMove
+                    length={board.length}
+                    name={teamName(team)}
+                    position={team.board}
+                  />
+                )
+              : undefined
+          }
+          teams={view.teams}
+          youId={view.youId}
+        />
+      ) : (
+        <Scoreboard
+          hasPawns
+          marksReady={marksReady}
+          players={view.players}
+          youId={view.youId}
+        />
+      )}
+    </section>
   )
 }
 
@@ -293,18 +337,24 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
   view
 }) => {
   const translate = useTranslate()
+  const wordsOf = useWordsOf(round)
 
   return (
     <section className='player-round revealed'>
       {/* Grouped here rather than placed in the stylesheet, because the wide
-        screen lays the two halves side by side and a grid item spanning
+        screen lays the round beside the standings and a grid item spanning
         rows it never declared silently resolves back to the first one. */}
       <div className='outcome'>
         <Revealed round={round} view={view} />
+        <SectionHeading>{translate('round.thisRound')}</SectionHeading>
         <YourRound round={round} view={view} />
-        <YourTrackStrip isWholeWithoutWall view={view} />
+        <RoundPodium
+          players={view.players}
+          round={round}
+          wordsOf={wordsOf}
+          youId={view.youId}
+        />
       </div>
-      <RevealBoard round={round} view={view} />
       {/* The server stops the hold while the console is away, so the slot that
         counted down to the next round says why nothing comes next. */}
       <div className='hold'>
@@ -315,6 +365,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         )}
       </div>
       <BackAtTheTable onReady={onReady} round={round} view={view} />
+      <OverallStandings round={round} view={view} />
     </section>
   )
 }
@@ -514,6 +565,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
         ) : (
           <>
             <YourPlacing view={view} />
+            <SectionHeading>{translate('round.finalStandings')}</SectionHeading>
             <Scoreboard
               hasPawns
               isResult
@@ -1003,20 +1055,17 @@ const BlackSquareThemeCard: React.FC<{
 }
 
 /**
- * What the round did to this player — the moment, above the board that holds
- * the room's version of the same thing. It is what the eye lands on first and
- * the only number here somebody reads without looking for it, so it stays the
- * loudest thing on the screen and says nothing the row below repeats.
+ * What the round did to this player — the moment, first in the round's block
+ * and over the podium that holds the room's version of the same thing. It is
+ * what the eye lands on first and the only number here somebody reads without
+ * looking for it, so it stays the loudest thing on the screen. Where the game
+ * stands is the standings' heading, never a line here: one block per scope.
  *
  * It renders whether or not they gained, because *nothing* is a result too —
  * a screen that only appears for the ones who scored leaves everybody else to
  * infer from an absence whether the round was even scored. The two halves are
  * sized against that: a gain is the loudest thing on the screen, a miss is a
  * quiet line, and the ink says which without a colour saying *wrong*.
- *
- * Who there is to catch used to be carried here as a line of prose. `RoundBoard`
- * says it by name, by points and for everybody rather than for the one player
- * above, so the line is gone rather than printed twice.
  */
 const YourRound: React.FC<{
   round: RoundView
@@ -1034,10 +1083,6 @@ const YourRound: React.FC<{
     awards: round.awards,
     playerId: view.youId
   })
-  const standing =
-    view.teams.length > 0
-      ? teamStandingOf({ playerId: view.youId, teams: view.teams })
-      : standingOf({ players: view.players, youId: view.youId })
 
   return (
     <div className={classNames('your-round', points > 0 ? 'scored' : 'missed')}>
@@ -1059,14 +1104,6 @@ const YourRound: React.FC<{
         {speedBonus > 0 && (
           <p className='speed-bonus'>
             {translate('round.speedBonus', { points: shownPoints(speedBonus) })}
-          </p>
-        )}
-        {standing !== null && (
-          <p className='standing'>
-            {translate('player.standing.overall', {
-              count: standing.roomSize,
-              rank: standing.rank
-            })}
           </p>
         )}
       </div>

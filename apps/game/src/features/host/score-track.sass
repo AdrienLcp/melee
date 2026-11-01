@@ -7,14 +7,34 @@
   .score-track
     @include typography.score
 
+    --piece-width: max(2.25rem, calc(var(--figure-length, 2) * 0.58em + 1.1em))
+
     display: grid
     font-size: clamp(var(--text-s), calc(var(--stage-unit) * 4.2), var(--text-l))
     gap: var(--space-2xs)
-    grid-template-columns: repeat(auto-fit, minmax(max(2.25rem, calc(var(--figure-length, 2) * 0.58em + 1.1em)), 1fr))
+    grid-template-columns: repeat(auto-fit, minmax(var(--piece-width), 1fr))
     list-style: none
 
     @include layout.wide
       display: none
+
+    // A short screen spends its height on the round under the track, so a
+    // table past the two rows a 320px phone holds beside the menu keeps one
+    // line, the leader first, and the rest swipe sideways inside it.
+    @media (height < 45rem)
+      &:has(> :nth-child(9))
+        grid-auto-columns: var(--piece-width)
+        grid-auto-flow: column
+        grid-template-columns: none
+        overflow-x: auto
+        overscroll-behavior-x: contain
+        padding-block-end: var(--space-2xs)
+        scroll-snap-type: x proximity
+        scrollbar-color: var(--track-b) transparent
+        scrollbar-width: thin
+
+        .seat
+          scroll-snap-align: start
 
     .seat
       align-items: center

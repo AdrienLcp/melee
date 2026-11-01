@@ -1473,7 +1473,7 @@ const PLAYER_PAGE_SCREENS = [
   },
   {
     name: 'the reveal of a full table',
-    ready: '.round-board',
+    ready: '.overall',
     view: fullTableReveal
   },
   {
@@ -1497,7 +1497,7 @@ const measurePage = (): { page: number; spills: string[] } => {
   const root = document.scrollingElement ?? document.documentElement
   const pieces = [
     ...document.querySelectorAll<HTMLElement>(
-      '.round-chrome, .up-next, .room-invitation, .seats li, .asked-question, .answer-form, .answer-card, .your-round, .round-board li, .round-board .nickname, .your-placing, .scoreboard li, .scoreboard .nickname, .slate-sheet .writing, .slate-sheet .tile, .slate-on-the-wall .said, .slate-on-the-wall .key, .slate-whole-sheet li'
+      '.round-chrome, .up-next, .room-invitation, .seats li, .asked-question, .answer-form, .answer-card, .your-round, .round-podium li, .your-placing, .scoreboard li, .scoreboard .nickname, .slate-sheet .writing, .slate-sheet .tile, .slate-on-the-wall .said, .slate-on-the-wall .key, .slate-whole-sheet li'
     )
   ]
 
@@ -1544,72 +1544,6 @@ for (const screen of PLAYER_PAGE_SCREENS) {
     expect(faults).toEqual([])
   })
 }
-
-/**
- * A board too tall for a short screen scrolls the page rather than clipping the
- * last of the standings, but only once every row has shrunk to its floor.
- */
-test('[layout] player, the reveal of a full table: scrolls only at the floor, never clips a row', async ({
-  page
-}) => {
-  await serveRoom({ page, view: fullTableReveal })
-  await page.setViewportSize({ height: 900, width: 1440 })
-  await page.goto(`/play/${ROOM_CODE}`)
-  await expect(page.locator('.round-board')).toBeVisible()
-
-  const faults: string[] = []
-
-  for (const [width, height] of VIEWPORTS) {
-    await resizeTo({ height, page, width })
-
-    const board = await page.evaluate(() => {
-      const root = document.scrollingElement ?? document.documentElement
-      const list = document.querySelector<HTMLElement>('.round-board')
-      const rows = [
-        ...document.querySelectorAll<HTMLElement>('.round-board li')
-      ]
-
-      if (list === null) {
-        return { aboveFloor: [], clipped: ['no board'], overflow: 0 }
-      }
-
-      const probe = document.createElement('li')
-      probe.style.fontSize = 'var(--text-xs)'
-      list.append(probe)
-      const floor = Number.parseFloat(getComputedStyle(probe).fontSize)
-      probe.remove()
-
-      const listBox = list.getBoundingClientRect()
-
-      return {
-        aboveFloor: rows
-          .map((row) => Number.parseFloat(getComputedStyle(row).fontSize))
-          .filter((size) => size > floor + 0.5),
-        clipped: rows
-          .filter(
-            (row) => row.getBoundingClientRect().bottom > listBox.bottom + 0.5
-          )
-          .map(
-            (row) =>
-              `${row.textContent} ${Math.round(row.getBoundingClientRect().bottom - listBox.bottom)}px under the board`
-          ),
-        overflow: root.scrollHeight - innerHeight
-      }
-    })
-
-    if (board.clipped.length > 0) {
-      faults.push(`${width}×${height} clips ${JSON.stringify(board.clipped)}`)
-    }
-
-    if (board.overflow > 0 && board.aboveFloor.length > 0) {
-      faults.push(
-        `${width}×${height} scrolls ${board.overflow}px above the floor`
-      )
-    }
-  }
-
-  expect(faults).toEqual([])
-})
 
 /**
  * The room's own screen, on the evening's views: a table of three teams racing
@@ -2017,6 +1951,96 @@ test('[layout] wall, the reveal of a full table: nothing scrolls, from 720p to 4
   expect(faults).toEqual([])
 })
 
+/**
+ * Every piece of the console's reveal drawn over another, or past the panel
+ * that holds it — a size container keeps that overflow off the page, so no
+ * scroll check sees the answer under the hold bar and the next-round press —
+ * and each of what the room reads that the first screen leaves out.
+ */
+const collisionsOnTheConsole = (): string[] => {
+  const shown = (selector: string) =>
+    [...document.querySelectorAll<HTMLElement>(selector)].filter(
+      (element) =>
+        element.checkVisibility() && element.getBoundingClientRect().height > 0
+    )
+  const nameOf = (element: Element) =>
+    `${element.tagName.toLowerCase()}.${String(element.className).replaceAll(' ', '.')}`
+  const panel = document.querySelector('.reveal-panel')?.getBoundingClientRect()
+  const panelPieces = shown('.reveal-panel > *')
+  const pieces = [
+    ...shown('.score-track'),
+    ...panelPieces,
+    ...shown('.stage.revealed > :not(.reveal-panel)'),
+    ...shown('main > footer :is(button, a)')
+  ]
+  const crossings = pieces.flatMap((piece, at) =>
+    pieces.slice(at + 1).flatMap((other) => {
+      const a = piece.getBoundingClientRect()
+      const b = other.getBoundingClientRect()
+      const across = Math.min(a.right, b.right) - Math.max(a.left, b.left)
+      const down = Math.min(a.bottom, b.bottom) - Math.max(a.top, b.top)
+
+      return across > 1 && down > 1
+        ? [`${nameOf(piece)} over ${nameOf(other)}`]
+        : []
+    })
+  )
+  const pastThePanel =
+    panel === undefined
+      ? ['no panel']
+      : panelPieces
+          .filter(
+            (piece) => piece.getBoundingClientRect().bottom > panel.bottom + 1
+          )
+          .map((piece) => `${nameOf(piece)} past the panel`)
+  const firstScreen = [
+    '.reveal-panel > .head',
+    ':is(.score-track, .standings > .section-heading)',
+    'main > footer .reveal-actions > :first-child'
+  ].filter((selector) => {
+    const box = shown(selector)[0]?.getBoundingClientRect()
+
+    return box === undefined || box.top < 0 || box.bottom > innerHeight + 0.5
+  })
+
+  return [
+    ...crossings,
+    ...pastThePanel,
+    ...firstScreen.map((selector) => `${selector} off the first screen`)
+  ]
+}
+
+for (const youId of [null, 'p3']) {
+  test(`[layout] room, the reveal of a full table with no wall, ${youId === null ? 'nobody seated' : 'the host seated'}: nothing drawn over the round, every press on the first screen`, async ({
+    page
+  }) => {
+    const { wallCount: _, wallNumber: __, ...reveal } = wallRevealOfAFullTable()
+
+    await serveRoom({ page, view: { ...reveal, wallCount: 0, youId } })
+    await page.addInitScript(() => {
+      localStorage.setItem('melee:locale', 'fr')
+      localStorage.setItem('melee:volume', '0')
+    })
+    await page.setViewportSize({ height: 568, width: 320 })
+    await page.goto(`/host/${ROOM_CODE}`)
+    await expect(page.locator('.stage.revealed')).toBeVisible()
+
+    const faults: string[] = []
+
+    for (const [width, height] of ROOM_VIEWPORTS) {
+      await resizeTo({ height, page, width })
+
+      const collisions = await page.evaluate(collisionsOnTheConsole)
+
+      if (collisions.length > 0) {
+        faults.push(`${width}×${height} ${collisions.join(', ')}`)
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
+
 /** Every answering screen with the room at its largest, each seat named long. */
 for (const seat of SEATS) {
   test(`[layout] ${seat.name}, a full table: the question and its four choices never scroll`, async ({
@@ -2057,4 +2081,204 @@ for (const seat of SEATS) {
 
     expect(faults).toEqual([])
   })
+}
+
+/**
+ * Serves every stylesheet with its `text-box` guard never met, which is how a
+ * browser without `text-box` reads it: the trimmed figures fall back to
+ * `line-height: 1`, and the rows they sit in grow.
+ */
+const forceTextBoxFallback = async (page: Page): Promise<void> => {
+  await page.route(/\.(sass|css)(\?.*)?$/, async (route) => {
+    const response = await route.fetch()
+    const body = (await response.text()).replaceAll(
+      '@supports (text-box: trim-both cap alphabetic)',
+      '@supports (text-box-unsupported: none)'
+    )
+
+    await route.fulfill({ body, response })
+  })
+}
+
+/**
+ * The room at its largest on one seat's screen, in the middle of the board:
+ * five seats paid, the case each pawn stands on when the room plays a track.
+ */
+const playerRevealOfAFullTable = ({
+  isEveryoneReady,
+  isOnATrack
+}: {
+  isEveryoneReady: boolean
+  isOnATrack: boolean
+}) => {
+  const { wallCount: _, wallNumber: __, ...reveal } = wallRevealOfAFullTable()
+
+  return {
+    ...reveal,
+    players: fullTable.map((player, seat) => ({
+      ...player,
+      board: isOnATrack ? { case: 24 - seat, move: 1 } : null,
+      isReady: isEveryoneReady || player.isReady
+    })),
+    settings: isOnATrack
+      ? {
+          ...reveal.settings,
+          board: evening(consoleView(LONGEST_PROMPT)).settings.board
+        }
+      : reveal.settings,
+    youId: 'p7',
+    yourVerdict: null
+  }
+}
+
+const PLAYER_REVEALS = [
+  { isEveryoneReady: false, isOnATrack: false, name: 'half the table ready' },
+  { isEveryoneReady: true, isOnATrack: false, name: 'every seat ready' },
+  { isEveryoneReady: false, isOnATrack: true, name: 'on a track' }
+]
+
+/**
+ * Below this height a screen lying down holds a phone's chrome and the answer
+ * and little else, so it owes the press only once scrolled to.
+ */
+const FIRST_SCREEN_MIN_HEIGHT = 568
+
+type PlayerReveal = {
+  /** Each of the round's pieces the first screen leaves out. */
+  belowTheFold: string[]
+  /** Every standings row the press or the hold is drawn over. */
+  covered: string[]
+  /** How far the page runs sideways. */
+  sideways: number
+}
+
+const measurePlayerReveal = (): PlayerReveal => {
+  const root = document.scrollingElement ?? document.documentElement
+  const firstScreen = [
+    '.answer-card',
+    '.outcome > .section-heading',
+    '.your-round',
+    '.hold',
+    '.back-at-the-table'
+  ]
+  const boxOf = (selector: string) =>
+    document.querySelector(selector)?.getBoundingClientRect() ?? null
+  const presses = ['.hold', '.back-at-the-table']
+    .map(boxOf)
+    .filter((box) => box !== null)
+
+  return {
+    belowTheFold: firstScreen.filter((selector) => {
+      const box = boxOf(selector)
+
+      return box === null || box.top < 0 || box.bottom > innerHeight + 0.5
+    }),
+    covered: [...document.querySelectorAll<HTMLElement>('.overall li')]
+      .filter((row) => {
+        const box = row.getBoundingClientRect()
+
+        return presses.some(
+          (press) =>
+            Math.min(box.right, press.right) - Math.max(box.left, press.left) >
+              0.5 &&
+            Math.min(box.bottom, press.bottom) - Math.max(box.top, press.top) >
+              0.5
+        )
+      })
+      .map((row) => row.textContent ?? ''),
+    sideways: root.scrollWidth - innerWidth
+  }
+}
+
+/** Scrolled to the bottom, whether the last row is on screen and drawn on top. */
+const readLastRow = (): string | null => {
+  const root = document.scrollingElement ?? document.documentElement
+
+  root.scrollTop = root.scrollHeight
+
+  const rows = [...document.querySelectorAll<HTMLElement>('.overall li')]
+  const last = rows.at(-1)
+
+  if (last === undefined) {
+    return 'no standings'
+  }
+
+  const box = last.getBoundingClientRect()
+  const hit = document.elementFromPoint(
+    box.left + box.width / 2,
+    box.top + box.height / 2
+  )
+
+  if (box.top < 0 || box.bottom > innerHeight + 0.5) {
+    return `${last.textContent} ends ${Math.round(box.bottom - innerHeight)}px under the screen`
+  }
+
+  return hit !== null && last.contains(hit)
+    ? null
+    : `${last.textContent} is hidden under ${hit?.className ?? 'nothing'}`
+}
+
+/**
+ * The player's reveal at the room's largest: the answer, the round's block,
+ * the hold and the press inside the first screen, then the game's standings,
+ * which the page scrolls to the last of — and the press never drawn over a
+ * row. Through the `text-box` fallback too, where taller rows once spilled
+ * from a board fitted to the screen and slid under the press.
+ */
+for (const reveal of PLAYER_REVEALS) {
+  for (const isWithoutTextBox of [false, true]) {
+    test(`[layout] player, the reveal of a full table, ${reveal.name}${isWithoutTextBox ? ', without text-box' : ''}: the round and the press first, every row scrolled to and never covered`, async ({
+      page
+    }) => {
+      if (isWithoutTextBox) {
+        await forceTextBoxFallback(page)
+      }
+
+      await serveRoom({ page, view: playerRevealOfAFullTable(reveal) })
+      await page.addInitScript(() => {
+        localStorage.setItem('melee:locale', 'fr')
+        localStorage.setItem('melee:volume', '0')
+      })
+      await page.setViewportSize({ height: 844, width: 390 })
+      await page.goto(`/play/${ROOM_CODE}`)
+      await expect(page.locator('.overall li')).toHaveCount(24)
+      await expect(
+        page.getByRole('heading', { name: 'Cette manche' })
+      ).toBeVisible()
+      expect(
+        await page.evaluate(() =>
+          getComputedStyle(
+            document.querySelector('.overall .score') ?? document.body
+          ).getPropertyValue('text-box-trim')
+        )
+      ).toBe(isWithoutTextBox ? 'none' : 'trim-both')
+
+      const faults: string[] = []
+
+      for (const [width, height] of VIEWPORTS) {
+        await resizeTo({ height, page, width })
+        await page.evaluate(() => {
+          scrollTo(0, 0)
+        })
+
+        const measured = await page.evaluate(measurePlayerReveal)
+        const lastRow = await page.evaluate(readLastRow)
+        const belowTheFold =
+          height < FIRST_SCREEN_MIN_HEIGHT ? [] : measured.belowTheFold
+
+        if (
+          belowTheFold.length > 0 ||
+          measured.covered.length > 0 ||
+          measured.sideways > 0 ||
+          lastRow !== null
+        ) {
+          faults.push(
+            `${width}×${height} ${JSON.stringify({ ...measured, belowTheFold, lastRow })}`
+          )
+        }
+      }
+
+      expect(faults).toEqual([])
+    })
+  }
 }

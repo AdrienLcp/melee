@@ -1,3 +1,4 @@
+@use '../styles/rank'
 @use '../styles/typography'
 @use '../styles/text-box'
 
@@ -34,38 +35,27 @@
       z-index: 1
 
     &.ranked li
-      grid-template-columns: 1.3em 1fr auto
+      grid-template-columns: auto 1fr auto
 
     &.removable li
       grid-template-columns: 1fr auto
 
-    &.ranked.removable li
-      grid-template-columns: 1.3em 1fr auto auto
-
+    &.ranked.removable li,
     &.ranked li:has(> .case)
-      grid-template-columns: 1.3em 1fr auto auto
+      grid-template-columns: auto 1fr auto auto
 
-    &.ranked.with-gains li
-      grid-template-columns: 1.3em 1fr auto auto
-
-    &.ranked.with-gains li:has(> .case),
     &.ranked.removable li:has(> .case)
-      grid-template-columns: 1.3em 1fr auto auto auto
+      grid-template-columns: auto 1fr auto auto auto
 
-    // What the round paid, quieter than the score it was added to.
-    .gain
-      @include typography.numeric
-      @include text-box.trimmed-figure
-
-      color: var(--ink-muted)
-      min-width: 2.5em
-      text-align: end
-
+    // Each row is a grid of its own, so the rank holds two figures' width on
+    // every row and the pawns stand in one column.
     .rank
-      @include typography.numeric
-      @include text-box.trimmed-figure
+      @include rank.before-pawn($figures: 2, $gap: var(--space-s))
 
       color: var(--ink-muted)
+
+    li:not(:has(.pawn)) .rank
+      margin-inline-end: 0rem
 
     // Two texts in one cell, and the name is the one that shrinks: a truncated
     // nickname still points at somebody, where a truncated state word points at

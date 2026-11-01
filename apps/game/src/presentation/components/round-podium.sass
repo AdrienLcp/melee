@@ -1,0 +1,115 @@
+@use '../styles/rank'
+@use '../styles/typography'
+
+@layer components
+  // The seats the round paid the most, a filled chip each, the first the
+  // largest, over the count of who scored: pieces, where the game so far is
+  // ruled rows, so neither reads as the other.
+  .round-podium
+    display: flex
+    flex-direction: column
+    gap: var(--space-2xs)
+    min-width: 0
+
+    .podium
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+      list-style: none
+
+      li
+        @include typography.title
+
+        align-items: center
+        background: var(--good-soft)
+        border-radius: var(--radius-s)
+        box-shadow: 0 2px 0 var(--good-edge)
+        color: var(--tile-ink)
+        display: flex
+        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 3), 1.75rem)
+        gap: 0.5em
+        min-width: 0
+        padding: 0.22em 0.6em
+
+        &:first-child
+          font-size: clamp(var(--text-m), calc(var(--stage-unit) * 4.2), 2.5rem)
+
+        &.you
+          box-shadow: inset 0 0 0 var(--stroke-bold) var(--tile-ink), 0 2px 0 var(--good-edge)
+
+      .place
+        @include rank.before-pawn($figures: 1, $gap: 0.5em, $name-gap: 0.5em)
+
+        flex: none
+        font-size: var(--text-em-s)
+
+      // A name is atomic where a title is not — half a nickname names nobody,
+      // half a title still reads — so the name is sized on its own text and
+      // the answer takes what is left, down to nothing but its ellipsis.
+      .nickname
+        flex: 0 1 auto
+        min-width: 0
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      // A zero basis is what makes it the one that gives way: it asks for
+      // nothing, so the name and the points are laid out first.
+      .words
+        @include typography.aside
+
+        flex: 1 1 0
+        font-size: var(--text-em-s)
+        min-width: 0
+        overflow: hidden
+        text-align: end
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      .points
+        @include typography.numeric
+
+        flex: none
+        margin-inline-start: auto
+        text-align: end
+
+      .words + .points
+        margin-inline-start: 0
+
+      // A moved stick printed on a slip of paper, the way every match is laid.
+      .words:has(> .matchstick-row)
+        display: flex
+        justify-content: flex-end
+
+      .words > .matchstick-row
+        background: var(--card)
+        border-radius: var(--radius-xs)
+        color: var(--card-ink)
+        height: 1.85em
+        padding: 0.12em 0.3em
+        width: auto
+
+      // A rebuilt colour on a chip of its own, the way the colour was shown.
+      .words:has(> .swatch-chip)
+        display: flex
+        justify-content: flex-end
+
+      .words > .swatch-chip
+        block-size: 1.85em
+
+    .found
+      @include typography.caption-strong
+
+      color: var(--ink-muted)
+      display: flex
+      flex-wrap: wrap
+      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.2), var(--text-m))
+      gap: 0 0.6em
+
+      .others
+        display: none
+
+  .round-nobody
+    @include typography.title
+
+    color: var(--ink-muted)

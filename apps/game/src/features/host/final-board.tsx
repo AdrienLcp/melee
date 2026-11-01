@@ -115,7 +115,13 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
       {teams.length > 0 && !isEveryTeamItsOwnSeat({ players, teams }) && (
         <SeatPodium players={players} youId={youId} />
       )}
-      <Standings board={board} players={players} teams={teams} youId={youId} />
+      <Standings
+        board={board}
+        isFinal
+        players={players}
+        teams={teams}
+        youId={youId}
+      />
       <ScoreTrack players={players} teams={teams} youId={youId} />
     </section>
   )

@@ -4,9 +4,11 @@
 
 @layer components
   .reveal-panel
+    --panel-gap: var(--space-m)
+
     display: flex
     flex-direction: column
-    gap: var(--space-m)
+    gap: var(--panel-gap)
     min-width: 0
 
     animation: card-strike var(--transition-slow, 0s) var(--ease-out) both
@@ -192,95 +194,63 @@
       flex: 1 1 auto
       padding: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l)) clamp(var(--space-s), calc(var(--stage-unit) * 3.4), var(--space-l))
 
-    // The round's podium: the seats it paid the most, a chip each, the first
-    // the largest, over the count of who scored. It answers the stage's height
-    // rather than its own, so a short stage keeps the first and counts the rest.
-    .round-podium
-      display: flex
-      flex-direction: column
-      gap: var(--space-2xs)
-      min-width: 0
+    // The round's name, held close to the block it heads: the stage pays for
+    // its line and nothing more, the tally giving way under it.
+    .this-round-head
+      flex: none
+      margin-block-end: calc(var(--space-2xs) - var(--panel-gap))
 
-    .podium
-      display: flex
-      flex-direction: column
-      gap: var(--space-2xs)
-      list-style: none
+    .seated-result
+      @include typography.title
 
-      li
-        @include typography.title
+      align-items: center
+      display: inline-flex
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.2), var(--text-l))
+      gap: 0.4em
 
-        align-items: center
-        background: var(--good-soft)
-        border-radius: var(--radius-s)
-        box-shadow: 0 2px 0 var(--good-edge)
-        color: var(--tile-ink)
-        display: flex
-        font-size: clamp(var(--text-s), calc(var(--stage-unit) * 3), 1.75rem)
-        gap: 0.5em
-        min-width: 0
-        padding: 0.22em 0.6em
-
-        &:first-child
-          font-size: clamp(var(--text-m), calc(var(--stage-unit) * 4.2), 2.5rem)
-
-      // A name is atomic where a title is not — half a nickname names nobody,
-      // half a title still reads — so the name is sized on its own text and
-      // the answer takes what is left, down to nothing but its ellipsis.
-      .nickname
-        flex: 0 1 auto
-        min-width: 0
-        overflow: hidden
-        text-overflow: ellipsis
-        white-space: nowrap
-
-      // A zero basis is what makes it the one that gives way: it asks for
-      // nothing, so the name and the points are laid out first.
-      .words
-        @include typography.aside
-
-        flex: 1 1 0
-        font-size: var(--text-em-s)
-        min-width: 0
-        overflow: hidden
-        text-align: end
-        text-overflow: ellipsis
-        white-space: nowrap
-
-      .points
+      .payout
         @include typography.numeric
 
-        flex: none
-        margin-inline-start: auto
-        text-align: end
+      .placing
+        color: var(--ink-muted)
 
-      .words + .points
-        margin-inline-start: 0
+      &.scored .placing
+        color: var(--ink)
 
-    .found
-      @include typography.caption-strong
+    // The note is read up close or not at all: on a short stage it gives way
+    // before the round's block under it does.
+    @container (height < 30rem)
+      .identity .note
+        -webkit-box-orient: vertical
+        display: -webkit-box
+        -webkit-line-clamp: 2
+        line-clamp: 2
+        overflow: hidden
 
-      color: var(--ink-muted)
-      display: flex
-      flex-wrap: wrap
-      font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.2), var(--text-m))
-      gap: 0 0.6em
-
-      .others
-        display: none
+    @container (height < 22rem)
+      .identity .note
+        -webkit-line-clamp: 1
+        line-clamp: 1
 
     @container (height < 20rem)
-      .podium li:not(:first-child)
+      .round-podium .podium li:not(:first-child)
         display: none
 
-      .found .others
+      .round-podium .found .others
         display: inline
 
+    // The question the room has just read gives a line before the podium goes.
+    @container (height < 16rem)
+      .identity .asked
+        -webkit-line-clamp: 1
+        line-clamp: 1
+
     @container (height < 12rem)
-      .podium
+      .this-round-head,
+      .round-podium .podium
         display: none
 
-      .found .others
+      .round-podium .found .others
         display: none
 
     // A moved stick printed on a slip of paper, the way every match is laid.
@@ -296,9 +266,6 @@
       padding: 0.12em 0.3em
       width: auto
 
-    .podium .words > .matchstick-row
-      height: 1.85em
-
     // A rebuilt colour on a chip of its own, the way the colour was shown.
     .words:has(> .swatch-chip)
       display: flex
@@ -309,11 +276,6 @@
 
     &[data-game='swatch'] .head .swatch-shown
       block-size: calc(var(--stage-unit) * 48)
-
-    .nobody
-      @include typography.title
-
-      color: var(--ink-muted)
 
     // One chip per distinct answer: the room reads who said the same thing,
     // and the standings beside it carry what each of them is owed.
@@ -427,8 +389,8 @@
     &.bare
       justify-content: center
 
-      .nobody,
-      .podium li
+      .round-nobody,
+      .round-podium .podium li
         @include typography.billboard
 
 
@@ -439,7 +401,7 @@
   .stage:is(.revealed, .counting-in) > .reveal-panel
     @include layout.wide
       display: grid
-      grid-template-rows: auto auto minmax(0, 1fr)
+      grid-template-rows: auto auto auto minmax(0, 1fr)
       min-height: 0
 
       .cover
@@ -476,7 +438,7 @@
       // The map is the reveal here, so it takes the room and the list keeps
       // what its rows need, its chips at a size of their own.
       &[data-game='atlas']
-        grid-template-rows: minmax(0, 1fr) auto auto
+        grid-template-rows: minmax(0, 1fr) auto auto auto
 
         // The map's own floor would push it over the list in a short row.
         .world-map
@@ -496,7 +458,7 @@
       &.bare
         align-content: center
         grid-template-columns: minmax(0, 1fr)
-        grid-template-rows: minmax(0, 1fr)
+        grid-template-rows: auto minmax(0, 1fr)
 
         // A count puts its target over the board, and the board takes what
         // the card leaves.

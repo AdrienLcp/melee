@@ -217,7 +217,9 @@ const PhaseStage: React.FC<RoomStageProps> = ({
       <div className={recap === null ? 'stage solo' : 'stage counting-in'}>
         {recap === null && <NextGameName settings={view.settings} />}
         <Countdown clock={clock} target={round.startsAt} />
-        {recap !== null && <RevealPanel players={view.players} round={recap} />}
+        {recap !== null && (
+          <RevealPanel players={view.players} round={recap} youId={null} />
+        )}
         {clipOffer}
       </div>
     )
@@ -483,16 +485,12 @@ const PhaseStage: React.FC<RoomStageProps> = ({
             }
             players={view.players}
             round={round}
+            youId={youId}
           />
           {/* On the podium the players' column already ranks them. */}
           {controls?.isRosterBeside !== true && (
             <Standings
               board={view.settings.board}
-              gains={
-                new Map(
-                  round.awards.map((award) => [award.playerId, award.points])
-                )
-              }
               marksReady={isReadyAsked}
               onAdjust={
                 controls === null

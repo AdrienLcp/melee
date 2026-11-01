@@ -87,7 +87,7 @@
     > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='petitbac'])
       @include layout.wide
         align-content: center
-        grid-template-rows: auto auto minmax(0, auto)
+        grid-template-rows: auto auto auto minmax(0, auto)
 
     // The race is drawn as large as the width it stands in — a column beside
     // the answer lying down, the whole field standing up — and a ruled row no
@@ -106,18 +106,6 @@
 
         li
           font-size: clamp(var(--text-xs), min(var(--row-width-cap, 5cqi), calc(100cqh / var(--rows-per-column, var(--standings-rows, 8)) / 2.15)), 2.5rem)
-
-        // The first to give way where the column is narrow: the round's
-        // podium already says who scored.
-        @container (width < 22rem)
-          &.with-gains li
-            grid-template-columns: 1.3em 1fr auto
-
-            &:has(> .case)
-              grid-template-columns: 1.3em 1fr auto auto
-
-          .gain
-            display: none
 
       .track-podium
         justify-items: center
@@ -158,16 +146,6 @@
 
           .scoreboard
             @include two-ranked-columns
-
-          @container standings (width < 40rem)
-            .scoreboard.with-gains li
-              grid-template-columns: 1.3em 1fr auto
-
-              &:has(> .case)
-                grid-template-columns: 1.3em 1fr auto auto
-
-            .scoreboard .gain
-              display: none
 
     // Lying down, the race takes a wider column than the console gives its
     // standings: on the wall it is the second thing the room reads, not a

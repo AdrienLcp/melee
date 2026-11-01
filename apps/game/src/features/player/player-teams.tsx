@@ -13,6 +13,7 @@ import {
 import { Button } from '@/presentation/components/button'
 import { Pawn } from '@/presentation/components/pawn'
 import { SeatPodium } from '@/presentation/components/seat-podium'
+import { SectionHeading } from '@/presentation/components/section-heading'
 import { TeamColourPress } from '@/presentation/components/team-colour-press'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
@@ -133,9 +134,10 @@ export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
       {!isEveryTeamItsOwnSeat(view) && (
         <SeatPodium players={view.players} youId={view.youId} />
       )}
+      <SectionHeading>{translate('round.finalStandings')}</SectionHeading>
       <TeamRoster
         isRanked
-        label={translate('host.standings')}
+        label={translate('round.finalStandings')}
         players={view.players}
         teamDetail={
           board.kind === 'track'

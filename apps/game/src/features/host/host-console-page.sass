@@ -113,11 +113,6 @@
           gap: var(--space-xs)
           width: min(var(--column-wide-max-width), 100%)
 
-        .standings-title
-          @include typography.label
-
-          color: var(--ink-muted)
-
       // The code and its square, beside the table being set. Above the split
       // the page itself lays the two out, so the launch can sit under the
       // table rather than across the whole screen.
@@ -661,6 +656,14 @@
         > footer
           align-self: end
 
+          // A third of a phone lying down is narrower than the next round's
+          // label on one line, which ran over the answer beside the column.
+          .button
+            max-width: 100%
+            text-align: center
+            text-wrap: balance
+            white-space: normal
+
         @media (height < 36rem)
           grid-template-areas: 'track track' 'stage footer'
           grid-template-rows: auto minmax(0, 1fr)
@@ -706,6 +709,9 @@
           flex: 1 1 auto
           min-height: 0
 
+          @media (height < 30rem)
+            --panel-gap: var(--space-xs)
+
           > .tally
             flex: 0 1 auto
             min-height: 0
@@ -716,12 +722,25 @@
         > .reveal-panel.bare
           container: outcome / size
           display: grid
-          grid-template: minmax(0, 1fr) / minmax(0, 1fr)
+          grid-template: auto minmax(0, 1fr) / minmax(0, 1fr)
 
+          // A short phone needs every row of the box for the finishing
+          // order, and the score track over it already stands for the game.
+          @media (height < 45rem)
+            > .this-round-head
+              display: none
+
+          > :last-child
+            grid-row: 2
+
+          // Its own size container: the panel's height counts the round's
+          // heading over it, which the rows would otherwise divide too.
           .reaction-board
             --board-rows: var(--outcome-rows, 5)
 
+            container-type: size
             justify-content: center
+            min-height: 0
 
             li
               font-size: clamp(var(--text-xs), calc((100cqh - (var(--board-rows) - 1) * var(--space-2xs)) / var(--board-rows) / 1.8), var(--text-m))

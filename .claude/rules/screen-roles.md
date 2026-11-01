@@ -30,7 +30,24 @@ Two floors hold on every role:
   player and on a seated console alike (`DESIGN.md`, *The No-Scroll Rule*).
 - **A console with no wall is still what the room reads**: where it scrolls,
   what the room is looking at — the round's podium, the head of the standings,
-  the next-round press — sits in the first viewport.
+  the next-round press — sits in the first viewport. Below 45rem tall, a table
+  past eight seats keeps the score track to one line that swipes sideways.
+
+A player's reveal scrolls, and its first viewport owes the answer, the
+round's block (*This round*: the seat's own result and the podium), the hold
+and the Ready press, all in the flow — never positioned over a row. The
+overall standings come after them, at a fixed legible size, and the page
+scrolls to the last row; nothing divides the screen by the room's size. Lying
+down, the standings take a column beside the round instead.
+
+## Two blocks on every reveal
+
+The round and the game are never one row. *This round* (`round.thisRound`)
+holds every figure the round alone paid — the answer, the podium with round
+places, a seat's own `+35` — in filled pieces; *Overall standings*
+(`round.overallStandings`) holds rank, pawn, name, ready mark, case, total
+and the movement stamp, in ruled rows, and no figure of the round. Each opens
+on the same ruled heading (`SectionHeading`), on every role.
 
 ## When the wall runs out of room
 
@@ -38,8 +55,7 @@ The wall fits by giving things up, in this order, before it ever scrolls:
 
 1. the movement stamp beside a row (↑2, ↓1) — the standings travelling to
    their new places already says it;
-2. the round gain beside a row (`+35`) — the round's podium says who scored;
-3. the ready mark, last — it starts the next round, and the table needs to see
+2. the ready mark, last — it starts the next round, and the table needs to see
    who is holding it up.
 
 Then rows shrink over the height budget (`standingsRowsOf`) down to the

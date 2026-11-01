@@ -103,6 +103,14 @@ one part.
   after every game nobody has to judge, under *Judged by the host*, and nothing
   moves when a box is ticked. The first press over the shelf now reads *Tick
   all but those the host judges*.
+- `[Game]` **The reveal tells this round apart from the whole game, on every
+  screen.** Two blocks, each under a ruled heading: *This round* holds the
+  answer, the seat's own result and the round's podium with round places, in
+  filled pieces; *Overall standings* holds rank, pawn, name and total, in ruled
+  rows, with no round gain beside any of them. A player's reveal scrolls again:
+  the hold and the Ready press sit right after the round, in the first screen,
+  and never over a row of the standings. A player's final board is headed
+  *Final standings*, and the rank sits next to the pawn on every board.
 - `[Game]` **The quiz's reveal keeps its question.** The answer no longer
   replaces the question on the console, the wall and every player's screen:
   the question stays above it, quieter, and on the wall it gives way to two

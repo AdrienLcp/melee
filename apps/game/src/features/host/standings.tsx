@@ -10,6 +10,7 @@ import { trackPawnsOf } from '@melee/core/board/track-pawns'
 import { isEveryTeamItsOwnSeat } from '@melee/core/team/team-board'
 
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { SectionHeading } from '@/presentation/components/section-heading'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -23,8 +24,8 @@ type StandingsProps = {
    * trays carry their score alone.
    */
   board?: BoardSettings
-  /** What the round just paid each seat, printed on its row; omitted outside a reveal. */
-  gains?: ReadonlyMap<PlayerId, number>
+  /** Heads the board as the game's result rather than the game so far: the final board. */
+  isFinal?: boolean
   /** Checks each seat back at the table, between two rounds of a line-up. */
   marksReady?: boolean
   /** Walks a team's pawn a case either way; absent on a screen that moves nothing. */
@@ -65,12 +66,13 @@ export const standingsRowsOf = ({
 }
 
 /**
- * The game so far, beside the round that just moved it: a titled board whose
- * pawns are the ones standing on the track around it.
+ * The game so far, beside the round that just moved it: a board under its
+ * ruled heading, whose pawns are the ones standing on the track around it.
+ * No row carries what the round paid — that is the round's podium.
  */
 export const Standings: React.FC<StandingsProps> = ({
   board,
-  gains,
+  isFinal = false,
   marksReady,
   onAdjust,
   players,
@@ -80,6 +82,9 @@ export const Standings: React.FC<StandingsProps> = ({
 }) => {
   const translate = useTranslate()
   const titleId = useId()
+  const title = translate(
+    isFinal ? 'round.finalStandings' : 'round.overallStandings'
+  )
   const teamName = useTeamName()
   const seatPawns =
     teams.length === 0 && board?.kind === 'track'
@@ -88,17 +93,14 @@ export const Standings: React.FC<StandingsProps> = ({
 
   return (
     <section aria-labelledby={titleId} className='standings'>
-      <h2 className='standings-title' id={titleId}>
-        {translate('host.standings')}
-      </h2>
+      <SectionHeading id={titleId}>{title}</SectionHeading>
       {teams.length > 0 ? (
         <TeamRoster
           isRanked
-          label={translate('host.standings')}
+          label={title}
           marksReady={marksReady}
           players={players}
           rankedBefore={rankedBefore?.teams}
-          showsGains={gains !== undefined && board?.kind !== 'track'}
           teamDetail={
             board?.kind === 'track'
               ? (team) => (
@@ -124,7 +126,6 @@ export const Standings: React.FC<StandingsProps> = ({
         <TrackPodium marksReady={marksReady} pawns={seatPawns} youId={youId} />
       ) : (
         <Scoreboard
-          gains={gains}
           hasPawns
           marksReady={marksReady}
           players={players}

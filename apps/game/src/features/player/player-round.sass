@@ -6,6 +6,43 @@
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
 
+/// The round's block, the hold and the press beside the standings rather than
+/// over them: a laptop has width to spare and none of the height, and a phone
+/// lying down is a short laptop.
+@mixin round-beside-standings
+  &:has(> .overall)
+    align-items: start
+    column-gap: var(--space-xl)
+    display: grid
+    grid-template-areas: 'outcome overall' 'hold overall' 'ready overall'
+    grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.9fr)
+    // The last row takes what the standings leave, so the round's three
+    // stay packed at the top whatever the standings' height.
+    grid-template-rows: auto auto 1fr
+
+    .outcome
+      grid-area: outcome
+
+    .hold
+      grid-area: hold
+
+    .back-at-the-table
+      align-self: start
+      grid-area: ready
+
+    .overall
+      grid-area: overall
+      margin-block-start: 0
+
+/// The podium giving way as the console's does: the first alone, then how
+/// many more the round paid.
+@mixin podium-first-alone
+  .round-podium .podium li:not(:first-child)
+    display: none
+
+  .round-podium .found .others
+    display: inline
+
 @layer components
   .player-round
     display: flex
@@ -310,27 +347,55 @@
       color: var(--ink-muted)
       font-size: var(--text-m)
 
-  // What the round was, what it paid this player, and where it left the room.
+  // The round, then the game so far: two blocks, each under its ruled
+  // heading. The page scrolls; the round's block, the hold and the press come
+  // first and in the flow, so nothing is ever drawn over a row.
   .player-round.revealed
     .outcome
       display: flex
       flex-direction: column
-      gap: var(--space-m)
+      gap: var(--space-s)
       min-width: 0
 
       // The strike belongs to the thing the round pays out, never the screen
       // it arrived on: a whole-screen settle under a press reads as a reflow.
       animation: card-strike var(--transition-slow, 0s) var(--ease-out) both
 
+      > .section-heading
+        margin-block-start: var(--space-xs)
+
+    // Read at forty centimetres, never across a room: the console's sizes
+    // would spend the screen the hold and the press are owed.
+    .round-podium .podium li
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.4), var(--text-l))
+
+      &:first-child
+        font-size: clamp(var(--text-m), calc(var(--stage-unit) * 3), var(--text-xl))
+
+    // Sized against the height the first screen holds, rather than the width
+    // a laptop has to spare.
+    .your-round .payout
+      --token: clamp(3.5rem, 11dvh, 5.5rem)
+
     .hold:empty
       display: none
 
-    // Under the thumb, where the next press of the evening lands: the word to
+    // Under the round, where the next press of the evening lands: the word to
     // the wall that this seat is back.
     .back-at-the-table
       align-self: stretch
       display: flex
       flex-direction: column
+
+    .overall
+      display: flex
+      flex-direction: column
+      gap: var(--space-xs)
+      margin-block-start: var(--space-s)
+      min-width: 0
+
+      .scoreboard li
+        padding-block: var(--space-xs)
 
     // The page scrolls, so the grid grows with its longest name rather than
     // cutting it to a share of the screen.
@@ -341,112 +406,64 @@
         block-size: auto
         min-block-size: clamp(14rem, 46dvh, 32rem)
 
+    // The map claims every touch while a pawn is placed on it; read back, a
+    // swipe up or down on it has to reach the standings under it. A sideways
+    // drag and a pinch still move the map.
+    .map-reveal .surface
+      touch-action: pan-y
+
     // A round before the first point, or one whose question the room owned,
     // leaves the payout alone on the screen: one object, centred. A grid, a
     // map or a strip of cards is a size container with no width of its own,
     // and centred it shrank to the payout line under it.
-    &:not(:has(.round-board, .answer-card, .reaction-board, .black-square-reveal, .map-reveal, .petit-bac-reveal, .timeline-revealed))
+    &:not(:has(.overall, .answer-card, .reaction-board, .black-square-reveal, .map-reveal, .petit-bac-reveal, .timeline-revealed))
       align-items: center
       justify-content: center
 
-    // A laptop is the one screen with width to spare and none of the height,
-    // so the answer and the board sit side by side, each dividing the screen.
-    // Read off the markup: a round before the first point withholds the board.
-    //
-    // `17rem` is the chrome, the page's padding, the gaps and the hold's
-    // groove, measured at 1440x900 and 1024x768 and taken at the wider.
+    // The question gives way first, then the note: the round's block, the
+    // hold and the press are what the first screenful owes.
+    .answer-card :is(.asked, .note)
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      -webkit-line-clamp: 3
+      line-clamp: 3
+      overflow: hidden
+
     @include layout.wide
-      &:has(.round-board)
-        --board-budget: calc(100dvh - 17rem)
+      @include round-beside-standings
 
-        align-items: start
-        column-gap: var(--space-xl)
-        display: grid
-        grid-template-areas: 'outcome board' 'hold hold' 'ready ready'
-        grid-template-columns: minmax(0, 1fr) minmax(15rem, 0.9fr)
+      @media (height < 50rem)
+        @include podium-first-alone
 
-        .outcome
-          grid-area: outcome
+        .answer-card .asked
+          -webkit-line-clamp: 1
+          line-clamp: 1
 
-        .round-board
-          grid-area: board
+        .answer-card .note
+          -webkit-line-clamp: 2
+          line-clamp: 2
 
-        .hold
-          grid-area: hold
-
-        .back-at-the-table
-          grid-area: ready
-
-        // The question is sized off the screen but handed half of it: left to
-        // wrap, a face's metrics set the column's height and scrolled the page
-        // over a board above its floor. A short screen has the board's height
-        // and not the answer card's: the question gives way first, then the note.
-        .answer-card :is(.asked, .note)
-          -webkit-box-orient: vertical
-          display: -webkit-box
-          -webkit-line-clamp: 3
-          line-clamp: 3
-          overflow: hidden
-
-        @media (height < 50rem)
-          .answer-card .asked
-            -webkit-line-clamp: 1
-            line-clamp: 1
-
-          .answer-card .note
-            -webkit-line-clamp: 2
-            line-clamp: 2
-
-    // Below the split the screen the page holds is divided as it is above:
-    // the answer and the payout take what they need and the board divides the
-    // rest by its rows. Lying down they sit side by side, as on a laptop.
     @include layout.narrow
-      &:has(.round-board)
-        display: grid
-        gap: var(--space-s)
-        grid-template: 'outcome' auto 'board' minmax(min-content, 1fr) 'hold' auto 'ready' auto / minmax(0, 1fr)
-        min-height: 0
+      @media (aspect-ratio >= 13 / 10)
+        @include round-beside-standings
 
-        @media (aspect-ratio >= 13 / 10)
-          column-gap: var(--space-m)
-          grid-template: 'outcome board' minmax(min-content, 1fr) 'hold hold' auto 'ready ready' auto / minmax(0, 1fr) minmax(0, 1fr)
-
-        .outcome
-          gap: var(--space-s)
-          grid-area: outcome
-
-        .round-board
-          grid-area: board
-
-        .hold
-          grid-area: hold
-
-        .back-at-the-table
-          grid-area: ready
-
+      @media (height < 50rem)
         .answer-card :is(.asked, .note)
-          -webkit-box-orient: vertical
-          display: -webkit-box
-          -webkit-line-clamp: 3
-          line-clamp: 3
-          overflow: hidden
+          -webkit-line-clamp: 2
+          line-clamp: 2
 
-          @media (height < 36rem)
-            -webkit-line-clamp: 2
-            line-clamp: 2
+      @media (height < 40rem)
+        @include podium-first-alone
 
-        .answer-card .cover
-          height: clamp(3.5rem, 12dvh, 8rem)
-          width: clamp(3.5rem, 12dvh, 8rem)
+      .answer-card .cover
+        height: clamp(3.5rem, 12dvh, 8rem)
+        width: clamp(3.5rem, 12dvh, 8rem)
 
-        .answer-card :is(.flag-picture, .country-silhouette)
-          --prompt-picture-height: clamp(2.75rem, 9dvh, 6rem)
+      .answer-card :is(.flag-picture, .country-silhouette)
+        --prompt-picture-height: clamp(2.75rem, 9dvh, 6rem)
 
-        .answer-card .rebus-line
-          --rebus-size: clamp(1.75rem, 6dvh, 3rem)
-
-        .your-round .payout
-          --token: clamp(3.5rem, 11dvh, 5.5rem)
+      .answer-card .rebus-line
+        --rebus-size: clamp(1.75rem, 6dvh, 3rem)
 
   // The card the round was played on, turned over: the answer on its back,
   // and a track's cover mounted on it beside the words.
@@ -705,9 +722,6 @@
       @include typography.caption
 
       color: var(--ink-muted)
-
-    .standing
-      @include typography.caption-strong
 
   // Where the evening left this player: their pawn stood up oversize beside
   // the place, the way the console stands the winner's.

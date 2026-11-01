@@ -1,0 +1,36 @@
+@use '../styles/typography'
+
+@layer components
+  // The rule is a flex item placed after the aside's slot by `order`, so one
+  // pseudo-element serves a heading with an aside and one without. An aside
+  // too long for the row wraps under it, held to the far end.
+  .section-heading
+    align-items: center
+    display: flex
+    flex-wrap: wrap
+    gap: var(--space-2xs) var(--space-xs)
+    min-width: 0
+
+    > h2
+      @include typography.title
+
+      color: var(--ink)
+      flex: 0 1 auto
+      font-size: clamp(var(--text-s), calc(var(--stage-unit) * 2.2), var(--text-l))
+      margin: 0
+
+    &::after
+      border-top: var(--hairline)
+      content: ''
+      flex: 1 1 0
+      min-width: var(--space-m)
+      order: 1
+
+    > .aside
+      @include typography.caption-strong
+
+      color: var(--ink)
+      flex: none
+      font-variant-numeric: tabular-nums
+      margin: 0 0 0 auto
+      order: 2

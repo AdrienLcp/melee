@@ -1493,18 +1493,15 @@ export const FR_DICTIONARY = defineDictionary({
           }
         }
       }),
-      overall: defineTranslation(
-        '{rank:plural} sur {count:number} au général',
-        {
-          plural: {
-            rank: {
-              one: '{?}er',
-              other: '{?}e',
-              type: 'ordinal'
-            }
+      overall: defineTranslation('{rank:plural} sur {count:number}', {
+        plural: {
+          rank: {
+            one: '{?}er',
+            other: '{?}e',
+            type: 'ordinal'
           }
         }
-      )
+      })
     },
     table: 'À la table',
     upNext: 'Tu vas jouer à',
@@ -1662,9 +1659,9 @@ export const FR_DICTIONARY = defineDictionary({
         plural: { count: { one: '{?} a répondu', other: '{?} ont répondu' } }
       })
     },
-    award: '{points:number}',
     awardWithSpeed: '{answer:number} +{speed:number}',
     entryNumbered: '{name} {number:number}',
+    finalStandings: 'Classement final',
     found: 'Trouvé : {found:number} sur {total:number}',
     index: 'Manche {index:number} sur {total:number}',
     indexOpen: 'Manche {index:number}',
@@ -1674,9 +1671,10 @@ export const FR_DICTIONARY = defineDictionary({
     othersScored: defineTranslation('{count:plural}', {
       plural: { count: { one: '+ {?} autre', other: '+ {?} autres' } }
     }),
+    overallStandings: 'Classement général',
     scored: '+{points:number}',
     speedBonus: 'dont {points:number} pour la vitesse',
-    speedHalf: '+{points:number}',
+    thisRound: 'Cette manche',
     unsent: 'Pas envoyé : pris tel quel sur ton écran.',
     unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : {names}'
   },
