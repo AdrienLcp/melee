@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Game]` **Ready-made line-ups, and the games ticked on the front page.**
+  A first-time host no longer lands in an empty lobby. The front page offers
+  four line-ups the app ships — *First game*, *Music special*, *General
+  knowledge*, *Quick game* — one press opening a table already loaded with
+  their games, variants, length and order. Under them the shelf's games are
+  ticks again: *Open a table · 5 games* opens on what is ticked, the ticks are
+  kept for next time, and a first visit starts on *First game*'s five. A lobby
+  with nothing chosen leads with the same four before the one-game list, and a
+  loaded one is named above the planned games with a way back.
 - `[Shared]` **A blind test that plays no music says so, on the console too.**
   The screen playing the sound watches its clip: a file that will not load, or
   a clip sitting on one second for three, puts a line on that screen and is

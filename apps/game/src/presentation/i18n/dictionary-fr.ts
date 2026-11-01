@@ -588,10 +588,16 @@ export const FR_DICTIONARY = defineDictionary({
   },
   home: {
     opening: 'Ouverture de la table…',
+    openWith: defineTranslation('Ouvrir une table · {count:plural}', {
+      plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
+    }),
     resume: 'Reprendre la table',
-    shelf: 'Les jeux',
-    shelfHint: 'Un appui ouvre une table sur ce jeu.',
-    title: 'Mêlée'
+    shelf: 'Ou tes jeux à toi',
+    shelfHint:
+      'Coche ce que « Ouvrir une table » lance. Tes coches sont gardées pour la prochaine fois.',
+    tickUnjudged: 'Tout cocher sauf « L’hôte juge »',
+    title: 'Mêlée',
+    untickAll: 'Tout décocher'
   },
   host: {
     answered: defineTranslation('{count:plural} sur {total:number}', {
@@ -1570,6 +1576,37 @@ export const FR_DICTIONARY = defineDictionary({
       hint: 'Il y en a moins à tirer, mais personne ne sèche.',
       label: 'Rester grand public'
     }
+  },
+  readyMade: {
+    change: 'Changer',
+    heading: 'Des parties toutes prêtes',
+    hint: 'Un appui ouvre une table qui les enchaîne, déjà réglée.',
+    lineUps: {
+      firstGame: {
+        caption: 'Rien à juger, chaque jeu se comprend dès sa première manche.',
+        name: 'Première partie'
+      },
+      generalKnowledge: {
+        caption:
+          'Des questions, des drapeaux, la carte, des dates et des chiffres à estimer.',
+        name: 'Culture générale'
+      },
+      music: {
+        caption:
+          'Trois blind tests : tubes français, années 80 et musiques de films.',
+        name: 'Spéciale musique'
+      },
+      quick: {
+        caption: 'La plus courte : dix manches, presque rien à lire.',
+        name: 'Partie éclair'
+      }
+    },
+    loaded: '{name} est chargée.',
+    oneAtATime: 'Ou un jeu à la fois',
+    open: 'Ouvrir',
+    rounds: defineTranslation('{count:plural}', {
+      plural: { count: { one: '{?} manche', other: '{?} manches' } }
+    })
   },
   reflex: {
     falseStart: {

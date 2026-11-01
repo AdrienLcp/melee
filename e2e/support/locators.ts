@@ -7,10 +7,12 @@ import type { Page } from '@playwright/test'
  * is the exception, not a licence to add test ids.
  */
 export const homePage = (page: Page) => ({
-  /** The blind test's spine on the shelf: a press opens a room set to it. */
-  blindTest: page.getByRole('link', { name: /^Blind test/ }),
-  /** The press on home: a room with nothing chosen yet. */
-  createRoom: page.getByRole('button', { name: 'Open a table' })
+  /** The blind test's spine on the shelf: a press ticks it for the host's door. */
+  blindTest: page.getByRole('button', { name: /^Blind test/ }),
+  /** The host's door: a room on the ticked games, or with nothing chosen when none is. */
+  createRoom: page.getByRole('button', { name: /^Open a table/ }),
+  /** Clears the shelf's ticks, which a fresh device opens on five of. */
+  untickAll: page.getByRole('button', { name: 'Untick all' })
 })
 
 export const hostConsole = (page: Page) => ({

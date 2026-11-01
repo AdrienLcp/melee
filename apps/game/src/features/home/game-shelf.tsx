@@ -1,53 +1,49 @@
 import type React from 'react'
-import { Link } from 'react-aria-components'
+import { ToggleButton } from 'react-aria-components'
 
 import { type ShelvedGame, shelvedGames } from '@melee/protocol/game'
 
-import { gameHomePathFor } from '@/infrastructure/router/navigation'
-import { ArrowIcon, GameIcon } from '@/presentation/components/icons'
-import { Spinner } from '@/presentation/components/spinner'
-import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
+import { isJudgedInEveryMode } from '@melee/core/room/game-modes'
+
+import { Button } from '@/presentation/components/button'
+import { CheckIcon, GameIcon } from '@/presentation/components/icons'
+import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { gameNameKey, gameTaglineKey } from '@/presentation/i18n/translation'
 
-import type { CreateRoom } from './use-create-room'
+import { type ShelfTicks, UNJUDGED_GAMES } from './use-shelf-ticks'
 
 import './game-shelf.sass'
 
 type GameShelfProps = {
-  /** The home page's one room opener, shared with the tray beside it. */
-  createRoom: CreateRoom
+  /** No tick moves while a table opens on them. */
+  isDisabled: boolean
+  /** The ticks the host's door opens a table on. */
+  ticks: ShelfTicks
 }
 
 /**
  * The games as boxes stacked on a shelf, each seen by its spine — its colour,
- * its name, one line of what it is — and a press on one opens a table already
- * playing it: whoever is on the home page knows the site, and the game's own
- * page is for the visitor arriving from a search or a group chat.
+ * its name, one line of what it is — and a press on one ticks it for the host's
+ * door: pulled forward with a tick, and once anything is ticked the rest sit
+ * back. A game judged however it is answered says so after its tagline.
  *
- * The spine stays a link to that page — for a crawler, a modified click and a
- * copied address — and only a plain press opens the room instead. The press
- * opens it, whatever pressed: react-aria never hands a link's `onClick` the
- * click Enter fires, so a guard there alone let the router follow the link
- * first. Holding Enter's own click back is what keeps it from navigating.
+ * A spine is a toggle and not a link to the game's own page: that page is for
+ * the visitor arriving from a search or a group chat, and the sitemap is what
+ * hands it to a crawler.
  *
- * While a table opens, every spine but the one pressed is disabled: it keeps
- * its focus and its spinner, and the rest stop answering a press the hook would
- * refuse anyway.
- *
- * react-aria's `Link` rather than the design-system one: a spine is a piece of
- * the box with two lines on it, not a control with a label.
+ * react-aria's `ToggleButton` rather than the design-system one: a spine is a
+ * piece of the box with two lines on it, not a control with a label.
  */
-export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
-  const { locale } = useI18n()
+export const GameShelf: React.FC<GameShelfProps> = ({ isDisabled, ticks }) => {
   const translate = useTranslate()
-  const { isOpeningAny, open, openingFor } = createRoom
+  const { ticked, tickOnly, toggle } = ticks
 
   return (
-    <nav
-      aria-busy={isOpeningAny}
+    <section
       aria-describedby='game-shelf-hint'
       aria-labelledby='game-shelf-title'
       className='game-shelf'
+      data-any-ticked={ticked.length > 0 || undefined}
     >
       <div className='shelf-heading'>
         <h2 className='shelf-title' id='game-shelf-title'>
@@ -57,50 +53,57 @@ export const GameShelf: React.FC<GameShelfProps> = ({ createRoom }) => {
           {translate('home.shelfHint')}
         </p>
       </div>
+      <div className='shelf-presets'>
+        <Button
+          isDisabled={isDisabled}
+          onPress={() => tickOnly(UNJUDGED_GAMES)}
+          size='small'
+          variant='underlined'
+        >
+          {translate('home.tickUnjudged')}
+        </Button>
+        <Button
+          isDisabled={isDisabled}
+          onPress={() => tickOnly([])}
+          size='small'
+          variant='underlined'
+        >
+          {translate('home.untickAll')}
+        </Button>
+      </div>
       <ul className='stack'>
         {shelvedGames.map((game, index) => (
           <li key={game} style={shelfIndexStyle(index)}>
-            <Link
-              className='spine-link'
-              href={gameHomePathFor({ game, locale })}
-              isDisabled={isOpeningAny && !openingFor?.includes(game)}
-              onClick={(event) => {
-                if (event.button === 0 && !hasModifier(event)) {
-                  event.preventDefault()
-                }
-              }}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter' && !hasModifier(event)) {
-                  event.preventDefault()
-                }
-              }}
-              onPress={(event) => {
-                if (!hasModifier(event)) {
-                  void open({ games: [game] })
-                }
-              }}
+            <ToggleButton
+              className='spine'
+              isDisabled={isDisabled}
+              isSelected={ticked.includes(game)}
+              onChange={(isTicked) => toggle({ game, isTicked })}
               style={spineStyle(game)}
             >
+              <span aria-hidden='true' className='tick'>
+                <CheckIcon />
+              </span>
               <span className='name'>
                 <GameIcon game={game} />
                 {translate(gameNameKey(game))}
               </span>
-              <span className='tagline'>{translate(gameTaglineKey(game))}</span>
-              {openingFor?.includes(game) ? <Spinner /> : <ArrowIcon />}
-            </Link>
+              <span className='tagline'>
+                {translate(gameTaglineKey(game))}
+                {isJudgedInEveryMode(game) && (
+                  <>
+                    {' · '}
+                    {translate('host.judgedMark.host')}
+                  </>
+                )}
+              </span>
+            </ToggleButton>
           </li>
         ))}
       </ul>
-    </nav>
+    </section>
   )
 }
-
-const hasModifier = (event: {
-  altKey: boolean
-  ctrlKey: boolean
-  metaKey: boolean
-  shiftKey: boolean
-}): boolean => event.altKey || event.ctrlKey || event.metaKey || event.shiftKey
 
 const shelfIndexStyle = (index: number): React.CSSProperties => ({
   '--shelf-index': index

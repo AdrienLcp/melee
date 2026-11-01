@@ -27,6 +27,7 @@ import {
   type HostPreferences,
   rememberSettings
 } from '@melee/core/room/host-preferences'
+import type { ReadyMadeLineUpId } from '@melee/core/room/ready-made-line-ups'
 import { isGameInPlay } from '@melee/core/room/room-phase'
 import { withPreparedKey } from '@melee/core/slate/prepared-keys'
 import { playsThisRound } from '@melee/core/team/duel'
@@ -186,6 +187,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     return stored === null ? null : askedIn({ locale, preferences: stored })
   })
   const [preparedKeys, setPreparedKeys] = useState(readPreparedSlateKeys)
+  const [readyMade, setReadyMade] = useState<ReadyMadeLineUpId | null>(null)
   const [challengeText, setChallengeText] = useState('')
   const [challengeChoice, setChallengeChoice] =
     useState<ChallengeChoice>(FIRST_HAND_LINE)
@@ -278,6 +280,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   useRememberLineUpGames(view)
   useRestoreStoredSetup({
+    onReadyMadeLoaded: setReadyMade,
     onRestore: changeSettings,
     preferences,
     view
@@ -748,12 +751,14 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     },
     onDraftSource: setDraftSource,
     onLeaveSeat: leaveSeat,
+    onReadyMade: setReadyMade,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,
     onTakeSeat: takeSeat,
     preferences,
     preparedSlateKeys: preparedKeys,
+    readyMade,
     slateEditors:
       current.phase === 'playing' &&
       current.round?.content.kind === 'slate' &&

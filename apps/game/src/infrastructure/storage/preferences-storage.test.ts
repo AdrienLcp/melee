@@ -166,7 +166,13 @@ describe('readStoredLineUpGames', () => {
     vi.unstubAllGlobals()
   })
 
-  it('[line-up] opens on no game before any evening was played', () => {
+  it('[line-up] holds nothing before any game was ticked', () => {
+    expect(readStoredLineUpGames()).toEqual({ data: null, status: 'success' })
+  })
+
+  it('[line-up] keeps a shelf unticked to the last game', () => {
+    store.set(LINE_UP_GAMES_KEY, JSON.stringify([]))
+
     expect(readStoredLineUpGames()).toEqual({ data: [], status: 'success' })
   })
 

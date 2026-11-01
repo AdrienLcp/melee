@@ -30,7 +30,7 @@ const kindOf = (entry: SavedEntry) =>
   typeof entry === 'string' ? entry : entry.kind
 
 /** Each entry's game with a key that tells two entries of one game apart. */
-const spinesOf = (lineUp: readonly SavedEntry[]) =>
+export const spinesOf = (lineUp: readonly SavedEntry[]) =>
   lineUp.map((entry, index) => {
     const kind = kindOf(entry)
     const nth = lineUp

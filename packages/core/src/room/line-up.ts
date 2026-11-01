@@ -1,6 +1,7 @@
 import type { GameKind, GameSettings } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
 import {
+  DEFAULT_ROOM_SETTINGS,
   LINE_UP_MAX_ENTRIES,
   type LineUpDeal,
   type RoomSettings
@@ -47,6 +48,22 @@ export const lineUpHolds = (settings: RoomSettings): boolean => {
     lineUp.every((entry) => isPlayableAloud({ game: entry.kind, teams }))
   )
 }
+
+/**
+ * The settings with nothing planned, the table's own kept: what a game
+ * answers goes back to the shell's placeholders, as in a room just opened.
+ */
+export const withNothingPlanned = (settings: RoomSettings): RoomSettings => ({
+  ...settings,
+  autoAdvanceMs: DEFAULT_ROOM_SETTINGS.autoAdvanceMs,
+  game: null,
+  lineUp: [],
+  lineUpAt: null,
+  lineUpDeals: [],
+  mode: DEFAULT_ROOM_SETTINGS.mode,
+  roundCount: DEFAULT_ROOM_SETTINGS.roundCount,
+  runningOrder: []
+})
 
 /**
  * The settings with `game` written back into the entry it was opened from, so

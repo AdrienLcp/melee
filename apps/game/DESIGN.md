@@ -547,6 +547,16 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   run or kept, the page opens on its name in a strong caption over an outlined
   *Save over it*, the name kept out of the press because forty characters do
   not fit the display face.
+- **Ready-made line-ups** (*Des parties toutes prêtes*) lead the games tab
+  while nothing is chosen: the four the app ships (`readyMadeLineUpsFor`), in
+  the saved row's grammar — a line of spine ticks, the name, a caption of its
+  games and length — in one ruled box, a chevron where the ✕ would be, then
+  *One game at a time* in the heading face over the prompt and the shelf. A
+  row runs exactly as a saved line-up is run. Once one is on the table — from
+  a row, or from a home page box on the console's first lobby frame — a ruled
+  note above the planned games names it beside an underlined *Change*, which
+  takes the line-up off and puts the choice back. The note goes once a game
+  is added or taken out (`isOnReadyMade`); retuning one keeps it.
 - **The draw** (*Au hasard*) is the socket row under the planned games,
   pressed like the add row: a page in the tab's place under a lid edged in
   `--socket-line` (no game owns it), then a ruled list of every entry whose
@@ -782,14 +792,29 @@ under every answer mode a verdict is owed in.
   judges* as a `mark`: a keyline stamp on the lid under the description, at
   the row's end in the list layout — outlined because the filled pill on the
   band already says which box opens first.
-- **`GameShelf`** (`features/home`): the eleven games as spines, each a link to
-  its own page — its spine colour, its name in the display face, its tagline,
-  an arrow that steps right under a pointer; two columns from a 52rem
-  container. Nothing is ticked on home: what the table plays is chosen in the
-  lobby.
+- **`ReadyMadeBoxes`** (`features/home`): the line-ups the app ships, above
+  the shelf — a row of lids from 15rem each, one column on a phone. Each is a
+  paper card with a band of its entries' spines on top, one segment per entry
+  with its game's glyph (three blind tests read as three), its name in the lid
+  face, its games named in caption-strong, its caption muted, and a ruled foot
+  with *20 rounds* and *Open →*. One press opens a table on its games and hands
+  the console the box's id as history state, which lays the line-up out; the
+  spinner replaces the pressed box's arrow and the others are disabled.
+- **`GameShelf`** (`features/home`): the games as spines, each a toggle
+  ticking it for the host's door — its spine colour, its name in the display
+  face, its tagline, and *· Host judges* after it for a game judged however
+  it is answered; two columns from a 52rem container. A ticked spine is pulled
+  forward — twice the chipboard, `--shadow-pulled`, an inset ring of
+  `--board-ink` and its tick box printed solid in `--spine-ink`; once anything is
+  ticked the rest sit back on `--socket`. Two underlined presses over it tick
+  every game no mode leaves to the host, or none. Ticks live in
+  `melee:line-up-games`, written on every change, an empty list included; a
+  device with nothing stored opens on *First game*'s five. A spine is no longer
+  a link to its game's page: the sitemap hands those pages to a crawler.
 - **The masthead** (`features/home`): two doors on one row, their bottoms on
   one line from 60rem. Left, under the wordmark, the host's door — **`HostDoor`**, *Open a
-  table* as the coral piece printed on the board with no lid under it, at
+  table · 5 games* (the count of ticked spines, the bare *Open a table* when
+  none is) as the coral piece printed on the board with no lid under it, at
   least 18rem wide; while the last table this device opened is still open,
   *Back to table K7PX* sits over it, an underlined link a `--target` tall,
   the code in the title face, and its line is held while the server is
@@ -798,10 +823,10 @@ under every answer mode a verdict is owed in.
   keeps its label while pending, the spinner in its end padding — the shared
   blank-label pending state read as an empty coral piece. The menu scrolls
   away with the masthead here instead of floating over the shelf.
-- **The shelf's heading** says what a spine does — *One press opens a table
-  on that game* — because nothing else on the page does. A spine opens on
-  `onPress`, keyboard included, and stays enabled while a table opens so
-  focus stays on it; the nav is `aria-busy` meanwhile and a visually hidden
+- **The two headings** — *Ready-made line-ups* over the boxes, *Or your own
+  games* over the shelf — each say in their hint what a press does, because
+  nothing else on the page does. While a table opens the boxes' section is
+  `aria-busy`, the spines and both presets are disabled, and a visually hidden
   status says *Opening the table…*.
 
 ### Room invitation (`RoomInvitation`)

@@ -1,0 +1,117 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .ready-made-boxes
+    container-type: inline-size
+    display: flex
+    flex-direction: column
+    gap: var(--space-s)
+    min-width: 0
+
+    .boxes
+      display: grid
+      gap: var(--space-m)
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 15rem), 1fr))
+      list-style: none
+      margin: 0
+      padding: 0
+
+      > li
+        display: grid
+
+  .box
+    @include piece.card(var(--radius-l))
+    @include piece.pressable
+    @include focus.ring
+
+    border: 0
+    cursor: pointer
+    display: grid
+    font: inherit
+    grid-template-rows: auto 1fr auto
+    overflow: hidden
+    padding: 0
+    text-align: start
+    transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+    width: 100%
+    -webkit-tap-highlight-color: transparent
+
+    .band
+      display: flex
+      height: 2.75rem
+
+    .segment
+      align-items: center
+      background: var(--spine)
+      color: var(--spine-ink)
+      display: grid
+      flex: 1
+      justify-items: center
+
+      .game-icon
+        height: 1.25rem
+        width: 1.25rem
+
+    .body
+      align-content: start
+      display: grid
+      gap: var(--space-xs)
+      padding: var(--space-m) var(--space-m) var(--space-s)
+
+    .name
+      @include typography.lid-name
+
+      font-size: clamp(var(--text-xl), 9cqi, var(--text-2xl))
+      hyphens: auto
+      text-wrap: balance
+
+    .games
+      @include typography.caption-strong
+
+    .caption
+      @include typography.caption
+
+      color: var(--ink-muted)
+      text-wrap: pretty
+
+    .foot
+      @include typography.caption-strong
+
+      align-items: center
+      border-block-start: var(--hairline)
+      display: flex
+      gap: var(--space-s)
+      justify-content: space-between
+      min-height: var(--target)
+      padding: var(--space-xs) var(--space-m)
+
+    .go
+      align-items: center
+      display: inline-flex
+      gap: var(--space-2xs)
+
+      > svg
+        height: 1.1rem
+        transition: translate var(--transition-fast, 0s) var(--ease-out)
+        width: 1.1rem
+
+      > .spinner
+        height: 1.1rem
+        margin: 0
+        width: 1.1rem
+
+    &:is([aria-busy='true'] *)
+      cursor: progress
+
+    &[data-disabled]
+      cursor: not-allowed
+      filter: saturate(0.25)
+      opacity: 0.5
+
+    @media (hover: hover) and (pointer: fine)
+      &[data-hovered] .go > svg
+        translate: var(--space-2xs) 0

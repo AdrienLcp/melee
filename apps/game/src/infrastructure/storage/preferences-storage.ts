@@ -315,22 +315,19 @@ const lineUpGamesSchema = z.preprocess(
 )
 
 /**
- * The games of the last evening this host ran, which the next table opened
- * from the home page opens on. Succeeds with none when no evening was ever played.
+ * The games ticked on the home shelf, or of the last evening this host ran —
+ * what the host's door opens a table on. `null` when this device never ticked
+ * any, which is what lets the shelf open on its first-visit ticks; an empty
+ * list is a host who unticked everything.
  */
 export const readStoredLineUpGames = (): Result<
-  readonly ShelvedGame[],
+  readonly ShelvedGame[] | null,
   StorageReadError
-> => {
-  const stored = readStoredWithSchema({
+> =>
+  readStoredWithSchema({
     key: LINE_UP_GAMES_KEY,
     schema: lineUpGamesSchema
   })
-
-  return stored.status === 'success'
-    ? Result.success(stored.data ?? [])
-    : stored
-}
 
 export const writeStoredLineUpGames = (
   games: readonly ShelvedGame[]

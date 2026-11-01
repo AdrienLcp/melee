@@ -1,6 +1,7 @@
 import type React from 'react'
 import { useState } from 'react'
 
+import type { GameKind } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { Speaker } from '@melee/protocol/sound'
@@ -10,6 +11,14 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
+import { withNothingPlanned } from '@melee/core/room/line-up'
+import {
+  isOnReadyMade,
+  type ReadyMadeLineUp,
+  type ReadyMadeLineUpId,
+  readyMadeLineUpsFor,
+  savedEveningOfReadyMade
+} from '@melee/core/room/ready-made-line-ups'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import {
@@ -29,6 +38,7 @@ import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds } from './evening-rounds'
 import { GamePickList } from './game-pick-list'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
+import { ReadyMadeNote, ReadyMadeRows } from './ready-made-line-ups'
 import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
 import { TeamsSetup } from './teams-setup'
@@ -63,6 +73,8 @@ export type SetupTabsProps = {
   onDismissWall: () => void
   /** Gives up the seat this console holds. */
   onLeaveSeat: () => void
+  /** Notes which ready-made line-up the room was just put on, or `null` once it is taken off. */
+  onReadyMade: (id: ReadyMadeLineUpId | null) => void
   /** Files one key of the slate's answer key on this tab. */
   onRememberSlateKey: (itemIndex: number, key: string) => void
   /** Takes a seat off the table; this console's own is left rather than removed. */
@@ -73,6 +85,8 @@ export type SetupTabsProps = {
   preferences: HostPreferences | null
   /** The slate's answer key as typed on this tab, never sent before the sheet opens. */
   preparedSlateKeys: readonly (string | null)[]
+  /** The ready-made line-up this console last put the room on, from a row or from the home page; `null` for none. */
+  readyMade: ReadyMadeLineUpId | null
   /** The slate's key and item names while its sheets are open and no wall is marking them. */
   slateEditors: React.ReactNode
   view: HostRoomView
@@ -96,10 +110,12 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   draftSource,
   isLive,
   onDraftSource,
+  onReadyMade,
   onRememberSlateKey,
   onSettingsChange,
   preferences,
   preparedSlateKeys,
+  readyMade,
   slateEditors,
   view
 }) => {
@@ -124,6 +140,28 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       onSettingsChange(settings)
       setPage({ at, from, kind: 'entry' })
     }
+  const rememberedFor = (game: GameKind) =>
+    rememberedSetupFor({ game, preferences })
+  const loadReadyMade = (lineUp: ReadyMadeLineUp) => {
+    onSettingsChange(
+      withSavedEvening({
+        evening: savedEveningOfReadyMade({
+          lineUp,
+          name: translate(`readyMade.lineUps.${lineUp.id}.name`)
+        }),
+        locale,
+        rememberedFor,
+        settings: view.settings
+      })
+    )
+    onReadyMade(lineUp.id)
+  }
+  const loadedReadyMade = readyMadeLineUpsFor(locale).find(
+    (lineUp) =>
+      lineUp.id === readyMade &&
+      view.phase === 'lobby' &&
+      isOnReadyMade({ lineUp, settings: view.settings })
+  )
   const planned = plannedFrom('list')
   const plan = usePlanGame({
     onPlanned: planned,
@@ -145,12 +183,12 @@ export const GameTab: React.FC<SetupTabsProps> = ({
             withSavedEvening({
               evening,
               locale,
-              rememberedFor: (game) =>
-                rememberedSetupFor({ game, preferences }),
+              rememberedFor,
               settings: view.settings
             })
           )
           setLoadedName(evening.name)
+          onReadyMade(null)
           backToList()
         }}
         onSave={keep}
@@ -225,6 +263,8 @@ export const GameTab: React.FC<SetupTabsProps> = ({
       {slateEditors}
       {view.settings.game === null ? (
         <>
+          <ReadyMadeRows isDisabled={!isLive} onLoad={loadReadyMade} />
+          <h3 className='one-at-a-time'>{translate('readyMade.oneAtATime')}</h3>
           <p className='tab-summary'>{translate('host.game.prompt')}</p>
           <GamePickList
             aria-label={translate('host.game.label')}
@@ -235,22 +275,33 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           />
         </>
       ) : (
-        <EveningRounds
-          isLive={isLive}
-          onAdd={() => {
-            setPage({ isDrawnOnly: false, kind: 'adding' })
-          }}
-          onOpen={(at) => {
-            setPage({ at, from: 'list', kind: 'entry' })
-          }}
-          onOpenDraw={() => {
-            setPage({ kind: 'draw' })
-          }}
-          onSettingsChange={onSettingsChange}
-          preferences={preferences}
-          returnedFrom={page.returnedFrom}
-          view={view}
-        />
+        <>
+          {loadedReadyMade !== undefined && (
+            <ReadyMadeNote
+              id={loadedReadyMade.id}
+              onChange={() => {
+                onSettingsChange(withNothingPlanned(view.settings))
+                onReadyMade(null)
+              }}
+            />
+          )}
+          <EveningRounds
+            isLive={isLive}
+            onAdd={() => {
+              setPage({ isDrawnOnly: false, kind: 'adding' })
+            }}
+            onOpen={(at) => {
+              setPage({ at, from: 'list', kind: 'entry' })
+            }}
+            onOpenDraw={() => {
+              setPage({ kind: 'draw' })
+            }}
+            onSettingsChange={onSettingsChange}
+            preferences={preferences}
+            returnedFrom={page.returnedFrom}
+            view={view}
+          />
+        </>
       )}
       {(view.settings.game !== null ||
         (view.phase === 'lobby' && saved.evenings.length > 0)) && (

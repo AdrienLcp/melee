@@ -220,6 +220,41 @@ describe('a table of several games', () => {
     expect(restored.lineUp[0]).toEqual(restored.game)
   })
 
+  it('[host-preferences] keeps each variant of a game ticked twice as it was set', () => {
+    const blindtestHost = rememberSettings({
+      preferences: null,
+      settings: roomSettingsFor({ games: ['blindtest'], locale: 'fr' })
+    })
+    const [first] = roomSettingsFor({
+      games: ['blindtest'],
+      locale: 'fr'
+    }).lineUp
+    if (first?.kind !== 'blindtest') {
+      throw new Error('a blind test room opens on a blind test')
+    }
+    const variants = [
+      { ...first, source: { kind: 'film' as const } },
+      {
+        ...first,
+        source: { decades: ['1980s' as const], kind: 'decade' as const }
+      }
+    ]
+
+    const restored = restoredSettings({
+      preferences: blindtestHost,
+      settings: {
+        ...evening,
+        game: variants[0] ?? null,
+        lineUp: variants,
+        lineUpAt: 0,
+        lineUpDeals: [],
+        runningOrder: []
+      }
+    })
+
+    expect(restored.lineUp).toEqual(variants)
+  })
+
   it('[host-preferences] keeps the table’s own length over the host’s last game of one', () => {
     const restored = restoredSettings({
       preferences: teamsHost,

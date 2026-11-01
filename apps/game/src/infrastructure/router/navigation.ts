@@ -21,6 +21,10 @@ import {
 } from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 
+import {
+  type ReadyMadeLineUpId,
+  readyMadeLineUpIds
+} from '@melee/core/room/ready-made-line-ups'
 import { renamedGameKindOf } from '@melee/core/room/renamed-game-kinds'
 import { normalizeRoomCode } from '@melee/core/room/room-code'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
@@ -378,3 +382,44 @@ export const useGameParam = (): ShelvedGame | null => {
 
 const asLocale = (segment: string | undefined): Locale | null =>
   segment !== undefined && isLocale(segment) ? segment : null
+
+/**
+ * What a front door hands the console it opens, beside the room code: the
+ * ready-made line-up it was asked for. History state rather than the URL,
+ * because a room's path names nothing but the room.
+ */
+export type HostArrival = { readyMade: ReadyMadeLineUpId }
+
+/** The navigation state `useHostArrival` reads back. */
+export const hostArrivalState = (
+  readyMade: ReadyMadeLineUpId
+): HostArrival => ({
+  readyMade
+})
+
+const asReadyMadeLineUpId = (value: unknown): ReadyMadeLineUpId | null =>
+  readyMadeLineUpIds.find((id) => id === value) ?? null
+
+/**
+ * The ready-made line-up this console was opened on, and a way to let go of
+ * it once applied — so a reload in the lobby does not lay it over whatever
+ * the host changed since.
+ */
+export const useHostArrival = (): {
+  forget: () => void
+  readyMade: ReadyMadeLineUpId | null
+} => {
+  const { pathname, state } = useLocation()
+  const navigate = useNavigate()
+  const readyMade =
+    typeof state === 'object' && state !== null && 'readyMade' in state
+      ? asReadyMadeLineUpId(state.readyMade)
+      : null
+
+  return {
+    forget: () => {
+      void navigate(pathname, { replace: true, state: null })
+    },
+    readyMade
+  }
+}

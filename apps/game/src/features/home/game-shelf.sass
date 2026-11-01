@@ -22,38 +22,31 @@
     gap: var(--space-s)
     min-width: 0
 
-    .shelf-heading
-      display: grid
-      gap: var(--space-2xs)
+    .shelf-presets
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-l)
 
-    .shelf-title
-      @include typography.title
-
-    .shelf-hint
-      @include typography.caption
-
-      color: var(--ink-muted)
+      > .button
+        min-height: var(--target)
 
     .stack
       display: grid
-      gap: var(--space-xs)
+      gap: var(--space-s) var(--space-s)
       list-style: none
       margin: 0
       padding: 0
 
       // Shelved one after the other on arrival, the whole row inside half a
-      // second whatever the shelf holds. On the item and not the spine: a
-      // disabled react-aria `Link` swaps its `<a>` for a `<span>`, and a spine
-      // drawn anew would shelve itself again.
+      // second whatever the shelf holds.
       > li
         animation: spine-shelve var(--transition-slow, 0s) var(--ease-out) backwards
         animation-delay: calc(var(--transition-fast, 0s) * (1 + min(var(--shelf-index), 10) * 0.3))
 
       @container (width >= 52rem)
-        column-gap: var(--space-s)
         grid-template-columns: repeat(2, minmax(0, 1fr))
 
-  .spine-link
+  .spine
     @include piece.piece(var(--radius-s))
     @include piece.pressable
     @include focus.ring
@@ -63,15 +56,35 @@
     align-items: center
     background: var(--spine)
     color: var(--spine-ink)
+    cursor: pointer
     display: grid
+    font: inherit
     gap: var(--space-2xs) var(--space-m)
-    grid-template-columns: minmax(0, 1fr) auto
+    grid-template-columns: auto minmax(0, 1fr)
     height: 100%
     min-height: 4.5rem
     min-width: 0
     padding: var(--space-s) var(--space-m)
-    text-decoration: none
+    text-align: start
+    width: 100%
     -webkit-tap-highlight-color: transparent
+
+    .tick
+      align-items: center
+      border: var(--stroke-bold) solid currentColor
+      border-radius: var(--radius-xs)
+      display: grid
+      grid-row: 1 / span 2
+      height: 2rem
+      justify-items: center
+      transition: background-color var(--transition-fast, 0s) var(--ease-out)
+      width: 2rem
+
+      > svg
+        height: 1.3rem
+        opacity: 0
+        transition: opacity var(--transition-fast, 0s) var(--ease-out)
+        width: 1.3rem
 
     .name
       @include typography.spine-name
@@ -80,6 +93,7 @@
       display: flex
       font-size: clamp(var(--text-xl), 7cqi, 2.1rem)
       gap: var(--space-xs)
+      grid-column: 2
       hyphens: auto
       min-width: 0
       overflow-wrap: anywhere
@@ -94,31 +108,30 @@
       @include typography.tagline
 
       font-size: var(--text-s)
-      grid-column: 1
+      grid-column: 2
       text-wrap: balance
 
-    > svg
-      grid-column: 2
-      grid-row: 1 / span 2
-      height: 1.5rem
-      transition: translate var(--transition-fast, 0s) var(--ease-out)
-      width: 1.5rem
+    // Pulled forward off the shelf: twice the chipboard showing, the board's
+    // ink round it, and the tick printed solid.
+    &[data-selected]
+      box-shadow: inset 0 0 0 var(--stroke-bold) var(--board-ink), 0 calc(var(--edge) * 2) 0 0 var(--chipboard), var(--shadow-pulled)
+      transform: translateY(calc(var(--edge) * -1))
 
-    > .spinner
-      grid-column: 2
-      grid-row: 1 / span 2
-      height: 1.25rem
-      margin: 0
-      width: 1.25rem
+      .tick
+        background: var(--spine-ink)
+        border-color: var(--spine-ink)
+        color: var(--spine)
 
-    &:is([aria-busy='true'] *)
-      cursor: progress
+        > svg
+          opacity: 1
+
+    // Once anything is ticked, the rest sit back in their socket.
+    &:is([data-any-ticked] *):not([data-selected])
+      background: var(--socket)
+      box-shadow: var(--shadow-recess)
+      color: var(--socket-ink)
 
     &[data-disabled]
       cursor: not-allowed
       filter: saturate(0.25)
       opacity: 0.5
-
-    @media (hover: hover) and (pointer: fine)
-      &[data-hovered] > svg
-        translate: var(--space-2xs) 0

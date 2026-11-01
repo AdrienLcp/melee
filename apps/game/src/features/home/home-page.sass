@@ -57,6 +57,19 @@ $masthead-side-by-side: 60rem
     .host-door
       grid-area: host
 
+    // The heading over the boxes and over the shelf.
+    .shelf-heading
+      display: grid
+      gap: var(--space-2xs)
+
+    .shelf-title
+      @include typography.title
+
+    .shelf-hint
+      @include typography.caption
+
+      color: var(--ink-muted)
+
     .join-box
       @include box-lid.box-lid
 

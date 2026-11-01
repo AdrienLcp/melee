@@ -345,6 +345,7 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
   const measured = new Set<string>()
 
   await page.goto('/')
+  await homePage(page).untickAll.click()
   await homePage(page).createRoom.click()
   await expect(page).toHaveURL(/\/host\/[A-Z0-9]{4}$/)
 

@@ -100,9 +100,12 @@ const restoredTable = ({
   settings: RoomSettings
 }): RoomSettings => {
   const table = { ...settings, ...preferences.room }
-  const lineUp = settings.lineUp.map(
-    (entry) =>
-      rememberedSetupFor({ game: entry.kind, preferences })?.game ?? entry
+  const isVariant = (game: GameKind) =>
+    settings.lineUp.filter((entry) => entry.kind === game).length > 1
+  const lineUp = settings.lineUp.map((entry) =>
+    isVariant(entry.kind)
+      ? entry
+      : (rememberedSetupFor({ game: entry.kind, preferences })?.game ?? entry)
   )
 
   return {
@@ -124,8 +127,9 @@ const restoredTable = ({
  *
  * The teams and the board are this host's on any table. A table of several
  * keeps its own length and hold, and takes each entry's game settings and
- * answer mode from the host, as `movedToEntry` answers every later switch.
- * Teams that would refuse a game ticked — a
+ * answer mode from the host, as `movedToEntry` answers every later switch —
+ * save a game ticked twice, whose variants were each set on purpose and would
+ * all come back as the same one. Teams that would refuse a game ticked — a
  * table answering aloud over a slate — give way to the door's.
  */
 export const restoredSettings = ({

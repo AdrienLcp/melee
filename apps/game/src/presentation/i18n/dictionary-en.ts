@@ -614,10 +614,16 @@ export const EN_DICTIONARY = defineDictionary({
   },
   home: {
     opening: 'Opening the table…',
+    openWith: defineTranslation('Open a table · {count:plural}', {
+      plural: { count: { one: '{?} game', other: '{?} games' } }
+    }),
     resume: 'Back to table',
-    shelf: 'The games',
-    shelfHint: 'One press opens a table on that game.',
-    title: 'Mêlée'
+    shelf: 'Or your own games',
+    shelfHint:
+      'Tick what “Open a table” opens. Your ticks are kept for next time.',
+    tickUnjudged: 'Tick all but “Host judges”',
+    title: 'Mêlée',
+    untickAll: 'Untick all'
   },
   host: {
     answered: defineTranslation('{count:plural} of {total:number} in', {
@@ -1645,6 +1651,36 @@ export const EN_DICTIONARY = defineDictionary({
       hint: 'Fewer to draw from, but nobody is left stuck.',
       label: 'Stay on the crowd-pleasers'
     }
+  },
+  readyMade: {
+    change: 'Change',
+    heading: 'Ready-made line-ups',
+    hint: 'One press opens a table that plays them in a row, already set.',
+    lineUps: {
+      firstGame: {
+        caption:
+          'Nothing to judge, and every game makes sense from its first round.',
+        name: 'First game'
+      },
+      generalKnowledge: {
+        caption: 'Questions, flags, the map, dates and numbers to guess.',
+        name: 'General knowledge'
+      },
+      music: {
+        caption: 'Three blind tests: French hits, the 80s and film scores.',
+        name: 'Music special'
+      },
+      quick: {
+        caption: 'The shortest: ten rounds, next to nothing to read.',
+        name: 'Quick game'
+      }
+    },
+    loaded: '{name} is loaded.',
+    oneAtATime: 'Or one game at a time',
+    open: 'Open',
+    rounds: defineTranslation('{count:plural}', {
+      plural: { count: { one: '{?} round', other: '{?} rounds' } }
+    })
   },
   reflex: {
     falseStart: {
