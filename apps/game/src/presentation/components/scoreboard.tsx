@@ -9,6 +9,7 @@ import {
 } from '@melee/core/scoring/scoreboard'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { RichText } from '@/presentation/i18n/rich-text'
 
 import { AwayMark } from './away-mark'
 import { Button } from './button'
@@ -92,6 +93,12 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
 }) => {
   const translate = useTranslate()
   const isRanked = hasAnybodyScored(players)
+  const shownScoreOf = (player: PublicPlayer) =>
+    translate('player.score', { points: shownPoints(player.score) })
+  const widestScoreLength = Math.max(
+    0,
+    ...players.map((player) => shownScoreOf(player).length)
+  )
 
   return (
     <ol
@@ -107,15 +114,16 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
       ]
         .filter(Boolean)
         .join(' ')}
-      style={
-        isResult === true
+      style={{
+        ...style,
+        '--score-figures': widestScoreLength,
+        ...(isResult === true
           ? {
-              ...style,
               '--scoreboard-count': players.length,
               '--scoreboard-rows': Math.ceil(players.length / 2)
             }
-          : style
-      }
+          : {})
+      }}
     >
       {buildScoreboard(players).map(({ player, rank }, at) => {
         const placesClimbed = placesClimbedBy({ at, player, rankedBefore })
@@ -169,16 +177,17 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             </span>
             {isRanked && player.board !== null && (
               <span className='case'>
-                {translate('board.at', { case: player.board.case })}
+                <RichText
+                  parts={translate.rich('board.atColumn', {
+                    case: player.board.case,
+                    figure: (figure) => (
+                      <span className='case-figure'>{figure}</span>
+                    )
+                  })}
+                />
               </span>
             )}
-            {isRanked && (
-              <span className='score'>
-                {translate('player.score', {
-                  points: shownPoints(player.score)
-                })}
-              </span>
-            )}
+            {isRanked && <span className='score'>{shownScoreOf(player)}</span>}
             {onRemove !== undefined && (
               <Button
                 aria-label={translate('host.players.removeNamed', {

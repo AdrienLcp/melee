@@ -2219,6 +2219,52 @@ const readLastRow = (): string | null => {
 }
 
 /**
+ * Every column of the standings whose case cells do not share one left and one
+ * right edge: a row is its own grid, so a cell as wide as its own text puts a
+ * one-figure case beside a two-figure one at another place.
+ */
+const findRaggedCaseColumns = (): string[] => {
+  const columns: { cases: DOMRect[]; left: number; right: number }[] = []
+
+  for (const row of document.querySelectorAll<HTMLElement>('.overall li')) {
+    const cell = row.querySelector('.case')
+
+    if (cell === null) {
+      continue
+    }
+
+    const box = row.getBoundingClientRect()
+    const column = columns.find(
+      ({ left, right }) => box.left < right && box.right > left
+    )
+
+    if (column === undefined) {
+      columns.push({
+        cases: [cell.getBoundingClientRect()],
+        left: box.left,
+        right: box.right
+      })
+    } else {
+      column.cases.push(cell.getBoundingClientRect())
+    }
+  }
+
+  const spread = (edges: number[]) =>
+    Math.round(Math.max(...edges) - Math.min(...edges))
+
+  return columns
+    .map(({ cases }) => ({
+      lefts: spread(cases.map(({ left }) => left)),
+      rights: spread(cases.map(({ right }) => right))
+    }))
+    .filter(({ lefts, rights }) => lefts > 0 || rights > 0)
+    .map(
+      ({ lefts, rights }) =>
+        `left edges ${lefts}px apart, right edges ${rights}px apart`
+    )
+}
+
+/**
  * The player's reveal at the room's largest: the answer, the round's block,
  * the hold and the press inside the first screen, then the game's standings,
  * which the page scrolls to the last of — and the press never drawn over a
@@ -2263,6 +2309,7 @@ for (const reveal of PLAYER_REVEALS) {
 
         const measured = await page.evaluate(measurePlayerReveal)
         const lastRow = await page.evaluate(readLastRow)
+        const raggedCases = await page.evaluate(findRaggedCaseColumns)
         const belowTheFold =
           height < FIRST_SCREEN_MIN_HEIGHT ? [] : measured.belowTheFold
 
@@ -2270,10 +2317,11 @@ for (const reveal of PLAYER_REVEALS) {
           belowTheFold.length > 0 ||
           measured.covered.length > 0 ||
           measured.sideways > 0 ||
-          lastRow !== null
+          lastRow !== null ||
+          raggedCases.length > 0
         ) {
           faults.push(
-            `${width}×${height} ${JSON.stringify({ ...measured, belowTheFold, lastRow })}`
+            `${width}×${height} ${JSON.stringify({ ...measured, belowTheFold, lastRow, raggedCases })}`
           )
         }
       }

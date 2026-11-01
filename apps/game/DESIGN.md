@@ -937,6 +937,11 @@ Bricolage Grotesque at 800, written 0.64em), the digit set right, and the gap
 after it taken back to the pawn's own gap before the name — the pawn's ink is
 inset 3 units of 24 on both sides — so rank-to-pawn measures what pawn-to-name
 does, on every board (6.5px on a phone, 7.4px at 1440×900, measured).
+On a track the case and the score stand in columns the same way
+(`styles/_figures.sass`): the case's figure is two figures wide beside its
+word, and every score as wide as the board's widest, counted in glyphs by the
+component — one figure of the score face measured 0.533em at its 85% stretch,
+written 0.54em.
 
 **Two blocks, two anatomies.** Every reveal reads *Cette manche* — the round's
 pieces, filled — then *Classement général* — ruled rows on the field — and no

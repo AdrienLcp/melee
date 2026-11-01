@@ -323,6 +323,8 @@ export const EN_DICTIONARY = defineDictionary({
   },
   board: {
     at: 'Square {case:number}',
+    /** `at` with its figure marked, for a column that sets the figure apart. */
+    atColumn: 'Square <figure>{case:number}</figure>',
     back: 'Move {team} back a square',
     case: 'Square {case:number} of {length:number}',
     finish: 'Finish',

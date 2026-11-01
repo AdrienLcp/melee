@@ -298,6 +298,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   board: {
     at: 'Case {case:number}',
+    atColumn: 'Case <figure>{case:number}</figure>',
     back: 'Reculer {team} d’une case',
     case: 'Case {case:number} sur {length:number}',
     finish: 'Arrivée',

@@ -1,3 +1,4 @@
+@use '../styles/figures'
 @use '../styles/rank'
 @use '../styles/typography'
 @use '../styles/text-box'
@@ -80,11 +81,21 @@
       @include typography.numeric
       @include text-box.trimmed-figure
 
+    // Two figures: a track is at most 60 cases long (`MAX_BOARD_LENGTH`).
+    .case-figure
+      @include figures.slot(2)
+
     .score
       @include typography.score
       @include text-box.trimmed-figure
 
       font-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 3rem)
+
+    // Each row is a grid of its own and the case stands where the score
+    // starts, so every score is as wide as the board's widest, counted by the
+    // component.
+    li:has(> .case) .score
+      @include figures.slot(var(--score-figures, 1), figures.$score-width)
 
     // Quieter, not fainter. `opacity: 0.45` put the row under 4.5:1 on every
     // field, and it was the only thing saying the seat was gone; the muted ink

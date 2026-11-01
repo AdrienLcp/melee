@@ -195,6 +195,12 @@ one part.
 - `[Game]` **Guess nine is called *Case noire* / *Black square*.** Its French
   name was an existing commercial app's, *Devineuf*, for the same kind of game.
 
+### Fixes
+
+- `[Game]` **On a track, the standings' cases stand in one column.** A case
+  under 10 and a score under 10 no longer pull the cell sideways: the figure
+  keeps two figures' width and every score the board's widest.
+
 ### Internal
 
 - **The script budget goes to 300 000 bytes.** The ready-made line-ups on the

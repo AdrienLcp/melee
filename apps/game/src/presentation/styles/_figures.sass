@@ -1,0 +1,17 @@
+// Pure module: one mixin and the widths it reads, no top-level CSS.
+
+/// One tabular figure of the `numeric` face, rounded up (`DESIGN.md`, Results
+/// chips).
+$numeric-width: 0.64em
+
+/// One tabular figure of the `score` face, narrowed to its 85% stretch,
+/// rounded up.
+$score-width: 0.54em
+
+/// As wide as `$count` figures at the box's own size, set right, so a column
+/// of them stands in one place on every row whatever each one prints. `$count`
+/// may be a `var()`.
+@mixin slot($count, $width: $numeric-width)
+  display: inline-block
+  min-width: calc(#{$count} * #{$width})
+  text-align: end
