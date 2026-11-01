@@ -537,6 +537,9 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A laptop's reveal no longer scrolls on a long quiz question.**
+  Beside the board, the question and its note are held to three lines each,
+  so the answer card no longer grows with how a face wraps them.
 - `[Game]` **Full screen can be left from the menu.** Once the page was
   full screen, Chromium reported the display as full screen too and the menu
   hid the press, leaving Escape the only way out.

@@ -377,14 +377,18 @@
         .back-at-the-table
           grid-area: ready
 
-        // A laptop's short screen has the board's height and not the answer
-        // card's: the question gives way first, then the note.
-        @media (height < 50rem)
-          .answer-card :is(.asked, .note)
-            -webkit-box-orient: vertical
-            display: -webkit-box
-            overflow: hidden
+        // The question is sized off the screen but handed half of it: left to
+        // wrap, a face's metrics set the column's height and scrolled the page
+        // over a board above its floor. A short screen has the board's height
+        // and not the answer card's: the question gives way first, then the note.
+        .answer-card :is(.asked, .note)
+          -webkit-box-orient: vertical
+          display: -webkit-box
+          -webkit-line-clamp: 3
+          line-clamp: 3
+          overflow: hidden
 
+        @media (height < 50rem)
           .answer-card .asked
             -webkit-line-clamp: 1
             line-clamp: 1
