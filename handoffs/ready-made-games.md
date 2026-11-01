@@ -59,8 +59,9 @@ Adrien liked A, B and C and asked for a mix. What to build:
 
 1. **Ready-made line-ups shipped by the app** — four, in the saved-line-up
    shape (`packages/core/src/room/saved-evening.ts`), names and captions in
-   the dictionaries: *Première partie* (quiz all subjects · higher-lower ·
-   reflex · most likely, 20 rounds), *Spéciale musique* (three blind test
+   the dictionaries: *Première partie* (blind test · quiz all subjects ·
+   higher-lower · reflex · atlas, 20 rounds — Adrien swapped *most likely* for
+   atlas: it falls flat with two players), *Spéciale musique* (three blind test
    variants: French hits, the 80s, film scores; 20), *Culture générale* (quiz
    general · quiz flags · atlas · timeline · estimate; 20), *Partie éclair*
    (reflex · swatch · inner clock · matchsticks; 10). Check every source and
@@ -74,7 +75,7 @@ Adrien liked A, B and C and asked for a mix. What to build:
    4 games* and opens on the ticked games. Ticks are remembered — reuse
    `melee:line-up-games` (`preferences-storage.ts:50`), which the host door
    already reopens. One link: *Tick all but "host judges"*, one *Untick all*.
-   **Default on a first visit: Première partie's four games**, not every game
+   **Default on a first visit: Première partie's five games**, not every game
    without a judge — Adrien proposed the latter; rejected because thirteen games
    at four rounds each snaps to 40 rounds of thirteen rules for a newcomer.
    This reverses `cda0ad1d` (plan 43): DESIGN.md's "nothing is ticked on home"
