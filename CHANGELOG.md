@@ -173,6 +173,12 @@ one part.
 - `[Game]` **Guess nine is called *Case noire* / *Black square*.** Its French
   name was an existing commercial app's, *Devineuf*, for the same kind of game.
 
+### Internal
+
+- **The script budget goes to 300 000 bytes.** The ready-made line-ups on the
+  front page took `/en` to 295 457 against 295 000, which held the deploy of
+  both them and the silent-clip retry. zod remains the lever left.
+
 ### Features
 
 - `[Shared]` **Atlas plays the other way round: the map shows, the table
