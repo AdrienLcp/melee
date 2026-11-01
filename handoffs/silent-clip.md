@@ -5,7 +5,16 @@
 > peut-être dépassé le quota Deezer ? Je me demande s'il ne faut pas prévenir
 > dans Melee avec un message si c'est le cas. »
 
-Played the evening of 2026-10-31 by Adrien's brother, on prod.
+Played the evening of 2026-10-31 by Adrien's brother, on prod. **The speaker
+was a laptop plugged into a TV** (his words, relayed by Adrien) — most likely
+the console itself, no wall, sound out through HDMI. So weigh first what
+differs between the two paths on an output switched to HDMI: an
+`AudioContext` and an `HTMLAudioElement` can follow a default-device change
+differently (one created before the cable, one after), and a TV's HDMI sink
+can take a moment to wake, cutting the first seconds of a short clip while a
+beep later in the round plays. Reproduce what can be in Chromium (a device
+change event, `setSinkId`), and say plainly in the report what could only be
+reasoned about.
 
 ## What the code says (read, not reproduced)
 
