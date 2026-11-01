@@ -587,8 +587,9 @@
   // An upright screen turning the map over, whatever the board: one column,
   // the map first and as wide as the stage, then the list and the standings
   // under it — side by side the map was a third of the width over half a
-  // screen left empty.
-  .host-console-page:has(> .stage.revealed > .reveal-panel[data-game='atlas'])
+  // screen left empty. Not on the podium's card, whose height is fixed: a
+  // map sized off its width ran the outcome out of it.
+  .host-console-page:not(.podium-round):has(> .stage.revealed > .reveal-panel[data-game='atlas'])
     @media (aspect-ratio < 13 / 10)
       @include layout.wide
         > .stage.revealed

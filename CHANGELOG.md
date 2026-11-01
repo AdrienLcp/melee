@@ -221,6 +221,14 @@ one part.
   dropped it altogether on the console; a figure the round paid on — a
   distance, an estimate, the pairs an order swapped, a sheet's score — keeps
   its width now, and a long name ends on an ellipsis instead.
+- `[Game]` **The console's map reveal keeps its height.** Beside a wall it was
+  a 128px strip with the round's podium drawn under it, and it ran out of its
+  card on an upright screen; with no wall it was a strip at 1080p, vanished at
+  720p, and covered the podium on a phone. The map now keeps a floor — never
+  flatter than the world, never past 42% of the stage — and what the table
+  said gives way first, then the podium down to its winner on a short stage.
+  Beside a wall the round's card grows for a map, down to the next round's
+  press, which stays in view; a short map lays its zoom presses in a row.
 
 ### Internal
 

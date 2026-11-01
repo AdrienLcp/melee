@@ -478,3 +478,43 @@
           // the gap between rows on top — and the cap the reveal's chips share.
           li
             font-size: clamp(var(--text-xs), calc((100cqh - (var(--outcome-rows, 5) - 1) * var(--space-2xs)) / var(--outcome-rows, 5) / 1.8), 1.75rem)
+
+  // The console's map keeps a floor its box cannot squeeze: a shrinking map
+  // was drawn over the podium on a phone and cut to a strip beside the
+  // standings. The list under it gives way first, in whole chips. The wall
+  // fits its map to the box it is given.
+  .stage.revealed > .reveal-panel[data-game='atlas']:not(.wall-page *)
+    > .map-reveal
+      flex-shrink: 0
+
+    // 2:1 is the world's own shape, so a flatter frame draws ocean beside
+    // it; 42% of the stage is what leaves the podium its three rows.
+    .world-map
+      min-block-size: min(max(50cqi, 16rem), 80cqi, 42cqh)
+
+    // Asked of the stage, not of the map: Chrome answered a query on a map
+    // sized by its grid row's content against a pass where it was shorter.
+    // Under 23rem of stage the map's floor is shorter than the column of
+    // presses, which clipped the last one.
+    @container (height < 23rem)
+      .world-map .controls
+        flex-direction: row
+
+    @include layout.wide
+      grid-template-rows: minmax(min-content, 1fr) auto auto minmax(0, auto)
+
+      // The stage is the size container here, and it is wider than the map.
+      > .map-reveal
+        container: map-reveal / inline-size
+
+  // The console's own stage draws the podium at the full unit, three rows of
+  // which no longer stand under the map below 30rem: it stands down to its
+  // winner. The podium's card draws it at 0.6 of the unit and keeps them.
+  .stage.revealed > .reveal-panel[data-game='atlas']:not(.wall-page *, .podium-round *)
+    @include layout.wide
+      @container reveal (height < 30rem)
+        .round-podium .podium li:not(:first-child)
+          display: none
+
+        .round-podium .found .others
+          display: inline

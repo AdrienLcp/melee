@@ -450,6 +450,17 @@ answered pawns go too. Past about fourteen players a list scrolls in its own
 box, never the page — teams' trays and the track's steps too, which no row
 count divides.
 
+**The map's reveal keeps a floor on the console**, the wall's excepted:
+`min(max(50cqi, 16rem), 80cqi, 42cqh)` — never flatter than the world (2:1; a
+flatter frame draws ocean beside it), 16rem where that stays under 5:4, never
+past 42% of the stage. What the table said gives way first, in whole chips;
+under a 30rem stage the podium stands down to its winner, and under 23rem the
+zoom presses lie in a row. Beside a wall the round's card grows for the map to
+what the screen has above the next round's press (`--podium-atlas-height`).
+Measured 2026-11-01, 24 long names in French: 783×325 at 1920×1080 with no wall
+(was 783×208) and 840×313 beside one (was 840×128, over the podium); 422×139
+at 1280×720 (was 0); 343×189 at 390×844, over a podium it used to cover.
+
 **Grids are dealt, not guessed.** `useFittedGrid` (`helpers/fitted-grid.ts`)
 tries every column count against the board's own box and pays for its rows; a
 square root of area per cell picked grids that ran a row past the box. Rosters
@@ -630,6 +641,9 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   `checkVisibility()` says nobody can see.
 - A size container with `flex: 1` answers its queries against a zero-height box
   in Chromium. Use `flex: none` and an explicit height.
+- A size container whose height a `min-content` grid row decides answers its
+  queries against an earlier, shorter pass: the reveal's map at 229px matched
+  `height < 152px`. Query a box the page sizes instead — the stage.
 - A framed screen must not run the page entrance: its leftover `translateY` is
   a 1px scroll.
 - An `auto` track centred by `justify-content` inside a size container is sized
