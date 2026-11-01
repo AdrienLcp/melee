@@ -8,12 +8,13 @@ one part.
 
 ### Features
 
-- `[Shared]` **A fifth ready-made line-up, *Grand mix*: Adrien's own evening
-  of every game nobody has to judge, each entry on a variant** — 36 entries over
-  40 rounds in his running order: eight blind tests, the quiz on every subject,
-  the map both ways on countries, French cities and capitals, and every other
-  judge-free game once. A box band too narrow for its glyphs keeps its colours
-  and drops the icons.
+- `[Shared]` **A fifth ready-made line-up, *Grand mix*: every game nobody has
+  to judge, each entry on a setting of its own** — 40 rounds, nothing drawn:
+  eight blind tests, twelve quiz subjects, the map six ways, and two settings
+  each of matchsticks, colours, Petit Bac and black square beside the games
+  that have none, ordered so no game nor a near cousin comes back within three
+  rounds. A box band too narrow for its glyphs keeps its colours and drops the
+  icons.
 
 - `[Shared]` **A clip that will not load is tried again, then replaced before
   the round starts.** The screen playing the sound reloads a clip that fails

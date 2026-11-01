@@ -1668,7 +1668,7 @@ export const EN_DICTIONARY = defineDictionary({
       },
       grandMix: {
         caption:
-          'Every game with no judge, each round on another setting: eight blind tests, every quiz subject, the map both ways.',
+          'Every game with no judge, each on several settings, and never two of a kind in a row.',
         name: 'Grand mix'
       },
       music: {

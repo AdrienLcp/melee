@@ -1593,7 +1593,7 @@ export const FR_DICTIONARY = defineDictionary({
       },
       grandMix: {
         caption:
-          'Tous les jeux sans juge, chaque manche sur un réglage différent : huit blind tests, tous les sujets du quiz, la carte dans les deux sens.',
+          'Tous les jeux sans juge, chacun sur plusieurs réglages, et jamais deux fois le même genre de jeu à la suite.',
         name: 'Grand mélange'
       },
       music: {

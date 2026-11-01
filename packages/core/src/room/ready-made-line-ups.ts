@@ -2,8 +2,12 @@ import {
   type AtlasSettings,
   type BlindtestSettings,
   DEFAULT_ATLAS_SETTINGS,
+  DEFAULT_BLACK_SQUARE_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_MATCHSTICKS_SETTINGS,
+  DEFAULT_PETIT_BAC_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
+  DEFAULT_SWATCH_SETTINGS,
   type GameKind,
   type ShelvedGame
 } from '@melee/protocol/game'
@@ -73,9 +77,12 @@ const GENERAL_QUIZ_CATEGORIES = [
   'everyday'
 ] as const satisfies typeof DEFAULT_QUIZ_SETTINGS.categories
 
+const GRAND_MIX_ROUND_COUNT = 40
+
 /**
- * Adrien's own line-up for an evening of every game nobody has to judge, each
- * entry a variant, in the order he set it: every catalogue of the blind test, every subject of the quiz, the map four ways.
+ * Every game nobody has to judge, each entry on a setting of its own, in an
+ * order that never brings a game — nor a near cousin of it: two rounds on the
+ * map, two word sheets, two races against the clock — back within three rounds.
  */
 const grandMixFor = (locale: Locale): SavedEntry[] => {
   const quiz = (
@@ -85,41 +92,53 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
 
   return [
     blindtestOn({ kind: 'film' }),
-    quiz('history', { wellKnownOnly: true }),
-    atlasOn({ direction: 'place', places: ['countries'] }),
-    'innerclock',
-    'matchsticks',
-    'blacksquare',
-    'petitbac',
-    'reflex',
-    blindtestOn({ decades: ['1970s'], kind: 'decade' }),
-    'timeline',
     quiz('geography', { wellKnownOnly: true }),
-    blindtestOn({ decades: ['1980s'], kind: 'decade' }),
-    quiz('flags', { wellKnownOnly: false }),
+    {
+      ...DEFAULT_BLACK_SQUARE_SETTINGS,
+      answerCount: 6,
+      doublesLoneFinds: true
+    },
+    blindtestOn({ decades: ['2010s'], kind: 'decade' }),
+    quiz('videogames', { wellKnownOnly: false }),
     atlasOn({ direction: 'name', places: ['countries'] }),
+    { ...DEFAULT_SWATCH_SETTINGS, showMs: 5_000 },
+    blindtestOn({ decades: ['1980s'], kind: 'decade' }),
+    quiz('sport', { wellKnownOnly: true }),
+    'innerclock',
+    atlasOn({ direction: 'place', places: ['frenchCities'] }),
+    quiz('everyday', { wellKnownOnly: true }),
+    blindtestOn({ decades: ['1970s'], kind: 'decade' }),
+    {
+      ...DEFAULT_PETIT_BAC_SETTINGS,
+      categoryCount: 4,
+      roundDurationMs: 60_000
+    },
+    quiz('flags', { wellKnownOnly: false }),
+    'higherlower',
+    { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['equation'] },
+    quiz('history', { wellKnownOnly: true }),
+    blindtestOn({ decades: [], kind: 'decade' }),
+    atlasOn({ direction: 'place', places: ['countries'] }),
+    quiz('rebus', { wellKnownOnly: false }),
     blindtestOn({ decades: ['1990s'], kind: 'decade' }),
+    { ...DEFAULT_BLACK_SQUARE_SETTINGS, answerCount: 9 },
     quiz('capitals', { wellKnownOnly: false }),
+    { ...DEFAULT_SWATCH_SETTINGS, showMs: 3_000 },
+    blindtestOn({ genreIds: [FRENCH_CHANSON_GENRE_ID], kind: 'chart' }),
+    atlasOn({ direction: 'name', places: ['worldCapitals'] }),
+    'mostlikely',
+    quiz('quotes', { wellKnownOnly: true }),
+    'reflex',
+    atlasOn({ direction: 'place', places: ['worldCapitals'] }),
     blindtestOn({ decades: ['2000s'], kind: 'decade' }),
     quiz('science', { wellKnownOnly: true }),
-    atlasOn({ direction: 'place', places: ['frenchCities'] }),
-    blindtestOn({ decades: ['2010s'], kind: 'decade' }),
+    'timeline',
+    { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 6 },
     quiz('arts', { wellKnownOnly: true }),
-    blindtestOn({ decades: [], kind: 'decade' }),
-    quiz('cinema', { wellKnownOnly: false }),
+    { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['biggest', 'smallest'] },
     atlasOn({ direction: 'name', places: ['frenchCities'] }),
-    blindtestOn({ kind: 'film' }),
-    quiz('quotes', { wellKnownOnly: true }),
-    quiz('rebus', { wellKnownOnly: false }),
-    atlasOn({ direction: 'place', places: ['worldCapitals'] }),
-    quiz('videogames', { wellKnownOnly: false }),
-    quiz('sport', { wellKnownOnly: true }),
-    atlasOn({ direction: 'name', places: ['worldCapitals'] }),
-    quiz('everyday', { wellKnownOnly: true }),
-    'swatch',
-    'mostlikely',
-    'higherlower',
-    'estimate'
+    'estimate',
+    quiz('cinema', { wellKnownOnly: false })
   ]
 }
 
@@ -184,11 +203,8 @@ export const readyMadeLineUpsFor = (
     id: 'grandMix',
     lineUp: grandMixFor(locale),
     lineUpDeals: [],
-    roundCount: 40,
-    runningOrder: [
-      0, 1, 2, 8, 10, 4, 11, 12, 13, 14, 15, 6, 16, 17, 18, 19, 20, 7, 21, 22,
-      23, 24, 25, 3, 26, 27, 28, 5, 29, 30, 9, 31, 32, 33, 34, 35
-    ]
+    roundCount: GRAND_MIX_ROUND_COUNT,
+    runningOrder: Array.from({ length: GRAND_MIX_ROUND_COUNT }, (_, at) => at)
   }
 ]
 

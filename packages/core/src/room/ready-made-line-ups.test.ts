@@ -1,9 +1,17 @@
 import { describe, expect, it } from 'vitest'
 
-import { DEFAULT_GAME_SETTINGS, gameSettingsSchema } from '@melee/protocol/game'
+import {
+  DEFAULT_GAME_SETTINGS,
+  gameSettingsSchema,
+  shelvedGames
+} from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
-import { isJudgedByHost, modeOfferedBy } from './game-modes'
+import {
+  isJudgedByHost,
+  isJudgedInEveryMode,
+  modeOfferedBy
+} from './game-modes'
 import { lineUpHolds, withNothingPlanned } from './line-up'
 import {
   gameOfEntry,
@@ -83,12 +91,27 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
     }
   })
 
-  it('[ready-made] plans every entry once inside its round count', () => {
-    expect(grandMix.lineUp.length).toBeLessThanOrEqual(grandMix.roundCount ?? 0)
-    expect(grandMix.runningOrder).toHaveLength(grandMix.lineUp.length)
-    expect(new Set(grandMix.runningOrder)).toEqual(
-      new Set(grandMix.lineUp.map((_, at) => at))
+  it('[ready-made] plays every entry once, in its own order, with nothing drawn', () => {
+    expect(grandMix.lineUp).toHaveLength(grandMix.roundCount ?? 0)
+    expect(grandMix.runningOrder).toEqual(grandMix.lineUp.map((_, at) => at))
+  })
+
+  it('[ready-made] plays every game no host judges, never twice on one setting', () => {
+    const judgeFree = shelvedGames.filter((game) => !isJudgedInEveryMode(game))
+    const settings = grandMix.lineUp.map((entry) => JSON.stringify(entry))
+
+    expect(new Set(grandMix.lineUp.map(gameOfEntry))).toEqual(
+      new Set(judgeFree)
     )
+    expect(new Set(settings).size).toBe(settings.length)
+  })
+
+  it('[ready-made] never brings a game back within three rounds', () => {
+    const games = grandMix.lineUp.map(gameOfEntry)
+
+    games.forEach((game, at) => {
+      expect(games.slice(at + 1, at + 3)).not.toContain(game)
+    })
   })
 })
 
