@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Game]` **The front page opens on the host's own line-ups.** A row of the
+  line-ups this host starred, then the tables this device played, latest
+  first — one press opens a table on any of them, already laid out — beside a
+  row of the ready-made ones, each row one lid tall and scrolled sideways. A
+  star on a lid keeps its line-up at the head of the row from the next visit.
+  The press that opens a table on the ticked games moves from the top of the
+  page to the foot of the shelf it acts on, held to the bottom of the screen
+  while the shelf is in view.
+
 - `[Shared]` **A fifth ready-made line-up, *Grand mix*: every game nobody has
   to judge, each entry on a setting of its own** — 40 rounds, nothing drawn:
   eight blind tests, twelve quiz subjects, the map six ways, and two settings
@@ -207,6 +216,11 @@ one part.
 - `[Game]` **On a track, the standings' cases stand in one column.** A case
   under 10 and a score under 10 no longer pull the cell sideways: the figure
   keeps two figures' width and every score the board's widest.
+- `[Game]` **The round's podium prints a distance whole, and the name gives
+  way.** The first place's larger row cut *à 180 km* to *à..* on a phone and
+  dropped it altogether on the console; a figure the round paid on — a
+  distance, an estimate, the pairs an order swapped, a sheet's score — keeps
+  its width now, and a long name ends on an ellipsis instead.
 
 ### Internal
 

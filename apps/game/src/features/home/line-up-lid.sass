@@ -1,0 +1,176 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/focus'
+@use '../../presentation/styles/piece'
+@use '../../presentation/styles/typography'
+
+@layer components
+  .line-up-lid
+    --band-height: 2.75rem
+
+    display: grid
+    position: relative
+
+    .lid
+      @include piece.card(var(--radius-l))
+      @include piece.pressable
+      @include focus.ring
+
+      border: 0
+      cursor: pointer
+      display: grid
+      font: inherit
+      grid-template-rows: auto 1fr auto
+      overflow: hidden
+      padding: 0
+      text-align: start
+      transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+      width: 100%
+      -webkit-tap-highlight-color: transparent
+
+      &:is([aria-busy='true'] *)
+        cursor: progress
+
+      &[data-disabled]
+        cursor: not-allowed
+        filter: saturate(0.25)
+        opacity: 0.5
+
+      @media (hover: hover) and (pointer: fine)
+        &[data-hovered] .go > svg
+          translate: var(--space-2xs) 0
+
+    .band
+      display: flex
+      height: var(--band-height)
+
+    .segment
+      align-items: center
+      background: var(--spine)
+      color: var(--spine-ink)
+      container-type: inline-size
+      display: grid
+      flex: 1
+      justify-items: center
+      min-width: 0
+
+      .game-icon
+        height: 1.25rem
+        width: 1.25rem
+
+        @container (width < 2rem)
+          display: none
+
+    .body
+      align-content: start
+      display: grid
+      gap: var(--space-xs)
+      padding: var(--space-m) var(--space-m) var(--space-s)
+
+    // Three lines at most: a host's own name for a line-up is as long as
+    // they typed it, and a row holds every lid at the tallest one's height.
+    .name
+      @include typography.lid-name
+
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      font-size: var(--text-xl)
+      hyphens: auto
+      -webkit-line-clamp: 3
+      overflow: hidden
+      padding-block-end: 0.08em
+      text-wrap: balance
+
+    // The star sits over the name's first line, so the name leaves it room.
+    &[data-has-star] .name::before
+      content: ''
+      float: inline-end
+      height: 1lh
+      width: calc(var(--target) - var(--space-xs))
+
+    .games
+      @include typography.caption-strong
+
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      -webkit-line-clamp: 2
+      overflow: hidden
+
+    .caption
+      @include typography.caption
+
+      color: var(--ink-muted)
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      -webkit-line-clamp: 3
+      overflow: hidden
+      text-wrap: pretty
+
+    .foot
+      @include typography.caption-strong
+
+      align-items: center
+      border-block-start: var(--hairline)
+      display: flex
+      gap: var(--space-s)
+      justify-content: space-between
+      min-height: var(--target)
+      padding: var(--space-xs) var(--space-m)
+
+    .meta
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .go
+      align-items: center
+      display: inline-flex
+      flex: none
+      gap: var(--space-2xs)
+
+      > svg
+        height: 1.1rem
+        transition: translate var(--transition-fast, 0s) var(--ease-out)
+        width: 1.1rem
+
+      > .spinner
+        height: 1.1rem
+        margin: 0
+        width: 1.1rem
+
+    // A round token set on the lid: hollow on the paper's tint, printed solid
+    // in the paper's ink once the line-up is kept.
+    .star
+      @include piece.piece(var(--radius-full), $nubs: false)
+      @include piece.pressable
+      @include focus.ring
+
+      align-items: center
+      background: var(--card-tint)
+      color: var(--card-ink)
+      cursor: pointer
+      display: grid
+      height: var(--target)
+      inset-block-start: calc(var(--band-height) + var(--space-xs))
+      inset-inline-end: var(--space-s)
+      justify-items: center
+      padding: 0
+      position: absolute
+      width: var(--target)
+      -webkit-tap-highlight-color: transparent
+
+      > svg
+        height: 1.375rem
+        width: 1.375rem
+
+      &[data-selected]
+        background: var(--card-ink)
+        color: var(--card)
+
+        > svg
+          fill: currentColor
+
+      &[data-disabled]
+        cursor: not-allowed
+        opacity: 0.5

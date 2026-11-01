@@ -1,0 +1,41 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/typography'
+
+@layer components
+  // The empty socket at the row's end: the star's place, cut into the board,
+  // and what a star does written in it.
+  .line-up-row .star-socket
+    align-content: center
+    background: var(--socket)
+    border-radius: var(--radius-l)
+    box-shadow: var(--shadow-recess-shallow)
+    color: var(--socket-ink)
+    display: grid
+    gap: var(--space-s)
+    justify-items: start
+    outline: var(--stroke-thin) dashed var(--socket-line)
+    outline-offset: calc(var(--stroke-thin) * -2)
+    padding: var(--space-m)
+
+    .hole
+      align-items: center
+      border-radius: var(--radius-full)
+      box-shadow: var(--shadow-recess)
+      display: grid
+      height: var(--target)
+      justify-items: center
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(var(--stroke-thin) * -2)
+      width: var(--target)
+
+      > svg
+        height: 1.375rem
+        width: 1.375rem
+
+    p
+      @include typography.caption-strong
+
+      margin: 0
+      max-width: 16em
+      text-wrap: pretty

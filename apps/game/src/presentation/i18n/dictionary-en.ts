@@ -615,19 +615,63 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Two names. Which one is bigger?'
   },
   home: {
+    /** A lid's star, pressed when the line-up is kept at the head of the row. */
+    favourite: 'Keep “{name}” as a favourite',
     /** Over the games the host judges however they are answered, shelved after the rest. */
     judgedGames: 'Judged by the host',
+    /** Read after a row's title, whose count is printed as a bare figure. */
+    lineUpCount: defineTranslation('{count:plural}', {
+      plural: { count: { one: ', {?} line-up', other: ', {?} line-ups' } }
+    }),
+    nextLineUps: 'Next line-ups',
     opening: 'Opening the table…',
     openWith: defineTranslation('Open a table · {count:plural}', {
       plural: { count: { one: '{?} game', other: '{?} games' } }
     }),
+    /** How the last table on a line-up went, on its lid. */
+    played: {
+      all: defineTranslation('{count:plural}', {
+        plural: {
+          count: {
+            one: '{?} round, played through',
+            other: 'All {?} rounds played'
+          }
+        }
+      }),
+      days: defineTranslation('Played {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'day' } }
+      }),
+      months: defineTranslation('Played {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'month' } }
+      }),
+      rounds: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} round played', other: '{?} rounds played' }
+        }
+      }),
+      roundsOf: defineTranslation('{count:plural} of {total:number}', {
+        plural: {
+          count: { one: '{?} round played', other: '{?} rounds played' }
+        }
+      }),
+      weeks: defineTranslation('Played {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'week' } }
+      })
+    },
+    previousLineUps: 'Previous line-ups',
     resume: 'Back to table',
     shelf: 'Or your own games',
     shelfHint:
       'Tick what “Open a table” opens. Your ticks are kept for next time.',
     tickUnjudged: 'Tick all but those the host judges',
     title: 'Mêlée',
-    untickAll: 'Untick all'
+    untickAll: 'Untick all',
+    /** The row of line-ups the host starred or played on this machine. */
+    yourLineUps: {
+      hint: 'Your favourites first, then what you played, latest first.',
+      starHint: 'Star a line-up and on your next visit it leads this row.',
+      title: 'Your line-ups'
+    }
   },
   host: {
     answered: defineTranslation('{count:plural} of {total:number} in', {
@@ -1217,6 +1261,8 @@ export const EN_DICTIONARY = defineDictionary({
       panelFolded:
         'Whether you last folded the panel beside the table you run.',
       panelSide: 'Which side of the screen you put that panel on.',
+      recentTables:
+        'The line-ups of the last tables you ran, each with its code, when it was played and how many rounds it went, to run one again.',
       savedEvenings:
         'The line-ups you saved under a name, each game with its settings, to run them again.',
       seats:

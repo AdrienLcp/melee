@@ -3,36 +3,59 @@
 @use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
 
+// Where the press stops spanning the page and keeps to the shelf's start.
+$door-at-start: 60rem
+
 @layer components
+  // The shelf's foot, held to the bottom of the screen while the shelf is on
+  // it. Bled to the page's edges so the board it is printed on hides the
+  // spines scrolling under it.
   .host-door
-    display: grid
-    gap: var(--space-s)
-    justify-items: stretch
+    container-type: scroll-state
+    inset-block-end: 0
+    margin-inline: calc(var(--gutter-left) * -1) calc(var(--gutter-right) * -1)
+    position: sticky
+    z-index: 1
+
+    .door-band
+      background: var(--board)
+      border-block-start: var(--stroke-thin) solid transparent
+      display: grid
+      gap: var(--space-xs)
+      justify-items: stretch
+      padding: var(--space-s) var(--gutter-right) var(--layout-padding-block-end) var(--gutter-left)
+      transition: box-shadow var(--transition-base, 0s) var(--ease-out), border-color var(--transition-base, 0s) var(--ease-out)
+
+      @media (width >= $door-at-start)
+        justify-items: start
+
+        > .button
+          min-width: 18rem
+
+    // Ruled off and lifted only while it floats over the spines; at rest at
+    // the shelf's end it is the shelf's last line, printed on the same board.
+    @container scroll-state(stuck: bottom)
+      .door-band
+        border-block-start-color: var(--rule)
+        box-shadow: var(--shadow-sheet)
+
+    @supports not (container-type: scroll-state)
+      .door-band
+        border-block-start-color: var(--rule)
 
     // Printed on the board, no lid under it: a door is the piece itself.
     // A label that cannot fit on one line at 200 % text wraps rather than
     // running out of the piece.
-    > .button
+    .door-band > .button
       text-wrap: balance
       white-space: normal
-
-    .resume
-      align-items: center
-      justify-self: start
-      white-space: normal
-      // The line is held while the server is asked, at the height a thumb finds.
-      min-height: var(--target)
-
-      .code
-        @include typography.title
-
-        font-size: inherit
 
     .error
       @include typography.caption-strong
 
       background: var(--danger)
       color: var(--danger-ink)
+      margin: 0
       padding: var(--space-2xs) var(--space-s)
 
       @include text-box.trimmed-block(var(--space-2xs))

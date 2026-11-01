@@ -588,18 +588,59 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
+    favourite: 'Garder « {name} » en favori',
     judgedGames: 'Jugés par l’hôte',
+    lineUpCount: defineTranslation('{count:plural}', {
+      plural: { count: { one: ', {?} partie', other: ', {?} parties' } }
+    }),
+    nextLineUps: 'Parties suivantes',
     opening: 'Ouverture de la table…',
     openWith: defineTranslation('Ouvrir une table · {count:plural}', {
       plural: { count: { one: '{?} jeu', other: '{?} jeux' } }
     }),
+    played: {
+      all: defineTranslation('{count:plural}', {
+        plural: {
+          count: {
+            one: '{?} manche, jouée en entier',
+            other: 'Les {?} manches jouées'
+          }
+        }
+      }),
+      days: defineTranslation('Jouée {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'day' } }
+      }),
+      months: defineTranslation('Jouée {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'month' } }
+      }),
+      rounds: defineTranslation('{count:plural}', {
+        plural: {
+          count: { one: '{?} manche jouée', other: '{?} manches jouées' }
+        }
+      }),
+      roundsOf: defineTranslation('{count:plural} sur {total:number}', {
+        plural: {
+          count: { one: '{?} manche jouée', other: '{?} manches jouées' }
+        }
+      }),
+      weeks: defineTranslation('Jouée {when:relative}', {
+        relative: { when: { numeric: 'auto', unit: 'week' } }
+      })
+    },
+    previousLineUps: 'Parties précédentes',
     resume: 'Reprendre la table',
     shelf: 'Ou tes jeux à toi',
     shelfHint:
       'Coche ce que « Ouvrir une table » lance. Tes coches sont gardées pour la prochaine fois.',
     tickUnjudged: 'Tout cocher sauf ceux que l’hôte juge',
     title: 'Mêlée',
-    untickAll: 'Tout décocher'
+    untickAll: 'Tout décocher',
+    yourLineUps: {
+      hint: 'Tes favorites d’abord, puis ce que tu as joué, le plus récent en premier.',
+      starHint:
+        'Mets une étoile sur une partie : à ta prochaine visite, elle passera en tête de cette rangée.',
+      title: 'Tes parties'
+    }
   },
   host: {
     answered: defineTranslation('{count:plural} sur {total:number}', {
@@ -1169,6 +1210,8 @@ export const FR_DICTIONARY = defineDictionary({
       panelFolded:
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
+      recentTables:
+        'Les parties des dernières tables que tu as tenues, avec le code de chacune, quand elle a été jouée et combien de manches elle a duré, pour en relancer une.',
       savedEvenings:
         'Les parties que tu as enregistrées sous un nom, chaque jeu avec ses réglages, pour les relancer.',
       seats:

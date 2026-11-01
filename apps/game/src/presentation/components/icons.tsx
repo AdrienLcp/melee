@@ -48,6 +48,7 @@ import {
   Share,
   SlidersHorizontal,
   SquarePlus,
+  Star,
   Trophy,
   Tv,
   Upload,
@@ -127,6 +128,7 @@ export const QrCodeIcon = inFamily(QrCode)
 export const ScreenIcon = inFamily(Tv)
 export const SoundIcon = inFamily(Volume2)
 export const StageIcon = inFamily(MonitorPlay)
+export const StarIcon = inFamily(Star)
 export const TableIcon = inFamily(PanelsTopLeft)
 export const ShareIcon = inFamily(Share)
 export const WorldIcon = inFamily(Earth)

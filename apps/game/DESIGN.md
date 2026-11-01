@@ -799,16 +799,38 @@ under every answer mode a verdict is owed in.
   judges* as a `mark`: a keyline stamp on the lid under the description, at
   the row's end in the list layout — outlined because the filled pill on the
   band already says which box opens first.
-- **`ReadyMadeBoxes`** (`features/home`): the line-ups the app ships, above
-  the shelf — a row of lids from 15rem each, one column on a phone. Each is a
-  paper card with a band of its entries' spines on top, one segment per entry
-  with its game's glyph (three blind tests read as three) — a segment under
-  2rem drops its glyph, so the grand mix's eighteen read as one strip of every
-  spine rather than a row of crushed icons — its name in the lid
-  face, its games named in caption-strong, its caption muted, and a ruled foot
-  with *20 rounds* and *Open →*. One press opens a table on its games and hands
-  the console the box's id as history state, which lays the line-up out; the
-  spinner replaces the pressed box's arrow and the others are disabled.
+- **Line-up rows** (`LineUpRow`, `LineUpLid`, `features/home`): the
+  line-ups a press opens a table on, above the shelf, each row one lid tall
+  however many it holds — on a phone the five ready-made lids stacked had
+  cost 2 000 of the page's 3 800 pixels. A row is its title with the count
+  beside it in a `--socket` pill, its hint, and a list scrolled sideways with
+  `scroll-snap-type: x mandatory`, bled to the page's edges with
+  `scroll-padding-inline` at the gutters, so the lid the edge cuts says there
+  is more. Lids are `min(78cqi, 17rem)` wide, 17.5rem from a 48rem row. A
+  fine pointer gets two outlined arrows by the heading, a page each way, dead
+  at an end and gone while the row fits; they stay out of the tab order,
+  because a keyboard walks the lids and the browser scrolls each into view.
+  Smooth only without reduced motion. No drag: a row that moves under a press
+  meant to open a table opens the wrong one.
+  A **lid** is a paper card banded in its entries' spines, one segment per
+  entry with its game's glyph — three blind tests read as three, and a segment
+  under 2rem drops its glyph — its name in the lid face, clamped to three
+  lines, its games in caption-strong, a muted caption, and a ruled foot with
+  *how long* or *when* and *Open →*. The spinner takes the pressed lid's
+  arrow and every other lid is disabled.
+  - **Your line-ups** comes first, and only once there is one: the line-ups
+    the host starred (the saved evenings), then the tables this device played
+    (`melee:recent-tables`, eight at most, a line-up played twice kept at its
+    latest), each shown once — a starred line-up that was played carries its
+    last table on its lid, *12 rounds played of 20* and *Played yesterday*.
+    The **star** is a round token on the lid's corner, `--card-tint` and
+    hollow, printed solid in `--card-ink` once kept: a press of its own beside
+    the lid's, never inside it, and the name floats a target's width clear of
+    it. The order is dealt as the page opens, so a star takes or gives back
+    its place on the next visit and no lid moves under the finger. A row of
+    plays with no star ends on a **socket** — the star's dashed hole cut in
+    `--socket`, and a line saying what it does.
+  - **Ready-made line-ups**, the ones the app ships, with no star.
 - **`GameShelf`** (`features/home`): the games as spines, each a toggle
   ticking it for the host's door — its spine colour, its name in the display
   face, its tagline; two columns from a 52rem container. The games judged
@@ -826,23 +848,30 @@ under every answer mode a verdict is owed in.
   `melee:line-up-games`, written on every change, an empty list included; a
   device with nothing stored opens on *First game*'s five. A spine is no longer
   a link to its game's page: the sitemap hands those pages to a crawler.
-- **The masthead** (`features/home`): two doors on one row, their bottoms on
-  one line from 60rem. Left, under the wordmark, the host's door — **`HostDoor`**, *Open a
-  table · 5 games* (the count of ticked spines, the bare *Open a table* when
-  none is) as the coral piece printed on the board with no lid under it, at
-  least 18rem wide; while the last table this device opened is still open,
-  *Back to table K7PX* sits over it, an underlined link a `--target` tall,
-  the code in the title face, and its line is held while the server is
-  asked. Right, the player's door, the code box on its lid. Under 60rem:
-  wordmark, code lid, then the press at the lid's full width. The press
-  keeps its label while pending, the spinner in its end padding — the shared
-  blank-label pending state read as an empty coral piece. The menu scrolls
-  away with the masthead here instead of floating over the shelf.
-- **The two headings** — *Ready-made line-ups* over the boxes, *Or your own
-  games* over the shelf — each say in their hint what a press does, because
-  nothing else on the page does. While a table opens the boxes' section is
-  `aria-busy`, the spines and both presets are disabled, and a visually hidden
-  status says *Opening the table…*.
+- **The masthead** (`features/home`): the wordmark and, under it while the
+  last table this device opened is still open, *Back to table K7PX* — an
+  underlined link a `--target` tall, the code in the title face, its line
+  held while the server is asked. Across from it from 60rem, their bottoms on
+  one line, the player's door: the code box on its lid; under it below
+  60rem. The menu scrolls away with the masthead here instead of floating
+  over the shelf.
+- **The host's door** (`HostDoor`): *Open a table · 5 games* (the count of
+  ticked spines, the bare *Open a table* when none is) as the coral piece at
+  the **shelf's foot**, on a band of `--board` held to the bottom of the
+  screen while the shelf is on it (`position: sticky`). The band is ruled in
+  `--rule` and lifted by `--shadow-sheet` only while it floats over the
+  spines — a `scroll-state(stuck: bottom)` query, the rule always drawn where
+  that is unsupported — and pads its bottom by the safe area. Full width on a
+  phone, at least 18rem on the shelf's start edge from 60rem. It moved down
+  from the masthead because a press at the top acting on ticks a screen and a
+  half lower read as its own launch beside the lids' presses. The press keeps
+  its label while pending, the spinner in its end padding. A refusal shows
+  beside the press that met it: under the door, or under the rows.
+- **The headings** — *Your line-ups* and *Ready-made line-ups* over the
+  rows, *Or your own games* over the shelf — each say in their hint what a
+  press does, because nothing else on the page does. While a table opens the
+  rows are `aria-busy`, the spines and both presets are disabled, and a
+  visually hidden status says *Opening the table…*.
 
 ### Room invitation (`RoomInvitation`)
 The code on the saffron token (`--tile-2`, `monument`, a piece at

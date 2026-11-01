@@ -20,9 +20,10 @@ import { useI18n } from '@/presentation/i18n/i18n-provider'
 /**
  * A room is created by the server, on the server's defaults, so what this host
  * last set is applied from here — one frame, in the lobby, and never again for
- * this room. A console opened from a ready-made line-up on the home page lays
- * that line-up over it in the same frame, then lets go of it, so a reload in
- * the lobby does not lay it over whatever the host changed since.
+ * this room. A console opened from a line-up on the home page — a ready-made
+ * one, or one the host kept or played — lays that line-up over it in the same
+ * frame, then lets go of it, so a reload in the lobby does not lay it over
+ * whatever the host changed since.
  *
  * Only the *first* view counts, whatever phase it arrives in. A console that
  * reloaded mid-game must not re-apply anything: the server would refuse the
@@ -49,6 +50,14 @@ export const useRestoreStoredSetup = ({
     const readyMade = readyMadeLineUpsFor(locale).find(
       ({ id }) => id === arrival.readyMade
     )
+    const evening =
+      arrival.evening ??
+      (readyMade === undefined
+        ? null
+        : savedEveningOfReadyMade({
+            lineUp: readyMade,
+            name: translate(`readyMade.lineUps.${readyMade.id}.name`)
+          }))
 
     if (room.phase !== 'lobby') {
       return
@@ -59,7 +68,7 @@ export const useRestoreStoredSetup = ({
         ? room.settings
         : restoredSettings({ preferences, settings: room.settings })
 
-    if (readyMade === undefined) {
+    if (evening === null) {
       if (preferences !== null) {
         onRestore(restored)
       }
@@ -69,16 +78,17 @@ export const useRestoreStoredSetup = ({
 
     onRestore(
       withSavedEvening({
-        evening: savedEveningOfReadyMade({
-          lineUp: readyMade,
-          name: translate(`readyMade.lineUps.${readyMade.id}.name`)
-        }),
+        evening,
         locale,
         rememberedFor: (game) => rememberedSetupFor({ game, preferences }),
         settings: restored
       })
     )
-    onReadyMadeLoaded(readyMade.id)
+
+    if (readyMade !== undefined) {
+      onReadyMadeLoaded(readyMade.id)
+    }
+
     arrival.forget()
   })
 

@@ -27,7 +27,10 @@ import {
 } from '@melee/core/room/ready-made-line-ups'
 import { renamedGameKindOf } from '@melee/core/room/renamed-game-kinds'
 import { normalizeRoomCode } from '@melee/core/room/room-code'
+import type { SavedEvening } from '@melee/core/room/saved-evening'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
+
+import { savedEveningSchema } from '@/infrastructure/storage/preferences-storage'
 
 /**
  * Every page a crawler is meant to reach names the language it is written in,
@@ -385,41 +388,66 @@ const asLocale = (segment: string | undefined): Locale | null =>
 
 /**
  * What a front door hands the console it opens, beside the room code: the
- * ready-made line-up it was asked for. History state rather than the URL,
- * because a room's path names nothing but the room.
+ * ready-made line-up it was asked for, or a line-up this host kept or played.
+ * History state rather than the URL, because a room's path names nothing but
+ * the room.
  */
-export type HostArrival = { readyMade: ReadyMadeLineUpId }
+export type HostArrival =
+  | { evening: SavedEvening }
+  | { readyMade: ReadyMadeLineUpId }
 
-/** The navigation state `useHostArrival` reads back. */
-export const hostArrivalState = (
-  readyMade: ReadyMadeLineUpId
-): HostArrival => ({
-  readyMade
-})
+/**
+ * The navigation state `useHostArrival` reads back, holding the evening's own
+ * fields alone: a recent table handed in as an evening leaves its room code
+ * and its dates out of the history.
+ */
+export const hostArrivalState = (arrival: HostArrival): HostArrival => {
+  if ('readyMade' in arrival) {
+    return { readyMade: arrival.readyMade }
+  }
+
+  const { lineUp, lineUpDeals, name, roundCount, runningOrder } =
+    arrival.evening
+
+  return {
+    evening: { lineUp, lineUpDeals, name, roundCount, runningOrder }
+  }
+}
 
 const asReadyMadeLineUpId = (value: unknown): ReadyMadeLineUpId | null =>
   readyMadeLineUpIds.find((id) => id === value) ?? null
 
+const asSavedEvening = (value: unknown): SavedEvening | null => {
+  const evening = savedEveningSchema.safeParse(value)
+
+  return evening.success ? evening.data : null
+}
+
 /**
- * The ready-made line-up this console was opened on, and a way to let go of
- * it once applied — so a reload in the lobby does not lay it over whatever
- * the host changed since.
+ * The line-up this console was opened on — a ready-made one, or an evening
+ * the host kept or played — and a way to let go of it once applied, so a
+ * reload in the lobby does not lay it over whatever the host changed since.
  */
 export const useHostArrival = (): {
+  /** The evening the front door handed over, or `null`. */
+  evening: SavedEvening | null
   forget: () => void
+  /** The ready-made line-up the front door asked for, or `null`. */
   readyMade: ReadyMadeLineUpId | null
 } => {
   const { pathname, state } = useLocation()
   const navigate = useNavigate()
-  const readyMade =
-    typeof state === 'object' && state !== null && 'readyMade' in state
-      ? asReadyMadeLineUpId(state.readyMade)
-      : null
+  const isObject = typeof state === 'object' && state !== null
 
   return {
+    evening:
+      isObject && 'evening' in state ? asSavedEvening(state.evening) : null,
     forget: () => {
       void navigate(pathname, { replace: true, state: null })
     },
-    readyMade
+    readyMade:
+      isObject && 'readyMade' in state
+        ? asReadyMadeLineUpId(state.readyMade)
+        : null
   }
 }

@@ -1,0 +1,16 @@
+// Side-effect module: the component's rules, in the components layer.
+
+@use '../../presentation/styles/typography'
+
+@layer components
+  .resume-table
+    align-items: center
+    justify-self: start
+    // The line is held while the server is asked, at the height a thumb finds.
+    min-height: var(--target)
+    white-space: normal
+
+    .code
+      @include typography.title
+
+      font-size: inherit

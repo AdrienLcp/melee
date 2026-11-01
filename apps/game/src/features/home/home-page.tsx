@@ -7,19 +7,25 @@ import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { GameShelf } from './game-shelf'
 import { HostDoor } from './host-door'
-import { ReadyMadeBoxes } from './ready-made-boxes'
+import { OwnLineUps } from './own-line-ups'
+import { ReadyMadeRow } from './ready-made-row'
+import { ResumeTable } from './resume-table'
 import { useCreateRoom } from './use-create-room'
 import { useShelfTicks } from './use-shelf-ticks'
 
 import './home-page.sass'
 
 /**
- * The product's front door, and the one screen that belongs to no game. Two
- * doors across the masthead — the host's, a table on the games ticked on the
- * shelf, and the player's, the code box for whoever was told four characters —
- * then the ready-made boxes, each a table that plays its line-up in a row, and
- * the shelf, where a spine ticks a game for the host's door. The screens a
- * room may add are in the menu.
+ * The product's front door, and the one screen that belongs to no game. The
+ * masthead is the wordmark, the way back to the last table, and the player's
+ * door — the code box for whoever was told four characters. Under it, rows of
+ * line-ups a press opens a table on — the host's own, then the ones the app
+ * ships — and the shelf, where a spine ticks a game for the host's door at its
+ * foot. The screens a room may add are in the menu.
+ *
+ * The host's door is under the shelf rather than across the masthead: a press
+ * at the top acting on ticks a screen and a half below read as a press of its
+ * own, beside the lids' presses that each open what they show.
  */
 export const HomePage: React.FC = () => {
   const { locale } = useI18n()
@@ -39,16 +45,30 @@ export const HomePage: React.FC = () => {
               .
             </span>
           </h1>
+          <ResumeTable isDisabled={createRoom.isOpeningAny} />
         </div>
         <div className='join-box'>
           <JoinWithCode isDisabled={createRoom.isOpeningAny} />
         </div>
-        <HostDoor createRoom={createRoom} ticked={ticks.ticked} />
       </header>
 
-      <ReadyMadeBoxes createRoom={createRoom} />
+      <div aria-busy={createRoom.isOpeningAny} className='line-up-rows'>
+        <OwnLineUps createRoom={createRoom} />
+        <ReadyMadeRow createRoom={createRoom} />
+        {createRoom.refusal !== null &&
+          (createRoom.refusedDoor === 'lineUp' ||
+            createRoom.refusedDoor === 'readyMade') && (
+            <p className='rows-error' role='alert'>
+              {translate(createRoom.refusal)}
+            </p>
+          )}
+      </div>
 
-      <GameShelf isDisabled={createRoom.isOpeningAny} ticks={ticks} />
+      <GameShelf
+        door={<HostDoor createRoom={createRoom} ticked={ticks.ticked} />}
+        isDisabled={createRoom.isOpeningAny}
+        ticks={ticks}
+      />
 
       <VisuallyHidden>
         <p role='status'>

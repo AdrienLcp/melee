@@ -3,6 +3,7 @@
 @use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/layout'
+@use '../../presentation/styles/text-box'
 @use '../../presentation/styles/typography'
 
 // Where the code box moves beside the wordmark rather than under it.
@@ -16,13 +17,13 @@ $masthead-side-by-side: 60rem
     max-width: var(--stage-max-width)
     padding-block-start: var(--menu-block-inset)
 
-    // Two doors on one row: the host's under the wordmark, the player's across
-    // from it, their bottoms on one line. On a narrow screen the code comes
-    // first, because whoever is told four characters is most of the room.
+    // The wordmark and the player's door on one row, their bottoms on one
+    // line. On a narrow screen the code comes right under the wordmark,
+    // because whoever is told four characters is most of the room.
     .masthead
       display: grid
       gap: var(--space-l)
-      grid-template-areas: 'title' 'join' 'host'
+      grid-template-areas: 'title' 'join'
       grid-template-columns: minmax(0, 1fr)
 
       // A fixed track rather than `auto`: the code box is a size container,
@@ -30,19 +31,14 @@ $masthead-side-by-side: 60rem
       @media (width >= $masthead-side-by-side)
         align-items: end
         column-gap: var(--space-xl)
-        grid-template-areas: 'title join' 'host join'
+        grid-template-areas: 'title join'
         grid-template-columns: minmax(0, 1fr) minmax(0, 26rem)
-
-        .host-door
-          justify-items: start
-
-          > .button
-            min-width: 18rem
 
     .title-block
       display: grid
       gap: var(--space-s)
       grid-area: title
+      justify-items: start
 
     .wordmark
       @include typography.wordmark
@@ -54,10 +50,27 @@ $masthead-side-by-side: 60rem
         color: var(--primary)
         display: inline-block
 
-    .host-door
-      grid-area: host
+    .line-up-rows
+      display: flex
+      flex-direction: column
+      gap: var(--space-xl)
+      min-width: 0
 
-    // The heading over the boxes and over the shelf.
+      &[aria-busy='true']
+        cursor: progress
+
+    .rows-error
+      @include typography.caption-strong
+
+      background: var(--danger)
+      color: var(--danger-ink)
+      justify-self: start
+      margin: 0
+      padding: var(--space-2xs) var(--space-s)
+
+      @include text-box.trimmed-block(var(--space-2xs))
+
+    // The heading over each row and over the shelf.
     .shelf-heading
       display: grid
       gap: var(--space-2xs)

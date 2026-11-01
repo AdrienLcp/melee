@@ -10,18 +10,24 @@ import {
 } from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
+import type { RecentTable } from '@melee/core/room/recent-tables'
+
 import {
   HOST_SETUP_KEY,
   LINE_UP_GAMES_KEY,
   PANEL_SIDE_KEY,
+  RECENT_TABLES_KEY,
   readStoredHostPreferences,
   readStoredLineUpGames,
   readStoredPanelFolded,
   readStoredPanelSide,
+  readStoredRecentTables,
   readStoredSavedEvenings,
   SAVED_EVENINGS_KEY,
+  savedEveningSchema,
   writeStoredPanelFolded,
-  writeStoredPanelSide
+  writeStoredPanelSide,
+  writeStoredRecentTables
 } from './preferences-storage'
 
 const storedBeforeTheBoard = (teams: object) => {
@@ -280,6 +286,93 @@ describe('readStoredSavedEvenings', () => {
 
     expect(readStoredSavedEvenings()).toEqual({
       data: [{ ...gameNight, lineUpDeals: [], runningOrder: [] }],
+      status: 'success'
+    })
+  })
+})
+
+describe('savedEveningSchema', () => {
+  it('[saved-evening] reads one evening the way the list reads each', () => {
+    const evening = {
+      lineUp: [DEFAULT_QUIZ_SETTINGS, { ...DEFAULT_BLINDTEST_SETTINGS, x: 1 }],
+      lineUpDeals: ['both', 'both'],
+      name: ' Friday ',
+      roundCount: 8,
+      runningOrder: 'shuffled'
+    }
+
+    expect(savedEveningSchema.safeParse(evening).data).toEqual({
+      lineUp: [DEFAULT_QUIZ_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
+      lineUpDeals: ['both', 'both'],
+      name: 'Friday',
+      roundCount: 8,
+      runningOrder: []
+    })
+  })
+})
+
+describe('readStoredRecentTables', () => {
+  const store = new Map<string, string>()
+
+  beforeEach(() => {
+    store.clear()
+    vi.stubGlobal('localStorage', {
+      getItem: (key: string) => store.get(key) ?? null,
+      removeItem: (key: string) => store.delete(key),
+      setItem: (key: string, value: string) => store.set(key, value)
+    })
+  })
+
+  afterEach(() => {
+    vi.unstubAllGlobals()
+  })
+
+  const fridayTable: RecentTable = {
+    lineUp: [DEFAULT_QUIZ_SETTINGS, DEFAULT_BLINDTEST_SETTINGS],
+    lineUpDeals: ['chance', 'both'],
+    playedAt: 1_700_000_000_000,
+    readyMade: 'music',
+    roomCode: 'ABCD',
+    roundCount: 8,
+    roundsPlayed: 3,
+    runningOrder: [1, 0]
+  }
+
+  it('[recent-tables] keeps none before any table was played', () => {
+    expect(readStoredRecentTables()).toEqual({ data: [], status: 'success' })
+  })
+
+  it('[recent-tables] reads back the tables it wrote, in their order', () => {
+    const later = {
+      ...fridayTable,
+      playedAt: 1_700_000_100_000,
+      roomCode: 'EFGH'
+    }
+
+    writeStoredRecentTables([later, fridayTable])
+
+    expect(readStoredRecentTables()).toEqual({
+      data: [later, fridayTable],
+      status: 'success'
+    })
+  })
+
+  it('[recent-tables] drops a table it cannot read and keeps the rest', () => {
+    store.set(
+      RECENT_TABLES_KEY,
+      JSON.stringify([
+        { ...fridayTable, roomCode: 'not a code' },
+        { ...fridayTable, lineUp: [{ kind: 'chess' }], roomCode: 'EFGH' },
+        { ...fridayTable, readyMade: 'retired', roomCode: 'JKLM' },
+        fridayTable
+      ])
+    )
+
+    expect(readStoredRecentTables()).toEqual({
+      data: [
+        { ...fridayTable, readyMade: null, roomCode: 'JKLM' },
+        fridayTable
+      ],
       status: 'success'
     })
   })

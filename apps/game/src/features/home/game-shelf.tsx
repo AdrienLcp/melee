@@ -20,6 +20,8 @@ const JUDGED_GAMES: readonly ShelvedGame[] = shelvedGames.filter((game) =>
 )
 
 type GameShelfProps = {
+  /** The host's door, set at the shelf's foot. */
+  door: React.ReactNode
   /** No tick moves while a table opens on them. */
   isDisabled: boolean
   /** The ticks the host's door opens a table on. */
@@ -42,7 +44,11 @@ type GameShelfProps = {
  * the visitor arriving from a search or a group chat, and the sitemap is what
  * hands it to a crawler.
  */
-export const GameShelf: React.FC<GameShelfProps> = ({ isDisabled, ticks }) => {
+export const GameShelf: React.FC<GameShelfProps> = ({
+  door,
+  isDisabled,
+  ticks
+}) => {
   const translate = useTranslate()
   const { ticked, tickOnly, toggle } = ticks
 
@@ -101,6 +107,7 @@ export const GameShelf: React.FC<GameShelfProps> = ({ isDisabled, ticks }) => {
           )}
         </ul>
       </div>
+      {door}
     </section>
   )
 }

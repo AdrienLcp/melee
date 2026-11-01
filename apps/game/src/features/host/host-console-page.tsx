@@ -117,6 +117,7 @@ import {
   markOwnLinePlayed,
   useOwnChallengeLines
 } from './use-own-challenge-lines'
+import { useRecordRecentTable } from './use-record-recent-table'
 import { useRememberLineUpGames } from './use-remember-line-up-games'
 import { useRestoreStoredSetup } from './use-restore-stored-setup'
 import { useSlateWall } from './use-slate-wall'
@@ -285,6 +286,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     preferences,
     view
   })
+  useRecordRecentTable({ readyMade, view })
 
   useLineUpDraw({
     isLive,

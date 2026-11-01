@@ -21,7 +21,11 @@ import {
   type ShelvedGame,
   shelvedGameSchema
 } from '@melee/protocol/game'
-import { type Nickname, nicknameSchema } from '@melee/protocol/identifiers'
+import {
+  type Nickname,
+  nicknameSchema,
+  roomCodeSchema
+} from '@melee/protocol/identifiers'
 import { isLocale, type Locale } from '@melee/protocol/locale'
 import {
   DEFAULT_ROOM_SETTINGS,
@@ -37,6 +41,8 @@ import {
 } from '@melee/protocol/team'
 
 import type { HostPreferences } from '@melee/core/room/host-preferences'
+import { readyMadeLineUpIds } from '@melee/core/room/ready-made-line-ups'
+import type { PlayedLineUp, RecentTable } from '@melee/core/room/recent-tables'
 import { withCurrentGameKinds } from '@melee/core/room/renamed-game-kinds'
 import {
   SAVED_EVENING_NAME_MAX_LENGTH,
@@ -52,6 +58,7 @@ export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
 export const PANEL_SIDE_KEY = 'melee:panel-side'
+export const RECENT_TABLES_KEY = 'melee:recent-tables'
 export const SAVED_EVENINGS_KEY = 'melee:saved-evenings'
 export const VOLUME_KEY = 'melee:volume'
 
@@ -357,45 +364,71 @@ const savedEntryOf = (stored: unknown): SavedEntry[] => {
   return kept.success ? [kept.data] : []
 }
 
-const savedEveningSchema = z
-  .object({
-    lineUp: z.array(z.unknown()),
-    lineUpDeals: roomSettingsSchema.shape.lineUpDeals.catch([]),
-    name: z.string().trim().min(1).max(SAVED_EVENING_NAME_MAX_LENGTH),
-    roundCount: roomSettingsSchema.shape.roundCount.catch(
-      DEFAULT_ROOM_SETTINGS.roundCount
-    ),
-    runningOrder: roomSettingsSchema.shape.runningOrder.catch([])
-  })
-  .transform((stored): SavedEvening => {
-    const lineUp = stored.lineUp.flatMap(savedEntryOf)
+const storedLineUpSchema = z.object({
+  lineUp: z.array(z.unknown()),
+  lineUpDeals: roomSettingsSchema.shape.lineUpDeals.catch([]),
+  roundCount: roomSettingsSchema.shape.roundCount.catch(
+    DEFAULT_ROOM_SETTINGS.roundCount
+  ),
+  runningOrder: roomSettingsSchema.shape.runningOrder.catch([])
+})
 
-    // An entry gone shifts every index after it, so the order and the deals
-    // no longer say what they said, and the room deals both afresh.
-    const isAligned = lineUp.length === stored.lineUp.length
+const playedLineUpOf = (
+  stored: z.infer<typeof storedLineUpSchema>
+): PlayedLineUp => {
+  const lineUp = stored.lineUp.flatMap(savedEntryOf)
 
-    return {
-      ...stored,
-      lineUp,
-      lineUpDeals: isAligned ? stored.lineUpDeals : [],
-      runningOrder: isAligned ? stored.runningOrder : []
-    }
-  })
+  // An entry gone shifts every index after it, so the order and the deals
+  // no longer say what they said, and the room deals both afresh.
+  const isAligned = lineUp.length === stored.lineUp.length
+
+  return {
+    lineUp,
+    lineUpDeals: isAligned ? stored.lineUpDeals : [],
+    roundCount: stored.roundCount,
+    runningOrder: isAligned ? stored.runningOrder : []
+  }
+}
 
 /**
- * Evening by evening, so one this build cannot read costs that one alone —
- * whether it was stored here or read from a file another machine wrote.
+ * One saved evening, as this store or a file another machine wrote spells it:
+ * an entry that no longer reads keeps its game, and a field that no longer
+ * reads falls back to the room's default.
  */
-export const savedEveningsSchema = z.preprocess(
-  withCurrentGameKinds,
-  z.array(z.unknown()).transform((stored) =>
-    stored.flatMap((evening) => {
-      const saved = savedEveningSchema.safeParse(evening)
-
-      return saved.success && saved.data.lineUp.length > 0 ? [saved.data] : []
+export const savedEveningSchema = storedLineUpSchema
+  .extend({
+    name: z.string().trim().min(1).max(SAVED_EVENING_NAME_MAX_LENGTH)
+  })
+  .transform(
+    ({ name, ...stored }): SavedEvening => ({
+      ...playedLineUpOf(stored),
+      name
     })
   )
-)
+
+/**
+ * Item by item, so one this build cannot read — or one whose every game is
+ * gone — costs that one alone.
+ */
+const eachReadableLineUp = <Kept extends PlayedLineUp>(
+  schema: z.ZodType<Kept>
+) =>
+  z.preprocess(
+    withCurrentGameKinds,
+    z.array(z.unknown()).transform((stored) =>
+      stored.flatMap((item) => {
+        const kept = schema.safeParse(item)
+
+        return kept.success && kept.data.lineUp.length > 0 ? [kept.data] : []
+      })
+    )
+  )
+
+/**
+ * Evening by evening, whether stored here or read from a file another machine
+ * wrote.
+ */
+export const savedEveningsSchema = eachReadableLineUp(savedEveningSchema)
 
 /** The evenings this host kept under a name; none when they never kept one. */
 export const readStoredSavedEvenings = (): Result<
@@ -416,3 +449,48 @@ export const writeStoredSavedEvenings = (
   evenings: readonly SavedEvening[]
 ): Result<void, StorageWriteError> =>
   writeStoredJson({ key: SAVED_EVENINGS_KEY, value: evenings })
+
+const recentTableSchema = storedLineUpSchema
+  .extend({
+    playedAt: z.number().int().nonnegative(),
+    readyMade: z.enum(readyMadeLineUpIds).nullable().catch(null),
+    roomCode: roomCodeSchema,
+    roundsPlayed: z.number().int().positive()
+  })
+  .transform(
+    ({
+      playedAt,
+      readyMade,
+      roomCode,
+      roundsPlayed,
+      ...stored
+    }): RecentTable => ({
+      ...playedLineUpOf(stored),
+      playedAt,
+      readyMade,
+      roomCode,
+      roundsPlayed
+    })
+  )
+
+const recentTablesSchema = eachReadableLineUp(recentTableSchema)
+
+/** The tables this device ran lately, the latest first; none before the first round it revealed. */
+export const readStoredRecentTables = (): Result<
+  readonly RecentTable[],
+  StorageReadError
+> => {
+  const stored = readStoredWithSchema({
+    key: RECENT_TABLES_KEY,
+    schema: recentTablesSchema
+  })
+
+  return stored.status === 'success'
+    ? Result.success(stored.data ?? [])
+    : stored
+}
+
+export const writeStoredRecentTables = (
+  recents: readonly RecentTable[]
+): Result<void, StorageWriteError> =>
+  writeStoredJson({ key: RECENT_TABLES_KEY, value: recents })
