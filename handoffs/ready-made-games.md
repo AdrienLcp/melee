@@ -51,32 +51,46 @@ rule 1). Words: "la partie" / "the line-up", never "soirée/evening"
   a remembered setup helps only the second visit. Correct that premise; keep
   what still holds (the code goes up first; one place to choose).
 
-## Recommended direction (to show beside the alternatives)
+## Decided direction — the mix (2026-11-01)
 
-**Ready-made line-ups shipped by the app, offered where the empty lobby is.**
-A first-time host opening a table sees, in the Games tab's empty state, three
-or four named ready-made games — e.g. a discovery mix of the quickest-to-grasp
-games, a music one, a general-knowledge one, a short party one — each one
-press to load (games, deals, round count, order), plus "Choose my games" for
-the full picker. They are the saved-line-up shape (`saved-evening.ts`) with
-app-owned names in the dictionaries, so they run through the existing Saved
-path and the host can tweak after loading. Home stays as it is, or its
-"Open a table" says which ready-made game it opens on a first visit.
+Four directions were shown as example pages (local, git-ignored:
+`.handoff/ready-made-games/index.html`; open `e-mix.html` for the target).
+Adrien liked A, B and C and asked for a mix. What to build:
 
-Alternatives to build as pages so Adrien can compare:
-- **Ticks back on home**, with the ready-made games as pre-ticked chips above
-  the shelf — weigh against the duplication `cda0ad1d` removed.
-- **A one-question start**: "Open a table" asks *how long / what mood* and picks
-  a ready-made game, picker reachable after.
+1. **Ready-made line-ups shipped by the app** — four, in the saved-line-up
+   shape (`packages/core/src/room/saved-evening.ts`), names and captions in
+   the dictionaries: *Première partie* (quiz all subjects · higher-lower ·
+   reflex · most likely, 20 rounds), *Spéciale musique* (three blind test
+   variants: French hits, the 80s, film scores; 20), *Culture générale* (quiz
+   general · quiz flags · atlas · timeline · estimate; 20), *Partie éclair*
+   (reflex · swatch · inner clock · matchsticks; 10). Check every source and
+   rubric named exists before shipping it; adjust content, not the shape.
+2. **Home (B)**: a row of boxes above the shelf, band of the entries' spine
+   colours with their glyphs, name, games, one line, round count. One press
+   opens a table already loaded with that line-up (games, deals, round count,
+   order) — the `POST /api/rooms` body has to carry it, or the console applies
+   it on its first lobby view the way it applies `HostPreferences`.
+3. **Home (C)**: spines become ticks; the host door reads *Open a table ·
+   4 games* and opens on the ticked games. Ticks are remembered — reuse
+   `melee:line-up-games` (`preferences-storage.ts:50`), which the host door
+   already reopens. One link: *Tick all but "host judges"*, one *Untick all*.
+   **Default on a first visit: Première partie's four games**, not every game
+   without a judge — Adrien proposed the latter; rejected because thirteen games
+   at four rounds each snaps to 40 rounds of thirteen rules for a newcomer.
+   This reverses `cda0ad1d` (plan 43): DESIGN.md's "nothing is ticked on home"
+   and the shelf heading change with it; a spine's own game page stays its
+   link target for crawlers and modified clicks.
+4. **Lobby (A)**: when `settings.game === null` (nothing ticked), the Games
+   tab leads with the four ready-made rows (spine ticks + name + caption, the
+   saved-line-up row's grammar), then *Or one game at a time* and today's pick
+   list. Loading one shows the planned games with a note naming it and a
+   *Change* link back.
 
-Also find out what he struggled with — the setup tabs may carry a cost of their
-own (entry / draw / order pages for a host who just wants to play). Measure the
-presses from home to a first round for a newcomer, today and in each direction,
-and put the counts on the index page.
+Presses home → first round, 4-game line-up: today 13, the mix 2.
 
 ## Done when
 
-Adrien has picked a direction from the index page; it is built, verified in a
+The mix above is built, verified in a
 muted browser on console (desktop and phone) with a full room, `pnpm validate`
 green, CHANGELOG, `docs/plans/` updated if this is a plan stage, this file
 deleted, pushed.
