@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   CLIP_STALL_MS,
+  clipRecoveryFor,
   clipRefusalFor,
   isClipStalled,
   isClipUnheard,
@@ -109,5 +110,25 @@ describe('isClipStalled', () => {
     expect(
       isClipStalled({ hasEnded: true, nowMs: 60_000, stillSinceMs: 0 })
     ).toBe(false)
+  })
+})
+
+describe('clipRecoveryFor', () => {
+  it('[clip] loads a clip that would not sound once more before saying so', () => {
+    expect(clipRecoveryFor({ clip: 'r1 a.mp3', retriedClip: null })).toBe(
+      'reload'
+    )
+    expect(clipRecoveryFor({ clip: 'r1 a.mp3', retriedClip: 'r1 a.mp3' })).toBe(
+      'report'
+    )
+  })
+
+  it('[clip] retries the next round and a replaced clip afresh', () => {
+    expect(clipRecoveryFor({ clip: 'r2 a.mp3', retriedClip: 'r1 a.mp3' })).toBe(
+      'reload'
+    )
+    expect(clipRecoveryFor({ clip: 'r1 b.mp3', retriedClip: 'r1 a.mp3' })).toBe(
+      'reload'
+    )
   })
 })

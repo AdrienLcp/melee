@@ -1,3 +1,4 @@
+import { vi } from 'vitest'
 import type { z } from 'zod'
 
 import type { ClientMessage } from '@melee/protocol/client-message'
@@ -144,7 +145,7 @@ export const questionBankStub = () => ({
  * the stub is built here and imported from inside the factory.
  */
 export const deezerClientStub = () => ({
-  fetchHostTrack: async (trackId: string) => {
+  fetchHostTrack: vi.fn(async (trackId: string) => {
     const found = CATALOGUE.find((track) => track.id === trackId)
 
     return found === undefined
@@ -159,7 +160,7 @@ export const deezerClientStub = () => ({
           },
           status: 'success'
         }
-  },
+  }),
   fetchTracksFor: async () => ({
     data: { faults: [], tracks: CATALOGUE },
     status: 'success'

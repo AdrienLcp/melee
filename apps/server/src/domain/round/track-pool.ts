@@ -82,6 +82,54 @@ export const drawPlayableTrack = async ({
 }
 
 /**
+ * What a round whose clip would not load opens on instead. A preview URL is
+ * signed and expires, so the same track is asked for first; a URL that comes
+ * back unchanged is the one that already failed, and another track is drawn.
+ */
+export const replacementTrackFor = async ({
+  room,
+  settings,
+  track
+}: {
+  room: Room
+  settings: BlindtestSettings
+  track: HostTrack
+}): Promise<
+  Result<
+    { faults: readonly MusicSourceFault[]; track: HostTrack },
+    MusicSourceFailure
+  >
+> => {
+  const refreshed = await fetchHostTrack(track.id)
+
+  if (
+    refreshed.status === 'success' &&
+    refreshed.data.previewUrl !== track.previewUrl
+  ) {
+    return Result.success({
+      faults: [],
+      track: { ...refreshed.data, film: track.film }
+    })
+  }
+
+  const drawn = await drawPlayableTrack({ room, settings })
+
+  if (refreshed.status === 'success') {
+    return drawn
+  }
+
+  return drawn.status === 'success'
+    ? Result.success({
+        ...drawn.data,
+        faults: [...refreshed.error.faults, ...drawn.data.faults]
+      })
+    : Result.failure({
+        ...drawn.error,
+        faults: [...refreshed.error.faults, ...drawn.error.faults]
+      })
+}
+
+/**
  * A pool left over from a source the host has just replaced would keep serving
  * the old catalogue for the rest of the game, so it is dropped — but only when
  * the source really changed, since refilling costs a request.

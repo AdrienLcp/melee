@@ -108,6 +108,20 @@ console. A report outlives neither that round nor that speaker, so nothing
 clears it. It exists because a clip that fails looks exactly like one that
 plays, and the wall that usually sounds is the screen the host is not watching.
 
+Two fallbacks stand before a report. The speaker loads a clip that would not
+sound **once more** on its own (`clipRecoveryFor`) — the element alone, never the
+page, which would lose the press that armed it — and reports only if that
+fails too. A clip reported `unreachable` or `stalled` **during the countdown**
+is then replaced by the server instead of shown (`replaceUnplayableClip`): the
+same track asked for again, since a preview URL is signed and expires, and
+another track drawn when the URL comes back unchanged. The round keeps its id —
+nobody is stamped on it until the clip starts — and a pick round deals fresh
+candidates, since nothing can be answered before `playing`. The countdown's
+deadline waits on the swap (`isDrawing`), and a swap that lands past the start
+pushes it to a second from then. One swap per round: a replacement that fails
+too is reported like any clip. Once the round plays, nothing is swapped, because
+players are already answering that track.
+
 The console lets them go with `host.dismissWall`: every wall is sent a fatal
 `wall_dismissed`, unregistered, and the room published, so the console is the
 speaker again. The token is not rotated — the wall is the host's own screen —

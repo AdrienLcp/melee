@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Shared]` **A clip that will not load is tried again, then replaced before
+  the round starts.** The screen playing the sound reloads a clip that fails
+  once on its own — the clip alone, the page never moves — and joins the room
+  where it is. A clip that still will not load during the countdown is swapped
+  by the server: the same track on a fresh link, or another track, with fresh
+  choices on a pick round, and the countdown waits for it. The console hears
+  only of a clip that fails while the round plays, or of a replacement that
+  fails too.
 - `[Game]` **Ready-made line-ups, and the games ticked on the front page.**
   A first-time host no longer lands in an empty lobby. The front page offers
   four line-ups the app ships — *First game*, *Music special*, *General

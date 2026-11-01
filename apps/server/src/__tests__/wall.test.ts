@@ -22,6 +22,8 @@ import {
 } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
+import { fetchHostTrack } from '@/infrastructure/music/deezer-client'
+
 import { startRoomHarness } from './node-room-harness'
 import {
   CATALOGUE,
@@ -64,6 +66,8 @@ const SLATE: RoomSettings = {
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 1
 }
+
+const SLOW_COUNTDOWN: RoomSettings = { ...FAST_GAME, countdownMs: 5_000 }
 
 const KEY_SECRET = 'Clé du chef: vinaigre'
 
@@ -514,6 +518,107 @@ describe('the wall', () => {
       wallNumber: 1
     })
     expect(errorsIn(silent)).toEqual([])
+  })
+
+  const countingDown = async (host: Parameters<typeof hostView>[0]) => {
+    await waitFor(
+      () => hostView(host)?.phase === 'countdown',
+      'the countdown to start'
+    )
+
+    const view = hostView(host)
+    const content = hostContent(host)
+
+    if (view?.round == null || content?.track == null) {
+      throw new Error('no clip is counting down')
+    }
+
+    return { roundId: view.round.id, track: content.track }
+  }
+
+  it('[clip] reloads a clip that would not load before its round, on a fresh preview URL', async () => {
+    const { code, host } = await harness.openRoom(SLOW_COUNTDOWN)
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const { roundId, track } = await countingDown(host)
+
+    vi.mocked(fetchHostTrack).mockResolvedValueOnce({
+      data: { ...track, film: null, previewUrl: 'https://fresh.test/1.mp3' },
+      status: 'success'
+    })
+    host.send({ fault: 'unreachable', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostContent(host)?.audioUrl === 'https://fresh.test/1.mp3',
+      'the fresh preview URL'
+    )
+
+    expect(hostView(host)?.round?.id).toBe(roundId)
+    expect(hostContent(host)?.track?.id).toBe(track.id)
+    expect(hostView(host)?.silentClip).toBeNull()
+  })
+
+  it('[clip] draws another track when the same preview URL comes back', async () => {
+    const { code, host } = await harness.openRoom(SLOW_COUNTDOWN)
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const { roundId, track } = await countingDown(host)
+
+    host.send({ fault: 'unreachable', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostContent(host)?.track?.id !== track.id,
+      'another track'
+    )
+
+    expect(hostView(host)?.round?.id).toBe(roundId)
+    expect(hostView(host)?.phase).toBe('countdown')
+    expect(hostView(host)?.silentClip).toBeNull()
+  })
+
+  it('[clip] tells the console once the replacement would not load either', async () => {
+    const { code, host } = await harness.openRoom(SLOW_COUNTDOWN)
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const { roundId, track } = await countingDown(host)
+
+    host.send({ fault: 'unreachable', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostContent(host)?.track?.id !== track.id,
+      'another track'
+    )
+
+    const replacement = hostContent(host)?.track?.id
+
+    host.send({ fault: 'unreachable', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip != null,
+      'the console to hear the clip is silent'
+    )
+
+    expect(hostContent(host)?.track?.id).toBe(replacement)
+  })
+
+  it('[clip] keeps the track a round is already playing', async () => {
+    const { code, host } = await harness.openRoom(FAST_GAME)
+
+    await harness.seat({ code, nickname: 'Zoe' })
+    host.send({ type: 'host.startRound' })
+
+    const roundId = await playingRoundId(host)
+    const track = hostContent(host)?.track?.id
+
+    host.send({ fault: 'unreachable', roundId, type: 'speaker.reportClip' })
+    await waitFor(
+      () => hostView(host)?.silentClip != null,
+      'the console to hear the clip is silent'
+    )
+
+    expect(hostContent(host)?.track?.id).toBe(track)
   })
 
   it('[wall] forgets a silent clip once the sound moves to another screen', async () => {

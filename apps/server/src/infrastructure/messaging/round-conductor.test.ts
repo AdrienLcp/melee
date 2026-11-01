@@ -21,7 +21,7 @@ import {
 
 import type { Connection } from './connection'
 import { commitRoom, createRoomEngine, deadlinesOf } from './room-engine'
-import { wakeRoom } from './round-conductor'
+import { replaceUnplayableClip, wakeRoom } from './round-conductor'
 
 type DrawOutcome = Awaited<ReturnType<typeof drawPlayableTrack>>
 
@@ -31,7 +31,8 @@ const draw = vi.hoisted(() => ({
 
 vi.mock('@/domain/round/track-pool', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@/domain/round/track-pool')>()),
-  drawPlayableTrack: () => draw.next()
+  drawPlayableTrack: () => draw.next(),
+  replacementTrackFor: () => draw.next()
 }))
 
 const OPENED_AT = 1_000_000
@@ -276,5 +277,86 @@ describe('a held blind test drawing its next track', () => {
     expect(
       deadlinesOf(held.engine).some((deadline) => deadline.kind === 'advance')
     ).toBe(false)
+  })
+})
+
+describe('a clip replaced before its round starts', () => {
+  beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout'] })
+  })
+
+  afterEach(() => {
+    vi.useRealTimers()
+  })
+
+  const countingDown = async () => {
+    const held = heldRoom()
+
+    draw.next = async () => Result.success({ faults: [], track: NEXT_TRACK })
+
+    const firing = held.fire()
+
+    held.clock.now = OPENS_AT
+    await vi.advanceTimersByTimeAsync(OPENS_AT - DRAW_DUE_AT)
+    await firing
+
+    const roundId = held.engine.room.round?.id
+
+    if (roundId === undefined) {
+      throw new Error('no round is counting down')
+    }
+
+    return { ...held, roundId }
+  }
+
+  it('[clip] holds the countdown while the replacement is fetched', async () => {
+    const { engine, roundId } = await countingDown()
+    const { settle } = deferredDraw()
+
+    const replacing = replaceUnplayableClip(engine, {
+      reporter: null,
+      roundId
+    })
+
+    expect(
+      deadlinesOf(engine).some((deadline) => deadline.kind === 'countdown')
+    ).toBe(false)
+
+    settle(Result.success({ faults: [], track: FIRST_TRACK }))
+    await replacing
+
+    expect(
+      deadlinesOf(engine).some((deadline) => deadline.kind === 'countdown')
+    ).toBe(true)
+  })
+
+  it('[clip] leaves the speaker time to load a replacement that landed past the start', async () => {
+    const { clock, engine, roundId } = await countingDown()
+    const { settle } = deferredDraw()
+
+    const replacing = replaceUnplayableClip(engine, {
+      reporter: null,
+      roundId
+    })
+
+    clock.now = HELD_UNTIL + 500
+    settle(Result.success({ faults: [], track: FIRST_TRACK }))
+    await replacing
+
+    expect(engine.room.phase).toBe('countdown')
+    expect(trackIdOf(engine.room)).toBe(FIRST_TRACK.id)
+    expect(engine.room.round?.startsAt).toBe(HELD_UNTIL + 500 + 1_000)
+  })
+
+  it("[clip] replaces a round's clip once", async () => {
+    const { engine, roundId } = await countingDown()
+
+    draw.next = async () => Result.success({ faults: [], track: FIRST_TRACK })
+    await replaceUnplayableClip(engine, { reporter: null, roundId })
+
+    draw.next = async () => Result.success({ faults: [], track: NEXT_TRACK })
+    await replaceUnplayableClip(engine, { reporter: null, roundId })
+
+    expect(trackIdOf(engine.room)).toBe(FIRST_TRACK.id)
   })
 })

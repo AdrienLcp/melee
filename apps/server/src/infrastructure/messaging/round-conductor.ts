@@ -1,5 +1,6 @@
 import type { AtlasPlaces } from '@melee/protocol/atlas'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
+import type { RoundId, SessionId } from '@melee/protocol/identifiers'
 
 import { shuffled } from '@melee/core/helpers/random'
 
@@ -43,7 +44,10 @@ import {
 import { slateContent } from '@/domain/round/slate-round'
 import { swatchContent } from '@/domain/round/swatch-round'
 import { timelineContent } from '@/domain/round/timeline-round'
-import { drawPlayableTrack } from '@/domain/round/track-pool'
+import {
+  drawPlayableTrack,
+  replacementTrackFor
+} from '@/domain/round/track-pool'
 import { newRoundId } from '@/infrastructure/ids'
 import { logger } from '@/infrastructure/logging/logger'
 import { countryShapeOf } from '@/infrastructure/map/world-atlas'
@@ -670,6 +674,90 @@ export const beginRound = async (
     room,
     startsAt: startsAtOf(engine.now())
   })
+
+  publishRoom(engine)
+}
+
+/**
+ * A clip its speaker could not load, swapped before anyone has heard it: the
+ * round keeps its id, because nobody is stamped on it until the clip starts,
+ * and a pick round deals fresh candidates, because nothing can be answered
+ * during a countdown. Once a round plays, what players are answering stays.
+ *
+ * The countdown waits for the swap, and leaves the speaker time to load the
+ * new clip when it lands past the start it promised.
+ */
+export const replaceUnplayableClip = async (
+  engine: RoomEngine,
+  { reporter, roundId }: { reporter: SessionId | null; roundId: RoundId }
+): Promise<void> => {
+  const { room } = engine
+  const round = room.round
+  const game = room.settings.game
+
+  if (
+    engine.isDrawing ||
+    engine.clipReplacedOn === roundId ||
+    room.phase !== 'countdown' ||
+    round?.id !== roundId ||
+    round.content.kind !== 'blindtest' ||
+    game?.kind !== 'blindtest'
+  ) {
+    return
+  }
+
+  engine.clipReplacedOn = roundId
+  engine.isDrawing = true
+
+  let replaced: Awaited<ReturnType<typeof replacementTrackFor>>
+
+  try {
+    replaced = await replacementTrackFor({
+      room,
+      settings: game,
+      track: round.content.track
+    })
+  } finally {
+    engine.isDrawing = false
+  }
+
+  if (engine.isClosed) {
+    return
+  }
+
+  if (room.phase !== 'countdown' || room.round?.id !== roundId) {
+    commitRoom(engine)
+
+    return
+  }
+
+  const faults =
+    replaced.status === 'success' ? replaced.data.faults : replaced.error.faults
+
+  if (faults.length > 0) {
+    const log = isOutage(faults) ? logger.error : logger.warn
+
+    log('Could not replace a clip that would not load', {
+      code: room.code,
+      faults,
+      reason: replaced.status === 'failure' ? replaced.error.code : null
+    })
+  }
+
+  if (replaced.status === 'failure') {
+    room.sound.silentClip = { cause: 'unreachable', roundId, wallId: reporter }
+  } else {
+    const now = engine.now()
+
+    room.round.content = blindtestContent({ room, track: replaced.data.track })
+
+    if (room.round.startsAt !== null) {
+      room.round.startsAt = Math.max(
+        room.round.startsAt,
+        now + LEAST_COUNTDOWN_MS
+      )
+    }
+  }
 
   publishRoom(engine)
 }

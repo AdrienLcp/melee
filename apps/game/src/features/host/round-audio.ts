@@ -5,6 +5,7 @@ import type { ClipFault } from '@melee/protocol/sound'
 
 import {
   type ClipRefusal,
+  clipRecoveryFor,
   clipRefusalFor,
   isClipStalled,
   isClipUnheard,
@@ -82,6 +83,12 @@ const STALL_CHECK_MS = 1_000
 /** The two blessed elements a round's clip alternates between. */
 type Decks = readonly [HTMLAudioElement, HTMLAudioElement]
 
+/** A round's clip, on the deck it was loaded into. */
+type LoadedClip = { deck: HTMLAudioElement; roundId: string; url: string }
+
+const clipKeyOf = ({ roundId, url }: { roundId: string; url: string }) =>
+  `${roundId} ${url}`
+
 export type RoundAudio = {
   /**
    * Whether a press has blessed an element on this screen. `false` after a
@@ -125,11 +132,14 @@ export const useRoundAudio = ({
    * Which deck holds which round's clip. Two decks so the last clip can go on
    * under its reveal and the countdown after it while the next one loads on
    * the other: one element would have to drop the music the room is still
-   * listening to, or start the next clip late.
+   * listening to, or start the next clip late. Keyed on the URL as well: a
+   * clip that would not load before its round is replaced on the same round.
    */
-  const loadedRef = useRef<{ deck: HTMLAudioElement; roundId: string } | null>(
-    null
-  )
+  const loadedRef = useRef<LoadedClip | null>(null)
+  /** The clip this screen last loaded again after it would not sound. */
+  const retriedRef = useRef<string | null>(null)
+  /** When the round's elapsed time was last heard, to tell where it is now. */
+  const elapsedSeenAtRef = useRef(0)
   /**
    * The blessed decks are **state**, not a ref, and that is the whole of what
    * makes a mid-round press take: the effect below is what loads, seeks and
@@ -155,7 +165,7 @@ export const useRoundAudio = ({
   const [refusal, setRefusal] = useState<ClipRefusal | null>(null)
   const [clipFault, setClipFault] = useState<{
     cause: ClipFault
-    roundId: string
+    clip: string
   } | null>(null)
 
   // `useCallback` for the one reason that survives the compiler: it is a
@@ -200,6 +210,47 @@ export const useRoundAudio = ({
   const roundId = round?.id ?? null
   const elapsedMs = view?.roundElapsedMs ?? 0
   const isRoomPaused = view?.isPaused ?? false
+  const currentClip =
+    roundId === null || previewUrl === null
+      ? null
+      : clipKeyOf({ roundId, url: previewUrl })
+
+  // Reloads only the element, never the page: the press that armed it would
+  // be lost with a reload, and the screen would have nothing to show for it.
+  const failClip = useEffectEvent(
+    (cause: ClipFault, loaded: LoadedClip): void => {
+      const clip = clipKeyOf(loaded)
+
+      if (clipFault?.clip === clip) {
+        return
+      }
+
+      if (
+        clipRecoveryFor({ clip, retriedClip: retriedRef.current }) === 'report'
+      ) {
+        setClipFault({ cause, clip })
+
+        return
+      }
+
+      retriedRef.current = clip
+      loadClip(loaded.deck, loaded.url)
+
+      // A countdown's clip is started by its own schedule, which still holds.
+      if (phase !== 'playing' || isRoomPaused || loadedRef.current !== loaded) {
+        return
+      }
+
+      moveTo(loaded.deck, elapsedMs + nowMs() - elapsedSeenAtRef.current)
+      play(loaded.deck, (refused) => {
+        if (refused === 'unsupported') {
+          failClip(cause, loaded)
+        } else {
+          disarm(refused)
+        }
+      })
+    }
+  )
 
   // An element that cannot fetch its file says so here, often before `play()`
   // is even called — a countdown is long enough for a refused URL to fail.
@@ -212,7 +263,7 @@ export const useRoundAudio = ({
       const loaded = loadedRef.current
 
       if (loaded !== null && event.target === loaded.deck) {
-        setClipFault({ cause: 'unreachable', roundId: loaded.roundId })
+        failClip('unreachable', loaded)
       }
     }
 
@@ -235,8 +286,7 @@ export const useRoundAudio = ({
       decks === null ||
       phase !== 'playing' ||
       isRoomPaused ||
-      previewUrl === null ||
-      roundId === null
+      currentClip === null
     ) {
       return
     }
@@ -247,7 +297,7 @@ export const useRoundAudio = ({
     const timer = window.setInterval(() => {
       const loaded = loadedRef.current
 
-      if (loaded?.roundId !== roundId) {
+      if (loaded === null || clipKeyOf(loaded) !== currentClip) {
         return
       }
 
@@ -260,7 +310,7 @@ export const useRoundAudio = ({
         stillSinceMs = now
 
         if (hasMoved) {
-          setClipFault((fault) => (fault?.roundId === roundId ? null : fault))
+          setClipFault((fault) => (fault?.clip === currentClip ? null : fault))
         }
 
         return
@@ -269,18 +319,19 @@ export const useRoundAudio = ({
       if (
         isClipStalled({ hasEnded: loaded.deck.ended, nowMs: now, stillSinceMs })
       ) {
-        setClipFault((fault) =>
-          fault?.roundId === roundId ? fault : { cause: 'stalled', roundId }
-        )
+        stillSinceMs = now
+        failClip('stalled', loaded)
       }
     }, STALL_CHECK_MS)
 
     return () => {
       window.clearInterval(timer)
     }
-  }, [decks, isRoomPaused, phase, previewUrl, roundId])
+  }, [currentClip, decks, isRoomPaused, phase])
 
   useEffect(() => {
+    elapsedSeenAtRef.current = nowMs()
+
     if (decks === null) {
       return
     }
@@ -289,8 +340,10 @@ export const useRoundAudio = ({
     // `NotSupportedError` is the file — a refused or expired URL, a dropped
     // connection — and never this screen, which stays armed for the next one.
     const refuse = (refused: ClipRefusal): void => {
-      if (refused === 'unsupported' && roundId !== null) {
-        setClipFault({ cause: 'unreachable', roundId })
+      const loaded = loadedRef.current
+
+      if (refused === 'unsupported' && loaded !== null) {
+        failClip('unreachable', loaded)
       } else {
         disarm(refused)
       }
@@ -383,8 +436,11 @@ export const useRoundAudio = ({
     if (previous?.roundId !== roundId) {
       const spare = previous?.deck === decks[0] ? decks[1] : decks[0]
 
-      loadedRef.current = { deck: spare, roundId }
+      loadedRef.current = { deck: spare, roundId, url: previewUrl }
       loadClip(spare, previewUrl)
+    } else if (previous.url !== previewUrl) {
+      loadedRef.current = { ...previous, url: previewUrl }
+      loadClip(previous.deck, previewUrl)
     }
 
     const deck = loadedRef.current?.deck ?? decks[0]
@@ -463,7 +519,7 @@ export const useRoundAudio = ({
     canPlay: decks !== null,
     fault: isUnarmed
       ? 'blocked'
-      : clipFault !== null && clipFault.roundId === roundId
+      : clipFault !== null && clipFault.clip === currentClip
         ? clipFault.cause
         : null,
     refusal,

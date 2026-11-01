@@ -1,3 +1,5 @@
+import type { RoundId } from '@melee/protocol/identifiers'
+
 import type { Room } from '@/domain/room/room'
 import {
   earliestDeadline,
@@ -31,6 +33,11 @@ export type RoomPorts = {
 }
 
 export type RoomEngine = RoomPorts & {
+  /**
+   * The round whose clip has already been replaced once. A replacement that
+   * would not load either is said to the console rather than replaced again.
+   */
+  clipReplacedOn: RoundId | null
   isClosed: boolean
   /** Not persisted: a draw is an `await` in flight, and nothing outlives one. */
   isDrawing: boolean
@@ -39,6 +46,7 @@ export type RoomEngine = RoomPorts & {
 
 export const createRoomEngine = (room: Room, ports: RoomPorts): RoomEngine => ({
   ...ports,
+  clipReplacedOn: null,
   isClosed: false,
   isDrawing: false,
   room

@@ -128,6 +128,7 @@ import {
 import {
   beginRound,
   holdRoundWhileHostIsAway,
+  replaceUnplayableClip,
   resumeRoundForHost
 } from './round-conductor'
 
@@ -1428,6 +1429,9 @@ const reopenFloor = (
  * that stopped being the speaker, or a report that arrives as the next round
  * opens, is about a clip nobody is listening to any more. Dropped without an
  * answer, because the screen that sent it has nothing it could do with one.
+ *
+ * A clip that would not load before its round starts is replaced rather than
+ * reported: the console hears of it only if the replacement fails too.
  */
 const reportClip = ({
   active,
@@ -1446,6 +1450,20 @@ const reportClip = ({
       : active.role === 'host' && !walls.some((wall) => wall.isSpeaker)
 
   if (!isSpeaker || room.round?.id !== message.roundId) {
+    return
+  }
+
+  const isReplaceable =
+    (message.fault === 'unreachable' || message.fault === 'stalled') &&
+    room.phase === 'countdown' &&
+    engine.clipReplacedOn !== message.roundId
+
+  if (isReplaceable) {
+    void replaceUnplayableClip(engine, {
+      reporter: active.role === 'wall' ? active.sessionId : null,
+      roundId: message.roundId
+    })
+
     return
   }
 

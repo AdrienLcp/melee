@@ -38,6 +38,8 @@ export const roomDeadlines = ({
   /**
    * A track draw is a network call, and a reveal whose hold ran out during it
    * is already being advanced — it must not be due again until the draw lands.
+   * A countdown waits for one too: it is a clip that would not load being
+   * replaced, and the round must not open on the clip that failed.
    */
   isDrawing: boolean
   /**
@@ -94,7 +96,7 @@ const roundDeadline = ({
 
   switch (room.phase) {
     case 'countdown': {
-      return round.startsAt === null
+      return isDrawing || round.startsAt === null
         ? null
         : { at: round.startsAt, kind: 'countdown' }
     }

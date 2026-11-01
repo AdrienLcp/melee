@@ -102,3 +102,19 @@ export const isClipStalled = ({
   stillSinceMs: number
   nowMs: number
 }): boolean => !hasEnded && nowMs - stillSinceMs >= CLIP_STALL_MS
+
+/**
+ * What a speaker does with a clip that would not sound: load it again, once,
+ * because a dropped connection or a slow first byte is the common cause and a
+ * second fetch usually lands. The same clip failing twice is said to the room,
+ * whose server can still swap it while the round has not started.
+ */
+export const clipRecoveryFor = ({
+  clip,
+  retriedClip
+}: {
+  /** The round and preview URL that failed, as one key. */
+  clip: string
+  /** The last clip this screen loaded again, or `null` when it has not yet. */
+  retriedClip: string | null
+}): 'reload' | 'report' => (clip === retriedClip ? 'report' : 'reload')
