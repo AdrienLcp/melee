@@ -37,10 +37,10 @@ outside `I18nProvider`) the likely second.
    source.
 3. Whole `pnpm validate` green, then push (push deploys).
 
-## Unpushed at the time of writing
+## Not yet pushed at the time of writing
 
 `9c534cd6` (player reveal held to three lines) and two handoff commits sat
-unpushed on `main` because validate was red. Push them with the fix.
+waiting on `main`, not pushed, because validate was red. Push them with the fix.
 
 ## Done when
 
