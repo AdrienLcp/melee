@@ -6,7 +6,9 @@ import {
   geoEqualEarth,
   geoGraticule,
   geoGraticule10,
-  geoPath
+  geoInterpolate,
+  geoPath,
+  geoTransform
 } from 'd3-geo'
 import { merge } from 'topojson-client'
 import atlas from 'world-atlas/countries-50m.json' with { type: 'json' }
@@ -19,6 +21,7 @@ import {
   COUNTRY_CODE_BY_ATLAS_ID,
   COUNTRY_CODE_BY_ATLAS_NAME
 } from '@melee/core/atlas/atlas-country-codes'
+import type { Ring } from '@melee/core/atlas/distance'
 
 /**
  * The one module that reads the world's outlines in the browser and projects
@@ -74,8 +77,25 @@ export type CountryOutline = {
   /** Its main landmass: France framed without Guiana, Chile without Easter Island. */
   box: { max: MapPoint; min: MapPoint }
   centre: MapPoint
-  /** Every border point, overseas parts included, since the server measures to all of them. */
-  vertices: readonly MapPoint[]
+  /** The longitudes its main landmass reaches: what a reveal centres the map on, with the pawns. */
+  mainlandLongitudes: readonly number[]
+  /**
+   * Its outlines on the globe, overseas parts included, since the server
+   * measures to all of them — a city is the one point it rings.
+   */
+  rings: readonly Ring[]
+}
+
+/** The shortest way over the globe from one point to another, as one map draws it. */
+export type Reach = {
+  /**
+   * Its SVG path through `place`, which turns a map point into the frame's
+   * pixels: a great circle, curved by the projection and split where it
+   * leaves the map's edge.
+   */
+  pathThrough: (place: (at: MapPoint) => MapPoint) => string
+  /** The map point a share of the way along it, from `0` at its start. */
+  pointAt: (share: number) => MapPoint
 }
 
 export type ProjectedWorld = {
@@ -147,6 +167,7 @@ export type MapGeometry = {
   /** Where a geographic point is drawn. */
   mapPointOf: (point: GeoPoint) => MapPoint
   projected: ProjectedWorld
+  reachBetween: (ends: { from: GeoPoint; to: GeoPoint }) => Reach
 }
 
 /** How far a projected round trip may drift and still be the spot it started from. */
@@ -241,10 +262,17 @@ const geometryOver = ({
         area: measure.area(countryOutline),
         box: { max: [maxX, maxY], min: [minX, minY] },
         centre: measure.centroid(mainland ?? countryOutline),
-        vertices: countryOutline.coordinates
-          .flat(2)
-          .map(([longitude = 0, latitude = 0]) =>
-            mapPointOf({ latitude, longitude })
+        mainlandLongitudes: (
+          mainland?.coordinates ?? countryOutline.coordinates.flat()
+        )
+          .flat()
+          .map(([longitude = 0]) => longitude),
+        rings: countryOutline.coordinates
+          .flat()
+          .map((ring) =>
+            ring.map(
+              ([longitude = 0, latitude = 0]) => [longitude, latitude] as const
+            )
           )
       }
     },
@@ -274,12 +302,44 @@ const geometryOver = ({
       height: Math.ceil(height),
       outline,
       width: MAP_WIDTH
+    },
+    reachBetween: ({ from, to }) => {
+      const ends: [[number, number], [number, number]] = [
+        [from.longitude, from.latitude],
+        [to.longitude, to.latitude]
+      ]
+      const along = geoInterpolate(...ends)
+
+      return {
+        pathThrough: (place) => {
+          const placed = geoTransform({
+            // A method rather than an arrow: d3 hands it the next stream as `this`.
+            point(x, y) {
+              const [placedX, placedY] = place([x, y])
+
+              this.stream.point(placedX, placedY)
+            }
+          })
+          const path = geoPath({
+            stream: (output) => projection.stream(placed.stream(output))
+          })
+
+          return path({ coordinates: ends, type: 'LineString' }) ?? ''
+        },
+        pointAt: (share) => {
+          const [longitude, latitude] = along(share)
+
+          return mapPointOf({ latitude, longitude })
+        }
+      }
     }
   }
 }
 
-const worldGeometry = (): MapGeometry => {
-  const projection = geoEqualEarth().fitWidth(MAP_WIDTH, SPHERE)
+const worldGeometry = (centralMeridian: number): MapGeometry => {
+  const projection = geoEqualEarth()
+    .rotate([-centralMeridian, 0])
+    .fitWidth(MAP_WIDTH, SPHERE)
   const draw = geoPath(projection).digits(PATH_DIGITS)
   const [, [, height]] = draw.bounds(SPHERE)
 
@@ -326,32 +386,39 @@ const franceGeometry = (): MapGeometry => {
 }
 
 const geometries = new Map<MapRegion, MapGeometry>()
+/** One world turned off Greenwich at a time: a reveal across the date line turns it, and most evenings never do. */
+let turnedWorld: { centralMeridian: number; geometry: MapGeometry } | null =
+  null
 
-/** Projected on the first call for each map, and kept: a round never redraws a coastline. */
-export const mapGeometryOf = (region: MapRegion): MapGeometry => {
+/**
+ * Projected on the first call for each map, and kept: a round never redraws a
+ * coastline. The world is centred on `centralMeridian`, Greenwich by default;
+ * France is always centred on itself.
+ */
+export const mapGeometryOf = (
+  region: MapRegion,
+  centralMeridian = 0
+): MapGeometry => {
+  if (region === 'world' && centralMeridian !== 0) {
+    if (turnedWorld?.centralMeridian !== centralMeridian) {
+      turnedWorld = {
+        centralMeridian,
+        geometry: worldGeometry(centralMeridian)
+      }
+    }
+
+    return turnedWorld.geometry
+  }
+
   const known = geometries.get(region)
 
   if (known !== undefined) {
     return known
   }
 
-  const geometry = region === 'world' ? worldGeometry() : franceGeometry()
+  const geometry = region === 'world' ? worldGeometry(0) : franceGeometry()
 
   geometries.set(region, geometry)
 
   return geometry
 }
-
-/** The border point drawn nearest `from` — where a reveal's line ends. */
-export const nearestVertex = (
-  vertices: readonly MapPoint[],
-  from: MapPoint
-): MapPoint =>
-  vertices.reduce<MapPoint>(
-    (nearest, vertex) =>
-      Math.hypot(vertex[0] - from[0], vertex[1] - from[1]) <
-      Math.hypot(nearest[0] - from[0], nearest[1] - from[1])
-        ? vertex
-        : nearest,
-    vertices[0] ?? from
-  )

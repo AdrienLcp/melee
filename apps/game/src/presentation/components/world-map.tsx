@@ -4,12 +4,14 @@ import { useEffect, useId, useRef, useState } from 'react'
 import type { AtlasShown, GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
 
+import { nearestPointOnRings } from '@melee/core/atlas/distance'
+
+import { centralMeridianFor } from '@/helpers/central-meridian'
 import {
   crowdedPawnScale,
   placedDistanceLabels
 } from '@/helpers/distance-labels'
 import {
-  atLeastSpanning,
   clampedView,
   fittedView,
   framedOn,
@@ -25,9 +27,9 @@ import {
 import {
   type CountryOutline,
   type MapGeometry,
+  type MapPoint,
   type MapRegion,
   mapGeometryOf,
-  nearestVertex,
   type ProjectedWorld
 } from '@/infrastructure/map/world-geometry'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -62,11 +64,13 @@ const SHOWN_CONTEXT = 3
 /** The least a view around a shown place spans, as a share of the map's width — a dot or an islet still needs a coastline to be found. */
 const SHOWN_LEAST_SPAN = 0.08
 /**
- * The least the world map's reveal spans, as a share of its width — about a
- * continent, so a table that all landed near the answer still sees where on
- * the globe that was. The map of France is never framed tighter than itself.
+ * The least the world map's reveal spans along the frame's longer side, as a
+ * share of the map's width — Europe, so a table that all landed near the
+ * answer sees which part of the globe that was, and three pawns round one city
+ * stand far enough apart to label. The map of France is never framed tighter
+ * than itself.
  */
-const REVEAL_LEAST_SPAN = 0.2
+const REVEAL_LEAST_SPAN = 0.12
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {
@@ -114,7 +118,8 @@ export const WorldMap: React.FC<WorldMapProps> = ({
   revealed,
   shown
 }) => {
-  const geometry = mapGeometryOf(region)
+  const centralMeridian = centralMeridianOfReveal({ region, revealed })
+  const geometry = mapGeometryOf(region, centralMeridian)
   const frameRef = useRef<HTMLDivElement>(null)
   const [frame, setFrame] = useState<Size | null>(null)
 
@@ -142,7 +147,7 @@ export const WorldMap: React.FC<WorldMapProps> = ({
         <MapSurface
           frame={frame}
           geometry={geometry}
-          key={`${region} ${frame.width}×${frame.height}`}
+          key={`${region} ${centralMeridian} ${frame.width}×${frame.height}`}
           marker={marker}
           markerActions={markerActions}
           onPlace={onPlace}
@@ -191,11 +196,9 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
             box:
               markers.length === 0
                 ? boxInContext({ map, target })
-                : atLeastSpanning({
-                    box: boxAround({ geometry, markers, target }),
-                    span: map.width * REVEAL_LEAST_SPAN
-                  }),
+                : boxAround({ geometry, markers, target }),
             frame: { ...frame, width: frame.width - CONTROLS_INSET },
+            leastSpan: markers.length === 0 ? 0 : map.width * REVEAL_LEAST_SPAN,
             map
           })
         })
@@ -271,8 +274,8 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         {drawnTarget !== null && target !== null && (
           <RevealedLayer
             frame={frame}
+            geometry={geometry}
             isCity={drawnTarget.kind === 'city'}
-            mapPointOf={mapPointOf}
             markers={markers}
             target={target}
             view={view}
@@ -391,7 +394,7 @@ const MarkerActions: React.FC<{
   )
 }
 
-/** A city as the reveal points at it: one spot, its own box and its only vertex. */
+/** A city as the reveal points at it: one spot, its own box, and a ring of that one point. */
 const targetOutlineOf = (
   geometry: MapGeometry,
   target: RevealedTarget
@@ -401,13 +404,41 @@ const targetOutlineOf = (
   }
 
   const spot = geometry.mapPointOf(target.point)
+  const { latitude, longitude } = target.point
 
   return {
     area: 0,
     box: { max: spot, min: spot },
     centre: spot,
-    vertices: [spot]
+    mainlandLongitudes: [longitude],
+    rings: [
+      [
+        [longitude, latitude],
+        [longitude, latitude]
+      ]
+    ]
   }
+}
+
+/**
+ * Greenwich, unless the answer and every pawn sit closest across the date
+ * line: then the world turns so they stand together. Placing never turns the
+ * map, and France is centred on itself.
+ */
+const centralMeridianOfReveal = ({
+  region,
+  revealed
+}: Pick<WorldMapProps, 'region' | 'revealed'>): number => {
+  if (region !== 'world' || revealed === undefined) {
+    return 0
+  }
+
+  const target = targetOutlineOf(mapGeometryOf(region), revealed.target)
+
+  return centralMeridianFor([
+    ...(target?.mainlandLongitudes ?? []),
+    ...revealed.markers.map((marker) => marker.point.longitude)
+  ])
 }
 
 /**
@@ -487,26 +518,37 @@ const boxAround = ({
  */
 const RevealedLayer: React.FC<{
   frame: Size
+  geometry: MapGeometry
   /** A city is a spot rather than a shape: dotted, and ringed at every zoom. */
   isCity: boolean
-  mapPointOf: MapGeometry['mapPointOf']
   markers: readonly RevealedMarker[]
   target: CountryOutline
   view: MapView
-}> = ({ frame, isCity, mapPointOf, markers, target, view }) => {
+}> = ({ frame, geometry, isCity, markers, target, view }) => {
+  const { mapPointOf } = geometry
   const [centreX, centreY] = toScreen(view, target.centre)
+  const place = (at: MapPoint) => toScreen(view, at)
   const lines = markers
     .filter((marker) => marker.distanceKm > 0)
     .toSorted((one, other) => one.distanceKm - other.distanceKm)
-    .map((marker) => {
-      const at = mapPointOf(marker.point)
+    .flatMap((marker) => {
+      const border = nearestPointOnRings(marker.point, target.rings)
 
-      return {
-        characters: marker.label.length,
-        from: toScreen(view, at),
-        marker,
-        to: toScreen(view, nearestVertex(target.vertices, at))
+      if (border === null) {
+        return []
       }
+
+      const reach = geometry.reachBetween({ from: marker.point, to: border })
+
+      return [
+        {
+          characters: marker.label.length,
+          from: place(mapPointOf(marker.point)),
+          marker,
+          path: reach.pathThrough(place),
+          pointAt: (share: number) => place(reach.pointAt(share))
+        }
+      ]
     })
   const pawns = markers.map((marker) => ({
     at: toScreen(view, mapPointOf(marker.point)),
@@ -552,15 +594,8 @@ const RevealedLayer: React.FC<{
 
   return (
     <g className='revealed' style={{ '--distance-size': `${distanceSize}px` }}>
-      {lines.map(({ from, marker, to }) => (
-        <line
-          className='reach'
-          key={marker.playerId}
-          x1={from[0]}
-          x2={to[0]}
-          y1={from[1]}
-          y2={to[1]}
-        />
+      {lines.map(({ marker, path }) => (
+        <path className='reach' d={path} key={marker.playerId} />
       ))}
       {target.area * view.scale ** 2 < SMALL_TARGET_AREA && (
         <circle className='ring' cx={centreX} cy={centreY} r={RING_RADIUS} />

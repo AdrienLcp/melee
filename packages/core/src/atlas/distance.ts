@@ -49,24 +49,30 @@ export const greatCircleKm = (from: GeoPoint, to: GeoPoint): number =>
   angleBetween(unitVector(positionOf(from)), unitVector(positionOf(to))) *
   EARTH_RADIUS_KM
 
+const scaled = (a: Vector, by: number): Vector => [
+  a[0] * by,
+  a[1] * by,
+  a[2] * by
+]
+
 /**
- * The angle from `point` to the arc `a`–`b`: to the foot of the
- * perpendicular when it falls on the arc, to the nearer end otherwise.
+ * Where the perpendicular from `point` meets the great circle through `a` and
+ * `b`, with how far off that circle's plane the point stands, or `null` when
+ * it lands outside the arc between them.
  */
-const angleToArc = (point: Vector, a: Vector, b: Vector): number => {
+const perpendicularOnArc = (
+  point: Vector,
+  a: Vector,
+  b: Vector
+): { foot: Vector; offPlane: number } | null => {
   const normal = cross(a, b)
   const normalLength = norm(normal)
-  const toEnds = Math.min(angleBetween(point, a), angleBetween(point, b))
 
   if (normalLength === 0) {
-    return toEnds
+    return null
   }
 
-  const unitNormal: Vector = [
-    normal[0] / normalLength,
-    normal[1] / normalLength,
-    normal[2] / normalLength
-  ]
+  const unitNormal = scaled(normal, 1 / normalLength)
   const offPlane = dot(point, unitNormal)
   const foot: Vector = [
     point[0] - offPlane * unitNormal[0],
@@ -76,16 +82,42 @@ const angleToArc = (point: Vector, a: Vector, b: Vector): number => {
   const footFallsOnArc =
     dot(cross(a, foot), unitNormal) >= 0 && dot(cross(foot, b), unitNormal) >= 0
 
-  return footFallsOnArc ? Math.abs(Math.asin(offPlane)) : toEnds
+  return footFallsOnArc ? { foot, offPlane } : null
 }
 
-/** The shortest distance from a point to any edge of the rings, in kilometres. */
-export const distanceToRingsKm = (
-  point: GeoPoint,
+/**
+ * The angle from `point` to the arc `a`–`b`: to the foot of the
+ * perpendicular when it falls on the arc, to the nearer end otherwise.
+ */
+const angleToArc = (point: Vector, a: Vector, b: Vector): number => {
+  const perpendicular = perpendicularOnArc(point, a, b)
+
+  return perpendicular === null
+    ? Math.min(angleBetween(point, a), angleBetween(point, b))
+    : Math.abs(Math.asin(perpendicular.offPlane))
+}
+
+/** The point of the arc `a`–`b` that `angleToArc` measures to. */
+const nearestOnArc = (point: Vector, a: Vector, b: Vector): Vector => {
+  const perpendicular = perpendicularOnArc(point, a, b)
+
+  if (perpendicular === null || norm(perpendicular.foot) === 0) {
+    return angleBetween(point, a) <= angleBetween(point, b) ? a : b
+  }
+
+  return scaled(perpendicular.foot, 1 / norm(perpendicular.foot))
+}
+
+type Arc = readonly [Vector, Vector]
+
+const nearestArcOf = (
+  point: Vector,
   rings: readonly Ring[]
-): number => {
-  const target = unitVector(positionOf(point))
-  let nearest = Math.PI
+): { angle: number; arc: Arc | null } => {
+  let nearest: { angle: number; arc: Arc | null } = {
+    angle: Math.PI,
+    arc: null
+  }
 
   for (const ring of rings) {
     const vectors = ring.map(unitVector)
@@ -95,12 +127,49 @@ export const distanceToRingsKm = (
       const current = vectors[index]
 
       if (previous !== undefined && current !== undefined) {
-        nearest = Math.min(nearest, angleToArc(target, previous, current))
+        const angle = angleToArc(point, previous, current)
+
+        if (angle < nearest.angle) {
+          nearest = { angle, arc: [previous, current] }
+        }
       }
     }
   }
 
-  return nearest * EARTH_RADIUS_KM
+  return nearest
+}
+
+/** The shortest distance from a point to any edge of the rings, in kilometres. */
+export const distanceToRingsKm = (
+  point: GeoPoint,
+  rings: readonly Ring[]
+): number =>
+  nearestArcOf(unitVector(positionOf(point)), rings).angle * EARTH_RADIUS_KM
+
+const DEGREES_PER_RADIAN = 180 / Math.PI
+
+/**
+ * The point of the rings `distanceToRingsKm` measures to — where a reveal's
+ * line ends, so it ends where the score was counted — or `null` for rings
+ * with no edge.
+ */
+export const nearestPointOnRings = (
+  point: GeoPoint,
+  rings: readonly Ring[]
+): GeoPoint | null => {
+  const target = unitVector(positionOf(point))
+  const { arc } = nearestArcOf(target, rings)
+
+  if (arc === null) {
+    return null
+  }
+
+  const [x, y, z] = nearestOnArc(target, ...arc)
+
+  return {
+    latitude: Math.asin(Math.max(-1, Math.min(1, z))) * DEGREES_PER_RADIAN,
+    longitude: Math.atan2(y, x) * DEGREES_PER_RADIAN
+  }
 }
 
 /** A country as the judging reads it: whether a point is in it, and where its edges run. */

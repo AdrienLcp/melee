@@ -18,30 +18,6 @@ type Frame = { frame: Size; map: Size }
 /** A rectangle of the map, by its two corners, in map units. */
 export type MapBox = { max: Point; min: Point }
 
-/**
- * The box grown about its own centre until each side spans at least `span`
- * map units — a framing that opens on it then never zooms past the context a
- * place is recognised in.
- */
-export const atLeastSpanning = ({
-  box,
-  span
-}: {
-  box: MapBox
-  span: number
-}): MapBox => {
-  const grown = (min: number, max: number): readonly [number, number] => {
-    const half = Math.max(span, max - min) / 2
-    const centre = (min + max) / 2
-
-    return [centre - half, centre + half]
-  }
-  const [minX, maxX] = grown(box.min[0], box.max[0])
-  const [minY, maxY] = grown(box.min[1], box.max[1])
-
-  return { max: [maxX, maxY], min: [minX, minY] }
-}
-
 /** What a framing leaves around the box on each side, as a share of the frame. */
 const FRAMING_MARGIN = 0.15
 
@@ -163,18 +139,30 @@ export const pinched = ({
  * The box as large as the frame allows with a margin round it, centred —
  * the reveal opening on the country and every pawn around it rather than on
  * the whole world, where twelve pawns in one country are one blot.
+ *
+ * `leastSpan` stops the zoom short: the box never spans less than that many
+ * map units along the frame's longer side, so a cluster of pawns opens on the
+ * region round it rather than on a corner of one country, whatever the
+ * frame's shape.
  */
 export const framedOn = ({
   box,
   frame,
+  leastSpan = 0,
   map
-}: Frame & { box: MapBox }): MapView => {
+}: Frame & { box: MapBox; leastSpan?: number }): MapView => {
   const room = 1 - 2 * FRAMING_MARGIN
   const width = Math.max(1, box.max[0] - box.min[0])
   const height = Math.max(1, box.max[1] - box.min[1])
   const scale = clampedScale(
     { frame, map },
-    Math.min((frame.width * room) / width, (frame.height * room) / height)
+    Math.min(
+      (frame.width * room) / width,
+      (frame.height * room) / height,
+      leastSpan > 0
+        ? (Math.max(frame.width, frame.height) * room) / leastSpan
+        : Number.POSITIVE_INFINITY
+    )
   )
   const centreX = (box.min[0] + box.max[0]) / 2
   const centreY = (box.min[1] + box.max[1]) / 2

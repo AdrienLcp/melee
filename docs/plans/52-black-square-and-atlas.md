@@ -91,8 +91,20 @@ quiz flag, so every existing layout holds it unchanged; a shown country is
 framed on a least span of 0.08 of the world, or Jordan is lost in a
 Europe-to-India view. The map of France is never framed tighter than itself,
 in either direction: a city is named, and a cluster of pawns read, by where it
-stands in the country. The world map's reveal is grown to a least span of 0.2
-of the world — about a continent. Over a tight cluster, pawns closer than their
+stands in the country. The world map's reveal frames the answer and every
+pawn, and never spans less than 0.12 of the world along the frame's longer
+side — Europe with its margins, whatever the frame's shape: a square floor of
+0.2 showed half the world from the Arctic to the equator for a table that all
+landed in Europe. A table spread across the date line turns the world instead
+(`centralMeridianFor`): Equal Earth rotated to the middle of the shortest span
+of longitude holding the answer and every pawn, so Samoa sits beside New
+Zealand rather than at the far edge. Re-projecting the 1:50m world for it is
+one long task of about 420 ms on a phone throttled 4× (94 ms unturned) — the
+price the first map of a session already pays, so it is paid at the reveal
+rather than guessed at while the pawns are still moving. Each line is the
+great circle to the border point the server measured to
+(`nearestPointOnRings`), curved by the projection, and its label sits on the
+curve. Over a tight cluster, pawns closer than their
 own width shrink towards the gap (`crowdedPawnScale`, no smaller than 0.6), and
 each distance label tries points along its line, then either side of its pawn,
 and is left out when none is free (`placedDistanceLabels`) — the list beside

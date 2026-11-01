@@ -4,7 +4,13 @@ import type { Point, Size } from './map-view'
 export type LabelBox = { height: number; width: number; x: number; y: number }
 
 /** One label to place: the line it belongs to, from the pawn to the place, and how many characters it prints. */
-export type DistanceLine = { characters: number; from: Point; to: Point }
+export type DistanceLine = {
+  characters: number
+  /** The pawn's end of the line. */
+  from: Point
+  /** The point a share of the way along the line, which may curve: `0` is `from`, `1` the place. */
+  pointAt: (share: number) => Point
+}
 
 /** The shares of its line a label tries in turn, the pawn's end first. */
 const ALONG_TRIES = [0.3, 0.45, 0.6, 0.75] as const
@@ -32,11 +38,6 @@ const isInside = (box: LabelBox, frame: Size): boolean =>
   box.y >= 0 &&
   box.x + box.width <= frame.width &&
   box.y + box.height <= frame.height
-
-const pointAlong = ({ from, to }: DistanceLine, share: number): Point => [
-  from[0] + (to[0] - from[0]) * share,
-  from[1] + (to[1] - from[1]) * share
-]
 
 /** The size a label of `length` characters takes at `fontSize` pixels, its halo included. */
 export const labelSize = ({
@@ -79,7 +80,7 @@ export const placedDistanceLabels = ({
     const besidePawn = pawn.width / 2 + size.width / 2 + HALO
     const pawnMiddle = line.from[1] - pawn.height / 2
     const tries: Point[] = [
-      ...ALONG_TRIES.map((share) => pointAlong(line, share)),
+      ...ALONG_TRIES.map((share) => line.pointAt(share)),
       [line.from[0] + besidePawn, pawnMiddle],
       [line.from[0] - besidePawn, pawnMiddle]
     ]

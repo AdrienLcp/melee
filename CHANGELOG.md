@@ -197,6 +197,13 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The map's reveal shows the region the table played in, and
+  crosses the date line the short way.** A table that all landed in Europe
+  sees Europe rather than half the world, a pawn in Brazil widens the view
+  just enough to hold it, and a Pacific answer turns the world so Samoa sits
+  beside New Zealand instead of a line running the width of the map. Each line
+  is the great circle to the border point the score was measured to, curved
+  as the map draws it, with its distance on the curve.
 - `[Game]` **On a track, the standings' cases stand in one column.** A case
   under 10 and a score under 10 no longer pull the cell sideways: the figure
   keeps two figures' width and every score the board's widest.

@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
 import {
-  atLeastSpanning,
   clampedView,
   fittedView,
   framedOn,
@@ -146,6 +145,49 @@ describe('map view', () => {
   })
 })
 
+describe('a framing with a least span', () => {
+  const wall = { height: 900, width: 1600 }
+  const phone = { height: 1600, width: 900 }
+  /** About Europe across, on a map a thousand units wide. */
+  const leastSpan = 120
+  /** What the framing's margins leave the box of the frame. */
+  const room = 0.7
+  const roundParis = { max: [512, 78], min: [505, 72] } as const
+
+  it('[map] opens a tight cluster on the region round it, across a wide frame', () => {
+    const view = framedOn({ box: roundParis, frame: wall, leastSpan, map })
+
+    expect(wall.width / view.scale).toBeCloseTo(leastSpan / room)
+  })
+
+  it('[map] spends the least span on the long side of an upright frame', () => {
+    const view = framedOn({ box: roundParis, frame: phone, leastSpan, map })
+
+    expect(phone.height / view.scale).toBeCloseTo(leastSpan / room)
+  })
+
+  it('[map] widens to a far pawn rather than leaving it off', () => {
+    const toBrazil = { max: [512, 290], min: [330, 72] } as const
+    const view = framedOn({ box: toBrazil, frame: wall, leastSpan, map })
+    const [left, top] = toScreen(view, toBrazil.min)
+    const [right, bottom] = toScreen(view, toBrazil.max)
+
+    expect(left).toBeGreaterThanOrEqual(0)
+    expect(top).toBeGreaterThanOrEqual(0)
+    expect(right).toBeLessThanOrEqual(wall.width)
+    expect(bottom).toBeLessThanOrEqual(wall.height)
+    expect(wall.width / view.scale).toBeGreaterThan(leastSpan / room)
+  })
+
+  it('[map] leaves a box wider than the least span as it would frame it', () => {
+    const box = { max: [700, 300], min: [300, 100] } as const
+
+    expect(framedOn({ box, frame: wall, leastSpan, map })).toEqual(
+      framedOn({ box, frame: wall, map })
+    )
+  })
+})
+
 describe('perched over a pawn', () => {
   const frame = { height: 600, width: 400 }
   const box = { height: 60, width: 200 }
@@ -183,17 +225,5 @@ describe('perched over a pawn', () => {
         margin
       }).at[1]
     ).toBe(50)
-  })
-
-  it('[map] grows a box narrower than the least span about its own centre', () => {
-    expect(
-      atLeastSpanning({ box: { max: [110, 205], min: [90, 195] }, span: 200 })
-    ).toEqual({ max: [200, 300], min: [0, 100] })
-  })
-
-  it('[map] leaves a box already wider than the least span as it is', () => {
-    const box = { max: [400, 300], min: [0, 0] } as const
-
-    expect(atLeastSpanning({ box, span: 200 })).toEqual(box)
   })
 })
