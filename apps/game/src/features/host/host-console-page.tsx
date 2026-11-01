@@ -827,7 +827,10 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           next={
             isRevealed && (
               <NextRoundCard view={view}>
-                <HostActions {...hostActionsProps(view)} />
+                <HostActions
+                  {...hostActionsProps(view)}
+                  isNextRoundNamedAbove
+                />
               </NextRoundCard>
             )
           }

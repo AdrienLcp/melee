@@ -106,6 +106,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The reveal says which round the next press opens.** On a
+  line-up of several games, the console with no wall names the next round
+  just above *Next round* — its game's glyph and name, and its most telling
+  setting: *Blind test · 70s*, *Atlas · Find a country*. The card the console
+  shows beside a wall says it the same way, where it used to give a game ticked
+  once by its name alone.
+
 - `[Game]` **The front page shelves the games the host judges last, under
   their own heading.** Slate, Buzzer and Challenge no longer sit among the
   others as three bare boxes a ticked shelf seems to have forgotten: they come

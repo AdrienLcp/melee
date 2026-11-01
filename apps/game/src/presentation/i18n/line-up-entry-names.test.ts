@@ -9,7 +9,11 @@ import {
 import type { TrackSource } from '@melee/protocol/track'
 
 import { i18n } from './i18n'
-import { lineUpEntryNames, lineUpEntrySummaries } from './line-up-entry-names'
+import {
+  lineUpEntryNames,
+  lineUpEntrySummaries,
+  nextRoundName
+} from './line-up-entry-names'
 
 const translate = i18n.translator('en')
 
@@ -124,7 +128,7 @@ describe('lineUpEntrySummaries', () => {
     ])
   })
 
-  it('[line-up] titles a row by the name the next-round card gives it', () => {
+  it('[line-up] titles a row by the name the line-up gives it', () => {
     expect(
       lineUpEntrySummaries({
         lineUp: [
@@ -135,5 +139,55 @@ describe('lineUpEntrySummaries', () => {
         translate
       }).map((summary) => summary.name)
     ).toEqual(['Blind test', 'Quiz 1', 'Quiz 2'])
+  })
+})
+
+describe('nextRoundName', () => {
+  it('[line-up] says the one pick of an entry its game holds alone', () => {
+    expect(
+      nextRoundName({
+        settings: {
+          lineUp: [
+            quiz(['history', 'science']),
+            blindtest({ decades: ['1970s'], kind: 'decade' })
+          ],
+          lineUpAt: 1
+        },
+        translate
+      })
+    ).toBe('Blind test · 70s')
+  })
+
+  it('[line-up] keeps the name a sibling already asked for', () => {
+    expect(
+      nextRoundName({
+        settings: {
+          lineUp: [
+            blindtest({ decades: ['1970s'], kind: 'decade' }),
+            blindtest({ kind: 'film' })
+          ],
+          lineUpAt: 0
+        },
+        translate
+      })
+    ).toBe('Blind test · 70s')
+  })
+
+  it('[line-up] calls an entry with several picks by the game alone', () => {
+    expect(
+      nextRoundName({
+        settings: { lineUp: [quiz(['history', 'science'])], lineUpAt: 0 },
+        translate
+      })
+    ).toBe('Quiz')
+  })
+
+  it('[line-up] names nothing while the line-up points at nothing', () => {
+    expect(
+      nextRoundName({
+        settings: { lineUp: [quiz([])], lineUpAt: null },
+        translate
+      })
+    ).toBeNull()
   })
 })

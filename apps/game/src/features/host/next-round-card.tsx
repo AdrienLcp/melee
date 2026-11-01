@@ -6,7 +6,7 @@ import { endsTheEvening } from '@melee/core/room/next-game'
 
 import { GameIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
-import { useLineUpEntryNames } from '@/presentation/i18n/line-up-entry-names'
+import { useNextRoundName } from '@/presentation/i18n/line-up-entry-names'
 
 import { EveningStamp } from './evening-stamp'
 
@@ -29,8 +29,7 @@ export const NextRoundCard: React.FC<NextRoundCardProps> = ({
 }) => {
   const translate = useTranslate()
   const { lineUp, lineUpAt } = view.settings
-  const names = useLineUpEntryNames(lineUp)
-  const name = lineUpAt === null ? undefined : names[lineUpAt]
+  const name = useNextRoundName(view.settings)
   const game = lineUpAt === null ? undefined : lineUp[lineUpAt]?.kind
   // The next press ends the game rather than opening a round: nothing to name.
   const isEveningOver = endsTheEvening({
@@ -47,7 +46,7 @@ export const NextRoundCard: React.FC<NextRoundCardProps> = ({
         game === undefined ? undefined : { '--spine': `var(--spine-${game})` }
       }
     >
-      {!isEveningOver && game !== undefined && name !== undefined && (
+      {!isEveningOver && game !== undefined && name !== null && (
         <div className='headline'>
           <h3>
             <GameIcon game={game} />

@@ -354,7 +354,7 @@ export const useLineUpEntryNames = (
 
 /** An entry as the setup lists it. */
 export type LineUpEntrySummary = {
-  /** What the line-up calls the entry: `lineUpEntryNames`, as the next-round card says it. */
+  /** What the line-up calls the entry: `lineUpEntryNames`, the game alone while it is ticked once. */
   name: string
   /**
    * Every setting of the entry, round length last, in one line; `null` for a
@@ -411,3 +411,36 @@ export const useEntryName = (settings: EntrySettings): string | null => {
     translate(gameNameKey(settings.game.kind))
   )
 }
+
+type NextRoundSettings = Pick<RoomSettings, 'lineUp' | 'lineUpAt'>
+
+/**
+ * The entry the next round plays, as the reveal announces it: its line-up
+ * name, and its most telling setting even where no sibling asks for one —
+ * *Blind test · 70s* where the running order says *Blind test* — so the host
+ * reads what the press opens. `null` while the line-up points at nothing.
+ */
+export const nextRoundName = ({
+  settings,
+  translate
+}: {
+  settings: NextRoundSettings
+  translate: Translate
+}): string | null => {
+  const { lineUp, lineUpAt } = settings
+  const entry = lineUpAt === null ? undefined : lineUp[lineUpAt]
+
+  if (lineUpAt === null || entry === undefined) {
+    return null
+  }
+
+  const game = translate(gameNameKey(entry.kind))
+  const name = lineUpEntryNames({ lineUp, translate })[lineUpAt] ?? game
+  const [detail] = namingOf({ entry, translate })
+
+  return name === game && detail !== undefined ? `${game} · ${detail}` : name
+}
+
+/** `nextRoundName` in the reader's language. */
+export const useNextRoundName = (settings: NextRoundSettings): string | null =>
+  nextRoundName({ settings, translate: useTranslate() })

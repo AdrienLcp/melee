@@ -217,20 +217,6 @@
       gap: var(--space-m)
       min-width: 0
 
-    // The race the evening is played for, every pawn on the start before it
-    // begins, so a board switched on is seen before the first round rather
-    // than discovered at its reveal.
-    .board-preview
-      display: flex
-      flex-direction: column
-      gap: var(--space-xs)
-      min-width: 0
-
-      h2
-        @include typography.label
-
-        color: var(--ink-muted)
-
     // Who has sat down, and a socket for every pawn still in the box.
     .roster
       @include seat-grid.seat-grid
@@ -295,10 +281,25 @@
         text-align: center
 
       .reveal-actions
+        --reveal-gap: var(--space-m)
+
         align-items: center
         display: flex
         flex-direction: column
-        gap: var(--space-m)
+        gap: var(--reveal-gap)
+
+        // The line belongs to the press under it, like `.replays` to its own.
+        .next-round-name
+          @include typography.caption-strong
+
+          align-items: center
+          color: var(--ink-muted)
+          display: flex
+          gap: var(--space-2xs)
+          justify-content: center
+          margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
+          text-align: center
+          text-wrap: balance
 
         .quiet-actions
           column-gap: var(--space-m)
@@ -364,12 +365,18 @@
         // any one threshold, so it wraps rather than spill past both edges.
         .reveal-actions
           flex-flow: row wrap
-          gap: var(--space-m)
           justify-content: center
 
+          .next-round-name
+            margin: 0 calc(var(--space-xs) - var(--reveal-gap)) 0 0
+
           @container reveal-footer (width < 66rem)
+            --reveal-gap: var(--space-s)
+
             flex-direction: column
-            gap: var(--space-s)
+
+            .next-round-name
+              margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
 
   // Before the room's first view the stage is an empty box: laid down then, the
   // arrival plays over nothing and the lobby pops in a beat later. Held, it
@@ -823,7 +830,9 @@
       > footer
         gap: var(--space-xs)
 
-        .reveal-actions,
+        .reveal-actions
+          --reveal-gap: var(--space-xs)
+
         .slate-actions
           gap: var(--space-xs)
 

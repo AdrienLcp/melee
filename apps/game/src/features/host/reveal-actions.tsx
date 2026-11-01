@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useId } from 'react'
 
 import type { HostRoomView } from '@melee/protocol/room'
 
@@ -8,7 +9,9 @@ import { offersSkip, withEntrySkipped } from '@melee/core/room/skipped-entry'
 import { canPlayDuel } from '@melee/core/team/duel'
 
 import { Button } from '@/presentation/components/button'
+import { GameIcon } from '@/presentation/components/icons'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
+import { useNextRoundName } from '@/presentation/i18n/line-up-entry-names'
 
 import { BoardMoves } from './board-moves'
 import { challengePickFor } from './challenge-line'
@@ -33,6 +36,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   challengeLine,
   innerclockTarget,
   isLive,
+  isNextRoundNamedAbove = false,
   onOpenRound,
   onSettingsChange,
   preferences,
@@ -42,6 +46,18 @@ export const RevealActions: React.FC<HostActionsProps> = ({
 }) => {
   const { locale, translate } = useI18n()
   const { settings } = view
+  const nextName = useNextRoundName(settings)
+  const nextNameId = useId()
+  // One game all evening has nothing to announce: the round it opens is the
+  // one just played.
+  const announced =
+    isNextRoundNamedAbove ||
+    settings.lineUp.length < 2 ||
+    settings.game === null ||
+    nextName === null
+      ? null
+      : { game: settings.game.kind, name: nextName }
+  const describedBy = announced === null ? undefined : nextNameId
 
   const openNextRound = ({ isDuel }: { isDuel: boolean }) => {
     onOpenRound()
@@ -129,7 +145,14 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {challengeLine !== null && (
         <ChallengeLinePicker isDisabled={!isLive} line={challengeLine} />
       )}
+      {announced !== null && (
+        <p className='next-round-name' id={nextNameId}>
+          <GameIcon game={announced.game} />
+          {announced.name}
+        </p>
+      )}
       <Button
+        aria-describedby={describedBy}
         isDisabled={!isLive}
         onPress={() => openNextRound({ isDuel: false })}
         size='large'
@@ -139,6 +162,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
       {/* Beside the press it varies. */}
       {offersDuel(view) && (
         <Button
+          aria-describedby={describedBy}
           isDisabled={!isLive}
           onPress={() => openNextRound({ isDuel: true })}
           size='large'
