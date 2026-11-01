@@ -48,13 +48,18 @@
       align-items: center
       background: var(--spine)
       color: var(--spine-ink)
+      container-type: inline-size
       display: grid
       flex: 1
       justify-items: center
+      min-width: 0
 
       .game-icon
         height: 1.25rem
         width: 1.25rem
+
+        @container (width < 2rem)
+          display: none
 
     .body
       align-content: start

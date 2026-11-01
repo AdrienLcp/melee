@@ -1591,6 +1591,11 @@ export const FR_DICTIONARY = defineDictionary({
           'Des questions, des drapeaux, la carte, des dates et des chiffres à estimer.',
         name: 'Culture générale'
       },
+      grandMix: {
+        caption:
+          'Une manche par jeu, chacune sur un réglage à elle, et rien à juger.',
+        name: 'Grand mélange'
+      },
       music: {
         caption:
           'Trois blind tests : tubes français, années 80 et musiques de films.',

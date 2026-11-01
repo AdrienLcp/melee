@@ -1666,6 +1666,11 @@ export const EN_DICTIONARY = defineDictionary({
         caption: 'Questions, flags, the map, dates and numbers to guess.',
         name: 'General knowledge'
       },
+      grandMix: {
+        caption:
+          'A round of every game, each on a setting of its own, and nothing to judge.',
+        name: 'Grand mix'
+      },
       music: {
         caption: 'Three blind tests: French hits, the 80s and film scores.',
         name: 'Music special'

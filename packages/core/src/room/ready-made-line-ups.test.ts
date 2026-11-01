@@ -1,10 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
-import { gameSettingsSchema } from '@melee/protocol/game'
+import { DEFAULT_GAME_SETTINGS, gameSettingsSchema } from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
+import { isJudgedByHost, modeOfferedBy } from './game-modes'
 import { lineUpHolds, withNothingPlanned } from './line-up'
 import {
+  gameOfEntry,
   gamesOfLineUp,
   isOnReadyMade,
   type ReadyMadeLineUp,
@@ -12,7 +14,7 @@ import {
   readyMadeLineUpsFor,
   savedEveningOfReadyMade
 } from './ready-made-line-ups'
-import { ROUND_COUNT_STEPS } from './room-settings'
+import { openedSetup, ROUND_COUNT_STEPS } from './room-settings'
 import { withSavedEvening } from './saved-evening'
 
 describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
@@ -56,6 +58,34 @@ describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
       expect(settings.game).not.toBeNull()
     }
   )
+})
+
+describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
+  const grandMix = readyMadeLineUpsFor(locale).find(
+    ({ id }) => id === 'grandMix'
+  )
+
+  if (grandMix === undefined) {
+    throw new Error('the grand mix ships')
+  }
+
+  it('[ready-made] plays no entry a host has to judge, on the mode each opens on', () => {
+    for (const entry of grandMix.lineUp) {
+      const game = gameOfEntry(entry)
+      const settings =
+        typeof entry === 'string' ? DEFAULT_GAME_SETTINGS[entry] : entry
+      const mode = modeOfferedBy({
+        game: settings,
+        preferred: openedSetup({ game, locale }).mode
+      })
+
+      expect(isJudgedByHost({ game, mode: mode.kind })).toBe(false)
+    }
+  })
+
+  it('[ready-made] plans every entry once inside its round count', () => {
+    expect(grandMix.lineUp.length).toBeLessThanOrEqual(grandMix.roundCount ?? 0)
+  })
 })
 
 it('[ready-made] asks the quiz in the language the table speaks', () => {

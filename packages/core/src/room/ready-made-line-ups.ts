@@ -1,4 +1,5 @@
 import {
+  DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
   type GameKind,
@@ -15,7 +16,8 @@ export const readyMadeLineUpIds = [
   'firstGame',
   'music',
   'generalKnowledge',
-  'quick'
+  'quick',
+  'grandMix'
 ] as const
 
 export type ReadyMadeLineUpId = (typeof readyMadeLineUpIds)[number]
@@ -42,11 +44,23 @@ const quizOn = ({
   language: questionLanguageFor(locale)
 })
 
+const GENERAL_QUIZ_CATEGORIES = [
+  'history',
+  'geography',
+  'science',
+  'arts',
+  'cinema',
+  'sport',
+  'everyday'
+] as const satisfies typeof DEFAULT_QUIZ_SETTINGS.categories
+
 /**
- * The four, in the order the home page and the lobby draw them. A game named
+ * The five, in the order the home page and the lobby draw them. A game named
  * bare takes what this host last left it at, or its opening settings; a
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
  * *First game* leaves out most likely: it falls flat with two players.
+ * *Grand mix* is every game nobody has to judge, a variant per entry, so each
+ * planned round plays something the last did not.
  */
 export const readyMadeLineUpsFor = (
   locale: Locale
@@ -79,15 +93,7 @@ export const readyMadeLineUpsFor = (
     id: 'generalKnowledge',
     lineUp: [
       quizOn({
-        categories: [
-          'history',
-          'geography',
-          'science',
-          'arts',
-          'cinema',
-          'sport',
-          'everyday'
-        ],
+        categories: [...GENERAL_QUIZ_CATEGORIES],
         locale
       }),
       quizOn({ categories: ['flags'], locale }),
@@ -104,6 +110,35 @@ export const readyMadeLineUpsFor = (
     lineUp: ['reflex', 'swatch', 'innerclock', 'matchsticks'],
     lineUpDeals: [],
     roundCount: 10,
+    runningOrder: []
+  },
+  {
+    id: 'grandMix',
+    lineUp: [
+      { ...DEFAULT_BLINDTEST_SETTINGS, source: { kind: 'film' } },
+      {
+        ...DEFAULT_BLINDTEST_SETTINGS,
+        source: { decades: ['1990s'], kind: 'decade' }
+      },
+      quizOn({ categories: [...GENERAL_QUIZ_CATEGORIES], locale }),
+      quizOn({ categories: ['flags'], locale }),
+      quizOn({ categories: ['rebus'], locale }),
+      quizOn({ categories: ['capitals'], locale }),
+      quizOn({ categories: ['silhouettes'], locale }),
+      { ...DEFAULT_ATLAS_SETTINGS, places: ['countries', 'worldCapitals'] },
+      'timeline',
+      'estimate',
+      'higherlower',
+      'reflex',
+      'swatch',
+      'innerclock',
+      'matchsticks',
+      'mostlikely',
+      'petitbac',
+      'blacksquare'
+    ],
+    lineUpDeals: [],
+    roundCount: 20,
     runningOrder: []
   }
 ]

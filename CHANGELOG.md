@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **A fifth ready-made line-up, *Grand mix*: a round of every game
+  nobody has to judge, each on a variant of its own** — two blind tests (film
+  scores, the 90s), the quiz five ways (general, flags, rebus, capitals,
+  silhouettes), the map on countries and capitals, and every other game once,
+  over 20 rounds. A box band too narrow for its glyphs keeps its colours and
+  drops the icons.
+
 - `[Shared]` **A clip that will not load is tried again, then replaced before
   the round starts.** The screen playing the sound reloads a clip that fails
   once on its own — the clip alone, the page never moves — and joins the room

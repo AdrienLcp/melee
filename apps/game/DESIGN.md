@@ -795,7 +795,9 @@ under every answer mode a verdict is owed in.
 - **`ReadyMadeBoxes`** (`features/home`): the line-ups the app ships, above
   the shelf — a row of lids from 15rem each, one column on a phone. Each is a
   paper card with a band of its entries' spines on top, one segment per entry
-  with its game's glyph (three blind tests read as three), its name in the lid
+  with its game's glyph (three blind tests read as three) — a segment under
+  2rem drops its glyph, so the grand mix's eighteen read as one strip of every
+  spine rather than a row of crushed icons — its name in the lid
   face, its games named in caption-strong, its caption muted, and a ruled foot
   with *20 rounds* and *Open →*. One press opens a table on its games and hands
   the console the box's id as history state, which lays the line-up out; the
