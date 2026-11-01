@@ -1,4 +1,6 @@
 import {
+  type AtlasSettings,
+  type BlindtestSettings,
   DEFAULT_ATLAS_SETTINGS,
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
@@ -34,14 +36,31 @@ const FRENCH_CHANSON_GENRE_ID = 52
 
 const quizOn = ({
   categories,
-  locale
+  locale,
+  wellKnownOnly = DEFAULT_QUIZ_SETTINGS.wellKnownOnly
 }: {
   categories: typeof DEFAULT_QUIZ_SETTINGS.categories
   locale: Locale
+  wellKnownOnly?: boolean
 }): SavedEntry => ({
   ...DEFAULT_QUIZ_SETTINGS,
   categories,
-  language: questionLanguageFor(locale)
+  language: questionLanguageFor(locale),
+  wellKnownOnly
+})
+
+const blindtestOn = (source: BlindtestSettings['source']): SavedEntry => ({
+  ...DEFAULT_BLINDTEST_SETTINGS,
+  source
+})
+
+const atlasOn = ({
+  direction,
+  places
+}: Pick<AtlasSettings, 'direction' | 'places'>): SavedEntry => ({
+  ...DEFAULT_ATLAS_SETTINGS,
+  direction,
+  places
 })
 
 const GENERAL_QUIZ_CATEGORIES = [
@@ -55,12 +74,61 @@ const GENERAL_QUIZ_CATEGORIES = [
 ] as const satisfies typeof DEFAULT_QUIZ_SETTINGS.categories
 
 /**
+ * Adrien's own line-up for an evening of every game nobody has to judge, each
+ * entry a variant, in the order he set it: every catalogue of the blind test, every subject of the quiz, the map four ways.
+ */
+const grandMixFor = (locale: Locale): SavedEntry[] => {
+  const quiz = (
+    category: (typeof DEFAULT_QUIZ_SETTINGS.categories)[number],
+    { wellKnownOnly }: { wellKnownOnly: boolean }
+  ) => quizOn({ categories: [category], locale, wellKnownOnly })
+
+  return [
+    blindtestOn({ kind: 'film' }),
+    quiz('history', { wellKnownOnly: true }),
+    atlasOn({ direction: 'place', places: ['countries'] }),
+    'innerclock',
+    'matchsticks',
+    'blacksquare',
+    'petitbac',
+    'reflex',
+    blindtestOn({ decades: ['1970s'], kind: 'decade' }),
+    'timeline',
+    quiz('geography', { wellKnownOnly: true }),
+    blindtestOn({ decades: ['1980s'], kind: 'decade' }),
+    quiz('flags', { wellKnownOnly: false }),
+    atlasOn({ direction: 'name', places: ['countries'] }),
+    blindtestOn({ decades: ['1990s'], kind: 'decade' }),
+    quiz('capitals', { wellKnownOnly: false }),
+    blindtestOn({ decades: ['2000s'], kind: 'decade' }),
+    quiz('science', { wellKnownOnly: true }),
+    atlasOn({ direction: 'place', places: ['frenchCities'] }),
+    blindtestOn({ decades: ['2010s'], kind: 'decade' }),
+    quiz('arts', { wellKnownOnly: true }),
+    blindtestOn({ decades: [], kind: 'decade' }),
+    quiz('cinema', { wellKnownOnly: false }),
+    atlasOn({ direction: 'name', places: ['frenchCities'] }),
+    blindtestOn({ kind: 'film' }),
+    quiz('quotes', { wellKnownOnly: true }),
+    quiz('rebus', { wellKnownOnly: false }),
+    atlasOn({ direction: 'place', places: ['worldCapitals'] }),
+    quiz('videogames', { wellKnownOnly: false }),
+    quiz('sport', { wellKnownOnly: true }),
+    atlasOn({ direction: 'name', places: ['worldCapitals'] }),
+    quiz('everyday', { wellKnownOnly: true }),
+    'swatch',
+    'mostlikely',
+    'higherlower',
+    'estimate'
+  ]
+}
+
+/**
  * The five, in the order the home page and the lobby draw them. A game named
  * bare takes what this host last left it at, or its opening settings; a
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
  * *First game* leaves out most likely: it falls flat with two players.
- * *Grand mix* is every game nobody has to judge, a variant per entry, so each
- * planned round plays something the last did not.
+ * *Grand mix* is every game nobody has to judge, a variant per entry.
  */
 export const readyMadeLineUpsFor = (
   locale: Locale
@@ -114,32 +182,13 @@ export const readyMadeLineUpsFor = (
   },
   {
     id: 'grandMix',
-    lineUp: [
-      { ...DEFAULT_BLINDTEST_SETTINGS, source: { kind: 'film' } },
-      {
-        ...DEFAULT_BLINDTEST_SETTINGS,
-        source: { decades: ['1990s'], kind: 'decade' }
-      },
-      quizOn({ categories: [...GENERAL_QUIZ_CATEGORIES], locale }),
-      quizOn({ categories: ['flags'], locale }),
-      quizOn({ categories: ['rebus'], locale }),
-      quizOn({ categories: ['capitals'], locale }),
-      quizOn({ categories: ['silhouettes'], locale }),
-      { ...DEFAULT_ATLAS_SETTINGS, places: ['countries', 'worldCapitals'] },
-      'timeline',
-      'estimate',
-      'higherlower',
-      'reflex',
-      'swatch',
-      'innerclock',
-      'matchsticks',
-      'mostlikely',
-      'petitbac',
-      'blacksquare'
-    ],
+    lineUp: grandMixFor(locale),
     lineUpDeals: [],
-    roundCount: 20,
-    runningOrder: []
+    roundCount: 40,
+    runningOrder: [
+      0, 1, 2, 8, 10, 4, 11, 12, 13, 14, 15, 6, 16, 17, 18, 19, 20, 7, 21, 22,
+      23, 24, 25, 3, 26, 27, 28, 5, 29, 30, 9, 31, 32, 33, 34, 35
+    ]
   }
 ]
 

@@ -85,6 +85,10 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
 
   it('[ready-made] plans every entry once inside its round count', () => {
     expect(grandMix.lineUp.length).toBeLessThanOrEqual(grandMix.roundCount ?? 0)
+    expect(grandMix.runningOrder).toHaveLength(grandMix.lineUp.length)
+    expect(new Set(grandMix.runningOrder)).toEqual(
+      new Set(grandMix.lineUp.map((_, at) => at))
+    )
   })
 })
 
