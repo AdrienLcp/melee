@@ -206,6 +206,14 @@ one part.
 
 ### Fixes
 
+- `[Shared]` **Petit Bac keeps the word being typed when time runs out.** A
+  line is sent while it is typed rather than after a pause, and when the clock
+  or a stop's grace runs out every sheet freezes and sends what it holds; the
+  server closes the sheets half a second later, so that word reaches the vote.
+- `[Shared]` **Matchsticks: a `+` gives up only its upright.** A press
+  anywhere on a whole plus — its side arms included — lifts the upright and
+  leaves a minus; the flat bar, which left a sign that is none, can no longer
+  be lifted, by pointer, keyboard or a forged frame.
 - `[Game]` **The map's reveal shows the region the table played in, and
   crosses the date line the short way.** A table that all landed in Europe
   sees Europe rather than half the world, a pawn in Brazil widens the view

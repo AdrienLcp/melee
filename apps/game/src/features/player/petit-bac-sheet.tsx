@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useEffect, useEffectEvent, useState } from 'react'
+import { useEffect, useEffectEvent, useRef, useState } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import {
@@ -12,6 +12,10 @@ import type { PlayerRoomView, RoundView } from '@melee/protocol/room'
 import { isStoppableLine } from '@melee/core/petitbac/letter-match'
 import type { ClockEstimate } from '@melee/core/time/clock-sync'
 
+import {
+  createLineSender,
+  type LineSender
+} from '@/features/player/line-sender'
 import { PetitBacAuthors } from '@/features/player/petit-bac-authors'
 import { RoundClock } from '@/features/player/round-clock'
 import { petitBacContent } from '@/helpers/round-content'
@@ -24,10 +28,9 @@ import { ToggleButton } from '@/presentation/components/toggle-button'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
+import { currentDeadline } from '@/presentation/timing/last-seconds'
 
 import './petit-bac-sheet.sass'
-
-const SAVE_DELAY_MS = 600
 
 const focusLineAfter = (target: EventTarget) => {
   if (!(target instanceof HTMLInputElement)) {
@@ -85,10 +88,12 @@ type PetitBacSheetProps = {
 
 /**
  * The whole sheet on one card: the letter at its head, a category in the
- * margin of each line and the word on it. Every line saves itself, as the
- * slate's do, so a locked screen comes back to what was written; the stop
- * under it is pressable once every line holds a word the server would take
- * a stop on, and turns into the grace counting down once anyone calls it.
+ * margin of each line and the word on it. Every line saves itself while it is
+ * typed, so a locked screen comes back to what was written, and the sheet
+ * freezes and sends what it holds the moment its clock runs out, so a word
+ * still being typed counts. The stop under it is pressable once every line
+ * holds a word the server would take a stop on, and turns into the grace
+ * counting down once anyone calls it.
  */
 export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
   clock,
@@ -101,35 +106,42 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
   const content = petitBacContent(round)
   const sheet = content?.yourSheet ?? []
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
-
-  const answerAt = (index: number): string =>
-    (drafts[index] ?? sheet[index] ?? '').trim()
-
-  const save = (index: number) => {
-    const draft = drafts[index]
-
-    if (draft !== undefined && draft.trim() !== (sheet[index] ?? '')) {
-      onWrite(index, draft.trim())
-    }
-  }
-
-  const saveAll = () => {
-    for (const index of Object.keys(drafts)) {
-      save(Number(index))
-    }
-  }
-
-  const saveDrafts = useEffectEvent(saveAll)
+  const sender = useRef<LineSender | null>(null)
+  const writeLine = useEffectEvent(onWrite)
+  const deadline = currentDeadline({ clock, view })
+  const closesId = deadline?.id ?? null
+  const closesInMs = deadline?.remainingMs ?? null
+  const [closedId, setClosedId] = useState<string | null>(null)
+  const hasClosedOnScreen = closesId !== null && closedId === closesId
 
   useEffect(() => {
-    if (Object.keys(drafts).length === 0) {
+    const lines = createLineSender((line, text) => writeLine(line, text))
+
+    sender.current = lines
+
+    return () => {
+      lines.dispose()
+      sender.current = null
+    }
+  }, [])
+
+  // The server takes lines a short grace past this moment, so what the sheet
+  // holds when its clock runs out lands rather than vanishing with the sheet.
+  useEffect(() => {
+    if (closesId === null || closesInMs === null) {
       return
     }
 
-    const timer = setTimeout(saveDrafts, SAVE_DELAY_MS)
+    const timer = setTimeout(() => {
+      sender.current?.flush()
+      setClosedId(closesId)
+    }, closesInMs)
 
     return () => clearTimeout(timer)
-  }, [drafts])
+  }, [closesId, closesInMs])
+
+  const answerAt = (index: number): string =>
+    (drafts[index] ?? sheet[index] ?? '').trim()
 
   if (content === null || content.yourSheet === null) {
     return null
@@ -187,11 +199,13 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
                   enterKeyHint={
                     index === categories.length - 1 ? 'done' : 'next'
                   }
+                  isReadOnly={hasClosedOnScreen}
                   label={name}
                   maxLength={PETIT_BAC_ANSWER_MAX_LENGTH}
-                  onBlur={() => save(index)}
+                  onBlur={() => sender.current?.flush()}
                   onChange={(next) => {
                     setDrafts((previous) => ({ ...previous, [index]: next }))
+                    sender.current?.change(index, next.trim())
                   }}
                   onKeyDown={(event) => {
                     if (event.key === 'Enter') {
@@ -224,9 +238,11 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
         content.stopsWhenFull && (
           <div className='stop'>
             <Button
-              isDisabled={!isStoppable || !view.isHostConnected}
+              isDisabled={
+                !isStoppable || !view.isHostConnected || hasClosedOnScreen
+              }
               onPress={() => {
-                saveAll()
+                sender.current?.flush()
                 onStop()
               }}
               size='large'

@@ -18,7 +18,11 @@ import {
 } from '@melee/core/petitbac/letter-match'
 import { isRowRefused } from '@melee/core/petitbac/row-vote'
 import { categoryOutcomes, sheetPoints } from '@melee/core/petitbac/sheet-pay'
-import { answerGroupKey, groupAnswers } from '@melee/core/round/answer-groups'
+import {
+  answerGroupKey,
+  groupAnswers,
+  isBlankAnswer
+} from '@melee/core/round/answer-groups'
 
 import type { Room, Round } from '@/domain/room/room'
 import { touch } from '@/domain/room/room-service'
@@ -130,6 +134,14 @@ export const votingCategoryIndex = (
   return index === -1 ? null : index
 }
 
+/**
+ * What a line written did to the room. `movesProgress` is a line turning from
+ * blank to written or back: the count of filled lines is all the other screens
+ * are shown of a sheet before the vote, so any other write changes nothing on
+ * them.
+ */
+export type PetitBacWrite = { movesProgress: boolean }
+
 export const writePetitBacLine = ({
   answer,
   categoryIndex,
@@ -144,7 +156,7 @@ export const writePetitBacLine = ({
   playerId: PlayerId
   room: Room
   roundId: RoundId
-}): Result<void, PetitBacRejection> => {
+}): Result<PetitBacWrite, PetitBacRejection> => {
   const found = livePetitBacRoundIn({ room, roundId })
 
   if (found.status === 'failure') {
@@ -166,6 +178,7 @@ export const writePetitBacLine = ({
   }
 
   const sheet = content.sheets.get(playerId) ?? new Map<number, string>()
+  const wasBlank = isBlankAnswer(sheet.get(categoryIndex) ?? null)
 
   if (answer === '') {
     sheet.delete(categoryIndex)
@@ -176,7 +189,7 @@ export const writePetitBacLine = ({
   content.sheets.set(playerId, sheet)
   touch(room, now)
 
-  return Result.success()
+  return Result.success({ movesProgress: wasBlank !== isBlankAnswer(answer) })
 }
 
 /**

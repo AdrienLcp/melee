@@ -8,6 +8,7 @@ import { locksOutOnMissIn, roundDurationMsOf } from '@melee/protocol/game'
 import type { HigherLowerPicks } from '@melee/protocol/higher-lower'
 import type { PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { StickMove } from '@melee/protocol/matchsticks'
+import { PETIT_BAC_IN_FLIGHT_GRACE_MS } from '@melee/protocol/petit-bac'
 import type { HostQuestion } from '@melee/protocol/question'
 import { READY_HOLD_MS } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
@@ -1894,15 +1895,18 @@ const openPhaseDurationMs = (room: Room): number | null => {
     case 'reflex':
       return reflexRoundDurationMs(round.content.flipDelayMs)
     // Once the sheets close the vote runs on the room's word, and until then a
-    // stop's grace may come before the clock.
+    // stop's grace may come before the clock. Either way they close on screen
+    // first, and here once the lines that sent are in.
     case 'petitbac':
       if (round.content.sheetsClosed || round.durationMs === null) {
         return null
       }
 
-      return Math.min(
-        round.durationMs,
-        round.content.stopClosesAtElapsedMs ?? round.durationMs
+      return (
+        Math.min(
+          round.durationMs,
+          round.content.stopClosesAtElapsedMs ?? round.durationMs
+        ) + PETIT_BAC_IN_FLIGHT_GRACE_MS
       )
     default:
       return round.durationMs

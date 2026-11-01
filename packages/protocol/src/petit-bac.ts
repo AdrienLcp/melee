@@ -128,6 +128,14 @@ export const petitBacAnswerSchema = z.string().max(PETIT_BAC_ANSWER_MAX_LENGTH)
 export const PETIT_BAC_STOP_GRACE_MS = 5_000
 
 /**
+ * How long the server keeps taking lines once the sheets have closed on
+ * screen, on the clock or after a stop's grace. Every screen freezes its sheet
+ * at that moment and sends whatever it had not, and those frames have a trip
+ * to make; the sheets close on the server's own clock, this much later.
+ */
+export const PETIT_BAC_IN_FLIGHT_GRACE_MS = 500
+
+/**
  * Where a category is in the round. Every category is `open` while sheets are
  * written and they close together; then the room votes on them one at a time,
  * so at most one is `voting`.

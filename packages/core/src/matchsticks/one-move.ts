@@ -4,11 +4,12 @@ import type {
   StickMove
 } from '@melee/protocol/matchsticks'
 
-import { emptyPlacesOf, glyphWith, sticksOf } from './glyphs'
+import { emptyPlacesOf, glyphWith, liftableSticksOf, sticksOf } from './glyphs'
 
 /**
- * Whether the move lifts a stick that is there and lays it on a place that is
- * empty — all a move has to be. What the sticks read as afterwards is
+ * Whether the move lifts a stick that is there — and that its glyph gives up,
+ * which a `+`'s bar is not — and lays it on a place that is empty: all a move
+ * has to be. What the sticks read as afterwards is
  * `applyMove`'s question, and a move that reads as nothing is still a move: it
  * simply answers nothing.
  */
@@ -27,7 +28,7 @@ export const isPlayableMove = ({
   return (
     fromGlyph !== undefined &&
     toGlyph !== undefined &&
-    sticksOf(fromGlyph).includes(from.slot) &&
+    liftableSticksOf(fromGlyph).includes(from.slot) &&
     emptyPlacesOf(toGlyph).includes(to.slot)
   )
 }
@@ -85,7 +86,7 @@ export const oneStickMoves = (glyphs: string): MatchsticksSolution[] => {
   const chars = [...glyphs]
 
   return chars.flatMap((fromGlyph, fromIndex) =>
-    sticksOf(fromGlyph).flatMap((fromSlot) =>
+    liftableSticksOf(fromGlyph).flatMap((fromSlot) =>
       chars.flatMap((toGlyph, toIndex) =>
         emptyPlacesOf(toGlyph).flatMap((toSlot) => {
           const move = {

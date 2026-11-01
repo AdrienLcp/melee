@@ -22,7 +22,8 @@ import {
   nearestPlace,
   STICK_LENGTH,
   type StickPose,
-  spokenGlyph
+  spokenGlyph,
+  stickLiftedBy
 } from '@/helpers/matchstick-geometry'
 import { placedBy, shownMoveOf } from '@/helpers/stick-move'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -181,7 +182,12 @@ export const MatchstickBoard: React.FC<MatchstickBoardProps> = ({
   const shownMove = shownMoveOf({ lifted: held, placed })
   const layout = movedLayoutOf({ glyphs, move: shownMove })
   const places = placesOf(layout)
-  const firstStickAt = places.findIndex((place) => !place.isEmpty)
+  const sticks = places.filter((place) => !place.isEmpty)
+  const reaches = places.filter(
+    (place) =>
+      place.isEmpty || stickLiftedBy({ pressed: place, sticks }) === place
+  )
+  const firstStickAt = reaches.findIndex((place) => !place.isEmpty)
   const target =
     dragged === null
       ? null
@@ -201,12 +207,19 @@ export const MatchstickBoard: React.FC<MatchstickBoardProps> = ({
   const lay = ({ from, to }: { from: StickPlace; to: StickPlace }): void =>
     onPlace(placedBy({ lifted: from, placed, to }))
 
-  const placeUnder = (point: DrawingPoint): Place | null =>
-    nearestPlace({
-      candidates: places.filter((place) => !place.isEmpty || lifted !== null),
+  const placeUnder = (point: DrawingPoint): Place | null => {
+    const place = nearestPlace({
+      candidates: places.filter(
+        (candidate) => !candidate.isEmpty || lifted !== null
+      ),
       point,
       reach: GRAB_REACH
     })
+
+    return place === null || place.isEmpty
+      ? place
+      : stickLiftedBy({ pressed: place, sticks })
+  }
 
   const nameOf = (place: Place): string =>
     translate(
@@ -335,7 +348,7 @@ export const MatchstickBoard: React.FC<MatchstickBoardProps> = ({
         move={shownMove}
       />
       <Toolbar aria-label={ariaLabel} className='reaches'>
-        {places.map((place, index) =>
+        {reaches.map((place, index) =>
           place.isEmpty ? (
             <ReactAriaButton
               aria-label={nameOf(place)}

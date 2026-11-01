@@ -24,12 +24,14 @@ import {
   type Peer,
   playerView,
   type RoomHarness,
+  sleep,
   waitFor
 } from './room-harness'
 
 /** Five seconds in play; a fraction of one here, so a stop's grace costs no suite its time. */
 vi.mock('@melee/protocol/petit-bac', async (importOriginal) => ({
   ...(await importOriginal<typeof import('@melee/protocol/petit-bac')>()),
+  PETIT_BAC_IN_FLIGHT_GRACE_MS: 500,
   PETIT_BAC_STOP_GRACE_MS: 300
 }))
 
@@ -274,6 +276,76 @@ describe('a Petit Bac round through the seam', () => {
       'open',
       'open'
     ])
+  })
+
+  it('[petitbac] keeps a line that lands once the sheets have closed on screen, inside the grace for it', async () => {
+    const { lea, roundId, sheetsClosed, stop, write, zoe } = await roundInPlay()
+
+    await write(zoe, SHEETS.zoe)
+    stop(zoe)
+    await waitFor(
+      () => petitBacRound(playerView(lea))?.stoppedBy !== null,
+      'the stop to reach every seat'
+    )
+
+    const view = playerView(lea)
+    const closesOnScreenInMs =
+      (petitBacRound(view)?.stopClosesAtElapsedMs ?? 0) -
+      (view?.roundElapsedMs ?? 0)
+
+    await sleep(closesOnScreenInMs + 100)
+    lea.send({
+      answer: 'Brésil',
+      categoryIndex: 0,
+      roundId,
+      type: 'petitbac.write'
+    })
+    await sheetsClosed()
+
+    expect(errorsIn(lea)).toEqual([])
+    expect(
+      petitBacRound(playerView(lea))?.rows?.map(({ text }) => text)
+    ).toContain('Brésil')
+  })
+
+  it('[petitbac] keeps a written line changed to another word without sending any screen a frame', async () => {
+    const { host, lea, max, roundId, sheetsClosed, stop, wall, write, zoe } =
+      await roundInPlay()
+    const peers = [host, wall, zoe, max, lea]
+    const updatesOf = (peer: { frames: { message: { type: string } }[] }) =>
+      peer.frames.filter(({ message }) => message.type === 'room.updated')
+        .length
+
+    await write(zoe, SHEETS.zoe)
+    await write(max, ['Bolivie', '', ''])
+
+    const before = peers.map(updatesOf)
+
+    max.send({
+      answer: 'Botswana',
+      categoryIndex: 0,
+      roundId,
+      type: 'petitbac.write'
+    })
+    max.send({
+      answer: 'Bison',
+      categoryIndex: 1,
+      roundId,
+      type: 'petitbac.write'
+    })
+    await waitFor(
+      () => filledCounts(host).join() === '3,2,0',
+      'the line filled after it to be counted'
+    )
+
+    expect(peers.map(updatesOf)).toEqual(before.map((count) => count + 1))
+
+    stop(zoe)
+    await sheetsClosed()
+
+    expect(
+      petitBacRound(playerView(max))?.rows?.map(({ text }) => text)
+    ).toContain('Botswana')
   })
 
   it('[petitbac] refuses a stop from a sheet off the letter or of bare initials', async () => {

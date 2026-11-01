@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import { stickSlots } from '@melee/protocol/matchsticks'
 
-import { emptyPlacesOf, sticksOf } from './glyphs'
+import { emptyPlacesOf, liftableSticksOf, sticksOf } from './glyphs'
 import {
   applyMove,
   isPlayableMove,
@@ -39,6 +39,40 @@ describe('one stick moved', () => {
       expect(moved.glyphs.split('=')).toHaveLength(2)
       expect(moved.move.from.glyphIndex).not.toBe(3)
       expect(moved.move.to.glyphIndex).not.toBe(3)
+    }
+  })
+})
+
+describe('a plus', () => {
+  it('[matchsticks] gives up its upright and leaves a minus', () => {
+    expect(
+      applyMove({
+        glyphs: '5+7=2',
+        move: {
+          from: { glyphIndex: 1, slot: 'v' },
+          to: { glyphIndex: 0, slot: 'e' }
+        }
+      })
+    ).toBe('6-7=2')
+  })
+
+  it('[matchsticks] never gives up its bar', () => {
+    expect(
+      isPlayableMove({
+        glyphs: '5+7=2',
+        move: {
+          from: { glyphIndex: 1, slot: 'h' },
+          to: { glyphIndex: 0, slot: 'e' }
+        }
+      })
+    ).toBe(false)
+
+    for (const glyphs of ['5+7=2', '6+4=4', '3+3=8', '1+1+1=3']) {
+      for (const { move } of oneStickMoves(glyphs)) {
+        const lifted = `${[...glyphs][move.from.glyphIndex]}${move.from.slot}`
+
+        expect(lifted).not.toBe('+h')
+      }
     }
   })
 })
@@ -148,7 +182,7 @@ describe('a move sent by a screen', () => {
     for (const glyphs of ['6+4=4', '508', '1']) {
       const chars = [...glyphs]
       const lifts = chars.flatMap((glyph, glyphIndex) =>
-        sticksOf(glyph).map((slot) => ({ glyphIndex, slot }))
+        liftableSticksOf(glyph).map((slot) => ({ glyphIndex, slot }))
       )
       const lays = chars.flatMap((glyph, glyphIndex) =>
         emptyPlacesOf(glyph).map((slot) => ({ glyphIndex, slot }))

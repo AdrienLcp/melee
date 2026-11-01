@@ -480,7 +480,10 @@ disagree. Sticks that then read as nothing — a glyph left or made that is no
 digit or sign — are a move that answers nothing, paid nothing and never
 refused, because a refusal would tell the seat which drops are worth trying.
 Only a frame no screen can send — no stick where it is lifted, one already
-where it is laid — is refused, as `invalid_message`, and spends nothing. The
+where it is laid, or a `+`'s bar, which no screen offers because a plus
+without it is no sign (`liftableSticksOf`) — is refused, as
+`invalid_message`, and spends nothing. A screen pressed anywhere on a whole
+`+` lifts its upright. The
 grade is a fifth shape of verdict, `{ kind: 'move',
 placesFromBest }`: `0` for a true equation or the best number, `1` and `2` for
 the next numbers down (each distinct number one stick makes that improves on
@@ -572,8 +575,13 @@ this seat's back). Until a category with a row has settled, the console's
 round clock as it stood when the stop was called, the votes so far are
 dropped, and the caller joins `barredStopperIds` for the round —
 `canCancelStop` on the console's content says whether it would be taken. The grace is `stopClosesAtElapsedMs`, round time like `durationMs`,
-so a console away freezes it with the clock; it is the round's deadline, and a
-line written after it is `wrong_phase`. The vote then opens on the first
+so a console away freezes it with the clock. Every screen freezes its sheet
+when the clock or the grace runs out and sends each line it had not; the
+server closes the sheets `PETIT_BAC_IN_FLIGHT_GRACE_MS` later on its own clock,
+so those lines land, and one written after that is `wrong_phase`. While the
+sheets are open a screen sends a line being typed at most every 300 ms, and a
+write that leaves a seat's count of filled lines unchanged is stored without a
+broadcast, since no other screen is shown a word before the vote. The vote then opens on the first
 category with a row — one with none settles on the spot. A row is a group of
 the round's answers on the letter under the shared normalisation, named by its
 `key`; a seat refuses any row it did not write (`invalid_message` on its own),

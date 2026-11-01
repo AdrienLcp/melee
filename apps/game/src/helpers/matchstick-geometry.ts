@@ -215,6 +215,26 @@ export const nearestPlace = <Candidate extends { pose: StickPose }>({
   return nearest
 }
 
+/**
+ * The stick a press on `pressed` picks up. A `+` drawn whole gives up only its
+ * upright (`liftableSticksOf`), so a press on its bar takes the upright, whose
+ * centre it shares; once the upright has gone the bar is a minus, and lifts
+ * like any stick.
+ */
+export const stickLiftedBy = <Stick extends DrawnStick>({
+  pressed,
+  sticks
+}: {
+  pressed: Stick
+  /** Every stick the row draws as it stands, a move shown included. */
+  sticks: readonly Stick[]
+}): Stick =>
+  pressed.slot === 'h'
+    ? (sticks.find(
+        (stick) => stick.glyphIndex === pressed.glyphIndex && stick.slot === 'v'
+      ) ?? pressed)
+    : pressed
+
 /** Where a place lies in a row of these glyphs. */
 export const poseOf = ({
   glyphs,

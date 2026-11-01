@@ -52,6 +52,14 @@ const familyOf = (
 export const sticksOf = (glyph: string): readonly StickSlot[] =>
   familyOf(glyph)?.glyphs.get(glyph) ?? []
 
+/**
+ * The sticks a move may lift off a glyph: every one, save a `+`'s bar. A plus
+ * without its bar is a lone upright, which no sign is drawn as, so a `+` gives
+ * up its upright and nothing else.
+ */
+export const liftableSticksOf = (glyph: string): readonly StickSlot[] =>
+  glyph === '+' ? ['v'] : sticksOf(glyph)
+
 /** Where a stick could be laid on this glyph's place. */
 export const emptyPlacesOf = (glyph: string): StickSlot[] => {
   const sticks = sticksOf(glyph)

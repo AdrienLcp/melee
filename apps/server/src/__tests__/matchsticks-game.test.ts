@@ -18,7 +18,7 @@ import {
 } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
-import { emptyPlacesOf, sticksOf } from '@melee/core/matchsticks/glyphs'
+import { emptyPlacesOf, liftableSticksOf } from '@melee/core/matchsticks/glyphs'
 import {
   applyMove,
   isTrueEquation,
@@ -230,7 +230,7 @@ const movesFor = (glyphs: string) => {
   const chars = [...glyphs]
   const unreadable = chars
     .flatMap((fromGlyph, fromIndex) =>
-      sticksOf(fromGlyph).flatMap((fromSlot) =>
+      liftableSticksOf(fromGlyph).flatMap((fromSlot) =>
         chars.flatMap((toGlyph, toIndex) =>
           emptyPlacesOf(toGlyph).map((toSlot) => ({
             from: { glyphIndex: fromIndex, slot: fromSlot },

@@ -975,19 +975,29 @@ const playPetitBac = (
 
   switch (message.type) {
     case 'petitbac.write': {
-      answerPetitBacFrame({
-        engine,
-        outbound,
-        refusal: 'That line was not saved',
-        result: writePetitBacLine({
-          answer: message.answer,
-          categoryIndex: message.categoryIndex,
-          now,
-          playerId,
-          room,
-          roundId
-        })
+      const written = writePetitBacLine({
+        answer: message.answer,
+        categoryIndex: message.categoryIndex,
+        now,
+        playerId,
+        room,
+        roundId
       })
+
+      if (written.status === 'failure') {
+        sendError(outbound, {
+          code: written.error,
+          fatal: false,
+          message: 'That line was not saved'
+        })
+      } else if (written.data.movesProgress) {
+        publishRoom(engine)
+      } else {
+        // A screen sends its lines as they are typed, and broadcasting each
+        // one would tell every screen nothing it shows, keystroke by keystroke.
+        commitRoom(engine)
+      }
+
       break
     }
     case 'petitbac.stop': {
