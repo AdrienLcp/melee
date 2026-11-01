@@ -414,7 +414,7 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
   const answerWords = useAnswerWords(round)
   const answers = revealedInOrder(round).map((answer) => ({
     ...answer,
-    said: answerWords(answer)
+    said: answerWords(answer).text
   }))
 
   const wordsOf = useWordsOf(round)

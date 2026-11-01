@@ -76,6 +76,12 @@
       .words + .points
         margin-inline-start: 0
 
+      // A figure is what the round paid on, and `à…` is no distance: it keeps
+      // its width, so the name is the one that gives way.
+      .words[data-figure]
+        flex: none
+        margin-inline-start: auto
+
       // A moved stick printed on a slip of paper, the way every match is laid.
       .words:has(> .matchstick-row)
         display: flex

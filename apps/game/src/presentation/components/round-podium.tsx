@@ -111,6 +111,7 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
           const answer = answers.find(
             (said) => said.playerId === award.playerId
           )
+          const words = answer === undefined ? null : answerWords(answer)
 
           return (
             <li
@@ -130,9 +131,12 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
                   {` (${translate('player.you')})`}
                 </VisuallyHidden>
               )}
-              {wordsOf !== undefined && answer !== undefined && (
-                <span className='words'>
-                  {wordsOf(award.playerId, answerWords(answer))}
+              {wordsOf !== undefined && words !== null && (
+                <span
+                  className='words'
+                  data-figure={words.isFigure || undefined}
+                >
+                  {wordsOf(award.playerId, words.text)}
                 </span>
               )}
               <span className='points'>

@@ -73,6 +73,17 @@ export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
   }
 }
 
+/** A revealed answer as a screen prints it. */
+export type AnswerWords = {
+  /**
+   * A distance, the pairs an order swapped, an estimate or a sheet's score:
+   * what the round paid on rather than what a seat said, which a crowded row
+   * may not cut — `à…` is no distance, where half a title still reads.
+   */
+  isFigure: boolean
+  text: string
+}
+
 /**
  * What a revealed answer reads as: the line it was typed or picked as — a
  * place picked by name in the reader's language — on the world map its distance, on the timeline the pairs it swapped, and an estimate with its unit — the server
@@ -82,7 +93,7 @@ export const useMoveWords = (): ((placesFromBest: number | null) => string) => {
  */
 export const useAnswerWords = (
   round: RoundView
-): ((answer: { playerId: string; said: string }) => string) => {
+): ((answer: { playerId: string; said: string }) => AnswerWords) => {
   const { locale, translate } = useI18n()
   const atlas = atlasContent(round)
   const distanceWords = useDistanceWords(atlas?.target?.kind ?? 'country')
@@ -101,20 +112,26 @@ export const useAnswerWords = (
         onlyPair !== undefined &&
         (answer.said === 'left' || answer.said === 'right')
       ) {
-        return onlyPair[answer.said][locale]
+        return { isFigure: false, text: onlyPair[answer.said][locale] }
       }
 
-      return translate('higherlower.reveal.score', {
-        count: HIGHER_LOWER_PAIR_COUNT,
-        right: rightPairsOf(round, answer.playerId) ?? 0
-      })
+      return {
+        isFigure: true,
+        text: translate('higherlower.reveal.score', {
+          count: HIGHER_LOWER_PAIR_COUNT,
+          right: rightPairsOf(round, answer.playerId) ?? 0
+        })
+      }
     }
 
     if (estimate !== null) {
-      return quantityWords(
-        Number(answer.said),
-        UNIT_OF_FAMILY[estimate.question.family]
-      )
+      return {
+        isFigure: true,
+        text: quantityWords(
+          Number(answer.said),
+          UNIT_OF_FAMILY[estimate.question.family]
+        )
+      }
     }
 
     const distanceKm = distanceOf(round, answer.playerId)
@@ -124,10 +141,12 @@ export const useAnswerWords = (
       (choice) => choice.fr === answer.said
     )
 
-    return distanceKm !== null
-      ? distanceWords(distanceKm, 'away')
-      : swappedPairs !== null
-        ? orderWords(swappedPairs)
-        : (pickedName?.[locale] ?? answer.said)
+    if (distanceKm !== null) {
+      return { isFigure: true, text: distanceWords(distanceKm, 'away') }
+    }
+
+    return swappedPairs === null
+      ? { isFigure: false, text: pickedName?.[locale] ?? answer.said }
+      : { isFigure: true, text: orderWords(swappedPairs) }
   }
 }
