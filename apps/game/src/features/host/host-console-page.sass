@@ -672,7 +672,8 @@
   // Below the split the console is held in a hand, and the stages that carry
   // a board are held to the screen all the same: the score track along the
   // top, the stage in the box the page leaves it, the presses pinned under it.
-  // Lying down, the presses take a column of their own beside the stage.
+  // Lying down, the presses take a column of their own beside the stage, and
+  // a wall, which has none, keeps the column.
   .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting, .petit-bac-stage, .petit-bac-seat))
     @include layout.narrow
       @include layout.arrived
@@ -712,50 +713,51 @@
             margin-inline-end: var(--menu-inset)
 
       @media (aspect-ratio >= 13 / 10)
-        grid-template-areas: 'header header' 'track track' 'stage footer'
-        grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr)
-        grid-template-rows: auto auto minmax(0, 1fr)
+        &:not(.wall-page)
+          grid-template-areas: 'header header' 'track track' 'stage footer'
+          grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr)
+          grid-template-rows: auto auto minmax(0, 1fr)
 
-        > footer
-          align-self: end
+          > footer
+            align-self: end
 
-          // A third of a phone lying down is narrower than the next round's
-          // label on one line, which ran over the answer beside the column.
-          .button
-            max-width: 100%
-            text-align: center
-            text-wrap: balance
-            white-space: normal
-
-        @media (height < 36rem)
-          grid-template-areas: 'track track' 'stage footer'
-          grid-template-rows: auto minmax(0, 1fr)
-
-          > header
-            @include accessibility.visually-hidden
-
-          > .score-track
-            margin-inline-end: var(--menu-inset)
-
-        // The hold bar times the presses, so lying down it stands over them
-        // and the answer keeps the whole height of its column.
-        &:has(> .stage.revealed)
-          grid-template-areas: 'header header' 'track track' 'stage hold' 'stage footer'
-          grid-template-rows: auto auto minmax(0, 1fr) auto
+            // A third of a phone lying down is narrower than the next round's
+            // label on one line, which ran over the answer beside the column.
+            .button
+              max-width: 100%
+              text-align: center
+              text-wrap: balance
+              white-space: normal
 
           @media (height < 36rem)
-            grid-template-areas: 'track track' 'stage hold' 'stage footer'
-            grid-template-rows: auto minmax(0, 1fr) auto
+            grid-template-areas: 'track track' 'stage footer'
+            grid-template-rows: auto minmax(0, 1fr)
 
-          > .stage.revealed
-            display: contents
+            > header
+              @include accessibility.visually-hidden
 
-            > .reveal-panel
-              grid-area: stage
+            > .score-track
+              margin-inline-end: var(--menu-inset)
 
-            > .round-progress
-              align-self: end
-              grid-area: hold
+          // The hold bar times the presses, so lying down it stands over them
+          // and the answer keeps the whole height of its column.
+          &:has(> .stage.revealed)
+            grid-template-areas: 'header header' 'track track' 'stage hold' 'stage footer'
+            grid-template-rows: auto auto minmax(0, 1fr) auto
+
+            @media (height < 36rem)
+              grid-template-areas: 'track track' 'stage hold' 'stage footer'
+              grid-template-rows: auto minmax(0, 1fr) auto
+
+            > .stage.revealed
+              display: contents
+
+              > .reveal-panel
+                grid-area: stage
+
+              > .round-progress
+                align-self: end
+                grid-area: hold
 
       > .stage.revealed
         display: flex

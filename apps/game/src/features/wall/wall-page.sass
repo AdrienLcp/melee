@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
 
@@ -150,21 +151,97 @@
     // even split: one column of twenty-four rows on a 720p wall is drawn
     // under the text floor.
     @media (aspect-ratio >= 13 / 10)
-      @include layout.wide
-        &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13)),
-        &.host-console-page > .stage.finished > .final-board:has(> .standings > .scoreboard > li:nth-child(13))
-          grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+      &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13)),
+      &.host-console-page > .stage.finished > .final-board:has(> .standings > .scoreboard > li:nth-child(13))
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
 
-          .scoreboard
-            @include two-ranked-columns
+        .scoreboard
+          @include two-ranked-columns
 
     // Lying down, the race takes a wider column than the console gives its
     // standings: on the wall it is the second thing the room reads, not a
     // ledger beside the answer.
     @media (aspect-ratio >= 13 / 10)
-      @include layout.wide
-        &.host-console-page:has(> .stage.revealed > .standings > .track-podium) > .stage.revealed
-          grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)
+      &.host-console-page:has(> .stage.revealed > .standings > .track-podium) > .stage.revealed
+        grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr)
+
+    // Lying down, a wall narrower than the split is still split: the console
+    // trades its standings for a score track because a hand holds it, and a
+    // phone lying down as the room's screen left the right half of the board
+    // empty beside a track that scrolled sideways. Evenly, because each row is
+    // capped by its column's width long before the height binds.
+    @media (aspect-ratio >= 13 / 10)
+      @include layout.narrow
+        // The header and the stage alone: the console's rows for a track and
+        // presses the wall never draws cost two gaps of the board's height.
+        &.host-console-page:has(> .stage:is(.revealed, .finished))
+          grid-template-areas: 'header' 'stage'
+          grid-template-rows: auto minmax(0, 1fr)
+
+          // Short, the header goes, as it does from a short reveal above the
+          // split: twelve rows a column at the text floor need its height.
+          @media (height < 36rem)
+            grid-template-areas: 'stage'
+            grid-template-rows: minmax(0, 1fr)
+
+            > header
+              @include accessibility.visually-hidden
+
+        &.host-console-page:has(> .stage.revealed > .standings) > .stage.revealed
+          container: reveal / size
+          display: grid
+          gap: var(--reveal-gap)
+          grid-template: 'panel standings' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
+
+          &.holding
+            grid-template: 'panel standings' minmax(0, 1fr) 'hold hold' auto / minmax(0, 1fr) minmax(0, 1fr)
+            row-gap: var(--space-s)
+
+          > .reveal-panel
+            grid-area: panel
+
+          // In the middle of its box, as above the split.
+          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='petitbac'])
+            justify-content: safe center
+
+          // Two blocks side by side, each opening on its heading: the
+          // console drops this one for the score track over it, which the
+          // wall does not draw.
+          > .reveal-panel.bare > .this-round-head
+            display: flex
+
+          > .standings
+            align-self: stretch
+            display: grid
+            gap: var(--space-xs)
+            grid-area: standings
+            grid-template-rows: auto minmax(0, 1fr)
+            min-height: 0
+
+        &.host-console-page > .stage.finished > .final-board
+          align-items: center
+          grid-template: 'podium standings' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
+
+          &:has(> .seat-podium)
+            grid-template: 'podium standings' minmax(0, 1fr) 'seats standings' auto / minmax(0, 1fr) minmax(0, 1fr)
+
+          // Beside the standings the winner has the height a stacked board
+          // keeps for them, and stands over its name as above the split.
+          &:not(:has(> .seat-podium)) > .podium:has(.pawns)
+            display: flex
+            text-align: center
+
+            .pawns
+              font-size: clamp(2.5rem, calc(min(42cqh, 55cqi) / var(--winner-count, 1)), 20rem)
+
+            .winners
+              font-size: clamp(2rem, min(11cqh, calc(160cqi / var(--longest-word-width, 6))), 8rem)
+
+          > .standings
+            visibility: visible
+
+          > .score-track
+            display: none
 
     // A square wall has the height for neither the answer nor a table of
     // teams once they are stacked, and a column of trays fits beside it: a
@@ -264,13 +341,36 @@
           display: none
 
     // A wall is never held in a hand, so a narrow one keeps the standings the
-    // console trades for its score track, under the answer.
+    // console trades for its score track: under the answer upright, beside it
+    // lying down.
     @include layout.narrow
-      &:has(> .stage.revealed > .standings)
-        > .score-track
-          display: none
+      &:has(> .stage.revealed > .standings) > .score-track
+        display: none
 
-        > .stage.revealed
+      &.host-console-page > .stage:is(.revealed, .finished):has(.standings > .scoreboard > li:nth-child(13)) .scoreboard
+        @include two-ranked-columns
+
+      // The rows the console boxes on a wide screen, so the size the list
+      // divides its box by is the size each part is drawn at. A row is 2.15
+      // of its size, 0.6 of it padding: once the size is at the text floor,
+      // the padding gives way before a row leaves the box.
+      &.host-console-page > .stage:is(.revealed, .finished) .standings > .scoreboard > li
+        padding-block: clamp(0rem, calc((100cqh / var(--rows-per-column, var(--standings-rows, 8)) - 1.55em) / 2), 0.3em)
+
+        .rank
+          font-size: var(--text-em-s)
+
+        .nickname
+          font-size: 1em
+
+        .score
+          @include typography.solid
+
+          font-size: var(--text-em-xl)
+
+    @media (aspect-ratio < 13 / 10)
+      @include layout.narrow
+        &:has(> .stage.revealed > .standings) > .stage.revealed
           justify-content: center
 
           > .reveal-panel
@@ -296,25 +396,6 @@
             > .standings
               flex: 1 1 0
               grid-template-rows: auto minmax(0, 1fr)
-
-              // The rows the console boxes on a wide screen, so the size the
-              // list divides its box by is the size each part is drawn at.
-              li
-                padding-block: 0.3em
-
-                .rank
-                  font-size: var(--text-em-s)
-
-                .nickname
-                  font-size: 1em
-
-                .score
-                  @include typography.solid
-
-                  font-size: var(--text-em-xl)
-
-      &.host-console-page > .stage:is(.revealed, .finished):has(.standings > .scoreboard > li:nth-child(13)) .scoreboard
-        @include two-ranked-columns
 
 
     // A seat's name gives up its width before a category does: unwrapped, a

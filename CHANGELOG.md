@@ -298,6 +298,14 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A wall on a small screen shows its whole board.** Upright, the
+  final standings no longer spill up over their heading. Lying down — a phone
+  as the room's screen — the reveal and the final board stand beside the
+  standings as on a television: the reveal's standings were piled onto the
+  header, and the final board traded them for a strip that scrolled sideways
+  beside half a screen of nothing. Twenty-four seats fit in two columns at
+  every size, a short screen giving up its header and the rows' padding first.
+
 - `[Game]` **A screen is laid down once, not again at every reveal.** The
   player's screen swept itself in afresh at the reveal of nearly every round,
   under the answer's own strike, and a console on a wide screen did the same

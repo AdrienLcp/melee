@@ -61,7 +61,11 @@ The wall fits by giving things up, in this order, before it ever scrolls:
 Then rows shrink over the height budget (`standingsRowsOf`) down to the
 `--text-xs` floor, then a list past twelve seats takes two columns, filled
 top to bottom — lying down and on a narrow wall, never at 9:16, which has the
-height for one. The round's podium drops from three to the first alone
+height for one — and at the floor a row's padding gives way before the row
+leaves the box. Lying down, a wall splits the answer or the winner from the
+standings at any width, a phone lying down as the room's screen included, and
+under 36rem tall it drops its header at a reveal and on the final board. The
+round's podium drops from three to the first alone
 ("+ N autres") to the count alone, and the tally is cut in whole chips
 (`useWholeChips`), never scrolled. The other screens may use the same order
 to stay legible.
