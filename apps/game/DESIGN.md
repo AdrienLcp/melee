@@ -497,6 +497,20 @@ past its box is a twentieth of its size rather than a pixel, because a line set
 tighter than the face's ascent reaches past it by a sliver that grows with the
 type. Any change to a round screen is checked against it.
 
+**A keyboard is half the screen.** Chrome and Firefox on Android shrink the
+layout viewport under it because `index.html` asks for
+`interactive-widget=resizes-content`, so `dvh` follows the keys. Safari on iOS
+lays the keys over a page that keeps its height: there the shell publishes
+`visualViewport.height` (times its scale, so a pinch is not a keyboard) as
+`--visual-viewport-height`, and every screen held to the viewport takes
+`--shown-height`, the smaller of the two. A field's round is a size container
+and its form another, so what gives way is decided by the box the question
+leaves the form, never by the device: the hint and the count, then the press's
+height, then the press beside the field, then the label into the field. A
+seated console standing upright also lets its tab bar and its reveal press wait
+while its own field is focused. The spec holds the question, the field and the
+press in view at 320×284, 360×320 and 390×422.
+
 ### The console held in a hand
 
 Below the split the console's stages are drawn to fit the screen like the

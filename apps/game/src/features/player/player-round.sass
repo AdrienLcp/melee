@@ -60,6 +60,13 @@
     align-items: center
     justify-content: center
 
+    // The inner clock's target beside the count-in lying down: stacked, a
+    // phone held sideways put the number under the fold.
+    &:has(> .count-prompt)
+      @include framed.lying-down
+        column-gap: var(--space-l)
+        flex-flow: row wrap
+
   // What this player is about to play, on the game's own lid: the spine's
   // colour banded across the top, its name under it, and what a round of it
   // pays. Before the table decides there is no lid yet, only its recess.
@@ -112,20 +119,26 @@
 
   // The question on its paper card with the round's sand along its top, the
   // way the framed rounds print it — and with no question, the groove alone.
+  // The page holds it to the screen, so the form gives way inside the box the
+  // card leaves it (`answer-forms.sass`) rather than run under a keyboard.
   .player-round.typed-round
-    --question-k: min(72cqi, 30dvh)
-    --question-cap: min(7cqi, 4.4dvh, 2.5rem)
+    --question-k: min(72cqi, 36cqh)
+    --question-cap: min(7cqi, 5.4cqh, 2.5rem)
 
-    container-type: inline-size
+    container-type: size
+    display: grid
+    grid-template: 'card' auto 'form' minmax(0, 1fr) / minmax(0, 1fr)
 
     // The field follows the card it answers rather than floating to the
     // middle of what is left: a keyboard is about to take the bottom half.
     .answer-form
-      flex: none
+      container: typed-answer / size
+      grid-area: form
       justify-content: flex-start
 
     .round-card
       display: grid
+      grid-area: card
 
       > *
         grid-area: 1 / 1
@@ -140,14 +153,35 @@
         @include question-card.clock-margin
         width: auto
 
+    // Short — a keyboard up — the category gives way first: the question
+    // says what it is about.
+    @container (height < 20rem)
+      .asked-question .category
+        display: none
+
+    // Lying down, the question beside the form, as the framed rounds set it
+    // beside their tiles. A blind test asks none, and keeps its one column.
+    @include framed.lying-down
+      &:has(.asked-question)
+        --question-k: min(31cqi, 66cqh)
+        --question-cap: min(3.6cqi, 7.4cqh)
+
+        column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2.4), var(--space-m))
+        grid-template: 'card form' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
+
+        .round-card
+          align-self: center
+
+        .answer-form
+          justify-content: center
+
     // A place to name: the map is the question and takes the height, the
     // field stays right under it for the keyboard to rise to.
     &:has(.map-question)
-      min-height: 0
+      grid-template-rows: minmax(min(20rem, 45%), 1fr) auto
 
-      .round-card
-        flex: 1 1 0
-        min-height: min(20rem, 45dvh)
+      .answer-form
+        container-type: normal
 
   // The theme on its card with the round's sand along its top, and the sheet
   // taking everything under it, down to the field.
@@ -179,6 +213,27 @@
         @include question-card.clock-margin
         width: auto
 
+    // The page holds it to the screen, so a keyboard coming up shrinks the
+    // round: the theme steps down before the field can leave the screen.
+    &:has(> .black-square-answer)
+      container: black-square-round / size
+
+    @media (aspect-ratio < 13 / 10)
+      @container black-square-round (height < 16rem)
+        .round-card .black-square-theme
+          font-size: var(--text-s)
+
+    // Lying down, the theme down one side and the sheet — or the keeper's
+    // list — down the other, as the framed rounds set a question beside its
+    // tiles.
+    @include framed.lying-down
+      &:has(> :is(.black-square-answer, .black-square-spoken, .black-square-keeper))
+        column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+        grid-template: minmax(0, 1fr) / minmax(0, 0.8fr) minmax(0, 1.2fr)
+
+        .round-card .black-square-theme
+          align-content: center
+
   // The line on its card with the round's sand along its top, and the seats
   // taking everything under it.
   .player-round.most-likely-round
@@ -197,7 +252,7 @@
         @include question-card.card
         @include typography.question-prompt
 
-        font-size: clamp(var(--text-m), calc(var(--stage-unit) * 3.6), 2rem)
+        font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 4.4), 2rem)
         margin: 0
         overflow-wrap: anywhere
         text-wrap: balance
@@ -210,15 +265,36 @@
         width: auto
 
   // The question on its card with the round's sand along its top, and the
-  // slot and its press under it.
+  // slot and its press under it, giving way inside the box the card leaves
+  // them (`estimate-answer.sass`). Lying down, the card beside them.
   .player-round.estimate-round
-    align-content: start
+    --estimate-name-size: clamp(var(--text-l), min(8cqi, 12cqh), 3rem)
+
+    container-type: size
     display: grid
     gap: var(--space-m)
-    min-height: 0
+    grid-template: 'card' auto 'form' minmax(0, 1fr) / minmax(0, 1fr)
+
+    .answer-form
+      align-content: start
+      container: typed-answer / size
+      grid-area: form
+
+    @include framed.lying-down
+      --estimate-name-size: clamp(var(--text-l), min(5cqi, 14cqh), 3rem)
+
+      column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2.4), var(--space-m))
+      grid-template: 'card form' minmax(0, 1fr) / minmax(0, 1fr) minmax(0, 1fr)
+
+      .round-card
+        align-self: center
+
+      .answer-form
+        align-content: center
 
     .round-card
       display: grid
+      grid-area: card
 
       > *
         grid-area: 1 / 1
@@ -238,14 +314,13 @@
   // The pair's question on its card with the round's sand along its top,
   // and the two names taking everything under it.
   .player-round.higher-lower-round
-    display: flex
-    flex-direction: column
+    container-type: size
+    display: grid
     gap: var(--space-m)
-    min-height: 0
+    grid-template-rows: auto minmax(0, 1fr)
 
     .round-card
       display: grid
-      flex: none
 
       > *
         grid-area: 1 / 1
@@ -285,8 +360,50 @@
         @include question-card.clock-margin
         width: auto
 
+    // A phone lying down: under the card the map was a strip shorter than its
+    // own zoom column, so the card and the hint take one side and the map the
+    // whole height of the other. A taller screen keeps the map its full width.
+    @include framed.lying-down
+      @media (height < 36rem)
+        column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+        grid-template: 'card map' auto 'hint map' minmax(0, 1fr) / minmax(0, 0.8fr) minmax(0, 1.2fr)
+
+        .round-card
+          grid-area: card
+
+          .map-prompt
+            font-size: clamp(var(--text-m), calc(var(--stage-unit) * 6), var(--text-xl))
+
+        .map-answer
+          display: contents
+
+          .world-map
+            grid-area: map
+
+          .hint
+            grid-area: hint
+
+  // The slate being written, held to the screen: the item on the wall, the
+  // sheet and the whole sheet's disclosure divide this box, and each reads
+  // its height off it to give way. Lying down, the line in hand takes one
+  // side whole and the rest stand on the other, by the areas they name.
+  .player-round:has(> .slate-sheet)
+    container: slate / size
+    min-height: 0
+
+    @include framed.lying-down
+      column-gap: var(--space-m)
+      display: grid
+      grid-template: 'writing band' auto 'writing tiles' minmax(0, 1fr) 'writing sheet' auto / minmax(0, 1fr) minmax(0, 1.25fr)
+
+      > .slate-sheet
+        display: contents
+
+  // The sand over the five cards, which take every row the screen leaves.
   .player-round.timeline-round
-    justify-content: center
+    display: grid
+    grid-template-rows: auto minmax(0, 1fr)
+    min-height: 0
 
   // The round's sand over the chip while the colour is up, then over the
   // picker, which takes every row the screen leaves.
@@ -298,14 +415,29 @@
 
   // The puzzle on its card with the round's sand along its top, the sticks as
   // large as the screen allows, and what to do next under it.
+  //
+  // The page is held to the screen, so the card is what gives way: its sticks
+  // shrink before the presses leave the screen. Lying down, the card takes
+  // the height of one column and the presses the other.
   .player-round.matchsticks-round
-    display: grid
     gap: var(--space-m)
-    align-content: center
+    justify-content: safe center
     min-height: 0
+
+    @include framed.lying-down
+      align-items: center
+      column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 3), var(--space-l))
+      display: grid
+      grid-template: minmax(0, 1fr) / minmax(0, 1.5fr) minmax(0, 1fr)
+
+      .round-card
+        align-self: stretch
 
     .round-card
       display: grid
+      flex: 0 1 auto
+      grid-template-rows: minmax(0, 1fr)
+      min-height: 0
 
       > *
         grid-area: 1 / 1
@@ -822,7 +954,7 @@
     // chipboard edge that sinks under the thumb, a keyline printed a margin in.
     .buzzer
 
-      --buzzer-size: min(92cqw, calc(100cqh - 5rem), 26rem)
+      --buzzer-size: max(var(--target), min(92cqw, calc(100cqh - 5rem), 26rem))
       --buzzer-edge: calc(var(--buzzer-size) * 0.045)
 
       align-items: center
@@ -844,7 +976,7 @@
       .word
         @include typography.monument
 
-        font-size: calc(var(--buzzer-size) * 0.22)
+        font-size: max(var(--text-xs), calc(var(--buzzer-size) * 0.22))
         text-transform: uppercase
 
       &[data-pressed],

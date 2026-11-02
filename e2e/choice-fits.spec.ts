@@ -617,11 +617,39 @@ const asNameRound = (view: object): object => {
   }
 }
 
+/** The map's presses, by name, that its frame cuts or hides. */
+const pressesOutsideTheMap = (): string[] => {
+  const map = document.querySelector('.map-question .world-map')
+
+  if (map === null) {
+    return []
+  }
+
+  const frame = map.getBoundingClientRect()
+
+  return [...map.querySelectorAll<HTMLElement>('.controls .button')]
+    .filter((press) => {
+      const box = press.getBoundingClientRect()
+
+      return (
+        box.top < frame.top - 0.5 ||
+        box.left < frame.left - 0.5 ||
+        box.bottom > frame.bottom + 0.5 ||
+        box.right > frame.right + 0.5
+      )
+    })
+    .map((press) => press.getAttribute('aria-label') ?? press.className)
+}
+
 for (const seat of SEATS) {
   test(`[layout] ${seat.name}, atlas name round: the map and its four choices never scroll`, async ({
     page
   }) => {
     await serveRoom({ page, view: asNameRound(seat.view(LONGEST_PROMPT)) })
+    // French runs longer, and its shorter prompt once narrowed the map.
+    await page.addInitScript(() => {
+      localStorage.setItem('melee:locale', 'fr')
+    })
     await page.setViewportSize({ height: 844, width: 390 })
     await page.goto(seat.path)
     await expect(page.locator('.answer-tile')).toHaveCount(4)
@@ -636,15 +664,19 @@ for (const seat of SEATS) {
       await resizeTo({ height, page, width })
 
       const overflow = await page.evaluate(measure)
+      const cutPresses = await page.evaluate(pressesOutsideTheMap)
 
       if (
         overflow.floor < FLOOR_PX ||
         overflow.furthest !== null ||
         overflow.page > 0 ||
         overflow.spills.length > 0 ||
-        overflow.strays.length > 0
+        overflow.strays.length > 0 ||
+        cutPresses.length > 0
       ) {
-        faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
+        faults.push(
+          `${width}×${height} ${JSON.stringify({ ...overflow, cutPresses })}`
+        )
       }
     }
 
@@ -2327,6 +2359,1528 @@ for (const reveal of PLAYER_REVEALS) {
         ) {
           faults.push(
             `${width}×${height} ${JSON.stringify({ ...measured, belowTheFold, lastRow, raggedCases })}`
+          )
+        }
+      }
+
+      expect(faults).toEqual([])
+    })
+  }
+}
+
+/**
+ * Every answering screen on the shelf, held to a phone: a full table of long
+ * names, in French, at the seven shapes a phone is held in.
+ */
+const PHONE_VIEWPORTS = VIEWPORTS.filter(
+  ([width, height]) => Math.min(width, height) <= 430
+)
+
+const fullSeats = fullTable.map((player) => ({ ...player, isReady: false }))
+
+const inBothLocales = (fr: string, en: string = fr) => ({ en, fr })
+
+/** A round of any game on the first seat's screen, the table full and the round two seconds in. */
+const answeringView = ({
+  activeBuzz = null,
+  content,
+  game,
+  mode,
+  phase = 'playing',
+  teams = [],
+  teamsSettings = { kind: 'off' }
+}: {
+  activeBuzz?: object | null
+  content: object
+  game: object
+  mode: object
+  phase?: 'buzzed' | 'countdown' | 'playing'
+  teams?: object[]
+  teamsSettings?: object
+}) => {
+  const view = choosingView(LONGEST_PROMPT)
+  const isCountingIn = phase === 'countdown'
+
+  return {
+    ...view,
+    phase,
+    players: fullSeats,
+    round: {
+      ...view.round,
+      activeBuzz,
+      content,
+      openedWithPlayerIds: isCountingIn ? null : fullSeats.map(({ id }) => id),
+      startsAt: isCountingIn ? SERVER_TIME + 3_000 : view.round.startsAt
+    },
+    roundElapsedMs: isCountingIn ? 0 : view.roundElapsedMs,
+    settings: {
+      ...view.settings,
+      game,
+      lineUp: [game],
+      lineUpAt: 0,
+      mode,
+      teams: teamsSettings
+    },
+    teams,
+    youId: 'p1'
+  }
+}
+
+/** The same round on a console whose host took the first seat, no wall paired. */
+const seatedOn = ({
+  currentContent,
+  view
+}: {
+  currentContent: object
+  view: object
+}) => ({ ...seatedHostView(LONGEST_PROMPT), ...view, currentContent })
+
+const BUZZER_MODE = { answerWindowMs: 10_000, kind: 'buzzer' }
+
+const BLINDTEST_GAME = {
+  difficulty: 'mixed',
+  kind: 'blindtest',
+  roundDurationMs: 30_000,
+  source: { genreIds: [], kind: 'chart' }
+}
+
+const SEATED_BLINDTEST = {
+  audioUrl: null,
+  kind: 'blindtest',
+  playback: { isPaused: false, restarts: 0 },
+  track: null
+}
+
+const LONG_TRACK_CHOICES = [
+  {
+    artist: 'Ennio Morricone',
+    title: 'Il était une fois dans l’Ouest (Bande originale du film)'
+  },
+  { artist: 'Jean-Jacques Goldman', title: 'Quand la musique est bonne' },
+  { artist: 'Daniel Balavoine', title: 'Le chanteur (Remasterisé en 2009)' },
+  { artist: 'Michel Sardou', title: 'Les Lacs du Connemara' }
+].map((track, at) => ({ ...track, coverUrl: null, film: null, id: `t${at}` }))
+
+const blindTestScreen = ({
+  activeBuzz = null,
+  choices = [],
+  mode,
+  phase = 'playing'
+}: {
+  activeBuzz?: object | null
+  choices?: object[]
+  mode: object
+  phase?: 'buzzed' | 'countdown' | 'playing'
+}) =>
+  answeringView({
+    activeBuzz,
+    content: {
+      asksForAFilm: false,
+      choices,
+      kind: 'blindtest',
+      revealedTrack: null
+    },
+    game: BLINDTEST_GAME,
+    mode,
+    phase
+  })
+
+const floorOf = (playerId: string) => ({
+  atServerTime: SERVER_TIME - 1_000,
+  expiresAt: SERVER_TIME + 9_000,
+  playerId
+})
+
+const BARE_BUZZER_GAME = { kind: 'buzzer', locksOutOnMiss: true }
+
+const quizContent = ({
+  category,
+  choices,
+  flag = null,
+  id,
+  prompt,
+  rebus = null,
+  silhouette = null
+}: {
+  category: string
+  choices: string[]
+  flag?: string | null
+  id: string
+  prompt: string
+  rebus?: string | null
+  silhouette?: string | null
+}) => ({
+  choices,
+  kind: 'quiz',
+  prompt: { category, flag, id, prompt, rebus, silhouette },
+  revealedQuestion: null
+})
+
+/** The flags bank's row dealing the longest name. */
+const FLAG_ROUND = quizContent({
+  category: 'flags',
+  choices: ['Burundi', 'République démocratique du Congo', 'Angola', 'Rwanda'],
+  flag: 'dc00ea48b215.svg',
+  id: 'flag-COD',
+  prompt: 'À qui est ce drapeau ?'
+})
+
+/** The rebus bank's widest row, six emojis. */
+const REBUS_ROUND = quizContent({
+  category: 'rebus',
+  choices: [
+    'Back in Black',
+    'Highway to Hell',
+    'Born to Be Wild',
+    'Smoke on the Water'
+  ],
+  id: 'rebus-fr-highway-to-hell',
+  prompt: 'Quelle chanson ?',
+  rebus: '🛣️ ➡️ 😈🔥'
+})
+
+/** The capitals bank's four longest names, under its longest country. */
+const CAPITAL_ROUND = quizContent({
+  category: 'capitals',
+  choices: [
+    'Bandar Seri Begawan',
+    'Sri Jayawardenapura',
+    'Andorre-la-Vieille',
+    'Ciudad de la Paz'
+  ],
+  id: 'capital-KNA',
+  prompt: 'Quelle est la capitale de Saint-Christophe-et-Niévès ?'
+})
+
+const SILHOUETTE_ROUND = quizContent({
+  category: 'silhouettes',
+  choices: ['Congo', 'République démocratique du Congo', 'Burundi', 'Rwanda'],
+  id: 'silhouette-COD',
+  prompt: 'Quel pays a cette forme ?',
+  silhouette: '0ca305eca97b.svg'
+})
+
+const SEATED_QUIZ = { kind: 'quiz', question: null }
+
+const quizScreen = ({
+  content,
+  mode = { kind: 'choice' }
+}: {
+  content: object
+  mode?: object
+}) => answeringView({ content, game: quizGame, mode })
+
+const reflexScreen = (flipsAt: number) =>
+  answeringView({
+    content: {
+      flipsAt,
+      kind: 'reflex',
+      presses:
+        flipsAt < SERVER_TIME
+          ? [{ atServerTime: flipsAt + 234, playerId: 'p1' }]
+          : []
+    },
+    game: reflexGame,
+    mode: BUZZER_MODE
+  })
+
+const SLATE_SHEET_ITEMS = 10
+
+const SLATE_GAME = { itemCount: SLATE_SHEET_ITEMS, kind: 'slate', labels: [] }
+
+const slateScreen = (stateOf: (item: number) => string) => {
+  const itemStates = Array.from({ length: SLATE_SHEET_ITEMS }, (_, item) =>
+    stateOf(item)
+  )
+  const onTheWall = itemStates.findLastIndex((state) => state !== 'open')
+
+  return answeringView({
+    content: {
+      currentItemIndex: onTheWall === -1 ? null : onTheWall,
+      itemCount: SLATE_SHEET_ITEMS,
+      itemStates,
+      kind: 'slate',
+      revealedKeys: itemStates.map((state) =>
+        state === 'marked' ? 'Paprika fumé au bois de hêtre' : null
+      ),
+      yourSheet: itemStates.map((state, item) => ({
+        answer:
+          item % 4 === 3
+            ? null
+            : 'Poulet rôti, thym et citron de Menton, un soupçon de sel',
+        closedBeforeYou: false,
+        verdict: state === 'marked' ? item % 2 === 0 : null
+      }))
+    },
+    game: SLATE_GAME,
+    mode: { kind: 'typed' }
+  })
+}
+
+const atlasPlaceScreen = () =>
+  answeringView({
+    content: {
+      choices: [],
+      direction: 'place',
+      kind: 'atlas',
+      revealedPlacements: null,
+      shown: null,
+      target: { countryCode: 'COD', kind: 'country' }
+    },
+    game: {
+      direction: 'place',
+      kind: 'atlas',
+      places: ['countries'],
+      roundDurationMs: 30_000
+    },
+    mode: { kind: 'point' }
+  })
+
+/** The host's own line at its longest, the same text in every locale. */
+const LONGEST_CHALLENGE = inBothLocales(
+  'Le premier qui rapporte à la table un objet rouge, une cuillère et une chaussette dépareillée, sans courir dans l’escalier, gagne la manche'
+)
+
+const innerclockScreen = (phase: 'countdown' | 'playing') =>
+  answeringView({
+    content: {
+      hasPressed: false,
+      kind: 'innerclock',
+      revealedPresses: null,
+      targetSeconds: 180
+    },
+    game: { kind: 'innerclock' },
+    mode: BUZZER_MODE,
+    phase
+  })
+
+/** The widest equation the deal writes: single digits either side, a two-digit sum. */
+const EQUATION = { glyphs: '9+8=16', goal: 'equation' }
+const NUMBER = { glyphs: '8085', goal: 'biggest' }
+
+const matchsticksScreen = ({
+  activeBuzz = null,
+  mode,
+  phase = 'playing',
+  puzzle
+}: {
+  activeBuzz?: object | null
+  mode: object
+  phase?: 'buzzed' | 'playing'
+  puzzle: object
+}) =>
+  answeringView({
+    activeBuzz,
+    content: {
+      kind: 'matchsticks',
+      puzzle,
+      revealedMoves: null,
+      revealedSolution: null,
+      yourMove: null
+    },
+    game: {
+      goals: ['equation', 'biggest', 'smallest'],
+      kind: 'matchsticks',
+      roundDurationMs: 60_000
+    },
+    mode,
+    phase
+  })
+
+/** The timeline bank's five longest French labels. */
+const LONG_TIMELINE_EVENTS = [
+  [
+    'toy-story',
+    'Toy Story, premier long métrage en images de synthèse',
+    'Toy Story, the first computer-animated feature'
+  ],
+  [
+    'zidane-headbutt',
+    'Coup de tête de Zidane en finale de Coupe du monde',
+    'Zidane’s headbutt in the World Cup final'
+  ],
+  [
+    'jesse-owens',
+    'Jesse Owens gagne quatre médailles d’or à Berlin',
+    'Jesse Owens wins four golds in Berlin'
+  ],
+  [
+    'lumiere-screening',
+    'Première projection publique des frères Lumière',
+    'The Lumière brothers’ first public screening'
+  ],
+  [
+    'beethoven-ninth',
+    'Création de la Neuvième Symphonie de Beethoven',
+    'Premiere of Beethoven’s Ninth Symphony'
+  ]
+].map(([id = '', fr = '', en = '']) => ({ id, labels: inBothLocales(fr, en) }))
+
+const timelineScreen = () =>
+  answeringView({
+    content: {
+      events: LONG_TIMELINE_EVENTS,
+      kind: 'timeline',
+      revealedEvents: null
+    },
+    game: { kind: 'timeline', roundDurationMs: 45_000 },
+    mode: { kind: 'order' }
+  })
+
+/** The black square bank's longest theme. */
+const LONGEST_THEME = inBothLocales(
+  'Les films lauréats du Golden Globe du meilleur film dramatique',
+  'Winners of the Golden Globe for Best Drama Film'
+)
+
+/** The bank's list with the longest answers, as its keeper is sent it. */
+const TURNER_LIST = {
+  answers: [
+    'Pluie, Vapeur et Vitesse',
+    'Le Dernier Voyage du Téméraire',
+    'Tempête de neige - Bateau à vapeur au large de l’embouchure d’un port',
+    'Le Négrier',
+    'Didon construisant Carthage ou l’Ascension de l’Empire carthaginois',
+    'Hannibal traversant les Alpes',
+    'Pêcheurs en mer',
+    'L’Incendie de la Chambre des Lords et des Communes, le 16 octobre 1834',
+    'La Bataille de Trafalgar'
+  ].map((fr, at) => ({ labels: inBothLocales(fr), tier: (at % 3) + 1 })),
+  blackWord: {
+    labels: inBothLocales('Impression, Soleil levant', 'Impression, Sunrise'),
+    why: inBothLocales(
+      'Un tableau de Claude Monet',
+      'A painting by Claude Monet'
+    )
+  }
+}
+
+/** Two teams of twelve: the odd seats guessing aloud, the first seat in the other. */
+const SPOKEN_TEAMS = [1, 0].map((parity, team) => ({
+  board: null,
+  colour: team + 1,
+  gain: 0,
+  id: `team-${team + 1}`,
+  name: null,
+  score: 0,
+  seatIds: fullSeats
+    .filter((_, seat) => seat % 2 === parity)
+    .map(({ id }) => id)
+}))
+
+const blackSquareScreen = ({
+  answerCount,
+  keeper = null
+}: {
+  answerCount: number
+  /** Who keeps the list of a round said aloud, and `null` in a typed one. */
+  keeper?: 'you' | 'another seat' | null
+}) =>
+  answeringView({
+    content: {
+      answerCount,
+      foundCellCount: 2,
+      kind: 'blacksquare',
+      revealed: null,
+      spoken:
+        keeper === null
+          ? null
+          : {
+              guessingTeamId: 'team-1',
+              keeperId: keeper === 'you' ? 'p1' : 'p3',
+              list: keeper === 'you' ? TURNER_LIST : null,
+              tickedCells: [1, 4]
+            },
+      theme: LONGEST_THEME,
+      yourLines:
+        keeper === null
+          ? [{ cells: [0], hitBlackWord: false, line: 'Titanic' }]
+          : null
+    },
+    game: {
+      answerCount,
+      doublesLoneFinds: false,
+      kind: 'blacksquare',
+      roundDurationMs: 60_000
+    },
+    mode: { kind: keeper === null ? 'typed' : 'spoken' },
+    ...(keeper === null
+      ? {}
+      : { teams: SPOKEN_TEAMS, teamsSettings: { count: 2, kind: 'drawn' } })
+  })
+
+const SEATED_BLACK_SQUARE = { grid: null, kind: 'blacksquare' }
+
+/** Ten categories, the most a sheet holds: the bank's longest names and two of the host's own. */
+const PETIT_BAC_CATEGORIES = [
+  { key: 'cartoonCharacter', kind: 'bank' },
+  { key: 'lateExcuse', kind: 'bank' },
+  { key: 'fictionalCharacter', kind: 'bank' },
+  { key: 'instrument', kind: 'bank' },
+  { key: 'singer', kind: 'bank' },
+  { key: 'personalityTrait', kind: 'bank' },
+  { key: 'fruitOrVegetable', kind: 'bank' },
+  { key: 'bodyPart', kind: 'bank' },
+  { kind: 'own', label: 'Chose qu’on oublie en partant en voyage' },
+  { kind: 'own', label: 'Mot qu’on dit à sa belle-mère au repas' }
+]
+
+const YOUR_PETIT_BAC_SHEET = [
+  'Bourriquet',
+  'Mon bus est tombé en panne au beau milieu du boulevard',
+  '',
+  'Basson',
+  'Bénabar',
+  'Bienveillant',
+  'Betterave',
+  '',
+  'Brosse à dents',
+  'Bonjour madame, votre blanquette est délicieuse'
+]
+
+const PETIT_BAC_VOTED_EXCUSES = [
+  'Mon bus est tombé en panne au beau milieu du boulevard',
+  'Bouchons',
+  'Ma belle-sœur a garé sa voiture devant le portail du garage',
+  'Brouillard',
+  'Batterie du réveil à plat après la coupure de courant',
+  'Baby-sitter en retard',
+  'Bagarre de chats dans la cage d’escalier ce matin',
+  'Bateau-mouche',
+  'Billet de train composté au mauvais quai de la gare',
+  'Bisou',
+  'Bébé malade',
+  'Barrage filtrant sur la nationale'
+]
+
+const petitBacScreen = ({
+  isVoting = false,
+  stoppedBy = null
+}: {
+  isVoting?: boolean
+  stoppedBy?: string | null
+}) =>
+  answeringView({
+    content: {
+      barredStopperIds: [],
+      categories: PETIT_BAC_CATEGORIES,
+      categoryStates: PETIT_BAC_CATEGORIES.map((_, at) =>
+        !isVoting ? 'open' : at === 0 ? 'settled' : at === 1 ? 'voting' : 'open'
+      ),
+      kind: 'petitbac',
+      letter: 'B',
+      lines: PETIT_BAC_CATEGORIES.map((_, at) =>
+        isVoting && at === 0
+          ? fullSeats.map(({ id }, seat) => ({
+              isStruck: false,
+              outcome: seat % 4 === 0 ? 'unique' : 'shared',
+              playerId: id,
+              text: seat % 4 === 0 ? `Bugs Bunny ${seat}` : 'Bourriquet'
+            }))
+          : null
+      ),
+      rows: isVoting
+        ? PETIT_BAC_VOTED_EXCUSES.map((text, at) => ({
+            authors: fullSeats
+              .filter((_, seat) => seat % PETIT_BAC_VOTED_EXCUSES.length === at)
+              .map(({ id }) => id),
+            isStruck: false,
+            key: text.toLowerCase(),
+            refusals: at % 3,
+            refused: false,
+            text
+          }))
+        : null,
+      sheetsClosed: isVoting,
+      stopClosesAtElapsedMs: stoppedBy === null ? null : 6_000,
+      stoppedBy,
+      stopsWhenFull: true,
+      votesDone: [],
+      yourRefusals: [],
+      yourSheet: YOUR_PETIT_BAC_SHEET
+    },
+    game: {
+      categories: PETIT_BAC_CATEGORIES,
+      categoryCount: PETIT_BAC_CATEGORIES.length,
+      excludedLetters: ['K', 'Q', 'W', 'X', 'Y', 'Z'],
+      kind: 'petitbac',
+      roundDurationMs: 120_000,
+      stopsWhenFull: true
+    },
+    mode: { kind: 'typed' }
+  })
+
+const SEATED_PETIT_BAC = {
+  canCancelStop: false,
+  kind: 'petitbac',
+  progress: fullSeats.map(({ id }, seat) => ({
+    filled: seat % 11,
+    playerId: id
+  }))
+}
+
+const swatchScreen = ({ isShown }: { isShown: boolean }) =>
+  answeringView({
+    content: {
+      colour: isShown ? '#3a7bd5' : null,
+      hidesAt: isShown ? SERVER_TIME + 60_000 : SERVER_TIME - 1_000,
+      kind: 'swatch',
+      revealedColours: null,
+      yourColour: null
+    },
+    game: { kind: 'swatch', roundDurationMs: 20_000, showMs: 5_000 },
+    mode: { kind: 'colour' }
+  })
+
+const mostLikelyScreen = () =>
+  answeringView({
+    content: {
+      kind: 'mostlikely',
+      // The bank's longest line.
+      labels: inBothLocales(
+        'Qui a le plus de chances de finir de monter un meuble avec des vis en trop ?',
+        'Who is most likely to finish building furniture with screws left over?'
+      ),
+      tally: null,
+      yourBallot: null
+    },
+    game: { kind: 'mostlikely', roundDurationMs: 30_000 },
+    mode: { kind: 'vote' }
+  })
+
+const estimateScreen = () =>
+  answeringView({
+    content: {
+      kind: 'estimate',
+      // The quantity bank's longest name.
+      question: {
+        family: 'height.building',
+        names: inBothLocales(
+          'tour centrale de radio-télédiffusion de Pékin',
+          'Central Radio & TV Tower'
+        )
+      },
+      revealedGuesses: null,
+      value: null,
+      yourGuess: null
+    },
+    game: { kind: 'estimate', roundDurationMs: 30_000 },
+    mode: { kind: 'number' }
+  })
+
+const higherLowerScreen = () =>
+  answeringView({
+    content: {
+      kind: 'higherlower',
+      // The quantity bank's two longest rivers.
+      pairs: [
+        {
+          family: 'length.river',
+          left: inBothLocales(
+            'Saryozen (rivière du bassin Volga-Oural)',
+            'Maly Uzen'
+          ),
+          right: inBothLocales('Vichera (oblast de Novgorod)', 'Vishera')
+        }
+      ],
+      revealedPairs: null,
+      revealedSheets: null,
+      yourPicks: null
+    },
+    game: { kind: 'higherlower', roundDurationMs: 10_000 },
+    mode: { kind: 'pairs' }
+  })
+
+type AnsweringScreen = {
+  /** `<game> <mode>`, then the moment when the game draws more than one. */
+  name: string
+  /** What the seat's screen draws once the snapshot has landed. */
+  ready: string
+  /**
+   * The same round on a console that took the first seat, and what it draws
+   * once landed — `null` where the seat sits the round out to judge it.
+   */
+  seated: { currentContent: object; ready: string } | null
+  view: object
+}
+
+const ANSWERING_SCREENS: AnsweringScreen[] = [
+  {
+    name: 'blind test, the countdown',
+    ready: '.countdown',
+    seated: { currentContent: SEATED_BLINDTEST, ready: '.stage .countdown' },
+    view: blindTestScreen({
+      choices: LONG_TRACK_CHOICES,
+      mode: { kind: 'choice' },
+      phase: 'countdown'
+    })
+  },
+  {
+    name: 'blind test choice',
+    ready: '.answer-tile',
+    seated: { currentContent: SEATED_BLINDTEST, ready: '.answer-tile' },
+    view: blindTestScreen({
+      choices: LONG_TRACK_CHOICES,
+      mode: { kind: 'choice' }
+    })
+  },
+  {
+    name: 'blind test typed',
+    ready: '.answer-form.typed',
+    seated: { currentContent: SEATED_BLINDTEST, ready: '.answer-form.typed' },
+    view: blindTestScreen({ mode: { kind: 'typed' } })
+  },
+  {
+    // The longest stamp a half prints: a film score's composer found.
+    name: 'blind test typed, one half banked',
+    ready: '.answer-form.typed .half',
+    seated: {
+      currentContent: SEATED_BLINDTEST,
+      ready: '.answer-form.typed .half'
+    },
+    view: (() => {
+      const view = blindTestScreen({ mode: { kind: 'typed' } })
+
+      return {
+        ...view,
+        round: {
+          ...view.round,
+          content: { ...view.round.content, asksForAFilm: true }
+        },
+        yourVerdict: {
+          artistCorrect: true,
+          kind: 'halves',
+          titleCorrect: false
+        }
+      }
+    })()
+  },
+  {
+    name: 'blind test buzzer',
+    ready: '.buzzer',
+    seated: null,
+    view: blindTestScreen({ mode: BUZZER_MODE })
+  },
+  {
+    name: 'blind test buzzer, the floor taken by another seat',
+    ready: '.taken-floor',
+    seated: null,
+    view: blindTestScreen({
+      activeBuzz: floorOf('p7'),
+      mode: BUZZER_MODE,
+      phase: 'buzzed'
+    })
+  },
+  {
+    name: 'blind test buzzer, the floor yours',
+    ready: '.taken-floor',
+    seated: null,
+    view: blindTestScreen({
+      activeBuzz: floorOf('p1'),
+      mode: BUZZER_MODE,
+      phase: 'buzzed'
+    })
+  },
+  {
+    name: 'buzzer buzzer',
+    ready: '.buzzer',
+    seated: null,
+    view: answeringView({
+      content: { kind: 'buzzer' },
+      game: BARE_BUZZER_GAME,
+      mode: BUZZER_MODE
+    })
+  },
+  {
+    name: 'buzzer buzzer, the floor taken',
+    ready: '.taken-floor',
+    seated: null,
+    view: answeringView({
+      activeBuzz: floorOf('p7'),
+      content: { kind: 'buzzer' },
+      game: BARE_BUZZER_GAME,
+      mode: BUZZER_MODE,
+      phase: 'buzzed'
+    })
+  },
+  {
+    name: 'quiz typed, the longest question',
+    ready: '.answer-form.typed',
+    seated: { currentContent: SEATED_QUIZ, ready: '.answer-form.typed' },
+    view: quizScreen({ content: quizRound, mode: { kind: 'typed' } })
+  },
+  {
+    name: 'quiz typed, the longest question after a miss',
+    ready: '.answer-form.typed .missed',
+    seated: {
+      currentContent: SEATED_QUIZ,
+      ready: '.answer-form.typed .missed'
+    },
+    view: {
+      ...quizScreen({ content: quizRound, mode: { kind: 'typed' } }),
+      yourVerdict: { isCorrect: false, kind: 'single' }
+    }
+  },
+  ...[
+    { content: FLAG_ROUND, rubric: 'flags' },
+    { content: REBUS_ROUND, rubric: 'emoji rebus' },
+    { content: CAPITAL_ROUND, rubric: 'capitals' },
+    { content: SILHOUETTE_ROUND, rubric: 'silhouettes' }
+  ].map(({ content, rubric }) => ({
+    name: `quiz choice, ${rubric}`,
+    ready: '.answer-tile',
+    seated: { currentContent: SEATED_QUIZ, ready: '.answer-tile' },
+    view: quizScreen({ content })
+  })),
+  {
+    name: 'reflex buzzer, the wait',
+    ready: '.buzzer.armed',
+    seated: { currentContent: { kind: 'reflex' }, ready: '.reflex-stage' },
+    view: reflexScreen(SERVER_TIME + 60_000)
+  },
+  {
+    name: 'reflex buzzer, after the flip',
+    ready: '.reaction',
+    seated: { currentContent: { kind: 'reflex' }, ready: '.reflex-stage' },
+    view: reflexScreen(SERVER_TIME - 2_000)
+  },
+  {
+    name: 'slate typed, the sheet being written',
+    ready: '.slate-sheet',
+    seated: null,
+    view: slateScreen(() => 'open')
+  },
+  {
+    name: 'slate typed, an item closed on the wall',
+    ready: '.slate-sheet',
+    seated: null,
+    view: slateScreen((item) =>
+      item < 2 ? 'marked' : item === 2 ? 'closed' : 'open'
+    )
+  },
+  {
+    name: 'slate typed, every item marked but the last',
+    ready: '.slate-on-the-wall',
+    seated: null,
+    view: slateScreen((item) =>
+      item < SLATE_SHEET_ITEMS - 1 ? 'marked' : 'closed'
+    )
+  },
+  {
+    name: 'atlas point',
+    ready: '.world-map .controls',
+    seated: {
+      currentContent: { answer: null, kind: 'atlas' },
+      ready: '.world-map .controls'
+    },
+    view: atlasPlaceScreen()
+  },
+  {
+    name: 'challenge buzzer, the table playing',
+    ready: '.player-round.notice',
+    seated: null,
+    view: answeringView({
+      content: { kind: 'challenge', labels: LONGEST_CHALLENGE },
+      game: { kind: 'challenge' },
+      mode: BUZZER_MODE
+    })
+  },
+  {
+    name: 'inner clock buzzer, the countdown',
+    ready: '.countdown',
+    seated: {
+      currentContent: { kind: 'innerclock' },
+      ready: '.stage.counting-in'
+    },
+    view: innerclockScreen('countdown')
+  },
+  {
+    name: 'inner clock buzzer, counting',
+    ready: '.innerclock-press',
+    seated: { currentContent: { kind: 'innerclock' }, ready: '.stage.solo' },
+    view: innerclockScreen('playing')
+  },
+  ...[
+    { puzzle: EQUATION, shape: 'equation' },
+    { puzzle: NUMBER, shape: 'number' }
+  ].flatMap(({ puzzle, shape }) => [
+    {
+      name: `matchsticks move, ${shape}`,
+      ready: '.matchsticks-move',
+      seated: {
+        currentContent: { kind: 'matchsticks', solutions: null },
+        ready: '.matchsticks-move'
+      },
+      view: matchsticksScreen({ mode: { kind: 'move' }, puzzle })
+    },
+    {
+      name: `matchsticks buzzer, ${shape} said aloud`,
+      ready: '.buzzer',
+      seated: null,
+      view: matchsticksScreen({ mode: BUZZER_MODE, puzzle })
+    }
+  ]),
+  {
+    name: 'matchsticks buzzer, the floor taken',
+    ready: '.taken-floor',
+    seated: null,
+    view: matchsticksScreen({
+      activeBuzz: floorOf('p7'),
+      mode: BUZZER_MODE,
+      phase: 'buzzed',
+      puzzle: EQUATION
+    })
+  },
+  {
+    name: 'timeline order',
+    ready: '.timeline-answer',
+    seated: {
+      currentContent: { datedEvents: null, kind: 'timeline' },
+      ready: '.timeline-answer'
+    },
+    view: timelineScreen()
+  },
+  ...[3, 9].map((answerCount) => ({
+    name: `black square typed, ${answerCount} answers`,
+    ready: '.black-square-answer',
+    seated: {
+      currentContent: SEATED_BLACK_SQUARE,
+      ready: '.black-square-answer'
+    },
+    view: blackSquareScreen({ answerCount })
+  })),
+  ...(['you', 'another seat'] as const).map((keeper) => ({
+    name: `black square spoken, ${keeper === 'you' ? 'the keeper' : 'a seat guessing'}`,
+    ready: '.black-square-round',
+    seated: { currentContent: SEATED_BLACK_SQUARE, ready: '.stage.playing' },
+    view: blackSquareScreen({ answerCount: 9, keeper })
+  })),
+  ...[
+    { moment: 'the sheet at ten categories', view: petitBacScreen({}) },
+    {
+      moment: 'the sheet after a stop',
+      view: petitBacScreen({ stoppedBy: 'p7' })
+    },
+    { moment: 'the vote', view: petitBacScreen({ isVoting: true }) }
+  ].map(({ moment, view }) => ({
+    name: `petit bac typed, ${moment}`,
+    ready: '.petit-bac-round',
+    seated: { currentContent: SEATED_PETIT_BAC, ready: '.petit-bac-seat' },
+    view
+  })),
+  ...[true, false].map((isShown) => ({
+    name: `shades colour, ${isShown ? 'the colour shown' : 'the picker'}`,
+    ready: isShown ? '.swatch-round' : '.swatch-answer',
+    seated: {
+      currentContent: { kind: 'swatch' },
+      ready: isShown ? '.stage.playing' : '.swatch-answer'
+    },
+    view: swatchScreen({ isShown })
+  })),
+  {
+    name: 'most likely vote',
+    ready: '.most-likely-ballot',
+    seated: {
+      currentContent: { kind: 'mostlikely' },
+      ready: '.most-likely-ballot'
+    },
+    view: mostLikelyScreen()
+  },
+  {
+    name: 'le juste chiffre number',
+    ready: '.estimate-answer',
+    seated: {
+      currentContent: { kind: 'estimate', value: null },
+      ready: '.estimate-answer'
+    },
+    view: estimateScreen()
+  },
+  {
+    name: 'plus ou moins pairs',
+    ready: '.higher-lower-answer',
+    seated: {
+      currentContent: { kind: 'higherlower', valuedPairs: null },
+      ready: '.higher-lower-answer'
+    },
+    view: higherLowerScreen()
+  }
+]
+
+/** The short side a press is reported under: Apple's and WCAG's touch target. */
+const TOUCH_TARGET_PX = 44
+
+type AnsweringOverflow = {
+  /** Every word drawn under the floor, by the element that sets it. */
+  belowTheFloor: string[]
+  /** Every press drawn under another piece at its centre. */
+  covered: string[]
+  /** What reaches furthest past the viewport, outside a box made to scroll. */
+  furthest: string | null
+  /** Every press not wholly on screen: past the viewport, or cut by a box around it. */
+  hidden: string[]
+  /** Every press whose short side is under the touch target — reported, never asserted. */
+  narrow: string[]
+  page: number
+  /** Every box that scrolls on its own — reported, never asserted: a press it hides is `hidden`. */
+  scrolling: string[]
+  /** Every piece of text whose words run past its own box. */
+  spills: string[]
+  /** Every painted box — a card, a tile, a field — whose contents run past it. */
+  spilledCards: string[]
+}
+
+const measureAnswering = ({
+  floorPx,
+  touchTargetPx
+}: {
+  floorPx: number
+  touchTargetPx: number
+}): AnsweringOverflow => {
+  const root = document.scrollingElement ?? document.documentElement
+  const nameOf = (element: Element): string => {
+    const classes = String(element.className).trim().split(/\s+/).join('.')
+
+    return `${element.tagName.toLowerCase()}${classes === '' ? '' : `.${classes}`}`
+  }
+  const textOf = (element: Element): string =>
+    (element.textContent ?? '').trim().replaceAll(/\s+/g, ' ').slice(0, 32)
+  const isClipping = (element: Element): boolean => {
+    const { overflowX, overflowY } = getComputedStyle(element)
+
+    return overflowX !== 'visible' || overflowY !== 'visible'
+  }
+  // A label for assistive technology is a one-pixel box that clips its words.
+  const isScreenReaderOnly = (element: Element): boolean => {
+    for (
+      let piece: Element | null = element;
+      piece !== null && piece !== document.body;
+      piece = piece.parentElement
+    ) {
+      const { height, width } = piece.getBoundingClientRect()
+
+      if (Math.min(height, width) <= 1 && isClipping(piece)) {
+        return true
+      }
+    }
+
+    return false
+  }
+  // The host's side panel and the menu scroll inside their own box by design,
+  // and the skip link waits above the viewport for a keyboard.
+  const isOffstage = (element: Element): boolean =>
+    element.closest('.panel-screen, [role=dialog], [role=menu], .skip-link') !==
+    null
+  const shown = [...document.body.querySelectorAll<HTMLElement>('*')].filter(
+    (element) =>
+      element.checkVisibility({ visibilityProperty: true }) &&
+      !isOffstage(element) &&
+      !isScreenReaderOnly(element)
+  )
+  const isScrolling = (element: Element): boolean => {
+    const { overflowX, overflowY } = getComputedStyle(element)
+
+    return [overflowX, overflowY].some(
+      (overflow) => overflow === 'auto' || overflow === 'scroll'
+    )
+  }
+  const scrollingAncestorOf = (element: Element): Element | null => {
+    for (
+      let ancestor = element.parentElement;
+      ancestor !== null && ancestor !== document.body;
+      ancestor = ancestor.parentElement
+    ) {
+      if (isScrolling(ancestor)) {
+        return ancestor
+      }
+    }
+
+    return null
+  }
+  const visibleBoxOf = (element: Element) => {
+    const box = element.getBoundingClientRect()
+    let { bottom, left, right, top } = box
+
+    for (
+      let ancestor = element.parentElement;
+      ancestor !== null;
+      ancestor = ancestor.parentElement
+    ) {
+      if (isClipping(ancestor)) {
+        const clip = ancestor.getBoundingClientRect()
+
+        top = Math.max(top, clip.top)
+        left = Math.max(left, clip.left)
+        bottom = Math.min(bottom, clip.bottom)
+        right = Math.min(right, clip.right)
+      }
+    }
+
+    return {
+      bottom: Math.min(bottom, innerHeight),
+      left: Math.max(left, 0),
+      right: Math.min(right, innerWidth),
+      top: Math.max(top, 0)
+    }
+  }
+  // Petit Bac's sheet and its vote are the lists allowed to scroll inside
+  // their own box (`screen-roles`): a press in one is in reach while the box
+  // itself is wholly on screen.
+  const reachOf = (press: Element): Element =>
+    press.closest('.petit-bac-sheet .lines, .petit-bac-vote .rows') ?? press
+  const hasOwnText = (element: Element): boolean =>
+    [...element.childNodes].some(
+      (node) =>
+        node.nodeType === Node.TEXT_NODE &&
+        (node.textContent ?? '').trim() !== ''
+    )
+  const texts = shown.filter(hasOwnText)
+
+  const furthest = shown
+    .filter((element) => scrollingAncestorOf(element) === null)
+    .map((element) => {
+      const box = element.getBoundingClientRect()
+
+      return {
+        element,
+        past: Math.max(
+          box.bottom - innerHeight,
+          box.right - innerWidth,
+          -box.top,
+          -box.left
+        )
+      }
+    })
+    .filter(({ element, past }) => {
+      const box = element.getBoundingClientRect()
+
+      return past > 0.5 && box.width > 1 && box.height > 1
+    })
+    .toSorted((a, b) => b.past - a.past)[0]
+
+  const presses = shown.filter(
+    (element) =>
+      element.matches(
+        'button, input:not([type=hidden]), textarea, select, a[href], [role=button], [role=radio], [role=checkbox], [role=switch], [role=slider], [role=tab], [role=option], [role=gridcell], [role=spinbutton]'
+      ) &&
+      element.getBoundingClientRect().width > 2 &&
+      element.getBoundingClientRect().height > 2
+  )
+  const pressName = (press: Element): string => {
+    const box = press.getBoundingClientRect()
+    const label =
+      press.getAttribute('aria-label') ?? (textOf(press) || nameOf(press))
+
+    return `${nameOf(press)} "${label}" ${Math.round(box.width)}×${Math.round(box.height)}`
+  }
+
+  return {
+    belowTheFloor: [
+      ...new Set(
+        texts
+          .filter(
+            (element) =>
+              // The console's tab bar sets its labels under the glyphs, by design.
+              element.closest('.panel-tabs, .panel-rail') === null &&
+              Number.parseFloat(getComputedStyle(element).fontSize) < floorPx
+          )
+          .map(
+            (element) =>
+              `${nameOf(element)} ${Number.parseFloat(getComputedStyle(element).fontSize).toFixed(1)}px "${textOf(element)}"`
+          )
+      )
+    ],
+    covered: presses
+      .filter((press) => {
+        const box = visibleBoxOf(press)
+
+        if (box.right - box.left < 1 || box.bottom - box.top < 1) {
+          return false
+        }
+
+        const hit = document.elementFromPoint(
+          (box.left + box.right) / 2,
+          (box.top + box.bottom) / 2
+        )
+
+        return (
+          hit !== null &&
+          !press.contains(hit) &&
+          !hit.contains(press) &&
+          (press.closest('label') === null ||
+            hit.closest('label') !== press.closest('label'))
+        )
+      })
+      .map((press) => {
+        const box = visibleBoxOf(press)
+        const hit = document.elementFromPoint(
+          (box.left + box.right) / 2,
+          (box.top + box.bottom) / 2
+        )
+
+        return `${pressName(press)} under ${hit === null ? 'nothing' : nameOf(hit)}`
+      }),
+    furthest:
+      furthest === undefined
+        ? null
+        : `${nameOf(furthest.element)} "${textOf(furthest.element)}" ${Math.round(furthest.past)}px past`,
+    hidden: presses
+      .filter((press) => {
+        const box = reachOf(press).getBoundingClientRect()
+        const visible = visibleBoxOf(reachOf(press))
+
+        return (
+          visible.top > box.top + 1 ||
+          visible.left > box.left + 1 ||
+          visible.bottom < box.bottom - 1 ||
+          visible.right < box.right - 1
+        )
+      })
+      .map((press) => {
+        const box = reachOf(press).getBoundingClientRect()
+        const visible = visibleBoxOf(reachOf(press))
+        const shownHeight = Math.max(0, visible.bottom - visible.top)
+        const shownWidth = Math.max(0, visible.right - visible.left)
+
+        return `${pressName(press)} shown ${Math.round(shownWidth)}×${Math.round(shownHeight)} at ${Math.round(box.left)},${Math.round(box.top)}`
+      }),
+    narrow: presses
+      .filter((press) => {
+        const box = press.getBoundingClientRect()
+
+        return Math.min(box.width, box.height) < touchTargetPx
+      })
+      .map(pressName),
+    page: Math.max(
+      root.scrollHeight - innerHeight,
+      root.scrollWidth - innerWidth,
+      0
+    ),
+    scrolling: shown
+      .filter(
+        (element) =>
+          isScrolling(element) &&
+          (element.scrollHeight > element.clientHeight + 1 ||
+            element.scrollWidth > element.clientWidth + 1)
+      )
+      .map(
+        (element) =>
+          `${nameOf(element)} ${element.scrollWidth - element.clientWidth}×${element.scrollHeight - element.clientHeight}px`
+      ),
+    spilledCards: shown
+      .filter((element) => {
+        const style = getComputedStyle(element)
+        const isPainted =
+          style.backgroundImage !== 'none' ||
+          style.backgroundColor !== 'rgba(0, 0, 0, 0)'
+        const slack = Math.max(4, 0.25 * Number.parseFloat(style.fontSize))
+
+        return (
+          isPainted &&
+          !isScrolling(element) &&
+          element.getBoundingClientRect().height < innerHeight &&
+          (element.textContent ?? '').trim() !== '' &&
+          (element.scrollHeight > element.clientHeight + slack ||
+            element.scrollWidth > element.clientWidth + slack)
+        )
+      })
+      .map(
+        (element) =>
+          `${nameOf(element)} "${textOf(element)}" ${element.scrollWidth}/${element.clientWidth}×${element.scrollHeight}/${element.clientHeight}`
+      ),
+    spills: texts
+      .filter((element) => {
+        const style = getComputedStyle(element)
+
+        if (style.display === 'inline' || style.display === 'contents') {
+          return false
+        }
+
+        // 24 twenty-character names at 14px outrun a phone's height: a seat's
+        // name is cut once it fills every line its row holds, by design.
+        if (
+          element.matches('.most-likely-ballot .seat-tile .nickname') &&
+          Math.round(
+            element.clientHeight / Number.parseFloat(style.lineHeight)
+          ) >= Number(style.webkitLineClamp)
+        ) {
+          return false
+        }
+
+        const slack = Math.max(1, 0.05 * Number.parseFloat(style.fontSize))
+        // Clipped across only, ink past the line box is drawn, never cut.
+        const isCutDown = style.overflowY !== 'visible'
+
+        return (
+          element.scrollWidth > element.clientWidth + slack ||
+          (isCutDown && element.scrollHeight > element.clientHeight + slack)
+        )
+      })
+      .map(
+        (element) =>
+          `${nameOf(element)} "${textOf(element)}" ${element.scrollWidth}/${element.clientWidth}×${element.scrollHeight}/${element.clientHeight}`
+      )
+  }
+}
+
+const ANSWERING_ROLES = [
+  { path: `/play/${ROOM_CODE}`, role: 'player' },
+  { path: `/host/${ROOM_CODE}`, role: 'seated host' }
+] as const
+
+for (const screen of ANSWERING_SCREENS) {
+  for (const { path, role } of ANSWERING_ROLES) {
+    const seated = screen.seated
+
+    if (role === 'seated host' && seated === null) {
+      continue
+    }
+
+    test(`[layout] ${role}, ${screen.name}: never scrolls on a phone`, async ({
+      page
+    }) => {
+      await serveRoom({
+        page,
+        view:
+          seated === null || role === 'player'
+            ? screen.view
+            : seatedOn({
+                currentContent: seated.currentContent,
+                view: screen.view
+              })
+      })
+      await page.addInitScript(() => {
+        localStorage.setItem('melee:locale', 'fr')
+      })
+      await page.setViewportSize({ height: 844, width: 390 })
+      await page.goto(path)
+      await expect(
+        page
+          .locator(
+            role === 'player' || seated === null ? screen.ready : seated.ready
+          )
+          .first()
+      ).toBeVisible()
+
+      const faults: string[] = []
+
+      for (const [width, height] of PHONE_VIEWPORTS) {
+        await resizeTo({ height, page, width })
+
+        const { narrow, scrolling, ...overflow } = await page.evaluate(
+          measureAnswering,
+          {
+            floorPx: FLOOR_PX,
+            touchTargetPx: TOUCH_TARGET_PX
+          }
+        )
+
+        if (narrow.length > 0 || scrolling.length > 0) {
+          test.info().annotations.push({
+            description: JSON.stringify({ narrow, scrolling }),
+            type: `${width}×${height}`
+          })
+        }
+
+        if (
+          overflow.belowTheFloor.length > 0 ||
+          overflow.covered.length > 0 ||
+          overflow.furthest !== null ||
+          overflow.hidden.length > 0 ||
+          overflow.page > 0 ||
+          overflow.spilledCards.length > 0 ||
+          overflow.spills.length > 0
+        ) {
+          faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
+        }
+      }
+
+      expect(faults).toEqual([])
+    })
+  }
+}
+
+/** A phone with its keyboard up: the shape the screen keeps above it. */
+const KEYBOARD_UP_VIEWPORTS = [
+  [320, 284],
+  [360, 320],
+  [390, 422]
+] as const
+
+const KEYBOARD_SCREENS = [
+  {
+    /** The field the keyboard rose for. */
+    field: '.black-square-answer input',
+    /** What must stay wholly in view above the keyboard, the field included. */
+    inView: [
+      '.black-square-theme',
+      '.black-square-answer input',
+      '.black-square-answer button[type=submit]'
+    ],
+    name: 'black square typed, 9 answers'
+  },
+  {
+    field: '.slate-sheet .writing input',
+    inView: [
+      '.slate-sheet .writing .label',
+      '.slate-sheet .writing input',
+      '.slate-sheet .stepper button'
+    ],
+    name: 'slate typed, an item closed on the wall'
+  },
+  {
+    // A line low on the sheet, which the list scrolls to inside its card.
+    field: '.petit-bac-sheet .line:nth-child(8) input',
+    inView: [
+      '.petit-bac-sheet .letter-piece',
+      '.petit-bac-sheet .line:nth-child(8) input',
+      '.petit-bac-sheet .stop .button'
+    ],
+    name: 'petit bac typed, the sheet at ten categories'
+  },
+  ...[
+    { inView: '.round-card', name: 'blind test typed' },
+    { inView: '.round-card', name: 'blind test typed, one half banked' },
+    { inView: '.round-card .prompt', name: 'quiz typed, the longest question' },
+    {
+      inView: '.round-card .prompt',
+      name: 'quiz typed, the longest question after a miss'
+    }
+  ].map(({ inView, name }) => ({
+    field: '.answer-form.typed input',
+    inView: [
+      inView,
+      '.answer-form.typed input',
+      '.answer-form.typed button[type=submit]'
+    ],
+    name
+  })),
+  {
+    field: '.estimate-answer input',
+    inView: [
+      '.round-card .estimate-question',
+      '.estimate-answer input',
+      '.estimate-answer button[type=submit]'
+    ],
+    name: 'le juste chiffre number'
+  }
+]
+
+const measureKeyboardUp = (inView: string[]) => {
+  const root = document.scrollingElement ?? document.documentElement
+  const outOfView = inView.flatMap((selector) => {
+    const pieces = [...document.querySelectorAll(selector)].filter((piece) =>
+      piece.checkVisibility({ visibilityProperty: true })
+    )
+
+    if (pieces.length === 0) {
+      return [`${selector} not drawn`]
+    }
+
+    return pieces.flatMap((piece) => {
+      const box = piece.getBoundingClientRect()
+      let { bottom, left, right, top } = box
+
+      for (
+        let ancestor = piece.parentElement;
+        ancestor !== null;
+        ancestor = ancestor.parentElement
+      ) {
+        const { overflowX, overflowY } = getComputedStyle(ancestor)
+
+        if (overflowX !== 'visible' || overflowY !== 'visible') {
+          const clip = ancestor.getBoundingClientRect()
+
+          top = Math.max(top, clip.top)
+          left = Math.max(left, clip.left)
+          bottom = Math.min(bottom, clip.bottom)
+          right = Math.min(right, clip.right)
+        }
+      }
+
+      const isWhole =
+        top <= box.top + 1 &&
+        left <= box.left + 1 &&
+        bottom >= box.bottom - 1 &&
+        right >= box.right - 1 &&
+        box.top >= -1 &&
+        box.left >= -1 &&
+        box.bottom <= innerHeight + 1 &&
+        box.right <= innerWidth + 1
+      const hit = document.elementFromPoint(
+        (box.left + box.right) / 2,
+        (box.top + box.bottom) / 2
+      )
+      const isCovered =
+        hit !== null && !piece.contains(hit) && !hit.contains(piece)
+
+      if (isWhole && !isCovered) {
+        return []
+      }
+
+      const where = isWhole
+        ? `under ${hit?.tagName.toLowerCase()}.${String(hit?.className).split(' ').join('.')}`
+        : `at ${Math.round(box.top)}–${Math.round(box.bottom)}`
+
+      return [
+        `${selector} "${(piece.textContent ?? '').trim().slice(0, 24)}" ${where}`
+      ]
+    })
+  })
+
+  return {
+    outOfView,
+    page: Math.max(
+      root.scrollHeight - innerHeight,
+      root.scrollWidth - innerWidth,
+      0
+    )
+  }
+}
+
+for (const keyboard of KEYBOARD_SCREENS) {
+  const screen = ANSWERING_SCREENS.find(({ name }) => name === keyboard.name)
+
+  for (const { path, role } of ANSWERING_ROLES) {
+    const seated = screen?.seated ?? null
+
+    if (screen === undefined || (role === 'seated host' && seated === null)) {
+      continue
+    }
+
+    test(`[layout] ${role}, ${screen.name}: with the keyboard up, the question, the field and the send press stay in view`, async ({
+      page
+    }) => {
+      await serveRoom({
+        page,
+        view:
+          seated === null || role === 'player'
+            ? screen.view
+            : seatedOn({
+                currentContent: seated.currentContent,
+                view: screen.view
+              })
+      })
+      await page.addInitScript(() => {
+        localStorage.setItem('melee:locale', 'fr')
+      })
+      await page.setViewportSize({ height: 844, width: 390 })
+      await page.goto(path)
+      await expect(page.locator(keyboard.field).first()).toBeVisible()
+
+      const faults: string[] = []
+
+      for (const [width, height] of KEYBOARD_UP_VIEWPORTS) {
+        await resizeTo({ height, page, width })
+        await page.locator(keyboard.field).first().focus()
+
+        const { outOfView, page: scrolled } = await page.evaluate(
+          measureKeyboardUp,
+          keyboard.inView
+        )
+
+        if (outOfView.length > 0 || scrolled > 0) {
+          faults.push(
+            `${width}×${height} ${JSON.stringify({ outOfView, page: scrolled })}`
           )
         }
       }

@@ -66,6 +66,36 @@ height for one. The round's podium drops from three to the first alone
 (`useWholeChips`), never scrolled. The other screens may use the same order
 to stay legible.
 
+## When an answering screen runs out of room
+
+A player's screen and a seated console, from countdown to buzzed, fit by
+giving things up in this order, never by scrolling the page:
+
+1. decoration and repeats — the answered pawns, a preview chip the thumb
+   already shows, the header's copy of a turn the stage shows;
+2. secondary text — a hint, a note, the category, the *latest* end of a
+   timeline (never the *earliest*, which says the direction), a label that
+   becomes the field's placeholder;
+3. size, down to `--text-xs` and a 44px press — the send press drops from
+   large to the control height, a board (sticks, a map, the picker's square)
+   shrinks to a floor of its own before any press leaves the screen;
+4. layout — lying down (`framed.lying-down`, 13/10) the question takes one
+   side and the answer the other; a list of seats takes the columns its
+   height allows (`seatColumns`).
+
+Only a list that no clock presses may then scroll **inside its own box**:
+Petit Bac's sheet and its vote, the slate's tile strip and *Toute ta
+feuille*. The letter, the clock, *Stop*, the field and Précédent/Suivant stay
+outside that box. Choices, a pair, the five events and the most-likely seats
+never scroll — 24 seats at 320 wide end a long name on an ellipsis at the
+lines its row holds instead.
+
+**A keyboard is half the screen.** `--shown-height` (the visual viewport, for
+an engine that overlays the keyboard) is the frame's height, and with a field
+focused the question, the field and the send press still sit in it: at
+320×284 the seated console hides its tab bar until the keyboard goes down.
+`DESIGN.md`, *A keyboard is half the screen*, holds the engines.
+
 ## The shapes every screen is checked at
 
 16:9 and 9:16, small and large, for each role — the wall included at 9:16,

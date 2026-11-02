@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
@@ -9,6 +9,7 @@ import { SeatTile } from '@/presentation/components/seat-tile'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
+import { useSeatColumns } from './use-seat-columns'
 
 import './most-likely-ballot.sass'
 
@@ -23,7 +24,8 @@ type MostLikelyBallotProps = {
 
 /**
  * Every seat the round opened on as a press, the voter's own included, and one
- * press is the vote: a ballot that can move waits to see the others.
+ * press is the vote: a ballot that can move waits to see the others. Every
+ * seat is in view at once, dealt into as many columns as the box needs.
  *
  * Mounted under `key={round.id}`, so the vote is about this round alone.
  */
@@ -45,13 +47,16 @@ export const MostLikelyBallot: React.FC<MostLikelyBallotProps> = ({
     .filter(
       ({ player }) => round.openedWithPlayerIds?.includes(player.id) ?? true
     )
+  const list = useRef<HTMLUListElement>(null)
+
+  useSeatColumns({ count: seats.length, list })
 
   return (
     <section
       aria-label={translate('mostlikely.ballot.label')}
       className='answer-form most-likely-ballot'
     >
-      <ul>
+      <ul ref={list}>
         {seats.map(({ player, seat }) => (
           <li key={player.id}>
             <SeatTile

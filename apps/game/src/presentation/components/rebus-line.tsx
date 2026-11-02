@@ -20,7 +20,8 @@ type RebusLineProps = {
 /**
  * A rebus printed onto the card it is asked on, one emoji after another in
  * each device's own emoji font. The caller sizes it through `--rebus-size`,
- * and the line shrinks below that to keep its widest word on one line.
+ * and the line shrinks below that to stay one line: a second row is height
+ * the four tiles under the card do not have on a phone.
  */
 export const RebusLine: React.FC<RebusLineProps> = ({
   isNamedBeside = false,
@@ -28,13 +29,16 @@ export const RebusLine: React.FC<RebusLineProps> = ({
 }) => {
   const translate = useTranslate()
   const words = rebusWordsOf(rebus)
-  const longestWord = Math.max(...words.map(({ emojis }) => emojis.length))
+  const emojiCount = words.reduce(
+    (count, { emojis }) => count + emojis.length,
+    0
+  )
 
   return (
     <div
       aria-hidden={isNamedBeside || undefined}
       className='rebus-line'
-      style={{ '--rebus-longest-word': longestWord }}
+      style={{ '--rebus-emojis': emojiCount, '--rebus-words': words.length }}
     >
       <p className='words'>
         <VisuallyHidden elementType='span'>

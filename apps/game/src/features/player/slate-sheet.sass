@@ -1,12 +1,22 @@
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/framed'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
 @layer components
+  // Held to the screen, the sheet reads the height of the round's box,
+  // `slate`: the note goes first, then the lid tightens and the item's name
+  // steps down. The field and its two presses never go; the tiles keep what
+  // is left, in a strip that scrolls on its own.
   .slate-sheet
     display: flex
+    flex: 1 1 auto
     flex-direction: column
     gap: var(--space-l)
+    min-height: 0
+
+    @container slate (height < 38rem)
+      gap: var(--space-s)
 
     // The line in hand is the sheet itself: a lid with the item's name struck
     // at its head and the paper slot under it.
@@ -14,9 +24,18 @@
       @include box-lid.box-lid
 
       display: flex
+      flex: none
       flex-direction: column
       gap: var(--space-s)
+      grid-area: writing
       padding: var(--space-l) clamp(var(--space-m), calc(var(--stage-unit) * 5), var(--space-xl)) var(--space-m)
+
+      @include framed.lying-down
+        align-self: start
+
+      @container slate (height < 38rem)
+        gap: var(--space-xs)
+        padding: var(--space-s) clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))
 
     .label
       @include typography.monument
@@ -33,14 +52,24 @@
 
         text-wrap: balance
 
+      @container slate (height < 38rem)
+        &:not(.long)
+          font-size: clamp(2.25rem, calc(var(--stage-unit) * 12), 4rem)
+
     .answer .react-aria-Input
       font-size: clamp(1.375rem, calc(var(--stage-unit) * 4.5), 2rem)
       min-height: 4rem
+
+      @container slate (height < 38rem)
+        min-height: var(--control-height)
 
     .stepper
       display: flex
       gap: var(--space-s)
       justify-content: space-between
+
+      .button.small
+        min-height: var(--target)
 
     .saved
       @include typography.caption
@@ -49,14 +78,32 @@
       text-align: center
       text-wrap: pretty
 
+      @container slate (height < 40rem)
+        display: none
+
     // Sized from the width it is given, so sixty numbers make nine rows at
     // 360px and four at a laptop's column, and a piece never drops under a
     // thumb's 44px. The gap leaves room for the chipboard edge under each.
+    // The strip is a box of its own that scrolls once the sheet runs past
+    // what the screen leaves it: padded by the lift and the ring a piece in
+    // hand wears, which the box would otherwise cut.
     .tiles
+      align-content: start
       display: grid
+      flex: 0 1 auto
       gap: var(--space-s) var(--space-xs)
+      grid-area: tiles
       grid-template-columns: repeat(auto-fill, minmax(max(var(--target), 3rem), 1fr))
-      padding-block: var(--space-2xs) var(--space-xs)
+      margin-inline: calc(-1 * var(--space-2xs))
+      min-height: 0
+      overflow-y: auto
+      padding: var(--space-xs) var(--space-2xs)
+
+      // Under a keyboard there is not a row's height left, and a sliver of
+      // pieces is noise: the two presses step through the sheet instead.
+      @media (aspect-ratio < 13 / 10)
+        @container slate (height < 17rem)
+          display: none
 
       // A word on a piece needs the width a number does not: the columns widen
       // for the whole grid so the pieces stay one size, and a label longer than
@@ -117,15 +164,17 @@
         text-overflow: ellipsis
         white-space: nowrap
 
+      // Under the figure rather than in a corner, where a two-figure label
+      // ran into it.
       &[data-disabled]
         cursor: default
+        flex-direction: column
+        gap: var(--space-2xs)
 
         svg
           block-size: 0.875rem
+          flex: none
           inline-size: 0.875rem
-          inset-block-start: var(--space-2xs)
-          inset-inline-end: var(--space-2xs)
-          position: absolute
 
       &.closed
         background: var(--tile-2)
@@ -144,8 +193,19 @@
     display: grid
     flex: 1
     gap: var(--space-m) var(--space-l)
+    grid-area: band
     grid-template-columns: auto minmax(0, 1fr)
     justify-content: center
+
+    // A phone upright: the token over the chip, which then has the whole
+    // width for a long answer rather than half of it.
+    &:not(.compact)
+      @container (width < 30rem)
+        grid-template-columns: minmax(0, 1fr)
+        justify-items: center
+
+        .yours
+          justify-self: stretch
 
     .token
       --token-size: clamp(5rem, calc(var(--stage-unit) * 26), 9rem)
@@ -162,6 +222,8 @@
       justify-items: center
       padding: var(--space-xs)
 
+    // Clipped across only: a vertical clip shaved an accent standing proud
+    // of a line set solid.
     .token-label
       @include typography.monument
       @include typography.numeric
@@ -169,7 +231,7 @@
 
       font-size: calc(var(--token-size) * 0.5)
       max-inline-size: 100%
-      overflow: hidden
+      overflow-x: clip
       text-overflow: ellipsis
       white-space: nowrap
 
@@ -285,6 +347,11 @@
       gap: var(--space-s)
       justify-content: stretch
 
+      // A keyboard up: the field and its presses keep the screen.
+      @media (aspect-ratio < 13 / 10)
+        @container slate (height < 24rem)
+          display: none
+
       .token
         --token-size: 3.5rem
 
@@ -301,7 +368,29 @@
 
   // Every line of the sheet as a chip, in the same three materials as the
   // line on the wall, the current one held in a keyline.
+  //
+  // Held to the screen beside a sheet being written, it is the first to give
+  // way, and opened it scrolls inside a share of the screen rather than
+  // pushing the field off it.
   .slate-whole-sheet
+    flex: none
+    grid-area: sheet
+
+    // Only inside the held box: the reveal's page scrolls, and out of a box a
+    // bare `cqh` reads the viewport.
+    @container slate (height >= 0rem)
+      .panel-content
+        max-block-size: 40cqh
+        overflow-y: auto
+
+    @media (aspect-ratio < 13 / 10)
+      @container slate (height < 32rem)
+        display: none
+
+    @include framed.lying-down
+      @container slate (height < 18rem)
+        display: none
+
     .lines
       column-gap: var(--space-s)
       display: grid

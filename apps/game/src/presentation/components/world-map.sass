@@ -97,13 +97,24 @@
       filter: drop-shadow(0 2px 0 var(--chipboard-dark))
       pointer-events: none
 
+    // A frame shorter than the three presses stacked sets the last beside
+    // the first, rather than cutting it at the frame's foot; the two zooms
+    // keep the corner's column whatever the frame, or a row of three would
+    // lie over the target.
     .controls
       display: flex
       flex-direction: column
+      flex-wrap: wrap-reverse
       gap: var(--space-xs)
       inset-block-start: var(--space-xs)
       inset-inline-end: var(--space-xs)
+      max-block-size: max(calc(100% - var(--space-xs) * 2), calc(var(--target) * 2 + var(--space-xs)))
       position: absolute
+
+      // A small press is 40px tall: the whole target both ways, for a thumb.
+      .button
+        min-block-size: var(--target)
+        min-inline-size: var(--target)
 
     // The pawn's own presses, on the rulebook's paper with a notch pointing
     // down at it — or up, flipped under its tip near the frame's top.
@@ -168,3 +179,8 @@
           font-size: var(--text-m)
           min-height: var(--control-height)
           padding: 0 var(--space-m)
+
+      // A phone's frame is narrower than the pair side by side and the zoom
+      // column beside them: the pair ran over the column and off the frame.
+      @container map (width < 24rem)
+        flex-direction: column

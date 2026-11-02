@@ -1,7 +1,7 @@
 @layer components
-  // A container of its own, so the widest word is measured against the card
-  // it is printed on rather than the stage around it. It takes the card's
-  // whole width: an inline-size container never sizes to its content.
+  // A container of its own, so the line is measured against the card it is
+  // printed on rather than the stage around it. It takes the card's whole
+  // width: an inline-size container never sizes to its content.
   .rebus-line
     align-self: stretch
     container-type: inline-size
@@ -9,10 +9,10 @@
     .words
       column-gap: 0.45em
       display: flex
-      flex-wrap: wrap
       font-family: var(--font-emoji)
-      font-size: min(var(--rebus-size, clamp(2.5rem, 12cqmin, 5rem)), calc(100cqi / (var(--rebus-longest-word) * 1.3)))
-      row-gap: 0.1em
+      // An emoji sets about 1.3em wide in the colour faces, and each space
+      // between two words is the column gap.
+      font-size: min(var(--rebus-size, clamp(2.5rem, 12cqmin, 5rem)), calc(100cqi / (var(--rebus-emojis) * 1.3 + (var(--rebus-words) - 1) * 0.45)))
 
     .word
       white-space: nowrap

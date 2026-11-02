@@ -1,28 +1,46 @@
 @use '../../presentation/styles/box-lid'
+@use '../../presentation/styles/framed'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
 @layer components
+  // Held to the box its page leaves it: the list scrolls inside its card, and
+  // the letter, the clock and the press under the card never leave the screen.
   .petit-bac-sheet,
   .petit-bac-vote
     display: flex
+    flex: 0 1 auto
     flex-direction: column
     gap: var(--space-s)
+    min-height: 0
 
     .answer-sheet
       @include piece.card(var(--radius-l))
       @include box-lid.paper
 
       display: flex
+      flex: 0 1 auto
       flex-direction: column
+      min-height: 0
       padding: clamp(var(--space-s), 2.4vmin, var(--space-m))
       padding-inline-end: clamp(var(--space-s), 3vmin, var(--space-l))
 
     .head
       align-items: center
       display: flex
+      flex: none
       gap: var(--space-s)
       padding-block-end: var(--space-s)
+
+    .lines,
+    .rows
+      // A row's own floor would be its track's whole height once the box is
+      // shorter than the list: auto rows only grow into free space.
+      grid-auto-rows: max-content
+      min-height: 0
+      overflow-y: auto
+      overscroll-behavior: contain
+      scrollbar-width: thin
 
     .letter-piece
       @include typography.monument
@@ -123,14 +141,18 @@
         white-space: nowrap
 
     .rows
+      container-type: inline-size
       display: grid
 
+    // The word takes the row's whole width; who wrote it and the press share
+    // the line under it, and the press drops under the names once both no
+    // longer fit — beside a press the word was eight letters a line.
     .row
-      align-items: center
+      align-items: end
       border-block-start: var(--stroke-thin) solid var(--card-rule)
-      column-gap: var(--space-xs)
-      display: grid
-      grid-template-columns: minmax(0, 1fr) auto
+      display: flex
+      flex-wrap: wrap
+      gap: var(--space-2xs) var(--space-xs)
       min-block-size: 3.75rem
       padding-block: var(--space-xs)
 
@@ -140,19 +162,44 @@
       .text
         @include typography.heading
 
+        flex: 1 1 100%
         font-size: clamp(1.15rem, calc(var(--stage-unit) * 3), 1.6rem)
+        hyphens: auto
         overflow-wrap: anywhere
 
+      // A name is how two pawns of one team are told apart, so it wraps
+      // rather than lose its end.
       .petit-bac-authors
+        flex: 1 1 10rem
         font-size: var(--text-s)
-        grid-column: 1
 
         .pawn
           block-size: 1.25rem
 
+        .name
+          overflow-wrap: break-word
+          white-space: normal
+
       .side
-        grid-column: 2
-        grid-row: 1 / span 2
+        flex: none
+        margin-inline-start: auto
+
+      .refuse
+        min-block-size: var(--target)
+
+      // Its cross says it alone where the label would push the names off
+      // the line; the press keeps its full name for a screen reader.
+      @container (width >= 18.5rem)
+        .refuse:not([data-selected]) svg
+          display: none
+
+      @container (width < 18.5rem)
+        .refuse
+          min-inline-size: var(--target)
+          padding-inline: 0
+
+          .control-label
+            display: none
 
       .yours
         @include typography.caption-strong
@@ -183,3 +230,77 @@
     color: var(--ink-muted)
     flex: 1 1 12rem
     text-wrap: pretty
+
+  // A keyboard up leaves an upright screen a strip: the press keeps its
+  // place under the card at a control's height rather than a stop's.
+  .petit-bac-sheet
+    @media (height < 30rem) and (aspect-ratio < 13 / 10)
+      .stop .button,
+      .stop-banner
+        min-block-size: var(--control-height)
+
+  // Lying down the list takes the width on its paper, two categories a row,
+  // and the letter and the clock stand on a card of their own beside it, over
+  // the press: under a phone's chrome a sheet stacked upright kept one line.
+  .petit-bac-sheet,
+  .petit-bac-vote
+    @include framed.lying-down
+      column-gap: var(--space-m)
+      display: grid
+      grid-template: 'list head' auto 'list foot' minmax(0, 1fr) / minmax(0, 1fr) minmax(10rem, 0.3fr)
+      row-gap: var(--space-s)
+
+      .answer-sheet
+        display: contents
+
+      .head
+        @include piece.card(var(--radius-l))
+        @include box-lid.paper
+
+        align-items: stretch
+        flex-direction: column
+        grid-area: head
+        padding: clamp(var(--space-s), 2.4vmin, var(--space-m))
+
+      .lines,
+      .rows
+        @include piece.card(var(--radius-l))
+        @include box-lid.paper
+
+        align-content: start
+        grid-area: list
+        padding: var(--space-xs) clamp(var(--space-s), 2.4vmin, var(--space-m))
+
+      > :not(.answer-sheet)
+        align-self: end
+        grid-area: foot
+
+      .button
+        text-wrap: balance
+        white-space: normal
+
+  .petit-bac-sheet
+    @include framed.lying-down
+      .lines
+        column-gap: var(--space-m)
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+
+      .line,
+      .line:last-child
+        border-block: 0 var(--stroke-thin) solid var(--card-rule)
+
+        .text-field
+          grid-template-columns: minmax(0, 1fr)
+          row-gap: var(--space-2xs)
+
+  .petit-bac-vote
+    @include framed.lying-down
+      .head .of
+        margin-inline-start: 0
+
+      // A phone lying down keeps the category and the rows: the round's letter
+      // and the note on how the vote moves on are what it gives up first.
+      @media (height < 30rem)
+        .head .letter-piece,
+        .vote-note
+          display: none

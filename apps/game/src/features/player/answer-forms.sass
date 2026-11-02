@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/typography'
 @use '../../presentation/styles/text-box'
 
@@ -23,6 +24,9 @@
       flex-direction: column
       gap: var(--space-m)
 
+    .text-field .react-aria-Input::placeholder
+      color: transparent
+
     // Only what this player banked, so it sits with their own field rather than
     // on the room's screen — and it is empty until something lands.
     //
@@ -30,10 +34,9 @@
     // anything it grows by pushes the field and the send button down, and it
     // would grow at exactly the moment a press is aiming at them.
     //
-    // 1.75em of `caption` is 24.5px against a stamp's 24.2 — `label` at 0.75rem
-    // over this row's own 1.35 line-height, plus its two `--space-2xs`. Both
-    // sides are rem, so zoom moves them together; changing either mixin is what
-    // would close the gap.
+    // Reserved as a stamp is drawn: one line of this row, the stamp's `label`
+    // being floored at `--text-xs` like `caption`, and its two `--space-2xs`.
+    // A flat 1.75em was a stamp at 12px and left the field 2.5px to drop.
     .banked
       @include typography.caption
 
@@ -42,7 +45,7 @@
       flex-wrap: wrap
       gap: var(--space-xs)
       justify-content: center
-      min-height: 1.75em
+      min-height: calc(1lh + var(--space-2xs) * 2)
 
     .half
       @include typography.label
@@ -60,3 +63,70 @@
     // panel gives a wrong answer, never the stamp of something held.
     .missed
       color: var(--ink-muted)
+
+    // A page that hands the form a box of its own (`typed-answer`) has it give
+    // way as the question or a keyboard takes the height: first the hint
+    // under the field and the count under the press, then the press's own
+    // height, then the press moves beside the field and what was banked
+    // beside the label.
+    @container typed-answer (height < 20rem)
+      .react-aria-Form
+        gap: var(--space-s)
+
+      .react-aria-Text[slot='description'],
+      .status
+        display: none
+
+      .button.large
+        min-height: var(--control-height)
+
+    @container typed-answer (height < 12rem)
+      .react-aria-Form
+        display: grid
+        gap: var(--space-2xs) var(--space-xs)
+        grid-template: 'label banked banked' auto 'field field send' auto / auto minmax(0, 1fr) auto
+
+      .text-field
+        display: contents
+
+      .react-aria-Label
+        align-self: end
+        grid-area: label
+
+      .banked
+        grid-area: banked
+        justify-content: flex-end
+
+      .react-aria-Input
+        grid-area: field
+
+      .button.large
+        grid-area: send
+        padding-inline: var(--space-m)
+
+    // Then the label goes into the field, and what was banked is printed
+    // inside the field's end rather than given a row of its own.
+    @container typed-answer (height < 7rem)
+      .react-aria-Form
+        grid-template: 'field send' auto / minmax(0, 1fr) auto
+
+      .react-aria-Label
+        @include accessibility.visually-hidden
+
+      .text-field .react-aria-Input::placeholder
+        color: var(--card-muted)
+
+      .banked
+        align-self: center
+        grid-area: field
+        justify-self: end
+        margin-inline-end: var(--space-s)
+        min-height: 0
+        pointer-events: none
+        z-index: 1
+
+      .missed
+        color: var(--card-muted)
+
+      .react-aria-Form:has(.banked > *) .react-aria-Input
+        padding-inline-end: 7em

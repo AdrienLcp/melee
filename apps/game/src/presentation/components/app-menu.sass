@@ -48,8 +48,9 @@
 
     // A screen of four tiles lying down gives the tiles the whole right-hand
     // column, so the menu moves to the start of the chrome over the question.
+    // So does a ballot of seats, whose line takes the left.
     @media (aspect-ratio >= 13 / 10)
-      :root:has(.player-page.framed, .host-console-page.framed) &
+      :root:has(.player-page.framed, .host-console-page.framed, .player-page.playing > .player-round.most-likely-round, .host-console-page > .stage.playing[data-most-likely='voting']) &
         align-items: flex-start
         inset-inline: max(var(--gutter-left), calc(50% - var(--stage-max-width) / 2 + var(--gutter-left))) auto
 

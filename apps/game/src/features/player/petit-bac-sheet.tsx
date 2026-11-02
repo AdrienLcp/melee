@@ -32,6 +32,28 @@ import { currentDeadline } from '@/presentation/timing/last-seconds'
 
 import './petit-bac-sheet.sass'
 
+/**
+ * The list scrolls inside its card, and a keyboard coming up shrinks that box
+ * under the line being typed: the line is brought back into it each time.
+ */
+const keepFocusedLineInView = (list: HTMLOListElement | null) => {
+  if (list === null) {
+    return
+  }
+
+  const observer = new ResizeObserver(() => {
+    const typed = document.activeElement
+
+    if (typed instanceof HTMLElement && list.contains(typed)) {
+      typed.scrollIntoView({ block: 'nearest' })
+    }
+  })
+
+  observer.observe(list)
+
+  return () => observer.disconnect()
+}
+
 const focusLineAfter = (target: EventTarget) => {
   if (!(target instanceof HTMLInputElement)) {
     return
@@ -181,7 +203,11 @@ export const PetitBacSheet: React.FC<PetitBacSheetProps> = ({
             )}
           </div>
         </div>
-        <ol aria-label={translate('petitbac.sheet.label')} className='lines'>
+        <ol
+          aria-label={translate('petitbac.sheet.label')}
+          className='lines'
+          ref={keepFocusedLineInView}
+        >
           {categories.map((category, index) => {
             const name = petitBacCategoryName({ category, translate })
 
@@ -350,7 +376,7 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
                       }
                       size='small'
                     >
-                      {isOut && <CrossIcon />}
+                      <CrossIcon />
                       {translate('petitbac.vote.refuse')}
                     </ToggleButton>
                   )}

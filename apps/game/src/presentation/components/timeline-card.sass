@@ -28,11 +28,13 @@
       outline-offset: -2px
       padding-inline: var(--space-s)
 
+    // An event's name is full of proper nouns, and a hyphen cut "Zidane" in
+    // two: it wraps between words, and breaks inside one only when that word
+    // alone is wider than the card.
     .label
-      @include typography.strong
+      @include typography.card-name
 
       color: var(--card-ink)
       font-size: var(--timeline-label-size, clamp(var(--text-s), calc(var(--stage-unit) * 2.2), 1.5rem))
-      hyphens: auto
       overflow-wrap: break-word
       text-wrap: pretty

@@ -114,6 +114,34 @@ export const toggleFullscreen = async (): Promise<void> => {
   await document.documentElement.requestFullscreen()
 }
 
+/**
+ * The height the screen shows in CSS pixels at the page's own zoom, called now
+ * and again whenever an on-screen keyboard or the browser's bars change it.
+ * Safari on iOS leaves the layout viewport whole under its keyboard, so `dvh`
+ * never shrinks there and only the visual viewport says what is left. Times
+ * its scale, so a pinch-zoom is not read as a keyboard.
+ */
+export const onShownHeightChange = (
+  listener: (heightPx: number) => void
+): (() => void) => {
+  const viewport = window.visualViewport
+
+  if (viewport === null) {
+    return () => {}
+  }
+
+  const publish = () => {
+    listener(viewport.height * viewport.scale)
+  }
+
+  publish()
+  viewport.addEventListener('resize', publish)
+
+  return () => {
+    viewport.removeEventListener('resize', publish)
+  }
+}
+
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 

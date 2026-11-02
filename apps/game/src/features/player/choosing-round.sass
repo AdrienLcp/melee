@@ -35,6 +35,22 @@
     &:has(.map-question)
       grid-template-rows: minmax(0, 1fr) auto
 
+      // Standing up on a short screen, that is no more than their names: the
+      // map's three presses stack down its height.
+      @container choosing (aspect-ratio < 13 / 10) and (height < 45rem)
+        .answer-tile
+          min-height: var(--target)
+
+    // An outline is read whole at any size, so it gives way before a tile:
+    // the card keeps what the four names leave it, and the outline shrinks
+    // inside the card to fit.
+    &:has(.country-silhouette)
+      grid-template-rows: minmax(0, auto) minmax(min-content, 1fr)
+
+      .country-silhouette
+        flex: 0 1 auto
+        min-height: var(--space-2xl)
+
     .answer-form.choices
       display: grid
       gap: clamp(var(--space-2xs), 1.4cqmin, var(--space-xs))

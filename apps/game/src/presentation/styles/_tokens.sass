@@ -319,6 +319,12 @@
     --framed-padding-block-start: max(clamp(var(--space-xs), calc(var(--stage-unit) * 2), 1rem), var(--safe-area-top))
     --framed-padding-block-end: max(clamp(var(--space-xs), calc(var(--stage-unit) * 2), 1rem), var(--safe-area-bottom))
 
+    // The height a screen held to the viewport is held to: `100dvh`, or less
+    // where an on-screen keyboard is laid over a layout viewport that stays
+    // whole (Safari on iOS), which `use-shown-height.ts` publishes. Where the
+    // keyboard resizes the page instead, `dvh` follows it on its own.
+    --shown-height: min(100dvh, var(--visual-viewport-height, 100dvh))
+
     --stage-max-width: 112.5rem
     // The host's panel beside a wide console's stage, open and folded to its
     // rail. The fixed menu reads them to stay over the stage rather than the panel.

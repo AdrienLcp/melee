@@ -1,6 +1,25 @@
 @use '../styles/focus'
 
 @layer components
+  // Measured on its own, so the drawing is whichever of the frame's height or
+  // width runs out first. Its own height is the drawing's at the full width,
+  // and as a flex item it gives that up to a floor: the automatic minimum of
+  // a box with a ratio would be that whole height again.
+  .matchstick-frame
+    align-items: center
+    aspect-ratio: var(--board-aspect)
+    container-type: size
+    display: flex
+    flex: 0 1 auto
+    inline-size: 100%
+    justify-content: center
+    max-block-size: var(--sticks-max-height, 40vh)
+    min-block-size: 3.5rem
+
+    > .matchstick-row
+      height: 100%
+      width: 100%
+
   // The drawing and a press laid over each of its places, both held to the
   // drawing's own proportions so a press sits on the stick it names.
   // The board takes every pointer itself and hands it to the nearest place,
@@ -8,13 +27,22 @@
   .matchstick-board
     aspect-ratio: var(--board-aspect)
     cursor: grab
-    margin-inline: auto
+    flex: none
     position: relative
     touch-action: none
     user-select: none
     -webkit-tap-highlight-color: transparent
     -webkit-touch-callout: none
-    width: min(100%, calc(var(--sticks-max-height, 40vh) * var(--board-aspect)))
+    width: min(100%, calc(100cqh * var(--board-aspect)))
+
+    // A thumb landing just off the drawing still reaches the stick at its
+    // edge: the nearest place within reach is what a press picks, so the
+    // margin only lengthens the outer sticks' reach and never moves a border
+    // between two places.
+    &::before
+      content: ''
+      inset: calc(var(--target) / -4)
+      position: absolute
 
     > .matchstick-row
       height: 100%

@@ -217,8 +217,6 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
 
   return (
     <section className='answer-form typed'>
-      {/* Above the field, because it is the context for the next guess. */}
-      <GuessFeedback asksForAFilm={asksForAFilm} verdict={verdict} />
       <Form
         onSubmit={(event) => {
           event.preventDefault()
@@ -231,6 +229,8 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
           }
         }}
       >
+        {/* Above the field, because it is the context for the next guess. */}
+        <GuessFeedback asksForAFilm={asksForAFilm} verdict={verdict} />
         <TextField
           autoComplete='off'
           // The form only ever mounts on `playing`, so this opens the keyboard
@@ -247,6 +247,8 @@ export const TypedAnswer: React.FC<TypedAnswerProps> = ({
           isDisabled={isDone}
           label={translate('round.answer.label')}
           onChange={setGuess}
+          // Shown only where the label above the field has given way.
+          placeholder={translate('round.answer.label')}
           value={guess}
         />
         <Button isDisabled={isDone || isEmpty} size='large' type='submit'>

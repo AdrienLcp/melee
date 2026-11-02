@@ -10,6 +10,7 @@ import { ReconnectingNotice } from '@/presentation/connection/reconnecting-notic
 import { useResumeLandingArrival } from '@/presentation/landing-arrival'
 import { RoomActionsProvider } from '@/presentation/room-actions/room-actions-provider'
 import { useFocusMainOnNavigation } from '@/presentation/use-focus-main-on-navigation'
+import { usePublishShownHeight } from '@/presentation/use-shown-height'
 
 import './app-shell.sass'
 
@@ -25,6 +26,7 @@ const navigateWithTransition = () => ({
 export const AppShell: React.FC = () => {
   useFocusMainOnNavigation()
   useResumeLandingArrival()
+  usePublishShownHeight()
 
   return (
     <AriaRouterProvider navigateDefaults={navigateWithTransition}>

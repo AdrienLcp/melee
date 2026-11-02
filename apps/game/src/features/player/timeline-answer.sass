@@ -2,13 +2,48 @@
 
 @layer components
   // The five cards between the two ends of time, and the press that sends
-  // them under the last.
+  // them under the last, held to the box the screen gives them: as the box
+  // runs short the hint goes first, then the latest end, then the press
+  // shrinks. The earliest end stays, because it is all that says which way
+  // the cards run. A column rather than a grid, so what has gone leaves no
+  // gap behind; lying down, the screen dissolves it into its own grid and
+  // places the pieces by the areas they name.
   .timeline-answer
-    align-content: center
-    display: grid
+    container: timeline-answer / size
+    display: flex
+    flex-direction: column
     gap: var(--space-xs)
-    grid-template-columns: minmax(0, 1fr)
+    justify-content: safe center
     min-height: 0
+
+    > .hint:not([role='status'])
+      grid-area: hint
+
+    > .end.earliest
+      grid-area: earliest
+
+    > .end.latest
+      grid-area: latest
+
+    > .timeline-order-list,
+    > .timeline-strip
+      grid-area: list
+
+    > .button,
+    > [role='status']
+      grid-area: send
+
+    // Sent, the order stands as it was left, in the box the cards had: the
+    // year slots only the reveal fills are left out, and the cards are set
+    // as tight as they were while being ordered.
+    > .timeline-strip .timeline-card:not([data-dated])
+      --timeline-card-padding: var(--space-2xs) var(--space-xs)
+      --timeline-label-size: clamp(var(--text-xs), calc(var(--stage-unit) * 2.4), 1.25rem)
+
+      grid-template-columns: minmax(0, 1fr)
+
+      .year
+        display: none
 
     .end
       @include typography.caption-strong
@@ -18,10 +53,15 @@
       text-transform: uppercase
 
     .end.latest
-      margin-block-end: var(--space-s)
+      margin-block-end: var(--space-xs)
 
-    .button
+    // A press too wide for a column beside the cards breaks onto two lines
+    // rather than out of the column, with the side room of a smaller press.
+    > .button.filled.large
       inline-size: 100%
+      padding-inline: var(--space-s)
+      text-wrap: balance
+      white-space: normal
 
     .hint
       @include typography.strong
@@ -30,3 +70,15 @@
       margin: 0
       text-align: center
       text-wrap: balance
+
+    @container timeline-answer (height < 33rem)
+      > .hint:not([role='status'])
+        display: none
+
+    @container timeline-answer (height < 28rem)
+      > .end.latest
+        display: none
+
+    @container timeline-answer (height < 26rem)
+      > .button.filled.large
+        min-height: var(--control-height)

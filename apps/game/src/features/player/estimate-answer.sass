@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -32,3 +33,37 @@
       color: var(--ink)
       margin: 0
       text-wrap: balance
+
+    // A page that hands the form a box of its own (`typed-answer`) has it give
+    // way as the question or a keyboard takes the height: the press's own
+    // height first, then the press moves beside the slot, then the label
+    // goes — the card above says what the number is.
+    @container typed-answer (height < 10.5rem)
+      .button.large
+        min-height: var(--control-height)
+
+    @container typed-answer (height < 9rem)
+      form
+        gap: var(--space-2xs) var(--space-xs)
+        grid-template: 'label label' auto 'slot send' auto / minmax(0, 1fr) auto
+
+      .quantity-field
+        display: contents
+
+        .react-aria-Label
+          grid-area: label
+
+        .slot
+          grid-area: slot
+
+      .button.large
+        grid-area: send
+        inline-size: auto
+        padding-inline: var(--space-m)
+
+    @container typed-answer (height < 5rem)
+      form
+        grid-template: 'slot send' auto / minmax(0, 1fr) auto
+
+      .quantity-field .react-aria-Label
+        @include accessibility.visually-hidden

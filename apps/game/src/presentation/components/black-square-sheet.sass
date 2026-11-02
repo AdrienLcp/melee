@@ -4,8 +4,9 @@
 
 @layer components
   // Held to whatever height its parent gives it, the cells dividing it: under
-  // about 10rem — a small screen with its keyboard up — the cells go to one row
-  // and print their pips alone.
+  // 10rem a find prints its line without its pips, which its row already
+  // says, and only under 6.5rem — a small screen with its keyboard up — do the
+  // cells go to one row and print their pips alone.
   .black-square-sheet
     container-type: size
     min-block-size: 2.25rem
@@ -84,7 +85,15 @@
         font-size: clamp(var(--text-xl), 9cqmin, 3rem)
         overflow-wrap: anywhere
 
-  @container (height < 10rem)
+  @container (6.5rem <= height < 10rem)
+    .black-square-sheet
+      li
+        padding-block: 0
+
+      li[data-found]:has(> .typed) > .black-square-pips
+        display: none
+
+  @container (height < 6.5rem)
     .black-square-sheet
       > ol
         grid-template: minmax(0, 1fr) / repeat(var(--cell-count), minmax(0, 1fr))

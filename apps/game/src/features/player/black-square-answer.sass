@@ -1,14 +1,22 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/typography'
 
 @layer components
-  // The grid takes whatever the field and the echo leave, which is the share
-  // a keyboard coming up takes back.
+  // The grid takes whatever the echo and the field leave, which is the share
+  // a keyboard coming up takes back. Inside the box the page hands it, the
+  // label gives way first, then the grid, then the echo, then the field's own
+  // height down to the touch target — the field and its press never.
   .answer-form.black-square-answer
-    display: grid
+    container: black-square-answer / size
+    display: flex
+    flex-direction: column
     gap: var(--space-s)
-    grid-template-rows: minmax(0, 1fr) auto auto
-    justify-content: stretch
+    justify-content: flex-start
     min-block-size: 0
+
+    > .black-square-sheet
+      flex: 1 1 0
+      min-block-size: 0
 
     .echo
       @include typography.caption-strong
@@ -36,3 +44,22 @@
       margin: 0
       min-block-size: var(--control-height)
       text-align: center
+
+    // Still the field's name, read aloud: the press beside it says the rest.
+    @container black-square-answer (height < 15rem)
+      .react-aria-Label
+        @include accessibility.visually-hidden
+
+    @container black-square-answer (height < 8rem)
+      > .black-square-sheet
+        display: none
+
+    // Still announced: a hit is worth hearing with the keyboard up.
+    @container black-square-answer (height < 5.5rem)
+      .echo
+        @include accessibility.visually-hidden
+
+    @container black-square-answer (height < 3.75rem)
+      .react-aria-Input,
+      .button
+        min-block-size: var(--target)

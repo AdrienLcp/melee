@@ -1,8 +1,11 @@
 @layer components
   // The map takes whatever height the card is given, and the line under it
   // keeps its own: a card sized to its content would hand the map nothing.
+  // The column is the card's whole width: a card that centres its content
+  // drew the map only as wide as the line under it, narrower in French.
   .asked-question.map-question
     display: grid
+    grid-template-columns: minmax(0, 1fr)
     grid-template-rows: minmax(0, 1fr) auto
     min-height: 0
 

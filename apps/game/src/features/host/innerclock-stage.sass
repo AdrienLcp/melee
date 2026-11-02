@@ -1,3 +1,4 @@
+@use '../../presentation/styles/framed'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -12,6 +13,25 @@
     gap: var(--space-m)
     justify-content: center
     text-align: center
+
+    // Lying down, the target beside the word and the press: stacked, a phone
+    // held sideways put the press under the fold.
+    @include framed.lying-down
+      column-gap: var(--space-l)
+      display: grid
+      grid-template: 'prompt go' auto 'prompt yours' auto / auto auto
+      row-gap: var(--space-s)
+
+      .count-prompt
+        grid-area: prompt
+
+      .go
+        align-self: end
+        grid-area: go
+
+      .yours
+        align-self: start
+        grid-area: yours
 
     .go
       @include typography.poster-word

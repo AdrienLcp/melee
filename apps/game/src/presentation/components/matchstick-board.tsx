@@ -16,6 +16,7 @@ import {
   type DrawingPoint,
   type DrawnStick,
   isSamePlace,
+  layoutOf,
   type MatchstickBox,
   type MatchstickLayout,
   movedLayoutOf,
@@ -109,6 +110,35 @@ const reachOf = (place: Place, box: MatchstickBox): React.CSSProperties => {
     '--reach-top': percentOf(place.pose.y - height / 2 - box.y, box.height),
     '--reach-width': percentOf(width, box.width)
   }
+}
+
+type MatchstickFrameProps = {
+  /** The row drawn in it: the board in play, or the move once it is sent. */
+  children: React.ReactNode
+  /** The puzzle as dealt, whose drawing sets the frame's proportions. */
+  glyphs: string
+}
+
+/**
+ * The box a row of matches is drawn in, in the drawing's own proportions and
+ * no taller than `--sticks-max-height`. It gives up height before anything
+ * beside it does, down to a floor, so a short screen draws smaller matches
+ * rather than pushing the presses under the fold.
+ */
+export const MatchstickFrame: React.FC<MatchstickFrameProps> = ({
+  children,
+  glyphs
+}) => {
+  const { box } = layoutOf(glyphs)
+
+  return (
+    <div
+      className='matchstick-frame'
+      style={{ '--board-aspect': box.width / box.height }}
+    >
+      {children}
+    </div>
+  )
 }
 
 /** A press on the board, from the moment it lands until it lifts. */
@@ -329,54 +359,57 @@ export const MatchstickBoard: React.FC<MatchstickBoardProps> = ({
   }
 
   return (
-    <div
-      className='matchstick-board'
-      data-dragging={dragged !== null || undefined}
-      onPointerCancel={onPointerCancel}
-      onPointerDown={onPointerDown}
-      onPointerLeave={() => setHovered(null)}
-      onPointerMove={onPointerMove}
-      onPointerUp={onPointerUp}
-      style={{ '--board-aspect': layout.box.width / layout.box.height }}
-    >
-      <MatchstickRow
-        aimed={dragged === null ? hovered : target}
-        glyphs={glyphs}
-        heldAt={heldAt}
-        isStill
-        lifted={held}
-        move={shownMove}
-      />
-      <Toolbar aria-label={ariaLabel} className='reaches'>
-        {reaches.map((place, index) =>
-          place.isEmpty ? (
-            <ReactAriaButton
-              aria-label={nameOf(place)}
-              className='reach groove-reach'
-              isDisabled={lifted === null}
-              key={`${place.glyphIndex}${place.slot}`}
-              onPress={() => {
-                if (lifted !== null) {
-                  lay({ from: lifted, to: stickPlaceOf(place) })
+    <MatchstickFrame glyphs={glyphs}>
+      <div
+        className='matchstick-board'
+        data-dragging={dragged !== null || undefined}
+        onPointerCancel={onPointerCancel}
+        onPointerDown={onPointerDown}
+        onPointerLeave={() => setHovered(null)}
+        onPointerMove={onPointerMove}
+        onPointerUp={onPointerUp}
+      >
+        <MatchstickRow
+          aimed={dragged === null ? hovered : target}
+          glyphs={glyphs}
+          heldAt={heldAt}
+          isStill
+          lifted={held}
+          move={shownMove}
+        />
+        <Toolbar aria-label={ariaLabel} className='reaches'>
+          {reaches.map((place, index) =>
+            place.isEmpty ? (
+              <ReactAriaButton
+                aria-label={nameOf(place)}
+                className='reach groove-reach'
+                isDisabled={lifted === null}
+                key={`${place.glyphIndex}${place.slot}`}
+                onPress={() => {
+                  if (lifted !== null) {
+                    lay({ from: lifted, to: stickPlaceOf(place) })
+                  }
+                }}
+                style={reachOf(place, layout.box)}
+              />
+            ) : (
+              <ReactAriaToggleButton
+                aria-label={nameOf(place)}
+                autoFocus={autoFocus && index === firstStickAt}
+                className='reach stick-reach'
+                isSelected={
+                  lifted !== null && isSamePlace({ left: place, right: lifted })
                 }
-              }}
-              style={reachOf(place, layout.box)}
-            />
-          ) : (
-            <ReactAriaToggleButton
-              aria-label={nameOf(place)}
-              autoFocus={autoFocus && index === firstStickAt}
-              className='reach stick-reach'
-              isSelected={
-                lifted !== null && isSamePlace({ left: place, right: lifted })
-              }
-              key={`${place.glyphIndex}${place.slot}`}
-              onChange={(isHeld) => onLift(isHeld ? stickPlaceOf(place) : null)}
-              style={reachOf(place, layout.box)}
-            />
-          )
-        )}
-      </Toolbar>
-    </div>
+                key={`${place.glyphIndex}${place.slot}`}
+                onChange={(isHeld) =>
+                  onLift(isHeld ? stickPlaceOf(place) : null)
+                }
+                style={reachOf(place, layout.box)}
+              />
+            )
+          )}
+        </Toolbar>
+      </div>
+    </MatchstickFrame>
   )
 }

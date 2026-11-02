@@ -40,7 +40,7 @@
   flex: none
   gap: var(--space-framed)
   grid-template: 'chrome' auto 'round' minmax(0, 1fr) / minmax(0, 1fr)
-  height: 100dvh
+  height: var(--shown-height)
   max-width: var(--stage-max-width)
   overflow: hidden
   padding-block: var(--framed-padding-block-start) var(--framed-padding-block-end)
@@ -66,9 +66,10 @@
   // container is.
   //
   // A buzzer with no question has nothing to set beside it, and keeps the one
-  // column.
+  // column. The inner clock's target is its question, and a puzzle in matches
+  // is one too.
   @include lying-down
-    &:has(> .choosing-round, > .buzzer-area .asked-question)
+    &:has(> .choosing-round, > .buzzer-area :is(.asked-question, .count-prompt, .matchsticks-prompt))
       column-gap: clamp(var(--space-xs), calc(var(--stage-unit) * 2.4), var(--space-m))
       grid-template: 'chrome choices' auto 'card choices' minmax(0, 1fr) 'status choices' auto / minmax(0, 0.82fr) minmax(0, 1.18fr)
 
@@ -84,6 +85,11 @@
 
     &:has([data-long-choices])
       grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr)
+
+    // A row of matches runs four times as wide as it is tall, and the buzzer
+    // beside it is one circle: the puzzle takes the wider column.
+    &:has(> .buzzer-area .matchsticks-prompt)
+      grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr)
 
   > .round-chrome
     grid-area: chrome
@@ -102,7 +108,7 @@
 
   // The round's sand: a strip draining along the top of the question card,
   // laid over the card's own area so it moves with whatever the ratio does
-  // to the card.
+  // to the card — or along the top of the board, where the round has none.
   > .card-clock
     align-self: start
     grid-area: round
@@ -111,6 +117,9 @@
     z-index: 1
 
     .round-progress
-      --clock-ink: var(--card-ink)
-
       width: 100%
+
+  // The card's ink only where there is a card under it: the blind test and the
+  // bare buzzer ask no question, and their clock lies on the board.
+  &:has(.asked-question, .matchsticks-prompt) > .card-clock .round-progress
+    --clock-ink: var(--card-ink)

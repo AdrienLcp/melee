@@ -222,7 +222,7 @@ every page would pay the inset twice. A raw `env()` is never written.
 `--rule-strong` on `--field`; `body` sets `caret-color: var(--ink)` and
 `font-synthesis: none`, so a weight the face lacks shows as missing in review
 rather than faked; `::selection` is `--selection` under `--ink`, a pair in
-`tokens-contrast.test.ts`; `#root` fills `100dvh` and clips both axes, so a page
+`tokens-contrast.test.ts`; `#root` fills `--shown-height` and clips both axes, so a page
 entering with a `transform` or a drawer parked off-screen never scrolls the
 document. Both faces load `swap`, never `optional`: a room's screens land on
 the `index.html` shell, which preloads nothing, and an `optional` face missed
@@ -251,7 +251,8 @@ name collides with a shared component's class.
 `@adrienlcp/styles/containers`), so a component no one wrapped still matches
 `container-wide` / `container-narrow` against the page. A query reads `width`
 and `aspect-ratio` in range syntax, thresholds in `rem`. The viewport keeps what
-is positioned against it — the framed screens held to `100dvh` — and what is not
+is positioned against it — the framed screens held to `--shown-height`, which
+is `100dvh` until an iOS keyboard covers part of it — and what is not
 a width.
 
 **A size container has no size of its own**, so whatever holds one must hand it
@@ -277,7 +278,9 @@ normal`, an `auto` table layout and a box that scrolls — or the text is cut
 whole: a line-clamp or an ellipsis on a screen that cannot scroll (the wall), a
 size scaled to the text's length where it must show whole (black square's
 `--name-scale`). Containment skips table cells, so a cell that must not size
-its column contains what it holds, not itself.
+its column contains what it holds, not itself. A timeline event is the
+exception: its sentence is proper nouns (*Zi-dane*), so it wraps at spaces
+and never hyphenates.
 
 ## State comes from react-aria's data attributes
 

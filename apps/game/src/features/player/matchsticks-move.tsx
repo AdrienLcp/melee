@@ -6,7 +6,10 @@ import type { RoundView } from '@melee/protocol/room'
 
 import { matchsticksContent } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
-import { MatchstickBoard } from '@/presentation/components/matchstick-board'
+import {
+  MatchstickBoard,
+  MatchstickFrame
+} from '@/presentation/components/matchstick-board'
 import { MatchstickRow } from '@/presentation/components/matchstick-row'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
@@ -69,7 +72,9 @@ export const MatchsticksMove: React.FC<MatchsticksMoveProps> = ({
     <>
       {card(
         sent !== null ? (
-          <MatchstickRow glyphs={glyphs} isStill move={sent} />
+          <MatchstickFrame glyphs={glyphs}>
+            <MatchstickRow glyphs={glyphs} isStill move={sent} />
+          </MatchstickFrame>
         ) : (
           <MatchstickBoard
             aria-label={translate('matchsticks.move.label')}

@@ -4,7 +4,9 @@
   // What to do next said under the sticks, and the two presses that finish
   // a move: put it back, or send it.
   .matchsticks-move
+    align-self: center
     display: grid
+    flex: none
     gap: var(--space-s)
     grid-template-columns: minmax(0, 1fr)
     inline-size: min(100%, 32rem)
@@ -25,9 +27,12 @@
       gap: var(--space-xs)
 
       // Each press starts at its own label's width, so neither is squeezed
-      // under it, and the send press is given the most of what is left.
-      > *
+      // under it, and the send press is given the most of what is left. The
+      // padding only shows on a press alone on its row: held tight, the two
+      // share one row down to a phone 320 pixels wide.
+      > .button
         flex: 1 1 auto
+        padding-inline: var(--space-s)
 
-      > :last-child
+      > .button:last-child
         flex-grow: 2

@@ -118,6 +118,21 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Every answering screen fits a phone, for every game.** Sixteen
+  games, every answer mode, the player's screen and the seated console, from
+  320×568 to a phone lying down: the question, the answer and the send press
+  sit in the screen and the page never scrolls. Lying down, the question takes
+  one side and the answer the other; a hint, a note or the answered pawns go
+  first, then sizes come down to the floor. Petit Bac's sheet and vote and the
+  slate's tiles scroll inside their own card, the letter, the clock and *Stop*
+  held outside it; the most-likely seats lay out in as many columns as the
+  height allows, all 24 in view. With the on-screen keyboard up, the question,
+  the field and the send press stay in view (`interactive-widget` and the
+  visual viewport). Fixed on the way: the dark clock figure drawn in card ink
+  on no card, the seated quiz's question printed over its field, the seated
+  timeline's presses drawn over its events, the matchsticks' *Buzz* at 0px
+  lying down, the stamp row that moved the field when a half was banked.
+
 - `[Game]` **The reveal says which round the next press opens.** On a
   line-up of several games, the console with no wall names the next round
   just above *Next round* — its game's glyph and name, and its most telling

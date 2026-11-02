@@ -1,17 +1,59 @@
+@use '@adrienlcp/styles/accessibility'
+
 @layer components
+  // Pressed against the clock, so every seat is in view at once: the list
+  // never scrolls, it deals as many columns as its box needs
+  // (`useSeatColumns`), and a narrow column gives up the pawn before the name.
   .most-likely-ballot
     gap: var(--space-s)
     justify-content: start
     min-height: 0
 
     ul
-      align-content: start
       display: grid
-      gap: var(--space-xs)
-      grid-auto-rows: minmax(var(--control-height), auto)
-      grid-template-columns: repeat(auto-fill, minmax(min(100%, 10rem), 1fr))
+      flex: 1 1 0
+      gap: var(--space-2xs)
+      grid-auto-rows: minmax(var(--target), 1fr)
+      grid-template-columns: repeat(var(--seat-columns, 2), minmax(0, 1fr))
       list-style: none
       margin: 0
       min-height: 0
-      overflow-y: auto
-      padding: var(--space-2xs) 0 var(--space-xs)
+      padding: 0 0 var(--space-2xs)
+
+    li
+      container-type: inline-size
+
+    // The tiles already say where the vote went: the line saying so is read
+    // out rather than drawn, and its row goes to the seats.
+    .status
+      @include accessibility.visually-hidden
+
+    .seat-tile
+      font-size: clamp(var(--text-xs), 9cqi, var(--text-m))
+      min-height: var(--target)
+      padding-block: var(--space-2xs)
+
+      .nickname
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: var(--seat-name-lines, 2)
+        display: -webkit-box
+        overflow-wrap: anywhere
+        white-space: normal
+
+      // The voter's own seat says so by its dashed keyline rather than by a
+      // line of its own under the name: the word is read out, not drawn.
+      &:has(> .mark)
+        outline: var(--stroke-bold) dashed var(--board-muted)
+        outline-offset: calc(var(--stroke-bold) * -2)
+
+        .mark
+          @include accessibility.visually-hidden
+
+    @container (width < 10rem)
+      .seat-tile
+        column-gap: 0
+        padding-block: calc(var(--space-2xs) / 2)
+        padding-inline: var(--space-xs)
+
+        .pawn
+          display: none

@@ -52,6 +52,12 @@
       .label
         display: none
 
+    // Then the square: at 320px the line left the piece 184px beside the
+    // menu, and the piece took the round's own `4/10` from under it.
+    @container (width < 14rem)
+      svg
+        display: none
+
   // The rulebook leaflet's material, holding the invitation alone: sized for
   // a screen held out to somebody at arm's length, never read across a room.
   .invite-popover

@@ -378,6 +378,11 @@
             .next-round-name
               margin: 0 0 calc(var(--space-2xs) - var(--reveal-gap))
 
+  // A seat's own spoken round says whose turn it is on the stage, so the
+  // header's copy is a repeat.
+  .host-console-page:has(> .stage :is(.black-square-spoken, .black-square-keeper)) > header > .black-square-turn
+    display: none
+
   // Before the room's first view the stage is an empty box: laid down then, the
   // arrival plays over nothing and the lobby pops in a beat later. Held, it
   // plays once the stage has something in it.
@@ -401,8 +406,32 @@
 
       > header
         // Hidden from sight only: it holds the arrival notice's live region,
-        // which a removed header would silence.
+        // which a removed header would silence. Its own height and the menu's
+        // inset would keep it a box wider than the one pixel it lays out in,
+        // a black square's turn wrapping a word a line down past the screen.
         @include accessibility.visually-hidden
+
+        min-height: 0
+        padding: 0
+
+      // Upright, the menu then stands in the card's top corner: the sand runs
+      // beside it and the words start under it, rather than under the menu.
+      @media (aspect-ratio < 13 / 10)
+        > .stage.playing > .round-card:first-child
+          padding-block-start: calc(var(--control-height) + var(--space-xs))
+
+          > .round-progress
+            inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+    // A keyboard up under the seat's own field, on a console standing
+    // upright: the press that gives the answer away waits with the tab bar
+    // (`host-panel.sass`), and both come back with the keyboard going down.
+    @media (aspect-ratio < 13 / 10) and (height < 30rem)
+      &:has(> .stage.playing .answer-form input:focus)
+        grid-template-rows: minmax(0, 1fr)
+
+        > footer
+          display: none
 
     // One row above the split, and on any screen lying down: the press that
     // gives the answer away, and whatever stands beside it.
@@ -468,8 +497,9 @@
           --token-size: clamp(4rem, min(calc(var(--stage-unit) * 44), 100cqh - 12rem), 24rem)
 
   // The reflex race the same way: its card, its signal and the pawns landing
-  // under it are sized against the box the header and the footer leave.
-  .host-console-page:has(> .stage.solo > .reflex-stage)
+  // under it are sized against the box the header and the footer leave. So
+  // is the inner clock's count, whose stop a seated console presses.
+  .host-console-page:has(> .stage.solo > :is(.reflex-stage, .innerclock-stage))
     animation: none
     display: grid
     grid-template-rows: auto minmax(0, 1fr) auto
@@ -782,6 +812,40 @@
 
       > .stage:is(.slate-writing, .slate-correcting)
         container: slate / size
+
+  // A seat's own sheet held to the screen like the player's: the stage has no
+  // height of its own, so the card's list scrolls inside it and the press
+  // under the card stays in view. Lying down with nothing in the footer, the
+  // sheet takes the footer's column too.
+  .host-console-page:has(> .stage.petit-bac-seat)
+    @include layout.narrow
+      > .stage.petit-bac-seat
+        container-type: size
+
+      // Lying down the sheet lays its own column beside the list, so the
+      // host's presses go under the stage rather than take a third.
+      @media (aspect-ratio >= 13 / 10)
+        grid-template-areas: 'header' 'track' 'stage' 'footer'
+        grid-template-columns: minmax(0, 1fr)
+        grid-template-rows: auto auto minmax(0, 1fr) auto
+
+        > footer
+          flex-flow: row wrap
+          justify-content: flex-end
+
+        @media (height < 36rem)
+          grid-template-areas: 'track' 'stage' 'footer'
+          grid-template-rows: auto minmax(0, 1fr) auto
+
+          // The menu keeps the top of the sheet's own column.
+          > .stage.petit-bac-seat .head
+            margin-block-start: calc(var(--control-height) + var(--space-xs))
+
+      // Upright, the menu stands in the sheet's top corner once the header
+      // has gone: the clock runs beside it, level with the letter.
+      @media (height < 36rem) and (aspect-ratio < 13 / 10)
+        > .stage.petit-bac-seat .answer-sheet > .head
+          padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
 
   // The stages with one idea on them keep their presses under it, lying down
   // too: a column beside the floor's pawn would hold one quiet press.

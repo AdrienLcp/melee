@@ -45,7 +45,10 @@
       border-radius: var(--radius-full)
       color: var(--tile-ink)
       font-size: var(--text-3xs)
-      inset: var(--space-2xs) auto auto calc(50% + var(--space-xs))
+      inset: var(--space-2xs) 0 auto calc(50% + var(--space-xs))
+      // Started past the glyph but never past the tab: on a phone's 56px tab
+      // a two-figure count ran 3px out of it.
+      justify-self: start
       padding: 0.125rem var(--space-2xs)
       position: absolute
 
@@ -298,6 +301,19 @@
         grid-auto-flow: column
         inset-inline: 0
         padding-bottom: max(var(--space-2xs), var(--safe-area-bottom))
+
+    // A keyboard up under a seat's own field leaves an upright console a
+    // strip: the bar gives way while the seat types, and comes back with the
+    // keyboard going down.
+    @media (aspect-ratio < 13 / 10) and (height < 30rem)
+      .host-desk:has(.stage.playing .answer-form input:focus, .stage.petit-bac-seat input:focus)
+        --panel-bar-foot: 0rem
+
+        > #main
+          --layout-padding-block-end: max(var(--layout-padding), var(--safe-area-bottom))
+
+        .panel-tabs
+          display: none
 
     @media (aspect-ratio >= 13 / 10)
       .host-desk

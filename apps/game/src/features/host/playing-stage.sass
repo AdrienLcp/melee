@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
@@ -99,6 +100,52 @@
         > .answered-pawns
           margin-block-end: 13vh
 
+      // A phone upright as the console: the count gives its rows to the map,
+      // whose zoom column needs the height. Every player's screen counts too.
+      @media (aspect-ratio < 13 / 10)
+        @container playing (height < 30rem)
+          > .answered-pawns
+            display: none
+
+      // A phone lying down as the console: under the card the map was a strip
+      // shorter than its own zoom column, so it takes one side whole and the
+      // card and the hint the other. The map keeps the start, clear of the
+      // corner menu, which stands in the card's corner as it does upright;
+      // the count keeps its line across the foot, and gives it back as the
+      // tiles' does.
+      @media (aspect-ratio >= 13 / 10) and (height < 36rem)
+        column-gap: clamp(var(--space-s), 3cqi, var(--space-l))
+        display: grid
+        grid-template: 'map card' auto 'map hint' minmax(0, 1fr) 'tally tally' auto / minmax(0, 1.2fr) minmax(0, 0.8fr)
+
+        > .round-card
+          grid-area: card
+          padding-block-start: calc(var(--control-height) + var(--space-xs))
+
+          > .round-progress
+            inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+          .map-prompt
+            font-size: clamp(var(--text-m), calc(var(--stage-unit) * 6), var(--text-xl))
+
+        > .answer-form.map-answer
+          display: contents
+
+          .world-map
+            grid-area: map
+
+          .hint
+            grid-area: hint
+
+        > .answered-pawns
+          grid-area: tally
+
+        @media (height < 22rem)
+          grid-template-rows: auto minmax(0, 1fr) 0
+
+          > .answered-pawns
+            display: none
+
     // A place to name: the map is the question, so it takes the height a
     // question's words would have, and the tiles or the field keep what they
     // need under it.
@@ -119,6 +166,22 @@
       > .answer-form.choices
         flex: none
 
+      // A phone upright as the console: the count gives its row to the map,
+      // as it does to the map a pawn goes down on, and the tiles step down to
+      // a press's height, so the zoom column fits the map beside them. Where
+      // the card's top clears the corner menu (`host-console-page.sass`), the
+      // console's wide gap pays that height back.
+      @media (aspect-ratio < 13 / 10)
+        @container playing (height < 30rem)
+          > .answered-pawns
+            display: none
+
+          > :is(.printed-choices, .answer-form.choices) .answer-tile
+            min-height: var(--target)
+
+        @media (height < 36rem)
+          row-gap: var(--space-s)
+
     // The line saying whether to remember or rebuild, then the chip — or a
     // seat's picker — taking every row the stage leaves under it.
     &[data-swatch]
@@ -131,6 +194,65 @@
         align-self: center
         flex: 1 1 0
         inline-size: min(100%, 40rem)
+
+    // A seat rebuilding it on a phone: the line over the picker steps down to
+    // the size of a player's and the count gives its rows to the square, as
+    // it does to the map. Lying down, the picker takes the start at full
+    // height, the card and the press the other side under the corner menu,
+    // and the preview chip gives way to the thumb, which already wears the
+    // colour.
+    &[data-swatch='answering']:has(.workbench)
+      @container playing (width < 30rem) and (height < 40rem)
+        > .round-card .now
+          font-size: var(--text-m)
+
+      @media (aspect-ratio < 13 / 10)
+        @container playing (height < 30rem)
+          > .answered-pawns
+            display: none
+
+      @media (aspect-ratio >= 13 / 10)
+        column-gap: clamp(var(--space-s), 3cqi, var(--space-l))
+        display: grid
+        grid-template: 'picker card' auto 'picker send' minmax(0, 1fr) 'tally tally' auto / minmax(0, 1fr) minmax(0, 1fr)
+
+        > .round-card
+          grid-area: card
+          padding-block-start: calc(var(--control-height) + var(--space-xs))
+
+          > .round-progress
+            inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+        > .answer-form.swatch-answer,
+        .workbench
+          display: contents
+
+        .colour-picker
+          grid-area: picker
+          inline-size: min(100%, 40rem)
+          justify-self: center
+
+        .send
+          align-content: end
+          grid-area: send
+          grid-template-columns: minmax(0, 1fr)
+
+          .button
+            padding-inline: var(--space-s)
+
+        .preview
+          display: none
+
+        > .answered-pawns
+          grid-area: tally
+          justify-self: start
+
+        @media (height < 22rem)
+          grid-template-areas: 'picker card' 'picker send'
+          grid-template-rows: auto minmax(0, 1fr)
+
+          > .answered-pawns
+            display: none
 
     // The cards dealt across the stage, read from across the room, under the
     // question that says which way round to put them.
@@ -154,6 +276,70 @@
       > .answer-form.timeline-answer
         flex: 1 1 0
         inline-size: min(100%, 40rem)
+
+    // A seat ordering them: the card already says which way they run, so the
+    // answer's hint and ends go, and the count gives its rows to the cards.
+    // On a box too narrow for the names beside two arrows, the arrows stack;
+    // short as well, the card's sentence goes and the earliest end comes back
+    // to say the way.
+    &[data-timeline='answering']
+      gap: clamp(var(--space-xs), 2.2cqmin, var(--space-m))
+
+      > .round-card .timeline-question
+        font-size: clamp(var(--text-s), min(6cqi, 7cqh), 2.4rem)
+
+      > .answer-form.timeline-answer > :is(.hint:not([role='status']), .end)
+        display: none
+
+      @media (aspect-ratio < 13 / 10)
+        @container playing (height < 36rem)
+          > .answered-pawns
+            display: none
+
+        @container playing (width < 18rem)
+          > .answer-form.timeline-answer
+            --timeline-steps: repeat(2, minmax(1.5rem, 1fr)) / 2.75rem
+
+        @container playing (width < 18rem) and (height < 30rem)
+          > .round-card .timeline-question
+            display: none
+
+          > .answer-form.timeline-answer > .end.earliest
+            display: block
+
+      // Lying down, the cards take one side whole, clear of the corner menu,
+      // and the card, the count and the press stand on the other. Shorter
+      // than five two-line names beside two arrows, the arrows stack and the
+      // cards take more of the width.
+      @media (aspect-ratio >= 13 / 10)
+        column-gap: clamp(var(--space-s), 3cqi, var(--space-l))
+        display: grid
+        grid-template: 'list card' minmax(0, 1fr) 'list tally' auto 'list send' auto / minmax(0, 1.6fr) minmax(0, 1fr)
+
+        > .round-card
+          grid-area: card
+
+          @media (height < 36rem)
+            padding-block-start: calc(var(--control-height) + var(--space-xs))
+
+            > .round-progress
+              inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+        > .answered-pawns
+          grid-area: tally
+
+        > .answer-form.timeline-answer
+          display: contents
+
+        @container playing (height < 22rem)
+          > .answered-pawns
+            display: none
+
+        @media (height < 22rem)
+          grid-template-columns: minmax(0, 2.4fr) minmax(0, 1fr)
+
+          > .answer-form.timeline-answer
+            --timeline-steps: repeat(2, minmax(0, 1fr)) / 2.75rem
 
     // The pairs printed under the card for the room to argue over, or a
     // seated console's own two tiles in their place.
@@ -184,6 +370,29 @@
       > .answer-form.higher-lower-answer
         align-self: center
         inline-size: min(100%, 48rem)
+
+    // A seated console's two names, packed under the card like its field: the
+    // console's own gap ran the pawns under the reveal press on a phone, and
+    // short, the pawns give their row back.
+    &[data-higher-lower='answering']
+      row-gap: var(--space-s)
+
+      @container playing (height < 24rem)
+        > .answered-pawns
+          display: none
+
+    // Lying down, the card over the two names, which take every row the
+    // stage leaves; the pawns give theirs back on a phone.
+    @media (aspect-ratio >= 13 / 10)
+      &[data-higher-lower='answering']
+        > .answer-form.higher-lower-answer
+          flex: 1 1 0
+          inline-size: min(100%, 64rem)
+          min-height: 0
+
+        @media (height < 22rem)
+          > .answered-pawns
+            display: none
 
     // The theme on a lid banded in the game's spine, and under it the room's
     // count — or, for a seated console, its own sheet down to the field.
@@ -222,10 +431,52 @@
         .black-square-theme
           font-size: clamp(var(--text-l), 5cqmin, 3rem)
 
-      > .answer-form.black-square-answer
+      > .answer-form.black-square-answer,
+      > .black-square-spoken
         align-self: center
         flex: 1 1 0
         inline-size: min(100%, 40rem)
+        min-block-size: 0
+
+      // A short stage spends its rows on the sheet: the count is on every
+      // player's screen too.
+      @container playing (height < 32rem)
+        > .answered-pawns
+          display: none
+
+      // Upright and short — a keyboard up — the theme steps down before the
+      // field can leave the screen.
+      @media (aspect-ratio < 13 / 10)
+        @container playing (height < 16rem)
+          > .round-card .black-square-theme
+            font-size: var(--text-s)
+
+        @container playing (height < 11rem)
+          > .round-card .black-square-theme
+            font-size: var(--text-xs)
+
+      // A phone lying down as the console: the sheet and its field take the
+      // start, clear of the corner menu, and the theme the other side, under
+      // the menu as it stands upright.
+      @media (aspect-ratio >= 13 / 10) and (height < 36rem)
+        column-gap: clamp(var(--space-s), 3cqi, var(--space-l))
+        display: grid
+        grid-template: 'form card' minmax(0, 1fr) / minmax(0, 1.2fr) minmax(0, 0.8fr)
+
+        > .round-card
+          align-self: stretch
+          grid-area: card
+          padding-block-start: calc(var(--control-height) + var(--space-xs))
+
+          > .round-progress
+            inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+        > .answer-form.black-square-answer,
+        > .black-square-spoken,
+        > .black-square-keeper
+          align-self: stretch
+          grid-area: form
+          inline-size: auto
 
     // A seated console voting: the line shrinks to its card's height, and the
     // seats take everything under it.
@@ -238,18 +489,82 @@
         align-self: center
         inline-size: min(100%, 32rem)
 
+    // A seat's own field under the card: the card keeps its words and the
+    // field takes the box they leave, giving way inside it (`answer-forms.sass`,
+    // `estimate-answer.sass`). Short, the pawns give their row back first: the
+    // count is on every player's screen, and the field is this one's alone.
+    &:is([data-answering], [data-estimate='answering']):not([data-map-question])
+      row-gap: var(--space-s)
+
+      // Upright, the question yields to the field the way it yields to tiles.
+      @media (aspect-ratio < 13 / 10)
+        --question-k: min(72cqi, 30cqh)
+        --question-cap: min(6.4cqi, 4.6cqh)
+
+      > .round-card
+        flex: none
+        margin-block: 0
+
+      // Upright the field follows the card it answers, as on a player's
+      // screen; lying down it is centred in its column.
+      > .answer-form:is(.typed, .estimate-answer)
+        align-content: start
+        align-self: center
+        container: typed-answer / size
+        flex: 1 1 0
+        inline-size: min(100%, 32rem)
+        justify-content: flex-start
+        min-height: 0
+
+      @container playing (height < 24rem)
+        > .answered-pawns
+          display: none
+
+      @container playing (height < 20rem)
+        .asked-question .category
+          display: none
+
+    // Every seat in view against the clock: the line gives way to the floor,
+    // and on a phone the count of who has voted gives its rows to the seats.
+    // Lying down the line stands beside them, which then take the height.
     &[data-most-likely='voting']
       > .round-card
         flex: none
         margin-block: 0
 
         .most-likely-line
-          font-size: clamp(var(--text-m), 4cqmin, 2.4rem)
+          font-size: clamp(var(--text-xs), 4cqmin, 2.4rem)
 
       > .answer-form.most-likely-ballot
         align-self: center
         flex: 1 1 0
         inline-size: min(100%, 48rem)
+
+      @container playing (height < 50rem)
+        > .answered-pawns
+          display: none
+
+      @media (aspect-ratio >= 13 / 10)
+        column-gap: clamp(var(--space-s), 3cqi, var(--space-l))
+        display: grid
+        grid-template: 'card seats' auto 'tally seats' minmax(0, 1fr) / minmax(10rem, 0.45fr) minmax(0, 1fr)
+
+        // The menu has moved over the line's column, as on a framed round.
+        @media (height < 36rem)
+          > .round-card
+            margin-block-start: calc(var(--control-height) + var(--space-xs))
+
+        > .round-card
+          grid-area: card
+
+        > .answer-form.most-likely-ballot
+          align-self: stretch
+          grid-area: seats
+          inline-size: auto
+
+        > .answered-pawns
+          align-self: end
+          grid-area: tally
 
     // A seated console moving a stick: the card it moves it on, and the
     // presses that send it under.
@@ -259,8 +574,49 @@
     &[data-moving] .round-card .matchsticks-prompt
       --sticks-max-height: 34cqh
 
+    // A phone upright as the console: the count gives its rows to the
+    // matches, as it does to the map. Every player's screen counts too.
+    @media (aspect-ratio < 13 / 10)
+      @container playing (height < 30rem)
+        &[data-moving] > .answered-pawns
+          display: none
+
+    // Lying down, the card takes the start and the whole height, and the
+    // presses the foot of the other side, clear of the corner menu. On a
+    // phone the pawns give their row back, as they do beside the tiles, and
+    // the line over the presses gives way to them: the card already says to
+    // move one match, and the board marks every step.
+    @media (aspect-ratio >= 13 / 10)
+      &[data-moving]
+        column-gap: clamp(var(--space-s), 3cqi, var(--space-l))
+        display: grid
+        grid-template: 'card move' minmax(0, 1fr) 'tally tally' auto / minmax(0, 1fr) minmax(0, 1fr)
+
+        > .round-card
+          align-self: stretch
+          grid-area: card
+          margin-block: 0
+
+        > .answer-form.matchsticks-move
+          align-self: end
+          grid-area: move
+
+        > .answered-pawns
+          grid-area: tally
+          justify-self: start
+
+        @media (height < 22rem)
+          grid-template: 'card move' minmax(0, 1fr) / minmax(0, 1.2fr) minmax(0, 0.8fr)
+
+          > .answered-pawns
+            display: none
+
+          > .matchsticks-move:not([data-sent]) .hint
+            @include accessibility.visually-hidden
+
     @media (aspect-ratio >= 13 / 10)
       &[data-answering],
+      &[data-estimate='answering'],
       &[data-choices]
         // The card holds a little over a third of the stage's width, so on a
         // stage more than twice as wide as it is tall — a phone lying down, an
@@ -311,6 +667,12 @@
         > .answer-form:not(.choices)
           align-self: center
           grid-area: choices
+
+        &:not([data-map-question]) > .answer-form:is(.typed, .estimate-answer)
+          align-content: center
+          align-self: stretch
+          inline-size: auto
+          justify-content: center
 
         > .answered-pawns
           grid-area: tally

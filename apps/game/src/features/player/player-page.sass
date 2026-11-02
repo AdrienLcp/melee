@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/framed'
 @use '../../presentation/styles/layout'
@@ -26,13 +27,92 @@
 
   // A sheet is held to the screen at every width: the grid divides what the
   // card and the field leave, which is what a keyboard coming up takes back.
-  .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round))
+  // So is every round with a field or a pair to press: nothing pressed against
+  // the clock may scroll.
+  .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round, .petit-bac-round, .typed-round, .estimate-round, .higher-lower-round, .matchsticks-round, .swatch-round, .timeline-round)),
+  .player-page.playing:has(> .player-round > .slate-sheet)
     animation: none
     display: grid
     flex: none
     grid-template-columns: minmax(0, 1fr)
     grid-template-rows: auto minmax(0, 1fr)
-    height: 100dvh
+    height: var(--shown-height)
+
+  // A field held to the screen pads like a framed round, and the page's own
+  // gap is the framed one: on a phone with its keyboard up every row counts.
+  // On the root, because the menu reads the same token to stay on the
+  // chrome's line.
+  :root:has(.player-page.playing > .player-round:is(.typed-round, .estimate-round, .higher-lower-round, .timeline-round)),
+  :root:has(.player-page.playing > .player-round > .slate-sheet)
+    --layout-padding-block-start: var(--framed-padding-block-start)
+    --layout-padding-block-end: var(--framed-padding-block-end)
+
+  .player-page.playing:has(> .player-round:is(.typed-round, .estimate-round, .higher-lower-round, .timeline-round)),
+  .player-page.playing:has(> .player-round > .slate-sheet)
+    gap: var(--space-framed)
+
+    > .player-round
+      gap: var(--space-framed)
+
+  // A ballot of seats lying down: the chrome and the line take a column, the
+  // seats the other and the whole height, and the menu moves to the chrome's
+  // start, as on a framed round.
+  .player-page.playing:has(> .player-round.most-likely-round)
+    @media (aspect-ratio >= 13 / 10)
+      column-gap: var(--space-m)
+      grid-template: 'chrome seats' auto 'card seats' minmax(0, 1fr) / minmax(10rem, 0.45fr) minmax(0, 1fr)
+
+      > .round-chrome
+        grid-area: chrome
+        padding-inline: calc(var(--menu-width, 3.5rem) + var(--space-xs)) 0
+
+      > .player-round.most-likely-round
+        display: contents
+
+        .round-card
+          align-self: start
+          grid-area: card
+
+        .most-likely-ballot
+          grid-area: seats
+
+  // Petit Bac's sheet with a keyboard up: the score and the round give way,
+  // the sheet's head stands beside the menu in their place, and the list
+  // keeps a line to type on between the letter and the press.
+  .player-page.playing:has(> .player-round.petit-bac-round)
+    @media (height < 30rem) and (aspect-ratio < 13 / 10)
+      grid-template-rows: minmax(0, 1fr)
+
+      > .round-chrome
+        @include accessibility.visually-hidden
+
+      .answer-sheet > .head
+        padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+  // Lying down, five cards under the chrome are five rows too short for a
+  // finger: they take the whole height on one side, and the chrome, the sand,
+  // the hint and the press stand on the other, under the menu's corner. The
+  // round and its answer dissolve into this grid; the answer names the areas.
+  .player-page.playing:has(> .player-round.timeline-round):not(:has(> .paused))
+    @include framed.lying-down
+      column-gap: var(--space-m)
+      grid-template: 'list chrome' auto 'list clock' auto 'list hint' minmax(0, 1fr) 'list send' auto / minmax(0, 1.5fr) minmax(0, 1fr)
+
+      > .round-chrome
+        grid-area: chrome
+
+      > .timeline-round,
+      > .timeline-round > .timeline-answer
+        display: contents
+
+      > .timeline-round > .round-progress
+        grid-area: clock
+
+      .timeline-answer > .hint:not([role='status'])
+        align-self: end
+
+      .timeline-answer > .end
+        display: none
 
   // The door into the table, printed on the box's lid like the front door:
   // the question, the field and the press on one paper card.

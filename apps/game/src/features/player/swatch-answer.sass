@@ -4,8 +4,9 @@
   // The line saying it hid, the picker taking every spare row, and the chip
   // previewing the colour beside the press that sends it. Measured as a box
   // of its own: one wider than tall, a console's or a phone held sideways,
-  // sets the press beside the picker rather than under it, which leaves the
-  // square every row.
+  // sets the line and the press beside the picker rather than over and under
+  // it, which leaves the square every row — once the box is wide enough for
+  // the press's label beside a square worth the name.
   .swatch-answer
     container-type: size
     display: grid
@@ -36,21 +37,27 @@
       > .send
         grid-area: send
 
-      @container (min-aspect-ratio: 5 / 4)
-        align-items: center
+      @container (aspect-ratio >= 5 / 4) and (width >= 27rem)
         column-gap: var(--space-l)
-        grid-template-areas: 'hint hint' 'picker send'
-        grid-template-columns: minmax(0, 3fr) minmax(0, 2fr)
+        grid-template-areas: 'picker hint' 'picker send'
+        grid-template-columns: minmax(0, 3fr) minmax(min-content, 2fr)
+        grid-template-rows: auto minmax(0, 1fr)
 
         > .colour-picker
           align-self: stretch
 
+        // The chip gives up height to the press under it.
         > .send
-          grid-template-columns: minmax(0, 1fr)
-          justify-items: center
+          align-items: center
+          align-self: stretch
+          display: flex
+          flex-direction: column
+          justify-content: center
 
         .preview
           block-size: calc(var(--control-height) * 2.5)
+          flex: 0 1 auto
+          min-block-size: 0
 
     .hint
       @include typography.strong

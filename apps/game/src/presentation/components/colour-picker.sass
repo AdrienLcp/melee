@@ -20,11 +20,14 @@
       inline-size: 100%
       place-items: center
 
+    // A thumb's width short of the slot: the thumb is centred on the edge at
+    // either end of a channel, and half of it would hang off the screen's
+    // side or over the strip below.
     .tone
-      block-size: min(100cqh, 100cqi)
+      block-size: calc(100cqmin - var(--target))
       border-radius: var(--radius-m)
       box-shadow: 0 0 0 var(--stroke-thin) var(--rule-strong)
-      inline-size: min(100cqh, 100cqi)
+      inline-size: calc(100cqmin - var(--target))
       touch-action: none
 
     // Inset by half a thumb, so the thumb at either end of the hues stays
