@@ -109,6 +109,20 @@
     opacity: 1
     transform: translateY(0)
 
+/// A seat set down on the table as it joins, from a little above it: on the
+/// lobby's roster, in a team's tray, on the table set for teams.
+@keyframes seat-arrives
+  from
+    opacity: 0
+    transform: translateY(-40%) scale(1.08)
+
+/// A line, a chip or a press swapped for another where it stands: a fade and
+/// no travel, because it takes the place of what was there rather than
+/// arriving from anywhere.
+@keyframes swap-in
+  from
+    opacity: 0
+
 /// The reveal, on both surfaces: the card is struck rather than faded in. It
 /// lives here because the host's screen and the player's share the moment, and
 /// because one authored motion beats the same effect written twice.

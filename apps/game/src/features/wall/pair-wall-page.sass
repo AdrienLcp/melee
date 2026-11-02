@@ -21,6 +21,11 @@
     text-align: center
     width: 100%
 
+    // Empty while the tables this device holds are checked: laid down then,
+    // the arrival played over nothing and the question cut in.
+    &:empty
+      animation: none
+
     h1
       @include typography.billboard
 
@@ -43,6 +48,7 @@
     .error
       @include typography.strong
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       background: var(--danger)
       color: var(--danger-ink)
       padding: var(--space-2xs) var(--space-s)

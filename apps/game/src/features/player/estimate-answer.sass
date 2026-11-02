@@ -14,7 +14,9 @@
     .button
       inline-size: 100%
 
+    // What was sent takes the field's place where it stood.
     &[data-sent]
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       justify-items: center
       text-align: center
 

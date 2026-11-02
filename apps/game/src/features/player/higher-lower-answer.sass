@@ -30,9 +30,11 @@
       margin: 0
       text-wrap: balance
 
+  // Takes the question's place on the card where it stood.
   .higher-lower-sent
     @include typography.strong
 
+    animation: swap-in var(--transition-fast, 0s) var(--ease-out)
     color: var(--card-ink)
     margin: 0
     text-align: center

@@ -71,6 +71,10 @@
       text-align: center
       text-wrap: balance
 
+    // The order sent and its line take the list's and the press's place.
+    &[data-sent] > :is(.hint[role='status'], .timeline-strip)
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
     @container timeline-answer (height < 33rem)
       > .hint:not([role='status'])
         display: none

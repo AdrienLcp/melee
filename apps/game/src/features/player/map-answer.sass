@@ -20,7 +20,9 @@
       text-align: center
       text-wrap: balance
 
+    // Rewritten in place as the pawn is sent, so it fades rather than cuts.
     &[data-sent] .hint
       @include typography.strong
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       color: var(--ink)

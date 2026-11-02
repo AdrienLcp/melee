@@ -264,10 +264,16 @@ export const SlateOnTheWall: React.FC<SlateOnTheWallProps> = ({
       aria-live='polite'
       className={isCompact ? 'slate-on-the-wall compact' : 'slate-on-the-wall'}
     >
-      <p aria-hidden className={name.isShort ? 'token' : 'token long'}>
+      {/* Keyed on the item rather than the live region around them, so each
+        item the wall moves to comes up instead of being rewritten in place. */}
+      <p
+        aria-hidden
+        className={name.isShort ? 'token' : 'token long'}
+        key={`token-${index}`}
+      >
         <span className='token-label'>{name.label}</span>
       </p>
-      <div className='yours'>
+      <div className='yours' key={`yours-${index}`}>
         {isCompact ? (
           <VisuallyHidden>{translate('slate.marking.now')}</VisuallyHidden>
         ) : (

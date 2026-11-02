@@ -10,9 +10,16 @@
 
     justify-content: center
 
+    // Seated, with the room's first view on its way. Held back a beat so a
+    // quick link never flashes it, and the page with it: laid down over this
+    // line, the arrival was spent by the time the game replaced it.
+    &:has(> .waiting)
+      animation: none
+
     .waiting
       @include typography.title
 
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--transition-slow, 0s) backwards
       color: var(--ink-muted)
       margin-block: auto
       text-align: center

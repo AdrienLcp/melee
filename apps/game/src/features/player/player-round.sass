@@ -67,6 +67,11 @@
         column-gap: var(--space-l)
         flex-flow: row wrap
 
+    // The game the count opens and the target it sets come up with its first
+    // tick rather than cut in under it.
+    > :is(.up-next, .count-prompt)
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
   // What this player is about to play, on the game's own lid: the spine's
   // colour banded across the top, its name under it, and what a round of it
   // pays. Before the table decides there is no lid yet, only its recess.
@@ -511,6 +516,11 @@
 
     .hold:empty
       display: none
+
+    // What surrounds the payout settles once the card has struck, rather
+    // than cutting in beside a card still striking.
+    > :is(.hold, .back-at-the-table, .overall)
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
 
     // Under the round, where the next press of the evening lands: the word to
     // the wall that this seat is back.

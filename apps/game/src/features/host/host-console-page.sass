@@ -38,6 +38,11 @@
       .join-reminder
         margin-inline-start: auto
 
+      // The header stands through the evening, so what a phase adds to it
+      // comes up in place rather than cuts in.
+      > :is(.round-index, .join-reminder, .duel-badge, .black-square-turn)
+        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
       // Two names are what it says: it takes a line of its own before it
       // shrinks to its two pawns, and cuts the names short rather than pushing
       // the header under the menu.
@@ -89,6 +94,12 @@
           flex: 0
           width: 100%
 
+      // Beside the count, the game it opens and the target it sets come up
+      // with its first tick rather than cut in under it.
+      &.solo > .next-game,
+      &.counting-in > .count-prompt
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
       // The reveal and the standings, which is the one moment the room asks
       // what the round did to the game. Above the split they sit side by side
       // inside the box the page leaves the stage, and both divide that box by
@@ -105,6 +116,11 @@
 
           @include layout.wide
             --hold-bar: calc(var(--text-l) + var(--space-s))
+
+        // Beside a card being struck, the standings and the hold come up
+        // rather than cut in, and quietly: the strike is the moment.
+        > :is(.standings, .round-progress)
+          animation: swap-in var(--transition-fast, 0s) var(--ease-out)
 
         .standings
           align-self: center
@@ -221,6 +237,9 @@
     .roster
       @include seat-grid.seat-grid
 
+      .team-roster .member
+        animation: seat-arrives var(--transition-slow, 0s) var(--ease-out)
+
       h2
         @include typography.label
 
@@ -333,6 +352,11 @@
           margin-top: 0
           max-width: 16rem
           text-wrap: balance
+
+    // The presses a reveal and a final board offer come up with them rather
+    // than cut in under a card being struck.
+    &:has(> .stage:is(.revealed, .finished)) > footer > *
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
 
     // The reveal is the one stage that has to fit beside its footer rather
     // than above it: the answer, the list of what everyone said, the standings

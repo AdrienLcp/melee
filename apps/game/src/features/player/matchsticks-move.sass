@@ -21,6 +21,10 @@
       text-align: center
       text-wrap: balance
 
+    // Rewritten in place as the move is sent, so it fades rather than cuts.
+    &[data-sent] .hint
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
     .presses
       display: flex
       flex-wrap: wrap

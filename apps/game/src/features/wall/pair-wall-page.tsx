@@ -63,7 +63,8 @@ export const PairWallPage: React.FC = () => {
 
   if (pairing.status === 'paired') {
     return (
-      <Main className='pair-wall-page'>
+      // A page of its own, laid down as one: the question it answers is gone.
+      <Main className='pair-wall-page' key='paired'>
         <DocumentTitle>{translate('wall.pair.documentTitle')}</DocumentTitle>
         <h1>{translate('wall.pair.done')}</h1>
         <Link

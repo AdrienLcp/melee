@@ -13,7 +13,9 @@
     grid-template-rows: minmax(0, 1fr)
     min-height: 0
 
+    // What was sent takes the picker's place where it stood.
     &[data-sent]
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       align-content: center
       container-type: normal
       gap: var(--space-s)

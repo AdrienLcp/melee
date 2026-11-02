@@ -56,7 +56,7 @@
 
     .panel-screen
       align-content: start
-      animation: panel-screen-in calc(var(--transition-fast, 0s) * 1.5) var(--ease-out)
+      animation: swap-in calc(var(--transition-fast, 0s) * 1.5) var(--ease-out)
       display: grid
       gap: var(--space-m)
       // An auto row in a fixed-height grid that overflows shrinks to its
@@ -362,10 +362,6 @@
     &::view-transition-old(host-panel),
     &::view-transition-new(host-panel)
       inset-inline: auto 0
-
-  @keyframes panel-screen-in
-    from
-      opacity: 0
 
   // Slid in from the edge it is docked to, the way a lid is pushed onto the
   // table: the side is read from `--panel-arrival-from`, which `data-side` flips.

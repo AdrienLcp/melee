@@ -118,6 +118,17 @@ one part.
 
 ### Improvements
 
+- `[Game]` **What a round adds to a screen comes up rather than cuts in.**
+  A wall, a seat and a pairing page are laid down once, over the room, where
+  the sweep used to be spent on a waiting line and the room cut in after it.
+  At a reveal the player's hold, *Ready* press and standings settle once the
+  card has struck, and the wall's and console's standings and hold bar fade
+  up beside it; the game a count opens and the inner clock's target come up
+  with its first tick; a seat joining the lobby or a team is set down on it;
+  and an answer sent, a half banked, a slate item the wall moves to, a stop
+  called and the presses of a reveal or a final board fade in where the last
+  thing stood.
+
 - `[Game]` **The front page's line-ups arrive the way the shelf does.** Each
   lid of *Your line-ups* and *Ready-made line-ups* slides in from the row's
   start one after the other as the page opens, like the spines below, where

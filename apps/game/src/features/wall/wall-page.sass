@@ -30,6 +30,16 @@
     // Paired, with the room's first snapshot still on its way. Held back a
     // beat so a quick link never flashes it, and said at all because a cold
     // server once left this screen blank long enough to look broken.
+    //
+    // Held while it stands, the header with it: laid down over the line, the
+    // arrival was spent by the time the lobby replaced it, which cut in. The
+    // page is laid down once, over the room.
+    &:has(> .stage.arriving)
+      animation: none
+
+      > header
+        visibility: hidden
+
     > .stage.arriving
       align-items: center
       display: flex

@@ -197,6 +197,9 @@
     grid-template-columns: auto minmax(0, 1fr)
     justify-content: center
 
+    > :is(.token, .yours, .key)
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
     // A phone upright: the token over the chip, which then has the whole
     // width for a long answer rather than half of it.
     &:not(.compact)

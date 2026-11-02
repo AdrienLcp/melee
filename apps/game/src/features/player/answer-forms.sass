@@ -47,6 +47,10 @@
       justify-content: center
       min-height: calc(1lh + var(--space-2xs) * 2)
 
+      // A half banked, or the miss, fades into the row kept for it.
+      > *
+        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
     .half
       @include typography.label
 

@@ -37,9 +37,11 @@
       gap: var(--space-xs)
       grid-template-columns: minmax(0, 1fr) auto
 
+    // Takes the field's place once the board is closed to this seat.
     .others
       @include typography.title
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       color: var(--ink-muted)
       margin: 0
       min-block-size: var(--control-height)
