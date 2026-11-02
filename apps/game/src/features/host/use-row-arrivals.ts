@@ -19,7 +19,9 @@ export const useRowArrivals = (rowCount: number) => {
     settleOnEnd:
       (row: number) =>
       (event: React.AnimationEvent): void => {
-        if (event.target === event.currentTarget) {
+        // A settled row's end would be a no-op set, and one left queued
+        // erases the lowering this hook derives during a later render.
+        if (event.target === event.currentTarget && row >= firstArrivingRow) {
           setFirstArrivingRow((first) => Math.max(first, row + 1))
         }
       }

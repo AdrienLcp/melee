@@ -23,6 +23,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningPage } from './evening-page'
 import { SavedEveningsTransfer } from './saved-evenings-transfer'
+import { useArrivedLater } from './use-arrived-later'
 
 import './saved-evenings.sass'
 
@@ -117,25 +118,17 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   const currentSettings = JSON.stringify(view.settings)
   const isUpToDate = savedOver === currentSettings
   const offersSaveOver = view.settings.game !== null && loaded !== undefined
-  const [hasOfferedSaveOverSinceOpened, setHasOfferedSaveOverSinceOpened] =
-    useState(offersSaveOver)
+  const saveOverArrived = useArrivedLater(offersSaveOver)
   const [keptWhenOpened] = useState(
     () => new Set(evenings.map((evening) => evening.name))
   )
-
-  if (hasOfferedSaveOverSinceOpened && !offersSaveOver) {
-    setHasOfferedSaveOverSinceOpened(false)
-  }
 
   return (
     <EveningPage onBack={onBack}>
       <section className='saved-evenings'>
         <h2 className='heading'>{translate('host.saved.heading')}</h2>
         {offersSaveOver && (
-          <div
-            className='over'
-            data-arrived={!hasOfferedSaveOverSinceOpened || undefined}
-          >
+          <div className='over' data-arrived={saveOverArrived}>
             <p className='loaded' role='status'>
               {translate(
                 isUpToDate ? 'host.saved.savedOver' : 'host.saved.loaded',

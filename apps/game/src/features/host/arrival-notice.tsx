@@ -99,9 +99,17 @@ export const ArrivalNotice: React.FC<{ arrival: Arrival | null }> = ({
       className='arrival-notice'
       data-leaving={leaving !== null || undefined}
       data-shown={drawn !== null || undefined}
-      onAnimationEnd={() => {
-        setLeaving(null)
-      }}
+      // Only while leaving: a no-op set at the entry's end stays queued and,
+      // replayed later, erases the leaving this render derives.
+      onAnimationEnd={
+        leaving === null
+          ? undefined
+          : (event) => {
+              if (event.target === event.currentTarget) {
+                setLeaving(null)
+              }
+            }
+      }
       role='status'
     >
       {drawn !== null && (

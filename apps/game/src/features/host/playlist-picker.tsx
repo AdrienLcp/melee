@@ -23,6 +23,7 @@ import {
 } from '@/presentation/i18n/track-labels'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
 
+import { useArrivedLater } from './use-arrived-later'
 import { usePlaylistPreview } from './use-playlist-preview'
 
 import './playlist-picker.sass'
@@ -130,6 +131,10 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   const [draft, setDraft] = useState<Draft>(() =>
     draftFromSource(settings.source)
   )
+  const isTyped = draft.kind === 'playlist' || draft.kind === 'search'
+  const genresArrived = useArrivedLater(draft.kind === 'chart')
+  const decadesArrived = useArrivedLater(draft.kind === 'decade')
+  const typedSourceArrived = useArrivedLater(isTyped)
   const { clear, preview, previewSource } = usePlaylistPreview(
     settings.difficulty
   )
@@ -188,7 +193,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
       </div>
 
       {draft.kind === 'chart' && (
-        <div className='genres'>
+        <div className='genres' data-arrived={genresArrived}>
           <ToggleGroup
             label={translate('blindtest.genre.label')}
             onSelectionChange={(keys) => {
@@ -211,7 +216,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
       )}
 
       {draft.kind === 'decade' && (
-        <div className='decades'>
+        <div className='decades' data-arrived={decadesArrived}>
           <ToggleGroup
             label={translate('blindtest.decade.label')}
             onSelectionChange={(keys) => {
@@ -235,8 +240,9 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
         <p className='hint'>{translate('blindtest.source.filmHint')}</p>
       )}
 
-      {(draft.kind === 'playlist' || draft.kind === 'search') && (
+      {isTyped && (
         <Form
+          data-arrived={typedSourceArrived}
           onSubmit={(event) => {
             event.preventDefault()
 

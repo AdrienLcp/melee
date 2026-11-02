@@ -247,9 +247,17 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
         <div
           className='evening-undo'
           data-leaving={leavingUndo !== null || undefined}
-          onAnimationEnd={() => {
-            setLeavingUndo(null)
-          }}
+          // Only while leaving: a no-op set at the entry's end stays queued
+          // and, replayed later, erases the leaving this render derives.
+          onAnimationEnd={
+            leavingUndo === null
+              ? undefined
+              : (event) => {
+                  if (event.target === event.currentTarget) {
+                    setLeavingUndo(null)
+                  }
+                }
+          }
           role='status'
         >
           <span>

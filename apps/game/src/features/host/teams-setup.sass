@@ -17,7 +17,8 @@
 
     .team-count,
     .team-scoring
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      &[data-arrived]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)
 
     .hint
       @include typography.caption

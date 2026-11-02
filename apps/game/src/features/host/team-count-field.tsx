@@ -8,6 +8,8 @@ import { NumberField } from '@/presentation/components/number-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 type TeamCountFieldProps = {
+  /** Marks a field a host's choice just brought in, so it rises rather than appears. */
+  isArriving?: true
   isDisabled: boolean
   /** The ceiling of the `+` step; under `MIN_TEAMS`, the field is not drawn at all. */
   mostTeams: number
@@ -20,6 +22,7 @@ type TeamCountFieldProps = {
  * seats could ever reach, where a step only ever offers the next one.
  */
 export const TeamCountField: React.FC<TeamCountFieldProps> = ({
+  isArriving,
   isDisabled,
   mostTeams,
   onChange,
@@ -34,6 +37,7 @@ export const TeamCountField: React.FC<TeamCountFieldProps> = ({
   return (
     <NumberField
       className='team-count'
+      data-arrived={isArriving}
       isDisabled={isDisabled}
       label={translate('team.count')}
       maxValue={mostTeams}

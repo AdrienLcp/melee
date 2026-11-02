@@ -56,6 +56,7 @@ import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { PetitBacSetup } from './petit-bac-setup'
 import { SlateKeyEditor } from './slate-key-editor'
 import { SlateLabelsEditor } from './slate-labels-editor'
+import { useArrivedLater } from './use-arrived-later'
 
 import './settings-panel.sass'
 
@@ -107,6 +108,8 @@ const QuestionBankSettings: React.FC<{
   onChange: (game: QuizSettings) => void
 }> = ({ game, isDisabled, onChange }) => {
   const translate = useTranslate()
+  const offersAdultContent = hasAdultContent(game.language)
+  const adultContentArrived = useArrivedLater(offersAdultContent)
 
   return (
     <>
@@ -167,9 +170,10 @@ const QuestionBankSettings: React.FC<{
         and change nothing. The value is left alone rather than reset, so a host
         who turns it on in French still has it on when they come back.
       */}
-      {hasAdultContent(game.language) && (
+      {offersAdultContent && (
         <Switch
           className='adult-content'
+          data-arrived={adultContentArrived}
           isDisabled={isDisabled}
           isSelected={game.allowsAdultContent}
           label={translate('quiz.adult.label')}
@@ -269,6 +273,19 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   const chosenSource =
     draftSource ?? (game?.kind === 'blindtest' ? game.source : null)
   const pinsItsOwnDifficulty = chosenSource?.kind === 'film'
+  const offersLoneFinds = game?.kind === 'blacksquare' && mode.kind === 'typed'
+  const loneFindsArrived = useArrivedLater(offersLoneFinds)
+  // Buzzer-moded and still nothing to hold: a reflex press takes no floor
+  // and waits for no verdict, nor does a count stopping, and nobody buzzes a
+  // challenge at all, so how long a player has to answer is a setting about a
+  // moment neither has.
+  const asksAnswerWindow =
+    isNextRound &&
+    mode.kind === 'buzzer' &&
+    game?.kind !== 'reflex' &&
+    game?.kind !== 'innerclock' &&
+    game?.kind !== 'challenge'
+  const answerWindowArrived = useArrivedLater(asksAnswerWindow)
 
   const { openEnded: openEndedSecondsLabel, seconds: secondsLabel } =
     useDurationLabels()
@@ -541,9 +558,10 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {/* A spoken round has one team guessing, so every find there is its alone. */}
-      {game?.kind === 'blacksquare' && mode.kind === 'typed' && (
+      {offersLoneFinds && (
         <Switch
           className='lone-finds'
+          data-arrived={loneFindsArrived}
           description={translate('blacksquare.lone.hint')}
           isDisabled={isDisabled}
           isSelected={game.doublesLoneFinds}
@@ -641,34 +659,26 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         />
       )}
 
-      {/*
-        Buzzer-moded and still nothing to hold: a reflex press takes no floor
-        and waits for no verdict, nor does a count stopping, and nobody buzzes a challenge at all, so how
-        long a player has to answer is a setting about a moment neither has.
-      */}
-      {isNextRound &&
-        mode.kind === 'buzzer' &&
-        game?.kind !== 'reflex' &&
-        game?.kind !== 'innerclock' &&
-        game?.kind !== 'challenge' && (
-          <NumberChoice
-            className='answer-window'
-            isDisabled={isDisabled}
-            label={translate('host.answerWindow.label')}
-            onChange={(chosen) => {
-              onChange({
-                ...settings,
-                mode: {
-                  ...mode,
-                  answerWindowMs: chosen === NO_LIMIT ? null : chosen
-                }
-              })
-            }}
-            optionLabel={openEndedSecondsLabel}
-            options={ANSWER_WINDOWS_MS}
-            value={mode.answerWindowMs ?? NO_LIMIT}
-          />
-        )}
+      {asksAnswerWindow && (
+        <NumberChoice
+          className='answer-window'
+          isArriving={answerWindowArrived}
+          isDisabled={isDisabled}
+          label={translate('host.answerWindow.label')}
+          onChange={(chosen) => {
+            onChange({
+              ...settings,
+              mode: {
+                ...mode,
+                answerWindowMs: chosen === NO_LIMIT ? null : chosen
+              }
+            })
+          }}
+          optionLabel={openEndedSecondsLabel}
+          options={ANSWER_WINDOWS_MS}
+          value={mode.answerWindowMs ?? NO_LIMIT}
+        />
+      )}
     </section>
   )
 }

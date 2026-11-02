@@ -1382,8 +1382,24 @@ bounced. Durations:
   press taking another's place fades alone (`swap-in`, `fast`): an answer
   sent, a half banked, a slate item, the standings and hold bar beside a
   struck card or a final podium, what a phase adds to the console's header,
-  the presses of a reveal or a final board. A seat joining
-  a roster or a tray is set down from above (`seat-arrives`, `slow`). A
+  the presses of a reveal or a final board, an error line under a field or a
+  door, the home page's resume link, the invite page's not-found, a spinner
+  (under its turn), and on the host's setup a hint, a status, the board's
+  value, the line-up's stamp and the held note. A seat joining
+  a roster or a tray is set down from above (`seat-arrives`, `slow`) — on the
+  Players tab too, the first seat included, in the lobby only: a row the
+  ranking moves would replay it. The Players tab's count is stamped on
+  (`tick-stamp`, `fast`), and the reconnecting pill rises with `page-enter`.
+  On the host's setup, a block a choice brings in rises with `page-enter` — a
+  switch, strip or field a setting reveals, the blind test's genres, decades
+  or address form, Petit Bac's count or fixed list, the board's rules — and
+  stands still when it was already there as its page or tab opened, which is
+  the entrance (`useArrivedLater`); a row the host adds to a key, a label
+  list, the challenge lines, Petit Bac's own categories or the kept line-ups
+  rises the same way, once (`data-arrived`). A round's page opened before the
+  room has echoed its entry slides in empty and its content rises as it
+  lands, and the game tab's list slides back in from the side its pages leave
+  by (`evening-list-in`, `base`). A
   placeholder standing before the room's first view holds the arrival
   (`animation: none` while it stands) so the page is laid down once, over the
   room. Not the player's round chrome: it remounts between framed and
@@ -1398,7 +1414,9 @@ bounced. Durations:
   going; a finger, a pinch and a trackpad pinch land at once. Reduced motion
   jumps.
 - **A piece in life** — lift under a pointer, sink under a press, on `fast`.
-  Nothing else moves a piece.
+  Nothing else moves a piece. A spine going back into its socket, a lid's
+  star and the menu trigger ease their colours on the same `fast` rather than
+  snapping.
 - **Pieces set out** — the home page's spines and lids arrive one after the
   other as it opens (`piece.shelved`, keyframe `piece-shelve`): each slides
   1.25rem in from its row's start with a fade on `slow`, the first a `fast`
@@ -1445,7 +1463,8 @@ bounced. Durations:
 - **Leaving** — exits run faster than their entry: a popover leaflet reverses
   its strike at `fast` × 0.7 (the sheet face has its own), and the arrival
   notice keeps its line drawn through `notice-leave` (`base` × 0.6) before the
-  region empties. An exit takes its own keyframe, never the entry reversed:
+  region empties, as does the bar offering to undo a round taken out, its
+  press dead while it goes. An exit takes its own keyframe, never the entry reversed:
   the same name with a new direction resumes the finished entry, which ends at
   once and never reports its end.
 - **The round's clock** — a CSS animation (`round-drain`) whose duration is the

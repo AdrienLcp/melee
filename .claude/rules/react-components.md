@@ -100,6 +100,23 @@ only warns. Compute what reads it (the seated host's round, in
 `host-console-page.tsx`) before those calls, and grep the build output for
 `react-compiler` after touching a large component.
 
+## A state derived during render has no other no-op setter
+
+`if (next !== shown) { setLeaving(shown); setShown(next) }` — the leaving
+state an exit plays from — is lost when an event elsewhere sets the same
+state to the value it already holds. React keeps that no-op update queued
+at its own priority; a higher-priority render then derives on top of it
+without moving the hook's base, and the next render replays the queue from
+the base and lands back on the no-op's value. The undo bar vanished at once
+instead of playing `notice-leave`, because the *entry's* `animationend` had
+already set `leaving` to `null`.
+
+So the setter that ends an exit is attached only while it is leaving
+(`onAnimationEnd={leaving === null ? undefined : …}`), checks
+`event.target === event.currentTarget` so a child's animation does not end
+it, and a handler shared by settled rows guards against setting what is
+already there (`use-row-arrivals.ts`).
+
 ## Related
 
 - [`design-system.md`](design-system.md) — wrapping a react-aria primitive

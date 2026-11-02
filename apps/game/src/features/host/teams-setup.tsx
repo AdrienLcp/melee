@@ -20,6 +20,7 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { TeamCountField } from './team-count-field'
+import { useArrivedLater } from './use-arrived-later'
 
 import './teams-setup.sass'
 
@@ -103,6 +104,9 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
   const teams = settings.teams
   const [isAloudRefused, setIsAloudRefused] = useState(false)
   const mostTeams = mostTeamsOffered({ seatCount, teams })
+  const teamCountArrived = useArrivedLater(teams.kind !== 'off')
+  const isScoredAsTeams = teams.kind === 'drawn' || teams.kind === 'chosen'
+  const teamScoringArrived = useArrivedLater(isScoredAsTeams)
 
   return (
     <div className='teams-setup'>
@@ -145,6 +149,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
       />
       {teams.kind !== 'off' && (
         <TeamCountField
+          isArriving={teamCountArrived}
           isDisabled={isDisabled}
           mostTeams={mostTeams}
           onChange={(count) => {
@@ -153,10 +158,11 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
           teams={teams}
         />
       )}
-      {(teams.kind === 'drawn' || teams.kind === 'chosen') && (
+      {isScoredAsTeams && (
         <>
           <SegmentedControl
             className='team-scoring'
+            data-arrived={teamScoringArrived}
             isDisabled={isDisabled}
             label={translate('team.scoring.label')}
             onChange={(next) => {

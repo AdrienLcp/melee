@@ -23,6 +23,7 @@ import { ToggleGroup } from '@/presentation/components/toggle-group'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { NumberChoice, useDurationLabels } from './number-choice'
+import { useArrivedLater } from './use-arrived-later'
 
 import './petit-bac-setup.sass'
 
@@ -69,6 +70,9 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
   const translate = useTranslate()
   const { seconds: secondsLabel } = useDurationLabels()
   const excluded = new Set<string>(game.excludedLetters)
+  const isDrawn = game.categories === null
+  const categoryCountArrived = useArrivedLater(isDrawn)
+  const fixedCategoriesArrived = useArrivedLater(!isDrawn)
 
   return (
     <div className='petit-bac-setup'>
@@ -91,6 +95,7 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
       {game.categories === null ? (
         <NumberField
           className='category-count'
+          data-arrived={categoryCountArrived}
           isDisabled={isDisabled}
           label={translate('petitbac.setup.count')}
           maxValue={MAX_PETIT_BAC_CATEGORIES}
@@ -105,6 +110,7 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
       ) : (
         <FixedCategories
           categories={game.categories}
+          isArriving={fixedCategoriesArrived}
           isDisabled={isDisabled}
           onChange={(categories) => {
             onChange({ ...game, categories })
@@ -162,6 +168,8 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
 
 type FixedCategoriesProps = {
   categories: readonly PetitBacCategory[]
+  /** Marks a list the host just switched to, so it rises rather than appears. */
+  isArriving?: true
   isDisabled: boolean
   /** Only ever called with a list the server takes: between three and ten. */
   onChange: (categories: PetitBacCategory[]) => void
@@ -170,6 +178,7 @@ type FixedCategoriesProps = {
 /** The box's categories as chips, then the host's own lines, played in that order every round. */
 const FixedCategories: React.FC<FixedCategoriesProps> = ({
   categories,
+  isArriving,
   isDisabled,
   onChange
 }) => {
@@ -208,7 +217,7 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
   }
 
   return (
-    <section className='fixed-categories'>
+    <section className='fixed-categories' data-arrived={isArriving}>
       <p className='summary'>
         {translate('petitbac.setup.summary', {
           count: categories.length,

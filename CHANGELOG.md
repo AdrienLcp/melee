@@ -133,6 +133,20 @@ one part.
   winner's on the final board, each player's own beside its place — with the
   name and the score rising under it and the standings after.
 
+- `[Game]` **What the host's setup and the front door add comes up rather
+  than cuts in.** A setting a choice reveals — the room for answering after a
+  buzz, the teams' scoring, the board's rules, a blind test's decades or
+  playlist, Petit Bac's list — rises as the choice brings it, and stands
+  still when its page simply opens; a row added to a key, a list of labels,
+  the challenge lines or the kept line-ups rises once, and so does a seat
+  joining the Players tab, whose count is stamped on. The game tab's list
+  slides back in from the side a round's page leaves by, a round planned
+  before the table has echoed it fills in as it lands, and the bar offering to
+  undo a round taken out comes up and goes out rather than vanishing. Error
+  lines, the resume link, the invite page's not-found, a spinner and the
+  reconnecting pill fade or rise in, and a spine, a lid's star and the menu
+  ease their colours instead of snapping.
+
 - `[Game]` **The front page's line-ups arrive the way the shelf does.** Each
   lid of *Your line-ups* and *Ready-made line-ups* slides in from the row's
   start one after the other as the page opens, like the spines below, where

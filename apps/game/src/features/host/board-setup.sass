@@ -9,12 +9,14 @@
     // A recess under the strip: the rules belong to the track it laid. Pressed
     // into the panel's paper, whose inks stay light-ground in both palettes.
     .track-rules
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
       background: var(--well)
       border-radius: var(--radius-m)
       display: grid
       gap: var(--space-s)
       padding: var(--space-s)
+
+      &[data-arrived]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)
 
     // Six stamps tile three by two, then two by three, rather than leaving the
     // longest track alone on a second row. A track laid at a length the strip

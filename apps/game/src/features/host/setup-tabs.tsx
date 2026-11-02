@@ -477,6 +477,9 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
   view
 }) => {
   const translate = useTranslate()
+  const [seatedWhenOpened] = useState(
+    () => new Set(view.players.map((player) => player.id))
+  )
 
   if (view.players.length === 0) {
     return <p className='tab-summary'>{translate('team.empty')}</p>
@@ -486,9 +489,9 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
     <>
       <Scoreboard
         hasPawns
-        marksArrivals={view.phase === 'lobby'}
         onRemove={onRemovePlayer}
         players={view.players}
+        seatedBefore={view.phase === 'lobby' ? seatedWhenOpened : undefined}
         youId={view.youId}
       />
       {view.phase !== 'lobby' && (

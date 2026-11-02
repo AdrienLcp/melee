@@ -15,6 +15,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { useBoardSetupLanding } from './board-setup-landing'
 import { NO_LIMIT, NumberChoice } from './number-choice'
+import { useArrivedLater } from './use-arrived-later'
 
 import './board-setup.sass'
 
@@ -50,6 +51,7 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   const board = settings.board
   const lengths = boardLengthsWith(board)
   const pawns = settings.teams.kind === 'off' ? 'seats' : 'teams'
+  const trackRulesArrived = useArrivedLater(board.kind === 'track')
 
   const changeTrack = (track: TrackSettings) => {
     onChange({ ...settings, board: track })
@@ -88,7 +90,7 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
         value={board.kind === 'track' ? board.length : NO_BOARD}
       />
       {board.kind === 'track' && (
-        <div className='track-rules'>
+        <div className='track-rules' data-arrived={trackRulesArrived}>
           <SegmentedControl
             className='board-strategy'
             description={translate(

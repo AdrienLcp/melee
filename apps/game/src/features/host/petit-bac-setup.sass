@@ -26,7 +26,8 @@
 
     .category-count,
     .fixed-categories
-      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+      &[data-arrived]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)
 
     .fixed-categories
       display: flex
