@@ -118,6 +118,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The front page's line-ups arrive the way the shelf does.** Each
+  lid of *Your line-ups* and *Ready-made line-ups* slides in from the row's
+  start one after the other as the page opens, like the spines below, where
+  they used to stand in place under the page's own sweep. The first four
+  take their turn and the rest land with the fourth, so a lid off screen never
+  holds one on it back.
+
 - `[Shared]` **A board runs to a hundred squares.** The strip offers *None ·
   20 · 40 · 60 · 80 · 100*, since a forty-round evening walks its leader some
   eighty squares and the longest track was forty; a long track closes into the

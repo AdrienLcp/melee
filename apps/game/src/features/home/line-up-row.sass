@@ -1,5 +1,6 @@
 // Side-effect module: the component's rules, in the components layer.
 
+@use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
 @layer components
@@ -73,9 +74,17 @@
         display: none
 
       > li
+        --lid-order: 4
+
+        @include piece.shelved(var(--lid-order), 4)
+
         display: grid
         min-width: 0
         scroll-snap-align: start
+
+        @for $order from 0 through 3
+          &:nth-child(#{$order + 1})
+            --lid-order: #{$order}
 
       @container (width >= 48rem)
         --lid-width: 17.5rem

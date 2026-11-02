@@ -4,16 +4,6 @@
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
-/// A box pushed onto the shelf by its spine: it slides in from the side and its
-/// chipboard edge settles under it.
-@keyframes spine-shelve
-  from
-    opacity: 0
-    translate: -1.25rem 0
-  to
-    opacity: 1
-    translate: 0 0
-
 @layer components
   .game-shelf
     container-type: inline-size
@@ -37,11 +27,8 @@
       margin: 0
       padding: 0
 
-      // Shelved one after the other on arrival, the whole row inside half a
-      // second whatever the shelf holds.
       > li
-        animation: spine-shelve var(--transition-slow, 0s) var(--ease-out) backwards
-        animation-delay: calc(var(--transition-fast, 0s) * (1 + min(var(--shelf-index), 10) * 0.3))
+        @include piece.shelved(var(--shelf-index))
 
       @container (width >= 52rem)
         grid-template-columns: repeat(2, minmax(0, 1fr))

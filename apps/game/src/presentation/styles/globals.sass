@@ -126,3 +126,14 @@
   from
     opacity: 0
     scale: 0.4
+
+/// A piece pushed onto its shelf or its row as the page opens: it slides in
+/// from the row's start and its chipboard edge settles under it. Started by
+/// `piece.shelved`, which deals the order.
+@keyframes piece-shelve
+  from
+    opacity: 0
+    translate: -1.25rem 0
+  to
+    opacity: 1
+    translate: 0 0

@@ -1371,6 +1371,12 @@ bounced. Durations:
   jumps.
 - **A piece in life** — lift under a pointer, sink under a press, on `fast`.
   Nothing else moves a piece.
+- **Pieces set out** — the home page's spines and lids arrive one after the
+  other as it opens (`piece.shelved`, keyframe `piece-shelve`): each slides
+  1.25rem in from its row's start with a fade on `slow`, the first a `fast`
+  in and each next one `fast` × 0.3 later. The shelf staggers ten and a row of
+  lids four — a 1440px row shows four lids whole and cuts the fifth — and the
+  rest land together, so a piece off screen never holds back one on it.
 - **Countdown** — each second struck onto the token (`countdown-strike`,
   `base` × 3.5).
 - **Reveal** — `card-strike`, scale 1.06 to 1 on `slow`, on the card and never

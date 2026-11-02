@@ -12,6 +12,16 @@
 /// `--edge` is the chipboard's depth: the press, the lift and every pull read
 /// their travel from it as well as their shadow, so the two stay in step at
 /// any root size.
+/// Pieces set out one after the other as their page opens, a shelf of spines or
+/// a row of lids: `piece-shelve` from `globals.sass`, the piece at `$order`
+/// (a number, or the custom property holding it) starting `fast` × 0.3 after
+/// the one before. From `$last-staggered` on they land together, because the
+/// pieces a screen cannot show yet would only hold back the ones it can.
+/// Filled backwards, so a piece waiting its turn is not drawn in place first.
+@mixin shelved($order, $last-staggered: 10)
+  animation: piece-shelve var(--transition-slow, 0s) var(--ease-out) backwards
+  animation-delay: calc(var(--transition-fast, 0s) * (1 + min(#{$order}, #{$last-staggered}) * 0.3))
+
 @mixin piece($radius: var(--radius-m), $nubs: true)
   --edge: 0.1875rem
 
