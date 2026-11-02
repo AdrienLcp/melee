@@ -620,8 +620,6 @@ export const EN_DICTIONARY = defineDictionary({
     tagline: 'Two names. Which one is bigger?'
   },
   home: {
-    /** A lid's star, pressed when the line-up is kept at the head of the row. */
-    favourite: 'Keep “{name}” as a favourite',
     /** Over the games the host judges however they are answered, shelved after the rest. */
     judgedGames: 'Judged by the host',
     /** Read after a row's title, whose count is printed as a bare figure. */
@@ -665,6 +663,8 @@ export const EN_DICTIONARY = defineDictionary({
     },
     previousLineUps: 'Previous line-ups',
     resume: 'Back to table',
+    /** A lid's star, pressed when the line-up is saved, which leads the row. */
+    saveLineUp: 'Save “{name}”',
     shelf: 'Or your own games',
     shelfHint:
       'Tick what “Open a table” opens. Your ticks are kept for next time.',
@@ -673,8 +673,9 @@ export const EN_DICTIONARY = defineDictionary({
     untickAll: 'Untick all',
     /** The row of line-ups the host starred or played on this machine. */
     yourLineUps: {
-      hint: 'Your favourites first, then what you played, latest first.',
-      starHint: 'Star a line-up and on your next visit it leads this row.',
+      hint: 'Your saved line-ups first, then what you played, latest first.',
+      starHint:
+        'Star a line-up to save it, and on your next visit it leads this row.',
       title: 'Your line-ups'
     }
   },
@@ -989,10 +990,11 @@ export const EN_DICTIONARY = defineDictionary({
     saved: {
       door: 'Saved line-ups',
       doorCount: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} kept', other: '{?} kept' } }
+        plural: { count: { one: '{?} saved', other: '{?} saved' } }
       }),
-      doorEmpty: 'Keep this one to run it again another time',
-      empty: 'No line-up kept yet. Name this one to run it again another time.',
+      doorEmpty: 'Save this one to run it again another time',
+      empty:
+        'No line-up saved yet. Name this one to run it again another time.',
       endless: 'No end',
       export: 'Export',
       exportFileName: 'melee-line-ups.json',
@@ -1019,12 +1021,12 @@ export const EN_DICTIONARY = defineDictionary({
       name: 'Name this line-up',
       replace: 'Replace',
       replaces:
-        'A line-up is already kept under this name: this one takes its place.',
+        'A line-up is already saved under this name: this one takes its place.',
       rounds: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} round', other: '{?} rounds' } }
       }),
       run: 'Run {name}',
-      save: 'Keep it',
+      save: 'Save it',
       savedOver: '“{name}” is up to date',
       saveOver: 'Save over it',
       saveOverNamed: 'Save over “{name}”',

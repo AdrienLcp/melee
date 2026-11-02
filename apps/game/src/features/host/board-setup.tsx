@@ -20,7 +20,7 @@ import './board-setup.sass'
 
 const NO_BOARD = NO_LIMIT
 
-const BOARD_LENGTHS = [NO_BOARD, 20, 30, 40] as const
+const BOARD_LENGTHS = [NO_BOARD, 20, 40, 60, 80, 100] as const
 
 /** The strip's lengths, with a track laid at another length kept selectable. */
 const boardLengthsWith = (board: BoardSettings): number[] =>

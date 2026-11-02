@@ -622,13 +622,18 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   scroll; the unseated console's four tiles, lying down, drop the side bar
   until the round ends (`data-stage-full`), because the column it takes is
   the one the longest choice wraps into — 568×320 ran 14px off the screen.
-- **The board** is one strip on the Table tab, *Board*: *None · 20 · 30 ·
-  40*, the unit (*squares*) a `mark` under each number, the hint under the
-  strip saying who walks a pawn. With the unit beside each number it ran
-  26.65rem in English, past the panel's 22.5rem; marked, 18.52rem, so it
-  stacks below 19rem. A track laid at another length (a stored 25) joins the
-  strip in its order rather than falling off it, and that strip of five stacks
-  below 23.5rem. Once a track is laid, its rules — how the pawns move, the
+- **The board** is one strip on the Table tab, *Board*: *None · 20 · 40 ·
+  60 · 80 · 100*, the unit (*squares*) a `mark` under each number, the hint
+  under the strip saying who walks a pawn. A forty-round evening walks its
+  leader some eighty squares, which is why the strip runs to a hundred; a long track
+  closes into the loop round the whole stage on its own. With
+  the unit beside each number the old four ran 26.65rem in English, past the
+  panel's 22.5rem; marked, the six run 27.85rem in one row in English (22.2rem in
+  French), so they tile three by two below 28rem and two by three below 15rem rather than leaving
+  *100* alone on a second row. *None* stands as tall as a marked stamp, its
+  word centred in it (`align-content: center` on every segment). A track laid
+  at another length (a stored 30) joins the strip in its order rather than
+  falling off it, and that strip of seven, which tiles no way, wraps. Once a track is laid, its rules — how the pawns move, the
   help for whoever is last — open in a `--well` recess under the strip. A
   switch with the length behind it hid the one setting a host looks for.
 - **The lobby's *Board* preview is the way in** on a console: the label with
@@ -900,7 +905,10 @@ under every answer mode a verdict is owed in.
   underlined link a `--target` tall, the code in the title face, its line
   held while the server is asked. Across from it from 60rem, their bottoms on
   one line, the player's door: the code box on its lid; under it below
-  60rem. The menu scrolls away with the masthead here instead of floating
+  60rem. From 60rem the masthead shares the menu's row instead of starting
+  under it, and the code box stops a `--menu-inset` short of the column's
+  edge: the menu is anchored to the column at every width, so no margin ever
+  clears it. The menu scrolls away with the masthead here instead of floating
   over the shelf.
 - **The host's door** (`HostDoor`): *Open a table · 5 games* (the count of
   ticked spines, the bare *Open a table* when none is) as the coral piece at

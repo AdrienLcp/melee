@@ -109,6 +109,9 @@
     @include focus.ring-inset
     @include typography.caption-strong
 
+    // A stamp with no mark under it stands as tall as the ones that carry one,
+    // and its label belongs in the middle of that height, not at its top.
+    align-content: center
     background: transparent
     border-radius: calc(var(--radius-m) - var(--space-2xs))
     color: var(--ink-muted)

@@ -118,6 +118,21 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **A board runs to a hundred squares.** The strip offers *None ·
+  20 · 40 · 60 · 80 · 100*, since a forty-round evening walks its leader some
+  eighty squares and the longest track was forty; a long track closes into the
+  loop round the whole stage, as it always could. A new track starts at forty. On a narrow
+  panel the six tile three by two, and *None* sits in the middle of its stamp
+  like the numbers beside it.
+
+- `[Game]` **The front page's masthead shares the menu's row.** From 60rem
+  the wordmark and the code box start where the menu does, the box stopping a
+  gutter short of it, instead of under an empty band the menu's height.
+
+- `[Game]` **One word for a kept line-up: saved.** The home page's star said
+  *favourite* and the console said *kept*; both now say *saved*, the console's
+  own heading.
+
 - `[Game]` **The ready-made lids are one line shorter.** *Grand mix* no longer
   lists fifteen games the band already shows, and each caption stops
   repeating its games or its round count: the row goes from 261 to 223px.

@@ -591,7 +591,6 @@ export const FR_DICTIONARY = defineDictionary({
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
-    favourite: 'Garder « {name} » en favori',
     judgedGames: 'Jugés par l’hôte',
     lineUpCount: defineTranslation('{count:plural}', {
       plural: { count: { one: ', {?} partie', other: ', {?} parties' } }
@@ -632,6 +631,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     previousLineUps: 'Parties précédentes',
     resume: 'Reprendre la table',
+    saveLineUp: 'Enregistrer « {name} »',
     shelf: 'Ou tes jeux à toi',
     shelfHint:
       'Coche ce que « Ouvrir une table » lance. Tes coches sont gardées pour la prochaine fois.',
@@ -639,9 +639,9 @@ export const FR_DICTIONARY = defineDictionary({
     title: 'Mêlée',
     untickAll: 'Tout décocher',
     yourLineUps: {
-      hint: 'Tes favorites d’abord, puis ce que tu as joué, le plus récent en premier.',
+      hint: 'Tes parties enregistrées d’abord, puis celles que tu as jouées, la plus récente en premier.',
       starHint:
-        'Mets une étoile sur une partie : à ta prochaine visite, elle passera en tête de cette rangée.',
+        'Mets une étoile sur une partie pour l’enregistrer : à ta prochaine visite, elle passera en tête de cette rangée.',
       title: 'Tes parties'
     }
   },
@@ -950,12 +950,12 @@ export const FR_DICTIONARY = defineDictionary({
       door: 'Parties enregistrées',
       doorCount: defineTranslation('{count:plural}', {
         plural: {
-          count: { one: '{?} gardée', other: '{?} gardées' }
+          count: { one: '{?} enregistrée', other: '{?} enregistrées' }
         }
       }),
-      doorEmpty: 'Garde celle-ci pour la relancer une autre fois',
+      doorEmpty: 'Enregistre celle-ci pour la relancer une autre fois',
       empty:
-        'Aucune partie gardée pour l’instant. Donne un nom à celle-ci pour la relancer une autre fois.',
+        'Aucune partie enregistrée pour l’instant. Donne un nom à celle-ci pour la relancer une autre fois.',
       endless: 'Sans fin',
       export: 'Exporter',
       exportFileName: 'melee-parties.json',
@@ -982,12 +982,12 @@ export const FR_DICTIONARY = defineDictionary({
       name: 'Nom de la partie',
       replace: 'Remplacer',
       replaces:
-        'Une partie est déjà gardée sous ce nom : celle-ci prend sa place.',
+        'Une partie est déjà enregistrée sous ce nom : celle-ci prend sa place.',
       rounds: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} manche', other: '{?} manches' } }
       }),
       run: 'Lancer {name}',
-      save: 'La garder',
+      save: 'L’enregistrer',
       savedOver: '« {name} » est à jour',
       saveOver: 'Enregistrer par-dessus',
       saveOverNamed: 'Enregistrer par-dessus « {name} »',

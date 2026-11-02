@@ -87,7 +87,7 @@ export const LineUpLid: React.FC<LineUpLidProps> = ({
       </Button>
       {star !== null && (
         <ToggleButton
-          aria-label={translate('home.favourite', { name })}
+          aria-label={translate('home.saveLineUp', { name })}
           className='star'
           isDisabled={isDisabled}
           isSelected={star.isOn}

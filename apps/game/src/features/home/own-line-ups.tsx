@@ -41,12 +41,12 @@ const storedRecents = (): readonly RecentTable[] => {
 /**
  * The host's own line-ups, one lid each: the ones they starred first, then
  * the tables this device played, latest first — a line-up starred and played
- * shows once, as the favourite, with how its last table went. Absent until
+ * shows once, as the saved one, with how its last table went. Absent until
  * there is one.
  *
  * The order is dealt once, as the page opens: a star pressed here takes or
  * gives back the line-up's place on the next visit, so no lid moves under the
- * finger. A row of plays with no favourite in it ends on an empty socket that
+ * finger. A row of plays with no saved line-up in it ends on an empty socket that
  * says what the star is for.
  */
 export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {

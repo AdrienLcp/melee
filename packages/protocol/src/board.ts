@@ -9,7 +9,7 @@ import { z } from 'zod'
 export const boardStrategySchema = z.enum(['onePointOneCase', 'rank'])
 
 export const MIN_BOARD_LENGTH = 10
-export const MAX_BOARD_LENGTH = 60
+export const MAX_BOARD_LENGTH = 100
 
 /**
  * Whether the table races on a track, and how. A room setting, because it is
@@ -50,7 +50,7 @@ export type BoardSettings = z.infer<typeof boardSettingsSchema>
 export type BoardPosition = z.infer<typeof boardPositionSchema>
 export type TrackSettings = Extract<BoardSettings, { kind: 'track' }>
 
-export const DEFAULT_BOARD_LENGTH = 30
+export const DEFAULT_BOARD_LENGTH = 40
 
 export const DEFAULT_BOARD_SETTINGS: BoardSettings = { kind: 'off' }
 

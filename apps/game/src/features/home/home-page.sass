@@ -17,6 +17,11 @@ $masthead-side-by-side: 60rem
     max-width: var(--stage-max-width)
     padding-block-start: var(--menu-block-inset)
 
+    // Beside the wordmark, the code box takes the menu's row rather than the
+    // band under it: the masthead starts where the menu does.
+    @media (width >= $masthead-side-by-side)
+      padding-block-start: var(--layout-padding-block-start)
+
     // The wordmark and the player's door on one row, their bottoms on one
     // line. On a narrow screen the code comes right under the wordmark,
     // because whoever is told four characters is most of the room.
@@ -33,6 +38,9 @@ $masthead-side-by-side: 60rem
         column-gap: var(--space-xl)
         grid-template-areas: 'title join'
         grid-template-columns: minmax(0, 1fr) minmax(0, 26rem)
+        // The menu is anchored to the column's edge at every width, never to
+        // the screen's, so no margin ever clears it.
+        padding-inline-end: var(--menu-inset)
 
     .title-block
       display: grid

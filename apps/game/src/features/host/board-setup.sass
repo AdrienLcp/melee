@@ -15,11 +15,15 @@
       gap: var(--space-s)
       padding: var(--space-s)
 
+    // Six stamps tile three by two, then two by three, rather than leaving the
+    // longest track alone on a second row. A track laid at a length the strip
+    // no longer offers makes seven, which tile no way, and wraps instead.
     .board-length
-      @include strip.stacks-below(19rem)
+      container-type: inline-size
 
-      &.off-list
-        @include strip.stacks-below(23.5rem)
+      &:not(.off-list)
+        @include strip.tiles-below(28rem, 3)
+        @include strip.tiles-below(15rem, 2)
 
     .board-strategy
       @include strip.stacks-below(14rem)
