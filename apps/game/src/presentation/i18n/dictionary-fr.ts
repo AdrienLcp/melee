@@ -1668,7 +1668,7 @@ export const FR_DICTIONARY = defineDictionary({
       grandMix: {
         caption:
           'Tous les jeux sans juge, sur plusieurs réglages, jamais deux pareils à la suite.',
-        name: 'Grand mélange'
+        name: 'Mêlée générale'
       },
       music: {
         caption:

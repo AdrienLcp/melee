@@ -72,7 +72,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, Atlas, Challenge, Inner clock, Matchsticks, Timeline, Black square and Categories.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, Atlas, Challenge, Inner clock, Matchsticks, Before & after, Black square and Categories.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -123,7 +123,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     timeline: {
       description:
         'Five events come up at once — the Moon landing, the fall of the Berlin Wall, the first iPhone — and the whole room puts them in order on their own screens, earliest first. The years come out at the reveal. Scan the QR code and play — no install, no account.',
-      title: 'Timeline — Mêlée'
+      title: 'Before & after — Mêlée'
     }
   },
   fr: {

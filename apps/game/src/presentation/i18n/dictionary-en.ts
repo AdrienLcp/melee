@@ -1763,7 +1763,7 @@ export const EN_DICTIONARY = defineDictionary({
       grandMix: {
         caption:
           'Every game with no judge, on several settings, never two of a kind in a row.',
-        name: 'Grand mix'
+        name: 'Free-for-all'
       },
       music: {
         caption: 'Three blind tests: French hits, the 80s and film scores.',
@@ -2142,8 +2142,8 @@ export const EN_DICTIONARY = defineDictionary({
       description:
         'Five events come up at once — the first steps on the Moon, the fall of the Berlin Wall, the first iPhone, a World Cup final. Everyone puts them in order, earliest first, and the years come out at the reveal. All five right pays the most, and one pair the wrong way round still scores.'
     },
-    name: 'Timeline',
-    play: 'Play Timeline',
+    name: 'Before & after',
+    play: 'Play Before & after',
     reveal: {
       perfect: 'In order',
       swapped: defineTranslation('{pairs:plural}', {

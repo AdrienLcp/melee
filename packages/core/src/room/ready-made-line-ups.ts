@@ -147,7 +147,7 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
  * bare takes what this host last left it at, or its opening settings; a
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
  * *First game* leaves out most likely: it falls flat with two players.
- * *Grand mix* is every game nobody has to judge, a variant per entry.
+ * *Free-for-all* is every game nobody has to judge, a variant per entry.
  */
 export const readyMadeLineUpsFor = (
   locale: Locale

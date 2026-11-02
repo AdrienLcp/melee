@@ -29,7 +29,7 @@ one part.
   page to the foot of the shelf it acts on, held to the bottom of the screen
   while the shelf is in view.
 
-- `[Shared]` **A fifth ready-made line-up, *Grand mix*: every game nobody has
+- `[Shared]` **A fifth ready-made line-up, *Free-for-all*: every game nobody has
   to judge, each entry on a setting of its own** — 40 rounds, nothing drawn:
   eight blind tests, twelve quiz subjects, the map six ways, and two settings
   each of matchsticks, colours, Petit Bac and black square beside the games
@@ -133,7 +133,10 @@ one part.
   *favourite* and the console said *kept*; both now say *saved*, the console's
   own heading.
 
-- `[Game]` **The ready-made lids are one line shorter.** *Grand mix* no longer
+- `[Game]` **Timeline is *Before & after* in English**, so the shelf no longer
+  carries a published card game's title; French keeps *Frise chronologique*.
+
+- `[Game]` **The ready-made lids are one line shorter.** *Free-for-all* no longer
   lists fifteen games the band already shows, and each caption stops
   repeating its games or its round count: the row goes from 261 to 223px.
 
