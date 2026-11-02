@@ -164,6 +164,15 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
     takenOut.roundIndex === roundIndex
       ? takenOut
       : null
+  const [shownUndo, setShownUndo] = useState(undoable)
+  const [leavingUndo, setLeavingUndo] = useState<TakenOut | null>(null)
+
+  if (undoable !== shownUndo) {
+    setLeavingUndo(undoable === null ? shownUndo : null)
+    setShownUndo(undoable)
+  }
+
+  const drawnUndo = undoable ?? leavingUndo
   const change = (settings: RoomSettings) => {
     setTakenOut(null)
     onSettingsChange(settings)
@@ -234,15 +243,22 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
         isEveningOver={isEveningOver}
         view={view}
       />
-      {undoable !== null && (
-        <div className='evening-undo' role='status'>
+      {drawnUndo !== null && (
+        <div
+          className='evening-undo'
+          data-leaving={leavingUndo !== null || undefined}
+          onAnimationEnd={() => {
+            setLeavingUndo(null)
+          }}
+          role='status'
+        >
           <span>
-            {translate('host.evening.takenOut', { name: undoable.name })}
+            {translate('host.evening.takenOut', { name: drawnUndo.name })}
           </span>
           <Button
-            isDisabled={!isLive}
+            isDisabled={!isLive || leavingUndo !== null}
             onPress={() => {
-              change(undoable.settings)
+              change(drawnUndo.settings)
             }}
             size='small'
             variant='underlined'

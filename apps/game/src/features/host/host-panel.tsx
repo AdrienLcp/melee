@@ -175,7 +175,9 @@ export const HostPanel: React.FC<HostPanelProps> = ({
 
   const badge = (id: PanelTab) =>
     id === 'players' && playerCount > 0 ? (
-      <span className='tab-badge'>{playerCount}</span>
+      <span className='tab-badge' key={playerCount}>
+        {playerCount}
+      </span>
     ) : null
 
   const foldTool = (

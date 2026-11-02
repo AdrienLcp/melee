@@ -6,6 +6,9 @@
     gap: var(--space-m)
     padding-bottom: var(--space-m)
 
+    &[data-opened-empty] > :not(.back)
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
     > .back
       align-self: stretch
       background: var(--field)

@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
@@ -56,6 +57,12 @@ type ScoreboardProps = {
    */
   hasPawns?: boolean
   /**
+   * Sets down a row whose seat joined after the board was first drawn, on the
+   * host's roster while the table gathers. Off once the ranking can move a row:
+   * a row put back in the list replays its entrance.
+   */
+  marksArrivals?: boolean
+  /**
    * Gives each row a way to drop that player. Omitted everywhere the board is
    * something to *read* — the room's screen mid-round, a player's screen, the
    * final board — and passed only by the host's own roster, which is the one
@@ -89,6 +96,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   hasPawns,
   isResult,
   label,
+  marksArrivals,
   marksReady,
   onRemove,
   players,
@@ -98,6 +106,9 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const [seatedAtFirstDraw] = useState(
+    () => new Set(players.map((player) => player.id))
+  )
   const isRanked = hasAnybodyScored(players)
   const shownScoreOf = (player: PublicPlayer) =>
     translate('player.score', { points: shownPoints(player.score) })
@@ -146,6 +157,10 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
             // rows: two players sharing first are both `1`, and the row after
             // them is `3`. Absent until somebody has scored, the same way the
             // column is.
+            data-arrived={
+              (marksArrivals === true && !seatedAtFirstDraw.has(player.id)) ||
+              undefined
+            }
             data-moved={
               placesClimbed === 0
                 ? undefined

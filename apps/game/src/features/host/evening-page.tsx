@@ -1,5 +1,5 @@
 import type React from 'react'
-import { useLayoutEffect, useRef } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 import { Button } from '@/presentation/components/button'
 import { ChevronLeftIcon } from '@/presentation/components/icons'
@@ -23,7 +23,10 @@ const scrolledAncestorOf = (element: HTMLElement): HTMLElement | null => {
 }
 
 type EveningPageProps = {
-  /** The page itself; none while the entry it opens is still on its way from the room. */
+  /**
+   * The page itself; none while the entry it opens is still on its way from
+   * the room, and then it rises in under a page that has already slid in.
+   */
   children?: React.ReactNode
   /** Back to the list of rounds, whose place on the game tab the page took. */
   onBack: () => void
@@ -41,6 +44,7 @@ export const EveningPage: React.FC<EveningPageProps> = ({
 }) => {
   const translate = useTranslate()
   const page = useRef<HTMLElement>(null)
+  const [wasOpenedEmpty] = useState(children === undefined)
 
   useLayoutEffect(() => {
     if (page.current !== null) {
@@ -49,7 +53,11 @@ export const EveningPage: React.FC<EveningPageProps> = ({
   }, [])
 
   return (
-    <section className='evening-page' ref={page}>
+    <section
+      className='evening-page'
+      data-opened-empty={wasOpenedEmpty || undefined}
+      ref={page}
+    >
       <Button
         autoFocus
         className='back'

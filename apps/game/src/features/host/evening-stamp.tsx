@@ -76,7 +76,7 @@ export const EveningStamp: React.FC<EveningStampProps> = ({ kind, played }) => {
   const translate = useTranslate()
 
   return (
-    <span className='evening-stamp' data-stamp={kind}>
+    <span className='evening-stamp' data-stamp={kind} key={kind}>
       {kind === 'count'
         ? translate('host.evening.stamp.count', { count: played })
         : translate(`host.evening.stamp.${kind}`)}

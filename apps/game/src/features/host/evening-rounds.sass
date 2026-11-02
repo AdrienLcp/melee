@@ -277,6 +277,7 @@
     // place a press that slipped is put right.
     .evening-undo
       align-items: center
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
       background: var(--ink)
       border-radius: var(--radius-s)
       color: var(--field)
@@ -284,6 +285,9 @@
       gap: var(--space-xs)
       justify-content: space-between
       padding: var(--space-2xs) var(--space-s)
+
+      &[data-leaving]
+        animation: notice-leave calc(var(--transition-base, 0s) * 0.6) var(--ease-out) both
 
       .button
         color: var(--field)

@@ -97,7 +97,7 @@ type GamePage =
   | { isDrawnOnly: boolean; kind: 'adding' }
   | { kind: 'draw' }
   | { at: number; from: 'draw' | 'list'; kind: 'entry' }
-  | { kind: 'list'; returnedFrom: number | null }
+  | { hasReturned: boolean; kind: 'list'; returnedFrom: number | null }
   | { kind: 'saved' }
 
 /**
@@ -121,6 +121,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
 }) => {
   const { locale, translate } = useI18n()
   const [page, setPage] = useState<GamePage>({
+    hasReturned: false,
     kind: 'list',
     returnedFrom: null
   })
@@ -133,7 +134,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
     setLoadedName(evening.name)
   }
   const backToList = () => {
-    setPage({ kind: 'list', returnedFrom: null })
+    setPage({ hasReturned: true, kind: 'list', returnedFrom: null })
   }
   const plannedFrom =
     (from: 'draw' | 'list') => (settings: RoomSettings, at: number) => {
@@ -207,7 +208,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           setPage(
             page.from === 'draw'
               ? { kind: 'draw' }
-              : { kind: 'list', returnedFrom: page.at }
+              : { hasReturned: true, kind: 'list', returnedFrom: page.at }
           )
         }}
         onDraftSource={onDraftSource}
@@ -259,7 +260,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
   }
 
   return (
-    <>
+    <div className='evening-list' data-returned={page.hasReturned || undefined}>
       {slateEditors}
       {view.settings.game === null ? (
         <>
@@ -313,7 +314,7 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           }}
         />
       )}
-    </>
+    </div>
   )
 }
 
@@ -485,6 +486,7 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
     <>
       <Scoreboard
         hasPawns
+        marksArrivals={view.phase === 'lobby'}
         onRemove={onRemovePlayer}
         players={view.players}
         youId={view.youId}

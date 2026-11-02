@@ -35,6 +35,9 @@
     li[data-moved='up']
       z-index: 1
 
+    li[data-arrived]
+      animation: seat-arrives var(--transition-slow, 0s) var(--ease-out)
+
     &.ranked li
       grid-template-columns: auto 1fr auto
 
