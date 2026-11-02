@@ -20,6 +20,7 @@ import {
 } from '@melee/core/board/track-shape'
 
 import { onLayoutMoved } from '@/infrastructure/browser'
+import { FinishIcon, StartIcon } from '@/presentation/components/icons'
 import {
   TrackPawnPiece,
   useTrackPawnName
@@ -115,11 +116,12 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
               standing.length > MAX_PAWNS_DRAWN
                 ? standing.slice(0, PAWNS_BESIDE_COUNT)
                 : standing
+            const mark = markOf({ caseIndex, length })
 
             return (
               <div
                 className='case'
-                data-mark={markOf({ caseIndex, length })}
+                data-mark={mark}
                 data-parity={caseIndex % 2 === 0 ? 'even' : 'odd'}
                 data-side={sideOf({ column, row, shape })}
                 key={caseIndex}
@@ -131,11 +133,11 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
                 }}
               >
                 <span className='number'>
-                  {caseIndex === 0
-                    ? translate('board.start')
-                    : caseIndex === length
-                      ? translate('board.finish')
-                      : caseIndex}
+                  {mark === 'start' || mark === 'finish' ? (
+                    <TrackEnd end={mark} />
+                  ) : (
+                    caseIndex
+                  )}
                 </span>
                 {standing.length > 0 && (
                   <span className='pawns'>
@@ -390,13 +392,33 @@ const NO_PAWNS: readonly TrackPawn[] = []
 const trackLengthOf = (board: BoardSettings): number =>
   board.kind === 'track' ? board.length : 0
 
+type TrackEndKind = 'finish' | 'start'
+
+const END_GLYPHS = { finish: FinishIcon, start: StartIcon } as const
+
+/**
+ * The start or the finish spelled out, and in a glyph where the case is too
+ * narrow for the word, which the stylesheet then hides but keeps.
+ */
+const TrackEnd: React.FC<{ end: TrackEndKind }> = ({ end }) => {
+  const translate = useTranslate()
+  const Glyph = END_GLYPHS[end]
+
+  return (
+    <>
+      <span className='word'>{translate(`board.${end}`)}</span>
+      <Glyph className='glyph' />
+    </>
+  )
+}
+
 const markOf = ({
   caseIndex,
   length
 }: {
   caseIndex: number
   length: number
-}): string | undefined => {
+}): TrackEndKind | 'five' | undefined => {
   if (caseIndex === 0) {
     return 'start'
   }

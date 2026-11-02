@@ -17,11 +17,13 @@ import {
   Download,
   Earth,
   Ellipsis,
+  Flag,
   Flame,
   Grid3x3,
   GripVertical,
   History,
   Hourglass,
+  House,
   Lock,
   type LucideIcon,
   type LucideProps,
@@ -104,6 +106,7 @@ export const MenuIcon = inFamily(Menu, {
 export const ExportIcon = inFamily(Download)
 export const ImportIcon = inFamily(Upload)
 export const DiceIcon = inFamily(Dice5, { strokeLinecap: 'square' })
+export const FinishIcon = inFamily(Flag)
 export const GripIcon = inFamily(GripVertical)
 export const InstallIcon = inFamily(SquarePlus)
 export const FullscreenEnterIcon = inFamily(Maximize)
@@ -129,6 +132,7 @@ export const ScreenIcon = inFamily(Tv)
 export const SoundIcon = inFamily(Volume2)
 export const StageIcon = inFamily(MonitorPlay)
 export const StarIcon = inFamily(Star)
+export const StartIcon = inFamily(House)
 export const TableIcon = inFamily(PanelsTopLeft)
 export const ShareIcon = inFamily(Share)
 export const WorldIcon = inFamily(Earth)

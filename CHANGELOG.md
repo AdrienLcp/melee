@@ -118,6 +118,15 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A board is ten, forty or a hundred squares, and a long one
+  stays tidy.** The Table tab's strip offers *None · 10 · 40 · 100* — about
+  three rounds, the usual ten and a marathon of twenty-five — in one row, two
+  by two on a narrow screen; a board laid at 20, 60 or 80 keeps its length
+  on the strip. Where a case is too narrow for *Départ* or *Arrivée*, a house
+  and a flag stand in for the words rather than spilling past the case, and
+  a pawn too small to read as one — a crowd on a hundred-square board — is
+  drawn as a dot in its colour, the count beside it unchanged.
+
 - `[Shared]` **The menu says which day's version is running.** *Version du
   2 nov. 2026 · 03e30b8* rather than the hash alone: the day is what a person
   reads, the hash still what proves a fix is live. Both are the deployment's,

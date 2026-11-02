@@ -622,18 +622,20 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   scroll; the unseated console's four tiles, lying down, drop the side bar
   until the round ends (`data-stage-full`), because the column it takes is
   the one the longest choice wraps into — 568×320 ran 14px off the screen.
-- **The board** is one strip on the Table tab, *Board*: *None · 20 · 40 ·
-  60 · 80 · 100*, the unit (*squares*) a `mark` under each number, the hint
-  under the strip saying who walks a pawn. A forty-round evening walks its
-  leader some eighty squares, which is why the strip runs to a hundred; a long track
-  closes into the loop round the whole stage on its own. With
-  the unit beside each number the old four ran 26.65rem in English, past the
-  panel's 22.5rem; marked, the six run 27.85rem in one row in English (22.2rem in
-  French), so they tile three by two below 28rem and two by three below 15rem rather than leaving
-  *100* alone on a second row. *None* stands as tall as a marked stamp, its
-  word centred in it (`align-content: center` on every segment). A track laid
-  at another length (a stored 30) joins the strip in its order rather than
-  falling off it, and that strip of seven, which tiles no way, wraps. Once a track is laid, its rules — how the pawns move, the
+- **The board** is one strip on the Table tab, *Board*: *None · 10 · 40 ·
+  100*, the unit (*squares*) a `mark` under each number, the hint under the
+  strip saying who walks a pawn. By points a round's leader walks some four
+  squares, so the three are a quick game of about three rounds, the evening
+  of about ten the room opens on (`DEFAULT_BOARD_LENGTH`) and a marathon of
+  about twenty-five; a long track closes into the loop round the whole stage
+  on its own. With the unit beside each number four stamps ran 26.65rem in
+  English, past the panel's 22.5rem; marked, the four run 18.6rem in one row
+  in English (15.1rem in French), so they tile two by two below 18.75rem
+  rather than leaving *100* alone on a second row. *None* stands as tall as a
+  marked stamp, its word centred in it (`align-content: center` on every
+  segment). A track laid at another length (a stored 20 or 60) joins the
+  strip in its order rather than falling off it, and that strip of five,
+  which tiles no way, wraps. Once a track is laid, its rules — how the pawns move, the
   help for whoever is last — open in a `--well` recess under the strip. A
   switch with the length behind it hid the one setting a host looks for.
 - **The lobby's board preview is the track alone**: every pawn on the
@@ -759,7 +761,15 @@ its `AwayMark` tag; a spent tile is a socket.
   a `mark` on its head (`pawnMarksOf`): the initial, two letters where a pawn
   of the same colour shares it, the initial and a count where those match
   too — set in the display face at 7.5 units, 5.6 for two characters, and
-  dropped on a case under 3rem, where it reads as a smudge.
+  dropped on a case under 3rem, where it reads as a smudge. Drawn under 13px
+  wide (`0.8125rem`, read off `.standing`, a container one pawn wide), the
+  head runs into the body at 1x and 11–12px read as a blot, so the track
+  draws a **dot** instead: the head alone, `r` 8 and sat on the base, in the
+  same `--pawn` over the same drop, the `+N` count beside it unchanged. At
+  1440×900 a hundred-square track draws 36px cases: a pawn alone stands
+  21.6px, two 16.6px, a crowd of three or four 12.2px, and only the crowds
+  are dots. The phone's strip never draws one under 13.2px (a 2.75rem case ×
+  0.3), so no silhouette anywhere is smaller than the threshold.
 - **Danger and good stamps**: rectangular blocks, trimmed to cap height.
 
 ### Icons
@@ -770,7 +780,8 @@ miter joins, `aria-hidden` — the library's own 2-unit round hairline reads as
 another product beside lettering this heavy. Each game has a glyph (`GameIcon`),
 printed before its name on the spine and on the host's box at `0.8em` and 2.75
 units, where 3.5 closes up the question mark's counter. The two other-screen
-cards on the front page carry one each, the screen and the QR code. A glyph never travels alone: it sits
+cards on the front page carry one each, the screen and the QR code, and so
+do the track's two ends on a case too narrow for their word. A glyph never travels alone: it sits
 beside the word, or its control carries the name.
 
 **The mark** (`public/favicon.svg`) is the four answer tokens in dealing
@@ -955,6 +966,23 @@ in and dashes one owed — *that*, never *what*. Removing a player is a ✕ name
 `--ink-muted` — a tag, never a bare word after the name, which reads as the end of
 the name. The score track, too narrow for it, keeps the word for
 screen readers alone.
+
+### The board track (`BoardTrack`, `TrackStrip`)
+Printed cases round the stage, a number in each corner, heavier every five;
+the start and the finish spell themselves out, the finish over a band of
+checks. Under 3.5rem of case width *Arrivée* at the type's floor (43.8px at
+12px, plus the corner's inset) runs out of its case — a hundred squares at
+1440×900 draws 36px cases — so both ends print a glyph from the family
+instead, a house for the start where the pawns wait and a flag for the
+finish, the word kept visually hidden. A glyph has no type floor and follows
+the case down (`min(--text-3xs, 30cqmin)`: 12px at 36px, 8px on a 390-wide
+wall's 23px cases). A pawn on an end case that small stands over the glyph's
+corner and leaves a sliver of it between the pieces, so the glyph goes while
+a pawn is there, unless the case is a leg twice as tall as it is wide, which
+holds both. Nothing directional: the loop's start sits beside its finish,
+and a triangle or an arrow along the bottom row points at the finish. The
+phone's strip keeps its words: its two ends hold 3.25rem whatever the rest
+get.
 
 ### Teams (`TeamRoster`, `PawnColoursProvider`)
 Every seat's pawn stands in the colour the seat picked, or in its team's when

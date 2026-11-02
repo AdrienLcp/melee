@@ -3,8 +3,11 @@ import type React from 'react'
 import {
   type BoardSettings,
   boardStrategySchema,
+  DEFAULT_BOARD_LENGTH,
   DEFAULT_BOARD_SETTINGS,
   DEFAULT_TRACK_SETTINGS,
+  MAX_BOARD_LENGTH,
+  MIN_BOARD_LENGTH,
   type TrackSettings
 } from '@melee/protocol/board'
 import type { RoomSettings } from '@melee/protocol/room'
@@ -20,7 +23,16 @@ import './board-setup.sass'
 
 const NO_BOARD = NO_LIMIT
 
-const BOARD_LENGTHS = [NO_BOARD, 20, 40, 60, 80, 100] as const
+/**
+ * A quick game, the usual evening and a marathon: by points, a round's leader
+ * walks some four cases, so about three rounds, ten and twenty-five.
+ */
+const BOARD_LENGTHS = [
+  NO_BOARD,
+  MIN_BOARD_LENGTH,
+  DEFAULT_BOARD_LENGTH,
+  MAX_BOARD_LENGTH
+] as const
 
 /** The strip's lengths, with a track laid at another length kept selectable. */
 const boardLengthsWith = (board: BoardSettings): number[] =>
