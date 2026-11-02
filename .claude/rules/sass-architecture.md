@@ -343,6 +343,13 @@ and `ToggleButton` wrap each string child in a `.control-label` span.
   clipped to the trimmed height, so a trimmed line that ends in an ellipsis clips
   across only (`overflow-x: clip`).
 
+## A keyframe two surfaces share lives in `globals.sass`
+
+A component's stylesheet reaches the page only where the component is
+imported, and an `animation` naming a keyframe the page never loaded runs
+nothing, silently: `pawn-lands`, written in `final-board.sass`, did not exist
+on the player's screen until it moved to `globals.sass` beside `seat-arrives`.
+
 ## A keyframe substitutes a custom property, it does not compute with one
 
 `var()` in a keyframe is fine on its own. **Wrapped in a `calc()` it is never
