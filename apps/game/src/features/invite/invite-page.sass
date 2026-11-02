@@ -94,6 +94,9 @@
       max-width: var(--column-max-width)
       text-align: center
 
+      > *
+        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
       h1
         @include typography.billboard
 

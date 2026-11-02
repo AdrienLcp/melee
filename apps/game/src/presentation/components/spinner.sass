@@ -1,8 +1,14 @@
 @use '@adrienlcp/styles/motion'
 
+$turn: calc(var(--transition-fast, 0s) * 5)
+
 @layer components
   .spinner
-    @include motion.spin(calc(var(--transition-fast, 0s) * 5))
+    @include motion.spin($turn)
+
+    // The include stays for the keyframes it writes; its turn is restated
+    // here behind the fade every spinner arrives with.
+    animation: swap-in var(--transition-fast, 0s) var(--ease-out), motion-spin $turn linear infinite
     border: 0.14em solid color-mix(in oklab, var(--on-control, currentColor) 30%, transparent)
     border-radius: var(--radius-full)
     border-top-color: var(--on-control, currentColor)
