@@ -265,7 +265,11 @@ centred reveal. A shared rule that assigns rows by position names the panels it
 fits, or lists the ones it does not. Inside a box of fixed height — the
 podium's round card — a floor written against the viewport (`38dvh`, a
 `--stage-unit` multiple) is not the box's floor: it pushes what follows out of
-the card.
+the card. Where the row has to stay `auto` — a block centred with what stands
+over it — the container claims a height with `contain-intrinsic-block-size`,
+written from what its rows take at their cap, and a `minmax(0, auto)` row hands
+it no more than is left: the upright wall's final board, whose rows spilled up
+over their heading from a 0px box.
 
 **A word breaks at a syllable or not at all.** Text in a narrow column — a
 heading over a sheet's column, a name in a grid cell, an answer in a card —
