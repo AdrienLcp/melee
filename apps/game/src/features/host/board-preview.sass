@@ -24,6 +24,15 @@
 
       margin: 0
 
+    // Only once the board changed under a stage already laid down: on the
+    // first draw the stage's own arrival is the entrance.
+    &[data-changed]
+      > .track-strip
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
+      > .board-value
+        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
     // On a console the whole preview presses through to the board's control:
     // the underlined « Change » is stretched over it.
     &[data-entry]

@@ -174,7 +174,7 @@ export const TeamsSetup: React.FC<TeamsSetupProps> = ({
             }))}
             value={settings.teamScoring}
           />
-          <p className='hint'>
+          <p className='hint' key={settings.teamScoring}>
             {translate(`team.scoring.${settings.teamScoring}Hint`)}
           </p>
         </>

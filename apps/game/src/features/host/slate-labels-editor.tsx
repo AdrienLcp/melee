@@ -11,6 +11,8 @@ import { Disclosure } from '@/presentation/components/disclosure'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { useRowArrivals } from './use-row-arrivals'
+
 import './slate-labels-editor.sass'
 
 type SlateLabelsEditorProps = {
@@ -36,6 +38,7 @@ export const SlateLabelsEditor: React.FC<SlateLabelsEditorProps> = ({
   const translate = useTranslate()
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
   const [refusedIndex, setRefusedIndex] = useState<number | null>(null)
+  const { isArriving, settleOnEnd } = useRowArrivals(itemCount)
   const named = labels
     .slice(0, itemCount)
     .filter((label) => label !== null).length
@@ -86,7 +89,11 @@ export const SlateLabelsEditor: React.FC<SlateLabelsEditorProps> = ({
           const number = String(itemIndex + 1)
 
           return (
-            <li key={number}>
+            <li
+              data-arrived={isArriving(itemIndex) || undefined}
+              key={number}
+              onAnimationEnd={settleOnEnd(itemIndex)}
+            >
               <TextField
                 autoComplete='off'
                 errorMessage={translate('slate.labels.duplicate')}

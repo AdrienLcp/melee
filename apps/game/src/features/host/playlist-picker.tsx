@@ -260,7 +260,9 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
               />
               {/* What is typed here leaves the site, so the field names
                   where it goes, as the playlist's hint already does. */}
-              <p className='hint'>{translate('blindtest.source.queryHint')}</p>
+              <p className='hint' key='query'>
+                {translate('blindtest.source.queryHint')}
+              </p>
             </>
           ) : (
             <>
@@ -271,7 +273,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
                 }}
                 value={draft.playlistId}
               />
-              <p className='hint'>
+              <p className='hint' key='playlist'>
                 {translate('blindtest.source.playlistIdHint')}
               </p>
             </>

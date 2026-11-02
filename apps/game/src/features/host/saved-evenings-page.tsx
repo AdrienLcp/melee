@@ -116,13 +116,26 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
   const [savedOver, setSavedOver] = useState<string | null>(null)
   const currentSettings = JSON.stringify(view.settings)
   const isUpToDate = savedOver === currentSettings
+  const offersSaveOver = view.settings.game !== null && loaded !== undefined
+  const [hasOfferedSaveOverSinceOpened, setHasOfferedSaveOverSinceOpened] =
+    useState(offersSaveOver)
+  const [keptWhenOpened] = useState(
+    () => new Set(evenings.map((evening) => evening.name))
+  )
+
+  if (hasOfferedSaveOverSinceOpened && !offersSaveOver) {
+    setHasOfferedSaveOverSinceOpened(false)
+  }
 
   return (
     <EveningPage onBack={onBack}>
       <section className='saved-evenings'>
         <h2 className='heading'>{translate('host.saved.heading')}</h2>
-        {view.settings.game !== null && loaded !== undefined && (
-          <div className='over'>
+        {offersSaveOver && (
+          <div
+            className='over'
+            data-arrived={!hasOfferedSaveOverSinceOpened || undefined}
+          >
             <p className='loaded' role='status'>
               {translate(
                 isUpToDate ? 'host.saved.savedOver' : 'host.saved.loaded',
@@ -185,6 +198,7 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
               {evenings.map((evening) => (
                 <SavedEveningRow
                   evening={evening}
+                  hasArrived={!keptWhenOpened.has(evening.name)}
                   isRunnable={canRun}
                   key={evening.name}
                   onForget={onForget}
@@ -202,10 +216,12 @@ export const SavedEveningsPage: React.FC<SavedEveningsPageProps> = ({
 
 const SavedEveningRow: React.FC<{
   evening: SavedEvening
+  /** Kept while the page was open, so it rises in rather than standing there already. */
+  hasArrived: boolean
   isRunnable: boolean
   onForget: (name: string) => void
   onRun: (evening: SavedEvening) => void
-}> = ({ evening, isRunnable, onForget, onRun }) => {
+}> = ({ evening, hasArrived, isRunnable, onForget, onRun }) => {
   const translate = useTranslate()
   const spines = spinesOf(evening.lineUp)
   const games = [...new Set(spines.map(({ kind }) => kind))]
@@ -217,7 +233,7 @@ const SavedEveningRow: React.FC<{
       : translate('host.saved.rounds', { count: evening.roundCount })
 
   return (
-    <li>
+    <li data-arrived={hasArrived || undefined}>
       <AriaButton
         aria-label={translate('host.saved.run', { name: evening.name })}
         className='evening'

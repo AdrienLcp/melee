@@ -169,6 +169,7 @@ const QuestionBankSettings: React.FC<{
       */}
       {hasAdultContent(game.language) && (
         <Switch
+          className='adult-content'
           isDisabled={isDisabled}
           isSelected={game.allowsAdultContent}
           label={translate('quiz.adult.label')}
@@ -542,6 +543,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       {/* A spoken round has one team guessing, so every find there is its alone. */}
       {game?.kind === 'blacksquare' && mode.kind === 'typed' && (
         <Switch
+          className='lone-finds'
           description={translate('blacksquare.lone.hint')}
           isDisabled={isDisabled}
           isSelected={game.doublesLoneFinds}

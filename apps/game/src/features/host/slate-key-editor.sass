@@ -14,3 +14,6 @@
       gap: var(--space-s)
       grid-template-columns: repeat(auto-fill, minmax(min(14rem, 100%), 1fr))
       list-style: none
+
+      li[data-arrived]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)

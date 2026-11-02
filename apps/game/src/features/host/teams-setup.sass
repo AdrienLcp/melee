@@ -15,8 +15,12 @@
     .team-scoring
       @include strip.stacks-below(18rem)
 
+    .team-count,
+    .team-scoring
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
 
     .hint
       @include typography.caption
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       color: var(--ink-muted)

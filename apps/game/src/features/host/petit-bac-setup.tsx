@@ -180,6 +180,9 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
     .filter((category) => category.kind === 'bank')
     .map((category) => category.key)
   const isFull = categories.length >= MAX_PETIT_BAC_CATEGORIES
+  const [ownWrittenAtFirstDraw] = useState(
+    () => new Set(own.map(({ label }) => label))
+  )
 
   const submit = (next: PetitBacCategory[]) => {
     if (
@@ -241,7 +244,10 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
           className='own-categories'
         >
           {own.map(({ label }) => (
-            <li key={label}>
+            <li
+              data-arrived={!ownWrittenAtFirstDraw.has(label) || undefined}
+              key={label}
+            >
               <span>{label}</span>
               <Button
                 aria-label={translate('petitbac.setup.remove', { label })}

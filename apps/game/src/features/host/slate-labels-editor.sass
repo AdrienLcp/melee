@@ -19,5 +19,8 @@
       grid-template-columns: repeat(auto-fill, minmax(min(17rem, 100%), 1fr))
       list-style: none
 
+      li[data-arrived]
+        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
       .react-aria-Input
         text-align: center

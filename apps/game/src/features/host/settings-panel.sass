@@ -45,9 +45,15 @@
     .answer-window
       @include strip.stacks-below(19rem)
 
+    .adult-content,
+    .lone-finds,
+    .answer-window
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
     .hint
       @include typography.caption
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       color: var(--ink-muted)
       margin-top: calc(var(--space-s) * -1 + var(--space-2xs))
       text-wrap: balance

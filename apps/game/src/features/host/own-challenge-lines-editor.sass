@@ -37,6 +37,9 @@
       gap: var(--space-xs)
       grid-template-columns: auto minmax(0rem, 1fr) auto auto
 
+    li[data-arrived]
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
     .index
       @include typography.numeric
 

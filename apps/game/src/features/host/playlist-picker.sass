@@ -29,9 +29,15 @@
       flex-direction: column
       gap: var(--space-2xs)
 
+    .genres,
+    .decades,
+    .react-aria-Form
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
+
     .hint
       @include typography.caption
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       color: var(--ink-muted)
 
     // Eleven genres do not fit one row on a laptop, and a horizontal scroller
@@ -103,6 +109,7 @@
     .error
       @include typography.caption-strong
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       background: var(--danger)
       color: var(--danger-ink)
       padding: var(--space-2xs) var(--space-s)
@@ -112,4 +119,5 @@
     .ready
       @include typography.label
 
+      animation: swap-in var(--transition-fast, 0s) var(--ease-out)
       color: var(--ink-muted)

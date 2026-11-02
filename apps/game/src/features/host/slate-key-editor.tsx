@@ -7,6 +7,8 @@ import { Disclosure } from '@/presentation/components/disclosure'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { useRowArrivals } from './use-row-arrivals'
+
 import './slate-key-editor.sass'
 
 type SlateKeyEditorProps = {
@@ -35,6 +37,7 @@ export const SlateKeyEditor: React.FC<SlateKeyEditorProps> = ({
 }) => {
   const translate = useTranslate()
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
+  const { isArriving, settleOnEnd } = useRowArrivals(itemCount)
   const noted = keys.slice(0, itemCount).filter((key) => key !== null).length
 
   return (
@@ -49,7 +52,11 @@ export const SlateKeyEditor: React.FC<SlateKeyEditorProps> = ({
           const saved = keys[index] ?? ''
 
           return (
-            <li key={String(index)}>
+            <li
+              data-arrived={isArriving(index) || undefined}
+              key={String(index)}
+              onAnimationEnd={settleOnEnd(index)}
+            >
               <TextField
                 autoComplete='off'
                 isDisabled={isDisabled}

@@ -1,4 +1,5 @@
 import type React from 'react'
+import { useState } from 'react'
 
 import type { HostRoomView } from '@melee/protocol/room'
 
@@ -39,6 +40,18 @@ export const BoardPreview: React.FC<BoardPreviewProps> = ({
         yours={undefined}
       />
     ) : null
+  const shownBoard =
+    strip !== null
+      ? 'strip'
+      : board.kind === 'track'
+        ? `track:${board.length}`
+        : 'none'
+  const [boardAtFirstDraw] = useState(shownBoard)
+  const [hasBoardChanged, setHasBoardChanged] = useState(false)
+
+  if (!hasBoardChanged && shownBoard !== boardAtFirstDraw) {
+    setHasBoardChanged(true)
+  }
 
   if (strip === null && openBoardSetup === null) {
     return null
@@ -47,6 +60,7 @@ export const BoardPreview: React.FC<BoardPreviewProps> = ({
   return (
     <section
       className='board-preview'
+      data-changed={hasBoardChanged || undefined}
       data-entry={openBoardSetup !== null || undefined}
     >
       <div className='board-head'>
@@ -64,7 +78,7 @@ export const BoardPreview: React.FC<BoardPreviewProps> = ({
         )}
       </div>
       {strip ?? (
-        <p className='board-value'>
+        <p className='board-value' key={shownBoard}>
           {board.kind === 'track'
             ? translate('board.setting.length', { length: board.length })
             : translate('board.none')}

@@ -13,6 +13,7 @@ import {
   setOwnChallengeLines,
   useOwnChallengeLines
 } from './use-own-challenge-lines'
+import { useRowArrivals } from './use-row-arrivals'
 
 import './own-challenge-lines-editor.sass'
 
@@ -26,6 +27,7 @@ export const OwnChallengeLinesEditor: React.FC = () => {
   const lines = useOwnChallengeLines()
   const [drafts, setDrafts] = useState<Readonly<Record<number, string>>>({})
   const [fresh, setFresh] = useState('')
+  const { isArriving, settleOnEnd } = useRowArrivals(lines.length)
   const toCome = lines.filter((line) => !line.isPlayed).length
 
   const add = () => {
@@ -56,7 +58,12 @@ export const OwnChallengeLinesEditor: React.FC = () => {
       {lines.length > 0 && (
         <ol className='lines'>
           {lines.map((line, at) => (
-            <li data-played={line.isPlayed || undefined} key={String(at)}>
+            <li
+              data-arrived={isArriving(at) || undefined}
+              data-played={line.isPlayed || undefined}
+              key={String(at)}
+              onAnimationEnd={settleOnEnd(at)}
+            >
               <span className='index'>{at + 1}</span>
               <TextField
                 autoComplete='off'
