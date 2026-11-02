@@ -314,9 +314,8 @@ one part.
 
 - `[Game]` **The board's length is in plain sight again.** One strip on the
   Table tab, *Board: None · 20 · 30 · 40 squares*, replaces the switch that
-  hid the length until it was turned on, and the lobby's board preview opens
-  it — on the panel, the bar along the foot or the podium's sheet, wherever the
-  tab lives. A length stored off the strip joins it, selected. It stays
+  hid the length until it was turned on, and the lobby draws the track with
+  every pawn on the start. A length stored off the strip joins it, selected. It stays
   *settled for this game* once the game is under way.
 
 - `[Shared]` **Petit Bac keeps the word being typed when time runs out.** A

@@ -321,15 +321,12 @@ export const FR_DICTIONARY = defineDictionary({
         hint: 'Seul à la dernière place, on avance d’une case de plus sur une manche où l’on marque.',
         label: 'Coup de pouce au dernier'
       },
-      change: 'Changer',
-      changeLabel: 'Changer le plateau',
       hint: {
         off: 'Des pions sur un parcours, autour de l’écran de la salle.',
         seats: 'Un pion par joueur, qui avance à chaque manche.',
         teams: 'Un pion par équipe, qui avance à chaque manche.'
       },
       label: 'Plateau',
-      length: '{length:number} cases',
       off: 'Sans',
       strategy: {
         hint: {

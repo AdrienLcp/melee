@@ -636,15 +636,11 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   falling off it, and that strip of seven, which tiles no way, wraps. Once a track is laid, its rules — how the pawns move, the
   help for whoever is last — open in a `--well` recess under the strip. A
   switch with the length behind it hid the one setting a host looks for.
-- **The lobby's *Board* preview is the way in** on a console: the label with
-  an underlined *Change* beside it — never at the row's end, where a desk's
-  menu covers the column's corner — over the track's strip, or its length, or
-  *No board*, where there is nothing to draw or the whole track runs round the
-  page. *Change* is stretched over the whole preview, so a press on the strip
-  lands too. It opens the Table tab wherever it lives — the panel's tab,
-  unfolding a rail; the bar's screen; the podium's sheet — scrolls the strip
-  to the middle and focuses its chosen segment. Off a console there is no
-  press, and the preview shows only a track.
+- **The lobby's board preview is the track alone**: every pawn on the
+  start, where the whole track does not already run round the page, and
+  nothing where no board is laid. No label, no length, no *Change*: the strip
+  says a board is laid, and it is changed on the Table tab like every other
+  setting.
 - **Past the lobby** the teams and the board, which the server no longer lets
   change, are one ruled line (*No teams · No board*, *Settled for this game*)
   rather than controls drawn dead. Under a round in play, Table and

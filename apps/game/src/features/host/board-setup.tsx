@@ -13,7 +13,6 @@ import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { Switch } from '@/presentation/components/switch'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
-import { useBoardSetupLanding } from './board-setup-landing'
 import { NO_LIMIT, NumberChoice } from './number-choice'
 import { useArrivedLater } from './use-arrived-later'
 
@@ -47,7 +46,6 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   settings
 }) => {
   const translate = useTranslate()
-  const landingRef = useBoardSetupLanding()
   const board = settings.board
   const lengths = boardLengthsWith(board)
   const pawns = settings.teams.kind === 'off' ? 'seats' : 'teams'
@@ -58,7 +56,7 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
   }
 
   return (
-    <div className='board-setup' ref={landingRef}>
+    <div className='board-setup'>
       <NumberChoice
         className={
           lengths.length > BOARD_LENGTHS.length

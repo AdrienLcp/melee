@@ -31,8 +31,7 @@ type TrackStripProps = {
   reach?: 'around' | 'whole'
   /**
    * The pawn this screen plays, stood up and ringed, and what the strip is
-   * centred on; `undefined` on a screen holding none, which shows the start
-   * and says how long the race is.
+   * centred on; `undefined` on a screen holding none, which shows the start.
    */
   yours: TrackPawn | undefined
 }
@@ -125,28 +124,28 @@ export const TrackStrip: React.FC<TrackStripProps> = ({
           : { '--team': `var(--pawn-${trackPawnNumberOf(yours)})` }
       }
     >
-      <p className='where'>
-        {yours === undefined
-          ? translate('board.setting.length', { length })
-          : translate('board.case', { case: at, length })}
-        {move > 0 && (
-          <span className='walked'>
-            {translate('board.walked', { count: move })}
-          </span>
-        )}
-        {isWhole && yours !== undefined && (
-          <Button
-            className='recentre'
-            data-hidden={!ribbon.isOwnAway || undefined}
-            onPress={ribbon.recentre}
-            size='small'
-            variant='outlined'
-          >
-            <TrackPawnPiece pawn={yours} />
-            {translate('board.recentre')}
-          </Button>
-        )}
-      </p>
+      {yours !== undefined && (
+        <p className='where'>
+          {translate('board.case', { case: at, length })}
+          {move > 0 && (
+            <span className='walked'>
+              {translate('board.walked', { count: move })}
+            </span>
+          )}
+          {isWhole && (
+            <Button
+              className='recentre'
+              data-hidden={!ribbon.isOwnAway || undefined}
+              onPress={ribbon.recentre}
+              size='small'
+              variant='outlined'
+            >
+              <TrackPawnPiece pawn={yours} />
+              {translate('board.recentre')}
+            </Button>
+          )}
+        </p>
+      )}
       {isWhole ? (
         <div className='ribbon' onScroll={ribbon.onScroll} ref={ribbonRef}>
           {caseList}

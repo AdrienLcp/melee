@@ -1,54 +1,8 @@
-@use '../../presentation/styles/typography'
-
 @layer components
   .board-preview
-    display: flex
-    flex-direction: column
-    gap: var(--space-xs)
     min-width: 0
-
-    h2
-      @include typography.label
-
-      color: var(--ink-muted)
-
-    // The press stands beside the label, never at the row's end: on a desk
-    // the console's menu sits over the top right corner of this column.
-    .board-head
-      align-items: baseline
-      display: flex
-      gap: var(--space-s)
-
-    .board-value
-      @include typography.title
-
-      margin: 0
 
     // Only once the board changed under a stage already laid down: on the
     // first draw the stage's own arrival is the entrance.
-    &[data-changed]
-      > .track-strip
-        animation: page-enter var(--transition-base, 0s) var(--ease-out)
-
-      > .board-value
-        animation: swap-in var(--transition-fast, 0s) var(--ease-out)
-
-    // On a console the whole preview presses through to the board's control:
-    // the underlined « Change » is stretched over it.
-    &[data-entry]
-      isolation: isolate
-      position: relative
-
-      .board-entry
-        position: static
-
-        // A transform makes the button the overlay's containing block: the
-        // press would shrink to the word and lose the pointer held on the strip.
-        &[data-pressed]
-          transform: none
-
-        &::after
-          content: ''
-          inset: 0
-          position: absolute
-          z-index: 1
+    &[data-changed] > .track-strip
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)

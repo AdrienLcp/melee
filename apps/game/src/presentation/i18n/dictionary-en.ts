@@ -349,15 +349,12 @@ export const EN_DICTIONARY = defineDictionary({
         label: 'Help whoever is last'
       },
       /** The lobby's board preview, which opens the setup on the board's strip. */
-      change: 'Change',
-      changeLabel: 'Change the board',
       hint: {
         off: 'Pawns racing round a track on the room’s screen.',
         seats: 'A pawn for every player, moving on after each round.',
         teams: 'A pawn for every team, moving on after each round.'
       },
       label: 'Board',
-      length: '{length:number} squares',
       off: 'None',
       strategy: {
         hint: {
