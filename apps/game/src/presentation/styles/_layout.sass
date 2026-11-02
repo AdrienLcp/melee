@@ -72,6 +72,16 @@ $podium-screen: 64rem
 @mixin arriving
   animation: page-lay calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
 
+/// Holds a page already on screen where it stands through a state that must
+/// not play the arrival — a round in play, a framed seat. A zero duration and
+/// never `animation: none`: lifted at the reveal or a buzz, `none` hands the
+/// page a fresh `page-lay` and the whole screen is laid down again, where a
+/// duration given back to a sweep that has run its course leaves it finished.
+/// `none` stays right only to put the arrival off until there is something to
+/// lay down, as the console's empty stage does.
+@mixin arrived
+  animation-duration: 0s
+
 /// A narrow-first column. Used by every screen a player sees.
 ///
 /// It widens rather than staying a ribbon, because the type is sized in `vmin`

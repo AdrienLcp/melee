@@ -394,7 +394,7 @@
   // type to that. Its floor is what keeps a tall footer a scroll rather than a
   // stage crushed to nothing.
   .host-console-page:has(> .stage.playing)
-    animation: none
+    @include layout.arrived
     display: grid
     gap: var(--space-stage-rows)
     grid-template-rows: auto minmax(min(22rem, 45dvh), 1fr) auto
@@ -449,7 +449,7 @@
   // the footer, so sixty items or a full table never push the presses down.
   .host-console-page:has(> .stage:is(.slate-writing, .slate-correcting))
     @include layout.wide
-      animation: none
+      @include layout.arrived
       display: grid
       gap: var(--space-stage-rows)
       grid-template-rows: auto minmax(min(20rem, 50dvh), 1fr) auto
@@ -475,7 +475,7 @@
   // box the header and the footer leave it rather than the viewport, which
   // those two would push off the bottom.
   .host-console-page:has(> .stage.solo > .countdown)
-    animation: none
+    @include layout.arrived
     display: grid
     grid-template-rows: auto minmax(0, 1fr) auto
 
@@ -500,7 +500,7 @@
   // under it are sized against the box the header and the footer leave. So
   // is the inner clock's count, whose stop a seated console presses.
   .host-console-page:has(> .stage.solo > :is(.reflex-stage, .innerclock-stage))
-    animation: none
+    @include layout.arrived
     display: grid
     grid-template-rows: auto minmax(0, 1fr) auto
 
@@ -510,7 +510,7 @@
   // The final board held to the screen the ring leaves: the stage is a size
   // container between the header and the two exits.
   .host-console-page:has(> .stage.finished)
-    animation: none
+    @include layout.arrived
     display: grid
     gap: var(--space-stage-rows)
     grid-template-rows: auto minmax(min(18rem, 50dvh), 1fr) auto
@@ -527,7 +527,7 @@
   // way: the number takes its row and the panel divides the rest.
   .host-console-page:has(> .stage:is(.revealed, .counting-in))
     @include layout.wide
-      animation: none
+      @include layout.arrived
       display: grid
       gap: var(--space-stage-rows)
       grid-template-rows: auto minmax(min(16rem, 40dvh), 1fr) auto
@@ -650,7 +650,7 @@
   // Lying down, the presses take a column of their own beside the stage.
   .host-console-page:has(> .stage:is(.revealed, .counting-in, .finished, .slate-writing, .slate-correcting, .petit-bac-stage, .petit-bac-seat))
     @include layout.narrow
-      animation: none
+      @include layout.arrived
       column-gap: var(--space-m)
       display: grid
       grid-template-areas: 'header' 'track' 'stage' 'footer'
@@ -851,7 +851,7 @@
   // too: a column beside the floor's pawn would hold one quiet press.
   .host-console-page:has(> .stage.solo > :is(.countdown, .verdict-panel, .reflex-stage))
     @include layout.narrow
-      animation: none
+      @include layout.arrived
       display: grid
       gap: var(--space-s)
       grid-template-rows: auto minmax(0, 1fr) auto

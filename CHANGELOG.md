@@ -269,6 +269,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A screen is laid down once, not again at every reveal.** The
+  player's screen swept itself in afresh at the reveal of nearly every round,
+  under the answer's own strike, and a console on a wide screen did the same
+  at every buzz. The arrival now plays when the page opens and stays played
+  through the round.
+
 - `[Game]` **The board's length is in plain sight again.** One strip on the
   Table tab, *Board: None · 20 · 30 · 40 squares*, replaces the switch that
   hid the length until it was turned on, and the lobby's board preview opens

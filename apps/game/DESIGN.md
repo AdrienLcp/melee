@@ -1345,6 +1345,11 @@ bounced. Durations:
   reading order with no per-child delay, so a block mounting later — inside a
   round — never inherits an entrance. Filled backwards only: a mask left in
   place clips every shadow past the page's edge. Never on a framed screen.
+  A page held through a round is held by `layout.arrived`, a zero duration,
+  never `animation: none`: lifted at a reveal or a buzz, `none` gave the root
+  a fresh `page-lay` and laid the whole screen down again, the player's at
+  every reveal and a wide console's at every buzz. `none` stays only where
+  the arrival is put off until there is something to lay down.
   The host's panel slides in from the edge it is docked to (`panel-dock`,
   1rem and a fade on the same duration, the side read from
   `--panel-arrival-from`). No scale and no overshoot: a page is set down, not

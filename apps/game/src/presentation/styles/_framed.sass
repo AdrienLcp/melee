@@ -35,7 +35,8 @@
   //
   // And no entrance: it arrives mid-round, and nothing inside a running round
   // moves — the slide put the whole screen under a thumb aiming at a tile.
-  animation: none
+  @include layout.arrived
+
   display: grid
   flex: none
   gap: var(--space-framed)

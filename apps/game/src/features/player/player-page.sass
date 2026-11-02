@@ -31,7 +31,8 @@
   // the clock may scroll.
   .player-page.playing:has(> .player-round:is(.black-square-round, .most-likely-round, .petit-bac-round, .typed-round, .estimate-round, .higher-lower-round, .matchsticks-round, .swatch-round, .timeline-round)),
   .player-page.playing:has(> .player-round > .slate-sheet)
-    animation: none
+    @include layout.arrived
+
     display: grid
     flex: none
     grid-template-columns: minmax(0, 1fr)
