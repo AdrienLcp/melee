@@ -1,5 +1,7 @@
 import type React from 'react'
 
+import type { GameKind } from '@melee/protocol/game'
+
 import {
   gameOfEntry,
   gamesOfLineUp,
@@ -13,6 +15,12 @@ import { LineUpLid } from './line-up-lid'
 import { LineUpRow } from './line-up-row'
 import type { CreateRoom } from './use-create-room'
 import { useRoundsText } from './use-line-up-face'
+
+/**
+ * Past this many, the names run beyond the lid's two lines and get cut: the
+ * band already shows every game and the caption says which, so the list goes.
+ */
+const MOST_GAMES_A_LID_NAMES = 6
 
 type ReadyMadeRowProps = {
   /** The home page's one room opener, shared with every lid and the door. */
@@ -29,6 +37,10 @@ export const ReadyMadeRow: React.FC<ReadyMadeRowProps> = ({ createRoom }) => {
   const roundsText = useRoundsText()
   const { isOpeningAny, openReadyMade, readyMadeOpening } = createRoom
   const lineUps = readyMadeLineUpsFor(locale)
+  const namedGames = (games: readonly GameKind[]) =>
+    games.length > MOST_GAMES_A_LID_NAMES
+      ? null
+      : games.map((game) => translate(gameNameKey(game))).join(' · ')
 
   return (
     <LineUpRow
@@ -41,9 +53,7 @@ export const ReadyMadeRow: React.FC<ReadyMadeRowProps> = ({ createRoom }) => {
         <LineUpLid
           band={lineUp.lineUp.map(gameOfEntry)}
           caption={translate(`readyMade.lineUps.${lineUp.id}.caption`)}
-          games={gamesOfLineUp(lineUp)
-            .map((game) => translate(gameNameKey(game)))
-            .join(' · ')}
+          games={namedGames(gamesOfLineUp(lineUp))}
           isDisabled={isOpeningAny && readyMadeOpening !== lineUp.id}
           isOpening={readyMadeOpening === lineUp.id}
           key={lineUp.id}

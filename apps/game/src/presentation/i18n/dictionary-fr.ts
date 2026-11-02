@@ -1658,17 +1658,16 @@ export const FR_DICTIONARY = defineDictionary({
     hint: 'Un appui ouvre une table qui les enchaîne, déjà réglée.',
     lineUps: {
       firstGame: {
-        caption: 'Rien à juger, chaque jeu se comprend dès sa première manche.',
+        caption: 'Rien à juger, rien à expliquer.',
         name: 'Première partie'
       },
       generalKnowledge: {
-        caption:
-          'Des questions, des drapeaux, la carte, des dates et des chiffres à estimer.',
+        caption: 'De quoi briller en société.',
         name: 'Culture générale'
       },
       grandMix: {
         caption:
-          'Tous les jeux sans juge, chacun sur plusieurs réglages, et jamais deux fois le même genre de jeu à la suite.',
+          'Tous les jeux sans juge, sur plusieurs réglages, jamais deux pareils à la suite.',
         name: 'Grand mélange'
       },
       music: {
@@ -1677,7 +1676,7 @@ export const FR_DICTIONARY = defineDictionary({
         name: 'Spéciale musique'
       },
       quick: {
-        caption: 'La plus courte : dix manches, presque rien à lire.',
+        caption: 'La plus courte, presque rien à lire.',
         name: 'Partie éclair'
       }
     },

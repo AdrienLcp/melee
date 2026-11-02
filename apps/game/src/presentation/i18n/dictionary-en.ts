@@ -1751,17 +1751,16 @@ export const EN_DICTIONARY = defineDictionary({
     hint: 'One press opens a table that plays them in a row, already set.',
     lineUps: {
       firstGame: {
-        caption:
-          'Nothing to judge, and every game makes sense from its first round.',
+        caption: 'Nothing to judge or explain.',
         name: 'First game'
       },
       generalKnowledge: {
-        caption: 'Questions, flags, the map, dates and numbers to guess.',
+        caption: 'Something to show off with.',
         name: 'General knowledge'
       },
       grandMix: {
         caption:
-          'Every game with no judge, each on several settings, and never two of a kind in a row.',
+          'Every game with no judge, on several settings, never two of a kind in a row.',
         name: 'Grand mix'
       },
       music: {
@@ -1769,7 +1768,7 @@ export const EN_DICTIONARY = defineDictionary({
         name: 'Music special'
       },
       quick: {
-        caption: 'The shortest: ten rounds, next to nothing to read.',
+        caption: 'The shortest, barely any reading.',
         name: 'Quick game'
       }
     },
