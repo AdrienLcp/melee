@@ -157,12 +157,15 @@ export const trackListResponseSchema = z.object({
 })
 
 /**
- * `build` answers "is my fix live?" and nothing else. It is the deployment's,
+ * `build` and `committedAt` answer "is my fix live?" and nothing else — the
+ * hash proves it, the day is what a person reads. Both are the deployment's,
  * not the tab's: a client holding a cached bundle still reads what the server
  * was built from, which is the question being asked.
  */
 export const healthResponseSchema = z.object({
   build: z.string(),
+  /** When the deployed commit was made, in epoch milliseconds; `null` from a checkout, whose `build` is `dev`. */
+  committedAt: z.number().int().positive().nullable(),
   protocolVersion: z.number().int().positive(),
   status: z.literal('ok')
 })

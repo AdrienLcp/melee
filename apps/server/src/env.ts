@@ -5,7 +5,9 @@ const envSchema = z.object({
   ALLOWED_ORIGINS: z.string().default('http://localhost:5273'),
   DEEZER_API_URL: z.url().default('https://api.deezer.com'),
   /** Set by the deploy job to the commit it ships. Absent from a checkout. */
-  GIT_COMMIT: z.string().optional()
+  GIT_COMMIT: z.string().optional(),
+  /** Set beside it: when that commit was made, in seconds since the epoch (`git log -1 --format=%ct`). */
+  GIT_COMMIT_EPOCH: z.coerce.number().int().positive().optional()
 })
 
 const parsed = envSchema.safeParse(process.env)
@@ -15,11 +17,16 @@ if (!parsed.success) {
 }
 
 const SHORT_COMMIT_LENGTH = 7
+const MILLISECONDS_PER_SECOND = 1000
 
 export const env = {
   ...parsed.data,
   allowedOrigins: parsed.data.ALLOWED_ORIGINS.split(',').map((origin) =>
     origin.trim()
   ),
-  build: parsed.data.GIT_COMMIT?.slice(0, SHORT_COMMIT_LENGTH) ?? 'dev'
+  build: parsed.data.GIT_COMMIT?.slice(0, SHORT_COMMIT_LENGTH) ?? 'dev',
+  committedAt:
+    parsed.data.GIT_COMMIT_EPOCH === undefined
+      ? null
+      : parsed.data.GIT_COMMIT_EPOCH * MILLISECONDS_PER_SECOND
 }

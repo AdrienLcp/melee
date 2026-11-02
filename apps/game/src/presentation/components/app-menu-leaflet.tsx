@@ -322,9 +322,17 @@ const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
   system: 'preferences.theme.system'
 }
 
+/** What the server says it was deployed from. */
+export type DeployedBuild = {
+  /** The deployed commit, short; `dev` from a checkout. */
+  commit: string
+  /** When that commit was made, in epoch milliseconds; `null` from a checkout. */
+  committedAt: number | null
+}
+
 type AppMenuLeafletProps = {
   /** The build the server reports, once the first open has asked for it. */
-  build: string | null
+  build: DeployedBuild | null
 }
 
 /**
@@ -541,7 +549,16 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
           )}
 
           {build !== null && (
-            <p className='build'>{translate('menu.build', { build })}</p>
+            <p className='build'>
+              {build.committedAt === null
+                ? translate('menu.build', { build: build.commit })
+                : translate('menu.buildDated', {
+                    build: build.commit,
+                    date: new Intl.DateTimeFormat(locale, {
+                      dateStyle: 'medium'
+                    }).format(build.committedAt)
+                  })}
+            </p>
           )}
         </>
       )}

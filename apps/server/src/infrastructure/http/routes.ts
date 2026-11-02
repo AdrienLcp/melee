@@ -112,6 +112,7 @@ export const registerHttpRoutes = ({
   app.get(API_ROUTES.health, (context) => {
     const body: HealthResponse = {
       build: env.build,
+      committedAt: env.committedAt,
       protocolVersion: PROTOCOL_VERSION,
       status: 'ok'
     }

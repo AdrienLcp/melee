@@ -118,6 +118,11 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **The menu says which day's version is running.** *Version du
+  2 nov. 2026 · 03e30b8* rather than the hash alone: the day is what a person
+  reads, the hash still what proves a fix is live. Both are the deployment's,
+  from `/api/health`'s new `committedAt`.
+
 - `[Game]` **What a round adds to a screen comes up rather than cuts in.**
   A wall, a seat and a pairing page are laid down once, over the room, where
   the sweep used to be spent on a waiting line and the room cut in after it.

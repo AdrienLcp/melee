@@ -1365,6 +1365,7 @@ export const EN_DICTIONARY = defineDictionary({
   },
   menu: {
     build: 'Build {build}',
+    buildDated: 'Build of {date} · {build}',
     fullscreen: {
       enter: 'Full screen',
       exit: 'Leave full screen'

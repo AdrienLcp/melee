@@ -7,6 +7,7 @@ import { usePathname } from '@/infrastructure/router/navigation'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
+import type { DeployedBuild } from './app-menu-leaflet'
 import { ConnectionDot, connectionStatusKey } from './connection-status'
 import { MenuIcon } from './icons'
 import { useMenuWidth } from './use-menu-width'
@@ -34,7 +35,7 @@ const preloadLeaflet = (): void => {
 export const AppMenu: React.FC = () => {
   const { translate } = useI18n()
   const connection = useConnection()
-  const [build, setBuild] = useState<string | null>(null)
+  const [build, setBuild] = useState<DeployedBuild | null>(null)
   const [hasOpened, setHasOpened] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
   // Open on one page only: a console handed over becomes the wall under a menu
@@ -56,7 +57,10 @@ export const AppMenu: React.FC = () => {
     const health = await fetchHealth()
 
     if (health.status === 'success') {
-      setBuild(health.data.build)
+      setBuild({
+        commit: health.data.build,
+        committedAt: health.data.committedAt
+      })
     }
   }
 

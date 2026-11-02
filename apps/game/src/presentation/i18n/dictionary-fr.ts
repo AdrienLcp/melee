@@ -1308,6 +1308,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   menu: {
     build: 'Version {build}',
+    buildDated: 'Version du {date} · {build}',
     fullscreen: {
       enter: 'Plein écran',
       exit: 'Quitter le plein écran'
