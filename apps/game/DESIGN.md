@@ -984,6 +984,19 @@ and a triangle or an arrow along the bottom row points at the finish. The
 phone's strip keeps its words: its two ends hold 3.25rem whatever the rest
 get.
 
+**A crowd fits its case.** Past three other pawns a case prints `+N`, and
+three pawns beside a two-figure count stand 4.25 times the pawns' size: on
+the strip, whose pawns are sized off the case's height, that needs a case
+29/20 as wide as it is tall, so a narrower one draws two pawns (under 7/6,
+one) and a count that says so — at 390 wide a full table's start reads two
+pawns and `+22`, and the whole ribbon's square cases one and `+23`. A case
+narrower than tall sizes its pawns off its width (`30cqi`). On the wall the
+count is a pill, and a plus, two figures and its padding stand 2.6 times its
+size: under the type's floor it follows its case down (`33cqi`, 7.6px on a
+390-wide wall's 23px cases), and a crowd's three pawns stand abreast on a case
+narrower than the band (`33cqi`), where wrapped they stood the count over the
+case's top.
+
 ### Teams (`TeamRoster`, `PawnColoursProvider`)
 Every seat's pawn stands in the colour the seat picked, or in its team's when
 the room plays in teams (`pawnColourOf`), on every screen, through one provider
@@ -1303,8 +1316,19 @@ The lid and the arrivals keep a 60rem column; the trays widen past it by 15rem
 a team, to the U's width. Measured at 1440×900 and 1920×1080 with 15 seats in
 3×5 and 5×3, and 24 in 6×4, before and after the deal: nothing scrolls. The
 code is 9.5 stage units on the lid — `.room-invitation` declares its own size,
-so the lid sets it on the invitation, not on itself. Under the split the page
-scrolls inside the U, reserving the two rows of presses.
+so the lid sets it on the invitation, not on itself. A query written on the
+lid answers its parent, and one written on a piece of the invitation answers
+the invitation, which is `display: contents` there and never matches — so the
+lid passes both sides their sizes through custom properties.
+
+**The wall never scrolls, at any size.** The page is held to the screen and
+the arrivals give way, cut in whole chips (`useWholeChips`, which also fits
+again when a seat arrives or is renamed). In a recess under 20rem — a phone
+held up as the wall — the chips drop to `--text-xs` and the height of their
+line first: at 390×844 with 24 seats, the lid and eight names on 40 cases,
+thirteen on 100. Under 34rem the code is set to its column, never broken:
+four of its widest letters stand 2.98 times their size beside the token's
+`--space-xs`, which is 26px at 390 wide.
 
 Its presses are the room's: *Draw the teams* until the deal, then *Draw again*
 beside *Gather round*. The games are the panel's, and the team count follows

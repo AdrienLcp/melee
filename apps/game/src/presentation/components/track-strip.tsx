@@ -14,6 +14,11 @@ import './track-strip.sass'
 const CASES_SHOWN = 7
 /** The other pawns a case shows before it says how many more stand there. */
 const OTHERS_SHOWN = 3
+/**
+ * How many pawns a crowded case can draw beside its count, one count per
+ * answer: the stylesheet shows the one its case is wide enough for.
+ */
+const PAWNS_BESIDE_COUNT = [1, 2, OTHERS_SHOWN] as const
 
 type TrackStripProps = {
   /** A line under the cases, read with them. */
@@ -92,13 +97,14 @@ export const TrackStrip: React.FC<TrackStripProps> = ({
                 {others.slice(0, OTHERS_SHOWN).map((pawn) => (
                   <TrackPawnPiece key={pawn.id} pawn={pawn} />
                 ))}
-                {others.length > OTHERS_SHOWN && (
-                  <span className='more'>
-                    {translate('board.more', {
-                      count: others.length - OTHERS_SHOWN
-                    })}
-                  </span>
-                )}
+                {others.length > OTHERS_SHOWN &&
+                  PAWNS_BESIDE_COUNT.map((beside) => (
+                    <span className='more' data-beside={beside} key={beside}>
+                      {translate('board.more', {
+                        count: others.length - beside
+                      })}
+                    </span>
+                  ))}
               </span>
             )}
             {yours !== undefined && caseIndex === at && (

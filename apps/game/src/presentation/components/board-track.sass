@@ -211,6 +211,12 @@
       &:is([data-mark='finish'] > *)
         bottom: 26%
 
+      // A crowd's three pawns abreast, on a case narrower than the band:
+      // wrapped, they stood the count over the case's top. The smallest case
+      // drawn, a 390-wide wall's at a hundred, holds them at 6.7px.
+      &:has(> .more)
+        font-size: clamp(0.375rem, calc(var(--board-band) * var(--pawn-scale, 0.5)), 33cqi)
+
     // One pawn wide, so a pawn answers its own drawn size, and never shrunk:
     // containment drops the floor its content used to give it.
     .standing
@@ -244,7 +250,9 @@
       @media (prefers-reduced-motion: no-preference)
         animation: pawn-hops var(--transition-base, 0s) var(--ease-out) both
 
-    // The crowd past three on one case, a counter beside the pawns drawn.
+    // The crowd past three on one case, a counter beside the pawns drawn. A
+    // plus, two figures and the padding stand 2.6 times its size, so on a
+    // case too narrow for that at the type's floor it follows the case down.
     .more
       @include typography.numeric
       @include typography.solid
@@ -253,7 +261,7 @@
       background: var(--board-ink)
       border-radius: var(--radius-full)
       color: var(--track-a)
-      font-size: clamp(var(--text-3xs), 18cqmin, var(--text-s))
+      font-size: min(clamp(var(--text-3xs), 18cqmin, var(--text-s)), 33cqi)
       padding: 0.2em 0.4em
 
   // When the stage beside the track changes size, each case travels to its

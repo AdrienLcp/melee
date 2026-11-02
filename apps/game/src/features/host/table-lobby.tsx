@@ -1,5 +1,6 @@
 import { classNames } from '@adrienlcp/react'
 import type React from 'react'
+import { useRef } from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
@@ -17,6 +18,8 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
+
+import { useWholeChips } from './use-whole-chips'
 
 import './table-lobby.sass'
 
@@ -201,9 +204,12 @@ const SeatChips: React.FC<{
   youId: PlayerId | null
 }> = ({ players, roster, youId }) => {
   const translate = useTranslate()
+  const listRef = useRef<HTMLUListElement>(null)
+
+  useWholeChips(listRef)
 
   return (
-    <ul className='seat-chips'>
+    <ul className='seat-chips' ref={listRef}>
       {players.map((player) => (
         <li
           className={classNames(

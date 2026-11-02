@@ -21,6 +21,14 @@
     > .table-teams
       width: min(100%, max(72rem, calc(var(--team-count) * 15rem)))
 
+    > .table-card
+      flex: none
+
+  // The wall never scrolls: the page is held to the screen, and what gives
+  // way is the arrivals, cut in whole chips by `useWholeChips`.
+  .host-console-page:has(> .stage.table-lobby)
+    max-block-size: var(--shown-height)
+
   // The header holds nothing the table reads in the lobby, and its band is
   // the height of a row of seats. It keeps the menu's corner clear, so it goes
   // only where the card stops short of that corner.
@@ -35,6 +43,7 @@
     // answer the card's narrower content box: sized through these, both sides
     // of the query are read off the same box.
     --table-code-size: clamp(2.5rem, calc(var(--stage-unit) * 9.5), 7rem)
+    --table-code-padding: var(--space-m)
     // The square is what a camera across the room has to resolve, so it takes
     // the stage's share up to a TV's, and never more than the card can spare
     // the words beside it.
@@ -66,7 +75,7 @@
       grid-area: code
       justify-self: start
       margin-block-start: var(--space-s)
-      padding: var(--space-xs) var(--space-m)
+      padding: var(--space-xs) var(--table-code-padding)
 
     .room-invitation .code-caption
       font-size: clamp(var(--text-xs), calc(var(--stage-unit) * 1.6), var(--text-m))
@@ -91,14 +100,20 @@
       --table-qr-width: clamp(9rem, min(calc(var(--stage-unit) * 36), 45cqi), 32rem)
 
     // A column of a phone's width: the square takes the larger share of the
-    // row, the code and the words stacked beside it.
+    // row, the code and the words stacked beside it. The code follows its
+    // column down rather than break: four of its widest letters stand 2.98
+    // times their size, beside the token's padding.
     @container (width < 34rem)
-      --table-code-size: 2rem
+      --table-code-size: min(2rem, calc((45cqi - var(--space-s) - var(--table-code-padding) * 2) / 3))
+      --table-code-padding: var(--space-xs)
       --table-qr-width: 100%
       --table-words-align: start
 
       grid-template-areas: 'title title' 'rules rules' 'spines spines' 'qr code' 'qr words'
       grid-template-columns: minmax(0, 11fr) minmax(0, 9fr)
+
+    .room-invitation .room-code
+      white-space: nowrap
 
   .table-lobby .table-title
     @include typography.billboard-wrapping
@@ -146,12 +161,29 @@
     background: var(--socket)
     border-radius: var(--radius-m)
     box-shadow: var(--shadow-recess-shallow)
+    container: arrivals / inline-size
     display: flex
     flex-direction: column
     gap: var(--space-s)
+    min-height: 0
     outline: var(--stroke-thin) dashed var(--socket-line)
     outline-offset: calc(var(--stroke-thin) * -1)
     padding: var(--space-s) var(--space-m)
+
+    // The box the stage's height runs out in. The margin keeps the chips'
+    // edge and an arrival's drop, which stand past the list.
+    .seat-chips
+      min-height: 0
+      overflow-clip-margin: var(--space-s)
+      overflow-y: clip
+
+    // As narrow as a phone: the chips drop to the type's floor and to the
+    // height of their line, so more of the table is named before the list
+    // is cut.
+    @container arrivals (width < 20rem)
+      .seat-chip
+        font-size: var(--text-xs)
+        min-height: 0
 
     .arrivals-head
       align-items: baseline

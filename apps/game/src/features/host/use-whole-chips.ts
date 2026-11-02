@@ -7,7 +7,8 @@ import { onLayoutMoved } from '@/infrastructure/browser'
  * scrolls — hides every chip from the first one the box would cut, so the room
  * reads whole answers and never half of one. It watches the stage rather than
  * the list: hiding a chip shrinks the list, and a list observing itself would
- * show it again on the next frame.
+ * show it again on the next frame. A chip that arrives, leaves or is renamed
+ * fits the list again too, since the stage's size does not move for it.
  */
 export const useWholeChips = (list: RefObject<HTMLElement | null>): void => {
   useEffect(() => {
@@ -46,12 +47,19 @@ export const useWholeChips = (list: RefObject<HTMLElement | null>): void => {
     }
 
     const observer = new ResizeObserver(fit)
+    const chipsObserver = new MutationObserver(fit)
     const stopListening = onLayoutMoved(fit)
 
     observer.observe(stage)
+    chipsObserver.observe(element, {
+      characterData: true,
+      childList: true,
+      subtree: true
+    })
 
     return () => {
       observer.disconnect()
+      chipsObserver.disconnect()
       stopListening()
     }
   }, [list])

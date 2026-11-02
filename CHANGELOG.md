@@ -312,6 +312,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A full table fits its track, its lobby and its standings.** A
+  case crowded with pawns draws fewer of them beside its `+N` where it is
+  narrow, so the start of the strip in hand no longer hangs a pawn off its
+  edge, and on the wall's smallest cases the count shrinks with the case
+  instead of spilling out of it. A wall held up as the room's screen no
+  longer scrolls in the lobby: the seats past what it holds are cut whole, and
+  the room code stays on one line. A pawn on case 100 no longer widens its row
+  of the standings.
+
 - `[Game]` **A wall on a small screen shows its whole board.** Upright, the
   final standings no longer spill up over their heading. Lying down — a phone
   as the room's screen — the reveal and the final board stand beside the

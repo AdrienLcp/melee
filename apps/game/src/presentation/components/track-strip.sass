@@ -137,23 +137,49 @@
         @container (width >= 4rem)
           text-transform: uppercase
 
+    // Sized off the case's height, and off its width where it is the
+    // narrower side, so a case narrower than tall still holds its pawns: the
+    // narrowest, a middle case at 320 wide, holds them at 10px.
     .others
       bottom: 10%
       display: flex
-      font-size: calc(var(--case-size) * 0.3)
+      font-size: clamp(0.625rem, calc(var(--case-size) * 0.3), 30cqi)
       inset-inline-end: 8%
       position: absolute
 
-      .pawn
+      .pawn + .pawn
         margin-inline-start: -0.15em
 
+    // A crowd's count is printed once per number of pawns it can stand
+    // beside, and the case's shape picks the one that fits: three pawns and
+    // the count need a case half as wide again as it is tall.
     .more
       @include typography.numeric
       @include typography.solid
 
       align-self: center
+      display: none
       font-size: var(--text-em-s)
       margin-inline-start: 0.15em
+
+      &[data-beside='3']
+        display: block
+
+    @container (aspect-ratio < 29 / 20)
+      .others:has(> .more) .pawn:nth-of-type(3),
+      .more[data-beside='3']
+        display: none
+
+      .more[data-beside='2']
+        display: block
+
+    @container (aspect-ratio < 7 / 6)
+      .others:has(> .more) .pawn:nth-of-type(2),
+      .more[data-beside='2']
+        display: none
+
+      .more[data-beside='1']
+        display: block
 
     .own
       bottom: 8%
