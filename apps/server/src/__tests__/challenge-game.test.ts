@@ -455,19 +455,20 @@ describe('a challenge dealt from the bank', () => {
   it('[challenge] never shows a seat or the wall a line before its round opens', async () => {
     const { anna, host, wall } = await openDealtChallenge()
     const rounds = await playDealtRounds({ count: 3, host })
-    const stillAhead = hostView(host)?.challengeHand[0]?.fr ?? ''
+    const stillAheadLine = hostView(host)?.challengeHand[0]?.fr ?? ''
+    const quotedOnTheWire = (line: string) => JSON.stringify(line)
     const transcripts = [anna.frames, wall.frames].map((frames) =>
       frames.map(({ raw }) => raw)
     )
 
-    expect(stillAhead).not.toBe('')
+    expect(stillAheadLine).not.toBe('')
 
     for (const raws of transcripts) {
       expect(raws.join('\n')).not.toContain('nextChallenge')
-      expect(raws.join('\n')).not.toContain(stillAhead)
+      expect(raws.join('\n')).not.toContain(quotedOnTheWire(stillAheadLine))
 
       for (const { dealt } of rounds) {
-        const line = dealt?.fr ?? ''
+        const line = quotedOnTheWire(dealt?.fr ?? '')
         const firstShown = raws.findIndex((raw) => raw.includes(line))
         const roundOpened = raws.findIndex(
           (raw) => raw.includes(line) && raw.includes('"countdown"')
