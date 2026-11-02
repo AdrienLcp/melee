@@ -151,7 +151,8 @@
     // under the text floor.
     @media (aspect-ratio >= 13 / 10)
       @include layout.wide
-        &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13))
+        &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13)),
+        &.host-console-page > .stage.finished > .final-board:has(> .standings > .scoreboard > li:nth-child(13))
           grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
 
           .scoreboard
@@ -252,6 +253,13 @@
           justify-self: center
           width: min(100%, 48rem)
 
+          // A size container is 0px tall in an `auto` row, and its rows,
+          // centred on nothing, spilled up over the heading. It claims the
+          // height its rows take at their cap, and the row hands it no more
+          // than the winner leaves.
+          .scoreboard
+            contain-intrinsic-block-size: calc(var(--rows-per-column, var(--standings-rows, 8)) * clamp(var(--text-xs), var(--row-width-cap, 5cqi), 2.5rem) * 2.15)
+
         > .score-track
           display: none
 
@@ -305,7 +313,7 @@
 
                   font-size: var(--text-em-xl)
 
-      &.host-console-page > .stage.revealed:has(> .standings > .scoreboard > li:nth-child(13)) .scoreboard
+      &.host-console-page > .stage:is(.revealed, .finished):has(.standings > .scoreboard > li:nth-child(13)) .scoreboard
         @include two-ranked-columns
 
 
