@@ -118,6 +118,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The ready-made lids are one line shorter.** *Grand mix* no longer
+  lists fifteen games the band already shows, and each caption stops
+  repeating its games or its round count: the row goes from 261 to 223px.
+
 - `[Game]` **Every answering screen fits a phone, for every game.** Sixteen
   games, every answer mode, the player's screen and the seated console, from
   320×568 to a phone lying down: the question, the answer and the send press
@@ -280,6 +284,12 @@ one part.
   press, which stays in view; a short map lays its zoom presses in a row.
 
 ### Internal
+
+- `[Game]` **The menu's leaflet is its own chunk**, fetched on the first open
+  and preloaded on hover or press: its slider, radio groups and invitation
+  square were on every page closed. `/en` drops from 305 098 bytes of script
+  to about 278 000, under the 300 000 budget it had been failing since the
+  front page's own line-ups, holding every deploy behind it.
 
 - **The script budget goes to 300 000 bytes.** The ready-made line-ups on the
   front page took `/en` to 295 457 against 295 000, which held the deploy of

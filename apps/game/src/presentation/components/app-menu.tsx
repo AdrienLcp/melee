@@ -1,339 +1,26 @@
-import {
-  isThemePreference,
-  THEME_PREFERENCES,
-  type ThemePreference
-} from '@adrienlcp/theme-preference'
-import { useThemePreference } from '@adrienlcp/theme-preference/react'
 import type React from 'react'
-import { useRef, useState, useSyncExternalStore } from 'react'
-import {
-  DialogTrigger,
-  Form,
-  Button as ReactAriaButton
-} from 'react-aria-components'
-
-import { NICKNAME_MAX_LENGTH } from '@melee/protocol/identifiers'
-import { isLocale, LOCALES } from '@melee/protocol/locale'
+import { lazy, Suspense, useRef, useState } from 'react'
+import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
-import {
-  canGoFullscreen,
-  isFullscreen,
-  onFullscreenChange,
-  toggleFullscreen
-} from '@/infrastructure/browser'
-import { promptInstall, useInstallState } from '@/infrastructure/install-prompt'
-import {
-  creditsPathFor,
-  homePathFor,
-  legalPathFor,
-  paths,
-  useIsCurrentPath,
-  useIsOnWall,
-  useNavigateToLocale,
-  usePathname,
-  useRoomCodeParam
-} from '@/infrastructure/router/navigation'
+import { usePathname } from '@/infrastructure/router/navigation'
 import { useConnection } from '@/presentation/connection/connection-provider'
-import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
-import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
-import {
-  type PlainTranslationKey,
-  protocolErrorKey
-} from '@/presentation/i18n/translation'
-import {
-  useIsInsideRoom,
-  useRoomActions
-} from '@/presentation/room-actions/room-actions-provider'
-import { themeStore } from '@/presentation/theme/theme-store'
+import { useI18n } from '@/presentation/i18n/i18n-provider'
 
-import { Button } from './button'
-import {
-  ConnectionDot,
-  ConnectionStatus,
-  connectionStatusKey
-} from './connection-status'
-import { Disclosure } from './disclosure'
-import {
-  FullscreenEnterIcon,
-  FullscreenExitIcon,
-  InstallIcon,
-  MenuIcon,
-  ScreenIcon,
-  ShareIcon
-} from './icons'
-import { Leaflet } from './leaflet'
-import { Link } from './link'
-import { MenuPawn } from './menu-pawn'
-import { MenuPoints } from './menu-points'
-import { ProjectWithCode } from './project-with-code'
-import { RoomInvitation } from './room-invitation'
-import { SegmentedControl } from './segmented-control'
-import { Slider } from './slider'
-import { TextField } from './text-field'
-import { TextLink } from './text-link'
+import { ConnectionDot, connectionStatusKey } from './connection-status'
+import { MenuIcon } from './icons'
 import { useMenuWidth } from './use-menu-width'
 
 import './app-menu.sass'
 
-/**
- * React Aria takes the lower of this and the room left below the trigger, so a
- * short screen still scrolls inside the card; a tall one stops it at a card's
- * length rather than at the bottom of the screen. The narrow screen's sheet
- * is bounded by the screen instead.
- */
-const MENU_MAX_HEIGHT_PX = 520
+const loadLeaflet = () => import('./app-menu-leaflet')
 
-/**
- * The name this screen is playing under. A device that has played before never
- * passes through the join form, so what that form used to show has to live
- * somewhere on every screen at every phase — and the row carries the name
- * itself, which leaves the panel for the rarer half of the job.
- */
-const SeatName: React.FC = () => {
-  const { refusedNickname, rename, seatNickname } = useRoomActions()
-  const translate = useTranslate()
-  const [draft, setDraft] = useState<string | null>(null)
+const LoadedLeaflet = lazy(async () => ({
+  default: (await loadLeaflet()).AppMenuLeaflet
+}))
 
-  if (rename === null || seatNickname === null) {
-    return null
-  }
-
-  // Empty rather than filled with the name the row above already carries. A
-  // prefilled field printed it twice in four lines, and editing two characters
-  // of your own name is not what changing it means.
-  const value = draft ?? ''
-  const next = value.trim()
-  // The refusal belongs to the name it was given for, so any other draft
-  // submits again — a controlled `isInvalid` outliving its reason leaves the
-  // field's native validity false and the press a silent no-op.
-  const isRefused = next === refusedNickname
-
-  return (
-    <Disclosure
-      className='seat-name'
-      label={translate('menu.nickname.label')}
-      summary={seatNickname}
-    >
-      <Form
-        onSubmit={(event) => {
-          event.preventDefault()
-          rename(next)
-        }}
-      >
-        <TextField
-          autoComplete='nickname'
-          enterKeyHint='done'
-          errorMessage={
-            isRefused
-              ? translate(protocolErrorKey('nickname_taken'))
-              : undefined
-          }
-          isInvalid={isRefused}
-          label={translate('menu.nickname.field')}
-          maxLength={NICKNAME_MAX_LENGTH}
-          name='nickname'
-          onChange={setDraft}
-          value={value}
-        />
-        {/*
-          `small`, and beside the field rather than under the width of the
-          popover: a 52px block here is the same shape as the exit below it, and
-          changing a label is not a peer of leaving the room.
-        */}
-        <Button
-          isDisabled={next.length === 0 || next === seatNickname}
-          size='small'
-          type='submit'
-          variant='outlined'
-        >
-          {translate('menu.nickname.action')}
-        </Button>
-      </Form>
-    </Disclosure>
-  )
-}
-
-/**
- * The ways out of a room, in the one piece of chrome that is on every screen at
- * every phase. A stage carries the action the room is waiting on and nothing
- * else, so an exit that must be reachable mid-round lives here instead — behind
- * a leaflet, where it cannot be pressed by a player aiming at the game.
- *
- * Closing asks twice, because it is the only one that cannot be undone: the
- * code stops resolving, so a player cannot reload their way back in.
- */
-const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
-  const { locale } = useI18n()
-  const { closeRoom, endGame, leaveSeat } = useRoomActions()
-  const [isConfirmingClose, setIsConfirmingClose] = useState(false)
-  const connection = useConnection()
-  const translate = useTranslate()
-  const isOnHome = useIsCurrentPath(homePathFor(locale))
-  // Every exit here but the plain navigation sends a frame, and a frame written
-  // to a socket that is not open is dropped with nothing to show for it.
-  const isLive = connection?.status === 'open'
-
-  // The front door is not somewhere you leave for the front door, and no room
-  // path is the home path — so the ladder has no rung here at all rather than a
-  // rung that does nothing when it is pressed.
-  if (isOnHome) {
-    return null
-  }
-
-  // Leaving the room is what pressing this *means* on a screen that holds a
-  // seat, and saying so is the only way the roster on the console can be true
-  // rather than true in ten minutes. A closing socket cannot carry it: a
-  // player who locks their screen closes one too, and that seat has to come
-  // back.
-  if (closeRoom === null) {
-    return (
-      <div className='exits'>
-        <Link
-          href={homePathFor(locale)}
-          onPress={() => {
-            leaveSeat?.()
-            onDone()
-          }}
-          variant='outlined'
-        >
-          {translate(leaveSeat === null ? 'menu.home' : 'menu.leaveRoom')}
-        </Link>
-      </div>
-    )
-  }
-
-  return (
-    <div className='exits'>
-      {/*
-        Widest scope last, and this is the only screen that shows more than
-        one of them: a host who took a seat can give it back without giving up
-        the room, which is what makes the three separate scopes worth having.
-      */}
-      {leaveSeat !== null && (
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            leaveSeat()
-            onDone()
-          }}
-          variant='outlined'
-        >
-          {translate('host.seat.leave')}
-        </Button>
-      )}
-
-      {endGame !== null && (
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            endGame()
-            onDone()
-          }}
-          variant='outlined'
-        >
-          {translate('host.endGame')}
-        </Button>
-      )}
-
-      {isConfirmingClose ? (
-        <>
-          <p className='warning'>{translate('host.closeRoom.warning')}</p>
-          <Link
-            href={homePathFor(locale)}
-            onPress={() => {
-              closeRoom()
-              onDone()
-            }}
-          >
-            {translate('host.closeRoom.confirm')}
-          </Link>
-        </>
-      ) : (
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            setIsConfirmingClose(true)
-          }}
-          variant='outlined'
-        >
-          {translate('host.closeRoom.label')}
-        </Button>
-      )}
-    </div>
-  )
-}
-
-/**
- * Offered, never pushed: the front door promises a room with nothing to
- * install, so the app is one row of the menu for whoever wants the browser's
- * bars gone, and nothing at all where the page cannot lead to an install.
- */
-const InstallApp: React.FC = () => {
-  const install = useInstallState()
-  const translate = useTranslate()
-
-  if (install === 'offered') {
-    return (
-      <Button
-        className='install-app'
-        onPress={() => {
-          void promptInstall()
-        }}
-        variant='outlined'
-      >
-        <InstallIcon />
-        <span className='name'>{translate('menu.install.action')}</span>
-      </Button>
-    )
-  }
-
-  // Safari keeps the install behind its own Share menu, so the most a page
-  // can do there is say where it is.
-  if (install === 'manual') {
-    return (
-      <p className='install-hint'>
-        <ShareIcon />
-        <span>{translate('menu.install.apple')}</span>
-      </p>
-    )
-  }
-
-  return null
-}
-
-/**
- * The browser's bars gone for a screen the room reads from across the table,
- * without anybody having to know the key their browser keeps it behind.
- */
-const Fullscreen: React.FC = () => {
-  const translate = useTranslate()
-  const isActive = useSyncExternalStore(onFullscreenChange, isFullscreen)
-
-  if (!canGoFullscreen()) {
-    return null
-  }
-
-  return (
-    <Button
-      className='fullscreen'
-      onPress={() => {
-        void toggleFullscreen()
-      }}
-      variant='outlined'
-    >
-      {isActive ? <FullscreenExitIcon /> : <FullscreenEnterIcon />}
-      <span className='name'>
-        {translate(isActive ? 'menu.fullscreen.exit' : 'menu.fullscreen.enter')}
-      </span>
-    </Button>
-  )
-}
-
-const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
-  dark: 'preferences.theme.dark',
-  light: 'preferences.theme.light',
-  system: 'preferences.theme.system'
+const preloadLeaflet = (): void => {
+  void loadLeaflet()
 }
 
 /**
@@ -345,19 +32,10 @@ const THEME_KEYS: Record<ThemePreference, PlainTranslationKey> = {
  * tints the trigger and is announced, and takes no room from the game.
  */
 export const AppMenu: React.FC = () => {
-  const { locale, setLocale, translate } = useI18n()
-  const navigateToLocale = useNavigateToLocale()
-  const { preference, setPreference } = useThemePreference(themeStore)
+  const { translate } = useI18n()
   const connection = useConnection()
-  const isInsideRoom = useIsInsideRoom()
-  const roomCode = useRoomCodeParam()
-  const { pauseRound, revealRound, roomVolume, setRoomVolume } =
-    useRoomActions()
-  const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
-  const isOnLegal = useIsCurrentPath(legalPathFor(locale))
-  const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
-  const isOnWall = useIsOnWall()
   const [build, setBuild] = useState<string | null>(null)
+  const [hasOpened, setHasOpened] = useState(false)
   const trigger = useRef<HTMLButtonElement>(null)
   // Open on one page only: a console handed over becomes the wall under a menu
   // still open on the square that handed it, in front of the whole room.
@@ -395,215 +73,32 @@ export const AppMenu: React.FC = () => {
         onOpenChange={(isOpen) => {
           setOpenOn(isOpen ? pathname : null)
 
+          if (isOpen) {
+            setHasOpened(true)
+          }
+
           if (isOpen && build === null) {
             void loadBuild()
           }
         }}
       >
-        <ReactAriaButton className='trigger' ref={trigger}>
+        <ReactAriaButton
+          className='trigger'
+          onHoverStart={preloadLeaflet}
+          onPressStart={preloadLeaflet}
+          ref={trigger}
+        >
           {connection !== null && <ConnectionDot status={connection.status} />}
           <MenuIcon />
           <span className='trigger-label'>{translate('menu.label')}</span>
         </ReactAriaButton>
 
-        <Leaflet
-          aria-label={translate('menu.label')}
-          className='app-menu-leaflet'
-          maxHeight={MENU_MAX_HEIGHT_PX}
-          placement='bottom end'
-        >
-          {({ close }) => (
-            <>
-              {connection !== null && (
-                <ConnectionStatus
-                  clock={connection.clock}
-                  status={connection.status}
-                />
-              )}
-
-              {/* First, because it is the one thing a seated host opens the
-                    menu mid-round to press. */}
-              {revealRound !== null && (
-                <Button
-                  isDisabled={connection?.status !== 'open'}
-                  onPress={() => {
-                    revealRound()
-                    close()
-                  }}
-                  variant='outlined'
-                >
-                  {translate('host.reveal')}
-                </Button>
-              )}
-
-              {pauseRound !== null && (
-                <Button
-                  isDisabled={connection?.status !== 'open'}
-                  onPress={() => {
-                    pauseRound()
-                    close()
-                  }}
-                  variant='outlined'
-                >
-                  {translate('room.pause.press')}
-                </Button>
-              )}
-
-              {/*
-                  Folded to one row, and above the invitation: a bonus called
-                  out at the table is the other thing a host opens this menu
-                  mid-round for, and it must not wait behind the square.
-                */}
-              <MenuPoints />
-
-              {/*
-                  The way in, on every screen at every phase — which is the one
-                  thing the console's lobby could not offer, because it stops
-                  being on screen the moment the first round starts and it was
-                  never on a player's screen at all. Behind the leaflet no
-                  player aiming at the game can hit, which is the placement this
-                  menu already exists to give.
-
-                  Above the preferences rather than beside the exits: it is the
-                  only thing here somebody opens the menu *during* a game to
-                  find, and it is not a way out of the room.
-                */}
-              {isInsideRoom && roomCode !== null && (
-                <RoomInvitation roomCode={roomCode} />
-              )}
-
-              {!isInsideRoom && !isOnWall && (
-                <section className='this-device'>
-                  <h2>{translate('menu.thisDevice.title')}</h2>
-                  {!isOnWallPairing && (
-                    <Link
-                      className='become-wall'
-                      href={paths.wallPairing}
-                      onPress={close}
-                      variant='outlined'
-                    >
-                      <ScreenIcon />
-                      <span className='name'>
-                        {translate('menu.thisDevice.wall.label')}
-                      </span>
-                    </Link>
-                  )}
-                  <ProjectWithCode onDone={close} />
-                </section>
-              )}
-
-              {/*
-                  The room's volume, on the console alone: it reaches whichever
-                  screen is sounding, so a wall carries no slider of its own.
-                  It heads the preferences because it is the only one of them
-                  somebody opens this menu mid-round to reach, and it is in the
-                  menu at all because the console strip it used to live in is
-                  drawn under the one game that carries a track, while a buzz
-                  sounds under all of them.
-                */}
-              {roomVolume !== null && setRoomVolume !== null && (
-                <Slider
-                  formatOptions={{ style: 'percent' }}
-                  label={translate('preferences.volume')}
-                  maxValue={1}
-                  minValue={0}
-                  onChange={setRoomVolume}
-                  step={0.05}
-                  value={roomVolume}
-                />
-              )}
-
-              <SegmentedControl
-                label={translate('preferences.language')}
-                onChange={(next) => {
-                  if (isLocale(next)) {
-                    setLocale(next)
-                    navigateToLocale(next)
-                  }
-                }}
-                options={LOCALES.map((value) => ({
-                  label: LANGUAGE_NAMES[value],
-                  value
-                }))}
-                value={locale}
-              />
-
-              <SegmentedControl
-                label={translate('preferences.theme.label')}
-                onChange={(next) => {
-                  if (isThemePreference(next)) {
-                    setPreference(next)
-                  }
-                }}
-                options={THEME_PREFERENCES.map((value) => ({
-                  label: translate(THEME_KEYS[value]),
-                  value
-                }))}
-                value={preference}
-              />
-
-              <Fullscreen />
-
-              <InstallApp />
-
-              <SeatName />
-
-              <MenuPawn />
-
-              <RoomExit onDone={close} />
-
-              {/*
-                  The credit itself is a page. CC BY-SA §3(a)(2) names a link to
-                  a resource holding the required information as a reasonable
-                  way to satisfy attribution, and the list it asks for is longer
-                  than what anybody should meet while opening this to switch
-                  language mid-game.
-
-                  A front-door concern, and offered only there: following it out
-                  of a room unmounts the page and closes its socket, which the
-                  server reads as a screen that dropped off — a host would leave
-                  the round frozen on every player's screen to go and read a
-                  licence. The route stays, so a shared link and a reload still
-                  resolve.
-
-                  And not on the page it points at, for the reason the exit
-                  above is absent on the front door: a link to the screen it is
-                  drawn on is pressed and nothing happens.
-                */}
-              {!isInsideRoom && !isOnCredits && (
-                <p className='credit'>
-                  <TextLink href={creditsPathFor(locale)} onPress={close}>
-                    {translate('credits.title')}
-                  </TextLink>
-                </p>
-              )}
-
-              {/*
-                  The law asks for this one on every screen, a room's included,
-                  so inside a room it opens a tab of its own instead: following
-                  it there would close the socket the credits above are kept
-                  out of a room to spare.
-                */}
-              {!isOnLegal && (
-                <p className='credit'>
-                  {isInsideRoom ? (
-                    <TextLink href={legalPathFor(locale)} target='_blank'>
-                      {translate('legal.title')}
-                    </TextLink>
-                  ) : (
-                    <TextLink href={legalPathFor(locale)} onPress={close}>
-                      {translate('legal.title')}
-                    </TextLink>
-                  )}
-                </p>
-              )}
-
-              {build !== null && (
-                <p className='build'>{translate('menu.build', { build })}</p>
-              )}
-            </>
-          )}
-        </Leaflet>
+        {/* Mounted from the first open on, so a close still plays out. */}
+        {hasOpened && (
+          <Suspense fallback={null}>
+            <LoadedLeaflet build={build} />
+          </Suspense>
+        )}
       </DialogTrigger>
     </div>
   )
