@@ -350,6 +350,11 @@ imported, and an `animation` naming a keyframe the page never loaded runs
 nothing, silently: `pawn-lands`, written in `final-board.sass`, did not exist
 on the player's screen until it moved to `globals.sass` beside `seat-arrives`.
 
+**An animated element a container query hides takes `visibility`, not
+`display: none`.** Chromium applies a false query's `display: none` for a frame
+on a nearby restyle, and leaving `display: none` restarts an animation: the
+narrow final board's standings faded in every 140ms until hidden that way.
+
 ## A keyframe substitutes a custom property, it does not compute with one
 
 `var()` in a keyframe is fine on its own. **Wrapped in a `calc()` it is never
