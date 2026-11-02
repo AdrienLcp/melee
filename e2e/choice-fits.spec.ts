@@ -784,17 +784,20 @@ type RevealOverflow = {
 
 const measureReveal = (): RevealOverflow => {
   const root = document.scrollingElement ?? document.documentElement
+  // The narrow final board hides whichever of its standings and score track
+  // does not fit with `visibility`, which a bare `checkVisibility()` ignores.
+  const isDrawn = (element: Element) =>
+    element.checkVisibility({ visibilityProperty: true })
   const rows = [
     ...document.querySelectorAll<HTMLElement>(
       '.stage.revealed .reveal-panel li, .stage:is(.revealed, .finished, .slate-correcting) .standings li, .slate-correcting .groups li, .slate-writing :is(.items, .progress) li'
     )
-  ]
+  ].filter(isDrawn)
   // The host's panel scrolls inside its own box, so nothing in it reaches
   // past the screen.
   const furthest = [...document.body.querySelectorAll<HTMLElement>('*')]
     .filter(
-      (element) =>
-        element.checkVisibility() && element.closest('.panel-screen') === null
+      (element) => isDrawn(element) && element.closest('.panel-screen') === null
     )
     .map((element) => ({
       bottom: element.getBoundingClientRect().bottom,
