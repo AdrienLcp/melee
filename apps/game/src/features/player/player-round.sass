@@ -870,6 +870,9 @@
   .player-round.finished
     container-type: inline-size
 
+    > :not(.your-placing)
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
+
     .your-placing
       align-items: end
       column-gap: clamp(var(--space-s), calc(var(--stage-unit) * 4), var(--space-l))
@@ -878,6 +881,7 @@
       padding-block: var(--space-s)
 
       .pawn
+        animation: pawn-lands calc(var(--transition-fast, 0s) * 5) var(--ease-out) both
         filter: drop-shadow(0 4px 0 var(--chipboard-dark))
         font-size: clamp(4.5rem, calc(var(--stage-unit) * 20), 9rem)
         grid-area: pawn
@@ -886,12 +890,14 @@
         @include typography.monument
         @include typography.numeric
 
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s) backwards
         font-size: clamp(3.5rem, calc(var(--stage-unit) * 18), 8rem)
         grid-area: rank
 
       .your-total
         @include typography.title
 
+        animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 2) backwards
         color: var(--ink-muted)
         grid-area: total
 

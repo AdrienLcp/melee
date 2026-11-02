@@ -127,7 +127,11 @@ one part.
   with its first tick; a seat joining the lobby or a team is set down on it;
   and an answer sent, a half banked, a slate item the wall moves to, a stop
   called and the presses of a reveal or a final board fade in where the last
-  thing stood.
+  thing stood. Each Petit Bac category put to the vote is a sheet laid down
+  of its own; a pause and the wall's word that the host is away come up
+  rather than cut in; and a game's end sets its pawn down first — the
+  winner's on the final board, each player's own beside its place — with the
+  name and the score rising under it and the standings after.
 
 - `[Game]` **The front page's line-ups arrive the way the shelf does.** Each
   lid of *Your line-ups* and *Ready-made line-ups* slides in from the row's

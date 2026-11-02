@@ -1369,10 +1369,20 @@ bounced. Durations:
   rises with `page-enter` on `base`: the player's hold, *Ready* press and
   standings a beat after the card (`slow` × 0.6, with the payout), the game a
   countdown opens and the inner clock's target with its first tick, the
-  next-round card. A line, a chip or a press taking another's place fades
-  alone (`swap-in`, `fast`): an answer sent, a half banked, a slate item, the
-  standings and hold bar beside a struck card, what a phase adds to the
-  console's header, the presses of a reveal or a final board. A seat joining
+  next-round card, the paused card, the wall's word that the host is away,
+  and each Petit Bac category put to the vote — its sheet keyed on the
+  category, so the next is laid down rather than its rows rewritten under the
+  last one's head. Lifting a pause shows the round again out of
+  `display: none`, which restarts its entrances: the sheet left mid-vote is
+  laid down again, and that is the intended return. A game's end sets its pawn
+  down first (`pawn-lands`, `fast` × 5) — the winner's on the final board,
+  each player's own beside its place — with the name or the rank rising
+  `fast` after it and the line under `fast` × 2; the player's final standings
+  follow a beat later (`slow` × 0.6), as at a reveal. A line, a chip or a
+  press taking another's place fades alone (`swap-in`, `fast`): an answer
+  sent, a half banked, a slate item, the standings and hold bar beside a
+  struck card or a final podium, what a phase adds to the console's header,
+  the presses of a reveal or a final board. A seat joining
   a roster or a tray is set down from above (`seat-arrives`, `slow`). A
   placeholder standing before the room's first view holds the arrival
   (`animation: none` while it stands) so the page is laid down once, over the

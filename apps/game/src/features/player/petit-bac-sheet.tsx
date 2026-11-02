@@ -336,7 +336,8 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
 
   return (
     <section className='petit-bac-vote'>
-      <div className='answer-sheet'>
+      {/* Keyed so each category is laid down as a sheet of its own, rather than its rows rewritten under the last one's head. */}
+      <div className='answer-sheet' key={categoryIndex}>
         <header className='head'>
           <LetterPiece letter={content.letter} />
           <h2>{petitBacCategoryName({ category, translate })}</h2>

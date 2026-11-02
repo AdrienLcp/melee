@@ -31,6 +31,9 @@
   .final-board > .seat-podium
     grid-area: seats
 
+  .final-board > :is(.seat-podium, .standings, .score-track)
+    animation: swap-in var(--transition-fast, 0s) var(--ease-out)
+
   .final-board .podium
     align-items: center
     container-type: inline-size
@@ -69,6 +72,7 @@
     .winners
       @include typography.billboard
 
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s) backwards
       font-size: clamp(2rem, min(11cqh, calc(160cqi / var(--longest-word-width, 6))), 8rem)
       max-width: 100%
       overflow-wrap: anywhere
@@ -78,11 +82,13 @@
       @include typography.title
       @include typography.numeric
 
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 2) backwards
       color: var(--ink-muted)
 
     .nobody
       @include typography.billboard
 
+      animation: page-enter var(--transition-base, 0s) var(--ease-out)
       text-wrap: balance
 
   // Upright the standings need the height, so a lone winner's pawn stands
@@ -132,11 +138,3 @@
     @container (height < 26rem)
       .final-board .standings
         display: none
-
-@keyframes pawn-lands
-  from
-    opacity: 0
-    transform: translateY(-0.5em) scale(1.06)
-  to
-    opacity: 1
-    transform: none
