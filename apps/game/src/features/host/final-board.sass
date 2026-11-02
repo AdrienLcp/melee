@@ -130,11 +130,14 @@
     align-self: start
     grid-area: standings
 
+  // Hidden rather than `display: none`, both sharing the cell: Chromium
+  // re-applies the false query for a frame on each restyle nearby, and a
+  // display flip restarted the shown one's fade every 140ms. Visibility does not.
   @include layout.narrow
     @container (height >= 26rem)
       .final-board .score-track
-        display: none
+        visibility: hidden
 
     @container (height < 26rem)
       .final-board .standings
-        display: none
+        visibility: hidden
