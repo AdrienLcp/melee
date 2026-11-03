@@ -127,6 +127,17 @@ More that cost time to learn:
   in quotes. Drive a check in a fresh `browser.newContext()` — the mute script
   added to it — and a stray value has only this pass to come from.
 
+- **Hold the seats' sockets on a page Vite never reloads.** An edit to a
+  module the app imports — a dictionary, a hook — full-reloads every tab on
+  the app, the one holding the nine sockets included, and the whole table
+  turns *away* at once. Open them from a page under `/api/` (any path, a 404
+  is fine): it carries no Vite client, and the sockets outlive every edit.
+
+- **A wall is opened without pairing.** Write the room's `melee:host-tokens`
+  entry in an init script and navigate to `/wall/:code`: the wall's `hello`
+  carries the token, which is all the pairing hands it. A context per
+  viewport gives one wall per shape on the same room.
+
 - **A room can be opened without walking the front door.** `POST /api/rooms`
   from a page already on the app's origin answers `{ code, hostToken }`; write
   `melee:host-tokens` with it — `[{ at: Date.now(), hostToken, roomCode }]` —

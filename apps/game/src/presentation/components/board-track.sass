@@ -217,6 +217,12 @@
       &:has(> .more)
         font-size: clamp(0.375rem, calc(var(--board-band) * var(--pawn-scale, 0.5)), 33cqi)
 
+      // Four pawns abreast, each 0.8em between its neighbours' margins, in the
+      // 88% the insets leave: wrapped three and one, they stood over the
+      // start's word.
+      &:has(> .standing:nth-child(4))
+        font-size: clamp(0.375rem, calc(var(--board-band) * var(--pawn-scale, 0.5)), 27cqi)
+
     // One pawn wide, so a pawn answers its own drawn size, and never shrunk:
     // containment drops the floor its content used to give it.
     .standing

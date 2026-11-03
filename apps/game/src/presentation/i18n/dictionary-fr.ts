@@ -1032,6 +1032,7 @@ export const FR_DICTIONARY = defineDictionary({
       },
       evening: 'Partie en équipes',
       eveningSeats: 'Partie de jeux',
+      more: '+{count:number}',
       rules: {
         points: defineTranslation(
           '{rounds:plural}\u00a0: l’équipe qui marque le plus gagne.',

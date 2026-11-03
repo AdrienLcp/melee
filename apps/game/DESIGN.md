@@ -995,7 +995,8 @@ count is a pill, and a plus, two figures and its padding stand 2.6 times its
 size: under the type's floor it follows its case down (`33cqi`, 7.6px on a
 390-wide wall's 23px cases), and a crowd's three pawns stand abreast on a case
 narrower than the band (`33cqi`), where wrapped they stood the count over the
-case's top.
+case's top. Four pawns and no count stand abreast too (`27cqi`): wrapped three
+and one, four teams on the start covered *Départ* at 1440×900.
 
 ### Teams (`TeamRoster`, `PawnColoursProvider`)
 Every seat's pawn stands in the colour the seat picked, or in its team's when
@@ -1312,7 +1313,7 @@ per team. Before the deal the trays are empty recesses with their band — the
 arrivals above already say why; a team left empty after it shows one dashed
 place. Names wrap inside their tray, never under an ellipsis.
 
-The lid and the arrivals keep a 60rem column; the trays widen past it by 15rem
+The lid and the arrivals keep a 72rem column; the trays widen past it by 15rem
 a team, to the U's width. Measured at 1440×900 and 1920×1080 with 15 seats in
 3×5 and 5×3, and 24 in 6×4, before and after the deal: nothing scrolls. The
 code is 9.5 stage units on the lid — `.room-invitation` declares its own size,
@@ -1322,18 +1323,33 @@ the invitation, which is `display: contents` there and never matches — so the
 lid passes both sides their sizes through custom properties.
 
 **The wall never scrolls, at any size.** The page is held to the screen and
-the arrivals give way, cut in whole chips (`useWholeChips`, which also fits
-again when a seat arrives or is renamed). In a recess under 20rem — a phone
-held up as the wall — the chips drop to `--text-xs` and the height of their
-line first: at 390×844 with 24 seats, the lid and eight names on 40 cases,
-thirteen on 100. Under 34rem the code is set to its column, never broken:
-four of its widest letters stand 2.98 times their size beside the token's
-`--space-xs`, which is 26px at 390 wide.
+the seats give way: the arrivals and every tray cut their own chips whole
+(`useWholeChips`, which also fits again when a seat arrives or is renamed),
+and a list that cut any ends on a `+N` pill, the board's crowd count. They
+share their column in `minmax(0, auto)` rows, never a flex column: a list
+hiding chips gives the others room and never takes it, where a flex item
+shrinking by its size handed the trays' cuts to the arrivals and back.
 
-Its presses are the room's: *Draw the teams* until the deal, then *Draw again*
-beside *Gather round*. The games are the panel's, and the team count follows
-the headcount; a new count after a deal deals again
-(`useTeamCountFollowingHeadcount`).
+The seats' column under 30rem is a phone held up as the wall, where 24 names
+cannot all be read: the arrivals drop to `--text-xs` and the height of their
+line, a tray is its band, its pawn, its name and how many sit at it (each seat
+reads its own team on its own screen), and before the deal the empty trays go,
+the arrivals' heading already saying a draw is coming. At 390×844 with 24
+seats, the lid and six names over `+18`; after the deal, four trays two by
+two. Lying down under 36rem tall (a phone lying down) the lid takes the wider
+side (1.6fr) and the seats the other, under the menu's corner, the header
+going as at a reveal this short; the square follows the height down (30
+`stage-unit`) and the lid's rows close up. Measured at 844×390, 740×360,
+667×375 and 932×430: the lid fits, four to seven names.
+
+Under 34rem the code is set to its column, never broken: four of its widest
+letters stand 2.98 times their size beside the token's `--space-xs`, which is
+26px at 390 wide beside a 124px square. Kept: nobody reads a phone-sized wall
+from across the room, square or code, and the table gathered round it reads
+both; the square stays the largest object.
+
+It carries no control: it is the wall's alone. The draw, the team count and
+the games are the console's.
 
 ## Do's and Don'ts
 

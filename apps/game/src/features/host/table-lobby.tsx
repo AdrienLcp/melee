@@ -79,59 +79,72 @@ export const TableLobby: React.FC<TableLobbyProps> = ({
     >
       <TableCard roomCode={roomCode} view={view} />
 
-      {players.length === 0 ? (
-        <section className='arrivals'>
-          <div className='arrivals-head'>
-            <h3>{translate('team.empty')}</h3>
-          </div>
-        </section>
-      ) : (
-        unassigned.length > 0 && (
+      <div className='table-seats'>
+        {players.length === 0 ? (
           <section className='arrivals'>
             <div className='arrivals-head'>
-              <h3>
-                {translate(
-                  isBySeat
-                    ? 'host.table.arrivals.seats'
-                    : isDrawn
-                      ? 'host.table.arrivals.drawn'
-                      : 'host.table.arrivals.chosen',
-                  { count: unassigned.length }
-                )}
-              </h3>
+              <h3>{translate('team.empty')}</h3>
             </div>
-            <SeatChips players={unassigned} roster={players} youId={youId} />
           </section>
-        )
-      )}
-
-      {!isBySeat && (
-        <ol aria-label={translate('team.title')} className='table-teams'>
-          {teams.map((team) => {
-            const members = seatsOf(team)
-
-            return (
-              <li
-                className={classNames(
-                  'team-block',
-                  youId !== null && team.seatIds.includes(youId) && 'yours'
-                )}
-                data-waiting={isWaitingForDraw || undefined}
-                key={team.id}
-                style={{ '--team': `var(--pawn-${team.colour})` }}
-              >
-                <h3 className='team-head'>
-                  <Pawn colour={team.colour} />
-                  <span className='team-name'>{teamName(team)}</span>
+        ) : (
+          unassigned.length > 0 && (
+            <section className='arrivals'>
+              <div className='arrivals-head'>
+                <h3>
+                  {translate(
+                    isBySeat
+                      ? 'host.table.arrivals.seats'
+                      : isDrawn
+                        ? 'host.table.arrivals.drawn'
+                        : 'host.table.arrivals.chosen',
+                    { count: unassigned.length }
+                  )}
                 </h3>
-                {members.length > 0 && (
-                  <SeatChips players={members} roster={players} youId={youId} />
-                )}
-              </li>
-            )
-          })}
-        </ol>
-      )}
+              </div>
+              <SeatChips players={unassigned} roster={players} youId={youId} />
+            </section>
+          )
+        )}
+
+        {!isBySeat && (
+          <ol aria-label={translate('team.title')} className='table-teams'>
+            {teams.map((team) => {
+              const members = seatsOf(team)
+
+              return (
+                <li
+                  className={classNames(
+                    'team-block',
+                    youId !== null && team.seatIds.includes(youId) && 'yours'
+                  )}
+                  data-waiting={isWaitingForDraw || undefined}
+                  key={team.id}
+                  style={{ '--team': `var(--pawn-${team.colour})` }}
+                >
+                  <h3 className='team-head'>
+                    <Pawn colour={team.colour} />
+                    <span className='team-name'>{teamName(team)}</span>
+                    {members.length > 0 && (
+                      <span className='team-size'>
+                        {translate('host.players.count', {
+                          count: members.length
+                        })}
+                      </span>
+                    )}
+                  </h3>
+                  {members.length > 0 && (
+                    <SeatChips
+                      players={members}
+                      roster={players}
+                      youId={youId}
+                    />
+                  )}
+                </li>
+              )
+            })}
+          </ol>
+        )}
+      </div>
     </div>
   )
 }
@@ -205,8 +218,8 @@ const SeatChips: React.FC<{
 }> = ({ players, roster, youId }) => {
   const translate = useTranslate()
   const listRef = useRef<HTMLUListElement>(null)
-
-  useWholeChips(listRef)
+  const countRef = useRef<HTMLLIElement>(null)
+  const cutCount = useWholeChips({ count: countRef, list: listRef })
 
   return (
     <ul className='seat-chips' ref={listRef}>
@@ -227,6 +240,11 @@ const SeatChips: React.FC<{
           )}
         </li>
       ))}
+      {cutCount > 0 && (
+        <li className='seat-count' ref={countRef}>
+          {translate('host.table.more', { count: cutCount })}
+        </li>
+      )}
     </ul>
   )
 }

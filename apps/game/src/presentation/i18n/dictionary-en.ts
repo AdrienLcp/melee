@@ -1082,6 +1082,8 @@ export const EN_DICTIONARY = defineDictionary({
       },
       evening: 'Team games',
       eveningSeats: 'Party games',
+      /** The seats a list on the wall has no room left to name. */
+      more: '+{count:number}',
       rules: {
         points: defineTranslation(
           '{rounds:plural}: the team that scores most wins.',

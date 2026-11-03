@@ -312,6 +312,15 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A phone held up as the wall seats a whole table of teams.** The
+  lobby says how many seats it has no room to name, with a `+N` after the
+  last name it shows, and every tray of a team cuts its names the same way.
+  On a screen that small a tray is its colour, its name and how many sit at
+  it, and the empty trays wait out of the way until the draw. Lying down, the
+  card takes one side and the seats the other, where the seats and the four
+  trays used to sit under the bottom row of the board. Four teams on the
+  start no longer cover the word *Départ*.
+
 - `[Game]` **A full table fits its track, its lobby and its standings.** A
   case crowded with pawns draws fewer of them beside its `+N` where it is
   narrow, so the start of the strip in hand no longer hangs a pawn off its

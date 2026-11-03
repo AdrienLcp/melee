@@ -410,7 +410,7 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
   const translate = useTranslate()
   const tally = useRef<HTMLUListElement>(null)
 
-  useWholeChips(tally)
+  useWholeChips({ list: tally })
   const answerWords = useAnswerWords(round)
   const answers = revealedInOrder(round).map((answer) => ({
     ...answer,
