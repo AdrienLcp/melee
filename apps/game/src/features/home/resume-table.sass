@@ -3,6 +3,11 @@
 @use '../../presentation/styles/typography'
 
 @layer components
+  // `data-holds-table` is set by `stored-shelf-marks.ts` before the first
+  // paint: the served page's held line shows only on a device with a table.
+  :root:not([data-holds-table]) .resume-table[data-held]
+    display: none
+
   .resume-table
     align-items: center
     animation: swap-in var(--transition-fast, 0s) var(--ease-out)

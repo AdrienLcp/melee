@@ -890,7 +890,9 @@ under every answer mode a verdict is owed in.
   `scroll-padding-inline` at the gutters, so the lid the edge cuts says there
   is more. Lids are `min(78cqi, 17rem)` wide, 17.5rem from a 48rem row. A
   fine pointer gets two outlined arrows by the heading, a page each way, dead
-  at an end and gone while the row fits; they stay out of the tab order,
+  at an end and faded out while the row fits — faded, never unmounted, since
+  the overflow is known only once the row is measured and arrows mounted then
+  pushed it 20px down; they stay out of the tab order,
   because a keyboard walks the lids and the browser scrolls each into view.
   Smooth only without reduced motion. No drag: a row that moves under a press
   meant to open a table opens the wrong one.
@@ -912,6 +914,15 @@ under every answer mode a verdict is owed in.
     its place on the next visit and no lid moves under the finger. A row of
     plays with no star ends on a **socket** — the star's dashed hole cut in
     `--socket`, and a line saying what it does.
+    The served page is written at build time and knows none of them, so it
+    carries the row **held**: its title and hint, the count's place empty,
+    and a hidden **strut** lid — a two-line name over its games and a
+    caption, the tallest a row commonly holds — shown only when the script
+    `stored-shelf-marks.ts` inlines before the first paint finds a non-empty
+    `melee:recent-tables` or `melee:saved-evenings`. The strut stays under the
+    first lid of the row the app draws, so that row is never shorter than the
+    space held: on a seven-lid row nothing moved at 1440 or 390, where the
+    row used to arrive a second after the page and push everything down.
   - **Ready-made line-ups**, the ones the app ships, with no star.
 - **`GameShelf`** (`features/home`): the games as spines, each a toggle
   ticking it for the host's door — its spine colour, its name in the display
@@ -933,12 +944,19 @@ under every answer mode a verdict is owed in.
 - **The masthead** (`features/home`): the wordmark and, under it while the
   last table this device opened is still open, *Back to table K7PX* — an
   underlined link a `--target` tall, the code in the title face, its line
-  held while the server is asked. Across from it from 60rem, their bottoms on
-  one line, the player's door: the code box on its lid; under it below
-  60rem. From 60rem the masthead shares the menu's row instead of starting
-  under it, and the code box stops a `--menu-inset` short of the column's
-  edge: the menu is anchored to the column at every width, so no margin ever
-  clears it. The menu scrolls away with the masthead here instead of floating
+  held from the first paint wherever a host token is stored — by the served
+  page on the same pre-paint mark, by the app while the server is asked — and
+  kept for the page's life when every table turns out closed, the answer
+  pruning the store so the next visit holds none. Across from it from 60rem,
+  their tops on the menu's line, the player's door: the code box on its lid;
+  under it below 60rem. Tops, not bottoms: aligned at the foot, the code box
+  dropped below the menu whenever the resume link was there. From 60rem the
+  masthead shares the menu's row instead of starting under it, and the code
+  box stops a `--menu-inset` short of the column's edge: the menu is anchored
+  to the column at every width, so no margin ever clears it. Unmeasured, that
+  inset reads a 4rem trigger — the front door's word alone, 60 to 64px at
+  every width — where the shell's 7.25rem fallback is a room's and held the
+  served page's code box 52px short of the menu until the app ran. The menu scrolls away with the masthead here instead of floating
   over the shelf.
 - **The host's door** (`HostDoor`): *Open a table · 5 games* (the count of
   ticked spines, the bare *Open a table* when none is) as the coral piece at

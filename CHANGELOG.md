@@ -355,6 +355,18 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The front page no longer jumps when it finishes loading.** The
+  served page is written at build time and knew nothing of the device, so
+  *Your line-ups* and *Back to table* arrived a second later and pushed
+  everything down. A script ahead of the first paint now marks the page when
+  line-ups or a host token are stored, and the page holds their place: the
+  row's title and an empty lid's height, the link's line — kept when every
+  table turns out closed. The row's arrows keep their place while the row
+  fits instead of mounting once it is measured, and from 60rem the code box
+  sits level with the wordmark and the menu instead of dropping to the
+  wordmark's foot, at its measured distance from the menu from the first
+  paint.
+
 - `[Game]` **A game's settings open without a blank band over them.** The
   back strip's fill painted over the game tab's heading; on a page of that
   tab — a game's settings, adding one, the draw, the saved line-ups — the

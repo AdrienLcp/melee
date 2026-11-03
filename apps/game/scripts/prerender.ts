@@ -26,6 +26,7 @@ type EntryServer = {
   openGraphLocales: Record<Locale, string>
   prerenderedPages: PrerenderedPage[]
   renderPage: (page: PrerenderedPage) => Promise<RenderedPage>
+  storedShelvesScript: string
 }
 
 const GAME_ROOT = resolve(import.meta.dirname, '..')
@@ -48,8 +49,16 @@ const {
   imageAlts,
   openGraphLocales,
   prerenderedPages,
-  renderPage
+  renderPage,
+  storedShelvesScript
 }: EntryServer = await import(pathToFileURL(SERVER_ENTRY).href)
+
+const appendStoredShelvesScript = (document: Document): void => {
+  const script = document.createElement('script')
+
+  script.textContent = storedShelvesScript
+  document.head.append(script)
+}
 
 /** The same page in every language, this one included: `hreflang` must be reciprocal. */
 const siblingsOf = (page: IndexedPage): PrerenderedPage[] =>
@@ -110,6 +119,7 @@ const documentFor = async (page: PrerenderedPage): Promise<string> => {
   })
 
   addFontPreloads({ css, document })
+  appendStoredShelvesScript(document)
   appendStructuredData({
     data: structuredDataFor({ description, locale: page.locale, url }),
     document

@@ -100,6 +100,32 @@ export const LineUpLid: React.FC<LineUpLidProps> = ({
   )
 }
 
+const NO_BREAK_SPACE = '\u00a0'
+
+/**
+ * An empty lid as tall as one whose name takes two lines over its games and a
+ * caption, the tallest a host's own row commonly holds. It is all a row the
+ * served page holds open contains, and it sits under the first lid of the row
+ * the app draws, so that row is never shorter than the space held for it.
+ */
+export const LidStrut: React.FC = () => (
+  <li aria-hidden='true' className='line-up-lid lid-strut'>
+    <span className='lid'>
+      <span className='band' />
+      <span className='body'>
+        <span className='name'>
+          {NO_BREAK_SPACE}
+          <br />
+          {NO_BREAK_SPACE}
+        </span>
+        <span className='games'>{NO_BREAK_SPACE}</span>
+        <span className='caption'>{NO_BREAK_SPACE}</span>
+      </span>
+      <span className='foot'>{NO_BREAK_SPACE}</span>
+    </span>
+  </li>
+)
+
 /** A segment per entry, keyed by its place: the band never reorders. */
 const segmentsOf = (band: readonly GameKind[]) =>
   band.map((game, index) => ({ game, key: index }))

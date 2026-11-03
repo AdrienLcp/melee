@@ -11,6 +11,9 @@
     display: grid
     position: relative
 
+    &.lid-strut
+      visibility: hidden
+
     .lid
       @include piece.card(var(--radius-l))
       @include piece.pressable

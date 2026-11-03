@@ -3,6 +3,11 @@
 @use '../../presentation/styles/typography'
 
 @layer components
+  // `data-holds-line-ups` is set by `stored-shelf-marks.ts` before the first
+  // paint; without it the served page's held row would be an empty band.
+  :root:not([data-holds-line-ups]) .line-up-row[data-held]
+    display: none
+
   // The empty socket at the row's end: the star's place, cut into the board,
   // and what a star does written in it.
   .line-up-row .star-socket

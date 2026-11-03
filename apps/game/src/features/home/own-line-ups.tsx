@@ -19,8 +19,9 @@ import { calendarDaysBetween, nowMs } from '@/infrastructure/clock'
 import { readStoredRecentTables } from '@/infrastructure/storage/preferences-storage'
 import { StarIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useIsPrerendering } from '@/presentation/use-is-prerendering'
 
-import { type LidStar, LineUpLid } from './line-up-lid'
+import { type LidStar, LidStrut, LineUpLid } from './line-up-lid'
 import { LineUpRow } from './line-up-row'
 import type { CreateRoom } from './use-create-room'
 import { useLineUpFace, useRoundsText } from './use-line-up-face'
@@ -48,8 +49,14 @@ const storedRecents = (): readonly RecentTable[] => {
  * gives back the line-up's place on the next visit, so no lid moves under the
  * finger. A row of plays with no saved line-up in it ends on an empty socket that
  * says what the star is for.
+ *
+ * The served page cannot know any of them, so it is written with the row held
+ * open, one lid tall and empty: shown only when the script ahead of the first
+ * paint finds line-ups stored, so the lids land in it rather than pushing the
+ * page down when the app arrives.
  */
 export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
+  const isPrerendering = useIsPrerendering()
   const translate = useTranslate()
   const face = useLineUpFace()
   const roundsText = useRoundsText()
@@ -67,6 +74,19 @@ export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
     }
   })
   const { isOpeningAny, lineUpOpening, openLineUp } = createRoom
+
+  if (isPrerendering) {
+    return (
+      <LineUpRow
+        count={null}
+        hint={translate('home.yourLineUps.hint')}
+        id='own-line-ups'
+        title={translate('home.yourLineUps.title')}
+      >
+        <LidStrut />
+      </LineUpRow>
+    )
+  }
 
   if (shelf.lineUps.length === 0) {
     return null
@@ -186,6 +206,7 @@ export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
           <p>{translate('home.yourLineUps.starHint')}</p>
         </li>
       )}
+      <LidStrut />
     </LineUpRow>
   )
 }

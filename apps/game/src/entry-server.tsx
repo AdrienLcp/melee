@@ -16,6 +16,7 @@ import {
   paths
 } from '@/infrastructure/router/navigation'
 import { pageModuleFor, routes } from '@/infrastructure/router/routes'
+import { STORED_SHELVES_SCRIPT } from '@/infrastructure/storage/stored-shelf-marks'
 import { AppProviders } from '@/presentation/app-providers'
 import {
   IMAGE_ALTS,
@@ -46,7 +47,11 @@ export type RenderedPage = Pick<PageHead, 'description'> & {
  * it, rather than keeping a second copy of them: it needs a *sibling's* tag for
  * `og:locale:alternate`, which no single rendered page can hand it.
  */
-export { IMAGE_ALTS as imageAlts, OPEN_GRAPH_LOCALES as openGraphLocales }
+export {
+  IMAGE_ALTS as imageAlts,
+  OPEN_GRAPH_LOCALES as openGraphLocales,
+  STORED_SHELVES_SCRIPT as storedShelvesScript
+}
 
 const pagesFor = (locale: Locale): PrerenderedPage[] => [
   {

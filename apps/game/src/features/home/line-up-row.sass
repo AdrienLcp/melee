@@ -37,12 +37,20 @@
       padding: 0 var(--space-xs)
       place-items: center
 
+      &:is([data-held] *)
+        visibility: hidden
+
     .row-arrows
       display: none
       gap: var(--space-xs)
+      transition: opacity var(--transition-fast, 0s) var(--ease-out), visibility var(--transition-fast, 0s)
 
       @media (hover: hover) and (pointer: fine)
         display: flex
+
+      &[data-fits]
+        opacity: 0
+        visibility: hidden
 
     .row-arrow
       aspect-ratio: 1
@@ -85,6 +93,11 @@
         @for $order from 0 through 3
           &:nth-child(#{$order + 1})
             --lid-order: #{$order}
+
+      // Both placed, because an auto-placed lid skips a taken cell.
+      > .lid-strut,
+      &:has(> .lid-strut) > li:first-child
+        grid-area: 1 / 1
 
       @container (width >= 48rem)
         --lid-width: 17.5rem

@@ -15,8 +15,13 @@ import './line-up-row.sass'
 type LineUpRowProps = {
   /** The row's lids, each an `<li>`. */
   children: React.ReactNode
-  /** How many line-ups the row holds, printed beside its title. */
-  count: number
+  /**
+   * How many line-ups the row holds, printed beside its title. `null` on a row
+   * the served page holds open for lids it cannot know: it carries
+   * `data-held`, and its count keeps its place empty, since the badge is
+   * taller than a narrow screen's title.
+   */
+  count: number | null
   /** What a press on one of its lids does. */
   hint: string
   /** Prefixes the ids its heading, hint and list are referred to by. */
@@ -30,7 +35,9 @@ type LineUpRowProps = {
  *
  * The arrows are a mouse's way along, shown on a fine pointer while the row
  * overflows and dead at each end. They stay out of the tab order: a keyboard
- * walks the lids themselves, and the browser scrolls each into view.
+ * walks the lids themselves, and the browser scrolls each into view. They keep
+ * their place while the row fits, because the overflow is only known once the
+ * row is measured, and arrows mounted then would push the row down.
  */
 export const LineUpRow: React.FC<LineUpRowProps> = ({
   children,
@@ -47,6 +54,7 @@ export const LineUpRow: React.FC<LineUpRowProps> = ({
       aria-describedby={`${id}-hint`}
       aria-labelledby={`${id}-title`}
       className='line-up-row'
+      data-held={count === null || undefined}
     >
       <div className='row-head'>
         <div className='shelf-heading'>
@@ -55,40 +63,43 @@ export const LineUpRow: React.FC<LineUpRowProps> = ({
             <span aria-hidden='true' className='count'>
               {count}
             </span>
-            <VisuallyHidden>
-              {translate('home.lineUpCount', { count })}
-            </VisuallyHidden>
+            {count !== null && (
+              <VisuallyHidden>
+                {translate('home.lineUpCount', { count })}
+              </VisuallyHidden>
+            )}
           </h2>
           <p className='shelf-hint' id={`${id}-hint`}>
             {hint}
           </p>
         </div>
-        {!(isAtStart && isAtEnd) && (
-          <div className='row-arrows'>
-            <Button
-              aria-controls={`${id}-list`}
-              aria-label={translate('home.previousLineUps')}
-              className='row-arrow'
-              excludeFromTabOrder
-              isDisabled={isAtStart}
-              onPress={() => page(-1)}
-              variant='outlined'
-            >
-              <ChevronLeftIcon />
-            </Button>
-            <Button
-              aria-controls={`${id}-list`}
-              aria-label={translate('home.nextLineUps')}
-              className='row-arrow'
-              excludeFromTabOrder
-              isDisabled={isAtEnd}
-              onPress={() => page(1)}
-              variant='outlined'
-            >
-              <ChevronRightIcon />
-            </Button>
-          </div>
-        )}
+        <div
+          className='row-arrows'
+          data-fits={(isAtStart && isAtEnd) || undefined}
+        >
+          <Button
+            aria-controls={`${id}-list`}
+            aria-label={translate('home.previousLineUps')}
+            className='row-arrow'
+            excludeFromTabOrder
+            isDisabled={isAtStart}
+            onPress={() => page(-1)}
+            variant='outlined'
+          >
+            <ChevronLeftIcon />
+          </Button>
+          <Button
+            aria-controls={`${id}-list`}
+            aria-label={translate('home.nextLineUps')}
+            className='row-arrow'
+            excludeFromTabOrder
+            isDisabled={isAtEnd}
+            onPress={() => page(1)}
+            variant='outlined'
+          >
+            <ChevronRightIcon />
+          </Button>
+        </div>
       </div>
       <ul
         aria-labelledby={`${id}-title`}

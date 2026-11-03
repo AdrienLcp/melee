@@ -9,6 +9,12 @@
 // Where the code box moves beside the wordmark rather than under it.
 $masthead-side-by-side: 60rem
 
+// The front door's menu trigger before `use-menu-width` measures it: the word
+// alone, with no connection dot, 60 to 64px at every width. The shell's
+// fallback is a room's, and held the code box 52px short of the menu until the
+// app ran.
+$front-door-menu-width: 4rem
+
 @layer components
   .home-page
     @include layout.screen
@@ -22,9 +28,10 @@ $masthead-side-by-side: 60rem
     @media (width >= $masthead-side-by-side)
       padding-block-start: var(--layout-padding-block-start)
 
-    // The wordmark and the player's door on one row, their bottoms on one
-    // line. On a narrow screen the code comes right under the wordmark,
-    // because whoever is told four characters is most of the room.
+    // The wordmark and the player's door on one row, their tops on the menu's
+    // line, so the resume link arriving under the wordmark moves neither. On a
+    // narrow screen the code comes right under the wordmark, because whoever
+    // is told four characters is most of the room.
     .masthead
       display: grid
       gap: var(--space-l)
@@ -34,13 +41,14 @@ $masthead-side-by-side: 60rem
       // A fixed track rather than `auto`: the code box is a size container,
       // and an `auto` track sized by its content collapses it to nothing.
       @media (width >= $masthead-side-by-side)
-        align-items: end
+        align-items: start
         column-gap: var(--space-xl)
         grid-template-areas: 'title join'
         grid-template-columns: minmax(0, 1fr) minmax(0, 26rem)
         // The menu is anchored to the column's edge at every width, never to
-        // the screen's, so no margin ever clears it.
-        padding-inline-end: var(--menu-inset)
+        // the screen's, so no margin ever clears it. `--menu-inset` read
+        // with this page's own fallback, for the served page's first paint.
+        padding-inline-end: calc(var(--layout-padding) + var(--menu-width, $front-door-menu-width))
 
     .title-block
       display: grid
