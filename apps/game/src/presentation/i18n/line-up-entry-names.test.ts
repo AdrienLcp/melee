@@ -4,6 +4,7 @@ import {
   type BlindtestSettings,
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
+  DEFAULT_SLATE_SETTINGS,
   type QuizSettings
 } from '@melee/protocol/game'
 import {
@@ -147,14 +148,14 @@ describe('lineUpEntrySummaries', () => {
 
   it('[line-up] names every strand a catalogue draws from, and drops the level for film scores alone', () => {
     expect(
-      lineUpEntrySummaries({
-        lineUp: [
-          blindtest(EVERY_STRAND),
-          blindtest(catalogueOf({ charts: [152, 132], hasFilmScores: true })),
-          blindtest(catalogueOf({ hasFilmScores: true }))
-        ],
-        translate
-      }).map((summary) => summary.settings)
+      [
+        blindtest(EVERY_STRAND),
+        blindtest(catalogueOf({ charts: [152, 132], hasFilmScores: true })),
+        blindtest(catalogueOf({ hasFilmScores: true }))
+      ].map(
+        (entry) =>
+          lineUpEntrySummaries({ lineUp: [entry], translate })[0]?.settings
+      )
     ).toEqual([
       'Top charts + Every decade + Film scores · Crowd-pleasers · 20s',
       'Rock, Pop + Film scores · Crowd-pleasers · 20s',
@@ -173,6 +174,38 @@ describe('lineUpEntrySummaries', () => {
         translate
       }).map((summary) => summary.name)
     ).toEqual(['Blind test', 'Quiz 1', 'Quiz 2'])
+  })
+
+  it('[line-up] leaves out of a row’s detail what its name already says', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [
+          { ...quiz(['history']), language: 'en' },
+          { ...quiz(['geography']), language: 'en' },
+          blindtest(catalogueOf({ decades: ['1980s'] })),
+          blindtest(catalogueOf({ decades: ['1990s'] })),
+          { ...DEFAULT_SLATE_SETTINGS, itemCount: 5 },
+          { ...DEFAULT_SLATE_SETTINGS, itemCount: 10 }
+        ],
+        translate
+      })
+    ).toEqual([
+      { name: 'Quiz · History', settings: 'English · 30s' },
+      { name: 'Quiz · Geography', settings: 'English · 30s' },
+      { name: 'Blind test · 80s', settings: 'Crowd-pleasers · 20s' },
+      { name: 'Blind test · 90s', settings: 'Crowd-pleasers · 20s' },
+      { name: 'Slate · 5 things to guess', settings: null },
+      { name: 'Slate · 10 things to guess', settings: null }
+    ])
+  })
+
+  it('[line-up] keeps the whole detail on an entry its game holds alone', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [{ ...quiz(['history']), language: 'en' }],
+        translate
+      })
+    ).toEqual([{ name: 'Quiz', settings: 'History · English · 30s' }])
   })
 })
 

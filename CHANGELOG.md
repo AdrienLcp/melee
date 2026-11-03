@@ -133,6 +133,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A game's row in the line-up no longer says its setting twice.**
+  Two quizzes on two subjects are called *Quiz · History* and *Quiz ·
+  Geography*, and the line under each now leaves the subject out and says
+  the rest — the language and the time to answer. The same goes for every
+  game a setting tells apart: a blind test on one decade, a map on one kind
+  of place, a slate's count.
+
 - `[Game]` **A check slides in and out rather than switching.** Ticking an
   answer among several slides its label aside and fades the check into the
   room it made; unticking fades the check first and closes the room after.
