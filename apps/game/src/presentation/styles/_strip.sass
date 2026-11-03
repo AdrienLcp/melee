@@ -174,8 +174,9 @@
 
   // Every stamp carries its check, folded at no width under the label, so
   // ticking slides the label aside and fades the check into the room it made,
-  // and unticking fades it first and closes the room after. A check mounted
-  // with the tick could only pop in and vanish.
+  // and unticking plays the same backwards: the check shrinks and fades
+  // first, then the room closes, on the same durations and the curve
+  // reversed. A check mounted with the tick could only pop in and vanish.
   .tick
     block-size: 1em
     display: inline-block
@@ -183,7 +184,7 @@
     margin-inline-end: -1em
     opacity: 0
     scale: 0.6
-    transition: opacity var(--transition-fast, 0s) var(--ease-out), scale var(--transition-fast, 0s) var(--ease-out), margin-inline-end var(--transition-fast, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+    transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
     vertical-align: -0.125em
 
   .segment[data-selected] .tick

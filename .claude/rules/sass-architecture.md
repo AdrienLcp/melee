@@ -336,11 +336,13 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
 - **The room it takes moves with it.** Text a mark pushes aside slides: the
   mark sits folded at no width (`inline-size: 1em` over
   `margin-inline-end: -1em`) and the margin transitions.
-- **Leaving is faster than arriving, and each direction is written in the
-  state it ends on** — a transition is read off the state being entered.
-  Arriving opens the room on `--transition-base` and fades the mark in after a
-  delay written over a token; leaving fades it on `--transition-fast` and
-  closes the room after.
+- **A toggled mark leaves the way it arrived, played backwards, and each
+  direction is written in the state it ends on** — a transition is read off
+  the state being entered. Arriving opens the room on `--transition-base` and
+  fades the mark in after a delay written over a token; leaving fades it on
+  the same duration and closes the room after the same delay, on `--ease-in`,
+  which is `--ease-out` reversed. A quicker exit on `--ease-out` was gone in a
+  few frames: the check blinked out where it had grown in (Adrien, 2026-11-03).
 - **What truly leaves the tree plays its exit first**: `[data-exiting]` on a
   react-aria overlay (`action-menu.sass`), a leaving state ended on
   `animationend` (`react-components.md`), a view transition for a page.

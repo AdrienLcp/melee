@@ -21,7 +21,8 @@ one part.
 
 - `[Game]` **A stamp ticked among several is inked flat in its tray, with a
   check**, rather than lifted out like a single answer, so a strip with
-  everything ticked no longer reads as a wall of answers.
+  everything ticked no longer reads as a wall of answers. Unticking plays the
+  tick backwards: the check shrinks and fades, then the label slides back.
 
 - `[Shared]` **Every seat picks its pawn colour, not only a team.** A seat
   holds a colour of its own, the one its pawn stands in wherever no team
