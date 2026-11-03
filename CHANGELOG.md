@@ -347,6 +347,11 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A game's settings open without a blank band over them.** The
+  back strip's fill painted over the game tab's heading; on a page of that
+  tab — a game's settings, adding one, the draw, the saved line-ups — the
+  heading now gives way to the page, and slides back in with the list.
+
 - `[Game]` **A phone held up as the wall seats a whole table of teams.** The
   lobby says how many seats it has no room to name, with a `+N` after the
   last name it shows, and every tray of a team cuts its names the same way.

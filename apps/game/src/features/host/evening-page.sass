@@ -1,4 +1,9 @@
 @layer components
+  // A page brings its own way back and its own name, so the tab's heading
+  // gives way to it: left standing, the strip's fill painted over it.
+  .panel-screen:has(> .evening-page) > h2
+    display: none
+
   .evening-page
     animation: evening-page-in var(--transition-base, 0s) var(--ease-out)
     display: flex

@@ -14,18 +14,21 @@
     .held
       animation: swap-in var(--transition-fast, 0s) var(--ease-out)
 
-    // The game tab's list, standing in its container's grid. Coming back from
-    // one of its pages, it slides in from the side that page left by.
+    // The game tab's list, standing in its container's grid.
     .evening-list
-      --returning-from: calc(var(--space-l) * -1)
-
       display: grid
       gap: inherit
       grid-auto-rows: max-content
       grid-template-columns: minmax(0, 1fr)
 
-      &[data-returned]
-        animation: evening-list-in var(--transition-base, 0s) var(--ease-out)
+    // Coming back from one of its pages, the list slides in from the side
+    // that page left by, and the tab's heading, which gave way to the page,
+    // comes back with it.
+    .evening-list[data-returned],
+    .panel-screen:has(> .evening-list[data-returned]) > h2
+      --returning-from: calc(var(--space-l) * -1)
+
+      animation: evening-list-in var(--transition-base, 0s) var(--ease-out)
 
     // What the teams and the board were settled on, once the server stops
     // taking either: a printed slip rather than two controls drawn dead.
