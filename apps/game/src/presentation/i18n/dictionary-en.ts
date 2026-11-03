@@ -1382,6 +1382,7 @@ export const EN_DICTIONARY = defineDictionary({
   menu: {
     build: 'Build {build}',
     buildDated: 'Build of {date} · {build}',
+    credit: 'Made by <author>{name}</author>',
     fullscreen: {
       enter: 'Full screen',
       exit: 'Leave full screen'
@@ -1405,6 +1406,7 @@ export const EN_DICTIONARY = defineDictionary({
       field: 'New nickname',
       label: 'Nickname'
     },
+    source: 'Source code',
     /** Said by the host, about the machine rather than the table: it outlives the room. */
     thisDevice: {
       qrCode: {

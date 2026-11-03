@@ -1255,6 +1255,11 @@ the whole team changes with it; while a round plays the twelve sit at half
 opacity over *It changes between two rounds, not during one*, since the server
 refuses a recolour then, and a refusal prints in the field-error stamp in the
 line's place. The wall and a console only running the room carry none.
+At its foot, small centred caption lines read as one footer, tightened against
+each other: *Made by Adrien Lacourpaille*, the name linked to his site in the
+reader's language, and *Source code* on every screen, then the credits at a
+front door, the legal notice everywhere but its own page, and the build. A link
+out of the site opens a tab of its own, so no room's socket closes for one.
 On the wall the chrome goes idle
 (`data-idle`) and returns on the first pointer, key or focus.
 `ConnectionStatus` tells its four states by shape and motion, never by hue.

@@ -5,6 +5,7 @@ import { PAGE_HEADS } from '@/presentation/head/document-head'
 import { DocumentTitle } from '@/presentation/head/document-title'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import type { PlainTranslationKey } from '@/presentation/i18n/translation'
+import { SOURCE_REPOSITORY_HREF } from '@/presentation/site-credits'
 
 import './credits-page.sass'
 import { Main } from '@/presentation/components/main'
@@ -36,8 +37,6 @@ const LICENCES = {
 } as const
 
 type Licence = (typeof LICENCES)[keyof typeof LICENCES]
-
-const REPOSITORY_URL = 'https://github.com/AdrienLcp/melee'
 
 type QuestionCredit = {
   author: string
@@ -157,8 +156,8 @@ export const CreditsPage: React.FC = () => {
 
       <p className='share-alike'>
         {translate('credits.shareAlike')}{' '}
-        <TextLink href={REPOSITORY_URL} target='_blank'>
-          {REPOSITORY_URL.replace('https://', '')}
+        <TextLink href={SOURCE_REPOSITORY_HREF} target='_blank'>
+          {SOURCE_REPOSITORY_HREF.replace('https://', '')}
         </TextLink>
       </p>
 

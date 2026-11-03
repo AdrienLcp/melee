@@ -1,5 +1,7 @@
 import type { Locale } from '@melee/protocol/locale'
 
+import { AUTHOR } from '@/presentation/site-credits'
+
 /**
  * Who publishes Melee and how to reach him. A non-professional publisher
  * gives a name and a contact, never a postal address or a phone number (LCEN,
@@ -10,7 +12,7 @@ export const PUBLISHER = {
     en: 'https://adrienlcp.com/en/contact',
     fr: 'https://adrienlcp.com/fr/contact'
   } satisfies Record<Locale, string>,
-  name: 'Adrien Lacourpaille'
+  name: AUTHOR.name
 } as const
 
 /** The Worker, its Durable Objects and the custom domain are all Cloudflare's. */

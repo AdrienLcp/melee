@@ -30,6 +30,7 @@ import {
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { LANGUAGE_NAMES } from '@/presentation/i18n/language-names'
+import { RichText } from '@/presentation/i18n/rich-text'
 import {
   type PlainTranslationKey,
   protocolErrorKey
@@ -38,6 +39,7 @@ import {
   useIsInsideRoom,
   useRoomActions
 } from '@/presentation/room-actions/room-actions-provider'
+import { AUTHOR, SOURCE_REPOSITORY_HREF } from '@/presentation/site-credits'
 import { themeStore } from '@/presentation/theme/theme-store'
 
 import { Button } from './button'
@@ -504,6 +506,25 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
           <MenuPawn />
 
           <RoomExit onDone={close} />
+
+          <p className='credit'>
+            <RichText
+              parts={translate.rich('menu.credit', {
+                author: (name) => (
+                  <TextLink href={AUTHOR.siteHref[locale]} target='_blank'>
+                    {name}
+                  </TextLink>
+                ),
+                name: AUTHOR.name
+              })}
+            />
+          </p>
+
+          <p className='credit'>
+            <TextLink href={SOURCE_REPOSITORY_HREF} target='_blank'>
+              {translate('menu.source')}
+            </TextLink>
+          </p>
 
           {/*
                 The credit itself is a page. CC BY-SA §3(a)(2) names a link to

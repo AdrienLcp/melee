@@ -1318,6 +1318,7 @@ export const FR_DICTIONARY = defineDictionary({
   menu: {
     build: 'Version {build}',
     buildDated: 'Version du {date} · {build}',
+    credit: 'Réalisé par <author>{name}</author>',
     fullscreen: {
       enter: 'Plein écran',
       exit: 'Quitter le plein écran'
@@ -1334,6 +1335,7 @@ export const FR_DICTIONARY = defineDictionary({
       field: 'Nouveau pseudo',
       label: 'Pseudo'
     },
+    source: 'Code source',
     thisDevice: {
       qrCode: {
         action: 'Afficher',
