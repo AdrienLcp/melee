@@ -352,6 +352,15 @@ one part.
   tab — a game's settings, adding one, the draw, the saved line-ups — the
   heading now gives way to the page, and slides back in with the list.
 
+- `[Server]` **A room that outlives a deploy wakes on the settings that deploy
+  added.** Storage hands a room back exactly as it was written, so a setting
+  added since — the draw, the track's catch-up, a game's new option — came
+  back missing rather than on its default. The settings and the games opened
+  this evening are now read through the schemas on every wake, which replaces
+  the blind test's own catch-up after the catalogue; whatever a later deploy
+  refuses goes back to the defaults, with the room code and the refused paths
+  in the log.
+
 - `[Game]` **A phone held up as the wall seats a whole table of teams.** The
   lobby says how many seats it has no room to name, with a `+N` after the
   last name it shows, and every tray of a team cuts its names the same way.

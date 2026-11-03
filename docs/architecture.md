@@ -78,6 +78,16 @@ snapshot therefore knows what it is waiting for with nothing else surviving,
 and no round deadline falls due while no console is attached — that is the
 whole of the freeze when the host walks away.
 
+A room outlives a deploy, and storage hands it back exactly as it was written:
+`kv.get<Room>` names a type and checks nothing. So what has a schema is read
+through it on wake — the settings and the opened entries, in
+`domain/room/stored-settings.ts` — and a setting a deploy adds needs only its
+`.default`, or a preprocess for an arm it replaces. Every view goes out through
+the same schemas, so a stored room was valid when it was written, and what
+fails there is a deploy that tightened a rule: it falls back to the defaults and
+is logged. The seats and the round have no schema of their own, and keep a
+patch each for the field a deploy added (`stored-seats.ts`, `stored-round.ts`).
+
 A room nobody is connected to is closed an hour after the last socket left —
 long enough that a table breaking for dinner keeps its game. A seat is dropped
 after ten minutes, because an empty seat is a name the others watch.

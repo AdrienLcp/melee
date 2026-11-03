@@ -15,9 +15,10 @@ import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
 import { withHoldFields } from '@/domain/room/stored-round'
 import { withSeatColours } from '@/domain/room/stored-seats'
-import { withCatalogueSources } from '@/domain/room/stored-settings'
+import { parseStoredGames } from '@/domain/room/stored-settings'
 import { nowMs } from '@/infrastructure/clock'
 import { newHostToken } from '@/infrastructure/ids'
+import { logger } from '@/infrastructure/logging/logger'
 import type { Connection } from '@/infrastructure/messaging/connection'
 import {
   commitRoom,
@@ -100,8 +101,18 @@ export class RoomObject extends DurableObject<Env> {
     const stored = ctx.storage.kv.get<Room>(ROOM_KEY)
 
     if (stored !== undefined) {
+      const { refusals, ...games } = parseStoredGames(stored)
+
+      if (refusals.length > 0) {
+        logger.error('Reset what a stored room no longer parses as', {
+          code: stored.code,
+          refusals
+        })
+      }
+
       this.engine = this.engineFor({
-        ...withCatalogueSources(stored),
+        ...stored,
+        ...games,
         players: withSeatColours(stored.players),
         round: stored.round === null ? null : withHoldFields(stored.round)
       })

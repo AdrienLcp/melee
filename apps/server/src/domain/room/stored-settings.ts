@@ -1,43 +1,54 @@
+import { type GameSettings, gameSettingsSchema } from '@melee/protocol/game'
 import {
-  DEFAULT_BLINDTEST_SETTINGS,
-  type GameSettings
-} from '@melee/protocol/game'
-import type { RoomSettings } from '@melee/protocol/room'
-import { trackSourceSchema } from '@melee/protocol/track'
+  DEFAULT_ROOM_SETTINGS,
+  type RoomSettings,
+  roomSettingsSchema
+} from '@melee/protocol/room'
 
-import type { Room } from './room'
-
-type StoredGames = Pick<Room, 'openedEntries' | 'settings'>
-
-/**
- * A blind test as the Durable Object stored it, which may predate the
- * catalogue (protocol 67): a room outlives a deploy, and a source on one of the
- * four arms it replaced reached a draw that no longer knows them. Each reads as
- * the strands it drew, through the schema the browser's stored setups go
- * through too.
- */
-const withCatalogueSource = (game: GameSettings): GameSettings => {
-  if (game.kind !== 'blindtest') {
-    return game
-  }
-
-  const source = trackSourceSchema.safeParse(game.source)
-
-  return {
-    ...game,
-    source: source.success ? source.data : DEFAULT_BLINDTEST_SETTINGS.source
-  }
+type StoredGames = {
+  openedEntries: readonly unknown[]
+  settings: unknown
 }
 
-const withCatalogueSettings = (settings: RoomSettings): RoomSettings => ({
-  ...settings,
-  game: settings.game === null ? null : withCatalogueSource(settings.game),
-  lineUp: settings.lineUp.map(withCatalogueSource)
-})
+type ParsedGames = {
+  openedEntries: GameSettings[]
+  /**
+   * Where the stored room broke today's schemas, empty when nothing did: each
+   * opened entry dropped, and every rule the settings failed before they went
+   * back to the defaults.
+   */
+  refusals: string[]
+  settings: RoomSettings
+}
 
-/** Every blind test a stored room holds, read onto the catalogue. */
-export const withCatalogueSources = <T extends StoredGames>(stored: T): T => ({
-  ...stored,
-  openedEntries: stored.openedEntries.map(withCatalogueSource),
-  settings: withCatalogueSettings(stored.settings)
-})
+/**
+ * A room's games as the Durable Object stored them, read through today's
+ * schemas. Storage hands back what was written with nothing in between, and a
+ * room outlives a deploy: a field added since takes its `.default`, an arm
+ * replaced since reads through its preprocess. Every view goes out through the
+ * same schemas, so what fails here is a deploy that tightened one rather than
+ * a room that drifted.
+ */
+export const parseStoredGames = (stored: StoredGames): ParsedGames => {
+  const settings = roomSettingsSchema.safeParse(stored.settings)
+  const entries = stored.openedEntries.map((entry) =>
+    gameSettingsSchema.safeParse(entry)
+  )
+
+  return {
+    openedEntries: entries.flatMap((entry) =>
+      entry.success ? [entry.data] : []
+    ),
+    refusals: [
+      ...(settings.success
+        ? []
+        : settings.error.issues.map(
+            (issue) => `settings.${issue.path.map(String).join('.')}`
+          )),
+      ...entries.flatMap((entry, index) =>
+        entry.success ? [] : [`openedEntries.${index}`]
+      )
+    ],
+    settings: settings.success ? settings.data : DEFAULT_ROOM_SETTINGS
+  }
+}
