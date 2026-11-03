@@ -496,7 +496,7 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
       />
       {view.phase !== 'lobby' && (
         <section className='hand-points'>
-          <h3>{translate('menu.points.label')}</h3>
+          <h3>{translate('host.points.label')}</h3>
           <PointsRows />
         </section>
       )}

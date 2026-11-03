@@ -889,6 +889,16 @@ export const EN_DICTIONARY = defineDictionary({
       settings: 'Settings',
       tied: 'tied'
     },
+    /**
+     * Points by hand, for a bonus nobody planned or a challenge played at the
+     * table. `give` and `take` name a row's + and − for whoever cannot see the
+     * name they sit beside.
+     */
+    points: {
+      give: '{points:number} points more for {name}',
+      label: 'Points',
+      take: '{points:number} points less for {name}'
+    },
     ready: {
       everyone: 'Everyone’s ready'
     },
@@ -1394,19 +1404,6 @@ export const EN_DICTIONARY = defineDictionary({
       action: 'Change',
       field: 'New nickname',
       label: 'Nickname'
-    },
-    /**
-     * Points by hand, for a bonus nobody planned or a challenge played at the
-     * table. `give` and `take` name a row's + and − for whoever cannot see the
-     * name they sit beside.
-     */
-    points: {
-      give: '{points:number} points more for {name}',
-      label: 'Points',
-      take: '{points:number} points less for {name}',
-      teams: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} team', other: '{?} teams' } }
-      })
     },
     /** Said by the host, about the machine rather than the table: it outlives the room. */
     thisDevice: {

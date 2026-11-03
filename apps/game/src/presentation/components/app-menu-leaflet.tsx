@@ -25,8 +25,7 @@ import {
   paths,
   useIsCurrentPath,
   useIsOnWall,
-  useNavigateToLocale,
-  useRoomCodeParam
+  useNavigateToLocale
 } from '@/infrastructure/router/navigation'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -54,7 +53,6 @@ import {
 import { Leaflet } from './leaflet'
 import { Link } from './link'
 import { MenuPawn } from './menu-pawn'
-import { MenuPoints } from './menu-points'
 import { ProjectWithCode } from './project-with-code'
 import { RoomInvitation } from './room-invitation'
 import { SegmentedControl } from './segmented-control'
@@ -347,8 +345,7 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
   const { preference, setPreference } = useThemePreference(themeStore)
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
-  const roomCode = useRoomCodeParam()
-  const { pauseRound, revealRound, roomVolume, setRoomVolume } =
+  const { invitation, pauseRound, revealRound, roomVolume, setRoomVolume } =
     useRoomActions()
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
@@ -400,27 +397,35 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
           )}
 
           {/*
-                Folded to one row, and above the invitation: a bonus called
-                out at the table is the other thing a host opens this menu
-                mid-round for, and it must not wait behind the square.
+                The room's volume, on the console alone: it reaches whichever
+                screen is sounding, so a wall carries no slider of its own. In
+                the menu because a buzz sounds under every game, not only the
+                one that carries a track.
+
+                With full screen, above the invitation: both are one row the
+                room's screen is set with mid-game, and the square would push
+                them past the fold of a sheet.
               */}
-          <MenuPoints />
+          {roomVolume !== null && setRoomVolume !== null && (
+            <Slider
+              formatOptions={{ style: 'percent' }}
+              label={translate('preferences.volume')}
+              maxValue={1}
+              minValue={0}
+              onChange={setRoomVolume}
+              step={0.05}
+              value={roomVolume}
+            />
+          )}
+
+          <Fullscreen />
 
           {/*
-                The way in, on every screen at every phase — which is the one
-                thing the console's lobby could not offer, because it stops
-                being on screen the moment the first round starts and it was
-                never on a player's screen at all. Behind the leaflet no
-                player aiming at the game can hit, which is the placement this
-                menu already exists to give.
-
-                Above the preferences rather than beside the exits: it is the
-                only thing here somebody opens the menu *during* a game to
-                find, and it is not a way out of the room.
+                The way in once the lobby is over: the lobby's stage is the
+                invitation, and past it the room's screen keeps a corner
+                reminder and a player's screen nothing at all.
               */}
-          {isInsideRoom && roomCode !== null && (
-            <RoomInvitation roomCode={roomCode} />
-          )}
+          {invitation !== null && <RoomInvitation roomCode={invitation} />}
 
           {!isInsideRoom && !isOnWall && (
             <section className='this-device'>
@@ -440,27 +445,6 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
               )}
               <ProjectWithCode onDone={close} />
             </section>
-          )}
-
-          {/*
-                The room's volume, on the console alone: it reaches whichever
-                screen is sounding, so a wall carries no slider of its own.
-                It heads the preferences because it is the only one of them
-                somebody opens this menu mid-round to reach, and it is in the
-                menu at all because the console strip it used to live in is
-                drawn under the one game that carries a track, while a buzz
-                sounds under all of them.
-              */}
-          {roomVolume !== null && setRoomVolume !== null && (
-            <Slider
-              formatOptions={{ style: 'percent' }}
-              label={translate('preferences.volume')}
-              maxValue={1}
-              minValue={0}
-              onChange={setRoomVolume}
-              step={0.05}
-              value={roomVolume}
-            />
           )}
 
           <SegmentedControl
@@ -491,8 +475,6 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
             }))}
             value={preference}
           />
-
-          <Fullscreen />
 
           <InstallApp />
 

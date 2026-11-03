@@ -133,6 +133,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **The menu leaves out what the screen already shows.** No QR code
+  in the lobby, whose stage is the invitation, on any screen; once the game
+  runs, the room's volume and full screen sit under the round's presses and
+  above the QR code, which would push them past the fold. Points by hand
+  leave the menu for the Players tab, where they already were.
+
 - `[Game]` **A strip with one answer slides its choice across.** The board's
   length, the round count, the answer mode and every other one-answer strip
   move the chosen piece to the new stamp instead of switching colours, and

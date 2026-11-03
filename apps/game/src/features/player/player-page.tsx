@@ -115,6 +115,10 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     closeRoom: null,
     endGame: null,
     handOver: null,
+    invitation:
+      nickname === null || view === null || view.phase === 'lobby'
+        ? null
+        : roomCode,
     leaveSeat: nickname === null ? null : leave,
     pauseRound: null,
     ...pawn,

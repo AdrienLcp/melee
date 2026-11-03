@@ -143,7 +143,7 @@ export const PointsRows: React.FC = () => {
             <span className='points-standing'>{row.standing}</span>
           </p>
           <Button
-            aria-label={translate('menu.points.take', {
+            aria-label={translate('host.points.take', {
               name: row.name,
               points: shownPoints(POINT)
             })}
@@ -158,7 +158,7 @@ export const PointsRows: React.FC = () => {
             <MinusIcon />
           </Button>
           <Button
-            aria-label={translate('menu.points.give', {
+            aria-label={translate('host.points.give', {
               name: row.name,
               points: shownPoints(POINT)
             })}

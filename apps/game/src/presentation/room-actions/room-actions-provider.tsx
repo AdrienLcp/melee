@@ -4,7 +4,7 @@ import { useCallback, useEffect, useState } from 'react'
 
 import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
-import type { PlayerId } from '@melee/protocol/identifiers'
+import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoomPhase } from '@melee/protocol/room'
 import type { Team } from '@melee/protocol/team'
 
@@ -49,6 +49,12 @@ export type RoomActions = {
    * console's alone.
    */
   handOver: (() => void) | null
+  /**
+   * The room the menu's invitation lets somebody into. `null` in the lobby,
+   * whose stage is the invitation already, and on a screen that holds no seat
+   * and runs no room.
+   */
+  invitation: RoomCode | null
   /** Gives the seat up, so the roster on the console is true at once. */
   leaveSeat: (() => void) | null
   /**
@@ -112,6 +118,7 @@ const NO_ACTIONS: RoomActions = {
   closeRoom: null,
   endGame: null,
   handOver: null,
+  invitation: null,
   leaveSeat: null,
   pauseRound: null,
   pawnRoom: null,
@@ -182,6 +189,7 @@ export const useReportRoomActions = ({
   closeRoom,
   endGame,
   handOver,
+  invitation,
   leaveSeat,
   pauseRound,
   pawnRoom,
@@ -205,6 +213,7 @@ export const useReportRoomActions = ({
       closeRoom,
       endGame,
       handOver,
+      invitation,
       leaveSeat,
       pauseRound,
       pawnRoom,
@@ -229,6 +238,7 @@ export const useReportRoomActions = ({
     closeRoom,
     endGame,
     handOver,
+    invitation,
     leaveSeat,
     pauseRound,
     pawnRoom,

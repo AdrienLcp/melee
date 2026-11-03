@@ -848,6 +848,11 @@ export const FR_DICTIONARY = defineDictionary({
       settings: 'Réglages',
       tied: 'à égalité'
     },
+    points: {
+      give: '{points:number} points de plus pour {name}',
+      label: 'Points',
+      take: '{points:number} points de moins pour {name}'
+    },
     ready: {
       everyone: 'Tout le monde est prêt'
     },
@@ -1328,14 +1333,6 @@ export const FR_DICTIONARY = defineDictionary({
       action: 'Changer',
       field: 'Nouveau pseudo',
       label: 'Pseudo'
-    },
-    points: {
-      give: '{points:number} points de plus pour {name}',
-      label: 'Points',
-      take: '{points:number} points de moins pour {name}',
-      teams: defineTranslation('{count:plural}', {
-        plural: { count: { one: '{?} équipe', other: '{?} équipes' } }
-      })
     },
     thisDevice: {
       qrCode: {

@@ -115,7 +115,7 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                 {seatPresses !== null && row !== undefined && (
                   <>
                     <Button
-                      aria-label={translate('menu.points.take', {
+                      aria-label={translate('host.points.take', {
                         name: row.name,
                         points: shownPoints(POINT)
                       })}
@@ -129,7 +129,7 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                       <MinusIcon />
                     </Button>
                     <Button
-                      aria-label={translate('menu.points.give', {
+                      aria-label={translate('host.points.give', {
                         name: row.name,
                         points: shownPoints(POINT)
                       })}
@@ -179,7 +179,7 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
       )}
       {!isInLobby && isByTeam && (
         <section className='podium-team-points'>
-          <h3>{translate('menu.points.label')}</h3>
+          <h3>{translate('host.points.label')}</h3>
           <PointsRows />
         </section>
       )}
