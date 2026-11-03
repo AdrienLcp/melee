@@ -1,12 +1,14 @@
 import { composeClassName } from '@adrienlcp/react-aria'
 import type React from 'react'
-import { useId } from 'react'
+import { useId, useRef } from 'react'
 import {
   Label,
   ToggleButton,
   ToggleButtonGroup,
   type ToggleButtonGroupProps
 } from 'react-aria-components'
+
+import { useSelectionIndicator } from './use-selection-indicator'
 
 import './toggle-group.sass'
 
@@ -49,6 +51,15 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
   // `RadioGroup` hands its `Label` an id through context and `ToggleButtonGroup`
   // does not, so the association is made here rather than assumed.
   const labelId = useId()
+  const indicator = useRef<HTMLSpanElement>(null)
+  const holdsOneAnswer = selectionMode === 'single'
+
+  useSelectionIndicator({
+    indicator,
+    segmentKeys: holdsOneAnswer
+      ? options.map((option) => option.value).join(' ')
+      : ''
+  })
 
   return (
     <ToggleButtonGroup
@@ -59,6 +70,9 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
     >
       <Label id={labelId}>{label}</Label>
       <div className='segments'>
+        {holdsOneAnswer && (
+          <span aria-hidden className='indicator' ref={indicator} />
+        )}
         {options.map((option) => (
           <ToggleButton
             className='segment'

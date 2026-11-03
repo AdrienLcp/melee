@@ -301,7 +301,10 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
         </p>
       )}
 
-      {preview.status === 'found' && (
+      {/* A decade or the composers are asked on the press itself, and only a
+          failure is news there; a count answers the typed sources alone,
+          whose preview the host asked for. */}
+      {preview.status === 'found' && isTyped && (
         <p className='ready'>
           {translate('blindtest.source.ready', {
             count: preview.count

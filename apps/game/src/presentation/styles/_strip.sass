@@ -45,6 +45,17 @@
       display: grid
       grid-template-columns: repeat(#{$columns}, 1fr)
 
+/// The chosen stamp: a piece lifted out of the tray in the room's colour.
+@mixin -lifted-piece
+  background: var(--primary)
+  box-shadow: 0 2px 0 var(--primary-edge), var(--shadow-piece)
+
+/// The chosen stamp of a strip that cannot be changed: its colour dropped and
+/// its ink kept as an edge.
+@mixin -ruled-piece
+  background: var(--field)
+  box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+
 /// The look both choice strips wear — `SegmentedControl` for one answer,
 /// `ToggleGroup` for several. Declared once here rather than in a component
 /// they would both have to wrap, so a variant is one edit and never two.
@@ -78,9 +89,12 @@
       cursor: not-allowed
 
       &[data-selected]
-        background: var(--field)
-        box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+        @include -ruled-piece
+
         color: var(--ink)
+
+    .indicator
+      @include -ruled-piece
 
   // A tray the stamps sit in, and the chosen one a piece lifted out of it in
   // the room's colour. The colour alone would leave a strip of two asking
@@ -97,7 +111,9 @@
     flex: none
     flex-wrap: wrap
     gap: var(--space-2xs)
+    isolation: isolate
     padding: var(--space-2xs)
+    position: relative
 
   // `flex: 1` rather than content width: the segments share the strip evenly,
   // so the trailing gap between the last one and the rule cannot appear, and a
@@ -133,8 +149,8 @@
       color: var(--ink)
 
     &[data-selected]
-      background: var(--primary)
-      box-shadow: 0 2px 0 var(--primary-edge), var(--shadow-piece)
+      @include -lifted-piece
+
       color: var(--on-primary)
 
     // Under the label and never beside it: a stamp no wider than its label
@@ -143,3 +159,37 @@
       display: block
       font-size: var(--text-3xs)
       margin-block-start: var(--space-2xs)
+
+  // A strip holding one answer draws its chosen stamp as one piece that
+  // travels to the next choice (`useSelectionIndicator` places it), so the
+  // stamp under it keeps only its ink, turning on-primary over the stretch the
+  // piece takes to arrive.
+  .indicator
+    @include -lifted-piece
+
+    border-radius: calc(var(--radius-m) - var(--space-2xs))
+    height: var(--indicator-height, 0rem)
+    left: 0
+    opacity: 0
+    pointer-events: none
+    position: absolute
+    top: 0
+    transform: translate(var(--indicator-x, 0rem), var(--indicator-y, 0rem))
+    width: var(--indicator-width, 0rem)
+    z-index: -1
+
+    &[data-shown]
+      opacity: 1
+
+    &[data-placed]
+      transition: opacity var(--transition-fast, 0s) var(--ease-out)
+
+    &[data-gliding]
+      transition: opacity var(--transition-fast, 0s) var(--ease-out), transform var(--transition-base, 0s) var(--ease-out), width var(--transition-base, 0s) var(--ease-out), height var(--transition-base, 0s) var(--ease-out)
+
+  .segments:has(> .indicator) .segment
+    transition: color var(--transition-base, 0s) var(--ease-out)
+
+    &[data-selected]
+      background: transparent
+      box-shadow: none

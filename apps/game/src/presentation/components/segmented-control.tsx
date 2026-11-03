@@ -1,5 +1,6 @@
 import { composeClassName } from '@adrienlcp/react-aria'
 import type React from 'react'
+import { useRef } from 'react'
 import {
   Label,
   RadioButton,
@@ -8,6 +9,8 @@ import {
   type RadioGroupProps,
   Text
 } from 'react-aria-components'
+
+import { useSelectionIndicator } from './use-selection-indicator'
 
 import './segmented-control.sass'
 
@@ -47,33 +50,43 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
   label,
   options,
   ...props
-}) => (
-  <RadioGroup
-    {...props}
-    className={composeClassName(className, 'segmented-control')}
-    orientation='horizontal'
-  >
-    <Label>{label}</Label>
-    <div className='segments'>
-      {options.map((option) => (
-        <RadioField
-          className='segment-field'
-          key={option.value}
-          value={option.value}
-        >
-          <RadioButton className='segment'>
-            {option.label}
-            {option.mark !== undefined && (
-              <span className='mark'>{option.mark}</span>
-            )}
-          </RadioButton>
-        </RadioField>
-      ))}
-    </div>
-    {description !== undefined && (
-      <Text className='description' slot='description'>
-        {description}
-      </Text>
-    )}
-  </RadioGroup>
-)
+}) => {
+  const indicator = useRef<HTMLSpanElement>(null)
+
+  useSelectionIndicator({
+    indicator,
+    segmentKeys: options.map((option) => option.value).join(' ')
+  })
+
+  return (
+    <RadioGroup
+      {...props}
+      className={composeClassName(className, 'segmented-control')}
+      orientation='horizontal'
+    >
+      <Label>{label}</Label>
+      <div className='segments'>
+        <span aria-hidden className='indicator' ref={indicator} />
+        {options.map((option) => (
+          <RadioField
+            className='segment-field'
+            key={option.value}
+            value={option.value}
+          >
+            <RadioButton className='segment'>
+              {option.label}
+              {option.mark !== undefined && (
+                <span className='mark'>{option.mark}</span>
+              )}
+            </RadioButton>
+          </RadioField>
+        ))}
+      </div>
+      {description !== undefined && (
+        <Text className='description' slot='description'>
+          {description}
+        </Text>
+      )}
+    </RadioGroup>
+  )
+}

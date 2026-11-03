@@ -478,6 +478,17 @@ count's row is 290px in French with its six stamps and about 326px with a
 seventh (a count off the steps, twelve for three games), so it stacks below
 18.5rem and 21rem.
 
+**A strip holding one answer moves its piece.** The chosen stamp of a
+`SegmentedControl`, or of a `ToggleGroup` in `single` mode, is one element
+under the segments (`.indicator`, placed by `useSelectionIndicator`) that
+glides to the next choice on `base`, the stamp's ink turning over the same
+stretch — a press, or the server echoing another console's change. Only a new
+choice glides: a strip changing shape under its container query, its first
+placement and a choice made where there was none are set down in place, the
+last fading in on `fast`, as letting go of the only choice fades it out. A
+strip holding several keeps a piece per stamp, faded in and out on `fast`:
+nothing travels where nothing left.
+
 **The No-Scroll Rule.** A question and its four choices never scroll.
 `e2e/choice-fits.spec.ts` stubs the socket and measures sixteen viewports —
 320×568, 360×640, 390×844, 430×932, 568×320, 667×375, 812×375, 768×1024,

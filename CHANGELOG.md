@@ -118,6 +118,13 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A strip with one answer slides its choice across.** The board's
+  length, the round count, the answer mode and every other one-answer strip
+  move the chosen piece to the new stamp instead of switching colours, and
+  letting go of the only choice fades it out. A blind test's decades and film
+  scores no longer print how many tracks are ready; a playlist or a search,
+  whose preview the host asks for, still does.
+
 - `[Game]` **A board is ten, forty or a hundred squares, and a long one
   stays tidy.** The Table tab's strip offers *None · 10 · 40 · 100* — about
   three rounds, the usual ten and a marathon of twenty-five — in one row, two
