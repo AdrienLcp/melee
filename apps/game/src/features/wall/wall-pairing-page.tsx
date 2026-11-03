@@ -1,6 +1,5 @@
 import type React from 'react'
 import { useEffect, useEffectEvent, useState } from 'react'
-import { useNavigate } from 'react-router'
 
 import type { OpenWallPairingResponse } from '@melee/protocol/http'
 
@@ -8,8 +7,11 @@ import {
   openWallPairing,
   pollWallPairing
 } from '@/infrastructure/api/melee-api'
-import { prefersReducedMotion } from '@/infrastructure/browser'
-import { pairWallUrlFor, wallPathFor } from '@/infrastructure/router/navigation'
+import {
+  pairWallUrlFor,
+  usePageNavigation,
+  wallPathFor
+} from '@/infrastructure/router/navigation'
 import { writeHostToken } from '@/infrastructure/storage/session-storage'
 import { Button } from '@/presentation/components/button'
 import { CodeAndSquare } from '@/presentation/components/room-invitation'
@@ -54,7 +56,7 @@ export const WallPairingPage: React.FC = () => {
 
 const PairingScreen: React.FC<{ onStale: () => void }> = ({ onStale }) => {
   const translate = useTranslate()
-  const navigate = useNavigate()
+  const navigate = usePageNavigation()
   const [pairing, setPairing] = useState<Pairing>({ status: 'opening' })
   const startOver = useEffectEvent(onStale)
 
@@ -131,10 +133,7 @@ const PairingScreen: React.FC<{ onStale: () => void }> = ({ onStale }) => {
           hostToken: polled.data.hostToken,
           roomCode: polled.data.roomCode
         })
-        void navigate(wallPathFor(polled.data.roomCode), {
-          replace: true,
-          viewTransition: !prefersReducedMotion()
-        })
+        void navigate(wallPathFor(polled.data.roomCode), { replace: true })
 
         return
       }

@@ -1,7 +1,6 @@
 import { useMediaQuery, useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
 import { useCallback, useEffect, useEffectEvent, useState } from 'react'
-import { useNavigate } from 'react-router'
 
 import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import { CHALLENGE_HAND_SIZE } from '@melee/protocol/challenge'
@@ -39,6 +38,7 @@ import { useHostConnection } from '@/infrastructure/messaging/use-host-connectio
 import {
   useCameFromWall,
   useHandedHostToken,
+  usePageNavigation,
   useRoomCodeParam,
   wallPathFor
 } from '@/infrastructure/router/navigation'
@@ -501,7 +501,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // and so does one that handed the room over, since the screen the room was
   // handed to is the one the host now holds.
   const cameFromWall = useCameFromWall()
-  const navigate = useNavigate()
+  const navigate = usePageNavigation()
   const isDisplacedWall =
     (cameFromWall || isHandingOver) &&
     status === 'refused' &&

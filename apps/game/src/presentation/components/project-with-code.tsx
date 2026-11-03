@@ -1,13 +1,15 @@
 import type React from 'react'
 import { type FormEvent, useState } from 'react'
 import { Form } from 'react-aria-components'
-import { useNavigate } from 'react-router'
 
 import { ROOM_CODE_LENGTH } from '@melee/protocol/identifiers'
 
 import { parseRoomCodeInput } from '@melee/core/room/room-code'
 
-import { invitePathFor } from '@/infrastructure/router/navigation'
+import {
+  invitePathFor,
+  usePageNavigation
+} from '@/infrastructure/router/navigation'
 import {
   type FieldError,
   fieldErrorMessage
@@ -37,7 +39,7 @@ export const ProjectWithCode: React.FC<{
   /** Called once the poster is on its way, so the menu can close behind it. */
   onDone: () => void
 }> = ({ onDone }) => {
-  const navigate = useNavigate()
+  const navigate = usePageNavigation()
   const translate = useTranslate()
   const [code, setCode] = useState('')
   const [codeError, setCodeError] = useState<FieldError | null>(null)

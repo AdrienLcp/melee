@@ -473,9 +473,8 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
           <SegmentedControl
             label={translate('preferences.language')}
             onChange={(next) => {
-              if (isLocale(next)) {
+              if (isLocale(next) && !navigateToLocale(next)) {
                 setLocale(next)
-                navigateToLocale(next)
               }
             }}
             options={LOCALES.map((value) => ({

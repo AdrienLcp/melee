@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router'
 
 import type { ShelvedGame } from '@melee/protocol/game'
 
@@ -15,7 +14,8 @@ import { createRoom } from '@/infrastructure/api/melee-api'
 import {
   type HostArrival,
   hostArrivalState,
-  hostPathFor
+  hostPathFor,
+  usePageNavigation
 } from '@/infrastructure/router/navigation'
 import { writeHostToken } from '@/infrastructure/storage/session-storage'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
@@ -49,7 +49,7 @@ type RoomOpening =
  * opening refuses to open another.
  */
 export const useCreateRoom = () => {
-  const navigate = useNavigate()
+  const navigate = usePageNavigation()
   const { locale } = useI18n()
   const [opening, setOpening] = useState<RoomOpening>({ status: 'idle' })
 

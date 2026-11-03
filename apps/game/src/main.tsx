@@ -2,6 +2,7 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
+import { settleSkippedViewTransitions } from '@/infrastructure/browser'
 import { listenForInstallPrompt } from '@/infrastructure/install-prompt'
 import { routes } from '@/infrastructure/router/routes'
 import { reloadOnStaleBuild } from '@/infrastructure/stale-build'
@@ -14,6 +15,7 @@ import '@/presentation/styles/globals.sass'
 
 reloadOnStaleBuild()
 listenForInstallPrompt()
+settleSkippedViewTransitions()
 
 // Before `root.render`, because the attribute has to be right before there is
 // any text on the page for a browser to sniff.

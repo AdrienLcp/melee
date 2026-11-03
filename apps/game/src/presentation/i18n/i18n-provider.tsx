@@ -2,10 +2,11 @@ import { createSafeContext } from '@adrienlcp/react'
 import type React from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { I18nProvider as ReactAriaI18nProvider } from 'react-aria-components'
+import { flushSync } from 'react-dom'
 
 import type { Locale } from '@melee/protocol/locale'
 
-import { preferredLocales } from '@/infrastructure/browser'
+import { moveLayout, preferredLocales } from '@/infrastructure/browser'
 import { writeStoredLocale } from '@/infrastructure/storage/preferences-storage'
 
 import { i18n } from './i18n'
@@ -52,20 +53,41 @@ export const I18nProvider: React.FC<I18nProviderProps> = ({
     document.documentElement.lang = locale
   }, [locale])
 
-  const pendingSwitch = useRef(new AbortController())
+  const pendingSwitch = useRef<{
+    controller: AbortController
+    locale: Locale
+  } | null>(null)
+
+  const settle = (thisSwitch: typeof pendingSwitch.current): void => {
+    if (pendingSwitch.current === thisSwitch) {
+      pendingSwitch.current = null
+    }
+  }
 
   const chooseLocale = (next: Locale): void => {
-    pendingSwitch.current.abort()
-    const thisSwitch = new AbortController()
+    // `LocalePrefixedRoutes` asks again on every render until the transition
+    // hands the new locale over, and a second switch would start a transition
+    // cutting the first.
+    if (pendingSwitch.current?.locale === next) {
+      return
+    }
+
+    pendingSwitch.current?.controller.abort()
+    const thisSwitch = { controller: new AbortController(), locale: next }
     pendingSwitch.current = thisSwitch
     writeStoredLocale(next)
 
     // Switched once the dictionary is in hand: before it, `translator` answers
     // in English and nothing would re-render when French arrived.
     i18n
-      .load(next, { signal: thisSwitch.signal })
-      .then(() => setLocale(next))
-      .catch(() => undefined)
+      .load(next, { signal: thisSwitch.controller.signal })
+      .then(() =>
+        moveLayout(() => {
+          flushSync(() => setLocale(next))
+          settle(thisSwitch)
+        })
+      )
+      .catch(() => settle(thisSwitch))
   }
 
   return (

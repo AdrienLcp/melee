@@ -1,14 +1,16 @@
 import type React from 'react'
 import { type FormEvent, useState } from 'react'
 import { Form } from 'react-aria-components'
-import { useNavigate } from 'react-router'
 
 import { ROOM_CODE_LENGTH } from '@melee/protocol/identifiers'
 
 import { parseRoomCodeInput } from '@melee/core/room/room-code'
 
 import { roomExists } from '@/infrastructure/api/melee-api'
-import { playPathFor } from '@/infrastructure/router/navigation'
+import {
+  playPathFor,
+  usePageNavigation
+} from '@/infrastructure/router/navigation'
 import { Button } from '@/presentation/components/button'
 import { ArrowIcon } from '@/presentation/components/icons'
 import { TextField } from '@/presentation/components/text-field'
@@ -32,7 +34,7 @@ type JoinWithCodeProps = {
  * four characters across the room types them here whatever is being played.
  */
 export const JoinWithCode: React.FC<JoinWithCodeProps> = ({ isDisabled }) => {
-  const navigate = useNavigate()
+  const navigate = usePageNavigation()
   const translate = useTranslate()
   const [code, setCode] = useState('')
   const [codeError, setCodeError] = useState<FieldError | null>(null)

@@ -2,7 +2,7 @@ import { AriaRouterProvider } from '@adrienlcp/react-router'
 import type React from 'react'
 import { Outlet } from 'react-router'
 
-import { prefersReducedMotion } from '@/infrastructure/browser'
+import { withPageTransition } from '@/infrastructure/router/navigation'
 import { AppMenu } from '@/presentation/components/app-menu'
 import { SkipLink } from '@/presentation/components/skip-link'
 import { ConnectionProvider } from '@/presentation/connection/connection-provider'
@@ -13,10 +13,6 @@ import { useFocusMainOnNavigation } from '@/presentation/use-focus-main-on-navig
 import { usePublishShownHeight } from '@/presentation/use-shown-height'
 
 import './app-shell.sass'
-
-const navigateWithTransition = () => ({
-  viewTransition: !prefersReducedMotion()
-})
 
 /**
  * The router provider is what makes an `href` on a `Link` a client-side
@@ -29,7 +25,7 @@ export const AppShell: React.FC = () => {
   usePublishShownHeight()
 
   return (
-    <AriaRouterProvider navigateDefaults={navigateWithTransition}>
+    <AriaRouterProvider navigateDefaults={withPageTransition}>
       <ConnectionProvider>
         <RoomActionsProvider>
           <div className='app-shell'>

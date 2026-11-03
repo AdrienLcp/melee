@@ -1,8 +1,10 @@
-import { useEffect, useEffectEvent } from 'react'
+import { useCallback, useEffect, useEffectEvent } from 'react'
 import {
   generatePath,
   matchPath,
+  type NavigateOptions,
   type PathParam,
+  type To,
   useLocation,
   useNavigate,
   useParams,
@@ -30,6 +32,7 @@ import { normalizeRoomCode } from '@melee/core/room/room-code'
 import type { SavedEvening } from '@melee/core/room/saved-evening'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 
+import { prefersReducedMotion } from '@/infrastructure/browser'
 import { savedEveningSchema } from '@/infrastructure/storage/preferences-storage'
 
 /**
@@ -149,6 +152,34 @@ const FROM_WALL_VALUE = 'wall'
  */
 export const hostFromWallPathFor = (code: RoomCode): string =>
   `${hostPathFor(code)}?${new URLSearchParams({ [FROM_WALL_PARAM]: FROM_WALL_VALUE })}`
+
+/**
+ * What every move to another page carries: the page being left fades off as
+ * the next one is laid down, unless the visitor asked for less motion. The
+ * design system's `Link` reads it through the router provider.
+ */
+export const withPageTransition = (): NavigateOptions => ({
+  viewTransition: !prefersReducedMotion()
+})
+
+/**
+ * Moves to another page from code — a reply, a pairing, a displaced console —
+ * the way a pressed link moves there. A `replace` that only corrects the
+ * address keeps `useNavigate`: nothing on screen changes, so nothing plays.
+ */
+export const usePageNavigation = (): ((
+  to: To,
+  options?: NavigateOptions
+) => void | Promise<void>) => {
+  const navigate = useNavigate()
+
+  // A dependency of the pairing poll's effect: a fresh identity would restart
+  // the poll on every render.
+  return useCallback(
+    (to, options) => navigate(to, { ...withPageTransition(), ...options }),
+    [navigate]
+  )
+}
 
 export const useCameFromWall = (): boolean => {
   const [searchParams] = useSearchParams()
@@ -299,21 +330,26 @@ export const localeInPath = (pathname: string): Locale | null =>
   asLocale(pathname.split('/')[1])
 
 /**
- * Moves the page to the same path in another language, and does nothing at all
- * on one that names none. That silence is the point: a room's language is state
- * alone, and navigating out of a room path would drop the socket and hand the
- * seat back.
+ * Moves the page to the same path in another language, and answers whether it
+ * did. A path naming none is left alone: a room's language is state alone, and
+ * navigating out of a room path would drop the socket and hand the seat back.
+ * Where it moved, the URL decides and `LocalePrefixedRoutes` follows it, so the
+ * caller switches nothing itself.
  */
-export const useNavigateToLocale = (): ((locale: Locale) => void) => {
+export const useNavigateToLocale = (): ((locale: Locale) => boolean) => {
   const navigate = useNavigate()
   const { pathname } = useLocation()
 
   return (locale) => {
     const [, first, ...rest] = pathname.split('/')
 
-    if (asLocale(first) !== null) {
-      void navigate(['', locale, ...rest].join('/'))
+    if (asLocale(first) === null) {
+      return false
     }
+
+    void navigate(['', locale, ...rest].join('/'))
+
+    return true
   }
 }
 

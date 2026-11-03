@@ -145,6 +145,28 @@ export const onShownHeightChange = (
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 
+/**
+ * Chromium rejects a transition's `ready` when the viewport changes before the
+ * new screen is captured — an address bar retracting as a page is left — and,
+ * against the spec, leaves the rejection unhandled. The transition is skipped
+ * and the page lands either way; this only takes the line out of the console,
+ * for the router's transitions as much as for `moveLayout`'s.
+ */
+export const settleSkippedViewTransitions = (): void => {
+  if (typeof document.startViewTransition !== 'function') {
+    return
+  }
+
+  const start = document.startViewTransition.bind(document)
+
+  document.startViewTransition = (update) => {
+    const transition = start(update)
+    transition.ready.catch(() => undefined)
+
+    return transition
+  }
+}
+
 const LAYOUT_MOVED_EVENT = 'melee:layout-moved'
 
 /**
