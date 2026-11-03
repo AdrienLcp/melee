@@ -8,6 +8,7 @@ import {
   type ToggleButtonGroupProps
 } from 'react-aria-components'
 
+import { CheckIcon } from './icons'
 import { useSelectionIndicator } from './use-selection-indicator'
 
 import './toggle-group.sass'
@@ -39,7 +40,9 @@ type ToggleGroupProps = Omit<
  * where the segmented control deliberately uses a radio group instead, because
  * a screen reader announces the difference and one answer is not several.
  *
- * They wear the same look: `styles/_strip.sass` holds it, and both include it.
+ * They wear the same tray: `styles/_strip.sass` holds it, and both include
+ * it. A strip holding several answers inks each ticked stamp and checks it
+ * rather than lifting it out, so *several* never reads as *the* answer.
  */
 export const ToggleGroup: React.FC<ToggleGroupProps> = ({
   className,
@@ -79,7 +82,14 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
             id={option.value}
             key={option.value}
           >
-            {option.label}
+            {({ isSelected }) => (
+              <>
+                {isSelected && !holdsOneAnswer && (
+                  <CheckIcon className='tick' />
+                )}
+                {option.label}
+              </>
+            )}
           </ToggleButton>
         ))}
       </div>

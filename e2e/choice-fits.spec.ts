@@ -905,14 +905,24 @@ const blindTestRound = (phase: 'buzzed' | 'countdown') => {
         difficulty: 'mixed',
         kind: 'blindtest',
         roundDurationMs: 30_000,
-        source: { genreIds: [], kind: 'chart' }
+        source: {
+          charts: [],
+          decades: null,
+          hasFilmScores: false,
+          kind: 'catalogue'
+        }
       },
       lineUp: [
         {
           difficulty: 'mixed',
           kind: 'blindtest',
           roundDurationMs: 30_000,
-          source: { genreIds: [], kind: 'chart' }
+          source: {
+            charts: [],
+            decades: null,
+            hasFilmScores: false,
+            kind: 'catalogue'
+          }
         }
       ],
       lineUpAt: 0,
@@ -2444,7 +2454,12 @@ const BLINDTEST_GAME = {
   difficulty: 'mixed',
   kind: 'blindtest',
   roundDurationMs: 30_000,
-  source: { genreIds: [], kind: 'chart' }
+  source: {
+    charts: [],
+    decades: null,
+    hasFilmScores: false,
+    kind: 'catalogue'
+  }
 }
 
 const SEATED_BLINDTEST = {

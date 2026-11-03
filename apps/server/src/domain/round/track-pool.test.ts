@@ -4,7 +4,11 @@ import {
   DEFAULT_BLINDTEST_SETTINGS,
   type GameSettings
 } from '@melee/protocol/game'
-import type { TrackSource } from '@melee/protocol/track'
+import {
+  catalogueOf,
+  EVERY_STRAND,
+  type TrackSource
+} from '@melee/protocol/track'
 
 import { generateHostToken } from '@melee/core/room/host-token'
 
@@ -56,8 +60,8 @@ describe('discardPoolIfStale', () => {
   it('[pool] drops what a genre change no longer asks for', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ genreIds: [132], kind: 'chart' }),
-        to: playingFrom({ genreIds: [152], kind: 'chart' })
+        from: playingFrom(catalogueOf({ charts: [132] })),
+        to: playingFrom(catalogueOf({ charts: [152] }))
       })
     ).toBe(false)
   })
@@ -65,8 +69,8 @@ describe('discardPoolIfStale', () => {
   it('[pool] drops what a decade change no longer asks for', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ decades: ['1990s'], kind: 'decade' }),
-        to: playingFrom({ decades: ['1980s'], kind: 'decade' })
+        from: playingFrom(catalogueOf({ decades: ['1990s'] })),
+        to: playingFrom(catalogueOf({ decades: ['1980s'] }))
       })
     ).toBe(false)
   })
@@ -74,8 +78,8 @@ describe('discardPoolIfStale', () => {
   it('[pool] keeps a pool whose selection only changed order', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ genreIds: [132, 152], kind: 'chart' }),
-        to: playingFrom({ genreIds: [152, 132], kind: 'chart' })
+        from: playingFrom(catalogueOf({ charts: [132, 152] })),
+        to: playingFrom(catalogueOf({ charts: [152, 132] }))
       })
     ).toBe(true)
   })
@@ -83,45 +87,44 @@ describe('discardPoolIfStale', () => {
   it('[pool] keeps a pool nobody has touched the source of', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ decades: ['1990s', '2000s'], kind: 'decade' }),
-        to: playingFrom({ decades: ['1990s', '2000s'], kind: 'decade' })
+        from: playingFrom(EVERY_STRAND),
+        to: playingFrom(EVERY_STRAND)
       })
     ).toBe(true)
   })
 
-  it('[pool] drops what a move to the composers no longer asks for', () => {
+  it('[pool] drops what a strand ticked or unticked no longer asks for', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ decades: ['1990s'], kind: 'decade' }),
-        to: playingFrom({ kind: 'film' })
+        from: playingFrom(catalogueOf({ decades: ['1990s'] })),
+        to: playingFrom(
+          catalogueOf({ decades: ['1990s'], hasFilmScores: true })
+        )
+      })
+    ).toBe(false)
+    expect(
+      poolSurvives({
+        from: playingFrom(EVERY_STRAND),
+        to: playingFrom(catalogueOf({ charts: [], hasFilmScores: true }))
       })
     ).toBe(false)
   })
 
-  // The arm carries no choice, so it is only ever itself — there is nothing a
-  // host could change about it short of leaving it.
-  it('[pool] keeps the composers’ pool, which has nothing to change', () => {
+  // Empty is the whole strand and `null` none of it: two ways of saying the
+  // opposite, and an empty list read as an absent one would keep the wrong pool.
+  it('[pool] tells every decade from no decade at all', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ kind: 'film' }),
-        to: playingFrom({ kind: 'film' })
+        from: playingFrom(catalogueOf({ charts: [], decades: [] })),
+        to: playingFrom(catalogueOf({ charts: [] }))
       })
-    ).toBe(true)
-  })
-
-  it('[pool] keeps the mixed pool, which has nothing to change either', () => {
-    expect(
-      poolSurvives({
-        from: playingFrom({ kind: 'all' }),
-        to: playingFrom({ kind: 'all' })
-      })
-    ).toBe(true)
+    ).toBe(false)
   })
 
   it('[pool] drops the pool a room left the blind test holding', () => {
     expect(
       poolSurvives({
-        from: playingFrom({ genreIds: [], kind: 'chart' }),
+        from: playingFrom(catalogueOf({ charts: [] })),
         to: null
       })
     ).toBe(false)

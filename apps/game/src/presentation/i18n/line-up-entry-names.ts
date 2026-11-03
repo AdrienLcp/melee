@@ -1,12 +1,20 @@
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { RoomSettings } from '@melee/protocol/room'
-import type { TrackSource } from '@melee/protocol/track'
+import type { CatalogueSource, TrackSource } from '@melee/protocol/track'
+
+import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 
 import { useTranslate } from './i18n-provider'
 import { LANGUAGE_NAMES } from './language-names'
 import { petitBacCategoryName } from './petit-bac-category-name'
-import { asGenreId, decadeLabelKey, genreLabelKey } from './track-labels'
+import {
+  asGenreId,
+  type CatalogueStrand,
+  decadeLabelKey,
+  genreLabelKey,
+  strandsOf
+} from './track-labels'
 import { gameNameKey, questionCategoryKey, type Translate } from './translation'
 
 /**
@@ -14,6 +22,9 @@ import { gameNameKey, questionCategoryKey, type Translate } from './translation'
  * and never opens on one.
  */
 const SETTINGS_SEPARATOR = '\u00a0· '
+
+/** Between two strands of a catalogue, whose picks are already `, ` apart. */
+const STRAND_SEPARATOR = ' + '
 
 /** A list of picks named in full, one `, ` apart. */
 const listed = (names: readonly string[]): string => names.join(', ')
@@ -54,37 +65,90 @@ const genresOf = ({
     return genreId === undefined ? [] : [translate(genreLabelKey(genreId))]
   })
 
-/** Where a blind test's tracks come from: one name, or a list of picks. */
-const sourceOf = ({
+/** What one strand of the catalogue draws: a list of picks, or the film scores. */
+const strandPicksOf = ({
+  source,
+  strand,
+  translate
+}: {
+  source: CatalogueSource
+  strand: CatalogueStrand
+  translate: Translate
+}): Picks | string => {
+  switch (strand) {
+    case 'charts':
+      return {
+        everything: translate('blindtest.source.chart'),
+        picks: genresOf({ genreIds: source.charts ?? [], translate })
+      }
+    case 'decades':
+      return {
+        everything: translate('host.evening.detail.everyDecade'),
+        picks: (source.decades ?? []).map((decade) =>
+          translate(decadeLabelKey(decade))
+        )
+      }
+    case 'filmScores':
+      return translate('blindtest.source.film')
+  }
+}
+
+/** A list the host named, by what names it. */
+const namedListOf = ({
+  source,
+  translate
+}: {
+  source: Exclude<TrackSource, { kind: 'catalogue' }>
+  translate: Translate
+}): string =>
+  source.kind === 'playlist'
+    ? translate('host.evening.detail.playlist', { id: source.playlistId })
+    : translate('host.evening.detail.search', { query: source.query })
+
+/**
+ * The one thing a blind test is drawn from, or `null` once a catalogue mixes
+ * strands: *Blind test · 80s*, but a blind test on the charts and the film
+ * scores is a blind test.
+ */
+const sourcePickOf = ({
   source,
   translate
 }: {
   source: TrackSource
   translate: Translate
-}): Picks | string => {
-  switch (source.kind) {
-    case 'all':
-      return translate('blindtest.source.all')
-    case 'chart':
-      return {
-        everything: translate('blindtest.source.chart'),
-        picks: genresOf({ genreIds: source.genreIds, translate })
-      }
-    case 'decade':
-      return {
-        everything: translate('host.evening.detail.everyDecade'),
-        picks: source.decades.map((decade) => translate(decadeLabelKey(decade)))
-      }
-    case 'film':
-      return translate('blindtest.source.film')
-    case 'playlist':
-      return translate('host.evening.detail.playlist', {
-        id: source.playlistId
-      })
-    case 'search':
-      return translate('host.evening.detail.search', { query: source.query })
+}): string | null => {
+  if (source.kind !== 'catalogue') {
+    return namedListOf({ source, translate })
   }
+
+  const [strand, ...others] = strandsOf(source)
+
+  if (strand === undefined || others.length > 0) {
+    return null
+  }
+
+  const picks = strandPicksOf({ source, strand, translate })
+
+  return typeof picks === 'string' ? picks : onePick(picks)
 }
+
+/** Everything a blind test is drawn from, strand by strand. */
+const sourceInFullOf = ({
+  source,
+  translate
+}: {
+  source: TrackSource
+  translate: Translate
+}): string =>
+  source.kind === 'catalogue'
+    ? strandsOf(source)
+        .map((strand) => {
+          const picks = strandPicksOf({ source, strand, translate })
+
+          return typeof picks === 'string' ? picks : allPicks(picks)
+        })
+        .join(STRAND_SEPARATOR)
+    : namedListOf({ source, translate })
 
 const subjectsOf = ({
   categories,
@@ -124,15 +188,14 @@ const namingOf = ({
 }): string[] => {
   switch (entry.kind) {
     case 'blindtest': {
-      if (entry.source.kind === 'film') {
-        return [translate('blindtest.source.film')]
+      const pick = sourcePickOf({ source: entry.source, translate })
+
+      if (pick === null) {
+        return []
       }
 
-      const source = sourceOf({ source: entry.source, translate })
-      const pick = typeof source === 'string' ? source : onePick(source)
-
-      return pick === null
-        ? []
+      return trackAnswersOf(entry.source) === 'films'
+        ? [pick]
         : [pick, translate(`blindtest.difficulty.${entry.difficulty}`)]
     }
     case 'buzzer':
@@ -189,17 +252,14 @@ const settingsOf = ({
   translate: Translate
 }): string[] => {
   switch (entry.kind) {
-    case 'blindtest': {
-      const source = sourceOf({ source: entry.source, translate })
-
+    case 'blindtest':
       return [
-        typeof source === 'string' ? source : allPicks(source),
-        ...(entry.source.kind === 'film'
+        sourceInFullOf({ source: entry.source, translate }),
+        ...(trackAnswersOf(entry.source) === 'films'
           ? []
           : [translate(`blindtest.difficulty.${entry.difficulty}`)]),
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
-    }
     case 'buzzer':
       return [
         translate(

@@ -8,11 +8,7 @@ import {
   roomCodeSchema
 } from './identifiers'
 import { DEFAULT_LOCALE, localeSchema } from './locale'
-import {
-  trackDecadeSchema,
-  trackDifficultySchema,
-  trackIdentitySchema
-} from './track'
+import { trackDifficultySchema, trackIdentitySchema } from './track'
 
 /**
  * The HTTP surface is deliberately tiny — create a room, check one exists,
@@ -134,23 +130,6 @@ export const playlistPreviewQuerySchema = z.object({
   difficulty: trackDifficultySchema.default('wellKnown')
 })
 
-export const DECADE_LIST_SEPARATOR = ','
-
-/**
- * The decades travel as one separated string, and an absent list is every
- * decade — which is what an empty selection means on the wire too.
- */
-export const decadePreviewQuerySchema = z.object({
-  decades: z
-    .string()
-    .default('')
-    .transform((value) =>
-      value.split(DECADE_LIST_SEPARATOR).filter((part) => part.length > 0)
-    )
-    .pipe(z.array(trackDecadeSchema)),
-  difficulty: trackDifficultySchema.default('wellKnown')
-})
-
 /** Shared by every route that answers "what would the pool hold?", not just the search. */
 export const trackListResponseSchema = z.object({
   tracks: z.array(catalogueTrackSchema)
@@ -204,4 +183,3 @@ export type ApiErrorResponse = z.infer<typeof apiErrorResponseSchema>
 export type WallPairingPollQuery = z.input<typeof wallPairingPollQuerySchema>
 export type TrackSearchQuery = z.input<typeof trackSearchQuerySchema>
 export type PlaylistPreviewQuery = z.input<typeof playlistPreviewQuerySchema>
-export type DecadePreviewQuery = z.input<typeof decadePreviewQuerySchema>

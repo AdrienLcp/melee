@@ -257,19 +257,20 @@ export const FR_DICTIONARY = defineDictionary({
       typed:
         'Tout le monde tape, sur le même extrait. Film et compositeur rapportent 10 points chacun, les deux ensemble 30, et plus tu trouves tôt, plus la montre ajoute — jusqu’au double.'
     },
+    scoringMixed: {
+      buzzer:
+        'Le premier qui buzze répond à voix haute : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. L’hôte juge chacun, 10 points pièce — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
+      typed:
+        'Tout le monde tape, sur le même extrait : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. Chacun rapporte 10 points, les deux ensemble 30, et plus tu trouves tôt, plus la montre ajoute — jusqu’au double.'
+    },
     source: {
-      all: 'Toutes les sources',
+      catalogue: 'Le catalogue',
       chart: 'Le top du moment',
-      decade: 'Une décennie',
+      decades: 'Les décennies',
       film: 'Musiques de films',
       filmHint:
         'Ce qu’un compositeur a écrit pour un film ou une série — pas les chansons de la bande originale.',
       label: 'D’où viennent les titres',
-      none: 'N’en choisis aucune et tu as tout, mélangé : le top, toutes les décennies et les musiques de films.',
-      noneInDecade:
-        'Rien de jouable dans ces années-là. Essaie une autre décennie.',
-      noneInFilms:
-        'Rien de jouable n’est revenu des compositeurs. Essaie une autre source.',
       noneInPlaylist:
         'Rien de jouable dans cette playlist. Vérifie l’identifiant.',
       noneInSearch:
@@ -283,7 +284,9 @@ export const FR_DICTIONARY = defineDictionary({
       ready: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} titre prêt', other: '{?} titres prêts' } }
       }),
-      search: 'Une recherche'
+      search: 'Une recherche',
+      strands: 'Ce qu’on y pioche',
+      wholeCatalogue: 'Tout le catalogue'
     },
     tagline: 'Trouve le titre avant tout le monde.',
     verdict: {

@@ -7,8 +7,6 @@ export const SOCKET_PREFIX = '/ws'
  * missing parameter is a type error rather than a 404.
  */
 export const API_ROUTES = {
-  decadeTracks: `${API_PREFIX}/tracks/decades`,
-  filmTracks: `${API_PREFIX}/tracks/films`,
   health: `${API_PREFIX}/health`,
   playlistTracks: `${API_PREFIX}/playlists/:playlistId/tracks`,
   room: `${API_PREFIX}/rooms/:code`,

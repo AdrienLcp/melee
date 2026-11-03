@@ -15,20 +15,26 @@
     gap: var(--space-s)
     padding-top: var(--space-m)
 
-    // The longest row on the console: 812px of French against 608 of English,
-    // measured on the page. Five sources, and five is prime — so every wrap it
-    // has leaves a short row for `flex: 1` to stretch into a chosen-looking
-    // stamp, the same defect the grid below was written for.
-    .track-source
-      @include strip.stacks-below(58rem)
+    // One row each, measured in French on the page: 436px for the places, and
+    // 507px for the strands with all three ticked, their checks included.
+    .track-place
+      @include strip.stacks-below(30rem)
 
-    .sources,
+    .strands
+      @include strip.stacks-below(34rem)
+
+    .catalogue
+      display: flex
+      flex-direction: column
+      gap: var(--space-s)
+
     .genres,
     .decades
       display: flex
       flex-direction: column
       gap: var(--space-2xs)
 
+    .catalogue,
     .genres,
     .decades,
     .react-aria-Form

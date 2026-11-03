@@ -93,6 +93,9 @@
     --card-socket: light-dark(oklch(88% 0.03 218), oklch(85% 0.03 218))
     --card-socket-well: light-dark(oklch(83% 0.032 222), oklch(80% 0.032 222))
     --card-socket-line: light-dark(oklch(57.5% 0.05 225), oklch(54% 0.05 225))
+    // A ticked stamp on paper, which stays light when the board goes dark.
+    --card-ticked: light-dark(oklch(89% 0.055 32), oklch(84% 0.06 32))
+    --card-ticked-ink: oklch(45% 0.17 30)
 
     // The four answer inks, in the order the tiles are dealt. Each carries a
     // shape as well, so colour is never the only way to tell two apart.
@@ -210,6 +213,10 @@
     --primary: oklch(55% 0.19 30)
     --primary-edge: oklch(40% 0.14 30)
     --on-primary: oklch(99% 0.005 95)
+    // A stamp ticked among several: the room's colour inked into the tray where
+    // the stamp lies, never lifted out of it — the lifted piece is one answer.
+    --ticked: light-dark(oklch(89% 0.055 32), oklch(38% 0.095 28))
+    --ticked-ink: light-dark(oklch(45% 0.17 30), oklch(87% 0.075 35))
     --good: oklch(52% 0.13 155)
     --good-edge: oklch(38% 0.1 155)
     --good-soft: light-dark(oklch(86% 0.09 155), oklch(75% 0.11 155))

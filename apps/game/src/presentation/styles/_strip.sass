@@ -50,6 +50,13 @@
   background: var(--primary)
   box-shadow: 0 2px 0 var(--primary-edge), var(--shadow-piece)
 
+/// A stamp ticked among several: inked in the room's colour where it lies, and
+/// never lifted — twelve lifted pieces read as a wall, and as *the* answer.
+@mixin -inked-stamp
+  background: var(--ticked)
+  box-shadow: none
+  color: var(--ticked-ink)
+
 /// The chosen stamp of a strip that cannot be changed: its colour dropped and
 /// its ink kept as an edge.
 @mixin -ruled-piece
@@ -159,6 +166,19 @@
       display: block
       font-size: var(--text-3xs)
       margin-block-start: var(--space-2xs)
+
+  // A strip holding several, which is every one without a travelling piece,
+  // inks each ticked stamp and draws its check, pressed on as it is ticked.
+  .segments:not(:has(> .indicator)) .segment[data-selected]:not([data-disabled])
+    @include -inked-stamp
+
+  .tick
+    animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
+    block-size: 1em
+    display: inline-block
+    inline-size: 1em
+    margin-inline-end: var(--space-2xs)
+    vertical-align: -0.125em
 
   // A strip holding one answer draws its chosen stamp as one piece that
   // travels to the next choice (`useSelectionIndicator` places it), so the

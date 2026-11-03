@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
 import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
+import { catalogueOf } from '@melee/protocol/track'
 
 import {
   askedIn,
@@ -233,10 +234,10 @@ describe('a table of several games', () => {
       throw new Error('a blind test room opens on a blind test')
     }
     const variants = [
-      { ...first, source: { kind: 'film' as const } },
+      { ...first, source: catalogueOf({ hasFilmScores: true }) },
       {
         ...first,
-        source: { decades: ['1980s' as const], kind: 'decade' as const }
+        source: catalogueOf({ decades: ['1980s'] })
       }
     ]
 

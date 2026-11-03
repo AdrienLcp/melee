@@ -367,15 +367,12 @@ test('[layout] no strip on the console ever holds rows of two different lengths'
       await switchGame({ index, page })
       await openTheRound(page)
 
-      // Two strips only exist once another strip has been pressed: the decade
-      // grid, and the window a buzz has to be answered in. `decade` is second
-      // among the sources and `buzzer` first among the modes — both assert what
-      // they revealed, so a reordering fails here instead of quietly halving
-      // what this spec covers.
-      const source = page.locator('.track-source .segment')
-
-      if ((await source.count()) > 0) {
-        await source.nth(1).click()
+      // Two strips only exist under another strip's choice: the decade grid,
+      // under the catalogue's decades — ticked when a blind test opens — and
+      // the window a buzz has to be answered in, under `buzzer`, first among
+      // the modes. Both assert what they revealed, so a new default fails here
+      // instead of quietly halving what this spec covers.
+      if ((await page.locator('.strands').count()) > 0) {
         await expect(page.locator('.decades')).toBeVisible()
       }
 

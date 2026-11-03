@@ -7,6 +7,7 @@ import type { QuestionCategory } from '@melee/protocol/question'
 import type { AnswerMode } from '@melee/protocol/room'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
+import type { TrackAnswers } from '@melee/core/blindtest/track-answers'
 import type { BuzzBlocker } from '@melee/core/round/buzz-eligibility'
 
 import type { ApiError } from '@/infrastructure/api/melee-api'
@@ -78,14 +79,14 @@ const ATLAS_SCORING_KEYS = {
  */
 export const scoringKey = ({
   answerMode,
-  asksForAFilm,
   doublesLoneFinds,
   game,
-  atlas
+  atlas,
+  trackAnswers
 }: {
   answerMode: AnswerMode
-  /** The blind test's two halves are a film and its composer on one source out of five. */
-  asksForAFilm: boolean
+  /** What a blind test's two halves name: a song's, a score's, or either round by round. */
+  trackAnswers: TrackAnswers
   /** Black square's *Nobody else had it*, which doubles a lone find. */
   doublesLoneFinds: boolean
   game: GameKind
@@ -118,6 +119,7 @@ export const scoringKey = ({
   | `atlas.scoringName.${Exclude<ServedMode, 'buzzer'>}`
   | `blindtest.scoring.${ServedMode}`
   | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
+  | `blindtest.scoringMixed.${Exclude<ServedMode, 'choice'>}`
   | `quiz.scoring.${ServedMode}`
 > => {
   // A marker is the map's alone, an order the timeline's, a move the
@@ -140,9 +142,13 @@ export const scoringKey = ({
     case 'blindtest':
       // Choice mode names neither half — four candidates and one is right —
       // so it has one sentence whatever the round is asking for.
-      return asksForAFilm && served !== 'choice'
+      if (served === 'choice' || trackAnswers === 'songs') {
+        return `blindtest.scoring.${served}`
+      }
+
+      return trackAnswers === 'films'
         ? `blindtest.scoringFilm.${served}`
-        : `blindtest.scoring.${served}`
+        : `blindtest.scoringMixed.${served}`
     case 'buzzer':
       return 'buzzer.scoring'
     case 'challenge':

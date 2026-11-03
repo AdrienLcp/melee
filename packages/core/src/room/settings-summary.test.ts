@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import { shelvedGames } from '@melee/protocol/game'
+import { EVERY_STRAND } from '@melee/protocol/track'
 
 import { roomSettingsFor } from './room-settings'
 import { settingsSummary } from './settings-summary'
@@ -12,7 +13,7 @@ describe('settingsSummary', () => {
     expect(settingsSummary({ draftSource: null, settings: blindtest })).toEqual(
       [
         { game: 'blindtest', kind: 'game' },
-        { kind: 'source', source: 'all' },
+        { kind: 'source', source: EVERY_STRAND },
         { kind: 'answerMode', mode: 'choice' },
         { count: 10, kind: 'roundCount' }
       ]
@@ -27,7 +28,10 @@ describe('settingsSummary', () => {
         draftSource: { kind: 'search', query: 'yacht rock' },
         settings: blindtest
       })
-    ).toContainEqual({ kind: 'source', source: 'search' })
+    ).toContainEqual({
+      kind: 'source',
+      source: { kind: 'search', query: 'yacht rock' }
+    })
   })
 
   it('[settings-summary] says nothing about a source in a game that serves none', () => {

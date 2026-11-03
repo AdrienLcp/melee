@@ -5,6 +5,7 @@ import {
   DEFAULT_GAME_SETTINGS,
   type GameKind
 } from '@melee/protocol/game'
+import { catalogueOf } from '@melee/protocol/track'
 
 import { lineUpHolds } from './line-up'
 import { type GameSetup, openedSetup, roomSettingsFor } from './room-settings'
@@ -24,7 +25,7 @@ const onNothing = roomSettingsFor({ games: [], locale: 'fr' })
 
 const FILM_SCORES = {
   ...DEFAULT_BLINDTEST_SETTINGS,
-  source: { kind: 'film' }
+  source: catalogueOf({ hasFilmScores: true })
 } as const
 
 const gameNight: SavedEvening = {

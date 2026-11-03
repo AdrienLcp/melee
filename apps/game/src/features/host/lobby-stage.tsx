@@ -4,6 +4,7 @@ import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
+import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
@@ -294,12 +295,12 @@ const GamePitch: React.FC<{ view: HostRoomView }> = ({ view }) => {
         {translate(
           scoringKey({
             answerMode: view.settings.mode.kind,
-            asksForAFilm:
-              game.kind === 'blindtest' && game.source.kind === 'film',
             atlas: game.kind === 'atlas' ? game : null,
             doublesLoneFinds:
               game.kind === 'blacksquare' && game.doublesLoneFinds,
-            game: game.kind
+            game: game.kind,
+            trackAnswers:
+              game.kind === 'blindtest' ? trackAnswersOf(game.source) : 'songs'
           })
         )}
       </p>

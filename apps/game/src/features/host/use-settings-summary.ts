@@ -13,7 +13,7 @@ import {
 } from '@/presentation/i18n/translation'
 
 import { useDurationLabels } from './number-choice'
-import { sourceKindKey } from './playlist-picker'
+import { sourceSummary } from './playlist-picker'
 
 /**
  * The line that says what the room is set to play, read on both sides of a
@@ -91,7 +91,7 @@ const useSummaryParts = (): ((parts: SettingsSummaryPart[]) => string) => {
       case 'game':
         return translate(gameNameKey(part.game))
       case 'source':
-        return translate(sourceKindKey(part.source))
+        return sourceSummary({ source: part.source, translate })
       case 'places':
         return part.places
           .map((places) => translate(`atlas.places.${places}`))

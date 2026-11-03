@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 import type { CatalogueTrack } from '@melee/protocol/http'
 import {
+  type CatalogueSource,
   type HostTrack,
   type TrackDecade,
   type TrackDifficulty,
@@ -112,7 +113,7 @@ export const fetchTracksFor = async ({
       lists: await Promise.all(
         strand.paths.map((path) => requestList(path, signal))
       ),
-      source: strand.source
+      strand: strand.strand
     }))
   )
   const lists = fetched.flatMap((strand) => strand.lists)
@@ -143,7 +144,7 @@ export const fetchTracksFor = async ({
         withoutRepeats(
           catalogued({
             difficulty,
-            source: strand.source,
+            strand: strand.strand,
             tracks: strand.lists.flatMap((list) =>
               list.status === 'success' ? list.data : []
             )
@@ -159,11 +160,11 @@ export const fetchTracksFor = async ({
 }
 
 /**
- * Each catalogue of a mix pays in as many tracks as the thinnest one that
+ * Each strand of a mix pays in as many tracks as the thinnest one that
  * answered, so a round is as likely to come from one as from another. Left
  * whole, three composers' tops outweighed the chart and three decades: six
- * rounds in seven were a score cue, measured 27 October 2026. A single source
- * is one strand, and keeps everything.
+ * rounds in seven were a score cue, measured 27 October 2026. A source of one
+ * strand keeps everything.
  */
 const evenedOut = (strands: CatalogueTrack[][]): CatalogueTrack[] => {
   const answered = strands.filter((strand) => strand.length > 0)
@@ -216,28 +217,28 @@ export const fetchHostTrack = async (
 }
 
 /**
- * What a source lets into a pool, which every arm but one answers with the
+ * What a strand lets into a pool, which every strand but one answers with the
  * room's difficulty and nothing else.
  *
- * The film arm answers it three times over and **overrules the room's
+ * The film scores answer it three times over and **overrule the room's
  * difficulty** doing it. Deezer's rank scores the recording, and a score cue
  * carries almost none of a single's: `Son Of A Preacher Man` as it appears on
  * *Pulp Fiction* ranks 8k where `wellKnown` demands 500k, and the whole
  * composer table holds 135 tracks above that floor against 1 155 above this
- * one. So the arm pins its own, and a track still has to name a film and be
+ * one. So the strand pins its own, and a track still has to name a film and be
  * credited to a composer to get in — `film-score.ts` holds why each of those is
  * a refusal rather than a preference.
  */
 const catalogued = ({
   difficulty,
-  source,
+  strand,
   tracks
 }: {
   difficulty: TrackDifficulty
-  source: SingleSource
+  strand: Strand
   tracks: DeezerTrack[]
 }): CatalogueTrack[] => {
-  if (source.kind !== 'film') {
+  if (strand.kind !== 'film') {
     return tracks
       .filter((track) => isWorthGuessing(track, difficulty))
       .map((track) => toCatalogueTrack(track))
@@ -389,57 +390,78 @@ const COMPOSERS_PER_POOL = 8
  */
 const FILM_SCORE_FLOOR = 200_000
 
-/** A source that is one catalogue, which every arm is but the one that mixes them. */
-type SingleSource = Exclude<TrackSource, { kind: 'all' }>
+/**
+ * One list a source draws from, filtered on its own rules before any mix: a
+ * strand of the catalogue, or the whole of a playlist or a search.
+ */
+type Strand =
+  | Exclude<TrackSource, { kind: 'catalogue' }>
+  | { decades: readonly TrackDecade[]; kind: 'decade' }
+  | { genreIds: readonly number[]; kind: 'chart' }
+  | { kind: 'film' }
 
 /**
- * What one pool of every catalogue asks of each. The decades alone are twelve
- * playlists and the composers forty-nine artists, so the mix samples both
- * afresh on every fill — as the film arm already does — rather than asking
- * Deezer for sixty-two lists to serve one evening. The chart is one list and
- * goes in whole.
+ * What one pool of a catalogue mixing strands asks of each. The decades alone
+ * are twelve playlists and the composers forty-nine artists, so a mix samples
+ * both afresh on every fill — as the film scores alone already do — rather than
+ * asking Deezer for sixty-two lists to serve one evening. A chart is one list
+ * and goes in whole.
  */
 const DECADE_PLAYLISTS_PER_MIXED_POOL = 3
 const COMPOSERS_PER_MIXED_POOL = 3
 
+const strandsOfCatalogue = ({
+  charts,
+  decades,
+  hasFilmScores
+}: CatalogueSource): Strand[] => [
+  ...(charts === null ? [] : [{ genreIds: charts, kind: 'chart' as const }]),
+  ...(decades === null ? [] : [{ decades, kind: 'decade' as const }]),
+  ...(hasFilmScores ? [{ kind: 'film' as const }] : [])
+]
+
 /**
- * The catalogues a source is drawn from, each with its own paths. They stay
- * apart until each has been filtered on its own rules: a score cue measured
- * against a single's rank floor would never get in, and a single measured
- * against the composer table would never either.
+ * What a strand asks of Deezer once it shares the pool with another, where
+ * each pays in only as many tracks as the thinnest (`evenedOut`).
+ */
+const sampledPathsFor = (strand: Strand): string[] => {
+  switch (strand.kind) {
+    case 'decade':
+      return shuffled(pathsFor(strand)).slice(
+        0,
+        DECADE_PLAYLISTS_PER_MIXED_POOL
+      )
+    case 'film':
+      return pathsFor(strand).slice(0, COMPOSERS_PER_MIXED_POOL)
+    default:
+      return pathsFor(strand)
+  }
+}
+
+/**
+ * The lists a source is drawn from, each with its own paths. They stay apart
+ * until each has been filtered on its own rules: a score cue measured against
+ * a single's rank floor would never get in, and a single measured against the
+ * composer table would never either. A catalogue of one strand draws it whole.
  */
 const strandsOf = (
   source: TrackSource
-): { paths: string[]; source: SingleSource }[] => {
-  if (source.kind !== 'all') {
-    return [{ paths: pathsFor(source), source }]
+): { paths: string[]; strand: Strand }[] => {
+  if (source.kind !== 'catalogue') {
+    return [{ paths: pathsFor(source), strand: source }]
   }
 
-  const chart: SingleSource = { genreIds: [], kind: 'chart' }
-  const decade: SingleSource = { decades: [], kind: 'decade' }
-  const film: SingleSource = { kind: 'film' }
+  const strands = strandsOfCatalogue(source)
+  const pathsOf = strands.length === 1 ? pathsFor : sampledPathsFor
 
-  return [
-    { paths: pathsFor(chart), source: chart },
-    {
-      paths: shuffled(pathsFor(decade)).slice(
-        0,
-        DECADE_PLAYLISTS_PER_MIXED_POOL
-      ),
-      source: decade
-    },
-    {
-      paths: pathsFor(film).slice(0, COMPOSERS_PER_MIXED_POOL),
-      source: film
-    }
-  ]
+  return strands.map((strand) => ({ paths: pathsOf(strand), strand }))
 }
 
-const pathsFor = (source: SingleSource): string[] => {
-  switch (source.kind) {
+const pathsFor = (strand: Strand): string[] => {
+  switch (strand.kind) {
     case 'chart': {
       const genreIds =
-        source.genreIds.length === 0 ? [EVERY_GENRE] : source.genreIds
+        strand.genreIds.length === 0 ? [EVERY_GENRE] : strand.genreIds
 
       return genreIds.map(
         (genreId) => `/chart/${genreId}/tracks?limit=${POOL_SIZE}`
@@ -447,7 +469,7 @@ const pathsFor = (source: SingleSource): string[] => {
     }
     case 'decade': {
       const decades =
-        source.decades.length === 0 ? trackDecades : source.decades
+        strand.decades.length === 0 ? trackDecades : strand.decades
 
       return decades.flatMap((decade) =>
         DECADE_PLAYLIST_IDS[decade].map(
@@ -461,11 +483,11 @@ const pathsFor = (source: SingleSource): string[] => {
         .map((composerId) => `/artist/${composerId}/top?limit=${POOL_SIZE}`)
     case 'playlist':
       return [
-        `/playlist/${encodeURIComponent(source.playlistId)}/tracks?limit=${POOL_SIZE}`
+        `/playlist/${encodeURIComponent(strand.playlistId)}/tracks?limit=${POOL_SIZE}`
       ]
     case 'search':
       return [
-        `/search?q=${encodeURIComponent(source.query)}&limit=${POOL_SIZE}`
+        `/search?q=${encodeURIComponent(strand.query)}&limit=${POOL_SIZE}`
       ]
   }
 }

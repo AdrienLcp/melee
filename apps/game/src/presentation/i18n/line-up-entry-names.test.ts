@@ -6,7 +6,11 @@ import {
   DEFAULT_QUIZ_SETTINGS,
   type QuizSettings
 } from '@melee/protocol/game'
-import type { TrackSource } from '@melee/protocol/track'
+import {
+  catalogueOf,
+  EVERY_STRAND,
+  type TrackSource
+} from '@melee/protocol/track'
 
 import { i18n } from './i18n'
 import {
@@ -32,8 +36,8 @@ describe('lineUpEntryNames', () => {
     expect(
       lineUpEntryNames({
         lineUp: [
-          blindtest({ decades: ['1970s'], kind: 'decade' }),
-          blindtest({ decades: ['1980s'], kind: 'decade' })
+          blindtest(catalogueOf({ decades: ['1970s'] })),
+          blindtest(catalogueOf({ decades: ['1980s'] }))
         ],
         translate
       })
@@ -44,8 +48,8 @@ describe('lineUpEntryNames', () => {
     expect(
       lineUpEntryNames({
         lineUp: [
-          blindtest({ genreIds: [152], kind: 'chart' }),
-          blindtest({ kind: 'film' })
+          blindtest(catalogueOf({ charts: [152] })),
+          blindtest(catalogueOf({ hasFilmScores: true }))
         ],
         translate
       })
@@ -56,8 +60,8 @@ describe('lineUpEntryNames', () => {
     expect(
       lineUpEntryNames({
         lineUp: [
-          blindtest({ decades: ['1970s', '1990s'], kind: 'decade' }),
-          blindtest({ decades: ['1980s'], kind: 'decade' })
+          blindtest(catalogueOf({ decades: ['1970s', '1990s'] })),
+          blindtest(catalogueOf({ decades: ['1980s'] }))
         ],
         translate
       })
@@ -81,10 +85,10 @@ describe('lineUpEntryNames', () => {
     expect(
       lineUpEntryNames({
         lineUp: [
-          blindtest({ decades: ['1970s'], kind: 'decade' }),
-          blindtest({ decades: ['1980s', '1990s'], kind: 'decade' }),
-          blindtest({ genreIds: [152], kind: 'chart' }),
-          blindtest({ genreIds: [132, 116], kind: 'chart' })
+          blindtest(catalogueOf({ decades: ['1970s'] })),
+          blindtest(catalogueOf({ decades: ['1980s', '1990s'] })),
+          blindtest(catalogueOf({ charts: [152] })),
+          blindtest(catalogueOf({ charts: [132, 116] }))
         ],
         translate
       })
@@ -96,12 +100,25 @@ describe('lineUpEntryNames', () => {
     ])
   })
 
+  it('[line-up] calls a catalogue mixing strands by the game alone', () => {
+    expect(
+      lineUpEntryNames({
+        lineUp: [
+          blindtest(EVERY_STRAND),
+          blindtest(catalogueOf({ decades: ['1980s'], hasFilmScores: true })),
+          blindtest(catalogueOf({ decades: ['1980s'] }))
+        ],
+        translate
+      })
+    ).toEqual(['Blind test 1', 'Blind test 2', 'Blind test · 80s'])
+  })
+
   it('[line-up] says an empty decade list plays every decade', () => {
     expect(
       lineUpEntryNames({
         lineUp: [
-          blindtest({ decades: [], kind: 'decade' }),
-          blindtest({ decades: ['2000s'], kind: 'decade' })
+          blindtest(catalogueOf({ decades: [] })),
+          blindtest(catalogueOf({ decades: ['2000s'] }))
         ],
         translate
       })
@@ -114,7 +131,7 @@ describe('lineUpEntrySummaries', () => {
     expect(
       lineUpEntrySummaries({
         lineUp: [
-          blindtest({ decades: ['1970s', '1980s', '1990s'], kind: 'decade' }),
+          blindtest(catalogueOf({ decades: ['1970s', '1980s', '1990s'] })),
           {
             ...quiz(['history', 'science', 'sport', 'cinema', 'flags']),
             language: 'en'
@@ -128,11 +145,28 @@ describe('lineUpEntrySummaries', () => {
     ])
   })
 
+  it('[line-up] names every strand a catalogue draws from, and drops the level for film scores alone', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [
+          blindtest(EVERY_STRAND),
+          blindtest(catalogueOf({ charts: [152, 132], hasFilmScores: true })),
+          blindtest(catalogueOf({ hasFilmScores: true }))
+        ],
+        translate
+      }).map((summary) => summary.settings)
+    ).toEqual([
+      'Top charts + Every decade + Film scores · Crowd-pleasers · 20s',
+      'Rock, Pop + Film scores · Crowd-pleasers · 20s',
+      'Film scores · 20s'
+    ])
+  })
+
   it('[line-up] titles a row by the name the line-up gives it', () => {
     expect(
       lineUpEntrySummaries({
         lineUp: [
-          blindtest({ decades: ['1970s'], kind: 'decade' }),
+          blindtest(catalogueOf({ decades: ['1970s'] })),
           quiz(['history', 'science']),
           quiz(['sport', 'cinema'])
         ],
@@ -149,7 +183,7 @@ describe('nextRoundName', () => {
         settings: {
           lineUp: [
             quiz(['history', 'science']),
-            blindtest({ decades: ['1970s'], kind: 'decade' })
+            blindtest(catalogueOf({ decades: ['1970s'] }))
           ],
           lineUpAt: 1
         },
@@ -163,8 +197,8 @@ describe('nextRoundName', () => {
       nextRoundName({
         settings: {
           lineUp: [
-            blindtest({ decades: ['1970s'], kind: 'decade' }),
-            blindtest({ kind: 'film' })
+            blindtest(catalogueOf({ decades: ['1970s'] })),
+            blindtest(catalogueOf({ hasFilmScores: true }))
           ],
           lineUpAt: 0
         },

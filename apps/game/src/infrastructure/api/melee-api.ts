@@ -7,8 +7,6 @@ import {
   type CreateRoomRequest,
   type CreateRoomResponse,
   createRoomResponseSchema,
-  DECADE_LIST_SEPARATOR,
-  type DecadePreviewQuery,
   type HealthResponse,
   healthResponseSchema,
   type OpenWallPairingResponse,
@@ -26,7 +24,7 @@ import {
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 import { API_ROUTES, fillRoute } from '@melee/protocol/routes'
-import type { TrackDecade, TrackDifficulty } from '@melee/protocol/track'
+import type { TrackDifficulty } from '@melee/protocol/track'
 
 /** A failure the user is told about, through `apiErrorKey`. */
 export type ApiError =
@@ -154,29 +152,6 @@ export const fetchPlaylistTracks = async ({
     withQuery(fillRoute(API_ROUTES.playlistTracks, { playlistId }), {
       difficulty
     } satisfies PlaylistPreviewQuery),
-    signal
-  )
-
-/** No query at all: the arm carries no choice, and it pins its own floor. */
-export const fetchFilmTracks = async ({
-  signal
-}: Cancellable = {}): Promise<Result<CatalogueTrack[], ApiFailure>> =>
-  requestTracks(API_ROUTES.filmTracks, signal)
-
-export const fetchDecadeTracks = async ({
-  decades,
-  difficulty,
-  signal
-}: Cancellable & {
-  /** Empty is every decade, the same as it is on the wire. */
-  decades: readonly TrackDecade[]
-  difficulty: TrackDifficulty
-}): Promise<Result<CatalogueTrack[], ApiFailure>> =>
-  requestTracks(
-    withQuery(API_ROUTES.decadeTracks, {
-      decades: decades.join(DECADE_LIST_SEPARATOR),
-      difficulty
-    } satisfies DecadePreviewQuery),
     signal
   )
 

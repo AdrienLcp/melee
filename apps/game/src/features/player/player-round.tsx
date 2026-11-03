@@ -25,6 +25,7 @@ import type {
 import type { ColourHex } from '@melee/protocol/swatch'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
+import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { isSpotOn } from '@melee/core/estimate/estimate-pay'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
@@ -962,12 +963,12 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         {translate(
           scoringKey({
             answerMode: view.settings.mode.kind,
-            asksForAFilm:
-              game.kind === 'blindtest' && game.source.kind === 'film',
             atlas: game.kind === 'atlas' ? game : null,
             doublesLoneFinds:
               game.kind === 'blacksquare' && game.doublesLoneFinds,
-            game: game.kind
+            game: game.kind,
+            trackAnswers:
+              game.kind === 'blindtest' ? trackAnswersOf(game.source) : 'songs'
           })
         )}
       </p>

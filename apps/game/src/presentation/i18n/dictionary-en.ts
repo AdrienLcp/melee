@@ -285,18 +285,20 @@ export const EN_DICTIONARY = defineDictionary({
       typed:
         'Everyone types, over the same clip. Film and composer score 10 points each and both together score 30, and the earlier you get it the more the clock adds — up to double.'
     },
+    scoringMixed: {
+      buzzer:
+        'First to buzz answers out loud: the title and the artist, or the film and the composer when it is a film score. The host judges each, 10 points apiece — a wrong answer sits you out for the rest of the round.',
+      typed:
+        'Everyone types, over the same clip: the title and the artist, or the film and the composer when it is a film score. Each scores 10 points and both together score 30, and the earlier you get it the more the clock adds — up to double.'
+    },
     source: {
-      all: 'Every source',
+      catalogue: 'The catalogue',
       chart: 'Top charts',
-      decade: 'A decade',
+      decades: 'Decades',
       film: 'Film scores',
       filmHint:
         'What a composer wrote for a film or a series — not the songs on its soundtrack.',
       label: 'Where the tracks come from',
-      none: 'Pick none and you get them all mixed: charts, every decade and film scores.',
-      noneInDecade: 'Nothing playable in those years. Try another decade.',
-      noneInFilms:
-        'Nothing playable came back from the composers. Try another source.',
       noneInPlaylist: 'Nothing playable in that playlist. Check the id.',
       noneInSearch: 'Nothing well-known enough matched. Try another search.',
       playlist: 'A Deezer playlist',
@@ -308,7 +310,9 @@ export const EN_DICTIONARY = defineDictionary({
       ready: defineTranslation('{count:plural}', {
         plural: { count: { one: '{?} track ready', other: '{?} tracks ready' } }
       }),
-      search: 'A search'
+      search: 'A search',
+      strands: 'What it draws from',
+      wholeCatalogue: 'The whole catalogue'
     },
     tagline: 'Name the track before anyone else.',
     verdict: {

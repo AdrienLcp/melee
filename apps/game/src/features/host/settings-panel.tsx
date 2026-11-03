@@ -33,6 +33,7 @@ import {
   trackDifficulties
 } from '@melee/protocol/track'
 
+import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
 import {
   answerModesFor,
@@ -269,10 +270,11 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
     isPlayableWithTeams({ mode: offered, teams: settings.teams })
   )
   // Read from the draft rather than from the room, or this strip goes on
-  // claiming to work for a whole round after the composers were chosen.
+  // claiming to work for a whole round after the composers were chosen alone.
   const chosenSource =
     draftSource ?? (game?.kind === 'blindtest' ? game.source : null)
-  const pinsItsOwnDifficulty = chosenSource?.kind === 'film'
+  const pinsItsOwnDifficulty =
+    chosenSource !== null && trackAnswersOf(chosenSource) === 'films'
   const offersLoneFinds = game?.kind === 'blacksquare' && mode.kind === 'typed'
   const loneFindsArrived = useArrivedLater(offersLoneFinds)
   // Buzzer-moded and still nothing to hold: a reflex press takes no floor

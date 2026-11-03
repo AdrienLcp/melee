@@ -1,6 +1,11 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import { type TrackDifficulty, trackDecades } from '@melee/protocol/track'
+import {
+  catalogueOf,
+  EVERY_STRAND,
+  type TrackDifficulty,
+  trackDecades
+} from '@melee/protocol/track'
 
 import { fetchTracksFor } from './deezer-client'
 import { isOutage } from './music-source'
@@ -135,7 +140,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { genreIds: [132, 152], kind: 'chart' }
+      source: catalogueOf({ charts: [132, 152] })
     })
 
     expect(
@@ -151,7 +156,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { genreIds: [], kind: 'chart' }
+      source: catalogueOf({ charts: [] })
     })
 
     expect(
@@ -165,7 +170,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { genreIds: [132, 152], kind: 'chart' }
+      source: catalogueOf({ charts: [132, 152] })
     })
 
     expect(
@@ -181,7 +186,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { decades: ['1990s'], kind: 'decade' }
+      source: catalogueOf({ decades: ['1990s'] })
     })
 
     expect(
@@ -197,7 +202,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { decades: ['1990s'], kind: 'decade' }
+      source: catalogueOf({ decades: ['1990s'] })
     })
 
     expect(
@@ -212,7 +217,7 @@ describe('fetchTracksFor', () => {
 
     await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { decades: [], kind: 'decade' }
+      source: catalogueOf({ decades: [] })
     })
 
     expect(requested()).toHaveLength(trackDecades.length * 2)
@@ -223,7 +228,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { genreIds: [132, 152], kind: 'chart' }
+      source: catalogueOf({ charts: [132, 152] })
     })
 
     expect(found.status === 'success' && found.data.tracks).toHaveLength(1)
@@ -241,7 +246,7 @@ describe('fetchTracksFor', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { genreIds: [132, 152], kind: 'chart' }
+      source: catalogueOf({ charts: [132, 152] })
     })
 
     expect(found).toEqual({
@@ -319,7 +324,7 @@ describe('fetchTracksFor', () => {
     const found = fetchTracksFor({
       difficulty: 'wellKnown',
       signal: caller.signal,
-      source: { decades: [], kind: 'decade' }
+      source: catalogueOf({ decades: [] })
     })
 
     caller.abort()
@@ -359,7 +364,7 @@ const filmPoolOf = async (tracks: unknown[]) => {
 
   const found = await fetchTracksFor({
     difficulty: 'wellKnown',
-    source: { kind: 'film' }
+    source: catalogueOf({ hasFilmScores: true })
   })
 
   return found.status === 'success' ? found.data.tracks : []
@@ -378,7 +383,10 @@ describe('the film source', () => {
       })
     })
 
-    await fetchTracksFor({ difficulty: 'mixed', source: { kind: 'film' } })
+    await fetchTracksFor({
+      difficulty: 'mixed',
+      source: catalogueOf({ hasFilmScores: true })
+    })
 
     expect(requested).toHaveLength(8)
     expect(new Set(requested).size).toBe(8)
@@ -447,11 +455,11 @@ describe('the film source', () => {
   })
 })
 
-describe('every source at once', () => {
-  it('[all] samples the decades and the composers beside the whole chart', async () => {
+describe('a catalogue mixing strands', () => {
+  it('[catalogue] samples the decades and the composers beside the whole chart', async () => {
     const requested = catalogueByPath({})
 
-    await fetchTracksFor({ difficulty: 'mixed', source: { kind: 'all' } })
+    await fetchTracksFor({ difficulty: 'mixed', source: EVERY_STRAND })
 
     const paths = requested().map((path) => path.split('?')[0])
 
@@ -463,7 +471,24 @@ describe('every source at once', () => {
     expect(paths).toHaveLength(7)
   })
 
-  it('[all] filters each catalogue on its own rules', async () => {
+  it('[catalogue] draws from the strands ticked and from no other', async () => {
+    const requested = catalogueByPath({})
+
+    await fetchTracksFor({
+      difficulty: 'mixed',
+      source: catalogueOf({ decades: ['1980s'], hasFilmScores: true })
+    })
+
+    const paths = requested().map((path) => path.split('?')[0])
+
+    expect(paths.filter((path) => path?.startsWith('/chart/'))).toEqual([])
+    expect(
+      paths.filter((path) => path?.startsWith('/playlist/')).toSorted()
+    ).toEqual(['/playlist/791349661/tracks', '/playlist/867825522/tracks'])
+    expect(paths.filter((path) => path?.startsWith('/artist/'))).toHaveLength(3)
+  })
+
+  it('[catalogue] filters each catalogue on its own rules', async () => {
     // The same cue at 220k: a composer's top lets it in under the film's own
     // floor, a chart holds it to the room's and refuses it.
     const cue = scoreCue({
@@ -489,7 +514,7 @@ describe('every source at once', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { kind: 'all' }
+      source: EVERY_STRAND
     })
     const pool = found.status === 'success' ? found.data.tracks : []
 
@@ -504,8 +529,8 @@ describe('every source at once', () => {
   })
 })
 
-describe('every source at once, weighed', () => {
-  it('[all] lets no catalogue outweigh the others', async () => {
+describe('a catalogue mixing strands, weighed', () => {
+  it('[catalogue] lets no catalogue outweigh the others', async () => {
     const cues = Array.from({ length: 12 }, (_, index) =>
       scoreCue({
         album: 'Gladiator - Music From The Motion Picture',
@@ -530,7 +555,7 @@ describe('every source at once, weighed', () => {
 
     const found = await fetchTracksFor({
       difficulty: 'wellKnown',
-      source: { kind: 'all' }
+      source: EVERY_STRAND
     })
     const pool = found.status === 'success' ? found.data.tracks : []
 

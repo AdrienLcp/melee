@@ -20,7 +20,7 @@ export type SettingsSummaryPart =
   | { count: number; kind: 'answerCount' }
   | { game: ShelvedGame; kind: 'game' }
   | { kind: 'answerMode'; mode: AnswerMode }
-  | { kind: 'source'; source: TrackSource['kind'] }
+  | { kind: 'source'; source: TrackSource }
   | { kind: 'places'; places: readonly AtlasPlaces[] }
 
 /**
@@ -56,7 +56,7 @@ export const settingsSummary = ({
   }
 
   if (game.kind === 'blindtest') {
-    parts.push({ kind: 'source', source: (draftSource ?? game.source).kind })
+    parts.push({ kind: 'source', source: draftSource ?? game.source })
   }
 
   if (

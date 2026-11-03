@@ -19,7 +19,7 @@ import {
 import { questionDrawSettingsSchema } from './question'
 import { slateItemCountSchema, slateLabelsSchema } from './slate'
 import { swatchShowMsSchema } from './swatch'
-import { trackDifficultySchema, trackSourceSchema } from './track'
+import { EVERY_STRAND, trackDifficultySchema, trackSourceSchema } from './track'
 
 export const gameKinds = [
   'blindtest',
@@ -294,7 +294,7 @@ export const DEFAULT_BLINDTEST_SETTINGS: BlindtestSettings = {
   difficulty: 'wellKnown',
   kind: 'blindtest',
   roundDurationMs: 20_000,
-  source: { kind: 'all' }
+  source: EVERY_STRAND
 }
 
 export const DEFAULT_BUZZER_SETTINGS: BuzzerSettings = {

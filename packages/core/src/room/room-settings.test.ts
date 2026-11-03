@@ -9,6 +9,7 @@ import {
   gameKinds
 } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
+import { catalogueOf } from '@melee/protocol/track'
 
 import { offersAnswerMode } from './game-modes'
 import {
@@ -199,7 +200,7 @@ describe('movedToGame', () => {
   it('[room-settings] goes to the entry an evening already ticks, on that entry’s own settings', () => {
     const onFilmScores = {
       ...DEFAULT_BLINDTEST_SETTINGS,
-      source: { kind: 'film' }
+      source: catalogueOf({ hasFilmScores: true })
     } as const
     const moved = movedToGame({
       game: 'blindtest',

@@ -5,6 +5,7 @@ import {
   DEFAULT_GAME_SETTINGS,
   type GameSettings
 } from '@melee/protocol/game'
+import { catalogueOf } from '@melee/protocol/track'
 
 import {
   endsTheEvening,
@@ -22,7 +23,7 @@ const lineUp = [
 
 const FILM_SCORES = {
   ...DEFAULT_BLINDTEST_SETTINGS,
-  source: { kind: 'film' }
+  source: catalogueOf({ hasFilmScores: true })
 } as const
 
 const ROLLS = [0, 0.34, 0.5, 0.67, 0.99]

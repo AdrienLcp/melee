@@ -14,7 +14,6 @@ import type {
 } from '@melee/protocol/http'
 import {
   createRoomRequestSchema,
-  decadePreviewQuerySchema,
   pairWallRequestSchema,
   playlistPreviewQuerySchema,
   trackSearchQuerySchema,
@@ -265,35 +264,6 @@ export const registerHttpRoutes = ({
           kind: 'playlist',
           playlistId: context.req.param('playlistId')
         }
-      })
-
-      return respondWithTracks(context, found)
-    }
-  )
-
-  // A decade names itself and says nothing about what is in it, so this is the
-  // one source a host cannot check by reading the control they just pressed.
-  app.get(API_ROUTES.filmTracks, async (context) => {
-    // No query: the arm carries no choice, and the room's difficulty is the one
-    // setting this source overrules — see `FILM_SCORE_FLOOR`.
-    const found = await fetchTracksFor({
-      difficulty: 'mixed',
-      signal: context.req.raw.signal,
-      source: { kind: 'film' }
-    })
-
-    return respondWithTracks(context, found)
-  })
-
-  app.get(
-    API_ROUTES.decadeTracks,
-    zValidator('query', decadePreviewQuerySchema, invalidInput),
-    async (context) => {
-      const { decades, difficulty } = context.req.valid('query')
-      const found = await fetchTracksFor({
-        difficulty,
-        signal: context.req.raw.signal,
-        source: { decades, kind: 'decade' }
       })
 
       return respondWithTracks(context, found)

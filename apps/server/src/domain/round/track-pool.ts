@@ -159,25 +159,28 @@ export const discardPoolIfStale = ({
 
 const isSameSource = (left: TrackSource, right: TrackSource): boolean => {
   switch (left.kind) {
-    case 'all':
-      return right.kind === 'all'
-    case 'chart':
+    case 'catalogue':
       return (
-        right.kind === 'chart' && holdsTheSame(left.genreIds, right.genreIds)
+        right.kind === 'catalogue' &&
+        left.hasFilmScores === right.hasFilmScores &&
+        holdsTheSameStrand({ left: left.charts, right: right.charts }) &&
+        holdsTheSameStrand({ left: left.decades, right: right.decades })
       )
-    case 'decade':
-      return (
-        right.kind === 'decade' && holdsTheSame(left.decades, right.decades)
-      )
-    // Nothing to compare: the arm carries no choice, so it is only ever itself.
-    case 'film':
-      return right.kind === 'film'
     case 'playlist':
       return right.kind === 'playlist' && left.playlistId === right.playlistId
     case 'search':
       return right.kind === 'search' && left.query === right.query
   }
 }
+
+const holdsTheSameStrand = <TItem>({
+  left,
+  right
+}: {
+  left: readonly TItem[] | null
+  right: readonly TItem[] | null
+}): boolean =>
+  left === null || right === null ? left === right : holdsTheSame(left, right)
 
 /**
  * Order is not part of the question: a strip hands back what is selected in the

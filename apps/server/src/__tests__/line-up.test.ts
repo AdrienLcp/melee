@@ -11,6 +11,7 @@ import { createRoomResponseSchema } from '@melee/protocol/http'
 import type { RoomSettings } from '@melee/protocol/room'
 import { API_ROUTES } from '@melee/protocol/routes'
 import { hostServerMessageSchema } from '@melee/protocol/server-message'
+import { catalogueOf } from '@melee/protocol/track'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
@@ -53,7 +54,10 @@ const ON_THE_CHARTS: GameSettings = {
   roundDurationMs: 5_000
 }
 
-const FILM_SCORES: GameSettings = { ...ON_THE_CHARTS, source: { kind: 'film' } }
+const FILM_SCORES: GameSettings = {
+  ...ON_THE_CHARTS,
+  source: catalogueOf({ hasFilmScores: true })
+}
 
 const TWO_BLIND_TESTS: RoomSettings = {
   ...FAST_GAME,

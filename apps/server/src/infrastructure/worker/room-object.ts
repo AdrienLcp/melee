@@ -15,6 +15,7 @@ import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
 import { withHoldFields } from '@/domain/room/stored-round'
 import { withSeatColours } from '@/domain/room/stored-seats'
+import { withCatalogueSources } from '@/domain/room/stored-settings'
 import { nowMs } from '@/infrastructure/clock'
 import { newHostToken } from '@/infrastructure/ids'
 import type { Connection } from '@/infrastructure/messaging/connection'
@@ -100,7 +101,7 @@ export class RoomObject extends DurableObject<Env> {
 
     if (stored !== undefined) {
       this.engine = this.engineFor({
-        ...stored,
+        ...withCatalogueSources(stored),
         players: withSeatColours(stored.players),
         round: stored.round === null ? null : withHoldFields(stored.round)
       })

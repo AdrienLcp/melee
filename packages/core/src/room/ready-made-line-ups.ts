@@ -13,6 +13,7 @@ import {
 } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
 import type { RoomSettings } from '@melee/protocol/room'
+import { catalogueOf } from '@melee/protocol/track'
 
 import { questionLanguageFor } from '../quiz/question-language'
 import type { SavedEntry, SavedEvening } from './saved-evening'
@@ -91,23 +92,23 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
   ) => quizOn({ categories: [category], locale, wellKnownOnly })
 
   return [
-    blindtestOn({ kind: 'film' }),
+    blindtestOn(catalogueOf({ hasFilmScores: true })),
     quiz('geography', { wellKnownOnly: true }),
     {
       ...DEFAULT_BLACK_SQUARE_SETTINGS,
       answerCount: 6,
       doublesLoneFinds: true
     },
-    blindtestOn({ decades: ['2010s'], kind: 'decade' }),
+    blindtestOn(catalogueOf({ decades: ['2010s'] })),
     quiz('videogames', { wellKnownOnly: false }),
     atlasOn({ direction: 'name', places: ['countries'] }),
     { ...DEFAULT_SWATCH_SETTINGS, showMs: 5_000 },
-    blindtestOn({ decades: ['1980s'], kind: 'decade' }),
+    blindtestOn(catalogueOf({ decades: ['1980s'] })),
     quiz('sport', { wellKnownOnly: true }),
     'innerclock',
     atlasOn({ direction: 'place', places: ['frenchCities'] }),
     quiz('everyday', { wellKnownOnly: true }),
-    blindtestOn({ decades: ['1970s'], kind: 'decade' }),
+    blindtestOn(catalogueOf({ decades: ['1970s'] })),
     {
       ...DEFAULT_PETIT_BAC_SETTINGS,
       categoryCount: 4,
@@ -117,20 +118,20 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
     'higherlower',
     { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['equation'] },
     quiz('history', { wellKnownOnly: true }),
-    blindtestOn({ decades: [], kind: 'decade' }),
+    blindtestOn(catalogueOf({ decades: [] })),
     atlasOn({ direction: 'place', places: ['countries'] }),
     quiz('rebus', { wellKnownOnly: false }),
-    blindtestOn({ decades: ['1990s'], kind: 'decade' }),
+    blindtestOn(catalogueOf({ decades: ['1990s'] })),
     { ...DEFAULT_BLACK_SQUARE_SETTINGS, answerCount: 9 },
     quiz('capitals', { wellKnownOnly: false }),
     { ...DEFAULT_SWATCH_SETTINGS, showMs: 3_000 },
-    blindtestOn({ genreIds: [FRENCH_CHANSON_GENRE_ID], kind: 'chart' }),
+    blindtestOn(catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] })),
     atlasOn({ direction: 'name', places: ['worldCapitals'] }),
     'mostlikely',
     quiz('quotes', { wellKnownOnly: true }),
     'reflex',
     atlasOn({ direction: 'place', places: ['worldCapitals'] }),
-    blindtestOn({ decades: ['2000s'], kind: 'decade' }),
+    blindtestOn(catalogueOf({ decades: ['2000s'] })),
     quiz('science', { wellKnownOnly: true }),
     'timeline',
     { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 6 },
@@ -164,13 +165,16 @@ export const readyMadeLineUpsFor = (
     lineUp: [
       {
         ...DEFAULT_BLINDTEST_SETTINGS,
-        source: { genreIds: [FRENCH_CHANSON_GENRE_ID], kind: 'chart' }
+        source: catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] })
       },
       {
         ...DEFAULT_BLINDTEST_SETTINGS,
-        source: { decades: ['1980s'], kind: 'decade' }
+        source: catalogueOf({ decades: ['1980s'] })
       },
-      { ...DEFAULT_BLINDTEST_SETTINGS, source: { kind: 'film' } }
+      {
+        ...DEFAULT_BLINDTEST_SETTINGS,
+        source: catalogueOf({ hasFilmScores: true })
+      }
     ],
     lineUpDeals: [],
     roundCount: 20,

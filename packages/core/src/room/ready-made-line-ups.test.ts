@@ -6,6 +6,7 @@ import {
   shelvedGames
 } from '@melee/protocol/game'
 import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
+import { catalogueOf } from '@melee/protocol/track'
 
 import {
   isJudgedByHost,
@@ -150,7 +151,7 @@ describe('a ready-made line-up once loaded', () => {
       ...settings,
       lineUp: settings.lineUp.map((entry) =>
         entry.kind === 'blindtest'
-          ? { ...entry, source: { kind: 'film' as const } }
+          ? { ...entry, source: catalogueOf({ hasFilmScores: true }) }
           : entry
       )
     }

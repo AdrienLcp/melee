@@ -9,7 +9,7 @@ import {
   vi
 } from 'vitest'
 
-import { API_ROUTES } from '@melee/protocol/routes'
+import { API_ROUTES, fillRoute } from '@melee/protocol/routes'
 
 import { logger } from '@/infrastructure/logging/logger'
 import type { MusicSourceFault } from '@/infrastructure/music/music-source'
@@ -66,33 +66,37 @@ afterEach(async () => {
   vi.restoreAllMocks()
 })
 
-const listFilmTracks = () =>
-  fetch(`http://${harness.origin}${API_ROUTES.filmTracks}`)
+const PLAYLIST_TRACKS = fillRoute(API_ROUTES.playlistTracks, {
+  playlistId: '404'
+})
+
+const listPlaylistTracks = () =>
+  fetch(`http://${harness.origin}${PLAYLIST_TRACKS}`)
 
 describe('a catalogue failure is logged once, where it is decided', () => {
   it('[logging] reports an outage behind a track listing as an error with its route', async () => {
     fetchTracks.mockResolvedValueOnce(catalogueDown())
 
-    const response = await listFilmTracks()
+    const response = await listPlaylistTracks()
 
     expect(response.status).toBe(502)
     expect(warn).not.toHaveBeenCalled()
     expect(error).toHaveBeenCalledExactlyOnceWith('Could not list tracks', {
       faults: [OUTAGE],
-      path: API_ROUTES.filmTracks
+      path: PLAYLIST_TRACKS
     })
   })
 
   it('[logging] reports a listing served past an unknown path as a warning', async () => {
     fetchTracks.mockResolvedValueOnce(oneUnknownPath())
 
-    const response = await listFilmTracks()
+    const response = await listPlaylistTracks()
 
     expect(response.status).toBe(200)
     expect(error).not.toHaveBeenCalled()
     expect(warn).toHaveBeenCalledExactlyOnceWith(
       'Listed tracks past failing catalogue paths',
-      { faults: [TYPO], path: API_ROUTES.filmTracks }
+      { faults: [TYPO], path: PLAYLIST_TRACKS }
     )
   })
 

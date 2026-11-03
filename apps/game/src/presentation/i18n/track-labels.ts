@@ -1,4 +1,8 @@
-import { type TrackDecade, trackDecades } from '@melee/protocol/track'
+import {
+  type CatalogueSource,
+  type TrackDecade,
+  trackDecades
+} from '@melee/protocol/track'
 
 /**
  * Deezer's own genre ids, hand-picked down to the ones a party actually asks
@@ -39,3 +43,35 @@ export const decadeLabelKey = (
 
 export const asDecade = (value: string | number): TrackDecade | undefined =>
   trackDecades.find((decade) => decade === value)
+
+/** The catalogue's strands, in the order the picker offers them. */
+export const CATALOGUE_STRANDS = ['charts', 'decades', 'filmScores'] as const
+
+export type CatalogueStrand = (typeof CATALOGUE_STRANDS)[number]
+
+export const STRAND_LABEL_KEYS = {
+  charts: 'blindtest.source.chart',
+  decades: 'blindtest.source.decades',
+  filmScores: 'blindtest.source.film'
+} as const satisfies Record<CatalogueStrand, `blindtest.source.${string}`>
+
+const isDrawn = ({
+  source,
+  strand
+}: {
+  source: CatalogueSource
+  strand: CatalogueStrand
+}): boolean => {
+  switch (strand) {
+    case 'charts':
+      return source.charts !== null
+    case 'decades':
+      return source.decades !== null
+    case 'filmScores':
+      return source.hasFilmScores
+  }
+}
+
+/** The strands a catalogue draws from, in the picker's order. */
+export const strandsOf = (source: CatalogueSource): CatalogueStrand[] =>
+  CATALOGUE_STRANDS.filter((strand) => isDrawn({ source, strand }))

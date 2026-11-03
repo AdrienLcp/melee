@@ -6,8 +6,6 @@ import type { TrackDifficulty, TrackSource } from '@melee/protocol/track'
 
 import {
   type ApiFailure,
-  fetchDecadeTracks,
-  fetchFilmTracks,
   fetchPlaylistTracks,
   searchTracks
 } from '@/infrastructure/api/melee-api'
@@ -17,11 +15,10 @@ import {
 } from '@/presentation/i18n/translation'
 
 /**
- * Every source but the chart, which is Deezer's own front page, and the mix,
- * which holds it: neither can come back empty, and there is nothing about
- * either a host could have got wrong.
+ * A list the host named. The catalogue is left out: its lists are curated and
+ * never come back empty, so a look at one only spends the Deezer quota.
  */
-type PreviewableSource = Exclude<TrackSource, { kind: 'all' | 'chart' }>
+type PreviewableSource = Exclude<TrackSource, { kind: 'catalogue' }>
 
 /**
  * One value rather than a title list, an error and a flag standing beside each
@@ -38,8 +35,6 @@ const EMPTY_RESULT_KEYS: Record<
   PreviewableSource['kind'],
   PlainTranslationKey
 > = {
-  decade: 'blindtest.source.noneInDecade',
-  film: 'blindtest.source.noneInFilms',
   playlist: 'blindtest.source.noneInPlaylist',
   search: 'blindtest.source.noneInSearch'
 }
@@ -54,10 +49,6 @@ const catalogueFor = async ({
   source: PreviewableSource
 }): Promise<Result<CatalogueTrack[], ApiFailure>> => {
   switch (source.kind) {
-    case 'decade':
-      return fetchDecadeTracks({ decades: source.decades, difficulty, signal })
-    case 'film':
-      return fetchFilmTracks({ signal })
     case 'playlist':
       return fetchPlaylistTracks({
         difficulty,
@@ -70,7 +61,7 @@ const catalogueFor = async ({
 }
 
 /**
- * A look at what a decade, a query or a playlist id would draw, and the
+ * A look at what a query or a playlist id would draw, and the
  * picker's only trip to the network — nothing here commits, because the round
  * that opens is what sends the source.
  *
@@ -80,9 +71,9 @@ const catalogueFor = async ({
  */
 export const usePlaylistPreview = (difficulty: TrackDifficulty) => {
   const [preview, setPreview] = useState<PlaylistPreview>({ status: 'idle' })
-  // The decade strip asks on every press, and the slower answer is not the
-  // older one: each new question aborts the last, so a catalogue the host left
-  // never lands on top of the one they are looking at.
+  // The slower answer is not the older one: each new question aborts the
+  // last, so a list the host left never lands on top of the one they are
+  // looking at.
   const inFlight = useRef<AbortController | null>(null)
   const previewed = useRef<PreviewableSource | null>(null)
 

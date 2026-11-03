@@ -7,6 +7,7 @@ import {
   type GameKind
 } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
+import { catalogueOf } from '@melee/protocol/track'
 
 import {
   fittedToAloud,
@@ -37,7 +38,7 @@ const kinds = (settings: RoomSettings): GameKind[] =>
 
 const FILM_SCORES = {
   ...DEFAULT_BLINDTEST_SETTINGS,
-  source: { kind: 'film' }
+  source: catalogueOf({ hasFilmScores: true })
 } as const
 
 describe('lineUpHolds', () => {

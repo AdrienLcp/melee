@@ -4,60 +4,84 @@ import { Form } from 'react-aria-components'
 
 import type { BlindtestSettings } from '@melee/protocol/game'
 import {
+  EVERY_STRAND,
   type TrackDecade,
   type TrackSource,
   trackDecades
 } from '@melee/protocol/track'
 
 import { Button } from '@/presentation/components/button'
+import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { TextField } from '@/presentation/components/text-field'
 import { ToggleGroup } from '@/presentation/components/toggle-group'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import {
   asDecade,
   asGenreId,
+  CATALOGUE_STRANDS,
+  type CatalogueStrand,
   decadeLabelKey,
   GENRE_IDS,
   type GenreId,
-  genreLabelKey
+  genreLabelKey,
+  STRAND_LABEL_KEYS,
+  strandsOf
 } from '@/presentation/i18n/track-labels'
-import type { PlainTranslationKey } from '@/presentation/i18n/translation'
+import type {
+  PlainTranslationKey,
+  Translate
+} from '@/presentation/i18n/translation'
 
 import { useArrivedLater } from './use-arrived-later'
 import { usePlaylistPreview } from './use-playlist-preview'
 
 import './playlist-picker.sass'
 
-type SourceKind = TrackSource['kind']
+/** Where the tracks come from: the curated catalogue, or a list the host names. */
+type Place = TrackSource['kind']
 
-/** The kinds the strip offers; `all` is the strip with none of them pressed. */
-type ChosenKind = Exclude<SourceKind, 'all'>
-
-const KIND_LABELS: Record<ChosenKind, PlainTranslationKey> = {
-  chart: 'blindtest.source.chart',
-  decade: 'blindtest.source.decade',
-  film: 'blindtest.source.film',
+const PLACE_LABELS: Record<Place, PlainTranslationKey> = {
+  catalogue: 'blindtest.source.catalogue',
   playlist: 'blindtest.source.playlist',
   search: 'blindtest.source.search'
 }
 
-const isChosenKind = (value: string | number): value is ChosenKind =>
-  typeof value === 'string' && value in KIND_LABELS
-
-export const sourceKindKey = (kind: SourceKind): PlainTranslationKey =>
-  kind === 'all' ? 'blindtest.source.all' : KIND_LABELS[kind]
+const isPlace = (value: string | number): value is Place =>
+  typeof value === 'string' && value in PLACE_LABELS
 
 /**
- * What the source kinds that hold a choice need, all at once, so switching kind
- * keeps what was typed. The composers hold none, which is why they are a kind
- * with no field here.
+ * What the closed setup says of a source: a list the host named by its kind,
+ * a catalogue by the strands it mixes.
+ */
+export const sourceSummary = ({
+  source,
+  translate
+}: {
+  source: TrackSource
+  translate: Translate
+}): string => {
+  if (source.kind !== 'catalogue') {
+    return translate(PLACE_LABELS[source.kind])
+  }
+
+  const strands = strandsOf(source)
+
+  return strands.length === CATALOGUE_STRANDS.length
+    ? translate('blindtest.source.wholeCatalogue')
+    : strands.map((strand) => translate(STRAND_LABEL_KEYS[strand])).join(' + ')
+}
+
+/**
+ * Everything every place needs, all at once, so moving between them keeps what
+ * was typed, and unticking a strand keeps its picks for when it comes back.
  */
 type Draft = {
+  charts: GenreId[]
   decades: TrackDecade[]
-  genreIds: GenreId[]
-  kind: SourceKind
+  place: Place
   playlistId: string
   query: string
+  strands: CatalogueStrand[]
 }
 
 /**
@@ -65,34 +89,40 @@ type Draft = {
  * the room is actually running — genres chosen before a `play again` are still
  * the selected ones when the lobby comes back.
  */
-const draftFromSource = (source: TrackSource): Draft => ({
-  decades: source.kind === 'decade' ? source.decades : [],
-  genreIds:
-    source.kind === 'chart'
-      ? source.genreIds.map(asGenreId).filter((id) => id !== undefined)
-      : [],
-  kind: source.kind,
-  playlistId: source.kind === 'playlist' ? source.playlistId : '',
-  query: source.kind === 'search' ? source.query : ''
-})
+const draftFromSource = (source: TrackSource): Draft => {
+  const catalogue = source.kind === 'catalogue' ? source : EVERY_STRAND
 
-/** `null` while the chosen kind is still missing the text it needs. */
+  return {
+    charts: (catalogue.charts ?? [])
+      .map(asGenreId)
+      .filter((id) => id !== undefined),
+    decades: catalogue.decades ?? [],
+    place: source.kind,
+    playlistId: source.kind === 'playlist' ? source.playlistId : '',
+    query: source.kind === 'search' ? source.query : '',
+    strands: strandsOf(catalogue)
+  }
+}
+
+/** `null` while the chosen place is still missing what it needs. */
 const sourceFromDraft = ({
+  charts,
   decades,
-  genreIds,
-  kind,
+  place,
   playlistId,
-  query
+  query,
+  strands
 }: Draft): TrackSource | null => {
-  switch (kind) {
-    case 'all':
-      return { kind: 'all' }
-    case 'chart':
-      return { genreIds, kind: 'chart' }
-    case 'decade':
-      return { decades, kind: 'decade' }
-    case 'film':
-      return { kind: 'film' }
+  switch (place) {
+    case 'catalogue':
+      return strands.length === 0
+        ? null
+        : {
+            charts: strands.includes('charts') ? charts : null,
+            decades: strands.includes('decades') ? decades : null,
+            hasFilmScores: strands.includes('filmScores'),
+            kind: 'catalogue'
+          }
     case 'playlist':
       return playlistId.trim().length === 0
         ? null
@@ -114,14 +144,18 @@ type PlaylistPickerProps = {
  * A blind test with the wrong decade is a wasted evening, so the pool is chosen
  * rather than discovered on the first round.
  *
+ * Two levels, because the catalogue's strands mix and a named list does not:
+ * one strip holding both would untick three strands the moment a search was
+ * pressed, and say nothing about it.
+ *
  * Nothing here commits: whatever opens the next round is what sends the source,
  * because a choice that has to be confirmed and *then* launched is two
  * decisions where the host only made one. That is also what lets the picker
  * stay reachable while a game runs — a source edited mid-clip cannot touch the
- * round already drawn. The preview is the exception, and it only looks: a
- * source with no visible answer is a guess. Which press asks for it differs by
- * kind — a decade answers on its own, where a query or an id waits for a button
- * because neither is finished until the typing stops.
+ * round already drawn. The preview is the exception, and it only looks, at a
+ * playlist id or a query alone: the catalogue's lists are curated and never
+ * come back empty, and neither an id nor a query is finished until the typing
+ * stops, so both wait for a press.
  */
 export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   onDraftChange,
@@ -131,10 +165,14 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
   const [draft, setDraft] = useState<Draft>(() =>
     draftFromSource(settings.source)
   )
-  const isTyped = draft.kind === 'playlist' || draft.kind === 'search'
-  const genresArrived = useArrivedLater(draft.kind === 'chart')
-  const decadesArrived = useArrivedLater(draft.kind === 'decade')
-  const typedSourceArrived = useArrivedLater(isTyped)
+  const isCatalogue = draft.place === 'catalogue'
+  const drawsCharts = isCatalogue && draft.strands.includes('charts')
+  const drawsDecades = isCatalogue && draft.strands.includes('decades')
+  const drawsFilmScores = isCatalogue && draft.strands.includes('filmScores')
+  const catalogueArrived = useArrivedLater(isCatalogue)
+  const genresArrived = useArrivedLater(drawsCharts)
+  const decadesArrived = useArrivedLater(drawsDecades)
+  const typedSourceArrived = useArrivedLater(!isCatalogue)
   const { clear, preview, previewSource } = usePlaylistPreview(
     settings.difficulty
   )
@@ -151,111 +189,105 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
     clear()
   }
 
-  // A decade names itself and says nothing about what is inside it, so it is
-  // the one source that answers for itself the moment it is pressed. An id or a
-  // query cannot: neither is finished until the host stops typing.
-  const chooseDecades = (decades: TrackDecade[]): void => {
-    setDraft({ ...draft, decades })
-
-    void previewSource({ decades, kind: 'decade' })
-  }
-
-  // The composers answer for themselves the same way a decade does, and with
-  // nothing left to press afterwards they have to: the arm carries no control,
-  // so choosing it is the only moment there is to ask on.
-  const chooseKind = (kind: SourceKind): void => {
-    revise({ kind })
-
-    if (kind === 'film') {
-      void previewSource({ kind: 'film' })
-    }
-  }
-
   return (
     <section className='playlist-picker'>
-      <div className='sources'>
-        <ToggleGroup
-          className='track-source'
-          label={translate('blindtest.source.label')}
-          onSelectionChange={(keys) => {
-            chooseKind([...keys].find(isChosenKind) ?? 'all')
-          }}
-          options={Object.entries(KIND_LABELS).map(([value, key]) => ({
-            label: translate(key),
-            value
-          }))}
-          selectedKeys={draft.kind === 'all' ? [] : [draft.kind]}
-          selectionMode='single'
-        />
-        {draft.kind === 'all' && (
-          <p className='hint'>{translate('blindtest.source.none')}</p>
-        )}
-      </div>
+      <SegmentedControl
+        className='track-place'
+        label={translate('blindtest.source.label')}
+        onChange={(place) => {
+          if (isPlace(place)) {
+            revise({ place })
+          }
+        }}
+        options={Object.entries(PLACE_LABELS).map(([value, key]) => ({
+          label: translate(key),
+          value
+        }))}
+        value={draft.place}
+      />
 
-      {draft.kind === 'chart' && (
-        <div className='genres' data-arrived={genresArrived}>
+      {isCatalogue && (
+        <div className='catalogue' data-arrived={catalogueArrived}>
           <ToggleGroup
-            label={translate('blindtest.genre.label')}
+            className='strands'
+            disallowEmptySelection
+            label={translate('blindtest.source.strands')}
             onSelectionChange={(keys) => {
               revise({
-                genreIds: [...keys]
-                  .map(asGenreId)
-                  .filter((id) => id !== undefined)
+                strands: CATALOGUE_STRANDS.filter((strand) => keys.has(strand))
               })
             }}
-            options={GENRE_IDS.map((id) => ({
-              label: translate(genreLabelKey(id)),
-              value: String(id)
+            options={CATALOGUE_STRANDS.map((strand) => ({
+              label: translate(STRAND_LABEL_KEYS[strand]),
+              value: strand
             }))}
-            selectedKeys={draft.genreIds.map(String)}
+            selectedKeys={draft.strands}
           />
-          {draft.genreIds.length === 0 && (
-            <p className='hint'>{translate('blindtest.genre.none')}</p>
+
+          {drawsCharts && (
+            <div className='genres' data-arrived={genresArrived}>
+              <ToggleGroup
+                label={translate('blindtest.genre.label')}
+                onSelectionChange={(keys) => {
+                  revise({
+                    charts: [...keys]
+                      .map(asGenreId)
+                      .filter((id) => id !== undefined)
+                  })
+                }}
+                options={GENRE_IDS.map((id) => ({
+                  label: translate(genreLabelKey(id)),
+                  value: String(id)
+                }))}
+                selectedKeys={draft.charts.map(String)}
+              />
+              {draft.charts.length === 0 && (
+                <p className='hint'>{translate('blindtest.genre.none')}</p>
+              )}
+            </div>
+          )}
+
+          {drawsDecades && (
+            <div className='decades' data-arrived={decadesArrived}>
+              <ToggleGroup
+                label={translate('blindtest.decade.label')}
+                onSelectionChange={(keys) => {
+                  revise({
+                    decades: [...keys]
+                      .map(asDecade)
+                      .filter((decade) => decade !== undefined)
+                  })
+                }}
+                options={trackDecades.map((decade) => ({
+                  label: translate(decadeLabelKey(decade)),
+                  value: decade
+                }))}
+                selectedKeys={draft.decades}
+              />
+              {draft.decades.length === 0 && (
+                <p className='hint'>{translate('blindtest.decade.none')}</p>
+              )}
+            </div>
+          )}
+
+          {drawsFilmScores && (
+            <p className='hint'>{translate('blindtest.source.filmHint')}</p>
           )}
         </div>
       )}
 
-      {draft.kind === 'decade' && (
-        <div className='decades' data-arrived={decadesArrived}>
-          <ToggleGroup
-            label={translate('blindtest.decade.label')}
-            onSelectionChange={(keys) => {
-              chooseDecades(
-                [...keys].map(asDecade).filter((decade) => decade !== undefined)
-              )
-            }}
-            options={trackDecades.map((decade) => ({
-              label: translate(decadeLabelKey(decade)),
-              value: decade
-            }))}
-            selectedKeys={draft.decades}
-          />
-          {draft.decades.length === 0 && (
-            <p className='hint'>{translate('blindtest.decade.none')}</p>
-          )}
-        </div>
-      )}
-
-      {draft.kind === 'film' && (
-        <p className='hint'>{translate('blindtest.source.filmHint')}</p>
-      )}
-
-      {isTyped && (
+      {!isCatalogue && (
         <Form
           data-arrived={typedSourceArrived}
           onSubmit={(event) => {
             event.preventDefault()
 
-            if (
-              draftSource !== null &&
-              draftSource.kind !== 'all' &&
-              draftSource.kind !== 'chart'
-            ) {
+            if (draftSource !== null && draftSource.kind !== 'catalogue') {
               void previewSource(draftSource)
             }
           }}
         >
-          {draft.kind === 'search' ? (
+          {draft.place === 'search' ? (
             <>
               <TextField
                 label={translate('blindtest.source.query')}
@@ -301,10 +333,7 @@ export const PlaylistPicker: React.FC<PlaylistPickerProps> = ({
         </p>
       )}
 
-      {/* A decade or the composers are asked on the press itself, and only a
-          failure is news there; a count answers the typed sources alone,
-          whose preview the host asked for. */}
-      {preview.status === 'found' && isTyped && (
+      {preview.status === 'found' && !isCatalogue && (
         <p className='ready'>
           {translate('blindtest.source.ready', {
             count: preview.count

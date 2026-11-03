@@ -53,61 +53,117 @@ export const trackDecades = [
 export const trackDecadeSchema = z.enum(trackDecades)
 
 /**
+ * The catalogues this product curates, drawn from side by side: Deezer's genre
+ * charts, its editors' decade playlists and a table of film composers. Each
+ * strand is in or out, and a room opens on all three, because a host who has
+ * not chosen yet has not narrowed anything.
+ *
+ * At least one strand is in: a catalogue of nothing is not a choice a host can
+ * make, and the picker refuses to untick the last.
+ */
+const catalogueSourceSchema = z
+  .object({
+    /**
+     * Deezer genre charts, merged, by the ids Deezer publishes at `/genre`:
+     * each is a hundred tracks that are charting, the cheapest definition of
+     * "a song people know". `null` leaves the charts out; **empty is every
+     * genre**, the all-genres chart — a host who wants everything is the
+     * default state, and lighting twelve stamps to say so would be the wrong
+     * way round.
+     */
+    charts: z.array(z.number().int().nonnegative()).nullable(),
+    /** `null` leaves the decades out; **empty is every decade**, as for the charts. */
+    decades: z.array(trackDecadeSchema).nullable(),
+    /**
+     * Film and series music, drawn from a table of **composers** and never
+     * from the soundtrack charts. A song used in a film is not a film's score:
+     * *Shallow* or *Eye of the Tiger* under this name would be a label the
+     * room catches out on its second round, and they are already playable
+     * under the other strands. Which composers is a catalogue fact only
+     * `deezer-client.ts` may hold, and a composer who scores a series does the
+     * same job under the same name, so series ride along with no control of
+     * their own.
+     */
+    hasFilmScores: z.boolean(),
+    kind: z.literal('catalogue')
+  })
+  .refine(
+    ({ charts, decades, hasFilmScores }) =>
+      charts !== null || decades !== null || hasFilmScores,
+    { message: 'A catalogue draws from at least one strand' }
+  )
+
+const NO_STRAND = {
+  charts: null,
+  decades: null,
+  hasFilmScores: false,
+  kind: 'catalogue'
+} as const
+
+/**
+ * A catalogue on the strands named and no other: `{ hasFilmScores: true }` is
+ * film scores alone, `{ decades: ['1980s'] }` the eighties alone.
+ */
+export const catalogueOf = (
+  strands: Partial<Omit<CatalogueSource, 'kind'>>
+): CatalogueSource => ({ ...NO_STRAND, ...strands })
+
+/** Every chart, every decade and the film scores: what a room opens on. */
+export const EVERY_STRAND: CatalogueSource = catalogueOf({
+  charts: [],
+  decades: [],
+  hasFilmScores: true
+})
+
+/**
+ * The four arms the catalogue replaced (protocol 66), read as the strands they
+ * drew: a host's setup, a saved line-up and an exported file outlive a deploy,
+ * and a blind test stored on `all` is the same evening on all three strands.
+ */
+const asCatalogue = (stored: unknown): unknown => {
+  if (typeof stored !== 'object' || stored === null || !('kind' in stored)) {
+    return stored
+  }
+
+  switch (stored.kind) {
+    case 'all':
+      return EVERY_STRAND
+    case 'chart':
+      return {
+        ...NO_STRAND,
+        charts: 'genreIds' in stored ? stored.genreIds : []
+      }
+    case 'decade':
+      return {
+        ...NO_STRAND,
+        decades: 'decades' in stored ? stored.decades : []
+      }
+    case 'film':
+      return { ...NO_STRAND, hasFilmScores: true }
+    default:
+      return stored
+  }
+}
+
+/**
  * Where a room's tracks come from. Every variant resolves, server-side, to a
  * list of Deezer track ids; the browser never talks to Deezer directly, because
  * `api.deezer.com` answers without `Access-Control-Allow-Origin`.
+ *
+ * A playlist or a query is a list somebody named, so it stays an arm of its
+ * own and is never mixed with the catalogue.
  */
-export const trackSourceSchema = z.discriminatedUnion('kind', [
-  /**
-   * Every catalogue at once — the charts, the decades and the composers, drawn
-   * from side by side — and what a room opens on, because a host who has not
-   * chosen yet has not narrowed anything. The strip says it the way the genres
-   * do: nothing picked is everything.
-   *
-   * The two arms that need typing stay out of it. A playlist or a query is a
-   * choice somebody made, and there is no "every playlist".
-   */
-  z.object({ kind: z.literal('all') }),
-  /**
-   * Deezer genre charts, merged. The ids are the ones Deezer publishes at
-   * `/genre`, and each chart is a hundred tracks that are charting — the
-   * cheapest definition of "a song people know".
-   *
-   * **Empty means every genre**, which is the all-genres chart rather than an
-   * empty pool. A host who wants everything is the default state, and making
-   * them light twelve stamps to say so would be the wrong way round.
-   */
-  z.object({
-    genreIds: z.array(z.number().int().nonnegative()),
-    kind: z.literal('chart')
-  }),
-  /**
-   * **Empty means every decade**, for the same reason the chart's is: picking
-   * nothing already says everything.
-   */
-  z.object({
-    decades: z.array(trackDecadeSchema),
-    kind: z.literal('decade')
-  }),
-  /**
-   * Film and series music, drawn from a table of **composers** and never from
-   * the soundtrack charts. The distinction is the whole game: a song used in a
-   * film is not a film's score, and *Shallow*, *Skyfall* and *Eye of the Tiger*
-   * under this name would be a label the room catches out on its second round —
-   * they are already playable under every other arm.
-   *
-   * It carries nothing, because there is nothing left to choose. Which
-   * composers is a catalogue fact only `deezer-client.ts` may hold, and a
-   * composer who scores a series does the same job under the same name, so
-   * series ride along with no control of their own.
-   */
-  z.object({ kind: z.literal('film') }),
-  z.object({ kind: z.literal('playlist'), playlistId: z.string().min(1) }),
-  z.object({
-    kind: z.literal('search'),
-    query: z.string().trim().min(1).max(120)
-  })
-])
+export const trackSourceSchema = z.preprocess(
+  asCatalogue,
+  z.discriminatedUnion('kind', [
+    catalogueSourceSchema,
+    z.object({ kind: z.literal('playlist'), playlistId: z.string().min(1) }),
+    z.object({
+      kind: z.literal('search'),
+      query: z.string().trim().min(1).max(120)
+    })
+  ])
+)
 
 export const trackDifficulties = ['wellKnown', 'mixed', 'obscure'] as const
 
@@ -123,4 +179,5 @@ export type TrackIdentity = z.infer<typeof trackIdentitySchema>
 export type HostTrack = z.infer<typeof hostTrackSchema>
 export type TrackDecade = z.infer<typeof trackDecadeSchema>
 export type TrackSource = z.infer<typeof trackSourceSchema>
+export type CatalogueSource = Extract<TrackSource, { kind: 'catalogue' }>
 export type TrackDifficulty = z.infer<typeof trackDifficultySchema>
