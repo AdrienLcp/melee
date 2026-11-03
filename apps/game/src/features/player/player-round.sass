@@ -1,4 +1,5 @@
 @use '../../presentation/styles/framed'
+@use '../../presentation/styles/invitation'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/question-card'
@@ -121,6 +122,9 @@
 
     .seats
       @include seat-grid.seat-grid
+
+    .room-invitation
+      @include invitation.held-out
 
   // The question on its paper card with the round's sand along its top, the
   // way the framed rounds print it — and with no question, the groove alone.

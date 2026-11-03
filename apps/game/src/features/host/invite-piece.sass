@@ -1,3 +1,4 @@
+@use '../../presentation/styles/invitation'
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/leaflet'
 @use '../../presentation/styles/typography'
@@ -69,10 +70,7 @@
       animation: popover-strike var(--transition-fast, 0s) var(--ease-out)
 
     .room-invitation
-      --invitation-code-size: 2.5rem
-      --invitation-qr-max-width: 11.25rem
-
-      gap: var(--space-m)
+      @include invitation.held-out
 
     .next-round
       @include typography.caption

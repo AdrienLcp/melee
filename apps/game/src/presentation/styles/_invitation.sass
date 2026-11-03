@@ -1,0 +1,11 @@
+// Pure module: the room invitation's sizes shared by more than one stage.
+
+/// The invitation held out to somebody at arm's length off the screen it is
+/// drawn on, never read across a room: at 180px the modules of a room URL are
+/// seven pixels each, and a menu or a waiting screen keeps the rest of its
+/// height for what is under it. Include it on the `.room-invitation` itself.
+@mixin held-out
+  --invitation-code-size: 2.5rem
+  --invitation-qr-max-width: 11.25rem
+
+  gap: var(--space-m)

@@ -464,7 +464,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     closeRoom,
     endGame: view !== null && isGameInPlay(view.phase) ? endGame : null,
     handOver,
-    invitation: view === null || view.phase === 'lobby' ? null : roomCode,
+    invitation:
+      view === null ||
+      view.phase === 'lobby' ||
+      view.settings.teams.kind === 'aloud'
+        ? null
+        : roomCode,
     leaveSeat: view?.youId == null ? null : leaveSeat,
     pauseRound: pausableRoundId === null ? null : pauseRound,
     ...pawn,

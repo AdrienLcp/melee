@@ -1,3 +1,4 @@
+@use '../styles/invitation'
 @use '../styles/layout'
 @use '../styles/typography'
 @use '@adrienlcp/styles/accessibility'
@@ -206,21 +207,14 @@
       gap: var(--space-s)
 
     .room-invitation
-      --invitation-code-size: 2.5rem
-      // Scanned at arm's length off the screen it is drawn on, never across a
-      // room: a console's own square is already on the field behind this, and
-      // this one is for the host holding a screen out to somebody. At 180px the
-      // modules of a room URL are seven pixels each, and the half a popover it
-      // was spending goes back to the controls under it.
-      --invitation-qr-max-width: 11.25rem
-
-      gap: var(--space-m)
+      @include invitation.held-out
 
     // Every other summary in this product is a list of settings, which is why
-    // the register mutes it. This one is a person, and it is the whole reason
-    // the row exists — a device that has played before never sees its name
-    // anywhere else.
-    .seat-name
+    // the register mutes it. These two are the whole reason their row exists:
+    // a person — a device that has played before never sees its name anywhere
+    // else — and the code a host reads aloud.
+    .seat-name,
+    .invitation-row
       .summary
         color: var(--ink)
 

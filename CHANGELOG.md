@@ -134,10 +134,13 @@ one part.
 ### Improvements
 
 - `[Game]` **The menu leaves out what the screen already shows.** No QR code
-  in the lobby, whose stage is the invitation, on any screen; once the game
-  runs, the room's volume and full screen sit under the round's presses and
-  above the QR code, which would push them past the fold. Points by hand
-  leave the menu for the Players tab, where they already were.
+  in any menu before the first round: the console and the wall show it on
+  screen, and a player's waiting screen now does too, under the seats, to be
+  passed along a row. Once the game runs, the console folds it to one row,
+  *Invite* and the code, under the room's volume and full screen, and a
+  player's menu shows it open; a table playing aloud offers none. Points by
+  hand leave the menu for the Players tab, where they already were. A wall
+  narrower than a laptop keeps the square beside its code.
 
 - `[Game]` **A strip with one answer slides its choice across.** The board's
   length, the round count, the answer mode and every other one-answer strip

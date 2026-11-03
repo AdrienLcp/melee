@@ -127,6 +127,7 @@ import { OwnPawnPress } from '@/presentation/components/own-pawn-press'
 import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
+import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { SectionHeading } from '@/presentation/components/section-heading'
@@ -522,6 +523,12 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
             )}
           </div>
         </div>
+
+        {/* Under the seats, a scroll away: passed along a row of seats to
+            whoever is arriving, while the room's own screen may be far. */}
+        {view.settings.teams.kind !== 'aloud' && (
+          <RoomInvitation roomCode={view.code} />
+        )}
       </section>
     )
   }

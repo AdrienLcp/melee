@@ -47,6 +47,7 @@ import {
   FullscreenEnterIcon,
   FullscreenExitIcon,
   InstallIcon,
+  QrCodeIcon,
   ScreenIcon,
   ShareIcon
 } from './icons'
@@ -345,8 +346,15 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
   const { preference, setPreference } = useThemePreference(themeStore)
   const connection = useConnection()
   const isInsideRoom = useIsInsideRoom()
-  const { invitation, pauseRound, revealRound, roomVolume, setRoomVolume } =
-    useRoomActions()
+  const {
+    closeRoom,
+    invitation,
+    pauseRound,
+    revealRound,
+    roomVolume,
+    setRoomVolume
+  } = useRoomActions()
+  const runsTheRoom = closeRoom !== null
   const isOnCredits = useIsCurrentPath(creditsPathFor(locale))
   const isOnLegal = useIsCurrentPath(legalPathFor(locale))
   const isOnWallPairing = useIsCurrentPath(paths.wallPairing)
@@ -421,11 +429,24 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
           <Fullscreen />
 
           {/*
-                The way in once the lobby is over: the lobby's stage is the
-                invitation, and past it the room's screen keeps a corner
-                reminder and a player's screen nothing at all.
+                Unfolded on a player's screen, where passing the square along
+                a row of seats is what it is for. Folded on the console, whose
+                stage carries a square already: what the row adds there is
+                the link to copy or send.
               */}
-          {invitation !== null && <RoomInvitation roomCode={invitation} />}
+          {invitation !== null &&
+            (runsTheRoom ? (
+              <Disclosure
+                className='invitation-row'
+                icon={<QrCodeIcon />}
+                label={translate('invite.action')}
+                summary={invitation}
+              >
+                <RoomInvitation roomCode={invitation} />
+              </Disclosure>
+            ) : (
+              <RoomInvitation roomCode={invitation} />
+            ))}
 
           {!isInsideRoom && !isOnWall && (
             <section className='this-device'>

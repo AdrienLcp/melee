@@ -51,8 +51,9 @@ export type RoomActions = {
   handOver: (() => void) | null
   /**
    * The room the menu's invitation lets somebody into. `null` in the lobby,
-   * whose stage is the invitation already, and on a screen that holds no seat
-   * and runs no room.
+   * whose stage carries the invitation on every screen; at a table playing
+   * aloud, which nobody joins; and on a screen that holds no seat and runs no
+   * room.
    */
   invitation: RoomCode | null
   /** Gives the seat up, so the roster on the console is true at once. */
