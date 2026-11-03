@@ -1,5 +1,11 @@
 # 61 — Cumulative track sources
 
+**Done** 03/11/2026, as decided below. Two things the plan did not foresee:
+a strip holding several answers now inks each ticked stamp flat in the tray
+with a check, because the strands, genres and decades all ticked read as a
+wall of lifted pieces (`DESIGN.md`, *Strips*), and the stored-room patch is
+its own module, `stored-settings.ts`, beside the other load-time patches.
+
 **Goal.** A blind test draws from any combination of *top charts*, *decades*
 and *film scores*, ticked together, instead of one of them or the fixed
 `all` mix. The host's ask (03/11/2026): "a complete blind test should have

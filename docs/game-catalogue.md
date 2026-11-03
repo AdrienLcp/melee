@@ -124,42 +124,60 @@ a prerequisite, and it is the one that should be allowed to force the decision.
 ### Where a question would slot in
 
 The blind test's source picker is the template, and it is more reusable than it
-looks. `TrackSource` is `all | chart | decade | film | playlist | search` — six
-ways to fill one pool, chosen in the lobby, committed by the launch. `all` is
-the strip with nothing pressed: the three catalogues side by side, each filtered
-on its own rules and evened to the thinnest before they meet, which is also why
-a round, not the settings, says whether it asks for the film. A quiz is the same
-picker with different arms, and the shape underneath is already built: the
-countdown, the buzz order, the lockout, the verdict, the reveal, the scoreboard.
+looks. `TrackSource` is `catalogue | playlist | search` — three ways to fill one
+pool, chosen in the lobby, committed by the launch. The catalogue is the strands
+the product curates — genre charts, decades, film scores — ticked together, each
+filtered on its own rules and evened to the thinnest before they meet, which is
+also why a round, not the settings, says whether it asks for the film. One
+strand is drawn whole; two or more are sampled, a few decade playlists and a few
+composers, so a mix costs Deezer what one strand does. It replaced four arms
+(`all`, `chart`, `decade`, `film`, protocol 67): `all` had been the strip with
+nothing pressed, and nobody reads an empty strip as *everything*, so the mix
+became what is ticked. A playlist and a search stay arms of their own, because a
+list the host names is not a catalogue and is never mixed into one. The old arms
+still parse, as the strands they drew, in every stored setup and in a room
+stored before the deploy (`stored-settings.ts`). A quiz is the same picker with
+different arms, and the shape underneath is already built: the countdown, the
+buzz order, the lockout, the verdict, the reveal, the scoreboard.
 
-The fourth and fifth arms are worth reading before adding a sixth, because the
-fourth is the one that carries **no catalogue detail at all**. A decade is six words the room
+A catalogue has **no preview**. Its lists are curated and never come back
+empty, so the count a decade or film press fetched only spent Deezer quota; the
+two routes went with the arms. A preview earns its request where the host typed
+something that may match nothing — a playlist address, a search.
+
+The decade and film strands are worth reading before adding a fourth, because
+the decades are the one that carries **no catalogue detail at all**. A decade is six words the room
 already says, and which Deezer playlists each costs lives in `deezer-client.ts`
 with the popularity floors. The alternative — a preset that is really a playlist
 id the browser holds — was rejected for what it does to the round trip: a host
 who typed that id by hand reopens the picker on the wrong control, and nothing
 ties the label to what it fetches. `TrackDifficulty` settled the same argument
-first, and the rule it leaves is: **an arm names what the room asked for, never
+first, and the rule it leaves is: **a source names what the room asked for, never
 what the catalogue charges for it.**
 
-The fifth is the one that moved something no arm had moved before: **what the
-round asks for**. Every other source hands the room a title and an artist, and
-the film arm hands it a film and a composer — a score cue is called `Cornfield
+The film strand is the one that moved something no source had moved before:
+**what the round asks for**. Every other strand hands the room a title and an
+artist, and the film strand hands it a film and a composer — a score cue is called `Cornfield
 Chase`, which is the one thing at the table nobody can produce. So
-`TrackIdentity` gained `film`, `null` on every other arm, and it is the film the
+`TrackIdentity` gained `film`, `null` on every other track, and it is the film the
 half is measured against wherever it is set. The verdict kept its two field
 names on purpose: what each half *is* is a property of the track, and renaming
 the wire contract to fix a word on one screen would have been paying the whole
 protocol for a label. The screens say *film* and *compositeur*; the schema still
 says `titleCorrect`.
 
-It is also the first arm to **overrule a room setting**. Deezer's rank scores
+It is also the first source to **overrule a room setting** — when it is drawn
+alone. Deezer's rank scores
 the recording and a score cue carries almost none of a single's, so the whole
 composer table holds 135 tracks above `wellKnown`'s floor against 1 155 above
-this arm's own — and a difficulty control whose *hard* position leaves 75 tracks
+this strand's own — and a difficulty control whose *hard* position leaves 75 tracks
 is a control whose room never learns why. The strip is ruled and says so, read
 off the **draft** rather than the room, or it would go on claiming to work for a
-whole round after the composers were chosen.
+whole round after the composers were chosen. In a mix the control works and
+reaches the charts and decades, the composers keeping their own floor, because
+each strand is filtered on its own rules before they meet. The answer line
+follows the same split: title and artist, the film, or — a mix holding scores
+— title and artist, or the film for a score (`trackAnswersOf`).
 
 So `QuestionSource: hosted | bank | api`, and each arm is a separate size:
 

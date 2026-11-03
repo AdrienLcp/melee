@@ -8,6 +8,21 @@ one part.
 
 ### Features
 
+- `[Shared]` **A blind test draws from the top charts, the decades and the
+  film scores ticked together.** The picker asks where the tracks come from —
+  the catalogue, a Deezer playlist or a search — and under the catalogue,
+  which strands: any of the three, all of them by default, the last one never
+  unticked. Each strand keeps its own rules and the mix is evened out so none
+  drowns the others; the answer line says *title and artist, or the film for a
+  score* when the two meet. Setups, saved line-ups and rooms stored before the
+  change come back on the strands they drew. The decade and film previews are
+  gone: the catalogue never comes back empty, so they only spent Deezer's
+  quota. `PROTOCOL_VERSION` goes to 67.
+
+- `[Game]` **A stamp ticked among several is inked flat in its tray, with a
+  check**, rather than lifted out like a single answer, so a strip with
+  everything ticked no longer reads as a wall of answers.
+
 - `[Shared]` **Every seat picks its pawn colour, not only a team.** A seat
   holds a colour of its own, the one its pawn stands in wherever no team
   covers it, and the menu carries it as *My pawn* under the name: the pawn

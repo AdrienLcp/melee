@@ -60,6 +60,8 @@ colors:
   good: "oklch(52% 0.13 155)"
   good-edge: "oklch(38% 0.1 155)"
   good-soft: "light-dark(oklch(86% 0.09 155), oklch(75% 0.11 155))"
+  ticked: "light-dark(oklch(89% 0.055 32), oklch(38% 0.095 28))"
+  ticked-ink: "light-dark(oklch(45% 0.17 30), oklch(87% 0.075 35))"
   danger: "oklch(48.3% 0.1958 25.03)"
   danger-ink: "oklch(97.13% 0.014 17.4)"
 typography:
@@ -476,7 +478,11 @@ query, because the same control is drawn in boxes the viewport cannot tell
 apart. `$width` is measured in the longer locale and given in `rem`. The round
 count's row is 290px in French with its six stamps and about 326px with a
 seventh (a count off the steps, twelve for three games), so it stacks below
-18.5rem and 21rem.
+18.5rem and 21rem. The blind test's *where the tracks come from* is 489px in
+French and stacks below 31rem; its strands are 507px with all three ticked,
+checks included, and stack below 34rem. *Chanson française* ticked wraps to two
+lines in the genres' two-column step, a 163px cell: accepted, the genre grid
+letting a cell's label wrap (`white-space: normal`) where a strip's row does not.
 
 **A strip holding one answer moves its piece.** The chosen stamp of a
 `SegmentedControl`, or of a `ToggleGroup` in `single` mode, is one element
@@ -486,8 +492,8 @@ stretch — a press, or the server echoing another console's change. Only a new
 choice glides: a strip changing shape under its container query, its first
 placement and a choice made where there was none are set down in place, the
 last fading in on `fast`, as letting go of the only choice fades it out. A
-strip holding several keeps a piece per stamp, faded in and out on `fast`:
-nothing travels where nothing left.
+strip holding several has no piece at all: each ticked stamp is inked where it
+lies (*Strips*, below), so nothing travels where nothing left.
 
 **The No-Scroll Rule.** A question and its four choices never scroll.
 `e2e/choice-fits.spec.ts` stubs the socket and measures sixteen viewports —
@@ -850,6 +856,12 @@ Stamps in a tray (`--ink` at 7% over `--field`, padding equal to the gap),
 edge and the shape say which one is on where two options would leave the colour
 alone ambiguous. The ink block it replaced read as a square frame against the
 tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
+A strip holding several answers lifts nothing: each ticked stamp is inked flat
+in the tray — `--ticked` ground, `--ticked-ink` text, a leading check
+(`CheckIcon`) stamped on with `tick-stamp` on `fast` — because twelve lifted
+pieces read as a wall, and as *the* answer. On paper (`paper-inks`) it
+re-points to `--card-ticked` and `--card-ticked-ink`, which stay light when the
+board goes dark.
 An option may carry a `mark`, a `--text-3xs` line under its label and never
 beside it, so no strip widens past its measured `stacks-below`: *Host judges*
 under every answer mode a verdict is owed in.
@@ -1466,8 +1478,8 @@ bounced. Durations:
   ranking moves would replay it. The Players tab's count is stamped on
   (`tick-stamp`, `fast`), and the reconnecting pill rises with `page-enter`.
   On the host's setup, a block a choice brings in rises with `page-enter` — a
-  switch, strip or field a setting reveals, the blind test's genres, decades
-  or address form, Petit Bac's count or fixed list, the board's rules — and
+  switch, strip or field a setting reveals, the blind test's strands, genres,
+  decades or address form, Petit Bac's count or fixed list, the board's rules — and
   stands still when it was already there as its page or tab opened, which is
   the entrance (`useArrivedLater`); a row the host adds to a key, a label
   list, the challenge lines, Petit Bac's own categories or the kept line-ups

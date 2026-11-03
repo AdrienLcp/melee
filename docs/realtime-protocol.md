@@ -674,8 +674,10 @@ Shared by all three:
                 "mode": { "kind": "typed" },   // buzzer arm adds answerWindowMs
                 "game": { "kind": "blindtest", "roundDurationMs": 30000,
                           "difficulty": "wellKnown",
-                          // chart | decade | playlist | search
-                          "source": { "kind": "chart" } } },
+                          // catalogue | playlist | search
+                          "source": { "kind": "catalogue", "charts": [],
+                                      "decades": null,
+                                      "hasFilmScores": true } } },
   "round": {
     "id": "…",
     "index": 3,                    // 1-based
