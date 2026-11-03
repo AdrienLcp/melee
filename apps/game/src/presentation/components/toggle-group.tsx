@@ -82,14 +82,8 @@ export const ToggleGroup: React.FC<ToggleGroupProps> = ({
             id={option.value}
             key={option.value}
           >
-            {({ isSelected }) => (
-              <>
-                {isSelected && !holdsOneAnswer && (
-                  <CheckIcon className='tick' />
-                )}
-                {option.label}
-              </>
-            )}
+            {!holdsOneAnswer && <CheckIcon className='tick' />}
+            {option.label}
           </ToggleButton>
         ))}
       </div>

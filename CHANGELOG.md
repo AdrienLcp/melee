@@ -133,6 +133,10 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A check slides in and out rather than switching.** Ticking an
+  answer among several slides its label aside and fades the check into the
+  room it made; unticking fades the check first and closes the room after.
+
 - `[Game]` **The menu leaves out what the screen already shows.** No QR code
   in any menu before the first round: the console and the wall show it on
   screen, and a player's waiting screen now does too, under the seats, to be

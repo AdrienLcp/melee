@@ -101,7 +101,7 @@ a locale) · `react-components` (the compiler owns memoization, the `style` prop
 normaliser for a record search; answer matching is not one)
 · `screen-roles` (what each screen is for, which may scroll, what gives
 way first) · `design-system` (wrapping a react-aria primitive) · `sass-architecture`
-(layers, tokens, both palettes, state attributes) · `code-style` ·
+(layers, tokens, both palettes, state attributes, motion) · `code-style` ·
 `file-naming` · `comments` · `test-conventions` (tags, the socket harness) ·
 `e2e` (build first, three journeys) · `committing` (another session
 shares the index) · `worktrees` (a branch beside the checkout, a server
@@ -126,6 +126,8 @@ stopped by its process tree)
 - `react-aria-components` for anything interactive — check for an existing
   primitive before writing custom HTML with hand-rolled ARIA
 - Style from react-aria's `data-*` attributes, never a hand-composed state class
+- Animate every visible state change, in and out — a mark a state shows stays
+  mounted and its attribute opens it (`sass-architecture`)
 - An object parameter when two arguments share a type — `fn({ from, to })`
 - `type` for props, with a JSDoc on every prop that adds information
 - A bracketed tag on every test — `it('[clock] …')`

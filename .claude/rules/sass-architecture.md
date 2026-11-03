@@ -1,5 +1,5 @@
 ---
-description: Layers, the index.html cascade order, tokens and units, the two palettes, the text voice, react-aria's state attributes
+description: Layers, the index.html cascade order, tokens and units, the two palettes, the text voice, react-aria's state attributes, motion between states
 paths:
   - "**/*.sass"
   - "apps/game/index.html"
@@ -321,6 +321,31 @@ focused element is not one that list matches — a `Radio`'s label over its
 hidden input, a slider's thumb — and a ring
 closer than the configured offset passes `$offset` rather than an
 `outline-offset` written after the include.
+
+## A state change moves, both ways
+
+Every change a user can see — a tick, a mark, a stamp inked, a label pushed
+aside — travels from one state to the other and back. An abrupt swap is a
+defect like a wrong colour: the product is meant to feel smooth everywhere
+(Adrien, 2026-11-03).
+
+- **A mark a state shows stays mounted, and the state opens it.**
+  `{isSelected && <CheckIcon />}` can only pop in and vanish — what has left
+  the tree cannot fade out. Render it always and let the attribute
+  (`[data-selected]`) transition it; `_strip.sass`'s `.tick` is the pattern.
+- **The room it takes moves with it.** Text a mark pushes aside slides: the
+  mark sits folded at no width (`inline-size: 1em` over
+  `margin-inline-end: -1em`) and the margin transitions.
+- **Leaving is faster than arriving, and each direction is written in the
+  state it ends on** — a transition is read off the state being entered.
+  Arriving opens the room on `--transition-base` and fades the mark in after a
+  delay written over a token; leaving fades it on `--transition-fast` and
+  closes the room after.
+- **What truly leaves the tree plays its exit first**: `[data-exiting]` on a
+  react-aria overlay (`action-menu.sass`), a leaving state ended on
+  `animationend` (`react-components.md`), a view transition for a page.
+
+Reduced motion needs nothing more: the tokens collapse (*Tokens*).
 
 ## Single-line text in a box is trimmed, not squeezed
 

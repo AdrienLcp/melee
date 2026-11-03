@@ -168,17 +168,29 @@
       margin-block-start: var(--space-2xs)
 
   // A strip holding several, which is every one without a travelling piece,
-  // inks each ticked stamp and draws its check, pressed on as it is ticked.
+  // inks each ticked stamp and checks it.
   .segments:not(:has(> .indicator)) .segment[data-selected]:not([data-disabled])
     @include -inked-stamp
 
+  // Every stamp carries its check, folded at no width under the label, so
+  // ticking slides the label aside and fades the check into the room it made,
+  // and unticking fades it first and closes the room after. A check mounted
+  // with the tick could only pop in and vanish.
   .tick
-    animation: tick-stamp var(--transition-fast, 0s) var(--ease-out)
     block-size: 1em
     display: inline-block
     inline-size: 1em
-    margin-inline-end: var(--space-2xs)
+    margin-inline-end: -1em
+    opacity: 0
+    scale: 0.6
+    transition: opacity var(--transition-fast, 0s) var(--ease-out), scale var(--transition-fast, 0s) var(--ease-out), margin-inline-end var(--transition-fast, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
     vertical-align: -0.125em
+
+  .segment[data-selected] .tick
+    margin-inline-end: var(--space-2xs)
+    opacity: 1
+    scale: 1
+    transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
   // A strip holding one answer draws its chosen stamp as one piece that
   // travels to the next choice (`useSelectionIndicator` places it), so the
