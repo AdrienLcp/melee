@@ -437,6 +437,16 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Opening a table is one motion again, not a cut.** The page being
+  left now fades over the new one rather than under it, where it was never
+  seen; the desk keeps its scrollbar gutter until the change has played,
+  because a viewport changing under it made Chromium skip the transition; and
+  the waiting console no longer mounts its page a second time when the room's
+  first view lands. The panel then slides in whole from its edge with its
+  tabs in it, the stage is laid down beside it, the menu rises with them, and
+  the *Connecting…* pill no longer flashes for the instant a first connection
+  takes — it rises only on a connection that is slow, and fades out once back.
+
 - `[Game]` **A Petit Bac word the table refuses shows as refused on its
   author's screen.** The vote showed the author *Yours* and nothing else, so
   the word fell without them knowing; it is struck through now, and *Yours*

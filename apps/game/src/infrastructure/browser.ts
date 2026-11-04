@@ -169,10 +169,27 @@ export const settleSkippedViewTransitions = (): void => {
 
 const LAYOUT_MOVED_EVENT = 'melee:layout-moved'
 
+const LAYOUT_MOVE_ATTRIBUTE = 'data-layout-move'
+
+let layoutMovesRunning = 0
+
+const markLayoutMoveEnded = (): void => {
+  layoutMovesRunning -= 1
+
+  if (layoutMovesRunning === 0) {
+    document.documentElement.removeAttribute(LAYOUT_MOVE_ATTRIBUTE)
+  }
+}
+
 /**
  * Plays a change of layout as one move from the old screen to the new, where
  * the browser can and the visitor has not asked for less motion. `update` must
  * reach the DOM before it returns, so a React state change goes in `flushSync`.
+ *
+ * The root carries `data-layout-move` for as long as a move runs, and only
+ * then do the panel, the stage and the board's cases take a transition name of
+ * their own: on a page change they stay in the page's picture, which the page
+ * being left fades over, rather than each fading in on the browser's default.
  */
 export const moveLayout = (update: () => void): void => {
   if (
@@ -184,10 +201,15 @@ export const moveLayout = (update: () => void): void => {
     return
   }
 
-  document.startViewTransition(() => {
+  layoutMovesRunning += 1
+  document.documentElement.setAttribute(LAYOUT_MOVE_ATTRIBUTE, '')
+
+  const transition = document.startViewTransition(() => {
     update()
     window.dispatchEvent(new Event(LAYOUT_MOVED_EVENT))
   })
+
+  transition.finished.then(markLayoutMoveEnded, markLayoutMoveEnded)
 }
 
 /**

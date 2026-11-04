@@ -598,3 +598,34 @@ At 414 px and 1920 px:
 - all three theme paths, including no `data-theme` attribute at all;
 - that a locale or theme switch leaves the socket alone — it is not in the
   hook's dependencies, and a remount there ends a round.
+
+## Filming a motion
+
+A screenshot cannot say whether something arrived or cut in, and neither can
+a green build: a motion is checked on a **filmstrip**. Inside one
+`browser_run_code_unsafe`, open a CDP session, `Page.startScreencast` (JPEG,
+480 wide, every frame, each one acknowledged), press what starts the change, stop
+after two seconds, then lay the frames out on one contact sheet — a second page
+`setContent` with a grid of `data:` images, each stamped with its time — and
+`screenshot` it to the scratchpad. One image, eighteen to twenty-seven frames,
+is the whole sequence. The tool has no `require` and no dynamic `import`, so
+`page.screenshot({ path })` is the only way a file leaves it.
+
+Put the frames on the page's clock: `f.metadata.timestamp * 1000 -
+performance.timeOrigin` is a frame's time in `performance.now()`, so a wrapped
+`document.startViewTransition` (log `ready`, its rejection's message, and
+`finished`) and a `MutationObserver` on `#root` line up with what was drawn.
+
+What this found, each invisible in any still:
+
+- **A transition the browser skipped**: `ready` rejected with *Viewport size
+  changed* — the desk drops the scrollbar gutter, so the page went at once.
+- **The new picture over the old**: the browser stacks
+  `::view-transition-new` above `-old`, so a page fading out under an opaque
+  new root is never seen.
+- **A page mounted twice**: one child on the waiting desk against two on the
+  room's, so the first view mounted the stage again, cut the transition short
+  and laid the page down twice. A second insertion of the same class in the
+  observer's log is the tell.
+- **A motion too short to read**: `--ease-out` lands nine tenths of a move in
+  its first third, so a `fast` fade or a rem of travel reads as a cut.

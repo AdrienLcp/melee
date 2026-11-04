@@ -85,6 +85,12 @@
       overflow: hidden
       scrollbar-gutter: auto
 
+    // Kept through a page change: a gutter dropped under it changes the
+    // viewport, and Chromium skips the transition, cutting the page left.
+    // A layout move keeps the desk's own width on both sides.
+    html:has(.host-desk):active-view-transition:not([data-layout-move])
+      scrollbar-gutter: stable
+
     .host-desk > .host-console-page
       height: 100dvh
       overflow: hidden auto
@@ -101,7 +107,7 @@
       @supports not (view-transition-name: none)
         transition: grid-template-columns var(--transition-base, 0s) var(--ease-out)
 
-      > .host-console-page
+      :root[data-layout-move] & > .host-console-page
         view-transition-name: host-stage
 
       &[data-folded]
@@ -114,7 +120,7 @@
           grid-template-columns: var(--host-rail-width) minmax(0, 1fr)
 
         .host-panel
-          --panel-arrival-from: -1rem
+          --panel-arrival-from: -100%
 
           border-radius: 0 var(--radius-l) var(--radius-l) 0
           box-shadow: 1px 0 0 var(--card-rule), var(--shadow-panel-start)
@@ -147,11 +153,10 @@
     .host-panel
       @include box-lid.paper
 
-      --panel-arrival-from: 1rem
+      --panel-arrival-from: 100%
       --tab-selected: var(--well)
 
-      animation: panel-dock calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
-      view-transition-name: host-panel
+      animation: panel-dock var(--transition-slow, 0s) var(--ease-out) backwards
 
       align-self: start
       border-radius: var(--radius-l) 0 0 var(--radius-l)
@@ -163,6 +168,14 @@
       position: sticky
       top: 0
       z-index: 1
+
+      // Held off the edge, its column kept, until the room's first view fills
+      // it, so it slides in once with its tabs rather than empty.
+      &[data-waiting]
+        animation-play-state: paused
+
+      :root[data-layout-move] &
+        view-transition-name: host-panel
 
       > .react-aria-Tabs
         display: grid
@@ -364,8 +377,9 @@
     &::view-transition-new(host-panel)
       inset-inline: auto 0
 
-  // Slid in from the edge it is docked to, the way a lid is pushed onto the
-  // table: the side is read from `--panel-arrival-from`, which `data-side` flips.
+  // Slid in whole from the edge it is docked to, the way a lid is pushed onto
+  // the table: the side is read from `--panel-arrival-from`, which `data-side`
+  // flips. A nudge of a rem read as the panel cutting in.
   @keyframes panel-dock
     from
       opacity: 0

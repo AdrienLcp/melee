@@ -123,10 +123,14 @@
       grid-row: var(--row)
       position: relative
       view-transition-class: board-case
-      view-transition-name: match-element
       // Fully past the screen's edge: the case's own size, then the edge it
       // stood off.
       --track-from: 0 calc(-100% - var(--board-edge))
+
+      // Only a layout move travels the cases: a page change keeps the board in
+      // the page's own picture, which lifts off whole.
+      :root[data-layout-move] &
+        view-transition-name: match-element
 
       &[data-side='left']
         --track-from: calc(-100% - var(--board-edge)) 0

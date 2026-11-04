@@ -1484,21 +1484,30 @@ bounced. Durations:
   a fresh `page-lay` and laid the whole screen down again, the player's at
   every reveal and a wide console's at every buzz. `none` stays only where
   the arrival is put off until there is something to lay down.
-  The host's panel slides in from the edge it is docked to (`panel-dock`,
-  1rem and a fade on the same duration, the side read from
-  `--panel-arrival-from`). No scale and no overshoot: a page is set down, not
-  dropped. The page being left lifts off rather than vanishing: every
-  router navigation is a view transition (`navigateDefaults` in
-  `app-shell.tsx`) whose old root fades on `fast` (`page-leave`) while the new
-  root is shown as is — its own `page-lay` mask is the entrance. The
-  console's panel stands, empty, from the first frame (`tabs={null}` before the
-  room's first view): drawn only with the view, it arrived up to a second late
-  and pushed the invitation 330px across a 1440px desk — new nodes, so
-  `layout-shift` never counted it, and a filmstrip is how a late arrival is
-  found. The stage waits for that view the same way: empty, it is not laid
-  down (`:has(> .stage:empty)`), so the arrival plays once, over the lobby,
-  and the menu stays hidden until the view puts the board — and the corner it
-  moves the menu to — on screen.
+  The host's panel slides in whole from the edge it is docked to
+  (`panel-dock`, its own width and a fade on `slow`, the side read from
+  `--panel-arrival-from`): a rem of travel read as the panel cutting in. No
+  scale and no overshoot: a page is set down, not dropped. The page being
+  left lifts off rather than vanishing: every router navigation is a view
+  transition (`navigateDefaults` in `app-shell.tsx`) whose old root fades on
+  `base` (`page-leave`) **stacked above** the new root, which is shown as is
+  — its own `page-lay` mask is the entrance. The browser draws the new picture
+  on top, so without `z-index` the fade was hidden and every page change was a
+  cut. The panel, the stage and the board's cases take transition names of
+  their own only during a layout move (`data-layout-move`, set by
+  `moveLayout`): named on a page change, each faded in on the browser's
+  default instead of arriving. The desk keeps the scrollbar gutter for as long
+  as a page change runs, because the viewport changing under it makes Chromium
+  skip the transition. The console's panel stands from the first frame
+  (`tabs={null}` before the room's first view), its column kept and itself held
+  off the edge (`data-waiting`, the animation paused): drawn only with the
+  view, it pushed the invitation 330px across a 1440px desk, and slid in empty
+  it had its tabs cut in under it a beat later. The stage waits for that view
+  the same way: empty, it is not laid down (`:has(> .stage:empty)`), so the
+  room arrives once — panel, stage, menu and board together. The waiting desk
+  takes the same two children as the room's, or the first view mounts the
+  page again. The menu rises with the view (`page-enter`), or fades in a
+  second later on a socket that never answers.
 - **A block arriving later** — on a screen already laid down. New content
   rises with `page-enter` on `base`: the player's hold, *Ready* press and
   standings a beat after the card (`slow` × 0.6, with the payout), the game a
@@ -1523,7 +1532,9 @@ bounced. Durations:
   a roster or a tray is set down from above (`seat-arrives`, `slow`) — on the
   Players tab too, the first seat included, in the lobby only: a row the
   ranking moves would replay it. The Players tab's count is stamped on
-  (`tick-stamp`, `fast`), and the reconnecting pill rises with `page-enter`.
+  (`tick-stamp`, `fast`). The reconnecting pill rises a beat late (`slow` ×
+  1.5), so a socket that answers at once never flashes it, and fades out on the
+  line it last said once the screen is back.
   On the host's setup, a block a choice brings in rises with `page-enter` — a
   switch, strip or field a setting reveals, the blind test's strands, genres,
   decades or address form, Petit Bac's count or fixed list, the board's rules — and

@@ -834,6 +834,13 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     </Main>
   )
 
+  const boardTrack = view !== null && isSpeaker && (
+    <BoardTrack
+      board={isDesk ? view.settings.board : DEFAULT_BOARD_SETTINGS}
+      pawns={trackPawnsOf(view)}
+    />
+  )
+
   if (view === null) {
     return (
       <PawnColoursProvider view={view}>
@@ -844,7 +851,11 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           playerCount={0}
           tabs={null}
         >
+          {/* The room's desk below takes the same two children: one alone
+              would mount the page again under the first view, cutting the
+              page's transition short and laying it down twice. */}
           {page}
+          {boardTrack}
         </HostPanel>
       </PawnColoursProvider>
     )
@@ -930,12 +941,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         }}
       >
         {page}
-        {isSpeaker && (
-          <BoardTrack
-            board={isDesk ? view.settings.board : DEFAULT_BOARD_SETTINGS}
-            pawns={trackPawnsOf(view)}
-          />
-        )}
+        {boardTrack}
       </HostPanel>
     </PawnColoursProvider>
   )

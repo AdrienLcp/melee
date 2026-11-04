@@ -23,8 +23,11 @@
   // A page navigated to is already laid down by its own `page-lay`, under a
   // mask that starts empty, so only the page being left needs a motion: drawn
   // over the new one, it lifts off instead of vanishing.
+  // Above the new picture, which the browser stacks on top of the old: left
+  // there, the new page hid the one fading out and a page change was a cut.
   ::view-transition-old(root)
-    animation: page-leave var(--transition-fast, 0s) var(--ease-out) both
+    animation: page-leave var(--transition-base, 0s) var(--ease-out) both
+    z-index: 1
 
   ::view-transition-new(root)
     animation: none

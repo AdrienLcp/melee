@@ -63,9 +63,14 @@
 
     // Where the console's corner is depends on the board, which only the
     // room's first view says: drawn before it, the menu jumped 57px down and
-    // in. A socket that never answers still shows it, a second later.
+    // in. It rises with that view, and a socket that never answers still
+    // shows it, a second later. Two keyframes, because a delay dropped from a
+    // running animation shows it mid-way rather than starting it over.
+    :root:has(.host-console-page) &
+      animation: page-enter var(--transition-base, 0s) var(--ease-out) backwards
+
     :root:has(.host-console-page > .stage:empty) &
-      animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 2) backwards
+      animation: swap-in var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 2) backwards
 
     // A wall is furniture, and after a few seconds nobody is at it. Only the
     // screen that knows that says so — the invitation page stamps `data-idle`

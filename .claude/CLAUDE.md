@@ -74,7 +74,17 @@ and `pnpm test:e2e` runs three Playwright journeys on ports of their own.
 coverage and e2e — run it before saying something works. Ports are offset from 3000/5173 so this repo runs beside the
 other dev servers on the machine.
 
-## The four rules that matter most here
+## The five rules that matter most here
+
+0. **Nothing appears or leaves at once, and a change keeps what already
+   moves.** Every page, panel, block and state enters and leaves with a
+   motion (`sass-architecture`, *A state change moves*); a cut is a bug like a
+   wrong colour. Motion breaks silently — a page mounted twice, a view
+   transition the browser skips, a picture drawn over the one leaving — so a
+   change to a screen, a route, a mount order or a transition is **filmed**
+   before it is called done (`docs/browser-driving.md`, *Filming a motion*).
+   Adrien asked for this in five sessions running; it is never his to ask
+   again.
 
 1. **A player is never sent the answer.** Host and player have separate message
    unions; player frames are encoded *through* their schema, so Zod strips leaks.

@@ -110,7 +110,8 @@ type HostPanelProps = {
   /**
    * What each tab holds, or `null` before the room's first view: the panel
    * stands empty rather than absent, so the stage beside it is laid out at
-   * its final width from the first frame.
+   * its final width from the first frame, and holds its arrival until they
+   * come, so it slides in once, filled.
    */
   tabs: Record<PanelTab, React.ReactNode> | null
 }
@@ -216,7 +217,11 @@ export const HostPanel: React.FC<HostPanelProps> = ({
       data-stage-full={isStageFull || undefined}
     >
       {children}
-      <aside aria-label={translate('host.panel.label')} className='host-panel'>
+      <aside
+        aria-label={translate('host.panel.label')}
+        className='host-panel'
+        data-waiting={tabs === null || undefined}
+      >
         {isRail ? (
           <div className='panel-rail'>
             {foldTool}
