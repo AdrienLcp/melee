@@ -179,6 +179,7 @@ describe('the rules every socket obeys', () => {
       {
         board: null,
         colour: 1,
+        head: 'round',
         id: aliceId,
         isConnected: true,
         isReady: false,
