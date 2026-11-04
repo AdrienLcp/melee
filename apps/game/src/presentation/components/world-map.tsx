@@ -71,6 +71,12 @@ const SHOWN_LEAST_SPAN = 0.08
  * than itself.
  */
 const REVEAL_LEAST_SPAN = 0.12
+/**
+ * The least the reveal of a place nobody pinned spans, as a share of the
+ * map's width — a continent, so a table that named a coloured country sees
+ * where on the globe it stood rather than the close-up it was asked on.
+ */
+const NAMED_REVEAL_LEAST_SPAN = 0.25
 
 /** A marker the reveal draws: whose pawn, where, and what its line says. */
 export type RevealedMarker = {
@@ -198,7 +204,7 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
                 ? boxInContext({ map, target })
                 : boxAround({ geometry, markers, target }),
             frame: { ...frame, width: frame.width - CONTROLS_INSET },
-            leastSpan: markers.length === 0 ? 0 : map.width * REVEAL_LEAST_SPAN,
+            leastSpan: map.width * leastSpanShareOf({ markers, revealed }),
             map
           })
         })
@@ -461,6 +467,20 @@ const shownTargetOf = (
   const countryCode = geometry.countryAt(shown.point)
 
   return countryCode === null ? null : { countryCode, kind: 'country' }
+}
+
+const leastSpanShareOf = ({
+  markers,
+  revealed
+}: {
+  markers: readonly RevealedMarker[]
+  revealed: WorldMapProps['revealed']
+}): number => {
+  if (markers.length > 0) {
+    return REVEAL_LEAST_SPAN
+  }
+
+  return revealed === undefined ? 0 : NAMED_REVEAL_LEAST_SPAN
 }
 
 /** A place with enough of the map around it to be recognised by where it is. */
