@@ -8,6 +8,38 @@ one part.
 
 ### Features
 
+- `[Shared]` **Once the planned games are played, the host chooses what
+  comes next: games drawn at random, or the same order again from the top.**
+  *Then* sits under the last planned game, offered while the line-up outlives
+  its plan and every game in it has a planned round — one kept to the draw
+  alone would never come up in a loop. The order again resumes after whatever
+  was just played, so a game the host picked by hand moves the loop on rather
+  than restarting it, and a game the host brings is passed over once it is
+  played. Remembered with the host's other table settings.
+  `PROTOCOL_VERSION` goes to 71.
+
+- `[Shared]` **A table is family-friendly whatever it plays.**
+  *Family-friendly* is a table setting, on by default, offered in the Table
+  tab while the line-up deals something rated — today a quiz in French, the
+  only bank with adult-rated questions — and the table summary says when it
+  is off. It replaces the quiz's own switch, so two quizzes in one line-up are
+  no longer told twice; a host who had turned that one on finds the table
+  family-friendly again. `PROTOCOL_VERSION` goes to 70.
+
+- `[Shared]` **The speed bonus can be turned off**, for a table where being
+  right is the whole game — children beside grandparents. A switch in the
+  Table tab, offered only while something in the line-up pays the clock; it
+  applies from the next round, the rule lines stop promising a bonus, and the
+  table summary says when it is off. `PROTOCOL_VERSION` goes to 69.
+
+- `[Shared]` **The host chooses how the game ends: the first pawn home, a
+  round count, or never.** The three no longer race each other: on a track
+  with no count the first pawn home ends it, a count ends on its count alone —
+  a pawn home before it waits on the last square, ranked first — and with
+  neither the host ends it. The round-count strip becomes *Game ends*, with a
+  *Finish* stamp once a track is laid, and the console no longer offers *Next
+  round* on the reveal a pawn got home while the final board went up.
+
 - `[Shared]` **A blind test draws from the top charts, the decades and the
   film scores ticked together.** The picker asks where the tracks come from —
   the catalogue, a Deezer playlist or a search — and under the catalogue,
@@ -133,6 +165,23 @@ one part.
   reveal, over whatever the votes said.
 
 ### Improvements
+
+- `[Game]` **Every duration on offer is one the game takes, and Atlas gets
+  one.** Higher or lower offers 5, 10 and 20 seconds — it offered 30, 45 and 90
+  against a 30-second cap, two of them refused and none shown chosen — and
+  Atlas, which had a duration and no control for it, offers 15, 30 and 60. The
+  wall's rules for an endless track say *at the end* rather than *when you
+  stop*.
+
+- `[Game]` **Two settings that decided nothing are gone.** The blind test's
+  difficulty is hidden under a films-only source rather than greyed with an
+  explanation, and comes back with a charted one. The room volume is set in
+  the menu alone: the Room tab's sound section only asks where the table hears
+  the game, once a wall could take it over.
+
+- `[Game]` **The estimate and higher-or-lower questions name what is
+  measured** — a summit, a building, a river, a city, a country — on every
+  question, since a name alone rarely tells a table what it is.
 
 - `[Game]` **A shared link shows the shelf as it is now.** The preview image
   still showed five games on the old front door: it is redrawn from today's,
@@ -374,6 +423,11 @@ one part.
   name was an existing commercial app's, *Devineuf*, for the same kind of game.
 
 ### Fixes
+
+- `[Game]` **A console held sideways keeps the round clear of the corner
+  menu.** Higher or lower's question and clock, the colour game's clock and a
+  typed field's banked line ran under it, and the estimate field ran out of
+  its column.
 
 - `[Shared]` **A ready-made line-up answers every game the way it opens.**
   Each entry took the mode the host last left its game on, so *Free-for-all*
