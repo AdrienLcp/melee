@@ -16,6 +16,8 @@ import type { RoomSettings } from '@melee/protocol/room'
 import { catalogueOf } from '@melee/protocol/track'
 
 import { questionLanguageFor } from '../quiz/question-language'
+import { type HostPreferences, rememberedSetupFor } from './host-preferences'
+import { type GameSetup, openedSetup } from './room-settings'
 import type { SavedEntry, SavedEvening } from './saved-evening'
 import { isShelvedGame } from './shelved-game'
 
@@ -147,6 +149,7 @@ const grandMixFor = (locale: Locale): SavedEntry[] => {
  * The five, in the order the home page and the lobby draw them. A game named
  * bare takes what this host last left it at, or its opening settings; a
  * variant — a blind test on one source, a quiz on one subject — is spelled out.
+ * Every game is answered the way it opens (`rememberedOnReadyMade`).
  * *First game* leaves out most likely: it falls flat with two players.
  * *Free-for-all* is every game nobody has to judge, a variant per entry.
  */
@@ -221,6 +224,52 @@ export const gamesOfLineUp = (
 ): readonly ShelvedGame[] => [
   ...new Set(lineUp.lineUp.map(gameOfEntry).filter(isShelvedGame))
 ]
+
+/**
+ * What this host last left `game` set to, answered the way the game opens
+ * whatever mode they left it on. A ready-made line-up is set by the app, and
+ * the promise two of them make — nothing to judge — holds on those modes
+ * alone: a blind test left on the buzzer would hand the console a verdict
+ * every round, one left on typing would have the table type an artist over
+ * a clip.
+ */
+export const rememberedOnReadyMade = ({
+  game,
+  locale,
+  preferences
+}: {
+  game: GameKind
+  locale: Locale
+  preferences: HostPreferences | null
+}): GameSetup => {
+  const opened = openedSetup({ game, locale })
+  const remembered = rememberedSetupFor({ game, preferences })
+
+  return remembered === null ? opened : { ...remembered, mode: opened.mode }
+}
+
+/**
+ * The preferences with every game `lineUp` plays filed on the mode it opens
+ * on. Each draw of an evening reads the mode back from the preferences, so
+ * filing it once as the line-up loads is what holds it to its last round.
+ */
+export const withReadyMadeFiled = ({
+  lineUp,
+  locale,
+  preferences
+}: {
+  lineUp: ReadyMadeLineUp
+  locale: Locale
+  preferences: HostPreferences
+}): HostPreferences => {
+  const games = { ...preferences.games }
+
+  for (const game of new Set(lineUp.lineUp.map(gameOfEntry))) {
+    games[game] = rememberedOnReadyMade({ game, locale, preferences })
+  }
+
+  return { ...preferences, games }
+}
 
 /** A ready-made line-up as a saved one, under the name the dictionary gives it. */
 export const savedEveningOfReadyMade = ({

@@ -10,6 +10,7 @@ import {
 import {
   type ReadyMadeLineUpId,
   readyMadeLineUpsFor,
+  rememberedOnReadyMade,
   savedEveningOfReadyMade
 } from '@melee/core/room/ready-made-line-ups'
 import { withSavedEvening } from '@melee/core/room/saved-evening'
@@ -80,7 +81,10 @@ export const useRestoreStoredSetup = ({
       withSavedEvening({
         evening,
         locale,
-        rememberedFor: (game) => rememberedSetupFor({ game, preferences }),
+        rememberedFor: (game) =>
+          readyMade !== undefined
+            ? rememberedOnReadyMade({ game, locale, preferences })
+            : rememberedSetupFor({ game, preferences }),
         settings: restored
       })
     )

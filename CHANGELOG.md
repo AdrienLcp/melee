@@ -355,6 +355,14 @@ one part.
 
 ### Fixes
 
+- `[Shared]` **A ready-made line-up answers every game the way it opens.**
+  Each entry took the mode the host last left its game on, so *Free-for-all*
+  played its blind tests on typing for a host who once had — and on the buzzer
+  for one who had, handing the console a verdict in the line-up that promises
+  none. Loading one now files each of its games on its opening mode — four
+  candidates for the blind test and the quiz — and every draw reads it back;
+  the host's other settings for those games stay.
+
 - `[Game]` **On a screen wider than the stage, the front page's foot reaches
   the screen's edges.** The band under *Open a table* and the rows of lids
   stopped where the page's content did, leaving a cut on either side of a

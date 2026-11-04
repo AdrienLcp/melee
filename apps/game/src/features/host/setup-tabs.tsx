@@ -17,6 +17,7 @@ import {
   type ReadyMadeLineUp,
   type ReadyMadeLineUpId,
   readyMadeLineUpsFor,
+  rememberedOnReadyMade,
   savedEveningOfReadyMade
 } from '@melee/core/room/ready-made-line-ups'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
@@ -151,7 +152,8 @@ export const GameTab: React.FC<SetupTabsProps> = ({
           name: translate(`readyMade.lineUps.${lineUp.id}.name`)
         }),
         locale,
-        rememberedFor,
+        rememberedFor: (game) =>
+          rememberedOnReadyMade({ game, locale, preferences }),
         settings: view.settings
       })
     )

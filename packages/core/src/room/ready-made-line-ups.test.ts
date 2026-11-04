@@ -1,11 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
+import { gameSettingsSchema, shelvedGames } from '@melee/protocol/game'
+import type { Locale } from '@melee/protocol/locale'
 import {
-  DEFAULT_GAME_SETTINGS,
-  gameSettingsSchema,
-  shelvedGames
-} from '@melee/protocol/game'
-import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
+  type AnswerMode,
+  DEFAULT_MODE_SETTINGS,
+  DEFAULT_ROOM_SETTINGS
+} from '@melee/protocol/room'
 import { catalogueOf } from '@melee/protocol/track'
 
 import {
@@ -13,6 +14,11 @@ import {
   isJudgedInEveryMode,
   modeOfferedBy
 } from './game-modes'
+import {
+  type HostPreferences,
+  rememberedSetupFor,
+  rememberSettings
+} from './host-preferences'
 import { lineUpHolds, withNothingPlanned } from './line-up'
 import {
   gameOfEntry,
@@ -21,10 +27,72 @@ import {
   type ReadyMadeLineUp,
   readyMadeLineUpIds,
   readyMadeLineUpsFor,
-  savedEveningOfReadyMade
+  rememberedOnReadyMade,
+  savedEveningOfReadyMade,
+  withReadyMadeFiled
 } from './ready-made-line-ups'
-import { openedSetup, ROUND_COUNT_STEPS } from './room-settings'
+import { movedToEntry, openedSetup, ROUND_COUNT_STEPS } from './room-settings'
 import { withSavedEvening } from './saved-evening'
+
+const leftEveryGameOn = ({
+  locale,
+  mode
+}: {
+  locale: Locale
+  mode: AnswerMode
+}): HostPreferences => {
+  const { room } = rememberSettings({
+    preferences: null,
+    settings: DEFAULT_ROOM_SETTINGS
+  })
+  const games: HostPreferences['games'] = {}
+
+  for (const game of shelvedGames) {
+    games[game] = {
+      ...openedSetup({ game, locale }),
+      mode: DEFAULT_MODE_SETTINGS[mode]
+    }
+  }
+
+  return { games, room }
+}
+
+/**
+ * Every entry of `lineUp` as the room plays it once the line-up has loaded,
+ * the way the console does: the load's frame filed, then the line-up's own
+ * modes filed over it, then each draw reading them back.
+ */
+const playedEntries = ({
+  lineUp,
+  locale,
+  preferences
+}: {
+  lineUp: ReadyMadeLineUp
+  locale: Locale
+  preferences: HostPreferences
+}) => {
+  const loaded = withSavedEvening({
+    evening: savedEveningOfReadyMade({ lineUp, name: lineUp.id }),
+    locale,
+    rememberedFor: (game) =>
+      rememberedOnReadyMade({ game, locale, preferences }),
+    settings: DEFAULT_ROOM_SETTINGS
+  })
+  const filed = withReadyMadeFiled({
+    lineUp,
+    locale,
+    preferences: rememberSettings({ preferences, settings: loaded })
+  })
+
+  return loaded.lineUp.map((entry, at) =>
+    movedToEntry({
+      at,
+      locale,
+      remembered: rememberedSetupFor({ game: entry.kind, preferences: filed }),
+      settings: loaded
+    })
+  )
+}
 
 describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
   const lineUps = readyMadeLineUpsFor(locale)
@@ -67,6 +135,48 @@ describe.each(['fr', 'en'] as const)('ready-made line-ups in %s', (locale) => {
       expect(settings.game).not.toBeNull()
     }
   )
+
+  it.each(lineUps)(
+    '[ready-made] $id answers every game the way it opens, whatever this host left it on',
+    (lineUp) => {
+      const played = playedEntries({
+        lineUp,
+        locale,
+        preferences: leftEveryGameOn({ locale, mode: 'typed' })
+      })
+
+      for (const { game, mode } of played) {
+        if (game === null) {
+          throw new Error('every entry is a game')
+        }
+
+        expect(mode).toEqual(
+          modeOfferedBy({
+            game,
+            preferred: openedSetup({ game: game.kind, locale }).mode
+          })
+        )
+      }
+    }
+  )
+
+  it('[ready-made] files only the mode, keeping what this host left each game at', () => {
+    const preferences = leftEveryGameOn({ locale, mode: 'typed' })
+    const quick = lineUps.find(({ id }) => id === 'quick')
+
+    if (quick === undefined) {
+      throw new Error('the quick line-up ships')
+    }
+
+    const filed = withReadyMadeFiled({ lineUp: quick, locale, preferences })
+
+    expect(filed.games.innerclock).toEqual({
+      ...preferences.games.innerclock,
+      mode: DEFAULT_MODE_SETTINGS.buzzer
+    })
+    expect(filed.games.blindtest).toEqual(preferences.games.blindtest)
+    expect(filed.room).toEqual(preferences.room)
+  })
 })
 
 describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
@@ -78,18 +188,33 @@ describe.each(['fr', 'en'] as const)('the grand mix in %s', (locale) => {
     throw new Error('the grand mix ships')
   }
 
-  it('[ready-made] plays no entry a host has to judge, on the mode each opens on', () => {
-    for (const entry of grandMix.lineUp) {
-      const game = gameOfEntry(entry)
-      const settings =
-        typeof entry === 'string' ? DEFAULT_GAME_SETTINGS[entry] : entry
-      const mode = modeOfferedBy({
-        game: settings,
-        preferred: openedSetup({ game, locale }).mode
-      })
+  it('[ready-made] plays no entry a host has to judge, even with every game left on the buzzer', () => {
+    const played = playedEntries({
+      lineUp: grandMix,
+      locale,
+      preferences: leftEveryGameOn({ locale, mode: 'buzzer' })
+    })
 
-      expect(isJudgedByHost({ game, mode: mode.kind })).toBe(false)
+    expect(played).toHaveLength(grandMix.lineUp.length)
+
+    for (const { game, mode } of played) {
+      expect(
+        isJudgedByHost({ game: game?.kind ?? null, mode: mode.kind })
+      ).toBe(false)
     }
+  })
+
+  it('[ready-made] answers every blind test and quiz on four candidates, even left on typing', () => {
+    const played = playedEntries({
+      lineUp: grandMix,
+      locale,
+      preferences: leftEveryGameOn({ locale, mode: 'typed' })
+    }).filter(({ game }) => game?.kind === 'blindtest' || game?.kind === 'quiz')
+
+    expect(played).toHaveLength(20)
+    expect(new Set(played.map(({ mode }) => mode.kind))).toEqual(
+      new Set(['choice'])
+    )
   })
 
   it('[ready-made] plays every entry once, in its own order, with nothing drawn', () => {

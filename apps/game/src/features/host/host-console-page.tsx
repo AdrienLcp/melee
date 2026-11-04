@@ -26,7 +26,11 @@ import {
   type HostPreferences,
   rememberSettings
 } from '@melee/core/room/host-preferences'
-import type { ReadyMadeLineUpId } from '@melee/core/room/ready-made-line-ups'
+import {
+  type ReadyMadeLineUpId,
+  readyMadeLineUpsFor,
+  withReadyMadeFiled
+} from '@melee/core/room/ready-made-line-ups'
 import { isGameInPlay } from '@melee/core/room/room-phase'
 import { withPreparedKey } from '@melee/core/slate/prepared-keys'
 import { playsThisRound } from '@melee/core/team/duel'
@@ -280,9 +284,29 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     [roomCode, send]
   )
 
+  // Called after the frame that put the room on the line-up, which has just
+  // filed that frame's own game: the stored value is the one to build on.
+  const markReadyMade = (id: ReadyMadeLineUpId | null) => {
+    setReadyMade(id)
+
+    const lineUp = readyMadeLineUpsFor(locale).find(
+      (readyMadeLineUp) => readyMadeLineUp.id === id
+    )
+    const stored = storedHostPreferencesOrNone()
+
+    if (lineUp === undefined || stored === null) {
+      return
+    }
+
+    const filed = withReadyMadeFiled({ lineUp, locale, preferences: stored })
+
+    writeStoredHostPreferences(filed)
+    setPreferences(filed)
+  }
+
   useRememberLineUpGames(view)
   useRestoreStoredSetup({
-    onReadyMadeLoaded: setReadyMade,
+    onReadyMadeLoaded: markReadyMade,
     onRestore: changeSettings,
     preferences,
     view
@@ -763,7 +787,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     },
     onDraftSource: setDraftSource,
     onLeaveSeat: leaveSeat,
-    onReadyMade: setReadyMade,
+    onReadyMade: markReadyMade,
     onRememberSlateKey: rememberPreparedKey,
     onRemovePlayer: removePlayer,
     onSettingsChange: changeSettings,
