@@ -19,7 +19,7 @@ import {
   trackShapeFor
 } from '@melee/core/board/track-shape'
 
-import { onLayoutMoved } from '@/infrastructure/browser'
+import { moveLayout, onLayoutMoved } from '@/infrastructure/browser'
 import { FinishIcon, StartIcon } from '@/presentation/components/icons'
 import {
   TrackPawnPiece,
@@ -73,10 +73,19 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
     trackRef
   })
   const shownCases = useWalkedCases(track?.pawns ?? NO_PAWNS)
+  const newLength =
+    track === null || track.length === length ? null : track.length
+  // A track coming or going takes its length with its own motion.
+  const isRelaid = newLength !== null && track?.presence === 'standing'
 
-  if (track !== null && track.length !== length) {
-    setLength(track.length)
+  if (newLength !== null && !isRelaid) {
+    setLength(newLength)
   }
+
+  useRelaidLength({
+    length: isRelaid ? newLength : null,
+    onLaid: setLength
+  })
 
   return (
     <div
@@ -124,7 +133,9 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
                 data-mark={mark}
                 data-parity={caseIndex % 2 === 0 ? 'even' : 'odd'}
                 data-side={sideOf({ column, row, shape })}
-                key={caseIndex}
+                // The finish is one case at every length, so a new length
+                // carries it to the course's new end.
+                key={mark === 'finish' ? mark : caseIndex}
                 style={{
                   '--case-order': caseIndex / length,
                   '--column': column,
@@ -167,6 +178,44 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
       )}
     </div>
   )
+}
+
+/**
+ * Lays a new length under a track already standing as one layout move: the
+ * cases both lengths share travel to their new cells and the stage to its new
+ * gutters, rather than the whole course being redrawn at once. `null` while
+ * there is nothing to move.
+ */
+const useRelaidLength = ({
+  length,
+  onLaid
+}: {
+  length: number | null
+  onLaid: (length: number) => void
+}): void => {
+  useEffect(() => {
+    if (length === null) {
+      return
+    }
+
+    let isCurrent = true
+
+    // React refuses a `flushSync` while it is still running effects, and the
+    // move needs one; the microtask runs once they are done.
+    queueMicrotask(() => {
+      if (isCurrent) {
+        moveLayout(() => {
+          flushSync(() => {
+            onLaid(length)
+          })
+        })
+      }
+    })
+
+    return () => {
+      isCurrent = false
+    }
+  }, [length, onLaid])
 }
 
 /**

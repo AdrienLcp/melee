@@ -1568,6 +1568,14 @@ bounced. Durations:
   same total; the track stays mounted until every animation under it has
   settled (`use-track-presence.ts`). A screen arriving on a board already up
   draws it in place.
+- **The board re-laid** — a new length under a track already standing is one
+  layout move (`moveLayout`, started by the track itself, so the wall moves
+  the way the console does): every case both lengths share travels to its new
+  cell, the finish travels with the end of the course (it is keyed as the
+  finish, not by its number), and the stage slides to its new gutters. A case
+  only the new length has is set down where it stands (`board-case-laid`,
+  scale 0.6 to 1 on `base` × 1.25, a `fast` beat late), and a case it dropped
+  is picked up on `fast`.
 - **A seat back at the table** — its pawn under *Next* is stamped on
   (`tick-stamp` on `base`) as it stands up from its outline.
 - **The payout** — the player's token set down a beat after the card

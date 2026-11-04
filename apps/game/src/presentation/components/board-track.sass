@@ -276,6 +276,20 @@
   ::view-transition-new(*.board-case)
     block-size: 100%
 
+  // A new length moves the same way, the finish travelling with the end of
+  // the course. A case only the new length has is set down once the course
+  // has started moving, and a case it dropped is picked up at once.
+  ::view-transition-new(*.board-case):only-child
+    animation: board-case-laid calc(var(--transition-base, 0s) * 1.25) var(--ease-out) var(--transition-fast, 0s) both
+
+  ::view-transition-old(*.board-case):only-child
+    animation: page-leave var(--transition-fast, 0s) var(--ease-out) both
+
+  @keyframes board-case-laid
+    from
+      opacity: 0
+      scale: 0.6
+
   @keyframes track-arrives
     from
       translate: var(--track-from)

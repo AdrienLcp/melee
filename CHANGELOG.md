@@ -134,6 +134,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A new board length moves the course rather than redrawing it.**
+  From 10 to 40 or 100 squares and back, the squares both boards share slide
+  to their new place round the stage, the finish travels to the new end, the
+  added squares are set down a beat later and the dropped ones fade, while
+  the stage moves to its new margins — on the console and on the wall alike.
+
 - `[Game]` **A game's row in the line-up no longer says its setting twice.**
   Two quizzes on two subjects are called *Quiz · History* and *Quiz ·
   Geography*, and the line under each now leaves the subject out and says
