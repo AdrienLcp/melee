@@ -8,7 +8,7 @@
   // says, and only under 6.5rem — a small screen with its keyboard up — do the
   // cells go to one row and print their pips alone.
   .black-square-sheet
-    container-type: size
+    container: black-square-sheet / size
     min-block-size: 2.25rem
     position: relative
 
@@ -30,6 +30,7 @@
       border-radius: var(--radius-m)
       box-shadow: var(--shadow-recess-shallow), inset 0 0 0 var(--stroke-thin) var(--socket-line)
       color: var(--socket-line)
+      container: black-square-cell / size
       display: grid
       font-size: clamp(var(--text-xs), min(4.4cqi, 6.2cqb), var(--text-xl))
       gap: 0.3em
@@ -53,8 +54,14 @@
         color: var(--good-edge)
         font-size: 1em
 
+    // Ends on an ellipsis at the last whole line its cell holds, never cut
+    // through one: the cell's height decides `--typed-lines` below.
     .typed
+      -webkit-box-orient: vertical
+      display: -webkit-box
       hyphens: auto
+      -webkit-line-clamp: var(--typed-lines, none)
+      overflow: hidden
       overflow-wrap: break-word
       text-wrap: balance
 
@@ -85,7 +92,14 @@
         font-size: clamp(var(--text-xl), 9cqmin, 3rem)
         overflow-wrap: anywhere
 
-  @container (6.5rem <= height < 10rem)
+  // The query reads the cell inside its padding, where a line of 1.18em sits
+  // over the pips and their gap (0.72em): one more each time it is a line taller.
+  @each $lines, $below in (4: 6.63em, 3: 5.45em, 2: 4.27em, 1: 3.09em)
+    @container black-square-cell (height < #{$below})
+      .black-square-sheet .typed
+        --typed-lines: #{$lines}
+
+  @container black-square-sheet (6.5rem <= height < 10rem)
     .black-square-sheet
       li
         padding-block: 0
@@ -93,7 +107,15 @@
       li[data-found]:has(> .typed) > .black-square-pips
         display: none
 
-  @container (height < 6.5rem)
+      // Nothing above or below the line here: a cell holds two at most.
+      .typed
+        --typed-lines: 2
+
+      @container black-square-cell (height < 2.375em)
+        .typed
+          --typed-lines: 1
+
+  @container black-square-sheet (height < 6.5rem)
     .black-square-sheet
       > ol
         grid-template: minmax(0, 1fr) / repeat(var(--cell-count), minmax(0, 1fr))
@@ -105,6 +127,13 @@
 
         > .black-square-pips
           font-size: 1em
+
+      // Nine to a row in the column a keyboard leaves beside the theme, a
+      // cell is narrower than three pips side by side: they stack rather
+      // than lose the third.
+      @container black-square-cell (width < 2.25em)
+        li > .black-square-pips
+          flex-direction: column
 
       .typed
         display: none

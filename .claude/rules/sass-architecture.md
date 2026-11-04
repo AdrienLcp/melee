@@ -271,6 +271,12 @@ written from what its rows take at their cap, and a `minmax(0, auto)` row hands
 it no more than is left: the upright wall's final board, whose rows spilled up
 over their heading from a 0px box.
 
+**A container added inside another takes over its unnamed queries.**
+`@container (height < 6.5rem)` asks the nearest ancestor able to answer a
+height, so making black square's cells size containers turned the sheet's
+queries into queries on each cell, and every found line went `display: none`.
+A container another rule queries is named, and queried by its name.
+
 **A word breaks at a syllable or not at all.** Text in a narrow column — a
 heading over a sheet's column, a name in a grid cell, an answer in a card —
 takes `hyphens: auto` (the document's `lang` is the locale, set by

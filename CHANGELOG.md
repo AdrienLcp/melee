@@ -424,6 +424,11 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Black square's cells stay whole with a keyboard up.** Nine to a
+  row beside the theme, a cell was narrower than three pips and lost the
+  third; they stack now. A found answer longer than its cell ran through its
+  top and bottom edges; it ends on an ellipsis at the last whole line instead.
+
 - `[Game]` **A console held sideways keeps the round clear of the corner
   menu.** Higher or lower's question and clock, the colour game's clock and a
   typed field's banked line ran under it, and the estimate field ran out of
