@@ -1094,8 +1094,13 @@ the duel gets a plain `NoticeCard` and no controls.
 A thick coral token with a keyline printed a margin in and a chipboard edge that
 sinks under the thumb, sized as the largest circle its `.press` size container
 holds beside its line. Dead, it is the socket it sits in, the word in board ink.
-The reflex buzzer waits paper side up and turns coral on the flip; a false start
-is a piece in the danger ink.
+The reflex buzzer is not in the box until the flip: the wait draws the empty
+socket (`--socket`, recessed, sunk by its edge) holding *Attends que l'écran
+change* in the title face at 8.5% of its diameter, and the coral piece is in it
+on the flip's frame, with no transition. The socket is still the live press, so
+going early is still a false start. It replaced a paper-side-up piece reading
+*BUZZ*, which a table pressed on sight. A false start is a piece in the danger
+ink.
 
 ### Results chips
 The reflex finishing order and the slate's marking use one chip per player or

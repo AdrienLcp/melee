@@ -1800,6 +1800,7 @@ export const EN_DICTIONARY = defineDictionary({
     }),
     name: 'Reflex',
     nobody: 'Nobody moved',
+    notYet: 'Wait for the screen to change',
     play: 'Play Reflex',
     pressed: 'In.',
     reaction: '{milliseconds:number} ms',

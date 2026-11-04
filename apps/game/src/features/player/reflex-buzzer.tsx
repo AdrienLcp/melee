@@ -32,7 +32,10 @@ type ReflexBuzzerProps = {
  * game allows and then charges for, so a player who jumps must land on a
  * *press* and be refused by the server — a control disabled until the flip
  * would make the false start unreachable, and the floor under `flipsAt`
- * pointless.
+ * pointless: tapping on the spot where the piece will appear would win every
+ * heat. What it must not do is *look* pressable: a buzzer on screen through
+ * the wait was pressed on sight, so until the flip it is drawn as the empty
+ * socket asking to wait, and the coral piece is in it on the flip's frame.
  */
 export const ReflexBuzzer: React.FC<ReflexBuzzerProps> = ({
   clock,
@@ -121,19 +124,17 @@ export const ReflexBuzzer: React.FC<ReflexBuzzerProps> = ({
             onBuzz(round.id)
           }}
         >
-          <span className='word'>{translate('buzz.action')}</span>
+          {hasFlipped ? (
+            <span className='word'>{translate('buzz.action')}</span>
+          ) : (
+            <span className='not-yet'>{translate('reflex.notYet')}</span>
+          )}
         </ReactAriaButton>
         {/*
-          The one thing this screen has to say, and the only screen that was not
-          saying it: the button is live through the whole wait, so the game's own
-          trap is reachable by a player already poised over it. The room's screen
-          carries `reflex.waiting`; the player's screen carries what going early
-          costs, because that is the half a player cannot work out from a button.
-
-          It is the cost rather than *watch the screen*, so the line is true on
-          both sides of the flip and never has to change under a player waiting
-          on it — the field inverting is the signal, and a second one moving here
-          would be a way for the table to read the flip off somebody's screen.
+          What going early costs, which the socket asking to wait cannot say on
+          its own: it is still live, so the trap is reachable by a player poised
+          over it. True on both sides of the flip, so it never changes under a
+          player waiting on it.
         */}
         <p className='hint'>{translate('reflex.hold')}</p>
       </div>

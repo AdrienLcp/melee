@@ -1706,6 +1706,7 @@ export const FR_DICTIONARY = defineDictionary({
     }),
     name: 'Réflexe',
     nobody: 'Personne n’a bougé',
+    notYet: 'Attends que l’écran change',
     play: 'Jouer à Réflexe',
     pressed: 'C’est pris.',
     reaction: '{milliseconds:number} ms',

@@ -3,13 +3,28 @@
 
 @layer components
   .reflex-buzzer
-    // Armed, and not yet live: the piece lies paper side up under the hand
-    // resting on it, and turns to its coral face on the frame the board flips.
-    // Two changes saying one thing, on the one object the hand is touching.
+    // Before the flip the piece is not in the box yet: what is there is the
+    // socket it will sit in, asking to wait — a buzzer drawn through the wait
+    // was pressed on sight. Still a live press, so going early is still a
+    // false start. The piece arrives on the flip's frame, with no transition:
+    // the flip is the stimulus, and an easing would time the room's eyes.
     .buzzer.armed
-      background: var(--card)
-      box-shadow: inset 0 0 0 calc(var(--buzzer-size) * 0.04) var(--card), inset 0 0 0 calc(var(--buzzer-size) * 0.048) var(--card-rule), 0 var(--buzzer-edge) 0 0 var(--chipboard), 0 calc(var(--buzzer-edge) * 2) calc(var(--buzzer-edge) * 2.5) calc(var(--buzzer-edge) * -1) var(--shadow-ink)
-      color: var(--card-ink)
+      background: var(--socket)
+      box-shadow: var(--shadow-recess), inset 0 0 0 var(--stroke-thin) var(--socket-line)
+      color: var(--ink)
+      cursor: default
+      transform: translateY(var(--buzzer-edge))
+
+    .buzzer:not([data-pressed], .claimed)
+      transition: none
+
+    .not-yet
+      @include typography.title
+
+      font-size: max(var(--text-s), calc(var(--buzzer-size) * 0.085))
+      max-width: 72%
+      text-align: center
+      text-wrap: balance
 
     // What a heat pays a player, in a game with no answer to reveal: the time,
     // printed on a paper card.
