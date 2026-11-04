@@ -168,13 +168,17 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   useHandedHostToken((hostToken) => {
     writeHostToken({ hostToken, roomCode })
   })
+  const [hasClosedRoom, setHasClosedRoom] = useState(false)
   const { clearError, clock, error, retry, send, status, view } =
-    useHostConnection(roomCode, seatNickname)
+    useHostConnection({
+      isLeaving: hasClosedRoom,
+      nickname: seatNickname,
+      roomCode
+    })
   const [requestedNickname, setRequestedNickname] = useState<string | null>(
     null
   )
   const [hasOfferedToken, setHasOfferedToken] = useState(false)
-  const [hasClosedRoom, setHasClosedRoom] = useState(false)
   const { setVolume: keepVolume, volume: ownVolume } = useVolume()
   const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
   const lineUpAt = view?.settings.lineUpAt ?? null
@@ -543,8 +547,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // refusal answering it is no news: shown, it cut the console out for a
   // line saying the host had closed the table, before the page change.
   const isClosedHere = hasClosedRoom && error?.code === 'room_closed'
+  const shownError = isClosedHere ? null : error
 
-  if (status === 'refused' && !isClosedHere) {
+  if (status === 'refused' && !isClosedHere && !isDisplacedWall) {
     return (
       <Main className='host-console-page'>
         <RoomDocumentTitle settings={view?.settings ?? null} />
@@ -611,9 +616,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           youId={choosing.youId}
         />
         <div className='notice'>
-          {error !== null && (
+          {shownError !== null && (
             <p className='error' role='alert'>
-              {translate(protocolErrorKey(error.code))}
+              {translate(protocolErrorKey(shownError.code))}
             </p>
           )}
           <ClipOffer
@@ -831,9 +836,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       />
 
       <footer>
-        {error !== null && (
+        {shownError !== null && (
           <p className='error' role='alert'>
-            {translate(protocolErrorKey(error.code))}
+            {translate(protocolErrorKey(shownError.code))}
           </p>
         )}
         {view !== null && <HostActions {...hostActionsProps(view)} />}
@@ -904,9 +909,9 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
                   view={view}
                 />
                 <footer>
-                  {error !== null && (
+                  {shownError !== null && (
                     <p className='error' role='alert'>
-                      {translate(protocolErrorKey(error.code))}
+                      {translate(protocolErrorKey(shownError.code))}
                     </p>
                   )}
                   {!isRevealed && <HostActions {...hostActionsProps(view)} />}

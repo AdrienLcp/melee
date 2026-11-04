@@ -88,13 +88,14 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const volume = wallView?.volume ?? ownVolume
   const slateWall = useSlateWall(view)
   const isRefused = status === 'refused'
+  const isLetGo = error?.code === 'wall_dismissed'
   const isHostAway = useAbsentFor({
     graceMs: HOST_AWAY_GRACE_MS,
     isAbsent: view !== null && !view.isHostConnected
   })
 
   useReportConnection({ clock, status })
-  useReturnToWallPairing(error?.code === 'wall_dismissed')
+  useReturnToWallPairing(isLetGo)
   usePhaseField(view?.phase ?? null)
   useMarkingField(view?.phase === 'playing' && slateWall.isOnWall)
   useScreenAwake(!isRefused)
@@ -153,7 +154,9 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     tryArmingUnasked()
   }, [])
 
-  if (isRefused) {
+  // A wall let go is already on its way back to offering a code, and a
+  // refusal laid down for the page change to take away was a screen between.
+  if (isRefused && !isLetGo) {
     return (
       <Main className='host-console-page wall-page'>
         <RoomDocumentTitle settings={view?.settings ?? null} />

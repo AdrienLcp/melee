@@ -18,10 +18,16 @@ export type HostConnection = RoomSocket & {
  * It is part of the connection rather than a later message because the seat has
  * to survive a reconnect the same way a player's does.
  */
-export const useHostConnection = (
-  roomCode: RoomCode,
+export const useHostConnection = ({
+  isLeaving,
+  nickname,
+  roomCode
+}: {
+  /** The console is on its way home after closing its room. */
+  isLeaving: boolean
   nickname: string | null
-): HostConnection => {
+  roomCode: RoomCode
+}): HostConnection => {
   const [view, setView] = useState<HostRoomView | null>(null)
 
   // No `useCallback`: `useRoomSocket` holds this in an Effect Event, so its
@@ -36,6 +42,7 @@ export const useHostConnection = (
 
   const socket = useRoomSocket({
     enabled: true,
+    isLeaving,
     nickname,
     onFrame,
     role: 'host',

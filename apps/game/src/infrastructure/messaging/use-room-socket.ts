@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useEffectEvent, useRef, useState } from 'react'
+import { flushSync } from 'react-dom'
 import { z } from 'zod'
 
 import type {
@@ -23,7 +24,7 @@ import {
   estimateClockOffset
 } from '@melee/core/time/clock-sync'
 
-import { socketOrigin } from '@/infrastructure/browser'
+import { replaceScreen, socketOrigin } from '@/infrastructure/browser'
 import { nowMs } from '@/infrastructure/clock'
 import {
   isOurOwnMalformedFrame,
@@ -100,12 +101,20 @@ const RECONNECT_CEILING_MS = 8_000
  */
 export const useRoomSocket = ({
   enabled,
+  isLeaving = false,
   nickname,
   onFrame,
   role,
   roomCode
 }: {
   enabled: boolean
+  /**
+   * The screen is already on its way to another page, as a console that has
+   * just closed its room is: the refusal answering it is taken with no
+   * transition of its own, since the page change is the motion and would skip
+   * one started under it. `false` by default.
+   */
+  isLeaving?: boolean
   nickname: string | null
   onFrame: (raw: string) => void
   role: ConnectionRole
@@ -122,6 +131,7 @@ export const useRoomSocket = ({
   // An Effect Event rather than a dependency: a fresh `onFrame` on every render
   // would tear the socket down and rebuild it on every render too.
   const forwardFrame = useEffectEvent(onFrame)
+  const isOnItsWayOut = useEffectEvent(() => isLeaving)
 
   useEffect(() => {
     if (!enabled) {
@@ -228,23 +238,38 @@ export const useRoomSocket = ({
           return
         }
 
-        setError(control.message)
+        const refusal = control.message
+
+        if (!refusal.fatal) {
+          setError(refusal)
+
+          return
+        }
 
         // The end of the line is what the frame says, not what the socket does
         // next. Waiting for a close left a player on a stale scoreboard when
         // the host closed the room: it is the one fatal refusal a socket can
         // carry while staying open, since the server is answering a *third*
-        // party.
-        if (control.message.fatal) {
-          giveUp = true
+        // party. The page is replaced by the refusal, so it goes as one.
+        giveUp = true
+        const refuse = (): void => {
+          setError(refusal)
           setSocketStatus('refused')
-
-          if (refusalVoidsSeat(control.message.code)) {
-            forgetSessionId({ role, roomCode })
-          }
-
-          socket.close()
         }
+
+        if (isOnItsWayOut()) {
+          refuse()
+        } else {
+          replaceScreen(() => {
+            flushSync(refuse)
+          })
+        }
+
+        if (refusalVoidsSeat(refusal.code)) {
+          forgetSessionId({ role, roomCode })
+        }
+
+        socket.close()
       })
 
       socket.addEventListener('close', () => {
@@ -252,15 +277,12 @@ export const useRoomSocket = ({
 
         // A torn-down socket closes after its successor has opened, and its
         // status would overwrite the live one with a false reconnecting.
-        if (disposed) {
+        // A refusal set its own status, inside the screen it replaces.
+        if (disposed || giveUp) {
           return
         }
 
-        setSocketStatus(giveUp ? 'refused' : 'closed')
-
-        if (giveUp) {
-          return
-        }
+        setSocketStatus('closed')
 
         attempt += 1
         reconnectTimer = window.setTimeout(

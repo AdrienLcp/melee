@@ -192,7 +192,7 @@ export const useCameFromWall = (): boolean => {
  * room's address: left on it, a reload would reconnect on the token it holds.
  */
 export const useReturnToWallPairing = (isLetGo: boolean): void => {
-  const navigate = useNavigate()
+  const navigate = usePageNavigation()
 
   useEffect(() => {
     if (isLetGo) {

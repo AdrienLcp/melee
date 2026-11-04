@@ -145,14 +145,22 @@ export const onShownHeightChange = (
 export const prefersReducedMotion = (): boolean =>
   matchMedia('(prefers-reduced-motion: reduce)').matches
 
+let viewTransitionsRunning = 0
+
+const markViewTransitionEnded = (): void => {
+  viewTransitionsRunning -= 1
+}
+
 /**
- * Chromium rejects a transition's `ready` when the viewport changes before the
- * new screen is captured — an address bar retracting as a page is left — and,
- * against the spec, leaves the rejection unhandled. The transition is skipped
- * and the page lands either way; this only takes the line out of the console,
- * for the router's transitions as much as for `moveLayout`'s.
+ * Wraps every view transition the page starts, the router's included, for two
+ * jobs. Chromium rejects a transition's `ready` when the viewport changes
+ * before the new screen is captured — an address bar retracting as a page is
+ * left — and, against the spec, leaves the rejection unhandled: the transition
+ * is skipped and the page lands either way, so the line is taken out of the
+ * console. And it counts the transitions still playing, which `replaceScreen`
+ * reads so as not to skip one.
  */
-export const settleSkippedViewTransitions = (): void => {
+export const watchViewTransitions = (): void => {
   if (typeof document.startViewTransition !== 'function') {
     return
   }
@@ -161,7 +169,9 @@ export const settleSkippedViewTransitions = (): void => {
 
   document.startViewTransition = (update) => {
     const transition = start(update)
+    viewTransitionsRunning += 1
     transition.ready.catch(() => undefined)
+    transition.finished.then(markViewTransitionEnded, markViewTransitionEnded)
 
     return transition
   }
@@ -219,11 +229,15 @@ export const moveLayout = (update: () => void): void => {
  * piece only the new screen holds arrives with it rather than fading in on
  * the browser's default above the screen being left. `update` must reach the
  * DOM before it returns.
+ *
+ * A transition already playing — a page being left — is never cut for it:
+ * starting another skips the one running, and the update lands inside it.
  */
 export const replaceScreen = (update: () => void): void => {
   if (
     prefersReducedMotion() ||
-    typeof document.startViewTransition !== 'function'
+    typeof document.startViewTransition !== 'function' ||
+    viewTransitionsRunning > 0
   ) {
     update()
 
