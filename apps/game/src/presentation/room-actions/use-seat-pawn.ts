@@ -3,11 +3,12 @@ import { useCallback, useEffect, useState } from 'react'
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { ProtocolErrorMessage } from '@melee/protocol/server-message'
-import type { TeamId } from '@melee/protocol/team'
+import type { PawnPiece, TeamId } from '@melee/protocol/team'
 
+import { isSamePawnPiece, TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
 import { teamOfSeat } from '@melee/core/team/team-board'
 
-import { writeStoredPawnColour } from '@/infrastructure/storage/preferences-storage'
+import { writeStoredPawnPiece } from '@/infrastructure/storage/preferences-storage'
 
 import type {
   PawnRoom,
@@ -21,36 +22,36 @@ const RECOLOUR_REFUSALS: readonly RecolourRefusal[] = [
   'wrong_phase'
 ]
 
-type RecolourRequest = { colour: number; isTeam: boolean }
+type RecolourRequest = { isTeam: boolean; piece: PawnPiece }
 
 const recolourMessage = ({
-  colour,
+  piece: { colour, head },
   role,
   teamId,
   youId
 }: {
-  colour: number
+  piece: PawnPiece
   role: 'host' | 'player'
   teamId: TeamId | null
   youId: PlayerId
 }): ClientMessage => {
   if (role === 'player') {
     return teamId === null
-      ? { colour, type: 'player.recolourSeat' }
+      ? { colour, head, type: 'player.recolourSeat' }
       : { colour, type: 'player.recolourTeam' }
   }
 
   return teamId === null
-    ? { colour, playerId: youId, type: 'host.recolourSeat' }
+    ? { colour, head, playerId: youId, type: 'host.recolourSeat' }
     : { colour, teamId, type: 'host.recolourTeam' }
 }
 
 /**
- * What a seated screen offers the menu for its pawn: the frame that repaints
- * it — its team's when it sits in one — the refusal that frame last met, and
- * the room it is picked against.
+ * What a seated screen offers the menu for its pawn: the frame that changes
+ * it — its team's colour when it sits in one — the refusal that frame last
+ * met, and the room it is picked against.
  *
- * The device keeps the seat's own colour once the room shows the one it asked
+ * The device keeps the seat's own piece once the room shows the one it asked
  * for, as it keeps the name the room accepted, so the next table's `hello` asks
  * for it again.
  */
@@ -76,37 +77,44 @@ export const useSeatPawn = ({
       : teamOfSeat({ playerId: you.id, teams: view.teams })
   const youId = you?.id ?? null
   const teamId = team?.id ?? null
-  const pawnColour = team?.colour ?? you?.colour ?? null
-  const acceptedSeatColour =
-    requested !== null && !requested.isTeam && requested.colour === you?.colour
-      ? requested.colour
+  const pawnPiece: PawnPiece | null =
+    team === null ? you : { colour: team.colour, head: TEAM_PAWN_HEAD }
+  const acceptedSeatPiece =
+    requested !== null &&
+    !requested.isTeam &&
+    you !== null &&
+    isSamePawnPiece({ other: you, piece: requested.piece })
+      ? requested.piece
       : null
 
   useEffect(() => {
-    if (acceptedSeatColour !== null) {
-      writeStoredPawnColour(acceptedSeatColour)
+    if (acceptedSeatPiece !== null) {
+      writeStoredPawnPiece(acceptedSeatPiece)
     }
-  }, [acceptedSeatColour])
+  }, [acceptedSeatPiece])
 
   const recolourPawn = useCallback(
-    (colour: number) => {
+    (piece: PawnPiece) => {
       if (youId === null) {
         return
       }
 
       clearError()
-      setRequested({ colour, isTeam: teamId !== null })
-      send(recolourMessage({ colour, role, teamId, youId }))
+      setRequested({ isTeam: teamId !== null, piece })
+      send(recolourMessage({ piece, role, teamId, youId }))
     },
     [clearError, role, send, teamId, youId]
   )
 
   const refusal = RECOLOUR_REFUSALS.find((code) => code === error?.code) ?? null
+  const isRequestShown =
+    requested !== null &&
+    pawnPiece !== null &&
+    isSamePawnPiece({ other: pawnPiece, piece: requested.piece })
 
   return {
     pawnRoom: you === null ? null : view,
     recolourPawn: you === null ? null : recolourPawn,
-    refusedRecolour:
-      requested !== null && requested.colour !== pawnColour ? refusal : null
+    refusedRecolour: requested !== null && !isRequestShown ? refusal : null
   }
 }

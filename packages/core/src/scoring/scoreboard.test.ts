@@ -13,6 +13,7 @@ import {
 const playerOn = (nickname: string, score: number): PublicPlayer => ({
   board: null,
   colour: 1,
+  head: 'round',
   id: nickname.toLowerCase(),
   isConnected: true,
   isReady: false,

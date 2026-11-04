@@ -3,16 +3,19 @@ import { PAWN_COLOUR_COUNT } from '@melee/protocol/team'
 
 import type { Participant } from './room'
 
-type StoredParticipant = Omit<Participant, 'colour'> &
-  Partial<Pick<Participant, 'colour'>>
+type StoredParticipant = Omit<Participant, 'colour' | 'head'> &
+  Partial<Pick<Participant, 'colour' | 'head'>>
 
 /**
  * The seats as the Durable Object stored them, which may predate a seat's own
- * colour: a room outlives a deploy, and a seat missing one put `undefined` on
- * a view the schema refuses. Each takes the colour its place in the roster
- * gave it until then, so no pawn changes colour across the deploy.
+ * piece: a room outlives a deploy, and a seat missing a field put `undefined`
+ * on a view the schema refuses. A seat with no colour takes the one its place
+ * in the roster gave it until then, and a seat with no head the round one it
+ * was drawn in, so no pawn changes looks across the deploy. Two seats the
+ * sharing rule before heads left in one piece keep it until one of them
+ * repaints.
  */
-export const withSeatColours = (
+export const withSeatPieces = (
   players: ReadonlyMap<PlayerId, StoredParticipant>
 ): Map<PlayerId, Participant> =>
   new Map(
@@ -20,7 +23,8 @@ export const withSeatColours = (
       id,
       {
         ...participant,
-        colour: participant.colour ?? (seat % PAWN_COLOUR_COUNT) + 1
+        colour: participant.colour ?? (seat % PAWN_COLOUR_COUNT) + 1,
+        head: participant.head ?? 'round'
       }
     ])
   )

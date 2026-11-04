@@ -2,6 +2,9 @@ import type React from 'react'
 
 import type { ScoreTarget } from '@melee/protocol/client-message'
 import { POINT } from '@melee/protocol/scoring'
+import type { PawnPiece } from '@melee/protocol/team'
+
+import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
 
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -18,7 +21,7 @@ import { shownPoints } from '@/helpers/shown-points'
 /** One seat's or one team's line of points by hand. */
 export type PointsRow = {
   /** The pawn beside the name, `null` for a seat with no pawn on a track. */
-  colour: number | null
+  piece: PawnPiece | null
   /** Whether a point less would change anything: the server floors at nought. */
   canTake: boolean
   /** Whether a point more would: a pawn on the finish has nowhere to go. */
@@ -62,10 +65,10 @@ export const usePointsRows = (): {
         return {
           canGive: pawnCase === null || pawnCase < (trackLength ?? 0),
           canTake: pawnCase === null ? team.score > 0 : pawnCase > 0,
-          colour: team.colour,
           id: team.id,
           name: teamName(team),
           pawnCase,
+          piece: { colour: team.colour, head: TEAM_PAWN_HEAD },
           standing:
             pawnCase === null
               ? translate('player.score', { points: shownPoints(team.score) })
@@ -85,10 +88,13 @@ export const usePointsRows = (): {
         return {
           canGive: pawnCase === null || pawnCase < (trackLength ?? 0),
           canTake: pawnCase === null ? player.score > 0 : pawnCase > 0,
-          colour: pawnCase === null ? null : player.colour,
           id: player.id,
           name: player.nickname,
           pawnCase,
+          piece:
+            pawnCase === null
+              ? null
+              : { colour: player.colour, head: player.head },
           standing:
             pawnCase === null
               ? translate('player.score', { points: shownPoints(player.score) })
@@ -130,14 +136,16 @@ export const PointsRows: React.FC = () => {
           className='points-row'
           key={row.id}
           style={
-            row.colour === null
+            row.piece === null
               ? undefined
-              : { '--team': `var(--pawn-${row.colour})` }
+              : { '--team': `var(--pawn-${row.piece.colour})` }
           }
         >
           <p className='points-who'>
             <span className='points-name'>
-              {row.colour !== null && <Pawn colour={row.colour} />}
+              {row.piece !== null && (
+                <Pawn colour={row.piece.colour} head={row.piece.head} />
+              )}
               {row.name}
             </span>
             <span className='points-standing'>{row.standing}</span>

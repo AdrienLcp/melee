@@ -4,13 +4,14 @@ import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
+import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
 
 import { Button } from '@/presentation/components/button'
 import { EmptySockets } from '@/presentation/components/empty-sockets'
-import { PawnColourPress } from '@/presentation/components/pawn-colour-press'
+import { PawnPiecePress } from '@/presentation/components/pawn-piece-press'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
 import { ScoringRule } from '@/presentation/components/scoring-rule'
@@ -226,26 +227,26 @@ const LobbyTeams: React.FC<{
             ? undefined
             : (team) => (
                 <>
-                  <PawnColourPress
+                  <PawnPiecePress
                     aria-label={translate('team.recolour.action', {
                       team: teamName(team)
                     })}
-                    colour={team.colour}
                     holders={view.teams
                       .filter((other) => other.id !== team.id)
                       .map((other) => ({
-                        colour: other.colour,
-                        name: other.name
+                        name: other.name,
+                        piece: { colour: other.colour, head: TEAM_PAWN_HEAD }
                       }))}
                     label={translate('team.recolour.label')}
-                    onRecolour={(colour) => {
+                    onRecolour={({ colour }) => {
                       controls.send({
                         colour,
                         teamId: team.id,
                         type: 'host.recolourTeam'
                       })
                     }}
-                    sharesWhenFull={false}
+                    pawnOf='team'
+                    piece={{ colour: team.colour, head: TEAM_PAWN_HEAD }}
                   />
                   <RenameTeam
                     onRename={(name) => {

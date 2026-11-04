@@ -50,7 +50,7 @@ import { blackSquareContent } from '@/helpers/round-content'
 import { BlackSquareTurn } from '@/presentation/components/black-square-turn'
 import { DuelBadge } from '@/presentation/components/duel-badge'
 import { Main } from '@/presentation/components/main'
-import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
+import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
 
 /**
  * Long enough for a lid closing and reopening, or a phone's screen locking and
@@ -173,7 +173,7 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const spokenTurn = blackSquareContent(view?.round)?.spoken ?? null
 
   return (
-    <PawnColoursProvider view={view}>
+    <PawnPiecesProvider view={view}>
       <Main className='host-console-page wall-page'>
         <RoomDocumentTitle settings={view?.settings ?? null} />
         <header>
@@ -268,6 +268,6 @@ const Wall: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       {view !== null && (
         <BoardTrack board={view.settings.board} pawns={trackPawnsOf(view)} />
       )}
-    </PawnColoursProvider>
+    </PawnPiecesProvider>
   )
 }

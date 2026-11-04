@@ -12,6 +12,7 @@ import {
 import { decodeMessage } from '@melee/protocol/codec'
 import type { Nickname, PlayerId, RoundId } from '@melee/protocol/identifiers'
 import type { RoomSettings } from '@melee/protocol/room'
+import type { PawnPiece } from '@melee/protocol/team'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { isPlayableWithTeams } from '@melee/core/room/game-capabilities'
@@ -360,10 +361,10 @@ const seatHost = ({
     message.nickname === undefined || hostMustJudge(room)
       ? null
       : joinAsPlayer({
+          askedPiece: askedPieceOf(message),
           newPlayerId: newPlayerId(),
           nickname: message.nickname,
           now: engine.now(),
-          pawnColour: message.pawnColour ?? null,
           room,
           sessionId
         })
@@ -424,10 +425,10 @@ const seatPlayer = ({
   }
 
   const joined = joinAsPlayer({
+    askedPiece: askedPieceOf(message),
     newPlayerId: newPlayerId(),
     nickname: message.nickname,
     now: engine.now(),
-    pawnColour: message.pawnColour ?? null,
     room: engine.room,
     sessionId
   })
@@ -546,9 +547,9 @@ const dispatch = ({
     }
     case 'player.recolourSeat': {
       repaintSeat({
-        colour: message.colour,
         engine,
         outbound,
+        piece: { colour: message.colour, head: message.head },
         playerId: active.playerId
       })
       break
@@ -764,9 +765,9 @@ const dispatch = ({
     }
     case 'host.recolourSeat': {
       repaintSeat({
-        colour: message.colour,
         engine,
         outbound,
+        piece: { colour: message.colour, head: message.head },
         playerId: message.playerId
       })
       break
@@ -1114,19 +1115,25 @@ const answerTeamFrame = ({
 }
 
 const SEAT_RECOLOUR_REFUSALS: Record<'colour_taken' | 'wrong_phase', string> = {
-  colour_taken: 'Another seat already stands in that colour',
-  wrong_phase: 'A pawn keeps its colour while a round plays'
+  colour_taken: 'Another seat already stands as that piece',
+  wrong_phase: 'A pawn keeps its piece while a round plays'
 }
 
+/** The piece a `hello` asks for a new seat, its head round when it names none. */
+const askedPieceOf = (message: HelloMessage): PawnPiece | null =>
+  message.pawnColour === undefined
+    ? null
+    : { colour: message.pawnColour, head: message.pawnHead ?? 'round' }
+
 const repaintSeat = ({
-  colour,
   engine,
   outbound,
+  piece,
   playerId
 }: {
-  colour: number
   engine: RoomEngine
   outbound: Outbound
+  piece: PawnPiece
   playerId: PlayerId | null
 }): void => {
   const participant =
@@ -1143,9 +1150,9 @@ const repaintSeat = ({
   }
 
   const repainted = recolourSeat({
-    colour,
     now: engine.now(),
     participant,
+    piece,
     room: engine.room
   })
 

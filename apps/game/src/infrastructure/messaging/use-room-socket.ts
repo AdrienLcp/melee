@@ -13,6 +13,7 @@ import {
   protocolErrorMessageSchema,
   timePongMessageSchema
 } from '@melee/protocol/server-message'
+import type { PawnPiece } from '@melee/protocol/team'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { refusalVoidsSeat } from '@melee/core/room/session-memory'
@@ -28,7 +29,7 @@ import {
   isOurOwnMalformedFrame,
   reportRefusedFrame
 } from '@/infrastructure/diagnostics'
-import { readStoredPawnColour } from '@/infrastructure/storage/preferences-storage'
+import { readStoredPawnPiece } from '@/infrastructure/storage/preferences-storage'
 import {
   ensureSessionId,
   forgetSessionId,
@@ -38,11 +39,11 @@ import { ensureWallSessionId } from '@/infrastructure/storage/wall-session-stora
 
 import { useSettledStatus } from './use-settled-status'
 
-/** The colour a new seat asks for: the one this device last picked, if any. */
-const storedPawnColour = (): number | undefined => {
-  const stored = readStoredPawnColour()
+/** The piece a new seat asks for: the one this device last picked, if any. */
+const storedPawnPiece = (): PawnPiece | null => {
+  const stored = readStoredPawnPiece()
 
-  return stored.status === 'success' ? (stored.data ?? undefined) : undefined
+  return stored.status === 'success' ? stored.data : null
 }
 
 /**
@@ -164,6 +165,8 @@ export const useRoomSocket = ({
         // Everything the hello carries is read here rather than when the effect
         // ran: a refusal can have voided the seat since, and a screen handed the
         // room's token holds it only from the press that reopens this socket.
+        const askedPiece = nickname === null ? null : storedPawnPiece()
+
         socket.send(
           encodeMessage({
             hostToken:
@@ -171,7 +174,8 @@ export const useRoomSocket = ({
                 ? undefined
                 : (readHostToken(roomCode) ?? undefined),
             nickname: nickname ?? undefined,
-            pawnColour: nickname === null ? undefined : storedPawnColour(),
+            pawnColour: askedPiece?.colour,
+            pawnHead: askedPiece?.head,
             protocolVersion: PROTOCOL_VERSION,
             role,
             sessionId:

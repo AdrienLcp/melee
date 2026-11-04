@@ -65,3 +65,29 @@ describe('buzz', () => {
     ])
   })
 })
+
+describe('a seat repaint', () => {
+  it('[protocol] reads a repaint sent before heads as the round head', () => {
+    const repaint = clientMessageSchema.parse({
+      colour: 5,
+      type: 'player.recolourSeat'
+    })
+
+    expect(repaint).toEqual({
+      colour: 5,
+      head: 'round',
+      type: 'player.recolourSeat'
+    })
+  })
+
+  it('[protocol] keeps the head a repaint asks for', () => {
+    expect(
+      clientMessageSchema.parse({
+        colour: 5,
+        head: 'point',
+        playerId: 'anna',
+        type: 'host.recolourSeat'
+      })
+    ).toMatchObject({ head: 'point' })
+  })
+})

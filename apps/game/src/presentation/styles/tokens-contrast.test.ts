@@ -4,7 +4,6 @@ import { findContrastFailures, WCAG_AA } from '@adrienlcp/styles/contrast'
 import { describe, expect, it } from 'vitest'
 
 import { shelvedGames } from '@melee/protocol/game'
-import { PAWN_COLOUR_COUNT } from '@melee/protocol/team'
 
 const TOKENS = readFileSync(new URL('_tokens.sass', import.meta.url), 'utf8')
 const PIECE = readFileSync(new URL('_piece.sass', import.meta.url), 'utf8')
@@ -17,8 +16,6 @@ const PAPER_INKS = declaredNames(
 )
 
 const TILES = [1, 2, 3, 4] as const
-
-const PAWNS = Array.from({ length: PAWN_COLOUR_COUNT }, (_, index) => index + 1)
 
 const PHASE_MARKS = [
   { background: '--track-five', foreground: '--track-ink' },
@@ -208,11 +205,6 @@ describe('colour tokens', () => {
           foreground: '--card-socket-line',
           minimum: WCAG_AA.nonText
         },
-        ...PAWNS.map((pawn) => ({
-          background: `--pawn-${pawn}`,
-          foreground: `--on-pawn-${pawn}`,
-          minimum: WCAG_AA.text
-        })),
         ...['--groove', '--card-socket'].flatMap((background) =>
           ROUND_CLOCK_INKS.map((foreground) => ({
             background,

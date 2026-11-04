@@ -493,7 +493,7 @@ export const EN_DICTIONARY = defineDictionary({
       unreachable: 'We cannot reach Mêlée. Try again in a moment.'
     },
     colour_still_shown: 'Wait for the colour to hide before sending yours.',
-    colour_taken: 'Somebody just took that colour — pick another.',
+    colour_taken: 'Somebody just took that piece — pick another.',
     false_start: 'Too soon. Wait for the change.',
     host_already_connected: 'Someone is already running this table.',
     host_away: 'The host stepped away. The round is waiting for them.',
@@ -901,7 +901,6 @@ export const EN_DICTIONARY = defineDictionary({
     podium: {
       /** Names the roster's row menu, whose trigger is a bare glyph. */
       actions: 'Options for {nickname}',
-      close: 'Close the settings',
       empty:
         'Nobody yet. Read {code} aloud, or show the QR code on the room’s screen.',
       /** The roster's summary on a narrow screen, after its first three seats. */
@@ -1316,8 +1315,7 @@ export const EN_DICTIONARY = defineDictionary({
       panelFolded:
         'Whether you last folded the panel beside the table you run.',
       panelSide: 'Which side of the screen you put that panel on.',
-      pawnColour:
-        'The pawn colour you last picked, which the next table gives you if nobody there holds it yet.',
+      pawn: 'The pawn you last picked — its colour and its head — which the next table gives you if nobody there holds it yet.',
       recentTables:
         'The line-ups of the last tables you ran, each with its code, when it was played and how many rounds it went, to run one again.',
       savedEvenings:
@@ -1495,7 +1493,7 @@ export const EN_DICTIONARY = defineDictionary({
     title: 'Nobody here'
   },
   pawn: {
-    /** Under the twelve while a round plays, which is when the server refuses a recolour. */
+    /** Under the pieces while a round plays, which is when the server refuses a change. */
     betweenRounds: 'It changes between two rounds, not during one.',
     /** One pawn's colour, where `team.colour` is what a team of them is called. */
     colour: {
@@ -1512,21 +1510,30 @@ export const EN_DICTIONARY = defineDictionary({
       pawn11: 'Magenta',
       pawn12: 'Sky'
     },
-    /** Names the twelve: a seat's own pawn, or its team's when it sits in one. */
+    /** The head a seat's piece wears beside its colour, as `piece` names it. */
+    head: {
+      point: 'pointed head',
+      round: 'round head',
+      square: 'square head'
+    },
+    /** Names the pieces: a seat's own pawn, or its team's when it sits in one. */
     label: {
       seat: 'My pawn',
       team: 'My team’s pawn'
     },
+    /** A seat's piece, named whole: its colour's word, then its head. */
+    piece: '{colour}, {head}',
     /**
-     * The press that opens the twelve. `label` is all it prints; `seat` is its
-     * whole name for a screen reader, and starts with the printed word.
+     * The press that opens the pieces. `label` is all it prints; `seat` is its
+     * whole name for a screen reader, starts with the printed word and ends on
+     * the piece the seat stands as.
      */
     press: {
       label: 'Colour',
-      seat: 'Colour of my pawn'
+      seat: 'Colour of my pawn, {piece}'
     },
-    taken: '{colour}, already taken',
-    takenBy: '{colour}, taken by {holder}',
+    taken: '{pawn}, already taken',
+    takenBy: '{pawn}, taken by {holder}',
     /** Under a team's twelve: the seat is not the only one it repaints. */
     teamHint: 'Your whole team changes colour with it.'
   },

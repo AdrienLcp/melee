@@ -14,7 +14,7 @@ import type { Locale } from '@melee/protocol/locale'
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
 import { withHoldFields } from '@/domain/room/stored-round'
-import { withSeatColours } from '@/domain/room/stored-seats'
+import { withSeatPieces } from '@/domain/room/stored-seats'
 import { parseStoredGames } from '@/domain/room/stored-settings'
 import { nowMs } from '@/infrastructure/clock'
 import { newHostToken } from '@/infrastructure/ids'
@@ -113,7 +113,7 @@ export class RoomObject extends DurableObject<Env> {
       this.engine = this.engineFor({
         ...stored,
         ...games,
-        players: withSeatColours(stored.players),
+        players: withSeatPieces(stored.players),
         round: stored.round === null ? null : withHoldFields(stored.round)
       })
     }

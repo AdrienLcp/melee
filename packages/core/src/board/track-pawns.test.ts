@@ -13,6 +13,7 @@ import {
 const seat = (id: string, at: number | null, score = 0): PublicPlayer => ({
   board: at === null ? null : { case: at, move: 0 },
   colour: 1,
+  head: 'round',
   id,
   isConnected: true,
   isReady: false,

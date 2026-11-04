@@ -23,10 +23,10 @@ let room: Room
 
 const join = (nickname: string, sessionId: string) =>
   joinAsPlayer({
+    askedPiece: null,
     newPlayerId: `player-${sessionId}`,
     nickname,
     now: NOW,
-    pawnColour: null,
     room,
     sessionId
   })

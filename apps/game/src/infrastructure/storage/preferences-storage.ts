@@ -2,6 +2,7 @@ import { Result } from '@adrienlcp/result'
 import {
   readRecognizedText,
   readStoredText,
+  removeStored,
   type StorageReadError,
   type StorageWriteError,
   writeStoredJson,
@@ -35,7 +36,9 @@ import {
 import {
   DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
+  type PawnPiece,
   pawnColourSchema,
+  pawnPieceSchema,
   type TeamsSettings,
   teamScoringSchema,
   teamsSettingsSchema
@@ -51,7 +54,10 @@ import {
   type SavedEvening
 } from '@melee/core/room/saved-evening'
 
-import { readStoredWithSchema } from './read-stored-with-schema'
+import {
+  parseStoredWithSchema,
+  readStoredWithSchema
+} from './read-stored-with-schema'
 
 export const HOST_SETUP_KEY = 'melee:host-setup'
 export const LINE_UP_GAMES_KEY = 'melee:line-up-games'
@@ -59,7 +65,7 @@ export const LOCALE_KEY = 'melee:locale'
 export const NICKNAME_KEY = 'melee:nickname'
 export const PANEL_FOLDED_KEY = 'melee:panel-folded'
 export const PANEL_SIDE_KEY = 'melee:panel-side'
-export const PAWN_COLOUR_KEY = 'melee:pawn-colour'
+export const PAWN_KEY = 'melee:pawn'
 export const RECENT_TABLES_KEY = 'melee:recent-tables'
 export const SAVED_EVENINGS_KEY = 'melee:saved-evenings'
 export const VOLUME_KEY = 'melee:volume'
@@ -180,16 +186,21 @@ export const writeStoredNickname = (
 ): Result<void, StorageWriteError> =>
   writeStoredText({ key: NICKNAME_KEY, text: nickname })
 
-/**
- * The pawn colour this device last picked and a table accepted, asked for again
- * by the next table's `hello`. Never the one a table handed out on arrival, so
- * a colour somebody else held there does not replace the one that was picked.
- */
-export const readStoredPawnColour = (): Result<
-  number | null,
-  StorageReadError
-> => {
-  const stored = readStoredText(PAWN_COLOUR_KEY)
+/** Where the build before heads kept the colour alone, which the next read moves under `PAWN_KEY`. */
+const COLOUR_ONLY_PAWN_KEY = 'melee:pawn-colour'
+
+/** A colour kept alone, worn with the round head every pawn had then. */
+const colourOnlyPawnSchema = pawnColourSchema.transform(
+  (colour): PawnPiece => ({ colour, head: 'round' })
+)
+
+export const writeStoredPawnPiece = (
+  piece: PawnPiece
+): Result<void, StorageWriteError> =>
+  writeStoredJson({ key: PAWN_KEY, value: piece })
+
+const movedColourOnlyPawn = (): Result<PawnPiece | null, StorageReadError> => {
+  const stored = readStoredText(COLOUR_ONLY_PAWN_KEY)
 
   if (stored.status === 'failure') {
     return stored
@@ -199,17 +210,38 @@ export const readStoredPawnColour = (): Result<
     return Result.success(null)
   }
 
-  const parsed = pawnColourSchema.safeParse(Number(stored.data))
+  removeStored(COLOUR_ONLY_PAWN_KEY)
 
-  return parsed.success
-    ? Result.success(parsed.data)
-    : Result.failure('unrecognized')
+  const piece = parseStoredWithSchema({
+    schema: colourOnlyPawnSchema,
+    text: stored.data
+  })
+
+  if (piece.status === 'success') {
+    writeStoredPawnPiece(piece.data)
+  }
+
+  return piece
 }
 
-export const writeStoredPawnColour = (
-  colour: number
-): Result<void, StorageWriteError> =>
-  writeStoredText({ key: PAWN_COLOUR_KEY, text: String(colour) })
+/**
+ * The piece this device last picked and a table accepted, asked for again by
+ * the next table's `hello`. Never the one a table handed out on arrival, so a
+ * piece somebody else held there does not replace the one that was picked.
+ */
+export const readStoredPawnPiece = (): Result<
+  PawnPiece | null,
+  StorageReadError
+> => {
+  const stored = readStoredWithSchema({
+    key: PAWN_KEY,
+    schema: pawnPieceSchema
+  })
+
+  return stored.status === 'success' && stored.data === null
+    ? movedColourOnlyPawn()
+    : stored
+}
 
 const PANEL_FOLDED_VALUES = ['true', 'false'] as const
 

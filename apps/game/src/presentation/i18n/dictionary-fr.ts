@@ -462,7 +462,7 @@ export const FR_DICTIONARY = defineDictionary({
     colour_still_shown:
       'Attends que la couleur disparaisse avant d’envoyer la tienne.',
     colour_taken:
-      'Quelqu’un vient de prendre cette couleur — choisis-en une autre.',
+      'Quelqu’un vient de prendre cette pièce — choisis-en une autre.',
     false_start: 'Trop tôt. Attends que ça change.',
     host_already_connected: 'Quelqu’un tient déjà cette table.',
     host_away: 'L’hôte a décroché. La manche attend son retour.',
@@ -861,7 +861,6 @@ export const FR_DICTIONARY = defineDictionary({
     },
     podium: {
       actions: 'Options pour {nickname}',
-      close: 'Fermer les réglages',
       empty:
         'Personne pour l’instant. Lis {code} à voix haute, ou montre le QR de l’écran de la salle.',
       more: '+{count:number}',
@@ -1253,8 +1252,7 @@ export const FR_DICTIONARY = defineDictionary({
       panelFolded:
         'Si tu as replié le panneau à côté de la table que tu animes.',
       panelSide: 'De quel côté de l’écran tu as mis ce panneau.',
-      pawnColour:
-        'La couleur de pion que tu as choisie la dernière fois, que la table suivante te donne si personne ne l’a déjà.',
+      pawn: 'Le pion que tu as choisi la dernière fois — sa couleur et sa tête —, que la table suivante te donne si personne ne l’a déjà.',
       recentTables:
         'Les parties des dernières tables que tu as tenues, avec le code de chacune, quand elle a été jouée et combien de manches elle a duré, pour en relancer une.',
       savedEvenings:
@@ -1432,16 +1430,22 @@ export const FR_DICTIONARY = defineDictionary({
       pawn11: 'Fuchsia',
       pawn12: 'Ciel'
     },
+    head: {
+      point: 'tête pointue',
+      round: 'tête ronde',
+      square: 'tête carrée'
+    },
     label: {
       seat: 'Mon pion',
       team: 'Le pion de mon équipe'
     },
+    piece: '{colour}, {head}',
     press: {
       label: 'Couleur',
-      seat: 'Couleur de mon pion'
+      seat: 'Couleur de mon pion, {piece}'
     },
-    taken: '{colour}, déjà pris',
-    takenBy: '{colour}, pris par {holder}',
+    taken: '{pawn}, déjà pris',
+    takenBy: '{pawn}, pris par {holder}',
     teamHint: 'Toute ton équipe change de couleur avec lui.'
   },
   petitbac: {

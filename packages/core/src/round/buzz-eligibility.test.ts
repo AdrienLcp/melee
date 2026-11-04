@@ -54,6 +54,7 @@ const viewFor = (
     {
       board: null,
       colour: 1,
+      head: 'round',
       id: 'me',
       isConnected: true,
       isReady: false,

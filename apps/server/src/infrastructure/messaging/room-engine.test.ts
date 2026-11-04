@@ -78,10 +78,10 @@ const buzzerRoomInCountdown = (): Room => {
   }
 
   joinAsPlayer({
+    askedPiece: null,
     newPlayerId: 'alice',
     nickname: 'Alice',
     now: OPENED_AT,
-    pawnColour: null,
     room,
     sessionId: 'alice-session'
   })

@@ -5,6 +5,7 @@ import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { GameKind, ShelvedGame } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { AnswerMode } from '@melee/protocol/room'
+import type { PawnHead } from '@melee/protocol/team'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
 import type { TrackAnswers } from '@melee/core/blindtest/track-answers'
@@ -296,6 +297,11 @@ export const pawnColourKey = (
 ): (typeof PAWN_COLOUR_KEYS)[number] =>
   PAWN_COLOUR_KEYS[(colour - 1) % PAWN_COLOUR_KEYS.length] ??
   'pawn.colour.pawn1'
+
+/** The head a seat's piece wears, named as the second half of the piece's name. */
+export const pawnHeadKey = (
+  head: PawnHead
+): BuiltKey<`pawn.head.${PawnHead}`> => `pawn.head.${head}`
 
 /** What a team is called before the host names it, from its 1-based pawn number. */
 export const teamColourKey = (

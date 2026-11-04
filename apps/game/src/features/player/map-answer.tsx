@@ -9,7 +9,7 @@ import type { RoundView } from '@melee/protocol/room'
 import { atlasContent, mapRegionOf } from '@/helpers/round-content'
 import { Button } from '@/presentation/components/button'
 import { LazyWorldMap } from '@/presentation/components/lazy-world-map'
-import { usePawnNumber } from '@/presentation/components/pawn'
+import { usePawnPiece } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import type { PlayerAnswer } from './answer-forms'
@@ -46,7 +46,7 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
 }) => {
   const translate = useTranslate()
   const leaning = useLean(onLean)
-  const pawnNumber = usePawnNumber({ seat })
+  const piece = usePawnPiece({ seat })
   const [point, setPoint] = useState<GeoPoint | null>(null)
   const [isSent, setIsSent] = useState(false)
 
@@ -62,7 +62,7 @@ export const MapAnswer: React.FC<MapAnswerProps> = ({
       data-sent={hasAnswered || undefined}
     >
       <LazyWorldMap
-        marker={point === null ? null : { pawnNumber, point }}
+        marker={point === null ? null : { piece, point }}
         markerActions={
           hasAnswered || point === null ? undefined : (
             <>

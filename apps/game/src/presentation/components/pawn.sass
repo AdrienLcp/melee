@@ -1,15 +1,19 @@
-@use '../styles/typography'
-
 @layer components
   .pawn
     filter: drop-shadow(0 1.5px 0 var(--chipboard-dark))
     fill: var(--pawn)
     flex: none
     height: 1.15em
+    // The pointed head's softened apex stands half a unit over the box.
+    overflow: visible
+    transition: fill var(--transition-base, 0s) var(--ease-out)
     width: 1em
 
-    .mark
-      @include typography.numeric
+  // Outside `.pawn`: the world map draws the shape into an SVG of its own.
+  .pawn-head
+    transition: opacity var(--transition-base, 0s) var(--ease-out), visibility 0s
 
-      fill: var(--on-pawn)
-      pointer-events: none
+    &:not([data-worn])
+      opacity: 0
+      transition: opacity var(--transition-base, 0s) var(--ease-in), visibility 0s var(--transition-base, 0s)
+      visibility: hidden

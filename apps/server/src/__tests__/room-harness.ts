@@ -25,6 +25,7 @@ import {
   type PlayerServerMessage,
   playerServerMessageSchema
 } from '@melee/protocol/server-message'
+import type { PawnHead } from '@melee/protocol/team'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { nowMs } from '@/infrastructure/clock'
@@ -249,6 +250,8 @@ export type RoomHarness = {
     nickname: string
     /** The colour the screen asks for, as a device that played before does. */
     pawnColour?: number
+    /** The head asked for with `pawnColour`. */
+    pawnHead?: PawnHead
     sessionId?: string
   }) => Promise<Peer<PlayerServerMessage>>
   stop: () => Promise<void>
@@ -541,11 +544,13 @@ export const harnessAt = ({
     code,
     nickname,
     pawnColour,
+    pawnHead,
     sessionId
   }: {
     code: string
     nickname: string
     pawnColour?: number
+    pawnHead?: PawnHead
     sessionId?: string
   }) => {
     const player = await connect(code, playerServerMessageSchema)
@@ -553,6 +558,7 @@ export const harnessAt = ({
     player.send({
       nickname,
       pawnColour,
+      pawnHead,
       protocolVersion: PROTOCOL_VERSION,
       role: 'player',
       sessionId,

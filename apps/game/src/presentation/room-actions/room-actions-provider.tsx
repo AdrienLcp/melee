@@ -6,9 +6,9 @@ import type { ScoreTarget } from '@melee/protocol/client-message'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoomPhase } from '@melee/protocol/room'
-import type { Team } from '@melee/protocol/team'
+import type { PawnPiece, Team } from '@melee/protocol/team'
 
-/** The room a seat's pawn is picked against: whose colour is whose, and the phase. */
+/** The room a seat's pawn is picked against: whose piece is whose, and the phase. */
 export type PawnRoom = {
   phase: RoomPhase
   players: readonly PublicPlayer[]
@@ -78,13 +78,13 @@ export type RoomActions = {
    */
   pawnRoom: PawnRoom | null
   /**
-   * Repaints this screen's pawn: its team's when the seat sits in one, the
-   * seat's own otherwise. `null` with `pawnRoom`.
+   * Changes this screen's pawn: its team's colour when the seat sits in one,
+   * the seat's own piece otherwise. `null` with `pawnRoom`.
    */
-  recolourPawn: ((colour: number) => void) | null
+  recolourPawn: ((piece: PawnPiece) => void) | null
   /**
    * Why the server turned this screen's last recolour down, until another is
-   * asked for or the pawn stands in the colour asked.
+   * asked for or the pawn stands as the piece asked.
    */
   refusedRecolour: RecolourRefusal | null
   /** Changes the name the seat is held under, socket and round untouched. */

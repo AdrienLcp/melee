@@ -3,7 +3,7 @@
 @use '../styles/typography'
 
 @layer components
-  .pawn-colour-picker
+  .pawn-piece-picker
     display: grid
     gap: var(--space-s)
 
@@ -12,22 +12,27 @@
 
       color: var(--ink-muted)
 
-    // Six to a row, so the twelve pawns are two rows of the box, never three
-    // and a stray.
-    .colours
+    // Six to a row, so each head's twelve pieces are two rows of the box,
+    // never three and a stray.
+    .pieces
       display: grid
       gap: var(--space-2xs)
       grid-template-columns: repeat(6, minmax(0, 1fr))
+      transition: opacity var(--transition-base, 0s) var(--ease-out)
 
-    // Whole, and quieter: the colours still say who is what while the reason
+    .pieces + .pieces
+      border-top: var(--hairline)
+      padding-top: var(--space-s)
+
+    // Whole, and quieter: the pieces still say who is what while the reason
     // printed under them says why none of them answers.
-    &[data-disabled] .colours
+    &[data-disabled] .pieces
       opacity: 0.5
 
-    .colour-field
+    .piece-field
       display: contents
 
-    .colour
+    .piece
       @include focus.ring-inset
 
       align-items: center
@@ -39,6 +44,7 @@
       justify-content: center
       min-height: var(--target)
       position: relative
+      transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-in)
 
       &[data-hovered],
       &[data-pressed]
@@ -46,20 +52,31 @@
 
       &[data-selected]
         box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+        transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out)
 
       &[data-disabled]
         cursor: not-allowed
 
-      // Struck, never dimmed: a taken pawn keeps its colour so the sheet still
-      // says which colours are on the table.
-      &[data-taken]::after
+      // Struck, never dimmed: a taken piece keeps its colour and its head so
+      // the sheet still says which pieces are on the table. The strike is
+      // always there, drawn across as a seat takes the piece and wiped back
+      // as it lets it go.
+      &::after
         background: var(--ink)
         border-radius: var(--radius-full)
         content: ''
         height: var(--stroke-bold)
         inset-inline: 18%
+        opacity: 0
         position: absolute
         rotate: -45deg
+        scale: 0 1
+        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in)
+
+      &[data-taken]::after
+        opacity: 1
+        scale: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out), scale var(--transition-base, 0s) var(--ease-out)
 
     .react-aria-Text[slot='description']
       @include typography.caption

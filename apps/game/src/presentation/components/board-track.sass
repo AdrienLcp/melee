@@ -241,24 +241,19 @@
       margin-inline: -0.1em
       width: 1em
 
-      // Below this a case's pawns are too small for a letter on the head to
-      // read, and it reads as a smudge instead.
-      @container board-case (width < 3rem)
-        .mark
-          display: none
-
       // Below this the head runs into the body and the silhouette reads as a
       // blot: the head alone, grown to sit on the base, stands for the pawn.
       @container pawn (width < 0.8125rem)
-        .pawn
-          path,
-          rect,
-          .mark
-            display: none
+        .pawn-body
+          display: none
 
-          circle
-            cy: 19px
-            r: 8px
+        // From the 11 units the head is drawn at to the dot's 16, about the
+        // head's centre (12, 6.5), and down onto the base at 19. A matrix,
+        // because its offsets are the SVG's own units rather than pixels.
+        .pawn-heads
+          transform: matrix(calc(16 / 11), 0, 0, calc(16 / 11), calc(12 - 12 * 16 / 11), calc(19 - 6.5 * 16 / 11))
+          transform-box: view-box
+          transform-origin: 0 0
 
       // Every step is a new element, so each case is a hop and the walk reads
       // as a pawn counted along the track.

@@ -6,14 +6,11 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { Button } from './button'
 import { PaletteIcon } from './icons'
 import { Leaflet } from './leaflet'
-import {
-  PawnColourPicker,
-  type PawnColourPickerProps
-} from './pawn-colour-picker'
+import { PawnPiecePicker, type PawnPiecePickerProps } from './pawn-piece-picker'
 
-import './pawn-colour-press.sass'
+import './pawn-piece-press.sass'
 
-type PawnColourPressProps = Omit<PawnColourPickerProps, 'isLabelHidden'> & {
+type PawnPiecePressProps = Omit<PawnPiecePickerProps, 'isLabelHidden'> & {
   /**
    * The press's whole name for a screen reader — whose pawn it repaints —
    * starting with the word it prints. It names the sheet too.
@@ -23,9 +20,10 @@ type PawnColourPressProps = Omit<PawnColourPickerProps, 'isLabelHidden'> & {
 
 /**
  * One press for a seat's pawn or a team's: the palette and the word *Colour*,
- * opening the twelve pawns on a sheet that closes on the pick.
+ * opening the pieces on a sheet that closes on the pick — a seat's thirty-six,
+ * a team's twelve colours.
  */
-export const PawnColourPress: React.FC<PawnColourPressProps> = ({
+export const PawnPiecePress: React.FC<PawnPiecePressProps> = ({
   'aria-label': ariaLabel,
   onRecolour,
   ...picker
@@ -36,7 +34,7 @@ export const PawnColourPress: React.FC<PawnColourPressProps> = ({
     <DialogTrigger>
       <Button
         aria-label={ariaLabel}
-        className='pawn-colour-press'
+        className='pawn-piece-press'
         size='small'
         variant='outlined'
       >
@@ -45,14 +43,14 @@ export const PawnColourPress: React.FC<PawnColourPressProps> = ({
       </Button>
       <Leaflet
         aria-label={ariaLabel}
-        className='pawn-colour-leaflet'
+        className='pawn-piece-leaflet'
         placement='bottom'
       >
         {({ close }) => (
-          <PawnColourPicker
+          <PawnPiecePicker
             {...picker}
-            onRecolour={(colour) => {
-              onRecolour(colour)
+            onRecolour={(piece) => {
+              onRecolour(piece)
               close()
             }}
           />

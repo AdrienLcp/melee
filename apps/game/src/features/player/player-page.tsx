@@ -45,7 +45,7 @@ import { RoundClock } from './round-clock'
 import './player-page.sass'
 
 import { Main } from '@/presentation/components/main'
-import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
+import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
 
 export const PlayerPage: React.FC = () => {
   const roomCode = useRoomCodeParam()
@@ -282,7 +282,7 @@ const Lobby: React.FC<{
 
   if (view !== null && isFramed(view)) {
     return (
-      <PawnColoursProvider view={view}>
+      <PawnPiecesProvider view={view}>
         <Main className='player-page playing framed'>
           <RoundChrome
             duel={view.round?.duel ?? null}
@@ -316,12 +316,12 @@ const Lobby: React.FC<{
             />
           </PauseHold>
         </Main>
-      </PawnColoursProvider>
+      </PawnPiecesProvider>
     )
   }
 
   return (
-    <PawnColoursProvider view={view}>
+    <PawnPiecesProvider view={view}>
       <Main className='player-page playing'>
         {view === null ? (
           <p className='waiting'>{translate('player.seating')}</p>
@@ -365,7 +365,7 @@ const Lobby: React.FC<{
           </>
         )}
       </Main>
-    </PawnColoursProvider>
+    </PawnPiecesProvider>
   )
 }
 

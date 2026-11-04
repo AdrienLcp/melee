@@ -14,7 +14,7 @@ import { Leaflet } from '@/presentation/components/leaflet'
 import { TeamMove } from '@/presentation/components/team-move'
 import {
   TrackPawnPiece,
-  trackPawnNumberOf,
+  trackPawnPieceOf,
   useTrackPawnName
 } from '@/presentation/components/track-pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -62,7 +62,9 @@ export const BoardMoves: React.FC<BoardMovesProps> = ({
             <li
               className='board-moves-team'
               key={pawn.id}
-              style={{ '--team': `var(--pawn-${trackPawnNumberOf(pawn)})` }}
+              style={{
+                '--team': `var(--pawn-${trackPawnPieceOf(pawn).colour})`
+              }}
             >
               <p className='board-moves-name'>
                 <TrackPawnPiece pawn={pawn} />

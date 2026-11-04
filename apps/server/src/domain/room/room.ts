@@ -42,7 +42,7 @@ import type {
 import type { Award, CellsVerdict, Verdict } from '@melee/protocol/scoring'
 import type { ClipFault, Speaker, WallId } from '@melee/protocol/sound'
 import type { ColourHex, SentColour } from '@melee/protocol/swatch'
-import type { TeamId, TeamName } from '@melee/protocol/team'
+import type { PawnHead, TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
@@ -193,6 +193,8 @@ export type Participant = {
   bankedCase: number
   /** The seat's own pawn colour, 1-based; a team's colour covers it. */
   colour: number
+  /** The head worn with `colour`; a team's pawn covers it with a round one. */
+  head: PawnHead
   /**
    * When the socket closed, and `null` while it is open. It is what tells a
    * player who locked their screen apart from one who has gone: see

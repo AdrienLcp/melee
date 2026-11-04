@@ -130,7 +130,7 @@ import { useSlateWall } from './use-slate-wall'
 import './host-console-page.sass'
 
 import { Main } from '@/presentation/components/main'
-import { PawnColoursProvider } from '@/presentation/components/pawn-colours'
+import { PawnPiecesProvider } from '@/presentation/components/pawn-pieces'
 
 /** Where a press to play right away is: waiting for its seat, or for its first round. */
 type RightAwayStart = 'idle' | 'seating' | 'starting'
@@ -630,12 +630,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   if (view !== null && choosing !== null && !isLaidOutForWall) {
     return (
-      <PawnColoursProvider view={view}>
+      <PawnPiecesProvider view={view}>
         <Main className='host-console-page framed'>
           <RoomDocumentTitle settings={view.settings} />
           {seatedRound}
         </Main>
-      </PawnColoursProvider>
+      </PawnPiecesProvider>
     )
   }
 
@@ -850,7 +850,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
 
   if (view === null) {
     return (
-      <PawnColoursProvider view={view}>
+      <PawnPiecesProvider view={view}>
         <HostPanel
           defaultTab='game'
           isStageFull={false}
@@ -864,7 +864,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           {page}
           {boardTrack}
         </HostPanel>
-      </PawnColoursProvider>
+      </PawnPiecesProvider>
     )
   }
 
@@ -874,7 +874,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     const isRevealed = view.phase === 'revealed'
 
     return (
-      <PawnColoursProvider view={view}>
+      <PawnPiecesProvider view={view}>
         <HostPodium
           next={
             isRevealed && (
@@ -923,12 +923,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
           setup={setup}
           view={view}
         />
-      </PawnColoursProvider>
+      </PawnPiecesProvider>
     )
   }
 
   return (
-    <PawnColoursProvider view={view}>
+    <PawnPiecesProvider view={view}>
       <HostPanel
         defaultTab={view.phase === 'lobby' ? 'game' : 'players'}
         isStageFull={
@@ -950,7 +950,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
         {page}
         {boardTrack}
       </HostPanel>
-    </PawnColoursProvider>
+    </PawnPiecesProvider>
   )
 }
 

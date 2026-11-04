@@ -10,12 +10,28 @@ export const MAX_TEAMS = 6
 /**
  * The pawn hues a screen draws a team or a seat in: as many as stay apart on
  * the track in both palettes. Past them colour stops being an identity, which
- * is why a seat's pawn on the track carries its initial too.
+ * is why a seat's piece takes a head beside its colour (`PAWN_HEADS`).
  */
 export const PAWN_COLOUR_COUNT = 12
 
 /** A pawn's token, 1-based. */
 export const pawnColourSchema = z.number().int().min(1).max(PAWN_COLOUR_COUNT)
+
+/**
+ * The shapes a seat's pawn may wear on its head, in the order an arriving seat
+ * is dealt them: twelve colours times three heads is more pieces than a room
+ * holds seats, so no two seats ever stand in the same one. A team's pawn always
+ * wears the round head.
+ */
+export const PAWN_HEADS = ['round', 'square', 'point'] as const
+
+export const pawnHeadSchema = z.enum(PAWN_HEADS)
+
+/** A seat's piece: the colour it stands in and the head it wears. */
+export const pawnPieceSchema = z.object({
+  colour: pawnColourSchema,
+  head: pawnHeadSchema
+})
 
 const teamCountSchema = z.number().int().min(MIN_TEAMS).max(MAX_TEAMS)
 
@@ -105,6 +121,8 @@ export const teamVerdictSchema = z.object({
   verdict: verdictSchema
 })
 
+export type PawnHead = z.infer<typeof pawnHeadSchema>
+export type PawnPiece = z.infer<typeof pawnPieceSchema>
 export type TeamScoring = z.infer<typeof teamScoringSchema>
 export type TeamVerdict = z.infer<typeof teamVerdictSchema>
 export type TeamsSettings = z.infer<typeof teamsSettingsSchema>

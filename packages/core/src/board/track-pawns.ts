@@ -4,12 +4,9 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 import type { Team, TeamId } from '@melee/protocol/team'
 
-import { pawnMarksOf } from './pawn-marks'
-
 /**
  * One pawn on the track: a team's in a room that plays in teams, a seat's
- * otherwise. A seat carries its place in the roster and the mark its pawn
- * carries on its head (`pawnMarksOf`).
+ * otherwise. A seat carries its place in the roster.
  */
 export type TrackPawn =
   | { board: BoardPosition; id: TeamId; kind: 'team'; team: Team }
@@ -17,7 +14,6 @@ export type TrackPawn =
       board: BoardPosition
       id: PlayerId
       kind: 'seat'
-      mark: string
       player: PublicPlayer
       seat: number
     }
@@ -33,31 +29,26 @@ export const trackPawnsOf = ({
 }: {
   players: readonly PublicPlayer[]
   teams: readonly Team[]
-}): TrackPawn[] => {
-  const marks = pawnMarksOf(players)
-
-  return [
-    ...teams.flatMap((team): TrackPawn[] =>
-      team.board === null
-        ? []
-        : [{ board: team.board, id: team.id, kind: 'team', team }]
-    ),
-    ...players.flatMap((player, seat): TrackPawn[] =>
-      player.board === null
-        ? []
-        : [
-            {
-              board: player.board,
-              id: player.id,
-              kind: 'seat',
-              mark: marks.get(player.id) ?? '',
-              player,
-              seat
-            }
-          ]
-    )
-  ]
-}
+}): TrackPawn[] => [
+  ...teams.flatMap((team): TrackPawn[] =>
+    team.board === null
+      ? []
+      : [{ board: team.board, id: team.id, kind: 'team', team }]
+  ),
+  ...players.flatMap((player, seat): TrackPawn[] =>
+    player.board === null
+      ? []
+      : [
+          {
+            board: player.board,
+            id: player.id,
+            kind: 'seat',
+            player,
+            seat
+          }
+        ]
+  )
+]
 
 const scoreOf = (pawn: TrackPawn): number =>
   pawn.kind === 'team' ? pawn.team.score : pawn.player.score

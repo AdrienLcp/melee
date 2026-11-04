@@ -42,6 +42,7 @@ const playerView: PlayerRoomView = {
     {
       board: null,
       colour: 1,
+      head: 'round',
       id: 'p1',
       isConnected: true,
       isReady: false,

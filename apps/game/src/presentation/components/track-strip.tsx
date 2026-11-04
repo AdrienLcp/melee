@@ -7,7 +7,7 @@ import { prefersReducedMotion } from '@/infrastructure/browser'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { Button } from './button'
-import { TrackPawnPiece, trackPawnNumberOf } from './track-pawn'
+import { TrackPawnPiece, trackPawnPieceOf } from './track-pawn'
 
 import './track-strip.sass'
 
@@ -127,7 +127,7 @@ export const TrackStrip: React.FC<TrackStripProps> = ({
       style={
         yours === undefined
           ? undefined
-          : { '--team': `var(--pawn-${trackPawnNumberOf(yours)})` }
+          : { '--team': `var(--pawn-${trackPawnPieceOf(yours).colour})` }
       }
     >
       {yours !== undefined && (

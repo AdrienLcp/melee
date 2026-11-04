@@ -33,6 +33,7 @@ import {
   MAX_TEAMS,
   MIN_TEAMS,
   pawnColourSchema,
+  pawnHeadSchema,
   scoreTargetSchema,
   teamIdSchema,
   teamNameSchema,
@@ -64,9 +65,11 @@ export const helloMessageSchema = z.object({
   nickname: nicknameSchema.optional(),
   /**
    * The pawn colour this device last played in, asked for a new seat. A seat
-   * that comes back keeps the colour it holds, as it keeps its name.
+   * that comes back keeps the piece it holds, as it keeps its name.
    */
   pawnColour: pawnColourSchema.optional(),
+  /** The head worn with `pawnColour`, asked for with it; `round` when absent. */
+  pawnHead: pawnHeadSchema.optional(),
   protocolVersion: z.number().int().positive(),
   role: connectionRoleSchema,
   sessionId: sessionIdSchema.optional(),
@@ -239,12 +242,18 @@ export const recolourOwnTeamMessageSchema = z.object({
 })
 
 /**
- * A seat repainting its own pawn, under `player.recolourTeam`'s phases. Refused
- * `colour_taken` for a colour another seat holds while one is still free —
- * past twelve seats two share one, and the initial on the pawn tells them apart.
+ * The head a repaint asks for, `round` when absent: a tab still on the build
+ * before heads sends the colour alone, and means the piece it draws.
+ */
+const askedHeadSchema = pawnHeadSchema.default('round')
+
+/**
+ * A seat changing its own piece, under `player.recolourTeam`'s phases. Refused
+ * `colour_taken` for a piece another seat holds: no two seats share one.
  */
 export const recolourOwnSeatMessageSchema = z.object({
   colour: pawnColourSchema,
+  head: askedHeadSchema,
   type: z.literal('player.recolourSeat')
 })
 
@@ -527,9 +536,10 @@ export const recolourTeamMessageSchema = z.object({
   type: z.literal('host.recolourTeam')
 })
 
-/** The host repainting any seat's pawn, under `player.recolourSeat`'s rules. */
+/** The host changing any seat's piece, under `player.recolourSeat`'s rules. */
 export const recolourSeatMessageSchema = z.object({
   colour: pawnColourSchema,
+  head: askedHeadSchema,
   playerId: playerIdSchema,
   type: z.literal('host.recolourSeat')
 })

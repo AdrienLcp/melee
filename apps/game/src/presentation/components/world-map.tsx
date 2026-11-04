@@ -3,6 +3,7 @@ import { useEffect, useId, useRef, useState } from 'react'
 
 import type { AtlasShown, GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { PawnPiece } from '@melee/protocol/team'
 
 import { nearestPointOnRings } from '@melee/core/atlas/distance'
 
@@ -36,7 +37,7 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { Button } from './button'
 import { MinusIcon, PlusIcon, WorldIcon } from './icons'
-import { PAWN_BOX, PawnShape, usePawnNumber } from './pawn'
+import { PAWN_BOX, PawnShape, usePawnPiece } from './pawn'
 import { useEasedMapView } from './use-eased-map-view'
 import { useMapGestures } from './use-map-gestures'
 import { VisuallyHidden } from './visually-hidden'
@@ -96,8 +97,8 @@ export type RevealedTarget =
   | { kind: 'city'; point: GeoPoint }
 
 export type WorldMapProps = {
-  /** The player's pawn and the colour it plays in, or `null` before it is put down. */
-  marker: { pawnNumber: number; point: GeoPoint } | null
+  /** The player's pawn and the piece it plays as, or `null` before it is put down. */
+  marker: { piece: PawnPiece; point: GeoPoint } | null
   /** The presses perched over the pawn while it can still move — sending it, taking it back. */
   markerActions?: React.ReactNode
   /** The answer and every pawn, once the round is revealed: the view opens framed on them. */
@@ -290,10 +291,10 @@ const MapSurface: React.FC<MapSurfaceProps> = ({
         {marker !== null && markerAt !== null && (
           <g
             className='marker'
-            style={{ '--pawn': `var(--pawn-${marker.pawnNumber})` }}
+            style={{ '--pawn': `var(--pawn-${marker.piece.colour})` }}
             transform={`translate(${markerAt[0]} ${markerAt[1]}) scale(${MARKER_SCALE}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
           >
-            <PawnShape />
+            <PawnShape head={marker.piece.head} />
           </g>
         )}
       </svg>
@@ -657,15 +658,15 @@ const RevealedPawn: React.FC<{
   scale: number
   seat: number
 }> = ({ at, scale, seat }) => {
-  const pawnNumber = usePawnNumber({ seat })
+  const piece = usePawnPiece({ seat })
 
   return (
     <g
       className='marker'
-      style={{ '--pawn': `var(--pawn-${pawnNumber})` }}
+      style={{ '--pawn': `var(--pawn-${piece.colour})` }}
       transform={`translate(${at[0]} ${at[1]}) scale(${scale}) translate(${-PAWN_BOX.width / 2} ${-PAWN_BOX.height})`}
     >
-      <PawnShape />
+      <PawnShape head={piece.head} />
     </g>
   )
 }

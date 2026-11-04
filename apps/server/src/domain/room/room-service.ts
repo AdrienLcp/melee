@@ -7,11 +7,12 @@ import type {
   SessionId
 } from '@melee/protocol/identifiers'
 import { MAX_PLAYERS_PER_ROOM, type RoomSettings } from '@melee/protocol/room'
+import type { PawnPiece } from '@melee/protocol/team'
 
 import {
-  isPawnColourFree,
-  pawnColourForArrival
-} from '@melee/core/board/pawn-colour'
+  isPawnPieceFree,
+  pawnPieceForArrival
+} from '@melee/core/board/pawn-piece'
 import { randomUnit } from '@melee/core/helpers/random'
 import { dealsOf } from '@melee/core/room/line-up-deals'
 import { playedPerEntry } from '@melee/core/room/next-game'
@@ -38,21 +39,22 @@ export const touch = (room: Room, now: number): void => {
  * **A returning seat keeps the name it holds**, whatever the `hello` says.
  * Renaming is `player.rename`'s job, and a screen that renamed itself carries
  * the old name in memory until it reloads: honouring the hello here would let a
- * Wi-Fi blink undo a rename nobody asked to undo. The pawn colour follows the
- * same rule: `pawnColour` is asked for a new seat only.
+ * Wi-Fi blink undo a rename nobody asked to undo. The pawn's piece follows the
+ * same rule: `askedPiece` is asked for a new seat only.
  */
 export const joinAsPlayer = ({
+  askedPiece,
   newPlayerId,
   nickname,
   now,
-  pawnColour,
   room,
   sessionId
 }: {
+  /** The piece this device last played as, and `null` from one that never picked. */
+  askedPiece: PawnPiece | null
   newPlayerId: PlayerId
   nickname: Nickname
   now: number
-  pawnColour: number | null
   room: Room
   sessionId: SessionId
 }): Result<Participant, JoinError> => {
@@ -81,13 +83,15 @@ export const joinAsPlayer = ({
     return Result.failure('nickname_taken')
   }
 
+  const piece = pawnPieceForArrival({
+    asked: askedPiece,
+    heldByOthers: [...room.players.values()]
+  })
   const participant: Participant = {
     bankedCase: 0,
-    colour: pawnColourForArrival({
-      asked: pawnColour,
-      heldByOthers: [...room.players.values()].map((other) => other.colour)
-    }),
+    colour: piece.colour,
     disconnectedAt: null,
+    head: piece.head,
     id: newPlayerId,
     isConnected: true,
     isReady: false,
@@ -130,34 +134,34 @@ export const renameSeat = ({
 }
 
 /**
- * A seat repainting its pawn: refused while a round is in play, when a pawn
- * changing colour loses the room the track, and for a colour another seat holds
- * while one is still free.
+ * A seat changing its piece: refused while a round is in play, when a pawn
+ * changing looks loses the room the track, and for a piece another seat holds.
  */
 export const recolourSeat = ({
-  colour,
   now,
   participant,
+  piece,
   room
 }: {
-  colour: number
   now: number
   participant: Participant
+  piece: PawnPiece
   room: Room
 }): Result<Participant, 'colour_taken' | 'wrong_phase'> => {
   if (isRoundInPlay(room.phase)) {
     return Result.failure('wrong_phase')
   }
 
-  const heldByOthers = [...room.players.values()]
-    .filter((other) => other !== participant)
-    .map((other) => other.colour)
+  const heldByOthers = [...room.players.values()].filter(
+    (other) => other !== participant
+  )
 
-  if (!isPawnColourFree({ colour, heldByOthers })) {
+  if (!isPawnPieceFree({ heldByOthers, piece })) {
     return Result.failure('colour_taken')
   }
 
-  participant.colour = colour
+  participant.colour = piece.colour
+  participant.head = piece.head
   touch(room, now)
 
   return Result.success(participant)

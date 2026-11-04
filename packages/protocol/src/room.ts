@@ -83,6 +83,7 @@ import {
   DEFAULT_TEAM_SCORING,
   DEFAULT_TEAMS_SETTINGS,
   pawnColourSchema,
+  pawnHeadSchema,
   teamIdSchema,
   teamSchema,
   teamScoringSchema,
@@ -407,9 +408,14 @@ export const publicPlayerSchema = z.object({
   board: boardPositionSchema.nullable(),
   /**
    * The seat's own pawn colour, picked by the seat and kept by the device.
-   * A seat in a team stands in the team's colour instead — `pawnColourOf`.
+   * A seat in a team stands in the team's colour instead — `pawnPieceOf`.
    */
   colour: pawnColourSchema,
+  /**
+   * The head worn with `colour`: the pair is the seat's piece, held by no other
+   * seat. A seat in a team wears the round head of the team's pawn instead.
+   */
+  head: pawnHeadSchema,
   id: playerIdSchema,
   isConnected: z.boolean(),
   /**

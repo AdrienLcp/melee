@@ -124,6 +124,7 @@ const players = [
   {
     board: null,
     colour: 1,
+    head: 'round',
     id: 'p1',
     isConnected: true,
     isReady: false,
@@ -133,6 +134,7 @@ const players = [
   {
     board: null,
     colour: 2,
+    head: 'round',
     id: 'p2',
     isConnected: true,
     isReady: false,
@@ -142,6 +144,7 @@ const players = [
   {
     board: null,
     colour: 3,
+    head: 'round',
     id: 'p3',
     isConnected: true,
     isReady: false,
@@ -253,6 +256,7 @@ const table = [
 ].map((nickname, seat) => ({
   board: null,
   colour: (seat % 12) + 1,
+  head: seat < 12 ? 'round' : 'square',
   id: `p${seat + 1}`,
   isConnected: true,
   isReady: false,
@@ -1768,6 +1772,7 @@ const FULL_TABLE_NAMES = [
 const fullTable = Array.from({ length: 24 }, (_, seat) => ({
   board: null,
   colour: (seat % 12) + 1,
+  head: seat < 12 ? 'round' : 'square',
   id: `p${seat + 1}`,
   isConnected: true,
   isReady: seat % 2 === 0,
