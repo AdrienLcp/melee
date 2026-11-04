@@ -284,9 +284,6 @@
       position: fixed
       z-index: 2
 
-    .host-panel[data-waiting] .panel-tabs
-      animation-play-state: paused
-
       .panel-tab
         font-size: var(--text-3xs)
         gap: 0.125rem
@@ -295,6 +292,9 @@
 
         svg
           font-size: var(--text-s)
+
+    .host-panel[data-waiting] .panel-tabs
+      animation-play-state: paused
 
     // A tab here is the whole screen, not a panel beside the game: it is laid
     // down like a page, where a fade alone read as a cut.
