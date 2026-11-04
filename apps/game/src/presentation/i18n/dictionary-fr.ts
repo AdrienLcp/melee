@@ -214,8 +214,6 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'À quel point c’est connu',
       mixed: 'Un peu pointu',
       obscure: 'Pour les experts',
-      pinnedByFilms:
-        'Les musiques de films fixent leur propre niveau — rien ici n’est un tube du top.',
       wellKnown: 'Grand public'
     },
     genre: {

@@ -242,8 +242,6 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'How well known',
       mixed: 'Deep cuts too',
       obscure: 'For the experts',
-      pinnedByFilms:
-        'Film scores set their own level — nothing here is a chart single.',
       wellKnown: 'Crowd-pleasers'
     },
     genre: {

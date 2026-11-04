@@ -272,12 +272,14 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
   const offeredModes = answerModesFor(game).filter((offered) =>
     isPlayableWithTeams({ mode: offered, teams: settings.teams })
   )
-  // Read from the draft rather than from the room, or this strip goes on
-  // claiming to work for a whole round after the composers were chosen alone.
+  // Read from the draft rather than from the room, or the difficulty strip
+  // stays up for a whole round after the composers were chosen alone: they pin
+  // their own floor, so it would decide nothing.
   const chosenSource =
     draftSource ?? (game?.kind === 'blindtest' ? game.source : null)
   const pinsItsOwnDifficulty =
     chosenSource !== null && trackAnswersOf(chosenSource) === 'films'
+  const difficultyArrived = useArrivedLater(!pinsItsOwnDifficulty)
   const offersLoneFinds = game?.kind === 'blacksquare' && mode.kind === 'typed'
   const loneFindsArrived = useArrivedLater(offersLoneFinds)
   // Buzzer-moded and still nothing to hold: a reflex press takes no floor
@@ -385,10 +387,11 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
         </>
       )}
 
-      {game?.kind === 'blindtest' && (
+      {game?.kind === 'blindtest' && !pinsItsOwnDifficulty && (
         <SegmentedControl
           className='track-difficulty'
-          isDisabled={isDisabled || pinsItsOwnDifficulty}
+          data-arrived={difficultyArrived}
+          isDisabled={isDisabled}
           label={translate('blindtest.difficulty.label')}
           onChange={(next) => {
             if (isDifficulty(next)) {
@@ -401,18 +404,6 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           }))}
           value={game.difficulty}
         />
-      )}
-
-      {/*
-        Said where the lie would otherwise be told. The composers pin their own
-        floor, so this strip decides nothing while they are the source — and a
-        control that quietly stopped working is worse than one that is ruled
-        and says why.
-      */}
-      {game?.kind === 'blindtest' && pinsItsOwnDifficulty && (
-        <p className='hint'>
-          {translate('blindtest.difficulty.pinnedByFilms')}
-        </p>
       )}
 
       {game?.kind === 'buzzer' && (

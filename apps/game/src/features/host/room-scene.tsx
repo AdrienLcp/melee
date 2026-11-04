@@ -17,7 +17,6 @@ import { PlusIcon, ScreenIcon } from '@/presentation/components/icons'
 import { Link } from '@/presentation/components/link'
 import { Pawn } from '@/presentation/components/pawn'
 import { SegmentedControl } from '@/presentation/components/segmented-control'
-import { Slider } from '@/presentation/components/slider'
 import { WallPairingForm } from '@/presentation/components/wall-pairing-form'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useRoomActions } from '@/presentation/room-actions/room-actions-provider'
@@ -263,56 +262,46 @@ const speakerOf = (value: string): Speaker =>
     : { kind: 'wall', wallId: value }
 
 /**
- * Where the room hears the game, and how loud: one screen sounds at a time,
- * because two a few metres apart are an echo. The level is the room's, sent to
- * whichever screen is sounding — this one or a wall across the room.
+ * Where the room hears the game: one screen sounds at a time, because two a
+ * few metres apart are an echo. Asked only once a wall can take over; how loud
+ * is the menu's, which reaches whichever screen is sounding at every phase.
  */
 const SoundWay: React.FC<{
   onChooseSpeaker: (speaker: Speaker) => void
   walls: readonly WallScreen[]
 }> = ({ onChooseSpeaker, walls }) => {
   const translate = useTranslate()
-  const { roomVolume, setRoomVolume } = useRoomActions()
   const speaking = walls.find((wall) => wall.isSpeaker)?.id ?? CONSOLE_SPEAKER
+
+  if (walls.length === 0) {
+    return null
+  }
 
   return (
     <div className='way sound'>
       <h4>{translate('host.roomScene.sound.title')}</h4>
-      {walls.length > 0 && (
-        <SegmentedControl
-          label={translate('host.roomScene.sound.playsOn')}
-          onChange={(value) => {
-            onChooseSpeaker(speakerOf(value))
-          }}
-          options={[
-            {
-              label: translate('host.roomScene.sound.here'),
-              value: CONSOLE_SPEAKER
-            },
-            ...walls.map((wall) => ({
-              label:
-                walls.length === 1
-                  ? translate('host.roomScene.sound.wall')
-                  : translate('host.roomScene.sound.wallNumbered', {
-                      number: wall.number
-                    }),
-              value: wall.id
-            }))
-          ]}
-          value={speaking}
-        />
-      )}
-      {roomVolume !== null && setRoomVolume !== null && (
-        <Slider
-          formatOptions={{ style: 'percent' }}
-          label={translate('preferences.volume')}
-          maxValue={1}
-          minValue={0}
-          onChange={setRoomVolume}
-          step={0.05}
-          value={roomVolume}
-        />
-      )}
+      <SegmentedControl
+        label={translate('host.roomScene.sound.playsOn')}
+        onChange={(value) => {
+          onChooseSpeaker(speakerOf(value))
+        }}
+        options={[
+          {
+            label: translate('host.roomScene.sound.here'),
+            value: CONSOLE_SPEAKER
+          },
+          ...walls.map((wall) => ({
+            label:
+              walls.length === 1
+                ? translate('host.roomScene.sound.wall')
+                : translate('host.roomScene.sound.wallNumbered', {
+                    number: wall.number
+                  }),
+            value: wall.id
+          }))
+        ]}
+        value={speaking}
+      />
     </div>
   )
 }
