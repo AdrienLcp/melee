@@ -1028,7 +1028,18 @@ or a poster carries none of them.
 on `--track-a` with the pawn and the name, a socket per empty pawn, the own
 seat in a keyline. It never ranks (`Scoreboard`'s `isRoster`): its chips are
 dealt across where a ranking is read downwards, and a rank, a case and points
-in a chip a third of the roster wide left the name 0px. `AnsweredPawns` on the console stands a pawn for an answer
+in a chip a third of the roster wide left the name 0px. A name too long for
+its chip takes a second line, hyphenated, never an ellipsis after five letters
+(two *Anne-* read as one seat); its size is the lower of 2.2 `stage-unit` and
+3.3cqi of the roster, so two lines stay inside the chip's height. Measured with
+24 French names of 17 to 20 characters at the sixteen viewports of
+`choice-fits.spec.ts`, console and player: none cut. The console's stage
+carries no ✕ — the room reads that roster, and the Players tab holds the same
+one with its ✕. Its seat offer folds away (the offer fades, then its row
+closes) once the host sits or the table is full, and the Room tab says the
+table is full in the form's place. Above the split the side column scrolls
+inside itself when the offer and a full table are taller than it, so the
+launch under it never leaves the screen. `AnsweredPawns` on the console stands a pawn for an answer
 in and dashes one owed — *that*, never *what*. Removing a player is a ✕ named
 `Remove {nickname}`. A seat whose screen has gone mutes its name and carries
 `AwayMark`: an outlined `--radius-full` tag, a wifi-off glyph and the word in
@@ -1712,8 +1723,8 @@ iOS Safari, so every pattern says something the screen says too.
 
 - A list past about fourteen players scrolls inside its own box.
 - Sixty slate items scroll inside their own board.
-- A 20-character name truncates in the console lobby's roster, and to a few
-  letters on the score track of a console held in a hand.
+- A 20-character name truncates to a few letters on the score track of a
+  console held in a hand.
 - Below the split a reveal shows one chip per distinct answer; which player
   said what is the player's own screen's, and the points are the track's.
 - A player's reveal is not held to the screen: the answer, the round's block,
