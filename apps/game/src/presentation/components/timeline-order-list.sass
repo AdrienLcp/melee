@@ -88,16 +88,15 @@
     .order-row[data-dragging] .timeline-card
       cursor: grabbing
 
-    // Bare chevrons side by side, each a fingertip wide and the row's whole
-    // height, so neither is under the 44 px target on a row of one line. A
-    // screen too narrow to spare their width stacks them, up above down,
-    // through `--timeline-steps`, each half of the row. None is drawn where
-    // the card cannot go: hidden rather than removed, so every card keeps one
-    // width.
+    // Bare chevrons stacked up above down, splitting the row's height, so the
+    // card keeps the row's width: each half a fingertip wide and at least
+    // WCAG's 24 px tall, down to nothing only where a screen lying down has
+    // no height to spare (`--timeline-steps`). None is drawn where the card
+    // cannot go: hidden rather than removed, so every card keeps one width.
     .steps
       align-self: stretch
       display: grid
-      grid-template: var(--timeline-steps, minmax(0, 1fr) / repeat(2, 2.75rem))
+      grid-template: var(--timeline-steps, repeat(2, minmax(1.5rem, 1fr)) / 2.75rem)
 
       .step
         block-size: 100%
