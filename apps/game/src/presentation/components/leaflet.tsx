@@ -21,12 +21,15 @@ type LeafletProps = {
   maxHeight?: PopoverProps['maxHeight']
   /** Where the popover opens from its trigger on a wide screen. */
   placement: PopoverProps['placement']
+  /** The screen wide enough for the popover; the shell's split by default. Below it, the sheet. */
+  wideQuery?: string
 }
 
 /**
  * The rulebook leaflet a trigger opens, inside a `DialogTrigger`: a popover
  * beside the trigger past the split, a sheet rising from the bottom edge below
- * it, pulled down by its grabber or put away by a press on the board above it.
+ * it, pulled down by its grabber or from anywhere on its content, or put away by
+ * a press on the board above it — and, on both faces, by the back gesture.
  * `PopoverSheet` holds both faces; the leaflet gives them the split and the
  * rulebook's material.
  */
@@ -35,13 +38,14 @@ export const Leaflet: React.FC<LeafletProps> = ({
   children,
   className,
   maxHeight,
-  placement
+  placement,
+  wideQuery = WIDE_SCREEN_QUERY
 }) => (
   <PopoverSheet
     className={className}
     maxHeight={maxHeight}
     placement={placement}
-    wideQuery={WIDE_SCREEN_QUERY}
+    wideQuery={wideQuery}
   >
     <Dialog aria-label={label}>{children}</Dialog>
   </PopoverSheet>

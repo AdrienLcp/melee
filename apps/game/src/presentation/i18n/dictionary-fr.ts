@@ -861,7 +861,6 @@ export const FR_DICTIONARY = defineDictionary({
     },
     podium: {
       actions: 'Options pour {nickname}',
-      close: 'Fermer les réglages',
       empty:
         'Personne pour l’instant. Lis {code} à voix haute, ou montre le QR de l’écran de la salle.',
       more: '+{count:number}',

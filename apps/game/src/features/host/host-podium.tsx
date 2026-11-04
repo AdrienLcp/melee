@@ -1,6 +1,7 @@
 import { useMediaQuery } from '@adrienlcp/browser/react'
 import type React from 'react'
-import { lazy, Suspense, useId, useState } from 'react'
+import { useId } from 'react'
+import { DialogTrigger } from 'react-aria-components'
 
 import type { HostRoomView } from '@melee/protocol/room'
 
@@ -13,6 +14,7 @@ import {
   PlayersIcon,
   ScreenIcon
 } from '@/presentation/components/icons'
+import { Leaflet } from '@/presentation/components/leaflet'
 import { Main } from '@/presentation/components/main'
 import { SectionHeading } from '@/presentation/components/section-heading'
 import { RoomDocumentTitle } from '@/presentation/head/room-document-title'
@@ -23,12 +25,6 @@ import { PodiumRoster, useRosterSummary } from './podium-roster'
 import { GameTab, RoomTab, type SetupTabsProps, TableTab } from './setup-tabs'
 
 import './host-podium.sass'
-
-// Its own chunk, fetched on the first press that opens it: bundled, react-aria's
-// modal landed in a chunk every front door loads.
-const LoadedSheet = lazy(async () => ({
-  default: (await import('@/presentation/components/sheet')).Sheet
-}))
 
 type HostPodiumProps = {
   /** The round after this one, with the presses that open it: at a reveal only. */
@@ -57,7 +53,6 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
 }) => {
   const translate = useTranslate()
   const isWide = useMediaQuery(PODIUM_SCREEN_QUERY)
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false)
   const rosterSummary = useRosterSummary(view)
   const rosterTitleId = useId()
 
@@ -93,17 +88,24 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
           </span>
         </span>
         {!isWide && (
-          <Button
-            aria-label={translate('host.podium.settings')}
-            className='podium-settings-press'
-            onPress={() => {
-              setIsSettingsOpen(true)
-            }}
-            size='small'
-            variant='outlined'
-          >
-            <ControlsIcon />
-          </Button>
+          <DialogTrigger>
+            <Button
+              aria-label={translate('host.podium.settings')}
+              className='podium-settings-press'
+              size='small'
+              variant='outlined'
+            >
+              <ControlsIcon />
+            </Button>
+            <Leaflet
+              aria-label={translate('host.podium.settings')}
+              className='podium-settings-leaflet'
+              placement='bottom end'
+              wideQuery={PODIUM_SCREEN_QUERY}
+            >
+              {settings}
+            </Leaflet>
+          </DialogTrigger>
         )}
       </div>
       {isWide ? (
@@ -139,26 +141,13 @@ export const HostPodium: React.FC<HostPodiumProps> = ({
           <GameTab {...setup} />
         </section>
       </div>
-      {isWide ? (
+      {isWide && (
         <aside
           aria-label={translate('host.podium.settings')}
           className='podium-settings'
         >
           {settings}
         </aside>
-      ) : (
-        isSettingsOpen && (
-          <Suspense fallback={null}>
-            <LoadedSheet
-              closeLabel={translate('host.podium.close')}
-              heading={translate('host.podium.settings')}
-              isOpen={isSettingsOpen}
-              onOpenChange={setIsSettingsOpen}
-            >
-              <div className='podium-sheet'>{settings}</div>
-            </LoadedSheet>
-          </Suspense>
-        )
       )}
     </Main>
   )

@@ -182,6 +182,16 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A sheet comes down from anywhere on it, and the back gesture
+  puts it away.** The menu and the console's settings beside a wall follow a
+  thumb pulling down from their content, not only from the grabber — a press
+  under the thumb is cancelled once the sheet moves, a slider or a field keeps
+  its own drag, and a list scrolled down scrolls back first. Android's back
+  gesture closes the sheet or popover instead of leaving the table. The
+  console's settings now open in the same leaflet as the menu, so they rise
+  and leave with a motion where they used to cut in and out
+  (`@adrienlcp/react-aria` 0.7.0).
+
 - `[Shared]` **A player's screen says the game is over on its last reveal**
   — *Game over, waiting for the results* where *Ready* and the count to the
   next round stood. The server marks that reveal (`round.isFinal`, on the rule
