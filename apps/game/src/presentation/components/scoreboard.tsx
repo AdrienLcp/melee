@@ -4,6 +4,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 
 import {
+  buildRoster,
   buildScoreboard,
   hasAnybodyScored
 } from '@melee/core/scoring/scoreboard'
@@ -37,6 +38,13 @@ type ScoreboardProps = {
    * The caller still owes the container the columns are measured against.
    */
   isResult?: boolean
+  /**
+   * Lists who has sat down rather than how they stand: no rank, case or
+   * points, whatever the scores say. The lobby's roster passes it — its chips
+   * are dealt across a third of the roster wide, where a ranking is read
+   * downwards and the points' columns left the name no room at all.
+   */
+  isRoster?: boolean
   /**
    * Names the list where the screen around it does not. The lobby roster on a
    * player's screen is a column of nicknames under a pitch, and a reader who
@@ -96,6 +104,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   className,
   hasPawns,
   isResult,
+  isRoster,
   label,
   marksReady,
   onRemove,
@@ -107,7 +116,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
   youId
 }) => {
   const translate = useTranslate()
-  const isRanked = hasAnybodyScored(players)
+  const isRanked = isRoster !== true && hasAnybodyScored(players)
   const shownScoreOf = (player: PublicPlayer) =>
     translate('player.score', { points: shownPoints(player.score) })
   const widestScoreLength = Math.max(
@@ -140,7 +149,10 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
           : {})
       }}
     >
-      {buildScoreboard(players).map(({ player, rank }, at) => {
+      {(isRoster === true
+        ? buildRoster(players)
+        : buildScoreboard(players)
+      ).map(({ player, rank }, at) => {
         const placesClimbed = placesClimbedBy({ at, player, rankedBefore })
 
         return (

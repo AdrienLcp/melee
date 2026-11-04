@@ -129,6 +129,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
           ) : isRosterBeside ? null : (
             <Scoreboard
               hasPawns
+              isRoster
               onRemove={controls?.onRemovePlayer}
               players={view.players}
               youId={youId}

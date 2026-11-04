@@ -1026,7 +1026,9 @@ or a poster carries none of them.
 ### Pawns and seats
 `Pawn` names a player everywhere. The roster (`seat-grid`) is a chip per seat
 on `--track-a` with the pawn and the name, a socket per empty pawn, the own
-seat in a keyline. `AnsweredPawns` on the console stands a pawn for an answer
+seat in a keyline. It never ranks (`Scoreboard`'s `isRoster`): its chips are
+dealt across where a ranking is read downwards, and a rank, a case and points
+in a chip a third of the roster wide left the name 0px. `AnsweredPawns` on the console stands a pawn for an answer
 in and dashes one owed — *that*, never *what*. Removing a player is a ✕ named
 `Remove {nickname}`. A seat whose screen has gone mutes its name and carries
 `AwayMark`: an outlined `--radius-full` tag, a wifi-off glyph and the word in

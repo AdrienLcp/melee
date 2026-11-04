@@ -463,6 +463,14 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A lobby's roster never ranks its seats, so every chip keeps its
+  pawn and its name.** A table scored before its first round — on a track
+  above all — printed each chip's rank, case and points in a chip a third of
+  the roster wide, and the name, the one column allowed to shrink, went to
+  nothing: twenty-four chips of figures on the console and the phone alike.
+  The roster lists who has sat down, by name, whatever the scores say, as the
+  teams' lobby already did.
+
 - `[Game]` **The rest of the screens arrive and leave in one motion.** Filmed
   frame by frame, five cuts were left. Off the desk the console's tab bar now
   docks from its edge with the stage instead of standing alone before it, and

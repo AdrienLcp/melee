@@ -1800,6 +1800,116 @@ const fullEveningOnTheConsole = (view: ReturnType<typeof consoleView>) => {
   }
 }
 
+/**
+ * The lobby of a full table on a track, every seat already scored and moved —
+ * a frame the server takes before the first round, though no press sends it.
+ * A roster is who has sat down, so each chip keeps its pawn and its name
+ * whatever the scores say.
+ */
+const scoredLobbyOnATrack = ({
+  view,
+  youId
+}: {
+  view: Pick<ReturnType<typeof choosingView>, 'settings'>
+  youId: string | null
+}) => ({
+  ...view,
+  phase: 'lobby',
+  players: fullTable.map((player, seat) => ({
+    ...player,
+    board: { case: 24 - seat, move: 0 }
+  })),
+  round: null,
+  settings: {
+    ...view.settings,
+    board: evening(consoleView(LONGEST_PROMPT)).settings.board
+  },
+  youId
+})
+
+const SCORED_LOBBIES = [
+  {
+    path: `/host/${ROOM_CODE}`,
+    role: 'room',
+    view: scoredLobbyOnATrack({
+      view: consoleView(LONGEST_PROMPT),
+      youId: null
+    })
+  },
+  {
+    path: `/play/${ROOM_CODE}`,
+    role: 'player',
+    view: scoredLobbyOnATrack({
+      view: choosingView(LONGEST_PROMPT),
+      youId: 'p7'
+    })
+  }
+]
+
+/**
+ * Every roster chip that squeezed out its pawn, the first letters of its name
+ * or its own edge. A long name may end on an ellipsis after two ems of it.
+ */
+const squeezedRosterChips = (): string[] =>
+  [
+    ...document.querySelectorAll<HTMLElement>(
+      '.roster .scoreboard li, .seats .scoreboard li'
+    )
+  ].flatMap((chip) => {
+    const pawn = chip.querySelector('.pawn')
+    const name = chip.querySelector<HTMLElement>('.name')
+
+    if (pawn === null || name === null) {
+      return [`${chip.textContent}: no pawn or no name`]
+    }
+
+    const em = Number.parseFloat(getComputedStyle(name).fontSize)
+    const pawnWidth = pawn.getBoundingClientRect().width
+    const nameWidth = name.getBoundingClientRect().width
+    const isSqueezed =
+      pawnWidth < em ||
+      nameWidth < Math.min(name.scrollWidth, 2 * em) ||
+      chip.scrollWidth > chip.clientWidth + 1
+
+    return isSqueezed
+      ? [
+          `${name.textContent}: pawn ${pawnWidth}, name ${nameWidth}, chip ${chip.scrollWidth}/${chip.clientWidth}`
+        ]
+      : []
+  })
+
+for (const lobby of SCORED_LOBBIES) {
+  test(`[layout] ${lobby.role}, the lobby of a scored full table on a track: every chip shows its pawn and its name`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: lobby.view })
+    await page.setViewportSize({ height: 900, width: 1440 })
+    await page.goto(lobby.path)
+    await expect(page.locator('.scoreboard li')).toHaveCount(24)
+
+    const faults: string[] = []
+
+    for (const [width, height] of VIEWPORTS) {
+      await resizeTo({ height, page, width })
+
+      const squeezed = await page.evaluate(squeezedRosterChips)
+      const sideways = await page.evaluate(
+        () =>
+          (document.scrollingElement ?? document.documentElement).scrollWidth -
+          innerWidth
+      )
+
+      if (squeezed.length > 0 || sideways > 0) {
+        faults.push(
+          `${width}×${height} sideways ${sideways}, ${squeezed.length} squeezed: ${squeezed.slice(0, 2).join(' · ')}`
+        )
+      }
+    }
+
+    expect(faults).toEqual([])
+  })
+}
+
 /** Whatever is drawn past the stage, outside a box made to scroll. */
 const strayFromTheStage = (): string[] => {
   const stage = document.querySelector<HTMLElement>(

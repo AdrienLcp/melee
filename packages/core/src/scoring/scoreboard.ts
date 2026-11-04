@@ -55,6 +55,18 @@ export const buildScoreboard = (
 }
 
 /**
+ * Who has sat down, by name, everyone sharing first: what `buildScoreboard`
+ * returns before anybody has scored, kept by a roster whatever the scores say,
+ * because a list may never order on a figure it does not print.
+ */
+export const buildRoster = (
+  players: readonly PublicPlayer[]
+): ScoreboardEntry[] =>
+  players
+    .toSorted((left, right) => compareText(left.nickname, right.nickname))
+    .map((player) => ({ player, rank: 1 }))
+
+/**
  * Who won, or who shares the win: everyone on the top rank, in the board's
  * order. Empty while nobody has scored, because first place on nought is not
  * a win anybody can be told about.

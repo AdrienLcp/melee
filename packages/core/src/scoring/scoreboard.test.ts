@@ -3,6 +3,7 @@ import { describe, expect, it } from 'vitest'
 import type { PublicPlayer } from '@melee/protocol/room'
 
 import {
+  buildRoster,
   buildScoreboard,
   hasAnybodyScored,
   roundPlacingOf,
@@ -84,6 +85,33 @@ describe('buildScoreboard', () => {
 
   it('[scoring] handles an empty room', () => {
     expect(buildScoreboard([])).toEqual([])
+  })
+})
+
+describe('buildRoster', () => {
+  it('[scoring] lists a scored table by name, everyone sharing first', () => {
+    const roster = buildRoster([
+      pawnOn({ at: 3, nickname: 'Chloe', score: 9 }),
+      pawnOn({ at: 5, nickname: 'Bob', score: 2 }),
+      pawnOn({ at: 0, nickname: 'Alice', score: 0 })
+    ])
+
+    expect(roster.map((entry) => entry.player.nickname)).toEqual([
+      'Alice',
+      'Bob',
+      'Chloe'
+    ])
+    expect(roster.map((entry) => entry.rank)).toEqual([1, 1, 1])
+  })
+
+  it('[scoring] stands a table nobody has scored on where its scoreboard stands it', () => {
+    const table = [
+      playerOn('Zoé', 0),
+      playerOn('Alice', 0),
+      playerOn('Marc', 0)
+    ]
+
+    expect(buildRoster(table)).toEqual(buildScoreboard(table))
   })
 })
 

@@ -515,6 +515,7 @@ export const PlayerRound: React.FC<PlayerRoundProps> = ({
               <>
                 <Scoreboard
                   hasPawns
+                  isRoster
                   label={translate('player.table')}
                   players={view.players}
                   youAction={<OwnPawnPress />}
