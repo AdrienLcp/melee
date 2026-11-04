@@ -1,6 +1,6 @@
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
-import type { RoomSettings } from '@melee/protocol/room'
+import type { RoomSettings, RoundView } from '@melee/protocol/room'
 import type { CatalogueSource, TrackSource } from '@melee/protocol/track'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
@@ -489,6 +489,24 @@ export const useEntryName = (settings: EntrySettings): string | null => {
   )
 }
 
+const tellingNameAt = ({
+  at,
+  lineUp,
+  translate
+}: LineUp & { at: number }): string | null => {
+  const entry = lineUp[at]
+
+  if (entry === undefined) {
+    return null
+  }
+
+  const game = translate(gameNameKey(entry.kind))
+  const name = lineUpEntryNames({ lineUp, translate })[at] ?? game
+  const [detail] = namingOf({ entry, translate })
+
+  return name === game && detail !== undefined ? `${game} · ${detail}` : name
+}
+
 type NextRoundSettings = Pick<RoomSettings, 'lineUp' | 'lineUpAt'>
 
 /**
@@ -503,21 +521,55 @@ export const nextRoundName = ({
 }: {
   settings: NextRoundSettings
   translate: Translate
-}): string | null => {
-  const { lineUp, lineUpAt } = settings
-  const entry = lineUpAt === null ? undefined : lineUp[lineUpAt]
-
-  if (lineUpAt === null || entry === undefined) {
-    return null
-  }
-
-  const game = translate(gameNameKey(entry.kind))
-  const name = lineUpEntryNames({ lineUp, translate })[lineUpAt] ?? game
-  const [detail] = namingOf({ entry, translate })
-
-  return name === game && detail !== undefined ? `${game} · ${detail}` : name
-}
+}): string | null =>
+  settings.lineUpAt === null
+    ? null
+    : tellingNameAt({
+        at: settings.lineUpAt,
+        lineUp: settings.lineUp,
+        translate
+      })
 
 /** `nextRoundName` in the reader's language. */
 export const useNextRoundName = (settings: NextRoundSettings): string | null =>
   nextRoundName({ settings, translate: useTranslate() })
+
+/** The round a reveal is about: which game it was, and which entry it came from. */
+export type PlayedRound = Pick<RoundView, 'lineUpAt'> & {
+  content: Pick<RoundView['content'], 'kind'>
+}
+
+/**
+ * The round on screen, as its reveal heads it: the entry it was opened from,
+ * named the way `nextRoundName` announced it. The game alone when the line-up
+ * no longer holds that entry where the round stamped it, and `null` in a room
+ * of one entry, which knows what it is playing.
+ */
+export const playedRoundName = ({
+  lineUp,
+  round,
+  translate
+}: LineUp & { round: PlayedRound }): string | null => {
+  if (lineUp.length < 2) {
+    return null
+  }
+
+  const { kind } = round.content
+  const entry = round.lineUpAt === null ? undefined : lineUp[round.lineUpAt]
+
+  if (round.lineUpAt === null || entry?.kind !== kind) {
+    return translate(gameNameKey(kind))
+  }
+
+  return tellingNameAt({ at: round.lineUpAt, lineUp, translate })
+}
+
+/** `playedRoundName` in the reader's language. */
+export const usePlayedRoundName = ({
+  lineUp,
+  round
+}: {
+  lineUp: readonly GameSettings[]
+  round: PlayedRound
+}): string | null =>
+  playedRoundName({ lineUp, round, translate: useTranslate() })

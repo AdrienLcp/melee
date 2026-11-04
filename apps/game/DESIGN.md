@@ -1138,6 +1138,14 @@ columns lying down. On a track with seats and no teams the standings are the
 its longest run (`answerFitting`), *wins with N points* under it; a tie stands
 every winner's pawn at one shared size.
 
+**In a line-up the round's block is headed by what was played**
+(`ThisRoundHeading`): the entry the round was stamped on, named as the console
+announced it — *Quiz · Histoire*, *Buzzer · Un essai chacun* — after its glyph
+on a square of its spine (`--spine-*` under `--on-spine-*`, 1.4em, bled over
+the heading's line by a negative block margin so the heading keeps the height
+of *Classement général*: the mark had cost a phone's reveal 5.6px). A room of
+one entry keeps *Cette manche*; it knows what it is playing.
+
 ### Black square (`BlackSquareSheet`, `BlackSquareReveal`, `BlackSquareGauge`)
 Direction A, *the grid*, chosen 2026-10-24 (`.impeccable/directions/black-square/`,
 local). A seat's grid is one tier a row in cell order — 3 × 3 at nine, a short

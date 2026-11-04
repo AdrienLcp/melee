@@ -17,7 +17,8 @@ import { i18n } from './i18n'
 import {
   lineUpEntryNames,
   lineUpEntrySummaries,
-  nextRoundName
+  nextRoundName,
+  playedRoundName
 } from './line-up-entry-names'
 
 const translate = i18n.translator('en')
@@ -253,6 +254,43 @@ describe('nextRoundName', () => {
     expect(
       nextRoundName({
         settings: { lineUp: [quiz([])], lineUpAt: null },
+        translate
+      })
+    ).toBeNull()
+  })
+})
+
+describe('playedRoundName', () => {
+  const lineUp = [
+    quiz(['history', 'science']),
+    blindtest(catalogueOf({ decades: ['1970s'] }))
+  ]
+
+  it('[line-up] names the entry the round was opened from, its pick said', () => {
+    expect(
+      playedRoundName({
+        lineUp,
+        round: { content: { kind: 'blindtest' }, lineUpAt: 1 },
+        translate
+      })
+    ).toBe('Blind test · 70s')
+  })
+
+  it('[line-up] falls back on the game once the entry left its place', () => {
+    expect(
+      playedRoundName({
+        lineUp,
+        round: { content: { kind: 'blindtest' }, lineUpAt: 0 },
+        translate
+      })
+    ).toBe('Blind test')
+  })
+
+  it('[line-up] names nothing in a room of one entry', () => {
+    expect(
+      playedRoundName({
+        lineUp: [quiz(['history'])],
+        round: { content: { kind: 'quiz' }, lineUpAt: 0 },
         translate
       })
     ).toBeNull()

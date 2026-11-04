@@ -134,6 +134,7 @@ import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
+import { ThisRoundHeading } from '@/presentation/components/this-round-heading'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { ToggleButton } from '@/presentation/components/toggle-button'
 import {
@@ -349,7 +350,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         rows it never declared silently resolves back to the first one. */}
       <div className='outcome'>
         <Revealed round={round} view={view} />
-        <SectionHeading>{translate('round.thisRound')}</SectionHeading>
+        <ThisRoundHeading lineUp={view.settings.lineUp} round={round} />
         <YourRound round={round} view={view} />
         <RoundPodium
           players={view.players}

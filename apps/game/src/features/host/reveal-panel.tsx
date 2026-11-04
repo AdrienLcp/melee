@@ -2,6 +2,7 @@ import type React from 'react'
 import { useRef } from 'react'
 
 import { UNIT_OF_FAMILY } from '@melee/protocol/estimate'
+import type { GameSettings } from '@melee/protocol/game'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
@@ -40,8 +41,8 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
-import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchShown } from '@/presentation/components/swatch-shown'
+import { ThisRoundHeading } from '@/presentation/components/this-round-heading'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
 import { useAnswerWords } from '@/presentation/components/use-distance-words'
 import { useQuantityWords } from '@/presentation/components/use-quantity-words'
@@ -55,6 +56,8 @@ import './reveal-panel.sass'
 import { shownPoints } from '@/helpers/shown-points'
 
 type RevealPanelProps = {
+  /** The room's line-up, which names the round's block after the entry it was opened from. */
+  lineUp: readonly GameSettings[]
   /** The console striking a Petit Bac word out; absent wherever the reveal is only read. */
   onStrike?: (strike: PetitBacStrike) => void
   /** Needed to turn the awards' player ids into names and pawns. */
@@ -116,6 +119,7 @@ const saidTogether = (answers: readonly RevealedAnswer[]): SaidTogether[] => {
  * has nothing to give away, and the panel is the scoreline alone.
  */
 export const RevealPanel: React.FC<RevealPanelProps> = ({
+  lineUp,
   onStrike,
   players,
   round,
@@ -160,7 +164,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           </div>
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -188,7 +197,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           </div>
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -205,7 +219,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -224,7 +243,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -252,7 +276,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -277,7 +306,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -301,7 +335,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
 
         {round.awards.some((award) => award.points > 0) && (
           <>
-            <ThisRoundHead players={players} round={round} youId={youId} />
+            <ThisRoundHead
+              lineUp={lineUp}
+              players={players}
+              round={round}
+              youId={youId}
+            />
             <RoundPodium players={players} round={round} youId={youId} />
           </>
         )}
@@ -324,7 +363,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -368,7 +412,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     return (
       <section className='reveal-panel' data-game='atlas'>
         <MapReveal players={players} round={round} />
-        <Outcome players={players} round={round} youId={youId} />
+        <Outcome
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
       </section>
     )
   }
@@ -379,7 +428,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   if (reflexContent(round) !== null) {
     return (
       <section className='reveal-panel bare'>
-        <ThisRoundHead players={players} round={round} youId={youId} />
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
         <ReactionBoard players={players} round={round} />
       </section>
     )
@@ -389,7 +443,12 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
   if (innerclockContent(round) !== null) {
     return (
       <section className='reveal-panel bare'>
-        <ThisRoundHead players={players} round={round} youId={youId} />
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
         <CountedBoard players={players} round={round} />
       </section>
     )
@@ -397,12 +456,13 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
 
   return (
     <section className='reveal-panel bare'>
-      <Outcome players={players} round={round} youId={youId} />
+      <Outcome lineUp={lineUp} players={players} round={round} youId={youId} />
     </section>
   )
 }
 
 const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
+  lineUp,
   players,
   round,
   youId
@@ -428,7 +488,12 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
   if (answers.length > 0) {
     return (
       <>
-        <ThisRoundHead players={players} round={round} youId={youId} />
+        <ThisRoundHead
+          lineUp={lineUp}
+          players={players}
+          round={round}
+          youId={youId}
+        />
         <RoundPodium
           players={players}
           round={round}
@@ -459,7 +524,12 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
 
   return (
     <>
-      <ThisRoundHead players={players} round={round} youId={youId} />
+      <ThisRoundHead
+        lineUp={lineUp}
+        players={players}
+        round={round}
+        youId={youId}
+      />
       <RoundPodium players={players} round={round} youId={youId} />
     </>
   )
@@ -472,27 +542,27 @@ const Outcome: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
  * the heading's row, so it costs the stage no line of its own.
  */
 const ThisRoundHead: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
+  lineUp,
   players,
   round,
   youId
 }) => {
-  const translate = useTranslate()
   const seat = players.findIndex((player) => player.id === youId)
   // A seat that sat the round out to judge was never stamped on it.
   const isStamped =
     youId !== null && (round.openedWithPlayerIds?.includes(youId) ?? true)
 
   return (
-    <SectionHeading
+    <ThisRoundHeading
       aside={
         youId === null || seat === -1 || !isStamped ? null : (
           <SeatedResult round={round} seat={seat} youId={youId} />
         )
       }
       className='this-round-head'
-    >
-      {translate('round.thisRound')}
-    </SectionHeading>
+      lineUp={lineUp}
+      round={round}
+    />
   )
 }
 

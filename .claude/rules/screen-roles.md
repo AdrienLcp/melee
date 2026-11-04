@@ -47,7 +47,9 @@ holds every figure the round alone paid — the answer, the podium with round
 places, a seat's own `+35` — in filled pieces; *Overall standings*
 (`round.overallStandings`) holds rank, pawn, name, ready mark, case, total
 and the movement stamp, in ruled rows, and no figure of the round. Each opens
-on the same ruled heading (`SectionHeading`), on every role.
+on the same ruled heading (`SectionHeading`), on every role — the round's
+named after the entry it was played on once the line-up holds two
+(`ThisRoundHeading`).
 
 ## When the wall runs out of room
 

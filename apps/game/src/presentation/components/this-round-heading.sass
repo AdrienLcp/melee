@@ -1,0 +1,22 @@
+@layer components
+  .this-round-heading > h2
+    align-items: center
+    display: flex
+    gap: 0.4em
+
+  .this-round-heading .spine-mark
+    background: var(--spine)
+    border-radius: var(--radius-s)
+    color: var(--spine-ink)
+    display: grid
+    flex: none
+    height: 1.4em
+    // Bleeds over the heading's line rather than growing it: a player's reveal
+    // owes its first screen the round, the hold and the Ready press.
+    margin-block: -0.3em
+    place-items: center
+    width: 1.4em
+
+    .game-icon
+      height: 0.85em
+      width: 0.85em

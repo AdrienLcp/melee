@@ -218,7 +218,12 @@ const PhaseStage: React.FC<RoomStageProps> = ({
         {recap === null && <NextGameName settings={view.settings} />}
         <Countdown clock={clock} target={round.startsAt} />
         {recap !== null && (
-          <RevealPanel players={view.players} round={recap} youId={null} />
+          <RevealPanel
+            lineUp={view.settings.lineUp}
+            players={view.players}
+            round={recap}
+            youId={null}
+          />
         )}
         {clipOffer}
       </div>
@@ -473,6 +478,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
           }}
         >
           <RevealPanel
+            lineUp={view.settings.lineUp}
             onStrike={
               controls === null
                 ? undefined
