@@ -1540,9 +1540,20 @@ bounced. Durations:
   stood before the stage. A screen replaced inside one page plays as a page
   change (`replaceScreen`): the seat form fades over the lobby being laid
   down, and a room's loader over the room — rendered by `main.tsx` rather than
-  by the router, whose swap cut it out. The console that closed the room keeps
-  its page until the page change takes it home, rather than cutting to the
-  refusal that answers it.
+  by the router, whose swap cut it out. A fatal refusal off the socket — the
+  table closed, a seat removed, a console taken over — is one too, set in
+  `use-room-socket.ts`; a screen whose refusal sends it to another page (a
+  wall let go, a console the wall had become) shows none and leaves on the
+  page change. `replaceScreen` stands down while another transition plays,
+  because starting one skips the one running; and the console that closed the
+  room passes `isLeaving`, taking the refusal that answers it with no
+  transition and no notice, so the page change taking it home plays whole.
+  Off the desk the tab bar steps aside — for four tiles lying down, for a
+  keyboard standing up — by sliding back off its edge (`stepped-aside`,
+  `ease-in`) and docks again by the same transition, and the menu beside it
+  moves at its pace. *Close the table* opens its warning in place: the
+  warning's row unfolds and the press fades into the one that closes,
+  so the menu grows rather than jumping.
 - **A block arriving later** — on a screen already laid down. New content
   rises with `page-enter` on `base`: the player's hold, *Ready* press and
   standings a beat after the card (`slow` × 0.6, with the payout), the game a

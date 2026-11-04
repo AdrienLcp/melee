@@ -641,3 +641,18 @@ What this found, each invisible in any still:
   left went at once. `replaceScreen` plays them as a page change.
 - **A motion too short to read**: `--ease-out` lands nine tenths of a move in
   its first third, so a `fast` fade or a rem of travel reads as a cut.
+- **A transition skipped by the next**: starting a view transition skips the
+  one playing, so two in a row show as one cut short — a `vt:start` logged
+  before the first's `vt:finished`. The console closing its table did it: the
+  refusal answering it started one while the router was still loading home.
+- **A delay that is the dev server's**: Vite compiles a module on its first
+  request, so the first refusal filmed took 720ms from `vt:start` to the swap,
+  and 82ms the second time. Film a slow moment twice before chasing it.
+
+A change that happens at a moment the action cannot time — a round flipping to
+its reveal, a countdown ending — is filmed by marking it: have the action wait
+for it (a `MutationObserver` storing `performance.now()` on `window`), then set
+`page.__mark` to that page time, and the sheet keeps only the frames from 250ms
+before it. Where two things must move together, sample both boxes on every
+`requestAnimationFrame` instead: a filmstrip's first frame can predate the
+change by more than its caption says.

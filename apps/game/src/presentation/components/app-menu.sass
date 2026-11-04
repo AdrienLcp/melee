@@ -42,10 +42,16 @@
       :root:has(.host-desk[data-side='right'][data-folded]) &
         inset-inline-end: calc(var(--host-rail-width) + var(--gutter-right))
 
+    // It moves aside with the tab bar, at the bar's pace, rather than
+    // jumping ahead of it.
     @include layout.off-desk
       @media (aspect-ratio >= 13 / 10)
+        :root:has(.host-desk) &
+          transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-in)
+
         :root:has(.host-desk:not([data-screen='stage'][data-stage-full])) &
           inset-inline-end: calc(var(--panel-bar-width) + var(--gutter-right))
+          transition: opacity var(--transition-base, 0s) var(--ease-out), inset-inline-end var(--transition-slow, 0s) var(--ease-out)
 
     // A screen of four tiles lying down gives the tiles the whole right-hand
     // column, so the menu moves to the start of the chrome over the question.
@@ -251,6 +257,50 @@
 
       color: var(--ink-muted)
       text-wrap: balance
+
+    // Asking twice opens in place: the warning's row unfolds over the press,
+    // and the press turns into the one that closes, so the sheet grows rather
+    // than jumping to its new height.
+    .close-room
+      display: grid
+      gap: 0rem
+      grid-template-rows: 0fr auto
+      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s), gap var(--transition-base, 0s) var(--ease-in) var(--transition-fast, 0s)
+
+      .warning
+        min-height: 0
+        opacity: 0
+        overflow: hidden
+        transition: opacity var(--transition-base, 0s) var(--ease-in)
+
+      .close-presses
+        display: grid
+
+        > *
+          grid-area: 1 / 1
+          transition: opacity var(--transition-base, 0s) var(--ease-in), visibility var(--transition-base, 0s)
+
+      .close-confirm
+        opacity: 0
+        visibility: hidden
+
+      &[data-confirming]
+        gap: var(--space-s)
+        grid-template-rows: 1fr auto
+        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), gap var(--transition-base, 0s) var(--ease-out)
+
+        .warning
+          opacity: 1
+          transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
+
+        .close-ask
+          opacity: 0
+          visibility: hidden
+
+        .close-confirm
+          opacity: 1
+          transition: opacity var(--transition-base, 0s) var(--ease-out), visibility var(--transition-base, 0s)
+          visibility: visible
 
     .build
       @include typography.label

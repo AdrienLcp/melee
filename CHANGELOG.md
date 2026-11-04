@@ -483,6 +483,16 @@ one part.
   console that closed the table goes home without first cutting to *The host
   closed the table*.
 
+- `[Game]` **A table closing, a seat removed or a console taken over fades to
+  its refusal.** The screen was cut away and *The host closed the table* laid
+  down in its place; it now goes the way a page change does, on a seat, a wall
+  and the console alike, and a wall the host lets go goes back to offering a
+  code with no refusal in between. Off the desk the tab bar steps aside for a
+  round of four tiles, or for a keyboard, by sliding off its edge rather than
+  vanishing, and the menu moves aside with it. *Close the table* opens its
+  warning in place where it cut in, and the console that closes no longer
+  flashes its own refusal before going home.
+
 - `[Game]` **A second name refused at the door keeps what was typed.** The
   form came back with the last name the device had used and no word of the
   refusal; it now shows the name refused, and why.

@@ -2,6 +2,15 @@
 @use '../../presentation/styles/layout'
 @use '../../presentation/styles/typography'
 
+/// The off-desk bar giving way: slid back off the edge it docks from, and
+/// docked again by the transition when the state lets go of it, rather than
+/// leaving at once and restarting its arrival.
+@mixin stepped-aside
+  opacity: 0
+  transition: translate var(--transition-slow, 0s) var(--ease-in), opacity var(--transition-slow, 0s) var(--ease-in), visibility var(--transition-slow, 0s)
+  translate: var(--panel-arrival-from)
+  visibility: hidden
+
 @layer components
   .host-desk
     display: flex
@@ -282,6 +291,7 @@
       gap: var(--space-2xs)
       padding: var(--space-2xs)
       position: fixed
+      transition: translate var(--transition-slow, 0s) var(--ease-out), opacity var(--transition-slow, 0s) var(--ease-out), visibility var(--transition-slow, 0s)
       z-index: 2
 
       .panel-tab
@@ -340,7 +350,7 @@
           --layout-padding-block-end: max(var(--layout-padding), var(--safe-area-bottom))
 
         .panel-tabs
-          display: none
+          @include stepped-aside
 
     @media (aspect-ratio >= 13 / 10)
       .host-desk
@@ -368,8 +378,8 @@
         > #main
           --gutter-right: max(var(--gutter), var(--safe-area-right))
 
-        .host-panel
-          display: none
+        .panel-tabs
+          @include stepped-aside
 
   // A fold or a change of side is one move: the panel and the stage slide to
   // where they now stand, each at its own size, the old picture fading into

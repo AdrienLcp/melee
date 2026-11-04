@@ -223,10 +223,24 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
         </Button>
       )}
 
-      {isConfirmingClose ? (
-        <>
-          <p className='warning'>{translate('host.closeRoom.warning')}</p>
+      <div
+        className='close-room'
+        data-confirming={isConfirmingClose || undefined}
+      >
+        <p className='warning'>{translate('host.closeRoom.warning')}</p>
+        <div className='close-presses'>
+          <Button
+            className='close-ask'
+            isDisabled={!isLive || isConfirmingClose}
+            onPress={() => {
+              setIsConfirmingClose(true)
+            }}
+            variant='outlined'
+          >
+            {translate('host.closeRoom.label')}
+          </Button>
           <Link
+            className='close-confirm'
             href={homePathFor(locale)}
             onPress={() => {
               closeRoom()
@@ -235,18 +249,8 @@ const RoomExit: React.FC<{ onDone: () => void }> = ({ onDone }) => {
           >
             {translate('host.closeRoom.confirm')}
           </Link>
-        </>
-      ) : (
-        <Button
-          isDisabled={!isLive}
-          onPress={() => {
-            setIsConfirmingClose(true)
-          }}
-          variant='outlined'
-        >
-          {translate('host.closeRoom.label')}
-        </Button>
-      )}
+        </div>
+      </div>
     </div>
   )
 }
