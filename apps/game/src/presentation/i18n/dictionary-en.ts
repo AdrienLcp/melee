@@ -901,6 +901,7 @@ export const EN_DICTIONARY = defineDictionary({
     podium: {
       /** Names the roster's row menu, whose trigger is a bare glyph. */
       actions: 'Options for {nickname}',
+      close: 'Close the settings',
       empty:
         'Nobody yet. Read {code} aloud, or show the QR code on the room’s screen.',
       /** The roster's summary on a narrow screen, after its first three seats. */
