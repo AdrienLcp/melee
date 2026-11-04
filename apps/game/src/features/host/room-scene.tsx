@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { ToggleButton, ToggleButtonGroup } from 'react-aria-components'
 
 import type { RoomCode } from '@melee/protocol/identifiers'
-import type { HostRoomView } from '@melee/protocol/room'
+import { type HostRoomView, MAX_PLAYERS_PER_ROOM } from '@melee/protocol/room'
 import type { Speaker, WallScreen } from '@melee/protocol/sound'
 
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
@@ -397,6 +397,8 @@ const SeatDetail: React.FC<{
         </p>
       ) : launchSeats ? (
         <p className='lines'>{translate('host.roomScene.seat.launchSeats')}</p>
+      ) : !isSeated && view.players.length >= MAX_PLAYERS_PER_ROOM ? (
+        <p className='lines'>{translate('error.room_full')}</p>
       ) : (
         <HostSeat
           onLeaveSeat={onLeaveSeat}

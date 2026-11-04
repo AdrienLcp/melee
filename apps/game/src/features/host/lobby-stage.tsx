@@ -1,7 +1,7 @@
 import type React from 'react'
 
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
-import type { HostRoomView } from '@melee/protocol/room'
+import { type HostRoomView, MAX_PLAYERS_PER_ROOM } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
 import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
@@ -68,6 +68,7 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
     controls !== null &&
     youId === null &&
     !playsAloud &&
+    view.players.length < MAX_PLAYERS_PER_ROOM &&
     !launchesWithHostSeated({
       seated: view.players.length,
       settings: view.settings
@@ -115,10 +116,11 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
               })}
             </h2>
           )}
-          {offersSeat && (
+          {controls !== null && !playsAloud && (
             <SeatOffer
               game={view.settings.game?.kind ?? null}
               isDisabled={!controls.isLive}
+              isOpen={offersSeat}
               onTakeSeat={controls.onTakeSeat}
             />
           )}
@@ -130,7 +132,6 @@ export const LobbyStage: React.FC<LobbyStageProps> = ({
             <Scoreboard
               hasPawns
               isRoster
-              onRemove={controls?.onRemovePlayer}
               players={view.players}
               youId={youId}
             />

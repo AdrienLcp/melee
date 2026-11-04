@@ -17,6 +17,11 @@ type SeatOfferProps = {
   game: GameKind | null
   /** The socket is not there to carry the press. */
   isDisabled: boolean
+  /**
+   * Whether a seat is there to take. Closed, the offer folds away rather than
+   * leaving the tree, so it leaves the way it arrived and comes back the same.
+   */
+  isOpen: boolean
   /** Called with the name to play under, already trimmed. */
   onTakeSeat: (nickname: string) => void
 }
@@ -38,6 +43,7 @@ const storedNicknameOrNone = (): string => {
 export const SeatOffer: React.FC<SeatOfferProps> = ({
   game,
   isDisabled,
+  isOpen,
   onTakeSeat
 }) => {
   const translate = useTranslate()
@@ -47,57 +53,63 @@ export const SeatOffer: React.FC<SeatOfferProps> = ({
   const nickname = draft.trim()
 
   return (
-    <Form
-      className='seat-offer'
-      onSubmit={(event) => {
-        event.preventDefault()
-
-        if (nickname !== '' && !isDisabled) {
-          onTakeSeat(nickname)
-        }
-      }}
+    <div
+      className='seat-offer-fold'
+      data-closed={!isOpen || undefined}
+      inert={!isOpen}
     >
-      <div className='offer'>
-        <p className='title'>{translate('host.seat.offer')}</p>
-        {isNaming ? (
-          <TextField
-            autoComplete='nickname'
-            autoFocus={remembered !== ''}
-            enterKeyHint='go'
-            label={translate('join.rightAway.name')}
-            maxLength={NICKNAME_MAX_LENGTH}
-            onChange={setDraft}
-            value={draft}
-          />
-        ) : (
-          <p className='as'>
-            <span className='seated-as'>
-              {translate('join.rightAway.as', { nickname })}
-            </span>
-            <Button
-              onPress={() => setIsNaming(true)}
-              size='small'
-              variant='underlined'
-            >
-              {translate('join.rightAway.change')}
-            </Button>
-          </p>
-        )}
-        <p className='cost'>
-          {translate(
-            game === 'reflex' || game === 'innerclock'
-              ? 'host.seat.cost.sharedScreen'
-              : 'host.seat.cost.hiddenAnswer'
-          )}
-        </p>
-      </div>
-      <Button
-        isDisabled={isDisabled || nickname === ''}
-        type='submit'
-        variant='outlined'
+      <Form
+        className='seat-offer'
+        onSubmit={(event) => {
+          event.preventDefault()
+
+          if (nickname !== '' && !isDisabled) {
+            onTakeSeat(nickname)
+          }
+        }}
       >
-        {translate('host.seat.action')}
-      </Button>
-    </Form>
+        <div className='offer'>
+          <p className='title'>{translate('host.seat.offer')}</p>
+          {isNaming ? (
+            <TextField
+              autoComplete='nickname'
+              autoFocus={remembered !== ''}
+              enterKeyHint='go'
+              label={translate('join.rightAway.name')}
+              maxLength={NICKNAME_MAX_LENGTH}
+              onChange={setDraft}
+              value={draft}
+            />
+          ) : (
+            <p className='as'>
+              <span className='seated-as'>
+                {translate('join.rightAway.as', { nickname })}
+              </span>
+              <Button
+                onPress={() => setIsNaming(true)}
+                size='small'
+                variant='underlined'
+              >
+                {translate('join.rightAway.change')}
+              </Button>
+            </p>
+          )}
+          <p className='cost'>
+            {translate(
+              game === 'reflex' || game === 'innerclock'
+                ? 'host.seat.cost.sharedScreen'
+                : 'host.seat.cost.hiddenAnswer'
+            )}
+          </p>
+        </div>
+        <Button
+          isDisabled={isDisabled || nickname === ''}
+          type='submit'
+          variant='outlined'
+        >
+          {translate('host.seat.action')}
+        </Button>
+      </Form>
+    </div>
   )
 }

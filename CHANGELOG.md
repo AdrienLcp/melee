@@ -463,6 +463,16 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A full table's names read whole in the console's lobby.** A chip
+  a third of the roster wide cut a long name to its first five letters, two
+  *Anne-* reading as one seat: a name now takes a second line, hyphenated, at
+  a size the roster's width caps, and the stage's chips drop the ✕ the
+  Players tab already carries. Twenty-four names of twenty letters read whole
+  at every shape the layout suite measures. On a laptop the side column
+  scrolls inside itself when it runs past the screen, where its last row slid
+  under the launch press with nothing to scroll; the seat offer folds away once the
+  host sits or the table is full, and the Room tab says the table is full
+  rather than offering a seat the server would refuse.
 - `[Game]` **A lobby's roster never ranks its seats, so every chip keeps its
   pawn and its name.** A table scored before its first round — on a track
   above all — printed each chip's rank, case and points in a chip a third of

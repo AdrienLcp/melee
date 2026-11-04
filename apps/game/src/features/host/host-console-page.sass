@@ -246,10 +246,6 @@
 
         color: var(--ink-muted)
 
-      .scoreboard li .remove
-        min-height: 2rem
-        padding: 0 var(--space-2xs)
-
       .team-deal
         align-items: end
         display: flex
@@ -1015,8 +1011,14 @@
           position: sticky
           top: var(--layout-padding-block-start)
 
+        // A full table is taller than a laptop's side, and scrolls inside it:
+        // the launch under it is pinned to the page, never to the side, and a
+        // page that scrolled pushed it under the fold.
         > .host-side
           grid-area: side
+          overflow: hidden auto
+          overscroll-behavior: contain
+          scrollbar-width: thin
 
           // The first heading is the row the menu stands on.
           > :first-child > h2

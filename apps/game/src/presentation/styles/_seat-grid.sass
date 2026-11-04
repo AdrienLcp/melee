@@ -45,11 +45,20 @@
       align-items: center
       column-gap: var(--space-xs)
       display: grid
-      font-size: clamp(1rem, calc(var(--stage-unit) * 2.4), 1.375rem)
+      font-size: clamp(1rem, min(calc(var(--stage-unit) * 2.2), 3.3cqi), 1.375rem)
       grid-template-columns: auto minmax(0, 1fr)
 
     .pawn
       font-size: var(--text-em-xl)
+
+    // On one line a chip a third of the roster wide cut a long name to its
+    // first five letters, and two Anne- read as the same seat.
+    .name
+      -webkit-box-orient: vertical
+      display: -webkit-box
+      hyphens: auto
+      -webkit-line-clamp: 2
+      white-space: normal
 
     .away-mark
       grid-column: 2
