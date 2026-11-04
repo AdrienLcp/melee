@@ -120,8 +120,8 @@ const pairedWall = async ({
   return wall
 }
 
-const roundInPlay = async () => {
-  const { code, host, hostToken } = await harness.openRoom(HIGHER_LOWER)
+const roundInPlay = async (settings: RoomSettings = HIGHER_LOWER) => {
+  const { code, host, hostToken } = await harness.openRoom(settings)
   const wall = await pairedWall({ code, hostToken })
   const zoe = await harness.seat({ code, nickname: 'Zoe' })
   const max = await harness.seat({ code, nickname: 'Max' })
@@ -228,6 +228,25 @@ describe('a higher-or-lower round through the seam', () => {
       'already_buzzed'
     ])
     expect(pairsRound(playerView(zoe))?.yourPicks).toEqual(RIGHT)
+  })
+
+  it('[higherlower] pays a right pick alone in a room that does not pay for speed', async () => {
+    const { host, lou, max, roundId, zoe } = await roundInPlay({
+      ...HIGHER_LOWER,
+      paysForSpeed: false
+    })
+
+    for (const seat of [zoe, max, lou]) {
+      sendSheet({ picks: RIGHT, roundId, seat })
+    }
+    await waitFor(() => playerView(zoe)?.phase === 'revealed', 'the reveal')
+
+    expect(
+      hostView(host)?.round?.awards.map(({ points, speedBonus }) => ({
+        points,
+        speedBonus
+      }))
+    ).toEqual(Array(3).fill({ points: POINT, speedBonus: 0 }))
   })
 
   it('[higherlower] pays a right pick with the clock on top, and reveals both values with every sheet', async () => {

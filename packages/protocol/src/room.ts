@@ -291,6 +291,16 @@ export const roomSettingsSchema = z.object({
   /** How a round is answered, and the settings only that mode has. */
   mode: modeSettingsSchema,
   /**
+   * Whether the clock adds to a right answer in a round everyone answers at
+   * once. Off for a table where the quickest hands are not the point — children
+   * beside grandparents — and the round then pays being right alone.
+   *
+   * Stamped on the round as it opens, like the mode, so turning it mid-round
+   * decides the next one. Defaulted, so a stored setup from before it pays the
+   * clock, as every room did.
+   */
+  paysForSpeed: z.boolean().default(true),
+  /**
    * How many rounds the game runs for, or `null` for "until the host ends it".
    *
    * A fixed count is the blind test's shape — a playlist runs out — and it is
@@ -358,6 +368,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    * the floor to whoever is quickest and leaves the rest of the room watching.
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
+  paysForSpeed: true,
   roundCount: 10,
   runningOrder: [],
   teamScoring: DEFAULT_TEAM_SCORING,

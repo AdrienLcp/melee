@@ -79,18 +79,18 @@ export const EN_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Time per round',
     scoring:
-      'Everyone puts a pawn down at once. Inside the country it scores 30 points, within 500 km of its border 20, within 1,500 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once. Inside the country it scores 30 points, within 500 km of its border 20, within 1,500 km 10.',
     scoringCapitals:
-      'Everyone puts a pawn down at once. Within 100 km of the capital it scores 30 points, within 300 km 20, within 1,000 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once. Within 100 km of the capital it scores 30 points, within 300 km 20, within 1,000 km 10.',
     scoringCities:
-      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores 30 points, within 75 km 20, within 150 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores 30 points, within 75 km 20, within 150 km 10.',
     scoringMixed:
-      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to 30 points, and the earlier you put it down the more the clock adds, up to double.',
+      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to 30 points.',
     scoringName: {
       choice:
-        'The map shows a place and offers four names, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
+        'The map shows a place and offers four names, everyone at once. The right one scores 10 points.',
       typed:
-        'The map shows a place and everyone types its name at once. The right one scores 30 points, and the earlier you find it the more the clock adds — up to double.'
+        'The map shows a place and everyone types its name at once. The right one scores 30 points.'
     },
     tagline: 'One place. Put your pawn on it, or name it.'
   },
@@ -274,21 +274,21 @@ export const EN_DICTIONARY = defineDictionary({
       buzzer:
         'First to buzz answers out loud. The host judges the title and the artist, 10 points each — a wrong answer sits you out for the rest of the round.',
       choice:
-        'Four answers over the same clip, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
+        'Four answers over the same clip, everyone at once. The right one scores 10 points.',
       typed:
-        'Everyone types, over the same clip. Title and artist score 10 points each and both together score 30, and the earlier you get it the more the clock adds — up to double.'
+        'Everyone types, over the same clip. Title and artist score 10 points each and both together score 30.'
     },
     scoringFilm: {
       buzzer:
         'First to buzz answers out loud. The host judges the film and the composer, 10 points each — a wrong answer sits you out for the rest of the round.',
       typed:
-        'Everyone types, over the same clip. Film and composer score 10 points each and both together score 30, and the earlier you get it the more the clock adds — up to double.'
+        'Everyone types, over the same clip. Film and composer score 10 points each and both together score 30.'
     },
     scoringMixed: {
       buzzer:
         'First to buzz answers out loud: the title and the artist, or the film and the composer when it is a film score. The host judges each, 10 points apiece — a wrong answer sits you out for the rest of the round.',
       typed:
-        'Everyone types, over the same clip: the title and the artist, or the film and the composer when it is a film score. Each scores 10 points and both together score 30, and the earlier you get it the more the clock adds — up to double.'
+        'Everyone types, over the same clip: the title and the artist, or the film and the composer when it is a film score. Each scores 10 points and both together score 30.'
     },
     source: {
       catalogue: 'The catalogue',
@@ -616,7 +616,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Time to pick',
     scoring:
-      'Two things of the same kind — two cities, two rivers, two mountains — and you pick the bigger one. A right pick scores 10 points, plus a bonus for picking fast.',
+      'Two things of the same kind — two cities, two rivers, two mountains — and you pick the bigger one. A right pick scores 10 points.',
     tagline: 'Two names. Which one is bigger?'
   },
   home: {
@@ -1096,6 +1096,14 @@ export const EN_DICTIONARY = defineDictionary({
       }
     },
     skipRound: 'Skip this round',
+    speedBonus: {
+      hint: {
+        off: 'Only the right answer counts: answering fast earns nothing more.',
+        on: 'A quick right answer scores up to double.'
+      },
+      label: 'Speed bonus',
+      summaryOff: 'no speed bonus'
+    },
     standings: 'Standings',
     startGame: 'Gather round',
     /** The room's own screen while the teams sit down: the evening's card and the trays under it. */
@@ -1347,7 +1355,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'A false equation drawn in matches — or a number to make as big, or as small, as one match allows. Everyone picks a match up on their own screen and lays it somewhere else: the answer pays most, the next best numbers a little less, and the clock adds to it. Or play it aloud: first to buzz says which match moves and where, and the host says right or wrong. Every puzzle is dealt fresh, so the game never runs out, and every one has an answer.'
+        'A false equation drawn in matches — or a number to make as big, or as small, as one match allows. Everyone picks a match up on their own screen and lays it somewhere else: the answer pays most, the next best numbers a little less. Or play it aloud: first to buzz says which match moves and where, and the host says right or wrong. Every puzzle is dealt fresh, so the game never runs out, and every one has an answer.'
     },
     move: {
       groove:
@@ -1391,7 +1399,7 @@ export const EN_DICTIONARY = defineDictionary({
     scoring:
       'One stick to move. First in says the move out loud, and the host says right or wrong — 10 points for right.',
     scoringMove:
-      'One match to move, everyone at once. The answer is 30 points — on a number, the next best 20 and the one after 10 — and the clock adds to it.',
+      'One match to move, everyone at once. The answer is 30 points — on a number, the next best 20 and the one after 10.',
     tagline: 'One match moves. Find which.'
   },
   menu: {
@@ -1748,10 +1756,9 @@ export const EN_DICTIONARY = defineDictionary({
     scoring: {
       buzzer:
         'First to buzz answers out loud, and the host says right or wrong. 10 points for right — and a wrong answer sits you out for the rest of the round.',
-      choice:
-        'Four answers, everyone at once. The right one scores 10 points, and the earlier you find it the more the clock adds — up to double.',
+      choice: 'Four answers, everyone at once. The right one scores 10 points.',
       typed:
-        'Everyone types their answer at once. The right one scores 30 points, and the earlier you find it the more the clock adds — up to double.'
+        'Everyone types their answer at once. The right one scores 30 points.'
     },
     silhouette: {
       alt: 'The country outline to name'
@@ -1893,6 +1900,8 @@ export const EN_DICTIONARY = defineDictionary({
      * replaced a rank the room could count, so what it paid has to be said.
      */
     speedBonus: '{points:number} of that for being early',
+    speedRule:
+      'The earlier you answer, the more the clock adds — up to double.',
     /**
      * The ruled heading under the answer over every figure the round alone
      * paid — your own result, its podium, who found it.
@@ -2175,7 +2184,7 @@ export const EN_DICTIONARY = defineDictionary({
       yours: 'Your order'
     },
     scoring:
-      'Five events to put in order, earliest first. All of them right is 30 points, one pair the wrong way round 20, two pairs 10 — and the clock adds to it.',
+      'Five events to put in order, earliest first. All of them right is 30 points, one pair the wrong way round 20, two pairs 10.',
     tagline: 'Five events. Which came first?'
   },
   wall: {

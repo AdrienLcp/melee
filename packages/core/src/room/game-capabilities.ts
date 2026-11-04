@@ -93,6 +93,13 @@ export type GameCapabilities = {
    */
   makesSound: boolean
   /**
+   * Whether a right answer of it can earn the clock's bonus on top, in some
+   * mode it offers — what decides whether the room's `paysForSpeed` is worth
+   * offering. Not a sheet, a colour, an estimate or a vote, which the server's
+   * `isPaidForSpeed` keeps off the clock, nor a race the floor decides.
+   */
+  paysTheClock: boolean
+  /**
    * Whether a table with no phone can play it, the wall showing the round and
    * the host tapping who had it. Not a game whose answer *is* a screen: a pawn
    * put down on a map, a press racing a colour, a sheet written in private.
@@ -125,6 +132,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: SERVED_MODES,
         makesSound: true,
+        paysTheClock: true,
         playsAloud: true,
         playsDuels: true,
         servesItsOwnContent: true
@@ -134,6 +142,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: BUZZER_ONLY,
         makesSound: true,
+        paysTheClock: false,
         playsAloud: true,
         playsDuels: false,
         servesItsOwnContent: false
@@ -142,6 +151,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: MOVE_OR_BUZZER,
         makesSound: true,
+        paysTheClock: true,
         playsAloud: true,
         playsDuels: false,
         servesItsOwnContent: true
@@ -150,6 +160,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: TYPED_OR_SPOKEN,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -159,6 +170,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: BUZZER_ONLY,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: true
@@ -169,6 +181,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: TYPED_ONLY,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: true
@@ -177,6 +190,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: TYPED_ONLY,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: false
@@ -185,6 +199,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: ORDER_ONLY,
         makesSound: false,
+        paysTheClock: true,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -193,6 +208,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: POINT_OR_NAMED,
         makesSound: false,
+        paysTheClock: true,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -201,6 +217,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: COLOUR_ONLY,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -210,6 +227,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: VOTE_ONLY,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: false,
         servesItsOwnContent: true
@@ -218,6 +236,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: NUMBER_ONLY,
         makesSound: false,
+        paysTheClock: false,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -226,6 +245,7 @@ export const capabilitiesOf = (game: GameKind): GameCapabilities => {
       return {
         answerModes: PAIRS_ONLY,
         makesSound: false,
+        paysTheClock: true,
         playsAloud: false,
         playsDuels: true,
         servesItsOwnContent: true
@@ -293,5 +313,25 @@ export const isEveningSilent = ({
   return (
     games.length > 0 &&
     games.every(({ kind }) => !capabilitiesOf(kind).makesSound)
+  )
+}
+
+/**
+ * Whether anything the evening plays pays the clock — every game ticked and
+ * the one on now. An evening whose game is not picked yet may: what the table
+ * settles on may be a quiz.
+ */
+export const isEveningPaidForSpeed = ({
+  game,
+  lineUp
+}: {
+  game: GameSettings | null
+  lineUp: readonly GameSettings[]
+}): boolean => {
+  const games = game === null ? lineUp : [...lineUp, game]
+
+  return (
+    games.length === 0 ||
+    games.some(({ kind }) => capabilitiesOf(kind).paysTheClock)
   )
 }

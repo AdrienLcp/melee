@@ -12,6 +12,7 @@ import {
 import {
   answerModesFor,
   capabilitiesOf,
+  isEveningPaidForSpeed,
   isEveningSilent
 } from './game-capabilities'
 
@@ -116,5 +117,33 @@ describe('isEveningSilent', () => {
 
   it('[game-capabilities] never calls an evening silent before a game is picked', () => {
     expect(isEveningSilent({ game: null, lineUp: [] })).toBe(false)
+  })
+})
+
+describe('isEveningPaidForSpeed', () => {
+  it('[game-capabilities] finds no clock in an evening of buzzer, sheet and vote', () => {
+    expect(
+      isEveningPaidForSpeed({
+        game: DEFAULT_GAME_SETTINGS.buzzer,
+        lineUp: [
+          DEFAULT_GAME_SETTINGS.buzzer,
+          DEFAULT_PETIT_BAC_SETTINGS,
+          DEFAULT_GAME_SETTINGS.mostlikely
+        ]
+      })
+    ).toBe(false)
+  })
+
+  it('[game-capabilities] finds the clock with one timeline ticked anywhere in it', () => {
+    expect(
+      isEveningPaidForSpeed({
+        game: DEFAULT_PETIT_BAC_SETTINGS,
+        lineUp: [DEFAULT_PETIT_BAC_SETTINGS, DEFAULT_TIMELINE_SETTINGS]
+      })
+    ).toBe(true)
+  })
+
+  it('[game-capabilities] keeps the clock on offer before a game is picked', () => {
+    expect(isEveningPaidForSpeed({ game: null, lineUp: [] })).toBe(true)
   })
 })

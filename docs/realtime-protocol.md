@@ -198,7 +198,8 @@ throttle as it moves. It ends nobody's round, so it stays off `attempts` and
 `everyoneIsDone` never counts it; it is graded as it lands, so closing the round
 measures no pawn. When the round closes, every seat still in the room with a
 lean and no attempt is paid on its last lean, flagged `isUnsent` on its award,
-with **no speed bonus**: it did not answer, it ran out. A sent answer is never
+with **no speed bonus**: it did not answer, it ran out — nor is any answer in
+a round opened while the room's `paysForSpeed` was off. A sent answer is never
 replaced, and a lean after one is refused `already_buzzed`. A picker never
 touched sends nothing, so the neutral grey is never a guess.
 

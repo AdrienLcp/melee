@@ -4,7 +4,6 @@ import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
 import { MIN_TEAMS } from '@melee/protocol/team'
 
-import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import { launchesWithHostSeated } from '@melee/core/room/play-right-away'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 import { MIN_SEATS_FOR_TEAMS, teamCountOf } from '@melee/core/team/team-count'
@@ -14,10 +13,11 @@ import { EmptySockets } from '@/presentation/components/empty-sockets'
 import { PawnColourPress } from '@/presentation/components/pawn-colour-press'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { ScoringRule } from '@/presentation/components/scoring-rule'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
-import { gameDescriptionKey, scoringKey } from '@/presentation/i18n/translation'
+import { gameDescriptionKey } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import { BoardPreview } from './board-preview'
@@ -291,19 +291,7 @@ const GamePitch: React.FC<{ view: HostRoomView }> = ({ view }) => {
   return (
     <>
       <p className='pitch'>{translate(gameDescriptionKey(game.kind))}</p>
-      <p className='scoring'>
-        {translate(
-          scoringKey({
-            answerMode: view.settings.mode.kind,
-            atlas: game.kind === 'atlas' ? game : null,
-            doublesLoneFinds:
-              game.kind === 'blacksquare' && game.doublesLoneFinds,
-            game: game.kind,
-            trackAnswers:
-              game.kind === 'blindtest' ? trackAnswersOf(game.source) : 'songs'
-          })
-        )}
-      </p>
+      <ScoringRule className='scoring' game={game} settings={view.settings} />
     </>
   )
 }

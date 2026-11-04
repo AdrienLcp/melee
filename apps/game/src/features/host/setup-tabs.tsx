@@ -7,6 +7,7 @@ import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { Speaker } from '@melee/protocol/sound'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
   rememberedSetupFor
@@ -28,6 +29,7 @@ import {
 
 import { PointsRows } from '@/presentation/components/points-rows'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { Switch } from '@/presentation/components/switch'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { AutoAdvanceChoice } from './auto-advance-choice'
@@ -386,6 +388,21 @@ export const TableTab: React.FC<SetupTabsProps> = ({
           isDisabled={!isLive}
           onChange={onSettingsChange}
           settings={settings}
+        />
+      )}
+      {isEveningPaidForSpeed(settings) && (
+        <Switch
+          description={translate(
+            settings.paysForSpeed
+              ? 'host.speedBonus.hint.on'
+              : 'host.speedBonus.hint.off'
+          )}
+          isDisabled={!isLive}
+          isSelected={settings.paysForSpeed}
+          label={translate('host.speedBonus.label')}
+          onChange={(paysForSpeed) => {
+            onSettingsChange({ ...settings, paysForSpeed })
+          }}
         />
       )}
     </>

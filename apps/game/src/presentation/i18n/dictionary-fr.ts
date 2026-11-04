@@ -74,18 +74,18 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Temps par manche',
     scoring:
-      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 30 points, à moins de 500 km de sa frontière 20, à moins de 1 500 km 10 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 30 points, à moins de 500 km de sa frontière 20, à moins de 1 500 km 10.',
     scoringCapitals:
-      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 30 points, à moins de 300 km 20, à moins de 1 000 km 10 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 30 points, à moins de 300 km 20, à moins de 1 000 km 10.',
     scoringCities:
-      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 30 points, à moins de 75 km 20, à moins de 150 km 10 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 30 points, à moins de 75 km 20, à moins de 150 km 10.',
     scoringMixed:
-      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 30 points, et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
+      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 30 points.',
     scoringName: {
       choice:
-        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte 10 points, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.',
+        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte 10 points.',
       typed:
-        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 30 points, et plus tu le trouves tôt, plus la montre ajoute — jusqu’au double.'
+        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 30 points.'
     },
     tagline: 'Un lieu. Pose ton pion dessus, ou nomme-le.'
   },
@@ -246,21 +246,21 @@ export const FR_DICTIONARY = defineDictionary({
       buzzer:
         'Le premier qui buzze répond à voix haute. L’hôte juge le titre et l’artiste, 10 points chacun — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       choice:
-        'Quatre propositions sur le même extrait, et tout le monde répond. La bonne rapporte 10 points, et plus tu la trouves tôt, plus la montre ajoute — jusqu’au double.',
+        'Quatre propositions sur le même extrait, et tout le monde répond. La bonne rapporte 10 points.',
       typed:
-        'Tout le monde tape, sur le même extrait. Titre et artiste rapportent 10 points chacun, les deux ensemble 30, et plus tu trouves tôt, plus la montre ajoute — jusqu’au double.'
+        'Tout le monde tape, sur le même extrait. Titre et artiste rapportent 10 points chacun, les deux ensemble 30.'
     },
     scoringFilm: {
       buzzer:
         'Le premier qui buzze répond à voix haute. L’hôte juge le film et le compositeur, 10 points chacun — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       typed:
-        'Tout le monde tape, sur le même extrait. Film et compositeur rapportent 10 points chacun, les deux ensemble 30, et plus tu trouves tôt, plus la montre ajoute — jusqu’au double.'
+        'Tout le monde tape, sur le même extrait. Film et compositeur rapportent 10 points chacun, les deux ensemble 30.'
     },
     scoringMixed: {
       buzzer:
         'Le premier qui buzze répond à voix haute : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. L’hôte juge chacun, 10 points pièce — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       typed:
-        'Tout le monde tape, sur le même extrait : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. Chacun rapporte 10 points, les deux ensemble 30, et plus tu trouves tôt, plus la montre ajoute — jusqu’au double.'
+        'Tout le monde tape, sur le même extrait : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. Chacun rapporte 10 points, les deux ensemble 30.'
     },
     source: {
       catalogue: 'Le catalogue',
@@ -586,7 +586,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Temps pour choisir',
     scoring:
-      'Deux choses du même genre — deux villes, deux fleuves, deux sommets — et tu choisis la plus grande. Un bon choix rapporte 10 points, plus un bonus si tu choisis vite.',
+      'Deux choses du même genre — deux villes, deux fleuves, deux sommets — et tu choisis la plus grande. Un bon choix rapporte 10 points.',
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
@@ -1041,6 +1041,14 @@ export const FR_DICTIONARY = defineDictionary({
       }
     },
     skipRound: 'Passer cette manche',
+    speedBonus: {
+      hint: {
+        off: 'Seule la bonne réponse compte : répondre vite ne rapporte rien de plus.',
+        on: 'Une bonne réponse rapide rapporte jusqu’au double.'
+      },
+      label: 'Bonus de vitesse',
+      summaryOff: 'sans bonus de vitesse'
+    },
     standings: 'Classement',
     startGame: 'À table\u00a0!',
     table: {
@@ -1281,7 +1289,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Une égalité fausse dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Chacun prend une allumette sur son écran et la pose ailleurs : la bonne réponse rapporte le plus, les nombres suivants un peu moins, et le chrono s’y ajoute. Ou à voix haute : le premier à buzzer dit quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la partie ne s’épuise jamais, et toutes ont une réponse.'
+        'Une égalité fausse dessinée en allumettes — ou un nombre à rendre le plus grand, ou le plus petit, possible. Chacun prend une allumette sur son écran et la pose ailleurs : la bonne réponse rapporte le plus, les nombres suivants un peu moins. Ou à voix haute : le premier à buzzer dit quelle allumette bouge et où, et l’hôte tranche. Chaque énigme est tirée à neuf, la partie ne s’épuise jamais, et toutes ont une réponse.'
     },
     move: {
       groove:
@@ -1326,7 +1334,7 @@ export const FR_DICTIONARY = defineDictionary({
     scoring:
       'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — 10 points s’il a raison.',
     scoringMove:
-      'Une allumette à déplacer, tout le monde en même temps. La bonne réponse vaut 30 points — sur un nombre, la suivante 20 et la troisième 10 — et le chrono s’y ajoute.',
+      'Une allumette à déplacer, tout le monde en même temps. La bonne réponse vaut 30 points — sur un nombre, la suivante 20 et la troisième 10.',
     tagline: 'Une allumette bouge. Trouve laquelle.'
   },
   menu: {
@@ -1651,9 +1659,9 @@ export const FR_DICTIONARY = defineDictionary({
       buzzer:
         'Le premier qui buzze répond à voix haute, et l’hôte dit si c’est bon. 10 points si c’est juste — et une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       choice:
-        'Quatre propositions, et tout le monde répond en même temps. La bonne rapporte 10 points, et plus tu la trouves tôt, plus la montre ajoute — jusqu’au double.',
+        'Quatre propositions, et tout le monde répond en même temps. La bonne rapporte 10 points.',
       typed:
-        'Tout le monde tape sa réponse en même temps. La bonne rapporte 30 points, et plus tu la trouves tôt, plus la montre ajoute — jusqu’au double.'
+        'Tout le monde tape sa réponse en même temps. La bonne rapporte 30 points.'
     },
     silhouette: {
       alt: 'La forme du pays à reconnaître'
@@ -1766,6 +1774,7 @@ export const FR_DICTIONARY = defineDictionary({
     overallStandings: 'Classement général',
     scored: '+{points:number}',
     speedBonus: 'dont {points:number} pour la vitesse',
+    speedRule: 'Plus tu réponds tôt, plus la montre ajoute — jusqu’au double.',
     thisRound: 'Cette manche',
     unsent: 'Pas envoyé : pris tel quel sur ton écran.',
     unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : {names}'
@@ -2040,7 +2049,7 @@ export const FR_DICTIONARY = defineDictionary({
       yours: 'Ton ordre'
     },
     scoring:
-      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 30 points, une paire inversée 20, deux paires 10 — et le chrono s’y ajoute.',
+      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 30 points, une paire inversée 20, deux paires 10.',
     tagline: 'Cinq événements. Lequel d’abord ?'
   },
   wall: {

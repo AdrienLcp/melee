@@ -233,6 +233,7 @@ export const openRound = ({
     lockedOutPlayerIds: new Set(),
     mode: room.settings.mode,
     openedWithPlayerIds: null,
+    paysForSpeed: room.settings.paysForSpeed,
     revealed: false,
     runningSince: null,
     settingHoldEndsAt: null,
@@ -870,7 +871,9 @@ export const settleSimultaneousRound = ({
 
     // An unsent answer did not answer: it ran out, and the clock pays none.
     const speedBonus =
-      isPaidForSpeed(attempts.verdict) && !attempts.isUnsent
+      round.paysForSpeed &&
+      isPaidForSpeed(attempts.verdict) &&
+      !attempts.isUnsent
         ? speedBonusForElapsed({
             answerPaid: earned,
             elapsedMs: attempts.scoredAfterMs,

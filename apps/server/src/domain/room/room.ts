@@ -541,6 +541,8 @@ export type Round = {
    * mid-sheet is owed every item still open rather than a wait.
    */
   openedWithPlayerIds: RoundRoster
+  /** The room's `paysForSpeed` as the round opened, so turning it mid-round decides the next one. */
+  paysForSpeed: boolean
   revealed: boolean
   /** Server time the round last started or resumed running; `null` while paused. */
   runningSince: number | null

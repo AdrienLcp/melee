@@ -25,7 +25,6 @@ import type {
 import type { ColourHex } from '@melee/protocol/swatch'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 
-import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import { cueOf, whatTheRoomNames } from '@melee/core/blindtest/typed-answer'
 import { isSpotOn } from '@melee/core/estimate/estimate-pay'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
@@ -130,6 +129,7 @@ import { RebusLine } from '@/presentation/components/rebus-line'
 import { RoomInvitation } from '@/presentation/components/room-invitation'
 import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
 import { Scoreboard } from '@/presentation/components/scoreboard'
+import { ScoringRule } from '@/presentation/components/scoring-rule'
 import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchChip } from '@/presentation/components/swatch-chip'
 import { TeamMove } from '@/presentation/components/team-move'
@@ -153,11 +153,7 @@ import {
 } from '@/presentation/haptics/buzz-outcome'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useEntryName } from '@/presentation/i18n/line-up-entry-names'
-import {
-  buzzBlockerKey,
-  scoringKey,
-  type Translate
-} from '@/presentation/i18n/translation'
+import { buzzBlockerKey, type Translate } from '@/presentation/i18n/translation'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './player-round.sass'
@@ -967,19 +963,11 @@ const UpNext: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         </VisuallyHidden>
         {entryName}
       </p>
-      <p className='how-it-scores'>
-        {translate(
-          scoringKey({
-            answerMode: view.settings.mode.kind,
-            atlas: game.kind === 'atlas' ? game : null,
-            doublesLoneFinds:
-              game.kind === 'blacksquare' && game.doublesLoneFinds,
-            game: game.kind,
-            trackAnswers:
-              game.kind === 'blindtest' ? trackAnswersOf(game.source) : 'songs'
-          })
-        )}
-      </p>
+      <ScoringRule
+        className='how-it-scores'
+        game={game}
+        settings={view.settings}
+      />
     </div>
   )
 }

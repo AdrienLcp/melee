@@ -69,6 +69,62 @@ const ATLAS_SCORING_KEYS = {
   worldCapitals: 'atlas.scoringCapitals'
 } as const satisfies Record<AtlasPlaces, string>
 
+type ScoringKey = BuiltKey<
+  | 'buzzer.scoring'
+  | 'challenge.scoring'
+  | 'blacksquare.scoring'
+  | 'blacksquare.scoringLoneFinds'
+  | 'blacksquare.scoringSpoken'
+  | 'estimate.scoring'
+  | 'higherlower.scoring'
+  | 'innerclock.scoring'
+  | 'matchsticks.scoring'
+  | 'matchsticks.scoringMove'
+  | 'mostlikely.scoring'
+  | 'petitbac.scoring'
+  | 'reflex.scoring'
+  | 'slate.scoring'
+  | 'swatch.scoring'
+  | 'timeline.scoring'
+  | 'atlas.scoring'
+  | 'atlas.scoringCapitals'
+  | 'atlas.scoringCities'
+  | 'atlas.scoringMixed'
+  | `atlas.scoringName.${Exclude<ServedMode, 'buzzer'>}`
+  | `blindtest.scoring.${ServedMode}`
+  | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
+  | `blindtest.scoringMixed.${Exclude<ServedMode, 'choice'>}`
+  | `quiz.scoring.${ServedMode}`
+>
+
+/**
+ * The sentences of a round the server pays the clock on top of — the ones
+ * `round.speedRule` follows in a room that pays for speed. Kept beside the
+ * sentences rather than derived from the verdict, because the price a sentence
+ * names is what a screen can see, and the server's `isPaidForSpeed` is what it
+ * must agree with.
+ */
+const CLOCK_PAID_SCORING: ReadonlySet<ScoringKey> = new Set<ScoringKey>([
+  'atlas.scoring',
+  'atlas.scoringCapitals',
+  'atlas.scoringCities',
+  'atlas.scoringMixed',
+  'atlas.scoringName.choice',
+  'atlas.scoringName.typed',
+  'blindtest.scoring.choice',
+  'blindtest.scoring.typed',
+  'blindtest.scoringFilm.typed',
+  'blindtest.scoringMixed.typed',
+  'higherlower.scoring',
+  'matchsticks.scoringMove',
+  'quiz.scoring.choice',
+  'quiz.scoring.typed',
+  'timeline.scoring'
+])
+
+export const isClockPaid = (key: ScoringKey): boolean =>
+  CLOCK_PAID_SCORING.has(key)
+
 /**
  * How a game pays, in one sentence — its own, because the amounts differ and so
  * does what is being paid for: the blind test's buzzer sentence is about a title
@@ -95,33 +151,7 @@ export const scoringKey = ({
     direction: AtlasDirection
     places: readonly AtlasPlaces[]
   } | null
-}): BuiltKey<
-  | 'buzzer.scoring'
-  | 'challenge.scoring'
-  | 'blacksquare.scoring'
-  | 'blacksquare.scoringLoneFinds'
-  | 'blacksquare.scoringSpoken'
-  | 'estimate.scoring'
-  | 'higherlower.scoring'
-  | 'innerclock.scoring'
-  | 'matchsticks.scoring'
-  | 'matchsticks.scoringMove'
-  | 'mostlikely.scoring'
-  | 'petitbac.scoring'
-  | 'reflex.scoring'
-  | 'slate.scoring'
-  | 'swatch.scoring'
-  | 'timeline.scoring'
-  | 'atlas.scoring'
-  | 'atlas.scoringCapitals'
-  | 'atlas.scoringCities'
-  | 'atlas.scoringMixed'
-  | `atlas.scoringName.${Exclude<ServedMode, 'buzzer'>}`
-  | `blindtest.scoring.${ServedMode}`
-  | `blindtest.scoringFilm.${Exclude<ServedMode, 'choice'>}`
-  | `blindtest.scoringMixed.${Exclude<ServedMode, 'choice'>}`
-  | `quiz.scoring.${ServedMode}`
-> => {
+}): ScoringKey => {
   // A marker is the map's alone, an order the timeline's, a move the
   // matchsticks', a colour the shades', a vote most likely's, a number the estimate's, a sheet of pairs higher or lower's and a spoken round black square's, so the two games that serve
   // their own question are never in any of them; reading them as a pick keeps

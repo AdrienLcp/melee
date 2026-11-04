@@ -224,7 +224,9 @@ which is why a user-visible string written into a component is a bug — see
   by the clock on top of being right — `MOST_A_SPEED_BONUS_PAYS` at nought,
   falling linearly to nothing when the round runs out, on a board counted in
   `POINT`s of a thousand so the clock separates players by the millisecond:
-  of three quick answers inside one second, the first is paid the most; typing
+  of three quick answers inside one second, the first is paid the most — unless
+  the room's `paysForSpeed` is off, stamped on the round as it opens, for a
+  table of children beside grandparents where being right is the game; typing
   pays 3 for the pair where a right pick pays 1, because producing an answer
   from nothing is not recognising it among four. A banked question that is only
   a question beside its own decoys — *which country drives on the left?* answers
