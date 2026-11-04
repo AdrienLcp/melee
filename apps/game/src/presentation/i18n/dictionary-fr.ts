@@ -1576,6 +1576,10 @@ export const FR_DICTIONARY = defineDictionary({
         }
       })
     },
+    gameOver: {
+      detail: 'En attente des résultats',
+      title: 'Fin de la partie'
+    },
     lineUp: {
       ready: 'Prêt'
     },

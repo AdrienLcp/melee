@@ -41,7 +41,11 @@ import {
   petitBacRowsFor,
   votingCategoryIndex
 } from '@/domain/round/petit-bac-round'
-import { elapsedRoundMs, flipsAtOf } from '@/domain/round/round-service'
+import {
+  elapsedRoundMs,
+  flipsAtOf,
+  isFinalRound
+} from '@/domain/round/round-service'
 import { answerGroupsFor, blankPlayerIdsFor } from '@/domain/round/slate-round'
 import { hidesAtOf, isColourShown } from '@/domain/round/swatch-round'
 
@@ -439,6 +443,7 @@ const toRoundView = ({
   durationMs: round.durationMs,
   id: round.id,
   index: round.index,
+  isFinal: room.phase === 'revealed' && isFinalRound(room),
   isReadyHold: round.isReadyHold,
   joinedAfterStart:
     youId !== null &&

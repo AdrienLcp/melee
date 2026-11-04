@@ -166,6 +166,13 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **A player's screen says the game is over on its last reveal**
+  — *Game over, waiting for the results* where *Ready* and the count to the
+  next round stood. The server marks that reveal (`round.isFinal`, on the rule
+  it ends the game on), because a seat cannot tell on its own: a game ending
+  on a pawn home or on a spent line-up offered *Ready* for a round that never
+  came. The console's ready marks read the same mark.
+
 - `[Shared]` **A Petit Bac sheet pays half what it did: 10 for a word nobody
   else wrote, 5 for a shared one**, the paper game's own figures. At 20 and 10
   one six-category sheet paid up to 120 where a quiz question pays 20, and on

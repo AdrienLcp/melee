@@ -818,6 +818,13 @@ export const roundViewSchema = z.object({
   /** 1-based, so it reads as "round 3 of 10" without arithmetic at the call site. */
   index: z.number().int().positive(),
   /**
+   * Whether this reveal is the game's last, the final board coming next rather
+   * than a round — on `endsTheEvening`'s rule, which a seat cannot run because
+   * what the line-up still owes is the host's alone. `false` before the reveal,
+   * so a round in play says nothing about the line-up.
+   */
+  isFinal: z.boolean(),
+  /**
    * Whether `advancesAt` is the hold every seat being ready armed, which runs
    * `READY_HOLD_MS` rather than the setting's length.
    */

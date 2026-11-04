@@ -22,6 +22,7 @@ const runningRound = {
   durationMs: 30_000,
   id: 'r1',
   index: 1,
+  isFinal: false,
   isReadyHold: false,
   joinedAfterStart: false,
   lineUpAt: 0,

@@ -189,6 +189,50 @@ describe('a room racing on a track', () => {
     )
   })
 
+  it('[board] tells a seat the reveal a pawn gets home on is the last', async () => {
+    const room = await openTwoTeams()
+
+    room.host.send({
+      points: 7_000,
+      target: { kind: 'team', teamId: 'team-1' },
+      type: 'host.adjustScore'
+    })
+    room.host.send({ type: 'host.startRound' })
+    await revealAnnaRight(room)
+    await waitFor(
+      () => playerView(room.anna)?.phase === 'revealed',
+      'the reveal on a seat'
+    )
+
+    expect(playerView(room.anna)?.round?.isFinal).toBe(false)
+
+    room.host.send({ type: 'host.nextRound' })
+    await revealAnnaRight(room)
+    await waitFor(
+      () => playerView(room.anna)?.round?.isFinal === true,
+      'the last reveal on a seat'
+    )
+  })
+
+  it('[board] keeps the last round of a count unmarked until its reveal', async () => {
+    const room = await openTwoTeams({ endsAtFinish: false, roundCount: 1 })
+
+    room.host.send({ type: 'host.startRound' })
+    await awaitClip(room.host)
+    await waitFor(
+      () => playerView(room.anna)?.phase === 'playing',
+      'the clip on a seat'
+    )
+
+    expect(playerView(room.anna)?.round?.isFinal).toBe(false)
+
+    await revealAnnaRight(room)
+    await waitFor(
+      () => playerView(room.anna)?.round?.isFinal === true,
+      'the last reveal on a seat'
+    )
+  })
+
   const sendATeamHome = async (
     room: Awaited<ReturnType<typeof openTwoTeams>>
   ) => {

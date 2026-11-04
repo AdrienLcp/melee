@@ -450,8 +450,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
     const hold = revealHoldOf({ round, settings: view.settings })
     const isReadyAsked = asksReady({
       game: round.content.kind,
-      roundCount: view.settings.roundCount,
-      roundIndex: round.index
+      isFinal: round.isFinal
     })
 
     // The standings, at the one moment the room asks for them. They are on this

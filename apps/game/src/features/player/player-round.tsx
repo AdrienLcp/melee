@@ -216,8 +216,7 @@ const OverallStandings: React.FC<{
   const isByTeam = view.teams.length > 0
   const marksReady = asksReady({
     game: round.content.kind,
-    roundCount: view.settings.roundCount,
-    roundIndex: round.index
+    isFinal: round.isFinal
   })
   const isRanked = isByTeam
     ? hasAnyTeamScored(view.teams)
@@ -309,11 +308,10 @@ const holdUntilTheCountdown = (
   round: RoundView,
   view: PlayerRoomView
 ): PlayerRoomView => {
-  const { countdownMs, roundCount } = view.settings
-  const isLastRound = roundCount !== null && round.index >= roundCount
+  const { countdownMs } = view.settings
   const hold = revealHoldOf({ round, settings: view.settings })
 
-  if (hold === null || isLastRound) {
+  if (hold === null || round.isFinal) {
     return view
   }
 
@@ -359,7 +357,18 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         counted down to the next round says why nothing comes next. */}
       <div className='hold'>
         {view.isHostConnected ? (
-          <RoundClock clock={clock} view={holdUntilTheCountdown(round, view)} />
+          <>
+            {round.isFinal && (
+              <NoticeCard
+                detail={translate('player.gameOver.detail')}
+                title={translate('player.gameOver.title')}
+              />
+            )}
+            <RoundClock
+              clock={clock}
+              view={holdUntilTheCountdown(round, view)}
+            />
+          </>
         ) : (
           <NoticeCard title={translate('buzz.blocked.host_away')} />
         )}
@@ -386,11 +395,7 @@ const BackAtTheTable: React.FC<{
 
   if (
     you === undefined ||
-    !asksReady({
-      game: round.content.kind,
-      roundCount: view.settings.roundCount,
-      roundIndex: round.index
-    })
+    !asksReady({ game: round.content.kind, isFinal: round.isFinal })
   ) {
     return null
   }

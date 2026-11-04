@@ -1664,6 +1664,11 @@ export const EN_DICTIONARY = defineDictionary({
         }
       })
     },
+    /** The game's last reveal, waiting on the final board. */
+    gameOver: {
+      detail: 'Waiting for the results',
+      title: 'Game over'
+    },
     lineUp: {
       ready: 'Ready'
     },

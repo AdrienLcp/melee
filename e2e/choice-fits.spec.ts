@@ -178,6 +178,7 @@ const choosingView = (question: Question) => ({
     duel: null,
     id: 'r4',
     index: 4,
+    isFinal: false,
     isReadyHold: false,
     joinedAfterStart: false,
     lineUpAt: 0,
@@ -724,6 +725,7 @@ const revealedView = (content: object) => {
           verdict: { isCorrect: true, kind: 'single' }
         })),
       content,
+      isFinal: false,
       isReadyHold: false,
       revealedAnswers
     },
@@ -1194,6 +1196,7 @@ const reflexView = (phase: 'playing' | 'revealed', flipsAt: number) => {
             ]
           : [],
       content: { flipsAt, kind: 'reflex', presses },
+      isFinal: false,
       isReadyHold: false,
       lockedOutPlayerIds: phase === 'revealed' ? ['p5', 'p7'] : []
     },
@@ -1956,6 +1959,7 @@ const wallRevealOfAFullTable = () => {
         verdict: { isCorrect: true, kind: 'single' }
       })),
       content: QUIZ_WITH_A_NOTE,
+      isFinal: false,
       isReadyHold: false,
       revealedAnswers
     },
