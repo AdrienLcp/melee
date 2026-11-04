@@ -2,6 +2,7 @@ import { useScreenAwake } from '@adrienlcp/browser/react'
 import type React from 'react'
 import { type FormEvent, useCallback, useEffect, useState } from 'react'
 import { Form } from 'react-aria-components'
+import { flushSync } from 'react-dom'
 
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import { NICKNAME_MAX_LENGTH, type RoomCode } from '@melee/protocol/identifiers'
@@ -9,6 +10,7 @@ import type { PlayerRoomView } from '@melee/protocol/room'
 
 import { NotFoundPage } from '@/features/not-found/not-found-page'
 import { slateContent } from '@/helpers/round-content'
+import { replaceScreen } from '@/infrastructure/browser'
 import {
   type PlayerConnection,
   usePlayerConnection
@@ -156,7 +158,13 @@ const PlayerScreen: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
       <RoomDocumentTitle settings={view?.settings ?? null} />
       {nickname === null || rejection !== null ? (
         <NicknameForm
-          onSubmit={setNickname}
+          onSubmit={(submitted) => {
+            replaceScreen(() => {
+              flushSync(() => {
+                setNickname(submitted)
+              })
+            })
+          }}
           refusedNickname={nickname}
           rejection={rejection}
           roomCode={roomCode}
@@ -176,7 +184,13 @@ const NicknameForm: React.FC<{
   roomCode: RoomCode
 }> = ({ onSubmit, refusedNickname, rejection, roomCode }) => {
   const translate = useTranslate()
+  // A second refusal mounts the form again: read from storage alone, the
+  // field came back with the last accepted name and the refusal unsaid.
   const [draft, setDraft] = useState(() => {
+    if (refusedNickname !== null) {
+      return refusedNickname
+    }
+
     const stored = readStoredNickname()
 
     return stored.status === 'success' ? (stored.data ?? '') : ''

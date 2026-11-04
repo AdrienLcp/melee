@@ -10,7 +10,7 @@ import {
 } from 'react-aria-components'
 import { flushSync } from 'react-dom'
 
-import { moveLayout } from '@/infrastructure/browser'
+import { moveLayout, replaceScreen } from '@/infrastructure/browser'
 import {
   type PanelSide,
   readStoredPanelFolded,
@@ -244,9 +244,17 @@ export const HostPanel: React.FC<HostPanelProps> = ({
           <Tabs
             onSelectionChange={(key) => {
               if (!isDesk) {
-                setScreen(isPanelTab(key) ? key : 'stage')
+                replaceScreen(() => {
+                  flushSync(() => {
+                    setScreen(isPanelTab(key) ? key : 'stage')
+                  })
+                })
               } else if (isPanelTab(key)) {
-                setChosenTab(key)
+                moveLayout(() => {
+                  flushSync(() => {
+                    setChosenTab(key)
+                  })
+                })
               }
             }}
             selectedKey={isDesk ? wideTab : screen}

@@ -1486,7 +1486,10 @@ bounced. Durations:
   the arrival is put off until there is something to lay down.
   The host's panel slides in whole from the edge it is docked to
   (`panel-dock`, its own width and a fade on `slow`, the side read from
-  `--panel-arrival-from`): a rem of travel read as the panel cutting in. No
+  `--panel-arrival-from`): a rem of travel read as the panel cutting in. Off
+  the desk the tab bar docks the same way from its own edge — the foot
+  standing up, the side lying down — held off it until the room's first view,
+  where it stood a beat before the stage it serves. No
   scale and no overshoot: a page is set down, not dropped. The page being
   left lifts off rather than vanishing: every router navigation is a view
   transition (`navigateDefaults` in `app-shell.tsx`) whose old root fades on
@@ -1506,8 +1509,18 @@ bounced. Durations:
   the same way: empty, it is not laid down (`:has(> .stage:empty)`), so the
   room arrives once — panel, stage, menu and board together. The waiting desk
   takes the same two children as the room's, or the first view mounts the
-  page again. The menu rises with the view (`page-enter`), or fades in a
-  second later on a socket that never answers.
+  page again. The menu rises with every page it is chrome for (`page-enter`) —
+  standing from the first frame, it was there before the page was laid down —
+  and on a room's screen, console, seat or wall, it waits for the room's first
+  view, or fades in a second later on a socket that never answers. A board
+  already up when a screen arrives fades in with the page, in place
+  (`data-arrived-with-screen`, `swap-in` on `base` × 1.5): drawn at once, it
+  stood before the stage. A screen replaced inside one page plays as a page
+  change (`replaceScreen`): the seat form fades over the lobby being laid
+  down, and a room's loader over the room — rendered by `main.tsx` rather than
+  by the router, whose swap cut it out. The console that closed the room keeps
+  its page until the page change takes it home, rather than cutting to the
+  refusal that answers it.
 - **A block arriving later** — on a screen already laid down. New content
   rises with `page-enter` on `base`: the player's hold, *Ready* press and
   standings a beat after the card (`slow` × 0.6, with the payout), the game a
@@ -1533,8 +1546,10 @@ bounced. Durations:
   Players tab too, the first seat included, in the lobby only: a row the
   ranking moves would replay it. The Players tab's count is stamped on
   (`tick-stamp`, `fast`). The reconnecting pill rises a beat late (`slow` ×
-  1.5), so a socket that answers at once never flashes it, and fades out on the
-  line it last said once the screen is back.
+  1.5), and the menu's trigger turns saffron and its dot pulses on the same
+  beat, so a socket that answers at once — a seat's first — never flashes
+  them, and the pill fades out on the line it last said once the screen is
+  back.
   On the host's setup, a block a choice brings in rises with `page-enter` — a
   switch, strip or field a setting reveals, the blind test's strands, genres,
   decades or address form, Petit Bac's count or fixed list, the board's rules — and
@@ -1550,7 +1565,11 @@ bounced. Durations:
   room. Not the player's round chrome: it remounts between framed and
   unframed phases, and a fade on mount would blink at each.
 - **A panel tab opening** — `swap-in`, a fade alone on `fast` × 1.5:
-  the panel is beside the game, and must not pull the eye off it. The tab
+  the panel is beside the game, and must not pull the eye off it. The switch
+  is a layout move (`moveLayout`), so the tab left fades into the one opened
+  inside the panel's own picture rather than cutting out. Off the desk a tab
+  is the whole screen: it is laid down like a page (`arriving`) under the
+  screen left, which fades over it (`replaceScreen`). The tab
   being left is hidden on `[data-exiting]`: react-aria keeps an exiting panel
   mounted until every animation on it settles, the entry fade included, so a
   quick switch stacked both tabs.

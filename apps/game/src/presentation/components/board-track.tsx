@@ -65,6 +65,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
   const pawnName = useTrackPawnName()
   const trackRef = useRef<HTMLDivElement>(null)
   const [length, setLength] = useState(trackLengthOf(board))
+  const [isArrivedWithScreen] = useState(board.kind === 'track')
   const shape = useTrackShape({ caseCount: length + 1, trackRef })
   const track = useTrackPresence({
     board,
@@ -90,6 +91,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
   return (
     <div
       className='board-track'
+      data-arrived-with-screen={isArrivedWithScreen || undefined}
       data-presence={track?.presence}
       data-shape={track === null ? undefined : shape?.kind}
       ref={trackRef}

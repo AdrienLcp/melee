@@ -1,8 +1,12 @@
 import { StrictMode } from 'react'
+import { flushSync } from 'react-dom'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router'
 
-import { settleSkippedViewTransitions } from '@/infrastructure/browser'
+import {
+  replaceScreen,
+  settleSkippedViewTransitions
+} from '@/infrastructure/browser'
 import { listenForInstallPrompt } from '@/infrastructure/install-prompt'
 import { routes } from '@/infrastructure/router/routes'
 import { reloadOnStaleBuild } from '@/infrastructure/stale-build'
@@ -10,6 +14,7 @@ import { AppProviders } from '@/presentation/app-providers'
 import { i18n } from '@/presentation/i18n/i18n'
 import { applyInitialLocale } from '@/presentation/i18n/initial-locale'
 import { holdLandingArrival } from '@/presentation/landing-arrival'
+import { RouteFallback } from '@/presentation/route-fallback'
 
 import '@/presentation/styles/globals.sass'
 
@@ -53,26 +58,51 @@ const App: React.FC = () => (
   </StrictMode>
 )
 
-/**
- * A prerendered document is already showing this page, and React's first commit
- * cannot: every route is `lazy`, so until the chunk resolves the router is
- * uninitialized and `RouterProvider` renders `RouteFallback` over it. Measured
- * on the home page at 200 ms of loader replacing a page painted at 456 ms —
- * throwing away the paint the document was written to make.
- *
- * Waiting costs nothing here, because what it waits behind is the screen being
- * rendered. A room is the other case and needs the opposite: `/host/:code` and
- * the `/play/:code` a QR code lands on are served the empty SPA fallback, so
- * `#root` has no children, and the loader is the only thing that screen has to
- * show. That is the whole of the condition.
- */
-if (container.hasChildNodes() && !router.state.initialized) {
+const Loading: React.FC = () => (
+  <StrictMode>
+    <AppProviders locale={initialLocale}>
+      <RouteFallback />
+    </AppProviders>
+  </StrictMode>
+)
+
+const renderApp = (): void => {
+  root.render(<App />)
+}
+
+const whenRouterInitialized = (then: () => void): void => {
   const unsubscribe = router.subscribe((state) => {
     if (state.initialized) {
       unsubscribe()
-      root.render(<App />)
+      then()
     }
   })
+}
+
+/**
+ * A prerendered document is already showing this page, and React's first commit
+ * cannot: every route is `lazy`, so until the chunk resolves the router is
+ * uninitialized and would render `RouteFallback` over it. Measured on the home
+ * page at 200 ms of loader replacing a page painted at 456 ms — throwing away
+ * the paint the document was written to make.
+ *
+ * Waiting costs nothing there, because what it waits behind is the screen being
+ * rendered. A room is the other case and needs the opposite: `/host/:code` and
+ * the `/play/:code` a QR code lands on are served the empty SPA fallback, so
+ * `#root` has no children, and the loader is the only thing that screen has to
+ * show. It is rendered here rather than by the router, so the page replacing it
+ * is one screen change: the loader fades over the page being laid down, where
+ * the router's swap cut it out.
+ */
+if (router.state.initialized) {
+  renderApp()
+} else if (container.hasChildNodes()) {
+  whenRouterInitialized(renderApp)
 } else {
-  root.render(<App />)
+  root.render(<Loading />)
+  whenRouterInitialized(() => {
+    replaceScreen(() => {
+      flushSync(renderApp)
+    })
+  })
 }

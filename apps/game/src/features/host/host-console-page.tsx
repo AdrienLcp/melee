@@ -174,6 +174,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     null
   )
   const [hasOfferedToken, setHasOfferedToken] = useState(false)
+  const [hasClosedRoom, setHasClosedRoom] = useState(false)
   const { setVolume: keepVolume, volume: ownVolume } = useVolume()
   const [draftSource, setDraftSource] = useState<TrackSource | null>(null)
   const lineUpAt = view?.settings.lineUpAt ?? null
@@ -369,6 +370,7 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   // after that is a room nobody was told about. The stored claim goes with it —
   // it is worth nothing once the code stops resolving.
   const closeRoom = useCallback(() => {
+    setHasClosedRoom(true)
     send({ type: 'host.closeRoom' })
     forgetSessionId({ role: 'host', roomCode })
     forgetHostToken(roomCode)
@@ -537,7 +539,12 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
     }
   }, [isDisplacedWall, navigate, roomCode])
 
-  if (status === 'refused') {
+  // The screen that closed the room is already on its way home, and the
+  // refusal answering it is no news: shown, it cut the console out for a
+  // line saying the host had closed the table, before the page change.
+  const isClosedHere = hasClosedRoom && error?.code === 'room_closed'
+
+  if (status === 'refused' && !isClosedHere) {
     return (
       <Main className='host-console-page'>
         <RoomDocumentTitle settings={view?.settings ?? null} />

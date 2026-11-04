@@ -611,6 +611,14 @@ after two seconds, then lay the frames out on one contact sheet — a second pag
 is the whole sequence. The tool has no `require` and no dynamic `import`, so
 `page.screenshot({ path })` is the only way a file leaves it.
 
+Write the helper once, to a file under `.playwright-mcp/` (git-ignored, and
+the only place outside the sources `browser_run_code_unsafe` reads a
+`filename` from), and have it hang the filming function on `page`: a property
+of `page` survives from one call to the next, where `globalThis` does not, so
+each film is then a call of a few lines. Film the tab in front: a tab another
+one is driving from behind (`bringToFront` it first) draws two frames in two
+seconds.
+
 Put the frames on the page's clock: `f.metadata.timestamp * 1000 -
 performance.timeOrigin` is a frame's time in `performance.now()`, so a wrapped
 `document.startViewTransition` (log `ready`, its rejection's message, and
@@ -627,5 +635,9 @@ What this found, each invisible in any still:
   room's, so the first view mounted the stage again, cut the transition short
   and laid the page down twice. A second insertion of the same class in the
   observer's log is the tell.
+- **A screen swapped inside one page**: the seat form giving way to the
+  lobby, a room's loader to the room, a console cut to the refusal answering
+  its own close — no router navigation, so no view transition, and the screen
+  left went at once. `replaceScreen` plays them as a page change.
 - **A motion too short to read**: `--ease-out` lands nine tenths of a move in
   its first third, so a `fast` fade or a rem of travel reads as a cut.

@@ -60,6 +60,11 @@
     pointer-events: none
     position: fixed
 
+    // A board already up when the screen arrives comes with the page being
+    // laid down, in place: drawn at once, it stood a beat before the stage.
+    &[data-arrived-with-screen]
+      animation: swap-in calc(var(--transition-base, 0s) * 1.5) var(--ease-out) backwards
+
     // The board under the top row, between its cases: a lobby long enough to
     // scroll passes under the track rather than showing through it. A loop
     // lays the same strip under its bottom row.

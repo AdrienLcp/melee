@@ -213,6 +213,27 @@ export const moveLayout = (update: () => void): void => {
 }
 
 /**
+ * Plays one screen replaced by another inside a page the way a page change
+ * plays: the screen being left fades over the new one, which lays itself
+ * down. Unlike `moveLayout`, nothing takes a transition name of its own, so a
+ * piece only the new screen holds arrives with it rather than fading in on
+ * the browser's default above the screen being left. `update` must reach the
+ * DOM before it returns.
+ */
+export const replaceScreen = (update: () => void): void => {
+  if (
+    prefersReducedMotion() ||
+    typeof document.startViewTransition !== 'function'
+  ) {
+    update()
+
+    return
+  }
+
+  document.startViewTransition(update)
+}
+
+/**
  * The browser holds every `ResizeObserver` back until a transition has
  * captured the new screen, so whatever lays itself out by measuring measures
  * again here, or it is captured at its old size and jumps once the move ends.

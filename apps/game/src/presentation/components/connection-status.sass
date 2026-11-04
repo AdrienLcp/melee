@@ -11,11 +11,14 @@
     border-radius: var(--radius-full)
     flex: none
     height: 0.75rem
+    transition: background-color var(--transition-fast, 0s) var(--ease-out)
     width: 0.75rem
 
+    // A beat late, with the trigger it sits in.
     &.connecting
-      animation: connection-pulse calc(var(--transition-slow, 0s) * 2.3) ease-in-out infinite
+      animation: connection-pulse calc(var(--transition-slow, 0s) * 2.3) ease-in-out calc(var(--transition-slow, 0s) * 1.5) infinite
       background: var(--signal-connecting)
+      transition-delay: calc(var(--transition-slow, 0s) * 1.5)
 
     // Half full, and pulsing where motion is welcome: it is on its way back.
     &.closed

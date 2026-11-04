@@ -437,6 +437,22 @@ one part.
 
 ### Fixes
 
+- `[Game]` **The rest of the screens arrive and leave in one motion.** Filmed
+  frame by frame, five cuts were left. Off the desk the console's tab bar now
+  docks from its edge with the stage instead of standing alone before it, and
+  a tab is laid down like a page while the one left fades over it; on the
+  desk the tab left fades into the next instead of vanishing. The seat form
+  fades over the lobby, and a room's loader over the room, where both cut
+  out. The menu rises with every page, and on a room's screen waits for the
+  room's first view; a board already up fades in with the screen it arrives
+  on. A seat's first connection no longer flashes the menu saffron, and the
+  console that closed the table goes home without first cutting to *The host
+  closed the table*.
+
+- `[Game]` **A second name refused at the door keeps what was typed.** The
+  form came back with the last name the device had used and no word of the
+  refusal; it now shows the name refused, and why.
+
 - `[Game]` **Opening a table is one motion again, not a cut.** The page being
   left now fades over the new one rather than under it, where it was never
   seen; the desk keeps its scrollbar gutter until the change has played,

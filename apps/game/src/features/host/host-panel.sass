@@ -272,13 +272,20 @@
     .host-panel
       --tab-selected: var(--board)
 
+    // Docked to its edge like the desk's panel, and held off it until the
+    // room's first view: the stage waits for that view, and a bar standing
+    // alone before it split the room's arrival in two.
     .panel-tabs
+      animation: panel-dock var(--transition-slow, 0s) var(--ease-out) backwards
       background: var(--track-b)
       display: grid
       gap: var(--space-2xs)
       padding: var(--space-2xs)
       position: fixed
       z-index: 2
+
+    .host-panel[data-waiting] .panel-tabs
+      animation-play-state: paused
 
       .panel-tab
         font-size: var(--text-3xs)
@@ -289,7 +296,11 @@
         svg
           font-size: var(--text-s)
 
+    // A tab here is the whole screen, not a panel beside the game: it is laid
+    // down like a page, where a fade alone read as a cut.
     .panel-screen
+      @include layout.arriving
+
       padding-block: var(--layout-padding-block-start) var(--layout-padding-block-end)
       padding-inline: var(--gutter-left) var(--gutter-right)
 
@@ -309,6 +320,8 @@
           --layout-padding-block-end: calc(max(var(--layout-padding), var(--safe-area-bottom)) + var(--panel-bar-height))
 
       .panel-tabs
+        --panel-arrival-from: 0 100%
+
         border-top: var(--hairline)
         bottom: 0
         grid-auto-columns: minmax(0, 1fr)
@@ -337,6 +350,7 @@
 
       .panel-tabs
         --gutter-right: max(var(--space-2xs), var(--safe-area-right))
+        --panel-arrival-from: 100%
 
         align-content: center
         border-inline-start: var(--hairline)
@@ -383,4 +397,4 @@
   @keyframes panel-dock
     from
       opacity: 0
-      transform: translateX(var(--panel-arrival-from))
+      translate: var(--panel-arrival-from)
