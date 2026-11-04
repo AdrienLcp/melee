@@ -939,7 +939,8 @@ under every answer mode a verdict is owed in.
   ticked the rest sit back on `--socket`. Two underlined presses over it tick
   every game no mode leaves to the host, or none. Ticks live in
   `melee:line-up-games`, written on every change, an empty list included; a
-  device with nothing stored opens on *First game*'s five. A spine is no longer
+  device with nothing stored opens on every game nobody judges, the upper
+  shelf whole, so a first visit reads as a rule. A spine is no longer
   a link to its game's page: the sitemap hands those pages to a crawler.
 - **The masthead** (`features/home`): the wordmark and, under it while the
   last table this device opened is still open, *Back to table K7PX* — an
@@ -964,7 +965,11 @@ under every answer mode a verdict is owed in.
   screen while the shelf is on it (`position: sticky`). The band is ruled in
   `--rule` and lifted by `--shadow-sheet` only while it floats over the
   spines — a `scroll-state(stuck: bottom)` query, the rule always drawn where
-  that is unsupported — and pads its bottom by the safe area. Full width on a
+  that is unsupported — and pads its bottom by the safe area. Band and lid
+  rows bleed to the screen's edges at every width: the front page spans the
+  screen and holds its content to `--stage-max-width` by widening its
+  gutters, because a page capped there cut the band 190px short of a 2560px
+  screen's edges. Full width on a
   phone, at least 18rem on the shelf's start edge from 60rem. It moved down
   from the masthead because a press at the top acting on ticks a screen and a
   half lower read as its own launch beside the lids' presses. The press keeps

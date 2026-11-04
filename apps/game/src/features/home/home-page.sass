@@ -15,13 +15,33 @@ $masthead-side-by-side: 60rem
 // app ran.
 $front-door-menu-width: 4rem
 
+// Registered so it computes to pixels on the page's children, against the
+// page: the shelf and the lid rows are containers too, and an unregistered
+// `100cqi` read under them measured the content column, not the screen.
+@property --stage-overhang
+  syntax: '<length>'
+  inherits: true
+  initial-value: 0px
+
 @layer components
+  // The page takes the whole screen and its content keeps to the stage's width
+  // through the gutters, so the shelf's foot and the lid rows, which bleed by
+  // a gutter, reach the screen's edges past `--stage-max-width`.
   .home-page
     @include layout.screen
 
+    container-type: inline-size
     gap: var(--space-xl)
-    max-width: var(--stage-max-width)
+    max-width: none
     padding-block-start: var(--menu-block-inset)
+    padding-inline: 0
+
+    > *
+      --stage-overhang: max(0rem, (100cqi - var(--stage-max-width)) / 2)
+      --gutter-left: calc(max(var(--gutter), var(--safe-area-left)) + var(--stage-overhang))
+      --gutter-right: calc(max(var(--gutter), var(--safe-area-right)) + var(--stage-overhang))
+
+      margin-inline: var(--gutter-left) var(--gutter-right)
 
     // Beside the wordmark, the code box takes the menu's row rather than the
     // band under it: the masthead starts where the menu does.

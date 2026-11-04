@@ -66,8 +66,8 @@ one part.
   four line-ups the app ships — *First game*, *Music special*, *General
   knowledge*, *Quick game* — one press opening a table already loaded with
   their games, variants, length and order. Under them the shelf's games are
-  ticks again: *Open a table · 5 games* opens on what is ticked, the ticks are
-  kept for next time, and a first visit starts on *First game*'s five. A lobby
+  ticks again: *Open a table* opens on what is ticked, the ticks are kept for
+  next time, and a first visit starts on every game nobody has to judge. A lobby
   with nothing chosen leads with the same four before the one-game list, and a
   loaded one is named above the planned games with a way back.
 - `[Shared]` **A blind test that plays no music says so, on the console too.**
@@ -354,6 +354,12 @@ one part.
   name was an existing commercial app's, *Devineuf*, for the same kind of game.
 
 ### Fixes
+
+- `[Game]` **On a screen wider than the stage, the front page's foot reaches
+  the screen's edges.** The band under *Open a table* and the rows of lids
+  stopped where the page's content did, leaving a cut on either side of a
+  2560px screen; the page now spans the screen and keeps its content to the
+  same width through its gutters.
 
 - `[Game]` **The front page no longer jumps when it finishes loading.** The
   served page is written at build time and knew nothing of the device, so
