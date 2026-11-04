@@ -29,6 +29,11 @@ the race without one. With no wall, the reveal draws **the ribbon** instead:
 
 With a wall, the strip stays as it is. The lobby keeps the strip.
 
+> **Since 04/11/2026** the reveal draws the ribbon with a wall too: a fixed
+> window that swipes on one screen and not on another read as a bug, and a
+> seat far from the wall wants the race up close. Only the line under it
+> stays wall-less, since the wall already says who leads.
+
 — cut here: steps 1 and 2 committed, `pnpm validate` green, seen muted —
 
 ## Step 3 — the console's *Room* tab

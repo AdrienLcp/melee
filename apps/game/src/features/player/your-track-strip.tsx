@@ -24,10 +24,10 @@ const isPlayersPawn = ({
 
 type YourTrackStripProps = {
   /**
-   * Draw the whole race when no wall does (default: `false`): every case,
-   * opened on this pawn, with how far the front is.
+   * Draw the whole race (default: `false`): every case, scrolled sideways and
+   * opened on this pawn, with how far the front is when no wall draws it.
    */
-  isWholeWithoutWall?: boolean
+  isWhole?: boolean
   view: PlayerRoomView
 }
 
@@ -36,7 +36,7 @@ type YourTrackStripProps = {
  * nothing while the board is off or the pawn not dealt yet.
  */
 export const YourTrackStrip: React.FC<YourTrackStripProps> = ({
-  isWholeWithoutWall = false,
+  isWhole = false,
   view
 }) => {
   const { board } = view.settings
@@ -47,8 +47,6 @@ export const YourTrackStrip: React.FC<YourTrackStripProps> = ({
     return null
   }
 
-  const isWhole = isWholeWithoutWall && !view.isWallConnected
-
   return (
     <TrackStrip
       length={board.length}
@@ -56,7 +54,9 @@ export const YourTrackStrip: React.FC<YourTrackStripProps> = ({
       reach={isWhole ? 'whole' : 'around'}
       yours={yours}
     >
-      {isWhole && <TrackLeadLine pawns={pawns} yours={yours} />}
+      {isWhole && !view.isWallConnected && (
+        <TrackLeadLine pawns={pawns} yours={yours} />
+      )}
     </TrackStrip>
   )
 }

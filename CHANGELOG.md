@@ -147,6 +147,12 @@ one part.
   game a setting tells apart: a blind test on one decade, a map on one kind
   of place, a slate's count.
 
+- `[Game]` **The whole board scrolls on every player's reveal.** Beside a
+  wall, a player's screen showed seven squares round its pawn and nothing
+  more; it now draws the whole course, swiped sideways and opened on the
+  pawn, as it already did with no wall — the line saying who leads stays
+  for a table with no wall to show it.
+
 - `[Game]` **A check slides in and out rather than switching.** Ticking an
   answer among several slides its label aside and fades the check into the
   room it made; unticking fades the check first and closes the room after.

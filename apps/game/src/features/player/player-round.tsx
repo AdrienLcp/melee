@@ -251,7 +251,7 @@ const OverallStandings: React.FC<{
       >
         {title}
       </SectionHeading>
-      <YourTrackStrip isWholeWithoutWall view={view} />
+      <YourTrackStrip isWhole view={view} />
       {isByTeam ? (
         <TeamRoster
           isRanked

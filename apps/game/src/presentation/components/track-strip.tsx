@@ -29,9 +29,9 @@ type TrackStripProps = {
   pawns: readonly TrackPawn[]
   /**
    * How much of the track is drawn (default: `'around'`):
-   * - `'around'` — seven cases around the pawn, beside a wall drawing the race
+   * - `'around'` — seven cases around the pawn, where it has not moved yet
    * - `'whole'` — every case at full size, scrolled sideways and opened on the
-   *   pawn, for a room with no wall to draw it
+   *   pawn, on a reveal, with a wall or without
    */
   reach?: 'around' | 'whole'
   /**

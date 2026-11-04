@@ -1,3 +1,4 @@
+@use '@adrienlcp/styles/accessibility'
 @use '../styles/typography'
 
 @layer components
@@ -17,6 +18,7 @@
 
       align-items: baseline
       display: flex
+      flex-wrap: wrap
       gap: var(--space-xs)
 
     .walked
@@ -86,6 +88,17 @@
 
     &[data-reach='whole']
       --case-size: 4rem
+
+      container-type: inline-size
+
+    // A narrow strip keeps *Square N of M* on one line: the press keeps its
+    // pawn and leaves its word to a screen reader.
+    @container (width < 18.5rem)
+      .recentre
+        min-inline-size: var(--target)
+
+        .control-label
+          @include accessibility.visually-hidden
 
     .recentre
       margin-inline-start: auto
