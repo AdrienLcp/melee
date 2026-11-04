@@ -312,6 +312,17 @@ export const roomSettingsSchema = z.object({
    */
   paysForSpeed: z.boolean().default(true),
   /**
+   * Whether the rounds past the running order's last row play it again from
+   * its top rather than being drawn: a table that liked the order it played
+   * goes round it once more. Read only while every entry holds a row
+   * (`repeatsTheOrder`), since an entry kept to the draw would otherwise never
+   * come up again.
+   *
+   * Off by default, and defaulted, so a stored setup from before it draws past
+   * the rows, as every evening did.
+   */
+  repeatsRunningOrder: z.boolean().default(false),
+  /**
    * How many rounds the game runs for, or `null` for "until the host ends it".
    *
    * A fixed count is the blind test's shape — a playlist runs out — and it is
@@ -381,6 +392,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
    */
   mode: DEFAULT_MODE_SETTINGS.typed,
   paysForSpeed: true,
+  repeatsRunningOrder: false,
   roundCount: 10,
   runningOrder: [],
   teamScoring: DEFAULT_TEAM_SCORING,

@@ -15,7 +15,8 @@ import { isLastRound } from './is-last-round'
 
 /**
  * Deals the next round's game as each reveal of an evening goes up
- * (`scheduledEntryAt` says how), and sends it as an ordinary settings frame — so
+ * (`scheduledEntryAt` says how: the next row, the order again past its end,
+ * or a draw), and sends it as an ordinary settings frame — so
  * the wall reads it off `settings.game`
  * like everything else, and the host's *change* is the same frame again.
  *
@@ -71,6 +72,7 @@ export const useLineUpDraw = ({
       order: settings.runningOrder,
       played: view.lineUpPlayed,
       random: Math.random,
+      repeatsOrder: settings.repeatsRunningOrder,
       roundAt: round.index,
       roundsLeft:
         settings.roundCount === null ? null : settings.roundCount - round.index

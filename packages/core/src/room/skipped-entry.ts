@@ -142,6 +142,7 @@ export const withEntrySkipped = ({
     order: runningOrder,
     played: withoutIndex(played, lineUpAt),
     random,
+    repeatsOrder: settings.repeatsRunningOrder,
     roundAt,
     roundsLeft
   })

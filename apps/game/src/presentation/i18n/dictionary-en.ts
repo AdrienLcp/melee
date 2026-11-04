@@ -759,6 +759,11 @@ export const EN_DICTIONARY = defineDictionary({
       later: 'Later',
       next: 'Still to come',
       once: 'Played once',
+      pastThePlan: {
+        draw: 'At random',
+        label: 'Then',
+        repeat: 'From the top'
+      },
       pick: 'Add a game',
       pickHint:
         'A game you bring the content for is played once. The others fill the rounds you have not prepared.',

@@ -24,6 +24,7 @@ const drawnAt = ({
   lastAt = null,
   order,
   played = lineUp.map(() => 0),
+  repeatsOrder = false,
   roll = 0,
   roundAt
 }: {
@@ -31,6 +32,7 @@ const drawnAt = ({
   lastAt?: number | null
   order: RoomSettings['runningOrder']
   played?: readonly number[]
+  repeatsOrder?: boolean
   roll?: number
   roundAt: number
 }) =>
@@ -41,6 +43,7 @@ const drawnAt = ({
     order,
     played,
     random: () => roll,
+    repeatsOrder,
     roundAt,
     roundsLeft: null
   })
@@ -120,6 +123,113 @@ describe('scheduledEntryAt', () => {
 
   it('[running-order] leaves a row whose entry is gone to chance', () => {
     expect(drawnAt({ order: [7], roundAt: 0 })).not.toBeNull()
+  })
+})
+
+describe('scheduledEntryAt, playing the order again', () => {
+  const playedOnce = [1, 1, 1, 1]
+
+  it('[repeat-order] starts the order again from its top past its end', () => {
+    expect(
+      drawnAt({
+        lastAt: 3,
+        order: [2, 0, 1, 3],
+        played: playedOnce,
+        repeatsOrder: true,
+        roundAt: 4
+      })
+    ).toBe(2)
+  })
+
+  it('[repeat-order] passes over an entry the host brought, once played', () => {
+    expect(
+      drawnAt({
+        lastAt: 3,
+        order: [3, 1, 2, 0],
+        played: playedOnce,
+        repeatsOrder: true,
+        roundAt: 4
+      })
+    ).toBe(2)
+  })
+
+  it('[repeat-order] goes on after a game picked by hand rather than starting over', () => {
+    expect(
+      drawnAt({
+        lastAt: 0,
+        order: [0, 1, 2, 3],
+        played: playedOnce,
+        repeatsOrder: true,
+        roundAt: 4
+      })
+    ).toBe(2)
+  })
+
+  it('[repeat-order] draws past the end once an entry is kept to the draw', () => {
+    expect(
+      drawnAt({
+        deals: ['both', 'row', 'chance', 'row'],
+        lastAt: 3,
+        order: [0, 1, 3],
+        played: [1, 1, 0, 1],
+        repeatsOrder: true,
+        roundAt: 3
+      })
+    ).toBe(2)
+  })
+
+  it('[repeat-order] goes round the order the server dealt, round after round', () => {
+    const games = [
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.blindtest,
+      DEFAULT_GAME_SETTINGS.reflex
+    ]
+    const random = () => 0
+    const played = games.map(() => 0)
+    let order = dealtOrder({
+      deals: [],
+      drawnAt: null,
+      lineUp: games,
+      order: [],
+      played,
+      random,
+      upcoming: 0
+    })
+    const plan = order.filter((row) => row !== null)
+    const sequence: number[] = []
+    let at = plan[0] ?? null
+
+    for (
+      let roundAt = 0;
+      roundAt < 3 * games.length && at !== null;
+      roundAt += 1
+    ) {
+      sequence.push(at)
+      played[at] = (played[at] ?? 0) + 1
+      at = scheduledEntryAt({
+        deals: [],
+        lastAt: at,
+        lineUp: games,
+        order,
+        played,
+        random,
+        repeatsOrder: true,
+        roundAt: roundAt + 1,
+        roundsLeft: null
+      })
+      order = dealtOrder({
+        deals: [],
+        drawnAt: at,
+        lineUp: games,
+        order,
+        played,
+        random,
+        upcoming: roundAt + 1
+      })
+    }
+
+    expect(plan).toHaveLength(games.length)
+    expect(sequence).toEqual([...plan, ...plan, ...plan])
   })
 })
 

@@ -613,7 +613,10 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   game may be drawn. A planned one carries a *Drawn* switch and sinks into the
   socket when it is off; one in the draw alone says so in its caption and
   carries a ✕; the last row adds a game to the draw from the shelf, which then
-  lists only the games a draw may land on.
+  lists only the games a draw may land on. While every entry holds a planned
+  round, *Then* sits on the socket above it: a strip choosing the draw or the
+  order again (*From the top*), and choosing the order folds the draw's row
+  away — it fades, then its track closes — and opens it again the way it left.
 - **Past the split** the panel stands beside the stage, `--host-panel-width`
   (25rem), on paper (`box-lid.paper`: rounded on the stage's side, a hairline
   and `--shadow-panel-*` cast toward the stage), held to the viewport and

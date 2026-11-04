@@ -11,12 +11,38 @@ import { isPlayedOut, nextEntryAt } from './next-game'
 type Order = RoomSettings['runningOrder']
 
 /**
+ * Whether an evening may play its running order again past the last row:
+ * several entries, every one of them holding a row. An entry kept to the draw
+ * has none, and a repeated order would never reach it.
+ */
+export const canRepeatTheOrder = ({
+  deals,
+  lineUp
+}: {
+  /** The settings' `lineUpDeals`. */
+  deals: readonly LineUpDeal[]
+  lineUp: readonly GameSettings[]
+}): boolean =>
+  lineUp.length > 1 && dealsOf({ deals, lineUp }).every(isDealtARow)
+
+/** Whether the rounds past the order's last row play it again rather than being drawn. */
+export const repeatsTheOrder = (
+  settings: Pick<RoomSettings, 'lineUp' | 'lineUpDeals' | 'repeatsRunningOrder'>
+): boolean =>
+  settings.repeatsRunningOrder &&
+  canRepeatTheOrder({ deals: settings.lineUpDeals, lineUp: settings.lineUp })
+
+/**
  * Which entry the round at `roundAt` is on: its row, or the next row the
  * evening still holds when that one's entry is gone or played out — the
- * planned games close up — or a draw past the order's end.
+ * planned games close up — or, past the order's end, the order again or a
+ * draw.
  *
- * Such a round is drawn among the entries the host put in the draw
- * (`lineUpDeals`); only an evening with none there draws from them all.
+ * The order played again is its entries as they first came up, resumed after
+ * the one just played — so a game the host picked by hand moves the loop on
+ * rather than restarting it — and passing over an entry played out. A drawn
+ * round is drawn among the entries the host put in the draw (`lineUpDeals`);
+ * only an evening with none there draws from them all.
  */
 export const scheduledEntryAt = ({
   deals,
@@ -25,6 +51,7 @@ export const scheduledEntryAt = ({
   order,
   played,
   random,
+  repeatsOrder,
   roundAt,
   roundsLeft
 }: {
@@ -38,17 +65,27 @@ export const scheduledEntryAt = ({
   played: readonly number[]
   /** As `nextEntryAt`'s. */
   random: () => number
+  /** The settings' `repeatsRunningOrder`, read only where `canRepeatTheOrder` holds. */
+  repeatsOrder: boolean
   /** The round being drawn, counted from 0. */
   roundAt: number
   /** As `nextEntryAt`'s. */
   roundsLeft: number | null
 }): number | null => {
-  const placed = order
-    .slice(roundAt)
-    .find(isOwedItsRow({ deals, lineUp, played }))
+  const isOwed = isOwedItsRow({ deals, lineUp, played })
+  const placed = order.slice(roundAt).find(isOwed)
 
   if (placed !== undefined) {
     return placed
+  }
+
+  const repeated =
+    repeatsOrder && canRepeatTheOrder({ deals, lineUp })
+      ? entryAfterInOrder({ isOwed, lastAt, order })
+      : undefined
+
+  if (repeated !== undefined) {
+    return repeated
   }
 
   const dealt = dealsOf({ deals, lineUp })
@@ -63,6 +100,23 @@ export const scheduledEntryAt = ({
       roundsLeft: null
     }) ?? nextEntryAt({ lastAt, lineUp, played, random, roundsLeft })
   )
+}
+
+const entryAfterInOrder = ({
+  isOwed,
+  lastAt,
+  order
+}: {
+  isOwed: (row: number | null) => row is number
+  lastAt: number | null
+  order: Order
+}): number | undefined => {
+  const cycle = [...new Set(order.filter((row) => row !== null))]
+  const after = lastAt === null ? -1 : cycle.indexOf(lastAt)
+
+  return cycle
+    .map((_row, step) => cycle[(after + 1 + step) % cycle.length] ?? null)
+    .find(isOwed)
 }
 
 /** Whether every row of the order points at an entry of the line-up. */

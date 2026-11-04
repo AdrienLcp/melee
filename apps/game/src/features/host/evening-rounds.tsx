@@ -25,7 +25,11 @@ import { withEntryDuplicated, withoutEntry } from '@melee/core/room/line-up'
 import { dealsOf, isInTheDraw } from '@melee/core/room/line-up-deals'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
-import type { ComingRound } from '@melee/core/room/running-order'
+import {
+  type ComingRound,
+  canRepeatTheOrder,
+  repeatsTheOrder
+} from '@melee/core/room/running-order'
 
 import {
   ActionMenu,
@@ -45,6 +49,7 @@ import {
   GripIcon,
   PlusIcon
 } from '@/presentation/components/icons'
+import { SegmentedControl } from '@/presentation/components/segmented-control'
 import { usePointerReorder } from '@/presentation/components/use-pointer-reorder'
 import { useRowsTravel } from '@/presentation/components/use-rows-travel'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -302,10 +307,11 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
             view={view}
           />
           {!isEveningOver && (
-            <DrawnRounds
+            <PastThePlan
               coming={coming}
               isLive={isLive}
-              onOpen={onOpenDraw}
+              onOpenDraw={onOpenDraw}
+              onSettingsChange={change}
               settings={view.settings}
               upcoming={upcoming}
             />
@@ -649,18 +655,21 @@ const EntryMenu: React.FC<{
 }
 
 /**
- * The rounds past the evening's rows, drawn as they come: so many, or until
- * the host stops, opening the page of the games they are drawn among.
- * Nothing when a row already lies past the count.
+ * The rounds past the evening's rows: whether they play the order again or
+ * are drawn — asked only where every entry holds a row — and, drawn, so many
+ * or until the host stops, opening the page of the games they are drawn
+ * among. Nothing when the count ends on the last row, or a row already lies
+ * past it.
  */
-const DrawnRounds: React.FC<{
+const PastThePlan: React.FC<{
   coming: readonly ComingRound[]
   isLive: boolean
-  onOpen: () => void
+  onOpenDraw: () => void
+  onSettingsChange: (settings: RoomSettings) => void
   settings: RoomSettings
   /** The round about to open, counted from 0. */
   upcoming: number
-}> = ({ coming, isLive, onOpen, settings, upcoming }) => {
+}> = ({ coming, isLive, onOpenDraw, onSettingsChange, settings, upcoming }) => {
   const translate = useTranslate()
 
   if (coming.some((round) => round.isPastTheEnd)) {
@@ -668,12 +677,64 @@ const DrawnRounds: React.FC<{
   }
 
   const from = (coming.at(-1)?.roundAt ?? upcoming - 1) + 2
-  const { roundCount } = settings
 
-  if (roundCount !== null && roundCount < from) {
+  if (settings.roundCount !== null && settings.roundCount < from) {
     return null
   }
 
+  const isRepeated = repeatsTheOrder(settings)
+
+  return (
+    <div className='past-the-plan' data-repeated={isRepeated || undefined}>
+      {canRepeatTheOrder({
+        deals: settings.lineUpDeals,
+        lineUp: settings.lineUp
+      }) && (
+        <SegmentedControl
+          className='choice'
+          isDisabled={!isLive}
+          label={translate('host.evening.pastThePlan.label')}
+          onChange={(value) => {
+            onSettingsChange({
+              ...settings,
+              repeatsRunningOrder: value === 'repeat'
+            })
+          }}
+          options={[
+            {
+              label: translate('host.evening.pastThePlan.draw'),
+              value: 'draw'
+            },
+            {
+              label: translate('host.evening.pastThePlan.repeat'),
+              value: 'repeat'
+            }
+          ]}
+          value={isRepeated ? 'repeat' : 'draw'}
+        />
+      )}
+      <div className='drawn' inert={isRepeated}>
+        <DrawnRounds
+          from={from}
+          isLive={isLive}
+          onOpen={onOpenDraw}
+          settings={settings}
+        />
+      </div>
+    </div>
+  )
+}
+
+/** The rounds past the evening's rows, drawn as they come, from round `from`. */
+const DrawnRounds: React.FC<{
+  /** The first of them, counted from 1. */
+  from: number
+  isLive: boolean
+  onOpen: () => void
+  settings: RoomSettings
+}> = ({ from, isLive, onOpen, settings }) => {
+  const translate = useTranslate()
+  const { roundCount } = settings
   const among = translate('host.evening.chance.among', {
     games: fillersOf(settings)
       .map((game) => translate(gameNameKey(game)))

@@ -90,6 +90,7 @@ const playedEvening = (seed: number) => {
       order: settings.runningOrder,
       played,
       random,
+      repeatsOrder: settings.repeatsRunningOrder,
       roundAt: roundAt + 1,
       roundsLeft: roundCount - roundAt - 1
     })
