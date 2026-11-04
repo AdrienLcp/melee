@@ -21,7 +21,6 @@ import {
   savedEveningOfReadyMade
 } from '@melee/core/room/ready-made-line-ups'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
-import { ROUND_COUNT_STEPS } from '@melee/core/room/room-settings'
 import {
   savedEveningOf,
   withSavedEvening
@@ -35,10 +34,11 @@ import { AutoAdvanceChoice } from './auto-advance-choice'
 import { BoardSetup } from './board-setup'
 import { EveningAddPage, usePlanGame } from './evening-add-page'
 import { EveningDrawPage } from './evening-draw-page'
+import { EveningEndChoice } from './evening-end-choice'
 import { EveningEntryPage } from './evening-entry-page'
 import { EveningRounds } from './evening-rounds'
 import { GamePickList } from './game-pick-list'
-import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
+import { NumberChoice, useDurationLabels } from './number-choice'
 import { ReadyMadeNote, ReadyMadeRows } from './ready-made-line-ups'
 import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
@@ -48,17 +48,6 @@ import { useSetupSummaries } from './use-settings-summary'
 
 import './setup-tabs.sass'
 
-/**
- * The strip's counts, with the one the room is on when it is none of them —
- * three games ticked in the lobby make twelve, and a strip with nothing pressed
- * says the evening has no length.
- */
-const roundCountOptions = (roundCount: number | null): number[] =>
-  roundCount === null || ROUND_COUNT_STEPS.some((step) => step === roundCount)
-    ? [...ROUND_COUNT_STEPS, NO_LIMIT]
-    : [...ROUND_COUNT_STEPS, roundCount]
-        .toSorted((a, b) => a - b)
-        .concat(NO_LIMIT)
 const COUNTDOWN_DURATIONS_MS = [3_000, 5_000, 10_000] as const
 
 export type SetupTabsProps = {
@@ -393,23 +382,10 @@ export const TableTab: React.FC<SetupTabsProps> = ({
         offer no *one*. An evening counts its rounds whatever they are.
       */}
       {(settings.lineUp.length > 1 || settings.game?.kind !== 'slate') && (
-        <NumberChoice
-          className='round-count'
+        <EveningEndChoice
           isDisabled={!isLive}
-          label={translate('host.rounds')}
-          onChange={(count) => {
-            onSettingsChange({
-              ...settings,
-              roundCount: count === NO_LIMIT ? null : count
-            })
-          }}
-          optionLabel={(count) =>
-            count === NO_LIMIT
-              ? translate('host.roundCount.open')
-              : String(count)
-          }
-          options={roundCountOptions(settings.roundCount)}
-          value={settings.roundCount ?? NO_LIMIT}
+          onChange={onSettingsChange}
+          settings={settings}
         />
       )}
     </>

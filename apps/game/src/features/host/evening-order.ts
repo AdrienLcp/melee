@@ -5,7 +5,6 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { endsTheEvening } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
 import {
@@ -13,6 +12,8 @@ import {
   comingRounds,
   orderWithComingRounds
 } from '@melee/core/room/running-order'
+
+import { isLastRound } from './is-last-round'
 
 /** Where the evening stands for its running order, as the console draws it. */
 export type EveningOrder = {
@@ -26,16 +27,9 @@ export type EveningOrder = {
 }
 
 export const eveningOrderOf = (view: HostRoomView): EveningOrder => {
-  const { lineUp, lineUpAt, roundCount, runningOrder } = view.settings
+  const { lineUpAt, roundCount, runningOrder } = view.settings
   const upcoming = view.round?.index ?? 0
-  const isEveningOver =
-    view.phase === 'revealed' &&
-    endsTheEvening({
-      lineUp,
-      played: view.lineUpPlayed,
-      roundCount,
-      roundIndex: upcoming
-    })
+  const isEveningOver = view.phase === 'revealed' && isLastRound(view)
   const isDrawn = !isRoundInPlay(view.phase) && !isEveningOver
 
   return {

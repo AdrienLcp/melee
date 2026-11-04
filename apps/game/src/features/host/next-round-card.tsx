@@ -2,13 +2,12 @@ import type React from 'react'
 
 import type { HostRoomView } from '@melee/protocol/room'
 
-import { endsTheEvening } from '@melee/core/room/next-game'
-
 import { GameIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useNextRoundName } from '@/presentation/i18n/line-up-entry-names'
 
 import { EveningStamp } from './evening-stamp'
+import { isLastRound } from './is-last-round'
 
 import './next-round-card.sass'
 
@@ -32,12 +31,7 @@ export const NextRoundCard: React.FC<NextRoundCardProps> = ({
   const name = useNextRoundName(view.settings)
   const game = lineUpAt === null ? undefined : lineUp[lineUpAt]?.kind
   // The next press ends the game rather than opening a round: nothing to name.
-  const isEveningOver = endsTheEvening({
-    lineUp,
-    played: view.lineUpPlayed,
-    roundCount: view.settings.roundCount,
-    roundIndex: view.round?.index ?? 0
-  })
+  const isEveningOver = isLastRound(view)
 
   return (
     <section

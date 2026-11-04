@@ -6,6 +6,7 @@ import {
 import type { AnswerMode, RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { racesToTheFinish } from '../board/track-finish'
 import { answerModesFor } from './game-capabilities'
 import { isShelvedGame } from './shelved-game'
 
@@ -15,7 +16,12 @@ import { isShelvedGame } from './shelved-game'
  * none.
  */
 export type SettingsSummaryPart =
-  | { count: number | null; kind: 'roundCount' }
+  | {
+      count: number | null
+      /** The evening is first home wins, which no count says. */
+      isRace?: true
+      kind: 'roundCount'
+    }
   | { count: number; kind: 'itemCount' }
   | { count: number; kind: 'answerCount' }
   | { game: ShelvedGame; kind: 'game' }
@@ -48,7 +54,7 @@ export const settingsSummary = ({
   const parts: SettingsSummaryPart[] = []
 
   if (game === null) {
-    return [{ count: settings.roundCount, kind: 'roundCount' }]
+    return [roundCountPart(settings)]
   }
 
   if (isShelvedGame(game.kind)) {
@@ -81,7 +87,12 @@ export const settingsSummary = ({
     parts.push({ kind: 'answerMode', mode: settings.mode.kind })
   }
 
-  parts.push({ count: settings.roundCount, kind: 'roundCount' })
+  parts.push(roundCountPart(settings))
 
   return parts
 }
+
+const roundCountPart = (settings: RoomSettings): SettingsSummaryPart =>
+  racesToTheFinish(settings)
+    ? { count: null, isRace: true, kind: 'roundCount' }
+    : { count: settings.roundCount, kind: 'roundCount' }

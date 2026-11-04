@@ -724,6 +724,7 @@ export const EN_DICTIONARY = defineDictionary({
         endless: 'Then by chance, until you stop',
         over: 'too many for {total:number} rounds',
         overHint: 'Every planned game is played once, so it needs more rounds.',
+        race: 'Then by chance, until someone gets home',
         raise: 'Make it {count:number}'
       },
       detail: {
@@ -782,6 +783,7 @@ export const EN_DICTIONARY = defineDictionary({
         endless: 'until you stop',
         from: 'from round {from:number}',
         last: 'round {number:number}',
+        race: 'until someone gets home',
         rest: 'rounds {from:number} to {to:number}'
       },
       stamp: {
@@ -795,6 +797,16 @@ export const EN_DICTIONARY = defineDictionary({
       },
       takenOut: '{name} taken out',
       undo: 'Undo'
+    },
+    eveningEnd: {
+      finish: 'Finish',
+      finishSummary: 'First home wins',
+      hint: {
+        countOnTrack:
+          'Reaching the end does not stop it: you wait there for the last round.',
+        finish: 'The game stops as soon as someone reaches the last square.'
+      },
+      label: 'Game ends'
     },
     final: {
       nobody: 'Nobody scored',
@@ -1107,15 +1119,19 @@ export const EN_DICTIONARY = defineDictionary({
         ),
         pointsOpen: 'The team that scores most wins.',
         seatTrack: defineTranslation(
-          '{rounds:plural}, {length:number} squares: the first one home wins.',
+          '{rounds:plural}, {length:number} squares: the one furthest along wins.',
           { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }
         ),
-        seatTrackOpen: '{length:number} squares: the first one home wins.',
+        seatTrackOpen:
+          '{length:number} squares, no end: the one furthest along when you stop wins.',
+        seatTrackRace: '{length:number} squares: the first one home wins.',
         track: defineTranslation(
-          '{rounds:plural}, {length:number} squares: the first team home wins.',
+          '{rounds:plural}, {length:number} squares: the team furthest along wins.',
           { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }
         ),
-        trackOpen: '{length:number} squares: the first team home wins.'
+        trackOpen:
+          '{length:number} squares, no end: the team furthest along when you stop wins.',
+        trackRace: '{length:number} squares: the first team home wins.'
       }
     },
     /** How the rounds from here are played, offered where a round can be one team's. */

@@ -29,7 +29,6 @@ import {
   whatTheRoomNames,
   withGuessBanked
 } from '@melee/core/blindtest/typed-answer'
-import { isTrackFinished } from '@melee/core/board/track-finish'
 import { shuffled } from '@melee/core/helpers/random'
 import { innerclockRoundDurationMs } from '@melee/core/innerclock/gap-pay'
 import { applyMove } from '@melee/core/matchsticks/one-move'
@@ -39,7 +38,7 @@ import {
   reflexRoundDurationMs
 } from '@melee/core/reflex/flip-schedule'
 import { isFalseStart } from '@melee/core/reflex/reaction'
-import { hasEntryLeftToDeal, playedPerEntry } from '@melee/core/room/next-game'
+import { endsTheEvening, playedPerEntry } from '@melee/core/room/next-game'
 import {
   type BuzzRejection,
   findBuzzRejection,
@@ -1843,32 +1842,20 @@ export const advanceDueAt = (room: Room): number | null => {
   return advancesAt - room.settings.countdownMs - drawLeadMs
 }
 
-/**
- * Final once the rounds planned are played, a pawn has reached the track's
- * end, or the line-up has nothing left to deal.
- */
-export const isFinalRound = (room: Room): boolean => {
-  const total = room.settings.roundCount
-  const hasPlayedEveryRound =
-    total !== null && (room.round?.index ?? 0) >= total
-  const hasPawnHome = isTrackFinished({
-    board: room.settings.board,
+/** Final on `endsTheEvening`'s rule, which the console names its last press after. */
+export const isFinalRound = (room: Room): boolean =>
+  endsTheEvening({
     pawns: [
       ...toTeamViews(room),
       ...[...toSeatBoards(room).values()].map((board) => ({ board }))
-    ]
-  })
-
-  const hasDealtEveryEntry = !hasEntryLeftToDeal({
-    lineUp: room.settings.lineUp,
+    ],
     played: playedPerEntry({
       lineUp: room.settings.lineUp,
       opened: room.openedEntries
-    })
+    }),
+    roundIndex: room.round?.index ?? 0,
+    settings: room.settings
   })
-
-  return hasPlayedEveryRound || hasPawnHome || hasDealtEveryEntry
-}
 
 export const elapsedRoundMs = (round: Round, now: number): number =>
   Math.round(

@@ -232,6 +232,17 @@ export const roomSettingsSchema = z.object({
   /** Milliseconds between "start" and the first note, so every device lands together. */
   countdownMs: z.number().int().min(0).max(10_000),
   /**
+   * Whether an evening on a track with no round count ends on the reveal a
+   * pawn reaches the last case — *first home wins* — rather than when the
+   * host says. A count, when there is one, is the only end: a pawn home before
+   * it waits on the last case, ranked first. So the three ways an evening ends
+   * are exclusive by construction, and a round count on screen never lies.
+   *
+   * Ignored with the board off. Defaulted, so a stored table or a snapshot
+   * from before it plays a track to the finish, as it always did.
+   */
+  endsAtFinish: z.boolean().default(true),
+  /**
    * Which game the room is playing, and the settings only that game has. The
    * room keeps what every game needs and hands the rest here — see `game.ts`.
    *
@@ -336,6 +347,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   autoAdvanceMs: null,
   board: DEFAULT_BOARD_SETTINGS,
   countdownMs: 3_000,
+  endsAtFinish: true,
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,
   lineUp: [],

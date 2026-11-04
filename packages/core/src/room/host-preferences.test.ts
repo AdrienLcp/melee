@@ -46,6 +46,7 @@ describe('rememberSettings', () => {
     expect(remembered.room).toEqual({
       board: { kind: 'off' },
       countdownMs: 10_000,
+      endsAtFinish: true,
       teamScoring: 'balanced',
       teams: { kind: 'off' }
     })
@@ -180,6 +181,7 @@ describe('rememberedSetupFor', () => {
       room: {
         board: { kind: 'off' },
         countdownMs: 3_000,
+        endsAtFinish: true,
         teamScoring: 'balanced',
         teams: { kind: 'off' }
       }

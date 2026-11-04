@@ -31,9 +31,11 @@ const TRACK: BoardSettings = {
   strategy: 'onePointOneCase'
 }
 
+/** First home wins: a track and no round count, the finish ending the evening. */
 const ON_A_TRACK = {
   ...FAST_GAME,
   board: TRACK,
+  roundCount: null,
   teams: { count: 2, kind: 'drawn' as const }
 }
 
@@ -51,8 +53,21 @@ describe('a room racing on a track', () => {
     await harness.stop()
   })
 
-  const openTwoTeams = async (board: BoardSettings = TRACK) => {
-    const { code, host } = await harness.openRoom({ ...ON_A_TRACK, board })
+  const openTwoTeams = async ({
+    board = TRACK,
+    endsAtFinish = true,
+    roundCount = null
+  }: {
+    board?: BoardSettings
+    endsAtFinish?: boolean
+    roundCount?: number | null
+  } = {}) => {
+    const { code, host } = await harness.openRoom({
+      ...ON_A_TRACK,
+      board,
+      endsAtFinish,
+      roundCount
+    })
     const anna = await harness.seat({ code, nickname: 'Anna' })
     const ben = await harness.seat({ code, nickname: 'Ben' })
     const carl = await harness.seat({ code, nickname: 'Carl' })
@@ -119,7 +134,7 @@ describe('a room racing on a track', () => {
   })
 
   it('[board] walks the best team of the round three cases on a ranked track', async () => {
-    const room = await openTwoTeams({ ...TRACK, strategy: 'rank' })
+    const room = await openTwoTeams({ board: { ...TRACK, strategy: 'rank' } })
 
     room.host.send({ type: 'host.startRound' })
     await revealAnnaRight(room)
@@ -174,6 +189,39 @@ describe('a room racing on a track', () => {
     )
   })
 
+  const sendATeamHome = async (
+    room: Awaited<ReturnType<typeof openTwoTeams>>
+  ) => {
+    room.host.send({
+      points: 9_000,
+      target: { kind: 'team', teamId: 'team-1' },
+      type: 'host.adjustScore'
+    })
+    room.host.send({ type: 'host.startRound' })
+    await revealAnnaRight(room)
+    room.host.send({ type: 'host.nextRound' })
+    await waitFor(
+      () => hostView(room.host)?.round?.index === 2,
+      'the next round'
+    )
+  }
+
+  it('[board] plays a counted evening on past a pawn home', async () => {
+    const room = await openTwoTeams({ roundCount: 3 })
+
+    await sendATeamHome(room)
+
+    expect(hostView(room.host)?.teams[0]?.board?.case).toBe(10)
+  })
+
+  it('[board] plays an endless evening on past a pawn home', async () => {
+    const room = await openTwoTeams({ endsAtFinish: false })
+
+    await sendATeamHome(room)
+
+    expect(hostView(room.host)?.phase).not.toBe('finished')
+  })
+
   it('[board] refuses a new track once the game is under way', async () => {
     const room = await openTwoTeams()
 
@@ -203,7 +251,8 @@ describe('a room racing every seat on a track', () => {
   const openTwoSeats = async () => {
     const { code, host } = await harness.openRoom({
       ...FAST_GAME,
-      board: TRACK
+      board: TRACK,
+      roundCount: null
     })
     const anna = await harness.seat({ code, nickname: 'Anna' })
     const ben = await harness.seat({ code, nickname: 'Ben' })

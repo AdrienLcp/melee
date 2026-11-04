@@ -4,7 +4,6 @@ import { useId } from 'react'
 import type { HostRoomView } from '@melee/protocol/room'
 
 import { rememberedSetupFor } from '@melee/core/room/host-preferences'
-import { endsTheEvening } from '@melee/core/room/next-game'
 import { offersSkip, withEntrySkipped } from '@melee/core/room/skipped-entry'
 import { canPlayDuel } from '@melee/core/team/duel'
 
@@ -19,6 +18,7 @@ import { ChallengeLinePicker } from './challenge-line-picker'
 import { ClipControls } from './clip-controls'
 import type { HostActionsProps } from './host-actions'
 import { InnerclockTargetField, targetToSend } from './innerclock-target-field'
+import { isLastRound } from './is-last-round'
 
 /**
  * Whether the next round may be a duel, read off the room as it stands: two
@@ -74,14 +74,7 @@ export const RevealActions: React.FC<HostActionsProps> = ({
   // round" is a button that does something else than it
   // says — and the way out beside it reads as abandoning a game that is already
   // over. One control, named after what it opens.
-  if (
-    endsTheEvening({
-      lineUp: settings.lineUp,
-      played: view.lineUpPlayed,
-      roundCount: settings.roundCount,
-      roundIndex: view.round?.index ?? 0
-    })
-  ) {
+  if (isLastRound(view)) {
     return (
       <div className='reveal-actions'>
         <ClipControls isLive={isLive} send={send} view={view} />

@@ -9,7 +9,7 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { endsTheEvening, isPlayedOut } from '@melee/core/room/next-game'
+import { isPlayedOut } from '@melee/core/room/next-game'
 import { isRoundInPlay } from '@melee/core/room/room-phase'
 import { movedToEntry } from '@melee/core/room/room-settings'
 
@@ -19,6 +19,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 
 import { EveningPage } from './evening-page'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
+import { isLastRound } from './is-last-round'
 import { OwnChallengeLinesEditor } from './own-challenge-lines-editor'
 import { PlaylistPicker } from './playlist-picker'
 import { SettingsPanel } from './settings-panel'
@@ -115,14 +116,7 @@ export const EveningEntryPage: React.FC<EveningEntryPageProps> = ({
   }
   const stamp = eveningStampOf({
     entry,
-    isEveningOver:
-      view.phase === 'revealed' &&
-      endsTheEvening({
-        lineUp: settings.lineUp,
-        played: view.lineUpPlayed,
-        roundCount: settings.roundCount,
-        roundIndex: view.round?.index ?? 0
-      }),
+    isEveningOver: view.phase === 'revealed' && isLastRound(view),
     isNext,
     isOnlyEntry: settings.lineUp.length < 2,
     phase: view.phase,

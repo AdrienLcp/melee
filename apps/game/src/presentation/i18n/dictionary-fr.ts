@@ -689,6 +689,7 @@ export const FR_DICTIONARY = defineDictionary({
         over: 'de trop pour {total:number} manches',
         overHint:
           'Chaque jeu prévu se joue une fois : la partie doit s’allonger.',
+        race: 'Puis au hasard, jusqu’au premier arrivé',
         raise: 'Passer à {count:number}'
       },
       detail: {
@@ -748,6 +749,7 @@ export const FR_DICTIONARY = defineDictionary({
         endless: 'jusqu’à ce que tu arrêtes',
         from: 'dès la manche {from:number}',
         last: 'manche {number:number}',
+        race: 'jusqu’au premier arrivé',
         rest: 'manches {from:number} à {to:number}'
       },
       stamp: {
@@ -761,6 +763,16 @@ export const FR_DICTIONARY = defineDictionary({
       },
       takenOut: 'Retiré de la partie : {name}',
       undo: 'Annuler'
+    },
+    eveningEnd: {
+      finish: 'Arrivée',
+      finishSummary: 'Premier arrivé',
+      hint: {
+        countOnTrack:
+          'Arriver au bout ne l’arrête pas : on y attend la dernière manche.',
+        finish: 'La partie s’arrête dès que quelqu’un atteint la dernière case.'
+      },
+      label: 'Fin de partie'
     },
     final: {
       nobody: 'Personne n’a marqué',
@@ -1048,17 +1060,20 @@ export const FR_DICTIONARY = defineDictionary({
         ),
         pointsOpen: 'L’équipe qui marque le plus gagne.',
         seatTrack: defineTranslation(
-          '{rounds:plural}, {length:number} cases\u00a0: le premier à l’arrivée gagne.',
+          '{rounds:plural}, {length:number} cases : le plus avancé gagne.',
           { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
         ),
         seatTrackOpen:
-          '{length:number} cases\u00a0: le premier à l’arrivée gagne.',
+          '{length:number} cases, sans fin : le plus avancé quand tu arrêtes gagne.',
+        seatTrackRace: '{length:number} cases : le premier à l’arrivée gagne.',
         track: defineTranslation(
-          '{rounds:plural}, {length:number} cases\u00a0: la première équipe à l’arrivée gagne.',
+          '{rounds:plural}, {length:number} cases : l’équipe la plus avancée gagne.',
           { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
         ),
         trackOpen:
-          '{length:number} cases\u00a0: la première équipe à l’arrivée gagne.'
+          '{length:number} cases, sans fin : l’équipe la plus avancée quand tu arrêtes gagne.',
+        trackRace:
+          '{length:number} cases : la première équipe à l’arrivée gagne.'
       }
     },
     verdict: {

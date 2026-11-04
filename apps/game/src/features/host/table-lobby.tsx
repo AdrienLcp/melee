@@ -9,6 +9,8 @@ import type {
   RoomSettings
 } from '@melee/protocol/room'
 
+import { racesToTheFinish } from '@melee/core/board/track-finish'
+
 import { AwayMark } from '@/presentation/components/away-mark'
 import { GameIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
@@ -171,23 +173,30 @@ const TableCard: React.FC<{ roomCode: RoomCode; view: HostRoomView }> = ({
       : translate(gameNameKey(game.kind))
 
   const rules =
-    board.kind === 'track' && isBySeat
+    board.kind === 'off'
       ? roundCount === null
-        ? translate('host.table.rules.seatTrackOpen', { length: board.length })
-        : translate('host.table.rules.seatTrack', {
-            length: board.length,
-            rounds: roundCount
-          })
-      : board.kind === 'track'
-        ? roundCount === null
-          ? translate('host.table.rules.trackOpen', { length: board.length })
-          : translate('host.table.rules.track', {
-              length: board.length,
-              rounds: roundCount
-            })
+        ? translate('host.table.rules.pointsOpen')
+        : translate('host.table.rules.points', { rounds: roundCount })
+      : racesToTheFinish(view.settings)
+        ? translate(
+            isBySeat
+              ? 'host.table.rules.seatTrackRace'
+              : 'host.table.rules.trackRace',
+            { length: board.length }
+          )
         : roundCount === null
-          ? translate('host.table.rules.pointsOpen')
-          : translate('host.table.rules.points', { rounds: roundCount })
+          ? translate(
+              isBySeat
+                ? 'host.table.rules.seatTrackOpen'
+                : 'host.table.rules.trackOpen',
+              { length: board.length }
+            )
+          : translate(
+              isBySeat
+                ? 'host.table.rules.seatTrack'
+                : 'host.table.rules.track',
+              { length: board.length, rounds: roundCount }
+            )
 
   return (
     <article className='table-card'>

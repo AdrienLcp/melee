@@ -275,13 +275,28 @@ describe('hasEntryLeftToDeal', () => {
 })
 
 describe('endsTheEvening', () => {
+  const TRACK = {
+    catchUp: false,
+    kind: 'track',
+    length: 10,
+    strategy: 'onePointOneCase'
+  } as const
+  const HOME = [{ board: { case: 10, move: 2 } }, { board: null }]
+  const ON_THE_WAY = [{ board: { case: 9, move: 2 } }, { board: null }]
+  const table = {
+    board: { kind: 'off' },
+    endsAtFinish: true,
+    lineUp,
+    roundCount: 7
+  } as const
+
   it('[next-game] ends on the round that reaches the count', () => {
     expect(
       endsTheEvening({
-        lineUp,
+        pawns: [],
         played: [3, 3, 1],
-        roundCount: 7,
-        roundIndex: 7
+        roundIndex: 7,
+        settings: table
       })
     ).toBe(true)
   })
@@ -289,10 +304,17 @@ describe('endsTheEvening', () => {
   it('[next-game] ends an evening short of its count once nothing is left to deal', () => {
     expect(
       endsTheEvening({
-        lineUp: [DEFAULT_GAME_SETTINGS.slate, DEFAULT_GAME_SETTINGS.challenge],
+        pawns: [],
         played: [1, 1],
-        roundCount: 20,
-        roundIndex: 2
+        roundIndex: 2,
+        settings: {
+          ...table,
+          lineUp: [
+            DEFAULT_GAME_SETTINGS.slate,
+            DEFAULT_GAME_SETTINGS.challenge
+          ],
+          roundCount: 20
+        }
       })
     ).toBe(true)
   })
@@ -300,10 +322,65 @@ describe('endsTheEvening', () => {
   it('[next-game] goes on while an entry is still owed', () => {
     expect(
       endsTheEvening({
-        lineUp: [DEFAULT_GAME_SETTINGS.slate, DEFAULT_GAME_SETTINGS.challenge],
+        pawns: [],
         played: [1, 0],
-        roundCount: 20,
-        roundIndex: 1
+        roundIndex: 1,
+        settings: {
+          ...table,
+          lineUp: [
+            DEFAULT_GAME_SETTINGS.slate,
+            DEFAULT_GAME_SETTINGS.challenge
+          ],
+          roundCount: 20
+        }
+      })
+    ).toBe(false)
+  })
+
+  it('[next-game] ends a race to the finish on the reveal a pawn gets home', () => {
+    const race = { ...table, board: TRACK, roundCount: null }
+
+    expect(
+      endsTheEvening({
+        pawns: HOME,
+        played: [1, 1, 1],
+        roundIndex: 3,
+        settings: race
+      })
+    ).toBe(true)
+    expect(
+      endsTheEvening({
+        pawns: ON_THE_WAY,
+        played: [1, 1, 1],
+        roundIndex: 3,
+        settings: race
+      })
+    ).toBe(false)
+  })
+
+  it('[next-game] keeps a counted evening going past a pawn home', () => {
+    expect(
+      endsTheEvening({
+        pawns: HOME,
+        played: [1, 1, 1],
+        roundIndex: 3,
+        settings: { ...table, board: TRACK }
+      })
+    ).toBe(false)
+  })
+
+  it('[next-game] keeps an endless evening going past a pawn home', () => {
+    expect(
+      endsTheEvening({
+        pawns: HOME,
+        played: [1, 1, 1],
+        roundIndex: 3,
+        settings: {
+          ...table,
+          board: TRACK,
+          endsAtFinish: false,
+          roundCount: null
+        }
       })
     ).toBe(false)
   })

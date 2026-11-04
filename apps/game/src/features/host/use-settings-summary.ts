@@ -105,9 +105,11 @@ const useSummaryParts = (): ((parts: SettingsSummaryPart[]) => string) => {
           count: part.count
         })
       case 'roundCount':
-        return part.count === null
-          ? translate('host.roundCount.openSummary')
-          : translate('host.roundCount.summary', { count: part.count })
+        return part.isRace
+          ? translate('host.eveningEnd.finishSummary')
+          : part.count === null
+            ? translate('host.roundCount.openSummary')
+            : translate('host.roundCount.summary', { count: part.count })
     }
   }
 

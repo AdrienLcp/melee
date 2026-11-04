@@ -392,9 +392,13 @@ room has teams. Each team carries `board: { case, move }` beside its score,
 - **The host corrects a move with the score.** `host.adjustScore` on a team
   walks its pawn a case for each whole `POINT` of the adjustment, between the
   start and the finish, so the pawn and the score never tell two stories.
-- **A pawn home ends the evening.** `isFinalRound` is true once a pawn stands on
-  the last case (`isTrackFinished`, read by the console too), whatever the
-  round count says — after the set under way, so no team loses its turn.
+- **A pawn home ends the evening only when it is raced to the finish.** The
+  three ends are exclusive (`endsAtFinish`, `racesToTheFinish`): a track with
+  no round count and `endsAtFinish` ends on the reveal a pawn reaches the last
+  case; a count ends on its count alone, a pawn home before it waiting on the
+  last case, ranked first; no count and no race ends when the host says. One
+  rule, `endsTheEvening`, is read by the server's `isFinalRound` and by the
+  console, so it never offers *Next round* on a reveal the server ends on.
 
 **The slate's six host frames and its one player frame.** The sheet is one
 round, and writing and marking share `playing`: every item carries its own

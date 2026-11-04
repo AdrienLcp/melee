@@ -16,6 +16,7 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
+import { racesToTheFinish } from '@melee/core/board/track-finish'
 import {
   type HostPreferences,
   rememberedSetupFor
@@ -341,7 +342,11 @@ const EveningHeading: React.FC<{
   const span = (() => {
     if (isLobby) {
       return roundCount === null
-        ? translate('host.evening.span.endless')
+        ? translate(
+            racesToTheFinish(view.settings)
+              ? 'host.evening.span.race'
+              : 'host.evening.span.endless'
+          )
         : translate('host.evening.span.all', { count: roundCount })
     }
 
@@ -687,7 +692,11 @@ const DrawnRounds: React.FC<{
       <DiceIcon />
       <span className='name'>
         {roundCount === null
-          ? translate('host.evening.chance.endless')
+          ? translate(
+              racesToTheFinish(settings)
+                ? 'host.evening.chance.race'
+                : 'host.evening.chance.endless'
+            )
           : translate('host.evening.chance.drawn', {
               count: roundCount - from + 1
             })}

@@ -6,11 +6,12 @@ import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
-import { endsTheEvening } from '@melee/core/room/next-game'
 import { movedToEntry } from '@melee/core/room/room-settings'
 import { scheduledEntryAt } from '@melee/core/room/running-order'
 
 import { useI18n } from '@/presentation/i18n/i18n-provider'
+
+import { isLastRound } from './is-last-round'
 
 /**
  * Deals the next round's game as each reveal of an evening goes up
@@ -53,12 +54,7 @@ export const useLineUpDraw = ({
     drawnForRoundId.current = round.id
 
     const { settings } = view
-    const isFinal = endsTheEvening({
-      lineUp: settings.lineUp,
-      played: view.lineUpPlayed,
-      roundCount: settings.roundCount,
-      roundIndex: round.index
-    })
+    const isFinal = isLastRound(view)
 
     if (
       isFinal ||

@@ -1,5 +1,8 @@
+import type { BoardPosition } from '@melee/protocol/board'
 import type { GameSettings } from '@melee/protocol/game'
+import type { RoomSettings } from '@melee/protocol/room'
 
+import { isTrackFinished, racesToTheFinish } from '../board/track-finish'
 import { capabilitiesOf } from './game-capabilities'
 
 /**
@@ -75,25 +78,32 @@ export const hasEntryLeftToDeal = ({
 }): boolean => lineUp.length < 2 || entriesInDeck({ lineUp, played }).length > 0
 
 /**
- * Whether the round about to be revealed is the evening's last: its count is
- * reached, or an evening of several entries has none left to deal. The
- * console names its last press after this, as the server ends on it.
+ * Whether the round on screen is the evening's last: its count is reached, a
+ * pawn got home on an evening raced to the finish, or an evening of several
+ * entries has none left to deal. The server ends on it, and the console names
+ * its last press after it.
  */
 export const endsTheEvening = ({
-  lineUp,
+  pawns,
   played,
-  roundCount,
-  roundIndex
+  roundIndex,
+  settings
 }: {
-  lineUp: readonly GameSettings[]
+  /** The teams' pawns in a room playing in teams, the seats' otherwise; an off one is `null`. */
+  pawns: readonly { board: BoardPosition | null }[]
   /** As `nextEntryAt`'s, the round on screen included. */
   played: readonly number[]
-  roundCount: number | null
   /** The round on screen, counted from 1. */
   roundIndex: number
+  settings: Pick<
+    RoomSettings,
+    'board' | 'endsAtFinish' | 'lineUp' | 'roundCount'
+  >
 }): boolean =>
-  (roundCount !== null && roundIndex >= roundCount) ||
-  !hasEntryLeftToDeal({ lineUp, played })
+  (settings.roundCount !== null && roundIndex >= settings.roundCount) ||
+  (racesToTheFinish(settings) &&
+    isTrackFinished({ board: settings.board, pawns })) ||
+  !hasEntryLeftToDeal({ lineUp: settings.lineUp, played })
 
 /**
  * Whether an entry is done with for the evening: one whose content the host
