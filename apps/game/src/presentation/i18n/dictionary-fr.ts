@@ -72,6 +72,7 @@ export const FR_DICTIONARY = defineDictionary({
       onTheSpot: 'Dans le mille',
       title: 'Le pays :'
     },
+    roundDuration: 'Temps par manche',
     scoring:
       'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 30 points, à moins de 500 km de sa frontière 20, à moins de 1 500 km 10 — et plus tu le poses tôt, plus la montre ajoute, jusqu’au double.',
     scoringCapitals:
@@ -1064,14 +1065,14 @@ export const FR_DICTIONARY = defineDictionary({
           { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
         ),
         seatTrackOpen:
-          '{length:number} cases, sans fin : le plus avancé quand tu arrêtes gagne.',
+          '{length:number} cases, sans fin : le plus avancé à la fin gagne.',
         seatTrackRace: '{length:number} cases : le premier à l’arrivée gagne.',
         track: defineTranslation(
           '{rounds:plural}, {length:number} cases : l’équipe la plus avancée gagne.',
           { plural: { rounds: { one: '{?} manche', other: '{?} manches' } } }
         ),
         trackOpen:
-          '{length:number} cases, sans fin : l’équipe la plus avancée quand tu arrêtes gagne.',
+          '{length:number} cases, sans fin : l’équipe la plus avancée à la fin gagne.',
         trackRace:
           '{length:number} cases : la première équipe à l’arrivée gagne.'
       }

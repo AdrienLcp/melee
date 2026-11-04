@@ -81,8 +81,11 @@ const SWATCH_SHOW_MS = [3_000, 5_000, 8_000] as const
 /** Fifteen seconds is a gut call, a minute is long enough to reason it out loud. */
 const ESTIMATE_DURATIONS_MS = [15_000, 30_000, 60_000] as const
 
-/** Six seconds a pair is a gut call, a minute and a half lets the table argue every one. */
-const HIGHER_LOWER_DURATIONS_MS = [30_000, 45_000, 90_000] as const
+/** Five seconds is a gut call between the two, twenty lets the table argue the pair. */
+const HIGHER_LOWER_DURATIONS_MS = [5_000, 10_000, 20_000] as const
+
+/** Fifteen seconds is a country the table knows, a minute a town it has to hunt for. */
+const ATLAS_DURATIONS_MS = [15_000, 30_000, 60_000] as const
 
 const SWATCH_REBUILD_MS = [10_000, 20_000, 30_000] as const
 
@@ -368,6 +371,16 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
               value: places
             }))}
             selectedKeys={game.places}
+          />
+          <NumberChoice
+            isDisabled={isDisabled}
+            label={translate('atlas.roundDuration')}
+            onChange={(roundDurationMs) => {
+              onChange({ ...settings, game: { ...game, roundDurationMs } })
+            }}
+            optionLabel={secondsLabel}
+            options={ATLAS_DURATIONS_MS}
+            value={game.roundDurationMs}
           />
         </>
       )}

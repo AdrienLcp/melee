@@ -77,6 +77,7 @@ export const EN_DICTIONARY = defineDictionary({
       onTheSpot: 'Spot on',
       title: 'The country:'
     },
+    roundDuration: 'Time per round',
     scoring:
       'Everyone puts a pawn down at once. Inside the country it scores 30 points, within 500 km of its border 20, within 1,500 km 10 — and the earlier your pawn, the more the clock adds, up to double.',
     scoringCapitals:
@@ -1123,14 +1124,14 @@ export const EN_DICTIONARY = defineDictionary({
           { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }
         ),
         seatTrackOpen:
-          '{length:number} squares, no end: the one furthest along when you stop wins.',
+          '{length:number} squares, no end: the one furthest along at the end wins.',
         seatTrackRace: '{length:number} squares: the first one home wins.',
         track: defineTranslation(
           '{rounds:plural}, {length:number} squares: the team furthest along wins.',
           { plural: { rounds: { one: '{?} round', other: '{?} rounds' } } }
         ),
         trackOpen:
-          '{length:number} squares, no end: the team furthest along when you stop wins.',
+          '{length:number} squares, no end: the team furthest along at the end wins.',
         trackRace: '{length:number} squares: the first team home wins.'
       }
     },

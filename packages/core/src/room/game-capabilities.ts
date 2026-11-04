@@ -54,7 +54,7 @@ const VOTE_ONLY = ['vote'] as const satisfies readonly AnswerMode[]
 /** An estimate is answered by typing a number, which the server measures against the truth. */
 const NUMBER_ONLY = ['number'] as const satisfies readonly AnswerMode[]
 
-/** Higher or lower is answered by a sheet of five picks, which the server counts. */
+/** Higher or lower is answered by one pick of the pair, which the server checks. */
 const PAIRS_ONLY = ['pairs'] as const satisfies readonly AnswerMode[]
 
 /**

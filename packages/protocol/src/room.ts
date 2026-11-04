@@ -225,8 +225,8 @@ export const roomSettingsSchema = z.object({
    */
   autoAdvanceMs: z.number().int().min(2_000).max(30_000).nullable(),
   /**
-   * Whether the teams race on a track around the round — see `board.ts`.
-   * Ignored by a room without teams.
+   * Whether the pawns race on a track around the round — one a team, or one a
+   * seat in a room without teams. See `board.ts`.
    */
   board: boardSettingsSchema,
   /** Milliseconds between "start" and the first note, so every device lands together. */
