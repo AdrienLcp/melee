@@ -166,7 +166,7 @@ describe('categoryOutcomes', () => {
       bob: 'shared',
       cy: 'unique'
     })
-    expect(sheetPoints([...outcomes.values()])).toBe(4 * POINT)
+    expect(sheetPoints([...outcomes.values()])).toBe(2 * POINT)
   })
 
   it('[petitbac] files blanks, wrong letters and refusals apart, all paying nothing', () => {

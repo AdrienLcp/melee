@@ -166,6 +166,12 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **A Petit Bac sheet pays half what it did: 10 for a word nobody
+  else wrote, 5 for a shared one**, the paper game's own figures. At 20 and 10
+  one six-category sheet paid up to 120 where a quiz question pays 20, and on
+  the track walked a pawn twelve cases in a round, so a single letter decided
+  an evening of several games.
+
 - `[Game]` **Every duration on offer is one the game takes, and Atlas gets
   one.** Higher or lower offers 5, 10 and 20 seconds — it offered 30, 45 and 90
   against a 30-second cap, two of them refused and none shown chosen — and

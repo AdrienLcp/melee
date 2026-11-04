@@ -516,11 +516,11 @@ describe('a Petit Bac round through the seam', () => {
       )?.points
 
     // Zoe: Belgique shared, Baleine shared, Bastien unique.
-    expect(pointsOf(zoe)).toBe(4 * POINT)
+    expect(pointsOf(zoe)).toBe(2 * POINT)
     // Max: belgique shared, Bison unique, Bruno unique.
-    expect(pointsOf(max)).toBe(5 * POINT)
+    expect(pointsOf(max)).toBe(2.5 * POINT)
     // Lea: Brésil unique, Baleine shared, Xavier off the letter.
-    expect(pointsOf(lea)).toBe(3 * POINT)
+    expect(pointsOf(lea)).toBe(1.5 * POINT)
 
     const firstNames = petitBacRound(playerView(lea))?.lines[2]
 
@@ -595,12 +595,12 @@ describe('a Petit Bac round through the seam', () => {
       hostView(host)?.players.find(({ id }) => id === idOf(seat))?.score
 
     // Zoe: Belgique struck, Baleine shared, Bastien unique.
-    expect(pointsOf(zoe)).toBe(3 * POINT)
+    expect(pointsOf(zoe)).toBe(1.5 * POINT)
 
     strike({ categoryIndex: 2, rowKey: 'bastien' })
-    await waitFor(() => pointsOf(zoe) === POINT, 'the reveal to pay again')
+    await waitFor(() => pointsOf(zoe) === POINT / 2, 'the reveal to pay again')
 
-    expect(scoreOf(zoe)).toBe(POINT)
+    expect(scoreOf(zoe)).toBe(POINT / 2)
     expect(
       petitBacRound(playerView(zoe))?.lines[2]?.find(
         ({ playerId }) => playerId === idOf(zoe)
@@ -609,11 +609,11 @@ describe('a Petit Bac round through the seam', () => {
 
     strike({ categoryIndex: 2, isStruck: false, rowKey: 'bastien' })
     await waitFor(
-      () => pointsOf(zoe) === 3 * POINT,
+      () => pointsOf(zoe) === 1.5 * POINT,
       'the word put back to pay again'
     )
 
-    expect(scoreOf(zoe)).toBe(3 * POINT)
+    expect(scoreOf(zoe)).toBe(1.5 * POINT)
 
     strike({ categoryIndex: 2, rowKey: 'nobody-wrote-this' })
     await waitFor(

@@ -8,13 +8,18 @@ import { POINT } from '@melee/protocol/scoring'
 import { answerGroupKey, isBlankAnswer } from '../round/answer-groups'
 import { startsWithLetter } from './letter-match'
 
-/** An answer nobody else wrote pays double one the table shared. */
+/**
+ * An answer nobody else wrote pays double one the table shared — 10 and 5 on
+ * screen, the paper game's own figures. A line is not a round: at 2 and 1 a
+ * six-category sheet paid up to 12 where a quiz question pays 2, and walked a
+ * pawn a third of the way down the track in one go.
+ */
 export const PETIT_BAC_POINTS = {
   empty: 0,
   offLetter: 0,
   refused: 0,
-  shared: POINT,
-  unique: 2 * POINT
+  shared: POINT / 2,
+  unique: POINT
 } as const satisfies Record<PetitBacLineOutcome, number>
 
 /**

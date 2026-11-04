@@ -50,8 +50,11 @@ the English name is the screens' session to settle, and is not *Scattergories*
   stamped seat having voted.
 - **With a judge (`hasJudge`) there is no vote**: the console refuses rows
   itself and the seats only watch, exactly as the slate is marked.
-- **The pay**: an accepted answer nobody else wrote pays 2 `POINT`s, one shared
-  with anyone pays 1, a refused, off-the-letter or empty line nothing. **No
+- **The pay**: an accepted answer nobody else wrote pays one `POINT`, one shared
+  with anyone half of one — 10 and 5 on screen, the paper game's figures — and
+  a refused, off-the-letter or empty line nothing. It paid 2 and 1 at first,
+  and a six-category sheet then outweighed six quiz questions and walked a
+  pawn a third of the track in one round: a line is not a round. **No
   speed bonus** and nothing for the stop: the clock paying the fastest typist
   is guess nine's refusal again, and the stop is already paid by closing the
   others' sheets. Scores are recomputed from the sheets on every vote, so a
