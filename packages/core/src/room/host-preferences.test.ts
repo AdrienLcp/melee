@@ -47,6 +47,7 @@ describe('rememberSettings', () => {
       board: { kind: 'off' },
       countdownMs: 10_000,
       endsAtFinish: true,
+      isFamilyFriendly: true,
       paysForSpeed: true,
       teamScoring: 'balanced',
       teams: { kind: 'off' }
@@ -183,6 +184,7 @@ describe('rememberedSetupFor', () => {
         board: { kind: 'off' },
         countdownMs: 3_000,
         endsAtFinish: true,
+        isFamilyFriendly: true,
         paysForSpeed: true,
         teamScoring: 'balanced',
         teams: { kind: 'off' }

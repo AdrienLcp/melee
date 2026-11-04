@@ -333,7 +333,6 @@ export const DEFAULT_PETIT_BAC_SETTINGS: PetitBacSettings = {
 }
 
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
-  allowsAdultContent: false,
   categories: [],
   kind: 'quiz',
   language: 'fr',

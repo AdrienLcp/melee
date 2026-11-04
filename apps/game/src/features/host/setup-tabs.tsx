@@ -7,6 +7,7 @@ import type { HostRoomView, RoomSettings } from '@melee/protocol/room'
 import type { Speaker } from '@melee/protocol/sound'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { dealsAdultContent } from '@melee/core/quiz/adult-content'
 import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
 import {
   type HostPreferences,
@@ -402,6 +403,21 @@ export const TableTab: React.FC<SetupTabsProps> = ({
           label={translate('host.speedBonus.label')}
           onChange={(paysForSpeed) => {
             onSettingsChange({ ...settings, paysForSpeed })
+          }}
+        />
+      )}
+      {dealsAdultContent(settings) && (
+        <Switch
+          description={translate(
+            settings.isFamilyFriendly
+              ? 'host.familyFriendly.hint.on'
+              : 'host.familyFriendly.hint.off'
+          )}
+          isDisabled={!isLive}
+          isSelected={settings.isFamilyFriendly}
+          label={translate('host.familyFriendly.label')}
+          onChange={(isFamilyFriendly) => {
+            onSettingsChange({ ...settings, isFamilyFriendly })
           }}
         />
       )}

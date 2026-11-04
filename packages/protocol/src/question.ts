@@ -127,19 +127,6 @@ export const questionLanguageSchema = z.enum(questionLanguages)
  * terms takes what it needs rather than widening this.
  */
 export const questionDrawSettingsSchema = z.object({
-  /**
-   * Whether the bank's adult themes are drawn from. Its own field rather than
-   * one more category, because categories are what a question is *about* and
-   * this is a rating: a
-   * question about a porn actress's first album is a celebrities question that
-   * happens to be adult, and putting the two axes in one row is what makes such
-   * a control read as a mistake.
-   *
-   * Off by default, and the host's alone to turn on — the room code is read
-   * aloud and anyone present can scan the QR, so they are the only one who knows
-   * who is in the room.
-   */
-  allowsAdultContent: z.boolean(),
   /** Empty means every category, the same way an empty genre list means every genre. */
   categories: z.array(questionCategorySchema),
   language: questionLanguageSchema,

@@ -34,7 +34,6 @@ import {
 } from '@melee/protocol/track'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
-import { hasAdultContent } from '@melee/core/quiz/adult-content'
 import {
   answerModesFor,
   isPlayableWithTeams
@@ -112,8 +111,6 @@ const QuestionBankSettings: React.FC<{
   onChange: (game: QuizSettings) => void
 }> = ({ game, isDisabled, onChange }) => {
   const translate = useTranslate()
-  const offersAdultContent = hasAdultContent(game.language)
-  const adultContentArrived = useArrivedLater(offersAdultContent)
 
   return (
     <>
@@ -168,24 +165,6 @@ const QuestionBankSettings: React.FC<{
           onChange({ ...game, wellKnownOnly })
         }}
       />
-      {/*
-        Hidden where the bank has nothing to rate, for the same reason the mode
-        strip is hidden when a game offers one: this one would keep its promise
-        and change nothing. The value is left alone rather than reset, so a host
-        who turns it on in French still has it on when they come back.
-      */}
-      {offersAdultContent && (
-        <Switch
-          className='adult-content'
-          data-arrived={adultContentArrived}
-          isDisabled={isDisabled}
-          isSelected={game.allowsAdultContent}
-          label={translate('quiz.adult.label')}
-          onChange={(allowsAdultContent) => {
-            onChange({ ...game, allowsAdultContent })
-          }}
-        />
-      )}
     </>
   )
 }

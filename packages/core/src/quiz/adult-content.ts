@@ -1,3 +1,4 @@
+import type { GameSettings } from '@melee/protocol/game'
 import type { QuestionLanguage } from '@melee/protocol/question'
 
 /**
@@ -15,3 +16,19 @@ const LANGUAGES_WITH_ADULT_CONTENT: readonly QuestionLanguage[] = ['fr']
 
 export const hasAdultContent = (language: QuestionLanguage): boolean =>
   LANGUAGES_WITH_ADULT_CONTENT.includes(language)
+
+/**
+ * Whether anything the evening plays can deal an adult-rated row — a quiz
+ * drawing from a rated language, ticked or on now — and so whether the room's
+ * `isFamilyFriendly` changes anything at all. No game picked yet deals none.
+ */
+export const dealsAdultContent = ({
+  game,
+  lineUp
+}: {
+  game: GameSettings | null
+  lineUp: readonly GameSettings[]
+}): boolean =>
+  (game === null ? lineUp : [...lineUp, game]).some(
+    (entry) => entry.kind === 'quiz' && hasAdultContent(entry.language)
+  )

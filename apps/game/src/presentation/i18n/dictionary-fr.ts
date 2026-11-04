@@ -692,7 +692,6 @@ export const FR_DICTIONARY = defineDictionary({
         raise: 'Passer à {count:number}'
       },
       detail: {
-        adult: 'Questions adultes comprises',
         allSubjects: 'Tous les sujets',
         drawnCategories: '{count:number} catégories tirées',
         everyDecade: 'Toutes les décennies',
@@ -772,6 +771,14 @@ export const FR_DICTIONARY = defineDictionary({
         finish: 'La partie s’arrête dès que quelqu’un atteint la dernière case.'
       },
       label: 'Fin de partie'
+    },
+    familyFriendly: {
+      hint: {
+        off: 'Le quiz peut tomber sur des questions réservées aux adultes.',
+        on: 'Aucune question réservée aux adultes.'
+      },
+      label: 'Tout public',
+      summaryOff: 'questions pour adultes comprises'
     },
     final: {
       nobody: 'Personne n’a marqué',
@@ -1618,9 +1625,6 @@ export const FR_DICTIONARY = defineDictionary({
     volume: 'Volume de la salle'
   },
   quiz: {
-    adult: {
-      label: 'Inclure les questions pour adultes'
-    },
     category: {
       arts: 'Arts et culture',
       capitals: 'Capitales',
@@ -1668,11 +1672,11 @@ export const FR_DICTIONARY = defineDictionary({
     },
     tagline: 'Une question, et le premier qui sait.',
     variant: {
-      wellKnown: 'Grand public'
+      wellKnown: 'Questions connues'
     },
     wellKnown: {
       hint: 'Il y en a moins à tirer, mais personne ne sèche.',
-      label: 'Rester grand public'
+      label: 'Que des questions connues'
     }
   },
   readyMade: {

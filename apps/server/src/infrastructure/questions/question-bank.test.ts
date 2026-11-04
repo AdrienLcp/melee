@@ -7,6 +7,7 @@ import {
   questionCategories,
   questionLanguages
 } from '@melee/protocol/question'
+import { DEFAULT_ROOM_SETTINGS } from '@melee/protocol/room'
 
 import { hasAdultContent } from '@melee/core/quiz/adult-content'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
@@ -23,21 +24,31 @@ const BANKED_QUESTIONS = bankedQuestions()
 const NOTHING_PLAYED: ReadonlySet<string> = new Set()
 
 type DrawManyOptions = {
+  isFamilyFriendly?: boolean
   isUsable?: (question: BankedQuestion) => boolean
   times?: number
 }
 
 const drawMany = (
   settings: QuizSettings,
-  { isUsable = () => true, times = 400 }: DrawManyOptions = {}
+  {
+    isFamilyFriendly = true,
+    isUsable = () => true,
+    times = 400
+  }: DrawManyOptions = {}
 ) =>
   Array.from({ length: times }, () =>
-    drawQuestion({ isUsable, playedIds: NOTHING_PLAYED, settings })
+    drawQuestion({
+      isFamilyFriendly,
+      isUsable,
+      playedIds: NOTHING_PLAYED,
+      settings
+    })
   ).filter((question) => question !== null)
 
 describe('drawQuestion', () => {
   /**
-   * The rating is off unless a host turns it on, and they are the only one who
+   * The table is for all ages unless a host says otherwise, and they are the only one who
    * knows who is in the room — the code is read aloud and anyone present can
    * scan the QR.
    *
@@ -67,9 +78,10 @@ describe('drawQuestion', () => {
     '[bank] never draws an adult question unless the host asked for it',
     TWO_THOUSAND_DRAWS,
     () => {
-      expect(DEFAULT_QUIZ_SETTINGS.allowsAdultContent).toBe(false)
+      expect(DEFAULT_ROOM_SETTINGS.isFamilyFriendly).toBe(true)
 
       const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, {
+        isFamilyFriendly: DEFAULT_ROOM_SETTINGS.isFamilyFriendly,
         times: ENOUGH_TO_MEET_A_RARE_RATING
       })
 
@@ -78,14 +90,18 @@ describe('drawQuestion', () => {
     }
   )
 
-  it('[bank] draws them once the host has', TWO_THOUSAND_DRAWS, () => {
-    const drawn = drawMany(
-      { ...DEFAULT_QUIZ_SETTINGS, allowsAdultContent: true },
-      { times: ENOUGH_TO_MEET_A_RARE_RATING }
-    )
+  it(
+    '[bank] draws them once the host says the table is not for all ages',
+    TWO_THOUSAND_DRAWS,
+    () => {
+      const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, {
+        isFamilyFriendly: false,
+        times: ENOUGH_TO_MEET_A_RARE_RATING
+      })
 
-    expect(drawn.some((question) => question.isAdult)).toBe(true)
-  })
+      expect(drawn.some((question) => question.isAdult)).toBe(true)
+    }
+  )
 
   it('[bank] stays inside the categories the host ticked', () => {
     const drawn = drawMany({
@@ -112,6 +128,7 @@ describe('drawQuestion', () => {
         { length: 200 },
         () =>
           drawQuestion({
+            isFamilyFriendly: true,
             isUsable: () => true,
             playedIds: NOTHING_PLAYED,
             previousCategory: 'flags',
@@ -125,6 +142,7 @@ describe('drawQuestion', () => {
 
   it('[bank] deals the category just played when it is the only one ticked', () => {
     const question = drawQuestion({
+      isFamilyFriendly: true,
       isUsable: () => true,
       playedIds: NOTHING_PLAYED,
       previousCategory: 'flags',
@@ -144,6 +162,7 @@ describe('drawQuestion', () => {
 
     while (true) {
       const question = drawQuestion({
+        isFamilyFriendly: true,
         isUsable: () => true,
         playedIds: played,
         settings
@@ -159,7 +178,12 @@ describe('drawQuestion', () => {
 
     expect(played.size).toBeGreaterThan(0)
     expect(
-      drawQuestion({ isUsable: () => true, playedIds: played, settings })
+      drawQuestion({
+        isFamilyFriendly: true,
+        isUsable: () => true,
+        playedIds: played,
+        settings
+      })
     ).toBeNull()
   })
 

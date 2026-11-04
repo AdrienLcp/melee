@@ -310,9 +310,6 @@ const settingsOf = ({
       return [
         allPicks(subjectsOf({ categories: entry.categories, translate })),
         ...(entry.wellKnownOnly ? [translate('quiz.variant.wellKnown')] : []),
-        ...(entry.allowsAdultContent
-          ? [translate('host.evening.detail.adult')]
-          : []),
         LANGUAGE_NAMES[entry.language],
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]

@@ -333,6 +333,7 @@ export const beginRound = async (
     const showsItsCandidates = room.settings.mode.kind === 'choice'
 
     const question = drawQuestion({
+      isFamilyFriendly: room.settings.isFamilyFriendly,
       isUsable: (row) => showsItsCandidates || !row.choiceOnly,
       playedIds: room.playedContentIds,
       previousCategory:

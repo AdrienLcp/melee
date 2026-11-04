@@ -42,7 +42,12 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
   choiceOnly: z.boolean(),
   /** Absent from the bank's own rows, which are all text: only `flag-questions.ts` deals a flag. */
   flag: flagFileSchema.nullable().default(null),
-  /** Drawn only for a room whose host asked for it — see `allowsAdultContent`. */
+  /**
+   * Drawn only for a room that is not `isFamilyFriendly`. A rating beside the
+   * category rather than one more category: a question about a porn actress's
+   * first album is a celebrities question that happens to be adult, and folding
+   * the two axes into one row is what makes such a control read as a mistake.
+   */
   isAdult: z.boolean(),
   /**
    * Whether the room can be expected to have heard of what this asks about.
@@ -164,11 +169,14 @@ export const hostQuestionOf = ({
  * round in three over three rubrics, and a table reads that as a broken mix.
  */
 export const drawQuestion = ({
+  isFamilyFriendly,
   isUsable,
   playedIds,
   previousCategory = null,
   settings
 }: {
+  /** The room's own setting: no adult-rated row is drawn while it holds. */
+  isFamilyFriendly: boolean
   isUsable: (question: BankedQuestion) => boolean
   playedIds: ReadonlySet<string>
   previousCategory?: QuestionCategory | null
@@ -177,7 +185,7 @@ export const drawQuestion = ({
   const eligible = (byLanguage().get(settings.language) ?? []).filter(
     (question) =>
       !playedIds.has(question.id) &&
-      (settings.allowsAdultContent || !question.isAdult) &&
+      !(isFamilyFriendly && question.isAdult) &&
       (!settings.wellKnownOnly || question.isWellKnown) &&
       (settings.categories.length === 0 ||
         settings.categories.includes(question.category)) &&

@@ -192,7 +192,6 @@ const choosingView = (question: Question) => ({
     board: { kind: 'off' },
     countdownMs: 3_000,
     game: {
-      allowsAdultContent: false,
       categories: [],
       kind: 'quiz',
       language: 'fr',
@@ -202,7 +201,6 @@ const choosingView = (question: Question) => ({
     hasJudge: false,
     lineUp: [
       {
-        allowsAdultContent: false,
         categories: [],
         kind: 'quiz',
         language: 'fr',
@@ -3454,7 +3452,9 @@ const measureAnswering = ({
         (node.textContent ?? '').trim() !== ''
     )
   const texts = shown.filter(hasOwnText)
-  const menu = document.querySelector('.app-menu .trigger')?.getBoundingClientRect()
+  const menu = document
+    .querySelector('.app-menu .trigger')
+    ?.getBoundingClientRect()
   const isUnderTheMenu = (box: DOMRect): boolean =>
     menu !== undefined &&
     box.width > 1 &&

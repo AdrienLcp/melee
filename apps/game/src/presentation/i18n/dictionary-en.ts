@@ -727,7 +727,6 @@ export const EN_DICTIONARY = defineDictionary({
         raise: 'Make it {count:number}'
       },
       detail: {
-        adult: 'Adult questions in',
         allSubjects: 'Every subject',
         drawnCategories: '{count:number} categories drawn',
         everyDecade: 'Every decade',
@@ -806,6 +805,14 @@ export const EN_DICTIONARY = defineDictionary({
         finish: 'The game stops as soon as someone reaches the last square.'
       },
       label: 'Game ends'
+    },
+    familyFriendly: {
+      hint: {
+        off: 'The quiz may land on questions meant for adults.',
+        on: 'No question meant for adults.'
+      },
+      label: 'Family-friendly',
+      summaryOff: 'adult questions in'
     },
     final: {
       nobody: 'Nobody scored',
@@ -1716,9 +1723,6 @@ export const EN_DICTIONARY = defineDictionary({
     volume: 'Room volume'
   },
   quiz: {
-    adult: {
-      label: 'Include adult questions'
-    },
     category: {
       arts: 'Arts and culture',
       capitals: 'Capitals',

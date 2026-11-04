@@ -1,6 +1,7 @@
 import type { RoomSettings } from '@melee/protocol/room'
 import type { TrackSource } from '@melee/protocol/track'
 
+import { dealsAdultContent } from '@melee/core/quiz/adult-content'
 import { isEveningPaidForSpeed } from '@melee/core/room/game-capabilities'
 import {
   type SettingsSummaryPart,
@@ -68,6 +69,11 @@ export const useSetupSummaries = ({
       ? translate('host.speedBonus.summaryOff')
       : ''
 
+  const adultContent =
+    !settings.isFamilyFriendly && dealsAdultContent(settings)
+      ? translate('host.familyFriendly.summaryOff')
+      : ''
+
   const hold =
     settings.autoAdvanceMs === null
       ? translate('host.setup.summary.holdOpen')
@@ -86,7 +92,8 @@ export const useSetupSummaries = ({
       join(parts.filter(isRoundCount)),
       teamsSummary,
       boardSummary,
-      speedBonus
+      speedBonus,
+      adultContent
     ]
       .filter((part) => part !== '')
       .join(' · ')

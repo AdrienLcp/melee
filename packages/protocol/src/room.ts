@@ -258,6 +258,17 @@ export const roomSettingsSchema = z.object({
    */
   game: gameSettingsSchema.nullable(),
   /**
+   * Whether every game keeps to content a child may be dealt — today the
+   * quiz's adult-rated questions, the only rows any bank rates. A room setting
+   * rather than the quiz's, because it describes who sits at the table, and two
+   * quizzes in one line-up would otherwise each have to be told.
+   *
+   * On by default, and the host's alone to turn off: the room code is read aloud
+   * and anyone present can scan the QR, so they are the only one who knows who
+   * is in the room. Defaulted, so a stored setup from before it stays clean.
+   */
+  isFamilyFriendly: z.boolean().default(true),
+  /**
    * The games ticked for the evening, each with its own settings: what the next
    * round may be drawn from. Two entries may share a game — a blind test on the
    * charts and one on film scores are two ticks — which is why an entry is the
@@ -360,6 +371,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
   endsAtFinish: true,
   /** A freshly opened room is a code on a screen; the game is the table's first decision. */
   game: null,
+  isFamilyFriendly: true,
   lineUp: [],
   lineUpAt: null,
   lineUpDeals: [],
