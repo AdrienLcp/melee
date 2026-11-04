@@ -788,8 +788,8 @@ its `AwayMark` tag; a spent tile is a socket.
   piece's own colour gave the approved mock-up, drawn as a fill so a dashed
   outline follows it too (its apex stands half a unit over the box, which the
   SVG lets show). All three heads are drawn and the one worn shown, so a seat
-  changing its head crossfades, and the fill eases from one colour to the
-  next. An absent pawn is the same silhouette dashed in `--socket-line`
+  changing its head fades from one to the other, and the fill eases from one
+  colour to the next. An absent pawn is the same silhouette dashed in `--socket-line`
   inside a socket, and a socket's pawn is always round. Drawn under 13px
   wide (`0.8125rem`, read off `.standing`, a container one pawn wide), the
   head runs into the body at 1x and 11–12px read as a blot, so the track

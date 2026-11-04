@@ -80,7 +80,7 @@ const POINT_HEAD_PATH = pointHeadPath()
 /**
  * The piece's head, body and base, for an SVG that places the pawn itself.
  * Every head is drawn and the one worn shown, so a seat changing its head
- * crossfades from one to the other.
+ * fades from one to the other.
  */
 export const PawnShape: React.FC<{ head: PawnHead }> = ({ head }) => (
   <>
