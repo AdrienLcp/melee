@@ -309,8 +309,8 @@ type PetitBacVoteProps = {
 /**
  * The category the room is reading, one row per answer with its authors'
  * pawns. Every row counts until this seat says otherwise; its own row is
- * marked rather than votable. Under a judge the seat only watches the
- * refusals land.
+ * marked rather than votable, and struck the moment the room — or a judge —
+ * refuses it. Under a judge the seat only watches the refusals land.
  */
 export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
   onDone,
@@ -351,10 +351,12 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
         <ol className='rows'>
           {(content.rows ?? []).map((row) => {
             const isYours = row.authors.includes(view.youId)
-            const isOut = content.yourRefusals.includes(row.key)
+            const isOut = isYours
+              ? row.refused
+              : content.yourRefusals.includes(row.key)
 
             return (
-              <li className={isOut ? 'row out' : 'row'} key={row.key}>
+              <li className='row' data-out={isOut || undefined} key={row.key}>
                 <span className='text'>{row.text}</span>
                 <PetitBacAuthors
                   authorIds={row.authors}
@@ -362,8 +364,17 @@ export const PetitBacVote: React.FC<PetitBacVoteProps> = ({
                 />
                 <span className='side'>
                   {isYours ? (
-                    <span className='yours'>
+                    <span
+                      className='yours'
+                      data-refused={row.refused || undefined}
+                    >
+                      <CrossIcon className='refused-mark' />
                       {translate('petitbac.vote.yours')}
+                      {row.refused && (
+                        <VisuallyHidden elementType='span'>
+                          {` ${translate('petitbac.vote.refuse')}`}
+                        </VisuallyHidden>
+                      )}
                     </span>
                   ) : (
                     <ToggleButton

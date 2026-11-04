@@ -430,6 +430,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A Petit Bac word the table refuses shows as refused on its
+  author's screen.** The vote showed the author *Yours* and nothing else, so
+  the word fell without them knowing; it is struck through now, and *Yours*
+  turns red with a cross, both moving in as the refusals land and back out if
+  they are taken back — a judge striking it included.
+
 - `[Game]` **Black square's cells stay whole with a keyboard up.** Nine to a
   row beside the theme, a cell was narrower than three pips and lost the
   third; they stack now. A found answer longer than its cell ran through its

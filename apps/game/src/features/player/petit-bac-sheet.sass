@@ -170,6 +170,8 @@
         font-size: clamp(1.15rem, calc(var(--stage-unit) * 3), 1.6rem)
         hyphens: auto
         overflow-wrap: anywhere
+        text-decoration: line-through var(--stroke-thin) transparent
+        transition: color var(--transition-base, 0s) var(--ease-in), text-decoration-color var(--transition-base, 0s) var(--ease-in)
 
       // A name is how two pawns of one team are told apart, so it wraps
       // rather than lose its end.
@@ -205,21 +207,47 @@
           .control-label
             display: none
 
+      // The room refusing this seat's own word inks its mark as the refuse
+      // press is inked on every other row, and the cross folded under the
+      // label opens the room it needs, as a strip's check does.
       .yours
         @include typography.caption-strong
 
+        align-items: center
         border-radius: var(--radius-s)
         box-shadow: inset 0 0 0 var(--stroke-bold) var(--card-ink)
-        display: inline-block
+        display: inline-flex
         padding: var(--space-xs) var(--space-s)
+        transition: background-color var(--transition-base, 0s) var(--ease-in), box-shadow var(--transition-base, 0s) var(--ease-in), color var(--transition-base, 0s) var(--ease-in)
+
+        .refused-mark
+          block-size: 1em
+          inline-size: 1em
+          margin-inline-end: -1em
+          opacity: 0
+          scale: 0.6
+          transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), margin-inline-end var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
+
+        &[data-refused]
+          background: var(--danger)
+          box-shadow: inset 0 0 0 var(--stroke-bold) var(--danger)
+          color: var(--danger-ink)
+          transition: background-color var(--transition-base, 0s) var(--ease-out), box-shadow var(--transition-base, 0s) var(--ease-out), color var(--transition-base, 0s) var(--ease-out)
+
+          .refused-mark
+            margin-inline-end: var(--space-2xs)
+            opacity: 1
+            scale: 1
+            transition: margin-inline-end var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
 
       .refuse[data-selected]
         background: var(--danger)
         color: var(--danger-ink)
 
-      &.out .text
+      &[data-out] .text
         color: var(--card-muted)
-        text-decoration: line-through var(--stroke-thin)
+        text-decoration-color: currentColor
+        transition: color var(--transition-base, 0s) var(--ease-out), text-decoration-color var(--transition-base, 0s) var(--ease-out)
 
     .vote-foot
       align-items: center
