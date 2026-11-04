@@ -132,13 +132,13 @@ reconnect on the token it still holds.
 
 | Type | Sent by | Payload |
 |---|---|---|
-| `hello` | both | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `hostToken?` — `pawnColour` is asked for a new seat only |
+| `hello` | both | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `pawnHead?`, `hostToken?` — the piece is asked for a new seat only, its head round when `pawnHead` is absent |
 | `time.ping` | both | `clientSentAt` |
 | `player.leave` | any seat | — |
 | `player.rename` | any seat | `nickname` |
 | `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
 | `player.recolourTeam` | a seat in a team | `colour` — repaints the seat's own team |
-| `player.recolourSeat` | any seat | `colour` — repaints the seat's own pawn |
+| `player.recolourSeat` | any seat | `colour`, `head` — changes the seat's own piece; `head` reads as `round` when absent, as a tab on the build before heads sends it |
 | `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
 | `player.buzz` | player | `roundId` |
 | `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
@@ -169,7 +169,7 @@ reconnect on the token it still holds.
 | `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
 | `host.renameTeam` | host | `teamId`, `name` |
 | `host.recolourTeam` | host | `teamId`, `colour` — a pawn token, 1-based; `colour_taken` when another team holds it |
-| `host.recolourSeat` | host | `playerId`, `colour` — under `player.recolourSeat`'s rules |
+| `host.recolourSeat` | host | `playerId`, `colour`, `head` — under `player.recolourSeat`'s rules |
 | `host.moveSeat` | host | `playerId`, `teamId` |
 | `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
 | `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
@@ -314,15 +314,22 @@ names it, so every screen says the name its own dictionary gives the colour.
   a pawn changing colour loses the room the track. Two teams never share a
   colour: the second of two presses racing for one is `colour_taken`, and a
   team added later takes the first colour nobody holds.
-- **A seat holds a colour of its own**, the one its pawn stands in wherever no
-  team covers it. An arriving seat takes the colour its `hello` asks for — the
-  one the device last played in — when no other seat holds it, else the one
-  the fewest seats hold; a seat that comes back keeps its own, as it keeps its
-  name. `player.recolourSeat` and `host.recolourSeat` follow the team's phases,
-  refused `wrong_phase` while a round plays, and `colour_taken` for a colour
-  another seat holds while one is still free: past twelve seats two share one,
-  and the initial on the pawn tells them apart (`pawnColourOf`,
-  `isPawnColourFree` in `@melee/core/board/pawn-colour`).
+- **A seat holds a piece of its own** — a colour and a head, `round`,
+  `square` or `point` — the one its pawn stands as wherever no team covers it;
+  a seat in a team wears the team's colour in the round head. No two seats
+  hold the same piece: twelve colours times three heads outnumber the seats a
+  room takes, which `pawn-piece.test.ts` holds. An arriving seat takes the
+  piece its `hello` asks for — the one the device last played as — when no
+  other seat holds it, else the colour the fewest seats hold, lowest first, in
+  its first free head, round before square before point; a seat that comes
+  back keeps its own, as it keeps its name. `player.recolourSeat` and
+  `host.recolourSeat` follow the team's phases, refused `wrong_phase` while a
+  round plays, and `colour_taken` for a piece another seat holds
+  (`pawnPieceForArrival`, `isPawnPieceFree` and `pawnPieceOf` in
+  `@melee/core/board/pawn-piece`). The code keeps its name so a tab on an
+  older build still reads it. A room stored before heads reads each seat's
+  missing head as `round`, and two seats the old sharing rule left in one
+  piece keep it until one of them changes (`withSeatPieces`).
 - **A team's score is the sum of its seats'.** A round pays each team the sum
   of what it paid the team's seats it opened on (`teamRoundResult`) — a sum
   rather than a mean, because under a mean a teammate's wrong answer lowers the

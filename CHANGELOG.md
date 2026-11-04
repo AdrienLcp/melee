@@ -8,6 +8,22 @@ one part.
 
 ### Features
 
+- `[Shared]` **Every pawn wears a head as well as a colour, and no two seats
+  share a piece.** A seat's piece is one of twelve colours and one of three
+  heads — round, square or pointed — so a full table of twenty-four never
+  doubles up and twelve pieces are always free. The first twelve seats arrive
+  in round heads as before, the thirteenth in the first square one; a team's
+  pawn keeps the round head. The *Colour* press and the menu's *My pawn* open
+  the thirty-six pieces grouped by head, a piece someone holds struck through,
+  and name a piece by its colour and head (*Red, square head*). A crowd on the
+  track shrinks each pawn to its head and keeps the shape — a round, a square
+  or a triangle dot — and the world map's revealed pawns wear theirs too. The
+  initial printed on a seat's pawn is gone, and with it the inks it was
+  printed in. The device remembers the whole piece under `melee:pawn`, moving
+  a colour kept under `melee:pawn-colour` there on its next table; a room
+  stored before heads stands its seats in round ones. A tab still on the
+  previous build keeps working, so `PROTOCOL_VERSION` stays at 71.
+
 - `[Shared]` **Once the planned games are played, the host chooses what
   comes next: games drawn at random, or the same order again from the top.**
   *Then* sits under the last planned game, offered while the line-up outlives

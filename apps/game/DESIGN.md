@@ -196,8 +196,8 @@ never scrolls.
 - Every control is a die-cut piece: a 3px chipboard edge, sprue nubs, lift
   under a pointer, sink under a press.
 - Four answer inks, each with a printed shape, so colour is never the only cue.
-- Twelve pawn colours; the same pawn names the same player on every screen,
-  and on the track a seat's pawn carries its initial.
+- Twelve pawn colours and three heads; the same piece names the same player
+  on every screen, and no two seats ever hold the same one.
 - Two faces: Bricolage Grotesque condensed for what is printed on the box,
   Atkinson Hyperlegible Next for what is read.
 - A question and its four choices never scroll, measured at sixteen viewports.
@@ -241,18 +241,21 @@ A cool printed board under warm, saturated die-cut inks, every value one
   everywhere but reflex, which takes the dark `--on-spine-light`.
 
 ### Tertiary
-- **Pawns** (`--pawn-1..12`; each seat picks one, and a thirteenth seat
-  shares the one fewest hold, `pawnColourForArrival` in
-  `@melee/core/board/pawn-colour`). Twelve because the
-  four added to the original eight — lime, brown, magenta, sky — keep the
-  closest pair in OKLab as far apart as the eight's closest already was
-  (green / teal, 10.8); a thirteenth hue fell under it. Colour-blind
-  simulation already merged pairs among the eight (pink / teal under
-  protanopia), so a pawn is never told apart by its colour alone: a team is
-  named beside its pawn, and a seat's pawn on the track carries its initial.
-  A pawn's colour is never a ground text is printed on; the initial on its
-  head is printed in `--on-pawn-N`, dark on the light pieces and pale on the
-  dark ones, each pair held to 4.5:1 in `tokens-contrast.test.ts`.
+- **Pawns** (`--pawn-1..12`). Twelve because the four added to the original
+  eight — lime, brown, magenta, sky — keep the closest pair in OKLab as far
+  apart as the eight's closest already was (green / teal, 10.8); a thirteenth
+  hue fell under it. Colour-blind simulation already merged pairs among the
+  eight (pink / teal under protanopia), so a pawn is never told apart by its
+  colour alone: a team is named beside its pawn, and a seat's piece wears a
+  **head** beside its colour — round, square or pointed (`PAWN_HEADS`).
+  Twelve colours times three heads is thirty-six pieces for at most
+  twenty-four seats, so every seat holds a piece nobody else holds and twelve
+  are always free to swap into. An arriving seat takes the piece its device
+  asks for when it is free, else the colour the fewest seats hold, lowest
+  first, in its first free head (`pawnPieceForArrival` in
+  `@melee/core/board/pawn-piece`): a table of twelve stands in twelve round
+  heads, and the thirteenth seat is the first square one. A team's pawn always
+  wears the round head. A pawn's colour is never a ground text is printed on.
 
 ### Neutral
 - **Board** (`--board`, `--board-ink`, `--board-muted`): the ground of every
@@ -776,16 +779,28 @@ its `AwayMark` tag; a spent tile is a socket.
 - **Tile marks** (`TileMark`): circle, triangle, square, diamond on a 24-unit
   grid, floated at the start of the tile's first line.
 - **The pawn** (`Pawn`): head, body, base on a 24×28 grid, `fill: var(--pawn)`
-  over a 1.5px `--chipboard-dark` drop. An absent pawn is the same silhouette
-  dashed in `--socket-line` inside a socket. On the track a seat's pawn takes
-  a `mark` on its head (`pawnMarksOf`): the initial, two letters where a pawn
-  of the same colour shares it, the initial and a count where those match
-  too — set in the display face at 7.5 units, 5.6 for two characters, and
-  dropped on a case under 3rem, where it reads as a smudge. Drawn under 13px
+  over a 1.5px `--chipboard-dark` drop. The head is the piece's second cue,
+  measured on the round one (centre 12, 6.5, diameter `d` 11): the **square**
+  is 0.86 `d` a side with corners of 0.12 `d`, on the same centre; the
+  **pointed** head is an upright triangle 1.02 `d` tall and 1.1 `d` wide, its
+  apex 0.56 of its height above the centre and its base 0.44 below, grown
+  0.07 `d` all round with rounded corners — the outline a stroke in the
+  piece's own colour gave the approved mock-up, drawn as a fill so a dashed
+  outline follows it too (its apex stands half a unit over the box, which the
+  SVG lets show). All three heads are drawn and the one worn shown, so a seat
+  changing its head crossfades, and the fill eases from one colour to the
+  next. An absent pawn is the same silhouette dashed in `--socket-line`
+  inside a socket, and a socket's pawn is always round. Drawn under 13px
   wide (`0.8125rem`, read off `.standing`, a container one pawn wide), the
   head runs into the body at 1x and 11–12px read as a blot, so the track
-  draws a **dot** instead: the head alone, `r` 8 and sat on the base, in the
-  same `--pawn` over the same drop, the `+N` count beside it unchanged. At
+  draws a **dot** instead: the head alone, grown from 11 units to 16 about
+  its centre and sat on the base at 19, in the same `--pawn` over the same
+  drop and keeping its shape — a round, a square or a triangle dot — the
+  `+N` count beside it unchanged. The square and the triangle are two of the
+  four tile marks too, and a head is still never read as one: a pawn beside an
+  answer keeps its body and base, the reveal's answer lines print no tile
+  mark, and the head alone stands only in a crowd on the track (checked on a
+  full quiz reveal at 1440×900 and 390 wide). At
   1440×900 a hundred-square track draws 36px cases: a pawn alone stands
   21.6px, two 16.6px, a crowd of three or four 12.2px, and only the crowds
   are dots. The phone's strip never draws one under 13.2px (a 2.75rem case ×
@@ -1050,10 +1065,11 @@ narrower than the band (`33cqi`), where wrapped they stood the count over the
 case's top. Four pawns and no count stand abreast too (`27cqi`): wrapped three
 and one, four teams on the start covered *Départ* at 1440×900.
 
-### Teams (`TeamRoster`, `PawnColoursProvider`)
-Every seat's pawn stands in the colour the seat picked, or in its team's when
-the room plays in teams (`pawnColourOf`), on every screen, through one provider
-per page; a team's own pawn is its 1-based `colour`. A team is a tray on `--track-b`, its colour a 0.5rem band printed
+### Teams (`TeamRoster`, `PawnPiecesProvider`)
+Every seat's pawn stands as the piece the seat picked, or in its team's colour
+and the round head when the room plays in teams (`pawnPieceOf`), on every
+screen, through one provider per page; a team's own pawn is its 1-based
+`colour`. A team is a tray on `--track-b`, its colour a 0.5rem band printed
 across the top — never a ground text sits on — its pawn and name in the head
 (the host's name, or the screen's dictionary word for the colour), its seats as
 chips under it. Ranked, the head carries the rank and the score; the seat's own
@@ -1062,19 +1078,23 @@ score track, the standings and the final board rank teams in place of seats
 whenever there are any; the phone's chrome spells the team in the lobby and
 drops the word mid-round under 26rem, where the pawn says it.
 
-A pawn's colour is picked from one press, a seat's or a team's
-(`PawnColourPress`): a small outlined control printing the palette glyph and
-the word *Colour*, whose screen-reader name starts with it and says whose
-(*Colour of the Reds*, *Colour of my pawn*). It sits in each team's head on the
+A pawn is picked from one press, a seat's or a team's (`PawnPiecePress`): a
+small outlined control printing the palette glyph and the word *Colour*, whose
+screen-reader name starts with it and says whose (*Colour of the Reds*,
+*Colour of my pawn, Red, square head*). It sits in each team's head on the
 host's table, and in the lobby on a player's own screen — in the head of the
 player's team, or on the player's own chip of the roster when the room plays
-without teams, across the chip under its pawn and name. A head's presses take a line of
-their own before its name loses a letter. It opens a sheet of
-the twelve pawns six to a row (`PawnColourPicker`), closed by the pick: the
-pawn's own in an ink keyline, a colour another pawn holds struck through in ink
-rather than dimmed and out of reach, so the sheet still says which colours are
-on the table. A seat that finds all twelve held sees none struck, since it may
-share any: the initial on the pawn tells the two apart.
+without teams, across the chip under its pawn and name. A head's presses take
+a line of their own before its name loses a letter. It opens a sheet
+(`PawnPiecePicker`), closed by the pick: for a seat, the thirty-six pieces six
+to a row and grouped by head — round, square, then pointed, two rows each, a
+hairline between the groups — and for a team, the twelve colours in the round
+head. The pawn's own piece sits in an ink keyline, and a piece another pawn
+holds is struck through in ink rather than dimmed and out of reach, so the
+sheet still says which pieces are on the table; the strike draws across as a
+piece is taken and wipes back as it is let go. A piece is named by its colour
+and its head — *Red, square head* — in the menu's *My pawn* row and to a
+screen reader on the sheet.
 
 ### Duels (`DuelBadge`)
 A duel says whose round it is with the **duel badge**: two teams' trays in
