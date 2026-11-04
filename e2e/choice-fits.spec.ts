@@ -3345,6 +3345,8 @@ type AnsweringOverflow = {
   spills: string[]
   /** Every painted box — a card, a tile, a field — whose contents run past it. */
   spilledCards: string[]
+  /** Every word or round clock the corner menu is drawn over. */
+  underTheMenu: string[]
 }
 
 const measureAnswering = ({
@@ -3452,6 +3454,28 @@ const measureAnswering = ({
         (node.textContent ?? '').trim() !== ''
     )
   const texts = shown.filter(hasOwnText)
+  const menu = document.querySelector('.app-menu .trigger')?.getBoundingClientRect()
+  const isUnderTheMenu = (box: DOMRect): boolean =>
+    menu !== undefined &&
+    box.width > 1 &&
+    box.height > 1 &&
+    box.left < menu.right - 1 &&
+    box.right > menu.left + 1 &&
+    box.top < menu.bottom - 1 &&
+    box.bottom > menu.top + 1
+  // A line's box runs the width of its column; its words are what the menu
+  // must clear, so each text node is measured by the ink it lays out.
+  const hasWordsUnderTheMenu = (element: Element): boolean =>
+    [...element.childNodes].some((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) {
+        return false
+      }
+
+      const range = document.createRange()
+      range.selectNodeContents(node)
+
+      return [...range.getClientRects()].some(isUnderTheMenu)
+    })
 
   const furthest = shown
     .filter((element) => scrollingAncestorOf(element) === null)
@@ -3636,7 +3660,16 @@ const measureAnswering = ({
       .map(
         (element) =>
           `${nameOf(element)} "${textOf(element)}" ${element.scrollWidth}/${element.clientWidth}×${element.scrollHeight}/${element.clientHeight}`
+      ),
+    underTheMenu: shown
+      .filter(
+        (element) =>
+          element.closest('.app-menu') === null &&
+          (element.matches('.round-progress')
+            ? isUnderTheMenu(element.getBoundingClientRect())
+            : hasWordsUnderTheMenu(element))
       )
+      .map((element) => `${nameOf(element)} "${textOf(element)}"`)
   }
 }
 
@@ -3706,7 +3739,8 @@ for (const screen of ANSWERING_SCREENS) {
           overflow.hidden.length > 0 ||
           overflow.page > 0 ||
           overflow.spilledCards.length > 0 ||
-          overflow.spills.length > 0
+          overflow.spills.length > 0 ||
+          overflow.underTheMenu.length > 0
         ) {
           faults.push(`${width}×${height} ${JSON.stringify(overflow)}`)
         }

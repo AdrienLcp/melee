@@ -448,6 +448,24 @@
           > .round-progress
             inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
 
+      // Lying down, a card across the whole stage keeps its one row: the sand
+      // and the words stop short of the menu beside them.
+      @media (aspect-ratio >= 13 / 10)
+        > .stage.playing:is([data-higher-lower], [data-swatch]:not(:has(.workbench))) > .round-card:first-child
+          padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+          > .round-progress
+            inset-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+
+        // A seat's own field takes the column under the menu, so it stands at
+        // the foot of it: the line saying what was banked or missed starts
+        // below the menu, and the box keeps the height its layout is sized by.
+        > .stage.playing:not([data-map-question]) > .answer-form.typed
+          justify-content: flex-end
+
+        > .stage.playing > .answer-form.estimate-answer
+          align-content: end
+
     // A keyboard up under the seat's own field, on a console standing
     // upright: the press that gives the answer away waits with the tab bar
     // (`host-panel.sass`), and both come back with the keyboard going down.
