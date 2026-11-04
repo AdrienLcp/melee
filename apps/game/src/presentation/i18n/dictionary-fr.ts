@@ -516,13 +516,13 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Estimation envoyée. On attend les autres.'
     },
     asks: {
-      area: { country: 'Quelle superficie ?' },
-      elevation: { mountain: 'Quelle altitude ?' },
-      height: { building: 'Quelle hauteur ?' },
-      length: { river: 'Quelle longueur ?' },
+      area: { country: 'Quelle superficie pour ce pays ?' },
+      elevation: { mountain: 'Quelle altitude pour ce sommet ?' },
+      height: { building: 'Quelle hauteur pour cet édifice ?' },
+      length: { river: 'Quelle longueur pour ce cours d’eau ?' },
       population: {
-        city: 'Combien d’habitants ?',
-        country: 'Combien d’habitants ?'
+        city: 'Combien d’habitants dans cette ville ?',
+        country: 'Combien d’habitants dans ce pays ?'
       }
     },
     home: {
@@ -564,13 +564,13 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Ton choix est parti. On attend les autres.'
     },
     asks: {
-      area: { country: 'Le plus vaste ?' },
-      elevation: { mountain: 'Le plus haut ?' },
-      height: { building: 'Le plus haut ?' },
-      length: { river: 'Le plus long ?' },
+      area: { country: 'Quel pays est le plus vaste ?' },
+      elevation: { mountain: 'Quel sommet est le plus haut ?' },
+      height: { building: 'Quel édifice est le plus haut ?' },
+      length: { river: 'Quel cours d’eau est le plus long ?' },
       population: {
-        city: 'Le plus d’habitants ?',
-        country: 'Le plus d’habitants ?'
+        city: 'Quelle ville a le plus d’habitants ?',
+        country: 'Quel pays a le plus d’habitants ?'
       }
     },
     dealt: 'Deux noms. Lequel est le plus grand ?',
