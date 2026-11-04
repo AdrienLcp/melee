@@ -465,10 +465,13 @@ one part.
 
 - `[Game]` **A full table's names read whole in the console's lobby.** A chip
   a third of the roster wide cut a long name to its first five letters, two
-  *Anne-* reading as one seat: a name now takes a second line, hyphenated, at
-  a size the roster's width caps, and the stage's chips drop the ✕ the
-  Players tab already carries. Twenty-four names of twenty letters read whole
-  at every shape the layout suite measures. On a laptop the side column
+  *Anne-* reading as one seat: a name now wraps, hyphenated where the page's
+  language allows, onto as many as three lines at a size the roster's width
+  caps, and the stage's chips drop the ✕ the Players tab already carries.
+  Twenty-four names of twenty letters read whole at every shape the layout
+  suite measures, in a room speaking English too, where nothing breaks
+  *Charlotte* and a 1440×900 laptop cut *Anne-Charlotte Vi 22* to two lines
+  and an ellipsis — the suite now fails a name its clamp cuts. On a laptop the side column
   scrolls inside itself when it runs past the screen, where its last row slid
   under the launch press with nothing to scroll; the seat offer folds away once the
   host sits or the table is full, and the Room tab says the table is full

@@ -1029,11 +1029,17 @@ on `--track-a` with the pawn and the name, a socket per empty pawn, the own
 seat in a keyline. It never ranks (`Scoreboard`'s `isRoster`): its chips are
 dealt across where a ranking is read downwards, and a rank, a case and points
 in a chip a third of the roster wide left the name 0px. A name too long for
-its chip takes a second line, hyphenated, never an ellipsis after five letters
-(two *Anne-* read as one seat); its size is the lower of 2.2 `stage-unit` and
-3.3cqi of the roster, so two lines stay inside the chip's height. Measured with
-24 French names of 17 to 20 characters at the sixteen viewports of
-`choice-fits.spec.ts`, console and player: none cut. The console's stage
+its chip wraps, hyphenated where the page's language allows, never an ellipsis
+after five letters (two *Anne-* read as one seat); its size is the lower of 2.2
+`stage-unit` and 3.3cqi of the roster, so two lines stay inside the chip's
+height, and the clamp holds three. The third is owed where nothing
+hyphenates — an English page reading a French name: `Anne-` takes a line
+alone, and at 1440×900 `Charlotte Vi 22` takes two more, which grows that row
+alone by one line. No size could have spared it: a twenty-character name
+broken that unevenly needs a line about as wide as the name. A word no
+syllable breaks still ends on an ellipsis. `choice-fits.spec.ts` holds 24
+names of 17 to 20 characters to this at its sixteen viewports, console and
+player, and fails a name its clamp cut. The console's stage
 carries no ✕ — the room reads that roster, and the Players tab holds the same
 one with its ✕. Its seat offer folds away (the offer fades, then its row
 closes) once the host sits or the table is full, and the Room tab says the

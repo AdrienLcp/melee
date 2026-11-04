@@ -52,12 +52,14 @@
       font-size: var(--text-em-xl)
 
     // On one line a chip a third of the roster wide cut a long name to its
-    // first five letters, and two Anne- read as the same seat.
+    // first five letters, and two Anne- read as the same seat. On two it
+    // still cut one where the page's language hyphenates nothing: `Anne-`
+    // takes a line alone, and `Charlotte Vi 22` needs two more.
     .name
       -webkit-box-orient: vertical
       display: -webkit-box
       hyphens: auto
-      -webkit-line-clamp: 2
+      -webkit-line-clamp: 3
       white-space: normal
 
     .away-mark
