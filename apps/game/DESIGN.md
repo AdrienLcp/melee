@@ -805,8 +805,11 @@ beside the word, or its control carries the name.
 order — `--tile-1..4` faces with their `--tile-mark-1..4` shapes — on a
 rounded square of the dark `--board`, in hex since a favicon reads no token.
 `public/apple-touch-icon.png` is the same mark inset at 75% on a full-bleed
-board at 180×180, since iOS rounds it itself. `og.png` is drawn from the front door's lid
-and shelf.
+board at 180×180, since iOS rounds it itself. `og.png` (English, also the root's) and
+`og-fr.png` are drawn from the front door in that language, dark palette: the
+wordmark and a two-line promise on the left, every game's spine on the right in
+two columns, ticked, taglines dropped, names fitted to the widest. Redraw both
+when a game joins the shelf.
 
 ## Components
 

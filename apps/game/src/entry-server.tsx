@@ -23,7 +23,8 @@ import {
   type IndexedPage,
   OPEN_GRAPH_LOCALES,
   PAGE_HEADS,
-  type PageHead
+  type PageHead,
+  SHARE_IMAGE_PATHS
 } from '@/presentation/head/document-head'
 import { i18n } from '@/presentation/i18n/i18n'
 import { ROUTE_FALLBACK_CLASS } from '@/presentation/route-fallback'
@@ -50,6 +51,7 @@ export type RenderedPage = Pick<PageHead, 'description'> & {
 export {
   IMAGE_ALTS as imageAlts,
   OPEN_GRAPH_LOCALES as openGraphLocales,
+  SHARE_IMAGE_PATHS as shareImagePaths,
   STORED_SHELVES_SCRIPT as storedShelvesScript
 }
 

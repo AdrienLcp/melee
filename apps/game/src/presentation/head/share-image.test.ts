@@ -3,13 +3,18 @@ import { crc32 } from 'node:zlib'
 
 import { describe, expect, it } from 'vitest'
 
+import { SHARE_IMAGE_PATHS } from '@/presentation/head/document-head'
+
 const INDEX_HTML = readFileSync(
   new URL('../../../index.html', import.meta.url),
   'utf8'
 )
 
-const SHARE_IMAGE = readFileSync(
-  new URL('../../../public/og.png', import.meta.url)
+const SHARE_IMAGES = Object.entries(SHARE_IMAGE_PATHS).map(
+  ([locale, path]) => ({
+    image: readFileSync(new URL(`../../../public${path}`, import.meta.url)),
+    locale
+  })
 )
 
 const PNG_SIGNATURE = Buffer.from([
@@ -47,13 +52,13 @@ const readMetaNumber = (property: string): number => {
   return Number(match?.[1])
 }
 
-describe('share image', () => {
+describe.each(SHARE_IMAGES)('$locale share image', ({ image }) => {
   it('[share-image] opens with the PNG signature, its line-ending bytes intact', () => {
-    expect(SHARE_IMAGE.subarray(0, PNG_SIGNATURE.length)).toEqual(PNG_SIGNATURE)
+    expect(image.subarray(0, PNG_SIGNATURE.length)).toEqual(PNG_SIGNATURE)
   })
 
   it('[share-image] every chunk matches its checksum, through to IEND', () => {
-    const chunks = readChunks(SHARE_IMAGE)
+    const chunks = readChunks(image)
     expect(
       chunks
         .filter((chunk) => chunk.storedCrc !== chunk.computedCrc)
@@ -63,7 +68,7 @@ describe('share image', () => {
   })
 
   it('[share-image] is the size its og:image:width and og:image:height announce', () => {
-    const header = readChunks(SHARE_IMAGE)[0]
+    const header = readChunks(image)[0]
     expect(header?.type).toBe('IHDR')
     expect({
       height: header?.data.readUInt32BE(4),

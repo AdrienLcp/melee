@@ -72,7 +72,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. Blind test, Buzzer, Quiz, Reflex, Slate, Atlas, Challenge, Inner clock, Matchsticks, Before & after, Black square and Categories.',
+        'One screen runs the game, everyone joins by scanning a QR code or typing the room code — no install, no account. A whole evening of party games in the same room: blind test, quiz, categories, a map to point at, a timeline to put in order, guesses at a number, and more.',
       title: 'Mêlée — party games for one screen and the whole room'
     },
     innerclock: {
@@ -169,7 +169,7 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
     },
     home: {
       description:
-        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Blind test, Buzzer, Quiz, Réflexe, L’Ardoise, Atlas, Défi, Horloge interne, Allumettes, Frise chronologique, Case noire et Petit Bac.',
+        'Un écran fait tourner le jeu, tout le monde rejoint en scannant un QR code ou en tapant le code de la salle — sans installation, sans compte. Toute une soirée de jeux dans la même salle : blind test, quiz, Petit Bac, une carte où poser son pion, une frise à remettre dans l’ordre, un chiffre à estimer, et bien d’autres.',
       title: 'Mêlée — des jeux à plusieurs pour un écran et toute la salle'
     },
     innerclock: {
@@ -226,13 +226,18 @@ export const PAGE_HEADS: Record<Locale, Record<IndexedPage, PageHead>> = {
 }
 
 /**
- * The share image is the same on every page, so its alt text belongs to the site
- * rather than to a page — but read out on a French unfurl it is the last English
- * string this stage would have left behind.
+ * The share image is drawn once per language, from the front door in that
+ * language: its game names are the dictionary's, and an English shelf under a
+ * French description reads as two products.
  */
+export const SHARE_IMAGE_PATHS: Record<Locale, string> = {
+  en: '/og.png',
+  fr: '/og-fr.png'
+}
+
 export const IMAGE_ALTS: Record<Locale, string> = {
-  en: "The Mêlée wordmark on the lobby's burnt-orange field.",
-  fr: 'Le nom Mêlée sur un fond orange brûlé.'
+  en: 'The Mêlée wordmark beside the shelf of every game it plays, each in its own colour.',
+  fr: 'Le nom Mêlée à côté de l’étagère de tous ses jeux, chacun dans sa couleur.'
 }
 
 /**

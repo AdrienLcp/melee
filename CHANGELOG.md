@@ -134,6 +134,14 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A shared link shows the shelf as it is now.** The preview image
+  still showed five games on the old front door: it is redrawn from today's,
+  every game's spine beside the wordmark, once per language — French pages
+  share `og-fr.png`, so a French description no longer sits under English game
+  names. The home description stops listing games (it had missed the last
+  four) and says what an evening holds instead, and the image's alt text no
+  longer describes a burnt-orange field the image lost a redesign ago.
+
 - `[Game]` **A new board length moves the course rather than redrawing it.**
   From 10 to 40 or 100 squares and back, the squares both boards share slide
   to their new place round the stage, the finish travels to the new end, the
