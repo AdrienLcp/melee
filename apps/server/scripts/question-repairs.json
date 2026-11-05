@@ -2344,6 +2344,10 @@
     "note": "Hannibal a franchi les Alpes avec 37 éléphants de guerre, dont un seul survécut à la traversée et aux combats qui suivirent.",
     "why": "the ancient sources give 37 elephants, not 27"
   },
+  "oqdb-551-3": {
+    "prompt": "Dans « Secret Story », que peut faire un candidat qui pense avoir trouvé le secret d'un autre ?",
+    "why": "written for a pack read in order — only the pack's theme said which show's candidate this is"
+  },
   "otdb-0bca0b231fe6": {
     "prompt": "Which field is sometimes known as “The Dismal Science”?",
     "why": "a bare 'This field ...' clue with no question and no antecedent"

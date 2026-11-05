@@ -37084,7 +37084,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Un candidat peut déclencher une alarme sonore spécifique en pressant un bouton rouge (buzzeur) situé dans le confessionnal.",
-      "prompt": "Que peut faire un candidat qui pense avoir trouvé un secret ?",
+      "prompt": "Dans « Secret Story », que peut faire un candidat qui pense avoir trouvé le secret d'un autre ?",
       "theme": "Secret Story",
       "isWellKnown": true
     },
