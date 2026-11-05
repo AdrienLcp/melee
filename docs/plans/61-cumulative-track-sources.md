@@ -3,14 +3,14 @@
 **Done** 03/11/2026, as decided below. Two things the plan did not foresee:
 a strip holding several answers now inks each ticked stamp flat in the tray
 with a check, because the strands, genres and decades all ticked read as a
-wall of lifted pieces (`DESIGN.md`, *Strips*), and the stored-room patch is
+wall of lifted pieces (`DESIGN.md`, _Strips_), and the stored-room patch is
 its own module, `stored-settings.ts`, beside the other load-time patches.
 
-**Goal.** A blind test draws from any combination of *top charts*, *decades*
-and *film scores*, ticked together, instead of one of them or the fixed
+**Goal.** A blind test draws from any combination of _top charts_, _decades_
+and _film scores_, ticked together, instead of one of them or the fixed
 `all` mix. The host's ask (03/11/2026): "a complete blind test should have
 every decade, the film scores and the charts" — which is what `{ kind: 'all' }`
-already deals, shown as a strip with *nothing* pressed. Nobody reads an empty
+already deals, shown as a strip with _nothing_ pressed. Nobody reads an empty
 strip as "everything", so the mix has to be what is ticked.
 
 ## What exists (mapped 03/11/2026)
@@ -41,13 +41,13 @@ strip as "everything", so the mix has to be what is ticked.
    `[]` = all of it. `playlist` and `search` stay their own arms — a list the
    host names is not a catalogue and is never mixed. The default is all three
    on, which is today's `all`.
-2. **Two levels on screen.** A `SegmentedControl` *Where the tracks come from*:
-   *The catalogue · A Deezer playlist · A search*. Under the catalogue, a
-   `ToggleGroup` (multiple) *Top charts · Decades · Film scores* that refuses
+2. **Two levels on screen.** A `SegmentedControl` _Where the tracks come from_:
+   _The catalogue · A Deezer playlist · A search_. Under the catalogue, a
+   `ToggleGroup` (multiple) _Top charts · Decades · Film scores_ that refuses
    to untick its last stamp (`disallowEmptySelection`); the genre strip shows
    while charts are ticked, the decade strip while decades are, the film hint
    while film is. One strip mixing toggles and exclusive choices was rejected:
-   pressing *A search* would silently untick three others.
+   pressing _A search_ would silently untick three others.
 3. **Sampling keeps the cost rule.** A catalogue of one strand draws it whole,
    as the single arms do today; two or more sample like `all` does
    (`DECADE_PLAYLISTS_PER_MIXED_POOL`, 3 composers) and go through
@@ -86,7 +86,7 @@ strip as "everything", so the mix has to be what is ticked.
 ## Readers to update
 
 - `presentation/i18n/line-up-entry-names.ts` — one strand names the entry
-  (*Film scores*, *the 80s*, *French chart*), several give no name, as several
+  (_Film scores_, _the 80s_, _French chart_), several give no name, as several
   decades already do (l.27-38).
 - `packages/core/src/room/settings-summary.ts:23,59` and
   `use-settings-summary.ts:93` — the summary's `source` kind.

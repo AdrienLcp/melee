@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useEffectEvent } from 'react'
+import { useEffect, useEffectEvent } from 'react'
 import {
   generatePath,
   matchPath,
@@ -32,7 +32,6 @@ import { normalizeRoomCode } from '@melee/core/room/room-code'
 import type { SavedEvening } from '@melee/core/room/saved-evening'
 import { isShelvedGame } from '@melee/core/room/shelved-game'
 
-import { prefersReducedMotion } from '@/infrastructure/browser'
 import { savedEveningSchema } from '@/infrastructure/storage/preferences-storage'
 
 /**
@@ -154,31 +153,36 @@ export const hostFromWallPathFor = (code: RoomCode): string =>
   `${hostPathFor(code)}?${new URLSearchParams({ [FROM_WALL_PARAM]: FROM_WALL_VALUE })}`
 
 /**
- * What every move to another page carries: the page being left fades off as
- * the next one is laid down, unless the visitor asked for less motion. The
- * design system's `Link` reads it through the router provider.
- */
-export const withPageTransition = (): NavigateOptions => ({
-  viewTransition: !prefersReducedMotion()
-})
-
-/**
  * Moves to another page from code — a reply, a pairing, a displaced console —
- * the way a pressed link moves there. A `replace` that only corrects the
- * address keeps `useNavigate`: nothing on screen changes, so nothing plays.
+ * the way a pressed link moves there: the `<ViewTransition>` around the outlet
+ * plays the change of page, keyed on `usePageKey`.
  */
 export const usePageNavigation = (): ((
   to: To,
   options?: NavigateOptions
-) => void | Promise<void>) => {
-  const navigate = useNavigate()
+) => void | Promise<void>) => useNavigate()
 
-  // A dependency of the pairing poll's effect: a fresh identity would restart
-  // the poll on every render.
-  return useCallback(
-    (to, options) => navigate(to, { ...withPageTransition(), ...options }),
-    [navigate]
-  )
+/**
+ * Which page an address shows. The `<ViewTransition>` around the outlet is
+ * keyed on it, so a new key lays the next page down while the one left lifts
+ * off, and mounts it afresh. The language prefix is left out, because a switch
+ * of language keeps the page on screen and plays its own move
+ * (`i18n-provider.tsx`) — a remount would drop what is typed on it, and an
+ * error already shown. So is a game's old name, which `useGameParam` only
+ * corrects in the address.
+ */
+export const usePageKey = (): string => {
+  const { pathname } = useLocation()
+  const [, first, ...rest] = pathname.split('/')
+
+  if (asLocale(first) === null) {
+    return pathname
+  }
+
+  const [game, ...after] = rest
+  const current = game === undefined ? [] : [renamedGameKindOf(game) ?? game]
+
+  return ['', ...current, ...after].join('/') || '/'
 }
 
 export const useCameFromWall = (): boolean => {

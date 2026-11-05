@@ -57,7 +57,7 @@ the true order on the reveal with each year.
   dot each, across a box 40rem wide or more and down a narrower one.
 - **The player's form** (`TimelineAnswer`, over `TimelineOrderList` in
   `presentation/components`, which wraps react-aria's `GridList` and
-  `useDragAndDrop`): the five cards between *earliest* and *latest*, each with
+  `useDragAndDrop`): the five cards between _earliest_ and _latest_, each with
   a grip — dragged by a pointer, a finger or the keyboard through the drag
   button — and two arrows that step it one place, because a hand that has
   never dragged anything on a screen finds a press first. One coral press
@@ -65,7 +65,7 @@ the true order on the reveal with each year.
   until the reveal. A reload after sending says the order is in and draws
   nothing, since no screen is told what anyone sent. A seated console and the
   wall answering for a team draw the same form on the stage.
-- **The console and the wall** put the line *which came first?* on the round
+- **The console and the wall** put the line _which came first?_ on the round
   card and the five cards dealt across the stage under it, with the count of
   who is in.
 - **The reveal** strings the cards along the line with their years on the

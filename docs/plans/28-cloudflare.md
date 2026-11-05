@@ -54,8 +54,8 @@ the assets) — copy its layout rather than redesign it.
   storing them instead of closing over them.
 - **Both sweepers disappear as loops.** `startRoomSweeper` and
   `startSeatSweeper` iterate every room every minute; an object only ever
-  sees its own, so each becomes a deadline: *ten minutes with no socket* deletes
-  the object's storage, *a seat nobody has been behind* releases it.
+  sees its own, so each becomes a deadline: _ten minutes with no socket_ deletes
+  the object's storage, _a seat nobody has been behind_ releases it.
 - **Codes stay unique without a registry.** `idFromName(code)`; the object's
   `create` refuses when it already holds a room, and `POST /api/rooms` retries
   with a new code, as `createRoom` already does in-process.
@@ -74,13 +74,13 @@ scope, so it is paid in the isolate's **startup**, never in a request. Measured
 on the deployed Worker on 2026-10-05 with `wrangler tail` over four quiz rooms
 opened and started from a script:
 
-| What | CPU | Free plan limit |
-|---|---|---|
-| Startup, with the bank parsed (`wrangler deploy`) | 98 ms | 1 s |
-| `POST /api/rooms` on a cold isolate | 10 ms | 10 ms |
-| `POST /api/rooms`, warm | 1–5 ms | 10 ms |
-| The room object's `open` | 1–3 ms | — |
-| `host.startRound` in a quiz room, the draw included | 4–6 ms | — |
+| What                                                | CPU    | Free plan limit |
+| --------------------------------------------------- | ------ | --------------- |
+| Startup, with the bank parsed (`wrangler deploy`)   | 98 ms  | 1 s             |
+| `POST /api/rooms` on a cold isolate                 | 10 ms  | 10 ms           |
+| `POST /api/rooms`, warm                             | 1–5 ms | 10 ms           |
+| The room object's `open`                            | 1–3 ms | —               |
+| `host.startRound` in a quiz room, the draw included | 4–6 ms | —               |
 
 So D1 is not needed. The one number at the line is the cold room creation, and
 the bank is not in it: it is the Worker's own first request. Revisit if the
@@ -157,7 +157,7 @@ Nothing is deployed differently at the end of it.
 - e2e: `e2e/playwright.config.ts` starts `wrangler dev` instead of
   `pnpm --filter @melee/server start`, on its own port; the Deezer stub
   stays.
-- Measure the question bank, and settle it — see *The question bank stays bundled*.
+- Measure the question bank, and settle it — see _The question bank stays bundled_.
 - Deploy to `taverla.<account>.workers.dev` by hand, play a room from two
   screens, muted.
 
@@ -192,7 +192,7 @@ Nothing is deployed differently at the end of it.
   `cloudflare-pages` skill: `CLOUDFLARE_ACCOUNT_ID`, `CLOUDFLARE_API_TOKEN`).
 - Remove the Node adapter, `ws`, `@hono/node-server`, `hono-rate-limiter`,
   `static-site.ts`'s `node:fs` path and `render.yaml`.
-- Rewrite what describes the old host: [08](08-deploy.md)'s *live at*,
+- Rewrite what describes the old host: [08](08-deploy.md)'s _live at_,
   `CLAUDE.md`'s commands and ports, `docs/browser-driving.md`.
 - Suspend the Render service only once Adrien has played an evening on the
   Worker; deleting it is his call. He played it and asked: deleted.

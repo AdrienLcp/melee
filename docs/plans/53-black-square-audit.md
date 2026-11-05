@@ -1,9 +1,9 @@
 # 53 — Black square: a simple theme, hard answers
 
 Adrien's rule, from playing it: **the theme must be simple; the difficulty
-comes from the answers, the high-paying ones being the hard ones.** *Les
-lauréats du prix Nobel de chimie* breaks it — the table cannot name even the
-cheap cells — and *Les présidents des États-Unis* breaks it the other way:
+comes from the answers, the high-paying ones being the hard ones.** _Les
+lauréats du prix Nobel de chimie_ breaks it — the table cannot name even the
+cheap cells — and _Les présidents des États-Unis_ breaks it the other way:
 its nine most read are all easy, so the 3-point cells pay for nothing hard.
 
 The bank is `apps/server/src/infrastructure/questions/black-square-bank.json`,
@@ -17,20 +17,20 @@ theme's nine most read truths (French Wikipedia, `PAGEVIEW_DAYS = 60` in
 ## What was measured (26/10/2026, 167 themes)
 
 **Page views cannot judge a theme.** Sorted by each theme's third most read
-answer — the floor of its cheap tier —, the specialist themes land *above*
+answer — the floor of its cheap tier —, the specialist themes land _above_
 the ones a table plays easily, because views compare a laureate with an album,
 and a 60-day window read in October is Nobel season:
 
-| Theme | 3rd answer | views |
-|---|---|---|
-| Les albums des Beatles | Sgt. Pepper's… | 5 175 |
-| Les lauréats du prix Turing | Geoffrey Hinton | 9 904 |
+| Theme                                | 3rd answer         | views  |
+| ------------------------------------ | ------------------ | ------ |
+| Les albums des Beatles               | Sgt. Pepper's…     | 5 175  |
+| Les lauréats du prix Turing          | Geoffrey Hinton    | 9 904  |
 | Les lauréats du prix Nobel de chimie | Irène Joliot-Curie | 15 138 |
-| Les lauréats de la médaille Fields | Grigori Perelman | 15 620 |
+| Les lauréats de la médaille Fields   | Grigori Perelman   | 15 620 |
 
 Inside one theme the ranking is mostly right but news-bent: Karl Deisseroth
-heads *physiologie ou médecine*, Francis Halzen sits third in *physique*,
-*The Phoenician Scheme* second for Wes Anderson. So no threshold on views
+heads _physiologie ou médecine_, Francis Halzen sits third in _physique_,
+_The Phoenician Scheme_ second for Wes Anderson. So no threshold on views
 decides which theme stays; a census does, and views only rank answers — over a
 window long enough to flatten a news week.
 
@@ -46,7 +46,7 @@ Read on the whole list, not from memory; the first pass flags, to confirm:
   médecine, d'économie; prix Turing; médaille Fields;
 - the prizes nobody outside the trade follows — prix Booker, Lion d'or, Ours
   d'or, Golden Globe du meilleur film dramatique;
-- painters whose *titles* the table does not know though it knows the painter
+- painters whose _titles_ the table does not know though it knows the painter
   — Turner, Hopper, Raphaël, Vélasquez, Brueghel, Rembrandt, Renoir, Matisse,
   Manet, Dalí; keep the ones with three household titles (Van Gogh, Monet,
   Léonard de Vinci, Picasso, Vermeer) — judged one by one;

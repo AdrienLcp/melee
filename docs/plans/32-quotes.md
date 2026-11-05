@@ -1,13 +1,13 @@
 # Stage 32 — quotes
 
-A rival party game ships a *where is that line from?* round. The question was
+A rival party game ships a _where is that line from?_ round. The question was
 whether it is a game of its own or a rubric of the quiz, and the answer is the
 one `game-catalogue.md` already gives for an answer mode: the pool, the
 countdown, the buzz, both answer modes, the speed bonus, the reveal and the
 board are the quiz's, unchanged. A famous line is a quiz question whose prompt
 is the line, whose answer is where it comes from and whose decoys are three
 places it could have come from. So it is a **ninth chip**, `quotes` —
-*Citations* in French, *Quotes* in English — and a table that ticks it alone
+_Citations_ in French, _Quotes_ in English — and a table that ticks it alone
 plays the round the rival sells.
 
 ## What was built
@@ -25,7 +25,7 @@ plays the round the rival sells.
   shows included), a video game, an ad — the answer is the brand — and a real
   person. The answer changes nature from row to row, so each authored row
   carries its `kind` and `quotes-source.ts` appends what to name to the line —
-  *Which film?*, *Who said it?*, *Which brand?* — because a typed answer
+  _Which film?_, _Who said it?_, _Which brand?_ — because a typed answer
   must know what it owes before four candidates are there to say.
 - **Hand-written lists**, `apps/server/scripts/quotes-fr.json` (457) and
   `quotes-en.json` (548), read into the bank build like any other source, so
@@ -40,8 +40,8 @@ plays the round the rival sells.
   the note.
 - **Text only.** A short quotation in text is a citation; a clip from a
   soundtrack is not ours to ship.
-- **`accepted` carries the franchise and the other language's title** — *Star
-  Wars* for *The Empire Strikes Back*, *The Godfather* for its Part III —
+- **`accepted` carries the franchise and the other language's title** — _Star
+  Wars_ for _The Empire Strikes Back_, _The Godfather_ for its Part III —
   because a table shouts the franchise, and a row never carries a sibling of
   its answer as a decoy, which is what would make that spelling a hedge.
 - **The bank's own credit is not on the credits page.** That page names the

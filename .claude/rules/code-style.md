@@ -51,7 +51,7 @@ three fields, eight combinations, four of them real, and a refusal from the
 previous query could sit under a fresh result.
 
 **Two independent facts stay two fields**, though. `view` and `SocketStatus` are
-not folded together, because *do I hold a snapshot* and *is the wire up* are
+not folded together, because _do I hold a snapshot_ and _is the wire up_ are
 orthogonal — and the combination a union would forbid, a live view under a
 reconnecting socket, is the one that keeps a network blink from ending a round.
 Fold them only when a combination is actually impossible.
@@ -121,10 +121,10 @@ and never escapes it.
 
 ## A `Result` succeeds with nothing, never with `undefined`
 
-`Result.success()` *is* the whole of a `Result<void, …>` — the success arm
+`Result.success()` _is_ the whole of a `Result<void, …>` — the success arm
 carries no `data` key at all. `Result.success(undefined)` builds the identical
 value with the absence spelled out, and `Result.failure(undefined)` builds a
-failure whose error *is* `undefined` — never the unknown error, which is what
+failure whose error _is_ `undefined` — never the unknown error, which is what
 writing it almost always meant.
 
 ## A failure is logged once

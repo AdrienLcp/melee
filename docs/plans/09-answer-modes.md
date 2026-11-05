@@ -11,12 +11,12 @@ and how fast you were is worth points.
 The pool, the audio, the countdown, the reveal, the scoreboard, the room and the
 seats are identical. What differs fits in a table:
 
-| | Buzzer (shipped) | Choice | Typed |
-|---|---|---|---|
-| Who acts | one player, the first | everyone, once each | everyone, once each |
-| Round ends on | the host's verdict | everyone answered, or the clip runs out | same |
-| Who decides | the host | the server, exactly | the server, fuzzily |
-| What scores | title and artist, 1 each | correct, plus speed | correct, plus speed |
+|               | Buzzer (shipped)         | Choice                                  | Typed               |
+| ------------- | ------------------------ | --------------------------------------- | ------------------- |
+| Who acts      | one player, the first    | everyone, once each                     | everyone, once each |
+| Round ends on | the host's verdict       | everyone answered, or the clip runs out | same                |
+| Who decides   | the host                 | the server, exactly                     | the server, fuzzily |
+| What scores   | title and artist, 1 each | correct, plus speed                     | correct, plus speed |
 
 So: `RoomSettings.answerMode: 'buzzer' | 'choice' | 'typed'`, one field in a
 schema that already exists. `buzzer` stays the default.
@@ -35,7 +35,7 @@ assume **all** of them act simultaneously, and that ripples:
 
 ## The anti-cheat rule needs restating, not relaxing
 
-Today: *a player is never sent the answer*. In choice mode a player is sent four
+Today: _a player is never sent the answer_. In choice mode a player is sent four
 candidates and one of them **is** the answer — that is the game, not a leak.
 
 The rule becomes: **a player is never told which one is right.** Concretely,
@@ -65,8 +65,8 @@ It goes in `packages/core/src/scoring/` with a test, and the test derives its
 fixture from the rule rather than from the implementation.
 
 **Left open:** in typed mode an answer can be half right, so "the first correct
-answer" needs a reading. The intended one is *the first player to score
-anything at all this round*, which keeps one rule across both modes. Confirm it
+answer" needs a reading. The intended one is _the first player to score
+anything at all this round_, which keeps one rule across both modes. Confirm it
 against a real round before writing it down as settled.
 
 ## Typed answers need a matcher, and it is a core rule

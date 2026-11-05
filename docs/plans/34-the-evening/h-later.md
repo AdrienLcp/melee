@@ -25,7 +25,7 @@ step that lands keeps its line here, dated, and loses its details.
    and `round.turn` names `teamIds` and `seatIds`. Both are roster rules on the
    round's stamp, drawn in `core/team/turn-seats.ts`; a duel is a set of one,
    and the wall answers in `byTeam` alone, since in solo or a duel the answer
-   is a seat's. The console offers the four under *Comment jouer*, two by two,
+   is a seat's. The console offers the four under _Comment jouer_, two by two,
    with what the chosen one does written under it.
 
 4. **Teams with no phone at all** — done 21/10/2026: a fifth kind of teams,
@@ -37,7 +37,7 @@ step that lands keeps its line here, dated, and loses its details.
 
 5. **French cities** — done 21/10/2026: `settings.game.places`
    (`countries` | `frenchCities`, defaulted so a remembered setup still
-   parses) under *À placer* in the round's settings, committed at once rather
+   parses) under _À placer_ in the round's settings, committed at once rather
    than on the launch like a source, since there is no pool to preview.
    `round.content.target` replaces `countryCode`, a city's point `null` until
    the reveal; the verdict carries its `target` because the tiers are read
@@ -46,12 +46,12 @@ step that lands keeps its line here, dated, and loses its details.
    France is a second geometry in `world-geometry.ts`, Lambert's parallels,
    cut to a rectangle with only its neighbours drawn. Protocol 34.
 
-6. **The screen-only evening** — done 21/10/2026, on proposal C: *Cet écran
-   est celui de la salle*, a switch in the menu stored per machine
+6. **The screen-only evening** — done 21/10/2026, on proposal C: _Cet écran
+   est celui de la salle_, a switch in the menu stored per machine
    (`melee:room-screen`), draws the console as the wall — the answers folded,
    no copy, share, seat form or remove cross on the stage, the board track
    under it — with the phase's one press bottom right and everything else in
-   *Animer*, a drawer from the start edge past the split and a sheet below it
+   _Animer_, a drawer from the start edge past the split and a sheet below it
    (`presentation/components/drawer.tsx`). The phase components split
    through `ActionSlot` (`features/host/action-slot.tsx`) rather than being
    written twice; the drawer carries the rest of the phase, the hold, the

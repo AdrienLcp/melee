@@ -18,18 +18,18 @@ behind each guarantee are in
 
 ## The five guarantees, and what enforces each
 
-| Guarantee | Enforced by | Where |
-|---|---|---|
-| A player is never told the answer early | Role-scoped message unions, plus a schema strip on the way out | `server-message.ts`, `codec.ts` |
-| Buzz order cannot be forged | The server stamps arrival time; `player.buzz` carries no timestamp | `client-message.ts`, `socket-handler.ts` |
-| A client never holds half a state | One `room.updated` snapshot, never a delta | `outbound.ts` |
-| Countdowns land together on every device | Server clock, estimated per device from a ping/pong handshake | `clock-sync.ts` |
-| A reaction measures the press, not the Wi-Fi | The stimulus is a server timestamp every device schedules locally, defended by a floor rather than by hiding it | `core/reflex/reaction.ts` |
+| Guarantee                                    | Enforced by                                                                                                     | Where                                    |
+| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| A player is never told the answer early      | Role-scoped message unions, plus a schema strip on the way out                                                  | `server-message.ts`, `codec.ts`          |
+| Buzz order cannot be forged                  | The server stamps arrival time; `player.buzz` carries no timestamp                                              | `client-message.ts`, `socket-handler.ts` |
+| A client never holds half a state            | One `room.updated` snapshot, never a delta                                                                      | `outbound.ts`                            |
+| Countdowns land together on every device     | Server clock, estimated per device from a ping/pong handshake                                                   | `clock-sync.ts`                          |
+| A reaction measures the press, not the Wi-Fi | The stimulus is a server timestamp every device schedules locally, defended by a floor rather than by hiding it | `core/reflex/reaction.ts`                |
 
 ### The stimulus happens locally, and the floor is what pays for it
 
 The fifth is the one the shelf grew rather than opened with, and the only one a
-game had to be built to need. Stamping arrival makes *who was first*
+game had to be built to need. Stamping arrival makes _who was first_
 unforgeable, but arrival is not reaction: reaction is arrival minus the moment
 the screen changed. Broadcast that moment and the race is won by the best link
 in the room, so `round.content.flipsAt` travels **in advance** and every device
@@ -51,7 +51,7 @@ before a reveal. The wall, the room's own screen, gets the clip's URL and never
 the answer, by the same means.
 
 That is the type-level half. The runtime half is `encodeChecked`, which encodes
-*through* the schema so Zod drops unknown keys; `codec.test.ts` fails when the
+_through_ the schema so Zod drops unknown keys; `codec.test.ts` fails when the
 strip is removed. **Send every player frame with
 `encodeChecked(playerServerMessageSchema, …)`**, never `JSON.stringify` or bare
 `encodeMessage`.
@@ -63,7 +63,7 @@ is: the blind test judges two independent claims, and everything else judges
 one. `verdictKindFor` says which a game takes, and `applyVerdict` checks it
 before scoring — a `halves` verdict over a bare buzzer would pay two points for
 one charade, and a host socket is as forgeable as a player's. `yourVerdict` on
-the room view is the `halves` arm alone: *banking* is what having two halves
+the room view is the `halves` arm alone: _banking_ is what having two halves
 means, and a game judged on one claim has no half to hold.
 
 ### The buzz carries no timestamp, deliberately
@@ -76,7 +76,7 @@ Ordering is decided by when the frame reaches the server.
 
 `host.updateSettings` is accepted in every phase, because a party is set up while
 it runs — the countdown, the round count, the answer mode, the round duration,
-the answer window and the difficulty all land on the round *after* the one on
+the answer window and the difficulty all land on the round _after_ the one on
 screen. That is the point of the fold living in the host's footer rather than
 inside the lobby.
 
@@ -87,7 +87,7 @@ every read that concerns the round in play goes through that copy: scoring
 never be paid at a pick's rate), who may buzz or answer, when everyone is done,
 the open phase's clock, and every screen drawing the round. **A screen drawing
 the round reads `view.round`, never `view.settings`** for those two; the
-settings are what the *next* round will be.
+settings are what the _next_ round will be.
 
 One cannot wait, and the server refuses it while `isRoundInPlay(room.phase)`:
 `game.kind`, because `round.content` stays on the arm the screens are already
@@ -99,7 +99,7 @@ guard on the socket is the rule**.
 
 `answerWindowMs` is the exception to the stamp: it is read from the room as a
 buzz lands and stamped into the buzz as `expiresAt`, so moving it decides the
-next *floor* rather than the next round (`floorWindowMs`). The seat rule follows
+next _floor_ rather than the next round (`floorWindowMs`). The seat rule follows
 the stamp too: a seated host who switches to `buzzer` mid-round keeps playing
 the round in front of them, and sits the next one out to judge it, seat and
 score kept (`domain/room/console-seat.ts`).

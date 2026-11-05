@@ -24,7 +24,7 @@ café objects carrying colour and shape, never drinks.
 **Story.** Walk in, read the code chalked over the bar, scan the coaster, sit
 down; the bell decides who speaks, the tally board who wins.
 
-**The name.** It is the obvious theme for a name that comes from *taverne*, and
+**The name.** It is the obvious theme for a name that comes from _taverne_, and
 that is the risk: the line between a room and a costume is thin. Restraint is
 the whole direction.
 
@@ -149,15 +149,15 @@ product token.
 
 ### Type
 
-| Face | Role | Never |
-|---|---|---|
-| **Shrikhand** (400) | sign paint: the wordmark on the hanging sign, big headings, the reveal's painted title, points, *X a la main* | body text |
-| **Cabin Sketch** (700) | large chalk: the room code, the countdown digit, game names on the *ardoise du jour*, board titles, scores on the tally board | anything under ~30px |
-| **Kalam** (400, 700) | small chalk: the category over the question, labels on a slate, game taglines, names and ranks on the tally board, *c'était…* | a question, a choice, an instruction |
-| **Bitter** (400–800, italic 400–600) | everything read: the question, the four choices, buttons, names on coasters, form fields, the menu | — |
+| Face                                 | Role                                                                                                                          | Never                                |
+| ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| **Shrikhand** (400)                  | sign paint: the wordmark on the hanging sign, big headings, the reveal's painted title, points, _X a la main_                 | body text                            |
+| **Cabin Sketch** (700)               | large chalk: the room code, the countdown digit, game names on the _ardoise du jour_, board titles, scores on the tally board | anything under ~30px                 |
+| **Kalam** (400, 700)                 | small chalk: the category over the question, labels on a slate, game taglines, names and ranks on the tally board, _c'était…_ | a question, a choice, an instruction |
+| **Bitter** (400–800, italic 400–600) | everything read: the question, the four choices, buttons, names on coasters, form fields, the menu                            | —                                    |
 
 **Chalk never carries question or choice text**, and never a long line: the
-question is chalk-*coloured* Bitter on the slate, 600 weight, a 1px soft glow.
+question is chalk-_coloured_ Bitter on the slate, 600 weight, a 1px soft glow.
 All four faces are on Google Fonts in the mock and must be **self-hosted**
 (`public/fonts`, `_fonts.sass`, latin + latin-ext subsets) like stage 29's —
 four families is two more than today, so measure the first-paint cost.
@@ -174,8 +174,8 @@ four families is two more than today, so measure the first-paint cost.
   the round menu button, outlined secondary buttons (`inset 0 0 0 3px
   --brass`), the speed bonus `+2`, the pin on the reveal's sleeve, the bell.
 - **Enamel plaques** — green `--enamel`, a double inset keyline: the primary
-  button (*Créer une salle*, *Ouvrir la première manche*) and the round plaque
-  in the player chrome (*Manche 4/10*).
+  button (_Créer une salle_, _Ouvrir la première manche_) and the round plaque
+  in the player chrome (_Manche 4/10_).
 - **Coasters** (round) — a person. Their colour, card noise, a top-left sheen,
   a printed ring at 6% / 7.5% of the size, the initial in Shrikhand. Tilted
   −5° / +4° alternately on the counter.
@@ -193,47 +193,47 @@ four families is two more than today, so measure the first-paint cost.
 
 ### The object map
 
-| Product thing | Taverne object |
-|---|---|
-| Front door `/:locale` | A **hanging painted sign** on a brass bracket under a lamp (*Melee*, *Jeux pour toute la tablée*), the two promises below it (*Cinq jeux pour toute la soirée.* as the heading, *On joue en quelques secondes* leading the pitch), the enamel *create* beside a brass-ringed *join with a code* |
-| Game picker (front door and lobby) | **L'ardoise du jour** — a slate listing the five games, name in large chalk, tagline in small chalk; the chosen one circled in yellow chalk |
-| Room code | Chalked huge on the **big slate over the bar** (172px at 1280×720), *La salle* above, *Scannez le sous-bock, ou tapez le code.* below |
-| QR code | Printed on a **round card coaster** leaning on the slate (−6°), ringed in mat-a with *SCANNEZ POUR VOUS ASSEOIR* set round it; the QR stays dark on light in both palettes |
-| Players / roster | **Coasters on the counter** — a wood band along the foot of the console, brass rail on top; name under each; *tient la salle* under the host |
-| Empty lobby | Three dashed rings on an empty counter, *Personne à table pour l'instant*, the code spelled `K · W · R · H`, a brass *Prendre une place*; the start button disabled with its reason |
-| The question | Chalk-coloured Bitter on a **slate**, the category in Kalam over a chalk underline |
-| The four choices | **Square beer mats** with a shape each |
-| Player chrome | **One line**: enamel round plaque, own coaster + score + *pts*, stopwatch + time, round brass menu button at the end |
-| Buzz | The **counter bell**, and the whole room goes brass: *Inès a la main* in sign paint |
-| Reveal (blind test) | The **sleeve pinned to the wall** at its 250px (brass pin, −2.5°), *Manche 4/10, c'était…* in Kalam, the title painted in Shrikhand, the artist in Bitter; the scorers' coasters on the counter with what they got and `2 +2` (answer, then the speed bonus in brass) |
-| Standings | The **tally board** — a slate, *Le classement*, rank, name, tally marks, score in large chalk, the round's delta in yellow, the leader circled in pink |
-| Final board | The tally board with the **winner's name chalked large and circled**, *14 points, bravo !* |
+| Product thing                      | Taverne object                                                                                                                                                                                                                                                                                  |
+| ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Front door `/:locale`              | A **hanging painted sign** on a brass bracket under a lamp (_Melee_, _Jeux pour toute la tablée_), the two promises below it (_Cinq jeux pour toute la soirée._ as the heading, _On joue en quelques secondes_ leading the pitch), the enamel _create_ beside a brass-ringed _join with a code_ |
+| Game picker (front door and lobby) | **L'ardoise du jour** — a slate listing the five games, name in large chalk, tagline in small chalk; the chosen one circled in yellow chalk                                                                                                                                                     |
+| Room code                          | Chalked huge on the **big slate over the bar** (172px at 1280×720), _La salle_ above, _Scannez le sous-bock, ou tapez le code._ below                                                                                                                                                           |
+| QR code                            | Printed on a **round card coaster** leaning on the slate (−6°), ringed in mat-a with _SCANNEZ POUR VOUS ASSEOIR_ set round it; the QR stays dark on light in both palettes                                                                                                                      |
+| Players / roster                   | **Coasters on the counter** — a wood band along the foot of the console, brass rail on top; name under each; _tient la salle_ under the host                                                                                                                                                    |
+| Empty lobby                        | Three dashed rings on an empty counter, _Personne à table pour l'instant_, the code spelled `K · W · R · H`, a brass _Prendre une place_; the start button disabled with its reason                                                                                                             |
+| The question                       | Chalk-coloured Bitter on a **slate**, the category in Kalam over a chalk underline                                                                                                                                                                                                              |
+| The four choices                   | **Square beer mats** with a shape each                                                                                                                                                                                                                                                          |
+| Player chrome                      | **One line**: enamel round plaque, own coaster + score + _pts_, stopwatch + time, round brass menu button at the end                                                                                                                                                                            |
+| Buzz                               | The **counter bell**, and the whole room goes brass: _Inès a la main_ in sign paint                                                                                                                                                                                                             |
+| Reveal (blind test)                | The **sleeve pinned to the wall** at its 250px (brass pin, −2.5°), _Manche 4/10, c'était…_ in Kalam, the title painted in Shrikhand, the artist in Bitter; the scorers' coasters on the counter with what they got and `2 +2` (answer, then the speed bonus in brass)                           |
+| Standings                          | The **tally board** — a slate, _Le classement_, rank, name, tally marks, score in large chalk, the round's delta in yellow, the leader circled in pink                                                                                                                                          |
+| Final board                        | The tally board with the **winner's name chalked large and circled**, _14 points, bravo !_                                                                                                                                                                                                      |
 
 ### Phases are read by light
 
 The phase stays legible across a room through **the light and the object on the
 wall**, not a field of saturated colour:
 
-| Phase | What the room sees |
-|---|---|
-| `lobby` | One lamp low (`brightness(0.82)`), the code on the slate |
-| `countdown` | The lamps come up; one chalk digit, yellow, on a slate |
-| `playing` | Full light: the slate and the mats |
-| `buzzed` | The bell rings and the **whole room turns brass** (`--brass` ground, `--on-brass` ink) |
-| `revealed` | **Green enamel** ground; the right mat alone at full strength, the others at 25% |
-| `finished` | The tally board, the winner circled |
+| Phase       | What the room sees                                                                     |
+| ----------- | -------------------------------------------------------------------------------------- |
+| `lobby`     | One lamp low (`brightness(0.82)`), the code on the slate                               |
+| `countdown` | The lamps come up; one chalk digit, yellow, on a slate                                 |
+| `playing`   | Full light: the slate and the mats                                                     |
+| `buzzed`    | The bell rings and the **whole room turns brass** (`--brass` ground, `--on-brass` ink) |
+| `revealed`  | **Green enamel** ground; the right mat alone at full strength, the others at 25%       |
+| `finished`  | The tally board, the winner circled                                                    |
 
 This **repaints the ground** in two phases, which stage 29 deliberately stopped
 doing (its phase sets `--phase-ink` for the score track only). It is closer to
-the pre-29 world's *the phase is the colour*, kept to two moments.
+the pre-29 world's _the phase is the colour_, kept to two moments.
 
 ### Measured fit (the mock, choice screen)
 
-| Viewport | Overflow | Smallest choice |
-|---|---|---|
-| 390×844, 192-char prompt | 0px | 24.2px |
-| 812×375, landscape, slate beside a 2×2 of mats | 0px | 17.8px |
-| 320×568, four ~160-char choices | 0px | 14px (the floor) |
+| Viewport                                       | Overflow | Smallest choice  |
+| ---------------------------------------------- | -------- | ---------------- |
+| 390×844, 192-char prompt                       | 0px      | 24.2px           |
+| 812×375, landscape, slate beside a 2×2 of mats | 0px      | 17.8px           |
+| 320×568, four ~160-char choices                | 0px      | 14px (the floor) |
 
 Sizes are `k / sqrt(length)` between a floor and a box cap, as stage 29's are:
 `--kq: min(71cqi, 33cqh)`, `--capq: min(7.4cqi, 4cqh)` for the prompt, `--kc:
@@ -245,11 +245,11 @@ min(34cqi, 16cqh)`, `--capc: min(7cqi, 3.6cqh)` for the mats, floors 15px and
 ### Honest risks
 
 - **Costume.** Every object added is a step toward an RPG inn. Rule for the
-  build: an object earns its place by doing a job (the bell *is* the buzz, the
-  coaster *is* the person); none is decoration.
-- **"L'Ardoise" collides.** The slate game is called *L'Ardoise* in French
-  (`slate.name`), and in Taverne *every* question sits on a slate and the
-  picker is *l'ardoise du jour*. Decision 2 below: the game keeps the word.
+  build: an object earns its place by doing a job (the bell _is_ the buzz, the
+  coaster _is_ the person); none is decoration.
+- **"L'Ardoise" collides.** The slate game is called _L'Ardoise_ in French
+  (`slate.name`), and in Taverne _every_ question sits on a slate and the
+  picker is _l'ardoise du jour_. Decision 2 below: the game keeps the word.
 - **Contrast is unmeasured.** The mock uses `--brass` as text on `--room` (the
   seat count) — about 0.72 on 0.86 lightness, which will fail 4.5:1 in the
   light palette; use `--brass-lo` there. `--room-muted`, `--chalk-dim` on slate
@@ -258,7 +258,7 @@ min(34cqi, 16cqh)`, `--capc: min(7cqi, 3.6cqh)` for the mats, floors 15px and
 - **Rendering cost.** Grain, chalk noise and lamp pools are layered gradients
   and SVG turbulence filters on every screen; measure paint on a low-end phone
   and keep `background-attachment: fixed` off mobile if it janks.
-- **Chalk fonts at small sizes** are hard to read; the type table's *never*
+- **Chalk fonts at small sizes** are hard to read; the type table's _never_
   column is the guard.
 - **Not drawn in the mock**: the wall, the reflex race (wait, flip, finishing
   order), the slate game's sheet and marking, the buzzer and typed screens, the
@@ -269,16 +269,16 @@ min(34cqi, 16cqh)`, `--capc: min(7cqi, 3.6cqh)` for the mats, floors 15px and
 ## What stays and what changes
 
 **Only presentation changes.** Protocol, server, `packages/core`, every
-behaviour, every route and every **i18n key** stay. Copy may be *re-worded*
+behaviour, every route and every **i18n key** stay. Copy may be _re-worded_
 inside existing keys (both dictionaries); a new key is added only for a string
 that did not exist (e.g. a coaster's ring text). The no-scroll contract of
 stage 29 §2 and `e2e/choice-fits.spec.ts` stay and are the gate.
 
 **The copy no longer speaks tavern.** On 2026-10-05 the shipped dictionaries were
-moved off the tavern vocabulary to match the box world: *l'aubergiste* /
-*the innkeeper* became *l'hôte* / *the host*, *la tournée* became *la manche*,
-the doors (*pousser la porte*, *walk in*, *pull up a chair*) became *rejoindre* /
-*join*, and *lever la table* / *clear the table* became *fermer* / *close*. The
+moved off the tavern vocabulary to match the box world: _l'aubergiste_ /
+_the innkeeper_ became _l'hôte_ / _the host_, _la tournée_ became _la manche_,
+the doors (_pousser la porte_, _walk in_, _pull up a chair_) became _rejoindre_ /
+_join_, and _lever la table_ / _clear the table_ became _fermer_ / _close_. The
 table stays, as the people playing. So the copy this stage wants is part of its
 presentation work: re-wording those keys, in both dictionaries and the voice
 table of `.claude/rules/i18n.md`, is in scope here — and decision 1 settles it:
@@ -295,31 +295,31 @@ Mapped against stage 29 **as of 2026-10-04, while it was still moving**. The
 first session re-maps every row against stage 29 as shipped before touching a
 file; a row that no longer matches is corrected here first.
 
-| Stage-29 seam | Taverne | Kind |
-|---|---|---|
-| `styles/_tokens.sass` — board, track, chipboard, paper, socket, tiles, spines, pawns, primary, `--phase-ink` | room, wood, frame, slate, chalk, brass, enamel, card, mats, coasters; keep the `light-dark()` pair shape and the `--field` / `--ink` contract; phase rules re-pointed to light (lobby dim, buzzed brass ground, revealed enamel ground) | re-skin + rewrite |
-| `styles/_fonts.sass`, `public/fonts/` — Bricolage, Atkinson | Shrikhand, Cabin Sketch, Kalam, Bitter, self-hosted; delete the old two | replace |
-| `styles/_piece.sass` (`piece`, `pressable`, `card`) | `wood`, `slate`, `mat`, `coaster`, `enamel`, `brass` materials | replace |
-| `styles/_control.sass` (`filled` coral, `outlined` piece) | `filled` = enamel plaque, `outlined` = brass ring | re-skin |
-| `styles/_box-lid.sass` | the hanging painted sign (wood, brass keyline, bracket) | replace |
-| `features/home/game-spines.tsx` | *l'ardoise du jour* on the front door; a game's own door `/:locale/:game` = the sign with that game chalked under it | replace |
-| `components/box-shelf.tsx` (lobby picker) | the same *ardoise du jour*, circled choice — one component for both doors | replace + merge |
-| `components/pawn.tsx`, `--pawn-N`, `--on-pawn-N` | `Coaster` (initial in Shrikhand), `--coaster-N` | replace, rename |
-| `components/answer-tile.tsx`, `tile-mark.tsx`, `--tile-N`, `--tile-mark-N` | the beer mat; `tile-mark.tsx` keeps its four shapes | replace |
-| `components/score-track.tsx` (ring, `--track-room`, `--layout-padding`) | **removed**: the tally board carries the standings and the light carries the phase. Every `100dvh - chrome` budget that divides `--track-room` is re-pointed — the riskiest row. *Done ahead of this stage, on 2026-10-05: the ring, `--track-room` and the raised padding are gone and `choice-fits.spec.ts` stayed green* | ~~remove~~ done |
-| `trackInkHolderOf` (track takes the floor holder's / winner's colour) | the holder's coaster rings the bell; the winner is circled — the rule stays, its consumer changes. *The helper went with the track on 2026-10-05; the new consumer reads `round.activeBuzz` and `winnersOf` itself* | re-consume |
-| `components/countdown.tsx` (paper token) | one chalk digit on a slate | re-skin |
-| `features/host/playing-stage.tsx`, `printed-choices.tsx`, `answered-pawns.tsx` | the slate, four printed mats, coasters standing for an answer in | re-skin |
-| `features/host/reveal-panel.tsx`, `_boxed-standings.sass`, `standings.tsx`, `scoreboard.tsx` | pinned sleeve, painted title, scorers' coasters with `2 +2`; tally board | re-skin + new tally marks |
-| `features/host/final-board.tsx` | winner chalked and circled on the tally board | re-skin |
-| `features/host/verdict-panel.tsx`, floor clock | bell, brass room, holder's coaster; verdicts as enamel (right) and brass-ring (missed) | re-skin |
-| `features/host/lobby-stage.tsx`, `room-invitation.tsx` | big slate with the code, QR coaster, counter of coasters, empty-counter state | re-skin |
-| `features/host/reflex-stage.tsx`, `reaction-board.tsx` | not in the mock — design it: likely the lamp going out and coming on as the flip | design |
-| `features/host/slate-stages.tsx`, `features/player/slate-sheet.tsx` | not in the mock — and see decision 2 | design |
-| `features/player/*` (buzzer, typed, round board) | not in the mock — the bell is the buzzer's obvious object | design |
-| `app-menu.tsx` trigger | round brass button | re-skin |
-| `index.html` `theme-color` metas, `favicon.svg`, `apple-touch-icon.png`, `og.png` | `--room` in both palettes; a new mark | redraw |
-| `apps/game/DESIGN.md` | rewritten for Taverne | rewrite |
+| Stage-29 seam                                                                                                | Taverne                                                                                                                                                                                                                                                                                                                     | Kind                      |
+| ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| `styles/_tokens.sass` — board, track, chipboard, paper, socket, tiles, spines, pawns, primary, `--phase-ink` | room, wood, frame, slate, chalk, brass, enamel, card, mats, coasters; keep the `light-dark()` pair shape and the `--field` / `--ink` contract; phase rules re-pointed to light (lobby dim, buzzed brass ground, revealed enamel ground)                                                                                     | re-skin + rewrite         |
+| `styles/_fonts.sass`, `public/fonts/` — Bricolage, Atkinson                                                  | Shrikhand, Cabin Sketch, Kalam, Bitter, self-hosted; delete the old two                                                                                                                                                                                                                                                     | replace                   |
+| `styles/_piece.sass` (`piece`, `pressable`, `card`)                                                          | `wood`, `slate`, `mat`, `coaster`, `enamel`, `brass` materials                                                                                                                                                                                                                                                              | replace                   |
+| `styles/_control.sass` (`filled` coral, `outlined` piece)                                                    | `filled` = enamel plaque, `outlined` = brass ring                                                                                                                                                                                                                                                                           | re-skin                   |
+| `styles/_box-lid.sass`                                                                                       | the hanging painted sign (wood, brass keyline, bracket)                                                                                                                                                                                                                                                                     | replace                   |
+| `features/home/game-spines.tsx`                                                                              | _l'ardoise du jour_ on the front door; a game's own door `/:locale/:game` = the sign with that game chalked under it                                                                                                                                                                                                        | replace                   |
+| `components/box-shelf.tsx` (lobby picker)                                                                    | the same _ardoise du jour_, circled choice — one component for both doors                                                                                                                                                                                                                                                   | replace + merge           |
+| `components/pawn.tsx`, `--pawn-N`, `--on-pawn-N`                                                             | `Coaster` (initial in Shrikhand), `--coaster-N`                                                                                                                                                                                                                                                                             | replace, rename           |
+| `components/answer-tile.tsx`, `tile-mark.tsx`, `--tile-N`, `--tile-mark-N`                                   | the beer mat; `tile-mark.tsx` keeps its four shapes                                                                                                                                                                                                                                                                         | replace                   |
+| `components/score-track.tsx` (ring, `--track-room`, `--layout-padding`)                                      | **removed**: the tally board carries the standings and the light carries the phase. Every `100dvh - chrome` budget that divides `--track-room` is re-pointed — the riskiest row. _Done ahead of this stage, on 2026-10-05: the ring, `--track-room` and the raised padding are gone and `choice-fits.spec.ts` stayed green_ | ~~remove~~ done           |
+| `trackInkHolderOf` (track takes the floor holder's / winner's colour)                                        | the holder's coaster rings the bell; the winner is circled — the rule stays, its consumer changes. _The helper went with the track on 2026-10-05; the new consumer reads `round.activeBuzz` and `winnersOf` itself_                                                                                                         | re-consume                |
+| `components/countdown.tsx` (paper token)                                                                     | one chalk digit on a slate                                                                                                                                                                                                                                                                                                  | re-skin                   |
+| `features/host/playing-stage.tsx`, `printed-choices.tsx`, `answered-pawns.tsx`                               | the slate, four printed mats, coasters standing for an answer in                                                                                                                                                                                                                                                            | re-skin                   |
+| `features/host/reveal-panel.tsx`, `_boxed-standings.sass`, `standings.tsx`, `scoreboard.tsx`                 | pinned sleeve, painted title, scorers' coasters with `2 +2`; tally board                                                                                                                                                                                                                                                    | re-skin + new tally marks |
+| `features/host/final-board.tsx`                                                                              | winner chalked and circled on the tally board                                                                                                                                                                                                                                                                               | re-skin                   |
+| `features/host/verdict-panel.tsx`, floor clock                                                               | bell, brass room, holder's coaster; verdicts as enamel (right) and brass-ring (missed)                                                                                                                                                                                                                                      | re-skin                   |
+| `features/host/lobby-stage.tsx`, `room-invitation.tsx`                                                       | big slate with the code, QR coaster, counter of coasters, empty-counter state                                                                                                                                                                                                                                               | re-skin                   |
+| `features/host/reflex-stage.tsx`, `reaction-board.tsx`                                                       | not in the mock — design it: likely the lamp going out and coming on as the flip                                                                                                                                                                                                                                            | design                    |
+| `features/host/slate-stages.tsx`, `features/player/slate-sheet.tsx`                                          | not in the mock — and see decision 2                                                                                                                                                                                                                                                                                        | design                    |
+| `features/player/*` (buzzer, typed, round board)                                                             | not in the mock — the bell is the buzzer's obvious object                                                                                                                                                                                                                                                                   | design                    |
+| `app-menu.tsx` trigger                                                                                       | round brass button                                                                                                                                                                                                                                                                                                          | re-skin                   |
+| `index.html` `theme-color` metas, `favicon.svg`, `apple-touch-icon.png`, `og.png`                            | `--room` in both palettes; a new mark                                                                                                                                                                                                                                                                                       | redraw                    |
+| `apps/game/DESIGN.md`                                                                                        | rewritten for Taverne                                                                                                                                                                                                                                                                                                       | rewrite                   |
 
 ### Re-mapped against stage 29 as shipped (2026-10-05)
 
@@ -382,14 +382,14 @@ Sized one session each; order matters for the first two.
    coaster, the one-line chrome. `choice-fits.spec.ts` green over its sixteen
    viewports — this is the stage's hard gate, and it is re-run by every session
    after.
-3. ~~**Remove the score track**~~ *(done ahead, 2026-10-05)* and re-budget every stage that divided
+3. ~~**Remove the score track**~~ _(done ahead, 2026-10-05)_ and re-budget every stage that divided
    `--track-room`; lobby (big slate, QR coaster, counter, empty state) and the
-   *ardoise du jour* picker.
+   _ardoise du jour_ picker.
 4. **The round on the console and wall**: countdown, playing, buzzed (bell,
    brass room), reveal (sleeve, scorers, tally board), final board.
 5. **What the mock did not draw**: reflex, the slate game, player buzzer and
    typed screens, the menu, recovery and refused states.
-6. **The front door and the finish**: sign, promises, *ardoise du jour*,
+6. **The front door and the finish**: sign, promises, _ardoise du jour_,
    `/:locale/:game`, favicon and `og.png`; `DESIGN.md` rewritten; impeccable's
    finish review; `PRODUCT.md` if the product's voice changed.
 
@@ -407,12 +407,12 @@ Sized one session each; order matters for the first two.
 ## Decided by Adrien, 2026-10-05
 
 1. **The world stays visual.** The copy keeps today's neutral wording
-   (*rejoindre*, *l'hôte*, *la manche*); no string says *taverne*, *bistrot* or
-   *comptoir*. Restraint is the direction, and the words are where a costume
+   (_rejoindre_, _l'hôte_, _la manche_); no string says _taverne_, _bistrot_ or
+   _comptoir_. Restraint is the direction, and the words are where a costume
    shows first.
 2. **L'Ardoise keeps its name and its slate.** A slate game on a slate is right;
    if anything moves, it is the rest. Where another object reads as well for
-   the question or the game picker (*l'ardoise du jour*), the build uses it;
+   the question or the game picker (_l'ardoise du jour_), the build uses it;
    slates everywhere is accepted if nothing does. Decided in session 1, with
    the picker's object.
 3. **Neutral shapes on the mats**, not card suits — a suit set has four members
@@ -439,5 +439,5 @@ their hand. Its touch icon centres it on `--walnut` (`#30180a`).
 </svg>
 ```
 
-The slate (a chalk *T* in an oak frame) and the counter bell on the green
+The slate (a chalk _T_ in an oak frame) and the counter bell on the green
 enamel plaque are on the same page, if the coaster loses.

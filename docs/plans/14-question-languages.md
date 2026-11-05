@@ -15,14 +15,14 @@ object in every way that decided the first one: **CC BY-SA 4.0**, a bundled
 asset rather than a service, and `incorrect_answers` carrying exactly three
 candidates on every `type: multiple` row — so choice mode is free here too.
 
-| | OpenQuizzDB (fr) | Open Trivia DB (en) |
-|---|---|---|
-| Licence | CC BY-SA 4.0 | CC BY-SA 4.0 |
-| Author | Philippe Bresoux | PIXELTAIL GAMES LLC |
-| Banked | 1 800 | **4 506** |
-| Decoys | 3, checked per row | 3, checked per row |
-| Anecdote | 1 438 of 1 800 | **none** |
-| Adult rating | 92 rows | **none** |
+|              | OpenQuizzDB (fr)   | Open Trivia DB (en) |
+| ------------ | ------------------ | ------------------- |
+| Licence      | CC BY-SA 4.0       | CC BY-SA 4.0        |
+| Author       | Philippe Bresoux   | PIXELTAIL GAMES LLC |
+| Banked       | 1 800              | **4 506**           |
+| Decoys       | 3, checked per row | 3, checked per row  |
+| Anecdote     | 1 438 of 1 800     | **none**            |
+| Adult rating | 92 rows            | **none**            |
 
 **[OpenTriviaQA](https://github.com/uberspot/OpenTriviaQA) was measured and
 rejected**, and it is worth recording why because it wins on every number:
@@ -65,14 +65,14 @@ and collapses the handful of questions filed under two rubrics.
 
 Folded onto the six categories a host picks from:
 
-| | fr | en |
-|---|---|---|
-| arts | 728 (40%) | **2 483 (55%)** |
-| everyday | 588 (33%) | 446 (10%) |
-| science | 160 (9%) | 631 (14%) |
-| geography | 156 (9%) | 320 (7%) |
-| sport | 116 (6%) | 160 (4%) |
-| history | 52 (3%) | 466 (10%) |
+|           | fr        | en              |
+| --------- | --------- | --------------- |
+| arts      | 728 (40%) | **2 483 (55%)** |
+| everyday  | 588 (33%) | 446 (10%)       |
+| science   | 160 (9%)  | 631 (14%)       |
+| geography | 156 (9%)  | 320 (7%)        |
+| sport     | 116 (6%)  | 160 (4%)        |
+| history   | 52 (3%)   | 466 (10%)       |
 
 Nine of OpenTDB's twenty-four rubrics are Entertainment, and video games alone
 are 1 017 rows — a fifth of the English bank.
@@ -98,7 +98,7 @@ Three things were settled with Adrien before any of it was built, and they are
 the whole design:
 
 1. **It is a room setting, not a locale.** Stage 12 already decided this, for a
-   reason that has not moved: the interface locale is stored per *device*, so two
+   reason that has not moved: the interface locale is stored per _device_, so two
    players in one room can hold different ones, and drawing from them would deal
    each phone its own question.
 2. **It defaults to the host's interface language**, which is the only evidence
@@ -126,7 +126,7 @@ stayed in core.
 
 **The door carries the shell's fact, not the game's.** Sending
 `questionLanguage` would have been one field cheaper and put a quiz setting on
-the request that opens *any* room; what the server is told is what the host
+the request that opens _any_ room; what the server is told is what the host
 reads, and each game decides what to do with it.
 
 It is **defaulted rather than required**, because this door has no version
@@ -142,7 +142,7 @@ posts. `PROTOCOL_VERSION` is therefore unchanged — no peer can mis-read a fram
   nothing upstream is flagged, so **the switch is not shown there** — the same
   rule the answer-mode strip already follows when a game offers one mode: a
   control that keeps its promise and changes nothing is worse than no control.
-  Its *value* is left alone rather than reset, so a host who turned it on in
+  Its _value_ is left alone rather than reset, so a host who turned it on in
   French still has it on when they come back.
 
   `hasAdultContent` in `@melee/core/quiz/adult-content` is the claim the
@@ -167,7 +167,7 @@ what both upstreams produce, and one module each — and the French half rebuild
 from `.cache/` in a second, which is what proves the split. 246 tests.
 
 `question-bank.test.ts` lost `[bank] has nothing to serve in a language it does
-not hold`, which was a guard on a *decision* rather than on a rule, and gained
+not hold`, which was a guard on a _decision_ rather than on a rule, and gained
 `[bank] stays inside the language the room is playing`. That swap is the stage in
 one line.
 

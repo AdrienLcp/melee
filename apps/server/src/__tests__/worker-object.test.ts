@@ -64,7 +64,7 @@ const testConfig = ({
   main: string
   noBundle: boolean
 }) => ({
-  compatibility_date: '2026-09-01',
+  compatibility_date: '2026-11-05',
   compatibility_flags: ['nodejs_compat'],
   durable_objects: {
     bindings: [

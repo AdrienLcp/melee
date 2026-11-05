@@ -100,7 +100,7 @@ mocked at its two exported functions:
   reveal**, asserted over every frame both phones received
 
 That last one is the test to keep honest. The first version of it filtered the
-transcript *by the field it was testing*, so a mutation that leaked the track
+transcript _by the field it was testing_, so a mutation that leaked the track
 into every frame also removed every frame from the check — and it passed. It now
 cuts the window by arrival order, and the mutation turns it red.
 

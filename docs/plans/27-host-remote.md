@@ -1,14 +1,14 @@
 # Stage 27 — The wall
 
-**Done.** Both sessions landed in one sitting; read *What the build disagreed
-with* at the end first.
+**Done.** Both sessions landed in one sitting; read _What the build disagreed
+with_ at the end first.
 
 Asked while trying the slate: run the room from **my phone**, and let the
 computer's screen show only what the room should see.
 
 ## The reframe
 
-The first draft of this stage split the host into a wall and a *remote*, both
+The first draft of this stage split the host into a wall and a _remote_, both
 holding the token. Adrien turned it around while it was being planned: **the host
 can already be a phone.** Nothing about the console assumes a big screen, so
 there is no remote to invent. What is missing is the other half — a **wall**: a
@@ -45,15 +45,15 @@ surface.
   fine: a player scanning it holds no token, so it pairs nothing. Adrien's first
   pick was a one-use QR shown by the host — it does not survive the case that
   motivates the stage, because a laptop plugged into a TV cannot scan anything.
-- **Same browser, no pairing.** The menu's *Project* link opens `/wall/:code` in
+- **Same browser, no pairing.** The menu's _Project_ link opens `/wall/:code` in
   a new tab; the token is already in `melee:host-tokens`.
 - **The wall is the speaker whenever it is there.** `isWallConnected` on the
   host view tells the console to keep the clip and the buzz cue to itself. The
   wall arms its audio on its own press — the pairing confirmation or a one-time
-  *enable sound* prompt — because no *Start* is ever pressed on it.
+  _enable sound_ prompt — because no _Start_ is ever pressed on it.
 - **When the host goes, the wall waits and offers the room back.** Asked of
   Adrien: both. The room freezes exactly as today (the wall is not a presence).
-  The wall says the host is gone and offers *take over here*, which reopens it
+  The wall says the host is gone and offers _take over here_, which reopens it
   as a console under the token, **with the answers folded behind a tap** because
   that console is still in front of everyone. When the host's device comes back
   its token claim displaces that console, and a console that came from a wall
@@ -111,34 +111,34 @@ is not: the lobby also draws the game and the table, left-aligned, and a wall
 has to be paired by the host's device. A guinguette throwing the invitation on
 a giant screen so a crowd can join wants the code and the square and nothing
 else, typed in by whoever runs the projector. So both exist: the menu offers
-*show the QR code, big* beside *show the game in a new tab*, and the home page
-folds *show a table's invitation* under *show a table on this screen*.
+_show the QR code, big_ beside _show the game in a new tab_, and the home page
+folds _show a table's invitation_ under _show a table on this screen_.
 
 **The console's stage is the wall's.** No second set of screens: `Stage` left
 `host-console-page.tsx` for `room-stage.tsx` as `RoomStage`, taking
 `controls: StageControls | null`, and the lobby, both slate boards and the
 verdict panel learnt to draw without them. The wall adapts its `WallRoomView`
 to the host's shape with every secret in the state the host view already has
-for *not held* — `asRoomScreenView` in `features/wall/wall-view.ts` — which is
+for _not held_ — `asRoomScreenView` in `features/wall/wall-view.ts` — which is
 honest because the wall was never sent any of it.
 
 **The wall arms its own audio unasked, once.** A wall opened by a click in the
 same tab — the home fold, the pairing screen navigating on — already carries
-the browser's permission, so it tries on mount and offers *turn the sound on*
+the browser's permission, so it tries on mount and offers _turn the sound on_
 in its header only if that was refused. A wall opened in a new tab from the
 menu is the case that needs the press.
 
 **The host-away notice waits five seconds** (`useAbsentFor`), so a console's
 Wi-Fi blink does not offer the room to whoever is standing at the wall.
 
-**The takeover is a navigation, not a role switch on the socket.** *Keep the
-table from here* goes to `/host/:code?from=wall`; that console folds the answer
-behind *show me the answer* and, when a token claim displaces it, goes back to
+**The takeover is a navigation, not a role switch on the socket.** _Keep the
+table from here_ goes to `/host/:code?from=wall`; that console folds the answer
+behind _show me the answer_ and, when a token claim displaces it, goes back to
 `/wall/:code` instead of drawing the refusal. A buzz that was held when the host
 left is voided by the freeze as before, so the takeover opens on the round's
 reveal rather than on the buzz.
 
 **Verified muted in three browser contexts**: pairing by scan and by the menu's
 field, the lobby, a quiz round in choice mode and in buzzer mode (the wall
-reads *Zoé a buzzé* and a clock, the console reads the answer), the host-away
+reads _Zoé a buzzé_ and a clock, the console reads the answer), the host-away
 notice, the takeover with its folded answer, and the return.

@@ -33,12 +33,12 @@ seriously; it is a bigger change than this stage.
 
 ## Candidates
 
-| | Fits | Cost |
-|---|---|---|
-| **Fly.io** — one machine, WS native, scale-to-zero | yes, well | free-ish |
-| **Railway / Render** — same shape, simpler | yes | free tier, cold starts |
-| **A small VPS + Caddy** | yes, total control | a few € a month, you own the TLS |
-| **Cloudflare Durable Objects** | after a rewrite of the room store | very cheap, real work |
+|                                                    | Fits                              | Cost                             |
+| -------------------------------------------------- | --------------------------------- | -------------------------------- |
+| **Fly.io** — one machine, WS native, scale-to-zero | yes, well                         | free-ish                         |
+| **Railway / Render** — same shape, simpler         | yes                               | free tier, cold starts           |
+| **A small VPS + Caddy**                            | yes, total control                | a few € a month, you own the TLS |
+| **Cloudflare Durable Objects**                     | after a rewrite of the room store | very cheap, real work            |
 
 Fly is the natural first choice: one `fly.toml`, one region, WebSockets need no
 configuration.

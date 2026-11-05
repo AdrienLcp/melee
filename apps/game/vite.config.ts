@@ -56,7 +56,7 @@ export default defineConfig({
     }
   },
   plugins: [
-    react({ compiler: { logDiagnostics: true } }),
+    react({ compiler: { reportDiagnostics: true } }),
     {
       ...optimizeLocales.vite({ locales: ['en-US', 'fr-FR'] }),
       enforce: 'pre'

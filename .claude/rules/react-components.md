@@ -24,7 +24,7 @@ continuously, which is a correctness bug rather than a slow one.
 
 ## A value from outside is an Effect Event, not a ref
 
-Where the value comes *from outside* the hook — a callback passed in as a prop,
+Where the value comes _from outside_ the hook — a callback passed in as a prop,
 or something that moves on its own like the clock estimate — reach for
 **`useEffectEvent`** rather than a latest-ref, and never demand a stable identity
 from every caller. It always runs the latest closure, which is what
@@ -32,7 +32,7 @@ from every caller. It always runs the latest closure, which is what
 forwards to whatever the current render handed it.
 
 **It is not a stable identity, and that is the trap.** React 19.3's `updateEvent`
-returns a *fresh function over a stable ref* on every render. So an Effect Event
+returns a _fresh function over a stable ref_ on every render. So an Effect Event
 is fine inside the Effect that owns it — where identity is never read — and
 wrong the moment it leaves: handed out of a hook, or listed in a `useCallback`'s
 dependencies, it changes every render and drags whatever holds it along.
@@ -94,7 +94,7 @@ the layout to the existing root, or to the parent.
 
 The compiler treats every call that receives `view` — `hostActionsProps(view)`,
 `setupProps(view)` — as one that may mutate it. A value derived from `view`
-that a `useCallback` depends on and that is *read again after* such a call
+that a `useCallback` depends on and that is _read again after_ such a call
 makes it give up the whole component (`PreserveManualMemo`), and the build
 only warns. Compute what reads it (the seated host's round, in
 `host-console-page.tsx`) before those calls, and grep the build output for
@@ -108,7 +108,7 @@ state to the value it already holds. React keeps that no-op update queued
 at its own priority; a higher-priority render then derives on top of it
 without moving the hook's base, and the next render replays the queue from
 the base and lands back on the no-op's value. The undo bar vanished at once
-instead of playing `notice-leave`, because the *entry's* `animationend` had
+instead of playing `notice-leave`, because the _entry's_ `animationend` had
 already set `leaving` to `null`.
 
 So the setter that ends an exit is attached only while it is leaving

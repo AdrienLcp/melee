@@ -15,8 +15,8 @@ model already treated as one more tick.
   never branches on "is this an evening" — every such predicate is
   `lineUp.length > 1` on the client or in `core/room/`.
 - **What is not one table is the front door and the copy.** `game-spines.tsx`
-  shows `home.evening` (*Une soirée toute prête*, the preset box) above
-  `home.games` (*Ou un seul jeu*): two doors on one mechanism.
+  shows `home.evening` (_Une soirée toute prête_, the preset box) above
+  `home.games` (_Ou un seul jeu_): two doors on one mechanism.
 - **The board is its own setting but only lives on teams.** `settings.board`
   (`packages/protocol/src/board.ts`) is documented "ignored by a room without
   teams"; the pawn position is `team.board`; the server advances teams only
@@ -30,41 +30,41 @@ model already treated as one more tick.
   list of ticks and one press whose label follows them: nothing ticked opens a
   table on no game, the picker in the lobby as today; one ticked plays that
   game exactly as before; several open a line-up. One place to choose, no
-  click spent opening a table to choose in it. *I play too* is a switch under
+  click spent opening a table to choose in it. _I play too_ is a switch under
   the press, where a game's two doors (for the group / play right away) were.
   The per-game pages stay, for a shared link and a search result, and open a
   table with their game ticked. Asked 23/10/2026: simple, quick, readable by
   everyone, nothing on screen that is not needed.
-- **Home is direction B, *Le comptoir*** (chosen 23/10/2026): the wordmark and
+- **Home is direction B, _Le comptoir_** (chosen 23/10/2026): the wordmark and
   a small join box on top, the ticks as the page (two columns wide), and the
-  press with *I play too* in a tray pinned to the bottom at every width. The
+  press with _I play too_ in a tray pinned to the bottom at every width. The
   promise, the pitch, the join hint, the shelf's lead line and the note under
-  the press leave home. *Another screen in the room?* leaves the page for
-  `AppMenu`, as two entries under *This device*: become the room's screen, and
-  show a table's QR code. *Where you were* becomes one pill per held room
-  inside the join box (the code, *Resume your table* or *your seat*, an
+  the press leave home. _Another screen in the room?_ leaves the page for
+  `AppMenu`, as two entries under _This device_: become the room's screen, and
+  show a table's QR code. _Where you were_ becomes one pill per held room
+  inside the join box (the code, _Resume your table_ or _your seat_, an
   arrow), under a dashed rule — getting into a room is one box.
 - **No preset, no name for the evening.** The table is Melee; the games in it
   already have names. `room-presets.ts`, `PresetBox`, the `preset` arm of
   `createRoomRequestSchema` and its resolution in `roomSettingsFor` go. Ticking
   five games and choosing teams is two gestures, so a preset earns nothing a
-  remembered setup does not. "Grande soirée", *Une soirée toute prête* and
-  *Soirée en équipes* leave both dictionaries; "soirée" stays in the pitch
+  remembered setup does not. "Grande soirée", _Une soirée toute prête_ and
+  _Soirée en équipes_ leave both dictionaries; "soirée" stays in the pitch
   (`home.promise`) as register, never as a mode.
-- **Three independent switches in *Animer*.** The group now called *La
-  soirée* becomes *La table*: games ticked, teams (off / drawn / chosen /
+- **Three independent switches in _Animer_.** The group now called _La
+  soirée_ becomes _La table_: games ticked, teams (off / drawn / chosen /
   aloud / one each), board (off / track), judge. Turning teams off no longer
   turns the board off.
 - **A board without teams is a pawn per seat.** The track advances seats the
   way it advances teams, by the same strategy and catch-up. Protocol: a seat
   carries `board: BoardPosition | null` beside the team's, null when the board
   is off or the room plays in teams. Server: the track code in
-  `team-service.ts` moves to a function over *pawns* (a team or a seat) and
+  `team-service.ts` moves to a function over _pawns_ (a team or a seat) and
   both call it. Client: `BoardTrack`, `TrackStrip`, `BoardMoves`, `Standings`
   and `TableLobby` take pawns rather than teams. A seat that joins mid-game
   starts on Départ; one that leaves takes its pawn with it.
 - **One ticked game plays as it did before the game night existed.** Same
-  lobby, the game's own round count and hold, no line-up, no *ready*, no
+  lobby, the game's own round count and hold, no line-up, no _ready_, no
   table lid — the judge and the board are the only additions, both folded
   until asked for. The table lid (`TableLobby`) shows when the board is on or
   teams are drawn or chosen, not on teams alone.
@@ -101,33 +101,33 @@ model already treated as one more tick.
    room that plays in teams and every seat otherwise (`trackPawnsOf`), save a
    seat that arrived after the round opened, which stands where it is until
    the next one. A seat banks its case on `Participant.bankedCase` as a team
-   does, a host's correction to a seat moves its pawn, *play again* puts it
+   does, a host's correction to a seat moves its pawn, _play again_ puts it
    back on Départ, and `isFinalRound` reads the seats' pawns beside the
    teams'.
-3. Design pass (`impeccable`): home with one door, *La table* in *Animer*, the
+3. Design pass (`impeccable`): home with one door, _La table_ in _Animer_, the
    lid and the track with a pawn per seat at 15 and 24 seats. Directions shown
    as full example pages behind one index link before any screen is written.
 4. Screens and copy in both dictionaries.
 
    **Home and menu done.** Home is the wordmark, the code box with a pill per
    held room, the ten games as ticks (`game-ticks.tsx`) and a sticky tray
-   (`home-tray.tsx`): the press reads *Open a table*, *Play Quiz* or *Open the
-   table* with a count, beside *I'm playing too* — off and explained when every
+   (`home-tray.tsx`): the press reads _Open a table_, _Play Quiz_ or _Open the
+   table_ with a count, beside _I'm playing too_ — off and explained when every
    ticked game is judged — and the name. The presets, the pitch and the two
-   other-screen cards are gone; *Become the room's screen* and *Show a table's
-   QR code* moved to a *This device* section of the menu, off a room.
+   other-screen cards are gone; _Become the room's screen_ and _Show a table's
+   QR code_ moved to a _This device_ section of the menu, off a room.
 
-   ***La table* in *Animer* done** (`e53950e`): teams, board and judge are
+   **_La table_ in _Animer_ done** (`e53950e`): teams, board and judge are
    three independent switches.
 
    **A pawn per seat done.** `@melee/core/board/track-pawns` lists the pawns
    from a view (`trackPawnsOf`, `rankTrackPawns`, `scoreTargetOf`), and every
    screen draws from it: the wall's and the console's track (four a case, then
-   three and `+n`), the player's strip, *Fix the squares*, the menu's points
+   three and `+n`), the player's strip, _Fix the squares_, the menu's points
    (a seat row reads its case), and the reveal's standings, which become a
    podium of three and chips (`track-podium.tsx`) when the seats walk. The
    lobby is a table under board-or-teams (`isSetAsTable` takes both), its seats
-   *each with a pawn on Start*. Seen muted at 1440 light, 1920 dark and 390
+   _each with a pawn on Start_. Seen muted at 1440 light, 1920 dark and 390
    with 15 and 24 seats.
 
    The choice strips' selected stamp moved from an ink block to a
@@ -148,7 +148,7 @@ model already treated as one more tick.
 
 - Home ticks games behind one press and holds no preset; a game's own page
   opens a table with it ticked.
-- The board without teams is direction C (*Tête de course*, chosen
+- The board without teams is direction C (_Tête de course_, chosen
   23/10/2026): coloured pawns only, three a case then `+n`, names on a podium
   and chips at the centre of the U between rounds; the presses sit inside the
   U at 390 rather than over its last cases.

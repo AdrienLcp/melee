@@ -5,7 +5,7 @@
 > diverged marked inline and what each session settled gathered at the foot.
 
 The screen flips, the first press wins. No content, no question, no judging —
-`docs/game-catalogue.md` costs it at *an evening* and calls it the cheapest thing
+`docs/game-catalogue.md` costs it at _an evening_ and calls it the cheapest thing
 left on the shelf, because it is the buzz already built with a colour change
 instead of a clip.
 
@@ -15,7 +15,7 @@ that is the part worth doing carefully. Everything else is the checklist.
 ## The one hard problem: where the stimulus happens
 
 Buzz order is stamped on arrival at the server, which is what makes "who was
-first" unforgeable. That measures *arrival*, and a reflex game needs
+first" unforgeable. That measures _arrival_, and a reflex game needs
 **reaction** — arrival minus the moment the screen flipped. Two ways to have
 one, and only one of them is fair:
 
@@ -53,8 +53,8 @@ Answer mode: `buzzer` and nothing else, the same narrowing the bare buzzer does.
 `roundDurationMs` is `null` — the round ends when somebody wins it.
 
 > **Diverged — the heat does not end on the first press.** The plan said so
-> twice, and its own acceptance test contradicted it: *three players, and the
-> reaction times ordered the way the room saw it happen* is a board, and a heat
+> twice, and its own acceptance test contradicted it: _three players, and the
+> reaction times ordered the way the room saw it happen_ is a board, and a heat
 > that closes on the winner only ever holds one number. Adrien took the call.
 > **The first legal press takes the point; the heat closes when everyone
 > expected in it has acted** — pressed or false-started — exactly the way a
@@ -84,17 +84,17 @@ key builders at `translation.ts:99–109`, which is what forces `reflex.name`,
 
 **Silent — nothing will tell you.** Work these by hand, in this order:
 
-| Where | What happens if it is missed |
-|---|---|
-| `round-conductor.ts:53–174` `beginRound` | falls into the blind test's Deezer draw |
-| `room-view.ts:45` / `:171` | both content projections fall through to blindtest |
-| `host-console-page.tsx:296–323` | the playing stage renders nothing |
-| `settings-panel.tsx:297–412` | no controls at all |
-| `reveal-panel.tsx:28–89`, `player-round.tsx:358–386` | bare scoreline |
-| `player-round.tsx:155–215` | the player gets the generic `<Buzzer>` |
-| `verdict-panel.tsx:120–138` | non-exhaustive **today** |
-| `game.ts:113/127`, `core/scoring/verdict.ts:22` | `locksOutOnMissIn` → `true`, `playsAudioIn` → `false`, `verdictKindFor` → `'single'` — all three happen to be right here |
-| `shelvedGames` | invisible on the shelf, the picker and `/:game` — **add it last** |
+| Where                                                | What happens if it is missed                                                                                             |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `round-conductor.ts:53–174` `beginRound`             | falls into the blind test's Deezer draw                                                                                  |
+| `room-view.ts:45` / `:171`                           | both content projections fall through to blindtest                                                                       |
+| `host-console-page.tsx:296–323`                      | the playing stage renders nothing                                                                                        |
+| `settings-panel.tsx:297–412`                         | no controls at all                                                                                                       |
+| `reveal-panel.tsx:28–89`, `player-round.tsx:358–386` | bare scoreline                                                                                                           |
+| `player-round.tsx:155–215`                           | the player gets the generic `<Buzzer>`                                                                                   |
+| `verdict-panel.tsx:120–138`                          | non-exhaustive **today**                                                                                                 |
+| `game.ts:113/127`, `core/scoring/verdict.ts:22`      | `locksOutOnMissIn` → `true`, `playsAudioIn` → `false`, `verdictKindFor` → `'single'` — all three happen to be right here |
+| `shelvedGames`                                       | invisible on the shelf, the picker and `/:game` — **add it last**                                                        |
 
 The buzzer is the reference throughout: content arms of `{ kind: 'buzzer' }`, a
 13-line `beginRound` branch, one `Switch` of settings, seven strings.
@@ -118,8 +118,8 @@ out to be new.
   is projected from the attempts a graded round accumulates, and a press is
   graded by nobody.
 - **A false start is `lockedOutPlayerIds` and nothing else.** In this game the
-  lockout has exactly one cause, so the reveal can read the two lists as *who
-  reacted* and *who jumped*. `false_start` is its own error code, deliberately
+  lockout has exactly one cause, so the reveal can read the two lists as _who
+  reacted_ and _who jumped_. `false_start` is its own error code, deliberately
   outside `BuzzRejection` — the refusal changes the round, where every other one
   only answers the player.
 - **`flipsAt` is derived, not stored.** The model holds `flipDelayMs`; the view
@@ -146,7 +146,7 @@ out to be new.
   bar, no tally — `roundDurationMsOf` already answers `null` here, and that
   absence is now load-bearing rather than incidental: a bar draining to a known
   end says the flip is three seconds before it. `HostActions` returns nothing
-  during a heat for the same reason, and because *give the answer* is a lie in a
+  during a heat for the same reason, and because _give the answer_ is a lie in a
   game that has none.
 - **A false start is a state the player's screen holds**, a `--danger` stamp
   where the buzzer was, and it is **silent on the console** until the reveal
@@ -159,14 +159,14 @@ out to be new.
 - **The wait is not a setting.** 2–6 s went unremarked in the browser pass, and
   a control for it is a room's to ask for.
 - **`buildReactionBoard` does not sort**, and its test holds that red: arrival
-  order already *is* reaction order, so a comparator would be a second opinion
+  order already _is_ reaction order, so a comparator would be a second opinion
   about a race the server has paid out.
 
 Verified in a muted browser at 414 px and 1600 px: the countdown hands over to a
 still teal screen, the field inverts to `#eafbf6` five seconds later, the heat
 closes 3 048 ms after that, and the board reads `Marc 990 ms` over
 `Lea 2 273 ms` beside the standings. A press before the flip is refused, stamps
-the player's screen, and lands at the foot of the board as *parti trop tôt*.
+the player's screen, and lands at the foot of the board as _parti trop tôt_.
 
 **One thing a single-player room hides**: a solo false start closes the heat on
 the spot — `everyoneHasPressed` counts a jumper as having acted — so the stamp

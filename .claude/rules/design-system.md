@@ -40,7 +40,7 @@ drops the falsy ones: `classNames('buzzer', isClaimed && 'claimed')`.
 ## A line is not a `Separator`
 
 `Separator` renders `role="separator"`, which tells assistive technology that
-two *groups of content* end and begin here. Reach for it when that sentence is
+two _groups of content_ end and begin here. Reach for it when that sentence is
 true, and for nothing else:
 
 - **Yes** — the "or" between hosting a game and joining one on the join page.

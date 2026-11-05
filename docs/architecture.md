@@ -25,7 +25,7 @@ through the rest.
 
 ## Why there is a server at all
 
-The question a blind test has to answer is *who was first*, and only a machine
+The question a blind test has to answer is _who was first_, and only a machine
 that sees both frames arrive can answer it. A client timestamp is wrong twice
 over: clocks drift by seconds between devices, and the number is one console
 line away from being edited. So `player.buzz` carries no timestamp, and the
@@ -166,10 +166,10 @@ built in advance of a second game actually existing.
 
 ## Where the chrome lives
 
-Everything that must exist on *every* screen is the shell's, not a page's:
+Everything that must exist on _every_ screen is the shell's, not a page's:
 `presentation/app-shell.tsx` renders `AppMenu` — language, theme, the connection
 and the way home — beside the `Outlet`. The connection it displays is owned by a
-*page*, so `presentation/connection/` carries it upwards rather than the menu
+_page_, so `presentation/connection/` carries it upwards rather than the menu
 being mounted three times.
 
 That direction matters for the second game: the menu, the room, the seats and

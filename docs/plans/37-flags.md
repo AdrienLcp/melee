@@ -28,7 +28,7 @@ it alone plays a flags round; one that ticks it beside history mixes them.
 - **The country names moved to `packages/core/src/countries/`**, since the
   server now grades a typed flag against the name the map prints. The app's
   dictionaries import them from there. `accepted` adds what a table says
-  instead — *UK*, *Holland*, *RDC*, *Burma* — fourteen per language.
+  instead — _UK_, _Holland_, _RDC_, _Burma_ — fourteen per language.
 - **`scripts/build-flag-bank.ts`** (`pnpm --filter @melee/server flags:build`)
   copies `flag-icons` 7.6.0 (MIT) into `apps/game/public/flags/`, 2.1 MB,
   and writes `flag-bank.json`: each country's file, its three decoys and whether
@@ -50,7 +50,7 @@ it alone plays a flags round; one that ticks it beside history mixes them.
   alike.
 - **77 well known**, chosen by hand: a flag is known from a pitch, a beach
   towel or the news, which no traffic count measures.
-- **One prompt**, *Whose flag is this?* in both languages, because
+- **One prompt**, _Whose flag is this?_ in both languages, because
   territories fly flags too. `quiz-game.test.ts` plays a flag to a player and
   checks the file arrives and the country never does — seen red with the answer
   pasted into the prompt.
@@ -60,7 +60,7 @@ it alone plays a flags round; one that ticks it beside history mixes them.
 - **`FlagPicture`** (`presentation/components/flag-picture.tsx`) prints a
   flag on the card at 4:3, with the card's rule around it so a white field —
   Japan, Cyprus — keeps its edge. While the question is open its alt text is
-  *The flag to name*; on the reveal, where the country is printed beside it,
+  _The flag to name_; on the reveal, where the country is printed beside it,
   it is empty.
 - **`AskedQuestion`** draws it under the subject and above the prompt, read
   after the prompt. The console sizes it at 40% of the stage's height, since

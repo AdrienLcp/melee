@@ -1,8 +1,8 @@
 # 40 — A line-up of variants
 
-**Done** 21/10/2026 — see *What was built* at the end. Asked 21/10/2026. The host ticks *variants* for the evening, not
-only games: *Blind test — charts*, *Blind test — film scores*, *Quiz —
-cinema*, each its own tick, drawn round by round like any game today.
+**Done** 21/10/2026 — see _What was built_ at the end. Asked 21/10/2026. The host ticks _variants_ for the evening, not
+only games: _Blind test — charts_, _Blind test — film scores_, _Quiz —
+cinema_, each its own tick, drawn round by round like any game today.
 
 ## Where it starts
 
@@ -12,24 +12,24 @@ cinema*, each its own tick, drawn round by round like any game today.
   already holds (`gameSettingsSchema`).
 - What a variant can say today, with no new content: the blind test's
   `source` (chart genres, decades, film composers) and `difficulty`; the
-  quiz's categories and *well-known only*; the world map's `places`; the
+  quiz's categories and _well-known only_; the world map's `places`; the
   buzzer's `locksOutOnMiss`.
-- `nextGame` draws from the line-up and the console changes it beside *Next
-  round*: both read a variant rather than a kind.
+- `nextGame` draws from the line-up and the console changes it beside _Next
+  round_: both read a variant rather than a kind.
 
 ## The shape
 
 - A line-up entry carries its game's settings, and two entries may share a
   kind. Opening a round on one copies its settings onto `settings.game`.
 - The host builds a variant from the game's own settings fold, then names it
-  or keeps the generated name (*Blind test · Film scores*).
+  or keeps the generated name (_Blind test · Film scores_).
 - A preset may hold variants: the game night could open on two blind tests.
 - `PROTOCOL_VERSION` moves; the remembered host setup migrates a line-up of
   kinds to one entry each on its default settings.
 
 ## Not in this stage
 
-- A quiz of quotes (*Citations*): no bank holds quotes today, so it is a
+- A quiz of quotes (_Citations_): no bank holds quotes today, so it is a
   content stage of its own once the variant shape exists.
 
 ## Done when
@@ -50,7 +50,7 @@ cinema*, each its own tick, drawn round by round like any game today.
   harmless rather than refused.
 - **No typed name.** The name is generated from what tells an entry from its
   game's other entries (`line-up-entry-names.ts`): the blind test's source then
-  its level, the quiz's one subject and *Grand public*, the map's places, a
+  its level, the quiz's one subject and _Grand public_, the map's places, a
   number when nothing does. A typed name would be a field and a string that
   travels for what the generated one already says — open to reverse.
 - **Presets still tick kinds**: `POST /api/rooms` has no version handshake, so
@@ -63,16 +63,16 @@ cinema*, each its own tick, drawn round by round like any game today.
   test. The round stamps the entry it was opened from (`round.lineUpAt`), and
   a reveal whose `settings.lineUpAt` already moved off it is not drawn over —
   so a reload after a draw between two entries of one game keeps the draw.
-  Taking out an entry *before* the one in play shifts its index, and that
+  Taking out an entry _before_ the one in play shifts its index, and that
   reveal then reads as already drawn: the next round stays on the same
   variant unless the host picks.
-- **The console**: the round's settings open on *Next up*, a row of every
+- **The console**: the round's settings open on _Next up_, a row of every
   entry — picking one is picking what the next round is on and what the fold
-  below sets — with *Add a variant* (games with settings of their own,
-  `canHoldVariants`) and *Take it out*. The blind-test picker's draft is committed
+  below sets — with _Add a variant_ (games with settings of their own,
+  `canHoldVariants`) and _Take it out_. The blind-test picker's draft is committed
   into its entry before the row moves elsewhere.
 - **Seen muted** at 1280 on the console and the wall and at 390 on a phone: a
   game night, a film-score variant added beside the charts, a round played on
-  film scores (*The Super Mario Galaxy Movie*, Brian Tyler), the draw landing
-  on the quiz, *Blind test · Le top du moment* picked on the reveal, and that
+  film scores (_The Super Mario Galaxy Movie_, Brian Tyler), the draw landing
+  on the quiz, _Blind test · Le top du moment_ picked on the reveal, and that
   name on the console's next-up, the wall's and the phone's.

@@ -14,12 +14,12 @@ validating each answer by hand.
 It was asked for as a chip tasting — 26 numbered cups passed round, each player
 writing what they think is in each — where answering out loud let the table copy
 whoever spoke first. It is kept only because it is not about chips: a wine or
-cheese tasting, a quiz on paper read out in one go, *guess the price*, *who took
-this photo*, a treasure hunt's answer sheet. The server serves no content, like
+cheese tasting, a quiz on paper read out in one go, _guess the price_, _who took
+this photo_, a treasure hunt's answer sheet. The server serves no content, like
 the buzzer; what it adds is **privacy until the correction**.
 
 Working names: game key `slate`, translation prefix `slate.*`, shown as
-*L'Ardoise* / *Slate*. The product name is Adrien's to confirm.
+_L'Ardoise_ / _Slate_. The product name is Adrien's to confirm.
 
 ## Why one mode and not two
 
@@ -46,7 +46,7 @@ second is the first with N growing, so **one mode does both**:
 - **A player's answers go to that player and nobody else until collection** —
   not to other players, **not to the host screen either**, because the host
   screen is the wall. During writing, the console shows
-  each player's progress only: *Julie 12/26*.
+  each player's progress only: _Julie 12/26_.
 - **An optional answer key, host-only.** The host may note what each number
   is ("12 — Barbecue") in setup or during writing. It is part of the host arm
   only, never of a player frame, and is shown on the wall at that item's
@@ -61,21 +61,21 @@ second is the first with N growing, so **one mode does both**:
   the final board. Adding a name, not splitting the enum.
 - **Correction groups identical answers.** For the current item, answers are
   grouped after the shared normalisation (case, accents, whitespace, leading
-  article), so one tap validates every *paprika*. A blank is shown and cannot
+  article), so one tap validates every _paprika_. A blank is shown and cannot
   be validated. An answer not validated when the host moves on is wrong. The
   host can go back to a previous item and change a verdict; the score follows.
 - **Bounds**: 1 to 60 items. 26 is the case that asked for it.
 
 ## Screens
 
-**Player — writing.** A grid of numbered tiles is the navigator *and* the
+**Player — writing.** A grid of numbered tiles is the navigator _and_ the
 progress: a filled tile looks filled. Tapping 17 opens one large field for
 number 17 — which is what a player holding cup 17 needs, rather than scrolling
 a list of 26 inputs in the dark. The field shows the number huge; next/previous
 move along. A line says the sheet is saved and editable until the host
 collects it.
 
-**Console — writing.** The item count with its *+1* control, the roster with
+**Console — writing.** The item count with its _+1_ control, the roster with
 each player's progress, the collect button, and — folded away, because the
 console is the wall — the answer key editor.
 
@@ -84,7 +84,7 @@ number, the key if one was noted (behind a reveal tap, so the host chooses the
 moment), the grouped answers with who wrote them, and one validate toggle per
 group. Previous / next, and the running scores.
 
-**Player — correcting.** The current item's number, what *they* wrote, and the
+**Player — correcting.** The current item's number, what _they_ wrote, and the
 verdict once given, plus their score. Their own full sheet stays reachable,
 read-only.
 
@@ -161,7 +161,7 @@ guard against validating one.
 **The messages**: `slate.write` (player — `itemIndex`, `answer`, an upsert of one
 line, `''` clears it); `host.addItem`, `host.setItemKey`, `host.collectSheets`,
 `host.showItem` (move the wall to an item, back as well as forward),
-`host.judgeGroup`. The host ones are `host.*` because the prefix *is* the
+`host.judgeGroup`. The host ones are `host.*` because the prefix _is_ the
 host-only partition — `client-message.test.ts` holds `HOST_ONLY_MESSAGE_TYPES`
 to it. Every index is 0-based.
 
@@ -191,7 +191,7 @@ writer left is neither grouped nor paid. A seat taken after collection reads
 store for a round that does not exist yet is state for a convenience. The key is
 set on the round, from the countdown until the reveal — the console's writing
 screen is where it is edited, and the players never see it either way.
-`host.addItem` grows the *round's* count, not `settings.game.itemCount`, which is
+`host.addItem` grows the _round's_ count, not `settings.game.itemCount`, which is
 where the next sheet starts.
 
 **The host arm carries the item on the wall, not the whole pile.** The brief said
@@ -242,7 +242,7 @@ browser pass.
 a strip of four or five values; this one runs 1 to 60 and 26 is the case that
 asked for it, so it is a react-aria `NumberField` (`presentation/components/
 number-field.tsx`) inside the setup fold. The fold's summary names it —
-*Slate · 26 things to guess* — through a new `itemCount` part in
+_Slate · 26 things to guess_ — through a new `itemCount` part in
 `core/room/settings-summary.ts`, because a closed fold that hides the one
 setting this game has is the dishonest collapse `DESIGN.md` refuses.
 
@@ -255,7 +255,7 @@ hand is a single choice from a list, and the grid layout gives the arrow keys
 two dimensions for free. A filled tile is the filled material (ink ground); the
 tile on the field is marked by a bar under it, because focus already owns the
 outline and the arrows move focus without moving the selection. Each tile is
-named *No. 7: Cheddar* for a screen reader. Enter in the field moves to the next
+named _No. 7: Cheddar_ for a screen reader. Enter in the field moves to the next
 number (`enterKeyHint='next'`, added to `TextField`).
 
 **A line saves on a 600 ms debounce, on blur and on leaving the number** —
@@ -267,18 +267,18 @@ accepted without it, so the player's pen is not taken away by the host's Wi-Fi;
 `correcting` joins the phases that do show the pause.
 
 **`correcting` wears the `buzzed` field.** Falling back to the lobby's orange
-read as the game having ended between *collect* and the first number. Marking is the same act as judging a buzz, so it takes
+read as the game having ended between _collect_ and the first number. Marking is the same act as judging a buzz, so it takes
 that pair; `correcting → revealed` is the 57-degree step `buzzed → revealed`
 already is.
 
 **The validate control is a `ToggleButton`**, a new design-system wrapper that
 is outlined off and filled on. An outlined control fills in under a hover, which
-on a toggle is what *on* looks like — the browser pass caught a pointer resting
+on a toggle is what _on_ looks like — the browser pass caught a pointer resting
 on an unticked answer reading as ticked — so off stays ruled under the pointer.
 
 **The key hides behind a tap per number**, and closes again when the wall moves.
 Previous and next live in the footer beside the other presses; on the last
-number *next* becomes *show the scores* (`host.reveal`). A blank answer on the
+number _next_ becomes _show the scores_ (`host.reveal`). A blank answer on the
 player's screen shows no pending verdict: it is never a group, so nothing is
 coming.
 
@@ -290,6 +290,6 @@ column.
 Verified in a browser, muted, with a console and four player contexts: filled
 out of order, an edit, a reload finding its answers, a latecomer writing number
 6 after the sheet opened, the host adding a number and noting a key; the
-console's DOM held no answer before collection; *Paprika* and *paprika* grouped;
+console's DOM held no answer before collection; _Paprika_ and _paprika_ grouped;
 a verdict taken back moved the board; the final board matched. French and
 English, both themes, 390 and 1440, sixty tiles at 360.

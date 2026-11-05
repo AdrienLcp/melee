@@ -1,6 +1,6 @@
 # File and directory naming: kebab-case
 
-> **Unscoped on purpose**: it applies when a file is *created*, and no `paths:`
+> **Unscoped on purpose**: it applies when a file is _created_, and no `paths:`
 > pattern matches a file that does not exist yet.
 
 Every file and directory is kebab-case — lowercase letters, numbers, hyphens:

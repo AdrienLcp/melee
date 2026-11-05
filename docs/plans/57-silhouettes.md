@@ -5,17 +5,17 @@
 What reality settled: no `--silhouette-ink` token — the outline is a mask over `--card-ink`, which both palettes already own; the mainland is a rule, not a list (a piece is kept within 1.6× the largest piece's reach of its centre, or at a quarter of its area), with Antarctica and two austral territories left out; outlines are thinned to a 0.6-unit step, 16 kB at most; the decoys are the nearest banked countries; `--flag-height` became `--prompt-picture-height`, shared by both pictures.
 
 A country's outline goes up alone, filled, no map around it, no neighbour, no
-label — *which country is this?* Four names on a pick, a field on a typed
+label — _which country is this?_ Four names on a pick, a field on a typed
 round, a buzz on the buzzer.
 
 **Not a game: a rubric of the quiz**, the third of its kind beside `flags` and
 `capitals`. Both of those are `questionCategories` entries ticked as chips in
 the quiz's setup, with no door of their own, and a silhouette is the same
 question with a different picture: a country's name as the answer, three
-countries as decoys, `isWellKnown` deciding what *Rester grand public* deals.
+countries as decoys, `isWellKnown` deciding what _Rester grand public_ deals.
 Giving it a kind would build a second quiz.
 
-Category `silhouettes`, labelled *Silhouettes* in both languages.
+Category `silhouettes`, labelled _Silhouettes_ in both languages.
 
 ## Rules, as settled
 
@@ -32,7 +32,7 @@ Category `silhouettes`, labelled *Silhouettes* in both languages.
 - **Mainland only when the overseas parts would give it away or shrink it to
   a dot**: France without Guyane and the Réunion, Norway without Svalbard,
   the United States without Alaska and Hawaii, the Netherlands without the
-  Caribbean. Read from the existing *mainland box* in `countryOutlineOf`, not a
+  Caribbean. Read from the existing _mainland box_ in `countryOutlineOf`, not a
   hand list, then checked by eye.
 - **Painted with a token, not a colour in the file**: the SVG holds the path in
   `fill="#000"` and the screen draws it as a `mask-image` over a
@@ -45,7 +45,7 @@ Category `silhouettes`, labelled *Silhouettes* in both languages.
   neighbours — a neighbour is exactly the hard silhouette decoy.
 - **`isWellKnown`** is the flag bank's, so the two rubrics agree on what a
   general-public table knows.
-- **Not `choiceOnly`**: typed works, *Italie* is typed as easily as picked.
+- **Not `choiceOnly`**: typed works, _Italie_ is typed as easily as picked.
 
 ## Steps
 
@@ -64,7 +64,7 @@ Category `silhouettes`, labelled *Silhouettes* in both languages.
 
 ## How to tell it is done
 
-- A quiz with only *Silhouettes* ticked deals outlines; four names on a pick,
+- A quiz with only _Silhouettes_ ticked deals outlines; four names on a pick,
   typed accepted with the country's aliases.
 - No frame sent to a player names the country before the reveal.
 - The outline reads in both palettes, and France is the hexagon.

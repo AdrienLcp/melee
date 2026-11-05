@@ -46,16 +46,16 @@ What was built, and where it left the plan above:
   dashed in coral, the moved stick ringed in green — so the move reads with
   the motion collapsed too.
 - `MatchsticksPrompt` puts the goal in words over the sticks
-  (*Move one match to make it true*, *…the biggest number*, *…the smallest
-  number*), on the console and wall card, above a player's buzzer, and with
+  (_Move one match to make it true_, _…the biggest number_, _…the smallest
+  number_), on the console and wall card, above a player's buzzer, and with
   the solution at the reveal on every screen.
 - **The puzzle stays up while the floor is taken** (`VerdictPanel`'s
   `stimulus`), since whoever buzzed points at a stick; the console prints every
   solution beside the two verdicts.
 - The settings fold ticks the goals (unticking the last is not sent, since the
   room is dealt at least one) and the time per puzzle, 30, 60 or 120 s.
-- Shelved last with a plum spine, `oklch(45% 0.14 305)`, the tagline *One match
-  moves. Say which.*; **not in the game night preset** — it is judged by the
+- Shelved last with a plum spine, `oklch(45% 0.14 305)`, the tagline _One match
+  moves. Say which._; **not in the game night preset** — it is judged by the
   host like the buzzer, and the preset already carries one game of that kind.
 - Match tokens (`--match-wood`, `--match-edge`, `--match-head`) are printed
   pieces, the same in both palettes, and always laid on paper: the edge on
@@ -73,7 +73,7 @@ compiles. Built on these decisions:
 
 - **A mode of its own, `move`, offered by matchsticks alone**, beside
   `buzzer`: `answerModes` is `['move', 'buzzer']`, and `move` is the default a
-  room opens on (`DEFAULT_ANSWER_MODE`), so *play right away* works and a
+  room opens on (`DEFAULT_ANSWER_MODE`), so _play right away_ works and a
   remembered buzzer is traded for it. `buzzer` is unchanged and host-judged.
   `isJudgedByHost` says no for `move` without a line of its own — the rule
   already keys on `buzzer`. `playsAloud` stays true (the buzzer still serves a
@@ -119,7 +119,7 @@ compiles. Built on these decisions:
   move and any verdict before the reveal — seen red with `revealedMoves`
   unguarded, with `yourVerdict` sent early, and with the illegal move answered
   `invalid_message`.
-- The app names the mode (*Move the match*) and its scoring line in both
+- The app names the mode (_Move the match_) and its scoring line in both
   dictionaries. **A room opens on `move` with nothing drawn for it yet** —
   that is B2.
 
@@ -134,12 +134,12 @@ compiles. Built on these decisions:
   enabled only while one is held. One tab stop, walked with the arrows in
   reading order (top, top left, top right, middle, bottom left, bottom right,
   bottom, glyph by glyph), each press named for a screen reader
-  (*Match top right, in the 6 at position 1*).
+  (_Match top right, in the 6 at position 1_).
 - **Held**, the stick is drawn raised off its place with a shadow and a coral
   edge, and every empty groove takes a dashed die-line. **Laid**, the board
   gives way to the moved puzzle drawn still (`MatchstickRow`'s new `isStill`:
-  the old place dashed in coral, the stick ringed in green), with *Put it
-  back* and *Send the move* under it; focus goes to the send press, and back
+  the old place dashed in coral, the stick ringed in green), with _Put it
+  back_ and _Send the move_ under it; focus goes to the send press, and back
   to the first stick after a put back.
 - ~~A drop the sticks cannot make is refused before anything is sent.~~
   Reversed after a test on small phones (October 2026): the refusal was a hint
@@ -153,8 +153,8 @@ compiles. Built on these decisions:
   render prop, so the player's page and a seated console each lay the sticks
   on their own round card (`MatchsticksPrompt` now takes `children` in place
   of the drawn puzzle). After sending, and after a reload from `yourMove`, the
-  card shows the move drawn where it landed and *Your move is in. Waiting for
-  the others.*
+  card shows the move drawn where it landed and _Your move is in. Waiting for
+  the others._
 - **The console and the wall** keep the puzzle on the card and the pawns that
   have answered under it, nothing of what they sent. At the reveal each seat's
   chip draws its move on a slip of paper in place of words — `6+4=10` in type
@@ -163,16 +163,16 @@ compiles. Built on these decisions:
   player's reveal adds **Your move: right / second best / third best /
   better, not by enough / not it** with their own move drawn under the
   solution.
-- The settings fold already offered the strip (*Move the match* / *First to
-  buzz*) from B1's `answerModesFor`; seen, nothing to add. The tagline is
-  *One match moves. Find which.* and the description names both ways of
+- The settings fold already offered the strip (_Move the match_ / _First to
+  buzz_) from B1's `answerModesFor`; seen, nothing to add. The tagline is
+  _One match moves. Find which._ and the description names both ways of
   playing, in both locales and in the document head.
 - Seen muted through a Playwright script at 1280×800 and 390×844, light in
   English and dark in French: the game's page and the shelf, the settings
   strip, a stick held and laid by touch, an illegal drop refused, the moved
   puzzle and the sent state, the move read back after a reload, a second player
   playing by keyboard alone, the console waiting, the reveal on the console
-  wide and narrow and on both players; a seated console by *Play right away*
+  wide and narrow and on both players; a seated console by _Play right away_
   in dark, held, laid, sent and revealed. **Not seen**: a paired wall (it
   draws the console's stage without the form), and a real phone.
 

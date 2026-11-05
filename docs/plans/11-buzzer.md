@@ -70,7 +70,7 @@ what the question was and does not need to. What it guarantees is the only
 thing a room cannot do for itself: **who pressed first**, unforgeably.
 
 It is not a mode of the blind test, and it is not a mode of trivia. Both of
-those *serve* a stimulus; this one serves nothing. Filing it under either would
+those _serve_ a stimulus; this one serves nothing. Filing it under either would
 mean carrying a content pipeline it has no use for, and it would hide the fact
 that it is the one game on the shelf with no licensing question, no catalogue,
 and no network call.
@@ -81,7 +81,7 @@ The second game is the first honest test of what this stage called "what every
 game needs", and two of the five do not survive it:
 
 - **`answerMode`** — this game is `buzzer` by definition. Four candidates and a
-  typed answer both need something to answer *against*, and this one serves
+  typed answer both need something to answer _against_, and this one serves
   nothing.
 - **`roundCount`** — a host running a charade evening stops when they stop. A
   fixed ten is the blind test's shape wearing the room's name, which is the
@@ -178,7 +178,7 @@ for the blind test, `single` for everything else — and `verdictKindFor` decide
 which a game is judged in. The server checks the shape before applying it, for
 the same reason it re-checks everything a host socket sends.
 
-`yourVerdict` stayed the `halves` arm alone, because *banking* is what having
+`yourVerdict` stayed the `halves` arm alone, because _banking_ is what having
 two of them means. A game judged on one claim has no half to hold.
 
 **`pointsFor` did not move to the blind test's directory.** Over the union it
@@ -198,7 +198,7 @@ arm and no server, so it is refused at the door rather than at the first
 it is the exhaustiveness arm rather than dead code.
 
 **The buzzer's strings forced the i18n namespaces open.** `blindtest.buzz.*` and
-`blindtest.round` were the *mode*'s and the *round*'s all along; they are now
+`blindtest.round` were the _mode_'s and the _round_'s all along; they are now
 `buzz.*` and `round.*`, and `blindtest.answerMode.*` is `host.answerMode.*`. The
 rule in `.claude/rules/i18n.md` was already the right test — this is
 the first time it had a second case to answer against.

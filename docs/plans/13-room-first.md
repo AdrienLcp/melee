@@ -9,11 +9,11 @@ three in one pass rather than writing two of them twice.
 
 ## The flow, before and after
 
-| | Before | After |
-|---|---|---|
-| `/` | a shelf of cards, and nothing else to press | **Create a room**, join by code, and the shelf as content |
-| `/:game` | where every room was opened | a shortcut, for a host who already knows |
-| `/host/CODE` | a lobby for a game already chosen | a lobby where the game is chosen, beside the QR code |
+|              | Before                                      | After                                                     |
+| ------------ | ------------------------------------------- | --------------------------------------------------------- |
+| `/`          | a shelf of cards, and nothing else to press | **Create a room**, join by code, and the shelf as content |
+| `/:game`     | where every room was opened                 | a shortcut, for a host who already knows                  |
+| `/host/CODE` | a lobby for a game already chosen           | a lobby where the game is chosen, beside the QR code      |
 
 `/:game` stays, and stays a page with a button rather than a link that opens a
 room on arrival: a GET that mutates is a link preview in a group chat opening
@@ -42,7 +42,7 @@ field to begin with. **The round knows which game it is** — `round.content` is
 one arm of a union, and the server refuses a game switched under a round in
 play, so `applyVerdict`, `timeOutBuzz`, the round-actions lockout button and the
 stage's own "listening…" all read `round.content.kind` now. `settings.game` is
-what the room is set to *next*; the round's content is what is on screen.
+what the room is set to _next_; the round's content is what is on screen.
 
 The rest answer for a room that has not decided:
 
@@ -76,7 +76,7 @@ with the chosen game's pitch under it. That pitch is
 
 ## The player screen has two honest states
 
-"The host is choosing a game", and then "You are about to play *X*" with what
+"The host is choosing a game", and then "You are about to play _X_" with what
 the evening pays. That last sentence used to live on a "waiting for the host"
 screen reached between rounds; the lobby is the only moment nobody is against a
 clock, so it moved to where the waiting actually happens.

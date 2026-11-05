@@ -53,12 +53,12 @@ tolerance, and reusing it means the same table of cases defends both games.
 - **A source of questions.** See the order above: a host reading them aloud
   first, then a French API. A curated file is the fallback — a few hundred
   questions are a JSON asset reviewed in a merge request, loaded once at boot. A
-  database is what you need when questions are *written from inside the app*,
+  database is what you need when questions are _written from inside the app_,
   and that is a feature, not a prerequisite.
 - **Its own decoys.** The blind test draws three wrong candidates from its pool.
   A quiz cannot: "1789" is not a plausible wrong answer to "which river runs
   through Paris". Every question carries its own three.
-- **One claim, not two.** A blind test answer is a title *and* an artist, judged
+- **One claim, not two.** A blind test answer is a title _and_ an artist, judged
   independently, worth a point each. A quiz answer is one claim, right or wrong.
   `pointsFor` is therefore the blind test's and moves there; the speed bonus is
   the shell's and stays.
@@ -113,11 +113,11 @@ and the data mirror the old docs pointed at is a parked domain. What they
 publish now is downloads, and the answers to the three unknowns fell out of
 reading one:
 
-| Unknown | Answer |
-|---|---|
-| An API key | None to get. The packs are public and need no account |
-| Licence | **CC BY-SA 4.0**, named in every pack's own header alongside its author |
-| **Decoys** | **Yes.** `propositions` is four candidates, one of which is `réponse` |
+| Unknown    | Answer                                                                  |
+| ---------- | ----------------------------------------------------------------------- |
+| An API key | None to get. The packs are public and need no account                   |
+| Licence    | **CC BY-SA 4.0**, named in every pack's own header alongside its author |
+| **Decoys** | **Yes.** `propositions` is four candidates, one of which is `réponse`   |
 
 So the "fallback" is the only option and it is the better one: a bundled asset
 cannot go down in the middle of a party, which a live API can and a blind test
@@ -149,7 +149,7 @@ schema and can be filled later without touching it.
 Four things, and they are the reason a second case is worth having:
 
 - **`answerAppearsIn` is not reused, contrary to what this plan said above.**
-  Searching *inside* a line is what makes the blind test's single field honest,
+  Searching _inside_ a line is what makes the blind test's single field honest,
   because that field holds two claims and a room types them together. A question
   holds one, and containment would pay a hedge: "trois ou quatre" contains the
   answer to how many languages Switzerland has. `normalizeAnswer` and
@@ -160,7 +160,7 @@ Four things, and they are the reason a second case is worth having:
   `pointsForSimultaneousAnswer`.
 - **`yourVerdict` is the whole union, not the halves arm.** Stage 11 reasoned
   that a game judged on one claim has no half to hold. True, and beside the
-  point: a claim the *server* judges in silence needs the same feedback a pair
+  point: a claim the _server_ judges in silence needs the same feedback a pair
   of halves does. Without it a player who is already right keeps typing, and the
   refusal they eventually get says "you have had your go".
 - **The simultaneous path was still entirely the blind test's shape.** Stage 11

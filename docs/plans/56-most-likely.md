@@ -2,19 +2,19 @@
 
 **Done** — served and on the shelf.
 
-A line goes up on every screen — *who is most likely to talk to their
-plants?* — every seat votes for a seat on its own screen, and the reveal
+A line goes up on every screen — _who is most likely to talk to their
+plants?_ — every seat votes for a seat on its own screen, and the reveal
 shows who the room chose. Those who voted with the room score.
 
 The fourteenth game, and the only one about the people at the table rather
 than what they know: no answer exists before the votes do, so nobody is
 better at it. **Everyone at once** in the catalogue's shapes, with a vote
-for a *seat* where Petit Bac votes on an answer
-([`game-catalogue.md`](../game-catalogue.md), *Qui est le plus susceptible
-de…*).
+for a _seat_ where Petit Bac votes on an answer
+([`game-catalogue.md`](../game-catalogue.md), _Qui est le plus susceptible
+de…_).
 
 Kind `mostlikely`, translation prefix `mostlikely.*`, answer mode `vote`.
-*Qui de nous ?* in French, *Most likely* in English.
+_Qui de nous ?_ in French, _Most likely_ in English.
 
 ## Rules, as settled
 
@@ -25,8 +25,8 @@ Kind `mostlikely`, translation prefix `mostlikely.*`, answer mode `vote`.
   troubles, a couple, drink or anything a grandmother and a twelve-year-old
   could not both laugh at. Read by hand, row by row, like Black square's
   black words.
-- **French lines are gender-neutral**: *Qui a le plus de chances de…* rather
-  than *le plus susceptible*, and no adjective that agrees with the person
+- **French lines are gender-neutral**: _Qui a le plus de chances de…_ rather
+  than _le plus susceptible_, and no adjective that agrees with the person
   voted for, since the line is written before anyone is.
 - **The bank** is `apps/server/src/infrastructure/questions/most-likely-bank.json`,
   127 lines in both languages at once, each `{ id, labels: { en, fr } }` like
@@ -65,15 +65,15 @@ Kind `mostlikely`, translation prefix `mostlikely.*`, answer mode `vote`.
    the reveal's answer list never says who voted for whom. A ballot for a
    seat the round did not open on is `invalid_message` — no screen offers
    one, so it needs no code of its own. A spent bank deals any line again.
-   The French bank test checks for *qui* anywhere, since two lines open on
-   *À qui* and *De qui*. The dictionaries hold only `name`, `scoring` and
+   The French bank test checks for _qui_ anywhere, since two lines open on
+   _À qui_ and _De qui_. The dictionaries hold only `name`, `scoring` and
    `host.answerMode.vote` so far.
 2. **Screens**, and `mostlikely` into `shelvedGames`: the line on the wall
    and on every seat, the seat picker, the reveal as a tally, the console's
    setup, the dictionaries, the spine tokens; seen on a wall, a seated
    console and two phones, muted.
    **Done.** As built: the line on a paper card over a grid of `SeatTile`s
-   (pawn and name on a piece, *You* on the voter's own), the pressed one on
+   (pawn and name on a piece, _You_ on the voter's own), the pressed one on
    the saffron piece and the rest sunk once spent, like the answer tiles. The
    reveal is `MostLikelyTally`, shared by the console and every seat: a row
    per seat somebody voted for, a dot a vote drawn as one CSS run, the room's

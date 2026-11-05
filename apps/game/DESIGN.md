@@ -209,19 +209,21 @@ A cool printed board under warm, saturated die-cut inks, every value one
 `@adrienlcp/theme-preference/color-scheme.css`).
 
 ### Primary
+
 - **Go Coral** (`--primary`, edge `--primary-edge`, label `--on-primary`): the
-  one colour that says *go* — the `filled` button, the player's buzzer. Same value in both palettes; its darker edge is the piece's
+  one colour that says _go_ — the `filled` button, the player's buzzer. Same value in both palettes; its darker edge is the piece's
   chipboard.
 
 ### Secondary
+
 - **The four answer inks** (`--tile-1` coral, `--tile-2` saffron, `--tile-3`
   sky, `--tile-4` leaf), in dealing order, each with its shape mark ink
   (`--tile-mark-1..4`) and one text ink (`--tile-ink`). Saffron `--tile-2` is
-  also the room-code token and the slate's *collected* token — the one saffron
+  also the room-code token and the slate's _collected_ token — the one saffron
   piece on the board.
 - **Spines** (`--spine-blindtest` magenta, `--spine-quiz` indigo,
   `--spine-buzzer` vermilion — deeper and redder than the coral `--primary`
-  it once equalled, so the one press that says *go* is never read as a game's
+  it once equalled, so the one press that says _go_ is never read as a game's
   box — `--spine-reflex` saffron, `--spine-slate` teal,
   `--spine-atlas` leaf, `--spine-challenge` walnut — the game played at the
   table, off every screen, in the table's own wood, and far enough from magenta
@@ -237,10 +239,11 @@ A cool printed board under warm, saturated die-cut inks, every value one
   the paper game was played with, twenty degrees short of the plum and as far
   again past the quiz's indigo): each
   game's box colour, on the shelf, the band across a game's lid, the player's
-  *up next* lid. Names print in `--on-spine-<game>`: pale `--on-spine`
+  _up next_ lid. Names print in `--on-spine-<game>`: pale `--on-spine`
   everywhere but reflex, which takes the dark `--on-spine-light`.
 
 ### Tertiary
+
 - **Pawns** (`--pawn-1..12`). Twelve because the four added to the original
   eight — lime, brown, magenta, sky — keep the closest pair in OKLab as far
   apart as the eight's closest already was (green / teal, 10.8); a thirteenth
@@ -258,6 +261,7 @@ A cool printed board under warm, saturated die-cut inks, every value one
   wears the round head. A pawn's colour is never a ground text is printed on.
 
 ### Neutral
+
 - **Board** (`--board`, `--board-ink`, `--board-muted`): the ground of every
   screen. Components read the aliases `--field`, `--ink`, `--ink-muted`, which
   point at the board on `:root` and are re-pointed by a lid or a flip.
@@ -281,8 +285,9 @@ A cool printed board under warm, saturated die-cut inks, every value one
   (WCAG 1.4.11).
 
 ### Feedback
+
 - **Good** (`--good`, `--good-edge`, `--good-soft`): a right answer, the
-  *revealed* phase, the payout token.
+  _revealed_ phase, the payout token.
 - **Danger** (`--danger` ground, `--danger-ink` text): always a stamped block,
   never tinted text, so its contrast is fixed in both palettes.
 - **Focus**: no colour of its own. The ring is drawn in `--ink`
@@ -297,14 +302,14 @@ A cool printed board under warm, saturated die-cut inks, every value one
 `--phase-ink` / `--phase-on-ink`, which the round's own marks read — the
 draining sand, the current pip, the hold groove under the console's stage:
 
-| Phase | `--phase-ink` |
-|---|---|
-| `lobby` | `--track-five` — the printed blues |
-| `countdown` | `--spine-reflex` (saffron) |
-| `playing` | `--spine-quiz` (indigo) |
-| `buzzed`, or `playing` while the slate is marking (`data-marking`) | `--primary` (coral) |
-| `revealed` | `--good` |
-| `finished` | `--track-five` |
+| Phase                                                              | `--phase-ink`                      |
+| ------------------------------------------------------------------ | ---------------------------------- |
+| `lobby`                                                            | `--track-five` — the printed blues |
+| `countdown`                                                        | `--spine-reflex` (saffron)         |
+| `playing`                                                          | `--spine-quiz` (indigo)            |
+| `buzzed`, or `playing` while the slate is marking (`data-marking`) | `--primary` (coral)                |
+| `revealed`                                                         | `--good`                           |
+| `finished`                                                         | `--track-five`                     |
 
 `data-flipped` (the reflex stimulus, `use-flip-field.ts`) swaps `--field` and
 `--ink`: the largest luminance jump either palette holds, at the cost of no new
@@ -369,8 +374,8 @@ grow, which is the one thing a 4K wall draws thinner.
   name of whoever buzzed, a winner, a notice's title. A line with a French
   grave (`à`) set in it needs line-height 1.2: the accent rises past 0.95.
 - **`title`** (700, stretch 90%, line-height 1.05): control labels, roster
-  names, and every block's ruled heading (`SectionHeading`): *Cette manche*,
-  *Classement général*, *Classement final*.
+  names, and every block's ruled heading (`SectionHeading`): _Cette manche_,
+  _Classement général_, _Classement final_.
 - **`body`** (400, line-height 1.45): the default on `<body>`.
 - **`caption`** (500, line-height 1.35): reasons, details, strip segments.
 - **`label`** (700, tracked 0.005em, sentence case): form labels, menu items.
@@ -404,10 +409,10 @@ every board fitted to its box size the same way. `--text-xs` is 0.875rem —
 14px at the default size, the floor the e2e spec enforces.
 
 **The No Kicker Rule.** No label sits above a heading to frame it. Every kicker
-the old world had — *La réponse*, *Tu vas jouer à*, *Tu finis*, *En ce moment
-au mur*, the console reveal's title prefix, the reflex time's label — became a
+the old world had — _La réponse_, _Tu vas jouer à_, _Tu finis_, _En ce moment
+au mur_, the console reveal's title prefix, the reflex time's label — became a
 `VisuallyHidden` prefix of the heading it framed, so a screen reader still hears
-the sentence and the eye lands on the payload. The final board's *WINNER* went
+the sentence and the eye lands on the payload. The final board's _WINNER_ went
 outright: the name never needed it.
 
 **The Rubric Exception.** The quiz category stays visible above the question
@@ -481,9 +486,9 @@ query, because the same control is drawn in boxes the viewport cannot tell
 apart. `$width` is measured in the longer locale and given in `rem`. The round
 count's row is 290px in French with its six stamps and about 326px with a
 seventh (a count off the steps, twelve for three games), so it stacks below
-18.5rem and 21rem. The blind test's *where the tracks come from* is 489px in
+18.5rem and 21rem. The blind test's _where the tracks come from_ is 489px in
 French and stacks below 31rem; its strands are 507px with all three ticked,
-checks included, and stack below 34rem. *Chanson française* ticked wraps to two
+checks included, and stack below 34rem. _Chanson française_ ticked wraps to two
 lines in the genres' two-column step, a 163px cell: accepted, the genre grid
 letting a cell's label wrap (`white-space: normal`) where a strip's row does not.
 
@@ -496,7 +501,7 @@ choice glides: a strip changing shape under its container query, its first
 placement and a choice made where there was none are set down in place, the
 last fading in on `fast`, as letting go of the only choice fades it out. A
 strip holding several has no piece at all: each ticked stamp is inked where it
-lies (*Strips*, below), so nothing travels where nothing left.
+lies (_Strips_, below), so nothing travels where nothing left.
 
 **The No-Scroll Rule.** A question and its four choices never scroll.
 `e2e/choice-fits.spec.ts` stubs the socket and measures sixteen viewports —
@@ -551,7 +556,7 @@ floor and the reflex race keep their footer under the stage at every ratio.
   the slate it carries each sheet's `n/26` over a groove inked as far as it is
   filled, in seat order.
 - **The reveal** opens the round's block under the answer with its ruled
-  heading, the seated host's own line (pawn, *Toi*, `+35`, *3e de la manche*)
+  heading, the seated host's own line (pawn, _Toi_, `+35`, _3e de la manche_)
   at the rule's end so it costs no row; the heading sits a `--space-2xs` over
   the podium, and the note gives way first on a short stage (two lines under
   a 30rem stage, one under 22rem); a phone under 45rem drops the heading over
@@ -576,14 +581,14 @@ lobby's shelf and the game's scoring line, then the planned games, each
 opening its own page in the tab's place — hoisted above the shelf once two
 are ticked, under a heading carrying the round count, each row's number
 printed in its spine band and the rounds drawn at random one socket row of
-the list; no *First* stamp, because the number says it), **Table** (the teams, the board,
+the list; no _First_ stamp, because the number says it), **Table** (the teams, the board,
 the judge and the round count), **Room** (the room drawn from above, then the hold
 and the countdown) and **Players** (the roster with its ✕).
 
 The Room tab draws the room as a selector, one `ToggleButtonGroup` of three
 shapes: the room's screen on top (dashed while none is paired), the table in
 the middle with the other seats' pawns round its rim (drawn, not pressable),
-and the host's side under it — *Your seat* and *This screen*, marked *Here*.
+and the host's side under it — _Your seat_ and _This screen_, marked _Here_.
 A pick rings the face in `--primary` and underlines the name, no box; what it
 does opens in a well under the drawing: pairing a screen by its code or
 letting it go, the seat's form, this screen's volume. The hand-over stays the
@@ -592,33 +597,33 @@ often open on the screen the whole room faces, and the square hands the table
 to whoever scans it. The phase's presses are never in it: they stay in `HostActions` under
 the stage, so a folded panel or another tab never hides what the room waits on.
 
-- **Saved line-ups** (*Parties enregistrées*) are one more row under the planned games, the same
+- **Saved line-ups** (_Parties enregistrées_) are one more row under the planned games, the same
   ruled box as the add row, opening a page in the tab's place: the naming
   field with its press under it at the panel's width (the seat's form), then
   a ruled list whose row is the evening's entries as a line of spine ticks,
   its name and a caption of its games and length, a ✕ beside it. Once one was
   run or kept, the page opens on its name in a strong caption over an outlined
-  *Save over it*, the name kept out of the press because forty characters do
+  _Save over it_, the name kept out of the press because forty characters do
   not fit the display face.
-- **Ready-made line-ups** (*Des parties toutes prêtes*) lead the games tab
+- **Ready-made line-ups** (_Des parties toutes prêtes_) lead the games tab
   while nothing is chosen: the four the app ships (`readyMadeLineUpsFor`), in
   the saved row's grammar — a line of spine ticks, the name, a caption of its
   games and length — in one ruled box, a chevron where the ✕ would be, then
-  *One game at a time* in the heading face over the prompt and the shelf. A
+  _One game at a time_ in the heading face over the prompt and the shelf. A
   row runs exactly as a saved line-up is run. Once one is on the table — from
   a row, or from a home page box on the console's first lobby frame — a ruled
-  note above the planned games names it beside an underlined *Change*, which
+  note above the planned games names it beside an underlined _Change_, which
   takes the line-up off and puts the choice back. The note goes once a game
   is added or taken out (`isOnReadyMade`); retuning one keeps it.
-- **The draw** (*Au hasard*) is the socket row under the planned games,
+- **The draw** (_Au hasard_) is the socket row under the planned games,
   pressed like the add row: a page in the tab's place under a lid edged in
   `--socket-line` (no game owns it), then a ruled list of every entry whose
-  game may be drawn. A planned one carries a *Drawn* switch and sinks into the
+  game may be drawn. A planned one carries a _Drawn_ switch and sinks into the
   socket when it is off; one in the draw alone says so in its caption and
   carries a ✕; the last row adds a game to the draw from the shelf, which then
   lists only the games a draw may land on. While every entry holds a planned
-  round, *Then* sits on the socket above it: a strip choosing the draw or the
-  order again (*From the top*), and choosing the order folds the draw's row
+  round, _Then_ sits on the socket above it: a strip choosing the draw or the
+  order again (_From the top_), and choosing the order folds the draw's row
   away — it fades, then its track closes — and opens it again the way it left.
 - **Past the split** the panel stands beside the stage, `--host-panel-width`
   (25rem), on paper (`box-lid.paper`: rounded on the stage's side, a hairline
@@ -645,8 +650,8 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   scroll; the unseated console's four tiles, lying down, drop the side bar
   until the round ends (`data-stage-full`), because the column it takes is
   the one the longest choice wraps into — 568×320 ran 14px off the screen.
-- **The board** is one strip on the Table tab, *Board*: *None · 10 · 40 ·
-  100*, the unit (*squares*) a `mark` under each number, the hint under the
+- **The board** is one strip on the Table tab, _Board_: _None · 10 · 40 ·
+  100_, the unit (_squares_) a `mark` under each number, the hint under the
   strip saying who walks a pawn. By points a round's leader walks some four
   squares, so the three are a quick game of about three rounds, the evening
   of about ten the room opens on (`DEFAULT_BOARD_LENGTH`) and a marathon of
@@ -654,7 +659,7 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   on its own. With the unit beside each number four stamps ran 26.65rem in
   English, past the panel's 22.5rem; marked, the four run 18.6rem in one row
   in English (15.1rem in French), so they tile two by two below 18.75rem
-  rather than leaving *100* alone on a second row. *None* stands as tall as a
+  rather than leaving _100_ alone on a second row. _None_ stands as tall as a
   marked stamp, its word centred in it (`align-content: center` on every
   segment). A track laid at another length (a stored 20 or 60) joins the
   strip in its order rather than falling off it, and that strip of five,
@@ -663,11 +668,11 @@ the stage, so a folded panel or another tab never hides what the room waits on.
   switch with the length behind it hid the one setting a host looks for.
 - **The lobby's board preview is the track alone**: every pawn on the
   start, where the whole track does not already run round the page, and
-  nothing where no board is laid. No label, no length, no *Change*: the strip
+  nothing where no board is laid. No label, no length, no _Change_: the strip
   says a board is laid, and it is changed on the Table tab like every other
   setting.
 - **Past the lobby** the teams and the board, which the server no longer lets
-  change, are one ruled line (*No teams · No board*, *Settled for this game*)
+  change, are one ruled line (_No teams · No board_, _Settled for this game_)
   rather than controls drawn dead. Under a round in play, Table and
   Room say the changes apply from the next round; the seat waits for the
   round to end, since taking it reopens the socket.
@@ -723,6 +728,7 @@ the board. The edge is a **hard** offset shadow in chipboard, not a blur; a
 soft `--shadow-*` layer underneath only grounds it. Nothing floats, nothing glows.
 
 ### Shadow Vocabulary
+
 The edge's depth is `--edge` (0.1875rem, 3px at the default size, on a piece
 and a card), and every move reads it twice — the shadow's offset and the
 travel — so the two stay in step at any root size: lifted, the edge grows by
@@ -749,7 +755,7 @@ quarters and a quarter stays showing.
   that leaves the board.
 - **Sheet** (`var(--shadow-sheet)`, cast upward, over `--scrim`): the same
   leaflet below the split, rising from the bottom edge.
-- **Keyline** (`inset 0 0 0 3px var(--ink)`): *this one is yours* — the own seat,
+- **Keyline** (`inset 0 0 0 3px var(--ink)`): _this one is yours_ — the own seat,
   the line in hand, a selected strip segment while disabled.
 
 **The Ruled, Never Dimmed Rule.** A state never lowers opacity. Disabled is
@@ -768,7 +774,7 @@ its `AwayMark` tag; a spent tile is a socket.
   is a `--text-*` step: 0.75, 0.8125, 0.875, 1, 1.25, 1.5rem.
 - **Lines**: `--stroke-hair` 1px, `--stroke-thin` 2px (the board's rule, a
   keyline, a recess ring, a dashed socket), `--stroke-bold` 3px (an ink outline,
-  the *yours* keyline). `--hairline` is the board's rule whole, declared again
+  the _yours_ keyline). `--hairline` is the board's rule whole, declared again
   by `box-lid` beside the `--rule` it reads.
 - **Sprue nubs**: two 10×3px notches top and bottom centre, cut in the colour of
   the ground the piece sits on (`--ground`, defaulting to `--board`; a piece on
@@ -832,11 +838,12 @@ when a game joins the shelf.
 ## Components
 
 ### Buttons (`Button`, `Link`, `ToggleButton` — `_control.sass`)
+
 - **Shape**: a piece. Sizes `small` (40px, `--radius-s`), `medium` (52px),
   `large` (72px), labels in `title` trimmed to cap height so only the centre
   moves. `large` sets its label on a steeper clamp
   (`clamp(1.375rem, calc(var(--stage-unit) * 3.3), 2.25rem)`) so it never falls under `medium`'s.
-- **`filled`**: the coral piece, *go*. One per moment.
+- **`filled`**: the coral piece, _go_. One per moment.
 - **`outlined`**: a plain piece on `--track-a` in `--board-ink`.
 - **`underlined`**: no piece, a printed line — 2px underline offset 5px in
   `--ink-muted`, `--ink` on hover or press.
@@ -849,6 +856,7 @@ when a game joins the shelf.
   its accessible name.
 
 ### Answer tile (`AnswerTile`)
+
 A pressable piece in its ink (`--tile`), `--tile-ink` text 700, the shape mark
 in `--tile-mark`. `touch-action: manipulation` so a press lands with the thumb.
 Once chosen, the chosen tile keeps its ink and the other three go flat into a
@@ -856,21 +864,24 @@ socket. On the console the same faces are printed, not pressable
 (`PrintedChoices`, an `<ol>`).
 
 ### Question card (`_question-card.sass`, `AskedQuestion`)
+
 Paper, `--radius-l`, the prompt in Atkinson 700 sized by the square root of its
 length, the category (quiz rubric) above it. The round's clock lies along its
 top (`.card-clock`, `RoundProgress`), its seconds in `--card-ink`; the card's
 top padding is the clock's row. The reveal is the card turned over: the answer printed on the same
 paper, a blind test's cover mounted on it.
-Atlas's *name* round mounts its map on the card the way the quiz mounts a
+Atlas's _name_ round mounts its map on the card the way the quiz mounts a
 flag: the country filled from the screen's own outlines, or a dot for a town,
 framed with its neighbours above the four names or the field.
 
 ### Text field (`TextField`)
+
 A paper slot: `--card` ground, `--card-ink`, inset shadow plus a 2px `--edge`
 ring, 52px — never taller than the button that submits it. Invalid: a 3px
 `--danger` ring and a stamped `--danger` block under it.
 
 ### Strips (`SegmentedControl`, `ToggleGroup` — `_strip.sass`)
+
 Stamps in a tray (`--ink` at 7% over `--field`, padding equal to the gap),
 `caption` 700 uppercase, `flex: 1`. Selected is a piece lifted out of the tray:
 `--primary` ground, `--on-primary` text, a `--primary-edge` edge under it — the
@@ -880,14 +891,15 @@ tray's rounded corner. Disabled keeps the selected one as a 3px ink keyline.
 A strip holding several answers lifts nothing: each ticked stamp is inked flat
 in the tray — `--ticked` ground, `--ticked-ink` text, a leading check
 (`CheckIcon`) stamped on with `tick-stamp` on `fast` — because twelve lifted
-pieces read as a wall, and as *the* answer. On paper (`paper-inks`) it
+pieces read as a wall, and as _the_ answer. On paper (`paper-inks`) it
 re-points to `--card-ticked` and `--card-ticked-ink`, which stay light when the
 board goes dark.
 An option may carry a `mark`, a `--text-3xs` line under its label and never
-beside it, so no strip widens past its measured `stacks-below`: *Host judges*
+beside it, so no strip widens past its measured `stacks-below`: _Host judges_
 under every answer mode a verdict is owed in.
 
 ### Box lid, shelf and spines
+
 - **`box-lid`**: a paper card with its keyline, re-pointing `--field`, `--ink`,
   `--rule`, `--edge`, `--ground` at the paper so any board component prints
   correctly on it. Every `piece.card` prints the same inks through
@@ -898,8 +910,8 @@ under every answer mode a verdict is owed in.
 - **`TickShelf`** (console lobby game picker): eleven lids,
   or a column when the names would not fit whole; the ticked ones pulled
   forward with a tick — one is a game, several an evening — and once anything is chosen the rest sit back on `--socket`
-  with their band faded. A game judged however it is answered carries *Host
-  judges* as a `mark`: a keyline stamp on the lid under the description, at
+  with their band faded. A game judged however it is answered carries _Host
+  judges_ as a `mark`: a keyline stamp on the lid under the description, at
   the row's end in the list layout — outlined because the filled pill on the
   band already says which box opens first.
 - **Line-up rows** (`LineUpRow`, `LineUpLid`, `features/home`): the
@@ -921,13 +933,13 @@ under every answer mode a verdict is owed in.
   entry with its game's glyph — three blind tests read as three, and a segment
   under 2rem drops its glyph — its name in the lid face, clamped to three
   lines, its games in caption-strong, a muted caption, and a ruled foot with
-  *how long* or *when* and *Open →*. The spinner takes the pressed lid's
+  _how long_ or _when_ and _Open →_. The spinner takes the pressed lid's
   arrow and every other lid is disabled.
   - **Your line-ups** comes first, and only once there is one: the line-ups
     the host starred (the saved evenings), then the tables this device played
     (`melee:recent-tables`, eight at most, a line-up played twice kept at its
     latest), each shown once — a starred line-up that was played carries its
-    last table on its lid, *12 rounds played of 20* and *Played yesterday*.
+    last table on its lid, _12 rounds played of 20_ and _Played yesterday_.
     The **star** is a round token on the lid's corner, `--card-tint` and
     hollow, printed solid in `--card-ink` once kept: a press of its own beside
     the lid's, never inside it, and the name floats a target's width clear of
@@ -949,7 +961,7 @@ under every answer mode a verdict is owed in.
   ticking it for the host's door — its spine colour, its name in the display
   face, its tagline; two columns from a 52rem container. The games judged
   however they are answered are shelved last, each group in `shelvedGames`
-  order, under *Judged by the host*: the reveal's block-heading step in full
+  order, under _Judged by the host_: the reveal's block-heading step in full
   ink, ruled off to the far edge, a `--space-m` above it and a `--space-s`
   under. Mixed into the run, the three spines a ticked shelf leaves bare read
   as forgotten boxes; and nothing re-sorts on a tick, so no spine moves under
@@ -964,7 +976,7 @@ under every answer mode a verdict is owed in.
   shelf whole, so a first visit reads as a rule. A spine is no longer
   a link to its game's page: the sitemap hands those pages to a crawler.
 - **The masthead** (`features/home`): the wordmark and, under it while the
-  last table this device opened is still open, *Back to table K7PX* — an
+  last table this device opened is still open, _Back to table K7PX_ — an
   underlined link a `--target` tall, the code in the title face, its line
   held from the first paint wherever a host token is stored — by the served
   page on the same pre-paint mark, by the app while the server is asked — and
@@ -980,8 +992,8 @@ under every answer mode a verdict is owed in.
   every width — where the shell's 7.25rem fallback is a room's and held the
   served page's code box 52px short of the menu until the app ran. The menu scrolls away with the masthead here instead of floating
   over the shelf.
-- **The host's door** (`HostDoor`): *Open a table · 5 games* (the count of
-  ticked spines, the bare *Open a table* when none is) as the coral piece at
+- **The host's door** (`HostDoor`): _Open a table · 5 games_ (the count of
+  ticked spines, the bare _Open a table_ when none is) as the coral piece at
   the **shelf's foot**, on a band of `--board` held to the bottom of the
   screen while the shelf is on it (`position: sticky`). The band is ruled in
   `--rule` and lifted by `--shadow-sheet` only while it floats over the
@@ -996,13 +1008,14 @@ under every answer mode a verdict is owed in.
   half lower read as its own launch beside the lids' presses. The press keeps
   its label while pending, the spinner in its end padding. A refusal shows
   beside the press that met it: under the door, or under the rows.
-- **The headings** — *Your line-ups* and *Ready-made line-ups* over the
-  rows, *Or your own games* over the shelf — each say in their hint what a
+- **The headings** — _Your line-ups_ and _Ready-made line-ups_ over the
+  rows, _Or your own games_ over the shelf — each say in their hint what a
   press does, because nothing else on the page does. While a table opens the
   rows are `aria-busy`, the spines and both presets are disabled, and a
-  visually hidden status says *Opening the table…*.
+  visually hidden status says _Opening the table…_.
 
 ### Room invitation (`RoomInvitation`)
+
 The code on the saffron token (`--tile-2`, `monument`, a piece at
 `--radius-l`), the QR on a white card in both palettes — an inverted square
 fails half the cameras in a room — and the address. Its size is the stage's
@@ -1018,19 +1031,20 @@ narrow for that the square takes the larger share (55% on a held console, 1.4
 parts of 2.4 on a narrow wall, 11 parts of 20 on a narrow table lid). The invite and
 wall-pairing posters set the token to the square's width with the words under
 the square. The address breaks between host and path (`<wbr>`), never
-inside the code. On a screen somebody holds, the code carries *Copy the code*
-and the address *Copy the link* and — only where the device has a share sheet
-(`canShareLinks`) — *Share*, small outlined pieces under the address. A wall
+inside the code. On a screen somebody holds, the code carries _Copy the code_
+and the address _Copy the link_ and — only where the device has a share sheet
+(`canShareLinks`) — _Share_, small outlined pieces under the address. A wall
 or a poster carries none of them.
 
 ### Pawns and seats
+
 `Pawn` names a player everywhere. The roster (`seat-grid`) is a chip per seat
 on `--track-a` with the pawn and the name, a socket per empty pawn, the own
 seat in a keyline. It never ranks (`Scoreboard`'s `isRoster`): its chips are
 dealt across where a ranking is read downwards, and a rank, a case and points
 in a chip a third of the roster wide left the name 0px. A name too long for
 its chip wraps, hyphenated where the page's language allows, never an ellipsis
-after five letters (two *Anne-* read as one seat); its size is the lower of 2.2
+after five letters (two _Anne-_ read as one seat); its size is the lower of 2.2
 `stage-unit` and 3.3cqi of the roster, so two lines stay inside the chip's
 height, and the clamp holds three. The third is owed where nothing
 hyphenates — an English page reading a French name: `Anne-` takes a line
@@ -1046,7 +1060,7 @@ closes) once the host sits or the table is full, and the Room tab says the
 table is full in the form's place. Above the split the side column scrolls
 inside itself when the offer and a full table are taller than it, so the
 launch under it never leaves the screen. `AnsweredPawns` on the console stands a pawn for an answer
-in and dashes one owed — *that*, never *what*. Removing a player is a ✕ named
+in and dashes one owed — _that_, never _what_. Removing a player is a ✕ named
 `Remove {nickname}`. A seat whose screen has gone mutes its name and carries
 `AwayMark`: an outlined `--radius-full` tag, a wifi-off glyph and the word in
 `--ink-muted` — a tag, never a bare word after the name, which reads as the end of
@@ -1054,9 +1068,10 @@ the name. The score track, too narrow for it, keeps the word for
 screen readers alone.
 
 ### The board track (`BoardTrack`, `TrackStrip`)
+
 Printed cases round the stage, a number in each corner, heavier every five;
 the start and the finish spell themselves out, the finish over a band of
-checks. Under 3.5rem of case width *Arrivée* at the type's floor (43.8px at
+checks. Under 3.5rem of case width _Arrivée_ at the type's floor (43.8px at
 12px, plus the corner's inset) runs out of its case — a hundred squares at
 1440×900 draws 36px cases — so both ends print a glyph from the family
 instead, a house for the start where the pawns wait and a flag for the
@@ -1082,9 +1097,10 @@ size: under the type's floor it follows its case down (`33cqi`, 7.6px on a
 390-wide wall's 23px cases), and a crowd's three pawns stand abreast on a case
 narrower than the band (`33cqi`), where wrapped they stood the count over the
 case's top. Four pawns and no count stand abreast too (`27cqi`): wrapped three
-and one, four teams on the start covered *Départ* at 1440×900.
+and one, four teams on the start covered _Départ_ at 1440×900.
 
 ### Teams (`TeamRoster`, `PawnPiecesProvider`)
+
 Every seat's pawn stands as the piece the seat picked, or in its team's colour
 and the round head when the room plays in teams (`pawnPieceOf`), on every
 screen, through one provider per page; a team's own pawn is its 1-based
@@ -1092,15 +1108,15 @@ screen, through one provider per page; a team's own pawn is its 1-based
 across the top — never a ground text sits on — its pawn and name in the head
 (the host's name, or the screen's dictionary word for the colour), its seats as
 chips under it. Ranked, the head carries the rank and the score; the seat's own
-team takes the *yours* keyline. Seats no team holds yet sit in a recess. The
+team takes the _yours_ keyline. Seats no team holds yet sit in a recess. The
 score track, the standings and the final board rank teams in place of seats
 whenever there are any; the phone's chrome spells the team in the lobby and
 drops the word mid-round under 26rem, where the pawn says it.
 
 A pawn is picked from one press, a seat's or a team's (`PawnPiecePress`): a
-small outlined control printing the palette glyph and the word *Colour*, whose
-screen-reader name starts with it and says whose (*Colour of the Reds*,
-*Colour of my pawn, Red, square head*). It sits in each team's head on the
+small outlined control printing the palette glyph and the word _Colour_, whose
+screen-reader name starts with it and says whose (_Colour of the Reds_,
+_Colour of my pawn, Red, square head_). It sits in each team's head on the
 host's table, and in the lobby on a player's own screen — in the head of the
 player's team, or on the player's own chip of the roster when the room plays
 without teams, across the chip under its pawn and name. A head's presses take
@@ -1112,17 +1128,19 @@ head. The pawn's own piece sits in an ink keyline, and a piece another pawn
 holds is struck through in ink rather than dimmed and out of reach, so the
 sheet still says which pieces are on the table; the strike draws across as a
 piece is taken and wipes back as it is let go. A piece is named by its colour
-and its head — *Red, square head* — in the menu's *My pawn* row and to a
+and its head — _Red, square head_ — in the menu's _My pawn_ row and to a
 screen reader on the sheet.
 
 ### Duels (`DuelBadge`)
+
 A duel says whose round it is with the **duel badge**: two teams' trays in
 miniature, the band split between their colours, a pawn at each end and
-*Anna vs Carl* between them — in the console's and the wall's header and in the
-phone's chrome; a duellist reads it under the *yours* keyline. A phone watching
+_Anna vs Carl_ between them — in the console's and the wall's header and in the
+phone's chrome; a duellist reads it under the _yours_ keyline. A phone watching
 the duel gets a plain `NoticeCard` and no controls.
 
 ### Tokens: countdown, floor, payout
+
 - **`Countdown`**: a round paper token; `--token-size` is the one dial, the
   numeral two thirds of it, and only the numeral re-keys, so each second strikes
   while the token stays put.
@@ -1133,29 +1151,31 @@ the duel gets a plain `NoticeCard` and no controls.
   for nothing; a saffron token for the round's taker in the reflex race.
 
 ### Buzzer (player)
+
 A thick coral token with a keyline printed a margin in and a chipboard edge that
 sinks under the thumb, sized as the largest circle its `.press` size container
 holds beside its line. Dead, it is the socket it sits in, the word in board ink.
 The reflex buzzer is not in the box until the flip: the wait draws the empty
-socket (`--socket`, recessed, sunk by its edge) holding *Attends que l'écran
-change* in the title face at 8.5% of its diameter, and the coral piece is in it
+socket (`--socket`, recessed, sunk by its edge) holding _Attends que l'écran
+change_ in the title face at 8.5% of its diameter, and the coral piece is in it
 on the flip's frame, with no transition. The socket is still the live press, so
 going early is still a false start. It replaced a paper-side-up piece reading
-*BUZZ*, which a table pressed on sight. A false start is a piece in the danger
+_BUZZ_, which a table pressed on sight. A false start is a piece in the danger
 ink.
 
 ### Results chips
+
 The reflex finishing order and the slate's marking use one chip per player or
 answer: pawn, name, words, points. Right is filled (`--good` / `--good-soft`);
 wrong or silent is an empty dashed outline; the player's own is in a keyline.
 **The reveal** shows the round's podium instead (`RoundPodium`, shared by the
 console, the wall and the player's screen): the top three by points, each with
 its place in the round (ties share one), what it said and its `+N` with the
-speed half, then *Found: N of M*, falling back on the stage's height to the
-first alone (*+ N others*) and then the count alone; the seat a screen holds
-takes the *yours* keyline. The tally above it is cut in whole chips
-(`useWholeChips`), never scrolled. Under the next-round press, *Wait* and *End
-the game* share one quiet row of underlined presses.
+speed half, then _Found: N of M_, falling back on the stage's height to the
+first alone (_+ N others_) and then the count alone; the seat a screen holds
+takes the _yours_ keyline. The tally above it is cut in whole chips
+(`useWholeChips`), never scrolled. Under the next-round press, _Wait_ and _End
+the game_ share one quiet row of underlined presses.
 
 **The rank stands against the pawn** (`styles/_rank.sass`): its column is
 two tabular figures wide at the rank's own size (one figure measured 0.63em on
@@ -1169,32 +1189,33 @@ word, and every score as wide as the board's widest, counted in glyphs by the
 component — one figure of the score face measured 0.533em at its 85% stretch,
 written 0.54em.
 
-**Two blocks, two anatomies.** Every reveal reads *Cette manche* — the round's
-pieces, filled — then *Classement général* — ruled rows on the field — and no
+**Two blocks, two anatomies.** Every reveal reads _Cette manche_ — the round's
+pieces, filled — then _Classement général_ — ruled rows on the field — and no
 row of the standings prints a figure of the round: rank, pawn, name, ready
 mark, case, total, movement stamp. Each block opens on `SectionHeading`: an
 `h2` in `title` at `clamp(--text-s, 2.2 × --stage-unit, --text-l)`, full ink,
 then a `--hairline` running to the block's far edge, an aside at its end where
-the reader has a figure of their own (the player's *7e sur 24*, the seated
+the reader has a figure of their own (the player's _7e sur 24_, the seated
 host's round). Standings divide their own box under it
 (`_boxed-standings.sass`, shared by the reveal, the final board and the
 marking); a team's tray on a track prints the cases walked (`TeamMove`) and no
 `+N`. The wall's list past twelve seats takes two
 columns lying down. On a track with seats and no teams the standings are the
 `TrackPodium`: three steps and a heap of chips, in one column that scrolls. The final board stands the winner's pawn oversize, the name sized by
-its longest run (`answerFitting`), *wins with N points* under it; a tie stands
+its longest run (`answerFitting`), _wins with N points_ under it; a tie stands
 every winner's pawn at one shared size.
 
 **In a line-up the round's block is headed by what was played**
 (`ThisRoundHeading`): the entry the round was stamped on, named as the console
-announced it — *Quiz · Histoire*, *Buzzer · Un essai chacun* — after its glyph
+announced it — _Quiz · Histoire_, _Buzzer · Un essai chacun_ — after its glyph
 on a square of its spine (`--spine-*` under `--on-spine-*`, 1.4em, bled over
 the heading's line by a negative block margin so the heading keeps the height
-of *Classement général*: the mark had cost a phone's reveal 5.6px). A room of
-one entry keeps *Cette manche*; it knows what it is playing.
+of _Classement général_: the mark had cost a phone's reveal 5.6px). A room of
+one entry keeps _Cette manche_; it knows what it is playing.
 
 ### Black square (`BlackSquareSheet`, `BlackSquareReveal`, `BlackSquareGauge`)
-Direction A, *the grid*, chosen 2026-10-24 (`.impeccable/directions/black-square/`,
+
+Direction A, _the grid_, chosen 2026-10-24 (`.impeccable/directions/black-square/`,
 local). A seat's grid is one tier a row in cell order — 3 × 3 at nine, a short
 row centred on half a cell when the host deals three to eight
 (`_tier-rows.sass`) — so a cell's place says its tier:
@@ -1207,18 +1228,18 @@ it paid; before the first, the line says one of them is the black word. **The
 black word is an ink piece** (`--black-word`, `--on-black-word`,
 `--black-word-muted`), never the danger stamp: a trap, not a fault. On a seat
 it lies over the grid with the found cells voided under it, and the field
-gives way to *the others are still looking*. The room's screen bands the
+gives way to _the others are still looking_. The room's screen bands the
 theme's card in the spine and counts the room's finds as a token per answer — a
 gauge, never positions. The reveal is a paper card per answer (name, pips and what
-it pays, the finders' pawns, *Nobody* on a socket, the seat's own in the
-*yours* keyline) and the black word as an ink card beside them on a box wider
+it pays, the finders' pawns, _Nobody_ on a socket, the seat's own in the
+_yours_ keyline) and the black word as an ink card beside them on a box wider
 than 3:2, a strip under them otherwise. Nothing moves inside the round: a hit
 lights its cell without the strike the comp drew.
 
 **Team by team** (the spoken mode) keeps the same grid. The keeper's list is
 the nine as paper presses — name, pips, a check once ticked on `--good-soft` —
 and the black word an ink press under them that turns into its own question
-(*did they say it?*) before it ends anything; the list opens hidden, the grid
+(_did they say it?_) before it ends anything; the list opens hidden, the grid
 printing its pips alone. Every other seat reads the grid lighting as the
 keeper ticks, the guessing team told who to say its answers to, the rest
 shown the **turn badge** (`BlackSquareTurn`): the duel badge's material, the
@@ -1226,16 +1247,18 @@ guessing team's band and pawn, the keeper's pawn and name beside it, also in
 the console's and the wall's header.
 
 ### Challenge hand (`ChallengeLinePicker`, `ChoiceList`)
-Direction B, *choose then launch*, chosen 2026-10-24
+
+Direction B, _choose then launch_, chosen 2026-10-24
 (`.impeccable/directions/challenge-hand/`, local). Between two rounds a
 console that only runs the room shows the next challenge as a `ChoiceList`
 above the one coral press: three lines on `--track-a` pieces, a die beside
-each, the chosen row in the *yours* keyline with a coral dot; the host's own
-line carries a pen and *Yours* in `--tile-mark-3`. Under them the typed line
-(a paper field) and *I'll say it aloud* on a socket. A seated console keeps
+each, the chosen row in the _yours_ keyline with a coral dot; the host's own
+line carries a pen and _Yours_ in `--tile-mark-3`. Under them the typed line
+(a paper field) and _I'll say it aloud_ on a socket. A seated console keeps
 the single field and its die.
 
 ### Slate
+
 Every item is a piece: paper with a groove inked as far as the table has
 written; the saffron token once collected and owed to the wall (a lock and the marking
 press on the console);
@@ -1243,6 +1266,7 @@ the empty socket once marked. The marking is the item's token beside the key on
 a paper card and a chip per distinct answer, the blanks as a last dashed chip.
 
 ### Matchsticks (`MatchstickRow`, `MatchstickBoard`)
+
 Pine matches with red heads on paper, every empty place a faint groove. A held
 stick is raised off its place with a shadow and a coral edge, and the grooves it
 may land in take a dashed die-line; a move is drawn with its old place dashed in
@@ -1263,6 +1287,7 @@ seat's move on a reveal chip is printed on a slip of `--card`, since a match is
 always laid on paper.
 
 ### Shades (`SwatchChip`, `SwatchShown`, `ColourPicker`)
+
 A paint chip: the colour on a card at a fan deck's 4 : 5, its field inset
 rather than padded so it keeps its margins at any size, an empty dashed socket
 once the colour has hidden. Every chip sits in a size container and takes
@@ -1272,16 +1297,18 @@ colour beside the press; in a box wider than tall the press moves beside the
 square. The reveal captions the colour, and each seat's row carries its chip.
 
 ### Most likely (`SeatTile`, `MostLikelyTally`)
+
 The line on a paper card, the seats under it as pieces on `--track-a` — pawn,
-name, *You* under the voter's own — in as many columns as 10rem fits. One
+name, _You_ under the voter's own — in as many columns as 10rem fits. One
 press votes: the seat pressed rises onto the saffron piece (`--tile-2`) in a
 board-ink ring and the rest sink into their sockets, the answer tile's spent
 state. The reveal counts: a row per seat somebody voted for, most first, one
 dot a vote, the room's choice on saffron in the title voice, the reader's own
-ballot in the *yours* keyline with *Your vote* under the name. A round that
+ballot in the _yours_ keyline with _Your vote_ under the name. A round that
 chose nobody says so above the rows and draws no scoreline under them.
 
 ### Close enough (`QuantityField`, `EstimateQuestion`, `EstimateLine`)
+
 The question on a paper card, the unit printed inside the end of the answer
 slot so the number reads as a quantity while it is typed, digits grouped as
 they land. The press is never disabled: a number field commits on blur, so a
@@ -1294,6 +1321,7 @@ and the nearest-first list under it carries each seat's figure. The display
 face draws U+202F almost zero wide, so grouping uses U+00A0 instead.
 
 ### Waits: `NoticeCard`, `Loader`, `Spinner`
+
 **A wait is a paper card, never an anonymous spinner.** Every player-side wait
 (host away, round not running, …) is a `NoticeCard` (`player-round.tsx`): a
 `card` lying face up, the title in `billboard` sized down, an optional detail in
@@ -1301,7 +1329,7 @@ face draws U+202F almost zero wide, so grouping uses U+00A0 instead.
 saffron band, with no groove — this round must show no clock.
 
 The order of preference before any spinner: draw what is already known; say it
-in words; reserve the box and let content arrive (cover art). *Known* means
+in words; reserve the box and let content arrive (cover art). _Known_ means
 known: the console's stage stays empty until the first snapshot, because an
 invitation drawn from the address bar was only right for a lobby without teams —
 a reload mid-round, or a wall whose table sits down in teams, flashed it before
@@ -1317,38 +1345,39 @@ holds `1.75em` of `caption`). A wrong guess in a retry mode is `--ink-muted`,
 never `--danger`: proof the frame landed, not a warning.
 
 ### App menu and connection
+
 `AppMenu` is an icon piece fixed to the corner, inside the stage's max width,
 on every screen at every phase; it carries the exits a round must keep in
-reach and, while a round is framed, *give it away* at its head. The connection
+reach and, while a round is framed, _give it away_ at its head. The connection
 sentence takes no room on screen: its `.alert[role=status]` is announced and
 never drawn, and while the socket is not open `.app-menu` carries
 `data-connection` and the trigger turns saffron (`--spine-reflex` on
 `--on-spine-light`) with its dot pulsing — the words are the menu's first line.
 The rest reads in one order on every screen, so a row a screen lacks leaves
 no gap: what the round and the room ask for, drawn only while they ask — the
-seated host's *Reveal* and *Pause*, the room's volume, the invitation at a
+seated host's _Reveal_ and _Pause_, the room's volume, the invitation at a
 table playing — then the seat (name, pawn), then what every screen has
 (language, theme, full screen, install), then the jobs only somebody running a
-table reaches for — *Become the room's screen* and *Show a table's QR code*,
+table reaches for — _Become the room's screen_ and _Show a table's QR code_,
 at a front door alone and under no heading, since each row says what it does
 — and the exits last. Those two jobs sat above the language until
 2026-11-05, and every visitor opened the menu past a job one screen of the
 evening does once.
-Under full screen, *Install Mêlée* is an outlined row shaped like the wall
+Under full screen, _Install Mêlée_ is an outlined row shaped like the wall
 door where the browser holds an install dialog, a muted caption with the
 Share glyph naming Safari's two steps on an iPhone or iPad, and nothing
 anywhere else — the front door promises no install, so this is offered and
 never pushed.
-Under the name, a seated screen carries *My pawn* (`MenuPawn`) at every phase:
+Under the name, a seated screen carries _My pawn_ (`MenuPawn`) at every phase:
 a disclosure row printing the pawn and its colour's word, opening on the same
-twelve as the press. A seat in a team reads *My team's pawn* and a line saying
+twelve as the press. A seat in a team reads _My team's pawn_ and a line saying
 the whole team changes with it; while a round plays the twelve sit at half
-opacity over *It changes between two rounds, not during one*, since the server
+opacity over _It changes between two rounds, not during one_, since the server
 refuses a recolour then, and a refusal prints in the field-error stamp in the
 line's place. The wall and a console only running the room carry none.
 At its foot, small centred caption lines read as one footer, tightened against
-each other: *Made by Adrien Lacourpaille*, the name linked to his site in the
-reader's language, and *Source code* on every screen, then the credits at a
+each other: _Made by Adrien Lacourpaille_, the name linked to his site in the
+reader's language, and _Source code_ on every screen, then the credits at a
 front door, the legal notice everywhere but its own page, and the build. A link
 out of the site opens a tab of its own, so no room's socket closes for one.
 On the wall the chrome goes idle
@@ -1356,6 +1385,7 @@ On the wall the chrome goes idle
 `ConnectionStatus` tells its four states by shape and motion, never by hue.
 
 ### Leaflet: popover or sheet
+
 `Leaflet` is what a trigger opens — the menu, a seat's move. At or past the
 split it is a popover beside the trigger; below it, a sheet rising from the
 bottom edge across the whole width, its controls held to a 30rem column, its
@@ -1375,13 +1405,14 @@ the board track's: the track widens `--gutter-left` and `--gutter-right` on
 56px a side at 390 — 278px of controls out of 390 — for an edge it hides.
 
 ### Handing the console over
+
 The room's screen never shows a control, so there is no switch making a
-console the room's: the console is handed to another screen instead (*Run the
-table from another screen*, a disclosure under the menu's wall doors: the
+console the room's: the console is handed to another screen instead (_Run the
+table from another screen_, a disclosure under the menu's wall doors: the
 square on a white card at the invitation's menu size, a muted line under it,
-*Copy the link*, never the address printed — it carries the token), and the
+_Copy the link_, never the address printed — it carries the token), and the
 screen that handed it over becomes the wall. A console that took over from the
-wall keeps every answer folded behind *Voir la réponse*.
+wall keeps every answer folded behind _Voir la réponse_.
 
 On the wall, the board track renders beside `<main>`: inside it, the page's
 leftover transform would run it down a lobby long enough to scroll. The board fills in behind its
@@ -1389,6 +1420,7 @@ top row, so a scrolling lobby passes under the cases rather than through their
 gaps.
 
 ### The wall's composition (`wall-page.sass`)
+
 **The wall picks its shape by its ratio, never by its width** — it is never
 held in a hand, so the console's split at `$wide-screen` says nothing about it.
 Taller than wide (`aspect-ratio < 1`), the reveal and the final board are one
@@ -1418,10 +1450,11 @@ and one on one, rather than beside an empty step, and a Petit Bac seat's name
 yields its width (8rem) before a category does.
 
 ### The table (`TableLobby`)
+
 A room of teams in its lobby, on the wall — direction D, chosen 2026-10-22
 (`.impeccable/directions/board-lobby/`, local).
 The track is already up, every team's pawn on the start. Centred inside it: a
-**lid** (`box-lid`) with the evening's name — *Soirée en équipes*, or the one
+**lid** (`box-lid`) with the evening's name — _Soirée en équipes_, or the one
 game's — how it is won, the line-up as spines in the order the box deals them,
 and the invitation laid on the lid's own grid (`display: contents`): the code
 token and the words beside it on the last line, the square down the right
@@ -1473,6 +1506,7 @@ the games are the console's.
 ## Do's and Don'ts
 
 ### Do:
+
 - **Do** read every colour from a token, in both palettes; a literal colour in a
   component breaks one theme silently and nothing type-checks CSS.
 - **Do** keep `@layer reset, tokens, base, components` declared in
@@ -1496,6 +1530,7 @@ the games are the console's.
   literal fallback — so reduced motion survives a missing token.
 
 ### Don't:
+
 - **Don't** repaint the board for a phase; ink the round's marks.
 - **Don't** put a kicker label above a heading. The quiz category is the only
   visible line above a question, because the table reads it.
@@ -1540,10 +1575,11 @@ bounced. Durations:
   standing up, the side lying down — held off it until the room's first view,
   where it stood a beat before the stage it serves. No
   scale and no overshoot: a page is set down, not dropped. The page being
-  left lifts off rather than vanishing: every router navigation is a view
-  transition (`navigateDefaults` in `app-shell.tsx`) whose old root fades on
-  `base` (`page-leave`) **stacked above** the new root, which is shown as is
-  — its own `page-lay` mask is the entrance. The browser draws the new picture
+  left lifts off rather than vanishing: every change of page is a view
+  transition React plays around the outlet (`<ViewTransition>` in
+  `app-shell.tsx`, keyed on `usePageKey`, so a switch of language is not one)
+  whose page left fades on `base` (`page-leave`) **stacked above** the page
+  arriving, which is shown as is — its own `page-lay` mask is the entrance. The browser draws the new picture
   on top, so without `z-index` the fade was hidden and every page change was a
   cut. The panel, the stage and the board's cases take transition names of
   their own only during a layout move (`data-layout-move`, set by
@@ -1578,11 +1614,11 @@ bounced. Durations:
   Off the desk the tab bar steps aside — for four tiles lying down, for a
   keyboard standing up — by sliding back off its edge (`stepped-aside`,
   `ease-in`) and docks again by the same transition, and the menu beside it
-  moves at its pace. *Close the table* opens its warning in place: the
+  moves at its pace. _Close the table_ opens its warning in place: the
   warning's row unfolds and the press fades into the one that closes,
   so the menu grows rather than jumping.
 - **A block arriving later** — on a screen already laid down. New content
-  rises with `page-enter` on `base`: the player's hold, *Ready* press and
+  rises with `page-enter` on `base`: the player's hold, _Ready_ press and
   standings a beat after the card (`slow` × 0.6, with the payout), the game a
   countdown opens and the inner clock's target with its first tick, the
   next-round card, the paused card, the wall's word that the host is away,
@@ -1685,7 +1721,7 @@ bounced. Durations:
   only the new length has is set down where it stands (`board-case-laid`,
   scale 0.6 to 1 on `base` × 1.25, a `fast` beat late), and a case it dropped
   is picked up on `fast`.
-- **A seat back at the table** — its pawn under *Next* is stamped on
+- **A seat back at the table** — its pawn under _Next_ is stamped on
   (`tick-stamp` on `base`) as it stands up from its outline.
 - **The payout** — the player's token set down a beat after the card
   (`payout-stamp`, scale 1.4 to 1 on `base`).
@@ -1728,8 +1764,8 @@ would score the devices ahead of it as false starts. The cue is keyed on a
 buzz's `atServerTime`, which a reflex round never has.
 
 **Three haptic patterns** (`infrastructure/browser.ts`): a 30ms tick for the
-press, a 100ms thud for *the floor is yours*, two knocks (45–65–45) for *it went
-to someone else* — told apart by contrast, not length. Only a screen that
+press, a 100ms thud for _the floor is yours_, two knocks (45–65–45) for _it went
+to someone else_ — told apart by contrast, not length. Only a screen that
 pressed feels the outcome. `useBuzzOutcome` hangs off `PlayerRound` and the
 host console page, not the buzzer, because the reflex reveal unmounts the
 buzzer before a slow player's result arrives. `navigator.vibrate` is absent on

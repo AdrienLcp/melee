@@ -8,14 +8,14 @@ is repeated here because it is the whole argument for the stage.
 
 Rows per subject in the bundled bank, by language:
 
-| | Arts | Everyday | Science | Geography | Sport | History |
-|---|---|---|---|---|---|---|
-| **French** | 2 258 | 1 261 | 170 | 156 | 123 | **64** |
-| **English** | 2 450 | 438 | 612 | 317 | 156 | 464 |
+|             | Arts  | Everyday | Science | Geography | Sport | History |
+| ----------- | ----- | -------- | ------- | --------- | ----- | ------- |
+| **French**  | 2 258 | 1 261    | 170     | 156       | 123   | **64**  |
+| **English** | 2 450 | 438      | 612     | 317       | 156   | 464     |
 
 **87% of the French half sits in two subjects.** The English half spreads over
-six. French history holds sixty-four rows *in all* — not sixty-four easy ones,
-sixty-four — so a host who ticks *Histoire* and nothing else has run the subject
+six. French history holds sixty-four rows _in all_ — not sixty-four easy ones,
+sixty-four — so a host who ticks _Histoire_ and nothing else has run the subject
 out in one evening, and fifty-three of them with `wellKnownOnly` on.
 
 The draw takes a category before it takes a question, so it is this cell that
@@ -92,13 +92,13 @@ every count was measured by downloading the corpus rather than taken from a
 dataset card. Re-read the licence before ingesting: it is the one field that
 changes without the data changing.
 
-| Source | Licence | French rows | History | Geography | Science | Sport | Decoys |
-|---|---|---|---|---|---|---|---|
-| **Mintaka** | CC BY 4.0 | 11 404 usable | 831 | 809 | **none** | 432 | buildable |
-| **Vikidia** | CC BY-SA 3.0 | 1 373 | 138 | 119 | **133** | 47 | shipped |
-| **MMMLU** `FR_FR` | MIT | 14 042 | ~930 | ~300 | ~1 600 | **0** | shipped |
-| INCLUDE | Apache 2.0 | 419 | 52 | 47 | 16 | 0 | shipped |
-| Qulture | CC BY 4.0 | **16** | — | — | — | — | shipped |
+| Source            | Licence      | French rows   | History | Geography | Science  | Sport | Decoys    |
+| ----------------- | ------------ | ------------- | ------- | --------- | -------- | ----- | --------- |
+| **Mintaka**       | CC BY 4.0    | 11 404 usable | 831     | 809       | **none** | 432   | buildable |
+| **Vikidia**       | CC BY-SA 3.0 | 1 373         | 138     | 119       | **133**  | 47    | shipped   |
+| **MMMLU** `FR_FR` | MIT          | 14 042        | ~930    | ~300      | ~1 600   | **0** | shipped   |
+| INCLUDE           | Apache 2.0   | 419           | 52      | 47        | 16       | 0     | shipped   |
+| Qulture           | CC BY 4.0    | **16**        | —       | —         | —        | —     | shipped   |
 
 The subject columns are what survives filtering, not what the corpus claims.
 
@@ -118,9 +118,9 @@ Three catches, all serious:
   37% that are numerical, boolean, date or string have no French text at all —
   which is why the usable figure is 11 404 and not 20 000.
 - **Written by American crowdworkers, then translated.** Sport is 48% US markers,
-  politics 31%, history 22%, and the translation slips — *le principal tournoi
-  d'**or*** for golf, *quel **receveur éloigné*** for wide receiver.
-- **Dated.** Questions anchored *as of 8 October 2021*, with superlatives that
+  politics 31%, history 22%, and the translation slips — _le principal tournoi
+  d'**or**_ for golf, _quel **receveur éloigné**_ for wide receiver.
+- **Dated.** Questions anchored _as of 8 October 2021_, with superlatives that
   have moved since.
 
 ### Vikidia — second, exactly where Mintaka is blind
@@ -155,8 +155,8 @@ survives translation — a race-car kinematics problem filed under
 - **EXAMS** — CC BY-SA 4.0 and decoys shipped, but the French subset is 318 test
   rows and nothing else.
 - **manu/french-trivia**, **SimonLeclere/JsonQuizz** — no licence declared at all.
-- **data.gouv.fr** — its API returns **zero** datasets for *quiz*, *QCM* or
-  *trivia* beyond Qulture and 258 civic-exam rows. A real dead end.
+- **data.gouv.fr** — its API returns **zero** datasets for _quiz_, _QCM_ or
+  _trivia_ beyond Qulture and 258 civic-exam rows. A real dead end.
 - **Kaggle** — nothing French; its trivia sets are re-uploads of Open Trivia DB.
 - **PIAF, SQuAD-fr, Belebele** — extractive: the question means nothing away from
   its paragraph.
@@ -183,15 +183,15 @@ the Vikidia session repeats one of them:
 - **PolyFact has no decoy generator.** The plan promised "decoys off the
   Wikidata QIDs through PolyFact's existing generator", and there is no such
   thing: PolyFact's rows arrive with four candidates and `withDecoysSpread`
-  only *redistributes* them. Mintaka ships none at all, so the decoys had to be
+  only _redistributes_ them. Mintaka ships none at all, so the decoys had to be
   built — `wikidata-kinds.ts` is the new module and it is what the named risk
   cost. **Vikidia ships its own decoys**, so this does not recur there.
-- **The American half needed no word list.** The settled call was *the NBA
-  stays, the NFL and MLB go*, and a marker rule cannot find them: the French
-  translation of *Rebels d'Ole Miss* names no league. The notability bar on the
+- **The American half needed no word list.** The settled call was _the NBA
+  stays, the NFL and MLB go_, and a marker rule cannot find them: the French
+  translation of _Rebels d'Ole Miss_ names no league. The notability bar on the
   answer does it instead and does it better — a French room's Wikipedia traffic
-  keeps Michael Jordan and the Lakers and has never opened *Dennis Leonard* or
-  *Hiram College*. The decision is honoured; the instrument is not the one the
+  keeps Michael Jordan and the Lakers and has never opened _Dennis Leonard_ or
+  _Hiram College_. The decision is honoured; the instrument is not the one the
   plan named.
 - **Four of the nine question shapes are usable**, not all of them. The three
   refused each fail structurally rather than by degree — see
@@ -208,7 +208,7 @@ from French `skos:altLabel`, and `acceptedOf` in `question-source.ts` decides
 which of them the bank will pay for. **769 of the 1 194 banked rows now hold a
 second name, 2 119 spellings, every one of them refused by the grader before**;
 140 accept a strict shortening of their own label. The estimate the plan
-carried — 170 rows — counted rows whose label *could* be shortened, and 140 is
+carried — 170 rows — counted rows whose label _could_ be shortened, and 140 is
 how many Wikidata actually holds the short form for.
 
 **The census found almost no `choiceOnly` and a great deal of falsehood.** Seven
@@ -227,18 +227,18 @@ before the trade everywhere, and Wikidata records a sport for anybody who ever
 played one, so seven of the eight history rows the sport rung reached were dealt
 athletes — Tom Brady beside Joe Biden. A sport question asks the discipline
 first and every other subject asks the trade. It costs one row: Jackie Robinson's
-widest occupation is *military officer*. The measured shape of the defect was
+widest occupation is _military officer_. The measured shape of the defect was
 narrower than the handoff's note: **sport rows falling back to a trade are not a
-defect at all** — Simone Biles, Tiger Woods and Max Verstappen fall to *gymnast*,
-*golfer* and *racing driver*, which is the right bucket.
+defect at all** — Simone Biles, Tiger Woods and Max Verstappen fall to _gymnast_,
+_golfer_ and _racing driver_, which is the right bucket.
 
 Two things the earlier session found that the plan did not name:
 
 - **An alias can be the name of the row's own decoy, under a spelling the
-  labels do not share.** Wikidata files Augustus as *Gaius Julius Caesar*, and
-  *Jules César* is printed beside him as a wrong answer. Comparing the alias to
+  labels do not share.** Wikidata files Augustus as _Gaius Julius Caesar_, and
+  _Jules César_ is printed beside him as a wrong answer. Comparing the alias to
   the three labels finds nothing, so the decoys are resolved to entities and
-  refused by every name *they* answer to. It is the one refusal in `acceptedOf`
+  refused by every name _they_ answer to. It is the one refusal in `acceptedOf`
   that needs a second Wikidata lookup, and it is the only one that would have
   paid for a wrong answer.
 - **`drawQuestion` was quadratic**, rebuilding each category's array once per
@@ -247,8 +247,8 @@ Two things the earlier session found that the plan did not name:
   above. Unrelated to the stage and fixed on sight.
 
 **PolyFact carries the same defect and is out of this stage.** Its rows hold
-Wikidata identifiers too and its answers are people — *Jean-Luc Godard* typed
-as *Godard* is graded wrong the same way. It banks arts and everyday, which is
+Wikidata identifiers too and its answers are people — _Jean-Luc Godard_ typed
+as _Godard_ is graded wrong the same way. It banks arts and everyday, which is
 neither of the subjects stage 22 exists for, so the seam is named here rather
 than opened.
 
@@ -259,12 +259,12 @@ the bank's fifth source and its only French-native one with science in it: 265
 quiz pages in namespace 104, seven requests, CC BY-SA 3.0. **566 rows banked out
 of 765 ingested**, and the bank is 10 186.
 
-| Subject | Before | After |
-|---|---|---|
-| Science | 170 | **339** |
-| Geography | 640 | 685 |
-| History | 499 | 516 |
-| Sport | 355 | 390 |
+| Subject   | Before | After   |
+| --------- | ------ | ------- |
+| Science   | 170    | **339** |
+| Geography | 640    | 685     |
+| History   | 499    | 516     |
+| Sport     | 355    | 390     |
 
 **The corpus is worse than any other this bank has taken, and the number is the
 finding**: 373 of the 566 banked rows were flagged by the census — 194 dropped,
@@ -272,8 +272,8 @@ finding**: 373 of the 566 banked rows were flagged by the census — 194 dropped
 Three things account for it, and each is what a wiki written by children for
 children produces:
 
-- **A quiz page is read in order, so its rows use pronouns.** *Où est-elle
-  née ?* names nobody once a room is dealt one row. This is the single largest
+- **A quiz page is read in order, so its rows use pronouns.** _Où est-elle
+  née ?_ names nobody once a room is dealt one row. This is the single largest
   defect — about a hundred and sixty rows — and it is the same one OpenQuizzDB
   had, at forty times the rate.
 - **Eighteen per cent of what survived parsing is choice-only**, against seven
@@ -285,7 +285,7 @@ children produces:
 
 **The unbound pronouns were dropped rather than repaired outside the four thin
 subjects.** Rewriting a hundred and sixty French sentences to rescue questions
-about *Lune Claire* is writing questions rather than ingesting them, which stage
+about _Lune Claire_ is writing questions rather than ingesting them, which stage
 12 put out of scope — and they sit in `arts`, which holds 2 510 French rows and
 needed none of them. Inside science, geography, history and sport the subject
 was put back by hand, which is 44 repairs, every one of them re-read against its
@@ -295,7 +295,7 @@ the only repairs that can pay a player for a wrong answer.
 ### What the parser had to learn
 
 - **A template is content, not decoration.** `{{unité|-63|°C}}` deleted leaves
-  *la température moyenne sur Mars est à peu près de…* with three empty
+  _la température moyenne sur Mars est à peu près de…_ with three empty
   candidates. Ten templates are unwrapped to what they print and **a row still
   holding one is refused**, because a sentence with a hole in it is worse than a
   row the bank does not have.
@@ -310,7 +310,7 @@ the only repairs that can pay a player for a wrong answer.
   categories say `Quiz` on 561 rows out of 827, so `QUIZ_SUBJECTS` maps all 180
   pages by hand. Ten are about the wiki itself and map to nothing.
 - **Redirects have to be followed before the rating**, and locally rather than
-  in `frenchViewsOfTitles`: *Animaux* redirects to *Animal* and scores three
+  in `frenchViewsOfTitles`: _Animaux_ redirects to _Animal_ and scores three
   hundred readers on its own, which would have rated the source's largest
   science block as one nobody has heard of. Following them in the shared rule
   would move every row the other sources already banked.
@@ -330,14 +330,14 @@ arts rows moved the miss rate from 4.3% to 5.4%, which is what surfaced it.
   they were 383 (the 401 included rows refused for something else too), and
   each took a fourth candidate written by hand against its row, in
   `apps/server/scripts/vikidia-fourth-decoys.json`. Ten stay refused as closed
-  sets — *Oui / Non / On ne sait pas*. 356 reached the bank, science
+  sets — _Oui / Non / On ne sait pas_. 356 reached the bank, science
   339 → 435, and writing them caught four rows the source had wrong.
 - ~~**MMMLU `FR_FR`**~~ — **done**, 15 October 2026: 1 081 rows of 14 042 have a trivia shape, all were read, 319 banked and 762 dropped with a reason each in `mmmlu-dropped.json`; French science 414 → 528. Originally: ~1 600 French science rows, MIT, decoys
   shipped, exam register. It is the only remaining depth for the subject.
 - ~~**`frenchAliasesOf` for PolyFact**~~ — **done**, 11 September 2026, and it
   turned out to be the smaller half of its own question. See
   [`23-the-name-a-room-shouts.md`](23-the-name-a-room-shouts.md) for the three
-  sources it does *not* reach and what each would cost.
+  sources it does _not_ reach and what each would cost.
 
 ## The order this ships in
 
@@ -352,8 +352,8 @@ arts rows moved the miss rate from 4.3% to 5.4%, which is what surfaced it.
    rebuild costs seconds, and sets every field of `BankedQuestion` including the
    `choiceOnly` the source knows about and `isWellKnown`.
 3. **Rate it.** A French source goes through `frenchViewsOfTitles` if it names a
-   Wikipedia article, and is rated `false` if it names nothing — *not measured*
-   rather than *obscure*, which is stage 21's direction and the safe one.
+   Wikipedia article, and is rated `false` if it names nothing — _not measured_
+   rather than _obscure_, which is stage 21's direction and the safe one.
 4. **The census**, by subagents, over the rows the build reports as banked.
 5. **Credits.** `QUESTION_CREDITS` in `credits-page.tsx` is hand-kept in step
    with the `attributions` header of `question-bank.json`; both need the entry,
@@ -405,8 +405,8 @@ open across the deploy keeps playing.
   than anything else found — each with an anecdote and a dated source URL — and
   all rights reserved. One email is the whole cost of finding out.
 - **What the graded picker would be called.** Not this stage's work, but if the
-  numbers arrive the vocabulary is already decided: the blind test asks *À quel
-  point c'est connu* and offers *Grand public*, and the quiz's switch now speaks
+  numbers arrive the vocabulary is already decided: the blind test asks _À quel
+  point c'est connu_ and offers _Grand public_, and the quiz's switch now speaks
   the same words.
 
 ## Done when
@@ -428,7 +428,7 @@ open across the deploy keeps playing.
 - **The graded difficulty picker.** It is what this stage unblocks, not what it
   builds. It gets its own stage, and only once the numbers are in.
 - **The English half.** It is already spread over six subjects.
-- **Rating the existing bank differently.** See *What this stage is not*.
+- **Rating the existing bank differently.** See _What this stage is not_.
 - **A question written from inside the app**, which stage 12 put out of scope and
   which nothing since has argued for.
 
@@ -444,7 +444,7 @@ alone:
   noise filtered. Science moves, and nothing else has to. **Done on 11 September
   2026**, and it cost the session it was given — but the parser was the small
   half. Reading 566 banked rows and finding 373 of them defective is what the
-  estimate missed, and *the noise filtered* was carrying a corpus-wide unbound
+  estimate missed, and _the noise filtered_ was carrying a corpus-wide unbound
   pronoun that no filter can see.
 
 The short-name spellings took a session of their own between the two, which the
@@ -457,12 +457,12 @@ its own decoys — which is the half Mintaka reuses rather than repeats.
 
 **Named risks**, each with the thing that would show it:
 
-| Risk | Cost | Trigger |
-|---|---|---|
-| PolyFact's decoy generator does not take Mintaka's QIDs as they are | +half a session | the generator wants a relation and Mintaka carries a question type |
-| The translation is bad enough to need a reading, not a filter | +1 session | a sample of fifty turns up more than a handful like *tournoi d'or* |
-| Mintaka's dated questions need a repair pass | +half a session | the build's unwinnable list runs past a few dozen |
-| Vikidia's wikitext varies more than the 175 pages sampled | +half a session | the parser drops more than a tenth of the pages it opens |
-| A licence changed since 10 September 2026 | drops the candidate | the licence file no longer says what the table above says |
+| Risk                                                                | Cost                | Trigger                                                            |
+| ------------------------------------------------------------------- | ------------------- | ------------------------------------------------------------------ |
+| PolyFact's decoy generator does not take Mintaka's QIDs as they are | +half a session     | the generator wants a relation and Mintaka carries a question type |
+| The translation is bad enough to need a reading, not a filter       | +1 session          | a sample of fifty turns up more than a handful like _tournoi d'or_ |
+| Mintaka's dated questions need a repair pass                        | +half a session     | the build's unwinnable list runs past a few dozen                  |
+| Vikidia's wikitext varies more than the 175 pages sampled           | +half a session     | the parser drops more than a tenth of the pages it opens           |
+| A licence changed since 10 September 2026                           | drops the candidate | the licence file no longer says what the table above says          |
 
 **Out of the estimate**: the picker, a second source, and any rating work.

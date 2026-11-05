@@ -32,7 +32,7 @@ estimate the same device computes a wait of zero and starts the clip early.
 browser contexts — the big screen and a phone — through create → scan the join
 URL → join → buzz → judge → reveal → score, and checks the title the host judged
 is the title the phone was shown. `e2e/dead-socket.spec.ts` points a host at a
-room nobody holds and asserts the console is *replaced* by a reason and a way
+room nobody holds and asserts the console is _replaced_ by a reason and a way
 out, rather than annotated.
 
 The journeys run on their own ports (`5274`, `3101`, `3199`) so they never
@@ -48,7 +48,7 @@ own.
 
 Components in isolation. A test that renders `<Button>Join</Button>` and asserts
 the text says "Join" restates the code and gets in the way of the next refactor.
-Where a component holds a *decision* it belongs in `packages/core` first —
+Where a component holds a _decision_ it belongs in `packages/core` first —
 `findBuzzBlocker` and `buildScoreboard` are already there, with tests.
 
 There is therefore no jsdom, no `@testing-library/react` and no component
@@ -72,8 +72,8 @@ genuinely cannot move into `core`.
 - [x] The transcript assertion runs over a full simulated game
 - [x] Playwright journeys pass against the dev stack
 - [x] Every new test has been seen to fail — the guard, the reclaim, the offset,
-      the fatal close, the verdict and the refusal screen were each broken on
-      purpose and watched
+  the fatal close, the verdict and the refusal screen were each broken on
+  purpose and watched
 - [x] `pnpm validate` runs the lot
 
 ## Out of scope

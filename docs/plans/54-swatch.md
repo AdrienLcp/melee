@@ -13,9 +13,9 @@ The thirteenth game, **everyone at once** in the catalogue's shapes
 ([`game-catalogue.md`](../game-catalogue.md)), the timeline's and the map's
 family: one answer per seat, sent once, measured by the server.
 
-Kind `swatch`, translation prefix `swatch.*`, answer mode `colour`. *Nuancier*
-in French, *Shades* in English for now — step 2 owed the dictionaries a
-`swatch.name` — and **not** *Swatch* on screen (a trademark): the id is
+Kind `swatch`, translation prefix `swatch.*`, answer mode `colour`. _Nuancier_
+in French, _Shades_ in English for now — step 2 owed the dictionaries a
+`swatch.name` — and **not** _Swatch_ on screen (a trademark): the id is
 internal. The screens' session may rename it.
 
 ## Rules, as settled
@@ -53,7 +53,7 @@ internal. The screens' session may rename it.
   twice, and the distances already separate every seat. `isPaidForSpeed`
   answers `false` for the `colour` verdict, like a black-square sheet.
 - **Exact** (`isExactColour`, within 0.02) is what `isFullyBanked` reads.
-- **The character rubric** — *Shrek's green* — **does not ship here.** It is a
+- **The character rubric** — _Shrek's green_ — **does not ship here.** It is a
   hand-set bank where every row is an argument, and the catalogue already
   costs it a session of its own.
 
@@ -63,7 +63,7 @@ internal. The screens' session may rename it.
   others and **joins `verdictSchema` in step 2**, where the exhaustive
   switches it breaks are fixed in the same commit.
 - Capabilities: `answerModes: ['colour']`, `makesSound: false`,
-  `playsAloud: false` (the answer *is* a screen), `playsDuels: true`,
+  `playsAloud: false` (the answer _is_ a screen), `playsDuels: true`,
   `servesItsOwnContent: true`. Judged by the server, never by the host.
 - The picker is react-aria's `ColorArea` (saturation × brightness) over a
   `ColorSlider` (hue), wrapped in `presentation/components/` like every other
@@ -92,7 +92,7 @@ internal. The screens' session may rename it.
      reload. The console's and the wall's arms are `{ kind: 'swatch' }`: the
      console reads the colour off the round like every seat.
    - `yourVerdict` is withheld until the reveal, as a matchstick move's is.
-   - The server sends no frame *at* `hidesAt`: every screen hides on its own
+   - The server sends no frame _at_ `hidesAt`: every screen hides on its own
      clock, and the next snapshot simply carries `null`.
    - The app holds only what compiling demanded — the name, the scoring line,
      the error, the mode's label and a `Palette` glyph.
@@ -117,7 +117,7 @@ internal. The screens' session may rename it.
 
 ## How to tell it is done
 
-- A room opened on *Nuancier* from the front door shows a colour on the wall
+- A room opened on _Nuancier_ from the front door shows a colour on the wall
   and on every phone, hides it on every screen at once after the set time, and
   takes one colour from each seat.
 - A seat that reloads after the colour hid never sees it again.

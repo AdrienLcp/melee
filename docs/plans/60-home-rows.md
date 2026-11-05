@@ -12,20 +12,20 @@ Three directions were drawn as full pages and compared; the second was kept.
 
 ## What the page is now
 
-- **Masthead**: the wordmark, *Back to table K7PX* under it while that table is
+- **Masthead**: the wordmark, _Back to table K7PX_ under it while that table is
   open, and the code box. No coral press.
 - **Your line-ups** — absent until there is one. The saved evenings, each
   starred, then the tables this device played, latest first. A line-up both
   starred and played shows once, as the favourite, carrying its last table
-  (*12 rounds played of 20*, *Played yesterday*). With plays and no star, the
+  (_12 rounds played of 20_, _Played yesterday_). With plays and no star, the
   row ends on a socket that teaches the star.
 - **Ready-made line-ups** — the five the app ships, as a row.
 - **The shelf**, unchanged above its foot, and **the host's door** as that
   foot: sticky to the bottom of the screen while the shelf is on it, ruled and
   lifted only while it floats.
 
-The look of each piece is in `apps/game/DESIGN.md` under *Box lid, shelf and
-spines*.
+The look of each piece is in `apps/game/DESIGN.md` under _Box lid, shelf and
+spines_.
 
 ## Rules, as settled
 

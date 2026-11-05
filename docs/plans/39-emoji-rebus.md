@@ -1,6 +1,6 @@
 # 39 — Emoji rebus
 
-**Done 21/10/2026.** A title written in emojis — 🧊🚢💔 for *Titanic* — on
+**Done 21/10/2026.** A title written in emojis — 🧊🚢💔 for _Titanic_ — on
 the wall and every screen, the room names it. Asked 21/10/2026.
 
 ## A rubric, not a game
@@ -16,7 +16,7 @@ switch is its difficulty.
 - **`rebus` in `questionCategories`**, and `rebus` on `questionPromptSchema`
   — `null` on every other question, otherwise the emojis, words parted by a
   space. Its own field rather than part of the prompt, because the prompt is
-  the sentence asking what to name — *Quel film ?*, *Which saying?* — and the
+  the sentence asking what to name — _Quel film ?_, _Which saying?_ — and the
   rebus is the thing to read. `PROTOCOL_VERSION` 40.
 - **Dealt, not banked**, like the flags: `rebus-questions.ts` reads
   `rebus-fr.json` and `rebus-en.json` beside the bank and
@@ -26,8 +26,8 @@ switch is its difficulty.
 - **Four kinds in one chip** — `film`, `series`, `song`, `saying` — each
   row carrying its kind so the prompt says what a typed answer owes.
 - **Hand-written lists, each language its own**: a French table reads
-  *poser un lapin* and *Les Bronzés*, an English one *piece of cake* and
-  *Home Alone*. Written by agents to a validator, then read through.
+  _poser un lapin_ and _Les Bronzés_, an English one _piece of cake_ and
+  _Home Alone_. Written by agents to a validator, then read through.
 - **Readable on every phone**: every emoji is a fully-qualified sequence of
   Unicode Emoji 12.0 (2019), yellow, and never a flag — Windows draws a flag
   as its two letters. `rebus-emoji.json` is that list, generated from

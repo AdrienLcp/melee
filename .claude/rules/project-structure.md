@@ -1,6 +1,6 @@
 # Project structure
 
-> **Unscoped on purpose**: it answers *where a new file goes*, decided before
+> **Unscoped on purpose**: it answers _where a new file goes_, decided before
 > the file exists. It is the largest greedy rule here, and the first to
 > re-examine if the floor must come down again.
 
@@ -27,17 +27,17 @@ apps/game/src/
 with nothing on the other side. Promote `presentation/` to a package the day a
 second app exists, not before.
 
-| From | Importing | Syntax |
-|---|---|---|
-| App code | Same app | `@/features/…` |
-| App code | Workspace package | `@melee/protocol/…`, `@melee/core/…` |
-| App code | Vendored brick | `@adrienlcp/result`, `@adrienlcp/i18n/…` |
-| Package code | Same package | relative only — never the package's own name |
-| Package code | Another package | `@melee/protocol/…` |
+| From         | Importing         | Syntax                                       |
+| ------------ | ----------------- | -------------------------------------------- |
+| App code     | Same app          | `@/features/…`                               |
+| App code     | Workspace package | `@melee/protocol/…`, `@melee/core/…`         |
+| App code     | Vendored brick    | `@adrienlcp/result`, `@adrienlcp/i18n/…`     |
+| Package code | Same package      | relative only — never the package's own name |
+| Package code | Another package   | `@melee/protocol/…`                          |
 
 ## Where a new thing goes
 
-- Something both the server and the browser must agree on the *shape* of →
+- Something both the server and the browser must agree on the _shape_ of →
   `packages/protocol`.
 - A rule with no I/O — scoring, eligibility, clock maths, code generation,
   locale negotiation → `packages/core`, with a test. The split is by directory:
@@ -50,7 +50,7 @@ second app exists, not before.
   `apps/*/src/infrastructure/`. See `abstraction-boundaries.md`.
 - A React component used by one surface → that feature. Used by both →
   `presentation/components/`.
-- Something that must exist on *every* screen → `presentation/app-shell.tsx`,
+- Something that must exist on _every_ screen → `presentation/app-shell.tsx`,
   which is the layout route every page renders inside.
 
 ## A brick shared with Adrien's other projects

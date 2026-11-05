@@ -1,7 +1,7 @@
 # 35 — Inner clock
 
 **Done** 21/10/2026, in one session. Asked by Adrien on 21/10/2026 for the team evening: the wall
-says *count to 77 in your head*, a countdown, a start signal on every screen,
+says _count to 77 in your head_, a countdown, a start signal on every screen,
 and then **nothing on any screen moves**. Each player presses once; the server
 stamps the press on arrival and pays the gap to the target.
 
@@ -22,7 +22,7 @@ device together, and a press is `atServerTime − startsAt` as it arrives.
 
 ## The key, the names
 
-`innerclock` (the translation prefix too) — *Horloge interne*, *Inner clock*.
+`innerclock` (the translation prefix too) — _Horloge interne_, _Inner clock_.
 
 ## The round
 
@@ -34,7 +34,7 @@ device together, and a press is `atServerTime − startsAt` as it arrives.
   `core/innerclock/target.ts`, through `randomIntBetween`), a die beside it
   draws another on the spot, and a fresh one is drawn once the press is sent —
   never remembered from the last round, never stored in the host's setup. A
-  round opened with no target (the reveal hold, *play right away*, an empty
+  round opened with no target (the reveal hold, _play right away_, an empty
   lobby's launch) gets the same draw on the server. The target is not a
   setting: the same number every round is a room that has already counted it
   once.
@@ -92,8 +92,8 @@ of the target off**, rounded once on the board's `POINT` scale.
 ## The reveal
 
 One row per seat the round opened on, ranked by the smallest absolute gap:
-counted time to a tenth (*74,3 s*), the signed gap (*−2,7 s*), and what it paid.
-Seats that never pressed close the list as *never pressed*.
+counted time to a tenth (_74,3 s_), the signed gap (_−2,7 s_), and what it paid.
+Seats that never pressed close the list as _never pressed_.
 
 ## Checklist
 
@@ -115,27 +115,27 @@ Seats that never pressed close the list as *never pressed*.
   `closeRound` pays the counts before revealing, `openPhaseDurationMs` holds
   the cap. No new message, no new error code.
 - **The award is a `single` verdict**, `isCorrect` when it paid anything, and
-  no speed bonus: the count already *is* the clock.
+  no speed bonus: the count already _is_ the clock.
 - **No team turns**, as for the reflex race: `playsInTeamTurns` is false and
   turns need a mode other than `buzzer` anyway. Every seat counts on its own,
   and a team's round is the sum.
 - **The countdown shows the target, never the last reveal**, on the console
   and the phone: a count read while it is already running starts late.
-- **The seated host presses on the stage**, a *Stop* button under the card
+- **The seated host presses on the stage**, a _Stop_ button under the card
   whose slot keeps its height after the press, so nothing on the screen the
   table watches moves.
 - **The board reuses the reflex chips** (`reaction-board.sass`): the place
   token, the pawn, the name, then the counted time, the signed gap and the
   pay; the seats that never pressed are the outlined rows at the foot.
-- **An empty lobby launches with no field**: *play right away* and the reveal
+- **An empty lobby launches with no field**: _play right away_ and the reveal
   hold send no target, so the server draws one.
 - **The spine is dusk**, `oklch(44% 0.08 235)` under `--on-spine`.
 
 Seen muted (`melee:volume` `0` by init script, every context) at 1280 and 390:
-the shelf with *Grande soirée*, the inner clock's door, the lobby with the
+the shelf with _Grande soirée_, the inner clock's door, the lobby with the
 field and its die (six draws, all within 20–60), the countdown with the
 target, the still playing stage — the console's DOM byte-identical across two
-seconds of counting and across a player's press — the player's *Stop* before
+seconds of counting and across a player's press — the player's _Stop_ before
 and after, a seat that never pressed closing at the cap (12.3 s on a 10 s
 count), a round closing on the last press, and the reveal on the console and
 the phone. The wall was not opened on its own screen: it draws the console's

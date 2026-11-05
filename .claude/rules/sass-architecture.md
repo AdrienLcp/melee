@@ -187,7 +187,7 @@ are the two board grounds: if `--board` changes, they change.
 
 ## What the reset owns on a touch screen
 
-Two defaults the browser applies to a *document* and this is not one:
+Two defaults the browser applies to a _document_ and this is not one:
 
 - **`user-select: none` and `-webkit-touch-callout: none` on `body`.** A press
   that lands on a control the browser will not act on — a buzzer disabled
@@ -282,14 +282,14 @@ heading over a sheet's column, a name in a grid cell, an answer in a card —
 takes `hyphens: auto` (the document's `lang` is the locale, set by
 `i18n-provider.tsx`), so a word too wide breaks with a hyphen where the language
 allows. `overflow-wrap: anywhere` is only a net under that, and it is what
-printed petit bac's *Marqu e*: French will not split *mar-que*. Where nothing
+printed petit bac's _Marqu e_: French will not split _mar-que_. Where nothing
 can hyphenate, the column must be allowed to hold the word — `overflow-wrap:
 normal`, an `auto` table layout and a box that scrolls — or the text is cut
 whole: a line-clamp or an ellipsis on a screen that cannot scroll (the wall), a
 size scaled to the text's length where it must show whole (black square's
 `--name-scale`). Containment skips table cells, so a cell that must not size
 its column contains what it holds, not itself. A timeline event is the
-exception: its sentence is proper nouns (*Zi-dane*), so it wraps at spaces
+exception: its sentence is proper nouns (_Zi-dane_), so it wraps at spaces
 and never hyphenates.
 
 ## State comes from react-aria's data attributes
@@ -353,7 +353,7 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   react-aria overlay (`action-menu.sass`), a leaving state ended on
   `animationend` (`react-components.md`), a view transition for a page.
 
-Reduced motion needs nothing more: the tokens collapse (*Tokens*).
+Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 
 ## Single-line text in a box is trimmed, not squeezed
 
@@ -376,7 +376,7 @@ and `ToggleButton` wrap each string child in a `.control-label` span.
   `--standings-row`, `--tallest-row`, `--board-row`, each measured on the
   rendered rows.
 - **Prose and wrapping display type** keep their line-height: it sets the gap
-  *between* lines, which `text-box` never touches. An `overflow: hidden` box is
+  _between_ lines, which `text-box` never touches. An `overflow: hidden` box is
   clipped to the trimmed height, so a trimmed line that ends in an ellipsis clips
   across only (`overflow-x: clip`).
 

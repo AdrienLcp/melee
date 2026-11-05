@@ -28,7 +28,7 @@ Schedule against that, not against a raw `Date.now()` comparison. Two traps:
   delay.
 - **Autoplay is blocked until the user interacts.** The host presses "Start", so
   the gesture exists — but the `<audio>` element must be created and unlocked
-  *within that press handler*, not later in an effect. Getting this wrong is
+  _within that press handler_, not later in an effect. Getting this wrong is
   silent: no error, no sound.
 
 **Judging** (`features/host/verdict-panel.tsx`). When someone buzzes, the track

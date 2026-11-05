@@ -7,8 +7,8 @@
 > **Why.** In one room the physics is against it. Six phones a few tens of
 > milliseconds apart do not make the clip louder, they make it flange — which is
 > a strange thing to inflict on a game about recognising a song. And the clock
-> handshake does not fix it: it buys precision of *scheduling*, where the gap
-> that matters is precision of *starting*, which depends on decode and buffer
+> handshake does not fix it: it buys precision of _scheduling_, where the gap
+> that matters is precision of _starting_, which depends on decode and buffer
 > and varies per device. The stage's own target of ~100 ms is already audible as
 > a doubled sound.
 >
@@ -32,8 +32,8 @@ headphones.
 ## Why it is off by default, and must stay off by default
 
 Twelve phones in one living room playing the same clip a few milliseconds apart
-is not a party, it is a mess. The product's rule — *audio only ever plays on the
-host screen* — is right for the room it was designed for, and this mode exists
+is not a party, it is a mess. The product's rule — _audio only ever plays on the
+host screen_ — is right for the room it was designed for, and this mode exists
 for the two cases it is wrong for: people who are not in the same room, and
 people on headphones.
 

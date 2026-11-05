@@ -79,7 +79,7 @@ on the shelf inherits it.
   screen itself.
 - **A player's screen is read as much as it is pressed, and read in glances.**
   What is drawn around the buzzer matters — a screen showing only a button sends
-  its player looking up at a screen that may not be there — and *how much* of it
+  its player looking up at a screen that may not be there — and _how much_ of it
   there is matters exactly as much, because a screen showing everything is read
   by nobody.
 - **A question and its four choices never scroll**, at any viewport, on a
@@ -128,9 +128,9 @@ on the shelf inherits it.
 
 - **Each game keeps its own name** — Blind test, Quiz, Buzzer, Reflex, Slate —
   across every answer mode it offers.
-- **The product that hosts the games is called `Melee`** — *Mêlée* on screen,
-  `melee` in code, URLs and storage. Renamed from *Taverla* on 2026-10-17, when
-  the shelf became a team evening: a *mêlée* is the crowd scrum both languages
+- **The product that hosts the games is called `Melee`** — _Mêlée_ on screen,
+  `melee` in code, URLs and storage. Renamed from _Taverla_ on 2026-10-17, when
+  the shelf became a team evening: a _mêlée_ is the crowd scrum both languages
   already own, rugby's and a brawl's, which is what a room of teams racing for
   the floor looks like. It is an existing word, against the constraint below
   that prefers a coined one, and was chosen anyway because the evening is the
@@ -147,7 +147,7 @@ on the shelf inherits it.
 - Constraints the name had to satisfy, kept because the next one will need them:
   - **invented, by preference** — a coined word rather than an existing one;
   - two or three syllables;
-  - easy to say and to take in for a French speaker *and* an English speaker.
+  - easy to say and to take in for a French speaker _and_ an English speaker.
     The spelling does not have to be identical in both languages; the ease does;
   - **nothing sound- or music-derived.** Not every game on this shelf has audio,
     and a name that promises music would date on the second title;
@@ -160,13 +160,13 @@ on the shelf inherits it.
   free. Alternative TLDs are the other way out and they are not free either —
   `.io` runs several times a `.com` per year and `.gg` five to eight times.
 
-  Rejected as taken: *Kalido*, *Hopla*, *Kermo*, *Konvi*, *Panora*, *Kervo*,
-  *Kerlo*, *Kalto*, *Marelo*, *Kelmo*, *Kesmo*, *Salko*, *Kovio*. Rejected on
-  the music constraint: *Fanfare*, *Farandole*, *Ricochet*, *Charade*. Rejected
-  on the domain rule: *Verko*, *Rondi*, *Kelvo*, *Odalo*, *Ferio* — all five
+  Rejected as taken: _Kalido_, _Hopla_, _Kermo_, _Konvi_, _Panora_, _Kervo_,
+  _Kerlo_, _Kalto_, _Marelo_, _Kelmo_, _Kesmo_, _Salko_, _Kovio_. Rejected on
+  the music constraint: _Fanfare_, _Farandole_, _Ricochet_, _Charade_. Rejected
+  on the domain rule: _Verko_, _Rondi_, _Kelvo_, _Odalo_, _Ferio_ — all five
   clear the name search, none has a free `.com`.
 
-  Rejected before Taverla as an unprotectable common noun: *La Taverne* — hundreds of French
+  Rejected before Taverla as an unprotectable common noun: _La Taverne_ — hundreds of French
   bars carry it, its `.com` and `.fr` are both taken, and a descriptive phrase
   is close to impossible to defend or to rank for.
 - The tone must work with a grandparent and a drunk friend in the same room, so

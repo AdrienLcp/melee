@@ -1,6 +1,6 @@
 # Committing
 
-> **Unscoped on purpose**: it applies at *commit* time, when the files being
+> **Unscoped on purpose**: it applies at _commit_ time, when the files being
 > committed may never have been read.
 
 ## A second session in the same tree shares the index

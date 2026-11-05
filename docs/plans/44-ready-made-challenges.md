@@ -1,15 +1,15 @@
 # 44 — Ready-made challenges
 
 **Done.** Asked 24/10/2026. A challenge round no longer needs the host to
-think of one: *Bring back something red* is dealt from a bank when the line is
+think of one: _Bring back something red_ is dealt from a bank when the line is
 left empty, and the host can still type one of their own.
 
 ## Why it is a bank and not a game
 
-*First to bring back a red object* is already the challenge's shape: the
+_First to bring back a red object_ is already the challenge's shape: the
 wall shows a line, the table plays away from every screen, the host places the
 first three (`core/challenge/place-pay`). What it lacks is the line. Today an
-empty field draws *untitled* on the wall (`challenge.ts`, `challengeText`
+empty field draws _untitled_ on the wall (`challenge.ts`, `challengeText`
 optional on `host.startRound` and on the next-round message), which only works
 when the host says it aloud — and a round drawn from the running order
 (stage 42) is always empty.
@@ -28,9 +28,9 @@ line carries a `category` so the deal can vary them:
   `isFestive` so it is dealt in December only if the host asks (step 3)
 
 Around 120 lines. **The test for keeping one**: it can be done in a living room
-in under two minutes, by anyone, with no purchase and nothing broken — no *go
-outside*, nothing a seat in a wheelchair cannot do. A line that needs a
-judgement the host cannot make at a glance (*the funniest object*) goes.
+in under two minutes, by anyone, with no purchase and nothing broken — no _go
+outside_, nothing a seat in a wheelchair cannot do. A line that needs a
+judgement the host cannot make at a glance (_the funniest object_) goes.
 
 ## Step 2 — the server deals it
 
@@ -40,9 +40,9 @@ round carries it **in every locale** as the timeline's events do, so each screen
 reads its own. A typed line still wins and rides as it does today, in the one
 language it was typed in.
 
-`challengeText` stays optional on the wire. What changes is that *absent* now
-means *deal one* rather than *untitled*; the host who wants to say it aloud
-types *Listen* — that is a line too. Tests: a dealt round carries a bank line,
+`challengeText` stays optional on the wire. What changes is that _absent_ now
+means _deal one_ rather than _untitled_; the host who wants to say it aloud
+types _Listen_ — that is a line too. Tests: a dealt round carries a bank line,
 a typed one carries the typed text, two rounds of an evening never deal the
 same line, and no seat's or wall's transcript carries the line before its
 round opens (step 3's `nextChallenge`).
@@ -68,10 +68,10 @@ challenge's arm gains `hasFestiveLines` (off by default), remembered with the
 game's setup.
 
 Verified in a browser, muted: a challenge opened with an empty field shows a
-dealt line on the wall and on a phone in another locale, *Draw* fills the field,
+dealt line on the wall and on a phone in another locale, _Draw_ fills the field,
 a typed line wins.
 
-**Done.** *Another* is the die beside the field (`challenge.line.redeal`), as
+**Done.** _Another_ is the die beside the field (`challenge.line.redeal`), as
 the inner clock's count has; it redeals rather than filling the field, since
 the placeholder already is the line. The field became a growing text area
 (`TextField`'s new `isMultiline`, Enter inserting nothing): a dealt line
@@ -113,7 +113,7 @@ reflex round through its flip and reveal.
 
 Asked 24/10/2026 after reading the 135 lines. The bank becomes **fetch only**:
 
-- **Drop the `do` category whole**, its tongue twister, *count to 100* and the
+- **Drop the `do` category whole**, its tongue twister, _count to 100_ and the
   lines where the table names things: several seats doing it at once out loud
   is noise the host cannot place.
 - **Drop `festive` whole**, and with it `hasFestiveLines` — the setting, its
@@ -122,8 +122,8 @@ Asked 24/10/2026 after reading the 135 lines. The bank becomes **fetch only**:
 - **Findable at home and at the office**: no candle, toothbrush and the like,
   no stamp, no envelope, nothing out of the pockets, no odd sock, no coin from
   another country.
-- *Something with wheels* goes, *something that rolls* stays.
-- **A letter drawn at random.** *Something that starts with M* becomes one
+- _Something with wheels_ goes, _something that rolls_ stays.
+- **A letter drawn at random.** _Something that starts with M_ becomes one
   templated line, `{letter}` filled when the line is dealt, from a short list
   that leaves out the letters nobody can find an object for (K, Q, W, X, Y, Z…);
   the letter is the same in every locale. A rule with no I/O, so the letter set
@@ -135,7 +135,7 @@ category, French beside English) before anything else lands.
 
 **Done.** 89 lines, every one a fetch: 37 kept, 52 written. With one kind of
 line left the `category` went too — `challengeCategories`, `avoidCategory` and
-the deal's *vary from the last* rule had nothing left to vary — so `dealLine`
+the deal's _vary from the last_ rule had nothing left to vary — so `dealLine`
 is an unplayed line at random. `{letter}` is `LETTER_SLOT` in
 `core/challenge/letter-slot.ts`, filled from `SLOT_LETTERS` (A B C D F G L M P
 R S T) by the server's draw, so the console's line ahead already shows its
@@ -145,8 +145,8 @@ setup stored with it parses, the key stripped.
 
 ## Step 6 — a hand of lines for a judging host
 
-Asked 24/10/2026. The line-up already plans the evening's *games* ahead, but a
-challenge's *line* is still typed as the round opens or taken as dealt. A host
+Asked 24/10/2026. The line-up already plans the evening's _games_ ahead, but a
+challenge's _line_ is still typed as the round opens or taken as dealt. A host
 who only runs the room (`hasJudge`) gets a hand instead of one line:
 
 - **Lines prepared before the evening.** The setup takes a list of the host's
@@ -181,6 +181,5 @@ its die sets it aside until then rather than playing it. The own lines live in
 before), edited under the challenge's page of the Games tab — reachable after
 the game has been played, because they are no room setting. A round the hold
 opens on its own takes the bank's first line, never an own one. Seen muted:
-a picked slot after a redeal, an own line played and marked, *said aloud*
-reaching a seat as *A challenge at the table*, the hand on a held console.
-
+a picked slot after a redeal, an own line played and marked, _said aloud_
+reaching a seat as _A challenge at the table_, the hand on a held console.

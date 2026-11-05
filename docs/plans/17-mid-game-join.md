@@ -33,8 +33,8 @@ saying "get ready", and a phone that lands inside it is in the round; the stamp
 belongs at `startRoundClock`, not at `openRound`.
 
 It is `ReadonlySet<PlayerId> | null` rather than a set that starts empty, and the
-`null` is what keeps the countdown honest: an empty set says *nobody is in this
-round*, where the truth is that the roster is not decided yet. Every reader gets
+`null` is what keeps the countdown honest: an empty set says _nobody is in this
+round_, where the truth is that the roster is not decided yet. Every reader gets
 the right answer for free — during the countdown nobody has arrived late,
 because there is nothing to be late for.
 
@@ -63,33 +63,33 @@ One new error code, `joined_mid_round`, and it earns its place by the rule
 it. It is the backstop, not the mechanism — the screen is what should stop a
 latecomer acting, and a socket is whatever its owner makes it.
 
-The player's round view gains `joinedAfterStart: boolean`. It is a *player* field
+The player's round view gains `joinedAfterStart: boolean`. It is a _player_ field
 and never a host one, in the shape `yourVerdict` and `yourCandidateId` already
 established: the answer to "what is this round to **you**".
 
 ## Files
 
-| File | Change |
-|---|---|
-| `apps/server/src/domain/room/room.ts` | `openedWithPlayerIds` on `Round` |
-| `apps/server/src/domain/round/round-service.ts` | stamp in `startRoundClock`; `everyoneIsDone`, `resumeOrReveal` read it; refuse in `registerBuzz`, `registerAnswer` |
-| `packages/core/src/round/round-roster.ts` | the rule, with its test |
-| `apps/server/src/__tests__/mid-game-join.test.ts` | the scenarios below, at socket level |
-| `packages/protocol/src/error-code.ts` | `joined_mid_round` |
-| `packages/protocol/src/room.ts` | `joinedAfterStart` on the player round view |
-| `apps/server/src/domain/room/room-view.ts` | project it |
-| `apps/game/src/features/player/player-round.tsx` | the screen for the state |
-| `presentation/i18n/dictionary-{en,fr}.ts` | `error.joined_mid_round`, the screen's strings |
+| File                                              | Change                                                                                                             |
+| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `apps/server/src/domain/room/room.ts`             | `openedWithPlayerIds` on `Round`                                                                                   |
+| `apps/server/src/domain/round/round-service.ts`   | stamp in `startRoundClock`; `everyoneIsDone`, `resumeOrReveal` read it; refuse in `registerBuzz`, `registerAnswer` |
+| `packages/core/src/round/round-roster.ts`         | the rule, with its test                                                                                            |
+| `apps/server/src/__tests__/mid-game-join.test.ts` | the scenarios below, at socket level                                                                               |
+| `packages/protocol/src/error-code.ts`             | `joined_mid_round`                                                                                                 |
+| `packages/protocol/src/room.ts`                   | `joinedAfterStart` on the player round view                                                                        |
+| `apps/server/src/domain/room/room-view.ts`        | project it                                                                                                         |
+| `apps/game/src/features/player/player-round.tsx`  | the screen for the state                                                                                           |
+| `presentation/i18n/dictionary-{en,fr}.ts`         | `error.joined_mid_round`, the screen's strings                                                                     |
 
 ## Decisions the session settled
 
-- **The screen carries one idea: *when*.** `Au prochain tour` in `billboard`,
+- **The screen carries one idea: _when_.** `Au prochain tour` in `billboard`,
   and one line under it saying the seat is safe. It sits below the reveal and
   the final board in `PlayerRound`, so a latecomer still sees what the round
   turned out to be — it is in the room for that.
 - **No scoreboard on it**, against what this plan first asked for. Two things
   the plan did not know: `Scoreline` and `RoundClock` are rendered by
-  `player-page.tsx` *above* `PlayerRound`, so the room's size and the round's
+  `player-page.tsx` _above_ `PlayerRound`, so the room's size and the round's
   own draining bar are already on the screen — the wait was legible for free.
   What is left is a ranking the big screen in the same room is already showing,
   and repeating it here asks the one player who has not seen the game yet to

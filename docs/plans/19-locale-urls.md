@@ -17,10 +17,10 @@ nothing else.
 **The first paint waits for JavaScript.** Measured on the built app over three
 runs per URL:
 
-| | `/` | `/blindtest` | `/credits` |
-|---|---|---|---|
-| performance | 0.93 | 0.94 | 0.94 |
-| accessibility, best-practices, SEO | 1 | 1 | 1 |
+|                                    | `/`  | `/blindtest` | `/credits` |
+| ---------------------------------- | ---- | ------------ | ---------- |
+| performance                        | 0.93 | 0.94         | 0.94       |
+| accessibility, best-practices, SEO | 1    | 1            | 1          |
 
 The whole deficit is first paint: FCP 2.3 s (0.76), LCP 2.7 s (0.85), against
 CLS 0 and TBT 70 ms. The LCP breaks down as **TTFB 458 ms (17%), render delay
@@ -37,13 +37,13 @@ Re-run on the built app after the stage, same three pages under their prefix,
 three runs each, median. Port 3199 rather than 3100, which was taken; the port
 is not part of the measurement.
 
-| | `/en` | `/en/blindtest` | `/en/credits` |
-|---|---|---|---|
-| performance | 0.93 → 0.93 | 0.94 → 0.95 | 0.94 → 0.94 |
-| FCP | 2.3 s → **2.1 s** | 2.1 s | 2.1 s |
-| LCP | 2.7 s → 2.7 s | 2.68 s | 2.68 s |
-| TBT | 70 ms → 114 ms | 63 ms | 66 ms |
-| CLS, accessibility, best-practices, SEO | unchanged | unchanged | unchanged |
+|                                         | `/en`             | `/en/blindtest` | `/en/credits` |
+| --------------------------------------- | ----------------- | --------------- | ------------- |
+| performance                             | 0.93 → 0.93       | 0.94 → 0.95     | 0.94 → 0.94   |
+| FCP                                     | 2.3 s → **2.1 s** | 2.1 s           | 2.1 s         |
+| LCP                                     | 2.7 s → 2.7 s     | 2.68 s          | 2.68 s        |
+| TBT                                     | 70 ms → 114 ms    | 63 ms           | 66 ms         |
+| CLS, accessibility, best-practices, SEO | unchanged         | unchanged       | unchanged     |
 
 The arrows are against the baseline above, which reported one set of paint
 figures for `/`; the other two columns had no published FCP to compare to.
@@ -58,13 +58,13 @@ queued behind the bundle.** One run under `--throttling-method=devtools`, which
 throttles the load as it happens instead of simulating it afterwards and so
 gives a timeline that can be read:
 
-| | arrives |
-|---|---|
-| the document, 8.4 KB | 646 ms |
-| `button.css` · `link.css` | 1 278 · 1 309 ms |
-| **`index.css`, 16 KB** | **1 930 ms** |
+|                                               | arrives          |
+| --------------------------------------------- | ---------------- |
+| the document, 8.4 KB                          | 646 ms           |
+| `button.css` · `link.css`                     | 1 278 · 1 309 ms |
+| **`index.css`, 16 KB**                        | **1 930 ms**     |
 | `i18n-provider.js` 256 KB · `index.js` 291 KB | 2 626 · 2 736 ms |
-| `archivo-latin.woff2`, 90 KB | 2 719 ms |
+| `archivo-latin.woff2`, 90 KB                  | 2 719 ms         |
 
 FCP and LCP are the same event at 2 224 ms — TTFB 72 ms, render delay 2 152 ms.
 All three stylesheets are render-blocking, so nothing may paint before 1 930 ms,
@@ -97,7 +97,7 @@ finished sending in one.
   server-side data, and would take over a Vite config carrying three sharp
   constraints (the React Compiler on `@rolldown/plugin-babel`, the react-aria
   locale plugin, the LAN dev host the QR code needs).
-- **Seven pages are indexable**: home, credits, and the *five* game front
+- **Seven pages are indexable**: home, credits, and the _five_ game front
   doors. Times two locales, **fourteen** files. This plan said six and twelve,
   and was already wrong by two when it was written — `reflex` reached
   `shelvedGames` in stage 18. The prerender therefore reads `shelvedGames` and
@@ -123,7 +123,7 @@ finished sending in one.
    `NegotiatedLocaleRedirect`, and it is what `hreflang="x-default"` will point
    at — redirecting without an `x-default` is the one thing Google's guidance
    warns can keep a language out of the index entirely. The same component
-   answers every *other* unprefixed path, so `/credits` and `/blindtest` from
+   answers every _other_ unprefixed path, so `/credits` and `/blindtest` from
    before this stage gain the prefix rather than 404. `applyInitialLocale` reads
    the locale out of the served path first, then storage, then
    `navigator.languages`, and **remembers one the URL named** — without that, a
@@ -143,7 +143,7 @@ finished sending in one.
    emits a Node bundle beside the client one, and `scripts/prerender.ts` imports
    it and writes fourteen documents plus a `prerendered.json` manifest into
    `dist`. The server reads that manifest and registers **one route per URL**,
-   which is what the *no trailing slash* section below asks for; a manifest
+   which is what the _no trailing slash_ section below asks for; a manifest
    rather than a list both sides keep, because only the build knows what it
    actually wrote. Absent, the server says so out loud and falls back to the
    single document — that silence would be this stage's own bug returning.
@@ -170,7 +170,7 @@ finished sending in one.
 `pathFor` stays the one place a path is built, and it is what every link in the
 app now carries. The prerender step therefore maps each of the twelve URLs to
 its file explicitly rather than leaning on a directory index — which the plan
-already called for (*"a static-file route per prefix"*), and which is the only
+already called for (_"a static-file route per prefix"_), and which is the only
 shape that does not depend on how a given static server resolves a directory.
 
 ## Where the head copy lives, and why it is not in the dictionary
@@ -207,7 +207,7 @@ gives.
   effect, and says why: `_tokens.sass` answers `prefers-color-scheme` on its own.
   Until this stage the page was empty while that was decided, so a reader whose
   choice differs from their OS saw two seconds of an empty field in the wrong
-  colour. They now see two seconds of *text* in it. Nothing regressed — the same
+  colour. They now see two seconds of _text_ in it. Nothing regressed — the same
   attribute is stamped at the same moment — but the argument the comment records
   was written against a blank first paint, and prerendering is what changes its
   price. It belongs with the render-blocking-stylesheet trap below: both are
@@ -240,4 +240,4 @@ gives.
   the moment to inline the tokens the first paint needs, which is the lobby field
   and its ink.
 - **`lang` is already stamped before React renders** (`applyInitialLocale`), so
-  the runtime half of this is done. What is missing is the *served* document.
+  the runtime half of this is done. What is missing is the _served_ document.

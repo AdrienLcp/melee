@@ -12,7 +12,7 @@
       "/sitemap.xml"
     ]
   },
-  "compatibility_date": "2026-09-01",
+  "compatibility_date": "2026-11-05",
   // `process.env` is how `env.ts` reads its variables on both runtimes.
   "compatibility_flags": ["nodejs_compat"],
   // Offset from 8787 like the app from 5173: this repo runs beside the other

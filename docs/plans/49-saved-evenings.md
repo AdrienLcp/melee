@@ -12,7 +12,7 @@ another night.
   every table already. `withSavedEvening` puts a room on one — the order kept
   while it still points into the line-up, the room on the entry it opens with,
   a table answering aloud fitted the way ticking would. A name is matched case
-  and edges aside, so keeping *soirée raclette* replaces *Soirée raclette*.
+  and edges aside, so keeping _soirée raclette_ replaces _Soirée raclette_.
   At most `SAVED_EVENINGS_MAX` (20), newest first.
 - **`melee:saved-evenings`**, in `preferences-storage.ts`, listed on `/legal`.
   Read entry by entry: an entry whose settings no longer parse keeps its game
@@ -23,9 +23,9 @@ another night.
 - **`LINE_UP_MAX_ENTRIES` 12 → 30**, `PROTOCOL_VERSION` 57: an old tab would
   refuse a view of more than twelve entries. The cap was the old strip's; the
   console now lists one row per entry.
-- **UI** (`saved-evenings-page.tsx`): a *Saved evenings* row under the planned
+- **UI** (`saved-evenings-page.tsx`): a _Saved evenings_ row under the planned
   games, also in a lobby with no game yet once one evening is kept, opens a
-  page in the Games tab's place — the field that keeps this one (*Replace*
+  page in the Games tab's place — the field that keeps this one (_Replace_
   when the name is taken), then one row per kept evening: its entries as
   spines, its name, its games and length, a press running it (lobby only) and
   a ✕ forgetting it.
@@ -41,9 +41,9 @@ another night.
 
 ## Follow-up: export and import by file
 
-Under the kept evenings, *Exporter* downloads one JSON — the evenings and the
+Under the kept evenings, _Exporter_ downloads one JSON — the evenings and the
 host's own challenge lines, under `kind: 'melee-host-export'`
-(`infrastructure/storage/host-export-file.ts`) — and *Importer* (react-aria's
+(`infrastructure/storage/host-export-file.ts`) — and _Importer_ (react-aria's
 `FileTrigger`) folds one in: `withEveningsImported` replaces a same-name
 evening in place and appends the rest up to `SAVED_EVENINGS_MAX`, never
 pushing a kept one out; `withOwnLinesImported` skips a line already written.
@@ -57,7 +57,7 @@ settings vanished. `entryKindSchema` reads both shapes.
 
 ## Done when
 
-Seen muted at 1280 and 390: an evening of three kept, *Replace* on a
+Seen muted at 1280 and 390: an evening of three kept, _Replace_ on a
 case-changed name, the quiz taken out and the evening run back with its
 capitals and 60 s; a stored evening with a broken timeline entry and the order
 [2, 0, 1] run on the timeline first at its 45 s default; twenty entries

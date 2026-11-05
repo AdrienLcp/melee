@@ -44,20 +44,20 @@ it. See `.claude/rules/sass-architecture.md`.
 
 **Session ids were scoped by room only**, so hosting and playing the same room
 from one browser — the normal way to try the game — had the two tabs claiming
-each other's identity. Now scoped by room *and* role.
+each other's identity. Now scoped by room _and_ role.
 
 ## Decisions taken here, and their reasons
 
-| Decision | Reason |
-|---|---|
-| A server exists | Buzz order is the game, and a client timestamp is skewed and forgeable |
-| Raw WebSocket, not Socket.IO | The reconnect and rooms cost twenty lines each; the stringly-typed event API costs correctness |
-| One app, two lazy routes | The QR encodes `location.origin` — one origin, no CORS, one deployment |
-| No `packages/ui` | One consuming app; it would be a boundary with nothing behind it |
+| Decision                                           | Reason                                                                                          |
+| -------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| A server exists                                    | Buzz order is the game, and a client timestamp is skewed and forgeable                          |
+| Raw WebSocket, not Socket.IO                       | The reconnect and rooms cost twenty lines each; the stringly-typed event API costs correctness  |
+| One app, two lazy routes                           | The QR encodes `location.origin` — one origin, no CORS, one deployment                          |
+| No `packages/ui`                                   | One consuming app; it would be a boundary with nothing behind it                                |
 | Contract in `packages/protocol`, not `hc<AppType>` | One answer to "where is the wire contract?", and `apps/game` stays independent of `apps/server` |
-| Rooms in memory | A game lasts an evening; persistence buys a recovery nobody would use |
-| TypeScript 7 | Nothing here consumes the TS JS compiler API, which is the only thing holding other repos back |
-| `@babel/core` pinned to 7 | The React Compiler bails silently on Babel 8's AST for destructured defaults |
+| Rooms in memory                                    | A game lasts an evening; persistence buys a recovery nobody would use                           |
+| TypeScript 7                                       | Nothing here consumes the TS JS compiler API, which is the only thing holding other repos back  |
+| `@babel/core` pinned to 7                          | The React Compiler bails silently on Babel 8's AST for destructured defaults                    |
 
 ## Known gaps left on purpose
 

@@ -9,7 +9,7 @@ well as in English.
 A family playtest asked for a difficulty control, and the room was entirely
 French speaking — so a control that only worked on the English half would have
 been worth nothing to it. [20](20-critical-css.md) shipped, the bank reached
-8 355 rows, and the question of what difficulty is *made of* was deliberately
+8 355 rows, and the question of what difficulty is _made of_ was deliberately
 left to this stage because the answer needed measuring first.
 
 Open Trivia DB declares an `easy | medium | hard` on every English row and the
@@ -29,44 +29,44 @@ The 317 without an article are the word puzzles — ALPHAQUIZZ, MOTSCROISES,
 ORTHOQUIZZ — which are about no subject at all.
 
 **Three bands break the draw in French.** `drawQuestion` picks a category
-uniformly and *then* a question inside it, so a level is only as good as its
+uniformly and _then_ a question inside it, so a level is only as good as its
 thinnest category. Cut the rated French rows into thirds by traffic:
 
-| | facile | moyen | difficile |
-|---|---|---|---|
-| arts | 604 | 765 | 794 |
-| everyday | 246 | 283 | 291 |
-| science | 100 | 34 | 20 |
-| geography | 85 | 17 | **10** |
-| sport | 64 | 29 | 21 |
-| history | 43 | 13 | **5** |
+|           | facile | moyen | difficile |
+| --------- | ------ | ----- | --------- |
+| arts      | 604    | 765   | 794       |
+| everyday  | 246    | 283   | 291       |
+| science   | 100    | 34    | 20        |
+| geography | 85     | 17    | **10**    |
+| sport     | 64     | 29    | 21        |
+| history   | 43     | 13    | **5**     |
 
-A twenty-round *difficile* game draws about three history questions from a pool
+A twenty-round _difficile_ game draws about three history questions from a pool
 of five. The English half has no such problem — its thinnest band is sport at
 28, and every other category holds 77 or more.
 
 **Cutting the thirds per category instead rescues the pools and ruins the
-label.** Split each category into thirds *of itself* and history holds 20/20/21,
-geography 37/37/38. But the boundary moves with the category: *difficile* starts
+label.** Split each category into thirds _of itself_ and history holds 20/20/21,
+geography 37/37/38. But the boundary moves with the category: _difficile_ starts
 below 764 views in arts and below 6 079 in history, because French history rows
-are almost all OpenQuizzDB — which links the *topic* of a pack — while arts is
-mostly PolyFact, which links the individual *work*. One word, six scales.
+are almost all OpenQuizzDB — which links the _topic_ of a pack — while arts is
+mostly PolyFact, which links the individual _work_. One word, six scales.
 
 **A single threshold behaves.** The tail is where the thin categories are
-*already* thin, because a history question is about something famous anyway:
+_already_ thin, because a history question is about something famous anyway:
 
-| threshold | arts | everyday | science | geography | sport | history | total |
-|---|---|---|---|---|---|---|---|
-| ≥ 1 000 | 1 271 | 495 | 134 | 101 | 92 | 55 | 2 148 |
-| **≥ 2 000** | **919** | **374** | **122** | **94** | **87** | **53** | **1 649** |
-| ≥ 5 000 | 544 | 218 | 96 | 78 | 61 | 43 | 1 040 |
-| ≥ 8 000 | 416 | 142 | 66 | 67 | 49 | 32 | 772 |
+| threshold   | arts    | everyday | science | geography | sport  | history | total     |
+| ----------- | ------- | -------- | ------- | --------- | ------ | ------- | --------- |
+| ≥ 1 000     | 1 271   | 495      | 134     | 101       | 92     | 55      | 2 148     |
+| **≥ 2 000** | **919** | **374**  | **122** | **94**    | **87** | **53**  | **1 649** |
+| ≥ 5 000     | 544     | 218      | 96      | 78        | 61     | 43      | 1 040     |
+| ≥ 8 000     | 416     | 142      | 66      | 67        | 49     | 32      | 772       |
 
 **Zero views is not obscurity, it is a missing measurement.** 177 OpenQuizzDB
 rows read zero: 152 because the pack's `wikipédia` field is bare, the rest
-because it names an article that does not exist — *Noeud double* for what French
-Wikipedia files under *Nœud*. Left as a number, the hardest bucket opened on
-*who directed Apocalypse Now*. A threshold reads them as not-well-known, which
+because it names an article that does not exist — _Noeud double_ for what French
+Wikipedia files under _Nœud_. Left as a number, the hardest bucket opened on
+_who directed Apocalypse Now_. A threshold reads them as not-well-known, which
 is the safe way round: they are dropped from a filtered game rather than
 promoted into it.
 
@@ -87,7 +87,7 @@ promoted into it.
   it `hard`. Neither is the other's measure, and neither has to be — the field
   says what the room is promised, not how the source arrived at it.
 - **The word is the blind test's.** `difficulty: wellKnown | mixed | obscure`
-  already exists at the protocol root for the blind test, so *well known* is
+  already exists at the protocol root for the blind test, so _well known_ is
   this repository's word for exactly this idea. The quiz's own arm is
   `isWellKnown` under `quiz.*`, not a second `difficulty`.
 - **Open Trivia DB's three bands are not carried.** Recoverable from
@@ -161,5 +161,5 @@ nothing already on screen was built on it.
 
 Verified in a browser, muted, at 320 px and 1440 px in both locales: the two
 switches take the same two lines and the same height at the narrowest screen
-there is, the value survives a reload, and a round opened under it drew *sur le
-tournage de quel film Mireille Darc a-t-elle rencontré Alain Delon*.
+there is, the value survives a reload, and a round opened under it drew _sur le
+tournage de quel film Mireille Darc a-t-elle rencontré Alain Delon_.

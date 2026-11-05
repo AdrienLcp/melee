@@ -75,7 +75,7 @@ file keeps the brief and the record of how it got there.
   `ChoosingRound` (`features/player/choosing-round.tsx`, the card and the four
   tiles), `RoundChrome` (`presentation/components/round-chrome.tsx`) and the
   frame itself as `framed.page` (`presentation/styles/_framed.sass`). The one
-  control a round in play offers, *give it away*, moved to the head of the
+  control a round in play offers, _give it away_, moved to the head of the
   menu as `RoomActions.revealRound`, reported only while the screen is framed,
   so it costs the tiles no row. A refused frame or a speaker the browser has
   not let play takes a `.notice` row, which exists only while it has something
@@ -102,8 +102,8 @@ file keeps the brief and the record of how it got there.
   a 5px frame in the phase ink and nothing else. It raises `--layout-padding`,
   so the page and the fixed menu clear it, and publishes `--track-room` — the
   viewport less what it added — which every `100dvh - chrome` budget on the
-  console now divides instead. *Since removed (2026-10-05): the ring, its
-  holder ink and `--track-room` are gone; the standings say the score.*
+  console now divides instead. _Since removed (2026-10-05): the ring, its
+  holder ink and `--track-room` are gone; the standings say the score._
 - **The console lobby**: above the split the page is the grid, the invitation
   down the left, the shelf, the table and the launch on the right (the wall
   keeps the old two columns, because its header carries the sound press). The
@@ -120,14 +120,14 @@ file keeps the brief and the record of how it got there.
 
 - **The console's playing stage** (`features/host/playing-stage.tsx`) is the
   paper question card with the round's sand along its top, the four tiles
-  *printed* (`PrintedChoices`, an `<ol>` of the same faces — nobody picks on
+  _printed_ (`PrintedChoices`, an `<ol>` of the same faces — nobody picks on
   this screen, so they are not buttons), and `AnsweredPawns`: the table's pawns,
-  standing for an answer in, dashed for one owed — *that*, never *what*. The
+  standing for an answer in, dashed for one owed — _that_, never _what_. The
   standings left: the ring already carries them. Lying down the card sits
   beside the tiles, or beside a seated host's typing field; upright it is one
   column. The page is a three-row grid (header, stage, footer) whose stage is a
   size container, and the footer is one row above the split or lying down: the
-  fold and *give it away*. The hold strip is the reveal's alone now — it was a
+  fold and _give it away_. The hold strip is the reveal's alone now — it was a
   row of a screen the tiles could not spare. Under 576px of height the header
   goes; under 352px the pawns do too. The wall shares all of it.
   `choice-fits.spec.ts` measures it as a third seat (`room`: eight players,
@@ -166,16 +166,16 @@ file keeps the brief and the record of how it got there.
   `ScoreTrack`'s `inkHolderId`, `--on-pawn-N` beside each pawn; pawns 2 and 5
   darkened two points to clear 4.5:1 under white — all removed with the track
   on 2026-10-05). On the console the answer
-  sits on the question's paper and the verdicts are pieces two by two, *right*
-  in the reveal's green, *missed* a dashed plain piece. Lying down the pawn and
+  sits on the question's paper and the verdicts are pieces two by two, _right_
+  in the reveal's green, _missed_ a dashed plain piece. Lying down the pawn and
   the presses share a row; upright the pawn stands beside the name. The wall
   keeps the pawn alone, larger. `choice-fits.spec.ts` measures both screens
   from 900px wide: no scroll — the verdict went red at 900×900 (278px) before
   the upright row existed.
 
-- **The final board** is the reference's *Fin*: the winner's pawn stood up
-  oversize, the name sized by its longest run (`answerFitting`), and *gagne
-  avec 30 points* under it (`host.final.wins` / `host.final.tied`) — the
+- **The final board** is the reference's _Fin_: the winner's pawn stood up
+  oversize, the name sized by its longest run (`answerFitting`), and _gagne
+  avec 30 points_ under it (`host.final.wins` / `host.final.tied`) — the
   `WINNER` label above the name went, an eyebrow the name never needed. A tie
   stands every winner's pawn, sharing one pawn's size. The standings beside it
   are the reveal's titled board, dividing their own box. **The track takes the
@@ -191,8 +191,8 @@ file keeps the brief and the record of how it got there.
 - **The slate's two stages.** While the sheets are open every item is a piece
   of the box, and on the console the whole piece is the press: a paper card
   with its count on a groove inked as far as the table has written, a saffron
-  token once collected and owed to the wall (a lock and *Corriger* on the
-  console, *À corriger* on the wall), and the empty socket it leaves once
+  token once collected and owed to the wall (a lock and _Corriger_ on the
+  console, _À corriger_ on the wall), and the empty socket it leaves once
   marked. The column count and the side are dealt by `useFittedGrid` from the
   board's own box (`helpers/fitted-grid.ts`): a square root of the area per
   cell picks the wrong grid — twenty-six cells at 900×900 ran a row past the
@@ -210,10 +210,10 @@ file keeps the brief and the record of how it got there.
   red before the redesign at every viewport (397px of scroll at 1280×720).
 
 - **The reflex race**, on the console and the wall. The wait is a paper card
-  lying face up under the reflex lid's saffron band, *Guette l'écran.* struck
+  lying face up under the reflex lid's saffron band, _Guette l'écran._ struck
   on it in the display face — and no groove, because a round card's groove is
   its clock and this round must show none. The flip takes the card with the
-  board: *VAS-Y* on the inverted ground, and each press stood up as a pawn in
+  board: _VAS-Y_ on the inverted ground, and each press stood up as a pawn in
   the order it landed, over the count a screen reader hears. The finishing
   order is a chip per player like every reveal's — the place struck on a round
   token, the pawn, the name, the time — the round's taker on the reveal's green
@@ -233,8 +233,8 @@ file keeps the brief and the record of how it got there.
   it came off: a paper lid (`_box-lid.sass` — a card with a keyline printed a
   margin in, re-pointing the board's inks at the paper's so a field or a
   heading written for the board prints correctly on it) carrying the wordmark
-  with its coral dot, the two promises — *a shelf of games for the whole
-  evening* as the heading, *playing in seconds* leading the pitch — and the two
+  with its coral dot, the two promises — _a shelf of games for the whole
+  evening_ as the heading, _playing in seconds_ leading the pitch — and the two
   doors at its foot, the code and its button on one row and stacked once the
   lid is under 17rem. Beside it from 960px, under it below, the five games are
   boxes seen by their spines (`game-spines.tsx`), each in its own colour with
@@ -263,7 +263,7 @@ file keeps the brief and the record of how it got there.
   time and false start) over all sixteen viewports: no scroll, every piece and
   the line inside the viewport and inside its own box, the question at 14px or
   more. Broken on purpose once (the buzzer sized without its box's height). The
-  floor's line went red at every viewport first: the grave of *à* in Bricolage
+  floor's line went red at every viewport first: the grave of _à_ in Bricolage
   rises past a `0.95` line, so it is set at `1.2`.
 
 - **The rest of the player's screens.** `RoundChrome` owns its stylesheet now
@@ -284,7 +284,7 @@ file keeps the brief and the record of how it got there.
   standing, and `RoundBoard` as a chip per player — filled right, outlined
   wrong or silent, the player's own in a keyline. The final board stands the
   player's pawn beside their place. Every wait is a `NoticeCard`. The kicker
-  labels (*La réponse*, *Tu vas jouer à*, *Tu finis*) became visually hidden
+  labels (_La réponse_, _Tu vas jouer à_, _Tu finis_) became visually hidden
   prefixes. The nickname form is on a box lid, and `TextField`'s input is a
   paper slot everywhere. `choice-fits.spec.ts` measures four player pages
   (lobby, the longest typed question, a full table's reveal, its final board)
@@ -303,14 +303,14 @@ file keeps the brief and the record of how it got there.
   the reader's answer as the marking's chip (paper while it waits, green once
   right, a dashed outline once passed or never written), and the key on the
   paper card; while lines are still open it is the same row, small, above the
-  sheet. *En ce moment au mur* became a visually hidden prefix. The whole sheet
+  sheet. _En ce moment au mur_ became a visually hidden prefix. The whole sheet
   is a chip per line in the same materials. `choice-fits.spec.ts` measures both
   states over the sixteen viewports; broken on purpose once (the answer column
   refusing to shrink: 222px of sideways scroll at 320×568). Its spill check
   reads `scrollWidth`, which a text overflowing an `overflow: visible` box never
   raises — a wrap broken by `nowrap` alone stayed green.
 - **The icons**: `favicon.svg` is the coral piece with its darker die-cut edge
-  and the wordmark's *T.* in paper; `apple-touch-icon.png` is the same mark
+  and the wordmark's _T._ in paper; `apple-touch-icon.png` is the same mark
   full-bleed at 180px, since iOS rounds it itself.
 - **`AskedQuestion`'s own sizing is gone**: every call site prints it on a card
   that sizes the prompt, so the `494cqi` length term (Archivo's measure) and the
@@ -330,7 +330,7 @@ page's entrance animation, whose leftover `translateY` is a 1px scroll.
 ## Closing pass (2026-10-05)
 
 §6 met. The reviewer pass found the last two kickers — the console reveal's
-*C'était* / *La réponse était* and the reflex time's *C'est pris* — and folded
+_C'était_ / _La réponse était_ and the reflex time's _C'est pris_ — and folded
 them into visually hidden prefixes like the player screens'. The quiz rubric
 above a question stays visible on purpose: it is content the table reads, not a
 label restating the heading. `DESIGN.md` was rewritten from the code with
@@ -354,7 +354,7 @@ corrected. Lint, spell, types, unit, build and the 39 journeys green.
   choosing a direction. Product truth below wins over the old file.
 - `apps/game/DESIGN.md` (1 164 lines) is **evidence, not authority**. Read its
   `Layout`, `What is out of budget` and `What must not be broken` sections for
-  the hard-won measurements; discard its world. It also still names *Le Fake*
+  the hard-won measurements; discard its world. It also still names _Le Fake_
   and a vote board — neither exists.
 - The browser is **muted before the first navigation** (`melee:volume = '0'`
   in an init script, see `docs/browser-driving.md`). The host and the wall play
@@ -365,13 +365,13 @@ corrected. Lint, spell, types, unit, build and the 39 journeys green.
 A shelf of five party games sharing one room, one 4-character code, one QR code
 and every screen in the room. Nobody installs anything, nobody has an account.
 
-| Game | What happens | Answer modes |
-|---|---|---|
+| Game       | What happens                                                                                         | Answer modes                |
+| ---------- | ---------------------------------------------------------------------------------------------------- | --------------------------- |
 | Blind test | a 30 s clip plays on the room's speaker, players name title and artist (or the film, for score cues) | typed · choice (4) · buzzer |
-| Quiz | a banked question in FR or EN (11 453 of them, 8 subjects) | typed · choice (4) · buzzer |
-| Buzzer | a bare race for the floor; the host brings the content | buzzer |
-| Reflex | race against a screen about to change colour; false start costs the round | buzzer |
-| Slate | a private numbered answer sheet on every screen, marked item by item on the wall | typed |
+| Quiz       | a banked question in FR or EN (11 453 of them, 8 subjects)                                           | typed · choice (4) · buzzer |
+| Buzzer     | a bare race for the floor; the host brings the content                                               | buzzer                      |
+| Reflex     | race against a screen about to change colour; false start costs the round                            | buzzer                      |
+| Slate      | a private numbered answer sheet on every screen, marked item by item on the wall                     | typed                       |
 
 **Three roles, never three devices.** A phone may be the host; a laptop may be
 a player. Nothing may name or assume the device.
@@ -417,13 +417,13 @@ budget" (812×375 overflows 137 px); that bargain is revoked.
 Design for the worst real content, measured from
 `apps/server/src/infrastructure/questions/question-bank.json`:
 
-| | median | p95 | p99 | max |
-|---|---|---|---|---|
-| Prompt, fr | 61 | 94 | 129 | **192** chars |
-| Prompt, en | 65 | 111 | 128 | **140** chars |
-| Choice | 9–11 | 24–27 | 40–46 | **275** chars (one outlier; 112 above 60) |
+|            | median | p95   | p99   | max                                       |
+| ---------- | ------ | ----- | ----- | ----------------------------------------- |
+| Prompt, fr | 61     | 94    | 129   | **192** chars                             |
+| Prompt, en | 65     | 111   | 128   | **140** chars                             |
+| Choice     | 9–11   | 24–27 | 40–46 | **275** chars (one outlier; 112 above 60) |
 
-Longest unbreakable word: 29 characters. Blind-test choices carry a title *and*
+Longest unbreakable word: 29 characters. Blind-test choices carry a title _and_
 an artist line.
 
 What that means for the system, decided before any direction is drawn:
@@ -472,7 +472,7 @@ treated as a list of targets.
 
 ### 4. What to throw away
 
-The current world — saturated phase fields (*the phase is the colour*),
+The current world — saturated phase fields (_the phase is the colour_),
 Archivo at width 125, French TV title cards 1972–81, hard edges, the buzzer as
 the only circle. It may be argued back in by a direction that earns it, never
 kept by inertia. The phase change must stay legible across a room in some form:

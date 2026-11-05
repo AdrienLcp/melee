@@ -1,9 +1,9 @@
 # 50 — Petit Bac
 
-**Done** — the rules, the server, the screens and the shelf, all landed 25/10/2026, the day it was asked. A letter goes up — *B* — beside six categories —
-*a country, an animal, a first name, a job, a brand, something in a kitchen* —
-and every screen fills its own grid against the clock: *Belgique, baleine,
-Bastien, boulanger, Bic, bouilloire*. The first sheet full may call **stop**.
+**Done** — the rules, the server, the screens and the shelf, all landed 25/10/2026, the day it was asked. A letter goes up — _B_ — beside six categories —
+_a country, an animal, a first name, a job, a brand, something in a kitchen_ —
+and every screen fills its own grid against the clock: _Belgique, baleine,
+Bastien, boulanger, Bic, bouilloire_. The first sheet full may call **stop**.
 Then the room reads the answers category by category, says which ones do not
 count, and an answer nobody else wrote pays double.
 
@@ -15,8 +15,8 @@ built inside its own arm of `round.content` and its own directory of
 written in private, then judged in public one part at a time, is the slate's
 loop, and every choice below that reads like the slate's is one on purpose.
 
-Kind `petitbac`, translation prefix `petitbac.*`. *Petit Bac* in French;
-the English name is the screens' session to settle, and is not *Scattergories*
+Kind `petitbac`, translation prefix `petitbac.*`. _Petit Bac_ in French;
+the English name is the screens' session to settle, and is not _Scattergories_
 (a trademark).
 
 ## Rules, as settled
@@ -26,10 +26,10 @@ the English name is the screens' session to settle, and is not *Scattergories*
   never twice in one game until every letter has gone.
 - **Three to ten categories, six by default**, each one of two kinds: a
   **bank** category (a key, labelled by the dictionaries in both languages:
-  *pays*, *animal*, *prénom*, *métier*, *marque*, *fruit ou légume*…, about
+  _pays_, _animal_, _prénom_, _métier_, _marque_, _fruit ou légume_…, about
   thirty) or **the host's own**, typed (40 characters, shown as typed in every
-  language). The lobby offers *draw six for each round* or *these, every
-  round*; a drawn set never repeats a category inside one round.
+  language). The lobby offers _draw six for each round_ or _these, every
+  round_; a drawn set never repeats a category inside one round.
 - **The sheet closes on the clock or on a stop.** `roundDurationMs` 60–300 s,
   120 by default. A seat whose every line is filled may press **stop**
   (`stopsWhenFull`, on by default): every sheet closes
@@ -37,16 +37,16 @@ the English name is the screens' session to settle, and is not *Scattergories*
   down), so the word a hand is still finishing lands.
 - **The letter is checked by the server**, after the shared normalisation:
   an answer counts as starting with the letter when its folded form does, or
-  when the form with the leading article stripped does — *La Rochelle* plays
-  for *L* and for *R*, *Le Havre* for *L* and *H*. An answer off the letter is
-  never put to the vote: it is filed *off the letter* and pays nothing.
+  when the form with the leading article stripped does — _La Rochelle_ plays
+  for _L_ and for _R_, _Le Havre_ for _L_ and _H_. An answer off the letter is
+  never put to the vote: it is filed _off the letter_ and pays nothing.
 - **The vote is the room's, one category at a time.** Every answer of the
-  category goes up, grouped by the shared normalisation so *Belgique* and
-  *belgique* are one row with both authors. Every row counts by default; a
-  seat presses *doesn't count* on any row it did not write, and a row falls
+  category goes up, grouped by the shared normalisation so _Belgique_ and
+  _belgique_ are one row with both authors. Every row counts by default; a
+  seat presses _doesn't count_ on any row it did not write, and a row falls
   when **strictly more than half** of the seats able to vote on it — the
   round's stamped seats, its own authors excluded — refused it. A tie keeps
-  it. The console's *next category* moves the room on, and so does every
+  it. The console's _next category_ moves the room on, and so does every
   stamped seat having voted.
 - **With a judge (`hasJudge`) there is no vote**: the console refuses rows
   itself and the seats only watch, exactly as the slate is marked.
@@ -59,22 +59,22 @@ the English name is the screens' session to settle, and is not *Scattergories*
   is guess nine's refusal again, and the stop is already paid by closing the
   others' sheets. Scores are recomputed from the sheets on every vote, so a
   changed vote moves the board — the slate's rule.
-- **Uniqueness is decided after the vote**, over accepted rows: if *Bic* is
+- **Uniqueness is decided after the vote**, over accepted rows: if _Bic_ is
   refused for one seat it was refused for both, since they are one row, so a
   refusal never turns a shared answer into a unique one by accident.
 
 ## The shape, as decided
 
-- **No new phase.** The catalogue predicted one name for *the room choosing
-  from a board*; the slate already answered that a phase earns its place only
-  when the whole room changes what it is doing *and* nothing is still being
+- **No new phase.** The catalogue predicted one name for _the room choosing
+  from a board_; the slate already answered that a phase earns its place only
+  when the whole room changes what it is doing _and_ nothing is still being
   written. Petit Bac's vote is a stretch of `playing` where each category
   carries `open | voting | settled` on the arm, the slate's
   `open | closed | marked` under the game's own words. That keeps the 23
   modules that spell a phase untouched, and leaves `revealed` to be the
   scoreline as for every game.
 - **`answerGroups` moves to the shell.** `core/slate/answer-groups.ts` is the
-  first case of *group what a room wrote by the shared normalisation*, and
+  first case of _group what a room wrote by the shared normalisation_, and
   Petit Bac is the second: it goes to `core/round/answer-groups.ts`, the slate
   importing it from there. Nothing else of the slate moves — its marking is the
   host's alone, which is the half Petit Bac does not share.
@@ -113,8 +113,8 @@ the English name is the screens' session to settle, and is not *Scattergories*
 - **`normalizeKeepingArticle`** beside `normalizeAnswer` in
   `round/answer-matching.ts`: the letter rule needs the fold with the article
   kept, and a second copy of the fold would drift from the first.
-- **An off-the-letter twin does not share an answer**: *Rochelle* for *L* is
-  off the letter and leaves *La Rochelle* unique, because the two group under
+- **An off-the-letter twin does not share an answer**: _Rochelle_ for _L_ is
+  off the letter and leaves _La Rochelle_ unique, because the two group under
   one key and only the standing ones are counted.
 
 — cut here: plan written, protocol arm and core rules committed, tests green —
@@ -142,12 +142,12 @@ the English name is the screens' session to settle, and is not *Scattergories*
 **Done 25/10/2026.** What it settled beyond the plan:
 
 - **`petitbac.doneVoting` is the signal "every seat has voted"** needs, because
-  every row counts by default and nobody presses *keep* on each one. A category
+  every row counts by default and nobody presses _keep_ on each one. A category
   with no row — nothing written on the letter — settles on the spot rather than
   waiting on it.
 - **`playedLetters` sits beside `playedContentIds`, not in it**: a set cannot
-  hold a letter twice, which `drawLetter`'s cycle reads. It survives a *play
-  again* the way `playedContentIds` does.
+  hold a letter twice, which `drawLetter`'s cycle reads. It survives a _play
+  again_ the way `playedContentIds` does.
 - **The stop's grace is round time** (`stopClosesAtElapsedMs`), so a console
   away freezes it with the clock, and `openPhaseDurationMs` reads it as the
   round's deadline — `null` once the sheets close, because the vote runs on the
@@ -163,19 +163,19 @@ the English name is the screens' session to settle, and is not *Scattergories*
 
 ## Step 3 — the screens (one or two sessions)
 
-Direction A, *the sheet*, chosen 2026-10-25 over *one line in hand*
+Direction A, _the sheet_, chosen 2026-10-25 over _one line in hand_
 (`.impeccable/directions/petit-bac/`, local): the whole sheet on one card,
-the category in the margin and the word on the line; a *doesn't count* toggle
-per row in the vote, the seat's own row marked *yours*; on the wall the letter
+the category in the margin and the word on the line; a _doesn't count_ toggle
+per row in the vote, the seat's own row marked _yours_; on the wall the letter
 beside the categories as empty ruled lines and a groove per seat, a card per
 row with a dot per voter in the vote, and a seats × categories grid at the
-reveal, *found alone* on `--good-soft` with ×2. The spine is a violet school
+reveal, _found alone_ on `--good-soft` with ×2. The spine is a violet school
 ink, `oklch(46% 0.13 285)`, and the English name is **Categories** — the
 paper game's generic name.
 
 **Two guards against a stop called on a junk sheet**, added with the screens:
 the server refuses a stop unless every line starts with the letter and holds
-two letters or more, and the console carries *cancel the stop* — the sheets
+two letters or more, and the console carries _cancel the stop_ — the sheets
 reopen on the time left when it was called, the stopper may not stop again
 that round — until the first category's vote has moved on. Judge or not: the
 console runs the room either way. **Landed 25/10/2026**: `isStoppableLine` in
@@ -187,7 +187,7 @@ like the clock running out.
 
 **The console strikes a word out, 26/10/2026.** A table let a sheet of the
 letter plus gibberish through: a row stands by default and falls only on a
-strict majority, so a room that taps *done* without refusing pays it. `host.strikeRow`
+strict majority, so a room that taps _done_ without refusing pays it. `host.strikeRow`
 refuses a row over the votes — or puts it back — from the vote through the
 reveal, and the console's results grid makes every word a room kept a press
 that strikes it (`PetitBacGrid`'s `onStrike`, absent on the wall). Not on
@@ -196,12 +196,12 @@ where the word gets noticed. A struck word re-pays the round on the spot.
 
 - **A seat**: the letter large, one field per category, the stop once the
   sheet is full, the grace counting down; then the category being voted, its
-  rows, *doesn't count* on the others'.
+  rows, _doesn't count_ on the others'.
 - **The wall**: the letter and the categories, the clock, each seat's count of
   filled lines; then the category up for the vote with its rows falling as the
   refusals land.
 - **The console**: the lobby's categories (bank chips, the host's own lines,
-  drawn or fixed, the letters left out), *next category*, and under a judge
+  drawn or fixed, the letters left out), _next category_, and under a judge
   the refusal itself.
 - **The reveal**: every seat's sheet as a grid, unique and shared told apart.
 - The game into `shelvedGames`, its front door, its line-up tile, both
@@ -211,18 +211,18 @@ where the word gets noticed. A struck word re-pays the round on the spot.
 sheet with the letter at its head, each line saving itself on the slate's
 debounce, the stop enabled only when `isStoppableLine` holds for every line
 (the server's rule, imported, so the press and the refusal agree), the grace
-drawn as a groove in the stop's ink; then the vote, *doesn't count* per row,
-*yours* on the seat's own, *done* and its count. The sheet stays writable
+drawn as a groove in the stop's ink; then the vote, _doesn't count_ per row,
+_yours_ on the seat's own, _done_ and its count. The sheet stays writable
 while the console is away, as the slate's does, because the server still
 takes `petitbac.write` then; the stop and the vote wait for the host. The
-spine is `--spine-petitbac`, and *Categories* is the English name in the
+spine is `--spine-petitbac`, and _Categories_ is the English name in the
 dictionary. Seen muted at 390 px in both palettes and at 1280 px: a stop
 from another seat, its grace, a majority refusal over three seats.
 
 **The wall, the console and the reveal landed 25/10/2026**, seen muted at
 1280 and 390 px: the lobby's setup (the bank two to a row in the side panel,
 the host's own lines, the 3–10 bounds, letters, duration, stop switch),
-*cancel the stop*, *next category* and *show the scores*, the judge's
+_cancel the stop_, _next category_ and _show the scores_, the judge's
 refusal, and a seated console writing, stopping and voting. Petit Bac's sheet
 is `.answer-sheet`: a bare `.sheet` met `Leaflet`'s global rule, which makes
 every child scroll. The reveal grid is laid out `table-layout: auto`, each
@@ -243,7 +243,7 @@ offers no sound to an evening of games that make none (`makesSound`,
 **The shelf landed 25/10/2026**: `petitbac` in `shelvedGames`, its door
 (`/fr/petitbac`, `/en/petitbac`, prerendered with the rest — thirty documents
 now, which is why the comments stopped counting them), its tagline and head
-copy in both languages. Its icon is lucide's `CaseSensitive`, the *Aa* of a
+copy in both languages. Its icon is lucide's `CaseSensitive`, the _Aa_ of a
 game about one letter: the `TableProperties` it first had read as Guess nine's
 grid one row up. Seen muted at 1280 px in French and English: the shelf, the
 door, and the door opening a room with Petit Bac ticked in the picker.

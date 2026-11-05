@@ -29,7 +29,7 @@ in `en.html` at all — it belongs to the lazy route chunk, so the document coul
 not paint its own markup correctly even at 1 930 ms. It paints without it, and
 the styles land with the bundle four hundred milliseconds later.
 
-That changes what the fix is. Inlining only the three *linked* sheets would move
+That changes what the fix is. Inlining only the three _linked_ sheets would move
 the paint to ~646 ms and hold a structurally unstyled page for two seconds
 instead of four hundred milliseconds: a better FCP and a worse page. The unit is
 not "the render-blocking sheets". It is **every stylesheet this document's own
@@ -41,11 +41,11 @@ markup paints under**, linked or lazy.
 - **Route-scoped, not all of it.** Three ways to inline were measured on the
   wire, where the server already compresses:
 
-  | | `/en` gzipped | blocking requests |
-  |---|---|---|
-  | before | 3 226 B | 3 |
-  | the route's own set | **7 855 B** | 0 |
-  | every sheet (`cssCodeSplit: false`) | 13 364 B | 0 |
+  |                                     | `/en` gzipped | blocking requests |
+  | ----------------------------------- | ------------- | ----------------- |
+  | before                              | 3 226 B       | 3                 |
+  | the route's own set                 | **7 855 B**   | 0                 |
+  | every sheet (`cssCodeSplit: false`) | 13 364 B      | 0                 |
 
   The last one is simpler — one file, no manifest, no walk — and it was
   declined: 39 312 B of it is `host-console-page`, `player-page` and
@@ -111,15 +111,15 @@ markup paints under**, linked or lazy.
 Same three pages, three runs each, median, against the numbers
 [19](19-locale-urls.md) published.
 
-| | `/en` | `/en/blindtest` | `/en/credits` |
-|---|---|---|---|
-| performance | 0.93 → 0.95 | 0.95 → 0.95 | 0.94 → 0.96 |
-| FCP | 2.1 s → 2.0 s | 2.1 s → 2.0 s | 2.1 s → 2.0 s |
-| LCP | 2.7 s → 2.6 s | 2.68 s → 2.6 s | 2.68 s → 2.4 s |
-| TBT | 114 ms → **40 ms** | 63 ms → 40 ms | 66 ms → 30 ms |
-| CLS | 0 | 0 | 0 |
-| **render-blocking resources** | **3 → 0** | **3 → 0** | **3 → 0** |
-| accessibility · best-practices · SEO | 1 · 1 · 1 | 1 · 1 · 1 | 1 · 1 · 1 |
+|                                      | `/en`              | `/en/blindtest` | `/en/credits`  |
+| ------------------------------------ | ------------------ | --------------- | -------------- |
+| performance                          | 0.93 → 0.95        | 0.95 → 0.95     | 0.94 → 0.96    |
+| FCP                                  | 2.1 s → 2.0 s      | 2.1 s → 2.0 s   | 2.1 s → 2.0 s  |
+| LCP                                  | 2.7 s → 2.6 s      | 2.68 s → 2.6 s  | 2.68 s → 2.4 s |
+| TBT                                  | 114 ms → **40 ms** | 63 ms → 40 ms   | 66 ms → 30 ms  |
+| CLS                                  | 0                  | 0               | 0              |
+| **render-blocking resources**        | **3 → 0**          | **3 → 0**       | **3 → 0**      |
+| accessibility · best-practices · SEO | 1 · 1 · 1          | 1 · 1 · 1       | 1 · 1 · 1      |
 
 **The simulated scores barely moved, and that is the second stage running.**
 They are not worth much here: the same build measured twice an hour apart gave
@@ -132,12 +132,12 @@ TBT, which fell by two thirds on the page that carried the most.
 `--throttling-method=devtools`, the same way [19](19-locale-urls.md) got its
 waterfall:
 
-| | before | after |
-|---|---|---|
-| FCP | 2 224 ms | **1 044 ms** |
-| the three stylesheets | 1 278 · 1 309 · **1 930 ms** | inlined; no request |
-| the page's own chunk | 3 587 ms | **2 055 ms** |
-| LCP element | the app-menu button | a paragraph of the page |
+|                       | before                       | after                   |
+| --------------------- | ---------------------------- | ----------------------- |
+| FCP                   | 2 224 ms                     | **1 044 ms**            |
+| the three stylesheets | 1 278 · 1 309 · **1 930 ms** | inlined; no request     |
+| the page's own chunk  | 3 587 ms                     | **2 055 ms**            |
+| LCP element           | the app-menu button          | a paragraph of the page |
 
 The document costs 3 226 → 8 293 B gzipped for that, and answers with one
 response what took four.
@@ -180,7 +180,7 @@ which is the case that had to keep working.
   `.html` either.
 
 - **Blocking `**/assets/*.js` is how the first paint is actually verified.**
-  A page loaded with its bundles aborted *is* the first-paint state, and it can
+  A page loaded with its bundles aborted _is_ the first-paint state, and it can
   be screenshotted and queried. `window.React` undefined beside a stamped
   `data-theme` and the dark ground on a light system is the whole proof, and no
   amount of waiting for a hydrated page produces it.

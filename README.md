@@ -39,7 +39,7 @@ last two decided by the server and scored by speed on top of being right.
 
 It is covered end to end: the socket suites drive a real server over real
 sockets, and three Playwright journeys drive the two screens against a stubbed
-catalogue. What is *not* covered is any single component in isolation, on
+catalogue. What is _not_ covered is any single component in isolation, on
 purpose — see [`docs/plans/06-testing.md`](docs/plans/06-testing.md). The stages
 past 08 came out of playing the game rather than out of planning it. See
 [`docs/plans/`](docs/plans/).
@@ -72,21 +72,21 @@ second domain. The bundles stay apart because the routes are lazy: the player
 chunk is 5 kB, the host chunk 19 kB.
 
 **A player is never sent the answer.** Host and player have separate message
-unions, and player frames are encoded *through* their schema so Zod strips
+unions, and player frames are encoded _through_ their schema so Zod strips
 anything host-only that leaked. There is a test that fails when the strip is
 removed.
 
 ## Commands
 
-| | |
-|---|---|
-| `pnpm dev` | Server and app together |
-| `pnpm build` | Type-check everything, build the app |
-| `pnpm lint` | Biome, with fixes applied |
-| `pnpm lint:ci` | Biome, reporting instead of fixing |
-| `pnpm test` | protocol + core + server |
+|                 |                                               |
+| --------------- | --------------------------------------------- |
+| `pnpm dev`      | Server and app together                       |
+| `pnpm build`    | Type-check everything, build the app          |
+| `pnpm lint`     | Biome, with fixes applied                     |
+| `pnpm lint:ci`  | Biome, reporting instead of fixing            |
+| `pnpm test`     | protocol + core + server                      |
 | `pnpm test:e2e` | Three Playwright journeys, on their own ports |
-| `pnpm validate` | build + test + e2e |
+| `pnpm validate` | build + test + e2e                            |
 
 ## CI
 
@@ -131,13 +131,13 @@ them, and `CLAUDE.md` at each level says which apply where. Run `pnpm validate`
 before opening one — build, tests and journeys, in that order.
 
 **One honest caveat, so nobody wastes an evening.** A pull request that adds a
-*new game* is not something this repository can take yet, and that is a design
+_new game_ is not something this repository can take yet, and that is a design
 position rather than an oversight.
 
 Half the seam now exists: `settings.game` and `round.content` are unions
 discriminated on the game, so what a game asks and what it is configured with
-are separated from what every game needs. What does not exist is an *extension
-point*. A second game is added by editing those unions — not by registering
+are separated from what every game needs. What does not exist is an _extension
+point_. A second game is added by editing those unions — not by registering
 anything — and that is deliberate: two implementations are enough to see the
 shared shape and not enough to abstract it, so there is no plugin interface to
 write against and none is planned before a third case makes one knowable.

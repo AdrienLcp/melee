@@ -70,10 +70,10 @@ on the first draw, appended by `bankedQuestions()` so every corpus sweep
 already covers them. `PROTOCOL_VERSION` goes up: a player tab parses
 `category` as an enum.
 
-- **Prompt per language**: *What is the capital of Australia?* / *Quelle est
-  la capitale de l’Australie ?*, built from `withArticle` through a small
-  helper that contracts *de le* to *du* and *de les* to *des* (*du Brésil*,
-  *des États-Unis*), tested on all three forms.
+- **Prompt per language**: _What is the capital of Australia?_ / _Quelle est
+  la capitale de l’Australie ?_, built from `withArticle` through a small
+  helper that contracts _de le_ to _du_ and _de les_ to _des_ (_du Brésil_,
+  _des États-Unis_), tested on all three forms.
 - **Decoys from the country's own cities first** — Sydney, Melbourne,
   Brisbane for Canberra — keeping only cities with enough sitelinks to be a
   name a table has heard; any slot left is filled by the capitals of the
@@ -83,7 +83,7 @@ already covers them. `PROTOCOL_VERSION` goes up: a player tab parses
 - **City-states out** (Singapore, Monaco, Vatican): the question names its
   answer. A capital that merely shares its country's root (Luxembourg,
   Djibouti, Tunis) stays: an easy question, not a broken one. Test: typing the
-  country's own name (*Tunisie* for *Tunis*) is never forgiven into the
+  country's own name (_Tunisie_ for _Tunis_) is never forgiven into the
   capital.
 - **`choiceOnly: false`** everywhere: a capital is an answer a table produces
   from nothing.
@@ -94,18 +94,18 @@ already covers them. `PROTOCOL_VERSION` goes up: a player tab parses
 What the session found:
 
 - **The bank already asked 66 of them**, under geography and elsewhere —
-  *What is the capital city of New Zealand?*, *Quelle est la capitale de Cuba,
-  réputée pour ses cigares ?* `asksACapitalTheRubricAsks` drops a row whose
+  _What is the capital city of New Zealand?_, _Quelle est la capitale de Cuba,
+  réputée pour ses cigares ?_ `asksACapitalTheRubricAsks` drops a row whose
   answer is a capital the rubric asks and whose prompt names that country, so a
   room ticking both chips is never asked it twice under two ids. It costs
-  two rows it should not: *the capital nearest the equator* names *Équateur*
-  in French, and *whose capital is Djibouti?* asks the other way round —
+  two rows it should not: _the capital nearest the equator_ names _Équateur_
+  in French, and _whose capital is Djibouti?_ asks the other way round —
   cheaper lost than a rule that reads a sentence.
-- **Israel stays out of the prompt test**: the bank leaves it out, so *d’* is
+- **Israel stays out of the prompt test**: the bank leaves it out, so _d’_ is
   tested on Oman.
 - **Panama for Panama City is not forgiveness**: the capital’s English name
   holds the country’s, the Luxembourg case. The test is that a country’s name
-  is never forgiven into a capital called otherwise — *Tunisie* for *Tunis*.
+  is never forgiven into a capital called otherwise — _Tunisie_ for _Tunis_.
 - **Twelve divide by six, four, two and one**, so the chips tile with no rule:
   the last chip’s span, which filled eleven’s gap, went.
 - The decoy floor is 50 sitelinks, the bank’s median city standing at 70; a
@@ -129,10 +129,10 @@ projection the country rounds already draw.
   never a pixel the way an outline is — but the countries were left out for
   being unknown too, and that holds.
 - **A target kind of its own**, `capital`: `names { en, fr }`, because London
-  is *Londres* and every screen reads its own locale, where a French city's
+  is _Londres_ and every screen reads its own locale, where a French city's
   one `name` serves both; `point` and `countryCode` both `null` until the
   reveal. The prompt names the capital alone: naming its country would turn
-  *place Canberra* into *place the capital of Australia*, a quiz question the
+  _place Canberra_ into _place the capital of Australia_, a quiz question the
   map does not need to ask. The reveal dots and rings it as a city, and names
   the country.
 - **Tiers 3/2/1 under 100, 300 and 1 000 km.** The French cities' 25/75/150
@@ -147,8 +147,8 @@ projection the country rounds already draw.
   costs at least one tier, which is the round's point. Data in
   `DISTANCE_TIERS.capital`, tested at each edge.
 - No-repeat ids `worldmap:capital:<code>`, beside the countries' and the
-  cities'. The settings panel's *À placer* gains *Capitales du monde* /
-  *World capitals*, and the closed setup names it.
+  cities'. The settings panel's _À placer_ gains _Capitales du monde_ /
+  _World capitals_, and the closed setup names it.
 - `docs/realtime-protocol.md` and the CHANGELOG follow; `PROTOCOL_VERSION`
   goes up.
 
@@ -161,7 +161,7 @@ What the session found:
 - **155 capitals**: `BANKED_COUNTRIES` minus Israel, which the bank leaves
   out, and Greenland, a territory with a seat. `world-capitals.test.ts` names
   the two, so a third dropping out is seen.
-- **The reveal caption is *Canberra, Australie***, through one
+- **The reveal caption is _Canberra, Australie_**, through one
   `worldmap.reveal.capitalOf` string, so a locale can order the two.
 - **`scoringKey` takes `worldmapPlaces`** rather than a second boolean beside
   `asksForACity`: three places, three sentences, one lookup table.
@@ -194,23 +194,23 @@ are therefore a fair theme, and so is every continent. Europe is M49's
 
 Themes, each black word read by hand:
 
-| Theme | Black word | Why it bites |
-|---|---|---|
-| Capitals of Europe | Zurich | Switzerland's largest city; Bern is the capital |
-| Capitals of South America | Rio de Janeiro | Capital until 1960 |
-| Capitals of Africa | Lagos | Nigeria's largest city; Abuja since 1991 |
-| Capitals of Asia | Istanbul | Turkey's largest city; Ankara is the capital |
-| Capitals of Oceania | Sydney | Australia's largest city; Canberra is the capital |
-| Capitals of North and Central America | Toronto | Canada's largest city; Ottawa |
-| Capitals of Western Europe | Geneva | Bern again, and Geneva hosts the UN |
-| Capitals of Northern Europe | Gothenburg | Sweden's second city |
-| Capitals of Southern Europe | Milan | Italy's business capital |
-| Capitals of Eastern Europe | Saint Petersburg | Russia's capital until 1918 |
-| Capitals of South-eastern Asia | Yangon | Myanmar's capital until 2006 |
-| Capitals of the countries bordering France | Geneva | On the border; Switzerland's capital is Bern |
-| Countries whose capital is not their largest city | Italy | Rome is its largest city too; Milan is only its richest |
+| Theme                                             | Black word       | Why it bites                                            |
+| ------------------------------------------------- | ---------------- | ------------------------------------------------------- |
+| Capitals of Europe                                | Zurich           | Switzerland's largest city; Bern is the capital         |
+| Capitals of South America                         | Rio de Janeiro   | Capital until 1960                                      |
+| Capitals of Africa                                | Lagos            | Nigeria's largest city; Abuja since 1991                |
+| Capitals of Asia                                  | Istanbul         | Turkey's largest city; Ankara is the capital            |
+| Capitals of Oceania                               | Sydney           | Australia's largest city; Canberra is the capital       |
+| Capitals of North and Central America             | Toronto          | Canada's largest city; Ottawa                           |
+| Capitals of Western Europe                        | Geneva           | Bern again, and Geneva hosts the UN                     |
+| Capitals of Northern Europe                       | Gothenburg       | Sweden's second city                                    |
+| Capitals of Southern Europe                       | Milan            | Italy's business capital                                |
+| Capitals of Eastern Europe                        | Saint Petersburg | Russia's capital until 1918                             |
+| Capitals of South-eastern Asia                    | Yangon           | Myanmar's capital until 2006                            |
+| Capitals of the countries bordering France        | Geneva           | On the border; Switzerland's capital is Bern            |
+| Countries whose capital is not their largest city | Italy            | Rome is its largest city too; Milan is only its richest |
 
-- **Bolivia**: Sucre's cell accepts *La Paz* through `SPOKEN_ALIASES`, which
+- **Bolivia**: Sucre's cell accepts _La Paz_ through `SPOKEN_ALIASES`, which
   already takes a hand-written name per entity.
 - **Bordering France counts overseas**: Brazil and Suriname by French Guiana,
   the Netherlands by Saint-Martin, so eleven true capitals and Andorra la
@@ -224,9 +224,9 @@ Themes, each black word read by hand:
   theme; the build already refuses it.
 
 Test: the bank test's existing sweep (nine answers, one black word matching
-none) covers the new themes; add one that *La Paz* banks Sucre's cell. Seen
-muted: a typed *Capitals of South America* round at 1280 and 390, *La Paz*
-banking Bolivia and *Rio* voiding the sheet.
+none) covers the new themes; add one that _La Paz_ banks Sucre's cell. Seen
+muted: a typed _Capitals of South America_ round at 1280 and 390, _La Paz_
+banking Bolivia and _Rio_ voiding the sheet.
 
 — cut here: themes banked, `pnpm validate` green —
 
@@ -241,13 +241,13 @@ What the session found:
 - **Seats bank their capital everywhere**: `SPOKEN_ALIASES` folds in every
   seat's names from the bank — La Paz for Sucre, Cape Town and Bloemfontein
   for Pretoria, Colombo for Kotte — rather than one hand entry for Bolivia.
-  *Rio* is the one hand alias the session added: Wikidata holds no short name
+  _Rio_ is the one hand alias the session added: Wikidata holds no short name
   for Rio de Janeiro, and it is what a table says.
 - **Two black words changed on the traffic.** Lagos is not among the five most
   read cities of Africa for a French table; **Casablanca** is the first, with
   Rabat on the board. **New York** replaces Toronto for North and Central
   America: it is read two and a half times as much, and Washington is on the
-  board. Gothenburg stays for Northern Europe over Edinburgh, which *is* a
+  board. Gothenburg stays for Northern Europe over Edinburgh, which _is_ a
   capital, of a country that is not a state.
 - **City-states stay true answers**: Monaco, the Vatican and Singapore cost
   nothing to name and are the most read, so the ranking already pays them
@@ -256,10 +256,10 @@ What the session found:
   of the rebuild unchanged. Sri Lanka and South Africa joined the
   capital-not-largest list, which the bank's own seats show.
 
-Test: *La Paz* banks Sucre's cell and *Rio* is the black word in *Capitals of
-South America*, seen red with the La Paz alias removed from the bank.
+Test: _La Paz_ banks Sucre's cell and _Rio_ is the black word in _Capitals of
+South America_, seen red with the La Paz alias removed from the bank.
 
-Seen muted on a typed round, one seat, at 1280 and 390: *La Paz* turns Sucre's
-three-point cell green and pays +3 000; *Rio* ends the sheet, the reveal names
-Rio de Janeiro as the black word with its note, Sucre keeps *found by you*, and
+Seen muted on a typed round, one seat, at 1280 and 390: _La Paz_ turns Sucre's
+three-point cell green and pays +3 000; _Rio_ ends the sheet, the reveal names
+Rio de Janeiro as the black word with its note, Sucre keeps _found by you_, and
 the board stays at 0. Nothing overflows at 390.

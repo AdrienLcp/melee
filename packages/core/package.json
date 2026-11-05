@@ -1,11 +1,11 @@
 {
   "dependencies": {
     "@melee/protocol": "workspace:*",
-    "nanoid": "^6.0.1"
+    "nanoid": "^6.0.2"
   },
   "devDependencies": {
-    "@vitest/coverage-v8": "5.0.2",
-    "vitest": "^5.0.2"
+    "@vitest/coverage-v8": "5.1.0",
+    "vitest": "^5.1.0"
   },
   "exports": {
     "./*": "./src/*.ts"

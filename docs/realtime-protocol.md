@@ -52,7 +52,7 @@ wall, on the token it still holds — a client decision, nothing on the wire.
 `role: 'wall'` is the room's own screen — a television, a projector, a laptop
 turned to face the sofa — which shows the game and holds no secret, no control
 and no seat. It is a third role rather than a flag on the host, so every check
-written for *the* host leaves it out without being touched: it is not a presence
+written for _the_ host leaves it out without being touched: it is not a presence
 (`isHostConnected`), it cannot send a `host.*` frame (`host_only_action`), a
 token claim neither displaces it nor is displaced by it, and its arriving or
 leaving freezes and resumes nothing. The console learns it is there from
@@ -130,60 +130,60 @@ reconnect on the token it still holds.
 
 ## Client → server
 
-| Type | Sent by | Payload |
-|---|---|---|
-| `hello` | both | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `pawnHead?`, `hostToken?` — the piece is asked for a new seat only, its head round when `pawnHead` is absent |
-| `time.ping` | both | `clientSentAt` |
-| `player.leave` | any seat | — |
-| `player.rename` | any seat | `nickname` |
-| `player.chooseTeam` | any seat | `teamId` — under `chosen` teams only |
-| `player.recolourTeam` | a seat in a team | `colour` — repaints the seat's own team |
-| `player.recolourSeat` | any seat | `colour`, `head` — changes the seat's own piece; `head` reads as `round` when absent, as a tab on the build before heads sends it |
-| `player.ready` | any seat | `isReady` — between two rounds; refused `wrong_phase` while one is under way |
-| `player.buzz` | player | `roundId` |
-| `player.answer` | player | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees |
-| `player.lean` | any seat | `roundId`, `answer` — `{kind:'colour'}`, `{kind:'point'}` or `{kind:'order'}` in `player.answer`'s shape, or `null` to take it back: what the screen holds and has not sent, see *A lean is not an answer* |
-| `slate.write` | player | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it |
-| `petitbac.write` | player | `roundId`, `categoryIndex`, `answer` — an upsert of one line of the sheet, at most 60 characters; `''` clears it |
-| `petitbac.stop` | player | `roundId` — a full sheet closing everyone's, `PETIT_BAC_STOP_GRACE_MS` later |
-| `petitbac.vote` | player | `roundId`, `categoryIndex`, `rowKey`, `refuses` — a refusal of a row of the category being voted, or one taken back |
-| `petitbac.doneVoting` | player | `roundId`, `categoryIndex` — the seat has read the category being voted |
-| `blacksquare.tick` | player | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken black square alone, the black word once and for good |
-| `host.updateSettings` | host | `settings` |
-| `host.startRound` | host | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `challengeAt` (optional) — the slot of `challengeHand` an untyped challenge opens on, the first by default; `isChallengeSaidAloud` (optional) — an untyped challenge opens on no line, the host announcing it; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
-| `host.judge` | host | `roundId`, `playerId`, `verdict` |
-| `host.reveal` | host | `roundId` |
-| `host.clearLockouts` | host | `roundId` |
-| `host.controlClip` | host | `roundId`, `action` (`pause`, `resume`, `restart`) |
-| `host.pause` | host | `roundId`, `isPaused` |
-| `host.addItem` | host | `roundId` |
-| `host.setItemKey` | host | `roundId`, `itemIndex`, `key` — `''` clears it |
-| `host.revealItemKey` | host | `roundId`, `itemIndex` — a closed item with a key; it joins `round.content.revealedKeys` |
-| `host.closeItem` | host | `roundId`, `itemIndex` |
-| `host.collectSheets` | host | `roundId` — closes every item still open |
-| `host.showItem` | host | `roundId`, `itemIndex` |
-| `host.judgeGroup` | host | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}` |
-| `host.cancelStop` | host | `roundId` — takes a Petit Bac stop back and reopens every sheet on the time it left, until the vote moves past its first category |
-| `host.strikeRow` | host | `roundId`, `categoryIndex`, `rowKey`, `isStruck` — strikes a Petit Bac word out over the votes, or puts it back, on any category the vote has reached and through the reveal |
-| `host.nextCategory` | host | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last |
-| `host.drawTeams` | host | `assignment` — one list of `playerId`s per team, in team order |
-| `host.renameTeam` | host | `teamId`, `name` |
-| `host.recolourTeam` | host | `teamId`, `colour` — a pawn token, 1-based; `colour_taken` when another team holds it |
-| `host.recolourSeat` | host | `playerId`, `colour`, `head` — under `player.recolourSeat`'s rules |
-| `host.moveSeat` | host | `playerId`, `teamId` |
-| `host.adjustScore` | host | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units |
-| `host.awardPlaces` | host | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3 |
-| `host.awardTeams` | host | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing |
-| `host.redealChallenge` | host | `at` (optional, the first by default) — another ready-made line in place of that slot of `challengeHand`, the dropped one left unplayed; `invalid_message` outside a challenge, `no_content_available` when the bank holds no other |
-| `host.nextRound` | host | `isDuel` (optional) — the next round is a duel, see *A duel is one round asked for*; `challengeText`, `challengeAt`, `isChallengeSaidAloud` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound` |
-| `host.endGame` | host | — |
-| `host.playAgain` | host | — |
-| `host.removePlayer` | host | `playerId` |
-| `host.closeRoom` | host | — |
-| `host.dismissWall` | host | — |
-| `host.chooseSpeaker` | host | `speaker` — `{ kind: 'console' }` or `{ kind: 'wall', wallId }`, see *The wall* |
-| `host.setVolume` | host | `volume` — 0 to 1, the room's, played by the speaker |
-| `speaker.reportClip` | host, wall | `roundId`, `fault` — the speaker's clip silent (`blocked`, `unreachable`, `stalled`) or `null` again; dropped from any other screen |
+| Type                   | Sent by          | Payload                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| ---------------------- | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `hello`                | both             | `protocolVersion`, `role`, `sessionId?`, `nickname?`, `pawnColour?`, `pawnHead?`, `hostToken?` — the piece is asked for a new seat only, its head round when `pawnHead` is absent                                                                                                                                                                                                                                                                                                                                                    |
+| `time.ping`            | both             | `clientSentAt`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `player.leave`         | any seat         | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `player.rename`        | any seat         | `nickname`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `player.chooseTeam`    | any seat         | `teamId` — under `chosen` teams only                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `player.recolourTeam`  | a seat in a team | `colour` — repaints the seat's own team                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `player.recolourSeat`  | any seat         | `colour`, `head` — changes the seat's own piece; `head` reads as `round` when absent, as a tab on the build before heads sends it                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `player.ready`         | any seat         | `isReady` — between two rounds; refused `wrong_phase` while one is under way                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `player.buzz`          | player           | `roundId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `player.answer`        | player           | `roundId`, `answer` — `{kind:'choice', choiceIndex}`, `{kind:'typed', guess}` or `{kind:'point', point}` — a marker on the world map, `{ latitude, longitude }` in degrees                                                                                                                                                                                                                                                                                                                                                           |
+| `player.lean`          | any seat         | `roundId`, `answer` — `{kind:'colour'}`, `{kind:'point'}` or `{kind:'order'}` in `player.answer`'s shape, or `null` to take it back: what the screen holds and has not sent, see _A lean is not an answer_                                                                                                                                                                                                                                                                                                                           |
+| `slate.write`          | player           | `roundId`, `itemIndex`, `answer` — an upsert of one line; `''` clears it                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `petitbac.write`       | player           | `roundId`, `categoryIndex`, `answer` — an upsert of one line of the sheet, at most 60 characters; `''` clears it                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `petitbac.stop`        | player           | `roundId` — a full sheet closing everyone's, `PETIT_BAC_STOP_GRACE_MS` later                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `petitbac.vote`        | player           | `roundId`, `categoryIndex`, `rowKey`, `refuses` — a refusal of a row of the category being voted, or one taken back                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| `petitbac.doneVoting`  | player           | `roundId`, `categoryIndex` — the seat has read the category being voted                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| `blacksquare.tick`     | player           | `roundId`, `cell` — a cell index or `'blackWord'` — and `isTicked`; the keeper of a spoken black square alone, the black word once and for good                                                                                                                                                                                                                                                                                                                                                                                      |
+| `host.updateSettings`  | host             | `settings`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `host.startRound`      | host             | `slateKeys` (optional) — the slate's prepared answer key, read by that game alone; `challengeText` (optional) — what a challenge asks the table, at most 140 characters; `challengeAt` (optional) — the slot of `challengeHand` an untyped challenge opens on, the first by default; `isChallengeSaidAloud` (optional) — an untyped challenge opens on no line, the host announcing it; `innerclockTargetSeconds` (optional) — how long an inner clock round asks the table to count, 10 to 180, drawn between 20 and 60 when absent |
+| `host.judge`           | host             | `roundId`, `playerId`, `verdict`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `host.reveal`          | host             | `roundId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `host.clearLockouts`   | host             | `roundId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `host.controlClip`     | host             | `roundId`, `action` (`pause`, `resume`, `restart`)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `host.pause`           | host             | `roundId`, `isPaused`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `host.addItem`         | host             | `roundId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
+| `host.setItemKey`      | host             | `roundId`, `itemIndex`, `key` — `''` clears it                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `host.revealItemKey`   | host             | `roundId`, `itemIndex` — a closed item with a key; it joins `round.content.revealedKeys`                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `host.closeItem`       | host             | `roundId`, `itemIndex`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `host.collectSheets`   | host             | `roundId` — closes every item still open                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `host.showItem`        | host             | `roundId`, `itemIndex`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
+| `host.judgeGroup`      | host             | `roundId`, `itemIndex`, `groupKey`, `verdict` — `{kind:'single', isCorrect}`                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `host.cancelStop`      | host             | `roundId` — takes a Petit Bac stop back and reopens every sheet on the time it left, until the vote moves past its first category                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `host.strikeRow`       | host             | `roundId`, `categoryIndex`, `rowKey`, `isStruck` — strikes a Petit Bac word out over the votes, or puts it back, on any category the vote has reached and through the reveal                                                                                                                                                                                                                                                                                                                                                         |
+| `host.nextCategory`    | host             | `roundId`, `categoryIndex` — settles the Petit Bac category being voted and opens the next, or the reveal after the last                                                                                                                                                                                                                                                                                                                                                                                                             |
+| `host.drawTeams`       | host             | `assignment` — one list of `playerId`s per team, in team order                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| `host.renameTeam`      | host             | `teamId`, `name`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `host.recolourTeam`    | host             | `teamId`, `colour` — a pawn token, 1-based; `colour_taken` when another team holds it                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| `host.recolourSeat`    | host             | `playerId`, `colour`, `head` — under `player.recolourSeat`'s rules                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `host.moveSeat`        | host             | `playerId`, `teamId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `host.adjustScore`     | host             | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `host.awardPlaces`     | host             | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+| `host.awardTeams`      | host             | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing                                                                                                                                                                                                                                                                                                                                                                                                         |
+| `host.redealChallenge` | host             | `at` (optional, the first by default) — another ready-made line in place of that slot of `challengeHand`, the dropped one left unplayed; `invalid_message` outside a challenge, `no_content_available` when the bank holds no other                                                                                                                                                                                                                                                                                                  |
+| `host.nextRound`       | host             | `isDuel` (optional) — the next round is a duel, see _A duel is one round asked for_; `challengeText`, `challengeAt`, `isChallengeSaidAloud` (optional) — as on `host.startRound`; `innerclockTargetSeconds` (optional) — as on `host.startRound`                                                                                                                                                                                                                                                                                     |
+| `host.endGame`         | host             | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `host.playAgain`       | host             | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `host.removePlayer`    | host             | `playerId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| `host.closeRoom`       | host             | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `host.dismissWall`     | host             | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| `host.chooseSpeaker`   | host             | `speaker` — `{ kind: 'console' }` or `{ kind: 'wall', wallId }`, see _The wall_                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `host.setVolume`       | host             | `volume` — 0 to 1, the room's, played by the speaker                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `speaker.reportClip`   | host, wall       | `roundId`, `fault` — the speaker's clip silent (`blocked`, `unreachable`, `stalled`) or `null` again; dropped from any other screen                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 **The `player.` prefix names the seat, not the role.** `player.leave` and
 `player.rename` are the two a console holding a seat sends as well, which is why
@@ -216,7 +216,7 @@ clock-skewed and forgeable, and a blind test is decided by exactly that field.
 
 The fairness this buys is bounded by network latency, which the clock handshake
 measures but cannot remove. If that ever needs improving, the answer is
-compensating with the *measured* round trip the server already knows — never
+compensating with the _measured_ round trip the server already knows — never
 trusting a number the client sends.
 
 `verdict` is discriminated on `kind`, because what the host judged depends on
@@ -300,7 +300,7 @@ names it, so every screen says the name its own dictionary gives the colour.
   sends `player.chooseTeam` instead, as often as it likes in the lobby, and
   once afterwards if it arrived holding none.
 - **Nobody waits on a phone.** A seat still without a team when a round opens is
-  placed by the late-seat rule — the team with the fewest *connected* seats,
+  placed by the late-seat rule — the team with the fewest _connected_ seats,
   the first on a tie — and so is one arriving under `drawn` once there is a
   deal to join. Before the first deal the lobby is still filling, and a seat
   waits for it.
@@ -388,7 +388,7 @@ room has teams. Each team carries `board: { case, move }` beside its score,
   what keeps a turn of a set from ranking one team against teams still
   waiting for theirs, so a team on its turn moves 3 cases if it scores at all.
 - **Catch-up is the track's, not a strategy's.** With `catchUp` on,
-  `advanceOnTrack` gives one case more to a team standing *alone* on the
+  `advanceOnTrack` gives one case more to a team standing _alone_ on the
   rearmost case, on a round its strategy walks it at all. Two pawns level at
   the back are a race, not a team left behind. The field defaults to `false`,
   so a track stored by a host before it existed still parses.
@@ -406,7 +406,7 @@ room has teams. Each team carries `board: { case, move }` beside its score,
   case; a count ends on its count alone, a pawn home before it waiting on the
   last case, ranked first; no count and no race ends when the host says. One
   rule, `endsTheEvening`, is read by the server's `isFinalRound` and by the
-  console, so it never offers *Next round* on a reveal the server ends on.
+  console, so it never offers _Next round_ on a reveal the server ends on.
 
 **The slate's six host frames and its one player frame.** The sheet is one
 round, and writing and marking share `playing`: every item carries its own
@@ -548,7 +548,7 @@ from one another.
 
 **Black square sends a seat its own cells and nothing else.** The public arm is
 `{ kind: 'blacksquare', theme, foundCellCount, revealed }`: the theme per locale,
-how many of the nine cells *any* seat has found — a count, never which — and
+how many of the nine cells _any_ seat has found — a count, never which — and
 `revealed`, `null` until the reveal, then every answer with its `tier` and
 `foundBy`, and the black word with its `why` and `hitBy`. The reader's own
 cells are `yourVerdict`, a fifth shape of verdict, `{ kind: 'cells',
@@ -611,7 +611,7 @@ the round's answers on the letter under the shared normalisation, named by its
 and a row falls on a **strict majority** of the round's seats that did not
 write it. Every seat sending `petitbac.doneVoting`, or the console's
 `host.nextCategory`, settles the category and moves on; a `categoryIndex` that
-is not the one being voted is `stale_round`. There is no judge *instead of*
+is not the one being voted is `stale_round`. There is no judge _instead of_
 the vote — that went with `hasJudge`, because the one fact left to key it on,
 the console holding no seat, is a television on the wall, which would have lost
 the table its vote. The console strikes **on top of** it: `host.strikeRow`
@@ -648,12 +648,12 @@ a new host message cannot quietly become player-callable.
 
 Four types, and two of them are role-scoped.
 
-| Type | Payload |
-|---|---|
-| `welcome` | `protocolVersion`, `sessionId`, `serverTime`, `view` |
-| `room.updated` | `view` |
-| `time.pong` | `clientSentAt`, `serverTime` |
-| `error` | `code`, `message`, `fatal` |
+| Type           | Payload                                              |
+| -------------- | ---------------------------------------------------- |
+| `welcome`      | `protocolVersion`, `sessionId`, `serverTime`, `view` |
+| `room.updated` | `view`                                               |
+| `time.pong`    | `clientSentAt`, `serverTime`                         |
+| `error`        | `code`, `message`, `fatal`                           |
 
 `room.updated` is the only broadcast: after any state change, every socket
 receives its whole view. No deltas — a room is at most 24 players changing at
@@ -713,11 +713,11 @@ Shared by all three:
 game on it is drawn: `roundCount`, `countdownMs`, `autoAdvanceMs`, `startsAt`,
 `advancesAt`,
 the buzz, the lockout and the awards are every game's, and what the round is
-*asking* belongs to the game asking it. A client that does not recognise a `kind` has no business
+_asking_ belongs to the game asking it. A client that does not recognise a `kind` has no business
 rendering that room at all, which is why the shape moving bumps the version.
 
 `advancesAt` is read with `settings.autoAdvanceMs` beside it: the deadline says
-*when*, the setting says how long the whole wait was, and a screen needs both to
+_when_, the setting says how long the whole wait was, and a screen needs both to
 draw how much of it is left. They are stamped together and go `null` together,
 so one of them missing means nothing is counting this reveal down — the host
 advances by hand, or their screen has gone and the server has the room frozen.
@@ -742,7 +742,7 @@ than the field going `null` because "no content" and "no round" are different
 facts.
 
 `settings.mode` is the room's second axis and is independent of the game: how a
-round is answered is not what is being played. The game *narrows* which kinds
+round is answered is not what is being played. The game _narrows_ which kinds
 are on offer — the bare buzzer offers only `buzzer`, and the server refuses a
 frame that sets a mode the current game does not serve — and each kind carries
 its own settings, which is why `answerWindowMs` appears on the buzzer arm and
@@ -778,9 +778,9 @@ validated becomes wrong — and stays `null` on an item that closed before the
 reader held a seat, which `closedBeforeYou` says outright so a screen does not
 draw that line as a blank.
 
-**The world map hides the markers, not the country.** Its question is *place
-this country*, so `round.content.target` (`{ kind: 'country', countryCode }`)
-is public from the first frame — naming it *is* the question, and every screen
+**The world map hides the markers, not the country.** Its question is _place
+this country_, so `round.content.target` (`{ kind: 'country', countryCode }`)
+is public from the first frame — naming it _is_ the question, and every screen
 already draws the map that answers it. A French city (`settings.game.places:
 'frenchCities'`) is the one target with something to hide: its `{ kind: 'city',
 name, point }` carries the name from the first frame and the point `null` until
@@ -788,8 +788,8 @@ the reveal, since where it stands is the answer and no screen draws it. A
 world capital (`'worldCapitals'`) hides one thing more: `{ kind: 'capital',
 names, point, countryCode }` carries its name in both languages from the first
 frame, and both the point and the country `null` until the reveal, because a
-country named beside Canberra turns *where is it* into *what is the capital of
-Australia*. What a player answers is a point in degrees, which the device
+country named beside Canberra turns _where is it_ into _what is the capital of
+Australia_. What a player answers is a point in degrees, which the device
 inverts from its own projection: the server decides what it hit, against
 Natural Earth's 1:50m outlines read once as the round opens, and no screen ever
 sends a country or a distance. `revealedPlacements` (`{ playerId, point }` per
@@ -815,7 +815,7 @@ inside the URL, which is why the seat is offered rather than assumed.
 
 **There is no seat message, so the seat is only ever as durable as the name the
 console replays.** A socket blink keeps it because the page never went; a tab
-discarded on a screen lock is a *reload*, and a name held in component state
+discarded on a screen lock is a _reload_, and a name held in component state
 alone died with it. It is kept on `melee:seats` beside that room's session id,
 which is what makes the two survive together.
 
@@ -830,7 +830,7 @@ round was **opened** on is the rule. Only one thing withholds the seat itself,
 on `hello` and on the settings frame that sets it (`hostMustJudge`): teams
 answering aloud. Buzzer mode is
 what asks for a judge; the reflex race shares that mode and needs none, because
-being first *is* being right there. The slate is the other way round: it is
+being first _is_ being right there. The slate is the other way round: it is
 `typed` — a sheet is typed — and still judged, because its host holds the key
 and marks the sheets.
 
@@ -855,7 +855,7 @@ The player view adds instead:
 { "youId": "…" }
 ```
 
-Both views carry `yourVerdict`: the halves *the reader* has banked this round,
+Both views carry `yourVerdict`: the halves _the reader_ has banked this round,
 and `null` before their first guess or when they hold no seat. Typed mode takes
 as many guesses as the clip allows, so a player has to be told which half they
 already hold. It is scoped to the reader — everyone else's progress stays secret
@@ -863,7 +863,7 @@ until the reveal, like `revealedAnswers`.
 
 `round.joinedAfterStart` is scoped the same way, and is the round's answer to
 "what is this one to **you**". A round stamps who it opened on when its clip
-starts — the countdown is still *get ready*, so a player who lands inside it is
+starts — the countdown is still _get ready_, so a player who lands inside it is
 in the round — and waits for those players and nobody else before closing a
 phase. A latecomer keeps its seat and plays from the next round; everything it
 could send in this one is refused with `joined_mid_round`, which is the backstop
@@ -883,9 +883,9 @@ does not fire on a value passed through a variable.
 
 The fifth guarantee, and the first one the shelf grew rather than opened with.
 
-Buzz order is stamped on arrival, which is what makes *who was first*
+Buzz order is stamped on arrival, which is what makes _who was first_
 unforgeable. That measures **arrival**, and a game whose whole subject is
-reaction needs arrival *minus the moment the stimulus happened*. Broadcasting
+reaction needs arrival _minus the moment the stimulus happened_. Broadcasting
 the stimulus gets that wrong in the one way that matters: every screen would
 flip when the frame lands, so a player on a slow link reacts late by exactly
 their latency and the race is won by the best Wi-Fi in the room.
@@ -965,7 +965,7 @@ Fatal, followed by close code 1008: `room_not_found`,
 **A fatal frame ends the session on its own.** The client acts on the frame, not
 on the socket closing after it, and the difference was invisible while every
 fatal refusal came from `reject`, which sends and then closes. `host.closeRoom`
-broke the tie: the server is answering a *third party*, so the error lands on
+broke the tie: the server is answering a _third party_, so the error lands on
 two dozen player sockets nobody is closing, and every screen sat on a stale
 scoreboard — live and lying — while the room no longer existed. A fatal code may
 therefore be sent to a socket the server keeps open, and that is not a loose end
@@ -974,7 +974,7 @@ to tidy up by closing it too. It is the guarantee the client owes.
 `removed_by_host` is the same shape one scope down, and it was the whole of what
 `host.removePlayer` was missing: the seat came off the roster and the screen was
 told nothing, so it kept receiving `room.updated` with a `youId` no longer in
-`players` and quietly fell back to *You* and `0` — a screen that had stopped
+`players` and quietly fell back to _You_ and `0` — a screen that had stopped
 counting and did not say so. The frame goes to that player's connections only,
 before the seat is taken, and their connection is unregistered on the way out so
 the broadcast that follows never reaches them. It is one of the two refusals in

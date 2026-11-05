@@ -16,7 +16,7 @@ anti-cheat strip, the buzz shape, the clock estimator, the ranking, the
 room-code alphabet. A test over a function that only forwards its argument
 restates the code and gets in the way of the next refactor.
 
-Where a component holds a *decision*, move it into `packages/core` and test it
+Where a component holds a _decision_, move it into `packages/core` and test it
 there, as `findBuzzBlocker` and `buildScoreboard` already are. What a browser
 has to answer for instead is in
 [`../../docs/browser-driving.md`](../../docs/browser-driving.md).

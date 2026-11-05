@@ -28,12 +28,12 @@ owns the socket, and the stage that switches on the phase.
 
 ## What stays long, on purpose
 
-| Shape | Why it stays |
-|---|---|
-| A page owning a socket and its state | That is its job. A `useX` hook moves the same lines behind a name |
-| A phase switch whose branches delegate to a panel each | A file per branch to write `<RevealPanel />` is worse than the switch |
-| A flat list of sibling controls with no nesting | Splitting means opening seven files to see one panel. Remove the *repetition* instead — `NumberChoice`, not seven components |
-| A design-system wrapper | Its length is the prop documentation every prop carries |
+| Shape                                                  | Why it stays                                                                                                                 |
+| ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------- |
+| A page owning a socket and its state                   | That is its job. A `useX` hook moves the same lines behind a name                                                            |
+| A phase switch whose branches delegate to a panel each | A file per branch to write `<RevealPanel />` is worse than the switch                                                        |
+| A flat list of sibling controls with no nesting        | Splitting means opening seven files to see one panel. Remove the _repetition_ instead — `NumberChoice`, not seven components |
+| A design-system wrapper                                | Its length is the prop documentation every prop carries                                                                      |
 
 ## The React Compiler runs on Oxc, and Babel is gone
 
@@ -54,7 +54,7 @@ in the product renders. Three fixes are open upstream, none merged, and
 `babel-plugin-react-compiler` has published no stable release since 1.0.0 in
 October 2025. Oxc parses its own AST and never meets the bug.
 
-**Measured before switching**, because *equivalent* is not a word to take on
+**Measured before switching**, because _equivalent_ is not a word to take on
 trust. Built both ways back to back on the same tree: **every asset identical in
 name and in size** — and a Vite asset name carries its content hash, so the JS
 payload is byte-identical, 767 521 bytes over 27 chunks. The build went from
@@ -73,5 +73,5 @@ the switch-over build, where the Babel pipeline had stood at 114 successes
 against two permanent `CompileError`s, both attributed to `round-audio.ts`
 mutating a value the compiler would not let it. Those two are doubly worth
 re-establishing rather than assumed: the emitted code is identical, so this is a
-difference in what the two pipelines *report*; and the `useEffectEvent` pass
+difference in what the two pipelines _report_; and the `useEffectEvent` pass
 landing alongside this removed the very ref mutations they named.

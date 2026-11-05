@@ -15,7 +15,7 @@ Mintaka categories those splits unlock.
 nothing met `arts` one round in six, exactly as often as `sport`. All its size
 bought was that it repeated less.
 
-So the question was never *do we have enough questions* — stage 22 had already
+So the question was never _do we have enough questions_ — stage 22 had already
 put every thin French subject past 300. It was whether a room can ask for what
 it wants. It could not.
 
@@ -24,19 +24,19 @@ it wants. It could not.
 Every row already carries `theme`, the rubric it arrived under. Splitting a
 subject is a **table of folds to rewrite**, not questions to find:
 
-| Source | → `cinema` | → `videogames` |
-|---|---|---|
-| Open Trivia DB | `Film`, `Television`, `Cartoon & Animations`, `Japanese Anime & Manga` — 704 | `Video Games` — 1 006 |
-| Mintaka | `movies` — **newly ingested**, 619 | `videogames` — **newly ingested**, 287 |
-| PolyFact | `director` — 395 | `developer` — 452 |
-| OpenQuizzDB | `CINEMA`, `TELEVISION` — 317 | — |
-| Vikidia | nine pages, by hand — 30 | fourteen pages, by hand — 69 |
+| Source         | → `cinema`                                                                   | → `videogames`                         |
+| -------------- | ---------------------------------------------------------------------------- | -------------------------------------- |
+| Open Trivia DB | `Film`, `Television`, `Cartoon & Animations`, `Japanese Anime & Manga` — 704 | `Video Games` — 1 006                  |
+| Mintaka        | `movies` — **newly ingested**, 619                                           | `videogames` — **newly ingested**, 287 |
+| PolyFact       | `director` — 395                                                             | `developer` — 452                      |
+| OpenQuizzDB    | `CINEMA`, `TELEVISION` — 317                                                 | —                                      |
+| Vikidia        | nine pages, by hand — 30                                                     | fourteen pages, by hand — 69           |
 
 ### Mintaka's two unlocked categories
 
-`CATEGORY_OF_MINTAKA` took three of eight, and the comment said why: *`movies`,
+`CATEGORY_OF_MINTAKA` took three of eight, and the comment said why: _`movies`,
 `music`, `books` and `videogames` would deepen the two subjects that need
-nothing.* That reason was `arts` being fat. The splits retire it for exactly two
+nothing._ That reason was `arts` being fat. The splits retire it for exactly two
 of the four and leave it standing for the other two.
 
 **They yield very differently for the same 2 500 raw rows, and the gap is French
@@ -49,8 +49,8 @@ one corpus only as far as their subjects' notability does.
 ### `creator` stays in `arts`, and that is the fold's hard case
 
 PolyFact's `creator` holds 318 French rows and a quarter of them name a series,
-so it looks like it belongs in `cinema`. It does not: the relation says *who made
-a thing* and never *what kind of thing*, so one sentence shape asks about
+so it looks like it belongs in `cinema`. It does not: the relation says _who made
+a thing_ and never _what kind of thing_, so one sentence shape asks about
 Chandler Bing, Solid Snake and the Sistine Madonna. A fold reading the prompt for
 a medium files two of those three wrong.
 
@@ -59,18 +59,18 @@ work and nothing else, which is what lets them carry a category.
 
 ## What it measures
 
-| | fr | fr well-known | en | en well-known |
-|---|---|---|---|---|
-| `cinema` | **1 361** | 995 | **704** | 566 |
-| `videogames` | **808** | 436 | **1 006** | 796 |
-| `arts` after | 1 253 | 610 | 740 | 581 |
+|              | fr        | fr well-known | en        | en well-known |
+| ------------ | --------- | ------------- | --------- | ------------- |
+| `cinema`     | **1 361** | 995           | **704**   | 566           |
+| `videogames` | **808**   | 436           | **1 006** | 796           |
+| `arts` after | 1 253     | 610           | 740       | 581           |
 
 Bank total 10 186 → **11 097**. Every cell clears the corpus floors (`≥ 40`
 well-known per language and category; `≥ 300` French rows in the four thin
 subjects) with room to spare.
 
-**`developer` is 56% of the French half of `videogames`** — *which studio made
-X*, once in two questions. That is better than the 88% it would have been
+**`developer` is 56% of the French half of `videogames`** — _which studio made
+X_, once in two questions. That is better than the 88% it would have been
 without Mintaka and worse than the 39% the projection promised. What deepens it
 is a second source, not a wider fold.
 
@@ -97,7 +97,7 @@ Eight chips instead of six is a **change to what a room is dealt**, not a menu
 tidy-up. Screen-and-stage subjects go from one round in six to three in eight;
 history, geography and science fall from three in six to three in eight. For a
 room at a party that is the right direction, and it is why the category list now
-carries a comment saying the list *is* the dial.
+carries a comment saying the list _is_ the dial.
 
 ## Protocol
 
@@ -115,21 +115,21 @@ stood needed 960. `stacks-below` wants the row measured in the longer locale
 rather than guessed, and every candidate label was measured at the segment's own
 typography before any of them was chosen.
 
-Keeping *Arts et culture* and *Vie quotidienne* and shortening only *Cinéma et
-séries* came to **883px** — over by one pixel. So two labels had to go, and the
+Keeping _Arts et culture_ and _Vie quotidienne_ and shortening only _Cinéma et
+séries_ came to **883px** — over by one pixel. So two labels had to go, and the
 pair was picked on what the short form costs rather than on what it saves:
 
-| | before | after | px |
-|---|---|---|---|
-| `arts` | Arts et culture | *unchanged* | 154 |
-| `cinema` | Cinéma et séries | **Cinéma** | 158 → 81 |
-| `everyday` | Vie quotidienne | **Quotidien** | 151 → 105 |
+|            | before           | after         | px        |
+| ---------- | ---------------- | ------------- | --------- |
+| `arts`     | Arts et culture  | _unchanged_   | 154       |
+| `cinema`   | Cinéma et séries | **Cinéma**    | 158 → 81  |
+| `everyday` | Vie quotidienne  | **Quotidien** | 151 → 105 |
 
 837px, and the container query stays at **55rem** — 880px, above the row's 855
 and below the fold's 900. English lands at 843 and is never the binding locale.
 
-*Quotidien* alone can be read as the newspaper, which is the cost taken
-knowingly; *Cinéma* drops the series and the animation from its name, which the
+_Quotidien_ alone can be read as the newspaper, which is the cost taken
+knowingly; _Cinéma_ drops the series and the animation from its name, which the
 room learns on its first question. The alternative was a **column of eight, 233px
 against 31**, in a fold whose other two controls are horizontal strips — a
 control changing shape while the setting stays the same. Rendered both ways
@@ -146,6 +146,6 @@ before choosing.
 
 ## Left on the table
 
-- ~~**A second source for French video games**~~ — **done**, 15 October 2026: no open corpus exists, so 373 rows were written by hand in `videogames-fr.json`, each checked, with *who developed it* under 4% of them. It was what takes `developer`
+- ~~**A second source for French video games**~~ — **done**, 15 October 2026: no open corpus exists, so 373 rows were written by hand in `videogames-fr.json`, each checked, with _who developed it_ under 4% of them. It was what takes `developer`
   below half of that category.
 - `music` and `books`, above.

@@ -1,7 +1,7 @@
 # Stage 33 — questions a French table knows
 
-Played at a French table, *Rester grand public* still dealt Tallahassee,
-Russell Westbrook's second NBA team and the creator of *Bored to Death*. Two
+Played at a French table, _Rester grand public_ still dealt Tallahassee,
+Russell Westbrook's second NBA team and the creator of _Bored to Death_. Two
 of the four French sources are not French: Mintaka is written in English by
 American crowdworkers and translated, PolyFact is generated from Wikidata
 relations. Their well-known flag is French Wikipedia traffic, and an American
@@ -13,12 +13,12 @@ A seeded sample of the French bank — 200 Mintaka rows, 200 PolyFact rows, and
 80 each from OpenQuizzDB and Vikidia as a control — read row by row and labelled
 French culture, known everywhere, anglophone only, or obscure for anyone:
 
-| Source | French | everywhere | anglophone | obscure | broken |
-|---|---|---|---|---|---|
-| Mintaka | 4 % | 62 % | 22 % | 13 % | 7 % |
-| PolyFact | 9 % | 17 % | 22 % | 54 % | 4 % |
-| OpenQuizzDB | 53 % | 39 % | 1 % | 8 % | 8 % |
-| Vikidia | 28 % | 23 % | 3 % | 48 % | 25 % |
+| Source      | French | everywhere | anglophone | obscure | broken |
+| ----------- | ------ | ---------- | ---------- | ------- | ------ |
+| Mintaka     | 4 %    | 62 %       | 22 %       | 13 %    | 7 %    |
+| PolyFact    | 9 %    | 17 %       | 22 %       | 54 %    | 4 %    |
+| OpenQuizzDB | 53 %   | 39 %       | 1 %        | 8 %     | 8 %    |
+| Vikidia     | 28 %   | 23 %       | 3 %        | 48 %    | 25 %   |
 
 - **Mintaka's sport is American**: fourteen of eighteen sampled rows.
   Elsewhere Mintaka is one in five — minor presidents, state capitals.

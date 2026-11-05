@@ -2,7 +2,7 @@
 
 **Done** — steps 1 to 7. Asked 24/10/2026. The room's screen never shows
 a control, the host's controls are always on a screen only the host sees, in
-one side panel, and the *This screen is the room's* switch goes away.
+one side panel, and the _This screen is the room's_ switch goes away.
 
 ## Three setups, two roles
 
@@ -13,7 +13,7 @@ one side panel, and the *This screen is the room's* switch goes away.
 - **Two screens**: the console on the computer, the wall on the TV.
 
 The switch serves none of them on its own. Two alternatives were rejected: a
-*presentation mode* on one device, because the host needs controls mid-round
+_presentation mode_ on one device, because the host needs controls mid-round
 and would toggle it in front of everyone every round; and configuring before
 the room opens, because the code goes up first so people join while the host
 chooses.
@@ -27,18 +27,18 @@ pile. With no wall the console is the speaker
 (`isSpeaker = view?.isWallConnected !== true`, `host-console-page.tsx`), for
 the clip and the buzz cue alike.
 
-| Game | Modes | On a player's screen |
-|---|---|---|
-| Blind test | typed, choice, buzzer | the four tiles; in buzzer mode a button, since the clip is the question |
-| Quiz (flags, rebus) | typed, choice, buzzer | the question, flag or rebus in every mode, buzzer included |
-| Buzzer | buzzer | a button: the host asks aloud and the server never learns it |
-| Challenge | buzzer | the host's line, or *untitled* when none was typed |
-| Reflex | buzzer | each screen flips itself from `flipsAt` |
-| Inner clock | buzzer | the target, at countdown and on the press screen |
-| Slate | typed | the item, your line, your verdict, the key; the grouped answers go to host and wall only, which is social, not needed |
-| World map | point | the prompt and the map |
-| Timeline | order | the five events |
-| Matchsticks | move, buzzer | the equation with movable sticks; above the buzzer in buzzer mode |
+| Game                | Modes                 | On a player's screen                                                                                                  |
+| ------------------- | --------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| Blind test          | typed, choice, buzzer | the four tiles; in buzzer mode a button, since the clip is the question                                               |
+| Quiz (flags, rebus) | typed, choice, buzzer | the question, flag or rebus in every mode, buzzer included                                                            |
+| Buzzer              | buzzer                | a button: the host asks aloud and the server never learns it                                                          |
+| Challenge           | buzzer                | the host's line, or _untitled_ when none was typed                                                                    |
+| Reflex              | buzzer                | each screen flips itself from `flipsAt`                                                                               |
+| Inner clock         | buzzer                | the target, at countdown and on the press screen                                                                      |
+| Slate               | typed                 | the item, your line, your verdict, the key; the grouped answers go to host and wall only, which is social, not needed |
+| World map           | point                 | the prompt and the map                                                                                                |
+| Timeline            | order                 | the five events                                                                                                       |
+| Matchsticks         | move, buzzer          | the equation with movable sticks; above the buzzer in buzzer mode                                                     |
 
 Every reveal shows the answer, your points and the board.
 
@@ -65,16 +65,16 @@ than clipping the round index and the score on a narrow screen.
 Step 3 (done): the settings leaflet (`SetupPopover`, `SetupFields`) and the
 room screen's drawer (`RoomScreenPresses`, `Drawer`, `ActionSlot`) are gone,
 replaced by `HostPanel` (`host-panel.tsx`) and its four tabs
-(`setup-tabs.tsx`): *Games* — the lobby's shelf, moved off the stage, and the
-planned games with their pages; *Table* — teams, board, judge, rounds, the
-first two one line past the lobby (*No teams · No board, settled for this
-game*); *Room* — hold, countdown, volume; *Players* — the roster with its ✕
-and the seat, field full width and the press under it, now with *Give up the
-seat* once taken. Wide, the panel stands on paper beside the stage, folds to
+(`setup-tabs.tsx`): _Games_ — the lobby's shelf, moved off the stage, and the
+planned games with their pages; _Table_ — teams, board, judge, rounds, the
+first two one line past the lobby (_No teams · No board, settled for this
+game_); _Room_ — hold, countdown, volume; _Players_ — the roster with its ✕
+and the seat, field full width and the press under it, now with _Give up the
+seat_ once taken. Wide, the panel stands on paper beside the stage, folds to
 a rail and switches sides, both remembered (`melee:panel-folded`,
 `melee:panel-side`) and never changed on their own. Narrow, a bottom bar with
-*Play* first, each tab the whole screen; a console with no game yet opens on
-*Games*, and the seated host's four tiles keep their bar-less screen. The
+_Play_ first, each tab the whole screen; a console with no game yet opens on
+_Games_, and the seated host's four tiles keep their bar-less screen. The
 phase's presses stay under the stage. The room-screen mode keeps its wall face
 with the panel beside it; its launch still deals drawn teams first. Direction
 D of `.impeccable/directions/host-panel/` (local), approved 2026-10-24;
@@ -82,8 +82,8 @@ DESIGN.md § The setup holds the measures.
 
 **Seat refusal today** (`host-seat.tsx`, `isSeatWithheldByMode` in
 `packages/core/src/room/game-modes.ts`): a quiz, blind test or matchsticks left
-on `buzzer` replaces the seat form with `host.seat.judged` (*You judge the
-buzzes, so there is no seat here. Any other way to answer gives you one.*). The
+on `buzzer` replaces the seat form with `host.seat.judged` (_You judge the
+buzzes, so there is no seat here. Any other way to answer gives you one._). The
 bare buzzer, the challenge and the slate, judged in their only mode, render
 nothing at all, so the host is never told why there is no seat. Step 7 answers
 that.
@@ -92,9 +92,9 @@ that.
 
 2. ~~Fix the two gaps above.~~ Done.
 3. ~~One side panel for the host's settings.~~ Done.
-4. ~~Run the room from my phone.~~ Done: *Run the table from another screen*,
+4. ~~Run the room from my phone.~~ Done: _Run the table from another screen_,
    folded under the console menu's wall doors (`HandOverDoor`), unfolds a
-   square and *Copy the link* for `/host/:code#host=<token>`
+   square and _Copy the link_ for `/host/:code#host=<token>`
    (`handOverUrlFor`). The fragment never reaches a server; the console that
    opens it keeps the token before its socket opens and wipes it from the
    address (`useHandedHostToken`), and its token claim displaces this one.
@@ -113,12 +113,12 @@ that.
 6. ~~Home page.~~ Done: the ticks are gone, and `GameShelf` draws the same
    spines as links to each game's page — the front doors stay, for search and
    for a link shared in a group chat, since each is a prerendered page with a
-   head of its own. *Open a table* moved up from a sticky bar to a lid under
+   head of its own. _Open a table_ moved up from a sticky bar to a lid under
    the masthead and always opens with no game, the lobby's picker asking;
    `useCreateRoom` lost `playableFirst`, which only ordered several games.
 7. ~~Mark the modes that need a referee.~~ Done, in the product's own word:
-   *Host judges* (`host.judgedMark`), not *Referee* — the setup already says
-   *A judge runs the room*. Under the label of every judged answer mode
+   _Host judges_ (`host.judgedMark`), not _Referee_ — the setup already says
+   _A judge runs the room_. Under the label of every judged answer mode
    (`isJudgedByHost`), and as a keyline stamp on the lid of every game judged
    however it is answered (`isJudgedInEveryMode`: the Buzzer, the slate and
    the challenge — the plan named only the Buzzer, but the other two promise
@@ -140,7 +140,7 @@ that.
    `NextRoundCard` and draws no standings beside the roster — its list of what was said keeping
    what its rows need, the answer taking the card's rest — and
    `everyone-answers.spec.ts` reads that reveal with the wall open in a tab.
-   **Declined**: the mock's mid-round *Change game / Skip / As a duel* on the
+   **Declined**: the mock's mid-round _Change game / Skip / As a duel_ on the
    next card. The running order is already dragged mid-round, the stage already
    gives the round away, and a duel stays a property of the press that opens
    the next round (`host.nextRound.isDuel`, offered on the card at the reveal):

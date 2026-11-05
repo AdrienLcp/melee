@@ -87,7 +87,7 @@ a press reveals: the answer window renders off the server's echo of the mode,
 so the spec waits for the pressed segment's `data-selected` before reading
 floors, or a slow runner sweeps a strip it read no floor for. And a resize
 returns before React swaps the panel's column for its tab bar: `resizeTo`
-waits for the bar's *Partie* tab to exist below the split and nowhere above
+waits for the bar's _Partie_ tab to exist below the split and nowhere above
 it, or the floors are read off a face about to unmount.
 
 Its floor, `STRIPS_EXPECTED`, is the guard that matters: a sweep that stopped

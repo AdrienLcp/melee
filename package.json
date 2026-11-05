@@ -1,18 +1,18 @@
 {
   "author": "Adrien Lacourpaille",
   "devDependencies": {
-    "@adrienlcp/biome-config": "^0.2.1",
+    "@adrienlcp/biome-config": "^0.3.0",
     "@adrienlcp/tsconfig": "^0.1.1",
-    "@biomejs/biome": "2.5.14",
+    "@biomejs/biome": "2.6.4",
     "@cspell/dict-fr-fr": "^2.3.2",
-    "@lhci/cli": "^0.15.1",
-    "@playwright/test": "^1.63.0",
-    "@types/node": "^26.6.3",
-    "@vitest/coverage-v8": "5.0.2",
-    "cspell": "^10.3.6",
+    "@lhci/cli": "^0.16.0",
+    "@playwright/test": "^1.64.1",
+    "@types/node": "^26.6.6",
+    "@vitest/coverage-v8": "5.1.0",
+    "cspell": "^10.4.0",
     "tsx": "^4.23.15",
     "typescript": "^7.0.2",
-    "vitest": "^5.0.2"
+    "vitest": "^5.1.0"
   },
   "engines": {
     "node": ">=26.0.0",
@@ -20,7 +20,7 @@
   },
   "license": "AGPL-3.0-or-later",
   "name": "melee",
-  "packageManager": "pnpm@12.8.1+sha512.f64ba907507f5ceafe06c8d38e6052d0179444580ec1279ddd5bfc11cb48aa8a2644b66598e07e761da84872a9fc57d5f902b87fa49d024198d558612aabbe45",
+  "packageManager": "pnpm@12.16.1+sha512.091d1dee7927575661b25dab3c2ae31cafc1c54d6b71ed6a6600cf0c1cb10434a447eae14015f1b23e2e6bedeed79df94a932e2164d2832280dce3fb32f656d1",
   "private": true,
   "scripts": {
     "build": "pnpm -r build",

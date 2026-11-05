@@ -8,9 +8,9 @@ for it.
 
 ## The line to hold
 
-Built for a chip tasting, never *about* chips. Every word on screen, every
+Built for a chip tasting, never _about_ chips. Every word on screen, every
 default and every control must read right for a wine tasting, a pub quiz on
-paper, *guess the price* or *who drew this* — nothing names cups, tasting or
+paper, _guess the price_ or _who drew this_ — nothing names cups, tasting or
 food. Numbers stay the default label; everything else is opt-in.
 
 ## Goal
@@ -65,17 +65,17 @@ held. Writing and marking overlap now, and a phase is the room's: so the slate
 lives in `playing` from the first line to the reveal, and each item is `open`
 (writable on every sheet), `closed` (locked, on the wall's side) or `marked`
 (closed and passed by the wall at least once — an answer nobody validated there
-is wrong). `marking` was the brief's middle name; it reads as *on the wall
-now*, which is `currentItemIndex`'s job, so the middle state is `closed`.
+is wrong). `marking` was the brief's middle name; it reads as _on the wall
+now_, which is `currentItemIndex`'s job, so the middle state is `closed`.
 `isRoundInPlay` loses `correcting` with nothing to replace: `playing` was
 already in it.
 
 **Closing one item is `host.closeItem`.** It locks the item, stamps it and moves
 the wall to it — passing whatever the wall leaves, as `host.showItem` does.
-`host.collectSheets` survives as *close everything still open*, on one stamp,
+`host.collectSheets` survives as _close everything still open_, on one stamp,
 with the wall moving to the first item it closed. `host.showItem` moves only
 between closed items (`wrong_phase` on an open one). `host.reveal` is refused
-`wrong_phase` while any item is open; there is no separate *finish* frame,
+`wrong_phase` while any item is open; there is no separate _finish_ frame,
 because the reveal already is one. `host.addItem` works until the reveal, not
 until the first close — an item added after every other has closed reopens the
 sheet for it.
@@ -143,16 +143,16 @@ each item — the host's cue that an item is ready to close. A count, like
 
 **Wall or sheets is the console's choice, reset by the cursor.** `useSlateWall`
 holds whether the host asked for the sheets, and clears it whenever
-`currentItemIndex` moves — keyed on the last cursor *seen*, not the one the
+`currentItemIndex` moves — keyed on the last cursor _seen_, not the one the
 sheets were opened over, because stepping through the wall comes back to that
 very item and a first version then showed the sheets instead. Both the stage
 and the footer read it, so it lives in `HostConsole`.
 
 **Actions follow the order of the evening.** On the wall the primary press is
-*Next* while a later item is collected, *Collect the rest* while any is open,
-and *Show the scores* once none is — so the reveal is never offered disabled,
-it simply is not the next thing yet. *Previous* stays, and *Back to the sheets*
-sits under them while anything is open — *Back to the list* once nothing is.
+_Next_ while a later item is collected, _Collect the rest_ while any is open,
+and _Show the scores_ once none is — so the reveal is never offered disabled,
+it simply is not the next thing yet. _Previous_ stays, and _Back to the sheets_
+sits under them while anything is open — _Back to the list_ once nothing is.
 Hiding it then stranded a host who collected everything at once: the grid,
 the only way to jump to any item, was gone until the game ended.
 
@@ -179,7 +179,7 @@ Two requests from the host after the first evening.
 
 **The key is revealed by a press the room can see, and reaches the players.**
 The wall's key sat behind an underlined link nobody took for a button. It is now
-a full-width *Reveal the answer* above the answers, and pressing it sends
+a full-width _Reveal the answer_ above the answers, and pressing it sends
 `host.revealItemKey`: the key goes up as a stamped block on the wall and joins
 `round.content.revealedKeys` on every screen. Sent to players because every
 other game hands its answer over at the reveal, and a closed item is safe to
@@ -197,7 +197,7 @@ them through a reload and through a new room opened in it — which matters,
 because a free Render instance that restarts takes the room with it — and
 closing the tab forgets them. `melee:host-setup` rewrites itself on read
 when it holds a field the schema no longer knows, so the old key does not
-linger. The lobby's settings carry an *Answer key* fold under the labels that
+linger. The lobby's settings carry an _Answer key_ fold under the labels that
 writes there and nowhere else; a key typed mid-sheet is filed there too. It travels as
 `slateKeys` on `host.startRound` — chosen over a `host.setItemKeys` sent at the
 countdown because the press that opens the sheet carrying its key leaves no

@@ -13,9 +13,9 @@ one part.
   heads — round, square or pointed — so a full table of twenty-four never
   doubles up and twelve pieces are always free. The first twelve seats arrive
   in round heads as before, the thirteenth in the first square one; a team's
-  pawn keeps the round head. The *Colour* press and the menu's *My pawn* open
+  pawn keeps the round head. The _Colour_ press and the menu's _My pawn_ open
   the thirty-six pieces grouped by head, a piece someone holds struck through,
-  and name a piece by its colour and head (*Red, square head*). A crowd on the
+  and name a piece by its colour and head (_Red, square head_). A crowd on the
   track shrinks each pawn to its head and keeps the shape — a round, a square
   or a triangle dot — and the world map's revealed pawns wear theirs too. The
   initial printed on a seat's pawn is gone, and with it the inks it was
@@ -26,7 +26,7 @@ one part.
 
 - `[Shared]` **Once the planned games are played, the host chooses what
   comes next: games drawn at random, or the same order again from the top.**
-  *Then* sits under the last planned game, offered while the line-up outlives
+  _Then_ sits under the last planned game, offered while the line-up outlives
   its plan and every game in it has a planned round — one kept to the draw
   alone would never come up in a loop. The order again resumes after whatever
   was just played, so a game the host picked by hand moves the loop on rather
@@ -35,7 +35,7 @@ one part.
   `PROTOCOL_VERSION` goes to 71.
 
 - `[Shared]` **A table is family-friendly whatever it plays.**
-  *Family-friendly* is a table setting, on by default, offered in the Table
+  _Family-friendly_ is a table setting, on by default, offered in the Table
   tab while the line-up deals something rated — today a quiz in French, the
   only bank with adult-rated questions — and the table summary says when it
   is off. It replaces the quiz's own switch, so two quizzes in one line-up are
@@ -52,17 +52,17 @@ one part.
   round count, or never.** The three no longer race each other: on a track
   with no count the first pawn home ends it, a count ends on its count alone —
   a pawn home before it waits on the last square, ranked first — and with
-  neither the host ends it. The round-count strip becomes *Game ends*, with a
-  *Finish* stamp once a track is laid, and the console no longer offers *Next
-  round* on the reveal a pawn got home while the final board went up.
+  neither the host ends it. The round-count strip becomes _Game ends_, with a
+  _Finish_ stamp once a track is laid, and the console no longer offers _Next
+  round_ on the reveal a pawn got home while the final board went up.
 
 - `[Shared]` **A blind test draws from the top charts, the decades and the
   film scores ticked together.** The picker asks where the tracks come from —
   the catalogue, a Deezer playlist or a search — and under the catalogue,
   which strands: any of the three, all of them by default, the last one never
   unticked. Each strand keeps its own rules and the mix is evened out so none
-  drowns the others; the answer line says *title and artist, or the film for a
-  score* when the two meet. Setups, saved line-ups and rooms stored before the
+  drowns the others; the answer line says _title and artist, or the film for a
+  score_ when the two meet. Setups, saved line-ups and rooms stored before the
   change come back on the strands they drew. The decade and film previews are
   gone: the catalogue never comes back empty, so they only spent Deezer's
   quota. `PROTOCOL_VERSION` goes to 67.
@@ -74,11 +74,11 @@ one part.
 
 - `[Shared]` **Every seat picks its pawn colour, not only a team.** A seat
   holds a colour of its own, the one its pawn stands in wherever no team
-  covers it, and the menu carries it as *My pawn* under the name: the pawn
+  covers it, and the menu carries it as _My pawn_ under the name: the pawn
   and its colour's name, opening on the twelve pawns, a colour another seat
   holds struck through until all twelve are taken. It changes between rounds
   and never during one, which the menu says rather than hiding it; in a team
-  the same place repaints the team. The lobby's own card carries a *Colour*
+  the same place repaints the team. The lobby's own card carries a _Colour_
   press too, and the team heads' palette press now says the word. The device
   remembers the colour the room accepted (`melee:pawn-colour`) and asks for
   it at the next table; a seat that comes back keeps the one it holds.
@@ -93,7 +93,7 @@ one part.
   page to the foot of the shelf it acts on, held to the bottom of the screen
   while the shelf is in view.
 
-- `[Shared]` **A fifth ready-made line-up, *Free-for-all*: every game nobody has
+- `[Shared]` **A fifth ready-made line-up, _Free-for-all_: every game nobody has
   to judge, each entry on a setting of its own** — 40 rounds, nothing drawn:
   eight blind tests, twelve quiz subjects, the map six ways, and two settings
   each of matchsticks, colours, Petit Bac and black square beside the games
@@ -111,10 +111,10 @@ one part.
   fails too.
 - `[Game]` **Ready-made line-ups, and the games ticked on the front page.**
   A first-time host no longer lands in an empty lobby. The front page offers
-  four line-ups the app ships — *First game*, *Music special*, *General
-  knowledge*, *Quick game* — one press opening a table already loaded with
+  four line-ups the app ships — _First game_, _Music special_, _General
+  knowledge_, _Quick game_ — one press opening a table already loaded with
   their games, variants, length and order. Under them the shelf's games are
-  ticks again: *Open a table* opens on what is ticked, the ticks are kept for
+  ticks again: _Open a table_ opens on what is ticked, the ticks are kept for
   next time, and a first visit starts on every game nobody has to judge. A lobby
   with nothing chosen leads with the same four before the one-game list, and a
   loaded one is named above the planned games with a way back.
@@ -122,7 +122,7 @@ one part.
   The screen playing the sound watches its clip: a file that will not load, or
   a clip sitting on one second for three, puts a line on that screen and is
   reported to the console, which names the room's screen and what to do —
-  press *Start the music* on it, or reveal the track and go on. A refused clip
+  press _Start the music_ on it, or reveal the track and go on. A refused clip
   no longer reads as a screen that cannot play: it stays armed for the next
   track. When Deezer itself does not answer, the message names Deezer and says
   it is not the speakers. The evening of 31 October that prompted this left no
@@ -144,15 +144,15 @@ one part.
   closest two already were. Past twelve seats colours repeat, so a seat's pawn
   on the track carries its initial — two letters, or a number, where two seats
   of one colour share it.
-- `[Shared]` **The host can pause the whole game.** A *Pause* press beside
+- `[Shared]` **The host can pause the whole game.** A _Pause_ press beside
   the round's own holds the room for somebody who left the table: the clock,
   the answer window and the clip stop, every screen — console, wall and
   players — hides the question behind a paused card, and buzzes and answers
-  are refused. *Resume the game* picks the clock and the clip up where they
+  are refused. _Resume the game_ picks the clock and the clip up where they
   stopped, and a console that reloads finds the room still paused.
 - `[Game]` **An inner clock can be stopped by the host.** The count closes on
   its own at a quarter past its target, minutes away on a long one; the
-  console now offers *Stop the count*, scoring what was pressed.
+  console now offers _Stop the count_, scoring what was pressed.
 - `[Game]` **The last seconds are heard and felt.** The screen the room
   listens to — the wall, else the console — ticks the last five seconds of a
   round, of a floor that runs out and of the count into a round, higher on the
@@ -193,10 +193,10 @@ one part.
   (`@adrienlcp/react-aria` 0.7.0).
 
 - `[Shared]` **A player's screen says the game is over on its last reveal**
-  — *Game over, waiting for the results* where *Ready* and the count to the
+  — _Game over, waiting for the results_ where _Ready_ and the count to the
   next round stood. The server marks that reveal (`round.isFinal`, on the rule
   it ends the game on), because a seat cannot tell on its own: a game ending
-  on a pawn home or on a spent line-up offered *Ready* for a round that never
+  on a pawn home or on a spent line-up offered _Ready_ for a round that never
   came. The console's ready marks read the same mark.
 
 - `[Shared]` **A Petit Bac sheet pays half what it did: 10 for a word nobody
@@ -209,8 +209,8 @@ one part.
   one.** Higher or lower offers 5, 10 and 20 seconds — it offered 30, 45 and 90
   against a 30-second cap, two of them refused and none shown chosen — and
   Atlas, which had a duration and no control for it, offers 15, 30 and 60. The
-  wall's rules for an endless track say *at the end* rather than *when you
-  stop*.
+  wall's rules for an endless track say _at the end_ rather than _when you
+  stop_.
 
 - `[Game]` **Two settings that decided nothing are gone.** The blind test's
   difficulty is hidden under a films-only source rather than greyed with an
@@ -237,8 +237,8 @@ one part.
   the stage moves to its new margins — on the console and on the wall alike.
 
 - `[Game]` **A game's row in the line-up no longer says its setting twice.**
-  Two quizzes on two subjects are called *Quiz · History* and *Quiz ·
-  Geography*, and the line under each now leaves the subject out and says
+  Two quizzes on two subjects are called _Quiz · History_ and _Quiz ·
+  Geography_, and the line under each now leaves the subject out and says
   the rest — the language and the time to answer. The same goes for every
   game a setting tells apart: a blind test on one decade, a map on one kind
   of place, a slate's count.
@@ -257,7 +257,7 @@ one part.
   in any menu before the first round: the console and the wall show it on
   screen, and a player's waiting screen now does too, under the seats, to be
   passed along a row. Once the game runs, the console folds it to one row,
-  *Invite* and the code, under the room's volume and full screen, and a
+  _Invite_ and the code, under the room's volume and full screen, and a
   player's menu shows it open; a table playing aloud offers none. Points by
   hand leave the menu for the Players tab, where they already were. A wall
   narrower than a laptop keeps the square beside its code.
@@ -270,23 +270,23 @@ one part.
   whose preview the host asks for, still does.
 
 - `[Game]` **A board is ten, forty or a hundred squares, and a long one
-  stays tidy.** The Table tab's strip offers *None · 10 · 40 · 100* — about
+  stays tidy.** The Table tab's strip offers _None · 10 · 40 · 100_ — about
   three rounds, the usual ten and a marathon of twenty-five — in one row, two
   by two on a narrow screen; a board laid at 20, 60 or 80 keeps its length
-  on the strip. Where a case is too narrow for *Départ* or *Arrivée*, a house
+  on the strip. Where a case is too narrow for _Départ_ or _Arrivée_, a house
   and a flag stand in for the words rather than spilling past the case, and
   a pawn too small to read as one — a crowd on a hundred-square board — is
   drawn as a dot in its colour, the count beside it unchanged.
 
-- `[Shared]` **The menu says which day's version is running.** *Version du
-  2 nov. 2026 · 03e30b8* rather than the hash alone: the day is what a person
+- `[Shared]` **The menu says which day's version is running.** _Version du
+  2 nov. 2026 · 03e30b8_ rather than the hash alone: the day is what a person
   reads, the hash still what proves a fix is live. Both are the deployment's,
   from `/api/health`'s new `committedAt`.
 
 - `[Game]` **What a round adds to a screen comes up rather than cuts in.**
   A wall, a seat and a pairing page are laid down once, over the room, where
   the sweep used to be spent on a waiting line and the room cut in after it.
-  At a reveal the player's hold, *Ready* press and standings settle once the
+  At a reveal the player's hold, _Ready_ press and standings settle once the
   card has struck, and the wall's and console's standings and hold bar fade
   up beside it; the game a count opens and the inner clock's target come up
   with its first tick; a seat joining the lobby or a team is set down on it;
@@ -313,17 +313,17 @@ one part.
   ease their colours instead of snapping.
 
 - `[Game]` **The front page's line-ups arrive the way the shelf does.** Each
-  lid of *Your line-ups* and *Ready-made line-ups* slides in from the row's
+  lid of _Your line-ups_ and _Ready-made line-ups_ slides in from the row's
   start one after the other as the page opens, like the spines below, where
   they used to stand in place under the page's own sweep. The first four
   take their turn and the rest land with the fourth, so a lid off screen never
   holds one on it back.
 
-- `[Shared]` **A board runs to a hundred squares.** The strip offers *None ·
-  20 · 40 · 60 · 80 · 100*, since a forty-round evening walks its leader some
+- `[Shared]` **A board runs to a hundred squares.** The strip offers _None ·
+  20 · 40 · 60 · 80 · 100_, since a forty-round evening walks its leader some
   eighty squares and the longest track was forty; a long track closes into the
   loop round the whole stage, as it always could. A new track starts at forty. On a narrow
-  panel the six tile three by two, and *None* sits in the middle of its stamp
+  panel the six tile three by two, and _None_ sits in the middle of its stamp
   like the numbers beside it.
 
 - `[Game]` **The front page's masthead shares the menu's row.** From 60rem
@@ -331,13 +331,13 @@ one part.
   gutter short of it, instead of under an empty band the menu's height.
 
 - `[Game]` **One word for a kept line-up: saved.** The home page's star said
-  *favourite* and the console said *kept*; both now say *saved*, the console's
+  _favourite_ and the console said _kept_; both now say _saved_, the console's
   own heading.
 
-- `[Game]` **Timeline is *Before & after* in English**, so the shelf no longer
-  carries a published card game's title; French keeps *Frise chronologique*.
+- `[Game]` **Timeline is _Before & after_ in English**, so the shelf no longer
+  carries a published card game's title; French keeps _Frise chronologique_.
 
-- `[Game]` **The ready-made lids are one line shorter.** *Free-for-all* no longer
+- `[Game]` **The ready-made lids are one line shorter.** _Free-for-all_ no longer
   lists fifteen games the band already shows, and each caption stops
   repeating its games or its round count: the row goes from 261 to 223px.
 
@@ -347,49 +347,49 @@ one part.
   sit in the screen and the page never scrolls. Lying down, the question takes
   one side and the answer the other; a hint, a note or the answered pawns go
   first, then sizes come down to the floor. Petit Bac's sheet and vote and the
-  slate's tiles scroll inside their own card, the letter, the clock and *Stop*
+  slate's tiles scroll inside their own card, the letter, the clock and _Stop_
   held outside it; the most-likely seats lay out in as many columns as the
   height allows, all 24 in view. With the on-screen keyboard up, the question,
   the field and the send press stay in view (`interactive-widget` and the
   visual viewport). Fixed on the way: the dark clock figure drawn in card ink
   on no card, the seated quiz's question printed over its field, the seated
-  timeline's presses drawn over its events, the matchsticks' *Buzz* at 0px
+  timeline's presses drawn over its events, the matchsticks' _Buzz_ at 0px
   lying down, the stamp row that moved the field when a half was banked.
 
 - `[Game]` **The reveal says which round the next press opens.** On a
   line-up of several games, the console with no wall names the next round
-  just above *Next round* — its game's glyph and name, and its most telling
-  setting: *Blind test · 70s*, *Atlas · Find a country*. The card the console
+  just above _Next round_ — its game's glyph and name, and its most telling
+  setting: _Blind test · 70s_, _Atlas · Find a country_. The card the console
   shows beside a wall says it the same way, where it used to give a game ticked
   once by its name alone.
 
 - `[Game]` **The front page shelves the games the host judges last, under
   their own heading.** Slate, Buzzer and Challenge no longer sit among the
   others as three bare boxes a ticked shelf seems to have forgotten: they come
-  after every game nobody has to judge, under *Judged by the host*, and nothing
-  moves when a box is ticked. The first press over the shelf now reads *Tick
-  all but those the host judges*.
+  after every game nobody has to judge, under _Judged by the host_, and nothing
+  moves when a box is ticked. The first press over the shelf now reads _Tick
+  all but those the host judges_.
 - `[Game]` **The reveal tells this round apart from the whole game, on every
-  screen.** Two blocks, each under a ruled heading: *This round* holds the
+  screen.** Two blocks, each under a ruled heading: _This round_ holds the
   answer, the seat's own result and the round's podium with round places, in
-  filled pieces; *Overall standings* holds rank, pawn, name and total, in ruled
+  filled pieces; _Overall standings_ holds rank, pawn, name and total, in ruled
   rows, with no round gain beside any of them. A player's reveal scrolls again:
   the hold and the Ready press sit right after the round, in the first screen,
   and never over a row of the standings. A player's final board is headed
-  *Final standings*, and the rank sits next to the pawn on every board.
+  _Final standings_, and the rank sits next to the pawn on every board.
 - `[Game]` **The quiz's reveal keeps its question.** The answer no longer
   replaces the question on the console, the wall and every player's screen:
   the question stays above it, quieter, and on the wall it gives way to two
   lines before the answer shrinks.
 - `[Game]` **A player's screen says the round's place apart from the game's.**
-  Under what the round paid, *1st this round* names the order the round paid
+  Under what the round paid, _1st this round_ names the order the round paid
   in — the fastest right answer, the closest pawn — and the game's standing
-  reads *4th of 6 overall*, which used to sit there unlabelled and read as the
+  reads _4th of 6 overall_, which used to sit there unlabelled and read as the
   round's. A round that paid nothing claims no place.
 - `[Game]` **A screen reconnecting stands its controls down.** While the
   socket is away, the page dims and nothing on it can be pressed — a press
   then went nowhere and read as a broken button — and one line says
-  *Reconnecting…*. The menu stays usable, and everything comes back with the
+  _Reconnecting…_. The menu stays usable, and everything comes back with the
   connection.
 - `[Game]` **The Atlas confirm box points cleanly at its pawn.** Its notch was
   a square half drawn over the box; it is now the box's own outline carried
@@ -399,13 +399,13 @@ one part.
 - `[Game]` **The timeline's arrows stand one above the other.** Each card
   keeps the row's width instead of sharing it with two arrows side by side,
   and five cards and the send press fit a 360 × 640 screen without scrolling.
-- `[Game]` **Matchsticks says what a number pays.** Under *the biggest* or
-  *the smallest number*, one line says the best pays 30 and the next two 20
+- `[Game]` **Matchsticks says what a number pays.** Under _the biggest_ or
+  _the smallest number_, one line says the best pays 30 and the next two 20
   and 10 — or, said aloud, that only the best counts — and that a number
-  never starts with 0, so a near miss or a *007* is no surprise at the reveal.
+  never starts with 0, so a near miss or a _007_ is no surprise at the reveal.
 - `[Game]` **Petit Bac tells a famous person from a personality trait.**
-  *Personnalité* read both ways at the table: the category is now *Personne
-  célèbre*, and *Trait de caractère* / *Personality trait* is one of its own.
+  _Personnalité_ read both ways at the table: the category is now _Personne
+  célèbre_, and _Trait de caractère_ / _Personality trait_ is one of its own.
 
 - `[Game]` **The rounds to come can be reordered while one is played.** The
   host drags them, or moves one earlier or later, without waiting for the
@@ -422,12 +422,12 @@ one part.
   decade, a playlist or a search says how many tracks are ready and nothing
   more, so a host who plays has not seen the answers.
 - `[Game]` **The planned games read as a list of rounds.** They carry a
-  heading with the round count (*Les jeux prévus · 6 manches*, then *La suite ·
-  manches 2 à 6* once the game is under way), stand above the shelf once two
+  heading with the round count (_Les jeux prévus · 6 manches_, then _La suite ·
+  manches 2 à 6_ once the game is under way), stand above the shelf once two
   games are ticked, and print each round's number in the game's colour band.
-  The rounds drawn at random are one row of the list, *En premier* is gone from
+  The rounds drawn at random are one row of the list, _En premier_ is gone from
   the list and the shelf, the add row says it adds another go at a game, and a
-  game's page moves it *Plus tôt* or *Plus tard*, so dragging is no longer the
+  game's page moves it _Plus tôt_ or _Plus tard_, so dragging is no longer the
   only way to reorder.
 - `[Game]` **The QR code scans from further.** A join or pairing square
   encodes its link in upper case, the QR's alphanumeric mode: 25 modules a
@@ -441,7 +441,7 @@ one part.
   re-renders every row on each move, where a row it had cached could keep the
   arrows of the place it had left.
 - `[Game]` **A round launched by hand counts in on its own.** When the host
-  presses *Next round*, the console and the wall no longer put the last
+  presses _Next round_, the console and the wall no longer put the last
   round's results back up beside the 3-2-1: the countdown stands alone, under
   the name of the game coming next on a line-up of several. A round the hold
   opens keeps the results, since the room is still reading them.
@@ -458,19 +458,19 @@ one part.
   under an old id is read as the new one, and `/fr/guessnine` is sent on to
   `/fr/blacksquare`.
 
-- `[Game]` **Guess nine is called *Case noire* / *Black square*.** Its French
-  name was an existing commercial app's, *Devineuf*, for the same kind of game.
+- `[Game]` **Guess nine is called _Case noire_ / _Black square_.** Its French
+  name was an existing commercial app's, _Devineuf_, for the same kind of game.
 
 ### Fixes
 
 - `[Game]` **A full table's names read whole in the console's lobby.** A chip
   a third of the roster wide cut a long name to its first five letters, two
-  *Anne-* reading as one seat: a name now wraps, hyphenated where the page's
+  _Anne-_ reading as one seat: a name now wraps, hyphenated where the page's
   language allows, onto as many as three lines at a size the roster's width
   caps, and the stage's chips drop the ✕ the Players tab already carries.
   Twenty-four names of twenty letters read whole at every shape the layout
   suite measures, in a room speaking English too, where nothing breaks
-  *Charlotte* and a 1440×900 laptop cut *Anne-Charlotte Vi 22* to two lines
+  _Charlotte_ and a 1440×900 laptop cut _Anne-Charlotte Vi 22_ to two lines
   and an ellipsis — the suite now fails a name its clamp cuts. On a laptop the side column
   scrolls inside itself when it runs past the screen, where its last row slid
   under the launch press with nothing to scroll; the seat offer folds away once the
@@ -493,16 +493,16 @@ one part.
   out. The menu rises with every page, and on a room's screen waits for the
   room's first view; a board already up fades in with the screen it arrives
   on. A seat's first connection no longer flashes the menu saffron, and the
-  console that closed the table goes home without first cutting to *The host
-  closed the table*.
+  console that closed the table goes home without first cutting to _The host
+  closed the table_.
 
 - `[Game]` **A table closing, a seat removed or a console taken over fades to
-  its refusal.** The screen was cut away and *The host closed the table* laid
+  its refusal.** The screen was cut away and _The host closed the table_ laid
   down in its place; it now goes the way a page change does, on a seat, a wall
   and the console alike, and a wall the host lets go goes back to offering a
   code with no refusal in between. Off the desk the tab bar steps aside for a
   round of four tiles, or for a keyboard, by sliding off its edge rather than
-  vanishing, and the menu moves aside with it. *Close the table* opens its
+  vanishing, and the menu moves aside with it. _Close the table_ opens its
   warning in place where it cut in, and the console that closes no longer
   flashes its own refusal before going home.
 
@@ -517,12 +517,12 @@ one part.
   the waiting console no longer mounts its page a second time when the room's
   first view lands. The panel then slides in whole from its edge with its
   tabs in it, the stage is laid down beside it, the menu rises with them, and
-  the *Connecting…* pill no longer flashes for the instant a first connection
+  the _Connecting…_ pill no longer flashes for the instant a first connection
   takes — it rises only on a connection that is slow, and fades out once back.
 
 - `[Game]` **A Petit Bac word the table refuses shows as refused on its
-  author's screen.** The vote showed the author *Yours* and nothing else, so
-  the word fell without them knowing; it is struck through now, and *Yours*
+  author's screen.** The vote showed the author _Yours_ and nothing else, so
+  the word fell without them knowing; it is struck through now, and _Yours_
   turns red with a cross, both moving in as the refusals land and back out if
   they are taken back — a judge striking it included.
 
@@ -537,7 +537,7 @@ one part.
   its column.
 
 - `[Shared]` **A ready-made line-up answers every game the way it opens.**
-  Each entry took the mode the host last left its game on, so *Free-for-all*
+  Each entry took the mode the host last left its game on, so _Free-for-all_
   played its blind tests on typing for a host who once had — and on the buzzer
   for one who had, handing the console a verdict in the line-up that promises
   none. Loading one now files each of its games on its opening mode — four
@@ -545,14 +545,14 @@ one part.
   the host's other settings for those games stay.
 
 - `[Game]` **On a screen wider than the stage, the front page's foot reaches
-  the screen's edges.** The band under *Open a table* and the rows of lids
+  the screen's edges.** The band under _Open a table_ and the rows of lids
   stopped where the page's content did, leaving a cut on either side of a
   2560px screen; the page now spans the screen and keeps its content to the
   same width through its gutters.
 
 - `[Game]` **The front page no longer jumps when it finishes loading.** The
   served page is written at build time and knew nothing of the device, so
-  *Your line-ups* and *Back to table* arrived a second later and pushed
+  _Your line-ups_ and _Back to table_ arrived a second later and pushed
   everything down. A script ahead of the first paint now marks the page when
   line-ups or a host token are stored, and the page holds their place: the
   row's title and an empty lid's height, the link's line — kept when every
@@ -583,7 +583,7 @@ one part.
   it, and the empty trays wait out of the way until the draw. Lying down, the
   card takes one side and the seats the other, where the seats and the four
   trays used to sit under the bottom row of the board. Four teams on the
-  start no longer cover the word *Départ*.
+  start no longer cover the word _Départ_.
 
 - `[Game]` **A full table fits its track, its lobby and its standings.** A
   case crowded with pawns draws fewer of them beside its `+N` where it is
@@ -609,10 +609,10 @@ one part.
   through the round.
 
 - `[Game]` **The board's length is in plain sight again.** One strip on the
-  Table tab, *Board: None · 20 · 30 · 40 squares*, replaces the switch that
+  Table tab, _Board: None · 20 · 30 · 40 squares_, replaces the switch that
   hid the length until it was turned on, and the lobby draws the track with
   every pawn on the start. A length stored off the strip joins it, selected. It stays
-  *settled for this game* once the game is under way.
+  _settled for this game_ once the game is under way.
 
 - `[Shared]` **Petit Bac keeps the word being typed when time runs out.** A
   line is sent while it is typed rather than after a pause, and when the clock
@@ -633,7 +633,7 @@ one part.
   under 10 and a score under 10 no longer pull the cell sideways: the figure
   keeps two figures' width and every score the board's widest.
 - `[Game]` **The round's podium prints a distance whole, and the name gives
-  way.** The first place's larger row cut *à 180 km* to *à..* on a phone and
+  way.** The first place's larger row cut _à 180 km_ to _à.._ on a phone and
   dropped it altogether on the console; a figure the round paid on — a
   distance, an estimate, the pairs an order swapped, a sheet's score — keeps
   its width now, and a long name ends on an ellipsis instead.
@@ -661,7 +661,7 @@ one part.
 ### Features
 
 - `[Shared]` **Atlas plays the other way round: the map shows, the table
-  names.** The world map is called *Atlas*, and a host can set it to *name*:
+  names.** The world map is called _Atlas_, and a host can set it to _name_:
   a country is lit, or a dot put on a city or a capital, and everyone picks
   among four neighbouring names or types one, scored like the quiz — right or
   wrong, with the speed bonus on top. The places are ticked as a set, so one
@@ -671,36 +671,36 @@ one part.
 - `[Shared]` **A host who plays keeps the seat through a game they judge.**
   A round the console must judge — the bare buzzer, the challenge, the slate,
   a buzzer-moded quiz or blind test — is sat out by the host's seat rather than
-  taking it: the console gets the answer and judges, says *you judge this
-  round, you play again from the next*, and the seat plays the next round that
+  taking it: the console gets the answer and judges, says _you judge this
+  round, you play again from the next_, and the seat plays the next round that
   needs no judge with its score intact. A line-up mixing the two used to leave
   the host a spectator for the rest of the game, points gone. A frame playing
   such a round from the console is refused `judging_round`, and a seated host
   sees the whole hand of challenge lines.
 
 - `[Game]` **A host's line-ups and challenge lines travel as one file.**
-  *Exporter* under the saved line-ups downloads them with the host's own
-  challenge lines; *Importer* folds such a file in on another machine — a
+  _Exporter_ under the saved line-ups downloads them with the host's own
+  challenge lines; _Importer_ folds such a file in on another machine — a
   line-up of the same name replaced, the rest added after the ones already
   kept up to twenty, a line already written skipped — and says what it took.
   Nothing leaves the device but through the visitor's own hands, and an entry
   the build cannot read costs that entry alone.
 
-- `[Game]` **Petit Bac is on the shelf**, the twelfth game — *Categories* in
+- `[Game]` **Petit Bac is on the shelf**, the twelfth game — _Categories_ in
   English. A letter and three to ten categories go up, every screen fills its
   own sheet until the clock runs out or a full sheet calls stop, then the room
-  votes category by category, *doesn't count* on the others' rows, and a word
+  votes category by category, _doesn't count_ on the others' rows, and a word
   nobody else wrote pays double. The wall shows the letter, each seat's filled
   lines and the vote as it falls; the console picks the categories from a bank
   or writes its own, can take a stop back until the vote moves on, and judges
   the refusals itself when it runs the room as judge; the reveal is every
   seat's sheet as one grid, a lone find told apart from a shared one. It has
-  its front door at `/fr/petitbac` and `/en/petitbac`, and an *Aa* on its spine.
+  its front door at `/fr/petitbac` and `/en/petitbac`, and an _Aa_ on its spine.
 
 - `[Shared]` **Team score, balanced or added up**, a room setting beside the
-  teams — *Score des équipes* in French. *Équilibré*, the default, pays a team
+  teams — _Score des équipes_ in French. _Équilibré_, the default, pays a team
   the mean of what a round paid the seats it opened on, so a pair does not beat
-  a lone player by being two; *Additionné* pays the sum, as every team was paid
+  a lone player by being two; _Additionné_ pays the sum, as every team was paid
   until now. A team answering as one is paid that answer once under either.
   `PROTOCOL_VERSION` goes to 56.
 
@@ -715,15 +715,15 @@ one part.
   word is the city a table takes for the capital — Zurich, Casablanca, New
   York, Istanbul, Rio. A second capital counts: La Paz finds Sucre.
 
-- `[Shared]` **World capitals on the map**, a third *What to place* —
-  *Capitales du monde* in French. The map names a capital, *Place Canberra*,
+- `[Shared]` **World capitals on the map**, a third _What to place_ —
+  _Capitales du monde_ in French. The map names a capital, _Place Canberra_,
   and keeps whose it is off every screen until the reveal, which dots it and
   names the country. Within 100 km pays three, 300 km two, 1 000 km one, so
   Sydney for Canberra always costs a tier. The capitals are those of the
   countries the map already asks. `PROTOCOL_VERSION` goes to 55.
 
-- `[Shared]` **Capitals in the quiz**, a twelfth chip — *Capitales* in
-  French. *What is the capital of Australia?*, with Sydney and Melbourne among
+- `[Shared]` **Capitals in the quiz**, a twelfth chip — _Capitales_ in
+  French. _What is the capital of Australia?_, with Sydney and Melbourne among
   the four: the country’s own big cities stand beside its capital, the
   nearest states’ capitals fill the rest. Every seat is right — La Paz for
   Bolivia — and a city-state is never asked. The capital questions the bank
@@ -736,7 +736,7 @@ one part.
   round. Every team guesses in turn and everyone keeps once before anyone
   keeps twice. `PROTOCOL_VERSION` goes to 51.
 
-- `[Shared]` **Guess nine is on the shelf**, the eleventh game — *Devineuf*
+- `[Shared]` **Guess nine is on the shelf**, the eleventh game — _Devineuf_
   in French. A theme comes up and nine answers hide behind a 3 × 3 grid, the
   less obvious paying more; everyone fires answers from their own screen, as
   many as they like, and a hit lights its cell with the words they typed. One
@@ -746,40 +746,40 @@ one part.
   to 50.
 
 - `[Shared]` **A challenge deals its own line.** Left empty, a challenge round
-  opens on a line from a bank of 89 ready-made ones — *bring back something
-  red*, *something that starts with P* — one object each, found at home as at
+  opens on a line from a bank of 89 ready-made ones — _bring back something
+  red_, _something that starts with P_ — one object each, found at home as at
   the office, read on every screen in its own language and never the same
   twice in an evening. The host sees it ahead in the field, deals another with
   the die beside it, or types their own, which wins. `PROTOCOL_VERSION` goes
   to 48.
 
-- `[Shared]` **The evening is its planned games.** *Planned games* lists one
+- `[Shared]` **The evening is its planned games.** _Planned games_ lists one
   row per game of the evening, in the order it is played, each saying what it
   is set to — the decades, the subjects, the round's length — and dragged into
   another order as before; the rounds the count holds past them are drawn by
-  chance, which a line under the list says (*14 more rounds, by chance*). A
+  chance, which a line under the list says (_14 more rounds, by chance_). A
   game taken out or skipped hands its place to the next planned one.
 
 - `[Shared]` **Every evening is in order**, and `PROTOCOL_VERSION` goes to
-  46. The *In order* switch is gone: an evening of several games is dealt
+  46. The _In order_ switch is gone: an evening of several games is dealt
   round by round the moment it is made — every game at least once, never the
-  same game twice in a row when it can help it — and *The rounds* lists it,
+  same game twice in a row when it can help it — and _The rounds_ lists it,
   numbered, to drag into another order with a mouse, the keyboard or a finger.
   Changing the count, adding or taking out a game, or skipping a round deals
   the rounds it leaves again, and keeps the ones the host placed.
   `settings.runningOrder` is never `null` and the server fills it.
 
-- `[Game]` **The evening is a list of rounds.** *Settings › The table* lists
+- `[Game]` **The evening is a list of rounds.** _Settings › The table_ lists
   every round of the evening — its game, what it is set to, and whether it is
   next, played, played once or how often — and says how many rounds are left
   to chance, or how many too many the count holds, with a press that raises
-  it. Each round opens a page of its own with its settings, *Play next* and
-  *Take it out*; *Add a round* opens the shelf as a page. *The round* group is
+  it. Each round opens a page of its own with its settings, _Play next_ and
+  _Take it out_; _Add a round_ opens the shelf as a page. _The round_ group is
   gone: setting a round no longer makes it the next one. The last round of an
-  evening with nothing left to deal now ends on *See the results*.
+  evening with nothing left to deal now ends on _See the results_.
 
-- **An evening can have a judge**, and `PROTOCOL_VERSION` goes to 43. *A judge
-  runs the room and doesn't play*, under *Animer › The evening*: the console
+- **An evening can have a judge**, and `PROTOCOL_VERSION` goes to 43. _A judge
+  runs the room and doesn't play_, under _Animer › The evening_: the console
   then takes no seat under any game, and each game of the evening is played
   the way the judge last left it — a quiz on the buzzer, answers said aloud,
   comes back on the buzzer every time it is drawn. Without one, an evening
@@ -792,11 +792,11 @@ one part.
   sends it once. A move the matches cannot make is refused on the spot. The
   reveal draws every player's move beside the answer, and tells each player
   whether theirs was right, the second or third best, or not it. The shelf
-  now pitches both ways of playing: *One match moves. Find which.*
+  now pitches both ways of playing: _One match moves. Find which._
 
 - `[Server]` **A matchstick can be moved rather than said**, and
   `PROTOCOL_VERSION` goes to 41. Matchsticks gains a way of answering of its
-  own, *Move the match*, and opens on it: every seat moves one stick of the
+  own, _Move the match_, and opens on it: every seat moves one stick of the
   puzzle at once, once, and the server judges it — a true equation, or the
   biggest (smallest) number, is 3 points; on a number the next best is 2 and
   the one after 1; and the clock adds to it. A move the sticks cannot make is
@@ -805,17 +805,17 @@ one part.
 
 - **The emoji rebus is an eleventh quiz subject**, and `PROTOCOL_VERSION`
   goes to 40. A film, a series, a song or a saying written in emojis —
-  🧊🚢💔 for *Titanic* — drawn large on the question card on every screen,
-  with what to name under it (*Which film?*), and kept on the card turned
+  🧊🚢💔 for _Titanic_ — drawn large on the question card on every screen,
+  with what to name under it (_Which film?_), and kept on the card turned
   over beside the answer. Each language has its own hand-written list, since
-  a French table reads *poser un lapin* where an English one reads *piece of
-  cake*. Every emoji is from Unicode 12 with no flag, so an older phone draws
+  a French table reads _poser un lapin_ where an English one reads _piece of
+  cake_. Every emoji is from Unicode 12 with no flag, so an older phone draws
   the same rebus as a new one. Eleven subject chips tile six, four, two and
   one across, the last row running short.
 
 - `[Game]` **Timeline, the tenth game, is on the shelf**, in a bronze box.
-  Every player gets the five events as cards between *earliest* and
-  *latest*, dragged into place by their grip or stepped one place at a time
+  Every player gets the five events as cards between _earliest_ and
+  _latest_, dragged into place by their grip or stepped one place at a time
   by two arrows, and sends the order once. The room's screen deals the same
   cards with an empty slot where the year goes; the reveal strings them along
   a line, each year printed on its card, with every seat's pairs swapped
@@ -837,8 +837,8 @@ one part.
   file to show — under a name taken from the drawing, never the country — and
   asks whose it is, with three flags a table mixes up as the wrong answers:
   Romania beside Chad, Ireland beside Ivory Coast. 229 countries and
-  territories, 77 of them kept by *well known only*; a typed answer takes
-  *UK*, *Holland* or *RDC* as well as the name on the map.
+  territories, 77 of them kept by _well known only_; a typed answer takes
+  _UK_, _Holland_ or _RDC_ as well as the name on the map.
 
 - `[Game]` **Matchsticks, the ninth game, is on the shelf.** The puzzle is
   drawn in matches on every screen, each empty place a faint groove, with what
@@ -858,14 +858,14 @@ one part.
 - `[Shared]` **An evening ticks variants, not only games**, and
   `PROTOCOL_VERSION` goes to 36. A blind test on the charts and one on film
   scores are two entries of the same evening, each drawn round by round on its
-  own settings: *Add a variant* at the head of the round's settings copies the
+  own settings: _Add a variant_ at the head of the round's settings copies the
   game being set, the fold then changes the copy, and the same row picks which
   entry the next round is on. Each entry is named from what tells it apart —
-  *Blind test · Film scores* — on the console, the wall and every player's
+  _Blind test · Film scores_ — on the console, the wall and every player's
   screen. The draw prefers another game before another entry of the same one.
 
 - `[Shared]` **Inner clock, the eighth game**, and `PROTOCOL_VERSION` goes to
-  35. The wall says *count to 42 seconds in your head*, a countdown, a start —
+  35. The wall says _count to 42 seconds in your head_, a countdown, a start —
   and then nothing on any screen moves: no clock, no bar, no name appearing as
   someone stops. Each player presses once; the server stamps the press and pays
   its gap to the target, 3 points on the dot falling to nothing a quarter of
@@ -874,27 +874,27 @@ one part.
   between 20 and 60 seconds for every round; the host can type another or draw
   again beside the press that opens it.
 
-- `[Game]` **The Christmas party is the game night**, *Grande soirée* in
+- `[Game]` **The Christmas party is the game night**, _Grande soirée_ in
   French: the same quiz, blind test, buzzer, world map and challenges in three
   teams, under a name that holds any time of year.
 
-- `[Game]` **A touch screen can run the evening on its own.** *Cet écran est
-  celui de la salle*, in the host's menu, turns the console into the room's
+- `[Game]` **A touch screen can run the evening on its own.** _Cet écran est
+  celui de la salle_, in the host's menu, turns the console into the room's
   screen for good on that machine: the stage the wall draws, every answer
   folded until the host shows it, one press bottom right for what the room is
   waiting on, and everything else — the setup, the hold, ending the game,
-  removing a player, taking a seat, closing the table — in *Animer*, a drawer
+  removing a player, taking a seat, closing the table — in _Animer_, a drawer
   from the side, or from the bottom on a narrow screen.
 
 - `[Shared]` **The map can ask for French cities**, and `PROTOCOL_VERSION`
-  goes to 34. *À placer* in the round's settings switches the world map to a
+  goes to 34. _À placer_ in the round's settings switches the world map to a
   map of France and a bank of 137 towns — every prefecture but Paris' inner
   ring, and the ports and resorts a table knows — priced to the city itself:
   under 25 km three points, under 75 km two, under 150 km one. The city is
   named from the first frame and dotted only at the reveal.
 
 - `[Shared]` **Teams can play with no phone at all**, and `PROTOCOL_VERSION`
-  goes to 33. *Aloud* is a fifth way of making teams: they are named on the
+  goes to 33. _Aloud_ is a fifth way of making teams: they are named on the
   console, nobody joins, the wall shows the question and the host taps the
   teams that had it — the title and the artist apart in a blind test — through
   `host.awardTeams`, which pays and reveals, and corrects on the reveal. A
@@ -905,19 +905,19 @@ one part.
 ### Improvements
 
 - `[Game]` **The front door shows its two doors side by side.** The host's
-  *Open a table* sits under the wordmark, printed on the board beside a
+  _Open a table_ sits under the wordmark, printed on the board beside a
   one-line promise, and the code box faces it across the row; on a narrow
-  screen the code comes first. *Back to table K7PX* names the table it
+  screen the code comes first. _Back to table K7PX_ names the table it
   reopens and is a full-size target, the shelf says that a spine opens a
   table, the press keeps its label while the table opens, the menu no longer
   floats over the shelf on a scroll, and a long game name or the press's
   label wraps at a large text size instead of running off the screen. The
-  buzzer's spine is a deeper red, no longer the coral of the *go* press.
+  buzzer's spine is a deeper red, no longer the coral of the _go_ press.
 
 - `[Game]` **The menu keeps what a round needs, the console's panel the rest.**
   The ways to put the table on another screen — pairing a screen by its code,
   the game or the QR code in a new tab, handing the table over — are all in the
-  Room tab's *Room's screen* now, and the recovery code is under *This screen*:
+  Room tab's _Room's screen_ now, and the recovery code is under _This screen_:
   both are set up between rounds, and they made the host's menu the longest in
   the product. Points by hand are in both: still folded in the menu for a
   narrow console mid-round, and listed under the roster in the Players tab once
@@ -936,7 +936,7 @@ one part.
   board; a round dragged in the running order slides into its place instead of
   jumping there, and one dropped by a finger stays where it was left rather
   than stepping back while the table catches up. A seat back at the table has
-  its pawn stamped on under *Next*. All of it stands still under reduced
+  its pawn stamped on under _Next_. All of it stands still under reduced
   motion.
 
 - `[Game]` **Small things answer as they change.** Ticking a game's box
@@ -962,7 +962,7 @@ one part.
   before the next round is set from the Room tab alone, no longer under the
   reveal; and the tabs have room to breathe.
 
-- `[Game]` **The host is told when they judge.** *Host judges* sits under
+- `[Game]` **The host is told when they judge.** _Host judges_ sits under
   every judged answer mode and on the boxes of the Buzzer, the slate and the
   challenge, judged however they are answered. Where the console holds no
   seat, the Players tab now says why in every case — a judge, teams answering
@@ -970,48 +970,48 @@ one part.
   only mode used to say nothing.
 
 - `[Game]` **Home opens a table and shows the games.** The game checkboxes are
-  gone, since the lobby already asks what the table plays: *Open a table* sits
+  gone, since the lobby already asks what the table plays: _Open a table_ sits
   under the code box, and each game's spine on the shelf links to its own page.
 
 - `[Game]` **Fewer sentences that say what the screen already shows.** Gone:
-  the line under *Open a table* and under *Play right away*, the one under
-  *Become the room's screen*, the adult questions' hint, the line a seat
-  watching a duel read under *A vs B*, and the hint under *Nothing else to
-  draw* and *Nothing left to chance*. Shortened: the game picker's prompt, the
-  challenge line and the inner clock's target (no more *shown large on the
-  wall*), the slate's labels hint, its answer key's hint and the saved-sheet
+  the line under _Open a table_ and under _Play right away_, the one under
+  _Become the room's screen_, the adult questions' hint, the line a seat
+  watching a duel read under _A vs B_, and the hint under _Nothing else to
+  draw_ and _Nothing left to chance_. Shortened: the game picker's prompt, the
+  challenge line and the inner clock's target (no more _shown large on the
+  wall_), the slate's labels hint, its answer key's hint and the saved-sheet
   line. The search hint stays, because it says the query leaves for Deezer.
 
 - `[Game]` **The front door offers one way back, and only to the host.** The
-  four *Resume* pills under the code box are gone — a player who types the
+  four _Resume_ pills under the code box are gone — a player who types the
   code again lands on the seat it already holds, so they said nothing the
-  field did not. *Resume K7PX* now sits beside *Open a table*, for the last
+  field did not. _Resume K7PX_ now sits beside _Open a table_, for the last
   table this device opened and only while it is still open. The code box
-  loses its *The host has it in front of them* hint.
+  loses its _The host has it in front of them_ hint.
 
 - `[Game]` **An evening plays its quiz on four choices**, and every game of an
   evening the way it opens, whatever the console remembered from a game run
   alone with a judge: the buzzer mode needs somebody who sees the answer, and
   an evening has nobody set aside for it. The host can still switch a round's
-  mode in *Animer*; the next game of the evening goes back to its own.
+  mode in _Animer_; the next game of the evening goes back to its own.
 
 - `[Game]` **The room screen's header stays clear of the menu on a phone**: a
-  duel's two names are cut short rather than widening the header under *Menu*.
+  duel's two names are cut short rather than widening the header under _Menu_.
 
 - `[Game]` **The lobby picks games by ticking them, and splits the teams
-  beside the draw.** The *Several games* switch is gone: the shelf is always
+  beside the draw.** The _Several games_ switch is gone: the shelf is always
   ticks — one game is a room playing it, several are the evening — and
   switching game is ticking the new one and taking the old one out. A table
-  drawing its teams chooses how many next to *Draw the teams*; until the host
+  drawing its teams chooses how many next to _Draw the teams_; until the host
   picks or deals, the count follows the headcount (two teams up to seven
   players, three up to eleven, four beyond), and a new count after a deal
   deals again.
 
 - `[Game]` **The front door reads in one pass.** Side by side, the lid with
   its two doors stays in view while the shelf scrolls; the shelf is two
-  shelves, *An evening, ready to play* and *Or one game*, every box squared
+  shelves, _An evening, ready to play_ and _Or one game_, every box squared
   to the same width; and the two folded doors under it are spelled out under
-  *Another screen in the room?* — putting the game on the TV, and showing the
+  _Another screen in the room?_ — putting the game on the TV, and showing the
   QR code on a screen of its own — each saying in a sentence what it does.
 
 - `[Game]` **The games of the evening tell in from out at a glance.** A ticked
@@ -1020,11 +1020,11 @@ one part.
   two rows of five, and a long name hyphenates inside its lid instead of
   running out of it.
 
-- `[Game]` **The lobby says what its presses do.** *Draw the teams* says how
+- `[Game]` **The lobby says what its presses do.** _Draw the teams_ says how
   many players it needs instead of doing nothing; a seat's chip moves it with
-  a labelled *Team* press instead of a squeezed glyph; *Who plays the round*
-  reads *Everyone*, *One team*, *One player* and *One on one*, each with a
-  sentence; and *Several games* reads *Several games in a row*.
+  a labelled _Team_ press instead of a squeezed glyph; _Who plays the round_
+  reads _Everyone_, _One team_, _One player_ and _One on one_, each with a
+  sentence; and _Several games_ reads _Several games in a row_.
 
 - `[Game]` **A player waiting in the lobby sees the game and the table, not
   the invitation.** The code and the QR code stay one press away in the menu.
@@ -1074,12 +1074,12 @@ one part.
   the lid of the game it opens on when a line-up plays several. The reveal's
   hold ends where the countdown begins.
 
-- `[Game]` **The back-at-the-table press keeps its words.** It read *I'm back at
-  the table*, then *Ready* once pressed, which read as two different buttons;
+- `[Game]` **The back-at-the-table press keeps its words.** It read _I'm back at
+  the table_, then _Ready_ once pressed, which read as two different buttons;
   it now says the first throughout and shows a tick while it is on.
 
 - `[Game]` **A line-up's lobby says what comes after the first game**, on a
-  player's screen and on the wall: *Then: Reflex · Quiz*, in the planned order,
+  player's screen and on the wall: _Then: Reflex · Quiz_, in the planned order,
   under the first game's pitch. Every game's lid now wears its own colour,
   where six fell back to grey.
 
@@ -1096,7 +1096,7 @@ one part.
   its team — the team's score, the team's place, the teams ranked — where they
   showed the seat's own.
 - `[Game]` A long payout, `+14 000`, stays inside its disc.
-- `[Game]` The wall no longer offers *Mettre le son* to an evening of games
+- `[Game]` The wall no longer offers _Mettre le son_ to an evening of games
   that make no sound.
 - `[Game]` A sheet on a phone and the console's side drawer no longer keep
   clear of the board track they cover: the setup gains 80px of width at 390.
@@ -1112,7 +1112,7 @@ one part.
   page scrolls under the board's own ground rather than into the buttons.
 
 - `[Game]` **A long game name on the shelf no longer runs into its
-  tagline.** *Grande soirée*, *Frise chronologique*, *Game night* and three
+  tagline.** _Grande soirée_, _Frise chronologique_, _Game night_ and three
   others spilled under the line beside them between a tablet and a laptop
   width; a name too long for its spine now breaks over two balanced lines.
 
@@ -1155,17 +1155,17 @@ one part.
 
 ### Breaking Changes
 
-- `[Shared]` **No more *A screen per team***, and `PROTOCOL_VERSION` goes to
+- `[Shared]` **No more _A screen per team_**, and `PROTOCOL_VERSION` goes to
   47. It made each joining screen a team named after it — every player for
   themselves with a colour on the board — so a table that shares a screen
   joins under the team's name and plays without teams. A setup remembered on it
   opens without teams; the rest of it is kept.
 
 - `[Shared]` **Every round is everyone's, and a duel is asked for one round at
-  a time**, and `PROTOCOL_VERSION` goes to 42. The *Who plays the round* choice
+  a time**, and `PROTOCOL_VERSION` goes to 42. The _Who plays the round_ choice
   is gone from the lobby and the reveal: no more rounds one team plays while
-  the others watch, nor one player answering for a team. *As a duel*, beside
-  *Next round*, sets one player of a team against one of another for
+  the others watch, nor one player answering for a team. _As a duel_, beside
+  _Next round_, sets one player of a team against one of another for
   that round alone, the room watching. `isDuel` on `host.nextRound` replaces
   `playStyle`, `round.duel` replaces `round.turn`, and `wall.answer` is gone.
 
@@ -1174,7 +1174,7 @@ one part.
   `byTeam` on `host.startRound` and `host.nextRound`, and `round.turn` names
   the seats on turn. Solo: one seat answers for its team, the next one set
   after set. Duel: two seats of two teams head to head, every seat duelling
-  before any duels twice. The console offers the four under *Comment jouer*,
+  before any duels twice. The console offers the four under _Comment jouer_,
   the badge names the seat or the pair, and a watching phone is told whose
   turn it is and that its own will come. A team-kind strip too narrow for two
   columns now falls to one, as it said it would.
@@ -1192,10 +1192,10 @@ one part.
   each pawn a case per whole `POINT` its team was paid (`onePointOneCase` in
   `@melee/core/board/`, one replaceable strategy), shows the move from the
   reveal, and ends the evening on the reveal a pawn reaches the last case. A
-  team's `host.adjustScore` walks its pawn too. *Christmas party* opens on a
+  team's `host.adjustScore` walks its pawn too. _Christmas party_ opens on a
   30-case track.
 
-- `[Shared]` **Taverla is now Melee** — *Mêlée* on screen, `melee` in code:
+- `[Shared]` **Taverla is now Melee** — _Mêlée_ on screen, `melee` in code:
   the packages are `@melee/*`, the storage keys `melee:*`, and the game is
   served from `melee.adrienlcp.com` by a Worker named `melee`. The old address
   answered every path with a 301 to the same path on the new one. Nothing a
@@ -1208,9 +1208,9 @@ one part.
 
 - `[Shared]` **A ninth quiz subject, Citations / Quotes**, and `PROTOCOL_VERSION`
   goes to 24. The prompt is a line a table recognises — from a film, a series,
-  a video game, an ad or a real person — followed by what to name (*Quel film ?*,
-  *Qui l’a dit ?*, *Quelle marque ?*), and a table that ticks the chip alone
-  plays a *where is that line from?* round in either answer mode. 457 French
+  a video game, an ad or a real person — followed by what to name (_Quel film ?_,
+  _Qui l’a dit ?_, _Quelle marque ?_), and a table that ticks the chip alone
+  plays a _where is that line from?_ round in either answer mode. 457 French
   lines, quoted as a French table says them, and 548 English ones, written by
   hand, each checked against Wikiquote or a citable source, in
   `apps/server/scripts/quotes-*.json`; the bank goes to 12 458 rows. Text
@@ -1256,7 +1256,7 @@ one part.
   and `PROTOCOL_VERSION` goes to 20: every line of `yourSheet` carries
   `closedBeforeYou`, `true` on an item that closed before the reader held a
   seat, so the sheet says it was collected before they arrived instead of
-  *Left blank*.
+  _Left blank_.
 
 - `[Shared]` **The console counts every item**, and `PROTOCOL_VERSION` goes to
   19: the slate's host arm carries `filledCounts`, how many sheets have
@@ -1314,16 +1314,16 @@ one part.
 
   **Splitting a subject is five fold tables to rewrite, not questions to find**:
   every row already carried the rubric it arrived under. `creator` is the one
-  that did not move, and it is the hard case: the relation says *who made a
-  thing* and never *what kind of thing*, so one sentence shape asks about
+  that did not move, and it is the hard case: the relation says _who made a
+  thing_ and never _what kind of thing_, so one sentence shape asks about
   Chandler Bing, Solid Snake and the Sistine Madonna, and reading the prompt for
   a medium files two of those three wrong. `director` and `developer` each ask
   after one kind of work and nothing else, which is what lets them carry a
   category.
 
   The windfall is **Mintaka's `movies` and `videogames`**, both banked for the
-  first time — they had been left out on the written grounds that they *would
-  deepen the two subjects that need nothing*, a reason that was `arts` being fat
+  first time — they had been left out on the written grounds that they _would
+  deepen the two subjects that need nothing_, a reason that was `arts` being fat
   and that retires for exactly two of its four unused categories. **They yield
   very differently for the same 2 500 raw rows, and the gap is French Wikipedia
   traffic rather than the fold**: 619 banked for `movies` against 287 for
@@ -1342,7 +1342,7 @@ one part.
   history, geography and science from three in six to three in eight. The
   console's fold gives the subject strip **900px**, so eight labels have an
   882px budget the old ones overran by 78 — and keeping both long labels while
-  cutting only *Cinéma et séries* came to **883, over by a single pixel**. So
+  cutting only _Cinéma et séries_ came to **883, over by a single pixel**. So
   `cinema` reads **Cinéma** and `everyday` reads **Quotidien**, picked on what
   the short form costs rather than on what it saves, and the container query
   stays at 55rem. See
@@ -1376,7 +1376,7 @@ one part.
   It is a **switch and not a level picker**, which is the measurement stage 21
   spent a session on: the draw takes a category before it takes a question, so a
   level is only as good as the category it thins most, and thirds of the French
-  bank leave *difficile* ten geography questions. One threshold behaves where
+  bank leave _difficile_ ten geography questions. One threshold behaves where
   three bands do not. The word is the blind test's — `difficulty` at the
   protocol root already means `wellKnown | mixed | obscure` — so the quiz's own
   arm is `wellKnownOnly` rather than a second `difficulty`, and it reads the
@@ -1390,10 +1390,10 @@ one part.
   `PROTOCOL_VERSION` goes to 13. `TrackSource` gains `{ kind: 'film' }` and
   `TrackIdentity` gains `film`, which is `null` on every other arm and is what
   the round asks for wherever it is set — a score cue is called
-  `Cornfield Chase`, and what a room shouts is *Interstellar*. The source is
+  `Cornfield Chase`, and what a room shouts is _Interstellar_. The source is
   drawn from a table of **49 composers resolved to Deezer ids by hand**, never
-  from the soundtrack charts: those are a chart of *songs used in films*, whose
-  top twenty is *Shallow* and *Eye of the Tiger*, and every one of them is
+  from the soundtrack charts: those are a chart of _songs used in films_, whose
+  top twenty is _Shallow_ and _Eye of the Tiger_, and every one of them is
   already playable under `chart` and `decade`. A track enters the pool only when
   a composer on the table is credited and the release names a film, so the
   category cannot be caught out on its second round. It is also the first arm to
@@ -1407,7 +1407,7 @@ one part.
   `{ kind: 'decade', decades }`, and an empty list means every decade the way an
   empty `genreIds` already means every genre. It is an arm rather than a preset
   wearing the `playlist` one because a decade is six words the room already
-  says: *which* playlists each costs is a Deezer fact, and Deezer facts live in
+  says: _which_ playlists each costs is a Deezer fact, and Deezer facts live in
   `deezer-client.ts`. See [`docs/game-catalogue.md`](docs/game-catalogue.md)
 
 ### Features
@@ -1417,23 +1417,23 @@ one part.
   on their steps (`SeatPodium`), ranked by seat score as the scoreboard ranks
   them — a tie shares its step, and a seat on nought never climbs one.
 
-- `[Game]` **The host lays the board in the lobby**: a *Plateau* strip under
-  the teams (*Sans · 20 · 30 · 40 cases*), shown only while the seats are
+- `[Game]` **The host lays the board in the lobby**: a _Plateau_ strip under
+  the teams (_Sans · 20 · 30 · 40 cases_), shown only while the seats are
   dealt into teams. Splitting the room into teams lays a 30-case track, and
-  taking the teams away lifts it; the evening's summary says *plateau de 30
-  cases*.
+  taking the teams away lifts it; the evening's summary says _plateau de 30
+  cases_.
 
 - `[Game]` **A player's screen carries its own stretch of the track** at
   the reveal: seven cases centred on the team's pawn, ringed in its colour,
-  the other teams' pawns where they fall, and *Case 14 sur 30* over it with
+  the other teams' pawns where they fall, and _Case 14 sur 30_ over it with
   what the round walked. The strip fades where the track runs on and stops
   square on the start and the finish.
 
 - `[Game]` **The host corrects the board at the reveal**: under each team's
   head the standings read what the round walked its pawn and the case it
-  stands on (*+2 · Case 14 sur 30*), with a − and a + that walk it a case
+  stands on (_+2 · Case 14 sur 30_), with a − and a + that walk it a case
   through `host.adjustScore`. A console too narrow for the standings offers
-  the same rows behind *Corriger les cases*; the wall reads them with no press.
+  the same rows behind _Corriger les cases_; the wall reads them with no press.
 
 - `[Game]` **The wall draws the board's track** round the stage, from the
   first round on: up the left side from the start, across the top and down the
@@ -1445,33 +1445,33 @@ one part.
   name short.
 
 - `[Game]` **World map, on the shelf.** A sixth game: a country comes up —
-  *Place la France* — and everyone puts a pawn on a world map they pinch and
-  pan, a tap to place it, a drag or another tap to move it, and *Je le pose
-  ici* perched over the pawn to send it, with *Annuler* beside it. One code
+  _Place la France_ — and everyone puts a pawn on a world map they pinch and
+  pan, a tap to place it, a drag or another tap to move it, and _Je le pose
+  ici_ perched over the pawn to send it, with _Annuler_ beside it. One code
   path on a phone, a mouse and the touch wall; the atlas loads with the round,
   never with the join page. Inside the country pays three, under 500 km of its
   border two, under 1 500 km one, and the clock adds up to as much again. The
   reveal names the country, inks it, frames it with every pawn and draws each
   pawn's line to the border with its distance; the console's list and a
-  phone's board read *à 1 331 km*, nearest first. *Christmas party* now opens
+  phone's board read _à 1 331 km_, nearest first. _Christmas party_ now opens
   quiz, blind test, buzzer and world map over sixteen rounds, and the
   console's game picker lays six lids out as two rows of three, or one row
   when they fit.
 
 - `[Game]` **Play right away.** Every game a host can play in — the blind
-  test, the quiz and the reflex race — has a second door beside *Open a
-  table*: one press opens the table, seats whoever pressed under the name the
+  test, the quiz and the reflex race — has a second door beside _Open a
+  table_: one press opens the table, seats whoever pressed under the name the
   device remembers (or asks for one in place, Enter included), applies their
   setup for that game and starts the first round, with no lobby on the way. A
   setup remembered on the buzzer opens on four choices instead, because a
-  judge cannot take the seat. The table stays open: an *Invite* piece on the
+  judge cannot take the seat. The table stays open: an _Invite_ piece on the
   seated host's four tiles opens the code and the square in a popover over the
   running round, and anyone who joins is announced for a few seconds in the
   console's header line, in place of the round and the score, and plays from
   the next round. The buzzer and the slate offer no
   such door and say why in one line. A spine on the home shelf now opens its
-  box's lid with both doors on it, and an empty lobby's launch is *Play right
-  away* until somebody else sits down; stacked, the lobby puts the game and
+  box's lid with both doors on it, and an empty lobby's launch is _Play right
+  away_ until somebody else sits down; stacked, the lobby puts the game and
   the launch above the empty sockets.
 
 - `[Shared]` **The board counts in thousands, and the clock pays by the
@@ -1538,40 +1538,40 @@ one part.
 - `[Game]` **The console is in the box too, and nothing frames a heading any
   more.** The console's reveal prints the answer on its card with nothing above
   it, and the reflex time on a player's screen is the number alone: the
-  *C'était*, *La réponse était* and *C'est pris* lines are read before the
+  _C'était_, _La réponse était_ and _C'est pris_ lines are read before the
   heading by a screen reader and shown to nobody, as every player screen's
   already were. `DESIGN.md` now describes the box rather than the title cards.
 
 - `[Server]` **356 more French questions, 96 of them science**, from Vikidia rows
   the wiki wrote with three candidates. Each takes a fourth written by hand
   against its own row, in `vikidia-fourth-decoys.json`, and ten keep their
-  refusal because *Oui*, *Non* and a third are all there is. French science
+  refusal because _Oui_, _Non_ and a third are all there is. French science
   goes 339 → 435, history 513 → 598, arts 1 253 → 1 339, and the bank reaches
   11 453. Writing them surfaced four rows the source had wrong — Cadoudal
   fighting in Alsace, 10 November 1799 dated 18 brumaire, a decoy that restates
-  why Mars is red, the Neolithic offered as a wrong answer to *since the
-  Prehistory* — repaired or dropped in `question-repairs.json`.
+  why Mars is red, the Neolithic offered as a wrong answer to _since the
+  Prehistory_ — repaired or dropped in `question-repairs.json`.
 
 - `[Game]` **The slate's screens name their items and mark them one at a
-  time.** A *Names on the items* fold in the lobby, and beside the answer key
+  time.** A _Names on the items_ fold in the lobby, and beside the answer key
   once the sheets are open, gives each item a label; a box left empty keeps its
   number, and a label another item already shows is refused on the spot. Every
   tile, field, wall and sheet line draws the label. The console's sheets view
   is a board of every item — outlined while open with `3/4 written`, solid ink
   and a padlock once collected, faded once marked — where one press collects an
   item and puts it on the wall while the rest are still written. The wall steps
-  between collected items, then collects the rest, then shows the scores; *Back
-  to the sheets* and *Back to marking* move between the two. A player's
+  between collected items, then collects the rest, then shows the scores; _Back
+  to the sheets_ and _Back to marking_ move between the two. A player's
   collected tile is hatched, padlocked and refused; the item on the wall rides
   above their sheet as a band with their answer and its verdict, and takes the
   whole screen once nothing is left to write.
 
-- `[Game]` **The slate is on the shelf**, sixth and last: *L'Ardoise* in
+- `[Game]` **The slate is on the shelf**, sixth and last: _L'Ardoise_ in
   French. The host sets how many things there are to guess (1 to 60), every
   player gets a grid of numbered tiles that is both the way to a number and how
   much of the sheet is done, and tapping one opens a single large field for it.
   Lines save as they are written and survive a reload; a friend arriving
-  mid-sheet gets one. The console shows *Julie 12/26* and never a word, with the
+  mid-sheet gets one. The console shows _Julie 12/26_ and never a word, with the
   answer key folded away and one more number a press away. Once the sheets are
   collected the wall marks one number at a time: the key behind a tap, every
   distinct answer with who wrote it, one toggle each, and the standings moving
@@ -1635,12 +1635,12 @@ one part.
   The census flagged **373 of them** — 194 dropped, 135 marked choice-only, 44
   repaired — where Mintaka's census flagged 52 rows in 1 194. A wiki written by
   children for children fails in a way none of the four earlier sources did: **a
-  quiz page is read top to bottom, so its rows use pronouns**, and *Où est-elle
-  née ?* names nobody once a room is dealt one row on its own. That is about a
+  quiz page is read top to bottom, so its rows use pronouns**, and _Où est-elle
+  née ?_ names nobody once a room is dealt one row on its own. That is about a
   hundred and sixty rows. Eighteen per cent of what survived parsing is
   choice-only — a panda's tail in centimetres is a question only beside its own
   four candidates — against seven rows in 1 194 for Mintaka. And there is
-  falsehood, as Mintaka had: the lynx's Latin genus printed as a *wrong* answer,
+  falsehood, as Mintaka had: the lynx's Latin genus printed as a _wrong_ answer,
   seven Koopalings banked as eight, a red fox litter capped below two of its own
   decoys, Vivaldi dead in June.
 
@@ -1654,8 +1654,8 @@ one part.
   for a wrong answer.
 
   Four rules carry the parsing, each measured. **A template is content**:
-  `{{unité|-63|°C}}` deleted leaves *la température moyenne sur Mars est à peu
-  près de…* with three empty candidates, so ten templates are unwrapped to what
+  `{{unité|-63|°C}}` deleted leaves _la température moyenne sur Mars est à peu
+  près de…_ with three empty candidates, so ten templates are unwrapped to what
   they print and **a row still holding one is refused** — a sentence with a hole
   in it is worse than a row the bank does not have. **The `type` marker lies**,
   appearing as `()`, `types="()"`, `{}` and `"{}"` over the same single-answer
@@ -1663,8 +1663,8 @@ one part.
   rule that holds. **The page title is the whole of the subject signal** —
   Vikidia's own categories say `Quiz` on 561 rows out of 827 — so `QUIZ_SUBJECTS`
   maps all 180 pages by hand, and the ten about the wiki itself map to nothing.
-  **Redirects are followed before the rating and locally**: *Animaux* redirects
-  to *Animal* and scores three hundred readers on its own, which would have
+  **Redirects are followed before the rating and locally**: _Animaux_ redirects
+  to _Animal_ and scores three hundred readers on its own, which would have
   rated the source's largest science block as one nobody has heard of — and
   following them inside `frenchViewsOfTitles` would have moved every row the
   other four sources already banked. Left on the table: **401 rows carrying only
@@ -1687,20 +1687,20 @@ one part.
   thing each answer is — discipline, then trade, then class — and the decoys are
   drawn from the entities filed under the same one, nearest in how much French
   Wikipedia traffic they take. That is the reading `questionSchema` already
-  demanded and the bank had never had to satisfy: *1789 is not a plausible wrong
-  answer to which river runs through Paris*, and three other rivers are.
+  demanded and the bank had never had to satisfy: _1789 is not a plausible wrong
+  answer to which river runs through Paris_, and three other rivers are.
 
   Four rules carry the quality, each measured rather than chosen. **Four of the
   nine question shapes** are kept — `comparative` prints its own candidates in
   the prompt, `difference` accepts more answers than it records, `multihop` is
   where the corpus's staleness collects. **Questions naming the present go**,
-  because the corpus is fixed at October 2021 and a screen saying *l'actuel plus
-  jeune gouverneur* is wrong out loud in front of the room. **The answer must
+  because the corpus is fixed at October 2021 and a screen saying _l'actuel plus
+  jeune gouverneur_ is wrong out loud in front of the room. **The answer must
   have a French Wikipedia article people read**, which is also the American
-  filter no word list could be: the French translation of *Rebels d'Ole Miss*
+  filter no word list could be: the French translation of _Rebels d'Ole Miss_
   names no league, and a French room's traffic has never opened it. **No answer
-  comes up more than five times in a subject**, against 34 rows answering *New
-  York* and 31 answering *Roosevelt* upstream.
+  comes up more than five times in a subject**, against 34 rows answering _New
+  York_ and 31 answering _Roosevelt_ upstream.
 
   Of the 20 000 rows, 1 151 are banked — 1 194 read, 45 dropped by the census
   below and 2 recovered by the decoy rung. The build reports 20 unwinnable and
@@ -1714,13 +1714,13 @@ one part.
   in `taverla:host-tokens` always wins a claim, and the seat in `taverla:seats`
   survives a locked screen. What was missing was the lock to put the key in:
   `hostPathFor` had exactly one caller and it was reached only after a `POST`
-  that minted a *new* room. `HeldRooms` is that lock. It is offered **to the
+  that minted a _new_ room. `HeldRooms` is that lock. It is offered **to the
   device holding the key** and to nobody else, which is what lets the console's
   door stay URL-only — a public list of open rooms would hand a stranger not a
   seat but the console, and it stays refused. Every candidate is resolved
   through `GET /api/rooms/:code` before it is offered and a confirmed absence is
   pruned from the store, so the morning after a party the list repeats nothing.
-  A lookup that merely *fails* is not a refusal and the room is still offered.
+  A lookup that merely _fails_ is not a refusal and the room is still offered.
   It sits **under** the two doors rather than over them, because it arrives once
   the server has answered and above them it moved the button a thumb aims at by
   221px.
@@ -1760,7 +1760,7 @@ one part.
   It is **absent whenever nothing is counting** — a host who advances by hand,
   or a host whose screen has gone and the round is frozen — because a bar that
   never empties is worse than none, which is the rule the round's clock already
-  followed. The deadline is stamped where the hold *starts* rather than beside
+  followed. The deadline is stamped where the hold _starts_ rather than beside
   the timer that serves it: every path to a reveal broadcasts before arming, so
   a number computed next to the `setTimeout` would have reached the room one
   frame late. `armAutoAdvance` reads the stamp instead of the setting, which is
@@ -1778,8 +1778,8 @@ one part.
   every screen at every phase, behind the popover no thumb aiming at the game
   can hit; the player's header line becomes **selectable**, the way the
   console's own code already was; and `finished` gets its badge back, because
-  the final board is precisely when somebody says *on en refait une, j'appelle
-  Marc*. The badge also stops moving: it holds the end of its line whether or
+  the final board is precisely when somebody says _on en refait une, j'appelle
+  Marc_. The badge also stops moving: it holds the end of its line whether or
   not a round index is there to push it, where `space-between` had been handing
   a lone child the start.
 
@@ -1788,7 +1788,7 @@ one part.
   hosting. It opens **no socket and holds no seat**: the code comes from the
   address bar and the address from this origin, so it draws before anything is
   asked of the server, and the existence check that follows only ever takes the
-  invitation *down* — an unreachable server says nothing about a code, and
+  invitation _down_ — an unreachable server says nothing about a code, and
   blanking a wall on a dropped request is the same fault wearing a different
   hat. Three doors reach it, and the difference between them is what makes the
   third safe: the URL alone, the console's menu (**a new tab**, because a plain
@@ -1798,7 +1798,6 @@ one part.
   whole difference between it and the one this repository refuses on the same
   page. It is folded and last rather than a third field beside the two real
   doors: a fork every visitor reads past, for a job almost none of them have.
-
 
 - `[Game]` **Every page a crawler reaches now has a URL per language.** The
   seven indexable pages live under `/fr` and `/en`; the rooms deliberately do not,
@@ -1836,7 +1835,7 @@ one part.
   is exactly the bug being fixed here. And the head copy lives in
   `presentation/head/document-head.ts` rather than the dictionary — the
   exception `.claude/rules/i18n.md` already carved for the document head, kept
-  rather than widened: the home screen says *Taverla* and *The tavern is open.*,
+  rather than widened: the home screen says _Taverla_ and _The tavern is open._,
   and neither is a search result. See
   [stage 19](docs/plans/19-locale-urls.md)
 
@@ -1852,12 +1851,12 @@ one part.
   that game's three screens belonging to a thumb already down. Nothing moved on
   the wire. **The running scoreboard mid-round was deliberately dropped**: a
   player mid-round is racing a clock, the standings are what they read after it,
-  and the persistent strip already says *2nd of 6* at every phase.
+  and the persistent strip already says _2nd of 6_ at every phase.
 
 - `[Game]` **A phone now knows what the round did to the room, not only to
   itself.** The big screen is often somebody else's — across the room, angled
   away, or in the hand of a host who has taken a seat — and a player who could
-  not see it finished a round knowing whether *they* scored and nothing more.
+  not see it finished a round knowing whether _they_ scored and nothing more.
   The reveal carries the room's round as **one list**: one row per player,
   ranked by where the round left them, with what they said under their own name
   and what it paid beside it, your own row stamped. The room's screen draws
@@ -1887,7 +1886,7 @@ one part.
   audio protects nothing** — the browser's media wake lock is built from a
   video track, so the clip a console is playing never kept its own screen lit
 
-- **Pick the years instead of the genre.** *Années 70* through *Années 2020*,
+- **Pick the years instead of the genre.** _Années 70_ through _Années 2020_,
   one press each and as many as the table wants — the 80s and the 90s together
   is one strip, not a choice between them. Picking none is every decade, which
   is a whole evening of hits with nothing to decide. Each decade is two Deezer
@@ -1946,8 +1945,8 @@ one part.
   over is an evening ended by a flat battery
 - `[Game]` The recovery code is read out of the host's own menu, behind a press
   because the console is often a television the whole room is looking at, and
-  typed into the screen a second console is refused on. That is *the laptop died,
-  we host from the TV*, without the room ever seeing it
+  typed into the screen a second console is refused on. That is _the laptop died,
+  we host from the TV_, without the room ever seeing it
 - **Le Fake is the fourth game on the shelf.** A question with a surprising
   answer, everyone writes a convincing lie, the screen puts them all up beside
   the truth, and the room votes. Two points for finding the real answer, and one
@@ -1957,17 +1956,17 @@ one part.
 - `[Shared]` It runs on the question bank the quiz already ships, so there is no
   second download and nothing new to keep online. Two shapes of question are
   filtered out because they cannot carry a round: one that names candidates the
-  room cannot see (*"which of these was cut from Melee?"*) and one whose answer
+  room cannot see (_"which of these was cut from Melee?"_) and one whose answer
   is a bare number, where every lie is another year and the vote goes back to
   being trivia. That leaves 5 247 usable prompts across the two languages
 - `[Shared]` Two players who write the same lie become **one line credited to
-  both**, rather than the second being told to think of another. A lie that *is*
+  both**, rather than the second being told to think of another. A lie that _is_
   the answer is refused, and the player writes another — accepting it would put
   the truth on the board twice and leave the vote with nothing to find
 - `[Shared]` A short table gets a full board: the question's own authored decoys
   top it up to five lines, which beats demanding a fourth player
 - `[Shared]` **Leaving a room is something a player says.** The menu's way out
-  reads *Quitter le salon* on a screen holding a seat, gives it up on the
+  reads _Quitter le salon_ on a screen holding a seat, gives it up on the
   server, and the roster on the big screen loses the name at once rather than
   keeping it greyed out. A closed socket could never carry that: a phone that
   locks its screen closes one too, and that seat has to come back
@@ -2028,7 +2027,7 @@ one part.
 - **The quiz plays in English too**, on 4 506 questions from Open Trivia DB —
   human-verified, under the same CC BY-SA 4.0 as the French bank and bundled the
   same way, so neither language depends on anybody's uptime. The host picks the
-  language in the quiz's settings, and it opens on whatever language *they* are
+  language in the quiz's settings, and it opens on whatever language _they_ are
   reading the interface in
 - `[Shared]` The language belongs to the room and never to the reader. Two
   players in the same room can hold different interface languages, so drawing
@@ -2046,7 +2045,7 @@ one part.
   what they came to play; it stays a page rather than a link that opens a room,
   because a GET that mutates is a link preview in a group chat opening rooms
 - `[Game]` A phone in a lobby says which of two things is happening: "the host
-  is choosing a game", or "you are about to play *X*" with what the evening
+  is choosing a game", or "you are about to play _X_" with what the evening
   pays. That last sentence used to sit on a "waiting for the host" screen
   reached between rounds — the lobby is where the waiting actually is, and the
   only moment nobody is against a clock
@@ -2063,7 +2062,7 @@ one part.
   answer on every phone, with its subject in small caps underneath and the same
   drain bar running out below — a quiz round has a duration too, which is why
   that bar is no longer the blind test's. The reveal carries the answer and its
-  note, the anecdote that travels *with* the answer because it gives it away
+  note, the anecdote that travels _with_ the answer because it gives it away
 
 - `[Game]` The menu credits whoever wrote the questions. CC BY-SA asks that the
   credit travel with the work, and the questions ship bundled rather than being
@@ -2073,7 +2072,7 @@ one part.
   a game, to say the same thing
 - `[Shared]` A host may turn on the bank's adult themes, and they are off until
   they do. Its own field rather than a seventh category, because the six are
-  *subjects* and this is a rating — a question about a porn actress's first
+  _subjects_ and this is a rating — a question about a porn actress's first
   album is a celebrities question that happens to be adult, and putting two axes
   in one row is what makes such a control read as a mistake. The host is the
   only one who can make the call: the room code is read aloud and anyone present
@@ -2136,23 +2135,23 @@ one part.
   openly licensed French video-game corpus exists, so 373 questions were written
   in `apps/server/scripts/videogames-fr.json` — characters, franchises,
   hardware, music, places, and French game culture from Alone in the Dark to
-  Dofus — each checked against Wikipedia or a publisher's page. *Who developed
-  it* is under one row in twenty-five, where it was over half the subject. French
+  Dofus — each checked against Wikipedia or a publisher's page. _Who developed
+  it_ is under one row in twenty-five, where it was over half the subject. French
   video games go from 795 rows to 1 168, and from 253 well-known to 418.
   `authored-questions.ts` is the loader the quotes and this list share.
 
 - `[Server]` **MMMLU `FR_FR` is the bank's sixth source**: OpenAI's
   professional French translation of MMLU, MIT. Of its 14 042 rows, 1 081 have
-  a trivia shape (a stem of at most 150 characters, short options, no *which
-  of the following*, no computation), and every one of those was read: 319 are
+  a trivia shape (a stem of at most 150 characters, short options, no _which
+  of the following_, no computation), and every one of those was read: 319 are
   banked and 762 dropped, each with its reason, in `mmmlu-dropped.json` — exam
   register, American civics, mistranslations, and a few wrong answer keys.
   French science goes from 414 rows to 528. None is rated well-known, since
   nothing measures it.
 
 - `[Server]` **The French quotes reach 521.** Forty lines now read as the
-  French dub says them (*Je suis le maître du monde !*, *Pourquoi cet air si
-  sérieux ?*), fifteen whose dubbed wording no source confirms are gone, and 79
+  French dub says them (_Je suis le maître du monde !_, _Pourquoi cet air si
+  sérieux ?_), fifteen whose dubbed wording no source confirms are gone, and 79
   new lines are in, each checked against Wikiquote, Wikipedia or the press. The
   bank goes to 13 021 rows.
 
@@ -2187,8 +2186,8 @@ one part.
 - `[Game]` **The words around the QR code no longer crowd it.** On a phone the
   square keeps its full size and its caption and address sit centred under it,
   instead of a square squeezed to under half the column beside them. The wall
-  waiting to be paired splits its instruction: *Ou tape ce code dans son menu*
-  under the code, *Scanne depuis l’écran qui tient la table* under the square,
+  waiting to be paired splits its instruction: _Ou tape ce code dans son menu_
+  under the code, _Scanne depuis l’écran qui tient la table_ under the square,
   both sized to read across the room. An address that has to wrap breaks
   between the host and the path, never inside the code.
 
@@ -2200,7 +2199,7 @@ one part.
   groove no longer sits on the first tile in a game with no question card.
 
 - `[Game]` **The console's settings carry the hold and this screen's volume.**
-  *Time before the next round* sits in the setup fold beside the round count,
+  _Time before the next round_ sits in the setup fold beside the round count,
   where an evening is planned, and stays on the reveal as well. The volume
   slider is offered again at the foot of the fold, the same value as the
   menu's, on whichever screen is the room's speaker.
@@ -2212,7 +2211,7 @@ one part.
 
 - `[Game]` **The favicon is the four answer tokens** — coral circle, saffron
   triangle, sky square, leaf diamond on the night board — where the coral piece
-  with a *T* still read as the old orange square in a tab. The touch icon is the
+  with a _T_ still read as the old orange square in a tab. The touch icon is the
   same four, inset on the board.
 
 - `[Game]` **The setup's controls wear the box's rounded corners**: the choice
@@ -2221,7 +2220,7 @@ one part.
 
 - `[Game]` **Opening the console's setup no longer drags the room code down
   the page.** The invitation is held to the screen beside the setup however
-  far it scrolls, and *Gather round* stays beside the fold's title.
+  far it scrolls, and _Gather round_ stays beside the fold's title.
 
 - `[Game]` **Every game has a glyph, and the glyphs come from Lucide.** A
   note, a question mark, a pencil, a bolt and a bell stand before each game's
@@ -2234,7 +2233,7 @@ one part.
   other onto a line of its own.**
 
 - `[Game]` **The score track is gone from the console and the wall.** The ring
-  of squares from *Départ* to N raised a wide screen's padding from at most 56px
+  of squares from _Départ_ to N raised a wide screen's padding from at most 56px
   to at most 120px on every side, and said nothing the standings do not already say. The page and the
   menu now sit at the plain `--layout-padding`, so the freed band goes to the
   stage, and `--track-room` is gone with the ring that published it. The phase
@@ -2245,11 +2244,11 @@ one part.
 - `[Game]` **Every state reads in the dark: a disabled piece is an empty
   socket, a marked item keeps its numeral, and a dropped socket stays off the
   stage.** A disabled control was a dark slab beside the enabled ones in the
-  evening palette — *À table !* greyed out looked like *Prendre place* — and is
+  evening palette — _À table !_ greyed out looked like _Prendre place_ — and is
   now the socket the piece would sit in: no fill, a dashed die-line, the
   ground's muted ink. A large control's label now steps up from a medium one at
-  every height, where it used to fall under it past 830px and set *Retour à la
-  table* larger than *Rejouer*. A marked slate item, on the player's sheet and
+  every height, where it used to fall under it past 830px and set _Retour à la
+  table_ larger than _Rejouer_. A marked slate item, on the player's sheet and
   on the console, prints its numeral in a new `--socket-ink` held at text
   contrast in both palettes. And the connection sentence no longer hangs under
   the menu over the question card's clock and the lobby's lids: it is announced
@@ -2258,12 +2257,12 @@ one part.
 
 - `[Game]` **The words match the box: the host is the host, a round is a
   round.** The copy left the tavern behind with the board-game redesign —
-  *l'aubergiste* / *the innkeeper* is *l'hôte* / *the host*, *la tournée* is
-  *la manche*, the doors to push and chairs to pull up are a plain *Rejoindre* /
-  *Join*, closing a room says *Fermer la table* / *Close the table*, and the way
-  back from the credits and dead ends is *Retour aux jeux* / *Back to the
-  games*. The front door's two folded panels say what they show: *Afficher la
-  partie sur cet écran* and *Afficher le code pour rejoindre*. The table stays,
+  _l'aubergiste_ / _the innkeeper_ is _l'hôte_ / _the host_, _la tournée_ is
+  _la manche_, the doors to push and chairs to pull up are a plain _Rejoindre_ /
+  _Join_, closing a room says _Fermer la table_ / _Close the table_, and the way
+  back from the credits and dead ends is _Retour aux jeux_ / _Back to the
+  games_. The front door's two folded panels say what they show: _Afficher la
+  partie sur cet écran_ and _Afficher le code pour rejoindre_. The table stays,
   as the people playing round it.
 
 - `[Game]` **Labels, stamps and scores sit on their optical centre.** Where
@@ -2287,7 +2286,6 @@ one part.
   game's pitch, summarised by what is ready, rather than inside the collapsed
   settings where a host never thought to look.
 
-
 - `[Game]` **The slate's console board holds still and uses the screen.** A
   card's press stays at the same height whatever its label says — a word used
   to lift it 24px — and the collect button keeps its padding, because the grid's
@@ -2307,7 +2305,7 @@ one part.
   **The browser is deliberately left out.** The same import costs 8 381 bytes
   gzipped on the entry chunk, which is the chunk that gates a player joining:
   `/play/:code` is served the empty SPA fallback, so nothing on that screen
-  happens until it lands. Against it, a player's screen decodes *one* frame per
+  happens until it lands. Against it, a player's screen decodes _one_ frame per
   state change rather than one per player, which is tens of milliseconds over
   a whole game. Paying a phone's first load for that is the wrong way round.
 
@@ -2322,7 +2320,7 @@ one part.
   1 048 of its 4 506 rows and 3 681 spellings — more rows than the French half's
   largest source and more spellings than all of PolyFact. Typed mode is the
   default answer mode and it paid only the one spelling upstream wrote down, so
-  a table that typed *Bush Senior* at a screen holding *George H. W. Bush* was
+  a table that typed _Bush Senior_ at a screen holding _George H. W. Bush_ was
   told it was wrong. Open Trivia DB publishes no identifier of anything, so the
   entity behind an answer is reached through the English Wikipedia article of
   that exact spelling, and `accepted` is filled from the names Wikidata files
@@ -2330,27 +2328,27 @@ one part.
 
   **The count came before the code, and it is what allowed it.** Of 3 844
   askable answers, 738 have no article at all — the rows whose answer is a
-  sentence, *The inability to make decisions* — and 693 land on another concept
-  through a silent redirect, *July 4, 1776* on *United States Declaration of
-  Independence*. That second one is the failure that disqualified OpenQuizzDB a
-  day earlier, and it is refused here for free by comparing the *landing* title
+  sentence, _The inability to make decisions_ — and 693 land on another concept
+  through a silent redirect, _July 4, 1776_ on _United States Declaration of
+  Independence_. That second one is the failure that disqualified OpenQuizzDB a
+  day earlier, and it is refused here for free by comparing the _landing_ title
   against the spelling asked about. Of the 2 413 that reach an article of their
   own name, 1 338 name something rather than describe it: **34.8%**, against the
   third that had been set as the bar for touching the source at all.
 
   The gate is Wikidata's own labelling convention — a proper noun is
-  capitalised, a common noun is not, *Madrid* and *Charlie Chaplin* against
-  *spoon*, *yellow* and *chocolate* — which matters because a common noun's
-  `skos:altLabel` holds its *neighbours*: banking *blue*'s would pay a room that
+  capitalised, a common noun is not, _Madrid_ and _Charlie Chaplin_ against
+  _spoon_, _yellow_ and _chocolate_ — which matters because a common noun's
+  `skos:altLabel` holds its _neighbours_: banking _blue_'s would pay a room that
   typed **turquoise**. Two classes clear that gate and are named separately: 87
-  answers that are classes rather than things (*Bulldog* is a dog breed) and 361
-  that are Wikipedia's own pages about a spelling, *Lift* and *Libra* and
-  *Turkic* all being disambiguation pages.
+  answers that are classes rather than things (_Bulldog_ is a dog breed) and 361
+  that are Wikipedia's own pages about a spelling, _Lift_ and _Libra_ and
+  _Turkic_ all being disambiguation pages.
 
   **The query service is not the database**, which cost a measurement to learn:
   `rdfs:label` is silent on Q9358 — Friedrich Nietzsche — and `wdt:P31` on
   Q54173, General Electric, for 66 of 2 407 entities asked. Labels come from the
-  action API instead, and a missing `P31` is read as *unknown* rather than as
+  action API instead, and a missing `P31` is read as _unknown_ rather than as
   evidence, because a gap that refuses is a gap that quietly costs rows. The
   decoys are resolved on a looser gate and only for the rows whose answer
   resolved — three quarters of the work skipped — because a wrong decoy id
@@ -2379,13 +2377,13 @@ one part.
   360 to 899 measure zero on the bank's longest question, and a 812×375 phone
   on its side overflows 137px where it used to overflow 152 to 218.
 
-- `[Game]` **The console's final board says what *Rejouer* will relaunch.**
+- `[Game]` **The console's final board says what _Rejouer_ will relaunch.**
   Taking the setup fold off that footer — it acts on a round in flight, and
   `finished` has none — took with it the one sentence naming the game, the mode
   and the round count, on the screen where that press commits the room to all
   three without stopping at the lobby. The fold's own summary is drawn under
-  the button instead, which is also what tells it apart from *Retour à la
-  table* beside it.
+  the button instead, which is also what tells it apart from _Retour à la
+  table_ beside it.
 
   The board's budget is re-measured for the line it costs — 23px above the
   split and 42 below, where the longest summary the shelf can write wraps — and
@@ -2421,20 +2419,20 @@ one part.
   reach of a fix that had only ever run on one source. 864 of its 1 900 rows now
   hold a second name and 2 248 spellings, so the bank goes from 744 rows with an
   alternate spelling to **1 608**, and from 2 057 spellings to 4 305. Its answers
-  are people — *André Téchiné* typed as *Téchiné*, *Marcel Pagnol* as *Pagnol*,
-  *Robert Zemeckis* as *Zemeckis*, *Takeshi Kitano* as *Kitano* — and every one
+  are people — _André Téchiné_ typed as _Téchiné_, _Marcel Pagnol_ as _Pagnol_,
+  _Robert Zemeckis_ as _Zemeckis_, _Takeshi Kitano_ as _Kitano_ — and every one
   of those was graded wrong before, because `gradeQuizGuess` measures the whole
   of what was typed and `matchesAnswer` forgives a slipped finger rather than a
   dropped surname. 139 rows accept a strict shortening of their own label, and
-  beside them stand the names a room actually uses: *royaume de Saxe* answered
-  *Saxe*, *Royaume des Pays-Bas* answered *Pays-Bas*, *Russie* answered
-  *Fédération de Russie*.
+  beside them stand the names a room actually uses: _royaume de Saxe_ answered
+  _Saxe_, _Royaume des Pays-Bas_ answered _Pays-Bas_, _Russie_ answered
+  _Fédération de Russie_.
 
   Nothing new was built for it. `wikidata-aliases.ts` and `acceptedOf` were
   already there and already tested; what was missing was the entity id, and
   **PolyFact had it all along** — `fact_id` is `subjectQID|propertyID|objectQID`
   and its third segment is the answer. Reading it there rather than through the
-  labels is the one decision in the change: *Athènes* is two entities in this
+  labels is the one decision in the change: _Athènes_ is two entities in this
   pack, and it is the one label in 1 322 a label-keyed lookup would have
   answered with a coin toss. The decoys are reached the other way, through the
   positional alignment of `option_ids` with `option_a`–`option_d` that
@@ -2445,13 +2443,13 @@ one part.
   it pays for.
 
   Wikidata offered 3 084 aliases and the bank took 2 248. **Every one of the 836
-  refusals is `acceptedOf` doing its job** — *Eric Rohmer*, *Andre Techine*,
-  *Benoit Jacquot*, *Ryusuke Hamaguchi*: spellings the matcher already forgives,
+  refusals is `acceptedOf` doing its job** — _Eric Rohmer_, _Andre Techine_,
+  _Benoit Jacquot_, _Ryusuke Hamaguchi_: spellings the matcher already forgives,
   which buy nothing. The refusal that matters never fired here and is kept
   anyway, so a corpus test now states it over the shipped bank rather than over
   the ingestion: **no accepted spelling of a row may grade one of that row's own
-  decoys right.** Wikidata files Augustus as *Gaius Julius Caesar* and the bank
-  prints *Jules César* beside him as a wrong answer, and that is the only way a
+  decoys right.** Wikidata files Augustus as _Gaius Julius Caesar_ and the bank
+  prints _Jules César_ beside him as a wrong answer, and that is the only way a
   second spelling can cost a room instead of paying it. It sweeps both sources
   that fill `accepted` and costs nothing to leave in place for the three that do
   not yet
@@ -2464,10 +2462,10 @@ one part.
   Wilson in office during the Depression, John Wilkes Booth as an assassinated
   president, Churchill as prime minister through the Berlin blockade, the
   Terracotta Army under the Qing, medals at a Summer Olympics of 2019 that
-  never took place, and *Quel est le surnom de Boston ?* answering *Boston*.
+  never took place, and _Quel est le surnom de Boston ?_ answering _Boston_.
   Each is a `drop` in `question-repairs.json` carrying the sentence that says
   why. One is repaired rather than dropped: Thomas Jonathan Jackson's nickname
-  is *Stonewall Jackson*, and his three wrong answers are Civil War figures, so
+  is _Stonewall Jackson_, and his three wrong answers are Civil War figures, so
   naming it leaves a question that works picked as well as typed.
 
   **That is the census's real yield here and it was not what the plan
@@ -2481,23 +2479,23 @@ one part.
   athletes.** `poolFor` read the discipline rung before the trade for every
   subject, and Wikidata records a sport for anybody who ever played one: Joe
   Biden and Gerald Ford played college football, RFK ran cross-country, Rama IX
-  won a sailing medal — so *Quel président américain a obtenu le plus de voix ?*
+  won a sailing medal — so _Quel président américain a obtenu le plus de voix ?_
   stood Tom Brady beside Joe Biden, and seven of the eight history rows the
   sport rung reached were dealt athletes. The rung order follows the subject
   now: a sport question asks the discipline first, everything else asks the
   trade. Biden stands beside Xi Jinping, Lenin and Saddam Hussein.
 
-  The eighth row is what it costs, and it is one: *Jackie Robinson* really was a
+  The eighth row is what it costs, and it is one: _Jackie Robinson_ really was a
   baseball player, and his widest occupation is **military officer**, so the
   first black man in the major leagues is now dealt three Union generals. That
   is the incidental-kind fault one rung down rather than a reason to go back —
   widest-bucket-within-a-rung is measured and settled, and seven rows for one is
   the trade.
 
-- `[Server]` **A room that shouts *Lakers* at a screen holding *Lakers de Los
-  Angeles* is now right.** Mintaka files an answer under the label Wikidata
-  gives it, and a label is the full name — *dynastie Tang*, *Warriors de Golden
-  State*, *Première Guerre mondiale* — where a table types the half of it
+- `[Server]` **A room that shouts _Lakers_ at a screen holding _Lakers de Los
+  Angeles_ is now right.** Mintaka files an answer under the label Wikidata
+  gives it, and a label is the full name — _dynastie Tang_, _Warriors de Golden
+  State_, _Première Guerre mondiale_ — where a table types the half of it
   everybody says. The quiz grades a typed answer against the whole of what was
   written and forgives a slipped finger rather than a dropped surname, so those
   rows were told they were wrong.
@@ -2507,27 +2505,27 @@ one part.
   already go through — four queries for the source. **769 of the 1 194 banked
   Mintaka rows now take a second name, 2 119 spellings in all, and every one of
   them was refused before.** 140 rows accept a strict shortening of their own
-  label: *Lakers*, *Cavs*, *Ming*, *Shaq*, *Tanganyika*, and beside them the
-  names a room actually uses — *Grande Guerre*, *39-45*, *Fleuve Bleu*, *RDA*,
-  *Paname*.
+  label: _Lakers_, _Cavs_, _Ming_, _Shaq_, _Tanganyika_, and beside them the
+  names a room actually uses — _Grande Guerre_, _39-45_, _Fleuve Bleu_, _RDA_,
+  _Paname_.
 
   `acceptedOf` is the guard, and the third of its three refusals is the one
   worth naming. A spelling the row already wins on buys nothing, and one folding
   to under three characters is as likely a slip as an answer — but **a spelling
   one of the row's own decoys goes by pays for the answer the question called
   wrong**, and the printed labels do not find it. Wikidata calls Augustus
-  *Gaius Julius Caesar*, and the man that names was standing beside him as a
-  decoy under *Jules César*. So the three decoys are resolved to entities too,
+  _Gaius Julius Caesar_, and the man that names was standing beside him as a
+  decoy under _Jules César_. So the three decoys are resolved to entities too,
   and the row refuses any name they answer to. Its dangerous neighbour was
   already guarded: `[bank] holds no question whose own decoy would be graded
   right` grades each decoy against the whole row, `accepted` included.
 
 - `[Server]` **A wrong answer is no longer from another century than the right
   one.** PolyFact draws its decoys from entities that answer the same relation
-  somewhere in Wikidata, and that test passes on everybody — *Aristote* is the
+  somewhere in Wikidata, and that test passes on everybody — _Aristote_ is the
   author of something, so he was offered as a possible author of a manga
-  published in 2015, beside *Terry Pratchett* under a fable by La Fontaine and
-  *Randall Munroe* under a novella by Mérimée. A room eliminates those knowing
+  published in 2015, beside _Terry Pratchett_ under a fable by La Fontaine and
+  _Randall Munroe_ under a novella by Mérimée. A room eliminates those knowing
   nothing at all, so a question offering three of them is a question with one
   candidate, and choice mode is where it is paid.
 
@@ -2546,9 +2544,9 @@ one part.
   date, so `developer`, `place of death` and `country of citizenship` see it
   never fire, which is right — a century is not what makes a studio or a city a
   bad candidate. The trap it walked into first is worth the sentence: an undated
-  entity is never *known* to be an era away and has never been used, so ranking
-  a replacement on the absence of a fault put the *United States Holocaust
-  Memorial Museum* under a La Fontaine fable. A known year that fits now beats a
+  entity is never _known_ to be an era away and has never been used, so ranking
+  a replacement on the absence of a fault put the _United States Holocaust
+  Memorial Museum_ under a La Fontaine fable. A known year that fits now beats a
   missing one. The rule is the one in the ingestion whose evidence is not in the
   built bank — no year is banked, deliberately — so it is the one asked in
   `scripts/polyfact-source.test.ts`, which is why vitest's server project now
@@ -2562,17 +2560,17 @@ one part.
   banked; the other seven fail for reasons of their own, and `country`,
   `continent` and `official language` fail three times over — asked about
   villages, answered by inherently famous entities, and leaking the answer into
-  the prompt (*dans quel pays se trouve la cathédrale Notre-Dame de
-  **Strasbourg** ?*). Of the 26 079 rows left, a row is kept when the subject's
+  the prompt (_dans quel pays se trouve la cathédrale Notre-Dame de
+  **Strasbourg** ?_). Of the 26 079 rows left, a row is kept when the subject's
   French Wikipedia article took **300 views over sixty days** and all four
   candidates took 60: **4 321 subjects clear the first bar and 2 144 rows clear
   both**. Three passes then take 244 of those back — see below. French rows go
   **2 018 → 3 918**, the whole bank **6 455 → 8 355**.
 
   **Notability is traffic, not sitelinks**, and that cost a day to learn. How
-  many Wikipedias hold an article is a measure of *bot coverage*: the Cebuano,
+  many Wikipedias hold an article is a measure of _bot coverage_: the Cebuano,
   Waray and Swedish bots wrote one for every municipality on Earth, so
-  *Torralba del Pinar*, sixty inhabitants, clears any bar *Jumanji* clears —
+  _Torralba del Pinar_, sixty inhabitants, clears any bar _Jumanji_ clears —
   filtering on it keeps `official language` and throws away `author`. Two API
   traps came with it and both are written down in `frwiki-notability.ts`:
   `prop=pageviews` **paginates**, and a one-shot request over four thousand
@@ -2582,7 +2580,7 @@ one part.
   three splits are fetched as parquet in one request each through `hyparquet`.
 
   **One entity was the wrong answer under 253 of the 327 `creator` rows** —
-  *Gunter Demnig* laid the Stolpersteine and is therefore the creator of tens of
+  _Gunter Demnig_ laid the Stolpersteine and is therefore the creator of tens of
   thousands of Wikidata items, and uncapped he would have been one French arts
   row in nine, twice an evening. `withDecoysSpread` caps any entity at 2% of its
   relation and swaps the excess for the candidate that relation has leant on
@@ -2590,42 +2588,42 @@ one part.
   `[bank] leans on no single wrong answer` is what holds it, over any language
   and subject with enough rows for a share to mean anything.
 
-  **The same defect sat on the answers, and it was the worse one.** *De quelle
-  nationalité est X* is answered **France in 154 of 418 rows and the United
-  States in 94** — so a room answering *France* without reading the question
+  **The same defect sat on the answers, and it was the worse one.** _De quelle
+  nationalité est X_ is answered **France in 154 of 418 rows and the United
+  States in 94** — so a room answering _France_ without reading the question
   takes better than one round in three, free in typed mode and above the quarter
   a random pick is worth in choice. `withoutOverusedAnswers` caps an answer at 5%
   of its relation and drops the excess, which takes France to 9.9% and costs 231
   rows. Capped rather than filtered: dropping every France would teach a room the
-  answer is *never* France, which is the same exploit facing the other way.
+  answer is _never_ France, which is the same exploit facing the other way.
 
   A read-through of all 2 144 found the rest, and one of them was a rule: **59
-  prompts end *…a été réalisé ou mis en scène par ?***, a template that forgot
+  prompts end _…a été réalisé ou mis en scène par ?_**, a template that forgot
   its interrogative word, and a sentence stopped short is what the screen shows.
   `par qui ?` is the repair that needs no gender agreement. Thirteen more rows
   are dropped and five repaired by hand — two unreleased games described in the
   present tense, a handful of titles that collide with a famous namesake
-  (*La Jetée*, *Il bidone*), and four rows whose decoy answers the prompt as well
+  (_La Jetée_, _Il bidone_), and four rows whose decoy answers the prompt as well
   as the answer does, all of them a first-party studio beside its own publisher.
 
   What it does **not** buy: PolyFact is Wikidata relations about people and
   works, so French history stays at 64 rows and geography at 156. The 1 900 land
   as 1 488 `arts`, 407 `everyday` and 5 `science` — and because the draw picks a
-  category first, that makes those two more *varied* rather than more likely.
+  category first, that makes those two more _varied_ rather than more likely.
 
 - `[Game]` **The credits page names three banks, not two.** CC BY-SA asks for
   the credit to travel with the work, and PolyFact's sentence has to stay true
   to what the ingestion does to it — so it says which seven of the fourteen
   shapes were kept, that a row survives only when the room has heard of its
   subject and all four candidates, and that a wrong answer the source leaned on
-  was swapped out. The list was one entry per *language*; it is one per source
+  was swapped out. The list was one entry per _language_; it is one per source
   now, because the French half is written by two people who never met.
 
 - `[Server]` **The French question bank grows by a seventh, and stops asking the
   same thing twice.** Three cheap sources, none of them a new upstream: the
   cached OpenQuizzDB listing was fetched in August and holds 516 packs where the
-  live one serves 552; `MOTSCROISES` had been skipped on a taste call — *a
-  crossword clue names the length and the first letter* — which is what makes it
+  live one serves 552; `MOTSCROISES` had been skipped on a taste call — _a
+  crossword clue names the length and the first letter_ — which is what makes it
   **more** playable typed, not less, and `ALPHAQUIZZ` and `ORTHOQUIZZ` are the
   same family and were already banked; and `pack-20.json` was refused whole over
   a raw newline upstream left inside a JSON string, so `fetchPack` now folds the
@@ -2639,7 +2637,7 @@ one part.
   is by id, so a game could serve the same question in two rounds.
   `withoutRepeatedPrompts` keys on the language and the normalised prompt, keeps
   the first of a group and names the ones it settles, because a group whose
-  copies disagree on the answer — *the largest country in the world* is banked as
+  copies disagree on the answer — _the largest country in the world_ is banked as
   both `Russia` and `Russian Federation` — is a coin toss worth a repair.
   `[bank] asks no question twice` is what holds it.
 
@@ -2647,8 +2645,8 @@ one part.
   read-through. The flags are all one shape: an answer no keyboard produces —
   `Environ 850`, `110-120 volts`, `Par leurs sécrétions` — where the four options
   make one question. The repairs are the usual two: a decoy that answers the
-  prompt as well as the answer does (osso buco *is* served alla milanese;
-  panzerotti *is* the folded stuffed pizza), and a claim with a shelf life that
+  prompt as well as the answer does (osso buco _is_ served alla milanese;
+  panzerotti _is_ the folded stuffed pizza), and a claim with a shelf life that
   has run out (Nadal's career Golden Slam is 2010, not 2008; Marie-José Pérec
   stopped being the only French woman with three Olympic titles).
 
@@ -2670,7 +2668,7 @@ one part.
   after the last pointer, key or focus, the same seam `usePhaseField` uses to
   let a page decide the colour of the field; `:focus-within` and the trigger's
   own `aria-expanded` keep it up while somebody is in it. The room that resolves
-  to nothing keeps every bit of its chrome, because that screen *is* read at a
+  to nothing keeps every bit of its chrome, because that screen _is_ read at a
   keyboard and its way home is the only thing on it.
 
 - `[Game]` **`RoomInvitation` and `CopyButton` are the shell's**, in
@@ -2684,9 +2682,8 @@ one part.
   `min(clamp(4.5rem, 21vmin, 20rem), 21cqi)`, the phone gets a register a phone
   can hold, the popover a flat `rem` and a 180px square scanned at arm's length,
   and the poster `vmin` with no ceiling of its own. Their strings leave `host.*`
-  for `invite.*`, because a prefix that names a *screen* stops being true the
+  for `invite.*`, because a prefix that names a _screen_ stops being true the
   moment two roles read the same words.
-
 
 - `[Shared]` **A game opens on the mode it is played in.** `DEFAULT_ANSWER_MODE`
   is a per-game record beside `DEFAULT_ROUND_COUNT`, so the quiz opens on
@@ -2705,8 +2702,8 @@ one part.
 - `[Game]` **How long an answer stays up is a duration, not a switch.**
   `host.autoAdvance` was a boolean writing one hard-coded `8_000`, and the
   2–30 s the protocol has always accepted were unreachable from any screen. It
-  is the panel's own `NumberChoice` now — 8 s, 15 s, 25 s, *you decide* — with
-  `null` still the default, and *Time before the next round* as the label
+  is the panel's own `NumberChoice` now — 8 s, 15 s, 25 s, _you decide_ — with
+  `null` still the default, and _Time before the next round_ as the label
   because that is what the value is. Eight seconds pays for a quiz note and
   nothing else: four French rounds in five carry one, and the median is twenty
   words. `NO_LIMIT`, `NumberChoice` and the two duration labels moved out of
@@ -2714,16 +2711,16 @@ one part.
   strip exist at all
 
 - `[Game]` **Three screens that showed a control and never said what it costs.**
-  The reflex race's phone drew one live button reading *Buzz* and nothing else,
+  The reflex race's phone drew one live button reading _Buzz_ and nothing else,
   so the game's whole trap — a thumb that goes early loses the round — was
   reachable by the thumb resting on it and named on the host's screen alone. It
   carries the cost now, centred under the buzzer like every other line under
-  that object, and it is the cost rather than *watch the screen* so it stays
+  that object, and it is the cost rather than _watch the screen_ so it stays
   true on both sides of the flip and never moves under a wait that must not
-  move. The four-candidate grid said nothing where the typed field has said *as
-  many goes as you like* since it existed, and it is the harder of the two to
-  guess — four buttons look like something you can try; it says *one pick only,
-  and the sooner pays the more*, above the grid because it changes which button
+  move. The four-candidate grid said nothing where the typed field has said _as
+  many goes as you like_ since it existed, and it is the harder of the two to
+  guess — four buttons look like something you can try; it says _one pick only,
+  and the sooner pays the more_, above the grid because it changes which button
   a thumb commits to. And the host lobby prints the scoring line under the
   pitch: every phone in the room was told what the round pays and the one screen
   that never was is the one whose job is to explain the game out loud — the
@@ -2769,7 +2766,7 @@ one part.
   blanket `Disallow`, and the list had been stale since the second game shipped.
 
 - `[Game]` **A console that cannot make a sound now names the setting, not the
-  gesture.** *The browser turned it down. Try again.* was the one instruction
+  gesture.** _The browser turned it down. Try again._ was the one instruction
   that cannot work against the thing most likely to be saying no: a per-origin
   sound permission answers every press identically for the rest of the evening.
   The press behind it is always a real gesture — both call sites are synchronous
@@ -2786,10 +2783,10 @@ one part.
   game in silence.** Permission to make a sound is granted to an audio element
   by a press, and the press that mints one is the press that opens a round — so
   a screen that reloaded, restored a tab or had the address pasted into it never
-  asked the browser anything, and nothing said so: *À l'écoute…* renders either
+  asked the browser anything, and nothing said so: _À l'écoute…_ renders either
   way, the progress bar comes from the server, buzzes work and the reveal lands.
   A silent round was **visually identical** to one that plays. The screen says
-  *Le son ne sort pas d'ici.* now and offers the one press that fixes it, which
+  _Le son ne sort pas d'ici._ now and offers the one press that fixes it, which
   picks the clip up where the room is
 - `[Game]` **A refused first press stopped being permanent.** The element was
   kept whether or not the browser let it play, so every later press was a silent
@@ -2801,14 +2798,14 @@ one part.
   first through third. No particles: a burst of them would be a costume on a
   product drawn in hard edges and ink. All of it collapses to nothing for anyone
   who asked for no motion, and it only ever plays on the one phase with no clock
-- `[Le Fake]` **The reveal names people instead of counting them.** *1 l'a
-  trouvée* told a room of four something all four already knew; *Trouvée par
-  Zoe* is the thing they did not. Up to three names, and a count past that,
+- `[Le Fake]` **The reveal names people instead of counting them.** _1 l'a
+  trouvée_ told a room of four something all four already knew; _Trouvée par
+  Zoe_ is the thing they did not. Up to three names, and a count past that,
   where the line would be a wall nobody finishes. Who fell for a lie is named
   the same way and on purpose — the room watched the vote, the board already
   says who wrote each line, and the score pays the author per person caught
 - `[Quiz]` `Tout le monde choisit parmi quatre, contre la montre` — parmi four
-  *what*. The four scoring lines open on the shape of the round now
+  _what_. The four scoring lines open on the shape of the round now
 - `[Game]` **The countdown stopped wiping out the round it interrupts.** Between
   two rounds the big screen replaced the answer everybody was still arguing about
   with a number on an empty field, three times a minute. The round just played
@@ -2836,40 +2833,40 @@ one part.
   for the pause — a player who answered eight seconds in is eight seconds in
   however long the screen took to come back
 - `[Game]` **A phone is told what the clock paid it.** A rank was something the
-  room watched happen and could count; a curve is not, so `+3` now carries *dont
-  2 pour la vitesse* under it. The big screen still shows the total alone
+  room watched happen and could count; a curve is not, so `+3` now carries _dont
+  2 pour la vitesse_ under it. The big screen still shows the total alone
 - `[Buzzer]` **Unchanged, and not by oversight.** It has no round clock at all —
   the host brings the content, and eight seconds into a charade acted out over
   forty is not eight seconds into a riddle said in five. Le Fake is unchanged
   too: voting fast is voting without reading the board
 - `[Game]` **The app stopped describing its own plumbing.** Every user-visible
-  string was written from the inside out: the front door promised *des jeux de
-  soirée pour un écran et les téléphones de tout le monde*, three of the four
-  game pitches opened on *un écran*, two shared *répond sur ce qu'il a dans la
-  main* word for word, and the errors offered *côté serveur*, *ce message* and
-  *la console* to people who had sent no message and opened no console. Worse,
+  string was written from the inside out: the front door promised _des jeux de
+  soirée pour un écran et les téléphones de tout le monde_, three of the four
+  game pitches opened on _un écran_, two shared _répond sur ce qu'il a dans la
+  main_ word for word, and the errors offered _côté serveur_, _ce message_ and
+  _la console_ to people who had sent no message and opened no console. Worse,
   it was false as well as cold — the screen running the room can be a phone and
   a player can be on a laptop, which is the one thing nothing user-facing is
   allowed to assume
 - `[Game]` **The room is a tavern now, and says so.** `Taverla` was a coined word
-  the product never explained, so the front door is *La taverne est ouverte* /
-  *The tavern is open* and the vocabulary follows it all the way down: a room is
+  the product never explained, so the front door is _La taverne est ouverte_ /
+  _The tavern is open_ and the vocabulary follows it all the way down: a room is
   **une table**, the host is **l'aubergiste**, a round is **une tournée**, the
   roster is **la tablée**, joining is **prendre place**, and launching is **À
-  table !**. English reaches the same register with its own words — *innkeeper*,
-  *the table*, *pull up a chair*, *Gather round* — because `round` is already the
+  table !**. English reaches the same register with its own words — _innkeeper_,
+  _the table_, _pull up a chair_, _Gather round_ — because `round` is already the
   pun there and a calque would have been worse English for the same idea. The
   document title and the share card stay explanatory on purpose: a tab, a search
   result and a link unfurled in a group chat have nobody standing in the room to
   explain the joke
 - `[Game]` A game's pitch sells the evening and leaves the arithmetic to
   `scoring` beside it, which was already saying it better. Music vocabulary stays
-  inside `blindtest.*` — *trois notes* is the blind test's alone, where *la
-  tablée* and *la tournée* belong to the shell every game reuses
+  inside `blindtest.*` — _trois notes_ is the blind test's alone, where _la
+  tablée_ and _la tournée_ belong to the shell every game reuses
 - `[Game]` **A phone is told where it finished.** The final screen showed the
   standings and left the player to find their own row in it, while the big
   screen named the winner alone — so everyone who was not first learned nothing
-  about their evening. *Tu finis* now opens the line and the ordinal lands under
+  about their evening. _Tu finis_ now opens the line and the ordinal lands under
   it at monument size, formatted by the locale: 1st / 2nd / 3rd in English,
   1er / 2e in French, correct through the 11th–13th trap and up to the room's
   twenty-fourth seat. Tied players share a place, the way the board already
@@ -2902,7 +2899,7 @@ one part.
   and this origin, so the room can start reading the code aloud immediately
   instead of watching a blank field. It lands in the column it keeps, and
   nothing moves when the first snapshot arrives — where a spinner would have
-  replaced something useful with something that only says *wait*
+  replaced something useful with something that only says _wait_
 - `[Game]` **The question banks are credited on a page of their own**, reachable
   from the menu, instead of two paragraphs of small print inside the popover you
   open to switch language mid-game. CC BY-SA 4.0 names a link to a resource
@@ -2975,13 +2972,13 @@ one part.
   time over its own nodes; a page reached by a navigation still arrives.
 
 - `[Game]` **A front door opening a room greys every other door out.** The
-  other game lines, *Ouvrir une table*, the code field, the held rooms and the
+  other game lines, _Ouvrir une table_, the code field, the held rooms and the
   folded wall and projection doors are disabled until the room opens or the
   request is refused; they used to look pressable and silently do nothing.
 - `[Game]` **The menu stops at a card's length.** The popover is capped at
   520px, rather than running to the bottom of a tall screen.
 
-- `[Game]` **The launch follows an opened setup down the page.** *À table !*
+- `[Game]` **The launch follows an opened setup down the page.** _À table !_
   and the reason it refuses are one object, under the setup and pinned to the
   screen's bottom edge until the setup ends: scrolled to the last setting, the
   press sat off the top of the screen and its reason at the far end.
@@ -2989,7 +2986,7 @@ one part.
 - `[Game]` **A healthy room no longer reads as reconnecting.** When a screen's
   socket was replaced — a nickname change, or React mounting twice in
   development — the old socket's close landed after the new one had opened and
-  set the screen to *Reconnecting*, greying out every control on a live
+  set the screen to _Reconnecting_, greying out every control on a live
   connection. A torn-down socket now says nothing about the one that replaced
   it, and `choice-fits.spec.ts` checks the status line is empty after its sweep.
 
@@ -3025,19 +3022,18 @@ one part.
   one-minute sweep fell between the close and the reconnect.
 
 - `[Game]` **Marking the slate keeps the way back to the list.** Once every
-  sheet was collected, the console lost *Back to the sheets* and with it the
+  sheet was collected, the console lost _Back to the sheets_ and with it the
   only grid of items, so a host could not jump to one without ending the game.
-  It now reads *Back to the list*, and the grid's heading says everything is in.
+  It now reads _Back to the list_, and the grid's heading says everything is in.
 - `[Game]` **A fold inside a fold keeps its own chevron**: an open parent no
   longer turns every nested chevron upside down.
-
 
 - `[Game]` **The invitation poster is back**: `/invite/:code` shows the room's
   code and square alone, centred, for a big screen that only has to let people
   in. The wall had replaced it, but its lobby also draws the game and the
   table, and it needs the host's device to pair. The console menu offers
-  *Show the QR code, big* beside *Show the game in a new tab*, and the home page
-  folds *Show a table's invitation* back in under *Show a table on this screen*.
+  _Show the QR code, big_ beside _Show the game in a new tab_, and the home page
+  folds _Show a table's invitation_ back in under _Show a table on this screen_.
 
 - `[Game]` **The menu scrolls when it outgrows a short screen**: React Aria capped
   the popover at the viewport edge and left the rest overflowing, so a host's
@@ -3067,8 +3063,8 @@ one part.
   otherwise move the room to the final board with no control on screen.
 
 - `[Game]` **The four choice buttons drew at 52px with no block padding**, on
-  the screen whose comment says they are *sized by the press rather than by the
-  words*. `box` is included inside `&.outlined`, so a control's height and
+  the screen whose comment says they are _sized by the press rather than by the
+  words_. `box` is included inside `&.outlined`, so a control's height and
   padding land on `.button.outlined.medium` — three classes — and
   `.choices .button` has two: it lost both declarations in silence, and the
   `padding: 0 var(--space-m)` shorthand took the vertical padding with it, so a
@@ -3081,7 +3077,7 @@ one part.
 - `[Game]` **The reveal struck the screen instead of the card.** `card-strike`
   sat on `.player-round.centred`, which is every phase but `playing` — the
   lobby, the countdown, the reveal, the final board and two notices — so a 1.06
-  scale settling over `slow` moved the *whole* screen on each of them: measured
+  scale settling over `slow` moved the _whole_ screen on each of them: measured
   at 877px down to 827 over 450ms on a 978px window, landing right under the
   press that had just answered. It read as a reflow and was reported as one
   ("un petit saut de UI, les boutons s'élargissent"). It goes on `.outcome`,
@@ -3091,7 +3087,7 @@ one part.
   panel.
 
 - `[Game]` **Two links in the menu pointed at the page they were drawn on.**
-  *Accueil* on the front door and *Crédits* on the credits page were pressed
+  _Accueil_ on the front door and _Crédits_ on the credits page were pressed
   and nothing happened. `useIsCurrentPath` is the predicate, and each one is
   absent rather than disabled: a way out that goes nowhere is not a way out,
   and on the front door the exits have no other rung, so the group goes with
@@ -3158,7 +3154,7 @@ one part.
   could have closed it.
 
   **A laptop is the screen with width to spare and none of the height**, so the
-  question moves *beside* the circle above the wide-screen breakpoint — the split
+  question moves _beside_ the circle above the wide-screen breakpoint — the split
   the reveal, the vote and both lobbies already make, on the same shares: what
   you read takes the wide track, and a circle bounded at 420px takes the narrow
   one. Read off the markup rather than the width, because a blind test's screen
@@ -3192,7 +3188,7 @@ one part.
 
 - `[Game]` **`BUZZ` was drawn outside the button it names**, and it vanished
   rather than overflowed: the word is set in the field's own colour, so the part
-  of it past the ink is field on field. The label was sized against the *screen*
+  of it past the ink is field on field. The label was sized against the _screen_
   in an object the screen had stopped deciding the size of, which is the fault
   this product keeps meeting one surface at a time. It was already there before
   this pass: the dead buzzer is `30vh` wide, so any screen under 800px tall drew
@@ -3207,7 +3203,7 @@ one part.
   gives. Every state now holds that share or less, from a 420px circle down to a
   112px one, where four of them were over 1.0. The box carries the type mixin
   again rather than inheriting it, because `letter-spacing` inherits as a
-  computed *length*: -0.035em of a 64px circle reaches a 20px word as -0.112em
+  computed _length_: -0.035em of a 64px circle reaches a 20px word as -0.112em
   and folds it onto itself.
 
   What it costs is the lettering on a short laptop, which stops being pinned at
@@ -3218,7 +3214,7 @@ one part.
 - `[Game]` **A player's screen buried the one line the buzzed phase is about.**
   `Bertrand a buzzé` and `C'est à toi. Annonce !` were drawn at 16px in
   `--ink-muted` under a 378px circle nobody can press — the ink reserved for
-  *what you cannot do*, spent on the sentence a player has to act on now, in a
+  _what you cannot do_, spent on the sentence a player has to act on now, in a
   noisy room. The console bills the same fact as an `h2` in `billboard` and
   says why: the size a host reads while looking up at the room. So does this
   screen now, and it is the register the floor's clock under it already had —
@@ -3262,7 +3258,7 @@ one part.
   fires**, which is how the first attempt at the vote list did nothing at all:
   an element is never its own query container, and the `ul` had been carrying
   `container-type` for its rows since the day a viewport unit came off them. A
-  query that *cannot* match reads exactly like a threshold nobody reached. The
+  query that _cannot_ match reads exactly like a threshold nobody reached. The
   container moves up to the section and the rows take one of their own — which
   they owed anyway, because a candidate drawn in a 408px column was being sized
   for 828.
@@ -3273,7 +3269,7 @@ one part.
   always did; neither is a list a phone was ever going to hold whole.
 
 - `[Game]` **The console's final board ran 269px off a 1280×800**, with
-  *Rejouer* half under the fold and *Retour à la table* entirely below it — on
+  _Rejouer_ half under the fold and _Retour à la table_ entirely below it — on
   the one screen whose whole job is to say who won and let the room decide
   whether to play another. `finished` was the phase with no height budget where
   every other stage on this console divides what is left of `100dvh`, so the
@@ -3283,7 +3279,7 @@ one part.
   Three things were wrong and only the last is arithmetic. **The footer was
   still running a game that had ended** — the auto-advance delay and the setup
   fold act on a round in flight, and both are behind the button beside them,
-  since *Retour à la table* lands on the lobby whose stage is the picker, the
+  since _Retour à la table_ lands on the lobby whose stage is the picker, the
   roster and the seat. They cost 158px of a 302px footer. **The board was the
   last wide stage still stacking**, so the table divided whatever the name had
   not already spent — 237px for nine players, 18px rows — where beside the name
@@ -3325,7 +3321,7 @@ one part.
 - `[Game]` **`WONDERWALL` came down as `WONDERWAL / L` on a 1440px console, at
   the size the formula had picked to hold it whole.** The term that promises a
   whole word divides a constant by the word's character count, and the constant
-  was the face's *mean*: `monument` averages 0.898 of its own font size per
+  was the face's _mean_: `monument` averages 0.898 of its own font size per
   capital, so `n` of them were handed `111cqi / n`. Measured on the rendered
   node over a fifty-title sample, that promise was kept fifty-eight per cent of
   the time — `ILLINOIS` sets at 0.67 of the mean and `MAMMA` at 1.053, and a
@@ -3374,7 +3370,7 @@ one part.
   room for them**, and one of the two was answering both. The threshold is not
   read off that 540px, because a nickname is up to twenty characters and no
   room's names are in a dictionary the way a strip's labels are. It is what two
-  of the *narrowest single* column need: a 320px screen gives this board 288px,
+  of the _narrowest single_ column need: a 320px screen gives this board 288px,
   so two of those plus the `--space-xl` between them is **624px**. Below it the
   board is one column and the page scrolls, which is the bargain a console held
   in a hand already strikes one screen over.
@@ -3387,7 +3383,7 @@ one part.
   corner menu — a hard-coded guess at a trigger that measures 97px inside a room
   and 77px at a front door. It was 18px too much with the connection alert empty,
   which on its own broke `TOURNÉE 1 SUR 10` onto two lines at 390px, and 129px
-  too little the moment the alert filled: the live region renders *beside* the
+  too little the moment the alert filled: the live region renders _beside_ the
   trigger and takes the box to 245px, against a header that had 242px for two
   facts. Nothing warned; the two were simply drawn over each other.
 
@@ -3402,7 +3398,7 @@ one part.
 
 - `[Game]` **A square screen broke the reveal's answer into pieces and ran the
   console 502px off the bottom.** The cover was `34vmin` — an axis of the
-  *screen* — inside a panel that is `1.6fr` of a split stage, so at 900×900 the
+  _screen_ — inside a panel that is `1.6fr` of a split stage, so at 900×900 the
   block took 306px of a 472px row and left the answer 121: `Pocahontas` came
   down as `POC / AHO / NTAS`, 680px of title, and the page scrolled past the
   launch. Measured across the range, the defect tracks the width of the text
@@ -3446,7 +3442,7 @@ one part.
   the header, the footer, the page padding and two gaps came to 434px.
 
   Two things were spending that budget without being asked to divide it. **The
-  cover was sized in `vmin`, which is the *width* on a portrait screen**, so the
+  cover was sized in `vmin`, which is the _width_ on a portrait screen**, so the
   floor written to stop it vanishing on a wide one was the only thing that ever
   fired on a phone: 180px of an 844px screen for a 250px thumbnail, in the one
   composition where height is the axis under pressure. It answers the height
@@ -3512,7 +3508,7 @@ one part.
   one.** A strip that runs out of width wraps, and `flex: 1` stretches whatever
   is left over so the strip's own ground cannot show through — which makes an
   unselected stamp four times the width of its neighbours, the shape a
-  *selected* one has. The game picker was fixed; six more do it, and they are
+  _selected_ one has. The game picker was fixed; six more do it, and they are
   the six now carrying a `stacks-below()` of their own: the answer mode, the
   blind test's difficulty and its source, the quiz and Le Fake's subjects, and
   Le Fake's two clocks. **Twelve strips need nothing** — they hold one row down
@@ -3554,7 +3550,7 @@ one part.
   code, one line each.
 
 - `[Game]` **The console asked for a recovery code where no code could help.**
-  `HostRefused` drew the token form for *every* refusal, so a URL naming a room
+  `HostRefused` drew the token form for _every_ refusal, so a URL naming a room
   that does not exist answered `No table under that code.` and then asked for
   the recovery code of a table that is not there. A token says **who** may hold
   a room, never **which**, so it can only answer a refusal that turned on the
@@ -3600,7 +3596,7 @@ one part.
 
   It is the only one of the four that no game opens on a number of its own —
   every game takes the shell's `null`, which waits for the host and so cannot be
-  too short. Being on that side of the line buys the *memory*, not a default. A
+  too short. Being on that side of the line buys the _memory_, not a default. A
   console whose stored setup predates this reads a `games` arm missing the field
   and falls back to the defaults, which is what `readStoredHostPreferences`
   already does with any blob this build cannot read.
@@ -3608,24 +3604,24 @@ one part.
 - `[Server]` **The whole question bank was read end to end, and 191 rows carry a
   repair.** It started with three questions a room could not answer and ended as
   an audit with eight lenses over all 6 286 rows. What it found: 29 answers that
-  are simply wrong — *how many chromosomes are in your body cells* answered 23,
-  *the area of a sphere* answered with its volume, `H20` written with a digit
+  are simply wrong — _how many chromosomes are in your body cells_ answered 23,
+  _the area of a sphere_ answered with its volume, `H20` written with a digit
   zero — and **ten of them had the right answer sitting among their own three
   decoys**, so a repair can swap the pair now and keep four candidates. 35 rows
-  of garbled text (*Polanreff*, *chanteuseest*, *les debts d'un timbre-poste*, a
+  of garbled text (_Polanreff_, _chanteuseest_, _les debts d'un timbre-poste_, a
   decoy reading `Neptune>/I>`). 36 rows where a decoy answers the prompt as well
   as the answer does, dropped the way `isWinnableTyped` already drops the ones
-  the *matcher* grades right. 40 rows whose answer has a shelf life, dropped
+  the _matcher_ grades right. 40 rows whose answer has a shelf life, dropped
   except the eleven where only the anecdote had aged — those keep the question
-  and lose the note, because it is read out to the room and *Barack Obama est
-  l'actuel président* under a correct answer is the screen being wrong out loud.
+  and lose the note, because it is read out to the room and _Barack Obama est
+  l'actuel président_ under a correct answer is the screen being wrong out loud.
   One systematic fault turned into a rule rather than data: upstream stores its
   anecdote in a 255-character column and ten of them end mid-word, so `noteIn`
   cuts an unterminated one back to its last full stop. The bank stands at **6 209
   rows**, 77 fewer and 122 repaired.
 
 - `[Server]` **A question the room cannot answer with a text field is no longer
-  dealt to one.** *Which country drives on the left side of the road?* answers
+  dealt to one.** _Which country drives on the left side of the road?_ answers
   Japan, and India, and seventy others: the row is only a question because three
   of its four buttons say otherwise. `choiceOnly` is a column on the banked row
   now, stamped from a committed census of **680 rows** — 14.7 % of the English
@@ -3641,13 +3637,13 @@ one part.
 
 - `[Server]` **Sixty questions asked the room about nobody.** OpenQuizzDB writes
   packs of four meant to be read in order with the theme on screen, so its second
-  row says *elle* and means whoever the first named — and this game deals one
-  question, alone, with the theme nowhere. *Dans quelle comédie est-elle DRH dans
-  une compagnie maritime ?* is a question about nobody, and *De combien d'essais
-  dispose-t-on pour chaque mouvement ?* is about no sport. All 6 286 rows were
+  row says _elle_ and means whoever the first named — and this game deals one
+  question, alone, with the theme nowhere. _Dans quelle comédie est-elle DRH dans
+  une compagnie maritime ?_ is a question about nobody, and _De combien d'essais
+  dispose-t-on pour chaque mouvement ?_ is about no sport. All 6 286 rows were
   read, French by pack so the referent was visible; the fault is 44 French rows,
   plus **16 English ones for a different reason** — Open Trivia DB rows written as
-  statements (*This composer worked on the 2003 TV series…*), which are a clue
+  statements (_This composer worked on the 2003 TV series…_), which are a clue
   with four buttons under them and ask a typing room nothing. Sixty prompts are
   repaired and one row is gone: it names an artist the world does not have. The
   repairs live in `apps/server/scripts/question-repairs.json`, keyed by row id and
@@ -3660,7 +3656,7 @@ one part.
   never grew: the split reveal declares `1fr minmax(15rem, 0.8fr)`, and `1fr`
   is `minmax(auto, 1fr)`, so the answer's own min-content — one unbreakable word
   at ninety-six pixels — claimed the whole row and left the board on its 15rem
-  floor at *every* desktop width. A phone's width, carrying a laptop's type,
+  floor at _every_ desktop width. A phone's width, carrying a laptop's type,
   because the name was sized in `vmin` against the screen behind the column. The
   track is `minmax(0, 1fr)` now, and the row is sized against its own container:
   `clamp(1.25rem, min(3vmin, 6cqi), 1.75rem)`, which is the size a phone and a
@@ -3672,7 +3668,7 @@ one part.
   since it was written; the phone's never did, and once that screen splits in
   two the same 83-character answers land in 431 pixels. It publishes two
   measurements now, because two things decide whether a display-size string
-  fits: how much there is of it, and how long its longest *unbreakable* run is —
+  fits: how much there is of it, and how long its longest _unbreakable_ run is —
   `Maison-Blanche` is seven characters wide, not fourteen. `overflow-wrap:
   anywhere` is the guard behind both, and a guard that fires reads
   `Maiso / n- / Blanch / e`.
@@ -3694,7 +3690,7 @@ one part.
   multiplies the field back into the ink, and nothing says by how much: the two
   `.subtitle` captions on the player's answer forms sat at 3.91:1 against the
   worst field, and `revealed-lie-board`'s `.fooled` stacked `opacity: 0.75` on
-  top of `--ink-muted` — which is *already* 85% ink, calibrated to the point
+  top of `--ink-muted` — which is _already_ 85% ink, calibrated to the point
   where the worst pair still clears 4.5:1 — for 63.7% effective ink and 3.18:1.
   All three now read `color: var(--ink-muted)` and clear 4.5:1 by the same
   measurement that set the 85%.
@@ -3709,12 +3705,12 @@ one part.
   `index.html` ships `lang="en"` — deliberately, because a crawler and a link
   unfurled in a group chat read the served document and that copy is English —
   and the negotiated locale was written onto `<html>` from an effect in the
-  i18n provider, which runs *after* the first paint. So every French load spent
+  i18n provider, which runs _after_ the first paint. So every French load spent
   a frame as French text under `lang="en"`, which is exactly what a browser's
   translate heuristic looks for; an Xbox offered to translate the page.
   `applyInitialLocale` decides and stamps in one call — one call is what keeps
   the order from being got wrong — `main.tsx` makes it before `root.render`,
-  and the provider is seeded with what it decided rather than deciding again. Nothing about *which* locale is chosen changed: a browser
+  and the provider is seeded with what it decided rather than deciding again. Nothing about _which_ locale is chosen changed: a browser
   asking for French has always got French, `DEFAULT_LOCALE` being the fallback
   for a browser that asks for neither.
 
@@ -3760,7 +3756,7 @@ one part.
 - `[Game]` **A console refused a seat is told why.** The seat is withheld
   wherever the round ends in a verdict this screen has to grant, which is the
   rule — but the control simply vanished, and a quiz or a blind test left on
-  *first to buzz* is a room that could have had one. The host's setup is
+  _first to buzz_ is a room that could have had one. The host's setup is
   remembered **per game**, so a room arrives in that state without anybody
   choosing it this evening: pick the quiz, and the mode it was last left on
   comes back with it. The fold now says so where the control was, and names the
@@ -3801,7 +3797,7 @@ one part.
   selection itself now, on both list-shaped sources, and ignores the order the
   strip hands it back in. `track-pool.test.ts` is new and holds it
 - `[Game]` **A refused join can be corrected again.** The field kept its invalid
-  state after the refusal, which leaves the input's *native* validity false — so
+  state after the refusal, which leaves the input's _native_ validity false — so
   the button looked alive, Enter did nothing, and nothing was logged anywhere. It
   was reachable before; trying a stored name on arrival puts it on the main path,
   which is how it was found
@@ -3831,7 +3827,7 @@ one part.
   player had gained: everybody else got the answer and silence, with no way to
   tell a round they lost from a round that was never scored. The reveal now
   carries a line either way, and the strip at the top of the screen spends the
-  line it was giving the room's size on a place in it instead — *2nd of 6*,
+  line it was giving the room's size on a place in it instead — _2nd of 6_,
   which says both. The room's full board stays where the room can read it
   together, and the one row worth carrying onto a phone comes with it: how far
   behind the player above, by name, because that is what makes somebody look up
@@ -3856,7 +3852,7 @@ one part.
 - `[Game]` **And that screen stops thinking it is still playing.** Whether it
   holds a seat is read off the room rather than off what it once asked for, so
   the seat control, the menu's exits and its own answer form all follow the
-  roster. Removing yourself goes out as *leaving*, which is what it is: aimed at
+  roster. Removing yourself goes out as _leaving_, which is what it is: aimed at
   your own row, an eviction left the nickname on the socket and the next
   reconnect quietly sat you back down
 - `[Game]` **A long candidate no longer runs out of its own button.** Every
@@ -3864,7 +3860,7 @@ one part.
   words somebody chose — and none of a round's four candidates was chosen: a
   track title is as long as it is. They wrap and the box grows now, including a
   title with no spaces in it at all. Wrapping rather than ellipsising, unlike the
-  scoreboard one screen away: those four are being *told apart*, and the tail is
+  scoreboard one screen away: those four are being _told apart_, and the tail is
   often what does it
 - `[Game]` **Your own row is stamped rather than signposted.** The `←` beside
   your nickname was generated content — read aloud by some screen readers and by
@@ -3881,27 +3877,27 @@ one part.
   end-of-game screen centres its contents, which shrink-wraps a list to its
   min-content — and a nickname's min-content is zero, because `overflow: hidden`
   is what buys it its ellipsis. The board takes the column now
-- `[Core]` **A typed answer stopped being paid for the wrong one.** *5 minutes*
+- `[Core]` **A typed answer stopped being paid for the wrong one.** _5 minutes_
   is eight characters, so the matcher forgave one correction — and the question
-  offering it offered *7 minutes* beside it. Ninety-three questions in the bank
+  offering it offered _7 minutes_ beside it. Ninety-three questions in the bank
   had that shape, and two hundred spelling quizzes had it worse: asked whether
-  it is *Accueil* or *Acueil*, the matcher answered for the room. A row's three
+  it is _Accueil_ or _Acueil_, the matcher answered for the room. A row's three
   decoys are the bank saying out loud what a different answer is, so forgiveness
   now stops one edit short of the nearest — an answer nothing crowds keeps all
-  of it, and *kate winslett* is still Kate Winslet
+  of it, and _kate winslett_ is still Kate Winslet
 - `[Core]` **The music catalogue's rules stopped following the quiz around.**
   Folding `(Radio Edit)` and `- Remastered 2011` away is what makes a track
-  title typable; applied to a question it turned *River Horse (Greek)* into its
-  own decoy *River Horse (Latin)*, and *1915 - 1916* into *1915 - 1918*. It
+  title typable; applied to a question it turned _River Horse (Greek)_ into its
+  own decoy _River Horse (Latin)_, and _1915 - 1916_ into _1915 - 1918_. It
   belongs to the blind test's matcher and to nothing else now. A leading article
-  went the other way: a room says *Cervin* where the bank holds *Le Cervin*, and
+  went the other way: a room says _Cervin_ where the bank holds _Le Cervin_, and
   312 rows were refusing it
 - `[Server]` **Twenty questions no room could win are out of the bank**, and the
   builder that assembles it applies the same rule rather than handing them back
   on the next rebuild: eight French rows whose decoy differs from the answer by
   an accent alone, and twelve English ones whose answer is punctuation — `-`
   among Ed Sheeran's albums, `C++` beside `C#`. One real misspelling was
-  corrected, *Alvatraz* to Alcatraz, which its own anecdote had been spelling
+  corrected, _Alvatraz_ to Alcatraz, which its own anecdote had been spelling
   right underneath. The credits name both, as the licence asks
 - `[Server]` The builder was writing to `infrastructure/quiz/`, a directory the
   bank left some time ago, so a rebuild would have produced a second file and
@@ -3911,7 +3907,7 @@ one part.
   `--space-2xs` now rather than a new step: 4px is the scale's floor on purpose
 - **A player the host removes is told so.** They were removed from the roster and
   left holding an open socket: the phone kept receiving the room with a `youId`
-  nobody had any more, fell back to *You* and `0`, and simply stopped counting.
+  nobody had any more, fell back to _You_ and `0`, and simply stopped counting.
   It lands on the same screen a closed room does now, with its own line, and the
   seat it held is forgotten — the room still answers, so a reload holding the old
   claim would have walked straight back in
@@ -3988,7 +3984,7 @@ one part.
   A phone that joined after the lockouts counted as somebody who could still
   answer, so the round waited on the one person in the room who could not
 - `[Game]` **A phone that walks in on a round is told so**, on a screen of its
-  own: *Au prochain tour*, and its seat is safe. It used to be handed the round
+  own: _Au prochain tour_, and its seat is safe. It used to be handed the round
   in play — a field, four choices or a board of lies — every one of which the
   server was already refusing. The screen carries one idea and nothing else,
   because the scoreline above it already names the room and the round's own bar
@@ -4003,7 +3999,7 @@ one part.
   round has two phases, where "that is the real answer" sat under the vote a
   minute after it was written
 - `[Game]` A field the server refused can be used again. react-aria marks an
-  invalid field on the *form*, so a native submit of it silently did nothing —
+  invalid field on the _form_, so a native submit of it silently did nothing —
   the button looked alive and the press was swallowed. Typing now clears the
   refusal, which is what a form should do anyway
 - `[Game]` The front door's tagline no longer runs under the corner menu. A
@@ -4028,20 +4024,20 @@ one part.
 - `[Game]` A device stops collecting dead seats. Every room it had played kept a
   storage key of its own and nothing ever removed one — a browser used for a few
   evenings of testing held seventy-three, all but the last naming a code that had
-  stopped resolving, and disbanding a room *added* one on every phone in it,
+  stopped resolving, and disbanding a room _added_ one on every phone in it,
   because a phone told the room is gone runs no code to tidy up after it. Seats
   are one store now, pruned as each is claimed to the eight most recent and
   nothing claimed more than a day ago. The keys of the old shape are swept on the
   first launch that finds no store, and dropped rather than carried over: they
   are undated, so the eight worth keeping cannot be told from the rest
-- `[Game]` The host's roster keeps *Remove* on the row it belongs to. A row is a
+- `[Game]` The host's roster keeps _Remove_ on the row it belongs to. A row is a
   grid of three tracks and the roster puts four things in it, so the button fell
   to an implicit second row and into the 2ch rank track — where a button that
   will not wrap overflows on both sides, which is what put it left of the row's
   own left edge and hard against the edge of a phone. The fourth track is
   declared only where a fourth child exists: an empty one would still pay its
   gap on the three boards that are read rather than managed
-- `[Game]` *You are the only one who knows who is in the room* is the switch's
+- `[Game]` _You are the only one who knows who is in the room_ is the switch's
   own description now, not a line standing beside it. It began at the panel's
   edge — under the 52px track rather than under the label it explains — and
   nothing tied the two together for a screen reader. react-aria deprecated
@@ -4210,7 +4206,7 @@ one part.
   language was literal in the SPARQL (`FILTER(lang(?alias) = "fr")`) with no
   parameter anywhere in the module, which is what made the English half
   unreachable. Naming it was the larger half of the change — the function stops
-  being *French* anything — and the cache was the part that had to move with it:
+  being _French_ anything — and the cache was the part that had to move with it:
   one file per language rather than one keyed by both, or every English miss
   would read as a French entity nobody had asked for yet.
 
@@ -4238,7 +4234,7 @@ one part.
 
   Vite still calls the integration experimental, and `logDiagnostics` printed
   nothing where the Babel pipeline had reported two permanent `CompileError`s —
-  a difference in what the two *report*, since the code they emit is the same.
+  a difference in what the two _report_, since the code they emit is the same.
   `docs/component-shape.md` holds the comparison to re-run.
 
 - `[Game]` **`useEffectEvent` replaces the latest-ref pattern, in the three
@@ -4262,8 +4258,8 @@ one part.
   goes and the compiler owns them like everything else.
 
   **The fourth stays a ref, and finding out why cost a red journey.** An Effect
-  Event is *not* a stable identity: React 19.3's `updateEvent` returns a fresh
-  closure over a stable ref on every render. `reveal` is handed *out* of
+  Event is _not_ a stable identity: React 19.3's `updateEvent` returns a fresh
+  closure over a stable ref on every render. `reveal` is handed _out_ of
   `useSettledStatus` and sits in `send`'s `useCallback` dependencies, so
   converting it changed `send` every render and every screen holding `send` in a
   dependency array with it — `Maximum update depth exceeded`, the error boundary,
@@ -4299,18 +4295,18 @@ one part.
   through `taverla:volume`, so no journey has to remember.
 
 - `[Server]` **The riddle rubric OpenQuizzDB ships is banked at last**, and it
-  is the one place a *rule* finds `choiceOnly` rather than a reading.
-  QUADRIQUIZZ chains four clues under one letter — *Avec un G, il faut un
-  alcool, un lieu de départ, un engin et une couleur* — and carries a single
+  is the one place a _rule_ finds `choiceOnly` rather than a reading.
+  QUADRIQUIZZ chains four clues under one letter — _Avec un G, il faut un
+  alcool, un lieu de départ, un engin et une couleur_ — and carries a single
   answer for the four, which is why it was refused: four questions over one
   answer is a question no room can win. That answer is the **first** clue's on
   all 120 rows, and the other three clues are answered by the propositions
   standing beside it, so cutting the enumeration after the first clue leaves a
   whole question with its three decoys already written. **114 rows**, after one
-  drop and five prompts the dedup pass had already seen — *Avec un S, il faut un
-  pays* is banked once.
+  drop and five prompts the dedup pass had already seen — _Avec un S, il faut un
+  pays_ is banked once.
 
-  They are `choiceOnly` as a rubric rather than as a census: *un pays* with an S
+  They are `choiceOnly` as a rubric rather than as a census: _un pays_ with an S
   is Suisse, and Sénégal, and Suède, so only the four candidates make it one
   answer. The column is now read from two places at once — the source says so
   where a whole rubric is one shape, `choice-only-questions.json` stays the
@@ -4322,7 +4318,7 @@ one part.
   bank against the English half's 14.7%** — the objection that this would change
   the character of a bank playable typed, measured. Two rows are marked adult by
   repair because the rubric is not the adult one and they are, and one is
-  dropped: a *balai* is not a *loup*, and the three clues cut away were the ones
+  dropped: a _balai_ is not a _loup_, and the three clues cut away were the ones
   whose words fitted.
 
 - `[Server]` **Every banked question says whether the room has heard of what it
@@ -4338,12 +4334,12 @@ one part.
   The threshold is two thousand views, and it was measured rather than chosen.
   The draw takes a category before it takes a question, so a level is only as
   good as the category it thins most: cut the French bank into thirds by traffic
-  and *difficile* holds five history questions, which a twenty-round evening
+  and _difficile_ holds five history questions, which a twenty-round evening
   draws three of. One threshold at two thousand leaves the smallest category
-  fifty-three. Zero views is read as *not measured* rather than as obscurity —
-  three hundred OpenQuizzDB rows name an article that does not exist, *Noeud
-  double* for what is filed under *Nœud*, and a rule reading that as a low score
-  put *who directed Apocalypse Now* in the hardest bucket. See
+  fifty-three. Zero views is read as _not measured_ rather than as obscurity —
+  three hundred OpenQuizzDB rows name an article that does not exist, _Noeud
+  double_ for what is filed under _Nœud_, and a rule reading that as a low score
+  put _who directed Apocalypse Now_ in the hardest bucket. See
   [`docs/plans/21-well-known-questions.md`](docs/plans/21-well-known-questions.md).
 
 - `[Game]` **Every component carries `React.FC<Props>`.** The shape was already
@@ -4403,7 +4399,7 @@ one part.
   that cannot satisfy them. Under pnpm 12 it does not: a fresh install of this
   workspace with `engines.node` set to `>=99.0.0` completed in 12.7 seconds
   without an error or a warning, where pnpm 10 refused it outright. pnpm 12's
-  `engineStrict` governs the engines a *dependency* declares — the release notes
+  `engineStrict` governs the engines a _dependency_ declares — the release notes
   spend it reaching further into optional subtrees — and dropped the check on
   the root project's own. So `.npmrc` is deleted, it held that key and nothing
   else, and the comment above `engineStrict` says what the setting now does
@@ -4411,7 +4407,6 @@ one part.
   `packageManager` pin, which 12 turned into a hard `ERR_PNPM_BAD_PM_VERSION`.
   Nothing refuses a wrong Node any more; CI, Render and `.nvmrc` each pin 24 on
   their own.
-
 
 - `[Shared]` **The i18n engine is one library again, shared with the project
   it was adapted from.** It moves to `packages/core/src/i18n/vendor/` as four files
@@ -4441,14 +4436,14 @@ one part.
   Four capabilities were added on top, none of them used here yet — the library
   is meant to be reusable, and a gap that is cheap to close now is expensive to
   discover in another project later: `{x:relative}` (`Intl.RelativeTimeFormat`,
-  unit declared with the message, so `-1` reads *hier*), `{x:displayname}`
+  unit declared with the message, so `-1` reads _hier_), `{x:displayname}`
   (`Intl.DisplayNames`), `i18n.compare(locale, options?)` (`Intl.Collator`, so a
   sorted list puts `Émile` between `Adrien` and `Zoé` rather than after both),
   and `translate.rich(key, values)`, which cuts a message at the spans it marks —
   `Lis les <link>conditions</link>` — and hands each to the function named after
   it. **`rich` names no framework**: a span function returns whatever the caller
   wants and the return type is inferred from it. One defect surfaced while
-  testing that: negotiation only walked *up* a tag, so an app shipping `fr-FR`
+  testing that: negotiation only walked _up_ a tag, so an app shipping `fr-FR`
   and `fr-CA` and no plain `fr` answered English to a browser asking for `fr`.
   The library then lived in a repository of its own, from which both copies
   were taken verbatim — see the toolkit entry above, which is where it moved
@@ -4458,7 +4453,7 @@ one part.
   rather than a dictionary — `() => import('./dictionary-de')` — and
   `translator(locale)` stays synchronous through it, answering from the default
   locale until the dictionary lands; `load` dedupes concurrent calls and forgets
-  a failed one, so asking again retries. Placeholders are compared *across*
+  a failed one, so asking again retries. Placeholders are compared _across_
   locales rather than checked within one: a renamed, dropped, invented or
   retyped placeholder, and a dropped `<link>` span, each fail to compile —
   behind a loader too, before it is ever called. And a placeholder inside a
@@ -4502,7 +4497,7 @@ one part.
   The two errors that stay are `round-audio.ts` mutating a value the compiler
   will not let it, and have nothing to do with Babel.
 
-  The note in `docs/component-shape.md` said *most of the app* and was wrong by
+  The note in `docs/component-shape.md` said _most of the app_ and was wrong by
   two orders of magnitude, which is part of why nobody went looking; it now
   carries the measurement and how to repeat it. And the pin stops being a
   sentence: `vite.config.ts` throws on any `@babel/core` outside 7.x, so the
@@ -4539,7 +4534,7 @@ one part.
   version bump touches. It opened on `pnpm self-update`, which refuses outright
   under Corepack — `ERR_PNPM_CANT_SELF_UPDATE_IN_COREPACK` — so the `&&` behind
   it meant the upgrade the script exists for never happened. The command was
-  wrong, not the intent: pnpm *should* move with the rest, so
+  wrong, not the intent: pnpm _should_ move with the rest, so
   `corepack use pnpm@latest` is what does it, which is also what writes the
   `packageManager` field and its hash.
 
@@ -4590,8 +4585,8 @@ one part.
   matching. `PathParam` answers `never`, and the name stops compiling.
 
 - `[Shared]` **`Standing.chasing` is gone**, with `player.standing.behind` in
-  both locales and the test that pinned its tie rule. It answered *who is one
-  row above you and by how much*, on a phone that was not allowed the board —
+  both locales and the test that pinned its tie rule. It answered _who is one
+  row above you and by how much_, on a phone that was not allowed the board —
   and the board now says it by name, by points and for everybody. What is left
   of `standingOf` is the place and the size of the room, which is the pair the
   persistent strip carries at every phase; its doc said the opposite and said it
@@ -4654,8 +4649,8 @@ one part.
   including the branch that answers nothing: while the floor is held the only
   decision left is the verdict, and the stage owns that
 - **Line count turned out to be a poor proxy for a component worth cutting.**
-  The two signals that predicted one here were an *asynchronous I/O routine* and
-  a *decision that deserves a test* — recorded in `react-components.md`, along
+  The two signals that predicted one here were an _asynchronous I/O routine_ and
+  a _decision that deserves a test_ — recorded in `react-components.md`, along
   with the components the audit deliberately left long. `Stage` is 111 lines of
   phase branches that delegate to a panel each, and a file per branch to write
   `<RevealPanel />` is worse than the switch
@@ -4663,7 +4658,7 @@ one part.
   `@taverla/core/room/settings-summary`, and it has a test. It is not UI: it
   decides which of four fields a room has anything to say about — the game only
   when the shelf can name it, the source only for a blind test, the answer mode
-  only where more than one is offered — and it reads the *draft* source rather
+  only where more than one is offered — and it reads the _draft_ source rather
   than the committed one, because the picker commits on the launch and a summary
   that waited would contradict the control above it
 - `isShelvedGame` is `@taverla/core/room/shelved-game`. It sat beside the
@@ -4682,13 +4677,13 @@ one part.
   the cheap answer and was rejected: the lobby summary and every phone would
   have named a game nobody chose, and "still deciding" could not be expressed at
   all. The nullable costs a null case at some fifteen sites and buys what this
-  repo argues for everywhere else — the guard on `host.startRound` *is* the
+  repo argues for everywhere else — the guard on `host.startRound` _is_ the
   narrowing that makes every downstream call type-check, exactly as
   `registerBuzz`'s guard is what produces the answer window.
 
   Three of those sites turned out to be reading the wrong field: `applyVerdict`,
   `timeOutBuzz` and the lockout button ask `round.content` which game they are
-  in, because that is the game the round was *opened* on. `settings.game` is
+  in, because that is the game the round was _opened_ on. `settings.game` is
   what the room is set to next
 - `[Shared]` `no_game_chosen` is the refusal a room with no game answers a
   launch with. Its own code rather than `wrong_phase`, because the phase is
@@ -4704,7 +4699,7 @@ one part.
   test. `yourVerdict` carries the whole `Verdict` union where it carried the
   `halves` arm alone. The reasoning that narrowed it — a game judged on one
   claim has no half to hold — was true and beside the point: a claim the
-  *server* judges in silence needs the same feedback a pair of halves does, or a
+  _server_ judges in silence needs the same feedback a pair of halves does, or a
   player who is already right keeps typing and the refusal they finally get
   reads as a lockout rather than as a win
 - `[Shared]` A quiz round's answer becomes public as `revealedQuestion`,
@@ -4716,7 +4711,7 @@ one part.
   `kind`, beside `settings.game` and for the same reason: which game the room is
   playing and how it is answered are independent choices, and each owns settings
   the other cannot read. `answerWindowMs` moves into the buzzer arm, which makes
-  `registerBuzz`'s guard against a hand-written buzz *be* the narrowing that
+  `registerBuzz`'s guard against a hand-written buzz _be_ the narrowing that
   produces the window — a mode where nobody buzzes can no longer reach it. Built
   on one field rather than the two the threshold asked for, because the field was
   in the wrong place, and that is a different fault from a missing abstraction
@@ -4728,7 +4723,7 @@ one part.
   the current game is not judged in, because a host socket is as forgeable as a
   player's. `yourVerdict` stays the `halves` arm alone: banking is what having
   two of them means, and a game judged on one claim has no half to hold
-- `[Shared]` A room is opened *for* a game: `POST /api/rooms` carries which one,
+- `[Shared]` A room is opened _for_ a game: `POST /api/rooms` carries which one,
   and the host lands on a console already set up. The shelf already had a door
   per game, so choosing again in the lobby was asking a question already
   answered — the picker there is for changing your mind. What a room may be
@@ -4739,7 +4734,7 @@ one part.
   `PROTOCOL_VERSION` goes to 4. `RoomSettings` and `RoundView` were the blind
   test wearing the room's name: what every game needs — answer mode, round
   count, countdown, auto-advance, when the round opens, the buzz, the lockout,
-  the awards — stays on the room, and what the game *is asking* moves behind
+  the awards — stays on the room, and what the game _is asking_ moves behind
   `settings.game` and `round.content`, unions discriminated on `kind`. The
   host's secret half moves the same way, into one `currentContent` that keeps
   the reason `currentTrack` and `currentAudioUrl` were ever two fields: a seated
@@ -4747,7 +4742,7 @@ one part.
   game exists to measure it against, which is the only moment the shared shape
   is knowable — see `docs/game-catalogue.md`
 - `[Shared]` A typed answer is one `guess` where it was a `title` and an
-  `artist`. Two fields asked a player to know *which* half they were holding
+  `artist`. Two fields asked a player to know _which_ half they were holding
   before they could say it, and a typed round is won by firing the moment
   something surfaces
 
@@ -4768,7 +4763,7 @@ one part.
   in the lobby's fold, so the moment a game started they became unreachable — a
   host who wanted a longer countdown had to end the evening to get one. The fold
   moves to the host's footer, beside the volume, in every phase, and
-  `host.updateSettings` lands on the round *after* the one on screen. Three
+  `host.updateSettings` lands on the round _after_ the one on screen. Three
   settings cannot wait to be read and the server refuses them while a round is
   in play: `answerMode`, because a simultaneous round is scored on the way out
   and a typed round switched to `choice` would pay a typed answer at a pick's
@@ -4782,7 +4777,7 @@ one part.
   thumb attached to an empty head could hold a whole room until the host
   intervened. `answerWindowMs` is how long the floor is held before the server
   takes it back, and `null` is the same feature read from the other end: the
-  screens count *up* from the buzz and the host decides when to cut in. Running
+  screens count _up_ from the buzz and the host decides when to cut in. Running
   out is the same outcome as answering wrong — no points, locked out, the round
   resumes — because that is what taking the floor and saying nothing cost
   everyone else, and because a pass with no lockout lets the same thumb take it
@@ -4793,7 +4788,7 @@ one part.
   it matches is banked — so "jean jacques goldman on ira" takes both and
   "daniel balavoine on ira" takes the title and still owes the artist. The pair
   pays 3 however it was reached, and the speed bonus ranks on the first guess
-  that *banked* something rather than on arrival, or being quickly wrong would
+  that _banked_ something rather than on arrival, or being quickly wrong would
   buy a place in the queue. A pick stays one shot: four candidates with retries
   is the answer with extra steps. `yourVerdict` carries what the reader holds,
   scoped to them — without it a second guess is a guess at what to guess at, and
@@ -4893,7 +4888,7 @@ one part.
   being quickly wrong wins nothing. The reveal then shows what everybody said,
   which is most of the fun of the round being over
 - `[Shared]` The anti-cheat rule is restated rather than relaxed for choice
-  mode: a player is handed four candidates and one of them *is* the answer,
+  mode: a player is handed four candidates and one of them _is_ the answer,
   which is the game. Which one lives only in the server's round and reaches no
   frame — asserted over a whole round's transcript, and again at the codec
 - `[Game]` Two front doors. `/` is Taverla's — it names the product and shows a
@@ -4955,7 +4950,7 @@ one part.
   producing the answer from nothing is not the act of recognising it among four
 - `[Server]` A quiz typed answer is matched against the whole of what was typed,
   which is where this game parts company with the blind test's matcher on
-  purpose. Searching *inside* a line is what makes one field honest when it
+  purpose. Searching _inside_ a line is what makes one field honest when it
   holds two claims; a question holds one, and containment would pay a player who
   hedged — "trois ou quatre" contains the answer to how many languages
   Switzerland has
@@ -4978,7 +4973,7 @@ one part.
   react-aria collapses with `hidden="until-found"` — `content-visibility`, not
   `display: none` — so the box survives to be animated, and `allow-discrete`
   holds the hiding back until the row has finished closing
-- `[Shared]` The answer matcher looks for each half *inside* what was typed
+- `[Shared]` The answer matcher looks for each half _inside_ what was typed
   instead of only as the whole of it. It compared whole strings, so "jean
   jacques goldman on ira" found neither half — which is exactly what a room
   types into one field. The search is over runs of **whole words**, and that is
@@ -5032,7 +5027,7 @@ one part.
   ribbon down the middle, tall enough to scroll, with the second way in below
   the fold on the very screen the host uses to make a room
 - `[Game]` Starting the game is what commits the chosen music. Confirming a
-  playlist and *then* launching it was two decisions where the host made one,
+  playlist and _then_ launching it was two decisions where the host made one,
   and it was the only control in the lobby that did not apply on selection
 - `[Game]` Inputs have a material of their own — paper behind the same ink edge
   every control carries — instead of the bare `--cut` block that belongs to the
@@ -5099,7 +5094,7 @@ one part.
   address under a glyph says where, not that scanning is the way in. Both
   captions existed in the dictionary and neither was rendered
 - `[Game]` The reveal reads in the order it is written. "It was" opens a
-  sentence, and it sat *under* the title it opens on both the host screen and
+  sentence, and it sat _under_ the title it opens on both the host screen and
   the phone, so the answer arrived before the words introducing it
 - `[Game]` A room code the alphabet cannot contain is refused by naming the
   characters — `O`, `I`, `S`, `Z`, `0`, `1`, `2` and `5` are all excluded, and
@@ -5147,7 +5142,7 @@ one part.
   answer honestly instead of borrowing a code that meant something else, and the
   protocol rule said it should shrink to nothing as the stages landed
 - Everything Playwright owns lives in `e2e/`. The config moves in beside the
-  specs it configures, and the two files that are *not* tests move under
+  specs it configures, and the two files that are _not_ tests move under
   `e2e/support/` — `deezer-stub.ts` most of all, which is a fake upstream
   service rather than a spec and sat between two of them in an alphabetical
   listing. `ls e2e` now answers "which journeys exist?" and nothing else. The
@@ -5167,7 +5162,7 @@ one part.
   through `defineTranslation`, while `{n:number}`, `{at:date}` and `{items:list}`
   only configure a formatter `Intl` already defaults correctly, so a bare string
   is the whole message. There is no empty options object anywhere. A count
-  declares `plural` the moment *any* locale inflects around it, which is why
+  declares `plural` the moment _any_ locale inflects around it, which is why
   English writes only `other` where French writes both. Adapted from Stargazer's
   lib with two deliberate departures: `defineTranslations` refuses a bare string
   that declares a plural — upstream it compiles, throws at substitution, is
@@ -5181,7 +5176,7 @@ one part.
   branch cannot also be a leaf — `host.answerWindow.label`,
   `host.roundCount.summary` and `preferences.theme.label`. When a group needs a
   name of its own, that name is a child of it
-- `[Game]` The strings a *mode* owns left the game that happened to ship first.
+- `[Game]` The strings a _mode_ owns left the game that happened to ship first.
   `blindtest.buzz.*` is `buzz.*`, `blindtest.round` is `round.*`, and
   `blindtest.answerMode.*` belongs to the host console. The namespace rule was
   already right and simply had nothing to answer against; what stays inside a

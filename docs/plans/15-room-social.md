@@ -2,7 +2,7 @@
 
 **Both evaluated, both declined.** Neither was built; this file is why, so the
 next person who has the idea reads the reasoning instead of rediscovering it.
-Each ends with the smaller thing that *is* worth building, because in both cases
+Each ends with the smaller thing that _is_ worth building, because in both cases
 there is one.
 
 ## A chat in the room — no
@@ -39,7 +39,7 @@ the weight moved onto the other three:
    the same exposure.
 4. **It is the one shape that breaks the snapshot rule.** State travels as a
    whole snapshot precisely because a room is small and changes at human speed. A
-   chat is a *log*: it grows without bound, it needs ordering and history, and a
+   chat is a _log_: it grows without bound, it needs ordering and history, and a
    client that reconnects needs what it missed. So it is not a field on the room
    view — it is a second transport discipline beside the one the protocol has.
 
@@ -82,7 +82,7 @@ the two that actually decide it.
    of this one.
 3. **Griefing is free.** 24 seats and no authentication, so a listed room can be
    filled or nickname-spammed by anyone who reads the list. Today the only
-   defence is that somebody has to *tell* you the code: 28⁴ is 614 656
+   defence is that somebody has to _tell_ you the code: 28⁴ is 614 656
    combinations, thin protection on its own, and a directory removes even that.
 4. **Rooms do not survive a restart** and live in one process. A public directory
    promises a permanence the server does not have and was deliberately not given.
@@ -101,7 +101,7 @@ this, and they fit together:
   QR code still on screen walks into a game in progress and appears on the
   scoreboard.
 - **`room_closed` already exists** in `error-code.ts` and in both dictionaries —
-  *"L'hôte a fermé le salon."* — and **nothing in the server sends it**. The
+  _"L'hôte a fermé le salon."_ — and **nothing in the server sends it**. The
   vocabulary for this is built and dangling.
 
 So the useful half of "private" is a host toggle that refuses new players,

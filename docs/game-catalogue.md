@@ -14,18 +14,18 @@ re-reading — which seams are open and which were deliberately left welded.
 Ignore the word "blindtest" in the package names for a moment and the bootstrap
 reads as a generic party-game platform:
 
-| Piece | What it is, generically |
-|---|---|
-| Room + 4-character code | A joinable session with a code humans can read aloud |
-| Host / player socket roles | One screen running the room, N players |
-| Session id in `localStorage` | A seat that survives a screen lock |
-| Role-scoped message unions | **Hidden information, enforced by the compiler** |
-| `encodeChecked` | The runtime half of that: Zod strips what leaked |
-| Server-stamped arrival order | **Who was first**, unforgeable |
-| Clock handshake | Countdowns that land together on every device |
-| Whole-snapshot broadcast | No client ever holds half a state |
-| Roster, scores, connection state | The lobby every game needs |
-| i18n dictionaries, theme | Shell-level, already namespaced |
+| Piece                            | What it is, generically                              |
+| -------------------------------- | ---------------------------------------------------- |
+| Room + 4-character code          | A joinable session with a code humans can read aloud |
+| Host / player socket roles       | One screen running the room, N players               |
+| Session id in `localStorage`     | A seat that survives a screen lock                   |
+| Role-scoped message unions       | **Hidden information, enforced by the compiler**     |
+| `encodeChecked`                  | The runtime half of that: Zod strips what leaked     |
+| Server-stamped arrival order     | **Who was first**, unforgeable                       |
+| Clock handshake                  | Countdowns that land together on every device        |
+| Whole-snapshot broadcast         | No client ever holds half a state                    |
+| Roster, scores, connection state | The lobby every game needs                           |
+| i18n dictionaries, theme         | Shell-level, already namespaced                      |
 
 Two of those are worth more than the rest. **Role-scoped views** are the
 mechanism behind every hidden-information game, not a blind-test detail — a
@@ -38,7 +38,7 @@ Almost every party game worth building is one of these. The shape, not the
 theme, is what costs work.
 
 **1. Buzz-first.** A stimulus on the console, the first press wins, the host
-judges. *This is the shape the current engine already implements.* A second game
+judges. _This is the shape the current engine already implements._ A second game
 of this shape is close to free.
 
 **2. Submit-then-vote.** Every player types something, the screen reveals the
@@ -66,48 +66,48 @@ team on the player model and a turn owner.
 
 ## The catalogue
 
-| Game | Shape | What it needs that does not exist | Appetite |
-|---|---|---|---|
-| **Blind test** | Buzz-first | — | **shipped** |
-| **Buzzer** — the room brings its own content | Buzz-first | — | **shipped** ([stage 11](plans/11-buzzer.md)) |
-| **Quiz / trivia** | Buzz-first | — | **shipped** ([12](plans/12-trivia.md), [14](plans/14-question-languages.md)) |
-| **Lyrics blackout** — the line is missing, sing it | Buzz-first | Same as the blind test, different reveal | a session |
-| **Reflex race** — first to press when the screen flips | Buzz-first | It needed one thing after all: a fair stimulus | **shipped** ([stage 18](plans/18-reflex-race.md)) |
-| **Inner clock** — count in your head, press once | Buzz-first | Nothing: a press stamped on arrival, paid by its gap to the target | **shipped** ([stage 35](plans/35-inner-clock.md)) |
-| **Matchsticks** — one stick to move | Everyone at once, or buzz-first | A mode of its own, `move`, judged by the server against every one-stick move; on the buzzer the host judges | **shipped** ([stage 36](plans/36-matchsticks.md)) |
-| **Timeline** (*Before & after* on screen: *Timeline* is a published card game's title) — five dated events, put them in order | Everyone at once | An answer that is an order: a mode of its own, `order`, and a verdict counting the pairs swapped | **shipped** ([stage 38](plans/38-timeline.md)) |
-| **Black square** (Case noire) — a theme, three to nine hidden answers, one black word | Everyone at once, or spoken with a keeper | Many guesses per round, a hit banked without closing it; spoken, the one seat ever sent an answer, safe because its team is not playing | typed on the shelf, spoken owed ([stage 45](plans/45-guess-nine.md)) |
-| **Petit Bac** — a letter, six categories, type fast | Submit-then-vote | Scoring by uniqueness, a room vote per category | rules landed, server and screens owed ([stage 50](plans/50-petit-bac.md)) |
-| **Just One** — everyone writes one clue, duplicates cancel | Submit-then-vote | A clue-collision pass | a session |
-| **Le curseur** (Wavelength) — a spectrum, a secret target, one clue | Submit-then-vote | A shared slider; the target is hidden from all but one | two sessions |
-| **Undercover** — same secret word for everyone but one | Hidden role | Per-player payloads, a talk phase, a vote | two sessions |
-| **Loup-garou** — the full night/day machine | Hidden role | Phase machine, timers, a narrator screen | the biggest on this list |
-| **Deux vérités, un mensonge** | Hidden role | Light: submit three, everyone votes | a session |
-| **Qui est le plus susceptible de…** — stage [56](plans/56-most-likely.md) | Submit-then-vote | Voting for a *player* rather than an answer: a `player.answer` arm naming a seat, mode `vote`, paid at the close by the room's choice since a grade at answer time cannot know the majority. Counts are revealed, never who voted for whom | shelved |
-| **Dessine** (Skribbl) — one draws, the others guess | Continuous stream | A stroke channel, a canvas, a word list | two sessions, and read the warning |
-| **Time's Up** — three rounds, same cards, less and less speech | Team relay | Teams, turn owner, per-turn timer | two sessions |
-| **Bingo de soirée** — a grid of things that will happen tonight | Submit-then-vote | Almost nothing; grids and presses | an evening |
-| **Colour memory** — a colour shown a few seconds, then rebuilt on a picker — stage [54](plans/54-swatch.md) | Everyone at once | A mode of its own, `colour`, paid by perceptual distance (OKLab) computed in core; the picker is react-aria's `ColorArea` + `ColorSlider`, no new library. Owes a rule: the colour *is* sent to every screen before it hides, so it is shown on the wall when there is one, and a phone keeping it is no worse than a photo of it. A second rubric, *a character's colour* (Shrek, the Pink Panther), is a text-only bank of name → colour, no images and so no rights, but every row's colour is an argument and is set by hand | a session for the game, a second for the character bank |
-| **Le juste chiffre** — a number to estimate — stage [58](plans/58-estimate.md) | Everyone at once | A mode of its own, `number`, paid by place on the ratio to the truth; a quantity bank built from Wikidata | served |
-| **Plus ou moins** — one famous pair a round, which is higher — stage [59](plans/59-higher-lower.md) | Everyone at once | Nothing but 58's bank, paired within a family; one pick a round, a mode of its own, `pairs` | served; screens owed |
-| **Silhouettes** — a country's outline — stage [57](plans/57-silhouettes.md) | Buzz-first, a quiz rubric | Nothing: a third rubric beside flags and capitals, outlines drawn once from the atlas topology | **shipped** |
+| Game                                                                                                                          | Shape                                     | What it needs that does not exist                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Appetite                                                                     |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| **Blind test**                                                                                                                | Buzz-first                                | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | **shipped**                                                                  |
+| **Buzzer** — the room brings its own content                                                                                  | Buzz-first                                | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | **shipped** ([stage 11](plans/11-buzzer.md))                                 |
+| **Quiz / trivia**                                                                                                             | Buzz-first                                | —                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | **shipped** ([12](plans/12-trivia.md), [14](plans/14-question-languages.md)) |
+| **Lyrics blackout** — the line is missing, sing it                                                                            | Buzz-first                                | Same as the blind test, different reveal                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | a session                                                                    |
+| **Reflex race** — first to press when the screen flips                                                                        | Buzz-first                                | It needed one thing after all: a fair stimulus                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   | **shipped** ([stage 18](plans/18-reflex-race.md))                            |
+| **Inner clock** — count in your head, press once                                                                              | Buzz-first                                | Nothing: a press stamped on arrival, paid by its gap to the target                                                                                                                                                                                                                                                                                                                                                                                                                                                               | **shipped** ([stage 35](plans/35-inner-clock.md))                            |
+| **Matchsticks** — one stick to move                                                                                           | Everyone at once, or buzz-first           | A mode of its own, `move`, judged by the server against every one-stick move; on the buzzer the host judges                                                                                                                                                                                                                                                                                                                                                                                                                      | **shipped** ([stage 36](plans/36-matchsticks.md))                            |
+| **Timeline** (_Before & after_ on screen: _Timeline_ is a published card game's title) — five dated events, put them in order | Everyone at once                          | An answer that is an order: a mode of its own, `order`, and a verdict counting the pairs swapped                                                                                                                                                                                                                                                                                                                                                                                                                                 | **shipped** ([stage 38](plans/38-timeline.md))                               |
+| **Black square** (Case noire) — a theme, three to nine hidden answers, one black word                                         | Everyone at once, or spoken with a keeper | Many guesses per round, a hit banked without closing it; spoken, the one seat ever sent an answer, safe because its team is not playing                                                                                                                                                                                                                                                                                                                                                                                          | typed on the shelf, spoken owed ([stage 45](plans/45-guess-nine.md))         |
+| **Petit Bac** — a letter, six categories, type fast                                                                           | Submit-then-vote                          | Scoring by uniqueness, a room vote per category                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | rules landed, server and screens owed ([stage 50](plans/50-petit-bac.md))    |
+| **Just One** — everyone writes one clue, duplicates cancel                                                                    | Submit-then-vote                          | A clue-collision pass                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | a session                                                                    |
+| **Le curseur** (Wavelength) — a spectrum, a secret target, one clue                                                           | Submit-then-vote                          | A shared slider; the target is hidden from all but one                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | two sessions                                                                 |
+| **Undercover** — same secret word for everyone but one                                                                        | Hidden role                               | Per-player payloads, a talk phase, a vote                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | two sessions                                                                 |
+| **Loup-garou** — the full night/day machine                                                                                   | Hidden role                               | Phase machine, timers, a narrator screen                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | the biggest on this list                                                     |
+| **Deux vérités, un mensonge**                                                                                                 | Hidden role                               | Light: submit three, everyone votes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | a session                                                                    |
+| **Qui est le plus susceptible de…** — stage [56](plans/56-most-likely.md)                                                     | Submit-then-vote                          | Voting for a _player_ rather than an answer: a `player.answer` arm naming a seat, mode `vote`, paid at the close by the room's choice since a grade at answer time cannot know the majority. Counts are revealed, never who voted for whom                                                                                                                                                                                                                                                                                       | shelved                                                                      |
+| **Dessine** (Skribbl) — one draws, the others guess                                                                           | Continuous stream                         | A stroke channel, a canvas, a word list                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | two sessions, and read the warning                                           |
+| **Time's Up** — three rounds, same cards, less and less speech                                                                | Team relay                                | Teams, turn owner, per-turn timer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | two sessions                                                                 |
+| **Bingo de soirée** — a grid of things that will happen tonight                                                               | Submit-then-vote                          | Almost nothing; grids and presses                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | an evening                                                                   |
+| **Colour memory** — a colour shown a few seconds, then rebuilt on a picker — stage [54](plans/54-swatch.md)                   | Everyone at once                          | A mode of its own, `colour`, paid by perceptual distance (OKLab) computed in core; the picker is react-aria's `ColorArea` + `ColorSlider`, no new library. Owes a rule: the colour _is_ sent to every screen before it hides, so it is shown on the wall when there is one, and a phone keeping it is no worse than a photo of it. A second rubric, _a character's colour_ (Shrek, the Pink Panther), is a text-only bank of name → colour, no images and so no rights, but every row's colour is an argument and is set by hand | a session for the game, a second for the character bank                      |
+| **Le juste chiffre** — a number to estimate — stage [58](plans/58-estimate.md)                                                | Everyone at once                          | A mode of its own, `number`, paid by place on the ratio to the truth; a quantity bank built from Wikidata                                                                                                                                                                                                                                                                                                                                                                                                                        | served                                                                       |
+| **Plus ou moins** — one famous pair a round, which is higher — stage [59](plans/59-higher-lower.md)                           | Everyone at once                          | Nothing but 58's bank, paired within a family; one pick a round, a mode of its own, `pairs`                                                                                                                                                                                                                                                                                                                                                                                                                                      | served; screens owed                                                         |
+| **Silhouettes** — a country's outline — stage [57](plans/57-silhouettes.md)                                                   | Buzz-first, a quiz rubric                 | Nothing: a third rubric beside flags and capitals, outlines drawn once from the atlas topology                                                                                                                                                                                                                                                                                                                                                                                                                                   | **shipped**                                                                  |
 
 Submit-then-vote is the shape that unlocks the most: six games share it. Their
 appetites assume the engine exists, so the first of them also pays for it, and
 every one after is a session rather than two plus an engine.
 
 **Reflex race was costed as the cheapest, and the estimate was wrong in an
-instructive way.** "Almost nothing; it *is* the buzz" was true of everything
+instructive way.** "Almost nothing; it _is_ the buzz" was true of everything
 this table measures — no catalogue, no bank, no new phase, no new shape. What it
-missed is that a buzz answers *who arrived first* and a reflex race asks *who
-reacted fastest*, and the gap between those two is the room's Wi-Fi. Costing it
+missed is that a buzz answers _who arrived first_ and a reflex race asks _who
+reacted fastest_, and the gap between those two is the room's Wi-Fi. Costing it
 by what it reuses could not see that, because the thing it needed was not a
 feature but a **guarantee**: the stimulus has to happen on each device against
 its own clock estimate, defended by a floor rather than by secrecy. That is now
 the fifth entry in `docs/realtime-protocol.md`, and the next reflex-shaped game
 inherits it.
 
-The lesson for the rest of this table: this column costs *parts*, and a game can
+The lesson for the rest of this table: this column costs _parts_, and a game can
 still owe a rule. Ask what a game **measures** before trusting its appetite.
 
 ## The quiz, costed — and it needs no database
@@ -132,7 +132,7 @@ also why a round, not the settings, says whether it asks for the film. One
 strand is drawn whole; two or more are sampled, a few decade playlists and a few
 composers, so a mix costs Deezer what one strand does. It replaced four arms
 (`all`, `chart`, `decade`, `film`, protocol 67): `all` had been the strip with
-nothing pressed, and nobody reads an empty strip as *everything*, so the mix
+nothing pressed, and nobody reads an empty strip as _everything_, so the mix
 became what is ticked. A playlist and a search stay arms of their own, because a
 list the host names is not a catalogue and is never mixed into one. The old arms
 still parse, as the strands they drew, in every stored setup and in a room
@@ -161,16 +161,16 @@ artist, and the film strand hands it a film and a composer — a score cue is ca
 Chase`, which is the one thing at the table nobody can produce. So
 `TrackIdentity` gained `film`, `null` on every other track, and it is the film the
 half is measured against wherever it is set. The verdict kept its two field
-names on purpose: what each half *is* is a property of the track, and renaming
+names on purpose: what each half _is_ is a property of the track, and renaming
 the wire contract to fix a word on one screen would have been paying the whole
-protocol for a label. The screens say *film* and *compositeur*; the schema still
+protocol for a label. The screens say _film_ and _compositeur_; the schema still
 says `titleCorrect`.
 
 It is also the first source to **overrule a room setting** — when it is drawn
 alone. Deezer's rank scores
 the recording and a score cue carries almost none of a single's, so the whole
 composer table holds 135 tracks above `wellKnown`'s floor against 1 155 above
-this strand's own — and a difficulty control whose *hard* position leaves 75 tracks
+this strand's own — and a difficulty control whose _hard_ position leaves 75 tracks
 is a control whose room never learns why. The strip is ruled and says so, read
 off the **draft** rather than the room, or it would go on claiming to work for a
 whole round after the composers were chosen. In a mix the control works and
@@ -182,7 +182,7 @@ follows the same split: title and artist, the film, or — a mix holding scores
 So `QuestionSource: hosted | bank | api`, and each arm is a separate size:
 
 **1. `hosted` — the host asks out loud. An evening.** The server serves a round
-with *no content at all*: a countdown, the buzzers open, the host reads a
+with _no content at all_: a countdown, the buzzers open, the host reads a
 question from a book, a website or their own head, the first press wins and the
 host judges it. This is the existing buzzer round minus the track, and it is
 mostly deletions — an optional round content, a host panel that says who buzzed
@@ -191,7 +191,7 @@ title-and-artist.
 
 **Since promoted out of this list, built, and named `buzzer`.** Filing it under
 `QuestionSource` was the mistake of assuming the content had to be a question.
-A server that serves nothing is a buzzer system for *any* animation — a charade,
+A server that serves nothing is a buzzer system for _any_ animation — a charade,
 a "name five", a lesson, a drinking game — and calling it trivia would hang a
 content pipeline off something whose whole value is not having one. It shipped
 as [stage 11](plans/11-buzzer.md), ahead of the quiz, and it was as nearly free
@@ -211,7 +211,7 @@ they exist.
 hundred French questions in one JSON asset, drawn without repeats exactly as the
 track pool is, with categories where the genres are. Honest limits, both fine:
 the pool is finite so a heavy evening will repeat, and adding questions means a
-deploy. It is the arm that makes the quiz a *game* rather than a buzzer.
+deploy. It is the arm that makes the quiz a _game_ rather than a buzzer.
 
 **3. `api` — a public trivia service. A session.** The same shape as
 `deezer-client.ts`: one adapter, one boundary module, everything above it
@@ -229,7 +229,7 @@ what decides whether choice mode is free or unbuildable.
 ### What it would cost that is genuinely new
 
 Nothing structural for `hosted`. For `bank`, one core rule (drawing without
-repeats, which already exists for tracks and should be *shared* rather than
+repeats, which already exists for tracks and should be _shared_ rather than
 copied) and one adapter. The real work in both is the seam this file already
 names: `RoomPhase` is the blind test's life cycle wearing the room's name, and
 a second buzz-first game is the moment that costs an hour to fix and never
@@ -237,7 +237,7 @@ less.
 
 **The answer modes are more reusable than the table above admits.** Four
 choices and a typed answer were built as blind-test modes, and a quiz wants both
-— a multiple-choice question *is* the choice mode with a different pool. When
+— a multiple-choice question _is_ the choice mode with a different pool. When
 the quiz lands, the mode machinery moves to the shell and the blind test keeps
 only what is about tracks.
 
@@ -249,11 +249,11 @@ audio, the countdown, the reveal and the scoreboard are identical, and only who
 acts, when the round ends and who decides differ. They live behind
 `RoomSettings.answerMode`, and they are stage 09.
 
-The distinction is worth holding. *Reflex race* and *Quiz* really are separate
+The distinction is worth holding. _Reflex race_ and _Quiz_ really are separate
 games of the same shape, because they have no track. A blind test answered by
 pressing one of four covers is still a blind test.
 
-The same test settled a rival's *where is that line from?* round: a line
+The same test settled a rival's _where is that line from?_ round: a line
 from a film is a quiz question whose answer is the work, so it shipped as a
 ninth chip, `quotes`, and not as a sixth game ([stage 32](plans/32-quotes.md)).
 What would make it a game is a mechanic the quiz lacks — the line revealed word
@@ -274,7 +274,7 @@ answer on screen before a press sends it — the colour on the picker, the pawn 
 the map, the cards in their order — and all three lose it the same way, so the
 fix is the shell's: `player.lean`, one frame carrying any of those three shapes,
 saved as it moves and paid on close without the speed bonus
-(`realtime-protocol.md`, *A lean is not an answer*). Not a frame per game: three
+(`realtime-protocol.md`, _A lean is not an answer_). Not a frame per game: three
 cases of one rule were already on the table. A choice, a vote and a typed line
 stay out — one press is the whole answer, and a typed line is a guess only once
 sent. The estimate's number and higher or lower's sheet are the next candidates,
@@ -290,23 +290,23 @@ Stage 11 split settings into "the room's" and "the game's". That is one axis
 short, and the missing one is worth naming before anybody writes another
 setting:
 
-| Owner | The test | Today |
-|---|---|---|
-| **The room** | true of any game, in any mode | `countdownMs`, `autoAdvanceMs`, `roundCount` |
-| **The game** | true of this game, whatever the mode | `difficulty`, `source`, the round's duration |
-| **The mode** | true of this way of answering, whatever the game | `answerWindowMs` — and nothing else yet |
+| Owner        | The test                                         | Today                                        |
+| ------------ | ------------------------------------------------ | -------------------------------------------- |
+| **The room** | true of any game, in any mode                    | `countdownMs`, `autoAdvanceMs`, `roundCount` |
+| **The game** | true of this game, whatever the mode             | `difficulty`, `source`, the round's duration |
+| **The mode** | true of this way of answering, whatever the game | `answerWindowMs` — and nothing else yet      |
 
 `answerWindowMs` is the one that exposed the gap, and **the `mode` union is
 built**. `settings.mode` is discriminated on `kind` beside `settings.game`, for
 the same reason: which game the room is playing and how it is answered are
 independent choices, and each owns settings the other cannot read.
 `answerWindowMs` lives in the buzzer arm alone, so the guard in `registerBuzz`
-against a hand-written buzz *is* the narrowing that produces the window — a mode
+against a hand-written buzz _is_ the narrowing that produces the window — a mode
 where nobody buzzes cannot reach it.
 
 **It was built on one field rather than the two the threshold below asked for**,
 and that revision is worth more than the rule it broke: the field was in the
-wrong *place*, which is a different fault from a missing abstraction. A union
+wrong _place_, which is a different fault from a missing abstraction. A union
 invented for symmetry is premature; a union that makes an unreachable field
 unrepresentable pays for itself the day it is written. The cost the old
 paragraph feared was real — `answerMode` was read by `registerBuzz`,
@@ -315,7 +315,7 @@ and three UI branches — and it was one afternoon, against a setting the panel
 had to hide by hand in two modes out of three.
 
 **The threshold still holds for the next axis**, with that exception carved out:
-one mode-specific field is a documented exception, two are a shape — *unless*
+one mode-specific field is a documented exception, two are a shape — _unless_
 the one field is reachable somewhere it means nothing, which is a type bug and
 gets fixed as one.
 
@@ -344,9 +344,9 @@ sort, and costs every check in the shell the ability to spell what it is
 checking.
 
 The rule is to split it the day a game needs a phase these names cannot carry,
-and that day is likelier to arrive as an *addition*: a submit-then-vote game
+and that day is likelier to arrive as an _addition_: a submit-then-vote game
 needs **one** new name, for the room choosing from a board. Not two — its
-writing phase *is* `playing`, because "everyone submitting against a deadline"
+writing phase _is_ `playing`, because "everyone submitting against a deadline"
 is what a simultaneous round already means. Adding a member keeps the enum
 shared. A drawing game's "everyone is drawing at once" is the same test again,
 and still has no equivalent here.
@@ -355,8 +355,8 @@ The slate added a name on that argument, `correcting`, and gave it back a stage
 later. Marking one item while the rest are still being written
 means writing and marking overlap, and a phase is the room's, not an item's: so
 the slate lives in `playing` and each item carries `open | closed | marked` on
-its own arm of `round.content`. A phase name earns its place when the *whole
-room* changes what it is doing; a game whose parts move separately carries the
+its own arm of `round.content`. A phase name earns its place when the _whole
+room_ changes what it is doing; a game whose parts move separately carries the
 state on the parts.
 
 **Message names are blind-test verbs.** `player.buzz`, `host.judge`,
@@ -372,12 +372,12 @@ story. A "generic payload" field on the room view would undo them in one commit.
 **One snapshot per change holds for four shapes out of five.** A drawing game
 streams 30–60 messages a second, and a whole-room snapshot per stroke is
 absurd. That game gets its own frame type carrying stroke deltas, and it is the
-*only* place a delta is right. Write that down where the next person will read
+_only_ place a delta is right. Write that down where the next person will read
 it, or the rule will get quietly relaxed for everything.
 
 **Routes are already open.** `/host/:code` and `/play/:code` say nothing about
 which game is running, because the game is a property of the room, not of the
-URL. Keep it that way. What *is* in the URL is the shelf: `/:game` is one page
+URL. Keep it that way. What _is_ in the URL is the shelf: `/:game` is one page
 for every game's front door, and a room opened through one arrives already set
 to it — `POST /api/rooms` carries the game when it was asked for.
 
@@ -389,28 +389,28 @@ game. See `docs/plans/13-room-first.md`.
 **i18n is namespaced by game.** A prefix per game — `blindtest.*`, `buzzer.*`,
 `challenge.*`, `innerclock.*`, `matchsticks.*`, `quiz.*`, `reflex.*`, `slate.*`, `timeline.*`, `atlas.*` — and `join.*`, `host.*`, `player.*`, `round.*`, `buzz.*`,
 `error.*`, `connection.*`, `menu.*` and `preferences.*` for the shell. A new game
-adds its own prefix and touches nothing else. The test itself — *would the second
-game display this string unchanged?* — is in
+adds its own prefix and touches nothing else. The test itself — _would the second
+game display this string unchanged?_ — is in
 [`.claude/rules/i18n.md`](../.claude/rules/i18n.md); what follows is what it has
 already decided.
 
-**The trap is `host.*`**: it names a *screen*, and a screen shows both kinds of
+**The trap is `host.*`**: it names a _screen_, and a screen shows both kinds of
 string. "Start the game", "Next round", "How to answer" and "Volume" are shell —
-every future game has a host console with those, and volume presupposes *audio*
+every future game has a host console with those, and volume presupposes _audio_
 rather than the blind test, so a second game that plays anything reuses it. The
 source picker, the genres, the clip length and the title/artist verdict are the
 blind test's, and live under `blindtest.*` even though the host console is what
 renders them.
 
 **A mode is not a game.** `blindtest.buzz.*` was filed under the game because
-only one game had a buzzer; it is `buzz.*` now, because `answerMode` is a *room*
+only one game had a buzzer; it is `buzz.*` now, because `answerMode` is a _room_
 setting and the bare buzzer renders every one of those strings unchanged — the
 button, the blockers, "{nickname} buzzed". `blindtest.round` is `round.*` one
-level up, because "Round 3 of 10", "+2" and "Nobody got it" are what a *round*
+level up, because "Round 3 of 10", "+2" and "Nobody got it" are what a _round_
 shows in any game.
 
 **The third game moved four more**, and they are the same shape.
-`blindtest.answer.*` is `round.answer.*` — the field a *simultaneous round* is
+`blindtest.answer.*` is `round.answer.*` — the field a _simultaneous round_ is
 answered in, its label, its send, its "waiting for the others", its "as many goes
 as you like" — and the bare buzzer's right/wrong pair is `host.verdict.*`. Two
 games needing a string unchanged is the signal; one game plus a hunch is not.
@@ -436,7 +436,7 @@ that exactly once and not twice. That rename happened the day the product got
 its name, before the repository was ever published — the cheapest moment it
 could have happened, and the second game inherits `@melee/*` for free.
 
-What is deliberately *not* renamed: the `blindtest.*` translation keys. Those
+What is deliberately _not_ renamed: the `blindtest.*` translation keys. Those
 belong to the game, and a second game brings its own prefix.
 
 ## What not to build in advance
@@ -467,7 +467,7 @@ the room — rather than a second `host`. Walls already come several to a room
 
 Every screen but the wall is touched; the wall is only watched. A round — a
 game of its own, or an option inside one — where one seat, or two head to head,
-plays *on the wall* while the room watches would turn that into a stage. Not
+plays _on the wall_ while the room watches would turn that into a stage. Not
 designed: who touches it (a wall is a television as often as a touch panel, so
 the seat may steer it from its own screen), what the others do meanwhile, and
 whether it is the duel (`round.duel`) moved onto the shared screen. Raised by

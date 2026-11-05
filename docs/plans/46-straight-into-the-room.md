@@ -7,20 +7,20 @@ leaving page background around it.
 ## Step 1 — a game on the home page opens its room
 
 Today a spine on the home shelf (`GameShelf`) links to the game's own page,
-which offers *Open a table* and a nickname field. Whoever is on the home page
+which offers _Open a table_ and a nickname field. Whoever is on the home page
 already knows the site, so the spine **opens a room on that game** directly —
 the same `useCreateRoom` call a game page's button makes, one tick. The link
 to the game page stays in the markup (`href`, for search and for a shared
 link); the press is what opens the room.
 
 The game pages stay, for the visitor who arrives from a search or a group
-chat. Each keeps one call to action, *Open a table*; the nickname field goes —
+chat. Each keeps one call to action, _Open a table_; the nickname field goes —
 the name is given in the room, where the console's seat form and the menu
 already ask for it. Check that nothing else reads that field (the stored
 `melee:nickname` is still written from the name a room accepts).
 
 Playing alone needs nothing new: no rule refuses a round with no seat but the
-host's, so a host takes a seat in *Players* and starts — in every mode the host
+host's, so a host takes a seat in _Players_ and starts — in every mode the host
 does not judge.
 
 ## Step 2 — the side panel
@@ -48,14 +48,14 @@ scrollbar on the panel's colours, light and dark.
   (`openingFor`), so the spinner lands on the spine pressed and the tray's
   press stays still. A modified click still follows the `href` to the game's
   page.
-- A game page has one door, *Open a table*. The play-right-away door went with
+- A game page has one door, _Open a table_. The play-right-away door went with
   the nickname field, and so did `canPlayRightAway`, its only reader; the
-  console's own *play right away* in the lobby is untouched.
+  console's own _play right away_ in the lobby is untouched.
 - **The strip was the root's reserved gutter.** On a desk the console's
   document no longer scrolls at all: the stage column scrolls inside itself, as
   the panel already did, so nothing stands between the panel and the window
   edge on either side. A paper surface (`box-lid.paper`) sets its own
   `scrollbar-color`, because the root's is inherited already resolved to the
   board's colours — the same reason the lid redeclares its rules.
-- In passing: the *Host judges* stamp on an unticked game, printed on the
+- In passing: the _Host judges_ stamp on an unticked game, printed on the
   socket in dark, was card ink on a dark socket; it now follows its box's ink.

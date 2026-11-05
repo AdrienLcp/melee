@@ -2,8 +2,8 @@
 
 **Done** 29/10/2026 — served, then on the shelf with its screens.
 
-Two things go up side by side — *Lyon or Marseille, which has more people?
-the Seine or the Rhine, which is longer?* — and every seat picks one. A round
+Two things go up side by side — _Lyon or Marseille, which has more people?
+the Seine or the Rhine, which is longer?_ — and every seat picks one. A round
 is **five pairs** on the seat's own screen, one after the other, and the
 reveal shows every pair with both values.
 
@@ -12,7 +12,7 @@ single pair is a coin flip: five turn luck into a score, and the reveal of ten
 numbers is where the table argues.
 
 Kind `higherlower`, translation prefix `higherlower.*`, answer mode `pairs`.
-*Plus ou moins* in French, *Higher or lower* in English.
+_Plus ou moins_ in French, _Higher or lower_ in English.
 
 ## Rules, as settled
 
@@ -28,8 +28,8 @@ Kind `higherlower`, translation prefix `higherlower.*`, answer mode `pairs`.
   sheet per seat, so going back is not something it has to refuse.
 - **The values never travel before the reveal**; the player is sent each
   pair's two labels, the family's sentence and the unit. Which side is
-  higher is dealt at random by the server, never *the bigger one on the
-  left*.
+  higher is dealt at random by the server, never _the bigger one on the
+  left_.
 - **The pay**: one pick's price (1) per right pair, the clock on top over the
   whole sheet as on any `choice` round — `isPaidForSpeed` true. Five right is
   `isFullyBanked`.
@@ -61,7 +61,7 @@ Kind `higherlower`, translation prefix `higherlower.*`, answer mode `pairs`.
    question beside each pair once the list is wide; the reveal inks the higher
    side, rings the seat's own pick right or wrong, and stands every seat's
    pawn under the side it took. Values from a million up are shortened
-   (*3,7 M habitants*), and French *habitants* takes a breaking space so a
+   (_3,7 M habitants_), and French _habitants_ takes a breaking space so a
    population wraps instead of overflowing. Seen muted on a console, its
    reveal at 1280 and 1920, and a phone at 390.
 
@@ -74,12 +74,12 @@ against Gambia. The deal now draws from `FAMOUS_QUANTITY_NAMES` first
 picked by hand, by French name per family), and a round is **one pair**:
 that famous pool would be spent inside one evening at five a round. Ten
 seconds a pick (5–30 s), twelve rounds by default; the seat's pair counter and
-its *n sur n* line are hidden while the count is one. A stored 45 s setup no
+its _n sur n_ line are hidden while the count is one. A stored 45 s setup no
 longer parses, so that game's memory falls back to the default.
 
 ## How to tell it is done
 
-- A room opened on *Plus ou moins* deals five pairs, takes one sheet per
+- A room opened on _Plus ou moins_ deals five pairs, takes one sheet per
   seat, and reveals ten values with who picked what.
 - No frame to a player carries a value before the reveal.
 - `pnpm validate` green.

@@ -16,12 +16,12 @@ import {
   Dice5,
   Download,
   Earth,
+  EighthNotes,
   Ellipsis,
   Flag,
   Flame,
   Grid3x3,
   GripVertical,
-  History,
   Hourglass,
   House,
   Lock,
@@ -33,7 +33,6 @@ import {
   Minimize,
   Minus,
   MonitorPlay,
-  Music,
   Palette,
   PanelRightClose,
   PanelRightOpen,
@@ -46,6 +45,7 @@ import {
   Plus,
   QrCode,
   RotateCcw,
+  RotateCcwClock,
   Ruler,
   Share,
   SlidersHorizontal,
@@ -140,7 +140,7 @@ export const WorldIcon = inFamily(Earth)
 const GAME_GLYPHS = {
   atlas: Earth,
   blacksquare: Grid3x3,
-  blindtest: Music,
+  blindtest: EighthNotes,
   buzzer: BellRing,
   challenge: Trophy,
   estimate: Ruler,
@@ -153,7 +153,7 @@ const GAME_GLYPHS = {
   reflex: Zap,
   slate: PencilLine,
   swatch: Palette,
-  timeline: History
+  timeline: RotateCcwClock
 } as const satisfies Record<GameKind, LucideIcon>
 
 type GameIconProps = {

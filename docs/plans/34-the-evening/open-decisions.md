@@ -18,9 +18,9 @@ cities' at < 25, < 75, < 150 km (22); English country names from a dictionary
 (7); teams re-drawn in the lobby only, single seats moved after (8); a room
 outliving its last screen by ten minutes (9); a late seat to the team with the
 fewest connected seats (10); pawns in their team's colour (11); no rejoin by
-pseudo (12); *Ready* an indicator, never a gate (13); the board on with teams
+pseudo (12); _Ready_ an indicator, never a gate (13); the board on with teams
 (15); the first answer from any seat of a team on turn counts (4); solo and duel
-kept as per-round choices, *Everyone at once* the default (20); teams with no
+kept as per-round choices, _Everyone at once_ the default (20); teams with no
 phone (21). The board (3, 17, 18, 19): the Christmas preset plays `rank` with
 the catch-up on 40 cases over its 20 rounds, because a buzzer round won by a
 team of four moved no pawn under one case per whole `POINT`, and forty cases is

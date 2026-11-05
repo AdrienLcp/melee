@@ -78,16 +78,16 @@ other dev servers on the machine.
 
 0. **Nothing appears or leaves at once, and a change keeps what already
    moves.** Every page, panel, block and state enters and leaves with a
-   motion (`sass-architecture`, *A state change moves*); a cut is a bug like a
+   motion (`sass-architecture`, _A state change moves_); a cut is a bug like a
    wrong colour. Motion breaks silently — a page mounted twice, a view
    transition the browser skips, a picture drawn over the one leaving — so a
    change to a screen, a route, a mount order or a transition is **filmed**
-   before it is called done (`docs/browser-driving.md`, *Filming a motion*).
+   before it is called done (`docs/browser-driving.md`, _Filming a motion_).
    Adrien asked for this in five sessions running; it is never his to ask
    again.
 
 1. **A player is never sent the answer.** Host and player have separate message
-   unions; player frames are encoded *through* their schema, so Zod strips leaks.
+   unions; player frames are encoded _through_ their schema, so Zod strips leaks.
 2. **The server owns time.** Buzz order is stamped on arrival; `player.buzz`
    carries no timestamp, and never will.
 3. **State travels as a whole snapshot**, never a delta.
@@ -148,8 +148,8 @@ stopped by its process tree)
 ## Language
 
 Everything committed is **English** — code, comments, docs, commit messages, and
-every translation *key*; chat replies to the developer stay in French. The one
-exception is the dictionaries: French *values* live in
+every translation _key_; chat replies to the developer stay in French. The one
+exception is the dictionaries: French _values_ live in
 `apps/game/src/presentation/i18n/` and nowhere else — save the country names in
 `packages/core/src/countries/`, which the server also deals as a flag's answer —
 which is why a user-visible string written into a component is a bug — see
@@ -181,7 +181,7 @@ which is why a user-visible string written into a component is a bug — see
   sits on the lobby stage beside the QR code. The guard on `host.startRound`
   narrows it for everything downstream, and a round already on screen is asked
   `round.content` rather than `settings.game`, because that is the game it was
-  *opened* on. `shelvedGames` is the ones a game's own front door may open a room
+  _opened_ on. `shelvedGames` is the ones a game's own front door may open a room
   for, and the create-room request carries which. It must **not** collapse into
   `gameKinds`, because it is what refuses a game that is served but has no
   screens yet — every game so far spent a stage in that window, `reflex`
@@ -222,7 +222,7 @@ which is why a user-visible string written into a component is a bug — see
   no race, so a latecomer is owed one. A screen that arrives after keeps its seat, is refused everything it
   could send with `joined_mid_round`, and plays from the next round
 - **Duel** — one round two seats of two teams play head to head while the
-  room watches: `isDuel` on the host's *next round*, `round.duel` on the view,
+  room watches: `isDuel` on the host's _next round_, `round.duel` on the view,
   an ordinary round stamped on those two seats, drawn so every seat duels
   before any duels twice. Asked one round at a time, never a mode: everyone
   plays every other round, because a round played by one team makes
@@ -241,34 +241,34 @@ which is why a user-visible string written into a component is a bug — see
   table of children beside grandparents where being right is the game; typing
   pays 3 for the pair where a right pick pays 1, because producing an answer
   from nothing is not recognising it among four. A banked question that is only
-  a question beside its own decoys — *which country drives on the left?* answers
+  a question beside its own decoys — _which country drives on the left?_ answers
   Japan, and seventy others — carries `choiceOnly` and is dealt to a `choice`
   room alone; the column is a census read row by row, because no rule finds
-  one — save the one rubric that *is* a single riddle shape, where the source
+  one — save the one rubric that _is_ a single riddle shape, where the source
   says so for all 114 of its rows at once.
   **The clock never pays more
   than the answer did** — its amplitude is the lower of the two, so being fast
   doubles a score at most, and the console prints the two halves apart
   (`20 +15`, every figure a screen prints being the board's divided by a
-  hundred) rather than their total. It stays a *room* setting the
+  hundred) rather than their total. It stays a _room_ setting the
   game narrows — the bare buzzer and the reflex race offer only `buzzer`, and a
   frame setting anything else is refused
-- **Guess** — one typed line. Each half is looked for *inside* it over runs of
+- **Guess** — one typed line. Each half is looked for _inside_ it over runs of
   whole words, so "jean jacques goldman on ira" banks both and "daniel balavoine
   on ira" banks the title and still owes the artist. Whole words are the guard:
   `normalizeAnswer` drops whitespace, and `Hell` is inside `Michelle`. Typed
   mode allows as many guesses as the clip does and closes once a player holds
   both halves; a pick is one shot, because four candidates with retries is the
-  answer with extra steps. **Searching *within* a line is the blind test's
+  answer with extra steps. **Searching _within_ a line is the blind test's
   alone** — the quiz matches the whole of what was typed, because "trois ou
   quatre" contains the answer to how many languages Switzerland has. **So is
   catalogue noise**: `(Radio Edit)` and `- Remastered 2011` belong to a music
   catalogue, and folding them everywhere leaves the quiz answering
   `River Horse (Greek)` and `1915 - 1916` with its own decoy. A leading article
-  is nobody's and goes everywhere — a room says *Cervin* for *Le Cervin*.
+  is nobody's and goes everywhere — a room says _Cervin_ for _Le Cervin_.
   A source drawn from **film composers** asks for the **film** in the title's
   place — `TrackIdentity.film`, `null` on every other source, because a score
-  cue is called *Cornfield Chase* and what a table shouts is *Interstellar*.
+  cue is called _Cornfield Chase_ and what a table shouts is _Interstellar_.
   **Forgiveness stops one edit short of the nearest answer the bank calls
   wrong**: a question offering `5 minutes` beside `7 minutes` has said what a
   different answer is, and a tolerance reaching across it pays for the wrong one
@@ -319,7 +319,7 @@ which is why a user-visible string written into a component is a bug — see
   device that locked its screen come back to the same seat. The **name** that
   seat is held under is stored beside it, and that is the console's alone: a
   screen running a room takes its seat through the `hello`, so nothing else
-  carries the name across a reload. But a seat that *comes back* keeps the name
+  carries the name across a reload. But a seat that _comes back_ keeps the name
   it already holds, whatever the `hello` carries — `player.rename` is the only
   thing that changes one, and reading the hello there would let a Wi-Fi blink
   undo a rename. `melee:nickname` is the device-global name beside it, written
@@ -328,7 +328,7 @@ which is why a user-visible string written into a component is a bug — see
   form fills itself in from it, and the menu is where it is read back and
   changed — because a screen that never met the form never saw it
 - **Host token** — minted with the room and returned by `POST /api/rooms` to the
-  screen that opened it. The code says *which* room, this says *who may host it*,
+  screen that opened it. The code says _which_ room, this says _who may host it_,
   and it always wins a claim — which is what makes a takeover undoable. Without
   one a second console waits out `HOST_RECLAIM_GRACE_MS`, then the code alone is
   enough. It lives in `melee:host-tokens` and **never on the seat**: the
@@ -337,10 +337,10 @@ which is why a user-visible string written into a component is a bug — see
 - **The host's setup** — `HostPreferences`, stored on the console's own machine
   and split on the seam `movedToGame` turns on. A game answers four of the
   room's settings — `game`, `mode`, `roundCount`, `autoAdvanceMs`, together
-  `GameSetup` — so those are remembered *per game*, and everything no game
+  `GameSetup` — so those are remembered _per game_, and everything no game
   answers is remembered once and survives every switch. The hold is the one no
   game opens on a number of its own: every game takes the shell's `null`, and it
-  is on the game's side of the line to be *remembered* there — twenty-five
+  is on the game's side of the line to be _remembered_ there — twenty-five
   seconds picked so a quiz note can be read aloud is not what a reflex race
   wants. The console applies it over what the door
   decided, as one `host.updateSettings` in the **lobby** and only on the first

@@ -6,7 +6,7 @@ driving the real app, muted. This page is how.
 ## Muted, before the first navigation
 
 The host console plays music, `melee:volume` defaults to 80%, and it survives
-in `localStorage` — so a page that merely *reaches* a round makes noise on
+in `localStorage` — so a page that merely _reaches_ a round makes noise on
 whatever machine is running the dev server, which is somebody's flat. Write the
 value before the page loads; dragging the slider afterwards is a fix arriving
 after the clip.
@@ -37,7 +37,7 @@ await page.addInitScript(() => {
 Where only the ordinary MCP tools are loaded there is no init script, and the
 muted state is reached by loading the home page first — it can play nothing —
 writing `melee:volume` there, and navigating afterwards. An init script that
-*clears* storage on the way is worse than none either way: it wipes the key
+_clears_ storage on the way is worse than none either way: it wipes the key
 under test on every real navigation and on every second tab of the same context.
 
 More that cost time to learn:
@@ -51,7 +51,7 @@ More that cost time to learn:
   The field is `nickname` and nothing else. `helloMessageSchema` is a plain
   `z.object`, so a frame spelling it `name` parses clean with the nickname
   simply absent, and the server answers a **non-fatal** `invalid_message` —
-  *Choose a nickname to join* — on a socket that stays open at `readyState: 1`
+  _Choose a nickname to join_ — on a socket that stays open at `readyState: 1`
   forever after. Nothing on the console says so, `__socks` reads healthy, and
   the roster is the only witness: eight seats asked for, one player listed. A
   raw socket has no `onmessage` unless you give it one, which is what makes the
@@ -59,31 +59,31 @@ More that cost time to learn:
   those are the client's stores — so the two traps above simply do not apply and
   nine distinct names cost nine lines. Keep the sockets on `window`; the page
   owns them, and a navigation closes all nine at once and turns the roster
-  *away*. It is what makes a nine-player final board or a full lobby reachable
+  _away_. It is what makes a nine-player final board or a full lobby reachable
   at all.
 
 - **A buzz and the verdict that pays it are one call.** The floor closes after
   `answerWindowMs` and a tool round trip spends a good part of it, so a buzz sent
   in one call and judged in the next arrives at a round that has already locked
-  that player out and gone back to `playing` — with a *Remettre la tablée en jeu*
+  that player out and gone back to `playing` — with a _Remettre la tablée en jeu_
   button as the only trace. Send the press and click the verdict inside one
   `browser_run_code_unsafe`. And **poll for `playing` inside the page before
   pressing**: a press during the countdown is refused, and the next call reads an
   untouched board with nothing on it to say why.
 
 - **Two players in one room need a hand.** `melee:seats` is a single
-  `localStorage` array shared by every tab of the context, keyed by room *and
-  role* — so a second `/play/:code` reclaims the first player's seat instead of
+  `localStorage` array shared by every tab of the context, keyed by room _and
+  role_ — so a second `/play/:code` reclaims the first player's seat instead of
   taking one of its own. Delete that room's `role: 'player'` entry before the
   second join; the first player's socket is open and never re-reads it. It is
   what lets a latecomer be driven against a round somebody else is already in.
 
-- **Two players with different *names* need a context each, and the seat trick
+- **Two players with different _names_ need a context each, and the seat trick
   is not enough.** `melee:nickname` is one key per origin and the page writes
   back the name the room **accepted**, so a tab that joins overwrites whatever
   the next tab was seeded with: three tabs seeded `Alice`, `Bertrand`,
   `Anne-Charlotte` all arrive asking for the first accepted name, and the last
-  two are refused with *Ce pseudo est déjà pris*. `browser.newContext()` per
+  two are refused with _Ce pseudo est déjà pris_. `browser.newContext()` per
   player gives each its own `localStorage` and needs no seat surgery at all —
   and the mute `addInitScript` goes on **every** context, not just the first.
 
@@ -97,7 +97,7 @@ More that cost time to learn:
   created is still in that list: five of them, on three rooms that died with a
   server restart hours earlier, sat in front of the one this pass had just
   opened. `find` takes the first, so the reading came back from a page showing
-  *Aucune table sous ce code* — which is exactly what a seat that failed to join
+  _Aucune table sous ce code_ — which is exactly what a seat that failed to join
   looks like, and it cost a full launch-to-reveal cycle before the URL was
   printed and read.
 
@@ -130,7 +130,7 @@ More that cost time to learn:
 - **Hold the seats' sockets on a page Vite never reloads.** An edit to a
   module the app imports — a dictionary, a hook — full-reloads every tab on
   the app, the one holding the nine sockets included, and the whole table
-  turns *away* at once. Open them from a page under `/api/` (any path, a 404
+  turns _away_ at once. Open them from a page under `/api/` (any path, a 404
   is fine): it carries no Vite client, and the sockets outlive every edit.
 
 - **A wall is opened without pairing.** Write the room's `melee:host-tokens`
@@ -174,7 +174,7 @@ More that cost time to learn:
   open it, wait, and the roster has somebody on it.
 
 - A `/play/:code` on a device with a stored `melee:nickname` **joins on
-  arrival** — there is no form to fill. The console's *Take a seat* does the
+  arrival** — there is no form to fill. The console's _Take a seat_ does the
   same: it seats that screen under the stored name and draws no form at all, so
   a console that looks like it was never asked is already playing. Clear the key
   to reach either form, and expect a session id in `melee:seats` either way:
@@ -193,7 +193,7 @@ More that cost time to learn:
   `melee:host-tokens` are re-parsed as a single Zod array, and a failure
   returns `[]` rather than the entries that were fine — so a hand-written token
   containing `O`, `S`, `I` or `Z` (the room alphabet excludes all four) silently
-  deletes every *real* token from the reading, and the screen under test draws
+  deletes every _real_ token from the reading, and the screen under test draws
   as though the device had never played. Nothing warns, and the store on disk is
   untouched, which is what makes it read as a bug in the page. Seed with values
   that would pass the schema, or seed nothing.
@@ -226,7 +226,7 @@ More that cost time to learn:
   would have dropped, then `document.dispatchEvent(new Event('visibilitychange'))`.
 
 - **The test browser lets a page play unasked**, so the wall arms its sound on
-  arrival and *Mettre le son* never shows. To see the offer, refuse the gesture
+  arrival and _Mettre le son_ never shows. To see the offer, refuse the gesture
   in an init script on that page alone before it loads: `HTMLMediaElement.prototype.play`
   returning a rejected `NotAllowedError`, and an `AudioContext` subclass whose
   `resume` rejects the same way. Compare two games, one that makes a sound and
@@ -271,7 +271,7 @@ round settles the instant that seat acts and the screen is already the reveal
 when the next call lands:
 
 - a reflex heat after the console's own press, or after its false start;
-- anything a heat shows *while* waiting for somebody else.
+- anything a heat shows _while_ waiting for somebody else.
 
 Both need a second screen in the room, by the `melee:seats` deletion above.
 
@@ -392,7 +392,7 @@ debugging the rule; append a byte and take it back off to force a recompile, or
 write the file with the editor's tools in the first place. A module appended
 with `cat >>` fails the same way: Vite kept serving `connection-provider.tsx`
 without the export just appended, and every page importing it died on
-*does not provide an export named …* until an edit through the editor.
+_does not provide an export named …_ until an edit through the editor.
 
 ## Two things a browser can be asked that no test can
 
@@ -405,7 +405,7 @@ without the export just appended, and every page importing it died on
 
   The round's own id is `memoizedProps.view.round.id` on the same walk, and it
   is `id` rather than `roundId`: the field is named for the object it is on, and
-  only the *client* frames that reference a round spell it `roundId`. Guessing
+  only the _client_ frames that reference a round spell it `roundId`. Guessing
   the second name finds nothing and reads exactly like a fiber walk that failed.
 - **What an autoplay refusal looks like.** Replace
   `HTMLMediaElement.prototype.play` with one returning a promise that rejects
@@ -421,13 +421,13 @@ on a timer instead.
 
 ## A silent round looks exactly like one that plays
 
-Nothing on the console distinguishes them: *À l'écoute…* renders unconditionally,
+Nothing on the console distinguishes them: _À l'écoute…_ renders unconditionally,
 the clip's progress bar comes from the server's `roundElapsedMs`, buzzes work and
 the reveal lands. So a screenshot is no evidence at all here, and neither is
 watching it — the browser is muted.
 
-What answers it is the console saying so itself: `isClipUnheard` puts *Le son ne
-sort pas d'ici.* and a press on screen whenever no gesture has blessed an audio
+What answers it is the console saying so itself: `isClipUnheard` puts _Le son ne
+sort pas d'ici._ and a press on screen whenever no gesture has blessed an audio
 element on this screen. **Reload the console mid-round and look for that block**;
 its absence during a round the console opened is the other half of the check.
 
@@ -455,7 +455,7 @@ await page.addInitScript(() => {
 })
 ```
 
-`start` rather than `createOscillator`: frequency and type are set *after* the
+`start` rather than `createOscillator`: frequency and type are set _after_ the
 node exists, so a patch on the factory reports a bare oscillator every time. The
 ramp is what proves the volume was honoured — `buzz-cue.ts` peaks at the
 machine's volume times 0.3, so a console at 5% must report `0.015` and one at 0
@@ -510,7 +510,7 @@ guarantee at a 20–80 ms round trip: issue the two `evaluate`s through one
 is the one under test.
 
 **Reset the log rather than reloading to clear it.** A reload re-runs the init
-script *and* rejoins the room, so an outcome already on the wire is delivered to
+script _and_ rejoins the room, so an outcome already on the wire is delivered to
 a page whose de-duplication ref is empty and fires again — which is a real
 behaviour, not a test artifact, and reads as a leak if it is mistaken for one.
 `page.evaluate(() => { globalThis.__vibes = [] })` between rounds keeps the two
@@ -527,7 +527,7 @@ passes either way.
 **A raw socket's snapshot arrives on the join and on each change, and never on
 request.** A listener attached after the launch sees nothing until the room next
 moves, and a `time.ping` buys a pong rather than a fresh view — so a script that
-needs the round's id off a socket has to arm the listener *before* the frame
+needs the round's id off a socket has to arm the listener _before_ the frame
 that starts the round. Attaching afterwards and waiting reports an empty log,
 which reads as a socket that was never seated rather than a room that simply did
 not change.
@@ -541,7 +541,7 @@ opened for the seats are also the phase clock for the whole pass.
 
 **Clear a socket's log before sending the frame that advances the round.** A
 frame carries a `roundId`, and a log scanned backwards for `phase === 'playing'`
-answers with the *previous* round's frame the instant it is asked — the new one
+answers with the _previous_ round's frame the instant it is asked — the new one
 has not arrived yet — so everything sent on it is refused as stale.
 
 **A long name is refused, not cut.** `nickname` stops at
@@ -558,7 +558,7 @@ board at all — nobody answered — and reads as a layout that dropped it.
 
 ## Auditing the dark palette where tokens are applied
 
-`tokens-contrast.test.ts` measures token *pairs*; it cannot see a board token
+`tokens-contrast.test.ts` measures token _pairs_; it cannot see a board token
 read on paper. The Printed Piece Rule makes that measurable on the rendered
 page: everything on a `--card` ground keeps its lightness when the scheme
 flips. Find every element whose background is `var(--card)`, read the colour,
@@ -626,8 +626,8 @@ performance.timeOrigin` is a frame's time in `performance.now()`, so a wrapped
 
 What this found, each invisible in any still:
 
-- **A transition the browser skipped**: `ready` rejected with *Viewport size
-  changed* — the desk drops the scrollbar gutter, so the page went at once.
+- **A transition the browser skipped**: `ready` rejected with _Viewport size
+  changed_ — the desk drops the scrollbar gutter, so the page went at once.
 - **The new picture over the old**: the browser stacks
   `::view-transition-new` above `-old`, so a page fading out under an opaque
   new root is never seen.
