@@ -470,6 +470,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A tab left open across a deploy no longer flashes _Something
+  went wrong_ on its way to the new build.** The reload onto the new build
+  already happened, but the import it cancelled read as a crash and put the
+  error screen up for the instant before it: a stale import now waits for the
+  reload and leaves the page as it is (`holdWhileReloading`).
+
 - `[Game]` **The quiz's cinema subject is called _Film and TV_** — _Cinéma
   et télé_ in French — because a tenth of it is series, game shows and
   reality TV, which the subject's name used to hide.

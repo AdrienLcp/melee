@@ -1,15 +1,18 @@
 import type React from 'react'
 import { lazy, Suspense } from 'react'
 
+import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { Loader } from './loader'
 import './world-map.sass'
 import type { WorldMapProps } from './world-map'
 
-const LoadedWorldMap = lazy(async () => ({
-  default: (await import('./world-map')).WorldMap
-}))
+const LoadedWorldMap = lazy(
+  holdWhileReloading(async () => ({
+    default: (await import('./world-map')).WorldMap
+  }))
+)
 
 /**
  * The map behind its own chunk: the 1:50m outlines weigh more than the rest of

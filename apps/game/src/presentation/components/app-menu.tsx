@@ -4,6 +4,7 @@ import { DialogTrigger, Button as ReactAriaButton } from 'react-aria-components'
 
 import { fetchHealth } from '@/infrastructure/api/melee-api'
 import { usePathname } from '@/infrastructure/router/navigation'
+import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -16,9 +17,11 @@ import './app-menu.sass'
 
 const loadLeaflet = () => import('./app-menu-leaflet')
 
-const LoadedLeaflet = lazy(async () => ({
-  default: (await loadLeaflet()).AppMenuLeaflet
-}))
+const LoadedLeaflet = lazy(
+  holdWhileReloading(async () => ({
+    default: (await loadLeaflet()).AppMenuLeaflet
+  }))
+)
 
 const preloadLeaflet = (): void => {
   void loadLeaflet()

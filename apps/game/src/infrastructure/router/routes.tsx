@@ -11,6 +11,7 @@ import {
   paths,
   roomPaths
 } from '@/infrastructure/router/navigation'
+import { holdWhileReloading } from '@/infrastructure/stale-build'
 import { AppShell } from '@/presentation/app-shell'
 import { ErrorScreen } from '@/presentation/error-screen'
 import { RouteFallback } from '@/presentation/route-fallback'
@@ -33,7 +34,7 @@ type RoutedPath = Exclude<(typeof paths)[keyof typeof paths], typeof paths.root>
  * not the QR code renderer and the audio player it will never run.
  */
 type LazyPage = {
-  lazy: RouteObject['lazy']
+  lazy: () => Promise<{ Component: React.ComponentType }>
   /**
    * The same module the import beside it names, spelled the way Vite's build
    * manifest keys it. The prerender walks that manifest to inline the
@@ -110,7 +111,7 @@ const pageFor = {
 } satisfies Record<RoutedPath, LazyPage>
 
 const routeFor = (path: RoutedPath): RouteObject => ({
-  lazy: pageFor[path].lazy,
+  lazy: holdWhileReloading(pageFor[path].lazy),
   path
 })
 
