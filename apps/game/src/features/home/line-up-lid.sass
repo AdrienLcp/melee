@@ -23,11 +23,12 @@
       cursor: pointer
       display: grid
       font: inherit
+      grid-area: 1 / 1
       grid-template-rows: auto 1fr auto
       overflow: hidden
       padding: 0
       text-align: start
-      transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out)
+      transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
       width: 100%
       -webkit-tap-highlight-color: transparent
 
@@ -160,7 +161,7 @@
       justify-items: center
       padding: 0
       position: absolute
-      transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out)
+      transition: background-color var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), transform var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
       width: var(--target)
       -webkit-tap-highlight-color: transparent
 
@@ -178,3 +179,83 @@
       &[data-disabled]
         cursor: not-allowed
         opacity: 0.5
+
+    // Beside the star, a bare glyph a target wide: quieter than the star
+    // because it is the rarer press.
+    .remove
+      @include piece.pressable
+      @include focus.ring
+
+      align-items: center
+      background: transparent
+      border: 0
+      border-radius: var(--radius-full)
+      color: var(--card-ink)
+      cursor: pointer
+      display: grid
+      height: var(--target)
+      inset-block-start: calc(var(--band-height) + var(--space-xs))
+      inset-inline-end: calc(var(--space-s) + var(--target))
+      justify-items: center
+      padding: 0
+      position: absolute
+      transition: background-color var(--transition-fast, 0s) var(--ease-out), color var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+      width: var(--target)
+      -webkit-tap-highlight-color: transparent
+
+      > svg
+        height: 1.125rem
+        width: 1.125rem
+
+      &[data-hovered], &[data-pressed]
+        background: var(--card-tint)
+        color: var(--card-ink)
+
+      &[data-disabled]
+        cursor: not-allowed
+        opacity: 0.5
+
+    &[data-removable] .name::before
+      width: calc(var(--target) * 2 - var(--space-xs))
+
+    // The lid lifts off and leaves its socket in the row, so nothing beside
+    // it moves; putting it back plays the same fade the other way.
+    .removed
+      align-content: center
+      background: var(--socket)
+      border-radius: var(--radius-l)
+      box-shadow: var(--shadow-recess-shallow)
+      color: var(--socket-ink)
+      display: grid
+      gap: var(--space-xs)
+      grid-area: 1 / 1
+      justify-items: start
+      opacity: 0
+      outline: var(--stroke-thin) dashed var(--socket-line)
+      outline-offset: calc(var(--stroke-thin) * -2)
+      padding: var(--space-m)
+      transition: opacity var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
+      visibility: hidden
+
+      p
+        @include typography.caption-strong
+
+        -webkit-box-orient: vertical
+        display: -webkit-box
+        hyphens: auto
+        -webkit-line-clamp: 3
+        margin: 0
+        overflow: hidden
+        text-wrap: pretty
+
+    &[data-removed]
+      .lid, .star, .remove
+        opacity: 0
+        scale: 0.94
+        transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), visibility 0s linear var(--transition-base, 0s)
+        visibility: hidden
+
+      .removed
+        opacity: 1
+        transition: opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-base, 0s) * 0.5), visibility 0s
+        visibility: visible

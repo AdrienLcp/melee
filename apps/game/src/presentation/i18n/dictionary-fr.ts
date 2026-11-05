@@ -639,6 +639,9 @@ export const FR_DICTIONARY = defineDictionary({
     untickAll: 'Tout décocher',
     yourLineUps: {
       hint: 'Tes parties enregistrées d’abord, puis celles que tu as jouées, la plus récente en premier.',
+      putBack: 'La remettre',
+      remove: 'Retirer « {name} »',
+      removed: '« {name} » retirée',
       starHint:
         'Mets une étoile sur une partie pour l’enregistrer : à ta prochaine visite, elle passera en tête de cette rangée.',
       title: 'Tes parties'
@@ -1640,7 +1643,7 @@ export const FR_DICTIONARY = defineDictionary({
     category: {
       arts: 'Arts et culture',
       capitals: 'Capitales',
-      cinema: 'Cinéma',
+      cinema: 'Cinéma et télé',
       everyday: 'Quotidien',
       flags: 'Drapeaux',
       geography: 'Géographie',

@@ -62,6 +62,7 @@ export const ReadyMadeRow: React.FC<ReadyMadeRowProps> = ({ createRoom }) => {
           onOpen={() => {
             void openReadyMade({ id: lineUp.id })
           }}
+          removal={null}
           star={null}
         />
       ))}

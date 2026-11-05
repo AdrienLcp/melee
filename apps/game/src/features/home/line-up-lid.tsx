@@ -1,9 +1,16 @@
 import type React from 'react'
+import { useEffect, useRef } from 'react'
 import { Button, ToggleButton } from 'react-aria-components'
 
 import type { GameKind } from '@melee/protocol/game'
 
-import { ArrowIcon, GameIcon, StarIcon } from '@/presentation/components/icons'
+import { Button as ControlButton } from '@/presentation/components/button'
+import {
+  ArrowIcon,
+  CrossIcon,
+  GameIcon,
+  StarIcon
+} from '@/presentation/components/icons'
 import { Spinner } from '@/presentation/components/spinner'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -13,6 +20,16 @@ import './line-up-lid.sass'
 export type LidStar = {
   isOn: boolean
   onChange: (isOn: boolean) => void
+}
+
+/**
+ * How a lid of the host's own row is taken off it and put back. A removed lid
+ * keeps its place as a socket offering it back, so no other lid moves.
+ */
+export type LidRemoval = {
+  isRemoved: boolean
+  onPutBack: () => void
+  onRemove: () => void
 }
 
 type LineUpLidProps = {
@@ -30,6 +47,8 @@ type LineUpLidProps = {
   meta: string
   name: string
   onOpen: () => void
+  /** `null` for a lid nobody removes — the ones the app ships. */
+  removal: LidRemoval | null
   /** `null` for a lid nobody stars — the ones the app ships. */
   star: LidStar | null
 }
@@ -51,13 +70,42 @@ export const LineUpLid: React.FC<LineUpLidProps> = ({
   meta,
   name,
   onOpen,
+  removal,
   star
 }) => {
   const translate = useTranslate()
+  const lidRef = useRef<HTMLButtonElement>(null)
+  const removedRef = useRef<HTMLDivElement>(null)
+  const isRemoved = removal?.isRemoved ?? false
+  const wasRemoved = useRef(isRemoved)
+
+  // The press that removed or put back the lid has just gone invisible under
+  // the finger, so the focus follows to what took its place.
+  useEffect(() => {
+    if (wasRemoved.current === isRemoved) {
+      return
+    }
+
+    wasRemoved.current = isRemoved
+    const takesFocus = isRemoved
+      ? removedRef.current?.querySelector('button')
+      : lidRef.current
+    takesFocus?.focus()
+  }, [isRemoved])
 
   return (
-    <li className='line-up-lid' data-has-star={star !== null || undefined}>
-      <Button className='lid' isDisabled={isDisabled} onPress={onOpen}>
+    <li
+      className='line-up-lid'
+      data-has-star={star !== null || undefined}
+      data-removable={removal !== null || undefined}
+      data-removed={isRemoved || undefined}
+    >
+      <Button
+        className='lid'
+        isDisabled={isDisabled}
+        onPress={onOpen}
+        ref={lidRef}
+      >
         <span aria-hidden='true' className='band'>
           {segmentsOf(band).map(({ game, key }) => (
             <span
@@ -95,6 +143,29 @@ export const LineUpLid: React.FC<LineUpLidProps> = ({
         >
           <StarIcon />
         </ToggleButton>
+      )}
+      {removal !== null && (
+        <>
+          <Button
+            aria-label={translate('home.yourLineUps.remove', { name })}
+            className='remove'
+            isDisabled={isDisabled}
+            onPress={removal.onRemove}
+          >
+            <CrossIcon />
+          </Button>
+          <div className='removed' ref={removedRef}>
+            <p>{translate('home.yourLineUps.removed', { name })}</p>
+            <ControlButton
+              isDisabled={isDisabled}
+              onPress={removal.onPutBack}
+              size='small'
+              variant='underlined'
+            >
+              {translate('home.yourLineUps.putBack')}
+            </ControlButton>
+          </div>
+        </>
       )}
     </li>
   )

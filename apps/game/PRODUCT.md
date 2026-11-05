@@ -102,7 +102,7 @@ on the shelf inherits it.
     47 film composers are ticked — all three by default — or any Deezer
     playlist, or a free search; a difficulty setting by popularity.
   - **Quiz** — a bundled bank of 12 458 questions (7 473 French, 4 985 English)
-    over nine subjects: history, geography, science, arts, cinema, quotes (a
+    over nine subjects: history, geography, science, arts, film and TV, quotes (a
     line from a film, a series, a game, an ad or a real person — name where
     it comes from), video games, sport,
     everyday. Sources and licences are on the credits page.

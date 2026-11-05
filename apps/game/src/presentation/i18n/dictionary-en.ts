@@ -674,6 +674,9 @@ export const EN_DICTIONARY = defineDictionary({
     /** The row of line-ups the host starred or played on this machine. */
     yourLineUps: {
       hint: 'Your saved line-ups first, then what you played, latest first.',
+      putBack: 'Put it back',
+      remove: 'Remove “{name}”',
+      removed: '“{name}” removed',
       starHint:
         'Star a line-up to save it, and on your next visit it leads this row.',
       title: 'Your line-ups'
@@ -1742,7 +1745,7 @@ export const EN_DICTIONARY = defineDictionary({
     category: {
       arts: 'Arts and culture',
       capitals: 'Capitals',
-      cinema: 'Cinema',
+      cinema: 'Film and TV',
       everyday: 'Everyday',
       flags: 'Flags',
       geography: 'Geography',

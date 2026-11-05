@@ -21,6 +21,7 @@ import {
   readyMadeOfTable,
   recentTableOf,
   savedEveningOfRecent,
+  withoutTablesOf,
   withTablePlayed
 } from './recent-tables'
 import {
@@ -225,6 +226,28 @@ describe('withTablePlayed', () => {
       table,
       ...recents.slice(0, -1)
     ])
+  })
+})
+
+describe('withoutTablesOf', () => {
+  it('[recent-tables] takes out every table of the line-up, whichever room played it', () => {
+    const timeline = tableOn({
+      lineUp: timelineAlone,
+      playedAt: 2,
+      roomCode: 'ABCD'
+    })
+    const quiz = tableOn({
+      lineUp: quizThenBuzzer,
+      playedAt: 1,
+      roomCode: 'EFGH'
+    })
+
+    expect(
+      withoutTablesOf({
+        lineUp: { ...timelineAlone, runningOrder: [0] },
+        recents: [timeline, quiz]
+      })
+    ).toEqual([quiz])
   })
 })
 

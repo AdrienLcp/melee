@@ -143,7 +143,7 @@ describe('lineUpEntrySummaries', () => {
       }).map((summary) => summary.settings)
     ).toEqual([
       '70s, 80s, 90s\u00a0· Crowd-pleasers\u00a0· 20s',
-      'History, Science, Sport, Cinema, Flags\u00a0· English\u00a0· 30s'
+      'History, Science, Sport, Film and TV, Flags\u00a0· English\u00a0· 30s'
     ])
   })
 

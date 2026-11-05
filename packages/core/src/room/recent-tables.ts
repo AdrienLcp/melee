@@ -158,6 +158,19 @@ export const withTablePlayed = ({
   ].slice(0, RECENT_TABLES_MAX)
 
 /**
+ * The recent tables with every table played on `lineUp` taken out: the home
+ * page's card for that line-up gone, and nothing else.
+ */
+export const withoutTablesOf = ({
+  lineUp,
+  recents
+}: {
+  lineUp: PlayedLineUp
+  recents: readonly RecentTable[]
+}): RecentTable[] =>
+  recents.filter((recent) => !isSameLineUp({ left: recent, right: lineUp }))
+
+/**
  * The home page's line-ups: every saved one in the order it was saved, each
  * with the latest table that played it, then every table played on a line-up
  * nobody saved, the latest first.

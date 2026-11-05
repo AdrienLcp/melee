@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Game]` **A line-up comes off _Your line-ups_ with a press.** Every lid
+  in that row carries a cross beside its star; pressed, it forgets the
+  tables this device played on that line-up, and the saved one too when it
+  was starred. The lid fades out and leaves its socket in its place, naming
+  it and offering _Put it back_ until the page is left, so no other lid moves
+  under the finger.
+
 - `[Shared]` **Every pawn wears a head as well as a colour, and no two seats
   share a piece.** A seat's piece is one of twelve colours and one of three
   heads — round, square or pointed — so a full table of twenty-four never
@@ -462,6 +469,10 @@ one part.
   name was an existing commercial app's, _Devineuf_, for the same kind of game.
 
 ### Fixes
+
+- `[Game]` **The quiz's cinema subject is called _Film and TV_** — _Cinéma
+  et télé_ in French — because a tenth of it is series, game shows and
+  reality TV, which the subject's name used to hide.
 
 - `[Game]` **A full table's names read whole in the console's lobby.** A chip
   a third of the roster wide cut a long name to its first five letters, two

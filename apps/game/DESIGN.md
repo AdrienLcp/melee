@@ -947,6 +947,15 @@ under every answer mode a verdict is owed in.
     its place on the next visit and no lid moves under the finger. A row of
     plays with no star ends on a **socket** — the star's dashed hole cut in
     `--socket`, and a line saying what it does.
+    Beside the star a bare **cross**, a target wide in `--card-ink` and
+    quieter than the token, takes the lid off the row: its plays forgotten,
+    its saved line-up too when starred. The lid fades and shrinks out on
+    `--ease-in` and leaves a socket in its place — the same dashed cut,
+    _“Name” removed_ and an underlined _Put it back_ — so nothing beside it
+    moves, the focus lands on that press, and putting it back plays the
+    fade the other way. The socket lasts as long as the page; the next
+    visit deals the row without it. The name leaves the star and the cross
+    two targets of room on its first line.
     The served page is written at build time and knows none of them, so it
     carries the row **held**: its title and hint, the count's place empty,
     and a hidden **strut** lid — a two-line name over its games and a

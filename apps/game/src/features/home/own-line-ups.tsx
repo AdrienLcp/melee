@@ -10,18 +10,28 @@ import {
   isSameLineUp,
   type PlayedLineUp,
   type RecentTable,
-  savedEveningOfRecent
+  savedEveningOfRecent,
+  withoutTablesOf,
+  withTablePlayed
 } from '@melee/core/room/recent-tables'
 import { isSameName, type SavedEvening } from '@melee/core/room/saved-evening'
 
 import { useSavedEvenings } from '@/features/host/use-saved-evenings'
 import { calendarDaysBetween, nowMs } from '@/infrastructure/clock'
-import { readStoredRecentTables } from '@/infrastructure/storage/preferences-storage'
+import {
+  readStoredRecentTables,
+  writeStoredRecentTables
+} from '@/infrastructure/storage/preferences-storage'
 import { StarIcon } from '@/presentation/components/icons'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useIsPrerendering } from '@/presentation/use-is-prerendering'
 
-import { type LidStar, LidStrut, LineUpLid } from './line-up-lid'
+import {
+  type LidRemoval,
+  type LidStar,
+  LidStrut,
+  LineUpLid
+} from './line-up-lid'
 import { LineUpRow } from './line-up-row'
 import type { CreateRoom } from './use-create-room'
 import { useLineUpFace, useRoundsText } from './use-line-up-face'
@@ -37,6 +47,13 @@ const storedRecents = (): readonly RecentTable[] => {
   const stored = readStoredRecentTables()
 
   return stored.status === 'success' ? stored.data : []
+}
+
+/** What removing a lid forgot, kept for as long as the page offers it back. */
+type Removal = {
+  /** The saved line-up it forgot, or `null` when it was not starred. */
+  kept: SavedEvening | null
+  tables: readonly RecentTable[]
 }
 
 /**
@@ -61,6 +78,9 @@ export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
   const face = useLineUpFace()
   const roundsText = useRoundsText()
   const saved = useSavedEvenings()
+  const [removals, setRemovals] = useState<
+    Readonly<Partial<Record<string, Removal>>>
+  >({})
   const [shelf] = useState(() => {
     const lineUps = homeLineUps({
       evenings: saved.evenings,
@@ -130,6 +150,54 @@ export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
     }
   }
 
+  const removalOf = (lineUp: HomeLineUp, key: string): LidRemoval => {
+    const played: PlayedLineUp = lineUp.evening ?? lineUp.recent
+
+    return {
+      isRemoved: removals[key] !== undefined,
+      onPutBack: () => {
+        const removal = removals[key]
+
+        if (removal === undefined) {
+          return
+        }
+
+        writeStoredRecentTables(
+          removal.tables.reduce(
+            (recents, table) => withTablePlayed({ recents, table }),
+            storedRecents()
+          )
+        )
+
+        if (removal.kept !== null) {
+          saved.save(removal.kept)
+        }
+
+        setRemovals(({ [key]: _, ...rest }) => rest)
+      },
+      onRemove: () => {
+        const recents = storedRecents()
+        const kept = keptAs(played) ?? null
+
+        writeStoredRecentTables(withoutTablesOf({ lineUp: played, recents }))
+
+        if (kept !== null) {
+          saved.forget(kept.name)
+        }
+
+        setRemovals((current) => ({
+          ...current,
+          [key]: {
+            kept,
+            tables: recents.filter((recent) =>
+              isSameLineUp({ left: recent, right: played })
+            )
+          }
+        }))
+      }
+    }
+  }
+
   const nameOf = (lineUp: HomeLineUp, gamesText: string): string => {
     if (lineUp.evening !== null) {
       return lineUp.evening.name
@@ -185,6 +253,7 @@ export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
             key
           })
         }}
+        removal={removalOf(lineUp, key)}
         star={starOf(lineUp, name)}
       />
     )
@@ -192,7 +261,7 @@ export const OwnLineUps: React.FC<OwnLineUpsProps> = ({ createRoom }) => {
 
   return (
     <LineUpRow
-      count={shelf.lineUps.length}
+      count={shelf.lineUps.length - Object.keys(removals).length}
       hint={translate('home.yourLineUps.hint')}
       id='own-line-ups'
       title={translate('home.yourLineUps.title')}
