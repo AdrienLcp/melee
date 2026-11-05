@@ -1324,7 +1324,17 @@ sentence takes no room on screen: its `.alert[role=status]` is announced and
 never drawn, and while the socket is not open `.app-menu` carries
 `data-connection` and the trigger turns saffron (`--spine-reflex` on
 `--on-spine-light`) with its dot pulsing — the words are the menu's first line.
-Under the theme, *Install Mêlée* is an outlined row shaped like the wall
+The rest reads in one order on every screen, so a row a screen lacks leaves
+no gap: what the round and the room ask for, drawn only while they ask — the
+seated host's *Reveal* and *Pause*, the room's volume, the invitation at a
+table playing — then the seat (name, pawn), then what every screen has
+(language, theme, full screen, install), then the jobs only somebody running a
+table reaches for — *Become the room's screen* and *Show a table's QR code*,
+at a front door alone and under no heading, since each row says what it does
+— and the exits last. Those two jobs sat above the language until
+2026-11-05, and every visitor opened the menu past a job one screen of the
+evening does once.
+Under full screen, *Install Mêlée* is an outlined row shaped like the wall
 door where the browser holds an install dialog, a muted caption with the
 Share glyph naming Safari's two steps on an iPhone or iPad, and nothing
 anywhere else — the front door promises no install, so this is offered and

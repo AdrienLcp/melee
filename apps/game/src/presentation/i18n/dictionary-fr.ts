@@ -1374,7 +1374,6 @@ export const FR_DICTIONARY = defineDictionary({
         description: 'Pour un écran à l’entrée, sans rejoindre la partie.',
         label: 'Afficher le QR code d’une table'
       },
-      title: 'Cet appareil',
       wall: {
         label: 'Devenir l’écran de la pièce'
       }

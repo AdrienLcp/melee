@@ -341,10 +341,13 @@ type AppMenuLeafletProps = {
 }
 
 /**
- * What the menu opens: the room's presses, the way in, the preferences and the
- * exits. Its own chunk, because every page draws the trigger and almost nobody
- * opens it — bundled, its slider, radio groups, invitation square and
- * react-aria's popover were a sixth of what the front door downloads.
+ * What the menu opens, in one order on every screen: what the round and the
+ * room ask for, drawn only while they ask; the seat; what every screen has;
+ * the jobs only somebody running a table reaches for, done once by one screen
+ * of the evening; then the exits. Its own chunk, because every page draws the
+ * trigger and almost nobody opens it — bundled, its slider, radio groups,
+ * invitation square and react-aria's popover were a sixth of what the front
+ * door downloads.
  */
 export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
   const { locale, setLocale, translate } = useI18n()
@@ -415,10 +418,6 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
                 screen is sounding, so a wall carries no slider of its own. In
                 the menu because a buzz sounds under every game, not only the
                 one that carries a track.
-
-                With full screen, above the invitation: both are one row the
-                room's screen is set with mid-game, and the square would push
-                them past the fold of a sheet.
               */}
           {roomVolume !== null && setRoomVolume !== null && (
             <Slider
@@ -431,8 +430,6 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
               value={roomVolume}
             />
           )}
-
-          <Fullscreen />
 
           {/*
                 Unfolded on a player's screen, where passing the square along
@@ -454,25 +451,9 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
               <RoomInvitation roomCode={invitation} />
             ))}
 
-          {!isInsideRoom && !isOnWall && (
-            <section className='this-device'>
-              <h2>{translate('menu.thisDevice.title')}</h2>
-              {!isOnWallPairing && (
-                <Link
-                  className='become-wall'
-                  href={paths.wallPairing}
-                  onPress={close}
-                  variant='outlined'
-                >
-                  <ScreenIcon />
-                  <span className='name'>
-                    {translate('menu.thisDevice.wall.label')}
-                  </span>
-                </Link>
-              )}
-              <ProjectWithCode onDone={close} />
-            </section>
-          )}
+          <SeatName />
+
+          <MenuPawn />
 
           <SegmentedControl
             label={translate('preferences.language')}
@@ -502,11 +483,28 @@ export const AppMenuLeaflet: React.FC<AppMenuLeafletProps> = ({ build }) => {
             value={preference}
           />
 
+          <Fullscreen />
+
           <InstallApp />
 
-          <SeatName />
-
-          <MenuPawn />
+          {!isInsideRoom && !isOnWall && (
+            <div className='this-device'>
+              {!isOnWallPairing && (
+                <Link
+                  className='become-wall'
+                  href={paths.wallPairing}
+                  onPress={close}
+                  variant='outlined'
+                >
+                  <ScreenIcon />
+                  <span className='name'>
+                    {translate('menu.thisDevice.wall.label')}
+                  </span>
+                </Link>
+              )}
+              <ProjectWithCode onDone={close} />
+            </div>
+          )}
 
           <RoomExit onDone={close} />
 

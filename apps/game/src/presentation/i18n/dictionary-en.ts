@@ -1447,7 +1447,6 @@ export const EN_DICTIONARY = defineDictionary({
         description: 'For a screen by the door, without joining the game.',
         label: 'Show a table’s QR code'
       },
-      title: 'This device',
       wall: {
         label: 'Become the room’s screen'
       }
