@@ -2461,11 +2461,13 @@ for (const reveal of PLAYER_REVEALS) {
         page.getByRole('heading', { name: 'Cette manche' })
       ).toBeVisible()
       expect(
-        await page.evaluate(() =>
-          getComputedStyle(
-            document.querySelector('.overall .score') ?? document.body
-          ).getPropertyValue('text-box-trim')
-        )
+        await page.evaluate(() => {
+          const figure = document.querySelector('.overall :is(.score, .case)')
+
+          return figure === null
+            ? 'no figure on the standings'
+            : getComputedStyle(figure).getPropertyValue('text-box-trim')
+        })
       ).toBe(isWithoutTextBox ? 'none' : 'trim-both')
 
       const faults: string[] = []
