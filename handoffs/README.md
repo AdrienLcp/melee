@@ -6,7 +6,6 @@ delete this README with the last one.
 | Wave | File | Depends on |
 | --- | --- | --- |
 | 1 | `scoring-01-one-scale.md` | none |
-| 1 | `black-square-one-per-franchise.md` | none |
 | 1 | `phone-keyboard-and-away-mark.md` | none |
 | 2 | `scoring-02-board-or-points.md` | scoring-01 |
 | 2 | `blind-test-variety.md` | none; kept out of wave 1 so it does not collide with scoring-01 in `packages/protocol` and the host preferences |

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
+import { franchiseStemOf } from '@melee/core/blacksquare/franchise-stem'
 import { gradeLine } from '@melee/core/blacksquare/line-match'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
@@ -7,6 +8,19 @@ import {
   type BlackSquareAnswer,
   bankedBlackSquareThemes
 } from './black-square-bank'
+
+/**
+ * The templates whose answers are works. Elsewhere two answers sharing their
+ * first words is no franchise: North and South Korea in French, Henri II and
+ * Henri IV.
+ */
+const WORK_TEMPLATES: ReadonlySet<string> = new Set([
+  'albums-by-band',
+  'award-winning-films',
+  'books-by-author',
+  'films-directed-by',
+  'films-of-studio'
+])
 
 const namesOf = ({
   aliases,
@@ -39,6 +53,38 @@ describe('the black-square bank', () => {
 
       expect(views, id).toEqual(views.toSorted((a, b) => b - a))
     }
+  })
+
+  it('[blacksquare] banks one answer per franchise, by its series', () => {
+    const clusters = bankedBlackSquareThemes().flatMap(({ answers, id }) => {
+      const series = answers.flatMap((answer) =>
+        answer.series === null ? [] : [answer.series]
+      )
+
+      return series
+        .filter((key, index) => series.indexOf(key) !== index)
+        .map((key) => `${id}: ${key}`)
+    })
+
+    expect(clusters).toEqual([])
+  })
+
+  it('[blacksquare] banks one answer per franchise, by the shape of its title', () => {
+    const clusters = bankedBlackSquareThemes()
+      .filter(({ id }) => WORK_TEMPLATES.has(id.split(':')[0] ?? ''))
+      .flatMap(({ answers, id }) =>
+        (['en', 'fr'] as const).flatMap((language) => {
+          const stems = answers.map(({ labels }) =>
+            franchiseStemOf(labels[language])
+          )
+
+          return answers
+            .filter((_, index) => stems.indexOf(stems[index] ?? '') !== index)
+            .map(({ labels }) => `${id}: ${labels[language]}`)
+        })
+      )
+
+    expect(clusters).toEqual([])
   })
 
   it('[blacksquare] holds one black word per theme, none of them an answer', () => {

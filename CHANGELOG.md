@@ -468,6 +468,17 @@ one part.
 - `[Game]` **Guess nine is called _Case noire_ / _Black square_.** Its French
   name was an existing commercial app's, _Devineuf_, for the same kind of game.
 
+- `[Server]` **Black square hides one film per franchise.** A grid of
+  DreamWorks films held four _Shrek_; it now holds _Shrek_ and the next
+  studio's films fill the freed cells — _Toy Story_ alone at Pixar, one
+  _Godfather_ for Coppola, one _Ocean's_ for Soderbergh, one _Spider-Man_ at
+  Marvel Studios. The franchise's own title is kept over a sequel more read
+  than it, and a film not out yet — _Shrek 5_, _Toy Story 5_ — is never
+  banked. The rule holds for books and albums too: one _Charlie_ for Roald
+  Dahl, _Queen_ without _Queen II_. The James Cameron, Peter Jackson,
+  Marcel Pagnol and Illumination themes are gone, their grids reaching
+  obscure titles once each franchise counts once; 163 themes remain.
+
 ### Fixes
 
 - `[Game]` **A tab left open across a deploy no longer flashes _Something

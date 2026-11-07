@@ -35,12 +35,57 @@ const seatNamesByCapital = (): Record<string, readonly string[]> =>
       ])
   )
 
+/**
+ * Series and franchises that hold a subject's whole output, a period or a
+ * list rather than one story told again — every Marvel Studios film is in the
+ * Marvel Cinematic Universe, every Balzac novel in *La Comédie humaine* — so
+ * sharing one says nothing about being a sequel. Read off the series the
+ * banked truths share most.
+ */
+export const UMBRELLA_SERIES: ReadonlySet<string> = new Set([
+  'Q50188', // La Comédie humaine
+  'Q19363249', // Scènes de la vie privée
+  'Q19363257', // Scènes de la vie de province
+  'Q19363291', // Études de mœurs
+  'Q3008298', // Camus's cycle of the absurd
+  'Q3048935', // Voyages extraordinaires
+  'Q6027', // Les Rougon-Macquart
+  'Q122441953', // Hercule Poirot
+  'Q132133414', // Miss Marple
+  'Q592139', // Les Travaux d'Hercule
+  'Q26705935', // BBC's 100 Greatest Films of the 21st Century
+  'Q26196748', // DreamWorks Animation feature films
+  'Q56070713', // Walt Disney Animation Studios feature films
+  'Q906232', // Disney films from 1989 to 1995
+  'Q2732470', // Pixar films
+  'Q65120698', // Illumination films
+  'Q642878', // Marvel Cinematic Universe
+  'Q63405798', // The Infinity Saga
+  'Q113292798', // The Multiverse Saga
+  'Q51963292', // MCU Phase One
+  'Q51963356', // MCU Phase Two
+  'Q51963836', // MCU Phase Three
+  'Q62604229', // MCU Phase Four
+  'Q104643359', // MCU Phase Five
+  'Q113281347', // MCU Phase Six
+  'Q3998812', // John Carpenter's Apocalypse Trilogy
+  'Q119217984', // Matisse's Nice period
+  'Q119236786', // Matisse's cut-outs
+  'Q5168586' // Van Gogh's copies after other painters
+])
+
+/** The name a screen shows where Wikidata's own label is not the one a table says, keyed by entity. */
+export const SHOWN_LABELS: Readonly<Record<string, Wording>> = {
+  Q30547: { en: 'Mother Teresa', fr: 'Mère Teresa' }
+}
+
 /** Names a table says that Wikidata does not hold, keyed by entity. */
 export const SPOKEN_ALIASES: Readonly<Record<string, readonly string[]>> = {
   ...seatNamesByCapital(),
   Q7156: ['Barça', 'Barcelona'],
   Q8678: ['Rio'],
   Q8682: ['Real'],
+  Q30547: ['Teresa'],
   Q192071: ['Nantes'],
   Q483020: ['PSG', 'Paris Saint-Germain', 'Paris SG']
 }
@@ -119,15 +164,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     }
   },
   {
-    blackWord: 'Q29054009',
-    subject: 'Q42574',
-    template: 'films-directed-by',
-    why: {
-      en: 'Directed by Jonathan Mostow, without Cameron',
-      fr: 'Réalisé par Jonathan Mostow, sans Cameron'
-    }
-  },
-  {
     blackWord: 'Q322328',
     subject: 'Q56008',
     template: 'films-directed-by',
@@ -168,15 +204,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     subject: 'Q184903',
     template: 'films-directed-by',
     why: { en: 'Directed by Jonathan Demme', fr: 'Réalisé par Jonathan Demme' }
-  },
-  {
-    blackWord: 'Q980041',
-    subject: 'Q4465',
-    template: 'films-directed-by',
-    why: {
-      en: 'Produced by Peter Jackson, directed by Spielberg',
-      fr: 'Produit par Peter Jackson, réalisé par Spielberg'
-    }
   },
   {
     blackWord: 'Q192073',
@@ -1323,12 +1350,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     }
   },
   {
-    blackWord: 'Q1198839',
-    subject: 'Q236630',
-    template: 'books-by-author',
-    why: { en: 'A novel by Alain-Fournier', fr: 'Un roman d’Alain-Fournier' }
-  },
-  {
     blackWord: 'Q892658',
     labels: {
       en: 'Books by Amélie Nothomb',
@@ -1412,16 +1433,6 @@ export const BLACK_SQUARE_THEMES: readonly ThemeSpec[] = [
     subject: 'Q203401',
     template: 'paintings-by',
     why: { en: 'By Grant Wood', fr: 'De Grant Wood' }
-  },
-  {
-    blackWord: 'Q249967',
-    labels: { en: 'Illumination films', fr: 'Les films Illumination' },
-    subject: 'Q1189512',
-    template: 'films-of-studio',
-    why: {
-      en: 'Made by Sony Pictures Animation',
-      fr: 'Un film de Sony Pictures Animation'
-    }
   },
   {
     blackWord: 'Q11648811',

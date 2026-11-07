@@ -5,18 +5,31 @@ import { fileURLToPath } from 'node:url'
 
 import { z } from 'zod'
 
+import {
+  franchiseStemOf,
+  isFranchiseBase,
+  isTitleWithin
+} from '@melee/core/blacksquare/franchise-stem'
 import { normalizeAnswer } from '@melee/core/round/answer-matching'
 
-import { TEMPLATES, type Wording } from './black-square-templates'
+import { nowMs } from '../src/infrastructure/clock'
+import {
+  TEMPLATES,
+  type TemplateName,
+  type Wording
+} from './black-square-templates'
 import {
   BLACK_SQUARE_THEMES,
+  SHOWN_LABELS,
   SPOKEN_ALIASES,
-  type ThemeSpec
+  type ThemeSpec,
+  UMBRELLA_SERIES
 } from './black-square-themes'
 import { frenchViewsOf } from './frwiki-notability'
 import { jsonOf, orStop, parseJson } from './json-file'
 import { cached } from './question-source'
 import { aliasesOf } from './wikidata-aliases'
+import { type SeriesFacts, seriesFactsOf } from './wikidata-series'
 import {
   bindingValue,
   SPARQL_URL,
@@ -42,6 +55,155 @@ const LEAST_CANDIDATE_SITELINKS = 5
 
 type Entity = { id: string; labels: Wording; sitelinks: number }
 
+/** The templates whose answers are works, which is what has sequels. */
+const WORK_TEMPLATES: ReadonlySet<TemplateName> = new Set([
+  'albums-by-band',
+  'award-winning-films',
+  'books-by-author',
+  'films-directed-by',
+  'films-of-studio'
+])
+
+/** A film Wikidata gives no release date is one still being made. */
+const FILM_TEMPLATES: ReadonlySet<TemplateName> = new Set([
+  'award-winning-films',
+  'films-directed-by',
+  'films-of-studio'
+])
+
+/**
+ * Where a title running inside another's is a sequel. On an album it is the
+ * band's own name: *The Beatles* is inside *Beatles for Sale*.
+ */
+const TITLED_SEQUEL_TEMPLATES: ReadonlySet<TemplateName> = new Set([
+  ...FILM_TEMPLATES,
+  'books-by-author'
+])
+
+/** `YYYY-MM-DD`, comparable as text with Wikidata's own stamps. */
+const TODAY = new Intl.DateTimeFormat('en-CA', { timeZone: 'UTC' }).format(
+  nowMs()
+)
+
+const isReleased = ({
+  facts,
+  template
+}: {
+  facts: SeriesFacts | undefined
+  template: TemplateName
+}): boolean => {
+  const releasedOn = facts?.releasedOn ?? null
+
+  return releasedOn === null
+    ? !FILM_TEMPLATES.has(template)
+    : releasedOn <= TODAY
+}
+
+const isEitherTitleWithin = ({ a, b }: { a: Entity; b: Entity }): boolean =>
+  (['en', 'fr'] as const).some(
+    (language) =>
+      isTitleWithin({
+        title: a.labels[language],
+        within: b.labels[language]
+      }) ||
+      isTitleWithin({ title: b.labels[language], within: a.labels[language] })
+  )
+
+type Franchise = { members: Entity[]; series: string | null }
+
+/**
+ * The truths, most read first, gathered into franchises: works sharing a
+ * series, whose titles share a stem, or one of whose titles runs inside the
+ * other's. A series in `UMBRELLA_SERIES` names the subject's whole output
+ * rather than a franchise inside it, and links nothing.
+ */
+const franchisesOf = ({
+  factsOf,
+  template,
+  truths
+}: {
+  factsOf: (entity: Entity) => SeriesFacts | undefined
+  template: TemplateName
+  truths: readonly Entity[]
+}): Franchise[] => {
+  const parents = truths.map((_, index) => index)
+  const rootOf = (index: number): number => {
+    const parent = parents[index] ?? index
+
+    return parent === index ? index : rootOf(parent)
+  }
+  const join = ({ from, to }: { from: number; to: number }) => {
+    const [kept, merged] = [rootOf(from), rootOf(to)].toSorted((a, b) => a - b)
+
+    if (kept !== undefined && merged !== undefined) {
+      parents[merged] = kept
+    }
+  }
+  const firstHolder = new Map<string, number>()
+  const linkBy = ({ index, key }: { index: number; key: string }) => {
+    const holder = firstHolder.get(key)
+
+    if (holder === undefined) {
+      firstHolder.set(key, index)
+    } else {
+      join({ from: holder, to: index })
+    }
+  }
+  const seriesOf = (entity: Entity): string[] =>
+    (factsOf(entity)?.belongsTo ?? []).filter(
+      (series) => !UMBRELLA_SERIES.has(series)
+    )
+
+  for (const [index, truth] of truths.entries()) {
+    for (const series of seriesOf(truth)) {
+      linkBy({ index, key: `series:${series}` })
+    }
+
+    if (WORK_TEMPLATES.has(template)) {
+      for (const label of [truth.labels.en, truth.labels.fr]) {
+        linkBy({ index, key: `stem:${franchiseStemOf(label)}` })
+      }
+
+      for (const [earlier, other] of TITLED_SEQUEL_TEMPLATES.has(template)
+        ? truths.slice(0, index).entries()
+        : []) {
+        if (isEitherTitleWithin({ a: truth, b: other })) {
+          join({ from: earlier, to: index })
+        }
+      }
+    }
+  }
+
+  const franchises = new Map<number, Entity[]>()
+
+  for (const [index, truth] of truths.entries()) {
+    const root = rootOf(index)
+
+    franchises.set(root, [...(franchises.get(root) ?? []), truth])
+  }
+
+  return [...franchises.values()].map((members) => {
+    const counted = members.flatMap(seriesOf)
+    const [shared] = counted
+      .filter(
+        (series) => counted.indexOf(series) !== counted.lastIndexOf(series)
+      )
+      .toSorted()
+    const [first] = members
+
+    return {
+      members,
+      series: shared ?? (members.length > 1 ? (first?.id ?? null) : null)
+    }
+  })
+}
+
+/** A franchise's own name over a sequel more read than it: *Shrek*, not *Shrek 2*. */
+const representativeOf = ({ members }: Franchise): Entity | undefined =>
+  members.find(
+    ({ labels }) => isFranchiseBase(labels.en) || isFranchiseBase(labels.fr)
+  ) ?? members[0]
+
 const labelledBindingsSchema = sparqlBindingsSchema({
   en: bindingValue.optional(),
   fr: bindingValue.optional(),
@@ -62,7 +224,7 @@ const labelledEntitiesOf = (
     if (en !== undefined && fr !== undefined && !entities.has(id)) {
       entities.set(id, {
         id,
-        labels: { en: en.value, fr: fr.value },
+        labels: SHOWN_LABELS[id] ?? { en: en.value, fr: fr.value },
         sitelinks: Number(links?.value ?? 0)
       })
     }
@@ -194,6 +356,7 @@ const bankedRowSchema = z.object({
       aliases: z.object({ en: z.array(z.string()), fr: z.array(z.string()) }),
       id: z.string(),
       labels: z.object({ en: z.string(), fr: z.string() }),
+      series: z.string().nullable(),
       views: z.number()
     })
   ),
@@ -234,20 +397,48 @@ const build = async (): Promise<void> => {
     fr: [...(aliases.fr.get(id) ?? []), ...(SPOKEN_ALIASES[id] ?? [])]
   })
 
+  const facts = await seriesFactsOf({
+    entityIds: themes.flatMap(({ truths }) => truths.map(({ id }) => id))
+  })
+  const factsOf = ({ id }: Entity) => facts.get(id)
+
   const rows: BankedRow[] = []
   const dropped: string[] = []
 
   for (const { candidates, spec, truths, wording } of themes) {
     const id = themeIdOf(spec)
-    const answers: Entity[] = []
     const seen = new Set<string>()
-
-    for (const truth of byViews(truths)) {
+    const released = byViews(truths).filter((truth) => {
       const label = normalizeAnswer(truth.labels.fr)
+      const isFirstOfItsName = !seen.has(label)
 
-      if (!seen.has(label) && answers.length < ANSWERS_PER_THEME) {
-        seen.add(label)
-        answers.push(truth)
+      seen.add(label)
+
+      return (
+        isFirstOfItsName &&
+        isReleased({ facts: factsOf(truth), template: spec.template })
+      )
+    })
+    const franchises = franchisesOf({
+      factsOf,
+      template: spec.template,
+      truths: released
+    }).slice(0, ANSWERS_PER_THEME)
+    const chosen = franchises.flatMap((franchise) => {
+      const answer = representativeOf(franchise)
+
+      return answer === undefined ? [] : [{ answer, series: franchise.series }]
+    })
+    const answers = byViews(chosen.map(({ answer }) => answer))
+    const seriesOfAnswer = new Map(
+      chosen.map(({ answer, series }) => [answer.id, series])
+    )
+
+    for (const { members } of franchises) {
+      if (members.length > 1) {
+        console.info(
+          `    franchise: ${members.map((member) => `${member.labels.fr} ${member.id} ${viewsOf(member)}`).join(' | ')}`
+        )
       }
     }
 
@@ -313,6 +504,7 @@ const build = async (): Promise<void> => {
         aliases: aliasesOfEntity(answer),
         id: answer.id,
         labels: answer.labels,
+        series: seriesOfAnswer.get(answer.id) ?? null,
         views: viewsOf(answer)
       })),
       blackWord: {

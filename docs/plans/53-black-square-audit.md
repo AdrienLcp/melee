@@ -14,6 +14,41 @@ theme's nine most read truths (French Wikipedia, `PAGEVIEW_DAYS = 60` in
 `answerCount` of them (`black-square-round.ts`); `tierOfCell` in
 `packages/core/src/blacksquare/sheet-pay.ts` pays by third of that rank.
 
+## Done beside the steps — one answer per franchise (07/11/2026)
+
+From the 06/11 game night: a DreamWorks grid held four _Shrek_. **A theme
+banks one answer per franchise**, and the franchise's own title over a
+sequel more read than it (_Shrek_, not _Shrek 2_). The build gathers a
+theme's truths before keeping nine, so the next films fill the freed cells:
+
+- **a shared series or media franchise** (P179, P8345), read by
+  `scripts/wikidata-series.ts` and stored on each answer as `series`;
+- **a shared title stem** on works — `franchiseStemOf` in
+  `packages/core/src/blacksquare/franchise-stem.ts` cuts a subtitle and a
+  sequel's number, so _Shrek le troisième_ stems to `shrek`;
+- **a whole title of at least eight letters inside another's**, on films and
+  books — _Trainspotting_ in _T2 Trainspotting_, which no stem joins.
+
+What did not hold, so nobody tries it again:
+
+- **P155/P156 (follows, followed by) are not a sequel.** On a book or a film
+  they are as often the author's bibliography: they put _1984_ and _Animal
+  Farm_ in one franchise, three Coen films in another. Not read.
+- **A series can be the subject's whole output.** Every Marvel Studios film is
+  in the MCU, every Balzac in _La Comédie humaine_, every Disney feature in
+  the studio's own list. `UMBRELLA_SERIES` in `black-square-themes.ts` names
+  them, read off the series the banked truths share most; a new theme whose
+  grid collapses to a handful is the sign one is missing.
+- **The stem is for works only.** On countries _Corée du Nord_ and _Corée du
+  Sud_ share two words; on albums the band's own name runs inside half its
+  discography.
+
+A work not released at build time is dropped (P577 in the future, or missing
+on a film). Cut once each franchise counted once, their grids reaching
+obscure titles: James Cameron, Peter Jackson, Marcel Pagnol, Illumination.
+`black-square-bank.test.ts` holds the rule without the network: no two
+answers of a theme share a `series`, and no two works share a stem.
+
 ## What was measured (26/10/2026, 167 themes)
 
 **Page views cannot judge a theme.** Sorted by each theme's third most read

@@ -15,12 +15,17 @@ const namedEntitySchema = z.object({
 })
 
 const blackSquareAnswerSchema = namedEntitySchema.extend({
+  /**
+   * The series or franchise it stands for, `null` when it stands alone. A
+   * theme banks one answer per franchise, so no two of its answers share one.
+   */
+  series: z.string().nullable(),
   /** Its French Wikipedia article's sixty-day traffic, which ranks the nine. */
   views: z.number().int().nonnegative()
 })
 
 const blackSquareThemeSchema = z.object({
-  /** The nine most read true answers, most read first. */
+  /** The nine most read true answers, one per franchise, most read first. */
   answers: z.array(blackSquareAnswerSchema).length(9),
   /** An answer that sounds right and is not; landing on it voids the round. */
   blackWord: namedEntitySchema.extend({
