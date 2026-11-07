@@ -46,7 +46,7 @@ it on the round screens. It can run beside the black square handoff.
   (`round-service.ts:1804`). There is no cap per work, per composer or per
   artist.
   - Decoys come from the same pool and the same kind (`drawChoices`,
-    `track-pool.ts:247-282`). So TLOU is an answer *or a decoy* in nearly
+    `track-pool.ts:247-282`). So TLOU is an answer _or a decoy_ in nearly
     every film round where Santaolalla was drawn.
   - The draw is `drawPlayableTrack` (`apps/server/src/domain/round/track-pool.ts:30-82`).
     It refills only when the pool is empty (L202-233).
