@@ -953,22 +953,24 @@ under every answer mode a verdict is owed in.
     (`melee:recent-tables`, eight at most, a line-up played twice kept at its
     latest), each shown once — a starred line-up that was played carries its
     last table on its lid, _12 rounds played of 20_ and _Played yesterday_.
-    The **star** is a round token on the lid's corner, `--card-tint` and
-    hollow, printed solid in `--card-ink` once kept: a press of its own beside
-    the lid's, never inside it, and the name floats a target's width clear of
-    it. The order is dealt as the page opens, so a star takes or gives back
+    The **star** is a round token, `--card-tint` and hollow, printed solid in
+    `--card-ink` once kept: a press of its own beside the lid's, never inside
+    it. The band stops two tokens short of the lid's edge and the star and the
+    cross sit in that notch on the paper, 2.25rem across and centred on the
+    band's height, so the name below has the lid's whole width on all three
+    lines. It once floated clear of a token on its first line only, and a
+    44px token reached into its second. The order is dealt as the page opens, so a star takes or gives back
     its place on the next visit and no lid moves under the finger. A row of
     plays with no star ends on a **socket** — the star's dashed hole cut in
     `--socket`, and a line saying what it does.
-    Beside the star a bare **cross**, a target wide in `--card-ink` and
-    quieter than the token, takes the lid off the row: its plays forgotten,
+    At the lid's corner, past the star, a bare **cross** as wide as the token
+    in `--card-ink` and quieter than it, takes the lid off the row: its plays forgotten,
     its saved line-up too when starred. The lid fades and shrinks out on
     `--ease-in` and leaves a socket in its place — the same dashed cut,
     _“Name” removed_ and an underlined _Put it back_ — so nothing beside it
     moves, the focus lands on that press, and putting it back plays the
     fade the other way. The socket lasts as long as the page; the next
-    visit deals the row without it. The name leaves the star and the cross
-    two targets of room on its first line.
+    visit deals the row without it.
     The served page is written at build time and knows none of them, so it
     carries the row **held**: its title and hint, the count's place empty,
     and a hidden **strut** lid — a two-line name over its games and a
