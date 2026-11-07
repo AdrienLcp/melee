@@ -2,9 +2,9 @@ import { describe, expect, it } from 'vitest'
 
 import {
   clampedView,
+  DEEPEST_MAP_WIDTH_PX,
   fittedView,
   framedOn,
-  MAX_ZOOM,
   pannedBy,
   perchedOver,
   pinched,
@@ -15,6 +15,7 @@ import {
 
 const map = { height: 500, width: 1000 }
 const portrait = { height: 800, width: 400 }
+const deepestScale = DEEPEST_MAP_WIDTH_PX / map.width
 
 describe('map view', () => {
   it('[map] fits the whole world across a portrait frame, centred on its height', () => {
@@ -49,7 +50,7 @@ describe('map view', () => {
     ).toBe(0.4)
     expect(
       zoomedAround({ factor: 1000, focus, frame: portrait, map, view }).scale
-    ).toBe(0.4 * MAX_ZOOM)
+    ).toBe(deepestScale)
   })
 
   it('[map] stops a pan where the map edge meets the frame edge', () => {
@@ -89,7 +90,7 @@ describe('map view', () => {
   })
 
   it('[map] keeps the point under the finger when the zoom hits its ceiling', () => {
-    const view = { scale: 0.4 * (MAX_ZOOM - 1), x: -2000, y: -1000 }
+    const view = { scale: deepestScale - 1, x: -2000, y: -1000 }
     const focus = [120, 500] as const
     const zoomed = zoomedAround({
       factor: 4,
@@ -99,7 +100,7 @@ describe('map view', () => {
       view
     })
 
-    expect(zoomed.scale).toBe(0.4 * MAX_ZOOM)
+    expect(zoomed.scale).toBe(deepestScale)
     const [x, y] = toScreen(zoomed, toMap(view, focus))
     expect(x).toBeCloseTo(focus[0])
     expect(y).toBeCloseTo(focus[1])
@@ -139,9 +140,25 @@ describe('map view', () => {
       map
     })
 
-    expect(view.scale).toBe(
-      fittedView({ frame: portrait, map }).scale * MAX_ZOOM
-    )
+    expect(view.scale).toBe(deepestScale)
+  })
+
+  it('[map] zooms the narrowest phone as deep as a wall, deep enough to cover a thumb with Malta', () => {
+    const narrowPhone = { height: 640, width: 320 }
+    const wall = { height: 1080, width: 1920 }
+    const deepestOn = (frame: typeof wall) =>
+      zoomedAround({
+        factor: 10_000,
+        focus: [0, 0],
+        frame,
+        map,
+        view: fittedView({ frame, map })
+      }).scale
+    const maltaSpan = 1
+    const thumbPx = 44
+
+    expect(deepestOn(narrowPhone)).toBe(deepestOn(wall))
+    expect(maltaSpan * deepestOn(narrowPhone)).toBeGreaterThan(thumbPx)
   })
 })
 

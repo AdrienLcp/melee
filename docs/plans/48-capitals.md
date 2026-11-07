@@ -137,7 +137,7 @@ projection the country rounds already draw.
   the country.
 - **Tiers 3/2/1 under 100, 300 and 1 000 km.** The French cities' 25/75/150
   sit on a map of France at the same screen size, roughly a fortieth of the
-  world's width, but the map zooms to 24×, so a player who knows the city
+  world's width, but the map zooms until Malta covers a thumb, so a player who knows the city
   can land on it. 100 km is the right spot inside the right country; 300 km
   is the right region — Sydney for Canberra (250 km) pays 2, and Zurich for
   Bern (95 km) pays 3, which is a confusion the tiers cannot separate and do

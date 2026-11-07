@@ -108,8 +108,8 @@ export type ProjectedWorld = {
 }
 
 const MAP_WIDTH = 1000
-/** A tenth of a unit is under a pixel at the deepest zoom, and keeps the paths a third of their full length. */
-const PATH_DIGITS = 1
+/** A hundredth of a unit is under a pixel at the deepest zoom, and keeps the paths well short of their full length. */
+const PATH_DIGITS = 2
 const SPHERE = { type: 'Sphere' } as const
 
 const codeOf = (shape: AtlasShape): CountryCode | null =>

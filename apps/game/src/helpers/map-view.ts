@@ -10,8 +10,12 @@ export type Point = readonly [x: number, y: number]
  */
 export type MapView = { scale: number; x: number; y: number }
 
-/** Deep enough to set a marker inside Luxembourg on a phone. */
-export const MAX_ZOOM = 24
+/**
+ * How wide the map is drawn at its deepest, whatever the frame, so a phone
+ * zooms as deep as a wall: Malta, the smallest country a round asks for, and
+ * Andorra beside it then span a thumb — 44 pixels and more.
+ */
+export const DEEPEST_MAP_WIDTH_PX = 60_000
 
 type Frame = { frame: Size; map: Size }
 
@@ -46,7 +50,10 @@ const clampedAxis = (offset: number, frameLength: number, mapLength: number) =>
 const clampedScale = ({ frame, map }: Frame, scale: number) => {
   const fitted = fittedView({ frame, map })
 
-  return Math.min(fitted.scale * MAX_ZOOM, Math.max(fitted.scale, scale))
+  return Math.min(
+    DEEPEST_MAP_WIDTH_PX / map.width,
+    Math.max(fitted.scale, scale)
+  )
 }
 
 export const clampedView = ({
