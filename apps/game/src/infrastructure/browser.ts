@@ -114,15 +114,29 @@ export const toggleFullscreen = async (): Promise<void> => {
   await document.documentElement.requestFullscreen()
 }
 
+/** What the screen shows of the page, in CSS pixels at the page's own zoom. */
+export type ShownViewport = {
+  /** The height shown, which an on-screen keyboard or the browser's bars take from. */
+  heightPx: number
+  /**
+   * How far down the layout viewport the shown band sits. An engine that lays
+   * its keyboard over the page pans the band down to bring the field above
+   * it, and leaves it there; zero while pinch-zoomed, where panning is the
+   * reader's own.
+   */
+  offsetTopPx: number
+}
+
 /**
- * The height the screen shows in CSS pixels at the page's own zoom, called now
- * and again whenever an on-screen keyboard or the browser's bars change it.
- * Safari on iOS leaves the layout viewport whole under its keyboard, so `dvh`
- * never shrinks there and only the visual viewport says what is left. Times
- * its scale, so a pinch-zoom is not read as a keyboard.
+ * Calls `listener` now and again whenever an on-screen keyboard, the browser's
+ * bars or a pan change what the screen shows. Safari on iOS and the WebView a
+ * messaging app opens a link in leave the layout viewport whole under their
+ * keyboard, so `dvh` never shrinks there and only the visual viewport says
+ * what is left, and where. Times its scale, so a pinch-zoom is not read as a
+ * keyboard.
  */
-export const onShownHeightChange = (
-  listener: (heightPx: number) => void
+export const onShownViewportChange = (
+  listener: (shown: ShownViewport) => void
 ): (() => void) => {
   const viewport = window.visualViewport
 
@@ -131,14 +145,21 @@ export const onShownHeightChange = (
   }
 
   const publish = () => {
-    listener(viewport.height * viewport.scale)
+    const isZoomed = Math.abs(viewport.scale - 1) > 0.01
+
+    listener({
+      heightPx: viewport.height * viewport.scale,
+      offsetTopPx: isZoomed ? 0 : viewport.offsetTop
+    })
   }
 
   publish()
   viewport.addEventListener('resize', publish)
+  viewport.addEventListener('scroll', publish)
 
   return () => {
     viewport.removeEventListener('resize', publish)
+    viewport.removeEventListener('scroll', publish)
   }
 }
 

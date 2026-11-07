@@ -418,12 +418,12 @@
     @include layout.arrived
     display: grid
     gap: var(--space-stage-rows)
-    grid-template-rows: auto minmax(min(22rem, 45dvh), 1fr) auto
+    grid-template-rows: auto minmax(min(22rem, calc(var(--shown-height) * 0.45)), 1fr) auto
 
     // A screen this short spends its rows on the round: the pips already count
     // the rounds and the way in is in the menu.
-    @media (height < 36rem)
-      grid-template-rows: minmax(min(22rem, 45dvh), 1fr) auto
+    @include layout.shown-height-below(36)
+      grid-template-rows: minmax(min(22rem, calc(var(--shown-height) * 0.45)), 1fr) auto
 
       > header
         // Hidden from sight only: it holds the arrival notice's live region,
@@ -465,12 +465,13 @@
     // A keyboard up under the seat's own field, on a console standing
     // upright: the press that gives the answer away waits with the tab bar
     // (`host-panel.sass`), and both come back with the keyboard going down.
-    @media (aspect-ratio < 13 / 10) and (height < 30rem)
+    @media (aspect-ratio < 13 / 10)
       &:has(> .stage.playing .answer-form input:focus)
-        grid-template-rows: minmax(0, 1fr)
+        @include layout.shown-height-below(30)
+          grid-template-rows: minmax(0, 1fr)
 
-        > footer
-          display: none
+          > footer
+            display: none
 
     // One row above the split, and on any screen lying down: the press that
     // gives the answer away, and whatever stands beside it.

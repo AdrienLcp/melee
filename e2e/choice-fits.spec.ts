@@ -4062,3 +4062,162 @@ for (const keyboard of KEYBOARD_SCREENS) {
     })
   }
 }
+
+/**
+ * An engine that lays its keyboard over the page — Safari on iOS, the
+ * WebView a link opens in from a messaging app — keeps the layout viewport
+ * whole and pans the visual one down it until the field clears the
+ * keyboard, then leaves it there; a page taller than the screen is
+ * scrolled first, as far as it goes. Chromium has no keyboard and never
+ * pans, so the page is handed a `visualViewport` that does it:
+ * `raiseOverlaidKeyboard` brings a keyboard of that height up under the
+ * focused field, firing what the real one fires.
+ */
+const mockOverlaidKeyboard = () => {
+  const shown = { heightPx: innerHeight, offsetTopPx: 0 }
+  const viewport = Object.defineProperties(new EventTarget(), {
+    height: { get: () => shown.heightPx },
+    offsetLeft: { value: 0 },
+    offsetTop: { get: () => shown.offsetTopPx },
+    pageLeft: { get: () => scrollX },
+    pageTop: { get: () => scrollY + shown.offsetTopPx },
+    scale: { value: 1 },
+    width: { get: () => innerWidth }
+  })
+
+  Object.defineProperty(window, 'visualViewport', { get: () => viewport })
+  Object.defineProperty(window, 'raiseOverlaidKeyboard', {
+    value: (keyboardPx: number) => {
+      const field = document.activeElement?.getBoundingClientRect()
+      const heightPx = innerHeight - keyboardPx
+      const clearance = Math.max((field?.bottom ?? 0) + 8 - heightPx, 0)
+      const root = document.documentElement
+      const scrolled = Math.min(
+        clearance,
+        root.scrollHeight - innerHeight - scrollY
+      )
+
+      scrollBy(0, scrolled)
+      shown.heightPx = heightPx
+      shown.offsetTopPx = Math.min(clearance - scrolled, keyboardPx)
+      viewport.dispatchEvent(new Event('resize'))
+      viewport.dispatchEvent(new Event('scroll'))
+    }
+  })
+}
+
+/** What sits outside the band the panned visual viewport shows. */
+const measureInShownBand = (inView: string[]) => {
+  const viewport = window.visualViewport
+
+  if (viewport === null) {
+    return ['no visual viewport']
+  }
+
+  const bandTop = viewport.offsetTop
+  const bandBottom = viewport.offsetTop + viewport.height
+
+  return inView.flatMap((selector) => {
+    const piece = [...document.querySelectorAll(selector)].find((each) =>
+      each.checkVisibility({ visibilityProperty: true })
+    )
+
+    if (piece === undefined) {
+      return [`${selector} not drawn`]
+    }
+
+    const box = piece.getBoundingClientRect()
+    const hit = document.elementFromPoint(
+      (box.left + box.right) / 2,
+      (box.top + box.bottom) / 2
+    )
+    const isCovered =
+      hit !== null && !piece.contains(hit) && !hit.contains(piece)
+
+    if (box.top >= bandTop - 1 && box.bottom <= bandBottom + 1 && !isCovered) {
+      return []
+    }
+
+    return [
+      `${selector} at ${Math.round(box.top)}–${Math.round(box.bottom)}, shown ${Math.round(bandTop)}–${Math.round(bandBottom)}${isCovered ? `, under ${hit?.tagName.toLowerCase()}.${String(hit?.className).split(' ').join('.')}` : ''}`
+    ]
+  })
+}
+
+/** Safari's page on a 390×844 iPhone, its bars up, under its 336px keyboard. */
+const OVERLAID_KEYBOARD = { heightPx: 336, page: { height: 664, width: 390 } }
+
+const OVERLAID_KEYBOARD_SCREENS = [
+  {
+    field: '.nickname-form input',
+    inView: [
+      '.nickname-form h1',
+      '.nickname-form input',
+      '.nickname-form button[type=submit]'
+    ],
+    name: 'the nickname form',
+    path: `/play/${ROOM_CODE}`,
+    view: { ...typedChoosing, phase: 'lobby', round: null },
+    withoutNickname: true
+  },
+  ...KEYBOARD_SCREENS.flatMap((keyboard) =>
+    ANSWERING_ROLES.flatMap(({ path, role }) => {
+      const screen = ANSWERING_SCREENS.find(
+        ({ name }) => name === keyboard.name
+      )
+
+      if (
+        screen === undefined ||
+        (role === 'seated host' && screen.seated === null)
+      ) {
+        return []
+      }
+
+      return [
+        {
+          field: keyboard.field,
+          inView: keyboard.inView,
+          name: `${role}, ${screen.name}`,
+          path,
+          view:
+            role === 'player' || screen.seated === null
+              ? screen.view
+              : seatedOn({
+                  currentContent: screen.seated.currentContent,
+                  view: screen.view
+                }),
+          withoutNickname: false
+        }
+      ]
+    })
+  )
+]
+
+for (const screen of OVERLAID_KEYBOARD_SCREENS) {
+  test(`[layout] ${screen.name}: with a keyboard laid over the page, the field and its press stay in the band it shows`, async ({
+    page
+  }) => {
+    await serveRoom({ page, view: screen.view })
+    await page.addInitScript(
+      ({ withoutNickname }) => {
+        localStorage.setItem('melee:locale', 'fr')
+
+        if (withoutNickname) {
+          localStorage.removeItem('melee:nickname')
+        }
+      },
+      { withoutNickname: screen.withoutNickname }
+    )
+    await page.addInitScript(mockOverlaidKeyboard)
+    await page.setViewportSize(OVERLAID_KEYBOARD.page)
+    await page.goto(screen.path)
+    await page.locator(screen.field).first().focus()
+    await page.evaluate(async (keyboardPx) => {
+      Reflect.get(window, 'raiseOverlaidKeyboard')(keyboardPx)
+      await new Promise((resolve) => requestAnimationFrame(resolve))
+      await new Promise((resolve) => requestAnimationFrame(resolve))
+    }, OVERLAID_KEYBOARD.heightPx)
+
+    expect(await page.evaluate(measureInShownBand, screen.inView)).toEqual([])
+  })
+}

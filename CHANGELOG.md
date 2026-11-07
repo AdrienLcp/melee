@@ -189,6 +189,12 @@ one part.
 
 ### Improvements
 
+- `[Game]` **A seat whose screen has gone shows a crossed-out signal instead
+  of the word _away_.** The word took a row of its own in a full table's seat
+  grid; the icon sits on the name's line, the name in muted ink, and both fade
+  in and back out as the screen leaves and returns. Screen readers still hear
+  the word.
+
 - `[Shared]` **Every round of every game pays at most 100 points, and being
   right comes before being fast.** A sheet — black square, Petit Bac, the
   slate — is one round, its items sharing the hundred; a typed answer pays
@@ -499,6 +505,15 @@ one part.
   obscure titles once each franchise counts once; 163 themes remain.
 
 ### Fixes
+
+- `[Game]` **With a phone's keyboard up, the field and its press stay on
+  screen in Safari and in the browsers messaging apps open links in.** Those
+  lay the keyboard over the page and pan what the screen shows down to the
+  field; the page then shrank to the top of the screen, out from under the
+  view, and the field left it — a black square's answer sat wholly above what
+  the screen showed. The page now follows the view down, and the rules a short
+  screen opens — the seated console's tab bar giving way, Petit Bac's smaller
+  _Stop_ — read the height the screen shows rather than the window's.
 
 - `[Game]` **A tab left open across a deploy no longer flashes _Something
   went wrong_ on its way to the new build.** The reload onto the new build

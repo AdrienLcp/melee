@@ -1,19 +1,32 @@
-@use '../styles/typography'
+// Side-effect module: the away mark's component styles.
 
 @layer components
+  // Folded at no width while the seat is here, so the name keeps the room;
+  // the fold opens before the icon fades in, and closes after it fades out.
   .away-mark
-    @include typography.label
-
     align-items: center
-    border: var(--stroke-thin) solid var(--rule-strong)
-    border-radius: var(--radius-full)
     color: var(--ink-muted)
     display: inline-flex
     flex: none
-    gap: 0.3em
-    padding: 0.25em 0.6em 0.25em 0.45em
-    white-space: nowrap
+    inline-size: 0
+    opacity: 0
+    scale: 0.6
+    transition: opacity var(--transition-base, 0s) var(--ease-in), scale var(--transition-base, 0s) var(--ease-in), inline-size var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5)
 
     svg
-      height: 1em
-      width: 1em
+      block-size: 1em
+      flex: none
+      inline-size: 1em
+
+  .away-mark[data-away]
+    inline-size: 1em
+    opacity: 1
+    scale: 1
+    transition: inline-size var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5), scale var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+
+  // The name the mark stands beside seconds it in muted ink.
+  :has(> .away-mark) > .name
+    transition: color var(--transition-base, 0s) var(--ease-out)
+
+  :has(> .away-mark[data-away]) > .name
+    color: var(--ink-muted)

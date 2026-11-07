@@ -88,14 +88,15 @@
   // the sheet's head stands beside the menu in their place, and the list
   // keeps a line to type on between the letter and the press.
   .player-page.playing:has(> .player-round.petit-bac-round)
-    @media (height < 30rem) and (aspect-ratio < 13 / 10)
-      grid-template-rows: minmax(0, 1fr)
+    @media (aspect-ratio < 13 / 10)
+      @include layout.shown-height-below(30)
+        grid-template-rows: minmax(0, 1fr)
 
-      > .round-chrome
-        @include accessibility.visually-hidden
+        > .round-chrome
+          @include accessibility.visually-hidden
 
-      .answer-sheet > .head
-        padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
+        .answer-sheet > .head
+          padding-inline-end: calc(var(--menu-width, 7.25rem) + var(--space-xs))
 
   // Lying down, five cards under the chrome are five rows too short for a
   // finger: they take the whole height on one side, and the chrome, the sand,

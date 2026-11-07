@@ -195,13 +195,7 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
               )}
               <span className='name'>{player.nickname}</span>
               {marksReady === true && player.isReady && <ReadyMark />}
-              {/*
-              A seat whose screen has gone. It used to be the row's opacity and
-              nothing else, which said it by taking the whole row under the
-              contrast floor and said it to no reader who was not looking at it.
-              The word is the signal now; the ink only seconds it.
-            */}
-              {!player.isConnected && <AwayMark />}
+              <AwayMark isAway={!player.isConnected} />
               {player.id === youId && (
                 <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
               )}

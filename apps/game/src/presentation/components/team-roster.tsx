@@ -211,7 +211,7 @@ const SeatChips: React.FC<SeatChipsProps> = ({
           <Pawn seat={roster.indexOf(player)} />
           <span className='name'>{player.nickname}</span>
           {marksReady === true && player.isReady && <ReadyMark />}
-          {!player.isConnected && <AwayMark />}
+          <AwayMark isAway={!player.isConnected} />
           {player.id === youId && (
             <VisuallyHidden elementType='span'>{` (${translate('player.you')})`}</VisuallyHidden>
           )}

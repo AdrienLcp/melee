@@ -11,7 +11,7 @@ import { ReconnectingNotice } from '@/presentation/connection/reconnecting-notic
 import { useResumeLandingArrival } from '@/presentation/landing-arrival'
 import { RoomActionsProvider } from '@/presentation/room-actions/room-actions-provider'
 import { useFocusMainOnNavigation } from '@/presentation/use-focus-main-on-navigation'
-import { usePublishShownHeight } from '@/presentation/use-shown-height'
+import { usePublishShownViewport } from '@/presentation/use-shown-viewport'
 
 import './app-shell.sass'
 
@@ -29,7 +29,7 @@ export const AppShell: React.FC = () => {
   const pageKey = usePageKey()
   useFocusMainOnNavigation()
   useResumeLandingArrival()
-  usePublishShownHeight()
+  usePublishShownViewport()
 
   return (
     <AriaRouterProvider>

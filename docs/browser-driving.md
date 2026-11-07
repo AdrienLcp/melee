@@ -599,6 +599,27 @@ At 414 px and 1920 px:
 - that a locale or theme switch leaves the socket alone — it is not in the
   hook's dependencies, and a remount there ends a round.
 
+## A keyboard, which no desktop browser has
+
+Chromium, DevTools' device mode and Playwright's emulation have no on-screen
+keyboard and never pan the visual viewport, so a test that only shrinks the
+window measures Chrome on Android and nothing else — it passed twice while
+iPhones lost the field. `choice-fits.spec.ts` hands the page a
+`visualViewport` that pans like Safari's (`mockOverlaidKeyboard`) and measures
+each piece against `offsetTop … offsetTop + height`, never `innerHeight`.
+
+For the real thing, the Android emulator (`Medium_Phone_API_36.1`, started
+with `-no-audio`) has a keyboard. Turn it on over the emulator's hardware one
+(`adb shell settings put secure show_ime_with_hard_keyboard 1`), serve the dev
+stack through `adb reverse tcp:<port> tcp:<port>`, tap the field with
+`adb shell input tap`, and read the page over CDP: `adb forward tcp:9333
+localabstract:chrome_devtools_remote` for Chrome, which Playwright's
+`connectOverCDP` drives, or `webview_devtools_remote_<pid>` for a WebView,
+which takes raw CDP only. A WebView needs an app around it: a one-activity
+shell calling `WebView.setWebContentsDebuggingEnabled(true)` builds from the
+SDK alone (`aapt2 link`, `javac`, `d8`, `zipalign`, `apksigner` with the debug
+keystore).
+
 ## Filming a motion
 
 A screenshot cannot say whether something arrived or cut in, and neither can

@@ -1,5 +1,6 @@
 @use '../../presentation/styles/box-lid'
 @use '../../presentation/styles/framed'
+@use '../../presentation/styles/layout'
 @use '../../presentation/styles/piece'
 @use '../../presentation/styles/typography'
 
@@ -266,10 +267,11 @@
   // A keyboard up leaves an upright screen a strip: the press keeps its
   // place under the card at a control's height rather than a stop's.
   .petit-bac-sheet
-    @media (height < 30rem) and (aspect-ratio < 13 / 10)
-      .stop .button,
-      .stop-banner
-        min-block-size: var(--control-height)
+    @media (aspect-ratio < 13 / 10)
+      @include layout.shown-height-below(30)
+        .stop .button,
+        .stop-banner
+          min-block-size: var(--control-height)
 
   // Lying down the list takes the width on its paper, two categories a row,
   // and the letter and the clock stand on a card of their own beside it, over

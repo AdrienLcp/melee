@@ -45,6 +45,18 @@ $podium-screen: 64rem
   @media (width < $podium-screen)
     @content
 
+/// Under `$rem` of screen shown, which a keyboard coming up can take a screen
+/// to. A media query alone reads the layout viewport, which an engine laying
+/// its keyboard over the page leaves whole, so the shown height
+/// `use-shown-viewport.ts` publishes opens it too — for the steps it lists,
+/// which are the only `$rem` this takes. Nested under a selector.
+@mixin shown-height-below($rem)
+  @media (height < #{$rem}rem)
+    @content
+
+  :root[data-shown-height-below~='#{$rem}'] &
+    @content
+
 /// Past `wide`, where a stage whose payload is a grid can afford a column
 /// beside it and still keep the grid five cards across. Between the two the
 /// column goes under the grid instead, because beside it the grid dropped to

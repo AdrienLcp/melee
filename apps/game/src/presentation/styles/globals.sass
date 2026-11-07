@@ -66,9 +66,14 @@
   // `hidden`, so the root never becomes a scroller and `sticky` keeps working.
   // Sideways too: a wide row never scrolls the
   // page on a phone.
+  // `translate` only while a keyboard laid over the page has panned the
+  // shown band down it: any other value than `none` makes the root the
+  // containing block of every fixed piece, which a scrolling page would carry
+  // away with it.
   #root
     min-block-size: var(--shown-height)
     overflow: clip
+    translate: var(--visual-viewport-pan, none)
 
   body
     @include layout.container

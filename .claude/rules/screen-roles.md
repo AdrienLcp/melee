@@ -97,7 +97,10 @@ never scroll — 24 seats at 320 wide end a long name on an ellipsis at the
 lines its row holds instead.
 
 **A keyboard is half the screen.** `--shown-height` (the visual viewport, for
-an engine that overlays the keyboard) is the frame's height, and with a field
+an engine that overlays the keyboard) is the frame's height, the frame follows
+the band that engine pans down the page (`--visual-viewport-pan`), a rule a
+keyboard opens is `layout.shown-height-below`, never a bare
+`@media (height < …)`, and with a field
 focused the question, the field and the send press still sit in it: at
 320×284 the seated console hides its tab bar until the keyboard goes down.
 `DESIGN.md`, _A keyboard is half the screen_, holds the engines.

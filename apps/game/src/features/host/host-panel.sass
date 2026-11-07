@@ -342,15 +342,16 @@
     // A keyboard up under a seat's own field leaves an upright console a
     // strip: the bar gives way while the seat types, and comes back with the
     // keyboard going down.
-    @media (aspect-ratio < 13 / 10) and (height < 30rem)
+    @media (aspect-ratio < 13 / 10)
       .host-desk:has(.stage.playing .answer-form input:focus, .stage.petit-bac-seat input:focus)
-        --panel-bar-foot: 0rem
+        @include layout.shown-height-below(30)
+          --panel-bar-foot: 0rem
 
-        > #main
-          --layout-padding-block-end: max(var(--layout-padding), var(--safe-area-bottom))
+          > #main
+            --layout-padding-block-end: max(var(--layout-padding), var(--safe-area-bottom))
 
-        .panel-tabs
-          @include stepped-aside
+          .panel-tabs
+            @include stepped-aside
 
     @media (aspect-ratio >= 13 / 10)
       .host-desk

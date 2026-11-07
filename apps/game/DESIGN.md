@@ -528,13 +528,26 @@ layout viewport under it because `index.html` asks for
 lays the keys over a page that keeps its height: there the shell publishes
 `visualViewport.height` (times its scale, so a pinch is not a keyboard) as
 `--visual-viewport-height`, and every screen held to the viewport takes
-`--shown-height`, the smaller of the two. A field's round is a size container
+`--shown-height`, the smaller of the two. That alone broke it: the engine pans
+the shown band down a page that cannot scroll until the field clears the keys,
+and the page then shrank to the top of the screen, out from under the band — a
+black square's field sat 16px above what the screen showed. So the shell also
+moves `#root` down by `visualViewport.offsetTop` (`--visual-viewport-pan`)
+while the page is no taller than the screen, and opens the rules a short
+screen opens (`layout.shown-height-below`) off the shown height, since a media
+query reads the layout viewport the keys never touch. A field's round is a size container
 and its form another, so what gives way is decided by the box the question
 leaves the form, never by the device: the hint and the count, then the press's
 height, then the press beside the field, then the label into the field. A
 seated console standing upright also lets its tab bar and its reveal press wait
 while its own field is focused. The spec holds the question, the field and the
-press in view at 320×284, 360×320 and 390×422.
+press in view at 320×284, 360×320 and 390×422, and again under a 336px
+keyboard laid over a 390×664 page that keeps its height.
+
+An Android app hosting the page in a WebView may resize it (the layout follows,
+as in Chrome) or, targeting Android 15 without handling the keyboard's insets,
+lay the keys over it and tell the page nothing at all — no viewport moves, and
+no page can answer that.
 
 ### The console held in a hand
 
