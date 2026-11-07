@@ -134,7 +134,8 @@ export const TeamRoster: React.FC<TeamRosterProps> = ({
                   <VisuallyHidden elementType='span'>{` (${translate('team.yours')})`}</VisuallyHidden>
                 )}
               </h3>
-              {showsRank && (
+              {/* On a track the team's case is its standing, read under the head. */}
+              {showsRank && team.board === null && (
                 <span className='score'>
                   {translate('player.score', {
                     points: shownPoints(team.score)

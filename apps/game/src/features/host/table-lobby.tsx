@@ -173,7 +173,7 @@ const TableCard: React.FC<{ roomCode: RoomCode; view: HostRoomView }> = ({
       : translate(gameNameKey(game.kind))
 
   const rules =
-    board.kind === 'off'
+    board.kind === 'points'
       ? roundCount === null
         ? translate('host.table.rules.pointsOpen')
         : translate('host.table.rules.points', { rounds: roundCount })

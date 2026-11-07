@@ -12,21 +12,20 @@ export type TeamBoardEntry = {
 
 /** Whether the teams have anything to rank — the seats' threshold, met by the teams. */
 export const hasAnyTeamScored = (teams: readonly Team[]): boolean =>
-  teams.some((team) => team.score > 0 || caseOf(team) > 0)
+  teams.some((team) => standingOfTeam(team) > 0)
 
-const caseOf = (team: Team): number => team.board?.case ?? 0
+/** What a team is ranked on, as a seat is: its case on a track, its score on points. */
+const standingOfTeam = (team: Team): number =>
+  team.board === null ? team.score : team.board.case
 
 /**
- * On a track the pawn furthest along leads and the score breaks a tie between
- * two pawns on one case: the race is what the room watched, and a host's
- * correction can leave the two a case apart.
- *
- * Ties keep the teams' own order, which is their colour order on every screen,
- * so two walls showing the same scores never disagree about who is listed first.
+ * Highest standing first, two teams level sharing the place. Ties keep the
+ * teams' own order, which is their colour order on every screen, so two walls
+ * showing the same standings never disagree about who is listed first.
  */
 export const buildTeamBoard = (teams: readonly Team[]): TeamBoardEntry[] => {
   const ordered = teams.toSorted(
-    (left, right) => caseOf(right) - caseOf(left) || right.score - left.score
+    (left, right) => standingOfTeam(right) - standingOfTeam(left)
   )
 
   let currentRank = 0
@@ -35,8 +34,7 @@ export const buildTeamBoard = (teams: readonly Team[]): TeamBoardEntry[] => {
   return ordered.map((team, index) => {
     if (
       previous === null ||
-      caseOf(team) !== caseOf(previous) ||
-      team.score !== previous.score
+      standingOfTeam(team) !== standingOfTeam(previous)
     ) {
       currentRank = index + 1
       previous = team

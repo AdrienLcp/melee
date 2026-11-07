@@ -1,0 +1,28 @@
+@use '../styles/typography'
+
+@layer components
+  // A case of the track in miniature, sized by the font it stands in: the
+  // number printed in its corner as the board prints it, so it reads as the
+  // square a pawn stands on beside a name rather than as a score.
+  .case-mark
+    align-items: start
+    background: var(--track-a)
+    border-radius: var(--radius-s)
+    box-shadow: inset 0 -2px 0 color-mix(in oklch, var(--track-b) 60%, var(--chipboard))
+    color: var(--track-ink)
+    display: inline-grid
+    flex: none
+    justify-items: start
+    min-block-size: 1.5em
+    min-inline-size: 1.5em
+    padding: 0.1em 0.4em 0.3em 0.2em
+
+    &[data-mark]
+      background: var(--track-five)
+
+    .number
+      @include typography.numeric
+      @include typography.solid
+
+    .glyph
+      font-size: var(--text-em-s)

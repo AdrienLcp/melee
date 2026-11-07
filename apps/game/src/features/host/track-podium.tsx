@@ -5,6 +5,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 
 import { placeTrackPawns, type TrackPawn } from '@melee/core/board/track-pawns'
 
+import { CaseMark } from '@/presentation/components/case-mark'
 import { ReadyMark } from '@/presentation/components/ready-mark'
 import {
   TrackPawnPiece,
@@ -29,6 +30,8 @@ const Walked: React.FC<{ move: number }> = ({ move }) => {
 }
 
 type TrackPodiumProps = {
+  /** The track's length, which says which case is the finish. */
+  length: number
   /**
    * Checks each seat back at the table between two rounds. Off wherever
    * nobody is asked to be ready.
@@ -48,6 +51,7 @@ type TrackPodiumProps = {
  * is a list nobody reads; three steps and a heap is a race.
  */
 export const TrackPodium: React.FC<TrackPodiumProps> = ({
+  length,
   marksReady,
   pawns,
   youId
@@ -79,7 +83,11 @@ export const TrackPodium: React.FC<TrackPodiumProps> = ({
         ))}
       </ol>
       {rest.length > 0 && (
-        <ol className='rest' start={PODIUM_PLACES + 1}>
+        <ol
+          className='rest'
+          start={PODIUM_PLACES + 1}
+          style={{ '--rest-count': rest.length }}
+        >
           {rest.map((pawn) => (
             <li
               className={classNames('chip', pawn.id === youId && 'you')}
@@ -90,7 +98,7 @@ export const TrackPodium: React.FC<TrackPodiumProps> = ({
               {marksReady === true && isReady(pawn) && <ReadyMark />}
               <span className='at'>
                 <Walked move={pawn.board.move} />
-                {pawn.board.case}
+                <CaseMark at={pawn.board.case} length={length} />
               </span>
             </li>
           ))}

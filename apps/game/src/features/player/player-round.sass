@@ -855,6 +855,11 @@
       box-shadow: var(--shadow-recess), inset 0 0 0 var(--stroke-thin) var(--socket-line)
       color: var(--board-muted)
 
+    // On a track a round that walked nothing leaves the pawn standing in its
+    // socket, where a bare 0 read as a score.
+    .payout > .pawn
+      font-size: calc(var(--token) * 0.55)
+
     .payout-words
       display: flex
       flex-direction: column
@@ -862,6 +867,7 @@
       min-width: 0
 
     .round-placing,
+    .walked-unit,
     .you-missed
       @include typography.title
 
@@ -915,13 +921,12 @@
 
           color: var(--ink)
 
-        // Where the pawn finished, before the points: on a track the case is
-        // the race, and the points what walked it there.
+        // Where the pawn finished, in the points' place: on a track the case
+        // is the race, and nothing else is printed.
         .case
           @include typography.numeric
 
           color: var(--ink)
-          margin-inline-end: 0.6em
 
     .scoreboard .pawn
       font-size: var(--text-em-l)

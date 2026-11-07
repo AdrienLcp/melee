@@ -396,7 +396,7 @@ describe('an evening of several games', () => {
     await waitFor(() => hostView(host) !== null, 'the host to be seated')
 
     expect(hostView(host)?.settings).toMatchObject({
-      board: { kind: 'off' },
+      board: { kind: 'points' },
       game: { kind: 'quiz' },
       lineUp: [{ kind: 'quiz' }, { kind: 'blindtest' }, { kind: 'buzzer' }],
       lineUpAt: 0,

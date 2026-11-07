@@ -1,12 +1,12 @@
 @use '../../presentation/styles/rank'
 @use '../../presentation/styles/typography'
-@use '@adrienlcp/styles/accessibility'
 
 @layer components
   // One grid for every seat, each row a subgrid of it, so the scores and the
   // presses stand in columns whatever the names and the scores are.
   .podium-roster
     column-gap: var(--space-2xs)
+    container: podium-roster / inline-size
     display: grid
     grid-template-columns: auto auto minmax(4rem, 1fr) auto auto auto
     list-style: none
@@ -30,6 +30,41 @@
     &[data-away]
       .podium-name
         color: var(--ink-muted)
+
+    // In a column as narrow as the console's beside a wall, the presses and
+    // the menu take the line under the name, the note beside them: inline,
+    // they left a name five letters.
+    @container podium-roster (width < 26rem)
+      &:has(.podium-presses > *)
+        grid-template-rows: auto auto
+        row-gap: 0rem
+
+        > .podium-who
+          display: contents
+
+        .podium-line
+          grid-column: 3
+          grid-row: 1
+
+        .podium-note
+          grid-column: 3
+          grid-row: 2
+
+        .podium-score
+          grid-column: 4
+          grid-row: 1
+
+        .podium-presses
+          grid-column: 3 / 6
+          grid-row: 2
+          justify-self: end
+
+        > :is(.action-menu-trigger, .podium-menu-slot)
+          grid-column: 6
+          grid-row: 2
+
+        > :is(.podium-rank, .pawn)
+          grid-row: 1
 
   .podium-rank
     @include rank.before-pawn($figures: 2, $gap: var(--space-2xs))
@@ -71,10 +106,8 @@
     text-align: end
     white-space: nowrap
 
-  // The pawn beside the name already says the number is a case, and the
-  // word beside it took the name's room down to five letters.
-  .podium-case-label
-    @include accessibility.visually-hidden
+    &:has(.case-mark)
+      font-size: var(--text-m)
 
   .podium-presses
     display: flex

@@ -284,7 +284,7 @@ describe('endsTheEvening', () => {
   const HOME = [{ board: { case: 10, move: 2 } }, { board: null }]
   const ON_THE_WAY = [{ board: { case: 9, move: 2 } }, { board: null }]
   const table = {
-    board: { kind: 'off' },
+    board: { kind: 'points' },
     endsAtFinish: true,
     lineUp,
     roundCount: 7

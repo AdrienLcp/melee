@@ -47,7 +47,10 @@ type RoundChromeProps = {
   roundIndex: number | null
   /** The room's teams, so the line names the seat's own once it has one. */
   teams: readonly Team[]
-  /** The seat whose pawn the line carries, and whose score — its team's, once it has one. */
+  /**
+   * The seat whose pawn the line carries, and whose standing — its team's,
+   * once it has one: the score, or on a track the case alone.
+   */
   youId: PlayerId
 }
 
@@ -74,7 +77,10 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
   const yourTeam = teamOfSeat({ playerId: youId, teams })
   const youSeat = players.findIndex((player) => player.id === youId)
   const you = players[youSeat]
-  const score = yourTeam?.score ?? you?.score ?? 0
+  const pawn = yourTeam ?? you
+  const score = pawn?.score ?? 0
+  // A pawn on a track carries its case, and then the case is the only figure.
+  const standsOn = pawn?.board?.case ?? null
 
   return (
     <header className='round-chrome'>
@@ -94,6 +100,10 @@ export const RoundChrome: React.FC<RoundChromeProps> = ({
         {roundIndex === null ? (
           <span className='name'>
             {you?.nickname ?? translate('player.you')}
+          </span>
+        ) : standsOn !== null ? (
+          <span className='score'>
+            {translate('board.at', { case: standsOn })}
           </span>
         ) : (
           <>

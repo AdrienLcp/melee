@@ -26,7 +26,7 @@ import './final-board.sass'
 type FinalBoardProps = {
   /**
    * The track, when the game was raced on one: it decides the winner and the
-   * order, so the case is printed first wherever it ranks.
+   * order, and the case is the only figure printed.
    */
   board: BoardSettings
   players: readonly PublicPlayer[]
@@ -105,16 +105,19 @@ export const FinalBoard: React.FC<FinalBoardProps> = ({
                       : teams.length > 0
                         ? 'team.final.winsOnCase'
                         : 'host.final.winsOnCase',
-                    { case: topCase, points: shownPoints(topScore) }
+                    { case: topCase }
                   )}
             </p>
           </>
         )}
       </div>
 
-      {teams.length > 0 && !isEveryTeamItsOwnSeat({ players, teams }) && (
-        <SeatPodium players={players} youId={youId} />
-      )}
+      {/* The seats' podium is their points; on a track only the pawns count. */}
+      {board.kind === 'points' &&
+        teams.length > 0 &&
+        !isEveryTeamItsOwnSeat({ players, teams }) && (
+          <SeatPodium players={players} youId={youId} />
+        )}
       <Standings
         board={board}
         isFinal

@@ -201,6 +201,25 @@ one part.
   quiz drops a cluster of near-identical video game questions that dealt The
   Last of Us round after round.
 
+- `[Shared]` **A table plays on points or on the board, never both.** The
+  setting that said _off_ or _track_ now says _Points_ or _Board_. On the
+  board no figure is printed on any screen — console, wall, phone, reveal,
+  final board: pawns, steps and the finish only, and two pawns on one step
+  share the place, because the score that used to separate them was one the
+  table could not see. On points there is no pawn and no track. A step is
+  counted on the answer alone, never the clock: a right answer walks three, two
+  thirds of one two, a third one, so two pawns that answered alike walk alike
+  whoever was quicker. The _rank_ strategy only stands a pawn on its podium
+  when its answer earned a step's worth, so a far-off guess is no longer
+  walked like a right one for being third. The host corrects steps on the
+  board and points on points. A setup or a table stored with the board _off_
+  reads as _Points_; protocol 73. A square is drawn as one — a small board
+  case with its number, a house at the start and a flag at the finish —
+  rather than a bare number that read as a score, a seat's round shows `+3`
+  beside _squares_ or its pawn standing still, and the wall fits a full table
+  on the board at every shape: the seats under the podium in two columns
+  sized to what is left, a team's seats two abreast.
+
 - `[Game]` **A seat whose screen has gone shows a crossed-out signal instead
   of the word _away_.** The word took a row of its own in a full table's seat
   grid; the icon sits on the name's line, the name in muted ink, and both fade

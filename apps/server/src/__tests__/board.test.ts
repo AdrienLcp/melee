@@ -44,7 +44,6 @@ const ON_A_TRACK = {
 const A_RIGHT_ANSWER_WALKS = Math.floor(MOST_A_ROUND_PAYS / POINTS_PER_CASE)
 
 /** What the host adds by hand to put a pawn this many cases up the track. */
-const pointsForCases = (cases: number) => cases * POINTS_PER_CASE
 
 const idOf = (player: Peer<PlayerServerMessage>): string =>
   playerView(player)?.youId ?? ''
@@ -161,7 +160,7 @@ describe('a room racing on a track', () => {
     room.host.send({ type: 'host.startRound' })
     await revealAnnaRight(room)
     room.host.send({
-      points: -pointsForCases(1),
+      change: { cases: -1, kind: 'cases' },
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -172,16 +171,32 @@ describe('a room racing on a track', () => {
     )
 
     expect(hostView(room.host)?.teams[0]).toMatchObject({
-      board: { case: A_RIGHT_ANSWER_WALKS - 1, move: A_RIGHT_ANSWER_WALKS },
-      score: MOST_A_ROUND_PAYS - pointsForCases(1)
+      board: { case: A_RIGHT_ANSWER_WALKS - 1, move: A_RIGHT_ANSWER_WALKS }
     })
+  })
+
+  it('[board] refuses a correction in points on a track', async () => {
+    const room = await openTwoTeams()
+
+    room.host.send({
+      change: { kind: 'points', points: MOST_A_ROUND_PAYS },
+      target: { kind: 'team', teamId: 'team-1' },
+      type: 'host.adjustScore'
+    })
+    await waitFor(
+      () =>
+        errorsIn(room.host).some((error) => error.code === 'invalid_message'),
+      'the refusal'
+    )
+
+    expect(hostView(room.host)?.teams[0]?.score).toBe(0)
   })
 
   it('[board] ends the evening on the reveal a pawn reaches the last case', async () => {
     const room = await openTwoTeams()
 
     room.host.send({
-      points: pointsForCases(TRACK.length - 1),
+      change: { cases: TRACK.length - 1, kind: 'cases' },
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -204,7 +219,7 @@ describe('a room racing on a track', () => {
     const room = await openTwoTeams()
 
     room.host.send({
-      points: pointsForCases(TRACK.length - A_RIGHT_ANSWER_WALKS - 1),
+      change: { cases: TRACK.length - A_RIGHT_ANSWER_WALKS - 1, kind: 'cases' },
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -248,7 +263,7 @@ describe('a room racing on a track', () => {
     room: Awaited<ReturnType<typeof openTwoTeams>>
   ) => {
     room.host.send({
-      points: pointsForCases(TRACK.length - 1),
+      change: { cases: TRACK.length - 1, kind: 'cases' },
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -398,7 +413,7 @@ describe('a room racing every seat on a track', () => {
     const { anna, host } = await openTwoSeats()
 
     host.send({
-      points: pointsForCases(3),
+      change: { cases: 3, kind: 'cases' },
       target: { kind: 'seat', playerId: idOf(anna) },
       type: 'host.adjustScore'
     })
@@ -423,7 +438,7 @@ describe('a room racing every seat on a track', () => {
     const { anna, host } = await openTwoSeats()
 
     host.send({
-      points: pointsForCases(TRACK.length - 1),
+      change: { cases: TRACK.length - 1, kind: 'cases' },
       target: { kind: 'seat', playerId: idOf(anna) },
       type: 'host.adjustScore'
     })

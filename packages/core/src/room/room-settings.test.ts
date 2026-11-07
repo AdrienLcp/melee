@@ -88,7 +88,7 @@ describe('roomSettingsFor', () => {
     expect(settings.roundCount).toBe(10)
     expect(settings.autoAdvanceMs).toBeNull()
     expect(settings.teams).toEqual({ kind: 'off' })
-    expect(settings.board).toEqual({ kind: 'off' })
+    expect(settings.board).toEqual({ kind: 'points' })
     expect(settings.mode).toEqual(DEFAULT_MODE_SETTINGS.choice)
   })
 

@@ -4,7 +4,7 @@ import { useCallback, useEffect, useEffectEvent, useState } from 'react'
 
 import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import { CHALLENGE_HAND_SIZE } from '@melee/protocol/challenge'
-import type { ScoreTarget } from '@melee/protocol/client-message'
+import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import type { HostToken, PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
   HostRoomView,
@@ -442,8 +442,8 @@ const HostConsole: React.FC<{ roomCode: RoomCode }> = ({ roomCode }) => {
   const choosingRoundId = choosing?.round.id ?? null
 
   const adjustScore = useCallback(
-    (target: ScoreTarget, points: number) => {
-      send({ points, target, type: 'host.adjustScore' })
+    (target: ScoreTarget, change: ScoreChange) => {
+      send({ change, target, type: 'host.adjustScore' })
     },
     [send]
   )

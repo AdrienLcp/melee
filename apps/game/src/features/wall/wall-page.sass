@@ -118,8 +118,33 @@
         li
           font-size: clamp(var(--text-xs), min(var(--row-width-cap, 5cqi), calc(100cqh / var(--rows-per-column, var(--standings-rows, 8)) / 2.15)), 2.5rem)
 
+      // The heap divides what the steps leave rather than scrolling under
+      // them: two columns filled top to bottom, each chip its share of the
+      // height down to the text floor.
       .track-podium
+        grid-template-rows: auto minmax(0, 1fr)
+        height: 100%
         justify-items: center
+        overflow: visible
+
+        .rest
+          --rest-rows: round(up, var(--rest-count, 8) / 2, 1)
+
+          align-content: safe center
+          container: rest / size
+          display: grid
+          grid-auto-columns: minmax(0, max-content)
+          grid-auto-flow: column
+          grid-template-rows: repeat(var(--rest-rows), auto)
+          justify-content: center
+          width: 100%
+
+        // At the text floor the chip's padding gives way before a row
+        // leaves the box.
+        .chip
+          font-size: clamp(var(--text-xs), min(2.8cqi, calc(100cqh / var(--rest-rows) / 2.2)), 1.75rem)
+          justify-self: start
+          padding-block: clamp(0rem, calc((100cqh / var(--rest-rows) - 1.9em) / 2), var(--space-2xs))
 
         .steps
           max-width: 60rem
@@ -144,8 +169,27 @@
           .at
             font-size: clamp(var(--text-xs), 2.6cqi, 1.5rem)
 
-        .chip
-          font-size: clamp(var(--text-s), 2.8cqi, 1.75rem)
+
+    // A tray's seats stand two abreast at the text floor under its head:
+    // a chip a line put the third of three trays of eight under a 1280×800
+    // wall's edge, where nobody can scroll to it.
+    &.host-console-page > .stage:is(.revealed, .finished) .standings > .team-roster
+      gap: var(--space-xs)
+      overflow: visible
+
+      .team
+        gap: var(--space-2xs)
+        padding: calc(0.5rem + var(--space-2xs)) var(--space-xs) var(--space-xs)
+
+      .members
+        display: grid
+        gap: calc(var(--space-2xs) / 2) var(--space-xs)
+        grid-template-columns: repeat(auto-fill, minmax(min(100%, 10.5rem), 1fr))
+
+      .member
+        font-size: var(--text-xs)
+        min-height: 0
+        padding: calc(var(--space-2xs) / 2) var(--space-xs)
 
     // Lying down, a table past twelve seats is read in two columns over an
     // even split: one column of twenty-four rows on a 720p wall is drawn
@@ -284,7 +328,7 @@
               grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, auto) 'hold' auto / minmax(0, 1fr)
 
             // A list that divides its box is handed one: what the answer leaves.
-            &:has(> .standings > .scoreboard)
+            &:has(> .standings > :is(.scoreboard, .track-podium))
               grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, 1fr) / minmax(0, 1fr)
 
               &.holding
@@ -384,8 +428,11 @@
           // The list divides its box, so the box is handed a height: what the
           // answer leaves, the answer held to half the screen and its chips
           // clipped at that.
-          &:has(> .standings > .scoreboard)
+          &:has(> .standings)
+            // A size container has no height of its own to start from: on
+            // an auto basis the answer collapsed to nothing under the list.
             > .reveal-panel
+              flex: 2 1 0
               max-height: 42dvh
               min-height: 0
 
@@ -394,7 +441,7 @@
                 overflow: clip
 
             > .standings
-              flex: 1 1 0
+              flex: 3 1 0
               grid-template-rows: auto minmax(0, 1fr)
 
 

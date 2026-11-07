@@ -1107,6 +1107,12 @@ and a triangle or an arrow along the bottom row points at the finish. The
 phone's strip keeps its words: its two ends hold 3.25rem whatever the rest
 get.
 
+**A case beside a name is drawn as a case** (`CaseMark`): a printed case in
+miniature, sized by the font it stands in, its number in the corner, the
+house at the start and the flag at the finish. A bare figure beside a name
+read as a score; the console's list and the wall's heap of chips both print
+the mark.
+
 **A crowd fits its case.** Past three other pawns a case prints `+N`, and
 three pawns beside a two-figure count stand 4.25 times the pawns' size: on
 the strip, whose pawns are sized off the case's height, that needs a case
@@ -1463,7 +1469,13 @@ inline-size`) instead of dividing their box by their rows: a few chips stretched
 over a full height were set at the top of an empty field, and on a 1080×1920
 panel the podium stood in a third of the width while the bottom half of the
 screen stayed blank. The ruled board's rows are still held to a share of the
-screen's height (`--standings-height`), so a full table fits.
+screen's height (`--standings-height`), so a full table fits. The race's heap
+under its three steps divides what the steps leave the same way, two columns
+filled top to bottom (`--rest-count`), and a team's seats stand two abreast at
+the text floor under its head: one chip a line put the third of three trays
+of eight under a 1280×800 wall's edge. A narrow standing wall splits its
+height two to three between the answer and any standings — the panel is a
+size container, and on an `auto` basis it collapsed under the list.
 
 **A name breaks between words and nowhere else.** A podium step clamps its
 name to two lines and ends a word longer than the step with an ellipsis —

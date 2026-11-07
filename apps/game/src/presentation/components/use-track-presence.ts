@@ -42,7 +42,7 @@ const nextTrack = ({
   board: BoardSettings
   current: DrawnTrack | null
 }): DrawnTrack | null => {
-  if (board.kind === 'off') {
+  if (board.kind === 'points') {
     return current === null ? null : { ...current, presence: 'leaving' }
   }
 

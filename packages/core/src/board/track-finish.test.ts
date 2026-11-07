@@ -31,7 +31,7 @@ describe('isTrackFinished', () => {
   it('[board] never ends a room whose board is off', () => {
     expect(
       isTrackFinished({
-        board: { kind: 'off' },
+        board: { kind: 'points' },
         pawns: [{ board: { case: LENGTH, move: 0 } }]
       })
     ).toBe(false)

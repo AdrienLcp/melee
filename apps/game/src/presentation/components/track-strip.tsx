@@ -7,6 +7,7 @@ import { prefersReducedMotion } from '@/infrastructure/browser'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { Button } from './button'
+import { caseMarkOf } from './case-mark'
 import { TrackPawnPiece, trackPawnPieceOf } from './track-pawn'
 
 import './track-strip.sass'
@@ -80,7 +81,7 @@ export const TrackStrip: React.FC<TrackStripProps> = ({
         return (
           <div
             className='case'
-            data-mark={markOf({ caseIndex, length })}
+            data-mark={caseMarkOf({ caseIndex, length })}
             data-own={(yours !== undefined && caseIndex === at) || undefined}
             data-parity={caseIndex % 2 === 0 ? 'even' : 'odd'}
             key={caseIndex}
@@ -317,22 +318,4 @@ const runsOnOf = ({
   }
 
   return last < length ? 'after' : 'none'
-}
-
-const markOf = ({
-  caseIndex,
-  length
-}: {
-  caseIndex: number
-  length: number
-}): string | undefined => {
-  if (caseIndex === 0) {
-    return 'start'
-  }
-
-  if (caseIndex === length) {
-    return 'finish'
-  }
-
-  return caseIndex % 5 === 0 ? 'five' : undefined
 }

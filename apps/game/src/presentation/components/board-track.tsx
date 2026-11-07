@@ -20,6 +20,7 @@ import {
 } from '@melee/core/board/track-shape'
 
 import { moveLayout, onLayoutMoved } from '@/infrastructure/browser'
+import { caseMarkOf } from '@/presentation/components/case-mark'
 import { FinishIcon, StartIcon } from '@/presentation/components/icons'
 import {
   TrackPawnPiece,
@@ -31,7 +32,6 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import './board-track.sass'
 
-const CASES_PER_MARK = 5
 /** Past this many on one case, three are drawn and a count stands for the rest. */
 const MAX_PAWNS_DRAWN = 4
 const PAWNS_BESIDE_COUNT = 3
@@ -127,7 +127,7 @@ export const BoardTrack: React.FC<BoardTrackProps> = ({ board, pawns }) => {
               standing.length > MAX_PAWNS_DRAWN
                 ? standing.slice(0, PAWNS_BESIDE_COUNT)
                 : standing
-            const mark = markOf({ caseIndex, length })
+            const mark = caseMarkOf({ caseIndex, length })
 
             return (
               <div
@@ -461,24 +461,6 @@ const TrackEnd: React.FC<{ end: TrackEndKind }> = ({ end }) => {
       <Glyph className='glyph' />
     </>
   )
-}
-
-const markOf = ({
-  caseIndex,
-  length
-}: {
-  caseIndex: number
-  length: number
-}): TrackEndKind | 'five' | undefined => {
-  if (caseIndex === 0) {
-    return 'start'
-  }
-
-  if (caseIndex === length) {
-    return 'finish'
-  }
-
-  return caseIndex % CASES_PER_MARK === 0 ? 'five' : undefined
 }
 
 const casesOf = (length: number): number[] =>

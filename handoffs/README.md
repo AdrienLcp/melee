@@ -3,10 +3,9 @@
 One file per fresh session. Delete a file in the commit that finishes it, and
 delete this README with the last one.
 
-| Wave | File                            | Depends on               |
-| ---- | ------------------------------- | ------------------------ |
-| 2    | `scoring-02-board-or-points.md` | none (scoring-01 landed) |
-| 2    | `scoring-01-follow-ups.md`      | none                     |
+| Wave | File                       | Depends on |
+| ---- | -------------------------- | ---------- |
+| 2    | `scoring-01-follow-ups.md` | none       |
 
 Sessions in the same wave share one checkout. Commit with
 `git commit -F msg -- <paths>` (`.claude/rules/committing.md`), use only the

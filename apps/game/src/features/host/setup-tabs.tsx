@@ -46,6 +46,7 @@ import { ReadyMadeNote, ReadyMadeRows } from './ready-made-line-ups'
 import { RoomScene } from './room-scene'
 import { SavedEveningsDoor, SavedEveningsPage } from './saved-evenings-page'
 import { TeamsSetup } from './teams-setup'
+import { useArrivedLater } from './use-arrived-later'
 import { useSavedEvenings } from './use-saved-evenings'
 import { useSetupSummaries } from './use-settings-summary'
 
@@ -339,6 +340,9 @@ export const TableTab: React.FC<SetupTabsProps> = ({
   const summaries = useSetupSummaries({ draftSource, settings })
   const isInLobby = view.phase === 'lobby'
   const teams = settings.teams
+  const offersSpeedBonus =
+    isEveningPaidForSpeed(settings) && settings.board.kind === 'points'
+  const speedBonusArrived = useArrivedLater(offersSpeedBonus)
 
   return (
     <>
@@ -373,7 +377,7 @@ export const TableTab: React.FC<SetupTabsProps> = ({
                 ? translate('board.summary', {
                     length: settings.board.length
                   })
-                : translate('board.none')
+                : translate('board.points')
             ].join(' · ')}
           </strong>
           <span>{translate('host.panel.settled')}</span>
@@ -391,8 +395,10 @@ export const TableTab: React.FC<SetupTabsProps> = ({
           settings={settings}
         />
       )}
-      {isEveningPaidForSpeed(settings) && (
+      {offersSpeedBonus && (
         <Switch
+          className='speed-bonus'
+          data-arrived={speedBonusArrived}
           description={translate(
             settings.paysForSpeed
               ? 'host.speedBonus.hint.on'
@@ -500,6 +506,7 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
     <>
       <Scoreboard
         hasPawns
+        isRoster={view.teams.length > 0 && view.settings.board.kind === 'track'}
         onRemove={onRemovePlayer}
         players={view.players}
         seatedBefore={view.phase === 'lobby' ? seatedWhenOpened : undefined}
@@ -507,7 +514,13 @@ export const PlayersTab: React.FC<SetupTabsProps> = ({
       />
       {view.phase !== 'lobby' && (
         <section className='hand-points'>
-          <h3>{translate('host.points.label')}</h3>
+          <h3>
+            {translate(
+              view.settings.board.kind === 'track'
+                ? 'board.fix'
+                : 'host.points.label'
+            )}
+          </h3>
           <PointsRows />
         </section>
       )}

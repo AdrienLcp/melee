@@ -15,6 +15,7 @@ import {
 import { blackSquareContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
 import { BlackSquareSheet } from '@/presentation/components/black-square-sheet'
+import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { Button } from '@/presentation/components/button'
 import { TextField } from '@/presentation/components/text-field'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -44,6 +45,7 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
   verdict
 }) => {
   const translate = useTranslate()
+  const isOnTrack = usePlaysOnTrack()
   const [guess, setGuess] = useState('')
   const content = blackSquareContent(round)
   const cellCount = content?.answerCount ?? BLACK_SQUARE_CELL_COUNT
@@ -65,20 +67,22 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
           : !last.hitBlackWord &&
             (last.cells.length === 0
               ? translate('blacksquare.answer.miss', { line: last.line })
-              : translate('blacksquare.answer.hit', {
-                  line: last.line,
-                  points: shownPoints(
-                    last.cells.reduce(
-                      (total, cell) =>
-                        total +
-                        pointsForTier({
-                          cellCount,
-                          tier: tierOfCell({ cell, cellCount })
-                        }),
-                      0
+              : isOnTrack
+                ? translate('blacksquare.answer.found', { line: last.line })
+                : translate('blacksquare.answer.hit', {
+                    line: last.line,
+                    points: shownPoints(
+                      last.cells.reduce(
+                        (total, cell) =>
+                          total +
+                          pointsForTier({
+                            cellCount,
+                            tier: tierOfCell({ cell, cellCount })
+                          }),
+                        0
+                      )
                     )
-                  )
-                }))}
+                  }))}
       </p>
       {isClosed ? (
         <p className='others'>{translate('blacksquare.othersLooking')}</p>

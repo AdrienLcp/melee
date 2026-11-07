@@ -31,21 +31,21 @@ describe('team board', () => {
     ])
   })
 
-  it('[team-board] ranks a track by case, the score breaking a tie on one case', () => {
+  it('[team-board] ranks a track on the case alone, two teams on one case sharing the place', () => {
     const onCase = (colour: number, score: number, at: number): Team => ({
       ...team(colour, score),
       board: { case: at, move: 0 }
     })
     const board = buildTeamBoard([
-      onCase(1, 9_000, 8),
+      onCase(1, 8_200, 8),
       onCase(2, 7_500, 9),
-      onCase(3, 8_200, 8)
+      onCase(3, 9_000, 8)
     ])
 
     expect(board.map((entry) => [entry.team.id, entry.rank])).toEqual([
       ['team-2', 1],
       ['team-1', 2],
-      ['team-3', 3]
+      ['team-3', 2]
     ])
   })
 

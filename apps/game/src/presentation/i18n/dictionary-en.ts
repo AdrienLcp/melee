@@ -96,6 +96,8 @@ export const EN_DICTIONARY = defineDictionary({
   },
   blacksquare: {
     answer: {
+      /** `hit` on a track, where the cells walk a pawn and no point is printed. */
+      found: '“{line}”: found',
       hit: '“{line}” +{points:number}',
       label: 'An answer',
       miss: '“{line}”: nothing',
@@ -157,6 +159,8 @@ export const EN_DICTIONARY = defineDictionary({
     tier: defineTranslation('{points:plural}', {
       plural: { points: { one: '{?} point', other: '{?} points' } }
     }),
+    /** A cell's tier said aloud on a track, where no point is printed. */
+    tierOf: 'Tier {tier:number} of {most:number}',
     yours: 'You found it'
   },
   blindtest: {
@@ -344,7 +348,7 @@ export const EN_DICTIONARY = defineDictionary({
       level: 'Level at the front'
     },
     more: '+{count:number}',
-    none: 'No board',
+    points: 'On points',
     recentre: 'Back to my square',
     setting: {
       catchUp: {
@@ -353,19 +357,22 @@ export const EN_DICTIONARY = defineDictionary({
       },
       /** The lobby's board preview, which opens the setup on the board's strip. */
       hint: {
-        off: 'Pawns racing round a track on the room’s screen.',
-        seats: 'A pawn for every player, moving on after each round.',
-        teams: 'A pawn for every team, moving on after each round.'
+        points: 'Points on every screen: the highest total wins.',
+        seats:
+          'No points: a pawn for every player on a track, moving on after each round.',
+        teams:
+          'No points: a pawn for every team on a track, moving on after each round.'
       },
-      label: 'Board',
-      off: 'None',
+      label: 'Play for',
+      points: 'Points',
       strategy: {
         hint: {
-          onePointOneCase: 'One square for every 30 points the round paid.',
+          onePointOneCase:
+            'A right answer moves 3 squares, part of one fewer. Speed never counts.',
           rank: 'The round’s best moves 3 squares, the second 2, the third 1.'
         },
         label: 'Pawns move',
-        onePointOneCase: 'By points',
+        onePointOneCase: 'By the answer',
         rank: 'By ranking'
       },
       /** Under each length on the board's strip, which prints the number alone. */
@@ -374,7 +381,15 @@ export const EN_DICTIONARY = defineDictionary({
     standing: '{team}: square {case:number} of {length:number}',
     start: 'Start',
     summary: 'a {length:number}-square board',
-    walked: '+{count:number}'
+    walked: '+{count:number}',
+    /** What the round walked a seat's pawn, on the round's podium. */
+    walkedSquares: defineTranslation('{count:plural}', {
+      plural: { count: { one: '+{?} square', other: '+{?} squares' } }
+    }),
+    /** Beside the figure a seat's own round token prints alone: what it counts. */
+    walkedUnit: defineTranslation('{count:plural}', {
+      plural: { count: { one: 'square', other: 'squares' } }
+    })
   },
   buzz: {
     action: 'Buzz',
@@ -832,23 +847,13 @@ export const EN_DICTIONARY = defineDictionary({
           }
         }
       }),
-      tiedOnCase: defineTranslation(
-        'share first place on case {case:number} · {points:plural}',
-        {
-          plural: { points: { one: '{?} point', other: '{?} points' } }
-        }
-      ),
+      tiedOnCase: 'share first place on square {case:number}',
       wins: defineTranslation('{points:plural}', {
         plural: {
           points: { one: 'wins with {?} point', other: 'wins with {?} points' }
         }
       }),
-      winsOnCase: defineTranslation(
-        'wins on case {case:number} · {points:plural}',
-        {
-          plural: { points: { one: '{?} point', other: '{?} points' } }
-        }
-      )
+      winsOnCase: 'wins on square {case:number}'
     },
     game: {
       label: 'What we’re playing',
@@ -904,6 +909,8 @@ export const EN_DICTIONARY = defineDictionary({
     podium: {
       /** Names the roster's row menu, whose trigger is a bare glyph. */
       actions: 'Options for {nickname}',
+      casesHint:
+        '− and +: one square a press, for an answer the game did not see.',
       empty:
         'Nobody yet. Read {code} aloud, or show the QR code on the room’s screen.',
       /** The roster's summary on a narrow screen, after its first three seats. */
@@ -2118,12 +2125,7 @@ export const EN_DICTIONARY = defineDictionary({
           }
         }
       }),
-      winsOnCase: defineTranslation(
-        'victory on case {case:number} · {points:plural}',
-        {
-          plural: { points: { one: '{?} point', other: '{?} points' } }
-        }
-      )
+      winsOnCase: 'victory on square {case:number}'
     },
     join: 'Join',
     move: {

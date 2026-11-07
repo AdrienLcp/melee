@@ -6,6 +6,7 @@ import { buildCountedBoard } from '@melee/core/innerclock/counted-board'
 
 import { innerclockContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
+import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Pawn } from '@/presentation/components/pawn'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -32,6 +33,7 @@ export const CountedBoard: React.FC<CountedBoardProps> = ({
   round
 }) => {
   const translate = useTranslate()
+  const isOnTrack = usePlaysOnTrack()
   const content = innerclockContent(round)
 
   if (content === null) {
@@ -96,11 +98,13 @@ export const CountedBoard: React.FC<CountedBoardProps> = ({
                       seconds: row.gapMs / SECOND_MS
                     })}
                   </span>
-                  <span className='paid'>
-                    {translate('round.scored', {
-                      points: shownPoints(paidTo(row.playerId))
-                    })}
-                  </span>
+                  {!isOnTrack && (
+                    <span className='paid'>
+                      {translate('round.scored', {
+                        points: shownPoints(paidTo(row.playerId))
+                      })}
+                    </span>
+                  )}
                 </>
               )}
             </li>

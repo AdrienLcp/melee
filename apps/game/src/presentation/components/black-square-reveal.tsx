@@ -14,6 +14,7 @@ import { shownPoints } from '@/helpers/shown-points'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
 import { BlackSquarePips } from './black-square-pips'
+import { usePlaysOnTrack } from './board-kind'
 import { Pawn } from './pawn'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -46,6 +47,7 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
   youId
 }) => {
   const { locale, translate } = useI18n()
+  const isOnTrack = usePlaysOnTrack()
   const seatOf = (playerId: PlayerId): number =>
     players.findIndex((player) => player.id === playerId)
   const nameOf = (playerId: PlayerId): string =>
@@ -91,18 +93,17 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                     <VisuallyHidden>
                       {answer.foundBy.map(nameOf).join(', ')}
                       {isYours && ` — ${translate('blacksquare.yours')}`}
+                      {isDoubled && ` — ${translate('blacksquare.lone.said')}`}
                       {isDoubled &&
-                        ` — ${translate('blacksquare.lone.said')}, ${translate(
-                          'blacksquare.tier',
-                          {
-                            points: shownPoints(
-                              pointsForTier({
-                                cellCount: revealed.answers.length,
-                                tier: answer.tier
-                              }) * LONE_FIND_MULTIPLIER
-                            )
-                          }
-                        )}`}
+                        !isOnTrack &&
+                        `, ${translate('blacksquare.tier', {
+                          points: shownPoints(
+                            pointsForTier({
+                              cellCount: revealed.answers.length,
+                              tier: answer.tier
+                            }) * LONE_FIND_MULTIPLIER
+                          )
+                        })}`}
                     </VisuallyHidden>
                   </span>
                   <span className='worth'>
@@ -117,16 +118,18 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                         tier={answer.tier}
                       />
                     )}
-                    <span aria-hidden='true'>
-                      {translate('round.scored', {
-                        points: shownPoints(
-                          pointsForTier({
-                            cellCount: revealed.answers.length,
-                            tier: answer.tier
-                          }) * (isDoubled ? LONE_FIND_MULTIPLIER : 1)
-                        )
-                      })}
-                    </span>
+                    {!isOnTrack && (
+                      <span aria-hidden='true'>
+                        {translate('round.scored', {
+                          points: shownPoints(
+                            pointsForTier({
+                              cellCount: revealed.answers.length,
+                              tier: answer.tier
+                            }) * (isDoubled ? LONE_FIND_MULTIPLIER : 1)
+                          )
+                        })}
+                      </span>
+                    )}
                   </span>
                 </span>
               </li>

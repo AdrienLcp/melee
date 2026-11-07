@@ -122,8 +122,13 @@ export const Standings: React.FC<StandingsProps> = ({
           teams={teams}
           youId={youId}
         />
-      ) : seatPawns.length > 0 ? (
-        <TrackPodium marksReady={marksReady} pawns={seatPawns} youId={youId} />
+      ) : board?.kind === 'track' && seatPawns.length > 0 ? (
+        <TrackPodium
+          length={board.length}
+          marksReady={marksReady}
+          pawns={seatPawns}
+          youId={youId}
+        />
       ) : (
         <Scoreboard
           hasPawns

@@ -27,6 +27,7 @@ import {
   timelineContent
 } from '@/helpers/round-content'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
+import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { CountedBoard } from '@/presentation/components/counted-board'
 import { CountrySilhouette } from '@/presentation/components/country-silhouette'
 import { EstimateLine } from '@/presentation/components/estimate-line'
@@ -556,7 +557,12 @@ const ThisRoundHead: React.FC<Omit<RevealPanelProps, 'onStrike'>> = ({
     <ThisRoundHeading
       aside={
         youId === null || seat === -1 || !isStamped ? null : (
-          <SeatedResult round={round} seat={seat} youId={youId} />
+          <SeatedResult
+            round={round}
+            seat={seat}
+            walked={players[seat]?.board?.move ?? null}
+            youId={youId}
+          />
         )
       }
       className='this-round-head'
@@ -571,11 +577,37 @@ const SeatedResult: React.FC<{
   round: RoundView
   /** The seat's index, which colours its pawn. */
   seat: number
+  /** The squares the seat's own pawn walked this round; `null` with no pawn of its own. */
+  walked: number | null
   youId: PlayerId
-}> = ({ round, seat, youId }) => {
+}> = ({ round, seat, walked, youId }) => {
   const translate = useTranslate()
-  const points =
-    round.awards.find((award) => award.playerId === youId)?.points ?? 0
+  const isOnTrack = usePlaysOnTrack()
+  const award = round.awards.find((each) => each.playerId === youId)
+  const points = award?.points ?? 0
+
+  if (isOnTrack) {
+    // A seat whose team walks has no squares of its own: its answer says
+    // whether it counted, and the team's move is the standings' to print.
+    const hasCounted =
+      walked === null ? points - (award?.speedBonus ?? 0) > 0 : walked > 0
+
+    return (
+      <span className={hasCounted ? 'seated-result scored' : 'seated-result'}>
+        <Pawn seat={seat} />
+        <span className='who'>{translate('player.you')}</span>
+        {walked !== null && walked > 0 && (
+          <span className='payout'>
+            {translate('board.walkedSquares', { count: walked })}
+          </span>
+        )}
+        {!hasCounted && (
+          <span className='placing'>{translate('round.missed')}</span>
+        )}
+      </span>
+    )
+  }
+
   const placing = roundPlacingOf({ awards: round.awards, playerId: youId })
 
   return (

@@ -47,7 +47,7 @@ describe('rememberSettings', () => {
     })
 
     expect(remembered.room).toEqual({
-      board: { kind: 'off' },
+      board: { kind: 'points' },
       countdownMs: 10_000,
       endsAtFinish: true,
       isFamilyFriendly: true,
@@ -185,7 +185,7 @@ describe('rememberedSetupFor', () => {
         }
       },
       room: {
-        board: { kind: 'off' },
+        board: { kind: 'points' },
         countdownMs: 3_000,
         endsAtFinish: true,
         isFamilyFriendly: true,

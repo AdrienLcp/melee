@@ -109,23 +109,26 @@ export const TeamFinish: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
             {translate('player.final.rank', { rank: placing.rank })}
           </p>
           <p className='your-total'>
-            {placing.team.board !== null && (
+            {placing.team.board === null ? (
+              <>
+                <span className='value'>
+                  {translate('player.score', {
+                    points: shownPoints(placing.team.score)
+                  })}
+                </span>{' '}
+                {translate('player.points', {
+                  points: shownPoints(placing.team.score)
+                })}
+              </>
+            ) : (
               <span className='case'>
                 {translate('board.at', { case: placing.team.board.case })}
               </span>
             )}
-            <span className='value'>
-              {translate('player.score', {
-                points: shownPoints(placing.team.score)
-              })}
-            </span>{' '}
-            {translate('player.points', {
-              points: shownPoints(placing.team.score)
-            })}
           </p>
         </div>
       )}
-      {!isEveryTeamItsOwnSeat(view) && (
+      {board.kind === 'points' && !isEveryTeamItsOwnSeat(view) && (
         <SeatPodium players={view.players} youId={view.youId} />
       )}
       <SectionHeading>{translate('round.finalStandings')}</SectionHeading>

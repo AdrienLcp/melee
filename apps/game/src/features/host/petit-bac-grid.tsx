@@ -10,6 +10,7 @@ import { answerGroupKey } from '@melee/core/round/answer-groups'
 import { petitBacCategoryId } from '@/features/player/petit-bac-sheet'
 import { petitBacContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
+import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -43,6 +44,7 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
   round
 }) => {
   const translate = useTranslate()
+  const isOnTrack = usePlaysOnTrack()
   const content = petitBacContent(round)
 
   if (content === null) {
@@ -87,9 +89,11 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
                 {petitBacCategoryName({ category, translate })}
               </th>
             ))}
-            <th className='total' scope='col'>
-              {translate('petitbac.wall.roundTotal')}
-            </th>
+            {!isOnTrack && (
+              <th className='total' scope='col'>
+                {translate('petitbac.wall.roundTotal')}
+              </th>
+            )}
           </tr>
         </thead>
         <tbody>
@@ -145,11 +149,15 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
                     </td>
                   )
                 })}
-                <td className='total'>
-                  {points > 0
-                    ? translate('round.scored', { points: shownPoints(points) })
-                    : '0'}
-                </td>
+                {!isOnTrack && (
+                  <td className='total'>
+                    {points > 0
+                      ? translate('round.scored', {
+                          points: shownPoints(points)
+                        })
+                      : '0'}
+                  </td>
+                )}
               </tr>
             )
           })}
@@ -159,30 +167,34 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
         <span data-outcome='unique'>
           <i />
           {translate('petitbac.reveal.outcome.unique')}
-          <b>
-            {translate('round.scored', {
-              points: shownPoints(
-                linePoints({
-                  categoryCount: categories.length,
-                  outcome: 'unique'
-                })
-              )
-            })}
-          </b>
+          {!isOnTrack && (
+            <b>
+              {translate('round.scored', {
+                points: shownPoints(
+                  linePoints({
+                    categoryCount: categories.length,
+                    outcome: 'unique'
+                  })
+                )
+              })}
+            </b>
+          )}
         </span>
         <span data-outcome='shared'>
           <i />
           {translate('petitbac.reveal.outcome.shared')}
-          <b>
-            {translate('round.scored', {
-              points: shownPoints(
-                linePoints({
-                  categoryCount: categories.length,
-                  outcome: 'shared'
-                })
-              )
-            })}
-          </b>
+          {!isOnTrack && (
+            <b>
+              {translate('round.scored', {
+                points: shownPoints(
+                  linePoints({
+                    categoryCount: categories.length,
+                    outcome: 'shared'
+                  })
+                )
+              })}
+            </b>
+          )}
         </span>
         <span data-outcome='refused'>
           <i />

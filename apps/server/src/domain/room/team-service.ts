@@ -1,6 +1,7 @@
 import { Result } from '@adrienlcp/result'
 
-import { type BoardPosition, POINTS_PER_CASE } from '@melee/protocol/board'
+import type { BoardPosition } from '@melee/protocol/board'
+import type { ScoreChange } from '@melee/protocol/client-message'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import {
   DEFAULT_TEAMS_SETTINGS,
@@ -26,7 +27,7 @@ import {
   teamIdAt
 } from '@melee/core/team/team-count'
 import { isFairDeal } from '@melee/core/team/team-draw'
-import { teamRoundResult } from '@melee/core/team/team-score'
+import { type PaidSeat, teamRoundResult } from '@melee/core/team/team-score'
 
 import { isSpokenRound } from '@/domain/round/black-square-round'
 
@@ -258,28 +259,31 @@ export const renameTeam = ({
 }
 
 /**
- * Points by hand. A team's adjustment is banked straight away, and either kind
- * stops at zero: a board with a negative score on it is a board nobody can
- * read across a room.
- *
- * On a track a team's adjustment walks its pawn too, a case for each whole
- * `POINTS_PER_CASE`, which is how the host corrects a move under the reveal — one
- * correction for the two, so the pawn and the score never tell different
- * stories.
+ * A correction by hand, in what the room plays for: points on points, cases on
+ * a track — a change of the other kind is refused, because it would move a
+ * figure no screen shows. A team's correction is banked straight away, and
+ * either stops at zero: a negative standing is one nobody can read across a
+ * room.
  */
 export const adjustScore = ({
+  change,
   now,
-  points,
   room,
   target
 }: {
+  change: ScoreChange
   now: number
-  points: number
   room: Room
   target:
     | { kind: 'seat'; playerId: PlayerId }
     | { kind: 'team'; teamId: TeamId }
 }): Result<void, TeamRejection | 'invalid_message'> => {
+  if (
+    change.kind !== (room.settings.board.kind === 'track' ? 'cases' : 'points')
+  ) {
+    return Result.failure('invalid_message')
+  }
+
   if (target.kind === 'seat') {
     const participant = room.players.get(target.playerId)
 
@@ -287,10 +291,12 @@ export const adjustScore = ({
       return Result.failure('invalid_message')
     }
 
-    participant.score = Math.max(0, participant.score + points)
-
-    if (room.teams.length === 0) {
-      adjustCase({ holder: participant, points, room })
+    if (change.kind === 'points') {
+      participant.score = Math.max(0, participant.score + change.points)
+    } else if (room.teams.length === 0) {
+      adjustCase({ cases: change.cases, holder: participant, room })
+    } else {
+      return Result.failure('invalid_message')
     }
 
     touch(room, now)
@@ -304,12 +310,14 @@ export const adjustScore = ({
     return Result.failure('teams_locked')
   }
 
-  team.bankedScore = Math.max(
-    -liveRoundResult(room, team.id),
-    team.bankedScore + points
-  )
-
-  adjustCase({ holder: team, points, room })
+  if (change.kind === 'points') {
+    team.bankedScore = Math.max(
+      -liveRoundResult(room, team.id),
+      team.bankedScore + change.points
+    )
+  } else {
+    adjustCase({ cases: change.cases, holder: team, room })
+  }
 
   touch(room, now)
 
@@ -400,24 +408,53 @@ const placeSeat = (room: Room, participant: Participant): void => {
 const liveRoundResult = (room: Room, teamId: TeamId): number =>
   room.round === null
     ? 0
+    : liveSeatsResult({ awards: room.round.awards, room, teamId }) +
+      room.round.teamAwards
+        .filter((award) => award.teamId === teamId)
+        .reduce((total, award) => total + award.points, 0)
+
+/** What the team's seats earned on the round on screen, read off `awards`. */
+const liveSeatsResult = ({
+  awards,
+  room,
+  teamId
+}: {
+  awards: readonly PaidSeat[]
+  room: Room
+  teamId: TeamId
+}): number =>
+  room.round === null
+    ? 0
     : teamRoundResult({
         answersAsOne:
           room.round.duel !== null ||
           room.round.content.kind === 'challenge' ||
           isSpokenRound(room.round),
-        awards: room.round.awards,
+        awards,
         openedWithPlayerIds: room.round.openedWithPlayerIds,
         scoring: room.settings.teamScoring,
         seatIds: seatsOf(room, teamId).map((seat) => seat.id)
-      }) +
-      room.round.teamAwards
-        .filter((award) => award.teamId === teamId)
-        .reduce((total, award) => total + award.points, 0)
+      })
 
-/** Whose pawn walks, and what the round on screen paid it. */
+/** How much of the team's round the clock paid: its seats' results with and without their speed bonus. */
+const liveSpeedBonus = (room: Room, teamId: TeamId): number => {
+  const awards = room.round?.awards ?? []
+  const answersOnly = awards.map((award) => ({
+    playerId: award.playerId,
+    points: award.points - award.speedBonus
+  }))
+
+  return (
+    liveSeatsResult({ awards, room, teamId }) -
+    liveSeatsResult({ awards: answersOnly, room, teamId })
+  )
+}
+
+/** Whose pawn walks, what the round on screen paid it, and how much of that the clock did. */
 type TrackPawn = {
   holder: Participant | RoomTeam
   points: number
+  speedBonus: number
 }
 
 /**
@@ -429,7 +466,8 @@ const trackPawnsOf = (room: Room): TrackPawn[] => {
   if (room.teams.length > 0) {
     return room.teams.map((team) => ({
       holder: team,
-      points: liveRoundResult(room, team.id)
+      points: liveRoundResult(room, team.id),
+      speedBonus: liveSpeedBonus(room, team.id)
     }))
   }
 
@@ -439,22 +477,27 @@ const trackPawnsOf = (room: Room): TrackPawn[] => {
     .filter(
       (seat) => !hasJoinedAfterStart({ openedWithPlayerIds, playerId: seat.id })
     )
-    .map((seat) => ({
-      holder: seat,
-      points: (room.round?.awards ?? [])
-        .filter((award) => award.playerId === seat.id)
-        .reduce((total, award) => total + award.points, 0)
-    }))
+    .map((seat) => {
+      const awards = (room.round?.awards ?? []).filter(
+        (award) => award.playerId === seat.id
+      )
+
+      return {
+        holder: seat,
+        points: awards.reduce((total, award) => total + award.points, 0),
+        speedBonus: awards.reduce((total, award) => total + award.speedBonus, 0)
+      }
+    })
 }
 
 /**
  * What the round on screen walks each pawn, from the cases they stood on
- * before it. Empty on a room whose board is off.
+ * before it. Empty on a room that plays for points.
  */
 const liveMoves = (room: Room): PawnMove[] => {
   const { board } = room.settings
 
-  if (board.kind === 'off' || room.round === null) {
+  if (board.kind === 'points' || room.round === null) {
     return []
   }
 
@@ -468,7 +511,8 @@ const liveMoves = (room: Room): PawnMove[] => {
     ),
     results: pawns.map((pawn) => ({
       pawnId: pawn.holder.id,
-      points: pawn.points
+      points: pawn.points,
+      speedBonus: pawn.speedBonus
     })),
     strategy: board.strategy
   }).moves
@@ -494,30 +538,21 @@ export const bankRound = (room: Room): void => {
 }
 
 /**
- * A correction walks a case per whole `POINTS_PER_CASE`, and a press smaller
- * than a case still walks one: the host's step is a third of a case, and a
- * press that moved the score and not the pawn would make the two disagree.
- */
-const casesOfCorrection = (points: number): number =>
-  Math.sign(points) *
-  Math.max(1, Math.trunc(Math.abs(points) / POINTS_PER_CASE))
-
-/**
- * A host's correction walks the pawn a case per `POINTS_PER_CASE`, never behind the start
- * nor past the end once the round's own move is counted.
+ * A host's correction walks the pawn, never behind the start nor past the end
+ * once the round's own move is counted.
  */
 const adjustCase = ({
+  cases,
   holder,
-  points,
   room
 }: {
+  cases: number
   holder: Participant | RoomTeam
-  points: number
   room: Room
 }): void => {
   const { board } = room.settings
 
-  if (board.kind === 'off') {
+  if (board.kind === 'points') {
     return
   }
 
@@ -525,7 +560,7 @@ const adjustCase = ({
 
   holder.bankedCase = Math.min(
     board.length - move,
-    Math.max(-move, holder.bankedCase + casesOfCorrection(points))
+    Math.max(-move, holder.bankedCase + cases)
   )
 }
 
@@ -550,7 +585,7 @@ const boardPositionOf = ({
   moves: readonly PawnMove[]
   room: Room
 }): BoardPosition | null => {
-  if (room.settings.board.kind === 'off') {
+  if (room.settings.board.kind === 'points') {
     return null
   }
 
@@ -564,7 +599,7 @@ const boardPositionOf = ({
  * otherwise, where a seat carries none.
  */
 export const toSeatBoards = (room: Room): Map<PlayerId, BoardPosition> => {
-  if (room.teams.length > 0 || room.settings.board.kind === 'off') {
+  if (room.teams.length > 0 || room.settings.board.kind === 'points') {
     return new Map()
   }
 

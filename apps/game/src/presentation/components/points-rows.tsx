@@ -1,11 +1,13 @@
 import type React from 'react'
 
-import type { ScoreTarget } from '@melee/protocol/client-message'
+import type { BoardPosition } from '@melee/protocol/board'
+import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import { SCORE_ADJUSTMENT_STEP } from '@melee/protocol/scoring'
 import type { PawnPiece } from '@melee/protocol/team'
 
 import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
 
+import { shownPoints } from '@/helpers/shown-points'
 import { useConnection } from '@/presentation/connection/connection-provider'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
@@ -16,23 +18,40 @@ import { MinusIcon, PlusIcon } from './icons'
 import { Pawn } from './pawn'
 
 import './points-rows.sass'
-import { shownPoints } from '@/helpers/shown-points'
 
-/** One seat's or one team's line of points by hand. */
+/** One seat's or one team's line of points — or of cases, on a track — by hand. */
 export type PointsRow = {
-  /** The pawn beside the name, `null` for a seat with no pawn on a track. */
+  /** The pawn beside the name, `null` for a seat on a room playing for points. */
   piece: PawnPiece | null
-  /** Whether a point less would change anything: the server floors at nought. */
+  /** Whether a press less would change anything: the server floors at nought and at the start. */
   canTake: boolean
-  /** Whether a point more would: a pawn on the finish has nowhere to go. */
+  /** Whether a press more would: a pawn on the finish has nowhere to go. */
   canGive: boolean
+  /** The `+` press's accessible name. */
+  giveLabel: string
   id: string
   name: string
-  /** The case its pawn stands on, `null` off a board. */
+  /** The case its pawn stands on, `null` on a room playing for points. */
   pawnCase: number | null
   standing: string
+  /** The `−` press's accessible name. */
+  takeLabel: string
   target: ScoreTarget
 }
+
+type Standing = { board: BoardPosition | null; score: number }
+
+/** What one press moves: a tenth of a round on points, one case on a track. */
+const stepOf = ({
+  direction,
+  isOnTrack
+}: {
+  direction: 1 | -1
+  isOnTrack: boolean
+}): ScoreChange =>
+  isOnTrack
+    ? { cases: direction, kind: 'cases' }
+    : { kind: 'points', points: direction * SCORE_ADJUSTMENT_STEP }
 
 /**
  * The rows `PointsRows` draws, for a caller that lays them out its own way —
@@ -41,7 +60,7 @@ export type PointsRow = {
  */
 export const usePointsRows = (): {
   isLive: boolean
-  onAdjust: (target: ScoreTarget, points: number) => void
+  onStep: (row: PointsRow, direction: 1 | -1) => void
   rows: PointsRow[]
 } | null => {
   const { adjustScore, scoredPlayers, scoredTeams, trackLength } =
@@ -55,63 +74,91 @@ export const usePointsRows = (): {
   }
 
   const isLive = connection?.status === 'open'
-  const isByTeam = scoredTeams.length > 0
+  const isOnTrack = trackLength !== null
 
-  const rows: PointsRow[] = isByTeam
-    ? scoredTeams.map((team) => {
-        const pawnCase =
-          trackLength === null || team.board === null ? null : team.board.case
+  const rowOf = ({
+    id,
+    name,
+    piece,
+    standing: { board, score },
+    target
+  }: {
+    id: string
+    name: string
+    piece: PawnPiece
+    standing: Standing
+    target: ScoreTarget
+  }): PointsRow => {
+    if (trackLength === null) {
+      const step = shownPoints(SCORE_ADJUSTMENT_STEP)
 
-        return {
-          canGive: pawnCase === null || pawnCase < (trackLength ?? 0),
-          canTake: pawnCase === null ? team.score > 0 : pawnCase > 0,
-          id: team.id,
-          name: teamName(team),
-          pawnCase,
-          piece: { colour: team.colour, head: TEAM_PAWN_HEAD },
-          standing:
-            pawnCase === null
-              ? translate('player.score', { points: shownPoints(team.score) })
-              : translate('board.case', {
-                  case: pawnCase,
-                  length: trackLength ?? 0
-                }),
-          target: { kind: 'team', teamId: team.id }
-        }
-      })
-    : scoredPlayers.map((player) => {
-        const pawnCase =
-          trackLength === null || player.board === null
-            ? null
-            : player.board.case
+      return {
+        canGive: true,
+        canTake: score > 0,
+        giveLabel: translate('host.points.give', { name, points: step }),
+        id,
+        name,
+        pawnCase: null,
+        piece: target.kind === 'team' ? piece : null,
+        standing: translate('player.score', { points: shownPoints(score) }),
+        takeLabel: translate('host.points.take', { name, points: step }),
+        target
+      }
+    }
 
-        return {
-          canGive: pawnCase === null || pawnCase < (trackLength ?? 0),
-          canTake: pawnCase === null ? player.score > 0 : pawnCase > 0,
-          id: player.id,
-          name: player.nickname,
-          pawnCase,
-          piece:
-            pawnCase === null
-              ? null
-              : { colour: player.colour, head: player.head },
-          standing:
-            pawnCase === null
-              ? translate('player.score', { points: shownPoints(player.score) })
-              : translate('board.case', {
-                  case: pawnCase,
-                  length: trackLength ?? 0
-                }),
-          target: { kind: 'seat', playerId: player.id }
-        }
-      })
+    const pawnCase = board?.case ?? 0
 
-  return { isLive, onAdjust: adjustScore, rows }
+    return {
+      canGive: pawnCase < trackLength,
+      canTake: pawnCase > 0,
+      giveLabel: translate('board.forward', { team: name }),
+      id,
+      name,
+      pawnCase,
+      piece,
+      standing: translate('board.case', {
+        case: pawnCase,
+        length: trackLength
+      }),
+      takeLabel: translate('board.back', { team: name }),
+      target
+    }
+  }
+
+  const rows: PointsRow[] =
+    scoredTeams.length > 0
+      ? scoredTeams.map((team) =>
+          rowOf({
+            id: team.id,
+            name: teamName(team),
+            piece: { colour: team.colour, head: TEAM_PAWN_HEAD },
+            standing: team,
+            target: { kind: 'team', teamId: team.id }
+          })
+        )
+      : scoredPlayers.map((player) =>
+          rowOf({
+            id: player.id,
+            name: player.nickname,
+            piece: { colour: player.colour, head: player.head },
+            standing: player,
+            target: { kind: 'seat', playerId: player.id }
+          })
+        )
+
+  return {
+    isLive,
+    onStep: (row, direction) => {
+      adjustScore(row.target, stepOf({ direction, isOnTrack }))
+    },
+    rows
+  }
 }
 
 /**
- * Points by hand, in every phase: a bonus nobody planned, a challenge played at
- * the table, a call to put right. The teams when there are any, since a seat's
+ * Points by hand, in every phase — cases on a track, where no point is
+ * printed: a bonus nobody planned, a challenge played at the table, a call to
+ * put right. The teams when there are any, since a seat's
  * adjustment never reaches its team; the seats otherwise. Drawn in the menu and
  * in the console's players tab, which call for it on the same room actions.
  *
@@ -120,14 +167,13 @@ export const usePointsRows = (): {
  * else.
  */
 export const PointsRows: React.FC = () => {
-  const translate = useTranslate()
   const points = usePointsRows()
 
   if (points === null) {
     return null
   }
 
-  const { isLive, onAdjust, rows } = points
+  const { isLive, onStep, rows } = points
 
   return (
     <ul className='points-rows'>
@@ -151,14 +197,11 @@ export const PointsRows: React.FC = () => {
             <span className='points-standing'>{row.standing}</span>
           </p>
           <Button
-            aria-label={translate('host.points.take', {
-              name: row.name,
-              points: shownPoints(SCORE_ADJUSTMENT_STEP)
-            })}
+            aria-label={row.takeLabel}
             className='points-press'
             isDisabled={!isLive || !row.canTake}
             onPress={() => {
-              onAdjust(row.target, -SCORE_ADJUSTMENT_STEP)
+              onStep(row, -1)
             }}
             size='small'
             variant='outlined'
@@ -166,14 +209,11 @@ export const PointsRows: React.FC = () => {
             <MinusIcon />
           </Button>
           <Button
-            aria-label={translate('host.points.give', {
-              name: row.name,
-              points: shownPoints(SCORE_ADJUSTMENT_STEP)
-            })}
+            aria-label={row.giveLabel}
             className='points-press'
             isDisabled={!isLive || !row.canGive}
             onPress={() => {
-              onAdjust(row.target, SCORE_ADJUSTMENT_STEP)
+              onStep(row, 1)
             }}
             size='small'
             variant='outlined'

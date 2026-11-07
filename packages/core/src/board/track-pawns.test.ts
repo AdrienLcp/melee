@@ -78,7 +78,7 @@ describe('rankTrackPawns', () => {
     expect(ranked.map((pawn) => pawn.id)).toEqual(['bob', 'ada', 'cy'])
   })
 
-  it('[board] breaks a tie on one case by the score, as the scoreboard ranks', () => {
+  it('[board] keeps pawns on one case in roster order, whatever their scores', () => {
     const ranked = rankTrackPawns([
       ...trackPawnsOf({
         players: [seat('ada', 4, 440), seat('bob', 4, 445)],
@@ -90,7 +90,7 @@ describe('rankTrackPawns', () => {
       })
     ])
 
-    expect(ranked.map((pawn) => pawn.id)).toEqual(['blue', 'bob', 'ada', 'red'])
+    expect(ranked.map((pawn) => pawn.id)).toEqual(['ada', 'bob', 'red', 'blue'])
   })
 })
 

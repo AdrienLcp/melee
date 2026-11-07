@@ -91,6 +91,7 @@ export const FR_DICTIONARY = defineDictionary({
   },
   blacksquare: {
     answer: {
+      found: '« {line} » : trouvée',
       hit: '« {line} » +{points:number}',
       label: 'Une réponse',
       miss: '« {line} » : rien',
@@ -156,6 +157,7 @@ export const FR_DICTIONARY = defineDictionary({
     tier: defineTranslation('{points:plural}', {
       plural: { points: { one: '{?} point', other: '{?} points' } }
     }),
+    tierOf: 'Palier {tier:number} sur {most:number}',
     yours: 'Trouvée par toi'
   },
   blindtest: {
@@ -316,7 +318,7 @@ export const FR_DICTIONARY = defineDictionary({
       level: 'À égalité en tête'
     },
     more: '+{count:number}',
-    none: 'Sans plateau',
+    points: 'Aux points',
     recentre: 'Recentrer',
     setting: {
       catchUp: {
@@ -324,20 +326,22 @@ export const FR_DICTIONARY = defineDictionary({
         label: 'Coup de pouce au dernier'
       },
       hint: {
-        off: 'Des pions sur un parcours, autour de l’écran de la salle.',
-        seats: 'Un pion par joueur, qui avance à chaque manche.',
-        teams: 'Un pion par équipe, qui avance à chaque manche.'
+        points: 'Des points sur chaque écran : le plus gros total gagne.',
+        seats:
+          'Pas de points : un pion par joueur sur un parcours, qui avance à chaque manche.',
+        teams:
+          'Pas de points : un pion par équipe sur un parcours, qui avance à chaque manche.'
       },
-      label: 'Plateau',
-      off: 'Sans',
+      label: 'On joue',
+      points: 'Aux points',
       strategy: {
         hint: {
           onePointOneCase:
-            'Une case par tranche de 30 points gagnés dans la manche.',
+            'Une bonne réponse avance de 3 cases, une réponse en partie de moins. La vitesse ne compte jamais.',
           rank: 'Le premier de la manche avance de 3 cases, le deuxième de 2, le troisième de 1.'
         },
         label: 'Les pions avancent',
-        onePointOneCase: 'Aux points',
+        onePointOneCase: 'À la réponse',
         rank: 'Au classement'
       },
       unit: 'cases'
@@ -345,7 +349,13 @@ export const FR_DICTIONARY = defineDictionary({
     standing: '{team} : case {case:number} sur {length:number}',
     start: 'Départ',
     summary: 'plateau de {length:number} cases',
-    walked: '+{count:number}'
+    walked: '+{count:number}',
+    walkedSquares: defineTranslation('{count:plural}', {
+      plural: { count: { one: '+{?} case', other: '+{?} cases' } }
+    }),
+    walkedUnit: defineTranslation('{count:plural}', {
+      plural: { count: { one: 'case', other: 'cases' } }
+    })
   },
   buzz: {
     action: 'Buzz',
@@ -798,12 +808,7 @@ export const FR_DICTIONARY = defineDictionary({
           }
         }
       }),
-      tiedOnCase: defineTranslation(
-        'à égalité case {case:number} · {points:plural}',
-        {
-          plural: { points: { one: '{?} point', other: '{?} points' } }
-        }
-      ),
+      tiedOnCase: 'à égalité case {case:number}',
       wins: defineTranslation('{points:plural}', {
         plural: {
           points: {
@@ -812,12 +817,7 @@ export const FR_DICTIONARY = defineDictionary({
           }
         }
       }),
-      winsOnCase: defineTranslation(
-        'gagne case {case:number} · {points:plural}',
-        {
-          plural: { points: { one: '{?} point', other: '{?} points' } }
-        }
-      )
+      winsOnCase: 'gagne case {case:number}'
     },
     game: {
       label: 'À quoi on joue',
@@ -864,6 +864,8 @@ export const FR_DICTIONARY = defineDictionary({
     },
     podium: {
       actions: 'Options pour {nickname}',
+      casesHint:
+        '– et + : une case d’un coup, pour une réponse que le jeu n’a pas vue.',
       empty:
         'Personne pour l’instant. Lis {code} à voix haute, ou montre le QR de l’écran de la salle.',
       more: '+{count:number}',
@@ -1979,12 +1981,7 @@ export const FR_DICTIONARY = defineDictionary({
           }
         }
       }),
-      winsOnCase: defineTranslation(
-        'victoire case {case:number} · {points:plural}',
-        {
-          plural: { points: { one: '{?} point', other: '{?} points' } }
-        }
-      )
+      winsOnCase: 'victoire case {case:number}'
     },
     join: 'Rejoindre',
     move: {

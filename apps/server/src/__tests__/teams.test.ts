@@ -464,12 +464,12 @@ describe('a room played in teams', () => {
       type: 'host.renameTeam'
     })
     host.send({
-      points: 2_000,
+      change: { kind: 'points', points: 2_000 },
       target: { kind: 'team', teamId: 'team-2' },
       type: 'host.adjustScore'
     })
     host.send({
-      points: -5_000,
+      change: { kind: 'points', points: -5_000 },
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -496,7 +496,7 @@ describe('a room played in teams', () => {
       type: 'host.drawTeams'
     })
     host.send({
-      points: 3_000,
+      change: { kind: 'points', points: 3_000 },
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })

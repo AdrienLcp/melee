@@ -1,10 +1,11 @@
 import type React from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
-import type { HostRoomView } from '@melee/protocol/room'
+import type { HostRoomView, PublicPlayer } from '@melee/protocol/room'
 import { SCORE_ADJUSTMENT_STEP } from '@melee/protocol/scoring'
 
 import {
+  buildRoster,
   buildScoreboard,
   hasAnybodyScored
 } from '@melee/core/scoring/scoreboard'
@@ -15,6 +16,7 @@ import {
   ActionMenuItem
 } from '@/presentation/components/action-menu'
 import { Button } from '@/presentation/components/button'
+import { CaseMark } from '@/presentation/components/case-mark'
 import { CrossIcon, MinusIcon, PlusIcon } from '@/presentation/components/icons'
 import { Pawn } from '@/presentation/components/pawn'
 import {
@@ -53,11 +55,18 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
     )
   }
 
-  const isRanked = hasAnybodyScored(view.players)
-  const ranked = buildScoreboard(view.players)
   const isInLobby = view.phase === 'lobby'
   const isBetweenRounds = view.phase === 'revealed'
   const isByTeam = view.teams.length > 0
+  const board = view.settings.board
+  const isOnTrack = board.kind === 'track'
+  // A team walks the pawn on a track, so a seat there has no standing of its
+  // own to print, and a rank read off its points would be one nobody sees.
+  const seatsStand = !(isByTeam && isOnTrack)
+  const isRanked = seatsStand && hasAnybodyScored(view.players)
+  const ranked = seatsStand
+    ? buildScoreboard(view.players)
+    : buildRoster(view.players)
   const seatPresses = isInLobby || isByTeam ? null : points
   const sharesRank = (rank: number) =>
     ranked.filter((entry) => entry.rank === rank).length > 1
@@ -96,32 +105,27 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                 )}
               </span>
               <span className='podium-score'>
-                {row === undefined ? (
-                  translate('player.score', {
-                    points: shownPoints(player.score)
-                  })
-                ) : row.pawnCase === null ? (
-                  row.standing
-                ) : (
-                  <>
-                    <span aria-hidden='true'>{row.pawnCase}</span>
-                    <span className='podium-case-label'>
-                      {translate('board.at', { case: row.pawnCase })}
-                    </span>
-                  </>
-                )}
+                {!seatsStand
+                  ? null
+                  : board.kind === 'track'
+                    ? player.board !== null && (
+                        <CaseMark
+                          at={player.board.case}
+                          length={board.length}
+                        />
+                      )
+                    : translate('player.score', {
+                        points: shownPoints(player.score)
+                      })}
               </span>
               <span className='podium-presses'>
                 {seatPresses !== null && row !== undefined && (
                   <>
                     <Button
-                      aria-label={translate('host.points.take', {
-                        name: row.name,
-                        points: shownPoints(SCORE_ADJUSTMENT_STEP)
-                      })}
+                      aria-label={row.takeLabel}
                       isDisabled={!seatPresses.isLive || !row.canTake}
                       onPress={() => {
-                        seatPresses.onAdjust(row.target, -SCORE_ADJUSTMENT_STEP)
+                        seatPresses.onStep(row, -1)
                       }}
                       size='small'
                       variant='outlined'
@@ -129,13 +133,10 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                       <MinusIcon />
                     </Button>
                     <Button
-                      aria-label={translate('host.points.give', {
-                        name: row.name,
-                        points: shownPoints(SCORE_ADJUSTMENT_STEP)
-                      })}
+                      aria-label={row.giveLabel}
                       isDisabled={!seatPresses.isLive || !row.canGive}
                       onPress={() => {
-                        seatPresses.onAdjust(row.target, SCORE_ADJUSTMENT_STEP)
+                        seatPresses.onStep(row, 1)
                       }}
                       size='small'
                       variant='outlined'
@@ -172,14 +173,16 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
       </ol>
       {seatPresses !== null && (
         <p className='podium-hint'>
-          {translate('host.podium.pointsHint', {
-            points: shownPoints(SCORE_ADJUSTMENT_STEP)
-          })}
+          {isOnTrack
+            ? translate('host.podium.casesHint')
+            : translate('host.podium.pointsHint', {
+                points: shownPoints(SCORE_ADJUSTMENT_STEP)
+              })}
         </p>
       )}
       {!isInLobby && isByTeam && (
         <section className='podium-team-points'>
-          <h3>{translate('host.points.label')}</h3>
+          <h3>{translate(isOnTrack ? 'board.fix' : 'host.points.label')}</h3>
           <PointsRows />
         </section>
       )}
@@ -196,13 +199,26 @@ export const useRosterSummary = (view: HostRoomView): string => {
   }
 
   const ranked = buildScoreboard(view.players)
+  const standingOf = (player: PublicPlayer): string | null => {
+    if (view.settings.board.kind === 'points') {
+      return translate('player.score', { points: shownPoints(player.score) })
+    }
+
+    return player.board === null
+      ? null
+      : translate('board.at', { case: player.board.case })
+  }
   const firstThree = ranked
     .slice(0, 3)
-    .map(({ player }) =>
-      hasAnybodyScored(view.players)
-        ? `${player.nickname} ${translate('player.score', { points: shownPoints(player.score) })}`
-        : player.nickname
-    )
+    .map(({ player }) => {
+      const standing = hasAnybodyScored(view.players)
+        ? standingOf(player)
+        : null
+
+      return standing === null
+        ? player.nickname
+        : `${player.nickname} ${standing}`
+    })
     .join(' · ')
   const more = ranked.length - 3
 

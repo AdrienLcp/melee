@@ -171,7 +171,7 @@ reconnect on the token it still holds.
 | `host.recolourTeam`    | host             | `teamId`, `colour` — a pawn token, 1-based; `colour_taken` when another team holds it                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 | `host.recolourSeat`    | host             | `playerId`, `colour`, `head` — under `player.recolourSeat`'s rules                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
 | `host.moveSeat`        | host             | `playerId`, `teamId`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `host.adjustScore`     | host             | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `points` — signed, in board units                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| `host.adjustScore`     | host             | `target` — `{kind:'team', teamId}` or `{kind:'seat', playerId}`, `change` — `{kind:'points', points}` signed in board units, or `{kind:'cases', cases}` signed, the room's mode                                                                                                                                                                                                                                                                                                                                                      |
 | `host.awardPlaces`     | host             | `roundId`, `places` — `[{ target, place }]`, `target` as `host.adjustScore`'s, `place` 1, 2 or 3                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `host.awardTeams`      | host             | `roundId`, `verdicts` — `[{ teamId, verdict }]`, the verdict in the shape the game is judged in; a team left out had nothing                                                                                                                                                                                                                                                                                                                                                                                                         |
 | `host.redealChallenge` | host             | `at` (optional, the first by default) — another ready-made line in place of that slot of `challengeHand`, the dropped one left unplayed; `invalid_message` outside a challenge, `no_content_available` when the bank holds no other                                                                                                                                                                                                                                                                                                  |
@@ -374,22 +374,35 @@ seats, so the roster rule already refuses everybody else with
   and a seat answering for its team, were removed at protocol 42: they made
   spectators of a room that came to play.
 
-**The board is the teams' score walked on a track.** `settings.board` is
-`off` or `{ kind: 'track', length, strategy, catchUp }`, laid in the lobby only — a
-frame that moves it past the lobby is `wrong_phase` — and read only where the
-room has teams. Each team carries `board: { case, move }` beside its score,
-`null` while the board is off.
+**A room plays on points or on the board, never both.** `settings.board` is
+`{ kind: 'points' }` or `{ kind: 'track', length, strategy, catchUp }`, laid in
+the lobby only — a frame that moves it past the lobby is `wrong_phase`. A
+snapshot or a stored setup from before it said `points` called it `off`, and
+the schema reads that as `points`. On a track each pawn — a team's, or a
+seat's in a room without teams — carries `board: { case, move }`, `null` on
+points. The score still travels, because the strategies are fed what a round
+paid, but **no screen prints a figure on a track and no screen draws a pawn on
+points**: two numbers ranking the same people disagreed, and a table could
+see one of them.
+
+- **On a track the case alone ranks.** `buildScoreboard` and `buildTeamBoard`
+  rank a pawn on its case, two pawns on one case sharing the place — the
+  score the table cannot see never separates them. The finish keeps its own
+  rule for who arrived first.
 
 - **The server walks the pawns.** As a round settles, the strategy named in the
   setting (`@melee/core/board/`, one file each) turns every team's round result
   into a number of cases; `advanceOnTrack` stops each pawn on the last case.
-  `onePointOneCase` moves a case for every whole `POINTS_PER_CASE` — 30
-  printed points — floored, so three at most: a right answer walks three
-  whether the clock paid its tenth or not. `rank` moves the round's teams 3, 2 and 1
-  cases by what it paid them, speed bonus included; a tie shares the better
-  place and skips the next, and a team paid nothing is not ranked — which is
-  what keeps a turn of a set from ranking one team against teams still
-  waiting for theirs, so a team on its turn moves 3 cases if it scores at all.
+  Cases are counted on the **answer's** share of the round and never the
+  clock's (`answerPointsOf`, the award's `speedBonus` taken out), so two pawns
+  that answered alike walk alike whoever was quicker. `onePointOneCase` moves
+  a case for every whole `POINTS_PER_CASE` — 30 printed points — floored: a
+  right answer walks three, two thirds of one two, a third one. `rank` moves
+  the round's pawns 3, 2 and 1 cases by what it paid them, speed bonus
+  included; a tie shares the better place and skips the next, and only a pawn
+  whose answer earned a case's worth stands on the podium — a far-off guess is
+  not walked like a right one for being third of three, and a team waiting for
+  its turn in a set, paid nothing, is never ranked against the one playing.
 - **Catch-up is the track's, not a strategy's.** With `catchUp` on,
   `advanceOnTrack` gives one case more to a team standing _alone_ on the
   rearmost case, on a round its strategy walks it at all. Two pawns level at
@@ -400,9 +413,11 @@ room has teams. Each team carries `board: { case, move }` beside its score,
   from `case - move` instead of teleporting the pawn, and nothing moves while
   an answer can still be given. It is banked with the score as the next round
   opens or the board goes up.
-- **The host corrects a move with the score.** `host.adjustScore` on a team
-  walks its pawn a case for each whole `POINTS_PER_CASE` of the adjustment, between the
-  start and the finish, so the pawn and the score never tell two stories.
+- **The host corrects in what the room plays for.** `host.adjustScore`
+  carries `change: { kind: 'points', points }` on points and
+  `{ kind: 'cases', cases }` on a track, walking the pawn between the start
+  and the finish; the other kind is refused `invalid_message`, as is a
+  `cases` change on a seat whose team holds the pawn.
 - **A pawn home ends the evening only when it is raced to the finish.** The
   three ends are exclusive (`endsAtFinish`, `racesToTheFinish`): a track with
   no round count and `endsAtFinish` ends on the reveal a pawn reaches the last

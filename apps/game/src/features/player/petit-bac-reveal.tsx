@@ -7,6 +7,7 @@ import { linePoints } from '@melee/core/petitbac/sheet-pay'
 
 import { petitBacCategoryId } from '@/features/player/petit-bac-sheet'
 import { petitBacContent } from '@/helpers/round-content'
+import { usePlaysOnTrack } from '@/presentation/components/board-kind'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { petitBacCategoryName } from '@/presentation/i18n/petit-bac-category-name'
@@ -36,6 +37,7 @@ export const PetitBacReveal: React.FC<PetitBacRevealProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const isOnTrack = usePlaysOnTrack()
   const content = petitBacContent(round)
 
   if (content === null) {
@@ -84,11 +86,13 @@ export const PetitBacReveal: React.FC<PetitBacRevealProps> = ({
                     })
                   : translate(OUTCOME_WORDS[outcome])}
               </span>
-              <span className='points'>
-                {points > 0
-                  ? translate('round.scored', { points: shownPoints(points) })
-                  : '0'}
-              </span>
+              {!isOnTrack && (
+                <span className='points'>
+                  {points > 0
+                    ? translate('round.scored', { points: shownPoints(points) })
+                    : '0'}
+                </span>
+              )}
             </li>
           )
         })}

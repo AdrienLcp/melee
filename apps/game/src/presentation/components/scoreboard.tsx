@@ -9,6 +9,7 @@ import {
   hasAnybodyScored
 } from '@melee/core/scoring/scoreboard'
 
+import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 import { RichText } from '@/presentation/i18n/rich-text'
 
@@ -20,7 +21,6 @@ import { ReadyMark } from './ready-mark'
 import { VisuallyHidden } from './visually-hidden'
 
 import './scoreboard.sass'
-import { shownPoints } from '@/helpers/shown-points'
 
 /** Past this a ranking is read as a block rather than one row at a time. */
 const PLAYERS_PER_COLUMN = 8
@@ -40,7 +40,8 @@ type ScoreboardProps = {
   isResult?: boolean
   /**
    * Lists who has sat down rather than how they stand: no rank, case or
-   * points, whatever the scores say. The lobby's roster passes it — its chips
+   * points, whatever the scores say — and so does a room whose teams walk the
+   * track, where a seat has no standing to print. The lobby's roster passes it — its chips
    * are dealt across a third of the roster wide, where a ranking is read
    * downwards and the points' columns left the name no room at all.
    */
@@ -117,12 +118,9 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
 }) => {
   const translate = useTranslate()
   const isRanked = isRoster !== true && hasAnybodyScored(players)
-  const shownScoreOf = (player: PublicPlayer) =>
-    translate('player.score', { points: shownPoints(player.score) })
-  const widestScoreLength = Math.max(
-    0,
-    ...players.map((player) => shownScoreOf(player).length)
-  )
+  // A seat walking a pawn prints its case and nothing else: the room plays for
+  // the track or for points, never both.
+  const isOnTrack = players.some((player) => player.board !== null)
 
   return (
     <ol
@@ -140,7 +138,6 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
         .join(' ')}
       style={{
         ...style,
-        '--score-figures': widestScoreLength,
         ...(isResult === true
           ? {
               '--scoreboard-count': players.length,
@@ -215,7 +212,13 @@ export const Scoreboard: React.FC<ScoreboardProps> = ({
                 />
               </span>
             )}
-            {isRanked && <span className='score'>{shownScoreOf(player)}</span>}
+            {isRanked && !isOnTrack && (
+              <span className='score'>
+                {translate('player.score', {
+                  points: shownPoints(player.score)
+                })}
+              </span>
+            )}
             {onRemove !== undefined && (
               <Button
                 aria-label={translate('host.players.removeNamed', {

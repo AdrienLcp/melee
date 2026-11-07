@@ -21,14 +21,15 @@ import { useArrivedLater } from './use-arrived-later'
 
 import './board-setup.sass'
 
-const NO_BOARD = NO_LIMIT
+/** The strip's first segment: no track, the room plays for points. */
+const ON_POINTS = NO_LIMIT
 
 /**
  * A quick game, the usual evening and a marathon: by points, a round's leader
  * walks some four cases, so about three rounds, ten and twenty-five.
  */
 const BOARD_LENGTHS = [
-  NO_BOARD,
+  ON_POINTS,
   MIN_BOARD_LENGTH,
   DEFAULT_BOARD_LENGTH,
   MAX_BOARD_LENGTH
@@ -48,9 +49,10 @@ type BoardSetupProps = {
 }
 
 /**
- * Whether the room races pawns round a track, how long it is and how they
- * walk it: one strip from *None* to the longest track, whatever the teams —
- * without them every seat walks a pawn. A new length keeps the track's rules.
+ * What the room plays for — points, or pawns raced round a track, never both —
+ * how long the track is and how they walk it: one strip from *Points* to the
+ * longest track, whatever the teams — without them every seat walks a pawn. A
+ * new length keeps the track's rules.
  */
 export const BoardSetup: React.FC<BoardSetupProps> = ({
   isDisabled,
@@ -76,12 +78,12 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
             : 'board-length'
         }
         description={translate(
-          `board.setting.hint.${board.kind === 'track' ? pawns : 'off'}`
+          `board.setting.hint.${board.kind === 'track' ? pawns : 'points'}`
         )}
         isDisabled={isDisabled}
         label={translate('board.setting.label')}
         onChange={(length) => {
-          if (length === NO_BOARD) {
+          if (length === ON_POINTS) {
             onChange({ ...settings, board: DEFAULT_BOARD_SETTINGS })
           } else {
             changeTrack({
@@ -91,13 +93,15 @@ export const BoardSetup: React.FC<BoardSetupProps> = ({
           }
         }}
         optionLabel={(length) =>
-          length === NO_BOARD ? translate('board.setting.off') : String(length)
+          length === ON_POINTS
+            ? translate('board.setting.points')
+            : String(length)
         }
         optionMark={(length) =>
-          length === NO_BOARD ? undefined : translate('board.setting.unit')
+          length === ON_POINTS ? undefined : translate('board.setting.unit')
         }
         options={lengths}
-        value={board.kind === 'track' ? board.length : NO_BOARD}
+        value={board.kind === 'track' ? board.length : ON_POINTS}
       />
       {board.kind === 'track' && (
         <div className='track-rules' data-arrived={trackRulesArrived}>

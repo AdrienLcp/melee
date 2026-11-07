@@ -790,8 +790,8 @@ const dispatch = ({
         engine,
         outbound,
         result: adjustScore({
+          change: message.change,
           now,
-          points: message.points,
           room,
           target: message.target
         })

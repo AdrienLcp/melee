@@ -105,6 +105,7 @@ import { nowMs } from '@/infrastructure/clock'
 import { AskedQuestion } from '@/presentation/components/asked-question'
 import { BlackSquareReveal } from '@/presentation/components/black-square-reveal'
 import { BlackSquareSpoken } from '@/presentation/components/black-square-spoken'
+import { BoardKindProvider } from '@/presentation/components/board-kind'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { CountedBoard } from '@/presentation/components/counted-board'
@@ -416,7 +417,13 @@ const BackAtTheTable: React.FC<{
   )
 }
 
-export const PlayerRound: React.FC<PlayerRoundProps> = ({
+export const PlayerRound: React.FC<PlayerRoundProps> = (props) => (
+  <BoardKindProvider board={props.view.settings.board}>
+    <PlayerRoundPhase {...props} />
+  </BoardKindProvider>
+)
+
+const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
   clock,
   onAnswer,
   onBuzz,
@@ -1078,24 +1085,50 @@ const YourRound: React.FC<{
 }> = ({ round, view }) => {
   const translate = useTranslate()
   const award = round.awards.find((entry) => entry.playerId === view.youId)
+  const isOnTrack = view.settings.board.kind === 'track'
+  // On a track the round is the squares the pawn walked — the seat's own, or
+  // its team's — and no point is printed: the room plays for one or the other.
+  const walked =
+    (
+      teamOfSeat({ playerId: view.youId, teams: view.teams }) ??
+      view.players.find((player) => player.id === view.youId)
+    )?.board?.move ?? 0
   const points = award?.points ?? 0
-  const speedBonus = award?.speedBonus ?? 0
-  const payout =
-    points > 0
-      ? translate('round.scored', { points: shownPoints(points) })
-      : '0'
-  const roundPlacing = roundPlacingOf({
-    awards: round.awards,
-    playerId: view.youId
-  })
+  const speedBonus = isOnTrack ? 0 : (award?.speedBonus ?? 0)
+  const hasGained = isOnTrack ? walked > 0 : points > 0
+  const payout = !hasGained
+    ? '0'
+    : isOnTrack
+      ? translate('board.walked', { count: walked })
+      : translate('round.scored', { points: shownPoints(points) })
+  const roundPlacing = isOnTrack
+    ? null
+    : roundPlacingOf({
+        awards: round.awards,
+        playerId: view.youId
+      })
 
   return (
-    <div className={classNames('your-round', points > 0 ? 'scored' : 'missed')}>
+    <div className={classNames('your-round', hasGained ? 'scored' : 'missed')}>
       <p className='payout' style={{ '--payout-length': payout.length }}>
-        {payout}
+        {isOnTrack && !hasGained ? (
+          <Pawn
+            seat={Math.max(
+              0,
+              view.players.findIndex((player) => player.id === view.youId)
+            )}
+          />
+        ) : (
+          payout
+        )}
       </p>
       <div className='payout-words'>
-        {points === 0 && (
+        {isOnTrack && hasGained && (
+          <p className='walked-unit'>
+            {translate('board.walkedUnit', { count: walked })}
+          </p>
+        )}
+        {!hasGained && (
           <p className='you-missed'>{translate('round.missed')}</p>
         )}
         {roundPlacing !== null && (
@@ -1148,19 +1181,22 @@ const YourPlacing: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
         {translate('player.final.rank', { rank: yours.rank })}
       </p>
       <p className='your-total'>
-        {yours.player.board !== null && (
+        {yours.player.board === null ? (
+          <>
+            <span className='value'>
+              {translate('player.score', {
+                points: shownPoints(yours.player.score)
+              })}
+            </span>{' '}
+            {translate('player.points', {
+              points: shownPoints(yours.player.score)
+            })}
+          </>
+        ) : (
           <span className='case'>
             {translate('board.at', { case: yours.player.board.case })}
           </span>
         )}
-        <span className='value'>
-          {translate('player.score', {
-            points: shownPoints(yours.player.score)
-          })}
-        </span>{' '}
-        {translate('player.points', {
-          points: shownPoints(yours.player.score)
-        })}
       </p>
     </div>
   )

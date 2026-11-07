@@ -226,8 +226,9 @@ export const roomSettingsSchema = z.object({
    */
   autoAdvanceMs: z.number().int().min(2_000).max(30_000).nullable(),
   /**
-   * Whether the pawns race on a track around the round — one a team, or one a
-   * seat in a room without teams. See `board.ts`.
+   * Whether the table plays for points or races pawns on a track — one a
+   * team, or one a seat in a room without teams — and never both. See
+   * `board.ts`.
    */
   board: boardSettingsSchema,
   /** Milliseconds between "start" and the first note, so every device lands together. */
@@ -239,7 +240,7 @@ export const roomSettingsSchema = z.object({
    * it waits on the last case, ranked first. So the three ways an evening ends
    * are exclusive by construction, and a round count on screen never lies.
    *
-   * Ignored with the board off. Defaulted, so a stored table or a snapshot
+   * Ignored on points. Defaulted, so a stored table or a snapshot
    * from before it plays a track to the finish, as it always did.
    */
   endsAtFinish: z.boolean().default(true),
@@ -402,7 +403,7 @@ export const DEFAULT_ROOM_SETTINGS: RoomSettings = {
 
 export const publicPlayerSchema = z.object({
   /**
-   * The seat's own pawn on the track, and `null` when the board is off or the
+   * The seat's own pawn on the track, and `null` on points or when the
    * room plays in teams — the team's pawn is the one that walks then.
    */
   board: boardPositionSchema.nullable(),

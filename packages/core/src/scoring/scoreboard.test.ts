@@ -68,11 +68,11 @@ describe('buildScoreboard', () => {
     expect(nicknames(oneWay.toReversed())).toEqual(['Alice', 'Bob'])
   })
 
-  it('[scoring] puts the pawn furthest along first on a track, the score breaking a tie', () => {
+  it('[scoring] ranks a track on the case alone, two pawns on one case sharing the place', () => {
     const board = buildScoreboard([
-      pawnOn({ at: 3, nickname: 'Alice', score: 9 }),
+      pawnOn({ at: 3, nickname: 'Chloe', score: 9 }),
       pawnOn({ at: 5, nickname: 'Bob', score: 2 }),
-      pawnOn({ at: 3, nickname: 'Chloe', score: 4 })
+      pawnOn({ at: 3, nickname: 'Alice', score: 4 })
     ])
 
     expect(board.map((entry) => entry.player.nickname)).toEqual([
@@ -80,7 +80,16 @@ describe('buildScoreboard', () => {
       'Alice',
       'Chloe'
     ])
-    expect(board.map((entry) => entry.rank)).toEqual([1, 2, 3])
+    expect(board.map((entry) => entry.rank)).toEqual([1, 2, 2])
+  })
+
+  it('[scoring] names nobody on a track while every pawn is at the start', () => {
+    expect(
+      winnersOf([
+        pawnOn({ at: 0, nickname: 'Alice', score: 20 }),
+        pawnOn({ at: 0, nickname: 'Bob', score: 0 })
+      ])
+    ).toEqual([])
   })
 
   it('[scoring] handles an empty room', () => {

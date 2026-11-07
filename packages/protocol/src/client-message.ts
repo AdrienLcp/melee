@@ -2,6 +2,7 @@ import { z } from 'zod'
 
 import { geoPointSchema } from './atlas'
 import { blackSquareCellSchema } from './black-square'
+import { MAX_BOARD_LENGTH } from './board'
 import {
   challengeFinisherSchema,
   challengeHandSlotSchema,
@@ -562,17 +563,28 @@ export const moveSeatMessageSchema = z.object({
 })
 
 /**
- * Points granted or taken by hand, for an answer given aloud or a call the
- * rules got wrong. A seat's adjustment stays on the seat: a team is paid by
- * its rounds and by its own adjustments, never by a seat's.
+ * A correction by hand, for an answer given aloud or a call the rules got
+ * wrong, in what the room plays for: points on points, cases on a track. A
+ * seat's adjustment stays on the seat: a team is paid by its rounds and by its
+ * own adjustments, never by a seat's.
  */
 export const adjustScoreMessageSchema = z.object({
-  /** In the board's units, a thousand to the point; negative takes back, never below zero. */
-  points: z
-    .number()
-    .int()
-    .min(-10 * MOST_A_ROUND_PAYS)
-    .max(10 * MOST_A_ROUND_PAYS),
+  change: z.discriminatedUnion('kind', [
+    z.object({
+      kind: z.literal('points'),
+      /** In the board's units, a thousand to the point; negative takes back, never below zero. */
+      points: z
+        .number()
+        .int()
+        .min(-10 * MOST_A_ROUND_PAYS)
+        .max(10 * MOST_A_ROUND_PAYS)
+    }),
+    z.object({
+      /** Negative walks the pawn back, never behind the start nor past the finish. */
+      cases: z.number().int().min(-MAX_BOARD_LENGTH).max(MAX_BOARD_LENGTH),
+      kind: z.literal('cases')
+    })
+  ]),
   target: scoreTargetSchema,
   type: z.literal('host.adjustScore')
 })
@@ -838,6 +850,7 @@ export type ClientMessageType = ClientMessage['type']
 export type LeanAnswer = z.infer<typeof leanAnswerSchema>
 export type ClipAction = z.infer<typeof controlClipMessageSchema>['action']
 export type ScoreTarget = z.infer<typeof adjustScoreMessageSchema>['target']
+export type ScoreChange = z.infer<typeof adjustScoreMessageSchema>['change']
 
 /**
  * Kept next to the union it partitions: the server checks this before acting,

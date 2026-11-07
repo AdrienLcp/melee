@@ -10,6 +10,7 @@ import { pointsForTier } from '@melee/core/blacksquare/sheet-pay'
 import { shownPoints } from '@/helpers/shown-points'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { usePlaysOnTrack } from './board-kind'
 import { VisuallyHidden } from './visually-hidden'
 
 import './black-square-pips.sass'
@@ -33,6 +34,7 @@ export const BlackSquarePips: React.FC<BlackSquarePipsProps> = ({
   tier
 }) => {
   const translate = useTranslate()
+  const isOnTrack = usePlaysOnTrack()
 
   return (
     <span className='black-square-pips'>
@@ -40,9 +42,11 @@ export const BlackSquarePips: React.FC<BlackSquarePipsProps> = ({
         <i aria-hidden='true' key={pip} />
       ))}
       <VisuallyHidden>
-        {translate('blacksquare.tier', {
-          points: shownPoints(pointsForTier({ cellCount, tier }))
-        })}
+        {isOnTrack
+          ? translate('blacksquare.tierOf', { most: PIPS.length, tier })
+          : translate('blacksquare.tier', {
+              points: shownPoints(pointsForTier({ cellCount, tier }))
+            })}
       </VisuallyHidden>
     </span>
   )

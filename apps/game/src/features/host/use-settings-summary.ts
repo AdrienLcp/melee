@@ -65,7 +65,9 @@ export const useSetupSummaries = ({
       : ''
 
   const speedBonus =
-    !settings.paysForSpeed && isEveningPaidForSpeed(settings)
+    !settings.paysForSpeed &&
+    settings.board.kind === 'points' &&
+    isEveningPaidForSpeed(settings)
       ? translate('host.speedBonus.summaryOff')
       : ''
 

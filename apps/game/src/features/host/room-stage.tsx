@@ -2,7 +2,7 @@ import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useState } from 'react'
 
-import { POINTS_PER_CASE } from '@melee/protocol/board'
+import { DEFAULT_BOARD_SETTINGS } from '@melee/protocol/board'
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
@@ -28,6 +28,7 @@ import {
   innerclockContent,
   matchsticksContent
 } from '@/helpers/round-content'
+import { BoardKindProvider } from '@/presentation/components/board-kind'
 import { CountPrompt } from '@/presentation/components/count-prompt'
 import { Countdown } from '@/presentation/components/countdown'
 import { MatchsticksPrompt } from '@/presentation/components/matchsticks-prompt'
@@ -121,7 +122,9 @@ export const RoomStage: React.FC<RoomStageProps> = (props) => {
   // The stage stays mounted behind the card and is hidden by the sheet, so
   // what a seated console had half written is still there on the way back.
   return (
-    <>
+    <BoardKindProvider
+      board={props.view?.settings.board ?? DEFAULT_BOARD_SETTINGS}
+    >
       {props.view?.isPaused === true && (
         <div className='stage solo paused'>
           <NoticeCard
@@ -131,7 +134,7 @@ export const RoomStage: React.FC<RoomStageProps> = (props) => {
         </div>
       )}
       <PhaseStage {...props} />
-    </>
+    </BoardKindProvider>
   )
 }
 
@@ -502,7 +505,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
                   ? undefined
                   : (team, cases) => {
                       controls.send({
-                        points: cases * POINTS_PER_CASE,
+                        change: { cases, kind: 'cases' },
                         target: { kind: 'team', teamId: team.id },
                         type: 'host.adjustScore'
                       })

@@ -15,6 +15,8 @@ export type PawnRoundResult = {
   pawnId: PawnId
   /** What the round paid the pawn, in the board's units — a thousand to the `POINT`, a hundred `POINT`s at most. */
   points: number
+  /** How much of `points` the clock paid, which ranks two pawns and walks neither. */
+  speedBonus: number
 }
 
 export type PawnMove = {

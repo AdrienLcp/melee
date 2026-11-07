@@ -6,7 +6,7 @@ import { compareText } from '../helpers/collation'
 
 export type ScoreboardEntry = {
   player: PublicPlayer
-  /** Standard competition ranking: two players on 5 points are both 2nd, and the next is 4th. */
+  /** Standard competition ranking: two players level in 2nd are both 2nd, and the next is 4th. */
   rank: number
 }
 
@@ -17,23 +17,27 @@ export type ScoreboardEntry = {
  * and the final board names nobody.
  */
 export const hasAnybodyScored = (players: readonly PublicPlayer[]): boolean =>
-  players.some((player) => player.score > 0 || caseOf(player) > 0)
-
-const caseOf = (player: PublicPlayer): number => player.board?.case ?? 0
+  players.some((player) => standingOfSeat(player) > 0)
 
 /**
- * On a track the pawn furthest along leads and the score breaks a tie, as the
- * teams' board ranks. Ties break on nickname so the board does not reshuffle
- * itself between two renders of the same scores — the players are watching it
- * on a wall.
+ * What a seat is ranked on: its case on a track, its score on points, never
+ * both — a score breaking a tie between two pawns on one case is a figure the
+ * table never sees deciding a place it does.
+ */
+const standingOfSeat = (player: PublicPlayer): number =>
+  player.board === null ? player.score : player.board.case
+
+/**
+ * Highest standing first, a tie sharing the place. Ties order on nickname so
+ * the board does not reshuffle itself between two renders of the same
+ * standings — the players are watching it on a wall.
  */
 export const buildScoreboard = (
   players: readonly PublicPlayer[]
 ): ScoreboardEntry[] => {
   const ordered = players.toSorted(
     (left, right) =>
-      caseOf(right) - caseOf(left) ||
-      right.score - left.score ||
+      standingOfSeat(right) - standingOfSeat(left) ||
       compareText(left.nickname, right.nickname)
   )
 
@@ -43,8 +47,7 @@ export const buildScoreboard = (
   return ordered.map((player, index) => {
     if (
       previous === null ||
-      caseOf(player) !== caseOf(previous) ||
-      player.score !== previous.score
+      standingOfSeat(player) !== standingOfSeat(previous)
     ) {
       currentRank = index + 1
       previous = player

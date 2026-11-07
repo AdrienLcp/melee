@@ -14,10 +14,10 @@ import { buildTeamBoard, hasAnyTeamScored } from '@melee/core/team/team-board'
 import { Pawn } from '@/presentation/components/pawn'
 import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
+import { useStandingOf } from '@/presentation/i18n/use-standing-of'
 import { useTeamName } from '@/presentation/i18n/use-team-name'
 
 import './score-track.sass'
-import { shownPoints } from '@/helpers/shown-points'
 
 /** One seat's own reading in place of its score: the figure printed, and how far along it is, from 0 to 1. */
 export type SeatProgress = {
@@ -56,6 +56,7 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
   youId
 }) => {
   const translate = useTranslate()
+  const standingOf = useStandingOf()
 
   if (progressOf === undefined && teams.length > 0) {
     return <TeamTrack teams={teams} youId={youId} />
@@ -70,11 +71,7 @@ export const ScoreTrack: React.FC<ScoreTrackProps> = ({
     const progress = progressOf?.(player) ?? null
 
     return {
-      figure:
-        progress?.figure ??
-        (isRanked
-          ? translate('player.score', { points: shownPoints(player.score) })
-          : null),
+      figure: progress?.figure ?? (isRanked ? standingOf(player) : null),
       player,
       progress
     }
@@ -127,11 +124,10 @@ const TeamTrack: React.FC<{
 }> = ({ teams, youId }) => {
   const translate = useTranslate()
   const teamName = useTeamName()
+  const standingOf = useStandingOf()
   const isRanked = hasAnyTeamScored(teams)
   const pieces = buildTeamBoard(teams).map(({ team }) => ({
-    figure: isRanked
-      ? translate('player.score', { points: shownPoints(team.score) })
-      : null,
+    figure: isRanked ? standingOf(team) : null,
     team
   }))
   const longestFigure = Math.max(

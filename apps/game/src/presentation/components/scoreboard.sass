@@ -44,12 +44,8 @@
     &.removable li
       grid-template-columns: 1fr auto
 
-    &.ranked.removable li,
-    &.ranked li:has(> .case)
+    &.ranked.removable li
       grid-template-columns: auto 1fr auto auto
-
-    &.ranked.removable li:has(> .case)
-      grid-template-columns: auto 1fr auto auto auto
 
     // Each row is a grid of its own, so the rank holds two figures' width on
     // every row and the pawns stand in one column.
@@ -82,8 +78,9 @@
       flex: none
       margin-inline-start: auto
 
-    // The case ranks the row, so it is printed first and the points beside it:
-    // a list may never order on a figure it does not show.
+    // On a track the case takes the points' place, and its figure their
+    // weight: it is the one figure the row ranks on, and a list never orders
+    // on one it hides. The word before it stays the label it is.
     .case
       @include typography.numeric
       @include text-box.trimmed-figure
@@ -91,18 +88,15 @@
     // Three figures: a track is at most 100 cases long (`MAX_BOARD_LENGTH`).
     .case-figure
       @include figures.slot(3)
+      @include typography.score
+
+      font-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 3rem)
 
     .score
       @include typography.score
       @include text-box.trimmed-figure
 
       font-size: clamp(1.5rem, calc(var(--stage-unit) * 4), 3rem)
-
-    // Each row is a grid of its own and the case stands where the score
-    // starts, so every score is as wide as the board's widest, counted by the
-    // component.
-    li:has(> .case) .score
-      @include figures.slot(var(--score-figures, 1), figures.$score-width)
 
     // Quieter, not fainter. `opacity: 0.45` put the row under 4.5:1 on every
     // field, and it was the only thing saying the seat was gone; the muted ink

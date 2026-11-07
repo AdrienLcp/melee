@@ -47,7 +47,8 @@ const play = ({
       positions,
       results: Object.entries(round).map(([pawnId, points]) => ({
         pawnId,
-        points
+        points,
+        speedBonus: 0
       })),
       strategy
     })
@@ -81,16 +82,27 @@ describe('board strategy', () => {
     ])
   })
 
-  it('[board] moves no pawn on the speed bonus alone', () => {
+  it('[board] walks two pawns that answered alike the same, the clock left out', () => {
+    const answer = 0.9 * POINTS_PER_CASE
     const progress = advanceOnTrack({
       catchUp: false,
       length: LENGTH,
       positions: new Map(),
-      results: [{ pawnId: 'blue', points: 0.99 * POINTS_PER_CASE }],
+      results: [
+        {
+          pawnId: 'quick',
+          points: answer + 0.1 * POINTS_PER_CASE,
+          speedBonus: 0.1 * POINTS_PER_CASE
+        },
+        { pawnId: 'slow', points: answer, speedBonus: 0 }
+      ],
       strategy: 'onePointOneCase'
     })
 
-    expect(progress.moves).toEqual([{ cases: 0, pawnId: 'blue' }])
+    expect(progress.moves).toEqual([
+      { cases: 0, pawnId: 'quick' },
+      { cases: 0, pawnId: 'slow' }
+    ])
   })
 
   it('[board] stops a pawn on the last case and ends there', () => {
@@ -98,7 +110,7 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 1]]),
-      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE }],
+      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE, speedBonus: 0 }],
       strategy: 'onePointOneCase'
     })
 
@@ -114,7 +126,7 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 4]]),
-      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE }],
+      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE, speedBonus: 0 }],
       strategy: 'onePointOneCase'
     })
 
@@ -124,11 +136,11 @@ describe('board strategy', () => {
   it('[board] ranks the same evening 3, 2 and 1 cases a round', () => {
     expect(play({ rounds: EVENING, strategy: 'rank' })).toEqual([
       { isOver: false, positions: { blue: 2, green: 0, red: 3 } },
-      { isOver: false, positions: { blue: 5, green: 1, red: 5 } },
-      { isOver: false, positions: { blue: 8, green: 3, red: 5 } },
-      { isOver: false, positions: { blue: 8, green: 6, red: 7 } },
-      { isOver: false, positions: { blue: 10, green: 7, red: 10 } },
-      { isOver: true, positions: { blue: 12, green: 10, red: 12 } }
+      { isOver: false, positions: { blue: 5, green: 0, red: 5 } },
+      { isOver: false, positions: { blue: 8, green: 2, red: 5 } },
+      { isOver: false, positions: { blue: 8, green: 5, red: 7 } },
+      { isOver: false, positions: { blue: 10, green: 6, red: 10 } },
+      { isOver: true, positions: { blue: 12, green: 9, red: 12 } }
     ])
   })
 
@@ -138,11 +150,11 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'blue', points: 2 * POINTS_PER_CASE },
-        { pawnId: 'red', points: 2 * POINTS_PER_CASE },
-        { pawnId: 'green', points: POINTS_PER_CASE },
-        { pawnId: 'gold', points: 0.5 * POINTS_PER_CASE },
-        { pawnId: 'pink', points: 0 }
+        { pawnId: 'blue', points: 2 * POINTS_PER_CASE, speedBonus: 0 },
+        { pawnId: 'red', points: 2 * POINTS_PER_CASE, speedBonus: 0 },
+        { pawnId: 'green', points: POINTS_PER_CASE, speedBonus: 0 },
+        { pawnId: 'gold', points: 0.5 * POINTS_PER_CASE, speedBonus: 0 },
+        { pawnId: 'pink', points: 0, speedBonus: 0 }
       ],
       strategy: 'rank'
     })
@@ -162,8 +174,8 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'blue', points: 0.4 * POINTS_PER_CASE },
-        { pawnId: 'red', points: 0 }
+        { pawnId: 'blue', points: POINTS_PER_CASE, speedBonus: 0 },
+        { pawnId: 'red', points: 0, speedBonus: 0 }
       ],
       strategy: 'rank'
     })
@@ -171,6 +183,30 @@ describe('board strategy', () => {
     expect(progress.moves).toEqual([
       { cases: 3, pawnId: 'blue' },
       { cases: 0, pawnId: 'red' }
+    ])
+  })
+
+  it('[board] keeps off the podium a pawn whose answer earned less than a case', () => {
+    const progress = advanceOnTrack({
+      catchUp: false,
+      length: LENGTH,
+      positions: new Map(),
+      results: [
+        { pawnId: 'right', points: POINTS_PER_CASE, speedBonus: 0 },
+        {
+          pawnId: 'near',
+          points: POINTS_PER_CASE,
+          speedBonus: 0.1 * POINTS_PER_CASE
+        },
+        { pawnId: 'far', points: 0.2 * POINTS_PER_CASE, speedBonus: 0 }
+      ],
+      strategy: 'rank'
+    })
+
+    expect(progress.moves).toEqual([
+      { cases: 3, pawnId: 'right' },
+      { cases: 0, pawnId: 'near' },
+      { cases: 0, pawnId: 'far' }
     ])
   })
 
@@ -187,10 +223,10 @@ describe('board strategy', () => {
     ])
     expect(play({ catchUp: true, rounds: EVENING, strategy: 'rank' })).toEqual([
       { isOver: false, positions: { blue: 2, green: 0, red: 3 } },
-      { isOver: false, positions: { blue: 5, green: 2, red: 5 } },
-      { isOver: false, positions: { blue: 8, green: 5, red: 5 } },
-      { isOver: false, positions: { blue: 8, green: 8, red: 7 } },
-      { isOver: false, positions: { blue: 10, green: 9, red: 11 } },
+      { isOver: false, positions: { blue: 5, green: 0, red: 5 } },
+      { isOver: false, positions: { blue: 8, green: 3, red: 5 } },
+      { isOver: false, positions: { blue: 8, green: 7, red: 7 } },
+      { isOver: false, positions: { blue: 10, green: 8, red: 10 } },
       { isOver: true, positions: { blue: 12, green: 12, red: 12 } }
     ])
   })

@@ -2,7 +2,7 @@ import { createSafeContext } from '@adrienlcp/react'
 import type React from 'react'
 import { useCallback, useEffect, useState } from 'react'
 
-import type { ScoreTarget } from '@melee/protocol/client-message'
+import type { ScoreChange, ScoreTarget } from '@melee/protocol/client-message'
 import type { ProtocolErrorCode } from '@melee/protocol/error-code'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoomPhase } from '@melee/protocol/room'
@@ -34,11 +34,12 @@ export type RecolourRefusal = Extract<
  */
 export type RoomActions = {
   /**
-   * Moves a team's or a seat's score by whole points, in any phase: a bonus
-   * nobody planned, a challenge played at the table, a call to put right. The
-   * host console's alone.
+   * Moves a team's or a seat's standing by hand, in any phase — points on a
+   * room playing for points, cases on a track: a bonus nobody planned, a
+   * challenge played at the table, a call to put right. The host console's
+   * alone.
    */
-  adjustScore: ((target: ScoreTarget, points: number) => void) | null
+  adjustScore: ((target: ScoreTarget, change: ScoreChange) => void) | null
   /** Everyone out and the room gone for good. The host console's alone. */
   closeRoom: (() => void) | null
   /** Ends the game and puts the final board up. `null` while no game is in play. */

@@ -1,7 +1,7 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { TeamScoring } from '@melee/protocol/team'
 
-type PaidSeat = {
+export type PaidSeat = {
   playerId: PlayerId
   points: number
 }
