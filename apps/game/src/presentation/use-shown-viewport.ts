@@ -12,6 +12,18 @@ const SHOWN_HEIGHT_STEPS_REM = [30, 36] as const
 const MEDIA_REM_PX = 16
 
 /**
+ * Whether the page, moved down to the band, still ends on the screen — read
+ * off the app root's own box, which a transform leaves alone. Never off the
+ * document's `scrollHeight`: the pan is a `translate` on that root and counts
+ * as scrollable overflow, so a page read its own pan as "too tall", took it
+ * off, fitted again and put it back on every `scroll` — the whole screen
+ * shook.
+ */
+const isPageHeld = (offsetTopPx: number): boolean =>
+  (document.getElementById('root')?.offsetHeight ?? 0) + offsetTopPx <=
+  innerHeight + 1
+
+/**
  * Publishes what the screen shows on the root element, mounted once by the
  * shell because every surface holding itself to the screen reads it:
  *
@@ -39,9 +51,7 @@ export const usePublishShownViewport = (): void => {
         ).join(' ')
       )
 
-      const isPageHeld = root.scrollHeight <= innerHeight + 1
-
-      if (offsetTopPx > 0.5 && isPageHeld) {
+      if (offsetTopPx > 0.5 && isPageHeld(offsetTopPx)) {
         root.style.setProperty('--visual-viewport-pan', `0 ${offsetTopPx}px`)
       } else {
         root.style.removeProperty('--visual-viewport-pan')

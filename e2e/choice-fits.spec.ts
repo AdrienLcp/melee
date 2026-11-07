@@ -4219,5 +4219,27 @@ for (const screen of OVERLAID_KEYBOARD_SCREENS) {
     }, OVERLAID_KEYBOARD.heightPx)
 
     expect(await page.evaluate(measureInShownBand, screen.inView)).toEqual([])
+    expect(new Set(await page.evaluate(readPanOverRepeatedScrolls)).size).toBe(
+      1
+    )
   })
+}
+
+/**
+ * The band's pan read after each of several `scroll`s the real engine keeps
+ * firing while it holds a field above its keyboard. A pan that reads its own
+ * result flips on every one, which is the whole screen shaking.
+ */
+const readPanOverRepeatedScrolls = async () => {
+  const readings: string[] = []
+
+  for (let reading = 0; reading < 4; reading++) {
+    window.visualViewport?.dispatchEvent(new Event('scroll'))
+    await new Promise((resolve) => requestAnimationFrame(resolve))
+    readings.push(
+      document.documentElement.style.getPropertyValue('--visual-viewport-pan')
+    )
+  }
+
+  return readings
 }
