@@ -25,7 +25,30 @@ const NOT_A_LETTER_OR_DIGIT = /[^\p{L}\p{N}]/gu
  * Only at the front, and only followed by a boundary — `Latin` and `Un` are
  * answers, and neither is an article with something after it.
  */
-const LEADING_ARTICLE = /^(?:the|an?|le|la|les|une?|des|du)\s+|^l['’]/u
+const LEADING_ARTICLE = /^(?:the|an?|le|la|les|une?|des|du)\s+|^l'/u
+
+/**
+ * A phone types `’` where a bank holds `'`, and a keyboard set to another
+ * language types `ʼ`, `´` or a backtick. Folded to one before the diacritics
+ * go, because `´` and `ʼ` *are* diacritics and would vanish before the article
+ * rule could read *l´Ours* as *l'Ours*.
+ */
+const APOSTROPHE_LOOKALIKES = /[‘’ʼ´`′＇]/gu
+
+/** A quote or a stray space typed before the answer hides its article. */
+const LEADING_NON_LETTERS = /^[^\p{L}\p{N}]+/u
+
+/** NFD leaves these whole: *Œdipe* is typed `oedipe` on every keyboard. */
+const LIGATURES = { æ: 'ae', œ: 'oe' } as const satisfies Record<string, string>
+
+const LIGATURE = /[æœ]/gu
+
+/**
+ * `&` is dropped as punctuation, so `Simon & Garfunkel` typed `simon and
+ * garfunkel` would carry three letters the bank never held. The word goes on
+ * both sides, in either language.
+ */
+const CONJUNCTIONS: ReadonlySet<string> = new Set(['and', 'et'])
 
 /**
  * Both what the player typed and what the bank holds go through this before
@@ -38,16 +61,30 @@ const LEADING_ARTICLE = /^(?:the|an?|le|la|les|une?|des|du)\s+|^l['’]/u
  * answers that differ only in where the spaces fall are the same guess.
  */
 export const normalizeAnswer = (answer: string): string =>
-  foldCaseAndAccents(answer)
-    .replace(LEADING_ARTICLE, '')
-    .replace(NOT_A_LETTER_OR_DIGIT, '')
+  wordsOf(foldCaseAndAccents(answer).replace(LEADING_ARTICLE, '')).join('')
 
 /** `normalizeAnswer` with the article kept: *La Rochelle* is `larochelle` here and `rochelle` there. */
 export const normalizeKeepingArticle = (answer: string): string =>
-  foldCaseAndAccents(answer).replace(NOT_A_LETTER_OR_DIGIT, '')
+  wordsOf(foldCaseAndAccents(answer)).join('')
 
 const foldCaseAndAccents = (answer: string): string =>
-  answer.normalize('NFD').replace(DIACRITICS, '').toLowerCase()
+  answer
+    .replace(APOSTROPHE_LOOKALIKES, "'")
+    .normalize('NFD')
+    .replace(DIACRITICS, '')
+    .toLowerCase()
+    .replace(LIGATURE, (ligature) => LIGATURES[ligature as keyof typeof LIGATURES])
+    .replace(LEADING_NON_LETTERS, '')
+
+/** An answer that is nothing but a conjunction keeps it: *Et* is still an answer. */
+const wordsOf = (folded: string): string[] => {
+  const words = folded
+    .split(NOT_A_LETTER_OR_DIGIT)
+    .filter((word) => word.length > 0)
+  const meaningful = words.filter((word) => !CONJUNCTIONS.has(word))
+
+  return meaningful.length > 0 ? meaningful : words
+}
 
 /**
  * How many single-character corrections are forgiven, from the length of the
@@ -98,11 +135,28 @@ export const matchesAnswer = ({
 }: AnswerComparison): boolean => {
   const target = normalizeAnswer(expected)
 
-  return matchesNormalized(
-    target,
-    normalizeAnswer(given),
-    forgivenessBetween(target, distinctFrom)
+  return (
+    matchesNormalized(
+      target,
+      normalizeAnswer(given),
+      forgivenessBetween(target, distinctFrom)
+    ) || isElidedArticleTypedWhole({ expected, given })
   )
+}
+
+/**
+ * `lours` and `l ours` for *L'Ours*: the article rule only sees an apostrophe,
+ * so the player who left it out kept an `l` the bank had dropped — a typo no
+ * tolerance forgives on a four-letter answer. Exact on the article-kept form,
+ * so it never reaches across a decoy.
+ */
+const isElidedArticleTypedWhole = ({
+  expected,
+  given
+}: AnswerComparison): boolean => {
+  const whole = normalizeKeepingArticle(expected)
+
+  return whole.length > 0 && whole === normalizeKeepingArticle(given)
 }
 
 const forgivenessBetween = (
@@ -157,14 +211,21 @@ export const answerAppearsIn = ({
   expected,
   given
 }: AnswerComparison): boolean => {
-  const target = normalizeAnswer(withoutCatalogueNoise(expected))
+  const bare = withoutCatalogueNoise(expected)
+  const spoken = wordsOf(foldCaseAndAccents(withoutCatalogueNoise(given)))
 
-  if (target.length === 0) {
-    return false
-  }
+  return [normalizeAnswer(bare), normalizeKeepingArticle(bare)].some(
+    (target) => target.length > 0 && isSaidWithin({ spoken, target })
+  )
+}
 
-  const spoken = wordsIn(withoutCatalogueNoise(given))
-
+const isSaidWithin = ({
+  spoken,
+  target
+}: {
+  spoken: readonly string[]
+  target: string
+}): boolean => {
   for (let from = 0; from < spoken.length; from++) {
     let run = ''
 
@@ -186,20 +247,6 @@ export const answerAppearsIn = ({
 
 export const withoutCatalogueNoise = (answer: string): string =>
   answer.replace(CATALOGUE_NOISE, '')
-
-/**
- * The same folding as `normalizeAnswer`, stopping short of dropping the
- * boundaries — `Jean-Jacques` is two words here and one there, and both are
- * right for what each is used for. The article stays too: a run is one word or
- * several, and `the` is one of them.
- */
-const wordsIn = (answer: string): string[] =>
-  answer
-    .normalize('NFD')
-    .replace(DIACRITICS, '')
-    .toLowerCase()
-    .split(NOT_A_LETTER_OR_DIGIT)
-    .filter((word) => word.length > 0)
 
 /**
  * Levenshtein, stopped as soon as every cell of a row exceeds the tolerance —

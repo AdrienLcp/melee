@@ -20,7 +20,20 @@ const ACCEPTED: [expected: string, given: string, why: string][] = [
   ['Imagine', 'imagin', 'a truncation on a short title'],
   ['Jean-Jacques Goldman', 'jean jacques goldman', 'a hyphen typed as a space'],
   ['Le Cervin', 'cervin', 'a French article the room did not say'],
-  ['The Beatles', 'beatles', 'the same in English']
+  ['The Beatles', 'beatles', 'the same in English'],
+  ['L’Ours', 'l´ours', 'an acute accent typed for an apostrophe'],
+  ['L’Ours', 'lʼours', 'a modifier letter apostrophe'],
+  ['L’Ours', 'l`ours', 'a backtick'],
+  ['L’Ours', 'l‘ours', 'an opening quote'],
+  ['L’Ours', 'lours', 'an elided article typed without its apostrophe'],
+  ['L’Amour', 'l amour', 'an elided article typed with a space'],
+  ['L’Oréal', '«l’oréal»', 'quotes around the answer'],
+  ['Le Cervin', ' le cervin', 'a space before the article'],
+  ['Œdipe', 'oedipe', 'a ligature typed as two letters'],
+  ['Oedipe', 'Œdipe', 'and the other way round'],
+  ['Simon & Garfunkel', 'simon and garfunkel', 'an ampersand said in English'],
+  ['Mumford & Sons', 'mumford et sons', 'an ampersand said in French'],
+  ['Et', 'et', 'an answer that is nothing but a conjunction']
 ]
 
 /**
