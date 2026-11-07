@@ -209,7 +209,8 @@ which is why a user-visible string written into a component is a bug — see
   evening of several keeps its own `roundCount` and reveal hold across a switch,
   because a game's own would end it or cut a reveal short. **Ready** is a seat
   saying it is back at the table between two rounds, checked on its row of
-  the standings and never counted, cleared as a round opens and never a gate
+  the standings and cleared as a round opens; every seat ready and on screen
+  arms the next round, and an away seat holds it until the host goes on
 - **Round** — one track, one question, a screen about to change colour, or
   nothing at all.
   `lobby → countdown → playing → buzzed → revealed → finished`.

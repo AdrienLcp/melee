@@ -1625,22 +1625,27 @@ export const startAutoAdvanceHold = (room: Room, now: number): void => {
 }
 
 /**
- * The seats whose ready the room waits on: every one with a screen, less the
- * console's own, which starts the next round with a press of its own.
+ * The seats whose ready the room waits on: every one, less the console's own,
+ * which starts the next round with a press of its own. An away seat stays
+ * awaited — a phone put down to answer a message is still at the table, and
+ * the host's next-round press is what goes on without it.
  */
 const seatsAwaited = (room: Room): Participant[] => {
   const consoleSeat = consoleSeatId(room)
 
-  return [...room.players.values()].filter(
-    (seat) => seat.isConnected && seat.id !== consoleSeat
-  )
+  return [...room.players.values()].filter((seat) => seat.id !== consoleSeat)
 }
+
+/** An away seat is never back at the table, whatever it pressed before it went. */
+const isBackAtTheTable = (seat: Participant): boolean =>
+  seat.isConnected && seat.isReady
 
 /**
  * Every seat back at the table arms the next round `READY_HOLD_MS` out, unless
- * the setting's hold ends sooner; one of them taking it back returns the reveal
- * to the setting's hold. Run on every published change, because a seat leaving
- * can complete the table as surely as a seat pressing ready.
+ * the setting's hold ends sooner; one of them taking it back — or its screen
+ * going away — returns the reveal to the setting's hold. Run on every published
+ * change, because a seat leaving undoes the table as surely as a seat taking
+ * its ready back.
  */
 export const settleReadyHold = (room: Room, now: number): void => {
   const round = room.round
@@ -1657,8 +1662,7 @@ export const settleReadyHold = (room: Room, now: number): void => {
   }
 
   const awaited = seatsAwaited(room)
-  const isEveryoneReady =
-    awaited.length > 0 && awaited.every((seat) => seat.isReady)
+  const isEveryoneReady = awaited.length > 0 && awaited.every(isBackAtTheTable)
 
   if (isEveryoneReady && !round.isReadyHold) {
     const readyEndsAt = now + READY_HOLD_MS

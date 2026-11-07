@@ -284,9 +284,13 @@ frame.
 
 - **Scores survive the switch.** Nothing a settings frame carries touches a
   seat's score; only `host.playAgain` starts them again.
-- **Ready is a word, not a gate.** `player.ready` sets `isReady` on the public
-  seat between two rounds; opening a round clears every seat's, and the host
-  starts whenever.
+- **Ready arms the next round, and only a whole table does.** `player.ready`
+  sets `isReady` on the public seat between two rounds; opening a round clears
+  every seat's. Every seat but the console's ready _and on screen_ arms the
+  next round `READY_HOLD_MS` out (`settleReadyHold`). An away seat is still
+  awaited and never counts as ready, so a phone put down mid-reveal holds the
+  table rather than completing it; the host's next-round press goes on
+  without it.
 
 **Teams are the shell's, and no game's arm learns what one is.**
 `settings.teams` is `off`, or `drawn`, `chosen` or `aloud` with a `count` of

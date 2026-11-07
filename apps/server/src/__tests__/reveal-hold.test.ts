@@ -228,6 +228,45 @@ describe('a table that says it is ready for the next round', () => {
     expect(hostView(host)?.round?.advancesAt).toBeNull()
   })
 
+  it('[ready-hold] waits on a seat whose screen went away', async () => {
+    const { host, max, zoe } = await revealedTable()
+
+    max.close()
+    await waitFor(
+      () =>
+        hostView(host)?.players.some(
+          (seat) => seat.nickname === 'Max' && !seat.isConnected
+        ) === true,
+      'Max to go away'
+    )
+    zoe.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.players.some((seat) => seat.isReady) === true,
+      'Zoe ready'
+    )
+
+    expect(hostView(host)?.round?.isReadyHold).toBe(false)
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
+  })
+
+  it('[ready-hold] lets the hold go when a ready seat goes away', async () => {
+    const { host, max, zoe } = await revealedTable()
+
+    zoe.send({ isReady: true, type: 'player.ready' })
+    max.send({ isReady: true, type: 'player.ready' })
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === true,
+      'the ready hold'
+    )
+    max.close()
+    await waitFor(
+      () => hostView(host)?.round?.isReadyHold === false,
+      'the hold to go'
+    )
+
+    expect(hostView(host)?.round?.advancesAt).toBeNull()
+  })
+
   it('[ready-hold] arms nothing once the host keeps the reveal up', async () => {
     const { host, max, roundId, zoe } = await revealedTable()
 
