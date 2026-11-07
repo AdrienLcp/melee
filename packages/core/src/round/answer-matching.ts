@@ -39,7 +39,7 @@ const APOSTROPHE_LOOKALIKES = /[‘’ʼ´`′＇]/gu
 const LEADING_NON_LETTERS = /^[^\p{L}\p{N}]+/u
 
 /** NFD leaves these whole: *Œdipe* is typed `oedipe` on every keyboard. */
-const LIGATURES = { æ: 'ae', œ: 'oe' } as const satisfies Record<string, string>
+const LIGATURES: Readonly<Record<string, string>> = { æ: 'ae', œ: 'oe' }
 
 const LIGATURE = /[æœ]/gu
 
@@ -73,7 +73,7 @@ const foldCaseAndAccents = (answer: string): string =>
     .normalize('NFD')
     .replace(DIACRITICS, '')
     .toLowerCase()
-    .replace(LIGATURE, (ligature) => LIGATURES[ligature as keyof typeof LIGATURES])
+    .replace(LIGATURE, (ligature) => LIGATURES[ligature] ?? ligature)
     .replace(LEADING_NON_LETTERS, '')
 
 /** An answer that is nothing but a conjunction keeps it: *Et* is still an answer. */
