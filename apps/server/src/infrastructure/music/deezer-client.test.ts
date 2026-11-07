@@ -31,6 +31,7 @@ const trackAtRank = (rank: number) => ({
 
 const namedTrack = (id: string, title: string) => ({
   ...trackAtRank(CLASSIC_RANK),
+  artist: { name: `Artist ${id}` },
   id,
   title
 })
@@ -467,8 +468,8 @@ describe('a catalogue mixing strands', () => {
     expect(paths.filter((path) => path?.startsWith('/playlist/'))).toHaveLength(
       3
     )
-    expect(paths.filter((path) => path?.startsWith('/artist/'))).toHaveLength(3)
-    expect(paths).toHaveLength(7)
+    expect(paths.filter((path) => path?.startsWith('/artist/'))).toHaveLength(6)
+    expect(paths).toHaveLength(10)
   })
 
   it('[catalogue] draws from the strands ticked and from no other', async () => {
@@ -482,10 +483,14 @@ describe('a catalogue mixing strands', () => {
     const paths = requested().map((path) => path.split('?')[0])
 
     expect(paths.filter((path) => path?.startsWith('/chart/'))).toEqual([])
-    expect(
-      paths.filter((path) => path?.startsWith('/playlist/')).toSorted()
-    ).toEqual(['/playlist/791349661/tracks', '/playlist/867825522/tracks'])
-    expect(paths.filter((path) => path?.startsWith('/artist/'))).toHaveLength(3)
+    const playlists = paths.filter((path) => path?.startsWith('/playlist/'))
+
+    expect(playlists).toHaveLength(1)
+    expect([
+      '/playlist/791349661/tracks',
+      '/playlist/867825522/tracks'
+    ]).toContain(playlists[0])
+    expect(paths.filter((path) => path?.startsWith('/artist/'))).toHaveLength(6)
   })
 
   it('[catalogue] filters each catalogue on its own rules', async () => {
@@ -529,23 +534,41 @@ describe('a catalogue mixing strands', () => {
   })
 })
 
+/** Six names the composer table holds, one per composer a mixed pool asks. */
+const COMPOSERS = [
+  'Hans Zimmer',
+  'John Williams',
+  'Danny Elfman',
+  'Howard Shore',
+  'Ennio Morricone',
+  'Alan Silvestri'
+]
+
 describe('a catalogue mixing strands, weighed', () => {
-  it('[catalogue] lets no catalogue outweigh the others', async () => {
-    const cues = Array.from({ length: 12 }, (_, index) =>
-      scoreCue({
-        album: 'Gladiator - Music From The Motion Picture',
-        title: `Cue ${index}`
-      })
-    )
-    const singles = [namedTrack('a', 'A'), namedTrack('b', 'B')]
+  it('[catalogue] deals film one round in six and every decade alike', async () => {
+    let composersAsked = 0
 
     vi.stubGlobal('fetch', async (url: string) => {
-      const path = url.replace(/^https?:\/\/[^/]+/, '')
+      const path = url.replace(/^https?:\/\/[^/]+/, '').split('?')[0] ?? ''
+      const singles = (prefix: string) =>
+        Array.from({ length: 60 }, (_, index) => ({
+          ...namedTrack(`${prefix}-${index}`, `Single ${index}`),
+          artist: { name: `${prefix} artist ${index}` }
+        }))
+      const composer = COMPOSERS[composersAsked % COMPOSERS.length] ?? ''
       const data = path.startsWith('/artist/')
-        ? cues
-        : path.startsWith('/chart/')
-          ? singles
-          : [namedTrack('c', 'C'), namedTrack('d', 'D')]
+        ? Array.from({ length: 2 }, (_, index) =>
+            scoreCue({
+              album: `Voyage ${composersAsked * 10 + index} (Original Motion Picture Soundtrack)`,
+              artist: composer,
+              title: `Cue ${index}`
+            })
+          )
+        : singles(path)
+
+      if (path.startsWith('/artist/')) {
+        composersAsked += 1
+      }
 
       return new Response(JSON.stringify({ data }), {
         headers: { 'content-type': 'application/json' },
@@ -558,8 +581,17 @@ describe('a catalogue mixing strands, weighed', () => {
       source: EVERY_STRAND
     })
     const pool = found.status === 'success' ? found.data.tracks : []
+    const film = pool.filter((track) => track.film !== null)
+    const perPlaylist = Map.groupBy(
+      pool.filter((track) => track.id.startsWith('/playlist/')),
+      (track) => track.id.split('-')[0]
+    )
 
-    expect(pool.filter((track) => track.film !== null)).toHaveLength(2)
-    expect(pool).toHaveLength(6)
+    expect(film.length / pool.length).toBeGreaterThan(0.1)
+    expect(film.length / pool.length).toBeLessThanOrEqual(0.2)
+    expect(perPlaylist.size).toBe(3)
+    expect(
+      new Set([...perPlaylist.values()].map((one) => one.length)).size
+    ).toBe(1)
   })
 })

@@ -1,9 +1,12 @@
 import { describe, expect, it } from 'vitest'
 
 import { DEFAULT_TRACK_SETTINGS } from '@melee/protocol/board'
-import { DEFAULT_BUZZER_SETTINGS } from '@melee/protocol/game'
+import {
+  DEFAULT_BLINDTEST_SETTINGS,
+  DEFAULT_BUZZER_SETTINGS
+} from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
-import { catalogueOf } from '@melee/protocol/track'
+import { catalogueOf, EVERY_STRAND } from '@melee/protocol/track'
 
 import {
   askedIn,
@@ -345,5 +348,55 @@ describe('a table of several games', () => {
     })
 
     expect(remembered.games.quiz?.roundCount).toBe(20)
+  })
+
+  it('[host-preferences] opens the next blind test on every strand after an evening that closed on film scores', () => {
+    const filmScores = {
+      ...DEFAULT_BLINDTEST_SETTINGS,
+      source: catalogueOf({ hasFilmScores: true })
+    }
+    const closedOnFilm = rememberSettings({
+      preferences: null,
+      settings: {
+        ...evening,
+        game: filmScores,
+        lineUp: evening.lineUp.map((entry) =>
+          entry.kind === 'blindtest' ? filmScores : entry
+        ),
+        lineUpAt: 1
+      }
+    })
+
+    const nextRoom = restoredSettings({
+      preferences: closedOnFilm,
+      settings: roomSettingsFor({ games: ['blindtest'], locale: 'fr' })
+    })
+
+    expect(nextRoom.game?.kind === 'blindtest' && nextRoom.game.source).toEqual(
+      EVERY_STRAND
+    )
+  })
+
+  it('[host-preferences] keeps what a blind test was set to beside its source', () => {
+    const obscureEighties = rememberSettings({
+      preferences: null,
+      settings: {
+        ...roomSettingsFor({ games: ['blindtest'], locale: 'fr' }),
+        game: {
+          ...DEFAULT_BLINDTEST_SETTINGS,
+          difficulty: 'obscure',
+          source: catalogueOf({ decades: ['1980s'] })
+        }
+      }
+    })
+
+    expect(
+      rememberedSetupFor({ game: 'blindtest', preferences: obscureEighties })
+        ?.game
+    ).toEqual({
+      ...DEFAULT_BLINDTEST_SETTINGS,
+      difficulty: 'obscure',
+      source: EVERY_STRAND
+    })
   })
 })

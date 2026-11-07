@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { filmNamedBy, isScoredByOneOf } from './film-score'
+import { filmNamedBy, filmsScoredIn, isScoredByOneOf } from './film-score'
 
 const release = ({
   albumTitle,
@@ -171,5 +171,51 @@ describe('isScoredByOneOf', () => {
   it('[film] refuses the singer a soundtrack credits its songs to', () => {
     expect(isScoredByOneOf({ artist: 'Céline Dion', composers })).toBe(false)
     expect(isScoredByOneOf({ artist: 'Camille', composers })).toBe(false)
+  })
+})
+
+describe('filmsScoredIn', () => {
+  const fromSantaolalla = (albumTitle: string) => ({
+    albumTitle,
+    artist: 'Gustavo Santaolalla',
+    trackTitle: 'Cue'
+  })
+
+  it('[film] refuses a game’s soundtrack', () => {
+    expect(
+      filmNamedBy(
+        fromSantaolalla('The Last of Us - Vol. 2 (Video Game Soundtrack)')
+      )
+    ).toBeNull()
+    expect(
+      filmNamedBy({
+        albumTitle: "Assassin's Creed Unity (Original Game Soundtrack)",
+        artist: 'Chris Tilton',
+        trackTitle: 'Cue'
+      })
+    ).toBeNull()
+  })
+
+  it('[film] refuses the sequel and the series a game’s name is carried by', () => {
+    const scored = filmsScoredIn([
+      fromSantaolalla('The Last of Us - Vol. 2 (Video Game Soundtrack)'),
+      fromSantaolalla('The Last of Us Part II (Original Soundtrack)'),
+      fromSantaolalla(
+        'The Last of Us: Season 1 (Soundtrack from the HBO Original Series)'
+      ),
+      fromSantaolalla('Brokeback Mountain Soundtrack')
+    ])
+
+    expect(scored.map(({ film }) => film)).toEqual(['Brokeback Mountain'])
+  })
+
+  it('[film] keeps a film whose name holds the word game', () => {
+    expect(
+      filmNamedBy({
+        albumTitle: 'The Imitation Game Soundtrack',
+        artist: 'Alexandre Desplat',
+        trackTitle: 'Cue'
+      })
+    ).toBe('The Imitation Game')
   })
 })

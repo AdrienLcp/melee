@@ -189,6 +189,18 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **A blind test is a wide evening again, never The Last of Us
+  twice.** A room playing the blind test opens on every strand, whatever the
+  last evening closed on: a line-up ending on film scores used to open every
+  later blind test on film scores alone. With every strand on, film is a round
+  in six rather than one in three, and each decade weighs the same. A work
+  plays once an evening and an artist twice, a decoy is never the round's own
+  work under another release, and a decoy already offered comes back last. A
+  game's soundtrack — and a sequel or a series named after the game — is no
+  longer a film score. A playlist or a search the host names is not capped. The
+  quiz drops a cluster of near-identical video game questions that dealt The
+  Last of Us round after round.
+
 - `[Game]` **A seat whose screen has gone shows a crossed-out signal instead
   of the word _away_.** The word took a row of its own in a full table's seat
   grid; the icon sits on the name's line, the name in muted ink, and both fade

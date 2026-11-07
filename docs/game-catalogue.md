@@ -127,7 +127,8 @@ The blind test's source picker is the template, and it is more reusable than it
 looks. `TrackSource` is `catalogue | playlist | search` — three ways to fill one
 pool, chosen in the lobby, committed by the launch. The catalogue is the strands
 the product curates — genre charts, decades, film scores — ticked together, each
-filtered on its own rules and evened to the thinnest before they meet, which is
+filtered on its own rules and weighed against the thinnest before they meet —
+film at 0.4 of a share, so it is a round in six — which is
 also why a round, not the settings, says whether it asks for the film. One
 strand is drawn whole; two or more are sampled, a few decade playlists and a few
 composers, so a mix costs Deezer what one strand does. It replaced four arms

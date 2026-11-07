@@ -11,6 +11,8 @@ import {
 } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 
+import { NOTHING_HEARD } from '@melee/core/blindtest/track-variety'
+
 import { newRoom } from '@/domain/room/new-room'
 import type { Room } from '@/domain/room/room'
 import { withHoldFields } from '@/domain/room/stored-round'
@@ -32,6 +34,10 @@ import {
   receiveFrame
 } from '@/infrastructure/messaging/socket-handler'
 import { keepChallengeAhead } from '@/infrastructure/questions/challenge-dealer'
+
+/** A room stored before the evening kept a history of what it heard. */
+type StoredRoom = Omit<Room, 'trackHistory'> &
+  Partial<Pick<Room, 'trackHistory'>>
 
 const ROOM_KEY = 'room'
 
@@ -98,7 +104,7 @@ export class RoomObject extends DurableObject<Env> {
   constructor(ctx: DurableObjectState, env: Env) {
     super(ctx, env)
 
-    const stored = ctx.storage.kv.get<Room>(ROOM_KEY)
+    const stored = ctx.storage.kv.get<StoredRoom>(ROOM_KEY)
 
     if (stored !== undefined) {
       const { refusals, ...games } = parseStoredGames(stored)
@@ -114,7 +120,8 @@ export class RoomObject extends DurableObject<Env> {
         ...stored,
         ...games,
         players: withSeatPieces(stored.players),
-        round: stored.round === null ? null : withHoldFields(stored.round)
+        round: stored.round === null ? null : withHoldFields(stored.round),
+        trackHistory: stored.trackHistory ?? NOTHING_HEARD
       })
     }
   }

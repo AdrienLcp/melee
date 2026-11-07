@@ -2,6 +2,7 @@ import type { GameKind } from '@melee/protocol/game'
 import type { HostToken, RoomCode } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 
+import { NOTHING_HEARD } from '@melee/core/blindtest/track-variety'
 import { roomSettingsFor } from '@melee/core/room/room-settings'
 
 import type { Room } from './room'
@@ -47,6 +48,7 @@ export const newRoom = ({
     settings: roomSettingsFor({ games, locale }),
     sound: { silentClip: null, speaker: null, volume: null },
     teams: [],
+    trackHistory: NOTHING_HEARD,
     trackPool: []
   }
 

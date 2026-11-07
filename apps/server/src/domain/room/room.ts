@@ -46,6 +46,7 @@ import type { PawnHead, TeamId, TeamName } from '@melee/protocol/team'
 import type { DatedTimelineEvent } from '@melee/protocol/timeline'
 import type { HostTrack, TrackIdentity } from '@melee/protocol/track'
 
+import type { TrackHistory } from '@melee/core/blindtest/track-variety'
 import type { RoundRoster } from '@melee/core/round/round-roster'
 import type { SheetItem } from '@melee/core/slate/sheet-marking'
 
@@ -139,6 +140,14 @@ export type Room = {
    * remembered would leak one party into another.
    */
   playedContentIds: Set<string>
+  /**
+   * The works and artists the curated catalogue has opened a round on this
+   * evening, which an id cannot answer: the catalogue files one score cue
+   * under as many ids as it has releases. Kept beside `playedContentIds` and
+   * for the same reason, through a restart too. A host's own playlist or
+   * search is not held to it — a Queen playlist is all Queen on purpose.
+   */
+  trackHistory: TrackHistory
   /**
    * The host's word on the sound. `speaker` is `null` until they pick one —
    * the first wall then sounds, or the console with none — and `volume` until

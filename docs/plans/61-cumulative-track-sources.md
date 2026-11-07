@@ -108,3 +108,48 @@ draws alternate between songs of the chosen decades and score cues, each
 round's answer line right; a stored `all` from before reloads as the three
 ticked; `pnpm validate` is green; the picker is checked in a browser, muted,
 at phone width and in French.
+
+## Afterwards — a varied evening (07/11/2026)
+
+The game night of 06/11 played several blind tests in a row and heard film or
+game music one round in two, very often _The Last of Us_. Four causes, four
+fixes:
+
+- **The remembered setup leaked the source.** An evening that closed on film
+  scores — two ready-made line-ups do — filed its blind test under
+  `games.blindtest`, and every later room opened on film scores alone.
+  `rememberedSetupFor` now reads a blind test back on `EVERY_STRAND`, whatever
+  it was last played on: the catalogue is tonight's music, like the line-up is
+  tonight's games, and a table playing one game expects all of it. Reading it
+  there rather than filtering the write also clears the setups already stored.
+- **Film weighed a full third of a mix.** `evenedOut` became `weighed`: each
+  share pays in by its weight against the thinnest, the chart weighing 1, the
+  decades 1 between them (each decade its own share, one playlist apiece in a
+  mix) and film `FILM_WEIGHT` 0.4. Measured against Deezer: five
+  `EVERY_STRAND` pools held 12–13 film tracks of 72–79 (16.5%), and three
+  evenings of forty rounds drew 3, 5 and 5 score cues. A mix asks 6 composers
+  (`COMPOSERS_PER_MIXED_POOL`, was 3) so film is not the share that shrinks
+  the pool.
+- **Nothing capped a work or an artist.** `track-variety.ts` (core) keys a
+  track by its work — the film, or the song as its artist recorded it — and
+  by its artist. A curated pool keeps one track a work and two an artist
+  (`variedPool`), and `Room.trackHistory` keeps an evening from opening a
+  work twice or an artist a third time; it survives a restart, as
+  `playedContentIds` does. A playlist or a search is not held to it: a Queen
+  playlist is all Queen on purpose. Decoys never repeat the round's own work
+  and reach for a work the evening has not offered yet.
+- **Game soundtracks counted as film.** `film-score.ts` refuses an album that
+  calls itself a game's (`VIDEO_GAME_MARKER`), and `filmsScoredIn` refuses
+  every release named after a game in the same catalogue — which is the only
+  way to catch _The Last of Us Part II (Original Soundtrack)_ and the HBO
+  series, filed as nothing but soundtracks. Series otherwise stay in the
+  strand: _Game of Thrones_ is shouted like _Interstellar_, and the handoff's
+  "TV out" would have emptied Djawadi, Dixon & Stein and McCreary. `game` and
+  `video` left `MARKER_WORDS`, which turned _The Imitation Game Soundtrack_
+  into _The Imitation_.
+
+The quiz leaned on the same title: a cluster of near-identical Mintaka rows
+dealt from six games, _The Last of Us_ among them. Nine dropped as repeats
+through `question-repairs.json`, one more for answering _Ocarina of Time_ as
+the best-selling Zelda, and two of the five hand-written rows about the game;
+the bank's mentions went from 23 to 12.

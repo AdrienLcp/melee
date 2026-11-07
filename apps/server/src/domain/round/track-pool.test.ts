@@ -229,3 +229,49 @@ describe('drawChoices, read aloud', () => {
     expect(new Set(readings).size).toBe(4)
   })
 })
+
+describe('drawChoices, over an evening', () => {
+  const answer = {
+    ...catalogueTrack({ film: 'The Last of Us', id: 'last-of-us-game' }),
+    previewUrl: 'https://example.test/p.mp3'
+  }
+
+  it('[choices] never offers the round’s own work under another release', () => {
+    const room = roomHolding([
+      {
+        ...catalogueTrack({ film: 'The Last of Us', id: 'last-of-us-series' }),
+        artist: 'Gustavo Santaolalla & David Fleming'
+      },
+      ...['f1', 'f2', 'f3'].map((id) =>
+        catalogueTrack({ film: `Film ${id}`, id })
+      )
+    ])
+
+    const { choices } = drawChoices({ room, track: answer })
+
+    expect(choices.map((choice) => choice.id).toSorted()).toEqual([
+      'f1',
+      'f2',
+      'f3',
+      'last-of-us-game'
+    ])
+  })
+
+  it('[choices] reaches for a decoy the evening has not offered yet', () => {
+    const room = roomHolding(
+      ['f1', 'f2', 'f3', 'f4', 'f5', 'f6'].map((id) =>
+        catalogueTrack({ film: `Film ${id}`, id })
+      )
+    )
+
+    const first = drawChoices({ room, track: answer })
+    const second = drawChoices({ room, track: answer })
+    const offeredTwice = first.choices.filter(
+      (choice) =>
+        choice.id !== answer.id &&
+        second.choices.some((again) => again.id === choice.id)
+    )
+
+    expect(offeredTwice).toEqual([])
+  })
+})

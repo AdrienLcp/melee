@@ -87982,47 +87982,6 @@
       "theme": "videogames/superlative"
     },
     {
-      "accepted": [
-        "BotW",
-        "Breath of the Wild",
-        "The Legend of Zelda: BotW",
-        "Zelda Breath of the Wild"
-      ],
-      "answer": "The Legend of Zelda: Breath of the Wild",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Last of Us",
-        "The Last of Us Part II",
-        "The Elder Scrolls V: Skyrim"
-      ],
-      "id": "mintaka-c475e41d",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel est le jeu de la série The Legend of Zelda qui a été le plus vendu ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "The Elder Scrolls V: Skyrim",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "Tetris",
-        "Star Citizen",
-        "The Last of Us"
-      ],
-      "id": "mintaka-6694408a",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu de la série The Elder Scrolls a réalisé le plus de ventes ?",
-      "theme": "videogames/superlative"
-    },
-    {
       "accepted": [],
       "answer": "Fallout 4",
       "category": "videogames",
@@ -88269,65 +88228,6 @@
     },
     {
       "accepted": [],
-      "answer": "The Last of Us Part II",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Legend of Zelda: Breath of the Wild",
-        "The Last of Us",
-        "The Elder Scrolls V: Skyrim"
-      ],
-      "id": "mintaka-fc49e988",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu a reçu le plus de prix au Game Awards 2020 ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [
-        "BotW",
-        "Breath of the Wild",
-        "The Legend of Zelda: BotW",
-        "Zelda Breath of the Wild"
-      ],
-      "answer": "The Legend of Zelda: Breath of the Wild",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Last of Us",
-        "The Last of Us Part II",
-        "The Elder Scrolls V: Skyrim"
-      ],
-      "id": "mintaka-34533eab",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu de la série The Legend of Zelda a vendu le plus d’exemplaires ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "The Last of Us Part II",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Legend of Zelda: Breath of the Wild",
-        "The Last of Us",
-        "The Elder Scrolls V: Skyrim"
-      ],
-      "id": "mintaka-40e75ee3",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu vidéo a gagné le plus de prix Game of the Year en une année ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
       "answer": "Grand Theft Auto: Chinatown Wars",
       "category": "videogames",
       "choiceOnly": false,
@@ -88398,29 +88298,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quel est le jeu de la Playstation 2 qui a été le plus vendu ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [
-        "BotW",
-        "Breath of the Wild",
-        "The Legend of Zelda: BotW",
-        "Zelda Breath of the Wild"
-      ],
-      "answer": "The Legend of Zelda: Breath of the Wild",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Last of Us",
-        "The Last of Us Part II",
-        "The Elder Scrolls V: Skyrim"
-      ],
-      "id": "mintaka-11b3304c",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu de Zelda a le plus long temps de réalisation en moyenne ?",
       "theme": "videogames/superlative"
     },
     {
@@ -96692,24 +96569,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Lequel des jeux de la série Witcher s’est vendue à plus d’exemplaires ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "The Last of Us Part II",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Legend of Zelda: Breath of the Wild",
-        "Tetris",
-        "Star Citizen"
-      ],
-      "id": "mintaka-dac2a90e",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu a reçu le plus de nominations aux Game Awards 2020 ?",
       "theme": "videogames/superlative"
     },
     {
@@ -107171,24 +107030,6 @@
     },
     {
       "accepted": [],
-      "answer": "The Last of Us",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Legend of Zelda: Breath of the Wild",
-        "The Last of Us Part II",
-        "Star Citizen"
-      ],
-      "id": "mintaka-f126b04d",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel est le jeu de la série Last of Us qui a été le plus vendu ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
       "answer": "Far Cry 5",
       "category": "videogames",
       "choiceOnly": false,
@@ -111522,24 +111363,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quel jeu Kingdom Hearts a été le plus vendu ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "The Last of Us Part II",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "Final Fantasy VII",
-        "Resident Evil 4",
-        "The Witcher 3 : Wild Hunt"
-      ],
-      "id": "mintaka-195d1489",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu a reçu le plus de victoires à The Game Awards 2020 ?",
       "theme": "videogames/superlative"
     },
     {
@@ -241656,26 +241479,6 @@
     },
     {
       "accepted": [
-        "Ellie Williams"
-      ],
-      "answer": "Ellie",
-      "choiceOnly": false,
-      "decoys": [
-        "Clementine",
-        "Aloy",
-        "Max Caulfield"
-      ],
-      "id": "videogames-fr-ellie",
-      "isWellKnown": true,
-      "note": "Elle devient l’héroïne de The Last of Us Part II.",
-      "prompt": "Quelle adolescente immunisée accompagne Joel dans The Last of Us ?",
-      "category": "videogames",
-      "isAdult": false,
-      "language": "fr",
-      "theme": "videogames/authored/character"
-    },
-    {
-      "accepted": [
         "Nathan",
         "Drake",
         "Nate"
@@ -248324,24 +248127,6 @@
       "isWellKnown": true,
       "note": "Sa première saison est sortie en 2021.",
       "prompt": "Quelle série d’animation de Netflix, tirée de League of Legends, a été réalisée par le studio parisien Fortiche ?",
-      "category": "videogames",
-      "isAdult": false,
-      "language": "fr",
-      "theme": "videogames/authored/culture"
-    },
-    {
-      "accepted": [],
-      "answer": "The Last of Us",
-      "choiceOnly": false,
-      "decoys": [
-        "Uncharted",
-        "Fallout",
-        "Halo"
-      ],
-      "id": "videogames-fr-the-last-of-us-hbo",
-      "isWellKnown": true,
-      "note": "Bella Ramsey y joue Ellie.",
-      "prompt": "Quel jeu de Naughty Dog a été adapté en série par HBO en 2023, avec Pedro Pascal ?",
       "category": "videogames",
       "isAdult": false,
       "language": "fr",

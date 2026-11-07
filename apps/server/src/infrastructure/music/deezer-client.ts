@@ -3,7 +3,6 @@ import { z } from 'zod'
 
 import type { CatalogueTrack } from '@melee/protocol/http'
 import {
-  type CatalogueSource,
   type HostTrack,
   type TrackDecade,
   type TrackDifficulty,
@@ -11,7 +10,11 @@ import {
   trackDecades
 } from '@melee/protocol/track'
 
-import { filmNamedBy, isScoredByOneOf } from '@melee/core/blindtest/film-score'
+import {
+  filmsScoredIn,
+  isScoredByOneOf
+} from '@melee/core/blindtest/film-score'
+import { variedPool } from '@melee/core/blindtest/track-variety'
 import { shuffled } from '@melee/core/helpers/random'
 
 import { env } from '@/env'
@@ -109,11 +112,11 @@ export const fetchTracksFor = async ({
   source: TrackSource
 }): Promise<Result<CataloguePool, MusicSourceFailure>> => {
   const fetched = await Promise.all(
-    strandsOf(source).map(async (strand) => ({
+    sharesOf(source).map(async (share) => ({
+      ...share,
       lists: await Promise.all(
-        strand.paths.map((path) => requestList(path, signal))
-      ),
-      strand: strand.strand
+        share.paths.map((path) => requestList(path, signal))
+      )
     }))
   )
   const lists = fetched.flatMap((strand) => strand.lists)
@@ -138,18 +141,26 @@ export const fetchTracksFor = async ({
     })
   }
 
-  const playable = withoutRepeats(
-    evenedOut(
-      fetched.map((strand) =>
-        withoutRepeats(
-          catalogued({
-            difficulty,
-            strand: strand.strand,
-            tracks: strand.lists.flatMap((list) =>
-              list.status === 'success' ? list.data : []
+  const isCurated = source.kind === 'catalogue'
+  const varied = (tracks: CatalogueTrack[]): CatalogueTrack[] =>
+    isCurated ? variedPool(tracks) : tracks
+  const playable = varied(
+    withoutRepeats(
+      weighed(
+        fetched.map((share) => ({
+          tracks: varied(
+            withoutRepeats(
+              catalogued({
+                difficulty,
+                strand: share.strand,
+                tracks: share.lists.flatMap((list) =>
+                  list.status === 'success' ? list.data : []
+                )
+              })
             )
-          })
-        )
+          ),
+          weight: share.weight
+        }))
       )
     )
   )
@@ -160,22 +171,33 @@ export const fetchTracksFor = async ({
 }
 
 /**
- * Each strand of a mix pays in as many tracks as the thinnest one that
- * answered, so a round is as likely to come from one as from another. Left
- * whole, three composers' tops outweighed the chart and three decades: six
- * rounds in seven were a score cue, measured 27 October 2026. A source of one
- * strand keeps everything.
+ * Each share of a mix pays in tracks in proportion to its weight, measured
+ * against the thinnest that answered, so a round comes from each as often as
+ * its weight says. Left whole, three composers' tops outweighed the chart and
+ * three decades: six rounds in seven were a score cue, measured 27 October
+ * 2026. A source of one share keeps everything.
  */
-const evenedOut = (strands: CatalogueTrack[][]): CatalogueTrack[] => {
-  const answered = strands.filter((strand) => strand.length > 0)
+const weighed = (
+  shares: { tracks: CatalogueTrack[]; weight: number }[]
+): CatalogueTrack[] => {
+  const answered = shares.filter((share) => share.tracks.length > 0)
 
   if (answered.length <= 1) {
-    return answered.flat()
+    return answered.flatMap((share) => share.tracks)
   }
 
-  const share = Math.min(...answered.map((strand) => strand.length))
+  const perUnitOfWeight = Math.min(
+    ...answered.map((share) => share.tracks.length / share.weight)
+  )
 
-  return answered.flatMap((strand) => shuffled(strand).slice(0, share))
+  // A share that answered is never weighed down to nothing: a thin film
+  // strand still deals its one cue.
+  return answered.flatMap((share) =>
+    shuffled(share.tracks).slice(
+      0,
+      Math.max(1, Math.round(perUnitOfWeight * share.weight))
+    )
+  )
 }
 
 /**
@@ -246,23 +268,22 @@ const catalogued = ({
 
   const composers = Object.keys(FILM_COMPOSER_IDS)
 
-  return tracks.flatMap((track) => {
-    if (track.preview.length === 0 || (track.rank ?? 0) < FILM_SCORE_FLOOR) {
-      return []
-    }
-
-    if (!isScoredByOneOf({ artist: track.artist.name, composers })) {
-      return []
-    }
-
-    const film = filmNamedBy({
+  // Every release is read for a game's name, those under the floor too: a
+  // game is refused by its name, and its sequel only shares the name.
+  return filmsScoredIn(
+    tracks.map((track) => ({
       albumTitle: track.album?.title ?? '',
       artist: track.artist.name,
+      track,
       trackTitle: track.title
-    })
-
-    return film === null ? [] : [toCatalogueTrack(track, film)]
-  })
+    }))
+  ).flatMap(({ film, release: { track } }) =>
+    track.preview.length > 0 &&
+    (track.rank ?? 0) >= FILM_SCORE_FLOOR &&
+    isScoredByOneOf({ artist: track.artist.name, composers })
+      ? [toCatalogueTrack(track, film)]
+      : []
+  )
 }
 
 const isWorthGuessing = (
@@ -407,54 +428,88 @@ type Strand =
  * asking Deezer for sixty-two lists to serve one evening. A chart is one list
  * and goes in whole.
  */
-const DECADE_PLAYLISTS_PER_MIXED_POOL = 3
-const COMPOSERS_PER_MIXED_POOL = 3
-
-const strandsOfCatalogue = ({
-  charts,
-  decades,
-  hasFilmScores
-}: CatalogueSource): Strand[] => [
-  ...(charts === null ? [] : [{ genreIds: charts, kind: 'chart' as const }]),
-  ...(decades === null ? [] : [{ decades, kind: 'decade' as const }]),
-  ...(hasFilmScores ? [{ kind: 'film' as const }] : [])
-]
+const DECADES_PER_MIXED_POOL = 3
+const COMPOSERS_PER_MIXED_POOL = 6
 
 /**
- * What a strand asks of Deezer once it shares the pool with another, where
- * each pays in only as many tracks as the thinnest (`evenedOut`).
+ * What the film scores weigh in a mix, where the chart weighs one and the
+ * decades one between them. An equal share made a third of every evening a
+ * score cue and the table called it unprepared; at this weight, with every
+ * strand on, it is one round in six.
  */
-const sampledPathsFor = (strand: Strand): string[] => {
-  switch (strand.kind) {
-    case 'decade':
-      return shuffled(pathsFor(strand)).slice(
-        0,
-        DECADE_PLAYLISTS_PER_MIXED_POOL
-      )
-    case 'film':
-      return pathsFor(strand).slice(0, COMPOSERS_PER_MIXED_POOL)
-    default:
-      return pathsFor(strand)
+const FILM_WEIGHT = 0.4
+
+/**
+ * One list of tracks a pool is drawn from, filtered on its own rules and
+ * weighed against the others before any mix: a strand of the catalogue — a
+ * decade apiece — or the whole of a playlist or a search.
+ */
+type Share = { paths: string[]; strand: Strand; weight: number }
+
+/**
+ * The shares a source is drawn from. They stay apart until each has been
+ * filtered on its own rules: a score cue measured against a single's rank
+ * floor would never get in, and a single measured against the composer table
+ * would never either. Each decade is a share of its own, so the decades weigh
+ * one between them whichever playlists a fill happened to sample.
+ */
+const sharesOf = (source: TrackSource): Share[] => {
+  if (source.kind !== 'catalogue') {
+    return [{ paths: pathsFor(source), strand: source, weight: 1 }]
   }
+
+  const { charts, decades, hasFilmScores } = source
+  const isMixed =
+    [charts !== null, decades !== null, hasFilmScores].filter(Boolean).length >
+    1
+
+  return [
+    ...(charts === null
+      ? []
+      : [
+          {
+            paths: pathsFor({ genreIds: charts, kind: 'chart' }),
+            strand: { genreIds: charts, kind: 'chart' as const },
+            weight: 1
+          }
+        ]),
+    ...(decades === null ? [] : decadeShares({ decades, isMixed })),
+    ...(hasFilmScores
+      ? [
+          {
+            paths: pathsFor({ kind: 'film' }).slice(
+              0,
+              isMixed ? COMPOSERS_PER_MIXED_POOL : COMPOSERS_PER_POOL
+            ),
+            strand: { kind: 'film' as const },
+            weight: FILM_WEIGHT
+          }
+        ]
+      : [])
+  ]
 }
 
-/**
- * The lists a source is drawn from, each with its own paths. They stay apart
- * until each has been filtered on its own rules: a score cue measured against
- * a single's rank floor would never get in, and a single measured against the
- * composer table would never either. A catalogue of one strand draws it whole.
- */
-const strandsOf = (
-  source: TrackSource
-): { paths: string[]; strand: Strand }[] => {
-  if (source.kind !== 'catalogue') {
-    return [{ paths: pathsFor(source), strand: source }]
-  }
+const decadeShares = ({
+  decades,
+  isMixed
+}: {
+  decades: readonly TrackDecade[]
+  isMixed: boolean
+}): Share[] => {
+  const chosen = decades.length === 0 ? trackDecades : decades
+  const drawn = isMixed
+    ? shuffled(chosen).slice(0, DECADES_PER_MIXED_POOL)
+    : chosen
 
-  const strands = strandsOfCatalogue(source)
-  const pathsOf = strands.length === 1 ? pathsFor : sampledPathsFor
+  return drawn.map((decade) => {
+    const paths = pathsFor({ decades: [decade], kind: 'decade' })
 
-  return strands.map((strand) => ({ paths: pathsOf(strand), strand }))
+    return {
+      paths: isMixed ? shuffled(paths).slice(0, 1) : paths,
+      strand: { decades: [decade], kind: 'decade' },
+      weight: 1 / drawn.length
+    }
+  })
 }
 
 const pathsFor = (strand: Strand): string[] => {

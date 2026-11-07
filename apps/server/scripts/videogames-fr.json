@@ -250,16 +250,6 @@
     "shape": "character"
   },
   {
-    "accepted": ["Ellie Williams"],
-    "answer": "Ellie",
-    "decoys": ["Clementine", "Aloy", "Max Caulfield"],
-    "id": "videogames-fr-ellie",
-    "isWellKnown": true,
-    "note": "Elle devient l’héroïne de The Last of Us Part II.",
-    "prompt": "Quelle adolescente immunisée accompagne Joel dans The Last of Us ?",
-    "shape": "character"
-  },
-  {
     "accepted": ["Nathan", "Drake", "Nate"],
     "answer": "Nathan Drake",
     "decoys": ["Lara Croft", "Joel Miller", "Marcus Fenix"],
@@ -3787,16 +3777,6 @@
     "isWellKnown": true,
     "note": "Sa première saison est sortie en 2021.",
     "prompt": "Quelle série d’animation de Netflix, tirée de League of Legends, a été réalisée par le studio parisien Fortiche ?",
-    "shape": "culture"
-  },
-  {
-    "accepted": [],
-    "answer": "The Last of Us",
-    "decoys": ["Uncharted", "Fallout", "Halo"],
-    "id": "videogames-fr-the-last-of-us-hbo",
-    "isWellKnown": true,
-    "note": "Bella Ramsey y joue Ellie.",
-    "prompt": "Quel jeu de Naughty Dog a été adapté en série par HBO en 2023, avec Pedro Pascal ?",
     "shape": "culture"
   },
   {

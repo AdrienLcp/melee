@@ -382,6 +382,10 @@
     "prompt": "Qui fut la première reine régnante d’Angleterre ?",
     "why": "Many queens consort came first, so the prompt must say queen regnant."
   },
+  "mintaka-11b3304c": {
+    "drop": true,
+    "why": "No source measures an average completion time per Zelda game. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
+  },
   "mintaka-12a1c834": {
     "drop": true,
     "why": "The Gulf War of 1991 is not the Iraq War, and the decoy 'guerre d'Irak' is the question itself."
@@ -427,6 +431,10 @@
     "answer": "Star Wars, épisode III : La Revanche des Sith",
     "prompt": "Dans l’ordre de l’histoire, quel est le troisième film de la saga Star Wars ?",
     "why": "Episode II is third in neither story order (Episode III) nor release order (Episode VI)."
+  },
+  "mintaka-40e75ee3": {
+    "drop": true,
+    "why": "Repeats mintaka-6da69515, The Last of Us Part II and its awards. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
   },
   "mintaka-43f49cff": {
     "drop": true,
@@ -543,6 +551,10 @@
   "mintaka-108d74e0": {
     "drop": true,
     "why": "GTA V has three protagonists, so Trevor alone as 'the main character' is wrong when typed."
+  },
+  "mintaka-195d1489": {
+    "drop": true,
+    "why": "Repeats mintaka-6da69515, The Last of Us Part II and its awards. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
   },
   "mintaka-197c5bc6": {
     "prompt": "Quel est le premier long métrage de Christopher Nolan, sorti en 1998 ?",
@@ -760,6 +772,10 @@
     "drop": true,
     "why": "Resident Evil 5 is one of the series' best-sellers, not its worst."
   },
+  "mintaka-34533eab": {
+    "drop": true,
+    "why": "Repeats mintaka-712a79ea, the best-selling Zelda. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
+  },
   "mintaka-40101b9a": {
     "prompt": "Quel pays a le plus long littoral du monde ?",
     "why": "'La plus longue rive' is a garbled translation of coastline."
@@ -849,8 +865,8 @@
     "why": "The second Dumbledore was Michael Gambon, not 'Richard Gambon'."
   },
   "mintaka-6694408a": {
-    "prompt": "Quel jeu de la série The Elder Scrolls a réalisé le plus de ventes ?",
-    "why": "The clause about games that were not free is garbled translation that adds nothing."
+    "drop": true,
+    "why": "Repeats mintaka-a51db9f2, whose answer is the same best-selling Elder Scrolls game. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
   },
   "mintaka-9503294c": {
     "answer": "Marshall Mathers",
@@ -1113,6 +1129,10 @@
     "prompt": "Dans l’ordre chronologique de l’histoire, films dérivés compris, quel est le septième film Star Wars ?",
     "why": "Read as release order, the seventh Star Wars film is The Force Awakens; The Empire Strikes Back is only seventh in story order."
   },
+  "mintaka-c475e41d": {
+    "drop": true,
+    "why": "Repeats mintaka-712a79ea, the best-selling Zelda. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
+  },
   "mintaka-c879ff6a": {
     "prompt": "Qui a épousé le prince Charles en 1981 ?",
     "why": "Diana was not a member of the royal family before marrying Charles, and the translated sentence is garbled."
@@ -1208,6 +1228,10 @@
   "mintaka-da8f6cd0": {
     "prompt": "Quel est le premier jeu principal de Resident Evil à se jouer à la première personne ?",
     "why": "Resident Evil Village is also first-person, so the prompt must ask for the first."
+  },
+  "mintaka-dac2a90e": {
+    "drop": true,
+    "why": "Repeats mintaka-6da69515, The Last of Us Part II and its awards. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
   },
   "mintaka-dbed3f98": {
     "prompt": "Sur quelle île chilienne se dressent les moaï, d’anciennes statues monumentales ?",
@@ -1353,6 +1377,10 @@
     "prompt": "Quel président des États-Unis était le plus grand par la taille ?",
     "why": "\"Le plus grand président\" reads as the greatest president in French, which is opinion; the source means the tallest."
   },
+  "mintaka-f126b04d": {
+    "drop": true,
+    "why": "A series of two games, asked which sold more with the other among the decoys. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
+  },
   "mintaka-f339a47b": {
     "prompt": "Qui fut le quatrième acteur à incarner James Bond dans la saga officielle ?",
     "why": "In the official series Timothy Dalton is the fourth Bond, and fifth only if David Niven's 1967 parody counts."
@@ -1389,6 +1417,10 @@
     "drop": true,
     "why": "River width has no standard ranking and the Ganges as fourth widest is not a fact anyone can check."
   },
+  "mintaka-fc49e988": {
+    "drop": true,
+    "why": "Repeats mintaka-6da69515, The Last of Us Part II and its awards. One of a cluster of near-identical video game questions dealt from the same six titles, which made The Last of Us an answer or a decoy round after round."
+  },
   "mintaka-fc55e32c": {
     "drop": true,
     "why": "Black Panther is 18th by release and its story-order rank depends on which list is used, while two decoys are themselves MCU films."
@@ -1397,6 +1429,10 @@
     "answer": "Inde",
     "decoys": ["République populaire de Chine", "Israël", "Cap-Vert"],
     "why": "India overtook China as Asia's most populous country in 2023."
+  },
+  "mintaka-fca3b99d": {
+    "drop": true,
+    "why": "Answers Ocarina of Time where the best-selling Zelda is Breath of the Wild, which mintaka-712a79ea already asks right."
   },
   "mintaka-ff39d58c": {
     "prompt": "Quel film a remporté l’Oscar du meilleur film d’animation en 2020 ?",

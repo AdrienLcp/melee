@@ -54,7 +54,6 @@ const MARKER_WORDS = new Set([
   'expanded',
   'film',
   'from',
-  'game',
   'hbo',
   'inspired',
   'la',
@@ -77,10 +76,21 @@ const MARKER_WORDS = new Set([
   'sonore',
   'soundtrack',
   'television',
-  'the',
-  'video',
-  'videogame'
+  'the'
 ])
+
+/**
+ * A game's music is not a film's, and a table that asked for film scores wants
+ * films. The catalogue files a game's soundtrack under the same words a film's
+ * takes, so the game has to say so itself — and a composer's top carries the
+ * game beside its sequel and its adaptation, filed as nothing but a soundtrack:
+ * `The Last of Us Part II (Original Soundtrack)` and the HBO series, which
+ * `filmsScoredIn` refuses for sharing the game's name.
+ *
+ * `game` alone is not the marker, or *The Imitation Game Soundtrack* would go.
+ */
+const VIDEO_GAME_MARKER =
+  /video[\s-]*games?|videogame|jeux?\s+vid[ée]o|original\s+game\s+(?:soundtrack|score|music)/iu
 
 /**
  * A compilation says so in its own title, and the film it would hand back is
@@ -145,6 +155,13 @@ export const filmNamedBy = ({
   artist,
   trackTitle
 }: CatalogueRelease): string | null => {
+  if (
+    VIDEO_GAME_MARKER.test(albumTitle) ||
+    VIDEO_GAME_MARKER.test(trackTitle)
+  ) {
+    return null
+  }
+
   for (const line of [trackTitle, albumTitle]) {
     const quoted = FILM_IN_QUOTES.exec(line.replace(CATALOGUE_SYMBOLS, ''))
     const named = quoted === null ? null : tidy(quoted[1] ?? '')
@@ -156,6 +173,48 @@ export const filmNamedBy = ({
 
   const album = albumTitle.replace(CATALOGUE_SYMBOLS, '')
   const marker = SOUNDTRACK_MARKER.exec(album)
+
+  if (marker === null) {
+    return null
+  }
+
+  const named = tidy(withoutMarkerWords(album.slice(0, marker.index)))
+
+  return isNameable(named, artist) ? named : null
+}
+
+/**
+ * The releases of a composer's catalogue that name a film, each beside it —
+ * save every work a game soundtrack in the same catalogue is named after. A
+ * game, its sequel and its adaptation are one name to a table, and only the
+ * game says it is one.
+ */
+export const filmsScoredIn = <TRelease extends CatalogueRelease>(
+  releases: readonly TRelease[]
+): { film: string; release: TRelease }[] => {
+  const games = new Set(
+    releases.flatMap((release) => {
+      const game = gameNamedBy(release)
+
+      return game === null ? [] : [normalizeAnswer(game)]
+    })
+  )
+
+  return releases.flatMap((release) => {
+    const film = filmNamedBy(release)
+
+    return film === null || games.has(normalizeAnswer(film))
+      ? []
+      : [{ film, release }]
+  })
+}
+
+const gameNamedBy = ({
+  albumTitle,
+  artist
+}: CatalogueRelease): string | null => {
+  const album = albumTitle.replace(CATALOGUE_SYMBOLS, '')
+  const marker = VIDEO_GAME_MARKER.exec(album)
 
   if (marker === null) {
     return null

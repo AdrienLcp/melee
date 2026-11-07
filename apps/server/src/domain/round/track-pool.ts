@@ -7,6 +7,12 @@ import type {
   TrackSource
 } from '@melee/protocol/track'
 
+import {
+  heardOnce,
+  isUnheard,
+  offeredAsDecoys,
+  workOf
+} from '@melee/core/blindtest/track-variety'
 import { pickRandom, shuffled } from '@melee/core/helpers/random'
 
 import type { Room } from '@/domain/room/room'
@@ -42,6 +48,10 @@ export const drawPlayableTrack = async ({
   const faults: MusicSourceFault[] = []
 
   for (let attempt = 0; attempt < MAX_DRAW_ATTEMPTS; attempt++) {
+    room.trackPool = room.trackPool.filter((track) =>
+      isFresh({ room, settings, track })
+    )
+
     const refilled = await refillWhenEmpty({ room, settings })
 
     if (refilled.status === 'failure') {
@@ -66,6 +76,11 @@ export const drawPlayableTrack = async ({
     const resolved = await fetchHostTrack(candidate.id)
 
     if (resolved.status === 'success') {
+      room.trackHistory = heardOnce({
+        history: room.trackHistory,
+        track: candidate
+      })
+
       // The film is a fact about how the track was *found*, not about the
       // track: `/track/{id}` is asked for the preview URL and knows nothing of
       // the composer table the pool was drawn from.
@@ -199,6 +214,13 @@ const holdsTheSame = <TItem>(
   )
 }
 
+/**
+ * How many pools a draw may fetch before it gives up on finding one round it
+ * has not heard. A pool of the film scores is eight composers out of the
+ * table, and late in an evening all eight may have opened their two rounds.
+ */
+const MAX_REFILL_ATTEMPTS = 3
+
 const refillWhenEmpty = async ({
   room,
   settings
@@ -210,27 +232,54 @@ const refillWhenEmpty = async ({
     return Result.success([])
   }
 
-  const fetched = await fetchTracksFor({
-    difficulty: settings.difficulty,
-    source: settings.source
-  })
+  const faults: MusicSourceFault[] = []
 
-  if (fetched.status === 'failure') {
-    return fetched
+  for (let attempt = 0; attempt < MAX_REFILL_ATTEMPTS; attempt++) {
+    const fetched = await fetchTracksFor({
+      difficulty: settings.difficulty,
+      source: settings.source
+    })
+
+    if (fetched.status === 'failure') {
+      return Result.failure({
+        ...fetched.error,
+        faults: [...faults, ...fetched.error.faults]
+      })
+    }
+
+    faults.push(...fetched.data.faults)
+
+    const fresh = fetched.data.tracks.filter((track) =>
+      isFresh({ room, settings, track })
+    )
+
+    if (fresh.length > 0) {
+      room.trackPool = fresh
+
+      return Result.success(faults)
+    }
   }
 
-  const unplayed = fetched.data.tracks.filter(
-    (track) => !room.playedContentIds.has(track.id)
-  )
-
-  if (unplayed.length === 0) {
-    return Result.failure({ ...NOTHING_PLAYABLE, faults: fetched.data.faults })
-  }
-
-  room.trackPool = unplayed
-
-  return Result.success(fetched.data.faults)
+  return Result.failure({ ...NOTHING_PLAYABLE, faults })
 }
+
+/**
+ * Whether a round may still open on `track`: never one already played, and
+ * from the curated catalogue never a work already heard nor an artist heard
+ * twice. A host's own playlist or search is theirs to repeat an artist in.
+ */
+const isFresh = ({
+  room,
+  settings,
+  track
+}: {
+  room: Room
+  settings: BlindtestSettings
+  track: TrackIdentity
+}): boolean =>
+  !room.playedContentIds.has(track.id) &&
+  (settings.source.kind !== 'catalogue' ||
+    isUnheard({ history: room.trackHistory, track }))
 
 /** Four is the shape of the question: enough to be a guess, few enough to read. */
 const CHOICES_PER_ROUND = 4
@@ -242,7 +291,10 @@ const CHOICES_PER_ROUND = 4
  * spot-the-odd-one-out.
  *
  * The pool is read rather than drained: a decoy is still an unplayed track, and
- * spending it here would burn the catalogue three times as fast.
+ * spending it here would burn the catalogue three times as fast. So the same
+ * decoy could be offered every round, and a work the evening has not offered
+ * yet goes first. None is the round's own work under another release, which
+ * would be a second right answer.
  */
 export const drawChoices = ({
   room,
@@ -259,8 +311,16 @@ export const drawChoices = ({
     title: track.title
   }
 
+  const answerWork = workOf(answer)
   const others = shuffled(
-    room.trackPool.filter((candidate) => candidate.id !== track.id)
+    room.trackPool.filter(
+      (candidate) =>
+        candidate.id !== track.id && workOf(candidate) !== answerWork
+    )
+  ).toSorted(
+    (left, right) =>
+      Number(room.trackHistory.decoyWorks.has(workOf(left))) -
+      Number(room.trackHistory.decoyWorks.has(workOf(right)))
   )
   // A pool of every catalogue holds score cues beside singles, and one film
   // among three songs is the odd one out. A thin film half lends what it lacks
@@ -274,6 +334,11 @@ export const drawChoices = ({
     .slice(0, CHOICES_PER_ROUND - 1)
 
   const choices = shuffled([answer, ...decoys])
+
+  room.trackHistory = offeredAsDecoys({
+    decoys,
+    history: room.trackHistory
+  })
 
   return {
     choices,

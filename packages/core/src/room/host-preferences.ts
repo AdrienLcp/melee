@@ -1,6 +1,7 @@
 import type { GameKind } from '@melee/protocol/game'
 import type { Locale } from '@melee/protocol/locale'
 import type { RoomSettings } from '@melee/protocol/room'
+import { EVERY_STRAND } from '@melee/protocol/track'
 
 import { questionLanguageFor } from '../quiz/question-language'
 import { followedByLineUp, lineUpHolds } from './line-up'
@@ -77,6 +78,11 @@ const isEvening = (settings: RoomSettings): boolean =>
  * browser's own storage, which anyone can edit — and an arm that contradicts its
  * key is dropped rather than trusted. Trusting it would have the host press Quiz
  * and get a blind test.
+ *
+ * A blind test comes back on every strand, whatever it was last played on. The
+ * catalogue is tonight's music, like the line-up is tonight's games: an evening
+ * that closed on film scores — a ready-made one does — opened every blind test
+ * after it on film scores alone, and a table playing one game expects all of it.
  */
 export const rememberedSetupFor = ({
   game,
@@ -87,7 +93,13 @@ export const rememberedSetupFor = ({
 }): GameSetup | null => {
   const setup = preferences?.games[game]
 
-  return setup !== undefined && setup.game.kind === game ? setup : null
+  if (setup === undefined || setup.game.kind !== game) {
+    return null
+  }
+
+  return setup.game.kind === 'blindtest'
+    ? { ...setup, game: { ...setup.game, source: EVERY_STRAND } }
+    : setup
 }
 
 const restoredTable = ({
