@@ -1,12 +1,13 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
+import { POINTS_PER_CASE } from '@melee/protocol/board'
 import { DEFAULT_REFLEX_SETTINGS } from '@melee/protocol/game'
 import {
   DEFAULT_MODE_SETTINGS,
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { FALSE_START_FLOOR_MS } from '@melee/core/reflex/reaction'
 
@@ -151,7 +152,7 @@ describe('a heat nobody has to judge', () => {
     bob.send({ roundId: round.id, type: 'player.buzz' })
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
-    expect(scoreOf(host, 'Alice')).toBe(POINTS_FOR_A_CLAIM)
+    expect(scoreOf(host, 'Alice')).toBe(MOST_A_ROUND_PAYS)
     expect(scoreOf(host, 'Bob')).toBe(0)
     expect(hostView(host)?.round?.awards).toHaveLength(1)
   })
@@ -169,7 +170,7 @@ describe('a heat nobody has to judge', () => {
     expect(hostView(host)?.round?.awards[0]).toEqual({
       isUnsent: false,
       playerId: aliceId,
-      points: POINTS_FOR_A_CLAIM,
+      points: MOST_A_ROUND_PAYS,
       speedBonus: 0,
       verdict: { isCorrect: true, kind: 'single' }
     })
@@ -192,7 +193,7 @@ describe('a heat nobody has to judge', () => {
     ).toEqual([aliceId, bobId])
   })
 
-  it('[reflex] walks the winner of a heat a case on a track with no teams', async () => {
+  it('[reflex] walks the winner of a heat a whole round’s cases on a track with no teams', async () => {
     const { alice, bob, host, round } = await openPlayingRound({
       ...REFLEX_GAME,
       board: {
@@ -212,8 +213,10 @@ describe('a heat nobody has to judge', () => {
     bob.send({ roundId: round.id, type: 'player.buzz' })
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
+    const casesForTheRound = Math.floor(MOST_A_ROUND_PAYS / POINTS_PER_CASE)
+
     expect(hostView(host)?.players.map((player) => player.board)).toEqual([
-      { case: 1, move: 1 },
+      { case: casesForTheRound, move: casesForTheRound },
       { case: 0, move: 0 }
     ])
   })
@@ -267,7 +270,7 @@ describe('a heat nobody has to judge', () => {
       3_000
     )
 
-    expect(scoreOf(host, 'Alice')).toBe(POINTS_FOR_A_CLAIM)
+    expect(scoreOf(host, 'Alice')).toBe(MOST_A_ROUND_PAYS)
     expect(scoreOf(host, 'Bob')).toBe(0)
   })
 })

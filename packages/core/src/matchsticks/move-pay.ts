@@ -1,22 +1,23 @@
 import type { MatchsticksPuzzle } from '@melee/protocol/matchsticks'
-import { type MoveVerdict, POINT } from '@melee/protocol/scoring'
+import type { MoveVerdict } from '@melee/protocol/scoring'
 
+import { thirdsOfARound } from '../scoring/round-share'
 import { isTrueEquation, numberValue, oneStickMoves } from './one-move'
 
 type MoveTier = { points: number; withinPlacesFromBest: number }
 
 /**
  * What a move earns by how far what it made sits from the best answer, on the
- * timeline's scale: the best is the typed answer's price, the next two numbers
+ * timeline's scale: the best is the whole round, the next two numbers
  * down still pay, and anything further is a move any shuffle of sticks finds.
  */
 export const MOVE_TIERS = [
-  { points: 3 * POINT, withinPlacesFromBest: 0 },
-  { points: 2 * POINT, withinPlacesFromBest: 1 },
-  { points: POINT, withinPlacesFromBest: 2 }
-] as const satisfies readonly MoveTier[]
+  { points: thirdsOfARound(3), withinPlacesFromBest: 0 },
+  { points: thirdsOfARound(2), withinPlacesFromBest: 1 },
+  { points: thirdsOfARound(1), withinPlacesFromBest: 2 }
+] satisfies readonly MoveTier[]
 
-/** What a move this far from the best earns, before the clock adds to it. */
+/** What a move this far from the best earns, before the clock takes its share. */
 export const pointsForMove = ({
   placesFromBest
 }: Pick<MoveVerdict, 'placesFromBest'>): number =>

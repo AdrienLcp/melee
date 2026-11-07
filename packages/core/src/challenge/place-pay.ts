@@ -1,9 +1,10 @@
 import type { ChallengePlace } from '@melee/protocol/challenge'
-import { POINT } from '@melee/protocol/scoring'
+
+import { thirdsOfARound } from '../scoring/round-share'
 
 /**
- * Decision 19: a fixed scale, so placing a team is one press. On a track it is
- * three, two and one cases, under the one-point-one-case rule.
+ * Decision 19: a fixed scale, so placing a team is one press — the whole
+ * round, two thirds and one third of it.
  */
 const POINTS_BY_PLACE = {
   1: 3,
@@ -13,4 +14,4 @@ const POINTS_BY_PLACE = {
 
 /** What a finisher of a challenge is paid, in the board's units. */
 export const pointsForPlace = (place: ChallengePlace): number =>
-  POINTS_BY_PLACE[place] * POINT
+  thirdsOfARound(POINTS_BY_PLACE[place])

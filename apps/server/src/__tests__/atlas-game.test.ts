@@ -6,10 +6,13 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS, type Verdict } from '@melee/protocol/scoring'
+
+import { pointsForDistance } from '@melee/core/atlas/distance-pay'
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  answerShareOf,
   atlasRound,
   basePointsFor,
   errorsIn,
@@ -52,6 +55,14 @@ vi.mock('@/infrastructure/questions/world-capitals', () => ({
   playedCapitalId: (code: string) => `atlas:capital:${code}`,
   worldCapitals: () => []
 }))
+
+const WHOLE_MARKER = answerShareOf(MOST_A_ROUND_PAYS)
+
+/** What a marker is paid for its distance, the clock's share taken off. */
+const paidForDistance = (verdict: Verdict | undefined) =>
+  verdict?.kind === 'distance'
+    ? answerShareOf(pointsForDistance(verdict))
+    : null
 
 const ATLAS: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
@@ -159,7 +170,7 @@ describe('a world map round through the seam', () => {
       kind: 'distance',
       target: 'country'
     })
-    expect(basePointsFor({ playerId: zoeId ?? null, view })).toBe(3 * POINT)
+    expect(basePointsFor({ playerId: zoeId ?? null, view })).toBe(WHOLE_MARKER)
 
     const maxVerdict = awardOf(maxId)?.verdict
     const maxDistanceKm =
@@ -167,7 +178,12 @@ describe('a world map round through the seam', () => {
 
     expect(maxDistanceKm).toBeGreaterThan(80)
     expect(maxDistanceKm).toBeLessThan(200)
-    expect(basePointsFor({ playerId: maxId ?? null, view })).toBe(2 * POINT)
+    expect(basePointsFor({ playerId: maxId ?? null, view })).toBe(
+      paidForDistance(maxVerdict)
+    )
+    expect(basePointsFor({ playerId: maxId ?? null, view })).toBeLessThan(
+      WHOLE_MARKER
+    )
   })
 
   it('[atlas] shows nobody another marker before the reveal, and everyone after', async () => {
@@ -252,7 +268,7 @@ describe('a world map round through the seam', () => {
       hostView(host)?.round?.awards.find(({ playerId }) => playerId === zoeId)
     ).toMatchObject({
       isUnsent: true,
-      points: 3 * POINT,
+      points: WHOLE_MARKER,
       speedBonus: 0,
       verdict: { distanceKm: 0 }
     })
@@ -377,7 +393,7 @@ describe('a French city round through the seam', () => {
     })
   })
 
-  it('[atlas] prices a marker by the city’s own tiers, to the city itself', async () => {
+  it('[atlas] prices a marker by the city’s own reach, to the city itself', async () => {
     const { host, max, roundId, zoe } = await roundInPlay()
 
     zoe.send({
@@ -399,8 +415,18 @@ describe('a French city round through the seam', () => {
     expect(
       view?.round?.awards.find((award) => award.playerId === zoeId)?.verdict
     ).toEqual({ distanceKm: 9, kind: 'distance', target: 'city' })
-    expect(basePointsFor({ playerId: zoeId, view })).toBe(3 * POINT)
-    expect(basePointsFor({ playerId: maxId, view })).toBe(POINT)
+    expect(basePointsFor({ playerId: zoeId, view })).toBe(WHOLE_MARKER)
+
+    const maxVerdict = view?.round?.awards.find(
+      (award) => award.playerId === maxId
+    )?.verdict
+
+    expect(maxVerdict).toMatchObject({ kind: 'distance', target: 'city' })
+    expect(basePointsFor({ playerId: maxId, view })).toBe(
+      paidForDistance(maxVerdict)
+    )
+    expect(basePointsFor({ playerId: maxId, view })).toBeGreaterThan(0)
+    expect(basePointsFor({ playerId: maxId, view })).toBeLessThan(WHOLE_MARKER)
   })
 })
 
@@ -456,7 +482,7 @@ describe('a world capital round through the seam', () => {
     })
   })
 
-  it('[atlas] pays the big city taken for the capital a tier below the capital itself', async () => {
+  it('[atlas] pays the big city taken for the capital less than the capital itself', async () => {
     const { host, max, roundId, zoe } = await roundInPlay()
 
     zoe.send({
@@ -472,13 +498,20 @@ describe('a world capital round through the seam', () => {
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
     const view = hostView(host)
+    const maxId = playerView(max)?.youId ?? null
+    const maxVerdict = view?.round?.awards.find(
+      (award) => award.playerId === maxId
+    )?.verdict
 
     expect(
       basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
-    ).toBe(3 * POINT)
-    expect(
-      basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
-    ).toBe(2 * POINT)
+    ).toBe(WHOLE_MARKER)
+    expect(maxVerdict).toMatchObject({ kind: 'distance', target: 'capital' })
+    expect(basePointsFor({ playerId: maxId, view })).toBe(
+      paidForDistance(maxVerdict)
+    )
+    expect(basePointsFor({ playerId: maxId, view })).toBeGreaterThan(0)
+    expect(basePointsFor({ playerId: maxId, view })).toBeLessThan(WHOLE_MARKER)
   })
 })
 
@@ -560,7 +593,7 @@ describe('a map round that shows a place for the table to name', () => {
 
     expect(
       basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
-    ).toBe(POINT)
+    ).toBe(WHOLE_MARKER)
     expect(
       basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
     ).toBe(0)
@@ -604,7 +637,7 @@ describe('a map round that shows a place for the table to name', () => {
 
     expect(
       basePointsFor({ playerId: playerView(zoe)?.youId ?? null, view })
-    ).toBe(3 * POINT)
+    ).toBe(WHOLE_MARKER)
     expect(
       basePointsFor({ playerId: playerView(max)?.youId ?? null, view })
     ).toBe(0)

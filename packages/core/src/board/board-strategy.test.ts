@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import type { BoardStrategy } from '@melee/protocol/board'
-import { POINT } from '@melee/protocol/scoring'
+import { type BoardStrategy, POINTS_PER_CASE } from '@melee/protocol/board'
 
 import { advanceOnTrack } from './board-strategy'
 
@@ -9,12 +8,24 @@ const LENGTH = 12
 
 /** Three teams over six rounds, as a team evening would score them. */
 const EVENING: Record<string, number>[] = [
-  { blue: 2.4 * POINT, green: 0, red: 3 * POINT },
-  { blue: 1.9 * POINT, green: 0.6 * POINT, red: POINT },
-  { blue: 3 * POINT, green: 2 * POINT, red: 0 },
-  { blue: 0, green: 3 * POINT, red: 2.5 * POINT },
-  { blue: 2 * POINT, green: POINT, red: 3 * POINT },
-  { blue: 3 * POINT, green: 3 * POINT, red: 3 * POINT }
+  { blue: 2.4 * POINTS_PER_CASE, green: 0, red: 3 * POINTS_PER_CASE },
+  {
+    blue: 1.9 * POINTS_PER_CASE,
+    green: 0.6 * POINTS_PER_CASE,
+    red: POINTS_PER_CASE
+  },
+  { blue: 3 * POINTS_PER_CASE, green: 2 * POINTS_PER_CASE, red: 0 },
+  { blue: 0, green: 3 * POINTS_PER_CASE, red: 2.5 * POINTS_PER_CASE },
+  {
+    blue: 2 * POINTS_PER_CASE,
+    green: POINTS_PER_CASE,
+    red: 3 * POINTS_PER_CASE
+  },
+  {
+    blue: 3 * POINTS_PER_CASE,
+    green: 3 * POINTS_PER_CASE,
+    red: 3 * POINTS_PER_CASE
+  }
 ]
 
 const play = ({
@@ -75,7 +86,7 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map(),
-      results: [{ pawnId: 'blue', points: 0.99 * POINT }],
+      results: [{ pawnId: 'blue', points: 0.99 * POINTS_PER_CASE }],
       strategy: 'onePointOneCase'
     })
 
@@ -87,7 +98,7 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 1]]),
-      results: [{ pawnId: 'blue', points: 3 * POINT }],
+      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE }],
       strategy: 'onePointOneCase'
     })
 
@@ -103,7 +114,7 @@ describe('board strategy', () => {
       catchUp: false,
       length: LENGTH,
       positions: new Map([['blue', LENGTH - 4]]),
-      results: [{ pawnId: 'blue', points: 3 * POINT }],
+      results: [{ pawnId: 'blue', points: 3 * POINTS_PER_CASE }],
       strategy: 'onePointOneCase'
     })
 
@@ -127,10 +138,10 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'blue', points: 2 * POINT },
-        { pawnId: 'red', points: 2 * POINT },
-        { pawnId: 'green', points: POINT },
-        { pawnId: 'gold', points: 0.5 * POINT },
+        { pawnId: 'blue', points: 2 * POINTS_PER_CASE },
+        { pawnId: 'red', points: 2 * POINTS_PER_CASE },
+        { pawnId: 'green', points: POINTS_PER_CASE },
+        { pawnId: 'gold', points: 0.5 * POINTS_PER_CASE },
         { pawnId: 'pink', points: 0 }
       ],
       strategy: 'rank'
@@ -151,7 +162,7 @@ describe('board strategy', () => {
       length: LENGTH,
       positions: new Map(),
       results: [
-        { pawnId: 'blue', points: 0.4 * POINT },
+        { pawnId: 'blue', points: 0.4 * POINTS_PER_CASE },
         { pawnId: 'red', points: 0 }
       ],
       strategy: 'rank'

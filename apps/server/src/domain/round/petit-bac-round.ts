@@ -754,9 +754,10 @@ const rescore = ({
   )
 
   round.awards = petitBacSeats({ room, round }).map((playerId) => {
-    const points = sheetPoints(
-      counted.map((outcomes) => outcomes.get(playerId) ?? 'empty')
-    )
+    const points = sheetPoints({
+      categoryCount: content.categoryStates.length,
+      outcomes: counted.map((outcomes) => outcomes.get(playerId) ?? 'empty')
+    })
     const paid =
       round.awards.find((award) => award.playerId === playerId)?.points ?? 0
     const participant = room.players.get(playerId)

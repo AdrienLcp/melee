@@ -1,7 +1,7 @@
-import { type ColourVerdict, POINT } from '@melee/protocol/scoring'
+import { type ColourVerdict, MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
-/** What a colour rebuilt to the eye pays: a typed answer's price. */
-export const MOST_A_COLOUR_PAYS = 3 * POINT
+/** What a colour rebuilt to the eye pays: the whole round. */
+export const MOST_A_COLOUR_PAYS = MOST_A_ROUND_PAYS
 
 /**
  * Closer than this pays the whole price: about the smallest gap an eye sees

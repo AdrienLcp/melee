@@ -6,14 +6,11 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import {
-  POINTS_FOR_A_CLAIM,
-  POINTS_FOR_A_RIGHT_CHOICE,
-  POINTS_FOR_A_TYPED_ANSWER
-} from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  answerShareOf,
   basePointsFor,
   errorsIn,
   hostQuestion,
@@ -165,7 +162,7 @@ describe('a quiz through the seam', () => {
     expect(transcriptOf(zoe)).not.toContain('correctChoiceIndex')
   })
 
-  it('[quiz] pays a typed answer three where a pick pays one', async () => {
+  it('[quiz] pays a typed answer and a pick the same', async () => {
     const typed = await roundInPlay(TYPED_QUIZ)
 
     typed.zoe.send({
@@ -178,14 +175,14 @@ describe('a quiz through the seam', () => {
       'the typed round to close'
     )
 
-    // Three for the claim, with whatever the clock paid taken back off — that
+    // The whole claim, with whatever the clock paid taken back off — that
     // share falls with real elapsed time and is the same in both modes.
     expect(
       basePointsFor({
         playerId: playerView(typed.zoe)?.youId ?? null,
         view: playerView(typed.zoe)
       })
-    ).toBe(POINTS_FOR_A_TYPED_ANSWER)
+    ).toBe(answerShareOf(MOST_A_ROUND_PAYS))
 
     await harness.stop()
     harness = await startRoomHarness()
@@ -211,7 +208,7 @@ describe('a quiz through the seam', () => {
         playerId: playerView(picked.zoe)?.youId ?? null,
         view: playerView(picked.zoe)
       })
-    ).toBe(POINTS_FOR_A_RIGHT_CHOICE)
+    ).toBe(answerShareOf(MOST_A_ROUND_PAYS))
   })
 
   /**
@@ -335,7 +332,7 @@ describe('a quiz through the seam', () => {
       'the round to close on a granted claim'
     )
 
-    expect(playerView(zoe)?.players[0]?.score).toBe(POINTS_FOR_A_CLAIM)
+    expect(playerView(zoe)?.players[0]?.score).toBe(MOST_A_ROUND_PAYS)
   })
 
   const playUntil = async ({

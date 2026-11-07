@@ -1,12 +1,22 @@
 import { z } from 'zod'
 
+import { POINT } from './scoring'
+
 /**
  * The scoring strategies a track can run, each a file of its own in
- * `@melee/core/board/`: a case per whole `POINT` the round paid, or 3, 2 and
+ * `@melee/core/board/`: a case per `POINTS_PER_CASE` the round paid, or 3, 2 and
  * 1 cases by the round's team ranking. The next is a new literal here and a
  * new file there, and nothing else learns its name.
  */
 export const boardStrategySchema = z.enum(['onePointOneCase', 'rank'])
+
+/**
+ * What one case costs on the track, so a round walks a pawn three cases at
+ * most: a right answer is three whether it was fast or slow, because 90 of the
+ * round's 100 is already three cases, and the clock's share moves no pawn on
+ * its own. An answer worth two thirds walks two.
+ */
+export const POINTS_PER_CASE = 30 * POINT
 
 export const MIN_BOARD_LENGTH = 10
 export const MAX_BOARD_LENGTH = 100

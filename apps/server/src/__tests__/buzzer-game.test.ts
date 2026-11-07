@@ -6,7 +6,7 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { startRoomHarness } from './node-room-harness'
 import {
@@ -92,7 +92,7 @@ describe('a round the room supplies itself', () => {
     expect(view?.remainingPoolSize).toBe(0)
   })
 
-  it('[buzzer] pays one point for a claim, where the blind test pays two', async () => {
+  it('[buzzer] pays the whole round for a claim, as the blind test does for its pair', async () => {
     const { alice, host, round } = await openPlayingRound()
     const aliceId = await buzz(alice, host, round.id)
 
@@ -107,7 +107,7 @@ describe('a round the room supplies itself', () => {
     expect(
       hostView(host)?.players.find((player) => player.nickname === 'Alice')
         ?.score
-    ).toBe(POINTS_FOR_A_CLAIM)
+    ).toBe(MOST_A_ROUND_PAYS)
   })
 
   // A host socket is as forgeable as a player's, and two halves over a game

@@ -107,7 +107,7 @@ the last three `null` until the reveal (the reader's own guess excepted); the
 console's `currentContent` is `{ kind: 'estimate', value }`, the value `null`
 while it holds a seat. The draw is `drawQuantity` in `quantity-bank.ts`: a
 well-known row the room has not played first, any unplayed row next, `null`
-once the bank is spent. The pay is `payEstimatesByPlace` in
+once the bank is spent. The pay is `payEstimates` in
 `estimate-round.ts`, a `closeRound` branch of its own like most likely's. Not
 on `shelvedGames` yet — it goes on with its screens.
 

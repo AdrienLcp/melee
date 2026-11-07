@@ -12,7 +12,6 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
 import {
   type HostServerMessage,
   type PlayerServerMessage,
@@ -22,6 +21,7 @@ import {
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { LETTER_SLOT, SLOT_LETTERS } from '@melee/core/challenge/letter-slot'
+import { pointsForPlace } from '@melee/core/challenge/place-pay'
 
 import { bankedChallengeLines } from '@/infrastructure/questions/challenge-bank'
 
@@ -143,7 +143,7 @@ describe('a challenge played at the table', () => {
     expect(hostView(host)?.currentContent).toEqual({ kind: 'challenge' })
   })
 
-  it('[challenge] pays three, two and one points down the podium, and reveals', async () => {
+  it('[challenge] pays the whole round, two thirds and one third down the podium, and reveals', async () => {
     const { anna, ben, chloe, dan, host, roundId } = await openChallenge()
 
     await awardPlaces({
@@ -158,7 +158,10 @@ describe('a challenge played at the table', () => {
 
     expect(hostView(host)?.phase).toBe('revealed')
     expect(scoresOf(host, ['Anna', 'Ben', 'Chloe', 'Dan'])).toEqual([
-      2_000, 0, 3_000, 1_000
+      pointsForPlace(2),
+      0,
+      pointsForPlace(1),
+      pointsForPlace(3)
     ])
     expect(playerView(ben)?.round?.awards).toHaveLength(3)
   })
@@ -177,7 +180,9 @@ describe('a challenge played at the table', () => {
     })
 
     expect(scoresOf(host, ['Anna', 'Ben', 'Chloe'])).toEqual([
-      3_000, 3_000, 2_000
+      pointsForPlace(1),
+      pointsForPlace(1),
+      pointsForPlace(2)
     ])
   })
 
@@ -199,7 +204,10 @@ describe('a challenge played at the table', () => {
     })
 
     expect(errorsIn(host)).toEqual([])
-    expect(scoresOf(host, ['Anna', 'Ben'])).toEqual([1_000, 3_000])
+    expect(scoresOf(host, ['Anna', 'Ben'])).toEqual([
+      pointsForPlace(3),
+      pointsForPlace(1)
+    ])
     expect(hostView(host)?.round?.awards).toHaveLength(2)
   })
 
@@ -290,9 +298,9 @@ describe('a challenge between teams on a track', () => {
     ])
 
     expect(hostView(host)?.teams.map((team) => team.score)).toEqual([
-      2 * POINT,
-      3 * POINT,
-      POINT
+      pointsForPlace(2),
+      pointsForPlace(1),
+      pointsForPlace(3)
     ])
   })
 

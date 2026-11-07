@@ -3,7 +3,7 @@ import type React from 'react'
 import type { PetitBacLineOutcome } from '@melee/protocol/petit-bac'
 import type { PlayerRoomView, RoundView } from '@melee/protocol/room'
 
-import { PETIT_BAC_POINTS } from '@melee/core/petitbac/sheet-pay'
+import { linePoints } from '@melee/core/petitbac/sheet-pay'
 
 import { petitBacCategoryId } from '@/features/player/petit-bac-sheet'
 import { petitBacContent } from '@/helpers/round-content'
@@ -62,7 +62,10 @@ export const PetitBacReveal: React.FC<PetitBacRevealProps> = ({
       <ol className='lines'>
         {yours.map(({ category, line }) => {
           const outcome = line?.outcome ?? 'empty'
-          const points = PETIT_BAC_POINTS[outcome]
+          const points = linePoints({
+            categoryCount: content.categories.length,
+            outcome
+          })
 
           return (
             <li

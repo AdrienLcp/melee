@@ -13,7 +13,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { MOST_A_SPEED_BONUS_PAYS, POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS, MOST_THE_CLOCK_PAYS } from '@melee/protocol/scoring'
 import {
   type PlayerServerMessage,
   type WallServerMessage,
@@ -23,6 +23,7 @@ import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  answerShareOf,
   basePointsFor,
   errorsIn,
   hostView,
@@ -246,10 +247,10 @@ describe('a higher-or-lower round through the seam', () => {
         points,
         speedBonus
       }))
-    ).toEqual(Array(3).fill({ points: POINT, speedBonus: 0 }))
+    ).toEqual(Array(3).fill({ points: MOST_A_ROUND_PAYS, speedBonus: 0 }))
   })
 
-  it('[higherlower] pays a right pick with the clock on top, and reveals both values with every sheet', async () => {
+  it('[higherlower] pays a right pick with the clock’s share, and reveals both values with every sheet', async () => {
     const { host, lou, max, roundId, zoe } = await roundInPlay()
 
     sendSheet({ picks: RIGHT, roundId, seat: zoe })
@@ -263,14 +264,14 @@ describe('a higher-or-lower round through the seam', () => {
     const awardOf = (seat: Peer<PlayerServerMessage>) =>
       view?.round?.awards.find((award) => award.playerId === idOf(seat))
 
-    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(POINT)
+    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(
+      answerShareOf(MOST_A_ROUND_PAYS)
+    )
     expect(awardOf(max)?.points ?? 0).toBe(0)
     expect(awardOf(lou)?.points ?? 0).toBe(0)
     expect(awardOf(zoe)?.verdict).toEqual({ kind: 'pairs', rightPairs: 1 })
     expect(awardOf(zoe)?.speedBonus).toBeGreaterThan(0)
-    expect(awardOf(zoe)?.speedBonus).toBeLessThanOrEqual(
-      MOST_A_SPEED_BONUS_PAYS
-    )
+    expect(awardOf(zoe)?.speedBonus).toBeLessThanOrEqual(MOST_THE_CLOCK_PAYS)
 
     const revealed = pairsRound(playerView(lou))
 

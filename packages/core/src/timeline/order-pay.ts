@@ -1,21 +1,23 @@
-import { type OrderVerdict, POINT } from '@melee/protocol/scoring'
+import type { OrderVerdict } from '@melee/protocol/scoring'
+
+import { thirdsOfARound } from '../scoring/round-share'
 
 type OrderTier = { points: number; withinSwappedPairs: number }
 
 /**
  * What an order earns by how many pairs it puts the wrong way round. Data
  * rather than a formula, like the map's distances, because it is a table's
- * sense of "nearly": the whole order is the typed answer's price, one
+ * sense of "nearly": the whole order is the whole round, one
  * neighbour swapped still pays, and a shuffle that happens to get half the
  * pairs right pays nothing — five events dealt at random already average five.
  */
 export const ORDER_TIERS = [
-  { points: 3 * POINT, withinSwappedPairs: 0 },
-  { points: 2 * POINT, withinSwappedPairs: 1 },
-  { points: POINT, withinSwappedPairs: 2 }
-] as const satisfies readonly OrderTier[]
+  { points: thirdsOfARound(3), withinSwappedPairs: 0 },
+  { points: thirdsOfARound(2), withinSwappedPairs: 1 },
+  { points: thirdsOfARound(1), withinSwappedPairs: 2 }
+] satisfies readonly OrderTier[]
 
-/** What an order this far from the true one earns, before the clock adds to it. */
+/** What an order this far from the true one earns, before the clock takes its share. */
 export const pointsForOrder = ({
   swappedPairs
 }: Pick<OrderVerdict, 'swappedPairs'>): number =>

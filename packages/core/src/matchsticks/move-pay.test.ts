@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 
 import type { MatchsticksPuzzle } from '@melee/protocol/matchsticks'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { isBestMove, placesFromBestOf, pointsForMove } from './move-pay'
 import { applyMove, solutionsOf } from './one-move'
@@ -60,14 +60,14 @@ describe('an equation with more than one answer', () => {
 })
 
 describe('what a move earns', () => {
-  it('[matchsticks] pays the typed answer’s price for the best move', () => {
-    expect(pointsForMove({ placesFromBest: 0 })).toBe(3 * POINT)
+  it('[matchsticks] pays the whole round for the best move', () => {
+    expect(pointsForMove({ placesFromBest: 0 })).toBe(MOST_A_ROUND_PAYS)
     expect(isBestMove({ placesFromBest: 0 })).toBe(true)
   })
 
   it('[matchsticks] still pays the next two answers, less the further they are', () => {
-    expect(pointsForMove({ placesFromBest: 1 })).toBe(2 * POINT)
-    expect(pointsForMove({ placesFromBest: 2 })).toBe(POINT)
+    expect(pointsForMove({ placesFromBest: 1 })).toBe(66_667)
+    expect(pointsForMove({ placesFromBest: 2 })).toBe(33_333)
     expect(isBestMove({ placesFromBest: 1 })).toBe(false)
   })
 

@@ -4,13 +4,16 @@ import type { RevealedBlackSquare } from '@melee/protocol/black-square'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 
-import { LONE_FIND_MULTIPLIER } from '@melee/core/blacksquare/sheet-pay'
+import {
+  LONE_FIND_MULTIPLIER,
+  pointsForTier
+} from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareCellStyle } from '@/helpers/black-square-cell-place'
 import { shownPoints } from '@/helpers/shown-points'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
-import { BlackSquarePips, pointsOfTier } from './black-square-pips'
+import { BlackSquarePips } from './black-square-pips'
 import { Pawn } from './pawn'
 import { VisuallyHidden } from './visually-hidden'
 
@@ -93,7 +96,10 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                           'blacksquare.tier',
                           {
                             points: shownPoints(
-                              pointsOfTier(answer.tier) * LONE_FIND_MULTIPLIER
+                              pointsForTier({
+                                cellCount: revealed.answers.length,
+                                tier: answer.tier
+                              }) * LONE_FIND_MULTIPLIER
                             )
                           }
                         )}`}
@@ -106,13 +112,18 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                         {translate('blacksquare.lone.doubled')}
                       </span>
                     ) : (
-                      <BlackSquarePips tier={answer.tier} />
+                      <BlackSquarePips
+                        cellCount={revealed.answers.length}
+                        tier={answer.tier}
+                      />
                     )}
                     <span aria-hidden='true'>
                       {translate('round.scored', {
                         points: shownPoints(
-                          pointsOfTier(answer.tier) *
-                            (isDoubled ? LONE_FIND_MULTIPLIER : 1)
+                          pointsForTier({
+                            cellCount: revealed.answers.length,
+                            tier: answer.tier
+                          }) * (isDoubled ? LONE_FIND_MULTIPLIER : 1)
                         )
                       })}
                     </span>

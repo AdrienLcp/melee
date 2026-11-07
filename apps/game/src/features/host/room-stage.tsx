@@ -2,6 +2,7 @@ import { classNames } from '@adrienlcp/react'
 import type React from 'react'
 import { useState } from 'react'
 
+import { POINTS_PER_CASE } from '@melee/protocol/board'
 import type { ClientMessage } from '@melee/protocol/client-message'
 import type { PlayerId, RoomCode } from '@melee/protocol/identifiers'
 import type {
@@ -9,7 +10,6 @@ import type {
   RoomSettings,
   RoundView
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
 import type { ClipFault } from '@melee/protocol/sound'
 
 import type { ClipRefusal } from '@melee/core/blindtest/clip-audio'
@@ -502,7 +502,7 @@ const PhaseStage: React.FC<RoomStageProps> = ({
                   ? undefined
                   : (team, cases) => {
                       controls.send({
-                        points: cases * POINT,
+                        points: cases * POINTS_PER_CASE,
                         target: { kind: 'team', teamId: team.id },
                         type: 'host.adjustScore'
                       })

@@ -142,7 +142,9 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
               <span className='points'>
                 {award.speedBonus > 0
                   ? translate('round.awardWithSpeed', {
-                      answer: shownPoints(award.points - award.speedBonus),
+                      answer:
+                        shownPoints(award.points) -
+                        shownPoints(award.speedBonus),
                       speed: shownPoints(award.speedBonus)
                     })
                   : translate('round.scored', {

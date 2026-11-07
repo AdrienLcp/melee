@@ -2,7 +2,7 @@ import type React from 'react'
 
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { HostRoomView } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { SCORE_ADJUSTMENT_STEP } from '@melee/protocol/scoring'
 
 import {
   buildScoreboard,
@@ -117,11 +117,11 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                     <Button
                       aria-label={translate('host.points.take', {
                         name: row.name,
-                        points: shownPoints(POINT)
+                        points: shownPoints(SCORE_ADJUSTMENT_STEP)
                       })}
                       isDisabled={!seatPresses.isLive || !row.canTake}
                       onPress={() => {
-                        seatPresses.onAdjust(row.target, -POINT)
+                        seatPresses.onAdjust(row.target, -SCORE_ADJUSTMENT_STEP)
                       }}
                       size='small'
                       variant='outlined'
@@ -131,11 +131,11 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
                     <Button
                       aria-label={translate('host.points.give', {
                         name: row.name,
-                        points: shownPoints(POINT)
+                        points: shownPoints(SCORE_ADJUSTMENT_STEP)
                       })}
                       isDisabled={!seatPresses.isLive || !row.canGive}
                       onPress={() => {
-                        seatPresses.onAdjust(row.target, POINT)
+                        seatPresses.onAdjust(row.target, SCORE_ADJUSTMENT_STEP)
                       }}
                       size='small'
                       variant='outlined'
@@ -173,7 +173,7 @@ export const PodiumRoster: React.FC<PodiumRosterProps> = ({
       {seatPresses !== null && (
         <p className='podium-hint'>
           {translate('host.podium.pointsHint', {
-            points: shownPoints(POINT)
+            points: shownPoints(SCORE_ADJUSTMENT_STEP)
           })}
         </p>
       )}

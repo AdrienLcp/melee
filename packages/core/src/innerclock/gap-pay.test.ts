@@ -20,7 +20,7 @@ describe('what a count pays', () => {
     const late = pointsForGap({ countedMs: 63_000, targetMs: 60_000 })
 
     expect(early).toBe(late)
-    expect(early).toBe(2.4 * POINT)
+    expect(early).toBe(80 * POINT)
   })
 
   it('[innerclock] pays nothing a quarter of the target away, or further', () => {

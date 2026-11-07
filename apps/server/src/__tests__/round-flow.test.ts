@@ -1,6 +1,6 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import { POINTS_PER_ARTIST, POINTS_PER_TITLE } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   hostServerMessageSchema,
   type PlayerServerMessage
@@ -31,7 +31,7 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
 })
 
 const WON_IT = halves(true, true)
-const PAIR_IN_THE_BUZZER = POINTS_PER_TITLE + POINTS_PER_ARTIST
+const PAIR_IN_THE_BUZZER = MOST_A_ROUND_PAYS
 const MISSED_IT = halves(false, false)
 
 let room: RoomHarness

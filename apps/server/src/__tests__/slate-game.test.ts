@@ -6,7 +6,7 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import type {
   HostServerMessage,
   PlayerServerMessage
@@ -32,13 +32,25 @@ vi.mock('@/infrastructure/music/deezer-client', async () => {
   return deezerClientStub()
 })
 
+const ITEM_COUNT = 3
+const FOUR_ITEMS = 4
+
 const SLATE: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
-  game: { ...DEFAULT_SLATE_SETTINGS, itemCount: 3 },
+  game: { ...DEFAULT_SLATE_SETTINGS, itemCount: ITEM_COUNT },
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 1
 }
+
+/** A sheet's share of the round: the items marked right out of every item it holds. */
+const sheetPays = ({
+  itemCount = ITEM_COUNT,
+  right
+}: {
+  itemCount?: number
+  right: number
+}) => Math.round((MOST_A_ROUND_PAYS * right) / itemCount)
 
 /** Strings no fixture, nickname or id could contain by accident. */
 const ANA_SECRET = 'Paprika fumé d’Ana'
@@ -233,7 +245,10 @@ describe('slate', () => {
     await write({ answer: 'Poivre', itemIndex: 0, player: bo, roundId })
     await collect({ host, roundId })
     judge({ groupKey: 'sel', host, isCorrect: true, itemIndex: 0, roundId })
-    await waitFor(() => scoreOf(host, idOf(ana)) === POINT, 'the group paid')
+    await waitFor(
+      () => scoreOf(host, idOf(ana)) === sheetPays({ right: 1 }),
+      'the group paid'
+    )
 
     expect(hostView(host)?.players.map((player) => player.board)).toEqual([
       { case: 0, move: 0 },
@@ -268,15 +283,15 @@ describe('slate', () => {
 
     judge({ groupKey: 'sel', host, isCorrect: true, itemIndex: 0, roundId })
     await waitFor(
-      () => scoreOf(host, idOf(bo)) === POINT,
+      () => scoreOf(host, idOf(bo)) === sheetPays({ right: 1 }),
       'the group to be paid'
     )
-    expect(scoreOf(host, idOf(ana))).toBe(POINT)
+    expect(scoreOf(host, idOf(ana))).toBe(sheetPays({ right: 1 }))
 
     await show({ host, itemIndex: 2, roundId })
     judge({ groupKey: 'poivre', host, isCorrect: true, itemIndex: 2, roundId })
     await waitFor(
-      () => scoreOf(host, idOf(ana)) === 2 * POINT,
+      () => scoreOf(host, idOf(ana)) === sheetPays({ right: 2 }),
       'the third item paid'
     )
 
@@ -289,8 +304,8 @@ describe('slate', () => {
         points
       }))
     ).toEqual([
-      { playerId: idOf(ana), points: 2 * POINT },
-      { playerId: idOf(bo), points: POINT }
+      { playerId: idOf(ana), points: sheetPays({ right: 2 }) },
+      { playerId: idOf(bo), points: sheetPays({ right: 1 }) }
     ])
 
     host.send({ type: 'host.nextRound' })
@@ -300,8 +315,8 @@ describe('slate', () => {
     )
 
     expect(playerView(ana)?.players.map((player) => player.score)).toEqual([
-      2 * POINT,
-      POINT
+      sheetPays({ right: 2 }),
+      sheetPays({ right: 1 })
     ])
   })
 
@@ -412,7 +427,10 @@ describe('slate', () => {
     await write({ answer: 'Sel', itemIndex: 0, player: cy, roundId })
     await collect({ host, roundId })
     judge({ groupKey: 'sel', host, isCorrect: true, itemIndex: 0, roundId })
-    await waitFor(() => scoreOf(host, idOf(cy)) === POINT, 'the latecomer paid')
+    await waitFor(
+      () => scoreOf(host, idOf(cy)) === sheetPays({ right: 1 }),
+      'the latecomer paid'
+    )
 
     const dee = await harness.seat({ code, nickname: 'Dee' })
 
@@ -436,7 +454,10 @@ describe('slate', () => {
     await write({ answer: 'Ail', itemIndex: 1, player: cy, roundId })
     await close({ host, itemIndex: 1, roundId })
     judge({ groupKey: 'ail', host, isCorrect: true, itemIndex: 1, roundId })
-    await waitFor(() => scoreOf(host, idOf(cy)) === POINT, 'the latecomer paid')
+    await waitFor(
+      () => scoreOf(host, idOf(cy)) === sheetPays({ right: 1 }),
+      'the latecomer paid'
+    )
     await collect({ host, roundId })
 
     expect(errorsIn(cy).map((error) => error.code)).toEqual(['wrong_phase'])
@@ -503,8 +524,11 @@ describe('slate', () => {
     await collect({ host, roundId })
 
     judge({ groupKey: 'paprika', host, isCorrect: true, itemIndex: 0, roundId })
-    await waitFor(() => scoreOf(host, idOf(bo)) === POINT, 'the group paid')
-    expect(scoreOf(host, idOf(ana))).toBe(POINT)
+    await waitFor(
+      () => scoreOf(host, idOf(bo)) === sheetPays({ right: 1 }),
+      'the group paid'
+    )
+    expect(scoreOf(host, idOf(ana))).toBe(sheetPays({ right: 1 }))
 
     await show({ host, itemIndex: 1, roundId })
     await show({ host, itemIndex: 0, roundId })
@@ -703,7 +727,10 @@ describe('slate', () => {
     await close({ host, itemIndex: 1, roundId })
     await write({ answer: BO_SECRET, itemIndex: 2, player: bo, roundId })
     judge({ groupKey: 'sel', host, isCorrect: true, itemIndex: 1, roundId })
-    await waitFor(() => scoreOf(host, idOf(bo)) === POINT, 'the item paid')
+    await waitFor(
+      () => scoreOf(host, idOf(bo)) === sheetPays({ right: 1 }),
+      'the item paid'
+    )
 
     expect(hostSlateContent(host)?.correction?.groups).toHaveLength(1)
     expect(rawTranscript(host)).not.toContain(ANA_SECRET)
@@ -779,7 +806,7 @@ describe('slate', () => {
   it('[slate] scores items closed one by one, a verdict changed, then the rest collected', async () => {
     const { ana, bo, host, roundId } = await openSheets({
       ...SLATE,
-      game: { ...DEFAULT_SLATE_SETTINGS, itemCount: 4 }
+      game: { ...DEFAULT_SLATE_SETTINGS, itemCount: FOUR_ITEMS }
     })
 
     await write({ answer: 'Sel', itemIndex: 0, player: ana, roundId })
@@ -789,18 +816,30 @@ describe('slate', () => {
 
     await close({ host, itemIndex: 1, roundId })
     judge({ groupKey: 'ail', host, isCorrect: true, itemIndex: 1, roundId })
-    await waitFor(() => scoreOf(host, idOf(ana)) === POINT, 'item 2 paid')
+    await waitFor(
+      () =>
+        scoreOf(host, idOf(ana)) ===
+        sheetPays({ itemCount: FOUR_ITEMS, right: 1 }),
+      'item 2 paid'
+    )
 
     await close({ host, itemIndex: 0, roundId })
     judge({ groupKey: 'sel', host, isCorrect: true, itemIndex: 0, roundId })
-    await waitFor(() => scoreOf(host, idOf(bo)) === POINT, 'item 1 paid')
+    await waitFor(
+      () =>
+        scoreOf(host, idOf(bo)) ===
+        sheetPays({ itemCount: FOUR_ITEMS, right: 1 }),
+      'item 1 paid'
+    )
 
     await write({ answer: 'Poivre', itemIndex: 3, player: bo, roundId })
     await show({ host, itemIndex: 1, roundId })
     judge({ groupKey: 'ail', host, isCorrect: false, itemIndex: 1, roundId })
     judge({ groupKey: 'thym', host, isCorrect: true, itemIndex: 1, roundId })
     await waitFor(
-      () => scoreOf(host, idOf(bo)) === 2 * POINT,
+      () =>
+        scoreOf(host, idOf(bo)) ===
+        sheetPays({ itemCount: FOUR_ITEMS, right: 2 }),
       'the verdict moved'
     )
 
@@ -811,7 +850,9 @@ describe('slate', () => {
     await show({ host, itemIndex: 3, roundId })
     judge({ groupKey: 'poivre', host, isCorrect: true, itemIndex: 3, roundId })
     await waitFor(
-      () => scoreOf(host, idOf(bo)) === 3 * POINT,
+      () =>
+        scoreOf(host, idOf(bo)) ===
+        sheetPays({ itemCount: FOUR_ITEMS, right: 3 }),
       'the last item paid'
     )
 
@@ -831,8 +872,8 @@ describe('slate', () => {
     expect(
       hostView(host)?.players.map(({ id, score }) => ({ id, score }))
     ).toEqual([
-      { id: idOf(ana), score: POINT },
-      { id: idOf(bo), score: 3 * POINT }
+      { id: idOf(ana), score: sheetPays({ itemCount: FOUR_ITEMS, right: 1 }) },
+      { id: idOf(bo), score: sheetPays({ itemCount: FOUR_ITEMS, right: 3 }) }
     ])
   })
 })

@@ -9,7 +9,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS, type Verdict } from '@melee/protocol/scoring'
 import {
   type PlayerServerMessage,
   type WallServerMessage,
@@ -30,6 +30,22 @@ import {
 
 /** Distinctive enough that a raw frame carrying it can only be carrying the answer. */
 const TRUTH = 123_456_789
+
+/** Three times off either way pays nothing. */
+const NOTHING_FROM_RATIO = 3
+
+/** The whole round on the truth, falling with the logarithm of the miss to nothing at three times off. */
+const paidForMiss = (verdict: Verdict | undefined) =>
+  verdict?.kind === 'number'
+    ? Math.max(
+        0,
+        Math.round(
+          MOST_A_ROUND_PAYS *
+            (1 -
+              Math.abs(Math.log(verdict.ratio)) / Math.log(NOTHING_FROM_RATIO))
+        )
+      )
+    : null
 
 const NAMES = { en: 'Atlantis', fr: 'Atlantis' }
 
@@ -200,7 +216,7 @@ describe('an estimate round through the seam', () => {
     expect(estimateRound(playerView(zoe))?.yourGuess).toBe(100)
   })
 
-  it('[estimate] pays the closest three by place with no speed bonus, and nothing ten times off even with a place free', async () => {
+  it('[estimate] pays each guess for how far it fell, with no speed bonus, and nothing three times off', async () => {
     const { host, lou, max, roundId, zoe } = await roundInPlay()
 
     guess({ roundId, seat: zoe, value: TRUTH * 1.01 })
@@ -213,15 +229,25 @@ describe('an estimate round through the seam', () => {
       playerView(seat)?.youId ?? null
     const awardOf = (seat: Peer<PlayerServerMessage>) =>
       view?.round?.awards.find((award) => award.playerId === idOf(seat))
+    const ratioOf = (seat: Peer<PlayerServerMessage>) => {
+      const verdict = awardOf(seat)?.verdict
 
-    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(3 * POINT)
-    expect(basePointsFor({ playerId: idOf(max), view })).toBe(2 * POINT)
+      return verdict?.kind === 'number' ? verdict.ratio : null
+    }
+
+    expect(ratioOf(zoe)).toBeCloseTo(1.01)
+    expect(ratioOf(max)).toBeCloseTo(0.5)
+    expect(ratioOf(lou)).toBeCloseTo(11)
+    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(
+      paidForMiss(awardOf(zoe)?.verdict)
+    )
+    expect(basePointsFor({ playerId: idOf(max), view })).toBe(
+      paidForMiss(awardOf(max)?.verdict)
+    )
+    expect(basePointsFor({ playerId: idOf(zoe), view })).toBeGreaterThan(
+      basePointsFor({ playerId: idOf(max), view }) ?? 0
+    )
     expect(basePointsFor({ playerId: idOf(lou), view })).toBe(0)
-    expect(awardOf(zoe)?.verdict).toMatchObject({
-      kind: 'number',
-      placesFromBest: 0
-    })
-    expect(awardOf(lou)?.verdict).toMatchObject({ placesFromBest: null })
     expect([zoe, max, lou].map((seat) => awardOf(seat)?.speedBonus)).toEqual([
       0, 0, 0
     ])

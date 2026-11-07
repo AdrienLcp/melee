@@ -79,18 +79,18 @@ export const EN_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Time per round',
     scoring:
-      'Everyone puts a pawn down at once. Inside the country it scores 30 points, within 500 km of its border 20, within 1,500 km 10.',
+      'Everyone puts a pawn down at once. Inside the country it scores 100 points, falling steadily to nothing 1,500 km from its border — the nearer, the more.',
     scoringCapitals:
-      'Everyone puts a pawn down at once. Within 100 km of the capital it scores 30 points, within 300 km 20, within 1,000 km 10.',
+      'Everyone puts a pawn down at once. Within 100 km of the capital it scores 100 points, falling to nothing at 1,000 km.',
     scoringCities:
-      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores 30 points, within 75 km 20, within 150 km 10.',
+      'Everyone puts a pawn down at once on a map of France. Within 25 km of the city it scores 100 points, falling to nothing at 150 km.',
     scoringMixed:
-      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to 30 points.',
+      'Everyone puts a pawn down at once — a country, a capital or a French city, round by round. The nearer your pawn, the more it scores, up to 100 points.',
     scoringName: {
       choice:
-        'The map shows a place and offers four names, everyone at once. The right one scores 10 points.',
+        'The map shows a place and offers four names, everyone at once. The right one scores 100 points.',
       typed:
-        'The map shows a place and everyone types its name at once. The right one scores 30 points.'
+        'The map shows a place and everyone types its name at once. The right one scores 100 points.'
     },
     tagline: 'One place. Put your pawn on it, or name it.'
   },
@@ -133,11 +133,11 @@ export const EN_DICTIONARY = defineDictionary({
     othersLooking: 'The others are still looking.',
     play: 'Play Black square',
     scoring:
-      'Up to nine answers are hidden: the best known third pay 10 points, the next third 20, the last third 30. Hit the black word and your round is worth nothing.',
+      'Up to nine answers are hidden, and the sheet is worth 100 points shared among them: the best known third count one share each, the next third two, the last third three. Hit the black word and your round is worth nothing.',
     scoringLoneFinds:
-      'Up to nine answers are hidden: the best known third pay 10 points, the next third 20, the last third 30, and double if nobody else finds it. Hit the black word and your round is worth nothing.',
+      'Up to nine answers are hidden, and the sheet is worth 100 points shared among them: the best known third count one share each, the next third two, the last third three, and an answer nobody else finds counts double — the sheet still tops out at 100. Hit the black word and your round is worth nothing.',
     scoringSpoken:
-      'One team says its answers out loud and somebody from another team ticks them off: the best known third pay 10 points, the next third 20, the last third 30. Say the black word and the team’s round is worth nothing.',
+      'One team says its answers out loud and somebody from another team ticks them off. The sheet is worth 100 points shared among its answers: the best known third count one share each, the next third two, the last third three. Say the black word and the team’s round is worth nothing.',
     spoken: {
       blackWord: {
         ask: 'Did they say it? Their round ends, worth nothing.',
@@ -272,23 +272,23 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring: {
       buzzer:
-        'First to buzz answers out loud. The host judges the title and the artist, 10 points each — a wrong answer sits you out for the rest of the round.',
+        'First to buzz answers out loud. The host judges the title and the artist, 40 points each and 100 for both — a wrong answer sits you out for the rest of the round.',
       choice:
-        'Four answers over the same clip, everyone at once. The right one scores 10 points.',
+        'Four answers over the same clip, everyone at once. The right one scores 100 points.',
       typed:
-        'Everyone types, over the same clip. Title and artist score 10 points each and both together score 30.'
+        'Everyone types, over the same clip. Title or artist alone scores 40 points, and both together score 100.'
     },
     scoringFilm: {
       buzzer:
-        'First to buzz answers out loud. The host judges the film and the composer, 10 points each — a wrong answer sits you out for the rest of the round.',
+        'First to buzz answers out loud. The host judges the film and the composer, 40 points each and 100 for both — a wrong answer sits you out for the rest of the round.',
       typed:
-        'Everyone types, over the same clip. Film and composer score 10 points each and both together score 30.'
+        'Everyone types, over the same clip. Film or composer alone scores 40 points, and both together score 100.'
     },
     scoringMixed: {
       buzzer:
-        'First to buzz answers out loud: the title and the artist, or the film and the composer when it is a film score. The host judges each, 10 points apiece — a wrong answer sits you out for the rest of the round.',
+        'First to buzz answers out loud: the title and the artist, or the film and the composer when it is a film score. The host judges each, 40 points apiece and 100 for both — a wrong answer sits you out for the rest of the round.',
       typed:
-        'Everyone types, over the same clip: the title and the artist, or the film and the composer when it is a film score. Each scores 10 points and both together score 30.'
+        'Everyone types, over the same clip: the title and the artist, or the film and the composer when it is a film score. Either one alone scores 40 points, and both together score 100.'
     },
     source: {
       catalogue: 'The catalogue',
@@ -361,7 +361,7 @@ export const EN_DICTIONARY = defineDictionary({
       off: 'None',
       strategy: {
         hint: {
-          onePointOneCase: 'One square for every 10 points the round paid.',
+          onePointOneCase: 'One square for every 30 points the round paid.',
           rank: 'The round’s best moves 3 squares, the second 2, the third 1.'
         },
         label: 'Pawns move',
@@ -401,7 +401,7 @@ export const EN_DICTIONARY = defineDictionary({
     play: 'Play Buzzer',
     running: 'Ask away',
     scoring:
-      'First in answers out loud, and the host says right or wrong. 10 points for right — and a wrong answer sits you out until they let you back in.',
+      'First in answers out loud, and the host says right or wrong. 100 points for right — and a wrong answer sits you out until they let you back in.',
     tagline: 'Your questions, and a race to the buzzer.'
   },
   challenge: {
@@ -447,7 +447,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     play: 'Play Challenge',
     scoring:
-      'Played at the table. The host places the first three: 30 points for first, 20 for second, 10 for third — a tie shares its place.',
+      'Played at the table. The host places the first three: 100 points for first, 67 for second, 33 for third — a tie shares its place.',
     tagline: 'Played at the table, counted on the board.',
     untitled: 'A challenge at the table'
   },
@@ -572,7 +572,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Time to estimate',
     scoring:
-      'A question whose answer is a number, and everyone types an estimate. The three closest score 30, 20 and 10 points; ten times off or more scores nothing. No bonus for speed.',
+      'A question whose answer is a number, and everyone types an estimate. Spot on scores 100 points, falling to nothing at three times off, either way — the closer, the more. No bonus for speed.',
     tagline: 'Nobody knows. Who comes closest?',
     unitNames: {
       kilometres: 'km',
@@ -616,7 +616,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Time to pick',
     scoring:
-      'Two things of the same kind — two cities, two rivers, two mountains — and you pick the bigger one. A right pick scores 10 points.',
+      'Two things of the same kind — two cities, two rivers, two mountains — and you pick the bigger one. A right pick scores 100 points.',
     tagline: 'Two names. Which one is bigger?'
   },
   home: {
@@ -1112,8 +1112,8 @@ export const EN_DICTIONARY = defineDictionary({
     skipRound: 'Skip this round',
     speedBonus: {
       hint: {
-        off: 'Only the right answer counts: answering fast earns nothing more.',
-        on: 'A quick right answer scores up to double.'
+        off: 'Only the right answer counts: it scores the full 100.',
+        on: 'A right answer scores 90, and answering early adds up to 10.'
       },
       label: 'Speed bonus',
       summaryOff: 'no speed bonus'
@@ -1194,7 +1194,7 @@ export const EN_DICTIONARY = defineDictionary({
       before: 'Count to'
     },
     scoring:
-      'Count in your head and press once. 30 points on the dot, nothing a quarter of the count away — the closer, the more.',
+      'Count in your head and press once. 100 points on the dot, nothing a quarter of the count away — the closer, the more.',
     silent: 'never pressed',
     tagline: 'Count in your head. Stop on the dot.',
     target: {
@@ -1397,7 +1397,7 @@ export const EN_DICTIONARY = defineDictionary({
     name: 'Matchsticks',
     numberRule: {
       buzzer: 'Only the best number counts. A number never starts with 0.',
-      move: 'The best number pays 30, the next two 20 and 10. A number never starts with 0.'
+      move: 'A number never starts with 0.'
     },
     play: 'Play Matchsticks',
     reveal: {
@@ -1410,9 +1410,9 @@ export const EN_DICTIONARY = defineDictionary({
       yours: 'Your move:'
     },
     scoring:
-      'One stick to move. First in says the move out loud, and the host says right or wrong — 10 points for right.',
+      'One stick to move. First in says the move out loud, and the host says right or wrong — 100 points for right.',
     scoringMove:
-      'One match to move, everyone at once. The answer is 30 points — on a number, the next best 20 and the one after 10.',
+      'One match to move, everyone at once. The answer is 100 points — on a number, the next best 67 and the one after 33.',
     tagline: 'One match moves. Find which.'
   },
   menu: {
@@ -1477,7 +1477,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Time to vote',
     scoring:
-      'A line about one of you goes up and everyone votes for a seat, their own included. Vote with the room and you score 10 points. No bonus for speed.',
+      'A line about one of you goes up and everyone votes for a seat, their own included. Vote with the room and you score 100 points. No bonus for speed.',
     tagline: 'One line, one of you. Who is it?'
   },
   /**
@@ -1598,7 +1598,7 @@ export const EN_DICTIONARY = defineDictionary({
       title: 'Your sheet'
     },
     scoring:
-      'One letter, a word for each category. The table votes on every answer: one nobody else wrote scores 20 points, one you shared scores 10.',
+      'One letter, a word for each category. The sheet is worth 100 points, shared equally among its categories, and the table votes on every answer: one nobody else wrote scores its whole share, one you shared half of it.',
     setup: {
       add: 'Add',
       bank: 'Ready-made',
@@ -1778,10 +1778,11 @@ export const EN_DICTIONARY = defineDictionary({
     },
     scoring: {
       buzzer:
-        'First to buzz answers out loud, and the host says right or wrong. 10 points for right — and a wrong answer sits you out for the rest of the round.',
-      choice: 'Four answers, everyone at once. The right one scores 10 points.',
+        'First to buzz answers out loud, and the host says right or wrong. 100 points for right — and a wrong answer sits you out for the rest of the round.',
+      choice:
+        'Four answers, everyone at once. The right one scores 100 points.',
       typed:
-        'Everyone types their answer at once. The right one scores 30 points.'
+        'Everyone types their answer at once. The right one scores 100 points.'
     },
     silhouette: {
       alt: 'The country outline to name'
@@ -1850,7 +1851,7 @@ export const EN_DICTIONARY = defineDictionary({
     pressed: 'In.',
     reaction: '{milliseconds:number} ms',
     scoring:
-      'The screen changes, and the first in takes the 10 points. Go before it changes and you sit the round out.',
+      'The screen changes, and the first in takes the 100 points. Go before it changes and you sit the round out.',
     tagline: 'The screen changes. First in wins.',
     tooEarly: 'too early',
     waiting: 'Watch the screen.'
@@ -1924,7 +1925,7 @@ export const EN_DICTIONARY = defineDictionary({
      */
     speedBonus: '{points:number} of that for being early',
     speedRule:
-      'The earlier you answer, the more the clock adds — up to double.',
+      'On the clock, a right answer keeps 90 points and answering early adds up to 10 more.',
     /**
      * The ruled heading under the answer over every figure the round alone
      * paid — your own result, its podium, who found it.
@@ -1961,7 +1962,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Numbered things to guess — cups to taste, photos, prices — and everyone writes on a sheet nobody else can see, in any order they like. Then the host marks the papers one number at a time, and every answer they accept is worth 10 points.'
+        'Numbered things to guess — cups to taste, photos, prices — and everyone writes on a sheet nobody else can see, in any order they like. Then the host marks the papers one number at a time, and every answer they accept earns its share of the sheet’s 100 points.'
     },
     item: 'No. {index:number}',
     itemOf: 'No. {index:number} of {count:number}',
@@ -2006,7 +2007,7 @@ export const EN_DICTIONARY = defineDictionary({
     },
     progress: '{filled:number}/{count:number}',
     scoring:
-      'Everyone fills in their own sheet in private, then the host marks it: 10 points per answer they accept.',
+      'Everyone fills in their own sheet in private, then the host marks each answer. The sheet is worth 100 points, shared equally among its items.',
     sheet: {
       blank: 'Left blank',
       closedBeforeYou: 'Collected before you arrived',
@@ -2063,7 +2064,7 @@ export const EN_DICTIONARY = defineDictionary({
       yoursUnsent: 'Yours, taken where your picker stood'
     },
     scoring:
-      'A colour shows, hides, and you rebuild it. Spot on is 30 points, falling to nothing the further off it is. Out of time unsent, your picker counts where it stands. No bonus for speed.',
+      'A colour shows, hides, and you rebuild it. Spot on is 100 points, falling to nothing the further off it is. Out of time unsent, your picker counts where it stands. No bonus for speed.',
     showDuration: 'Colour shown for',
     tagline: 'One colour, a few seconds. Rebuild it.'
   },
@@ -2207,7 +2208,7 @@ export const EN_DICTIONARY = defineDictionary({
       yours: 'Your order'
     },
     scoring:
-      'Five events to put in order, earliest first. All of them right is 30 points, one pair the wrong way round 20, two pairs 10.',
+      'Five events to put in order, earliest first. All of them right is 100 points, one pair the wrong way round 67, two pairs 33.',
     tagline: 'Five events. Which came first?'
   },
   wall: {

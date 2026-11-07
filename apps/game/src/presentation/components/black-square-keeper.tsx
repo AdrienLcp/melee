@@ -74,7 +74,10 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
                 <span className='name'>{answer.labels[locale]}</span>
                 <span className='foot'>
                   <CheckIcon />
-                  <BlackSquarePips tier={answer.tier} />
+                  <BlackSquarePips
+                    cellCount={list.answers.length}
+                    tier={answer.tier}
+                  />
                 </span>
               </ToggleButton>
             </li>

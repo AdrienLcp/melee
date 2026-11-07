@@ -20,7 +20,11 @@ import { innerclockTargetSecondsSchema } from './innerclock'
 import { stickMoveSchema } from './matchsticks'
 import { petitBacAnswerSchema, petitBacCategoryIndexSchema } from './petit-bac'
 import { MAX_PLAYERS_PER_ROOM, roomSettingsSchema } from './room'
-import { POINT, singleVerdictSchema, verdictSchema } from './scoring'
+import {
+  MOST_A_ROUND_PAYS,
+  singleVerdictSchema,
+  verdictSchema
+} from './scoring'
 import {
   MAX_SLATE_ITEMS,
   slateAnswerSchema,
@@ -567,8 +571,8 @@ export const adjustScoreMessageSchema = z.object({
   points: z
     .number()
     .int()
-    .min(-100 * POINT)
-    .max(100 * POINT),
+    .min(-10 * MOST_A_ROUND_PAYS)
+    .max(10 * MOST_A_ROUND_PAYS),
   target: scoreTargetSchema,
   type: z.literal('host.adjustScore')
 })

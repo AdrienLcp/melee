@@ -1,7 +1,7 @@
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
-/** What a count landing on the target to the millisecond pays: a typed answer's price. */
-export const MOST_A_COUNT_PAYS = 3 * POINT
+/** What a count landing on the target to the millisecond pays: the whole round. */
+export const MOST_A_COUNT_PAYS = MOST_A_ROUND_PAYS
 
 /**
  * How far off a count may be, as a share of the target, before it pays

@@ -88,7 +88,7 @@ team on the player model and a turn owner.
 | **Time's Up** — three rounds, same cards, less and less speech                                                                | Team relay                                | Teams, turn owner, per-turn timer                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | two sessions                                                                 |
 | **Bingo de soirée** — a grid of things that will happen tonight                                                               | Submit-then-vote                          | Almost nothing; grids and presses                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | an evening                                                                   |
 | **Colour memory** — a colour shown a few seconds, then rebuilt on a picker — stage [54](plans/54-swatch.md)                   | Everyone at once                          | A mode of its own, `colour`, paid by perceptual distance (OKLab) computed in core; the picker is react-aria's `ColorArea` + `ColorSlider`, no new library. Owes a rule: the colour _is_ sent to every screen before it hides, so it is shown on the wall when there is one, and a phone keeping it is no worse than a photo of it. A second rubric, _a character's colour_ (Shrek, the Pink Panther), is a text-only bank of name → colour, no images and so no rights, but every row's colour is an argument and is set by hand | a session for the game, a second for the character bank                      |
-| **Le juste chiffre** — a number to estimate — stage [58](plans/58-estimate.md)                                                | Everyone at once                          | A mode of its own, `number`, paid by place on the ratio to the truth; a quantity bank built from Wikidata                                                                                                                                                                                                                                                                                                                                                                                                                        | served                                                                       |
+| **Le juste chiffre** — a number to estimate — stage [58](plans/58-estimate.md)                                                | Everyone at once                          | A mode of its own, `number`, paid by its own ratio to the truth, never by place; a quantity bank built from Wikidata                                                                                                                                                                                                                                                                                                                                                                                                             | served                                                                       |
 | **Plus ou moins** — one famous pair a round, which is higher — stage [59](plans/59-higher-lower.md)                           | Everyone at once                          | Nothing but 58's bank, paired within a family; one pick a round, a mode of its own, `pairs`                                                                                                                                                                                                                                                                                                                                                                                                                                      | served; screens owed                                                         |
 | **Silhouettes** — a country's outline — stage [57](plans/57-silhouettes.md)                                                   | Buzz-first, a quiz rubric                 | Nothing: a third rubric beside flags and capitals, outlines drawn once from the atlas topology                                                                                                                                                                                                                                                                                                                                                                                                                                   | **shipped**                                                                  |
 
@@ -277,12 +277,25 @@ saved as it moves and paid on close without the speed bonus
 (`realtime-protocol.md`, _A lean is not an answer_). Not a frame per game: three
 cases of one rule were already on the table. A choice, a vote and a typed line
 stay out — one press is the whole answer, and a typed line is a guess only once
-sent. The estimate's number and higher or lower's sheet are the next candidates,
-priced by place and settled before `settleSimultaneousRound`, so they need
-their own close first.
+sent. The estimate's number and higher or lower's pick are the next candidates,
+settled before `settleSimultaneousRound`, so they need their own close first.
 
 Every seat's reveal says when it was paid that way, and the room's tally names
 those seats, so nobody wonders why a round they never answered scored.
+
+## Every round pays the same hundred
+
+The games once priced their rounds on scales of their own — a reflex race 1,
+a typed answer 3, a full black-square sheet 18 — and an evening of several
+went to whoever was strong at the dearest game. **Every round of every game
+now pays at most 100 printed points** (`MOST_A_ROUND_PAYS`), a sheet's items
+sharing them; inside the round the order between players stays the game's
+own rule, and only the ceiling is the shell's. Typing no longer pays three
+times a pick: a room plays one mode, so the ratio priced games, not answers.
+The clock takes the last tenth of what an answer earned rather than adding up
+to its worth again on top, which let a map pin 400 km off placed at once beat
+one inside the country placed late; speed now only reverses two answers
+within ten points of each other.
 
 ## A setting has three possible owners, not two
 

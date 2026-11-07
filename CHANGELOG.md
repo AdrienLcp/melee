@@ -189,6 +189,25 @@ one part.
 
 ### Improvements
 
+- `[Shared]` **Every round of every game pays at most 100 points, and being
+  right comes before being fast.** A sheet — black square, Petit Bac, the
+  slate — is one round, its items sharing the hundred; a typed answer pays
+  what a pick does, since a room plays one mode and the old ratio only made
+  one game worth more than another. Where the clock pays, an answer keeps 90%
+  of what it earned and the clock adds the last 10%, so speed only reverses
+  two answers within ten points; with the speed bonus off the answer pays the
+  whole hundred. The blind test pays 40 a half and 100 both, Challenge and
+  the podiums 100, 67 and 33, Timeline and Matchsticks the same for none, one
+  and two off. Atlas pays on a curve instead of in steps — a country full
+  inside down to nothing 1 500 km from its border, a capital from 100 to
+  1 000 km, a French city from 25 to 150 km — so a pin inside the country at
+  25 seconds now beats one 400 km off at 2. _Le juste chiffre_ pays every
+  guess by its own precision, not its place: 100 exact, 91 at 10% off, 37 at
+  twice or half the truth, nothing from three times, its reveal line spanning
+  a third to three times. On a track a pawn walks a case per 30 points, three
+  at most, and the host's + and − move a score by 10. `PROTOCOL_VERSION` goes
+  to 72.
+
 - `[Game]` **A sheet comes down from anywhere on it, and the back gesture
   puts it away.** The menu and the console's settings beside a wall follow a
   thumb pulling down from their content, not only from the grabber — a press

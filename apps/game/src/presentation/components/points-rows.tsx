@@ -1,7 +1,7 @@
 import type React from 'react'
 
 import type { ScoreTarget } from '@melee/protocol/client-message'
-import { POINT } from '@melee/protocol/scoring'
+import { SCORE_ADJUSTMENT_STEP } from '@melee/protocol/scoring'
 import type { PawnPiece } from '@melee/protocol/team'
 
 import { TEAM_PAWN_HEAD } from '@melee/core/board/pawn-piece'
@@ -153,12 +153,12 @@ export const PointsRows: React.FC = () => {
           <Button
             aria-label={translate('host.points.take', {
               name: row.name,
-              points: shownPoints(POINT)
+              points: shownPoints(SCORE_ADJUSTMENT_STEP)
             })}
             className='points-press'
             isDisabled={!isLive || !row.canTake}
             onPress={() => {
-              onAdjust(row.target, -POINT)
+              onAdjust(row.target, -SCORE_ADJUSTMENT_STEP)
             }}
             size='small'
             variant='outlined'
@@ -168,12 +168,12 @@ export const PointsRows: React.FC = () => {
           <Button
             aria-label={translate('host.points.give', {
               name: row.name,
-              points: shownPoints(POINT)
+              points: shownPoints(SCORE_ADJUSTMENT_STEP)
             })}
             className='points-press'
             isDisabled={!isLive || !row.canGive}
             onPress={() => {
-              onAdjust(row.target, POINT)
+              onAdjust(row.target, SCORE_ADJUSTMENT_STEP)
             }}
             size='small'
             variant='outlined'

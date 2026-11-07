@@ -5,7 +5,7 @@ import {
   DEFAULT_BUZZER_SETTINGS
 } from '@melee/protocol/game'
 import { DEFAULT_MODE_SETTINGS } from '@melee/protocol/room'
-import { POINTS_PER_ARTIST, POINTS_PER_TITLE } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   hostServerMessageSchema,
   type PlayerServerMessage,
@@ -184,7 +184,7 @@ describe('the rules every socket obeys', () => {
         isConnected: true,
         isReady: false,
         nickname: 'Alice',
-        score: POINTS_PER_TITLE + POINTS_PER_ARTIST
+        score: MOST_A_ROUND_PAYS
       }
     ])
   })

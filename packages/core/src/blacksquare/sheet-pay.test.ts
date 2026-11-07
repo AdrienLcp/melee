@@ -1,12 +1,13 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import {
   emptySheet,
   isSheetClosed,
   loneCellsOf,
   pointsForCells,
+  pointsForTier,
   tierOfCell,
   withCellTicked,
   withLineBanked
@@ -38,19 +39,42 @@ describe('what a black-square sheet pays', () => {
     expect(tiersOf(7)).toEqual([1, 1, 1, 2, 2, 3, 3])
   })
 
-  it('[blacksquare] pays eighteen for a full sheet', () => {
+  it('[blacksquare] pays the whole round for a full sheet, however many answers it holds', () => {
     expect(pointsForCells(sheetOf([0, 1, 2, 3, 4, 5, 6, 7, 8]))).toBe(
-      18 * POINT
+      MOST_A_ROUND_PAYS
     )
+    expect(pointsForCells({ ...sheetOf([0, 1, 2]), cellCount: 3 })).toBe(
+      MOST_A_ROUND_PAYS
+    )
+  })
+
+  it('[blacksquare] shares the round by tier, the least read weighing three times the most read', () => {
+    expect(pointsForTier({ cellCount: 9, tier: 1 })).toBe(5_556)
+    expect(pointsForTier({ cellCount: 9, tier: 3 })).toBe(16_667)
+    expect(pointsForCells(sheetOf([0, 8]))).toBe(22_222)
   })
 
   it('[blacksquare] pays nothing once the black word is hit, whatever the sheet held', () => {
     expect(pointsForCells(sheetOf([6, 7, 8], true))).toBe(0)
   })
 
-  it('[blacksquare] pays double the cells a sheet found alone', () => {
+  it('[blacksquare] weighs double the cells a sheet found alone', () => {
     expect(pointsForCells({ ...sheetOf([0, 8]), doubledCells: [8] })).toBe(
-      (1 + 2 * 3) * POINT
+      33_333
+    )
+  })
+
+  it('[blacksquare] leaves a sheet alone that did not make the lone find', () => {
+    expect(pointsForCells({ ...sheetOf([0]), doubledCells: [8] })).toBe(
+      pointsForCells(sheetOf([0]))
+    )
+  })
+
+  it('[blacksquare] never pays past the round, lone finds included', () => {
+    const all = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+
+    expect(pointsForCells({ ...sheetOf(all), doubledCells: all })).toBe(
+      MOST_A_ROUND_PAYS
     )
   })
 

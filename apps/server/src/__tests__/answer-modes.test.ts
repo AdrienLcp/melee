@@ -1,13 +1,11 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
 import { DEFAULT_MODE_SETTINGS, type RoomSettings } from '@melee/protocol/room'
-import {
-  POINTS_FOR_A_RIGHT_CHOICE,
-  POINTS_FOR_A_TYPED_ANSWER
-} from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  answerShareOf,
   bankedHalves,
   basePointsFor,
   blindtestRound,
@@ -155,7 +153,7 @@ describe('answering all at once', () => {
     expect(errorsIn(zoe)[0]).toMatchObject({ code: 'wrong_phase' })
   })
 
-  it('[choice] pays a right pick less than typing the whole thing', async () => {
+  it('[choice] pays a right pick the whole round, as typing the pair does', async () => {
     const { host, max, zoe } = await roundInPlay(CHOICE_GAME)
 
     const roundId = playerView(zoe)?.round?.id ?? ''
@@ -187,15 +185,17 @@ describe('answering all at once', () => {
       ])
     )
 
-    // One for the pick, against three for typing the pair. What the clock adds
-    // is the same in both modes and is taken back off to say so.
+    // A pick names both halves, so it is paid the pair, as typing it is. What
+    // the clock adds is taken back off to say so.
     expect(
       basePointsFor({
         playerId: playerView(zoe)?.youId ?? null,
         view: playerView(zoe)
       })
-    ).toBe(POINTS_FOR_A_RIGHT_CHOICE)
-    expect(scores.get('Zoe')).toBeGreaterThanOrEqual(POINTS_FOR_A_RIGHT_CHOICE)
+    ).toBe(answerShareOf(MOST_A_ROUND_PAYS))
+    expect(scores.get('Zoe')).toBeGreaterThanOrEqual(
+      answerShareOf(MOST_A_ROUND_PAYS)
+    )
     expect(scores.get('Max')).toBe(0)
   })
 
@@ -346,9 +346,9 @@ describe('answering all at once', () => {
         playerId: playerView(zoe)?.youId ?? null,
         view: playerView(zoe)
       })
-    ).toBe(POINTS_FOR_A_TYPED_ANSWER)
+    ).toBe(answerShareOf(MOST_A_ROUND_PAYS))
     expect(scores.get('Zoe')).toBeGreaterThan(scores.get('Max') ?? 0)
-    expect(scores.get('Max')).toBeGreaterThan(POINTS_FOR_A_TYPED_ANSWER)
+    expect(scores.get('Max')).toBeGreaterThan(answerShareOf(MOST_A_ROUND_PAYS))
   })
 
   it('[typed] keeps a player in the round after a guess that lands nothing', async () => {
@@ -452,7 +452,7 @@ describe('answering all at once', () => {
         playerId: playerView(zoe)?.youId ?? null,
         view: playerView(zoe)
       })
-    ).toBe(POINTS_FOR_A_TYPED_ANSWER)
+    ).toBe(answerShareOf(MOST_A_ROUND_PAYS))
   })
 
   it('[typed] shows what everyone said, only once the answer is out', async () => {

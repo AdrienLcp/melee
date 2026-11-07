@@ -1,6 +1,10 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINT, type Verdict } from '@melee/protocol/scoring'
+import {
+  MOST_A_ROUND_PAYS,
+  POINTS_PER_HALF,
+  type Verdict
+} from '@melee/protocol/scoring'
 
 import {
   isFullyBanked,
@@ -29,12 +33,12 @@ const halves = (titleCorrect: boolean, artistCorrect: boolean): Verdict => ({
 
 describe('pointsFor', () => {
   it.each([
-    [halves(true, true), 2 * POINT],
-    [halves(true, false), POINT],
-    [halves(false, true), POINT],
+    [halves(true, true), MOST_A_ROUND_PAYS],
+    [halves(true, false), POINTS_PER_HALF],
+    [halves(false, true), POINTS_PER_HALF],
     [halves(false, false), 0]
   ])(
-    '[verdict] scores each half of the answer independently',
+    '[verdict] pays a half alone less than half the round, and the pair all of it',
     (given, expected) => {
       expect(pointsFor(given)).toBe(expected)
     }
@@ -42,8 +46,10 @@ describe('pointsFor', () => {
 
   // A charade is one thing to guess. Judging it in halves would pay it twice,
   // which is what the union exists to make impossible.
-  it('[verdict] pays a bare claim once', () => {
-    expect(pointsFor({ isCorrect: true, kind: 'single' })).toBe(POINT)
+  it('[verdict] pays a bare claim the whole round, once', () => {
+    expect(pointsFor({ isCorrect: true, kind: 'single' })).toBe(
+      MOST_A_ROUND_PAYS
+    )
     expect(pointsFor({ isCorrect: false, kind: 'single' })).toBe(0)
   })
 })
@@ -68,57 +74,29 @@ describe('isFullyBanked', () => {
 })
 
 describe('pointsForSimultaneousAnswer', () => {
-  /**
-   * The gap the two modes exist to open, and it has to read the same in every
-   * game: producing the answer from nothing is not the act of recognising it
-   * among four. A room paid the same for both stops using the hard one.
-   */
-  it('[verdict] pays a typed claim three where a pick pays one', () => {
-    const verdict = { isCorrect: true, kind: 'single' } as const
-
-    expect(pointsForSimultaneousAnswer({ mode: 'typed', verdict })).toBe(
-      3 * POINT
-    )
-    expect(pointsForSimultaneousAnswer({ mode: 'choice', verdict })).toBe(POINT)
-  })
-
-  it('[verdict] pays a wrong claim nothing, whichever way it was given', () => {
-    const verdict = { isCorrect: false, kind: 'single' } as const
-
-    expect(pointsForSimultaneousAnswer({ mode: 'typed', verdict })).toBe(0)
-    expect(pointsForSimultaneousAnswer({ mode: 'choice', verdict })).toBe(0)
-  })
-
-  // The blind test arrives at the same three by another road, which is the
-  // point: a point per half, and one more for holding the pair.
-  it('[verdict] pays the pair three, and half of it one', () => {
+  it('[verdict] pays a right claim the whole round and a wrong one nothing', () => {
     expect(
       pointsForSimultaneousAnswer({
-        mode: 'typed',
-        verdict: halves(true, true)
+        verdict: { isCorrect: true, kind: 'single' }
       })
-    ).toBe(3 * POINT)
+    ).toBe(MOST_A_ROUND_PAYS)
     expect(
       pointsForSimultaneousAnswer({
-        mode: 'typed',
-        verdict: halves(true, false)
-      })
-    ).toBe(POINT)
-  })
-
-  // A pick is the whole answer or nothing, so half-credit has no meaning there.
-  it('[verdict] pays a right pick one, and never half of it', () => {
-    expect(
-      pointsForSimultaneousAnswer({
-        mode: 'choice',
-        verdict: halves(true, true)
-      })
-    ).toBe(POINT)
-    expect(
-      pointsForSimultaneousAnswer({
-        mode: 'choice',
-        verdict: halves(false, false)
+        verdict: { isCorrect: false, kind: 'single' }
       })
     ).toBe(0)
+  })
+
+  it('[verdict] weighs a sheet’s lone finds double, and nothing else', () => {
+    const sheet: Verdict = {
+      cellCount: 9,
+      foundCells: [0, 8],
+      hitBlackWord: false,
+      kind: 'cells'
+    }
+
+    expect(
+      pointsForSimultaneousAnswer({ doubledCells: [8], verdict: sheet })
+    ).toBeGreaterThan(pointsForSimultaneousAnswer({ verdict: sheet }))
   })
 })

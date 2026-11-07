@@ -1,6 +1,6 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { MostLikelyCount } from '@melee/protocol/most-likely'
-import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 /**
  * The fewest ballots a seat needs to be the room's choice: a round where every
@@ -8,8 +8,8 @@ import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
  */
 export const FEWEST_VOTES_TO_CHOOSE = 2
 
-/** What a ballot for the room's choice pays, a claim's price. */
-export const POINTS_FOR_VOTING_WITH_THE_ROOM = POINTS_FOR_A_CLAIM
+/** What a ballot for the room's choice pays: the whole round. */
+export const POINTS_FOR_VOTING_WITH_THE_ROOM = MOST_A_ROUND_PAYS
 
 /** How many ballots each seat drew, most first, the seats nobody voted for left out. */
 export const tallyBallots = (

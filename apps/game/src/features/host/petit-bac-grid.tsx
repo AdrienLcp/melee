@@ -4,7 +4,7 @@ import { ToggleButton } from 'react-aria-components'
 import type { PetitBacSettledLine } from '@melee/protocol/petit-bac'
 import type { PublicPlayer, RoundView } from '@melee/protocol/room'
 
-import { PETIT_BAC_POINTS } from '@melee/core/petitbac/sheet-pay'
+import { linePoints } from '@melee/core/petitbac/sheet-pay'
 import { answerGroupKey } from '@melee/core/round/answer-groups'
 
 import { petitBacCategoryId } from '@/features/player/petit-bac-sheet'
@@ -161,7 +161,12 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
           {translate('petitbac.reveal.outcome.unique')}
           <b>
             {translate('round.scored', {
-              points: shownPoints(PETIT_BAC_POINTS.unique)
+              points: shownPoints(
+                linePoints({
+                  categoryCount: categories.length,
+                  outcome: 'unique'
+                })
+              )
             })}
           </b>
         </span>
@@ -170,7 +175,12 @@ export const PetitBacGrid: React.FC<PetitBacGridProps> = ({
           {translate('petitbac.reveal.outcome.shared')}
           <b>
             {translate('round.scored', {
-              points: shownPoints(PETIT_BAC_POINTS.shared)
+              points: shownPoints(
+                linePoints({
+                  categoryCount: categories.length,
+                  outcome: 'shared'
+                })
+              )
             })}
           </b>
         </span>

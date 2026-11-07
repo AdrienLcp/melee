@@ -3,24 +3,33 @@ import type {
   PetitBacLetter,
   PetitBacLineOutcome
 } from '@melee/protocol/petit-bac'
-import { POINT } from '@melee/protocol/scoring'
 
 import { answerGroupKey, isBlankAnswer } from '../round/answer-groups'
+import { paidShare } from '../scoring/round-share'
 import { startsWithLetter } from './letter-match'
 
 /**
- * An answer nobody else wrote pays double one the table shared — 10 and 5 on
- * screen, the paper game's own figures. A line is not a round: at 2 and 1 a
- * six-category sheet paid up to 12 where a quiz question pays 2, and walked a
- * pawn a third of the way down the track in one go.
+ * What a line takes of its category's share of the sheet: an answer nobody
+ * else wrote takes all of it, one the table shared half — the paper game's own
+ * ratio. A line is not a round: the whole sheet is, so a six-category sheet
+ * pays what one quiz question does.
  */
-export const PETIT_BAC_POINTS = {
+export const PETIT_BAC_SHARES = {
   empty: 0,
   offLetter: 0,
   refused: 0,
-  shared: POINT / 2,
-  unique: POINT
+  shared: 1 / 2,
+  unique: 1
 } as const satisfies Record<PetitBacLineOutcome, number>
+
+/** What one line of this outcome pays on a sheet of `categoryCount` categories. */
+export const linePoints = ({
+  categoryCount,
+  outcome
+}: {
+  categoryCount: number
+  outcome: PetitBacLineOutcome
+}): number => paidShare(PETIT_BAC_SHARES[outcome] / categoryCount)
 
 /**
  * Every seat's outcome on one category. Uniqueness is counted over the answers
@@ -64,5 +73,16 @@ export const categoryOutcomes = ({
   return outcomes
 }
 
-export const sheetPoints = (outcomes: readonly PetitBacLineOutcome[]): number =>
-  outcomes.reduce((total, outcome) => total + PETIT_BAC_POINTS[outcome], 0)
+export const sheetPoints = ({
+  categoryCount,
+  outcomes
+}: {
+  /** Every category the sheet holds, counted or not yet: what its share is cut from. */
+  categoryCount: number
+  /** The outcomes of the categories counted so far. */
+  outcomes: readonly PetitBacLineOutcome[]
+}): number =>
+  paidShare(
+    outcomes.reduce((total, outcome) => total + PETIT_BAC_SHARES[outcome], 0) /
+      categoryCount
+  )

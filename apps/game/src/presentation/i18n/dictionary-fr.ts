@@ -74,18 +74,18 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Temps par manche',
     scoring:
-      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 30 points, à moins de 500 km de sa frontière 20, à moins de 1 500 km 10.',
+      'Tout le monde pose son pion en même temps. Dans le pays, ça rapporte 100 points, puis de moins en moins jusqu’à rien à 1 500 km de sa frontière — plus c’est près, plus ça paie.',
     scoringCapitals:
-      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 30 points, à moins de 300 km 20, à moins de 1 000 km 10.',
+      'Tout le monde pose son pion en même temps. À moins de 100 km de la capitale, ça rapporte 100 points, puis de moins en moins jusqu’à rien à 1 000 km.',
     scoringCities:
-      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 30 points, à moins de 75 km 20, à moins de 150 km 10.',
+      'Tout le monde pose son pion en même temps, sur la carte de France. À moins de 25 km de la ville, ça rapporte 100 points, puis de moins en moins jusqu’à rien à 150 km.',
     scoringMixed:
-      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 30 points.',
+      'Tout le monde pose son pion en même temps — un pays, une capitale ou une ville de France, selon la manche. Plus ton pion est près, plus il rapporte, jusqu’à 100 points.',
     scoringName: {
       choice:
-        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte 10 points.',
+        'La carte montre un lieu et propose quatre noms, à tout le monde en même temps. Le bon rapporte 100 points.',
       typed:
-        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 30 points.'
+        'La carte montre un lieu et chacun tape son nom en même temps. Le bon nom rapporte 100 points.'
     },
     tagline: 'Un lieu. Pose ton pion dessus, ou nomme-le.'
   },
@@ -133,11 +133,11 @@ export const FR_DICTIONARY = defineDictionary({
     othersLooking: 'Les autres cherchent encore.',
     play: 'Jouer à Case noire',
     scoring:
-      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 10 points, le suivant 20, le dernier 30. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+      'Jusqu’à neuf réponses sont cachées, et la grille vaut 100 points partagés entre elles : le tiers le plus connu compte une part chacune, le suivant deux, le dernier trois. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringLoneFinds:
-      'Jusqu’à neuf réponses sont cachées : le tiers le plus connu rapporte 10 points, le suivant 20, le dernier 30, et le double si personne d’autre ne la trouve. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+      'Jusqu’à neuf réponses sont cachées, et la grille vaut 100 points partagés entre elles : le tiers le plus connu compte une part chacune, le suivant deux, le dernier trois, et une réponse que personne d’autre ne trouve compte double — la grille plafonne toujours à 100. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringSpoken:
-      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche : le tiers le plus connu rapporte 10 points, le suivant 20, le dernier 30. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
+      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche. La grille vaut 100 points partagés entre ses réponses : le tiers le plus connu compte une part chacune, le suivant deux, le dernier trois. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
     spoken: {
       blackWord: {
         ask: 'Ils l’ont dit ? Leur manche s’arrête et ne vaut plus rien.',
@@ -244,23 +244,23 @@ export const FR_DICTIONARY = defineDictionary({
     },
     scoring: {
       buzzer:
-        'Le premier qui buzze répond à voix haute. L’hôte juge le titre et l’artiste, 10 points chacun — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
+        'Le premier qui buzze répond à voix haute. L’hôte juge le titre et l’artiste, 40 points chacun et 100 pour les deux — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       choice:
-        'Quatre propositions sur le même extrait, et tout le monde répond. La bonne rapporte 10 points.',
+        'Quatre propositions sur le même extrait, et tout le monde répond. La bonne rapporte 100 points.',
       typed:
-        'Tout le monde tape, sur le même extrait. Titre et artiste rapportent 10 points chacun, les deux ensemble 30.'
+        'Tout le monde tape, sur le même extrait. Titre ou artiste seul rapporte 40 points, les deux ensemble 100.'
     },
     scoringFilm: {
       buzzer:
-        'Le premier qui buzze répond à voix haute. L’hôte juge le film et le compositeur, 10 points chacun — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
+        'Le premier qui buzze répond à voix haute. L’hôte juge le film et le compositeur, 40 points chacun et 100 pour les deux — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       typed:
-        'Tout le monde tape, sur le même extrait. Film et compositeur rapportent 10 points chacun, les deux ensemble 30.'
+        'Tout le monde tape, sur le même extrait. Film ou compositeur seul rapporte 40 points, les deux ensemble 100.'
     },
     scoringMixed: {
       buzzer:
-        'Le premier qui buzze répond à voix haute : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. L’hôte juge chacun, 10 points pièce — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
+        'Le premier qui buzze répond à voix haute : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. L’hôte juge chacun, 40 points pièce et 100 pour les deux — une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       typed:
-        'Tout le monde tape, sur le même extrait : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. Chacun rapporte 10 points, les deux ensemble 30.'
+        'Tout le monde tape, sur le même extrait : le titre et l’artiste, ou le film et le compositeur quand c’est une musique de film. L’un des deux seul rapporte 40 points, les deux ensemble 100.'
     },
     source: {
       catalogue: 'Le catalogue',
@@ -333,7 +333,7 @@ export const FR_DICTIONARY = defineDictionary({
       strategy: {
         hint: {
           onePointOneCase:
-            'Une case par tranche de 10 points gagnés dans la manche.',
+            'Une case par tranche de 30 points gagnés dans la manche.',
           rank: 'Le premier de la manche avance de 3 cases, le deuxième de 2, le troisième de 1.'
         },
         label: 'Les pions avancent',
@@ -372,7 +372,7 @@ export const FR_DICTIONARY = defineDictionary({
     play: 'Jouer au Buzzer',
     running: 'Pose ta question',
     scoring:
-      'Le plus rapide répond à voix haute, et l’hôte dit si c’est bon. 10 points si c’est juste — et une mauvaise réponse te met hors-jeu jusqu’à ce qu’il te remette en jeu.',
+      'Le plus rapide répond à voix haute, et l’hôte dit si c’est bon. 100 points si c’est juste — et une mauvaise réponse te met hors-jeu jusqu’à ce qu’il te remette en jeu.',
     tagline: 'Tes questions, et une course au buzz.'
   },
   challenge: {
@@ -419,7 +419,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     play: 'Jouer au Défi',
     scoring:
-      'Ça se joue à table. L’hôte classe les trois premiers : 30 points au premier, 20 au deuxième, 10 au troisième — une égalité partage la place.',
+      'Ça se joue à table. L’hôte classe les trois premiers : 100 points au premier, 67 au deuxième, 33 au troisième — une égalité partage la place.',
     tagline: 'Joué à table, compté au tableau.',
     untitled: 'Défi à table'
   },
@@ -542,7 +542,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Temps pour estimer',
     scoring:
-      'Une question dont la réponse est un nombre, et chacun tape son estimation. Les trois plus proches marquent 30, 20 et 10 points ; à dix fois la réponse ou plus, rien. Pas de bonus de vitesse.',
+      'Une question dont la réponse est un nombre, et chacun tape son estimation. Pile juste, ça rapporte 100 points, puis de moins en moins jusqu’à rien à trois fois d’écart, dans un sens comme dans l’autre — plus c’est près, plus ça paie. Pas de bonus de vitesse.',
     tagline: 'Personne ne sait. Qui tombe le plus près ?',
     unitNames: {
       kilometres: 'km',
@@ -586,7 +586,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Temps pour choisir',
     scoring:
-      'Deux choses du même genre — deux villes, deux fleuves, deux sommets — et tu choisis la plus grande. Un bon choix rapporte 10 points.',
+      'Deux choses du même genre — deux villes, deux fleuves, deux sommets — et tu choisis la plus grande. Le bon choix rapporte 100 points.',
     tagline: 'Deux noms. Lequel est le plus grand ?'
   },
   home: {
@@ -1057,8 +1057,8 @@ export const FR_DICTIONARY = defineDictionary({
     skipRound: 'Passer cette manche',
     speedBonus: {
       hint: {
-        off: 'Seule la bonne réponse compte : répondre vite ne rapporte rien de plus.',
-        on: 'Une bonne réponse rapide rapporte jusqu’au double.'
+        off: 'Seule la bonne réponse compte : elle rapporte les 100 points.',
+        on: 'Une bonne réponse rapporte 90, et répondre tôt ajoute jusqu’à 10.'
       },
       label: 'Bonus de vitesse',
       summaryOff: 'sans bonus de vitesse'
@@ -1135,7 +1135,7 @@ export const FR_DICTIONARY = defineDictionary({
       before: 'Compte jusqu’à'
     },
     scoring:
-      'Compte dans ta tête et appuie une fois. 30 points pile à l’heure, rien à un quart du compte d’écart — plus c’est près, plus ça paie.',
+      'Compte dans ta tête et appuie une fois. 100 points pile à l’heure, rien à un quart du compte d’écart — plus c’est près, plus ça paie.',
     silent: 'n’a pas appuyé',
     tagline: 'Compte dans ta tête. Arrête-toi pile.',
     target: {
@@ -1332,7 +1332,7 @@ export const FR_DICTIONARY = defineDictionary({
     numberRule: {
       buzzer:
         'Seul le meilleur nombre compte. Un nombre ne commence jamais par 0.',
-      move: 'Le meilleur nombre vaut 30, les deux suivants 20 et 10. Un nombre ne commence jamais par 0.'
+      move: 'Un nombre ne commence jamais par 0.'
     },
     play: 'Jouer aux Allumettes',
     reveal: {
@@ -1345,9 +1345,9 @@ export const FR_DICTIONARY = defineDictionary({
       yours: 'Ton coup :'
     },
     scoring:
-      'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — 10 points s’il a raison.',
+      'Une allumette à déplacer. Le premier à buzzer dit son coup à voix haute, et l’hôte tranche — 100 points s’il a raison.',
     scoringMove:
-      'Une allumette à déplacer, tout le monde en même temps. La bonne réponse vaut 30 points — sur un nombre, la suivante 20 et la troisième 10.',
+      'Une allumette à déplacer, tout le monde en même temps. La bonne réponse vaut 100 points — sur un nombre, la suivante 67 et la troisième 33.',
     tagline: 'Une allumette bouge. Trouve laquelle.'
   },
   menu: {
@@ -1404,7 +1404,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     roundDuration: 'Temps pour voter',
     scoring:
-      'Une phrase sur l’un de vous s’affiche et chacun vote pour quelqu’un, soi-même compris. Vote comme la table et tu marques 10 points. Pas de bonus de vitesse.',
+      'Une phrase sur l’un de vous s’affiche et chacun vote pour quelqu’un, soi-même compris. Vote comme la table et tu marques 100 points. Pas de bonus de vitesse.',
     tagline: 'Une phrase, l’un de vous. C’est qui ?'
   },
   navigation: {
@@ -1509,7 +1509,7 @@ export const FR_DICTIONARY = defineDictionary({
       title: 'Ta feuille'
     },
     scoring:
-      'Une lettre, un mot par catégorie. La table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte 20 points, une réponse partagée 10.',
+      'Une lettre, un mot par catégorie. La grille vaut 100 points, partagés à parts égales entre ses catégories, et la table vote sur chaque réponse : celle que personne d’autre n’a écrite rapporte toute sa part, une réponse partagée la moitié.',
     setup: {
       add: 'Ajouter',
       bank: 'Toutes prêtes',
@@ -1676,11 +1676,11 @@ export const FR_DICTIONARY = defineDictionary({
     },
     scoring: {
       buzzer:
-        'Le premier qui buzze répond à voix haute, et l’hôte dit si c’est bon. 10 points si c’est juste — et une mauvaise réponse te met hors-jeu pour le reste de la manche.',
+        'Le premier qui buzze répond à voix haute, et l’hôte dit si c’est bon. 100 points si c’est juste — et une mauvaise réponse te met hors-jeu pour le reste de la manche.',
       choice:
-        'Quatre propositions, et tout le monde répond en même temps. La bonne rapporte 10 points.',
+        'Quatre propositions, et tout le monde répond en même temps. La bonne rapporte 100 points.',
       typed:
-        'Tout le monde tape sa réponse en même temps. La bonne rapporte 30 points.'
+        'Tout le monde tape sa réponse en même temps. La bonne rapporte 100 points.'
     },
     silhouette: {
       alt: 'La forme du pays à reconnaître'
@@ -1752,7 +1752,7 @@ export const FR_DICTIONARY = defineDictionary({
     pressed: 'C’est pris.',
     reaction: '{milliseconds:number} ms',
     scoring:
-      'L’écran change, et le plus rapide prend les 10 points. Pars avant qu’il change et tu passes la manche sur le banc.',
+      'L’écran change, et le plus rapide prend les 100 points. Pars avant qu’il change et tu passes la manche sur le banc.',
     tagline: 'L’écran change. Le plus rapide gagne.',
     tooEarly: 'parti trop tôt',
     waiting: 'Guette l’écran.'
@@ -1793,7 +1793,8 @@ export const FR_DICTIONARY = defineDictionary({
     overallStandings: 'Classement général',
     scored: '+{points:number}',
     speedBonus: 'dont {points:number} pour la vitesse',
-    speedRule: 'Plus tu réponds tôt, plus la montre ajoute — jusqu’au double.',
+    speedRule:
+      'Sur la montre, une bonne réponse garde 90 points, et répondre tôt ajoute jusqu’à 10 de plus.',
     thisRound: 'Cette manche',
     unsent: 'Pas envoyé : pris tel quel sur ton écran.',
     unsentSeats: 'Pas envoyé, pris tel quel sur l’écran : {names}'
@@ -1825,7 +1826,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     home: {
       description:
-        'Des choses numérotées à deviner — des verres à goûter, des photos, des prix — et chacun écrit sur une feuille que personne ne voit, dans l’ordre qu’il veut. Puis l’hôte corrige les copies numéro par numéro, et chaque réponse qu’il accepte vaut 10 points.'
+        'Des choses numérotées à deviner — des verres à goûter, des photos, des prix — et chacun écrit sur une feuille que personne ne voit, dans l’ordre qu’il veut. Puis l’hôte corrige les copies numéro par numéro, et chaque réponse qu’il accepte rapporte sa part des 100 points de la feuille.'
     },
     item: 'N° {index:number}',
     itemOf: 'N° {index:number} sur {count:number}',
@@ -1872,7 +1873,7 @@ export const FR_DICTIONARY = defineDictionary({
     },
     progress: '{filled:number}/{count:number}',
     scoring:
-      'Chacun remplit sa feuille sans rien montrer, puis l’hôte corrige : 10 points par réponse qu’il accepte.',
+      'Chacun remplit sa feuille sans rien montrer, puis l’hôte corrige chaque réponse. La feuille vaut 100 points, partagés à parts égales entre ses numéros.',
     sheet: {
       blank: 'Rien écrit',
       closedBeforeYou: 'Ramassé avant ton arrivée',
@@ -1930,7 +1931,7 @@ export const FR_DICTIONARY = defineDictionary({
       yoursUnsent: 'La tienne, prise où était ton curseur'
     },
     scoring:
-      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 30 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas envoyée à temps, ta couleur compte là où est ton curseur. Pas de bonus de vitesse.',
+      'Une couleur s’affiche, disparaît, et tu la refais. Pile dessus, c’est 100 points, et ça descend jusqu’à rien plus tu t’en éloignes. Pas envoyée à temps, ta couleur compte là où est ton curseur. Pas de bonus de vitesse.',
     showDuration: 'Couleur affichée',
     tagline: 'Une couleur, quelques secondes. Refais-la.'
   },
@@ -2068,7 +2069,7 @@ export const FR_DICTIONARY = defineDictionary({
       yours: 'Ton ordre'
     },
     scoring:
-      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 30 points, une paire inversée 20, deux paires 10.',
+      'Cinq événements à remettre dans l’ordre, du plus ancien au plus récent. Tout juste vaut 100 points, une paire inversée 67, deux paires 33.',
     tagline: 'Cinq événements. Lequel d’abord ?'
   },
   wall: {

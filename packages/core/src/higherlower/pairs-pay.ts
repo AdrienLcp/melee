@@ -1,17 +1,16 @@
 import { HIGHER_LOWER_PAIR_COUNT } from '@melee/protocol/higher-lower'
-import {
-  type PairsVerdict,
-  POINTS_FOR_A_RIGHT_CHOICE
-} from '@melee/protocol/scoring'
+import type { PairsVerdict } from '@melee/protocol/scoring'
+
+import { paidShare } from '../scoring/round-share'
 
 /**
- * A pick's price per pair picked the right way: each pair is a choice of two,
- * so it is paid as one, and the clock adds to the whole sheet on top.
+ * A sheet's share per pair picked the right way: its pairs are one round
+ * together, and the clock takes its share of the whole sheet.
  */
 export const pointsForPairs = ({
   rightPairs
 }: Pick<PairsVerdict, 'rightPairs'>): number =>
-  rightPairs * POINTS_FOR_A_RIGHT_CHOICE
+  paidShare(rightPairs / HIGHER_LOWER_PAIR_COUNT)
 
 export const isWholeSheetRight = ({
   rightPairs

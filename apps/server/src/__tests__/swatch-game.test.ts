@@ -9,7 +9,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   type PlayerServerMessage,
   type WallServerMessage,
@@ -263,10 +263,10 @@ describe('a shades round through the seam', () => {
     })
 
     expect(awardOf(zoeId)?.verdict).toEqual({ distance: 0, kind: 'colour' })
-    expect(basePointsFor({ playerId: zoeId, view })).toBe(3 * POINT)
+    expect(basePointsFor({ playerId: zoeId, view })).toBe(MOST_A_ROUND_PAYS)
     expect(basePointsFor({ playerId: maxId, view })).toBe(nearPays)
     expect(nearPays).toBeGreaterThan(0)
-    expect(nearPays).toBeLessThan(3 * POINT)
+    expect(nearPays).toBeLessThan(MOST_A_ROUND_PAYS)
     expect(awardOf(zoeId)?.speedBonus).toBe(0)
     expect(awardOf(maxId)?.speedBonus).toBe(0)
 
@@ -316,7 +316,7 @@ describe('a shades round through the seam', () => {
 
     expect(awardOf(zoeId)).toMatchObject({
       isUnsent: true,
-      points: 3 * POINT,
+      points: MOST_A_ROUND_PAYS,
       speedBonus: 0,
       verdict: { distance: 0, kind: 'colour' }
     })

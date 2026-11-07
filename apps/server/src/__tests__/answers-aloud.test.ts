@@ -9,11 +9,13 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import type { HostServerMessage } from '@melee/protocol/server-message'
 import { playerServerMessageSchema } from '@melee/protocol/server-message'
 import type { TeamVerdict } from '@melee/protocol/team'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
+
+import { pointsForPlace } from '@melee/core/challenge/place-pay'
 
 import { startRoomHarness } from './node-room-harness'
 import {
@@ -107,7 +109,7 @@ describe('a table answering aloud', () => {
     })
 
     expect(hostView(host)?.phase).toBe('revealed')
-    expect(scoresOf(host)).toEqual([POINTS_FOR_A_CLAIM, 0, POINTS_FOR_A_CLAIM])
+    expect(scoresOf(host)).toEqual([MOST_A_ROUND_PAYS, 0, MOST_A_ROUND_PAYS])
   })
 
   it('[aloud] replaces the verdict when the host corrects it on the reveal', async () => {
@@ -124,7 +126,7 @@ describe('a table answering aloud', () => {
       verdicts: [{ teamId: 'team-2', verdict: HAD_IT }]
     })
 
-    expect(scoresOf(host)).toEqual([0, POINTS_FOR_A_CLAIM, 0])
+    expect(scoresOf(host)).toEqual([0, MOST_A_ROUND_PAYS, 0])
   })
 
   it('[aloud] banks a round once the next one opens', async () => {
@@ -141,7 +143,7 @@ describe('a table answering aloud', () => {
       'the next question'
     )
 
-    expect(scoresOf(host)).toEqual([0, POINTS_FOR_A_CLAIM, 0])
+    expect(scoresOf(host)).toEqual([0, MOST_A_ROUND_PAYS, 0])
   })
 
   it('[aloud] refuses a verdict in a shape the game is not judged in', async () => {
@@ -179,7 +181,7 @@ describe('a table answering aloud', () => {
       type: 'host.awardPlaces'
     })
 
-    expect(scoresOf(host)).toEqual([2_000, 0, 3_000])
+    expect(scoresOf(host)).toEqual([pointsForPlace(2), 0, pointsForPlace(1)])
   })
 
   it('[aloud] turns a phone away without closing its socket', async () => {

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { isPerfectOrder, pointsForOrder, swappedPairsOf } from './order-pay'
 
@@ -34,14 +34,14 @@ describe('how far an order is from the true one', () => {
 })
 
 describe('what an order earns', () => {
-  it('[timeline] pays the typed answer’s price for the true order', () => {
-    expect(pointsForOrder({ swappedPairs: 0 })).toBe(3 * POINT)
+  it('[timeline] pays the whole round for the true order', () => {
+    expect(pointsForOrder({ swappedPairs: 0 })).toBe(MOST_A_ROUND_PAYS)
     expect(isPerfectOrder({ swappedPairs: 0 })).toBe(true)
   })
 
   it('[timeline] still pays a near miss, less the further it is', () => {
-    expect(pointsForOrder({ swappedPairs: 1 })).toBe(2 * POINT)
-    expect(pointsForOrder({ swappedPairs: 2 })).toBe(POINT)
+    expect(pointsForOrder({ swappedPairs: 1 })).toBe(66_667)
+    expect(pointsForOrder({ swappedPairs: 2 })).toBe(33_333)
     expect(isPerfectOrder({ swappedPairs: 1 })).toBe(false)
   })
 

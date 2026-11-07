@@ -8,7 +8,7 @@ import {
   type RoomSettings,
   type RoundContent
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   type HostServerMessage,
   type PlayerServerMessage,
@@ -42,20 +42,29 @@ vi.mock('@melee/core/petitbac/letter-draw', async (importOriginal) => ({
   drawLetter: () => 'B'
 }))
 
+const PETIT_BAC_CATEGORIES = [
+  { kind: 'own' as const, label: 'A country' },
+  { kind: 'own' as const, label: 'An animal' },
+  { kind: 'own' as const, label: 'A first name' }
+]
+
 const PETIT_BAC: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
   game: {
     ...DEFAULT_PETIT_BAC_SETTINGS,
-    categories: [
-      { kind: 'own', label: 'A country' },
-      { kind: 'own', label: 'An animal' },
-      { kind: 'own', label: 'A first name' }
-    ]
+    categories: PETIT_BAC_CATEGORIES
   },
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 3
 }
+
+const UNIQUE = 1
+const SHARED = 1 / 2
+
+/** A sheet's share of the round: each category a word nobody else wrote fills whole, a shared one by half. */
+const sheetPays = (filled: number) =>
+  Math.round((MOST_A_ROUND_PAYS * filled) / PETIT_BAC_CATEGORIES.length)
 
 const petitBacRound = (
   view: { round: { content: RoundContent } | null } | null
@@ -516,11 +525,11 @@ describe('a Petit Bac round through the seam', () => {
       )?.points
 
     // Zoe: Belgique shared, Baleine shared, Bastien unique.
-    expect(pointsOf(zoe)).toBe(2 * POINT)
+    expect(pointsOf(zoe)).toBe(sheetPays(SHARED + SHARED + UNIQUE))
     // Max: belgique shared, Bison unique, Bruno unique.
-    expect(pointsOf(max)).toBe(2.5 * POINT)
+    expect(pointsOf(max)).toBe(sheetPays(SHARED + UNIQUE + UNIQUE))
     // Lea: Brésil unique, Baleine shared, Xavier off the letter.
-    expect(pointsOf(lea)).toBe(1.5 * POINT)
+    expect(pointsOf(lea)).toBe(sheetPays(UNIQUE + SHARED))
 
     const firstNames = petitBacRound(playerView(lea))?.lines[2]
 
@@ -595,12 +604,15 @@ describe('a Petit Bac round through the seam', () => {
       hostView(host)?.players.find(({ id }) => id === idOf(seat))?.score
 
     // Zoe: Belgique struck, Baleine shared, Bastien unique.
-    expect(pointsOf(zoe)).toBe(1.5 * POINT)
+    expect(pointsOf(zoe)).toBe(sheetPays(SHARED + UNIQUE))
 
     strike({ categoryIndex: 2, rowKey: 'bastien' })
-    await waitFor(() => pointsOf(zoe) === POINT / 2, 'the reveal to pay again')
+    await waitFor(
+      () => pointsOf(zoe) === sheetPays(SHARED),
+      'the reveal to pay again'
+    )
 
-    expect(scoreOf(zoe)).toBe(POINT / 2)
+    expect(scoreOf(zoe)).toBe(sheetPays(SHARED))
     expect(
       petitBacRound(playerView(zoe))?.lines[2]?.find(
         ({ playerId }) => playerId === idOf(zoe)
@@ -609,11 +621,11 @@ describe('a Petit Bac round through the seam', () => {
 
     strike({ categoryIndex: 2, isStruck: false, rowKey: 'bastien' })
     await waitFor(
-      () => pointsOf(zoe) === 1.5 * POINT,
+      () => pointsOf(zoe) === sheetPays(SHARED + UNIQUE),
       'the word put back to pay again'
     )
 
-    expect(scoreOf(zoe)).toBe(1.5 * POINT)
+    expect(scoreOf(zoe)).toBe(sheetPays(SHARED + UNIQUE))
 
     strike({ categoryIndex: 2, rowKey: 'nobody-wrote-this' })
     await waitFor(

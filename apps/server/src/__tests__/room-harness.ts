@@ -18,7 +18,12 @@ import {
   fillRoute,
   ROOM_SOCKET_ROUTE
 } from '@melee/protocol/routes'
-import type { HalvesVerdict, Verdict } from '@melee/protocol/scoring'
+import {
+  type HalvesVerdict,
+  MOST_A_ROUND_PAYS,
+  MOST_THE_CLOCK_PAYS,
+  type Verdict
+} from '@melee/protocol/scoring'
 import {
   type HostServerMessage,
   hostServerMessageSchema,
@@ -318,7 +323,8 @@ export const playerView = (player: Peer<PlayerServerMessage>) => {
  * What a round paid a player for the answer itself, with the clock's share
  * taken back off. Every rate in the product is asserted through this rather
  * than against a total: the speed bonus falls with real elapsed time, so a
- * total is a number that depends on how loaded the machine was.
+ * total is a number that depends on how loaded the machine was. In a room that
+ * pays for speed it is `answerShareOf` what the answer earned.
  */
 export const basePointsFor = ({
   playerId,
@@ -333,6 +339,13 @@ export const basePointsFor = ({
 
   return award === undefined ? null : award.points - award.speedBonus
 }
+
+/**
+ * What an answer earning `earned` keeps of it in a round the clock pays: the
+ * clock's tenth is cut from it, and paid back only by being fast.
+ */
+export const answerShareOf = (earned: number) =>
+  Math.round(earned * (1 - MOST_THE_CLOCK_PAYS / MOST_A_ROUND_PAYS))
 
 /**
  * The blind test's arm of a view's round, or `null` when the room is on another

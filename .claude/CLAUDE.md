@@ -28,8 +28,8 @@ shows a colour for a few seconds and has every screen rebuild it, paid by how
 far off it lands, and **Most likely** puts up a line about one of the people
 at the table — never about the moment — that everyone votes on with a seat,
 the ballots that went with the room paid, and **Le juste chiffre** asks for a
-number — a population, a height, a length — that every screen estimates, the
-closest three paid by place, and **Plus ou moins** deals one pair a round of
+number — a population, a height, a length — that every screen estimates, each
+paid by how close it lands, and **Plus ou moins** deals one pair a round of
 those numbers — two rivers, two cities — and pays every right pick.
 
 A phone is the common case, not the contract: the room code is displayed to be
@@ -232,25 +232,28 @@ which is why a user-visible string written into a component is a bug — see
   host); a game with an answer of its own shape takes a mode of its own —
   `point` on the map, `order` on the timeline, `move` for a matchstick, and
   `spoken` for black square said by one team and ticked by a keeper of another.
-  All but `buzzer` and `spoken` are everyone at once, decided by the server and scored
-  by the clock on top of being right — `MOST_A_SPEED_BONUS_PAYS` at nought,
-  falling linearly to nothing when the round runs out, on a board counted in
-  `POINT`s of a thousand so the clock separates players by the millisecond:
-  of three quick answers inside one second, the first is paid the most — unless
-  the room's `paysForSpeed` is off, stamped on the round as it opens, for a
-  table of children beside grandparents where being right is the game; typing
-  pays 3 for the pair where a right pick pays 1, because producing an answer
-  from nothing is not recognising it among four. A banked question that is only
+  All but `buzzer` and `spoken` are everyone at once and decided by the server.
+  **Every round of every game pays at most `MOST_A_ROUND_PAYS`, 100 printed
+  points** — a sheet is one round and its items share them, and typing pays
+  what a pick does, because a room plays one mode and a typed answer worth
+  three picks only made one game worth more than another. **The answer comes
+  first and the clock settles near-ties**: a clocked answer keeps nine tenths
+  of what it earned and the clock pays the last tenth (`MOST_THE_CLOCK_PAYS`,
+  `clockedPay`), falling linearly to nothing when the round runs out, on a
+  board counted in `POINT`s of a thousand to the printed point so the clock
+  separates players by the millisecond: of three quick answers inside one
+  second, the first is paid the most. The share scales with what the answer
+  earned, so speed only reverses two answers within ten points and a wrong one
+  earns none — unless the room's `paysForSpeed` is off, stamped on the round as
+  it opens, for a table of children beside grandparents where being right is
+  the game, and the answer alone then pays the whole hundred. A banked question that is only
   a question beside its own decoys — _which country drives on the left?_ answers
   Japan, and seventy others — carries `choiceOnly` and is dealt to a `choice`
   room alone; the column is a census read row by row, because no rule finds
   one — save the one rubric that _is_ a single riddle shape, where the source
-  says so for all 114 of its rows at once.
-  **The clock never pays more
-  than the answer did** — its amplitude is the lower of the two, so being fast
-  doubles a score at most, and the console prints the two halves apart
-  (`20 +15`, every figure a screen prints being the board's divided by a
-  hundred) rather than their total. It stays a _room_ setting the
+  says so for all 114 of its rows at once. The console prints the two halves
+  of a clocked answer apart (`90 +7`, every figure a screen prints being the
+  board's divided by `POINT`) rather than their total. It stays a _room_ setting the
   game narrows — the bare buzzer and the reflex race offer only `buzzer`, and a
   frame setting anything else is refused
 - **Guess** — one typed line. Each half is looked for _inside_ it over runs of

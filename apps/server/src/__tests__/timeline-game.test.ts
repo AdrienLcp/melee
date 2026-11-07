@@ -9,7 +9,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   type WallServerMessage,
   wallServerMessageSchema
@@ -18,6 +18,7 @@ import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  answerShareOf,
   basePointsFor,
   errorsIn,
   hostView,
@@ -180,8 +181,12 @@ describe('a timeline round through the seam', () => {
 
     expect(verdictOf(zoeId)).toEqual({ kind: 'order', swappedPairs: 0 })
     expect(verdictOf(maxId)).toEqual({ kind: 'order', swappedPairs: 1 })
-    expect(basePointsFor({ playerId: zoeId, view })).toBe(3 * POINT)
-    expect(basePointsFor({ playerId: maxId, view })).toBe(2 * POINT)
+    expect(basePointsFor({ playerId: zoeId, view })).toBe(
+      answerShareOf(MOST_A_ROUND_PAYS)
+    )
+    expect(basePointsFor({ playerId: maxId, view })).toBe(
+      answerShareOf(Math.round((MOST_A_ROUND_PAYS * 2) / 3))
+    )
   })
 
   it('[timeline] pays an order moved and never sent as it stood, with no speed bonus', async () => {
@@ -221,7 +226,7 @@ describe('a timeline round through the seam', () => {
       hostView(host)?.round?.awards.find(({ playerId }) => playerId === zoeId)
     ).toMatchObject({
       isUnsent: true,
-      points: 3 * POINT,
+      points: answerShareOf(MOST_A_ROUND_PAYS),
       speedBonus: 0,
       verdict: { kind: 'order', swappedPairs: 0 }
     })

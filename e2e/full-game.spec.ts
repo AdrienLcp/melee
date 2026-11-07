@@ -55,6 +55,6 @@ test('[e2e] a room, a scan, a buzz, a verdict and a point', async ({
   await host.verdictBoth.click()
 
   await expect(screen.getByText(answer)).toBeVisible()
-  await expect(player.scored(2)).toBeVisible()
-  await expect(host.rowFor(NICKNAME)).toContainText('+2')
+  await expect(player.scored(100)).toBeVisible()
+  await expect(host.rowFor(NICKNAME)).toContainText('+100')
 })

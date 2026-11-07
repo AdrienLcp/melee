@@ -13,7 +13,7 @@ export type PawnId = PlayerId | TeamId
 
 export type PawnRoundResult = {
   pawnId: PawnId
-  /** What the round paid the pawn, in the board's units — a thousand to the `POINT`. */
+  /** What the round paid the pawn, in the board's units — a thousand to the `POINT`, a hundred `POINT`s at most. */
   points: number
 }
 

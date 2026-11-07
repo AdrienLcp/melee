@@ -9,7 +9,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   type WallServerMessage,
   wallServerMessageSchema
@@ -69,6 +69,18 @@ vi.mock('@/infrastructure/questions/black-square-bank', () => ({
     playedIds.has('blacksquare:planets') ? null : THEME,
   playedBlackSquareThemeId: (id: string) => `blacksquare:${id}`
 }))
+
+/** Nine answers in thirds by how read they are, the least read weighing three times the most: 3 × 1 + 3 × 2 + 3 × 3. */
+const FULL_SHEET_WEIGHT = 18
+
+/** What a sheet holding `found` of the weight `outOf` is paid: its share of the round. */
+const sheetPays = ({
+  found,
+  outOf = FULL_SHEET_WEIGHT
+}: {
+  found: number
+  outOf?: number
+}) => Math.round((MOST_A_ROUND_PAYS * found) / outOf)
 
 const BLACK_SQUARE: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
@@ -286,7 +298,10 @@ describe('a black-square round through the seam', () => {
 
     expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['already_buzzed'])
     expect(awardOf(zoeId)?.points).toBe(0)
-    expect(awardOf(maxId)).toMatchObject({ points: POINT, speedBonus: 0 })
+    expect(awardOf(maxId)).toMatchObject({
+      points: sheetPays({ found: 1 }),
+      speedBonus: 0
+    })
   })
 
   it('[blacksquare] deals the most read five when the host asks for five, and closes the sheet on them', async () => {
@@ -337,7 +352,10 @@ describe('a black-square round through the seam', () => {
       hostView(host)?.round?.awards.find(
         (award) => award.playerId === playerView(zoe)?.youId
       )
-    ).toMatchObject({ points: 9 * POINT, speedBonus: 0 })
+    ).toMatchObject({
+      points: sheetPays({ found: 1 + 2 + 3 + 3 }),
+      speedBonus: 0
+    })
   })
 
   it('[blacksquare] pays double a cell one seat alone found, when the room plays nobody else had it', async () => {
@@ -365,8 +383,15 @@ describe('a black-square round through the seam', () => {
         (award) => award.playerId === playerView(seat)?.youId
       )?.points
 
-    expect(pointsOf(zoe)).toBe((1 + 2 * 3) * POINT)
-    expect(pointsOf(max)).toBe(POINT)
+    // Neptune, found by Zoe alone, weighs double on her sheet, found and
+    // whole alike; Max's sheet, which never held it, is a share of the plain
+    // weight. Mercury, which both found, weighs single for both.
+    expect(pointsOf(zoe)).toBe(
+      sheetPays({ found: 1 + 2 * 3, outOf: FULL_SHEET_WEIGHT + 3 })
+    )
+    expect(pointsOf(max)).toBe(
+      sheetPays({ found: 1, outOf: FULL_SHEET_WEIGHT })
+    )
     expect(blackSquareRound(hostView(host))?.revealed?.doublesLoneFinds).toBe(
       true
     )
@@ -538,10 +563,13 @@ describe('a spoken black-square round through the seam', () => {
     expect(
       view?.round?.awards.map(({ playerId, points }) => [playerId, points])
     ).toEqual([
-      [playerView(anna)?.youId, 6 * POINT],
-      [playerView(ben)?.youId, 6 * POINT]
+      [playerView(anna)?.youId, sheetPays({ found: 1 + 2 + 3 })],
+      [playerView(ben)?.youId, sheetPays({ found: 1 + 2 + 3 })]
     ])
-    expect(view?.teams.map(({ score }) => score)).toEqual([6 * POINT, 0])
+    expect(view?.teams.map(({ score }) => score)).toEqual([
+      sheetPays({ found: 1 + 2 + 3 }),
+      0
+    ])
     expect(revealed?.answers[3]?.foundBy).toEqual([
       playerView(anna)?.youId,
       playerView(ben)?.youId
@@ -561,7 +589,7 @@ describe('a spoken black-square round through the seam', () => {
 
     expect(errorsIn(carl).map(({ code }) => code)).toEqual(['invalid_message'])
     expect(hostView(host)?.teams.map(({ score }) => score)).toEqual([
-      6 * POINT,
+      MOST_A_ROUND_PAYS,
       0
     ])
   })

@@ -1,8 +1,7 @@
 import { Result } from '@adrienlcp/result'
 
-import type { BoardPosition } from '@melee/protocol/board'
+import { type BoardPosition, POINTS_PER_CASE } from '@melee/protocol/board'
 import type { PlayerId } from '@melee/protocol/identifiers'
-import { POINT } from '@melee/protocol/scoring'
 import {
   DEFAULT_TEAMS_SETTINGS,
   MIN_TEAMS,
@@ -264,7 +263,7 @@ export const renameTeam = ({
  * read across a room.
  *
  * On a track a team's adjustment walks its pawn too, a case for each whole
- * `POINT`, which is how the host corrects a move under the reveal — one
+ * `POINTS_PER_CASE`, which is how the host corrects a move under the reveal — one
  * correction for the two, so the pawn and the score never tell different
  * stories.
  */
@@ -495,7 +494,16 @@ export const bankRound = (room: Room): void => {
 }
 
 /**
- * A host's correction walks the pawn a case per `POINT`, never behind the start
+ * A correction walks a case per whole `POINTS_PER_CASE`, and a press smaller
+ * than a case still walks one: the host's step is a third of a case, and a
+ * press that moved the score and not the pawn would make the two disagree.
+ */
+const casesOfCorrection = (points: number): number =>
+  Math.sign(points) *
+  Math.max(1, Math.trunc(Math.abs(points) / POINTS_PER_CASE))
+
+/**
+ * A host's correction walks the pawn a case per `POINTS_PER_CASE`, never behind the start
  * nor past the end once the round's own move is counted.
  */
 const adjustCase = ({
@@ -517,7 +525,7 @@ const adjustCase = ({
 
   holder.bankedCase = Math.min(
     board.length - move,
-    Math.max(-move, holder.bankedCase + Math.trunc(points / POINT))
+    Math.max(-move, holder.bankedCase + casesOfCorrection(points))
   )
 }
 

@@ -5,7 +5,7 @@ import {
   petitBacBankCategories,
   RARE_PETIT_BAC_LETTERS
 } from '@melee/protocol/petit-bac'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS, POINT } from '@melee/protocol/scoring'
 
 import { drawCategories } from './category-draw'
 import { drawLetter, playableLetters } from './letter-draw'
@@ -166,7 +166,33 @@ describe('categoryOutcomes', () => {
       bob: 'shared',
       cy: 'unique'
     })
-    expect(sheetPoints([...outcomes.values()])).toBe(2 * POINT)
+    expect(
+      sheetPoints({
+        categoryCount: 4,
+        outcomes: [outcomes.get('cy') ?? 'empty']
+      })
+    ).toBe(25 * POINT)
+    expect(
+      sheetPoints({
+        categoryCount: 4,
+        outcomes: [outcomes.get('ana') ?? 'empty']
+      })
+    ).toBe(12_500)
+  })
+
+  it('[petitbac] pays a whole sheet of lone answers the whole round, however many categories', () => {
+    expect(
+      sheetPoints({
+        categoryCount: 6,
+        outcomes: Array<'unique'>(6).fill('unique')
+      })
+    ).toBe(MOST_A_ROUND_PAYS)
+    expect(
+      sheetPoints({
+        categoryCount: 3,
+        outcomes: Array<'unique'>(3).fill('unique')
+      })
+    ).toBe(MOST_A_ROUND_PAYS)
   })
 
   it('[petitbac] files blanks, wrong letters and refusals apart, all paying nothing', () => {
@@ -187,7 +213,9 @@ describe('categoryOutcomes', () => {
       cy: 'offLetter',
       dee: 'refused'
     })
-    expect(sheetPoints([...outcomes.values()])).toBe(0)
+    expect(
+      sheetPoints({ categoryCount: 4, outcomes: [...outcomes.values()] })
+    ).toBe(0)
   })
 
   it('[petitbac] leaves an answer unique when its only twin was off the letter', () => {

@@ -4,7 +4,7 @@ import type { SentEstimate } from '@melee/protocol/estimate'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer } from '@melee/protocol/room'
 
-import { OUT_OF_REACH_RATIO } from '@melee/core/estimate/estimate-pay'
+import { ZERO_PAY_RATIO } from '@melee/core/estimate/estimate-pay'
 
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
@@ -12,7 +12,7 @@ import { Pawn } from './pawn'
 
 import './estimate-line.sass'
 
-/** Where a guess past the factor-ten floor stands: just outside the paid stretch, on the end it overshot. */
+/** Where a guess past the factor-three floor stands: just outside the paid stretch, on the end it overshot. */
 const BEYOND_REACH = 1.12
 
 /** How close two pins may stand, in percent of the line, before one climbs a lane. */
@@ -22,10 +22,10 @@ const PIN_SPACING = 5
 const HALF_SPAN = 44
 
 const TICKS = [
-  { factor: 10, side: 'divided' },
+  { factor: ZERO_PAY_RATIO, side: 'divided' },
   { factor: 2, side: 'divided' },
   { factor: 2, side: 'times' },
-  { factor: 10, side: 'times' }
+  { factor: ZERO_PAY_RATIO, side: 'times' }
 ] as const
 
 type EstimateLineProps = {
@@ -41,8 +41,8 @@ type Pin = SentEstimate & { at: number; lane: number }
 
 /** A guess's place along the line, in percent: logarithmic, so a guess twice too high stands as far from the truth as one half too low. */
 const placeOf = (ratio: number): number => {
-  const decades = Math.log10(ratio) / Math.log10(OUT_OF_REACH_RATIO)
-  const clamped = Math.max(-BEYOND_REACH, Math.min(BEYOND_REACH, decades))
+  const reaches = Math.log(ratio) / Math.log(ZERO_PAY_RATIO)
+  const clamped = Math.max(-BEYOND_REACH, Math.min(BEYOND_REACH, reaches))
 
   return 50 + clamped * HALF_SPAN
 }

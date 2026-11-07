@@ -12,7 +12,7 @@ import {
   DEFAULT_ROOM_SETTINGS,
   type RoomSettings
 } from '@melee/protocol/room'
-import { POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import { hostServerMessageSchema } from '@melee/protocol/server-message'
 import { PROTOCOL_VERSION } from '@melee/protocol/version'
 
@@ -227,7 +227,7 @@ describe('the room object', () => {
       expect(playerView(aliceAgain)?.youId).toBe(aliceId)
       expect(
         hostView(hostAgain)?.players.find(({ id }) => id === aliceId)?.score
-      ).toBe(POINTS_FOR_A_CLAIM)
+      ).toBe(MOST_A_ROUND_PAYS)
     },
     RUNTIME_BOOT_MS
   )

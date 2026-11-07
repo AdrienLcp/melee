@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINTS_FOR_A_TYPED_ANSWER } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import { isFullyBanked, pointsForSimultaneousAnswer } from '../scoring/verdict'
 import {
@@ -123,9 +123,9 @@ describe('withGuessBanked', () => {
     })
 
     expect(isFullyBanked(acrossTwo)).toBe(true)
-    expect(
-      pointsForSimultaneousAnswer({ mode: 'typed', verdict: acrossTwo })
-    ).toBe(POINTS_FOR_A_TYPED_ANSWER)
+    expect(pointsForSimultaneousAnswer({ verdict: acrossTwo })).toBe(
+      MOST_A_ROUND_PAYS
+    )
   })
 })
 

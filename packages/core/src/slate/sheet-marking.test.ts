@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 
 import {
   closedItem,
@@ -60,7 +60,7 @@ describe('lineVerdict', () => {
 })
 
 describe('sheetPoints', () => {
-  it('[slate] pays one point per validated line', () => {
+  it('[slate] pays each validated line an equal share of the round', () => {
     const sheet = new Map([
       [0, 'sel'],
       [1, 'paprika'],
@@ -77,7 +77,7 @@ describe('sheetPoints', () => {
         playerId: ANA,
         sheet
       })
-    ).toBe(2 * POINT)
+    ).toBe(66_667)
   })
 
   // Recomputed rather than accumulated: a verdict taken back takes its point
@@ -91,7 +91,7 @@ describe('sheetPoints', () => {
         playerId: ANA,
         sheet
       })
-    ).toBe(POINT)
+    ).toBe(MOST_A_ROUND_PAYS)
     expect(
       sheetPoints({
         items: [closedFor(marked({ judged: { sel: false } }))],
@@ -113,8 +113,10 @@ describe('sheetPoints', () => {
       closedFor(marked({ judged: { sel: true } }), [ANA, BO])
     ]
 
-    expect(sheetPoints({ items, playerId: BO, sheet })).toBe(POINT)
-    expect(sheetPoints({ items, playerId: ANA, sheet })).toBe(2 * POINT)
+    expect(sheetPoints({ items, playerId: BO, sheet })).toBe(
+      MOST_A_ROUND_PAYS / 2
+    )
+    expect(sheetPoints({ items, playerId: ANA, sheet })).toBe(MOST_A_ROUND_PAYS)
   })
 })
 

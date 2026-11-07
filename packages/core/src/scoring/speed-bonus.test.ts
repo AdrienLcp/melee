@@ -1,24 +1,31 @@
 import { describe, expect, it } from 'vitest'
 
-import { MOST_A_SPEED_BONUS_PAYS, POINT } from '@melee/protocol/scoring'
+import {
+  MOST_A_ROUND_PAYS,
+  MOST_THE_CLOCK_PAYS,
+  POINT
+} from '@melee/protocol/scoring'
 
-import { speedBonusForElapsed } from './speed-bonus'
+import { clockedPay } from './speed-bonus'
 
 const THIRTY_SECONDS = 30_000
-const A_TYPED_ANSWER = 3 * POINT
-const A_RIGHT_PICK = POINT
 
-const paidAt = (elapsedMs: number, roundDurationMs = THIRTY_SECONDS): number =>
-  speedBonusForElapsed({
-    answerPaid: A_TYPED_ANSWER,
-    elapsedMs,
-    roundDurationMs
-  })
+const paidAt = (
+  elapsedMs: number | null,
+  earned = MOST_A_ROUND_PAYS
+): ReturnType<typeof clockedPay> =>
+  clockedPay({ earned, elapsedMs, roundDurationMs: THIRTY_SECONDS })
 
-describe('speedBonusForElapsed', () => {
-  it('[scoring] pays the whole bonus at the start and nothing at the end', () => {
-    expect(paidAt(0)).toBe(MOST_A_SPEED_BONUS_PAYS)
-    expect(paidAt(THIRTY_SECONDS)).toBe(0)
+describe('clockedPay', () => {
+  it('[scoring] pays the whole round at nought and nine tenths of it at the end', () => {
+    expect(paidAt(0)).toEqual({
+      points: MOST_A_ROUND_PAYS,
+      speedBonus: MOST_THE_CLOCK_PAYS
+    })
+    expect(paidAt(THIRTY_SECONDS)).toEqual({
+      points: 90 * POINT,
+      speedBonus: 0
+    })
   })
 
   /**
@@ -26,14 +33,14 @@ describe('speedBonusForElapsed', () => {
    * against twenty-nine used to be worth 2 against 1.
    */
   it('[scoring] separates one second from twenty-nine', () => {
-    expect(paidAt(1_000)).toBe(2_900)
-    expect(paidAt(29_000)).toBe(100)
+    expect(paidAt(1_000).speedBonus).toBe(9_667)
+    expect(paidAt(29_000).speedBonus).toBe(333)
   })
 
   it('[scoring] falls with the clock rather than with the order', () => {
-    expect(paidAt(THIRTY_SECONDS / 4)).toBe(2_250)
-    expect(paidAt(THIRTY_SECONDS / 2)).toBe(1_500)
-    expect(paidAt((THIRTY_SECONDS * 3) / 4)).toBe(750)
+    expect(paidAt(THIRTY_SECONDS / 4).speedBonus).toBe(7_500)
+    expect(paidAt(THIRTY_SECONDS / 2).speedBonus).toBe(5_000)
+    expect(paidAt((THIRTY_SECONDS * 3) / 4).speedBonus).toBe(2_500)
   })
 
   /**
@@ -41,84 +48,33 @@ describe('speedBonusForElapsed', () => {
    * same: the first of them has to come out ahead.
    */
   it('[scoring] separates three answers inside the same second, the first highest', () => {
-    const [first, second, third] = [8_100, 8_150, 8_900].map((elapsedMs) =>
-      paidAt(elapsedMs)
+    const [first, second, third] = [8_100, 8_150, 8_900].map(
+      (elapsedMs) => paidAt(elapsedMs).points
     )
 
     expect(first).toBeGreaterThan(second ?? 0)
     expect(second).toBeGreaterThan(third ?? 0)
   })
 
-  /**
-   * The bare buzzer has no round clock — the host brings the content, so there
-   * is no denominator and nothing to be late against.
-   */
-  it('[scoring] pays nothing where there is no clock to be measured on', () => {
-    expect(
-      speedBonusForElapsed({
-        answerPaid: A_TYPED_ANSWER,
-        elapsedMs: 1_000,
-        roundDurationMs: null
-      })
-    ).toBe(0)
-    expect(
-      speedBonusForElapsed({
-        answerPaid: A_TYPED_ANSWER,
-        elapsedMs: 1_000,
-        roundDurationMs: 0
-      })
-    ).toBe(0)
-  })
-
-  /**
-   * A round the server settles a beat after its own deadline, and a clock held
-   * so long that the elapsed count outruns the duration. Neither may pay a
-   * negative bonus, which would take back a point the answer earned.
-   */
-  it('[scoring] never pays less than nothing past the deadline', () => {
-    expect(paidAt(THIRTY_SECONDS + 5_000)).toBe(0)
-  })
-
-  /**
-   * The rule a room has to be able to say out loud: being fast doubles what the
-   * answer paid, and never more. A pick worth one used to be worth four to
-   * whoever hit it first, which put speed at three times being right.
-   */
-  it('[scoring] never pays more than the answer itself did', () => {
-    const pick = (elapsedMs: number): number =>
-      speedBonusForElapsed({
-        answerPaid: A_RIGHT_PICK,
-        elapsedMs,
-        roundDurationMs: THIRTY_SECONDS
-      })
-
-    expect(pick(0)).toBe(A_RIGHT_PICK)
-    expect(pick(1_000)).toBeLessThan(A_RIGHT_PICK)
-    expect(pick(THIRTY_SECONDS)).toBe(0)
-  })
-
-  /**
-   * Half a blind test answer is worth one, so it buys one, where holding both
-   * halves buys three — a fast half must not outscore a slow whole.
-   */
-  it('[scoring] leaves a fast half below a whole answer', () => {
-    const half = speedBonusForElapsed({
-      answerPaid: POINT,
-      elapsedMs: 0,
-      roundDurationMs: THIRTY_SECONDS
+  /** The clock is a tenth of what the answer earned, so half an answer races for half a tenth. */
+  it('[scoring] scales the clock with what the answer earned', () => {
+    expect(paidAt(0, 50 * POINT)).toEqual({
+      points: 50 * POINT,
+      speedBonus: 5 * POINT
     })
-
-    expect(POINT + half).toBeLessThan(A_TYPED_ANSWER)
+    expect(paidAt(0, 0)).toEqual({ points: 0, speedBonus: 0 })
   })
 
-  /** An answer that paid nothing is never asked, and would buy nothing anyway. */
-  it('[scoring] pays nothing on top of nothing', () => {
-    expect(
-      speedBonusForElapsed({
-        answerPaid: 0,
-        elapsedMs: 0,
-        roundDurationMs: THIRTY_SECONDS
-      })
-    ).toBe(0)
+  /** Speed reverses two answers within a tenth of a round, never two further apart. */
+  it('[scoring] lets no speed beat an answer more than a tenth of a round better', () => {
+    const slowButRight = paidAt(THIRTY_SECONDS - 1).points
+    const fastButOff = paidAt(0, 89 * POINT).points
+
+    expect(slowButRight).toBeGreaterThan(fastButOff)
+  })
+
+  /** An answer the screen held when the round closed ran out: the clock pays none of it. */
+  it('[scoring] pays an unsent answer no speed', () => {
+    expect(paidAt(null)).toEqual({ points: 90 * POINT, speedBonus: 0 })
   })
 })

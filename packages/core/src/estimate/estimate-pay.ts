@@ -1,12 +1,17 @@
 import type { PlayerId } from '@melee/protocol/identifiers'
-import { type NumberVerdict, POINT } from '@melee/protocol/scoring'
+import type { NumberVerdict } from '@melee/protocol/scoring'
+
+import { paidShare } from '../scoring/round-share'
 
 /**
- * Beyond this ratio either way an estimate is a guess at the zeros, and pays
- * nothing even when it is the room's closest — in a room of three it would
- * otherwise take a podium place.
+ * From this ratio either way an estimate pays nothing. Three rather than two,
+ * measured against the bank: a country's area or a city's population is a
+ * figure a table misses by half as often as not — Gabon's 268 000 km² against
+ * a guess of 150 000 — and a cut at two would pay half the table nothing on
+ * half the questions. A guess nine times off, which the podium it replaced
+ * still paid in a room of three, is far past it.
  */
-export const OUT_OF_REACH_RATIO = 10
+export const ZERO_PAY_RATIO = 3
 
 /**
  * Within this ratio either way an estimate is spot on: 2 % of a country's
@@ -15,58 +20,38 @@ export const OUT_OF_REACH_RATIO = 10
 export const SPOT_ON_RATIO = 1.02
 
 /**
- * What the closest three places pay, ties sharing a place: the room's best
- * estimate is who the table cheers whether or not anybody knew, so the pay
- * follows the ranking rather than an absolute curve.
- */
-export const ESTIMATE_PLACE_PAYS = [3 * POINT, 2 * POINT, POINT] as const
-
-/**
  * How far an estimate fell, as the logarithm of its ratio to the truth: saying
  * 100 million for 124 is the same miss as 10 000 for 12 400, where a
  * difference would make every population question a question about the zeros.
  */
 export const gapOf = (ratio: number): number => Math.abs(Math.log(ratio))
 
-export const isWithinReach = (ratio: number): boolean =>
-  gapOf(ratio) <= Math.log(OUT_OF_REACH_RATIO)
-
 export const isSpotOn = ({ ratio }: Pick<NumberVerdict, 'ratio'>): boolean =>
   gapOf(ratio) <= Math.log(SPOT_ON_RATIO)
 
-export const pointsForEstimate = ({
-  placesFromBest
-}: Pick<NumberVerdict, 'placesFromBest'>): number =>
-  placesFromBest === null ? 0 : (ESTIMATE_PLACE_PAYS[placesFromBest] ?? 0)
-
 /**
- * Every seat's verdict once the round is in. A place counts the seats strictly
- * closer, so two seats sharing the best estimate both take the first place and
- * the next one along takes the third.
+ * What an estimate pays for its own precision: the whole round on the truth,
+ * falling with the logarithm of the miss to nothing at `ZERO_PAY_RATIO` —
+ * 91 at a tenth off, 80 at a quarter, 63 at half again, 37 at twice. Never by
+ * its place among the room's, because a podium pays whoever is least far off,
+ * however far that is.
  */
+export const pointsForEstimate = ({
+  ratio
+}: Pick<NumberVerdict, 'ratio'>): number =>
+  paidShare(1 - gapOf(ratio) / Math.log(ZERO_PAY_RATIO))
+
+/** Every seat's verdict once the round is in: how far its guess fell from the truth. */
 export const estimateVerdictsOf = ({
   guesses,
   truth
 }: {
   guesses: readonly { guess: number; playerId: PlayerId }[]
   truth: number
-}): Map<PlayerId, NumberVerdict> => {
-  const ratios = guesses.map(({ guess, playerId }) => ({
-    playerId,
-    ratio: guess / truth
-  }))
-  const gapsInReach = ratios
-    .filter(({ ratio }) => isWithinReach(ratio))
-    .map(({ ratio }) => gapOf(ratio))
-
-  return new Map(
-    ratios.map(({ playerId, ratio }) => {
-      const gap = gapOf(ratio)
-      const placesFromBest = isWithinReach(ratio)
-        ? gapsInReach.filter((other) => other < gap).length
-        : null
-
-      return [playerId, { kind: 'number', placesFromBest, ratio }] as const
-    })
+}): Map<PlayerId, NumberVerdict> =>
+  new Map(
+    guesses.map(({ guess, playerId }) => [
+      playerId,
+      { kind: 'number', ratio: guess / truth }
+    ])
   )
-}

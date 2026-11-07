@@ -34,7 +34,7 @@ export const blackSquareCellSchema = z
   .min(0)
   .max(BLACK_SQUARE_CELL_COUNT - 1)
 
-/** How obscure a cell is, which is what it pays in `POINT`s: the most read third 1, the least read third 3. */
+/** How obscure a cell is, which is its share of the sheet: the most read third 1, the least read third 3. */
 export const blackSquareTierSchema = z.number().int().min(1).max(3)
 
 /** A theme, an answer or the black word, in every language the app ships. */

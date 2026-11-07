@@ -6,11 +6,14 @@ import { BLACK_SQUARE_CELL_COUNT } from '@melee/protocol/black-square'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 
-import { isSheetClosed, tierOfCell } from '@melee/core/blacksquare/sheet-pay'
+import {
+  isSheetClosed,
+  pointsForTier,
+  tierOfCell
+} from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
-import { pointsOfTier } from '@/presentation/components/black-square-pips'
 import { BlackSquareSheet } from '@/presentation/components/black-square-sheet'
 import { Button } from '@/presentation/components/button'
 import { TextField } from '@/presentation/components/text-field'
@@ -67,7 +70,11 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
                   points: shownPoints(
                     last.cells.reduce(
                       (total, cell) =>
-                        total + pointsOfTier(tierOfCell({ cell, cellCount })),
+                        total +
+                        pointsForTier({
+                          cellCount,
+                          tier: tierOfCell({ cell, cellCount })
+                        }),
                       0
                     )
                   )

@@ -10,7 +10,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { POINT, POINTS_FOR_A_CLAIM } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import {
   type PlayerServerMessage,
   type WallServerMessage,
@@ -27,6 +27,7 @@ import {
 
 import { startRoomHarness } from './node-room-harness'
 import {
+  answerShareOf,
   basePointsFor,
   errorsIn,
   hostView,
@@ -194,7 +195,7 @@ describe('matchsticks', () => {
     expect(matchsticksRound(playerView(zoe))?.revealedSolution).toEqual(
       solutions[0]
     )
-    expect(playerView(zoe)?.players[0]?.score).toBe(POINTS_FOR_A_CLAIM)
+    expect(playerView(zoe)?.players[0]?.score).toBe(MOST_A_ROUND_PAYS)
   })
 })
 
@@ -309,8 +310,12 @@ describe('matchsticks answered by moving a stick', () => {
       kind: 'move',
       placesFromBest: null
     })
-    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(3 * POINT)
-    expect(basePointsFor({ playerId: idOf(max), view })).toBe(3 * POINT)
+    expect(basePointsFor({ playerId: idOf(zoe), view })).toBe(
+      answerShareOf(MOST_A_ROUND_PAYS)
+    )
+    expect(basePointsFor({ playerId: idOf(max), view })).toBe(
+      answerShareOf(MOST_A_ROUND_PAYS)
+    )
     expect(awardOf(lea)?.points).toBe(0)
     expect(awardOf(zoe)?.speedBonus ?? 0).toBeGreaterThan(
       awardOf(max)?.speedBonus ?? 0
@@ -480,6 +485,6 @@ describe('matchsticks answered by moving a stick', () => {
         playerId: hostView(host)?.youId ?? null,
         view: hostView(host)
       })
-    ).toBe(3 * POINT)
+    ).toBe(answerShareOf(MOST_A_ROUND_PAYS))
   })
 })

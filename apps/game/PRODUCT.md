@@ -111,10 +111,13 @@ on the shelf inherits it.
     costs the round.
   - **Slate** — a private numbered answer sheet on every screen, marked by the
     host item by item on the wall.
-- **Answer modes**: `typed` (scored by the server, with a speed bonus), `choice`
-  (four candidates, speed bonus), `buzzer` (one player, judged by the host).
-  Blind test and quiz offer all three; buzzer and reflex only `buzzer`; slate
-  is typed.
+- **Answer modes**: `typed` (scored by the server), `choice` (four
+  candidates), `buzzer` (one player, judged by the host). Blind test and quiz
+  offer all three; buzzer and reflex only `buzzer`; slate is typed.
+- **One scale**: every round of every game pays at most 100 points, a sheet's
+  items sharing them, and typing pays what a pick does. Where the clock pays,
+  it is the last tenth of what the answer earned, so being right comes first
+  and speed only settles near-ties; the host can turn it off.
 - Phases every role walks through: lobby, countdown, playing, buzzed, revealed,
   finished — plus connecting, reconnecting, host away, joined mid-round, removed
   by host, room closed.

@@ -2,7 +2,7 @@ import type { PlayerId } from '@melee/protocol/identifiers'
 import type { SlateItemState } from '@melee/protocol/slate'
 
 import { answerGroupKey, isBlankAnswer } from '../round/answer-groups'
-import { pointsFor } from '../scoring/verdict'
+import { paidShare } from '../scoring/round-share'
 
 /**
  * How far one item's marking has gone. `judged` holds the host's verdicts by
@@ -80,9 +80,10 @@ export const itemVerdictFor = ({
     : null
 
 /**
- * What a sheet has earned so far: one claim per validated line, priced as a
- * `single` verdict is everywhere else on the shelf. It is recomputed rather
- * than accumulated, because a verdict can be taken back.
+ * What a sheet has earned so far: the whole sheet is one round, and each
+ * validated line takes an equal share of it — a sheet of sixty items once paid
+ * sixty quiz questions. It is recomputed rather than accumulated, because a
+ * verdict can be taken back.
  */
 export const sheetPoints = ({
   items,
@@ -93,20 +94,18 @@ export const sheetPoints = ({
   playerId: PlayerId
   sheet: ReadonlyMap<number, string>
 }): number =>
-  items.reduce(
-    (total, item, itemIndex) =>
-      total +
-      pointsFor({
-        isCorrect:
-          itemVerdictFor({
-            answer: sheet.get(itemIndex) ?? null,
-            item,
-            playerId
-          }) === true,
-        kind: 'single'
-      }),
-    0
-  )
+  items.length === 0
+    ? 0
+    : paidShare(
+        items.filter(
+          (item, itemIndex) =>
+            itemVerdictFor({
+              answer: sheet.get(itemIndex) ?? null,
+              item,
+              playerId
+            }) === true
+        ).length / items.length
+      )
 
 /** Lines with something in them — the count the wall may show of a sheet still being written. */
 export const filledLineCount = (sheet: ReadonlyMap<number, string>): number =>

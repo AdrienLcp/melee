@@ -3,8 +3,9 @@ import type {
   BlackSquareCell,
   BlackSquareTier
 } from '@melee/protocol/black-square'
-import { type CellsVerdict, POINT } from '@melee/protocol/scoring'
+import type { CellsVerdict } from '@melee/protocol/scoring'
 
+import { paidShare } from '../scoring/round-share'
 import type { LineGrade } from './line-match'
 
 const TIER_COUNT = 3
@@ -35,10 +36,32 @@ export const emptySheet = (
 /** What a cell found by one seat alone is multiplied by, when the room plays *Nobody else had it*. */
 export const LONE_FIND_MULTIPLIER = 2
 
+const weightOf = ({
+  cell,
+  cellCount,
+  doubledCells
+}: {
+  cell: BlackSquareCell
+  cellCount: BlackSquareAnswerCount
+  doubledCells: readonly BlackSquareCell[]
+}): number =>
+  tierOfCell({ cell, cellCount }) *
+  (doubledCells.includes(cell) ? LONE_FIND_MULTIPLIER : 1)
+
+const allCellsOf = (cellCount: BlackSquareAnswerCount): BlackSquareCell[] =>
+  Array.from({ length: cellCount }, (_, cell) => cell)
+
 /**
- * What a sheet is worth, which is nothing once it fell on the black word:
- * cutting alone would leave nothing at stake past the first few answers, and a
- * negative score would punish a late round more than an early one.
+ * What a sheet is worth: a full one is the whole round, and each answer takes
+ * its tier's share of it, so the least read third weighs three times the most
+ * read. Nothing once it fell on the black word: cutting alone would leave
+ * nothing at stake past the first few answers, and a negative score would
+ * punish a late round more than an early one.
+ *
+ * A lone find weighs double in the share and the sheet still tops out at the
+ * round: it is the sheet doubled, not the round, so a seat that found three
+ * answers nobody else did is paid more for them than one that shared them,
+ * and a full sheet is a full sheet either way.
  */
 export const pointsForCells = ({
   cellCount,
@@ -48,17 +71,36 @@ export const pointsForCells = ({
 }: Pick<CellsVerdict, 'cellCount' | 'foundCells' | 'hitBlackWord'> & {
   /** The cells this sheet found alone, in a room playing *Nobody else had it*. */
   doubledCells?: readonly BlackSquareCell[]
+}): number => {
+  if (hitBlackWord) {
+    return 0
+  }
+
+  const ownLoneFinds = doubledCells.filter((cell) => foundCells.includes(cell))
+  const weighed = (cells: readonly BlackSquareCell[]): number =>
+    cells.reduce(
+      (total, cell) =>
+        total + weightOf({ cell, cellCount, doubledCells: ownLoneFinds }),
+      0
+    )
+  return paidShare(weighed(foundCells) / weighed(allCellsOf(cellCount)))
+}
+
+/** What one answer of this tier adds to a sheet that shares it, which is what its pips say. */
+export const pointsForTier = ({
+  cellCount,
+  tier
+}: {
+  cellCount: BlackSquareAnswerCount
+  tier: BlackSquareTier
 }): number =>
-  hitBlackWord
-    ? 0
-    : foundCells.reduce(
-        (total, cell) =>
-          total +
-          tierOfCell({ cell, cellCount }) *
-            POINT *
-            (doubledCells.includes(cell) ? LONE_FIND_MULTIPLIER : 1),
+  paidShare(
+    tier /
+      allCellsOf(cellCount).reduce(
+        (total, cell) => total + tierOfCell({ cell, cellCount }),
         0
       )
+  )
 
 /**
  * The cells exactly one sheet found — *Pointless* without a survey, the table

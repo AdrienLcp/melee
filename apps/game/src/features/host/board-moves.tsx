@@ -1,7 +1,7 @@
 import type React from 'react'
 import { DialogTrigger } from 'react-aria-components'
 
-import { POINT } from '@melee/protocol/scoring'
+import { POINTS_PER_CASE } from '@melee/protocol/board'
 
 import {
   rankTrackPawns,
@@ -75,7 +75,7 @@ export const BoardMoves: React.FC<BoardMovesProps> = ({
                 name={pawnName(pawn)}
                 onAdjust={(cases) => {
                   send({
-                    points: cases * POINT,
+                    points: cases * POINTS_PER_CASE,
                     target: scoreTargetOf(pawn),
                     type: 'host.adjustScore'
                   })

@@ -48,7 +48,7 @@ import {
   hasJoinedAfterStart,
   isExpectedInRound
 } from '@melee/core/round/round-roster'
-import { speedBonusForElapsed } from '@melee/core/scoring/speed-bonus'
+import { clockedPay } from '@melee/core/scoring/speed-bonus'
 import {
   isFullyBanked,
   isMiss,
@@ -56,7 +56,6 @@ import {
   nothingScored,
   pointsFor,
   pointsForSimultaneousAnswer,
-  type SimultaneousMode,
   verdictKindFor
 } from '@melee/core/scoring/verdict'
 
@@ -86,7 +85,7 @@ import {
   takeSpokenTurn
 } from '@/domain/round/black-square-round'
 import { takeDuel } from '@/domain/round/duels'
-import { payEstimatesByPlace } from '@/domain/round/estimate-round'
+import { payEstimates } from '@/domain/round/estimate-round'
 import { gradePicks } from '@/domain/round/higher-lower-round'
 import { payInnerclockCounts } from '@/domain/round/innerclock-round'
 import { gradeMove } from '@/domain/round/matchsticks-round'
@@ -828,16 +827,14 @@ export const everyoneIsDone = (room: Room, now: number): boolean => {
 }
 
 /**
- * Scores a simultaneous round and reveals it. The speed bonus is paid from how
- * far into the round each player first scored — being quickly wrong wins
+ * Scores a simultaneous round and reveals it. The clock's share is paid from
+ * how far into the round each player first scored — being quickly wrong wins
  * nothing, because a player who never banked a half is never asked.
  */
 export const settleSimultaneousRound = ({
-  mode,
   now,
   room
 }: {
-  mode: SimultaneousMode
   now: number
   room: Room
 }): void => {
@@ -853,7 +850,6 @@ export const settleSimultaneousRound = ({
   for (const attempts of round.attempts.toSorted(byFirstScored)) {
     const earned = pointsForSimultaneousAnswer({
       doubledCells,
-      mode,
       verdict: attempts.verdict
     })
 
@@ -870,18 +866,16 @@ export const settleSimultaneousRound = ({
     }
 
     // An unsent answer did not answer: it ran out, and the clock pays none.
-    const speedBonus =
+    const { points, speedBonus } =
       round.paysForSpeed &&
       isPaidForSpeed(attempts.verdict) &&
-      !attempts.isUnsent
-        ? speedBonusForElapsed({
-            answerPaid: earned,
-            elapsedMs: attempts.scoredAfterMs,
+      roundDurationMs !== null
+        ? clockedPay({
+            earned,
+            elapsedMs: attempts.isUnsent ? null : attempts.scoredAfterMs,
             roundDurationMs
           })
-        : 0
-
-    const points = earned + speedBonus
+        : { points: earned, speedBonus: 0 }
 
     const participant = room.players.get(attempts.playerId)
 
@@ -1188,17 +1182,13 @@ const grade = ({
       : null
   }
 
-  // A place needs the whole room, so a guess is priced at the close and holds
-  // a placeholder until then.
+  // Priced at the close, with every other guess, so no seat's score moves
+  // while the room is still guessing.
   if (content.kind === 'estimate') {
     return attempt.kind === 'number'
       ? {
           said: String(attempt.guess),
-          verdict: {
-            kind: 'number',
-            placesFromBest: null,
-            ratio: attempt.guess / content.value
-          }
+          verdict: { kind: 'number', ratio: attempt.guess / content.value }
         }
       : null
   }
@@ -1766,7 +1756,7 @@ export const closeRound = (room: Room, now: number): void => {
   }
 
   if (round.content.kind === 'estimate') {
-    payEstimatesByPlace(room)
+    payEstimates(room)
     revealRound(room, now)
 
     return
@@ -1788,7 +1778,7 @@ export const closeRound = (room: Room, now: number): void => {
   }
 
   takeUnsentLeans(room, now)
-  settleSimultaneousRound({ mode, now, room })
+  settleSimultaneousRound({ now, room })
 }
 
 export const finishGame = (room: Room, now: number): void => {

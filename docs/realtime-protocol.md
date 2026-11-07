@@ -330,11 +330,13 @@ names it, so every screen says the name its own dictionary gives the colour.
   older build still reads it. A room stored before heads reads each seat's
   missing head as `round`, and two seats the old sharing rule left in one
   piece keep it until one of them changes (`withSeatPieces`).
-- **A team's score is the sum of its seats'.** A round pays each team the sum
-  of what it paid the team's seats it opened on (`teamRoundResult`) — a sum
-  rather than a mean, because under a mean a teammate's wrong answer lowers the
-  team's result — and a team answering as one, in a turn or on a challenge's
-  podium, the one answer every seat holds, once. Banked as
+- **A team's score is its seats', averaged or added up.** A round pays each
+  team what it paid the team's seats it opened on (`teamRoundResult`), as
+  `teamScoring` says: `balanced`, the default, pays the mean, so a team of
+  three does not outscore a team of one by being three and a seat still reads
+  as a round's worth; `sum` pays every point, so no answer ever costs the team
+  anything. A team answering as one, in a turn or on a challenge's podium, is
+  paid the one answer every seat holds, once. Banked as
   the next round opens or the board goes up; the round on screen is added live,
   because a slate verdict can still be taken back under its reveal. Seat scores
   are untouched, for the individual podium, and a seat's adjustment stays on
@@ -381,8 +383,9 @@ room has teams. Each team carries `board: { case, move }` beside its score,
 - **The server walks the pawns.** As a round settles, the strategy named in the
   setting (`@melee/core/board/`, one file each) turns every team's round result
   into a number of cases; `advanceOnTrack` stops each pawn on the last case.
-  `onePointOneCase` moves a case for every whole `POINT`, floored, so the speed
-  bonus moves no pawn on its own. `rank` moves the round's teams 3, 2 and 1
+  `onePointOneCase` moves a case for every whole `POINTS_PER_CASE` — 30
+  printed points — floored, so three at most: a right answer walks three
+  whether the clock paid its tenth or not. `rank` moves the round's teams 3, 2 and 1
   cases by what it paid them, speed bonus included; a tie shares the better
   place and skips the next, and a team paid nothing is not ranked — which is
   what keeps a turn of a set from ranking one team against teams still
@@ -398,7 +401,7 @@ room has teams. Each team carries `board: { case, move }` beside its score,
   an answer can still be given. It is banked with the score as the next round
   opens or the board goes up.
 - **The host corrects a move with the score.** `host.adjustScore` on a team
-  walks its pawn a case for each whole `POINT` of the adjustment, between the
+  walks its pawn a case for each whole `POINTS_PER_CASE` of the adjustment, between the
   start and the finish, so the pawn and the score never tell two stories.
 - **A pawn home ends the evening only when it is raced to the finish.** The
   three ends are exclusive (`endsAtFinish`, `racesToTheFinish`): a track with
@@ -511,8 +514,8 @@ grade is a fifth shape of verdict, `{ kind: 'move',
 placesFromBest }`: `0` for a true equation or the best number, `1` and `2` for
 the next numbers down (each distinct number one stick makes that improves on
 the dealt one, best first), `null` for anything that answers nothing — priced
-by `@melee/core/matchsticks/move-pay` at 3, 2 and 1 `POINT`s with the clock on
-top. No lockouts; the round closes once every stamped seat has moved, or on
+by `@melee/core/matchsticks/move-pay` at 100, 67 and 33 points, the clock
+cutting its tenth from each. No lockouts; the round closes once every stamped seat has moved, or on
 its clock. Before the reveal a seat reads back its own move as `yourMove`
 and nothing else — not even its own `yourVerdict`, which stays `null` until
 the reveal so a right move cannot be whispered on with confidence. At the
@@ -540,8 +543,8 @@ first: one shot, like a pick, in a mode of its own, `order`, which no other
 game offers. The grade is a fourth shape of verdict, `{ kind: 'order',
 swappedPairs }` — the pairs the order puts the wrong way round, so one
 neighbour swapped is one — priced by `@melee/core/timeline/order-pay`'s tiers
-(3, 2 and 1 `POINT`s for none, one and two) with the clock on top, capped by
-the tier as everywhere else. An order that is not the round's events once each
+(100, 67 and 33 points for none, one and two), the clock cutting its tenth
+from each as everywhere else. An order that is not the round's events once each
 is `invalid_message`. The bank is bundled with the server
 (`timeline-bank.json`), and a round's events are at least `MIN_YEARS_APART`
 from one another.
@@ -560,9 +563,11 @@ sends as many `player.answer` `{ kind: 'typed', guess }` lines as the round
 lasts — a hit never closes its sheet, only all nine or the black word do, and
 a line after that is `already_buzzed`. `@melee/core/blacksquare/line-match`
 matches a line whole against every name in both languages, each answer's
-rivals being the black word and the other eight; `sheet-pay` prices it, 1, 2
-and 3 `POINT`s by tier, nothing once the black word is hit, and no clock on
-top. `black-square-game.test.ts` searches each seat's and the wall's whole
+rivals being the black word and the other eight; `sheet-pay` prices it: the sheet is
+the round's hundred, each answer taking its tier's share — 1, 2 or 3 by
+thirds of the dealt answers, a find no other sheet had weighing double, the
+full sheet still topping at 100 — nothing once the black word is hit, and no
+clock. `black-square-game.test.ts` searches each seat's and the wall's whole
 transcript for a name it never typed.
 
 **A spoken black square sends the list to one seat, of a team not playing.**
@@ -621,15 +626,16 @@ nobody bothered to refuse is noticed once the grid is up, and a table that let
 gibberish through by default is the case it exists for. A row the vote refused
 stays the vote's. The row and the settled line carry `isStruck`, and a
 `rowKey` no seat wrote is `invalid_message`. Each vote or strike
-re-pays the round from the sheets — 2 `POINT`s for an accepted answer nobody
-else wrote, 1 for a shared one, no speed bonus — and `host.reveal` is refused
+re-pays the round from the sheets — the sheet's hundred shared equally among
+the categories, an accepted answer nobody else wrote taking its category's
+whole share and a shared one half, no speed bonus — and `host.reveal` is refused
 `wrong_phase` while the sheets are open, then settles what is left on the votes
 as they stand. A seat the round did not open on is `joined_mid_round` on every
 frame. `petitbac.stop`, `petitbac.vote` and `petitbac.doneVoting` are floor
 frames; `petitbac.write` is not, for the slate's reason.
 
 `host.awardPlaces` carries the whole placement, and the server pays it:
-3, 2 and 1 `POINT`s down the podium, ties sharing a place, everyone else
+100, 67 and 33 points down the podium, ties sharing a place, everyone else
 nought. A placed team pays every seat it opened the round with the same, so
 the team is paid exactly the place's pay, once, and the pawn walks 3, 2 or 1 cases
 on the reveal. Sent while the round is `playing`, it pays and reveals; sent
@@ -796,9 +802,13 @@ sends a country or a distance. `revealedPlacements` (`{ playerId, point }` per
 seat) is `null` until the reveal, because a marker seen on another screen is an
 answer to copy. The grade is a third shape of verdict, `{ kind: 'distance',
 distanceKm, target }` — to a country nought inside, otherwise the way to the
-nearest border; to a city or a capital the way to the place itself — priced by the
-`target`'s own tiers in `@melee/core/atlas/distance-tiers`, the speed bonus capped by
-the tier as everywhere else. It is answered in a mode of its own, `point`: one
+nearest border; to a city or a capital the way to the place itself — priced on a
+straight line between the `target`'s own two edges in
+`@melee/core/atlas/distance-pay` (`DISTANCE_REACH`) — a country full inside and
+nothing from 1 500 km, a capital full within 100 km and nothing from 1 000, a
+French city full within 25 km and nothing from 150 — the clock cutting its
+tenth as everywhere else, so a marker 400 km off placed at once no longer
+beats one inside the country placed late. It is answered in a mode of its own, `point`: one
 shot a seat, like a pick, and offered by no other game.
 
 `audioUrl` and `track` are separate because a host who has taken a seat keeps
@@ -935,17 +945,20 @@ the family — and `value: null`; the console reads the value on
 `currentContent` while it holds no seat, and the wall never does. Every seat's
 guess is hidden too (`revealedGuesses: null`), since a number seen on another
 screen is an anchor to copy; a seat reads back its own as `yourGuess`. A guess
-is one shot, refused at nought or below by the schema, and priced only at the
-close, because a place needs the whole room. `estimate-game.test.ts` searches
+is one shot, refused at nought or below by the schema, and priced at the
+close by its ratio to the truth alone (`@melee/core/estimate/estimate-pay`):
+100 exact, falling on a log scale to nothing from a factor of three either
+way — a country's area or a river's length is routinely missed by two at a table — and no
+clock, because rushing an estimate is guessing. `estimate-game.test.ts` searches
 every frame for the value.
 
 **A higher-or-lower pair carries no value until the reveal.** A player's round
 holds the round's pairs (one, `HIGHER_LOWER_PAIR_COUNT`), each the family and the two names, and which side is higher
 is the server's shuffle; the console reads `valuedPairs` while it holds no
-seat, and the wall reads nothing. The sheet is one frame of five picks, refused
+seat, and the wall reads nothing. The sheet is one frame of a pick per pair, refused
 at any other length and refused a second time, and a seat's own verdict stays
 `null` until the reveal so a count of right pairs cannot be read as a hint.
-`higher-lower-game.test.ts` searches every frame for the ten values.
+`higher-lower-game.test.ts` searches every frame for the values.
 
 ## Errors
 

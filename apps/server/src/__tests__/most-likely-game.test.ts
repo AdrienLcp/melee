@@ -8,7 +8,7 @@ import {
   type RoundContent,
   type RoundView
 } from '@melee/protocol/room'
-import { POINT } from '@melee/protocol/scoring'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import type {
   HostServerMessage,
   PlayerServerMessage
@@ -191,8 +191,14 @@ describe('a most-likely round through the seam', () => {
     const awardOf = (seat: Peer<PlayerServerMessage>) =>
       view?.round?.awards.find((award) => award.playerId === idOf(seat))
 
-    expect(awardOf(zoe)).toMatchObject({ points: POINT, speedBonus: 0 })
-    expect(awardOf(max)).toMatchObject({ points: POINT, speedBonus: 0 })
+    expect(awardOf(zoe)).toMatchObject({
+      points: MOST_A_ROUND_PAYS,
+      speedBonus: 0
+    })
+    expect(awardOf(max)).toMatchObject({
+      points: MOST_A_ROUND_PAYS,
+      speedBonus: 0
+    })
     expect(awardOf(ann)).toMatchObject({ points: 0, speedBonus: 0 })
     expect(mostLikelyRound(playerView(ann))?.tally).toEqual([
       { playerId: idOf(max), votes: 2 },

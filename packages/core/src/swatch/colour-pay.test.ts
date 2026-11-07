@@ -23,7 +23,7 @@ describe('what a rebuilt colour pays', () => {
   it('[swatch] falls linearly to nothing at the far edge', () => {
     const halfway = (FULL_PAY_DISTANCE + ZERO_PAY_DISTANCE) / 2
 
-    expect(pointsForColour({ distance: halfway })).toBe(1.5 * POINT)
+    expect(pointsForColour({ distance: halfway })).toBe(50 * POINT)
     expect(pointsForColour({ distance: ZERO_PAY_DISTANCE })).toBe(0)
     expect(pointsForColour({ distance: 0.6 })).toBe(0)
   })

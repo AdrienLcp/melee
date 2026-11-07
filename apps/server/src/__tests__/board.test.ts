@@ -1,6 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
-import type { BoardSettings } from '@melee/protocol/board'
+import { type BoardSettings, POINTS_PER_CASE } from '@melee/protocol/board'
+import { MOST_A_ROUND_PAYS } from '@melee/protocol/scoring'
 import type {
   HostServerMessage,
   PlayerServerMessage
@@ -38,6 +39,12 @@ const ON_A_TRACK = {
   roundCount: null,
   teams: { count: 2, kind: 'drawn' as const }
 }
+
+/** A right answer judged on the buzzer pays the whole round, which walks this many cases. */
+const A_RIGHT_ANSWER_WALKS = Math.floor(MOST_A_ROUND_PAYS / POINTS_PER_CASE)
+
+/** What the host adds by hand to put a pawn this many cases up the track. */
+const pointsForCases = (cases: number) => cases * POINTS_PER_CASE
 
 const idOf = (player: Peer<PlayerServerMessage>): string =>
   playerView(player)?.youId ?? ''
@@ -103,7 +110,7 @@ describe('a room racing on a track', () => {
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
   }
 
-  it('[board] walks a team a case per point at the reveal, and banks it', async () => {
+  it('[board] walks a team a case per thirty points at the reveal, and banks it', async () => {
     const room = await openTwoTeams()
 
     room.host.send({ type: 'host.startRound' })
@@ -117,7 +124,7 @@ describe('a room racing on a track', () => {
     await revealAnnaRight(room)
 
     expect(playerView(room.ben)?.teams.map((team) => team.board)).toEqual([
-      { case: 2, move: 2 },
+      { case: A_RIGHT_ANSWER_WALKS, move: A_RIGHT_ANSWER_WALKS },
       { case: 0, move: 0 }
     ])
     expect(playerView(room.ben)?.players.map((player) => player.board)).toEqual(
@@ -130,7 +137,10 @@ describe('a room racing on a track', () => {
       'the next clip'
     )
 
-    expect(hostView(room.host)?.teams[0]?.board).toEqual({ case: 2, move: 0 })
+    expect(hostView(room.host)?.teams[0]?.board).toEqual({
+      case: A_RIGHT_ANSWER_WALKS,
+      move: 0
+    })
   })
 
   it('[board] walks the best team of the round three cases on a ranked track', async () => {
@@ -151,18 +161,19 @@ describe('a room racing on a track', () => {
     room.host.send({ type: 'host.startRound' })
     await revealAnnaRight(room)
     room.host.send({
-      points: -1_000,
+      points: -pointsForCases(1),
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
     await waitFor(
-      () => hostView(room.host)?.teams[0]?.board?.case === 1,
+      () =>
+        hostView(room.host)?.teams[0]?.board?.case === A_RIGHT_ANSWER_WALKS - 1,
       'the correction'
     )
 
     expect(hostView(room.host)?.teams[0]).toMatchObject({
-      board: { case: 1, move: 2 },
-      score: 1_000
+      board: { case: A_RIGHT_ANSWER_WALKS - 1, move: A_RIGHT_ANSWER_WALKS },
+      score: MOST_A_ROUND_PAYS - pointsForCases(1)
     })
   })
 
@@ -170,7 +181,7 @@ describe('a room racing on a track', () => {
     const room = await openTwoTeams()
 
     room.host.send({
-      points: 9_000,
+      points: pointsForCases(TRACK.length - 1),
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -178,7 +189,7 @@ describe('a room racing on a track', () => {
     await revealAnnaRight(room)
 
     expect(hostView(room.host)?.teams[0]?.board).toEqual({
-      case: 10,
+      case: TRACK.length,
       move: 1
     })
 
@@ -193,7 +204,7 @@ describe('a room racing on a track', () => {
     const room = await openTwoTeams()
 
     room.host.send({
-      points: 7_000,
+      points: pointsForCases(TRACK.length - A_RIGHT_ANSWER_WALKS - 1),
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -237,7 +248,7 @@ describe('a room racing on a track', () => {
     room: Awaited<ReturnType<typeof openTwoTeams>>
   ) => {
     room.host.send({
-      points: 9_000,
+      points: pointsForCases(TRACK.length - 1),
       target: { kind: 'team', teamId: 'team-1' },
       type: 'host.adjustScore'
     })
@@ -255,7 +266,7 @@ describe('a room racing on a track', () => {
 
     await sendATeamHome(room)
 
-    expect(hostView(room.host)?.teams[0]?.board?.case).toBe(10)
+    expect(hostView(room.host)?.teams[0]?.board?.case).toBe(TRACK.length)
   })
 
   it('[board] plays an endless evening on past a pawn home', async () => {
@@ -342,18 +353,18 @@ describe('a room racing every seat on a track', () => {
 
     expect(hostView(host)?.teams).toEqual([])
     expect(boardsOf(host)).toEqual({
-      Anna: { case: 2, move: 2 },
+      Anna: { case: A_RIGHT_ANSWER_WALKS, move: A_RIGHT_ANSWER_WALKS },
       Ben: { case: 0, move: 0 }
     })
     expect(playerView(ben)?.players.map((player) => player.board)).toEqual([
-      { case: 2, move: 2 },
+      { case: A_RIGHT_ANSWER_WALKS, move: A_RIGHT_ANSWER_WALKS },
       { case: 0, move: 0 }
     ])
 
     host.send({ type: 'host.nextRound' })
     await waitFor(() => hostView(host)?.phase === 'playing', 'the next clip')
 
-    expect(boardsOf(host).Anna).toEqual({ case: 2, move: 0 })
+    expect(boardsOf(host).Anna).toEqual({ case: A_RIGHT_ANSWER_WALKS, move: 0 })
   })
 
   it('[board] starts a seat that arrives mid-round on the start', async () => {
@@ -378,14 +389,16 @@ describe('a room racing every seat on a track', () => {
       "Ben's seat to go"
     )
 
-    expect(boardsOf(host)).toEqual({ Anna: { case: 2, move: 2 } })
+    expect(boardsOf(host)).toEqual({
+      Anna: { case: A_RIGHT_ANSWER_WALKS, move: A_RIGHT_ANSWER_WALKS }
+    })
   })
 
   it('[board] lets the host move a seat, and puts every pawn back on the start to play again', async () => {
     const { anna, host } = await openTwoSeats()
 
     host.send({
-      points: 3_000,
+      points: pointsForCases(3),
       target: { kind: 'seat', playerId: idOf(anna) },
       type: 'host.adjustScore'
     })
@@ -410,7 +423,7 @@ describe('a room racing every seat on a track', () => {
     const { anna, host } = await openTwoSeats()
 
     host.send({
-      points: 9_000,
+      points: pointsForCases(TRACK.length - 1),
       target: { kind: 'seat', playerId: idOf(anna) },
       type: 'host.adjustScore'
     })
