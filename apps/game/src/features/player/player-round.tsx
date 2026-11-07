@@ -78,7 +78,6 @@ import { SwatchRound } from '@/features/player/swatch-round'
 import { TimelineAnswer } from '@/features/player/timeline-answer'
 import { YourTrackStrip } from '@/features/player/your-track-strip'
 import { answerFitting } from '@/helpers/answer-fitting'
-import { revealHoldOf } from '@/helpers/reveal-hold'
 import {
   atlasContent,
   blackSquareContent,
@@ -301,34 +300,6 @@ const CountingInGame: React.FC<{ view: PlayerRoomView }> = ({ view }) => {
   )
 }
 
-/**
- * The reveal's view with its hold ending where the next round's countdown
- * takes the whole screen, rather than at the first note the server counts to.
- */
-const holdUntilTheCountdown = (
-  round: RoundView,
-  view: PlayerRoomView
-): PlayerRoomView => {
-  const { countdownMs } = view.settings
-  const hold = revealHoldOf({ round, settings: view.settings })
-
-  if (hold === null || round.isFinal) {
-    return view
-  }
-
-  const heldMs = hold.holdMs - countdownMs
-
-  return {
-    ...view,
-    round: {
-      ...round,
-      advancesAt: hold.advancesAt - countdownMs,
-      isReadyHold: false
-    },
-    settings: { ...view.settings, autoAdvanceMs: heldMs > 0 ? heldMs : null }
-  }
-}
-
 const RevealedRound: React.FC<RevealedRoundProps> = ({
   clock,
   onReady,
@@ -365,10 +336,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
                 title={translate('player.gameOver.title')}
               />
             )}
-            <RoundClock
-              clock={clock}
-              view={holdUntilTheCountdown(round, view)}
-            />
+            <RoundClock clock={clock} view={view} />
           </>
         ) : (
           <NoticeCard title={translate('buzz.blocked.host_away')} />
