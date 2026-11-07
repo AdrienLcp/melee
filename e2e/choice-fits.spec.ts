@@ -2462,7 +2462,9 @@ for (const reveal of PLAYER_REVEALS) {
       ).toBeVisible()
       expect(
         await page.evaluate(() => {
-          const figure = document.querySelector('.overall :is(.score, .case)')
+          const figure = document.querySelector(
+            '.overall .scoreboard :is(.score, .case)'
+          )
 
           return figure === null
             ? 'no figure on the standings'
