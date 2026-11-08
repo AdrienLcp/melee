@@ -57,17 +57,17 @@ travels as `{ family, names }` and each dictionary words it with the name after
 a colon. The unit is `UNIT_OF_FAMILY` in `@melee/protocol/estimate`, derived
 rather than sent.
 
-| Family               | Property | Entities                                                 |
-| -------------------- | -------- | -------------------------------------------------------- |
-| `population.country` | P1082    | sovereign states                                         |
-| `population.city`    | P1082    | cities over 500 000, plus every French town (below)      |
-| `area.city`          | P2046    | every French town (below)                                |
-| `area.country`       | P2046    | sovereign states                                         |
-| `*.region`           | both     | France's eighteen regions                                |
-| `*.department`       | both     | France's departments, Paris asked as a commune           |
-| `elevation.mountain` | P2044    | summits with a French and an English article             |
-| `length.river`       | P2043    | rivers with a French and an English article              |
-| `height.building`    | P2048    | towers and skyscrapers with both articles                |
+| Family               | Property | Entities                                            |
+| -------------------- | -------- | --------------------------------------------------- |
+| `population.country` | P1082    | sovereign states                                    |
+| `population.city`    | P1082    | cities over 500 000, plus every French town (below) |
+| `area.city`          | P2046    | every French town (below)                           |
+| `area.country`       | P2046    | sovereign states                                    |
+| `*.region`           | both     | France's eighteen regions                           |
+| `*.department`       | both     | France's departments, Paris asked as a commune      |
+| `elevation.mountain` | P2044    | summits with a French and an English article        |
+| `length.river`       | P2043    | rivers with a French and an English article         |
+| `height.building`    | P2048    | towers and skyscrapers with both articles           |
 
 `isWellKnown` from French Wikipedia traffic, as the capital bank reads it. A
 value is rounded to three significant figures in the bank — Wikidata's
