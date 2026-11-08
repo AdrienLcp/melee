@@ -22,6 +22,7 @@ import { TextField } from '@/presentation/components/text-field'
 import { ToggleGroup } from '@/presentation/components/toggle-group'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
+import { DifficultyChoice } from './difficulty-choice'
 import { NumberChoice, useDurationLabels } from './number-choice'
 import { useArrivedLater } from './use-arrived-later'
 
@@ -58,7 +59,7 @@ type PetitBacSetupProps = {
 
 /**
  * What a round of Petit Bac is played on: the categories — drawn afresh each
- * round, or one list the host picked from the box and wrote into — the letters
+ * round at a level, or one list the host picked from the box and wrote into — the letters
  * the draw may land on, how long the sheets stay open and whether a full one
  * may close them.
  */
@@ -93,20 +94,30 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
       />
 
       {game.categories === null ? (
-        <NumberField
-          className='category-count'
-          data-arrived={categoryCountArrived}
-          isDisabled={isDisabled}
-          label={translate('petitbac.setup.count')}
-          maxValue={MAX_PETIT_BAC_CATEGORIES}
-          minValue={MIN_PETIT_BAC_CATEGORIES}
-          onChange={(categoryCount) => {
-            if (Number.isInteger(categoryCount)) {
-              onChange({ ...game, categoryCount })
-            }
-          }}
-          value={game.categoryCount}
-        />
+        <>
+          <NumberField
+            className='category-count'
+            data-arrived={categoryCountArrived}
+            isDisabled={isDisabled}
+            label={translate('petitbac.setup.count')}
+            maxValue={MAX_PETIT_BAC_CATEGORIES}
+            minValue={MIN_PETIT_BAC_CATEGORIES}
+            onChange={(categoryCount) => {
+              if (Number.isInteger(categoryCount)) {
+                onChange({ ...game, categoryCount })
+              }
+            }}
+            value={game.categoryCount}
+          />
+          <DifficultyChoice
+            data-arrived={categoryCountArrived}
+            isDisabled={isDisabled}
+            onChange={(difficulty) => {
+              onChange({ ...game, difficulty })
+            }}
+            value={game.difficulty}
+          />
+        </>
       ) : (
         <FixedCategories
           categories={game.categories}

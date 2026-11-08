@@ -8,6 +8,13 @@ one part.
 
 ### Features
 
+- `[Shared]` **Petit Bac takes a level for the lines it draws.** Easy deals
+  the lines a child fills alone — an animal, a colour, a first name; hard
+  never deals them and leans on a cheese, a plant, a famous person; mixed
+  deals each in equal shares. A list the host wrote is played as written,
+  and leaves the evening's level alone. The letters stay the host's: the
+  rare ones are already left out until somebody ticks them back.
+
 - `[Server]` **The timeline at easy deals events a child has heard of, a
   generation apart.** Columbus, the Titanic, the first Harry Potter: five
   events at least thirty years from each other, so a table with children

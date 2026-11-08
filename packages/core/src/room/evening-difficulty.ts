@@ -2,9 +2,17 @@ import type { Difficulty } from '@melee/protocol/difficulty'
 import type { GameSettings } from '@melee/protocol/game'
 import type { RoomSettings } from '@melee/protocol/room'
 
-/** The level an entry deals at, or `null` for a game that deals no content to level. */
+/**
+ * The level an entry deals at, or `null` for one that deals no content to
+ * level — a Petit Bac playing the host's own list among them, which keeps its
+ * level for the day the box draws again.
+ */
 export const difficultyOf = (entry: GameSettings): Difficulty | null =>
-  'difficulty' in entry ? entry.difficulty : null
+  entry.kind === 'petitbac' && entry.categories !== null
+    ? null
+    : 'difficulty' in entry
+      ? entry.difficulty
+      : null
 
 const levelledEntriesOf = (lineUp: readonly GameSettings[]): Difficulty[] =>
   lineUp.flatMap((entry) => {

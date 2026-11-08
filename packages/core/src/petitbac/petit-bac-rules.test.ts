@@ -7,7 +7,7 @@ import {
 } from '@melee/protocol/petit-bac'
 import { MOST_A_ROUND_PAYS, POINT } from '@melee/protocol/scoring'
 
-import { drawCategories } from './category-draw'
+import { categoryTierOf, drawCategories } from './category-draw'
 import { drawLetter, playableLetters } from './letter-draw'
 import { isStoppableLine, startsWithLetter } from './letter-match'
 import { isRowRefused } from './row-vote'
@@ -78,7 +78,11 @@ describe('isStoppableLine', () => {
 
 describe('drawCategories', () => {
   it('[petitbac] draws distinct bank categories', () => {
-    const categories = drawCategories({ count: 6, fixed: null })
+    const categories = drawCategories({
+      count: 6,
+      difficulty: 'mixed',
+      fixed: null
+    })
 
     expect(categories).toHaveLength(6)
     expect(new Set(categories.map((category) => category.kind))).toEqual(
@@ -99,13 +103,46 @@ describe('drawCategories', () => {
       { kind: 'own', label: 'Un plat de mamie' }
     ] as const
 
-    expect(drawCategories({ count: 6, fixed })).toEqual(fixed)
+    expect(drawCategories({ count: 6, difficulty: 'easy', fixed })).toEqual(
+      fixed
+    )
   })
 
   it('[petitbac] can draw the whole bank', () => {
     expect(
-      drawCategories({ count: petitBacBankCategories.length, fixed: null })
+      drawCategories({
+        count: petitBacBankCategories.length,
+        difficulty: 'easy',
+        fixed: null
+      })
     ).toHaveLength(petitBacBankCategories.length)
+  })
+
+  const tiersDrawn = (difficulty: 'easy' | 'mixed' | 'hard') =>
+    drawCategories({ count: 6, difficulty, fixed: null }).map((category) =>
+      category.kind === 'bank' ? categoryTierOf(category.key) : null
+    )
+
+  it('[petitbac] draws only easy lines for a table with children', () => {
+    for (let draw = 0; draw < 20; draw += 1) {
+      expect(new Set(tiersDrawn('easy'))).toEqual(new Set(['easy']))
+    }
+  })
+
+  it('[petitbac] never draws an easy line at hard', () => {
+    for (let draw = 0; draw < 20; draw += 1) {
+      expect(tiersDrawn('hard')).not.toContain('easy')
+    }
+  })
+
+  it('[petitbac] mixes every tier in equal shares', () => {
+    for (let draw = 0; draw < 20; draw += 1) {
+      const tiers = tiersDrawn('mixed')
+
+      for (const tier of ['easy', 'medium', 'hard']) {
+        expect(tiers.filter((drawn) => drawn === tier)).toHaveLength(2)
+      }
+    }
   })
 })
 

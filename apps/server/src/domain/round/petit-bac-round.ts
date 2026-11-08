@@ -59,6 +59,7 @@ export const petitBacContent = ({
   })
   const categories = drawCategories({
     count: settings.categoryCount,
+    difficulty: settings.difficulty,
     fixed: settings.categories
   })
 

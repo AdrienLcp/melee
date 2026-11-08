@@ -29,6 +29,23 @@ describe('the evening level', () => {
     )
   })
 
+  it('[difficulty] counts a Petit Bac only while the box draws its lines', () => {
+    const drawn = DEFAULT_GAME_SETTINGS.petitbac
+    const ownList = {
+      ...drawn,
+      categories: [
+        { key: 'animal', kind: 'bank' },
+        { key: 'colour', kind: 'bank' },
+        { key: 'country', kind: 'bank' }
+      ]
+    } as const
+
+    expect(hasEveningDifficulty([drawn, DEFAULT_GAME_SETTINGS.quiz])).toBe(true)
+    expect(hasEveningDifficulty([ownList, DEFAULT_GAME_SETTINGS.quiz])).toBe(
+      false
+    )
+  })
+
   it('[difficulty] reads custom once two games deal at different levels', () => {
     expect(eveningDifficultyOf(entries('blindtest', 'quiz'))).toBe('custom')
   })

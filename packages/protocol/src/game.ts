@@ -162,6 +162,11 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
       .nullable(),
     /** How many a drawn round deals; a fixed list is as long as it is. */
     categoryCount: petitBacCategoryCountSchema,
+    /**
+     * How hard the drawn lines are; a fixed list is played as written.
+     * Defaulted so a setup remembered before the level existed still parses.
+     */
+    difficulty: difficultySchema.default('mixed'),
     /** Left out of the draw, so some letter always stays playable. */
     excludedLetters: z
       .array(petitBacLetterSchema)
@@ -340,6 +345,7 @@ export const DEFAULT_MATCHSTICKS_SETTINGS: MatchsticksSettings = {
 export const DEFAULT_PETIT_BAC_SETTINGS: PetitBacSettings = {
   categories: null,
   categoryCount: 6,
+  difficulty: 'mixed',
   excludedLetters: [...RARE_PETIT_BAC_LETTERS],
   kind: 'petitbac',
   roundDurationMs: 120_000,
