@@ -11,12 +11,17 @@ import { localeSchema } from './locale'
  * after a colon needs none.
  */
 export const QUANTITY_FAMILIES = [
+  'area.city',
   'area.country',
+  'area.department',
+  'area.region',
   'elevation.mountain',
   'height.building',
   'length.river',
   'population.city',
-  'population.country'
+  'population.country',
+  'population.department',
+  'population.region'
 ] as const
 
 export const quantityFamilySchema = z.enum(QUANTITY_FAMILIES)
@@ -35,12 +40,17 @@ export const QUANTITY_UNITS = [
 export const quantityUnitSchema = z.enum(QUANTITY_UNITS)
 
 export const UNIT_OF_FAMILY = {
+  'area.city': 'squareKilometres',
   'area.country': 'squareKilometres',
+  'area.department': 'squareKilometres',
+  'area.region': 'squareKilometres',
   'elevation.mountain': 'metres',
   'height.building': 'metres',
   'length.river': 'kilometres',
   'population.city': 'people',
-  'population.country': 'people'
+  'population.country': 'people',
+  'population.department': 'people',
+  'population.region': 'people'
 } as const satisfies Record<QuantityFamily, QuantityUnit>
 
 /**

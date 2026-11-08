@@ -8,6 +8,15 @@ one part.
 
 ### Features
 
+- `[Shared]` **Plus ou moins and Le juste chiffre know France.** French
+  towns are now asked by the area of their commune as well as by their
+  people, every prefecture joins the towns, and France's regions and
+  departments join by both. Easy holds a French side on every pair while one
+  can be paired — France against Spain, Rouen against Nantes, Bretagne
+  against Normandie — and never deals two values closer than one and a half
+  times or more than ten apart. Its famous tier takes the thirteen regions
+  and the towns the map of France already counts as easy.
+
 - `[Shared]` **Black square deals four answers from a pool, and takes a
   level.** A theme now holds twelve to twenty true answers and a round deals
   four of them — one obvious, two between, one rare — so a theme met again

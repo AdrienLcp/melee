@@ -1,5 +1,7 @@
 import type { QuantityFamily } from '@melee/protocol/estimate'
 
+import { BANKED_CITIES } from './city-bank'
+
 const FAMOUS_COUNTRIES = [
   'France',
   'Allemagne',
@@ -52,6 +54,36 @@ const FAMOUS_COUNTRIES = [
   'Luxembourg'
 ]
 
+/** The thirteen regions of metropolitan France, which a French table names without thinking. */
+const METROPOLITAN_REGIONS = [
+  'Auvergne-Rhône-Alpes',
+  'Bourgogne-Franche-Comté',
+  'Bretagne',
+  'Centre-Val de Loire',
+  'Corse',
+  'Grand Est',
+  'Hauts-de-France',
+  'Île-de-France',
+  'Normandie',
+  'Nouvelle-Aquitaine',
+  'Occitanie',
+  'Pays de la Loire',
+  "Provence-Alpes-Côte d'Azur"
+]
+
+/**
+ * The French towns the map of France already reads as everyone's — its own
+ * `easy` tier — so a town is famous in the same way in both games.
+ */
+const FRENCH_TOWNS_EVERYONE_KNOWS: ReadonlySet<string> = new Set(
+  BANKED_CITIES.filter(({ tier }) => tier === 'easy').map(({ name }) => name)
+)
+
+const FAMILIES_OF_TOWNS: ReadonlySet<QuantityFamily> = new Set([
+  'area.city',
+  'population.city'
+])
+
 /**
  * The rows a French table has heard of *and could rank*, by their French name,
  * picked by hand. The bank's `isWellKnown` is a traffic threshold, and every
@@ -60,7 +92,10 @@ const FAMOUS_COUNTRIES = [
  */
 export const FAMOUS_QUANTITY_NAMES: Record<QuantityFamily, readonly string[]> =
   {
+    'area.city': [],
     'area.country': FAMOUS_COUNTRIES,
+    'area.department': [],
+    'area.region': METROPOLITAN_REGIONS,
     'elevation.mountain': [
       'Everest',
       'K2',
@@ -197,7 +232,9 @@ export const FAMOUS_QUANTITY_NAMES: Record<QuantityFamily, readonly string[]> =
       'Bombay',
       'Delhi'
     ],
-    'population.country': FAMOUS_COUNTRIES
+    'population.country': FAMOUS_COUNTRIES,
+    'population.department': [],
+    'population.region': METROPOLITAN_REGIONS
   }
 
 export const isFamousQuantity = ({
@@ -206,4 +243,6 @@ export const isFamousQuantity = ({
 }: {
   family: QuantityFamily
   names: { fr: string }
-}): boolean => FAMOUS_QUANTITY_NAMES[family].includes(names.fr)
+}): boolean =>
+  FAMOUS_QUANTITY_NAMES[family].includes(names.fr) ||
+  (FAMILIES_OF_TOWNS.has(family) && FRENCH_TOWNS_EVERYONE_KNOWS.has(names.fr))

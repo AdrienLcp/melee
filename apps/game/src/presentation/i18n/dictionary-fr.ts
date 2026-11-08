@@ -519,13 +519,20 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Estimation envoyée. On attend les autres.'
     },
     asks: {
-      area: { country: 'Quelle superficie pour ce pays ?' },
+      area: {
+        city: 'Quelle superficie pour cette commune ?',
+        country: 'Quelle superficie pour ce pays ?',
+        department: 'Quelle superficie pour ce département ?',
+        region: 'Quelle superficie pour cette région ?'
+      },
       elevation: { mountain: 'Quelle altitude pour ce sommet ?' },
       height: { building: 'Quelle hauteur pour cet édifice ?' },
       length: { river: 'Quelle longueur pour ce cours d’eau ?' },
       population: {
         city: 'Combien d’habitants dans cette ville ?',
-        country: 'Combien d’habitants dans ce pays ?'
+        country: 'Combien d’habitants dans ce pays ?',
+        department: 'Combien d’habitants dans ce département ?',
+        region: 'Combien d’habitants dans cette région ?'
       }
     },
     home: {
@@ -567,13 +574,20 @@ export const FR_DICTIONARY = defineDictionary({
       sent: 'Ton choix est parti. On attend les autres.'
     },
     asks: {
-      area: { country: 'Quel pays est le plus vaste ?' },
+      area: {
+        city: 'Quelle commune est la plus étendue ?',
+        country: 'Quel pays est le plus vaste ?',
+        department: 'Quel département est le plus vaste ?',
+        region: 'Quelle région est la plus vaste ?'
+      },
       elevation: { mountain: 'Quel sommet est le plus haut ?' },
       height: { building: 'Quel édifice est le plus haut ?' },
       length: { river: 'Quel cours d’eau est le plus long ?' },
       population: {
         city: 'Quelle ville a le plus d’habitants ?',
-        country: 'Quel pays a le plus d’habitants ?'
+        country: 'Quel pays a le plus d’habitants ?',
+        department: 'Quel département a le plus d’habitants ?',
+        region: 'Quelle région a le plus d’habitants ?'
       }
     },
     dealt: 'Deux noms. Lequel est le plus grand ?',

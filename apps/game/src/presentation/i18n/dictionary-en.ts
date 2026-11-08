@@ -554,13 +554,20 @@ export const EN_DICTIONARY = defineDictionary({
       sent: 'Your estimate is in. Waiting for the others.'
     },
     asks: {
-      area: { country: 'How large is this country?' },
+      area: {
+        city: 'How large is this town?',
+        country: 'How large is this country?',
+        department: 'How large is this department?',
+        region: 'How large is this region?'
+      },
       elevation: { mountain: 'How high is this mountain?' },
       height: { building: 'How tall is this building?' },
       length: { river: 'How long is this river?' },
       population: {
         city: 'How many people live in this city?',
-        country: 'How many people live in this country?'
+        country: 'How many people live in this country?',
+        department: 'How many people live in this department?',
+        region: 'How many people live in this region?'
       }
     },
     home: {
@@ -602,13 +609,20 @@ export const EN_DICTIONARY = defineDictionary({
       sent: 'Your pick is in. Waiting for the others.'
     },
     asks: {
-      area: { country: 'Which country is larger?' },
+      area: {
+        city: 'Which town covers more ground?',
+        country: 'Which country is larger?',
+        department: 'Which department is larger?',
+        region: 'Which region is larger?'
+      },
       elevation: { mountain: 'Which mountain is higher?' },
       height: { building: 'Which building is taller?' },
       length: { river: 'Which river is longer?' },
       population: {
         city: 'Which city has more people?',
-        country: 'Which country has more people?'
+        country: 'Which country has more people?',
+        department: 'Which department has more people?',
+        region: 'Which region has more people?'
       }
     },
     dealt: 'Two names. Which is bigger?',

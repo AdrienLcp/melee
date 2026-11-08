@@ -29,11 +29,12 @@ const BANK_PATH = join(
 
 const SIGNIFICANT_FIGURES = 3
 
+const FRANCE = 'Q142'
+
 /** Below this an article is a stub only its own region's wiki wrote. */
 const SITELINKS_FLOOR = 20
 
 const MIN_CITY_POPULATION = 500_000
-const MIN_FRENCH_CITY_POPULATION = 100_000
 
 /**
  * The Kingdom of the Netherlands stands for its European country, and Denmark's
@@ -57,7 +58,32 @@ const CITIES = `?item wdt:P31 ?kind.
     VALUES ?kind { wd:Q515 wd:Q1549591 wd:Q1637706 wd:Q200250 wd:Q5119 wd:Q22865 }
     FILTER NOT EXISTS { ?item wdt:P576 ?dissolved }`
 
-const FRENCH_COMMUNES = 'VALUES ?kind { wd:Q484170 } ?item wdt:P31 ?kind.'
+/**
+ * The French towns a table has a picture of: every commune of a hundred
+ * thousand people, and every prefecture however small — Guéret beside
+ * Limoges is a comparison a French table can make, and Shenyang is not. A
+ * seat is a prefecture while it has no end date: Gray and Navarrenx were one
+ * once. Paris is asked by name, because Wikidata files it as a department
+ * and a capital rather than as a commune.
+ */
+const FRENCH_TOWNS = `{
+      ?item wdt:P31 wd:Q484170.
+      {
+        ?item p:P1376 ?seatOf. ?seatOf ps:P1376 ?seat.
+        ?seat wdt:P31 wd:Q6465.
+        FILTER NOT EXISTS { ?seatOf pq:P582 ?until }
+      } UNION {
+        ?item wdt:P1082 ?people. FILTER(?people >= 100000)
+      }
+    } UNION { VALUES ?item { wd:Q90 } }`
+
+const FRENCH_REGIONS = `?item wdt:P31 wd:Q36784.
+    FILTER NOT EXISTS { ?item wdt:P576 ?dissolved }`
+
+/** Paris is a commune and a department at once, and asked as the commune. */
+const FRENCH_DEPARTMENTS = `?item wdt:P31 wd:Q6465.
+    FILTER NOT EXISTS { ?item wdt:P576 ?dissolved }
+    FILTER NOT EXISTS { ?item wdt:P31 wd:Q484170 }`
 
 const MOUNTAINS = `?item wdt:P31 ?kind.
     VALUES ?kind { wd:Q8502 wd:Q8072 wd:Q169358 wd:Q207326 }`
@@ -92,16 +118,29 @@ type FamilySource = {
 
 const asIs = (amount: number): number => amount
 
+const fromSquareMetres = (squareMetres: number): number => squareMetres / 1e6
+
+const areaOf = (entities: string): FamilySource => ({
+  entities,
+  inUnit: fromSquareMetres,
+  isCount: false,
+  minimum: 0,
+  property: 'P2046'
+})
+
+const populationOf = (entities: string): FamilySource => ({
+  entities,
+  inUnit: asIs,
+  isCount: true,
+  minimum: 0,
+  property: 'P1082'
+})
+
 const SOURCES: Record<QuantityFamily, readonly FamilySource[]> = {
-  'area.country': [
-    {
-      entities: COUNTRIES,
-      inUnit: (squareMetres) => squareMetres / 1e6,
-      isCount: false,
-      minimum: 0,
-      property: 'P2046'
-    }
-  ],
+  'area.city': [areaOf(FRENCH_TOWNS)],
+  'area.country': [areaOf(COUNTRIES)],
+  'area.department': [areaOf(FRENCH_DEPARTMENTS)],
+  'area.region': [areaOf(FRENCH_REGIONS)],
   'elevation.mountain': [
     {
       entities: MOUNTAINS,
@@ -137,23 +176,11 @@ const SOURCES: Record<QuantityFamily, readonly FamilySource[]> = {
       minimum: MIN_CITY_POPULATION,
       property: 'P1082'
     },
-    {
-      entities: FRENCH_COMMUNES,
-      inUnit: asIs,
-      isCount: true,
-      minimum: MIN_FRENCH_CITY_POPULATION,
-      property: 'P1082'
-    }
+    populationOf(FRENCH_TOWNS)
   ],
-  'population.country': [
-    {
-      entities: COUNTRIES,
-      inUnit: asIs,
-      isCount: true,
-      minimum: 0,
-      property: 'P1082'
-    }
-  ]
+  'population.country': [populationOf(COUNTRIES)],
+  'population.department': [populationOf(FRENCH_DEPARTMENTS)],
+  'population.region': [populationOf(FRENCH_REGIONS)]
 }
 
 /** Where Wikidata's label is the official form, the name a table says. */
@@ -163,7 +190,12 @@ const NAMES_SAID: Readonly<Record<string, Names>> = {
 
 const entityIdOf = (uri: string): string => uri.split('/').at(-1) ?? uri
 
-type Measured = { entity: string; sitelinks: number; value: number }
+type Measured = {
+  entity: string
+  isInFrance: boolean
+  sitelinks: number
+  value: number
+}
 
 /**
  * Every best-ranked value of the property on every entity that has an article
@@ -175,7 +207,7 @@ const measured = async (source: FamilySource): Promise<Measured[]> => {
   const valuePath = source.isCount
     ? `ps:${source.property}`
     : `psn:${source.property}/wikibase:quantityAmount`
-  const query = `SELECT ?item ?amount ?date ?links WHERE {
+  const query = `SELECT ?item ?amount ?date ?links ?inFrance WHERE {
     hint:Query hint:optimizer "None".
     ${source.entities}
     ?item wikibase:sitelinks ?links; p:${source.property} ?statement.
@@ -184,10 +216,12 @@ const measured = async (source: FamilySource): Promise<Measured[]> => {
     OPTIONAL { ?statement pq:P585 ?date }
     ?english schema:about ?item; schema:isPartOf <https://en.wikipedia.org/>.
     ?french schema:about ?item; schema:isPartOf <https://fr.wikipedia.org/>.
+    OPTIONAL { ?item wdt:P17 ?inFrance. FILTER(?inFrance = wd:${FRANCE}) }
   }`
   const schema = sparqlBindingsSchema({
     amount: bindingValue,
     date: bindingValue.optional(),
+    inFrance: bindingValue.optional(),
     item: bindingValue,
     links: bindingValue
   })
@@ -208,7 +242,7 @@ const measured = async (source: FamilySource): Promise<Measured[]> => {
   )
   const latest = new Map<string, Measured & { date: string }>()
 
-  for (const { amount, date, item, links } of orStop(
+  for (const { amount, date, inFrance, item, links } of orStop(
     parseJson(text, schema),
     hash
   ).results.bindings) {
@@ -225,6 +259,7 @@ const measured = async (source: FamilySource): Promise<Measured[]> => {
       latest.set(entity, {
         date: stated,
         entity,
+        isInFrance: entity === FRANCE || inFrance !== undefined,
         sitelinks: Number(links.value),
         value
       })
@@ -233,7 +268,7 @@ const measured = async (source: FamilySource): Promise<Measured[]> => {
 
   return [...latest.values()]
     .filter(({ value }) => Number.isFinite(value) && value > source.minimum)
-    .map(({ entity, sitelinks, value }) => ({ entity, sitelinks, value }))
+    .map(({ date: _, ...quantity }) => quantity)
 }
 
 const roundedToFigures = (value: number): number =>
@@ -277,13 +312,14 @@ const main = async () => {
     const names = await namesOf({ cache: 'quantity-labels.json', entityIds })
     const views = await frenchViewsOf({ entityIds, label: family })
 
-    for (const { entity, sitelinks, value } of found.values()) {
+    for (const { entity, isInFrance, sitelinks, value } of found.values()) {
       const entityNames = NAMES_SAID[entity] ?? names.get(entity)
 
       if (entityNames !== undefined) {
         rows.push({
           entity,
           family,
+          isInFrance,
           isWellKnown: isWellKnownInFrench(views.get(entity) ?? 0),
           names: entityNames,
           sitelinks,

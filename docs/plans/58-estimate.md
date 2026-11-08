@@ -46,7 +46,7 @@ _Le juste chiffre_ in French, _Close enough_ in English.
 `apps/server/scripts/build-quantity-bank.ts` (`quantities:build`) on the
 capital bank's pattern (`wikimedia-client.ts`, the `question-source.ts`
 cache, `wikidata-names.ts` now shared with the capitals): one row
-`{ entity, family, isWellKnown, names: { en, fr }, value }`, unique per
+`{ entity, family, isInFrance, isWellKnown, names: { en, fr }, value }`, unique per
 family and entity — a country's population and its area are two rows of one
 entity.
 
@@ -60,8 +60,11 @@ rather than sent.
 | Family               | Property | Entities                                                 |
 | -------------------- | -------- | -------------------------------------------------------- |
 | `population.country` | P1082    | sovereign states                                         |
-| `population.city`    | P1082    | cities over 500 000, plus every French city over 100 000 |
+| `population.city`    | P1082    | cities over 500 000, plus every French town (below)      |
+| `area.city`          | P2046    | every French town (below)                                |
 | `area.country`       | P2046    | sovereign states                                         |
+| `*.region`           | both     | France's eighteen regions                                |
+| `*.department`       | both     | France's departments, Paris asked as a commune           |
 | `elevation.mountain` | P2044    | summits with a French and an English article             |
 | `length.river`       | P2043    | rivers with a French and an English article              |
 | `height.building`    | P2048    | towers and skyscrapers with both articles                |
@@ -70,6 +73,28 @@ rather than sent.
 value is rounded to three significant figures in the bank — Wikidata's
 population of Japan is a census figure no table should be paid on to the unit.
 The rows are **shared with stage 59**, which pairs them.
+
+**France, added with the level (November 2026).** A French table could not
+rank Gabon against Gambia or Shenyang against Tianjin, and said so: what it
+knows is France against its neighbours, Paris against Lyon, Brittany against
+Normandy. A _French town_ is every commune of 100 000 people and every
+current prefecture (a seat whose `P1376` has no end date — Gray and Navarrenx
+were one once), plus Paris by id, which Wikidata files as a department rather
+than as a commune. `isInFrance` is France itself or a `P17` naming it, so Mont
+Blanc and the Rhine count. The tier is read at runtime by `tierOfQuantity`:
+`famous-quantities.ts` (with the thirteen metropolitan regions and the towns
+the Atlas map tiers `easy`) → `easy`, `isWellKnown` → `medium`, the rest
+`hard`. **Sitelinks were not used** to cut medium from hard, though the
+handoff asked for it: `frwiki-notability.ts` records why — bot stubs put a
+village of sixty people level with a film. At `easy`, Plus ou moins holds a
+French row on one side of every pair while any family can pair one, inside
+`WIDE_PAIR_BAND` (1.5× to 10×); `mixed` and `hard` keep the fair band. Rebuilt:
+4 993 rows, 1 383 well known — towns by area 109, regions 18 each,
+departments 95 each.
+
+Wikimedia drops about one connection in six from this machine; `withRetries`
+retries an HTTP answer, not a refused connection, so a build that dies on
+`UND_ERR_CONNECT_TIMEOUT` is run again rather than debugged.
 
 **As built**: 4 578 rows, 980 well known — countries 195 each (all well
 known), cities 955 (369), mountains 1 072 (87), rivers 1 876 (100), towers

@@ -3,7 +3,12 @@ import { z } from 'zod'
 import type { Difficulty } from '@melee/protocol/difficulty'
 import { quantityFamilySchema } from '@melee/protocol/estimate'
 
-import { type DealtPair, dealPairs } from '@melee/core/higherlower/pair-deal'
+import {
+  type DealtPair,
+  dealPairs,
+  dealPairsBy,
+  WIDE_PAIR_BAND
+} from '@melee/core/higherlower/pair-deal'
 import {
   type ContentTier,
   dealByDifficulty,
@@ -17,6 +22,11 @@ export const quantityRowSchema = z.object({
   /** Its Wikidata id, which one place carries into two families — a country's population and its area. */
   entity: z.string(),
   family: quantityFamilySchema,
+  /**
+   * France itself, or a place Wikidata puts in it — Mont Blanc and the Rhine
+   * among them, which are a French table's own however many countries share them.
+   */
+  isInFrance: z.boolean(),
   /** Whether a French room can be expected to have heard of it, by its article's traffic. */
   isWellKnown: z.boolean(),
   names: z.object({ en: z.string().min(1), fr: z.string().min(1) }),
@@ -47,7 +57,7 @@ export const playedQuantityId = ({ entity, family }: QuantityRow): string =>
  * it has heard of, and the rest the height of a summit nobody at the table has
  * — a guess at the zeros, which `easy` never deals while anything else is left.
  */
-const tierOfQuantity = (row: QuantityRow): ContentTier =>
+export const tierOfQuantity = (row: QuantityRow): ContentTier =>
   isFamousQuantity(row) ? 'easy' : row.isWellKnown ? 'medium' : 'hard'
 
 /**
@@ -69,6 +79,19 @@ export const drawQuantity = ({
     tierOf: tierOfQuantity
   })
 
+/**
+ * A table with children compares France with Spain and Paris with Lyon:
+ * every pair holds a French side while one can be paired, and no pair is
+ * closer than a child can tell apart.
+ */
+const dealPairsForChildren = (
+  rows: readonly QuantityRow[]
+): DealtPair<QuantityRow>[] | null =>
+  dealPairsBy({
+    rows,
+    rules: { band: WIDE_PAIR_BAND, prefers: ({ isInFrance }) => isInFrance }
+  })
+
 export const playedPairedQuantityId = ({
   entity,
   family
@@ -78,7 +101,8 @@ export const playedPairedQuantityId = ({
  * A round of quantities the room has not compared, every pair from one tier
  * of the room's level: two summits nobody has heard of are a coin flip, not a
  * comparison, and `easy` deals them only once nothing better can fill a round.
- * `null` once the bank cannot deal a round.
+ * `easy` also deals its pairs wider apart and from France first. `null` once
+ * the bank cannot deal a round.
  */
 export const drawPairs = ({
   difficulty,
@@ -88,7 +112,7 @@ export const drawPairs = ({
   playedIds: ReadonlySet<string>
 }): DealtPair<QuantityRow>[] | null =>
   dealByDifficulty({
-    deal: dealPairs,
+    deal: difficulty === 'easy' ? dealPairsForChildren : dealPairs,
     difficulty,
     pool: bankedQuantities().filter(
       (row) => !playedIds.has(playedPairedQuantityId(row))

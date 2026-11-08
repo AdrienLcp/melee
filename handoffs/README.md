@@ -6,7 +6,6 @@ delete this README with the last one.
 | Series     | Wave | File                           | Depends on   |
 | ---------- | ---- | ------------------------------ | ------------ |
 | Scoring    | —    | `scoring-01-follow-ups.md`     | none         |
-| Difficulty | 3    | `difficulty-04-numbers.md`     | none         |
 | Difficulty | 3    | `difficulty-05-other-games.md` | difficulty 2 |
 | Black sq.  | 3    | `black-square-01-shape.md`     | difficulty 2 |
 | Black sq.  | 4    | `black-square-02-themes.md`    | black sq. 1  |

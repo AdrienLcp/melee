@@ -7,8 +7,11 @@ years apart, Petit Bac tiers its categories, and `docs/game-catalogue.md`
 nothing to deal take none. Nothing of it is pushed yet: the series validates
 once, here.
 
-What is left waits on `difficulty-04-numbers.md` landing — the closing
-validate has to cover it.
+Part 4 landed too, unpushed like the rest: Plus ou moins and Le juste
+chiffre deal French towns, regions and departments, and `easy` pairs hold a
+French side inside a wider band. Its reading for the stage record is in
+`docs/plans/58-estimate.md` (_France, added with the level_), sitelinks
+refused included.
 
 ## Closing the series
 
