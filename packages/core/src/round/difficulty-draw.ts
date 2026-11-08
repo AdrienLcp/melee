@@ -77,9 +77,3 @@ export const drawByDifficulty = <TItem>({
   tierOf: (item: TItem) => ContentTier
 }): TItem | null =>
   dealByDifficulty({ deal: pickRandom, difficulty, pool, tierOf })
-
-/**
- * The tier of every row of a bank that holds no tiers yet: each level falls
- * through to the one tier there is, so the level deals what the bank always did.
- */
-export const oneTierForEveryRow = (): ContentTier => 'medium'

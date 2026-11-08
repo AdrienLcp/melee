@@ -1,6 +1,7 @@
 [
   {
     "id": "pompeii",
+    "knownToChildren": true,
     "labels": {
       "en": "Vesuvius buries Pompeii",
       "fr": "Le Vésuve ensevelit Pompéi"
@@ -10,6 +11,7 @@
   },
   {
     "id": "charlemagne-crowned",
+    "knownToChildren": true,
     "labels": {
       "en": "Charlemagne crowned emperor",
       "fr": "Charlemagne sacré empereur"
@@ -19,6 +21,7 @@
   },
   {
     "id": "battle-of-hastings",
+    "knownToChildren": false,
     "labels": {
       "en": "Battle of Hastings",
       "fr": "Bataille d'Hastings"
@@ -28,6 +31,7 @@
   },
   {
     "id": "magna-carta",
+    "knownToChildren": false,
     "labels": {
       "en": "Magna Carta sealed",
       "fr": "Signature de la Magna Carta"
@@ -37,6 +41,7 @@
   },
   {
     "id": "black-death",
+    "knownToChildren": true,
     "labels": {
       "en": "The Black Death reaches Europe",
       "fr": "La peste noire arrive en Europe"
@@ -46,6 +51,7 @@
   },
   {
     "id": "joan-of-arc-burned",
+    "knownToChildren": true,
     "labels": {
       "en": "Joan of Arc burned at the stake",
       "fr": "Jeanne d'Arc meurt sur le bûcher"
@@ -55,6 +61,7 @@
   },
   {
     "id": "fall-of-constantinople",
+    "knownToChildren": false,
     "labels": {
       "en": "Fall of Constantinople",
       "fr": "Chute de Constantinople"
@@ -64,6 +71,7 @@
   },
   {
     "id": "columbus-americas",
+    "knownToChildren": true,
     "labels": {
       "en": "Columbus reaches the Americas",
       "fr": "Christophe Colomb atteint l'Amérique"
@@ -73,6 +81,7 @@
   },
   {
     "id": "marignan",
+    "knownToChildren": true,
     "labels": {
       "en": "Battle of Marignano",
       "fr": "Bataille de Marignan"
@@ -82,6 +91,7 @@
   },
   {
     "id": "luther-theses",
+    "knownToChildren": false,
     "labels": {
       "en": "Luther posts his 95 Theses",
       "fr": "Luther affiche ses 95 thèses"
@@ -91,6 +101,7 @@
   },
   {
     "id": "galileo-telescope",
+    "knownToChildren": true,
     "labels": {
       "en": "Galileo turns his telescope to the sky",
       "fr": "Galilée pointe sa lunette vers le ciel"
@@ -100,6 +111,7 @@
   },
   {
     "id": "great-fire-of-london",
+    "knownToChildren": false,
     "labels": {
       "en": "Great Fire of London",
       "fr": "Grand incendie de Londres"
@@ -108,7 +120,18 @@
     "year": 1666
   },
   {
+    "id": "versailles-court",
+    "knownToChildren": true,
+    "labels": {
+      "en": "Louis XIV moves his court to Versailles",
+      "fr": "Louis XIV installe la cour à Versailles"
+    },
+    "theme": "history",
+    "year": 1682
+  },
+  {
     "id": "newton-principia",
+    "knownToChildren": false,
     "labels": {
       "en": "Newton publishes his laws of gravitation",
       "fr": "Newton publie ses lois de la gravitation"
@@ -118,6 +141,7 @@
   },
   {
     "id": "louis-xiv-dies",
+    "knownToChildren": true,
     "labels": {
       "en": "Death of Louis XIV",
       "fr": "Mort de Louis XIV"
@@ -127,6 +151,7 @@
   },
   {
     "id": "mozart-born",
+    "knownToChildren": true,
     "labels": {
       "en": "Mozart is born",
       "fr": "Naissance de Mozart"
@@ -136,6 +161,7 @@
   },
   {
     "id": "us-independence",
+    "knownToChildren": true,
     "labels": {
       "en": "US Declaration of Independence",
       "fr": "Déclaration d'indépendance des États-Unis"
@@ -144,7 +170,18 @@
     "year": 1776
   },
   {
+    "id": "first-balloon-flight",
+    "knownToChildren": true,
+    "labels": {
+      "en": "First crewed hot-air balloon flight",
+      "fr": "Premier vol habité en montgolfière"
+    },
+    "theme": "science",
+    "year": 1783
+  },
+  {
     "id": "bastille",
+    "knownToChildren": true,
     "labels": {
       "en": "Storming of the Bastille",
       "fr": "Prise de la Bastille"
@@ -154,6 +191,7 @@
   },
   {
     "id": "louis-xvi-executed",
+    "knownToChildren": false,
     "labels": {
       "en": "Louis XVI executed",
       "fr": "Exécution de Louis XVI"
@@ -163,6 +201,7 @@
   },
   {
     "id": "first-vaccination",
+    "knownToChildren": false,
     "labels": {
       "en": "Jenner performs the first vaccination",
       "fr": "Jenner réalise la première vaccination"
@@ -172,6 +211,7 @@
   },
   {
     "id": "napoleon-crowned",
+    "knownToChildren": true,
     "labels": {
       "en": "Napoleon crowned emperor",
       "fr": "Napoléon sacré empereur"
@@ -181,6 +221,7 @@
   },
   {
     "id": "waterloo",
+    "knownToChildren": false,
     "labels": {
       "en": "Battle of Waterloo",
       "fr": "Bataille de Waterloo"
@@ -190,6 +231,7 @@
   },
   {
     "id": "napoleon-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Napoleon dies on Saint Helena",
       "fr": "Mort de Napoléon à Sainte-Hélène"
@@ -199,6 +241,7 @@
   },
   {
     "id": "beethoven-ninth",
+    "knownToChildren": false,
     "labels": {
       "en": "Premiere of Beethoven's Ninth Symphony",
       "fr": "Création de la Neuvième Symphonie de Beethoven"
@@ -208,6 +251,7 @@
   },
   {
     "id": "france-abolishes-slavery",
+    "knownToChildren": false,
     "labels": {
       "en": "France abolishes slavery",
       "fr": "Abolition de l'esclavage en France"
@@ -217,6 +261,7 @@
   },
   {
     "id": "origin-of-species",
+    "knownToChildren": false,
     "labels": {
       "en": "Darwin publishes On the Origin of Species",
       "fr": "Darwin publie L'Origine des espèces"
@@ -226,6 +271,7 @@
   },
   {
     "id": "les-miserables-novel",
+    "knownToChildren": false,
     "labels": {
       "en": "Victor Hugo publishes Les Misérables",
       "fr": "Victor Hugo publie Les Misérables"
@@ -235,6 +281,7 @@
   },
   {
     "id": "lincoln-assassinated",
+    "knownToChildren": false,
     "labels": {
       "en": "Abraham Lincoln assassinated",
       "fr": "Assassinat d'Abraham Lincoln"
@@ -244,6 +291,7 @@
   },
   {
     "id": "suez-canal",
+    "knownToChildren": false,
     "labels": {
       "en": "Suez Canal opens",
       "fr": "Ouverture du canal de Suez"
@@ -252,7 +300,18 @@
     "year": 1869
   },
   {
+    "id": "around-the-world-in-80-days",
+    "knownToChildren": true,
+    "labels": {
+      "en": "Jules Verne publishes Around the World in Eighty Days",
+      "fr": "Jules Verne publie Le Tour du monde en quatre-vingts jours"
+    },
+    "theme": "culture",
+    "year": 1872
+  },
+  {
     "id": "telephone-patent",
+    "knownToChildren": true,
     "labels": {
       "en": "Bell patents the telephone",
       "fr": "Graham Bell fait breveter le téléphone"
@@ -262,6 +321,7 @@
   },
   {
     "id": "edison-light-bulb",
+    "knownToChildren": true,
     "labels": {
       "en": "Edison demonstrates his light bulb",
       "fr": "Edison présente son ampoule électrique"
@@ -271,6 +331,7 @@
   },
   {
     "id": "rabies-vaccine",
+    "knownToChildren": true,
     "labels": {
       "en": "Pasteur's rabies vaccine saves a boy",
       "fr": "Pasteur vaccine un enfant contre la rage"
@@ -279,7 +340,18 @@
     "year": 1885
   },
   {
+    "id": "benz-patent",
+    "knownToChildren": true,
+    "labels": {
+      "en": "Karl Benz patents the first car",
+      "fr": "Karl Benz fait breveter la première automobile"
+    },
+    "theme": "tech",
+    "year": 1886
+  },
+  {
     "id": "statue-of-liberty",
+    "knownToChildren": false,
     "labels": {
       "en": "Statue of Liberty dedicated",
       "fr": "Inauguration de la statue de la Liberté"
@@ -289,6 +361,7 @@
   },
   {
     "id": "eiffel-tower",
+    "knownToChildren": true,
     "labels": {
       "en": "Eiffel Tower opens",
       "fr": "Inauguration de la tour Eiffel"
@@ -298,6 +371,7 @@
   },
   {
     "id": "lumiere-screening",
+    "knownToChildren": true,
     "labels": {
       "en": "The Lumière brothers' first public screening",
       "fr": "Première projection publique des frères Lumière"
@@ -307,6 +381,7 @@
   },
   {
     "id": "first-modern-olympics",
+    "knownToChildren": true,
     "labels": {
       "en": "First modern Olympic Games in Athens",
       "fr": "Premiers Jeux olympiques modernes à Athènes"
@@ -316,6 +391,7 @@
   },
   {
     "id": "radioactivity",
+    "knownToChildren": false,
     "labels": {
       "en": "Becquerel discovers radioactivity",
       "fr": "Becquerel découvre la radioactivité"
@@ -325,6 +401,7 @@
   },
   {
     "id": "paris-metro",
+    "knownToChildren": false,
     "labels": {
       "en": "First Paris Metro line opens",
       "fr": "Première ligne du métro de Paris"
@@ -334,6 +411,7 @@
   },
   {
     "id": "first-nobel-prizes",
+    "knownToChildren": false,
     "labels": {
       "en": "First Nobel Prizes awarded",
       "fr": "Premiers prix Nobel"
@@ -343,6 +421,7 @@
   },
   {
     "id": "curie-first-nobel",
+    "knownToChildren": false,
     "labels": {
       "en": "Marie Curie wins her first Nobel Prize",
       "fr": "Marie Curie reçoit son premier prix Nobel"
@@ -352,6 +431,7 @@
   },
   {
     "id": "first-tour-de-france",
+    "knownToChildren": true,
     "labels": {
       "en": "First Tour de France",
       "fr": "Premier Tour de France"
@@ -361,6 +441,7 @@
   },
   {
     "id": "wright-brothers",
+    "knownToChildren": true,
     "labels": {
       "en": "The Wright brothers' first flight",
       "fr": "Premier vol des frères Wright"
@@ -370,6 +451,7 @@
   },
   {
     "id": "special-relativity",
+    "knownToChildren": false,
     "labels": {
       "en": "Einstein publishes special relativity",
       "fr": "Einstein publie la relativité restreinte"
@@ -379,6 +461,7 @@
   },
   {
     "id": "amundsen-south-pole",
+    "knownToChildren": false,
     "labels": {
       "en": "Amundsen reaches the South Pole",
       "fr": "Amundsen atteint le pôle Sud"
@@ -388,6 +471,7 @@
   },
   {
     "id": "mona-lisa-stolen",
+    "knownToChildren": false,
     "labels": {
       "en": "The Mona Lisa is stolen from the Louvre",
       "fr": "Vol de La Joconde au Louvre"
@@ -397,6 +481,7 @@
   },
   {
     "id": "titanic-sinks",
+    "knownToChildren": true,
     "labels": {
       "en": "The Titanic sinks",
       "fr": "Naufrage du Titanic"
@@ -406,6 +491,7 @@
   },
   {
     "id": "panama-canal",
+    "knownToChildren": false,
     "labels": {
       "en": "Panama Canal opens",
       "fr": "Ouverture du canal de Panama"
@@ -415,6 +501,7 @@
   },
   {
     "id": "october-revolution",
+    "knownToChildren": false,
     "labels": {
       "en": "October Revolution in Russia",
       "fr": "Révolution d'Octobre en Russie"
@@ -424,6 +511,7 @@
   },
   {
     "id": "ww1-armistice",
+    "knownToChildren": true,
     "labels": {
       "en": "Armistice ends the First World War",
       "fr": "Armistice de la Première Guerre mondiale"
@@ -433,6 +521,7 @@
   },
   {
     "id": "treaty-of-versailles",
+    "knownToChildren": false,
     "labels": {
       "en": "Treaty of Versailles signed",
       "fr": "Signature du traité de Versailles"
@@ -442,6 +531,7 @@
   },
   {
     "id": "jazz-singer",
+    "knownToChildren": false,
     "labels": {
       "en": "The Jazz Singer, the first talking picture",
       "fr": "Le Chanteur de jazz, premier film parlant"
@@ -451,6 +541,7 @@
   },
   {
     "id": "lindbergh-atlantic",
+    "knownToChildren": false,
     "labels": {
       "en": "Lindbergh flies solo across the Atlantic",
       "fr": "Lindbergh traverse l'Atlantique en solitaire"
@@ -460,6 +551,7 @@
   },
   {
     "id": "penicillin",
+    "knownToChildren": false,
     "labels": {
       "en": "Fleming discovers penicillin",
       "fr": "Fleming découvre la pénicilline"
@@ -469,6 +561,7 @@
   },
   {
     "id": "steamboat-willie",
+    "knownToChildren": true,
     "labels": {
       "en": "Mickey Mouse's first appearance",
       "fr": "Première apparition de Mickey Mouse"
@@ -478,6 +571,7 @@
   },
   {
     "id": "first-tintin",
+    "knownToChildren": true,
     "labels": {
       "en": "Tintin's first adventure",
       "fr": "Première aventure de Tintin"
@@ -487,6 +581,7 @@
   },
   {
     "id": "wall-street-crash",
+    "knownToChildren": false,
     "labels": {
       "en": "Wall Street Crash",
       "fr": "Krach de Wall Street"
@@ -496,6 +591,7 @@
   },
   {
     "id": "first-football-world-cup",
+    "knownToChildren": true,
     "labels": {
       "en": "First football World Cup",
       "fr": "Première Coupe du monde de football"
@@ -505,6 +601,7 @@
   },
   {
     "id": "empire-state-building",
+    "knownToChildren": false,
     "labels": {
       "en": "Empire State Building opens",
       "fr": "Inauguration de l'Empire State Building"
@@ -514,6 +611,7 @@
   },
   {
     "id": "jesse-owens",
+    "knownToChildren": false,
     "labels": {
       "en": "Jesse Owens wins four golds in Berlin",
       "fr": "Jesse Owens gagne quatre médailles d'or à Berlin"
@@ -523,6 +621,7 @@
   },
   {
     "id": "golden-gate-bridge",
+    "knownToChildren": false,
     "labels": {
       "en": "Golden Gate Bridge opens",
       "fr": "Ouverture du Golden Gate Bridge"
@@ -532,6 +631,7 @@
   },
   {
     "id": "hindenburg",
+    "knownToChildren": false,
     "labels": {
       "en": "The Hindenburg airship bursts into flames",
       "fr": "Le dirigeable Hindenburg prend feu"
@@ -541,6 +641,7 @@
   },
   {
     "id": "snow-white",
+    "knownToChildren": true,
     "labels": {
       "en": "Snow White, Disney's first feature film",
       "fr": "Blanche-Neige, premier long métrage de Disney"
@@ -550,6 +651,7 @@
   },
   {
     "id": "gone-with-the-wind",
+    "knownToChildren": false,
     "labels": {
       "en": "Gone with the Wind opens",
       "fr": "Sortie d'Autant en emporte le vent"
@@ -559,6 +661,7 @@
   },
   {
     "id": "appeal-of-18-june",
+    "knownToChildren": false,
     "labels": {
       "en": "De Gaulle's Appeal of 18 June",
       "fr": "Appel du 18 Juin du général de Gaulle"
@@ -568,6 +671,7 @@
   },
   {
     "id": "little-prince",
+    "knownToChildren": true,
     "labels": {
       "en": "The Little Prince is published",
       "fr": "Publication du Petit Prince"
@@ -577,6 +681,7 @@
   },
   {
     "id": "d-day",
+    "knownToChildren": true,
     "labels": {
       "en": "D-Day landings in Normandy",
       "fr": "Débarquement en Normandie"
@@ -586,6 +691,7 @@
   },
   {
     "id": "ww2-ends",
+    "knownToChildren": true,
     "labels": {
       "en": "End of the Second World War",
       "fr": "Fin de la Seconde Guerre mondiale"
@@ -595,6 +701,7 @@
   },
   {
     "id": "first-cannes-festival",
+    "knownToChildren": false,
     "labels": {
       "en": "First Cannes Film Festival",
       "fr": "Premier Festival de Cannes"
@@ -604,6 +711,7 @@
   },
   {
     "id": "dna-structure",
+    "knownToChildren": false,
     "labels": {
       "en": "The structure of DNA is described",
       "fr": "Découverte de la structure de l'ADN"
@@ -613,6 +721,7 @@
   },
   {
     "id": "elizabeth-ii-crowned",
+    "knownToChildren": false,
     "labels": {
       "en": "Coronation of Elizabeth II",
       "fr": "Couronnement d'Elizabeth II"
@@ -622,6 +731,7 @@
   },
   {
     "id": "everest-summit",
+    "knownToChildren": false,
     "labels": {
       "en": "First ascent of Mount Everest",
       "fr": "Première ascension de l'Everest"
@@ -631,6 +741,7 @@
   },
   {
     "id": "first-eurovision",
+    "knownToChildren": false,
     "labels": {
       "en": "First Eurovision Song Contest",
       "fr": "Premier concours Eurovision de la chanson"
@@ -640,6 +751,7 @@
   },
   {
     "id": "heartbreak-hotel",
+    "knownToChildren": false,
     "labels": {
       "en": "Elvis Presley releases Heartbreak Hotel",
       "fr": "Elvis Presley sort Heartbreak Hotel"
@@ -649,6 +761,7 @@
   },
   {
     "id": "sputnik",
+    "knownToChildren": false,
     "labels": {
       "en": "Sputnik 1 is launched",
       "fr": "Lancement de Spoutnik 1"
@@ -658,6 +771,7 @@
   },
   {
     "id": "fifth-republic",
+    "knownToChildren": false,
     "labels": {
       "en": "France's Fifth Republic founded",
       "fr": "Naissance de la Ve République"
@@ -667,6 +781,7 @@
   },
   {
     "id": "lego-brick",
+    "knownToChildren": true,
     "labels": {
       "en": "The LEGO brick is patented",
       "fr": "Brevet de la brique LEGO"
@@ -676,6 +791,7 @@
   },
   {
     "id": "barbie-doll",
+    "knownToChildren": true,
     "labels": {
       "en": "The Barbie doll is launched",
       "fr": "Naissance de la poupée Barbie"
@@ -685,6 +801,7 @@
   },
   {
     "id": "first-asterix",
+    "knownToChildren": true,
     "labels": {
       "en": "Asterix's first appearance",
       "fr": "Première apparition d'Astérix"
@@ -694,6 +811,7 @@
   },
   {
     "id": "non-je-ne-regrette-rien",
+    "knownToChildren": false,
     "labels": {
       "en": "Édith Piaf sings Non, je ne regrette rien",
       "fr": "Édith Piaf chante Non, je ne regrette rien"
@@ -703,6 +821,7 @@
   },
   {
     "id": "psycho",
+    "knownToChildren": false,
     "labels": {
       "en": "Psycho opens",
       "fr": "Sortie de Psychose"
@@ -712,6 +831,7 @@
   },
   {
     "id": "gagarin",
+    "knownToChildren": true,
     "labels": {
       "en": "Yuri Gagarin, first person in space",
       "fr": "Youri Gagarine, premier homme dans l'espace"
@@ -721,6 +841,7 @@
   },
   {
     "id": "algeria-independence",
+    "knownToChildren": false,
     "labels": {
       "en": "Algeria wins independence",
       "fr": "Indépendance de l'Algérie"
@@ -730,6 +851,7 @@
   },
   {
     "id": "cuban-missile-crisis",
+    "knownToChildren": false,
     "labels": {
       "en": "Cuban Missile Crisis",
       "fr": "Crise des missiles de Cuba"
@@ -739,6 +861,7 @@
   },
   {
     "id": "dr-no",
+    "knownToChildren": false,
     "labels": {
       "en": "The first James Bond film opens",
       "fr": "Sortie du premier James Bond"
@@ -748,6 +871,7 @@
   },
   {
     "id": "jfk-assassinated",
+    "knownToChildren": false,
     "labels": {
       "en": "John F. Kennedy assassinated",
       "fr": "Assassinat de John F. Kennedy"
@@ -757,6 +881,7 @@
   },
   {
     "id": "please-please-me",
+    "knownToChildren": false,
     "labels": {
       "en": "The Beatles' first album",
       "fr": "Premier album des Beatles"
@@ -766,6 +891,7 @@
   },
   {
     "id": "la-grande-vadrouille",
+    "knownToChildren": false,
     "labels": {
       "en": "La Grande Vadrouille opens",
       "fr": "Sortie de La Grande Vadrouille"
@@ -775,6 +901,7 @@
   },
   {
     "id": "heart-transplant",
+    "knownToChildren": false,
     "labels": {
       "en": "First human heart transplant",
       "fr": "Première greffe du cœur"
@@ -784,6 +911,7 @@
   },
   {
     "id": "may-68",
+    "knownToChildren": false,
     "labels": {
       "en": "May 1968 protests in France",
       "fr": "Mai 68"
@@ -793,6 +921,7 @@
   },
   {
     "id": "moon-landing",
+    "knownToChildren": true,
     "labels": {
       "en": "First steps on the Moon",
       "fr": "Premiers pas sur la Lune"
@@ -802,6 +931,7 @@
   },
   {
     "id": "woodstock",
+    "knownToChildren": false,
     "labels": {
       "en": "Woodstock festival",
       "fr": "Festival de Woodstock"
@@ -811,6 +941,7 @@
   },
   {
     "id": "apollo-13",
+    "knownToChildren": false,
     "labels": {
       "en": "The Apollo 13 mission",
       "fr": "Mission Apollo 13"
@@ -820,6 +951,7 @@
   },
   {
     "id": "beatles-split",
+    "knownToChildren": false,
     "labels": {
       "en": "The Beatles break up",
       "fr": "Séparation des Beatles"
@@ -829,6 +961,7 @@
   },
   {
     "id": "first-email",
+    "knownToChildren": false,
     "labels": {
       "en": "First email sent",
       "fr": "Envoi du premier e-mail"
@@ -838,6 +971,7 @@
   },
   {
     "id": "pong",
+    "knownToChildren": false,
     "labels": {
       "en": "Pong is released",
       "fr": "Sortie du jeu Pong"
@@ -847,6 +981,7 @@
   },
   {
     "id": "the-godfather",
+    "knownToChildren": false,
     "labels": {
       "en": "The Godfather opens",
       "fr": "Sortie du Parrain"
@@ -856,6 +991,7 @@
   },
   {
     "id": "montparnasse-tower",
+    "knownToChildren": false,
     "labels": {
       "en": "Montparnasse Tower opens",
       "fr": "Inauguration de la tour Montparnasse"
@@ -865,6 +1001,7 @@
   },
   {
     "id": "sydney-opera-house",
+    "knownToChildren": false,
     "labels": {
       "en": "Sydney Opera House opens",
       "fr": "Inauguration de l'opéra de Sydney"
@@ -874,6 +1011,7 @@
   },
   {
     "id": "abba-waterloo",
+    "knownToChildren": false,
     "labels": {
       "en": "ABBA win Eurovision with Waterloo",
       "fr": "ABBA gagne l'Eurovision avec Waterloo"
@@ -883,6 +1021,7 @@
   },
   {
     "id": "rubiks-cube",
+    "knownToChildren": true,
     "labels": {
       "en": "The Rubik's Cube is invented",
       "fr": "Invention du Rubik's Cube"
@@ -892,6 +1031,7 @@
   },
   {
     "id": "rumble-in-the-jungle",
+    "knownToChildren": false,
     "labels": {
       "en": "Ali v Foreman, the Rumble in the Jungle",
       "fr": "Ali contre Foreman à Kinshasa"
@@ -901,6 +1041,7 @@
   },
   {
     "id": "bohemian-rhapsody",
+    "knownToChildren": false,
     "labels": {
       "en": "Queen release Bohemian Rhapsody",
       "fr": "Queen sort Bohemian Rhapsody"
@@ -910,6 +1051,7 @@
   },
   {
     "id": "jaws",
+    "knownToChildren": false,
     "labels": {
       "en": "Jaws opens",
       "fr": "Sortie des Dents de la mer"
@@ -919,6 +1061,7 @@
   },
   {
     "id": "veil-law",
+    "knownToChildren": false,
     "labels": {
       "en": "France legalises abortion (Veil law)",
       "fr": "Loi Veil sur l'IVG"
@@ -928,6 +1071,7 @@
   },
   {
     "id": "comaneci-perfect-ten",
+    "knownToChildren": false,
     "labels": {
       "en": "Nadia Comăneci scores the first perfect 10",
       "fr": "Nadia Comăneci obtient le premier 10 parfait"
@@ -937,6 +1081,7 @@
   },
   {
     "id": "concorde-service",
+    "knownToChildren": false,
     "labels": {
       "en": "Concorde's first commercial flight",
       "fr": "Premier vol commercial du Concorde"
@@ -946,6 +1091,7 @@
   },
   {
     "id": "centre-pompidou",
+    "knownToChildren": false,
     "labels": {
       "en": "Centre Pompidou opens",
       "fr": "Ouverture du Centre Pompidou"
@@ -955,6 +1101,7 @@
   },
   {
     "id": "elvis-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Elvis Presley",
       "fr": "Mort d'Elvis Presley"
@@ -964,6 +1111,7 @@
   },
   {
     "id": "star-wars",
+    "knownToChildren": true,
     "labels": {
       "en": "Star Wars opens",
       "fr": "Sortie de La Guerre des étoiles"
@@ -973,6 +1121,7 @@
   },
   {
     "id": "john-paul-ii-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "John Paul II elected pope",
       "fr": "Jean-Paul II élu pape"
@@ -982,6 +1131,7 @@
   },
   {
     "id": "les-bronzes",
+    "knownToChildren": false,
     "labels": {
       "en": "Les Bronzés opens",
       "fr": "Sortie des Bronzés"
@@ -991,6 +1141,7 @@
   },
   {
     "id": "test-tube-baby",
+    "knownToChildren": false,
     "labels": {
       "en": "Birth of the first test-tube baby",
       "fr": "Naissance du premier bébé-éprouvette"
@@ -1000,6 +1151,7 @@
   },
   {
     "id": "walkman",
+    "knownToChildren": false,
     "labels": {
       "en": "Sony launches the Walkman",
       "fr": "Sortie du Walkman de Sony"
@@ -1009,6 +1161,7 @@
   },
   {
     "id": "lennon-killed",
+    "knownToChildren": false,
     "labels": {
       "en": "John Lennon is killed",
       "fr": "Assassinat de John Lennon"
@@ -1018,6 +1171,7 @@
   },
   {
     "id": "pac-man",
+    "knownToChildren": true,
     "labels": {
       "en": "Pac-Man is released",
       "fr": "Sortie de Pac-Man"
@@ -1027,6 +1181,7 @@
   },
   {
     "id": "bob-marley-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Bob Marley",
       "fr": "Mort de Bob Marley"
@@ -1036,6 +1191,7 @@
   },
   {
     "id": "death-penalty-abolished",
+    "knownToChildren": false,
     "labels": {
       "en": "France abolishes the death penalty",
       "fr": "Abolition de la peine de mort en France"
@@ -1045,6 +1201,7 @@
   },
   {
     "id": "mitterrand-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "François Mitterrand elected president for the first time",
       "fr": "François Mitterrand élu président pour la première fois"
@@ -1054,6 +1211,7 @@
   },
   {
     "id": "tgv-service",
+    "knownToChildren": false,
     "labels": {
       "en": "The TGV enters service",
       "fr": "Mise en service du TGV"
@@ -1063,6 +1221,7 @@
   },
   {
     "id": "audio-cd",
+    "knownToChildren": false,
     "labels": {
       "en": "The first audio CD goes on sale",
       "fr": "Sortie du premier CD audio"
@@ -1072,6 +1231,7 @@
   },
   {
     "id": "et",
+    "knownToChildren": false,
     "labels": {
       "en": "E.T. the Extra-Terrestrial opens",
       "fr": "Sortie d'E.T. l'extra-terrestre"
@@ -1081,6 +1241,7 @@
   },
   {
     "id": "first-fete-de-la-musique",
+    "knownToChildren": false,
     "labels": {
       "en": "First Fête de la Musique",
       "fr": "Première Fête de la musique"
@@ -1090,6 +1251,7 @@
   },
   {
     "id": "thriller",
+    "knownToChildren": false,
     "labels": {
       "en": "Michael Jackson releases Thriller",
       "fr": "Michael Jackson sort Thriller"
@@ -1099,6 +1261,7 @@
   },
   {
     "id": "noah-roland-garros",
+    "knownToChildren": false,
     "labels": {
       "en": "Yannick Noah wins the French Open",
       "fr": "Yannick Noah gagne Roland-Garros"
@@ -1108,6 +1271,7 @@
   },
   {
     "id": "tetris",
+    "knownToChildren": true,
     "labels": {
       "en": "Tetris is created",
       "fr": "Invention de Tetris"
@@ -1117,6 +1281,7 @@
   },
   {
     "id": "back-to-the-future",
+    "knownToChildren": false,
     "labels": {
       "en": "Back to the Future opens",
       "fr": "Sortie de Retour vers le futur"
@@ -1126,6 +1291,7 @@
   },
   {
     "id": "live-aid",
+    "knownToChildren": false,
     "labels": {
       "en": "Live Aid concerts",
       "fr": "Concerts Live Aid"
@@ -1135,6 +1301,7 @@
   },
   {
     "id": "super-mario-bros",
+    "knownToChildren": true,
     "labels": {
       "en": "Super Mario Bros. is released",
       "fr": "Sortie de Super Mario Bros."
@@ -1144,6 +1311,7 @@
   },
   {
     "id": "challenger",
+    "knownToChildren": false,
     "labels": {
       "en": "Space Shuttle Challenger explodes",
       "fr": "Explosion de la navette Challenger"
@@ -1153,6 +1321,7 @@
   },
   {
     "id": "chernobyl",
+    "knownToChildren": false,
     "labels": {
       "en": "Chernobyl disaster",
       "fr": "Catastrophe de Tchernobyl"
@@ -1162,6 +1331,7 @@
   },
   {
     "id": "hand-of-god",
+    "knownToChildren": false,
     "labels": {
       "en": "Maradona's “Hand of God” goal",
       "fr": "La « main de Dieu » de Maradona"
@@ -1171,6 +1341,7 @@
   },
   {
     "id": "celine-dion-eurovision",
+    "knownToChildren": false,
     "labels": {
       "en": "Céline Dion wins Eurovision",
       "fr": "Céline Dion gagne l'Eurovision"
@@ -1180,6 +1351,7 @@
   },
   {
     "id": "berlin-wall-falls",
+    "knownToChildren": true,
     "labels": {
       "en": "Fall of the Berlin Wall",
       "fr": "Chute du mur de Berlin"
@@ -1189,6 +1361,7 @@
   },
   {
     "id": "game-boy",
+    "knownToChildren": true,
     "labels": {
       "en": "The Game Boy is released",
       "fr": "Sortie de la Game Boy"
@@ -1198,6 +1371,7 @@
   },
   {
     "id": "louvre-pyramid",
+    "knownToChildren": false,
     "labels": {
       "en": "The Louvre Pyramid opens",
       "fr": "Inauguration de la pyramide du Louvre"
@@ -1207,6 +1381,7 @@
   },
   {
     "id": "the-simpsons",
+    "knownToChildren": true,
     "labels": {
       "en": "First episode of The Simpsons",
       "fr": "Premier épisode des Simpson"
@@ -1216,6 +1391,7 @@
   },
   {
     "id": "hubble-launch",
+    "knownToChildren": false,
     "labels": {
       "en": "Hubble Space Telescope launched",
       "fr": "Lancement du télescope Hubble"
@@ -1225,6 +1401,7 @@
   },
   {
     "id": "mandela-freed",
+    "knownToChildren": false,
     "labels": {
       "en": "Nelson Mandela freed from prison",
       "fr": "Libération de Nelson Mandela"
@@ -1234,6 +1411,7 @@
   },
   {
     "id": "first-website",
+    "knownToChildren": false,
     "labels": {
       "en": "The first website goes online",
       "fr": "Mise en ligne du premier site web"
@@ -1243,6 +1421,7 @@
   },
   {
     "id": "freddie-mercury-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Freddie Mercury",
       "fr": "Mort de Freddie Mercury"
@@ -1252,6 +1431,7 @@
   },
   {
     "id": "nevermind",
+    "knownToChildren": false,
     "labels": {
       "en": "Nirvana release Nevermind",
       "fr": "Nirvana sort Nevermind"
@@ -1261,6 +1441,7 @@
   },
   {
     "id": "albertville-games",
+    "knownToChildren": false,
     "labels": {
       "en": "Albertville Winter Olympics",
       "fr": "Jeux olympiques d'hiver d'Albertville"
@@ -1270,6 +1451,7 @@
   },
   {
     "id": "disneyland-paris",
+    "knownToChildren": true,
     "labels": {
       "en": "Disneyland Paris opens",
       "fr": "Ouverture de Disneyland Paris"
@@ -1279,6 +1461,7 @@
   },
   {
     "id": "first-sms",
+    "knownToChildren": false,
     "labels": {
       "en": "First text message sent",
       "fr": "Envoi du premier SMS"
@@ -1288,6 +1471,7 @@
   },
   {
     "id": "maastricht-treaty",
+    "knownToChildren": false,
     "labels": {
       "en": "Maastricht Treaty signed",
       "fr": "Signature du traité de Maastricht"
@@ -1297,6 +1481,7 @@
   },
   {
     "id": "jurassic-park",
+    "knownToChildren": false,
     "labels": {
       "en": "Jurassic Park opens",
       "fr": "Sortie de Jurassic Park"
@@ -1306,6 +1491,7 @@
   },
   {
     "id": "les-visiteurs",
+    "knownToChildren": false,
     "labels": {
       "en": "Les Visiteurs opens",
       "fr": "Sortie des Visiteurs"
@@ -1315,6 +1501,7 @@
   },
   {
     "id": "channel-tunnel",
+    "knownToChildren": false,
     "labels": {
       "en": "Channel Tunnel opens",
       "fr": "Ouverture du tunnel sous la Manche"
@@ -1324,6 +1511,7 @@
   },
   {
     "id": "cobain-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Kurt Cobain",
       "fr": "Mort de Kurt Cobain"
@@ -1333,6 +1521,7 @@
   },
   {
     "id": "friends",
+    "knownToChildren": false,
     "labels": {
       "en": "First episode of Friends",
       "fr": "Premier épisode de Friends"
@@ -1342,6 +1531,7 @@
   },
   {
     "id": "playstation",
+    "knownToChildren": true,
     "labels": {
       "en": "The first PlayStation is released",
       "fr": "Sortie de la première PlayStation"
@@ -1351,6 +1541,7 @@
   },
   {
     "id": "senna-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Ayrton Senna",
       "fr": "Mort d'Ayrton Senna"
@@ -1360,6 +1551,7 @@
   },
   {
     "id": "the-lion-king",
+    "knownToChildren": true,
     "labels": {
       "en": "The Lion King opens",
       "fr": "Sortie du Roi lion"
@@ -1369,6 +1561,7 @@
   },
   {
     "id": "chirac-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "Jacques Chirac elected president for the first time",
       "fr": "Jacques Chirac élu président pour la première fois"
@@ -1378,6 +1571,7 @@
   },
   {
     "id": "toy-story",
+    "knownToChildren": true,
     "labels": {
       "en": "Toy Story, the first computer-animated feature",
       "fr": "Toy Story, premier long métrage en images de synthèse"
@@ -1387,6 +1581,7 @@
   },
   {
     "id": "windows-95",
+    "knownToChildren": false,
     "labels": {
       "en": "Windows 95 is released",
       "fr": "Sortie de Windows 95"
@@ -1396,6 +1591,7 @@
   },
   {
     "id": "dolly-the-sheep",
+    "knownToChildren": false,
     "labels": {
       "en": "Dolly the sheep is born",
       "fr": "Naissance de la brebis Dolly"
@@ -1405,6 +1601,7 @@
   },
   {
     "id": "pokemon-games",
+    "knownToChildren": true,
     "labels": {
       "en": "The first Pokémon games are released",
       "fr": "Sortie des premiers jeux Pokémon"
@@ -1414,6 +1611,7 @@
   },
   {
     "id": "daft-punk-homework",
+    "knownToChildren": false,
     "labels": {
       "en": "Daft Punk release Homework",
       "fr": "Daft Punk sort Homework"
@@ -1423,6 +1621,7 @@
   },
   {
     "id": "diana-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Princess Diana",
       "fr": "Mort de Lady Diana"
@@ -1432,6 +1631,7 @@
   },
   {
     "id": "first-harry-potter-book",
+    "knownToChildren": true,
     "labels": {
       "en": "The first Harry Potter book is published",
       "fr": "Publication du premier Harry Potter"
@@ -1441,6 +1641,7 @@
   },
   {
     "id": "titanic-film",
+    "knownToChildren": true,
     "labels": {
       "en": "Titanic, the film, opens",
       "fr": "Sortie du film Titanic"
@@ -1450,6 +1651,7 @@
   },
   {
     "id": "france-world-cup-1998",
+    "knownToChildren": true,
     "labels": {
       "en": "France win their first football World Cup",
       "fr": "La France gagne sa première Coupe du monde"
@@ -1459,6 +1661,7 @@
   },
   {
     "id": "google-founded",
+    "knownToChildren": true,
     "labels": {
       "en": "Google is founded",
       "fr": "Création de Google"
@@ -1468,6 +1671,7 @@
   },
   {
     "id": "iss-first-module",
+    "knownToChildren": false,
     "labels": {
       "en": "First module of the ISS launched",
       "fr": "Lancement du premier module de l'ISS"
@@ -1477,6 +1681,7 @@
   },
   {
     "id": "the-matrix",
+    "knownToChildren": false,
     "labels": {
       "en": "The Matrix opens",
       "fr": "Sortie de Matrix"
@@ -1486,6 +1691,7 @@
   },
   {
     "id": "amelie",
+    "knownToChildren": false,
     "labels": {
       "en": "Amélie opens",
       "fr": "Sortie du Fabuleux Destin d'Amélie Poulain"
@@ -1495,6 +1701,7 @@
   },
   {
     "id": "first-harry-potter-film",
+    "knownToChildren": true,
     "labels": {
       "en": "The first Harry Potter film opens",
       "fr": "Sortie du premier film Harry Potter"
@@ -1504,6 +1711,7 @@
   },
   {
     "id": "september-11",
+    "knownToChildren": true,
     "labels": {
       "en": "September 11 attacks",
       "fr": "Attentats du 11 septembre"
@@ -1513,6 +1721,7 @@
   },
   {
     "id": "wikipedia",
+    "knownToChildren": false,
     "labels": {
       "en": "Wikipedia is launched",
       "fr": "Lancement de Wikipédia"
@@ -1522,6 +1731,7 @@
   },
   {
     "id": "euro-cash",
+    "knownToChildren": true,
     "labels": {
       "en": "Euro notes and coins enter circulation",
       "fr": "Arrivée des pièces et billets en euros"
@@ -1531,6 +1741,7 @@
   },
   {
     "id": "federer-first-wimbledon",
+    "knownToChildren": false,
     "labels": {
       "en": "Roger Federer wins his first Wimbledon",
       "fr": "Roger Federer gagne son premier Wimbledon"
@@ -1540,6 +1751,7 @@
   },
   {
     "id": "facebook",
+    "knownToChildren": false,
     "labels": {
       "en": "Facebook is launched",
       "fr": "Lancement de Facebook"
@@ -1549,6 +1761,7 @@
   },
   {
     "id": "indian-ocean-tsunami",
+    "knownToChildren": false,
     "labels": {
       "en": "Indian Ocean tsunami",
       "fr": "Tsunami dans l'océan Indien"
@@ -1558,6 +1771,7 @@
   },
   {
     "id": "millau-viaduct",
+    "knownToChildren": false,
     "labels": {
       "en": "Millau Viaduct opens",
       "fr": "Inauguration du viaduc de Millau"
@@ -1567,6 +1781,7 @@
   },
   {
     "id": "nadal-first-roland-garros",
+    "knownToChildren": false,
     "labels": {
       "en": "Rafael Nadal wins his first French Open",
       "fr": "Rafael Nadal gagne son premier Roland-Garros"
@@ -1576,6 +1791,7 @@
   },
   {
     "id": "youtube",
+    "knownToChildren": true,
     "labels": {
       "en": "YouTube is launched",
       "fr": "Lancement de YouTube"
@@ -1585,6 +1801,7 @@
   },
   {
     "id": "pluto-demoted",
+    "knownToChildren": false,
     "labels": {
       "en": "Pluto is no longer a planet",
       "fr": "Pluton n'est plus une planète"
@@ -1594,6 +1811,7 @@
   },
   {
     "id": "twitter",
+    "knownToChildren": false,
     "labels": {
       "en": "Twitter is launched",
       "fr": "Lancement de Twitter"
@@ -1603,6 +1821,7 @@
   },
   {
     "id": "wii",
+    "knownToChildren": true,
     "labels": {
       "en": "The Wii is released",
       "fr": "Sortie de la Wii"
@@ -1612,6 +1831,7 @@
   },
   {
     "id": "zidane-headbutt",
+    "knownToChildren": false,
     "labels": {
       "en": "Zidane's headbutt in the World Cup final",
       "fr": "Coup de tête de Zidane en finale de Coupe du monde"
@@ -1621,6 +1841,7 @@
   },
   {
     "id": "first-iphone",
+    "knownToChildren": true,
     "labels": {
       "en": "The first iPhone is unveiled",
       "fr": "Présentation du premier iPhone"
@@ -1630,6 +1851,7 @@
   },
   {
     "id": "sarkozy-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "Nicolas Sarkozy elected president",
       "fr": "Nicolas Sarkozy élu président"
@@ -1639,6 +1861,7 @@
   },
   {
     "id": "bienvenue-chez-les-chtis",
+    "knownToChildren": false,
     "labels": {
       "en": "Welcome to the Sticks opens",
       "fr": "Sortie de Bienvenue chez les Ch'tis"
@@ -1648,6 +1871,7 @@
   },
   {
     "id": "obama-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "Barack Obama elected US president for the first time",
       "fr": "Barack Obama élu président des États-Unis pour la première fois"
@@ -1657,6 +1881,7 @@
   },
   {
     "id": "phelps-eight-golds",
+    "knownToChildren": false,
     "labels": {
       "en": "Michael Phelps wins eight golds",
       "fr": "Michael Phelps gagne huit médailles d'or"
@@ -1666,6 +1891,7 @@
   },
   {
     "id": "spotify",
+    "knownToChildren": false,
     "labels": {
       "en": "Spotify is launched",
       "fr": "Lancement de Spotify"
@@ -1675,6 +1901,7 @@
   },
   {
     "id": "avatar",
+    "knownToChildren": false,
     "labels": {
       "en": "Avatar opens",
       "fr": "Sortie d'Avatar"
@@ -1684,6 +1911,7 @@
   },
   {
     "id": "bitcoin",
+    "knownToChildren": false,
     "labels": {
       "en": "Bitcoin is born",
       "fr": "Naissance du bitcoin"
@@ -1693,6 +1921,7 @@
   },
   {
     "id": "bolt-world-record",
+    "knownToChildren": false,
     "labels": {
       "en": "Usain Bolt runs 100 m in 9.58 s",
       "fr": "Usain Bolt court le 100 m en 9,58 s"
@@ -1702,6 +1931,7 @@
   },
   {
     "id": "michael-jackson-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Michael Jackson",
       "fr": "Mort de Michael Jackson"
@@ -1711,6 +1941,7 @@
   },
   {
     "id": "burj-khalifa",
+    "knownToChildren": false,
     "labels": {
       "en": "Burj Khalifa opens",
       "fr": "Inauguration de la Burj Khalifa"
@@ -1720,6 +1951,7 @@
   },
   {
     "id": "fukushima",
+    "knownToChildren": false,
     "labels": {
       "en": "Fukushima nuclear disaster",
       "fr": "Catastrophe de Fukushima"
@@ -1729,6 +1961,7 @@
   },
   {
     "id": "game-of-thrones",
+    "knownToChildren": false,
     "labels": {
       "en": "First episode of Game of Thrones",
       "fr": "Premier épisode de Game of Thrones"
@@ -1738,6 +1971,7 @@
   },
   {
     "id": "intouchables",
+    "knownToChildren": false,
     "labels": {
       "en": "The Intouchables opens",
       "fr": "Sortie d'Intouchables"
@@ -1747,6 +1981,7 @@
   },
   {
     "id": "curiosity-landing",
+    "knownToChildren": false,
     "labels": {
       "en": "Curiosity rover lands on Mars",
       "fr": "Le robot Curiosity se pose sur Mars"
@@ -1756,6 +1991,7 @@
   },
   {
     "id": "gangnam-style",
+    "knownToChildren": false,
     "labels": {
       "en": "Gangnam Style is released",
       "fr": "Sortie de Gangnam Style"
@@ -1765,6 +2001,7 @@
   },
   {
     "id": "higgs-boson",
+    "knownToChildren": false,
     "labels": {
       "en": "Discovery of the Higgs boson",
       "fr": "Découverte du boson de Higgs"
@@ -1774,6 +2011,7 @@
   },
   {
     "id": "hollande-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "François Hollande elected president",
       "fr": "François Hollande élu président"
@@ -1783,6 +2021,7 @@
   },
   {
     "id": "frozen",
+    "knownToChildren": true,
     "labels": {
       "en": "Frozen opens",
       "fr": "Sortie de La Reine des neiges"
@@ -1792,6 +2031,7 @@
   },
   {
     "id": "same-sex-marriage-france",
+    "knownToChildren": false,
     "labels": {
       "en": "France legalises same-sex marriage",
       "fr": "Mariage pour tous en France"
@@ -1801,6 +2041,7 @@
   },
   {
     "id": "brexit-referendum",
+    "knownToChildren": false,
     "labels": {
       "en": "Brexit referendum",
       "fr": "Référendum du Brexit"
@@ -1810,6 +2051,7 @@
   },
   {
     "id": "despacito",
+    "knownToChildren": false,
     "labels": {
       "en": "Despacito is released",
       "fr": "Sortie de Despacito"
@@ -1819,6 +2061,7 @@
   },
   {
     "id": "fortnite",
+    "knownToChildren": true,
     "labels": {
       "en": "Fortnite is released",
       "fr": "Sortie de Fortnite"
@@ -1828,6 +2071,7 @@
   },
   {
     "id": "johnny-hallyday-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Johnny Hallyday",
       "fr": "Mort de Johnny Hallyday"
@@ -1837,6 +2081,7 @@
   },
   {
     "id": "macron-elected",
+    "knownToChildren": false,
     "labels": {
       "en": "Emmanuel Macron elected president for the first time",
       "fr": "Emmanuel Macron élu président pour la première fois"
@@ -1846,6 +2091,7 @@
   },
   {
     "id": "nintendo-switch",
+    "knownToChildren": true,
     "labels": {
       "en": "The Nintendo Switch is released",
       "fr": "Sortie de la Nintendo Switch"
@@ -1855,6 +2101,7 @@
   },
   {
     "id": "france-world-cup-2018",
+    "knownToChildren": true,
     "labels": {
       "en": "France win their second football World Cup",
       "fr": "La France gagne sa deuxième Coupe du monde"
@@ -1864,6 +2111,7 @@
   },
   {
     "id": "notre-dame-fire",
+    "knownToChildren": true,
     "labels": {
       "en": "Notre-Dame de Paris catches fire",
       "fr": "Incendie de Notre-Dame de Paris"
@@ -1873,6 +2121,7 @@
   },
   {
     "id": "covid-lockdowns",
+    "knownToChildren": true,
     "labels": {
       "en": "First Covid-19 lockdowns",
       "fr": "Premiers confinements contre le Covid-19"
@@ -1882,6 +2131,7 @@
   },
   {
     "id": "james-webb-launch",
+    "knownToChildren": false,
     "labels": {
       "en": "James Webb Space Telescope launched",
       "fr": "Lancement du télescope James-Webb"
@@ -1891,6 +2141,7 @@
   },
   {
     "id": "chatgpt",
+    "knownToChildren": true,
     "labels": {
       "en": "ChatGPT is launched",
       "fr": "Lancement de ChatGPT"
@@ -1900,6 +2151,7 @@
   },
   {
     "id": "elizabeth-ii-dies",
+    "knownToChildren": false,
     "labels": {
       "en": "Death of Queen Elizabeth II",
       "fr": "Mort d'Elizabeth II"
@@ -1909,6 +2161,7 @@
   },
   {
     "id": "messi-world-cup",
+    "knownToChildren": false,
     "labels": {
       "en": "Messi's Argentina win the World Cup",
       "fr": "L'Argentine de Messi gagne la Coupe du monde"
@@ -1918,6 +2171,7 @@
   },
   {
     "id": "paris-olympics",
+    "knownToChildren": true,
     "labels": {
       "en": "Paris Olympics open on the Seine",
       "fr": "Jeux olympiques de Paris, ouverts sur la Seine"

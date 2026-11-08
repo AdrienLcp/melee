@@ -8,6 +8,14 @@ one part.
 
 ### Features
 
+- `[Server]` **The timeline at easy deals events a child has heard of, a
+  generation apart.** Columbus, the Titanic, the first Harry Potter: five
+  events at least thirty years from each other, so a table with children
+  orders centuries rather than decades. Mixed and hard deal as they always
+  did — close dates are the game. Four events a child knows join the bank
+  before 1900, so easy holds about eight rounds before it falls back on the
+  whole bank, still thirty years apart.
+
 - `[Shared]` **The quiz, the map, the timeline, _Le juste chiffre_ and _Plus
   ou moins_ take a level: easy, mixed or hard.** Mixed — what every one of
   them opens on — deals each tier of a bank in equal shares, where a draw

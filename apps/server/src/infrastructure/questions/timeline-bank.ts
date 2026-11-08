@@ -7,11 +7,7 @@ import {
   TIMELINE_EVENTS_PER_ROUND
 } from '@melee/protocol/timeline'
 
-import {
-  dealByDifficulty,
-  oneTierForEveryRow
-} from '@melee/core/round/difficulty-draw'
-import { dealEvents } from '@melee/core/timeline/deal'
+import { dealEventsAt } from '@melee/core/timeline/deal'
 
 import bank from './timeline-bank.json' with { type: 'json' }
 
@@ -22,6 +18,12 @@ import bank from './timeline-bank.json' with { type: 'json' }
  * finished the next, is left out rather than dated by a coin toss.
  */
 const bankedEventSchema = datedTimelineEventSchema.extend({
+  /**
+   * Whether a child at the table has heard of it — Columbus, the Titanic, the
+   * first Harry Potter — which is all an `easy` round deals. On every row, so
+   * whoever adds an event has to decide.
+   */
+  knownToChildren: z.boolean(),
   /** What the event is about, so the bank's spread can be read at a glance. */
   theme: z.enum([
     'culture',
@@ -34,14 +36,21 @@ const bankedEventSchema = datedTimelineEventSchema.extend({
   ])
 })
 
-/** Parsed on the first draw, like the quiz's bank, rather than on every cold start. */
-let parsed: readonly DatedTimelineEvent[] | null = null
+type BankedTimelineEvent = DatedTimelineEvent & { knownToChildren: boolean }
 
-export const bankedTimelineEvents = (): readonly DatedTimelineEvent[] => {
+/** Parsed on the first draw, like the quiz's bank, rather than on every cold start. */
+let parsed: readonly BankedTimelineEvent[] | null = null
+
+export const bankedTimelineEvents = (): readonly BankedTimelineEvent[] => {
   parsed ??= z
     .array(bankedEventSchema)
     .parse(bank)
-    .map(({ id, labels, year }) => ({ id, labels, year }))
+    .map(({ id, knownToChildren, labels, year }) => ({
+      id,
+      knownToChildren,
+      labels,
+      year
+    }))
 
   return parsed
 }
@@ -63,15 +72,12 @@ export const drawTimelineEvents = ({
       .map(({ id }) => id)
   )
 
-  return dealByDifficulty({
-    deal: (share) =>
-      dealEvents({
-        count: TIMELINE_EVENTS_PER_ROUND,
-        events: share,
-        playedIds: playedEventIds
-      }),
-    difficulty,
-    pool: events,
-    tierOf: oneTierForEveryRow
-  })
+  return (
+    dealEventsAt({
+      count: TIMELINE_EVENTS_PER_ROUND,
+      difficulty,
+      events,
+      playedIds: playedEventIds
+    })?.map(({ id, labels, year }) => ({ id, labels, year })) ?? null
+  )
 }
