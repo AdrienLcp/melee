@@ -14,7 +14,12 @@ import {
 } from '@/domain/round/round-service'
 
 import type { Connection } from './connection'
-import { commitRoom, createRoomEngine, type RoomEngine } from './room-engine'
+import {
+  commitRoom,
+  createRoomEngine,
+  publishRoom,
+  type RoomEngine
+} from './room-engine'
 import { wakeRoom } from './round-conductor'
 
 const OPENED_AT = 1_000_000
@@ -162,5 +167,34 @@ describe('a room restored from a snapshot', () => {
     commitRoom(restored.engine)
 
     expect(restored.nextWake()).toBe(OPENED_AT + ABANDONED_ROOM_GRACE_MS)
+  })
+})
+
+describe('a published room', () => {
+  it('[persistence] is handed to storage before any screen is sent it', () => {
+    const events: string[] = []
+    const wall: Extract<Connection, { role: 'wall' }> = {
+      isSpeaker: false,
+      number: 1,
+      playerId: null,
+      role: 'wall',
+      send: () => {
+        events.push('send')
+      },
+      sessionId: 'wall-session'
+    }
+    const engine = createRoomEngine(buzzerRoomInCountdown(), {
+      connections: { add: () => {}, all: () => [wall], remove: () => {} },
+      discard: () => {},
+      now: () => OPENED_AT,
+      persist: () => {
+        events.push(wall.isSpeaker ? 'persist speaker' : 'persist')
+      },
+      wakeAt: () => {}
+    })
+
+    publishRoom(engine)
+
+    expect(events).toEqual(['persist speaker', 'send'])
   })
 })

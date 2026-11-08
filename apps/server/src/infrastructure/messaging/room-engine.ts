@@ -10,7 +10,7 @@ import { settleReadyHold } from '@/domain/round/round-service'
 
 import type { Connection } from './connection'
 import { broadcastRoom } from './outbound'
-import { isHostConnected } from './room-connections'
+import { electSpeakerWall, isHostConnected } from './room-connections'
 
 /**
  * What a room needs from the process keeping it. Nothing here is global: two
@@ -70,11 +70,20 @@ export const commitRoom = (engine: RoomEngine): void => {
   engine.wakeAt(earliestDeadline(deadlinesOf(engine))?.at ?? null)
 }
 
-/** Where every state change ends: each socket is sent its view, then the room is kept. */
+/**
+ * Where every state change ends: the room is kept, then each socket is sent its
+ * view. In that order because a Durable Object holds a frame back only behind a
+ * write already issued — sent first, a view could reach a screen and the room
+ * be evicted before storing it, coming back older than what every screen shows.
+ * Every change passes here, a wall leaving included, which is what makes it the
+ * place a departed speaker is replaced — before the commit, which writes who
+ * speaks onto each wall's socket.
+ */
 export const publishRoom = (engine: RoomEngine): void => {
   settleReadyHold(engine.room, engine.now())
-  broadcastRoom(engine)
+  electSpeakerWall(engine)
   commitRoom(engine)
+  broadcastRoom(engine)
 }
 
 export const closeRoomEngine = (engine: RoomEngine): void => {

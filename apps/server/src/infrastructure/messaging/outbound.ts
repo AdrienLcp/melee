@@ -160,13 +160,10 @@ export const sendWelcome = (
 }
 
 /**
- * Each socket receives its whole role-scoped view, never a delta. Every change
- * passes here, a wall leaving included, which is what makes it the place a
- * departed speaker is replaced.
+ * Each socket receives its whole role-scoped view, never a delta. The speaker
+ * is elected before this, by `publishRoom`, so the stored room names it too.
  */
 export const broadcastRoom = (engine: RoomEngine): void => {
-  electSpeakerWall(engine)
-
   const isHostThere = isHostConnected(engine)
   const walls = wallScreensOf(engine)
   const now = engine.now()
