@@ -5,6 +5,7 @@ import type {
   BlackSquareAnswerCount,
   BlackSquareBlackWord,
   BlackSquareCell,
+  BlackSquareCellTiers,
   BlackSquareLabels,
   BlackSquareSentLine,
   BlackSquareTheme
@@ -14,13 +15,16 @@ import type { RoundContent } from '@melee/protocol/room'
 import type { CellsVerdict, Verdict } from '@melee/protocol/scoring'
 import type { TeamId } from '@melee/protocol/team'
 
+import {
+  BLACK_SQUARE_WEIGHT_BY_TIER,
+  dealBlackSquareAnswers
+} from '@melee/core/blacksquare/answer-deal'
 import { gradeLine } from '@melee/core/blacksquare/line-match'
 import {
   emptySheet,
   isSheetClosed,
   loneCellsOf,
   pointsForCells,
-  tierOfCell,
   withCellTicked,
   withLineBanked
 } from '@melee/core/blacksquare/sheet-pay'
@@ -30,10 +34,11 @@ import { teamForLateSeat } from '@melee/core/team/late-seat'
 import type { Room, Round } from '@/domain/room/room'
 import { seatsOf } from '@/domain/room/team-service'
 import type { AnswerRejection } from '@/domain/round/round-service'
+import type { PooledBlackSquareTheme } from '@/infrastructure/questions/black-square-bank'
 
 type BlackSquareContent = Extract<Round['content'], { kind: 'blacksquare' }>
 
-type Named = BlackSquareTheme['answers'][number]
+type Named = Pick<BlackSquareTheme['answers'][number], 'aliases' | 'labels'>
 
 /** Every language's names at once: a French table types an English title as often as a French one. */
 const namesOf = ({ aliases, labels }: Named): string[] => [
@@ -42,9 +47,10 @@ const namesOf = ({ aliases, labels }: Named): string[] => [
 ]
 
 /**
- * A round on the theme's `answerCount` most read answers: the bank ranks them
- * by traffic, so the ones left off are the obscure ones a table never says,
- * which keeps a true answer missing from the board as rare as it can be.
+ * A round on `answerCount` answers of the theme's pool, obvious and rare
+ * mixed, dealt again for every round: a theme met twice hides other answers.
+ * A true answer left out of the deal reads like any other miss — that is the
+ * game.
  */
 export const blackSquareContent = ({
   answerCount,
@@ -53,17 +59,28 @@ export const blackSquareContent = ({
 }: {
   answerCount: BlackSquareAnswerCount
   doublesLoneFinds: boolean
-  theme: BlackSquareTheme
+  theme: PooledBlackSquareTheme
 }): BlackSquareContent => ({
   doublesLoneFinds,
   kind: 'blacksquare',
   lines: [],
   spoken: null,
-  theme: { ...theme, answers: theme.answers.slice(0, answerCount) }
+  theme: {
+    answers: dealBlackSquareAnswers({
+      count: answerCount,
+      pool: theme.answers
+    }).map(({ aliases, labels, tier }) => ({
+      aliases,
+      labels,
+      tier: BLACK_SQUARE_WEIGHT_BY_TIER[tier]
+    })),
+    blackWord: theme.blackWord,
+    labels: theme.labels
+  }
 })
 
-const cellCountOf = (content: BlackSquareContent): BlackSquareAnswerCount =>
-  content.theme.answers.length
+const cellTiersOf = (content: BlackSquareContent): BlackSquareCellTiers =>
+  content.theme.answers.map(({ tier }) => tier)
 
 const connectedSeatsOf = (room: Room, teamId: TeamId): PlayerId[] =>
   seatsOf(room, teamId)
@@ -139,7 +156,7 @@ export const takeSpokenTurn = ({
   return {
     ...turn,
     guessers: seatsOf(room, turn.guessingTeamId).map((seat) => seat.id),
-    sheet: emptySheet(cellCountOf(content))
+    sheet: emptySheet(cellTiersOf(content))
   }
 }
 
@@ -187,7 +204,7 @@ export const tickSpokenCell = ({
   if (
     content === null ||
     spoken === null ||
-    (cell !== 'blackWord' && cell >= cellCountOf(content))
+    (cell !== 'blackWord' && cell >= content.theme.answers.length)
   ) {
     return Result.failure('invalid_message')
   }
@@ -263,7 +280,7 @@ export const keepSheetLine = ({
   playerId: PlayerId
 }): void => {
   const held =
-    before?.kind === 'cells' ? before : emptySheet(cellCountOf(content))
+    before?.kind === 'cells' ? before : emptySheet(cellTiersOf(content))
 
   content.lines = content.lines.filter(
     (kept) => kept.playerId !== playerId || !isMiss(kept)
@@ -293,7 +310,7 @@ export const gradeSheetLine = ({
       blackWord: namesOf(content.theme.blackWord),
       line
     }),
-    sheet: held?.kind === 'cells' ? held : emptySheet(cellCountOf(content))
+    sheet: held?.kind === 'cells' ? held : emptySheet(cellTiersOf(content))
   })
 
 const labelsOf = (labels: BlackSquareTheme['labels']): BlackSquareLabels => ({
@@ -304,9 +321,9 @@ const labelsOf = (labels: BlackSquareTheme['labels']): BlackSquareLabels => ({
 export const blackSquareGrid = (
   theme: BlackSquareTheme
 ): { answers: BlackSquareAnswer[]; blackWord: BlackSquareBlackWord } => ({
-  answers: theme.answers.map((answer, cell) => ({
+  answers: theme.answers.map((answer) => ({
     labels: labelsOf(answer.labels),
-    tier: tierOfCell({ cell, cellCount: theme.answers.length })
+    tier: answer.tier
   })),
   blackWord: {
     labels: labelsOf(theme.blackWord.labels),
@@ -366,7 +383,7 @@ export const blackSquareContentView = ({
   const grid = blackSquareGrid(content.theme)
 
   return {
-    answerCount: cellCountOf(content),
+    cellTiers: cellTiersOf(content),
     foundCellCount: new Set(sheets.flatMap(({ sheet }) => sheet.foundCells))
       .size,
     kind: 'blacksquare',

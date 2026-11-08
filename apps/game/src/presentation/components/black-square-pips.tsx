@@ -1,7 +1,7 @@
 import type React from 'react'
 
 import type {
-  BlackSquareAnswerCount,
+  BlackSquareCellTiers,
   BlackSquareTier
 } from '@melee/protocol/black-square'
 
@@ -18,8 +18,8 @@ import './black-square-pips.sass'
 const PIPS = ['first', 'second', 'third'] as const
 
 type BlackSquarePipsProps = {
-  /** How many answers the round dealt, which is what the tier's share of the sheet is cut from. */
-  cellCount: BlackSquareAnswerCount
+  /** The tier of every answer the round dealt, which is what the tier's share of the sheet is cut from. */
+  cellTiers: BlackSquareCellTiers
   /** How obscure the cell is, which is the number of pips and its share of the sheet. */
   tier: BlackSquareTier
 }
@@ -30,7 +30,7 @@ type BlackSquarePipsProps = {
  * aloud for a screen reader.
  */
 export const BlackSquarePips: React.FC<BlackSquarePipsProps> = ({
-  cellCount,
+  cellTiers,
   tier
 }) => {
   const translate = useTranslate()
@@ -45,7 +45,7 @@ export const BlackSquarePips: React.FC<BlackSquarePipsProps> = ({
         {isOnTrack
           ? translate('blacksquare.tierOf', { most: PIPS.length, tier })
           : translate('blacksquare.tier', {
-              points: shownPoints(pointsForTier({ cellCount, tier }))
+              points: shownPoints(pointsForTier({ cellTiers, tier }))
             })}
       </VisuallyHidden>
     </span>

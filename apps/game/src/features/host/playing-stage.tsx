@@ -330,12 +330,12 @@ export const PlayingStage: React.FC<PlayingStageProps> = ({
       {blackSquare !== null &&
         (onAnswer === null ? (
           <BlackSquareGauge
-            answerCount={blackSquare.answerCount}
+            cellTiers={blackSquare.cellTiers}
             foundCellCount={blackSquare.foundCellCount}
           />
         ) : blackSquare.spoken !== null ? (
           <BlackSquareSpoken
-            answerCount={blackSquare.answerCount}
+            cellTiers={blackSquare.cellTiers}
             key={round.id}
             onTick={onTick}
             players={view.players}

@@ -1,0 +1,1101 @@
+[
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["French bean", "String bean", "Haricot vert"],
+          "fr": ["Haricots verts"]
+        },
+        "labels": {
+          "en": "Green bean",
+          "fr": "Haricot vert"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pea", "Garden peas"],
+          "fr": ["Petit pois", "Pois"]
+        },
+        "labels": {
+          "en": "Peas",
+          "fr": "Petits pois"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Broccoli",
+          "fr": "Brocoli"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Épinard"]
+        },
+        "labels": {
+          "en": "Spinach",
+          "fr": "Épinards"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Zucchini"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Courgette",
+          "fr": "Courgette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Poireaux"]
+        },
+        "labels": {
+          "en": "Leek",
+          "fr": "Poireau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Salade", "Salade verte"]
+        },
+        "labels": {
+          "en": "Lettuce",
+          "fr": "Laitue"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Céleri branche"]
+        },
+        "labels": {
+          "en": "Celery",
+          "fr": "Céleri"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Brussels sprout", "Sprouts"],
+          "fr": ["Chou de Bruxelles"]
+        },
+        "labels": {
+          "en": "Brussels sprouts",
+          "fr": "Choux de Bruxelles"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Green asparagus"],
+          "fr": ["Asperges", "Asperge verte"]
+        },
+        "labels": {
+          "en": "Asparagus",
+          "fr": "Asperge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cucumber",
+          "fr": "Concombre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Green bell pepper"],
+          "fr": ["Poivron"]
+        },
+        "labels": {
+          "en": "Green pepper",
+          "fr": "Poivron vert"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fava bean"],
+          "fr": ["Fèves"]
+        },
+        "labels": {
+          "en": "Broad bean",
+          "fr": "Fève"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mâche"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Corn salad",
+          "fr": "Mâche"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Arugula"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rocket",
+          "fr": "Roquette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Cress"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Watercress",
+          "fr": "Cresson"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Swiss chard"],
+          "fr": ["Blettes", "Bette", "Bettes"]
+        },
+        "labels": {
+          "en": "Chard",
+          "fr": "Blette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Bok choy", "Pak choy"],
+          "fr": ["Bok choy", "Pak choy"]
+        },
+        "labels": {
+          "en": "Pak choi",
+          "fr": "Pak choï"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Curly kale"],
+          "fr": ["Chou kale"]
+        },
+        "labels": {
+          "en": "Kale",
+          "fr": "Kale"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Kiwifruit"],
+        "fr": []
+      },
+      "labels": {
+        "en": "Kiwi",
+        "fr": "Kiwi"
+      },
+      "why": {
+        "en": "Green inside, but a fruit.",
+        "fr": "Vert dedans, mais c'est un fruit."
+      }
+    },
+    "id": "green-vegetables",
+    "labels": {
+      "en": "Green vegetables",
+      "fr": "Légumes verts"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mango",
+          "fr": "Mangue"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pineapple",
+          "fr": "Ananas"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Coco"]
+        },
+        "labels": {
+          "en": "Coconut",
+          "fr": "Noix de coco"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Maracuja"],
+          "fr": ["Maracuja"]
+        },
+        "labels": {
+          "en": "Passion fruit",
+          "fr": "Fruit de la passion"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Litchi"],
+          "fr": ["Letchi", "Lychee"]
+        },
+        "labels": {
+          "en": "Lychee",
+          "fr": "Litchi"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Guava",
+          "fr": "Goyave"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Carambola"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Star fruit",
+          "fr": "Carambole"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pitaya", "Pitahaya"],
+          "fr": ["Pitaya", "Pitahaya"]
+        },
+        "labels": {
+          "en": "Dragon fruit",
+          "fr": "Fruit du dragon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Kaki", "Sharon fruit"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Persimmon",
+          "fr": "Kaki"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kumquat",
+          "fr": "Kumquat"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Durian",
+          "fr": "Durian"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cape gooseberry"],
+          "fr": ["Amour en cage"]
+        },
+        "labels": {
+          "en": "Physalis",
+          "fr": "Physalis"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mangosteen",
+          "fr": "Mangoustan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Rambutan"]
+        },
+        "labels": {
+          "en": "Rambutan",
+          "fr": "Ramboutan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Graviola"],
+          "fr": ["Graviola"]
+        },
+        "labels": {
+          "en": "Soursop",
+          "fr": "Corossol"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Breadfruit",
+          "fr": "Fruit à pain"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tamarind",
+          "fr": "Tamarin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Jaque", "Fruit du jacquier", "Jackfruit"]
+        },
+        "labels": {
+          "en": "Jackfruit",
+          "fr": "Jacque"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Ginger",
+        "fr": "Gingembre"
+      },
+      "why": {
+        "en": "Exotic, yes, but a root, not a fruit.",
+        "fr": "Exotique, oui, mais c'est une racine, pas un fruit."
+      }
+    },
+    "id": "exotic-fruits",
+    "labels": {
+      "en": "Exotic fruits",
+      "fr": "Fruits exotiques"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Comedy",
+          "fr": "Comédie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Horror film"],
+          "fr": ["Film d'horreur", "Épouvante"]
+        },
+        "labels": {
+          "en": "Horror",
+          "fr": "Horreur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Sci-fi", "SF"],
+          "fr": ["SF"]
+        },
+        "labels": {
+          "en": "Science fiction",
+          "fr": "Science-fiction"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Western",
+          "fr": "Western"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Action film"],
+          "fr": ["Film d'action"]
+        },
+        "labels": {
+          "en": "Action",
+          "fr": "Action"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Drama",
+          "fr": "Drame"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Film à suspense"]
+        },
+        "labels": {
+          "en": "Thriller",
+          "fr": "Thriller"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Animated film", "Cartoon"],
+          "fr": ["Film d'animation", "Dessin animé"]
+        },
+        "labels": {
+          "en": "Animation",
+          "fr": "Animation"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Film musical", "Musical"]
+        },
+        "labels": {
+          "en": "Musical",
+          "fr": "Comédie musicale"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Crime film", "Cop film", "Police film"],
+          "fr": ["Polar", "Film policier"]
+        },
+        "labels": {
+          "en": "Detective film",
+          "fr": "Policier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["War"],
+          "fr": ["Guerre"]
+        },
+        "labels": {
+          "en": "War film",
+          "fr": "Film de guerre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Fantasy"]
+        },
+        "labels": {
+          "en": "Fantasy",
+          "fr": "Fantastique"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Docu"]
+        },
+        "labels": {
+          "en": "Documentary",
+          "fr": "Documentaire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Film noir",
+          "fr": "Film noir"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Peplum"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sword-and-sandal",
+          "fr": "Péplum"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Biographical film"],
+          "fr": ["Film biographique"]
+        },
+        "labels": {
+          "en": "Biopic",
+          "fr": "Biopic"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Road movie",
+          "fr": "Road movie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Disaster movie"],
+          "fr": ["Catastrophe"]
+        },
+        "labels": {
+          "en": "Disaster film",
+          "fr": "Film catastrophe"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Espionage"],
+          "fr": ["Espionnage"]
+        },
+        "labels": {
+          "en": "Spy film",
+          "fr": "Film d'espionnage"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Blockbuster",
+        "fr": "Blockbuster"
+      },
+      "why": {
+        "en": "A box-office hit of any genre, not a genre.",
+        "fr": "Un succès au box-office, de n'importe quel genre."
+      }
+    },
+    "id": "film-genres",
+    "labels": {
+      "en": "Film genres",
+      "fr": "Genres de films"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Bull", "Calf"],
+          "fr": ["Taureau", "Veau", "Bœuf"]
+        },
+        "labels": {
+          "en": "Cow",
+          "fr": "Vache"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Swine"],
+          "fr": ["Porc", "Truie", "Porcelet"]
+        },
+        "labels": {
+          "en": "Pig",
+          "fr": "Cochon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hen", "Rooster", "Cockerel", "Chick"],
+          "fr": ["Poulet"]
+        },
+        "labels": {
+          "en": "Chicken",
+          "fr": "Poule"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lamb", "Ram", "Ewe"],
+          "fr": ["Brebis", "Agneau", "Bélier"]
+        },
+        "labels": {
+          "en": "Sheep",
+          "fr": "Mouton"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mare", "Foal", "Stallion"],
+          "fr": ["Jument", "Poulain", "Chevaux"]
+        },
+        "labels": {
+          "en": "Horse",
+          "fr": "Cheval"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Billy goat", "Nanny goat", "Kid"],
+          "fr": ["Bouc", "Chevreau", "Bique"]
+        },
+        "labels": {
+          "en": "Goat",
+          "fr": "Chèvre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Duckling", "Drake"],
+          "fr": ["Caneton"]
+        },
+        "labels": {
+          "en": "Duck",
+          "fr": "Canard"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bunny"],
+          "fr": ["Lapine", "Lapereau"]
+        },
+        "labels": {
+          "en": "Rabbit",
+          "fr": "Lapin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Ass"],
+          "fr": ["Ânesse", "Baudet"]
+        },
+        "labels": {
+          "en": "Donkey",
+          "fr": "Âne"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Dindon"]
+        },
+        "labels": {
+          "en": "Turkey",
+          "fr": "Dinde"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Geese", "Gander"],
+          "fr": ["Jars"]
+        },
+        "labels": {
+          "en": "Goose",
+          "fr": "Oie"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Guinea fowl",
+          "fr": "Pintade"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Quail",
+          "fr": "Caille"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Farm dog", "Dog"],
+          "fr": ["Chien de ferme"]
+        },
+        "labels": {
+          "en": "Sheepdog",
+          "fr": "Chien de berger"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Squab"],
+          "fr": ["Pigeonneau"]
+        },
+        "labels": {
+          "en": "Pigeon",
+          "fr": "Pigeon"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Fox",
+        "fr": "Renard"
+      },
+      "why": {
+        "en": "It prowls round the farm for the hens, but lives wild.",
+        "fr": "Il rôde autour de la ferme pour les poules, mais vit sauvage."
+      }
+    },
+    "id": "farm-animals",
+    "labels": {
+      "en": "Farm animals",
+      "fr": "Animaux de la ferme"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Soccer"],
+          "fr": ["Foot", "Soccer"]
+        },
+        "labels": {
+          "en": "Football",
+          "fr": "Football"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rugby",
+          "fr": "Rugby"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Basket"],
+          "fr": ["Basket"]
+        },
+        "labels": {
+          "en": "Basketball",
+          "fr": "Basketball"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Hand"]
+        },
+        "labels": {
+          "en": "Handball",
+          "fr": "Handball"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Volley"],
+          "fr": ["Volley"]
+        },
+        "labels": {
+          "en": "Volleyball",
+          "fr": "Volleyball"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Water polo",
+          "fr": "Water-polo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ice hockey",
+          "fr": "Hockey sur glace"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Field hockey",
+          "fr": "Hockey sur gazon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cricket",
+          "fr": "Cricket"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Curling",
+          "fr": "Curling"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Futsal",
+          "fr": "Futsal"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Lacrosse"]
+        },
+        "labels": {
+          "en": "Lacrosse",
+          "fr": "Crosse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Ultimate frisbee", "Frisbee"],
+          "fr": ["Ultimate frisbee", "Frisbee"]
+        },
+        "labels": {
+          "en": "Ultimate",
+          "fr": "Ultimate"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Netball",
+          "fr": "Netball"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Korfball",
+          "fr": "Korfball"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kabaddi",
+          "fr": "Kabaddi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tug of war",
+          "fr": "Tir à la corde"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Dodgeball"]
+        },
+        "labels": {
+          "en": "Dodgeball",
+          "fr": "Balle aux prisonniers"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Decathlon",
+        "fr": "Décathlon"
+      },
+      "why": {
+        "en": "Ten events, but one athlete does them all.",
+        "fr": "Dix épreuves, mais un seul athlète les enchaîne."
+      }
+    },
+    "id": "team-sports",
+    "labels": {
+      "en": "Team sports",
+      "fr": "Sports collectifs"
+    },
+    "tier": "easy"
+  }
+]

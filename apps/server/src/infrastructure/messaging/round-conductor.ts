@@ -427,7 +427,10 @@ export const beginRound = async (
       return
     }
 
-    const theme = drawBlackSquareTheme({ playedIds: room.playedContentIds })
+    const theme = drawBlackSquareTheme({
+      difficulty: game.difficulty,
+      playedIds: room.playedContentIds
+    })
 
     if (theme === null) {
       tellHost(engine, {

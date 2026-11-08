@@ -1,7 +1,32 @@
 # Black square, part 2 — two hundred broad themes
 
-After `black-square-01-shape.md` (the pool, tiers and authored source exist,
-with five pilots). Adrien's words and every decision are there.
+After part 1, which landed the pool, the tiers and the authored source with
+five pilots. Adrien's words, as part 1 quoted them:
+
+> Les thèmes du jeu "cases noires" sont trop difficiles. […] des thèmes
+> beaucoup plus faciles et larges, comme "légumes verts", "fruits exotiques",
+> "genres de films" […] une liste de 10 à 20 par thème, et on en prend
+> aléatoirement à trouver dedans.
+
+## What part 1 left in place
+
+- **The shape** is `authoredThemeSchema` in
+  `apps/server/src/infrastructure/questions/black-square-bank.ts`: theme
+  `id` (kebab-case), `tier`, `labels`, 12–20 `answers` each with `labels`,
+  `aliases` and `tier`, and a `blackWord` with its `why`. The five pilots are
+  `black-square-authored.json` beside it; part 2 either grows that file or
+  splits it into several the loader concatenates.
+- **A round deals 1 easy, 2 medium, 1 hard** of four
+  (`packages/core/src/blacksquare/answer-deal.ts`), so a theme needs at least
+  three of each tier — the bank test enforces it.
+- **Matching is whole-line** (`line-match.ts`): "Comédie musicale" beside
+  "Comédie" is fine, but two names within typo tolerance are not. Under six
+  letters no typo is forgiven, so short names may sit two letters apart.
+  `black-square-bank.test.ts` already fails on a name graded as another answer
+  or as the black word.
+- **Wikidata themes are never `easy`**: medium or hard by their traffic, so an
+  easy room deals only authored themes and falls to medium once they run out.
+  With five pilots that is five rounds — the reason the volume below matters.
 
 ## Volume
 

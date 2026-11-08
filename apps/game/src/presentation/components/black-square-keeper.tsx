@@ -50,6 +50,7 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
   const { locale, translate } = useI18n()
   const [isShown, setIsShown] = useState(false)
   const [isAsking, setIsAsking] = useState(false)
+  const cellTiers = list.answers.map(({ tier }) => tier)
 
   return (
     <section className='black-square-keeper' data-shown={isShown || undefined}>
@@ -61,10 +62,7 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
           {list.answers.map((answer, cell) => (
             <li
               key={cellKeyOf(cell)}
-              style={blackSquareCellStyle({
-                cell,
-                cellCount: list.answers.length
-              })}
+              style={blackSquareCellStyle({ cell, cellTiers })}
             >
               <ToggleButton
                 className='keeper-cell'
@@ -74,10 +72,7 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
                 <span className='name'>{answer.labels[locale]}</span>
                 <span className='foot'>
                   <CheckIcon />
-                  <BlackSquarePips
-                    cellCount={list.answers.length}
-                    tier={answer.tier}
-                  />
+                  <BlackSquarePips cellTiers={cellTiers} tier={answer.tier} />
                 </span>
               </ToggleButton>
             </li>
@@ -85,7 +80,7 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
         </ol>
       ) : (
         <BlackSquareSheet
-          cellCount={list.answers.length}
+          cellTiers={cellTiers}
           lines={[]}
           tickedCells={tickedCells}
         />

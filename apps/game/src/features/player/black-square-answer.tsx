@@ -2,15 +2,10 @@ import type React from 'react'
 import { useState } from 'react'
 import { Form } from 'react-aria-components'
 
-import { BLACK_SQUARE_CELL_COUNT } from '@melee/protocol/black-square'
 import type { RoundView } from '@melee/protocol/room'
 import type { Verdict } from '@melee/protocol/scoring'
 
-import {
-  isSheetClosed,
-  pointsForTier,
-  tierOfCell
-} from '@melee/core/blacksquare/sheet-pay'
+import { isSheetClosed, pointsForTier } from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareContent } from '@/helpers/round-content'
 import { shownPoints } from '@/helpers/shown-points'
@@ -48,7 +43,7 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
   const isOnTrack = usePlaysOnTrack()
   const [guess, setGuess] = useState('')
   const content = blackSquareContent(round)
-  const cellCount = content?.answerCount ?? BLACK_SQUARE_CELL_COUNT
+  const cellTiers = content?.cellTiers ?? []
   const lines = content?.yourLines ?? []
   const isClosed = verdict?.kind === 'cells' && isSheetClosed(verdict)
   const isEmpty = guess.trim() === ''
@@ -56,7 +51,7 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
 
   return (
     <section className='answer-form black-square-answer'>
-      <BlackSquareSheet cellCount={cellCount} lines={lines} />
+      <BlackSquareSheet cellTiers={cellTiers} lines={lines} />
       <p
         className='echo'
         data-hit={(last?.cells.length ?? 0) > 0 || undefined}
@@ -76,8 +71,8 @@ export const BlackSquareAnswer: React.FC<BlackSquareAnswerProps> = ({
                         (total, cell) =>
                           total +
                           pointsForTier({
-                            cellCount,
-                            tier: tierOfCell({ cell, cellCount })
+                            cellTiers,
+                            tier: cellTiers[cell] ?? 0
                           }),
                         0
                       )

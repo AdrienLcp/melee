@@ -32,7 +32,7 @@ const BEST_ROUND = {
   atlas: () => pointsForDistance({ distanceKm: 0, target: 'country' }),
   blacksquare: () =>
     pointsForCells({
-      cellCount: 9,
+      cellTiers: [1, 1, 1, 2, 2, 2, 3, 3, 3],
       doubledCells: NINE_CELLS,
       foundCells: NINE_CELLS,
       hitBlackWord: false

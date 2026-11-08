@@ -8,49 +8,32 @@ import {
   loneCellsOf,
   pointsForCells,
   pointsForTier,
-  tierOfCell,
   withCellTicked,
   withLineBanked
 } from './sheet-pay'
 
+const NINE_CELLS = [1, 1, 1, 2, 2, 2, 3, 3, 3]
+
 const sheetOf = (foundCells: number[], hitBlackWord = false) => ({
-  cellCount: 9,
+  cellTiers: NINE_CELLS,
   foundCells,
   hitBlackWord,
   kind: 'cells' as const
 })
 
 describe('what a black-square sheet pays', () => {
-  it('[blacksquare] pays the most read three one point and the least read three', () => {
-    expect(
-      [0, 2, 3, 5, 6, 8].map((cell) => tierOfCell({ cell, cellCount: 9 }))
-    ).toEqual([1, 1, 2, 2, 3, 3])
-  })
-
-  it('[blacksquare] cuts the thirds from the answers dealt, spares to the most read', () => {
-    const tiersOf = (cellCount: number) =>
-      Array.from({ length: cellCount }, (_, cell) =>
-        tierOfCell({ cell, cellCount })
-      )
-
-    expect(tiersOf(3)).toEqual([1, 2, 3])
-    expect(tiersOf(4)).toEqual([1, 1, 2, 3])
-    expect(tiersOf(5)).toEqual([1, 1, 2, 2, 3])
-    expect(tiersOf(7)).toEqual([1, 1, 1, 2, 2, 3, 3])
-  })
-
   it('[blacksquare] pays the whole round for a full sheet, however many answers it holds', () => {
     expect(pointsForCells(sheetOf([0, 1, 2, 3, 4, 5, 6, 7, 8]))).toBe(
       MOST_A_ROUND_PAYS
     )
-    expect(pointsForCells({ ...sheetOf([0, 1, 2]), cellCount: 3 })).toBe(
-      MOST_A_ROUND_PAYS
-    )
+    expect(
+      pointsForCells({ ...sheetOf([0, 1, 2]), cellTiers: [1, 2, 2] })
+    ).toBe(MOST_A_ROUND_PAYS)
   })
 
-  it('[blacksquare] shares the round by tier, the least read weighing three times the most read', () => {
-    expect(pointsForTier({ cellCount: 9, tier: 1 })).toBe(5_556)
-    expect(pointsForTier({ cellCount: 9, tier: 3 })).toBe(16_667)
+  it('[blacksquare] shares the round by tier, a rare answer weighing three times an obvious one', () => {
+    expect(pointsForTier({ cellTiers: NINE_CELLS, tier: 1 })).toBe(5_556)
+    expect(pointsForTier({ cellTiers: NINE_CELLS, tier: 3 })).toBe(16_667)
     expect(pointsForCells(sheetOf([0, 8]))).toBe(22_222)
   })
 
@@ -95,12 +78,12 @@ describe('what a black-square sheet pays', () => {
   })
 
   it('[blacksquare] closes a sheet of five on its fifth cell', () => {
-    expect(isSheetClosed({ ...sheetOf([0, 1, 2, 3, 4]), cellCount: 5 })).toBe(
-      true
-    )
-    expect(isSheetClosed({ ...sheetOf([0, 1, 2, 3]), cellCount: 5 })).toBe(
-      false
-    )
+    expect(
+      isSheetClosed({ ...sheetOf([0, 1, 2, 3, 4]), cellTiers: [1, 2, 2, 2, 3] })
+    ).toBe(true)
+    expect(
+      isSheetClosed({ ...sheetOf([0, 1, 2, 3]), cellTiers: [1, 2, 2, 2, 3] })
+    ).toBe(false)
   })
 })
 
@@ -108,7 +91,7 @@ describe('banking a black-square line', () => {
   it('[blacksquare] adds a cell once, however often it is found', () => {
     const once = withLineBanked({
       graded: { cells: [2, 3], kind: 'cells' },
-      sheet: emptySheet(9)
+      sheet: emptySheet(NINE_CELLS)
     })
 
     expect(
@@ -137,7 +120,7 @@ describe('ticking a spoken black-square list', () => {
     const once = withCellTicked({
       cell: 4,
       isTicked: true,
-      sheet: emptySheet(9)
+      sheet: emptySheet(NINE_CELLS)
     })
 
     expect(withCellTicked({ cell: 4, isTicked: true, sheet: once })).toEqual(

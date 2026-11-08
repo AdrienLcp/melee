@@ -18,6 +18,7 @@
     "apps/server/src/infrastructure/questions/most-likely-bank.json",
     "apps/server/src/infrastructure/questions/timeline-bank.json",
     "apps/server/src/infrastructure/questions/black-square-bank.json",
+    "apps/server/src/infrastructure/questions/black-square-authored.json",
     "apps/server/src/infrastructure/questions/capital-bank.json",
     "apps/server/src/infrastructure/questions/quantity-bank.json",
     "apps/server/scripts/black-square-themes.ts",

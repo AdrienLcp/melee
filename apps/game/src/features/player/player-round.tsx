@@ -825,7 +825,7 @@ const PlayerRoundPhase: React.FC<PlayerRoundProps> = ({
             />
           ) : (
             <BlackSquareSpoken
-              answerCount={blackSquare.answerCount}
+              cellTiers={blackSquare.cellTiers}
               key={round.id}
               onTick={(cell, isTicked) =>
                 onTick({ cell, isTicked, roundId: round.id })

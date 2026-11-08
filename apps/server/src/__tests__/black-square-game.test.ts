@@ -43,14 +43,31 @@ const named = (name: string) => ({
   labels: { en: name, fr: `${name} fr` }
 })
 
+/** Nine answers dealt nine at a time: two obvious, five between, two rare. */
+const TIERS = [
+  'easy',
+  'easy',
+  'medium',
+  'medium',
+  'medium',
+  'medium',
+  'medium',
+  'hard',
+  'hard'
+] as const
+
 const THEME = {
-  answers: ANSWER_NAMES.map(named),
+  answers: ANSWER_NAMES.map((name, index) => ({
+    ...named(name),
+    tier: TIERS[index] ?? 'medium'
+  })),
   blackWord: {
     ...named('Pluto'),
     why: { en: 'A dwarf planet since 2006', fr: 'Dwarf planet, in French' }
   },
   id: 'planets',
-  labels: { en: 'The planets', fr: 'The planets, in French' }
+  labels: { en: 'The planets', fr: 'The planets, in French' },
+  tier: 'easy'
 }
 
 /** Every name a seat could be handed by mistake, the black word's and its `why` included. */
@@ -64,13 +81,18 @@ const SECRETS = [
   THEME.blackWord.why.en
 ]
 
+vi.mock('@melee/core/helpers/random', async (importOriginal) => ({
+  ...(await importOriginal<typeof import('@melee/core/helpers/random')>()),
+  shuffled: <TItem>(items: readonly TItem[]): TItem[] => [...items]
+}))
+
 vi.mock('@/infrastructure/questions/black-square-bank', () => ({
   drawBlackSquareTheme: ({ playedIds }: { playedIds: ReadonlySet<string> }) =>
     playedIds.has('blacksquare:planets') ? null : THEME,
   playedBlackSquareThemeId: (id: string) => `blacksquare:${id}`
 }))
 
-/** Nine answers in thirds by how read they are, the least read weighing three times the most: 3 × 1 + 3 × 2 + 3 × 3. */
+/** The nine dealt by tier, a rare answer weighing three times an obvious one: 2 × 1 + 5 × 2 + 2 × 3. */
 const FULL_SHEET_WEIGHT = 18
 
 /** What a sheet holding `found` of the weight `outOf` is paid: its share of the round. */
@@ -85,7 +107,7 @@ const sheetPays = ({
 const BLACK_SQUARE: RoomSettings = {
   ...DEFAULT_ROOM_SETTINGS,
   countdownMs: 20,
-  game: DEFAULT_BLACK_SQUARE_SETTINGS,
+  game: { ...DEFAULT_BLACK_SQUARE_SETTINGS, answerCount: 9 },
   mode: DEFAULT_MODE_SETTINGS.typed,
   roundCount: 3
 }
@@ -192,7 +214,7 @@ describe('a black-square round through the seam', () => {
     const { host, wall, zoe } = await roundInPlay()
 
     expect(blackSquareRound(playerView(zoe))).toEqual({
-      answerCount: 9,
+      cellTiers: [1, 1, 2, 2, 2, 2, 2, 3, 3],
       foundCellCount: 0,
       kind: 'blacksquare',
       revealed: null,
@@ -210,11 +232,11 @@ describe('a black-square round through the seam', () => {
     ).toEqual([
       'Mercury 1',
       'Venus 1',
-      'Earth 1',
+      'Earth 2',
       'Mars 2',
       'Jupiter 2',
       'Saturn 2',
-      'Uranus 3',
+      'Uranus 2',
       'Neptune 3',
       'Ceres 3'
     ])
@@ -233,7 +255,7 @@ describe('a black-square round through the seam', () => {
     )
 
     expect(playerView(zoe)?.yourVerdict).toEqual({
-      cellCount: 9,
+      cellTiers: [1, 1, 2, 2, 2, 2, 2, 3, 3],
       foundCells: [4, 8],
       hitBlackWord: false,
       kind: 'cells'
@@ -299,12 +321,12 @@ describe('a black-square round through the seam', () => {
     expect(errorsIn(zoe).map(({ code }) => code)).toEqual(['already_buzzed'])
     expect(awardOf(zoeId)?.points).toBe(0)
     expect(awardOf(maxId)).toMatchObject({
-      points: sheetPays({ found: 1 }),
+      points: sheetPays({ found: 2 }),
       speedBonus: 0
     })
   })
 
-  it('[blacksquare] deals the most read five when the host asks for five, and closes the sheet on them', async () => {
+  it('[blacksquare] deals five mixed in tier when the host asks for five, and closes the sheet on them', async () => {
     const { host, max, type, wall, zoe } = await roundInPlay({
       settings: {
         ...BLACK_SQUARE,
@@ -315,20 +337,22 @@ describe('a black-square round through the seam', () => {
     const console = hostView(host)?.currentContent
     const grid = console?.kind === 'blacksquare' ? console.grid : null
 
-    expect(blackSquareRound(playerView(zoe))?.answerCount).toBe(5)
+    expect(blackSquareRound(playerView(zoe))?.cellTiers).toEqual([
+      1, 2, 2, 2, 3
+    ])
     expect(
       grid?.answers.map(({ labels, tier }) => `${labels.en} ${tier}`)
-    ).toEqual(['Mercury 1', 'Venus 1', 'Earth 2', 'Mars 2', 'Jupiter 3'])
+    ).toEqual(['Mercury 1', 'Earth 2', 'Mars 2', 'Jupiter 2', 'Neptune 3'])
 
     type(zoe, 'Ceres')
-    for (const name of ANSWER_NAMES.slice(0, 5)) {
+    for (const name of ['Mercury', 'Earth', 'Mars', 'Jupiter', 'Neptune']) {
       type(zoe, name)
     }
     type(max, 'Pluto')
     await waitFor(() => hostView(host)?.phase === 'revealed', 'the reveal')
 
     expect(playerView(zoe)?.yourVerdict).toMatchObject({
-      cellCount: 5,
+      cellTiers: [1, 2, 2, 2, 3],
       foundCells: [0, 1, 2, 3, 4]
     })
     expect(transcriptOf(wall)).not.toContain('"Saturn"')
@@ -353,7 +377,7 @@ describe('a black-square round through the seam', () => {
         (award) => award.playerId === playerView(zoe)?.youId
       )
     ).toMatchObject({
-      points: sheetPays({ found: 1 + 2 + 3 + 3 }),
+      points: sheetPays({ found: 1 + 2 + 2 + 3 }),
       speedBonus: 0
     })
   })
@@ -362,7 +386,11 @@ describe('a black-square round through the seam', () => {
     const { host, max, roundId, type, zoe } = await roundInPlay({
       settings: {
         ...BLACK_SQUARE,
-        game: { ...DEFAULT_BLACK_SQUARE_SETTINGS, doublesLoneFinds: true }
+        game: {
+          ...DEFAULT_BLACK_SQUARE_SETTINGS,
+          answerCount: 9,
+          doublesLoneFinds: true
+        }
       }
     })
 
@@ -460,7 +488,7 @@ const SPOKEN: RoomSettings = {
 
 /** Anna and Ben guess for the first team; Carl, alone in the second, keeps the list. */
 const spokenRoundInPlay = async ({
-  answerCount = DEFAULT_BLACK_SQUARE_SETTINGS.answerCount
+  answerCount = 9
 }: {
   answerCount?: number
 } = {}) => {
@@ -563,11 +591,11 @@ describe('a spoken black-square round through the seam', () => {
     expect(
       view?.round?.awards.map(({ playerId, points }) => [playerId, points])
     ).toEqual([
-      [playerView(anna)?.youId, sheetPays({ found: 1 + 2 + 3 })],
-      [playerView(ben)?.youId, sheetPays({ found: 1 + 2 + 3 })]
+      [playerView(anna)?.youId, sheetPays({ found: 1 + 2 + 2 })],
+      [playerView(ben)?.youId, sheetPays({ found: 1 + 2 + 2 })]
     ])
     expect(view?.teams.map(({ score }) => score)).toEqual([
-      sheetPays({ found: 1 + 2 + 3 }),
+      sheetPays({ found: 1 + 2 + 2 }),
       0
     ])
     expect(revealed?.answers[3]?.foundBy).toEqual([

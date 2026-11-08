@@ -2,7 +2,7 @@ import { z } from 'zod'
 
 import { atlasDirectionSchema, atlasPlaceSetSchema } from './atlas'
 import {
-  BLACK_SQUARE_CELL_COUNT,
+  BLACK_SQUARE_DEFAULT_ANSWER_COUNT,
   blackSquareAnswerCountSchema
 } from './black-square'
 import { difficultySchema } from './difficulty'
@@ -115,21 +115,25 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
   z.object({ kind: z.literal('challenge') }),
   z.object({
     /**
+     * How many of the theme's answers a round deals, obvious and rare mixed.
+     * Defaulted so a setup remembered before the count existed still parses.
+     */
+    answerCount: blackSquareAnswerCountSchema.default(
+      BLACK_SQUARE_DEFAULT_ANSWER_COUNT
+    ),
+    /** Which themes are dealt. Defaulted so a setup remembered before the level existed still parses. */
+    difficulty: difficultySchema.default('mixed'),
+    /**
      * *Nobody else had it*: at the reveal, a cell one seat alone found pays
      * double. Typed rounds only — a spoken round has one team guessing, so
      * every find is that team's alone. Defaulted so a setup remembered before
      * the switch existed still parses.
      */
-    /**
-     * How many of the theme's answers a round deals, its most read first.
-     * Defaulted so a setup remembered before the count existed still parses.
-     */
-    answerCount: blackSquareAnswerCountSchema.default(BLACK_SQUARE_CELL_COUNT),
     doublesLoneFinds: z.boolean().default(false),
     kind: z.literal('blacksquare'),
     /**
      * How long a sheet stays open. Longer than a question's, because a round
-     * is up to nine answers and a seat keeps sending until its black word or
+     * is several answers and a seat keeps sending until its black word or
      * this runs out.
      */
     roundDurationMs: z.number().int().min(30_000).max(180_000)
@@ -326,7 +330,8 @@ export const DEFAULT_CHALLENGE_SETTINGS: ChallengeSettings = {
 }
 
 export const DEFAULT_BLACK_SQUARE_SETTINGS: BlackSquareSettings = {
-  answerCount: BLACK_SQUARE_CELL_COUNT,
+  answerCount: BLACK_SQUARE_DEFAULT_ANSWER_COUNT,
+  difficulty: 'mixed',
   doublesLoneFinds: false,
   kind: 'blacksquare',
   roundDurationMs: 60_000

@@ -287,6 +287,7 @@ const settingsOf = ({
         translate('blacksquare.answerCount.summary', {
           count: entry.answerCount
         }),
+        levelOf({ difficulty: entry.difficulty, translate }),
         ...(entry.doublesLoneFinds
           ? [translate('host.evening.detail.loneFinds')]
           : []),

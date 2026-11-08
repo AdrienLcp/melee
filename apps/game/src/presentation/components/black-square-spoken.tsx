@@ -1,8 +1,8 @@
 import type React from 'react'
 
 import type {
-  BlackSquareAnswerCount,
-  BlackSquareCell
+  BlackSquareCell,
+  BlackSquareCellTiers
 } from '@melee/protocol/black-square'
 import type { PlayerId } from '@melee/protocol/identifiers'
 import type { PublicPlayer, RoundContent } from '@melee/protocol/room'
@@ -18,8 +18,8 @@ import { BlackSquareTurn } from './black-square-turn'
 import './black-square-spoken.sass'
 
 type BlackSquareSpokenProps = {
-  /** How many answers the round dealt, three to nine. */
-  answerCount: BlackSquareAnswerCount
+  /** The tier of every answer the round dealt, three to nine of them. */
+  cellTiers: BlackSquareCellTiers
   /** Sends the keeper's tick; `null` on a screen that keeps no list. */
   onTick:
     | ((cell: BlackSquareCell | 'blackWord', isTicked: boolean) => boolean)
@@ -37,7 +37,7 @@ type BlackSquareSpokenProps = {
  * — the guessing team told who to say its answers to.
  */
 export const BlackSquareSpoken: React.FC<BlackSquareSpokenProps> = ({
-  answerCount,
+  cellTiers,
   onTick,
   players,
   seatId,
@@ -80,7 +80,7 @@ export const BlackSquareSpoken: React.FC<BlackSquareSpokenProps> = ({
         />
       )}
       <BlackSquareSheet
-        cellCount={answerCount}
+        cellTiers={cellTiers}
         lines={[]}
         tickedCells={spoken.tickedCells}
       />

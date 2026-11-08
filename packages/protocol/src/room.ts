@@ -10,10 +10,10 @@ import {
 import {
   BLACK_SQUARE_CELL_COUNT,
   BLACK_SQUARE_LINES_READ_BACK,
-  blackSquareAnswerCountSchema,
   blackSquareAnswerSchema,
   blackSquareBlackWordSchema,
   blackSquareCellSchema,
+  blackSquareCellTiersSchema,
   blackSquareLabelsSchema,
   blackSquareSentLineSchema,
   dealtAnswersOf,
@@ -507,8 +507,8 @@ export const roundContentSchema = z.discriminatedUnion('kind', [
     labels: challengeLabelsSchema.nullable()
   }),
   z.object({
-    /** How many answers the round dealt, so a sheet draws its cells before anything is revealed. */
-    answerCount: blackSquareAnswerCountSchema,
+    /** The tier of every answer the round dealt, so a sheet draws and prices its cells before anything is revealed. */
+    cellTiers: blackSquareCellTiersSchema,
     /**
      * How many of the cells at least one seat has found — a count, so the
      * room feels the grid filling without a seat learning which cell to stop

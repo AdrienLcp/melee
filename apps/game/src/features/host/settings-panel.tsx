@@ -498,6 +498,16 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {game?.kind === 'blacksquare' && (
+        <DifficultyChoice
+          isDisabled={isDisabled}
+          onChange={(difficulty) => {
+            onChange({ ...settings, game: { ...game, difficulty } })
+          }}
+          value={game.difficulty}
+        />
+      )}
+
+      {game?.kind === 'blacksquare' && (
         <NumberChoice
           isDisabled={isDisabled}
           label={translate('blacksquare.duration')}

@@ -3,13 +3,16 @@ import { z } from 'zod'
 import { playerIdSchema } from './identifiers'
 import { localeSchema } from './locale'
 
-/** The most answers a round deals, which is what the bank holds per theme; it refuses a theme that cannot field them. */
+/** The most answers a round deals; every theme's pool holds at least this many, so any count a host picks can be dealt. */
 export const BLACK_SQUARE_CELL_COUNT = 9
+
+/** What a room opens on: four cells keep a broad theme open long enough for the table to say everything it knows. */
+export const BLACK_SQUARE_DEFAULT_ANSWER_COUNT = 4
 
 /** The fewest answers a host may ask a round for: under three, the thirds that price a cell no longer exist. */
 export const BLACK_SQUARE_MIN_ANSWER_COUNT = 3
 
-/** How many answers a round deals, the theme's most read first. */
+/** How many of the theme's answers a round deals. */
 export const blackSquareAnswerCountSchema = z
   .number()
   .int()
@@ -24,9 +27,9 @@ export const dealtAnswersOf = <Answer extends z.ZodType>(answer: Answer) =>
     .max(BLACK_SQUARE_CELL_COUNT)
 
 /**
- * Where an answer sits on the grid, 0-based, and its rank: cell 0 is the most
- * read of those dealt and the last cell the least. A seat is sent the cells it found and
- * never the text of one it did not type.
+ * Where an answer sits on the grid, 0-based: the dealt answers run from the
+ * most obvious to the rarest. A seat is sent the cells it found and never the
+ * text of one it did not type.
  */
 export const blackSquareCellSchema = z
   .number()
@@ -34,8 +37,15 @@ export const blackSquareCellSchema = z
   .min(0)
   .max(BLACK_SQUARE_CELL_COUNT - 1)
 
-/** How obscure a cell is, which is its share of the sheet: the most read third 1, the least read third 3. */
+/** How obscure a cell is, which is its weight on the sheet: an obvious answer 1, a rare one 3. */
 export const blackSquareTierSchema = z.number().int().min(1).max(3)
+
+/**
+ * The tier of every cell a round dealt, cell by cell. Public from the first
+ * frame: it says how much a cell pays, never what it holds, and it is what
+ * lets a sheet price a find without the answer.
+ */
+export const blackSquareCellTiersSchema = dealtAnswersOf(blackSquareTierSchema)
 
 /** A theme, an answer or the black word, in every language the app ships. */
 export const blackSquareLabelsSchema = z.record(
@@ -50,12 +60,13 @@ const namedSchema = z.object({
 })
 
 /**
- * A round's whole secret, as the server holds it: the answers dealt, most read first,
- * and the one answer that sounds right and is not. Only ever a host's while the
- * console holds no seat, and projected without its aliases even then.
+ * A round's whole secret, as the server holds it: the answers dealt, the most
+ * obvious first, and the one answer that sounds right and is not. Only ever a
+ * host's while the console holds no seat, and projected without its aliases
+ * even then.
  */
 export const blackSquareThemeSchema = z.object({
-  answers: dealtAnswersOf(namedSchema),
+  answers: dealtAnswersOf(namedSchema.extend({ tier: blackSquareTierSchema })),
   blackWord: namedSchema.extend({
     /** Why it is wrong, one line for the reveal. */
     why: blackSquareLabelsSchema
@@ -108,6 +119,7 @@ export type BlackSquareAnswerCount = z.infer<
   typeof blackSquareAnswerCountSchema
 >
 export type BlackSquareTier = z.infer<typeof blackSquareTierSchema>
+export type BlackSquareCellTiers = z.infer<typeof blackSquareCellTiersSchema>
 export type BlackSquareLabels = z.infer<typeof blackSquareLabelsSchema>
 export type BlackSquareTheme = z.infer<typeof blackSquareThemeSchema>
 export type BlackSquareAnswer = z.infer<typeof blackSquareAnswerSchema>

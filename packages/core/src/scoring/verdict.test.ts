@@ -89,7 +89,7 @@ describe('pointsForSimultaneousAnswer', () => {
 
   it('[verdict] weighs a sheet’s lone finds double, and nothing else', () => {
     const sheet: Verdict = {
-      cellCount: 9,
+      cellTiers: [1, 1, 1, 2, 2, 2, 3, 3, 3],
       foundCells: [0, 8],
       hitBlackWord: false,
       kind: 'cells'

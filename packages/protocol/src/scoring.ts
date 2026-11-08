@@ -3,8 +3,8 @@ import { z } from 'zod'
 import { atlasTargetKindSchema } from './atlas'
 import {
   BLACK_SQUARE_CELL_COUNT,
-  blackSquareAnswerCountSchema,
-  blackSquareCellSchema
+  blackSquareCellSchema,
+  blackSquareCellTiersSchema
 } from './black-square'
 import { HIGHER_LOWER_PAIR_COUNT } from './higher-lower'
 import { playerIdSchema } from './identifiers'
@@ -138,8 +138,8 @@ export const moveVerdictSchema = z.object({
  * server grades every line; no screen ever sends one.
  */
 export const cellsVerdictSchema = z.object({
-  /** How many answers the round dealt, which is what a full sheet holds and what its thirds are cut from. */
-  cellCount: blackSquareAnswerCountSchema,
+  /** The tier of every answer the round dealt: a full sheet holds them all, and each weighs its tier. */
+  cellTiers: blackSquareCellTiersSchema,
   foundCells: z.array(blackSquareCellSchema).max(BLACK_SQUARE_CELL_COUNT),
   hitBlackWord: z.boolean(),
   kind: z.literal('cells')

@@ -5,8 +5,12 @@ import { gradeLine } from '@melee/core/blacksquare/line-match'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
 import {
+  authoredBlackSquareThemes,
   type BlackSquareAnswer,
-  bankedBlackSquareThemes
+  bankedBlackSquareThemes,
+  blackSquareThemePool,
+  drawBlackSquareTheme,
+  playedBlackSquareThemeId
 } from './black-square-bank'
 
 /**
@@ -36,7 +40,7 @@ describe('the black-square bank', () => {
   it('[blacksquare] parses every theme, each id once', () => {
     const ids = bankedBlackSquareThemes().map(({ id }) => id)
 
-    expect(ids.length).toBeGreaterThanOrEqual(150)
+    expect(ids.length).toBeGreaterThanOrEqual(60)
     expect(new Set(ids).size).toBe(ids.length)
   })
 
@@ -120,13 +124,13 @@ describe('the black-square bank', () => {
 
     expect(collisions).toEqual([])
   })
-  it('[blacksquare] banks a capital under any of its seats, and Rio as the black word', () => {
+  it('[blacksquare] banks a capital under any of its names, and Geneva as the black word', () => {
     const theme = bankedBlackSquareThemes().find(
-      ({ id }) => id === 'capitals-of:south-america'
+      ({ id }) => id === 'capitals-of:western-europe'
     )
 
     if (theme === undefined) {
-      throw new Error('capitals of South America are not banked')
+      throw new Error('capitals of Western Europe are not banked')
     }
 
     const grade = (line: string) =>
@@ -135,9 +139,113 @@ describe('the black-square bank', () => {
         blackWord: namesOf(theme.blackWord),
         line
       })
-    const sucre = theme.answers.findIndex(({ labels }) => labels.en === 'Sucre')
+    const bern = theme.answers.findIndex(({ labels }) => labels.en === 'Bern')
 
-    expect(grade('La Paz')).toEqual({ cells: [sucre], kind: 'cells' })
-    expect(grade('Rio')).toEqual({ kind: 'blackWord' })
+    expect(grade('Berne')).toEqual({ cells: [bern], kind: 'cells' })
+    expect(grade('geneva')).toEqual({ kind: 'blackWord' })
+  })
+})
+
+describe('the authored black-square themes', () => {
+  it('[blacksquare] pools twelve to twenty answers a theme, every tier at least three', () => {
+    for (const { answers, id } of authoredBlackSquareThemes()) {
+      for (const tier of ['easy', 'medium', 'hard'] as const) {
+        expect(
+          answers.filter((answer) => answer.tier === tier).length,
+          `${id} ${tier}`
+        ).toBeGreaterThanOrEqual(3)
+      }
+    }
+  })
+
+  it('[blacksquare] never grades a name of a theme as two of its answers, nor the black word as one', () => {
+    const collisions = authoredBlackSquareThemes().flatMap(
+      ({ answers, blackWord, id }) =>
+        [...answers, blackWord].flatMap((named, index) =>
+          namesOf(named).flatMap((line) => {
+            const graded = gradeLine({
+              answers: answers.map(namesOf),
+              blackWord: namesOf(blackWord),
+              line
+            })
+            const isOwn =
+              index === answers.length
+                ? graded.kind === 'blackWord'
+                : graded.kind === 'cells' &&
+                  graded.cells.length === 1 &&
+                  graded.cells[0] === index
+
+            return isOwn ? [] : [`${id}: ${line}`]
+          })
+        )
+    )
+
+    expect(collisions).toEqual([])
+  })
+})
+
+describe('the black-square theme pool', () => {
+  it('[blacksquare] holds every theme of both banks, each id once', () => {
+    const ids = blackSquareThemePool().map(({ id }) => id)
+
+    expect(ids.length).toBe(
+      bankedBlackSquareThemes().length + authoredBlackSquareThemes().length
+    )
+    expect(new Set(ids).size).toBe(ids.length)
+  })
+
+  it('[blacksquare] tiers a Wikidata theme medium or hard, never easy', () => {
+    const wikidataIds = new Set(bankedBlackSquareThemes().map(({ id }) => id))
+    const tiers = new Set(
+      blackSquareThemePool()
+        .filter(({ id }) => wikidataIds.has(id))
+        .map(({ tier }) => tier)
+    )
+
+    expect([...tiers].toSorted()).toEqual(['hard', 'medium'])
+  })
+
+  it('[blacksquare] tiers a Wikidata theme by thirds of its nine, the most read obvious', () => {
+    const theme = blackSquareThemePool().find(({ id }) => id.includes(':'))
+
+    expect(theme?.answers.map(({ tier }) => tier)).toEqual([
+      'easy',
+      'easy',
+      'easy',
+      'medium',
+      'medium',
+      'medium',
+      'hard',
+      'hard',
+      'hard'
+    ])
+  })
+
+  it('[blacksquare] deals an easy room the easy themes alone, until they run out', () => {
+    const easyIds = new Set(
+      blackSquareThemePool()
+        .filter(({ tier }) => tier === 'easy')
+        .map(({ id }) => id)
+    )
+    const playedIds = new Set<string>()
+
+    for (const _ of easyIds) {
+      const theme = drawBlackSquareTheme({ difficulty: 'easy', playedIds })
+
+      expect(easyIds.has(theme?.id ?? '')).toBe(true)
+      playedIds.add(playedBlackSquareThemeId(theme?.id ?? ''))
+    }
+
+    expect(drawBlackSquareTheme({ difficulty: 'easy', playedIds })?.tier).toBe(
+      'medium'
+    )
+  })
+
+  it('[blacksquare] never deals a hard room an easy theme while another is left', () => {
+    for (const _ of Array.from({ length: 30 })) {
+      expect(
+        drawBlackSquareTheme({ difficulty: 'hard', playedIds: new Set() })?.tier
+      ).not.toBe('easy')
+    }
   })
 })

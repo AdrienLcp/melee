@@ -1,12 +1,11 @@
 import type React from 'react'
 
 import type {
-  BlackSquareAnswerCount,
   BlackSquareCell,
-  BlackSquareSentLine
+  BlackSquareCellTiers,
+  BlackSquareSentLine,
+  BlackSquareTier
 } from '@melee/protocol/black-square'
-
-import { tierOfCell } from '@melee/core/blacksquare/sheet-pay'
 
 import { blackSquareCellStyle } from '@/helpers/black-square-cell-place'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
@@ -15,9 +14,14 @@ import { BlackSquarePips } from './black-square-pips'
 
 import './black-square-sheet.sass'
 
+type DealtCell = { cell: BlackSquareCell; tier: BlackSquareTier }
+
+const cellsOf = (cellTiers: BlackSquareCellTiers): DealtCell[] =>
+  cellTiers.map((tier, cell) => ({ cell, tier }))
+
 type BlackSquareSheetProps = {
-  /** How many answers the round dealt, three to nine. */
-  cellCount: BlackSquareAnswerCount
+  /** The tier of every answer the round dealt, three to nine of them. */
+  cellTiers: BlackSquareCellTiers
   /** The seat's own lines as the server read them back, which is all it knows of a cell's text. */
   lines: readonly BlackSquareSentLine[]
   /**
@@ -26,9 +30,6 @@ type BlackSquareSheetProps = {
    */
   tickedCells?: readonly BlackSquareCell[]
 }
-
-const cellsOf = (cellCount: BlackSquareAnswerCount): BlackSquareCell[] =>
-  Array.from({ length: cellCount }, (_, cell) => cell)
 
 /**
  * A seat's grid, one tier a row in cell order so a cell's place says what it pays:
@@ -39,7 +40,7 @@ const cellsOf = (cellCount: BlackSquareAnswerCount): BlackSquareCell[] =>
  * it voided: the round is cut and worth nothing.
  */
 export const BlackSquareSheet: React.FC<BlackSquareSheetProps> = ({
-  cellCount,
+  cellTiers,
   lines,
   tickedCells = []
 }) => {
@@ -53,9 +54,9 @@ export const BlackSquareSheet: React.FC<BlackSquareSheetProps> = ({
     >
       <ol
         aria-label={translate('blacksquare.grid')}
-        style={{ '--cell-count': cellCount }}
+        style={{ '--cell-count': cellTiers.length }}
       >
-        {cellsOf(cellCount).map((cell) => {
+        {cellsOf(cellTiers).map(({ cell, tier }) => {
           const typed = lines.find((line) => line.cells.includes(cell))?.line
           const isFound = typed !== undefined || tickedCells.includes(cell)
 
@@ -63,13 +64,10 @@ export const BlackSquareSheet: React.FC<BlackSquareSheetProps> = ({
             <li
               data-found={isFound || undefined}
               key={cell}
-              style={blackSquareCellStyle({ cell, cellCount })}
+              style={blackSquareCellStyle({ cell, cellTiers })}
             >
               {typed !== undefined && <span className='typed'>{typed}</span>}
-              <BlackSquarePips
-                cellCount={cellCount}
-                tier={tierOfCell({ cell, cellCount })}
-              />
+              <BlackSquarePips cellTiers={cellTiers} tier={tier} />
             </li>
           )
         })}

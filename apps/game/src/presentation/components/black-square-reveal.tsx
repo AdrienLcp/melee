@@ -53,6 +53,7 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
   const nameOf = (playerId: PlayerId): string =>
     players.find((player) => player.id === playerId)?.nickname ?? '—'
   const fell = revealed.blackWord.hitBy
+  const cellTiers = revealed.answers.map(({ tier }) => tier)
 
   return (
     <div className='black-square-reveal'>
@@ -71,10 +72,7 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                 data-yours={isYours || undefined}
                 key={answer.labels.en}
                 style={{
-                  ...blackSquareCellStyle({
-                    cell,
-                    cellCount: revealed.answers.length
-                  }),
+                  ...blackSquareCellStyle({ cell, cellTiers }),
                   '--name-scale': nameScaleOf(name)
                 }}
               >
@@ -98,10 +96,8 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                         !isOnTrack &&
                         `, ${translate('blacksquare.tier', {
                           points: shownPoints(
-                            pointsForTier({
-                              cellCount: revealed.answers.length,
-                              tier: answer.tier
-                            }) * LONE_FIND_MULTIPLIER
+                            pointsForTier({ cellTiers, tier: answer.tier }) *
+                              LONE_FIND_MULTIPLIER
                           )
                         })}`}
                     </VisuallyHidden>
@@ -114,7 +110,7 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                       </span>
                     ) : (
                       <BlackSquarePips
-                        cellCount={revealed.answers.length}
+                        cellTiers={cellTiers}
                         tier={answer.tier}
                       />
                     )}
@@ -122,10 +118,8 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
                       <span aria-hidden='true'>
                         {translate('round.scored', {
                           points: shownPoints(
-                            pointsForTier({
-                              cellCount: revealed.answers.length,
-                              tier: answer.tier
-                            }) * (isDoubled ? LONE_FIND_MULTIPLIER : 1)
+                            pointsForTier({ cellTiers, tier: answer.tier }) *
+                              (isDoubled ? LONE_FIND_MULTIPLIER : 1)
                           )
                         })}
                       </span>
