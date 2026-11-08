@@ -1046,8 +1046,8 @@
   {
     "id": "mitterrand-elected",
     "labels": {
-      "en": "François Mitterrand elected president",
-      "fr": "François Mitterrand élu président"
+      "en": "François Mitterrand elected president for the first time",
+      "fr": "François Mitterrand élu président pour la première fois"
     },
     "theme": "history",
     "year": 1981
@@ -1370,8 +1370,8 @@
   {
     "id": "chirac-elected",
     "labels": {
-      "en": "Jacques Chirac elected president",
-      "fr": "Jacques Chirac élu président"
+      "en": "Jacques Chirac elected president for the first time",
+      "fr": "Jacques Chirac élu président pour la première fois"
     },
     "theme": "history",
     "year": 1995
@@ -1649,8 +1649,8 @@
   {
     "id": "obama-elected",
     "labels": {
-      "en": "Barack Obama elected US president",
-      "fr": "Barack Obama élu président des États-Unis"
+      "en": "Barack Obama elected US president for the first time",
+      "fr": "Barack Obama élu président des États-Unis pour la première fois"
     },
     "theme": "history",
     "year": 2008
@@ -1838,8 +1838,8 @@
   {
     "id": "macron-elected",
     "labels": {
-      "en": "Emmanuel Macron elected president",
-      "fr": "Emmanuel Macron élu président"
+      "en": "Emmanuel Macron elected president for the first time",
+      "fr": "Emmanuel Macron élu président pour la première fois"
     },
     "theme": "history",
     "year": 2017
@@ -1919,8 +1919,8 @@
   {
     "id": "paris-olympics",
     "labels": {
-      "en": "Paris Olympic Games",
-      "fr": "Jeux olympiques de Paris"
+      "en": "Paris Olympics open on the Seine",
+      "fr": "Jeux olympiques de Paris, ouverts sur la Seine"
     },
     "theme": "sport",
     "year": 2024

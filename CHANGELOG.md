@@ -537,6 +537,11 @@ one part.
 
 ### Fixes
 
+- `[Server]` **A timeline event that happened twice says which time it is.**
+  _Paris Olympic Games_ fit 1900, 1924 and 2024 alike, and four presidents
+  were elected twice: the card is now the Games opened on the Seine, and
+  Mitterrand, Chirac, Obama and Macron are each elected _for the first time_.
+
 - `[Game]` **With a phone's keyboard up, the field and its press stay on
   screen in Safari and in the browsers messaging apps open links in.** Those
   lay the keyboard over the page and pan what the screen shows down to the
