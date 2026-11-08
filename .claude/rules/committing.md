@@ -22,3 +22,10 @@ commit, then put them back, or change your approach so the file is not shared.
 paths git already tracks: an untracked file named there is skipped without a
 word, and the commit lands importing a module it does not carry. `git add` the
 new files, then commit with the same path list.
+
+## The pre-push hook lints the whole working tree
+
+`git push` runs `biome ci` over every file on disk, untracked ones included,
+so another session's scratch script stops your push with errors in a file you
+never touched. Leave the commit local and push once that session has
+committed or removed it — never `--no-verify`, and never edit its file.
