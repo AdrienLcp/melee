@@ -2909,6 +2909,13 @@ const SPOKEN_TEAMS = [1, 0].map((parity, team) => ({
     .map(({ id }) => id)
 }))
 
+/** The tiers a round deals at each count it is checked at: obvious first, rare last. */
+const DEALT_TIERS: Record<number, number[]> = {
+  3: [1, 2, 3],
+  4: [1, 2, 2, 3],
+  9: [1, 1, 1, 2, 2, 2, 3, 3, 3]
+}
+
 const blackSquareScreen = ({
   answerCount,
   keeper = null
@@ -2919,7 +2926,7 @@ const blackSquareScreen = ({
 }) =>
   answeringView({
     content: {
-      answerCount,
+      cellTiers: DEALT_TIERS[answerCount],
       foundCellCount: 2,
       kind: 'blacksquare',
       revealed: null,
@@ -2940,6 +2947,7 @@ const blackSquareScreen = ({
     },
     game: {
       answerCount,
+      difficulty: 'mixed',
       doublesLoneFinds: false,
       kind: 'blacksquare',
       roundDurationMs: 60_000
@@ -3381,7 +3389,7 @@ const ANSWERING_SCREENS: AnsweringScreen[] = [
     },
     view: timelineScreen()
   },
-  ...[3, 9].map((answerCount) => ({
+  ...[3, 4, 9].map((answerCount) => ({
     name: `black square typed, ${answerCount} answers`,
     ready: '.black-square-answer',
     seated: {

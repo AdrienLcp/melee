@@ -45,6 +45,20 @@ describe('blackSquareCellPlace', () => {
     expect(placesOf([1, 2, 3])).toEqual(['1:1', '2:1', '3:1'])
   })
 
+  it('[layout] places a tier in its row whatever order the cells come in', () => {
+    expect(placesOf([1, 2, 3, 1, 2, 3, 1, 2, 3])).toEqual([
+      '1:1',
+      '2:1',
+      '3:1',
+      '1:3',
+      '2:3',
+      '3:3',
+      '1:5',
+      '2:5',
+      '3:5'
+    ])
+  })
+
   it('[layout] gives no row to a tier the round dealt none of', () => {
     expect(placesOf([1, 1, 3, 3])).toEqual(['1:1', '1:3', '2:1', '2:3'])
     expect(blackSquareGridShape([1, 1, 3, 3])).toEqual({ columns: 4, rows: 2 })

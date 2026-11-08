@@ -64,7 +64,9 @@ export const blackSquareCellPlace = ({
   const rows = rowsOf(cellTiers)
   const row = rows[cell] ?? 1
   const cellsInRow = rows.filter((each) => each === row).length
-  const indexInRow = cell - rows.indexOf(row)
+  const indexInRow = rows
+    .slice(0, cell)
+    .filter((each) => each === row).length
 
   return {
     column: 1 + (widestRowOf(rows) - cellsInRow + TRACKS_PER_CELL * indexInRow),
