@@ -18,6 +18,10 @@ import {
 
 import { racesToTheFinish } from '@melee/core/board/track-finish'
 import {
+  eveningDifficultyOf,
+  withEveningDifficulty
+} from '@melee/core/room/evening-difficulty'
+import {
   type HostPreferences,
   rememberedSetupFor
 } from '@melee/core/room/host-preferences'
@@ -56,6 +60,7 @@ import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 import { useLineUpEntrySummaries } from '@/presentation/i18n/line-up-entry-names'
 import { gameNameKey } from '@/presentation/i18n/translation'
 
+import { DifficultyChoice } from './difficulty-choice'
 import { arrangedEvening, eveningOrderOf } from './evening-order'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
 
@@ -318,6 +323,13 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
           )}
           {addRow !== false && <div className='add'>{addRow}</div>}
         </div>
+      )}
+      {!isEveningOver && (
+        <EveningLevel
+          isLive={isLive}
+          onSettingsChange={change}
+          settings={view.settings}
+        />
       )}
       {lineUp.length > 1 && (
         <OverTheCount
@@ -765,6 +777,37 @@ const DrawnRounds: React.FC<{
       <span className='detail'>{among}</span>
       <ChevronRightIcon className='chevron' />
     </AriaButton>
+  )
+}
+
+/**
+ * One level for every game of the evening that deals at one, read back while
+ * they agree and lifting none once two differ. Folded away while fewer than
+ * two games take a level: one game's level is set on its own page.
+ */
+const EveningLevel: React.FC<{
+  isLive: boolean
+  onSettingsChange: (settings: RoomSettings) => void
+  settings: RoomSettings
+}> = ({ isLive, onSettingsChange, settings }) => {
+  const shown = eveningDifficultyOf(settings.lineUp)
+  const isOpen = shown !== null
+
+  return (
+    <div
+      className='evening-level'
+      data-open={isOpen || undefined}
+      inert={!isOpen}
+    >
+      <DifficultyChoice
+        isDisabled={!isLive}
+        isEvening
+        onChange={(difficulty) => {
+          onSettingsChange(withEveningDifficulty({ difficulty, settings }))
+        }}
+        value={shown ?? 'custom'}
+      />
+    </div>
   )
 }
 

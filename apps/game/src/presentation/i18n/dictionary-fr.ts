@@ -212,12 +212,6 @@ export const FR_DICTIONARY = defineDictionary({
       label: 'Quelles années',
       none: 'N’en choisis aucune et tu as toutes les décennies.'
     },
-    difficulty: {
-      easy: 'Grand public',
-      hard: 'Pour les experts',
-      label: 'À quel point c’est connu',
-      mixed: 'Un peu pointu'
-    },
     genre: {
       '52': 'Chanson française',
       '106': 'Électro',
@@ -687,6 +681,19 @@ export const FR_DICTIONARY = defineDictionary({
       warning: 'Tout le monde sort, et le code cesse de fonctionner.'
     },
     countdown: 'Décompte',
+    difficulty: {
+      custom: 'Chaque jeu a le sien. En choisir un les règle tous.',
+      easy: 'Facile',
+      evening: 'Niveau de tous les jeux',
+      hard: 'Difficile',
+      hint: {
+        easy: 'Rien que du très connu : de quoi jouer avec des enfants.',
+        hard: 'Moins d’évidences, pour une table qui connaît son sujet.',
+        mixed: 'Du très connu au plus pointu.'
+      },
+      label: 'Niveau',
+      mixed: 'Mélangé'
+    },
     endGame: 'Terminer la partie',
     evening: {
       actions: 'Options de {name}',
@@ -1687,14 +1694,7 @@ export const FR_DICTIONARY = defineDictionary({
     silhouette: {
       alt: 'La forme du pays à reconnaître'
     },
-    tagline: 'Une question, et le premier qui sait.',
-    variant: {
-      wellKnown: 'Questions connues'
-    },
-    wellKnown: {
-      hint: 'Il y en a moins à tirer, mais personne ne sèche.',
-      label: 'Que des questions connues'
-    }
+    tagline: 'Une question, et le premier qui sait.'
   },
   readyMade: {
     change: 'Changer',

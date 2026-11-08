@@ -7,6 +7,7 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 
+import { joiningAtEveningDifficulty } from './evening-difficulty'
 import { isPlayableAloud } from './game-capabilities'
 import { dealsHold, dealsOf, defaultDealOf } from './line-up-deals'
 import {
@@ -157,7 +158,10 @@ export const withEntryAdded = ({
     return settings
   }
 
-  const joining = (remembered ?? openedSetup({ game, locale })).game
+  const joining = joiningAtEveningDifficulty({
+    joining: (remembered ?? openedSetup({ game, locale })).game,
+    lineUp: followedByLineUp(settings).lineUp
+  })
   const lineUp = [...settings.lineUp, joining]
   const askedDeals = [
     ...dealsOf({ deals: settings.lineUpDeals, lineUp: settings.lineUp }),

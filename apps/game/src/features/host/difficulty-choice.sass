@@ -1,0 +1,8 @@
+// Side-effect module: the level strip's own shape, wherever it is mounted.
+@use '../../presentation/styles/strip'
+
+@layer components
+  // Three stamps at the widest label, Difficile, run 290px in French at the
+  // label’s ceiling: a row holds in a 360px screen’s panel, and stacks at 320.
+  .difficulty-choice
+    @include strip.stacks-below(19rem)

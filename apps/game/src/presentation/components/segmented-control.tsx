@@ -83,7 +83,7 @@ export const SegmentedControl: React.FC<SegmentedControlProps> = ({
         ))}
       </div>
       {description !== undefined && (
-        <Text className='description' slot='description'>
+        <Text className='description' key={description} slot='description'>
           {description}
         </Text>
       )}

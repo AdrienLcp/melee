@@ -9,7 +9,6 @@ import {
   BLACK_SQUARE_CELL_COUNT,
   BLACK_SQUARE_MIN_ANSWER_COUNT
 } from '@melee/protocol/black-square'
-import { type Difficulty, difficulties } from '@melee/protocol/difficulty'
 import type { QuizSettings } from '@melee/protocol/game'
 import {
   type MatchsticksGoal,
@@ -49,6 +48,7 @@ import {
   questionCategoryKey
 } from '@/presentation/i18n/translation'
 
+import { DifficultyChoice } from './difficulty-choice'
 import { NO_LIMIT, NumberChoice, useDurationLabels } from './number-choice'
 import { PetitBacSetup } from './petit-bac-setup'
 import { SlateKeyEditor } from './slate-key-editor'
@@ -101,7 +101,7 @@ const asMatchsticksGoal = (
 
 const ANSWER_WINDOWS_MS = [5_000, 10_000, 20_000, NO_LIMIT] as const
 
-/** The three questions the bank asks whoever is drawing from it. */
+/** The four questions the bank asks whoever is drawing from it. */
 const QuestionBankSettings: React.FC<{
   game: QuizSettings
   isDisabled: boolean
@@ -153,29 +153,16 @@ const QuestionBankSettings: React.FC<{
       {game.categories.length === 0 && (
         <p className='hint'>{translate('quiz.category.none')}</p>
       )}
-      <Switch
-        description={translate('quiz.wellKnown.hint')}
+      <DifficultyChoice
         isDisabled={isDisabled}
-        isSelected={game.difficulty === 'easy'}
-        label={translate('quiz.wellKnown.label')}
-        onChange={(isEasy) => {
-          onChange({ ...game, difficulty: isEasy ? 'easy' : 'mixed' })
+        onChange={(difficulty) => {
+          onChange({ ...game, difficulty })
         }}
+        value={game.difficulty}
       />
     </>
   )
 }
-
-/**
- * The literal return type is load-bearing: adding a difficulty to the protocol
- * without adding its label to both dictionaries stops compiling here.
- */
-const difficultyLabelKey = (
-  difficulty: Difficulty
-): `blindtest.difficulty.${Difficulty}` => `blindtest.difficulty.${difficulty}`
-
-const isDifficulty = (value: string): value is Difficulty =>
-  difficulties.some((difficulty) => difficulty === value)
 
 const isAtlasDirection = (value: string): value is AtlasDirection =>
   atlasDirectionSchema.safeParse(value).success
@@ -349,6 +336,13 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
             }))}
             selectedKeys={game.places}
           />
+          <DifficultyChoice
+            isDisabled={isDisabled}
+            onChange={(difficulty) => {
+              onChange({ ...settings, game: { ...game, difficulty } })
+            }}
+            value={game.difficulty}
+          />
           <NumberChoice
             isDisabled={isDisabled}
             label={translate('atlas.roundDuration')}
@@ -363,20 +357,13 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {game?.kind === 'blindtest' && !pinsItsOwnDifficulty && (
-        <SegmentedControl
+        <DifficultyChoice
           className='track-difficulty'
           data-arrived={difficultyArrived}
           isDisabled={isDisabled}
-          label={translate('blindtest.difficulty.label')}
-          onChange={(next) => {
-            if (isDifficulty(next)) {
-              onChange({ ...settings, game: { ...game, difficulty: next } })
-            }
+          onChange={(difficulty) => {
+            onChange({ ...settings, game: { ...game, difficulty } })
           }}
-          options={difficulties.map((difficulty) => ({
-            label: translate(difficultyLabelKey(difficulty)),
-            value: difficulty
-          }))}
           value={game.difficulty}
         />
       )}
@@ -589,6 +576,16 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
       )}
 
       {game?.kind === 'estimate' && (
+        <DifficultyChoice
+          isDisabled={isDisabled}
+          onChange={(difficulty) => {
+            onChange({ ...settings, game: { ...game, difficulty } })
+          }}
+          value={game.difficulty}
+        />
+      )}
+
+      {game?.kind === 'estimate' && (
         <NumberChoice
           isDisabled={isDisabled}
           label={translate('estimate.roundDuration')}
@@ -598,6 +595,16 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           optionLabel={secondsLabel}
           options={ESTIMATE_DURATIONS_MS}
           value={game.roundDurationMs}
+        />
+      )}
+
+      {game?.kind === 'higherlower' && (
+        <DifficultyChoice
+          isDisabled={isDisabled}
+          onChange={(difficulty) => {
+            onChange({ ...settings, game: { ...game, difficulty } })
+          }}
+          value={game.difficulty}
         />
       )}
 
@@ -624,6 +631,16 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
           optionLabel={secondsLabel}
           options={MOST_LIKELY_DURATIONS_MS}
           value={game.roundDurationMs}
+        />
+      )}
+
+      {game?.kind === 'timeline' && (
+        <DifficultyChoice
+          isDisabled={isDisabled}
+          onChange={(difficulty) => {
+            onChange({ ...settings, game: { ...game, difficulty } })
+          }}
+          value={game.difficulty}
         />
       )}
 

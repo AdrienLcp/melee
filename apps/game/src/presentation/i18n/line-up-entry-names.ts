@@ -1,9 +1,14 @@
+import type { Difficulty } from '@melee/protocol/difficulty'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { QuestionCategory } from '@melee/protocol/question'
 import type { RoomSettings, RoundView } from '@melee/protocol/room'
 import type { CatalogueSource, TrackSource } from '@melee/protocol/track'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
+import {
+  difficultyOf,
+  eveningDifficultyOf
+} from '@melee/core/room/evening-difficulty'
 
 import { useTranslate } from './i18n-provider'
 import { LANGUAGE_NAMES } from './language-names'
@@ -161,6 +166,14 @@ const subjectsOf = ({
   picks: categories.map((category) => translate(questionCategoryKey(category)))
 })
 
+const levelOf = ({
+  difficulty,
+  translate
+}: {
+  difficulty: Difficulty
+  translate: Translate
+}): string => translate(`host.difficulty.${difficulty}`)
+
 const atlasAsks = ({
   entry,
   translate
@@ -196,7 +209,7 @@ const namingOf = ({
 
       return trackAnswersOf(entry.source) === 'films'
         ? [pick]
-        : [pick, translate(`blindtest.difficulty.${entry.difficulty}`)]
+        : [pick, levelOf({ difficulty: entry.difficulty, translate })]
     }
     case 'buzzer':
       return entry.locksOutOnMiss
@@ -214,18 +227,19 @@ const namingOf = ({
         subjectsOf({ categories: entry.categories, translate })
       )
 
-      if (pick === null) {
-        return []
-      }
-
-      return entry.difficulty === 'easy'
-        ? [pick, translate('quiz.variant.wellKnown')]
-        : [pick]
+      return pick === null
+        ? []
+        : [pick, levelOf({ difficulty: entry.difficulty, translate })]
     }
     case 'slate':
       return [translate('slate.items.summary', { count: entry.itemCount })]
     case 'atlas':
-      return entry.places.length === 1 ? [atlasAsks({ entry, translate })] : []
+      return entry.places.length === 1
+        ? [
+            atlasAsks({ entry, translate }),
+            levelOf({ difficulty: entry.difficulty, translate })
+          ]
+        : []
     default:
       return []
   }
@@ -257,7 +271,7 @@ const settingsOf = ({
         sourceInFullOf({ source: entry.source, translate }),
         ...(trackAnswersOf(entry.source) === 'films'
           ? []
-          : [translate(`blindtest.difficulty.${entry.difficulty}`)]),
+          : [levelOf({ difficulty: entry.difficulty, translate })]),
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
     case 'buzzer':
@@ -309,9 +323,7 @@ const settingsOf = ({
     case 'quiz':
       return [
         allPicks(subjectsOf({ categories: entry.categories, translate })),
-        ...(entry.difficulty === 'easy'
-          ? [translate('quiz.variant.wellKnown')]
-          : []),
+        levelOf({ difficulty: entry.difficulty, translate }),
         LANGUAGE_NAMES[entry.language],
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
@@ -320,6 +332,7 @@ const settingsOf = ({
     case 'atlas':
       return [
         atlasAsks({ entry, translate }),
+        levelOf({ difficulty: entry.difficulty, translate }),
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]
     case 'swatch':
@@ -335,8 +348,12 @@ const settingsOf = ({
       return []
     case 'estimate':
     case 'higherlower':
-    case 'mostlikely':
     case 'timeline':
+      return [
+        levelOf({ difficulty: entry.difficulty, translate }),
+        secondsOf({ ms: entry.roundDurationMs, translate })
+      ]
+    case 'mostlikely':
       return [secondsOf({ ms: entry.roundDurationMs, translate })]
   }
 }
@@ -352,8 +369,33 @@ type LineUp = {
   translate: Translate
 }
 
+/**
+ * The level alone, for siblings nothing else tells apart: two timelines, or two
+ * quizzes on several subjects each. `null` for a game dealt at no level, and
+ * for film scores, which pin their own.
+ */
+const levelNamingOf = ({
+  entry,
+  translate
+}: {
+  entry: GameSettings
+  translate: Translate
+}): string | null => {
+  const difficulty = difficultyOf(entry)
+
+  if (
+    difficulty === null ||
+    (entry.kind === 'blindtest' && trackAnswersOf(entry.source) === 'films')
+  ) {
+    return null
+  }
+
+  return levelOf({ difficulty, translate })
+}
+
 const entryNamings = ({ lineUp, translate }: LineUp): EntryNaming[] => {
   const details = lineUp.map((entry) => namingOf({ entry, translate }))
+  const levels = lineUp.map((entry) => levelNamingOf({ entry, translate }))
   const told = (at: number, depth: number): string[] =>
     (details[at] ?? []).slice(0, depth)
   const said = (at: number, depth: number): string =>
@@ -389,6 +431,19 @@ const entryNamings = ({ lineUp, translate }: LineUp): EntryNaming[] => {
       siblings.every((index) => said(index, 1) !== '')
     ) {
       return gameAlone
+    }
+
+    const level = levels[at] ?? null
+
+    if (
+      level !== null &&
+      siblings.every((index) => (levels[index] ?? null) !== level)
+    ) {
+      return {
+        isNumbered: false,
+        name: `${game} · ${level}`,
+        settingsSaid: [level]
+      }
     }
 
     const detail = said(at, 1)
@@ -445,9 +500,20 @@ export const lineUpEntrySummaries = ({
   translate
 }: LineUp): LineUpEntrySummary[] => {
   const namings = entryNamings({ lineUp, translate })
+  const eveningLevel = eveningDifficultyOf(lineUp)
+  // The evening's strip already says a level every game agrees on.
+  const levelSaidAbove =
+    eveningLevel === null || eveningLevel === 'custom'
+      ? null
+      : levelOf({ difficulty: eveningLevel, translate })
 
   return lineUp.map((entry, at) => {
-    const settingsSaid = namings[at]?.settingsSaid ?? []
+    const settingsSaid = [
+      ...(namings[at]?.settingsSaid ?? []),
+      ...(levelSaidAbove !== null && difficultyOf(entry) !== null
+        ? [levelSaidAbove]
+        : [])
+    ]
     const settings = settingsOf({ entry, translate }).filter(
       (setting) => !settingsSaid.includes(setting)
     )

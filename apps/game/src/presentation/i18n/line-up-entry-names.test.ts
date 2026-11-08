@@ -5,6 +5,7 @@ import {
   DEFAULT_BLINDTEST_SETTINGS,
   DEFAULT_QUIZ_SETTINGS,
   DEFAULT_SLATE_SETTINGS,
+  DEFAULT_TIMELINE_SETTINGS,
   type QuizSettings
 } from '@melee/protocol/game'
 import {
@@ -68,6 +69,37 @@ describe('lineUpEntryNames', () => {
         translate
       })
     ).toEqual(['Blind test', 'Blind test · 80s'])
+  })
+
+  it('[line-up] tells two entries nothing else sets apart by their level', () => {
+    expect(
+      lineUpEntryNames({
+        lineUp: [
+          { ...quiz(['history', 'science']), difficulty: 'easy' },
+          { ...quiz(['sport', 'cinema']), difficulty: 'hard' },
+          { ...DEFAULT_TIMELINE_SETTINGS, difficulty: 'easy' },
+          DEFAULT_TIMELINE_SETTINGS
+        ],
+        translate
+      })
+    ).toEqual([
+      'Quiz · Easy',
+      'Quiz · Hard',
+      'Before & after · Easy',
+      'Before & after · Mixed'
+    ])
+  })
+
+  it('[line-up] names a variant by its pick and then its level', () => {
+    expect(
+      lineUpEntryNames({
+        lineUp: [
+          { ...quiz(['history']), difficulty: 'easy' },
+          quiz(['history'])
+        ],
+        translate
+      })
+    ).toEqual(['Quiz · History · Easy', 'Quiz · History · Mixed'])
   })
 
   it('[line-up] numbers two entries with several picks each', () => {
@@ -142,8 +174,8 @@ describe('lineUpEntrySummaries', () => {
         translate
       }).map((summary) => summary.settings)
     ).toEqual([
-      '70s, 80s, 90s\u00a0· Crowd-pleasers\u00a0· 20s',
-      'History, Science, Sport, Film and TV, Flags\u00a0· English\u00a0· 30s'
+      '70s, 80s, 90s\u00a0· Easy\u00a0· 20s',
+      'History, Science, Sport, Film and TV, Flags · Mixed · English · 30s'
     ])
   })
 
@@ -158,8 +190,8 @@ describe('lineUpEntrySummaries', () => {
           lineUpEntrySummaries({ lineUp: [entry], translate })[0]?.settings
       )
     ).toEqual([
-      'Top charts + Every decade + Film scores · Crowd-pleasers · 20s',
-      'Rock, Pop + Film scores · Crowd-pleasers · 20s',
+      'Top charts + Every decade + Film scores · Easy · 20s',
+      'Rock, Pop + Film scores · Easy · 20s',
       'Film scores · 20s'
     ])
   })
@@ -191,10 +223,10 @@ describe('lineUpEntrySummaries', () => {
         translate
       })
     ).toEqual([
-      { name: 'Quiz · History', settings: 'English · 30s' },
-      { name: 'Quiz · Geography', settings: 'English · 30s' },
-      { name: 'Blind test · 80s', settings: 'Crowd-pleasers · 20s' },
-      { name: 'Blind test · 90s', settings: 'Crowd-pleasers · 20s' },
+      { name: 'Quiz · History', settings: 'Mixed · English · 30s' },
+      { name: 'Quiz · Geography', settings: 'Mixed · English · 30s' },
+      { name: 'Blind test · 80s', settings: 'Easy · 20s' },
+      { name: 'Blind test · 90s', settings: 'Easy · 20s' },
       { name: 'Slate · 5 things to guess', settings: null },
       { name: 'Slate · 10 things to guess', settings: null }
     ])
@@ -206,7 +238,7 @@ describe('lineUpEntrySummaries', () => {
         lineUp: [{ ...quiz(['history']), language: 'en' }],
         translate
       })
-    ).toEqual([{ name: 'Quiz', settings: 'History · English · 30s' }])
+    ).toEqual([{ name: 'Quiz', settings: 'History · Mixed · English · 30s' }])
   })
 })
 
@@ -294,5 +326,17 @@ describe('playedRoundName', () => {
         translate
       })
     ).toBeNull()
+  })
+
+  it('[line-up] leaves the level out of every row while the whole evening agrees on it', () => {
+    expect(
+      lineUpEntrySummaries({
+        lineUp: [
+          { ...quiz(['history']), language: 'en' },
+          DEFAULT_TIMELINE_SETTINGS
+        ],
+        translate
+      }).map((summary) => summary.settings)
+    ).toEqual(['History · English · 30s', '45s'])
   })
 })

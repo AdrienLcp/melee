@@ -18,7 +18,18 @@ one part.
   they deal under the shared names, and a host's remembered setup keeps
   both. The banks are tiered game by game next; until then the map and the
   timeline play as before at every level, and the number games lean on the
-  famous rows they already had. No picker yet beyond the two that existed.
+  famous rows they already had.
+
+- `[Game]` **A level on every game that takes one, and one for the whole
+  line-up.** _Easy · Mixed · Hard_ sits on the page of the quiz, the blind
+  test, the map, the timeline and both number games, saying under it what
+  the chosen level means — easy is the one a table with children can play.
+  Once two of the line-up's games take a level, one strip under the planned
+  games sets them all at once; it lifts the level they agree on, or none
+  once they differ, and a game added afterwards joins on the level it shows.
+  A row names its level only while the games differ, and two entries of one
+  game at two levels are told apart by it. Every strip's caption now fades
+  in when a choice changes what it says.
 
 - `[Game]` **A line-up comes off _Your line-ups_ with a press.** Every lid
   in that row carries a cross beside its star; pressed, it forgets the

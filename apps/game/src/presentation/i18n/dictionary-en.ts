@@ -242,12 +242,6 @@ export const EN_DICTIONARY = defineDictionary({
       label: 'Which years',
       none: 'Pick none and you get every decade.'
     },
-    difficulty: {
-      easy: 'Crowd-pleasers',
-      hard: 'For the experts',
-      label: 'How well known',
-      mixed: 'Deep cuts too'
-    },
     genre: {
       '52': 'French songs',
       '106': 'Electro',
@@ -728,6 +722,19 @@ export const EN_DICTIONARY = defineDictionary({
       warning: 'Everyone is sent out, and the code stops working.'
     },
     countdown: 'Countdown',
+    difficulty: {
+      custom: 'Each game has its own. Pick one to set them all.',
+      easy: 'Easy',
+      evening: 'Level for every game',
+      hard: 'Hard',
+      hint: {
+        easy: 'Only the well known: a table with children can play.',
+        hard: 'Fewer giveaways, for a table that knows its stuff.',
+        mixed: 'From the famous to the obscure.'
+      },
+      label: 'Level',
+      mixed: 'Mixed'
+    },
     endGame: 'End the game',
     evening: {
       actions: 'Options for {name}',
@@ -1794,14 +1801,7 @@ export const EN_DICTIONARY = defineDictionary({
     silhouette: {
       alt: 'The country outline to name'
     },
-    tagline: 'A question, and the first one who knows it.',
-    variant: {
-      wellKnown: 'Crowd-pleasers'
-    },
-    wellKnown: {
-      hint: 'Fewer to draw from, but nobody is left stuck.',
-      label: 'Stay on the crowd-pleasers'
-    }
+    tagline: 'A question, and the first one who knows it.'
   },
   readyMade: {
     change: 'Change',

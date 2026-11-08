@@ -81,9 +81,11 @@
 
   // What the chosen option does, under the strip and read with it: an option
   // whose name cannot say it all on a stamp says the rest here.
+  // Keyed on its text, so a choice that changes what it says fades it in.
   .description
     @include typography.caption
 
+    animation: swap-in var(--transition-base, 0s) var(--ease-out)
     color: var(--ink-muted)
     text-wrap: pretty
 

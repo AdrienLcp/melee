@@ -10,10 +10,10 @@
     // Each strip stacks below the width its own labels need on one row,
     // measured on the page in the locale that binds — which is **not** always
     // French: the answer mode needs 536px there and 496 in English, and the
-    // difficulty goes the other way. Rounded up to the next `rem` for headroom,
+    // map's places go the other way. Rounded up to the next `rem` for headroom,
     // the way the game picker's 476 became 30.
     //
-    //   answer mode 536 · difficulty 520 · subjects 1 249 in French on one
+    //   answer mode 536 · subjects 1 249 in French on one
     //   row of twelve, which is also where six by two takes over
     //   rounds 276 · auto-advance and answer window 296
     //   what the map places 572, in English
@@ -25,9 +25,6 @@
     // screen gives them — and no longer do.
     .answer-mode
       @include strip.stacks-below(34rem)
-
-    .track-difficulty
-      @include strip.stacks-below(33rem)
 
     .question-subjects
       @include strip.stacks-below(88rem)
