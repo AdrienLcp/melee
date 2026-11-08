@@ -351,7 +351,11 @@ defect like a wrong colour: the product is meant to feel smooth everywhere
   few frames: the check blinked out where it had grown in (Adrien, 2026-11-03).
 - **What truly leaves the tree plays its exit first**: `[data-exiting]` on a
   react-aria overlay (`action-menu.sass`), a leaving state ended on
-  `animationend` (`react-components.md`), a view transition for a page.
+  `animationend` (`react-components.md`), a view transition for a page. A
+  list laid out anew in another shape — the planned games going from one row
+  to an ordered list — has nothing that travels, and the change arrives as a
+  server frame no view transition can wrap: `useCrossFadeOnReshape` fades a
+  copy of the old list out over the new while the box eases to its height.
 
 Reduced motion needs nothing more: the tokens collapse (_Tokens_).
 

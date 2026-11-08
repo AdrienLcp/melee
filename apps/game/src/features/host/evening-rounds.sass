@@ -25,13 +25,25 @@
     .rounds
       border-block: var(--hairline)
       display: grid
+      overflow: hidden
+      position: relative
+
+      > * + .add
+        border-top: var(--hairline)
+
+    // What `useCrossFadeOnReshape` lays over the new list while it fades.
+    .rounds > .reshape-copy
+      border-block: 0
+      inset-block-start: 0
+      inset-inline: 0
+      pointer-events: none
+      position: absolute
+      z-index: 1
+
+    .only-list
       list-style: none
       margin: 0
-      overflow: hidden
       padding: 0
-
-      > li + li
-        border-top: var(--hairline)
 
     .round
       @include focus.ring-inset
@@ -107,6 +119,11 @@
       display: grid
       grid-template-columns: minmax(0, 1fr) auto
       padding-inline-end: var(--space-2xs)
+
+      // The ordered rows' gap, so the name holds its place when a second
+      // entry turns this row into one of them.
+      .round
+        column-gap: var(--space-xs)
 
     // Played and fixed: printed in the socket, the band faded with it, so the
     // list tells what can still change before anyone opens it.
@@ -304,9 +321,6 @@
 
       .chevron
         color: var(--socket-ink)
-
-    .rounds[data-ordered] > .add
-      border-top: var(--hairline)
 
     .add
       .round

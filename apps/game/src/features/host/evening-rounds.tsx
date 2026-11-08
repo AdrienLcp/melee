@@ -63,6 +63,7 @@ import { gameNameKey } from '@/presentation/i18n/translation'
 import { DifficultyChoice } from './difficulty-choice'
 import { arrangedEvening, eveningOrderOf } from './evening-order'
 import { EveningStamp, eveningStampOf } from './evening-stamp'
+import { useCrossFadeOnReshape } from './use-cross-fade-on-reshape'
 
 import './evening-rounds.sass'
 
@@ -246,6 +247,13 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
     </AriaButton>
   )
   const onlyEntry = lineUp[0]
+  const isOrdered = lineUp.length > 1
+  const box = useRef<HTMLDivElement>(null)
+
+  useCrossFadeOnReshape({
+    box,
+    shape: `${isOrdered ? 'ordered' : 'only'}:${isEveningOver}`
+  })
 
   return (
     <section className='evening-rounds'>
@@ -286,9 +294,9 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
           </Button>
         </div>
       )}
-      {lineUp.length < 2 ? (
-        <ul aria-label={roundsLabel} className='rounds'>
-          {onlyEntry !== undefined && (
+      <div className='rounds' data-ordered={isOrdered || undefined} ref={box}>
+        {!isOrdered && onlyEntry !== undefined && (
+          <ul aria-label={roundsLabel} className='only-list'>
             <OnlyRound
               actions={actions}
               entry={onlyEntry}
@@ -296,11 +304,9 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
               rowRef={returnTo}
               view={view}
             />
-          )}
-          {addRow !== false && <li className='add'>{addRow}</li>}
-        </ul>
-      ) : (
-        <div className='rounds' data-ordered>
+          </ul>
+        )}
+        {isOrdered && (
           <OrderedRounds
             actions={actions}
             coming={coming}
@@ -311,19 +317,19 @@ export const EveningRounds: React.FC<EveningRoundsProps> = ({
             rowRef={returnTo}
             view={view}
           />
-          {!isEveningOver && (
-            <PastThePlan
-              coming={coming}
-              isLive={isLive}
-              onOpenDraw={onOpenDraw}
-              onSettingsChange={change}
-              settings={view.settings}
-              upcoming={upcoming}
-            />
-          )}
-          {addRow !== false && <div className='add'>{addRow}</div>}
-        </div>
-      )}
+        )}
+        {isOrdered && !isEveningOver && (
+          <PastThePlan
+            coming={coming}
+            isLive={isLive}
+            onOpenDraw={onOpenDraw}
+            onSettingsChange={change}
+            settings={view.settings}
+            upcoming={upcoming}
+          />
+        )}
+        {addRow !== false && <div className='add'>{addRow}</div>}
+      </div>
       {!isEveningOver && (
         <EveningLevel
           isLive={isLive}
@@ -792,6 +798,11 @@ const EveningLevel: React.FC<{
 }> = ({ isLive, onSettingsChange, settings }) => {
   const shown = eveningDifficultyOf(settings.lineUp)
   const isOpen = shown !== null
+  const [lastShown, setLastShown] = useState(shown)
+
+  if (shown !== null && shown !== lastShown) {
+    setLastShown(shown)
+  }
 
   return (
     <div
@@ -805,7 +816,7 @@ const EveningLevel: React.FC<{
         onChange={(difficulty) => {
           onSettingsChange(withEveningDifficulty({ difficulty, settings }))
         }}
-        value={shown ?? 'custom'}
+        value={shown ?? lastShown ?? 'custom'}
       />
     </div>
   )
