@@ -24,7 +24,6 @@ import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { DifficultyChoice } from './difficulty-choice'
 import { NumberChoice, useDurationLabels } from './number-choice'
-import { useArrivedLater } from './use-arrived-later'
 
 import './petit-bac-setup.sass'
 
@@ -72,8 +71,15 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
   const { seconds: secondsLabel } = useDurationLabels()
   const excluded = new Set<string>(game.excludedLetters)
   const isDrawn = game.categories === null
-  const categoryCountArrived = useArrivedLater(isDrawn)
-  const fixedCategoriesArrived = useArrivedLater(!isDrawn)
+  // The list stays drawn under the fold while the box draws, so it folds
+  // away showing what the host had rather than snapping to the classic six.
+  const [fixedShown, setFixedShown] = useState<readonly PetitBacCategory[]>(
+    game.categories ?? CLASSIC_CATEGORIES
+  )
+
+  if (game.categories !== null && game.categories !== fixedShown) {
+    setFixedShown(game.categories)
+  }
 
   return (
     <div className='petit-bac-setup'>
@@ -93,11 +99,10 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
         value={game.categories === null ? DRAWN : FIXED}
       />
 
-      {game.categories === null ? (
-        <>
+      <div className='fold' data-open={isDrawn || undefined} inert={!isDrawn}>
+        <div className='drawn-lines'>
           <NumberField
             className='category-count'
-            data-arrived={categoryCountArrived}
             isDisabled={isDisabled}
             label={translate('petitbac.setup.count')}
             maxValue={MAX_PETIT_BAC_CATEGORIES}
@@ -110,24 +115,24 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
             value={game.categoryCount}
           />
           <DifficultyChoice
-            data-arrived={categoryCountArrived}
             isDisabled={isDisabled}
             onChange={(difficulty) => {
               onChange({ ...game, difficulty })
             }}
             value={game.difficulty}
           />
-        </>
-      ) : (
+        </div>
+      </div>
+
+      <div className='fold' data-open={!isDrawn || undefined} inert={isDrawn}>
         <FixedCategories
-          categories={game.categories}
-          isArriving={fixedCategoriesArrived}
+          categories={fixedShown}
           isDisabled={isDisabled}
           onChange={(categories) => {
             onChange({ ...game, categories })
           }}
         />
-      )}
+      </div>
 
       <ToggleGroup
         className='letters'
@@ -179,8 +184,6 @@ export const PetitBacSetup: React.FC<PetitBacSetupProps> = ({
 
 type FixedCategoriesProps = {
   categories: readonly PetitBacCategory[]
-  /** Marks a list the host just switched to, so it rises rather than appears. */
-  isArriving?: true
   isDisabled: boolean
   /** Only ever called with a list the server takes: between three and ten. */
   onChange: (categories: PetitBacCategory[]) => void
@@ -189,7 +192,6 @@ type FixedCategoriesProps = {
 /** The box's categories as chips, then the host's own lines, played in that order every round. */
 const FixedCategories: React.FC<FixedCategoriesProps> = ({
   categories,
-  isArriving,
   isDisabled,
   onChange
 }) => {
@@ -228,7 +230,7 @@ const FixedCategories: React.FC<FixedCategoriesProps> = ({
   }
 
   return (
-    <section className='fixed-categories' data-arrived={isArriving}>
+    <section className='fixed-categories'>
       <p className='summary'>
         {translate('petitbac.setup.summary', {
           count: categories.length,

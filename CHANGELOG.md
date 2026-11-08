@@ -8,12 +8,25 @@ one part.
 
 ### Features
 
+- `[Shared]` **Black square deals four answers from a pool, and takes a
+  level.** A theme now holds twelve to twenty true answers and a round deals
+  four of them — one obvious, two between, one rare — so a theme met again
+  hides other answers, and the table says plenty before it lands on the
+  four. A rare answer pays three times an obvious one, by the answer rather
+  than by its place on the grid. Five broad themes written by hand join the
+  bank — green vegetables, exotic fruits, film genres, farm animals, team
+  sports — and the Wikidata themes are cut to the sixty a table knows:
+  famous directors, Pixar and Marvel, presidents, Europe's capitals. Easy
+  deals the broad themes alone; mixed and hard bring the lists of works.
+
 - `[Shared]` **Petit Bac takes a level for the lines it draws.** Easy deals
   the lines a child fills alone — an animal, a colour, a first name; hard
   never deals them and leans on a cheese, a plant, a famous person; mixed
   deals each in equal shares. A list the host wrote is played as written,
   and leaves the evening's level alone. The letters stay the host's: the
-  rare ones are already left out until somebody ticks them back.
+  rare ones are already left out until somebody ticks them back. The drawn
+  lines and the host's own list now trade places by folding, where both
+  cut out.
 
 - `[Server]` **The timeline at easy deals events a child has heard of, a
   generation apart.** Columbus, the Titanic, the first Harry Potter: five

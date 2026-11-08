@@ -24,12 +24,27 @@
     .letters .segments
       grid-template-columns: repeat(auto-fill, minmax(2.75rem, 1fr))
 
-    .category-count,
-    .difficulty-choice,
-    .fixed-categories
-      &[data-arrived]
-        animation: page-enter var(--transition-base, 0s) var(--ease-out)
+    // The drawn lines and the host's own list trade places by folding, the
+    // way the evening's level does: a closed fold keeps its place in the
+    // column, so its gap is taken back with it.
+    .fold
+      display: grid
+      grid-template-rows: 0fr
+      margin-block-start: calc(-1 * var(--space-s))
+      opacity: 0
+      transition: grid-template-rows var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), margin-block-start var(--transition-base, 0s) var(--ease-in) calc(var(--transition-fast, 0s) * 0.5), opacity var(--transition-fast, 0s) var(--ease-in)
 
+      &[data-open]
+        grid-template-rows: 1fr
+        margin-block-start: 0
+        opacity: 1
+        transition: grid-template-rows var(--transition-base, 0s) var(--ease-out), margin-block-start var(--transition-base, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) calc(var(--transition-fast, 0s) * 0.5)
+
+      > *
+        min-height: 0
+        overflow: clip
+
+    .drawn-lines,
     .fixed-categories
       display: flex
       flex-direction: column
