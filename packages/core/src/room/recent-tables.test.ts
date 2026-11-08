@@ -150,7 +150,7 @@ describe('isSameLineUp', () => {
           lineUp: [
             {
               ...DEFAULT_QUIZ_SETTINGS,
-              wellKnownOnly: !DEFAULT_QUIZ_SETTINGS.wellKnownOnly
+              difficulty: 'easy'
             },
             DEFAULT_BUZZER_SETTINGS
           ]

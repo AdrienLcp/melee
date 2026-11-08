@@ -243,10 +243,10 @@ export const EN_DICTIONARY = defineDictionary({
       none: 'Pick none and you get every decade.'
     },
     difficulty: {
+      easy: 'Crowd-pleasers',
+      hard: 'For the experts',
       label: 'How well known',
-      mixed: 'Deep cuts too',
-      obscure: 'For the experts',
-      wellKnown: 'Crowd-pleasers'
+      mixed: 'Deep cuts too'
     },
     genre: {
       '52': 'French songs',

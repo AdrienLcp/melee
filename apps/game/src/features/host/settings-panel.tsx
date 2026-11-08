@@ -9,6 +9,7 @@ import {
   BLACK_SQUARE_CELL_COUNT,
   BLACK_SQUARE_MIN_ANSWER_COUNT
 } from '@melee/protocol/black-square'
+import { type Difficulty, difficulties } from '@melee/protocol/difficulty'
 import type { QuizSettings } from '@melee/protocol/game'
 import {
   type MatchsticksGoal,
@@ -27,11 +28,7 @@ import {
   type RoomSettings
 } from '@melee/protocol/room'
 import { MAX_SLATE_ITEMS, MIN_SLATE_ITEMS } from '@melee/protocol/slate'
-import {
-  type TrackDifficulty,
-  type TrackSource,
-  trackDifficulties
-} from '@melee/protocol/track'
+import type { TrackSource } from '@melee/protocol/track'
 
 import { trackAnswersOf } from '@melee/core/blindtest/track-answers'
 import {
@@ -159,10 +156,10 @@ const QuestionBankSettings: React.FC<{
       <Switch
         description={translate('quiz.wellKnown.hint')}
         isDisabled={isDisabled}
-        isSelected={game.wellKnownOnly}
+        isSelected={game.difficulty === 'easy'}
         label={translate('quiz.wellKnown.label')}
-        onChange={(wellKnownOnly) => {
-          onChange({ ...game, wellKnownOnly })
+        onChange={(isEasy) => {
+          onChange({ ...game, difficulty: isEasy ? 'easy' : 'mixed' })
         }}
       />
     </>
@@ -174,12 +171,11 @@ const QuestionBankSettings: React.FC<{
  * without adding its label to both dictionaries stops compiling here.
  */
 const difficultyLabelKey = (
-  difficulty: TrackDifficulty
-): `blindtest.difficulty.${TrackDifficulty}` =>
-  `blindtest.difficulty.${difficulty}`
+  difficulty: Difficulty
+): `blindtest.difficulty.${Difficulty}` => `blindtest.difficulty.${difficulty}`
 
-const isDifficulty = (value: string): value is TrackDifficulty =>
-  trackDifficulties.some((difficulty) => difficulty === value)
+const isDifficulty = (value: string): value is Difficulty =>
+  difficulties.some((difficulty) => difficulty === value)
 
 const isAtlasDirection = (value: string): value is AtlasDirection =>
   atlasDirectionSchema.safeParse(value).success
@@ -377,7 +373,7 @@ export const SettingsPanel: React.FC<SettingsPanelProps> = ({
               onChange({ ...settings, game: { ...game, difficulty: next } })
             }
           }}
-          options={trackDifficulties.map((difficulty) => ({
+          options={difficulties.map((difficulty) => ({
             label: translate(difficultyLabelKey(difficulty)),
             value: difficulty
           }))}

@@ -1,6 +1,10 @@
 import type { GeoPoint } from '@melee/protocol/atlas'
+import type { Difficulty } from '@melee/protocol/difficulty'
 
-import { pickRandom } from '@melee/core/helpers/random'
+import {
+  drawByDifficulty,
+  oneTierForEveryRow
+} from '@melee/core/round/difficulty-draw'
 
 /** A city a map round may ask a table to place on the map of France. */
 export type BankedCity = { name: string; point: GeoPoint }
@@ -167,10 +171,16 @@ export const playedCityId = (name: string): string => `atlas:city:${name}`
 
 /** A city the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCity = ({
+  difficulty,
   playedIds
 }: {
+  difficulty: Difficulty
   playedIds: ReadonlySet<string>
 }): BankedCity | null =>
-  pickRandom(
-    BANKED_CITIES.filter((city) => !playedIds.has(playedCityId(city.name)))
-  )
+  drawByDifficulty({
+    difficulty,
+    pool: BANKED_CITIES.filter(
+      (city) => !playedIds.has(playedCityId(city.name))
+    ),
+    tierOf: oneTierForEveryRow
+  })

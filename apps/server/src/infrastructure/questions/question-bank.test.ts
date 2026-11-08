@@ -575,35 +575,47 @@ describe('drawQuestion', () => {
   })
 
   /**
-   * The switch itself, over the real bank rather than a fixture — the rating is
-   * a property of eight thousand rows, and a filter that agreed with a handful
-   * of invented ones would say nothing about the evening.
-   *
-   * Sixty draws where its neighbours take four hundred, because the two counts
-   * carry different arguments: one question in twenty is adult, so four hundred
-   * is what makes a missing filter certain to surface, where three French rows
-   * in five and one English row in five fail this rating. Both languages are
-   * asked, which is the answer to whether the switch holds outside French — it
-   * reads the same in both halves, and a reason to split them would have to be
-   * found rather than assumed.
+   * The levels themselves, over the real bank rather than a fixture — the
+   * rating is a property of eight thousand rows, and a draw that agreed with a
+   * handful of invented ones would say nothing about the evening. Both
+   * languages are asked: the two sources decide `isWellKnown` their own way,
+   * and the level reads the same in both.
    */
-  it('[bank] draws nothing the room has not heard of once the host asks', () => {
-    expect(DEFAULT_QUIZ_SETTINGS.wellKnownOnly).toBe(false)
-
+  it('[difficulty] draws nothing the room has not heard of at easy', () => {
     for (const language of questionLanguages) {
       const held = drawMany(
-        { ...DEFAULT_QUIZ_SETTINGS, language, wellKnownOnly: true },
+        { ...DEFAULT_QUIZ_SETTINGS, difficulty: 'easy', language },
         { times: 60 }
       )
 
       expect(held.length).toBe(60)
       expect(held.every((question) => question.isWellKnown)).toBe(true)
-
-      expect(
-        drawMany({ ...DEFAULT_QUIZ_SETTINGS, language }, { times: 60 }).some(
-          (question) => !question.isWellKnown
-        )
-      ).toBe(true)
     }
+  })
+
+  it('[difficulty] draws nothing the room has heard of at hard', () => {
+    for (const language of questionLanguages) {
+      const held = drawMany(
+        { ...DEFAULT_QUIZ_SETTINGS, difficulty: 'hard', language },
+        { times: 60 }
+      )
+
+      expect(held.length).toBe(60)
+      expect(held.some((question) => question.isWellKnown)).toBe(false)
+    }
+  })
+
+  /**
+   * Three French rows in five fail the rating, so a draw uniform over the rows
+   * would deal well-known ones about two times in five. Half and half is the
+   * tier drawn first; the margin is five standard deviations at 1 200 draws.
+   */
+  it('[difficulty] mixes heard-of and obscure half and half', () => {
+    expect(DEFAULT_QUIZ_SETTINGS.difficulty).toBe('mixed')
+
+    const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_200 })
+    const heardOf = drawn.filter((question) => question.isWellKnown).length
+
+    expect(heardOf / drawn.length).toBeCloseTo(1 / 2, 1)
   })
 })

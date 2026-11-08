@@ -1,7 +1,11 @@
 import type { GeoPoint } from '@melee/protocol/atlas'
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { Difficulty } from '@melee/protocol/difficulty'
 
-import { pickRandom } from '@melee/core/helpers/random'
+import {
+  drawByDifficulty,
+  oneTierForEveryRow
+} from '@melee/core/round/difficulty-draw'
 
 import { bankedCapitals } from './capital-bank'
 import { BANKED_COUNTRIES } from './country-bank'
@@ -36,12 +40,16 @@ export const playedCapitalId = (code: CountryCode): string =>
 
 /** A capital the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCapital = ({
+  difficulty,
   playedIds
 }: {
+  difficulty: Difficulty
   playedIds: ReadonlySet<string>
 }): BankedCapital | null =>
-  pickRandom(
-    worldCapitals().filter(
+  drawByDifficulty({
+    difficulty,
+    pool: worldCapitals().filter(
       ({ countryCode }) => !playedIds.has(playedCapitalId(countryCode))
-    )
-  )
+    ),
+    tierOf: oneTierForEveryRow
+  })

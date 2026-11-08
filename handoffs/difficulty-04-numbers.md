@@ -3,6 +3,16 @@
 Wave 3, after parts 1–3 (rules and Adrien's first words in
 `difficulty-01-setting.md`).
 
+## What part 1 left (landed)
+
+`tierOfQuantity` in `quantity-bank.ts` is the stand-in:
+`isFamousQuantity → easy`, `isWellKnown → medium`, rest `hard`, used by both
+`drawQuantity` and `drawPairs` (`dealByDifficulty`, a whole round of pairs from
+one tier). **This changed what a default room plays**: both draws used to go
+famous-first, and `mixed` now deals a hard-tier quantity or round one time in
+three — the gap Adrien's "things a French table knows" is about. A server test
+already pins `easy` to famous rows (`__tests__/difficulty.test.ts`).
+
 ## What Adrien said
 
 > Les « plus ou moins », ce ne sont pas les valeurs que je remets en question,

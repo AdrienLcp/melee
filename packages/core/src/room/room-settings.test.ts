@@ -260,7 +260,7 @@ describe('movedToGame', () => {
       locale: 'fr',
       remembered: {
         autoAdvanceMs: 15_000,
-        game: { ...DEFAULT_BLINDTEST_SETTINGS, difficulty: 'obscure' },
+        game: { ...DEFAULT_BLINDTEST_SETTINGS, difficulty: 'hard' },
         mode: DEFAULT_MODE_SETTINGS.choice,
         roundCount: 30
       },
@@ -272,7 +272,7 @@ describe('movedToGame', () => {
     expect(moved.roundCount).toBe(30)
     expect(moved.game).toEqual({
       ...DEFAULT_BLINDTEST_SETTINGS,
-      difficulty: 'obscure'
+      difficulty: 'hard'
     })
   })
 })
@@ -411,7 +411,7 @@ describe('reshapesRound', () => {
           ...blindtest,
           game: {
             ...DEFAULT_BLINDTEST_SETTINGS,
-            difficulty: 'obscure',
+            difficulty: 'hard',
             source: { kind: 'search', query: 'yacht rock' }
           }
         }

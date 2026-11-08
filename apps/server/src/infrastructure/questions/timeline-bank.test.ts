@@ -23,9 +23,9 @@ describe('the timeline bank', () => {
     let rounds = 0
 
     for (
-      let events = drawTimelineEvents({ playedIds });
+      let events = drawTimelineEvents({ difficulty: 'mixed', playedIds });
       events !== null;
-      events = drawTimelineEvents({ playedIds })
+      events = drawTimelineEvents({ difficulty: 'mixed', playedIds })
     ) {
       expect(events).toHaveLength(TIMELINE_EVENTS_PER_ROUND)
 

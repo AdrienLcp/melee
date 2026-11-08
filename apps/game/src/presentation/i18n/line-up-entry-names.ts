@@ -218,7 +218,7 @@ const namingOf = ({
         return []
       }
 
-      return entry.wellKnownOnly
+      return entry.difficulty === 'easy'
         ? [pick, translate('quiz.variant.wellKnown')]
         : [pick]
     }
@@ -309,7 +309,9 @@ const settingsOf = ({
     case 'quiz':
       return [
         allPicks(subjectsOf({ categories: entry.categories, translate })),
-        ...(entry.wellKnownOnly ? [translate('quiz.variant.wellKnown')] : []),
+        ...(entry.difficulty === 'easy'
+          ? [translate('quiz.variant.wellKnown')]
+          : []),
         LANGUAGE_NAMES[entry.language],
         secondsOf({ ms: entry.roundDurationMs, translate })
       ]

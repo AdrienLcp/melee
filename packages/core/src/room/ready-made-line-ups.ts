@@ -1,3 +1,4 @@
+import type { Difficulty } from '@melee/protocol/difficulty'
 import {
   type AtlasSettings,
   type BlindtestSettings,
@@ -44,16 +45,16 @@ const FRENCH_CHANSON_GENRE_ID = 52
 const quizOn = ({
   categories,
   locale,
-  wellKnownOnly = DEFAULT_QUIZ_SETTINGS.wellKnownOnly
+  difficulty = DEFAULT_QUIZ_SETTINGS.difficulty
 }: {
   categories: typeof DEFAULT_QUIZ_SETTINGS.categories
   locale: Locale
-  wellKnownOnly?: boolean
+  difficulty?: Difficulty
 }): SavedEntry => ({
   ...DEFAULT_QUIZ_SETTINGS,
   categories,
-  language: questionLanguageFor(locale),
-  wellKnownOnly
+  difficulty,
+  language: questionLanguageFor(locale)
 })
 
 const blindtestOn = (source: BlindtestSettings['source']): SavedEntry => ({
@@ -90,58 +91,58 @@ const GRAND_MIX_ROUND_COUNT = 40
 const grandMixFor = (locale: Locale): SavedEntry[] => {
   const quiz = (
     category: (typeof DEFAULT_QUIZ_SETTINGS.categories)[number],
-    { wellKnownOnly }: { wellKnownOnly: boolean }
-  ) => quizOn({ categories: [category], locale, wellKnownOnly })
+    { difficulty }: { difficulty: Difficulty }
+  ) => quizOn({ categories: [category], difficulty, locale })
 
   return [
     blindtestOn(catalogueOf({ hasFilmScores: true })),
-    quiz('geography', { wellKnownOnly: true }),
+    quiz('geography', { difficulty: 'easy' }),
     {
       ...DEFAULT_BLACK_SQUARE_SETTINGS,
       answerCount: 6,
       doublesLoneFinds: true
     },
     blindtestOn(catalogueOf({ decades: ['2010s'] })),
-    quiz('videogames', { wellKnownOnly: false }),
+    quiz('videogames', { difficulty: 'mixed' }),
     atlasOn({ direction: 'name', places: ['countries'] }),
     { ...DEFAULT_SWATCH_SETTINGS, showMs: 5_000 },
     blindtestOn(catalogueOf({ decades: ['1980s'] })),
-    quiz('sport', { wellKnownOnly: true }),
+    quiz('sport', { difficulty: 'easy' }),
     'innerclock',
     atlasOn({ direction: 'place', places: ['frenchCities'] }),
-    quiz('everyday', { wellKnownOnly: true }),
+    quiz('everyday', { difficulty: 'easy' }),
     blindtestOn(catalogueOf({ decades: ['1970s'] })),
     {
       ...DEFAULT_PETIT_BAC_SETTINGS,
       categoryCount: 4,
       roundDurationMs: 60_000
     },
-    quiz('flags', { wellKnownOnly: false }),
+    quiz('flags', { difficulty: 'mixed' }),
     'higherlower',
     { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['equation'] },
-    quiz('history', { wellKnownOnly: true }),
+    quiz('history', { difficulty: 'easy' }),
     blindtestOn(catalogueOf({ decades: [] })),
     atlasOn({ direction: 'place', places: ['countries'] }),
-    quiz('rebus', { wellKnownOnly: false }),
+    quiz('rebus', { difficulty: 'mixed' }),
     blindtestOn(catalogueOf({ decades: ['1990s'] })),
     { ...DEFAULT_BLACK_SQUARE_SETTINGS, answerCount: 9 },
-    quiz('capitals', { wellKnownOnly: false }),
+    quiz('capitals', { difficulty: 'mixed' }),
     { ...DEFAULT_SWATCH_SETTINGS, showMs: 3_000 },
     blindtestOn(catalogueOf({ charts: [FRENCH_CHANSON_GENRE_ID] })),
     atlasOn({ direction: 'name', places: ['worldCapitals'] }),
     'mostlikely',
-    quiz('quotes', { wellKnownOnly: true }),
+    quiz('quotes', { difficulty: 'easy' }),
     'reflex',
     atlasOn({ direction: 'place', places: ['worldCapitals'] }),
     blindtestOn(catalogueOf({ decades: ['2000s'] })),
-    quiz('science', { wellKnownOnly: true }),
+    quiz('science', { difficulty: 'easy' }),
     'timeline',
     { ...DEFAULT_PETIT_BAC_SETTINGS, categoryCount: 6 },
-    quiz('arts', { wellKnownOnly: true }),
+    quiz('arts', { difficulty: 'easy' }),
     { ...DEFAULT_MATCHSTICKS_SETTINGS, goals: ['biggest', 'smallest'] },
     atlasOn({ direction: 'name', places: ['frenchCities'] }),
     'estimate',
-    quiz('cinema', { wellKnownOnly: false })
+    quiz('cinema', { difficulty: 'mixed' })
   ]
 }
 

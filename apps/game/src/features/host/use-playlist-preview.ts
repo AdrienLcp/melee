@@ -1,8 +1,9 @@
 import type { Result } from '@adrienlcp/result'
 import { useEffect, useEffectEvent, useRef, useState } from 'react'
 
+import type { Difficulty } from '@melee/protocol/difficulty'
 import type { CatalogueTrack } from '@melee/protocol/http'
-import type { TrackDifficulty, TrackSource } from '@melee/protocol/track'
+import type { TrackSource } from '@melee/protocol/track'
 
 import {
   type ApiFailure,
@@ -44,7 +45,7 @@ const catalogueFor = async ({
   signal,
   source
 }: {
-  difficulty: TrackDifficulty
+  difficulty: Difficulty
   signal: AbortSignal
   source: PreviewableSource
 }): Promise<Result<CatalogueTrack[], ApiFailure>> => {
@@ -69,7 +70,7 @@ const catalogueFor = async ({
  * playlist of songs the difficulty floor rejects fails on the first round of
  * the party otherwise, with the room watching.
  */
-export const usePlaylistPreview = (difficulty: TrackDifficulty) => {
+export const usePlaylistPreview = (difficulty: Difficulty) => {
   const [preview, setPreview] = useState<PlaylistPreview>({ status: 'idle' })
   // The slower answer is not the older one: each new question aborts the
   // last, so a list the host left never lands on top of the one they are
@@ -91,7 +92,7 @@ export const usePlaylistPreview = (difficulty: TrackDifficulty) => {
 
   const ask = async (
     source: PreviewableSource,
-    askedDifficulty: TrackDifficulty
+    askedDifficulty: Difficulty
   ): Promise<void> => {
     abortInFlight()
 
@@ -139,7 +140,7 @@ export const usePlaylistPreview = (difficulty: TrackDifficulty) => {
 
   // The difficulty floor decides what the pool holds, so a preview drawn under
   // the old one is a count the round will not honour: ask again under the new.
-  const askAgainUnder = useEffectEvent((nextDifficulty: TrackDifficulty) => {
+  const askAgainUnder = useEffectEvent((nextDifficulty: Difficulty) => {
     if (previewed.current !== null) {
       void ask(previewed.current, nextDifficulty)
     }

@@ -5,6 +5,7 @@ import {
   BLACK_SQUARE_CELL_COUNT,
   blackSquareAnswerCountSchema
 } from './black-square'
+import { difficultySchema } from './difficulty'
 import { matchsticksGoalSchema } from './matchsticks'
 import {
   MAX_PETIT_BAC_CATEGORIES,
@@ -194,11 +195,15 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     labels: slateLabelsSchema
   }),
   z.object({
+    /** Defaulted so a setup remembered before the level existed still parses. */
+    difficulty: difficultySchema.default('mixed'),
     kind: z.literal('timeline'),
     /** How long the events stay up to be ordered before the round times out. */
     roundDurationMs: z.number().int().min(15_000).max(120_000)
   }),
   z.object({
+    /** Defaulted so a setup remembered before the level existed still parses. */
+    difficulty: difficultySchema.default('mixed'),
     /** Defaulted so a setup remembered before the map asked both ways still parses. */
     direction: atlasDirectionSchema.default('place'),
     kind: z.literal('atlas'),
@@ -223,11 +228,15 @@ export const gameSettingsSchema = z.discriminatedUnion('kind', [
     roundDurationMs: z.number().int().min(10_000).max(90_000)
   }),
   z.object({
+    /** Defaulted so a setup remembered before the level existed still parses. */
+    difficulty: difficultySchema.default('mixed'),
     kind: z.literal('estimate'),
     /** How long the field stays open; it closes early once every seat has sent. */
     roundDurationMs: z.number().int().min(15_000).max(60_000)
   }),
   z.object({
+    /** Defaulted so a setup remembered before the level existed still parses. */
+    difficulty: difficultySchema.default('mixed'),
     kind: z.literal('higherlower'),
     /** How long the pair stays open; the round closes early once every seat has picked. */
     roundDurationMs: z.number().int().min(5_000).max(30_000)
@@ -290,8 +299,13 @@ export const roundDurationMsOf = (game: GameSettings | null): number | null =>
 export const locksOutOnMissIn = (game: GameSettings | null): boolean =>
   game?.kind === 'buzzer' ? game.locksOutOnMiss : true
 
+/**
+ * `easy` where every other game opens on `mixed`: a track level is a
+ * popularity floor rather than a tier draw, and `easy`'s is the charts and
+ * classics a fresh room has always been dealt.
+ */
 export const DEFAULT_BLINDTEST_SETTINGS: BlindtestSettings = {
-  difficulty: 'wellKnown',
+  difficulty: 'easy',
   kind: 'blindtest',
   roundDurationMs: 20_000,
   source: EVERY_STRAND
@@ -334,10 +348,10 @@ export const DEFAULT_PETIT_BAC_SETTINGS: PetitBacSettings = {
 
 export const DEFAULT_QUIZ_SETTINGS: QuizSettings = {
   categories: [],
+  difficulty: 'mixed',
   kind: 'quiz',
   language: 'fr',
-  roundDurationMs: 30_000,
-  wellKnownOnly: false
+  roundDurationMs: 30_000
 }
 
 export const DEFAULT_REFLEX_SETTINGS: ReflexSettings = { kind: 'reflex' }
@@ -350,11 +364,13 @@ export const DEFAULT_SLATE_SETTINGS: SlateSettings = {
 
 /** Forty-five seconds, because five rows are dragged into place before anything is sent. */
 export const DEFAULT_TIMELINE_SETTINGS: TimelineSettings = {
+  difficulty: 'mixed',
   kind: 'timeline',
   roundDurationMs: 45_000
 }
 
 export const DEFAULT_ATLAS_SETTINGS: AtlasSettings = {
+  difficulty: 'mixed',
   direction: 'place',
   kind: 'atlas',
   places: ['countries'],
@@ -376,12 +392,14 @@ export const DEFAULT_MOST_LIKELY_SETTINGS: MostLikelySettings = {
 
 /** Thirty seconds: long enough to weigh a number, short enough that nobody looks it up. */
 export const DEFAULT_ESTIMATE_SETTINGS: EstimateSettings = {
+  difficulty: 'mixed',
   kind: 'estimate',
   roundDurationMs: 30_000
 }
 
 /** Ten seconds: enough to weigh two names, too short to look one up. */
 export const DEFAULT_HIGHER_LOWER_SETTINGS: HigherLowerSettings = {
+  difficulty: 'mixed',
   kind: 'higherlower',
   roundDurationMs: 10_000
 }

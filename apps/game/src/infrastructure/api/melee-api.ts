@@ -1,6 +1,7 @@
 import { Result } from '@adrienlcp/result'
 import type { z } from 'zod'
 
+import type { Difficulty } from '@melee/protocol/difficulty'
 import type { ShelvedGame } from '@melee/protocol/game'
 import {
   type CatalogueTrack,
@@ -24,7 +25,6 @@ import {
 import type { RoomCode } from '@melee/protocol/identifiers'
 import type { Locale } from '@melee/protocol/locale'
 import { API_ROUTES, fillRoute } from '@melee/protocol/routes'
-import type { TrackDifficulty } from '@melee/protocol/track'
 
 /** A failure the user is told about, through `apiErrorKey`. */
 export type ApiError =
@@ -145,7 +145,7 @@ export const fetchPlaylistTracks = async ({
   playlistId,
   signal
 }: Cancellable & {
-  difficulty: TrackDifficulty
+  difficulty: Difficulty
   playlistId: string
 }): Promise<Result<CatalogueTrack[], ApiFailure>> =>
   requestTracks(
@@ -160,7 +160,7 @@ export const searchTracks = async ({
   query,
   signal
 }: Cancellable & {
-  difficulty: TrackDifficulty
+  difficulty: Difficulty
   query: string
 }): Promise<Result<CatalogueTrack[], ApiFailure>> =>
   requestTracks(

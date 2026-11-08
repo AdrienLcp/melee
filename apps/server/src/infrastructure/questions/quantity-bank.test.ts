@@ -70,11 +70,11 @@ describe('the quantity bank', () => {
     expect(unbanked).toEqual([])
   })
 
-  it('[higherlower] deals four evenings of famous pairs without comparing a row twice', () => {
+  it('[difficulty] deals four evenings of famous pairs at easy without comparing a row twice', () => {
     const playedIds = new Set<string>()
 
     for (let round = 0; round < 48; round++) {
-      const pairs = drawPairs({ playedIds })
+      const pairs = drawPairs({ difficulty: 'easy', playedIds })
 
       expect(pairs).toHaveLength(1)
 

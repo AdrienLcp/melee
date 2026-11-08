@@ -378,24 +378,23 @@ describe('a table of several games', () => {
   })
 
   it('[host-preferences] keeps what a blind test was set to beside its source', () => {
-    const obscureEighties = rememberSettings({
+    const hardEighties = rememberSettings({
       preferences: null,
       settings: {
         ...roomSettingsFor({ games: ['blindtest'], locale: 'fr' }),
         game: {
           ...DEFAULT_BLINDTEST_SETTINGS,
-          difficulty: 'obscure',
+          difficulty: 'hard',
           source: catalogueOf({ decades: ['1980s'] })
         }
       }
     })
 
     expect(
-      rememberedSetupFor({ game: 'blindtest', preferences: obscureEighties })
-        ?.game
+      rememberedSetupFor({ game: 'blindtest', preferences: hardEighties })?.game
     ).toEqual({
       ...DEFAULT_BLINDTEST_SETTINGS,
-      difficulty: 'obscure',
+      difficulty: 'hard',
       source: EVERY_STRAND
     })
   })

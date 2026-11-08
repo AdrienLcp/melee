@@ -1,4 +1,5 @@
 import type { AtlasPlaces } from '@melee/protocol/atlas'
+import type { Difficulty } from '@melee/protocol/difficulty'
 import type { AtlasSettings, GameSettings } from '@melee/protocol/game'
 import type { RoundId, SessionId } from '@melee/protocol/identifiers'
 
@@ -118,25 +119,27 @@ const DRAW_RETRY_MS = 3_000
  * spent — or for a country the atlas cannot judge.
  */
 const drawTargetOf = ({
+  difficulty,
   places,
   playedIds
 }: {
+  difficulty: Difficulty
   places: AtlasPlaces
   playedIds: ReadonlySet<string>
 }): AtlasRoundTarget | null => {
   if (places === 'frenchCities') {
-    const city = drawCity({ playedIds })
+    const city = drawCity({ difficulty, playedIds })
 
     return city === null ? null : { kind: 'city', ...city }
   }
 
   if (places === 'worldCapitals') {
-    const capital = drawCapital({ playedIds })
+    const capital = drawCapital({ difficulty, playedIds })
 
     return capital === null ? null : { kind: 'capital', ...capital }
   }
 
-  const countryCode = drawCountry({ playedIds })
+  const countryCode = drawCountry({ difficulty, playedIds })
 
   return countryCode === null || countryShapeOf(countryCode) === null
     ? null
@@ -157,11 +160,13 @@ const drawAtlasContent = ({
   isChoice: boolean
   playedIds: Set<string>
 }): Round['content'] | null => {
+  const { difficulty } = game
+
   for (const places of shuffled(game.places)) {
     for (
-      let target = drawTargetOf({ places, playedIds });
+      let target = drawTargetOf({ difficulty, places, playedIds });
       target !== null;
-      target = drawTargetOf({ places, playedIds })
+      target = drawTargetOf({ difficulty, places, playedIds })
     ) {
       playedIds.add(playedTargetId(target))
 
@@ -443,7 +448,10 @@ export const beginRound = async (
   }
 
   if (game.kind === 'timeline') {
-    const events = drawTimelineEvents({ playedIds: room.playedContentIds })
+    const events = drawTimelineEvents({
+      difficulty: game.difficulty,
+      playedIds: room.playedContentIds
+    })
 
     if (events === null) {
       tellHost(engine, {
@@ -531,7 +539,10 @@ export const beginRound = async (
   }
 
   if (game.kind === 'estimate') {
-    const row = drawQuantity({ playedIds: room.playedContentIds })
+    const row = drawQuantity({
+      difficulty: game.difficulty,
+      playedIds: room.playedContentIds
+    })
 
     if (row === null) {
       tellHost(engine, {
@@ -562,7 +573,10 @@ export const beginRound = async (
   }
 
   if (game.kind === 'higherlower') {
-    const pairs = drawPairs({ playedIds: room.playedContentIds })
+    const pairs = drawPairs({
+      difficulty: game.difficulty,
+      playedIds: room.playedContentIds
+    })
 
     if (pairs === null) {
       tellHost(engine, {

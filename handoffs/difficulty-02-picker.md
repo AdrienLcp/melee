@@ -4,6 +4,23 @@ Wave 2, after `difficulty-01-setting.md` (its shape and Adrien's words are
 there). Runs beside part 3: this part touches `apps/game`, part 3 the server's
 banks.
 
+## What part 1 left (landed)
+
+- `Difficulty` and `difficulties` are in `@melee/protocol/difficulty`; every
+  arm that deals content has `difficulty` (quiz, blind test, atlas, timeline,
+  estimate, higherlower). The blind test's old words are read on the way in
+  (`trackDifficultySchema`), and a stored quiz with `wellKnownOnly: true` is
+  read as `easy` (`withQuizSwitchAsLevel`, applied in `preferences-storage.ts`).
+- **The blind test opens on `easy`**, every other game on `mixed`: its level is
+  a Deezer popularity floor, and `easy` (500k) is what a fresh room always
+  played. So a default evening holding a blind test does *not* read as one
+  level — decide how the derived evening picker reads it (a game at its own
+  default counting as agreeing is one way; measure what reads clearest).
+- The `wellKnownOnly` switch is bridged, not gone: `settings-panel.tsx`
+  `QuestionBankSettings` toggles `easy`/`mixed`, and `line-up-entry-names.ts`
+  names the variant on `difficulty === 'easy'`. Both go with the picker.
+- Blind test labels are keyed `blindtest.difficulty.{easy,mixed,hard}` now.
+
 ## What to build
 
 1. **`impeccable` first** — this is a screen change. Then reuse what exists:

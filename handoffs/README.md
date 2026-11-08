@@ -6,9 +6,8 @@ delete this README with the last one.
 | Series     | Wave | File                           | Depends on   |
 | ---------- | ---- | ------------------------------ | ------------ |
 | Scoring    | —    | `scoring-01-follow-ups.md`     | none         |
-| Difficulty | 1    | `difficulty-01-setting.md`     | none         |
-| Difficulty | 2    | `difficulty-02-picker.md`      | difficulty 1 |
-| Difficulty | 2    | `difficulty-03-countries.md`   | difficulty 1 |
+| Difficulty | 2    | `difficulty-02-picker.md`      | none         |
+| Difficulty | 2    | `difficulty-03-countries.md`   | none         |
 | Difficulty | 3    | `difficulty-04-numbers.md`     | difficulty 3 |
 | Difficulty | 3    | `difficulty-05-other-games.md` | difficulty 2 |
 | Black sq.  | 3    | `black-square-01-shape.md`     | difficulty 2 |

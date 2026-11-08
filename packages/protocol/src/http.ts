@@ -122,12 +122,12 @@ export const catalogueTrackSchema = trackIdentitySchema
  * that omits it gets the same floor the room starts on.
  */
 export const trackSearchQuerySchema = z.object({
-  difficulty: trackDifficultySchema.default('wellKnown'),
+  difficulty: trackDifficultySchema.default('easy'),
   q: z.string().trim().min(1).max(120)
 })
 
 export const playlistPreviewQuerySchema = z.object({
-  difficulty: trackDifficultySchema.default('wellKnown')
+  difficulty: trackDifficultySchema.default('easy')
 })
 
 /** Shared by every route that answers "what would the pool hold?", not just the search. */

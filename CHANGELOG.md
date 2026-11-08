@@ -8,6 +8,18 @@ one part.
 
 ### Features
 
+- `[Shared]` **The quiz, the map, the timeline, _Le juste chiffre_ and _Plus
+  ou moins_ take a level: easy, mixed or hard.** Mixed — what every one of
+  them opens on — deals each tier of a bank in equal shares, where a draw
+  uniform over the rows dealt mostly obscure flags and capitals; easy deals
+  only what a table with children knows, and hard never deals it. A round
+  pays what it always did at every level. The quiz's _Only well-known
+  questions_ switch is read as easy, the blind test's three levels keep what
+  they deal under the shared names, and a host's remembered setup keeps
+  both. The banks are tiered game by game next; until then the map and the
+  timeline play as before at every level, and the number games lean on the
+  famous rows they already had. No picker yet beyond the two that existed.
+
 - `[Game]` **A line-up comes off _Your line-ups_ with a press.** Every lid
   in that row carries a cross beside its star; pressed, it forgets the
   tables this device played on that line-up, and the saved one too when it

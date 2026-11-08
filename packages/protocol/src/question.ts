@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { difficultySchema } from './difficulty'
+
 /**
  * The subjects a host ticks. The fold from a source's own rubrics onto these is
  * coarse on purpose: a handful of chips fit a phone, and a room choosing between
@@ -129,22 +131,17 @@ export const questionLanguageSchema = z.enum(questionLanguages)
 export const questionDrawSettingsSchema = z.object({
   /** Empty means every category, the same way an empty genre list means every genre. */
   categories: z.array(questionCategorySchema),
-  language: questionLanguageSchema,
   /**
-   * Whether the bank is held to the questions a room can be expected to have
-   * heard of. Off by default, so a room that says nothing plays the whole bank.
+   * Which tiers of the bank are dealt. Defaulted so a setup stored before the
+   * level replaced the `wellKnownOnly` switch still parses; a switch that was
+   * on is read as `easy` by the storage that kept it.
    *
-   * A switch rather than a level picker because `drawQuestion` takes a category
-   * *before* it takes a question, so a level is only as good as the category it
-   * thins most — and thirds of the French bank leave geography ten questions.
-   * One threshold behaves where three bands do not; the measurements are in
-   * `docs/plans/21-well-known-questions.md`.
-   *
-   * It reads the same in both halves of the bank even though the two sources
-   * decide `isWellKnown` their own way, which is the point of the row carrying
-   * a verdict rather than a score.
+   * The tier is drawn *before* the category, so `easy` deals an easy question
+   * whenever one is left in any ticked subject, rather than falling through
+   * inside whichever subject the draw happened to land on.
    */
-  wellKnownOnly: z.boolean()
+  difficulty: difficultySchema.default('mixed'),
+  language: questionLanguageSchema
 })
 
 export type QuestionDrawSettings = z.infer<typeof questionDrawSettingsSchema>

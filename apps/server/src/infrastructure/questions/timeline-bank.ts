@@ -1,11 +1,16 @@
 import { z } from 'zod'
 
+import type { Difficulty } from '@melee/protocol/difficulty'
 import {
   type DatedTimelineEvent,
   datedTimelineEventSchema,
   TIMELINE_EVENTS_PER_ROUND
 } from '@melee/protocol/timeline'
 
+import {
+  dealByDifficulty,
+  oneTierForEveryRow
+} from '@melee/core/round/difficulty-draw'
 import { dealEvents } from '@melee/core/timeline/deal'
 
 import bank from './timeline-bank.json' with { type: 'json' }
@@ -45,19 +50,28 @@ export const playedTimelineEventId = (id: string): string => `timeline:${id}`
 
 /** A round's events, none the room has been dealt; `null` once the bank cannot deal a round. */
 export const drawTimelineEvents = ({
+  difficulty,
   playedIds
 }: {
+  difficulty: Difficulty
   playedIds: ReadonlySet<string>
 }): DatedTimelineEvent[] | null => {
   const events = bankedTimelineEvents()
+  const playedEventIds = new Set(
+    events
+      .filter(({ id }) => playedIds.has(playedTimelineEventId(id)))
+      .map(({ id }) => id)
+  )
 
-  return dealEvents({
-    count: TIMELINE_EVENTS_PER_ROUND,
-    events,
-    playedIds: new Set(
-      events
-        .filter(({ id }) => playedIds.has(playedTimelineEventId(id)))
-        .map(({ id }) => id)
-    )
+  return dealByDifficulty({
+    deal: (share) =>
+      dealEvents({
+        count: TIMELINE_EVENTS_PER_ROUND,
+        events: share,
+        playedIds: playedEventIds
+      }),
+    difficulty,
+    pool: events,
+    tierOf: oneTierForEveryRow
   })
 }

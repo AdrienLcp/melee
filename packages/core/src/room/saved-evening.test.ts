@@ -63,7 +63,7 @@ describe('withSavedEvening', () => {
   it('[saved-evening] opens an entry whose settings were lost on what its game was last left at', () => {
     const remembered = {
       ...openedSetup({ game: 'timeline', locale: 'fr' }),
-      game: { kind: 'timeline', roundDurationMs: 60_000 }
+      game: { difficulty: 'mixed', kind: 'timeline', roundDurationMs: 60_000 }
     } satisfies GameSetup
     const loaded = withSavedEvening({
       evening: { ...gameNight, lineUp: ['quiz', FILM_SCORES, 'timeline'] },

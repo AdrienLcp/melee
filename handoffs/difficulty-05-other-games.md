@@ -4,6 +4,13 @@ Wave 3, beside part 4, after parts 1–3 (rules and Adrien's words in
 `difficulty-01-setting.md`). The last session of the series: it also closes
 it (see the end).
 
+## What part 1 left (landed)
+
+The timeline already takes `difficulty` (`drawTimelineEvents` in
+`timeline-bank.ts`, `dealByDifficulty` over `oneTierForEveryRow`): tiering the
+bank is replacing that one function. Black square, most likely and the rest
+take no level yet.
+
 ## Timeline — leave `mixed` alone
 
 > Pour la frise je trouve ça normal d'avoir des évènements proches, ça pour le

@@ -1,6 +1,10 @@
 import type { CountryCode } from '@melee/protocol/country-code'
+import type { Difficulty } from '@melee/protocol/difficulty'
 
-import { pickRandom } from '@melee/core/helpers/random'
+import {
+  drawByDifficulty,
+  oneTierForEveryRow
+} from '@melee/core/round/difficulty-draw'
 
 /**
  * The countries a map round may ask a table to place: every one large enough
@@ -178,10 +182,16 @@ export const playedCountryId = (code: CountryCode): string => `atlas:${code}`
 
 /** A country the room has not been asked yet, or `null` once it has placed them all. */
 export const drawCountry = ({
+  difficulty,
   playedIds
 }: {
+  difficulty: Difficulty
   playedIds: ReadonlySet<string>
 }): CountryCode | null =>
-  pickRandom(
-    BANKED_COUNTRIES.filter((code) => !playedIds.has(playedCountryId(code)))
-  )
+  drawByDifficulty({
+    difficulty,
+    pool: BANKED_COUNTRIES.filter(
+      (code) => !playedIds.has(playedCountryId(code))
+    ),
+    tierOf: oneTierForEveryRow
+  })

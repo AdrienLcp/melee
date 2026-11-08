@@ -48,6 +48,7 @@ import type { HostPreferences } from '@melee/core/room/host-preferences'
 import { readyMadeLineUpIds } from '@melee/core/room/ready-made-line-ups'
 import type { PlayedLineUp, RecentTable } from '@melee/core/room/recent-tables'
 import { withCurrentGameKinds } from '@melee/core/room/renamed-game-kinds'
+import { withQuizSwitchAsLevel } from '@melee/core/room/retired-quiz-switch'
 import {
   SAVED_EVENING_NAME_MAX_LENGTH,
   type SavedEntry,
@@ -69,6 +70,10 @@ export const PAWN_KEY = 'melee:pawn'
 export const RECENT_TABLES_KEY = 'melee:recent-tables'
 export const SAVED_EVENINGS_KEY = 'melee:saved-evenings'
 export const VOLUME_KEY = 'melee:volume'
+
+/** Stored JSON read under today's game ids and settings, whatever build wrote it. */
+const withCurrentStoredShape = (stored: unknown): unknown =>
+  withQuizSwitchAsLevel(withCurrentGameKinds(stored))
 
 /**
  * Composed out of the protocol's own schemas rather than restated, so a setting
@@ -110,7 +115,7 @@ const boardLaidWith = (teams: TeamsSettings): BoardSettings =>
   teams.kind === 'off' ? DEFAULT_BOARD_SETTINGS : DEFAULT_TRACK_SETTINGS
 
 const hostPreferencesSchema = z.preprocess(
-  withCurrentGameKinds,
+  withCurrentStoredShape,
   z.object({
     games: z.record(z.string(), z.unknown()).transform(usableGameSetups),
     room: roomSettingsSchema
@@ -479,7 +484,7 @@ const eachReadableLineUp = <Kept extends PlayedLineUp>(
   schema: z.ZodType<Kept>
 ) =>
   z.preprocess(
-    withCurrentGameKinds,
+    withCurrentStoredShape,
     z.array(z.unknown()).transform((stored) =>
       stored.flatMap((item) => {
         const kept = schema.safeParse(item)

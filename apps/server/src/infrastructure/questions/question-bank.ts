@@ -11,6 +11,10 @@ import {
 } from '@melee/protocol/question'
 
 import { pickRandom } from '@melee/core/helpers/random'
+import {
+  type ContentTier,
+  dealByDifficulty
+} from '@melee/core/round/difficulty-draw'
 
 import {
   asksACapitalTheRubricAsks,
@@ -164,10 +168,21 @@ export const hostQuestionOf = ({
  * A `choiceOnly` row wants its own decoys on screen, which is true of a quiz in
  * `choice` mode and of nothing else: typed mode has a text field.
  *
+ * **The level's tier is drawn before the category** (`dealByDifficulty`),
+ * so `easy` deals a question a room has heard of whenever any ticked subject
+ * still holds one.
+ *
  * `previousCategory` is the round just played, and is not drawn again while
  * another category is left: an independent draw dealt two flags in a row one
  * round in three over three rubrics, and a table reads that as a broken mix.
  */
+/**
+ * A row carries a verdict, not a ladder — heard of or not — so the bank has
+ * no medium tier, and `mixed` deals the two halves in equal shares.
+ */
+const tierOfQuestion = ({ isWellKnown }: BankedQuestion): ContentTier =>
+  isWellKnown ? 'easy' : 'hard'
+
 export const drawQuestion = ({
   isFamilyFriendly,
   isUsable,
@@ -186,17 +201,23 @@ export const drawQuestion = ({
     (question) =>
       !playedIds.has(question.id) &&
       !(isFamilyFriendly && question.isAdult) &&
-      (!settings.wellKnownOnly || question.isWellKnown) &&
       (settings.categories.length === 0 ||
         settings.categories.includes(question.category)) &&
       isUsable(question)
   )
 
-  const byCategory = Map.groupBy(eligible, (question) => question.category)
+  return dealByDifficulty({
+    deal: (share) => {
+      const byCategory = Map.groupBy(share, (question) => question.category)
 
-  if (previousCategory !== null && byCategory.size > 1) {
-    byCategory.delete(previousCategory)
-  }
+      if (previousCategory !== null && byCategory.size > 1) {
+        byCategory.delete(previousCategory)
+      }
 
-  return pickRandom(pickRandom([...byCategory.values()]) ?? [])
+      return pickRandom(pickRandom([...byCategory.values()]) ?? [])
+    },
+    difficulty: settings.difficulty,
+    pool: eligible,
+    tierOf: tierOfQuestion
+  })
 }

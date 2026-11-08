@@ -32,6 +32,19 @@ neighbours and the G20 are `easy` whatever the traffic; a territory is never
 `easy`). The flag and silhouette tiers stay one list. Replace the stand-in
 mapping part 1 put in the server.
 
+## What part 1 left (landed)
+
+The draw is `dealByDifficulty` / `drawByDifficulty` in
+`packages/core/src/round/difficulty-draw.ts`, with `ContentTier`,
+`contentTiers` (for a bank's zod schema) and `oneTierForEveryRow`. The
+stand-ins to replace:
+- `tierOfQuestion` in `question-bank.ts` — `isWellKnown → easy`, else `hard`,
+  no medium. Every rubric is a quiz category, so tiering a rubric's rows is
+  what changes this. The tier is drawn **before** the category; the
+  no-repeat-category rule now applies inside the drawn tier's share.
+- Atlas: `drawCountry`, `drawCity`, `drawCapital` take `difficulty` and use
+  `oneTierForEveryRow`.
+
 ## `easy` may soften the question, nothing else may
 
 Adrien keeps look-alike decoys ("c'est ok"). In `easy` only, deal decoys from

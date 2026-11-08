@@ -213,10 +213,10 @@ export const FR_DICTIONARY = defineDictionary({
       none: 'N’en choisis aucune et tu as toutes les décennies.'
     },
     difficulty: {
+      easy: 'Grand public',
+      hard: 'Pour les experts',
       label: 'À quel point c’est connu',
-      mixed: 'Un peu pointu',
-      obscure: 'Pour les experts',
-      wellKnown: 'Grand public'
+      mixed: 'Un peu pointu'
     },
     genre: {
       '52': 'Chanson française',

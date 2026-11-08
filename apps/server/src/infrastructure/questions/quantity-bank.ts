@@ -1,9 +1,14 @@
 import { z } from 'zod'
 
+import type { Difficulty } from '@melee/protocol/difficulty'
 import { quantityFamilySchema } from '@melee/protocol/estimate'
 
-import { pickRandom } from '@melee/core/helpers/random'
 import { type DealtPair, dealPairs } from '@melee/core/higherlower/pair-deal'
+import {
+  type ContentTier,
+  dealByDifficulty,
+  drawByDifficulty
+} from '@melee/core/round/difficulty-draw'
 
 import { isFamousQuantity } from './famous-quantities'
 import bank from './quantity-bank.json' with { type: 'json' }
@@ -38,25 +43,31 @@ export const playedQuantityId = ({ entity, family }: QuantityRow): string =>
   `estimate:${family}:${entity}`
 
 /**
- * A quantity the room has not been dealt, a well-known one first: the height of
- * a summit nobody at the table has heard of is a guess at the zeros, not an
- * estimate. `null` once the whole bank is spent, because a number heard again
- * is its answer.
+ * A famous quantity is one a French table knows by heart, a well-known one one
+ * it has heard of, and the rest the height of a summit nobody at the table has
+ * — a guess at the zeros, which `easy` never deals while anything else is left.
+ */
+const tierOfQuantity = (row: QuantityRow): ContentTier =>
+  isFamousQuantity(row) ? 'easy' : row.isWellKnown ? 'medium' : 'hard'
+
+/**
+ * A quantity the room has not been dealt, at the room's level. `null` once the
+ * whole bank is spent, because a number heard again is its answer.
  */
 export const drawQuantity = ({
+  difficulty,
   playedIds
 }: {
+  difficulty: Difficulty
   playedIds: ReadonlySet<string>
-}): QuantityRow | null => {
-  const unplayed = bankedQuantities().filter(
-    (row) => !playedIds.has(playedQuantityId(row))
-  )
-
-  return (
-    pickRandom(unplayed.filter(({ isWellKnown }) => isWellKnown)) ??
-    pickRandom(unplayed)
-  )
-}
+}): QuantityRow | null =>
+  drawByDifficulty({
+    difficulty,
+    pool: bankedQuantities().filter(
+      (row) => !playedIds.has(playedQuantityId(row))
+    ),
+    tierOf: tierOfQuantity
+  })
 
 export const playedPairedQuantityId = ({
   entity,
@@ -64,22 +75,23 @@ export const playedPairedQuantityId = ({
 }: QuantityRow): string => `higherlower:${family}:${entity}`
 
 /**
- * A round of quantities the room has not compared, from the famous rows first
- * and the well-known after: two summits nobody has heard of are a coin flip,
- * not a comparison. `null` once the bank cannot deal a round.
+ * A round of quantities the room has not compared, every pair from one tier
+ * of the room's level: two summits nobody has heard of are a coin flip, not a
+ * comparison, and `easy` deals them only once nothing better can fill a round.
+ * `null` once the bank cannot deal a round.
  */
 export const drawPairs = ({
+  difficulty,
   playedIds
 }: {
+  difficulty: Difficulty
   playedIds: ReadonlySet<string>
-}): DealtPair<QuantityRow>[] | null => {
-  const unplayed = bankedQuantities().filter(
-    (row) => !playedIds.has(playedPairedQuantityId(row))
-  )
-
-  return (
-    dealPairs(unplayed.filter(isFamousQuantity)) ??
-    dealPairs(unplayed.filter(({ isWellKnown }) => isWellKnown)) ??
-    dealPairs(unplayed)
-  )
-}
+}): DealtPair<QuantityRow>[] | null =>
+  dealByDifficulty({
+    deal: dealPairs,
+    difficulty,
+    pool: bankedQuantities().filter(
+      (row) => !playedIds.has(playedPairedQuantityId(row))
+    ),
+    tierOf: tierOfQuantity
+  })

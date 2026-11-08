@@ -1,5 +1,7 @@
 import { z } from 'zod'
 
+import { type Difficulty, difficultySchema } from './difficulty'
+
 /**
  * What the players are trying to guess. It exists on the wire in exactly two
  * situations: inside a host-only message, and inside `round.revealed` once the
@@ -47,7 +49,7 @@ export const trackDecades = [
  * advanced search takes an artist, an album, a label and a duration, and no
  * date — so a decade resolves to curated playlists, and which ones is a
  * catalogue fact only `deezer-client.ts` may hold. Named the way the room says
- * it for the same reason `TrackDifficulty` is: a catalogue that *could* filter
+ * it for the same reason the track difficulty is: a catalogue that *could* filter
  * by year would keep these six words.
  */
 export const trackDecadeSchema = z.enum(trackDecades)
@@ -165,19 +167,30 @@ export const trackSourceSchema = z.preprocess(
   ])
 )
 
-export const trackDifficulties = ['wellKnown', 'mixed', 'obscure'] as const
+const DIFFICULTY_OF_RETIRED_TRACK_LEVEL: Readonly<Record<string, Difficulty>> =
+  { obscure: 'hard', wellKnown: 'easy' }
+
+const asDifficulty = (value: unknown): unknown =>
+  typeof value === 'string'
+    ? (DIFFICULTY_OF_RETIRED_TRACK_LEVEL[value] ?? value)
+    : value
 
 /**
- * How obscure a track may be and still be worth guessing. Deliberately named in
- * the room's vocabulary rather than in the catalogue's: a popularity score is a
- * Deezer fact, and only `deezer-client.ts` may know what number each of these
- * costs. A second catalogue with a different scale keeps these three words.
+ * How obscure a track may be and still be worth guessing — a popularity
+ * floor, not a tier draw, and only `deezer-client.ts` may know what number each
+ * level costs. A second catalogue with a different scale keeps these words.
+ *
+ * Still reads `wellKnown` and `obscure`, the blind test's own words before
+ * every game shared one vocabulary, from a host's stored setup and from a tab
+ * loaded before the change.
  */
-export const trackDifficultySchema = z.enum(trackDifficulties)
+export const trackDifficultySchema = z.preprocess(
+  asDifficulty,
+  difficultySchema
+)
 
 export type TrackIdentity = z.infer<typeof trackIdentitySchema>
 export type HostTrack = z.infer<typeof hostTrackSchema>
 export type TrackDecade = z.infer<typeof trackDecadeSchema>
 export type TrackSource = z.infer<typeof trackSourceSchema>
 export type CatalogueSource = Extract<TrackSource, { kind: 'catalogue' }>
-export type TrackDifficulty = z.infer<typeof trackDifficultySchema>

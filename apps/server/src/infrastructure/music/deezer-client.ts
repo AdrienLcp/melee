@@ -1,11 +1,11 @@
 import { type FailureResult, Result } from '@adrienlcp/result'
 import { z } from 'zod'
 
+import type { Difficulty } from '@melee/protocol/difficulty'
 import type { CatalogueTrack } from '@melee/protocol/http'
 import {
   type HostTrack,
   type TrackDecade,
-  type TrackDifficulty,
   type TrackSource,
   trackDecades
 } from '@melee/protocol/track'
@@ -44,14 +44,14 @@ const POOL_SIZE = 100
  * catalogue: charting hits and classics sit at 830k–990k (Bohemian Rhapsody
  * 958k, Dancing Queen 946k), while the junk sits at 25k–405k.
  *
- * `obscure` therefore still holds a floor. A blind test nobody can answer is
+ * `hard` therefore still holds a floor. A blind test nobody can answer is
  * not a hard blind test, it is a broken one, and below about 50k the catalogue
  * stops being music anyone chose to release.
  */
-const MINIMUM_RANK_BY_DIFFICULTY: Record<TrackDifficulty, number> = {
-  mixed: 250_000,
-  obscure: 50_000,
-  wellKnown: 500_000
+const MINIMUM_RANK_BY_DIFFICULTY: Record<Difficulty, number> = {
+  easy: 500_000,
+  hard: 50_000,
+  mixed: 250_000
 }
 
 /** Deezer's name for "that id resolves to nothing", whatever was asked for. */
@@ -103,7 +103,7 @@ export const fetchTracksFor = async ({
   signal,
   source
 }: {
-  difficulty: TrackDifficulty
+  difficulty: Difficulty
   /**
    * The browser's own request, so a preview the host has already moved past
    * stops spending the Deezer quota on every path of its fan-out.
@@ -245,7 +245,7 @@ export const fetchHostTrack = async (
  * The film scores answer it three times over and **overrule the room's
  * difficulty** doing it. Deezer's rank scores the recording, and a score cue
  * carries almost none of a single's: `Son Of A Preacher Man` as it appears on
- * *Pulp Fiction* ranks 8k where `wellKnown` demands 500k, and the whole
+ * *Pulp Fiction* ranks 8k where `easy` demands 500k, and the whole
  * composer table holds 135 tracks above that floor against 1 155 above this
  * one. So the strand pins its own, and a track still has to name a film and be
  * credited to a composer to get in — `film-score.ts` holds why each of those is
@@ -256,7 +256,7 @@ const catalogued = ({
   strand,
   tracks
 }: {
-  difficulty: TrackDifficulty
+  difficulty: Difficulty
   strand: Strand
   tracks: DeezerTrack[]
 }): CatalogueTrack[] => {
@@ -286,10 +286,7 @@ const catalogued = ({
   )
 }
 
-const isWorthGuessing = (
-  track: DeezerTrack,
-  difficulty: TrackDifficulty
-): boolean =>
+const isWorthGuessing = (track: DeezerTrack, difficulty: Difficulty): boolean =>
   track.preview.length > 0 &&
   (track.rank ?? 0) >= MINIMUM_RANK_BY_DIFFICULTY[difficulty]
 

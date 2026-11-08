@@ -306,9 +306,9 @@ Seven things that cost time before they were written down:
   `correct`.
 - **A quiz round closes on its own `roundDurationMs`** — 120 s at most — even
   with `answerWindowMs: null`.
-- **`settings.game` for the quiz wants `wellKnownOnly`**, not
-  `isWellKnownOnly`. The refusal is a non-fatal `error` frame and nothing on
-  the page says so.
+- **`settings.game` for the quiz wants `difficulty: 'easy' | 'mixed' |
+  'hard'`**, not a boolean. A wrong field is a non-fatal `error` frame and
+  nothing on the page says so.
 - **The tool's JS sandbox does not survive between calls.** A page handle
   stored on `globalThis` is gone next call; the browser's contexts are not.
   Re-find what you need with

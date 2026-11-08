@@ -1,11 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 
-import {
-  catalogueOf,
-  EVERY_STRAND,
-  type TrackDifficulty,
-  trackDecades
-} from '@melee/protocol/track'
+import type { Difficulty } from '@melee/protocol/difficulty'
+import { catalogueOf, EVERY_STRAND, trackDecades } from '@melee/protocol/track'
 
 import { fetchTracksFor } from './deezer-client'
 import { isOutage } from './music-source'
@@ -75,7 +71,7 @@ const catalogueByPath = (
   return () => requested
 }
 
-const titlesDrawnAt = async (difficulty: TrackDifficulty) => {
+const titlesDrawnAt = async (difficulty: Difficulty) => {
   const found = await fetchTracksFor({
     difficulty,
     source: { kind: 'search', query: 'anything' }
@@ -98,12 +94,12 @@ describe('fetchTracksFor', () => {
       trackAtRank(NOISE_RANK)
     ])
 
-    await expect(titlesDrawnAt('wellKnown')).resolves.toEqual(['Rank 940000'])
+    await expect(titlesDrawnAt('easy')).resolves.toEqual(['Rank 940000'])
     await expect(titlesDrawnAt('mixed')).resolves.toEqual([
       'Rank 940000',
       'Rank 300000'
     ])
-    await expect(titlesDrawnAt('obscure')).resolves.toEqual([
+    await expect(titlesDrawnAt('hard')).resolves.toEqual([
       'Rank 940000',
       'Rank 300000'
     ])
@@ -112,19 +108,19 @@ describe('fetchTracksFor', () => {
   it('[difficulty] keeps a floor even at its most permissive', async () => {
     catalogueHolding([trackAtRank(NOISE_RANK)])
 
-    await expect(titlesDrawnAt('obscure')).resolves.toEqual([])
+    await expect(titlesDrawnAt('hard')).resolves.toEqual([])
   })
 
   it('[difficulty] refuses a track whose score the endpoint did not report', async () => {
     catalogueHolding([{ ...trackAtRank(CLASSIC_RANK), rank: null }])
 
-    await expect(titlesDrawnAt('obscure')).resolves.toEqual([])
+    await expect(titlesDrawnAt('hard')).resolves.toEqual([])
   })
 
   it('[difficulty] refuses a track with no preview, however popular', async () => {
     catalogueHolding([{ ...trackAtRank(CLASSIC_RANK), preview: '' }])
 
-    await expect(titlesDrawnAt('wellKnown')).resolves.toEqual([])
+    await expect(titlesDrawnAt('easy')).resolves.toEqual([])
   })
 
   it('[genres] merges every chosen chart and keeps a shared track once', async () => {
@@ -140,7 +136,7 @@ describe('fetchTracksFor', () => {
     })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ charts: [132, 152] })
     })
 
@@ -156,7 +152,7 @@ describe('fetchTracksFor', () => {
     })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ charts: [] })
     })
 
@@ -170,7 +166,7 @@ describe('fetchTracksFor', () => {
     catalogueByPath({ '/chart/152/tracks': [namedTrack('b', 'Rock one')] })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ charts: [132, 152] })
     })
 
@@ -186,7 +182,7 @@ describe('fetchTracksFor', () => {
     })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ decades: ['1990s'] })
     })
 
@@ -202,7 +198,7 @@ describe('fetchTracksFor', () => {
     })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ decades: ['1990s'] })
     })
 
@@ -217,7 +213,7 @@ describe('fetchTracksFor', () => {
     })
 
     await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ decades: [] })
     })
 
@@ -228,7 +224,7 @@ describe('fetchTracksFor', () => {
     catalogueByPath({ '/chart/132/tracks': [trackAtRank(CLASSIC_RANK)] })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ charts: [132, 152] })
     })
 
@@ -246,7 +242,7 @@ describe('fetchTracksFor', () => {
     catalogueByPath({})
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: catalogueOf({ charts: [132, 152] })
     })
 
@@ -283,7 +279,7 @@ describe('fetchTracksFor', () => {
     )
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: { kind: 'playlist', playlistId: '404' }
     })
 
@@ -323,7 +319,7 @@ describe('fetchTracksFor', () => {
 
     const caller = new AbortController()
     const found = fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       signal: caller.signal,
       source: catalogueOf({ decades: [] })
     })
@@ -364,7 +360,7 @@ const filmPoolOf = async (tracks: unknown[]) => {
   catalogueHolding(tracks)
 
   const found = await fetchTracksFor({
-    difficulty: 'wellKnown',
+    difficulty: 'easy',
     source: catalogueOf({ hasFilmScores: true })
   })
 
@@ -437,7 +433,7 @@ describe('the film source', () => {
   })
 
   it('[film] pins its own floor over whatever the room asked for', async () => {
-    // 220k passes here and would fail every difficulty above `obscure`: Deezer
+    // 220k passes here and would fail every difficulty above `hard`: Deezer
     // ranks the recording, and a score cue carries almost none of a single's.
     const pool = await filmPoolOf([
       scoreCue({
@@ -518,7 +514,7 @@ describe('a catalogue mixing strands', () => {
     })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: EVERY_STRAND
     })
     const pool = found.status === 'success' ? found.data.tracks : []
@@ -577,7 +573,7 @@ describe('a catalogue mixing strands, weighed', () => {
     })
 
     const found = await fetchTracksFor({
-      difficulty: 'wellKnown',
+      difficulty: 'easy',
       source: EVERY_STRAND
     })
     const pool = found.status === 'success' ? found.data.tracks : []

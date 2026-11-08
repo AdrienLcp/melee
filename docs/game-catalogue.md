@@ -170,7 +170,7 @@ says `titleCorrect`.
 It is also the first source to **overrule a room setting** — when it is drawn
 alone. Deezer's rank scores
 the recording and a score cue carries almost none of a single's, so the whole
-composer table holds 135 tracks above `wellKnown`'s floor against 1 155 above
+composer table holds 135 tracks above `easy`'s floor against 1 155 above
 this strand's own — and a difficulty control whose _hard_ position leaves 75 tracks
 is a control whose room never learns why. The strip is ruled and says so, read
 off the **draft** rather than the room, or it would go on claiming to work for a
@@ -341,6 +341,18 @@ quiz's is a taste call, which is exactly why the field stays per-game instead of
 being hoisted to the room. The bare buzzer has no arm for it at all:
 `roundDurationMsOf` returns `null`, and a game that serves nothing has nothing
 for the room to run out of.
+
+**`difficulty` is the game's too, in one vocabulary** — `easy | mixed | hard`,
+on every arm that deals content, never on the room. The words are shared and
+the meaning is each bank's: the quiz, the country rubrics and the quantities
+tier their rows and draw through `dealByDifficulty` (a tier first, then an item
+inside it, so `mixed` is a third a tier however lopsided the bank), while the
+blind test reads the same three words as a Deezer popularity floor and opens on
+`easy`, the charts it always dealt. A level for the whole evening was asked for
+too, and is **derived rather than stored**: the console writes one level into
+every entry of the line-up, and reads one back only while they agree. A room
+value beside the games' would need a precedence rule, and every precedence
+rule is one more thing a host cannot see from the setup.
 
 ## The seams, and what it costs to keep them open
 

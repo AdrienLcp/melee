@@ -91,6 +91,7 @@ describe('settingsSummary', () => {
       placesOf({
         ...atlas,
         game: {
+          difficulty: 'mixed',
           direction: 'place',
           kind: 'atlas',
           places: ['countries', 'frenchCities'],
