@@ -1,53 +1,24 @@
-# Difficulty, part 5 — the timeline and every other game that can take a level
+# Difficulty, part 5 — closing the series
 
-Wave 3, beside part 4, after parts 1–3 (rules and Adrien's words in
-`difficulty-01-setting.md`). The last session of the series: it also closes
-it (see the end).
+The audit and the wiring landed (`214f37e9`, `34bca5f8`, `ffb41d1b`,
+`982e52fb`): the timeline deals `easy` from `knownToChildren` events thirty
+years apart, Petit Bac tiers its categories, and `docs/game-catalogue.md`
+(_Which games take a level_) says why Shades, Matchsticks and the games with
+nothing to deal take none. Nothing of it is pushed yet: the series validates
+once, here.
 
-## What part 1 left (landed)
-
-The timeline already takes `difficulty` (`drawTimelineEvents` in
-`timeline-bank.ts`, `dealByDifficulty` over `oneTierForEveryRow`): tiering the
-bank is replacing that one function. Black square, most likely and the rest
-take no level yet.
-
-## Timeline — leave `mixed` alone
-
-> Pour la frise je trouve ça normal d'avoir des évènements proches, ça pour le
-> coup je ne remets pas la difficulté de ce jeu en question.
-
-So `mixed` and `hard` deal exactly as today (`packages/core/src/timeline/deal.ts:27-51`,
-`MIN_YEARS_APART = 5` at `:8`). Only `easy` changes, for a table of children:
-events at least ~30 years apart, drawn from an `easy` tier. The bank
-(`timeline-bank.json`, 214 events, 7 themes) has no fame field: tier the
-events — by hand is fine at 214, or from French Wikipedia traffic as part 3
-does. Grow the bank if `easy` ends up too thin to fill five events thirty
-years apart for an evening.
-
-## Every other game — audit, then wire what fits
-
-For each, decide whether a level means something, and wire `difficulty` (part
-1's schema, part 2's picker) only where it does:
-
-- **Petit Bac** — `easy` deals only common letters (no K, Q, W, X, Y, Z);
-  check what the letter draw does today.
-- **Shades** — `easy` shows the colour longer; the pay curve does not move.
-- **Matchsticks** — does its bank carry anything that orders it? Tier if so.
-  (Part 3 tiered the emoji rebus by hand.)
-- **Black square** — not here: `black-square-01-shape.md` rebuilds its bank
-  with tiers and wires its level.
-- **Most likely**, **Buzzer**, **Reflex**, **Slate**, **Challenge**, **Inner
-  clock** — no dealt content of their own, or the host brings it: no level,
-  and they stay out of the evening-wide picker's count.
-
-Write down in `docs/game-catalogue.md` which games take a level and why the
-others do not, so the next game knows.
+What is left waits on `difficulty-04-numbers.md` landing — the closing
+validate has to cover it.
 
 ## Closing the series
 
-- `pnpm validate` once, here, after everything has landed (the series runs one
-  validate at the end; CI covers each push).
-- Record the stage as `docs/plans/62-difficulty.md` (what it bought, the
-  decisions in part 1, the capitals finding part 3 wrote into `docs/game-catalogue.md`) and add its row to
-  `docs/plans/README.md`.
-- Delete the `difficulty-*` handoffs and their README rows in that commit.
+1. `pnpm validate` once no other session is running it, after part 4 has
+   landed. Fix whatever it reports, whoever wrote it.
+2. Record the stage as `docs/plans/62-difficulty.md`: what it bought, the
+   decisions of part 1 (one vocabulary `easy | mixed | hard`, `mixed` a third
+   a tier, a level never changes the pay, the evening level derived rather
+   than stored), the capitals finding part 3 wrote into
+   `docs/game-catalogue.md`, the timeline and Petit Bac readings above. Add
+   its row to `docs/plans/README.md`.
+3. Delete the `difficulty-*` handoffs and their rows in `handoffs/README.md`
+   in that commit, then push and watch CI (a push deploys once it is green).
