@@ -7,6 +7,8 @@ import {
   silhouetteFileSchema
 } from '@melee/protocol/question'
 
+import { contentTiers } from '@melee/core/round/difficulty-draw'
+
 import {
   acceptedCountryNames,
   COUNTRY_NAMES_BY_LANGUAGE
@@ -23,8 +25,13 @@ const silhouetteBankSchema = z.array(
   z.object({
     code: countryCodeSchema,
     decoys: z.tuple([countryCodeSchema, countryCodeSchema, countryCodeSchema]),
+    easyDecoys: z.tuple([
+      countryCodeSchema,
+      countryCodeSchema,
+      countryCodeSchema
+    ]),
     file: silhouetteFileSchema,
-    isWellKnown: z.boolean()
+    tier: z.enum(contentTiers)
   })
 )
 
@@ -53,16 +60,22 @@ export const bankedSilhouetteQuestions = (): BankedQuestion[] => {
             names[silhouette.decoys[1]].name,
             names[silhouette.decoys[2]].name
           ] as const,
+          easyDecoys: [
+            names[silhouette.easyDecoys[0]].name,
+            names[silhouette.easyDecoys[1]].name,
+            names[silhouette.easyDecoys[2]].name
+          ] as const,
           flag: null,
           id: `silhouette-${language}-${silhouette.file.replace('.svg', '')}`,
           isAdult: false,
-          isWellKnown: silhouette.isWellKnown,
+          isWellKnown: silhouette.tier === 'easy',
           language,
           note: null,
           prompt: PROMPT_BY_LANGUAGE[language],
           rebus: null,
           silhouette: silhouette.file,
-          theme: 'natural-earth'
+          theme: 'natural-earth',
+          tier: silhouette.tier
         }
       })
     )

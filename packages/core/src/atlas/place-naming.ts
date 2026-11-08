@@ -12,23 +12,32 @@ import { greatCircleKm } from './distance'
 const DECOY_POOL_SIZE = 8
 
 /**
+ * The ring an `easy` room draws from: across a continent, or across France,
+ * where a decoy is a place nobody would confuse with the answer.
+ */
+const WIDE_DECOY_POOL_SIZE = 40
+
+/**
  * Three places near `from`, drawn among its nearest — four African countries,
- * four Breton towns. `from` itself is left out by its point.
+ * four Breton towns — or, `isWide`, among a ring wide enough to soften the
+ * pick. `from` itself is left out by its point.
  */
 export const nearbyDecoys = <TPlace extends { point: GeoPoint }>({
   candidates,
   count,
-  from
+  from,
+  isWide
 }: {
   candidates: readonly TPlace[]
   count: number
   from: GeoPoint
+  isWide: boolean
 }): TPlace[] => {
   const byDistance = candidates
     .map((place) => ({ distanceKm: greatCircleKm(from, place.point), place }))
     .filter(({ distanceKm }) => distanceKm > 0)
     .toSorted((one, other) => one.distanceKm - other.distanceKm)
-    .slice(0, Math.max(count, DECOY_POOL_SIZE))
+    .slice(0, Math.max(count, isWide ? WIDE_DECOY_POOL_SIZE : DECOY_POOL_SIZE))
     .map(({ place }) => place)
 
   return shuffled(byDistance).slice(0, count)

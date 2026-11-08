@@ -3,16 +3,22 @@ import { writeFile } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
-import type { z } from 'zod'
+import { z } from 'zod'
 
 import {
   type CountryCode,
   countryCodeSchema
 } from '@melee/protocol/country-code'
 
+import {
+  type ContentTier,
+  contentTiers
+} from '@melee/core/round/difficulty-draw'
+
 import type { CapitalRow } from '../src/infrastructure/questions/capital-bank'
-import { frenchViewsOf, isWellKnownInFrench } from './frwiki-notability'
-import { orStop, parseJson } from './json-file'
+import { NEIGHBOURS_OF_FRANCE, tiersInThirds } from './country-tiers'
+import { frenchViewsOf } from './frwiki-notability'
+import { orStop, parseJson, readJsonFile } from './json-file'
 import { cached } from './question-source'
 import { aliasesOf } from './wikidata-aliases'
 import { type Names, namesOf } from './wikidata-names'
@@ -28,6 +34,17 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 const BANK_PATH = join(
   HERE,
   '../src/infrastructure/questions/capital-bank.json'
+)
+
+/**
+ * Where each country's own tier is read, which bounds its capital's: a
+ * capital is `easy` only for a country every table knows, and never `hard`
+ * for one — sixty days of traffic put Ouagadougou above Brasília and Caracas
+ * among the obscure. Built first: `pnpm flags:build`, then this.
+ */
+const FLAG_BANK_PATH = join(
+  HERE,
+  '../src/infrastructure/questions/flag-bank.json'
 )
 
 const M49_URL = 'https://unstats.un.org/unsd/methodology/m49/overview/'
@@ -461,6 +478,36 @@ const main = async () => {
     label: 'capitals'
   })
 
+  const capitalTiers = tiersInThirds(
+    new Map(
+      resolved.map(({ capital, code }) => [code, views.get(capital) ?? 0])
+    )
+  )
+  const countryTiers = new Map(
+    orStop(
+      readJsonFile(
+        FLAG_BANK_PATH,
+        z.array(
+          z.object({ code: countryCodeSchema, tier: z.enum(contentTiers) })
+        )
+      ),
+      'flag-bank.json'
+    ).map(({ code, tier }) => [code, tier])
+  )
+  const tierOf = (code: CountryCode): ContentTier => {
+    const byTraffic = capitalTiers.get(code) ?? 'hard'
+
+    if (NEIGHBOURS_OF_FRANCE.has(code)) {
+      return 'easy'
+    }
+
+    if (countryTiers.get(code) === 'easy') {
+      return byTraffic === 'hard' ? 'medium' : byTraffic
+    }
+
+    return byTraffic === 'easy' ? 'medium' : byTraffic
+  }
+
   const placeOf = (id: string) => {
     const placeNames = names.get(id)
 
@@ -507,8 +554,8 @@ const main = async () => {
     return {
       capital: {
         ...placeOf(capital),
-        isWellKnown: isWellKnownInFrench(views.get(capital) ?? 0),
-        point
+        point,
+        tier: tierOf(code)
       },
       code,
       largestCities,
@@ -525,7 +572,7 @@ const main = async () => {
   await writeFile(BANK_PATH, `${JSON.stringify(sorted, null, 2)}\n`, 'utf8')
 
   console.info(
-    `${sorted.length} capitals, ${sorted.filter(({ capital }) => capital.isWellKnown).length} well known → ${BANK_PATH}`
+    `${sorted.length} capitals, ${sorted.filter(({ capital }) => capital.tier === 'easy').length} easy → ${BANK_PATH}`
   )
 }
 

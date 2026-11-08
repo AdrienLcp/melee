@@ -17,6 +17,8 @@ import {
   countryCodeSchema
 } from '@melee/protocol/country-code'
 
+import { contentTiers } from '@melee/core/round/difficulty-draw'
+
 import { countryGeometryOf } from '../src/infrastructure/map/world-atlas'
 import { orStop, readJsonFile } from './json-file'
 
@@ -85,7 +87,15 @@ type Polygon = { coordinates: number[][][]; type: 'Polygon' }
 type MultiPolygon = { coordinates: number[][][][]; type: 'MultiPolygon' }
 
 const flagBankSchema = z.array(
-  z.object({ code: countryCodeSchema, isWellKnown: z.boolean() })
+  z.object({
+    code: countryCodeSchema,
+    easyDecoys: z.tuple([
+      countryCodeSchema,
+      countryCodeSchema,
+      countryCodeSchema
+    ]),
+    tier: z.enum(contentTiers)
+  })
 )
 
 const areaKm2 = (piece: Polygon): number =>
@@ -239,8 +249,9 @@ const main = async () => {
       {
         centre: geoCentroid(largest),
         code: flag.code,
-        isWellKnown: flag.isWellKnown,
-        svg: silhouetteOf(mainland)
+        easyDecoys: flag.easyDecoys,
+        svg: silhouetteOf(mainland),
+        tier: flag.tier
       }
     ]
   })
@@ -260,14 +271,15 @@ const main = async () => {
     rows.push({
       code: country.code,
       decoys: decoysOf({ centres, code: country.code }),
+      easyDecoys: country.easyDecoys,
       file,
-      isWellKnown: country.isWellKnown
+      tier: country.tier
     })
   }
 
   await writeFile(BANK_PATH, `${JSON.stringify(rows, null, 2)}\n`, 'utf8')
   console.info(
-    `${rows.length} silhouettes of ${flags.length} flags, ${rows.filter((row) => row.isWellKnown).length} well known`
+    `${rows.length} silhouettes of ${flags.length} flags, ${rows.filter((row) => row.tier === 'easy').length} easy`
   )
 }
 

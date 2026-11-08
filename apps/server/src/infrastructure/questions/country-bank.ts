@@ -1,10 +1,9 @@
 import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 
-import {
-  drawByDifficulty,
-  oneTierForEveryRow
-} from '@melee/core/round/difficulty-draw'
+import { drawByDifficulty } from '@melee/core/round/difficulty-draw'
+
+import { countryTierOf } from './flag-questions'
 
 /**
  * The countries a map round may ask a table to place: every one large enough
@@ -193,5 +192,5 @@ export const drawCountry = ({
     pool: BANKED_COUNTRIES.filter(
       (code) => !playedIds.has(playedCountryId(code))
     ),
-    tierOf: oneTierForEveryRow
+    tierOf: countryTierOf
   })

@@ -3,6 +3,8 @@ import { z } from 'zod'
 import { geoPointSchema } from '@melee/protocol/atlas'
 import { countryCodeSchema } from '@melee/protocol/country-code'
 
+import { contentTiers } from '@melee/core/round/difficulty-draw'
+
 import bank from './capital-bank.json' with { type: 'json' }
 
 const wordingSchema = z.object({ en: z.string(), fr: z.string() })
@@ -17,9 +19,12 @@ const placeSchema = z.object({
 
 export const capitalRowSchema = z.object({
   capital: placeSchema.extend({
-    /** Whether a French room can be expected to have heard of it, by its article's traffic. */
-    isWellKnown: z.boolean(),
-    point: geoPointSchema
+    point: geoPointSchema,
+    /**
+     * How well a French room knows it: its article's traffic cut in thirds,
+     * France's neighbours `easy` whatever they drew.
+     */
+    tier: z.enum(contentTiers)
   }),
   code: countryCodeSchema,
   /**

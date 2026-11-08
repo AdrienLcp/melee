@@ -6,7 +6,6 @@
         "fr": ["Kâboul"]
       },
       "id": "Q5838",
-      "isWellKnown": true,
       "names": {
         "en": "Kabul",
         "fr": "Kaboul"
@@ -14,7 +13,8 @@
       "point": {
         "latitude": 34.532777777,
         "longitude": 69.165833333
-      }
+      },
+      "tier": "medium"
     },
     "code": "AFG",
     "largestCities": [
@@ -118,7 +118,6 @@
         "fr": []
       },
       "id": "Q3897",
-      "isWellKnown": true,
       "names": {
         "en": "Luanda",
         "fr": "Luanda"
@@ -126,7 +125,8 @@
       "point": {
         "latitude": -8.838333333,
         "longitude": 13.234444444
-      }
+      },
+      "tier": "medium"
     },
     "code": "AGO",
     "largestCities": [
@@ -202,7 +202,6 @@
         "fr": []
       },
       "id": "Q19689",
-      "isWellKnown": true,
       "names": {
         "en": "Tirana",
         "fr": "Tirana"
@@ -210,7 +209,8 @@
       "point": {
         "latitude": 41.328333333,
         "longitude": 19.818055555
-      }
+      },
+      "tier": "medium"
     },
     "code": "ALB",
     "largestCities": [
@@ -294,7 +294,6 @@
         "fr": ["Andorre-la-vieille"]
       },
       "id": "Q1863",
-      "isWellKnown": true,
       "names": {
         "en": "Andorra la Vella",
         "fr": "Andorre-la-Vieille"
@@ -302,7 +301,8 @@
       "point": {
         "latitude": 42.507222222,
         "longitude": 1.522222222
-      }
+      },
+      "tier": "easy"
     },
     "code": "AND",
     "largestCities": [
@@ -378,7 +378,6 @@
         "fr": ["Abou Dhabi", "Aboû Dabî", "Abu Dhabi"]
       },
       "id": "Q1519",
-      "isWellKnown": true,
       "names": {
         "en": "Abu Dhabi",
         "fr": "Abou Dabi"
@@ -386,7 +385,8 @@
       "point": {
         "latitude": 24.451111111,
         "longitude": 54.396944444
-      }
+      },
+      "tier": "medium"
     },
     "code": "ARE",
     "largestCities": [
@@ -472,7 +472,6 @@
         "fr": []
       },
       "id": "Q1486",
-      "isWellKnown": true,
       "names": {
         "en": "Buenos Aires",
         "fr": "Buenos Aires"
@@ -480,7 +479,8 @@
       "point": {
         "latitude": -34.599722222,
         "longitude": -58.381944444
-      }
+      },
+      "tier": "easy"
     },
     "code": "ARG",
     "largestCities": [
@@ -560,7 +560,6 @@
         "fr": ["Iérevan", "Érévan"]
       },
       "id": "Q1953",
-      "isWellKnown": true,
       "names": {
         "en": "Yerevan",
         "fr": "Erevan"
@@ -568,7 +567,8 @@
       "point": {
         "latitude": 40.181388888,
         "longitude": 44.514444444
-      }
+      },
+      "tier": "medium"
     },
     "code": "ARM",
     "largestCities": [
@@ -655,7 +655,6 @@
         "fr": ["Saint-Jean"]
       },
       "id": "Q36262",
-      "isWellKnown": false,
       "names": {
         "en": "St. John's",
         "fr": "Saint John's"
@@ -663,7 +662,8 @@
       "point": {
         "latitude": 17.121111111,
         "longitude": -61.844722222
-      }
+      },
+      "tier": "hard"
     },
     "code": "ATG",
     "largestCities": [],
@@ -678,7 +678,6 @@
         "fr": []
       },
       "id": "Q3114",
-      "isWellKnown": true,
       "names": {
         "en": "Canberra",
         "fr": "Canberra"
@@ -686,7 +685,8 @@
       "point": {
         "latitude": -35.293055555,
         "longitude": 149.126944444
-      }
+      },
+      "tier": "easy"
     },
     "code": "AUS",
     "largestCities": [
@@ -808,7 +808,6 @@
         "fr": []
       },
       "id": "Q1741",
-      "isWellKnown": true,
       "names": {
         "en": "Vienna",
         "fr": "Vienne"
@@ -816,7 +815,8 @@
       "point": {
         "latitude": 48.208333333,
         "longitude": 16.3725
-      }
+      },
+      "tier": "easy"
     },
     "code": "AUT",
     "largestCities": [
@@ -900,7 +900,6 @@
         "fr": []
       },
       "id": "Q9248",
-      "isWellKnown": true,
       "names": {
         "en": "Baku",
         "fr": "Bakou"
@@ -908,7 +907,8 @@
       "point": {
         "latitude": 40.366655555,
         "longitude": 49.835183333
-      }
+      },
+      "tier": "medium"
     },
     "code": "AZE",
     "largestCities": [
@@ -998,7 +998,6 @@
         "fr": ["Kitega"]
       },
       "id": "Q167551",
-      "isWellKnown": false,
       "names": {
         "en": "Gitega",
         "fr": "Gitega"
@@ -1006,7 +1005,8 @@
       "point": {
         "latitude": -3.428333333,
         "longitude": 29.925
-      }
+      },
+      "tier": "hard"
     },
     "code": "BDI",
     "largestCities": [
@@ -1082,7 +1082,6 @@
         "fr": ["Bruxelles-Ville", "Ville de Bruxelles"]
       },
       "id": "Q239",
-      "isWellKnown": true,
       "names": {
         "en": "Brussels",
         "fr": "Bruxelles"
@@ -1090,7 +1089,8 @@
       "point": {
         "latitude": 50.846666666,
         "longitude": 4.351666666
-      }
+      },
+      "tier": "easy"
     },
     "code": "BEL",
     "largestCities": [
@@ -1173,7 +1173,6 @@
         "fr": []
       },
       "id": "Q3799",
-      "isWellKnown": true,
       "names": {
         "en": "Porto-Novo",
         "fr": "Porto-Novo"
@@ -1181,7 +1180,8 @@
       "point": {
         "latitude": 6.483333333,
         "longitude": 2.616666666
-      }
+      },
+      "tier": "medium"
     },
     "code": "BEN",
     "largestCities": [
@@ -1245,7 +1245,6 @@
         "fr": []
       },
       "id": "Q3777",
-      "isWellKnown": true,
       "names": {
         "en": "Ouagadougou",
         "fr": "Ouagadougou"
@@ -1253,7 +1252,8 @@
       "point": {
         "latitude": 12.368611111,
         "longitude": -1.5275
-      }
+      },
+      "tier": "medium"
     },
     "code": "BFA",
     "largestCities": [
@@ -1329,7 +1329,6 @@
         "fr": ["Dhaka"]
       },
       "id": "Q1354",
-      "isWellKnown": true,
       "names": {
         "en": "Dhaka",
         "fr": "Dacca"
@@ -1337,7 +1336,8 @@
       "point": {
         "latitude": 23.728888888,
         "longitude": 90.394444444
-      }
+      },
+      "tier": "medium"
     },
     "code": "BGD",
     "largestCities": [
@@ -1418,7 +1418,6 @@
         "fr": []
       },
       "id": "Q472",
-      "isWellKnown": true,
       "names": {
         "en": "Sofia",
         "fr": "Sofia"
@@ -1426,7 +1425,8 @@
       "point": {
         "latitude": 42.697886,
         "longitude": 23.321726
-      }
+      },
+      "tier": "medium"
     },
     "code": "BGR",
     "largestCities": [
@@ -1502,7 +1502,6 @@
         "fr": []
       },
       "id": "Q3882",
-      "isWellKnown": false,
       "names": {
         "en": "Manama",
         "fr": "Manama"
@@ -1510,7 +1509,8 @@
       "point": {
         "latitude": 26.216666666,
         "longitude": 50.583333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "BHR",
     "largestCities": [
@@ -1574,7 +1574,6 @@
         "fr": ["ville de Nassau"]
       },
       "id": "Q2467",
-      "isWellKnown": true,
       "names": {
         "en": "Nassau",
         "fr": "Nassau"
@@ -1582,7 +1581,8 @@
       "point": {
         "latitude": 25.078055555,
         "longitude": -77.338611111
-      }
+      },
+      "tier": "medium"
     },
     "code": "BHS",
     "largestCities": [
@@ -1610,7 +1610,6 @@
         "fr": []
       },
       "id": "Q11194",
-      "isWellKnown": true,
       "names": {
         "en": "Sarajevo",
         "fr": "Sarajevo"
@@ -1618,7 +1617,8 @@
       "point": {
         "latitude": 43.856388888,
         "longitude": 18.413055555
-      }
+      },
+      "tier": "medium"
     },
     "code": "BIH",
     "largestCities": [
@@ -1702,7 +1702,6 @@
         "fr": []
       },
       "id": "Q2280",
-      "isWellKnown": true,
       "names": {
         "en": "Minsk",
         "fr": "Minsk"
@@ -1710,7 +1709,8 @@
       "point": {
         "latitude": 53.902246,
         "longitude": 27.561837
-      }
+      },
+      "tier": "medium"
     },
     "code": "BLR",
     "largestCities": [
@@ -1832,7 +1832,6 @@
         "fr": ["Belmopán"]
       },
       "id": "Q3043",
-      "isWellKnown": false,
       "names": {
         "en": "Belmopan",
         "fr": "Belmopan"
@@ -1840,7 +1839,8 @@
       "point": {
         "latitude": 17.25,
         "longitude": -88.7675
-      }
+      },
+      "tier": "hard"
     },
     "code": "BLZ",
     "largestCities": [
@@ -1921,7 +1921,6 @@
         "fr": []
       },
       "id": "Q2907",
-      "isWellKnown": true,
       "names": {
         "en": "Sucre",
         "fr": "Sucre"
@@ -1929,7 +1928,8 @@
       "point": {
         "latitude": -19.0475,
         "longitude": -65.26
-      }
+      },
+      "tier": "medium"
     },
     "code": "BOL",
     "largestCities": [
@@ -2021,7 +2021,6 @@
         "fr": []
       },
       "id": "Q2844",
-      "isWellKnown": true,
       "names": {
         "en": "Brasília",
         "fr": "Brasilia"
@@ -2029,7 +2028,8 @@
       "point": {
         "latitude": -15.793888888,
         "longitude": -47.882777777
-      }
+      },
+      "tier": "medium"
     },
     "code": "BRA",
     "largestCities": [
@@ -2115,7 +2115,6 @@
         "fr": []
       },
       "id": "Q36168",
-      "isWellKnown": false,
       "names": {
         "en": "Bridgetown",
         "fr": "Bridgetown"
@@ -2123,7 +2122,8 @@
       "point": {
         "latitude": 13.0975,
         "longitude": -59.616666666
-      }
+      },
+      "tier": "hard"
     },
     "code": "BRB",
     "largestCities": [],
@@ -2138,7 +2138,6 @@
         "fr": []
       },
       "id": "Q9279",
-      "isWellKnown": false,
       "names": {
         "en": "Bandar Seri Begawan",
         "fr": "Bandar Seri Begawan"
@@ -2146,7 +2145,8 @@
       "point": {
         "latitude": 4.916666666,
         "longitude": 114.916666666
-      }
+      },
+      "tier": "hard"
     },
     "code": "BRN",
     "largestCities": [],
@@ -2161,7 +2161,6 @@
         "fr": []
       },
       "id": "Q9270",
-      "isWellKnown": true,
       "names": {
         "en": "Thimphu",
         "fr": "Thimphou"
@@ -2169,7 +2168,8 @@
       "point": {
         "latitude": 27.47135,
         "longitude": 89.63367
-      }
+      },
+      "tier": "hard"
     },
     "code": "BTN",
     "largestCities": [
@@ -2209,7 +2209,6 @@
         "fr": []
       },
       "id": "Q3919",
-      "isWellKnown": false,
       "names": {
         "en": "Gaborone",
         "fr": "Gaborone"
@@ -2217,7 +2216,8 @@
       "point": {
         "latitude": -24.656944444,
         "longitude": 25.908611111
-      }
+      },
+      "tier": "hard"
     },
     "code": "BWA",
     "largestCities": [
@@ -2293,7 +2293,6 @@
         "fr": []
       },
       "id": "Q3832",
-      "isWellKnown": true,
       "names": {
         "en": "Bangui",
         "fr": "Bangui"
@@ -2301,7 +2300,8 @@
       "point": {
         "latitude": 4.37325,
         "longitude": 18.562833333
-      }
+      },
+      "tier": "medium"
     },
     "code": "CAF",
     "largestCities": [
@@ -2377,7 +2377,6 @@
         "fr": ["Ottawa (Ontario)", "Ville d'Ottawa"]
       },
       "id": "Q1930",
-      "isWellKnown": true,
       "names": {
         "en": "Ottawa",
         "fr": "Ottawa"
@@ -2385,7 +2384,8 @@
       "point": {
         "latitude": 45.424722222,
         "longitude": -75.695
-      }
+      },
+      "tier": "easy"
     },
     "code": "CAN",
     "largestCities": [
@@ -2499,7 +2499,6 @@
         "fr": []
       },
       "id": "Q70",
-      "isWellKnown": true,
       "names": {
         "en": "Bern",
         "fr": "Berne"
@@ -2507,7 +2506,8 @@
       "point": {
         "latitude": 46.94798,
         "longitude": 7.44743
-      }
+      },
+      "tier": "easy"
     },
     "code": "CHE",
     "largestCities": [
@@ -2601,7 +2601,6 @@
         "fr": ["Saint-Jacques du Chili", "Santiago du Chili"]
       },
       "id": "Q2887",
-      "isWellKnown": true,
       "names": {
         "en": "Santiago",
         "fr": "Santiago"
@@ -2609,7 +2608,8 @@
       "point": {
         "latitude": -33.4375,
         "longitude": -70.65
-      }
+      },
+      "tier": "medium"
     },
     "code": "CHL",
     "largestCities": [
@@ -2726,7 +2726,6 @@
         "fr": ["Pe-king", "Pé-king", "Péking"]
       },
       "id": "Q956",
-      "isWellKnown": true,
       "names": {
         "en": "Beijing",
         "fr": "Pékin"
@@ -2734,7 +2733,8 @@
       "point": {
         "latitude": 39.90403,
         "longitude": 116.407526
-      }
+      },
+      "tier": "easy"
     },
     "code": "CHN",
     "largestCities": [
@@ -2861,7 +2861,6 @@
         "fr": ["Yakro"]
       },
       "id": "Q3768",
-      "isWellKnown": true,
       "names": {
         "en": "Yamoussoukro",
         "fr": "Yamoussoukro"
@@ -2869,7 +2868,8 @@
       "point": {
         "latitude": 6.816111111,
         "longitude": -5.274166666
-      }
+      },
+      "tier": "medium"
     },
     "code": "CIV",
     "largestCities": [
@@ -2951,7 +2951,6 @@
         "fr": ["Yaounde, Ongola"]
       },
       "id": "Q3808",
-      "isWellKnown": true,
       "names": {
         "en": "Yaoundé",
         "fr": "Yaoundé"
@@ -2959,7 +2958,8 @@
       "point": {
         "latitude": 3.857777777,
         "longitude": 11.518055555
-      }
+      },
+      "tier": "medium"
     },
     "code": "CMR",
     "largestCities": [
@@ -3035,7 +3035,6 @@
         "fr": []
       },
       "id": "Q3838",
-      "isWellKnown": true,
       "names": {
         "en": "Kinshasa",
         "fr": "Kinshasa"
@@ -3043,7 +3042,8 @@
       "point": {
         "latitude": -4.321944444,
         "longitude": 15.311944444
-      }
+      },
+      "tier": "medium"
     },
     "code": "COD",
     "largestCities": [
@@ -3126,7 +3126,6 @@
         "fr": []
       },
       "id": "Q3844",
-      "isWellKnown": true,
       "names": {
         "en": "Brazzaville",
         "fr": "Brazzaville"
@@ -3134,7 +3133,8 @@
       "point": {
         "latitude": -4.269444444,
         "longitude": 15.271111111
-      }
+      },
+      "tier": "medium"
     },
     "code": "COG",
     "largestCities": [
@@ -3210,7 +3210,6 @@
         "fr": ["Bogotá D.C."]
       },
       "id": "Q2841",
-      "isWellKnown": true,
       "names": {
         "en": "Bogotá",
         "fr": "Bogota"
@@ -3218,7 +3217,8 @@
       "point": {
         "latitude": 4.60971,
         "longitude": -74.08175
-      }
+      },
+      "tier": "easy"
     },
     "code": "COL",
     "largestCities": [
@@ -3308,7 +3308,6 @@
         "fr": []
       },
       "id": "Q3901",
-      "isWellKnown": true,
       "names": {
         "en": "Moroni",
         "fr": "Moroni"
@@ -3316,7 +3315,8 @@
       "point": {
         "latitude": -11.703611111,
         "longitude": 43.253611111
-      }
+      },
+      "tier": "hard"
     },
     "code": "COM",
     "largestCities": [
@@ -3344,7 +3344,6 @@
         "fr": []
       },
       "id": "Q3751",
-      "isWellKnown": false,
       "names": {
         "en": "Praia",
         "fr": "Praia"
@@ -3352,7 +3351,8 @@
       "point": {
         "latitude": 14.917719444,
         "longitude": -23.509155555
-      }
+      },
+      "tier": "hard"
     },
     "code": "CPV",
     "largestCities": [
@@ -3428,7 +3428,6 @@
         "fr": []
       },
       "id": "Q3070",
-      "isWellKnown": false,
       "names": {
         "en": "San José",
         "fr": "San José"
@@ -3436,7 +3435,8 @@
       "point": {
         "latitude": 9.932738888,
         "longitude": -84.079613888
-      }
+      },
+      "tier": "hard"
     },
     "code": "CRI",
     "largestCities": [
@@ -3512,7 +3512,6 @@
         "fr": []
       },
       "id": "Q1563",
-      "isWellKnown": true,
       "names": {
         "en": "Havana",
         "fr": "La Havane"
@@ -3520,7 +3519,8 @@
       "point": {
         "latitude": 23.136666666,
         "longitude": -82.358888888
-      }
+      },
+      "tier": "medium"
     },
     "code": "CUB",
     "largestCities": [
@@ -3609,7 +3609,6 @@
         "fr": []
       },
       "id": "Q3856",
-      "isWellKnown": true,
       "names": {
         "en": "Nicosia",
         "fr": "Nicosie"
@@ -3617,7 +3616,8 @@
       "point": {
         "latitude": 35.1725,
         "longitude": 33.365
-      }
+      },
+      "tier": "medium"
     },
     "code": "CYP",
     "largestCities": [
@@ -3705,7 +3705,6 @@
         "fr": []
       },
       "id": "Q1085",
-      "isWellKnown": true,
       "names": {
         "en": "Prague",
         "fr": "Prague"
@@ -3713,7 +3712,8 @@
       "point": {
         "latitude": 50.0875,
         "longitude": 14.421388888
-      }
+      },
+      "tier": "easy"
     },
     "code": "CZE",
     "largestCities": [
@@ -3789,7 +3789,6 @@
         "fr": []
       },
       "id": "Q64",
-      "isWellKnown": true,
       "names": {
         "en": "Berlin",
         "fr": "Berlin"
@@ -3797,7 +3796,8 @@
       "point": {
         "latitude": 52.516666666,
         "longitude": 13.383333333
-      }
+      },
+      "tier": "easy"
     },
     "code": "DEU",
     "largestCities": [
@@ -3889,7 +3889,6 @@
         "fr": []
       },
       "id": "Q3604",
-      "isWellKnown": true,
       "names": {
         "en": "Djibouti",
         "fr": "Djibouti"
@@ -3897,7 +3896,8 @@
       "point": {
         "latitude": 11.595,
         "longitude": 43.148055555
-      }
+      },
+      "tier": "hard"
     },
     "code": "DJI",
     "largestCities": [
@@ -3961,7 +3961,6 @@
         "fr": []
       },
       "id": "Q36281",
-      "isWellKnown": false,
       "names": {
         "en": "Roseau",
         "fr": "Roseau"
@@ -3969,7 +3968,8 @@
       "point": {
         "latitude": 15.3,
         "longitude": -61.383333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "DMA",
     "largestCities": [
@@ -4006,7 +4006,6 @@
         "fr": []
       },
       "id": "Q1748",
-      "isWellKnown": true,
       "names": {
         "en": "Copenhagen",
         "fr": "Copenhague"
@@ -4014,7 +4013,8 @@
       "point": {
         "latitude": 55.676111111,
         "longitude": 12.568888888
-      }
+      },
+      "tier": "easy"
     },
     "code": "DNK",
     "largestCities": [
@@ -4102,7 +4102,6 @@
         ]
       },
       "id": "Q34820",
-      "isWellKnown": true,
       "names": {
         "en": "Santo Domingo",
         "fr": "Saint-Domingue"
@@ -4110,7 +4109,8 @@
       "point": {
         "latitude": 18.4625,
         "longitude": -69.936111111
-      }
+      },
+      "tier": "medium"
     },
     "code": "DOM",
     "largestCities": [
@@ -4191,7 +4191,6 @@
         "fr": []
       },
       "id": "Q3561",
-      "isWellKnown": true,
       "names": {
         "en": "Algiers",
         "fr": "Alger"
@@ -4199,7 +4198,8 @@
       "point": {
         "latitude": 36.776388888,
         "longitude": 3.058611111
-      }
+      },
+      "tier": "easy"
     },
     "code": "DZA",
     "largestCities": [
@@ -4275,7 +4275,6 @@
         "fr": []
       },
       "id": "Q2900",
-      "isWellKnown": true,
       "names": {
         "en": "Quito",
         "fr": "Quito"
@@ -4283,7 +4282,8 @@
       "point": {
         "latitude": -0.22,
         "longitude": -78.5125
-      }
+      },
+      "tier": "medium"
     },
     "code": "ECU",
     "largestCities": [
@@ -4363,7 +4363,6 @@
         "fr": ["Caire", "Cairo"]
       },
       "id": "Q85",
-      "isWellKnown": true,
       "names": {
         "en": "Cairo",
         "fr": "Le Caire"
@@ -4371,7 +4370,8 @@
       "point": {
         "latitude": 30.044444444,
         "longitude": 31.235833333
-      }
+      },
+      "tier": "easy"
     },
     "code": "EGY",
     "largestCities": [
@@ -4453,7 +4453,6 @@
         "fr": ["Asmera"]
       },
       "id": "Q3642",
-      "isWellKnown": true,
       "names": {
         "en": "Asmara",
         "fr": "Asmara"
@@ -4461,7 +4460,8 @@
       "point": {
         "latitude": 15.333333333,
         "longitude": 38.916666666
-      }
+      },
+      "tier": "hard"
     },
     "code": "ERI",
     "largestCities": [
@@ -4545,7 +4545,6 @@
         "fr": ["Madrid (Espagne)"]
       },
       "id": "Q2807",
-      "isWellKnown": true,
       "names": {
         "en": "Madrid",
         "fr": "Madrid"
@@ -4553,7 +4552,8 @@
       "point": {
         "latitude": 40.416944444,
         "longitude": -3.703333333
-      }
+      },
+      "tier": "easy"
     },
     "code": "ESP",
     "largestCities": [
@@ -4644,7 +4644,6 @@
         "fr": []
       },
       "id": "Q1770",
-      "isWellKnown": true,
       "names": {
         "en": "Tallinn",
         "fr": "Tallinn"
@@ -4652,7 +4651,8 @@
       "point": {
         "latitude": 59.437222222,
         "longitude": 24.745
-      }
+      },
+      "tier": "easy"
     },
     "code": "EST",
     "largestCities": [
@@ -4738,7 +4738,6 @@
         "fr": ["Addis Abäba", "Finfinne"]
       },
       "id": "Q3624",
-      "isWellKnown": true,
       "names": {
         "en": "Addis Ababa",
         "fr": "Addis-Abeba"
@@ -4746,7 +4745,8 @@
       "point": {
         "latitude": 9.035833333,
         "longitude": 38.7525
-      }
+      },
+      "tier": "medium"
     },
     "code": "ETH",
     "largestCities": [
@@ -4838,7 +4838,6 @@
         "fr": []
       },
       "id": "Q1757",
-      "isWellKnown": true,
       "names": {
         "en": "Helsinki",
         "fr": "Helsinki"
@@ -4846,7 +4845,8 @@
       "point": {
         "latitude": 60.170833333,
         "longitude": 24.9375
-      }
+      },
+      "tier": "easy"
     },
     "code": "FIN",
     "largestCities": [
@@ -4930,7 +4930,6 @@
         "fr": []
       },
       "id": "Q38807",
-      "isWellKnown": false,
       "names": {
         "en": "Suva",
         "fr": "Suva"
@@ -4938,7 +4937,8 @@
       "point": {
         "latitude": -18.133333333,
         "longitude": 178.433333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "FJI",
     "largestCities": [
@@ -4974,7 +4974,6 @@
         ]
       },
       "id": "Q90",
-      "isWellKnown": true,
       "names": {
         "en": "Paris",
         "fr": "Paris"
@@ -4982,7 +4981,8 @@
       "point": {
         "latitude": 48.856666666,
         "longitude": 2.352222222
-      }
+      },
+      "tier": "easy"
     },
     "code": "FRA",
     "largestCities": [
@@ -5073,7 +5073,6 @@
         "fr": []
       },
       "id": "Q42751",
-      "isWellKnown": false,
       "names": {
         "en": "Palikir",
         "fr": "Palikir"
@@ -5081,7 +5080,8 @@
       "point": {
         "latitude": 6.917777777,
         "longitude": 158.185
-      }
+      },
+      "tier": "hard"
     },
     "code": "FSM",
     "largestCities": [
@@ -5109,7 +5109,6 @@
         "fr": []
       },
       "id": "Q3825",
-      "isWellKnown": true,
       "names": {
         "en": "Libreville",
         "fr": "Libreville"
@@ -5117,7 +5116,8 @@
       "point": {
         "latitude": 0.407777777,
         "longitude": 9.440277777
-      }
+      },
+      "tier": "medium"
     },
     "code": "GAB",
     "largestCities": [
@@ -5222,7 +5222,6 @@
         "fr": ["Londres, Angleterre"]
       },
       "id": "Q84",
-      "isWellKnown": true,
       "names": {
         "en": "London",
         "fr": "Londres"
@@ -5230,7 +5229,8 @@
       "point": {
         "latitude": 51.507222222,
         "longitude": -0.1275
-      }
+      },
+      "tier": "easy"
     },
     "code": "GBR",
     "largestCities": [
@@ -5330,7 +5330,6 @@
         "fr": ["Tiflis"]
       },
       "id": "Q994",
-      "isWellKnown": true,
       "names": {
         "en": "Tbilisi",
         "fr": "Tbilissi"
@@ -5338,7 +5337,8 @@
       "point": {
         "latitude": 41.7225,
         "longitude": 44.7925
-      }
+      },
+      "tier": "medium"
     },
     "code": "GEO",
     "largestCities": [
@@ -5445,7 +5445,6 @@
         "fr": ["Akra"]
       },
       "id": "Q3761",
-      "isWellKnown": true,
       "names": {
         "en": "Accra",
         "fr": "Accra"
@@ -5453,7 +5452,8 @@
       "point": {
         "latitude": 5.55602,
         "longitude": -0.1969
-      }
+      },
+      "tier": "medium"
     },
     "code": "GHA",
     "largestCities": [
@@ -5535,7 +5535,6 @@
         "fr": []
       },
       "id": "Q3733",
-      "isWellKnown": true,
       "names": {
         "en": "Conakry",
         "fr": "Conakry"
@@ -5543,7 +5542,8 @@
       "point": {
         "latitude": 9.509166666,
         "longitude": -13.712222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "GIN",
     "largestCities": [
@@ -5607,7 +5607,6 @@
         "fr": ["Bathurst"]
       },
       "id": "Q3726",
-      "isWellKnown": false,
       "names": {
         "en": "Banjul",
         "fr": "Banjul"
@@ -5615,7 +5614,8 @@
       "point": {
         "latitude": 13.453055555,
         "longitude": -16.5775
-      }
+      },
+      "tier": "hard"
     },
     "code": "GMB",
     "largestCities": [
@@ -5643,7 +5643,6 @@
         "fr": ["Bissao"]
       },
       "id": "Q3739",
-      "isWellKnown": false,
       "names": {
         "en": "Bissau",
         "fr": "Bissau"
@@ -5651,7 +5650,8 @@
       "point": {
         "latitude": 11.86,
         "longitude": -15.583333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "GNB",
     "largestCities": [
@@ -5727,7 +5727,6 @@
         "fr": ["Oyala"]
       },
       "id": "Q1140136",
-      "isWellKnown": true,
       "names": {
         "en": "Ciudad de la Paz",
         "fr": "Ciudad de la Paz"
@@ -5735,7 +5734,8 @@
       "point": {
         "latitude": 1.591666666,
         "longitude": 10.822222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "GNQ",
     "largestCities": [
@@ -5811,7 +5811,6 @@
         "fr": ["Athenes"]
       },
       "id": "Q1524",
-      "isWellKnown": true,
       "names": {
         "en": "Athens",
         "fr": "Athènes"
@@ -5819,7 +5818,8 @@
       "point": {
         "latitude": 37.984166666,
         "longitude": 23.728055555
-      }
+      },
+      "tier": "easy"
     },
     "code": "GRC",
     "largestCities": [
@@ -5908,7 +5908,6 @@
         "fr": ["Saint George's", "St. George's"]
       },
       "id": "Q41547",
-      "isWellKnown": false,
       "names": {
         "en": "St. George's",
         "fr": "Saint-Georges"
@@ -5916,7 +5915,8 @@
       "point": {
         "latitude": 12.0525,
         "longitude": -61.753055555
-      }
+      },
+      "tier": "hard"
     },
     "code": "GRD",
     "largestCities": [
@@ -5987,7 +5987,6 @@
         "fr": ["Guate", "Ville de Guatemala"]
       },
       "id": "Q1555",
-      "isWellKnown": true,
       "names": {
         "en": "Guatemala City",
         "fr": "Guatemala"
@@ -5995,7 +5994,8 @@
       "point": {
         "latitude": 14.641666666,
         "longitude": -90.513333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "GTM",
     "largestCities": [
@@ -6071,7 +6071,6 @@
         "fr": []
       },
       "id": "Q10717",
-      "isWellKnown": true,
       "names": {
         "en": "Georgetown",
         "fr": "Georgetown"
@@ -6079,7 +6078,8 @@
       "point": {
         "latitude": 6.805833333,
         "longitude": -58.150833333
-      }
+      },
+      "tier": "hard"
     },
     "code": "GUY",
     "largestCities": [
@@ -6155,7 +6155,6 @@
         "fr": []
       },
       "id": "Q3238",
-      "isWellKnown": false,
       "names": {
         "en": "Tegucigalpa",
         "fr": "Tegucigalpa"
@@ -6163,7 +6162,8 @@
       "point": {
         "latitude": 14.105783333,
         "longitude": -87.204705555
-      }
+      },
+      "tier": "hard"
     },
     "code": "HND",
     "largestCities": [
@@ -6245,7 +6245,6 @@
         "fr": []
       },
       "id": "Q1435",
-      "isWellKnown": true,
       "names": {
         "en": "Zagreb",
         "fr": "Zagreb"
@@ -6253,7 +6252,8 @@
       "point": {
         "latitude": 45.813055555,
         "longitude": 15.977222222
-      }
+      },
+      "tier": "easy"
     },
     "code": "HRV",
     "largestCities": [
@@ -6329,7 +6329,6 @@
         "fr": ["Port-Républicain", "Port-au-prince"]
       },
       "id": "Q34261",
-      "isWellKnown": true,
       "names": {
         "en": "Port-au-Prince",
         "fr": "Port-au-Prince"
@@ -6337,7 +6336,8 @@
       "point": {
         "latitude": 18.546944444,
         "longitude": -72.340277777
-      }
+      },
+      "tier": "medium"
     },
     "code": "HTI",
     "largestCities": [
@@ -6438,7 +6438,6 @@
         "fr": []
       },
       "id": "Q1781",
-      "isWellKnown": true,
       "names": {
         "en": "Budapest",
         "fr": "Budapest"
@@ -6446,7 +6445,8 @@
       "point": {
         "latitude": 47.498333333,
         "longitude": 19.040833333
-      }
+      },
+      "tier": "easy"
     },
     "code": "HUN",
     "largestCities": [
@@ -6538,7 +6538,6 @@
         "fr": ["Batavia", "Djakarta"]
       },
       "id": "Q3630",
-      "isWellKnown": true,
       "names": {
         "en": "Jakarta",
         "fr": "Jakarta"
@@ -6546,7 +6545,8 @@
       "point": {
         "latitude": -6.175277777,
         "longitude": 106.826944444
-      }
+      },
+      "tier": "easy"
     },
     "code": "IDN",
     "largestCities": [
@@ -6627,7 +6627,6 @@
         "fr": []
       },
       "id": "Q987",
-      "isWellKnown": true,
       "names": {
         "en": "New Delhi",
         "fr": "New Delhi"
@@ -6635,7 +6634,8 @@
       "point": {
         "latitude": 28.613888888,
         "longitude": 77.208888888
-      }
+      },
+      "tier": "easy"
     },
     "code": "IND",
     "largestCities": [
@@ -6717,7 +6717,6 @@
         "fr": ["Duibhlinn"]
       },
       "id": "Q1761",
-      "isWellKnown": true,
       "names": {
         "en": "Dublin",
         "fr": "Dublin"
@@ -6725,7 +6724,8 @@
       "point": {
         "latitude": 53.349722222,
         "longitude": -6.260277777
-      }
+      },
+      "tier": "easy"
     },
     "code": "IRL",
     "largestCities": [
@@ -6809,7 +6809,6 @@
         "fr": []
       },
       "id": "Q3616",
-      "isWellKnown": true,
       "names": {
         "en": "Tehran",
         "fr": "Téhéran"
@@ -6817,7 +6816,8 @@
       "point": {
         "latitude": 35.688888888,
         "longitude": 51.389722222
-      }
+      },
+      "tier": "medium"
     },
     "code": "IRN",
     "largestCities": [
@@ -6911,7 +6911,6 @@
         "fr": []
       },
       "id": "Q1530",
-      "isWellKnown": true,
       "names": {
         "en": "Baghdad",
         "fr": "Bagdad"
@@ -6919,7 +6918,8 @@
       "point": {
         "latitude": 33.315277777,
         "longitude": 44.366111111
-      }
+      },
+      "tier": "medium"
     },
     "code": "IRQ",
     "largestCities": [
@@ -6995,7 +6995,6 @@
         "fr": ["Reykjavík", "Reykjavíkurborg"]
       },
       "id": "Q1764",
-      "isWellKnown": true,
       "names": {
         "en": "Reykjavík",
         "fr": "Reykjavik"
@@ -7003,7 +7002,8 @@
       "point": {
         "latitude": 64.1475,
         "longitude": -21.935
-      }
+      },
+      "tier": "easy"
     },
     "code": "ISL",
     "largestCities": [
@@ -7088,7 +7088,6 @@
         "fr": ["La ville aux sept collines", "La ville éternelle", "l'Urbs"]
       },
       "id": "Q220",
-      "isWellKnown": true,
       "names": {
         "en": "Rome",
         "fr": "Rome"
@@ -7096,7 +7095,8 @@
       "point": {
         "latitude": 41.893055555,
         "longitude": 12.482777777
-      }
+      },
+      "tier": "easy"
     },
     "code": "ITA",
     "largestCities": [
@@ -7176,7 +7176,6 @@
         "fr": ["Tinson"]
       },
       "id": "Q34692",
-      "isWellKnown": true,
       "names": {
         "en": "Kingston",
         "fr": "Kingston"
@@ -7184,7 +7183,8 @@
       "point": {
         "latitude": 17.971388888,
         "longitude": -76.793055555
-      }
+      },
+      "tier": "medium"
     },
     "code": "JAM",
     "largestCities": [
@@ -7273,7 +7273,6 @@
         "fr": []
       },
       "id": "Q3805",
-      "isWellKnown": true,
       "names": {
         "en": "Amman",
         "fr": "Amman"
@@ -7281,7 +7280,8 @@
       "point": {
         "latitude": 31.95,
         "longitude": 35.933333333
-      }
+      },
+      "tier": "medium"
     },
     "code": "JOR",
     "largestCities": [
@@ -7381,7 +7381,6 @@
         ]
       },
       "id": "Q1490",
-      "isWellKnown": true,
       "names": {
         "en": "Tokyo",
         "fr": "Tokyo"
@@ -7389,7 +7388,8 @@
       "point": {
         "latitude": 35.689444444,
         "longitude": 139.691666666
-      }
+      },
+      "tier": "easy"
     },
     "code": "JPN",
     "largestCities": [
@@ -7471,7 +7471,6 @@
         ]
       },
       "id": "Q1520",
-      "isWellKnown": true,
       "names": {
         "en": "Astana",
         "fr": "Astana"
@@ -7479,7 +7478,8 @@
       "point": {
         "latitude": 51.133333333,
         "longitude": 71.433333333
-      }
+      },
+      "tier": "medium"
     },
     "code": "KAZ",
     "largestCities": [
@@ -7580,7 +7580,6 @@
         "fr": []
       },
       "id": "Q3870",
-      "isWellKnown": true,
       "names": {
         "en": "Nairobi",
         "fr": "Nairobi"
@@ -7588,7 +7587,8 @@
       "point": {
         "latitude": -1.286388888,
         "longitude": 36.817222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "KEN",
     "largestCities": [
@@ -7664,7 +7664,6 @@
         "fr": []
       },
       "id": "Q9361",
-      "isWellKnown": true,
       "names": {
         "en": "Bishkek",
         "fr": "Bichkek"
@@ -7672,7 +7671,8 @@
       "point": {
         "latitude": 42.866666666,
         "longitude": 74.566666666
-      }
+      },
+      "tier": "medium"
     },
     "code": "KGZ",
     "largestCities": [
@@ -7758,7 +7758,6 @@
         "fr": []
       },
       "id": "Q1850",
-      "isWellKnown": true,
       "names": {
         "en": "Phnom Penh",
         "fr": "Phnom Penh"
@@ -7766,7 +7765,8 @@
       "point": {
         "latitude": 11.569583333,
         "longitude": 104.921027777
-      }
+      },
+      "tier": "medium"
     },
     "code": "KHM",
     "largestCities": [
@@ -7848,7 +7848,6 @@
         "fr": ["Bairiki", "Tarawa sud"]
       },
       "id": "Q131233",
-      "isWellKnown": false,
       "names": {
         "en": "South Tarawa",
         "fr": "Tarawa-Sud"
@@ -7856,7 +7855,8 @@
       "point": {
         "latitude": 1.333333333,
         "longitude": 172.966666666
-      }
+      },
+      "tier": "hard"
     },
     "code": "KIR",
     "largestCities": [],
@@ -7871,7 +7871,6 @@
         "fr": []
       },
       "id": "Q41295",
-      "isWellKnown": false,
       "names": {
         "en": "Basseterre",
         "fr": "Basseterre"
@@ -7879,7 +7878,8 @@
       "point": {
         "latitude": 17.298333333,
         "longitude": -62.734166666
-      }
+      },
+      "tier": "hard"
     },
     "code": "KNA",
     "largestCities": [],
@@ -7911,7 +7911,6 @@
         ]
       },
       "id": "Q8684",
-      "isWellKnown": true,
       "names": {
         "en": "Seoul",
         "fr": "Séoul"
@@ -7919,7 +7918,8 @@
       "point": {
         "latitude": 37.56,
         "longitude": 126.99
-      }
+      },
+      "tier": "easy"
     },
     "code": "KOR",
     "largestCities": [
@@ -8012,7 +8012,6 @@
         ]
       },
       "id": "Q35178",
-      "isWellKnown": false,
       "names": {
         "en": "Kuwait City",
         "fr": "Koweït"
@@ -8020,7 +8019,8 @@
       "point": {
         "latitude": 29.375,
         "longitude": 47.98
-      }
+      },
+      "tier": "hard"
     },
     "code": "KWT",
     "largestCities": [],
@@ -8052,7 +8052,6 @@
         "fr": []
       },
       "id": "Q9326",
-      "isWellKnown": true,
       "names": {
         "en": "Vientiane",
         "fr": "Vientiane"
@@ -8060,7 +8059,8 @@
       "point": {
         "latitude": 17.98,
         "longitude": 102.63
-      }
+      },
+      "tier": "hard"
     },
     "code": "LAO",
     "largestCities": [
@@ -8150,7 +8150,6 @@
         "fr": []
       },
       "id": "Q3820",
-      "isWellKnown": true,
       "names": {
         "en": "Beirut",
         "fr": "Beyrouth"
@@ -8158,7 +8157,8 @@
       "point": {
         "latitude": 33.886944444,
         "longitude": 35.513055555
-      }
+      },
+      "tier": "medium"
     },
     "code": "LBN",
     "largestCities": [
@@ -8240,7 +8240,6 @@
         "fr": []
       },
       "id": "Q3748",
-      "isWellKnown": true,
       "names": {
         "en": "Monrovia",
         "fr": "Monrovia"
@@ -8248,7 +8247,8 @@
       "point": {
         "latitude": 6.310555555,
         "longitude": -10.804722222
-      }
+      },
+      "tier": "hard"
     },
     "code": "LBR",
     "largestCities": [],
@@ -8263,7 +8263,6 @@
         "fr": []
       },
       "id": "Q3579",
-      "isWellKnown": true,
       "names": {
         "en": "Tripoli",
         "fr": "Tripoli"
@@ -8271,7 +8270,8 @@
       "point": {
         "latitude": 32.8875,
         "longitude": 13.1875
-      }
+      },
+      "tier": "hard"
     },
     "code": "LBY",
     "largestCities": [
@@ -8347,7 +8347,6 @@
         "fr": []
       },
       "id": "Q41699",
-      "isWellKnown": false,
       "names": {
         "en": "Castries",
         "fr": "Castries"
@@ -8355,7 +8354,8 @@
       "point": {
         "latitude": 14.010833333,
         "longitude": -60.989444444
-      }
+      },
+      "tier": "hard"
     },
     "code": "LCA",
     "largestCities": [],
@@ -8370,7 +8370,6 @@
         "fr": []
       },
       "id": "Q1844",
-      "isWellKnown": true,
       "names": {
         "en": "Vaduz",
         "fr": "Vaduz"
@@ -8378,7 +8377,8 @@
       "point": {
         "latitude": 47.140555555,
         "longitude": 9.522222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "LIE",
     "largestCities": [
@@ -8454,7 +8454,6 @@
         "fr": ["Sri Jayewardenepura-Kotte"]
       },
       "id": "Q41963",
-      "isWellKnown": true,
       "names": {
         "en": "Sri Jayawardenepura Kotte",
         "fr": "Sri Jayawardenapura"
@@ -8462,7 +8461,8 @@
       "point": {
         "latitude": 6.9,
         "longitude": 79.916388888
-      }
+      },
+      "tier": "hard"
     },
     "code": "LKA",
     "largestCities": [
@@ -8550,7 +8550,6 @@
         "fr": []
       },
       "id": "Q3909",
-      "isWellKnown": false,
       "names": {
         "en": "Maseru",
         "fr": "Maseru"
@@ -8558,7 +8557,8 @@
       "point": {
         "latitude": -29.31,
         "longitude": 27.48
-      }
+      },
+      "tier": "hard"
     },
     "code": "LSO",
     "largestCities": [
@@ -8634,7 +8634,6 @@
         "fr": ["Vilnious", "Vilnė", "Wilne", "Wilnja", "Wilnjus"]
       },
       "id": "Q216",
-      "isWellKnown": true,
       "names": {
         "en": "Vilnius",
         "fr": "Vilnius"
@@ -8642,7 +8641,8 @@
       "point": {
         "latitude": 54.687222222,
         "longitude": 25.28
-      }
+      },
+      "tier": "medium"
     },
     "code": "LTU",
     "largestCities": [
@@ -8738,7 +8738,6 @@
         "fr": ["Luxembourg-Ville", "Ville de Luxembourg"]
       },
       "id": "Q1842",
-      "isWellKnown": true,
       "names": {
         "en": "Luxembourg",
         "fr": "Luxembourg"
@@ -8746,7 +8745,8 @@
       "point": {
         "latitude": 49.611388888,
         "longitude": 6.13
-      }
+      },
+      "tier": "easy"
     },
     "code": "LUX",
     "largestCities": [
@@ -8822,7 +8822,6 @@
         "fr": []
       },
       "id": "Q1773",
-      "isWellKnown": true,
       "names": {
         "en": "Riga",
         "fr": "Riga"
@@ -8830,7 +8829,8 @@
       "point": {
         "latitude": 56.9475,
         "longitude": 24.106944444
-      }
+      },
+      "tier": "easy"
     },
     "code": "LVA",
     "largestCities": [
@@ -8937,7 +8937,6 @@
         "fr": ["Rabbat"]
       },
       "id": "Q3551",
-      "isWellKnown": true,
       "names": {
         "en": "Rabat",
         "fr": "Rabat"
@@ -8945,7 +8944,8 @@
       "point": {
         "latitude": 34.021111111,
         "longitude": -6.841388888
-      }
+      },
+      "tier": "easy"
     },
     "code": "MAR",
     "largestCities": [
@@ -9062,7 +9062,6 @@
         ]
       },
       "id": "Q235",
-      "isWellKnown": true,
       "names": {
         "en": "Monaco",
         "fr": "Monaco"
@@ -9070,7 +9069,8 @@
       "point": {
         "latitude": 43.731111111,
         "longitude": 7.42
-      }
+      },
+      "tier": "easy"
     },
     "code": "MCO",
     "largestCities": [
@@ -9128,7 +9128,6 @@
         ]
       },
       "id": "Q21197",
-      "isWellKnown": true,
       "names": {
         "en": "Chișinău",
         "fr": "Chișinău"
@@ -9136,7 +9135,8 @@
       "point": {
         "latitude": 47.022777777,
         "longitude": 28.835277777
-      }
+      },
+      "tier": "medium"
     },
     "code": "MDA",
     "largestCities": [
@@ -9226,7 +9226,6 @@
         "fr": ["Iarivo", "Tananarive"]
       },
       "id": "Q3915",
-      "isWellKnown": true,
       "names": {
         "en": "Antananarivo",
         "fr": "Antananarivo"
@@ -9234,7 +9233,8 @@
       "point": {
         "latitude": -18.91,
         "longitude": 47.525
-      }
+      },
+      "tier": "medium"
     },
     "code": "MDG",
     "largestCities": [
@@ -9310,7 +9310,6 @@
         "fr": []
       },
       "id": "Q9347",
-      "isWellKnown": true,
       "names": {
         "en": "Malé",
         "fr": "Malé"
@@ -9318,7 +9317,8 @@
       "point": {
         "latitude": 4.175,
         "longitude": 73.508333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "MDV",
     "largestCities": [],
@@ -9338,7 +9338,6 @@
         "fr": ["Cité de Mexico", "Cité du Mexique", "Ville du Mexique"]
       },
       "id": "Q1489",
-      "isWellKnown": true,
       "names": {
         "en": "Mexico City",
         "fr": "Mexico"
@@ -9346,7 +9345,8 @@
       "point": {
         "latitude": 19.353773,
         "longitude": -99.13589
-      }
+      },
+      "tier": "easy"
     },
     "code": "MEX",
     "largestCities": [
@@ -9436,7 +9436,6 @@
         "fr": []
       },
       "id": "Q12919",
-      "isWellKnown": false,
       "names": {
         "en": "Majuro",
         "fr": "Majuro"
@@ -9444,7 +9443,8 @@
       "point": {
         "latitude": 7.0918,
         "longitude": 171.3802
-      }
+      },
+      "tier": "hard"
     },
     "code": "MHL",
     "largestCities": [],
@@ -9459,7 +9459,6 @@
         "fr": ["Scopie"]
       },
       "id": "Q384",
-      "isWellKnown": true,
       "names": {
         "en": "Skopje",
         "fr": "Skopje"
@@ -9467,7 +9466,8 @@
       "point": {
         "latitude": 41.996111111,
         "longitude": 21.431666666
-      }
+      },
+      "tier": "medium"
     },
     "code": "MKD",
     "largestCities": [
@@ -9543,7 +9543,6 @@
         "fr": []
       },
       "id": "Q3703",
-      "isWellKnown": true,
       "names": {
         "en": "Bamako",
         "fr": "Bamako"
@@ -9551,7 +9550,8 @@
       "point": {
         "latitude": 12.645833333,
         "longitude": -7.992222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "MLI",
     "largestCities": [
@@ -9639,7 +9639,6 @@
         ]
       },
       "id": "Q23800",
-      "isWellKnown": true,
       "names": {
         "en": "Valletta",
         "fr": "La Valette"
@@ -9647,7 +9646,8 @@
       "point": {
         "latitude": 35.897777777,
         "longitude": 14.5125
-      }
+      },
+      "tier": "medium"
     },
     "code": "MLT",
     "largestCities": [
@@ -9735,7 +9735,6 @@
         "fr": ["Nay Pyi Daw", "Naypidaw", "Pyinmana", "နေပြည်တော်"]
       },
       "id": "Q37400",
-      "isWellKnown": true,
       "names": {
         "en": "Naypyidaw",
         "fr": "Naypyidaw"
@@ -9743,7 +9742,8 @@
       "point": {
         "latitude": 19.7475,
         "longitude": 96.115
-      }
+      },
+      "tier": "hard"
     },
     "code": "MMR",
     "largestCities": [
@@ -9819,7 +9819,6 @@
         "fr": ["Podgorića", "Pogdorica"]
       },
       "id": "Q23564",
-      "isWellKnown": true,
       "names": {
         "en": "Podgorica",
         "fr": "Podgorica"
@@ -9827,7 +9826,8 @@
       "point": {
         "latitude": 42.441388888,
         "longitude": 19.262777777
-      }
+      },
+      "tier": "medium"
     },
     "code": "MNE",
     "largestCities": [
@@ -9924,7 +9924,6 @@
         ]
       },
       "id": "Q23430",
-      "isWellKnown": true,
       "names": {
         "en": "Ulaanbaatar",
         "fr": "Oulan-Bator"
@@ -9932,7 +9931,8 @@
       "point": {
         "latitude": 47.921357,
         "longitude": 106.905515
-      }
+      },
+      "tier": "medium"
     },
     "code": "MNG",
     "largestCities": [
@@ -10008,7 +10008,6 @@
         "fr": ["Lourenço Marques"]
       },
       "id": "Q3889",
-      "isWellKnown": true,
       "names": {
         "en": "Maputo",
         "fr": "Maputo"
@@ -10016,7 +10015,8 @@
       "point": {
         "latitude": -25.968888888,
         "longitude": 32.573333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "MOZ",
     "largestCities": [
@@ -10100,7 +10100,6 @@
         "fr": []
       },
       "id": "Q3688",
-      "isWellKnown": true,
       "names": {
         "en": "Nouakchott",
         "fr": "Nouakchott"
@@ -10108,7 +10107,8 @@
       "point": {
         "latitude": 18.08581,
         "longitude": -15.9785
-      }
+      },
+      "tier": "medium"
     },
     "code": "MRT",
     "largestCities": [
@@ -10184,7 +10184,6 @@
         "fr": ["Port Louis"]
       },
       "id": "Q3929",
-      "isWellKnown": true,
       "names": {
         "en": "Port Louis",
         "fr": "Port-Louis"
@@ -10192,7 +10191,8 @@
       "point": {
         "latitude": -20.161944444,
         "longitude": 57.498888888
-      }
+      },
+      "tier": "medium"
     },
     "code": "MUS",
     "largestCities": [
@@ -10232,7 +10232,6 @@
         "fr": []
       },
       "id": "Q3876",
-      "isWellKnown": false,
       "names": {
         "en": "Lilongwe",
         "fr": "Lilongwe"
@@ -10240,7 +10239,8 @@
       "point": {
         "latitude": -13.986388888,
         "longitude": 33.768055555
-      }
+      },
+      "tier": "hard"
     },
     "code": "MWI",
     "largestCities": [
@@ -10316,7 +10316,6 @@
         "fr": ["KL"]
       },
       "id": "Q1865",
-      "isWellKnown": true,
       "names": {
         "en": "Kuala Lumpur",
         "fr": "Kuala Lumpur"
@@ -10324,7 +10323,8 @@
       "point": {
         "latitude": 3.147777777,
         "longitude": 101.695277777
-      }
+      },
+      "tier": "medium"
     },
     "code": "MYS",
     "largestCities": [
@@ -10425,7 +10425,6 @@
         "fr": ["ߣߊߡߓߌ߫ ߞߎߓߋߛߏ"]
       },
       "id": "Q3935",
-      "isWellKnown": true,
       "names": {
         "en": "Windhoek",
         "fr": "Windhoek"
@@ -10433,7 +10432,8 @@
       "point": {
         "latitude": -22.57,
         "longitude": 17.083611111
-      }
+      },
+      "tier": "medium"
     },
     "code": "NAM",
     "largestCities": [
@@ -10509,7 +10509,6 @@
         "fr": ["Communauté Urbaine de Niamey", "Ville de Niamey"]
       },
       "id": "Q3674",
-      "isWellKnown": true,
       "names": {
         "en": "Niamey",
         "fr": "Niamey"
@@ -10517,7 +10516,8 @@
       "point": {
         "latitude": 13.515,
         "longitude": 2.1175
-      }
+      },
+      "tier": "medium"
     },
     "code": "NER",
     "largestCities": [
@@ -10593,7 +10593,6 @@
         "fr": []
       },
       "id": "Q3787",
-      "isWellKnown": true,
       "names": {
         "en": "Abuja",
         "fr": "Abuja"
@@ -10601,7 +10600,8 @@
       "point": {
         "latitude": 9.055555555,
         "longitude": 7.491388888
-      }
+      },
+      "tier": "medium"
     },
     "code": "NGA",
     "largestCities": [
@@ -10689,7 +10689,6 @@
         "fr": ["Managua (City)", "Ville de Managua (City)"]
       },
       "id": "Q131546626",
-      "isWellKnown": false,
       "names": {
         "en": "Managua",
         "fr": "Managua"
@@ -10697,7 +10696,8 @@
       "point": {
         "latitude": 12.154680555,
         "longitude": -86.273725
-      }
+      },
+      "tier": "hard"
     },
     "code": "NIC",
     "largestCities": [
@@ -10819,7 +10819,6 @@
         "fr": ["A'dam"]
       },
       "id": "Q727",
-      "isWellKnown": true,
       "names": {
         "en": "Amsterdam",
         "fr": "Amsterdam"
@@ -10827,7 +10826,8 @@
       "point": {
         "latitude": 52.366666666,
         "longitude": 4.883333333
-      }
+      },
+      "tier": "easy"
     },
     "code": "NLD",
     "largestCities": [
@@ -10903,7 +10903,6 @@
         "fr": []
       },
       "id": "Q585",
-      "isWellKnown": true,
       "names": {
         "en": "Oslo",
         "fr": "Oslo"
@@ -10911,7 +10910,8 @@
       "point": {
         "latitude": 59.913333333,
         "longitude": 10.738888888
-      }
+      },
+      "tier": "easy"
     },
     "code": "NOR",
     "largestCities": [
@@ -11004,7 +11004,6 @@
         "fr": []
       },
       "id": "Q3037",
-      "isWellKnown": true,
       "names": {
         "en": "Kathmandu",
         "fr": "Katmandou"
@@ -11012,7 +11011,8 @@
       "point": {
         "latitude": 27.71,
         "longitude": 85.32
-      }
+      },
+      "tier": "medium"
     },
     "code": "NPL",
     "largestCities": [
@@ -11122,7 +11122,6 @@
         "fr": ["District de Yaren", "Jarren", "Makwa", "Moqua"]
       },
       "id": "Q31026",
-      "isWellKnown": false,
       "names": {
         "en": "Yaren District",
         "fr": "Yaren"
@@ -11130,7 +11129,8 @@
       "point": {
         "latitude": -0.5477,
         "longitude": 166.920867
-      }
+      },
+      "tier": "hard"
     },
     "code": "NRU",
     "largestCities": [],
@@ -11159,7 +11159,6 @@
         ]
       },
       "id": "Q23661",
-      "isWellKnown": true,
       "names": {
         "en": "Wellington",
         "fr": "Wellington"
@@ -11167,7 +11166,8 @@
       "point": {
         "latitude": -41.288888888,
         "longitude": 174.777222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "NZL",
     "largestCities": [
@@ -11256,7 +11256,6 @@
         "fr": ["Masqat", "Muscat"]
       },
       "id": "Q3826",
-      "isWellKnown": true,
       "names": {
         "en": "Muscat",
         "fr": "Mascate"
@@ -11264,7 +11263,8 @@
       "point": {
         "latitude": 23.613888888,
         "longitude": 58.592222222
-      }
+      },
+      "tier": "hard"
     },
     "code": "OMN",
     "largestCities": [
@@ -11340,7 +11340,6 @@
         "fr": []
       },
       "id": "Q1362",
-      "isWellKnown": true,
       "names": {
         "en": "Islamabad",
         "fr": "Islamabad"
@@ -11348,7 +11347,8 @@
       "point": {
         "latitude": 33.698888888,
         "longitude": 73.036944444
-      }
+      },
+      "tier": "medium"
     },
     "code": "PAK",
     "largestCities": [
@@ -11430,7 +11430,6 @@
         "fr": ["Panamá", "Ville de Panama"]
       },
       "id": "Q3306",
-      "isWellKnown": true,
       "names": {
         "en": "Panama City",
         "fr": "Panama"
@@ -11438,7 +11437,8 @@
       "point": {
         "latitude": 8.971111111,
         "longitude": -79.534722222
-      }
+      },
+      "tier": "hard"
     },
     "code": "PAN",
     "largestCities": [
@@ -11520,7 +11520,6 @@
         "fr": []
       },
       "id": "Q2868",
-      "isWellKnown": true,
       "names": {
         "en": "Lima",
         "fr": "Lima"
@@ -11528,7 +11527,8 @@
       "point": {
         "latitude": -12.06,
         "longitude": -77.0375
-      }
+      },
+      "tier": "easy"
     },
     "code": "PER",
     "largestCities": [
@@ -11631,7 +11631,6 @@
         "fr": ["Ville de Manille"]
       },
       "id": "Q1461",
-      "isWellKnown": true,
       "names": {
         "en": "Manila",
         "fr": "Manille"
@@ -11639,7 +11638,8 @@
       "point": {
         "latitude": 14.595833333,
         "longitude": 120.977222222
-      }
+      },
+      "tier": "medium"
     },
     "code": "PHL",
     "largestCities": [
@@ -11715,7 +11715,6 @@
         "fr": []
       },
       "id": "Q515229",
-      "isWellKnown": false,
       "names": {
         "en": "Ngerulmud",
         "fr": "Ngerulmud"
@@ -11723,7 +11722,8 @@
       "point": {
         "latitude": 7.500556,
         "longitude": 134.624167
-      }
+      },
+      "tier": "hard"
     },
     "code": "PLW",
     "largestCities": [
@@ -11751,7 +11751,6 @@
         "fr": ["Port-Moresby", "Pot Mosbi"]
       },
       "id": "Q36526",
-      "isWellKnown": true,
       "names": {
         "en": "Port Moresby",
         "fr": "Port Moresby"
@@ -11759,7 +11758,8 @@
       "point": {
         "latitude": -9.478888888,
         "longitude": 147.149444444
-      }
+      },
+      "tier": "hard"
     },
     "code": "PNG",
     "largestCities": [
@@ -11835,7 +11835,6 @@
         "fr": []
       },
       "id": "Q270",
-      "isWellKnown": true,
       "names": {
         "en": "Warsaw",
         "fr": "Varsovie"
@@ -11843,7 +11842,8 @@
       "point": {
         "latitude": 52.23,
         "longitude": 21.011111111
-      }
+      },
+      "tier": "easy"
     },
     "code": "POL",
     "largestCities": [
@@ -11942,7 +11942,6 @@
         ]
       },
       "id": "Q18808",
-      "isWellKnown": true,
       "names": {
         "en": "Pyongyang",
         "fr": "Pyongyang"
@@ -11950,7 +11949,8 @@
       "point": {
         "latitude": 39.016666666,
         "longitude": 125.7475
-      }
+      },
+      "tier": "medium"
     },
     "code": "PRK",
     "largestCities": [
@@ -12026,7 +12026,6 @@
         "fr": []
       },
       "id": "Q597",
-      "isWellKnown": true,
       "names": {
         "en": "Lisbon",
         "fr": "Lisbonne"
@@ -12034,7 +12033,8 @@
       "point": {
         "latitude": 38.708042,
         "longitude": -9.139016
-      }
+      },
+      "tier": "easy"
     },
     "code": "PRT",
     "largestCities": [
@@ -12114,7 +12114,6 @@
         ]
       },
       "id": "Q2933",
-      "isWellKnown": false,
       "names": {
         "en": "Asunción",
         "fr": "Asuncion"
@@ -12122,7 +12121,8 @@
       "point": {
         "latitude": -25.28,
         "longitude": -57.634444444
-      }
+      },
+      "tier": "hard"
     },
     "code": "PRY",
     "largestCities": [
@@ -12202,7 +12202,6 @@
         "fr": []
       },
       "id": "Q3861",
-      "isWellKnown": true,
       "names": {
         "en": "Doha",
         "fr": "Doha"
@@ -12210,7 +12209,8 @@
       "point": {
         "latitude": 25.286111111,
         "longitude": 51.529444444
-      }
+      },
+      "tier": "medium"
     },
     "code": "QAT",
     "largestCities": [
@@ -12277,7 +12277,6 @@
         ]
       },
       "id": "Q19660",
-      "isWellKnown": true,
       "names": {
         "en": "Bucharest",
         "fr": "Bucarest"
@@ -12285,7 +12284,8 @@
       "point": {
         "latitude": 44.413361111,
         "longitude": 26.097777777
-      }
+      },
+      "tier": "easy"
     },
     "code": "ROU",
     "largestCities": [
@@ -12401,7 +12401,6 @@
         "fr": []
       },
       "id": "Q649",
-      "isWellKnown": true,
       "names": {
         "en": "Moscow",
         "fr": "Moscou"
@@ -12409,7 +12408,8 @@
       "point": {
         "latitude": 55.750555555,
         "longitude": 37.6175
-      }
+      },
+      "tier": "easy"
     },
     "code": "RUS",
     "largestCities": [
@@ -12490,7 +12490,6 @@
         "fr": ["Kigali Ville", "Ville de Kigali"]
       },
       "id": "Q3859",
-      "isWellKnown": true,
       "names": {
         "en": "Kigali",
         "fr": "Kigali"
@@ -12498,7 +12497,8 @@
       "point": {
         "latitude": -1.9525,
         "longitude": 30.115
-      }
+      },
+      "tier": "medium"
     },
     "code": "RWA",
     "largestCities": [
@@ -12574,7 +12574,6 @@
         "fr": ["ar-Riyāḍ"]
       },
       "id": "Q3692",
-      "isWellKnown": true,
       "names": {
         "en": "Riyadh",
         "fr": "Riyad"
@@ -12582,7 +12581,8 @@
       "point": {
         "latitude": 24.638333333,
         "longitude": 46.715
-      }
+      },
+      "tier": "easy"
     },
     "code": "SAU",
     "largestCities": [
@@ -12663,7 +12663,6 @@
         "fr": []
       },
       "id": "Q1963",
-      "isWellKnown": true,
       "names": {
         "en": "Khartoum",
         "fr": "Khartoum"
@@ -12671,7 +12670,8 @@
       "point": {
         "latitude": 15.60308,
         "longitude": 32.52654
-      }
+      },
+      "tier": "medium"
     },
     "code": "SDN",
     "largestCities": [
@@ -12747,7 +12747,6 @@
         "fr": []
       },
       "id": "Q3718",
-      "isWellKnown": true,
       "names": {
         "en": "Dakar",
         "fr": "Dakar"
@@ -12755,7 +12754,8 @@
       "point": {
         "latitude": 14.672555555,
         "longitude": -17.432
-      }
+      },
+      "tier": "easy"
     },
     "code": "SEN",
     "largestCities": [
@@ -12843,7 +12843,6 @@
         "fr": ["République de Singapour"]
       },
       "id": "Q334",
-      "isWellKnown": true,
       "names": {
         "en": "Singapore",
         "fr": "Singapour"
@@ -12851,7 +12850,8 @@
       "point": {
         "latitude": 1.3,
         "longitude": 103.8
-      }
+      },
+      "tier": "medium"
     },
     "code": "SGP",
     "largestCities": [],
@@ -12866,7 +12866,6 @@
         "fr": []
       },
       "id": "Q40921",
-      "isWellKnown": false,
       "names": {
         "en": "Honiara",
         "fr": "Honiara"
@@ -12874,7 +12873,8 @@
       "point": {
         "latitude": -9.433333,
         "longitude": 159.95
-      }
+      },
+      "tier": "hard"
     },
     "code": "SLB",
     "largestCities": [],
@@ -12889,7 +12889,6 @@
         "fr": []
       },
       "id": "Q3780",
-      "isWellKnown": false,
       "names": {
         "en": "Freetown",
         "fr": "Freetown"
@@ -12897,7 +12896,8 @@
       "point": {
         "latitude": 8.487222222,
         "longitude": -13.235555555
-      }
+      },
+      "tier": "hard"
     },
     "code": "SLE",
     "largestCities": [
@@ -12961,7 +12961,6 @@
         "fr": []
       },
       "id": "Q3110",
-      "isWellKnown": true,
       "names": {
         "en": "San Salvador",
         "fr": "San Salvador"
@@ -12969,7 +12968,8 @@
       "point": {
         "latitude": 13.697597222,
         "longitude": -89.191155555
-      }
+      },
+      "tier": "medium"
     },
     "code": "SLV",
     "largestCities": [
@@ -13049,7 +13049,6 @@
         "fr": []
       },
       "id": "Q1848",
-      "isWellKnown": false,
       "names": {
         "en": "San Marino",
         "fr": "Saint-Marin"
@@ -13057,7 +13056,8 @@
       "point": {
         "latitude": 43.932011111,
         "longitude": 12.44845
-      }
+      },
+      "tier": "hard"
     },
     "code": "SMR",
     "largestCities": [
@@ -13097,7 +13097,6 @@
         ]
       },
       "id": "Q2449",
-      "isWellKnown": true,
       "names": {
         "en": "Mogadishu",
         "fr": "Mogadiscio"
@@ -13105,7 +13104,8 @@
       "point": {
         "latitude": 2.039166666,
         "longitude": 45.341944444
-      }
+      },
+      "tier": "medium"
     },
     "code": "SOM",
     "largestCities": [
@@ -13181,7 +13181,6 @@
         "fr": []
       },
       "id": "Q3711",
-      "isWellKnown": true,
       "names": {
         "en": "Belgrade",
         "fr": "Belgrade"
@@ -13189,7 +13188,8 @@
       "point": {
         "latitude": 44.817777777,
         "longitude": 20.456944444
-      }
+      },
+      "tier": "easy"
     },
     "code": "SRB",
     "largestCities": [
@@ -13265,7 +13265,6 @@
         "fr": ["Juba"]
       },
       "id": "Q1947",
-      "isWellKnown": false,
       "names": {
         "en": "Juba",
         "fr": "Djouba"
@@ -13273,7 +13272,8 @@
       "point": {
         "latitude": 4.853888888,
         "longitude": 31.5825
-      }
+      },
+      "tier": "hard"
     },
     "code": "SSD",
     "largestCities": [
@@ -13349,7 +13349,6 @@
         "fr": ["Saint-Thomas", "Sao Tomé"]
       },
       "id": "Q3932",
-      "isWellKnown": false,
       "names": {
         "en": "São Tomé",
         "fr": "São Tomé"
@@ -13357,7 +13356,8 @@
       "point": {
         "latitude": 0.3375,
         "longitude": 6.728333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "STP",
     "largestCities": [
@@ -13397,7 +13397,6 @@
         "fr": ["Parbo"]
       },
       "id": "Q3001",
-      "isWellKnown": false,
       "names": {
         "en": "Paramaribo",
         "fr": "Paramaribo"
@@ -13405,7 +13404,8 @@
       "point": {
         "latitude": 5.866666666,
         "longitude": -55.166666666
-      }
+      },
+      "tier": "hard"
     },
     "code": "SUR",
     "largestCities": [
@@ -13457,7 +13457,6 @@
         "fr": ["Presbourg"]
       },
       "id": "Q1780",
-      "isWellKnown": true,
       "names": {
         "en": "Bratislava",
         "fr": "Bratislava"
@@ -13465,7 +13464,8 @@
       "point": {
         "latitude": 48.14816,
         "longitude": 17.10674
-      }
+      },
+      "tier": "easy"
     },
     "code": "SVK",
     "largestCities": [
@@ -13541,7 +13541,6 @@
         "fr": ["Laybach", "Lioubiana", "Lioubliana", "Loubiana"]
       },
       "id": "Q437",
-      "isWellKnown": true,
       "names": {
         "en": "Ljubljana",
         "fr": "Ljubljana"
@@ -13549,7 +13548,8 @@
       "point": {
         "latitude": 46.051388888,
         "longitude": 14.506111111
-      }
+      },
+      "tier": "easy"
     },
     "code": "SVN",
     "largestCities": [
@@ -13625,7 +13625,6 @@
         "fr": ["STHLM"]
       },
       "id": "Q1754",
-      "isWellKnown": true,
       "names": {
         "en": "Stockholm",
         "fr": "Stockholm"
@@ -13633,7 +13632,8 @@
       "point": {
         "latitude": 59.329444444,
         "longitude": 18.068611111
-      }
+      },
+      "tier": "easy"
     },
     "code": "SWE",
     "largestCities": [
@@ -13709,7 +13709,6 @@
         "fr": ["Mbabané"]
       },
       "id": "Q3904",
-      "isWellKnown": false,
       "names": {
         "en": "Mbabane",
         "fr": "Mbabane"
@@ -13717,7 +13716,8 @@
       "point": {
         "latitude": -26.316666666,
         "longitude": 31.133333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "SWZ",
     "largestCities": [
@@ -13769,7 +13769,6 @@
         "fr": ["L'Établissement"]
       },
       "id": "Q3940",
-      "isWellKnown": false,
       "names": {
         "en": "Victoria",
         "fr": "Victoria"
@@ -13777,7 +13776,8 @@
       "point": {
         "latitude": -4.623611111,
         "longitude": 55.454444444
-      }
+      },
+      "tier": "hard"
     },
     "code": "SYC",
     "largestCities": [],
@@ -13792,7 +13792,6 @@
         "fr": ["Dimashq", "Dimashq ach-Cham"]
       },
       "id": "Q3766",
-      "isWellKnown": true,
       "names": {
         "en": "Damascus",
         "fr": "Damas"
@@ -13800,7 +13799,8 @@
       "point": {
         "latitude": 33.513055555,
         "longitude": 36.291944444
-      }
+      },
+      "tier": "medium"
     },
     "code": "SYR",
     "largestCities": [
@@ -13908,7 +13908,6 @@
         "fr": ["Fort-Lamy", "Ndjamena"]
       },
       "id": "Q3659",
-      "isWellKnown": true,
       "names": {
         "en": "N'Djamena",
         "fr": "N'Djaména"
@@ -13916,7 +13915,8 @@
       "point": {
         "latitude": 12.11,
         "longitude": 15.05
-      }
+      },
+      "tier": "medium"
     },
     "code": "TCD",
     "largestCities": [
@@ -13992,7 +13992,6 @@
         "fr": ["Lomé la belle"]
       },
       "id": "Q3792",
-      "isWellKnown": true,
       "names": {
         "en": "Lomé",
         "fr": "Lomé"
@@ -14000,7 +13999,8 @@
       "point": {
         "latitude": 6.13,
         "longitude": 1.215833333
-      }
+      },
+      "tier": "medium"
     },
     "code": "TGO",
     "largestCities": [
@@ -14061,7 +14061,6 @@
         ]
       },
       "id": "Q1861",
-      "isWellKnown": true,
       "names": {
         "en": "Bangkok",
         "fr": "Bangkok"
@@ -14069,7 +14068,8 @@
       "point": {
         "latitude": 13.75,
         "longitude": 100.516666666
-      }
+      },
+      "tier": "easy"
     },
     "code": "THA",
     "largestCities": [
@@ -14145,7 +14145,6 @@
         "fr": ["Stalinabad"]
       },
       "id": "Q9365",
-      "isWellKnown": true,
       "names": {
         "en": "Dushanbe",
         "fr": "Douchanbé"
@@ -14153,7 +14152,8 @@
       "point": {
         "latitude": 38.573055555,
         "longitude": 68.786388888
-      }
+      },
+      "tier": "hard"
     },
     "code": "TJK",
     "largestCities": [
@@ -14252,7 +14252,6 @@
         "fr": ["Achgabad", "Achkabad", "Achkhabad", "Ashkabad"]
       },
       "id": "Q23438",
-      "isWellKnown": true,
       "names": {
         "en": "Ashgabat",
         "fr": "Achgabat"
@@ -14260,7 +14259,8 @@
       "point": {
         "latitude": 37.95,
         "longitude": 58.383333333
-      }
+      },
+      "tier": "medium"
     },
     "code": "TKM",
     "largestCities": [
@@ -14352,7 +14352,6 @@
         "fr": []
       },
       "id": "Q9310",
-      "isWellKnown": false,
       "names": {
         "en": "Dili",
         "fr": "Dili"
@@ -14360,7 +14359,8 @@
       "point": {
         "latitude": -8.553611111,
         "longitude": 125.578333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "TLS",
     "largestCities": [
@@ -14436,7 +14436,6 @@
         "fr": ["Nuku'alofa", "Nukualofa", "Nuku’alofa"]
       },
       "id": "Q38834",
-      "isWellKnown": false,
       "names": {
         "en": "Nukuʻalofa",
         "fr": "Nukuʻalofa"
@@ -14444,7 +14443,8 @@
       "point": {
         "latitude": -21.1343401,
         "longitude": -175.201808
-      }
+      },
+      "tier": "hard"
     },
     "code": "TON",
     "largestCities": [],
@@ -14459,7 +14459,6 @@
         "fr": ["Port d'Espagne", "Port of Spain", "Port-of-Spain", "TTPP"]
       },
       "id": "Q39178",
-      "isWellKnown": false,
       "names": {
         "en": "Port of Spain",
         "fr": "Port-d'Espagne"
@@ -14467,7 +14466,8 @@
       "point": {
         "latitude": 10.666666666,
         "longitude": -61.516666666
-      }
+      },
+      "tier": "hard"
     },
     "code": "TTO",
     "largestCities": [
@@ -14507,7 +14507,6 @@
         "fr": []
       },
       "id": "Q3572",
-      "isWellKnown": true,
       "names": {
         "en": "Tunis",
         "fr": "Tunis"
@@ -14515,7 +14514,8 @@
       "point": {
         "latitude": 36.800833333,
         "longitude": 10.18
-      }
+      },
+      "tier": "easy"
     },
     "code": "TUN",
     "largestCities": [
@@ -14596,7 +14596,6 @@
         "fr": []
       },
       "id": "Q3640",
-      "isWellKnown": true,
       "names": {
         "en": "Ankara",
         "fr": "Ankara"
@@ -14604,7 +14603,8 @@
       "point": {
         "latitude": 39.93576,
         "longitude": 32.83869
-      }
+      },
+      "tier": "medium"
     },
     "code": "TUR",
     "largestCities": [
@@ -14692,7 +14692,6 @@
         "fr": ["Taibei", "Tanshoui", "Tanshouï"]
       },
       "id": "Q1867",
-      "isWellKnown": true,
       "names": {
         "en": "Taipei",
         "fr": "Taipei"
@@ -14700,7 +14699,8 @@
       "point": {
         "latitude": 25.0375,
         "longitude": 121.5625
-      }
+      },
+      "tier": "medium"
     },
     "code": "TWN",
     "largestCities": [
@@ -14817,7 +14817,6 @@
         "fr": []
       },
       "id": "Q3866",
-      "isWellKnown": true,
       "names": {
         "en": "Dodoma",
         "fr": "Dodoma"
@@ -14825,7 +14824,8 @@
       "point": {
         "latitude": -6.1835,
         "longitude": 35.746
-      }
+      },
+      "tier": "hard"
     },
     "code": "TZA",
     "largestCities": [
@@ -14901,7 +14901,6 @@
         "fr": []
       },
       "id": "Q3894",
-      "isWellKnown": true,
       "names": {
         "en": "Kampala",
         "fr": "Kampala"
@@ -14909,7 +14908,8 @@
       "point": {
         "latitude": 0.313611111,
         "longitude": 32.581111111
-      }
+      },
+      "tier": "medium"
     },
     "code": "UGA",
     "largestCities": [
@@ -15000,7 +15000,6 @@
         "fr": ["Kyiv", "Kyïv"]
       },
       "id": "Q1899",
-      "isWellKnown": true,
       "names": {
         "en": "Kyiv",
         "fr": "Kiev"
@@ -15008,7 +15007,8 @@
       "point": {
         "latitude": 50.45,
         "longitude": 30.523611111
-      }
+      },
+      "tier": "easy"
     },
     "code": "UKR",
     "largestCities": [
@@ -15099,7 +15099,6 @@
         "fr": ["Montévidéo", "San Felipe y Santiago de Montevideo"]
       },
       "id": "Q1335",
-      "isWellKnown": true,
       "names": {
         "en": "Montevideo",
         "fr": "Montevideo"
@@ -15107,7 +15106,8 @@
       "point": {
         "latitude": -34.905916666,
         "longitude": -56.191311111
-      }
+      },
+      "tier": "medium"
     },
     "code": "URY",
     "largestCities": [
@@ -15201,7 +15201,6 @@
         ]
       },
       "id": "Q61",
-      "isWellKnown": true,
       "names": {
         "en": "Washington, D.C.",
         "fr": "Washington"
@@ -15209,7 +15208,8 @@
       "point": {
         "latitude": 38.895,
         "longitude": -77.036666666
-      }
+      },
+      "tier": "easy"
     },
     "code": "USA",
     "largestCities": [
@@ -15388,7 +15388,6 @@
         "fr": []
       },
       "id": "Q269",
-      "isWellKnown": true,
       "names": {
         "en": "Tashkent",
         "fr": "Tachkent"
@@ -15396,7 +15395,8 @@
       "point": {
         "latitude": 41.311111111,
         "longitude": 69.279722222
-      }
+      },
+      "tier": "medium"
     },
     "code": "UZB",
     "largestCities": [
@@ -15488,7 +15488,6 @@
         "fr": ["Cité du Vatican", "État de la Cité du Vatican"]
       },
       "id": "Q237",
-      "isWellKnown": true,
       "names": {
         "en": "Vatican City",
         "fr": "Vatican"
@@ -15496,7 +15495,8 @@
       "point": {
         "latitude": 41.904,
         "longitude": 12.453
-      }
+      },
+      "tier": "medium"
     },
     "code": "VAT",
     "largestCities": [],
@@ -15511,7 +15511,6 @@
         "fr": []
       },
       "id": "Q41474",
-      "isWellKnown": false,
       "names": {
         "en": "Kingstown",
         "fr": "Kingstown"
@@ -15519,7 +15518,8 @@
       "point": {
         "latitude": 13.15527,
         "longitude": -61.22742
-      }
+      },
+      "tier": "hard"
     },
     "code": "VCT",
     "largestCities": [],
@@ -15534,7 +15534,6 @@
         "fr": ["Santiago de León de Caracas"]
       },
       "id": "Q1533",
-      "isWellKnown": true,
       "names": {
         "en": "Caracas",
         "fr": "Caracas"
@@ -15542,7 +15541,8 @@
       "point": {
         "latitude": 10.506111111,
         "longitude": -66.914444444
-      }
+      },
+      "tier": "medium"
     },
     "code": "VEN",
     "largestCities": [
@@ -15624,7 +15624,6 @@
         "fr": ["Hanoi", "Hà Nội"]
       },
       "id": "Q1858",
-      "isWellKnown": true,
       "names": {
         "en": "Hanoi",
         "fr": "Hanoï"
@@ -15632,7 +15631,8 @@
       "point": {
         "latitude": 21.0245,
         "longitude": 105.84117
-      }
+      },
+      "tier": "easy"
     },
     "code": "VNM",
     "largestCities": [
@@ -15732,7 +15732,6 @@
         "fr": ["Port Vila", "Port-vila"]
       },
       "id": "Q37806",
-      "isWellKnown": true,
       "names": {
         "en": "Port Vila",
         "fr": "Port-Vila"
@@ -15740,7 +15739,8 @@
       "point": {
         "latitude": -17.73333,
         "longitude": 168.316667
-      }
+      },
+      "tier": "hard"
     },
     "code": "VUT",
     "largestCities": [],
@@ -15755,7 +15755,6 @@
         "fr": ["Faleolo"]
       },
       "id": "Q36260",
-      "isWellKnown": false,
       "names": {
         "en": "Apia",
         "fr": "Apia"
@@ -15763,7 +15762,8 @@
       "point": {
         "latitude": -13.833333333,
         "longitude": -171.833333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "WSM",
     "largestCities": [],
@@ -15778,7 +15778,6 @@
         "fr": ["Prishtina", "Prishtinë", "Priština", "Quartier de Dardania"]
       },
       "id": "Q25270",
-      "isWellKnown": true,
       "names": {
         "en": "Pristina",
         "fr": "Pristina"
@@ -15786,7 +15785,8 @@
       "point": {
         "latitude": 42.666666666,
         "longitude": 21.166666666
-      }
+      },
+      "tier": "medium"
     },
     "code": "XKX",
     "largestCities": [
@@ -15862,7 +15862,6 @@
         "fr": []
       },
       "id": "Q2471",
-      "isWellKnown": true,
       "names": {
         "en": "Sanaa",
         "fr": "Sanaa"
@@ -15870,7 +15869,8 @@
       "point": {
         "latitude": 15.35,
         "longitude": 44.2
-      }
+      },
+      "tier": "medium"
     },
     "code": "YEM",
     "largestCities": [
@@ -15976,7 +15976,6 @@
         "fr": ["Prétoria"]
       },
       "id": "Q3926",
-      "isWellKnown": true,
       "names": {
         "en": "Pretoria",
         "fr": "Pretoria"
@@ -15984,7 +15983,8 @@
       "point": {
         "latitude": -25.746388888,
         "longitude": 28.188055555
-      }
+      },
+      "tier": "medium"
     },
     "code": "ZAF",
     "largestCities": [
@@ -16108,7 +16108,6 @@
         "fr": []
       },
       "id": "Q3881",
-      "isWellKnown": true,
       "names": {
         "en": "Lusaka",
         "fr": "Lusaka"
@@ -16116,7 +16115,8 @@
       "point": {
         "latitude": -15.416666666,
         "longitude": 28.283333333
-      }
+      },
+      "tier": "hard"
     },
     "code": "ZMB",
     "largestCities": [
@@ -16192,7 +16192,6 @@
         "fr": []
       },
       "id": "Q3921",
-      "isWellKnown": true,
       "names": {
         "en": "Harare",
         "fr": "Harare"
@@ -16200,7 +16199,8 @@
       "point": {
         "latitude": -17.829166666,
         "longitude": 31.052222222
-      }
+      },
+      "tier": "hard"
     },
     "code": "ZWE",
     "largestCities": [

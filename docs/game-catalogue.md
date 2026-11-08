@@ -354,6 +354,32 @@ every entry of the line-up, and reads one back only while they agree. A room
 value beside the games' would need a precedence rule, and every precedence
 rule is one more thing a host cannot see from the setup.
 
+**A country's tier is one list, and it is not the traffic.** Sixty days of
+French Wikipedia readers follow the news — a coup put Burkina Faso above
+Thailand, and Denmark's top entity is the constituent country nobody reads —
+so the flags' `easy` tier is the hand-picked list of flags a table has seen,
+plus France's neighbours and the G20, and traffic only splits the rest into
+`medium` and `hard` (`scripts/country-tiers.ts`). Silhouettes and the map's
+countries read the same list; a capital is cut in thirds by its own traffic,
+then held within one tier of its country's, because the raw cut filed Caracas
+among the obscure. `easy` alone softens the question: the country rubrics show
+decoys from three other continents, the map's naming draws from a ring of
+forty rather than eight; the near misses stay at every other level. The
+tiers that only the country rubrics and the rebus hold made the quiz's
+`mixed` draw its **category first** and the tier inside it: a tier drawn first
+sent every `medium` round — a third of the evening — to four subjects of
+thirteen.
+
+**"The capitals are always the same" was measured, not guessed.** Two thousand
+simulated evenings: `mixed` deals all 191 asked capitals, the twenty most dealt
+taking 14 % of the draws against 10 % for a perfectly even draw; nothing is
+seeded, and a room's no-repeat set is per room, so the famous ones returning
+across evenings is the draw working. The old _well-known_ switch kept 154 of
+191 and narrowed nothing. What did skew it was part 1's stand-in, which cut
+the bank into heard-of and obscure halves: each of the 37 obscure capitals came
+up four times as often as a famous one. `easy` deals 51, and a capitals-only
+easy evening does circle them.
+
 ## The seams, and what it costs to keep them open
 
 **Room state and game state were fused, and are not any more.** Stage 11 split

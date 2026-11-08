@@ -26,7 +26,8 @@ describe('nearbyDecoys', () => {
       const decoys = nearbyDecoys({
         candidates: [RENNES, ...FAR_AWAY, ...BRETON_TOWNS],
         count: 3,
-        from: RENNES.point
+        from: RENNES.point,
+        isWide: false
       })
 
       expect(decoys).toHaveLength(3)
@@ -36,6 +37,23 @@ describe('nearbyDecoys', () => {
         expect(BRETON_TOWNS).toContain(decoy)
       }
     }
+  })
+})
+
+describe('nearbyDecoys, wide', () => {
+  it('[place-naming] reaches past the nearest places for a softer pick', () => {
+    const drawn = new Set(
+      Array.from({ length: 20 }, () =>
+        nearbyDecoys({
+          candidates: [RENNES, ...FAR_AWAY, ...BRETON_TOWNS],
+          count: 3,
+          from: RENNES.point,
+          isWide: true
+        })
+      ).flat()
+    )
+
+    expect(FAR_AWAY.some((place) => drawn.has(place))).toBe(true)
   })
 })
 

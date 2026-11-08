@@ -20,6 +20,16 @@ one part.
   timeline play as before at every level, and the number games lean on the
   famous rows they already had.
 
+- `[Server]` **Flags, capitals, silhouettes, emoji rebuses and the map are
+  tiered easy, medium and hard.** Easy deals the flags every table has seen,
+  France's neighbours and the G20 — never a territory — and shows them beside
+  decoys from three other continents, so a child picks Japan's flag beside
+  Brazil's rather than Bangladesh's; the map at easy asks the countries,
+  capitals and French cities everybody knows and names a place among rivals
+  from further away. Every rebus was read and tiered by hand. Mixed now draws
+  the quiz's subject first and the level inside it, so the four tiered
+  subjects keep their share of an evening.
+
 - `[Game]` **A level on every game that takes one, and one for the whole
   line-up.** _Easy · Mixed · Hard_ sits on the page of the quiz, the blind
   test, the map, the timeline and both number games, saying under it what

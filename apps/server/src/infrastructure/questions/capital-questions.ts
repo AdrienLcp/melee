@@ -104,6 +104,55 @@ const decoysFor = ({
   return [first, second, third]
 }
 
+/** A fixed 32-bit FNV-1a of `text`: the same order on every cold start, a different one for every answer. */
+const fnv1a = (text: string): number => {
+  let hash = 0x811c9dc5
+
+  for (const character of text) {
+    hash = Math.imul(hash ^ (character.codePointAt(0) ?? 0), 0x01000193) >>> 0
+  }
+
+  return hash
+}
+
+/**
+ * What an `easy` room is shown instead: easy capitals from three continents
+ * the answer is not on, so Canberra stands beside Berlin, Tokyo and Lima
+ * rather than beside Sydney and Melbourne.
+ */
+const easyDecoysFor = ({
+  language,
+  row,
+  rows
+}: {
+  language: QuestionLanguage
+  row: CapitalRow
+  rows: readonly CapitalRow[]
+}): [string, string, string] => {
+  const regionsTaken = new Set([row.region])
+  const decoys: string[] = []
+
+  for (const other of rows
+    .filter(({ capital }) => capital.tier === 'easy')
+    .toSorted(
+      (one, other) =>
+        fnv1a(`${row.code}:${one.code}`) - fnv1a(`${row.code}:${other.code}`)
+    )) {
+    if (decoys.length < DECOY_COUNT && !regionsTaken.has(other.region)) {
+      regionsTaken.add(other.region)
+      decoys.push(other.capital.names[language])
+    }
+  }
+
+  const [first, second, third] = decoys
+
+  if (first === undefined || second === undefined || third === undefined) {
+    throw new Error(`No three easy decoys for the capital of ${row.code}`)
+  }
+
+  return [first, second, third]
+}
+
 const askedRows = (): CapitalRow[] =>
   bankedCapitals().filter((row) => !CITY_STATES.has(row.code))
 
@@ -133,16 +182,18 @@ export const bankedCapitalQuestions = (): BankedQuestion[] => {
       category: 'capitals' as const,
       choiceOnly: false,
       decoys: decoysFor({ language, row, rows: bankedCapitals() }),
+      easyDecoys: easyDecoysFor({ language, row, rows: askedRows() }),
       flag: null,
       id: `capital-${language}-${row.code}`,
       isAdult: false,
-      isWellKnown: row.capital.isWellKnown,
+      isWellKnown: row.capital.tier === 'easy',
       language,
       note: null,
       prompt: PROMPT_BY_LANGUAGE[language](row.code),
       rebus: null,
       silhouette: null,
-      theme: 'wikidata-capitals'
+      theme: 'wikidata-capitals',
+      tier: row.capital.tier
     }))
   )
 

@@ -23,6 +23,14 @@ const BANKED_QUESTIONS = bankedQuestions()
 
 const NOTHING_PLAYED: ReadonlySet<string> = new Set()
 
+/** The subjects whose rows carry a tier of their own, `medium` included. */
+const TIERED_RUBRICS: ReadonlySet<QuestionCategory> = new Set([
+  'capitals',
+  'flags',
+  'rebus',
+  'silhouettes'
+])
+
 type DrawManyOptions = {
   isFamilyFriendly?: boolean
   isUsable?: (question: BankedQuestion) => boolean
@@ -610,10 +618,45 @@ describe('drawQuestion', () => {
    * would deal well-known ones about two times in five. Half and half is the
    * tier drawn first; the margin is five standard deviations at 1 200 draws.
    */
+  it('[difficulty] deals a tiered rubric each of its three tiers a third of the time', () => {
+    const drawn = drawMany(
+      { ...DEFAULT_QUIZ_SETTINGS, categories: ['flags'] },
+      { times: 1_200 }
+    )
+    const byTier = Map.groupBy(drawn, (question) => question.tier)
+
+    for (const tier of ['easy', 'medium', 'hard'] as const) {
+      expect((byTier.get(tier)?.length ?? 0) / drawn.length).toBeCloseTo(
+        1 / 3,
+        1
+      )
+    }
+  })
+
+  it('[difficulty] gives the four tiered subjects no more than their share of a mixed evening', () => {
+    const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_300 })
+    const tiered = drawn.filter((question) =>
+      TIERED_RUBRICS.has(question.category)
+    ).length
+
+    expect(tiered / drawn.length).toBeCloseTo(
+      TIERED_RUBRICS.size / questionCategories.length,
+      1
+    )
+  })
+
   it('[difficulty] mixes heard-of and obscure half and half', () => {
     expect(DEFAULT_QUIZ_SETTINGS.difficulty).toBe('mixed')
 
-    const drawn = drawMany(DEFAULT_QUIZ_SETTINGS, { times: 1_200 })
+    const drawn = drawMany(
+      {
+        ...DEFAULT_QUIZ_SETTINGS,
+        categories: questionCategories.filter(
+          (category) => !TIERED_RUBRICS.has(category)
+        )
+      },
+      { times: 1_200 }
+    )
     const heardOf = drawn.filter((question) => question.isWellKnown).length
 
     expect(heardOf / drawn.length).toBeCloseTo(1 / 2, 1)

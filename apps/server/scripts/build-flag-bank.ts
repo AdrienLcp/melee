@@ -8,8 +8,11 @@ import type { GeoPoint } from '@melee/protocol/atlas'
 import { COUNTRY_CODES, type CountryCode } from '@melee/protocol/country-code'
 
 import { greatCircleKm } from '@melee/core/atlas/distance'
+import { contentTiers } from '@melee/core/round/difficulty-draw'
 
 import { countryShapeOf } from '../src/infrastructure/map/world-atlas'
+import { bankedCapitals } from '../src/infrastructure/questions/capital-bank'
+import { countryTiers, easyDecoysOf } from './country-tiers'
 
 /**
  * Writes the flags round's two halves from `flag-icons`: every flag as an SVG
@@ -358,11 +361,12 @@ const LOOK_ALIKE_GROUPS: readonly (readonly CountryCode[])[] = [
 ]
 
 /**
- * The flags a table can be expected to have seen — what the well-known switch
- * keeps. Chosen by hand: a flag is known from a football pitch, a beach towel
- * or the evening news, which no traffic count measures.
+ * The flags a table can be expected to have seen — the `easy` tier. Chosen by
+ * hand: a flag is known from a football pitch, a beach towel or the evening
+ * news, which no traffic count measures — the burst a country takes in the
+ * news put Burkina Faso above Thailand over sixty days.
  */
-const WELL_KNOWN: ReadonlySet<CountryCode> = new Set([
+const SEEN_BY_EVERY_TABLE: ReadonlySet<CountryCode> = new Set([
   'ALB',
   'ARE',
   'ARG',
@@ -440,6 +444,15 @@ const WELL_KNOWN: ReadonlySet<CountryCode> = new Set([
   'VEN',
   'VNM',
   'ZAF'
+])
+
+/**
+ * Sovereign states the capital bank leaves out for having a capital in
+ * dispute: still states, so still allowed an `easy` flag.
+ */
+const SOVEREIGN_WITHOUT_A_CAPITAL: ReadonlySet<CountryCode> = new Set([
+  'ISR',
+  'PSE'
 ])
 
 /**
@@ -522,6 +535,32 @@ const decoysOf = ({
   return [first, second, third]
 }
 
+/** The sovereign state nearest a territory, whose continent it is filed under. */
+const nearestStateOf = ({
+  centres,
+  code,
+  regionOfState
+}: {
+  centres: ReadonlyMap<CountryCode, GeoPoint>
+  code: CountryCode
+  regionOfState: ReadonlyMap<CountryCode, string>
+}): CountryCode => {
+  const centre = centres.get(code)
+  const [nearest] = [...centres]
+    .filter(([other]) => regionOfState.has(other))
+    .map(([other, point]) => ({
+      code: other,
+      km: centre === undefined ? 0 : greatCircleKm(centre, point)
+    }))
+    .toSorted((a, b) => a.km - b.km)
+
+  if (nearest === undefined) {
+    throw new Error(`${code} is near no sovereign state`)
+  }
+
+  return nearest.code
+}
+
 const main = async () => {
   const flags = await readFlags()
   const centres = new Map(
@@ -537,6 +576,22 @@ const main = async () => {
     )
   }
 
+  const regionOfState = new Map(
+    bankedCapitals().map(({ code, region }) => [code, region])
+  )
+  const sovereign = new Set([
+    ...regionOfState.keys(),
+    ...SOVEREIGN_WITHOUT_A_CAPITAL
+  ])
+  const tiers = await countryTiers({
+    codes: [...flags.keys()],
+    seenByEveryTable: SEEN_BY_EVERY_TABLE,
+    sovereign
+  })
+  const regionOf = (code: CountryCode): string | undefined =>
+    regionOfState.get(code) ??
+    regionOfState.get(nearestStateOf({ centres, code, regionOfState }))
+
   await rm(FLAGS_TARGET, { force: true, recursive: true })
   await mkdir(FLAGS_TARGET, { recursive: true })
 
@@ -549,13 +604,22 @@ const main = async () => {
     rows.push({
       code,
       decoys: decoysOf({ centres, code }),
+      easyDecoys: easyDecoysOf({
+        code,
+        regionOf,
+        tiers: new Map([...tiers].filter(([other]) => regionOfState.has(other)))
+      }),
       file,
-      isWellKnown: WELL_KNOWN.has(code)
+      tier: tiers.get(code) ?? 'hard'
     })
   }
 
   await writeFile(BANK_PATH, `${JSON.stringify(rows, null, 2)}\n`, 'utf8')
-  console.info(`${rows.length} flags, ${WELL_KNOWN.size} of them well known`)
+  const byTier = Map.groupBy(rows, (row) => row.tier)
+
+  console.info(
+    `${rows.length} flags: ${contentTiers.map((tier) => `${byTier.get(tier)?.length ?? 0} ${tier}`).join(', ')}`
+  )
 }
 
 await main()

@@ -1,5 +1,6 @@
 import { z } from 'zod'
 
+import type { Difficulty } from '@melee/protocol/difficulty'
 import {
   flagFileSchema,
   type HostQuestion,
@@ -13,7 +14,9 @@ import {
 import { pickRandom } from '@melee/core/helpers/random'
 import {
   type ContentTier,
-  dealByDifficulty
+  contentTiers,
+  dealByDifficulty,
+  drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
 
 import {
@@ -44,6 +47,15 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
    * for a room that will show them and nowhere else — see `drawQuestion`.
    */
   choiceOnly: z.boolean(),
+  /**
+   * The decoys an `easy` room is shown instead, from other continents — a
+   * child picks Japan's flag beside Brazil's, not beside Bangladesh's. Only a
+   * country rubric carries them: a near miss is the game everywhere else.
+   */
+  easyDecoys: z
+    .tuple([z.string(), z.string(), z.string()])
+    .nullable()
+    .default(null),
   /** Absent from the bank's own rows, which are all text: only `flag-questions.ts` deals a flag. */
   flag: flagFileSchema.nullable().default(null),
   /**
@@ -66,7 +78,12 @@ const bankedQuestionSchema = hostQuestionSchema.extend({
   /** Absent from the bank's own rows too: only `silhouette-questions.ts` deals one. */
   silhouette: silhouetteFileSchema.nullable().default(null),
   /** The upstream pack, so a question that turns out to be wrong is traceable. */
-  theme: z.string()
+  theme: z.string(),
+  /**
+   * How hard the rubric that built the row ranks it. Absent from the bank's
+   * own rows, which carry `isWellKnown` and nothing finer.
+   */
+  tier: z.enum(contentTiers).nullable().default(null)
 })
 
 /**
@@ -124,22 +141,30 @@ const byLanguage = (): Map<string, BankedQuestion[]> => {
   return questionsByLanguage
 }
 
+/** The round's question, with the softer decoys when the room plays `easy` and the row has them. */
 export const hostQuestionOf = ({
+  difficulty,
+  question: {
+    accepted,
+    answer,
+    category,
+    decoys,
+    easyDecoys,
+    flag,
+    id,
+    note,
+    prompt,
+    rebus,
+    silhouette
+  }
+}: {
+  difficulty: Difficulty
+  question: BankedQuestion
+}): HostQuestion => ({
   accepted,
   answer,
   category,
-  decoys,
-  flag,
-  id,
-  note,
-  prompt,
-  rebus,
-  silhouette
-}: BankedQuestion): HostQuestion => ({
-  accepted,
-  answer,
-  category,
-  decoys,
+  decoys: difficulty === 'easy' && easyDecoys !== null ? easyDecoys : decoys,
   flag,
   id,
   note,
@@ -147,6 +172,14 @@ export const hostQuestionOf = ({
   rebus,
   silhouette
 })
+
+/**
+ * A rubric's row carries its tier. The bank's own carry a verdict, not a
+ * ladder — heard of or not — so they hold no medium tier, and `mixed` deals
+ * their two halves in equal shares.
+ */
+const tierOfQuestion = ({ isWellKnown, tier }: BankedQuestion): ContentTier =>
+  tier ?? (isWellKnown ? 'easy' : 'hard')
 
 /**
  * One question the room has not had yet. `playedIds` is the room's memory
@@ -168,21 +201,17 @@ export const hostQuestionOf = ({
  * A `choiceOnly` row wants its own decoys on screen, which is true of a quiz in
  * `choice` mode and of nothing else: typed mode has a text field.
  *
- * **The level's tier is drawn before the category** (`dealByDifficulty`),
- * so `easy` deals a question a room has heard of whenever any ticked subject
- * still holds one.
+ * **At `easy` and `hard` the level's tier is drawn before the category**
+ * (`dealByDifficulty`), so `easy` deals a question a room has heard of
+ * whenever any ticked subject still holds one. **At `mixed` the category comes
+ * first and the tier inside it**: only the country rubrics and the rebus hold
+ * a `medium` tier, and a tier drawn first sent a third of every evening to
+ * those four subjects of thirteen.
  *
  * `previousCategory` is the round just played, and is not drawn again while
  * another category is left: an independent draw dealt two flags in a row one
  * round in three over three rubrics, and a table reads that as a broken mix.
  */
-/**
- * A row carries a verdict, not a ladder — heard of or not — so the bank has
- * no medium tier, and `mixed` deals the two halves in equal shares.
- */
-const tierOfQuestion = ({ isWellKnown }: BankedQuestion): ContentTier =>
-  isWellKnown ? 'easy' : 'hard'
-
 export const drawQuestion = ({
   isFamilyFriendly,
   isUsable,
@@ -206,16 +235,26 @@ export const drawQuestion = ({
       isUsable(question)
   )
 
+  const categoryToDeal = (share: readonly BankedQuestion[]) => {
+    const byCategory = Map.groupBy(share, (question) => question.category)
+
+    if (previousCategory !== null && byCategory.size > 1) {
+      byCategory.delete(previousCategory)
+    }
+
+    return pickRandom([...byCategory.values()]) ?? []
+  }
+
+  if (settings.difficulty === 'mixed') {
+    return drawByDifficulty({
+      difficulty: 'mixed',
+      pool: categoryToDeal(eligible),
+      tierOf: tierOfQuestion
+    })
+  }
+
   return dealByDifficulty({
-    deal: (share) => {
-      const byCategory = Map.groupBy(share, (question) => question.category)
-
-      if (previousCategory !== null && byCategory.size > 1) {
-        byCategory.delete(previousCategory)
-      }
-
-      return pickRandom(pickRandom([...byCategory.values()]) ?? [])
-    },
+    deal: (share) => pickRandom(categoryToDeal(share)),
     difficulty: settings.difficulty,
     pool: eligible,
     tierOf: tierOfQuestion

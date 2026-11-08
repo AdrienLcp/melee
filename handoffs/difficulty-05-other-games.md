@@ -32,8 +32,8 @@ For each, decide whether a level means something, and wire `difficulty` (part
 - **Petit Bac** — `easy` deals only common letters (no K, Q, W, X, Y, Z);
   check what the letter draw does today.
 - **Shades** — `easy` shows the colour longer; the pay curve does not move.
-- **Matchsticks**, **emoji rebus** if part 3 left it — do their banks carry
-  anything that orders them? Tier if so.
+- **Matchsticks** — does its bank carry anything that orders it? Tier if so.
+  (Part 3 tiered the emoji rebus by hand.)
 - **Black square** — not here: `black-square-01-shape.md` rebuilds its bank
   with tiers and wires its level.
 - **Most likely**, **Buzzer**, **Reflex**, **Slate**, **Challenge**, **Inner
@@ -48,6 +48,6 @@ others do not, so the next game knows.
 - `pnpm validate` once, here, after everything has landed (the series runs one
   validate at the end; CI covers each push).
 - Record the stage as `docs/plans/62-difficulty.md` (what it bought, the
-  decisions in part 1, the capitals finding from part 3) and add its row to
+  decisions in part 1, the capitals finding part 3 wrote into `docs/game-catalogue.md`) and add its row to
   `docs/plans/README.md`.
 - Delete the `difficulty-*` handoffs and their README rows in that commit.

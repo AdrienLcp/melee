@@ -130,13 +130,22 @@ const drawTargetOf = ({
   if (places === 'frenchCities') {
     const city = drawCity({ difficulty, playedIds })
 
-    return city === null ? null : { kind: 'city', ...city }
+    return city === null
+      ? null
+      : { kind: 'city', name: city.name, point: city.point }
   }
 
   if (places === 'worldCapitals') {
     const capital = drawCapital({ difficulty, playedIds })
 
-    return capital === null ? null : { kind: 'capital', ...capital }
+    return capital === null
+      ? null
+      : {
+          countryCode: capital.countryCode,
+          kind: 'capital',
+          names: capital.names,
+          point: capital.point
+        }
   }
 
   const countryCode = drawCountry({ difficulty, playedIds })
@@ -174,7 +183,7 @@ const drawAtlasContent = ({
         return atlasContent({ naming: null, target })
       }
 
-      const naming = namingOf({ isChoice, target })
+      const naming = namingOf({ difficulty, isChoice, target })
 
       if (naming !== null) {
         return atlasContent({ naming, target })
@@ -361,7 +370,10 @@ export const beginRound = async (
     room.playedContentIds.add(question.id)
 
     openRound({
-      content: quizContent({ question: hostQuestionOf(question), room }),
+      content: quizContent({
+        question: hostQuestionOf({ difficulty: game.difficulty, question }),
+        room
+      }),
       id: newRoundId(),
       now: engine.now(),
       room,

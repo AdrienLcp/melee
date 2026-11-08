@@ -3,8 +3,8 @@ import type { CountryCode } from '@melee/protocol/country-code'
 import type { Difficulty } from '@melee/protocol/difficulty'
 
 import {
-  drawByDifficulty,
-  oneTierForEveryRow
+  type ContentTier,
+  drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
 
 import { bankedCapitals } from './capital-bank'
@@ -15,6 +15,7 @@ export type BankedCapital = {
   countryCode: CountryCode
   names: { en: string; fr: string }
   point: GeoPoint
+  tier: ContentTier
 }
 
 const BANKED_COUNTRY_CODES: ReadonlySet<CountryCode> = new Set(BANKED_COUNTRIES)
@@ -31,7 +32,8 @@ export const worldCapitals = (): readonly BankedCapital[] =>
     .map(({ capital, code }) => ({
       countryCode: code,
       names: capital.names,
-      point: capital.point
+      point: capital.point,
+      tier: capital.tier
     }))
 
 /** The id a played capital takes in the room's no-repeat set, beside the countries and the cities. */
@@ -51,5 +53,5 @@ export const drawCapital = ({
     pool: worldCapitals().filter(
       ({ countryCode }) => !playedIds.has(playedCapitalId(countryCode))
     ),
-    tierOf: oneTierForEveryRow
+    tierOf: ({ tier }) => tier
   })

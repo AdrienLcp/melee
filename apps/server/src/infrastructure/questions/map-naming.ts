@@ -1,4 +1,5 @@
 import type { GeoPoint, LocalizedName } from '@melee/protocol/atlas'
+import type { Difficulty } from '@melee/protocol/difficulty'
 
 import { nearbyDecoys, spellingsOf } from '@melee/core/atlas/place-naming'
 import { COUNTRY_NAMES_EN } from '@melee/core/countries/country-names-en'
@@ -79,9 +80,11 @@ const spellingsOfNames = ({ en, fr }: LocalizedName): string[] => [
  * which the atlas can show.
  */
 export const namingOf = ({
+  difficulty,
   isChoice,
   target
 }: {
+  difficulty: Difficulty
   isChoice: boolean
   target: AtlasRoundTarget
 }): AtlasNaming | null => {
@@ -95,7 +98,8 @@ export const namingOf = ({
   const decoys = nearbyDecoys({
     candidates: found.rivals,
     count: DECOY_COUNT,
-    from: found.place.point
+    from: found.place.point,
+    isWide: difficulty === 'easy'
   }).map(({ names }) => names)
   const choices = isChoice ? shuffled([answer, ...decoys]) : []
 

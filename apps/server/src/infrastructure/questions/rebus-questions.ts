@@ -2,6 +2,8 @@ import { z } from 'zod'
 
 import type { QuestionLanguage } from '@melee/protocol/question'
 
+import { contentTiers } from '@melee/core/round/difficulty-draw'
+
 import type { BankedQuestion } from './question-bank'
 import rebusEn from './rebus-en.json' with { type: 'json' }
 import rebusFr from './rebus-fr.json' with { type: 'json' }
@@ -18,10 +20,10 @@ export const authoredRebusSchema = z.object({
   answer: z.string().min(1),
   decoys: z.tuple([z.string(), z.string(), z.string()]),
   id: z.string().regex(/^rebus-(fr|en)-[a-z0-9-]+$/),
-  isWellKnown: z.boolean(),
   kind: z.enum(['film', 'saying', 'series', 'song']),
   note: z.string().nullable(),
-  rebus: z.string().min(1).max(64)
+  rebus: z.string().min(1).max(64),
+  tier: z.enum(contentTiers)
 })
 
 type RebusKind = z.infer<typeof authoredRebusSchema>['kind']
@@ -61,8 +63,10 @@ export const bankedRebusQuestions = (): BankedQuestion[] => {
         ...row,
         category: 'rebus' as const,
         choiceOnly: false,
+        easyDecoys: null,
         flag: null,
         isAdult: false,
+        isWellKnown: row.tier === 'easy',
         language,
         prompt: ASK_BY_KIND[language][kind],
         rebus,

@@ -143,7 +143,7 @@ export const questionBankStub = () => ({
     QUESTIONS.find(
       (question) => !playedIds.has(question.id) && isUsable(question)
     ) ?? null,
-  hostQuestionOf: <TQuestion>(question: TQuestion) => question
+  hostQuestionOf: <TQuestion>({ question }: { question: TQuestion }) => question
 })
 
 /**

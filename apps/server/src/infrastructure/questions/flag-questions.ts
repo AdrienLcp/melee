@@ -1,11 +1,19 @@
 import { z } from 'zod'
 
-import { countryCodeSchema } from '@melee/protocol/country-code'
+import {
+  type CountryCode,
+  countryCodeSchema
+} from '@melee/protocol/country-code'
 import {
   flagFileSchema,
   type QuestionLanguage,
   questionLanguages
 } from '@melee/protocol/question'
+
+import {
+  type ContentTier,
+  contentTiers
+} from '@melee/core/round/difficulty-draw'
 
 import {
   acceptedCountryNames,
@@ -24,8 +32,13 @@ const flagBankSchema = z.array(
   z.object({
     code: countryCodeSchema,
     decoys: z.tuple([countryCodeSchema, countryCodeSchema, countryCodeSchema]),
+    easyDecoys: z.tuple([
+      countryCodeSchema,
+      countryCodeSchema,
+      countryCodeSchema
+    ]),
     file: flagFileSchema,
-    isWellKnown: z.boolean()
+    tier: z.enum(contentTiers)
   })
 )
 
@@ -33,6 +46,26 @@ const PROMPT_BY_LANGUAGE = {
   en: 'Whose flag is this?',
   fr: 'À qui est ce drapeau ?'
 } as const satisfies Record<QuestionLanguage, string>
+
+let parsedFlags: z.infer<typeof flagBankSchema> | undefined
+
+const flagRows = (): z.infer<typeof flagBankSchema> => {
+  parsedFlags ??= flagBankSchema.parse(flagBank)
+
+  return parsedFlags
+}
+
+let tierByCountry: ReadonlyMap<CountryCode, ContentTier> | undefined
+
+/**
+ * How well a table knows a country, which its flag's tier is the one list of:
+ * the map reads it too. A country with no flag of its own is `hard`.
+ */
+export const countryTierOf = (code: CountryCode): ContentTier => {
+  tierByCountry ??= new Map(flagRows().map(({ code, tier }) => [code, tier]))
+
+  return tierByCountry.get(code) ?? 'hard'
+}
 
 let flagQuestions: BankedQuestion[] | undefined
 
@@ -42,7 +75,7 @@ let flagQuestions: BankedQuestion[] | undefined
  * prompt.
  */
 export const bankedFlagQuestions = (): BankedQuestion[] => {
-  flagQuestions ??= flagBankSchema.parse(flagBank).flatMap((flag) =>
+  flagQuestions ??= flagRows().flatMap((flag) =>
     questionLanguages.map((language) => {
       const names = COUNTRY_NAMES_BY_LANGUAGE[language]
 
@@ -56,16 +89,22 @@ export const bankedFlagQuestions = (): BankedQuestion[] => {
           names[flag.decoys[1]].name,
           names[flag.decoys[2]].name
         ] as const,
+        easyDecoys: [
+          names[flag.easyDecoys[0]].name,
+          names[flag.easyDecoys[1]].name,
+          names[flag.easyDecoys[2]].name
+        ] as const,
         flag: flag.file,
         id: `flag-${language}-${flag.file.replace('.svg', '')}`,
         isAdult: false,
-        isWellKnown: flag.isWellKnown,
+        isWellKnown: flag.tier === 'easy',
         language,
         note: null,
         prompt: PROMPT_BY_LANGUAGE[language],
         rebus: null,
         silhouette: null,
-        theme: 'flag-icons'
+        theme: 'flag-icons',
+        tier: flag.tier
       }
     })
   )
