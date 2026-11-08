@@ -1,6 +1,11 @@
 import { describe, expect, it } from 'vitest'
 
-import { DEFAULT_GAME_SETTINGS, type GameKind } from '@melee/protocol/game'
+import {
+  DEFAULT_GAME_SETTINGS,
+  DEFAULT_PETIT_BAC_SETTINGS,
+  type GameKind,
+  type PetitBacSettings
+} from '@melee/protocol/game'
 
 import {
   eveningDifficultyOf,
@@ -30,15 +35,15 @@ describe('the evening level', () => {
   })
 
   it('[difficulty] counts a Petit Bac only while the box draws its lines', () => {
-    const drawn = DEFAULT_GAME_SETTINGS.petitbac
-    const ownList = {
+    const drawn = DEFAULT_PETIT_BAC_SETTINGS
+    const ownList: PetitBacSettings = {
       ...drawn,
       categories: [
         { key: 'animal', kind: 'bank' },
         { key: 'colour', kind: 'bank' },
         { key: 'country', kind: 'bank' }
       ]
-    } as const
+    }
 
     expect(hasEveningDifficulty([drawn, DEFAULT_GAME_SETTINGS.quiz])).toBe(true)
     expect(hasEveningDifficulty([ownList, DEFAULT_GAME_SETTINGS.quiz])).toBe(
