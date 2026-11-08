@@ -7,7 +7,7 @@ years apart, Petit Bac tiers its categories, and `docs/game-catalogue.md`
 nothing to deal take none. Nothing of it is pushed yet: the series validates
 once, here.
 
-Part 4 landed too, unpushed like the rest: Plus ou moins and Le juste
+Part 4 landed too, not pushed yet, like the rest: Plus ou moins and Le juste
 chiffre deal French towns, regions and departments, and `easy` pairs hold a
 French side inside a wider band. Its reading for the stage record is in
 `docs/plans/58-estimate.md` (_France, added with the level_), sitelinks
