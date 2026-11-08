@@ -14,9 +14,20 @@ the named paths against `HEAD` and leaves the index alone, so nothing staged
 elsewhere rides along. Then check `git show --stat HEAD` lists exactly those
 paths.
 
-Where a single file carries both sessions' edits there is no split by path —
-hold the other session's lines out of the working tree for the length of the
-commit, then put them back, or change your approach so the file is not shared.
+**Never amend, and never reuse a ref you read earlier.** Another session
+commits between two of your commands: an amend there replaces _its_ commit
+with yours, its message gone and its tree rewritten. Make a new commit, and
+compare `git log -1` with what you committed before anything that rewrites
+`HEAD`.
+
+**A file both sessions edit has no split by path**, and commits through a
+private index:
+`GIT_INDEX_FILE=<scratch> git read-tree HEAD`, then `git hash-object -w` a
+copy of the file holding only your hunks and `git update-index` its blob
+in, commit, and `git reset -- <paths>` the shared index to the new `HEAD`.
+Neither the other session's working tree nor its staged lines move. A
+changelog is such a file: check `git show HEAD -- CHANGELOG.md` holds only
+your entry.
 
 **A new file has to be added first.** `git commit -- <paths>` records only
 paths git already tracks: an untracked file named there is skipped without a

@@ -380,6 +380,37 @@ the bank into heard-of and obscure halves: each of the 37 obscure capitals came
 up four times as often as a famous one. `easy` deals 51, and a capitals-only
 easy evening does circle them.
 
+**Which games take a level, and why the others do not.** A level belongs to
+a game whose server deals content that can be easier or harder for a table
+with children: the blind test, the quiz, the map, the timeline, black
+square, Petit Bac, _Le juste chiffre_ and _Plus ou moins_. Each reads the
+three words its own way where tiering every item would mean nothing:
+
+- **The timeline** leaves `mixed` and `hard` alone — close dates are the
+  game — and `easy` deals events a child has heard of (`knownToChildren`
+  on every row) at least thirty years apart, falling back on any event that
+  far apart, then on the usual five.
+- **Petit Bac** tiers its _categories_, not its letters: the rare letters are
+  already out by default and the host's own letter picker owns them, so a
+  level there would be a second control for one thing. A host's own list is
+  played as written and counts for no level in the evening's strip.
+
+The rest take none, on purpose:
+
+- **Shades** already has the one knob a level would turn — how long the
+  colour stays up (`showMs`) — and the pay curve must not move with a level.
+- **Matchsticks** generates every puzzle and every one is a single move by
+  construction: there is no bank to tier and no measured proxy for which
+  puzzle a child sees first.
+- **Most likely**, **Buzzer**, **Reflex**, **Slate**, **Challenge** and
+  **Inner clock** deal nothing the table could find easier — the line is
+  about the people at the table, the host brings the content, or the game is
+  a reflex — so they stay out of the evening-wide strip's count.
+
+A new game takes a level when its server deals content a child could be
+dealt less of; `difficultyOf` (`room/evening-difficulty.ts`) counts it as
+soon as its arm carries `difficulty`.
+
 ## The seams, and what it costs to keep them open
 
 **Room state and game state were fused, and are not any more.** Stage 11 split
