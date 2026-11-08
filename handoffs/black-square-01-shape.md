@@ -1,4 +1,5 @@
 # Black square, part 1 — four hidden answers drawn from a pool
+n<!-- cspell:ignore devineuf -->
 
 Runs beside the difficulty series, after `difficulty-01-setting.md` (it uses
 its `easy | medium | hard` tiers and its tier-aware draw) and after
