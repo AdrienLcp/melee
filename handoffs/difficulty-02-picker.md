@@ -13,7 +13,7 @@ banks.
   read as `easy` (`withQuizSwitchAsLevel`, applied in `preferences-storage.ts`).
 - **The blind test opens on `easy`**, every other game on `mixed`: its level is
   a Deezer popularity floor, and `easy` (500k) is what a fresh room always
-  played. So a default evening holding a blind test does *not* read as one
+  played. So a default evening holding a blind test does _not_ read as one
   level — decide how the derived evening picker reads it (a game at its own
   default counting as agreeing is one way; measure what reads clearest).
 - The `wellKnownOnly` switch is bridged, not gone: `settings-panel.tsx`
