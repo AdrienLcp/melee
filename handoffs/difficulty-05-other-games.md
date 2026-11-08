@@ -25,8 +25,10 @@ For each, decide whether a level means something, and wire `difficulty` (part
 - **Petit Bac** — `easy` deals only common letters (no K, Q, W, X, Y, Z);
   check what the letter draw does today.
 - **Shades** — `easy` shows the colour longer; the pay curve does not move.
-- **Matchsticks**, **Black square**, **emoji rebus** if part 3 left it — do
-  their banks carry anything that orders them? Tier if so.
+- **Matchsticks**, **emoji rebus** if part 3 left it — do their banks carry
+  anything that orders them? Tier if so.
+- **Black square** — not here: `black-square-01-shape.md` rebuilds its bank
+  with tiers and wires its level.
 - **Most likely**, **Buzzer**, **Reflex**, **Slate**, **Challenge**, **Inner
   clock** — no dealt content of their own, or the host brings it: no level,
   and they stay out of the evening-wide picker's count.
