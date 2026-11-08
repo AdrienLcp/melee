@@ -9,7 +9,10 @@ import {
   pointsForTier
 } from '@melee/core/blacksquare/sheet-pay'
 
-import { blackSquareCellStyle } from '@/helpers/black-square-cell-place'
+import {
+  blackSquareCellStyle,
+  blackSquareGridStyle
+} from '@/helpers/black-square-cell-place'
 import { shownPoints } from '@/helpers/shown-points'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -58,7 +61,11 @@ export const BlackSquareReveal: React.FC<BlackSquareRevealProps> = ({
   return (
     <div className='black-square-reveal'>
       <div className='board'>
-        <ol aria-label={translate('blacksquare.grid')} className='answers'>
+        <ol
+          aria-label={translate('blacksquare.grid')}
+          className='answers'
+          style={blackSquareGridStyle(cellTiers)}
+        >
           {revealed.answers.map((answer, cell) => {
             const isYours = youId !== null && answer.foundBy.includes(youId)
             const isDoubled =

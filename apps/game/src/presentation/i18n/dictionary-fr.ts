@@ -121,7 +121,7 @@ export const FR_DICTIONARY = defineDictionary({
     grid: 'Les réponses',
     home: {
       description:
-        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et jusqu’à neuf réponses se cachent derrière, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
+        'Un thème tombe — les films de Quentin Tarantino, les pays qui bordent la France — et quatre réponses se cachent derrière — jusqu’à neuf si tu veux —, les moins évidentes rapportant le plus. Chacun tire ses réponses depuis son écran, autant qu’il veut. Caché parmi elles, un mot noir : une réponse qui sonne juste et ne l’est pas, et qui tombe dessus perd sa manche.'
     },
     lone: {
       doubled: '×2',
@@ -134,11 +134,11 @@ export const FR_DICTIONARY = defineDictionary({
     othersLooking: 'Les autres cherchent encore.',
     play: 'Jouer à Case noire',
     scoring:
-      'Jusqu’à neuf réponses sont cachées, et la grille vaut 100 points partagés entre elles : le tiers le plus connu compte une part chacune, le suivant deux, le dernier trois. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+      'Des réponses sont cachées, et la grille vaut 100 points partagés entre elles : une évidente compte une part, une moins connue deux, une rare trois. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringLoneFinds:
-      'Jusqu’à neuf réponses sont cachées, et la grille vaut 100 points partagés entre elles : le tiers le plus connu compte une part chacune, le suivant deux, le dernier trois, et une réponse que personne d’autre ne trouve compte double — la grille plafonne toujours à 100. Tombe sur le mot noir et ta manche ne vaut plus rien.',
+      'Des réponses sont cachées, et la grille vaut 100 points partagés entre elles : une évidente compte une part, une moins connue deux, une rare trois, et une réponse que personne d’autre ne trouve compte double — la grille plafonne toujours à 100. Tombe sur le mot noir et ta manche ne vaut plus rien.',
     scoringSpoken:
-      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche. La grille vaut 100 points partagés entre ses réponses : le tiers le plus connu compte une part chacune, le suivant deux, le dernier trois. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
+      'Une équipe dit ses réponses à voix haute et quelqu’un d’une autre équipe les coche. La grille vaut 100 points partagés entre ses réponses : une évidente compte une part, une moins connue deux, une rare trois. Le mot noir prononcé, la manche de l’équipe ne vaut plus rien.',
     spoken: {
       blackWord: {
         ask: 'Ils l’ont dit ? Leur manche s’arrête et ne vaut plus rien.',

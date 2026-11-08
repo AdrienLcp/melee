@@ -8,7 +8,10 @@ import type {
   BlackSquareCell
 } from '@melee/protocol/black-square'
 
-import { blackSquareCellStyle } from '@/helpers/black-square-cell-place'
+import {
+  blackSquareCellStyle,
+  blackSquareGridStyle
+} from '@/helpers/black-square-cell-place'
 import { Button } from '@/presentation/components/button'
 import { useI18n } from '@/presentation/i18n/i18n-provider'
 
@@ -58,7 +61,11 @@ export const BlackSquareKeeper: React.FC<BlackSquareKeeperProps> = ({
         {translate('blacksquare.spoken.keep', { team: guessingTeam })}
       </p>
       {isShown ? (
-        <ol aria-label={translate('blacksquare.grid')} className='keeper-cells'>
+        <ol
+          aria-label={translate('blacksquare.grid')}
+          className='keeper-cells'
+          style={blackSquareGridStyle(cellTiers)}
+        >
           {list.answers.map((answer, cell) => (
             <li
               key={cellKeyOf(cell)}

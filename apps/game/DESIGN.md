@@ -1246,9 +1246,12 @@ one entry keeps _Cette manche_; it knows what it is playing.
 ### Black square (`BlackSquareSheet`, `BlackSquareReveal`, `BlackSquareGauge`)
 
 Direction A, _the grid_, chosen 2026-10-24 (`.impeccable/directions/black-square/`,
-local). A seat's grid is one tier a row in cell order — 3 × 3 at nine, a short
-row centred on half a cell when the host deals three to eight
-(`_tier-rows.sass`) — so a cell's place says its tier:
+local). A seat's grid is one row per tier dealt, in cell order, and as wide as
+its widest row (`blackSquareGridShape`, `_tier-rows.sass`): the default four
+make a diamond of near-square cells, nine a 3 × 3, and a shorter row centres
+on half a cell. A tier the round dealt none of takes no row — an empty band
+read as a broken grid — and a tier past three cells spills three a row, the
+pips alone then saying the tier. A cell's place says its tier:
 an empty cell is a socket printing one to three pips, a found one a
 `--good-soft` piece with the line the seat typed, read back by the server
 (`yourLines`), never the answer's own name. Under 10rem of box — a small

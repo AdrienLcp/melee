@@ -432,6 +432,11 @@
         align-content: center
         grid-template-rows: minmax(0, auto)
 
+      // An `auto` row is sized to its content, and the grid is a size
+      // container with none: the wall drew it 0px tall under the theme.
+      &[data-game='blacksquare']
+        grid-template: auto minmax(0, 1fr) / minmax(0, 1fr)
+
       &[data-game='matchsticks'] .matchsticks-prompt
         --sticks-max-height: 44cqh
 

@@ -607,6 +607,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **Black square's grid fits what it deals.** Four answers lie as a
+  diamond of square cells rather than tall slips in a frame cut for nine, a
+  tier the round dealt none of leaves no empty band, and the wall's reveal
+  draws its cards again instead of a sliver under the theme. The rules say
+  what an obvious, a less known and a rare answer pay.
+
 - `[Server]` **A timeline event that happened twice says which time it is.**
   _Paris Olympic Games_ fit 1900, 1924 and 2024 alike, and four presidents
   were elected twice: the card is now the Games opened on the Seine, and

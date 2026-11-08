@@ -122,7 +122,7 @@ export const EN_DICTIONARY = defineDictionary({
     grid: 'The answers',
     home: {
       description:
-        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and up to nine answers hide behind it, the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
+        'A theme comes up — Quentin Tarantino’s films, the countries bordering France — and four answers hide behind it — up to nine if you like — the less obvious paying more. Everyone fires answers from their own screen, as many as they like. Hidden with them is one black word: an answer that sounds right and is not, and whoever lands on it loses the round.'
     },
     lone: {
       doubled: '×2',
@@ -135,11 +135,11 @@ export const EN_DICTIONARY = defineDictionary({
     othersLooking: 'The others are still looking.',
     play: 'Play Black square',
     scoring:
-      'Up to nine answers are hidden, and the sheet is worth 100 points shared among them: the best known third count one share each, the next third two, the last third three. Hit the black word and your round is worth nothing.',
+      'Answers are hidden, and the sheet is worth 100 points shared among them: an obvious one counts one share, a less known one two, a rare one three. Hit the black word and your round is worth nothing.',
     scoringLoneFinds:
-      'Up to nine answers are hidden, and the sheet is worth 100 points shared among them: the best known third count one share each, the next third two, the last third three, and an answer nobody else finds counts double — the sheet still tops out at 100. Hit the black word and your round is worth nothing.',
+      'Answers are hidden, and the sheet is worth 100 points shared among them: an obvious one counts one share, a less known one two, a rare one three, and an answer nobody else finds counts double — the sheet still tops out at 100. Hit the black word and your round is worth nothing.',
     scoringSpoken:
-      'One team says its answers out loud and somebody from another team ticks them off. The sheet is worth 100 points shared among its answers: the best known third count one share each, the next third two, the last third three. Say the black word and the team’s round is worth nothing.',
+      'One team says its answers out loud and somebody from another team ticks them off. The sheet is worth 100 points shared among its answers: an obvious one counts one share, a less known one two, a rare one three. Say the black word and the team’s round is worth nothing.',
     spoken: {
       blackWord: {
         ask: 'Did they say it? Their round ends, worth nothing.',

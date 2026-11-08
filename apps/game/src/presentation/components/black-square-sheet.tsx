@@ -7,7 +7,10 @@ import type {
   BlackSquareTier
 } from '@melee/protocol/black-square'
 
-import { blackSquareCellStyle } from '@/helpers/black-square-cell-place'
+import {
+  blackSquareCellStyle,
+  blackSquareGridStyle
+} from '@/helpers/black-square-cell-place'
 import { useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { BlackSquarePips } from './black-square-pips'
@@ -54,7 +57,10 @@ export const BlackSquareSheet: React.FC<BlackSquareSheetProps> = ({
     >
       <ol
         aria-label={translate('blacksquare.grid')}
-        style={{ '--cell-count': cellTiers.length }}
+        style={{
+          ...blackSquareGridStyle(cellTiers),
+          '--cell-count': cellTiers.length
+        }}
       >
         {cellsOf(cellTiers).map(({ cell, tier }) => {
           const typed = lines.find((line) => line.cells.includes(cell))?.line

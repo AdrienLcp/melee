@@ -1,11 +1,12 @@
 // Pure module: two mixins, no top-level CSS.
 
-/// A black-square grid of three to nine cells, one tier a row: six tracks, so a
-/// cell takes two and a short row centres on half a cell. Each child places
-/// itself with `cell`.
+/// A black-square grid of three to nine cells, one tier a row: two tracks a
+/// cell, so a short row centres on half a cell. Its size is the
+/// `--grid-rows` and `--grid-columns` that `blackSquareGridStyle` publishes
+/// on it; each child places itself with `cell`.
 @mixin grid
   display: grid
-  grid-template: repeat(3, minmax(0, 1fr)) / repeat(6, minmax(0, 1fr))
+  grid-template: repeat(var(--grid-rows), minmax(0, 1fr)) / repeat(var(--grid-columns), minmax(0, 1fr))
 
 /// A cell placed by the `--cell-row` and `--cell-column` that
 /// `blackSquareCellStyle` publishes on it.
