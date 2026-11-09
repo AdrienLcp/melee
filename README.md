@@ -106,10 +106,10 @@ Every push to `main`, or `gh workflow run ci.yaml` by hand, deploys `main` to
 **staging** once lint, tests and the end-to-end journeys are green:
 `https://staging.melee.adrienlcp.com`, the `melee-staging` Worker
 (`wrangler deploy --env staging`), with rooms of its own and kept out of search
-engines. The same run then waits for a reviewer to approve the `production`
-environment on GitHub, and only then deploys that commit to
-`https://melee.adrienlcp.com`. Both use the `CLOUDFLARE_ACCOUNT_ID` and
-`CLOUDFLARE_API_TOKEN` repository secrets.
+engines. Production, `https://melee.adrienlcp.com`, is deployed by hand with
+`gh workflow run deploy-production.yaml` — the commit staging runs, or any
+commit of `main`, which is also the rollback. How, and what each one runs, is
+in [`docs/deploying.md`](docs/deploying.md).
 
 Why a Durable Object per room, and what Render cost before it, is in
 [`docs/plans/28-cloudflare.md`](docs/plans/28-cloudflare.md).

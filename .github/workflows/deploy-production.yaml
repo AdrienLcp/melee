@@ -1,0 +1,75 @@
+name: Deploy production
+
+# Run by hand only — `gh workflow run deploy-production.yaml`, or the
+# Actions tab. Every push already lands on staging; production gets the
+# commit staging runs, or any commit of main named in `commit`, which is
+# also how a bad deploy is rolled back. See docs/deploying.md.
+on:
+  workflow_dispatch:
+    inputs:
+      commit:
+        description: Commit of main to deploy, full or short. Empty deploys the one staging runs.
+        required: false
+        default: ''
+
+permissions:
+  checks: read
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: production
+      url: https://melee.adrienlcp.com
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # A commit that never went green, or that is not on main, never reaches
+      # the room on the table, whoever runs this.
+      - name: Resolve and check the commit
+        id: commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REQUESTED: ${{ inputs.commit }}
+        run: |
+          requested="$REQUESTED"
+          if [ -z "$requested" ]; then
+            requested=$(curl -fsS https://staging.melee.adrienlcp.com/api/health | jq -r .build)
+            echo "Staging runs $requested"
+          fi
+          sha=$(git rev-parse --verify "${requested}^{commit}")
+          git merge-base --is-ancestor "$sha" origin/main || { echo "::error::$sha is not on main"; exit 1; }
+          validated=$(gh api "repos/${GITHUB_REPOSITORY}/commits/${sha}/check-runs?check_name=validate" -q '[.check_runs[] | select(.conclusion == "success")] | length')
+          [ "$validated" -gt 0 ] || { echo "::error::$sha has no green validate run"; exit 1; }
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "Deploying $sha: $(git log -1 --format=%s "$sha")" >> "$GITHUB_STEP_SUMMARY"
+
+      - run: git checkout --detach ${{ steps.commit.outputs.sha }}
+
+      - uses: pnpm/action-setup@v6
+
+      - uses: actions/setup-node@v7
+        with:
+          cache: pnpm
+          node-version: 26
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Build
+        run: pnpm build
+
+      # A room in progress survives the deploy: its Durable Object keeps its
+      # state, and the screens reconnect on their own.
+      - name: Deploy
+        run: pnpm --filter @melee/server exec wrangler deploy --var "GIT_COMMIT:$(git rev-parse HEAD)" --var "GIT_COMMIT_EPOCH:$(git log -1 --format=%ct)"
+        env:
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}

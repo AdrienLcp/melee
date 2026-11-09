@@ -843,12 +843,13 @@ one part.
 
 ### Internal
 
-- **A push lands on staging; production waits for an approval.** Every green
+- **A push lands on staging; production is deployed by hand.** Every green
   push to `main` deploys `melee-staging` at `staging.melee.adrienlcp.com`, a
   Worker with Durable Objects of its own, so a fix is tried there without
-  touching a room on a real table. The same run then waits on the GitHub
-  `production` environment, and approving it deploys that commit to
-  `melee.adrienlcp.com`. Staging answers `Disallow: /` in `robots.txt`.
+  touching a room on a real table. `deploy-production.yaml` puts the commit
+  staging runs — or any green commit of `main`, which is also the rollback —
+  on `melee.adrienlcp.com`. Staging answers `Disallow: /` in `robots.txt`.
+  See `docs/deploying.md`.
 
 - `[Game]` **The menu's leaflet is its own chunk**, fetched on the first open
   and preloaded on hover or press: its slider, radio groups and invitation

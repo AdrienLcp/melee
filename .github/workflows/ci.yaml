@@ -104,7 +104,7 @@ jobs:
 
   # Every green push lands on staging, a Worker and a set of rooms of its own
   # at staging.melee.adrienlcp.com, so a fix is tried on a phone before a
-  # table sees it.
+  # table sees it. Production is `deploy-production.yaml`, run by hand.
   deploy-staging:
     if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
     needs: validate
@@ -113,8 +113,6 @@ jobs:
     environment:
       name: staging
       url: https://staging.melee.adrienlcp.com
-    outputs:
-      is-head: ${{ steps.head.outputs.is-head }}
     steps:
       - uses: actions/checkout@v7
 
@@ -141,53 +139,6 @@ jobs:
       - name: Deploy
         if: steps.head.outputs.is-head == 'true'
         run: pnpm --filter @melee/server exec wrangler deploy --env staging --var "GIT_COMMIT:${GITHUB_SHA}" --var "GIT_COMMIT_EPOCH:$(git log -1 --format=%ct)"
-        env:
-          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-
-  # Waits for a reviewer of the `production` environment to approve, so only
-  # a commit already tried on staging reaches the room on the table. A room in
-  # progress survives the deploy: its Durable Object keeps its state, and the
-  # screens reconnect on their own. Approving a run that a newer push has
-  # overtaken deploys nothing — the newer run is the one to approve.
-  deploy-production:
-    if: needs.deploy-staging.outputs.is-head == 'true'
-    needs: deploy-staging
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    environment:
-      name: production
-      url: https://melee.adrienlcp.com
-    steps:
-      - uses: actions/checkout@v7
-
-      - uses: pnpm/action-setup@v6
-
-      - uses: actions/setup-node@v7
-        with:
-          cache: pnpm
-          node-version: 26
-
-      - run: pnpm install --frozen-lockfile
-
-      - name: Build
-        run: pnpm build
-
-      # Deploys are not queued in a concurrency group: GitHub cancels, and mails,
-      # a run left waiting there. An older commit skips its deploy instead.
-      - name: Check this commit is still the head of main
-        id: head
-        run: |
-          head=$(git ls-remote origin refs/heads/main | cut -f1)
-          echo "is-head=$([ "$head" = "$GITHUB_SHA" ] && echo true || echo false)" >> "$GITHUB_OUTPUT"
-
-      - name: Report an overtaken commit
-        if: steps.head.outputs.is-head != 'true'
-        run: echo "::notice::A newer commit is on main; approve its run to deploy it."
-
-      - name: Deploy
-        if: steps.head.outputs.is-head == 'true'
-        run: pnpm --filter @melee/server exec wrangler deploy --var "GIT_COMMIT:${GITHUB_SHA}" --var "GIT_COMMIT_EPOCH:$(git log -1 --format=%ct)"
         env:
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
