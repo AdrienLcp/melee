@@ -985,6 +985,9 @@
     // `fast` beat late: the piece put away is mostly gone by then, where on
     // `--ease-in` it stood nearly whole under the one arriving and the pawn
     // was drawn over `BUZZ`. The place is never empty, so nothing blinks.
+    // The piece put away is hidden once its fade ends, so nothing measures,
+    // hits or reads it under the other; the buzzer is shown again at once,
+    // because the race reopens before its fade does.
     .buzzer-slot
       display: grid
       place-items: center
@@ -993,20 +996,23 @@
         grid-area: 1 / 1
 
       > .buzzer
-        transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
+        transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s), visibility 0s
 
       > .taken-floor
         opacity: 0
-        transition: opacity var(--transition-base, 0s) var(--ease-out)
+        transition: opacity var(--transition-base, 0s) var(--ease-out), visibility 0s linear var(--transition-base, 0s)
+        visibility: hidden
 
       &[data-floor]
         > .buzzer
           opacity: 0
-          transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out)
+          transition: transform var(--transition-fast, 0s) var(--ease-out), box-shadow var(--transition-fast, 0s) var(--ease-out), opacity var(--transition-base, 0s) var(--ease-out), visibility 0s linear var(--transition-base, 0s)
+          visibility: hidden
 
         > .taken-floor
           opacity: 1
-          transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s)
+          transition: opacity var(--transition-base, 0s) var(--ease-out) var(--transition-fast, 0s), visibility 0s
+          visibility: visible
 
     // The one round piece in the box, punched thick: a coral token with a deep
     // chipboard edge that sinks under the thumb, a keyline printed a margin in.
