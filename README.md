@@ -102,9 +102,14 @@ room keeps its state across a deploy and nothing sleeps between two evenings.
 [`apps/server/wrangler.jsonc`](apps/server/wrangler.jsonc) is the whole
 configuration.
 
-Every push to `main`, or `gh workflow run ci.yaml` by hand, deploys `main` once lint, tests and the end-to-end journeys are green, with the
-`CLOUDFLARE_ACCOUNT_ID` and `CLOUDFLARE_API_TOKEN` repository secrets. It
-previews at `https://melee.adrienlcp.com`.
+Every push to `main`, or `gh workflow run ci.yaml` by hand, deploys `main` to
+**staging** once lint, tests and the end-to-end journeys are green:
+`https://staging.melee.adrienlcp.com`, the `melee-staging` Worker
+(`wrangler deploy --env staging`), with rooms of its own and kept out of search
+engines. The same run then waits for a reviewer to approve the `production`
+environment on GitHub, and only then deploys that commit to
+`https://melee.adrienlcp.com`. Both use the `CLOUDFLARE_ACCOUNT_ID` and
+`CLOUDFLARE_API_TOKEN` repository secrets.
 
 Why a Durable Object per room, and what Render cost before it, is in
 [`docs/plans/28-cloudflare.md`](docs/plans/28-cloudflare.md).

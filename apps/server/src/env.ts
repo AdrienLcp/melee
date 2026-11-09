@@ -7,7 +7,9 @@ const envSchema = z.object({
   /** Set by the deploy job to the commit it ships. Absent from a checkout. */
   GIT_COMMIT: z.string().optional(),
   /** Set beside it: when that commit was made, in seconds since the epoch (`git log -1 --format=%ct`). */
-  GIT_COMMIT_EPOCH: z.coerce.number().int().positive().optional()
+  GIT_COMMIT_EPOCH: z.coerce.number().int().positive().optional(),
+  /** `false` on staging, which a search engine must never list beside the real address. */
+  INDEXABLE: z.stringbool().default(true)
 })
 
 const parsed = envSchema.safeParse(process.env)

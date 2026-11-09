@@ -26,6 +26,31 @@
       { "class_name": "WallPairingObject", "name": "WALL_PAIRINGS" }
     ]
   },
+  // `wrangler deploy --env staging`: a Worker of its own, `melee-staging`,
+  // whose rooms live in Durable Objects of their own — a test evening never
+  // reaches a room on a real table. Bindings, vars and routes are not
+  // inherited, so each is declared again.
+  "env": {
+    "staging": {
+      "durable_objects": {
+        "bindings": [
+          { "class_name": "RoomObject", "name": "ROOMS" },
+          { "class_name": "WallPairingObject", "name": "WALL_PAIRINGS" }
+        ]
+      },
+      "ratelimits": [
+        {
+          "name": "ROOM_CREATION_LIMITER",
+          "namespace_id": "1002",
+          "simple": { "limit": 10, "period": 60 }
+        }
+      ],
+      "routes": [
+        { "custom_domain": true, "pattern": "staging.melee.adrienlcp.com" }
+      ],
+      "vars": { "INDEXABLE": "false" }
+    }
+  },
   "main": "src/worker.ts",
   // The free plan only offers Durable Objects backed by SQLite.
   "migrations": [

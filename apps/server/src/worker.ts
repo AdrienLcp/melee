@@ -4,6 +4,7 @@ import { ROOM_SOCKET_ROUTE } from '@melee/protocol/routes'
 
 import { normalizeRoomCode } from '@melee/core/room/room-code'
 
+import { env as serverEnv } from '@/env'
 import {
   HASHED_ASSET_ROUTE,
   refuseShellForHashedAsset
@@ -69,7 +70,9 @@ app.get('/robots.txt', async (context) => {
   const url = new URL(context.req.url)
   const rules = (await readAsset(url, '/robots.txt')) ?? ''
 
-  return context.text(robotsTxt({ origin: url.origin, rules }))
+  return context.text(
+    robotsTxt({ isIndexable: serverEnv.INDEXABLE, origin: url.origin, rules })
+  )
 })
 
 export default app

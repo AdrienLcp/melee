@@ -32,14 +32,23 @@ export const sitemapXml = ({
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${entries}\n</urlset>\n`
 }
 
+const NOTHING_INDEXED = 'User-agent: *\nDisallow: /'
+
 /**
  * The file keeps its own prose; only the one line that needs an absolute URL
  * is added, because a static file cannot know which origin it was asked for.
+ * A deployment that must stay out of every index answers {@link NOTHING_INDEXED}
+ * instead, since it serves the same file as the real one.
  */
 export const robotsTxt = ({
+  isIndexable,
   origin,
   rules
 }: {
+  isIndexable: boolean
   origin: string
   rules: string
-}): string => `${rules.trimEnd()}\n\nSitemap: ${origin}/sitemap.xml\n`
+}): string =>
+  isIndexable
+    ? `${rules.trimEnd()}\n\nSitemap: ${origin}/sitemap.xml\n`
+    : `${NOTHING_INDEXED}\n`
