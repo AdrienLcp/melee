@@ -18,7 +18,7 @@
     "apps/server/src/infrastructure/questions/most-likely-bank.json",
     "apps/server/src/infrastructure/questions/timeline-bank.json",
     "apps/server/src/infrastructure/questions/black-square-bank.json",
-    "apps/server/src/infrastructure/questions/black-square-authored.json",
+    "apps/server/src/infrastructure/questions/black-square-authored-*.json",
     "apps/server/src/infrastructure/questions/capital-bank.json",
     "apps/server/src/infrastructure/questions/quantity-bank.json",
     "apps/server/scripts/black-square-themes.ts",
@@ -104,7 +104,9 @@
         "packages/core/src/slate/prepared-keys.test.ts",
         "packages/core/src/slate/sheet-marking.test.ts",
         "apps/game/src/presentation/components/map-prompt.sass",
-        "packages/core/src/countries/country-names-fr.ts"
+        "packages/core/src/countries/country-names-fr.ts",
+        "packages/protocol/src/black-square.ts",
+        "apps/server/scripts/build-black-square-bank.ts"
       ],
       "language": "en,en-GB,fr",
       "words": [
@@ -172,6 +174,7 @@
   "version": "0.2",
   "words": [
     "garfunkel",
+    "misgraded",
     "lʼours",
     "mumford",
     "oedipe",

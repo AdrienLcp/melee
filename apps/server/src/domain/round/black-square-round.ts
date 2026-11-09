@@ -60,24 +60,31 @@ export const blackSquareContent = ({
   answerCount: BlackSquareAnswerCount
   doublesLoneFinds: boolean
   theme: PooledBlackSquareTheme
-}): BlackSquareContent => ({
-  doublesLoneFinds,
-  kind: 'blacksquare',
-  lines: [],
-  spoken: null,
-  theme: {
-    answers: dealBlackSquareAnswers({
-      count: answerCount,
-      pool: theme.answers
-    }).map(({ aliases, labels, tier }) => ({
-      aliases,
-      labels,
-      tier: BLACK_SQUARE_WEIGHT_BY_TIER[tier]
-    })),
-    blackWord: theme.blackWord,
-    labels: theme.labels
+}): BlackSquareContent => {
+  const dealt = dealBlackSquareAnswers({
+    count: answerCount,
+    pool: theme.answers
+  })
+
+  return {
+    doublesLoneFinds,
+    kind: 'blacksquare',
+    lines: [],
+    spoken: null,
+    theme: {
+      answers: dealt.map(({ aliases, labels, tier }) => ({
+        aliases,
+        labels,
+        tier: BLACK_SQUARE_WEIGHT_BY_TIER[tier]
+      })),
+      blackWord: theme.blackWord,
+      labels: theme.labels,
+      leftOut: theme.answers
+        .filter((answer) => !dealt.includes(answer))
+        .flatMap(namesOf)
+    }
   }
-})
+}
 
 const cellTiersOf = (content: BlackSquareContent): BlackSquareCellTiers =>
   content.theme.answers.map(({ tier }) => tier)
@@ -308,6 +315,7 @@ export const gradeSheetLine = ({
     graded: gradeLine({
       answers: content.theme.answers.map(namesOf),
       blackWord: namesOf(content.theme.blackWord),
+      leftOut: content.theme.leftOut,
       line
     }),
     sheet: held?.kind === 'cells' ? held : emptySheet(cellTiersOf(content))

@@ -29,6 +29,11 @@ const matchesAnyOf = ({
  * never forgiven into a neighbour: *Terminator 3* is not *Terminator 2*, and
  * *True Romanc* is not a hit it cannot be.
  *
+ * The true answers the deal left out are rivals too, and never a cell: a
+ * theme holding *Ireland* and *Iceland* deals one of them, and the other typed
+ * is a miss rather than a typo of the one dealt — nor, beside a black word
+ * close to it, a lost round.
+ *
  * The answers are tried first and the black word only when none matches: the
  * bank strips from the black word every name an answer holds, and a line that
  * is both would void a sheet for something it got right.
@@ -39,11 +44,14 @@ const matchesAnyOf = ({
 export const gradeLine = ({
   answers,
   blackWord,
+  leftOut,
   line
 }: {
   /** The answers dealt, in cell order. */
   answers: readonly Names[]
   blackWord: Names
+  /** Every name of the theme's true answers the deal did not draw. */
+  leftOut: Names
   line: string
 }): LineGrade => {
   const cells = answers.flatMap((names, cell) =>
@@ -52,6 +60,7 @@ export const gradeLine = ({
       names,
       rivals: [
         ...blackWord,
+        ...leftOut,
         ...answers.flatMap((other, index) => (index === cell ? [] : other))
       ]
     })
@@ -63,7 +72,11 @@ export const gradeLine = ({
     return { cells, kind: 'cells' }
   }
 
-  return matchesAnyOf({ line, names: blackWord, rivals: answers.flat() })
+  return matchesAnyOf({
+    line,
+    names: blackWord,
+    rivals: [...answers.flat(), ...leftOut]
+  })
     ? { kind: 'blackWord' }
     : { kind: 'nothing' }
 }

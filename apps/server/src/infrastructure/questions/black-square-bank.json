@@ -4431,8 +4431,6 @@
           ],
           "fr": [
             "Grande-Bretagne",
-            "R.-U.",
-            "R.U.",
             "Royaume Uni",
             "Royaume-Uni de Grande-Bretagne et Irlande du Nord",
             "Royaume-Uni de Grande-Bretagne et d'Irlande du Nord",
@@ -4450,7 +4448,7 @@
       {
         "aliases": {
           "en": ["Russian Federation"],
-          "fr": ["Fédération de Russie", "Fédération russe", "RU", "RUS"]
+          "fr": ["Fédération de Russie", "Fédération russe", "RUS"]
         },
         "id": "Q159",
         "labels": {
@@ -5145,7 +5143,6 @@
             "Manchester City FC",
             "Manchester City Football Club",
             "Sky Blues",
-            "The Blues",
             "The Citizens",
             "The Sky Blues"
           ],
@@ -5166,7 +5163,6 @@
             "Chelsea",
             "Chelsea FC",
             "Chelsea Football Club",
-            "The Blues",
             "The Pensioners"
           ],
           "fr": ["Chelsea F.C.", "Chelsea Football Club"]

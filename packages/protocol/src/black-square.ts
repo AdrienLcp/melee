@@ -71,7 +71,14 @@ export const blackSquareThemeSchema = z.object({
     /** Why it is wrong, one line for the reveal. */
     why: blackSquareLabelsSchema
   }),
-  labels: blackSquareLabelsSchema
+  labels: blackSquareLabelsSchema,
+  /**
+   * Every name of every true answer the deal left out. Never a cell, but a
+   * rival of each: *Irlande* typed beside a dealt *Islande* is one typo away,
+   * and forgiving it would pay a player for the answer they did not give.
+   * Defaulted for a round dealt before the field existed.
+   */
+  leftOut: z.array(z.string()).default([])
 })
 
 /** An answer as a screen that may read it shows it: its name and what it pays. */

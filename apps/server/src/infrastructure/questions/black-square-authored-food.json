@@ -1,0 +1,5253 @@
+[
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Carrots"],
+          "fr": ["Carottes"]
+        },
+        "labels": {
+          "en": "Carrot",
+          "fr": "Carotte"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Radishes"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Radish",
+          "fr": "Radis"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Beet", "Beets", "Beetroots"],
+          "fr": ["Betteraves"]
+        },
+        "labels": {
+          "en": "Beetroot",
+          "fr": "Betterave"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Turnips"],
+          "fr": ["Navets"]
+        },
+        "labels": {
+          "en": "Turnip",
+          "fr": "Navet"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Sweet potatoes"],
+          "fr": ["Patates douces"]
+        },
+        "labels": {
+          "en": "Sweet potato",
+          "fr": "Patate douce"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Parsnips"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Parsnip",
+          "fr": "Panais"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Celery root"],
+          "fr": ["Céleri rave"]
+        },
+        "labels": {
+          "en": "Celeriac",
+          "fr": "Céleri-rave"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Swedes"],
+          "fr": ["Rutabagas"]
+        },
+        "labels": {
+          "en": "Swede",
+          "fr": "Rutabaga"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Horseradish",
+          "fr": "Raifort"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Yuca"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cassava",
+          "fr": "Manioc"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mooli", "White radish"],
+          "fr": ["Radis blanc", "Radis japonais"]
+        },
+        "labels": {
+          "en": "Daikon",
+          "fr": "Daikon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Salsify",
+          "fr": "Salsifis"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Burdock root"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Burdock",
+          "fr": "Bardane"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hamburg parsley"],
+          "fr": ["Persil racine"]
+        },
+        "labels": {
+          "en": "Parsley root",
+          "fr": "Persil tubéreux"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Tuberous chervil"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chervil root",
+          "fr": "Cerfeuil tubéreux"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Potatoes", "Spud"],
+        "fr": ["Pommes de terre", "Patate", "Patates"]
+      },
+      "labels": {
+        "en": "Potato",
+        "fr": "Pomme de terre"
+      },
+      "why": {
+        "en": "A tuber: a swollen stem, not a root.",
+        "fr": "Un tubercule : une tige gonflée, pas une racine."
+      }
+    },
+    "id": "root-vegetables",
+    "labels": {
+      "en": "Root vegetables",
+      "fr": "Légumes racines"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Strawberries"],
+          "fr": ["Fraises"]
+        },
+        "labels": {
+          "en": "Strawberry",
+          "fr": "Fraise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Raspberries"],
+          "fr": ["Framboises"]
+        },
+        "labels": {
+          "en": "Raspberry",
+          "fr": "Framboise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cherries"],
+          "fr": ["Cerises"]
+        },
+        "labels": {
+          "en": "Cherry",
+          "fr": "Cerise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Red currant", "Redcurrants"],
+          "fr": ["Groseilles"]
+        },
+        "labels": {
+          "en": "Redcurrant",
+          "fr": "Groseille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Blackberries", "Bramble"],
+          "fr": ["Mûres"]
+        },
+        "labels": {
+          "en": "Blackberry",
+          "fr": "Mûre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Blueberries", "Bilberry"],
+          "fr": ["Myrtilles"]
+        },
+        "labels": {
+          "en": "Blueberry",
+          "fr": "Myrtille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Black currant", "Blackcurrants"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Blackcurrant",
+          "fr": "Cassis"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cranberries"],
+          "fr": ["Canneberges"]
+        },
+        "labels": {
+          "en": "Cranberry",
+          "fr": "Canneberge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Wild strawberries"],
+          "fr": ["Fraises des bois"]
+        },
+        "labels": {
+          "en": "Wild strawberry",
+          "fr": "Fraise des bois"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Gooseberries"],
+          "fr": ["Groseilles à maquereau"]
+        },
+        "labels": {
+          "en": "Gooseberry",
+          "fr": "Groseille à maquereau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cowberry", "Lingonberries"],
+          "fr": ["Airelles"]
+        },
+        "labels": {
+          "en": "Lingonberry",
+          "fr": "Airelle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Goji", "Wolfberry"],
+          "fr": ["Goji"]
+        },
+        "labels": {
+          "en": "Goji berry",
+          "fr": "Baie de goji"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Rose hip", "Rosehips"],
+          "fr": ["Gratte-cul"]
+        },
+        "labels": {
+          "en": "Rosehip",
+          "fr": "Cynorrhodon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Elderberries"],
+          "fr": ["Sureau"]
+        },
+        "labels": {
+          "en": "Elderberry",
+          "fr": "Baie de sureau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Épine vinette"]
+        },
+        "labels": {
+          "en": "Barberry",
+          "fr": "Épine-vinette"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Rhubarb",
+        "fr": "Rhubarbe"
+      },
+      "why": {
+        "en": "Red and in every crumble, but a stalk: a vegetable.",
+        "fr": "Rouge et dans tous les crumbles, mais c'est une tige : un légume."
+      }
+    },
+    "id": "red-fruits",
+    "labels": {
+      "en": "Red fruits and berries",
+      "fr": "Fruits rouges"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Oranges"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Orange",
+          "fr": "Orange"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lemons"],
+          "fr": ["Citron jaune"]
+        },
+        "labels": {
+          "en": "Lemon",
+          "fr": "Citron"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Grapefruits"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grapefruit",
+          "fr": "Pamplemousse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Clementines"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Clementine",
+          "fr": "Clémentine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Limes"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lime",
+          "fr": "Citron vert"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mandarin orange"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mandarin",
+          "fr": "Mandarine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kumquat",
+          "fr": "Kumquat"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bergamot",
+          "fr": "Bergamote"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Blood orange",
+          "fr": "Orange sanguine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tangerine",
+          "fr": "Tangerine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yuzu",
+          "fr": "Yuzu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pummelo"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pomelo",
+          "fr": "Pomélo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Kaffir lime"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Makrut lime",
+          "fr": "Combava"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Buddha's hand",
+          "fr": "Main de Bouddha"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Calamondin"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calamansi",
+          "fr": "Calamansi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Finger lime",
+          "fr": "Citron caviar"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Seville orange"],
+          "fr": ["Bigarade"]
+        },
+        "labels": {
+          "en": "Bitter orange",
+          "fr": "Orange amère"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Lemongrass",
+        "fr": "Citronnelle"
+      },
+      "why": {
+        "en": "It smells of lemon, but it is a grass.",
+        "fr": "Elle sent le citron, mais c'est une herbe."
+      }
+    },
+    "id": "citrus-fruits",
+    "labels": {
+      "en": "Citrus fruits",
+      "fr": "Agrumes"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Camembert",
+          "fr": "Camembert"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Brie",
+          "fr": "Brie"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mozza"],
+          "fr": ["Mozza"]
+        },
+        "labels": {
+          "en": "Mozzarella",
+          "fr": "Mozzarella"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Parmigiano", "Parmigiano Reggiano"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Parmesan",
+          "fr": "Parmesan"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cheddar",
+          "fr": "Cheddar"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Emmentaler", "Emmenthal"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Emmental",
+          "fr": "Emmental"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Roquefort",
+          "fr": "Roquefort"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Comté",
+          "fr": "Comté"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gorgonzola",
+          "fr": "Gorgonzola"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Feta",
+          "fr": "Feta"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gouda",
+          "fr": "Gouda"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gruyère",
+          "fr": "Gruyère"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Reblochon",
+          "fr": "Reblochon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stilton",
+          "fr": "Stilton"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Halloumi",
+          "fr": "Halloumi"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Manchego",
+          "fr": "Manchego"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pecorino",
+          "fr": "Pecorino"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mascarpone",
+          "fr": "Mascarpone"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Bean curd"],
+        "fr": ["Fromage de soja"]
+      },
+      "labels": {
+        "en": "Tofu",
+        "fr": "Tofu"
+      },
+      "why": {
+        "en": "Called bean curd, but there is no milk in it.",
+        "fr": "Dit « fromage de soja », mais sans une goutte de lait."
+      }
+    },
+    "id": "cheeses",
+    "labels": {
+      "en": "Cheeses",
+      "fr": "Fromages"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Black pepper"],
+          "fr": ["Poivre noir"]
+        },
+        "labels": {
+          "en": "Pepper",
+          "fr": "Poivre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cinnamon",
+          "fr": "Cannelle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Paprika",
+          "fr": "Paprika"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Muscade"]
+        },
+        "labels": {
+          "en": "Nutmeg",
+          "fr": "Noix de muscade"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Saffron",
+          "fr": "Safran"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ginger",
+          "fr": "Gingembre"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chili", "Chilli pepper", "Cayenne"],
+          "fr": ["Piment rouge", "Piment de Cayenne"]
+        },
+        "labels": {
+          "en": "Chilli",
+          "fr": "Piment"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cumin",
+          "fr": "Cumin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cloves"],
+          "fr": ["Girofle", "Clous de girofle"]
+        },
+        "labels": {
+          "en": "Clove",
+          "fr": "Clou de girofle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Turmeric",
+          "fr": "Curcuma"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vanilla",
+          "fr": "Vanille"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Badiane"]
+        },
+        "labels": {
+          "en": "Star anise",
+          "fr": "Anis étoilé"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Cardamon"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cardamom",
+          "fr": "Cardamome"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sumac",
+          "fr": "Sumac"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fenugreek",
+          "fr": "Fenugrec"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mace",
+          "fr": "Macis"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Pimento"],
+          "fr": ["Toute-épice"]
+        },
+        "labels": {
+          "en": "Allspice",
+          "fr": "Piment de la Jamaïque"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Juniper berry", "Juniper berries"],
+          "fr": ["Baie de genièvre"]
+        },
+        "labels": {
+          "en": "Juniper",
+          "fr": "Genièvre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Caraway",
+          "fr": "Carvi"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Curry powder"],
+        "fr": ["Curry en poudre"]
+      },
+      "labels": {
+        "en": "Curry",
+        "fr": "Curry"
+      },
+      "why": {
+        "en": "Not one spice but a blend of a dozen.",
+        "fr": "Pas une épice, mais un mélange d'une dizaine."
+      }
+    },
+    "id": "spices",
+    "labels": {
+      "en": "Spices",
+      "fr": "Épices"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Basil",
+          "fr": "Basilic"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Parsley",
+          "fr": "Persil"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mint",
+          "fr": "Menthe"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Thyme",
+          "fr": "Thym"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rosemary",
+          "fr": "Romarin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chive"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chives",
+          "fr": "Ciboulette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cilantro"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coriander",
+          "fr": "Coriandre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tarragon",
+          "fr": "Estragon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dill",
+          "fr": "Aneth"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sage",
+          "fr": "Sauge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oregano",
+          "fr": "Origan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bay", "Bay leaves"],
+          "fr": ["Feuille de laurier"]
+        },
+        "labels": {
+          "en": "Bay leaf",
+          "fr": "Laurier"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chervil",
+          "fr": "Cerfeuil"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Marjoram",
+          "fr": "Marjolaine"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lovage",
+          "fr": "Livèche"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Savoury"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Savory",
+          "fr": "Sarriette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lemon balm",
+          "fr": "Mélisse"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sorrel",
+          "fr": "Oseille"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Garlic clove"],
+        "fr": ["Gousse d'ail"]
+      },
+      "labels": {
+        "en": "Garlic",
+        "fr": "Ail"
+      },
+      "why": {
+        "en": "It seasons everything, but it is a bulb, not a herb.",
+        "fr": "Il parfume tout, mais c'est un bulbe, pas une herbe."
+      }
+    },
+    "id": "aromatic-herbs",
+    "labels": {
+      "en": "Herbs",
+      "fr": "Herbes aromatiques"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Spaghettis"]
+        },
+        "labels": {
+          "en": "Spaghetti",
+          "fr": "Spaghetti"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Pennes"]
+        },
+        "labels": {
+          "en": "Penne",
+          "fr": "Penne"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tagliatelli"],
+          "fr": ["Tagliatelles"]
+        },
+        "labels": {
+          "en": "Tagliatelle",
+          "fr": "Tagliatelle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lasagna"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lasagne",
+          "fr": "Lasagnes"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Macaroni",
+          "fr": "Macaronis"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ravioli",
+          "fr": "Raviolis"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Torsades"]
+        },
+        "labels": {
+          "en": "Fusilli",
+          "fr": "Fusilli"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bow ties"],
+          "fr": ["Papillons"]
+        },
+        "labels": {
+          "en": "Farfalle",
+          "fr": "Farfalle"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Linguini"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Linguine",
+          "fr": "Linguine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tortellini",
+          "fr": "Tortellini"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cannelloni",
+          "fr": "Cannellonis"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rigatoni",
+          "fr": "Rigatoni"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Orecchiette",
+          "fr": "Orecchiette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pappardelle",
+          "fr": "Pappardelle"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Risoni"],
+          "fr": ["Risoni", "Langues d'oiseau"]
+        },
+        "labels": {
+          "en": "Orzo",
+          "fr": "Orzo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bucatini",
+          "fr": "Bucatini"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Fettucine", "Fettuccini"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fettuccine",
+          "fr": "Fettuccine"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vermicelli",
+          "fr": "Vermicelles"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Gnocchi",
+        "fr": "Gnocchis"
+      },
+      "why": {
+        "en": "Served like pasta, but a potato dumpling.",
+        "fr": "Servis comme des pâtes, mais ce sont des boulettes de pomme de terre."
+      }
+    },
+    "id": "pasta-shapes",
+    "labels": {
+      "en": "Kinds of pasta",
+      "fr": "Sortes de pâtes"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chocolate mousse",
+          "fr": "Mousse au chocolat"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tiramisu",
+          "fr": "Tiramisu"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crème brûlée",
+          "fr": "Crème brûlée"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cheesecake",
+          "fr": "Cheesecake"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Apple tart"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Apple pie",
+          "fr": "Tarte aux pommes"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Crepes", "Pancake"],
+          "fr": ["Crêpes"]
+        },
+        "labels": {
+          "en": "Crêpe",
+          "fr": "Crêpe"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tatin"],
+          "fr": ["Tatin"]
+        },
+        "labels": {
+          "en": "Tarte Tatin",
+          "fr": "Tarte Tatin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Profiteroles",
+          "fr": "Profiteroles"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Panna cotta",
+          "fr": "Panna cotta"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Chocolate eclair"],
+          "fr": ["Éclair au chocolat"]
+        },
+        "labels": {
+          "en": "Éclair",
+          "fr": "Éclair"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Macarons"]
+        },
+        "labels": {
+          "en": "Macaron",
+          "fr": "Macaron"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crumble",
+          "fr": "Crumble"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Black Forest cake", "Black Forest"],
+          "fr": ["Forêt noire"]
+        },
+        "labels": {
+          "en": "Black Forest gâteau",
+          "fr": "Forêt-noire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Floating islands"],
+          "fr": ["Îles flottantes"]
+        },
+        "labels": {
+          "en": "Floating island",
+          "fr": "Île flottante"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Baba"],
+          "fr": ["Baba"]
+        },
+        "labels": {
+          "en": "Rum baba",
+          "fr": "Baba au rhum"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Napoleon", "Vanilla slice"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mille-feuille",
+          "fr": "Millefeuille"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pavlova",
+          "fr": "Pavlova"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Clafoutis",
+          "fr": "Clafoutis"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Croissant",
+        "fr": "Croissant"
+      },
+      "why": {
+        "en": "A breakfast pastry, not a cake.",
+        "fr": "Une viennoiserie du matin, pas un gâteau."
+      }
+    },
+    "id": "cakes-and-desserts",
+    "labels": {
+      "en": "Cakes and desserts",
+      "fr": "Gâteaux et desserts"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mojito",
+          "fr": "Mojito"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Margarita",
+          "fr": "Margarita"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Piña colada",
+          "fr": "Piña colada"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Aperol spritz"],
+          "fr": ["Spritz Aperol"]
+        },
+        "labels": {
+          "en": "Spritz",
+          "fr": "Spritz"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bloody Mary",
+          "fr": "Bloody Mary"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Caipi"],
+          "fr": ["Caïpi"]
+        },
+        "labels": {
+          "en": "Caipirinha",
+          "fr": "Caïpirinha"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cosmo"],
+          "fr": ["Cosmo"]
+        },
+        "labels": {
+          "en": "Cosmopolitan",
+          "fr": "Cosmopolitan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Daiquiri",
+          "fr": "Daïquiri"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sex on the Beach",
+          "fr": "Sex on the Beach"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tequila Sunrise",
+          "fr": "Tequila Sunrise"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Rum and Coke"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cuba libre",
+          "fr": "Cuba libre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Moscow mule",
+          "fr": "Moscow mule"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Negroni",
+          "fr": "Negroni"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Martini cocktail"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Dry Martini",
+          "fr": "Dry Martini"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Manhattan",
+          "fr": "Manhattan"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mai Tai",
+          "fr": "Mai Tai"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "White Russian",
+          "fr": "White Russian"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bellini",
+          "fr": "Bellini"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Old fashioned",
+          "fr": "Old fashioned"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Limoncello",
+        "fr": "Limoncello"
+      },
+      "why": {
+        "en": "A liqueur poured straight from the bottle, not a mix.",
+        "fr": "Une liqueur servie pure, pas un mélange."
+      }
+    },
+    "id": "cocktails",
+    "labels": {
+      "en": "Cocktails",
+      "fr": "Cocktails"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coffee",
+          "fr": "Café"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tea",
+          "fr": "Thé"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cocoa", "Hot cocoa"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hot chocolate",
+          "fr": "Chocolat chaud"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Infusion"],
+          "fr": ["Infusion"]
+        },
+        "labels": {
+          "en": "Herbal tea",
+          "fr": "Tisane"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cappuccino",
+          "fr": "Cappuccino"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Espresso",
+          "fr": "Expresso"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mulled wine",
+          "fr": "Vin chaud"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Caffè latte"],
+          "fr": ["Café latte"]
+        },
+        "labels": {
+          "en": "Latte",
+          "fr": "Latte"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Irish coffee",
+          "fr": "Irish coffee"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Chai latte", "Masala chai"],
+          "fr": ["Thé chaï"]
+        },
+        "labels": {
+          "en": "Chai",
+          "fr": "Chaï"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Matcha latte"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Matcha",
+          "fr": "Matcha"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Macchiato",
+          "fr": "Macchiato"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hot toddy",
+          "fr": "Grog"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Mate"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yerba mate",
+          "fr": "Maté"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Café au lait",
+          "fr": "Café au lait"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Viennese coffee",
+          "fr": "Café viennois"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rooibos",
+          "fr": "Rooibos"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Mochaccino"],
+          "fr": ["Café moka"]
+        },
+        "labels": {
+          "en": "Mocha",
+          "fr": "Moka"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Ice tea"],
+        "fr": ["Ice tea"]
+      },
+      "labels": {
+        "en": "Iced tea",
+        "fr": "Thé glacé"
+      },
+      "why": {
+        "en": "Tea, but served cold.",
+        "fr": "Du thé, mais servi froid."
+      }
+    },
+    "id": "hot-drinks",
+    "labels": {
+      "en": "Hot drinks",
+      "fr": "Boissons chaudes"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Walnuts"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Walnut",
+          "fr": "Noix"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Hazelnuts", "Filbert"],
+          "fr": ["Noisettes"]
+        },
+        "labels": {
+          "en": "Hazelnut",
+          "fr": "Noisette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Almonds"],
+          "fr": ["Amandes"]
+        },
+        "labels": {
+          "en": "Almond",
+          "fr": "Amande"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cashews", "Cashew nut"],
+          "fr": ["Cajou"]
+        },
+        "labels": {
+          "en": "Cashew",
+          "fr": "Noix de cajou"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pistachios"],
+          "fr": ["Pistaches"]
+        },
+        "labels": {
+          "en": "Pistachio",
+          "fr": "Pistache"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chestnuts"],
+          "fr": ["Châtaignes", "Marron"]
+        },
+        "labels": {
+          "en": "Chestnut",
+          "fr": "Châtaigne"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pecans", "Pecan nut"],
+          "fr": ["Pécan", "Pacane"]
+        },
+        "labels": {
+          "en": "Pecan",
+          "fr": "Noix de pécan"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Macadamia nut"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Macadamia",
+          "fr": "Noix de macadamia"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Brazil nuts"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Brazil nut",
+          "fr": "Noix du Brésil"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Coco"]
+        },
+        "labels": {
+          "en": "Coconut",
+          "fr": "Noix de coco"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pine nuts", "Pine kernel"],
+          "fr": ["Pignon", "Pignons"]
+        },
+        "labels": {
+          "en": "Pine nut",
+          "fr": "Pignon de pin"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Acorns"],
+          "fr": ["Glands"]
+        },
+        "labels": {
+          "en": "Acorn",
+          "fr": "Gland"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Cola nut"],
+          "fr": ["Noix de cola"]
+        },
+        "labels": {
+          "en": "Kola nut",
+          "fr": "Noix de kola"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Beech nut"],
+          "fr": ["Faine"]
+        },
+        "labels": {
+          "en": "Beechnut",
+          "fr": "Faîne"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Ginkgo"],
+          "fr": ["Ginkgo"]
+        },
+        "labels": {
+          "en": "Ginkgo nut",
+          "fr": "Noix de ginkgo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hickory"],
+          "fr": ["Hickory"]
+        },
+        "labels": {
+          "en": "Hickory nut",
+          "fr": "Noix de hickory"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Peanuts", "Groundnut"],
+        "fr": ["Cacahouète", "Arachide", "Cacahuètes"]
+      },
+      "labels": {
+        "en": "Peanut",
+        "fr": "Cacahuète"
+      },
+      "why": {
+        "en": "In the nut bowl, but a legume, like a pea.",
+        "fr": "Dans le bol apéro, mais c'est une légumineuse, comme le pois."
+      }
+    },
+    "id": "nuts",
+    "labels": {
+      "en": "Nuts",
+      "fr": "Fruits à coque"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Shrimp", "Prawns"],
+          "fr": ["Crevettes"]
+        },
+        "labels": {
+          "en": "Prawn",
+          "fr": "Crevette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mussels"],
+          "fr": ["Moules"]
+        },
+        "labels": {
+          "en": "Mussel",
+          "fr": "Moule"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Oysters"],
+          "fr": ["Huîtres"]
+        },
+        "labels": {
+          "en": "Oyster",
+          "fr": "Huître"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lobster",
+          "fr": "Homard"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Crab",
+          "fr": "Crabe"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Scallops"],
+          "fr": ["Saint-Jacques", "Saint Jacques"]
+        },
+        "labels": {
+          "en": "Scallop",
+          "fr": "Coquille Saint-Jacques"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Calamari"],
+          "fr": ["Calamars", "Encornet"]
+        },
+        "labels": {
+          "en": "Squid",
+          "fr": "Calamar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Pieuvre"]
+        },
+        "labels": {
+          "en": "Octopus",
+          "fr": "Poulpe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Scampi", "Dublin Bay prawn"],
+          "fr": ["Langoustines"]
+        },
+        "labels": {
+          "en": "Langoustine",
+          "fr": "Langoustine"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Clams"],
+          "fr": ["Palourdes"]
+        },
+        "labels": {
+          "en": "Clam",
+          "fr": "Palourde"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Rock lobster"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Spiny lobster",
+          "fr": "Langouste"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Whelks"],
+          "fr": ["Bulots"]
+        },
+        "labels": {
+          "en": "Whelk",
+          "fr": "Bulot"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Urchin"],
+          "fr": ["Oursins"]
+        },
+        "labels": {
+          "en": "Sea urchin",
+          "fr": "Oursin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Winkle", "Winkles"],
+          "fr": ["Bigorneaux"]
+        },
+        "labels": {
+          "en": "Periwinkle",
+          "fr": "Bigorneau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cuttlefish",
+          "fr": "Seiche"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Couteaux"]
+        },
+        "labels": {
+          "en": "Razor clam",
+          "fr": "Couteau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Ormeaux"]
+        },
+        "labels": {
+          "en": "Abalone",
+          "fr": "Ormeau"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Cockles"],
+          "fr": ["Coques"]
+        },
+        "labels": {
+          "en": "Cockle",
+          "fr": "Coque"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Crab stick", "Crab sticks"],
+        "fr": ["Bâtonnet de crabe"]
+      },
+      "labels": {
+        "en": "Surimi",
+        "fr": "Surimi"
+      },
+      "why": {
+        "en": "Sold as crab sticks, but made of white fish.",
+        "fr": "Vendu comme du crabe, mais fait de poisson blanc."
+      }
+    },
+    "id": "seafood",
+    "labels": {
+      "en": "Seafood",
+      "fr": "Fruits de mer"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Salmon",
+          "fr": "Saumon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tuna",
+          "fr": "Thon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Morue"]
+        },
+        "labels": {
+          "en": "Cod",
+          "fr": "Cabillaud"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Sardines", "Pilchard"],
+          "fr": ["Sardines"]
+        },
+        "labels": {
+          "en": "Sardine",
+          "fr": "Sardine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Trout",
+          "fr": "Truite"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sole",
+          "fr": "Sole"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Bass"],
+          "fr": ["Loup", "Loup de mer"]
+        },
+        "labels": {
+          "en": "Sea bass",
+          "fr": "Bar"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mackerel",
+          "fr": "Maquereau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Colin"]
+        },
+        "labels": {
+          "en": "Hake",
+          "fr": "Merlu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bream"],
+          "fr": ["Daurade"]
+        },
+        "labels": {
+          "en": "Sea bream",
+          "fr": "Dorade"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Herring",
+          "fr": "Hareng"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Anchovies"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anchovy",
+          "fr": "Anchois"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Monkfish",
+          "fr": "Lotte"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Turbot",
+          "fr": "Turbot"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Swordfish",
+          "fr": "Espadon"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Mullet"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Red mullet",
+          "fr": "Rouget"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Saint Pierre"]
+        },
+        "labels": {
+          "en": "John Dory",
+          "fr": "Saint-Pierre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Halibut",
+          "fr": "Flétan"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Cuttlefish",
+        "fr": "Seiche"
+      },
+      "why": {
+        "en": "Sold at the fishmonger's, but a mollusc, not a fish.",
+        "fr": "Vendue chez le poissonnier, mais c'est un mollusque."
+      }
+    },
+    "id": "fish-on-the-menu",
+    "labels": {
+      "en": "Fish on the menu",
+      "fr": "Poissons qu'on mange"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Mayo"],
+          "fr": ["Mayo"]
+        },
+        "labels": {
+          "en": "Mayonnaise",
+          "fr": "Mayonnaise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ketchup",
+          "fr": "Ketchup"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mustard",
+          "fr": "Moutarde"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["White sauce"],
+          "fr": ["Sauce blanche"]
+        },
+        "labels": {
+          "en": "Béchamel",
+          "fr": "Béchamel"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["French dressing"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vinaigrette",
+          "fr": "Vinaigrette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pesto",
+          "fr": "Pesto"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Coulis de tomate"]
+        },
+        "labels": {
+          "en": "Tomato sauce",
+          "fr": "Sauce tomate"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Sauce béarnaise"]
+        },
+        "labels": {
+          "en": "Béarnaise",
+          "fr": "Béarnaise"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Sauce hollandaise"]
+        },
+        "labels": {
+          "en": "Hollandaise",
+          "fr": "Hollandaise"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["BBQ sauce", "Barbecue", "BBQ"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Barbecue sauce",
+          "fr": "Sauce barbecue"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Soya sauce"],
+          "fr": ["Sauce soya"]
+        },
+        "labels": {
+          "en": "Soy sauce",
+          "fr": "Sauce soja"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aioli",
+          "fr": "Aïoli"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Tartar sauce"],
+          "fr": ["Tartare"]
+        },
+        "labels": {
+          "en": "Tartare sauce",
+          "fr": "Sauce tartare"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rouille",
+          "fr": "Rouille"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Hoisin sauce"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hoisin",
+          "fr": "Sauce hoisin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Worcestershire", "Worcester sauce"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Worcestershire sauce",
+          "fr": "Sauce Worcestershire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Beurre blanc",
+          "fr": "Beurre blanc"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chimichurri",
+          "fr": "Chimichurri"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sriracha",
+          "fr": "Sriracha"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Vinegar",
+        "fr": "Vinaigre"
+      },
+      "why": {
+        "en": "It goes into a vinaigrette, but on its own it is a condiment.",
+        "fr": "Il entre dans la vinaigrette, mais seul c'est un condiment."
+      }
+    },
+    "id": "sauces",
+    "labels": {
+      "en": "Sauces",
+      "fr": "Sauces"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Knife",
+          "fr": "Couteau"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Wooden spoon"],
+          "fr": ["Cuiller", "Cuillère en bois"]
+        },
+        "labels": {
+          "en": "Spoon",
+          "fr": "Cuillère"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fork",
+          "fr": "Fourchette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ladle",
+          "fr": "Louche"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Whisk",
+          "fr": "Fouet"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Pan", "Skillet"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Frying pan",
+          "fr": "Poêle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Spatula",
+          "fr": "Spatule"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grater",
+          "fr": "Râpe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Strainer"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Colander",
+          "fr": "Passoire"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Potato peeler", "Vegetable peeler"],
+          "fr": ["Économe", "Épluche-légumes"]
+        },
+        "labels": {
+          "en": "Peeler",
+          "fr": "Éplucheur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Rouleau"]
+        },
+        "labels": {
+          "en": "Rolling pin",
+          "fr": "Rouleau à pâtisserie"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Tire bouchon"]
+        },
+        "labels": {
+          "en": "Corkscrew",
+          "fr": "Tire-bouchon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Tin opener"],
+          "fr": ["Ouvre boîte"]
+        },
+        "labels": {
+          "en": "Can opener",
+          "fr": "Ouvre-boîte"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mandoline",
+          "fr": "Mandoline"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Zester",
+          "fr": "Zesteur"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Presse ail"]
+        },
+        "labels": {
+          "en": "Garlic press",
+          "fr": "Presse-ail"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Skimmer",
+          "fr": "Écumoire"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Funnel",
+          "fr": "Entonnoir"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Essoreuse"]
+        },
+        "labels": {
+          "en": "Salad spinner",
+          "fr": "Essoreuse à salade"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Grille pain"]
+      },
+      "labels": {
+        "en": "Toaster",
+        "fr": "Grille-pain"
+      },
+      "why": {
+        "en": "On the counter, but an appliance with a plug, not a utensil.",
+        "fr": "Sur le plan de travail, mais c'est un appareil électrique, pas un ustensile."
+      }
+    },
+    "id": "kitchen-utensils",
+    "labels": {
+      "en": "Kitchen utensils",
+      "fr": "Ustensiles de cuisine"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Froment"]
+        },
+        "labels": {
+          "en": "Wheat",
+          "fr": "Blé"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rice",
+          "fr": "Riz"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Maize", "Sweetcorn"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Corn",
+          "fr": "Maïs"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Oat"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Oats",
+          "fr": "Avoine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Barley",
+          "fr": "Orge"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rye",
+          "fr": "Seigle"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Mil"]
+        },
+        "labels": {
+          "en": "Millet",
+          "fr": "Millet"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sorghum",
+          "fr": "Sorgho"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Grand épeautre"]
+        },
+        "labels": {
+          "en": "Spelt",
+          "fr": "Épeautre"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Durum"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Durum wheat",
+          "fr": "Blé dur"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Wild rice",
+          "fr": "Riz sauvage"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Tef"],
+          "fr": ["Tef"]
+        },
+        "labels": {
+          "en": "Teff",
+          "fr": "Teff"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Triticale",
+          "fr": "Triticale"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fonio",
+          "fr": "Fonio"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Farro"],
+          "fr": ["Épeautre de Tartarie"]
+        },
+        "labels": {
+          "en": "Emmer",
+          "fr": "Amidonnier"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Engrain"]
+        },
+        "labels": {
+          "en": "Einkorn",
+          "fr": "Petit épeautre"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": ["Blé noir"]
+      },
+      "labels": {
+        "en": "Buckwheat",
+        "fr": "Sarrasin"
+      },
+      "why": {
+        "en": "Not a grass at all: a cousin of sorrel and rhubarb.",
+        "fr": "Pas une graminée : un cousin de l'oseille et de la rhubarbe."
+      }
+    },
+    "id": "cereal-grains",
+    "labels": {
+      "en": "Cereal grains",
+      "fr": "Céréales"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Lentil"],
+          "fr": ["Lentille"]
+        },
+        "labels": {
+          "en": "Lentils",
+          "fr": "Lentilles"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Chickpea", "Garbanzo beans"],
+          "fr": ["Pois chiche"]
+        },
+        "labels": {
+          "en": "Chickpeas",
+          "fr": "Pois chiches"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Red kidney beans", "Kidney bean"],
+          "fr": ["Haricot rouge"]
+        },
+        "labels": {
+          "en": "Kidney beans",
+          "fr": "Haricots rouges"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Split pea"],
+          "fr": ["Pois cassé"]
+        },
+        "labels": {
+          "en": "Split peas",
+          "fr": "Pois cassés"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Haricot beans", "Navy beans", "Cannellini"],
+          "fr": ["Haricot blanc", "Lingots"]
+        },
+        "labels": {
+          "en": "White beans",
+          "fr": "Haricots blancs"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Fava beans", "Broad bean"],
+          "fr": ["Fève"]
+        },
+        "labels": {
+          "en": "Broad beans",
+          "fr": "Fèves"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Black bean", "Black turtle beans"],
+          "fr": ["Haricot noir"]
+        },
+        "labels": {
+          "en": "Black beans",
+          "fr": "Haricots noirs"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Red lentil"],
+          "fr": ["Lentilles rouges"]
+        },
+        "labels": {
+          "en": "Red lentils",
+          "fr": "Lentilles corail"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mung bean", "Moong"],
+          "fr": ["Soja vert", "Haricot mungo"]
+        },
+        "labels": {
+          "en": "Mung beans",
+          "fr": "Haricots mungo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Flageolet"]
+        },
+        "labels": {
+          "en": "Flageolet beans",
+          "fr": "Flageolets"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Borlotti", "Cranberry beans"],
+          "fr": ["Borlotti"]
+        },
+        "labels": {
+          "en": "Borlotti beans",
+          "fr": "Haricots borlotti"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Adzuki", "Azuki"],
+          "fr": ["Azuki", "Adzuki"]
+        },
+        "labels": {
+          "en": "Adzuki beans",
+          "fr": "Haricots azuki"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Black-eyed beans"],
+          "fr": ["Haricots à œil noir", "Niébé"]
+        },
+        "labels": {
+          "en": "Black-eyed peas",
+          "fr": "Cornilles"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Lupini beans", "Lupins"],
+          "fr": ["Lupins"]
+        },
+        "labels": {
+          "en": "Lupin",
+          "fr": "Lupin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Pigeon pea"],
+          "fr": ["Pois cajan"]
+        },
+        "labels": {
+          "en": "Pigeon peas",
+          "fr": "Pois d'Angole"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Butter beans", "Lima bean"],
+          "fr": ["Pois du Cap"]
+        },
+        "labels": {
+          "en": "Lima beans",
+          "fr": "Haricots de Lima"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Cocoa beans", "Cacao bean"],
+        "fr": ["Fèves de cacao"]
+      },
+      "labels": {
+        "en": "Cocoa bean",
+        "fr": "Fève de cacao"
+      },
+      "why": {
+        "en": "Called a bean, but it grows in a pod on a tree of the mallow family.",
+        "fr": "Appelée fève, mais elle pousse sur un arbre de la famille des mauves."
+      }
+    },
+    "id": "pulses",
+    "labels": {
+      "en": "Pulses",
+      "fr": "Légumineuses"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pizza",
+          "fr": "Pizza"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Lasagna"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lasagne",
+          "fr": "Lasagnes"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Risotto",
+          "fr": "Risotto"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Spaghetti carbonara", "Pasta carbonara"],
+          "fr": ["Pâtes carbonara", "Spaghetti carbonara"]
+        },
+        "labels": {
+          "en": "Carbonara",
+          "fr": "Carbonara"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tiramisu",
+          "fr": "Tiramisu"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ravioli",
+          "fr": "Raviolis"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Ossobuco"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Osso buco",
+          "fr": "Osso buco"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Minestrone",
+          "fr": "Minestrone"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gnocchi",
+          "fr": "Gnocchis"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bruschetta",
+          "fr": "Bruschetta"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Carpaccio",
+          "fr": "Carpaccio"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calzone",
+          "fr": "Calzone"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Saltimbocca",
+          "fr": "Saltimbocca"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vitello tonnato",
+          "fr": "Vitello tonnato"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Arancini",
+          "fr": "Arancini"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Caponata",
+          "fr": "Caponata"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cacio e pepe",
+          "fr": "Cacio e pepe"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cannoli",
+          "fr": "Cannoli"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["Caesar"],
+        "fr": ["César"]
+      },
+      "labels": {
+        "en": "Caesar salad",
+        "fr": "Salade César"
+      },
+      "why": {
+        "en": "Invented in Tijuana, Mexico, by an Italian-born restaurateur.",
+        "fr": "Inventée à Tijuana, au Mexique, par un restaurateur d'origine italienne."
+      }
+    },
+    "id": "italian-dishes",
+    "labels": {
+      "en": "Italian dishes",
+      "fr": "Spécialités italiennes"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Sushis"]
+        },
+        "labels": {
+          "en": "Sushi",
+          "fr": "Sushi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Sashimis"]
+        },
+        "labels": {
+          "en": "Sashimi",
+          "fr": "Sashimi"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Râmen"]
+        },
+        "labels": {
+          "en": "Ramen",
+          "fr": "Ramen"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Makis"]
+        },
+        "labels": {
+          "en": "Maki",
+          "fr": "Maki"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tempura",
+          "fr": "Tempura"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Miso"],
+          "fr": ["Miso"]
+        },
+        "labels": {
+          "en": "Miso soup",
+          "fr": "Soupe miso"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Yakitori",
+          "fr": "Yakitori"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Gyozas"],
+          "fr": ["Gyozas"]
+        },
+        "labels": {
+          "en": "Gyoza",
+          "fr": "Gyoza"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Udon",
+          "fr": "Udon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Teriyaki",
+          "fr": "Teriyaki"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mochi",
+          "fr": "Mochi"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Edamame",
+          "fr": "Edamame"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Okonomiyaki",
+          "fr": "Okonomiyaki"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Takoyaki",
+          "fr": "Takoyaki"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Soba",
+          "fr": "Soba"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Onigiri",
+          "fr": "Onigiri"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tonkatsu",
+          "fr": "Tonkatsu"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sukiyaki",
+          "fr": "Sukiyaki"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": ["California maki"],
+        "fr": ["California maki", "California"]
+      },
+      "labels": {
+        "en": "California roll",
+        "fr": "California roll"
+      },
+      "why": {
+        "en": "Rolled inside out in North America, not in Japan.",
+        "fr": "Roulé à l'envers en Amérique du Nord, pas au Japon."
+      }
+    },
+    "id": "japanese-food",
+    "labels": {
+      "en": "Japanese food",
+      "fr": "Cuisine japonaise"
+    },
+    "tier": "medium"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Lolly"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lollipop",
+          "fr": "Sucette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Marshmallows"],
+          "fr": ["Chamallow"]
+        },
+        "labels": {
+          "en": "Marshmallow",
+          "fr": "Guimauve"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Gum", "Bubble gum"],
+          "fr": ["Gomme à mâcher"]
+        },
+        "labels": {
+          "en": "Chewing gum",
+          "fr": "Chewing-gum"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Licorice"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Liquorice",
+          "fr": "Réglisse"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Cotton candy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Candy floss",
+          "fr": "Barbe à papa"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Gummy bear", "Gummies"],
+          "fr": ["Oursons gélifiés", "Nounours"]
+        },
+        "labels": {
+          "en": "Gummy bears",
+          "fr": "Oursons"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Caramels", "Toffee"],
+          "fr": ["Caramels"]
+        },
+        "labels": {
+          "en": "Caramel",
+          "fr": "Caramel"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Nougat",
+          "fr": "Nougat"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Pâte d'amandes", "Massepain"]
+        },
+        "labels": {
+          "en": "Marzipan",
+          "fr": "Pâte d'amande"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dragees", "Jordan almonds"],
+          "fr": ["Dragée"]
+        },
+        "labels": {
+          "en": "Sugared almonds",
+          "fr": "Dragées"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Fruit jelly", "Pâte de fruit"],
+          "fr": ["Pâte de fruits"]
+        },
+        "labels": {
+          "en": "Fruit jellies",
+          "fr": "Pâtes de fruits"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Candy canes"],
+          "fr": ["Canne en sucre"]
+        },
+        "labels": {
+          "en": "Candy cane",
+          "fr": "Sucre d'orge"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Loukoums", "Rahat-loukoum"]
+        },
+        "labels": {
+          "en": "Turkish delight",
+          "fr": "Loukoum"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Halwa"],
+          "fr": ["Halwa"]
+        },
+        "labels": {
+          "en": "Halva",
+          "fr": "Halva"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Fudge",
+          "fr": "Fudge"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Candied chestnut"],
+          "fr": ["Marrons glacés"]
+        },
+        "labels": {
+          "en": "Marron glacé",
+          "fr": "Marron glacé"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Calissons"]
+        },
+        "labels": {
+          "en": "Calisson",
+          "fr": "Calisson"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Pralines"],
+          "fr": ["Pralines"]
+        },
+        "labels": {
+          "en": "Praline",
+          "fr": "Praline"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Meringue",
+        "fr": "Meringue"
+      },
+      "why": {
+        "en": "Pure sugar, but baked in an oven: a pastry, not a confection.",
+        "fr": "Du sucre pur, mais cuit au four : de la pâtisserie, pas de la confiserie."
+      }
+    },
+    "id": "sweets",
+    "labels": {
+      "en": "Sweets and candy",
+      "fr": "Confiseries"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vanilla",
+          "fr": "Vanille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chocolate",
+          "fr": "Chocolat"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Strawberry",
+          "fr": "Fraise"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pistachio",
+          "fr": "Pistache"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Lemon",
+          "fr": "Citron"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coffee",
+          "fr": "Café"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mint choc chip", "Mint"],
+          "fr": ["Menthe chocolat", "Menthe"]
+        },
+        "labels": {
+          "en": "Mint chocolate chip",
+          "fr": "Menthe-chocolat"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Caramel"],
+          "fr": ["Caramel"]
+        },
+        "labels": {
+          "en": "Salted caramel",
+          "fr": "Caramel beurre salé"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Coco"]
+        },
+        "labels": {
+          "en": "Coconut",
+          "fr": "Noix de coco"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Raspberry",
+          "fr": "Framboise"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Hazelnut",
+          "fr": "Noisette"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Stracciatella",
+          "fr": "Stracciatella"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mango",
+          "fr": "Mangue"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Rhum raisin"]
+        },
+        "labels": {
+          "en": "Rum raisin",
+          "fr": "Rhum-raisin"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tutti frutti",
+          "fr": "Tutti frutti"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Blackcurrant",
+          "fr": "Cassis"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Passion"]
+        },
+        "labels": {
+          "en": "Passion fruit",
+          "fr": "Fruit de la passion"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Green tea", "Matcha green tea"],
+          "fr": ["Thé vert"]
+        },
+        "labels": {
+          "en": "Matcha",
+          "fr": "Thé matcha"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Banana split",
+        "fr": "Banana split"
+      },
+      "why": {
+        "en": "A dessert built from three scoops, not a flavour.",
+        "fr": "Un dessert monté avec trois boules, pas un parfum."
+      }
+    },
+    "id": "ice-cream-flavours",
+    "labels": {
+      "en": "Ice cream flavours",
+      "fr": "Parfums de glace"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Mozza"],
+          "fr": ["Mozza"]
+        },
+        "labels": {
+          "en": "Mozzarella",
+          "fr": "Mozzarella"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ham",
+          "fr": "Jambon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Mushroom"],
+          "fr": ["Champignon"]
+        },
+        "labels": {
+          "en": "Mushrooms",
+          "fr": "Champignons"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Tomato", "Tomatoes"],
+          "fr": ["Tomate", "Tomates"]
+        },
+        "labels": {
+          "en": "Tomato sauce",
+          "fr": "Sauce tomate"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pepperoni",
+          "fr": "Pepperoni"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Olive", "Black olives"],
+          "fr": ["Olive", "Olives noires"]
+        },
+        "labels": {
+          "en": "Olives",
+          "fr": "Olives"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pineapple",
+          "fr": "Ananas"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Anchovy"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Anchovies",
+          "fr": "Anchois"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Bell peppers", "Pepper"],
+          "fr": ["Poivron"]
+        },
+        "labels": {
+          "en": "Peppers",
+          "fr": "Poivrons"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Onions"],
+          "fr": ["Oignons"]
+        },
+        "labels": {
+          "en": "Onion",
+          "fr": "Oignon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Chorizo",
+          "fr": "Chorizo"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Eggs"],
+          "fr": ["Oeuf", "Œufs"]
+        },
+        "labels": {
+          "en": "Egg",
+          "fr": "Œuf"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Basil",
+          "fr": "Basilic"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Caper"],
+          "fr": ["Câpre"]
+        },
+        "labels": {
+          "en": "Capers",
+          "fr": "Câpres"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Artichokes"],
+          "fr": ["Artichauts"]
+        },
+        "labels": {
+          "en": "Artichoke",
+          "fr": "Artichaut"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Arugula"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rocket",
+          "fr": "Roquette"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Goat cheese"],
+          "fr": ["Fromage de chèvre"]
+        },
+        "labels": {
+          "en": "Goat's cheese",
+          "fr": "Chèvre"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Corn"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Sweetcorn",
+          "fr": "Maïs"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tuna",
+          "fr": "Thon"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Calzone",
+        "fr": "Calzone"
+      },
+      "why": {
+        "en": "A whole pizza folded in two, not something put on one.",
+        "fr": "Une pizza entière pliée en deux, pas ce qu'on met dessus."
+      }
+    },
+    "id": "pizza-toppings",
+    "labels": {
+      "en": "Pizza toppings",
+      "fr": "Garnitures de pizza"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Vodka",
+          "fr": "Vodka"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Whiskey", "Scotch"],
+          "fr": ["Whiskey", "Scotch"]
+        },
+        "labels": {
+          "en": "Whisky",
+          "fr": "Whisky"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Rum",
+          "fr": "Rhum"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gin",
+          "fr": "Gin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": ["Téquila"]
+        },
+        "labels": {
+          "en": "Tequila",
+          "fr": "Tequila"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cognac",
+          "fr": "Cognac"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Calvados",
+          "fr": "Calvados"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Armagnac",
+          "fr": "Armagnac"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Absinthe",
+          "fr": "Absinthe"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Mescal"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Mezcal",
+          "fr": "Mezcal"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pastis",
+          "fr": "Pastis"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Grappa",
+          "fr": "Grappa"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pisco",
+          "fr": "Pisco"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cachaça",
+          "fr": "Cachaça"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ouzo",
+          "fr": "Ouzo"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Kirsch",
+          "fr": "Kirsch"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Akvavit"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aquavit",
+          "fr": "Aquavit"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Baijiu",
+          "fr": "Baijiu"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Sake",
+        "fr": "Saké"
+      },
+      "why": {
+        "en": "Brewed from rice like a beer, never distilled.",
+        "fr": "Brassé à partir de riz comme une bière, jamais distillé."
+      }
+    },
+    "id": "spirits",
+    "labels": {
+      "en": "Spirits",
+      "fr": "Alcools forts"
+    },
+    "tier": "easy"
+  },
+  {
+    "answers": [
+      {
+        "aliases": {
+          "en": ["Boeuf bourguignon", "Bourguignon"],
+          "fr": ["Bourguignon", "Boeuf bourguignon"]
+        },
+        "labels": {
+          "en": "Beef bourguignon",
+          "fr": "Bœuf bourguignon"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Ratatouille",
+          "fr": "Ratatouille"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Quiche"],
+          "fr": ["Quiche"]
+        },
+        "labels": {
+          "en": "Quiche lorraine",
+          "fr": "Quiche lorraine"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Croque monsieur"],
+          "fr": ["Croque monsieur", "Croque"]
+        },
+        "labels": {
+          "en": "Croque-monsieur",
+          "fr": "Croque-monsieur"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Coq au vin",
+          "fr": "Coq au vin"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Cassoulet",
+          "fr": "Cassoulet"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Tartiflette",
+          "fr": "Tartiflette"
+        },
+        "tier": "easy"
+      },
+      {
+        "aliases": {
+          "en": ["Onion soup"],
+          "fr": ["Soupe à l'oignon gratinée"]
+        },
+        "labels": {
+          "en": "French onion soup",
+          "fr": "Soupe à l'oignon"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Pot au feu"],
+          "fr": ["Pot au feu"]
+        },
+        "labels": {
+          "en": "Pot-au-feu",
+          "fr": "Pot-au-feu"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Blanquette", "Veal blanquette"],
+          "fr": ["Blanquette"]
+        },
+        "labels": {
+          "en": "Blanquette de veau",
+          "fr": "Blanquette de veau"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Bouillabaisse",
+          "fr": "Bouillabaisse"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": ["Dauphinoise potatoes"],
+          "fr": []
+        },
+        "labels": {
+          "en": "Gratin dauphinois",
+          "fr": "Gratin dauphinois"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Duck confit",
+          "fr": "Confit de canard"
+        },
+        "tier": "medium"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Aligot",
+          "fr": "Aligot"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Brandade",
+          "fr": "Brandade de morue"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Pissaladière",
+          "fr": "Pissaladière"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Frogs' legs"],
+          "fr": ["Cuisses de grenouilles"]
+        },
+        "labels": {
+          "en": "Frog legs",
+          "fr": "Cuisses de grenouille"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": ["Flammekueche", "Flammkuchen"],
+          "fr": ["Flammekueche"]
+        },
+        "labels": {
+          "en": "Tarte flambée",
+          "fr": "Tarte flambée"
+        },
+        "tier": "hard"
+      },
+      {
+        "aliases": {
+          "en": [],
+          "fr": []
+        },
+        "labels": {
+          "en": "Andouillette",
+          "fr": "Andouillette"
+        },
+        "tier": "hard"
+      }
+    ],
+    "blackWord": {
+      "aliases": {
+        "en": [],
+        "fr": []
+      },
+      "labels": {
+        "en": "Vichyssoise",
+        "fr": "Vichyssoise"
+      },
+      "why": {
+        "en": "Created in New York, at the Ritz-Carlton, in 1917.",
+        "fr": "Inventée à New York, au Ritz-Carlton, en 1917."
+      }
+    },
+    "id": "french-dishes",
+    "labels": {
+      "en": "French dishes",
+      "fr": "Plats français"
+    },
+    "tier": "easy"
+  }
+]

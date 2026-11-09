@@ -1,15 +1,18 @@
 import { describe, expect, it } from 'vitest'
 
 import { franchiseStemOf } from '@melee/core/blacksquare/franchise-stem'
-import { gradeLine } from '@melee/core/blacksquare/line-match'
+import { gradeLine, type LineGrade } from '@melee/core/blacksquare/line-match'
 import { gradeQuizGuess } from '@melee/core/quiz/question-answer'
 
 import {
+  authoredBlackSquareSources,
   authoredBlackSquareThemes,
   type BlackSquareAnswer,
   bankedBlackSquareThemes,
   blackSquareThemePool,
   drawBlackSquareTheme,
+  type PooledBlackSquareTheme,
+  parseAuthoredBlackSquareThemes,
   playedBlackSquareThemeId
 } from './black-square-bank'
 
@@ -35,6 +38,47 @@ const namesOf = ({
   ...aliases.en,
   ...aliases.fr
 ]
+
+/** Every name of a theme against every other answer dealt alone: thousands of gradings a theme. */
+const EVERY_NAME_GRADED = { timeout: 60_000 }
+
+type Named = Pick<BlackSquareAnswer, 'aliases' | 'labels'>
+
+type GradedTheme = {
+  answers: readonly Named[]
+  blackWord: Named
+  id: string
+}
+
+/**
+ * Every name of a theme graded the way a round grades it, one answer dealt and
+ * the rest left out: each must find its own cell, the black word must land on
+ * itself, and a true answer the deal left out must find nothing at all.
+ */
+const misgradedNamesOf = ({ answers, blackWord, id }: GradedTheme): string[] =>
+  answers.flatMap((dealt, dealtIndex) => {
+    const board = {
+      answers: [namesOf(dealt)],
+      blackWord: namesOf(blackWord),
+      leftOut: answers.flatMap((other, index) =>
+        index === dealtIndex ? [] : namesOf(other)
+      )
+    }
+    const misgraded = (line: string, expected: LineGrade['kind']): string[] =>
+      gradeLine({ ...board, line }).kind === expected
+        ? []
+        : [`${id}: ${line} beside ${dealt.labels.en}`]
+
+    return [
+      ...namesOf(dealt).flatMap((line) => misgraded(line, 'cells')),
+      ...namesOf(blackWord).flatMap((line) => misgraded(line, 'blackWord')),
+      ...answers.flatMap((other, index) =>
+        index === dealtIndex
+          ? []
+          : namesOf(other).flatMap((line) => misgraded(line, 'nothing'))
+      )
+    ]
+  })
 
 describe('the black-square bank', () => {
   it('[blacksquare] parses every theme, each id once', () => {
@@ -124,6 +168,14 @@ describe('the black-square bank', () => {
 
     expect(collisions).toEqual([])
   })
+  it(
+    '[blacksquare] grades every name as a round would: its own cell, the black word, or nothing once left out',
+    EVERY_NAME_GRADED,
+    () => {
+      expect(bankedBlackSquareThemes().flatMap(misgradedNamesOf)).toEqual([])
+    }
+  )
+
   it('[blacksquare] banks a capital under any of its names, and Geneva as the black word', () => {
     const theme = bankedBlackSquareThemes().find(
       ({ id }) => id === 'capitals-of:western-europe'
@@ -137,6 +189,7 @@ describe('the black-square bank', () => {
       gradeLine({
         answers: theme.answers.map(namesOf),
         blackWord: namesOf(theme.blackWord),
+        leftOut: [],
         line
       })
     const bern = theme.answers.findIndex(({ labels }) => labels.en === 'Bern')
@@ -147,42 +200,41 @@ describe('the black-square bank', () => {
 })
 
 describe('the authored black-square themes', () => {
-  it('[blacksquare] pools twelve to twenty answers a theme, every tier at least three', () => {
-    for (const { answers, id } of authoredBlackSquareThemes()) {
-      for (const tier of ['easy', 'medium', 'hard'] as const) {
-        expect(
-          answers.filter((answer) => answer.tier === tier).length,
-          `${id} ${tier}`
-        ).toBeGreaterThanOrEqual(3)
-      }
-    }
-  })
-
-  it('[blacksquare] never grades a name of a theme as two of its answers, nor the black word as one', () => {
-    const collisions = authoredBlackSquareThemes().flatMap(
-      ({ answers, blackWord, id }) =>
-        [...answers, blackWord].flatMap((named, index) =>
-          namesOf(named).flatMap((line) => {
-            const graded = gradeLine({
-              answers: answers.map(namesOf),
-              blackWord: namesOf(blackWord),
-              line
-            })
-            const isOwn =
-              index === answers.length
-                ? graded.kind === 'blackWord'
-                : graded.kind === 'cells' &&
-                  graded.cells.length === 1 &&
-                  graded.cells[0] === index
-
-            return isOwn ? [] : [`${id}: ${line}`]
-          })
-        )
-    )
-
-    expect(collisions).toEqual([])
+  it('[blacksquare] writes at least a hundred broad themes by hand', () => {
+    expect(authoredBlackSquareThemes().length).toBeGreaterThanOrEqual(100)
   })
 })
+
+describe.each(Object.entries(authoredBlackSquareSources))(
+  'the authored black-square themes of %s',
+  (_, source) => {
+    const themes = (): PooledBlackSquareTheme[] =>
+      parseAuthoredBlackSquareThemes(source)
+
+    it('[blacksquare] parses every theme of the file', () => {
+      expect(themes().length).toBeGreaterThan(0)
+    })
+
+    it('[blacksquare] pools twelve to twenty answers a theme, every tier at least three', () => {
+      for (const { answers, id } of themes()) {
+        for (const tier of ['easy', 'medium', 'hard'] as const) {
+          expect(
+            answers.filter((answer) => answer.tier === tier).length,
+            `${id} ${tier}`
+          ).toBeGreaterThanOrEqual(3)
+        }
+      }
+    })
+
+    it(
+      '[blacksquare] grades every name as a round would: its own cell, the black word, or nothing once left out',
+      EVERY_NAME_GRADED,
+      () => {
+        expect(themes().flatMap(misgradedNamesOf)).toEqual([])
+      }
+    )
+  }
+)
 
 describe('the black-square theme pool', () => {
   it('[blacksquare] holds every theme of both banks, each id once', () => {

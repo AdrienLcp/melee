@@ -336,6 +336,10 @@ const namesOf = ({
   [labels.en, labels.fr, ...aliases.en, ...aliases.fr].map(normalizeAnswer)
 
 /**
+ * A nickname two answers share names neither, and a round dealing one would
+ * pay the other: *The Blues* is Chelsea and Manchester City, *RU* Russia and
+ * the *Royaume-Uni*. Nor is it the black word's.
+ *
  * A black word may share a nickname with a true answer — *The Amazing
  * Spider-Man* is also called *Spider-Man* — and that name has to stay a hit.
  */
@@ -499,9 +503,23 @@ const build = async (): Promise<void> => {
       continue
     }
 
+    const namesOfAnswer = answers.map(
+      (answer) =>
+        new Set(
+          namesOf({ aliases: aliasesOfEntity(answer), labels: answer.labels })
+        )
+    )
+
     rows.push({
-      answers: answers.map((answer) => ({
-        aliases: aliasesOfEntity(answer),
+      answers: answers.map((answer, index) => ({
+        aliases: aliasesOutside({
+          aliases: aliasesOfEntity(answer),
+          names: new Set(
+            namesOfAnswer.flatMap((names, other) =>
+              other === index ? [] : [...names]
+            )
+          )
+        }),
         id: answer.id,
         labels: answer.labels,
         series: seriesOfAnswer.get(answer.id) ?? null,

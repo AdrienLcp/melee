@@ -51,6 +51,15 @@ const LIGATURE = /[æœ]/gu
 const CONJUNCTIONS: ReadonlySet<string> = new Set(['and', 'et'])
 
 /**
+ * A line is graded against every rival of every cell, so one bank name is
+ * normalised thousands of times a round. Bounded, because what players type
+ * lands here too.
+ */
+const MOST_NORMALIZED_KEPT = 10_000
+
+const normalized = new Map<string, string>()
+
+/**
  * Both what the player typed and what the bank holds go through this before
  * anything is compared. It folds away everything a room gets wrong for reasons
  * that are not about knowing the answer.
@@ -60,8 +69,25 @@ const CONJUNCTIONS: ReadonlySet<string> = new Set(['and', 'et'])
  * `hip-hop` and `hip hop` too. Word boundaries carry no information here: two
  * answers that differ only in where the spaces fall are the same guess.
  */
-export const normalizeAnswer = (answer: string): string =>
-  wordsOf(foldCaseAndAccents(answer).replace(LEADING_ARTICLE, '')).join('')
+export const normalizeAnswer = (answer: string): string => {
+  const known = normalized.get(answer)
+
+  if (known !== undefined) {
+    return known
+  }
+
+  if (normalized.size >= MOST_NORMALIZED_KEPT) {
+    normalized.clear()
+  }
+
+  const folded = wordsOf(
+    foldCaseAndAccents(answer).replace(LEADING_ARTICLE, '')
+  ).join('')
+
+  normalized.set(answer, folded)
+
+  return folded
+}
 
 /** `normalizeAnswer` with the article kept: *La Rochelle* is `larochelle` here and `rochelle` there. */
 export const normalizeKeepingArticle = (answer: string): string =>

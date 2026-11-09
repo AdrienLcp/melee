@@ -22,9 +22,9 @@ one part.
   four of them — one obvious, two between, one rare — so a theme met again
   hides other answers, and the table says plenty before it lands on the
   four. A rare answer pays three times an obvious one, by the answer rather
-  than by its place on the grid. Five broad themes written by hand join the
-  bank — green vegetables, exotic fruits, film genres, farm animals, team
-  sports — and the Wikidata themes are cut to the sixty a table knows:
+  than by its place on the grid. A hundred broad themes written by hand join
+  the bank — green vegetables, citrus fruits, cheeses, dog breeds, the solar
+  system, rooms of a house, clothes, board games, Disney films — and the Wikidata themes are cut to the sixty a table knows:
   famous directors, Pixar and Marvel, presidents, Europe's capitals. Easy
   deals the broad themes alone; mixed and hard bring the lists of works.
 
@@ -606,6 +606,15 @@ one part.
   obscure titles once each franchise counts once; 163 themes remain.
 
 ### Fixes
+
+- `[Shared]` **Black square never pays a true answer the deal left out.** A
+  round grades a line against the four answers it dealt, so a true answer
+  left out was a stranger to it: _Irlande_ typed beside a dealt _Islande_ was
+  forgiven as a typo of it, and a true answer one letter from the black word
+  cost the round. Every name of the theme the deal left out is now a rival of
+  each cell and of the black word, and reads as a miss. Two nicknames the
+  Wikidata bank gave two answers at once — _The Blues_ to Chelsea and
+  Manchester City, _RU_ to Russia and the United Kingdom — name neither.
 
 - `[Game]` **The floor changes hands in a fade.** A buzz taking the floor
   and a verdict handing it back cross-fade the question and the buzzer's

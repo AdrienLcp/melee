@@ -17,7 +17,7 @@ const ANSWERS = [
 const BLACK_WORD = ['True Romance']
 
 const graded = (line: string) =>
-  gradeLine({ answers: ANSWERS, blackWord: BLACK_WORD, line })
+  gradeLine({ answers: ANSWERS, blackWord: BLACK_WORD, leftOut: [], line })
 
 describe('a black-square line', () => {
   it('[blacksquare] finds the cell it names, in either language', () => {
@@ -50,5 +50,28 @@ describe('a black-square line', () => {
 
   it('[blacksquare] says nothing of a line that names nothing', () => {
     expect(graded('Four Rooms')).toEqual({ kind: 'nothing' })
+  })
+
+  it('[blacksquare] never forgives a true answer the deal left out into a cell dealt', () => {
+    const board = { answers: [['Iceland']], blackWord: ['Greenland'] }
+
+    expect(gradeLine({ ...board, leftOut: [], line: 'Ireland' })).toEqual({
+      cells: [0],
+      kind: 'cells'
+    })
+    expect(
+      gradeLine({ ...board, leftOut: ['Ireland'], line: 'Ireland' })
+    ).toEqual({ kind: 'nothing' })
+  })
+
+  it('[blacksquare] never forgives a true answer the deal left out into the black word', () => {
+    const board = { answers: [['Newt']], blackWord: ['Salamander'] }
+
+    expect(gradeLine({ ...board, leftOut: [], line: 'Salamanders' })).toEqual({
+      kind: 'blackWord'
+    })
+    expect(
+      gradeLine({ ...board, leftOut: ['Salamanders'], line: 'Salamanders' })
+    ).toEqual({ kind: 'nothing' })
   })
 })

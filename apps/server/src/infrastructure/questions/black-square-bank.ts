@@ -8,7 +8,11 @@ import {
   drawByDifficulty
 } from '@melee/core/round/difficulty-draw'
 
-import authored from './black-square-authored.json' with { type: 'json' }
+import culture from './black-square-authored-culture.json' with { type: 'json' }
+import food from './black-square-authored-food.json' with { type: 'json' }
+import home from './black-square-authored-home.json' with { type: 'json' }
+import nature from './black-square-authored-nature.json' with { type: 'json' }
+import pilots from './black-square-authored-pilots.json' with { type: 'json' }
 import bank from './black-square-bank.json' with { type: 'json' }
 
 const bilingualSchema = z.object({ en: z.string(), fr: z.string() })
@@ -47,6 +51,11 @@ const blackSquareThemeSchema = z.object({
 
 const tierSchema = z.enum(contentTiers)
 
+const authoredBilingualSchema = z.object({
+  en: z.string().min(1),
+  fr: z.string().min(1)
+})
+
 const aliasesSchema = z.object({
   en: z.array(z.string().min(1)),
   fr: z.array(z.string().min(1))
@@ -63,7 +72,7 @@ const authoredThemeSchema = z.object({
       z.object({
         /** Every other name a table may type for it, per language. */
         aliases: aliasesSchema,
-        labels: bilingualSchema,
+        labels: authoredBilingualSchema,
         tier: tierSchema
       })
     )
@@ -71,12 +80,12 @@ const authoredThemeSchema = z.object({
     .max(20),
   blackWord: z.object({
     aliases: aliasesSchema,
-    labels: bilingualSchema,
-    why: bilingualSchema
+    labels: authoredBilingualSchema,
+    why: authoredBilingualSchema
   }),
   /** Kebab-case, unique across both banks: a Wikidata id always holds a colon. */
   id: z.string().regex(/^[a-z]+(-[a-z]+)*$/),
-  labels: bilingualSchema,
+  labels: authoredBilingualSchema,
   tier: tierSchema
 })
 
@@ -98,9 +107,24 @@ export const bankedBlackSquareThemes = (): readonly BlackSquareTheme[] => {
   return parsed
 }
 
+/** The hand-written themes, one file a domain so each can be authored and checked alone. */
+export const authoredBlackSquareSources = {
+  culture,
+  food,
+  home,
+  nature,
+  pilots
+} as const satisfies Record<string, readonly unknown[]>
+
+export const parseAuthoredBlackSquareThemes = (
+  source: readonly unknown[]
+): PooledBlackSquareTheme[] => z.array(authoredThemeSchema).parse(source)
+
 export const authoredBlackSquareThemes =
   (): readonly PooledBlackSquareTheme[] => {
-    parsedAuthored ??= z.array(authoredThemeSchema).parse(authored)
+    parsedAuthored ??= Object.values(authoredBlackSquareSources).flatMap(
+      parseAuthoredBlackSquareThemes
+    )
 
     return parsedAuthored
   }
