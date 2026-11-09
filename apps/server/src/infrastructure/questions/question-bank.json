@@ -58,7 +58,7 @@
       "isAdult": true,
       "language": "fr",
       "note": "Clara Morgane a quitté Marseille pour Paris en 2000 et se lança dans l'industrie du film pour adulte afin de « se trouver ».",
-      "prompt": "Dans quelle ville Emmanuelle Aurélie Munos est-elle née en 1981 ?",
+      "prompt": "Dans quelle ville Clara Morgane est-elle née en 1981 ?",
       "theme": "Clara Morgane",
       "isWellKnown": true
     },
@@ -976,7 +976,7 @@
       "isAdult": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle boisson jaillissait d'une bouteille caressée par une femme ?",
+      "prompt": "Dans une publicité, quelle boisson jaillissait d'une bouteille caressée par une femme ?",
       "theme": "Love Academy #11",
       "isWellKnown": false
     },
@@ -2200,7 +2200,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Le succès d'Elsa, nièce de Marlène Jobert et cousine d'Eva Green, arrivèrent en même temps que ceux de Vanessa Paradis.",
-      "prompt": "Qui propose de la revoir « à la même heure dans deux ans » ?",
+      "prompt": "Quelle chanteuse propose, dans une de ses chansons, de se revoir « à la même heure dans deux ans » ?",
       "theme": "Alphaquizz #E",
       "isWellKnown": true
     },
@@ -11434,7 +11434,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Le Capitole de Panem est une ville technologiquement avancée où vivent les personnes les plus riches et les plus puissantes.",
-      "prompt": "Que dit Peeta la première fois qu'il découvre le Capitole ?",
+      "prompt": "Dans « Hunger Games », que dit Peeta la première fois qu'il découvre le Capitole ?",
       "theme": "Peeta dans « Hunger Games »",
       "isWellKnown": false
     },
@@ -11470,7 +11470,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Peeta est extrêmement doué pour le camouflage car il décorait les gâteaux à la boulangerie.",
-      "prompt": "Quel camouflage Peeta a-t-il dessiné sur sa main ?",
+      "prompt": "Dans « Hunger Games », quel camouflage Peeta a-t-il dessiné sur sa main ?",
       "theme": "Peeta dans « Hunger Games »",
       "isWellKnown": false
     },
@@ -12208,7 +12208,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Le 16 octobre 2011, l'acteur évoqua son homosexualité pour la première fois lors d'un entretien donné au « New York Magazine ».",
-      "prompt": "Qui a remplacé Leonard Nimoy dans les derniers films « Star Trek » ?",
+      "prompt": "Qui a remplacé Leonard Nimoy dans le rôle de Spock dans les films « Star Trek » sortis à partir de 2009 ?",
       "theme": "Univers Star Trek",
       "isWellKnown": true
     },
@@ -12985,6 +12985,24 @@
       "prompt": "Quel est le premier port des Pays-Bas ?",
       "theme": "Culture mondiale",
       "isWellKnown": false
+    },
+    {
+      "accepted": [],
+      "answer": "Marseille",
+      "category": "everyday",
+      "choiceOnly": false,
+      "decoys": [
+        "Lille",
+        "Reims",
+        "Dijon"
+      ],
+      "id": "oqdb-444-1",
+      "isAdult": false,
+      "language": "fr",
+      "note": "Clara Morgane a quitté Marseille pour Paris en 2000 et se lança dans l'industrie du film pour adulte afin de « se trouver ».",
+      "prompt": "Dans quelle ville Emmanuelle Aurélie Munos est-elle née en 1981 ?",
+      "theme": "Culture sociale",
+      "isWellKnown": true
     },
     {
       "accepted": [],
@@ -14260,7 +14278,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Une eau de source a bénéficié d'une protection contre la pollution et n'a subi ni traitement chimique ni adjonction.",
-      "prompt": "Quelle eau d'origine souterraine est naturellement conforme ?",
+      "prompt": "Quelle eau d'origine souterraine est naturellement potable, sans aucun traitement ?",
       "theme": "Voyage en eaux souterraines",
       "isWellKnown": true
     },
@@ -33430,7 +33448,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Ce trophée a été créé par le sculpteur italien Silvio Gazzaniga.",
-      "prompt": "Que portent les silhouettes du trophée de la Coupe du monde ?",
+      "prompt": "Que portent les silhouettes du trophée de la Coupe du monde de football ?",
       "theme": "Coupe du monde de football",
       "isWellKnown": true
     },
@@ -33484,7 +33502,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelles trompettes furent utilisées par les supporters en 2010 ?",
+      "prompt": "Quelles trompettes furent utilisées par les supporters lors de la Coupe du monde de football 2010 ?",
       "theme": "Coupe du monde de football",
       "isWellKnown": true
     },
@@ -35986,7 +36004,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Bulma, jeune fille intelligente et impulsive, est à la recherche des sept boules de cristal légendaires appelées Dragon Balls.",
-      "prompt": "Combien de boules faut-il rassembler pour qu'un voeu soit réalisé ?",
+      "prompt": "Dans « Dragon Ball », combien de boules faut-il rassembler pour qu'un vœu soit réalisé ?",
       "theme": "« Dragon Ball »",
       "isWellKnown": true
     },
@@ -36184,7 +36202,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Sur quelle île grecque les Ch'tis ont-ils débarqué ?",
+      "prompt": "Sur quelle île grecque les candidats de la téléréalité « Les Ch'tis » ont-ils débarqué ?",
       "theme": "Grèce en télé",
       "isWellKnown": false
     },
@@ -36688,7 +36706,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Ex-membre de l'équipage d'Arlong, Nami est le deuxième personnage à rejoindre les chapeaux de paille, après Zoro.",
-      "prompt": "Qui est navigateur au sein de l'équipage du chapeau de paille ?",
+      "prompt": "Dans « One Piece », qui est navigateur au sein de l'équipage du Chapeau de paille ?",
       "theme": "One Piece",
       "isWellKnown": false
     },
@@ -36742,7 +36760,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Dorry le démon bleu (2 260 cm) et Broggy le démon rouge (2 130 cm) font partie des géants qui peuvent vivre plus de 345 ans.",
-      "prompt": "De quelle race font partie Dorry et Broggy, rencontrés sur Little Garden ?",
+      "prompt": "Dans « One Piece », de quelle race font partie Dorry et Broggy, rencontrés sur Little Garden ?",
       "theme": "One Piece",
       "isWellKnown": true
     },
@@ -36886,7 +36904,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "Le pirate est là pour présenter, toujours de manière très drôle, les épisodes spéciaux de « Bob l'éponge ».",
-      "prompt": "Comment s'appelle le perroquet de Patchy le pirate ?",
+      "prompt": "Dans « Bob l'éponge », comment s'appelle le perroquet de Patchy le pirate ?",
       "theme": "Personnages de Bob l'éponge",
       "isWellKnown": true
     },
@@ -37030,7 +37048,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel journaliste a présenté le JT avant Anne-Sophie Lapix ?",
+      "prompt": "Quel journaliste a présenté le journal de 20 heures de France 2 avant Anne-Sophie Lapix ?",
       "theme": "Présentateurs du JT",
       "isWellKnown": false
     },
@@ -37156,7 +37174,7 @@
       "isAdult": false,
       "language": "fr",
       "note": "« Breaking Bad » a reçu un large succès critique et est à présent considérée comme l'une des meilleures séries télé américaines.",
-      "prompt": "Dans quel véhicule cuisinent Walter et Jesse au début de la série ?",
+      "prompt": "Dans « Breaking Bad », dans quel véhicule Walter et Jesse cuisinent-ils au début de la série ?",
       "theme": "Série « Breaking Bad »",
       "isWellKnown": true
     },
@@ -38515,7 +38533,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Shogun a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui la mini-série Shogun de 1980 a-t-elle été réalisée ?",
       "theme": "director"
     },
     {
@@ -38680,7 +38698,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Predator' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film 'The Predator', sorti en 2018, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -38826,7 +38844,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Le Mystère de la chambre jaune a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Le Mystère de la chambre jaune de 2003 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -38938,7 +38956,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Godzilla a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film américain Godzilla de 1998 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -39046,7 +39064,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur a réalisé ou mis en scène le film avec Gauguin ?",
+      "prompt": "Quel réalisateur a réalisé le film Gauguin : Voyage de Tahiti ?",
       "theme": "director"
     },
     {
@@ -39230,7 +39248,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Frozen a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film d'horreur Frozen, sorti en 2010, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -39417,7 +39435,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Labyrinthe a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Labyrinthe, sorti en 1986, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -39783,7 +39801,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Le facteur sonne toujours deux fois' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film 'Le facteur sonne toujours deux fois' de 1946 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -39803,7 +39821,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Serenity a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Serenity, sorti en 2005, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -39839,7 +39857,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui la Romería a-t-elle été réalisée ou mise en scène ?",
+      "prompt": "Par qui le film Romería a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -40081,7 +40099,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Les oiseaux se cachent pour mourir' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui la mini-série 'Les oiseaux se cachent pour mourir' a-t-elle été réalisée ?",
       "theme": "director"
     },
     {
@@ -40142,24 +40160,6 @@
     },
     {
       "accepted": [],
-      "answer": "Mike Flanagan",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Allen Coulter",
-        "Mel Welles",
-        "Jacques Tourneur"
-      ],
-      "id": "polyfact-Q3349019-P57-Q19668417",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui la série 'The Mirror' a-t-elle été réalisée ou mise en scène ?",
-      "theme": "director"
-    },
-    {
-      "accepted": [],
       "answer": "Matthew Vaughn",
       "category": "cinema",
       "choiceOnly": false,
@@ -40173,7 +40173,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'Le Roi's Man : Première Mission' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film 'The King's Man : Première Mission' a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -40443,7 +40443,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Le Dîner a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film américain Le Dîner (The Dinner), sorti en 2017, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -40517,7 +40517,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui La Tranchée a-t-elle été réalisée ou mise en scène ?",
+      "prompt": "Par qui le film La Tranchée (Deathwatch), sorti en 2002, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -41023,24 +41023,6 @@
       "theme": "director"
     },
     {
-      "accepted": [],
-      "answer": "Steven Spielberg",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Rob Cohen",
-        "Mikio Naruse",
-        "Ram Gopal Varma"
-      ],
-      "id": "polyfact-Q167022-P57-Q8877",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui La Chose a-t-elle été réalisée ou mise en scène ?",
-      "theme": "director"
-    },
-    {
       "accepted": [
         "Robert Norman Reiner"
       ],
@@ -41075,7 +41057,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur est connu pour avoir réalisé des films d'horreur comme \"Halloween II\" et \"Halloween: The Curse of Michael Myers\"?",
+      "prompt": "Quel réalisateur a signé le remake d'Halloween en 2007, puis Halloween II en 2009 ?",
       "theme": "director"
     },
     {
@@ -41293,7 +41275,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui la série \"Couir avec des ciseaux\" a-t-elle été réalisée ou mise en scène ?",
+      "prompt": "Par qui le film « Courir avec des ciseaux » a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -41329,7 +41311,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'Per manum' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui l'épisode « Per manum » de la série X-Files a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -41509,27 +41491,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Le Pari' a-t-il été réalisé ou mis en scène ?",
-      "theme": "director"
-    },
-    {
-      "accepted": [
-        "Timothy Walter Burton"
-      ],
-      "answer": "Tim Burton",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Bryan Spicer",
-        "Penelope Spheeris",
-        "Neil Jordan"
-      ],
-      "id": "polyfact-Q2688546-P57-Q56008",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui 'Alfred Hitchcock présente' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film américain 'Le Pari' (Draft Day), sorti en 2014, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -41585,7 +41547,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Bambi a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le documentaire Bambi, sorti en 2013, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -41657,7 +41619,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Avalon a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Avalon, sorti en 1990, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -41938,7 +41900,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Les Quatre Filles du docteur March' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film 'Les Quatre Filles du docteur March' de 1933 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -42010,7 +41972,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'Le Jour d'après' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le téléfilm 'Le Jour d'après' (The Day After), diffusé en 1983, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -42066,7 +42028,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'Les Chevaliers du ciel' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film 'Les Chevaliers du ciel', sorti en 2005, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -42084,7 +42046,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Nickelodeon a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Nickelodeon, sorti en 1976, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -42215,7 +42177,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Le Village des damnés a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui la version de 1995 du film Le Village des damnés a-t-elle été réalisée ?",
       "theme": "director"
     },
     {
@@ -42341,7 +42303,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur a réalisé ou mis en scène Yao ?",
+      "prompt": "Quel réalisateur a réalisé le film Yao, sorti en 2019 ?",
       "theme": "director"
     },
     {
@@ -42506,24 +42468,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Par qui le film L'Avenir a-t-il été réalisé ou mis en scène ?",
-      "theme": "director"
-    },
-    {
-      "accepted": [],
-      "answer": "Dennis Berry",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Daniel Schmid",
-        "Satyajit Ray",
-        "D. W. Griffith"
-      ],
-      "id": "polyfact-Q448102-P57-Q3023139",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui le film L'Immortelle a-t-il été réalisé ou mis en scène ?",
       "theme": "director"
     },
     {
@@ -42767,7 +42711,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur est connu pour son travail dans le domaine de l'intelligence artificielle, notamment avec le film 'Minority Report' ?",
+      "prompt": "Quel réalisateur a signé le film 'Minority Report' ?",
       "theme": "director"
     },
     {
@@ -42879,7 +42823,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film L'Appât a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le western L'Appât, sorti en 1953, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -42951,7 +42895,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film \"Des souris et des hommes\" a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film « Des souris et des hommes » de 1939 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -43025,7 +42969,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Hamlet a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Hamlet de 1996 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -43138,7 +43082,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film sur la psychokinésie a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film sud-coréen Psychokinesis, sorti en 2018, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -43300,7 +43244,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Les Buccaneers a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui la série Les Buccaneers, sortie en 2023, a-t-elle été réalisée ?",
       "theme": "director"
     },
     {
@@ -43318,25 +43262,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur a travaillé sur le 36 quai des Orfèvres ?",
-      "theme": "director"
-    },
-    {
-      "accepted": [],
-      "answer": "Philippe Godeau",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "George Andrew Romero",
-        "Anne Goursaud",
-        "Albert Pyun"
-      ],
-      "id": "polyfact-Q12387051-P57-Q3379934",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel réalisateur a réalisé ou mis en scène le film 'Le Divorce' ?",
+      "prompt": "Quel réalisateur a signé le film 36 quai des Orfèvres ?",
       "theme": "director"
     },
     {
@@ -43486,7 +43412,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film \"3 h 10 pour Yuma\" a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film « 3 h 10 pour Yuma » de 1957 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -43527,7 +43453,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur a dirigé le film 'Enemy' ?",
+      "prompt": "Quel réalisateur a dirigé le film de science-fiction 'Enemy', sorti en 1985 ?",
       "theme": "director"
     },
     {
@@ -43822,7 +43748,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film The Order a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film The Order, avec Jean-Claude Van Damme, sorti en 2001, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -44188,7 +44114,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Mayerling a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Mayerling de 1936 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -44343,7 +44269,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'L'Ironie du sort' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film soviétique 'L'Ironie du sort' a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -44387,24 +44313,6 @@
     },
     {
       "accepted": [],
-      "answer": "Ali Tahiri",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Florestano Vancini",
-        "William A. Wellman",
-        "Curtis Bernhardt"
-      ],
-      "id": "polyfact-Q16664011-P57-Q2388301",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui le film Mektoub a-t-il été réalisé ou mis en scène ?",
-      "theme": "director"
-    },
-    {
-      "accepted": [],
       "answer": "Edmund Goulding",
       "category": "cinema",
       "choiceOnly": false,
@@ -44418,7 +44326,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Le Fil du rasoir' a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film 'Le Fil du rasoir' de 1946 a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -44546,7 +44454,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Full Contact a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Full Contact, avec Jean-Claude Van Damme, sorti en 1990, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -44744,7 +44652,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel metteur en scène a réalisé ou mis en scène Lautrec ?",
+      "prompt": "Quel metteur en scène a réalisé le film Lautrec, sorti en 1998 ?",
       "theme": "director"
     },
     {
@@ -44798,7 +44706,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur ou réalisatrice est connu pour son travail sur le film Chocolat ?",
+      "prompt": "Qui a réalisé le film Chocolat sorti en 1988 ?",
       "theme": "director"
     },
     {
@@ -44908,7 +44816,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui la série 'Troupe d'élite' a-t-elle été réalisée ou mise en scène ?",
+      "prompt": "Par qui le film 'Troupe d'élite' a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -45461,7 +45369,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film sur le Docteur Petiot a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le film Docteur Petiot, sorti en 1990, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -45499,7 +45407,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Helter Skelter a-t-il été réalisé ou mis en scène ?",
+      "prompt": "Par qui le téléfilm Helter Skelter, sorti en 2004, a-t-il été réalisé ?",
       "theme": "director"
     },
     {
@@ -46035,7 +45943,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le pays de nationalité d'Abyss ?",
+      "prompt": "Dans les comics Marvel, de quel pays fictif le mutant Abyss est-il citoyen ?",
       "theme": "country of citizenship"
     },
     {
@@ -47314,7 +47222,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quel pays James Williamson est-il citoyen ?",
+      "prompt": "De quel pays James Williamson, guitariste des Stooges, est-il citoyen ?",
       "theme": "country of citizenship"
     },
     {
@@ -47922,7 +47830,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quel pays Peter Watts est-il citoyen ?",
+      "prompt": "De quel pays l'écrivain de science-fiction Peter Watts est-il citoyen ?",
       "theme": "country of citizenship"
     },
     {
@@ -48666,7 +48574,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quelle nationalité est Patrick Roy ?",
+      "prompt": "De quelle nationalité est le gardien de hockey Patrick Roy ?",
       "theme": "country of citizenship"
     },
     {
@@ -49257,27 +49165,6 @@
     },
     {
       "accepted": [
-        "Esp.",
-        "Royaume d'Espagne"
-      ],
-      "answer": "Espagne",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "dynastie Qing",
-        "royaume de Portugal",
-        "république fédérative socialiste de Yougoslavie"
-      ],
-      "id": "polyfact-Q6369103-P27-Q29",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "De quelle nationalité était Kardam de Bulgarie ?",
-      "theme": "country of citizenship"
-    },
-    {
-      "accepted": [
         "République de Moldavie",
         "République de Moldova",
         "la République de Moldavie"
@@ -49384,47 +49271,6 @@
       "language": "fr",
       "note": null,
       "prompt": "De quelle nationalité est Jean-Marc Richard ?",
-      "theme": "country of citizenship"
-    },
-    {
-      "accepted": [
-        "Esp.",
-        "Royaume d'Espagne"
-      ],
-      "answer": "Espagne",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "royaume d'Italie",
-        "Bulgarie",
-        "République florentine"
-      ],
-      "id": "polyfact-Q234405-P27-Q29",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quelle était la nationalité de Marie-Antoinette de Bourbon des Deux-Siciles ?",
-      "theme": "country of citizenship"
-    },
-    {
-      "accepted": [
-        "République arabe d'Égypte"
-      ],
-      "answer": "Égypte",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "grand-duché de Lituanie",
-        "Afrique du Sud",
-        "Togo"
-      ],
-      "id": "polyfact-Q4119509-P27-Q79",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "De quel pays Anoushka est-elle originaire ?",
       "theme": "country of citizenship"
     },
     {
@@ -49922,7 +49768,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quel pays Nelly est-elle originaire ?",
+      "prompt": "De quel pays l'actrice et chanteuse Nelly Artin Kalfayan, dite Nelly, est-elle originaire ?",
       "theme": "country of citizenship"
     },
     {
@@ -51587,7 +51433,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Barbara a interprété des chansons écrites par quel auteur ?",
+      "prompt": "Qui est l'auteur du poème « Barbara » (« Rappelle-toi Barbara… ») ?",
       "theme": "author"
     },
     {
@@ -51677,7 +51523,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a écrit la traduction anglaise de la correspondance entre Héloïse et Abélard ?",
+      "prompt": "Quel poète anglais a écrit « Eloisa to Abelard » (1717) ?",
       "theme": "author"
     },
     {
@@ -52003,7 +51849,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur de 'L'Art de la guerre' ?",
+      "prompt": "Qui est l'auteur du traité « L'Art de la guerre » publié à Florence en 1521 ?",
       "theme": "author"
     },
     {
@@ -52092,7 +51938,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur ou l'autrice du livre 'Un pont trop loin' ?",
+      "prompt": "Qui a écrit le scénario du film « Un pont trop loin » (1977) ?",
       "theme": "author"
     },
     {
@@ -53009,7 +52855,7 @@
         "Allah",
         "Dieu"
       ],
-      "answer": "Dieu en Islam",
+      "answer": "Dieu",
       "category": "arts",
       "choiceOnly": false,
       "decoys": [
@@ -53101,7 +52947,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel auteur est connu pour avoir écrit sur les Cosaques ?",
+      "prompt": "Qui est l'auteur du roman « Les Cosaques » (1863) ?",
       "theme": "author"
     },
     {
@@ -53421,7 +53267,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur du roman Némésis ?",
+      "prompt": "Qui est l'auteur du roman « Némésis » (2010), sur une épidémie de polio à Newark ?",
       "theme": "author"
     },
     {
@@ -53825,26 +53671,6 @@
       "theme": "author"
     },
     {
-      "accepted": [
-        "Jean l'Ancien"
-      ],
-      "answer": "Jean le Presbytre",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Flavius Josèphe",
-        "Quintilien",
-        "Jésus-Christ"
-      ],
-      "id": "polyfact-Q131101-P50-Q1698707",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est l'auteur de la Première épître de Jean ?",
-      "theme": "author"
-    },
-    {
       "accepted": [],
       "answer": "Max Weber",
       "category": "arts",
@@ -53967,7 +53793,7 @@
         "Allah",
         "Dieu"
       ],
-      "answer": "Dieu en Islam",
+      "answer": "Dieu",
       "category": "arts",
       "choiceOnly": false,
       "decoys": [
@@ -54057,7 +53883,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur ou l'autrice du livre Le Passage ?",
+      "prompt": "Qui est l'auteur du roman post-apocalyptique « Le Passage » (2010), peuplé de vampires ?",
       "theme": "author"
     },
     {
@@ -54240,7 +54066,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur de la cartographie des nuages ?",
+      "prompt": "Qui est l'auteur du roman « Cartographie des nuages » ?",
       "theme": "author"
     },
     {
@@ -55004,27 +54830,6 @@
       "theme": "author"
     },
     {
-      "accepted": [
-        "Allah",
-        "Dieu"
-      ],
-      "answer": "Dieu en Islam",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Nora Roberts",
-        "Robert A. Heinlein",
-        "Héraclite"
-      ],
-      "id": "polyfact-Q948437-P50-Q2095353",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "À qui le Dhikr est-il attribué dans l'Islam ?",
-      "theme": "author"
-    },
-    {
       "accepted": [],
       "answer": "Steven Erikson",
       "category": "arts",
@@ -55422,26 +55227,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Qui est l'auteur ou l'autrice du roman 'L'Échiquier du mal' ?",
-      "theme": "author"
-    },
-    {
-      "accepted": [
-        "François Roland Truffaut"
-      ],
-      "answer": "François Truffaut",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Stephen King",
-        "Jon Ronson",
-        "J. R. R. Tolkien"
-      ],
-      "id": "polyfact-Q1951421-P50-Q53002",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est considéré comme un auteur de la Nouvelle Vague française ?",
       "theme": "author"
     },
     {
@@ -55930,7 +55715,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur ou l'autrice du livre L'Héritage ?",
+      "prompt": "Qui est l'auteur de « L'Héritage », quatrième tome de la saga Eragon ?",
       "theme": "author"
     },
     {
@@ -56322,7 +56107,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l'auteur du roman 'Le Juif de Malte' (Jud Süß) ?",
+      "prompt": "Qui est l'auteur du roman « Le Juif Süss » (1925) ?",
       "theme": "author"
     },
     {
@@ -57953,24 +57738,6 @@
     },
     {
       "accepted": [],
-      "answer": "Griptonite Games",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "Orville et Wilbur Wright",
-        "3D Systems",
-        "Neversoft"
-      ],
-      "id": "polyfact-Q1139044-P178-Q2660091",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par quelle entreprise le jeu Les Simpson a-t-il été développé ?",
-      "theme": "developer"
-    },
-    {
-      "accepted": [],
       "answer": "Toys for Bob",
       "category": "videogames",
       "choiceOnly": false,
@@ -58517,7 +58284,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui XIII a-t-il été développé ?",
+      "prompt": "Par qui le jeu vidéo XIII (2003) a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -59444,7 +59211,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Deadlock a été développé par quelle entreprise ?",
+      "prompt": "Le jeu vidéo Deadlock a été développé par quelle entreprise ?",
       "theme": "developer"
     },
     {
@@ -60780,7 +60547,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Watson a-t-il été développé ?",
+      "prompt": "Par qui le système d'intelligence artificielle Watson a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -61006,7 +60773,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle entreprise Threads a-t-il été développé ?",
+      "prompt": "Par quelle entreprise le réseau social Threads a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -61304,7 +61071,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le JN-4 a-t-il été développé ?",
+      "prompt": "Par qui l'avion biplan JN-4 « Jenny » a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -61502,7 +61269,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle société Wasteland a-t-il été développé ?",
+      "prompt": "Par quelle société le jeu vidéo Wasteland, sorti en 1988, a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -61540,7 +61307,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle entreprise 'Street Fighter II' : Champion Edition' a-t-il été développé ?",
+      "prompt": "Par quelle entreprise le jeu Street Fighter II: Champion Edition a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -61560,7 +61327,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "La Coupe du monde de la FIFA : Afrique du Sud 2010 a été développée par qui ?",
+      "prompt": "Par qui le jeu vidéo Coupe du monde de la FIFA : Afrique du Sud 2010 a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -61874,7 +61641,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle entreprise Creo a-t-il été développé ?",
+      "prompt": "Par quelle entreprise le logiciel de CAO Creo a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -62120,7 +61887,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Gemini a été développé par qui ?",
+      "prompt": "Par qui le modèle d'intelligence artificielle Gemini a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -62324,7 +62091,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Liquid Glass a-t-il été développé ?",
+      "prompt": "Par qui le design d'interface Liquid Glass, dévoilé en 2025, a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -62494,7 +62261,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle société L'Amézone a-t-elle été développé ?",
+      "prompt": "Par quelle société le jeu vidéo L'Amézone a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -63950,7 +63717,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le bâtiment GE a-t-il été développé ?",
+      "prompt": "Par qui le GE Building de New York, au 30 Rockefeller Plaza, a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -64658,7 +64425,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle société Hidden Agenda a-t-il été développé ?",
+      "prompt": "Par quelle société le jeu vidéo Hidden Agenda a-t-il été développé ?",
       "theme": "developer"
     },
     {
@@ -64930,7 +64697,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par quelle société Les Aventures de Sherlock Holmes ont-elles été développées ?",
+      "prompt": "Par quelle société la série de jeux vidéo Les Aventures de Sherlock Holmes a-t-elle été développée ?",
       "theme": "developer"
     },
     {
@@ -65640,7 +65407,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui la série Kinky Boots a-t-elle été créée ?",
+      "prompt": "Qui a réalisé le film « Kinky Boots » (2005) ?",
       "theme": "creator"
     },
     {
@@ -65738,7 +65505,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Parade's End a été créé par qui ?",
+      "prompt": "Qui a écrit l'adaptation en mini-série de « Parade's End » (BBC, 2012) ?",
       "theme": "creator"
     },
     {
@@ -65893,24 +65660,6 @@
     },
     {
       "accepted": [],
-      "answer": "Ben Stein",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Andreas Deja",
-        "Gene Roddenberry",
-        "Hideo Kojima"
-      ],
-      "id": "polyfact-Q468052-P170-Q816605",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui le film 'Amerika' a-t-il été créé ?",
-      "theme": "creator"
-    },
-    {
-      "accepted": [],
       "answer": "Robert McKimson",
       "category": "arts",
       "choiceOnly": false,
@@ -66016,7 +65765,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le personnage de L'Âne a-t-il été créé ?",
+      "prompt": "Par qui l'Âne, le compagnon de Shrek, a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -66316,7 +66065,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui La Légende de Zorro a-t-elle été créée ?",
+      "prompt": "Par qui le personnage de Zorro a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -66372,7 +66121,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui la série 'Onze' a-t-elle été créée ?",
+      "prompt": "Par qui le personnage d'Onze, l'héroïne de « Stranger Things », a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -66575,24 +66324,6 @@
     },
     {
       "accepted": [],
-      "answer": "Geoffroy de Monmouth",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Caroline Quine",
-        "Polyclète",
-        "Andrea Mantegna"
-      ],
-      "id": "polyfact-Q6129446-P170-Q188344",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui Yvain a-t-il été créé ?",
-      "theme": "creator"
-    },
-    {
-      "accepted": [],
       "answer": "J. R. R. Tolkien",
       "category": "arts",
       "choiceOnly": false,
@@ -66757,7 +66488,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le permis de vivre a-t-il été créé ?",
+      "prompt": "Par qui la série espagnole « Vivir sin permiso » (« Le Permis de vivre ») a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -67043,7 +66774,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le rhinocéros a-t-il été créé ?",
+      "prompt": "Qui a gravé la célèbre gravure sur bois « Le Rhinocéros » (1515) ?",
       "theme": "creator"
     },
     {
@@ -67499,7 +67230,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le tableau 'Nu couché' a-t-il été créé ?",
+      "prompt": "Qui a peint le « Nu couché » vendu 170 millions de dollars en 2015 ?",
       "theme": "creator"
     },
     {
@@ -67614,7 +67345,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a créé les Iris ?",
+      "prompt": "Qui a peint le tableau « Les Iris » (1889) ?",
       "theme": "creator"
     },
     {
@@ -67650,7 +67381,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "MASK a été créé par qui ?",
+      "prompt": "Par qui la série animée « M.A.S.K. » a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -67988,7 +67719,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film No Limit a-t-il été créé ?",
+      "prompt": "Par qui la série télévisée « No Limit » (2012) a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -68152,7 +67883,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui la série 'The Returned' a-t-elle été créée ?",
+      "prompt": "Par qui la série américaine « The Returned » (2015) a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -68410,7 +68141,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le personnage de Moine a-t-il été créé ?",
+      "prompt": "Par qui la série « Monk » a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -68645,7 +68376,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'Le Déjeuner sur l'herbe' a-t-il été créé ?",
+      "prompt": "Qui a peint le « Déjeuner sur l'herbe » de 1865-1866, resté inachevé et découpé en morceaux ?",
       "theme": "creator"
     },
     {
@@ -69067,7 +68798,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'De grandes espérances' a-t-elle été créée ?",
+      "prompt": "Par qui la mini-série « De grandes espérances » de 2023 a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -69109,7 +68840,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film Hairspray a-t-il été créé ?",
+      "prompt": "Par qui le film « Hairspray » de 2007 a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -69167,24 +68898,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Par qui la Reine Rouge a-t-elle été créée ?",
-      "theme": "creator"
-    },
-    {
-      "accepted": [],
-      "answer": "Porl Thompson",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Shōtarō Ishinomori",
-        "Éric Chahi",
-        "Peter Berg"
-      ],
-      "id": "polyfact-Q1934350-P170-Q739650",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui le Top a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -69760,7 +69473,7 @@
         "Michel-Ange",
         "Michel-Ange Bonarotte"
       ],
-      "answer": "Michel-Ange Buronarroti",
+      "answer": "Michel-Ange",
       "category": "arts",
       "choiceOnly": false,
       "decoys": [
@@ -69834,7 +69547,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui Jo a-t-il été créé ?",
+      "prompt": "Par qui la série policière « Jo » (2013), avec Jean Reno, a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -69875,7 +69588,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'Dans la chaleur de la nuit' a-t-il été créé ?",
+      "prompt": "Quel romancier est l'auteur de « Dans la chaleur de la nuit », adapté au cinéma en 1967 ?",
       "theme": "creator"
     },
     {
@@ -69973,7 +69686,7 @@
     },
     {
       "accepted": [],
-      "answer": "Stephen Frears",
+      "answer": "Peter Morgan",
       "category": "arts",
       "choiceOnly": false,
       "decoys": [
@@ -70066,7 +69779,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui David a-t-il été créé ?",
+      "prompt": "Qui a sculpté le « David » de la galerie Borghèse, saisi en plein lancer de fronde ?",
       "theme": "creator"
     },
     {
@@ -70148,7 +69861,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui C-3PO a-t-il été créé ?",
+      "prompt": "Dans Star Wars, quel personnage a construit le droïde C-3PO ?",
       "theme": "creator"
     },
     {
@@ -70187,24 +69900,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Par qui le personnage de Xenophilius Lovegood a-t-il été créé ?",
-      "theme": "creator"
-    },
-    {
-      "accepted": [],
-      "answer": "Alan Gibson",
-      "category": "arts",
-      "choiceOnly": false,
-      "decoys": [
-        "Suzanne Collins",
-        "Joseph L. Mankiewicz",
-        "Tomonobu Itagaki"
-      ],
-      "id": "polyfact-Q128236-P170-Q533522",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Par qui le Prince noir a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -70439,7 +70134,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'L'Homme à la valise' a-t-il été créé ?",
+      "prompt": "Par qui la série télévisée britannique « L'Homme à la valise » (1967) a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -70511,7 +70206,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui le film 'La Momie' a-t-il été créé ?",
+      "prompt": "Par qui le film « La Momie » de 1999 a-t-il été créé ?",
       "theme": "creator"
     },
     {
@@ -70641,7 +70336,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Les chips ont été créées par qui ?",
+      "prompt": "Par qui la série télévisée « CHiPs » a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -70914,7 +70609,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'La Petite Sirène' a-t-elle été créée ?",
+      "prompt": "Par qui la série animée « La Petite Sirène » (1992) a-t-elle été créée ?",
       "theme": "creator"
     },
     {
@@ -71125,7 +70820,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui 'Le Transporteur' a-t-il été créé ?",
+      "prompt": "Qui a créé la saga de films « Le Transporteur », avec Jason Statham ?",
       "theme": "creator"
     },
     {
@@ -71570,7 +71265,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Par qui l'Empire galactique a-t-il été créé ?",
+      "prompt": "Quel cinéaste a imaginé l'Empire galactique de Star Wars ?",
       "theme": "creator"
     },
     {
@@ -72937,7 +72632,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où Idris Ier est-il mort ?",
+      "prompt": "Où Idris Ier, fondateur de la dynastie marocaine des Idrissides, est-il mort ?",
       "theme": "place of death"
     },
     {
@@ -73831,24 +73526,6 @@
       "theme": "place of death"
     },
     {
-      "accepted": [],
-      "answer": "Gainesville",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "Caen",
-        "Istanbul",
-        "Sabadell"
-      ],
-      "id": "polyfact-Q1152625-P20-Q487999",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Où Allen West est-il décédé ?",
-      "theme": "place of death"
-    },
-    {
       "accepted": [
         "Nemessus",
         "Nime",
@@ -73908,7 +73585,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où Henry Russell est-il mort ?",
+      "prompt": "Où le pyrénéiste Henry Russell est-il mort ?",
       "theme": "place of death"
     },
     {
@@ -74173,29 +73850,6 @@
       "theme": "place of death"
     },
     {
-      "accepted": [
-        "(fr-FR) neuilly-sur-seine",
-        "Neuilly",
-        "Neuilly (Seine)",
-        "commune de Neuilly-sur-Seine"
-      ],
-      "answer": "Neuilly-sur-Seine",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "Copenhague",
-        "Northeim",
-        "Berkeley"
-      ],
-      "id": "polyfact-Q3179785-P20-Q48958",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Où Steve Jobs est-il décédé ?",
-      "theme": "place of death"
-    },
-    {
       "accepted": [],
       "answer": "Guadeloupe",
       "category": "everyday",
@@ -74287,7 +73941,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où Jeanne d'Angleterre est-elle morte ?",
+      "prompt": "Où Jeanne d'Angleterre, fille d'Édouard III emportée par la peste en 1348, est-elle morte ?",
       "theme": "place of death"
     },
     {
@@ -74430,48 +74084,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Où Eugen Haagen est-il décédé ?",
-      "theme": "place of death"
-    },
-    {
-      "accepted": [
-        "La Grosse Pomme",
-        "Ville de New York",
-        "Ville de New-York"
-      ],
-      "answer": "New York",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "Eastbourne",
-        "Kerala",
-        "Naples"
-      ],
-      "id": "polyfact-Q469523-P20-Q60",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Où Samantha Fox est-elle décédée ?",
-      "theme": "place of death"
-    },
-    {
-      "accepted": [
-        "Londres, Angleterre"
-      ],
-      "answer": "Londres",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "Karlsruhe",
-        "Perpignan",
-        "Lanneray"
-      ],
-      "id": "polyfact-Q5981110-P20-Q84",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Où Ian Campbell est-il mort ?",
       "theme": "place of death"
     },
     {
@@ -75324,7 +74936,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où Scott Walker est-il décédé ?",
+      "prompt": "Où le chanteur Scott Walker est-il décédé ?",
       "theme": "place of death"
     },
     {
@@ -75365,7 +74977,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où Victor II est-il mort ?",
+      "prompt": "Où le pape Victor II est-il mort ?",
       "theme": "place of death"
     },
     {
@@ -75584,26 +75196,6 @@
     },
     {
       "accepted": [
-        "municipalité de Baltimore City"
-      ],
-      "answer": "Baltimore",
-      "category": "everyday",
-      "choiceOnly": false,
-      "decoys": [
-        "Grottaferrata",
-        "Brighton",
-        "Cincinnati"
-      ],
-      "id": "polyfact-Q380418-P20-Q5092",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Où John Hopkins est-il décédé ?",
-      "theme": "place of death"
-    },
-    {
-      "accepted": [
         "La Grosse Pomme",
         "Ville de New York",
         "Ville de New-York"
@@ -75643,7 +75235,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "La partie catalane a été découverte ou inventée par qui ?",
+      "prompt": "Quel joueur d'échecs a inventé l'ouverture appelée partie catalane ?",
       "theme": "discoverer or inventor"
     },
     {
@@ -77393,7 +76985,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s’appelle l’acteur principal du film Cry-Baby, par ailleurs époux de l’actrice Amber Heard ?",
+      "prompt": "Comment s’appelle l’acteur principal du film Cry-Baby, ancien époux de l’actrice Amber Heard ?",
       "theme": "movies/intersection"
     },
     {
@@ -77673,7 +77265,6 @@
     },
     {
       "accepted": [
-        "Fast & Furious 3 - Tokyo Drift",
         "Fast and furious 3",
         "Rapides et dangereux : Tokyo Drift",
         "The Fast and the Furious 3"
@@ -78093,7 +77684,6 @@
     },
     {
       "accepted": [
-        "Fast & Furious 3 - Tokyo Drift",
         "Fast and furious 3",
         "Rapides et dangereux : Tokyo Drift",
         "The Fast and the Furious 3"
@@ -78390,7 +77980,6 @@
     },
     {
       "accepted": [
-        "Fast & Furious 3 - Tokyo Drift",
         "Fast and furious 3",
         "Rapides et dangereux : Tokyo Drift",
         "The Fast and the Furious 3"
@@ -78451,7 +78040,6 @@
     },
     {
       "accepted": [
-        "Fast & Furious 3 - Tokyo Drift",
         "Rapides et dangereux : Tokyo Drift",
         "The Fast and the Furious 3"
       ],
@@ -78473,7 +78061,6 @@
     },
     {
       "accepted": [
-        "Fast & Furious 5",
         "Fast 5",
         "Fast Five"
       ],
@@ -78494,9 +78081,7 @@
       "theme": "movies/ordinal"
     },
     {
-      "accepted": [
-        "Fast & Furious 8"
-      ],
+      "accepted": [],
       "answer": "Fast and Furious 8",
       "category": "cinema",
       "choiceOnly": false,
@@ -78718,27 +78303,6 @@
     },
     {
       "accepted": [
-        "Pirates des Caraïbes 4",
-        "Pirates des Caraïbes : On Stranger Tides"
-      ],
-      "answer": "Pirates des Caraïbes : La Fontaine de Jouvence",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "The Suicide Squad",
-        "Conjuring : Les Dossiers Warren",
-        "Scream"
-      ],
-      "id": "mintaka-1d702f03",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel est le film le plus cher jamais réalisé ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [
         "Blair Witch"
       ],
       "answer": "Le Projet Blair Witch",
@@ -78794,27 +78358,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Qui est le réalisateur qui a reçu le plus d’Oscars du meilleur réalisateur ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [
-        "Pirates des Caraïbes 4",
-        "Pirates des Caraïbes : On Stranger Tides"
-      ],
-      "answer": "Pirates des Caraïbes : La Fontaine de Jouvence",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "The Suicide Squad",
-        "Conjuring : Les Dossiers Warren",
-        "Scream"
-      ],
-      "id": "mintaka-b8f6c897",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel est le film au plus gros budget de tous les temps ?",
       "theme": "movies/superlative"
     },
     {
@@ -79001,28 +78544,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le réalisateur le plus âgé a avoir remporté un Oscar ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [
-        "Pirates des Caraïbes 4",
-        "Pirates des Caraïbes : On Stranger Tides"
-      ],
-      "answer": "Pirates des Caraïbes : La Fontaine de Jouvence",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "The Suicide Squad",
-        "Conjuring : Les Dossiers Warren",
-        "Rogue One: A Star Wars Story"
-      ],
-      "id": "mintaka-dfa71862",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel film a coûté le plus cher ?",
+      "prompt": "Quel est le réalisateur le plus âgé à avoir remporté l’Oscar du meilleur réalisateur ?",
       "theme": "movies/superlative"
     },
     {
@@ -79160,10 +78682,10 @@
     },
     {
       "accepted": [
-        "Back to the Future Part II",
-        "Back to the Future, part II"
+        "Back to the Future Part III",
+        "Retour vers le futur III"
       ],
-      "answer": "Retour vers le futur 2",
+      "answer": "Retour vers le futur 3",
       "category": "cinema",
       "choiceOnly": false,
       "decoys": [
@@ -79176,43 +78698,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quel film Retour vers le future a fait le moins de recettes ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "Harry Potter et les Reliques de la Mort (deuxième partie)",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "La Mule",
-        "Star Wars, épisode VIII : Les Derniers Jedi",
-        "Massacre à la tronçonneuse"
-      ],
-      "id": "mintaka-28ed61fb",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel film de la saga Harry Potter a fait le moins de recettes à travers le monde ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "L'Incroyable Hulk",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Terminator",
-        "Rocky",
-        "Batman Begins"
-      ],
-      "id": "mintaka-b87e4c28",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel film Marvel a rapporté le moins d’argent ?",
+      "prompt": "Quel film Retour vers le futur a fait le moins de recettes ?",
       "theme": "movies/superlative"
     },
     {
@@ -80269,24 +79755,6 @@
       "theme": "movies/superlative"
     },
     {
-      "accepted": [],
-      "answer": "Avatar : La Voie de l'eau",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "2001, l'Odyssée de l'espace",
-        "Captain America : Civil War",
-        "The Dark Knight Rises"
-      ],
-      "id": "mintaka-7dbdd31c",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel a été le film le plus cher réalisé par James Cameron ?",
-      "theme": "movies/superlative"
-    },
-    {
       "accepted": [
         "Detroit Gems",
         "Gems de Détroit",
@@ -80308,7 +79776,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe joue au Centre Staples et comptait Shaquille O’Neal dans ses rangs ?",
+      "prompt": "Quelle équipe jouait au Staples Center et comptait Shaquille O’Neal dans ses rangs ?",
       "theme": "sports/intersection"
     },
     {
@@ -80440,7 +79908,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui mesure 1,98 m et est le cinquième plus riche Américain noir ?",
+      "prompt": "Quel ancien basketteur de 1,98 m compte parmi les Américains noirs les plus riches ?",
       "theme": "sports/intersection"
     },
     {
@@ -80514,7 +79982,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel joueur a été sélectionné dans l’équipe d’Angleterre de la finale de l’Euro 2020 et joue pour le FC Liverpool ?",
+      "prompt": "Quel joueur de Liverpool a été sélectionné dans l’équipe d’Angleterre pour la finale de l’Euro 2020 ?",
       "theme": "sports/intersection"
     },
     {
@@ -80577,7 +80045,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe de basketball a remporté les championnats de 2018 et ceux de 2015 ?",
+      "prompt": "Quelle équipe a remporté les titres NBA de 2015 et de 2018 ?",
       "theme": "sports/intersection"
     },
     {
@@ -80640,7 +80108,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui joue pour les Nets de Brooklyn et jouait auparavant pour les Warriors ?",
+      "prompt": "Quel joueur est passé des Warriors de Golden State aux Nets de Brooklyn en 2019 ?",
       "theme": "sports/intersection"
     },
     {
@@ -80676,7 +80144,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui joue pour les Pelicans de la Nouvelle-Orléans et a été choisi en premier dans le draft de la NBA ?",
+      "prompt": "Quel joueur les Pelicans de La Nouvelle-Orléans ont-ils choisi en premier à la draft NBA de 2019 ?",
       "theme": "sports/intersection"
     },
     {
@@ -80774,7 +80242,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel joueur de la NFL a joué pour New England Patriots en tant que quart-arrière principal et joue maintenant pour les Tampa Bay Buccaneers ?",
+      "prompt": "Quel quart-arrière a joué pour les Patriots de la Nouvelle-Angleterre, puis pour les Buccaneers de Tampa Bay ?",
       "theme": "sports/intersection"
     },
     {
@@ -80792,7 +80260,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est membre des Lakers de Los Angeles et natif de Brooklyn, à New York ?",
+      "prompt": "Quel joueur natif de Brooklyn, à New York, a porté le maillot des Lakers de Los Angeles en 2021-2022 ?",
       "theme": "sports/intersection"
     },
     {
@@ -80812,7 +80280,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel joueur joue aussi bien pour le FC Barcelone, que pour l’équipe nationale masculine des États-Unis ?",
+      "prompt": "Quel joueur de l’équipe des États-Unis a évolué au FC Barcelone de 2020 à 2022 ?",
       "theme": "sports/intersection"
     },
     {
@@ -81039,7 +80507,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel footballeur joue pour Manchester United et possède une façon bien particulière de célébrer les buts, appelée SI ?",
+      "prompt": "Quel footballeur passé par Manchester United célèbre ses buts par un saut appelé « Siuuu » ?",
       "theme": "sports/intersection"
     },
     {
@@ -81114,26 +80582,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quelle était la première équipe de la NBA pour laquelle Kevin Garnett joua ?",
-      "theme": "sports/ordinal"
-    },
-    {
-      "accepted": [
-        "Phoenix Suns"
-      ],
-      "answer": "Suns de Phoenix",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Grizzlies de Memphis",
-        "Pacers de l'Indiana",
-        "SuperSonics de Seattle"
-      ],
-      "id": "mintaka-5bcefca0",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quelle fut la troisième équipe dans laquelle a joué Jamal Crawford ?",
       "theme": "sports/ordinal"
     },
     {
@@ -81666,24 +81114,6 @@
     },
     {
       "accepted": [],
-      "answer": "Roger Federer",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Novak Djoković",
-        "Paolo Maldini",
-        "Rafael Nadal"
-      ],
-      "id": "mintaka-4fbea042",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est le plus âgé des vainqueurs du Grand Chlem ?",
-      "theme": "sports/superlative"
-    },
-    {
-      "accepted": [],
       "answer": "Tom Brady",
       "category": "sport",
       "choiceOnly": false,
@@ -81698,42 +81128,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Qui possède le plus d’anneaux du Super Bowl ?",
-      "theme": "sports/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "LeBron James",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Ryan Reynolds",
-        "Michael Jordan",
-        "Shaquille O'Neal"
-      ],
-      "id": "mintaka-8191cb22",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel joueur actif de la NBA a le plus de championnats de cette discipline ?",
-      "theme": "sports/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "Tom Brady",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "George H. W. Bush",
-        "Gerald Ford",
-        "Robert Francis Kennedy"
-      ],
-      "id": "mintaka-0dde63bc",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel joueur actif de la NFL a le plus d’anneaux de Super Bowl ?",
       "theme": "sports/superlative"
     },
     {
@@ -81901,28 +81295,6 @@
     },
     {
       "accepted": [
-        "Ferdinand Lewis Alcindor",
-        "Ferdinand Lewis Alcindor, Jr.",
-        "Lew Alcindor"
-      ],
-      "answer": "Kareem Abdul-Jabbar",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "James Harden",
-        "Magic Johnson",
-        "Alessandro Costacurta"
-      ],
-      "id": "mintaka-91e3d34c",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel joueur de NBA détient le record des paniers ?",
-      "theme": "sports/superlative"
-    },
-    {
-      "accepted": [
         "Wayne Douglas Gretzky"
       ],
       "answer": "Wayne Gretzky",
@@ -81996,7 +81368,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a le plus de buts dans la NHL ?",
+      "prompt": "Avant Alexander Ovechkin, qui détenait le record de buts en carrière dans la NHL ?",
       "theme": "sports/superlative"
     },
     {
@@ -82036,7 +81408,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel joueur de la NBA a marqué le plus grand nombre de points tout au long de son parcours ?",
+      "prompt": "Avant LeBron James, quel joueur de la NBA avait marqué le plus de points en carrière ?",
       "theme": "sports/superlative"
     },
     {
@@ -82108,24 +81480,6 @@
       "theme": "sports/superlative"
     },
     {
-      "accepted": [],
-      "answer": "Gregg Popovich",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Zach LaVine",
-        "John Stockton",
-        "Andre Drummond"
-      ],
-      "id": "mintaka-650800e8",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est le plus vieux entraîneur de la NBA ?",
-      "theme": "sports/superlative"
-    },
-    {
       "accepted": [
         "Martina Hingisová"
       ],
@@ -82167,28 +81521,6 @@
     },
     {
       "accepted": [
-        "Ferdinand Lewis Alcindor",
-        "Ferdinand Lewis Alcindor, Jr.",
-        "Lew Alcindor"
-      ],
-      "answer": "Kareem Abdul-Jabbar",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "James Harden",
-        "Magic Johnson",
-        "Alessandro Costacurta"
-      ],
-      "id": "mintaka-3bc022e3",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui a le plus de matchs à 10 points dans l’histoire de la NBA ?",
-      "theme": "sports/superlative"
-    },
-    {
-      "accepted": [
         "New England Patriots"
       ],
       "answer": "Patriots de la Nouvelle-Angleterre",
@@ -82224,7 +81556,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a marqué le plus de buts en saison régulière dans la NHL ?",
+      "prompt": "Qui détient le record de buts marqués en une seule saison régulière de NHL ?",
       "theme": "sports/superlative"
     },
     {
@@ -82257,29 +81589,6 @@
       "theme": "sports/superlative"
     },
     {
-      "accepted": [
-        "Phil.",
-        "République des Philippines",
-        "la République des Philippines",
-        "Îles Philippines"
-      ],
-      "answer": "Philippines",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Mexique",
-        "Viêt Nam",
-        "Arabie saoudite"
-      ],
-      "id": "mintaka-eb28aaf8",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel pays a participé le plus grand nombre de fois aux Jeux olympiques d’été et n’a remporté de médaille d’or ?",
-      "theme": "sports/superlative"
-    },
-    {
       "accepted": [],
       "answer": "Wilt Chamberlain",
       "category": "sport",
@@ -82294,7 +81603,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le plus de points jamais marqués dans un match par un joueur de la NBA ?",
+      "prompt": "Quel joueur de la NBA a marqué le plus de points en un seul match ?",
       "theme": "sports/superlative"
     },
     {
@@ -82370,7 +81679,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le jeune joueur à avoir remporté le trophée Hart de la NHL ?",
+      "prompt": "Qui est le plus jeune joueur à avoir remporté le trophée Hart de la NHL ?",
       "theme": "sports/superlative"
     },
     {
@@ -83972,7 +83281,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel État américain est situé dans le sud-est et a Kay Ivey comme gouverneur ?",
+      "prompt": "Quel État américain du sud-est a eu Kay Ivey pour gouverneure à partir de 2017 ?",
       "theme": "geography/intersection"
     },
     {
@@ -85088,7 +84397,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la ville plus peuplée d’Asie ?",
+      "prompt": "Quelle était la ville la plus peuplée d’Asie selon l’ONU en 2018 ?",
       "theme": "geography/superlative"
     },
     {
@@ -85514,7 +84823,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la ville la plus peuplée du monde ?",
+      "prompt": "Quelle était la ville la plus peuplée du monde selon l’ONU en 2018 ?",
       "theme": "geography/superlative"
     },
     {
@@ -86118,7 +85427,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quel jeu de la série GTA a plusieurs personnages principaux ?",
+      "prompt": "Quel jeu de la série GTA a trois personnages principaux jouables ?",
       "theme": "videogames/intersection"
     },
     {
@@ -88000,42 +87309,6 @@
       "theme": "videogames/superlative"
     },
     {
-      "accepted": [],
-      "answer": "The Last of Us Part II",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Legend of Zelda: Breath of the Wild",
-        "The Last of Us",
-        "The Elder Scrolls V: Skyrim"
-      ],
-      "id": "mintaka-6da69515",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu a reçu le plus de prix du jeu de l’année ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "Call of Duty: Black Ops Cold War",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "The Legend of Zelda: Majora's Mask",
-        "Among Us",
-        "Far Cry 3"
-      ],
-      "id": "mintaka-21d8f51d",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel est le jeu le plus court dans la série Call of Duty ?",
-      "theme": "videogames/superlative"
-    },
-    {
       "accepted": [
         "FF7",
         "FFVII",
@@ -89698,7 +88971,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a été la femme du roi Philippe et cousine de Don Carlos ?",
+      "prompt": "Qui a été la quatrième épouse du roi Philippe II d’Espagne et la cousine de Don Carlos ?",
       "theme": "history/intersection"
     },
     {
@@ -89717,28 +88990,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Qui a été la femme du roi Henri V et la fille de Charles VI ?",
-      "theme": "history/intersection"
-    },
-    {
-      "accepted": [
-        "reine Élisabeth",
-        "Élisabeth 2",
-        "Élisabeth Alexandra Marie Windsor"
-      ],
-      "answer": "Élisabeth II",
-      "category": "history",
-      "choiceOnly": false,
-      "decoys": [
-        "George VI",
-        "Édouard VIII",
-        "Guillaume II"
-      ],
-      "id": "mintaka-6a7b71a9",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quelle reine d’Angleterre a eu un chien ainsi qu’une perruche ?",
       "theme": "history/intersection"
     },
     {
@@ -91480,7 +90731,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui était le premier souverain de Grèce ?",
+      "prompt": "Qui fut le premier roi de la Grèce moderne ?",
       "theme": "history/ordinal"
     },
     {
@@ -91538,7 +90789,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Qui fut la première femme de l’ancien président Donald Trump ?",
+      "prompt": "Qui fut la première femme de Donald Trump ?",
       "theme": "history/ordinal"
     },
     {
@@ -92114,7 +91365,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s’appelle l’empereur romain qui est resté au pouvoir pendant longtemps ?",
+      "prompt": "Comment s’appelle l’empereur romain qui est resté au pouvoir le plus longtemps ?",
       "theme": "history/superlative"
     },
     {
@@ -93449,7 +92700,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quel film de super-héros est réalisé par James Gunn mais pas pour Marvel ?",
+      "prompt": "Quel film de super-héros DC sorti en 2021 a été réalisé par James Gunn ?",
       "theme": "movies/intersection"
     },
     {
@@ -94339,27 +93590,6 @@
     },
     {
       "accepted": [
-        "K.C. Reeves",
-        "Keanu Charles Reeves"
-      ],
-      "answer": "Keanu Reeves",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Ryan Gosling",
-        "Henry Cavill",
-        "Jean Dujardin"
-      ],
-      "id": "mintaka-41a51755",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est l’acteur le mieux payé de tous les temps ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [
         "The Avengers: Age of Ultron"
       ],
       "answer": "Avengers : L'Ère d'Ultron",
@@ -94438,26 +93668,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quel film de Marvel est le plus long ?",
-      "theme": "movies/superlative"
-    },
-    {
-      "accepted": [
-        "Ant-Man 2"
-      ],
-      "answer": "Ant-Man et la Guêpe",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Harry Potter et la Chambre des secrets",
-        "Harry Potter et le Prisonnier d'Azkaban",
-        "Skyfall"
-      ],
-      "id": "mintaka-95a0ec53",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel film Marvel est le plus court ?",
       "theme": "movies/superlative"
     },
     {
@@ -94723,7 +93933,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le joueur professionnel anglais, milieu de terrain et capitaine du club de Liverpool en Premier League, né le 17 juin 1990 ?",
+      "prompt": "Quel milieu de terrain anglais, né le 17 juin 1990, a été capitaine de Liverpool de 2015 à 2023 ?",
       "theme": "sports/intersection"
     },
     {
@@ -94802,7 +94012,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le joueur des Angels de Los Angeles qui est à la fois lanceur et batteur ?",
+      "prompt": "Quel joueur des Angels de Los Angeles était à la fois lanceur et batteur de 2018 à 2023 ?",
       "theme": "sports/intersection"
     },
     {
@@ -94820,7 +94030,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe jouant au Staples Center avait Chris Paul pour coéquipier ?",
+      "prompt": "Quelle équipe jouait au Staples Center et avait Chris Paul dans ses rangs ?",
       "theme": "sports/intersection"
     },
     {
@@ -94896,7 +94106,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a été sélectionné par Orlando Magic, a joué pour les Lakers en 2020 et a les rejoint hors-saison ?",
+      "prompt": "Quel joueur drafté par le Magic d’Orlando a joué pour les Lakers de Los Angeles lors de leur titre de 2020 ?",
       "theme": "sports/intersection"
     },
     {
@@ -95329,7 +94539,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel pilote MotoGP a remporté le plus grand nombre de championnats du monde MotoGP ?",
+      "prompt": "Quel pilote a remporté le plus de titres de champion du monde de vitesse moto, toutes catégories confondues ?",
       "theme": "sports/superlative"
     },
     {
@@ -96147,32 +95357,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quelle est la plus haute montagne d’Europe ?",
-      "theme": "geography/superlative"
-    },
-    {
-      "accepted": [
-        "Tokyo Metropolis",
-        "Tokyo-to",
-        "Tôkyô-to",
-        "Tōkyō-to",
-        "métropole de Tokyo",
-        "préfecture de Tokyo",
-        "préfecture métropolitaine de Tokyo"
-      ],
-      "answer": "Tokyo",
-      "category": "geography",
-      "choiceOnly": false,
-      "decoys": [
-        "Rome",
-        "Istanbul",
-        "Prague"
-      ],
-      "id": "mintaka-499af9d0",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quelle est la ville la plus peuplée d’Asie ?",
       "theme": "geography/superlative"
     },
     {
@@ -97246,7 +96430,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quel franchise de jeux vidéo est exclusivement disponible sur Xbox et compte Master Chief parmi ses personnages ?",
+      "prompt": "Quelle franchise de jeux vidéo, longtemps exclusive à la Xbox, compte Master Chief parmi ses personnages ?",
       "theme": "videogames/intersection"
     },
     {
@@ -97332,26 +96516,6 @@
       "theme": "videogames/superlative"
     },
     {
-      "accepted": [
-        "SSBU"
-      ],
-      "answer": "Super Smash Bros. Ultimate",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "Silent Hill 2",
-        "Final Fantasy XII",
-        "Hollow Knight: Silksong"
-      ],
-      "id": "mintaka-36f67fca",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu de combat comporte le plus de personnages ?",
-      "theme": "videogames/superlative"
-    },
-    {
       "accepted": [],
       "answer": "Final Fantasy VI",
       "category": "videogames",
@@ -97367,42 +96531,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quel jeu Final Fantasy comporte le plus de personnages principaux ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "Portal 2",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "Metal Gear Solid 3: Snake Eater",
-        "Fallout",
-        "Star Wars: Knights of the Old Republic"
-      ],
-      "id": "mintaka-2861a1aa",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu a le plus haut pourcentage d’opinions positives sur Steam ?",
-      "theme": "videogames/superlative"
-    },
-    {
-      "accepted": [],
-      "answer": "Counter-Strike: Global Offensive",
-      "category": "videogames",
-      "choiceOnly": false,
-      "decoys": [
-        "Street Fighter II : The World Warrior",
-        "Kingdom Hearts 2",
-        "Call of Duty : Advanced Warfare"
-      ],
-      "id": "mintaka-831f7a42",
-      "isAdult": false,
-      "isWellKnown": true,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel jeu a la base de joueurs la plus importante sur la plateforme Steam ?",
       "theme": "videogames/superlative"
     },
     {
@@ -98203,7 +97331,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le grand-père de Rey ?",
+      "prompt": "Dans Star Wars, qui est le grand-père de Rey ?",
       "theme": "movies/generic"
     },
     {
@@ -99594,7 +98722,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où habite Alan Parrish ?",
+      "prompt": "Dans le film Jumanji, dans quel État habite Alan Parrish ?",
       "theme": "movies/generic"
     },
     {
@@ -99615,24 +98743,6 @@
       "language": "fr",
       "note": null,
       "prompt": "Quelle ville a gagné la première Série mondiale ?",
-      "theme": "sports/generic"
-    },
-    {
-      "accepted": [],
-      "answer": "Miami",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "San Francisco",
-        "Boston",
-        "La Nouvelle-Orléans"
-      ],
-      "id": "mintaka-f90d72a9",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quelle ville a le plus de fois accueilli le Super Bowl ?",
       "theme": "sports/generic"
     },
     {
@@ -99728,7 +98838,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le joueur le plus cout de l’histoire de la NBA ?",
+      "prompt": "Qui est le plus petit joueur de l’histoire de la NBA ?",
       "theme": "sports/generic"
     },
     {
@@ -99966,7 +99076,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le joueur le mieux payé de la NBA ?",
+      "prompt": "Qui était le joueur le mieux payé de la NBA lors de la saison 2021-2022 ?",
       "theme": "sports/generic"
     },
     {
@@ -100007,7 +99117,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe de basketball vient de l’Indiana ?",
+      "prompt": "Quelle équipe de NBA est basée dans l’Indiana ?",
       "theme": "sports/generic"
     },
     {
@@ -100249,26 +99359,6 @@
       "theme": "sports/generic"
     },
     {
-      "accepted": [
-        "Tyrone Bogues"
-      ],
-      "answer": "Muggsy Bogues",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Carmelo Anthony",
-        "Derrick Rose",
-        "Manny Pacquiao"
-      ],
-      "id": "mintaka-4703dc36",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est le joueur le plus court de la NBA ?",
-      "theme": "sports/generic"
-    },
-    {
       "accepted": [],
       "answer": "Zion Williamson",
       "category": "sport",
@@ -100471,7 +99561,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle ville est la plus peuplée au monde ?",
+      "prompt": "Quelle ville était la plus peuplée au monde selon l’ONU en 2018 ?",
       "theme": "geography/generic"
     },
     {
@@ -102101,7 +101191,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la quatrième ville la plus peuplée d’Amérique ?",
+      "prompt": "Quelle est la quatrième ville la plus peuplée des États-Unis ?",
       "theme": "geography/generic"
     },
     {
@@ -106197,7 +105287,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle sera la première ville à avoir accueilli les Jeux olympiques d’été et d’hiver ?",
+      "prompt": "Quelle est la première ville à avoir accueilli les Jeux olympiques d’été et d’hiver ?",
       "theme": "sports/intersection"
     },
     {
@@ -106215,7 +105305,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel footballeur appartient à la Ligue européenne, mais est Argentin ?",
+      "prompt": "Lequel de ces footballeurs est argentin ?",
       "theme": "sports/intersection"
     },
     {
@@ -108287,7 +107377,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quel acteur a joué le rôle de Spiderman dans le premier film ?",
+      "prompt": "Quel acteur a joué Spider-Man dans le film de Sam Raimi sorti en 2002 ?",
       "theme": "movies/generic"
     },
     {
@@ -109032,7 +108122,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "D’où vient Kratos ?",
+      "prompt": "Dans la série God of War, de quelle cité grecque vient Kratos ?",
       "theme": "videogames/generic"
     },
     {
@@ -110033,7 +109123,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle superstar ayant joué dans plusieurs équipes vainqueurs de la ligue des champions UEFA n’a pas encore remporté son propre titre ?",
+      "prompt": "Quelle superstar, passée par plusieurs clubs vainqueurs de la Ligue des champions de l’UEFA, n’a jamais remporté le trophée ?",
       "theme": "sports/intersection"
     },
     {
@@ -110145,7 +109235,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel joueur a été sélectionné pour faire partie de l’équipe nationale d’Allemagne à l’occasion de l’Euro 2020 et joue au Real Madrid ?",
+      "prompt": "Quel joueur du Real Madrid a été sélectionné avec l’Allemagne pour l’Euro 2020 ?",
       "theme": "sports/intersection"
     },
     {
@@ -110181,7 +109271,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel membre de l’équipe nationale masculine des États-Unis de 2021 est né à Newark, dans le New Jersey ?",
+      "prompt": "Quel membre de l’équipe nationale masculine de basketball des États-Unis de 2021 est né à Newark, dans le New Jersey ?",
       "theme": "sports/intersection"
     },
     {
@@ -110787,26 +109877,6 @@
       "theme": "geography/ordinal"
     },
     {
-      "accepted": [
-        "Ukr."
-      ],
-      "answer": "Ukraine",
-      "category": "geography",
-      "choiceOnly": false,
-      "decoys": [
-        "Luxembourg",
-        "Corée du Sud",
-        "Madagascar"
-      ],
-      "id": "mintaka-c9da89d9",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quel est le deuxième pays le plus pauvre d’Europe ?",
-      "theme": "geography/ordinal"
-    },
-    {
       "accepted": [],
       "answer": "lac Huron",
       "category": "geography",
@@ -111320,7 +110390,7 @@
       "isWellKnown": true,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle jeu vidéo a été le plus vendu de tous les temps ?",
+      "prompt": "Lequel de ces jeux vidéo s’est le plus vendu, toutes versions confondues ?",
       "theme": "videogames/superlative"
     },
     {
@@ -112431,7 +111501,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe jouant au Staples Center avait Blake Griffin ?",
+      "prompt": "Quelle équipe jouait au Staples Center et avait Blake Griffin dans ses rangs ?",
       "theme": "sports/intersection"
     },
     {
@@ -112449,7 +111519,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a joué sa première saison à Seattle et est membre des Nets de Brooklyn ?",
+      "prompt": "Quel joueur passé par les Nets de Brooklyn a joué sa première saison NBA à Seattle ?",
       "theme": "sports/intersection"
     },
     {
@@ -113535,28 +112605,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le quart-arrière des Packers de Green Bay ?",
-      "theme": "sports/generic"
-    },
-    {
-      "accepted": [
-        "Nationals de Syracuse",
-        "Philadelphia 76ers"
-      ],
-      "answer": "76ers de Philadelphie",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Lakers de Los Angeles",
-        "Timberwolves du Minnesota",
-        "Wizards de Washington"
-      ],
-      "id": "mintaka-71fdfbe2",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Quelle équipe de la NBA détient la plus longue série de défaites de l’histoire ?",
+      "prompt": "Quel quart-arrière a été titulaire des Packers de Green Bay de 2008 à 2022 ?",
       "theme": "sports/generic"
     },
     {
@@ -113574,25 +112623,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui détient le record absolu du nombre de paniers à trois points en NBA ?",
-      "theme": "sports/generic"
-    },
-    {
-      "accepted": [],
-      "answer": "Kevin Garnett",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Karl Malone",
-        "Bill Russell",
-        "Dwight Howard"
-      ],
-      "id": "mintaka-7e6d8a91",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est le joueur de basketball le mieux payé de l’histoire ?",
+      "prompt": "Avant Stephen Curry, qui détenait le record du nombre de paniers à trois points en NBA ?",
       "theme": "sports/generic"
     },
     {
@@ -113631,7 +112662,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le quart-arrière titulaire des Seahawks de Seattle ?",
+      "prompt": "Quel quart-arrière a été titulaire des Seahawks de Seattle de 2012 à 2021 ?",
       "theme": "sports/generic"
     },
     {
@@ -113649,7 +112680,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le quart-arrière des Seahawks ?",
+      "prompt": "Quel quart-arrière a mené les Seahawks de Seattle à leur victoire au Super Bowl de 2014 ?",
       "theme": "sports/generic"
     },
     {
@@ -113722,24 +112753,6 @@
     },
     {
       "accepted": [],
-      "answer": "Gregg Popovich",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Zach LaVine",
-        "John Stockton",
-        "Andre Drummond"
-      ],
-      "id": "mintaka-ed9bac00",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui est l’entraîneur de la NBA le mieux payé ?",
-      "theme": "sports/generic"
-    },
-    {
-      "accepted": [],
       "answer": "Patrick Mahomes",
       "category": "sport",
       "choiceOnly": false,
@@ -113753,27 +112766,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a remporté le prix du meilleur joueur en deux mille dix-huit ?",
-      "theme": "sports/generic"
-    },
-    {
-      "accepted": [
-        "Tyrone Bogues"
-      ],
-      "answer": "Muggsy Bogues",
-      "category": "sport",
-      "choiceOnly": false,
-      "decoys": [
-        "Carmelo Anthony",
-        "Derrick Rose",
-        "Wilt Chamberlain"
-      ],
-      "id": "mintaka-e0c2a8b3",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Qui était le joueur le plus court de la NBA ?",
+      "prompt": "Qui a été élu meilleur joueur de la saison 2018 de la NFL ?",
       "theme": "sports/generic"
     },
     {
@@ -115045,7 +114038,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le patron caractérisant l'abyssin ?",
+      "prompt": "Comment s'appelle le motif de robe caractéristique du chat abyssin ?",
       "theme": "Abyssin",
       "isWellKnown": true
     },
@@ -115063,7 +114056,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Jusqu'à combien peut peser l'abyssin, en moyenne ?",
+      "prompt": "Jusqu'à combien peut peser un chat abyssin, en moyenne ?",
       "theme": "Abyssin",
       "isWellKnown": true
     },
@@ -115081,7 +114074,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Peut-on dire de quel pays est originaire l'abyssin ?",
+      "prompt": "Peut-on dire de quel pays est originaire la race de chat abyssin ?",
       "theme": "Abyssin",
       "isWellKnown": true
     },
@@ -115099,7 +114092,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle association a reconnu l'abyssin en 1917 ?",
+      "prompt": "Quelle association a reconnu la race de chat abyssin en 1917 ?",
       "theme": "Abyssin",
       "isWellKnown": true
     },
@@ -115117,7 +114110,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "De combien de chatons la femelle abyssine accouche-t-elle en moyenne ?",
+      "prompt": "De combien de chatons une chatte abyssine accouche-t-elle en moyenne ?",
       "theme": "Abyssin",
       "isWellKnown": true
     },
@@ -115243,7 +114236,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle technique les Ailes de Pluie utilisent-ils pour endormir leurs visiteurs ?",
+      "prompt": "Dans « Les Royaumes de Feu », quelle technique les Ailes de Pluie utilisent-ils pour endormir leurs visiteurs ?",
       "theme": "Aile de Pluie",
       "isWellKnown": true
     },
@@ -115261,7 +114254,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment les Ailes de Pluie appellent-ils l'heure de repos qu'ils ont après le repas ?",
+      "prompt": "Dans « Les Royaumes de Feu », comment les Ailes de Pluie appellent-ils l'heure de repos qu'ils ont après le repas ?",
       "theme": "Aile de Pluie",
       "isWellKnown": true
     },
@@ -115279,7 +114272,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où habitent les Ailes de Pluie ?",
+      "prompt": "Dans « Les Royaumes de Feu », où habitent les Ailes de Pluie ?",
       "theme": "Aile de Pluie",
       "isWellKnown": true
     },
@@ -115297,7 +114290,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle la reine qui précédait Gloria ?",
+      "prompt": "Dans « Les Royaumes de Feu », quelle reine des Ailes de Pluie a précédé Gloria ?",
       "theme": "Aile de Pluie",
       "isWellKnown": true
     },
@@ -115315,7 +114308,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le nom anglais des Ailes de Pluie ?",
+      "prompt": "Dans « Les Royaumes de Feu », quel est le nom anglais des Ailes de Pluie ?",
       "theme": "Aile de Pluie",
       "isWellKnown": true
     },
@@ -115729,7 +114722,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s’appelle le roi d’Angleterre ?",
+      "prompt": "Quel roi d'Angleterre a succédé à Élisabeth II en 2022 ?",
       "theme": "Angleterre",
       "isWellKnown": true
     },
@@ -116773,7 +115766,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel style de musique composa-t-il?",
+      "prompt": "Quel style de musique Antonio Vivaldi composait-il ?",
       "theme": "Antonio Vivaldi",
       "isWellKnown": true
     },
@@ -116791,7 +115784,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel était son surnom?",
+      "prompt": "Quel était le surnom d'Antonio Vivaldi ?",
       "theme": "Antonio Vivaldi",
       "isWellKnown": true
     },
@@ -116953,7 +115946,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le missile balistique Allemand ?",
+      "prompt": "Comment s'appelait le missile balistique allemand de la Seconde Guerre mondiale ?",
       "theme": "Astronautique",
       "isWellKnown": false
     },
@@ -117565,7 +116558,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Blue aime-t-il la violence ?",
+      "prompt": "Dans « Les Royaumes de Feu », le dragon Blue aime-t-il la violence ?",
       "theme": "Blue (Les Royaumes de feu)",
       "isWellKnown": true
     },
@@ -117583,7 +116576,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui sont ses amis ?",
+      "prompt": "Dans « Les Royaumes de Feu », qui sont les amis du dragon Blue ?",
       "theme": "Blue (Les Royaumes de feu)",
       "isWellKnown": true
     },
@@ -117601,7 +116594,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quels sont les pouvoirs de Blue ?",
+      "prompt": "Dans « Les Royaumes de Feu », quels sont les pouvoirs du dragon Blue ?",
       "theme": "Blue (Les Royaumes de feu)",
       "isWellKnown": true
     },
@@ -117619,7 +116612,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où est né Blue ?",
+      "prompt": "Dans « Les Royaumes de Feu », où est né le dragon Blue ?",
       "theme": "Blue (Les Royaumes de feu)",
       "isWellKnown": true
     },
@@ -117673,7 +116666,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la version la plus récente du Boeing 737 ?",
+      "prompt": "Quelle génération du Boeing 737 a succédé au 737 Next Generation ?",
       "theme": "Boeing 737",
       "isWellKnown": true
     },
@@ -117835,7 +116828,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle la sœur de Grand Cœur ?",
+      "prompt": "Dans la saga « Bravelands », comment s'appelle la sœur de Grand Cœur ?",
       "theme": "Bravelands",
       "isWellKnown": false
     },
@@ -117853,7 +116846,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le frère de Céleste ?",
+      "prompt": "Dans la saga « Bravelands », comment s'appelle le frère de Céleste ?",
       "theme": "Bravelands",
       "isWellKnown": false
     },
@@ -117871,7 +116864,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le surnom d'Épine ?",
+      "prompt": "Dans la saga « Bravelands », quel est le surnom d'Épine ?",
       "theme": "Bravelands",
       "isWellKnown": false
     },
@@ -117889,7 +116882,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelait Grand Cœur lorsqu'il était petit ?",
+      "prompt": "Dans la saga « Bravelands », comment s'appelait Grand Cœur lorsqu'il était petit ?",
       "theme": "Bravelands",
       "isWellKnown": false
     },
@@ -117907,7 +116900,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle ce qui est dans le Parent Vénérable et qui guide les animaux de la Terre des Braves ?",
+      "prompt": "Dans la saga « Bravelands », comment s'appelle ce qui est dans le Parent Vénérable et qui guide les animaux de la Terre des Braves ?",
       "theme": "Bravelands",
       "isWellKnown": false
     },
@@ -117925,26 +116918,8 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle la mère de Fougueuse et Vivace ?",
+      "prompt": "Dans la saga « Bravelands », comment s'appelle la mère de Fougueuse et Vivace ?",
       "theme": "Bravelands",
-      "isWellKnown": false
-    },
-    {
-      "accepted": [],
-      "answer": "Strasbourg",
-      "category": "geography",
-      "choiceOnly": true,
-      "decoys": [
-        "Mulhouse",
-        "Bruxelles",
-        "Paris"
-      ],
-      "id": "vikidia-bus-24-de-strasbourg-3",
-      "isAdult": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "Le bus 24 dessert quelle ville?",
-      "theme": "Bus 24 de Strasbourg",
       "isWellKnown": false
     },
     {
@@ -118627,7 +117602,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la bonne aptitude à avoir devant un saut ?",
+      "prompt": "En équitation, quelle est la bonne attitude à avoir devant un obstacle ?",
       "theme": "Cheval et équitation",
       "isWellKnown": true
     },
@@ -118645,7 +117620,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Que signifie incurver ?",
+      "prompt": "En équitation, que signifie « incurver » ?",
       "theme": "Cheval et équitation",
       "isWellKnown": true
     },
@@ -118699,7 +117674,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le concours qui n'existe pas?",
+      "prompt": "Quel concours d'équitation n'existe pas ?",
       "theme": "Cheval et équitation",
       "isWellKnown": true
     },
@@ -118753,7 +117728,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la race qui n'existe pas?",
+      "prompt": "Quelle race de cheval n'existe pas ?",
       "theme": "Cheval et équitation",
       "isWellKnown": true
     },
@@ -118879,7 +117854,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Dans quel département ce situe le château ?",
+      "prompt": "Dans quel département se situe le château de Versailles ?",
       "theme": "Château de Versailles",
       "isWellKnown": true
     },
@@ -118951,7 +117926,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quels sont les deux auxiliaires?",
+      "prompt": "En français, quels sont les deux auxiliaires de conjugaison ?",
       "theme": "Conjugaison",
       "isWellKnown": false
     },
@@ -118987,7 +117962,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe a remporté le plus de Coupe du monde ?",
+      "prompt": "Quelle équipe a remporté le plus de Coupes du monde de rugby à l'issue de l'édition 2023 ?",
       "theme": "Coupe du monde de rugby",
       "isWellKnown": true
     },
@@ -119011,19 +117986,19 @@
     },
     {
       "accepted": [],
-      "answer": "La France,en 1999 et en 2007",
+      "answer": "La France",
       "category": "sport",
       "choiceOnly": true,
       "decoys": [
-        "L’Afrique du Sud,en 1967 et en 1999",
-        "La Nouvelle-Zélande, en 2015 et en 2019",
-        "L’Australie, en 2003 et en 2011"
+        "L'Afrique du Sud",
+        "L'Australie",
+        "L'Angleterre"
       ],
       "id": "vikidia-coupe-du-monde-de-rugby-3",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe a éliminer la Nouvelle-Zélande,en demi-finale,puis en quart de finale ?",
+      "prompt": "En Coupe du monde de rugby, quelle équipe a éliminé la Nouvelle-Zélande en demi-finale en 1999, puis en quart de finale en 2007 ?",
       "theme": "Coupe du monde de rugby",
       "isWellKnown": true
     },
@@ -119041,37 +118016,37 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe a remporté l’édition de 2003?",
+      "prompt": "Quelle équipe a remporté la Coupe du monde de rugby 2003 ?",
       "theme": "Coupe du monde de rugby",
       "isWellKnown": true
     },
     {
       "accepted": [],
-      "answer": "L’Afrique du Sud,pour apartheid",
+      "answer": "L'Afrique du Sud",
       "category": "sport",
       "choiceOnly": true,
       "decoys": [
-        "La Russie,pour guerre en Ukraine",
-        "L’Ukraine,pour guerre en Ukraine",
-        "L’Argentine,pour épidémie"
+        "La Russie",
+        "L'Argentine",
+        "Les Fidji"
       ],
       "id": "vikidia-coupe-du-monde-de-rugby-5",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle équipe a été exclu en 1987 et en 1991?",
+      "prompt": "Quelle équipe a été exclue de la Coupe du monde de rugby en 1987 et en 1991 ?",
       "theme": "Coupe du monde de rugby",
       "isWellKnown": true
     },
     {
       "accepted": [],
-      "answer": "La Nouvelle-Zélande et L’Australie,conjointement",
+      "answer": "La Nouvelle-Zélande et l'Australie",
       "category": "sport",
       "choiceOnly": false,
       "decoys": [
-        "L’Afrique du Sud",
-        "La France",
-        "L’Angleterre"
+        "L'Afrique du Sud et la Namibie",
+        "L'Angleterre et l'Irlande",
+        "L'Écosse et le pays de Galles"
       ],
       "id": "vikidia-coupe-du-monde-de-rugby-6",
       "isAdult": false,
@@ -119083,19 +118058,19 @@
     },
     {
       "accepted": [],
-      "answer": "Tout les 4 ans",
+      "answer": "Tous les 4 ans",
       "category": "sport",
       "choiceOnly": false,
       "decoys": [
-        "Tout les ans",
-        "Tout les 2 ans",
-        "Tout les 400 ans"
+        "Tous les ans",
+        "Tous les 2 ans",
+        "Tous les 400 ans"
       ],
       "id": "vikidia-coupe-du-monde-de-rugby-7",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "A quelle fréquence se déroule la Coupe du Monde ?",
+      "prompt": "À quelle fréquence se déroule la Coupe du monde de rugby ?",
       "theme": "Coupe du monde de rugby",
       "isWellKnown": true
     },
@@ -119119,13 +118094,13 @@
     },
     {
       "accepted": [],
-      "answer": "L’Angleterre,en 2015",
+      "answer": "L'Angleterre",
       "category": "sport",
       "choiceOnly": false,
       "decoys": [
-        "L’Angleterre,en 1991",
-        "La Nouvelle-Zélande, en 2011",
-        "L’Australie,en 2003"
+        "La France",
+        "La Nouvelle-Zélande",
+        "L'Australie"
       ],
       "id": "vikidia-coupe-du-monde-de-rugby-9",
       "isAdult": false,
@@ -119497,19 +118472,19 @@
     },
     {
       "accepted": [],
-      "answer": "shinichi qui a rapetissé",
+      "answer": "Shinichi Kudo",
       "category": "cinema",
       "choiceOnly": false,
       "decoys": [
-        "sera qui a rapetissé",
-        "Kaito kid sous un masque",
-        "un robot de sherry"
+        "Heiji Hattori",
+        "Kaito Kid",
+        "Shuichi Akai"
       ],
       "id": "vikidia-detective-conan-1",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "qui est Conan",
+      "prompt": "Dans « Détective Conan », qui est vraiment Conan ?",
       "theme": "Détective Conan",
       "isWellKnown": true
     },
@@ -119527,43 +118502,43 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "quel est le nom du poison de détective Conan",
+      "prompt": "Dans « Détective Conan », quel est le nom du poison qui fait rapetisser Shinichi ?",
       "theme": "Détective Conan",
       "isWellKnown": true
     },
     {
       "accepted": [],
-      "answer": "ran mouri",
+      "answer": "Ran Mouri",
       "category": "cinema",
       "choiceOnly": false,
       "decoys": [
-        "sonoko Suzuki",
-        "sera",
-        "ai haibara"
+        "Sonoko Suzuki",
+        "Masumi Sera",
+        "Ai Haibara"
       ],
       "id": "vikidia-detective-conan-3",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "qui est l’amoureuse de shinichi",
+      "prompt": "Dans « Détective Conan », qui est l'amoureuse de Shinichi Kudo ?",
       "theme": "Détective Conan",
       "isWellKnown": true
     },
     {
       "accepted": [],
-      "answer": "ai haibara",
+      "answer": "Ai Haibara",
       "category": "cinema",
       "choiceOnly": false,
       "decoys": [
-        "ayumi yoshida",
-        "la mère de sera",
-        "la mère de shinichi"
+        "Ayumi Yoshida",
+        "Ran Mouri",
+        "Sonoko Suzuki"
       ],
       "id": "vikidia-detective-conan-4",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "qui est sherry",
+      "prompt": "Dans « Détective Conan », quel nom prend Sherry après avoir rapetissé ?",
       "theme": "Détective Conan",
       "isWellKnown": true
     },
@@ -119785,19 +118760,19 @@
     },
     {
       "accepted": [],
-      "answer": "Mehmed II, sultan ottoman",
+      "answer": "Mehmed II",
       "category": "history",
       "choiceOnly": false,
       "decoys": [
-        "Hâroun ar-Rachîd, calife abbasside",
-        "Salah ad-Dîn, sultan ayyoubide",
-        "Soliman le Magnifique, sultan ottoman"
+        "Hâroun ar-Rachîd",
+        "Saladin",
+        "Soliman le Magnifique"
       ],
       "id": "vikidia-empire-byzantin-8",
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel conquérant s'empare des restes de l'Empire byzantin en 1453 ? Quel empire dirige-t-il ?",
+      "prompt": "Quel conquérant s'empare des restes de l'Empire byzantin en 1453 ?",
       "theme": "Empire byzantin",
       "isWellKnown": true
     },
@@ -120247,7 +119222,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Kuzco, l'empereur mégalo est le long-métrage n°:",
+      "prompt": "Kuzco, l'empereur mégalo est le long-métrage d'animation Disney n° :",
       "theme": "Films Disney",
       "isWellKnown": true
     },
@@ -120265,7 +119240,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "En quelle année est sorti le premier long-métrage, Blanche-Neige et les sept nains ?",
+      "prompt": "En quelle année est sorti Blanche-Neige et les sept nains, le premier long-métrage d'animation de Disney ?",
       "theme": "Films Disney",
       "isWellKnown": true
     },
@@ -120481,7 +119456,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Après avoir perdu un pari, comment Ro doit-elle surnommer Keefe ?",
+      "prompt": "Dans Gardiens des cités perdues, après avoir perdu un pari, comment Ro doit-elle surnommer Keefe ?",
       "theme": "Gardiens des cités perdues",
       "isWellKnown": true
     },
@@ -120499,7 +119474,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel réalisateur va adapter la saga Gardiens des Cités Perdues en film ?",
+      "prompt": "Quel réalisateur a été annoncé pour adapter la saga Gardiens des cités perdues au cinéma ?",
       "theme": "Gardiens des cités perdues",
       "isWellKnown": true
     },
@@ -120517,7 +119492,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quels sont les cinq pouvoirs de Sophie ?",
+      "prompt": "Dans Gardiens des cités perdues, quels sont les cinq pouvoirs de Sophie ?",
       "theme": "Gardiens des cités perdues",
       "isWellKnown": true
     },
@@ -120571,7 +119546,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est l'elfe qui ramène Sophie dans le monde des elfes ?",
+      "prompt": "Dans Gardiens des cités perdues, quel elfe ramène Sophie dans le monde des elfes ?",
       "theme": "Gardiens des cités perdues",
       "isWellKnown": true
     },
@@ -120805,7 +119780,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Lequel de ces joueurs a joué au club dans les années 1940 ?",
+      "prompt": "Lequel de ces joueurs a porté le maillot des Girondins de Bordeaux dans les années 1940 ?",
       "theme": "Girondins de Bordeaux",
       "isWellKnown": true
     },
@@ -121111,7 +120086,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le nom du château de Claudius (acte 1) ?",
+      "prompt": "Dans Hamlet, quel est le nom du château de Claudius (acte 1) ?",
       "theme": "Hamlet",
       "isWellKnown": true
     },
@@ -121129,7 +120104,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est l’assassin du Spectre (acte 1) ?",
+      "prompt": "Dans Hamlet, qui est l'assassin du Spectre (acte 1) ?",
       "theme": "Hamlet",
       "isWellKnown": true
     },
@@ -121147,7 +120122,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle mission s’est fixé Polonius (acte 2) ?",
+      "prompt": "Dans Hamlet, quelle mission s'est fixé Polonius (acte 2) ?",
       "theme": "Hamlet",
       "isWellKnown": true
     },
@@ -121219,7 +120194,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Pourquoi le royaume est-il terrorisé et organise t-il un conseil (acte 4) ?",
+      "prompt": "Dans Hamlet, pourquoi le royaume est-il terrorisé et organise-t-il un conseil (acte 4) ?",
       "theme": "Hamlet",
       "isWellKnown": true
     },
@@ -121237,7 +120212,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Que veut Laërte (acte 4) ?",
+      "prompt": "Dans Hamlet, que veut Laërte (acte 4) ?",
       "theme": "Hamlet",
       "isWellKnown": true
     },
@@ -121255,7 +120230,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Que se passe-t-il (acte 5) ?",
+      "prompt": "Dans Hamlet de Shakespeare, que se passe-t-il à l'acte 5 ?",
       "theme": "Hamlet",
       "isWellKnown": true
     },
@@ -121723,7 +120698,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "À la fin du tome 3, qui Katniss tue-t-elle ?",
+      "prompt": "À la fin du tome 3 de Hunger Games, qui Katniss tue-t-elle ?",
       "theme": "Hunger Games",
       "isWellKnown": false
     },
@@ -121741,7 +120716,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quand Percy arrive à l'entrée du Camp Jupiter, une personne lui demande quelque chose. Que doit il faire et qui est cette personne ?",
+      "prompt": "Dans Héros de l'Olympe, quand Percy arrive à l'entrée du Camp Jupiter, une personne lui demande quelque chose. Que doit-il faire et qui est cette personne ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121759,7 +120734,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle déesse rencontrent Hazel, Frank et Percy pendant leur quête ?",
+      "prompt": "Dans Héros de l'Olympe, quelle déesse rencontrent Hazel, Frank et Percy pendant leur quête ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121777,7 +120752,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a été amoureuse de Jason et Percy ?",
+      "prompt": "Dans Héros de l'Olympe, qui a été amoureuse de Jason et de Percy ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121795,7 +120770,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le pégase de Percy ?",
+      "prompt": "Comment s'appelle le pégase de Percy Jackson ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121813,7 +120788,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le géant fait pour combattre Artémis ?",
+      "prompt": "Dans Héros de l'Olympe, comment s'appelle le géant né pour combattre Artémis ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121831,7 +120806,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Dans le tome 3, qui Annabeth a t-elle affronter avant de tomber dans le Tartare ?",
+      "prompt": "Dans le tome 3 de Héros de l'Olympe, qui Annabeth a-t-elle affronté avant de tomber dans le Tartare ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121849,7 +120824,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment les héros rentrent-ils à la Colonie lorsque les géants sont vaincus ?",
+      "prompt": "Dans Héros de l'Olympe, comment les héros rentrent-ils à la Colonie lorsque les géants sont vaincus ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -121867,7 +120842,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle la statue que cherche les enfants d'Athéna à chaque nouvelle générations ?",
+      "prompt": "Dans Héros de l'Olympe, comment s'appelle la statue que cherchent les enfants d'Athéna à chaque nouvelle génération ?",
       "theme": "Héros de l'Olympe",
       "isWellKnown": true
     },
@@ -122143,24 +121118,6 @@
     },
     {
       "accepted": [],
-      "answer": "Oui, et elle continue à chanter",
-      "category": "arts",
-      "choiceOnly": true,
-      "decoys": [
-        "Non, elle est décédée en 2022 d'un cancer du foie",
-        "Oui, mais elle a pris sa retraite",
-        "On ne sait pas, elle est un jour partie en tournée en Afrique et depuis, on ne l'a jamais revue"
-      ],
-      "id": "vikidia-la-grande-sophie-6",
-      "isAdult": false,
-      "language": "fr",
-      "note": null,
-      "prompt": "La Grande Sophie est-elle toujours en vie ?",
-      "theme": "La Grande Sophie",
-      "isWellKnown": true
-    },
-    {
-      "accepted": [],
       "answer": "Erin Hunter",
       "category": "arts",
       "choiceOnly": false,
@@ -122245,7 +121202,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel préfixe est donné à tous les chefs de Clan ?",
+      "prompt": "Dans La Guerre des Clans, quel préfixe est donné à tous les chefs de Clan ?",
       "theme": "La Guerre des Clans",
       "isWellKnown": false
     },
@@ -122317,7 +121274,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel personnage a le pouvoir surnaturel de se battre mieux que quiconque ?",
+      "prompt": "Dans La Guerre des Clans, quel personnage a le pouvoir surnaturel de se battre mieux que quiconque ?",
       "theme": "La Guerre des Clans",
       "isWellKnown": false
     },
@@ -122335,7 +121292,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel personnage a des sens surdéveloppés ?",
+      "prompt": "Dans La Guerre des Clans, quel personnage a des sens surdéveloppés ?",
       "theme": "La Guerre des Clans",
       "isWellKnown": false
     },
@@ -122353,7 +121310,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel personnage a le pouvoir surnaturel de sentir les blessures des autres ?",
+      "prompt": "Dans La Guerre des Clans, quel personnage a le pouvoir surnaturel de sentir les blessures des autres ?",
       "theme": "La Guerre des Clans",
       "isWellKnown": false
     },
@@ -122911,7 +121868,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Parmi ces jurons, lequel n'est pas du capitaine ?",
+      "prompt": "Parmi ces jurons, lequel n'est pas du capitaine Haddock ?",
       "theme": "Les Aventures de Tintin",
       "isWellKnown": true
     },
@@ -122965,7 +121922,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quoi le capitaine a-t-il traité le professeur pour le mettre dans une grande colère ?",
+      "prompt": "De quoi le capitaine Haddock a-t-il traité le professeur Tournesol pour le mettre dans une grande colère ?",
       "theme": "Les Aventures de Tintin",
       "isWellKnown": true
     },
@@ -123091,7 +122048,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Pour qui travaille Nestor lors de sa première apparition ?",
+      "prompt": "Pour qui travaille Nestor, le majordome de Moulinsart, lors de sa première apparition ?",
       "theme": "Les Aventures de Tintin",
       "isWellKnown": true
     },
@@ -123127,7 +122084,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Parmi ces qualités, laquelle ne peut-on pas accorder à Nestor ?",
+      "prompt": "Parmi ces qualités, laquelle ne peut-on pas accorder à Nestor, le majordome de Moulinsart ?",
       "theme": "Les Aventures de Tintin",
       "isWellKnown": true
     },
@@ -123307,7 +122264,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le père de Carter et Sadie ?",
+      "prompt": "Dans Les Chroniques de Kane, comment s'appelle le père de Carter et Sadie ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123325,7 +122282,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le chat de Sadie ?",
+      "prompt": "Dans Les Chroniques de Kane, comment s'appelle le chat de Sadie ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123343,7 +122300,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quel dieu Sadie est elle l'hôte ?",
+      "prompt": "Dans Les Chroniques de Kane, de quelle divinité Sadie est-elle l'hôte ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123361,7 +122318,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "De qui Carter est-il amoureux ?",
+      "prompt": "Dans Les Chroniques de Kane, de qui Carter est-il amoureux ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123379,7 +122336,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui poursuit les Kane pour les tuer ?",
+      "prompt": "Dans Les Chroniques de Kane, qui poursuit Carter et Sadie pour les tuer ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123397,7 +122354,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui les Kane doivent-ils anéantir pour empêcher la fin du monde ?",
+      "prompt": "Dans Les Chroniques de Kane, qui Carter et Sadie doivent-ils anéantir pour empêcher la fin du monde ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123415,7 +122372,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui se révèle être un \"ouchebti\" et meurt ?",
+      "prompt": "Dans Les Chroniques de Kane, qui se révèle être un « ouchebti » et meurt ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123433,7 +122390,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "En qui le dieu Osiris est-il entré ?",
+      "prompt": "Dans Les Chroniques de Kane, en qui le dieu Osiris est-il entré ?",
       "theme": "Les Chroniques de Kane",
       "isWellKnown": false
     },
@@ -123451,7 +122408,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui sont les filles de la reine Oasis ?",
+      "prompt": "Dans Les Royaumes de feu, qui sont les filles de la reine Oasis ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123469,7 +122426,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui des dragonnets de la Montagne de Jade lit dans les pensées ?",
+      "prompt": "Dans Les Royaumes de feu, lequel des dragonnets de la Montagne de Jade lit dans les pensées ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123487,7 +122444,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le paresseux de Gloria ?",
+      "prompt": "Dans Les Royaumes de feu, comment s'appelle le paresseux de Gloria ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123505,7 +122462,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel Dragonnet du Destin a été mordu par une vipère mord-dragon ?",
+      "prompt": "Dans Les Royaumes de feu, quel Dragonnet du Destin a été mordu par une vipère mord-dragon ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123523,7 +122480,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Que mangent les Ailes de Nuit ?",
+      "prompt": "Dans Les Royaumes de feu, que mangent les Ailes de Nuit ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123541,7 +122498,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui va transformer Spectral en dragonnet ?",
+      "prompt": "Dans Les Royaumes de feu, qui va transformer Spectral en dragonnet ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123559,7 +122516,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où se trouve la Cité Perdue de la Nuit ?",
+      "prompt": "Dans Les Royaumes de feu, où se trouve la Cité perdue de la Nuit ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123577,7 +122534,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a inventé la Prophétie des Dragonnets du Destin ?",
+      "prompt": "Dans Les Royaumes de feu, qui a inventé la Prophétie des Dragonnets du Destin ?",
       "theme": "Les Royaumes de Feu",
       "isWellKnown": true
     },
@@ -123829,7 +122786,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui prononce cette citation : « Je préfère largement mon monde à la réalité.Le passé est un lieu sombre, doux et sucré comme de la guimauve » ?",
+      "prompt": "Dans Les Filles au chocolat, qui prononce cette citation : « Je préfère largement mon monde à la réalité. Le passé est un lieu sombre, doux et sucré comme de la guimauve » ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123847,7 +122804,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le poisson rouge de Cherry ?",
+      "prompt": "Dans Les Filles au chocolat, comment s'appelle le poisson rouge de Cherry ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123865,7 +122822,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est Joyeux Noël ?",
+      "prompt": "Dans Les Filles au chocolat, qui est Joyeux Noël ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123883,7 +122840,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la passion de Skye ?",
+      "prompt": "Dans Les Filles au chocolat, quelle est la passion de Skye ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123901,7 +122858,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le père de Cherry ?",
+      "prompt": "Dans Les Filles au chocolat, qui est le père de Cherry ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123919,7 +122876,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le petit ami de Honey dans le tome 1 ?",
+      "prompt": "Qui est le petit ami de Honey dans le tome 1 des Filles au chocolat ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123937,7 +122894,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui offre à Summer la barrette décorée d'une rose en soie ?",
+      "prompt": "Dans Les Filles au chocolat, qui offre à Summer la barrette décorée d'une rose en soie ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123955,7 +122912,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quand sont nées Skye et Summer ?",
+      "prompt": "Dans Les Filles au chocolat, quand sont nées Skye et Summer ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123973,7 +122930,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui sont les amie de Honey qu'elle rencontre en Australie ?",
+      "prompt": "Dans Les Filles au chocolat, qui sont les amies de Honey qu'elle rencontre en Australie ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -123991,7 +122948,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle est la maladie de Summer",
+      "prompt": "Dans Les Filles au chocolat, quelle est la maladie de Summer ?",
       "theme": "Les filles au chocolat",
       "isWellKnown": false
     },
@@ -124675,7 +123632,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quel clan est Lune ?",
+      "prompt": "Dans Les Royaumes de feu, de quel clan est la dragonne Lune ?",
       "theme": "Lune Claire",
       "isWellKnown": false
     },
@@ -124693,7 +123650,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quels sont les autres membres de son équipaile ?",
+      "prompt": "Dans Les Royaumes de feu, quels sont les autres membres de l'équipaile de Lune ?",
       "theme": "Lune Claire",
       "isWellKnown": false
     },
@@ -125449,7 +124406,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le seul bloc qu'on ne peut pas détruire en mode survie ?",
+      "prompt": "Dans Minecraft, quel est le seul bloc qu'on ne peut pas détruire en mode survie ?",
       "theme": "Minecraft",
       "isWellKnown": true
     },
@@ -125503,7 +124460,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Le creeper est...",
+      "prompt": "Dans Minecraft, le creeper est...",
       "theme": "Minecraft",
       "isWellKnown": true
     },
@@ -125593,7 +124550,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Comment s'appelle le Papillombre ?",
+      "prompt": "Dans Miraculous, qui se cache derrière le Papillombre ?",
       "theme": "Miraculous",
       "isWellKnown": true
     },
@@ -125611,7 +124568,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a été élu miss France en 2021 ?",
+      "prompt": "Qui a été élue Miss France 2021 ?",
       "theme": "Mode",
       "isWellKnown": true
     },
@@ -125629,7 +124586,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel est le nom du chat d'Adèle ?",
+      "prompt": "Quel est le nom du chat de Mortelle Adèle ?",
       "theme": "Mortelle Adèle",
       "isWellKnown": true
     },
@@ -126061,7 +125018,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qu'est t-il arrivé le 12 mai 2002 ?",
+      "prompt": "Qu'est-il arrivé à la navette spatiale Bourane le 12 mai 2002 ?",
       "theme": "Navette spatiale Bourane",
       "isWellKnown": false
     },
@@ -126403,7 +125360,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "sa queue mesure:",
+      "prompt": "Combien mesure la queue du panda géant ?",
       "theme": "Panda géant",
       "isWellKnown": true
     },
@@ -126601,7 +125558,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quand la première rame de métro a-t-elle été construite ?",
+      "prompt": "Quand la première rame du métro de Paris a-t-elle été construite ?",
       "theme": "Paris",
       "isWellKnown": true
     },
@@ -126979,7 +125936,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Dans le tome 5, qui se prend le couteau empoisonné à la place de Percy ?",
+      "prompt": "Dans le tome 5 de Percy Jackson, qui se prend le couteau empoisonné à la place de Percy ?",
       "theme": "Percy Jackson",
       "isWellKnown": true
     },
@@ -126997,7 +125954,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Dans quel tome Percy et Annabeth s'embrassent-ils pour la première fois ?",
+      "prompt": "Dans quel tome de la saga Percy Jackson, Percy et Annabeth s'embrassent-ils pour la première fois ?",
       "theme": "Percy Jackson",
       "isWellKnown": true
     },
@@ -127069,7 +126026,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Ellana est formée par Jilano Alhuïn pour devenir...",
+      "prompt": "Dans les romans de Pierre Bottero, Ellana est formée par Jilano Alhuïn pour devenir...",
       "theme": "Pierre Bottero",
       "isWellKnown": true
     },
@@ -127105,7 +126062,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quel acteur ne joue pas dans la saga ?",
+      "prompt": "Quel acteur ne joue pas dans la saga Pirates des Caraïbes ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127123,7 +126080,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Que contient le coffre maudit ?",
+      "prompt": "Dans Pirates des Caraïbes, que contient le coffre maudit ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127141,7 +126098,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Dans l'épisode 1, de quelle malédiction sont frappés l'équipage du Black Pearl et Barbossa ?",
+      "prompt": "Dans le premier film Pirates des Caraïbes, de quelle malédiction sont frappés l'équipage du Black Pearl et Barbossa ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127159,7 +126116,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Au début de l'épisode 3, pourquoi Barbossa et Elizabeth se rendent-ils à Singapour ?",
+      "prompt": "Au début du troisième film Pirates des Caraïbes, pourquoi Barbossa et Elizabeth se rendent-ils à Singapour ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127177,7 +126134,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "À quoi ressemble l' antre de Davy Jones ?",
+      "prompt": "Dans Pirates des Caraïbes, à quoi ressemble l'antre de Davy Jones ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127231,7 +126188,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Où Will revoit-il son père pour la première fois ?",
+      "prompt": "Dans Pirates des Caraïbes, où Will Turner revoit-il son père pour la première fois ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127267,7 +126224,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Dans quel épisode Hector Barbossa n'apparaît pas (ou presque pas )?",
+      "prompt": "Dans quel film de la saga Pirates des Caraïbes Hector Barbossa n'apparaît-il pas (ou presque pas) ?",
       "theme": "Pirates des Caraïbes",
       "isWellKnown": true
     },
@@ -127339,7 +126296,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est Sacha ?",
+      "prompt": "Dans Pokémon, qui est Sacha ?",
       "theme": "Pokemon partie",
       "isWellKnown": true
     },
@@ -127357,7 +126314,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui est le champion d'Argenta ?",
+      "prompt": "Dans Pokémon, qui est le champion de l'arène d'Argenta ?",
       "theme": "Pokemon partie",
       "isWellKnown": true
     },
@@ -127663,7 +126620,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "A quelle place le RC Lens a-t-il terminé en 2024-2025 ?",
+      "prompt": "À quelle place de Ligue 1 le RC Lens a-t-il terminé la saison 2024-2025 ?",
       "theme": "RC Lens",
       "isWellKnown": true
     },
@@ -127681,7 +126638,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Lors de quelle saison récente le RC Lens a-t-il joué la Ligue des champions ?",
+      "prompt": "Après plus de vingt ans d'absence, lors de quelle saison le RC Lens a-t-il retrouvé la Ligue des champions ?",
       "theme": "RC Lens",
       "isWellKnown": true
     },
@@ -129031,7 +127988,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "De quel pays Berlint est la capitale ?",
+      "prompt": "Dans Spy x Family, de quel pays Berlint est-elle la capitale ?",
       "theme": "Spy x Family",
       "isWellKnown": true
     },
@@ -129049,7 +128006,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Pour finir, quelle est l’adresse de la famille Forger ?",
+      "prompt": "Dans Spy x Family, quelle est l'adresse de la famille Forger ?",
       "theme": "Spy x Family",
       "isWellKnown": true
     },
@@ -129085,7 +128042,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quand fut sorti l'épisode II ?",
+      "prompt": "En quelle année est sorti l'épisode II de Star Wars ?",
       "theme": "Star Wars",
       "isWellKnown": true
     },
@@ -129481,7 +128438,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Qui a quitté le groupe en 2019 ?",
+      "prompt": "Quel membre a quitté le groupe Stray Kids en 2019 ?",
       "theme": "Stray Kids",
       "isWellKnown": true
     },
@@ -129877,7 +128834,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "En quelle année, Vienne a été annexé au Royaume de France",
+      "prompt": "En quelle année Vienne, en Isère, a-t-elle été rattachée au royaume de France ?",
       "theme": "Vienne (Isère)",
       "isWellKnown": true
     },
@@ -129895,7 +128852,7 @@
       "isAdult": false,
       "language": "fr",
       "note": null,
-      "prompt": "Pendant la Révolution, Vienne a été renommée",
+      "prompt": "Pendant la Révolution, Vienne, en Isère, a été renommée",
       "theme": "Vienne (Isère)",
       "isWellKnown": true
     },
@@ -135296,7 +134253,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quelle organisation Gerry Adams préside-t-il ?",
+      "prompt": "De quel parti républicain irlandais Gerry Adams a-t-il été le président de 1983 à 2018 ?",
       "theme": "miscellaneous"
     },
     {
@@ -135836,7 +134793,7 @@
       "isWellKnown": false,
       "language": "fr",
       "note": null,
-      "prompt": "Quand est né l’actuel Dalaï-Lama ?",
+      "prompt": "En quelle année est né Tenzin Gyatso, le 14e dalaï-lama ?",
       "theme": "world_religions"
     },
     {
@@ -149652,7 +148609,6 @@
     },
     {
       "accepted": [
-        "Jack & Gill",
         "Jack and Jill Went up the Hill"
       ],
       "answer": "Jack and Jill",
@@ -151320,8 +150276,7 @@
     },
     {
       "accepted": [
-        "Republic of Trinidad and Tobago",
-        "Trinidad & Tobago"
+        "Republic of Trinidad and Tobago"
       ],
       "answer": "Trinidad and Tobago",
       "category": "arts",
@@ -155255,7 +154210,7 @@
       "isWellKnown": true,
       "language": "en",
       "note": null,
-      "prompt": "Who was \"Kung Fu Fighting\" in 1974?",
+      "prompt": "Who had a hit with \"Kung Fu Fighting\" in 1974?",
       "theme": "Entertainment: Music"
     },
     {
@@ -158322,7 +157277,6 @@
       "accepted": [
         "And you, Brutus?",
         "Et tu, Brute? Then fall Caesar!",
-        "Et tu?",
         "You too, Brutus?"
       ],
       "answer": "Et tu, Brute?",
@@ -158805,7 +157759,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "The World Chess Championship in Chess, Act 1 is set in which Italian city?",
+      "prompt": "In the musical \"Chess\", the World Chess Championship of Act 1 is set in which Italian city?",
       "theme": "Entertainment: Musicals & Theatres"
     },
     {
@@ -161743,27 +160697,6 @@
       "language": "en",
       "note": null,
       "prompt": "Baron Silas Greenback is the arch nemesis of which cartoon hero?",
-      "theme": "Entertainment: Television"
-    },
-    {
-      "accepted": [
-        "Pablo (first name)",
-        "Pablo (given name)"
-      ],
-      "answer": "Pablo",
-      "category": "cinema",
-      "choiceOnly": false,
-      "decoys": [
-        "Esteban",
-        "Carlos",
-        "Duckster"
-      ],
-      "id": "otdb-81662f9f938f",
-      "isAdult": false,
-      "isWellKnown": false,
-      "language": "en",
-      "note": null,
-      "prompt": "What was the name of the inflatable duck sacrified to the crowd at the end of Episode 34 of the 18th season of Big Brother?",
       "theme": "Entertainment: Television"
     },
     {
@@ -167325,7 +166258,6 @@
     },
     {
       "accepted": [
-        "Sonic and Knuckles",
         "Sonic the Hedgehog 3 Part II"
       ],
       "answer": "Sonic & Knuckles",
@@ -168617,7 +167549,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "In Undertale, what's the prize for answering correctly?",
+      "prompt": "In Undertale, what is the prize for answering correctly on Mettaton's quiz show?",
       "theme": "Entertainment: Video Games"
     },
     {
@@ -171412,7 +170344,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "In what year was the game \"Eliminator\" released?",
+      "prompt": "In what year was Psygnosis's PlayStation game \"Eliminator\" released?",
       "theme": "Entertainment: Video Games"
     },
     {
@@ -180127,7 +179059,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "Which city hosted the CS:GO Dreamhack Open 2015?",
+      "prompt": "Which city hosted DreamHack's 2015 Counter-Strike: Global Offensive Major?",
       "theme": "Entertainment: Video Games"
     },
     {
@@ -190550,8 +189482,7 @@
     },
     {
       "accepted": [
-        "Aristaios",
-        "Aristæus"
+        "Aristaios"
       ],
       "answer": "Aristaeus",
       "category": "history",
@@ -201630,7 +200561,7 @@
       "isWellKnown": true,
       "language": "en",
       "note": null,
-      "prompt": "Which of the following was Brazil was a former colony under?",
+      "prompt": "Brazil was formerly a colony of which country?",
       "theme": "History"
     },
     {
@@ -205716,7 +204647,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "Which game was the Game of the Year in 2018?",
+      "prompt": "Which video game won Game of the Year at The Game Awards 2018?",
       "theme": "History"
     },
     {
@@ -207452,7 +206383,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "How many manned moon landings have there been?",
+      "prompt": "How many crewed Moon landings did NASA's Apollo program make?",
       "theme": "History"
     },
     {
@@ -214447,7 +213378,7 @@
       "isWellKnown": false,
       "language": "en",
       "note": null,
-      "prompt": "In what Homestuck Update was [S] Game Over released?",
+      "prompt": "When was the Homestuck update \"[S] Game Over\" released?",
       "theme": "Entertainment: Comics"
     },
     {
@@ -240219,7 +239150,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“Call me Ishmael.” Who said it?",
+      "prompt": "“Call me Ishmael.” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -240423,7 +239354,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“Look on my Works, ye Mighty, and despair!” Who said it?",
+      "prompt": "“Look on my Works, ye Mighty, and despair!” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -240464,7 +239395,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“To be, or not to be, that is the question.” Who said it?",
+      "prompt": "“To be, or not to be, that is the question.” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -240484,7 +239415,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“O Romeo, Romeo, wherefore art thou Romeo?” Who said it?",
+      "prompt": "“O Romeo, Romeo, wherefore art thou Romeo?” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -240504,7 +239435,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“All the world's a stage, and all the men and women merely players.” Who said it?",
+      "prompt": "“All the world's a stage, and all the men and women merely players.” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -240524,7 +239455,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“A horse! a horse! my kingdom for a horse!” Who said it?",
+      "prompt": "“A horse! a horse! my kingdom for a horse!” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -240544,7 +239475,7 @@
       "choiceOnly": false,
       "isAdult": false,
       "language": "en",
-      "prompt": "“Friends, Romans, countrymen, lend me your ears.” Who said it?",
+      "prompt": "“Friends, Romans, countrymen, lend me your ears.” Who wrote it?",
       "theme": "Quotes"
     },
     {
@@ -247360,7 +246291,7 @@
       "id": "videogames-fr-noob",
       "isWellKnown": true,
       "note": "Le mot vient de l’anglais newbie.",
-      "prompt": "Comment appelle-t-on familièrement un joueur débutant ?",
+      "prompt": "Dans les jeux vidéo, comment appelle-t-on familièrement un joueur débutant ?",
       "category": "videogames",
       "isAdult": false,
       "language": "fr",
@@ -247658,7 +246589,7 @@
       "id": "videogames-fr-grind",
       "isWellKnown": false,
       "note": "On dit aussi « farmer ».",
-      "prompt": "Comment appelle-t-on le fait de répéter longtemps la même tâche pour progresser ?",
+      "prompt": "Dans un jeu vidéo, comment appelle-t-on le fait de répéter longtemps la même tâche pour progresser ?",
       "category": "videogames",
       "isAdult": false,
       "language": "fr",
@@ -247680,7 +246611,7 @@
       "id": "videogames-fr-camper",
       "isWellKnown": false,
       "note": "La pratique est mal vue dans les jeux de tir en ligne.",
-      "prompt": "Comment appelle-t-on un joueur qui reste caché au même endroit pour surprendre les autres ?",
+      "prompt": "Dans un jeu vidéo en ligne, comment appelle-t-on un joueur qui reste caché au même endroit pour surprendre les autres ?",
       "category": "videogames",
       "isAdult": false,
       "language": "fr",

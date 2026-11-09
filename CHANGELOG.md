@@ -608,6 +608,16 @@ one part.
 
 ### Fixes
 
+- `[Server]` **Every quiz question says what it is about.** All 13 010
+  questions were read for a prompt that leans on a context the screen never
+  shows — _the club_, _the series_, _l'édition de 2023_ — or on a moment it
+  never names. 335 now name their club, sport, competition, book or series,
+  or anchor their year (_Lequel de ces joueurs a porté le maillot des
+  Girondins de Bordeaux dans les années 1940 ?_), and 52 that no wording
+  could save — a namesake, a record broken since, a ranking that moved —
+  are gone. A shortened answer takes decoys of its own shape, so the right
+  one no longer stands out among the four.
+
 - `[Shared]` **Black square never pays a true answer the deal left out.** A
   round grades a line against the four answers it dealt, so a true answer
   left out was a stranger to it: _Irlande_ typed beside a dealt _Islande_ was

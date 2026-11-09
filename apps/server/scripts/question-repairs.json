@@ -25,7 +25,11 @@
   },
   "mintaka-0e9a6c56": {
     "answer": "Union soviétique",
-    "decoys": ["Afrique du Sud", "États-Unis", "Pologne"],
+    "decoys": [
+      "Afrique du Sud",
+      "États-Unis",
+      "Pologne"
+    ],
     "prompt": "Quel pays, puissance alliée de la Seconde Guerre mondiale, a subi le plus de pertes ?",
     "why": "The garbled prompt answers Russia for the USSR, and Ukraine as a decoy was part of the right answer."
   },
@@ -115,7 +119,11 @@
   },
   "mintaka-2f806991": {
     "answer": "Seconde Guerre mondiale",
-    "decoys": ["Première Guerre mondiale", "guerre de Sécession", "Vikings"],
+    "decoys": [
+      "Première Guerre mondiale",
+      "guerre de Sécession",
+      "Vikings"
+    ],
     "why": "The Second World War drew in more countries than the First, so the decoy was the right answer."
   },
   "mintaka-2fe22f4c": {
@@ -135,7 +143,11 @@
     "why": "Red Dead Redemption 2, a decoy, also sold over 60 million and was co-developed by Rockstar North."
   },
   "mintaka-3b4a2856": {
-    "decoys": ["Somalie", "Érythrée", "Éthiopie"],
+    "decoys": [
+      "Somalie",
+      "Érythrée",
+      "Éthiopie"
+    ],
     "why": "The question asks for a country but the decoys were cities."
   },
   "mintaka-3d5aa71a": {
@@ -239,7 +251,11 @@
     "why": "The Congo is about ninth by length, not sixth, and no decoy is the right river."
   },
   "mintaka-6e9d000b": {
-    "decoys": ["Antarctique", "Asie", "Europe"],
+    "decoys": [
+      "Antarctique",
+      "Asie",
+      "Europe"
+    ],
     "why": "The decoy 'Afrique du Nord' is also a correct answer."
   },
   "mintaka-7a68bd0d": {
@@ -247,8 +263,8 @@
     "why": "Mount Rainier is nowhere near the fifth highest US peak (the top ones are all in Alaska), and no decoy is right."
   },
   "mintaka-7dbdd31c": {
-    "answer": "Avatar : La Voie de l'eau",
-    "why": "Avatar: The Way of Water cost far more than Titanic, so the answer is out of date."
+    "drop": true,
+    "why": "Avatar: The Way of Water cost far more than Titanic, so the answer is out of date. Avatar: Fire and Ash (2025) may now be James Cameron's most expensive film."
   },
   "mintaka-7ddecaa9": {
     "prompt": "Dans le film Le Parrain, quel personnage est le Parrain ?",
@@ -351,7 +367,11 @@
     "why": "Amelia Earhart's feat was a solo flight, and without \"en avion\" the question also points at sailors and rowers."
   },
   "mintaka-05fe3168": {
-    "decoys": ["Moyen-Orient", "Empire romain", "Grèce antique"],
+    "decoys": [
+      "Moyen-Orient",
+      "Empire romain",
+      "Grèce antique"
+    ],
     "why": "Mesopotamia was a decoy, yet Sumer is a Mesopotamian civilisation, so it was just as right."
   },
   "mintaka-06ad2ef6": {
@@ -371,7 +391,11 @@
     "why": "Sydney is misspelt 'Sidney'."
   },
   "mintaka-08c9466b": {
-    "decoys": ["Empire romain", "Grèce antique", "Égypte antique"],
+    "decoys": [
+      "Empire romain",
+      "Grèce antique",
+      "Égypte antique"
+    ],
     "why": "The decoy 'Moyen-Orient' is where Sumer was and reads as right."
   },
   "mintaka-08d09f16": {
@@ -415,7 +439,11 @@
     "why": "Tom Brady won with the Patriots and the Buccaneers, so Manning is not the only one"
   },
   "mintaka-26b65c8b": {
-    "decoys": ["Delphes", "Memphis", "Angkor"],
+    "decoys": [
+      "Delphes",
+      "Memphis",
+      "Angkor"
+    ],
     "prompt": "Quel site maya du Mexique est devenu l’une des sept nouvelles merveilles du monde en 2007 ?",
     "why": "Petra, a decoy, was named a new wonder in 2007 too, and typed the prompt allowed all seven."
   },
@@ -581,7 +609,11 @@
     "why": "the most liked president is not a fact, and no candidate can be the answer to it"
   },
   "mintaka-407dee4b": {
-    "decoys": ["Guam", "Îles Vierges des États-Unis", "Samoa américaines"],
+    "decoys": [
+      "Guam",
+      "Îles Vierges des États-Unis",
+      "Samoa américaines"
+    ],
     "why": "The decoys were ancient civilisations, not US territories, so the choice gave the answer away."
   },
   "mintaka-409bf040": {
@@ -881,7 +913,11 @@
     "why": "Pong was not the first video game ever made (Tennis for Two and others came before), but it was the first commercial hit."
   },
   "mintaka-21376828": {
-    "decoys": ["Antarctique", "Asie", "Europe"],
+    "decoys": [
+      "Antarctique",
+      "Asie",
+      "Europe"
+    ],
     "why": "The decoy 'Afrique du Nord' is also a correct answer."
   },
   "mintaka-25052551": {
@@ -1042,7 +1078,11 @@
     "why": "Ridley Scott is a director, not an actor, and his first award was for The Duellists, which is not among the choices."
   },
   "mintaka-b206f6da": {
-    "decoys": ["Pérou", "Viêt Nam", "Arabie saoudite"],
+    "decoys": [
+      "Pérou",
+      "Viêt Nam",
+      "Arabie saoudite"
+    ],
     "why": "The Philippines also won independence from Spain and fought the US in 1899, so that decoy is just as right."
   },
   "mintaka-b0765f2e": {
@@ -1082,7 +1122,11 @@
     "why": "Marlon Brando acted in dozens of films, so the question has no single answer."
   },
   "mintaka-bb04aaf6": {
-    "decoys": ["Pinocchio", "Aladdin", "Mowgli"],
+    "decoys": [
+      "Pinocchio",
+      "Aladdin",
+      "Mowgli"
+    ],
     "why": "The decoys are films, not characters, so the choice gives the answer away."
   },
   "mintaka-bbe97bcc": {
@@ -1282,7 +1326,11 @@
     "why": "The first film released in 2021 is not Black Widow and has no single answer anyway."
   },
   "mintaka-e388bbcf": {
-    "decoys": ["Maui", "Oahu", "Kauai"],
+    "decoys": [
+      "Maui",
+      "Oahu",
+      "Kauai"
+    ],
     "why": "The question asks for an island but the decoys were mainland US states."
   },
   "mintaka-e778bc98": {
@@ -1427,7 +1475,11 @@
   },
   "mintaka-fc64b63c": {
     "answer": "Inde",
-    "decoys": ["République populaire de Chine", "Israël", "Cap-Vert"],
+    "decoys": [
+      "République populaire de Chine",
+      "Israël",
+      "Cap-Vert"
+    ],
     "why": "India overtook China as Asia's most populous country in 2023."
   },
   "mintaka-fca3b99d": {
@@ -1448,7 +1500,11 @@
   },
   "mmmlu-astronomy-86": {
     "answer": "Les trous noirs",
-    "decoys": ["Les naines rouges", "Les pulsars", "Les galaxies"],
+    "decoys": [
+      "Les naines rouges",
+      "Les pulsars",
+      "Les galaxies"
+    ],
     "why": "The candidates had lost their article."
   },
   "mmmlu-astronomy-122": {
@@ -1457,7 +1513,11 @@
   },
   "mmmlu-astronomy-127": {
     "answer": "1609",
-    "decoys": ["1409", "1509", "1709"],
+    "decoys": [
+      "1409",
+      "1509",
+      "1709"
+    ],
     "prompt": "En quelle année Galilée a-t-il pointé pour la première fois une lunette vers le ciel ?",
     "why": "Galileo did not invent the telescope (Lippershey's patent is 1608), and the years were printed « 1 609 »."
   },
@@ -1471,30 +1531,50 @@
     "why": "« million » was left singular."
   },
   "mmmlu-conceptual-physics-182": {
-    "decoys": ["l’intensité", "l’amplitude", "la vitesse"],
+    "decoys": [
+      "l’intensité",
+      "l’amplitude",
+      "la vitesse"
+    ],
     "why": "Two decoys had lost their article (« d’intensité », « vitesse »)."
   },
   "mmmlu-high-school-biology-31": {
     "answer": "La parthénogenèse",
-    "decoys": ["La méiose", "L’embryogenèse", "La propagation végétative"],
+    "decoys": [
+      "La méiose",
+      "L’embryogenèse",
+      "La propagation végétative"
+    ],
     "prompt": "Comment appelle-t-on le développement d’un œuf sans fécondation ?",
     "why": "A completion stem with « fertilisation », an anglicism."
   },
   "mmmlu-high-school-biology-48": {
     "answer": "Les trompes de Fallope",
-    "decoys": ["Les ovaires", "L’utérus", "Le placenta"],
+    "decoys": [
+      "Les ovaires",
+      "L’utérus",
+      "Le placenta"
+    ],
     "prompt": "Chez l’humain, où a normalement lieu la fécondation ?",
     "why": "« La fertilisation se fait dans : » is a translated exam stem."
   },
   "mmmlu-high-school-biology-91": {
     "answer": "Le commensalisme",
-    "decoys": ["Le parasitisme", "Le mutualisme", "La symbiose"],
+    "decoys": [
+      "Le parasitisme",
+      "Le mutualisme",
+      "La symbiose"
+    ],
     "prompt": "Comment appelle-t-on une relation entre deux espèces où l’une profite de l’autre sans lui nuire ni l’aider ?",
     "why": "A definition stem ending in a colon."
   },
   "mmmlu-high-school-biology-180": {
     "answer": "L’eau",
-    "decoys": ["Le carbone", "L’oxygène", "Le glucose"],
+    "decoys": [
+      "Le carbone",
+      "L’oxygène",
+      "Le glucose"
+    ],
     "prompt": "Quel est le principal composé inorganique présent dans les êtres vivants ?",
     "why": "A completion stem; two decoys had lost their article."
   },
@@ -1504,13 +1584,21 @@
   },
   "mmmlu-high-school-geography-24": {
     "answer": "La théocratie",
-    "decoys": ["La dictature", "La démocratie", "L’autocratie"],
+    "decoys": [
+      "La dictature",
+      "La démocratie",
+      "L’autocratie"
+    ],
     "prompt": "Comment appelle-t-on un régime où religion et gouvernement sont confondus ?",
     "why": "A completion stem whose candidates had lost their article."
   },
   "mmmlu-high-school-geography-36": {
     "answer": "Le Cambodge",
-    "decoys": ["L’Inde", "Le Népal", "L’Indonésie"],
+    "decoys": [
+      "L’Inde",
+      "Le Népal",
+      "L’Indonésie"
+    ],
     "prompt": "Dans quel pays se trouve le plus grand temple hindou jamais construit ?",
     "why": "The decoys were two Indian cities and an island, which a country answer does not stand beside."
   },
@@ -1531,7 +1619,11 @@
   },
   "mmmlu-high-school-geography-99": {
     "answer": "La latitude",
-    "decoys": ["La longitude", "Le méridien", "L’altitude"],
+    "decoys": [
+      "La longitude",
+      "Le méridien",
+      "L’altitude"
+    ],
     "prompt": "Comment appelle-t-on la position d’un lieu au nord ou au sud de l’équateur ?",
     "why": "A completion stem, and « le système de grille globale » is not a thing anyone says."
   },
@@ -1541,19 +1633,31 @@
   },
   "mmmlu-high-school-geography-150": {
     "answer": "La Turquie",
-    "decoys": ["L’Iran", "L’Irak", "L’Égypte"],
+    "decoys": [
+      "L’Iran",
+      "L’Irak",
+      "L’Égypte"
+    ],
     "prompt": "Quel pays compte le plus de Kurdes ?",
     "why": "Turkey holds the largest share of Kurds, not « la majorité »."
   },
   "mmmlu-high-school-geography-151": {
     "answer": "L’Espagne",
-    "decoys": ["La France", "Le Portugal", "L’Italie"],
+    "decoys": [
+      "La France",
+      "Le Portugal",
+      "L’Italie"
+    ],
     "prompt": "Dans quel pays vit la plus grande partie des bascophones ?",
     "why": "The decoys were Nordic countries no table would hesitate over."
   },
   "mmmlu-high-school-geography-184": {
     "answer": "L’Afrique",
-    "decoys": ["L’Asie", "L’Amérique du Sud", "L’Europe"],
+    "decoys": [
+      "L’Asie",
+      "L’Amérique du Sud",
+      "L’Europe"
+    ],
     "prompt": "Quel continent a le taux de fécondité le plus élevé ?",
     "why": "« Taux de fertilité » is an anglicism for fécondité."
   },
@@ -1563,7 +1667,11 @@
   },
   "mmmlu-miscellaneous-2": {
     "answer": "451",
-    "decoys": ["986", "2 125", "3 985"],
+    "decoys": [
+      "986",
+      "2 125",
+      "3 985"
+    ],
     "why": "A room answers with the number Bradbury made famous, not « 451 degrés »."
   },
   "mmmlu-miscellaneous-19": {
@@ -1575,17 +1683,29 @@
     "why": "Oganesson is heavier; only among those found in nature is radon the heaviest."
   },
   "mmmlu-miscellaneous-57": {
-    "decoys": ["Le cricket", "Le tennis", "Le squash"],
+    "decoys": [
+      "Le cricket",
+      "Le tennis",
+      "Le squash"
+    ],
     "why": "« Courges » is squash the vegetable, a translation slip."
   },
   "mmmlu-miscellaneous-58": {
     "answer": "Un pain plat",
-    "decoys": ["Un fruit frais", "Une tarte", "Un plat de haricots"],
+    "decoys": [
+      "Un fruit frais",
+      "Une tarte",
+      "Un plat de haricots"
+    ],
     "prompt": "Qu’est-ce qu’un pita ?",
     "why": "A completion stem with a decoy no one could take seriously."
   },
   "mmmlu-miscellaneous-117": {
-    "decoys": ["soi-même", "le silence", "la solitude"],
+    "decoys": [
+      "soi-même",
+      "le silence",
+      "la solitude"
+    ],
     "why": "Two decoys were nonsense (« peu fabriqué », « chargé de teintes vert et bleu »)."
   },
   "mmmlu-miscellaneous-138": {
@@ -1598,23 +1718,39 @@
   },
   "mmmlu-miscellaneous-195": {
     "answer": "Blanc",
-    "decoys": ["Noir", "Noir à taches blanches", "Blanc à taches noires"],
+    "decoys": [
+      "Noir",
+      "Noir à taches blanches",
+      "Blanc à taches noires"
+    ],
     "why": "« Blanche » agrees with nothing in the sentence."
   },
   "mmmlu-miscellaneous-204": {
     "answer": "Un ichtyologiste",
-    "decoys": ["Un entomologiste", "Un océanographe", "Un herpétologiste"],
+    "decoys": [
+      "Un entomologiste",
+      "Un océanographe",
+      "Un herpétologiste"
+    ],
     "why": "« Ichthyologue » is not French, and « marinologue » is no word."
   },
   "mmmlu-miscellaneous-233": {
     "answer": "Du fromage",
-    "decoys": ["Des fruits", "De la sauce", "De la crème fouettée"],
+    "decoys": [
+      "Des fruits",
+      "De la sauce",
+      "De la crème fouettée"
+    ],
     "prompt": "En cuisine, qu’est-ce qui recouvre traditionnellement un plat « gratiné » ?",
     "why": "The answer and two decoys had lost their capital."
   },
   "mmmlu-miscellaneous-235": {
     "answer": "Dans un corps humain",
-    "decoys": ["Dans l’espace", "Au fond de l’océan", "Au centre de la Terre"],
+    "decoys": [
+      "Dans l’espace",
+      "Au fond de l’océan",
+      "Au centre de la Terre"
+    ],
     "prompt": "Dans le film « Le Voyage fantastique » (1966), où voyagent les héros miniaturisés ?",
     "why": "The candidates had lost their capital, and « miniaturisés » is what the film is known by."
   },
@@ -1624,13 +1760,21 @@
   },
   "mmmlu-miscellaneous-254": {
     "answer": "Neuf",
-    "decoys": ["Dix", "Onze", "Douze"],
+    "decoys": [
+      "Dix",
+      "Onze",
+      "Douze"
+    ],
     "prompt": "Combien Beethoven a-t-il composé de symphonies ?",
     "why": "« La dernière symphonie … La neuvième » reads as a riddle; the count is what a table knows."
   },
   "mmmlu-miscellaneous-280": {
     "answer": "Un million",
-    "decoys": ["Mille", "Un milliard", "Cent mille"],
+    "decoys": [
+      "Mille",
+      "Un milliard",
+      "Cent mille"
+    ],
     "prompt": "Combien de cycles par seconde vaut un mégahertz ?",
     "why": "A decoy was the nonsense « -328 716 »."
   },
@@ -1646,35 +1790,59 @@
   },
   "mmmlu-miscellaneous-298": {
     "answer": "Avec de la viande",
-    "decoys": ["Avec des haricots", "Avec du fromage", "Avec des poivrons"],
+    "decoys": [
+      "Avec des haricots",
+      "Avec du fromage",
+      "Avec des poivrons"
+    ],
     "prompt": "Que signifie « con carne » dans « chili con carne » ?",
     "why": "A completion stem with mismatched candidates."
   },
   "mmmlu-miscellaneous-314": {
     "answer": "L’iris",
-    "decoys": ["La pupille", "La rétine", "La cochlée"],
+    "decoys": [
+      "La pupille",
+      "La rétine",
+      "La cochlée"
+    ],
     "why": "The candidates had lost their article."
   },
   "mmmlu-miscellaneous-319": {
     "answer": "Le royaume zoulou",
-    "decoys": ["Le royaume hutu", "L’Empire aztèque", "Le royaume massaï"],
+    "decoys": [
+      "Le royaume hutu",
+      "L’Empire aztèque",
+      "Le royaume massaï"
+    ],
     "prompt": "Quel royaume africain a dominé une grande partie de l’Afrique du Sud au XIXe siècle ?",
     "why": "« Empire indigène » is a calque, and the candidates lacked a noun."
   },
   "mmmlu-miscellaneous-324": {
     "answer": "Un myope",
-    "decoys": ["Un presbyte", "Un astigmate", "Un hypermétrope"],
+    "decoys": [
+      "Un presbyte",
+      "Un astigmate",
+      "Un hypermétrope"
+    ],
     "why": "« Un rétrospectif » is no condition."
   },
   "mmmlu-miscellaneous-369": {
     "answer": "Wookiee",
-    "decoys": ["Woolie", "Ewok", "Klingon"],
+    "decoys": [
+      "Woolie",
+      "Ewok",
+      "Klingon"
+    ],
     "prompt": "Dans « Star Wars », à quelle espèce appartient Chewbacca ?",
     "why": "A completion stem; Ewok is the decoy a fan hesitates over."
   },
   "mmmlu-miscellaneous-371": {
     "answer": "Les séquoias à feuilles d’if",
-    "decoys": ["Les douglas", "Les séquoias géants", "Les épicéas de Sitka"],
+    "decoys": [
+      "Les douglas",
+      "Les séquoias géants",
+      "Les épicéas de Sitka"
+    ],
     "why": "The Latin binomial was half translated (« séquoia sempervirens ») and « Douglas Fir » left in English."
   },
   "mmmlu-miscellaneous-390": {
@@ -1683,18 +1851,30 @@
   },
   "mmmlu-miscellaneous-398": {
     "answer": "La coqueluche",
-    "decoys": ["La rubéole", "La rougeole", "La scarlatine"],
+    "decoys": [
+      "La rubéole",
+      "La rougeole",
+      "La scarlatine"
+    ],
     "prompt": "Quel est le nom courant de la maladie autrefois appelée « la quinte » ?",
     "why": "Two decoys were joke conditions (« Inflammation du coude », « Poumon noir »)."
   },
   "mmmlu-miscellaneous-434": {
     "answer": "File Transfer Protocol",
-    "decoys": ["Full Time Portal", "Full Text Processor", "Free To Print"],
+    "decoys": [
+      "Full Time Portal",
+      "Full Text Processor",
+      "Free To Print"
+    ],
     "why": "Capitalised as the acronym it spells."
   },
   "mmmlu-miscellaneous-439": {
     "answer": "Le silicium",
-    "decoys": ["Le sodium", "L’aluminium", "L’argent"],
+    "decoys": [
+      "Le sodium",
+      "L’aluminium",
+      "L’argent"
+    ],
     "why": "« Silicone » is a polymer; the element is silicium."
   },
   "mmmlu-miscellaneous-454": {
@@ -1703,17 +1883,29 @@
   },
   "mmmlu-miscellaneous-472": {
     "answer": "L’Earl Grey",
-    "decoys": ["Le Darjeeling", "L’English Breakfast", "Le Prince de Galles"],
+    "decoys": [
+      "Le Darjeeling",
+      "L’English Breakfast",
+      "Le Prince de Galles"
+    ],
     "why": "The answer was cut to « L’Earl » and its second half glued to a decoy (« Le Grey Darjeeling »)."
   },
   "mmmlu-miscellaneous-490": {
     "answer": "Le néerlandais",
-    "decoys": ["Le danois", "Le suédois", "L’allemand"],
+    "decoys": [
+      "Le danois",
+      "Le suédois",
+      "L’allemand"
+    ],
     "why": "« Hollandais » is the colloquial name; the official language is néerlandais."
   },
   "mmmlu-miscellaneous-512": {
     "answer": "Le porc",
-    "decoys": ["La vache", "Le serpent", "Le poulet"],
+    "decoys": [
+      "La vache",
+      "Le serpent",
+      "Le poulet"
+    ],
     "why": "The candidates mixed « Du » and « La »."
   },
   "mmmlu-miscellaneous-563": {
@@ -1722,7 +1914,11 @@
   },
   "mmmlu-miscellaneous-582": {
     "answer": "L’espagnol",
-    "decoys": ["Le russe", "L’allemand", "Le français"],
+    "decoys": [
+      "Le russe",
+      "L’allemand",
+      "Le français"
+    ],
     "why": "The candidates were adjectives agreeing with nothing."
   },
   "mmmlu-miscellaneous-622": {
@@ -1730,24 +1926,40 @@
     "why": "The counts were printed as decimals (« 24.0 »)."
   },
   "mmmlu-miscellaneous-625": {
-    "decoys": ["Noir", "Jaune", "Bleu"],
+    "decoys": [
+      "Noir",
+      "Jaune",
+      "Bleu"
+    ],
     "prompt": "De quelle couleur sont les rubis ?",
     "why": "The decoys were inflected for nothing."
   },
   "mmmlu-miscellaneous-638": {
     "answer": "La pierre ponce",
-    "decoys": ["Le granit", "Le calcaire", "Le schiste"],
+    "decoys": [
+      "Le granit",
+      "Le calcaire",
+      "Le schiste"
+    ],
     "prompt": "Quelle roche flotte sur l’eau ?",
     "why": "« Laquelle de ces roches » only asked beside the four, and the pumice is well known."
   },
   "mmmlu-miscellaneous-651": {
     "answer": "L’Olympe",
-    "decoys": ["Le Parnasse", "Le Vésuve", "Le Valhalla"],
+    "decoys": [
+      "Le Parnasse",
+      "Le Vésuve",
+      "Le Valhalla"
+    ],
     "why": "The answer lacked its article, and Jupiter is no mountain."
   },
   "mmmlu-miscellaneous-669": {
     "answer": "Le français",
-    "decoys": ["Le russe", "L’italien", "Le portugais"],
+    "decoys": [
+      "Le russe",
+      "L’italien",
+      "Le portugais"
+    ],
     "why": "The candidates mixed bare names and articles."
   },
   "mmmlu-miscellaneous-690": {
@@ -1762,13 +1974,21 @@
   },
   "mmmlu-miscellaneous-702": {
     "answer": "La transpiration",
-    "decoys": ["La respiration", "L’oxydation", "La condensation"],
+    "decoys": [
+      "La respiration",
+      "L’oxydation",
+      "La condensation"
+    ],
     "prompt": "Comment appelle-t-on la perte d’eau des plantes sous forme de vapeur ?",
     "why": "A completion stem."
   },
   "mmmlu-miscellaneous-709": {
     "answer": "Le bardot",
-    "decoys": ["La mule", "Le mulet", "Le poney"],
+    "decoys": [
+      "La mule",
+      "Le mulet",
+      "Le poney"
+    ],
     "prompt": "Comment appelle-t-on le petit d’une ânesse et d’un cheval ?",
     "why": "The decoys were English words (burro, honker), and mule and mulet are what a room hesitates over."
   },
@@ -1778,13 +1998,21 @@
   },
   "mmmlu-miscellaneous-721": {
     "answer": "La condensation",
-    "decoys": ["L’évaporation", "La déposition", "La sublimation"],
+    "decoys": [
+      "L’évaporation",
+      "La déposition",
+      "La sublimation"
+    ],
     "prompt": "Comment appelle-t-on le passage d’un gaz à l’état liquide ?",
     "why": "A completion stem."
   },
   "mmmlu-miscellaneous-745": {
     "answer": "Les Incas",
-    "decoys": ["Les Pueblos", "Les Aztèques", "Les Apaches"],
+    "decoys": [
+      "Les Pueblos",
+      "Les Aztèques",
+      "Les Apaches"
+    ],
     "prompt": "Quel peuple dominait les Andes jusqu’à la conquête espagnole de 1532 ?",
     "why": "« À quel peuple appartenaient les Andes » is a calque, and the candidates lacked articles."
   },
@@ -1800,19 +2028,31 @@
   },
   "mmmlu-miscellaneous-771": {
     "answer": "Le Zaïre",
-    "decoys": ["L’Angola", "La Rhodésie", "Le Congo belge"],
+    "decoys": [
+      "L’Angola",
+      "La Rhodésie",
+      "Le Congo belge"
+    ],
     "prompt": "Comment s’appelait la République démocratique du Congo de 1971 à 1997 ?",
     "why": "A completion stem whose answer read « Au Zaïre »."
   },
   "mmmlu-prehistory-71": {
     "answer": "Un pétroglyphe",
-    "decoys": ["Un pictogramme", "Une fresque", "Une pétrification"],
+    "decoys": [
+      "Un pictogramme",
+      "Une fresque",
+      "Une pétrification"
+    ],
     "prompt": "Comment appelle-t-on un dessin gravé, et non peint, sur une roche ?",
     "why": "A completion stem with a decoy that is an adjective."
   },
   "mmmlu-prehistory-179": {
     "answer": "La mégafaune",
-    "decoys": ["Les mégalithes", "La mégaflore", "Les mégatrons"],
+    "decoys": [
+      "Les mégalithes",
+      "La mégaflore",
+      "Les mégatrons"
+    ],
     "prompt": "Comment appelle-t-on l’ensemble des grands animaux disparus à la fin du Pléistocène ?",
     "why": "A completion stem."
   },
@@ -1827,13 +2067,21 @@
     "why": "The answer lacked its article."
   },
   "mmmlu-world-religions-42": {
-    "decoys": ["Paul", "Jean", "Matthieu"],
+    "decoys": [
+      "Paul",
+      "Jean",
+      "Matthieu"
+    ],
     "prompt": "De quel apôtre l’évêque de Rome, le pape, se dit-il le successeur ?",
     "why": "« Successeur directeur » is a typo, and Jésus is no apostle."
   },
   "mmmlu-world-religions-93": {
     "answer": "Le calife",
-    "decoys": ["Le rasul", "Le nabi", "Le mahdi"],
+    "decoys": [
+      "Le rasul",
+      "Le nabi",
+      "Le mahdi"
+    ],
     "why": "« Caliphe » is misspelt."
   },
   "oqdb-4-2": {
@@ -1949,7 +2197,11 @@
     "why": "a decoy answers the prompt too — a public blockchain's defining property is that every transaction is permanently traceable, so the decoy \"Tracabilite\" answers the prompt at least as well as \"Anonymat\", which is only pseudonymity"
   },
   "oqdb-185-4": {
-    "decoys": ["Murder by Numbers", "The Net", "Speed"],
+    "decoys": [
+      "Murder by Numbers",
+      "The Net",
+      "Speed"
+    ],
     "why": "a stray markup tag in a decoy"
   },
   "oqdb-191-3": {
@@ -2013,7 +2265,11 @@
     "why": "the mouse was invented and patented at SRI, and the pack needs an answer starting with X"
   },
   "oqdb-285-1": {
-    "decoys": ["Neuf", "Huit", "Dix"],
+    "decoys": [
+      "Neuf",
+      "Huit",
+      "Dix"
+    ],
     "why": "a garbled decoy"
   },
   "oqdb-292-4": {
@@ -2103,7 +2359,11 @@
     "why": "dangling « elle »; the same row also sits in the Valérie Lemercier pack, which names her"
   },
   "oqdb-359-1": {
-    "decoys": ["Franc", "Livre", "Mark"],
+    "decoys": [
+      "Franc",
+      "Livre",
+      "Mark"
+    ],
     "why": "a country among three currencies"
   },
   "oqdb-359-4": {
@@ -2119,7 +2379,11 @@
     "why": "asks for a direction but expects a country, which only the theme supplies"
   },
   "oqdb-362-2": {
-    "decoys": ["Bananier", "Brouette", "Braderie"],
+    "decoys": [
+      "Bananier",
+      "Brouette",
+      "Braderie"
+    ],
     "prompt": "Ne manque pas d'énergie, mot de huit lettres commençant par un B ?",
     "why": "the clue ruled out its own answer — \"Batterie\" is eight letters, not seven — and the three decoys were the only seven-letter words left, so correcting the count alone would have named the answer in choice mode"
   },
@@ -2169,7 +2433,11 @@
   },
   "oqdb-403-3": {
     "answer": "Épée",
-    "decoys": ["Boule de feu", "Flèche", "Bougie"],
+    "decoys": [
+      "Boule de feu",
+      "Flèche",
+      "Bougie"
+    ],
     "why": "the row's own note says Cato ran Peeta through with a sword"
   },
   "oqdb-405-3": {
@@ -2197,11 +2465,19 @@
     "why": "no period given, so 2008 answers it as well as 1929"
   },
   "oqdb-427-1": {
-    "decoys": ["Brad Pitt", "John Travolta", "Tom Hanks"],
+    "decoys": [
+      "Brad Pitt",
+      "John Travolta",
+      "Tom Hanks"
+    ],
     "why": "a misspelt decoy"
   },
   "oqdb-427-2": {
-    "decoys": ["Nescafé", "Senseo", "Café Grand'Mère"],
+    "decoys": [
+      "Nescafé",
+      "Senseo",
+      "Café Grand'Mère"
+    ],
     "why": "a misspelt decoy"
   },
   "oqdb-432-2": {
@@ -2221,7 +2497,11 @@
     "why": "dangling « son », the subject named only by the pack"
   },
   "oqdb-448-3": {
-    "decoys": ["Neptune", "Nereus", "Poseidon"],
+    "decoys": [
+      "Neptune",
+      "Nereus",
+      "Poseidon"
+    ],
     "why": "a mangled HTML tag in a decoy"
   },
   "oqdb-450-3": {
@@ -2278,12 +2558,20 @@
   },
   "oqdb-508-4": {
     "answer": "Savoie",
-    "decoys": ["Béarn", "Jura", "Tarn"],
+    "decoys": [
+      "Béarn",
+      "Jura",
+      "Tarn"
+    ],
     "why": "Marignan is a Vin de Savoie cru, and the note names Haute-Savoie landmarks"
   },
   "oqdb-514-4": {
     "answer": "Riesling",
-    "decoys": ["Sylvaner", "Müller-Thurgau", "Mauzac"],
+    "decoys": [
+      "Sylvaner",
+      "Müller-Thurgau",
+      "Mauzac"
+    ],
     "why": "Riesling has led Germany's white plantings since the 1990s, and the note's 24 % is its figure"
   },
   "oqdb-517-4": {
@@ -2438,7 +2726,11 @@
   },
   "otdb-5efa52ea2935": {
     "answer": "Android",
-    "decoys": ["iOS", "BlackBerry", "Symbian"],
+    "decoys": [
+      "iOS",
+      "BlackBerry",
+      "Symbian"
+    ],
     "why": "Android held about 69 % of 2012 smartphone shipments against iOS at 19 %"
   },
   "otdb-6b04a405c0ea": {
@@ -2491,7 +2783,11 @@
   },
   "otdb-8f2e68958907": {
     "answer": "Nuclei",
-    "decoys": ["Ribosomes", "Lysosomes", "Mitochondria"],
+    "decoys": [
+      "Ribosomes",
+      "Lysosomes",
+      "Mitochondria"
+    ],
     "why": "DNA replication happens in the nucleus; ribosomes make protein"
   },
   "otdb-8f13cfd7df5e": {
@@ -2524,7 +2820,11 @@
   },
   "otdb-25c4d6db63b7": {
     "answer": "Tungsten",
-    "decoys": ["Platinum", "Osmium", "Iron"],
+    "decoys": [
+      "Platinum",
+      "Osmium",
+      "Iron"
+    ],
     "prompt": "Which metal has the highest melting point?",
     "why": "Carbon sublimes rather than melts at ordinary pressure, and tungsten, a decoy, is the answer most sources give."
   },
@@ -2690,7 +2990,11 @@
   },
   "otdb-52807809e3ae": {
     "answer": "Freedom",
-    "decoys": ["Raise Hell", "Skewer the Winged Beast", "Ascend from Darkness"],
+    "decoys": [
+      "Raise Hell",
+      "Skewer the Winged Beast",
+      "Ascend from Darkness"
+    ],
     "drop": true,
     "why": "a decoy answers the prompt too — \"Freedom\" is the actual final step of the Little Lost Girl easter egg and is listed as a decoy"
   },
@@ -2720,7 +3024,11 @@
   },
   "otdb-a34132ef5e5f": {
     "answer": "P.E.K.K.A's Playhouse",
-    "decoys": ["Barbarian Bowl", "Spell Valley", "Royal Arena"],
+    "decoys": [
+      "Barbarian Bowl",
+      "Spell Valley",
+      "Royal Arena"
+    ],
     "why": "Arena 4 is P.E.K.K.A’s Playhouse; Spell Valley is Arena 5"
   },
   "otdb-a422915f24e2": {
@@ -2733,7 +3041,11 @@
   },
   "otdb-ae348676b300": {
     "answer": "28",
-    "decoys": ["36", "20", "32"],
+    "decoys": [
+      "36",
+      "20",
+      "32"
+    ],
     "why": "excluding wisdom teeth an adult has 28"
   },
   "otdb-afe6a659c6e2": {
@@ -2745,7 +3057,11 @@
     "why": "country unstated, and UK series 10 has a different winner"
   },
   "otdb-b9ea9c15dac7": {
-    "decoys": ["Vladimir Lenin", "Joseph Stalin", "Leon Trotsky"],
+    "decoys": [
+      "Vladimir Lenin",
+      "Joseph Stalin",
+      "Leon Trotsky"
+    ],
     "prompt": "Who co-wrote The Communist Manifesto with Friedrich Engels?",
     "why": "Socialism was articulated before Marx by Owen and Saint-Simon, so crediting him with the idea is wrong."
   },
@@ -2790,14 +3106,20 @@
     "why": "The producer is Dan the Automator, and the answer misspells him."
   },
   "otdb-c4652602c516": {
-    "accepted": ["Candle in the Wind"],
+    "accepted": [
+      "Candle in the Wind"
+    ],
     "answer": "Candle in the Wind 1997",
     "prompt": "Which song did Elton John perform at the funeral of Princess Diana?",
     "why": "The princess was Diana, and the song Elton John sang at her funeral is Candle in the Wind 1997, not 'Candles'."
   },
   "otdb-ca8e781a4338": {
     "answer": "Ludwig van Beethoven",
-    "decoys": ["Frédéric Chopin", "Wolfgang Amadeus Mozart", "Johannes Brahms"],
+    "decoys": [
+      "Frédéric Chopin",
+      "Wolfgang Amadeus Mozart",
+      "Johannes Brahms"
+    ],
     "why": "Beethoven's first name is Ludwig, and the Chief Keef decoy is a joke that gives the row away."
   },
   "otdb-cc3b641ae1f2": {
@@ -2814,7 +3136,11 @@
   },
   "otdb-d36be0c6b3fd": {
     "answer": "4πr^2",
-    "decoys": ["(4/3)πr^3", "(1/3)πhr^2", "πr^4"],
+    "decoys": [
+      "(4/3)πr^3",
+      "(1/3)πhr^2",
+      "πr^4"
+    ],
     "why": "(4/3)πr³ is the volume of a sphere; its area was sitting in the decoys"
   },
   "otdb-d516b07df399": {
@@ -2858,7 +3184,11 @@
     "why": "The team is the Montreal Canadiens, and the answer misspells it."
   },
   "otdb-e8288bbd40fa": {
-    "decoys": ["India Pale Ale", "Stout", "Baltic Porter"],
+    "decoys": [
+      "India Pale Ale",
+      "Stout",
+      "Baltic Porter"
+    ],
     "why": "A pilsner is itself a pale lager, so the misspelled Pilsner decoy is also right."
   },
   "otdb-e1865026f0da": {
@@ -2866,7 +3196,11 @@
     "why": "the answer has a shelf life and it has run out — the Overwatch hero named McCree was renamed Cassidy in October 2021, so the banked answer is no longer the character's name"
   },
   "otdb-edd5b7a8a332": {
-    "decoys": ["1590", "1723", "1628"],
+    "decoys": [
+      "1590",
+      "1723",
+      "1628"
+    ],
     "why": "Macbeth is dated 1605 to 1606 by scholars, so the 1605 decoy is as right as the answer."
   },
   "otdb-edee009d10f2": {
@@ -2887,7 +3221,11 @@
   },
   "otdb-f8d296d3cbe6": {
     "answer": "T.S. Eliot",
-    "decoys": ["Andrew Lloyd Webber", "Emily Dickinson", "Robert Frost"],
+    "decoys": [
+      "Andrew Lloyd Webber",
+      "Emily Dickinson",
+      "Robert Frost"
+    ],
     "why": "T.S. Eliot is spelled with one l and the Emily Dickinson decoy is misspelled too."
   },
   "otdb-f05d2bd06c25": {
@@ -2931,7 +3269,11 @@
     "why": "the prompt calls it the film \"Il bidone\" and banks the poster artist, so the room answers Fellini and is marked wrong"
   },
   "polyfact-Q161202-P178-Q1576335": {
-    "decoys": ["Rare", "Grasshopper Manufacture", "Spike Chunsoft"],
+    "decoys": [
+      "Rare",
+      "Grasshopper Manufacture",
+      "Spike Chunsoft"
+    ],
     "why": "a decoy answers the prompt too — Visceral Games was Electronic Arts' own studio, so the publisher is as right an answer as the studio"
   },
   "polyfact-Q274041-P27-Q117": {
@@ -2971,7 +3313,11 @@
     "why": "the prompt says \"le Saint Sebastien\", and several famous paintings carry that name, two of them by the banked painter"
   },
   "polyfact-Q2405958-P170-Q1395905": {
-    "decoys": ["Tove Jansson", "Osamu Tezuka", "Auguste Bartholdi"],
+    "decoys": [
+      "Tove Jansson",
+      "Osamu Tezuka",
+      "Auguste Bartholdi"
+    ],
     "why": "a decoy answers the prompt too — Stan Lee co-created Firelord with the banked John Buscema"
   },
   "polyfact-Q12800832-P170-Q466880": {
@@ -2999,7 +3345,11 @@
     "why": "a claim with a shelf life — Star Wars Eclipse is unannounced as shipped, and \"est-il developpe\" stops being true the day it ships or is cancelled"
   },
   "polyfact-Q113835296-P178-Q752317": {
-    "decoys": ["Sunsoft", "Konami", "Ubisoft Toronto"],
+    "decoys": [
+      "Sunsoft",
+      "Konami",
+      "Ubisoft Toronto"
+    ],
     "why": "a decoy answers the prompt too — EA Vancouver is Electronic Arts' own studio"
   },
   "vikidia-5-mondes-1": {
@@ -3019,8 +3369,8 @@
     "why": "A popularity rank that changes every year, and the decoy 'Dans le top 10' is also true."
   },
   "vikidia-abyssin-29": {
-    "prompt": "De combien de chatons la femelle abyssine accouche-t-elle en moyenne ?",
-    "why": "\"la femelle\" names no animal once the row is dealt alone"
+    "prompt": "De combien de chatons une chatte abyssine accouche-t-elle en moyenne ?",
+    "why": "\"la femelle\" names no animal once the row is dealt alone 'La femelle abyssine' does not say which animal is meant."
   },
   "vikidia-accord-du-participe-passe-4": {
     "drop": true,
@@ -3040,7 +3390,8 @@
   },
   "vikidia-aile-de-pluie-5": {
     "answer": "Dans la forêt de Pluie.",
-    "why": "The answer has a gender typo, 'le forêt'."
+    "why": "The answer has a gender typo, 'le forêt'. The Ailes de Pluie are named but not the book series they come from.",
+    "prompt": "Dans « Les Royaumes de Feu », où habitent les Ailes de Pluie ?"
   },
   "vikidia-aile-de-pluie-6": {
     "drop": true,
@@ -3103,7 +3454,11 @@
     "why": "as written the answer is ten, which is printed beside it as a wrong one"
   },
   "vikidia-anatomie-4": {
-    "decoys": ["De graisse", "D'eau", "De collagène"],
+    "decoys": [
+      "De graisse",
+      "D'eau",
+      "De collagène"
+    ],
     "prompt": "De quelle protéine sont composés les ongles et les cheveux ?",
     "why": "keratin is a protein, so the decoy \"de protéine\" is right as the question stood; The decoy 'De protéine' is also correct, since keratin is a protein."
   },
@@ -3113,8 +3468,8 @@
     "why": "Digestion ends in the large intestine, not 'in the anus', and the prompt misspells 'finit'."
   },
   "vikidia-angleterre-2": {
-    "prompt": "Comment s’appelle le roi d’Angleterre ?",
-    "why": "The prompt says 'le roi' without naming the country, which only appears in the theme."
+    "prompt": "Quel roi d'Angleterre a succédé à Élisabeth II en 2022 ?",
+    "why": "The prompt says 'le roi' without naming the country, which only appears in the theme. 'Le roi d'Angleterre' is relative to an unstated moment."
   },
   "vikidia-angleterre-4": {
     "prompt": "Combien les bus de Londres ont-ils d’étages le plus souvent ?",
@@ -3240,8 +3595,8 @@
     "why": "The prompt is a trailing fragment ('l'avion a...') that names nothing a player can answer outside the source quiz."
   },
   "vikidia-boeing-737-6": {
-    "prompt": "Quelle est la version la plus récente du Boeing 737 ?",
-    "why": "The 737 MAX has flown since 2016, so calling it the 'next' version is aged."
+    "prompt": "Quelle génération du Boeing 737 a succédé au 737 Next Generation ?",
+    "why": "The 737 MAX has flown since 2016, so calling it the 'next' version is aged. 'La plus récente' is relative to an unstated moment."
   },
   "vikidia-botanique-3": {
     "prompt": "Quel conifère d'Europe perd ses aiguilles en hiver ?",
@@ -3329,7 +3684,11 @@
   },
   "vikidia-catherine-ii-de-russie-7": {
     "answer": "1762",
-    "decoys": ["1744", "1735", "1790"],
+    "decoys": [
+      "1744",
+      "1735",
+      "1790"
+    ],
     "why": "Empress Elizabeth died in January 1762 (25 December 1761 Old Style), not 1744, and the decoy 'Elle n'est pas morte.' is junk."
   },
   "vikidia-catherine-ii-de-russie-8": {
@@ -3395,7 +3754,11 @@
   },
   "vikidia-chat-difficile-5": {
     "answer": "200°",
-    "decoys": ["180°", "10°", "287°"],
+    "decoys": [
+      "180°",
+      "10°",
+      "287°"
+    ],
     "why": "A cat's field of view is commonly given as about 200°, which was a decoy; 287° is not the accepted figure."
   },
   "vikidia-chateau-de-versailles-5": {
@@ -3436,8 +3799,13 @@
   },
   "vikidia-conjugaison-1": {
     "answer": "avoir et être",
-    "decoys": ["manger et danser", "les verbes et les noms", "faire et aller"],
-    "why": "The answer is a sentence ('Ce sont Avoir et Être.') that no typed guess would match."
+    "decoys": [
+      "manger et danser",
+      "les verbes et les noms",
+      "faire et aller"
+    ],
+    "why": "The answer is a sentence ('Ce sont Avoir et Être.') that no typed guess would match. 'Les deux auxiliaires' does not say of what.",
+    "prompt": "En français, quels sont les deux auxiliaires de conjugaison ?"
   },
   "vikidia-conjugaison-4": {
     "drop": true,
@@ -3445,17 +3813,28 @@
   },
   "vikidia-coupe-du-monde-de-rugby-1": {
     "answer": "L'Afrique du Sud",
-    "why": "South Africa leads alone on four titles since 2023, against New Zealand's three"
+    "why": "South Africa leads alone on four titles since 2023, against New Zealand's three 'Coupe du monde' never names the sport, and the tally changes with each edition.",
+    "prompt": "Quelle équipe a remporté le plus de Coupes du monde de rugby à l'issue de l'édition 2023 ?"
   },
   "vikidia-coupe-du-monde-de-rugby-2": {
     "answer": "La France",
-    "decoys": ["L’Italie", "L’Argentine", "Le pays de Galles"],
+    "decoys": [
+      "L’Italie",
+      "L’Argentine",
+      "Le pays de Galles"
+    ],
     "prompt": "Quelle équipe a perdu trois finales de Coupe du monde de rugby sans jamais en gagner ?",
     "why": "France is not the most frequent finalist — New Zealand has five — and three finals lost is its actual record; The answer and decoys carry made-up final counts ('L’Italie,10 fois') the prompt never asks for."
   },
   "vikidia-coupe-du-monde-de-rugby-6": {
     "prompt": "Quels pays ont accueilli la première Coupe du monde de rugby ?",
-    "why": "\"a reçu la Coupe du monde\" reads as winning it, which was New Zealand alone rather than the two hosts"
+    "why": "\"a reçu la Coupe du monde\" reads as winning it, which was New Zealand alone rather than the two hosts The answer carries a stray ',conjointement' tail no player would type. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "answer": "La Nouvelle-Zélande et l'Australie",
+    "decoys": [
+      "L'Afrique du Sud et la Namibie",
+      "L'Angleterre et l'Irlande",
+      "L'Écosse et le pays de Galles"
+    ]
   },
   "vikidia-coupe-du-monde-de-rugby-8": {
     "prompt": "Quelle équipe n'a pas participé à la Coupe du monde de rugby 2019 après avoir disputé toutes les éditions précédentes ?",
@@ -3463,7 +3842,13 @@
   },
   "vikidia-coupe-du-monde-de-rugby-9": {
     "prompt": "Quelle équipe a été éliminée dès la phase de poules de la Coupe du monde de rugby qu'elle organisait ?",
-    "why": "the row named no competition, and football has hosts eliminated in the group stage too"
+    "why": "the row named no competition, and football has hosts eliminated in the group stage too The answer carries ',en 2015', which a player would never type. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out. One decoy was England itself.",
+    "answer": "L'Angleterre",
+    "decoys": [
+      "La France",
+      "La Nouvelle-Zélande",
+      "L'Australie"
+    ]
   },
   "vikidia-detective-conan-5": {
     "drop": true,
@@ -3498,7 +3883,11 @@
     "why": "No T. rex DNA is known; the 2007-2008 studies compared collagen protein and grouped it with both chicken and ostrich, the latter a decoy."
   },
   "vikidia-dinosaures-11": {
-    "decoys": ["Le Tricératops", "L'Ankylosaure", "Le Stégosaure"],
+    "decoys": [
+      "Le Tricératops",
+      "L'Ankylosaure",
+      "Le Stégosaure"
+    ],
     "why": "Brachiosaurus is also a famous sauropod, so a decoy competes with the answer on a matter of fame."
   },
   "vikidia-dinosaures-12": {
@@ -3511,7 +3900,11 @@
   },
   "vikidia-dinosaures-16": {
     "answer": "Megalosaurus",
-    "decoys": ["Iguanodon", "Tyrannosaurus", "Stegosaurus"],
+    "decoys": [
+      "Iguanodon",
+      "Tyrannosaurus",
+      "Stegosaurus"
+    ],
     "prompt": "Quel est le tout premier dinosaure à avoir été nommé ?",
     "why": "Megalosaurus (1824) was named before Iguanodon (1825), and the prompt carries a stray 'Bonus Quel-est'."
   },
@@ -3520,7 +3913,11 @@
     "why": "LEDs are now mainly used for lighting, a decoy, so the signalling answer is aged and two choices are defensible."
   },
   "vikidia-ecologie-2": {
-    "decoys": ["L'UNESCO", "L'EFEO", "L'OMS"],
+    "decoys": [
+      "L'UNESCO",
+      "L'EFEO",
+      "L'OMS"
+    ],
     "why": "The decoy 'Le gieck' is a misspelling of the answer, not a distinct candidate."
   },
   "vikidia-ecologie-5": {
@@ -3613,11 +4010,19 @@
   },
   "vikidia-football-1": {
     "answer": "Karim",
-    "decoys": ["Kemal", "Karin", "Kylian"],
+    "decoys": [
+      "Kemal",
+      "Karin",
+      "Kylian"
+    ],
     "why": "It asks for the first name but the answer and decoys are full names, so typing Karim would fail."
   },
   "vikidia-fractions-2": {
-    "decoys": ["Le quart", "Le cinquième", "Le douzième"],
+    "decoys": [
+      "Le quart",
+      "Le cinquième",
+      "Le douzième"
+    ],
     "why": "A decoy is misspelt \"douxième\"."
   },
   "vikidia-francois-ier-de-france-3": {
@@ -3646,7 +4051,11 @@
   },
   "vikidia-geographie-de-la-france-1": {
     "answer": "En Europe",
-    "decoys": ["Sur Jupiter", "En Amérique du Nord", "En Afrique"],
+    "decoys": [
+      "Sur Jupiter",
+      "En Amérique du Nord",
+      "En Afrique"
+    ],
     "why": "the answer and every decoy carried a trailing semicolon out of the source's list markup; The decoys carry stray trailing semicolons from a list."
   },
   "vikidia-girondins-de-bordeaux-2": {
@@ -3779,7 +4188,11 @@
   },
   "vikidia-harry-potter-3": {
     "answer": "Poudlard",
-    "decoys": ["Croutard", "Pré-au-Lard", "Square Grimmaurd"],
+    "decoys": [
+      "Croutard",
+      "Pré-au-Lard",
+      "Square Grimmaurd"
+    ],
     "prompt": "Dans Harry Potter, comment s'appelle le château où étudient les sorciers ?",
     "why": "The prompt never names Harry Potter, the answer's \"château de\" makes a typed Poudlard fail, and \"château de Harry Potter\" is a junk decoy."
   },
@@ -3792,7 +4205,11 @@
     "why": "the decoy is also correct — the book appeared in 2012 in English and 2013 in French"
   },
   "vikidia-histoire-de-les-royaumes-de-feu-1": {
-    "decoys": ["200 ans", "50 ans", "2000 ans"],
+    "decoys": [
+      "200 ans",
+      "50 ans",
+      "2000 ans"
+    ],
     "prompt": "Dans Les Royaumes de feu, le Grand Incendie s'est déroulé il y a combien de temps ?",
     "why": "The prompt never names the series, and \"Je ne sais pas\" is a junk decoy."
   },
@@ -3950,8 +4367,13 @@
   },
   "vikidia-la-guerre-des-clans-facile-6": {
     "answer": "Étoile",
-    "decoys": ["Nuage", "Petit", "Plume"],
-    "why": "The slash-joined forms (\"Étoile/Étoile de\") make the obvious typed answer fail."
+    "decoys": [
+      "Nuage",
+      "Petit",
+      "Plume"
+    ],
+    "why": "The slash-joined forms (\"Étoile/Étoile de\") make the obvious typed answer fail. The prompt never names the work it is about.",
+    "prompt": "Dans La Guerre des Clans, quel préfixe est donné à tous les chefs de Clan ?"
   },
   "vikidia-la-pat-patrouille-1": {
     "drop": true,
@@ -4011,7 +4433,11 @@
     "why": "Whether Milou really talks is a matter of interpretation, and the answer 'we don't really know' is an opinion, not a fact."
   },
   "vikidia-les-aventures-de-tintin-14": {
-    "decoys": ["Le San Theodoros", "L'Allemagne", "Le Khemed"],
+    "decoys": [
+      "Le San Theodoros",
+      "L'Allemagne",
+      "Le Khemed"
+    ],
     "why": "Syldavian agents also seize Tournesol in L'Affaire Tournesol, so the decoy 'La Syldavie' is arguably correct too."
   },
   "vikidia-les-aventures-de-tintin-26": {
@@ -4056,8 +4482,13 @@
   },
   "vikidia-les-royaumes-de-feu-11": {
     "answer": "Triton",
-    "decoys": ["Winter", "Péril", "Kinkajou"],
-    "why": "It is Triton (Turtle) whose enchantment turns Spectral (Darkstalker) into a dragonet, not Kinkajou."
+    "decoys": [
+      "Winter",
+      "Péril",
+      "Kinkajou"
+    ],
+    "why": "It is Triton (Turtle) whose enchantment turns Spectral (Darkstalker) into a dragonet, not Kinkajou. The prompt never names the work it is about.",
+    "prompt": "Dans Les Royaumes de feu, qui va transformer Spectral en dragonnet ?"
   },
   "vikidia-les-royaumes-de-feu-14": {
     "drop": true,
@@ -4092,11 +4523,19 @@
     "why": "the Métropole Européenne de Lille is an intercommunalité, which is printed as a wrong answer"
   },
   "vikidia-lion-1": {
-    "decoys": ["le lionnet", "le lionneau", "le lionnin"],
+    "decoys": [
+      "le lionnet",
+      "le lionneau",
+      "le lionnin"
+    ],
     "why": "'je ne sais pas' is a junk decoy, not a candidate answer."
   },
   "vikidia-lion-2": {
-    "decoys": ["un canidé", "un oiseau", "un ursidé"],
+    "decoys": [
+      "un canidé",
+      "un oiseau",
+      "un ursidé"
+    ],
     "why": "'je ne sais pas' is a junk decoy, not a candidate answer."
   },
   "vikidia-louis-pasteur-7": {
@@ -4418,11 +4857,19 @@
     "why": "the answer carried a trailing semicolon out of the source's list markup; the decoys kept the source list's trailing semicolons, and the answer is a descriptive phrase no typed line matches"
   },
   "vikidia-panda-geant-5": {
-    "decoys": ["10 g", "500 g", "1 kg"],
+    "decoys": [
+      "10 g",
+      "500 g",
+      "1 kg"
+    ],
     "why": "A newborn giant panda weighs about 90 to 130 g, so the 110 g and 111 g decoys are also correct."
   },
   "vikidia-panda-geant-6": {
-    "decoys": ["entre 1 et 2 h", "entre 3 et 5 h", "entre 20 et 22 h"],
+    "decoys": [
+      "entre 1 et 2 h",
+      "entre 3 et 5 h",
+      "entre 20 et 22 h"
+    ],
     "prompt": "Combien de temps le panda géant passe-t-il à manger ?",
     "why": "\"il\" names no animal once the row is dealt alone; Pandas eat 10 to 16 hours a day, so the overlapping decoys 'entre 9 et 11 h' and 'entre 12 et 15 h' are also correct."
   },
@@ -4445,7 +4892,11 @@
   },
   "vikidia-paris-3": {
     "answer": "La Seine",
-    "decoys": ["La Loire", "Le Rhône", "La Garonne"],
+    "decoys": [
+      "La Loire",
+      "Le Rhône",
+      "La Garonne"
+    ],
     "why": "the answer carried a trailing semicolon out of the source's list markup; The decoys carry the source list's trailing punctuation (' ;', '.')."
   },
   "vikidia-paris-7": {
@@ -4465,7 +4916,11 @@
     "why": "the row named no region"
   },
   "vikidia-pays-de-la-loire-5": {
-    "decoys": ["À Rennes", "À Brest", "À Angers"],
+    "decoys": [
+      "À Rennes",
+      "À Brest",
+      "À Angers"
+    ],
     "why": "Nantes is the historic capital of Brittany, so the decoy 'En Bretagne' is arguably correct."
   },
   "vikidia-peloton-de-surveillance-et-d-intervention-de-la-gendarmerie-1": {
@@ -4506,7 +4961,11 @@
   },
   "vikidia-petrole-2": {
     "answer": "Les États-Unis",
-    "decoys": ["L'Arabie saoudite", "La Russie", "L'Iran"],
+    "decoys": [
+      "L'Arabie saoudite",
+      "La Russie",
+      "L'Iran"
+    ],
     "why": "The United States has been the world's top oil producer since 2018, not Saudi Arabia."
   },
   "vikidia-pierre-bottero-3": {
@@ -4591,9 +5050,13 @@
   },
   "vikidia-rc-lens-4": {
     "answer": "2023-2024",
-    "decoys": ["2005-2006", "2017-2018", "2010-2011"],
-    "prompt": "Lors de quelle saison récente le RC Lens a-t-il joué la Ligue des champions ?",
-    "why": "'En quelles années' with '2023 et 2024' reads as two campaigns, while Lens played one season, 2023-2024 (after 1998-99 and 2002-03)."
+    "decoys": [
+      "2005-2006",
+      "2017-2018",
+      "2010-2011"
+    ],
+    "prompt": "Après plus de vingt ans d'absence, lors de quelle saison le RC Lens a-t-il retrouvé la Ligue des champions ?",
+    "why": "'En quelles années' with '2023 et 2024' reads as two campaigns, while Lens played one season, 2023-2024 (after 1998-99 and 2002-03). 'Récente' is relative to an unstated moment."
   },
   "vikidia-rocket-league-1": {
     "drop": true,
@@ -4661,7 +5124,11 @@
   },
   "vikidia-rubik-s-cube-13": {
     "answer": "100 millions",
-    "decoys": ["50 millions", "80 millions", "20 millions"],
+    "decoys": [
+      "50 millions",
+      "80 millions",
+      "20 millions"
+    ],
     "prompt": "Combien de Rubik's Cubes ont été vendus entre 1980 et 1982 ?",
     "why": "The numbers are garbled ('100000 000') and the prompt omits the Rubik's Cube."
   },
@@ -4706,7 +5173,11 @@
   },
   "vikidia-saint-zacharie-var-2": {
     "answer": "Huveaune",
-    "decoys": ["Rhône", "Somme", "Hérault"],
+    "decoys": [
+      "Rhône",
+      "Somme",
+      "Hérault"
+    ],
     "prompt": "Quel fleuve traverse Saint-Zacharie, dans le Var ?",
     "why": "Every candidate ends in stray punctuation ('Huveaune ;') and the prompt reads 'Quelle fleuve'."
   },
@@ -4724,13 +5195,21 @@
   },
   "vikidia-seconde-guerre-mondiale-3": {
     "answer": "Rethondes",
-    "decoys": ["Berlin", "Vichy", "Bordeaux"],
+    "decoys": [
+      "Berlin",
+      "Vichy",
+      "Bordeaux"
+    ],
     "prompt": "Dans quelle clairière est signé l’armistice du 22 juin 1940, dans le même wagon qu’en 1918 ?",
     "why": "The answer is a sentence and a decoy also says Rethondes, so typed play is unwinnable and choice play turns on the wagon detail."
   },
   "vikidia-seconde-guerre-mondiale-7": {
     "answer": "Pearl Harbor",
-    "decoys": ["San Diego", "Norfolk", "Anchorage"],
+    "decoys": [
+      "San Diego",
+      "Norfolk",
+      "Anchorage"
+    ],
     "prompt": "Quelle base américaine les Japonais attaquent-ils le 7 décembre 1941, provoquant l’entrée en guerre des États-Unis ?",
     "why": "'Pourquoi entrent-ils en guerre ?' omits its subject and the answer is a whole sentence."
   },
@@ -4743,7 +5222,11 @@
     "why": "The answer is a sentence and wrong: it leaves out the British sector of Berlin."
   },
   "vikidia-soleil-1": {
-    "decoys": ["Charon", "Titan", "Ganymède"],
+    "decoys": [
+      "Charon",
+      "Titan",
+      "Ganymède"
+    ],
     "why": "Ceres was also counted as a planet in the 19th century, so the decoy 'Cérès' is correct too."
   },
   "vikidia-soleil-5": {
@@ -4752,7 +5235,11 @@
   },
   "vikidia-sonic-1": {
     "answer": "Un hérisson",
-    "decoys": ["Un renard", "Un tatou", "Un échidné"],
+    "decoys": [
+      "Un renard",
+      "Un tatou",
+      "Un échidné"
+    ],
     "prompt": "Quel animal est Sonic ?",
     "why": "'Qui est Sonic ?' cannot be typed and the decoys are junk ('Sonic', 'Un pikoss bleu')."
   },
@@ -4765,7 +5252,11 @@
     "why": "What counts as a 'vrai jeu Sonic' is opinion, the Nomad decoy never had a game of its own either, and 'Sega Soko' does not exist."
   },
   "vikidia-sonic-8": {
-    "decoys": ["Sauter", "Ramasser des anneaux", "Rouler"],
+    "decoys": [
+      "Sauter",
+      "Ramasser des anneaux",
+      "Rouler"
+    ],
     "why": "The decoy 'Devenir Eggman' is also impossible in Sonic 1, so two candidates are correct."
   },
   "vikidia-sonic-10": {
@@ -4850,7 +5341,11 @@
   },
   "vikidia-vienne-isere-2": {
     "answer": "L'ordre du Temple",
-    "decoys": ["L'ordre de Malte", "L'ordre Teutonique", "L'ordre de Cîteaux"],
+    "decoys": [
+      "L'ordre de Malte",
+      "L'ordre Teutonique",
+      "L'ordre de Cîteaux"
+    ],
     "prompt": "Quel ordre religieux et militaire a été aboli au concile de Vienne, en Isère, en 1312 ?",
     "why": "unqualified, it invites the Congress of Vienna rather than the council of 1312; Vienne was also the capital of the kingdom of Provence created in 879, so a decoy is also an event tied to the city."
   },
@@ -4859,7 +5354,11 @@
     "why": "\"elle stagne\" and \"elle augmente très légèrement\" cannot be told apart, and both go stale at every census"
   },
   "vikidia-vitry-sur-seine-1": {
-    "decoys": ["Paris", "Seine-et-Marne", "Hauts-de-Seine"],
+    "decoys": [
+      "Paris",
+      "Seine-et-Marne",
+      "Hauts-de-Seine"
+    ],
     "why": "The decoy 'Vitry d'Zoo' is a joke, not a département."
   },
   "vikidia-vitry-sur-seine-2": {
@@ -4868,7 +5367,11 @@
   },
   "vikidia-vitry-sur-seine-3": {
     "answer": "La Seine",
-    "decoys": ["La Loire", "Le Rhône", "La Garonne"],
+    "decoys": [
+      "La Loire",
+      "Le Rhône",
+      "La Garonne"
+    ],
     "why": "Candidates carry stray punctuation ('La Seine ;')."
   },
   "vikidia-vitry-sur-seine-4": {
@@ -4900,5 +5403,1552 @@
     ],
     "prompt": "Dans quel jeu Link Cartoon apparaît-il pour la première fois ?",
     "why": "Toon Link is playable in Hyrule Warriors Legends and appears in many games, and 'Sowald East' is not a real title."
+  },
+  "mmmlu-miscellaneous-754": {
+    "prompt": "De quel parti républicain irlandais Gerry Adams a-t-il été le président de 1983 à 2018 ?",
+    "why": "Present tense 'préside' is outdated: Adams stepped down in 2018."
+  },
+  "mmmlu-world-religions-43": {
+    "prompt": "En quelle année est né Tenzin Gyatso, le 14e dalaï-lama ?",
+    "why": "'L'actuel Dalaï-Lama' is relative to an unstated moment."
+  },
+  "vikidia-abyssin-19": {
+    "prompt": "Quelle association a reconnu la race de chat abyssin en 1917 ?",
+    "why": "'L'abyssin' alone does not say it is a cat breed."
+  },
+  "vikidia-abyssin-5": {
+    "prompt": "Comment s'appelle le motif de robe caractéristique du chat abyssin ?",
+    "why": "'L'abyssin' alone does not say it is a cat breed."
+  },
+  "vikidia-abyssin-6": {
+    "prompt": "Jusqu'à combien peut peser un chat abyssin, en moyenne ?",
+    "why": "'L'abyssin' alone does not say it is a cat breed."
+  },
+  "vikidia-abyssin-9": {
+    "prompt": "Peut-on dire de quel pays est originaire la race de chat abyssin ?",
+    "why": "'L'abyssin' alone does not say it is a cat breed."
+  },
+  "vikidia-aile-de-pluie-2": {
+    "prompt": "Dans « Les Royaumes de Feu », quelle technique les Ailes de Pluie utilisent-ils pour endormir leurs visiteurs ?",
+    "why": "The Ailes de Pluie are named but not the book series they come from."
+  },
+  "vikidia-aile-de-pluie-3": {
+    "prompt": "Dans « Les Royaumes de Feu », comment les Ailes de Pluie appellent-ils l'heure de repos qu'ils ont après le repas ?",
+    "why": "The Ailes de Pluie are named but not the book series they come from."
+  },
+  "vikidia-aile-de-pluie-7": {
+    "prompt": "Dans « Les Royaumes de Feu », quelle reine des Ailes de Pluie a précédé Gloria ?",
+    "why": "Names neither the tribe nor the series: 'Gloria' alone is unidentifiable."
+  },
+  "vikidia-aile-de-pluie-8": {
+    "prompt": "Dans « Les Royaumes de Feu », quel est le nom anglais des Ailes de Pluie ?",
+    "why": "The Ailes de Pluie are named but not the book series they come from."
+  },
+  "vikidia-antonio-vivaldi-2": {
+    "prompt": "Quel style de musique Antonio Vivaldi composait-il ?",
+    "why": "'Il' never names the composer."
+  },
+  "vikidia-antonio-vivaldi-3": {
+    "prompt": "Quel était le surnom d'Antonio Vivaldi ?",
+    "why": "'Son surnom' never says whose."
+  },
+  "vikidia-astronautique-5": {
+    "prompt": "Comment s'appelait le missile balistique allemand de la Seconde Guerre mondiale ?",
+    "why": "'Le missile balistique allemand' does not say which era is meant."
+  },
+  "vikidia-blue-les-royaumes-de-feu-2": {
+    "prompt": "Dans « Les Royaumes de Feu », le dragon Blue aime-t-il la violence ?",
+    "why": "'Blue' alone does not say which work the character is from."
+  },
+  "vikidia-blue-les-royaumes-de-feu-4": {
+    "prompt": "Dans « Les Royaumes de Feu », qui sont les amis du dragon Blue ?",
+    "why": "'Ses amis' never names whose friends or which work."
+  },
+  "vikidia-blue-les-royaumes-de-feu-5": {
+    "prompt": "Dans « Les Royaumes de Feu », quels sont les pouvoirs du dragon Blue ?",
+    "why": "'Blue' alone does not say which work the character is from."
+  },
+  "vikidia-blue-les-royaumes-de-feu-6": {
+    "prompt": "Dans « Les Royaumes de Feu », où est né le dragon Blue ?",
+    "why": "'Blue' alone does not say which work the character is from."
+  },
+  "vikidia-bravelands-2": {
+    "prompt": "Dans la saga « Bravelands », comment s'appelle la sœur de Grand Cœur ?",
+    "why": "Names a character but not the series."
+  },
+  "vikidia-bravelands-3": {
+    "prompt": "Dans la saga « Bravelands », comment s'appelle le frère de Céleste ?",
+    "why": "Names a character but not the series."
+  },
+  "vikidia-bravelands-4": {
+    "prompt": "Dans la saga « Bravelands », quel est le surnom d'Épine ?",
+    "why": "Names a character but not the series."
+  },
+  "vikidia-bravelands-5": {
+    "prompt": "Dans la saga « Bravelands », comment s'appelait Grand Cœur lorsqu'il était petit ?",
+    "why": "Names a character but not the series."
+  },
+  "vikidia-bravelands-7": {
+    "prompt": "Dans la saga « Bravelands », comment s'appelle ce qui est dans le Parent Vénérable et qui guide les animaux de la Terre des Braves ?",
+    "why": "Uses the series' vocabulary without naming the series."
+  },
+  "vikidia-bravelands-8": {
+    "prompt": "Dans la saga « Bravelands », comment s'appelle la mère de Fougueuse et Vivace ?",
+    "why": "Names characters but not the series."
+  },
+  "vikidia-bus-24-de-strasbourg-3": {
+    "drop": true,
+    "why": "Many cities run a bus 24; the question has no fair reading without the theme."
+  },
+  "vikidia-chateau-de-versailles-4": {
+    "prompt": "Dans quel département se situe le château de Versailles ?",
+    "why": "'Le château' never says which one."
+  },
+  "vikidia-cheval-et-equitation-2": {
+    "prompt": "Quel concours d'équitation n'existe pas ?",
+    "why": "'Le concours' does not say it is about horse riding."
+  },
+  "vikidia-cheval-et-equitation-5": {
+    "prompt": "Quelle race de cheval n'existe pas ?",
+    "why": "'La race' does not say of which animal."
+  },
+  "vikidia-cheval-et-equitation-difficile-4": {
+    "prompt": "En équitation, quelle est la bonne attitude à avoir devant un obstacle ?",
+    "why": "'Un saut' does not say it is about horse riding."
+  },
+  "vikidia-cheval-et-equitation-difficile-5": {
+    "prompt": "En équitation, que signifie « incurver » ?",
+    "why": "The answer is a riding term but the prompt never says riding."
+  },
+  "vikidia-coupe-du-monde-de-rugby-3": {
+    "prompt": "En Coupe du monde de rugby, quelle équipe a éliminé la Nouvelle-Zélande en demi-finale en 1999, puis en quart de finale en 2007 ?",
+    "answer": "La France",
+    "why": "Names neither sport nor competition, has a bad verb, and the answer carries the years. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "decoys": [
+      "L'Afrique du Sud",
+      "L'Australie",
+      "L'Angleterre"
+    ]
+  },
+  "vikidia-coupe-du-monde-de-rugby-4": {
+    "prompt": "Quelle équipe a remporté la Coupe du monde de rugby 2003 ?",
+    "why": "'L'édition de 2003' never says of what."
+  },
+  "vikidia-coupe-du-monde-de-rugby-5": {
+    "prompt": "Quelle équipe a été exclue de la Coupe du monde de rugby en 1987 et en 1991 ?",
+    "answer": "L'Afrique du Sud",
+    "why": "Never says excluded from what, and the answer carries its reason. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "decoys": [
+      "La Russie",
+      "L'Argentine",
+      "Les Fidji"
+    ]
+  },
+  "vikidia-coupe-du-monde-de-rugby-7": {
+    "prompt": "À quelle fréquence se déroule la Coupe du monde de rugby ?",
+    "answer": "Tous les 4 ans",
+    "why": "'La Coupe du Monde' never names the sport. The decoys take the same spelling fix.",
+    "decoys": [
+      "Tous les ans",
+      "Tous les 2 ans",
+      "Tous les 400 ans"
+    ]
+  },
+  "vikidia-detective-conan-1": {
+    "prompt": "Dans « Détective Conan », qui est vraiment Conan ?",
+    "answer": "Shinichi Kudo",
+    "why": "Bare 'qui est Conan' does not name the work, and the answer is a phrase. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "decoys": [
+      "Heiji Hattori",
+      "Kaito Kid",
+      "Shuichi Akai"
+    ]
+  },
+  "vikidia-detective-conan-2": {
+    "prompt": "Dans « Détective Conan », quel est le nom du poison qui fait rapetisser Shinichi ?",
+    "why": "Garbled wording: 'le poison de détective Conan'."
+  },
+  "vikidia-detective-conan-3": {
+    "prompt": "Dans « Détective Conan », qui est l'amoureuse de Shinichi Kudo ?",
+    "answer": "Ran Mouri",
+    "why": "'Shinichi' alone does not name the work. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "decoys": [
+      "Sonoko Suzuki",
+      "Masumi Sera",
+      "Ai Haibara"
+    ]
+  },
+  "vikidia-detective-conan-4": {
+    "prompt": "Dans « Détective Conan », quel nom prend Sherry après avoir rapetissé ?",
+    "answer": "Ai Haibara",
+    "why": "'Qui est sherry' does not name the work and reads as a drink. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "decoys": [
+      "Ayumi Yoshida",
+      "Ran Mouri",
+      "Sonoko Suzuki"
+    ]
+  },
+  "vikidia-empire-byzantin-8": {
+    "prompt": "Quel conquérant s'empare des restes de l'Empire byzantin en 1453 ?",
+    "answer": "Mehmed II",
+    "why": "Two questions in one prompt, and the answer is not a short thing to type. The decoys are rewritten to the shortened answer's shape, so the right one does not stand out.",
+    "decoys": [
+      "Hâroun ar-Rachîd",
+      "Saladin",
+      "Soliman le Magnifique"
+    ]
+  },
+  "vikidia-films-disney-3": {
+    "prompt": "Kuzco, l'empereur mégalo est le long-métrage d'animation Disney n° :",
+    "why": "Numbered in which series is never said."
+  },
+  "vikidia-films-disney-4": {
+    "prompt": "En quelle année est sorti Blanche-Neige et les sept nains, le premier long-métrage d'animation de Disney ?",
+    "why": "'The first feature film' of whom is never said."
+  },
+  "vikidia-gardiens-des-cites-perdues-1": {
+    "prompt": "Dans Gardiens des cités perdues, après avoir perdu un pari, comment Ro doit-elle surnommer Keefe ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-gardiens-des-cites-perdues-2": {
+    "prompt": "Quel réalisateur a été annoncé pour adapter la saga Gardiens des cités perdues au cinéma ?",
+    "why": "'Va adapter' is relative to an unstated moment."
+  },
+  "vikidia-gardiens-des-cites-perdues-3": {
+    "prompt": "Dans Gardiens des cités perdues, quels sont les cinq pouvoirs de Sophie ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-gardiens-des-cites-perdues-6": {
+    "prompt": "Dans Gardiens des cités perdues, quel elfe ramène Sophie dans le monde des elfes ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-girondins-de-bordeaux-12": {
+    "prompt": "Lequel de ces joueurs a porté le maillot des Girondins de Bordeaux dans les années 1940 ?",
+    "why": "The prompt says 'the club' and never names it."
+  },
+  "vikidia-hamlet-1": {
+    "prompt": "Dans Hamlet, quel est le nom du château de Claudius (acte 1) ?",
+    "why": "'Act 1' of an unnamed play."
+  },
+  "vikidia-hamlet-10": {
+    "prompt": "Dans Hamlet de Shakespeare, que se passe-t-il à l'acte 5 ?",
+    "why": "'What happens in act 5' with no play named."
+  },
+  "vikidia-hamlet-2": {
+    "prompt": "Dans Hamlet, qui est l'assassin du Spectre (acte 1) ?",
+    "why": "'Act 1' of an unnamed play."
+  },
+  "vikidia-hamlet-3": {
+    "prompt": "Dans Hamlet, quelle mission s'est fixé Polonius (acte 2) ?",
+    "why": "'Act 2' of an unnamed play."
+  },
+  "vikidia-hamlet-7": {
+    "prompt": "Dans Hamlet, pourquoi le royaume est-il terrorisé et organise-t-il un conseil (acte 4) ?",
+    "why": "'The kingdom' and 'act 4' of an unnamed play."
+  },
+  "vikidia-hamlet-8": {
+    "prompt": "Dans Hamlet, que veut Laërte (acte 4) ?",
+    "why": "'Act 4' of an unnamed play."
+  },
+  "vikidia-heros-de-l-olympe-1": {
+    "prompt": "Dans Héros de l'Olympe, quand Percy arrive à l'entrée du Camp Jupiter, une personne lui demande quelque chose. Que doit-il faire et qui est cette personne ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-heros-de-l-olympe-2": {
+    "prompt": "Dans Héros de l'Olympe, quelle déesse rencontrent Hazel, Frank et Percy pendant leur quête ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-heros-de-l-olympe-3": {
+    "prompt": "Dans Héros de l'Olympe, qui a été amoureuse de Jason et de Percy ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-heros-de-l-olympe-4": {
+    "prompt": "Comment s'appelle le pégase de Percy Jackson ?",
+    "why": "'Percy' alone does not say which story."
+  },
+  "vikidia-heros-de-l-olympe-5": {
+    "prompt": "Dans Héros de l'Olympe, comment s'appelle le géant né pour combattre Artémis ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-heros-de-l-olympe-6": {
+    "prompt": "Dans le tome 3 de Héros de l'Olympe, qui Annabeth a-t-elle affronté avant de tomber dans le Tartare ?",
+    "why": "'Tome 3' of an unnamed series."
+  },
+  "vikidia-heros-de-l-olympe-7": {
+    "prompt": "Dans Héros de l'Olympe, comment les héros rentrent-ils à la Colonie lorsque les géants sont vaincus ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-heros-de-l-olympe-9": {
+    "prompt": "Dans Héros de l'Olympe, comment s'appelle la statue que cherchent les enfants d'Athéna à chaque nouvelle génération ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-hunger-games-12": {
+    "prompt": "À la fin du tome 3 de Hunger Games, qui Katniss tue-t-elle ?",
+    "why": "'Tome 3' of an unnamed series."
+  },
+  "vikidia-la-grande-sophie-6": {
+    "drop": true,
+    "why": "Asks whether she is 'still' alive, which depends on when it is asked."
+  },
+  "vikidia-la-guerre-des-clans-6": {
+    "prompt": "Dans La Guerre des Clans, quel personnage a le pouvoir surnaturel de se battre mieux que quiconque ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-la-guerre-des-clans-7": {
+    "prompt": "Dans La Guerre des Clans, quel personnage a des sens surdéveloppés ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-la-guerre-des-clans-8": {
+    "prompt": "Dans La Guerre des Clans, quel personnage a le pouvoir surnaturel de sentir les blessures des autres ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-aventures-de-tintin-10": {
+    "prompt": "Parmi ces jurons, lequel n'est pas du capitaine Haddock ?",
+    "why": "'The captain' is never named."
+  },
+  "vikidia-les-aventures-de-tintin-13": {
+    "prompt": "De quoi le capitaine Haddock a-t-il traité le professeur Tournesol pour le mettre dans une grande colère ?",
+    "why": "'The captain' and 'the professor' are never named."
+  },
+  "vikidia-les-aventures-de-tintin-22": {
+    "prompt": "Pour qui travaille Nestor, le majordome de Moulinsart, lors de sa première apparition ?",
+    "why": "'Nestor' alone does not say which story."
+  },
+  "vikidia-les-aventures-de-tintin-24": {
+    "prompt": "Parmi ces qualités, laquelle ne peut-on pas accorder à Nestor, le majordome de Moulinsart ?",
+    "why": "'Nestor' alone does not say which story."
+  },
+  "vikidia-les-chroniques-de-kane-1": {
+    "prompt": "Dans Les Chroniques de Kane, comment s'appelle le père de Carter et Sadie ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-3": {
+    "prompt": "Dans Les Chroniques de Kane, comment s'appelle le chat de Sadie ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-4": {
+    "prompt": "Dans Les Chroniques de Kane, de quelle divinité Sadie est-elle l'hôte ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-5": {
+    "prompt": "Dans Les Chroniques de Kane, de qui Carter est-il amoureux ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-6": {
+    "prompt": "Dans Les Chroniques de Kane, qui poursuit Carter et Sadie pour les tuer ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-7": {
+    "prompt": "Dans Les Chroniques de Kane, qui Carter et Sadie doivent-ils anéantir pour empêcher la fin du monde ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-8": {
+    "prompt": "Dans Les Chroniques de Kane, qui se révèle être un « ouchebti » et meurt ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-chroniques-de-kane-9": {
+    "prompt": "Dans Les Chroniques de Kane, en qui le dieu Osiris est-il entré ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-10": {
+    "prompt": "Dans Les Filles au chocolat, quand sont nées Skye et Summer ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-11": {
+    "prompt": "Dans Les Filles au chocolat, qui sont les amies de Honey qu'elle rencontre en Australie ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-12": {
+    "prompt": "Dans Les Filles au chocolat, quelle est la maladie de Summer ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-3": {
+    "prompt": "Dans Les Filles au chocolat, qui prononce cette citation : « Je préfère largement mon monde à la réalité. Le passé est un lieu sombre, doux et sucré comme de la guimauve » ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-4": {
+    "prompt": "Dans Les Filles au chocolat, comment s'appelle le poisson rouge de Cherry ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-5": {
+    "prompt": "Dans Les Filles au chocolat, qui est Joyeux Noël ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-6": {
+    "prompt": "Dans Les Filles au chocolat, quelle est la passion de Skye ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-7": {
+    "prompt": "Dans Les Filles au chocolat, qui est le père de Cherry ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-filles-au-chocolat-8": {
+    "prompt": "Qui est le petit ami de Honey dans le tome 1 des Filles au chocolat ?",
+    "why": "'Tome 1' of an unnamed series."
+  },
+  "vikidia-les-filles-au-chocolat-9": {
+    "prompt": "Dans Les Filles au chocolat, qui offre à Summer la barrette décorée d'une rose en soie ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-10": {
+    "prompt": "Dans Les Royaumes de feu, que mangent les Ailes de Nuit ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-12": {
+    "prompt": "Dans Les Royaumes de feu, où se trouve la Cité perdue de la Nuit ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-13": {
+    "prompt": "Dans Les Royaumes de feu, qui a inventé la Prophétie des Dragonnets du Destin ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-5": {
+    "prompt": "Dans Les Royaumes de feu, qui sont les filles de la reine Oasis ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-7": {
+    "prompt": "Dans Les Royaumes de feu, lequel des dragonnets de la Montagne de Jade lit dans les pensées ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-8": {
+    "prompt": "Dans Les Royaumes de feu, comment s'appelle le paresseux de Gloria ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-les-royaumes-de-feu-9": {
+    "prompt": "Dans Les Royaumes de feu, quel Dragonnet du Destin a été mordu par une vipère mord-dragon ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-lune-claire-1": {
+    "prompt": "Dans Les Royaumes de feu, de quel clan est la dragonne Lune ?",
+    "why": "'Lune' alone does not say which story or character."
+  },
+  "vikidia-lune-claire-8": {
+    "prompt": "Dans Les Royaumes de feu, quels sont les autres membres de l'équipaile de Lune ?",
+    "why": "'Son équipaile' refers to a character the prompt never names."
+  },
+  "vikidia-minecraft-1": {
+    "prompt": "Dans Minecraft, quel est le seul bloc qu'on ne peut pas détruire en mode survie ?",
+    "why": "The prompt never names the game."
+  },
+  "vikidia-minecraft-5": {
+    "prompt": "Dans Minecraft, le creeper est...",
+    "why": "The prompt never names the game."
+  },
+  "vikidia-miraculous-10": {
+    "prompt": "Dans Miraculous, qui se cache derrière le Papillombre ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-mode-1": {
+    "prompt": "Qui a été élue Miss France 2021 ?",
+    "why": "Miss France 2021 was elected in December 2020, so 'elected in 2021' points to the wrong title."
+  },
+  "vikidia-mortelle-adele-1": {
+    "prompt": "Quel est le nom du chat de Mortelle Adèle ?",
+    "why": "'Adèle' alone does not say which story."
+  },
+  "vikidia-navette-spatiale-bourane-19": {
+    "prompt": "Qu'est-il arrivé à la navette spatiale Bourane le 12 mai 2002 ?",
+    "why": "The prompt names a date but never says of what."
+  },
+  "vikidia-panda-geant-2": {
+    "prompt": "Combien mesure la queue du panda géant ?",
+    "why": "'Sa queue' refers to an animal the prompt never names."
+  },
+  "vikidia-paris-5": {
+    "prompt": "Quand la première rame du métro de Paris a-t-elle été construite ?",
+    "why": "'The metro' of which city is never said."
+  },
+  "vikidia-percy-jackson-8": {
+    "prompt": "Dans le tome 5 de Percy Jackson, qui se prend le couteau empoisonné à la place de Percy ?",
+    "why": "'Tome 5' of an unnamed series."
+  },
+  "vikidia-percy-jackson-9": {
+    "prompt": "Dans quel tome de la saga Percy Jackson, Percy et Annabeth s'embrassent-ils pour la première fois ?",
+    "why": "'Which tome' of an unnamed series, and two series share these characters."
+  },
+  "vikidia-pierre-bottero-7": {
+    "prompt": "Dans les romans de Pierre Bottero, Ellana est formée par Jilano Alhuïn pour devenir...",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-pirates-des-caraibes-11": {
+    "prompt": "Dans Pirates des Caraïbes, où Will Turner revoit-il son père pour la première fois ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-pirates-des-caraibes-20": {
+    "prompt": "Dans quel film de la saga Pirates des Caraïbes Hector Barbossa n'apparaît-il pas (ou presque pas) ?",
+    "why": "'Which episode' of an unnamed saga."
+  },
+  "vikidia-pirates-des-caraibes-3": {
+    "prompt": "Quel acteur ne joue pas dans la saga Pirates des Caraïbes ?",
+    "why": "'The saga' is never named."
+  },
+  "vikidia-pirates-des-caraibes-5": {
+    "prompt": "Dans Pirates des Caraïbes, que contient le coffre maudit ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-pirates-des-caraibes-6": {
+    "prompt": "Dans le premier film Pirates des Caraïbes, de quelle malédiction sont frappés l'équipage du Black Pearl et Barbossa ?",
+    "why": "'Episode 1' of an unnamed saga."
+  },
+  "vikidia-pirates-des-caraibes-7": {
+    "prompt": "Au début du troisième film Pirates des Caraïbes, pourquoi Barbossa et Elizabeth se rendent-ils à Singapour ?",
+    "why": "'Episode 3' of an unnamed saga."
+  },
+  "vikidia-pirates-des-caraibes-8": {
+    "prompt": "Dans Pirates des Caraïbes, à quoi ressemble l'antre de Davy Jones ?",
+    "why": "The prompt never names the work it is about."
+  },
+  "vikidia-pokemon-partie-2-5": {
+    "prompt": "Dans Pokémon, qui est Sacha ?",
+    "why": "'Sacha' alone does not say which story."
+  },
+  "vikidia-pokemon-partie-2-6": {
+    "prompt": "Dans Pokémon, qui est le champion de l'arène d'Argenta ?",
+    "why": "'Argenta' alone does not say which world."
+  },
+  "vikidia-rc-lens-3": {
+    "prompt": "À quelle place de Ligue 1 le RC Lens a-t-il terminé la saison 2024-2025 ?",
+    "why": "The ranking the place is in is never named."
+  },
+  "vikidia-spy-x-family-7": {
+    "prompt": "Dans Spy x Family, de quel pays Berlint est-elle la capitale ?",
+    "why": "Berlint is fictional and reads as a typo of Berlin without its work."
+  },
+  "vikidia-spy-x-family-8": {
+    "prompt": "Dans Spy x Family, quelle est l'adresse de la famille Forger ?",
+    "why": "'Pour finir' refers to a quiz sequence that does not exist here."
+  },
+  "vikidia-star-wars-2": {
+    "prompt": "En quelle année est sorti l'épisode II de Star Wars ?",
+    "why": "'Episode II' of an unnamed saga."
+  },
+  "vikidia-stray-kids-6": {
+    "prompt": "Quel membre a quitté le groupe Stray Kids en 2019 ?",
+    "why": "'The group' is never named."
+  },
+  "vikidia-vienne-isere-3": {
+    "prompt": "En quelle année Vienne, en Isère, a-t-elle été rattachée au royaume de France ?",
+    "why": "'Vienne' alone reads as the Austrian capital."
+  },
+  "vikidia-vienne-isere-4": {
+    "prompt": "Pendant la Révolution, Vienne, en Isère, a été renommée",
+    "why": "'Vienne' alone reads as the Austrian capital."
+  },
+  "oqdb-526-1": {
+    "prompt": "Dans « Dragon Ball », combien de boules faut-il rassembler pour qu'un vœu soit réalisé ?",
+    "why": "The prompt never names Dragon Ball, so 'boules' and 'vœu' mean nothing on their own."
+  },
+  "oqdb-52-2": {
+    "prompt": "Quelle chanteuse propose, dans une de ses chansons, de se revoir « à la même heure dans deux ans » ?",
+    "why": "The prompt never says it is about a song, and 'la revoir' refers to no one."
+  },
+  "oqdb-87-1": {
+    "prompt": "Que portent les silhouettes du trophée de la Coupe du monde de football ?",
+    "why": "'La Coupe du monde' does not say which sport."
+  },
+  "oqdb-87-4": {
+    "prompt": "Quelles trompettes furent utilisées par les supporters lors de la Coupe du monde de football 2010 ?",
+    "why": "The prompt says 'the supporters in 2010' without naming the competition."
+  },
+  "oqdb-441-1": {
+    "prompt": "Dans quelle ville Clara Morgane est-elle née en 1981 ?",
+    "why": "The prompt uses a civil name only the theme connects to anyone a player would know."
+  },
+  "oqdb-448-4": {
+    "prompt": "Sur quelle île grecque les candidats de la téléréalité « Les Ch'tis » ont-ils débarqué ?",
+    "why": "'Les Ch'tis' reads as people from northern France; the TV show is never named."
+  },
+  "oqdb-128-4": {
+    "prompt": "Dans une publicité, quelle boisson jaillissait d'une bouteille caressée par une femme ?",
+    "why": "The prompt never says it refers to an advert."
+  },
+  "oqdb-159-1": {
+    "prompt": "Dans « One Piece », qui est navigateur au sein de l'équipage du Chapeau de paille ?",
+    "why": "The prompt never names the manga the crew belongs to."
+  },
+  "oqdb-159-4": {
+    "prompt": "Dans « One Piece », de quelle race font partie Dorry et Broggy, rencontrés sur Little Garden ?",
+    "why": "The prompt never names the work these characters come from."
+  },
+  "oqdb-403-2": {
+    "prompt": "Dans « Hunger Games », que dit Peeta la première fois qu'il découvre le Capitole ?",
+    "why": "The prompt never names the work Peeta comes from."
+  },
+  "oqdb-403-4": {
+    "prompt": "Dans « Hunger Games », quel camouflage Peeta a-t-il dessiné sur sa main ?",
+    "why": "The prompt never names the work Peeta comes from."
+  },
+  "oqdb-451-4": {
+    "prompt": "Dans « Bob l'éponge », comment s'appelle le perroquet de Patchy le pirate ?",
+    "why": "The prompt never names the cartoon Patchy the pirate belongs to."
+  },
+  "oqdb-93-3": {
+    "prompt": "Dans « Breaking Bad », dans quel véhicule Walter et Jesse cuisinent-ils au début de la série ?",
+    "why": "The prompt says 'the series' without naming it."
+  },
+  "oqdb-265-4": {
+    "prompt": "Quel journaliste a présenté le journal de 20 heures de France 2 avant Anne-Sophie Lapix ?",
+    "why": "The prompt says 'the JT' without naming which channel's news bulletin."
+  },
+  "oqdb-231-4": {
+    "prompt": "Qui a remplacé Leonard Nimoy dans le rôle de Spock dans les films « Star Trek » sortis à partir de 2009 ?",
+    "why": "The 'latest films' are relative to an unstated moment."
+  },
+  "oqdb-97-2": {
+    "prompt": "Quelle eau d'origine souterraine est naturellement potable, sans aucun traitement ?",
+    "why": "'Naturellement conforme' never says conforming to what."
+  },
+  "otdb-19dcd96dd7e4": {
+    "prompt": "When was the Homestuck update \"[S] Game Over\" released?",
+    "why": "The prompt asks 'in what update' while the answer is a date, so it cannot be understood as written."
+  },
+  "otdb-16bc74a79828": {
+    "prompt": "In the musical \"Chess\", the World Chess Championship of Act 1 is set in which Italian city?",
+    "why": "The work 'Chess, Act 1' is unquoted and unnamed as a musical, so it reads as a real chess championship."
+  },
+  "otdb-4a7be411bc12": {
+    "prompt": "Who had a hit with \"Kung Fu Fighting\" in 1974?",
+    "why": "The grammar 'Who was \"Kung Fu Fighting\"' is broken and does not say a song is meant."
+  },
+  "otdb-83478bc71a5d": {
+    "prompt": "In what year was Psygnosis's PlayStation game \"Eliminator\" released?",
+    "why": "Several unrelated games are titled \"Eliminator\" (1981 arcade, 1988 Amiga), so the title alone does not say which one is meant."
+  },
+  "otdb-81662f9f938f": {
+    "drop": true,
+    "why": "\"The 18th season of Big Brother\" does not say which country's edition, and the obscure answer cannot be verified to pin it down."
+  },
+  "otdb-b80dcba241e2": {
+    "prompt": "In Undertale, what is the prize for answering correctly on Mettaton's quiz show?",
+    "why": "The prompt never says which quiz in the game the prize belongs to."
+  },
+  "otdb-cf5712a43166": {
+    "prompt": "Which city hosted DreamHack's 2015 Counter-Strike: Global Offensive Major?",
+    "why": "DreamHack ran several CS:GO Opens in 2015, so 'the DreamHack Open 2015' names no single event."
+  },
+  "otdb-27ecda88e28a": {
+    "prompt": "Which video game won Game of the Year at The Game Awards 2018?",
+    "why": "The prompt never says which game, or which award, 'Game of the Year' refers to."
+  },
+  "otdb-1c4dae59e530": {
+    "prompt": "How many crewed Moon landings did NASA's Apollo program make?",
+    "why": "An unanchored 'have there been' count changes once Artemis lands; anchoring it to Apollo keeps the answer true."
+  },
+  "otdb-666eb26d8d99": {
+    "prompt": "Brazil was formerly a colony of which country?",
+    "why": "The prompt's doubled verb ('was Brazil was ... under') makes it garbled when read aloud."
+  },
+  "mintaka-ef38c300": {
+    "prompt": "Quelle ville était la plus peuplée au monde selon l’ONU en 2018 ?",
+    "why": "Unanchored 'most populous city' ranking has changed since (UN 2025 puts Jakarta first); anchor to the 2018 UN figures."
+  },
+  "mintaka-a2183918": {
+    "prompt": "Quelle était la ville la plus peuplée du monde selon l’ONU en 2018 ?",
+    "why": "Unanchored 'most populous city' ranking has changed since (UN 2025 puts Jakarta first); anchor to the 2018 UN figures."
+  },
+  "mintaka-37fe79cc": {
+    "prompt": "Quelle était la ville la plus peuplée d’Asie selon l’ONU en 2018 ?",
+    "why": "Unanchored ranking that the UN 2025 revision overturned; anchor to the 2018 UN figures."
+  },
+  "mintaka-499af9d0": {
+    "prompt": "Quelle était la ville la plus peuplée d’Asie selon l’ONU en 2018 ?",
+    "why": "Unanchored ranking that the UN 2025 revision overturned; anchor to the 2018 UN figures."
+  },
+  "mintaka-73a4d785": {
+    "prompt": "Quelle est la quatrième ville la plus peuplée des États-Unis ?",
+    "why": "'Amérique' could mean the whole continent, where the answer would differ."
+  },
+  "mintaka-d0f675aa": {
+    "prompt": "Quel État américain du sud-est a eu Kay Ivey pour gouverneure à partir de 2017 ?",
+    "why": "Present-tense 'has Kay Ivey as governor' expires with her term; anchor it with a year."
+  },
+  "mintaka-c9da89d9": {
+    "drop": true,
+    "why": "Asks for Europe's 'second poorest' country now, which shifts year to year and by metric."
+  },
+  "mintaka-22e026f2": {
+    "prompt": "Qui a été la quatrième épouse du roi Philippe II d’Espagne et la cousine de Don Carlos ?",
+    "why": "'Le roi Philippe' does not say which of many kings named Philippe."
+  },
+  "mintaka-6a7b71a9": {
+    "drop": true,
+    "why": "A queen 'who had a dog and a budgie' has no fair unique reading."
+  },
+  "mintaka-0bc9b304": {
+    "prompt": "Qui fut le premier roi de la Grèce moderne ?",
+    "why": "'Premier souverain de Grèce' could mean ancient Greece; the answer is modern Greece's first king."
+  },
+  "mintaka-6f078b9e": {
+    "prompt": "Qui fut la première femme de Donald Trump ?",
+    "why": "'L'ancien président' is outdated since Trump is president again."
+  },
+  "mintaka-1ee0fa7b": {
+    "prompt": "Comment s’appelle l’empereur romain qui est resté au pouvoir le plus longtemps ?",
+    "why": "'Pendant longtemps' does not ask for a superlative, so several candidates fit."
+  },
+  "mintaka-2a22965f": {
+    "prompt": "Dans le film Jumanji, dans quel État habite Alan Parrish ?",
+    "why": "Names a character without the film he comes from."
+  },
+  "mintaka-3fec5e60": {
+    "prompt": "Quel acteur a joué Spider-Man dans le film de Sam Raimi sorti en 2002 ?",
+    "why": "'Le premier film' does not say which Spider-Man film is meant."
+  },
+  "mintaka-ccde88e0": {
+    "prompt": "Dans Star Wars, qui est le grand-père de Rey ?",
+    "why": "Rey is never placed in a work."
+  },
+  "mintaka-5577edca": {
+    "prompt": "Comment s’appelle l’acteur principal du film Cry-Baby, ancien époux de l’actrice Amber Heard ?",
+    "why": "Calls him Amber Heard's husband, but they divorced in 2017."
+  },
+  "mintaka-ad44b342": {
+    "prompt": "Quel film de super-héros DC sorti en 2021 a été réalisé par James Gunn ?",
+    "why": "James Gunn has since made Superman (2025) outside Marvel too, so the prompt has two answers."
+  },
+  "mintaka-1d702f03": {
+    "drop": true,
+    "why": "The most expensive film ever is disputed and has changed since (Star Wars: The Force Awakens now tops most lists)."
+  },
+  "mintaka-28ed61fb": {
+    "drop": true,
+    "why": "Answer is wrong: Deathly Hallows Part 2 is the highest-grossing Harry Potter film, not the lowest."
+  },
+  "mintaka-41a51755": {
+    "drop": true,
+    "why": "The highest-paid actor of all time is unsourced and changes over time."
+  },
+  "mintaka-5e868887": {
+    "prompt": "Quel est le réalisateur le plus âgé à avoir remporté l’Oscar du meilleur réalisateur ?",
+    "why": "'Un Oscar' also covers James Ivory, a director who won a screenplay Oscar at 89."
+  },
+  "mintaka-88e23955": {
+    "prompt": "Quel film Retour vers le futur a fait le moins de recettes ?",
+    "answer": "Retour vers le futur 3",
+    "why": "Answer was wrong: Part III grossed the least of the trilogy; also fixes the 'future' typo. The accepted spellings named Part II.",
+    "accepted": [
+      "Back to the Future Part III",
+      "Retour vers le futur III"
+    ]
+  },
+  "mintaka-95a0ec53": {
+    "drop": true,
+    "why": "Answer is wrong: several MCU films are shorter than Ant-Man and the Wasp (The Marvels, The Incredible Hulk)."
+  },
+  "mintaka-b87e4c28": {
+    "drop": true,
+    "why": "The Marvels (2023) has since grossed less than The Incredible Hulk."
+  },
+  "mintaka-b8f6c897": {
+    "drop": true,
+    "why": "The most expensive film ever is disputed and has changed since (Star Wars: The Force Awakens now tops most lists)."
+  },
+  "mintaka-dfa71862": {
+    "drop": true,
+    "why": "The most expensive film ever is disputed and has changed since (Star Wars: The Force Awakens now tops most lists)."
+  },
+  "mintaka-24992d8d": {
+    "prompt": "Qui était le joueur le mieux payé de la NBA lors de la saison 2021-2022 ?",
+    "why": "Asks for the current highest-paid player, which changes every season."
+  },
+  "mintaka-33f37e25": {
+    "prompt": "Quel quart-arrière a été titulaire des Seahawks de Seattle de 2012 à 2021 ?",
+    "why": "Russell Wilson left Seattle in 2022, so 'the current starter' is outdated."
+  },
+  "mintaka-44f94e20": {
+    "prompt": "Quel quart-arrière a été titulaire des Packers de Green Bay de 2008 à 2022 ?",
+    "why": "Aaron Rodgers left Green Bay in 2023, so 'the current quarterback' is outdated."
+  },
+  "mintaka-4703dc36": {
+    "prompt": "Qui est le plus petit joueur de l’histoire de la NBA ?",
+    "why": "Asks for the shortest current player when the answer is the shortest ever."
+  },
+  "mintaka-4b041796": {
+    "prompt": "Avant Stephen Curry, qui détenait le record du nombre de paniers à trois points en NBA ?",
+    "why": "Stephen Curry broke Ray Allen's record in 2021."
+  },
+  "mintaka-4b3c60bb": {
+    "prompt": "Quel quart-arrière a mené les Seahawks de Seattle à leur victoire au Super Bowl de 2014 ?",
+    "why": "Russell Wilson left Seattle in 2022, so 'the current quarterback' is outdated."
+  },
+  "mintaka-5c4e304f": {
+    "prompt": "Qui a été élu meilleur joueur de la saison 2018 de la NFL ?",
+    "why": "Never says which league or sport the MVP award belongs to."
+  },
+  "mintaka-71fdfbe2": {
+    "drop": true,
+    "why": "The Detroit Pistons tied the 28-game losing streak in 2023-24, so the record is now shared."
+  },
+  "mintaka-7e6d8a91": {
+    "drop": true,
+    "why": "Kevin Garnett has long been passed in career earnings; the 'highest-paid ever' changes over time."
+  },
+  "mintaka-940bc564": {
+    "prompt": "Qui est le plus petit joueur de l’histoire de la NBA ?",
+    "why": "Typo 'cout' makes the prompt unreadable aloud."
+  },
+  "mintaka-cac9b624": {
+    "prompt": "Quelle équipe de NBA est basée dans l’Indiana ?",
+    "why": "Never says which league; the Indiana Fever or a college team also fit."
+  },
+  "mintaka-e0c2a8b3": {
+    "prompt": "Qui est le plus petit joueur de l’histoire de la NBA ?",
+    "why": "'Était le joueur le plus court' has no time frame; the answer is the shortest ever."
+  },
+  "mintaka-ed9bac00": {
+    "drop": true,
+    "why": "Asks for the current best-paid NBA coach; Popovich has since retired."
+  },
+  "mintaka-f90d72a9": {
+    "drop": true,
+    "why": "New Orleans hosted its 11th Super Bowl in 2025, tying Miami."
+  },
+  "mintaka-14332c63": {
+    "prompt": "Quelle équipe jouait au Staples Center et comptait Shaquille O’Neal dans ses rangs ?",
+    "why": "The Staples Center was renamed in 2021, so 'joue au' is outdated."
+  },
+  "mintaka-25a8fa0a": {
+    "prompt": "Quel joueur passé par les Nets de Brooklyn a joué sa première saison NBA à Seattle ?",
+    "why": "Kevin Durant left the Nets in 2023, so 'est membre des Nets' is outdated."
+  },
+  "mintaka-27989288": {
+    "prompt": "Quel footballeur passé par Manchester United célèbre ses buts par un saut appelé « Siuuu » ?",
+    "why": "Ronaldo no longer plays for Manchester United."
+  },
+  "mintaka-27ac568a": {
+    "prompt": "Quelle équipe a remporté les titres NBA de 2015 et de 2018 ?",
+    "why": "Never says which league's championships."
+  },
+  "mintaka-436b5327": {
+    "prompt": "Quelle équipe jouait au Staples Center et avait Blake Griffin dans ses rangs ?",
+    "why": "The Clippers left the Staples Center (renamed in 2021), so 'jouant' is outdated."
+  },
+  "mintaka-4b1c8652": {
+    "prompt": "Quel joueur les Pelicans de La Nouvelle-Orléans ont-ils choisi en premier à la draft NBA de 2019 ?",
+    "why": "Present tense 'joue pour les Pelicans' ages badly, and the franchise also took Anthony Davis first in 2012."
+  },
+  "mintaka-4d5801f2": {
+    "prompt": "Quel joueur du Real Madrid a été sélectionné avec l’Allemagne pour l’Euro 2020 ?",
+    "why": "Toni Kroos retired in 2024, so 'joue au Real Madrid' is outdated."
+  },
+  "mintaka-4fc35b14": {
+    "prompt": "Quel joueur drafté par le Magic d’Orlando a joué pour les Lakers de Los Angeles lors de leur titre de 2020 ?",
+    "why": "Broken grammar ('a les rejoint hors-saison') makes it hard to follow."
+  },
+  "mintaka-61dda9ec": {
+    "prompt": "Quel ancien basketteur de 1,98 m compte parmi les Américains noirs les plus riches ?",
+    "why": "The 'fifth richest' ranking is unanchored and changes over time."
+  },
+  "mintaka-6b5f02bf": {
+    "prompt": "Lequel de ces footballeurs est argentin ?",
+    "why": "Messi has left European football, so 'appartient à la Ligue européenne' is now false."
+  },
+  "mintaka-72b5e90a": {
+    "prompt": "Quel joueur des Angels de Los Angeles était à la fois lanceur et batteur de 2018 à 2023 ?",
+    "why": "Ohtani left the Angels in 2023, so the present tense is outdated."
+  },
+  "mintaka-9828072a": {
+    "prompt": "Quel joueur de l’équipe des États-Unis a évolué au FC Barcelone de 2020 à 2022 ?",
+    "why": "Sergiño Dest left Barcelona in 2022, so 'joue pour le FC Barcelone' is outdated."
+  },
+  "mintaka-a73846e4": {
+    "prompt": "Quel milieu de terrain anglais, né le 17 juin 1990, a été capitaine de Liverpool de 2015 à 2023 ?",
+    "why": "Henderson left Liverpool in 2023, so 'capitaine du club' is outdated."
+  },
+  "mintaka-a8c3334a": {
+    "prompt": "Quelle superstar, passée par plusieurs clubs vainqueurs de la Ligue des champions de l’UEFA, n’a jamais remporté le trophée ?",
+    "why": "Zlatan has retired, so 'n'a pas encore remporté' is outdated."
+  },
+  "mintaka-bfdadd49": {
+    "prompt": "Quelle équipe jouait au Staples Center et avait Chris Paul dans ses rangs ?",
+    "why": "The Clippers left the Staples Center (renamed in 2021), so 'jouant' is outdated."
+  },
+  "mintaka-c39f4cdd": {
+    "prompt": "Quel membre de l’équipe nationale masculine de basketball des États-Unis de 2021 est né à Newark, dans le New Jersey ?",
+    "why": "Never says which sport the national team plays."
+  },
+  "mintaka-cbcd4bc4": {
+    "prompt": "Quelle est la première ville à avoir accueilli les Jeux olympiques d’été et d’hiver ?",
+    "why": "Future tense 'sera' no longer makes sense after Beijing 2022."
+  },
+  "mintaka-de774371": {
+    "prompt": "Quel joueur de Liverpool a été sélectionné dans l’équipe d’Angleterre pour la finale de l’Euro 2020 ?",
+    "why": "Henderson left Liverpool in 2023, so 'joue pour le FC Liverpool' is outdated."
+  },
+  "mintaka-e20a7d16": {
+    "prompt": "Quel joueur natif de Brooklyn, à New York, a porté le maillot des Lakers de Los Angeles en 2021-2022 ?",
+    "why": "Carmelo Anthony has retired, so 'est membre des Lakers' is outdated."
+  },
+  "mintaka-e64f9ea5": {
+    "prompt": "Quel quart-arrière a joué pour les Patriots de la Nouvelle-Angleterre, puis pour les Buccaneers de Tampa Bay ?",
+    "why": "Tom Brady has retired, so 'joue maintenant pour Tampa Bay' is outdated."
+  },
+  "mintaka-f7097812": {
+    "prompt": "Quel joueur est passé des Warriors de Golden State aux Nets de Brooklyn en 2019 ?",
+    "why": "Kevin Durant left the Nets in 2023, so 'joue pour les Nets' is outdated."
+  },
+  "mintaka-5bcefca0": {
+    "drop": true,
+    "why": "Jamal Crawford's third team was Golden State, not Phoenix, and his draft-night trade makes the count ambiguous."
+  },
+  "mintaka-0247df47": {
+    "prompt": "Quel pilote a remporté le plus de titres de champion du monde de vitesse moto, toutes catégories confondues ?",
+    "why": "'MotoGP championships' is ambiguous: Márquez and Rossi lead the MotoGP class, Agostini leads overall."
+  },
+  "mintaka-0dde63bc": {
+    "drop": true,
+    "why": "Tom Brady has retired; the most-ringed active player is no longer him."
+  },
+  "mintaka-27d9cbff": {
+    "prompt": "Quel joueur de la NBA a marqué le plus de points en un seul match ?",
+    "why": "Asks for a number of points while the answer is a player."
+  },
+  "mintaka-2b76ef64": {
+    "prompt": "Avant Alexander Ovechkin, qui détenait le record de buts en carrière dans la NHL ?",
+    "why": "Ovechkin passed Gretzky's goal record in 2025."
+  },
+  "mintaka-3bc022e3": {
+    "drop": true,
+    "why": "LeBron James has since passed Kareem's double-digit scoring games; the record is unverifiable as stated."
+  },
+  "mintaka-4fbea042": {
+    "drop": true,
+    "why": "Answer is wrong: Ken Rosewall won a Grand Slam older than Federer."
+  },
+  "mintaka-605c5a24": {
+    "prompt": "Avant LeBron James, quel joueur de la NBA avait marqué le plus de points en carrière ?",
+    "why": "LeBron James passed Kareem's career points record in 2023."
+  },
+  "mintaka-650800e8": {
+    "drop": true,
+    "why": "Asks for the current oldest NBA coach; Popovich has since retired."
+  },
+  "mintaka-8191cb22": {
+    "drop": true,
+    "why": "Asks for the current active player with the most titles; it has changed and is now tied."
+  },
+  "mintaka-867a6013": {
+    "prompt": "Qui est le plus jeune joueur à avoir remporté le trophée Hart de la NHL ?",
+    "why": "Missing 'plus' makes the question meaningless."
+  },
+  "mintaka-91e3d34c": {
+    "drop": true,
+    "why": "The field-goal record is vague and LeBron James may have passed Kareem since."
+  },
+  "mintaka-c5bf6545": {
+    "prompt": "Qui détient le record de buts marqués en une seule saison régulière de NHL ?",
+    "why": "Ovechkin now holds the career goals record, so the unanchored prompt has two readings."
+  },
+  "mintaka-eb28aaf8": {
+    "drop": true,
+    "why": "The Philippines won Olympic gold in 2021 and 2024, so the answer is outdated."
+  },
+  "mintaka-2d168c24": {
+    "prompt": "Dans la série God of War, de quelle cité grecque vient Kratos ?",
+    "why": "Kratos is never placed in a game, and is also a Greek god."
+  },
+  "mintaka-e5ea2bc2": {
+    "prompt": "Quelle franchise de jeux vidéo, longtemps exclusive à la Xbox, compte Master Chief parmi ses personnages ?",
+    "why": "Halo has since come to PC and PlayStation, so 'exclusivement sur Xbox' is outdated."
+  },
+  "mintaka-fde5696d": {
+    "prompt": "Quel jeu de la série GTA a trois personnages principaux jouables ?",
+    "why": "GTA VI also has several main characters, so 'plusieurs' no longer singles out GTA V."
+  },
+  "mintaka-21d8f51d": {
+    "drop": true,
+    "why": "Later Call of Duty campaigns are shorter than Black Ops Cold War, so the answer is outdated."
+  },
+  "mintaka-2861a1aa": {
+    "drop": true,
+    "why": "Steam's highest-rated game changes over time and cannot be verified."
+  },
+  "mintaka-36f67fca": {
+    "drop": true,
+    "why": "Dragon Ball: Sparking! Zero (2024) has far more fighters than Smash Ultimate."
+  },
+  "mintaka-6da69515": {
+    "drop": true,
+    "why": "Elden Ring has since passed The Last of Us Part II in Game of the Year awards."
+  },
+  "mintaka-831f7a42": {
+    "drop": true,
+    "why": "Asks for Steam's current largest player base; CS:GO no longer exists as such."
+  },
+  "mintaka-85ff6898": {
+    "prompt": "Lequel de ces jeux vidéo s’est le plus vendu, toutes versions confondues ?",
+    "why": "Clashes with the bank's other rows answering Minecraft; scoped to the candidates shown."
+  },
+  "polyfact-Q1199882-P50-Q153701": {
+    "prompt": "Qui est l'auteur du roman post-apocalyptique « Le Passage » (2010), peuplé de vampires ?",
+    "why": "Several books are titled 'Le Passage' in French, Louis Sachar's 'Holes' among them."
+  },
+  "polyfact-Q1214043-P50-Q7243": {
+    "prompt": "Qui est l'auteur du roman « Les Cosaques » (1863) ?",
+    "why": "'Wrote about the Cossacks' fits Gogol and others as well."
+  },
+  "polyfact-Q131101-P50-Q1698707": {
+    "drop": true,
+    "why": "Authorship of the First Epistle of John is disputed; tradition names John the Apostle, not the accepted answer."
+  },
+  "polyfact-Q1710847-P50-Q77024": {
+    "prompt": "Qui est l'auteur du roman « Le Juif Süss » (1925) ?",
+    "why": "'Le Juif de Malte' is Marlowe's play, not Feuchtwanger's novel; the title was wrong."
+  },
+  "polyfact-Q1951421-P50-Q53002": {
+    "drop": true,
+    "why": "Godard, Chabrol, Rohmer and others all fit; only Truffaut is accepted."
+  },
+  "polyfact-Q1977121-P50-Q187019": {
+    "prompt": "Qui est l'auteur du roman « Némésis » (2010), sur une épidémie de polio à Newark ?",
+    "why": "Agatha Christie also wrote a 'Némésis'; the title alone is ambiguous."
+  },
+  "polyfact-Q219669-P50-Q2095353": {
+    "answer": "Dieu",
+    "why": "The answer 'Dieu en Islam' is a Wikidata label, not what a player types."
+  },
+  "polyfact-Q2283078-P50-Q2095353": {
+    "answer": "Dieu",
+    "why": "The answer 'Dieu en Islam' is a Wikidata label, not what a player types."
+  },
+  "polyfact-Q2883891-P50-Q165274": {
+    "prompt": "Qui est l'auteur du poème « Barbara » (« Rappelle-toi Barbara… ») ?",
+    "why": "The prompt read as the singer Barbara performing his songs, which misstates the fact."
+  },
+  "polyfact-Q40205-P50-Q40479": {
+    "prompt": "Qui est l'auteur du roman « Cartographie des nuages » ?",
+    "why": "Without the title marked, it reads as cloud mapping rather than the novel."
+  },
+  "polyfact-Q467053-P50-Q506885": {
+    "prompt": "Qui a écrit le scénario du film « Un pont trop loin » (1977) ?",
+    "why": "The book is Cornelius Ryan's; Goldman only wrote the screenplay."
+  },
+  "polyfact-Q5367068-P50-Q164047": {
+    "prompt": "Quel poète anglais a écrit « Eloisa to Abelard » (1717) ?",
+    "why": "Pope wrote a poem, not a translation of the correspondence; the prompt misstated it."
+  },
+  "polyfact-Q60672-P50-Q93620": {
+    "prompt": "Qui est l'auteur de « L'Héritage », quatrième tome de la saga Eragon ?",
+    "why": "'L'Héritage' alone names countless books."
+  },
+  "polyfact-Q610942-P50-Q1399": {
+    "prompt": "Qui est l'auteur du traité « L'Art de la guerre » publié à Florence en 1521 ?",
+    "why": "'L'Art de la guerre' is first read as Sun Tzu's."
+  },
+  "polyfact-Q948437-P50-Q2095353": {
+    "drop": true,
+    "why": "Dhikr is a devotional practice, not an authored work; the question has no fair reading."
+  },
+  "polyfact-Q234405-P27-Q29": {
+    "drop": true,
+    "why": "A Neapolitan princess by birth; 'Spain' is not a fair expected nationality."
+  },
+  "polyfact-Q2539846-P27-Q898025": {
+    "prompt": "Dans les comics Marvel, de quel pays fictif le mutant Abyss est-il citoyen ?",
+    "why": "'Abyss' alone names nothing identifiable."
+  },
+  "polyfact-Q357502-P27-Q16": {
+    "prompt": "De quelle nationalité est le gardien de hockey Patrick Roy ?",
+    "why": "A French table thinks of the French Patrick Roy first."
+  },
+  "polyfact-Q4119509-P27-Q79": {
+    "drop": true,
+    "why": "A bare first name shared with Anoushka Shankar; no wording disambiguates it without the answer."
+  },
+  "polyfact-Q600903-P27-Q30": {
+    "prompt": "De quel pays James Williamson, guitariste des Stooges, est-il citoyen ?",
+    "why": "Also the name of a British film pioneer, with a different answer."
+  },
+  "polyfact-Q6369103-P27-Q29": {
+    "drop": true,
+    "why": "'Kardam de Bulgarie' points to Bulgaria while the accepted answer is Spain; a trick with no fair reading."
+  },
+  "polyfact-Q6990220-P27-Q79": {
+    "prompt": "De quel pays l'actrice et chanteuse Nelly Artin Kalfayan, dite Nelly, est-elle originaire ?",
+    "why": "'Nelly' alone is first read as the American rapper or Nelly Furtado."
+  },
+  "polyfact-Q983672-P27-Q16": {
+    "prompt": "De quel pays l'écrivain de science-fiction Peter Watts est-il citoyen ?",
+    "why": "The bare name is shared by several people of other countries."
+  },
+  "polyfact-Q1023688-P170-Q7331699": {
+    "prompt": "Par qui la série télévisée « CHiPs » a-t-elle été créée ?",
+    "why": "The prompt said 'les chips' (crisps) instead of the TV series CHiPs."
+  },
+  "polyfact-Q111938992-P170-Q1337354": {
+    "prompt": "Par qui la mini-série « De grandes espérances » de 2023 a-t-elle été créée ?",
+    "why": "Without the year it reads as Dickens's novel."
+  },
+  "polyfact-Q1167912-P170-Q296": {
+    "prompt": "Qui a peint le « Déjeuner sur l'herbe » de 1865-1866, resté inachevé et découpé en morceaux ?",
+    "why": "'Le Déjeuner sur l'herbe' is first read as Manet's, a different answer."
+  },
+  "polyfact-Q1195616-P170-Q3023200": {
+    "prompt": "Par qui la série télévisée britannique « L'Homme à la valise » (1967) a-t-elle été créée ?",
+    "why": "The prompt never says it is a TV series."
+  },
+  "polyfact-Q1214882-P170-Q363402": {
+    "prompt": "Par qui le film « La Momie » de 1999 a-t-il été créé ?",
+    "why": "There are many Mummy films; the year picks the one meant."
+  },
+  "polyfact-Q1247708-P170-Q3809058": {
+    "prompt": "Quel romancier est l'auteur de « Dans la chaleur de la nuit », adapté au cinéma en 1967 ?",
+    "why": "The film is Norman Jewison's; John Ball is the novelist who created it."
+  },
+  "polyfact-Q128236-P170-Q533522": {
+    "drop": true,
+    "why": "'Le Prince noir' does not identify which work Alan Gibson created."
+  },
+  "polyfact-Q136643-P170-Q552372": {
+    "prompt": "Par qui le personnage de Zorro a-t-il été créé ?",
+    "why": "'La Légende de Zorro' is a 2005 film by Martin Campbell; McCulley created the character."
+  },
+  "polyfact-Q17299853-P170-Q443440": {
+    "prompt": "Par qui la série américaine « The Returned » (2015) a-t-elle été créée ?",
+    "why": "Readily confused with the French original 'Les Revenants', created by someone else."
+  },
+  "polyfact-Q189068-P170-Q525458": {
+    "prompt": "Par qui la série « Monk » a-t-elle été créée ?",
+    "why": "'Moine' is a literal translation of Monk that names nothing."
+  },
+  "polyfact-Q1934350-P170-Q739650": {
+    "drop": true,
+    "why": "'Le Top' names nothing recognisable and the creator credit for the Cure album is unclear."
+  },
+  "polyfact-Q2025445-P170-Q3425789": {
+    "prompt": "Par qui la série policière « Jo » (2013), avec Jean Reno, a-t-elle été créée ?",
+    "why": "'Jo' alone identifies nothing."
+  },
+  "polyfact-Q2081513-P170-Q294773": {
+    "prompt": "Qui a écrit l'adaptation en mini-série de « Parade's End » (BBC, 2012) ?",
+    "why": "The novel is Ford Madox Ford's; Stoppard only adapted it."
+  },
+  "polyfact-Q222041-P170-Q350903": {
+    "prompt": "Par qui le film « Hairspray » de 2007 a-t-il été créé ?",
+    "why": "The 1988 original is John Waters's, a different answer."
+  },
+  "polyfact-Q223367-P170-Q55258": {
+    "answer": "Peter Morgan",
+    "why": "The Crown was created by Peter Morgan, not Stephen Frears."
+  },
+  "polyfact-Q2282256-P170-Q5582": {
+    "prompt": "Qui a peint le tableau « Les Iris » (1889) ?",
+    "why": "'Les Iris' reads as the flowers, not a painting."
+  },
+  "polyfact-Q2667715-P170-Q162340": {
+    "prompt": "Qui a réalisé le film « Kinky Boots » (2005) ?",
+    "why": "Kinky Boots is a film, not a series, and also a musical by others."
+  },
+  "polyfact-Q27955792-P170-Q26097618": {
+    "prompt": "Par qui le personnage d'Onze, l'héroïne de « Stranger Things », a-t-il été créé ?",
+    "why": "'La série Onze' is the Stranger Things character Eleven, mislabelled as a series."
+  },
+  "polyfact-Q3342420-P170-Q484779": {
+    "prompt": "Par qui la série télévisée « No Limit » (2012) a-t-elle été créée ?",
+    "why": "No Limit is a TV series, not a film."
+  },
+  "polyfact-Q3877556-P170-Q120993": {
+    "prompt": "Qui a peint le « Nu couché » vendu 170 millions de dollars en 2015 ?",
+    "why": "Countless paintings are titled 'Nu couché'."
+  },
+  "polyfact-Q445816-P170-Q484779": {
+    "prompt": "Qui a créé la saga de films « Le Transporteur », avec Jason Statham ?",
+    "why": "Besson did not direct the film; the prompt must point at the franchise he created."
+  },
+  "polyfact-Q468052-P170-Q816605": {
+    "drop": true,
+    "why": "'Amerika' reads as Kafka's novel, and Ben Stein's credit for the 1987 miniseries is doubtful."
+  },
+  "polyfact-Q500242-P170-Q5592": {
+    "answer": "Michel-Ange",
+    "why": "The answer 'Michel-Ange Buronarroti' is misspelt."
+  },
+  "polyfact-Q51787-P170-Q51752": {
+    "prompt": "Dans Star Wars, quel personnage a construit le droïde C-3PO ?",
+    "why": "'Created by' reads as George Lucas; the answer is the in-story builder."
+  },
+  "polyfact-Q52347-P170-Q38222": {
+    "prompt": "Quel cinéaste a imaginé l'Empire galactique de Star Wars ?",
+    "why": "'Created by' could mean Palpatine in-story; the answer is the filmmaker."
+  },
+  "polyfact-Q56319001-P170-Q12252957": {
+    "prompt": "Par qui la série espagnole « Vivir sin permiso » (« Le Permis de vivre ») a-t-elle été créée ?",
+    "why": "'Le permis de vivre' was not recognisable as a TV series."
+  },
+  "polyfact-Q6129446-P170-Q188344": {
+    "drop": true,
+    "why": "Yvain is Chrétien de Troyes's hero; Geoffrey of Monmouth is not the fair answer."
+  },
+  "polyfact-Q701207-P170-Q2897797": {
+    "prompt": "Par qui la série animée « M.A.S.K. » a-t-elle été créée ?",
+    "why": "'MASK' alone does not say it is the cartoon."
+  },
+  "polyfact-Q748427-P170-Q552255": {
+    "prompt": "Par qui l'Âne, le compagnon de Shrek, a-t-il été créé ?",
+    "why": "'Le personnage de L'Âne' names no work."
+  },
+  "polyfact-Q748518-P170-Q5580": {
+    "prompt": "Qui a gravé la célèbre gravure sur bois « Le Rhinocéros » (1515) ?",
+    "why": "'Who created the rhinoceros' reads as the animal."
+  },
+  "polyfact-Q766487-P170-Q160538": {
+    "prompt": "Qui a sculpté le « David » de la galerie Borghèse, saisi en plein lancer de fronde ?",
+    "why": "'David' is first read as Michelangelo's statue."
+  },
+  "polyfact-Q944287-P170-Q3565642": {
+    "prompt": "Par qui la série animée « La Petite Sirène » (1992) a-t-elle été créée ?",
+    "why": "'La Petite Sirène' is first read as Andersen's tale."
+  },
+  "polyfact-Q1139044-P178-Q2660091": {
+    "drop": true,
+    "why": "Dozens of Simpsons games exist and the prompt names none."
+  },
+  "polyfact-Q1145746-P178-Q454544": {
+    "prompt": "Par qui l'avion biplan JN-4 « Jenny » a-t-il été développé ?",
+    "why": "'Le JN-4' alone says nothing about what it is."
+  },
+  "polyfact-Q1154327-P178-Q1041320": {
+    "prompt": "Par qui le jeu vidéo XIII (2003) a-t-il été développé ?",
+    "why": "XIII is also a comic and had a 2020 remake by another studio."
+  },
+  "polyfact-Q116698014-P178-Q30688088": {
+    "prompt": "Par qui le modèle d'intelligence artificielle Gemini a-t-il été développé ?",
+    "why": "'Gemini' also names NASA's space programme."
+  },
+  "polyfact-Q120281745-P178-Q380": {
+    "prompt": "Par quelle entreprise le réseau social Threads a-t-il été développé ?",
+    "why": "'Threads' alone is ambiguous."
+  },
+  "polyfact-Q12253-P178-Q3146518": {
+    "prompt": "Par qui le système d'intelligence artificielle Watson a-t-il été développé ?",
+    "why": "'Watson' alone names nothing identifiable."
+  },
+  "polyfact-Q126042383-P178-Q193559": {
+    "prompt": "Le jeu vidéo Deadlock a été développé par quelle entreprise ?",
+    "why": "'Deadlock' alone is a common word."
+  },
+  "polyfact-Q134784675-P178-Q312": {
+    "prompt": "Par qui le design d'interface Liquid Glass, dévoilé en 2025, a-t-il été développé ?",
+    "why": "'Liquid Glass' alone does not say what kind of thing it is."
+  },
+  "polyfact-Q2494337-P178-Q2541023": {
+    "prompt": "Par quelle société la série de jeux vidéo Les Aventures de Sherlock Holmes a-t-elle été développée ?",
+    "why": "Reads as the books or a TV series; it is a video game series."
+  },
+  "polyfact-Q30612014-P178-Q3504740": {
+    "prompt": "Par quelle société le jeu vidéo Hidden Agenda a-t-il été développé ?",
+    "why": "'Hidden Agenda' is also a well-known film; the prompt never says it is a game."
+  },
+  "polyfact-Q4299727-P178-Q1760641": {
+    "prompt": "Par quelle entreprise le logiciel de CAO Creo a-t-il été développé ?",
+    "why": "'Creo' alone does not say what it is."
+  },
+  "polyfact-Q5575485-P178-Q14428": {
+    "prompt": "Par quelle entreprise le jeu Street Fighter II: Champion Edition a-t-il été développé ?",
+    "why": "Broken quotes around the title."
+  },
+  "polyfact-Q586736-P178-Q752317": {
+    "prompt": "Par qui le jeu vidéo Coupe du monde de la FIFA : Afrique du Sud 2010 a-t-il été développé ?",
+    "why": "Reads as the football tournament itself; it is a video game."
+  },
+  "polyfact-Q680614-P178-Q363984": {
+    "prompt": "Par qui le GE Building de New York, au 30 Rockefeller Plaza, a-t-il été développé ?",
+    "why": "'Le bâtiment GE' does not say which building or where."
+  },
+  "polyfact-Q737653-P178-Q628249": {
+    "prompt": "Par quelle société le jeu vidéo Wasteland, sorti en 1988, a-t-il été développé ?",
+    "why": "'Wasteland' alone does not say it is a video game."
+  },
+  "polyfact-Q740986-P178-Q1850424": {
+    "prompt": "Par quelle société le jeu vidéo L'Amézone a-t-il été développé ?",
+    "why": "'L'Amézone' alone does not say what it is."
+  },
+  "polyfact-Q1088058-P57-Q65321": {
+    "prompt": "Quel réalisateur a dirigé le film de science-fiction 'Enemy', sorti en 1985 ?",
+    "why": "Several films are called 'Enemy' (Villeneuve's 2013 one is better known)."
+  },
+  "polyfact-Q113540776-P57-Q7648702": {
+    "prompt": "Par qui la série Les Buccaneers, sortie en 2023, a-t-elle été réalisée ?",
+    "why": "Does not say it is a series, and an earlier adaptation exists."
+  },
+  "polyfact-Q1167579-P57-Q95008": {
+    "prompt": "Par qui la version de 1995 du film Le Village des damnés a-t-elle été réalisée ?",
+    "why": "There are two films of that title; the 1960 original had another director."
+  },
+  "polyfact-Q12136489-P57-Q973814": {
+    "prompt": "Par qui le documentaire Bambi, sorti en 2013, a-t-il été réalisé ?",
+    "why": "Every player will think of Disney's Bambi, not this 2013 documentary."
+  },
+  "polyfact-Q1082924-P57-Q1031374": {
+    "prompt": "Par qui le film 'Les Chevaliers du ciel', sorti en 2005, a-t-il été réalisé ?",
+    "why": "Also a 1960s TV series; the prompt does not say which."
+  },
+  "polyfact-Q1275343-P57-Q269975": {
+    "prompt": "Par qui le western L'Appât, sorti en 1953, a-t-il été réalisé ?",
+    "why": "Tavernier's 1995 'L'Appât' is the one a French table knows."
+  },
+  "polyfact-Q128787358-P57-Q31158071": {
+    "prompt": "Par qui le film Romería a-t-il été réalisé ?",
+    "why": "'La Romería' with no 'film' does not read as a title."
+  },
+  "polyfact-Q1431693-P57-Q158250": {
+    "prompt": "Par qui le film Nickelodeon, sorti en 1976, a-t-il été réalisé ?",
+    "why": "Reads as the TV channel, not the film."
+  },
+  "polyfact-Q15985322-P57-Q380272": {
+    "prompt": "Par qui le film américain 'Le Pari' (Draft Day), sorti en 2014, a-t-il été réalisé ?",
+    "why": "The French 1997 'Le Pari' is the one a French table knows."
+  },
+  "polyfact-Q1604598-P57-Q974566": {
+    "prompt": "Par qui le téléfilm Helter Skelter, sorti en 2004, a-t-il été réalisé ?",
+    "why": "Two adaptations share that title."
+  },
+  "polyfact-Q1620093-P57-Q285928": {
+    "prompt": "Par qui le film « Des souris et des hommes » de 1939 a-t-il été réalisé ?",
+    "why": "Several adaptations share that title (1939, 1992)."
+  },
+  "polyfact-Q175018-P57-Q1348110": {
+    "prompt": "Par qui le film 'Le facteur sonne toujours deux fois' de 1946 a-t-il été réalisé ?",
+    "why": "The 1946 film and its 1981 remake share the title."
+  },
+  "polyfact-Q1755538-P57-Q316844": {
+    "prompt": "Par qui le film « Courir avec des ciseaux » a-t-il été réalisé ?",
+    "why": "Misspelled title, and it is a film, not a series."
+  },
+  "polyfact-Q1778567-P57-Q3177481": {
+    "prompt": "Par qui la mini-série Shogun de 1980 a-t-elle été réalisée ?",
+    "why": "It is a 1980 miniseries, not a film, and a 2024 series shares the name."
+  },
+  "polyfact-Q195274-P57-Q56014": {
+    "prompt": "Par qui le film 'Les Quatre Filles du docteur March' de 1933 a-t-il été réalisé ?",
+    "why": "At least four films share that title."
+  },
+  "polyfact-Q221113-P57-Q8877": {
+    "prompt": "Quel réalisateur a signé le film 'Minority Report' ?",
+    "why": "The framing calls Minority Report an AI film, which misleads."
+  },
+  "polyfact-Q227548-P57-Q694259": {
+    "prompt": "Quel réalisateur a signé le film 36 quai des Orfèvres ?",
+    "why": "Reads as the police building rather than the film."
+  },
+  "polyfact-Q2411071-P57-Q374912": {
+    "prompt": "Quel metteur en scène a réalisé le film Lautrec, sorti en 1998 ?",
+    "why": "'Lautrec' alone reads as the painter, not a film."
+  },
+  "polyfact-Q24075-P57-Q60100": {
+    "prompt": "Par qui le film américain Godzilla de 1998 a-t-il été réalisé ?",
+    "why": "There are dozens of Godzilla films."
+  },
+  "polyfact-Q247130-P57-Q95119": {
+    "prompt": "Par qui le film « 3 h 10 pour Yuma » de 1957 a-t-il été réalisé ?",
+    "why": "The 1957 film and its 2007 remake share the French title."
+  },
+  "polyfact-Q25461297-P57-Q726126": {
+    "prompt": "Par qui le film 'The Predator', sorti en 2018, a-t-il été réalisé ?",
+    "why": "'Predator' names McTiernan's 1987 film, not this 2018 one."
+  },
+  "polyfact-Q2607724-P57-Q213581": {
+    "prompt": "Par qui le film Mayerling de 1936 a-t-il été réalisé ?",
+    "why": "The 1936 and 1968 films share the title."
+  },
+  "polyfact-Q278053-P57-Q191037": {
+    "prompt": "Par qui le film Labyrinthe, sorti en 1986, a-t-il été réalisé ?",
+    "why": "Several films are called Labyrinthe or Le Labyrinthe."
+  },
+  "polyfact-Q282781-P57-Q1332810": {
+    "prompt": "Par qui le film 'Troupe d'élite' a-t-il été réalisé ?",
+    "why": "It is a film, not a series."
+  },
+  "polyfact-Q30115192-P57-Q19947205": {
+    "prompt": "Par qui le film sud-coréen Psychokinesis, sorti en 2018, a-t-il été réalisé ?",
+    "why": "'Le film sur la psychokinésie' never names the film."
+  },
+  "polyfact-Q3033530-P57-Q1053096": {
+    "prompt": "Par qui le film Docteur Petiot, sorti en 1990, a-t-il été réalisé ?",
+    "why": "'Le film sur le Docteur Petiot' never names the film."
+  },
+  "polyfact-Q30731110-P57-Q42263944": {
+    "prompt": "Quel réalisateur a réalisé le film Gauguin : Voyage de Tahiti ?",
+    "why": "'Le film avec Gauguin' never names the film."
+  },
+  "polyfact-Q3224891-P57-Q993671": {
+    "prompt": "Par qui le film Le Mystère de la chambre jaune de 2003 a-t-il été réalisé ?",
+    "why": "Several adaptations share that title."
+  },
+  "polyfact-Q22350839-P57-Q736069": {
+    "prompt": "Par qui le film américain Le Dîner (The Dinner), sorti en 2017, a-t-il été réalisé ?",
+    "why": "'Le Dîner' alone does not say which film."
+  },
+  "polyfact-Q12387051-P57-Q3379934": {
+    "drop": true,
+    "why": "James Ivory's 'Le Divorce' is the well-known film of that title, and this one cannot be pinned down."
+  },
+  "polyfact-Q16664011-P57-Q2388301": {
+    "drop": true,
+    "why": "Several films are called 'Mektoub' and this one cannot be pinned down."
+  },
+  "polyfact-Q167022-P57-Q8877": {
+    "drop": true,
+    "why": "'La Chose' reads as Carpenter's The Thing; Spielberg's obscure TV film cannot be fairly identified."
+  },
+  "polyfact-Q2688546-P57-Q56008": {
+    "drop": true,
+    "why": "Tim Burton directed one episode of the revival, not the show; no fair reading."
+  },
+  "polyfact-Q3349019-P57-Q19668417": {
+    "drop": true,
+    "why": "'The Mirror' as a Mike Flanagan series cannot be identified; ambiguous with Tarkovsky's film."
+  },
+  "polyfact-Q448102-P57-Q3023139": {
+    "drop": true,
+    "why": "Robbe-Grillet's 'L'Immortelle' is the known title; this one cannot be pinned down."
+  },
+  "polyfact-Q581960-P57-Q1375852": {
+    "prompt": "Par qui le film Full Contact, avec Jean-Claude Van Damme, sorti en 1990, a-t-il été réalisé ?",
+    "why": "Ringo Lam's 1992 'Full Contact' shares the title."
+  },
+  "polyfact-Q591780-P57-Q238315": {
+    "prompt": "Qui a réalisé le film Chocolat sorti en 1988 ?",
+    "why": "Hallström's 2000 'Chocolat' is the one players will think of."
+  },
+  "polyfact-Q60674390-P57-Q3379934": {
+    "prompt": "Quel réalisateur a réalisé le film Yao, sorti en 2019 ?",
+    "why": "'Yao' alone does not say it is a film."
+  },
+  "polyfact-Q61633664-P57-Q2593": {
+    "prompt": "Par qui le film 'The King's Man : Première Mission' a-t-il été réalisé ?",
+    "why": "The title is mangled ('Le Roi's Man')."
+  },
+  "polyfact-Q691611-P57-Q298025": {
+    "prompt": "Par qui le film Serenity, sorti en 2005, a-t-il été réalisé ?",
+    "why": "A 2019 film is also called Serenity."
+  },
+  "polyfact-Q699278-P57-Q975070": {
+    "prompt": "Par qui le film La Tranchée (Deathwatch), sorti en 2002, a-t-il été réalisé ?",
+    "why": "'La Tranchée' alone does not say which work."
+  },
+  "polyfact-Q7166755-P57-Q463617": {
+    "prompt": "Par qui l'épisode « Per manum » de la série X-Files a-t-il été réalisé ?",
+    "why": "Never says it is an X-Files episode."
+  },
+  "polyfact-Q738462-P57-Q8312": {
+    "prompt": "Par qui le téléfilm 'Le Jour d'après' (The Day After), diffusé en 1983, a-t-il été réalisé ?",
+    "why": "'Le Jour d'après' reads as Emmerich's 2004 film."
+  },
+  "polyfact-Q759322-P57-Q263022": {
+    "prompt": "Par qui le film 'Le Fil du rasoir' de 1946 a-t-il été réalisé ?",
+    "why": "The 1946 film and its 1984 remake share the title."
+  },
+  "polyfact-Q790090-P57-Q269692": {
+    "prompt": "Par qui le film Avalon, sorti en 1990, a-t-il été réalisé ?",
+    "why": "Mamoru Oshii's 2001 Avalon shares the title."
+  },
+  "polyfact-Q887961-P57-Q808769": {
+    "prompt": "Par qui le film d'horreur Frozen, sorti en 2010, a-t-il été réalisé ?",
+    "why": "'Frozen' reads as Disney's film."
+  },
+  "polyfact-Q891973-P57-Q1375852": {
+    "prompt": "Par qui le film The Order, avec Jean-Claude Van Damme, sorti en 2001, a-t-il été réalisé ?",
+    "why": "Several films are called The Order."
+  },
+  "polyfact-Q898721-P57-Q55294": {
+    "prompt": "Par qui le film Hamlet de 1996 a-t-il été réalisé ?",
+    "why": "Countless Hamlet films and stagings exist."
+  },
+  "polyfact-Q909063-P57-Q298255": {
+    "prompt": "Quel réalisateur a signé le remake d'Halloween en 2007, puis Halloween II en 2009 ?",
+    "why": "Names a 1995 film he did not direct, and two Halloween IIs exist."
+  },
+  "polyfact-Q913426-P57-Q381944": {
+    "prompt": "Par qui le film soviétique 'L'Ironie du sort' a-t-il été réalisé ?",
+    "why": "Molinaro's French film shares the title."
+  },
+  "polyfact-Q9262969-P57-Q3016658": {
+    "prompt": "Par qui la mini-série 'Les oiseaux se cachent pour mourir' a-t-elle été réalisée ?",
+    "why": "It is a TV miniseries, not a film."
+  },
+  "polyfact-Q1138488-P61-Q161135": {
+    "prompt": "Quel joueur d'échecs a inventé l'ouverture appelée partie catalane ?",
+    "why": "'La partie catalane' never says it is a chess opening."
+  },
+  "polyfact-Q1152625-P20-Q487999": {
+    "drop": true,
+    "why": "'Allen West' reads as the living US politician; this namesake cannot be identified."
+  },
+  "polyfact-Q3179785-P20-Q48958": {
+    "drop": true,
+    "why": "Every player will think of Apple's Steve Jobs, who died in Palo Alto, not this namesake."
+  },
+  "polyfact-Q380418-P20-Q5092": {
+    "drop": true,
+    "why": "Several people are called John Hopkins; the prompt cannot say which."
+  },
+  "polyfact-Q469523-P20-Q60": {
+    "drop": true,
+    "why": "The famous singer Samantha Fox is alive; this namesake cannot be identified."
+  },
+  "polyfact-Q5981110-P20-Q84": {
+    "drop": true,
+    "why": "Dozens of people are called Ian Campbell; the prompt cannot say which."
+  },
+  "polyfact-Q2778853-P20-Q849324": {
+    "prompt": "Où Jeanne d'Angleterre, fille d'Édouard III emportée par la peste en 1348, est-elle morte ?",
+    "why": "Several princesses are called Jeanne d'Angleterre."
+  },
+  "polyfact-Q3133054-P20-Q132790": {
+    "prompt": "Où le pyrénéiste Henry Russell est-il mort ?",
+    "why": "Several people are called Henry Russell."
+  },
+  "polyfact-Q438601-P20-Q178663": {
+    "prompt": "Où Idris Ier, fondateur de la dynastie marocaine des Idrissides, est-il mort ?",
+    "why": "Idris I of Libya shares the name."
+  },
+  "polyfact-Q488603-P20-Q84": {
+    "prompt": "Où le chanteur Scott Walker est-il décédé ?",
+    "why": "Reads as the living US politician of that name."
+  },
+  "polyfact-Q58563-P20-Q13378": {
+    "prompt": "Où le pape Victor II est-il mort ?",
+    "why": "'Victor II' alone does not say who."
+  },
+  "quote-en-melville": {
+    "prompt": "“Call me Ishmael.” Who wrote it?",
+    "why": "Ishmael says it, so \"Who said it?\" fairly answers Ishmael, not Melville."
+  },
+  "quote-en-shakespeare-be": {
+    "prompt": "“To be, or not to be, that is the question.” Who wrote it?",
+    "why": "Spoken by a character, so \"Who said it?\" fairly answers the character, not the author."
+  },
+  "quote-en-shakespeare-friends": {
+    "prompt": "“Friends, Romans, countrymen, lend me your ears.” Who wrote it?",
+    "why": "Spoken by a character, so \"Who said it?\" fairly answers the character, not the author."
+  },
+  "quote-en-shakespeare-horse": {
+    "prompt": "“A horse! a horse! my kingdom for a horse!” Who wrote it?",
+    "why": "Spoken by a character, so \"Who said it?\" fairly answers the character, not the author."
+  },
+  "quote-en-shakespeare-romeo": {
+    "prompt": "“O Romeo, Romeo, wherefore art thou Romeo?” Who wrote it?",
+    "why": "Spoken by a character, so \"Who said it?\" fairly answers the character, not the author."
+  },
+  "quote-en-shakespeare-stage": {
+    "prompt": "“All the world's a stage, and all the men and women merely players.” Who wrote it?",
+    "why": "Spoken by a character, so \"Who said it?\" fairly answers the character, not the author."
+  },
+  "quote-en-shelley": {
+    "prompt": "“Look on my Works, ye Mighty, and despair!” Who wrote it?",
+    "why": "The line is Ozymandias's inscription, so \"Who said it?\" fairly answers Ozymandias, not Shelley."
+  },
+  "videogames-fr-camper": {
+    "prompt": "Dans un jeu vidéo en ligne, comment appelle-t-on un joueur qui reste caché au même endroit pour surprendre les autres ?",
+    "why": "Never says it is about video games, so the slang answer is unguessable."
+  },
+  "videogames-fr-grind": {
+    "prompt": "Dans un jeu vidéo, comment appelle-t-on le fait de répéter longtemps la même tâche pour progresser ?",
+    "why": "Never says it is about video games, so the slang answer is unguessable."
+  },
+  "videogames-fr-noob": {
+    "prompt": "Dans les jeux vidéo, comment appelle-t-on familièrement un joueur débutant ?",
+    "why": "Never says it is about video games, so \"débutant\" slang has no single answer."
   }
 }
