@@ -132,6 +132,7 @@ import { Scoreboard } from '@/presentation/components/scoreboard'
 import { ScoringRule } from '@/presentation/components/scoring-rule'
 import { SectionHeading } from '@/presentation/components/section-heading'
 import { SwatchChip } from '@/presentation/components/swatch-chip'
+import { SwatchGuesses } from '@/presentation/components/swatch-guesses'
 import { TeamMove } from '@/presentation/components/team-move'
 import { TeamRoster } from '@/presentation/components/team-roster'
 import { ThisRoundHeading } from '@/presentation/components/this-round-heading'
@@ -281,6 +282,38 @@ const OverallStandings: React.FC<{
 }
 
 /**
+ * Every seat's colour held against the one shown, after the press and before
+ * the game so far: the first screen owes the round's own block, and the page
+ * scrolls to the rest of the table.
+ */
+const TableColours: React.FC<{
+  round: RoundView
+  view: PlayerRoomView
+}> = ({ round, view }) => {
+  const translate = useTranslate()
+  const titleId = useId()
+  const colours = swatchContent(round)?.revealedColours ?? []
+
+  if (colours.length === 0) {
+    return null
+  }
+
+  return (
+    <section aria-labelledby={titleId} className='table-colours'>
+      <SectionHeading id={titleId}>
+        {translate('swatch.reveal.table')}
+      </SectionHeading>
+      <SwatchGuesses
+        layout='rows'
+        players={view.players}
+        round={round}
+        youId={view.youId}
+      />
+    </section>
+  )
+}
+
+/**
  * The game a line-up's next round is on, on its lid, over the count into it:
  * the round about to start may be another game than the one just revealed.
  * A room of one game has nothing to announce.
@@ -343,6 +376,7 @@ const RevealedRound: React.FC<RevealedRoundProps> = ({
         )}
       </div>
       <BackAtTheTable onReady={onReady} round={round} view={view} />
+      <TableColours round={round} view={view} />
       <OverallStandings round={round} view={view} />
     </section>
   )

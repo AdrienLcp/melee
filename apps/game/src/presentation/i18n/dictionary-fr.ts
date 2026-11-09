@@ -1942,6 +1942,7 @@ export const FR_DICTIONARY = defineDictionary({
     rebuildDuration: 'Temps pour la refaire',
     remember: 'Retiens cette couleur',
     reveal: {
+      table: 'Les couleurs de la table',
       title: 'La couleur',
       yours: 'La tienne',
       yoursUnsent: 'La tienne, prise où était ton curseur'

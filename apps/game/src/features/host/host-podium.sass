@@ -86,7 +86,7 @@
           // nothing.
           // The answer's card never shrinks under its own lines: the list
           // under the round's heading and podium gives way first, scrolling.
-          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'])
+          > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'])
             grid-template-rows: minmax(min-content, 1fr) auto auto
 
             &:has(> .tally)
@@ -104,7 +104,9 @@
               max-block-size: 30cqh
               overflow-y: auto
 
-        &:has(> .stage.revealed > .reveal-panel[data-game='atlas'])
+        // Every seat's guess is drawn at a size of its own, so the colours
+        // take the map's height rather than the card's.
+        &:has(> .stage.revealed > .reveal-panel:is([data-game='atlas'], [data-game='swatch']))
           height: var(--podium-atlas-height)
 
         > header .round-index

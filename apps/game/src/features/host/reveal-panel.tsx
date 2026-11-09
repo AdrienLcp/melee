@@ -42,6 +42,7 @@ import { Pawn } from '@/presentation/components/pawn'
 import { ReactionBoard } from '@/presentation/components/reaction-board'
 import { RebusLine } from '@/presentation/components/rebus-line'
 import { RoundPodium, useWordsOf } from '@/presentation/components/round-podium'
+import { SwatchGuesses } from '@/presentation/components/swatch-guesses'
 import { SwatchShown } from '@/presentation/components/swatch-shown'
 import { ThisRoundHeading } from '@/presentation/components/this-round-heading'
 import { TimelineStrip } from '@/presentation/components/timeline-strip'
@@ -51,6 +52,7 @@ import { VisuallyHidden } from '@/presentation/components/visually-hidden'
 import { useI18n, useTranslate } from '@/presentation/i18n/i18n-provider'
 
 import { PetitBacGrid, type PetitBacStrike } from './petit-bac-grid'
+import { useFittedGrid } from './use-fitted-grid'
 import { useWholeChips } from './use-whole-chips'
 
 import './reveal-panel.sass'
@@ -232,8 +234,8 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
 
   const shades = swatchContent(round)
 
-  // The colour back on its chip, and every seat's beside its name under it,
-  // nearest first.
+  // The colour back on its chip, and every seat's held against it under its
+  // name, nearest first: the grid is the podium, whole.
   if (shades?.colour != null && shades.revealedColours !== null) {
     return (
       <section className='reveal-panel' data-game='swatch'>
@@ -244,12 +246,17 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
           />
         </div>
 
-        <Outcome
+        <ThisRoundHead
           lineUp={lineUp}
           players={players}
           round={round}
           youId={youId}
         />
+        {shades.revealedColours.length > 0 ? (
+          <FittedGuesses players={players} round={round} youId={youId} />
+        ) : (
+          <RoundPodium players={players} round={round} youId={youId} />
+        )}
       </section>
     )
   }
@@ -459,6 +466,32 @@ export const RevealPanel: React.FC<RevealPanelProps> = ({
     <section className='reveal-panel bare'>
       <Outcome lineUp={lineUp} players={players} round={round} youId={youId} />
     </section>
+  )
+}
+
+/** How much taller than wide a guess is: its chip, then its name and its points. */
+const GUESS_ASPECT = 1.7
+
+/** Every seat's guess dealt into the box the panel leaves, the wall never scrolling. */
+const FittedGuesses: React.FC<
+  Omit<RevealPanelProps, 'lineUp' | 'onStrike'>
+> = ({ players, round, youId }) => {
+  const grid = useRef<HTMLOListElement>(null)
+
+  useFittedGrid({
+    aspect: GUESS_ASPECT,
+    count: swatchContent(round)?.revealedColours?.length ?? 0,
+    grid
+  })
+
+  return (
+    <SwatchGuesses
+      layout='grid'
+      players={players}
+      ref={grid}
+      round={round}
+      youId={youId}
+    />
   )
 }
 

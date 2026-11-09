@@ -1,0 +1,129 @@
+@use '../styles/piece'
+@use '../styles/rank'
+@use '../styles/typography'
+
+@layer components
+  .swatch-guesses
+    list-style: none
+    margin: 0
+    min-width: 0
+
+    li
+      @include piece.shelved(var(--order, 0), 12)
+
+      // The split laid once the chip has landed, in the order the chips do.
+      --guess-delay: calc(var(--transition-fast, 0s) * (3 + min(var(--order, 0), 12) * 0.3))
+
+      min-width: 0
+
+    .seat
+      @include typography.title
+
+      align-items: center
+      display: flex
+      gap: 0.35em
+      min-width: 0
+
+      .pawn
+        block-size: 1.1em
+        flex: none
+        inline-size: auto
+
+    .place
+      @include rank.before-pawn($figures: 1, $gap: 0.35em, $name-gap: 0.35em)
+
+      flex: none
+
+    // Atomic, as a name is everywhere else: whole or cut on an ellipsis.
+    .nickname
+      min-width: 0
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    .points
+      @include typography.numeric
+
+      color: var(--ink-muted)
+      white-space: nowrap
+
+    // Every chip the same width, at the size the owner's box deals them
+    // (`useFittedGrid`), the name and the points under each. Capped so no
+    // guess is drawn larger than the colour it is held against, and floored
+    // where a box may scroll: a console's card dealt 24 of them at 26px.
+    &[data-layout='grid']
+      --cell-side: clamp(4.75rem, var(--fitted-side, 6rem), 9rem)
+
+      align-content: safe center
+      display: grid
+      gap: var(--space-xs)
+      grid-auto-rows: calc(var(--cell-side) * 1.7)
+      grid-template-columns: repeat(auto-fit, var(--cell-side))
+      justify-content: center
+      overflow-x: clip
+      overflow-y: auto
+
+      // Nobody scrolls the wall, so there the cells take what the box deals,
+      // in the columns it dealt them: a box a pixel short of eleven fitted
+      // ten and pushed a third row out of it.
+      &:is(.wall-page *)
+        --cell-side: min(var(--fitted-side, 6rem), 9rem)
+
+        grid-template-columns: repeat(var(--fitted-columns, 6), var(--cell-side))
+        overflow-y: clip
+
+      li
+        border-radius: var(--radius-s)
+        display: grid
+        font-size: clamp(var(--text-xs), calc(var(--cell-side) * 0.14), var(--text-l))
+        grid-template-rows: minmax(0, 1fr) auto auto
+        justify-items: center
+        row-gap: 0.15em
+
+        &.you
+          box-shadow: 0 0 0 var(--stroke-bold) var(--ink)
+
+      // The chip takes what the two lines under it leave, at a fan deck's
+      // proportions, whichever of the slot's sides runs out first.
+      .slot
+        align-self: stretch
+        container-type: size
+        display: grid
+        inline-size: 100%
+        place-items: end center
+
+      .swatch-chip
+        block-size: min(100cqh, 125cqi)
+
+      .seat
+        font-size: 1em
+        justify-content: center
+        max-inline-size: 100%
+
+    // One seat a line down a page that scrolls, the reader's own in the
+    // keyline every list of seats draws round it.
+    &[data-layout='rows']
+      display: flex
+      flex-direction: column
+      gap: var(--space-2xs)
+
+      li
+        align-items: center
+        border-radius: var(--radius-s)
+        display: grid
+        font-size: var(--text-m)
+        gap: var(--space-s)
+        grid-template-columns: auto minmax(0, 1fr) auto
+        padding: var(--space-2xs) var(--space-xs)
+
+        &.you
+          box-shadow: inset 0 0 0 var(--stroke-bold) var(--ink)
+
+      .slot
+        display: flex
+
+      .swatch-chip
+        inline-size: 2.75rem
+
+      .seat
+        font-size: 1em

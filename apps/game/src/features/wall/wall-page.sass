@@ -95,7 +95,7 @@
     // top: the answer and what the table said read as one block, the title and
     // the race as another. Neither divides its box by its rows, because a few
     // chips stretched to a full height were set at the top of an empty field.
-    > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'])
+    > .stage.revealed > .reveal-panel:not(.bare, [data-game='atlas'], [data-game='blacksquare'], [data-game='petitbac'], [data-game='swatch'])
       @include layout.wide
         align-content: center
         grid-template-rows: auto auto auto minmax(0, auto)
@@ -334,6 +334,14 @@
               &.holding
                 grid-template: 'panel' minmax(0, auto) 'standings' minmax(0, 1fr) 'hold' auto / minmax(0, 1fr)
 
+            // The guesses divide their box too, so the colour's panel is
+            // handed a share of the height rather than what it would ask.
+            &:has(> .reveal-panel[data-game='swatch'])
+              grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 1fr) / minmax(0, 1fr)
+
+              &.holding
+                grid-template: 'panel' minmax(0, 1fr) 'standings' minmax(0, 1fr) 'hold' auto / minmax(0, 1fr)
+
       > .stage.finished > .final-board
         align-content: center
         grid-template: 'podium' auto 'standings' minmax(0, auto) / minmax(0, 1fr)
@@ -443,6 +451,12 @@
             > .standings
               flex: 3 1 0
               grid-template-rows: auto minmax(0, 1fr)
+
+            // The guesses divide what the colour leaves, so they are handed
+            // as much of the height as the standings rather than two fifths.
+            > .reveal-panel[data-game='swatch']
+              flex-grow: 3
+              max-height: 52dvh
 
 
     // A seat's name gives up its width before a category does: unwrapped, a

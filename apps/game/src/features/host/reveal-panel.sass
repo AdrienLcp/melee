@@ -266,16 +266,15 @@
       padding: 0.12em 0.3em
       width: auto
 
-    // A rebuilt colour on a chip of its own, the way the colour was shown.
-    .words:has(> .swatch-chip)
-      display: flex
-      justify-content: flex-end
+    // The colour keeps the largest chip and gives the guesses the room: a
+    // third of the screen for one chip left 24 of them a strip of slivers.
+    &[data-game='swatch']
+      .head .swatch-shown
+        block-size: clamp(9.5rem, min(calc(var(--stage-unit) * 28), 30cqh), 20rem)
 
-    .words > .swatch-chip
-      block-size: 1.85em
-
-    &[data-game='swatch'] .head .swatch-shown
-      block-size: calc(var(--stage-unit) * 48)
+      > .swatch-guesses
+        flex: 1 1 0
+        min-height: 0
 
     // One chip per distinct answer: the room reads who said the same thing,
     // and the standings beside it carry what each of them is owed.
@@ -431,6 +430,11 @@
       &[data-game='petitbac']
         align-content: center
         grid-template-rows: minmax(0, auto)
+
+      // Three blocks, and the guesses deal themselves into what the colour
+      // and the heading leave.
+      &[data-game='swatch']
+        grid-template-rows: auto auto minmax(0, 1fr)
 
       // An `auto` row is sized to its content, and the grid is a size
       // container with none: the wall drew it 0px tall under the theme.

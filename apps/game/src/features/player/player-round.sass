@@ -21,6 +21,13 @@
     // stay packed at the top whatever the standings' height.
     grid-template-rows: auto auto 1fr
 
+    &:has(> .table-colours)
+      grid-template-areas: 'outcome overall' 'hold overall' 'ready overall' 'colours overall'
+      grid-template-rows: auto auto auto 1fr
+
+    .table-colours
+      grid-area: colours
+
     .outcome
       grid-area: outcome
 
@@ -528,7 +535,7 @@
 
     // What surrounds the payout settles once the card has struck, rather
     // than cutting in beside a card still striking.
-    > :is(.hold, .back-at-the-table, .overall)
+    > :is(.hold, .back-at-the-table, .table-colours, .overall)
       animation: page-enter var(--transition-base, 0s) var(--ease-out) calc(var(--transition-slow, 0s) * 0.6) backwards
 
     // Under the round, where the next press of the evening lands: the word to
@@ -538,7 +545,7 @@
       display: flex
       flex-direction: column
 
-    .overall
+    :is(.overall, .table-colours)
       display: flex
       flex-direction: column
       gap: var(--space-xs)
@@ -720,11 +727,14 @@
         display: grid
         flex: 0 1 12rem
         gap: var(--space-2xs)
+        justify-items: center
         margin: 0
 
+      // Held to the height the first screen has, which owes the Ready press
+      // under it: at 360×640 the chip alone pushed it off.
       .swatch-chip
         box-shadow: none
-        inline-size: 100%
+        inline-size: min(100%, 18dvh)
 
         .field
           inset: 0

@@ -2080,6 +2080,7 @@ export const EN_DICTIONARY = defineDictionary({
     rebuildDuration: 'Time to rebuild it',
     remember: 'Remember this colour',
     reveal: {
+      table: 'The table’s colours',
       title: 'The colour',
       yours: 'Yours',
       yoursUnsent: 'Yours, taken where your picker stood'

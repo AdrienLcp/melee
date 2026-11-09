@@ -6,6 +6,7 @@ import type {
   RoundView
 } from '@melee/protocol/room'
 import type { HalvesVerdict, Verdict } from '@melee/protocol/scoring'
+import type { SentColour } from '@melee/protocol/swatch'
 import {
   type DatedTimelineEvent,
   TIMELINE_ORDER_SEPARATOR
@@ -290,6 +291,13 @@ const estimateGapOf = (round: RoundView, playerId: string): number | null => {
 
   return ratio === null ? null : gapOf(ratio)
 }
+
+/** Every seat's rebuilt colour, nearest the one shown first; empty before the reveal and in every other game. */
+export const revealedColoursInOrder = (round: RoundView): SentColour[] =>
+  (swatchContent(round)?.revealedColours ?? []).toSorted(
+    (left, right) =>
+      nearnessOf(round, left.playerId) - nearnessOf(round, right.playerId)
+  )
 
 /**
  * The answers in the order the reveal reads them: nearest first on the world

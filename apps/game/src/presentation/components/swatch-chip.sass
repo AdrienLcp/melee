@@ -24,3 +24,25 @@
       box-shadow: var(--shadow-recess-shallow)
       outline: var(--stroke-thin) dashed var(--socket-line)
       outline-offset: calc(var(--stroke-thin) * -1)
+
+    // The rule is drawn over both halves rather than round each, so nothing
+    // seams a guess that landed on the colour.
+    &[data-compared] .field
+      background: var(--swatch-shown)
+      box-shadow: none
+      overflow: hidden
+
+      &::after
+        border-radius: inherit
+        box-shadow: inset 0 0 0 var(--stroke-thin) var(--card-rule)
+        content: ''
+        inset: 0
+        position: absolute
+
+    // Laid up over the shown colour once the chip is down, by the delay its
+    // list deals (`--guess-delay`).
+    .guess
+      animation: guess-laid var(--transition-slow, 0s) var(--ease-out) var(--guess-delay, 0s) backwards
+      background: var(--swatch)
+      inset: 50% 0 0
+      position: absolute

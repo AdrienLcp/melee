@@ -260,6 +260,15 @@ one part.
 
 ### Improvements
 
+- `[Game]` **Shades lays every guess against the colour.** At the reveal
+  each seat's colour is drawn on a chip split with the one shown — the
+  colour on top, the guess under it — so a near guess reads as one block and
+  a far one as two. The wall and the console deal every seat's chip, nearest
+  first, under its pawn, its name and what the round paid it, the first three
+  carrying their place, in place of the podium and a strip of anonymous
+  chips; a player's screen lists them after Ready. The colour's own chip gives
+  the guesses the third of the screen it took.
+
 - `[Shared]` **A blind test is a wide evening again, never The Last of Us
   twice.** A room playing the blind test opens on every strand, whatever the
   last evening closed on: a line-up ending on film scores used to open every

@@ -185,7 +185,7 @@ export const RoundPodium: React.FC<RoundPodiumProps> = ({
  * apart, or on a track the squares its own pawn walked — and nothing for a
  * seat whose team walks, since the team's move is the standings' to print.
  */
-const AwardFigure: React.FC<{
+export const AwardFigure: React.FC<{
   award: Award
   /** The squares the seat's own pawn walked this round; `null` with no pawn of its own. */
   walked: number | null

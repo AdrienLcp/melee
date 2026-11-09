@@ -1329,6 +1329,33 @@ square over a hue strip, thumbs at touch size, with the chip previewing the
 colour beside the press; in a box wider than tall the press moves beside the
 square. The reveal captions the colour, and each seat's row carries its chip.
 
+**The comparison chip** (`SwatchChip` with `against`) is the same chip with
+its field split across the middle: the colour shown on the top half, the
+seat's on the bottom half, one rule round both so nothing seams a guess that
+landed. A near guess reads as one block, a far one as two, at any size — which
+a 30px chip beside a 480px one never did. The guess is laid up over the
+bottom half once the chip has landed (`guess-laid`, a `clip-path` wipe dealt
+in the order the chips land).
+
+**The reveal is the table's colours** (`SwatchGuesses`). On the wall and the
+console every seat that sent one stands as a comparison chip, nearest first,
+its pawn and name on one line under it (cut on an ellipsis) and what the
+round paid it under that. It replaces the podium and the tally: shades pays
+nothing for speed, so nearest first _is_ the round's order, and the first
+three carry their place before the pawn. The grid deals itself into the box
+the colour and the heading leave (`useFittedGrid`, a cell 1.7 times as tall as
+wide, capped at 9rem so no guess outgrows the colour); the wall takes the
+columns it dealt and never scrolls — 24 seats measured from 52px cells at
+1024×768 to 195px at 4K — while a console floors a cell at 4.75rem and
+scrolls the grid inside its box (24 seats dealt 26px cells into the console's
+round card at phone width). The colour's own chip shrank from 48 stage units
+to `clamp(9.5rem, min(28 × --stage-unit, 30cqh), 20rem)`, and stays the
+largest chip. A standing wall splits its height evenly between the colours
+and the standings, a narrow one hands them as much as the standings, up to
+52dvh. A player's screen lists the same chips one seat a row after the Ready
+press, its own row in the _yours_ keyline, and its own reveal chip is held to
+18dvh so Ready stays in the first screen at 360×640.
+
 ### Most likely (`SeatTile`, `MostLikelyTally`)
 
 The line on a paper card, the seats under it as pieces on `--track-a` — pawn,

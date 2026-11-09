@@ -2120,6 +2120,88 @@ test('[layout] wall, the reveal of a full table: nothing scrolls, from 720p to 4
   expect(faults).toEqual([])
 })
 
+/** Twenty-four seats who each rebuilt the colour, the nearest paid the most. */
+const wallShadesRevealOfAFullTable = () => {
+  const view = wallRevealOfAFullTable()
+
+  return {
+    ...view,
+    round: {
+      ...view.round,
+      awards: fullTable.map(({ id }, seat) => ({
+        isUnsent: seat % 5 === 0,
+        playerId: id,
+        points: Math.max(0, 20 - seat) * 5_000,
+        speedBonus: 0,
+        verdict: { distance: seat * 0.005, kind: 'colour' }
+      })),
+      content: {
+        colour: '#3a7bd5',
+        hidesAt: SERVER_TIME - 30_000,
+        kind: 'swatch',
+        revealedColours: fullTable.map(({ id }, seat) => ({
+          colour: `#${(0x3a + seat * 4).toString(16)}7bd5`,
+          playerId: id
+        })),
+        yourColour: null
+      },
+      revealedAnswers: []
+    }
+  }
+}
+
+test('[layout] wall, the shades reveal of a full table: every guess shown, nothing scrolls', async ({
+  page
+}) => {
+  await serveRoom({ page, view: wallShadesRevealOfAFullTable() })
+  await page.addInitScript(() => {
+    localStorage.setItem('melee:locale', 'fr')
+    localStorage.setItem('melee:volume', '0')
+  })
+  await page.setViewportSize({ height: 1080, width: 1920 })
+  await page.goto(`/wall/${ROOM_CODE}`)
+  await expect(page.locator('.swatch-guesses li')).toHaveCount(fullTable.length)
+
+  const faults: string[] = []
+
+  for (const [width, height] of WALL_VIEWPORTS) {
+    await resizeTo({ height, page, width })
+
+    const overflow = await page.evaluate(measureReveal)
+    const scrolling = await page.evaluate(scrollingBoxes)
+    const cutGuesses = await page.evaluate(() => {
+      const grid = document.querySelector('.swatch-guesses')
+      const box = grid?.getBoundingClientRect()
+
+      return [...(grid?.children ?? [])].filter((guess) => {
+        const cell = guess.getBoundingClientRect()
+
+        return (
+          box === undefined ||
+          cell.top < box.top - 0.5 ||
+          cell.bottom > box.bottom + 0.5 ||
+          cell.left < box.left - 0.5 ||
+          cell.right > box.right + 0.5
+        )
+      }).length
+    })
+
+    if (
+      overflow.furthest !== null ||
+      overflow.page > 0 ||
+      overflow.spills.length > 0 ||
+      scrolling.length > 0 ||
+      cutGuesses > 0
+    ) {
+      faults.push(
+        `${width}×${height} ${JSON.stringify({ ...overflow, cutGuesses, scrolling })}`
+      )
+    }
+  }
+
+  expect(faults).toEqual([])
+})
+
 /**
  * Every piece of the console's reveal drawn over another, or past the panel
  * that holds it — a size container keeps that overflow off the page, so no

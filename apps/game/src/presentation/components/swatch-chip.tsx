@@ -6,6 +6,12 @@ import type { ColourHex } from '@melee/protocol/swatch'
 import './swatch-chip.sass'
 
 type SwatchChipProps = {
+  /**
+   * The colour the round showed, laid over the top half of the field with
+   * `colour` under it: a near guess reads as one block, a far one as two.
+   * Omitted, the field is `colour` alone.
+   */
+  against?: ColourHex
   className?: string
   /** The colour printed on the chip, or `null` for the empty socket a hidden colour leaves. */
   colour: ColourHex | null
@@ -23,23 +29,32 @@ type SwatchChipProps = {
  * arrives through `--swatch` and is never a token.
  */
 export const SwatchChip: React.FC<SwatchChipProps> = ({
+  against,
   className,
   colour,
   label
 }) => {
+  const isCompared = against !== undefined && colour !== null
   const chip = {
     className: classNames('swatch-chip', className),
+    'data-compared': isCompared || undefined,
     'data-empty': colour === null || undefined,
-    style: colour === null ? undefined : { '--swatch': colour }
+    style:
+      colour === null
+        ? undefined
+        : { '--swatch': colour, '--swatch-shown': against }
   }
+  const field = (
+    <span className='field'>{isCompared && <span className='guess' />}</span>
+  )
 
   return label === undefined ? (
     <span aria-hidden='true' {...chip}>
-      <span className='field' />
+      {field}
     </span>
   ) : (
     <span aria-label={label} role='img' {...chip}>
-      <span className='field' />
+      {field}
     </span>
   )
 }
