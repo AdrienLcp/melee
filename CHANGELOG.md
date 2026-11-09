@@ -617,6 +617,12 @@ one part.
 
 ### Fixes
 
+- `[Game]` **A long name no longer squeezes the colour off the podium.** On
+  a phone's Shades reveal, a twenty-letter name in first place left the
+  seat's colour a sliver; the chip now keeps its shape and the name ends on
+  an ellipsis instead. A matchstick slip on the podium is held whole the
+  same way.
+
 - `[Shared]` **A game comes back as late as the evening allows.** Playing
   again kept nothing of _Free-for-all_'s hand-written order: it redealt the
   forty entries at random, started on the game that had just ended, and

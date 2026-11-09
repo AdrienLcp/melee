@@ -82,10 +82,15 @@
         flex: none
         margin-inline-start: auto
 
-      // A moved stick printed on a slip of paper, the way every match is laid.
-      .words:has(> .matchstick-row)
+      // A picture is no line of words: a slip or a chip cut short shows a
+      // sliver, never an ellipsis, so it keeps its width like a figure does.
+      .words:has(> .matchstick-row, > .swatch-chip)
         display: flex
+        flex: none
         justify-content: flex-end
+        margin-inline-start: auto
+
+      // A moved stick printed on a slip of paper, the way every match is laid.
 
       .words > .matchstick-row
         background: var(--card)
@@ -96,12 +101,9 @@
         width: auto
 
       // A rebuilt colour on a chip of its own, the way the colour was shown.
-      .words:has(> .swatch-chip)
-        display: flex
-        justify-content: flex-end
-
       .words > .swatch-chip
         block-size: 1.85em
+        flex: none
 
     .found
       @include typography.caption-strong
