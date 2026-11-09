@@ -1,12 +1,19 @@
 import { describe, expect, it } from 'vitest'
 
 import { DEFAULT_GAME_SETTINGS } from '@melee/protocol/game'
-import type { LineUpDeal, RoomSettings } from '@melee/protocol/room'
+import {
+  DEFAULT_MODE_SETTINGS,
+  DEFAULT_ROOM_SETTINGS,
+  type LineUpDeal,
+  type RoomSettings
+} from '@melee/protocol/room'
 
+import { offersAnswerMode } from './game-modes'
 import {
   comingRounds,
   dealtOrder,
   orderWithEntryNext,
+  rewoundToFirstRow,
   scheduledEntryAt
 } from './running-order'
 
@@ -123,6 +130,127 @@ describe('scheduledEntryAt', () => {
 
   it('[running-order] leaves a row whose entry is gone to chance', () => {
     expect(drawnAt({ order: [7], roundAt: 0 })).not.toBeNull()
+  })
+
+  it('[running-order] draws past the rows the game played longest ago', () => {
+    const fourGames = [
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.blindtest,
+      DEFAULT_GAME_SETTINGS.atlas,
+      DEFAULT_GAME_SETTINGS.reflex
+    ]
+
+    for (const roll of ROLLS) {
+      expect(
+        scheduledEntryAt({
+          deals: ['both', 'both', 'both', 'chance'],
+          lastAt: 3,
+          lineUp: fourGames,
+          order: [0, 1, 2, 3],
+          played: [1, 1, 1, 1],
+          random: () => roll,
+          repeatsOrder: false,
+          roundAt: 4,
+          roundsLeft: null
+        })
+      ).toBe(0)
+    }
+  })
+
+  it('[chance-pool] spaces the draw past the rows among the entries in the draw alone', () => {
+    const fourGames = [
+      DEFAULT_GAME_SETTINGS.quiz,
+      DEFAULT_GAME_SETTINGS.blindtest,
+      DEFAULT_GAME_SETTINGS.atlas,
+      DEFAULT_GAME_SETTINGS.reflex
+    ]
+
+    for (const roll of ROLLS) {
+      expect(
+        scheduledEntryAt({
+          deals: ['row', 'chance', 'both', 'chance'],
+          lastAt: 3,
+          lineUp: fourGames,
+          order: [0, 1, 2, 3],
+          played: [1, 1, 1, 1],
+          random: () => roll,
+          repeatsOrder: false,
+          roundAt: 4,
+          roundsLeft: null
+        })
+      ).toBe(1)
+    }
+  })
+})
+
+describe('rewoundToFirstRow', () => {
+  const playedThrough: RoomSettings = {
+    ...DEFAULT_ROOM_SETTINGS,
+    game: DEFAULT_GAME_SETTINGS.slate,
+    lineUp,
+    lineUpAt: 3,
+    mode: DEFAULT_MODE_SETTINGS.buzzer,
+    runningOrder: [2, 0, 1, 3]
+  }
+
+  it('[running-order] plays a replay on the order it had, from its first row', () => {
+    const rewound = rewoundToFirstRow(playedThrough)
+
+    expect(rewound.lineUpAt).toBe(2)
+    expect(rewound.game).toEqual(DEFAULT_GAME_SETTINGS.blindtest)
+    expect(
+      dealtOrder({
+        deals: rewound.lineUpDeals,
+        drawnAt: rewound.lineUpAt,
+        lineUp,
+        order: rewound.runningOrder,
+        played: lineUp.map(() => 0),
+        random: () => 0,
+        upcoming: 0
+      })
+    ).toEqual([2, 0, 1, 3])
+  })
+
+  it('[running-order] plays a replay once round each entry, however long the evening ran', () => {
+    const rewound = rewoundToFirstRow({
+      ...playedThrough,
+      runningOrder: [2, 0, 1, 3, 0, 2, 0]
+    })
+
+    expect(
+      dealtOrder({
+        deals: rewound.lineUpDeals,
+        drawnAt: rewound.lineUpAt,
+        lineUp,
+        order: rewound.runningOrder,
+        played: lineUp.map(() => 0),
+        random: () => 0,
+        upcoming: 0
+      })
+    ).toEqual([2, 0, 1, 3])
+  })
+
+  it('[running-order] opens a replay on a mode its first game offers', () => {
+    const rewound = rewoundToFirstRow({
+      ...playedThrough,
+      mode: DEFAULT_MODE_SETTINGS.order,
+      runningOrder: [0, 2, 1, 3]
+    })
+
+    expect(rewound.game).toEqual(DEFAULT_GAME_SETTINGS.quiz)
+    expect(
+      offersAnswerMode({
+        game: DEFAULT_GAME_SETTINGS.quiz,
+        mode: rewound.mode.kind
+      })
+    ).toBe(true)
+  })
+
+  it('[running-order] leaves an evening with no order to be dealt afresh', () => {
+    const rewound = rewoundToFirstRow({ ...playedThrough, runningOrder: [] })
+
+    expect(rewound.lineUpAt).toBe(3)
+    expect(rewound.runningOrder).toEqual([])
   })
 })
 

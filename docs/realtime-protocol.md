@@ -272,7 +272,8 @@ writes every accepted frame's `game` back into that entry
 from then on. One entry is a room playing one game, which is what every game's
 front door opens. The draw between two rounds is the console's (`nextEntryAt`:
 another game before another entry of the same one, never the entry just
-played): it lands as an ordinary settings frame between the reveal and
+played, and among the rest the first row of a cycle `spacedCycle` deals after
+the rounds already played, so a game played two rounds ago waits its turn): it lands as an ordinary settings frame between the reveal and
 `host.nextRound`, so the wall reads the next game off `settings.game` like
 everything else. `POST /api/rooms` takes the `games` to open on — none from
 home, one from a game's own page, or several opened as a line-up of four rounds

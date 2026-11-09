@@ -196,10 +196,13 @@ which is why a user-visible string written into a component is a bug — see
   what the next round is played on, read off the **running order** as each
   reveal goes up and changed by dragging the running order in the panel. The order is the
   **planned games**, one row per entry: the server deals it whenever the
-  evening changes (`dealtOrder`, on `nextEntryAt`'s rule: another game before
-  another entry of the same one), the setup lists it and a drag edits it, and
-  every round past its last row is drawn as it comes (`scheduledEntryAt`)
-  among the **draw**: `lineUpDeals`, parallel to `lineUp`, deals each entry a
+  evening changes (`dealtOrder` through `spacedCycle`: each game as far from
+  its last round as its share of the entries allows, never back to back, seeded
+  with the rounds already played), the setup lists it, a drag edits it and a
+  replay plays it again from its first row (`rewoundToFirstRow`), and
+  every round past its last row is drawn as it comes (`scheduledEntryAt`, the
+  first row of a spaced cycle of the entries the deck still owes) among the
+  **draw**: `lineUpDeals`, parallel to `lineUp`, deals each entry a
   `row`, `chance` or `both` — a game serving its own content defaults to
   `both`, one the host brings is `row` and refused anything else, and a
   `chance` entry sits in the draw without a planned row. While every entry

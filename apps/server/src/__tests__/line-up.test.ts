@@ -247,6 +247,31 @@ describe('an evening of several games', () => {
     expect(hostView(host)?.lineUpPlayed).toEqual([0, 0])
   })
 
+  it('[running-order] plays the evening again on its order, from its first row', async () => {
+    const { code, host } = await harness.openRoom(ON_THE_BUZZER)
+    await harness.seat({ code, nickname: 'Anna' })
+
+    expect(hostView(host)?.settings.runningOrder).toEqual([1, 0])
+
+    host.send({ type: 'host.startRound' })
+    await waitFor(() => hostView(host)?.phase === 'playing', 'the buzzer')
+    host.send({ roundId: hostView(host)?.round?.id ?? '', type: 'host.reveal' })
+    await waitFor(() => hostView(host)?.phase === 'revealed', 'its reveal')
+    host.send({
+      settings: { ...EVENING, runningOrder: [1, 0] },
+      type: 'host.updateSettings'
+    })
+    await waitFor(() => hostView(host)?.settings.lineUpAt === 0, 'the draw')
+    host.send({ type: 'host.endGame' })
+    await waitFor(() => hostView(host)?.phase === 'finished', 'the board')
+    host.send({ type: 'host.playAgain' })
+    await waitFor(() => hostView(host)?.phase === 'lobby', 'the new game')
+
+    expect(hostView(host)?.settings.lineUpAt).toBe(1)
+    expect(hostView(host)?.settings.game).toEqual(DEFAULT_BUZZER_SETTINGS)
+    expect(hostView(host)?.settings.runningOrder).toEqual([1, 0])
+  })
+
   it('[line-up] ends an evening once every host-brought entry is played', async () => {
     const hostBrought: RoomSettings = {
       ...FAST_GAME,

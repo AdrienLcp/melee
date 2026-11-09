@@ -617,6 +617,17 @@ one part.
 
 ### Fixes
 
+- `[Shared]` **A game comes back as late as the evening allows.** Playing
+  again kept nothing of _Free-for-all_'s hand-written order: it redealt the
+  forty entries at random, started on the game that had just ended, and
+  brought black square or shades back two rounds later. A replay now plays
+  the same order from its first row. Every order the app deals — a ready-made
+  evening, one the host ticked, the rounds drawn past the last row — spaces
+  each game by its share of the entries, counted from the rounds already
+  played: a quiz holding twelve of forty entries comes back every three
+  rounds, a blind test every five, a game holding two every twenty, where
+  the old draw only kept the same game from coming twice in a row.
+
 - `[Server]` **Every quiz question says what it is about.** All 13 010
   questions were read for a prompt that leans on a context the screen never
   shows — _the club_, _the series_, _l'édition de 2023_ — or on a moment it

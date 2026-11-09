@@ -5,8 +5,10 @@ import {
   RUNNING_ORDER_MAX_ROWS
 } from '@melee/protocol/room'
 
+import { modeOfferedBy } from './game-modes'
 import { dealsOf, isDealtARow, isInTheDraw } from './line-up-deals'
 import { isPlayedOut, nextEntryAt } from './next-game'
+import { spacedCycle } from './spaced-cycle'
 
 type Order = RoomSettings['runningOrder']
 
@@ -89,16 +91,19 @@ export const scheduledEntryAt = ({
   }
 
   const dealt = dealsOf({ deals, lineUp })
+  const openedBefore = order.slice(0, Math.max(0, roundAt - 1))
 
   return (
     nextEntryAt({
       isDrawable: (at) => isInTheDraw(dealt[at]),
       lastAt,
       lineUp,
+      openedBefore,
       played,
       random,
       roundsLeft: null
-    }) ?? nextEntryAt({ lastAt, lineUp, played, random, roundsLeft })
+    }) ??
+    nextEntryAt({ lastAt, lineUp, openedBefore, played, random, roundsLeft })
   )
 }
 
@@ -117,6 +122,31 @@ const entryAfterInOrder = ({
   return cycle
     .map((_row, step) => cycle[(after + 1 + step) % cycle.length] ?? null)
     .find(isOwed)
+}
+
+/**
+ * The settings an evening is played again on: its running order kept — the
+ * host's, or the one dealt — and the round about to open back on its first
+ * row, the answer mode narrowed to that entry's game. An order with no row an
+ * entry may take is left empty, for the next frame to deal afresh.
+ */
+export const rewoundToFirstRow = (settings: RoomSettings): RoomSettings => {
+  const { lineUp, lineUpDeals, runningOrder } = settings
+  const firstAt = runningOrder.find(
+    isOwedItsRow({ deals: lineUpDeals, lineUp, played: [] })
+  )
+  const entry = firstAt === undefined ? undefined : lineUp[firstAt]
+
+  if (firstAt === undefined || entry === undefined) {
+    return { ...settings, runningOrder: [] }
+  }
+
+  return {
+    ...settings,
+    game: entry,
+    lineUpAt: firstAt,
+    mode: modeOfferedBy({ game: entry, preferred: settings.mode })
+  }
 }
 
 /** Whether every row of the order points at an entry of the line-up. */
@@ -156,10 +186,11 @@ export const orderWithEntryAdded = ({
 /**
  * The order the evening plays: one row per entry still to come, the host's
  * rows first in the host's order, then every entry never played and given no
- * row yet — save one the host put in the draw alone — dealt by `nextEntryAt`'s rule — another game before another entry
- * of the same one. A row the evening no longer holds — an entry taken out or
- * played out, a second row for one entry — is dropped, and the list closes
- * up. The round about to open is `drawnAt`'s when it is settled. Every round
+ * row yet — save one the host put in the draw alone — dealt by `spacedCycle`
+ * after the rows before them, each game as far from its last round as its
+ * share of the entries allows. A row the evening no longer holds — an entry
+ * taken out or played out, a second row for one entry — is dropped, and the
+ * list closes up. The round about to open is `drawnAt`'s when it is settled. Every round
  * past the last row is drawn as it comes (`scheduledEntryAt`), and a row past
  * a counted evening's end is never reached, which the console shows the host.
  *
@@ -214,10 +245,13 @@ export const dealtOrder = ({
   return [
     ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
     ...kept,
-    ...dealtInTurn({
-      lastAt: kept.at(-1) ?? placed[upcoming - 1] ?? null,
+    ...spacedCycle({
+      entries: owed,
       lineUp,
-      owed,
+      opened: [
+        ...Array.from({ length: upcoming }, (_, at) => placed[at] ?? null),
+        ...kept
+      ],
       random
     })
   ].slice(0, RUNNING_ORDER_MAX_ROWS)
@@ -243,40 +277,6 @@ const isOwedItsRow =
       !isPlayedOut({ entry, played: played[row] ?? 0 })
     )
   }
-
-const dealtInTurn = ({
-  lastAt,
-  lineUp,
-  owed,
-  random
-}: {
-  lastAt: number | null
-  lineUp: readonly GameSettings[]
-  owed: readonly number[]
-  random: () => number
-}): number[] => {
-  const planned = lineUp.map((_entry, at) => (owed.includes(at) ? 0 : 1))
-  const dealt: number[] = []
-
-  for (let left = owed.length; left > 0; left -= 1) {
-    const drawn = nextEntryAt({
-      lastAt: dealt.at(-1) ?? lastAt,
-      lineUp,
-      played: planned,
-      random,
-      roundsLeft: left
-    })
-
-    if (drawn === null) {
-      break
-    }
-
-    dealt.push(drawn)
-    planned[drawn] = 1
-  }
-
-  return dealt
-}
 
 /** One round still to come. */
 export type ComingRound = {

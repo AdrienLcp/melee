@@ -4,6 +4,7 @@ import type { RoomSettings } from '@melee/protocol/room'
 
 import { isTrackFinished, racesToTheFinish } from '../board/track-finish'
 import { capabilitiesOf } from './game-capabilities'
+import { spacedCycle } from './spaced-cycle'
 
 /**
  * Which entry of the line-up the next round is drawn on, the evening being a
@@ -17,6 +18,10 @@ import { capabilitiesOf } from './game-capabilities'
  * broken even when it is fair, and so are a blind test on the charts and one
  * on film scores, which a table hears as the same game twice.
  *
+ * Among the entries left, the draw is the first row of a whole cycle of them
+ * dealt by `spacedCycle` after the rounds already played (`openedBefore`), so
+ * a game played two or three rounds ago waits its turn rather than a coin's.
+ *
  * `null` when nothing is left to deal: an empty line-up, or one whose every
  * entry was the host's and is played.
  */
@@ -24,6 +29,7 @@ export const nextEntryAt = ({
   isDrawable = () => true,
   lastAt,
   lineUp,
+  openedBefore = [],
   played,
   random,
   roundsLeft
@@ -33,6 +39,11 @@ export const nextEntryAt = ({
   /** The entry the round just played was opened from, or `null` before the first. */
   lastAt: number | null
   lineUp: readonly GameSettings[]
+  /**
+   * The entries the rounds before the one just played opened on, oldest first,
+   * `null` for one no longer in the line-up; none when absent.
+   */
+  openedBefore?: readonly (number | null)[]
   /** How many rounds each entry has opened this evening, by index. */
   played: readonly number[]
   /** In `[0, 1)`, as `Math.random` — passed in so the draw stays a pure function. */
@@ -60,7 +71,23 @@ export const nextEntryAt = ({
     due
   ].find((candidates) => candidates.length > 0)
 
-  return pool?.[Math.floor(random() * pool.length)] ?? null
+  if (pool === undefined) {
+    return null
+  }
+
+  const cycle = pool.every((at) => balanced.includes(at)) ? balanced : due
+  const spaced = spacedCycle({
+    entries: cycle,
+    lineUp,
+    opened: [...openedBefore, lastAt],
+    random
+  })
+
+  return (
+    spaced.find((at) => pool.includes(at)) ??
+    pool[Math.floor(random() * pool.length)] ??
+    null
+  )
 }
 
 /**

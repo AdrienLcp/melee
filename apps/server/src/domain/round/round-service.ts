@@ -39,6 +39,7 @@ import {
 } from '@melee/core/reflex/flip-schedule'
 import { isFalseStart } from '@melee/core/reflex/reaction'
 import { endsTheEvening, playedPerEntry } from '@melee/core/room/next-game'
+import { rewoundToFirstRow } from '@melee/core/room/running-order'
 import {
   type BuzzRejection,
   findBuzzRejection,
@@ -1795,7 +1796,9 @@ export const finishGame = (room: Room, now: number): void => {
 
 /**
  * The same players in the same seats, scores at zero, and the evening's order
- * dealt again from its first round. `playedContentIds` survives on purpose: a
+ * played again from its first row (`rewoundToFirstRow`) — redealt, it lost a
+ * hand-written order's spacing and opened on the game just played.
+ * `playedContentIds` survives on purpose: a
  * second game in the same room should not replay the tracks the first one just
  * burnt through.
  */
@@ -1810,7 +1813,7 @@ export const restartGame = (room: Room, now: number): void => {
   room.phase = 'lobby'
   room.round = null
   room.isDuelAsked = false
-  updateSettings(room, { ...room.settings, runningOrder: [] }, now)
+  updateSettings(room, rewoundToFirstRow(room.settings), now)
 }
 
 /**
